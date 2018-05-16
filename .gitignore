@@ -1,0 +1,16 @@
+# pkg
+node_modules
+!/**/examples/node_modules
+
+# @std/esm
+.esm-cache
+lerna-debug.log
+yarn-debug.log
+dist
+!/**/examples/node_modules/**/dist
+tools/cli/build
+.vscode
+.DS_Store
+yarn-error.log
+.temp
+temp

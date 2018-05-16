@@ -1,0 +1,38 @@
+{
+	"name": "@pluginjs/template",
+	"title": "Plugin",
+	"version": "0.2.19",
+	"description": "A workflow for modern frontend development.",
+	"author": "Creation Studio Limited",
+	"homepage": "https://github.com/amazingSurge/plugin.js",
+	"license": "GPL-v3",
+	"main": "dist/template.js",
+	"files": [
+		"dist",
+		"src"
+	],
+	"scripts": {
+		"start": "gulp plugin",
+		"build": "npm run prestart && gulp build",
+		"deploy": "gulp deploy",
+		"deploy:prepare": "gulp deploy:prepare",
+		"test": "gulp test",
+		"new": "cp -r ./plugins/sample ./plugins/$Component"
+	},
+	"repository": {
+		"url": "git@github.com:amazingSurge/plugin.js.git",
+		"type": "git"
+	},
+	"bugs": {
+		"url": "https://github.com/amazingSurge/plugin.js/issues"
+	},
+	"engines": {
+		"node": ">= 8",
+		"npm": ">= 5"
+	},
+	"category": "core",
+	"min": "dist/template.min.js",
+	"standalone": "dist/template.standalone.js",
+	"module": "dist/template.esm.js",
+	"dev-main": "src/main.js"
+}

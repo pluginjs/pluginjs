@@ -1,0 +1,47 @@
+{
+	"private": true,
+	"scripts": {
+		"commit": "commit"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"commit-msg": "commitlint -e $GIT_PARAMS"
+		}
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*.js": [
+			"eslint --fix",
+			"git add"
+		],
+		"*.css": [
+			"stylint --fix",
+			"git add"
+		]
+	},
+	"browserslist": [
+		"Explorer 11",
+		"last 4 Edge versions"
+	],
+	"workspaces": [
+		"modules/*",
+		"tools/*"
+	],
+	"devDependencies": {
+		"@commitlint/cli": "^6.2.0",
+		"@commitlint/config-conventional": "^6.1.3",
+		"@commitlint/prompt-cli": "^6.1.3",
+		"babel-eslint": "^8.2.3",
+		"eslint": "^4.19.1",
+		"husky": "^1.0.0-rc.6",
+		"lerna": "^2.2.0",
+		"lint-staged": "^7.1.0",
+		"stylelint": "^9.2.1",
+		"stylelint-config-recommended-scss": "^3.2.0"
+	}
+}
