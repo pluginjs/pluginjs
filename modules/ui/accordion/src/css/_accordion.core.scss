@@ -1,0 +1,165 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$accordion: "pj-accordion" !default;
+$accordion-font-size: $font-size-base !default;
+$accordion-line-height: $line-height-sm !default;
+$accordion-header-spacer-y: 10px !default;
+$accordion-horizontal-height: 260px !default;
+$accordion-horizontal-header-width: ceil(
+  $accordion-font-size * $accordion-line-height + $accordion-header-spacer-y * 2
+) !default;
+$accordion-dropdown-zindex: $zindex-dropdown !default;
+$accordion-dropdown-active-color: $color-primary !default;
+
+// Core
+// =====================
+.#{$accordion} {
+  @include clearfix();
+
+  position: relative;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  list-style: none;
+
+  &-pane,
+  &-pane-header,
+  &-pane-content-inner {
+    box-sizing: border-box;
+  }
+
+  &-pane {
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+
+  &-pane-header {
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  &-pane-content {
+    // height: 0;
+  }
+
+  &-active {
+    z-index: 1;
+  }
+
+  &-active .#{$accordion}-pane-content {
+    // height: 100%;
+  }
+
+  &-horizontal {
+    height: $accordion-horizontal-height;
+
+    .#{$accordion} {
+      &-pane {
+        position: relative;
+        float: left;
+        height: 100%;
+      }
+
+      &-pane-header {
+        width: $accordion-horizontal-height;
+        height: $accordion-horizontal-header-width;
+        text-align: right;
+        transform: translateX(-100%) rotate(-90deg);
+        transform-origin: right top 0;
+      }
+
+      &-pane-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        margin-left: $accordion-horizontal-header-width;
+        overflow-y: hidden;
+      }
+
+      &-pane-content-inner {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+    }
+  }
+
+  &-dropdown {
+    position: relative;
+
+    &-label {
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+      text-decoration: none;
+    }
+  }
+
+  &-dropdown-list {
+    position: absolute;
+    z-index: $accordion-dropdown-zindex;
+    display: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: $color-white;
+
+    > li {
+      cursor: pointer;
+
+      &.#{$accordion}-active {
+        color: $accordion-dropdown-active-color;
+      }
+    }
+  }
+
+  &-open {
+    .#{$accordion}-dropdown-list {
+      display: block;
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+
+    .#{$accordion}-dropdown-label {
+      display: block;
+      border-bottom-right-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+  }
+}
+
+.#{$accordion}-responsive {
+  overflow: hidden;
+
+  .#{$accordion}-pane {
+    // display: none;
+    position: absolute;
+    width: 100%;
+
+    &-header {
+      display: none;
+    }
+
+    &-content {
+      // height: auto;
+    }
+  }
+
+  &.#{$accordion}-horizontal {
+    .#{$accordion}-pane {
+      float: none;
+      width: auto !important;
+      height: auto;
+    }
+
+    .#{$accordion}-pane-content {
+      position: relative;
+      width: 100% !important;
+      margin-left: 0;
+    }
+  }
+}

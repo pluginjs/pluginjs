@@ -1,0 +1,579 @@
+// Button
+// ==========================================
+//
+// Var
+// $btn-height                             : 30px !default;
+$button-sizer: $sizer;
+
+$btn-font-size: $font-size-base !default;
+$btn-padding-y: 0.4*$button-sizer !default; //4px
+$btn-padding-x: 1.5*$button-sizer !default; //15px
+$btn-line-height: $line-height-base !default;
+$btn-border-radius: $border-radius-sm !default;
+$btn-text-color: $color-primary-black !default;
+$btn-bg-color: $color-white !default;
+$btn-border-color: $color-btn-border !default;
+$btn-hover-text-color: $color-btn-border !default;
+$btn-hover-bg-color: $color-white !default;
+$btn-hover-border-color: $color-btn-border !default;
+$btn-active-text-color: $color-btn-font !default;
+$btn-active-bg-color:  $color-white !default;
+$btn-active-border-color: $color-btn-font !default;
+$btn-link-default-color: $gray-dark !default;
+$btn-disabled-color: $gray-border !default;
+$btn-disabled-bg-color: $color-white !default;
+$btn-disabled-border-color: $gray-border !default;
+// $btn-disabled-color: rgba($gray-dark, 0.3) !default;
+// $btn-disabled-bg-color: rgba($gray-lighter, 0.4) !default;
+// $btn-disabled-border-color: rgba($gray-lighter, 0.6) !default;
+
+// $btn-height-sm                          : 24px !default;
+// $btn-height-lg                          : 36px !default;
+
+// $btn-outline-text-color                 :
+// $btn-outline-bg-color                   :
+// $btn-outline-border-color               :
+
+// $btn-primary-text-color                 :
+// $btn-primary-bg-color                   :
+// $btn-primary-border-color               :
+
+// $btn-primary-hover-text-color           :
+// $btn-primary-hover-bg-color             :
+// $btn-primary-hover-border-color         :
+
+// $btn-primary-active-text-hover-color    :
+// $btn-primary-active-bg-hover-color      :
+// $btn-primary-active-border-hover-color  :
+
+// button reset css;
+
+// Custom Buttons
+.pj-btn,
+button {
+  // height: $btn-height;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: $btn-padding-y $btn-padding-x;
+  // font-family: $font-family-base;
+  font-size: $btn-font-size;
+  line-height: $btn-line-height;
+  color: $btn-text-color;
+  // font-weight: $btn-font-weight;
+
+  text-align: center;
+  text-decoration: none;
+  // text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: $btn-bg-color;
+  border: 1px solid $btn-border-color;
+  border-radius: $btn-border-radius;
+  transition: all 0.3s;
+
+  // button with icon
+  .icon,
+  .text {
+    // position: relative;
+    // margin-bottom: -2%;
+    display: inline-block;
+    // margin: 0 .5em;
+    margin: 0;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+  }
+
+  .icon + .text {
+    margin-left: 0.5em;
+  }
+
+  .text + .icon {
+    margin-left: 0.5em;
+  }
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+    outline: 0 none;
+  }
+
+  &:not(:disabled):focus {
+    outline: 0 none;
+    box-shadow: none;
+  }
+
+  &:not(:disabled):hover {
+    color: $btn-hover-text-color;
+    background-color: $btn-hover-bg-color;
+    border-color: $btn-hover-border-color;
+  }
+
+  &:not(:disabled):active {
+    color: $btn-active-text-color;
+    background-color: $btn-active-bg-color;
+    border-color: $btn-active-border-color;
+  }
+
+  &-xs {
+    padding: 0.2*$button-sizer 0.6*$button-sizer; //2px 6px
+    font-size: $font-size-xs;
+    // border-radius: $border-radius-sm;
+  }
+
+  &-sm {
+    padding: 0.4*$button-sizer $button-sizer; //4px 10px
+    font-size: $font-size-xs;
+    line-height: $line-height-sm;
+    // height: $btn-height-sm;
+    // border-radius: $border-radius-base;
+  }
+
+  &-lg {
+    padding: 0.8*$button-sizer 2.5*$button-sizer; //8px 25px
+    font-size: $font-size-sm;
+    line-height: $line-height-lg;
+    // height: $btn-height-lg;
+    // border-radius: $border-radius-lg;
+  }
+
+  // &-huge {
+  //   // Add your styles here
+  // }
+
+  &-primary {
+    color: $color-white;
+    background-color: $btn-color-primary;
+    border-color: $btn-color-primary;
+
+    &:not(:disabled):hover {
+      color: $color-white;
+      background-color: $color-primary-light;
+      border-color: $color-primary-light;
+    }
+
+    &:not(:disabled):active {
+      color: $color-white;
+      background-color: $color-primary-dark;
+      border-color: $color-primary-dark;
+    }
+  }
+
+  &-success {
+    color: $color-white;
+    background-color: $color-success;
+    border-color: $color-success;
+
+    &:not(:disabled):hover {
+      color: $color-white;
+      background-color: $color-success-light;
+      border-color: $color-success-light;
+    }
+
+    &:not(:disabled):active {
+      color: $color-white;
+      background-color: $color-success-dark;
+      border-color: $color-success-dark;
+    }
+  }
+
+  &-info {
+    color: $color-white;
+    background-color: $color-info;
+    border-color: $color-info;
+
+    &:not(:disabled):hover {
+      color: $color-white;
+      background-color: $color-info-light;
+      border-color: $color-info-light;
+    }
+
+    &:not(:disabled):active {
+      color: $color-white;
+      background-color: $color-info-dark;
+      border-color: $color-info-dark;
+    }
+  }
+
+  &-danger {
+    color: $color-white;
+    background-color: $color-danger;
+    border-color: $color-danger;
+
+    &:not(:disabled):hover {
+      color: $color-white;
+      background-color: $color-danger-light;
+      border-color: $color-danger-light;
+    }
+
+    &:not(:disabled):active {
+      color: $color-white;
+      background-color: $color-danger-dark;
+      border-color: $color-danger-dark;
+    }
+  }
+
+  &-warning {
+    color: $color-white;
+    background-color: $color-warning;
+    border-color: $color-warning;
+
+    &:not(:disabled):hover {
+      color: $color-white;
+      background-color: $color-warning-light;
+      border-color: $color-warning-light;
+    }
+
+    &:not(:disabled):active {
+      color: $color-white;
+      background-color: $color-warning-dark;
+      border-color: $color-warning-dark;
+    }
+  }
+
+  // &-secondary {
+  //   // Add your styles here
+  // }
+
+  &-round {
+    border-radius: 50px;
+  }
+
+  &-cirle {
+    border-radius: 50%;
+  }
+
+  &-outline-default {
+    background-color: transparent;
+
+    &:not(:disabled):hover {
+      color: $color-primary-light;
+      background-color: transparent;
+      border-color: $color-primary-light;
+    }
+
+    &:not(:disabled):focus,
+    &:not(:disabled):active {
+      color: $color-primary-dark;
+      background-color: transparent;
+      border-color: $color-primary-dark;
+    }
+  }
+
+  &-outline {
+    background-color: transparent;
+
+    &.pj-btn-primary {
+      color: $btn-color-primary;
+      background-color: transparent;
+      border-color: $btn-color-primary;
+
+      &:not(:disabled):hover {
+        color: $color-white;
+        background-color: $color-primary-light;
+        border-color: $color-primary-light;
+      }
+
+      &:not(:disabled):active {
+        color: $color-white;
+        background-color: $color-primary-dark;
+        border-color: $color-primary-dark;
+      }
+    }
+
+    &.pj-btn-success {
+      color: $color-success;
+      background-color: transparent;
+      border-color: $color-success;
+
+      &:not(:disabled):hover {
+        color: $color-white;
+        background-color: $color-success-light;
+        border-color: $color-success-light;
+      }
+
+      &:not(:disabled):active {
+        color: $color-white;
+        background-color: $color-success-dark;
+        border-color: $color-success-dark;
+      }
+    }
+
+    &.pj-btn-info {
+      color: $color-info;
+      background-color: transparent;
+      border-color: $color-info;
+
+      &:not(:disabled):hover {
+        color: $color-white;
+        background-color: $color-info-light;
+        border-color: $color-info-light;
+      }
+
+      &:not(:disabled):active {
+        color: $color-white;
+        background-color: $color-info-dark;
+        border-color: $color-info-dark;
+      }
+    }
+
+    &.pj-btn-danger {
+      color: $color-danger;
+      background-color: transparent;
+      border-color: $color-danger;
+
+      &:not(:disabled):hover {
+        color: $color-white;
+        background-color: $color-danger-light;
+        border-color: $color-danger-light;
+      }
+
+      &:not(:disabled):active {
+        color: $color-white;
+        background-color: $color-danger-dark;
+        border-color: $color-danger-dark;
+      }
+    }
+
+    &.pj-btn-warning {
+      color: $color-warning;
+      background-color: transparent;
+      border-color: $color-warning;
+
+      &:not(:disabled):hover {
+        color: $color-white;
+        background-color: $color-warning-light;
+        border-color: $color-warning-light;
+      }
+
+      &:not(:disabled):active {
+        color: $color-white;
+        background-color: $color-warning-dark;
+        border-color: $color-warning-dark;
+      }
+    }
+  }
+
+  &-transparent {
+    color: $btn-link-default-color;
+
+    &,
+    &:hover,
+    &:active {
+      background-color: transparent !important;
+      border-color: transparent !important;
+    }
+
+    &:not(:disabled):hover {
+      color: $link-hover-color;
+    }
+
+    &:not(:disabled):focus,
+    &:not(:disabled):active {
+      color: $link-active-color;
+    }
+  }
+
+  &-link-default,
+  &-link {
+    padding: 0;
+    color: $link-color;
+    text-decoration: underline;
+    background: transparent;
+    border: 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+      background: transparent;
+      border: 0;
+      outline: 0;
+    }
+
+    &:hover {
+      color: $link-hover-color;
+    }
+
+    &:focus,
+    &:active {
+      color: $link-active-color;
+    }
+  }
+
+  &-link-default {
+    color: $btn-link-default-color;
+  }
+
+  // button only icon in
+  &-icon {
+    padding: 0.8*$button-sizer; //8px
+    font-size: $font-size-xs;
+    line-height: 1;
+
+    .icon {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+
+  // disabled status
+  //
+  &-disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: $btn-disabled-color !important;
+      cursor: not-allowed;
+      background-color: $btn-disabled-bg-color !important;
+      border-color: transparent !important;
+    }
+  }
+
+  &-transparent.pj-btn-disabled,
+  &-transparent.pj-btn[disabled],
+  &-link.pj-btn-disabled,
+  &-link.pj-btn[disabled],
+  &-link-default.pj-btn-disabled,
+  &-link-default.pj-btn[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent !important;
+      border-color: transparent !important;
+    }
+  }
+
+  &-outline.pj-btn-disabled,
+  &-outline.pj-btn[disabled],
+  &-outline-default.pj-btn-disabled,
+  &-outline-default.pj-btn[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $btn-disabled-bg-color !important;
+      border-color: $btn-disabled-border-color !important;
+    }
+  }
+}
+
+.apis {
+  button {
+    padding: 0.5em 1em;
+    font-size: $font-size-lg;
+    color: $color-white;
+    background-color: #1b6ec2;
+    border-radius: 5px;
+  }
+  button:not(:disabled):hover {
+    color: $color-white;
+    background-color: #1861ac;
+  }
+}
+
+.api-init,
+.api-destroy,
+.api-enable,
+.api-get,
+.api-set,
+.api-start,
+.api-stop,
+.api-go,
+.api-go-percentage,
+.api-go_percentage,
+.api-finish,
+.api-reset,
+.api-val,
+.api-val-set,
+.api-disable,
+.api-show,
+.api-hide,
+.api-multipleClear,
+.api-getWrap,
+.api-getInput,
+.api-getDate,
+.api-getDate-format,
+.api-update,
+.api-get-index,
+.api-insert,
+.api-clear,
+.api-get-unit,
+.api-preset-set,
+.api-set-preset,
+.api-val-info {
+  padding: 0.5em 1em;
+  font-size: $font-size-lg;
+  color: $color-white;
+  background-color: #1b6ec2;
+  border-radius: 5px;
+}
+
+.api-init,
+.api-destroy,
+.api-enable,
+.api-get,
+.api-set,
+.api-val,
+.api-val-set,
+.api-disable,
+.api-show,
+.api-hide,
+.api-multipleClear,
+.api-getWrap,
+.api-getInput,
+.api-getDate,
+.api-getDate-format,
+.api-update,
+.api-get-index,
+.api-insert,
+.api-clear,
+.api-get-unit,
+.api-preset-set,
+.api-set-preset,
+.api-val-info,
+.api-append,
+.api-replace,
+.api-sort {
+  &:not(:disabled):hover {
+    color: $color-white;
+    background-color: #1861ac;
+  }
+}
+
+.api-multi-init,
+.api-multi-destroy,
+.api-multi-enable,
+.api-multi-disable,
+.api-multi-set,
+.api-multi-get,
+.api-multi-val,
+.api-multi-val-set {
+  padding: 0.5em 1em;
+  font-size: $font-size-lg;
+  color: $color-white;
+  background-color: #1b6ec2;
+  border-radius: 5px;
+
+  &:not(:disabled):hover {
+    color: $color-white;
+    background-color: #1861ac;
+  }
+}
+
+.append-data {
+  .replace-data {
+    padding: 0.5em 1em;
+    font-size: $font-size-lg;
+    color: $color-white;
+    background-color: #1b6ec2;
+    border-radius: 5px;
+
+    &:not(:disabled):hover {
+      color: $color-white;
+      background-color: #1861ac;
+    }
+  }
+}

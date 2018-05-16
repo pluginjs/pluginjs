@@ -1,0 +1,186 @@
+// 1. Colors
+//
+// Grayscale and brand colors for use across Bootstrap.
+$color-white: #fff !default;
+$color-black: #000 !default;
+$color-red: #f00 !default;
+$color-yellow: #ff0 !default;
+$color-blue: #00f !default;
+$color-light-grey: #ddd !default;
+$color-light-gray: #ccc !default;
+
+$gray-darkest: #212b3b !default;
+$gray-darker: #313d4f !default;
+$gray-dark: #5b6779 !default;
+$gray: #808c9e !default;
+$gray-light: #aab3bf !default;
+$gray-lighter: #dfe4ed !default;
+$gray-lightest: #f7f9fc !default;
+$gray-border: #e6e6e6 !default;
+$gray-text: #2376eb !default;
+$gray-text-blue: #1d60bf !default;
+$btn-color-primary:#216fdb;
+$btn-color-hover:#2376eb;
+$btn-color-disable:#acc4e6;
+$color-primary: #54a3f2;
+$color-primary-active: #215fdb !default;
+$color-primary-gray: #666 !default;
+$color-primary-dark: #4c93d9;
+$color-primary-light: #77b6f5;
+$color-success: #4be1ab !default;
+$color-success-dark: #5cd29d !default;
+$color-success-light: #6fe7bc !default;
+$color-info: #57c7d4 !default;
+$color-info-dark: #47b8c6 !default;
+$color-info-light: #77d6e1 !default;
+$color-warning: #f2a654 !default;
+$color-warning-dark: #ec9940 !default;
+$color-warning-light: #f4b066 !default;
+$color-danger: #f96868 !default;
+$color-danger-dark: #e9595b !default;
+$color-danger-light: #fa7a7a !default;
+$color-inverse: $gray-dark !default;
+$color-primary-black:#333 !default;
+$color-btn-hover: #fcfcfc !default;
+$color-gray: #999;
+$color-input-gray: #b3b3b3;
+$color-drop-hover: #fafafa !default;
+$color-drop-border: #f2f2f2 !default;
+$color-btn-border: #296df7 !default;
+$color-btn-font:#1d53bf !default;
+// 2. Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-flex: false !default;
+$enable-rounded: true !default;
+$enable-shadows: false !default;
+$enable-gradients: false !default;
+$enable-transitions: false !default;
+
+// 3. Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+$spacer: 12px !default;
+$spacer-x: $spacer !default;
+$spacer-y: $spacer !default;
+$spacers: (
+  0: (x: 0, y: 0),
+  1: (x: ($spacer-x * 0.25), y: ($spacer-y * 0.25)),
+  2: (x: ($spacer-x * 0.5), y: ($spacer-y * 0.5)),
+  3: (x: $spacer-x, y: $spacer-y),
+  4: (x: ($spacer-x * 1.5), y: ($spacer-y * 1.5)),
+  5: (x: ($spacer-x * 3), y: ($spacer-y * 3))
+) !default;
+
+// 4. Fonts
+//
+// Font, line-height.
+$font-family-sans-serif: -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
+  "Helvetica Neue", arial, sans-serif !default;
+$font-family-serif: georgia, "Times New Roman", times, serif !default;
+$font-family-monospace: menlo, monaco, consolas, "Liberation Mono",
+  "Courier New", monospace !default;
+$font-family-base: $font-family-sans-serif !default;
+
+$sizer: 10px !default;
+
+// $font-size-base: 16px !default;
+// $font-size-lg:   24px !default;
+// $font-size-sm:   14px !default;
+// $font-size-xs:   12px !default;
+
+// by fish--
+$font-size-base: 13px;
+$font-size-lg: 16px !default;
+$font-size-sm: 14px;
+$font-size-xs: 12px !default;
+$font-weight-normal: normal !default;
+$font-weight-light: lighter !default;
+$font-weight-bold: bold !default;
+$font-weight-base: $font-weight-normal !default;
+
+// $line-height-base:   1.5 !default;
+// $line-height-lg:     (4 / 3) !default;
+// $line-height-sm:     1.2 !default;
+$line-height-base: 1.5 !default;
+$line-height-lg: (4 / 3) !default;
+$line-height-sm: 1.2 !default;
+
+// 4. Border
+//
+// Border width, border radius
+$border-width: 1px !default;
+$border-color: $gray-border !default;
+$border-color-hover: $color-primary-gray !default;
+$border-color-active: $color-primary-active !default;
+$border-radius-base: 2px !default;
+$border-radius-lg: 6px !default;
+$border-radius-sm: 2px !default;
+
+// 4.1 Divider
+//
+// Divider color
+// by fish--
+$divider-color: rgba($gray-darkest, 0.06) !default;
+$divider-color-dark: rgba($gray-darkest, 0.1) !default;
+
+// 5. Box shadow
+//
+$box-shadow-1: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+$box-shadow-2: 0 3px 7px 0 rgba(0, 0, 0, 0.2);
+$box-shadow-3: 0 5px 8px 0 rgba(0, 0, 0, 0.24);
+$box-shadow-4: 0 7px 10px 0 rgba(0, 0, 0, 0.22);
+$box-shadow-5: 0 9px 15px 0 rgba(0, 0, 0, 0.2);
+$box-shadow-6: 0 0 10px 0 rgba(0,0,0,0.07);
+$box-shadow-base: 0 5px 20px 0 rgba(0, 0, 0, 0.1) !default;
+
+// by fish--
+$box-shadow-t: 0 -5px 20px 0 rgba(#1d2531, 0.05) !default; // rgba($xxx-color,.09)
+$box-shadow-b: 0 5px 20px 0 rgba(#1d2531, 0.05) !default;
+$box-shadow-default: 0 2px 5px 0 rgba(#1d2531, 0.05) !default;
+
+// 6. Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+$zindex-dropdown-backdrop: 990 !default;
+$zindex-dropdown: 1000 !default;
+$zindex-modal-backdrop: 1040 !default;
+$zindex-modal: 1050 !default;
+$zindex-popover: 1060 !default;
+$zindex-tooltip: 1070 !default;
+
+// 7. Text & Link
+$text-title-color: $gray-darkest !default;
+$text-subtitle-color: $gray-darker !default;
+$text-color: $color-primary-black !default;
+$text-describe-color: $gray !default;
+$text-prompt-color: $gray-light !default;
+$link-color: $color-primary !default;
+$link-decoration: none !default;
+$link-hover-color: $color-primary-light !default;
+$link-active-color: $color-primary-dark !default;
+$link-hover-decoration: underline !default;
+
+// 8. Misc
+$cursor-disabled: not-allowed !default;
+// Transition duration
+$transition-duration: 150ms !default;
+
+// 9. disabled bg color [by: FreMaNgo]
+//$disabled-color: rgba(223, 228, 237, 0.4) !default;
+$disabled-bg: $gray-lightest;
+$disabled-border: $gray-lighter;
+$disabled-color: $gray-dark;
+
+// mixins
+
+@mixin clearfix() {
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+}

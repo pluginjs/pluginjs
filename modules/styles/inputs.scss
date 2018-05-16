@@ -1,0 +1,158 @@
+// Vars
+// =====================
+$input: pj-input !default;
+// nomoral
+$input-sizer: $sizer !default;
+
+$input-font-size: $font-size-base;
+$input-color: $text-color !default;
+$input-border-color: $border-color !default;
+$input-border-width: $border-width !default;
+$input-border-style: solid !default;
+$input-border-radius: $border-radius-lg !default;
+$input-height: 3*$input-sizer+2 !default; //32px
+$input-padding-top: 0.4*$input-sizer !default; //4px
+$input-padding-left: 1.5*$input-sizer !default; //15px
+$input-line-height: 1.6*$input-sizer !default; //16px
+// placeholder
+$input-placeholder-color: $color-gray !default;
+// hover
+$input-border-color-hover: $border-color-hover !default;
+// focus
+$input-border-color-focus: $border-color-active !default;
+
+//$disabled-color: rgba(223, 228, 237, 0.4) !default;
+$disabled-bg: $color-white;
+$disabled-border: $gray-border;
+$disabled-color: $gray-border;
+
+// Core
+// =====================
+// Global
+input {
+  box-sizing: border-box;
+  height: $input-height;
+  padding: $input-padding-top $input-padding-left;
+  margin-bottom: 0;
+  font-size: $input-font-size;
+  line-height: $input-line-height;
+  color: $input-color;
+  border: $input-border-width $input-border-style $input-border-color;
+  border-radius: $border-radius-base;
+}
+
+input[type="text"],
+input:not([type]) {
+  padding: $input-padding-top $input-padding-left;
+  margin: 0;
+
+  &:focus {
+    border: 1px solid $input-border-color-focus;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+input:not([type])[disabled] {
+  color: $disabled-color;
+  background-color: $disabled-bg;
+  border-color: $disabled-border;
+  &:hover {
+    color: $disabled-color;
+    background-color: $disabled-bg;
+    border-color: $disabled-border;
+  }
+}
+
+input[type="text"][disabled] {
+  color: $disabled-color;
+  background-color: $disabled-bg;
+  border-color: $disabled-border;
+  &:hover {
+    color: $disabled-color;
+    background-color: $disabled-bg;
+    border-color: $disabled-border;
+  }
+}
+
+// nomoral
+.#{$input} {
+  box-sizing: border-box;
+  height: $input-height;
+  padding: $input-padding-top $input-padding-left;
+  margin-bottom: 0;
+  font-size: $input-font-size;
+  line-height: $input-line-height;
+  color: $input-color;
+  border: $input-border-width $input-border-style $input-border-color;
+  border-radius: $border-radius-base;
+
+  &::placeholder {
+    color: $input-placeholder-color;
+  }
+
+  // hover
+  &:not(:disabled):hover,
+  &[type="text"]:not(:disabled):hover {
+    border-color: $input-border-color-hover;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+//wordpress
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="radio"]:focus,
+input[type="tel"]:focus,
+input[type="time"]:focus,
+input[type="url"]:focus,
+input[type="week"]:focus,
+input[type="password"]:focus,
+input[type="checkbox"]:focus,
+input[type="color"]:focus,
+input[type="date"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="email"]:focus,
+input[type="month"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #e9ecef;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="radio"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+input[type="password"],
+input[type="checkbox"],
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+select,
+textarea {
+  border-color: #e9ecef;
+  box-shadow: none;
+}
+
+input.disabled,
+input:disabled,
+select.disabled,
+select:disabled,
+textarea.disabled,
+textarea:disabled {
+  border-color: #e9ecef;
+  box-shadow: none;
+}

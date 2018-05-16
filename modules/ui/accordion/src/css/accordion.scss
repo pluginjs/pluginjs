@@ -1,0 +1,142 @@
+@import "@pluginjs/styles/variables.scss";
+@import "accordion.core";
+
+// Vars
+// =====================
+$accordion: "pj-accordion" !default;
+$accordion-font-size: $font-size-base !default;
+$accordion-line-height: $line-height-sm !default;
+$accordion-box-shadow: $box-shadow-base !default;
+$accordion-border-width: $border-width !default;
+$accordion-border-color: $border-color !default;
+$accordion-border-radius: $border-radius-base !default;
+$accordion-header-color: $text-title-color !default;
+$accordion-pane-interval: 10px !default;
+$accordion-header-spacer-x: 20px !default;
+$accordion-header-spacer-y: 10px !default;
+$accordion-content-spacer-x: $accordion-header-spacer-x !default;
+$accordion-content-spacer-y: 15px !default;
+$accordion-horizontal-height: 260px !default;
+$accordion-horizontal-header-width: ceil(
+  $accordion-font-size * $accordion-line-height + $accordion-header-spacer-y * 2
+) !default;
+$accordion-dropdown-active-color: $color-white !default;
+$accordion-dropdown-active-bgcolor: $color-primary !default;
+$accordion-dropdown-hover-bgcolor: $gray-lightest !default;
+
+// default
+// =====================
+.#{$accordion} {
+  &.#{$accordion} {
+    // font-size: $accordion-font-size;
+    // line-height: $accordion-line-height;
+  }
+
+  .#{$accordion} {
+    &-pane {
+      border: $border-width solid $accordion-border-color;
+      border-radius: $accordion-border-radius;
+    }
+
+    &-pane + .#{$accordion}-pane {
+      margin-top: $accordion-pane-interval;
+    }
+
+    &-pane-header {
+      padding: $accordion-header-spacer-y $accordion-header-spacer-x;
+      line-height: 1;
+      color: $accordion-header-color;
+    }
+
+    &-pane-content-inner {
+      padding: $accordion-content-spacer-y $accordion-content-spacer-x;
+      border-top: $border-width solid $accordion-border-color;
+    }
+  }
+
+  &.#{$accordion}-horizontal {
+    height: $accordion-horizontal-height;
+
+    .#{$accordion} {
+      &-pane + .#{$accordion}-pane {
+        margin-top: 0;
+        margin-left: $accordion-pane-interval;
+      }
+
+      &-pane-header {
+        width: $accordion-horizontal-height;
+        height: $accordion-horizontal-header-width;
+      }
+
+      &-pane-content {
+        border-top: 0;
+        border-left: $border-width solid $accordion-border-color;
+      }
+
+      &-pane-content-inner {
+        border-top: 0;
+      }
+    }
+  }
+
+  .#{$accordion}-dropdown {
+    font-size: $accordion-font-size;
+    line-height: $accordion-line-height;
+  }
+
+  &.#{$accordion}-dropdown + .#{$accordion}-responsive {
+    margin-top: $accordion-pane-interval;
+  }
+
+  .#{$accordion}-dropdown-label {
+    padding: $accordion-header-spacer-y $accordion-header-spacer-x;
+    color: $accordion-header-color;
+    border: $accordion-border-width solid $accordion-border-color;
+    border-radius: $accordion-border-radius;
+  }
+
+  .#{$accordion}-dropdown-list {
+    border: $accordion-border-width solid $accordion-border-color;
+    border-radius: $accordion-border-radius;
+
+    > li {
+      padding: $accordion-header-spacer-y $accordion-header-spacer-x;
+
+      &:hover {
+        background-color: $accordion-dropdown-hover-bgcolor;
+      }
+
+      &.#{$accordion}-active {
+        color: $accordion-dropdown-active-color;
+        background-color: $accordion-dropdown-active-bgcolor;
+      }
+    }
+  }
+
+  &.#{$accordion}-responsive {
+    border: $accordion-border-width solid $accordion-border-color;
+    border-radius: $accordion-border-radius;
+
+    .#{$accordion}-pane {
+      border: 0;
+
+      + .#{$accordion}-pane {
+        margin-top: 0;
+      }
+    }
+
+    .#{$accordion}-pane-content {
+      border-left: 0;
+    }
+
+    .#{$accordion}-pane-content-inner {
+      border-top: 0;
+    }
+
+    &.#{$accordion}-horizontal {
+      .#{$accordion}-pane + .#{$accordion}-pane {
+        margin-left: 0;
+      }
+    }
+  }
+}
