@@ -1,0 +1,44 @@
+@import "@pluginjs/styles/variables.scss";
+// Vars
+// =====================
+$swipe: "pj-swipe" !default;
+$arrow: "pj-arrow" !default;
+// Core
+// =====================
+.#{$swipe} {
+  &-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &-info {
+    display: none !important;
+  }
+  &-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .#{$arrow} {
+    &-prev,
+    &-next {
+      position: absolute;
+      top: 50%;
+      z-index: 99;
+      transform: translateY(-50%);
+    }
+    &-prev {
+      left: 0;
+    }
+    &-next {
+      right: 0;
+    }
+  }
+
+  &-item {
+    position: absolute;
+  }
+}

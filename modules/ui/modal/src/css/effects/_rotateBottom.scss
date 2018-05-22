@@ -1,0 +1,38 @@
+/* rotateBottom:  3D Rotate from bottom */
+.#{$modal}-rotateBottomIn {
+  animation: Modal-rotateBottomIn $modal-duration;
+}
+
+.#{$modal}-rotateBottomOut {
+  animation: Modal-rotateBottomOut $modal-duration forwards;
+}
+
+@keyframes Modal-rotateBottomIn {
+  0% {
+    opacity: 0;
+    transform: translateY(100%) rotateX(90deg);
+    transform-origin: 0 100%;
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%) rotateX(0deg);
+  }
+}
+
+@keyframes Modal-rotateBottomOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0%) rotateX(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100%) rotateX(90deg);
+    transform-origin: 0 100%;
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+}

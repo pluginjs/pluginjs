@@ -1,0 +1,61 @@
+@import "@pluginjs/styles/variables.scss";
+@import "progress.core";
+
+// Vars
+// =====================
+$progress: pj-progress !default;
+// core vars
+$progress-bg-color: $gray-lightest !default;
+$progress-height: 3px !default;
+// bar vars
+$progress-bar-bg-color: $color-success !default;
+$progress-bar-bg-image: linear-gradient(
+  135deg,
+  rgba(255, 255, 255, 0.35) 25%,
+  transparent 25%,
+  transparent 50%,
+  rgba(255, 255, 255, 0.35) 50%,
+  rgba(255, 255, 255, 0.35) 75%,
+  transparent 75%,
+  transparent
+) !default;
+$progress-bar-bg-size: 20px 20px !default;
+// value vars
+$progress-value-width: 44px !default;
+$progress-value-height: 26px !default;
+$progress-value-fontSize: 12px !default;
+$progress-value-color: $gray-dark !default;
+$progress-value-bg-color: #fff !default;
+$progress-value-radius: $border-radius-base !default;
+$progress-value-box-shadow: $box-shadow-base !default;
+
+// default
+// ======================================
+.#{$progress} {
+  height: $progress-height;
+  background-color: $progress-bg-color;
+
+  .#{$progress} {
+    &-bar {
+      background: $progress-bar-bg-color;
+      background-image: $progress-bar-bg-image;
+      background-size: $progress-bar-bg-size;
+    }
+
+    &-value {
+      width: $progress-value-width;
+      height: $progress-value-height;
+      font-size: $progress-value-fontSize;
+      line-height: $progress-value-height;
+      color: $progress-value-color;
+      background: $progress-value-bg-color;
+      border-radius: $progress-value-radius;
+      box-shadow: $progress-value-box-shadow;
+
+      &::before {
+        border: 6px solid transparent;
+        border-top-color: $progress-value-bg-color;
+      }
+    }
+  }
+}

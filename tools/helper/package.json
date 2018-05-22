@@ -1,0 +1,8 @@
+{
+	"name": "@pluginjs/helper",
+	"version": "0.0.1",
+	"description": "",
+	"main": "index.js",
+	"private": true,
+  "license": "GPL-v3"
+}

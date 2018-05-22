@@ -3,6 +3,7 @@
 	"main": "dist/dom.js",
 	"module": "dist/dom.esm.js",
 	"dev-main": "src/main.js",
+  "source": "src/main.js",
 	"dependencies": {
 		"@pluginjs/is": "^0.2.19",
 		"@pluginjs/utils": "^0.2.20"

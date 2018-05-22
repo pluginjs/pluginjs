@@ -1,0 +1,35 @@
+{
+	"name": "@pluginjs/image-loader",
+	"main": "dist/image-loader.js",
+	"dependencies": {
+		"@pluginjs/component": "^0.2.22",
+		"@pluginjs/dom": "^0.0.15",
+		"@pluginjs/pluginjs": "^0.2.25"
+	},
+	"version": "0.2.18",
+	"description": "A flexible modern image-loader js plugin.",
+	"author": "Creation Studio Limited",
+	"homepage": "https://github.com/pluginjs/plugin.js",
+	"license": "GPL-v3",
+	"files": [
+		"dist",
+		"src"
+	],
+	"repository": {
+		"url": "git@github.com:pluginjs/plugin.js.git",
+		"type": "git"
+	},
+	"bugs": {
+		"url": "https://github.com/pluginjs/plugin.js/issues"
+	},
+	"engines": {
+		"node": ">= 8",
+		"npm": ">= 5"
+	},
+	"category": "form",
+	"min": "dist/image-loader.min.js",
+	"standalone": "dist/image-loader.standalone.js",
+	"module": "dist/image-loader.esm.js",
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
+}

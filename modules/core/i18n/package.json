@@ -38,5 +38,6 @@
 	"min": "dist/i18n.min.js",
 	"standalone": "dist/i18n.standalone.js",
 	"module": "dist/i18n.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

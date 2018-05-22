@@ -1,0 +1,226 @@
+---
+title: Zoom
+layout: plugin
+styles:
+- ../../plugins/zoom/css/zoom.css
+scripts:
+- ../../vendor/jquery.js
+- ../../plugins/zoom/zoom.js
+---
+<style>
+  .page-content {
+    overflow: visible;
+  }
+</style>
+<section>
+  <h3>defaults</h3>
+  <img id="zoom_01" src="../assets/small/image1.png" data-zoom-image="../../plugins/zoom/assets/large/image1.jpg"/>
+  <script>
+    Pj.zoom('#zoom_01');
+  </script>
+</section>
+<section>
+  <h3>POSITIONS</h3>
+  <img id="zoom_02" src="../assets/small/image1.png" data-zoom-image="../../plugins/zoom/assets/large/image1.jpg"/>
+  <button class="buttons changePosition">changePosition</button>
+  <script>
+    var position = 1
+    var zoomApi = Pj.zoom('#zoom_02', {
+      type: 'window',
+      window: {
+        position: position,
+        overlay: true,
+        overlayColor: '#333',
+        overlayOpacity: '0.4',
+      }
+    });
+
+    document.querySelector('.changePosition').addEventListener('click', function() {
+      position = (position % 16) + 1
+      zoomApi('changePosition', position)
+      console.log('position: ', position)
+    })
+  </script>
+</section>
+<section>
+  <h3>overlay</h3>
+  <img id="zoom_03" src="https://i.imgur.com/jnRTmfe.jpg" data-zoom-image="https://i.imgur.com/z9yzdPO.jpg"/>
+  <script>
+    Pj.zoom('#zoom_03', {
+      type: 'window',
+      window: {
+        position: 2,
+        overlay: true,
+        overlayColor: '#333',
+        overlayOpacity: '0.4',
+      }
+    });
+  </script>
+</section>
+<section>
+  <h3>type: inner</h3>
+  <img id="zoom_04" src="../assets/small/image3.png" data-zoom-image="../../plugins/zoom/assets/large/image3.jpg"/>
+  <script>
+    Pj.zoom('#zoom_04', {
+      type: 'inner'
+    });
+  </script>
+</section>
+<section>
+  <h3>type: lens</h3>
+  <img id="zoom_06" src="../assets/small/image3.png" data-zoom-image="../../plugins/zoom/assets/large/image3.jpg"/>
+  <script>
+    Pj.zoom('#zoom_06', {
+      type: 'lens',
+      lens: {
+        borderSize: 5,
+        borderColor: '#fff',
+        sizi: 200,
+      }
+    });
+  </script>
+</section>
+<section>
+  <h3>clickOpen</h3>
+  <img id="zoom_08" src="https://i.imgur.com/jnRTmfe.jpg" data-zoom-image="https://i.imgur.com/z9yzdPO.jpg"/>
+  <script>
+    Pj.zoom('#zoom_08', {
+      type: 'window',
+      window: {
+        clickOpen: true,
+        position: 2,
+        lensColor: '#333',
+        lensOpacity: '0.4',
+        lensBorderSize: 0
+      }
+    });
+  </script>
+</section>
+<section>
+  <h3>Level</h3>
+  <img id="zoom_09" src="../assets/small/image1.png" data-zoom-image="../../plugins/zoom/assets/large/image1.jpg"/>
+  <script>
+    Pj.zoom('#zoom_09', {
+      level: 2,
+    });
+  </script>
+</section>
+<section>
+  <h3>flex width</h3>
+  <div class="example" style="width: 300px;">
+    <img id="zoom_11" src="../assets/large/image1.jpg"/>
+  </div>
+  <div class="example" style="width: 300px;">
+    <img id="zoom_12" src="../assets/large/image1.jpg"/>
+  </div>
+  <div class="example" style="width: 300px;">
+    <img id="zoom_13" src="../assets/large/image1.jpg"/>
+  </div>
+  <button class="changeWidth">changeWidth</button>
+  <script>
+    Pj.zoom('#zoom_11', {
+      animation: true,
+      window: {
+        position: 2,
+        overlay: true,
+        overlayColor: '#333',
+        overlayOpacity: '0.4',
+      }
+    });
+    Pj.zoom('#zoom_12', {
+      type: 'inner'
+    });
+    Pj.zoom('#zoom_13', {
+      type: 'lens',
+      lens: {
+        borderSize: 5,
+        borderColor: '#fff',
+        sizi: 200,
+        flexWidth: true
+      }
+    });
+    var flex = true
+    document.querySelector('.changeWidth').addEventListener('click', function() {
+      var w = flex ? '200px' : '300px'
+      console.log("text", w)
+      document.querySelectorAll('.example').forEach(ex => {
+        ex.style['width'] = w
+      })
+      flex = !flex
+    })
+  </script>
+</section>
+<section>
+  <h3>EVENT</h3>
+  <img id="zoom_10" src="../assets/small/image1.png" data-zoom-image="../../plugins/zoom/assets/large/image1.jpg"/>
+  <div class="apis">
+    <button data-api="init" class="btn">init()</button>
+    <button data-api="destroy" class="btn">destroy()</button>
+    <button data-api="enable" class="btn">enable()</button>
+    <button data-api="disable" class="btn">disable()</button>
+    <button data-api="changePosition" class="btn">changePosition()</button>
+  </div>
+  <div class="console"></div>
+  <script>
+    var elementApi;
+    var position = 1;
+    var APIS = {
+  		init() {
+        elementApi = Pj.zoom('#zoom_10', {
+          onReady: function() {
+  		      log('ready', 'event');
+  		    },
+  		    onDestroy: function() {
+  		      log('destroy', 'event');
+  		    },
+  		    onEnable: function() {
+  		      log('enable', 'event');
+  		    },
+  		    onDisable: function() {
+  		      log('disable', 'event');
+  		    },
+          onLoadingShow: function (instance) {
+            log('onLoadingShow', 'event')
+          },
+          onLoadingHide: function (instance) {
+            log('onLoadingHide', 'event')
+          },
+          onLoadingError: function (instance) {
+            log('onLoadingError', 'event')
+          },
+        })
+      },
+      destroy() {
+        elementApi('destroy')
+      },
+      disable() {
+        elementApi('disable')
+      },
+      enable() {
+        elementApi('enable')
+      },
+      changePosition() {
+        position = (position % 16) + 1
+        elementApi('changePosition', position)
+      }
+    }
+
+    let $apiEl = document.querySelectorAll('.apis')
+    $apiEl.forEach($api => {
+      $api.addEventListener('click', function (event) {
+        var target = event.target
+        if (!target.dataset.api) {
+          return
+        }
+
+        var api = target.dataset.api
+        if (api) {
+          APIS[api]()
+        }
+      })
+    })
+  </script>
+</section>
+<div class="space" style="width:100%;height: 500px;">
+
+</div> -->

@@ -1,0 +1,74 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// ======================
+$svgPicker: "pj-svgProgress" !default;
+$svgProgress-color: $gray-dark !default;
+
+// Core
+// ======================
+.#{$svgPicker} {
+  position: relative;
+  text-align: center;
+  transform-style: preserve-3d;
+
+  &-svg {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  &-number,
+  &-label,
+  &-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+
+  &-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    .#{$svgPicker}-number,
+    .#{$svgPicker}-label,
+    .#{$svgPicker}-icon {
+      position: static;
+      transform: none;
+    }
+  }
+}
+
+// styles
+.#{$svgPicker} {
+  color: $svgProgress-color;
+
+  &-number {
+    font-size: 16px;
+  }
+
+  &-label {
+    font-size: 12px;
+  }
+}

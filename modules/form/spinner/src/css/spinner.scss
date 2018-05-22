@@ -1,0 +1,146 @@
+@import "@pluginjs/styles/variables.scss";
+@import "spinner.core";
+
+// Vars
+// ======================
+$spinner: "pj-spinner" !default;
+$units: "pj-units" !default;
+$spinner-sizer: $sizer;
+
+$spinner-color: $gray-dark !default;
+$spinner-font-size: $font-size-xs !default;
+$spinner-width: 12 * $spinner-sizer !default; //120px
+$spinner-height: 3 * $spinner-sizer !default; //30px
+$spinner-border-width: 1px !default;
+$spinner-border-color: $gray-lighter !default;
+$spinner-border-radius: 2px !default;
+$spinner-focus-border-color: $btn-color-primary !default;
+$spinner-focus-hover-border-color: $gray-light !default;
+$spinner-control-width: $spinner-height !default;
+$spinner-control-color: $color-gray !default;
+$spinner-control-font-size: $font-size-sm !default;
+$spinner-control-active-color: $color-primary-black !default;
+$right-style-width: 8 * $spinner-sizer !default; //80px
+$right-style-control-width: 2 * $spinner-sizer !default; //20px
+$right-style-trigger-right: 2 * $spinner-sizer !default; //20px
+$units-trigger-width: 2.2 * $spinner-sizer !default; //22px
+
+// Skin
+// ================
+.#{$spinner} {
+  input {
+    border-radius: 2px !important;
+    &:focus {
+      border-color: $spinner-focus-border-color;
+      outline: none;
+      box-shadow: none;
+    }
+
+    &.pj-units {
+      padding: 0 $spinner-control-width + $units-trigger-width 0
+        $spinner-control-width + 2px;
+    }
+  }
+
+  .#{$spinner}-up,
+  .#{$spinner}-down {
+    top: $spinner-border-width;
+    width: $spinner-control-width - $spinner-border-width * 3; //30-6
+    height: $spinner-height - $spinner-border-width * 2;
+    // padding: 1px;
+    background-color: transparent;
+
+    &::before {
+      font-size: $spinner-control-font-size;
+      line-height: $spinner-height - $spinner-border-width * 2;
+      color: $spinner-control-color;
+      vertical-align: middle;
+    }
+
+    &:active,
+    &:hover {
+      background-color: $color-drop-hover;
+    }
+
+    &:active::before,
+    &:hover::before {
+      color: $spinner-control-active-color;
+    }
+  }
+
+  .#{$spinner}-up {
+    right: $spinner-border-width;
+    border-left: 1px solid $spinner-border-color;
+
+    &:active {
+      // border-right: $spinner-border-width solid $spinner-border-color;
+      border-top-right-radius: $spinner-border-radius;
+      border-bottom-right-radius: $spinner-border-radius;
+    }
+  }
+
+  .#{$spinner}-down {
+    left: $spinner-border-width;
+    border-right: 1px solid $spinner-border-color;
+
+    &:active {
+      // border-left: $spinner-border-width solid $spinner-border-color;
+      border-top-left-radius: $spinner-border-radius;
+      border-bottom-left-radius: $spinner-border-radius;
+    }
+  }
+
+  &.#{$spinner}-disabled {
+    &::before {
+      height: 100%;
+      border-radius: $spinner-border-radius;
+    }
+
+    .#{$spinner}-up,
+    .#{$spinner}-down {
+      &:active::before {
+        // color: $spinner-control-color !important;
+      }
+    }
+  }
+
+  .#{$units}-trigger {
+    right: 32px;
+    left: auto;
+    width: $units-trigger-width !important;
+    font-size: $spinner-font-size;
+  }
+
+  // control right
+  &.#{$spinner}-control-right {
+    input {
+      width: $right-style-width;
+      padding-right: $right-style-control-width + $right-style-trigger-right -2px;
+      padding-left: 0.4 * $spinner-sizer; //4px
+    }
+
+    .#{$units}-trigger {
+      right: $right-style-trigger-right;
+    }
+
+    .#{$spinner}-control {
+      right: $spinner-border-width;
+      width: $right-style-control-width;
+      height: $spinner-height - $spinner-border-width * 2; //30-2*1
+      border-left: $spinner-border-width solid $spinner-border-color;
+
+      > .#{$spinner}-up {
+        right: auto;
+        border-bottom: 1px solid $spinner-border-color;
+      }
+
+      > .#{$spinner}-down {
+        left: auto;
+      }
+    }
+  }
+}
+
+.#{$units}-panel {
+  font-size: $spinner-font-size;
+}

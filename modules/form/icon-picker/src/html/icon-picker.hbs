@@ -1,0 +1,205 @@
+---
+title: IconPicker
+layout: plugin
+styles:
+- ../../plugins/tooltip/css/tooltip.css
+- ../../plugins/dropdown/css/dropdown.css
+- ../../css/font-awesome.min.css
+- ../../plugins/scrollable/css/scrollable.css
+- ../../plugins/icon-picker/css/icon-picker.css
+scripts:
+- ../../plugins/icon-picker/icon-picker.js
+---
+<section>
+  <h2>Default</h2>
+{{#code}}
+  <input type="text" class="example-default">
+  <script>
+    (function() {
+      Pj.iconPicker('.example-default', {
+        // data: data
+      });
+    })();
+  </script>
+{{/code}}
+  <input type="text" class="example-default">
+</section>
+
+<section>
+  <h2>Empty data</h2>
+{{#code}}
+  <input type="text" class="example-empty">
+  <script>
+    (function() {
+      Pj.iconPicker('.example-empty');
+    })();
+  </script>
+{{/code}}
+  <input type="text" class="example-empty">
+  <script>
+    Pj.iconPicker('.example-empty');
+  </script>
+</section>
+
+<section>
+  <h2>Initialized by input value</h2>
+{{#code}}
+  <input type="text" class="example-input" value='{"package":"remark", "title":"bookmark"}'>
+  <script>
+    (function() {
+      Pj.iconPicker('.example-input');
+    })();
+  </script>
+{{/code}}
+  <input type="text" class="example-input" value='{"package":"remark", "title":"bookmark"}'>
+</section>
+
+<section>
+  <h2>Locale</h2>
+{{#code}}
+  <input type="text" class="example-locale">
+  <script>
+    (function() {
+      Pj.iconPicker('.example-locale', {
+        locale: 'zh',
+        // data: data
+      });
+    })();
+  </script>
+{{/code}}
+  <input type="text" class="example-locale">
+</section>
+
+<section>
+  <h2>Api</h2>
+  <div class="example">
+    <input type="text" class="example-api">
+  </div>
+  <div class="apis top-gap">
+    <button class="btn api-init">init()</button>
+    <button class="btn api-set">set(data)</button>
+    <button class="btn api-get">get()</button>
+    <button class="btn api-val">val()</button>
+    <button class="btn api-val-set">val(data)</button>
+    <button class="btn api-destroy">destroy()</button>
+    <button class="btn api-enable">enable()</button>
+    <button class="btn api-disable">disable()</button>
+  </div>
+  <div class="console"></div>
+</section>
+<script>
+  (function() {
+    var data = {
+      "remark": {
+        title: 'Remark',
+        count: 768,
+        prefix: 'fa-',
+        base: 'fa',
+        classifiable: true,
+        icons: {
+          'caret-right': 'Caret right',
+          'star': 'Star',
+          'heart': 'Heart',
+          'cloud-upload': 'Cloud upload',
+          'phone-square': 'Phone square',
+          'bookmark': 'Bookmark',
+          'cog': 'Cog',
+          'wrench': 'Wrench',
+          'volume-down': 'Volume down',
+          'caret-down': 'Caret down',
+          'caret-up': 'Caret up',
+          'caret-left': 'Caret left',
+        },
+        categories: {
+          "commerce": ['star', 'heart', 'cloud-upload', 'phone-square', 'bookmark'],
+          "text": ['cog', 'wrench', 'volume-down', 'caret-down', 'caret-up', 'caret-left', 'caret-right']
+        }
+      },
+      "creation": {
+        title: 'Creation',
+        count: 768,
+        prefix: 'fa-',
+        base: 'fa',
+        classifiable: false,
+        icons: ['user', 'search', 'rocket', 'times', 'refresh', 'adn','cog']
+      },
+      "creation copy": {
+        title: 'Creation Copy',
+        count: 768,
+        prefix: 'fa-',
+        base: 'fa',
+        classifiable: false,
+        icons: ['user', 'search', 'rocket', 'times', 'refresh', 'adn','cog']
+      }
+    };
+
+    Pj.iconPicker.setData(data);
+
+    Pj.iconPicker('.example-default', {
+      // data: data
+    });
+
+    Pj.iconPicker('.example-input');
+
+    Pj.iconPicker('.example-locale', {
+      locale: 'zh',
+      // data: data
+    });
+
+    var $elementApi;
+
+    function init() {
+      $elementApi= Pj.iconPicker('.example-api', {
+        // data: data,
+        onReady: function() {
+          log('ready', 'event');
+        },
+        onDestroy: function() {
+          log('destroy', 'event');
+        },
+        onEnable: function() {
+          log('enable', 'event');
+        },
+        onDisable: function() {
+          log('disable', 'event');
+        },
+        onChange: function(icon) {
+          console.log('iconEle: ', icon)
+          log('change: iconEle', 'event');
+        }
+      }).data('icon-picker');
+    }
+
+    document.querySelector('.api-init').addEventListener('click', function() {
+      init();
+    });
+
+    document.querySelector('.api-set').addEventListener('click', function() {
+      $elementApi.set({
+        package: 'remark',
+        title: 'star'
+      });
+      log('', 'set(data)');
+    });
+    document.querySelector('.api-get').addEventListener('click', function() {
+      log(JSON.stringify($$elementApi.get()), 'get()');
+    });
+    document.querySelector('.api-val').addEventListener('click', function() {
+      log($elementApi.val(), 'val()');
+    });
+    document.querySelector('.api-val-set').addEventListener('click', function() {
+      $elementApi.val('{"package":"creation", "title": "user"}');
+      log('', 'val(data)');
+    });
+    document.querySelector('.api-disable').addEventListener('click', function() {
+      $elementApi.disable()
+    });
+    document.querySelector('.api-enable').addEventListener('click', function() {
+      $elementApi.enable()
+    });
+    document.querySelector('.api-destroy').addEventListener('click', function() {
+      $elementApi.destroy()
+    });
+
+  })();
+</script>

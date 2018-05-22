@@ -1,0 +1,340 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$galleryPicker: "pj-galleryPicker" !default;
+$galleryPicker-border-width: 1px !default;
+$galleryPicker-border-color: $gray-lighter !default;
+$galleryPicker-border: $galleryPicker-border-width solid
+  $galleryPicker-border-color !default;
+$galleryPicker-border-radius: $border-radius-base !default;
+$galleryPicker-color: $gray-light !default;
+$galleryPicker-font-size: $font-size-base !default;
+$galleryPicker-icon-size: 16px !default;
+$galleryPicker-active-color: $color-primary !default;
+// initial
+$galleryPicker-initial-width: 160px !default;
+$galleryPicker-initial-height: 90px !default;
+$galleryPicker-border-style: dashed !default;
+$galleryPicker-initial-hover-bg: $gray-lightest !default;
+// info
+$galleryPicker-info-expand-bg: $gray-darker !default;
+$galleryPicker-info-expand-opacity: 0.9 !default;
+$galleryPicker-info-count-width: 15px !default;
+$galleryPicker-info-count-height: $galleryPicker-info-count-width !default;
+// expand
+$galleryPicker-expand-width: 300px !default;
+$galleryPicker-expand-height: 360px !default;
+$galleryPicker-expand-item-width: 124px !default;
+$galleryPicker-expand-item-change-bg: $gray-darker !default;
+$galleryPicker-expand-item-change-opacity: 0.9 !default;
+$galleryPicker-expand-control-btn-width: 66px !default;
+$galleryPicker-expand-control-btn-height: 30px !default;
+
+// Core
+// =====================
+.#{$galleryPicker} {
+  position: relative;
+  display: inline-block;
+  font-size: $galleryPicker-font-size;
+  color: $galleryPicker-color;
+
+  &-initial,
+  &-info {
+    position: relative;
+    box-sizing: border-box;
+    width: $galleryPicker-initial-width;
+    height: $galleryPicker-initial-height;
+    text-align: center;
+    border: $galleryPicker-border;
+    border-radius: $galleryPicker-border-radius;
+  }
+
+  &-initial {
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 300;
+    border-style: $galleryPicker-border-style;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $galleryPicker-initial-hover-bg;
+    }
+
+    i {
+      font-size: 20px;
+    }
+  }
+
+  &-info {
+    position: relative;
+    padding: 2px;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      content: "";
+      background-color: #fff;
+      border: $galleryPicker-border;
+      border-radius: $galleryPicker-border-radius;
+    }
+
+    &::before {
+      z-index: -1;
+      transform: rotate(4deg);
+    }
+
+    &::after {
+      z-index: -2;
+      transform: rotate(6deg);
+    }
+
+    &-image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    &-count {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      width: $galleryPicker-info-count-width;
+      height: $galleryPicker-info-count-height;
+      line-height: $galleryPicker-info-count-width;
+      color: #fff;
+      text-align: center;
+      background-color: $galleryPicker-active-color;
+      border-radius: 100%;
+    }
+
+    &-expand {
+      position: absolute;
+      top: 0;
+      left: 0;
+      // display: none;
+      width: 100%;
+      height: 100%;
+      line-height: $galleryPicker-initial-height;
+      color: #fff;
+      background-color: $galleryPicker-info-expand-bg;
+      border-radius: $galleryPicker-border-radius;
+      opacity: 0;
+      // opacity: $galleryPicker-info-expand-opacity;
+    }
+
+    &-edit,
+    &-remove {
+      margin: 0 10px;
+      font-size: $galleryPicker-icon-size;
+
+      &:hover {
+        color: $gray-lighter;
+        cursor: pointer;
+      }
+    }
+  }
+  // expand
+  &-expand {
+    &-panel {
+      position: relative;
+      box-sizing: border-box;
+      flex-direction: column;
+      width: $galleryPicker-expand-width;
+      height: $galleryPicker-expand-height !important;
+      padding: 18px;
+      overflow: hidden;
+      background-color: #fff;
+      border: $galleryPicker-border;
+      border-radius: $galleryPicker-border-radius;
+
+      .pj-scrollable {
+        flex-grow: 1;
+        margin-bottom: 20px;
+      }
+    }
+
+    &-add,
+    &-items li {
+      box-sizing: border-box;
+      float: left;
+      width: $galleryPicker-expand-item-width;
+      height: $galleryPicker-expand-item-width;
+      margin: 6px;
+      text-align: center;
+      border: $galleryPicker-border;
+      border-radius: $galleryPicker-border-radius;
+    }
+
+    &-add {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 30px 10px;
+      border-style: dashed !important;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $galleryPicker-initial-hover-bg;
+      }
+
+      i {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 20px;
+        line-height: 1;
+      }
+    }
+
+    &-items {
+      display: inline-block;
+      height: calc(100% - 30px);
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        position: relative;
+        padding: 2px;
+        background-color: #fff;
+
+        &:nth-child(1),
+        &:nth-child(2) {
+          margin-top: 0;
+        }
+
+        &:nth-child(odd) {
+          margin-left: 0;
+        }
+
+        &:nth-child(even) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    &-control {
+      width: 100%;
+      text-align: right;
+
+      button {
+        width: $galleryPicker-expand-control-btn-width;
+        height: $galleryPicker-expand-control-btn-height;
+        margin-right: 6px;
+      }
+    }
+
+    &-handle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      line-height: 0;
+      cursor: pointer;
+      background: #ccc;
+      border-radius: 4px;
+    }
+  }
+
+  &-item {
+    border: 2px solid #e5e5e5;
+
+    &-image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    &-change {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      line-height: $galleryPicker-expand-item-width;
+      color: #fff;
+      text-align: center;
+      cursor: pointer;
+      background-color: $galleryPicker-expand-item-change-bg;
+      border-radius: $galleryPicker-border-radius;
+      opacity: 0;
+    }
+
+    &-remove,
+    &-reselect {
+      margin: 0 10px;
+      font-size: $galleryPicker-icon-size;
+    }
+  }
+}
+
+.#{$galleryPicker}-exist {
+  .#{$galleryPicker}-info {
+    display: block !important;
+  }
+
+  .#{$galleryPicker}-initial,
+  .#{$galleryPicker}-expand-panel {
+    display: none !important;
+  }
+}
+
+.#{$galleryPicker}-empty {
+  .#{$galleryPicker}-initial {
+    display: flex !important;
+  }
+
+  .#{$galleryPicker}-info {
+    display: none !important;
+  }
+}
+
+.#{$galleryPicker}-expand {
+  .#{$galleryPicker}-initial,
+  .#{$galleryPicker}-info {
+    display: none !important;
+  }
+
+  .#{$galleryPicker}-expand-panel {
+    display: flex !important;
+  }
+}
+
+.#{$galleryPicker}-hover {
+  .#{$galleryPicker}-info-add,
+  .#{$galleryPicker}-info-expand,
+  .#{$galleryPicker}-item-change {
+    opacity: $galleryPicker-expand-item-change-opacity;
+    transition: all 300ms ease-in-out;
+  }
+}
+
+.#{$galleryPicker}-disabled {
+  .#{$galleryPicker}-info {
+    cursor: not-allowed;
+    background-color: $galleryPicker-initial-hover-bg;
+
+    &-remove,
+    &-edit {
+      cursor: not-allowed;
+    }
+  }
+  .#{$galleryPicker}-initial {
+    cursor: not-allowed;
+    background-color: $galleryPicker-initial-hover-bg;
+  }
+  .#{$galleryPicker}-info-change {
+    cursor: not-allowed;
+    background-color: $galleryPicker-initial-hover-bg;
+  }
+}

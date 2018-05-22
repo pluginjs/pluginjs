@@ -1,0 +1,87 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$toggleList: "pj-toggleList" !default;
+
+$toggleList-sizer: $sizer !default;
+$parent: "pj-list" !default;
+$toggle: "pj-toggle" !default;
+$toggleList-border-color: $gray-lighter !default;
+$toggleList-hover-color: $gray-light !default;
+$toggleList-unchecked-bg: $gray-lightest !default;
+
+// Core
+// =====================
+.#{$toggleList} {
+  .#{$parent} {
+    &-item {
+      // background-color: $toggleList-unchecked-bg;
+      animation: todark 0.5s;
+      animation-fill-mode: forwards;
+
+      &:hover {
+        border-color: $toggleList-border-color;
+      }
+
+      &.#{$toggleList}-checked {
+        // background-color: #fff;
+        // transition: background-color 1s;
+        animation: tolight 0.5s;
+        animation-fill-mode: forwards;
+
+        &:hover {
+          border-color: $toggleList-hover-color;
+        }
+        &:active {
+          border-color: $color-primary-dark;
+        }
+      }
+      &.sortable-ghost.sortable-chosen {
+        border-color: $toggleList-border-color;
+      }
+    }
+
+    // &-item-handle:hover {
+    //   background-color: $toggleList-hover-color;
+    // }
+
+    &-item-actions {
+      &:hover {
+        cursor: default;
+      }
+
+      // .#{$toggle}:hover {
+      //   cursor: pointer;
+      // }
+    }
+  }
+}
+
+.#{$parent}-disabled {
+  .#{$toggleList}-checked {
+    &:hover {
+      border-color: $toggleList-border-color !important;
+    }
+  }
+}
+
+@keyframes todark {
+  0% {
+    background-color: $color-white;
+  }
+
+  100% {
+    background-color: $toggleList-unchecked-bg;
+  }
+}
+
+@keyframes tolight {
+  0% {
+    background-color: $toggleList-unchecked-bg;
+  }
+
+  100% {
+    background-color: $color-white;
+  }
+}

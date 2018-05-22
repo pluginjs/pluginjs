@@ -1,0 +1,33 @@
+/* slideRight: Slide from the right */
+.#{$lightbox}-slideRightIn {
+  animation: Lightbox-slideRightIn $lightbox-duration
+    cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+
+.#{$lightbox}-slideRightOut {
+  animation: Lightbox-slideRightOut $lightbox-duration forwards;
+}
+
+@keyframes Lightbox-slideRightIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes Lightbox-slideRightOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+}

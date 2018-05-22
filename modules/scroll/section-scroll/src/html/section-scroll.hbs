@@ -1,0 +1,258 @@
+---
+title: SectionScroll
+layout: plain
+styles:
+- ../../plugins/dots/css/dots.css
+- ../../plugins/scroll-to/css/scroll-to.css
+- ../../plugins/section-scroll/css/section-scroll.css
+scripts:
+- ../../vendor/hammer.min.js
+- ../../plugins/scrollspy/scrollspy.js
+- ../../plugins/scroll-to/scroll-to.js
+- ../../plugins/dots/dots.js
+- ../../plugins/section-scroll/section-scroll.js
+---
+<style>
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #FFF;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .fixed-header li {
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    *display: inline;
+    margin: 0 5px;
+  }
+
+  .fixed-header a {
+    display: block;
+    line-height: 60px;
+    color: #444;
+    text-decoration: none;
+    padding: 0 20px;
+    -webkit-transition: 0.2s;
+            transition: 0.2s;
+  }
+
+  .fixed-header .active a {
+    background: #222;
+    color: #FFF;
+  }
+
+  /* footer */
+   .fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #FFF;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .fixed-footer li {
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    *display: inline;
+    margin: 0 5px;
+  }
+
+  .fixed-footer a {
+    display: block;
+    line-height: 60px;
+    color: #444;
+    text-decoration: none;
+    padding: 0 20px;
+    -webkit-transition: 0.2s;
+            transition: 0.2s;
+  }
+
+  .fixed-footer .active a {
+    background: #222;
+    color: #FFF;
+  }
+
+  section {
+    height: 1080px;
+    color: #FFF;
+    text-align: center;
+  }
+
+  section:after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    *display: inline;
+    width: 0;
+    height: 100%;
+  }
+
+  section .inner {
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    *display: inline;
+    max-width: 540px;
+    margin: auto;
+  }
+
+  #home {
+    background: #C2185B;
+  }
+
+  #section-1 {
+    background: #2f51b5;
+  }
+
+  #section-2 {
+    background: #00695c;
+  }
+
+  #section-3 {
+    background: #ef6c00;
+  }
+  .contorl {
+    position: fixed;
+    bottom: 0;
+    margin:0 auto;
+  }
+</style>
+<header id="main-header" class="fixed-header">
+  <nav>
+    <ul>
+      <li data-href="#home"><a>Home</a></li>
+      <li data-href="#section-1"><a>Section 1</a></li>
+      <li data-href="#section-2"><a>Section 2</a></li>
+      <li data-href="#section-3"><a>Section 3</a></li>
+    </ul>
+  </nav>
+</header>
+
+{{!-- <footer id="main-footer" class="fixed-footer">
+  <nav>
+    <ul>
+      <li data-href="#home"><a>Home</a></li>
+      <li data-href="#section-1"><a>Section 1</a></li>
+      <li data-href="#section-2"><a>Section 2</a></li>
+      <li data-href="#section-3"><a>Section 3</a></li>
+    </ul>
+  </nav>
+</footer> --}}
+<div class="section-container">
+  <section id="home" class="section">
+    <div class="inner">
+      <h1 class="section-title">Home</h1>
+    </div>
+  </section>
+
+  <section id="section-1" class="section">
+    <div class="inner">
+      <h2 class="section-title">Section 1</h2>
+    </div>
+  </section>
+
+  <section id="section-2" class="section">
+    <div class="inner">
+      <h2 class="section-title">Section 2</h2>
+    </div>
+  </section>
+
+  <section id="section-3" class="section">
+    <div class="inner">
+      <h2 class="section-title">Section 3</h2>
+    </div>
+  </section>
+</div>
+
+<div class="contorl">
+  <button class="next">next</button>
+  <button class="previous">previous</button>
+  <button class="goTosection">goTo(#section-3)</button>
+  <button class="goTohome">goTo(#home)</button>
+  <button class="scroll-to">scroll-to(#home)</button>
+  <button class="getId">getId</button>
+</div>
+<script>
+
+$(function(){
+  window.$element = $('.section-container')
+  var $nav = $('#main-header')
+  var $sections = $nav.find('li')
+
+  var API = Pj.sectionScroll('.section-container', {
+    itemSelector: '.section',
+    titleSelector: '.section-title',
+    skin: null,
+    appendTo: 'body',
+    duration: 1000,
+    // animation: 'stack',
+    easing: '',
+    onChange: function(val) {
+      console.log('onChange', val)
+      $sections.removeClass('active')
+      $sections.each(function() {
+        var href = $(this).attr('data-href')
+        if (href === val) {
+          $(this).addClass('active')
+        }
+      })
+    }
+  })
+
+  $nav.on('click', 'li', function(event) {
+    var target = $(event.currentTarget)
+    var href = target.attr('data-href')
+    API('goTo', href)
+    $sections.removeClass('active')
+    target.addClass('active')
+  })
+
+  $('.next').on('click', function() {
+    API('next')
+  })
+
+  $('.previous').on('click', function() {
+    API('previous')
+  })
+
+  $('.goTosection').on('click', function() {
+    API('goTo', '#section-3')
+  })
+
+  $('.goTohome').on('click', function() {
+    API('goTo', '#home')
+  })
+
+  $('.scroll-to').on('click', function() {
+    API('scrollTo', '#home')
+  })
+
+  $('.getId').on('click', function() {
+    var id = API('getId')
+    console.log('getId:', id)
+  })
+});
+
+  // API('goTo', '2')
+  // API('getId')
+  // $element.asScrollTo('jump', 'phrase')
+</script>

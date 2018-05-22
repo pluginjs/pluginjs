@@ -1,0 +1,17 @@
+@import "@pluginjs/styles/variables.scss";
+
+$namespace: "pj-timeTable-classify";
+$filters: "pj-filters";
+
+$classify-color: #333;
+$classify-bg-color: transparent;
+
+.#{$namespace} {
+  color: $classify-color;
+  text-align: center;
+  background-color: $classify-bg-color;
+
+  .#{$filters} {
+    display: inline-block;
+  }
+}

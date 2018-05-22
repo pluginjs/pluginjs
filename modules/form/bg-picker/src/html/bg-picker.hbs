@@ -1,0 +1,142 @@
+---
+title: BgPicker
+layout: plugin
+styles:
+- ../../plugins/popover/css/popover.css
+- ../../plugins/pop-dialog/css/pop-dialog.css
+- ../../plugins/dropdown/css/dropdown.css
+- ../../plugins/bg-picker/css/bg-picker.css
+scripts:
+- ../../vendor/popper.js
+- ../../plugins/bg-picker/bg-picker.js
+---
+
+<section>
+  <h2>Default</h2>
+  <input type="text"
+    class="example-default"
+    value="{
+      'repeat':'repeat-x',
+      'position':'center center',
+      'attachment':'inherit',
+      'image': 'http://via.placeholder.com/350x150'
+    }" />
+
+<script>
+(function(){
+  Pj.bgPicker('.example-default');
+})();
+</script>
+</section>
+
+<section>
+  <h2>Format</h2>
+  <input type="text"
+    class="example-format"
+    value="repeat:repeat-x,position:center center,attachment:inherit,image:'../../plugins/bg-picker/images\/x_x2.png', thumbnail: 'http://via.placeholder.com/350x150'" />
+
+<script>
+(function(){
+  Pj.bgPicker('.example-format', {
+    process(value) {
+      // if (value && !As.is.undefined(value.image) && value.image !== '') {
+      //   return JSON.stringify(value);
+      // }
+      return '';
+    },
+
+    parse(value) {
+      // if (value) {
+      //   return JSON.parse(value);
+      // }
+      return {};
+    }
+  });
+})();
+</script>
+</section>
+
+<section>
+  <h2>Api</h2>
+  <input type="text"
+    class="example-api"
+    value="{
+      'repeat':'repeat-x',
+      'position':'center center',
+      'attachment':'inherit',
+      'image': '../../plugins/bg-picker/images\/x_x2.png'
+    }" />
+  <div class="apis top-gap">
+    <button data-api="init" class="btn">init()</button>
+    <button data-api="get" class="btn">get()</button>
+    <button data-api="set" class="btn">set(data)</button>
+    <button data-api="val" class="btn">val()</button>
+    <button data-api="valData" class="btn">val(data)</button>
+    <button data-api="destroy" class="btn">destroy()</button>
+    <button data-api="enable" class="btn">enable()</button>
+    <button data-api="disable" class="btn">disable()</button>
+  </div>
+
+  <div class="console"></div>
+<script>
+(function(){
+  let $elementApi;
+
+  const APIS = {
+    init() {
+      $elementApi = Pj.bgPicker('.example-api', {
+        onReady: function() {
+          log('ready', 'event');
+        },
+        onDestroy: function() {
+          log('destroy', 'event');
+        },
+        onEnable: function() {
+          log('enable', 'event');
+        },
+        onDisable: function() {
+          log('disable', 'event');
+        },
+        onChange: function(value) {
+         log('change: ' + JSON.stringify(value), 'event');
+        }
+      })
+    },
+    get() {
+      var value = JSON.stringify($elementApi.get())
+      log('value: '+value, 'API');
+    },
+    set() {
+      $elementApi.set({
+
+      });
+      log('set(data)', 'API');
+    },
+    val() {
+      var value = JSON.stringify($elementApi.val())
+      log('value: '+value, 'API');
+    },
+    valData() {
+      $elementApi.val({});
+      log('val(data)', 'API');
+    },
+    destroy() {
+      $elementApi.destroy()
+    },
+    disable() {
+      $elementApi.disable()
+    },
+    enable() {
+      $elementApi.enable()
+    }
+  }
+
+  document.querySelector('.apis').addEventListener('click', event => {
+    const api = event.target.matches('[data-api]') && event.target.dataset.api
+    if (api) {
+      APIS[api]()
+    }
+  })
+})();
+</script>
+</section>

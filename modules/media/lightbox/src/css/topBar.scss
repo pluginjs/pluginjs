@@ -1,0 +1,49 @@
+$lightbox: "pj-lightbox" !default;
+
+.#{$lightbox}-topBar {
+  position: absolute;
+  top: 0;
+  // background-color: rgba(0,0,0,.4);
+  left: 0;
+  width: 100%;
+  margin-top: 10px;
+  transition: transform 0.25s ease-in-out;
+  transform: translateY(-100%);
+  will-change: transform;
+
+  &.#{$lightbox}-slide-top {
+    transform: translateY(0);
+  }
+
+  ##{$lightbox}-counter {
+    display: inline-block;
+    margin-top: 7px;
+    margin-left: 30px;
+  }
+
+  span {
+    position: relative;
+    display: inline-block;
+    float: right;
+    // width: 40px;
+    height: 40px;
+    padding: 0;
+    // margin: 2px;
+    margin-right: 30px;
+    line-height: 38px;
+    color: white;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    box-shadow: none;
+    opacity: 0.75;
+    transition: opacity 0.25s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

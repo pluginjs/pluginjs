@@ -1,0 +1,359 @@
+---
+title: DatePicker
+layout: plugin
+styles:
+- ../../plugins/date-picker/css/date-picker.css
+scripts:
+- ../../vendor/hammer.min.js
+- ../../vendor/popper.js
+- ../../plugins/date-picker/date-picker.js
+---
+
+<section>
+  <h2>Modes</h2>
+
+{{!-- Single --}}
+  <section>
+    <h3>Default Single</h3>
+{{#code}}
+<input type="text" id="calendar" readonly="readonly">
+<script>
+  (function() {
+    Pj.datePicker("#calendar");
+  })();
+</script>
+{{/code}}
+    <input type="text" id="calendar" readonly="readonly">
+    <script>
+      (function() {
+        Pj.datePicker("#calendar");
+      })();
+    </script>
+  </section>
+
+<section>
+    <h3>Initiailzed by input value</h3>
+{{#code}}
+<input type="text" id="calendar-input" value="2017/12/01" readonly="readonly">
+<script>
+  (function() {
+    Pj.datePicker("#calendar");
+  })();
+</script>
+{{/code}}
+    <input type="text" id="calendar-input" value="2017/12/01" readonly="readonly">
+    <script>
+      (function() {
+        Pj.datePicker("#calendar-input");
+      })();
+    </script>
+  </section>
+
+{{!-- Range --}}
+  <section>
+    <h3>Range</h3>
+{{#code}}
+<input type="text" id="calendar-range" readonly="readonly">
+<script>
+  (function() {
+    Pj.datePicker("#calendar-range", { mode: 'range' });
+  })();
+</script>
+{{/code}}
+  <input type="text" id="calendar-range" readonly="readonly">
+  <script>
+    (function() {
+      Pj.datePicker("#calendar-range", { mode: 'range' });
+    })();
+  </script>
+  </section>
+
+{{!-- Multiple --}}
+  <section>
+    <h3>Multiple</h3>
+{{#code}}
+<input type="text" id="calendar-multiple" readonly="readonly">
+<script>
+  (function() {
+    Pj.datePicker("#calendar-multiple", { mode: 'multiple', calendars: '4' });
+  })();
+</script>
+{{/code}}
+    <input type="text" id="calendar-multiple" readonly="readonly">
+    <script>
+      (function() {
+        Pj.datePicker("#calendar-multiple", { mode: 'multiple', calendars: '4' });
+      })();
+    </script>
+  </section>
+
+{{!-- Attributes --}}
+ <section>
+    <h3>Data Attributes</h3>
+    <p>Any option of the asDatepicker can also be set via data-attributes.</p>
+    <p>Such as:</p>
+{{#code}}
+<input type="text" id="calendar-attributes" data-mode="range" data-range-mode="section" data-selectable-year="2001>2010,2012,2014>2018" readonly="readonly">
+<script>
+  (function() {
+    Pj.datePicker("#calendar-attributes");
+  })();
+</script>
+{{/code}}
+    <input type="text" id="calendar-attributes" data-mode="range" data-selectable-year="2001>2010,2012,2014>2018" readonly="readonly">
+    <script>
+      (function() {
+        Pj.datePicker("#calendar-attributes");
+      })();
+    </script>
+  </section>
+
+{{!-- Mobile Single --}}
+ <section>
+    <h3>Mobile Single</h3>
+{{#code}}
+<input type="text" id="calendar-mobile-single" readonly="readonly">
+<script>
+  (function() {
+    Pj.datePicker('#calendar-mobile-single', { mobileMode: true });
+  })();
+</script>
+{{/code}}
+    <input type="text" id="calendar-mobile-single" readonly="readonly">
+    <script>
+      (function() {
+        Pj.datePicker('#calendar-mobile-single', { mobileMode: true });
+      })();
+    </script>
+  </section>
+
+{{!-- Mobile Range --}}
+ <section>
+    <h3>Mobile Range</h3>
+{{#code}}
+<input type="text" id="calendar-mobile-range" readonly="readonly">
+<script>
+  (function() {
+    Pj.datePicker('#calendar-mobile-range', {
+      mode: 'range',
+      mobileMode: true
+    });
+  })();
+</script>
+{{/code}}
+    <input type="text" id="calendar-mobile-range" readonly="readonly">
+    <script>
+      (function() {
+        Pj.datePicker('#calendar-mobile-range', {
+          mode: 'range',
+          mobileMode: true
+        });
+      })();
+    </script>
+  </section>
+
+ <section>
+    <h3>Mobile Multiple</h3>
+{{#code}}
+<input type="text" id="calendar-mobile-multiple" readonly="readonly">
+<script>
+  (function() {
+    Pj.datePicker('#calendar-mobile-multiple', {
+      mode: 'multiple',
+      mobileMode: true
+    });
+  })();
+</script>
+{{/code}}
+    <input type="text" id="calendar-mobile-multiple" readonly="readonly">
+    <script>
+      (function() {
+        Pj.datePicker('#calendar-mobile-multiple', {
+          mode: 'multiple',
+          mobileMode: true
+        });
+      })();
+    </script>
+  </section>
+
+{{!-- DisplayMode --}}
+ <section>
+    <h3>DisplayMode</h3>
+    <p>With default dropdown and inline</p>
+{{#code}}
+Pj.datePicker("#calendar-api-displayMode", {displayMode: 'inline'});
+{{/code}}
+    <input type="text" id="calendar-api-displayMode" readonly="readonly">
+    <script>
+    (function() {
+      Pj.datePicker("#calendar-api-displayMode", {displayMode: 'inline'});
+    })();
+    </script>
+  </section>
+</section>
+
+ <section>
+  <h2>Keyboard navigation</h2>
+  <p>
+    <span>left arrow ----- </span> highlights previous day
+  </p>
+  <p>
+    <span>right arrow ----- </span> highlights next day
+  </p>
+  <p>
+    <span>up arrow ----- </span> highlights same day from the previous week
+  </p>
+  <p>
+    <span>down arrow ----- </span> highlights same day from the next week
+  </p>
+  <p>
+    <span>ctrl + left arrow ----- </span> navigates to previous month
+  </p>
+  <p>
+    <span>ctrl + right arrow ----- </span> navigates to next month
+  </p>
+  <p>
+    <span>ctrl + up arrow ----- </span> navigates to higher view
+  </p>
+  <p>
+    <span>ctrl + down arrow ----- </span> navigates to lower view
+  </p>
+  <p>
+    <span>alt + left arrow ----- </span> focus in previous calendar
+  </p>
+  <p>
+    <span>alt + right arrow ----- </span> focus in next calendar
+  </p>
+  <p>
+    <span>enter ----- </span> if in "days" view selects the highlighted day. In other views navigates to a lower view
+  </p>
+  <p>
+    <span>esc ----- </span> closes the popup
+  </p>
+
+</section>
+
+<section>
+  <h2>API</h2>
+  <input type="text" id="calendar-api" class="destroy-text" readonly="readonly">
+  <div>
+    <button class="btn api-init">init()</button>
+    <button class="btn api-destroy">destroy()</button>
+    <button class="btn api-enable">enable()</button>
+    <button class="btn api-disable">disable()</button>
+    <button class="btn api-show">show()</button>
+    <button class="btn api-hide">hide()</button>
+    <button class="btn api-multipleClear">multipleClear()</button>
+    <button class="btn api-getWrap">getWrap()</button>
+    <button class="btn api-getInput">getInput()</button>
+    <button class="btn api-getDate">getDate()</button>
+    <button class="btn api-getDate-format">getDate('yyyy-mm-dd')</button>
+    <button class="btn api-update">update({mode: 'multiple'})</button>
+    <button class="btn api-set">set('2017-6-6')</button>
+    <button class="btn api-get">get()</button>
+    <button class="btn api-val-set">val('2017-8-8')</button>
+    <button class="btn api-val">val()</button>
+  </div>
+  <div class="console"></div>
+  <script>
+  (function() {
+    var $datepicker = {}
+    function init() {
+      $datepicker = Pj.datePicker('#calendar-api', {
+        position: 'top',
+        onReady: function() {
+          log('ready', 'event');
+        },
+        onDestroy: function() {
+          log('destroy', 'event');
+        },
+        onEnable: function() {
+          log('enable', 'event');
+        },
+        onDisable: function() {
+          log('disable', 'event');
+        },
+        onChange: function(date) {
+          log('changeDate: '+date, 'event');
+        },
+        onShow: function() {
+          log('show', 'event');
+        },
+        onHide: function() {
+          log('hide', 'event');
+        },
+        onBeforeShow: function() {
+          log('beforeShow', 'event');
+        },
+        onBeforeHide: function() {
+          log('beforeHide', 'event');
+        },
+      }).data('date-picker');
+    }
+
+    document.querySelector('.api-init').addEventListener('click', function() {
+      init();
+    });
+
+    document.querySelector('.api-destroy').addEventListener('click', function() {
+      $datepicker.destroy();
+    });
+
+    document.querySelector('.api-enable').addEventListener('click', function() {
+      $datepicker.enable();
+    });
+
+    document.querySelector('.api-disable').addEventListener('click', function() {
+      $datepicker.disable();
+    });
+
+    document.querySelector('.api-show').addEventListener('click', function() {
+      $datepicker.show();
+      log('', 'show()');
+    });
+    document.querySelector('.api-hide').addEventListener('click', function() {
+      $datepicker.hide();
+      log('', 'hide()');
+    });
+    document.querySelector('.api-multipleClear').addEventListener('click', function() {
+      if ($datepicker.options.mode !== 'multiple') {
+        log('Please update mode!')
+        return;
+      }
+      $datepicker.multipleClear();
+      log('', 'multipleClear()');
+    });
+    document.querySelector('.api-getWrap').addEventListener('click', function() {
+      log($datepicker.getWrap().attr('class'), 'getWrap()');
+    });
+    document.querySelector('.api-getInput').addEventListener('click', function() {
+      log($datepicker.getInput().attr('class'), 'getInput()');
+    });
+    document.querySelector('.api-getDate').addEventListener('click', function() {
+      log($datepicker.getDate(), 'getDate()');
+    });
+    document.querySelector('.api-getDate-format').addEventListener('click', function() {
+      log($datepicker.getDate('yyyy-mm-dd'), 'getInput("yyyy-mm-dd")');
+    });
+    document.querySelector('.api-update').addEventListener('click', function() {
+      $datepicker.update({mode: 'multiple'});
+      log('', 'update({mode: "multiple"})');
+    });
+
+    document.querySelector('.api-set').addEventListener('click', function() {
+      $datepicker.set('2017-6-6');
+      log('', 'set("2017-6-6")');
+    });
+    document.querySelector('.api-get').addEventListener('click', function() {
+      log($datepicker.get(), 'get()');
+    });
+    document.querySelector('.api-val-set').addEventListener('click', function() {
+      $datepicker.val('2017-8-8');
+      log('', 'val("2017-8-8")');
+    });
+    document.querySelector('.api-val').addEventListener('click', function() {
+      log($datepicker.val(), 'val()');
+    });
+  })();
+  </script> --}}
+</section>

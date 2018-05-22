@@ -1,0 +1,394 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$editPanel: "pj-editPanel" !default;
+$modal: "pj-modal" !default;
+
+$editPanel-sizer: $sizer !default;
+// global
+$editPanel-width: 16 * $editPanel-sizer !default; //160px
+$editPanel-height: 9 * $editPanel-sizer !default; //90px
+$editPanel-color: $text-color !default;
+$editPanel-active-color: $btn-color-primary !default;
+$editPanel-border: 1px solid $gray-lighter !default;
+$editPanel-border-style: dashed !default;
+$editPanel-border-radius: $border-radius-base !default;
+$editPanel-font-size: $font-size-base !default;
+// init
+$init-img-font-size: $font-size-base + 5px !default; //20px
+$init-hover-bg-color: $gray-lightest !default;
+$init-color: $gray-light !default;
+// info
+$info-padding: 1px !default;
+$info-action-bg: $gray-darker !default;
+$info-action-opacity: 0.9 !default;
+$info-action-font-size: $font-size-base !default;
+$info-editor-margin-right: 2.8 * $editPanel-sizer !default; //28px
+$info-icon-hover-color: $gray-light !default;
+// panel
+$panel-width: 30 * $editPanel-sizer !default; //300px
+$panel-height: 43.1 * $editPanel-sizer !default; //431px
+$panel-padding: 2 * $editPanel-sizer !default; //20px
+$panel-action-btn-padding: 0.4 * $editPanel-sizer 2 * $editPanel-sizer !default; //4px 20px
+$panel-item-margin-bottom: 2 * $editPanel-sizer !default; //20px
+// preview
+$preview-width: 26 * $editPanel-sizer !default; //260px
+$preview-height: 16 * $editPanel-sizer !default; //160px
+$preview-padding: 1.4 * $editPanel-sizer !default; //14px
+// component
+$component-content-width: 16 * $editPanel-sizer !default; //160px
+// action
+$action-margin-top: 2 * $editPanel-sizer !default; //20px
+// selector panel
+$selector-width: 56 * $editPanel-sizer !default; //560px
+$selector-height: 38.8 * $editPanel-sizer !default; //388px
+$selector-shadow: $box-shadow-base !default;
+// select panel title
+$selector-title-height: 5.3 * $editPanel-sizer !default; //53px
+$selector-title-font-size: $font-size-base + 3px !default; //18px
+$selector-title-padding: 2 * $editPanel-sizer !default; //20px
+// select panel content
+$selector-content-height: 27 * $editPanel-sizer !default; //270px
+$selector-content-padding: 2 * $editPanel-sizer 2 * $editPanel-sizer 3 *
+  $editPanel-sizer !default; //20 20 30
+$selector-content-title-margin-bottom: 2 * $editPanel-sizer !default; //20px
+$selector-content-title-color: $gray-dark !default;
+// select panel list
+$selector-list-height: 19 * $editPanel-sizer !default; //190px
+$selector-list-margin-bottom: 3 * $editPanel-sizer !default; //30px
+// select panel item
+$selector-item-width: 11.5 * $editPanel-sizer !default; //115px
+$selector-item-height: 8 * $editPanel-sizer !default; //80px
+$selector-item-margin-size: $editPanel-sizer * 2 !default; //20px
+// Core
+// =====================
+input.#{$editPanel} {
+  display: none;
+}
+
+.#{$editPanel} {
+  &-info,
+  &-panel {
+    display: none;
+  }
+
+  &-init,
+  &-info {
+    width: 100%;
+    height: 100%;
+  }
+  // === wrap === //
+  &-wrap {
+    position: relative;
+    font-size: $editPanel-font-size;
+    color: $editPanel-color;
+  }
+  // === init === //
+  &-init {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: $editPanel-width;
+    height: $editPanel-height;
+    color: $init-color;
+    border: $editPanel-border;
+    border-style: $editPanel-border-style;
+    border-radius: $editPanel-border-radius;
+
+    i {
+      font-size: $init-img-font-size;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $init-hover-bg-color;
+    }
+  }
+
+  //=== info ===//
+  &-info {
+    position: relative;
+    width: $editPanel-width;
+    height: $editPanel-height;
+    padding: $info-padding;
+    border: $editPanel-border;
+
+    &-content {
+      width: 100%;
+      height: 100%;
+      border-radius: $editPanel-border-radius;
+    }
+
+    .#{$editPanel}-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      font-size: $info-action-font-size;
+      color: $color-white;
+      background-color: $info-action-bg;
+      border-radius: $editPanel-border-radius;
+      opacity: 0;
+
+      i {
+        margin-right: $info-editor-margin-right;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:hover {
+          color: $info-icon-hover-color;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &:hover .#{$editPanel}-action {
+      opacity: $info-action-opacity;
+      transition: all 300ms ease-in-out;
+    }
+  }
+  // === panel && selector === //
+  &-panel,
+  &-selector {
+    .#{$editPanel}-action {
+      justify-content: flex-end;
+
+      button {
+        border: 0;
+      }
+    }
+  }
+  // === panel === //
+  &-panel {
+    box-sizing: border-box;
+    box-sizing: border-box;
+    // position: absolute;
+    // top: -1px;
+    // left: -1px;
+    // z-index: 98;
+    width: $panel-width;
+    padding: $panel-padding;
+    background-color: $color-white;
+    border: $editPanel-border;
+    border-radius: $editPanel-border-radius;
+
+    .#{$editPanel}-preview {
+      box-sizing: border-box;
+      margin-bottom: $panel-item-margin-bottom;
+    }
+
+    .#{$editPanel}-component {
+      margin-bottom: $panel-item-margin-bottom;
+    }
+
+    .#{$editPanel}-action {
+      margin-top: $action-margin-top;
+
+      button.#{$editPanel}-cancel {
+        color: $editPanel-color;
+
+        &:hover {
+          color: $btn-color-primary;
+        }
+      }
+    }
+  }
+  // === preview === //
+  &-preview {
+    position: relative;
+    width: $preview-width;
+    height: $preview-height;
+    padding: $preview-padding;
+    background: url("../images/bg-canvas.png") no-repeat center;
+    border: $editPanel-border;
+    border-radius: $editPanel-border-radius;
+
+    &-content {
+      width: 100%;
+      height: 100%;
+      border-radius: $editPanel-border-radius;
+    }
+
+    &:hover {
+      cursor: pointer;
+      border-color: $editPanel-active-color;
+    }
+  }
+
+  // === component === //
+  &-component {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-content {
+      width: $component-content-width;
+    }
+  }
+
+  // === selector === //
+  &-selector {
+    display: flex;
+    flex-direction: column;
+    width: $selector-width;
+    height: $selector-height;
+    padding: 0;
+    border: 0;
+    //   box-shadow: $selector-shadow;
+
+    //   // .#{$modal}-title {
+    //   //   padding: $selector-title-padding;
+    //   //   font-size: $selector-title-font-size;
+    //   // }
+
+    // &-title {
+    //   height: $selector-title-height;
+    //   // padding: $selector-title-padding;
+    //   // font-size: $selector-title-font-size;
+    //   line-height: $selector-title-font-size;
+    //   color: #fff;
+    //   background-color: $editPanel-active-color;
+
+    //   i {
+    //     float: right;
+    //     font-size: 14px;
+
+    //     &:hover {
+    //       color: $gray-lighter;
+    //       cursor: pointer;
+    //     }
+    //   }
+    // }
+
+    &-content {
+      position: relative;
+      flex-grow: 1;
+      height: $selector-content-height;
+      padding: $selector-content-padding;
+
+      // &-title {
+      //   margin-bottom: $selector-content-title-margin-bottom;
+      //   font-size: 13px;
+      //   color: $selector-content-title-color;
+      // }
+    }
+
+    &-list {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      // margin-bottom: $selector-list-margin-bottom;
+    }
+
+    &-item {
+      float: left;
+      width: $selector-item-width;
+      height: $selector-item-height;
+      margin-right: $selector-item-margin-size;
+      margin-bottom: $selector-item-margin-size;
+      list-style: none;
+      border: $editPanel-border;
+      border-color: transparent;
+
+      &:nth-of-type(4n) {
+        margin-right: 0;
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        border-color: $editPanel-active-color;
+      }
+    }
+
+    //   // .#{$modal}-body {
+    //   //   max-height: initial;
+    //   //   padding: 20px;
+    //   //   overflow-y: initial;
+    //   // }
+
+    //   .#{$editPanel}-action {
+    //     height: auto;
+    //     padding: 20px;
+
+    //     // .#{$modal}-basicBtn {
+    //     //   height: auto;
+    //     //   margin: 0;
+    //     //   border: 0;
+    //     // }
+    //   }
+  }
+
+  // === unitls === //
+  &-action {
+    display: flex;
+    justify-content: center;
+    font-size: $font-size-base;
+  }
+
+  // &-cancel,
+  // &-save {
+  //   padding: $panel-action-btn-padding;
+
+  //   &:hover {
+  //     cursor: pointer;
+  //   }
+  // }
+
+  &-save {
+    background-color: $btn-color-primary !important;
+  }
+
+  // &-cancel {
+  //   background-color: transparent;
+  // }
+
+  &-show {
+    .#{$editPanel}-panel {
+      display: block;
+      // flex-direction: column;
+    }
+
+    .#{$editPanel}-init,
+    .#{$editPanel}-info {
+      display: none !important;
+    }
+  }
+
+  &-active {
+    border-color: $editPanel-active-color;
+  }
+
+  &.#{$editPanel}-fill {
+    .#{$editPanel}-init {
+      display: none;
+    }
+
+    .#{$editPanel}-info {
+      display: block;
+    }
+  }
+}
+
+.#{$editPanel}-disabled {
+  .#{$editPanel}-info {
+    &:hover .#{$editPanel}-action {
+      opacity: 0 !important;
+    }
+  }
+  .#{$editPanel}-info {
+    cursor: not-allowed;
+    background-color: $init-hover-bg-color;
+  }
+  .#{$editPanel}-init {
+    cursor: not-allowed;
+    background-color: $init-hover-bg-color;
+  }
+}

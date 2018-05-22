@@ -1,0 +1,1059 @@
+---
+title: Grids
+layout: plugin
+styles:
+- ../../plugins/dropdown/css/dropdown.css
+- ../../plugins/filters/css/filters.css
+- ../../plugins/dots/css/dots.css
+- ../../plugins/arrows/css/arrows.css
+- ../../plugins/swipe/css/swipe.css
+- ../../plugins/grids/css/grids.css
+scripts:
+- ../../vendor/hammer.min.js
+- ../../vendor/popper.js
+- ../../vendor/anime.min.js
+- ../../plugins/grids/grids.js
+---
+<style>
+  .page-content {
+    flex-grow: 1;
+  }
+
+  .column-width {
+    width: 100px;
+  }
+
+  .grid-item img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .grid-item {
+    background: rgba(142, 78, 109, .6);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, .2);
+  }
+
+  .grid-item:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+    z-index: 9;
+  }
+
+  .grid-item:nth-of-type(2n) {
+    background: rgba(166, 169, 93, .6);
+  }
+</style>
+
+{{!-- Normal --}}
+<section class="normal">
+  <h2>Normal</h2>
+
+  {{!-- Grid model --}}
+  <section>
+    <h3>Grid Model</h3>
+    <div class="example">
+      <button class="api-init">init</button>
+
+      <div class="grids-grid">
+        <div class="column-width"></div>
+        <article class="grid-item" data-sort='{"date":"2016-01-01","index":"8","title":"dd"}'>
+          {{!--
+          <p>index: 9</p>
+          <p>title: Apple</p>
+          <p>date: 2016-01-01</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=0;?random;?gravity=center" alt="img1">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-11-16","index":"0","title":"a"}'>
+          {{!--
+          <p>index: 1</p>
+          <p>title: Cherry</p>
+          <p>date: 2017-11-16</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=10;?random;?gravity=center" alt="img2">
+        </article>
+        <article class="grid-item" data-tags='tag2' data-sort='{"date":"2017-01-16","index":"1","title":"b"}'>
+          {{!--
+          <p>index: 2</p>
+          <p>title: Cumquat</p>
+          <p>date: 2017-01-16</p>
+          <p>filter tags: 'tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=20;?random;?gravity=center" alt="img3">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-11-09","index":"2","title":"c"}'>
+          {{!--
+          <p>index: 3</p>
+          <p>title: Lichee</p>
+          <p>date: 2017-11-09</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=30;?random;?gravity=center" alt="img4">
+        </article>
+        <article class="grid-item" data-tags='tag3' data-sort='{"date":"2017-05-12","index":"3","title":"de"}'>
+          {{!--
+          <p>index: 4</p>
+          <p>title: Peanut</p>
+          <p>date: 2017-05-12</p>
+          <p>filter tags: 'tag3'</p> --}}
+          <img src="https://picsum.photos/800/?image=40;?random;?gravity=center" alt="img5">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-06-06","index":"4","title":"fg"}'>
+          {{!--
+          <p>index: 5</p>
+          <p>title: Grape</p>
+          <p>date: 2017-06-06</p>
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/?image=50;?random;?gravity=center" alt="img6">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-12-26","index":"5","title":"ag"}'>
+          {{!--
+          <p>index: 6</p>
+          <p>title: Watermelon</p>
+          <p>date: 2017-12-26</p>
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/?image=60;?random;?gravity=center" alt="img7">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-06-04","index":"6","title":"Ab"}'>
+          {{!--
+          <p>index: 7</p>
+          <p>title: Pomelo</p>
+          <p>date: 2017-06-04</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=70;?random;?gravity=center" alt="img8">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2,tag3' data-sort='{"date":"2017-09-07","index":"7","title":"fA"}'>
+          {{!--
+          <p>index: 8</p>
+          <p>title: Walnut</p>
+          <p>date: 2017-09-07</p>
+          <p>filter tags: 'tag1,tag2,tag3'</p> --}}
+          <img src="https://picsum.photos/800/?image=80;?random;?gravity=center" alt="img9">
+        </article>
+        <article class="grid-item" data-tags='tag1, tag2'>
+          <img src="https://picsum.photos/800/?image=90;?random;?gravity=center" alt="img10">
+        </article>
+      </div>
+
+    </div>
+
+    <script>
+        var $normal_grids = document.querySelector('.normal .grids-grid')
+        var $normal_grids_init = document.querySelector('.normal .api-init')
+
+        // $normal_grids_init.addEventListener('click', function () {
+          Pj.grids($normal_grids, {
+            itemSelector: 'article',
+            imgSelector: 'img',
+            filters: [],
+            maxColumn: 3,
+            gutter: 40,
+            animate: 'fadeInUp',
+            image: true,
+            //aspectRatio: '9:16',
+            effects: {
+              'rotate': {
+                animeOpts: {
+                  duration: function (el, i) {
+                    return 500 + i * 50;
+                  },
+                  delay: function (el, i) {
+                    return i * 80
+                  },
+                  opacity: [0, 1],
+                  rotateZ: [90, 0]
+                }
+              }
+            },
+            filterbar: {
+              filters: true,
+              sort: true,
+              reverse: true
+            },
+            //carousel: {
+            //  drag: true,
+            //  arrows: true,
+            //  dots: true,
+            //  center: true,
+            //  defaultActive: 3
+            //},
+            /*
+            onResized: function () {
+              log('on resize', 'resized')
+            },
+            onChunkClick: function ($el) {
+              var data = $el.data()
+
+              log(JSON.stringify({
+                index: data.index,
+                tags: data.tags,
+                sort: data.sort
+              }), 'Chunk Click');
+            },
+            onDragStart: function () {
+              log(this, 'carousel drag start');
+            },
+            onDragMove: function () {
+              log(this, 'carousel drag move');
+            },
+            onDragEnd: function () {
+              log(this, 'carousel drag end');
+            },
+            onMoveEnd: function (index) {
+              log(index, 'move end to')
+            }*/
+          })
+        // })
+
+    </script>
+  </section>
+
+  {{!-- Masorny model --}}
+  <section>
+    <h3>Masonry</h3>
+    <div class="example">
+      <button class="api-masonry-init">init</button>
+
+      <div class="grids-masonry">
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='1:1' data-sort='{"date":"2016-01-01","index":"8","title":"dd"}'>
+          {{!--
+          <p>index: 9</p>
+          <p>title: Apple</p>
+          <p>date: 2016-01-01</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=90;?random;?gravity=center" alt="img1">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='8:7' data-sort='{"date":"2017-11-16","index":"0","title":"a"}'>
+          {{!--
+          <p>index: 1</p>
+          <p>title: Cherry</p>
+          <p>date: 2017-11-16</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/700/?image=190;?random;?gravity=center" alt="img2">
+        </article>
+        <article class="grid-item" data-tags='tag2' data-aspect-ratio='1:2' data-sort='{"date":"2017-01-16","index":"1","title":"b"}'>
+          {{!--
+          <p>index: 2</p>
+          <p>title: Cumquat</p>
+          <p>date: 2017-01-16</p>
+          <p>filter tags: 'tag2'</p> --}}
+          <img src="https://picsum.photos/400/800/?image=290;?random;?gravity=center" alt="img3">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='3:4' data-sort='{"date":"2017-11-09","index":"2","title":"c"}'>
+          {{!--
+          <p>index: 3</p>
+          <p>title: Lichee</p>
+          <p>date: 2017-11-09</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/600/800/?image=390;?random;?gravity=center" alt="img4">
+        </article>
+        <article class="grid-item" data-tags='tag3' data-aspect-ratio='4:3' data-sort='{"date":"2017-05-12","index":"3","title":"de"}'>
+          {{!--
+          <p>index: 4</p>
+          <p>title: Peanut</p>
+          <p>date: 2017-05-12</p>
+          <p>filter tags: 'tag3'</p> --}}
+          <img src="https://picsum.photos/800/600/?image=490;?random;?gravity=center" alt="img5">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-aspect-ratio='2:1' data-sort='{"date":"2017-06-06","index":"4","title":"fg"}'>
+          {{!--
+          <p>index: 5</p>
+          <p>title: Grape</p>
+          <p>date: 2017-06-06</p>
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=590;?random;?gravity=center" alt="img6">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-12-26","index":"5","title":"ag"}'>
+          {{!--
+          <p>index: 6</p>
+          <p>title: Watermelon</p>
+          <p>date: 2017-12-26</p>
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/?image=690;?random;?gravity=center" alt="img7">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-06-04","index":"6","title":"Ab"}'>
+          {{!--
+          <p>index: 7</p>
+          <p>title: Pomelo</p>
+          <p>date: 2017-06-04</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/300/800/?image=790;?random;?gravity=center" alt="img8">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2,tag3' data-aspect-ratio='3:5' data-sort='{"date":"2017-09-07","index":"7","title":"fA"}'>
+          {{!--
+          <p>index: 8</p>
+          <p>title: Walnut</p>
+          <p>date: 2017-09-07</p>
+          <p>filter tags: 'tag1,tag2,tag3'</p> --}}
+          <img src="https://picsum.photos/800/500/?image=890;?random;?gravity=center" alt="img9">
+        </article>
+        <article class="grid-item" data-tags='tag1, tag2' data-aspect-ratio='2:3'>
+          <img src="https://picsum.photos/600/800/?image=990;?random;?gravity=center" alt="img10">
+        </article>
+      </div>
+
+    </div>
+
+    <script>
+      var $normal_masonry = document.querySelector('.normal .grids-masonry');
+      var $normal_masonry_init = document.querySelector('.normal .api-masonry-init');
+
+      $normal_masonry_init.addEventListener('click', function () {
+        Pj.grids($normal_masonry, {
+          model: 'masonry',
+          itemSelector: 'article',
+          direction: 'topLeft',
+          sortby: 'index',
+          gutter: 10,
+          maxColumn: 3,
+          filterbar: {
+            filters: true,
+            sort: true
+          },
+          //carousel: {
+          //  drag: true,
+          //  center: true,
+          //  defaultActive: 2,
+          //  arrows: true
+          //}
+        })
+      })
+    </script>
+  </section>
+
+  {{!-- Justified model --}}
+  <section>
+    <h3>Justified</h3>
+    <div class="example">
+      <button class="api-justified-init">init</button>
+
+      <div class="grids-justified">
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='3:4' data-sort='{"date":"2016-01-01","index":"8","title":"dd"}'>
+          {{!--
+          <p>index: 9</p> --}} {{!--
+          <p>title: Apple</p> --}} {{!--
+          <p>date: 2016-01-01</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/600/800/?image=989;?random;?gravity=center" alt="img1">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='7:8' data-sort='{"date":"2017-11-16","index":"0","title":"a"}'>
+          {{!--
+          <p>index: 1</p> --}} {{!--
+          <p>title: Cherry</p> --}} {{!--
+          <p>date: 2017-11-16</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/700/800/?image=999;?random;?gravity=center" alt="img2">
+        </article>
+        <article class="grid-item" data-tags='tag2' data-sort='{"date":"2017-01-16","index":"1","title":"b"}'>
+          {{!--
+          <p>index: 2</p> --}} {{!--
+          <p>title: Cumquat</p> --}} {{!--
+          <p>date: 2017-01-16</p> --}} {{!--
+          <p>filter tags: 'tag2'</p> --}}
+          <img src="https://picsum.photos/800/800/?image=998;?random;?gravity=center" alt="img3">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='6:5' data-sort='{"date":"2017-11-09","index":"2","title":"c"}'>
+          {{!--
+          <p>index: 3</p> --}} {{!--
+          <p>title: Lichee</p> --}} {{!--
+          <p>date: 2017-11-09</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/600/500/?image=997;?random;?gravity=center" alt="img4">
+        </article>
+        <article class="grid-item" data-tags='tag3' data-aspect-ratio='1:2' data-sort='{"date":"2017-05-12","index":"3","title":"de"}'>
+          {{!--
+          <p>index: 4</p> --}} {{!--
+          <p>title: Peanut</p> --}} {{!--
+          <p>date: 2017-05-12</p> --}} {{!--
+          <p>filter tags: 'tag3'</p> --}}
+          <img src="https://picsum.photos/400/800/?image=996;?random;?gravity=center" alt="img5">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-aspect-ratio='8:3' data-sort='{"date":"2017-06-06","index":"4","title":"fg"}'>
+          {{!--
+          <p>index: 5</p> --}} {{!--
+          <p>title: Grape</p> --}} {{!--
+          <p>date: 2017-06-06</p> --}} {{!--
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/300/?image=995;?random;?gravity=center" alt="img6">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-aspect-ratio='5:3' data-sort='{"date":"2017-12-26","index":"5","title":"ag"}'>
+          {{!--
+          <p>index: 6</p> --}} {{!--
+          <p>title: Watermelon</p> --}} {{!--
+          <p>date: 2017-12-26</p> --}} {{!--
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/500/300/?image=994;?random;?gravity=center" alt="img7">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='2:1' data-sort='{"date":"2017-06-04","index":"6","title":"Ab"}'>
+          {{!--
+          <p>index: 7</p> --}} {{!--
+          <p>title: Pomelo</p> --}} {{!--
+          <p>date: 2017-06-04</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=993;?random;?gravity=center" alt="img8">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2,tag3' data-aspect-ratio='5:8' data-sort='{"date":"2017-09-07","index":"7","title":"fA"}'>
+          {{!--
+          <p>index: 8</p> --}} {{!--
+          <p>title: Walnut</p> --}} {{!--
+          <p>date: 2017-09-07</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2,tag3'</p> --}}
+          <img src="https://picsum.photos/500/800/?image=992;?random;?gravity=center" alt="img9">
+        </article>
+        <article class="grid-item" data-tags='tag1, tag2' data-aspect-ratio='3:4'>
+          <img src="https://picsum.photos/600/800/?image=991;?random;?gravity=center" alt="img10">
+        </article>
+      </div>
+
+    </div>
+
+    <script>
+      var $normal_justified = document.querySelector('.normal .grids-justified');
+      var $normal_justified_init = document.querySelector('.normal .api-justified-init')
+
+      $normal_justified_init.addEventListener('click', function () {
+        Pj.grids($normal_justified, {
+          model: 'justified',
+          itemSelector: 'article',
+          minHeight: 150,
+          // direction: 'bottomRight',
+          // sortby: 'index',
+          gutter: 10,
+          filterbar: {
+            filters: true,
+            sort: true
+          }
+        })
+      })
+    </script>
+  </section>
+
+  {{!-- Nested model --}}
+  <section>
+    <h3>Nested</h3>
+    <div class="example">
+      <button class="api-nested-init">init</button>
+
+      <div class="grids-nested">
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2016-01-01","index":"8","title":"dd"}' data-col=1 data-row=1>
+          {{!--
+          <p>index: 9</p> --}} {{!--
+          <p>title: Apple</p> --}} {{!--
+          <p>date: 2016-01-01</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=41;?random;?gravity=center" alt="img">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-11-16","index":"0","title":"a"}' data-col=1 data-row=1>
+          {{!--
+          <p>index: 1</p> --}} {{!--
+          <p>title: Cherry</p> --}} {{!--
+          <p>date: 2017-11-16</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=42;?random;?gravity=center" alt="img2">
+        </article>
+        <article class="grid-item" data-tags='tag2' data-sort='{"date":"2017-01-16","index":"1","title":"b"}' data-col=1 data-row=1>
+          {{!--
+          <p>index: 2</p> --}} {{!--
+          <p>title: Cumquat</p> --}} {{!--
+          <p>date: 2017-01-16</p> --}} {{!--
+          <p>filter tags: 'tag2'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=43;?random;?gravity=center" alt="img3">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-11-09","index":"2","title":"c"}' data-col=2 data-row=2>
+          {{!--
+          <p>index: 3</p> --}} {{!--
+          <p>title: Lichee</p> --}} {{!--
+          <p>date: 2017-11-09</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=44;?random;?gravity=center" alt="img4">
+        </article>
+        <article class="grid-item" data-tags='tag3' data-sort='{"date":"2017-05-12","index":"3","title":"de"}' data-col=1 data-row=2>
+          {{!--
+          <p>index: 4</p> --}} {{!--
+          <p>title: Peanut</p> --}} {{!--
+          <p>date: 2017-05-12</p> --}} {{!--
+          <p>filter tags: 'tag3'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=45;?random;?gravity=center" alt="img5">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-06-06","index":"4","title":"fg"}' data-col=1 data-row=1>
+          {{!--
+          <p>index: 5</p> --}} {{!--
+          <p>title: Grape</p> --}} {{!--
+          <p>date: 2017-06-06</p> --}} {{!--
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=46;?random;?gravity=center" alt="img6">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-12-26","index":"5","title":"ag"}' data-col=1 data-row=1>
+          {{!--
+          <p>index: 6</p> --}} {{!--
+          <p>title: Watermelon</p> --}} {{!--
+          <p>date: 2017-12-26</p> --}} {{!--
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=47;?random;?gravity=center" alt="img7">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-06-04","index":"6","title":"Ab"}' data-col=1 data-row=1>
+          {{!--
+          <p>index: 7</p> --}} {{!--
+          <p>title: Pomelo</p> --}} {{!--
+          <p>date: 2017-06-04</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/400/400/?image=48;?random;?gravity=center" alt="img8">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2,tag3' data-sort='{"date":"2017-09-07","index":"7","title":"fA"}' data-col=1
+          data-row=1>
+          {{!--
+          <p>index: 8</p> --}} {{!--
+          <p>title: Walnut</p> --}} {{!--
+          <p>date: 2017-09-07</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2,tag3'</p> --}}
+          <img src="https://picsum.photos/300/800/?image=49;?random;?gravity=center" alt="img8">
+        </article>
+        <article class="grid-item" data-tags='tag1, tag2' data-col=2 data-row=1>
+          <img src="https://picsum.photos/800/400/?image=50;?random;?gravity=center" alt="img10">
+        </article>
+      </div>
+
+    </div>
+
+    <script>
+      var $normal_nested = document.querySelector('.normal .grids-nested');
+      var $normal_nested_init = document.querySelector('.normal .api-nested-init');
+
+      $normal_nested_init.addEventListener('click', function () {
+        Pj.grids($normal_nested, {
+          model: 'nested',
+          itemSelector: 'article',
+          //direction: 'bottomRight',
+          // sortby: 'index',
+          gutter: 10,
+          maxColumn: 4,
+          aspectRatio: "3:2",
+          filterbar: {
+            filters: true,
+            sort: true,
+            reverse: true
+          }
+        })
+      })
+    </script>
+  </section>
+</section>
+
+
+{{!-- Carousel --}}
+<section class="carousel">
+  <h2>Carousel</h2>
+
+  {{!-- Grid model --}}
+  <section>
+    <h3>Grid Model</h3>
+    <div class="example">
+      <button class="api-init">init</button>
+
+      <div class="grids-grid">
+        <div class="column-width"></div>
+        <article class="grid-item" data-sort='{"date":"2016-01-01","index":"8","title":"dd"}'>
+          {{!--
+          <p>index: 9</p>
+          <p>title: Apple</p>
+          <p>date: 2016-01-01</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=0;?random;?gravity=center" alt="img1">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-11-16","index":"0","title":"a"}'>
+          {{!--
+          <p>index: 1</p>
+          <p>title: Cherry</p>
+          <p>date: 2017-11-16</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=10;?random;?gravity=center" alt="img2">
+        </article>
+        <article class="grid-item" data-tags='tag2' data-sort='{"date":"2017-01-16","index":"1","title":"b"}'>
+          {{!--
+          <p>index: 2</p>
+          <p>title: Cumquat</p>
+          <p>date: 2017-01-16</p>
+          <p>filter tags: 'tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=20;?random;?gravity=center" alt="img3">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-11-09","index":"2","title":"c"}'>
+          {{!--
+          <p>index: 3</p>
+          <p>title: Lichee</p>
+          <p>date: 2017-11-09</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=30;?random;?gravity=center" alt="img4">
+        </article>
+        <article class="grid-item" data-tags='tag3' data-sort='{"date":"2017-05-12","index":"3","title":"de"}'>
+          {{!--
+          <p>index: 4</p>
+          <p>title: Peanut</p>
+          <p>date: 2017-05-12</p>
+          <p>filter tags: 'tag3'</p> --}}
+          <img src="https://picsum.photos/800/?image=40;?random;?gravity=center" alt="img5">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-06-06","index":"4","title":"fg"}'>
+          {{!--
+          <p>index: 5</p>
+          <p>title: Grape</p>
+          <p>date: 2017-06-06</p>
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/?image=50;?random;?gravity=center" alt="img6">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-12-26","index":"5","title":"ag"}'>
+          {{!--
+          <p>index: 6</p>
+          <p>title: Watermelon</p>
+          <p>date: 2017-12-26</p>
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/?image=60;?random;?gravity=center" alt="img7">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-06-04","index":"6","title":"Ab"}'>
+          {{!--
+          <p>index: 7</p>
+          <p>title: Pomelo</p>
+          <p>date: 2017-06-04</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=70;?random;?gravity=center" alt="img8">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2,tag3' data-sort='{"date":"2017-09-07","index":"7","title":"fA"}'>
+          {{!--
+          <p>index: 8</p>
+          <p>title: Walnut</p>
+          <p>date: 2017-09-07</p>
+          <p>filter tags: 'tag1,tag2,tag3'</p> --}}
+          <img src="https://picsum.photos/800/?image=80;?random;?gravity=center" alt="img9">
+        </article>
+        <article class="grid-item" data-tags='tag1, tag2'>
+          <img src="https://picsum.photos/800/?image=90;?random;?gravity=center" alt="img10">
+        </article>
+      </div>
+
+      <div class="console top-gap"></div>
+    </div>
+
+    <script>
+      var $carousel_grid = document.querySelector('.carousel .grids-grid');
+      var $carousel_grid_init = document.querySelector('.carousel .api-init');
+      var api;
+
+      $carousel_grid_init.addEventListener('click', function () {
+        api = Pj.grids($carousel_grid, {
+          itemSelector: 'article',
+          maxColumn: 3,
+          gutter: 40,
+          animate: 'fadeInUp',
+          image: true,
+          //aspectRatio: '9:16',
+          effects: {
+            'rotate': {
+              animeOpts: {
+                duration: function (el, i) {
+                  return 500 + i * 50;
+                },
+                delay: function (el, i) {
+                  return i * 80
+                },
+                opacity: [0, 1],
+                rotateZ: [90, 0]
+              }
+            },
+            filterbar: {
+              filters: true,
+              sort: true,
+              reverse: true
+            },
+            //carousel: {
+            //  drag: true,
+            //  arrows: true,
+            //  dots: true,
+            //  center: true,
+            //  defaultActive: 3
+            //},
+            onResized: function () {
+              log('on resize', 'resized')
+            },
+            onChunkClick: function ($el) {
+              var data = $el.data()
+
+              log(JSON.stringify({
+                index: data.index,
+                tags: data.tags,
+                sort: data.sort
+              }), 'Chunk Click');
+            },
+            onDragStart: function () {
+              log(this, 'carousel drag start');
+            },
+            onDragMove: function () {
+              log(this, 'carousel drag move');
+            },
+            onDragEnd: function () {
+              log(this, 'carousel drag end');
+            },
+            onMoveEnd: function (index) {
+              log(index, 'move end to')
+            }
+          },
+          filterbar: {
+            filters: true,
+            sort: true,
+            reverse: true
+          },
+          carousel: {
+            // group: true,
+            // multiple: true,
+            arrows: true,
+            pagination: true,
+            dragFree: true
+          },
+        })
+      })
+    </script>
+  </section>
+
+  {{!-- Masorny model --}}
+  <section>
+    <h3>Masonry</h3>
+    <div class="example">
+      <button class="api-masonry-init">init</button>
+
+      <div class="grids-masonry">
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='1:1' data-sort='{"date":"2016-01-01","index":"8","title":"dd"}'>
+          {{!--
+          <p>index: 9</p>
+          <p>title: Apple</p>
+          <p>date: 2016-01-01</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/?image=90;?random;?gravity=center" alt="img1">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='8:7' data-sort='{"date":"2017-11-16","index":"0","title":"a"}'>
+          {{!--
+          <p>index: 1</p>
+          <p>title: Cherry</p>
+          <p>date: 2017-11-16</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/700/?image=190;?random;?gravity=center" alt="img2">
+        </article>
+        <article class="grid-item" data-tags='tag2' data-aspect-ratio='1:2' data-sort='{"date":"2017-01-16","index":"1","title":"b"}'>
+          {{!--
+          <p>index: 2</p>
+          <p>title: Cumquat</p>
+          <p>date: 2017-01-16</p>
+          <p>filter tags: 'tag2'</p> --}}
+          <img src="https://picsum.photos/400/800/?image=290;?random;?gravity=center" alt="img3">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='3:4' data-sort='{"date":"2017-11-09","index":"2","title":"c"}'>
+          {{!--
+          <p>index: 3</p>
+          <p>title: Lichee</p>
+          <p>date: 2017-11-09</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/600/800/?image=390;?random;?gravity=center" alt="img4">
+        </article>
+        <article class="grid-item" data-tags='tag3' data-aspect-ratio='4:3' data-sort='{"date":"2017-05-12","index":"3","title":"de"}'>
+          {{!--
+          <p>index: 4</p>
+          <p>title: Peanut</p>
+          <p>date: 2017-05-12</p>
+          <p>filter tags: 'tag3'</p> --}}
+          <img src="https://picsum.photos/800/600/?image=490;?random;?gravity=center" alt="img5">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-aspect-ratio='2:1' data-sort='{"date":"2017-06-06","index":"4","title":"fg"}'>
+          {{!--
+          <p>index: 5</p>
+          <p>title: Grape</p>
+          <p>date: 2017-06-06</p>
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=590;?random;?gravity=center" alt="img6">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-12-26","index":"5","title":"ag"}'>
+          {{!--
+          <p>index: 6</p>
+          <p>title: Watermelon</p>
+          <p>date: 2017-12-26</p>
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/?image=690;?random;?gravity=center" alt="img7">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-06-04","index":"6","title":"Ab"}'>
+          {{!--
+          <p>index: 7</p>
+          <p>title: Pomelo</p>
+          <p>date: 2017-06-04</p>
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/300/800/?image=790;?random;?gravity=center" alt="img8">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2,tag3' data-aspect-ratio='3:5' data-sort='{"date":"2017-09-07","index":"7","title":"fA"}'>
+          {{!--
+          <p>index: 8</p>
+          <p>title: Walnut</p>
+          <p>date: 2017-09-07</p>
+          <p>filter tags: 'tag1,tag2,tag3'</p> --}}
+          <img src="https://picsum.photos/800/500/?image=890;?random;?gravity=center" alt="img9">
+        </article>
+        <article class="grid-item" data-tags='tag1, tag2' data-aspect-ratio='2:3'>
+          <img src="https://picsum.photos/600/800/?image=990;?random;?gravity=center" alt="img10">
+        </article>
+      </div>
+
+    </div>
+
+    <script>
+      var $carousel_masonry = document.querySelector('.carousel .grids-masonry');
+      var $carousel_masonry_init = document.querySelector('.carousel .api-masonry-init');
+
+      $carousel_masonry_init.addEventListener('click', function () {
+        Pj.grids($carousel_masonry, {
+          model: 'masonry',
+          itemSelector: 'article',
+          direction: 'topLeft',
+          sortby: 'index',
+          gutter: 10,
+          maxColumn: 3,
+          filterbar: {
+            filters: true,
+            sort: true
+          },
+          carousel: {
+            // group: true,
+            // multiple: true,
+            arrows: true,
+            pagination: true,
+            dragFree: true
+          },
+        })
+      })
+    </script>
+  </section>
+
+  {{!-- Justified model --}}
+  <section>
+    <h3>Justified</h3>
+    <div class="example">
+      <button class="api-justified-init">init</button>
+
+      <div class="grids-justified">
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='3:4' data-sort='{"date":"2016-01-01","index":"8","title":"dd"}'>
+          {{!--
+          <p>index: 9</p> --}} {{!--
+          <p>title: Apple</p> --}} {{!--
+          <p>date: 2016-01-01</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/600/800/?image=989;?random;?gravity=center" alt="img1">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='7:8' data-sort='{"date":"2017-11-16","index":"0","title":"a"}'>
+          {{!--
+          <p>index: 1</p> --}} {{!--
+          <p>title: Cherry</p> --}} {{!--
+          <p>date: 2017-11-16</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/700/800/?image=999;?random;?gravity=center" alt="img2">
+        </article>
+        <article class="grid-item" data-tags='tag2' data-sort='{"date":"2017-01-16","index":"1","title":"b"}'>
+          {{!--
+          <p>index: 2</p> --}} {{!--
+          <p>title: Cumquat</p> --}} {{!--
+          <p>date: 2017-01-16</p> --}} {{!--
+          <p>filter tags: 'tag2'</p> --}}
+          <img src="https://picsum.photos/800/800/?image=998;?random;?gravity=center" alt="img3">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='6:5' data-sort='{"date":"2017-11-09","index":"2","title":"c"}'>
+          {{!--
+          <p>index: 3</p> --}} {{!--
+          <p>title: Lichee</p> --}} {{!--
+          <p>date: 2017-11-09</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/600/500/?image=997;?random;?gravity=center" alt="img4">
+        </article>
+        <article class="grid-item" data-tags='tag3' data-aspect-ratio='1:2' data-sort='{"date":"2017-05-12","index":"3","title":"de"}'>
+          {{!--
+          <p>index: 4</p> --}} {{!--
+          <p>title: Peanut</p> --}} {{!--
+          <p>date: 2017-05-12</p> --}} {{!--
+          <p>filter tags: 'tag3'</p> --}}
+          <img src="https://picsum.photos/400/800/?image=996;?random;?gravity=center" alt="img5">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-aspect-ratio='8:3' data-sort='{"date":"2017-06-06","index":"4","title":"fg"}'>
+          {{!--
+          <p>index: 5</p> --}} {{!--
+          <p>title: Grape</p> --}} {{!--
+          <p>date: 2017-06-06</p> --}} {{!--
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/800/300/?image=995;?random;?gravity=center" alt="img6">
+        </article>
+        <article class="grid-item" data-tags='tag1' data-aspect-ratio='5:3' data-sort='{"date":"2017-12-26","index":"5","title":"ag"}'>
+          {{!--
+          <p>index: 6</p> --}} {{!--
+          <p>title: Watermelon</p> --}} {{!--
+          <p>date: 2017-12-26</p> --}} {{!--
+          <p>filter tags: 'tag1'</p> --}}
+          <img src="https://picsum.photos/500/300/?image=994;?random;?gravity=center" alt="img7">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2' data-aspect-ratio='2:1' data-sort='{"date":"2017-06-04","index":"6","title":"Ab"}'>
+          {{!--
+          <p>index: 7</p> --}} {{!--
+          <p>title: Pomelo</p> --}} {{!--
+          <p>date: 2017-06-04</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2'</p> --}}
+          <img src="https://picsum.photos/800/400/?image=993;?random;?gravity=center" alt="img8">
+        </article>
+        <article class="grid-item" data-tags='tag1,tag2,tag3' data-aspect-ratio='5:8' data-sort='{"date":"2017-09-07","index":"7","title":"fA"}'>
+          {{!--
+          <p>index: 8</p> --}} {{!--
+          <p>title: Walnut</p> --}} {{!--
+          <p>date: 2017-09-07</p> --}} {{!--
+          <p>filter tags: 'tag1,tag2,tag3'</p> --}}
+          <img src="https://picsum.photos/500/800/?image=992;?random;?gravity=center" alt="img9">
+        </article>
+        <article class="grid-item" data-tags='tag1, tag2' data-aspect-ratio='3:4'>
+          <img src="https://picsum.photos/600/800/?image=991;?random;?gravity=center" alt="img10">
+        </article>
+      </div>
+
+    </div>
+
+    <script>
+      var $carousel_justified = document.querySelector('.carousel .grids-justified');
+      var $carousel_justified_init = document.querySelector('.carousel .api-justified-init');
+
+      $carousel_justified_init.addEventListener('click', function () {
+        Pj.grids($carousel_justified, {
+          model: 'justified',
+          itemSelector: 'article',
+          minHeight: 150,
+          // direction: 'bottomRight',
+          // sortby: 'index',
+          gutter: 10,
+          filterbar: {
+            filters: true,
+            sort: true
+          },
+          carousel: {
+            // group: true,
+            multiple: true,
+            arrows: true,
+            pagination: true,
+            dragFree: true
+          },
+        })
+      })
+    </script>
+  </section>
+
+  {{!-- Nested model --}}
+  <section>
+    <h3>Nested</h3>
+    <div class="example">
+      <button class="api-nested-init">init</button>
+
+      <div class="grids-nested">
+        <div class="pj-grids-inner">
+          <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2016-01-01","index":"8","title":"dd"}' data-col=1 data-row=1>
+            {{!--
+            <p>index: 9</p> --}} {{!--
+            <p>title: Apple</p> --}} {{!--
+            <p>date: 2016-01-01</p> --}} {{!--
+            <p>filter tags: 'tag1,tag2'</p> --}}
+            <img src="https://picsum.photos/800/400/?image=41;?random;?gravity=center" alt="img">
+          </article>
+          <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-11-16","index":"0","title":"a"}' data-col=1 data-row=1>
+            {{!--
+            <p>index: 1</p> --}} {{!--
+            <p>title: Cherry</p> --}} {{!--
+            <p>date: 2017-11-16</p> --}} {{!--
+            <p>filter tags: 'tag1,tag2'</p> --}}
+            <img src="https://picsum.photos/800/400/?image=42;?random;?gravity=center" alt="img2">
+          </article>
+          <article class="grid-item" data-tags='tag2' data-sort='{"date":"2017-01-16","index":"1","title":"b"}' data-col=1 data-row=1>
+            {{!--
+            <p>index: 2</p> --}} {{!--
+            <p>title: Cumquat</p> --}} {{!--
+            <p>date: 2017-01-16</p> --}} {{!--
+            <p>filter tags: 'tag2'</p> --}}
+            <img src="https://picsum.photos/800/400/?image=43;?random;?gravity=center" alt="img3">
+          </article>
+          <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-11-09","index":"2","title":"c"}' data-col=2 data-row=2>
+            {{!--
+            <p>index: 3</p> --}} {{!--
+            <p>title: Lichee</p> --}} {{!--
+            <p>date: 2017-11-09</p> --}} {{!--
+            <p>filter tags: 'tag1,tag2'</p> --}}
+            <img src="https://picsum.photos/800/400/?image=44;?random;?gravity=center" alt="img4">
+          </article>
+          <article class="grid-item" data-tags='tag3' data-sort='{"date":"2017-05-12","index":"3","title":"de"}' data-col=1 data-row=2>
+            {{!--
+            <p>index: 4</p> --}} {{!--
+            <p>title: Peanut</p> --}} {{!--
+            <p>date: 2017-05-12</p> --}} {{!--
+            <p>filter tags: 'tag3'</p> --}}
+            <img src="https://picsum.photos/800/400/?image=45;?random;?gravity=center" alt="img5">
+          </article>
+          <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-06-06","index":"4","title":"fg"}' data-col=1 data-row=1>
+            {{!--
+            <p>index: 5</p> --}} {{!--
+            <p>title: Grape</p> --}} {{!--
+            <p>date: 2017-06-06</p> --}} {{!--
+            <p>filter tags: 'tag1'</p> --}}
+            <img src="https://picsum.photos/800/400/?image=46;?random;?gravity=center" alt="img6">
+          </article>
+          <article class="grid-item" data-tags='tag1' data-sort='{"date":"2017-12-26","index":"5","title":"ag"}' data-col=1 data-row=1>
+            {{!--
+            <p>index: 6</p> --}} {{!--
+            <p>title: Watermelon</p> --}} {{!--
+            <p>date: 2017-12-26</p> --}} {{!--
+            <p>filter tags: 'tag1'</p> --}}
+            <img src="https://picsum.photos/800/400/?image=47;?random;?gravity=center" alt="img7">
+          </article>
+          <article class="grid-item" data-tags='tag1,tag2' data-sort='{"date":"2017-06-04","index":"6","title":"Ab"}' data-col=1 data-row=1>
+            {{!--
+            <p>index: 7</p> --}} {{!--
+            <p>title: Pomelo</p> --}} {{!--
+            <p>date: 2017-06-04</p> --}} {{!--
+            <p>filter tags: 'tag1,tag2'</p> --}}
+            <img src="https://picsum.photos/400/400/?image=48;?random;?gravity=center" alt="img8">
+          </article>
+          <article class="grid-item" data-tags='tag1,tag2,tag3' data-sort='{"date":"2017-09-07","index":"7","title":"fA"}' data-col=1
+            data-row=1>
+            {{!--
+            <p>index: 8</p> --}} {{!--
+            <p>title: Walnut</p> --}} {{!--
+            <p>date: 2017-09-07</p> --}} {{!--
+            <p>filter tags: 'tag1,tag2,tag3'</p> --}}
+            <img src="https://picsum.photos/300/800/?image=49;?random;?gravity=center" alt="img8">
+          </article>
+          <article class="grid-item" data-tags='tag1, tag2' data-col=2 data-row=1>
+            <img src="https://picsum.photos/800/400/?image=50;?random;?gravity=center" alt="img10">
+          </article>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      var $carousel_nested = document.querySelector('.carousel .grids-nested');
+      var $carousel_nested_init = document.querySelector('.carousel .api-nested-init');
+
+      $carousel_nested_init.addEventListener('click', function () {
+        Pj.grids($carousel_nested, {
+          model: 'nested',
+          itemSelector: 'article',
+          imgSelector: 'img',
+          //direction: 'bottomRight',
+          // sortby: 'index',
+          gutter: 10,
+          maxColumn: 4,
+          aspectRatio: "3:2",
+          filterbar: {
+            filters: true,
+            sort: true,
+            reverse: true
+          },
+          carousel: {
+            // group: true,
+            multiple: true,
+            arrows: true,
+            pagination: true,
+            dragFree: true
+          },
+        })
+      })
+    </script>
+  </section>
+</section>

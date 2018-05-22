@@ -1,0 +1,71 @@
+.#{$radio} {
+  i[class]:first-child {
+    &::before {
+      position: relative;
+      left: 0;
+      z-index: 999;
+      display: inline-block;
+      vertical-align: bottom;
+      transition: transform 0.25s;
+      transform: scale(0);
+    }
+  }
+
+  &.#{$radio}-checked,
+  & > input[type="radio"]:checked + label {
+    i[class]:first-child {
+      color: $radio-color;
+
+      &::before {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.#{$radio}-solid {
+  &.#{$radio}-checked,
+  & > input[type="radio"]:checked + label {
+    i[class]:first-child {
+      color: $color-white;
+
+      &::after {
+        background-color: $radio-color;
+      }
+    }
+  }
+}
+
+@mixin radio-icon-variant($color) {
+  &.#{$radio}-checked,
+  & > input[type="radio"]:checked + label {
+    i[class]:first-child {
+      color: $color;
+    }
+  }
+
+  &.#{$radio}-solid {
+    &.#{$radio}-checked,
+    & > input[type="radio"]:checked + label {
+      i[class]:first-child {
+        color: $color-white;
+
+        &::after {
+          background-color: $color;
+        }
+      }
+    }
+  }
+}
+
+// @mixin radio-icon-variant($background) {
+//   &.#{$radio}-solid {
+//     &.#{$radio}-checked, & > input[type="radio"]:checked + label {
+//       i:first-child:not([class]) {
+//         &::before {
+//           background-color: $background;
+//         }
+//       }
+//     }
+//   }
+// }

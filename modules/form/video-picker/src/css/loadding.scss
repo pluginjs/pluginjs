@@ -1,0 +1,53 @@
+@import "@pluginjs/styles/variables.scss";
+$cp-sizer: $sizer !default;
+
+.cp-spinner {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 4.8 * $cp-sizer; //48px
+  height: 4.8 * $cp-sizer; //48px
+}
+
+.cp-round::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 4.8 * $cp-sizer; //48px
+  height: 4.8 * $cp-sizer;
+  content: " ";
+  border-top: solid 6px $gray-lighter; //#bababa;
+  border-right: solid 6px $gray-lighter; //#bababa;
+  border-bottom: solid 6px $gray-lighter; //#bababa;
+  border-left: solid 6px $gray-lighter; //#bababa;
+  border-radius: 50%;
+}
+
+.cp-round::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 4.8 * $sizer; //48px
+  height: 4.8 * $sizer; //48px
+  content: " ";
+  border-top: solid 6px $color-primary-light;
+  border-right: solid 6px transparent;
+  border-bottom: solid 6px transparent;
+  border-left: solid 6px transparent;
+  border-radius: 50%;
+  animation: cp-round-animate 1s ease-in-out infinite;
+}
+
+@keyframes cp-round-animate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

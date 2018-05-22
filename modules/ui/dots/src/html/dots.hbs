@@ -1,0 +1,293 @@
+---
+title: Dots
+layout: plugin
+styles:
+- ../../plugins/dots/css/dots.css
+scripts:
+- ../../plugins/dots/dots.js
+---
+<section>
+  <h3>Themes</h3>
+  <section>
+    <h4>Default</h4>
+    <ul class="pj-dots example-default">
+      <li class="pj-dot pj-dot-active"><a href="#home">Home</a></li>
+      <li class="pj-dot"><a href="#about">About</a></li>
+      <li class="pj-dot"><a href="#products">Products</a></li>
+      <li class="pj-dot"><a href="#portfolio">Portfolio</a></li>
+      <li class="pj-dot"><a href="#blog">Blog</a></li>
+      <li class="pj-dot"><a href="#contact">Contact</a></li>
+    </ul>
+  </section>
+
+  <section class="top-gap">
+    <h4>Stroke</h4>
+    <ul class="pj-dots example-stroke pj-dots-stroke">
+      <li class="pj-dot pj-dot-active"><a href="#">1</a></li>
+      <li class="pj-dot"><a href="#">2</a></li>
+      <li class="pj-dot"><a href="#">3</a></li>
+      <li class="pj-dot"><a href="#">4</a></li>
+      <li class="pj-dot"><a href="#">5</a></li>
+      <li class="pj-dot"><a href="#">6</a></li>
+    </ul>
+  </section>
+
+   <section class="top-gap">
+    <h4>Square</h4>
+    <ul class="pj-dots example-square pj-dots-square">
+      <li class="pj-dot pj-dot-active"><a href="#">1</a></li>
+      <li class="pj-dot"><a href="#">2</a></li>
+      <li class="pj-dot"><a href="#">3</a></li>
+      <li class="pj-dot"><a href="#">4</a></li>
+      <li class="pj-dot"><a href="#">5</a></li>
+      <li class="pj-dot"><a href="#">6</a></li>
+    </ul>
+  </section>
+
+  <section class="top-gap">
+    <h4>Vertical</h4>
+    <ul class="pj-dots pj-dots-vertical example-vertical">
+      <li class="pj-dot pj-dot-active"><a href="#">1</a></li>
+      <li class="pj-dot"><a href="#">2</a></li>
+      <li class="pj-dot"><a href="#">3</a></li>
+      <li class="pj-dot"><a href="#">4</a></li>
+      <li class="pj-dot"><a href="#">5</a></li>
+      <li class="pj-dot"><a href="#">6</a></li>
+    </ul>
+  </section>
+<script>
+(function(){
+  Pj.dots('.example-default', {
+    onChange: function(val) {
+      console.info('select: '+ val);
+    }
+  })
+
+  Pj.dots('.example-stroke', {
+    valueFrom: 'text',
+    onChange: function(val) {
+      console.info('select: '+ val);
+    }
+  })
+
+  Pj.dots('.example-square', {
+    valueFrom: 'text',
+    onChange: function(val) {
+      console.info('select: '+ val);
+    }
+  })
+
+  Pj.dots('.example-vertical', {
+    onChange: function(val) {
+      console.info('select: '+ val);
+    }
+  })
+})();
+</script>
+</section>
+
+<section class="top-gap">
+  <h3>Api</h3>
+  <ul class="pj-dots example-api">
+    <li class="pj-dot pj-dot-active"><a href="#home">Home</a></li>
+    <li class="pj-dot"><a href="#about">About</a></li>
+    <li class="pj-dot"><a href="#products">Products</a></li>
+    <li class="pj-dot"><a href="#portfolio">Portfolio</a></li>
+    <li class="pj-dot"><a href="#blog">Blog</a></li>
+    <li class="pj-dot"><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="top-gap">
+    <button class="btn api-init">init</button>
+    <button class="btn api-destroy">destroy</button>
+    <button class="btn api-enable">enable</button>
+    <button class="btn api-disable">disable</button>
+    <button class="btn api-show">show</button>
+    <button class="btn api-hide">hide</button>
+    <button class="btn api-get">get</button>
+  </div>
+  <div class="console"></div>
+  <script>
+  (function(){
+    var exampleApi = {};
+
+    document.querySelector('.api-init').addEventListener('click', function() {
+      console.info('init');
+      exampleApi = Pj.dots('.example-api', {
+        onChange: function(val) {
+          log('changeSelect: '+ val, 'event');
+        },
+        onReady: function() {
+          log('ready', 'event');
+        },
+        onDestroy: function() {
+          log('destroy', 'event');
+        },
+        onEnable: function() {
+          log('enable', 'event');
+        },
+        onDisable: function() {
+          log('disable', 'event');
+        },
+        onShow: function() {
+          log('show', 'event');
+        },
+        onHide: function() {
+          log('hide', 'event');
+        },
+        onLoad: function() {
+          log('load', 'event');
+        },
+        onClick: function(val) {
+          log('click value: ' + val, 'event');
+        },
+      })
+    });
+
+    document.querySelector('.api-destroy').addEventListener('click', function() {
+      console.info('destroy');
+      exampleApi('destroy')
+    });
+
+    document.querySelector('.api-enable').addEventListener('click', function() {
+      console.info('enable');
+      exampleApi('enable')
+    });
+
+    document.querySelector('.api-disable').addEventListener('click', function() {
+      console.info('disable');
+      exampleApi('disable')
+    });
+
+    document.querySelector('.api-show').addEventListener('click', function() {
+      console.info('show');
+      exampleApi('show')
+    });
+
+    document.querySelector('.api-hide').addEventListener('click', function() {
+      console.info('hide');
+      exampleApi('hide')
+    });
+
+    document.querySelector('.api-get').addEventListener('click', function() {
+      console.info('get');
+      console.info('current value is ' + exampleApi('get'));
+    });
+  })();
+  </script>
+</section>
+
+<section class="top-gap">
+  <h3>Build from array</h3>
+  <ul class="js-dots"></ul>
+
+  <div>
+    <button class="btn js-api-append">append</button>
+    <button class="btn js-api-prepend">prepend</button>
+    <button class="btn js-api-add">add</button>
+    <button class="btn js-api-remove">remove</button>
+    <button class="btn js-api-empty">empty</button>
+    <button class="btn js-api-load">load</button>
+    <button class="btn js-api-get">get</button>
+    <button class="btn js-api-set">set</button>
+  </div>
+  <script>
+  (function(){
+    var $jsDot = Pj.dots('.js-dots', {
+      default: null,
+      items: [
+        {
+          text: 'Portfolio',
+          href: '#portfolio'
+        },
+        {
+          text: 'Blog',
+          href: '#blog'
+        },
+        {
+          text: 'Contact',
+          href: '#contact'
+        },
+        {
+          text: 'About',
+          href: '#about'
+        }
+      ],
+      valueFrom: 'data-href', // text or data-attr
+      template: {
+        item: function(css) {
+          return '<li class="'+ css + '" data-href="{href}"><a href="#">{text}</a></li>';
+        }
+      },
+      onChange: function(val) {
+        console.info('select: '+ val);
+      }
+    });
+
+    document.querySelector('.js-api-append').addEventListener('click', function() {
+      console.info('append');
+      $jsDot('append', [{
+        text: 'Products',
+        href: '#products'
+      }]);
+    });
+
+    document.querySelector('.js-api-prepend').addEventListener('click', function() {
+      console.info('prepend');
+      $jsDot('prepend', [{
+        text: 'Home',
+        href: '#home'
+      }]);
+    });
+
+    document.querySelector('.js-api-add').addEventListener('click', function() {
+      console.info('add');
+      $jsDot('add', {
+        text: 'Office',
+        href: '#office'
+      });
+    });
+
+    document.querySelector('.js-api-remove').addEventListener('click', function() {
+      console.info('remove');
+      $jsDot('remove', '#office');
+    });
+
+    document.querySelector('.js-api-empty').addEventListener('click', function() {
+      console.info('empty');
+      $jsDot('empty');
+    });
+
+    document.querySelector('.js-api-load').addEventListener('click', function() {
+      console.info('load');
+      $jsDot('load', [
+        {
+          text: 'Portfolio',
+          href: '#portfolio'
+        },
+        {
+          text: 'Blog',
+          href: '#blog'
+        },
+        {
+          text: 'Contact',
+          href: '#contact'
+        },
+        {
+          text: 'About',
+          href: '#about'
+        }
+      ]);
+    });
+
+    document.querySelector('.js-api-get').addEventListener('click', function() {
+      console.info('get');
+      console.info('current value is ' + $jsDot('get'));
+    });
+
+    document.querySelector('.js-api-set').addEventListener('click', function() {
+      console.info('set');
+      $jsDot('set', '#blog');
+    });
+  })();
+  </script>
+</section>

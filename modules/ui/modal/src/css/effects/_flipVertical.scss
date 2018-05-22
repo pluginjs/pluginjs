@@ -1,0 +1,36 @@
+/* flipVertical: 3D flip vertical */
+.#{$modal}-flipVerticalIn {
+  animation: Modal-flipVerticalIn $modal-duration;
+}
+
+.#{$modal}-flipVerticalOut {
+  animation: Modal-flipVerticalOut $modal-duration forwards;
+}
+
+@keyframes Modal-flipVerticalIn {
+  0% {
+    opacity: 0;
+    transform: rotateX(-70deg);
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes Modal-flipVerticalOut {
+  0% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotateX(-70deg);
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+}

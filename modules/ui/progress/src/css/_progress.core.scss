@@ -1,0 +1,71 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$progress: "pj-progress" !default;
+$progress-bar-bg: lightpink;
+$progress-label-bottom: 4px !default;
+$progress-margin-bottom: 40px !default;
+$progress-border-radius: 1px !default;
+
+// Progress
+// =====================
+.#{$progress} {
+  position: relative;
+  height: 4px;
+  margin-bottom: $progress-margin-bottom;
+  background-color: #eee;
+  border-radius: $progress-border-radius;
+
+  &.#{$progress}-vertical {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .#{$progress}-value {
+      top: 0;
+      bottom: auto;
+    }
+
+    .#{$progress}-label {
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &-bar {
+    position: relative;
+    display: block;
+    height: 100%;
+    background-color: $progress-bar-bg;
+  }
+
+  &-label {
+    position: absolute;
+    bottom: $progress-label-bottom;
+    left: 0;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  &-value {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    text-align: center;
+    user-select: none;
+    transform: translate(50%, -50%);
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      display: block;
+      width: 0;
+      height: 0;
+      content: "";
+      transform: translate(-50%, 100%);
+    }
+  }
+}

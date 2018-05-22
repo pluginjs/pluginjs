@@ -34,5 +34,6 @@
 	"min": "dist/is.min.js",
 	"standalone": "dist/is.standalone.js",
 	"module": "dist/is.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

@@ -1,0 +1,27 @@
+$filterbar: "pj-grids-filterbar" !default;
+.#{$filterbar} {
+  display: flex;
+  align-items: center; // color: #fff;
+  justify-content: center;
+  margin-bottom: 30px;
+  &-sort,
+  &-filters {
+    margin-right: 10px;
+  }
+
+  &-reverse {
+    font-size: 18px;
+    transition: transform 500ms;
+    &-min {
+      transition: transform 500ms;
+      transform: rotate3d(0, 0, 0.5, 180deg);
+    }
+  }
+
+  &-filters {
+    .pj-filter-dropdown {
+      width: auto;
+      border: none;
+    }
+  }
+}

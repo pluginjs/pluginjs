@@ -98,12 +98,10 @@ class Gradient {
   getIndexById(id) {
     let index = 0
     for (const i in this.value.stops) {
-      if (Object.prototype.hasOwnProperty.call(this.value.stops, i)) {
-        if (id === this.value.stops[i].id) {
-          return index
-        }
-        index++
+      if (id === this.value.stops[i].id) {
+        return index
       }
+      index++
     }
     return false
   }

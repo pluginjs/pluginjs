@@ -1,0 +1,337 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$svgPicker: "pj-svgPicker" !default;
+$svgPicker-sizer: $sizer !default;
+
+$svgPicker-width: 16 * $svgPicker-sizer !default; //160px
+$svgPicker-height: 3 * $svgPicker-sizer !default; //30px
+$svgPicker-font-size: $font-size-base !default;
+$svgPicker-border-color: $gray-lighter !default;
+$svgPicker-active-color: $color-primary !default;
+$svgPicker-hover-color: $gray-light !default;
+// icon
+$svgPicker-icon-width: 5.2 * $svgPicker-sizer !default; //52px
+$svgPicker-icon-height: 5.2 * $svgPicker-sizer !default; //52px
+$svgPicker-icon-color: $gray-light !default;
+$svgPicker-icon-active-color: $color-primary !default;
+$svgPicker-icon-hover-color: $gray-light !default;
+$svgPicker-icon-border-width: 1px !default;
+$svgPicker-icon-border-style: solid !default;
+$svgPicker-icon-border: $svgPicker-icon-border-width
+  $svgPicker-icon-border-style transparent !default;
+// empty
+$svgPicker-empty-padding: 2 * $svgPicker-sizer !default; //20px
+// add btn
+$svgPicker-add-color: $color-primary !default;
+$svgPicker-add-opacity: 0.8 !default;
+$svgPicker-trigger-icon-left: $svgPicker-width - 20px !default;
+$svgPicker-panel-height: 32 * $svgPicker-sizer !default; //320px
+$svgPicker-type-height: 3 * $svgPicker-sizer !default; //30px
+$svgPicker-type-bg-color: $gray-lightest !default;
+// manage
+$svgPicker-manage-height: 3 * $svgPicker-sizer !default; //30px
+$svgPicker-manage-icon-margin-right: $svgPicker-sizer !default; //10px
+$svgPicker-manage-icon-font-size: $font-size-sm !default;
+$svgPicker-search-height: 4 * $svgPicker-sizer !default; //40px
+// search
+$svgPicker-search-border: 1px solid $gray-lighter !default;
+$svgPicker-search-margin-bottom: 1px !default;
+$svgPicker-search-icon-color: $gray-light !default;
+
+// Core
+// =====================
+.#{$svgPicker} {
+  box-sizing: border-box;
+  width: $svgPicker-width;
+  height: $svgPicker-height;
+  padding: 0;
+  font-size: $svgPicker-font-size;
+  border: 1px solid $svgPicker-border-color;
+
+  &:hover {
+    border-color: $svgPicker-hover-color;
+  }
+
+  .pj-dropdown-label {
+    padding: 0 $svgPicker-sizer; //0 10px
+    line-height: $svgPicker-height;
+
+    > span {
+      display: flex;
+      align-items: center;
+      height: $svgPicker-height - 2px;
+    }
+
+    svg {
+      width: 1.6 * $svgPicker-sizer; //16px
+      height: 1.6 * $svgPicker-sizer; //16px
+      margin-right: 0.6 * $svgPicker-sizer; //6px
+    }
+  }
+
+  &-empty {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    height: 100%;
+    padding: $svgPicker-empty-padding;
+    font-size: $svgPicker-font-size;
+    text-align: center;
+    white-space: initial;
+
+    .#{$svgPicker}-add {
+      color: $svgPicker-add-color;
+
+      &:hover {
+        opacity: $svgPicker-add-opacity;
+        transition: opacity 0.2s;
+      }
+    }
+  }
+
+  &-switch {
+    position: absolute;
+    top: 50%;
+    right: 0.6 * $svgPicker-sizer; //6px
+    font-size: $font-size-base;
+    transition: all 0.3s;
+    transform: translateY(-50%);
+  }
+
+  &-panel {
+    // height: $svgPicker-panel-height;
+    display: flex;
+    flex-direction: column;
+    min-height: $svgPicker-panel-height;
+    padding: 0 0 $svgPicker-manage-height 0;
+
+    li:hover {
+      cursor: default;
+      background-color: inherit;
+    }
+
+    &.pj-dropdown-show {
+      display: flex;
+    }
+  }
+
+  &-type {
+    padding: 0 !important;
+    margin-bottom: 1px;
+
+    &:focus {
+      // color: blue;
+      .#{$svgPicker}-type-title {
+        color: $svgPicker-active-color;
+      }
+    }
+
+    &-title {
+      position: relative;
+      height: $svgPicker-type-height;
+      padding: 0 2 * $svgPicker-sizer !important; //20px
+      font-size: $svgPicker-font-size;
+      line-height: $svgPicker-type-height;
+      background-color: $svgPicker-type-bg-color;
+
+      &:hover {
+        color: $svgPicker-active-color;
+        cursor: pointer;
+      }
+
+      i {
+        position: absolute;
+        top: 50%;
+        right: $svgPicker-sizer; //10px
+        transition: all 0.3s;
+        transform: translateY(-50%);
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0;
+    }
+
+    .#{$svgPicker}-icon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: $svgPicker-icon-width;
+      height: $svgPicker-icon-height;
+      padding: 0;
+      margin: 0.5 * $svgPicker-sizer; //5px
+      font-size: $font-size-xs;
+      color: $svgPicker-icon-color;
+      text-align: center;
+      list-style: none;
+      border: $svgPicker-icon-border;
+
+      &-hover,
+      &:hover {
+        border-color: $svgPicker-icon-hover-color;
+      }
+    }
+
+    &-open {
+      .pj-scrollable {
+        display: block !important;
+      }
+
+      .#{$svgPicker}-type-title i {
+        transition: all 0.3s;
+        transform: translateY(-50%) rotate(-180deg);
+      }
+
+      .#{$svgPicker}-type-title {
+        color: $color-primary;
+      }
+    }
+
+    &-hide {
+      display: none;
+    }
+
+    &-wrap {
+      flex-grow: 1;
+      // height: $svgPicker-panel-height - $svgPicker-manage-height - $svgPicker-search-height;
+      // overflow: auto;
+    }
+
+    .pj-scrollable {
+      display: none;
+      height: 18.8 * $svgPicker-sizer !important; //188px
+
+      &-container {
+        // width: 100% !important;
+        height: 100%;
+      }
+
+      &-content {
+        width: 100% !important;
+      }
+    }
+  }
+
+  &-active {
+    border-color: $svgPicker-active-color !important;
+  }
+
+  &-manage {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: $svgPicker-manage-height;
+    font-size: $svgPicker-font-size;
+    line-height: $svgPicker-manage-height;
+    text-align: center;
+    cursor: pointer;
+    background-color: $color-white;
+    border-top: 1px solid $svgPicker-border-color;
+    border-bottom-right-radius: $border-radius-base;
+    border-bottom-left-radius: $border-radius-base;
+
+    &:hover {
+      color: $svgPicker-active-color;
+
+      .#{$svgPicker}-manage-icon {
+        color: $svgPicker-active-color;
+      }
+    }
+
+    &-icon {
+      margin-right: $svgPicker-manage-icon-margin-right;
+      font-size: $svgPicker-manage-icon-font-size;
+      color: $svgPicker-icon-color;
+    }
+  }
+
+  &-search {
+    display: flex;
+    align-items: center;
+    height: $svgPicker-search-height;
+    padding: 0.4 * $svgPicker-sizer $svgPicker-sizer 0.4 * $svgPicker-sizer 2 *
+      $svgPicker-sizer; //4px 10px 4px 20px
+    margin-bottom: $svgPicker-search-margin-bottom;
+    font-size: $svgPicker-font-size;
+    border-bottom: $svgPicker-search-border;
+
+    i {
+      order: 0;
+      color: $svgPicker-search-icon-color;
+      text-align: center;
+
+      &:last-of-type {
+        order: 2;
+      }
+    }
+
+    input {
+      flex-basis: 100px;
+      flex-grow: 1;
+      order: 1;
+      min-width: 100px;
+      //min-width: 10*$svgPicker-sizer; //100px
+      height: 100%;
+      margin-bottom: 0;
+      margin-left: $svgPicker-sizer; //10px
+      font-size: $svgPicker-font-size;
+      line-height: 1;
+      border: 0;
+      flex-shrink: 1;
+
+      &:focus {
+        + .#{$svgPicker}-search-close {
+          opacity: 1;
+          transition: opacity 0.3s;
+        }
+      }
+    }
+
+    &-close {
+      opacity: 0;
+
+      &:hover {
+        color: $gray-lighter;
+        cursor: pointer;
+      }
+    }
+
+    &-data {
+      .#{$svgPicker}-search-close {
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+    }
+  }
+
+  &-wrap {
+    .#{$svgPicker}.pj-dropdown-show {
+      border-color: $svgPicker-active-color;
+
+      .#{$svgPicker}-switch {
+        transition: all 0.3s;
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+}
+
+.#{$svgPicker}-searching .#{$svgPicker}-type {
+  .#{$svgPicker}-icon {
+    display: none;
+  }
+
+  .#{$svgPicker}-searched {
+    display: inline-flex;
+  }
+}

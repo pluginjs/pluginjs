@@ -1,0 +1,182 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$filter: "pj-filter" !default;
+$filter-font-size: $font-size-sm !default;
+$filter-font-weight: $font-weight-base !default;
+$filter-line-height: $line-height-base !default;
+$filter-padding: 3px 15px !default;
+$filter-border-width: $border-width !default;
+$filter-border-color: $border-color !default;
+$filter-border-radius: $border-radius-base !default;
+$filter-active-color: $color-primary !default;
+
+$dropdown: "pj-dropdown" !default;
+
+// Core
+// =====================
+.#{$filter}s {
+  @include clearfix();
+
+  position: relative;
+  vertical-align: middle;
+
+  > button {
+    border-radius: inherit;
+  }
+
+  .#{$dropdown}-item.#{$filter}-active {
+    color: $color-white;
+    background-color: #55a4f2;
+  }
+
+  .#{$filter} {
+    position: relative;
+    display: inline-block;
+    float: left;
+    padding: $filter-padding;
+    font-size: $filter-font-size;
+    font-weight: $filter-font-weight;
+    line-height: $filter-line-height;
+    color: inherit;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: $filter-border-width solid transparent;
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active,
+    &:not(:disabled):focus {
+      background: inherit;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    &,
+    &:active,
+    &.#{$filter}-active {
+      &:focus,
+      &.focus {
+        // WebKit-specific. Other browsers will keep their default outline style.
+        // (Initially tried to also force default via `outline: initial`,
+        // but that seems to erroneously remove the outline in Firefox altogether.)
+        // outline: 2px auto -webkit-focus-ring-color;
+        // outline-offset: -2px;
+        outline: none;
+      }
+    }
+
+    &,
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:active,
+    &.#{$filter}-active {
+      color: $filter-active-color;
+      background-image: none;
+      outline: 0;
+      box-shadow: none;
+    }
+
+    &.#{$filter}-disabled,
+    &:disabled {
+      cursor: not-allowed;
+      box-shadow: none;
+      opacity: 0.65;
+    }
+
+    &-hide {
+      display: none;
+    }
+  }
+}
+
+.#{$filter}-panel {
+  .#{$filter}-active {
+    color: $filter-active-color;
+  }
+}
+
+$filters-button-gap: 10px !default;
+
+/* pill */
+.#{$filter}s--pill {
+  .#{$filter} {
+    margin-left: $filters-button-gap;
+    border: $filter-border-width solid $filter-border-color;
+    border-radius: $filter-border-radius;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .#{$filter} {
+    &:not(:disabled):hover,
+    &:not(:disabled):focus {
+      border-color: $filter-border-color;
+    }
+  }
+}
+
+/* group */
+.#{$filter}s--group {
+  .#{$filter} {
+    border: $filter-border-width solid $filter-border-color;
+    // Bring the "active" button to the front
+    &:focus,
+    &:hover,
+    &:active,
+    &.#{$filter}-active {
+      z-index: 2;
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):focus {
+      border-color: $filter-border-color;
+    }
+
+    &:first-child {
+      border-top-left-radius: $filter-border-radius;
+      border-bottom-left-radius: $filter-border-radius;
+    }
+
+    &:last-child {
+      border-top-right-radius: $filter-border-radius;
+      border-bottom-right-radius: $filter-border-radius;
+    }
+  }
+
+  .#{$filter} + .#{$filter} {
+    margin-left: -$filter-border-width;
+  }
+}
+
+.#{$filter}s--line {
+  .#{$filter} {
+    &:active,
+    &.#{$filter}-active {
+      color: inherit;
+      background-image: none;
+      outline: 0;
+      box-shadow: none;
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        display: block;
+        width: 29px;
+        height: 2px;
+        content: "";
+        background-color: $filter-active-color;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}

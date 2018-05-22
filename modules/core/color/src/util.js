@@ -47,7 +47,7 @@ export function convertPercentageToFloat(n) {
 export function flip(o) {
   const flipped = {}
   for (const i in o) {
-    if (Object.prototype.hasOwnProperty.call(o, i)) {
+    if (o.hasOwnProperty(i)) {
       flipped[o[i]] = i
     }
   }

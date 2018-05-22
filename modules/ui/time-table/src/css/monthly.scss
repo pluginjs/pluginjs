@@ -1,0 +1,267 @@
+@import "@pluginjs/styles/variables.scss";
+
+$namespace: "pj-timeTable";
+
+$monthly-border-color: #eceff4;
+
+$monthly-h: 1020px;
+$monthly-w: 100%;
+
+$monthly-bg-color: #fff;
+$monthly-border-color: $monthly-border-color;
+$monthly-border-size: 2px;
+
+$monthly-header-li-w: 14.28%;
+$monthly-header-li-p-y: 1.25rem;
+$monthly-header-li-p-x: 0;
+$monthly-header-color: #5b6779;
+
+$monthly-badge-color: #aab3bf;
+
+$monthly-event-h: 110px;
+$monthly-event-line-h: 110px;
+
+$monthly-event-detail-box-shadow: 0 0 10px #f6f6f6;
+
+$monthly-event-color: #333;
+$monthly-event-bg-color: $gray-lightest;
+$monthly-event-font-size: 13px;
+$monthly-event-border-radius: 3px;
+
+/* core */
+.#{$namespace} {
+  &-monthly {
+    position: relative;
+    width: $monthly-w;
+    height: auto;
+    background-color: $monthly-bg-color;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    // margin-top: $monthly-m-t;
+    border-radius: 8px;
+    border-radius: 8px;
+    // border-top: $monthly-border-size solid $monthly-border-color;
+
+    .#{$namespace}-header {
+      position: relative;
+      height: 76px;
+      background-color: #f7f7f7;
+      // line-height: $monthly-header-line-h;
+
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        content: "";
+        background-color: $monthly-border-color;
+      }
+
+      ul {
+        height: 100%;
+        padding-left: 0;
+        margin: 0;
+        overflow: hidden;
+        list-style: none;
+
+        li {
+          box-sizing: border-box;
+          display: list-item;
+          float: left;
+          width: $monthly-header-li-w;
+          height: 100%;
+          padding: $monthly-header-li-p-y $monthly-header-li-p-x;
+          font-size: 16px;
+          line-height: 37px;
+          line-height: 1.63;
+          color: #333;
+          text-align: center;
+        }
+      }
+    }
+
+    .#{$namespace}-baseline {
+      position: absolute;
+      top: 76px;
+      left: 0;
+      width: 100%;
+
+      ul {
+        padding-left: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+          position: relative;
+          display: flex;
+          height: 170px;
+
+          .#{$namespace}-monthly-event {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            height: 170px;
+            padding-top: 36px;
+
+            .#{$namespace}-monthEvents-wrap {
+              position: absolute;
+              top: 36px;
+              left: 0;
+              width: 100%;
+              height: auto;
+              padding-right: 5px;
+
+              &.#{$namespace}-month-showList {
+                left: 1px;
+                width: 173px;
+                background-color: white;
+              }
+
+              &.#{$namespace}-month-singleEvent {
+                top: 60px;
+              }
+
+              .#{$namespace}-month-eventwrap {
+                position: relative;
+                padding-left: 34px;
+                overflow: hidden;
+                cursor: pointer;
+
+                span {
+                  position: absolute;
+                  top: 7px;
+                  left: 15px;
+                  width: 9px;
+                  height: 9px;
+                  border-radius: 50%;
+                }
+
+                .#{$namespace}-monthEvent-time {
+                  font-family: OpenSans;
+                  font-size: 14px;
+                  font-weight: 600;
+                  line-height: 1.64;
+                  color: #666;
+                  text-align: left;
+                  letter-spacing: 0.1px;
+                  white-space: nowrap;
+                }
+
+                .#{$namespace}-monthEvent-title {
+                  font-family: OpenSans;
+                  font-size: 14px;
+                  font-weight: 600;
+                  line-height: 1.64;
+                  color: #999;
+                  text-align: left;
+                  letter-spacing: 0.1px;
+                  white-space: nowrap;
+                }
+              }
+
+              .#{$namespace}-monthEvent-more {
+                height: 19px;
+                margin-top: 10px;
+                margin-left: 15px;
+                font-family: OpenSans;
+                font-size: 14px;
+                font-weight: 600;
+                color: #35cc62;
+                text-align: left;
+                letter-spacing: 0.1px;
+                white-space: nowrap;
+                cursor: pointer;
+              }
+            }
+
+            .#{$namespace}-badge {
+              position: absolute;
+              top: 10px;
+              right: 10%;
+              font-size: 14px;
+              line-height: 24px;
+              color: #999;
+              pointer-events: none;
+            }
+
+            .#{$namespace}-other-badge {
+              color: $monthly-badge-color;
+            }
+
+            // .#{$namespace}-monthly-events {
+            //   position: absolute;
+            //   top: 0;
+            //   right: 0;
+            //   bottom: 0;
+            //   left: 0;
+            //   z-index: 0;
+            //   padding-top: 24px;
+            //   line-height: 1;
+            //   background-color: transparent;
+            //   overflow-y: auto;
+            // }
+            //
+            // .#{$namespace}-event {
+            //   cursor: pointer;
+            //   display: inline-block;
+            //   width: calc(100% - 4px);
+            //   height: 20px;
+            //   margin: 0 auto;
+            //   margin-bottom: 10px;
+            //   font-size: $monthly-event-font-size;
+            //   line-height: 20px;
+            //   color: $monthly-event-color;
+            //   background-color: $monthly-event-bg-color;
+            //   border-radius: $monthly-event-border-radius;
+            // }
+          }
+
+          &::after {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            content: "";
+            background-color: #d8d8d8;
+          }
+        }
+
+        li:last-child {
+          &::after {
+            height: 0;
+          }
+        }
+      }
+    }
+
+    .#{$namespace}-events {
+      position: relative;
+
+      ul {
+        display: flex;
+        padding-left: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+          box-sizing: border-box;
+          display: list-item;
+          flex: 1;
+          float: left;
+          // width: 14.28%;
+          height: 850px;
+          border-left: 1px solid #d8d8d8;
+
+          &.#{$namespace}-high-height {
+            height: 1020px;
+          }
+
+          &:first-child {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}

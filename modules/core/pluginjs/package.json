@@ -43,5 +43,6 @@
 	"min": "dist/pluginjs.min.js",
 	"standalone": "dist/pluginjs.standalone.js",
 	"module": "dist/pluginjs.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

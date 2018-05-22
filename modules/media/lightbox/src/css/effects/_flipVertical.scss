@@ -1,0 +1,36 @@
+/* flipVertical: 3D flip vertical */
+.#{$lightbox}-flipVerticalIn {
+  animation: Lightbox-flipVerticalIn $lightbox-duration;
+}
+
+.#{$lightbox}-flipVerticalOut {
+  animation: Lightbox-flipVerticalOut $lightbox-duration forwards;
+}
+
+@keyframes Lightbox-flipVerticalIn {
+  0% {
+    opacity: 0;
+    transform: rotateX(-70deg);
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes Lightbox-flipVerticalOut {
+  0% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotateX(-70deg);
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+}

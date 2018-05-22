@@ -54,7 +54,6 @@ export const attrVerify = (attrName, value, el) => {
         }
         return true
       }
-      return true
     },
     tagName: element => element.nodeName.toLowerCase() === value,
     class: element => element.classList.contains(value),
@@ -70,7 +69,6 @@ export const attrVerify = (attrName, value, el) => {
         }
         return true
       }
-      return true
     }
   }
   return Obj[attrName] && Obj[attrName](el)
@@ -83,7 +81,7 @@ export const childQuery = ({ type, value, level = 3 }, el) => {
 
   const childNodeCompare = (element, l) => {
     if (hasChild(element)) {
-      Array.from(element.children).forEach(c => {
+      Array.from(element.children).map(c => {
         if (attrVerify(type, value, c)) {
           res.push(c)
         }
@@ -101,8 +99,8 @@ export const childQuery = ({ type, value, level = 3 }, el) => {
 }
 
 export const Each = (obj, callback) => {
-  let i = 0
-  let length
+  let i = 0,
+    length
 
   if (is.array(obj)) {
     length = obj.length

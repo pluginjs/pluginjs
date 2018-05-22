@@ -1,0 +1,128 @@
+---
+title: ImageLoader
+layout: plugin
+scripts:
+- ../../plugins/image-loader/image-loader.js
+---
+
+<style>
+  .wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+  }
+
+  .wrapper img {
+    width: 500px;
+    display: block;
+  }
+</style>
+
+<section>
+  <h3>API</h3>
+  <div>
+    <button class="btn api-add">Add</button>
+  </div>
+  <div class="console"></div>
+  <div class="wrapper">
+
+    <img src="https://picsum.photos/120" alt="img1">
+    <img src="https://picsum.photos/1200/?image=10;?random;?gravity=center" alt="img2">
+    <img src="https://picsum.photos/1200/?image=100;?random;?gravity=center" alt="img3">
+    <img src="https://picsum.photos/1200/?image=110;?random;?gravity=center" alt="img4">
+    <img src="https://picsum.photos/1200/?image=130;?random;?gravity=center" alt="img5">
+    <img src="https://picsum.photos/1200/?image=50;?random;?gravity=center" alt="img6">
+  </div>
+  <script>
+    (function () {
+      var $wrapper = document.querySelector('.wrapper')
+      var api = Pj.imageLoader($wrapper)
+      // var api = Pj.imageLoader('.wrapper')
+
+      api.load()
+      api.onProgress(function (img) {
+        console.log('width: ' + img.width + ', height: ' + img.height);
+      })
+
+      api.isDone(function(imgs) {
+        console.log('all done');
+      })
+
+      api.isFinally(function(){
+       console.log('is finally')
+     })
+      document.querySelector('.api-add').addEventListener('click', function () {
+        api.add([
+          'https://picsum.photos/1000/?image=101;?random;?gravity=center',
+          'https://picsum.photos/1500/?image=103;?random;?gravity=center',
+          'https://picsum.photos/1500/?image=104;?random;?gravity=center',
+          'https://picsum.photos/1200/?image=107;?random;?gravity=center'
+        ]).isDone(function(imgs) {
+          console.log('','add image is all loaded')
+        }).isFinally(function(){
+          console.log('', 'add imgs is finally')
+        })
+      })
+    })()
+    /*(function(){
+      var $elementApi;
+
+      function init() {
+        $elementApi = $('.example-api').asImagePicker({
+          onReady: function() {
+            log('ready', 'event');
+          },
+          onDestroy: function() {
+            log('destroy', 'event');
+          },
+          onEnable: function() {
+            log('enable', 'event');
+          },
+          onDisable: function() {
+            log('disable', 'event');
+          },
+          onChange: function(val) {
+            log('change: '+JSON.stringify(val), 'event');
+          },
+        }).data('image-picker');
+      }
+
+      $('.api-init').on('click', function() {
+        init();
+      });
+
+      $('.api-set').on('click', function() {
+        $elementApi.set({
+          image: '../../plugins/image-picker/images/nvnv.png'
+        });
+        log('', 'set(data)');
+      });
+      $('.api-get').on('click', function() {
+        log(JSON.stringify($elementApi.get()), 'get()');
+      });
+      $('.api-val').on('click', function() {
+        log($elementApi.val(), 'val()');
+      });
+      $('.api-val-set').on('click', function() {
+        $elementApi.val('{"image": "../../plugins/image-picker/images/gril.png"}');
+        log('', 'val(data)');
+      });
+      $('.api-clear').click(function() {
+        $elementApi.clear();
+        log('', 'clear()');
+      });
+      $('.api-enable').click(function() {
+        $elementApi.enable();
+        log('', 'enable()');
+      });
+      $('.api-disable').click(function() {
+        $elementApi.disable();
+        log('', 'disable()');
+      });
+      $('.api-destroy').click(function() {
+       $elementApi.destroy();
+        log('', 'destroy()');
+      });
+    });*/
+  </script>
+</section>

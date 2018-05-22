@@ -30,5 +30,6 @@
 	"category": "core",
 	"min": "dist/color.min.js",
 	"standalone": "dist/color.standalone.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

@@ -1,0 +1,182 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$beforeAfter: "pj-beforeAfter" !default;
+$beforeAfter-label-gap: 10px !default;
+$beforeAfter-label-font-size: $font-size-sm !default;
+$beforeAfter-label-color: #fff !default;
+$beforeAfter-label-spacer: 8px 14px !default;
+$beforeAfter-label-border-radius: $border-radius-base !default;
+$beforeAfter-handle-line-color: rgba(#fff, 0.6) !default;
+$beforeAfter-handle-border-size: 3px !default;
+$beforeAfter-handle-border-color: $beforeAfter-handle-line-color !default;
+$beforeAfter-handle-box-shadow: $box-shadow-base !default;
+$beforeAfter-handle-hover-line-color: #fff !default;
+$beforeAfter-handle-hover-border-color: $beforeAfter-handle-hover-line-color !default;
+$beforeAfter-handle-arrow-color: $beforeAfter-handle-border-color !default;
+$beforeAfter-handle-arrow-size: 12px !default;
+$beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !default;
+
+// Core
+// =====================
+.#{$beforeAfter} {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  overflow: hidden;
+  user-select: none;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  img:first-child,
+  .#{$beforeAfter}-before {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+  }
+
+  img:last-child,
+  .#{$beforeAfter}-after {
+    z-index: 1;
+  }
+}
+
+.#{$beforeAfter}-disabled {
+  pointer-events: none;
+}
+
+.#{$beforeAfter}-label-before,
+.#{$beforeAfter}-label-after {
+  position: absolute;
+  z-index: 4;
+  padding: $beforeAfter-label-spacer;
+  font-size: $beforeAfter-label-font-size;
+  color: $beforeAfter-label-color;
+  pointer-events: none;
+  border-radius: $beforeAfter-label-border-radius;
+  transition: opacity 0.5s;
+}
+
+.#{$beforeAfter}-label-hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.#{$beforeAfter}-handle {
+  position: absolute;
+  z-index: 6;
+  box-sizing: content-box;
+  cursor: pointer;
+  background: $beforeAfter-handle-line-color;
+  box-shadow: $beforeAfter-handle-box-shadow;
+
+  &:hover {
+    background: $beforeAfter-handle-hover-line-color;
+
+    .#{$beforeAfter}-arrow-before,
+    .#{$beforeAfter}-arrow-after {
+      color: $beforeAfter-handle-hover-arrow-color;
+    }
+  }
+}
+
+.#{$beforeAfter}-arrow-before,
+.#{$beforeAfter}-arrow-after {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  font-size: $beforeAfter-handle-arrow-size;
+  color: $beforeAfter-handle-arrow-color;
+  text-align: center;
+}
+
+.#{$beforeAfter}-horizontal {
+  .#{$beforeAfter}-label-before,
+  .#{$beforeAfter}-label-after {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .#{$beforeAfter}-label-before {
+    left: $beforeAfter-label-gap;
+  }
+
+  .#{$beforeAfter}-label-after {
+    right: $beforeAfter-label-gap;
+  }
+
+  .#{$beforeAfter}-handle {
+    top: 0;
+    left: 50%;
+    width: $beforeAfter-handle-border-size;
+    height: 100%;
+    cursor: ew-resize;
+  }
+
+  .#{$beforeAfter}-arrow-before,
+  .#{$beforeAfter}-arrow-after {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .#{$beforeAfter}-arrow-before {
+    left: -5px - $beforeAfter-handle-arrow-size;
+  }
+
+  .#{$beforeAfter}-arrow-after {
+    right: -5px - $beforeAfter-handle-arrow-size;
+  }
+}
+
+.#{$beforeAfter}-vertical {
+  .#{$beforeAfter}-label-before,
+  .#{$beforeAfter}-label-after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .#{$beforeAfter}-handle {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: $beforeAfter-handle-border-size;
+    cursor: ns-resize;
+  }
+
+  .#{$beforeAfter}-label-before {
+    top: $beforeAfter-label-gap;
+  }
+
+  .#{$beforeAfter}-label-after {
+    bottom: $beforeAfter-label-gap;
+  }
+
+  .#{$beforeAfter}-arrow-before {
+    top: -5px - $beforeAfter-handle-arrow-size;
+  }
+
+  .#{$beforeAfter}-arrow-after {
+    bottom: -5px - $beforeAfter-handle-arrow-size;
+  }
+
+  .#{$beforeAfter}-arrow-before,
+  .#{$beforeAfter}-arrow-after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@import "skins/circle";
+@import "skins/outline";
+@import "skins/line";
+@import "skins/rectangle";
+@import "labels/bordered";
+@import "labels/solid";
+@import "labels/overlay";
+@import "labels/start";
+@import "labels/end";

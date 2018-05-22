@@ -205,14 +205,14 @@ export default {
   },
 
   isNAME(string) {
-    if (Object.prototype.hasOwnProperty.call(NAMES, string)) {
+    if (NAMES.hasOwnProperty(string)) {
       return true
     }
     return false
   },
 
   NAMEtoHEX(name) {
-    if (Object.prototype.hasOwnProperty.call(NAMES, name)) {
+    if (NAMES.hasOwnProperty(name)) {
       return `#${NAMES[name]}`
     }
     return null
@@ -236,7 +236,7 @@ export default {
       hex = hex.substr(1)
     }
 
-    if (Object.prototype.hasOwnProperty.call(hexNames, hex)) {
+    if (hexNames.hasOwnProperty(hex)) {
       return hexNames[hex]
     }
     return false

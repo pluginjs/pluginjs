@@ -1,0 +1,105 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$timePicker: "pj-timePicker" !default;
+$dropdown: "pj-dropdown" !default;
+$timePicker-sizer: $sizer !default;
+
+$timePicker-width: 20 * $timePicker-sizer !default; //200px
+$timepicker-icon-border: $gray-lighter !default;
+$timepicker-icon-color: $gray-light !default;
+$timepicker-icon-hover-bg: $gray-lightest !default;
+
+// Core
+// =====================
+.#{$timePicker} {
+  &-dropdown {
+    box-sizing: border-box;
+    width: $timePicker-width !important;
+    input {
+      min-width: 16.7 * $timePicker-sizer; //167px;
+    }
+
+    &:active {
+      border-color: $color-primary-active !important;
+    }
+  }
+
+  .#{$dropdown}-icon {
+    right: 0;
+    height: 3 * $timePicker-sizer; //30px
+    // height: 30px;
+    padding: 0 0.7 * $timePicker-sizer; //0 7px
+    line-height: 3 * $timePicker-sizer; //30px
+    color: $timepicker-icon-color;
+    cursor: pointer;
+    border-left: 1px solid $timepicker-icon-border;
+    transition: all 0.1s;
+
+    &:hover {
+      color: $color-primary-black;
+    }
+  }
+
+  .#{$dropdown}-show {
+    border-color: $color-primary-active !important;
+  }
+
+  > .#{$dropdown}-panel-wrap .#{$dropdown}-panel {
+    min-width: $timePicker-width;
+  }
+
+  &-info {
+    display: none !important;
+  }
+}
+
+.#{$timePicker} .#{$dropdown}-show .#{$dropdown}-icon {
+  color: $color-primary;
+
+  transform: translateY(0%);
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.#{$timePicker}-wrap .#{$dropdown}-label {
+  border: none;
+}
+
+.#{$timePicker}-wrap
+.#{$dropdown}-input.#{$dropdown}-select
+.#{$dropdown}-panel {
+  height: 300px;
+  // margin-top: 10px;
+  overflow-y: scroll;
+  border: none;
+  border-color: $color-white;
+  // border-radius: 5px;
+  // box-shadow: 0 0 27px rgba($color-black, 0.1),
+  //   0 2px 26px rgba($color-black, 0.1);
+}
+
+.#{$timePicker}-wrap {
+  .pj-dropdown-select
+  .pj-dropdown-panel-wrap.tether-element-attached-top
+  .pj-dropdown-panel {
+    border: none;
+  }
+}
+
+.#{$timePicker}-remove:hover {
+  color: $color-primary-black;
+  cursor: pointer;
+}
+.#{$timePicker}-remove {
+  position: absolute;
+  top: 50%;
+  right: 36px;
+  z-index: 9;
+  display: none;
+  color: $timepicker-icon-color;
+  transform: translateY(-50%);
+}

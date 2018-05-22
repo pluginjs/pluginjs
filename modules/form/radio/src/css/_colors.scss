@@ -1,0 +1,34 @@
+.#{$radio}-primary {
+  @include radio-border-variant($radio-primary-color);
+  @include radio-default-variant($radio-primary-color);
+  @include radio-icon-variant($radio-primary-color);
+  @include radio-solid-variant($radio-primary-color);
+}
+
+.#{$radio}-success {
+  @include radio-border-variant($radio-success-color);
+  @include radio-default-variant($radio-success-color);
+  @include radio-icon-variant($radio-success-color);
+  @include radio-solid-variant($radio-success-color);
+}
+
+.#{$radio}-info {
+  @include radio-border-variant($radio-info-color);
+  @include radio-default-variant($radio-info-color);
+  @include radio-icon-variant($radio-info-color);
+  @include radio-solid-variant($radio-info-color);
+}
+
+.#{$radio}-warning {
+  @include radio-border-variant($radio-warning-color);
+  @include radio-default-variant($radio-warning-color);
+  @include radio-icon-variant($radio-warning-color);
+  @include radio-solid-variant($radio-warning-color);
+}
+
+.#{$radio}-danger {
+  @include radio-border-variant($radio-danger-color);
+  @include radio-default-variant($radio-danger-color);
+  @include radio-icon-variant($radio-danger-color);
+  @include radio-solid-variant($radio-danger-color);
+}

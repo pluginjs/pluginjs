@@ -1,0 +1,32 @@
+/* slideBottom: Slide from the bottom */
+.#{$modal}-slideBottomIn {
+  animation: Modal-slideBottomIn $modal-duration;
+}
+
+.#{$modal}-slideBottomOut {
+  animation: Modal-slideBottomOut $modal-duration forwards;
+}
+
+@keyframes Modal-slideBottomIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes Modal-slideBottomOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+}

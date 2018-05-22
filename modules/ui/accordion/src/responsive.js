@@ -42,6 +42,7 @@ class Responsive {
       this.$rely = this.instance.element
     } else if (
       options.resizeReference !== 'window' &&
+      /* eslint no-magic-numbers: ["error", { "ignore": [0] }]*/
       query(options.resizeReference).length > 0
     ) {
       this.$rely = query(options.resizeReference)

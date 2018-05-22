@@ -1,0 +1,327 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// ========================
+$datePicker: "pj-datePicker" !default;
+// base vars
+$datePicker-width: 276px !default;
+$datePicker-height: 272px !default;
+// header vars
+$datePicker-header-height: 16% !default;
+// mobile mode vars
+$datePicker-mobile-width: 80% !default;
+$datePicker-mobile-height: 80% !default;
+
+// core
+//==========================
+.#{$datePicker} {
+  &-input {
+    margin: 0;
+    margin-bottom: 0;
+    &[disabled] {
+      cursor: not-allowed;
+    }
+  }
+
+  &-content {
+    position: relative;
+    display: inline-block;
+    width: $datePicker-width;
+    height: $datePicker-height;
+    white-space: normal;
+    vertical-align: middle;
+    background-color: $color-white;
+    &.#{$datePicker}-isDays {
+      > .#{$datePicker}-days {
+        display: block;
+      }
+    }
+
+    &.#{$datePicker}-isMonths {
+      .#{$datePicker}-months {
+        display: block;
+      }
+    }
+
+    &.#{$datePicker}-isYears {
+      .#{$datePicker}-years {
+        display: block;
+      }
+    }
+  }
+
+  &-days,
+  &-months,
+  &-years,
+  &-buttons {
+    display: none;
+  }
+
+  &-row,
+  &-head {
+    box-sizing: border-box;
+    //display: table;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    > span {
+      //display: table-cell;
+      display: inline-flex;
+      align-items: center;
+      //text-align: center;
+      // vertical-align: middle;
+      justify-content: center;
+    }
+  }
+
+  &-header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //display: table;
+    width: 90%;
+    height: $datePicker-header-height;
+    margin: 0 5%;
+
+    > div {
+      //display: table-cell;
+      display: inline-flex;
+      align-items: center;
+      //text-align: center;
+      //vertical-align: middle;
+      justify-content: space-between;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+
+  &-prev,
+  &-next {
+    width: 5%;
+    margin-left: 5%;
+    font-size: 16px;
+    // &::before{
+    //   font-family: "icons";
+    // }
+  }
+  // &-prev::before{
+  //   content: "\e01d";
+  // }
+  // &-next::before{
+  //   content: "\e01e";
+  // }
+  &-caption {
+    width: 70%;
+  }
+
+  &-days,
+  &-months,
+  &-years {
+    height: 85%;
+  }
+
+  &-months,
+  &-years {
+    span {
+      line-height: 61px;
+      // vertical-align: middle;
+    }
+  }
+
+  &-days {
+    span {
+      line-height: 30px;
+    }
+  }
+
+  &-head {
+    height: 13%;
+
+    span {
+      width: 14.28%;
+      height: 100%;
+      cursor: default;
+    }
+  }
+
+  &-body {
+    box-sizing: border-box;
+    height: 87%;
+
+    .#{$datePicker}-row {
+      height: calc(100% / 6 - 4px);
+    }
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14.28%;
+      //height: 100%;
+      height: auto;
+      cursor: pointer;
+
+      &.#{$datePicker}-otherMonth,
+      &.#{$datePicker}-untouchable {
+        cursor: default;
+      }
+    }
+  }
+
+  &-months,
+  &-years {
+    .#{$datePicker}-row {
+      height: 25%;
+    }
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 33.3%;
+      height: 100%;
+      font-size: $font-size-lg;
+      cursor: pointer;
+
+      &.#{$datePicker}-untouchable {
+        cursor: default;
+      }
+    }
+  }
+
+  &-hide {
+    display: none !important;
+  }
+
+  &-show {
+    display: block !important;
+  }
+
+  &-picker-wrap {
+    z-index: 9999;
+    display: none;
+    padding: 14px 0;
+  }
+
+  &-wrap {
+    white-space: nowrap;
+
+    &,
+    & *:focus {
+      outline: none;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    &.#{$datePicker}-isMobile {
+      position: fixed;
+      z-index: 99999;
+      width: $datePicker-mobile-width;
+      height: $datePicker-mobile-height;
+      line-height: 1;
+
+      .#{$datePicker} {
+        &-title {
+          position: absolute;
+          top: -1.5em;
+          left: 0;
+          width: 100%;
+          text-align: center;
+        }
+
+        &-content {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: none;
+          width: 100%;
+          height: 100%;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+          border-bottom-left-radius: 4px;
+        }
+
+        &-content.#{$datePicker}-show {
+          display: block;
+        }
+
+        &-header {
+          height: 10%;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+        }
+
+        &-days,
+        &-months,
+        &-years {
+          height: 80%;
+        }
+
+        &-buttons {
+          //display: table;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 10%;
+        }
+
+        &-buttons > div {
+          //display: table-cell;
+          display: inline-flex;
+          align-items: center;
+          //text-align: center;
+          //vertical-align: middle;
+          justify-content: center;
+          width: 50%;
+          height: 100%;
+          font-size: $font-size-lg;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: $color-black;
+    opacity: 0.5;
+  }
+
+  &-inline {
+    .#{$datePicker}-input,
+    .#{$datePicker}-icon {
+      display: none !important;
+    }
+
+    .#{$datePicker}-picker-wrap {
+      position: relative !important;
+    }
+  }
+}
+
+.#{$datePicker}-blocked {
+  &.#{$datePicker}-next,
+  &.#{$datePicker}-prev {
+    cursor: default;
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.pj-datePicker-inputWrap:hover .pj-datePicker-input[disabled] {
+  border-color: #dfe4ed;
+}

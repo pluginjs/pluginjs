@@ -2,6 +2,7 @@
 	"name": "@pluginjs/styled",
 	"main": "dist/styled.js",
 	"dev-main": "src/main.js",
+  "source": "src/main.js",
 	"module": "dist/styled.esm.js",
 	"dependencies": {
 		"@pluginjs/is": "^0.2.19",

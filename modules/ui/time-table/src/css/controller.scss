@@ -1,0 +1,50 @@
+@import "@pluginjs/styles/variables.scss";
+
+$namespace: "pj-timeTable";
+
+$controller-padding-x: 0;
+$controller-padding-y: 40px;
+$controller-icon-font-size: 1.125 * 1rem;
+$controller-icon-border: 1px solid $border-color;
+$controller-icon-border-radius: 50%;
+$controller-icon-line-height: 32px;
+$controller-icon-width: 36px;
+$controller-icon-height: 36px;
+
+.#{$namespace}-controller {
+  padding: $controller-padding-y $controller-padding-x;
+  overflow: hidden;
+  text-align: center;
+
+  &-text {
+    display: inline-block;
+    padding: 5px;
+    margin: 3px;
+    font-family: Montserrat;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.43;
+    text-align: center;
+    letter-spacing: 0.1px;
+  }
+
+  &-preview {
+    float: left;
+    width: $controller-icon-width;
+    height: $controller-icon-height;
+    font-size: $controller-icon-font-size;
+    line-height: $controller-icon-line-height;
+    border: $controller-icon-border;
+    border-radius: $controller-icon-border-radius;
+  }
+
+  &-next {
+    float: right;
+    width: $controller-icon-width;
+    height: $controller-icon-height;
+    font-size: $controller-icon-font-size;
+    line-height: $controller-icon-line-height;
+    border: $controller-icon-border;
+    border-radius: $controller-icon-border-radius;
+  }
+}

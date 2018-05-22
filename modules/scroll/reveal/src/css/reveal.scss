@@ -1,0 +1,17 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$reveal: "pj-reveal" !default;
+
+// Core
+// =====================
+.#{$reveal} {
+  visibility: hidden;
+}
+
+@import "effects/fade";
+@import "effects/flip";
+@import "effects/slide";
+@import "effects/zoom";
+@import "effects/attention_seekers";

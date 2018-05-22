@@ -1,0 +1,82 @@
+@import "@pluginjs/styles/variables.scss";
+
+$namespace: "pj-timeTable";
+
+$listly-color: #333;
+$listly-bg-color: transparent;
+$listly-m-y: 0;
+$listly-m-x: 0;
+$listly-p-y: 0;
+$listly-p-x: 0;
+
+.#{$namespace}-listly {
+  padding: $listly-p-y $listly-p-x;
+  margin: $listly-m-y $listly-m-x;
+  color: $listly-color;
+  background-color: $listly-bg-color;
+
+  .#{$namespace}-listEvent-wrap {
+    position: relative;
+    margin-top: 80px;
+
+    .#{$namespace}-listEvent-head {
+      position: relative;
+      height: 32px;
+      font-family: Montserrat;
+      font-size: 21px;
+      line-height: 1.52;
+      text-align: left;
+
+      > span {
+        color: #35cc62;
+      }
+
+      &::after {
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        width: calc(100% - 60px);
+        height: 1px;
+        content: "";
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .#{$namespace}-listEvent-item {
+      margin-top: 35px;
+
+      .#{$namespace}-listEvent-time {
+        display: inline-block;
+        float: left;
+        width: 16%;
+        min-width: 120px;
+        height: 57px;
+        font-family: Montserrat;
+        font-size: 16px;
+        line-height: 1.63;
+      }
+
+      .#{$namespace}-listEvent-item-wrap {
+        display: inline-block;
+        height: 57px;
+
+        .#{$namespace}-listEvent-title {
+          font-family: Montserrat;
+          font-size: 16px;
+          line-height: 1.63;
+          text-align: left;
+        }
+
+        .#{$namespace}-listEvent-content {
+          margin-top: 8px;
+          font-family: OpenSans;
+          font-size: 16px;
+          line-height: 1.63;
+          color: #989898;
+          text-align: left;
+          letter-spacing: 0.1px;
+        }
+      }
+    }
+  }
+}

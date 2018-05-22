@@ -1,0 +1,17 @@
+{
+	"name": "color-picker-samples",
+	"version": "1.0.0",
+	"description": "Simple color-picker example",
+	"main": "index.html",
+	"scripts": {
+		"start": "parcel index.html --open",
+		"build": "parcel build index.html"
+	},
+	"devDependencies": {
+		"parcel-bundler": "^1.6.1"
+	},
+	"dependencies": {
+		"@pluginjs/color-picker": "^0.2.20"
+	},
+	"license": "UNLICENSED"
+}

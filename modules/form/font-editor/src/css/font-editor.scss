@@ -1,0 +1,350 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$fontEditor: "pj-fontEditor" !default;
+
+$fontEditor-sizer: $sizer;
+// ======= core vars ====== //
+$fontEditor-color: $gray-dark !default;
+$fontEditor-color-light: $gray-light !default;
+$fontEditor-border-width: 1px !default;
+$fontEditor-border-color: $gray-lighter !default;
+$fontEditor-border-style: solid !default;
+$fontEditor-border: $fontEditor-border-width $fontEditor-border-style
+  $fontEditor-border-color !default;
+$fontEditor-border-radius: $border-radius-base !default;
+$fontEditor-height: 5 * $fontEditor-sizer !default; //50px
+// info
+$fontEditor-info-width: 26 * $fontEditor-sizer !default; //260px
+$fontEditor-info-font-size: $font-size-sm !default;
+$fontEditor-info-change-bg: $gray-darker !default;
+$fontEditor-info-change-opacity: 0.9 !default;
+$fontEditor-info-i-color: $gray-light !default; //#ccd1d9
+// initial
+$fontEditor-initial-border-style: dashed !default;
+$fontEditor-initial-hover-bg: $gray-lightest !default;
+// decorations
+$fontEditor-decorations-li: $gray-light !default; //#ccd1d9
+$fontEditor-decorations-active: $gray !default;
+// control
+$fontEditor-control-color: $gray !default;
+// content
+$fontEditor-content-width: 18 * $fontEditor-sizer !default; //180px
+
+$fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
+// ======= support Plugin's vars ====== //
+// dropdown
+// $dropdown-min-width: 180px !default;
+//$dropdown-height: 30px !default;
+//$dropdown-trigger-color: #bbb !default;
+//$dropdown-trigger-border-color: #e4e4e4 !default;
+//$dropdown-trigger-bg-color: $color-white !default;
+//$dropdown-trigger-hover-border-color: #bbb !default;
+//$dropdown-panel-border-color: $dropdown-trigger-border-color !default;
+//$dropdown-panel-bg-color: $dropdown-trigger-bg-color !default;
+//$dropdown-panel-li-color: #777 !default;
+//$dropdown-panel-li-bg-color: $dropdown-trigger-bg-color !default;
+//$dropdown-panel-li-hover-color: $color-white !default;
+//$dropdown-panel-li-hover-bg-color: #41a9e5 !default;
+// unit
+
+// Core
+// =====================
+.#{$fontEditor} {
+  box-sizing: border-box;
+  display: inline-block;
+  height: $fontEditor-height;
+
+  &-initial,
+  &-info {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    min-width: $fontEditor-info-width;
+    //height: $fontEditor-height;
+    height: 100%;
+    padding: 0.6 * $fontEditor-sizer 2 * $fontEditor-sizer; //6px 20px
+    line-height: $fontEditor-height;
+    //line-height: 30px;
+    border: $fontEditor-border;
+    border-radius: $fontEditor-border-radius;
+
+    > i {
+      float: left;
+      margin-right: 0.8 * $fontEditor-sizer; //8px
+      font-size: $font-size-base + 5px; //20px
+      font-style: normal;
+      color: $fontEditor-info-i-color;
+    }
+  }
+
+  &-initial {
+    font-size: $font-size-sm;
+    color: $fontEditor-color-light;
+    cursor: pointer;
+    border-style: $fontEditor-initial-border-style;
+
+    &:hover {
+      background-color: $fontEditor-initial-hover-bg;
+      transition: background-color 0.3s;
+    }
+  }
+
+  &-info {
+    align-items: center;
+
+    &-font {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-around;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-size: $fontEditor-info-font-size;
+      color: $fontEditor-color;
+
+      &-name {
+        display: block;
+        line-height: 1.4 * $fontEditor-sizer; //14px
+      }
+
+      &-sub {
+        display: block;
+        font-size: $font-size-xs;
+        line-height: 1.2 * $fontEditor-sizer; //12px
+      }
+    }
+
+    &-change {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-size: $font-size-lg;
+      line-height: $fontEditor-height;
+      color: $color-white;
+      text-align: center;
+      background-color: $fontEditor-info-change-bg;
+      border-radius: $fontEditor-border-radius;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    &-remove,
+    &-edit {
+      margin: 0 1.6 * $fontEditor-sizer; //0 16px
+
+      &:hover {
+        color: $gray-lighter;
+        cursor: pointer;
+      }
+    }
+  }
+  // expand
+  &-expand {
+    &-panel {
+      position: relative;
+      box-sizing: border-box;
+      width: 30 * $fontEditor-sizer; //300px
+      padding: 2 * $fontEditor-sizer; //20px
+      background-color: $color-white;
+      border: $fontEditor-border;
+      border-radius: $fontEditor-border-radius;
+    }
+
+    &-control {
+      margin-top: 2 * $fontEditor-sizer; //20px
+      text-align: right;
+    }
+
+    &-cancel,
+    &-save {
+      width: 6.6 * $fontEditor-sizer; //66px
+      height: 3 * $fontEditor-sizer; //30px
+      font-size: $font-size-xs;
+      // color: $fontEditor-control-color;
+      // background-color: $color-white;
+      // border: 0;
+      // border-radius: $fontEditor-border-radius;
+    }
+
+    // &-cancel:hover {
+    //   color: $gray-light;
+    // }
+
+    // &-save {
+    //   color: $color-white;
+    //   background-color: $color-primary;
+    // }
+  }
+
+  &-fontFamily,
+  &-fontSize,
+  &-lineHeight,
+  &-fontWeight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // padding: 5px 0;
+    margin-bottom: 2 * $fontEditor-sizer; //20px
+
+    &-title {
+      order: 0;
+      font-size: $font-size-base;
+    }
+
+    &-content {
+      width: $fontEditor-content-width;
+    }
+  }
+
+  &-fontFamily,
+  &-fontWeight {
+    &-dropdown {
+      width: $fontEditor-content-width !important;
+      height: $fontEditor-dropdown-height;
+
+      // .pj-dropdown-label {
+      //   padding: 4px 14px;
+      //   font-size: 12px;
+      // }
+    }
+  }
+
+  &-fontSize,
+  &-lineHeight {
+    &-range.pj-range-control {
+      width: 11 * $fontEditor-sizer; //110px
+    }
+  }
+
+  &-decorations {
+    display: block;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    list-style: none;
+
+    li {
+      display: block;
+      float: left;
+      width: 1.5 * $fontEditor-sizer; //15px
+      height: 1.5 * $fontEditor-sizer; //15px
+      margin-bottom: 0;
+      margin-left: 1.5 * $fontEditor-sizer; //15px
+      line-height: 1;
+      color: $fontEditor-decorations-li;
+      text-transform: none;
+      cursor: pointer;
+      speak: none;
+      // Better Font Rendering ===========
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &.#{$fontEditor}-active,
+      &:hover {
+        color: $fontEditor-decorations-active;
+      }
+    }
+  }
+  // state
+  &_temporarilyoff {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  // inherit
+  &-inherit {
+    .pj-range-control {
+      visibility: hidden !important;
+    }
+
+    .pj-units-trigger {
+      left: 0 !important;
+      width: 100% !important;
+      background-color: $color-white !important;
+      border: 1px solid $gray-lighter !important;
+    }
+  }
+}
+
+// dropdown
+// ============================
+.pj-dropdown-wrapper {
+  position: relative;
+}
+
+.#{$fontEditor}-empty {
+  .#{$fontEditor}-initial {
+    display: block !important;
+    //line-height: 50px;
+    padding: 0 2 * $font-size-base; //0 20px
+  }
+
+  .#{$fontEditor}-info,
+  .#{$fontEditor}-expand-panel {
+    display: none !important;
+  }
+}
+
+.#{$fontEditor}-exsit {
+  .#{$fontEditor}-initial,
+  .#{$fontEditor}-expand-panel {
+    display: none !important;
+  }
+
+  .#{$fontEditor}-info {
+    display: flex !important;
+  }
+}
+
+.#{$fontEditor}-expand {
+  .#{$fontEditor}-initial,
+  .#{$fontEditor}-info {
+    display: none !important;
+  }
+
+  .#{$fontEditor}-expand-panel {
+    display: block !important;
+  }
+}
+
+.#{$fontEditor}-hover {
+  .#{$fontEditor}-info {
+    &-change {
+      opacity: $fontEditor-info-change-opacity;
+      transition: all 300ms;
+    }
+  }
+}
+
+.#{$fontEditor}-disabled {
+  .#{$fontEditor}-info {
+    color: $disabled-color;
+    cursor: not-allowed;
+    background-color: $disabled-bg;
+
+    &-remove,
+    &-edit {
+      cursor: not-allowed;
+    }
+  }
+  .#{$fontEditor}-initial {
+    color: $disabled-color;
+    cursor: not-allowed;
+    background-color: $disabled-bg;
+  }
+  .#{$fontEditor}-info-change {
+    color: $disabled-color;
+    cursor: not-allowed;
+    background-color: $disabled-bg;
+  }
+}

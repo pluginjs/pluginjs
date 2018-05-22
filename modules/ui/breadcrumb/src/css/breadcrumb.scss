@@ -1,0 +1,48 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$breadcrumb: "pj-breadcrumb" !default;
+
+// Core
+// =====================
+.#{$breadcrumb} {
+  list-style: none;
+
+  > li {
+    display: inline-block;
+  }
+
+  .#{$breadcrumb}-hidden {
+    display: none;
+  }
+
+  &-ellipsis {
+    display: inline-block;
+  }
+
+  &-dropdown {
+    display: inline-block;
+  }
+}
+
+// Styles
+// =====================
+.#{$breadcrumb} {
+  // padding: 8px 15px;
+  // margin-bottom: 20px;
+  // background-color: #f3f4f5;
+  // border-radius: 3px;
+
+  // > li {
+  //   + li:before {
+  //     content: "/\00a0";
+  //     padding: 0 5px;
+  //     color: #ccc;
+  //   }
+  // }
+
+  > li.pj-breadcrumb-ellipsis.pj-breadcrumb-hidden + li::before {
+    display: none;
+  }
+}

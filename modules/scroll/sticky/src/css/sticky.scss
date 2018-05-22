@@ -1,0 +1,26 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$sticky: "pj-sticky" !default;
+
+// Core
+// =====================
+.#{$sticky} {
+}
+
+.#{$sticky}-parent {
+  position: relative;
+}
+
+.#{$sticky}-sticky {
+  position: fixed;
+}
+
+.#{$sticky}-stuck {
+  position: absolute;
+}
+
+.#{$sticky}-hidden {
+  visibility: hidden;
+}

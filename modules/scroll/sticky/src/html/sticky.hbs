@@ -1,0 +1,130 @@
+---
+title: Sticky
+layout: plain
+styles:
+- ../../plugins/sticky/css/sticky.css
+scripts:
+- ../../plugins/sticky/sticky.js
+---
+<style media="screen">
+  .heading, header{
+    background: #ccc;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    padding-left: 10px;
+    width: 400px;
+    position: -webkit-sticky;
+    /*position: sticky;
+    top: 0px;*/
+  }
+  .page-content {
+    overflow: unset;
+  }
+</style>
+<h2>Animals by Alphabet</h1>
+
+<div class="container">
+  <div class="headingA heading">A</div>
+  <div>American Buffalo</div>
+  <div>Aardvark</div>
+  <div>Alligator</div>
+  <div>Antelope</div>
+
+  <div class="headingB heading">B</div>
+  <div>Baboon</div>
+  <div>Bat</div>
+  <div>Blue Bird</div>
+
+  <div class="headingC heading">C</div>
+  <div>Cat</div>
+  <div>Camel</div>
+  <div>Chicken</div>
+  <div>Chipmunk</div>
+
+  <div class="headingD heading">D</div>
+  <div>Dog</div>
+  <div>Donkey</div>
+  <div>Dave</div>
+  <div>Duck</div>
+</div>
+<div class="space" style="height:500px; width:100%;"></div>
+<script>
+  Pj.sticky('.headingA', {
+    spacing: 0,
+    onSticky: function () {
+      console.log('trigger sticky')
+    },
+    onStuck: function () {
+      console.log('trigger stuck')
+    },
+    onUnsticky: function () {
+      console.log('trigger unsticky')
+    }
+  })
+
+  Pj.sticky('.headingB', {
+    spacing: 50
+  })
+  Pj.sticky('.headingC', {
+    spacing: 100
+  })
+  Pj.sticky('.headingD', {
+    spacing: 150
+  })
+</script>
+<div class="space" style="height:500px; width:100%;">
+
+</div>
+<div class="space" style="height:500px; width:100%;">
+
+</div>
+<div class="space" style="height:500px; width:100%;">
+
+</div>
+<div class="space" style="height:500px; width:100%;">
+
+</div>
+<section>
+  <list>
+    <header class="books-header">Books</header>
+    <item>The 10x Rule</item>
+    <item>Ego is the Enemy</item>
+    <item>Flow</item>
+    <item>Minimalism</item>
+    <footer>+ add book</footer>
+  </list>
+
+  <list>
+    <header class="movies-header">Movies</header>
+    <item>Star Wars</item>
+    <item>Moana</item>
+    <item>Princess Bride</item>
+    <item>Avatar</item>
+    <item>Doctor Strange</item>
+    <footer>+ add movie</footer>
+  </list>
+
+  <list>
+    <header class="games-header">Games</header>
+    <item>Star Citizen</item>
+    <item>Astroneer</item>
+    <item>Starcraft</item>
+    <footer>+ add game</footer>
+  </list>
+  <div class="space" style="height:500px; width:100%;"></div>
+  <div class="space" style="height:500px; width:100%;"></div>
+  <div class="space" style="height:500px; width:100%;"></div>
+  <script>
+    Pj.sticky('.books-header', {
+      spacing: 0
+    })
+
+    Pj.sticky('.movies-header', {
+      spacing: 50
+    })
+    Pj.sticky('.games-header', {
+      spacing: 100
+    })
+  </script>
+</section>

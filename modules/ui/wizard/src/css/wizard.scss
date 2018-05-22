@@ -1,0 +1,183 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$wizard: "pj-wizard" !default;
+$wizard-transition-duration: 0.2s !default;
+
+// Core
+// =====================
+.#{$wizard}-hide {
+  display: none;
+}
+
+.#{$wizard}-pane {
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity $wizard-transition-duration ease;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+  }
+
+  &.#{$wizard}-active {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &.#{$wizard}-activing {
+    visibility: visible;
+  }
+
+  .#{$wizard}-formGroup {
+    margin-bottom: 15px;
+
+    input.error {
+      border-color: #f96868;
+    }
+
+    label.error {
+      color: #f96868;
+    }
+  }
+
+  label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .#{$wizard}-formControl {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-color: white;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  }
+
+  .#{$wizard}-formControl:focus {
+    border-color: #66afe9;
+    // box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  }
+}
+
+.#{$wizard}-content {
+  position: relative;
+  padding: 0;
+  transition: height $wizard-transition-duration ease;
+}
+
+// Styles
+// =====================
+.#{$wizard}-current {
+  color: #00f !important;
+}
+
+.#{$wizard}-done {
+  color: #008000 !important;
+}
+
+.#{$wizard}-error {
+  color: #f00 !important;
+}
+
+.#{$wizard}-disabled {
+  cursor: not-allowed !important;
+}
+
+.#{$wizard}-pane {
+  padding: 10px;
+}
+
+.#{$wizard}-content {
+  border: 1px solid #aaa;
+}
+
+.#{$wizard}-steps {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  > li {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #666;
+    cursor: pointer;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.#{$wizard}-buttons {
+  margin-top: 10px;
+
+  > a {
+    padding: 6px 15px;
+    font-size: 14px;
+    line-height: 1.57142857;
+    text-decoration: none;
+    border: 1px solid;
+    border-radius: 3px;
+    transition: border 0.2s linear, color 0.2s linear, width 0.2s linear,
+      background-color 0.2s linear;
+
+    &.#{$wizard}-default:hover {
+      color: #76838f;
+      background-color: rgba(118, 131, 143, 0.1);
+      border-color: #e4eaec;
+    }
+
+    &.#{$wizard}-default {
+      color: #76838f;
+      background-color: transparent;
+      border-color: #e4eaec;
+
+      &.#{$wizard}-disabled {
+        color: #76838f;
+        background-color: #f3f7f9;
+        border-color: #f3f7f9;
+      }
+    }
+
+    &.#{$wizard}-primary {
+      color: #62a8ea;
+      background-color: transparent;
+    }
+
+    &.#{$wizard}-primary:hover {
+      color: #fff;
+      background-color: #62a8ea;
+      border-color: #62a8ea;
+    }
+
+    &.#{$wizard}-success {
+      color: #46be8a;
+      background-color: transparent;
+    }
+
+    &.#{$wizard}-success:hover {
+      color: #fff;
+      background-color: #46be8a;
+      border-color: #46be8a;
+    }
+  }
+}

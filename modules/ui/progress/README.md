@@ -1,0 +1,152 @@
+# Progress
+> A flexible modern progress js plugin.
+## Introduction
+
+#### [Demo]()
+---
+### Installation
+
+#### Yarn
+```javascript
+yarn add @pluginjs/progress
+```
+#### NPM
+```javascript
+npm i @pluginjs/progress
+```
+---
+
+## Getting Started
+### Include
+**Webpack && Rollup:**
+
+ECMAScript Modules
+```javascript
+import progress from "@pluginjs/progress"
+```
+
+CommonJS
+```javascript
+require("@pluginjs/progress")
+```
+
+**CDN:**
+Development:
+```html
+<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/progress.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/progress.css">
+```
+Production:
+```html
+<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/progress.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/progress.min.css">
+```
+
+### Initialize
+HTML:
+```html
+<body>
+  <div class="element"></div>
+</body>
+```
+JS:
+```javascript
+Pj.progress('.element', options);
+```
+---
+## API
+
+### Options:
+Options are called on progress instances through the progress options itself.
+You can also save the instances to variable for further use.
+
+Name | Description | Default
+-----|--------------|-----
+`"theme"` | Add plugin theme option | `null`
+`"bootstrap"` | Enable bootstrap or not | `false`
+`"min"` | Set min value | `0`
+`"max"` | Set max value | `100`
+`"goal"` | Set goal value | `100`
+`"speed"` | Set speed from 1 to 100 | `20`
+`"easing"` | Set easing for plugin | `ease`
+`"direction"` | Set direction for plugin | `horizontal`
+`"templates"` | Set templates for plugin | `{}`
+`"valueCallback"` | Set value callback for plugin | `function() {...}`
+
+### Events:
+Events are called on progress instances through the progress events itself.
+You can also save the instances to variable for further use.
+
+Name | Description
+-----|-----
+`"update"` | Gets fired when plugin is destroy
+`"ready"` | Gets fired when plugin is ready
+`"destroy"` | Gets fired when plugin is destroy
+`"finish"` | Gets fired when plugin is finish
+`"stop"` | Gets fired when plugin is stop
+`"reset"` | Gets fired when plugin is reset
+`"start"` | Gets fired when plugin is start
+`"enable"` | Gets fired when plugin is enabled
+`"disable"` | Gets fired when plugin is disabled
+
+```
+### Methods:
+Methods are called on progress instances through the progress method itself.
+You can also save the instances to variable for further use.
+
+Name | Description
+-----|-----
+`"get"` | Get value by key
+`"start"` | Start plugin
+`"stop"` | Stop plugin
+`"finish"` | Finish plugin
+`"reset"` | Reset plugin
+`"go"` | Go to something progress
+`"disable"` | Disable plugin
+`"enable"` | Enabled plugin if plugin is disabled
+`"destroy"` | Destroy plugin
+
+**example:**
+```javascript
+Pj.$progress('.element', get)
+Pj.$progress('.element', get, "foo")
+Pj.$progress('.element', get, "foo", "bar")
+```
+
+### Classes:
+Name | Description | Default
+-----|------|------
+`"NAMESPACE"` | Declare plugin namespace | `pj-progress`
+`"THEME"` | Declare plugin theme | `{namespace}--{theme}`
+`"ELEMENT"` | Declare plugin element | `{namespace}`
+`"LABEL"` | Declare plugin label | `{namespace}-label`
+`"VALUE"` | Declare plugin value | `{namespace}-value`
+`"BAR"` | Declare plugin bar | `{namespace}-bar`
+`"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
+`"VERTICAL"` | Declare plugin direction is vertical | `{namespace}-vertical`
+
+
+
+---
+
+## Browser support
+
+Tested on all major browsers.
+
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+
+## Contributing
+See [Contribution.md](Contribution.md).
+
+## Changelog
+To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
+
+## Version
+Version: 0.2.18
+
+## Copyright and license
+Copyright (C) 2018 Creation Studio Limited.
+
+@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

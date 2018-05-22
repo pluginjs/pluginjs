@@ -1,0 +1,36 @@
+/* flipHorizontal: 3D flip horizontal */
+.#{$modal}-flipHorizontalIn {
+  animation: Modal-flipHorizontalIn $modal-duration;
+}
+
+.#{$modal}-flipHorizontalOut {
+  animation: Modal-flipHorizontalOut $modal-duration forwards;
+}
+
+@keyframes Modal-flipHorizontalIn {
+  0% {
+    opacity: 0;
+    transform: rotateY(-70deg);
+    perspective: 1300px;
+    transform-style: preserve-3d;
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes Modal-flipHorizontalOut {
+  0% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotateY(-70deg);
+    perspective: 1300px;
+    transform-style: preserve-3d;
+  }
+}

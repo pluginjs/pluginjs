@@ -1,0 +1,42 @@
+---
+title: Countdown
+layout: plugin
+styles:
+- ../../plugins/countdown/css/countdown.css
+scripts:
+- ../../plugins/countdown/countdown.js
+---
+
+<style>
+.pj-svgProgress-svg {
+  width: 160px;
+  margin: 10px auto;
+}
+
+@media all and (max-width: 768px) {
+  .pj-svgProgress-svg {
+    width: 80%;
+    max-width: 300px;
+  }
+}
+</style>
+
+	<h2>Default</h2>
+  <div class="countdown pj-countdown" data-type="default" data-due="2019-8-18 12:00:00">
+  </div>
+
+  	<h2>progress</h2>
+  <div class="countdown" data-type="progress">
+
+  </div>
+
+	<h2>flip</h2>
+  <div class="countdown pj-countdown" data-type="flip" data-due="2018-6-22 8:10:50" data-format='Y,M,W,d,h,m,s' data-label="YEAR,MONTH,WEEK,天,时,分,秒">
+  </div>
+
+<script>
+  (function() {
+    console.log(Pj.countdown('.pj-countdown'))
+    console.log(Pj.countdown('[data-type="progress"]'))
+  })();
+</script>

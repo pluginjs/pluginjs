@@ -2,6 +2,7 @@
 	"name": "@pluginjs/classes",
 	"main": "dist/classes.js",
 	"dev-main": "src/main.js",
+  "source": "src/main.js",
 	"module": "dist/classes.esm.js",
 	"dependencies": {
 		"@pluginjs/utils": "^0.2.20"

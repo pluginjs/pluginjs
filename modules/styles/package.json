@@ -34,5 +34,6 @@
 	"min": "dist/styles.min.js",
 	"standalone": "dist/styles.standalone.js",
 	"module": "dist/styles.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

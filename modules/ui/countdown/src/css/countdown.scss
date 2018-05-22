@@ -1,0 +1,37 @@
+@import "@pluginjs/styles/variables.scss";
+
+$countdown: "countdown" !default;
+
+.#{$countdown} {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  .#{$countdown}-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .#{$countdown}-number {
+    position: relative;
+    padding: 0 $sizer;
+    margin: 0;
+    font-size: 4.5 * $sizer;
+    font-weight: bold;
+    color: #333;
+  }
+  .#{$countdown}-label {
+    font-size: 1 * $sizer;
+    color: #666;
+  }
+}
+
+.pj-svgProgress-svg {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  //padding-bottom: 100%;
+  overflow: hidden;
+  vertical-align: middle;
+}

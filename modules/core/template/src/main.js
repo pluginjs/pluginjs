@@ -20,7 +20,7 @@ const template = (function() {
         return i
       }
 
-      if (Object.prototype.hasOwnProperty.call(args, i)) {
+      if (args.hasOwnProperty(i)) {
         result = args[i]
       } else if (i.indexOf('.') !== -1) {
         result = getValueByPath(args, i)

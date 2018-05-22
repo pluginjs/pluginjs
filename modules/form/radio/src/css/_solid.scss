@@ -1,0 +1,39 @@
+.#{$radio}-solid {
+  i:first-child:not([class]) {
+    &::before {
+      transition: transform 0;
+      transform: scale(1);
+    }
+
+    &::after {
+      background-color: $color-white;
+      transition: transform 0.25s;
+    }
+  }
+
+  &.#{$radio}-checked,
+  & > input[type="radio"]:checked + label {
+    i:first-child:not([class]) {
+      &::before {
+        transform: scale(1);
+      }
+
+      &::after {
+        transform: scale(0.4);
+      }
+    }
+  }
+}
+
+@mixin radio-solid-variant($background) {
+  &.#{$radio}-solid {
+    &.#{$radio}-checked,
+    & > input[type="radio"]:checked + label {
+      i:first-child:not([class]) {
+        &::before {
+          background-color: $background;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,677 @@
+---
+title: Dropdown
+layout: plugin
+styles:
+- ../../plugins/dropdown/css/dropdown.css
+scripts:
+- ../../vendor/popper.js
+- ../../plugins/dropdown/dropdown.js
+---
+
+<section>
+  <h3>Default</h3>
+{{#code}}
+<div class="dropdown-wrap">
+  <div class="dropdown-example">click me</div>
+  <ul>
+      <li data-value="1">items-1</li>
+      <li data-value="2">items-2</li>
+      <li data-value="3">items-3</li>
+      <li data-value="4">items-4</li>
+  </ul>
+</div>
+<script>
+$(document).ready(function() {
+    Pj.dropdown('.dropdown-example');
+});
+</script>
+{{/code}}
+  <div class="example">
+    <div class="dropdown-wrap">
+      <div class="dropdown-example">click me</div>
+      <ul>
+        <li data-value="1">items-1</li>
+        <li data-value="2">items-2</li>
+        <li data-value="3">items-3</li>
+        <li data-value="4">items-4</li>
+      </ul>
+    </div>
+    <script type="text/javascript">
+      Pj.dropdown('.dropdown-example');
+    </script>
+  </div>
+</section>
+<section class="top-gap">
+  <h3>Types</h3>
+  <section class="top-gap">
+    <h4>input</h4>
+    <div class="example">
+      <div class="dropdown-wrap">
+        <div class="dropdown-input"></div>
+        <ul>
+          <li data-value="1">items-1</li>
+          <li data-value="2">items-2</li>
+          <li data-value="3">items-3</li>
+          <li data-value="4">items-4</li>
+        </ul>
+      </div>
+      <script type="text/javascript">
+        Pj.dropdown('.dropdown-input', {
+          imitateSelect: true,
+          inputLabel: true,
+          hideOutClick: true
+        });
+      </script>
+    </div>
+  </section>
+ <section class="top-gap">
+    <h4>select</h4>
+    <div class="example">
+      <div class="dropdown-wrap">
+        <div class="dropdown-select" placeholder="Search"></div>
+        <ul>
+          <li data-value="1">items-1</li>
+          <li data-value="2">items-2</li>
+          <li data-value="3">items-3</li>
+          <li data-value="4">items-4</li>
+        </ul>
+      </div>
+      <script type="text/javascript">
+        Pj.dropdown('.dropdown-select', {
+          imitateSelect: true,
+          select: 2,
+          icon: 'icon-char icon-chevron-down'
+        });
+      </script>
+    </div>
+  </section>
+</section>
+<section>
+  <h3>Options</h3>
+  <section class="top-gap">
+    <h4>imitateSelect</h4>
+{{#code}}
+<div class="dropdown-wrap">
+<div class="dropdown-imitateSelect">click me</div>
+<ul>
+    <li data-value="1">items-1</li>
+    <li data-value="2">items-2</li>
+    <li data-value="3">items-3</li>
+    <li data-value="4">items-4</li>
+</ul>
+</div>
+<script>
+Pj.dropdown('.dropdown-imitateSelect', {
+  imitateSelect: true,
+  select: 2
+});
+</script>
+{{/code}}
+    <div class="example">
+      <div class="dropdown-wrap">
+        <div class="dropdown-imitateSelect">click me</div>
+        <ul>
+          <li data-value="1">items-1</li>
+          <li data-value="2">items-2</li>
+          <li data-value="3">items-3</li>
+          <li data-value="4">items-4</li>
+        </ul>
+      </div>
+      <script type="text/javascript">
+        Pj.dropdown('.dropdown-imitateSelect', {
+          imitateSelect: true,
+          select: 2
+        });
+      </script>
+    </div>
+  </section>
+
+  <section class="top-gap">
+    <h4>onChange</h4>
+{{#code}}
+<div class="dropdown-wrap">
+<div class="dropdown-onChange">click me</div>
+<ul class="onChange">
+    <li data-category="sport">items-1</li>
+    <li data-category="news">items-2</li>
+    <li data-category="info">items-3</li>
+</ul>
+</div>
+<script>
+Pj.dropdown('.dropdown-onChange', {
+    panel: '.onChange',
+    itemValueAttr: 'category',
+    imitateSelect: true,
+    select: 'sport',
+    onChange: function(value) {
+        console.info('selected ' + value);
+    }
+});
+</script>
+{{/code}}
+    <p>so you can see the output in the console</p>
+    <div class="example">
+      <div class="dropdown-wrap">
+        <div class="dropdown-onChange">click me</div>
+        <ul class="onChange">
+          <li data-category="sport">sport</li>
+          <li data-category="news">news</li>
+          <li data-category="info">info</li>
+        </ul>
+      </div>
+      <script type="text/javascript">
+        Pj.dropdown('.dropdown-onChange', {
+          panel: '.onChange',
+          itemValueAttr: 'category',
+          imitateSelect: true,
+          select: 'sport',
+          onChange: function(value) {
+            console.info('selected ' + value);
+          }
+        });
+      </script>
+    </div>
+  </section>
+
+  <section class="top-gap">
+    <h4>hideOnSelect</h4>
+{{#code}}
+<div class="dropdown-wrap">
+<div class="dropdown-hideOnSelect">click me</div>
+<ul>
+    <li>items-1</li>
+    <li>items-2</li>
+    <li>items-3</li>
+    <li>items-4</li>
+</ul>
+</div>
+<script>
+Pj.dropdown('.dropdown-click', {
+  hideOnSelect: false
+});
+</script>
+{{/code}}
+    <div class="example">
+      <div class="dropdown-wrap">
+        <div class="dropdown-hideOnSelect">click me</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+          <li>items-4</li>
+        </ul>
+      </div>
+      <script type="text/javascript">
+        Pj.dropdown('.dropdown-hideOnSelect', {
+          hideOnSelect: false
+        });
+      </script>
+    </div>
+  </section>
+
+  <section class="top-gap">
+    <h4>hideOutClick</h4>
+{{#code}}
+<div class="dropdown-wrap">
+<div class="dropdown-out">click me</div>
+<ul>
+    <li>items-1</li>
+    <li>items-2</li>
+    <li>items-3</li>
+    <li>items-4</li>
+</ul>
+</div>
+<script>
+Pj.dropdown('.dropdown-out', {
+  hideOutClick: false
+});
+</script>
+{{/code}}
+    <div class="example">
+      <div class="dropdown-wrap">
+        <div class="dropdown-out">click me</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+          <li>items-4</li>
+        </ul>
+      </div>
+      <script type="text/javascript">
+        Pj.dropdown('.dropdown-out', {
+          hideOutClick: false
+        });
+      </script>
+    </div>
+  </section>
+
+  <section class="top-gap">
+    <h4>keyboard</h4>
+{{#code}}
+<div class="dropdown-wrap">
+<div class="dropdown-keyboard">click me</div>
+<ul>
+    <li>items-1</li>
+    <li>items-2</li>
+    <li>items-3</li>
+    <li>items-4</li>
+</ul>
+</div>
+<script>
+Pj.dropdown('.dropdown-keyboard', {
+  itemValueAttr: 'category',
+  imitateSelect: true,
+  select: 0,
+  keyboard: true
+});
+</script>
+{{/code}}
+    <div class="example">
+      <div class="dropdown-wrap">
+        <div class="dropdown-keyboard">click me</div>
+        <ul>
+          <li data-category="sport">items-1</li>
+          <li data-category="news">items-2</li>
+          <li data-category="info">items-3</li>
+        </ul>
+      </div>
+      <script type="text/javascript">
+        // Pj.dropdown('.dropdown-keyboard', {
+        //   itemValueAttr: 'category',
+        //   imitateSelect: true,
+        //   select: 0,
+        //   keyboard: true
+        // })
+      </script>
+    </div>
+  </section>
+
+ <section class="top-gap">
+    <h4>trigger</h4>
+{{#code}}
+<div class="dropdown-wrap">
+<div class="dropdown-trigger">mouse over</div>
+<ul>
+    <li>items-1</li>
+    <li>items-2</li>
+    <li>items-3</li>
+    <li>items-4</li>
+</ul>
+</div>
+<script>
+Pj.dropdown('.dropdown-trigger', {
+  trigger: 'hover'
+});
+</script>
+{{/code}}
+    <div class="example">
+      <div class="dropdown-wrap">
+        <div class="dropdown-trigger">mouse over</div>
+        <ul>
+          <li data-category="sport">items-1</li>
+          <li data-category="news">items-2</li>
+          <li data-category="info">items-3</li>
+        </ul>
+      </div>
+      <script type="text/javascript">
+        Pj.dropdown('.dropdown-trigger', {
+          trigger: 'hover'
+        })
+      </script>
+    </div>
+  </section>
+
+  <section class="top-gap">
+    <h4>placement</h4>
+{{#code}}
+<div class="dropdown-wrap">
+<div class="dropdown-placement">mouse over me</div>
+<ul>
+    <li>items-1</li>
+    <li>items-2</li>
+    <li>items-3</li>
+    <li>items-4</li>
+</ul>
+</div>
+<script>
+Pj.dropdown('.dropdown-placement', {
+  placement: 'bottom-end' // default value
+});
+</script>
+{{/code}}
+    <div class="example">
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-1">bottom-left</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-2">bottom</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-3">bottom-end</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-4">top-start</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-5">top</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-6">top-end</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-7">right-start</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-8">right</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-9">right-end</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-10">left-start</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-11">left</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <div class="dropdown-wrap" style="width: 33%; display: inline-block">
+        <div class="dropdown-placement-12">left-end</div>
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+        </ul>
+      </div>
+      <script type="text/javascript">
+        Pj.dropdown('.dropdown-placement-1');
+        Pj.dropdown('.dropdown-placement-2', {
+          placement: 'bottom'
+        });
+        Pj.dropdown('.dropdown-placement-3', {
+          placement: 'bottom-end'
+        });
+        Pj.dropdown('.dropdown-placement-4', {
+          placement: 'top-start'
+        });
+        Pj.dropdown('.dropdown-placement-5', {
+          placement: 'top'
+        });
+        Pj.dropdown('.dropdown-placement-6', {
+          placement: 'top-end'
+        });
+        Pj.dropdown('.dropdown-placement-7', {
+          placement: 'right-start'
+        });
+        Pj.dropdown('.dropdown-placement-8', {
+          placement: 'right'
+        });
+        Pj.dropdown('.dropdown-placement-9', {
+          placement: 'right-end'
+        });
+        Pj.dropdown('.dropdown-placement-10', {
+          placement: 'left-start'
+        });
+        Pj.dropdown('.dropdown-placement-11', {
+          placement: 'left'
+        });
+        Pj.dropdown('.dropdown-placement-12', {
+          placement: 'left-end'
+        });
+      </script>
+    </div>
+  </section>
+</section>
+<section class="top-gap">
+  <h3>Load from json data</h3>
+{{#code}}
+<div class="dropdown-wrap">
+  <div class="dropdown-json">click me</div>
+</div>
+<button class="append-data">append data</button>
+<button class="replace-data">replace data</button>
+<script>
+Pj.dropdown('.dropdown-json', {
+  data:[{
+    label: 'label11'
+  },{
+    label: 'label22'
+  },{
+    label: 'label33'
+  }]
+});
+document.querySelector('.replace-data')
+  .addEventListener('click', () => {
+    Pj.dropdown('.dropdown-json',
+      'replaceByData',
+      [
+        { label: 'label44' },
+        { label: 'label55' },
+        { label: 'label66' }
+      ]
+    )
+  })
+document.querySelector('.append-data')
+  .addEventListener('click', () => {
+    Pj.dropdown('.dropdown-json',
+      'appendByData',
+      [
+        { label: 'label44' },
+        { label: 'label55' },
+        { label: 'label66' }
+      ]
+    )
+  })
+</script>
+{{/code}}
+  <div class="example">
+    <div class="dropdown-wrap">
+      <div class="dropdown-json">click me</div>
+    </div>
+    <button class="append-data">append data</button>
+    <button class="replace-data">replace data</button>
+    <script type="text/javascript">
+      const data = [{
+        label: 'label11'
+      },{
+        label: 'label22'
+      },{
+        label: 'label33'
+      }];
+
+      const jsonApi = Pj.dropdown('.dropdown-json', {
+        data: data,
+        imitateSelect: true,
+        inputLabel: true,
+        select: 'label1'
+      })
+
+      document.querySelector('.replace-data')
+        .addEventListener('click', () => {
+          jsonApi.replaceByData(
+            [
+              { label: 'label44' },
+              { label: 'label55' },
+              { label: 'label66' }
+            ]
+          )
+        })
+      document.querySelector('.append-data')
+        .addEventListener('click', () => {
+          jsonApi.appendByData(
+            [
+              { label: 'label44' },
+              { label: 'label55' },
+              { label: 'label66' }
+            ]
+          )
+        })
+    </script>
+  </div>
+</section>
+<section>
+  <h3>API</h3>
+    <div class="example-event"></div>
+    <ul>
+      <li data-value="1">items-1</li>
+      <li data-value="2">items-2</li>
+      <li data-value="3">items-3</li>
+      <li data-value="4">items-4</li>
+    </ul>
+    <div class="apis top-gap">
+      <button data-api="init" class="btn">init()</button>
+      <button data-api="destroy" class="btn">destroy()</button>
+      <button data-api="enable" class="btn">enable()</button>
+      <button data-api="disable" class="btn">disable()</button>
+      <button data-api="show" class="btn">show()</button>
+      <button data-api="hide" class="btn">hide()</button>
+      <button data-api="get" class="btn">get()</button>
+      <button data-api="set" class="btn">set()</button>
+      <button data-api="toggle" class="btn">toggle()</button>
+      <button data-api="update" class="btn">update(html)</button>
+      <button data-api="replaceByData" class="btn">replaceByData(data)</button>
+      <button data-api="appendByData" class="btn">appendByData(data)</button>
+    </div>
+    <div class="console"></div>
+    <script>
+      (function() {
+        var $elementApi;
+
+        var events = ['ready', 'enable', 'disable', 'destroy', 'show', 'hide', 'click', 'trigger'];
+
+        for(var i = 0; i < events.length; i++) {
+         document.querySelector('.example-event')
+          .addEventListener('dropdown:'+events[i], function(event, instance) {
+            console.log(event.type, 'event');
+          });
+        }
+
+        function init() {
+          $elementApi = Pj.dropdown('.example-event', {
+            imitateSelect: true,
+            inputLabel: true,
+            hideOutClick: true,
+            onChange: function(val) {
+              console.log('changeEle', val)
+              console.log('changeEle: '+JSON.stringify(val), 'event');
+            },
+          });
+        }
+        var APIS = {
+          init,
+          destroy() {
+            $elementApi.destroy()
+          },
+          disable() {
+            $elementApi.disable()
+          },
+          enable() {
+            $elementApi.enable()
+          },
+          show() {
+            $elementApi.show()
+          },
+          hide() {
+            $elementApi.hide()
+          },
+          get() {
+            var val = $elementApi.get()
+            console.log('get: ' + val, 'API')
+          },
+          set() {
+            $elementApi.set(1)
+            console.log('set(value) ', 'API')
+          },
+          toggle() {
+            $elementApi.toggle()
+          },
+          update() {
+            var html = '<li data-value="1">items-1</li>'
+            $elementApi.update(html)
+            console.log('update(html)', 'API')
+          },
+          replaceByData() {
+            var data = [{
+              label: 'items-data1'
+            },{
+              label: 'items-data2'
+            }]
+            $elementApi.replaceByData(data)
+            console.log('replaceByData(data)', 'API')
+          },
+          appendByData() {
+            var data = [{
+              label: 'items-data3'
+            },{
+              label: 'items-data4'
+            }]
+            $elementApi.appendByData(data)
+            console.log('appendByData(data)', 'API')
+          }
+        }
+
+        document.querySelector('.apis').addEventListener('click', function(event) {
+          if (!event.target.matches('[data-api]')) {
+            return
+          }
+          var api = event.target.dataset.api;
+          if (api) {
+            APIS[api]()
+          }
+        })
+      })();
+    </script>
+</section>

@@ -1,0 +1,133 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$arrow: "pj-arrow" !default;
+$arrow-space-x: 10px !default;
+$arrow-space-y: 10px !default;
+$arrow-font-size: 24px !default;
+$arrow-color: $gray-light !default;
+$arrow-hover-color: $color-primary-light !default;
+$arrow-disable-color: $gray-lighter !default;
+
+/* theme vars */
+$arrow-theme-size: 40px !default;
+$arrow-outline-border: 1px solid rgba($color-black, 0.25) !default;
+$arrow-circle-border-radius: 29px !default;
+$arrow-square-border-radius: $border-radius-base !default;
+$arrow-solid-bg-color: rgba($color-black, 0.4) !default;
+$arrow-solid-color: $color-white !default;
+$arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
+
+// Core
+// =====================
+.#{$arrow}s {
+  @include clearfix();
+
+  position: relative;
+  opacity: 1;
+
+  &.#{$arrow}-hidden {
+    opacity: 0;
+  }
+
+  &.#{$arrow}-disabled {
+    .#{$arrow}-prev,
+    .#{$arrow}-next {
+      color: $arrow-disable-color;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+}
+
+.#{$arrow}-prev,
+.#{$arrow}-next {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  .#{$arrow}-icon {
+    font-size: $arrow-font-size;
+  }
+
+  &,
+  &:link,
+  &:active,
+  &:hover,
+  &:visited {
+    color: $arrow-color;
+    text-decoration: none;
+    outline: none;
+    text-decoration-style: none;
+  }
+
+  &:active,
+  &:hover {
+    color: $arrow-hover-color;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.#{$arrow}s-vertical {
+  .#{$arrow}-prev,
+  .#{$arrow}-next {
+    display: block;
+  }
+}
+
+.#{$arrow}s--outline,
+.#{$arrow}s--circle,
+.#{$arrow}s--square,
+.#{$arrow}s--solid,
+.#{$arrow}s--shadow {
+  .#{$arrow}-prev,
+  .#{$arrow}-next {
+    width: $arrow-theme-size;
+    height: $arrow-theme-size;
+    line-height: $arrow-theme-size;
+    text-align: center;
+  }
+}
+
+.#{$arrow}s--outline {
+  .#{$arrow}-prev,
+  .#{$arrow}-next {
+    border: $arrow-outline-border;
+  }
+}
+
+.#{$arrow}s--circle {
+  .#{$arrow}-prev,
+  .#{$arrow}-next {
+    border-radius: $arrow-circle-border-radius;
+  }
+}
+
+.#{$arrow}s--square {
+  .#{$arrow}-prev,
+  .#{$arrow}-next {
+    border-radius: $arrow-square-border-radius;
+  }
+}
+
+.#{$arrow}s--solid {
+  .#{$arrow}-prev,
+  .#{$arrow}-next {
+    color: $arrow-solid-color;
+    background-color: $arrow-solid-bg-color;
+    &:active,
+    &:hover {
+      color: $arrow-hover-color;
+    }
+  }
+}
+
+.#{$arrow}s--shadow {
+  .#{$arrow}-prev,
+  .#{$arrow}-next {
+    box-shadow: $arrow-shadow-box-shadow;
+  }
+}

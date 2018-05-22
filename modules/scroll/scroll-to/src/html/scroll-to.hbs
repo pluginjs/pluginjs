@@ -1,0 +1,100 @@
+---
+title: ScrollTo
+layout: plain
+styles:
+- ../../plugins/scroll-to/css/scroll-to.css
+scripts:
+- ../../plugins/scroll/scroll.js
+- ../../plugins/scroll-to/scroll-to.js
+---
+<style>
+.space {
+  height: 1000px;
+}
+.shaded {
+  background-color: #fcfcfc;
+}
+
+.nav {
+  position: fixed;
+  top: 100px;
+  left: 150px;
+  z-index: 10;
+  width: 300px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav > li {
+  position: relative;
+  display: block;
+  padding: 5px 20px;
+  color: $gray;
+  list-style: none;
+  background-color: #f7f9fc;
+}
+
+.nav > li:hover {
+  color: #77b6f5;
+}
+
+.nav > li.is-active {
+  font-weight: bold;
+  color: #54a3f2;
+}
+</style>
+
+<header role="banner">
+  <ul class="nav nav-main">
+    <li data-scrollto="whyuseit">#whyuseit</li>
+    <li data-scrollto="basic">#basic</li>
+    <li data-scrollto="tiles">#tiles</li>
+    <li data-scrollto="phrase">#phrase</li>
+    <li data-scrollto="semantic">#semantic</li>
+    <li data-scrollto="howuseit">#howuseit</li>
+  </ul>
+</header>
+<section class="container shaded">
+  <div id="whyuseit">
+    <h2>Why Use it?</h2>
+     <div class="space"></div>
+  </div>
+</section>
+<section class="container">
+  <div id="basic">
+    <h2>Basic Grid</h2>
+    <div class="space"></div>
+  </div>
+</section>
+<section class="container shaded">
+  <div id="tiles">
+    <h2>Tiles Grid</h2>
+    <div class="space"></div>
+  </div>
+</section>
+<section class="container">
+  <div id="phrase">
+    <h2>Phrase Grid</h2>
+    <div class="space"></div>
+  </div>
+</section>
+<section class="container shaded">
+  <div id="semantic">
+    <h2>Semantic Grid</h2>
+    <div class="space"></div>
+  </div>
+</section>
+<section class="container">
+  <div id="howuseit">
+    <h2>How Use It?</h2>
+    <div class="space"></div>
+  </div>
+</section>
+
+<script>
+$(function(){
+  // var $element = $(".nav-main")
+  // $element.asScrollTo();
+  Pj.scrollTo('.nav-main')
+});
+</script>

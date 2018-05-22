@@ -37,5 +37,6 @@
 	"min": "dist/utils.min.js",
 	"standalone": "dist/utils.standalone.js",
 	"module": "dist/utils.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

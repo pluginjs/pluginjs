@@ -1,0 +1,39 @@
+.#{$checkbox} {
+  i:first-child:not([class]) {
+    &::before {
+      position: absolute;
+      top: 35%;
+      left: 35%;
+      display: block;
+      width: 30%;
+      height: 50%;
+      visibility: hidden;
+      content: "\20";
+      border-color: $checkbox-color;
+      border-style: solid;
+      border-width: 0 2px 2px 0;
+      transition: transform 0.25s;
+      transform: rotate(45deg) scale(0);
+    }
+  }
+}
+
+.#{$checkbox} {
+  &.#{$checkbox}-checked,
+  & > input[type="checkbox"]:checked + label {
+    i:first-child:not([class]) {
+      &::before {
+        visibility: visible;
+        transform: rotate(45deg) scale(1);
+      }
+    }
+  }
+}
+
+@mixin checkbox-default-variant($background) {
+  i:first-child:not([class]) {
+    &::before {
+      border-color: $background;
+    }
+  }
+}

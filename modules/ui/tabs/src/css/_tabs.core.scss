@@ -1,0 +1,154 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$tabs: "pj-tabs" !default;
+$tabs-dropdown-zindex: $zindex-dropdown !default;
+$tabs-active-color: $color-primary !default;
+$tabs-vertical-min-width: 120px !default;
+
+// Core
+// =====================
+.#{$tabs} {
+  display: flex;
+  flex-direction: column;
+
+  &-nav {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    > li {
+      cursor: pointer;
+
+      &.#{$tabs}-active {
+        color: $tabs-active-color;
+      }
+    }
+  }
+
+  &-content {
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+
+    > div {
+      display: none;
+      width: 100%;
+
+      &.#{$tabs}-active {
+        display: block;
+      }
+    }
+  }
+
+  //Position
+  &-topright,
+  &-bottomright {
+    .#{$tabs}-nav {
+      justify-content: flex-end;
+    }
+  }
+
+  &-topcenter,
+  &-bottomcenter {
+    .#{$tabs}-nav {
+      justify-content: center;
+    }
+  }
+
+  &-topjustify,
+  &-bottomjustify {
+    .#{$tabs}-nav {
+      text-align: center;
+
+      > li {
+        flex: 1;
+      }
+    }
+  }
+
+  &-bottomleft,
+  &-bottomright,
+  &-bottomcenter,
+  &-bottomjustify {
+    flex-direction: column-reverse;
+  }
+
+  &.#{$tabs}-vertical {
+    flex-direction: row;
+
+    &.#{$tabs} {
+      &-right {
+        flex-direction: row-reverse;
+
+        .#{$tabs}-nav {
+          text-align: right;
+        }
+      }
+    }
+
+    .#{$tabs} {
+      &-nav {
+        flex: none;
+        flex-direction: column;
+
+        > li {
+          min-width: $tabs-vertical-min-width;
+        }
+      }
+
+      &-content {
+        > div {
+          // min-height: 100%;
+        }
+      }
+    }
+  }
+
+  //Responsive Scroll
+  &-scroll {
+    .#{$tabs} {
+      &-nav {
+        white-space: nowrap;
+
+        &-wrap {
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  //Responsive Drop
+  &-drop {
+    position: relative;
+
+    .#{$tabs} {
+      &-nav {
+        position: absolute;
+        z-index: $tabs-dropdown-zindex;
+        display: none;
+        width: 100%;
+        background-color: #fff;
+
+        > li {
+          display: block;
+        }
+
+        &-label {
+          display: block;
+          text-decoration: none;
+        }
+      }
+    }
+
+    &-open {
+      .#{$tabs} {
+        &-nav {
+          display: block;
+        }
+      }
+    }
+  }
+}

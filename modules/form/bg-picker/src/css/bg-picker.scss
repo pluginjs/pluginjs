@@ -1,0 +1,428 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$bgPicker: "pj-bgPicker" !default;
+
+$bgPicker-sizer: $sizer !default;
+
+$bgPicker-width: 16 * $bgPicker-sizer !default; //160px
+$bgPicker-height: 9 * $bgPicker-sizer !default; //90px
+$bgPicker-color: $gray-light !default;
+$bgPicker-border-width: 1px !default;
+$bgPicker-border-color: $gray-lighter !default;
+$bgPicker-border: $bgPicker-border-width solid $bgPicker-border-color !default;
+$bgPicker-border-radius: $border-radius-base !default;
+$bgPicker-font-size: $font-size-base !default;
+$bgPicker-active-color: $color-primary !default;
+
+$bgPicker-info-line-height: 2.6 * $bgPicker-sizer !default; //26px
+// initiate
+$bgPicker-initiate-border-style: dashed !default;
+$bgPicker-initiate-font-size: $font-size-sm !default;
+$bgPicker-initiate-icon-size: 2 * $bgPicker-sizer !default; //20px
+$bgPicker-initiate-hover-bg: $gray-lightest !default;
+// info
+$bgPicker-info-change-bg: $gray-darker !default;
+$bgPicker-info-change-opacity: 0.9 !default;
+$bgPicker-info-hover-color: $gray-lighter !default;
+
+$bgPicker-info-change-font-size: $font-size-lg !default;
+$bgPicker-info-change-line-height: 5.6 * $bgPicker-sizer !default; //56px
+
+$bgPicker-info-remove-margin: 0 $bgPicker-sizer !default; //0 10px
+// expand
+$bgPicker-expand-width: 30 * $bgPicker-sizer !default; //300px
+$bgPicker-expand-image-width: 26 * $bgPicker-sizer !default; //260px
+$bgPicker-expand-image-height: 16 * $bgPicker-sizer !default; //160px
+$bgPicker-expand-control-btn-width: 6.6 * $bgPicker-sizer !default; //66px
+$bgPicker-expand-control-btn-height: 3 * $bgPicker-sizer !default; //30px
+$bgPicker-expand-content-width: 18 * $bgPicker-sizer !default; //180px
+$bgPicker-expand-repeat-size-width: $bgPicker-expand-content-width / 4 + 1px !default;
+$bgPicker-expand-position-width: $bgPicker-expand-content-width / 3 + 1px !default;
+
+$bgPicker-expand-panel-padding: 3 * $bgPicker-sizer 2 * $bgPicker-sizer !default; //30px 20px
+
+//size-content
+$bgPicker-size-content-height: 3 * $bgPicker-sizer !default; //30px
+//position-content
+$bgPicker-position-content-height: 12.4 * $bgPicker-sizer !default; //124px
+$bgPicker-position-content-li-height: 4.2 * $bgPicker-sizer !default; //42px
+// pj-dropdown
+$asDropdown-trigger-width: 18 * $bgPicker-sizer !default; //180px
+//repeat-title
+$bgPicker-repeat-title-color: $gray !default; //#6e7a8a
+$bgPicker-repeat-content-color: $gray-light !default; //#8f9196
+
+// Core
+// =====================
+input.#{$bgPicker}-input {
+  display: none;
+}
+
+.#{$bgPicker} {
+  display: inline-block;
+  font-size: $bgPicker-font-size;
+  color: $bgPicker-color;
+
+  &-initiate,
+  &-info {
+    position: relative;
+    display: block;
+    width: $bgPicker-width;
+    height: $bgPicker-height;
+    // padding: 15px 20px;
+    line-height: $bgPicker-info-line-height;
+    text-align: center;
+    background-color: $color-white;
+    border: $bgPicker-border;
+    border-radius: $bgPicker-border-radius;
+  }
+
+  &-initiate {
+    flex-direction: column;
+    justify-content: center;
+    font-size: $bgPicker-initiate-font-size;
+    cursor: pointer;
+    border-style: $bgPicker-initiate-border-style;
+
+    &:hover {
+      background-color: $bgPicker-initiate-hover-bg;
+    }
+
+    > i {
+      font-size: $bgPicker-initiate-icon-size;
+    }
+  }
+
+  &-info {
+    background: url("../images/bg-canvas.png") no-repeat center;
+
+    &-image {
+      width: 100%;
+      height: 100%;
+      border-radius: $bgPicker-border-radius;
+    }
+
+    &-change {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-size: $bgPicker-info-change-font-size;
+      line-height: $bgPicker-info-change-line-height;
+      color: $color-white;
+      text-align: center;
+      background-color: $bgPicker-info-change-bg;
+      border-radius: $bgPicker-border-radius;
+      opacity: 0;
+    }
+
+    &-remove,
+    &-edit {
+      margin: $bgPicker-info-remove-margin;
+
+      &:hover {
+        color: $bgPicker-info-hover-color;
+        cursor: pointer;
+      }
+    }
+  }
+  //================================
+  &-expand {
+    &-panel {
+      position: relative;
+      box-sizing: border-box;
+      width: $bgPicker-expand-width;
+      padding: $bgPicker-expand-panel-padding;
+      background-color: $color-white;
+      border: $bgPicker-border;
+      border-radius: $bgPicker-border-radius;
+
+      > div {
+        margin-bottom: 2 * $bgPicker-sizer; //20px
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &-image-wrap {
+      display: block;
+      width: $bgPicker-expand-image-width;
+      height: $bgPicker-expand-image-height;
+      margin-bottom: 2 * $bgPicker-sizer; //20px
+      background: url("../images/bg-canvas.png") no-repeat center;
+      border-radius: $bgPicker-border-radius;
+    }
+
+    &-image {
+      width: 100%;
+      height: 100%;
+    }
+
+    &-control {
+      text-align: right;
+    }
+
+    &-cancel,
+    &-save {
+      width: $bgPicker-expand-control-btn-width;
+      height: $bgPicker-expand-control-btn-height;
+      // border: 0;
+      // border-radius: $bgPicker-border-radius;
+    }
+
+    // &-cancel {
+    //   color: $gray;
+    //   background-color: transparent;
+    // }
+
+    // &-save {
+    //   color: #fff;
+    //   background-color: $color-primary;
+    // }
+  }
+
+  &-position,
+  &-repeat,
+  &-size {
+    overflow: hidden;
+  }
+  //=====
+  &-attachment::before,
+  &-attachment::after {
+    display: table;
+    content: "";
+  }
+
+  &-attachment::after {
+    clear: both;
+  }
+  //=====
+  &-position,
+  &-repeat,
+  &-attachment,
+  &-size {
+    &-title {
+      float: left;
+      margin-top: $bgPicker-sizer * 0.5; //5px
+      font-size: $font-size-xs;
+      color: $bgPicker-repeat-title-color;
+    }
+
+    &-content {
+      float: right;
+      width: $bgPicker-expand-content-width;
+      padding: 0;
+      margin: 0;
+      font-size: $font-size-lg + 4px; //20px
+      color: $bgPicker-repeat-content-color;
+
+      &-item {
+        box-sizing: border-box;
+        margin-bottom: 0;
+
+        &::before,
+        &::after {
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+
+  &-repeat-content,
+  &-position-content,
+  &-size-content {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      position: relative;
+      height: 100%;
+      padding: 0;
+      margin-left: -1px;
+      text-align: center;
+      list-style: none;
+      cursor: pointer;
+      border: 1px solid $border-color;
+
+      &:hover {
+        background-color: $gray-lightest;
+      }
+
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &::after {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        z-index: 98;
+        display: none;
+        width: 100%;
+        height: 100%;
+        content: "";
+        border: $bgPicker-border;
+        border-color: $bgPicker-active-color;
+      }
+    }
+  }
+
+  &-repeat-content,
+  &-size-content {
+    li {
+      width: $bgPicker-expand-repeat-size-width;
+      height: $bgPicker-size-content-height;
+
+      &::after {
+        width: $bgPicker-expand-repeat-size-width;
+        height: $bgPicker-size-content-height;
+      }
+
+      &:first-child,
+      &:first-child::after {
+        border-top-left-radius: $bgPicker-border-radius;
+        border-bottom-left-radius: $bgPicker-border-radius;
+      }
+
+      &:last-child,
+      &:last-child::after {
+        border-top-right-radius: $bgPicker-border-radius;
+        border-bottom-right-radius: $bgPicker-border-radius;
+      }
+    }
+  }
+
+  &-position-content {
+    height: $bgPicker-position-content-height;
+
+    li {
+      width: $bgPicker-expand-position-width;
+      height: $bgPicker-position-content-li-height;
+      margin-top: -1px;
+
+      &::after {
+        width: $bgPicker-expand-position-width;
+        height: $bgPicker-position-content-li-height;
+      }
+
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3) {
+        margin-top: 0;
+        // border-bottom: none;
+      }
+
+      &:nth-child(1),
+      &:nth-child(1)::after {
+        border-top-left-radius: $bgPicker-border-radius;
+      }
+
+      &:nth-child(3),
+      &:nth-child(3)::after {
+        border-top-right-radius: $bgPicker-border-radius;
+      }
+
+      &:nth-child(7),
+      &:nth-child(7)::after {
+        border-bottom-left-radius: $bgPicker-border-radius;
+      }
+
+      &:nth-child(9),
+      &:nth-child(9)::after {
+        border-bottom-right-radius: $bgPicker-border-radius;
+      }
+    }
+  }
+
+  &-attachment-content {
+    .pj-dropdown {
+      width: $asDropdown-trigger-width;
+    }
+  }
+
+  &-active {
+    color: $bgPicker-active-color !important;
+
+    &::after {
+      display: block !important;
+    }
+  }
+}
+
+.#{$bgPicker}-exist {
+  .#{$bgPicker}-info {
+    display: block !important;
+  }
+
+  .#{$bgPicker}-initiate,
+  .#{$bgPicker}-expand-panel {
+    display: none !important;
+  }
+}
+
+.#{$bgPicker}-empty {
+  .#{$bgPicker}-initiate {
+    display: flex !important;
+  }
+
+  .#{$bgPicker}-info,
+  .#{$bgPicker}-expand-panel {
+    display: none !important;
+  }
+}
+
+.#{$bgPicker}-expand {
+  .#{$bgPicker}-expand-panel {
+    display: block !important;
+  }
+
+  .#{$bgPicker}-initiate,
+  .#{$bgPicker}-info {
+    display: none !important;
+  }
+}
+
+.#{$bgPicker}-hover {
+  .#{$bgPicker}-info {
+    &-change {
+      opacity: $bgPicker-info-change-opacity;
+      transition: all 300ms ease-in-out;
+      // display: flex !important;
+    }
+  }
+}
+
+.#{$bgPicker}-disabled {
+  .#{$bgPicker}-info {
+    cursor: not-allowed;
+    background-color: $bgPicker-initiate-hover-bg;
+
+    &-remove,
+    &-edit {
+      cursor: not-allowed;
+    }
+  }
+  .#{$bgPicker}-initial {
+    cursor: not-allowed;
+    background-color: $bgPicker-initiate-hover-bg;
+  }
+  .#{$bgPicker}-info-change {
+    cursor: not-allowed;
+    background-color: $bgPicker-initiate-hover-bg;
+  }
+  .#{$bgPicker}-initiate {
+    cursor: not-allowed;
+    background-color: $bgPicker-initiate-hover-bg;
+  }
+}

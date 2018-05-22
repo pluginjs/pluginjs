@@ -1,0 +1,12 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$scrollTo: "pj-scrollTo" !default;
+
+// Core
+// =====================
+.#{$scrollTo}-animating,
+.#{$scrollTo}-animating * {
+  pointer-events: none !important;
+}

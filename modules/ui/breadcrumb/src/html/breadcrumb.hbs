@@ -1,0 +1,106 @@
+---
+title: Breadcrumb
+layout: plugin
+styles:
+- ../../css/bootstrap.min.css
+- ../../plugins/breadcrumb/css/breadcrumb.css
+scripts:
+- ../../vendor/jquery.js
+- ../../vendor/bootstrap.min.js
+- ../../plugins/breadcrumb/breadcrumb.js
+---
+
+<section>
+  <h2>Example</h2>
+  <p>You can pass these options as key/value object to $.asBreadcrumb() method. </p>
+  <div class="example">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Getting Started</a></li>
+      <li class="breadcrumb-item"><a href="#">Library</a></li>
+      <li class="breadcrumb-item"><a href="#">Document</a></li>
+      <li class="breadcrumb-item"><a href="#">Components</a></li>
+      <li class="breadcrumb-item"><a href="#">JavaScript</a></li>
+      <li class="breadcrumb-item"><a href="#">Customize</a></li>
+      <li class="breadcrumb-item active">Data</li>
+    </ol>
+    <ol class="breadcrumb" data-overflow="right">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Getting Started</a></li>
+      <li class="breadcrumb-item"><a href="#">Library</a></li>
+      <li class="breadcrumb-item"><a href="#">Document</a></li>
+      <li class="breadcrumb-item"><a href="#">Components</a></li>
+      <li class="breadcrumb-item"><a href="#">JavaScript</a></li>
+      <li class="breadcrumb-item"><a href="#">Customize</a></li>
+      <li class="breadcrumb-item active">Data</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <h2>API</h2>
+  <ol class="example-api">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Getting Started</a></li>
+    <li class="breadcrumb-item"><a href="#">Library</a></li>
+    <li class="breadcrumb-item"><a href="#">Document</a></li>
+    <li class="breadcrumb-item"><a href="#">Components</a></li>
+    <li class="breadcrumb-item"><a href="#">JavaScript</a></li>
+    <li class="breadcrumb-item"><a href="#">Customize</a></li>
+    <li class="breadcrumb-item active">Data</li>
+  </ol>
+  <div class="apis top-gap">
+    <button data-api="init" class="btn">init()</button>
+    <button data-api="destroy" class="btn">destroy()</button>
+    <button data-api="enable" class="btn">enable()</button>
+    <button data-api="disable" class="btn">disable()</button>
+  </div>
+
+  <div class="console"></div>
+</section>
+
+<script>
+(function(){
+  Pj.breadcrumb('.breadcrumb');
+
+  var $elementApi;
+  var APIS = {
+    init() {
+      $elementApi = Pj.breadcrumb('.example-api', {
+        onReady: function() {
+          log('ready', 'event');
+        },
+        onDestroy: function() {
+          log('destroy', 'event');
+        },
+        onEnable: function() {
+          log('enable', 'event');
+        },
+        onDisable: function() {
+          log('disable', 'event');
+        },
+        onUpdate: function(value) {
+         log('update', 'event');
+        }
+      })
+    },
+    destroy() {
+      $elementApi('destroy')
+    },
+    disable() {
+      $elementApi('disable')
+    },
+    enable() {
+      $elementApi('enable')
+    }
+  }
+  document.querySelectorAll('.apis')
+    .forEach(el => el.addEventListener('click', function(event) {
+      const api = event.target.matches('[data-api]') && event.target.dataset.api
+      if (api) {
+        APIS[api]()
+      }
+    }))
+  document.querySelector('.example-api').classList.add('breadcrumb')
+})();
+</script>

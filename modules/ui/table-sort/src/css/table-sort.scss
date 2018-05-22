@@ -1,0 +1,13 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$tableSort: "pj-tableSort" !default;
+
+// Core
+// =====================
+.#{$tableSort} {
+  th {
+    text-align: inherit;
+  }
+}

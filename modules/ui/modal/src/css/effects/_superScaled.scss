@@ -1,0 +1,32 @@
+/* superScaled: Super scaled */
+.#{$modal}-superScaledIn {
+  animation: Modal-superScaledIn $modal-duration;
+}
+
+.#{$modal}-superScaledOut {
+  animation: Modal-superScaledOut $modal-duration forwards;
+}
+
+@keyframes Modal-superScaledIn {
+  0% {
+    opacity: 0;
+    transform: scale(2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes Modal-superScaledOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}

@@ -27,6 +27,7 @@ $color-primary-active: #215fdb !default;
 $color-primary-gray: #666 !default;
 $color-primary-dark: #4c93d9;
 $color-primary-light: #77b6f5;
+$color-primary-black:#333 !default; ;
 $color-success: #4be1ab !default;
 $color-success-dark: #5cd29d !default;
 $color-success-light: #6fe7bc !default;
@@ -39,8 +40,7 @@ $color-warning-light: #f4b066 !default;
 $color-danger: #f96868 !default;
 $color-danger-dark: #e9595b !default;
 $color-danger-light: #fa7a7a !default;
-$color-inverse: $gray-dark !default;
-$color-primary-black:#333 !default;
+$color-inverse: $gray-dark !default; 
 $color-btn-hover: #fcfcfc !default;
 $color-gray: #999;
 $color-input-gray: #b3b3b3;
@@ -48,6 +48,7 @@ $color-drop-hover: #fafafa !default;
 $color-drop-border: #f2f2f2 !default;
 $color-btn-border: #296df7 !default;
 $color-btn-font:#1d53bf !default;
+$color-date-hover:#f2f2f2 !default;
 // 2. Options
 //
 // Quickly modify global styling by enabling or disabling optional features.
@@ -72,15 +73,16 @@ $spacers: (
   3: (x: $spacer-x, y: $spacer-y),
   4: (x: ($spacer-x * 1.5), y: ($spacer-y * 1.5)),
   5: (x: ($spacer-x * 3), y: ($spacer-y * 3))
-) !default;
+)
+  !default;
 
 // 4. Fonts
 //
 // Font, line-height.
-$font-family-sans-serif: -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
-  "Helvetica Neue", arial, sans-serif !default;
-$font-family-serif: georgia, "Times New Roman", times, serif !default;
-$font-family-monospace: menlo, monaco, consolas, "Liberation Mono",
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono",
   "Courier New", monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 
@@ -171,9 +173,9 @@ $transition-duration: 150ms !default;
 
 // 9. disabled bg color [by: FreMaNgo]
 //$disabled-color: rgba(223, 228, 237, 0.4) !default;
-$disabled-bg: $gray-lightest;
-$disabled-border: $gray-lighter;
-$disabled-color: $gray-dark;
+$disabled-bg: $color-white;
+$disabled-border: $gray-border;
+$disabled-color: $gray-border;
 
 // mixins
 

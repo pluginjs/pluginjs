@@ -2,6 +2,7 @@
 	"name": "@pluginjs/events",
 	"main": "dist/events.js",
 	"dev-main": "src/main.js",
+  "source": "src/main.js",
 	"module": "dist/events.esm.js",
 	"dependencies": {
 		"@pluginjs/dom": "^0.0.15",

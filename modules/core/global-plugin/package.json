@@ -34,5 +34,6 @@
 	"min": "dist/global-plugin.min.js",
 	"standalone": "dist/global-plugin.standalone.js",
 	"module": "dist/global-plugin.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

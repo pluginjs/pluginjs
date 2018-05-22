@@ -1,0 +1,304 @@
+---
+title: AutoComplete
+layout: plugin
+styles:
+- ../../plugins/auto-complete/css/auto-complete.css
+- ../../css/font-awesome.min.css
+scripts:
+- ../../vendor/popper.js
+- ../../plugins/auto-complete/auto-complete.js
+---
+<section>
+	<h2>Data Structure</h3>
+	<section>
+		<h3>Simple Array</h3>
+{{#code}}
+var data = ['JAVA', 'java', 'java Script', 'go', 'swift', 'C++', '易语言', 'C#', 'Python', 'Ruby'];
+
+Pj.autoComplete('.auto-complete-basic', {
+	data: data
+});
+{{/code}}
+		<input class="auto-complete-basic" data-bool="false" data-number="1" data-data="['JAVA', 'Java Script', 'Go', 'Swift', 'C++', '易语言', 'C#', 'Python', 'Ruby']"></input>
+		<script>
+			(function(){
+				Pj.autoComplete('.auto-complete-basic');
+			})();
+		</script>
+	</section>
+
+	<section>
+		<h3>Initialized by input value</h3>
+		{{#code}}
+<input type="text" class="input" value="java">
+		{{/code}}
+		<input type="text" class="input" value="java">
+		<script>
+			(function(){
+				var data = ['JAVA', 'Java Script', 'Go', 'Swift', 'C++', '易语言', 'C#', 'Python', 'Ruby'];
+				Pj.autoComplete('.input', {data});
+			})();
+		</script>
+	</section>
+	<section>
+		<h3>WordPress demo</h3>
+		{{#code}}
+<input type="text" class="postform pj-input pj-autoComplete-input" id="autocomplete" name="autocomplete" data-plugin="autocomplete" data-theme="success" data-data="[&quot;Java&quot;, &quot;Android&quot;, &quot;Go&quot;, &quot;Spring&quot;, &quot;Google&quot;]" data-keyboard="false" data-ajax="false" data-min-chars="1" data-max-items="3" data-sensitivity="false" data-highlight="true" data-group="false" placeholder="Please Search..." value="">
+<input type="text" id="autocomplete" name="autocomplete" data-plugin="autocomplete" data-theme="success" data-data="[&quot;Java&quot;, &quot;Android&quot;, &quot;Go&quot;, &quot;Spring&quot;, &quot;Google&quot;]" data-keyboard="false" data-ajax="false" data-min-chars="1" data-max-items="3" data-sensitivity="false" data-highlight="true" data-group="false" placeholder="Please Search..." value="" class="pj-input pj-autoComplete-input pj-autoComplete-open">
+		{{/code}}
+<input type="text" class="postform pj-input pj-autoComplete-input" id="autocomplete" name="autocomplete" data-plugin="autocomplete" data-theme="success" data-data="[&quot;Java&quot;, &quot;Android&quot;, &quot;Go&quot;, &quot;Spring&quot;, &quot;Google&quot;]" data-keyboard="false" data-ajax="false" data-min-chars="1" data-max-items="3" data-sensitivity="false" data-highlight="true" data-group="false" placeholder="Please Search..." value="">
+<input type="text" id="autocomplete" name="autocomplete" data-plugin="autocomplete" data-theme="success" data-data="[&quot;Java&quot;, &quot;Android&quot;, &quot;Go&quot;, &quot;Spring&quot;, &quot;Google&quot;]" data-keyboard="false" data-ajax="false" data-min-chars="1" data-max-items="3" data-sensitivity="false" data-highlight="true" data-group="false" placeholder="Please Search..." value="" class="pj-input pj-autoComplete-input pj-autoComplete-open">
+		<script>
+			(function(){
+				Pj.autoComplete('[data-plugin]');
+			})();
+		</script>
+	</section>
+	<section>
+		<h3>Object with Label & Value</h3>
+{{#code}}
+var data = [{label:'England', value:'UK'}, {label:'china', value:'CN'}, {label:'America', value:'USA'}];
+
+Pj.autoComplete('.auto-complete-label-obj', {
+	data: data
+});
+{{/code}}
+		<input class="auto-complete-label-obj"></input>
+		<script>
+			(function(){
+				var dataObj = [{label:'England', value:'UK'}, {label:'China', value:'CN'}, {label:'America', value:'USA'}];
+				Pj.autoComplete('.auto-complete-label-obj', {
+					data: dataObj
+				});
+			})();
+		</script>
+	</section>
+
+	<section>
+		<h3>Array with Label & Value</h3>
+{{#code}}
+var data = [['England', 'UK'],['China', 'CN'],['America', 'USA']];
+
+Pj.autoComplete('.auto-complete-label-arr', {
+	data: data
+});
+{{/code}}
+		<input class="auto-complete-label-arr"></input>
+		<script>
+			(function(){
+				var dataArr = [['England', 'UK'],['China', 'CN'],['America', 'USA']];
+				Pj.autoComplete('.auto-complete-label-arr', {
+					data: dataArr
+				});
+			})();
+		</script>
+	</section>
+</section>
+
+<section>
+	<h2>Options</h3>
+	<section>
+		<h3>Highlight</h3>
+{{#code}}
+var data = ['JAVA', 'java', 'java Script', 'go', 'swift', 'C++', '易语言', 'C#', 'Python', 'Ruby'];
+
+Pj.autoComplete('.auto-complete-label-arr', {
+	data: data,
+	highlight: true
+});
+{{/code}}
+		<input class="auto-complete-highlight"></input>
+		<script>
+			(function(){
+				var data = ['JAVA', 'Java Script', 'Go', 'Swift', 'C++', '易语言', 'C#', 'Python', 'Ruby'];
+				Pj.autoComplete('.auto-complete-highlight', {
+					highlight: true,
+					data: data
+				});
+			})();
+		</script>
+	</section>
+
+	<section>
+		<h3>Custom Render</h3>
+{{#code}}
+var data = [['England', 'UK'],['China', 'CN'],['America', 'USA']];
+
+Pj.autoComplete('.auto-complete-label-arr', {
+	data: data,
+	highlight: true,
+	render(data){
+		return'<span class="test">' + data.label +'<span>'+data.value+'</span></span>';
+	}
+});
+{{/code}}
+		<input class="auto-complete-render"></input>
+		<script>
+			(function(){
+				var dataArr = [['England', 'UK'],['China', 'CN'],['America', 'USA']];
+				Pj.autoComplete('.auto-complete-render', {
+					data: dataArr,
+					highlight: true,
+					render: function(data, item){
+						return'<span class="test">' + data.label +'<span>'+data.value+'</span></span>';
+					}
+				});
+			})();
+		</script>
+	</section>
+
+	<section>
+		<h3>Group</h3>
+{{#code}}
+var data = [{
+	id:'programming languages',
+	list: ['swift', 'JAVA', 'java', 'java script', 'C++', 'Go', 'python', 'Java Script']
+},{
+	id:'countries',
+	list: [['England', 'UK'],['China', 'CN'],['America', 'USA']]
+}];;
+
+Pj.autoComplete('.auto-complete-label-arr', {
+	data: data,
+	highlight: true,
+	group: true
+});
+{{/code}}
+		<input class="auto-complete-group"></input>
+		<script>
+			(function(){
+				var dataGroup = [{
+					id:'programming languages',
+					list: ['Swift', 'JAVA', 'C++', 'Go', 'Python', 'Java Script']
+				},{
+					id:'countries',
+					list: [['England', 'UK'],['China', 'CN'],['America', 'USA']]
+				}];
+				Pj.autoComplete('.auto-complete-group', {
+					data:dataGroup,
+					highlight: true,
+					group: true
+				});
+			})();
+		</script>
+	</section>
+
+	<section>
+		<h3>Ajax</h3>
+{{#code}}
+Pj.autoComplete('.auto-complete-label-arr', {
+	highlight: true,
+	ajax: true,
+	source(val, response, instance){
+		$.getJSON('/ajax', {
+			q: val
+		}, function (data) {
+			response.call(instance, data);
+		});
+	},
+	render(data){
+		return'<span class="test">' + data.label +'<span>'+data.value+'</span></span>';
+	}
+});
+{{/code}}
+		<input class="auto-complete-ajax"></input>
+		<script>
+			var dataGroup = [{
+				id:'programming languages',
+				list: ['Swift', 'JAVA', 'C++', 'Go', 'Python', 'Java Script']
+			},{
+				id:'countries',
+				list: [['England', 'UK'],['China', 'CN'],['America', 'USA']]
+			}];
+			Pj.autoComplete('.auto-complete-ajax', {
+				ajax: true,
+				group: true,
+				source: function(val){
+					const _data = dataGroup;
+					this.handleEl(_data);
+				},
+				render(data) {
+					return '<span class="test">' + data.label + '<span>' + data.value + '</span></span>';
+				}
+			});
+		</script>
+	</section>
+</section>
+<section>
+	<h2>Api</h2>
+	<input class="example-api">
+	<div class="apis top-gap">
+	  <button data-api="init" class="btn">init()</button>
+		<button data-api="get" class="btn">get()</button>
+		<button data-api="set" class="btn">set(textSet)</button>
+		<button data-api="val" class="btn">val()</button>
+		<button data-api="valData" class="btn">val(data)</button>
+		<button data-api="destroy" class="btn">destroy()</button>
+    <button data-api="enable" class="btn">enable()</button>
+    <button data-api="disable" class="btn">disable()</button>
+	</div>
+	<div class="console"></div>
+<script>
+(function(){
+	var data = ['JAVA', 'Java Script', 'Go', 'Swift', 'C++', '易语言', 'C#', 'Python', 'Ruby'];
+	var $elementApi;
+
+	var APIS = {
+		init() {
+      $elementApi = Pj.autoComplete('.example-api', {
+				data: data,
+				onReady: function() {
+		      console.log('ready', 'event');
+		    },
+		    onDestroy: function() {
+		      console.log('destroy', 'event');
+		    },
+		    onEnable: function() {
+		      console.log('enable', 'event');
+		    },
+		    onDisable: function() {
+		      console.log('disable', 'event');
+		    },
+		    // onChange: function(value) {
+		    // 	log('change: ' + JSON.stringify(value), 'event');
+		    // }
+			})
+    },
+    get() {
+    	var value = $elementApi.get();
+      console.log('value: ' + value, 'API');
+    },
+    set() {
+			$elementApi.set('java')
+			log('set(textSet)', 'API');
+    },
+    val() {
+    	var value = $elementApi.val();
+      console.log('value: ' + value, 'API');
+    },
+    valData() {
+      $elementApi.val('data')
+      console.log('val(data)', 'API');
+    },
+    destroy() {
+      $elementApi.destroy()
+    },
+    disable() {
+      $elementApi.disable()
+    },
+    enable() {
+      $elementApi.enable()
+    }
+  }
+
+  document.querySelector('.apis').addEventListener('click', function(event) {
+		if (!event.target.matches('[data-api]')) {
+			return
+		}
+    var api = event.target.dataset.api
+    if (api) {
+      APIS[api]()
+    }
+  })
+})();
+</script>

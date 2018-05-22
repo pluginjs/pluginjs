@@ -1,0 +1,96 @@
+@import "@pluginjs/styles/variables.scss";
+@import "unit.core";
+
+// Vars
+// =====================
+$units: "pj-units" !default;
+$dropdown: "pj-dropdown" !default;
+
+$units-width: 8 * $units-sizer !default; //80px
+$units-height: 3 * $units-sizer !default; //30px
+$units-font-size: $font-size-base !default;
+$units-color: $gray !default;
+$units-border-color: $gray-lighter !default;
+$units-hover-color: #666 !default;
+$units-active-color: #215fdb !default;
+$units-border-radius: $border-radius-base !default;
+$units-trigger-width: 22px !default;
+$units-trigger-font-size: $font-size-base !default;
+
+// Theme
+// =====================
+.#{$units} {
+  &-input {
+    padding: 0;
+    padding-right: $units-trigger-width;
+    font-size: $units-font-size;
+    border-color: $units-border-color;
+    // border-radius: $units-border-radius !important;
+
+    &:hover {
+      border-color: $units-hover-color;
+    }
+
+    &:focus {
+      border-color: $units-active-color;
+    }
+
+    .#{$units}-trigger {
+      font-size: $units-trigger-font-size;
+      text-align: center;
+
+      &:hover,
+      &:focus {
+        color: $units-active-color;
+      }
+
+      .pj-dropdown-label:hover {
+        color: $units-active-color;
+      }
+    }
+
+    .#{$units}-only {
+      cursor: default;
+      background-color: transparent;
+      opacity: 1;
+
+      .pj-dropdown-label:hover {
+        color: $text-color;
+      }
+    }
+  }
+
+  &-wrap.#{$units}-active {
+    .#{$units}-input {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .pj-dropdown-label {
+      color: $units-active-color;
+    }
+    &.#{$dropdown}-panel-on-top {
+      .#{$units}-input {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: $units-border-radius;
+        border-bottom-left-radius: $units-border-radius;
+      }
+    }
+  }
+
+  &.#{$units}-panel {
+    border: 1px solid $units-border-color;
+    box-shadow: none;
+
+    > li {
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+.#{$units}-wrap {
+  input[type="text"].#{$units}-input:focus {
+    border-color: $units-active-color;
+  }
+}

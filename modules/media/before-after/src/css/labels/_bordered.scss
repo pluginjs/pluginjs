@@ -1,0 +1,8 @@
+$bordered-color: rgba(#fff, 0.3) !default;
+
+.#{$beforeAfter}-labels-bordered {
+  .#{$beforeAfter}-label-before,
+  .#{$beforeAfter}-label-after {
+    border: 1px solid $bordered-color;
+  }
+}

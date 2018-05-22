@@ -1,0 +1,17 @@
+.#{$checkbox}-disabled,
+.#{$checkbox} > input[type="checkbox"][disabled] + label {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.#{$checkbox}-disabled {
+  input[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.#{$checkbox} {
+  input[disabled] {
+    cursor: not-allowed;
+  }
+}

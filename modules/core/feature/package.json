@@ -34,5 +34,6 @@
 	"min": "dist/feature.min.js",
 	"standalone": "dist/feature.standalone.js",
 	"module": "dist/feature.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

@@ -1,0 +1,114 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$patternPicker: "pj-patternPicker" !default;
+$editPanel: "pj-editPanel" !default;
+$scrollable: "pj-scrollable" !default;
+
+$patternPicker-spacer: $spacer !default;
+
+// global
+$global-border: 1px solid $gray-lighter !default;
+$global-active-color: $color-primary !default;
+// component
+$component-content-width: 16 * $patternPicker-spacer !default; //160px
+// selector
+// selector item
+$selector-item-width: 11.5 * $patternPicker-spacer !default; //115px
+$selector-item-height: 8 * $patternPicker-spacer !default; //80px
+$selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
+
+// Core
+// =====================
+.#{$patternPicker} {
+  &-selector-list {
+    height: 100%;
+
+    .#{$scrollable} {
+      &-container {
+        // width: 100% !important;
+        height: 100% !important;
+      }
+
+      &-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100% !important;
+      }
+    }
+  }
+
+  &-selector-item {
+    //float: left;
+    display: inline-flex;
+    //width: $selector-item-width;
+    width: calc(100% / 4 - 2px - 20px);
+    height: $selector-item-height;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    list-style: none;
+    border: $global-border;
+    border-color: transparent;
+
+    //&:nth-of-type(4n) {
+    //  margin-right: 0;
+    //}
+
+    &:hover {
+      cursor: pointer;
+      border-color: $global-active-color;
+    }
+  }
+
+  &-forecolor,
+  &-bgcolor {
+    &.pj-colorPicker-input {
+      width: $component-content-width;
+    }
+  }
+
+  .#{$editPanel} {
+    &-component-content {
+      width: $component-content-width;
+    }
+
+    &-info .#{$editPanel}-action {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  }
+  // === untils === //
+  &-hover {
+    opacity: 0.9 !important;
+    transition: opacity 0.3s;
+  }
+
+  &-active {
+    border-color: $global-active-color;
+  }
+
+  &-show {
+    .#{$editPanel}-init {
+      display: none;
+    }
+
+    .#{$editPanel}-info {
+      display: block;
+
+      &-content {
+        display: block;
+      }
+    }
+  }
+}
+
+.#{$patternPicker}-disabled {
+  .#{$editPanel}-info {
+    .#{$patternPicker}-remove,
+    .#{$patternPicker}-edit {
+      cursor: not-allowed !important;
+    }
+  }
+}

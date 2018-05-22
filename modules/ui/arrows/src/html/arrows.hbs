@@ -1,0 +1,251 @@
+---
+title: Arrows
+layout: plugin
+styles:
+- ../../plugins/arrows/css/arrows.css
+scripts:
+- ../../plugins/arrows/arrows.js
+---
+<h3>Themes</h3>
+<section>
+  <h4>Default</h4>
+  <div class="pj-arrows example-default">
+    <a class="pj-arrow pj-arrow-prev" href="#prev" alt="Previous"><i class="pj-arrow-icon icon-chevron-left"></i></a>
+    <a class="pj-arrow pj-arrow-next" href="#next" alt="Next"><i class="pj-arrow-icon icon-chevron-right"></i></a>
+  </div>
+  <script>
+  (function(){
+    var $arrows = Pj.arrows('.example-default');
+  })();
+  </script>
+</section>
+
+<section class="top-gap">
+  <h4>Text</h4>
+  <div class="pj-arrows example-text">
+    <a class="pj-arrow pj-arrow-prev" href="#" alt="Previous">Previous</a>
+    <a class="pj-arrow pj-arrow-next" href="#" alt="Next">Next</a>
+  </div>
+
+  <script>
+  (function(){
+    Pj.arrows('.example-text', {
+      valueFrom: 'text'
+    });
+  })();
+  </script>
+</section>
+
+<section>
+  <h4>Square Outline</h4>
+  <div class="pj-arrows example-square-outline">
+    <a class="pj-arrow pj-arrow-prev" href="#prev" alt="Previous"><i class="pj-arrow-icon icon-chevron-left"></i></a>
+    <a class="pj-arrow pj-arrow-next" href="#next" alt="Next"><i class="pj-arrow-icon icon-chevron-right"></i></a>
+  </div>
+  <script>
+  (function(){
+    var $arrows = Pj.arrows('.example-square-outline', {
+      theme: 'outline square'
+    });
+  })();
+  </script>
+</section>
+
+<section>
+  <h4>Circle Outline</h4>
+  <div class="pj-arrows example-circle-outline">
+    <a class="pj-arrow pj-arrow-prev" href="#prev" alt="Previous"><i class="pj-arrow-icon icon-chevron-left"></i></a>
+    <a class="pj-arrow pj-arrow-next" href="#next" alt="Next"><i class="pj-arrow-icon icon-chevron-right"></i></a>
+  </div>
+  <script>
+  (function(){
+    var $arrows = Pj.arrows('.example-circle-outline', {
+      theme: 'outline circle'
+    });
+  })();
+  </script>
+</section>
+
+<section>
+  <h4>Solid</h4>
+  <div class="pj-arrows example-solid">
+    <a class="pj-arrow pj-arrow-prev" href="#prev" alt="Previous"><i class="pj-arrow-icon icon-chevron-left"></i></a>
+    <a class="pj-arrow pj-arrow-next" href="#next" alt="Next"><i class="pj-arrow-icon icon-chevron-right"></i></a>
+  </div>
+  <script>
+  (function(){
+    var $arrows = Pj.arrows('.example-solid', {
+      theme: 'circle solid'
+    });
+  })();
+  </script>
+</section>
+
+<section>
+  <h4>Shadow</h4>
+  <div class="pj-arrows example-shadow">
+    <a class="pj-arrow pj-arrow-prev" href="#prev" alt="Previous"><i class="pj-arrow-icon icon-chevron-left"></i></a>
+    <a class="pj-arrow pj-arrow-next" href="#next" alt="Next"><i class="pj-arrow-icon icon-chevron-right"></i></a>
+  </div>
+  <script>
+  (function(){
+    var $arrows = Pj.arrows('.example-shadow', {
+      theme: 'circle shadow'
+    });
+  })();
+  </script>
+</section>
+
+<section class="top-gap">
+  <h4>Vertical</h4>
+  <div class="pj-arrows pj-arrows-vertical example-vertical">
+    <a class="pj-arrow pj-arrow-prev" href="#prev" alt="Previous"><i class="pj-arrow-icon icon-chevron-up"></i></a>
+    <a class="pj-arrow pj-arrow-next" href="#next" alt="Next"><i class="pj-arrow-icon icon-chevron-down"></i></a>
+  </div>
+
+  <script>
+  (function(){
+    Pj.arrows('.example-vertical', {
+      direction: 'vertical'
+    });
+  })();
+  </script>
+</section>
+
+<section class="top-gap">
+  <h3>Build from array</h3>
+  <div class="js-arrows"></div>
+
+  <div class="pad-top-20">
+    <button class="btn js-api-load">load</button>
+  </div>
+  <script>
+  (function(){
+    var $jsArrow = Pj.arrows('.js-arrows', {
+      default: null,
+      prev: {
+        text: 'Previous',
+        href: '#prev'
+      },
+      next: {
+        text: 'Next',
+        href: '#next'
+      },
+      onNext: function(value) {
+        console.info('next:');
+        console.info(value);
+      },
+      onPrev: function(value) {
+        console.info('prev:');
+        console.info(value);
+      },
+      valueFrom: 'data-href', // text or data-attr
+      templates: {
+        prev: function() {
+          return '<a class="{classes.PREV}" data-href="{href}" alt="{text}"><i class="{classes.ICON} icon-chevron-left"></i></a>';
+        },
+        next: function(css) {
+          return '<a class="{classes.NEXT}" data-href="{href}" alt="{text}"><i class="{classes.ICON} icon-chevron-right"></i></a>';
+        }
+      }
+    });
+/*
+    Pj.arrows('.js-api-load').on('click', function() {
+      $jsArro, 'load', {
+        text: 'Previous',
+        href: '#previous'
+      }, {
+        text: 'Next',
+        href: '#next'
+      }
+    });
+*/
+  })()
+  </script>
+</section>
+
+<section class="top-gap">
+  <h3>Api</h3>
+  <div class="pj-arrows example-api">
+    <a class="pj-arrow pj-arrow-prev" href="#prev" alt="Previous"><i class="pj-arrow-icon icon-chevron-left"></i></a>
+    <a class="pj-arrow pj-arrow-next" href="#next" alt="Next"><i class="pj-arrow-icon icon-chevron-right"></i></a>
+  </div>
+  <div class="apis top-gap">
+    <button data-api="init" class="btn">init</button>
+    <button data-api="destroy" class="btn">destroy</button>
+    <button data-api="enable" class="btn">enable</button>
+    <button data-api="disable" class="btn">disable</button>
+    <button data-api="show" class="btn">show</button>
+    <button data-api="hide" class="btn">hide</button>
+  </div>
+  <div class="console top-gap"></div>
+  <script>
+  (function(){
+    //var $arrows = $(".example-api");
+
+    /*$arrows.on('arrows:next', function(event, api, value) {
+      console.info('next:');
+      console.info(value);
+    });
+
+    $arrows.on('arrows:prev', function(event, api, value) {
+      console.info('prev:');
+      console.info(value);
+    });*/
+
+    var $elementApi;
+    var APIS = {
+      init() {
+        $elementApi = Pj.arrows('.example-api', {
+          onReady: function() {
+            log('ready', 'event');
+          },
+          onDestroy: function() {
+            log('destroy', 'event');
+          },
+          onEnable: function() {
+            log('enable', 'event');
+          },
+          onDisable: function() {
+            log('disable', 'event');
+          },
+          onShow: function() {
+            log('show', 'event');
+          },
+          onHide: function() {
+            log('hide', 'event');
+          },
+          onPrev: function(value) {
+            log('prev: ' + value, 'event');
+          },
+          onNext: function(value) {
+            log('next: ' + value, 'event');
+          }
+        }).data('arrows');
+      },
+      destroy() {
+        $elementApi.destroy()
+      },
+      disable() {
+        $elementApi.disable()
+      },
+      enable() {
+        $elementApi.enable()
+      },
+      hide() {
+        $elementApi.hide()
+      },
+      show() {
+        $elementApi.show()
+      }
+    }
+
+    Pj.arrows('.apis')/*.on('click', '[data-api]', function(event) {
+      var api = $(this).data('api');
+      if (api) {
+        APIS[api]()
+      }
+    })*/
+  })();
+  </script>
+</section>

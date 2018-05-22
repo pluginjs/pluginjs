@@ -1,0 +1,108 @@
+$circle-handle-size: 35px !default;
+$circle-handle-bg: rgba($color-primary, 0.8) !default;
+$circle-handle-hover-bg: $color-primary !default;
+$circle-handle-line-color: rgba(#000, 0.3) !default;
+$circle-handle-hover-line-color: rgba(#000, 0.3) !default;
+
+.#{$beforeAfter}--circle {
+  .#{$beforeAfter}-handle {
+    top: 50%;
+    left: 50%;
+    width: $circle-handle-size;
+    height: $circle-handle-size;
+    background: $circle-handle-bg;
+    border: $beforeAfter-handle-border-size solid $circle-handle-line-color;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+
+    &::before,
+    &::after {
+      position: absolute;
+      z-index: 5;
+      display: block;
+      content: " ";
+      background: $circle-handle-hover-line-color;
+      box-shadow: $beforeAfter-handle-box-shadow;
+    }
+
+    &:hover {
+      background: $circle-handle-hover-bg;
+      border-color: $circle-handle-hover-line-color;
+
+      &::before,
+      &::after {
+        background: $circle-handle-hover-line-color;
+      }
+    }
+  }
+
+  &.#{$beforeAfter}-horizontal {
+    .#{$beforeAfter}-handle {
+      &::before,
+      &::after {
+        left: 50%;
+        width: $beforeAfter-handle-border-size;
+        height: 9999px;
+        transform: translateX(-50%);
+      }
+
+      &::before {
+        bottom: 50%;
+        margin-bottom: $circle-handle-size / 2 + $beforeAfter-handle-border-size;
+      }
+
+      &::after {
+        top: 50%;
+        margin-top: $circle-handle-size / 2 + $beforeAfter-handle-border-size;
+      }
+    }
+
+    .#{$beforeAfter}-arrow-before,
+    .#{$beforeAfter}-arrow-after {
+      width: $circle-handle-size / 2;
+    }
+
+    .#{$beforeAfter}-arrow-before {
+      left: 0;
+    }
+
+    .#{$beforeAfter}-arrow-after {
+      right: 0;
+    }
+  }
+
+  &.#{$beforeAfter}-vertical {
+    .#{$beforeAfter}-handle {
+      &::before,
+      &::after {
+        top: 50%;
+        width: 9999px;
+        height: $beforeAfter-handle-border-size;
+        transform: translateY(-50%);
+      }
+
+      &::before {
+        left: 50%;
+        margin-left: $circle-handle-size / 2 + $beforeAfter-handle-border-size;
+      }
+
+      &::after {
+        right: 50%;
+        margin-right: $circle-handle-size / 2 + $beforeAfter-handle-border-size;
+      }
+    }
+
+    .#{$beforeAfter}-arrow-before,
+    .#{$beforeAfter}-arrow-after {
+      line-height: $circle-handle-size / 2;
+    }
+
+    .#{$beforeAfter}-arrow-before {
+      top: 0;
+    }
+
+    .#{$beforeAfter}-arrow-after {
+      bottom: 0;
+    }
+  }
+}

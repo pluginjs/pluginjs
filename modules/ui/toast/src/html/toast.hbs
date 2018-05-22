@@ -1,0 +1,405 @@
+---
+title: Toast
+layout: plugin
+styles:
+- ../../css/styles.css
+- ../../plugins/toast/css/toast.css
+scripts:
+- ../../plugins/toast/toast.js
+---
+<section>
+  <h2>Events</h2>
+  <button class="btn onShow">onShow</button>
+  <div class="console"></div>
+  <script>
+  $(function(){
+    $('.onShow').on('click', function(event) {
+      Pj.toast.open({
+        onDestroy: function() {
+          log('destroy', 'event');
+        },
+        onShow: function() {
+          log('show', 'event');
+        },
+        onHide: function() {
+          log('hide', 'event');
+        },
+      });
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>effect</h2>
+  <button class="btn fadeUp">fadeUp</button>
+  <button class="btn bounceInLeft">bounceInLeft</button>
+
+  <script>
+  $(function(){
+    $('.fadeUp').on('click', function(event) {
+      Pj.toast.open({
+        effect: 'fade',
+        position: 'bottom-left',
+      });
+    });
+  });
+  $(function(){
+    $('.bounceInLeft').on('click', function(event) {
+      Pj.toast.open({
+        effect: 'slide',
+        position: 'bottom-left',
+      });
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>allowClose</h2>
+  <button class="btn closetrue">true</button>
+  <button class="btn closenull">false</button>
+
+  <script>
+  $(function(){
+    $('.closetrue').on('click', function(event) {
+      Pj.toast.open();
+    });
+  });
+  $(function(){
+    $('.closenull').on('click', function(event) {
+      Pj.toast.open({
+        allowClose: false,
+        content: 'this is caoxi <a href="#">hello</a>',
+      });
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>stack</h2>
+  <button class="btn stack1">1</button>
+  <button class="btn stack6">6</button>
+
+  <script>
+  $(function(){
+    $('.stack1').on('click', function(event) {
+      Pj.toast.open({
+        stack: 1,
+      });
+    });
+  });
+  $(function(){
+    $('.stack6').on('click', function(event) {
+      Pj.toast.open();
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>duration</h2>
+  <button class="btn hidenull">false</button>
+  <button class="btn hideater">2000ms</button>
+
+  <script>
+  $(function(){
+    $('.hidenull').on('click', function(event) {
+      Pj.toast.open({
+        duration: false,
+      });
+    });
+  });
+  $(function(){
+    $('.hideater').on('click', function(event) {
+      Pj.toast.open();
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>position</h2>
+  <button class="btn bottom-left">bottom-left</button>
+  <button class="btn bottom-right">bottom-right</button>
+  <button class="btn top-right">top-right</button>
+  <button class="btn top-left">top-left</button>
+  <button class="btn bottom-center">bottom-center</button>
+  <button class="btn top-center">top-center</button>
+  <button class="btn mid-center">mid-center</button>
+
+  <script>
+  $(function(){
+    $('.bottom-left').on('click', function(event) {
+      Pj.toast.open({
+        position: 'bottom-left',
+      });
+    });
+  });
+  $(function(){
+    $('.bottom-right').on('click', function(event) {
+      Pj.toast.open({
+        position: 'bottom-right',
+      });
+    });
+  });
+  $(function(){
+    $('.top-right').on('click', function(event) {
+      Pj.toast.open({
+        position: 'top-right',
+      });
+    });
+  });
+  $(function(){
+    $('.top-left').on('click', function(event) {
+      Pj.toast.open({
+        position: 'top-left',
+      });
+    });
+  });
+  $(function(){
+    $('.bottom-center').on('click', function(event) {
+      Pj.toast.open({
+        position: 'bottom-center',
+      });
+    });
+  });
+  $(function(){
+    $('.top-center').on('click', function(event) {
+      Pj.toast.open({
+        position: 'top-center',
+      });
+    });
+  });
+  $(function(){
+    $('.mid-center').on('click', function(event) {
+      Pj.toast.open({
+        position: 'mid-center',
+      });
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>icon</h2>
+  <button class="btn success">success</button>
+  <button class="btn info">info</button>
+  <button class="btn warning">warning</button>
+  <button class="btn danger">danger</button>
+
+  <script>
+  $(function(){
+    $('.def').on('click', function(event) {
+      Pj.toast.open({
+        icon: '',
+      });
+    });
+  });
+  $(function(){
+    $('.primary').on('click', function(event) {
+      Pj.toast.open({
+        icon: 'primary',
+      });
+    });
+  });
+  $(function(){
+    $('.success').on('click', function(event) {
+      Pj.toast.open({
+        icon: 'success',
+      });
+    });
+  });
+  $(function(){
+    $('.info').on('click', function(event) {
+      Pj.toast.open({
+        icon: 'info',
+      });
+    });
+  });
+  $(function(){
+    $('.warning').on('click', function(event) {
+      Pj.toast.open({
+        icon: 'warning',
+      });
+    });
+  });
+  $(function(){
+    $('.danger').on('click', function(event) {
+      Pj.toast.open({
+        icon: 'danger',
+      });
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>set bgColor</h2>
+  <button class="btn background1" style="background: #55A4F2;">show toast</button>
+  <button class="btn background2" style="background: #F86B67;">show toast</button>
+
+  <script>
+  $(function(){
+    $('.background1').on('click', function(event) {
+      Pj.toast.open({
+        bgColor: '#55A4F2',
+        loaderBgColor: '#AAD2F9',
+        titleColor: '#fff',
+        icon: '',
+        closeBtnColor: '#fff'
+      });
+    });
+  });
+  $(function(){
+    $('.background2').on('click', function(event) {
+      Pj.toast.open({
+        bgColor: '#F86B67',
+        loaderBgColor: '#FCB5B3',
+        titleColor: '#fff',
+        icon: '',
+        closeBtnColor: '#fff'
+      });
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>static functions</h2>
+  <button class="btn funcreset">reset</button>
+  <button class="btn funcwarning">warning</button>
+  <button class="btn funcsuccess">success</button>
+  <button class="btn funcerror">error</button>
+
+  <script>
+  $(function(){
+    $('.funcreset').on('click', function(event) {
+      Pj.toast.reset();
+    });
+  });
+
+  $(function(){
+    $('.funcwarning').on('click', function(event) {
+      Pj.toast.warning('My name is Inigo Montoya. You killed my father, prepare to die!');
+    });
+  });
+
+  $(function(){
+    $('.funcsuccess').on('click', function(event) {
+      Pj.toast.success('Miracle Max Says', 'Have fun storming the castle!')
+    });
+  });
+
+  $(function(){
+    $('.funcerror').on('click', function(event) {
+      Pj.toast.error( 'Inconceivable!', 'I do not think that word means what you think it means.')
+    });
+  });</script>
+</section>
+
+<section>
+  <h2>set your iconClass</h2>
+  <button class="btn iconClass">show toast</button>
+
+  <script>
+  $(function(){
+    $('.iconClass').on('click', function(event) {
+      Pj.toast.open({
+        iconClass: 'sdfsdfew',
+      });
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>Buttons</h2>
+  <button class="btn buttons1">button</button>
+  <button class="btn buttons2">buttons</button>
+
+  <script>
+  $(function(){
+    $('.buttons1').on('click', function(event) {
+      Pj.toast.open({
+        buttons: {
+          btn1: {
+            title: 'confirm',
+            class: 'btn-cancel',
+            fn: function() {
+              alert('confirm')
+            }
+          },
+        },
+      });
+    });
+  });
+  $(function(){
+    $('.buttons2').on('click', function(event) {
+      Pj.toast.open({
+        buttons: {
+          btn1: {
+            title: 'cancel',
+            class: 'btn-cancel',
+            fn: function() {
+              console.log('click btn cancel')
+              alert('cancel')
+            }
+          },
+          btn2: {
+            title: 'confirm',
+            class: 'btn-blue',
+            fn: function() {
+              console.log('click btn ok')
+              alert('confirm')
+            }
+          },
+        },
+      });
+    });
+  });
+  </script>
+</section>
+
+<section>
+  <h2>loader</h2>
+  <button class="btn loader">open toast</button>
+  <button class="btn loadercolor">set loadercolor</button>
+
+  <script>
+  $(function(){
+    $('.loader').on('click', function(event) {
+      Pj.toast.open();
+    });
+  });
+
+  $(function(){
+    $('.loadercolor').on('click', function(event) {
+      Pj.toast.open({
+        loaderBgColor: '#EC3C3C'
+      });
+    });
+  });
+ </script>
+</section>
+
+<section>
+  <h2>set content title icon X Color</h2>
+  <button class="btn setColor">set Color</button>
+
+  <script>
+  $(function(){
+    $('.setColor').on('click', function(event) {
+      Pj.toast.open({
+        icon: 'success',
+        iconColor: 'red',
+        title: 'Inconceivable!',
+        titleColor:'blue',
+        content:'I do not think that word means what you think it means.',
+        contentColor:'red',
+        closeBtnColor: 'green',
+      });
+    });
+  });</script>
+</section>

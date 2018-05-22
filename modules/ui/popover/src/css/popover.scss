@@ -1,0 +1,445 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$popover: "pj-popover" !default;
+$popover-zindex: $zindex-popover !default;
+$popover-font-size: $font-size-base !default;
+$popover-max-width: 300px !default;
+$popover-max-height: 50vh !default;
+$popover-color: $text-color !default;
+$popover-bg: #fff !default;
+$popover-opacity: 0.9 !default;
+$popover-margin: 3px !default;
+$popover-border-width: 1px !default;
+$popover-border-color: $border-color !default;
+$popover-border-radius: $border-radius-base !default;
+$popover-box-shadow: $box-shadow-base !default;
+$popover-spacer-x: 30px !default;
+$popover-spacer-y: 20px !default;
+$popover-simple-spacer-x: 10px !default;
+$popover-simple-spacer-y: 10px !default;
+$popover-close-spacer-x: 10px !default;
+$popover-close-spacer-y: 10px !default;
+$popover-simple-title-spacer: $popover-simple-spacer-y $popover-simple-spacer-x
+  0 $popover-simple-spacer-x !default;
+$popover-simple-content-spacer: 0 $popover-simple-spacer-x
+  $popover-simple-spacer-y !default;
+$popover-title-spacer: $popover-spacer-y $popover-spacer-x 0 $popover-spacer-x !default;
+$popover-title-color: $popover-color !default;
+$popover-title-font-size: $font-size-sm !default;
+$popover-title-line-height: 1.5em !default;
+$popover-content-spacer: 0 $popover-spacer-x $popover-spacer-y !default;
+$popover-arrow-width: 8px !default;
+$popover-arrow-color: $popover-bg !default;
+$popover-arrow-outer-width: ($popover-arrow-width + 1px) !default;
+$popover-arrow-outer-color: fade-in($popover-border-color, 0.05) !default;
+$popover-arrow-offset-x: 8px !default;
+$popover-arrow-offset-y: 8px !default;
+$popover-close-color: $gray-dark !default;
+$popover-close-font-size: $font-size-base !default;
+$popover-close-line-height: 1em !default;
+$popover-dark-color: #fff !default;
+$popover-dark-bg: $gray-darkest !default;
+$popover-dark-arrow-color: $popover-dark-bg !default;
+$popover-dark-border-color: rgba(255, 255, 255, 0.1) !default;
+$popover-shadow-box-shadow: $box-shadow-5 !default;
+
+@mixin reset-text {
+  font-family: $font-family-base;
+  // We deliberately do NOT reset font-size or word-wrap.
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-base;
+  // text-align: left; // Fallback for where `start` is not supported
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+  line-break: auto;
+}
+
+// Core
+// =====================
+.#{$popover} {
+  @include reset-text();
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $popover-zindex;
+  display: block;
+  max-width: $popover-max-width;
+  font-size: $popover-font-size;
+  color: $popover-color;
+  // Allow breaking very long words so they don't overflow the popover's bounds
+  word-wrap: break-word;
+  background-color: $popover-bg;
+  background-clip: padding-box;
+  border: $popover-border-width solid $popover-border-color;
+  border-radius: $popover-border-radius;
+  box-shadow: $popover-box-shadow;
+  opacity: 0;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  &.#{$popover}-show {
+    opacity: $popover-opacity;
+  }
+
+  &::before,
+  &::after {
+    pointer-events: none;
+  }
+
+  // placement^="top"
+  &.pj-tether-element-attached-bottom.pj-tether-target-attached-top {
+    margin-top: -$popover-margin;
+
+    &::before,
+    &::after {
+      border-bottom-width: 0;
+    }
+
+    &::before {
+      bottom: -$popover-arrow-outer-width;
+      border-top-color: $popover-arrow-outer-color;
+    }
+
+    &::after {
+      bottom: -($popover-arrow-outer-width - 1);
+      border-top-color: $popover-arrow-color;
+    }
+  }
+
+  // placement^="bottom"
+  &.pj-tether-element-attached-top.pj-tether-target-attached-bottom {
+    margin-top: $popover-margin;
+
+    &::before,
+    &::after {
+      border-top-width: 0;
+    }
+
+    &::before {
+      top: -$popover-arrow-outer-width;
+      border-bottom-color: $popover-arrow-outer-color;
+    }
+
+    &::after {
+      top: -($popover-arrow-outer-width - 1);
+      border-bottom-color: $popover-arrow-color;
+    }
+  }
+
+  // placement="top", "bottom"
+  &.pj-tether-element-attached-bottom.pj-tether-target-attached-top,
+  &.pj-tether-element-attached-top.pj-tether-target-attached-bottom {
+    &::before,
+    &::after {
+      left: 50%;
+    }
+
+    &::before {
+      margin-left: -$popover-arrow-outer-width;
+    }
+
+    &::after {
+      margin-left: -$popover-arrow-width;
+    }
+  }
+
+  // placement="top left", "bottom left"
+  &.pj-tether-element-attached-left.pj-tether-target-attached-left {
+    &::before,
+    &::after {
+      margin-left: 0;
+    }
+
+    &::before {
+      left: $popover-arrow-offset-x;
+    }
+
+    &::after {
+      left: $popover-arrow-offset-x + 1;
+    }
+  }
+
+  // placement="top right", "bottom right"
+  &.pj-tether-element-attached-right.pj-tether-target-attached-right {
+    &::before,
+    &::after {
+      left: auto;
+      margin-left: 0;
+    }
+
+    &::before {
+      right: $popover-arrow-offset-x;
+    }
+
+    &::after {
+      right: $popover-arrow-offset-x + 1;
+    }
+  }
+
+  &.pj-tether-element-attached-left.pj-tether-target-attached-right {
+    margin-left: $popover-margin;
+
+    &::before,
+    &::after {
+      border-left-width: 0;
+    }
+
+    &::before {
+      left: -$popover-arrow-outer-width;
+      margin-top: -$popover-arrow-outer-width;
+      border-right-color: $popover-arrow-outer-color;
+    }
+
+    &::after {
+      left: -($popover-arrow-outer-width - 1);
+      margin-top: -($popover-arrow-outer-width - 1);
+      border-right-color: $popover-arrow-color;
+    }
+  }
+
+  // placement^="left"
+  &.pj-tether-element-attached-right.pj-tether-target-attached-left {
+    margin-left: -$popover-margin;
+
+    &::before,
+    &::after {
+      border-right-width: 0;
+    }
+
+    &::before {
+      right: -$popover-arrow-outer-width;
+      border-left-color: $popover-arrow-outer-color;
+    }
+
+    &::after {
+      right: -($popover-arrow-outer-width - 1);
+      border-left-color: $popover-arrow-color;
+    }
+  }
+
+  // placement="right", "left"
+  &.pj-tether-element-attached-left.pj-tether-target-attached-right,
+  &.pj-tether-element-attached-right.pj-tether-target-attached-left {
+    &::before,
+    &::after {
+      top: 50%;
+    }
+
+    &::before {
+      margin-top: -$popover-arrow-outer-width;
+    }
+
+    &::after {
+      margin-top: -($popover-arrow-outer-width - 1);
+    }
+  }
+
+  // placement="right top", "left top"
+  &.pj-tether-element-attached-top.pj-tether-target-attached-top {
+    &::before,
+    &::after {
+      margin-top: 0;
+    }
+
+    &::before {
+      top: $popover-arrow-offset-y;
+    }
+
+    &::after {
+      top: $popover-arrow-offset-y + 1;
+    }
+  }
+
+  // placement="right bottom", "left bottom"
+  &.pj-tether-element-attached-bottom.pj-tether-target-attached-bottom {
+    &::before,
+    &::after {
+      top: auto;
+      margin-top: 0;
+    }
+
+    &::before {
+      bottom: $popover-arrow-offset-y;
+    }
+
+    &::after {
+      bottom: $popover-arrow-offset-y + 1;
+    }
+  }
+}
+
+// Offset the popover to account for the popover arrow
+.#{$popover}-title {
+  padding: $popover-title-spacer;
+  margin-bottom: 0;
+  font-size: $popover-title-font-size;
+  line-height: $popover-title-line-height;
+
+  &:empty {
+    display: none;
+  }
+
+  &:empty + .#{$popover}-content {
+    padding-top: $popover-spacer-y;
+  }
+}
+
+.#{$popover}-content {
+  max-height: $popover-max-height;
+  padding: $popover-content-spacer;
+  overflow: auto;
+}
+
+.#{$popover}-button {
+  font-size: $popover-font-size;
+}
+
+// Arrows
+//
+// .#{$popover}-arrow is outer, .#{$popover}-arrow::after is inner
+
+.#{$popover}::before,
+.#{$popover}::after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.#{$popover}::before {
+  content: "";
+  border-width: $popover-arrow-outer-width;
+}
+
+.#{$popover}::after {
+  content: "";
+  border-width: $popover-arrow-width;
+}
+
+// Close
+.#{$popover}-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  padding: $popover-close-spacer-y $popover-close-spacer-x;
+  font-size: $popover-close-font-size;
+  line-height: $popover-close-line-height;
+  color: $popover-close-color;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  opacity: 0.5;
+  appearance: none;
+  // -webkit-appearance: none;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+
+  // &::before {
+  //   font-size: 1em;
+  //   content: "\00d7";
+  // }
+  &:not(:disabled):hover {
+    background: initial;
+  }
+}
+
+// Animation
+.#{$popover}-fade {
+  opacity: 0;
+  transition: opacity 0.15s linear;
+
+  &.#{$popover}-show {
+    opacity: 1;
+  }
+}
+$popover-dark-color: #fff !default;
+$popover-dark-bg: $gray-darker !default;
+$popover-dark-border-color: fade-in($popover-dark-bg, 0.1) !default;
+$popover-dark-box-shadow: $box-shadow-base !default;
+$popover-dark-arrow-color: $popover-dark-bg !default;
+$popover-dark-arrow-outer-color: fade-in(
+  $popover-dark-border-color,
+  0.05
+) !default;
+$popover-dark-title-color: $popover-dark-color !default;
+
+.#{$popover}--simple {
+  .#{$popover}-content {
+    padding: $popover-simple-content-spacer;
+  }
+
+  .#{$popover}-title {
+    padding: $popover-simple-title-spacer;
+  }
+}
+
+// Dark Skin
+.#{$popover}--dark {
+  color: $popover-dark-color;
+  background-color: $popover-dark-bg;
+  border-color: $popover-dark-border-color;
+  box-shadow: $popover-dark-box-shadow;
+
+  .#{$popover}-title {
+    color: $popover-dark-title-color;
+  }
+
+  &.pj-tether-element-attached-bottom.pj-tether-target-attached-top {
+    &::before {
+      border-top-color: $popover-dark-arrow-outer-color;
+    }
+
+    &::after {
+      border-top-color: $popover-dark-arrow-color;
+    }
+  }
+
+  &.pj-tether-element-attached-top.pj-tether-target-attached-bottom {
+    &::before {
+      border-bottom-color: $popover-dark-arrow-outer-color;
+    }
+
+    &::after {
+      border-bottom-color: $popover-dark-arrow-color;
+    }
+  }
+
+  &.pj-tether-element-attached-left.pj-tether-target-attached-right {
+    &::before {
+      border-right-color: $popover-dark-arrow-outer-color;
+    }
+
+    &::after {
+      border-right-color: $popover-dark-arrow-color;
+    }
+  }
+
+  &.pj-tether-element-attached-right.pj-tether-target-attached-left {
+    &::before {
+      border-left-color: $popover-dark-arrow-outer-color;
+    }
+
+    &::after {
+      border-left-color: $popover-dark-arrow-color;
+    }
+  }
+}

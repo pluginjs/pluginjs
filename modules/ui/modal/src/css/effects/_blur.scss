@@ -1,0 +1,32 @@
+/* blur:  Blur */
+.#{$modal}-blurIn {
+  animation: Modal-blurIn $modal-duration;
+}
+
+.#{$modal}-blurOut {
+  animation: Modal-blurOut $modal-duration forwards;
+}
+
+@keyframes Modal-blurIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-5%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes Modal-blurOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-5%);
+  }
+}

@@ -1,0 +1,17 @@
+{
+	"name": "paginator-samples",
+	"version": "1.0.0",
+	"description": "Simple paginator example",
+	"main": "index.html",
+	"scripts": {
+		"start": "parcel index.html --open",
+		"build": "parcel build index.html"
+	},
+	"devDependencies": {
+		"parcel-bundler": "^1.6.1"
+	},
+	"dependencies": {
+		"@pluginjs/paginator": "^0.2.19"
+	},
+	"license": "UNLICENSED"
+}

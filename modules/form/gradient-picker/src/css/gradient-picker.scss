@@ -1,0 +1,175 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$gradientPicker: "pj-gradientPicker" !default;
+$editPanel: "pj-editPanel" !default;
+$scrollable: "pj-scrollable" !default;
+$range: "pj-range" !default;
+// global
+$gradientPicker-sizer: $sizer !default;
+
+$gradientPicker-border: 1px solid $gray-lighter !default;
+$gradientPicker-border-radius: $border-radius-base !default;
+$gradientPicker-active-color: $color-primary !default;
+$gradientPicker-warning-color: $color-warning !default;
+
+// component
+$component-content-width: 16 * $gradientPicker-sizer !default; //160px
+// colorType
+$colorType-height: 3 * $gradientPicker-sizer !default; //30px
+// selector item
+$selector-item-width: 11.5 * $gradientPicker-sizer !default; //115px
+$selector-item-height: 8 * $gradientPicker-sizer !default; //80px
+$selector-item-margin-size: 1.7 * $gradientPicker-sizer !default; //17px
+
+$editPanel-component-color: $color-red !default;
+// Core
+// =====================
+.#{$gradientPicker} {
+  // === animate === //
+  @keyframes flashing {
+    0% {
+      border-color: $gradientPicker-warning-color;
+    }
+
+    50% {
+      border-color: $gray-lighter;
+    }
+
+    100% {
+      border-color: $gradientPicker-warning-color;
+    }
+  }
+
+  .#{$editPanel}-info {
+    .#{$editPanel}-action {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  }
+
+  &-selector-list {
+    height: 100%;
+
+    .#{$scrollable} {
+      &-container {
+        // width: 100% !important;
+        // height: 100% !important;
+      }
+
+      &-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100% !important;
+      }
+    }
+  }
+
+  &-selector-item {
+    //float: left;
+    display: inline-flex;
+    width: calc(100% / 4 - 2px - 20px);
+    height: $selector-item-height;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    list-style: none;
+    border: $gradientPicker-border;
+    border-color: transparent;
+
+    &:nth-of-type(4n) {
+      //margin-right: 0;
+      //margin-bottom: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      border-color: $gradientPicker-active-color;
+    }
+  }
+
+  &-colortype {
+    display: flex;
+    height: $colorType-height;
+  }
+
+  &-preset,
+  &-custom {
+    height: 100%;
+    line-height: $colorType-height;
+    text-align: center;
+    border: $gradientPicker-border;
+
+    &:hover {
+      cursor: pointer;
+      border-color: $gradientPicker-active-color;
+    }
+  }
+
+  &-preset {
+    width: 50%;
+    border-top-left-radius: $gradientPicker-border-radius;
+    border-bottom-left-radius: $gradientPicker-border-radius;
+
+    &.#{$gradientPicker}-active + .#{$gradientPicker}-custom {
+      border-left-color: transparent;
+    }
+  }
+
+  &-custom {
+    position: relative;
+    left: -1px;
+    flex-grow: 1;
+    border-top-right-radius: $gradientPicker-border-radius;
+    border-bottom-right-radius: $gradientPicker-border-radius;
+  }
+
+  .pj-editPanel-component-content {
+    width: $component-content-width;
+  }
+
+  .#{$editPanel} {
+    &-panel.#{$gradientPicker}-custom-mode {
+      .#{$editPanel}-component:last-of-type {
+        display: flex;
+      }
+    }
+  }
+
+  .#{$range}-control {
+    width: 9 * $gradientPicker-sizer; //90px
+  }
+
+  // === untils === //
+  &-hover {
+    opacity: 0.9 !important;
+    transition: opacity 0.3s;
+  }
+
+  &-active {
+    color: $gradientPicker-active-color;
+    border-color: $gradientPicker-active-color;
+  }
+
+  &-warning {
+    // border-color: $gradientPicker-warning-color !important;
+    animation: flashing 0.4s ease;
+  }
+
+  &-show {
+    .#{$editPanel}-init {
+      display: none;
+    }
+
+    .#{$editPanel}-info {
+      display: block;
+    }
+  }
+
+  &.#{$editPanel} {
+    .#{$editPanel}-component:last-of-type {
+      color: $editPanel-component-color;
+    }
+  }
+}

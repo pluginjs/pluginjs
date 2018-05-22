@@ -1,0 +1,97 @@
+@import "@pluginjs/styles/variables.scss";
+@import "../../../scrollbar/src/css/mixins/scrollbar";
+
+// Vars
+// =====================
+$scrollable: "pj-scrollable" !default;
+$scrollable-bar: "pj-scrollbar" !default;
+$scrollable-bar-size: 4px !default;
+$scrollable-bar-dragging-size: 10px !default;
+$scrollable-bar-dragging-bg: rgba($gray-lighter, 0.4) !default;
+$scrollable-bar-hovering-bg: rgba($gray-lighter, 0.4) !default;
+$scrollable-bar-handle-offset: 5px !default;
+$scrollable-bar-handle-color: rgba($gray-light, 0.4) !default;
+$scrollable-bar-handle-hovering-color: rgba($gray-light, 0.4) !default;
+$scrollable-bar-handle-dragging-color: rgba($gray, 0.4) !default;
+
+// Core
+// =====================
+.#{$scrollable} {
+  @include scrollbar(
+    $scrollable-bar,
+    $scrollable-bar-size,
+    $scrollable-bar-dragging-size,
+    $scrollable-bar-dragging-bg,
+    $scrollable-bar-hovering-bg,
+    $scrollable-bar-handle-offset,
+    $scrollable-bar-handle-color,
+    $scrollable-bar-handle-hovering-color,
+    $scrollable-bar-handle-dragging-color
+  );
+
+  &.#{$scrollable}-enabled {
+    overflow: hidden !important;
+  }
+
+  &-container {
+    .#{$scrollable}.#{$scrollable}-enabled & {
+      box-sizing: content-box !important;
+      overflow: hidden !important;
+    }
+
+    .#{$scrollable}.#{$scrollable}-enabled &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      appearance: none;
+      // -webkit-appearance: none;
+    }
+
+    .#{$scrollable}-vertical.#{$scrollable}-enabled & {
+      overflow-y: scroll !important;
+    }
+
+    .#{$scrollable}-horizontal.#{$scrollable}-enabled & {
+      overflow-x: scroll !important;
+    }
+  }
+
+  &-content {
+    .#{$scrollable}.#{$scrollable}-enabled & {
+      @include clearfix();
+
+      position: relative !important;
+      overflow: visible !important;
+    }
+  }
+
+  &-bar {
+    .#{$scrollable}.#{$scrollable}-disabled & {
+      display: none;
+    }
+
+    &-hide {
+      opacity: 0;
+      transition-delay: 400ms;
+    }
+  }
+
+  &.#{$scrollable}-scrolling {
+    .#{$scrollable-bar}-bar {
+      opacity: 1;
+      transition: opacity 0;
+    }
+  }
+
+  &.#{$scrollable}-hovering {
+    .#{$scrollable-bar}-handle {
+      background: $scrollable-bar-handle-hovering-color;
+    }
+  }
+
+  &.#{$scrollable}-dragging {
+    user-select: none;
+    -webkit-touch-callout: none;
+    // user-input: disabled;
+    // user-focus: ignore;
+  }
+}

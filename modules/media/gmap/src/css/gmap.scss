@@ -1,0 +1,16 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$gmap: "pj-gmap" !default;
+
+// Core
+// =====================
+.#{$gmap} {
+  position: relative;
+  overflow: hidden;
+
+  * {
+    max-width: none;
+  }
+}

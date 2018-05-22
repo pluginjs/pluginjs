@@ -1,0 +1,317 @@
+---
+title: Paginator
+layout: plugin
+styles:
+- ../../plugins/paginator/css/paginator.css
+- ../../css/font-awesome.min.css
+scripts:
+- ../../plugins/paginator/paginator.js
+---
+
+<section>
+  <h3>Default</h3>
+  <h4>Less</h4>
+  <div class="example">
+    <ul id="paginator-less"></ul>
+  </div>
+{{#code}}
+Pj.paginator("#paginator-less", {
+  totalItems: 5,
+  itemsPerPage: 1,
+  currentPage: 3,
+  list: {
+    visibleSize: {
+      0: 3,
+      960: 5,
+      1280: 7
+    },
+  },
+  layout: 'prev, list, next',
+  // layout: 'prev, list, next, jumper, total',
+  onChange: function(page) {
+    var url = '?page=' + page;
+    console.info('update content with ' + url);
+  }
+});
+{{/code}}
+  <h4>More</h4>
+  <div class="example">
+    <ul id="paginator-more"></ul>
+  </div>
+{{#code}}
+Pj.paginator("#paginator-more", {
+  totalItems: 1000,
+  itemsPerPage: 10,
+  currentPage: 3,
+  list: {
+    visibleSize: {
+      0: 3,
+      960: 5,
+      1280: 7
+    },
+  },
+  layout: 'prev, list, next',
+  // layout: 'prev, list, next, jumper, total',
+  onChange: function(page) {
+    var url = '?page=' + page;
+    console.info('update content with ' + url);
+  }
+});
+{{/code}}
+  <h4>Total</h4>
+  <div class="example">
+    <ul id="paginator-total"></ul>
+  </div>
+{{#code}}
+Pj.paginator("#paginator-more", {
+  totalItems: 10,
+  itemsPerPage: 1,
+  currentPage: 3,
+  list: {
+    visibleSize: {
+      0: 3,
+      960: 5,
+      1280: 7
+    },
+  },
+  layout: 'total, prev, list, next',
+  onChange: function(page) {
+    var url = '?page=' + page;
+    console.info('update content with ' + url);
+  }
+});
+{{/code}}
+  <h4>Jumper</h4>
+  <div class="example">
+    <ul id="paginator-jumper"></ul>
+  </div>
+{{#code}}
+Pj.paginator("#paginator-jumper", {
+  totalItems: 10,
+  itemsPerPage: 1,
+  currentPage: 3,
+  list: {
+    visibleSize: {
+      0: 3,
+      960: 5,
+      1280: 7
+    },
+  },
+  layout: 'prev, list, next, jumper',
+  onChange: function(page) {
+    var url = '?page=' + page;
+    console.info('update content with ' + url);
+  }
+});
+{{/code}}
+  <h4>All</h4>
+  <div class="example">
+    <ul id="paginator-all"></ul>
+  </div>
+  <button class="btn api-ipp-1">itemsPerPage: 1</button>
+  <button class="btn api-ipp-5">itemsPerPage: 5</button>
+  <button class="btn api-tot-10">itemsPerPage: 10</button>
+  <button class="btn api-tot-20">itemsPerPage: 20</button>
+{{#code}}
+var $all = Pj.paginator("#paginator-all", {
+  totalItems: 10,
+  itemsPerPage: 1,
+  currentPage: 3,
+  list: {
+    visibleSize: {
+      0: 3,
+      960: 5,
+      1280: 7
+    },
+  },
+  layout: 'total, prev, list, next, jumper',
+  onChange: function(page) {
+    var url = '?page=' + page;
+    console.info('update content with ' + url);
+  }
+});
+document.querySelector('.api-ipp-1').addEventListener('click', function() {
+  $all.asPaginator('update', {
+    itemsPerPage: 1
+  })
+})
+document.querySelector('.api-ipp-5').addEventListener('click', function() {
+  $all.asPaginator('update', {
+    itemsPerPage: 5
+  })
+})
+document.querySelector('.api-tot-10').addEventListener('click', function() {
+  $all.asPaginator('update', {
+    totalItems: 10
+  })
+})
+document.querySelector('.api-tot-20').addEventListener('click', function() {
+  $all.asPaginator('update', 'totalItems', 20)
+})
+{{/code}}
+<h4>API</h4>
+<div class="example">
+  <ul class="example-api"></ul>
+</div>
+<div class="apis top-gap">
+  <button data-api="init" class="btn">init()</button>
+  <button data-api="destroy" class="btn">destroy()</button>
+  <button data-api="enable" class="btn">enable()</button>
+  <button data-api="disable" class="btn">disable()</button>
+</div>
+<div class="console"></div>
+<script>
+(function() {
+  Pj.paginator("#paginator-more", {
+    totalItems: 1000,
+    itemsPerPage: 10,
+    currentPage: 3,
+    list: {
+      visibleSize: {
+        0: 3,
+        960: 5,
+        1280: 7
+      },
+    },
+    layout: 'prev, list, next',
+    onChange: function(page) {
+      var url = '?page=' + page;
+
+      console.info('update content with ' + url);
+    }
+  });
+  Pj.paginator("#paginator-less", {
+    totalItems: 5,
+    itemsPerPage: 1,
+    currentPage: 3,
+    list: {
+      visibleSize: {
+        0: 3,
+        960: 5,
+        1280: 7
+      },
+    },
+    layout: 'prev, list, next',
+    onChange: function(page) {
+      var url = '?page=' + page;
+
+      console.info('update content with ' + url);
+    }
+  });
+  Pj.paginator("#paginator-total", {
+    totalItems: 10,
+    itemsPerPage: 1,
+    currentPage: 3,
+    list: {
+      visibleSize: {
+        0: 3,
+        960: 5,
+        1280: 7
+      },
+    },
+    layout: 'total, prev, list, next',
+    onChange: function(page) {
+      var url = '?page=' + page;
+
+      console.info('update content with ' + url);
+    }
+  });
+  Pj.paginator("#paginator-jumper", {
+    totalItems: 10,
+    itemsPerPage: 1,
+    currentPage: 3,
+    list: {
+      visibleSize: {
+        0: 3,
+        960: 5,
+        1280: 7
+      },
+    },
+    layout: 'prev, list, next, jumper',
+    onChange: function(page) {
+      var url = '?page=' + page;
+
+      console.info('update content with ' + url);
+    }
+  });
+  var $all = Pj.paginator("#paginator-all", {
+    totalItems: 10,
+    itemsPerPage: 1,
+    currentPage: 3,
+    list: {
+      visibleSize: {
+        0: 3,
+        960: 5,
+        1280: 7
+      },
+    },
+    layout: 'total, prev, list, next, jumper',
+    onChange: function(page) {
+      var url = '?page=' + page;
+
+      console.info('update content with ' + url);
+    }
+  });
+
+  var $elementApi;
+  function init() {
+    $elementApi = Pj.paginator('.example-api', {
+      totalItems: 5,
+      itemsPerPage: 1,
+      currentPage: 3,
+      list: {
+        visibleSize: {
+          0: 3,
+          960: 5,
+          1280: 7
+        },
+      },
+      layout: 'prev, list, next',
+      onReady: function() {
+        console.log('ready', 'event');
+      },
+      onDestroy: function() {
+        console.log('destroy', 'event');
+      },
+      onEnable: function() {
+        console.log('enable', 'event');
+      },
+      onDisable: function() {
+        console.log('disable', 'event');
+      },
+      onChange: function(page) {
+        var url = '?page=' + page;
+        console.log('update content with ' + url, 'event');
+      },
+      onResize: function(page) {
+        console.log('resize', 'event');
+      },
+    });
+  }
+
+  var APIS = {
+    init,
+    destroy() {
+      $elementApi.destroy()
+    },
+    disable() {
+      $elementApi.disable()
+    },
+    enable() {
+      $elementApi.enable()
+    }
+  }
+
+  document.querySelector('.apis').addEventListener('click', function(event) {
+    if (!event.target.matches('[data-api')) {
+      return
+    }
+    var api = event.target.dataset.api;
+    if (api) {
+      APIS[api]()
+    }
+  })
+})();
+</script>
+    </div>
+</section>

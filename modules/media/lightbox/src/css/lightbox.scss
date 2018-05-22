@@ -1,0 +1,80 @@
+@import "@pluginjs/styles/variables.scss";
+@import "footer.scss";
+@import "overlay.scss";
+@import "topBar.scss";
+@import "arrows.scss";
+@import "wrap.scss";
+
+// Vars
+// =====================
+$lightbox: "pj-lightbox" !default;
+//theme
+.#{$lightbox}-theme-white {
+  .#{$lightbox}-arrow {
+    color: #fff;
+    background: #999;
+  }
+
+  .#{$lightbox}-topBar {
+    span {
+      color: #666;
+    }
+
+    ##{$lightbox}-counter {
+      color: #666;
+    }
+  }
+
+  .#{$lightbox}-loader {
+    color: #666;
+  }
+
+  .#{$lightbox}-title {
+    font-weight: 400;
+    color: #404040;
+  }
+}
+
+.#{$lightbox}-theme-black {
+  .#{$lightbox}-arrow {
+    color: #000;
+    background: #7d7d7d;
+  }
+
+  .#{$lightbox}-topBar {
+    span {
+      color: #a8a8a8;
+    }
+
+    ##{$lightbox}-counter {
+      color: #a8a8a8;
+    }
+  }
+
+  .#{$lightbox}-loader {
+    color: #a8a8a8;
+  }
+
+  .#{$lightbox}-title {
+    font-weight: 300;
+    color: #fff;
+  }
+}
+
+.#{$lightbox}-hide {
+  display: none;
+}
+
+.#{$lightbox}-overflow-hide {
+  overflow: hidden;
+}
+
+//example
+#small-dialog {
+  position: relative;
+  max-width: 400px;
+  padding: 20px 30px;
+  margin: 40px auto;
+  text-align: left;
+  background: #fff;
+}

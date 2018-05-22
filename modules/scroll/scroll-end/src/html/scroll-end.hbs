@@ -1,0 +1,30 @@
+---
+title: ScrollEnd
+layout: plugin
+scripts:
+- ../../plugins/scroll-end/scroll-end.js
+---
+<style>.document {
+  height: 3000px;
+}
+</style>
+<div>
+  <button class="btn api-attach">attach</button>
+  <button class="btn api-detach">detach</button>
+</div>
+<div class="document">
+
+</div>
+<script>
+$(function(){
+  $('.api-attach').on('click', function() {
+    Pj.scrollEnd.on(function () {
+      console.info('scrollend');
+    });
+  });
+
+  $('.api-detach').on('click', function() {
+    Pj.scrollEnd.off('scrollend');
+  });
+});
+</script>

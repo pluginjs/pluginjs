@@ -1,0 +1,81 @@
+@import "@pluginjs/styles/variables.scss";
+@import "range.core";
+
+// Vars
+// ======================
+$range: "pj-range" !default;
+$range-sizer: $sizer;
+
+$range-active-color: $color-primary !default;
+$range-selected-bg-color: #215fdb !default;
+$range-pointer-border-width: 2px !default;
+$range-pointer-bg-color: $color-white !default;
+$range-pointer-border-color: $color-primary !default;
+$range-tip-bg-color: $color-white !default;
+$range-tip-box-shadow: 0 5px 20px 0 rgba($gray-darkest, 0.1) !default;
+$pj-units-width: 8 * $range-sizer !default; //80px
+$pj-units-trigger-width: 2.4 * $range-sizer !default; //24px
+$pj-units-trigger-left: $pj-units-width - $pj-units-trigger-width !default;
+
+// Core
+// ======================
+.#{$range} {
+  &-selected {
+    height: $range-height;
+    background-color: #215fdb;
+  }
+
+  &-pointer {
+    top: 50%;
+    cursor: ew-resize;
+    border: $range-pointer-border-width solid $range-pointer-border-color;
+    border-radius: 50%;
+    transform: translateY(-50%);
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: "";
+      background: $range-pointer-bg-color;
+      border-radius: inherit;
+    }
+
+    &:hover,
+    &:focus {
+      transition: transform 0.2s;
+      transform: translateY(-50%) scale(1.1, 1.1);
+    }
+  }
+
+  &-tip {
+    font-family: Bpreplay;
+    font-size: $font-size-xs;
+    color: $gray-darker;
+    cursor: ew-resize;
+    background-color: $range-tip-bg-color;
+    border-radius: 4px;
+    box-shadow: $range-tip-box-shadow;
+
+    //&::before {
+    //  width: 0.6*$range-sizer; //6px
+    //  height: 0.6*$range-sizer; //6px
+    //  background-color: $range-tip-bg-color;
+    // }
+  }
+}
+
+.#{$range}-unit {
+  width: $pj-units-width;
+}
+
+.pj-units {
+  // width: $pj-units-width;
+
+  &-trigger {
+    left: $pj-units-trigger-left;
+    width: $pj-units-trigger-width;
+  }
+}

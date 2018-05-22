@@ -1,0 +1,175 @@
+---
+title: Tree
+layout: plugin
+styles:
+- ../../plugins/tree/css/tree.css
+scripts:
+- ../../plugins/tree/tree.js
+---
+
+<div id="files">
+  <ul>
+    <li>
+      <div>branch 1</div>
+      <ul>
+        <li>leaf 1</li>
+        <li>leaf 2</li>
+        <li>leaf 3</li>
+      </ul>
+    </li>
+    <li id="test">
+      <div>branch 2</div>
+      <ul>
+        <li>leaf 4</li>
+        <li>leaf 5</li>
+        <li>leaf 6</li>
+        <li id="test2">
+          <div>branch 3</div>
+          <ul>
+            <li id="test3">leaf 7</li>
+            <li>leaf 8</li>
+            <li>leaf 9</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>leaf 19</li>
+  </ul>
+</div>
+<hr>
+<div id="files2"></div>
+<hr>
+<div class="console"></div>
+<button class="btn" id="before">before</button>
+<button class="btn" id="after">after</button>
+<button class="btn" id="append">append</button>
+<button class="btn" id="prepend">prepend</button>
+<button class="btn" id="remove">remove</button>
+<button class="btn" id="position">position</button>
+<button class="btn" id="level">level</button>
+<button class="btn" id="parents">parents</button>
+<button class="btn" id="children">children</button>
+<button class="btn" id="siblings">siblings</button>
+<button class="btn" id="open">open</button>
+<button class="btn" id="close">close</button>
+<script>
+$(function(){
+  Pj.tree('#files', {
+    dataFromHtml: true
+  });
+  var data = [{
+    name: 'node',
+    children: [{
+      name: 'child1.png',
+    }, {
+      name: 'child2.jpg'
+    }]
+  }, {
+    name: 'node2',
+    children: [{
+      name: 'node3',
+      children: [{
+        name: 'child3.txt'
+      }, {
+        name: 'child4.js'
+      }, {
+        name: 'node4',
+        children: [{
+          name: 'child5.png'
+        }, {
+          name: 'child6.jpg'
+        }]
+      }]
+    }]
+  }, {
+    name: 'child5.php'
+  }];
+
+  let treeApi = Pj.tree('#files2', {
+    data: data,
+    multiSelect: false,
+    canUnselect: false,
+    onOpen: function () {
+      log('open', 'event');
+    },
+    onClose: function () {
+      log('close', 'event');
+    },
+    onSelect: function () {
+      log('select', 'evnet')
+    },
+    onUnselect: function () {
+      log('unselect', 'event')
+    },
+    onReady: function() {
+      log('ready', 'event');
+    },
+    onDestroy: function() {
+      log('destroy', 'event');
+    },
+    onEnable: function() {
+      log('enable', 'event');
+    },
+    onDisable: function() {
+      log('disable', 'event');
+    }
+  });
+  var leaf = {
+    name: 'leaf.txt'
+  };
+  var getSelected = function($tree) {
+    var $selected, self = this;
+    $tree.find('li').each(function(i, node) {
+      var $node = $(node);
+      if ($node.hasClass('pj-tree-selected')) {
+        $selected = $node;
+      }
+    });
+    return $selected[0];
+  }
+
+  $('#before').on('click', function() {
+    getSelected($('#files2'))['objData']['node'].before(leaf);
+  });
+  $('#after').on('click', function() {
+    getSelected($('#files2'))['objData']['node'].after(leaf);
+  });
+  $('#append').on('click', function() {
+    getSelected($('#files2'))['objData']['node'].append(leaf);
+  });
+  $('#prepend').on('click', function() {
+    getSelected($('#files2'))['objData']['node'].prepend(leaf);
+  });
+  $('#remove').on('click', function() {
+    getSelected($('#files2'))['objData']['node'].remove();
+  });
+  $('#position').on('click', function() {
+    var position = getSelected($('#files2'))['objData']['node'].position();
+    console.info(position);
+  });
+  $('#level').on('click', function() {
+    var level = getSelected($('#files2'))['objData']['node'].level;
+    console.info(level);
+  });
+  $('#parents').on('click', function() {
+    var parents = getSelected($('#files2'))['objData']['node'].parents();
+    console.info(parents);
+  });
+  $('#children').on('click', function() {
+    var children = getSelected($('#files2'))['objData']['node'].children();
+    console.info(children);
+  });
+  $('#siblings').on('click', function() {
+    var siblings = getSelected($('#files2'))['objData']['node'].siblings();
+    console.info(siblings);
+  });
+  $('#open').on('click', function() {
+    var siblings = getSelected($('#files2'))['objData']['node'].open();
+    console.info(siblings);
+  });
+  $('#close').on('click', function() {
+    var siblings = getSelected($('#files2'))['objData']['node'].close();
+    console.info(siblings);
+  });
+});
+</script>

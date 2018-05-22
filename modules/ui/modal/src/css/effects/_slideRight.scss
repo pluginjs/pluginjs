@@ -1,0 +1,33 @@
+/* slideRight: Slide from the right */
+.#{$modal}-slideRightIn {
+  animation: Modal-slideRightIn $modal-duration
+    cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+
+.#{$modal}-slideRightOut {
+  animation: Modal-slideRightOut $modal-duration forwards;
+}
+
+@keyframes Modal-slideRightIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes Modal-slideRightOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+}

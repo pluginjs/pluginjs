@@ -1,0 +1,33 @@
+.#{$radio} {
+  i:first-child:not([class]) {
+    &::before {
+      display: block;
+      width: 1em;
+      height: 1em;
+      content: "\0000";
+      background-color: $radio-color;
+      border-radius: 50%;
+      transition: transform 0.25s;
+      transform: scale(0);
+    }
+  }
+}
+
+.#{$radio} {
+  &.#{$radio}-checked,
+  & > input[type="radio"]:checked + label {
+    i:first-child:not([class]) {
+      &::before {
+        transform: scale(0.5);
+      }
+    }
+  }
+}
+
+@mixin radio-default-variant($background) {
+  i:first-child:not([class]) {
+    &::before {
+      background-color: $background;
+    }
+  }
+}

@@ -1,0 +1,119 @@
+---
+title: parallax
+layout: plugin
+styles:
+- ../../plugins/parallax/css/parallax.css
+scripts:
+- ../../plugins/parallax/parallax.js
+---
+<style>
+section {
+  position: relative;
+  height: 300px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 930px;
+}
+.background {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.card {
+  background-color: #555555;
+  width: 200px;
+  height: 200px;
+}
+.inline {
+  display: flex;
+  & > div:not(:last-child) {
+    margin-right: 50px;
+  }
+}
+.element-conatiner {
+  min-height: 1000px;
+}
+.element-conatiner > div:not(:last-child) {
+  margin-bottom: 50px;
+}
+.background {
+  display: flex;
+  overflow: hidden;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+}
+
+.background > img {
+  width: auto;
+  height: auto;
+}
+
+</style>
+<div class="element-conatiner">
+  <h2>Rotate</h2>
+  <div class="inline">
+    <div class="card" data-mode="rotateZ"></div>
+    <div class="card" data-mode="rotateZ" data-speed="2000"></div>
+  </div>
+  <h2>Offset</h2>
+  <section>
+    <div class="background">
+      <img class="card"
+          data-offset="300"
+          data-mode="translateY"
+          src="http://oqcgupxln.bkt.clouddn.com/62622495_p0.png?imageView2/1/w/930/h/930">
+    </div>
+  </section>
+  <h2>Translate</h2>
+  <section>
+    <div class="background">
+      <img class="card"
+           data-mode="translateY"
+           data-min="285"
+           data-max="577"
+           src="http://oqcgupxln.bkt.clouddn.com/62622495_p0.png?imageView2/1/w/930/h/930">
+    </div>
+  </section>
+  <section>
+    <h2>Hello World!</h2>
+    <div class="background">
+      <img class="card"
+           data-mode="translateY"
+           data-min="-30"
+           data-max="262"
+           src="http://oqcgupxln.bkt.clouddn.com/62622495_p0.png?imageView2/1/w/930/h/930" alt="">
+    </div>
+  </section>
+  <section>
+    <div class="background">
+      <img class="card"
+           data-mode="translateY"
+           data-min="-345"
+           data-max="-53"
+           src="http://oqcgupxln.bkt.clouddn.com/62622495_p0.png?imageView2/1/w/930/h/930">
+    </div>
+  </section>
+  <section>
+    <h2>Hello World!</h2>
+    <div class="background">
+      <img class="card" data-mode="translateX" src="http://oqcgupxln.bkt.clouddn.com/62622495_p0.png?imageView2/1/w/930/h/930" alt="">
+    </div>
+  </section>
+  <h2>Scale</h2>
+  <div class="inline">
+    <div class="card" data-mode="scale"></div>
+    <div class="card" data-mode="scale" data-max="1.5" data-min="0.5"></div>
+  </div>
+</div>
+<script>
+$(function(){
+  Pj.parallax('.card')
+  // $('.card').asParallax();
+})
+</script>

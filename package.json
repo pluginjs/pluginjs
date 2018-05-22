@@ -19,7 +19,7 @@
 			"eslint --fix",
 			"git add"
 		],
-		"*.scss": [
+		"*.{css,scss}": [
 			"stylelint --fix",
 			"git add"
 		]
@@ -29,8 +29,7 @@
 		"last 4 Edge versions"
 	],
 	"workspaces": [
-		"modules/styles",
-		"modules/*/*",
+		"modules/**",
 		"tools/*"
 	],
 	"devDependencies": {
@@ -38,6 +37,10 @@
 		"@commitlint/config-conventional": "^6.1.3",
 		"@commitlint/prompt-cli": "^6.1.3",
 		"babel-eslint": "^8.2.3",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-plugin-transform-decorators": "^6.24.1",
+		"babel-plugin-transform-decorators-legacy": "^1.3.4",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
 		"eslint": "^4.19.1",
 		"eslint-config-prettier": "^2.9.0",
 		"eslint-plugin-prettier": "^2.6.0",

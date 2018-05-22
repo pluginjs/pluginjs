@@ -1,0 +1,34 @@
+---
+title: Strength
+layout: plugin
+styles:
+- ../../css/bootstrap.min.css
+scripts:
+- ../../vendor/jquery.js
+- ../../vendor/bootstrap.min.js
+- ../../vendor/passwordStrength.js
+- ../../plugins/strength/strength.js
+---
+
+<form>
+  <div class="form-group">
+    <input type="password" class="password-input form-control" name="password" value="" />
+  </div>
+</form>
+<form>
+  <div class="form-group">
+    <input type="password" class="password-input-image form-control" name="password" value="" />
+  </div>
+</form>
+<script>
+(function(){
+  Pj.strength(".password-input", {
+    locale:'zh'
+  });
+  Pj.strength(".password-input-image", {
+    templates: {
+      toggle: '<span class="input-group-addon"><img class="{toggleClass}" title="Show/Hide Password" src="../images/checkbox.png" /></span>'
+    }
+  });
+})();
+</script>

@@ -1,0 +1,243 @@
+---
+title: ImageSelector
+layout: plugin
+styles:
+- ../../plugins/scrollable/css/scrollable.css
+- ../../plugins/image-selector/css/image-selector.css
+scripts:
+- ../../plugins/scrollbar/scrollbar.js
+- ../../plugins/scrollable/scrollable.js
+- ../../plugins/image-selector/image-selector.js
+---
+
+<section>
+  <h2>Default</h2>
+{{#code}}
+<input type="text" class="example-delault">
+<script>
+  (function() {
+    Pj.imageSelector('.example-delault', {
+      data: data
+    });
+  })();
+</script>
+{{/code}}
+  <input type="text" class="example-delault">
+  <script>
+    (function() {
+      Pj.imageSelector('.example-delault', {
+        data: [{
+            value: 'without',
+            label: 'Without',
+            img: '../../plugins/image-selector/images/without.png'
+          },
+          {
+            value: 'left',
+            label: 'Left',
+            img: '../../plugins/image-selector/images/left.png'
+          },
+          {
+            value: 'double-left',
+            label: 'Double Left',
+            img: '../../plugins/image-selector/images/double-left.png'
+          },
+          {
+            value: 'right',
+            label: 'Right',
+            img: '../../plugins/image-selector/images/right.png'
+          },
+          {
+            value: 'double-right',
+            label: 'Double Right',
+            img: '../../plugins/image-selector/images/double-right.png'
+          },
+          {
+            value: 'both-sider',
+            label: 'Both Sider',
+            img: '../../plugins/image-selector/images/both-sider.png'
+          }
+        ]
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Build By Element</h2>
+{{#code}}
+  <select class="example-build-by-element">
+    <option value="without" data-img="../../plugins/image-selector/images/without.png">Without</option>
+    <option value="left" data-img="../../plugins/image-selector/images/left.png">Left</option>
+    <option value="double-left" data-img="../../plugins/image-selector/images/double-left.png">Double Left</option>
+    <option value="right" data-img="../../plugins/image-selector/images/right.png" selected="selected">Right</option>
+    <option value="double-right" data-img="../../plugins/image-selector/images/double-right.png">Double Right</option>
+    <option value="both-sider" data-img="../../plugins/image-selector/images/both-sider.png">Both Sider</option>
+  </select>
+<script>
+  (function() {
+    Pj.imageSelector('.example-build-by-element');
+  })();
+</script>
+{{/code}}
+  <select class="example-build-by-element">
+    <option value="without" data-img="../../plugins/image-selector/images/without.png">Without</option>
+    <option value="left" data-img="../../plugins/image-selector/images/left.png">Left</option>
+    <option value="double-left" data-img="../../plugins/image-selector/images/double-left.png">Double Left</option>
+    <option value="right" data-img="../../plugins/image-selector/images/right.png" selected="selected">Right</option>
+    <option value="double-right" data-img="../../plugins/image-selector/images/double-right.png">Double Right</option>
+    <option value="both-sider" data-img="../../plugins/image-selector/images/both-sider.png">Both Sider</option>
+  </select>
+  <script>
+    (function() {
+      Pj.imageSelector('.example-build-by-element');
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Locale</h2>
+{{#code}}
+<input type="text" class="example-locale">
+<script>
+  (function() {
+    Pj.imageSelector('.example-locale', {
+      locale: 'zh',
+      data: data
+    });
+  })();
+</script>
+{{/code}}
+  <input type="text" class="example-locale">
+  <script>
+    (function() {
+      Pj.imageSelector('.example-locale', {
+        locale: 'zh',
+        select: 'right',
+        data: [{
+            value: 'without',
+            label: 'Without',
+            img: '../../plugins/image-selector/images/without.png'
+          },
+          {
+            value: 'left',
+            label: 'Left',
+            img: '../../plugins/image-selector/images/left.png'
+          },
+          {
+            value: 'double-left',
+            label: 'Double Left',
+            img: '../../plugins/image-selector/images/double-left.png'
+          },
+          {
+            value: 'right',
+            label: 'Right',
+            img: '../../plugins/image-selector/images/right.png'
+          },
+          {
+            value: 'double-right',
+            label: 'Double Right',
+            img: '../../plugins/image-selector/images/double-right.png'
+          },
+          {
+            value: 'both-sider',
+            label: 'Both Sider',
+            img: '../../plugins/image-selector/images/both-sider.png'
+          }
+        ]
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Api</h2>
+  <input class="example-api"></input>
+  {{!-- <input type="text" class="example-api"> --}}
+  <div>
+    <button class="btn api-init">init()</button>
+    <button class="btn api-set">set(data)</button>
+    <button class="btn api-get">get()</button>
+    <button class="btn api-val">val()</button>
+    <button class="btn api-val-set">val(data)</button>
+    <button class="btn api-destroy">destroy()</button>
+    <button class="btn api-enable">enable()</button>
+    <button class="btn api-disable">disable()</button>
+  </div>
+  <div class="console"></div>
+  <script>
+    (function() {
+      var $elementApi;
+      document.querySelector('.api-init').addEventListener('click', function() {
+        $elementApi = Pj.imageSelector('.example-api', {
+          data: [{
+              value: 'without',
+              label: 'Without',
+              img: '../../plugins/image-selector/images/without.png'
+            },
+            {
+              value: 'left',
+              label: 'Left',
+              img: '../../plugins/image-selector/images/left.png'
+            },
+            {
+              value: 'double-left',
+              label: 'Double Left',
+              img: '../../plugins/image-selector/images/double-left.png'
+            },
+            {
+              value: 'right',
+              label: 'Right',
+              img: '../../plugins/image-selector/images/right.png'
+            },
+            {
+              value: 'double-right',
+              label: 'Double Right',
+              img: '../../plugins/image-selector/images/double-right.png'
+            },
+            {
+              value: 'both-sider',
+              label: 'Both Sider',
+              img: '../../plugins/image-selector/images/both-sider.png'
+            }
+          ],
+          onReady: function() {
+            log('ready', 'event');
+          },
+          onDestroy: function() {
+            log('destroy', 'event');
+          },
+          onEnable: function() {
+            log('enable', 'event');
+          },
+          onDisable: function() {
+            log('disable', 'event');
+          }
+        })
+      });
+
+      document.querySelector('.api-set').addEventListener('click', function() {
+        $elementApi.set('double-right');
+        log('', 'set(data)');
+      });
+      document.querySelector('.api-get').addEventListener('click', function() {
+        log(JSON.stringify($elementApi.get()), 'get()');
+      });
+      document.querySelector('.api-val').addEventListener('click', function() {
+        log($elementApi.val(), 'val()');
+      });
+      document.querySelector('.api-val-set').addEventListener('click', function() {
+        $elementApi.val('both-sider');
+        log('', 'val(data)');
+      });
+      document.querySelector('.api-destroy').addEventListener('click', function() {
+        $elementApi.destroy()
+      });
+      document.querySelector('.api-enable').addEventListener('click', function() {
+        $elementApi.enable()
+      });
+      document.querySelector('.api-disable').addEventListener('click', function() {
+        $elementApi.disable()
+      });
+    })();
+  </script>
+</section>

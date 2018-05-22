@@ -34,5 +34,6 @@
 	"min": "dist/easing.min.js",
 	"standalone": "dist/easing.standalone.js",
 	"module": "dist/easing.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

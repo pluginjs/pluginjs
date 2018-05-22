@@ -1,0 +1,65 @@
+$notice: "pj-notice" !default;
+
+.#{$notice}-Intop {
+  animation: #{$notice}-inTop 0.3s forwards;
+}
+
+@keyframes #{$notice}-inTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.#{$notice}-Outtop {
+  animation: #{$notice}-outTop 0.3s;
+}
+
+@keyframes #{$notice}-outTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.#{$notice}-Inbottom {
+  animation: #{$notice}-inBottom 0.3s forwards;
+}
+
+@keyframes #{$notice}-inBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.#{$notice}-Outbottom {
+  animation: #{$notice}-outBottom 0.3s;
+}
+
+@keyframes #{$notice}-outBottom {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}

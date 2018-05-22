@@ -1,0 +1,14 @@
+@import "@pluginjs/styles/variables.scss";
+
+/* core */
+
+.pj-animateText-multiple {
+  display: inline-flex;
+  flex-direction: column;
+  overflow: hidden;
+  vertical-align: top;
+
+  > * {
+    white-space: nowrap;
+  }
+}

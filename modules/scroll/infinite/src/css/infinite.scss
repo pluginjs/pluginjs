@@ -1,0 +1,11 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$infinite: "pj-infinite" !default;
+
+// Core
+// =====================
+.#{$infinite}-loader {
+  text-align: center;
+}

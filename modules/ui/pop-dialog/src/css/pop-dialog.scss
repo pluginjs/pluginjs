@@ -1,0 +1,134 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$popover: "pj-popover" !default;
+$popover-dialog-min-width: 200px !default;
+$popover-dialog-max-width: 240px !default;
+$popover-border-color: $border-color !default;
+$popover-dark-button-color: $gray !default;
+$popover-dark-button-color: $text-color !default;
+$popover-button-primary-color: $btn-color-primary !default;
+$popover-button-success-color: $color-success !default;
+$popover-button-info-color: $color-info !default;
+$popover-button-warning-color: $color-warning !default;
+$popover-button-danger-color: $color-danger !default;
+$popover-button-spacer: 5px 0 6px !default;
+$popover-button-border-color: $border-color !default;
+$popover-border-radius: $border-radius-base !default;
+$popover-button-bg: rgba(0, 0, 0, 0.05) !default;
+$popover-button-hover-bg: rgba(0, 0, 0, 0.02) !default;
+$popover-button-active-bg: rgba(0, 0, 0, 0.1) !default;
+$popover-dark-button-border-color: rgba(255, 255, 255, 0.04) !default;
+$popover-dark-button-bg: rgba(255, 255, 255, 0.05) !default;
+$popover-dark-button-hover-bg: rgba(255, 255, 255, 0.07) !default;
+$popover-dark-button-active-bg: rgba(255, 255, 255, 0.02) !default;
+
+// Core
+// =====================
+.#{$popover}-dialog {
+  min-width: $popover-dialog-min-width;
+  max-width: $popover-dialog-max-width;
+
+  &.pj-tether-element-attached-bottom.pj-tether-target-attached-top {
+    &::before,
+    &::after {
+      border-top-color: transparent;
+    }
+  }
+}
+
+.#{$popover}-buttons {
+  display: flex;
+  width: 100%;
+  box-shadow: 0 -1px 0 $popover-button-border-color;
+}
+
+// Button
+.#{$popover}-button {
+  display: inline-block;
+  width: 100%;
+  padding: $popover-button-spacer;
+  margin: 0;
+  color: $popover-dark-button-color;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  background: #fff;
+  border: 0;
+  outline: 0;
+  box-shadow: inset 1px 0 0 $popover-button-border-color;
+  appearance: none;
+  // -webkit-appearance: none;
+  flex-shrink: 1;
+
+  &[data-color="primary"] {
+    color: $popover-button-primary-color;
+  }
+
+  &[data-color="success"] {
+    color: $popover-button-success-color;
+  }
+
+  &[data-color="info"] {
+    color: $popover-button-info-color;
+  }
+
+  &[data-color="warning"] {
+    color: $popover-button-warning-color;
+  }
+
+  &[data-color="danger"] {
+    color: $popover-button-danger-color;
+  }
+
+  &:not(:disabled):hover {
+    cursor: pointer;
+    background-color: $popover-button-hover-bg;
+  }
+
+  &:not(:disabled):active {
+    background-color: $popover-button-active-bg;
+  }
+
+  &:first-child {
+    border-radius: 0 0 0 $popover-border-radius;
+    box-shadow: none;
+  }
+
+  &:last-child {
+    border-radius: 0 0 $popover-border-radius;
+  }
+}
+
+.#{$popover}--simple {
+  .#{$popover}-button {
+    color: $popover-dark-button-color;
+    background: $popover-button-bg;
+
+    &:not(:disabled):hover {
+      background-color: $popover-button-hover-bg;
+    }
+  }
+}
+
+// dark skin
+.#{$popover}--dark {
+  .#{$popover}-buttons {
+    box-shadow: 0 -1px 0 $popover-dark-button-border-color;
+  }
+
+  .#{$popover}-button {
+    color: #fff;
+    background: $popover-dark-button-bg;
+    box-shadow: inset 1px 0 0 $popover-dark-button-border-color;
+
+    &:not(:disabled):hover {
+      background-color: $popover-dark-button-hover-bg;
+    }
+
+    &:not(:disabled):active {
+      background-color: $popover-dark-button-active-bg;
+    }
+  }
+}

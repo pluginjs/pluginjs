@@ -1,0 +1,77 @@
+.#{$checkbox} {
+  i[class]:first-child {
+    &::before {
+      position: relative;
+      top: -1px;
+      left: 0;
+      z-index: 999;
+      display: inline-block;
+      // font-size: 16px;
+      vertical-align: bottom;
+      transition: transform 0.25s;
+      transform: scale(0);
+    }
+
+    &::after {
+      top: 0;
+    }
+  }
+
+  &.#{$checkbox}-checked,
+  & > input[type="checkbox"]:checked + label {
+    i[class]:first-child {
+      color: $checkbox-color;
+
+      &::before {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.#{$checkbox}-solid {
+  &.#{$checkbox}-checked,
+  & > input[type="checkbox"]:checked + label {
+    i[class]:first-child {
+      color: $color-white;
+
+      &::after {
+        background-color: $checkbox-color;
+      }
+    }
+  }
+}
+
+@mixin checkbox-icon-variant($color) {
+  &.#{$checkbox}-checked,
+  & > input[type="checkbox"]:checked + label {
+    i[class]:first-child {
+      color: $color;
+    }
+  }
+
+  &.#{$checkbox}-solid {
+    &.#{$checkbox}-checked,
+    & > input[type="checkbox"]:checked + label {
+      i[class]:first-child {
+        color: $color-white;
+
+        &::after {
+          background-color: $color;
+        }
+      }
+    }
+  }
+}
+
+// @mixin checkbox-icon-variant($background) {
+//   &.#{$checkbox}-solid {
+//     &.#{$checkbox}-checked, & > input[type="checkbox"]:checked + label {
+//       i:first-child:not([class]) {
+//         &::before {
+//           background-color: $background;
+//         }
+//       }
+//     }
+//   }
+// }

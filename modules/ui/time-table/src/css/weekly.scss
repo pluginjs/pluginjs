@@ -1,0 +1,198 @@
+@import "@pluginjs/styles/variables.scss";
+$namespace: "pj-timeTable";
+
+$weekly-border-color: #d8d8d8;
+$weekly-body-header-color: #5b6779;
+$weekly-grid-time-color: #aab3bf;
+
+$weekly-empty-font-size-hover: 13px;
+$weekly-empty-color-hover: #808c9e;
+$weekly-empty-bg-color-hover: #f7f9fc;
+
+$weekly-event-font-size: 13px;
+$weekly-event-border-width: 2px;
+$weekly-event-color: #333;
+$weekly-event-bg-color: $gray-lightest;
+$weekly-event-border-color: $gray-lighter;
+
+$weekly-empty-event-transition: color 0.15s ease-in-out,
+  background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+
+.#{$namespace} {
+  &-weekly {
+    position: relative;
+    width: 100%;
+    height: auto;
+    // margin-top: 30px;
+    background-color: #fff;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    // border-top: 2px solid $weekly-border-color;
+
+    .#{$namespace}-header {
+      position: relative;
+      height: 76px;
+      padding-left: 13.28%;
+      line-height: 60px;
+      background-color: #fafbfc;
+
+      ul {
+        height: 100%;
+        // padding-left: 0;
+        padding: 25px 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      li {
+        box-sizing: border-box;
+        display: list-item;
+        float: left;
+        width: 14.28%;
+        height: 100%;
+        font-size: 16px;
+        font-weight: 500;
+        // color: $weekly-body-header-color;
+        text-align: center;
+      }
+    }
+
+    .#{$namespace}-baseline {
+      position: absolute;
+      top: 76px;
+      left: 0;
+      width: 100%;
+
+      ul {
+        padding-left: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+          position: relative;
+          display: flex;
+          height: 80px;
+          padding-left: 13.28%;
+
+          div {
+            z-index: 1;
+            flex: 1;
+            height: 42px;
+            font-size: 0;
+            line-height: 42px;
+            color: transparent;
+            text-align: center;
+            transition: $weekly-empty-event-transition;
+
+            &:hover {
+              font-size: $weekly-empty-font-size-hover;
+              color: $weekly-empty-color-hover;
+              cursor: pointer;
+              background-color: $weekly-empty-bg-color-hover;
+            }
+          }
+
+          span {
+            position: absolute;
+            top: 68px;
+            left: 4.6%;
+            font-size: 16px;
+            color: #666;
+          }
+
+          &::after {
+            position: absolute;
+            bottom: 0;
+            left: 13.28%;
+            width: calc(100% - 13.28%);
+            height: 1px;
+            content: "";
+            background-color: $weekly-border-color;
+          }
+        }
+
+        li:first-child {
+          div:hover {
+            color: #fff;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    .#{$namespace}-events {
+      position: relative;
+      margin-left: 13.28%;
+
+      ul {
+        display: flex;
+        height: 100%;
+        padding-left: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+          position: relative;
+          box-sizing: border-box;
+          display: list-item;
+          flex: 1;
+          float: left;
+          // width: 14.28%;
+          height: 100%;
+          border-left: 1px solid $weekly-border-color;
+        }
+
+        .#{$namespace}-weekEvent {
+          position: absolute;
+          z-index: 3;
+          width: 100%;
+          font-size: $weekly-event-font-size;
+          color: $weekly-event-color;
+          text-align: center;
+          background-color: $weekly-event-bg-color;
+          transition: transform 0.4s ease, width 0.2s ease;
+
+          .#{$namespace}-weekEvent-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            max-width: 90%;
+            overflow: hidden;
+            text-align: center;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+          }
+
+          .#{$namespace}-weekEvent-time {
+            font-family: OpenSans;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.63;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+          }
+
+          .#{$namespace}-weekEvent-title {
+            font-family: OpenSans;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.63;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+          }
+
+          &.#{$namespace}-weekEvent-active {
+            z-index: 10;
+            width: 100% !important;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
+}

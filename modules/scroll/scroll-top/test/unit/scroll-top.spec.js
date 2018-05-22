@@ -1,0 +1,170 @@
+import jsdom from 'mocha-jsdom'
+import $ from 'jquery'
+import ScrollTop from '../../src/main'
+import { defaults as DEFAULTS } from '../../src/constant'
+
+describe('ScrollTop', () => {
+  describe('ScrollTop()', () => {
+    it('should have ScrollTop', () => {
+      expect(ScrollTop).to.be.an('function')
+    })
+
+    it('should have defaults', () => {
+      expect(ScrollTop.defaults).to.be.an('object')
+    })
+
+    it('should have events', () => {
+      expect(ScrollTop.events).to.be.an('object')
+    })
+
+    it('should have classes', () => {
+      expect(ScrollTop.classes).to.be.an('object')
+    })
+
+    it('should have methods', () => {
+      expect(ScrollTop.methods).to.be.an('array')
+    })
+  })
+
+  describe('constructor()', () => {
+    it('should work with element', () => {
+      const element = document.createElement('div')
+      const scrollTop = new ScrollTop(element)
+      expect(scrollTop).to.be.an('object')
+      expect(scrollTop.options.theme).to.be.eql('default')
+    })
+
+    it('should have options', () => {
+      const element = document.createElement('div')
+      const scrollTop = new ScrollTop(element)
+
+      expect(scrollTop.options).to.be.an('object')
+    })
+  })
+
+  describe('jquery constructor', () => {
+    it('should works with jquery fn', () => {
+      const element = document.createElement('div')
+      const $element = $(element)
+
+      expect($element.asScrollTop()).to.be.equal($element)
+
+      const api = $element.data('scrollTop')
+
+      expect(api).to.be.an('object')
+      expect(api.options).to.be.an('object')
+    })
+  })
+
+  describe('api call', () => {
+    it('should not call bind', () => {
+      const $element = $(document.createElement('div')).asScrollTop()
+      expect($element.asScrollTop('bind')).to.be.undefined
+    })
+
+    it('should call destroy', () => {
+      const $element = $(document.createElement('div')).asScrollTop()
+      expect($element.asScrollTop('destroy')).to.be.equal($element)
+    })
+  })
+
+  describe('initialize()', () => {
+    let $element
+
+    beforeEach(() => {
+      $element = $(document.createElement('div'))
+    })
+
+    it('should trigger ready event', () => {
+      let called = 0
+
+      $element.on('scrollTop:ready', (event, api) => {
+        expect(api.is('initialized')).to.be.true
+        called++
+      })
+
+      $element.asScrollTop()
+      expect(called).to.be.equal(1)
+    })
+  })
+
+  describe('destroy()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asScrollTop()
+      api = $element.data('scrollTop')
+    })
+
+    it('should trigger destroy event', () => {
+      let called = 0
+
+      $element.on('scrollTop:destroy', (event, api) => {
+        expect(api.is('initialized')).to.be.false
+        called++
+      })
+
+      $element.asScrollTop('destroy')
+
+      expect(called).to.be.equal(1)
+    })
+  })
+
+  describe('enable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asScrollTop()
+      api = $element.data('scrollTop')
+    })
+
+    it('should enable the plugin', () => {
+      $element.asScrollTop('disable')
+      $element.asScrollTop('enable')
+
+      expect(api.is('disabled')).to.be.false
+    })
+
+    it('should trigger enable event', () => {
+      let called = 0
+
+      $element.on('scrollTop:enable', (event, api) => {
+        expect(api.is('disabled')).to.be.false
+        called++
+      })
+
+      $element.asScrollTop('enable')
+      expect(called).to.be.equal(1)
+    })
+  })
+
+  describe('disable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asScrollTop()
+      api = $element.data('scrollTop')
+    })
+
+    it('should disable the plugin', () => {
+      $element.asScrollTop('disable')
+
+      expect(api.is('disabled')).to.be.true
+    })
+
+    it('should trigger disable event', () => {
+      let called = 0
+
+      $element.on('scrollTop:disable', (event, api) => {
+        expect(api.is('disabled')).to.be.true
+        called++
+      })
+
+      $element.asScrollTop('disable')
+      expect(called).to.be.equal(1)
+    })
+  })
+})

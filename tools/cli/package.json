@@ -1,0 +1,15 @@
+{
+	"name": "@pluginjs/cli",
+	"version": "0.5.18",
+	"description": "",
+	"main": "index.js",
+	"bin": {
+		"plugin": "index.js"
+	},
+	"private": true,
+	"license": "GPL-v3",
+	"dependencies": {
+		"@pluginjs/helper": "^0.0.1",
+		"yargs": "^11.0.0"
+	}
+}

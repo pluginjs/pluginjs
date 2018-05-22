@@ -29,5 +29,6 @@
 	"min": "dist/match-sorter.min.js",
 	"standalone": "dist/match-sorter.standalone.js",
 	"module": "dist/match-sorter.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

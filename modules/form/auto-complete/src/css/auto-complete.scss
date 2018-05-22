@@ -1,0 +1,191 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$autoComplete: "pj-autoComplete" !default;
+
+$autoComplete-sizer: $sizer !default;
+
+$autoComplete-font-size: $font-size-base !default;
+$autoComplete-border-radius: $border-radius-base !default;
+$autoComplete-active-color: $color-primary !default;
+$autoComplete-color: $text-color !default;
+// input
+$autoComplete-input-width: 20 * $autoComplete-sizer !default; //200px
+$autoComplete-input-height: 3.2 * $autoComplete-sizer !default; //32px
+$autoComplete-input-border-width: 1px !default;
+$autoComplete-input-border-style: solid !default;
+$autoComplete-input-padding: $autoComplete-sizer/2.5 $autoComplete-sizer * 1.2 !default; //4px 14px
+$autoComplete-input-border-color: $gray-lighter !default;
+$autoComplete-input-border: $autoComplete-input-border-width
+  $autoComplete-input-border-style $autoComplete-input-border-color !default;
+$autoComplete-input-hover-border-color: $color-primary-gray !default;
+$autoComplete-input-focus-border-color: $color-primary-active !default;
+// panel
+$autoComplete-panel-top: 0.4 * $autoComplete-sizer !default; //4px
+$autoComplete-panel-box-shadow: $box-shadow-base !default;
+$autoComplete-panel-padding: 2px !default;
+// item
+$autoComplete-item-padding: $autoComplete-sizer * 0.8 $autoComplete-sizer * 1.4
+  $autoComplete-sizer * 0.9 !default; //4px 14px
+$autoComplete-item-hover-bg-color: $color-drop-hover !default;
+$autoComplete-item-active-bg-color: $gray-lightest !default;
+$autoComplete-item-font-size: $font-size-base !default; //13px
+// group
+$autoComplete-group-border-color: $gray-darkest !default;
+$autoComplete-group-border-width: 1px !default;
+$autoComplete-group-border-style: solid !default;
+$autoComplete-group-border: $autoComplete-group-border-width
+  $autoComplete-group-border-style $autoComplete-group-border-color !default;
+$autoComplete-group-title-pading: $autoComplete-item-padding !default;
+$autoComplete-group-title-color: $color-gray !default;
+$autoComplete-group-title-font-size: $font-size-xs !default; //12px
+$autoComplete-disabled-color: $disabled-color !default;
+$autoComplete-disabled-bg: $disabled-bg !default;
+
+// Core
+// =====================
+.#{$autoComplete} {
+  position: relative;
+  display: inline-block;
+  font-size: $autoComplete-font-size;
+  color: $autoComplete-color;
+
+  &:hover {
+    .#{$autoComplete}-input {
+      border-color: $autoComplete-input-hover-border-color;
+    }
+  }
+
+  &-input {
+    width: $autoComplete-input-width;
+    height: $autoComplete-input-height;
+    padding: $autoComplete-input-padding !important;
+    color: $autoComplete-color;
+    border-radius: $autoComplete-border-radius !important;
+
+    &:focus {
+      border-color: $autoComplete-input-focus-border-color !important;
+    }
+
+    &:hover {
+      border-color: $autoComplete-input-hover-border-color;
+    }
+
+    &.#{$autoComplete}-disabled {
+      color: $autoComplete-disabled-color !important;
+      background: $autoComplete-disabled-bg !important;
+      border-color: $autoComplete-disabled-color !important;
+    }
+  }
+
+  // &-disabled {
+  //   background-color: white !important;
+  //   // color: $gray-border；
+  // }
+
+  &-close {
+    position: absolute;
+    top: 50%;
+    right: $autoComplete-sizer; //10px
+    display: inline-block;
+    height: 1.6 * $autoComplete-sizer; //16px
+    font-size: $font-size-lg; //16px
+    line-height: 1.6 * $autoComplete-sizer; //16px
+    cursor: pointer;
+    transition: transform 0.3s;
+    transform: translateY(-50%);
+  }
+
+  &-panel {
+    position: absolute;
+    top: $autoComplete-panel-top !important;
+    left: 0;
+    z-index: 99;
+    box-sizing: border-box;
+    display: none;
+    // padding: $autoComplete-panel-padding;
+    background-color: $color-white;
+    border-radius: $autoComplete-border-radius;
+    box-shadow: $autoComplete-panel-box-shadow;
+  }
+
+  &-item {
+    display: none;
+    padding: $autoComplete-item-padding;
+    font-size: $autoComplete-item-font-size;
+    // border-radius: $autoComplete-border-radius;
+    background: white;
+
+    &.#{$autoComplete}-active {
+      cursor: default;
+      //   background-color: $autoComplete-item-active-bg-color;
+    }
+
+    &:hover {
+      background-color: $autoComplete-item-hover-bg-color;
+    }
+  }
+
+  &-group {
+    display: none;
+    // border-bottom: $autoComplete-group-border;
+
+    &:last-of-type {
+      border: 0;
+    }
+
+    &-title {
+      padding: $autoComplete-group-title-pading;
+      overflow: hidden;
+      font-size: $autoComplete-group-title-font-size;
+      color: $autoComplete-group-title-color;
+      text-overflow: ellipsis;
+      letter-spacing: 1px;
+      word-break: keep-all;
+      white-space: nowrap;
+    }
+
+    &-show {
+      display: block;
+    }
+  }
+
+  &-open {
+    &.#{$autoComplete}-input {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &.#{$autoComplete}-panel {
+      display: block;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  &-show {
+    display: block;
+  }
+
+  &-mark {
+    padding: 0;
+    font-weight: 700;
+    color: $autoComplete-active-color;
+    background-color: transparent;
+  }
+
+  &.#{$autoComplete}-panel-on-top {
+    .#{$autoComplete}-input {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: $autoComplete-border-radius;
+      border-bottom-left-radius: $autoComplete-border-radius;
+    }
+    .#{$autoComplete}-panel {
+      border-top-left-radius: $autoComplete-border-radius;
+      border-top-right-radius: $autoComplete-border-radius;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}

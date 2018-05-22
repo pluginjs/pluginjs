@@ -1,0 +1,21 @@
+.#{$radio} {
+  &.#{$radio}-checked,
+  & > input[type="radio"]:checked + label {
+    i:first-child {
+      &::after {
+        border-color: $radio-color;
+      }
+    }
+  }
+}
+
+@mixin radio-border-variant($color) {
+  &.#{$radio}-checked,
+  & > input[type="radio"]:checked + label {
+    i:first-child {
+      &::after {
+        border-color: $color;
+      }
+    }
+  }
+}

@@ -1,0 +1,305 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$modal: "pj-modal" !default;
+$modal-font-size: $font-size-base !default;
+$modal-title-font-size: 20px !default;
+$modal-width: 480px !default;
+$modal-sm-width: 450px !default;
+$modal-bg: $color-white !default;
+$modal-border-color: $border-color !default;
+$modal-border-radius: $border-radius-base !default;
+$modal-spacer-x: 15px !default;
+$modal-spacer-y: 15px !default;
+$modal-title-spacer: 0 $modal-spacer-x 0 $modal-spacer-x !default;
+$modal-body-spacer: $modal-spacer-y $modal-spacer-x !default;
+$modal-body-color: #545454 !default;
+$modal-body-fotsize: 18px !default;
+$modal-footer-spacer: 0 $modal-spacer-x $modal-spacer-y $modal-spacer-x !default;
+$modal-z-index: 10000 !default;
+$modal-close-color: $gray-dark !default;
+$modal-duration: 0.3s !default;
+$modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15) !default;
+
+// btn
+$modal-btn-height: 30px !default;
+$modal-btn-radius: $border-radius-base !default;
+$modal-btn-padding-horizontal: 15px !default;
+$modal-btn-padding-vertical: 4px !default;
+$modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !default;
+
+// Core
+// =====================
+.#{$modal} {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0;
+
+  &.#{$modal}-active {
+    z-index: $modal-z-index;
+    display: flex;
+    opacity: 1;
+
+    .#{$modal}-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+.#{$modal}-container {
+  position: relative;
+  z-index: $modal-z-index;
+  box-sizing: border-box;
+  display: block;
+  max-width: 100%;
+  padding: 20px;
+  overflow: hidden;
+  font-size: $font-size-sm;
+  text-align: left;
+  background: $modal-bg;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+  .#{$modal}-title {
+    padding: 10px 20px 0;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  .#{$modal}-body {
+    position: relative;
+    max-height: 50vh;
+    padding: 15px 20px;
+    overflow-y: auto;
+    font-size: $font-size-sm;
+    color: $modal-body-color;
+    letter-spacing: 0.6px;
+  }
+
+  .#{$modal}-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 20px;
+
+    button {
+      height: 30px;
+      padding: 0 20px;
+      margin-left: 20px;
+      font-weight: 300;
+      letter-spacing: 0.4px;
+    }
+
+    .pj-btn-lpd {
+      width: 190px;
+      padding: 0 75px;
+    }
+  }
+}
+
+.#{$modal}-dialog {
+  padding: 0;
+
+  .#{$modal}-title {
+    padding: 13px 20px 11px;
+    font-size: 18px;
+    color: $color-white;
+    background: #55a4f2;
+  }
+
+  .#{$modal}-body {
+    padding: 25px 20px;
+  }
+
+  .#{$modal}-close {
+    padding: 15px;
+    color: $color-white;
+    opacity: 1;
+  }
+
+  .#{$modal}-buttons {
+    box-shadow: 0 -1px 20px #dfe4ed;
+  }
+}
+
+.#{$modal}-verification {
+  padding: 0;
+
+  .#{$modal}-title {
+    padding: 13px 20px 11px;
+    font-size: 18px;
+    border-bottom: solid 1px #eaebed;
+  }
+
+  .#{$modal}-body {
+    padding: 25px 20px;
+  }
+
+  .#{$modal}-close {
+    padding: 15px;
+  }
+}
+
+.#{$modal}-prompt {
+  padding: 0;
+
+  .#{$modal}-title {
+    padding: 13px 20px 11px;
+    font-size: 18px;
+    color: $color-white;
+    background: #55a4f2;
+  }
+
+  .#{$modal}-body {
+    padding: 25px 20px;
+  }
+
+  .#{$modal}-close {
+    padding: 15px;
+    color: $color-white;
+    opacity: 1;
+  }
+}
+
+.#{$modal}-wideDialog {
+  width: 675px !important;
+  padding: 0;
+
+  .#{$modal}-title {
+    padding: 13px 20px 11px;
+    font-size: 18px;
+    color: $color-white;
+    background: #55a4f2;
+  }
+
+  .#{$modal}-body {
+    padding: 25px 20px;
+  }
+
+  .#{$modal}-close {
+    padding: 15px;
+    color: $color-white;
+    opacity: 1;
+  }
+
+  .#{$modal}-buttons {
+    box-shadow: 0 -1px 20px #dfe4ed;
+  }
+}
+
+.#{$modal}-buttons .#{$modal}-btn {
+  height: $modal-btn-height;
+  // line-height: $modal-btn-height - $modal-btn-padding-vertical * 2;
+  border-radius: $modal-btn-radius;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.#{$modal}-open {
+  overflow: hidden;
+}
+
+.#{$modal}--fadeIn {
+  animation: modal__fadeIn $modal-duration $modal-timing;
+}
+
+@keyframes modal__fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .#{$modal}-container {
+    width: $modal-width;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .#{$modal}-sm.#{$modal}-container {
+    width: $modal-sm-width;
+  }
+}
+
+.#{$modal}-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  padding: 15px 20px;
+  font-size: 16px;
+  line-height: 1em;
+  color: $modal-close-color;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  opacity: 0.5;
+  appearance: none;
+
+  &:not(:disabled):hover {
+    cursor: pointer;
+    background: initial;
+    opacity: 0.9;
+  }
+
+  &:not(:disabled):active {
+    background: initial;
+    border-color: initial;
+    box-shadow: none;
+  }
+
+  &:not(:disabled):focus {
+    background: initial;
+  }
+
+  &::before {
+    font-size: 1.5em;
+    font-weight: 600;
+    content: "\00d7";
+  }
+}
+
+.button {
+  margin-bottom: 5px;
+}
+
+@import "effects/fade";
+@import "effects/fadeScale";
+@import "effects/slideRight";
+@import "effects/slideBottom";
+@import "effects/newspaper";
+@import "effects/fall";
+@import "effects/slideFall";
+@import "effects/slideTop";
+@import "effects/flipHorizontal";
+@import "effects/flipVertical";
+@import "effects/sign";
+@import "effects/superScaled";
+@import "effects/rotateBottom";
+@import "effects/rotateLeft";
+@import "effects/blur";

@@ -1,0 +1,18 @@
+.#{$radio}-plain {
+  i[class]:first-child {
+    &::after {
+      transition: all 0.25s;
+      transform: scale(1);
+    }
+  }
+
+  &.#{$radio}-checked,
+  & > input[type="radio"]:checked + label {
+    i[class]:first-child {
+      &::after {
+        border-color: transparent;
+        transform: scale(0);
+      }
+    }
+  }
+}

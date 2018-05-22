@@ -1,0 +1,710 @@
+---
+title: Modal
+layout: plugin
+styles:
+- ../../css/styles.css
+- ../../plugins/modal/css/modal.css
+scripts:
+- ../../plugins/modal/modal.js
+---
+<section>
+  <h2>Animation</h2>
+  <div class="animation">
+     <button type="button" class="btn" data-effect="fade">Fade</button>
+     <button type="button" class="btn" data-effect="blur">blur</button>
+     <button type="button" class="btn" data-effect="fadeScale">fadeScale</button>
+     <button type="button" class="btn" data-effect="fall">fall</button>
+     <button type="button" class="btn" data-effect="flipHorizontal">flipHorizontal</button>
+     <button type="button" class="btn" data-effect="flipVertical">flipVertical</button>
+     <button type="button" class="btn" data-effect="newspaper">newspaper</button>
+     <button type="button" class="btn" data-effect="rotateBottom">rotateBottom</button>
+     <button type="button" class="btn" data-effect="rotateLeft">rotateLeft</button>
+     <button type="button" class="btn" data-effect="sign">sign</button>
+     <button type="button" class="btn" data-effect="slideBottom">slideBottom</button>
+     <button type="button" class="btn" data-effect="slideFall">slideFall</button>
+     <button type="button" class="btn" data-effect="slideRight">slideRight</button>
+     <button type="button" class="btn" data-effect="slideTop">slideTop</button>
+     <button type="button" class="btn" data-effect="superScaled">superScaled</button>
+  </div>
+</section>
+
+<section>
+  <h2>Types</h2>
+  <section>
+    <h3>basic</h3>
+    <button class="btn basic-modal" data-fuc="basic">open modal</button>
+  </section>
+
+  <section>
+    <h3>alert</h3>
+    <button class="btn alert" data-fuc="alert">alert</button>
+    <button class="btn alert-title" data-fuc="title">alert with title</button>
+  </section>
+
+  <section>
+    <h3>confirm</h3>
+    <button class="btn confirm">confirm</button>
+    <button class="btn confirm-title">confirm with title</button>
+  </section>
+</section>
+
+<section>
+  <h2>Icons</h2>
+  <button class="btn iconleft">icon left</button>
+  <button class="btn iconcenter">icon center</button>
+  <button class="btn success">success</button>
+  <button class="btn info">info</button>
+  <button class="btn error">danger</button>
+</section>
+
+<section>
+  <h2>Events</h2>
+  <button class="btn onOpen">open modal</button>
+  <div class="console"></div>
+  <script>
+    $(function(){
+      $('.onOpen').on('click', function(event) {
+        Pj.modal.open({
+          content: "hello world",
+          onOpen: function(){
+            log('open', 'event');
+          },
+          onClose: function(){
+            log('close', 'event');
+          },
+          onShow: function() {
+            log('show', 'event');
+          },
+          onHide: function() {
+            log('hide', 'event');
+          },
+          onDestroy: function() {
+            log('destroy', 'event');
+          },
+        });
+      });
+    });
+  </script>
+</section>
+
+<section>
+  <h2>Multi level</h2>
+  <button class="btn multi-level">open modal</button>
+</section>
+
+<section>
+  <h2>Button</h2>
+  <button class="btn color">button classes</button>
+  <button class="btn btn-location">button alignment</button>
+</section>
+
+<section>
+  <h2>Content align</h2>
+  <button class="btn content-align-right">left</button>
+  <button class="btn content-align-center">center</button>
+</section>
+
+<section>
+  <h2>Theme</h2>
+  <button class="btn theme-sm">theme-sm</button>
+</section>
+
+<section>
+  <h2>Overlay</h2>
+  <button class="btn overlay">overlay-close</button>
+</section>
+
+<section>
+  <h2>design stype</h2>
+  <button class="btn dialog">dialog</button>
+  <button class="btn verification">verification</button>
+  <button class="btn prompt">prompt</button>
+  <button class="btn wideDialog">wideDialog</button>
+</section>
+
+<section>
+  <h2>Global Api</h2>
+  <div class="GlobalApi">
+     <button class="button random">open()</button>
+     <button class="button closeall">closeAll()</button>
+     <button class="button closetop">closeTop()</button>
+     <button class="button getall">getAll()</button>
+     <button class="button getbyid">getById()</button>
+  </div>
+</div>
+
+<script>
+var pop = {
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  theme: 'sm',
+  buttons: {
+    active: {
+      title: 'open modal',
+      close: false,
+      fn: function() {
+        Pj.modal.alert("This is an alert");
+      },
+    },
+  },
+};
+
+var prompt = {
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  theme: 'sm',
+  title: 'Modal title',
+  buttons: {
+    active: {
+      title: 'open modal',
+      close: false,
+      fn: function() {
+        Pj.modal.open(pop)
+      },
+    },
+  },
+};
+
+var callback = {
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  callback: function() { console.log('callback fired') },
+  theme: 'sm',
+  title: 'Modal title',
+  buttons: {
+    cancel: {
+      title: 'Dismiss',
+      class: 'pj-btn pj-btn-danger',
+      fn: function() {
+        console.log('callback')
+      }
+    },
+  },
+};
+
+var longcontent = {
+  content: '<p>This is the content inside the exam.</p>'+
+    '      <h4>Lorem ipsum</h4>'+
+    '      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent risus leo, dictum in vehicula sit amet, feugiat tempus tellus. Duis quis sodales risus. Etiam euismod ornare consequat.</p>'+
+    '      <p>Climb leg rub face on everything give attitude nap all day for under the bed. Chase mice attack feet but rub face on everything hopped up on goofballs.</p>'+
+    '      <h4>Cupcake ipsum</h4>'+
+    '      <p>Jelly-o sesame snaps halvah croissant oat cake cookie. Cheesecake bear claw topping. Chupa chups apple pie carrot cake chocolate cake caramels.</p>'+
+    '      <p>De braaaiiiins apocalypsi gorger omero prefrontal cortex undead survivor fornix dictum mauris. Hi brains mindless mortuis limbic cortex soulless creaturas optic nerve.</p>'+
+    '      <h4>Candy ipsum</h4>'+
+    '      <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar.</p>'+
+    '      <p>Caerphilly swiss fromage frais. Brie cheese and wine fromage frais chalk and cheese danish fontina smelly cheese who moved my cheese cow.</p>',
+  title: 'Modal title',
+  buttons: {
+    cancel: {
+      title: 'cancel',
+      class: 'pj-btn pj-btn-outline'
+    },
+    active: {
+      title: 'Share',
+      class: 'pj-btn pj-btn-danger',
+      fn: function() {
+        console.log('active callback')
+      }
+    },
+  },
+};
+
+var alert = {
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  title: 'Modal title',
+  buttons: {
+    cancel: {
+      title: 'cancel',
+      class: 'pj-btn pj-btn-outline',
+      fn: function() {
+        console.log('click cancel')
+      },
+    },
+    active: {
+      title: 'Continue',
+      class: 'pj-btn pj-btn-primary',
+      fn: function() {
+        console.log('action Continue')
+      },
+    },
+    creat: {
+      title: 'creat',
+      class: 'pj-btn pj-btn-danger',
+      fn: function() {
+        console.log('click creat')
+      },
+    },
+  },
+};
+
+var basicModal = {
+  effect: '',
+  content: '<p>This is the content inside the exam.</p>'+
+  '      <h4>Lorem ipsum</h4>'+
+  '      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent risus leo, dictum in vehicula sit amet, feugiat tempus tellus. Duis quis sodales risus. Etiam euismod ornare consequat.</p>'+
+  '      <p>Climb leg rub face on everything give attitude nap all day for under the bed. Chase mice attack feet but rub face on everything hopped up on goofballs.</p>'+
+  '      <h4>Cupcake ipsum</h4>'+
+  '      <p>Jelly-o sesame snaps halvah croissant oat cake cookie. Cheesecake bear claw topping. Chupa chups apple pie carrot cake chocolate cake caramels.</p>'+
+  '      <p>De braaaiiiins apocalypsi gorger omero prefrontal cortex undead survivor fornix dictum mauris. Hi brains mindless mortuis limbic cortex soulless creaturas optic nerve.</p>'+
+  '      <h4>Candy ipsum</h4>'+
+  '      <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar.</p>'+
+  '      <p>Caerphilly swiss fromage frais. Brie cheese and wine fromage frais chalk and cheese danish fontina smelly cheese who moved my cheese cow.</p>',
+  theme: 'sm',
+  title: 'Modal title',
+  buttons: {
+    cancel: {
+      title: 'cancel',
+      class: 'pj-btn pj-btn-outline'
+    },
+    active: {
+      title: 'Share',
+      class: 'pj-btn pj-btn-primary',
+      fn: function() {
+        console.log('active callback')
+      },
+    },
+  },
+};
+
+var content = {
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  close: true,
+};
+
+var btnColor = {
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
+  buttonAlignment: 'right',
+  theme: 'wideDialog',
+  title: 'this is title',
+  buttons: {
+    btn1: {
+      title: 'cancel',
+      class: 'pj-btn pj-btn-outline'
+    },
+    btn2: {
+      title: 'success',
+      class: 'pj-btn pj-btn-success'
+    },
+    btn3: {
+      title: 'info',
+      class: 'pj-btn pj-btn-info'
+    },
+    btn4: {
+      title: 'danger',
+      class: 'pj-btn pj-btn-danger'
+    },
+    btn5: {
+      title: 'warning',
+      class: 'pj-btn pj-btn-warning'
+    },
+  },
+};
+
+var buttonAlignment = {
+  content: 'this is a modal',
+  buttonAlignment: 'center',
+  close: false,
+  buttons: {
+    btn1: {
+      title: 'cancel',
+      class: 'pj-btn pj-btn-outline'
+    },
+    btn2: {
+      title: 'ok',
+      class: 'pj-btn pj-btn-success'
+    },
+  },
+};
+
+var alignContent = {
+  content: 'this is a modal',
+  buttonAlignment: 'center',
+  contentAlignment: 'center',
+  close: false,
+  buttons: {
+    btn1: {
+      title: 'cancel',
+    },
+    btn2: {
+      title: 'ok',
+    },
+  },
+};
+
+var dialog = {
+  content: 'this is a modal',
+  buttonAlignment: 'center',
+  contentAlignment: 'center',
+  close: false,
+  buttons: {
+    btn1: {
+      title: 'cancel',
+      class: 'pj-btn pj-btn-outline'
+    },
+    btn2: {
+      title: 'ok',
+      class: 'pj-btn pj-btn-success'
+    },
+  },
+};
+
+$(function(){
+  $('.api-popup').on('click', function() {
+    Pj.modal.open(pop);
+  });
+});
+
+$(function(){
+  $('.api-prompt').on('click', function() {
+    Pj.modal.open(prompt);
+  });
+});
+
+$(function(){
+  $('.api-callback').on('click', function() {
+    Pj.modal.open(callback);
+  });
+});
+
+$(function(){
+  $('.api-longcontent').on('click', function() {
+    Pj.modal.open(longcontent);
+  });
+});
+
+$(function(){
+  $('.api-alert').on('click', function() {
+    Pj.modal.open(alert);
+  });
+});
+
+$(function(){
+  $('.animation').on('click', function(event) {
+    var data = event.target.dataset.effect;
+    basicModal.effect = data;
+    Pj.modal.open(basicModal);
+  });
+});
+
+$(function(){
+  $('.alert').on('click', function(event) {
+    Pj.modal.alert("This is an alert");
+  });
+});
+
+$(function(){
+  $('.alert-title').on('click', function(event) {
+    Pj.modal.alert("Alert", "This is an alert");
+  });
+});
+
+$(function(){
+  $('.basic-modal').on('click', function(event) {
+      Pj.modal.open({
+      content: "hello world"
+      });
+   });
+});
+
+$(function(){
+  $('.confirm').on('click', function(event) {
+    Pj.modal.confirm("Confirm please?", function(){
+        console.info('yes');
+    }, function(){
+      console.info('no');
+    });
+  });
+});
+
+ $(function(){
+  $('.confirm-title').on('click', function(event) {
+      Pj.modal.confirm("Title Confirm", "Confirm please?", function(){
+          console.info('yes');
+      }, function(){
+          console.info('no');
+      });
+   });
+ });
+
+ $(function(){
+  $('.multi-level').on('click', function(event) {
+      Pj.modal.open(prompt);
+   });
+ });
+
+ $(function(){
+  $('.color').on('click', function(event) {
+      Pj.modal.open(btnColor);
+   });
+ });
+
+ $(function(){
+  $('.btn-location').on('click', function(event) {
+    Pj.modal.open({
+      content: 'this is a modal',
+      buttonAlignment: 'center',
+      close: false,
+      buttons: {
+        btn1: {
+          title: 'cancel',
+          class: 'pj-btn pj-btn-lpd pj-btn-outline'
+        },
+        btn2: {
+          title: 'delete',
+          class: 'pj-btn pj-btn-lpd pj-btn-danger'
+        },
+      },
+    });
+   });
+ });
+
+ $(function(){
+  $('.content-align-right').on('click', function(event) {
+      Pj.modal.open({
+        content: 'this is a modal',
+        buttonAlignment: 'right',
+        close: false,
+        buttons: {
+          btn1: {
+            title: 'cancel',
+            class: 'pj-btn pj-btn-outline'
+          },
+          btn2: {
+            title: 'ok',
+            class: 'pj-btn pj-btn-success'
+          },
+        },
+      });
+   });
+ });
+
+$(function(){
+  $('.content-align-center').on('click', function(event) {
+    // Pj.modal.setDefaults({buttonAlignment:'center'});
+    Pj.modal.open(alignContent);
+  });
+});
+
+$(function(){
+  $('.theme-sm').on('click', function(event) {
+    Pj.modal.open({
+      theme: 'sm',
+      content: "hello world",
+    });
+  });
+});
+
+$(function(){
+  $('.overlay').on('click', function(event) {
+    Pj.modal.open({
+      theme: 'sm',
+      content: "hello world",
+      overlay: false,
+    });
+  });
+});
+
+$(function(){
+  $('.random').on('click', function(event) {
+    var arr = [prompt, buttonAlignment, pop, alert];
+    var index = Math.floor(Math.random() * arr.length);
+    Pj.modal.open(arr[index]);
+  });
+});
+
+$(function(){
+  $('.closeall').on('click', function(event) {
+    Pj.modal.closeAll();
+  });
+});
+
+$(function(){
+  $('.closetop').on('click', function(event) {
+    Pj.modal.closeTop();
+  });
+});
+
+$(function(){
+  $('.getall').on('click', function(event) {
+    var instances = Pj.modal.getAll();
+    console.dir(instances);
+  });
+});
+
+$(function(){
+  $('.getbyid').on('click', function(event) {
+    var length = Pj.modal.getAll().length;
+    var randomId = Math.ceil(Math.random() * length);
+    var instance = Pj.modal.getById(randomId);
+    var log = 'log Pj.modal.getById(' + randomId + ') =';
+    console.log(log, instance);
+  });
+});
+
+//design stype
+$(function(){
+  $('.dialog').on('click', function() {
+    Pj.modal.open({
+      content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+      title: 'New Modal',
+      theme: 'dialog',
+      buttons: {
+        btn1: {
+          title: 'Save changes',
+        },
+      },
+    });
+  });
+
+  $('.verification').on('click', function() {
+    Pj.modal.open({
+      content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+      title: 'New Modal',
+      theme: 'verification',
+      buttons: {
+        btn1: {
+          title: 'Save changes',
+        },
+      },
+    });
+  });
+
+  $('.prompt').on('click', function() {
+    Pj.modal.open({
+      content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+      title: 'New Modal',
+      theme: 'prompt',
+      buttons: {
+        btn1: {
+          title: 'Save changes',
+        },
+      },
+    });
+  });
+
+  $('.wideDialog').on('click', function() {
+    Pj.modal.open({
+      content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+      title: 'New Modal',
+      theme: 'wideDialog',
+      buttons: {
+        btn1: {
+          title: 'Save changes',
+        },
+      },
+    });
+  });
+
+  //icon
+  $(function(){
+    $('.iconleft').on('click', function() {
+      Pj.modal.open({
+        content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+        title: 'Success Title',
+        icon: 'success',
+      });
+    });
+  });
+
+  $(function(){
+    $('.iconcenter').on('click', function() {
+      Pj.modal.open({
+        content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+        title: 'Success Title',
+        icon: 'success',
+        contentAlignment: 'center',
+        titleAlignment: 'center'
+      });
+    });
+  });
+
+  $(function(){
+    $('.success').on('click', function() {
+      Pj.modal.open({
+        content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+        title: 'Success Title',
+        icon: 'success',
+        contentAlignment: 'center',
+        titleAlignment: 'center'
+      });
+    });
+  });
+
+  $(function(){
+    $('.info').on('click', function() {
+      Pj.modal.open({
+        content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+        title: 'Success Title',
+        icon: 'info',
+        contentAlignment: 'center',
+        titleAlignment: 'center'
+      });
+    });
+  });
+
+  $(function(){
+    $('.error').on('click', function() {
+      Pj.modal.open({
+        content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+        title: 'Errorr Title',
+        icon: 'error',
+        contentAlignment: 'center',
+        titleAlignment: 'center'
+      });
+    });
+  });
+});
+</script>
+<section>
+  <h2>autoDestroy: false</h2>
+  <button class="btn autoDestroy_init" data-fuc="basic">modal init()</button>
+  <button class="btn autoDestroy_open" data-fuc="basic">open()</button>
+  <button class="btn autoDestroy_close" data-fuc="basic">close()</button>
+  <script>
+    $(function(){
+      let instance = ''
+      //init
+      $('.autoDestroy_init').on('click', function() {
+        instance = Pj.modal.init({
+          content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+          title: 'New Modal',
+          theme: 'dialog',
+          buttons: {
+            btn1: {
+              title: 'Save changes',
+            },
+          },
+        });
+      })
+      //show
+      $('.autoDestroy_open').on('click', function() {
+        instance.open()
+      })
+      //hide
+      $('.autoDestroy_close').on('click', function() {
+        instance.close()
+      })
+    });
+  </script>
+</section>
+<section>
+  <h2>locale</h2>
+    <button class="btn locale" data-fuc="basic">open()</button>
+    <script>
+    $(function(){
+      $('.locale').on('click', function() {
+        Pj.modal.open({
+          locale: 'zh',
+          content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
+          title: 'New Modal',
+          theme: 'dialog',
+          buttons: {
+            btn1: {
+              title: 'Cancel',
+            },
+            btn2: {
+              title: 'Yes',
+            },
+          },
+        });
+      })
+    });
+    </script>
+</section>

@@ -1,0 +1,387 @@
+---
+title: Range
+layout: plain
+styles:
+- ../../plugins/range/css/range.css
+- ../../plugins/dropdown/css/dropdown.css
+- ../../plugins/units/css/units.css
+scripts:
+- ../../plugins/range/range.js
+---
+
+<!--
+scripts:
+- ../../vendor/popper.js
+- ../../plugins/dropdown/dropdown.js
+- ../../plugins/units/units.js
+- ../../plugins/range/range.js
+-->
+
+<style media="screen">
+  body {
+    margin-left: 50px;
+  }
+</style>
+<section>
+  <h2>Default</h2>
+{{#code}}
+<input type="text" class="example-default">
+<script>
+  (function() {
+    Pj.range('.example-default');
+  })();
+</script>
+{{/code}}
+  <div class="example">
+    <input type="text" class="example-default" data-units='{"px":{"min": 10, "max": 100, "step": 10}}'>
+  </div>
+  <script>
+    (function() {
+      Pj.range('.example-default');
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Initialized by input value</h2>
+{{#code}}
+<input type="text" class="example-input" value="1,3px">
+<script>
+  (function() {
+    Pj.range('.example-input', {
+      isRange: true,
+      theme: null,
+      unit: {
+        'px':{
+          min: 0,
+          max: 10,
+          step: 1
+        },
+        '%': {
+          min: 0,
+          max: 100,
+          step: 10
+        }
+      }
+    });
+  })();
+</script>
+{{/code}}
+  <div class="example">
+    <input type="text" class="example-input" value="1,3px">
+  </div>
+  <script>
+    (function() {
+      Pj.range('.example-input', {
+        isRange: true,
+        unit: {
+          'px':{
+            min: 0,
+            max: 10,
+            step: 1
+          },
+          '%': {
+            min: 0,
+            max: 100,
+            step: 10
+          }
+        }
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>WordPress demo</h2>
+  <input id="range" name="range" data-plugin="range" data-default-unit="%" data-unit="{&quot;px&quot;:{&quot;min&quot;:5,&quot;max&quot;:10,&quot;step&quot;:1},&quot;%&quot;:{&quot;min&quot;:10,&quot;max&quot;:20,&quot;step&quot;:5}}" data-limit="false" data-is-range="false" data-keyboard="true"  value="">
+</section>
+<script>
+  (function () {
+    Pj.range('[data-plugin]')
+  })()
+</script>
+<section>
+  <h2>Range Limit</h2>
+{{#code}}
+<input type="text" class="example-range-limit" />
+<script>
+  (function() {
+    Pj.range('.example-range-limit', {
+      isRange: true
+    });
+  })();
+</script>
+{{/code}}
+  <div class="example">
+    <input type="text" class="example-range-limit">
+  </div>
+  <script>
+    (function() {
+      Pj.range('.example-range-limit', {
+        isRange: true,
+        scale: false
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Range No Limit</h2>
+{{#code}}
+<input type="text" class="example-range">
+<script>
+  (function() {
+    Pj.range('.example-default', {
+      isRange: true,
+      limit: false
+    });
+  })();
+</script>
+{{/code}}
+  <div class="example">
+    <input type="text" class="example-range">
+  </div>
+  <script>
+    (function() {
+      Pj.range('.example-range', {
+        isRange: true,
+        limit: false
+      });
+    })();
+  </script>
+</section>
+
+
+
+<section>
+  <h2>Attribute</h2>
+{{#code}}
+<input type="text" class="example-attribute" min="0" max="1" value="0.5" step="0.1">
+<script>
+  (function() {
+    Pj.range('.example-attribute', {
+      isRange: true
+    });
+  })();
+</script>
+{{/code}}
+  <div class="example">
+    <input type="text" class="example-attribute" min="0" max="1" value="0.2,0.5" step="0.01">
+  </div>
+  <script>
+    (function() {
+      Pj.range('.example-attribute', {
+        isRange: true
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Keyboard</h2>
+{{#code}}
+<input type="text" class="example-keyboard">
+<script>
+  (function() {
+    Pj.range('.example-keyboard', {
+      keyboard: true
+    });
+  })();
+</script>
+{{/code}}
+  <div class="example">
+    <input type="text" class="example-keyboard">
+  </div>
+  <script>
+    (function() {
+      Pj.range('.example-keyboard', {
+        keyboard: true
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Units</h2>
+{{#code}}
+<input type="text" class="example-units">
+<script>
+  (function() {
+    Pj.range('.example-units', {
+      unit: {
+        'px': {
+          min: 1,
+          max: 100,
+          step: 1
+        },
+        '%': {
+          min: 1,
+          max: 100,
+          step: 1
+        }
+      }
+    });
+  })();
+</script>
+{{/code}}
+  <div class="example">
+    <input type="text" class="example-units">
+  </div>
+  <script>
+    (function() {
+      Pj.range('.example-units', {
+        unit: {
+          'px': {
+            min: 1,
+            max: 100,
+            step: 1
+          },
+          '%': {
+            min: 1,
+            max: 100,
+            step: 1
+          }
+        }
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Units with range</h2>
+{{#code}}
+<input type="text" class="example-units-range">
+<script>
+  (function() {
+    Pj.range('.example-units-range', {
+      isRange: true,
+      unit: {
+        'px': {
+          min: 1,
+          max: 100,
+          step: 1
+        },
+        '%': {
+          min: 1,
+          max: 10,
+          step: 1
+        }
+      }
+    });
+  })();
+</script>
+{{/code}}
+  <div class="example">
+    <input type="text" class="example-units-range">
+  </div>
+  <script>
+    (function() {
+      Pj.range('.example-units-range', {
+        isRange: true,
+        unit: {
+          'px': {
+            min: 1,
+            max: 100,
+            step: 1
+          },
+          '%': {
+            min: 1,
+            max: 10,
+            step: 1
+          }
+        }
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Api</h2>
+  <div class="example" style="margin-top: 50px;">
+    <input type="text" class="example-api">
+    <div class="apis top-gap">
+      <button data-api="set" class="btn">set(data)</button>
+      <button data-api="get" class="btn">get()</button>
+      <button data-api="val" class="btn">val()</button>
+      <button data-api="valSet" class="btn">val(data)</button>
+      <button data-api="destroy" class="btn">destroy()</button>
+      <button data-api="enable" class="btn">enable()</button>
+      <button data-api="disable" class="btn">disable()</button>
+    </div>
+    <div class="console top-gap"></div>
+  </div>
+  <script>
+    (function() {
+      var $range = Pj.range('.example-api', {
+        isRange: false,
+        limit: false,
+        unit: {'px':{
+          min: 1,
+          max: 20,
+          step: 2
+        },'%': {
+          min: 0,
+          max: 1,
+          step: 0.1
+        }},
+        onReady: function() {
+          console.log('ready', 'event');
+        },
+        onDestroy: function() {
+          console.log('destroy', 'event');
+        },
+        onEnable: function() {
+          console.log('enable', 'event');
+        },
+        onDisable: function() {
+          console.log('disable', 'event');
+        },
+        onChange: function(val) {
+          console.log('change: '+JSON.stringify(val), 'event');
+        },
+        onChangeUnit: function(val) {
+          console.log('changeUnit: '+JSON.stringify(val), 'event');
+        },
+        onUpdate: function() {
+          console.log('update', 'event');
+        }
+      })
+      var APIS = {
+        destroy() {
+          $range.destroy()
+        },
+        disable() {
+          $range.disable()
+        },
+        enable() {
+          $range.enable()
+        },
+        get() {
+          console.log(JSON.stringify($range.get()), 'get()');
+        },
+        val() {
+          console.log($range.val(), 'val()');
+        },
+        valSet() {
+          $range.val('2px');
+          console.log('', 'val(data)');
+        },
+        set() {
+          $range.set({
+            value: '0.5',
+            unit: '%'
+          });
+          console.log('', 'set(data)');
+        }
+      }
+
+      // Pj.range('.apis').on('click', function(event) {
+      //  var target = event.target
+      //  var api = target.dataset.api
+      //  if (api) {
+      //    APIS[api]()
+      //  }
+      // })
+    })();
+  </script>
+</section>

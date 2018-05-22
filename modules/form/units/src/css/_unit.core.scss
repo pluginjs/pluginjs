@@ -1,0 +1,110 @@
+@import "@pluginjs/styles/variables.scss";
+// Vars
+// =====================
+$units: "pj-units" !default;
+$units-sizer: $sizer !default;
+$units-width: 8 * $units-sizer !default; //80px
+$units-height: 3.2 * $units-sizer !default; //32px
+$units-color: $text-color !default;
+$units-trigger-width: 2.2 * $units-sizer !default; //22px
+$units-trigger-height: $units-height !default;
+$units-disabled-color: $gray-lighter !default;
+$units-disabled-opacity: 0.4 !default;
+// Core
+// =====================
+.#{$units}-wrap {
+  position: relative;
+  .#{$units}-trigger {
+    width: $units-trigger-width;
+    text-align: center;
+  }
+  &:hover .#{$units}-input {
+    border-color: $gray-light;
+  }
+  & input {
+    padding-right: 2.5 * $units-sizer; //25px;
+  }
+}
+
+.#{$units} {
+  display: none !important;
+  &-active {
+    .#{$units}-input {
+      box-sizing: border-box;
+      border-color: $color-primary-dark;
+    }
+    &:hover .#{$units}-input {
+      border-color: $color-primary-dark;
+    }
+  }
+  &-active.pj-dropdown-focus {
+    box-sizing: border-box;
+    border-color: $color-primary-dark;
+    &-trigger {
+      color: $color-primary-dark;
+    }
+    .pj-dropdown-label {
+      color: $color-primary-dark;
+    }
+  }
+  &-input {
+    width: $units-width;
+    height: $units-height;
+    padding: 0.6 * $units-sizer 0.8 * $units-sizer !important; //6px 8px
+    padding-right: 30px !important;
+    margin: 0;
+    line-height: 1;
+    border-radius: $border-radius-base !important;
+  }
+  &-trigger {
+    position: absolute;
+    top: 50%;
+    left: $units-width - $units-trigger-width;
+    min-width: 0 !important;
+    height: $units-height;
+    padding: 0;
+    line-height: $units-height;
+    border: 0 !important;
+    transform: translateY(-50%);
+    // &:active,
+    // &:focus,{
+    //   border:0 !important;
+    // }
+    &.pj-dropdown {
+      background-color: transparent;
+    }
+
+    > .pj-dropdown-label {
+      padding: 5px 3px;
+    }
+  }
+  &-disabled {
+    .#{$units}-input {
+      background-color: $units-disabled-color;
+      opacity: $units-disabled-opacity;
+    }
+    &:hover .#{$units}-input {
+      border-color: $units-disabled-color;
+    }
+    .pj-dropdown {
+      background-color: transparent;
+    }
+    .#{$units}-input:hover {
+      cursor: not-allowed;
+      border-color: $units-disabled-color;
+    }
+    // .#{$units}-trigger .pj-dropdown-label {
+    //   &:hover,
+    //   &:focus {
+    //     color: $units-color !important;
+    //   }
+    // }
+  }
+  &-panel {
+    border: 1px solid $color-primary-dark;
+    > li {
+      padding: 1px 0.4 * $units-sizer !important; //1px 4px
+      text-align: right;
+    }
+  }
+}

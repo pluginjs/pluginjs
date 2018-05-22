@@ -1,0 +1,34 @@
+/* slideFall: side fall */
+.#{$modal}-slideFallIn {
+  animation: Modal-slideFallIn $modal-duration;
+}
+
+.#{$modal}-slideFallOut {
+  animation: Modal-slideFallOut $modal-duration forwards;
+}
+
+@keyframes Modal-slideFallIn {
+  0% {
+    opacity: 0;
+    transform: translate(30%) translateZ(600px) rotate(10deg);
+    transform-style: preserve-3d;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0%) translateZ(0) rotate(0deg);
+  }
+}
+
+@keyframes Modal-slideFallOut {
+  0% {
+    opacity: 1;
+    transform: translate(0%) translateZ(0) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(30%) translateZ(600px) rotate(10deg);
+    transform-style: preserve-3d;
+  }
+}

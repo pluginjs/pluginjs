@@ -1,0 +1,28 @@
+/* fade: Fade in */
+.#{$modal}-fadeIn {
+  animation: Modal-fadeIn $modal-duration;
+}
+
+.#{$modal}-fadeOut {
+  animation: Modal-fadeOut $modal-duration forwards;
+}
+
+@keyframes Modal-fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Modal-fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

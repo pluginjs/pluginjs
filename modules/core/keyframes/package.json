@@ -34,5 +34,6 @@
 	"min": "dist/keyframes.min.js",
 	"standalone": "dist/keyframes.standalone.js",
 	"module": "dist/keyframes.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

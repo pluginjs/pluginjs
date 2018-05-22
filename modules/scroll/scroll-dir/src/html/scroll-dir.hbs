@@ -1,0 +1,36 @@
+---
+title: Scrolldir
+layout: plugin
+scripts:
+- ../../plugins/scroll-dir/scroll-dir.js
+---
+<style>
+.document {
+  height: 3000px;
+  width: 3000px;
+}
+.page-content {
+  overflow-x: initial;
+}
+</style>
+<div>
+  <button class="btn api-attach">attach</button>
+  <button class="btn api-detach">detach</button>
+</div>
+<div class="document">
+
+</div>
+<script>
+$(function(){
+  $('.api-attach').on('click', function() {
+    console.log('bind')
+    Pj.scrolldir.on(function (dir, currentScrollY, delta) {
+      console.info('scrolldir:', dir, delta);
+    });
+  });
+
+  $('.api-detach').on('click', function() {
+    Pj.scrolldir.off('scrolldir');
+  });
+});
+</script>

@@ -1,0 +1,109 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$scrollTop: "pj-scrollTop" !default;
+$scrollTop-trigger-bottom: 20px !default;
+$scrollTop-trigger-right: 20px !default;
+
+// Core
+// =====================
+html {
+  overflow-y: scroll;
+}
+
+.#{$scrollTop} {
+  position: fixed;
+  right: $scrollTop-trigger-right;
+  bottom: $scrollTop-trigger-bottom;
+  overflow: hidden;
+  outline: none;
+  opacity: 0;
+
+  &-show {
+    opacity: 1;
+  }
+
+  &-animating,
+  &-animating * {
+    pointer-events: none !important;
+  }
+}
+
+.#{$scrollTop}-fade {
+  transition-property: opacity;
+}
+
+.#{$scrollTop}-slide {
+  bottom: -100px;
+  transition-property: bottom, opacity;
+
+  &.#{$scrollTop}-show {
+    bottom: $scrollTop-trigger-bottom;
+  }
+}
+
+/* themes */
+.#{$scrollTop} {
+  width: 50px;
+  height: 50px;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #000;
+  text-decoration: none;
+  text-indent: 100%;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: no-repeat center center transparent;
+  outline: none;
+
+  &--default {
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    text-indent: 0;
+    background: #eee;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+
+  // cycle theme
+  &--cycle {
+    background-image: url("../images/cycle.png");
+
+    &:hover {
+      background-image: url("../images/cycle-hover.png");
+    }
+  }
+
+  // square theme
+  &--square {
+    background-image: url("../images/square.png");
+
+    &:hover {
+      background-image: url("../images/square-hover.png");
+    }
+  }
+
+  // text theme
+  &--text {
+    background-image: url("../images/text.png");
+
+    &:hover {
+      background-image: url("../images/text-hover.png");
+    }
+  }
+
+  // triangle theme
+  &--triangle {
+    background-image: url("../images/triangle.png");
+
+    &:hover {
+      background-image: url("../images/triangle-hover.png");
+    }
+  }
+}

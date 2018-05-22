@@ -1,0 +1,25 @@
+//fadeIn
+.#{$toast}-fadeIn {
+  animation: #{$toast}-fadeIn 0.3s forwards;
+}
+
+@keyframes #{$toast}-fadeIn {
+  0% {
+    max-width: 0;
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  30% {
+    opacity: 0.8;
+  }
+
+  100% {
+    max-width: 400px;
+    max-height: 200px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

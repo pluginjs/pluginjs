@@ -1,0 +1,29 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$radio: "pj-radio" !default;
+// $radio-size: 16px !default;
+// $radio-border-radius: 2px !default;
+$radio-border-color: $border-color !default;
+$radio-color: $btn-color-primary !default;
+$radio-primary-color: $color-primary !default;
+$radio-success-color: $color-success !default;
+$radio-info-color: $color-info !default;
+$radio-warning-color: $color-warning !default;
+$radio-danger-color: $color-danger !default;
+
+.#{$radio}-radio,
+.#{$radio} > input[type="radio"][disabled] {
+  cursor: not-allowed;
+}
+
+@import "core";
+@import "inline";
+@import "disabled";
+@import "border";
+@import "default";
+@import "icon";
+@import "solid";
+@import "plain";
+// @import "colors";

@@ -1,0 +1,284 @@
+---
+title: Notice
+layout: plugin
+styles:
+- ../../plugins/notice/css/notice.css
+scripts:
+- ../../plugins/notice/notice.js
+---
+
+<section>
+  <h2>Events</h2>
+  <button class="btn example-event">open</button>
+  {{!-- <button class="btn onHide">onHide</button> --}}
+  <div class="console"></div>
+<script>
+$(function(){
+  $('.example-event').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      onShow: function() {
+        log('show', 'event');
+      },
+      onHide: function() {
+        log('hide', 'event');
+      },
+      onDestroy: function() {
+        log('destroy', 'event');
+      },
+    });
+  });
+});
+</script>
+</section>
+
+<section>
+  <h2>Options</h2>
+  <section>
+    <h3>allowClose</h3>
+    <button class="btn closetrue">true</button>
+    <button class="btn closenull">false</button>
+<script>
+//allowClose
+$(function(){
+  $('.closetrue').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      allowClose: true,
+    })
+  });
+});
+$(function(){
+  $('.closenull').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      allowClose: false,
+    })
+  });
+});
+</script>
+</section>
+
+<section>
+    <h3>BackgroundColor</h3>
+    <button class="btn background1" style="background: #2DB578;">show notice</button>
+    <button class="btn background2" style="background: #F6D851;">show notice</button>
+    <button class="btn background3">picture Bg</button>
+<script>
+
+//set color
+$(function(){
+  $('.background1').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      backgroundColor: '#2DB578',
+    })
+  });
+});
+$(function(){
+  $('.background2').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      backgroundColor: '#F6D851',
+    })
+  });
+});
+$(function(){
+  $('.background3').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      closeBottonColor: '#fff',
+      backgroundImage: '../../plugins/video/assets/bigpic.jpeg',
+    })
+  });
+});
+</script>
+</section>
+
+<section>
+    <h3>ContentAlign</h3>
+    <button class="btn alignleft">left</button>
+    <button class="btn aligncenter">center</button>
+<script>
+//content alignment
+$(function(){
+  $('.alignleft').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      contentAlignment: 'left',
+    })
+  });
+});
+$(function(){
+  $('.aligncenter').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      contentAlignment: 'center',
+    })
+  });
+});
+</script>
+
+</section>
+
+<section>
+    <h3>fontColor</h3>
+    <button class="btn fontwhite">show notice</button>
+    <button class="btn fontblack">show notice</button>
+<script>
+
+$(function(){
+  $('.fontwhite').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      fontColor: 'white',
+      backgroundColor: '#333333'
+    })
+  });
+});
+$(function(){
+  $('.fontblack').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      fontColor: 'black',
+    })
+  });
+});
+</script>
+
+</section>
+
+<section>
+    <h3>Buttons</h3>
+    <button class="btn buttons1">button</button>
+    <button class="btn buttons2">buttons</button>
+<script>
+//buttons
+$(function(){
+  $('.buttons1').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      buttons: {
+        btn1: {
+          title: 'cancel',
+          class: 'btn-square'
+        },
+      },
+    });
+  });
+});
+$(function(){
+  $('.buttons2').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      buttons: {
+        btn1: {
+          title: 'cancel',
+          class: 'btn-cancel',
+          fn: function() {
+            console.log('click btn cancel')
+          }
+        },
+        btn2: {
+          title: 'ok',
+          class: 'btn-success',
+          fn: function() {
+            console.log('click btn ok')
+          }
+        },
+        btn3: {
+          title: 'ok',
+          class: 'btn-square',
+          fn: function() {
+            console.log('click btn ok')
+          }
+        },
+        btn4: {
+          title: 'ok',
+          class: 'btn-overLine',
+          fn: function() {
+            console.log('click btn ok')
+          }
+        },
+      },
+    });
+  });
+});
+</script>
+
+</section>
+
+<section>
+    <h3>buttonAlign</h3>
+    <button class="btn btncenter">fontBehind</button>
+    <button class="btn btnright">right</button>
+<script>
+
+$(function(){
+  $('.btncenter').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      buttonAlign: '',
+    })
+  });
+});
+$(function(){
+  $('.btnright').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      buttonAlign: 'right',
+    })
+  });
+});
+</script>
+
+</section>
+
+<section>
+    <h3>fixedWidth</h3>
+    <button class="btn fixed1">show notice</button>
+    <button class="btn fixed2">show notice</button>
+<script>
+  //fixed
+$(function(){
+  $('.fixed1').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      fixedWidth: true,
+      contentAlignment: 'left',
+      buttonAlign: 'right'
+    })
+  });
+});
+$(function(){
+  $('.fixed2').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      fixedWidth: true,
+      contentAlignment: 'left',
+      buttonAlign: 'center'
+    })
+  });
+});
+</script>
+
+</section>
+
+<section>
+    <h3>layout</h3>
+    <button class="btn layout">show notice</button>
+<script>
+//layout
+$(function(){
+  $('.layout').on('click', function(event) {
+    Pj.notice.show({
+      content: 'Check Out And Download Premui Psd Template',
+      layout: 'bottom',
+    })
+  });
+});
+
+</script>
+  </section>
+</section>
+

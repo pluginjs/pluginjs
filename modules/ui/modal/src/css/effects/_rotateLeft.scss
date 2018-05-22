@@ -1,0 +1,38 @@
+/* rotateLeft:  3D Rotate in from left */
+.#{$modal}-rotateLeftIn {
+  animation: Modal-rotateLeftIn $modal-duration;
+}
+
+.#{$modal}-rotateLeftOut {
+  animation: Modal-rotateLeftOut $modal-duration forwards;
+}
+
+@keyframes Modal-rotateLeftIn {
+  0% {
+    opacity: 0;
+    transform: translateZ(100px) translateX(-30%) rotateY(90deg);
+    transform-origin: 0 100%;
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateZ(0) translateX(0%) rotateY(0deg);
+  }
+}
+
+@keyframes Modal-rotateLeftOut {
+  0% {
+    opacity: 1;
+    transform: translateZ(0) translateX(0%) rotateY(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateZ(100px) translateX(-30%) rotateY(90deg);
+    transform-origin: 0 100%;
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+}

@@ -37,5 +37,6 @@
 	"min": "dist/viewport.min.js",
 	"standalone": "dist/viewport.standalone.js",
 	"module": "dist/viewport.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

@@ -34,5 +34,6 @@
 	"min": "dist/emitter.min.js",
 	"standalone": "dist/emitter.standalone.js",
 	"module": "dist/emitter.esm.js",
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

@@ -1,0 +1,146 @@
+---
+title: MapPicker
+layout: plugin
+styles:
+- ../../plugins/gmap/css/gmap.css
+- ../../plugins/popover/css/popover.css
+- ../../plugins/pop-dialog/css/pop-dialog.css
+- ../../plugins/map-picker/css/map-picker.css
+scripts:
+- ../../plugins/map-picker/map-picker.js
+---
+<form>
+<section>
+  <h2>Default</h2>
+{{#code}}
+<input type="text" class="example-default">
+<script>
+  (function() {
+    Pj.mapPicker('.example-default');
+  })();
+</script>
+{{/code}}
+  <input type="text" name="mappicker" class="example-default">
+</section>
+
+<section>
+  <h2>Initialized by input vlaue</h2>
+{{#code}}
+<input type="text" class="example-input-value" value='{"place":"FuZhou","lat":26.074478, "lng": 119.29648199999997}'>
+<script>
+  (function() {
+    Pj.mapPicker('.example-input-value');
+  })();
+</script>
+{{/code}}
+  <input type="text" class="example-input-value" value='{"place":"fuzhou"}'>
+</section>
+
+<section>
+  <h2>Locale</h2>
+{{#code}}
+<input type="text" class="example-locale">
+<script>
+  (function() {
+    Pj.mapPicker('.example-locale', {
+      locale:'zh'
+    });
+  })();
+</script>
+{{/code}}
+  <input type="text" class="example-locale">
+</section>
+
+<section>
+  <h2>Api</h2>
+  <input type="text" class="example-api">
+  <div>
+    <button class="btn api-init">init()</button>
+    <button class="btn api-set">set(data)</button>
+    <button class="btn api-get">get()</button>
+    <button class="btn api-val">val()</button>
+    <button class="btn api-val-set">val(data)</button>
+    <!-- <button class="btn api-init">init()</button> -->
+    <button class="btn api-destroy">destroy()</button>
+    <button class="btn api-enable">enable()</button>
+    <button class="btn api-disable">disable()</button>
+  </div>
+  <div class="console"></div>
+</section>
+
+<script>
+  (function () {
+    var address = 'fuzhou';
+    var _data = {
+      place: '青岛',
+      lat: 36.06710799999999,
+      lng: 120.382609
+    }
+
+    Pj.mapPicker('.example-default', {
+      address
+    });
+
+    Pj.mapPicker('.example-input-value');
+
+    Pj.mapPicker('.example-locale', {
+      locale: 'zh'
+    });
+
+    let $elementApi;
+    function init() {
+      $elementApi = Pj.mapPicker('.example-api', {
+        address,
+        onReady: function() {
+          log('ready', 'event');
+        },
+        onDestroy: function() {
+          log('destroy', 'event');
+        },
+        onEnable: function() {
+          log('enable', 'event');
+        },
+        onDisable: function() {
+          log('disable', 'event');
+        }
+      });
+    }
+
+    document.querySelector('.api-init').addEventListener('click', function() {
+      init();
+    });
+
+    document.querySelector('.api-set').addEventListener('click', function() {
+      $elementApi.set(_data);
+      log('','set(data)');
+    });
+    document.querySelector('.api-get').addEventListener('click', function() {
+      log(JSON.stringify($elementApi.get()), 'get()');
+    });
+    document.querySelector('.api-val').addEventListener('click', function() {
+      log($elementApi.val(), 'val()');
+    });
+    document.querySelector('.api-val-set').addEventListener('click', function() {
+      $elementApi.val('{"lat": 15.2323, "lng":23.23333}');
+      log('', 'val(data)');
+    });
+    // $('.api-init').addEventListener('click', function() {
+    //   $map-picker.init();
+    //   log('', 'init()');
+    // });
+    document.querySelector('.api-enable').addEventListener('click', function() {
+      $elementApi.enable();
+      log('', 'enable()');
+    });
+    document.querySelector('.api-disable').addEventListener('click', function() {
+      $elementApi.disable();
+      log('', 'disable()');
+    });
+    document.querySelector('.api-destroy').addEventListener('click', function() {
+      $elementApi.destroy();
+      log('', 'destroy()');
+    });
+  })();
+</script>
+<button>submit</button>
+</form>

@@ -1,0 +1,48 @@
+//slide
+.#{$toast}-slideRight {
+  animation: #{$toast}-bounceInleft 0.7s forwards;
+}
+
+@keyframes #{$toast}-bounceInleft {
+  0% {
+    opacity: 0;
+    transform: translateX(280px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(-20px);
+  }
+
+  70% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.#{$toast}-slideLeft {
+  animation: #{$toast}-bounceInRight 0.7s forwards;
+}
+
+@keyframes #{$toast}-bounceInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-280px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(20px);
+  }
+
+  70% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

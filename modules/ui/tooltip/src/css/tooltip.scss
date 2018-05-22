@@ -1,0 +1,35 @@
+@import "@pluginjs/styles/variables.scss";
+@import "tooltip.core";
+// Vars
+// =====================
+$tooltip: "pj-tooltip" !default;
+$tooltip-light-color: $text-color !default;
+$tooltip-light-bg: $color-white !default;
+$tooltip-light-box-shadow: $box-shadow-base !default;
+$tooltip-light-arrow-color: $tooltip-light-bg !default;
+
+// light
+// =====================
+.#{$tooltip}--light {
+  .#{$tooltip}-inner {
+    color: $tooltip-light-color;
+    background-color: $tooltip-light-bg;
+    box-shadow: $tooltip-light-box-shadow;
+  }
+
+  &[x-placement^="top"],
+  &[x-placement^="bottom"] {
+    .#{$tooltip}-inner::before {
+      border-top-color: $tooltip-light-arrow-color;
+      border-bottom-color: $tooltip-light-arrow-color;
+    }
+  }
+
+  &[x-placement^="left"],
+  &[x-placement^="right"] {
+    .#{$tooltip}-inner::before {
+      border-right-color: $tooltip-light-arrow-color;
+      border-left-color: $tooltip-light-arrow-color;
+    }
+  }
+}

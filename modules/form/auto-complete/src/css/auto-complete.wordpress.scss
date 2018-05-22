@@ -1,0 +1,11 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$autoComplete: "pj-autoComplete" !default;
+
+$autoComplete-sizer: $sizer !default;
+
+.#{$autoComplete}-group {
+  border-bottom: none;
+}

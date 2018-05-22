@@ -6,19 +6,14 @@
 ---
 ### Installation
 
-#### NPM
-```javascript
-npm i @pluginjs/gradient
-```
 #### Yarn
 ```javascript
 yarn add @pluginjs/gradient
 ```
-
-### Dependencies
-- jQuery
-- @pluginjs/pluginjs
-
+#### NPM
+```javascript
+npm i @pluginjs/gradient
+```
 ---
 
 ## Getting Started
@@ -38,13 +33,13 @@ require("@pluginjs/gradient")
 **CDN:**
 Development:
 ```html
-<script src="/path/to/gradient.js"></script>
-<link rel="stylesheet" href="/path/to/gradient.css">
+<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/gradient.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/gradient.css">
 ```
 Production:
 ```html
-<script src="/path/to/gradient.min.js"></script>
-<link rel="stylesheet" href="/path/to/gradient.min.css">
+<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/gradient.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/gradient.min.css">
 ```
 
 ### Initialize
@@ -84,7 +79,7 @@ Name | Description | Default
 
 Tested on all major browsers.
 
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/internet-explorer/internet-explorer_32x32.png" alt="IE"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
 |:--:|:--:|:--:|:--:|:--:|:--:|
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
 
@@ -92,12 +87,12 @@ Tested on all major browsers.
 See [Contribution.md](Contribution.md).
 
 ## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/thecreaction/plugin.js/releases).
+To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
 
 ## Version
 Version: 0.2.18
 
 ## Copyright and license
-Copyright (C) 2017 Creation Studio Limited.
+Copyright (C) 2018 Creation Studio Limited.
 
-Licensed under [the GPL-v3 license](LICENSE).
+@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

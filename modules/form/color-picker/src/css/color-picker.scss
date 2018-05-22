@@ -1,0 +1,734 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$colorPicker: "pj-colorPicker" !default;
+
+$colorPicker-sizer: $sizer !default;
+
+$colorPicker-width: 16 * $colorPicker-sizer !default; //160px
+$colorPicker-height: 3 * $colorPicker-sizer !default; //30px
+$colorPicker-color: $gray-dark !default;
+$colorPicker-border-width: 1px !default;
+$colorPicker-border-style: solid !default;
+$colorPicker-border-color: $gray-lighter !default;
+$colorPicker-border: $colorPicker-border-width $colorPicker-border-style
+  $colorPicker-border-color !default;
+$colorPicker-border-radius: $border-radius-base !default;
+$colorPicker-hover-color: $color-primary !default;
+$colorPicker-active-color: $color-primary !default;
+$colorPicker-font-size: $font-size-base !default;
+//wrap
+$colorPicker-wrap-hover-border-color: $gray-light;
+// preview
+$colorPicker-preview-width: 3 * $colorPicker-sizer !default; //30px
+$colorPicker-preview-height: $colorPicker-preview-width !default;
+$colorPicker-preview-bg-width: 2.4 * $colorPicker-sizer !default; //24px
+$colorPicker-preview-bg-height: $colorPicker-preview-bg-width !default;
+$colorPicker-preview-bg-image: url("../images/transparent.png") !default;
+$colorPicker-preview-color-width: $colorPicker-preview-bg-width !default;
+$colorPicker-preview-color-height: $colorPicker-preview-bg-width !default;
+// remove
+$colorPicker-remove-right: $colorPicker-preview-width + 6px !default;
+$colorPicker-remove-color: $gray-lighter !default;
+$colorPicker-remove-hover-color: $gray-light !default;
+// input
+$colorPicker-input-padding-right: $colorPicker-preview-width + 4px !default;
+// panel
+$colorPicker-panel-width: 26 * $colorPicker-sizer !default; //260px
+$colorPicker-panel-height: 37 * $colorPicker-sizer !default; //370px
+$colorPicker-panel-shadow: $box-shadow-base !default;
+// panel trigger
+$colorPicker-panel-trigger-height: 4 * $colorPicker-sizer !default; //40px
+$colorPicker-panel-trigger-icon-size: 2 * $colorPicker-sizer !default; //20px
+$colorPicker-panel-trigger-icon-color: $gray-light !default;
+// controller
+$colorPicker-controller-height: 3 * $colorPicker-sizer !default; //30px
+// collection
+$colorPicker-collection-padding: 2 * $colorPicker-sizer 0 3 * $colorPicker-sizer !default; //20px 0 30px
+$colorPicker-collection-height: 28 * $colorPicker-sizer !default; //28px
+// collection scrollwrap
+$colorPicker-collection-scrollwrap-padding: 0 2 * $colorPicker-sizer !default; //20px
+// collection item
+$colorPicker-collection-item-width: 3.2 * $colorPicker-sizer !default; //32px
+$colorPicker-collection-item-height: $colorPicker-collection-item-width !default;
+$colorPicker-collection-item-border-radius: 100 * $colorPicker-sizer !default; //1000px
+$colorPicker-collection-item-margin-right: $colorPicker-sizer * 1.5 !default; //15px
+$colorPicker-collection-item-margin-bottom: $colorPicker-sizer * 1.5 !default; //15px
+// collection group
+$colorPicker-collection-group-title-margin-bottom: 1.5 * $colorPicker-sizer !default; //15px
+$colorPicker-collection-group-title-color: $gray-light !default;
+$colorPicker-collection-group-title-font-size: $font-size-xs !default;
+// collection manage
+$colorPicker-collection-manage-height: 3 * $colorPicker-sizer !default; //30px
+$colorPicker-collection-manage-padding: $colorPicker-sizer * 0.6 0 !default; //6px
+$colorPicker-collection-manage-icon-margin-right: $colorPicker-sizer !default; //10px
+// solid
+$colorPicker-solid-padding: 2 * $colorPicker-sizer !default; //20px
+$colorPicker-solid-item-margin-bottom: $colorPicker-sizer * 1.5 !default; //15px
+// contrast
+$colorPicker-contrast-width: $colorPicker-sizer * 10 !default; //100px
+$colorPicker-contrast-height: 3.4 * $colorPicker-sizer !default; //34px
+$colorPicker-contrast-margin-right: 1.4 * $colorPicker-sizer !default; //14px
+$colorPicker-contrast-bg-image: url("../images/transparent.png") !default;
+$colorPicker-contrast-border-color: $gray-lightest !default;
+// history
+$colorPicker-history-width: 10.6 * $colorPicker-sizer !default; //106px
+$colorPicker-history-hieght: $colorPicker-contrast-height !default;
+$colorPicker-history-item-size: $font-size-lg !default;
+$colorPicker-history-item-margin-right: 2px !default;
+$colorPicker-history-item-radius: 2px !default;
+$colorPicker-history-item-border-color: $gray-lightest !default;
+// alpha
+$colorPicker-alpha-width: $colorPicker-sizer * 1.6 !default; //16px
+$colorPicker-alpha-height: $colorPicker-sizer * 16.2 !default; //162px
+$colorPicker-alpha-bg-img: url("../images/alpha.png") !default;
+$colorPicker-alpha-bg: $color-black !default;
+// hue
+$colorPicker-hue-bg-img: url("../images/hue.png") !default;
+// hex
+$colorPicker-hex-width: 8 * $colorPicker-sizer !default; //80px
+$colorPicker-hex-height: 2.4 * $colorPicker-sizer !default; //24px
+$colorPicker-hex-padding: 0 $colorPicker-sizer !default; //0 10px
+// saturation
+$colorPicker-saturation-width: $colorPicker-alpha-height !default;
+$colorPicker-saturation-bg-img: url("../images/saturation.png") !default;
+$colorPicker-saturation-pointer-border: 2px solid $color-white !default;
+$colorPicker-saturation-pointer-width: 0.8 * $colorPicker-sizer !default; //8px
+$colorPicker-saturation-pointer-height: $colorPicker-saturation-pointer-width !default;
+$colorPicker-saturation-pointer-shadow: $box-shadow-base !default;
+// pointer
+$colorPicker-pointer-size: 2 * $colorPicker-sizer !default; //20px
+$colorPicker-pointer-top: -1 * $colorPicker-sizer !default; //-10px
+$colorPicker-pointer-left: -1.4 + $colorPicker-sizer !default; //14px
+$colorPicker-pointer-color: $gray-darker !default;
+// gradient
+$colorPicker-gradient-bar-width: 22 * $colorPicker-sizer !default; //220px
+$colorPicker-gradient-bar-height: $colorPicker-sizer !default; //20px
+$colorPicker-gradient-bar-top: -1 * $colorPicker-sizer !default; //-13px
+$colorPicker-gradient-bar-bg-image: url("../images/transparent.png") !default;
+$colorPicker-gradient-remove-color: $gray-lighter !default;
+$colorPicker-gradient-remove-size: $font-size-lg !default;
+$colorPicker-gradient-remove-color-active: $gray-light !default;
+$colorPicker-gradient-mode-width: 9 * $colorPicker-sizer !default; //90px
+$colorPicker-gradient-mode-height: 2.4 * $colorPicker-sizer !default; //24px
+$colorPicker-gradient-mode-margin-right: 1 * $colorPicker-sizer !default; //10px
+// marker
+$colorPicker-marker-width: 1.2 * $colorPicker-sizer !default; //12px
+$colorPicker-marker-height: 1.2 * $colorPicker-sizer !default; //12px
+// wheel
+$colorPicker-wheel-width: 2 * $colorPicker-sizer !default; //20px
+$colorPicker-wheel-height: $colorPicker-wheel-width !default;
+$colorPicker-wheel-margin-right: 1.6 * $colorPicker-sizer !default; //16px
+$colorPicker-wheel-handle-width: 0.4 * $colorPicker-sizer !default; //4px
+$colorPicker-wheel-handle-height: $colorPicker-wheel-handle-width !default;
+$colorPicker-wheel-bg-color: $gray-light !default;
+$colorPicker-wheel-angle-width: 6 * $colorPicker-sizer !default; //60px
+$colorPicker-wheel-angle-height: 2.4 * $colorPicker-sizer !default; //24px
+$colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
+
+// Core
+// =====================
+.#{$colorPicker} {
+  width: $colorPicker-width;
+  margin: 0;
+  margin-bottom: 0;
+  text-overflow: ellipsis;
+  // === wrap === //
+  &-wrap {
+    display: inline-block;
+    font-size: $colorPicker-font-size;
+    //border: 1px solid $colorPicker-border-color;
+    border-radius: $colorPicker-border-radius;
+    &.pj-colorPicker-disabled:hover .pj-input {
+      border-color: $disabled-border;
+    }
+    &:hover .pj-input {
+      border-color: $colorPicker-wrap-hover-border-color;
+    }
+    &:active .pj-input {
+      border-color: $color-primary-dark;
+    }
+    &:focus .pj-input {
+      border-color: $color-primary-dark;
+    }
+    //.tether-abutted-top.#{$colorPicker} {
+    //  border-color: $color-primary-dark;
+    //}
+  }
+
+  &:hover .#{$colorPicker}-remove {
+    display: block;
+  }
+
+  &-remove {
+    position: absolute;
+    top: 50%;
+    right: $colorPicker-remove-right;
+    z-index: 9;
+    display: none;
+    color: $colorPicker-remove-color;
+    transform: translateY(-50%);
+
+    &:hover {
+      color: $colorPicker-remove-hover-color;
+      cursor: pointer;
+    }
+  }
+
+  &-trigger {
+    position: relative;
+    width: $colorPicker-width;
+    height: 100%;
+
+    // == input == //
+    input[type="text"] {
+      padding-right: $colorPicker-input-padding-right;
+      //border: 0;
+      &:focus {
+        border-color: $color-primary-dark;
+      }
+      &:active {
+        border-color: $color-primary-dark;
+      }
+    }
+    // == input ==  in gradientPicker//
+    input:not([type]) {
+      padding-right: $colorPicker-input-padding-right;
+      //border: 0;
+      &:focus {
+        border-color: $color-primary-dark;
+      }
+      &:active {
+        border-color: $color-primary-dark;
+      }
+    }
+  }
+
+  &-open {
+    input {
+      border: 1px solid $color-primary-dark;
+    }
+  }
+
+  &-preview {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: $colorPicker-preview-width;
+    height: $colorPicker-preview-height - 2px;
+    cursor: pointer;
+    border-left: $colorPicker-border;
+    transform: translateY(-50%);
+
+    span {
+      position: absolute;
+      top: 0.2 * $colorPicker-sizer; //2px
+      left: 0.2 * $colorPicker-sizer; //2px
+      display: inline-block;
+      width: $colorPicker-preview-bg-width;
+      height: $colorPicker-preview-bg-height;
+      border-radius: $colorPicker-border-radius;
+    }
+
+    &-bg {
+      z-index: -1;
+      background: $colorPicker-preview-bg-image;
+    }
+  }
+
+  // === panel === //
+  &-panel {
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    // display: none;
+    width: $colorPicker-panel-width;
+    font-size: $colorPicker-font-size;
+    color: $colorPicker-color;
+    background-color: $color-white;
+    border-radius: $colorPicker-border-radius;
+    box-shadow: $colorPicker-panel-shadow;
+
+    &-wrap {
+      z-index: 9999;
+      display: none;
+      padding: 1.2 * $colorPicker-sizer 0; //12px
+    }
+
+    &-trigger {
+      display: flex;
+      height: $colorPicker-panel-trigger-height;
+      border-bottom: $colorPicker-border;
+
+      > i {
+        position: relative;
+        display: inline-block;
+        flex-grow: 1;
+        width: $colorPicker-panel-width / 3;
+        height: 100%;
+        font-size: $colorPicker-panel-trigger-icon-size;
+        line-height: $colorPicker-panel-trigger-height;
+        color: $colorPicker-panel-trigger-icon-color;
+        text-align: center;
+
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          display: block;
+          width: 1px;
+          height: 2 * $colorPicker-sizer; //20px
+          content: "";
+          background-color: $colorPicker-border-color;
+          transform: translateY(-50%);
+        }
+
+        &:last-of-type::after {
+          display: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &-gradient {
+        &::before {
+          display: inline-block;
+          width: $colorPicker-panel-trigger-icon-size;
+          height: 1.6 * $colorPicker-sizer; //16px
+          content: "";
+          background: linear-gradient(90deg, $gray-light, $color-white);
+          border: $colorPicker-border;
+        }
+
+        &:hover::before {
+          background: linear-gradient(
+            90deg,
+            $colorPicker-active-color,
+            $color-white
+          );
+          border-color: $colorPicker-active-color;
+        }
+      }
+    }
+
+    &-container {
+      position: relative;
+
+      & > div {
+        display: none;
+      }
+    }
+
+    &-collection {
+      height: $colorPicker-collection-height;
+      padding: $colorPicker-collection-padding;
+
+      .#{$colorPicker}-group {
+        &-title {
+          display: inline-block;
+          margin-bottom: $colorPicker-collection-group-title-margin-bottom;
+          font-size: $colorPicker-collection-group-title-font-size;
+          color: $colorPicker-collection-group-title-color;
+          letter-spacing: 1px;
+        }
+
+        &-list {
+          width: 100%;
+          height: 100%;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      .#{$colorPicker}-manage {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: $colorPicker-collection-manage-height;
+        line-height: $colorPicker-collection-manage-height - 2px;
+        text-align: center;
+        border-top: $colorPicker-border;
+
+        i {
+          margin-right: $colorPicker-collection-manage-icon-margin-right;
+          vertical-align: middle;
+        }
+
+        &:hover {
+          color: $colorPicker-active-color;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &-solid,
+    &-gradient {
+      padding: $colorPicker-solid-padding;
+    }
+  }
+
+  &-collection {
+    &-scrollwrap {
+      // width: 100%;
+      height: 100%;
+      padding: $colorPicker-collection-scrollwrap-padding;
+
+      .pj-scrollable-container,
+      .pj-scrollable-content {
+        // width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    &-item {
+      display: inline-block;
+      width: $colorPicker-collection-item-width;
+      height: $colorPicker-collection-item-height;
+      margin-right: $colorPicker-collection-item-margin-right;
+      margin-bottom: $colorPicker-collection-item-margin-bottom;
+      list-style: none;
+      cursor: pointer;
+      border-radius: $colorPicker-collection-item-border-radius;
+
+      &:nth-of-type(5n) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &-solid,
+  &-gradient {
+    &-handle,
+    &-primary {
+      display: flex;
+    }
+
+    &-handle {
+      margin-bottom: $colorPicker-solid-item-margin-bottom;
+    }
+
+    &-primary > div {
+      margin-right: 1.2 * $colorPicker-sizer; //12px
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    &-action {
+      margin-top: $colorPicker-solid-item-margin-bottom;
+      overflow: hidden;
+      input {
+        padding: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  &-gradient {
+    &-handle {
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    &-bar {
+      position: relative;
+      width: $colorPicker-gradient-bar-width;
+      height: $colorPicker-gradient-bar-height;
+      margin-bottom: 1.2 * $colorPicker-sizer; //12px
+      background: $colorPicker-gradient-bar-bg-image;
+      border-radius: $colorPicker-sizer; //10px
+
+      &:hover {
+        cursor: copy;
+      }
+
+      &-view {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: $colorPicker-sizer; //10px
+      }
+    }
+
+    &-remove {
+      font-size: $colorPicker-gradient-remove-size;
+      color: $colorPicker-gradient-remove-color;
+      cursor: not-allowed;
+
+      &-active {
+        color: $colorPicker-gradient-remove-color-active;
+        cursor: pointer;
+
+        &:hover {
+          color: $colorPicker-active-color;
+        }
+      }
+    }
+
+    &-mode {
+      width: $colorPicker-gradient-mode-width;
+      height: $colorPicker-gradient-mode-height;
+      margin-right: $colorPicker-gradient-mode-margin-right;
+
+      .pj-dropdown {
+        width: 100%;
+        height: 100%;
+
+        &-label {
+          line-height: 1;
+        }
+      }
+    }
+  }
+
+  // action btn
+  &-cancel,
+  &-ok {
+    float: right;
+    padding-right: $colorPicker-sizer; //10px
+    padding-left: $colorPicker-sizer; //10px
+  }
+
+  &-cancel {
+    margin-right: $colorPicker-sizer; //10px
+  }
+
+  &-contrast,
+  &-saturation,
+  &-alpha,
+  &-hue {
+    display: inline-block;
+  }
+
+  &-contrast {
+    width: $colorPicker-contrast-width;
+    height: $colorPicker-contrast-height;
+    margin-right: $colorPicker-contrast-margin-right;
+    overflow: hidden;
+    background-image: $colorPicker-contrast-bg-image;
+    border: $colorPicker-border;
+    border-color: $colorPicker-contrast-border-color;
+    border-radius: $colorPicker-border-radius;
+
+    span {
+      display: inline-block;
+      width: 50%;
+      height: 100%;
+
+      &:last-of-type:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-history {
+    display: flex;
+    flex-wrap: wrap;
+    width: $colorPicker-history-width;
+    height: $colorPicker-history-hieght;
+
+    &-item {
+      position: relative;
+      display: inline-block;
+      width: $colorPicker-history-item-size;
+      height: $colorPicker-history-item-size;
+      margin-right: $colorPicker-history-item-margin-right;
+      border: $colorPicker-border;
+      border-color: $colorPicker-history-item-border-color;
+      border-radius: $colorPicker-history-item-radius;
+
+      &:nth-child(6n) {
+        margin-right: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-saturation,
+  &-alpha,
+  &-hue {
+    position: relative;
+    display: inline-block;
+    width: $colorPicker-alpha-width;
+    height: $colorPicker-alpha-height;
+    margin-right: 1.2 * $colorPicker-sizer; //12px
+    border-radius: $colorPicker-alpha-width / 2;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-saturation {
+    width: $colorPicker-saturation-width;
+    background-image: $colorPicker-saturation-bg-img;
+
+    .#{$colorPicker}-pointer {
+      top: 0;
+      left: 0;
+      width: $colorPicker-saturation-pointer-width;
+      height: $colorPicker-saturation-pointer-height;
+      border: $colorPicker-saturation-pointer-border;
+      border-radius: 100%;
+      box-shadow: $colorPicker-saturation-pointer-shadow;
+      transform-origin: 50% 50%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-alpha {
+    background-color: $colorPicker-alpha-bg;
+    background-image: $colorPicker-alpha-bg-img;
+  }
+
+  &-hue {
+    margin-right: 0;
+    background-image: $colorPicker-hue-bg-img;
+  }
+
+  &-hex {
+    width: $colorPicker-hex-width;
+    height: $colorPicker-hex-height;
+    padding: $colorPicker-hex-padding;
+    margin: 0;
+  }
+
+  &-marker {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: $colorPicker-marker-width;
+    height: $colorPicker-marker-height;
+    cursor: pointer;
+    border: 2px solid $color-white;
+    border-radius: 1000px;
+    box-shadow: $box-shadow-3;
+    transform: translateY(-50%);
+
+    &:hover,
+    &:active {
+      transition: transform 0.3s;
+      transform: translateY(-50%) scale(1.2);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.#{$colorPicker}-marker-active {
+      border-color: $colorPicker-active-color;
+      transition: transform 0.3s;
+      transform: translateY(-50%) scale(1.2);
+
+      i {
+        border-color: $colorPicker-active-color;
+      }
+    }
+  }
+
+  &-wheel {
+    position: relative;
+    width: $colorPicker-wheel-width;
+    height: $colorPicker-wheel-height;
+    margin-right: $colorPicker-wheel-margin-right;
+    border: $colorPicker-border;
+    border-radius: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &-handle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: $colorPicker-wheel-handle-width;
+      height: $colorPicker-wheel-handle-height;
+      background-color: $colorPicker-wheel-bg-color;
+      border-radius: 100%;
+      transform: translateX(-50%);
+      transform-origin: center $colorPicker-wheel-height / 2;
+    }
+
+    &-angle {
+      width: $colorPicker-wheel-angle-width;
+      height: $colorPicker-wheel-angle-height;
+      margin: 0;
+      margin-right: $colorPicker-wheel-angle-margin-right;
+    }
+  }
+
+  &-open {
+    &.#{$colorPicker}-panel-wrap {
+      display: flex;
+    }
+  }
+
+  &-pointer {
+    position: absolute;
+    top: $colorPicker-alpha-height;
+    left: -1px;
+    display: block;
+    border: 4px solid transparent;
+    border-top-color: $colorPicker-pointer-color;
+    border-left-color: $colorPicker-pointer-color;
+    transform: rotate(135deg);
+    transform-origin: 0 0;
+
+    &:hover {
+      cursor: row-resize;
+    }
+  }
+
+  &-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 98;
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+  // === utils === //
+  &-selected {
+    color: $colorPicker-active-color !important;
+
+    &.#{$colorPicker}-panel-trigger-gradient::before {
+      background: linear-gradient(
+        90deg,
+        $colorPicker-active-color,
+        $color-white
+      );
+      border-color: $colorPicker-active-color;
+    }
+  }
+}
+
+.#{$colorPicker}-disabled {
+  .#{$colorPicker}-preview {
+    cursor: not-allowed;
+  }
+  &.#{$colorPicker}-wrap {
+    border-color: $disabled-border;
+    input {
+      color: $disabled-color;
+      background-color: $disabled-bg;
+    }
+    &:hover {
+      border-color: $disabled-border;
+    }
+  }
+}

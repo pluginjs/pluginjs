@@ -1,0 +1,180 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$tooltip: "pj-tooltip" !default;
+$tooltip-zindex: $zindex-tooltip !default;
+$tooltip-font-size: $font-size-sm !default;
+$tooltip-max-width: 200px !default;
+$tooltip-color: $color-white !default;
+$tooltip-bg: $gray-darkest !default;
+$tooltip-opacity: 0.9 !default;
+$tooltip-padding-y: 3px !default;
+$tooltip-padding-x: 8px !default;
+$tooltip-margin: 3px !default;
+$tooltip-border-radius: $border-radius-base !default;
+$tooltip-arrow-width: 5px !default;
+$tooltip-arrow-color: $tooltip-bg !default;
+$tooltip-arrow-offset-x: 10px !default;
+$tooltip-arrow-offset-y: 5px !default;
+$tooltip-light-color: $text-color !default;
+$tooltip-light-bg: $color-white !default;
+$tooltip-light-arrow-color: $tooltip-light-bg !default;
+$tooltip-shadow-box-shadow: $box-shadow-5 !default;
+
+@mixin reset-text {
+  font-family: $font-family-base;
+  // We deliberately do NOT reset font-size or word-wrap.
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-base;
+  // text-align: left; // Fallback for where `start` is not supported
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+  line-break: auto;
+}
+
+// Core
+// =====================
+.#{$tooltip} {
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  @include reset-text();
+
+  position: absolute;
+  z-index: $tooltip-zindex;
+  display: block;
+  font-size: $tooltip-font-size;
+  // Allow breaking very long words so they don't overflow the tooltip's bounds
+  word-wrap: break-word;
+  opacity: 0;
+
+  &.#{$tooltip}-show {
+    opacity: $tooltip-opacity;
+  }
+
+  .#{$tooltip}-inner::before {
+    pointer-events: none;
+  }
+
+  // placement^="top"
+  &[x-placement^="top"] {
+    padding-bottom: $tooltip-arrow-width;
+    margin-bottom: $tooltip-margin;
+    .#{$tooltip}-inner::before {
+      bottom: 0;
+      content: "";
+      border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
+      border-top-color: $tooltip-arrow-color;
+    }
+  }
+
+  // placement^="bottom"
+  &[x-placement^="bottom"] {
+    padding-top: $tooltip-arrow-width;
+    margin-top: $tooltip-margin;
+
+    .#{$tooltip}-inner::before {
+      top: 0;
+      content: "";
+      border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
+      border-bottom-color: $tooltip-arrow-color;
+    }
+  }
+
+  // top, bottom && top-end, bottom-end
+  &[x-placement="top"],
+  &[x-placement="bottom"] {
+    .#{$tooltip}-inner::before {
+      left: 50%;
+      margin-left: -$tooltip-arrow-width;
+    }
+  }
+
+  &[x-placement="top-end"],
+  &[x-placement="bottom-end"] {
+    .#{$tooltip}-inner::before {
+      right: $tooltip-arrow-offset-x;
+      margin-left: 0;
+    }
+  }
+
+  // placement^="right"
+  &[x-placement^="right"] {
+    padding-left: $tooltip-arrow-width;
+    margin-left: $tooltip-margin;
+
+    .#{$tooltip}-inner::before {
+      left: 0;
+      content: "";
+      border-width: $tooltip-arrow-width $tooltip-arrow-width
+        $tooltip-arrow-width 0;
+      border-right-color: $tooltip-arrow-color;
+    }
+  }
+
+  // placement^="left"
+  &[x-placement^="left"] {
+    padding-right: $tooltip-arrow-width;
+    margin-left: -$tooltip-margin;
+
+    .#{$tooltip}-inner::before {
+      right: 0;
+      content: "";
+      border-width: $tooltip-arrow-width 0 $tooltip-arrow-width
+        $tooltip-arrow-width;
+      border-left-color: $tooltip-arrow-color;
+    }
+  }
+
+  // left, right && left-end, right-end
+  &[x-placement="left"],
+  &[x-placement="right"] {
+    .#{$tooltip}-inner::before {
+      top: 50%;
+      margin-top: -$tooltip-arrow-width;
+    }
+  }
+
+  &[x-placement="left-end"],
+  &[x-placement="right-end"] {
+    .#{$tooltip}-inner::before {
+      top: $tooltip-arrow-offset-x;
+      margin-top: $tooltip-arrow-width;
+    }
+  }
+}
+
+// Wrapper for the tooltip content
+.#{$tooltip}-inner {
+  max-width: $tooltip-max-width;
+  padding: $tooltip-padding-y $tooltip-padding-x;
+  color: $tooltip-color;
+  text-align: center;
+  background-color: $tooltip-bg;
+  border-radius: $tooltip-border-radius;
+
+  &::before {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+}
+
+// Animation
+.#{$tooltip}-fade {
+  opacity: 0;
+  transition: opacity 0.15s linear;
+
+  &.#{$tooltip}-show {
+    opacity: 1;
+  }
+}

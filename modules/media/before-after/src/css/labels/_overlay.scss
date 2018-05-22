@@ -1,0 +1,36 @@
+$overlay-bg: rgba(#000, 0.5) !default;
+$overlay-label-color: #fff !default;
+$overlay-label-solid-bg: rgba(#fff, 0.2) !default;
+
+.#{$beforeAfter}-labels-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  transition: background 0.5s;
+
+  &:hover {
+    background-color: $overlay-bg;
+
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      opacity: 1;
+    }
+  }
+
+  .#{$beforeAfter}-label-before,
+  .#{$beforeAfter}-label-after {
+    color: $overlay-label-color;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+}
+
+.#{$beforeAfter}-labels-overlay.#{$beforeAfter}-labels-solid {
+  .#{$beforeAfter}-label-before,
+  .#{$beforeAfter}-label-after {
+    background-color: $overlay-label-solid-bg;
+  }
+}

@@ -1,0 +1,274 @@
+---
+title: Toggle
+layout: plugin
+styles:
+- ../../plugins/toggle/css/toggle.css
+scripts:
+- ../../vendor/hammer.min.js
+- ../../plugins/toggle/toggle.js
+---
+
+<section>
+  <h2>Default</h2>
+{{#code}}
+  <input class="example-default" type="checkbox" checked="checked">
+  <script>
+    (function() {
+      Pj.toggle('.example-default');
+    })();
+</script>
+{{/code}}
+  <div class="example">
+    <input class="example-default" type="checkbox" checked="checked">
+  </div>
+  <script>
+    (function() {
+      Pj.toggle('.example-default');
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Different size</h2>
+{{#code}}
+  <input class="example-size" type="checkbox" checked="checked">
+  <input class="example-size" type="checkbox" checked="checked" data-size="small">
+  <script>
+    (function() {
+      Pj.toggle('.example-size');
+    })();
+</script>
+{{/code}}
+  <div class="example">
+    <input class="example-size" type="checkbox" checked="checked">
+    <input class="example-size" type="checkbox" checked="checked" data-size="small">
+  </div>
+  <script>
+    (function() {
+      Pj.toggle('.example-size');
+    })();
+  </script>
+</section>
+<section>
+  <h2>Locale</h2>
+{{#code}}
+  <input class="example-locale" type="checkbox" checked="checked">
+  <script>
+    (function() {
+      Pj.toggle('.example-locale', {
+        showText: true,
+        locale: 'zh'
+      });
+    })();
+  </script>
+{{/code}}
+  <div class="example">
+    <input class="example-locale" type="checkbox" checked="checked">
+  </div>
+  <script>
+    (function() {
+      Pj.toggle('.example-locale', {
+        showText: true,
+        locale: 'zh'
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Custom content</h2>
+{{#code}}
+<input class="example-custom-content" type="checkbox" checked="checked">
+<script>
+  (function() {
+    Pj.toggle('.example-custom-content', {
+      showText: true,
+      onContent: '<i class="icon-check"></i>',
+      offContent: '<i class="icon-close"></i>'
+    });
+  })();
+</script>
+{{/code}}
+  <div class="example">
+    <input class="example-custom-content" type="checkbox" checked="checked">
+    <script>
+      (function() {
+        Pj.toggle('.example-custom-content', {
+          showText: true,
+          onContent: '<i class="icon-check"></i>',
+          offContent: '<i class="icon-close"></i>'
+        });
+      })();
+    </script>
+  </div>
+</section>
+
+<section>
+  <h2>Only drag</h2>
+{{#code}}
+  <input class="example-drag" type="checkbox" checked="checked">
+  <script>
+    (function() {
+      Pj.toggle('.example-drag', {
+          dragable: true,
+          clickable: false
+      });
+    })();
+  </script>
+{{/code}}
+  <div class="example">
+    <input class="example-drag" type="checkbox" checked="checked">
+  </div>
+  <script>
+    (function() {
+      Pj.toggle('.example-drag', {
+        theme: null,
+        dragable: true,
+        clickable: false
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Only click</h2>
+{{#code}}
+  <input class="example-click" type="checkbox" checked="checked">
+  <script>
+    (function() {
+      Pj.toggle('.example-click', {
+        dragable: false,
+        clickable: true
+      });
+    })();
+  </script>
+{{/code}}
+  <div class="example">
+    <input class="example-click" type="checkbox" checked="checked">
+    <script>
+      (function() {
+        Pj.toggle('.example-click', {
+          dragable: false,
+          clickable: true
+        });
+      })();
+    </script>
+  </div>
+</section>
+
+<section>
+  <h2>Disabled</h2>
+{{#code}}
+  <input class="example-disabled" type="checkbox" checked="checked">
+  <script>
+    (function() {
+      Pj.toggle('.example-disabled', {
+          disabled: true
+      });
+    })();
+  </script>
+{{/code}}
+  <div class="example">
+    <input class="example-disabled" type="checkbox" checked="checked">
+    <input class="example-disabled" type="checkbox">
+  </div>
+  <script>
+    (function() {
+      Pj.toggle('.example-disabled', {
+        disabled: true
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Api</h2>
+  <div class="example">
+    <input class="example-api" type="checkbox" checked="checked">
+    <div class="aps top-gap">
+      <button class="btn api-init">init()</button>
+      <button class="btn api-set">set(data)</button>
+      <button class="btn api-get">get()</button>
+      <button class="btn api-val">val()</button>
+      <button class="btn api-val-set">val(data)</button>
+      <button class="btn api-destroy">destroy()</button>
+      <button class="btn api-enable">enable()</button>
+      <button class="btn api-disable">disable()</button>
+    </div>
+    <div class="console"></div>
+    <script>
+      (function() {
+        var $toggle = {}
+
+        function init() {
+          $toggle = Pj.toggle('.example-api', {
+            dragable: true,
+            clickable: true,
+            onReady: function() {
+              console.log('ready', 'event');
+            },
+            onDestroy: function() {
+              console.log('destroy', 'event');
+            },
+            onEnable: function() {
+              console.log('enable', 'event');
+            },
+            onDisable: function() {
+              console.log('disable', 'event');
+            },
+            onChange: function(val) {
+              console.log('change: '+JSON.stringify(val), 'event');
+            }
+          });
+        }
+        document.querySelector('.api-init').addEventListener('click', function() {
+          init();
+        });
+
+        document.querySelector('.api-set').addEventListener('click', function() {
+          $toggle.set(true);
+          console.log('', 'set(data)');
+        });
+        document.querySelector('.api-get').addEventListener('click', function() {
+          console.log($toggle.get(), 'get()');
+        });
+        document.querySelector('.api-val').addEventListener('click', function() {
+          console.log($toggle.val(), 'val()');
+        });
+        document.querySelector('.api-val-set').addEventListener('click', function() {
+          $toggle.val('false');
+          console.log('', 'val(data)');
+        });
+        document.querySelector('.api-disable').addEventListener('click', function() {
+          $toggle.disable()
+        });
+        document.querySelector('.api-enable').addEventListener('click', function() {
+          $toggle.enable()
+        });
+        document.querySelector('.api-destroy').addEventListener('click', function() {
+          $toggle.destroy()
+        });
+      })();
+    </script>
+  </div>
+</section>
+
+<script>
+  /*let flag = true
+  const animation = function () {
+    if (flag) {
+      $(window).animate({
+        height: '600px'
+      })
+    } else {
+      $(window).animate({
+        height: '0px'
+      })
+    }
+    flag = !flag
+  }*/
+</script>
+
+<div class="spcae" style="height: 2000px">
+
+</div>

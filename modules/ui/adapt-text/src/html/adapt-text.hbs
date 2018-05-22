@@ -1,0 +1,94 @@
+---
+title: AdaptText
+layout: plugin
+scripts:
+- ../../plugins/adapt-text/adapt-text.js
+---
+<style>
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+</style>
+<section>
+<h2>Options</h2>
+  <section>
+    <h3>Scrollable</h3>
+    <div class="responsive" style="font-size:1em" data-scrollable="true">Long Text With Scrollable Support</div>
+  </section>
+
+  <section>
+    <h3>Min & Max</h3>
+    <div class="responsive" data-ratio="10" data-max="100" data-min="20">Hello world</div>
+  </section>
+</section>
+
+<section>
+  <h2>Inline</h2>
+  <section>
+    <h3>inline</h3>
+    <div class="responsive inline" data-ratio="10" data-max="100" data-min="20">Hello world</div>
+  </section>
+  <section>
+    <h3>inline-block</h3>
+    <div class="responsive inline-block" data-ratio="10" data-max="100" data-min="20">Hello world</div>
+  </section>
+</section>
+
+<section>
+  <h2>Api</h2>
+  <div class="example-api" data-ratio="20">Lorem ipsum dolor sit amet, nulla labitur fuisset an vis</div>
+  <div class="apis top-gap">
+    <button data-api="init" class="btn">init()</button>
+    <button data-api="destroy" class="btn">destroy()</button>
+    <button data-api="enable" class="btn">enable()</button>
+    <button data-api="disable" class="btn">disable()</button>
+  </div>
+  <div class="console top-gap"></div>
+</section>
+
+<script>
+(function(){
+  Pj.adaptText('.responsive');
+
+  var $elementApi;
+
+  var APIS = {
+    init() {
+      $elementApi = Pj.adaptText('.example-api', {
+        onReady: function() {
+          log('ready', 'event');
+        },
+        onDestroy: function() {
+          log('destroy', 'event');
+        },
+        onEnable: function() {
+          log('enable', 'event');
+        },
+        onDisable: function() {
+          log('disable', 'event');
+        },
+      });
+    },
+    destroy() {
+      $elementApi('destroy')
+    },
+    disable() {
+      $elementApi('disable')
+    },
+    enable() {
+      $elementApi('enable')
+    }
+  }
+
+  document.querySelector('.apis')
+    .addEventListener('click', event => {
+    var api = event.target.dataset.api;
+    if (api) {
+      APIS[api]()
+    }
+  })
+})();
+</script>

@@ -1,7 +1,7 @@
 {
 	"name": "accordion-samples",
 	"version": "1.0.0",
-	"description": "Simple Parcel Sandbox",
+	"description": "Simple accordion example",
 	"main": "index.html",
 	"scripts": {
 		"start": "parcel index.html --open",
@@ -11,7 +11,7 @@
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"animejs": "*",
-		"hammerjs": "*"
-	}
+		"@pluginjs/accordion": "^0.2.20"
+	},
+	"license": "UNLICENSED"
 }

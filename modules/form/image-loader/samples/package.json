@@ -1,0 +1,17 @@
+{
+	"name": "image-loader-samples",
+	"version": "1.0.0",
+	"description": "Simple image-loader example",
+	"main": "index.html",
+	"scripts": {
+		"start": "parcel index.html --open",
+		"build": "parcel build index.html"
+	},
+	"devDependencies": {
+		"parcel-bundler": "^1.6.1"
+	},
+	"dependencies": {
+		"@pluginjs/image-loader": "^0.2.18"
+	},
+	"license": "UNLICENSED"
+}

@@ -1,0 +1,152 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$paginator: "pj-paginator";
+$paginator-padding-x: 8px !default;
+$paginator-padding-y: $spacer-y !default;
+$paginator-pre-color: #808c9e !default;
+$paginator-pre-size: 0.8125rem !default;
+$paginator-icon-margin: 10px !default;
+$paginator-color: $text-color !default;
+$paginator-bg: #fff !default;
+$paginator-border-width: $border-width !default;
+$paginator-border-color: $border-color !default;
+$paginator-hover-color: $link-hover-color !default;
+$paginator-hover-bg: $paginator-bg !default;
+$paginator-hover-border: $color-primary !default;
+$paginator-active-color: #fff !default;
+$paginator-active-bg: $color-primary !default;
+$paginator-active-border: $color-primary !default;
+$paginator-disabled-color: $gray-lighter !default;
+$paginator-disabled-bg: #fff !default;
+$paginator-disabled-border: $gray-lighter !default;
+
+// Core
+// =====================
+.#{$paginator} {
+  // box-shadow: 0 0 10px #d7d7d7;
+  padding: 0 30px;
+  font-size: 0.75rem;
+  color: #808c9e;
+  text-align: center;
+  // display: inline-block;
+  list-style: none;
+  user-select: none;
+}
+
+.#{$paginator}-item {
+  display: inline-block;
+  height: 60px;
+  padding-top: 20px;
+}
+
+.#{$paginator}-link {
+  position: relative;
+  // float: left; // Collapse white-space
+}
+
+.#{$paginator}-active {
+  z-index: 2;
+}
+
+.#{$paginator}-disabled {
+  .#{$paginator}-link {
+    pointer-events: none;
+    // height: 60px;
+    cursor: $cursor-disabled;
+  }
+}
+
+// Theme
+// =====================
+.#{$paginator}-link {
+  box-sizing: border-box;
+  // border: $paginator-border-width solid $paginator-border-color;
+  // margin-left: -$paginator-border-width;
+  padding: 0 3px;
+  margin: 0 5px;
+  font-size: 0.75rem;
+  color: $paginator-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $paginator-hover-color;
+    background-color: $paginator-hover-bg;
+    border-color: $paginator-hover-border;
+  }
+}
+
+.#{$paginator}-prev {
+  float: left;
+
+  i {
+    margin-right: $paginator-icon-margin;
+    vertical-align: middle;
+  }
+}
+
+.#{$paginator}-next {
+  float: right;
+
+  i {
+    margin-left: $paginator-icon-margin;
+    vertical-align: middle;
+  }
+}
+
+.#{$paginator}-active {
+  .#{$paginator}-link {
+    &,
+    &:hover,
+    &:focus {
+      color: $paginator-active-bg;
+      border-bottom: 1px solid $paginator-active-border;
+    }
+  }
+}
+
+.#{$paginator}-prev,
+.#{$paginator}-next {
+  .#{$paginator}-link {
+    font-size: $paginator-pre-size;
+    color: $paginator-pre-color;
+
+    &:hover {
+      color: $paginator-active-bg;
+      cursor: pointer;
+    }
+  }
+}
+
+.#{$paginator}-disabled {
+  .#{$paginator}-link {
+    &,
+    &:hover,
+    &:focus {
+      color: $paginator-disabled-color;
+      background-color: $paginator-disabled-bg;
+    }
+  }
+}
+
+.#{$paginator}-total,
+.#{$paginator}-jumper {
+  padding-right: 3px;
+  padding-left: 3px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.#{$paginator}-jumper input {
+  padding: 5px 10px;
+  border: 1px solid #dfe4ed;
+  border-radius: 4px;
+
+  &:focus,
+  &:hover {
+    border-color: #aab3bf;
+    outline: none;
+  }
+}

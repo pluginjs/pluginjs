@@ -1,0 +1,8 @@
+@import "@pluginjs/styles/variables.scss";
+
+$radio: "pj-radio" !default;
+
+.#{$radio}-radio,
+.#{$radio} > input[type="radio"][disabled] {
+  cursor: not-allowed;
+}

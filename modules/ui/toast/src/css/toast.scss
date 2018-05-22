@@ -1,0 +1,250 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$toast: "pj-toast" !default;
+$toast-font-size: $font-size-sm !default;
+$toast-color: #fff !default;
+$toast-bg: $gray-darkest !default;
+$toast-border-color: $gray-darker !default;
+$toast-border-radius: $border-radius-base !default;
+$toast-spacer: $spacer !default;
+$toast-width: 280px !default;
+$toast-primary-color: $color-primary !default;
+$toast-success-color: $color-success !default;
+$toast-info-color: $color-info !default;
+$toast-warning-color: $color-warning !default;
+$toast-danger-color: $color-danger !default;
+$toast-duration: 1s !default;
+$toast-link-color: transparentize($gray-lightest, 0.1) !default;
+$toast-close-color: #363636 !default;
+$toast-progress-height: 15px !default;
+
+// Core
+// =====================
+@mixin toast-variant($color) {
+  background: transparentize($color, 0.1);
+  border-color: $color;
+}
+
+@mixin gradient-striped($color: rgba(255, 255, 255, 0.15), $angle: 45deg) {
+  background-image: linear-gradient(
+    $angle,
+    $color 25%,
+    transparent 25%,
+    transparent 50%,
+    $color 50%,
+    $color 75%,
+    transparent 75%,
+    transparent
+  );
+}
+
+@keyframes progress-bar-stripes {
+  from {
+    background-position: $toast-progress-height 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+.#{$toast} {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 9px;
+  margin-bottom: 5px;
+  font-size: $toast-font-size;
+  background: #fff;
+  border-radius: $toast-border-radius;
+  box-shadow: 0 0 10px #d7d7d7;
+
+  &.#{$toast}-primary {
+    @include toast-variant($toast-primary-color);
+  }
+
+  &.#{$toast}-success {
+    @include toast-variant($toast-success-color);
+  }
+
+  &.#{$toast}-info {
+    @include toast-variant($toast-info-color);
+  }
+
+  &.#{$toast}-warning {
+    @include toast-variant($toast-warning-color);
+  }
+
+  &.#{$toast}-danger {
+    @include toast-variant($toast-danger-color);
+  }
+
+  a {
+    color: $toast-link-color;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 0.75;
+    }
+  }
+
+  .#{$toast}-icon {
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    width: 1em;
+    margin-right: 0.8em;
+    font-size: 16px;
+    text-align: center;
+    transform: translateY(-50%);
+  }
+
+  .#{$toast}-content {
+    max-width: 80%;
+    margin-left: 10px;
+    font-size: 12px;
+    color: #808c9e;
+  }
+
+  .#{$toast}-title {
+    max-width: 80%;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #000;
+  }
+
+  .#{$toast}-loader {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    display: block;
+    width: 0%;
+    height: 3px;
+    background-color: #55a4f2;
+    border-radius: 5px;
+  }
+
+  .#{$toast}-loader-striped {
+    @include gradient-striped();
+
+    background-size: $toast-progress-height $toast-progress-height;
+    animation: progress-bar-stripes 0.4s linear infinite;
+  }
+
+  .#{$toast}-loaded {
+    width: 100%;
+  }
+
+  .#{$toast}-buttons {
+    max-width: 80%;
+    height: 25px;
+    margin-top: 10px;
+    margin-left: 53px;
+
+    .#{$toast}-btn {
+      display: inline-block;
+      float: right;
+      height: 100%;
+      margin: 0 5px;
+      line-height: 23px;
+      cursor: pointer;
+      border-radius: 5px;
+
+      &.btn-cancel {
+        padding: 0 15px;
+        color: #fff;
+        text-align: right;
+        background: #51e2ae;
+        border: 0;
+      }
+
+      &.btn-blue {
+        padding: 0 15px;
+        color: #fff;
+        background: #55a4f2;
+      }
+    }
+  }
+
+  .#{$toast}-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px 9px;
+    color: $toast-close-color;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    opacity: 0.7;
+    appearance: none;
+
+    &:not(:disabled):hover {
+      background: initial;
+      border: initial;
+      opacity: 0.9;
+    }
+
+    &::before {
+      font-size: 1.4em;
+      content: "\00d7";
+    }
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .#{$toast}-wrap {
+    width: $toast-width;
+  }
+}
+
+@media only screen and (max-width: 799px) {
+  .#{$toast}-wrap {
+    width: 200px;
+  }
+}
+
+.#{$toast}-wrap {
+  position: fixed;
+  display: block;
+  padding: 0;
+  margin: 0;
+  letter-spacing: normal;
+
+  &.pj-toast-bottom-right {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  &.pj-toast-bottom-left {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  &.pj-toast-top-right {
+    top: 20px;
+    right: 20px;
+  }
+
+  &.pj-toast-top-left {
+    top: 20px;
+    left: 20px;
+  }
+}
+
+.icon {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 100%;
+  background: #f00;
+}
+
+@import "effects/slide";
+@import "effects/fade";
+@import "effects/effect";

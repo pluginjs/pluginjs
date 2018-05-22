@@ -1,0 +1,48 @@
+$rectangle-handle-width: 16px !default;
+$rectangle-handle-height: 36px !default;
+
+.#{$beforeAfter}--rectangle {
+  .#{$beforeAfter}-handle {
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 5;
+      display: block;
+      content: " ";
+      border: $beforeAfter-handle-border-size solid
+        $beforeAfter-handle-border-color;
+      box-shadow: $beforeAfter-handle-box-shadow;
+      transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+      &::before {
+        border-color: $beforeAfter-handle-hover-border-color;
+      }
+    }
+
+    .#{$beforeAfter}-arrow-before,
+    .#{$beforeAfter}-arrow-after {
+      display: none;
+    }
+  }
+
+  &.#{$beforeAfter}-horizontal {
+    .#{$beforeAfter}-handle {
+      &::before {
+        width: $rectangle-handle-width;
+        height: $rectangle-handle-height;
+      }
+    }
+  }
+
+  &.#{$beforeAfter}-vertical {
+    .#{$beforeAfter}-handle {
+      &::before {
+        width: $rectangle-handle-height;
+        height: $rectangle-handle-width;
+      }
+    }
+  }
+}

@@ -1,0 +1,169 @@
+---
+title: Offset
+layout: plain
+styles:
+- ../../plugins/tooltip/css/tooltip.css
+- ../../plugins/dropdown/css/dropdown.css
+- ../../plugins/units/css/units.css
+- ../../plugins/offset/css/offset.css
+scripts:
+- ../../plugins/offset/offset.js
+---
+
+<!--
+styles:
+- ../../plugins/tooltip/css/tooltip.css
+- ../../plugins/dropdown/css/dropdown.css
+- ../../plugins/units/css/units.css
+- ../../plugins/offset/css/offset.css
+scripts:
+- ../../vendor/popper.js
+- ../../plugins/tooltip/tooltip.js
+- ../../plugins/dropdown/dropdown.js
+- ../../plugins/units/units.js
+- ../../plugins/offset/offset.js
+-->
+
+<section>
+  <h2>Default</h2>
+{{#code}}
+<input type="text" class="example-default">
+<script>
+  (function() {
+    Pj.offset('.example-default');
+  })();
+</script>
+{{/code}}
+  <input type="text" class="example-default">
+  <script>
+    (function() {
+      Pj.offset('.example-default');
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Attribute</h2>
+{{#code}}
+<input type="text" class="example-attribute" value='{"margin-top": "20px","margin-right": "20px","margin-bottom": "20px","margin-left": "20px"}'>
+<script>
+  (function() {
+    Pj.offset('.example-attribute', );
+  })();
+</script>
+{{/code}}
+  <input type="text" class="example-attribute" value='{"margin-top": "20px","margin-right": "20px","margin-bottom": "20px","margin-left": "20px"}'>
+  <script>
+    (function() {
+      Pj.offset('.example-attribute', );
+    })();
+  </script>
+</section>
+
+<section>
+  <h2>Locale</h2>
+{{#code}}
+<input type="text" class="example-locale">
+<script>
+  (function() {
+    Pj.offset('.example-locale', {
+      locale: 'zh'
+    });
+  })();
+</script>
+{{/code}}
+  <input type="text" class="example-locale">
+  <script>
+    (function() {
+      Pj.offset('.example-locale', {
+        locale: 'zh'
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h3>Api</h3>
+  <input type="text" class="example-api" value='{"margin-top": "20px","margin-right": "20px","margin-bottom": "20px","margin-left": "20px"}'>
+  <div>
+    <button class="btn api-init">init()</button>
+    <button class="btn api-set">set(data)</button>
+    <button class="btn api-get">get()</button>
+    <button class="btn api-val">val()</button>
+    <button class="btn api-val-set">val(data)</button>
+    <button class="btn api-clear">clear()</button>
+    <button class="btn api-destroy">destroy()</button>
+    <button class="btn api-enable">enable()</button>
+    <button class="btn api-disable">disable()</button>
+  </div>
+  <div class="console"></div>
+  <script>
+    (function(){
+      var data = {
+        "padding-top": "",
+        "padding-right": "0",
+        "padding-bottom": "20%",
+        "padding-left": "0em",
+        "margin-top": "30%",
+        "margin-left": "auto"
+      };
+
+      var $offset = {}
+      function init() {
+        $offset = Pj.offset('.example-api', {
+          data: data,
+          onReady: function() {
+            log('ready', 'event');
+          },
+          onDestroy: function() {
+            log('destroy', 'event');
+          },
+          onEnable: function() {
+            log('enable', 'event');
+          },
+          onDisable: function() {
+            log('disable', 'event');
+          },
+          onChange: function(val) {
+            log('change: '+JSON.stringify(val), 'event');
+          }
+        }).data('offset');
+      }
+
+      document.querySelector('.api-init').addEventListener('click', function() {
+        init()
+      });
+
+      document.querySelector('.api-set').addEventListener('click', function() {
+        $offset.set({
+          'padding-top': '0px',
+          'margin-bottom': '10px'
+        });
+        log('', 'set(data)');
+      });
+      document.querySelector('.api-get').addEventListener('click', function() {
+        log(JSON.stringify($offset.get()), 'get()');
+      });
+      document.querySelector('.api-val').addEventListener('click', function() {
+        log($offset.val(), 'val()');
+      });
+      document.querySelector('.api-val-set').addEventListener('click', function() {
+        $offset.val('{"padding-right":"10px", "margin-right": "10px"}');
+        log('', 'val(data)');
+      });
+      document.querySelector('.api-clear').addEventListener('click', function() {
+        $offset.clear();
+        log('', 'clear()');
+      });
+      document.querySelector('.api-destroy').addEventListener('click', function() {
+        $offset.destroy();
+      });
+      document.querySelector('.api-enable').addEventListener('click', function() {
+        $offset.enable();
+      });
+      document.querySelector('.api-disable').addEventListener('click', function() {
+        $offset.disable();
+      });
+    })();
+  </script>
+</section>

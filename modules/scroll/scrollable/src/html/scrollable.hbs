@@ -1,0 +1,229 @@
+---
+title: Scrollable
+layout: plain
+styles:
+- ../../plugins/scrollable/css/scrollable.css
+scripts:
+- ../../plugins/scrollable/scrollable.js
+---
+<style>
+/*
+---
+title: Scrollable
+layout: plain
+styles:
+- ../../plugins/scrollable/css/scrollable.css
+scripts:
+- ../../vendor/holder.js
+- ../../plugins/scrollbar/scrollbar.js
+- ../../plugins/scrollable/scrollable.js
+---
+*/
+body {
+  background-color: #f7f7f7;
+}
+
+.section {
+  padding: 20px;
+}
+
+.inner {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.example {
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  -webkit-box-shadow: 1px 1px 2px 0px rgba(200, 200, 200, .3);
+  -moz-box-shadow: 1px 1px 2px 0px rgba(200, 200, 200, .3);
+  box-shadow: 1px 1px 2px 0px rgba(200, 200, 200, .3);
+  background-color: #fefefe;
+}
+
+.box,
+.simple {
+  height: 200px;
+}
+</style>
+
+<section>
+  <h3>Vertical Scrollable</h3>
+  <div class="example box" data-direction="vertical" data-content-selector="div > div" data-container-selector=".example > div">
+    <div>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada at metus eget sodales. Aenean tincidunt mi sed orci sollicitudin placerat. Nullam tempus nisl augue, sed pulvinar eros lacinia vitae. Mauris vehicula velit a nibh dapibus vehicula. Fusce dui tellus, tincidunt sit amet porttitor efficitur, aliquam ac arcu. Cras non tempor dui. Nunc a dolor sit amet dolor bibendum auctor a eu ipsum.</p>
+        <p>Pellentesque lobortis facilisis risus, sit amet maximus turpis venenatis vitae. Donec nec eros iaculis, congue risus at, tempus augue. Donec quis felis vel purus pretium tincidunt. Integer sodales ultricies tristique. Phasellus et risus sagittis, dictum tortor a, semper lorem. Vivamus quis ipsum velit. Nam molestie ut ipsum ultricies volutpat. Integer molestie sagittis tempor. Integer vitae mauris est. Ut laoreet dignissim tellus, non accumsan erat gravida vel. Curabitur non erat id velit aliquam malesuada. Proin aliquet cursus orci quis pulvinar.</p>
+        <p>Duis elit massa, scelerisque sed nisl sed, tempus iaculis felis. Duis accumsan eget justo id auctor. Aliquam consequat odio non dolor efficitur, hendrerit porttitor neque porttitor. Integer varius maximus nunc, at malesuada leo tristique id. Sed aliquet pharetra ipsum, non interdum lacus dictum sit amet. Curabitur semper imperdiet sem eget interdum. Nunc at egestas tellus, vel tincidunt lacus. Fusce eget neque vel leo volutpat tincidunt ac non enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus cursus leo in felis viverra interdum.</p>
+        <p>Mauris id ultricies magna. Quisque rutrum lobortis elit blandit rutrum. Curabitur mattis enim lorem, eget tempor nunc pretium dignissim. Cras tincidunt ac nisl eget finibus. Fusce lobortis turpis sed dui mollis, eget fringilla risus porttitor. In id neque vitae lorem pharetra sodales. Morbi neque ex, mattis at dolor quis, consequat tincidunt leo. Vivamus sagittis placerat sem at porta.</p>
+        <p>Proin varius arcu ac ligula suscipit, sit amet pretium lectus tincidunt. Aliquam eu mi imperdiet, efficitur tellus ac, mollis eros. Cras malesuada feugiat pharetra. Curabitur lectus lacus, bibendum sed odio at, egestas tempor nisl. Vivamus sagittis est porta velit pretium, in elementum arcu tempus. Ut id cursus libero, non ullamcorper velit. Cras pretium arcu lacus, nec dignissim elit accumsan vitae. Aliquam tristique lorem et tempus congue. Donec vel metus enim. Praesent sed turpis et magna suscipit tincidunt. Proin efficitur neque non sapien cursus vehicula. Suspendisse iaculis, neque vel convallis lobortis, mauris dui posuere mi, at maximus lorem tortor a metus. Ut in quam efficitur, finibus nulla et, feugiat orci.</p>
+        <p>Sed mattis volutpat enim eget porttitor. Sed lectus ligula, condimentum nec elit eget, vehicula porttitor nunc. Curabitur pulvinar leo velit, a convallis tellus suscipit ac. Donec tempor est ut sagittis varius. Mauris maximus nunc metus, non venenatis justo ornare vel. Phasellus iaculis erat sit amet enim fermentum mattis. Cras sollicitudin tortor dolor, ac aliquam dolor iaculis non. Donec sed sodales enim. Suspendisse potenti. Integer quis turpis cursus enim consectetur fringilla eu eu ante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="top-gap">
+  <h3>Horizontal Scrollable</h3>
+  <div class="example box" data-direction="horizontal" data-content-selector="div > div" data-container-selector=".example > div">
+    <div>
+      <div>
+        <img data-src="holder.js/1500x200/sky" width="2000" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="top-gap">
+  <h3>Both Scrollable</h3>
+  <div class="example box" data-direction="both" data-content-selector="div > div" data-container-selector=".example > div">
+    <div>
+      <div>
+        <img data-src="holder.js/1500x400/sky" width="1500" height="400" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="top-gap">
+  <h3>Both Scrollable With No scroll</h3>
+  <div class="example box" data-direction="both" data-content-selector="div > div" data-container-selector=".example > div">
+    <div>
+      <div>
+        <img data-src="holder.js/100%x200/lava" width="100%" height="200" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="top-gap">
+  <h3>Auto x</h3>
+  <div class="example box" style="overflow-x: auto; overflow-y: hidden" data-direction="auto" data-content-selector="div > div" data-container-selector=".example > div">
+    <div>
+      <div>
+        <img data-src="holder.js/1200x200/vine" width="1200" height="200" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="top-gap">
+  <h3>Auto y</h3>
+  <div class="example box" style="overflow-y: auto; overflow-x: hidden" data-direction="auto" data-content-selector="div > div" data-container-selector=".example > div">
+    <div>
+      <div>
+        <img data-src="holder.js/958x300/vine" width="958" height="300" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="top-gap">
+  <h3>Auto both</h3>
+  <div class="example box" style="overflow: auto" data-direction="auto" data-content-selector="div > div" data-container-selector=".example > div">
+    <div>
+      <div>
+        <img data-src="holder.js/1200x300/vine" width="1200" height="300" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="top-gap">
+  <h3>Auto none</h3>
+  <div class="example box" data-direction="auto" data-content-selector="div > div" data-container-selector=".example > div">
+    <div>
+      <div>
+        <img data-src="holder.js/958x200/lava" width="958" height="200" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="top-gap">
+  <h3>Simple Structure</h3>
+  <div class="simple example">
+    <div>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada at metus eget sodales. Aenean tincidunt mi sed orci sollicitudin placerat. Nullam tempus nisl augue, sed pulvinar eros lacinia vitae. Mauris vehicula velit a nibh dapibus vehicula. Fusce dui tellus, tincidunt sit amet porttitor efficitur, aliquam ac arcu. Cras non tempor dui. Nunc a dolor sit amet dolor bibendum auctor a eu ipsum.</p>
+        <p>Pellentesque lobortis facilisis risus, sit amet maximus turpis venenatis vitae. Donec nec eros iaculis, congue risus at, tempus augue. Donec quis felis vel purus pretium tincidunt. Integer sodales ultricies tristique. Phasellus et risus sagittis, dictum tortor a, semper lorem. Vivamus quis ipsum velit. Nam molestie ut ipsum ultricies volutpat. Integer molestie sagittis tempor. Integer vitae mauris est. Ut laoreet dignissim tellus, non accumsan erat gravida vel. Curabitur non erat id velit aliquam malesuada. Proin aliquet cursus orci quis pulvinar.</p>
+        <p>Duis elit massa, scelerisque sed nisl sed, tempus iaculis felis. Duis accumsan eget justo id auctor. Aliquam consequat odio non dolor efficitur, hendrerit porttitor neque porttitor. Integer varius maximus nunc, at malesuada leo tristique id. Sed aliquet pharetra ipsum, non interdum lacus dictum sit amet. Curabitur semper imperdiet sem eget interdum. Nunc at egestas tellus, vel tincidunt lacus. Fusce eget neque vel leo volutpat tincidunt ac non enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus cursus leo in felis viverra interdum.</p>
+        <p>Mauris id ultricies magna. Quisque rutrum lobortis elit blandit rutrum. Curabitur mattis enim lorem, eget tempor nunc pretium dignissim. Cras tincidunt ac nisl eget finibus. Fusce lobortis turpis sed dui mollis, eget fringilla risus porttitor. In id neque vitae lorem pharetra sodales. Morbi neque ex, mattis at dolor quis, consequat tincidunt leo. Vivamus sagittis placerat sem at porta.</p>
+        <p>Proin varius arcu ac ligula suscipit, sit amet pretium lectus tincidunt. Aliquam eu mi imperdiet, efficitur tellus ac, mollis eros. Cras malesuada feugiat pharetra. Curabitur lectus lacus, bibendum sed odio at, egestas tempor nisl. Vivamus sagittis est porta velit pretium, in elementum arcu tempus. Ut id cursus libero, non ullamcorper velit. Cras pretium arcu lacus, nec dignissim elit accumsan vitae. Aliquam tristique lorem et tempus congue. Donec vel metus enim. Praesent sed turpis et magna suscipit tincidunt. Proin efficitur neque non sapien cursus vehicula. Suspendisse iaculis, neque vel convallis lobortis, mauris dui posuere mi, at maximus lorem tortor a metus. Ut in quam efficitur, finibus nulla et, feugiat orci.</p>
+        <p>Sed mattis volutpat enim eget porttitor. Sed lectus ligula, condimentum nec elit eget, vehicula porttitor nunc. Curabitur pulvinar leo velit, a convallis tellus suscipit ac. Donec tempor est ut sagittis varius. Mauris maximus nunc metus, non venenatis justo ornare vel. Phasellus iaculis erat sit amet enim fermentum mattis. Cras sollicitudin tortor dolor, ac aliquam dolor iaculis non. Donec sed sodales enim. Suspendisse potenti. Integer quis turpis cursus enim consectetur fringilla eu eu ante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="top-gap">
+  <div>
+    <button class="btn api-scroll-to" data-to="0">Scroll to 0</button>
+    <button class="btn api-scroll-to" data-to="50">Scroll to 50</button>
+    <button class="btn api-scroll-to" data-to="0%">Scroll to 0%</button>
+    <button class="btn api-scroll-to" data-to="100%">Scroll to 100%</button>
+    <button class="btn api-scroll-to" data-to="50%">Scroll to 50%</button>
+  </div>
+  <div>
+    <button class="btn api-scroll-by" data-by="10">Scroll by 10</button>
+    <button class="btn api-scroll-by" data-by="+10">Scroll by +10</button>
+    <button class="btn api-scroll-by" data-by="-10">Scroll by -10</button>
+    <button class="btn api-scroll-by" data-by="10%">Scroll by 10%</button>
+    <button class="btn api-scroll-by" data-by="+10%">Scroll by +10%</button>
+    <button class="btn api-scroll-by" data-by="-10%">Scroll by -10%</button>
+  </div>
+  <div>
+    <button class="btn api-init">Init</button>
+    <button class="btn api-enable">enable</button>
+    <button class="btn api-disable">disable</button>
+    <button class="btn api-destroy">Destroy</button>
+  </div>
+  <div class="console"></div>
+</section>
+
+<script>
+(function(){
+  Pj.scrollable('.box')
+  let simpleScrollable = Pj.scrollable('.simple', {
+    contentSelector: "div > div",
+    containerSelector: ".example > div",
+    onChange: function(val) {
+      console.log('change: '+JSON.stringify(val), 'event');
+    },
+    onScrollTop: function(e, api, direction) {
+      console.log('top:' + direction);
+    },
+    onScrollEnd: function(e, api, direction) {
+      console.log('end:' + direction);
+    }
+  });
+    var events = ['ready', 'enable', 'disable', 'destroy', 'hover', 'hovered', 'scroll'];
+    for(var i = 0; i < events.length; i++) {
+      document.querySelector('.simple').addEventListener('scrollable:'+events[i], function(event, instance) {
+        console.log(event.type, 'event');
+      });
+    }
+    document.querySelector('.box').addEventListener('asScrollable:scrolltop', function(e, api, direction) {
+      console.log('top:' + direction);
+    });
+    document.querySelector('.box').addEventListener('asScrollable:scrollend', function(e, api, direction) {
+      console.log('end:' + direction);
+    });
+    document.querySelector('.api-scroll-to').addEventListener('click', el => {
+      var to = el.dataset.to;
+      simpleScrollable.scrollTo('vertical', to);
+      simpleScrollable.scrollTo('horizontal', to);
+    });
+    document.querySelector('.api-scroll-by').addEventListener('click', function() {
+      var to = el.dataset.by;
+      simpleScrollable.scrollBy('horizontal', to);
+      simpleScrollable.scrollBy('vertical', to);
+    });
+    document.querySelector('.api-init').addEventListener('click', function() {
+      simpleScrollable = Pj.scrollable('.simple', {
+        contentSelector: "div > div",
+        contentSelector: ".example > div"
+      });
+    });
+    document.querySelector('.api-enable').addEventListener('click', function() {
+      simpleScrollable.enable();
+    });
+    document.querySelector('.api-disable').addEventListener('click', function() {
+      simpleScrollable.disable();
+    });
+    document.querySelector('.api-destroy').addEventListener('click', function() {
+      simpleScrollable.destroy();
+    });
+})();
+</script>

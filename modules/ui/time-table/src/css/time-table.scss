@@ -1,0 +1,109 @@
+@import "@pluginjs/styles/variables.scss";
+@import "classifier";
+@import "controller";
+@import "weekly";
+@import "monthly";
+@import "listly";
+
+/* core */
+$namespace: "pj-timeTable";
+$datePicker: "pj-datePicker";
+$datePickerPicker: "pj-datePicker-picker";
+$datepicker-border-color: #dfe4ed;
+
+.#{$namespace} {
+  color: #333;
+  background-color: transparent;
+  // position: relative;
+
+  &-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    display: block;
+    background-color: transparent;
+  }
+
+  &-sm-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    display: block;
+    background-color: transparent;
+  }
+
+  &-data {
+    display: none !important;
+  }
+
+  &-entry {
+    overflow: hidden;
+    // position: relative;
+
+    &-right {
+      // right: 0;
+      // top: 0;
+      display: flex;
+      // position: absolute;
+      float: right;
+    }
+
+    .pj-choice {
+      float: left;
+      margin-right: 30px;
+    }
+
+    .pj-dropdown-wrap {
+      float: left;
+    }
+  }
+
+  .pj-arrow-icon:hover {
+    cursor: pointer;
+  }
+
+  &-hide {
+    display: none;
+  }
+
+  &-today {
+    margin-right: 20px;
+    font-size: 13px;
+    background-color: #fff;
+
+    &:hover {
+      color: $color-primary;
+      background-color: #fff;
+    }
+  }
+
+  .#{$datePicker} {
+    &-input {
+      width: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    &-icon {
+      border-left: 1px solid $datepicker-border-color;
+      border-radius: 4px;
+    }
+  }
+
+  .#{$datePickerPicker} {
+    &-wrap {
+      z-index: 4;
+      padding: 0;
+    }
+  }
+}
+
+.page-content {
+  flex-grow: 1;
+}

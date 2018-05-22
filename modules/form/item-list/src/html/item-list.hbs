@@ -1,0 +1,199 @@
+---
+title: item-list
+layout: plugin
+styles:
+- ../../plugins/tooltip/css/tooltip.css
+- ../../plugins/popover/css/popover.css
+- ../../plugins/pop-dialog/css/pop-dialog.css
+- ../../plugins/list/css/list.css
+- ../../plugins/item-list/css/item-list.css
+scripts:
+- ../../plugins/item-list/item-list.js
+---
+
+<section>
+  <h2>Default</h2>
+{{#code}}
+<input type="text" class="example-default">
+<script>
+  (function() {
+    Pj.itemList('.example-default', {data: data});
+  })();
+</script>
+{{/code}}
+  <input type="text" class="example-default">
+</section>
+<section>
+  <h2>Simple</h2>
+{{#code}}
+<input type="text" class="example-simple">
+<script>
+  (function() {
+    Pj.itemList('.example-simple', {
+      data: [
+        'hello',
+        'world'
+      ]
+    });
+  })();
+</script>
+{{/code}}
+  <input type="text" class="example-simple">
+  <script>
+  (function() {
+    Pj.itemList('.example-simple', {
+      data: [
+        'hello',
+        'world'
+      ],
+      onClickAddBtn: function() {
+        this.insert('test');
+      }
+    });
+  })();
+</script>
+</section>
+<section>
+  <h2>Locale</h2>
+  <input type="text" class="example-locale">
+{{#code}}
+<input type="text" class="example-locale">
+<script>
+  (function() {
+    Pj.itemList('.example-locale', {
+      locale: 'zh',
+      data: data
+    });
+  })();
+</script>
+{{/code}}
+</section>
+<section>
+  <h2>Api</h2>
+  <input type="text" class="example-api">
+  <div>
+    <button class="btn api-init">init()</button>
+    <button class="btn api-set">set(data)</button>
+    <button class="btn api-get">get()</button>
+    <button class="btn api-get-index">get(index)</button>
+    <button class="btn api-val">val()</button>
+    <button class="btn api-val-set">val(data)</button>
+    <button class="btn api-destroy">destroy()</button>
+    <button class="btn api-enable">enable()</button>
+    <button class="btn api-disable">disable()</button>
+  </div>
+  <div class="console"></div>
+</section>
+<script>
+  (function() {
+    var data = [{
+      title: 'Interfaces',
+      value: 'interface'
+    }, {
+      title: 'UI Design',
+      value: 'ui-design'
+    }, {
+      title: 'Web Design',
+      value: 'web-design'
+    }, {
+      title: 'Typography',
+      value: 'typography'
+    }, {
+      title: 'Landing',
+      value: 'landing'
+    }];
+
+    Pj.itemList('.example-default', {
+      data: data,
+      onClickAddBtn: function() {
+        this.insert({
+          title: 'Test',
+          value: 'test'
+        });
+      },
+      onClickItem: function(item, i) {
+        item.title += ' edited';
+        this.edit(item, i);
+      }
+    });
+    Pj.itemList('.example-locale', {
+      locale: 'zh',
+      data: data,
+      onClickAddBtn: function() {
+        this.insert({
+          title: 'Test',
+          value: 'test'
+        });
+      }
+    });
+
+    var $itemList = {}
+    document.querySelector('.api-init').addEventListener('click', function() {
+      console.log('click init')
+      $itemList = Pj.itemList('.example-api', {
+        data: data,
+        onReady: function() {
+          console.log('ready', 'event');
+        },
+        onDestroy: function() {
+          console.log('destroy', 'event');
+        },
+        onEnable: function() {
+          console.log('enable', 'event');
+        },
+        onDisable: function() {
+          console.log('disable', 'event');
+        },
+        onAdd: function() {
+          console.log('add', 'event');
+        },
+        onClickAddBtn: function() {
+          console.log('click add', 'event');
+          this.insert({
+            title: 'Test',
+            value: 'test'
+          });
+        },
+        onClickItem: function(item, index) {
+          item.title += ' edited';
+
+          this.edit(index, item);
+        }
+      });
+    });
+
+    document.querySelector('.api-set').addEventListener('click', function() {
+      $itemList('set', [{
+        "title": "world",
+        "value": "World"
+      },{
+        "title": "hello",
+        "value": "Hello"
+      }]);
+      console.log('index = 0', 'set(data)');
+    });
+    document.querySelector('.api-get').addEventListener('click', function() {
+      log(JSON.stringify($itemList('get')), 'get()');
+    });
+    document.querySelector('.api-get-index').addEventListener('click', function() {
+      console.log('index = 1; ' + JSON.stringify($itemList('get', 1)), 'get(index)');
+    });
+
+    document.querySelector('.api-val').addEventListener('click', function() {
+      log($itemList('val'), 'val()');
+    });
+    document.querySelector('.api-val-set').addEventListener('click', function() {
+      $itemList('val', '["hello", "WORLD"]');
+      console.log('index = 1, 2', 'val(data)');
+    });
+    document.querySelector('.api-disable').addEventListener('click', function() {
+      $itemList('disable')
+    });
+    document.querySelector('.api-enable').addEventListener('click', function() {
+      $itemList('enable')
+    });
+    document.querySelector('.api-destroy').addEventListener('click', function() {
+      $itemList('destroy')
+    });
+  })();
+</script>

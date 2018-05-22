@@ -1,0 +1,201 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$list: "pj-list" !default;
+$pop: "pj-popover" !default;
+
+$list-sizer: $sizer;
+
+$list-width: 26 * $list-sizer !default; //260px
+$list-padding: 1.6 * $list-sizer !default; //16px
+$list-color: $text-color !default;
+$list-item-height: 3 * $list-sizer !default; //30px
+$list-item-active-border-color: $color-primary !default;
+$list-item-hover-border-color: $gray-light !default;
+$list-font-size: $font-size-base !default;
+$list-ghost-bg: $gray-lightest !default;
+$list-border-color: $gray-lighter !default;
+$list-border-style: solid !default;
+$list-border-width: 1px !default;
+$list-border: $list-border-width $list-border-style $list-border-color !default;
+$list-border-radius: $border-radius-base !default;
+$list-item-handle-bg: $list-border-color !default;
+$list-active-color: $color-primary !default;
+$list-adduser-height: 3 * $list-sizer !default; //30px
+$list-adduser-btn-bg: $color-primary !default; //#66adf3 !default;
+//clone
+$list-clone-bg: rgba($color-warning, 0.2) !default; //#f3d351
+// actions
+$list-item-actions-color: $gray-light !default;
+// pop
+$pop-item-label-padding-top: 2 * $list-sizer !default; //20px
+$pop-item-label-padding: $pop-item-label-padding-top 3 * $list-sizer !default; //30px
+$pop-buttons-bg-color: $color-white !default;
+$pop-buttons-color: $gray !default;
+$pop-buttons-danger-color: $color-danger !default;
+
+// Core
+// =====================
+.#{$list} {
+  @keyframes clone {
+    0% {
+      background-color: $list-clone-bg;
+    }
+
+    100% {
+      background-color: transparent;
+    }
+  }
+  box-sizing: border-box;
+
+  width: $list-width;
+  padding: $list-padding;
+  font-size: $list-font-size;
+  color: $list-color;
+
+  &-container {
+    padding: 0;
+    margin: 0;
+    margin-bottom: $list-padding;
+  }
+
+  &-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: $list-item-height;
+    margin-bottom: $list-sizer; //10px
+    overflow: hidden;
+    line-height: $list-item-height;
+    list-style: none;
+    user-select: none;
+    border: $list-border;
+    border-radius: $list-border-radius;
+
+    &:hover {
+      border-color: $list-item-hover-border-color;
+    }
+
+    &:active {
+      border-color: $color-primary-dark;
+    }
+
+    .#{$list}-item-handle {
+      display: inline-block;
+      width: 1.2 * $list-sizer; //12px
+      height: $list-item-height;
+      font-size: $font-size-sm;
+      line-height: $list-item-height;
+      color: $color-white;
+      background-color: $list-item-handle-bg;
+
+      &:hover {
+        cursor: grab;
+      }
+
+      &:active {
+        cursor: grabbing;
+        background-color: $gray-light;
+      }
+
+      > i {
+        pointer-events: none;
+      }
+    }
+
+    .#{$list}-item-label {
+      display: inline-block;
+      margin-right: 4.2 * $list-sizer; //42px
+      margin-left: 0.8 * $list-sizer; //8px
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .#{$list}-item-actions {
+      position: absolute;
+      top: 50%;
+      right: 0.8 * $list-sizer; //8px
+      color: $list-item-actions-color;
+      transition: color 0.5s;
+      transform: translateY(-50%);
+
+      &:hover {
+        cursor: pointer;
+        transition: color 0.5s;
+      }
+    }
+
+    &.sortable-ghost {
+      background-color: $list-ghost-bg;
+      border-color: $list-border-color;
+      border-style: dashed;
+
+      .#{$list}-item-handle,
+      .#{$list}-item-label,
+      .#{$list}-item-actions {
+        display: none;
+      }
+    }
+  }
+  // &-pop {
+  //   .#{$pop}-title:empty+.#{$pop}-item-label {
+  //     padding-top: $pop-item-label-padding-top;
+  //   }
+  //   .#{$pop}-item-label {
+  //     padding: $pop-item-label-padding;
+  //   }
+  //   .#{$pop}-buttons button {
+  //     background-color: $pop-buttons-bg-color;
+  //     color: $pop-buttons-color;
+  //     &:hover{
+  //       background-color: rgba(0, 0, 0, .02);
+  //     }
+  //   }
+  //   .#{$pop}-buttons button[data-color="danger"] {
+  //     color: $pop-buttons-danger-color;
+  //   }
+  // }
+  &-close:hover {
+    color: $list-active-color;
+  }
+
+  .#{$list}-store {
+    display: none;
+  }
+
+  &-item-clone-animate {
+    animation: clone 1000ms;
+  }
+
+  &-disabled {
+    .#{$list}-item-handle {
+      &:hover,
+      &:active {
+        cursor: not-allowed;
+        background-color: $list-item-handle-bg;
+      }
+    }
+
+    .#{$list}-item {
+      background-color: $gray-lightest !important;
+
+      &:hover {
+        cursor: not-allowed;
+        border-color: $list-border-color;
+      }
+    }
+
+    .#{$list}-item-actions {
+      &:hover {
+        cursor: not-allowed;
+      }
+
+      > i {
+        color: $list-item-actions-color !important;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

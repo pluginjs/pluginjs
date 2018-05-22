@@ -1,0 +1,158 @@
+# Wizard
+> A flexible modern wizard js plugin.
+## Introduction
+
+#### [Demo]()
+---
+### Installation
+
+#### Yarn
+```javascript
+yarn add @pluginjs/wizard
+```
+#### NPM
+```javascript
+npm i @pluginjs/wizard
+```
+---
+
+## Getting Started
+### Include
+**Webpack && Rollup:**
+
+ECMAScript Modules
+```javascript
+import wizard from "@pluginjs/wizard"
+```
+
+CommonJS
+```javascript
+require("@pluginjs/wizard")
+```
+
+**CDN:**
+Development:
+```html
+<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/wizard.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/wizard.css">
+```
+Production:
+```html
+<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/wizard.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/wizard.min.css">
+```
+
+### Initialize
+HTML:
+```html
+<body>
+  <div class="element"></div>
+</body>
+```
+JS:
+```javascript
+Pj.wizard('.element', options);
+```
+---
+## API
+
+### Options:
+Options are called on wizard instances through the wizard options itself.
+You can also save the instances to variable for further use.
+
+Name | Description | Default
+-----|--------------|-----
+`"theme"` | Set plugin theme option | `null`
+`"step"` | Set step value | `.pj-wizard-steps &gt; li`
+`"getPane"` | Set getPane callback | `function() {...}`
+`"buttonsAppendTo"` | Set button append path | `this`
+`"autoFocus"` | Set is enabled auto focus or not | `true`
+`"keyboard"` | Set is enabled keyboard or not | `true`
+`"enableWhenVisited"` | Set is enable visite or not | `false`
+`"loading"` | Set loading step callback (include show, hide and fail) | `{}`
+`"cacheContent"` | Set is enabled cache content or not | `false`
+`"validator"` | Set validator callback | `function() {...}`
+`"locale"` | Set locale environment | `en`
+`"localeFallbacks"` | Set is enabled locale fallbacks or not | `true`
+
+### Events:
+Events are called on wizard instances through the wizard events itself.
+You can also save the instances to variable for further use.
+
+Name | Description
+-----|-----
+`"update"` | Gets fired when plugin has destroy
+`"ready"` | Gets fired when plugin has ready
+`"enable"` | Gets fired when plugin has enabled
+`"disable"` | Gets fired when plugin has disabled
+`"destroy"` | Gets fired when plugin has destroy
+`"afterChange"` | Gets fired when plugin has changed
+`"beforeChange"` | Gets fired when plugin before change
+`"next"` | Gets fired when plugin has trigger next event
+`"back"` | Gets fired when plugin has trigger back event
+`"finish"` | Gets fired when plugin has finish
+`"init"` | Gets fired when plugin is initialing
+
+```
+### Methods:
+Methods are called on wizard instances through the wizard method itself.
+You can also save the instances to variable for further use.
+
+Name | Description
+-----|-----
+`"enable"` | Enabled plugin if plugin is disabled
+`"disable"` | Disable plugin
+`"destroy"` | Destroy plugin
+`"get"` | Get value by key
+
+**example:**
+```javascript
+Pj.$wizard('.element', enable)
+Pj.$wizard('.element', enable, "foo")
+Pj.$wizard('.element', enable, "foo", "bar")
+```
+
+### Classes:
+Name | Description | Default
+-----|------|------
+`"NAMESPACE"` | Declare plugin namespace | `pj-wizard`
+`"THEME"` | Declare plugin theme | `{namespace}--{theme}`
+`"SUCCESS"` | Announce plugin is loading success | `{namespace}-success`
+`"ERROR"` | Announce plugin has throw a error | `{namespace}-error`
+`"STEP"` | Declare plugin step | `[object Object]`
+`"PANE"` | Declare plugin pane | `[object Object]`
+`"BUTTONS"` | Declare buttons node | `[object Object]`
+`"BUTTON"` | Declare button node | `[object Object]`
+
+
+### Translations:
+Name | EN | ZH
+-----|------|-------
+`"back"` | Back | 返回
+`"next"` | Next | 前进
+`"finish"` | Finish | 完成
+
+
+---
+
+## Browser support
+
+Tested on all major browsers.
+
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+
+## Contributing
+See [Contribution.md](Contribution.md).
+
+## Changelog
+To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
+
+## Version
+Version: 0.2.18
+
+## Copyright and license
+Copyright (C) 2018 Creation Studio Limited.
+
+@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

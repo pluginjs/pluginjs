@@ -51,7 +51,7 @@ export const transitionEndEvent = () => {
   }
   const style = document.createElement('dummy').style
   for (const i in eventNames) {
-    if (Object.prototype.hasOwnProperty.call(eventNames, i)) {
+    if (eventNames.hasOwnProperty(i)) {
       if (style[i] !== undefined) {
         return eventNames[i]
       }
@@ -71,7 +71,7 @@ export const animationEndEvent = () => {
   // const style = document.body.style
   const style = {}
   for (const i in eventNames) {
-    if (Object.prototype.hasOwnProperty.call(eventNames, i)) {
+    if (eventNames.hasOwnProperty(i)) {
       if (style[i] !== undefined) {
         return eventNames[i]
       }

@@ -1,0 +1,278 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$videoPicker: "pj-videoPicker" !default;
+
+$videoPicker-sizer: $sizer !default;
+$dropdown: "pj-dropdown" !default;
+$editPanel: "pj-editPanel" !default;
+$imagePicker: "pj-imagePicker" !default;
+// global
+$videoPicker-border-color: $gray-lighter !default;
+$videoPicker-border: 1px solid $videoPicker-border-color !default;
+$videoPicker-border-radius: $border-radius-base !default;
+$videoPicker-font-size: $font-size-base !default;
+$videoPicker-color: $gray !default;
+$videoPicker-active-color: $color-primary !default;
+// component
+$component-width: 16 * $videoPicker-sizer !default; //160px
+$component-height: 3 * $videoPicker-sizer !default; //30px
+// panel
+$panel-height: 46.8 * $videoPicker-sizer !default; //468px
+
+// Core
+// =====================
+.#{$videoPicker} {
+  &-init {
+    i {
+      transform: rotate(90deg);
+    }
+  }
+
+  .#{$editPanel}-info .#{$editPanel}-action {
+    opacity: 0;
+    transform: opacity 0.3s;
+  }
+
+  &-panel {
+    // height: $panel-height;
+    .#{$editPanel} {
+      &-component-content {
+        display: flex;
+        align-items: center;
+        width: $component-width;
+        height: $component-height;
+      }
+
+      &-action {
+        margin-top: 0;
+      }
+    }
+
+    .#{$dropdown} {
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+      border-radius: $videoPicker-border-radius;
+      &-label {
+        padding: 0.4 * $videoPicker-sizer 1.2 * $videoPicker-sizer; //4px 12px
+      }
+
+      &-icon {
+        right: 0.6 * $videoPicker-sizer; //6px
+      }
+    }
+
+    .#{$imagePicker} {
+      &-initial {
+        font-size: $videoPicker-font-size;
+      }
+    }
+  }
+
+  &-dropdown-panel {
+    box-sizing: border-box;
+    margin-top: 3px;
+    font-size: $videoPicker-font-size;
+    border: $videoPicker-border;
+    border-top: 0;
+    box-shadow: none;
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .#{$dropdown}-item {
+      height: $component-height;
+      padding: 0 1.2 * $videoPicker-sizer; ///0 12px
+      margin-bottom: 1px;
+      line-height: $component-height;
+      text-transform: capitalize;
+    }
+  }
+
+  &-video {
+    &-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        .#{$videoPicker}-video-btn {
+          color: $videoPicker-active-color;
+          transition: color 0.2s;
+        }
+      }
+    }
+
+    &-poster {
+      width: 100%;
+      height: 100%;
+      background: rgba($color-black, 0.6);
+    }
+
+    &-btn,
+    &-animate {
+      position: absolute !important;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &-btn {
+      font-size: 56px;
+    }
+
+    &-animate {
+      opacity: 0;
+    }
+
+    &-playing {
+      .#{$videoPicker}-video-btn,
+      .#{$videoPicker}-video-poster {
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+    }
+
+    &-loading {
+      .#{$videoPicker}-video-btn {
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .#{$videoPicker}-video-animate {
+        opacity: 1;
+        transition: opacity 0.2s;
+      }
+    }
+  }
+
+  &-video-url {
+    position: relative;
+    width: $component-width;
+    height: $component-height;
+
+    > input {
+      width: 100%;
+      height: 100%;
+      // border: $videoPicker-border;
+      border-radius: $videoPicker-border-radius;
+
+      // &:focus {
+      //   border-color: $videoPicker-active-color;
+      // }
+    }
+
+    > i {
+      position: absolute;
+      top: 50%;
+      right: 0.8 * $videoPicker-sizer; //8px
+      display: none;
+      font-size: $font-size-base;
+      transform: translateY(-50%);
+
+      &:hover {
+        color: $videoPicker-active-color;
+        cursor: pointer;
+      }
+    }
+
+    &:hover {
+      > i {
+        display: block;
+      }
+    }
+  }
+
+  &-local-url,
+  &-poster {
+    > span {
+      margin-right: 1.2 * $videoPicker-sizer; //12px
+      color: $videoPicker-active-color;
+      border-bottom: $videoPicker-border;
+      border-bottom-color: transparent;
+
+      &:hover {
+        cursor: pointer;
+        border-bottom-color: $videoPicker-active-color;
+      }
+    }
+
+    &-add {
+      display: inline-block;
+    }
+
+    &-change,
+    &-delete {
+      display: none;
+    }
+
+    &-selected {
+      > span {
+        color: $gray;
+
+        &:hover {
+          border-bottom-color: $gray;
+        }
+      }
+
+      .#{$videoPicker}-local-url-add,
+      .#{$videoPicker}-poster-add {
+        display: none;
+      }
+
+      .#{$videoPicker}-local-url-change,
+      .#{$videoPicker}-local-url-delete,
+      .#{$videoPicker}-poster-change,
+      .#{$videoPicker}-poster-delete {
+        display: inline-block;
+      }
+    }
+  }
+  // utils
+  &-show {
+    .#{$editPanel}-init {
+      display: none !important;
+    }
+
+    .#{$editPanel}-info {
+      display: block !important;
+    }
+
+    &.#{$editPanel}-show {
+      .#{$editPanel}-info {
+        display: none !important;
+      }
+    }
+  }
+
+  &-hover {
+    opacity: 1 !important;
+    transform: opacity 0.3s;
+  }
+
+  &-warning {
+    animation: warning 400ms ease both;
+  }
+}
+
+@keyframes warning {
+  0% {
+    border-color: $color-warning;
+  }
+
+  50% {
+    border-color: $videoPicker-border-color;
+  }
+
+  100% {
+    border-color: $color-warning;
+  }
+}

@@ -1,0 +1,21 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$shorten: "pj-shorten" !default;
+
+// Core
+// =====================
+.#{$shorten}-detail {
+  display: none;
+}
+
+.#{$shorten}-expand {
+  .#{$shorten}-ellipses {
+    display: none;
+  }
+
+  .#{$shorten}-detail {
+    display: inline;
+  }
+}

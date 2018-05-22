@@ -1,0 +1,8 @@
+.#{$beforeAfter}--line {
+  .#{$beforeAfter}-handle {
+    .#{$beforeAfter}-arrow-before,
+    .#{$beforeAfter}-arrow-after {
+      display: none;
+    }
+  }
+}

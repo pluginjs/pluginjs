@@ -14,3 +14,5 @@ tools/cli/build
 yarn-error.log
 .temp
 temp
+.cache
+.plugin-cache

@@ -1,0 +1,26 @@
+.#{$beforeAfter}-labels-end {
+  .#{$beforeAfter}-label-before,
+  .#{$beforeAfter}-label-after {
+    transform: none;
+  }
+}
+
+.#{$beforeAfter}-horizontal {
+  .#{$beforeAfter}-labels-end {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      top: auto;
+      bottom: $beforeAfter-label-gap;
+    }
+  }
+}
+
+.#{$beforeAfter}-vertical {
+  .#{$beforeAfter}-labels-end {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      right: $beforeAfter-label-gap;
+      left: auto;
+    }
+  }
+}

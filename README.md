@@ -1,133 +1,36 @@
-# pluginjs
+# @pluginjs
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 ## Installation
+`Nodejs 8+` and `Yarn` are required, make sure Yarn version is up-to-date.
+
+If you do not have yarn installed, follow https://yarnpkg.com/en/docs/install.
+
 ```sh
-git clone https://github.com/amazingSurge/plugin.js.git
-yarn run bootstrap
-```
----
-## Usage:
-```sh
-npx plugin -h
-npx plugin run <module>
+git clone https://github.com/pluginjs/plugin.js.git && cd plugin.js
+yarn
 ```
 
-## Command
+## Contributing Guide
+Hi, Thank you for chooing Plugin.js
+Plugin.js is a collection of modern JavaScript components.
+We are excited that you are interested in contributing to us. Before submitting your contribution though, please make sure to take a moment and read through the following guidelines.
 
-- `docs <module>`
-- `test <module>`
-- `run <module>`
-- `build <module>`
-- `lint <module>`
-- `commit analysis`
-- `dependencies`
+## Pull Request Guide
+- Fork this repository to your own account. Do not create branches here.
+- Commit info should be formatted as `[Component name]: info about commit.`(e.g. `Slider: Fix xxx bug`)
+- Make sure that running `npm run dist` outputs the correct files.
+- Rebase before creating a PR to keep commit history clear.
+- Make sure PRs are created to `dev` branch instead of `master` branch
+- If your PR fixes a bug, please provide a description about the related bug.
+- Mergeing a PR takes two maintainers: one approves the changes after reviewing, and then the other reviews and merges.
 
-## Docs:
-Building doc.
+## Issues Guide
+- Before submitting an issue, please check if similar problems have already been issued.
+- Please provide OS and browser information. [codesandbox](https://codesandbox.io/) is recommended to build a live demo so that your issue can be reproduced clearly.
 
-**example:**
-```sh
-npx plugin docs <module>
-```
-### `-u, --update`
-Update doc by cache and template
+## [Commit Message Guidelines](COMMITMESSAGE.md)
 
-**example:**
-```sh
-npx plugin docs <module> [ -u | --update ]
-```
-
-
-## Test:
-Run Unit-Test.
-
-**example:**
-```sh
-npx plugin test <module>
-```
-### `-b, --build-test`
-**example:**
-```sh
-npx plugin test <module> [ -b | --build-test ]
-```
-### `-d, --dependencies-rebuild`
-**example:**
-```sh
-npx plugin test <module> [ -d | --dependencies-rebuild ]
-```
-
-
-## Run:
-Run plugin.
-
-**example:**
-```sh
-npx plugin run <module>
-```
-### `-d, --dependencies-rebuild`
-Rebuild all dependencies
-
-**example:**
-```sh
-npx plugin run <module> [ -d | --dependencies-rebuild ]
-```
-### `-c, --core-rebuild`
-Rebuild core
-
-**example:**
-```sh
-npx plugin run <module> [ -c | --core-rebuild ]
-```
-### `-o, --open`
-Run and open browser
-
-**example:**
-```sh
-npx plugin run <module> [ -o | --open ]
-```
-
-## Build:
-Bundle plugin
-
-Build all format bundle
-**example:**
-```sh
-npx plugin build <module>
-```
-### `-e, --es`
-ES format
-
-**example:**
-```sh
-npx plugin build <module> [ -e | --es ]
-```
-minify
-
-**example:**
-```sh
-npx plugin build <module> [ -m | --min ]
-```
-umd format
-
-**example:**
-```sh
-npx plugin build <module> [ -u | --umd ]
-```
-
-
-## Dependencies
-Building dependencies.(assets, icon, common css, js)
-
-**example**
-```sh
-npx plugin dependencies
-```
-
-
-## Commit analysis
-Analysis what plugin will be commit from git.
-
-**example**
-```sh
-npx plugin dependencies
-```
+## Code Style
+- [Prettier](https://prettier.io/)
+- [ESLint](https://eslint.org/)
+- [Stylelint](https://stylelint.io)

@@ -1,0 +1,38 @@
+/* rotateLeft:  3D Rotate in from left */
+.#{$lightbox}-rotateLeftIn {
+  animation: Lightbox-rotateLeftIn $lightbox-duration;
+}
+
+.#{$lightbox}-rotateLeftOut {
+  animation: Lightbox-rotateLeftOut $lightbox-duration forwards;
+}
+
+@keyframes Lightbox-rotateLeftIn {
+  0% {
+    opacity: 0;
+    transform: translateZ(100px) translateX(-30%) rotateY(90deg);
+    transform-origin: 0 100%;
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateZ(0) translateX(0%) rotateY(0deg);
+  }
+}
+
+@keyframes Lightbox-rotateLeftOut {
+  0% {
+    opacity: 1;
+    transform: translateZ(0) translateX(0%) rotateY(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateZ(100px) translateX(-30%) rotateY(90deg);
+    transform-origin: 0 100%;
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+}

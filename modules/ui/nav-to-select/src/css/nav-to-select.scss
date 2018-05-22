@@ -1,0 +1,23 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$navToSelect: "pj-navToSelect" !default;
+
+// Core
+// =====================
+.#{$navToSelect} {
+  display: none;
+}
+
+/* Mobile device */
+
+@media only screen and (max-width: 767px) {
+  nav ul {
+    display: none;
+  }
+
+  .#{$navToSelect} {
+    display: block;
+  }
+}

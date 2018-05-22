@@ -71,26 +71,6 @@ button {
   border-radius: $btn-border-radius;
   transition: all 0.3s;
 
-  // button with icon
-  .icon,
-  .text {
-    // position: relative;
-    // margin-bottom: -2%;
-    display: inline-block;
-    // margin: 0 .5em;
-    margin: 0;
-    vertical-align: middle;
-    transition: all 0.3s ease;
-  }
-
-  .icon + .text {
-    margin-left: 0.5em;
-  }
-
-  .text + .icon {
-    margin-left: 0.5em;
-  }
-
   &:hover,
   &:active {
     text-decoration: none;
@@ -404,6 +384,28 @@ button {
     color: $btn-link-default-color;
   }
 
+  // button with icon
+  & {
+    .icon,
+    .text {
+      // position: relative;
+      // margin-bottom: -2%;
+      display: inline-block;
+      // margin: 0 .5em;
+      margin: 0;
+      vertical-align: middle;
+      transition: all 0.3s ease;
+    }
+
+    .icon + .text {
+      margin-left: 0.5em;
+    }
+
+    .text + .icon {
+      margin-left: 0.5em;
+    }
+  }
+
   // button only icon in
   &-icon {
     padding: 0.8*$button-sizer; //8px
@@ -424,10 +426,10 @@ button {
     &:hover,
     &:focus,
     &:active {
-      color: $btn-disabled-color !important;
+      color: $btn-disabled-color;
       cursor: not-allowed;
-      background-color: $btn-disabled-bg-color !important;
-      border-color: transparent !important;
+      background-color: $btn-disabled-bg-color;
+      border-color: $btn-disabled-color;
     }
   }
 
@@ -471,109 +473,5 @@ button {
   button:not(:disabled):hover {
     color: $color-white;
     background-color: #1861ac;
-  }
-}
-
-.api-init,
-.api-destroy,
-.api-enable,
-.api-get,
-.api-set,
-.api-start,
-.api-stop,
-.api-go,
-.api-go-percentage,
-.api-go_percentage,
-.api-finish,
-.api-reset,
-.api-val,
-.api-val-set,
-.api-disable,
-.api-show,
-.api-hide,
-.api-multipleClear,
-.api-getWrap,
-.api-getInput,
-.api-getDate,
-.api-getDate-format,
-.api-update,
-.api-get-index,
-.api-insert,
-.api-clear,
-.api-get-unit,
-.api-preset-set,
-.api-set-preset,
-.api-val-info {
-  padding: 0.5em 1em;
-  font-size: $font-size-lg;
-  color: $color-white;
-  background-color: #1b6ec2;
-  border-radius: 5px;
-}
-
-.api-init,
-.api-destroy,
-.api-enable,
-.api-get,
-.api-set,
-.api-val,
-.api-val-set,
-.api-disable,
-.api-show,
-.api-hide,
-.api-multipleClear,
-.api-getWrap,
-.api-getInput,
-.api-getDate,
-.api-getDate-format,
-.api-update,
-.api-get-index,
-.api-insert,
-.api-clear,
-.api-get-unit,
-.api-preset-set,
-.api-set-preset,
-.api-val-info,
-.api-append,
-.api-replace,
-.api-sort {
-  &:not(:disabled):hover {
-    color: $color-white;
-    background-color: #1861ac;
-  }
-}
-
-.api-multi-init,
-.api-multi-destroy,
-.api-multi-enable,
-.api-multi-disable,
-.api-multi-set,
-.api-multi-get,
-.api-multi-val,
-.api-multi-val-set {
-  padding: 0.5em 1em;
-  font-size: $font-size-lg;
-  color: $color-white;
-  background-color: #1b6ec2;
-  border-radius: 5px;
-
-  &:not(:disabled):hover {
-    color: $color-white;
-    background-color: #1861ac;
-  }
-}
-
-.append-data {
-  .replace-data {
-    padding: 0.5em 1em;
-    font-size: $font-size-lg;
-    color: $color-white;
-    background-color: #1b6ec2;
-    border-radius: 5px;
-
-    &:not(:disabled):hover {
-      color: $color-white;
-      background-color: #1861ac;
-    }
   }
 }

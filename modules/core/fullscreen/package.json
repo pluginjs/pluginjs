@@ -29,5 +29,6 @@
 		"@pluginjs/emitter": "^0.2.19",
 		"@pluginjs/pluginjs": "^0.2.25"
 	},
-	"dev-main": "src/main.js"
+	"dev-main": "src/main.js",
+  "source": "src/main.js"
 }

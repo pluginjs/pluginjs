@@ -1,0 +1,17 @@
+{
+	"name": "popover-samples",
+	"version": "1.0.0",
+	"description": "Simple popover example",
+	"main": "index.html",
+	"scripts": {
+		"start": "parcel index.html --open",
+		"build": "parcel build index.html"
+	},
+	"devDependencies": {
+		"parcel-bundler": "^1.6.1"
+	},
+	"dependencies": {
+		"@pluginjs/popover": "^0.2.19"
+	},
+	"license": "UNLICENSED"
+}

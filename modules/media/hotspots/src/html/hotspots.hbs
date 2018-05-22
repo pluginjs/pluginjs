@@ -1,0 +1,428 @@
+---
+title: Hotspots
+layout: plugin
+styles:
+- ../../plugins/popover/css/popover.css
+- ../../plugins/hotspots/css/hotspots.css
+- ../../css/font-awesome.min.css
+scripts:
+- ../../plugins/hotspots/hotspots.js
+---
+<style>
+.pj-popover p {
+  margin-bottom: 5px;
+}
+</style>
+<section>
+  <h3>Css</h3>
+  <div class="pj-hotspots pj-hotspots-full">
+    <img src="../assets/car.jpg" alt=""/>
+    <div class="pj-hotspot pj-hotspot--icon" style="left: 61%; top: 68%" title="18' wheels" data-content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.">
+      <span class="fa fa-map-marker"></span>
+    </div>
+    <div class="pj-hotspot pj-hotspot--dot" style="left: 35%; top: 45%" title="TFSI® engine" data-content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.">
+    </div>
+    <div class="pj-hotspot pj-hotspot--bordered pj-hotspot--icon" style="left: 38%; top: 53%" title="LED Headlights" data-content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.">
+      <span class="fa fa-map-marker"></span>
+    </div>
+    <div class="pj-hotspot pj-hotspot--solid pj-hotspot--icon" style="left: 27%; top: 60%" data-placement="bottom" title="Singleframe® grille" data-content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.">
+      <span class="fa fa-map-marker"></span>
+    </div>
+    <div class="pj-hotspot pj-hotspot--solid pj-hotspot--shadow pj-hotspot--icon" style="left: 75%; top: 30%" title="S line® exterior" data-content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.">
+      <span class="fa fa-map-marker"></span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h3>Types</h3>
+  <section>
+    <h4>Type: hide</h4>
+    <div class="pj-hotspots pj-hotspots-car" data-type="hide">
+      <img src="../assets/car.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Type: dot</h4>
+    <div class="pj-hotspots pj-hotspots-car" data-type="dot">
+      <img src="../assets/car.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Type: text</h4>
+    <div class="pj-hotspots pj-hotspots-room" data-type="text">
+      <img src="../assets/room.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Type: number</h4>
+    <div class="pj-hotspots pj-hotspots-car-number" data-type="number" data-theme="solid">
+      <img src="../assets/car.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Type: Icon</h4>
+    <div class="pj-hotspots pj-hotspots-car" data-type="icon">
+      <img src="../assets/car.jpg" alt=""/>
+    </div>
+  </section>
+</section>
+
+<section>
+  <h3>Icon themes</h3>
+  <section>
+    <h4>Plain Icon</h4>
+    <div class="pj-hotspots pj-hotspots-car" data-type="icon">
+      <img src="../assets/car.jpg" alt=""/>
+    </div>
+  </section>
+  <section>
+    <h4>Solid Icon</h4>
+    <div class="pj-hotspots pj-hotspots-car" data-type="icon" data-theme="solid">
+      <img src="../assets/car.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Bordered Icon</h4>
+    <div class="pj-hotspots pj-hotspots-car" data-type="icon" data-theme="bordered">
+      <img src="../assets/car.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Solid+Bordered Icon</h4>
+    <div class="pj-hotspots pj-hotspots-car" data-type="icon" data-theme="solid bordered">
+      <img src="../assets/car.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Solid+Shadow Icon</h4>
+    <div class="pj-hotspots pj-hotspots-car" data-type="icon" data-theme="solid shadow">
+      <img src="../assets/car.jpg" alt=""/>
+    </div>
+  </section>
+</section>
+
+<section>
+  <h3>Text themes</h3>
+  <section>
+    <h4>Solid Label</h4>
+    <div class="pj-hotspots pj-hotspots-room" data-type="text" data-theme="solid">
+      <img src="../assets/room.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Bordered Label</h4>
+    <div class="pj-hotspots pj-hotspots-room" data-type="text" data-theme="bordered">
+      <img src="../assets/room.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Solid+Bordered Label</h4>
+    <div class="pj-hotspots pj-hotspots-room" data-type="text" data-theme="solid bordered">
+      <img src="../assets/room.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Solid+Shadow Label</h4>
+    <div class="pj-hotspots pj-hotspots-room" data-type="text" data-theme="solid shadow">
+      <img src="../assets/room.jpg" alt=""/>
+    </div>
+  </section>
+</section>
+
+<section>
+  <h3>Dot size themes</h3>
+  <section>
+    <h4>Size: sm</h4>
+    <div class="pj-hotspots pj-hotspots-room" data-type="dot" data-theme="solid bordered sm">
+      <img src="../assets/room.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Size: md</h4>
+    <div class="pj-hotspots pj-hotspots-room" data-type="dot" data-theme="solid bordered md">
+      <img src="../assets/room.jpg" alt=""/>
+    </div>
+  </section>
+
+  <section>
+    <h4>Size: lg</h4>
+    <div class="pj-hotspots pj-hotspots-room" data-type="dot" data-theme="solid bordered lg">
+      <img src="../assets/room.jpg" alt=""/>
+    </div>
+  </section>
+</section>
+
+<section>
+  <h3>Trigger: click</h3>
+  <div class="pj-hotspots pj-hotspots-room" data-popover='{"trigger":"click"}'>
+    <img src="../assets/room.jpg" alt=""/>
+  </div>
+</section>
+
+<section>
+  <h3>Custom Icon</h3>
+  <div class="pj-hotspots pj-hotspots-room-custom">
+    <img src="../assets/room.jpg" alt=""/>
+  </div>
+<script>
+(function(){
+  Pj.hotspots('.pj-hotspots-room-custom', {
+    type: "icon",
+    data: [{
+      icon: "fa fa-plus",
+      text: "Chair",
+      title: "Chair - 20$",
+      content: "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href='#'>Buy</a>",
+      position: ["33%", "65%"],
+    }, {
+      icon: "fa fa-lightbulb-o",
+      text: "Lamp",
+      title: "Lamp - 15$",
+      content: "<p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p><p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p><a href='#'>Buy</a>",
+      position: ["44.5%", "30%"]
+    }, {
+      icon: "fa fa-plus-square-o",
+      text: "Cabinet",
+      title: "Cabinet - 50$",
+      content: "<p>Nulla consequat massa quis enim. </p><a href='#'>Buy</a>",
+      position: ["54%", "63%"]
+    }, {
+      icon: "fa fa-hand-o-right",
+      text: "Frame",
+      title: "Frame - 10$",
+      content: "<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p><a href='#'>Buy</a>",
+      position: ["56.6%", "30%"]
+    }]
+  });
+})();
+</script>
+</section>
+
+<section>
+  <h3>Custom Styles</h3>
+  <div class="pj-hotspots pj-hotspots-room-styles">
+    <img src="../assets/room.jpg" alt=""/>
+  </div>
+<script>
+(function() {
+  Pj.hotspots('.pj-hotspots-room-styles', {
+    data: [{
+      styles: {
+        background: 'red'
+      },
+      theme: 'dark',
+      text: "Chair",
+      title: "Chair - 20$",
+      content: "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href='#'>Buy</a>",
+      position: ["33%", "65%"],
+    }, {
+      styles: {
+        background: 'green'
+      },
+      theme: 'dark',
+      text: "Lamp",
+      title: "Lamp - 15$",
+      content: "<p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p><p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p><a href='#'>Buy</a>",
+      position: ["44.5%", "30%"]
+    }, {
+      styles: {
+        background: 'blue'
+      },
+      theme: 'dark',
+      text: "Cabinet",
+      title: "Cabinet - 50$",
+      content: "<p>Nulla consequat massa quis enim. </p><a href='#'>Buy</a>",
+      position: ["54%", "63%"]
+    }, {
+      styles: {
+        background: 'yellow'
+      },
+      theme: 'dark',
+      text: "Frame",
+      title: "Frame - 10$",
+      content: "<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p><a href='#'>Buy</a>",
+      position: ["56.6%", "30%"]
+    }]
+  });
+})();
+</script>
+</section>
+
+<section>
+  <h3>API</h3>
+  <div class="pj-hotspots pj-hotspots-api">
+    <img src="../assets/car.jpg" alt=""/>
+  </div>
+  <div class="console"></div>
+  <button class="btn api-init">init</button>
+  <button class="btn api-destroy">destroy</button>
+  <button class="btn api-enable">enable</button>
+  <button class="btn api-disable">disable</button>
+
+<script>
+(function(){
+  const element = document.querySelector('.pj-hotspots-api')
+  const $element = Pj.hotspots(element, {
+    data: [{
+      placement: 'top',
+      title: '18" wheels',
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["61%", "68%"],
+    },{
+      placement: 'right',
+      title: "TFSI® engine",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["35%", "45%"],
+    },{
+      placement: 'right',
+      title: "LED Headlights",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["38%", "55%"],
+    },{
+      placement: 'right',
+      title: "Singleframe® grille",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["27%", "60%"],
+    },{
+      placement: 'bottom',
+      title: "S line® exterior",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["75%", "30%"],
+    }]
+  });
+  const events = ['ready', 'enable', 'disable', 'destroy', 'hover', 'hovered', 'hotspotHover', 'hotspotHovered', 'popoverHide', 'popoverHidden', 'popoverShow', 'popoverShown', 'popoverInserted'];
+
+  for(var i = 0; i < events.length; i++) {
+    element.addEventListener('hotspots:'+events[i], function(event, instance) {
+      log(event.type, 'event');
+    });
+  }
+
+  document.querySelector('.api-init').addEventListener('click', function() {
+    console.info('init');
+    Pj.hotspots(element);
+  });
+
+  document.querySelector('.api-destroy').addEventListener('click', function() {
+    console.info('destroy');
+    $element('destroy');
+  });
+
+  document.querySelector('.api-enable').addEventListener('click', function() {
+    console.info('enable');
+    $element('enable');
+  });
+
+  document.querySelector('.api-disable').addEventListener('click', function() {
+    console.info('disable');
+    $element('disable');
+  });
+})();
+</script>
+</section>
+
+<script>
+(function(){
+  Pj.hotspots('.pj-hotspots-full');
+  Pj.hotspots('.pj-hotspots-car', {
+    icon: 'fa fa-map-marker',
+    data: [{
+      placement: 'top',
+      title: '18" wheels',
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["61%", "68%"],
+    },{
+      placement: 'right',
+      title: "TFSI® engine",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["35%", "45%"],
+    },{
+      placement: 'right',
+      title: "LED Headlights",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["38%", "55%"],
+    },{
+      placement: 'right',
+      title: "Singleframe® grille",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["27%", "60%"],
+    },{
+      placement: 'bottom',
+      title: "S line® exterior",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["75%", "30%"],
+    }]
+  });
+  Pj.hotspots('.pj-hotspots-car-number', {
+    icon: 'fa fa-map-marker',
+    data: [{
+      placement: 'top',
+      number: '1',
+      placement: 'top',
+      title: '18" wheels',
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["61%", "68%"],
+    },{
+      placement: 'right',
+      number: '2',
+      title: "TFSI® engine",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["35%", "45%"],
+    },{
+      placement: 'right',
+      number: '3',
+      title: "LED Headlights",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["38%", "55%"],
+    },{
+      placement: 'right',
+      number: '4',
+      title: "Singleframe® grille",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["27%", "60%"],
+    },{
+      placement: 'bottom',
+      number: '5',
+      title: "S line® exterior",
+      content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+      position: ["75%", "30%"],
+    }]
+  });
+  Pj.hotspots('.pj-hotspots-room', {
+    icon: 'fa fa-map-marker',
+    data: [{
+      text: "Chair",
+      title: "Chair - 20$",
+      content: "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href='#'>Buy</a>",
+      position: ["33%", "65%"],
+    }, {
+      text: "Lamp",
+      title: "Lamp - 15$",
+      content: "<p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p><p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p><a href='#'>Buy</a>",
+      position: ["44.5%", "30%"]
+    }, {
+      text: "Cabinet",
+      title: "Cabinet - 50$",
+      content: "<p>Nulla consequat massa quis enim. </p><a href='#'>Buy</a>",
+      position: ["54%", "63%"]
+    }, {
+      text: "Frame",
+      title: "Frame - 10$",
+      content: "<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p><a href='#'>Buy</a>",
+      position: ["56.6%", "30%"]
+    }]
+  });
+})();
+</script>

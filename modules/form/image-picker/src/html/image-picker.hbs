@@ -1,0 +1,147 @@
+---
+title: ImagePicker
+layout: plugin
+styles:
+- ../../plugins/popover/css/popover.css
+- ../../plugins/pop-dialog/css/pop-dialog.css
+- ../../plugins/image-picker/css/image-picker.css
+scripts:
+- ../../plugins/image-picker/image-picker.js
+---
+
+<section>
+  <h3>Default</h3>
+{{#code}}
+<input type="text" class="example-default" value="{'image': '../../plugins/image-picker/images/gril.png'}">
+<script>
+  (function() {
+    Pj.imagePicker('.example-default');
+  })();
+</script>
+{{/code}}
+
+  <input type="text" class="example-default" data-disabled="false" value="{'image': '../../plugins/image-picker/images/gril.png'}">
+  <script>
+    (function(){
+      Pj.imagePicker('.example-default', {
+        select: function() {
+           this.set({
+            image: '../../plugins/image-picker/images/nvnv.png'
+          });
+        }
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h3>Locale</h3>
+{{#code}}
+<input type="text" class="example-locale">
+<script>
+  (function() {
+    Pj.imagePicker('.example-locale', {
+      locale: 'zh',
+      select: function() {
+         this.set({
+          image: '../../plugins/image-picker/images/nvnv.png'
+        });
+      }
+    });
+  })();
+</script>
+{{/code}}
+
+  <input type="text" class="example-locale">
+  <script>
+    (function() {
+      Pj.imagePicker('.example-locale', {
+        locale: 'zh',
+        select: function() {
+           this.set({
+            image: '../../plugins/image-picker/images/nvnv.png'
+          });
+        }
+      });
+    })();
+  </script>
+</section>
+
+<section>
+  <h3>API</h3>
+  <input type="text" class="example-api">
+  <div>
+    <button class="btn api-init">init()</button>
+    <button class="btn api-set">set(data)</button>
+    <button class="btn api-get">get()</button>
+    <button class="btn api-val">val()</button>
+    <button class="btn api-val-set">val(data)</button>
+    <button class="btn api-clear">clear()</button>
+    <button class="btn api-enable">enable()</button>
+    <button class="btn api-disable">disable()</button>
+    <button class="btn api-destroy">destroy()</button>
+  </div>
+  <div class="console"></div>
+  <script>
+    (function(){
+      var $elementApi;
+
+      function init() {
+        $elementApi = Pj.imagePicker('.example-api', {
+          onReady: function() {
+            log('ready', 'event');
+          },
+          onDestroy: function() {
+            log('destroy', 'event');
+          },
+          onEnable: function() {
+            log('enable', 'event');
+          },
+          onDisable: function() {
+            log('disable', 'event');
+          },
+          onChange: function(val) {
+            log('change: '+JSON.stringify(val), 'event');
+          },
+        }).data('image-picker');
+      }
+
+      document.querySelector('.api-init').addEventListener('click', function() {
+        init();
+      });
+
+      document.querySelector('.api-set').addEventListener('click', function() {
+        $elementApi('set', {
+          image: '../../plugins/image-picker/images/nvnv.png'
+        });
+        log('', 'set(data)');
+      });
+      document.querySelector('.api-get').addEventListener('click', function() {
+        log(JSON.stringify($elementApi.get()), 'get()');
+      });
+      document.querySelector('.api-val').addEventListener('click', function() {
+        log($elementApi('val'), 'val()');
+      });
+      document.querySelector('.api-val-set').addEventListener('click', function() {
+        $elementApi('val', '{"image": "../../plugins/image-picker/images/gril.png"}');
+        log('', 'val(data)');
+      });
+      document.querySelector('.api-clear').addEventListener('click', function() {
+        $elementApi('clear');
+        log('', 'clear()');
+      });
+      document.querySelector('.api-enable').addEventListener('click', function() {
+        $elementApi('enable');
+        log('', 'enable()');
+      });
+      document.querySelector('.api-disable').addEventListener('click', function() {
+        $elementApi('disable');
+        log('', 'disable()');
+      });
+      document.querySelector('.api-destroy').addEventListener('click', function() {
+       $elementApi('destroy');
+        log('', 'destroy()');
+      });
+    })();
+  </script>
+</section>

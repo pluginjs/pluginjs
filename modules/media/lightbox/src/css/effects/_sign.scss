@@ -1,0 +1,38 @@
+/* sign: 3D sign */
+.#{$lightbox}-signIn {
+  animation: Lightbox-signIn $lightbox-duration;
+}
+
+.#{$lightbox}-signOut {
+  animation: Lightbox-signOut $lightbox-duration forwards;
+}
+
+@keyframes Lightbox-signIn {
+  0% {
+    opacity: 0;
+    transform: rotateX(-60deg);
+    transform-origin: 50% 0;
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes Lightbox-signOut {
+  0% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotateX(-60deg);
+    transform-origin: 50% 0;
+    transform-style: preserve-3d;
+    perspective: 1300px;
+  }
+}
