@@ -36,7 +36,7 @@ export const methods = [
 export const defaults = {
   template() {
     return (
-      '<div class="{classes.POPOVER}" role="tooltip">' +
+      '<div class="{classes.POPOVER} {custom}" role="tooltip">' +
       '{close}' +
       '{title}' +
       '{content}' +
@@ -59,7 +59,7 @@ export const defaults = {
   close: false,
   trigger: 'click', // hover focus, click, manual
   hideOutClick: true, // When clicking outside of the popover, trigger hide event
-  placement: 'right' // top, bottom, left, right, top-right, top-left, bottom-right, bottom-left, left-top, left-bottom, right-top, right-bottom
+  placement: 'right' // top, bottom, left, right, top-start, top-end, bottom-start, bottom-end, left-start, left-end, right-start, right-end
 }
 
 export const dependencies = ['tooltip']

@@ -10,10 +10,12 @@ export const events = {
 }
 
 export const classes = {
-  NAMESPACE: 'pj-slider',
+  NAMESPACE: `pj-${namespace}`,
   CONTAINER: '{namespace}',
   THEME: '{namespace}--{theme}',
   ITEM: '{namespace}',
+  BOX: '{namespace}-box',
+  CARD: '{namespace}-card',
   VERTICAL: '{namespace}-vertical',
   HORIZONTAL: '{namespace}-horizontal',
   ACTIVE: '{namespace}-active',
@@ -35,7 +37,16 @@ export const methods = [
   'setSpecPage'
 ]
 
-export const defaults = { direction: 'horizontal' }
+export const defaults = {
+  animation: 'linear',
+  arrowNameSpace: null,
+  arrows: false,
+  autoplay: false,
+  direction: 'horizontal',
+  dots: false,
+  dotNameSpace: null,
+  playcycle: false
+}
 
 export const dependencies = ['Hammer', 'dots', 'arrows']
 

@@ -67,7 +67,7 @@ $hotspot-lg-hide-size: 40px !default;
 }
 
 /* types */
-.#{$hotspot}--dot {
+.#{$hotspot}-dot {
   width: $hotspot-dot-size;
   height: $hotspot-dot-size;
   padding: 0;
@@ -76,8 +76,8 @@ $hotspot-lg-hide-size: 40px !default;
   border-radius: 100%;
 }
 
-.#{$hotspot}--icon,
-.#{$hotspot}--number {
+.#{$hotspot}-icon,
+.#{$hotspot}-number {
   width: 1em;
   height: 1em;
   padding: $hotspot-icon-spacer;
@@ -88,23 +88,23 @@ $hotspot-lg-hide-size: 40px !default;
   border-radius: 100%;
 }
 
-.#{$hotspot}--text {
+.#{$hotspot}-text {
   padding: $hotspot-text-spacer;
   font-size: $hotspot-text-font-size;
   border-radius: $hotspot-text-border-radius;
 }
 
-.#{$hotspot}--hide {
+.#{$hotspot}-hide {
   width: $hotspot-hide-size;
   height: $hotspot-hide-size;
 }
 
 /* skins */
-.#{$hotspot}--bordered {
+.#{$hotspot}-bordered {
   border: 1px solid $hotspot-border-color;
 }
 
-.#{$hotspot}--solid {
+.#{$hotspot}-solid {
   background-color: $hotspot-solid-bg;
 
   &.#{$hotspot}-active {
@@ -112,75 +112,75 @@ $hotspot-lg-hide-size: 40px !default;
   }
 }
 
-.#{$hotspot}--shadow {
+.#{$hotspot}-shadow {
   box-shadow: $hotspot-box-shadow;
 }
 
 /* sizes */
-.#{$hotspot}--sm {
-  &.#{$hotspot}--dot {
+.#{$hotspot}-sm {
+  &.#{$hotspot}-dot {
     width: $hotspot-sm-dot-size;
     height: $hotspot-sm-dot-size;
   }
 
-  &.#{$hotspot}--icon,
-  &.#{$hotspot}--number {
+  &.#{$hotspot}-icon,
+  &.#{$hotspot}-number {
     padding: $hotspot-sm-icon-spacer;
     font-size: $hotspot-sm-icon-font-size;
   }
 
-  &.#{$hotspot}--text {
+  &.#{$hotspot}-text {
     padding: $hotspot-sm-text-spacer;
     font-size: $hotspot-sm-text-font-size;
   }
 
-  &.#{$hotspot}--hide {
+  &.#{$hotspot}-hide {
     width: $hotspot-sm-hide-size;
     height: $hotspot-sm-hide-size;
   }
 }
 
-.#{$hotspot}--md {
-  &.#{$hotspot}--dot {
+.#{$hotspot}-md {
+  &.#{$hotspot}-dot {
     width: $hotspot-md-dot-size;
     height: $hotspot-md-dot-size;
   }
 
-  &.#{$hotspot}--icon,
-  &.#{$hotspot}--number {
+  &.#{$hotspot}-icon,
+  &.#{$hotspot}-number {
     padding: $hotspot-md-icon-spacer;
     font-size: $hotspot-md-icon-font-size;
   }
 
-  &.#{$hotspot}--text {
+  &.#{$hotspot}-text {
     padding: $hotspot-md-text-spacer;
     font-size: $hotspot-md-text-font-size;
   }
 
-  &.#{$hotspot}--hide {
+  &.#{$hotspot}-hide {
     width: $hotspot-md-hide-size;
     height: $hotspot-md-hide-size;
   }
 }
 
-.#{$hotspot}--lg {
-  &.#{$hotspot}--dot {
+.#{$hotspot}-lg {
+  &.#{$hotspot}-dot {
     width: $hotspot-lg-dot-size;
     height: $hotspot-lg-dot-size;
   }
 
-  &.#{$hotspot}--icon,
-  &.#{$hotspot}--number {
+  &.#{$hotspot}-icon,
+  &.#{$hotspot}-number {
     padding: $hotspot-lg-icon-spacer;
     font-size: $hotspot-lg-icon-font-size;
   }
 
-  &.#{$hotspot}--text {
+  &.#{$hotspot}-text {
     padding: $hotspot-lg-text-spacer;
     font-size: $hotspot-lg-text-font-size;
   }
 
-  &.#{$hotspot}--hide {
+  &.#{$hotspot}-hide {
     width: $hotspot-lg-hide-size;
     height: $hotspot-lg-hide-size;
   }

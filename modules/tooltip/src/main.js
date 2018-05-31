@@ -52,10 +52,22 @@ const Trigger = {
   INFO
 )
 class Tooltip extends Component {
-  constructor(element, options = {}) {
-    super(NAMESPACE, element)
+  constructor(element, options = {}, namespace, defaults, classes) {
+    if (!is.string(namespace)) {
+      namespace = NAMESPACE
+    }
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    if (is.undefined(defaults)) {
+      defaults = DEFAULTS
+    }
+
+    if (is.undefined(classes)) {
+      classes = CLASSES
+    }
+
+    super(namespace, element)
+
+    this.options = deepMerge(defaults, options, this.getDataOptions())
 
     this.initClasses(CLASSES)
     this._timeout = 0
@@ -78,9 +90,11 @@ class Tooltip extends Component {
 
     triggers.forEach(trigger => {
       if (trigger === 'click') {
+        this.clickTrigger = true
+
         bindEvent(
           {
-            type: 'click',
+            type: this.eventName('click'),
             // identity: this.options.selector,
             handler: event => {
               this.toggle(event)
@@ -88,39 +102,6 @@ class Tooltip extends Component {
           },
           this.element
         )
-        if (this.options.hideOutClick) {
-          bindEvent(
-            {
-              type: 'click',
-              handler: event => {
-                if (!this.is('shown')) {
-                  return
-                }
-
-                if (this._hoverState === HoverState.OUT) {
-                  return
-                }
-
-                if (
-                  event.target === this.$tip ||
-                  this.$tip.contains(event.target)
-                ) {
-                  return
-                }
-
-                if (
-                  event.target === this.element ||
-                  this.element.contains(event.target)
-                ) {
-                  return
-                }
-
-                this.hide()
-              }
-            },
-            Pj.doc
-          )
-        }
       } else if (trigger !== Trigger.MANUAL) {
         let eventIn
         let eventOut
@@ -157,7 +138,7 @@ class Tooltip extends Component {
 
     if (this.options.selector) {
       this.options = deepMerge(this.options, {
-        trigger: 'manual',
+        trigger: this.eventName('manual'),
         selector: ''
       })
     } else {
@@ -167,7 +148,7 @@ class Tooltip extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.element)
-    removeEvent('click', Pj.doc)
+    removeEvent(this.eventNameWithId('click'), Pj.doc)
   }
 
   toggle(event) {
@@ -202,6 +183,7 @@ class Tooltip extends Component {
     if (getStyle('display', this.element) === 'none') {
       throw new Error('Please use show on visible elements')
     }
+
     const showEvent = new CustomEvent(this.selfEventName(EVENTS.SHOW), {
       detail: {
         instance: this,
@@ -221,6 +203,7 @@ class Tooltip extends Component {
 
       const tip = this.getTip()
       const tipId = getUID(this.plugin)
+      this.instanceId = tipId
 
       tip.setAttribute('id', tipId)
       this.element.setAttribute('aria-describedby', tipId)
@@ -237,7 +220,6 @@ class Tooltip extends Component {
           : this.options.container
       setObjData(this.plugin, this, tip)
       $container.append(tip)
-
       this.trigger(EVENTS.INSERTED)
 
       this.setupPopper(this.element, tip)
@@ -260,6 +242,40 @@ class Tooltip extends Component {
       }
 
       complete()
+
+      if (this.options.hideOutClick && this.is('shown') && this.clickTrigger) {
+        bindEvent(
+          {
+            type: this.eventNameWithId('click'),
+            handler: event => {
+              if (!this.is('shown')) {
+                return
+              }
+
+              if (this._hoverState === HoverState.OUT) {
+                return
+              }
+
+              if (
+                event.target === this.$tip ||
+                this.$tip.contains(event.target)
+              ) {
+                return
+              }
+
+              if (
+                event.target === this.element ||
+                this.element.contains(event.target)
+              ) {
+                return
+              }
+
+              this.hide()
+            }
+          },
+          Pj.doc
+        )
+      }
     }
   }
 
@@ -288,7 +304,6 @@ class Tooltip extends Component {
     }
 
     this.POPPER = new Popper(el, tip, config)
-
     this.enter('popper')
   }
 
@@ -338,6 +353,10 @@ class Tooltip extends Component {
     complete()
 
     this._hoverState = ''
+
+    if (this.options.hideOutClick && this.clickTrigger && !this.is('shown')) {
+      removeEvent(this.eventNameWithId('click'), Pj.doc)
+    }
   }
 
   isWithContent() {
@@ -358,7 +377,8 @@ class Tooltip extends Component {
 
   createTip() {
     return template.render(this.options.template.call(this), {
-      classes: this.classes
+      classes: this.classes,
+      custom: this.options.custom.call(this)
     })
   }
 

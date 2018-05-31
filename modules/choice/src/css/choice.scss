@@ -128,6 +128,13 @@ $choice-dropdown-item-disabled-bg: transparent !default;
       box-shadow: none;
     }
 
+    &[disabled]:hover,
+    &[disabled]:focus {
+      color: $gray-border !important;
+      background-color: $color-white !important;
+      border: 1px solid $gray-border !important;
+    }
+
     // &:active,
     &.#{$choice}-selected {
       z-index: 99;

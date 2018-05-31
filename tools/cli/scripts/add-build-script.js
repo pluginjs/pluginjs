@@ -47,6 +47,7 @@ function migrate(ctx) {
     path.join(__dirname, '../config/.rolluprc.js'),
     path.join(modulePath, '.rolluprc.js')
   )
+  script.lint = 'eslint ./src/**/*.js --fix'
   logger.log(`--> copy .rolluprc.js from configs to ${name}`)
   if (fs.existsSync(path.join(modulePath, 'src/css'))) {
     fs.copyFileSync(
@@ -54,6 +55,8 @@ function migrate(ctx) {
       path.join(modulePath, '.sassrc.js')
     )
     script['build:scss'] = 'plugin script build-scss'
+    script.lint =
+      'stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix'
     pkg.assign('css', {
       source: `src/css/${name}.scss`,
       main: `dist/${name}.css`,

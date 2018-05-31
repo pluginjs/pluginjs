@@ -3,7 +3,7 @@ export const linear = (direction, distance) => {
   return {
     prev: {
       transform: `${translate}(${distance}px)`,
-      transition: 'all .5s ease 0s',
+      transition: 'all .3s ease 0s',
       zIndex: 1,
       display: 'block',
       opacity: 1,
@@ -11,14 +11,14 @@ export const linear = (direction, distance) => {
     },
     current: {
       transform: `${translate}(0px)`,
-      transition: 'all .5s ease 0s',
+      transition: 'all .3s ease 0s',
       zIndex: 2,
       display: 'block',
       opacity: 1
     },
     next: {
       transform: `${translate}(${-1 * distance}px)`,
-      transition: 'all .5s ease 0s',
+      transition: 'all .3s ease 0s',
       zIndex: 1,
       display: 'block',
       opacity: 1,
@@ -29,7 +29,7 @@ export const linear = (direction, distance) => {
 export const fade = {
   prev: {
     transform: '',
-    transition: 'all .5s ease 0s',
+    transition: 'all .3s ease 0s',
     zIndex: 1,
     display: 'block',
     opacity: 0,
@@ -37,7 +37,7 @@ export const fade = {
   },
   current: {
     transform: '',
-    transition: 'all .5s ease 0s',
+    transition: 'all .3s ease 0s',
     zIndex: 2,
     display: 'block',
     opacity: 1,
@@ -45,7 +45,7 @@ export const fade = {
   },
   next: {
     transform: '',
-    transition: 'all .5s ease 0s',
+    transition: 'all .3s ease 0s',
     zIndex: 1,
     display: 'block',
     opacity: 0,
@@ -63,7 +63,7 @@ export const cube = (direction, distance) => {
   return {
     prev: {
       transform: `${rotate}(${value}deg) translateZ(${half(distance)}px)`,
-      transition: 'all 1s cubic-bezier(0.15, 0.9, 0.25, 1) 0s',
+      transition: 'all .7s cubic-bezier(0.15, 0.9, 0.25, 1) 0s',
       zIndex: 1,
       display: 'block',
       opacity: 1,
@@ -71,7 +71,7 @@ export const cube = (direction, distance) => {
     },
     current: {
       transform: `${rotate}(0deg) translateZ(${half(distance)}px)`,
-      transition: 'all 1s cubic-bezier(0.15, 0.9, 0.25, 1) 0s',
+      transition: 'all .7s cubic-bezier(0.15, 0.9, 0.25, 1) 0s',
       zIndex: 2,
       display: 'block',
       opacity: 1,
@@ -79,7 +79,7 @@ export const cube = (direction, distance) => {
     },
     next: {
       transform: `${rotate}(${-1 * value}deg) translateZ(${half(distance)}px)`,
-      transition: 'all 1s cubic-bezier(0.15, 0.9, 0.25, 1) 0s',
+      transition: 'all .7s cubic-bezier(0.15, 0.9, 0.25, 1) 0s',
       zIndex: 1,
       display: 'block',
       opacity: 1,

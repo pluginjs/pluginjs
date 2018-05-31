@@ -76,6 +76,7 @@ class Popover extends Tooltip {
 
     return templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
+      custom: this.options.custom.call(this),
       close,
       title,
       content

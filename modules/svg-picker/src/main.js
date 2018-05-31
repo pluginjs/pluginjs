@@ -88,6 +88,7 @@ class SvgPicker extends Component {
     this.icon = null
     this.$icons = null
     this.$types = null
+
     this.$typeWrap = null
     this.icons = null
 
@@ -149,10 +150,10 @@ class SvgPicker extends Component {
           const $type = parent(
             closest(`.${this.classes.TYPETITLE}`, event.target)
           )
+
+          that.open($type)
           if ($type.dataset.open && $type.dataset.open === 'true') {
-            that.close($type)
-          } else {
-            that.open($type)
+            // that.close($type)
           }
         }
       },
@@ -360,7 +361,6 @@ class SvgPicker extends Component {
           tip: this.classes.TYPETIP,
           icons
         })
-
         types += type
       }
     })
@@ -476,6 +476,7 @@ class SvgPicker extends Component {
   }
 
   open(el) {
+    console.log(el)
     this.$types.forEach(v => {
       const $this = v
       removeClass(this.classes.TYPEOPEN, $this)

@@ -72,7 +72,7 @@ export const defaults = {
         '</ul>' +
         '<div class="{namespace}-expand-control">' +
         '<button class="{namespace}-expand-cancel-btn pj-btn pj-btn-transparent">{footerCancel}</button>' +
-        '<button class="{namespace}-expand-add-btn pj-btn pj-btn-outline-default">{footerAdd}</button>' +
+        // '<button class="{namespace}-expand-add-btn pj-btn pj-btn-outline-default">{footerAdd}</button>' +
         '<button class="{namespace}-expand-save-btn pj-btn pj-btn-primary">{footerSave}</button>' +
         '</div>' +
         '</div>' +
@@ -123,7 +123,7 @@ export const dependencies = ['scrollable', 'pop-dialog']
 
 export const translations = {
   en: {
-    placeholder: 'Choose images',
+    placeholder: 'Add images',
     count: 'zero',
     // add: 'Add image',
     expand: 'expand',

@@ -39,6 +39,9 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
 
     &:hover {
       color: $color-primary-black;
+      .#{$dropdown}-remove {
+        display: none;
+      }
     }
   }
 

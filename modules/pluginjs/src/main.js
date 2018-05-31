@@ -174,16 +174,18 @@ export function eventable(events = {}) {
       return events.join(' ')
     }
 
-    plugin.prototype.eventNameWithId = function(events) {
+    plugin.prototype.eventNameWithId = function(events, instanceId) {
+      instanceId = instanceId ? instanceId : this.instanceId
+
       if (typeof events !== 'string' || events === '') {
-        return `.${this.plugin}-${this.instanceId}`
+        return `.${this.plugin}-${instanceId}`
       }
 
       events = events.split(' ')
 
       const length = events.length
       for (let i = 0; i < length; i++) {
-        events[i] = `${events[i]}.${this.plugin}-${this.instanceId}`
+        events[i] = `${events[i]}.${this.plugin}-${instanceId}`
       }
       return events.join(' ')
     }
@@ -260,6 +262,20 @@ export function styleable(classes = {}) {
         return this.getClass(classname.replace(`{${arg}}`, value))
       }
       return classname.replace('{namespace}', this.classes.NAMESPACE || '')
+    }
+
+    plugin.prototype.getClasses = function(value, classname, arg) {
+      if (is.string(value) && !is.undefined(classname) && !is.undefined(arg)) {
+        value = value.split(' ')
+
+        for (let i = 0; i < value.length; i++) {
+          value[i] = this.getClass(classname, arg, value[i])
+        }
+
+        return value.join(' ')
+      }
+
+      return ''
     }
 
     plugin.prototype.initClasses = function(defaults, options) {

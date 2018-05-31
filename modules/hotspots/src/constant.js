@@ -23,7 +23,8 @@ export const classes = {
   DISABLED: '{namespace}s-disabled',
   HOTSPOT: '{namespace}',
   THEME: '{namespace}--{theme}',
-  TYPE: '{namespace}--{type}',
+  TYPE: '{namespace}-{type}',
+  SKIN: '{namespace}-{skin}',
   DOT: '{namespace}-dot',
   ICON: '{namespace}-icon',
   TEXT: '{namespace}-text',
@@ -37,7 +38,6 @@ export const defaults = {
   theme: null,
   data: [],
   popover: {
-    theme: 'hotspot',
     placement: 'top',
     trigger: 'hover focus', // hover focus, click, manual
     hideOutClick: true, // When clicking outside of the tooltip, trigger hide event
@@ -49,7 +49,7 @@ export const defaults = {
   icon: '',
   templates: {
     hotspot() {
-      return '<div title="{title}" data-content="{content}" class="{classes.HOTSPOT} {theme} {type}" style="{styles}" {options}>{label}</div>'
+      return '<div title="{title}" data-content="{content}" class="{classes.HOTSPOT} {skin} {type}" style="{styles}" {options}>{label}</div>'
     },
     icon() {
       return '<span class="{icon}"></span>'

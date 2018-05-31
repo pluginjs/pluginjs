@@ -22,14 +22,14 @@ $init-hover-bg-color: $gray-lightest !default;
 $action-hover-color: $gray-lighter !default;
 $action-active-color: $color-primary !default;
 // panel
-$panel-width: 30 * $linkPicker-sizer !default; //300px
+$panel-width: 27.2 * $linkPicker-sizer !default; //300px
 $panel-padding: 2 * $linkPicker-sizer !default; //20px
 $panel-border: $linkPicker-border !default;
 $panel-border-radius: $linkPicker-border-radius !default;
 $panel-btn-padding: 0.4 * $linkPicker-sizer 1.2 * $linkPicker-sizer !default; //4px 12px
 // item
 $item-margin-bottom: 2 * $linkPicker-sizer !default; //20px
-$item-body-width: 16 * $linkPicker-sizer !default; //160px
+$item-body-width: 22.4 * $linkPicker-sizer !default; //224px
 $item-body-height: 3 * $linkPicker-sizer !default; //30px
 
 //disabled
@@ -95,9 +95,12 @@ $linkPicker-disabled-bg: $disabled-bg;
     width: $linkPicker-width;
     height: $linkPicker-height;
     color: $color-white;
-    background-color: $gray-darker;
-    border-radius: $linkPicker-border-radius;
 
+    border-radius: $linkPicker-border-radius;
+    &:hover {
+      background-color: $btn-color-primary;
+      opacity: 0.9;
+    }
     > i {
       &:hover {
         color: $action-hover-color;
@@ -150,7 +153,7 @@ $linkPicker-disabled-bg: $disabled-bg;
   }
 
   &-item {
-    display: flex;
+    // display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: $item-margin-bottom;
@@ -225,4 +228,9 @@ $linkPicker-disabled-bg: $disabled-bg;
     cursor: not-allowed;
     background-color: $linkPicker-disabled-bg;
   }
+}
+.pj-btn-primary {
+  width: 9.1 * $linkPicker-sizer;
+  background-color: $btn-color-primary;
+  border-color: $btn-color-primary;
 }

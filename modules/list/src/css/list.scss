@@ -8,6 +8,7 @@ $pop: "pj-popover" !default;
 $list-sizer: $sizer;
 
 $list-width: 26 * $list-sizer !default; //260px
+$list-height: 4 * $list-sizer !default; //40px
 $list-padding: 1.6 * $list-sizer !default; //16px
 $list-color: $text-color !default;
 $list-item-height: 3 * $list-sizer !default; //30px
@@ -83,11 +84,12 @@ $pop-buttons-danger-color: $color-danger !default;
 
     .#{$list}-item-handle {
       display: inline-block;
-      width: 1.2 * $list-sizer; //12px
+      width: 3 * $list-sizer; //12px
       height: $list-item-height;
       font-size: $font-size-sm;
       line-height: $list-item-height;
       color: $color-white;
+      text-align: center;
       background-color: $list-item-handle-bg;
 
       &:hover {

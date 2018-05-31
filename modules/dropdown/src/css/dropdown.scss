@@ -52,9 +52,7 @@ $dropdown-active-border-color: $color-drop-border !default;
   }
 
   &-item {
-    height: 36px;
     overflow: hidden;
-    font-family: "Helvetica Neue";
     line-height: 26px;
     text-overflow: ellipsis;
     word-break: keep-all;
@@ -67,7 +65,7 @@ $dropdown-active-border-color: $color-drop-border !default;
 
   &-show {
     display: block;
-    border-color: $dropdown-item-active-color !important;
+    border-color: $dropdown-item-active-color;
   }
 
   &-mask {
@@ -149,7 +147,7 @@ $dropdown-active-border-color: $color-drop-border !default;
     box-shadow: $dropdown-box-shadow;
 
     li {
-      padding: $dropdown-space-y $dropdown-space-x;
+      padding: $dropdown-space-y $dropdown-space-x-left;
       margin-bottom: $dropdown-item-margin-bottom;
       // border-radius: $dropdown-border-radius; // list-style: none;
       &:hover {

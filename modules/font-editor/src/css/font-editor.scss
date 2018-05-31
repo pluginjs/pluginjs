@@ -18,7 +18,7 @@ $fontEditor-height: 5 * $fontEditor-sizer !default; //50px
 // info
 $fontEditor-info-width: 26 * $fontEditor-sizer !default; //260px
 $fontEditor-info-font-size: $font-size-sm !default;
-$fontEditor-info-change-bg: $gray-darker !default;
+$fontEditor-info-change-bg: $btn-color-primary !default;
 $fontEditor-info-change-opacity: 0.9 !default;
 $fontEditor-info-i-color: $gray-light !default; //#ccd1d9
 // initial
@@ -30,7 +30,7 @@ $fontEditor-decorations-active: $gray !default;
 // control
 $fontEditor-control-color: $gray !default;
 // content
-$fontEditor-content-width: 18 * $fontEditor-sizer !default; //180px
+$fontEditor-content-width: 22.4 * $fontEditor-sizer !default; //180px
 
 $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 // ======= support Plugin's vars ====== //
@@ -149,7 +149,8 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     &-panel {
       position: relative;
       box-sizing: border-box;
-      width: 30 * $fontEditor-sizer; //300px
+      width: 27.2 * $fontEditor-sizer; //272px
+      height: 49.2 * $fontEditor-sizer; //49.2px
       padding: 2 * $fontEditor-sizer; //20px
       background-color: $color-white;
       border: $fontEditor-border;
@@ -157,14 +158,14 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     }
 
     &-control {
-      margin-top: 2 * $fontEditor-sizer; //20px
+      margin-top: 3 * $fontEditor-sizer; //30px
       text-align: right;
     }
 
     &-cancel,
     &-save {
-      width: 6.6 * $fontEditor-sizer; //66px
-      height: 3 * $fontEditor-sizer; //30px
+      width: 9.1 * $fontEditor-sizer; //91px
+      height: 3.2 * $fontEditor-sizer; //32px
       font-size: $font-size-xs;
       // color: $fontEditor-control-color;
       // background-color: $color-white;
@@ -186,11 +187,10 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   &-fontSize,
   &-lineHeight,
   &-fontWeight {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     // padding: 5px 0;
-    margin-bottom: 2 * $fontEditor-sizer; //20px
+    margin-bottom: 3 * $fontEditor-sizer; //30px
 
     &-title {
       order: 0;
@@ -223,24 +223,27 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   }
 
   &-decorations {
-    display: block;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 3.2 * $fontEditor-sizer; //32px
     padding: 0;
     margin: 0;
     overflow: hidden;
     list-style: none;
-
+    border: 1px solid #e6e6e6;
     li {
       display: block;
       float: left;
-      width: 1.5 * $fontEditor-sizer; //15px
-      height: 1.5 * $fontEditor-sizer; //15px
+      width: 1.2 * $fontEditor-sizer; //12px
+      height: 1.2 * $fontEditor-sizer; //12px
       margin-bottom: 0;
-      margin-left: 1.5 * $fontEditor-sizer; //15px
       line-height: 1;
       color: $fontEditor-decorations-li;
       text-transform: none;
+
       cursor: pointer;
-      speak: none;
       // Better Font Rendering ===========
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -347,4 +350,9 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     cursor: not-allowed;
     background-color: $disabled-bg;
   }
+}
+
+.pj-btn-primary {
+  background-color: $btn-color-primary;
+  border-color: $btn-color-primary;
 }

@@ -19,7 +19,8 @@ class Saturation {
     this.element.append(this.$pointer)
 
     this.size = parseInt(getStyle('width', this.$pointer), 10) / 2
-    this.maxLength = parseInt(getStyle('height', this.element), 10)
+    this.maxLengthX = parseInt(getStyle('width', this.element), 10)
+    this.maxLengthY = parseInt(getStyle('height', this.element), 10)
     this.bind()
   }
 
@@ -84,8 +85,8 @@ class Saturation {
   }
 
   move(size) {
-    this.positionX = Math.max(0, Math.min(size[0], this.maxLength))
-    this.positionY = Math.max(0, Math.min(size[1], this.maxLength))
+    this.positionX = Math.max(0, Math.min(size[0], this.maxLengthX))
+    this.positionY = Math.max(0, Math.min(size[1], this.maxLengthY))
 
     setStyle(
       {
@@ -103,8 +104,8 @@ class Saturation {
   }
 
   position(color) {
-    const left = color.value.s * this.maxLength - this.size
-    const top = (1 - color.value.v) * this.maxLength - this.size
+    const left = color.value.s * this.maxLengthX - this.size
+    const top = (1 - color.value.v) * this.maxLengthY - this.size
     const hue = color.value.h
 
     this.hue = color.value.h
@@ -125,8 +126,8 @@ class Saturation {
 
   update() {
     this.instance.setSolid({
-      s: this.positionX / this.maxLength,
-      v: 1 - this.positionY / this.maxLength
+      s: this.positionX / this.maxLengthX,
+      v: 1 - this.positionY / this.maxLengthY
     })
   }
 }

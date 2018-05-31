@@ -6,8 +6,8 @@ $colorPicker: "pj-colorPicker" !default;
 
 $colorPicker-sizer: $sizer !default;
 
-$colorPicker-width: 16 * $colorPicker-sizer !default; //160px
-$colorPicker-height: 3 * $colorPicker-sizer !default; //30px
+$colorPicker-width: 19.2 * $colorPicker-sizer !default; //192px
+$colorPicker-height: 3.2 * $colorPicker-sizer !default; //32px
 $colorPicker-color: $gray-dark !default;
 $colorPicker-border-width: 1px !default;
 $colorPicker-border-style: solid !default;
@@ -21,21 +21,21 @@ $colorPicker-font-size: $font-size-base !default;
 //wrap
 $colorPicker-wrap-hover-border-color: $gray-light;
 // preview
-$colorPicker-preview-width: 3 * $colorPicker-sizer !default; //30px
-$colorPicker-preview-height: $colorPicker-preview-width !default;
-$colorPicker-preview-bg-width: 2.4 * $colorPicker-sizer !default; //24px
-$colorPicker-preview-bg-height: $colorPicker-preview-bg-width !default;
+$colorPicker-preview-width: 4.5 * $colorPicker-sizer !default; //30px
+$colorPicker-preview-height: 3.2 * $colorPicker-sizer !default; //30px
+$colorPicker-preview-bg-width: 3.6 * $colorPicker-sizer !default; //36px
+$colorPicker-preview-bg-height: 2.4 * $colorPicker-sizer !default; //24px
 $colorPicker-preview-bg-image: url("../images/transparent.png") !default;
 $colorPicker-preview-color-width: $colorPicker-preview-bg-width !default;
 $colorPicker-preview-color-height: $colorPicker-preview-bg-width !default;
 // remove
 $colorPicker-remove-right: $colorPicker-preview-width + 6px !default;
 $colorPicker-remove-color: $gray-lighter !default;
-$colorPicker-remove-hover-color: $gray-light !default;
+$colorPicker-remove-hover-color: $color-primary-black !default;
 // input
 $colorPicker-input-padding-right: $colorPicker-preview-width + 4px !default;
 // panel
-$colorPicker-panel-width: 26 * $colorPicker-sizer !default; //260px
+$colorPicker-panel-width: 28.8 * $colorPicker-sizer !default; //288px
 $colorPicker-panel-height: 37 * $colorPicker-sizer !default; //370px
 $colorPicker-panel-shadow: $box-shadow-base !default;
 // panel trigger
@@ -50,21 +50,21 @@ $colorPicker-collection-height: 28 * $colorPicker-sizer !default; //28px
 // collection scrollwrap
 $colorPicker-collection-scrollwrap-padding: 0 2 * $colorPicker-sizer !default; //20px
 // collection item
-$colorPicker-collection-item-width: 3.2 * $colorPicker-sizer !default; //32px
+$colorPicker-collection-item-width: 2.4 * $colorPicker-sizer !default; //24px
 $colorPicker-collection-item-height: $colorPicker-collection-item-width !default;
 $colorPicker-collection-item-border-radius: 100 * $colorPicker-sizer !default; //1000px
 $colorPicker-collection-item-margin-right: $colorPicker-sizer * 1.5 !default; //15px
 $colorPicker-collection-item-margin-bottom: $colorPicker-sizer * 1.5 !default; //15px
 // collection group
 $colorPicker-collection-group-title-margin-bottom: 1.5 * $colorPicker-sizer !default; //15px
-$colorPicker-collection-group-title-color: $gray-light !default;
+$colorPicker-collection-group-title-color: $color-primary-black !default;
 $colorPicker-collection-group-title-font-size: $font-size-xs !default;
 // collection manage
-$colorPicker-collection-manage-height: 3 * $colorPicker-sizer !default; //30px
+$colorPicker-collection-manage-height: 3.3 * $colorPicker-sizer !default; //30px
 $colorPicker-collection-manage-padding: $colorPicker-sizer * 0.6 0 !default; //6px
 $colorPicker-collection-manage-icon-margin-right: $colorPicker-sizer !default; //10px
 // solid
-$colorPicker-solid-padding: 2 * $colorPicker-sizer !default; //20px
+$colorPicker-solid-padding: 2.4 * $colorPicker-sizer !default; //24px
 $colorPicker-solid-item-margin-bottom: $colorPicker-sizer * 1.5 !default; //15px
 // contrast
 $colorPicker-contrast-width: $colorPicker-sizer * 10 !default; //100px
@@ -76,9 +76,9 @@ $colorPicker-contrast-border-color: $gray-lightest !default;
 $colorPicker-history-width: 10.6 * $colorPicker-sizer !default; //106px
 $colorPicker-history-hieght: $colorPicker-contrast-height !default;
 $colorPicker-history-item-size: $font-size-lg !default;
-$colorPicker-history-item-margin-right: 2px !default;
+$colorPicker-history-item-margin-right: 12px !default;
 $colorPicker-history-item-radius: 2px !default;
-$colorPicker-history-item-border-color: $gray-lightest !default;
+$colorPicker-history-item-border-color: rgba(0, 0, 0, 0.1) !default;
 // alpha
 $colorPicker-alpha-width: $colorPicker-sizer * 1.6 !default; //16px
 $colorPicker-alpha-height: $colorPicker-sizer * 16.2 !default; //162px
@@ -91,7 +91,7 @@ $colorPicker-hex-width: 8 * $colorPicker-sizer !default; //80px
 $colorPicker-hex-height: 2.4 * $colorPicker-sizer !default; //24px
 $colorPicker-hex-padding: 0 $colorPicker-sizer !default; //0 10px
 // saturation
-$colorPicker-saturation-width: $colorPicker-alpha-height !default;
+$colorPicker-saturation-width: 18.4 * $colorPicker-sizer !default;
 $colorPicker-saturation-bg-img: url("../images/saturation.png") !default;
 $colorPicker-saturation-pointer-border: 2px solid $color-white !default;
 $colorPicker-saturation-pointer-width: 0.8 * $colorPicker-sizer !default; //8px
@@ -103,39 +103,63 @@ $colorPicker-pointer-top: -1 * $colorPicker-sizer !default; //-10px
 $colorPicker-pointer-left: -1.4 + $colorPicker-sizer !default; //14px
 $colorPicker-pointer-color: $gray-darker !default;
 // gradient
-$colorPicker-gradient-bar-width: 22 * $colorPicker-sizer !default; //220px
-$colorPicker-gradient-bar-height: $colorPicker-sizer !default; //20px
+$colorPicker-gradient-bar-width: 24 * $colorPicker-sizer !default; //220px
+$colorPicker-gradient-bar-height: 1.6 * $colorPicker-sizer !default; //20px
 $colorPicker-gradient-bar-top: -1 * $colorPicker-sizer !default; //-13px
 $colorPicker-gradient-bar-bg-image: url("../images/transparent.png") !default;
 $colorPicker-gradient-remove-color: $gray-lighter !default;
 $colorPicker-gradient-remove-size: $font-size-lg !default;
 $colorPicker-gradient-remove-color-active: $gray-light !default;
-$colorPicker-gradient-mode-width: 9 * $colorPicker-sizer !default; //90px
+$colorPicker-gradient-mode-width: 12.4 * $colorPicker-sizer !default; //90px
 $colorPicker-gradient-mode-height: 2.4 * $colorPicker-sizer !default; //24px
 $colorPicker-gradient-mode-margin-right: 1 * $colorPicker-sizer !default; //10px
 // marker
 $colorPicker-marker-width: 1.2 * $colorPicker-sizer !default; //12px
 $colorPicker-marker-height: 1.2 * $colorPicker-sizer !default; //12px
 // wheel
-$colorPicker-wheel-width: 2 * $colorPicker-sizer !default; //20px
+$colorPicker-wheel-width: 2.4 * $colorPicker-sizer !default; //20px
 $colorPicker-wheel-height: $colorPicker-wheel-width !default;
-$colorPicker-wheel-margin-right: 1.6 * $colorPicker-sizer !default; //16px
-$colorPicker-wheel-handle-width: 0.4 * $colorPicker-sizer !default; //4px
+$colorPicker-wheel-margin-right: 1 * $colorPicker-sizer !default; //16px
+$colorPicker-wheel-margin-left: 0.6 * $colorPicker-sizer !default; //16px
+$colorPicker-wheel-handle-width: 0.6 * $colorPicker-sizer !default; //4px
 $colorPicker-wheel-handle-height: $colorPicker-wheel-handle-width !default;
-$colorPicker-wheel-bg-color: $gray-light !default;
-$colorPicker-wheel-angle-width: 6 * $colorPicker-sizer !default; //60px
+$colorPicker-wheel-bg-color: $color-primary-black !default;
+$colorPicker-wheel-angle-width: 4.8 * $colorPicker-sizer !default; //60px
 $colorPicker-wheel-angle-height: 2.4 * $colorPicker-sizer !default; //24px
 $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
+//hex
+$colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
 
 // Core
 // =====================
 .#{$colorPicker} {
   width: $colorPicker-width;
+  height: $colorPicker-height;
   margin: 0;
   margin-bottom: 0;
   text-overflow: ellipsis;
+  border-radius: 2px !important;
+
+  &-input-active {
+    border-color: #4c93d9;
+  }
+  //
+  // &-hex-mode.pj-dropdown-select{
+  //   &:hover{
+  //     border-color: $gray-border;
+  //   }
+
+  //   > .pj-dropdown {
+  //     &.hover {
+  //       border-color: $gray-border;
+  //     }
+  //   }
+
+  // }
+
   // === wrap === //
   &-wrap {
+    position: relative;
     display: inline-block;
     font-size: $colorPicker-font-size;
     //border: 1px solid $colorPicker-border-color;
@@ -223,12 +247,13 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
 
     span {
       position: absolute;
-      top: 0.2 * $colorPicker-sizer; //2px
-      left: 0.2 * $colorPicker-sizer; //2px
+      top: 0.3 * $colorPicker-sizer; //2px
+      left: 0.3 * $colorPicker-sizer; //2px
       display: inline-block;
       width: $colorPicker-preview-bg-width;
       height: $colorPicker-preview-bg-height;
       border-radius: $colorPicker-border-radius;
+      // border: 1px solid rgba(0,0,0,0.1);
     }
 
     &-bg {
@@ -251,9 +276,10 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
     box-shadow: $colorPicker-panel-shadow;
 
     &-wrap {
+      left: 10px !important;
       z-index: 9999;
       display: none;
-      padding: 1.2 * $colorPicker-sizer 0; //12px
+      padding: 0.4 * $colorPicker-sizer 0; //4px
     }
 
     &-trigger {
@@ -272,17 +298,17 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
         color: $colorPicker-panel-trigger-icon-color;
         text-align: center;
 
-        &::after {
-          position: absolute;
-          top: 50%;
-          right: 0;
-          display: block;
-          width: 1px;
-          height: 2 * $colorPicker-sizer; //20px
-          content: "";
-          background-color: $colorPicker-border-color;
-          transform: translateY(-50%);
-        }
+        // &::after {
+        //   position: absolute;
+        //   top: 50%;
+        //   right: 0;
+        //   display: block;
+        //   width: 1px;
+        //   height: 2 * $colorPicker-sizer; //20px
+        //   content: "";
+        //   background-color: $colorPicker-border-color;
+        //   transform: translateY(-50%);
+        // }
 
         &:last-of-type::after {
           display: none;
@@ -293,24 +319,21 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
         }
       }
 
-      &-gradient {
+      &-gradient,
+      &-solid {
         &::before {
           display: inline-block;
           width: $colorPicker-panel-trigger-icon-size;
           height: 1.6 * $colorPicker-sizer; //16px
           content: "";
-          background: linear-gradient(90deg, $gray-light, $color-white);
+          background-color: #aab3bf;
           border: $colorPicker-border;
         }
 
-        &:hover::before {
-          background: linear-gradient(
-            90deg,
-            $colorPicker-active-color,
-            $color-white
-          );
-          border-color: $colorPicker-active-color;
-        }
+        // &:hover::before {
+        //   background-color: $color-primary-active;
+        //   border-color: $colorPicker-active-color;
+        // }
       }
     }
 
@@ -330,6 +353,7 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
         &-title {
           display: inline-block;
           margin-bottom: $colorPicker-collection-group-title-margin-bottom;
+          font-family: "Helvetica Neue";
           font-size: $colorPicker-collection-group-title-font-size;
           color: $colorPicker-collection-group-title-color;
           letter-spacing: 1px;
@@ -345,13 +369,14 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
 
       .#{$colorPicker}-manage {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
+        bottom: 23.5px;
+        left: 23.5px;
+        width: 241px;
         height: $colorPicker-collection-manage-height;
         line-height: $colorPicker-collection-manage-height - 2px;
+        color: $color-primary-black;
         text-align: center;
-        border-top: $colorPicker-border;
+        border: $colorPicker-border;
 
         i {
           margin-right: $colorPicker-collection-manage-icon-margin-right;
@@ -359,8 +384,9 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
         }
 
         &:hover {
-          color: $colorPicker-active-color;
           cursor: pointer;
+          background-color: #f2f2f2 !important;
+          border: 1px solid #e6e6e6 !important;
         }
       }
     }
@@ -392,9 +418,9 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
       margin-bottom: $colorPicker-collection-item-margin-bottom;
       list-style: none;
       cursor: pointer;
-      border-radius: $colorPicker-collection-item-border-radius;
+      border-radius: 2px;
 
-      &:nth-of-type(5n) {
+      &:nth-of-type(6n) {
         margin-right: 0;
       }
     }
@@ -414,9 +440,9 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
     &-primary > div {
       margin-right: 1.2 * $colorPicker-sizer; //12px
 
-      &:last-of-type {
-        margin-right: 0;
-      }
+      // &:last-of-type {
+      //   margin-right: 12px !important;
+      // }
     }
 
     &-action {
@@ -424,8 +450,15 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
       overflow: hidden;
       input {
         padding: 0;
-        text-align: center;
+        padding-right: 15px;
+        text-align: right;
       }
+    }
+  }
+
+  &-solid {
+    &-handle {
+      margin-bottom: 0;
     }
   }
 
@@ -453,7 +486,7 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
         left: 0;
         width: 100%;
         height: 100%;
-        border-radius: $colorPicker-sizer; //10px
+        border-radius: 0.2 * $colorPicker-sizer; //10px
       }
     }
 
@@ -472,18 +505,21 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
       }
     }
 
-    &-mode {
+    &-mode.pj-dropdown-select {
       width: $colorPicker-gradient-mode-width;
       height: $colorPicker-gradient-mode-height;
       margin-right: $colorPicker-gradient-mode-margin-right;
 
-      .pj-dropdown {
+      > .pj-dropdown {
         width: 100%;
         height: 100%;
 
-        &-label {
-          line-height: 1;
+        > .pj-dropdown-label {
+          color: $color-primary-black !important;
         }
+      }
+      > .pj-dropdown.pj-dropdown-show {
+        border-color: $color-input-gray !important;
       }
     }
   }
@@ -491,9 +527,18 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
   // action btn
   &-cancel,
   &-ok {
-    float: right;
-    padding-right: $colorPicker-sizer; //10px
-    padding-left: $colorPicker-sizer; //10px
+    // float: right;
+    width: 100%;
+    height: 33px;
+    margin-top: 24px;
+    color: $color-primary-black;
+    letter-spacing: 1.3px;
+    border-radius: 2px;
+
+    &:hover {
+      background-color: #f2f2f2 !important;
+      border: 1px solid #e6e6e6 !important;
+    }
   }
 
   &-cancel {
@@ -531,24 +576,30 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
   &-history {
     display: flex;
     flex-wrap: wrap;
-    width: $colorPicker-history-width;
-    height: $colorPicker-history-hieght;
+    // width: $colorPicker-history-width;
+    // height: $colorPicker-history-hieght;
 
     &-item {
       position: relative;
       display: inline-block;
       width: $colorPicker-history-item-size;
       height: $colorPicker-history-item-size;
+      margin-top: $colorPicker-history-item-margin-right;
       margin-right: $colorPicker-history-item-margin-right;
+      cursor: not-allowed;
       border: $colorPicker-border;
       border-color: $colorPicker-history-item-border-color;
       border-radius: $colorPicker-history-item-radius;
 
-      &:nth-child(6n) {
+      &:nth-child(9n) {
         margin-right: 0;
       }
 
-      &:hover {
+      // &:hover {
+
+      // }
+
+      &-empty {
         cursor: pointer;
       }
     }
@@ -558,24 +609,21 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
   &-alpha,
   &-hue {
     position: relative;
+    box-sizing: border-box;
     display: inline-block;
     width: $colorPicker-alpha-width;
     height: $colorPicker-alpha-height;
     margin-right: 1.2 * $colorPicker-sizer; //12px
-    border-radius: $colorPicker-alpha-width / 2;
+    overflow: hidden;
+    // border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: $colorPicker-alpha-width / 8;
 
     &:hover {
-      cursor: pointer;
+      cursor: row-resize;
     }
-  }
-
-  &-saturation {
-    width: $colorPicker-saturation-width;
-    background-image: $colorPicker-saturation-bg-img;
-
     .#{$colorPicker}-pointer {
       top: 0;
-      left: 0;
+      left: 4px;
       width: $colorPicker-saturation-pointer-width;
       height: $colorPicker-saturation-pointer-height;
       border: $colorPicker-saturation-pointer-border;
@@ -589,7 +637,18 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
     }
   }
 
+  &-saturation {
+    width: $colorPicker-saturation-width;
+    background-image: $colorPicker-saturation-bg-img;
+    background-size: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &-alpha {
+    margin-right: 0 !important;
     background-color: $colorPicker-alpha-bg;
     background-image: $colorPicker-alpha-bg-img;
   }
@@ -600,10 +659,52 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
   }
 
   &-hex {
-    width: $colorPicker-hex-width;
+    // padding: $colorPicker-hex-padding;
+    display: flex;
+    justify-content: space-between;
     height: $colorPicker-hex-height;
-    padding: $colorPicker-hex-padding;
     margin: 0;
+
+    &-mode {
+      // height: $colorPicker-hex-height !important;
+      // position: relative;
+      > .pj-dropdown {
+        width: $colorPicker-saturation-width;
+        height: $colorPicker-hex-height;
+
+        > .pj-dropdown-label {
+          color: $color-primary-black;
+          border-right: 1px solid #e6e6e6;
+        }
+      }
+      > .pj-dropdown-panel-wrap .pj-dropdown-panel .pj-dropdown-item {
+        width: 182px;
+        padding: 5px 12px 5px 12px;
+      }
+      > .pj-dropdown:hover {
+        border-color: #f2f2f2;
+      }
+    }
+
+    &-angle {
+      width: $colorPicker-angle-width;
+      height: $colorPicker-hex-height;
+      border-radius: 2px !important;
+    }
+
+    &-box {
+      position: relative;
+
+      .#{$colorPicker}-hex-unit {
+        position: absolute;
+        top: 0;
+        right: 3px;
+        display: inline-block;
+        height: $colorPicker-wheel-angle-height;
+        line-height: $colorPicker-wheel-angle-height;
+        color: $color-gray;
+      }
+    }
   }
 
   &-marker {
@@ -644,6 +745,7 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
     width: $colorPicker-wheel-width;
     height: $colorPicker-wheel-height;
     margin-right: $colorPicker-wheel-margin-right;
+    margin-left: $colorPicker-wheel-margin-left;
     border: $colorPicker-border;
     border-radius: 100%;
 
@@ -666,8 +768,10 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
     &-angle {
       width: $colorPicker-wheel-angle-width;
       height: $colorPicker-wheel-angle-height;
+      padding: 4px 10px !important;
       margin: 0;
       margin-right: $colorPicker-wheel-angle-margin-right;
+      border-radius: 2px !important;
     }
   }
 
@@ -680,7 +784,7 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
   &-pointer {
     position: absolute;
     top: $colorPicker-alpha-height;
-    left: -1px;
+    left: 10px;
     display: block;
     border: 4px solid transparent;
     border-top-color: $colorPicker-pointer-color;
@@ -704,14 +808,11 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
   }
   // === utils === //
   &-selected {
-    color: $colorPicker-active-color !important;
+    color: $color-primary-active !important;
 
-    &.#{$colorPicker}-panel-trigger-gradient::before {
-      background: linear-gradient(
-        90deg,
-        $colorPicker-active-color,
-        $color-white
-      );
+    &.#{$colorPicker}-panel-trigger-gradient::before,
+    &.#{$colorPicker}-panel-trigger-solid::before {
+      background: $color-primary-active;
       border-color: $colorPicker-active-color;
     }
   }
@@ -728,7 +829,11 @@ $colorPicker-wheel-angle-margin-right: 0.5 * $colorPicker-sizer !default; //5px
       background-color: $disabled-bg;
     }
     &:hover {
-      border-color: $disabled-border;
+      input {
+        color: $disabled-color;
+        background-color: $disabled-bg;
+        border-color: $disabled-border;
+      }
     }
   }
 }

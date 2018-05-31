@@ -121,7 +121,7 @@ export const translations = {
   en: {
     searchText: 'Search...',
     manage: 'manage',
-    activatedFonts: 'activated fonts',
+    activatedFonts: 'activated',
     emptyTitle: 'Befor using font, you need add fonts. ',
     emptyLinkTitle: 'Go add now'
   },

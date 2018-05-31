@@ -2,21 +2,21 @@
 
 // Vars
 // =====================
-$fontPicker: pj-fontPicker !default;
-
+$fontPicker: "pj-fontPicker" !default;
+$dropdown: "pj-dropdown" !default;
 $fontPicker-sizer: $sizer !default;
 
-$fontPicker-width: 16 * $fontPicker-sizer !default; //160px
+$fontPicker-width: 22 * $fontPicker-sizer !default; //220px
 $fontPicker-height: 3 * $fontPicker-sizer !default; //30px
 $fontPicker-hover-color: $gray-lightest !default;
 $fontPicker-font-size: $font-size-base !default;
 $fontPicker-icon-size: $font-size-lg;
-$fontPicker-border-color: $gray-lighter !default;
-$fontPicker-border-hover-color: $gray-light !default;
+$fontPicker-border-color: $gray-border !default;
+$fontPicker-border-hover-color: $color-primary-gray !default;
 $fontPicker-active-color: $color-primary !default;
 $fontPicker-font-color: $gray-light !default;
 $fontPicker-font-hover-color: $color-primary !default;
-$fontPicker-font-active-color: $gray-lightest !default;
+$fontPicker-font-active-color: $color-primary-active !default;
 $fontPicker-trigger-font-left: $fontPicker-width - 20px !default;
 $fontPicker-panel-height: 42 * $fontPicker-sizer !default; //420px
 $fontPicker-package-height: 3 * $fontPicker-sizer !default; //30px
@@ -45,7 +45,6 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
       outline: none;
     }
 
-    &:focus,
     &:hover {
       border-color: $fontPicker-border-hover-color;
     }
@@ -117,7 +116,8 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
   .#{$fontPicker}-font {
     position: relative;
     height: 3 * $fontPicker-sizer; //30px
-    padding: 0 2 * $fontPicker-sizer; //20[x
+    padding: 0 2 * $fontPicker-sizer; //20px
+    padding-left: 3.3 * $fontPicker-sizer; //33px
     margin: 1px 0;
     line-height: 3 * $fontPicker-sizer; //30px
     list-style: none;
@@ -131,10 +131,6 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
 
     &:focus {
       outline: none;
-    }
-
-    &.#{$fontPicker}-active:hover {
-      background-color: $fontPicker-active-color;
     }
   }
 
@@ -215,7 +211,6 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
 
 .#{$fontPicker}-active {
   color: $fontPicker-font-active-color;
-  background-color: $fontPicker-active-color;
 }
 
 .#{$fontPicker}-controller {
@@ -228,7 +223,6 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
   font-family: "icons";
   font-size: $fontPicker-font-size;
   line-height: 2.6 * $fontPicker-sizer; //26px
-  text-align: center;
   text-transform: capitalize;
   cursor: default;
   background-color: $color-white;
@@ -285,10 +279,10 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
     width: auto;
     height: auto;
     padding: 0;
-
+    color: $color-primary-black;
     .#{$fontPicker}-source-icon {
       display: inline-block;
-      margin-right: 6px;
+      margin-right: 9px;
       vertical-align: middle;
     }
   }
@@ -303,7 +297,8 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
   }
 
   &-panel {
-    top: -1 * $font-size-xs !important; //-10px
+    position: relative;
+    top: -0.6 * $font-size-xs !important; //-6px
     width: 13 * $fontPicker-sizer !important; //130px
     max-width: inherit;
     font-size: $font-size-xs;
@@ -328,7 +323,7 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
 
     .#{$fontPicker}-source-icon {
       display: inline-block;
-      margin-right: 0.6 * $fontPicker-sizer; //6px
+      margin-right: 0.9 * $fontPicker-sizer; //6px
       vertical-align: bottom;
     }
 
@@ -343,8 +338,8 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
   position: relative;
   flex-basis: calc(50% - 1px);
   order: 1;
+  text-align: center;
   border-left: 1px solid $fontPicker-border-color;
-
   i {
     display: inline-block;
     margin-right: 0.4 * $fontPicker-sizer; //4px
@@ -366,7 +361,8 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
   display: flex;
   align-items: center;
   height: $fontPicker-search-height;
-  padding: 0.4 * $fontPicker-sizer 2 * $fontPicker-sizer; //4px 20px
+  padding: 0.4 * $fontPicker-sizer 2 * $fontPicker-sizer 0.4 * $fontPicker-sizer
+    1 * $fontPicker-sizer; //4px 20px
   margin-bottom: 0;
   font-size: $fontPicker-font-size;
   border-bottom: $fontPicker-search-border;
@@ -380,14 +376,14 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
     flex-grow: 1;
     order: 1;
     min-width: 100px;
+    padding: 0.4 * $fontPicker-sizer 1.5 * $fontPicker-sizer 0.4 *
+      $fontPicker-sizer 0.9 * $fontPicker-sizer;
     //min-width: 10*$fontPicker-sizer;  //100px;
     margin: 0;
-    margin-left: $fontPicker-sizer; //10px
     font-size: $fontPicker-font-size;
     border: 0;
     box-shadow: none;
     flex-shrink: 1;
-
     &:focus {
       box-shadow: none;
     }
@@ -455,8 +451,6 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
 
 .#{$fontPicker}-wrap {
   .#{$fontPicker}.pj-dropdown-show {
-    border-color: $fontPicker-active-color;
-
     &.tether-target-attached-bottom {
       border-bottom-right-radius: 3px;
       border-bottom-left-radius: 3px;
@@ -476,4 +470,19 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
 .#{$fontPicker}-font-focus {
   color: $fontPicker-font-active-color;
   background-color: $fontPicker-active-color;
+}
+
+.icon-search {
+  color: $color-gray;
+}
+
+.pj-dropdown-item:last-child {
+  padding-left: 3 * $fontPicker-sizer; //30px;
+}
+
+.#{$dropdown}-select {
+  .#{$dropdown} {
+    justify-content: center;
+    // padding-left: 3*$fontPicker-sizer;//30px
+  }
 }

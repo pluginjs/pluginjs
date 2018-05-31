@@ -11,7 +11,8 @@
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"@pluginjs/accordion": "^0.2.20"
+		"@pluginjs/accordion": "^0.2.20",
+		"primary.css": "^1.0.0"
 	},
 	"license": "UNLICENSED"
 }

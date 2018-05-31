@@ -9,7 +9,7 @@ $iconPicker-width: 16 * $iconPicker-sizer !default; //160px
 $iconPicker-height: 3 * $iconPicker-sizer !default; //30px
 $iconPicker-font-size: $font-size-base !default;
 $iconPicker-border-color: $gray-lighter !default;
-$iconPicker-hover-color: $gray-light !default;
+$iconPicker-hover-color: $color-primary-gray !default;
 $iconPicker-active-color: $color-primary !default;
 $iconPicker-body-padding: 1.5 * $iconPicker-sizer $iconPicker-sizer
   $iconPicker-sizer !default; //15px 10px 10px
@@ -45,7 +45,7 @@ $iconPicker-controller-bg: $color-white;
   }
 
   &:focus {
-    border-color: $iconPicker-active-color;
+    border-color: $iconPicker-border-color;
     outline: none;
   }
 
@@ -132,7 +132,6 @@ $iconPicker-controller-bg: $color-white;
     padding: $iconPicker-package-title-padding !important;
     font-size: $iconPicker-font-size;
     line-height: $iconPicker-package-height;
-    background-color: $iconPicker-package-bg-color;
 
     &:hover {
       color: $iconPicker-active-color;
@@ -280,10 +279,6 @@ $iconPicker-controller-bg: $color-white;
   > div:focus {
     color: $iconPicker-active-color;
     outline: none;
-
-    .pj-dropdown-label {
-      color: $iconPicker-active-color;
-    }
   }
 }
 
@@ -293,10 +288,6 @@ $iconPicker-controller-bg: $color-white;
 
   &:hover {
     color: $iconPicker-active-color;
-
-    .pj-dropdown-label {
-      color: $iconPicker-active-color;
-    }
   }
 
   &.pj-dropdown {
@@ -308,10 +299,6 @@ $iconPicker-controller-bg: $color-white;
   &.pj-dropdown-show {
     color: $iconPicker-active-color;
 
-    .pj-dropdown-label {
-      color: $iconPicker-active-color;
-    }
-
     .pj-dropdown-icon {
       transition: transform 0.3s;
       transform: rotate(0deg);
@@ -322,6 +309,7 @@ $iconPicker-controller-bg: $color-white;
     display: inline-block;
     width: auto;
     padding: 0;
+    color: #343434;
     vertical-align: middle;
   }
 
@@ -382,8 +370,8 @@ $iconPicker-controller-bg: $color-white;
   display: flex;
   align-items: center;
   height: $iconPicker-search-height;
-  padding: 0.4 * $iconPicker-sizer $iconPicker-sizer 0.4 * $iconPicker-sizer 2 *
-    $iconPicker-sizer; //4px 10px 4px 20px
+  padding: 0.4 * $iconPicker-sizer 2 * $iconPicker-sizer 0.4 * $iconPicker-sizer
+    1 * $iconPicker-sizer; //4px 20px 4px 10px
   margin-bottom: $iconPicker-search-margin-bottom;
   font-size: $iconPicker-font-size;
   border-bottom: $iconPicker-search-border;
@@ -403,6 +391,7 @@ $iconPicker-controller-bg: $color-white;
     flex-grow: 1;
     order: 1;
     min-width: 100px;
+    padding-left: 0;
     //min-width: 10*$iconPicker-sizer; //100px
     margin: 0;
     margin-left: $iconPicker-sizer; //10px
@@ -410,7 +399,6 @@ $iconPicker-controller-bg: $color-white;
     border: 0;
     box-shadow: none;
     flex-shrink: 1;
-
     &:focus {
       + .#{$iconPicker}-search-close {
         opacity: 1;
@@ -438,8 +426,6 @@ $iconPicker-controller-bg: $color-white;
 
 .#{$iconPicker}-wrap {
   .#{$iconPicker}.pj-dropdown-show {
-    border-color: $iconPicker-active-color;
-
     .#{$iconPicker}-switch {
       transition: all 0.3s;
       transform: translateY(-50%) rotate(180deg);

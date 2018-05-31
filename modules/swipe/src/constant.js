@@ -40,6 +40,7 @@ export const defaults = {
   itemSelector: 'div',
   // data: null, // [Array] item => {'title':'','el':[HTML element]}
   arrows: false,
+  imgdot: false,
   pagination: false,
   drag: true,
   dragFree: false,
@@ -58,6 +59,7 @@ export const defaults = {
   },
   defaultActive: 0, // default active item
   duration: 400,
+  imgdotArr: [],
   templates: {
     wrapper() {
       return `<div class="{class}"></div>`

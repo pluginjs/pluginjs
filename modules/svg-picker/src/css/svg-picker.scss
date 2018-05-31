@@ -9,11 +9,11 @@ $svgPicker-width: 16 * $svgPicker-sizer !default; //160px
 $svgPicker-height: 3 * $svgPicker-sizer !default; //30px
 $svgPicker-font-size: $font-size-base !default;
 $svgPicker-border-color: $gray-lighter !default;
-$svgPicker-active-color: $color-primary !default;
+$svgPicker-active-color: $color-primary-gray !default;
 $svgPicker-hover-color: $gray-light !default;
 // icon
-$svgPicker-icon-width: 5.2 * $svgPicker-sizer !default; //52px
-$svgPicker-icon-height: 5.2 * $svgPicker-sizer !default; //52px
+$svgPicker-icon-width: 4.8 * $svgPicker-sizer !default; //52px
+$svgPicker-icon-height: 4.8 * $svgPicker-sizer !default; //52px
 $svgPicker-icon-color: $gray-light !default;
 $svgPicker-icon-active-color: $color-primary !default;
 $svgPicker-icon-hover-color: $gray-light !default;
@@ -84,7 +84,7 @@ $svgPicker-search-icon-color: $gray-light !default;
 
     .#{$svgPicker}-add {
       color: $svgPicker-add-color;
-
+      text-decoration: none;
       &:hover {
         opacity: $svgPicker-add-opacity;
         transition: opacity 0.2s;
@@ -132,10 +132,9 @@ $svgPicker-search-icon-color: $gray-light !default;
     &-title {
       position: relative;
       height: $svgPicker-type-height;
-      padding: 0 2 * $svgPicker-sizer !important; //20px
+      padding: 0 1.5 * $svgPicker-sizer !important; //20px
       font-size: $svgPicker-font-size;
       line-height: $svgPicker-type-height;
-      background-color: $svgPicker-type-bg-color;
 
       &:hover {
         color: $svgPicker-active-color;
@@ -143,9 +142,10 @@ $svgPicker-search-icon-color: $gray-light !default;
       }
 
       i {
-        position: absolute;
-        top: 50%;
-        right: $svgPicker-sizer; //10px
+        position: relative;
+        top: 10%;
+        font-style: normal;
+        // right: $svgPicker-sizer; //10px
         transition: all 0.3s;
         transform: translateY(-50%);
       }
@@ -172,10 +172,14 @@ $svgPicker-search-icon-color: $gray-light !default;
       text-align: center;
       list-style: none;
       border: $svgPicker-icon-border;
-
+      border-radius: 0.8 * $svgPicker-sizer; //8px
       &-hover,
       &:hover {
-        border-color: $svgPicker-icon-hover-color;
+        background-color: $color-drop-border;
+      }
+      svg {
+        width: 2.4 * $svgPicker-sizer; //24px
+        height: 2.4 * $svgPicker-sizer; //24px
       }
     }
 
@@ -187,10 +191,6 @@ $svgPicker-search-icon-color: $gray-light !default;
       .#{$svgPicker}-type-title i {
         transition: all 0.3s;
         transform: translateY(-50%) rotate(-180deg);
-      }
-
-      .#{$svgPicker}-type-title {
-        color: $color-primary;
       }
     }
 
@@ -242,16 +242,12 @@ $svgPicker-search-icon-color: $gray-light !default;
 
     &:hover {
       color: $svgPicker-active-color;
-
-      .#{$svgPicker}-manage-icon {
-        color: $svgPicker-active-color;
-      }
     }
 
     &-icon {
       margin-right: $svgPicker-manage-icon-margin-right;
       font-size: $svgPicker-manage-icon-font-size;
-      color: $svgPicker-icon-color;
+      color: $svgPicker-active-color;
     }
   }
 

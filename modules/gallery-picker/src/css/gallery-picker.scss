@@ -59,7 +59,7 @@ $galleryPicker-expand-control-btn-height: 30px !default;
 
     &:hover {
       cursor: pointer;
-      background-color: $galleryPicker-initial-hover-bg;
+      border-color: $color-primary-gray;
     }
 
     i {
@@ -113,7 +113,7 @@ $galleryPicker-expand-control-btn-height: 30px !default;
       color: #fff;
       text-align: center;
       background-color: $galleryPicker-active-color;
-      border-radius: 100%;
+      border-radius: 2px;
     }
 
     &-expand {

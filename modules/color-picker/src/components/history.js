@@ -1,5 +1,13 @@
 import { bindEvent } from '@pluginjs/events'
-import { parseHTML, queryAll, parentWith } from '@pluginjs/dom'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import {
+  parseHTML,
+  queryAll,
+  parentWith,
+  parent,
+  query,
+  children
+} from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 
 class History {
@@ -15,7 +23,7 @@ class History {
     this.bind()
   }
   build() {
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 18; i++) {
       const item = `<span class='${this.classes.HISTORYITEM}'></span>`
       this.element.append(parseHTML(item))
     }
@@ -34,14 +42,14 @@ class History {
             data: [color]
           }
         }) => {
-          if (!color || this.instance.is('gradientModule')) {
+          if (!color) {
             return false
           }
 
-          if (this.prevColor === color) {
+          if (this.prevColor === this.instance.asColor) {
             return false
           }
-          this.prevColor = color
+          this.prevColor = this.instance.asColor.toRGBA()
           this.update(this.prevColor)
 
           return null
@@ -61,8 +69,12 @@ class History {
                 el => el.matches(`.${this.classes.HISTORYITEM}`),
                 target
               )
+          if (getStyle('cursor', el) == 'not-allowed') {
+            return false
+          }
           const color = getStyle('background-color', el)
           that.instance.setSolid(color)
+          // console.log(getStyle('background-color', el))
         }
       },
       this.element
@@ -70,14 +82,25 @@ class History {
   }
 
   update(color) {
-    this.colors.push(color)
-    if (this.count >= 12) {
-      this.colors.shift()
+    // console.log(this.colors)
+    // console.log(this.colors.indexOf(color))
+    if (this.colors.indexOf(color) == -1) {
+      this.colors.push(color)
+      // console.log(this.colors)
+      this.count++
+
+      if (this.count >= 18) {
+        this.colors.shift()
+      }
+      this.$items.forEach((v, i) => {
+        //       console.log(v,i)
+        setStyle({ background: this.colors[this.colors.length - 1 - i] }, v)
+        if (i < this.count) {
+          addClass(this.classes.HISTORYITEMEMPTY, v)
+        }
+      })
     }
-    this.$items.forEach((v, i) => {
-      setStyle({ backgroundColor: this.colors[this.colors.length - 1 - i] }, v)
-    })
-    this.count++
+    // console.log(this.colors)
   }
 }
 

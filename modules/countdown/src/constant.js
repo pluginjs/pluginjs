@@ -13,15 +13,12 @@ export const classes = {
 }
 
 export const methods = [
-  'get',
-  'start',
-  'finish',
-  'stop',
-  'reset',
-  'go',
-  'disable',
   'enable',
-  'destroy'
+  'disable',
+  'destroy',
+  'bind',
+  'unbind',
+  'build'
 ]
 
 export const dormatDirectiveKeys = {
@@ -38,8 +35,14 @@ export const defaults = {
   type: 'default',
   format: 'd,h,m,s',
   label: null,
+  labelsite: 'under',
   due: '2018-12-28 19:32:28',
-  now: null
+  now: null,
+  size: 100,
+  barcolor: '#ccc',
+  barsize: 4,
+  trackcolor: '#55a4f2',
+  linecap: 'round'
 }
 
 export const info = { version: '0.2.2' }

@@ -17,6 +17,7 @@ class Hue {
 
   init() {
     this.element.append(this.$pointer)
+    this.size = parseInt(getStyle('height', this.$pointer), 10) / 2
     this.maxLength = parseInt(getStyle('height', this.element), 10)
     this.bind()
   }
@@ -33,7 +34,7 @@ class Hue {
             this.move(e.offsetY)
           }
 
-          this.offset = e.pageY
+          this.offset = e.pageY - this.size
           const pointerY = parseInt(getStyle('top', this.$pointer), 10)
 
           bindEvent(
@@ -83,15 +84,15 @@ class Hue {
 
   move(size) {
     const position = Math.max(0, Math.min(size, this.maxLength))
-    setStyle({ top: position }, this.$pointer)
+    setStyle({ top: position - this.size }, this.$pointer)
     this.hue = (1 - position / this.maxLength) * 360
-    this.instance.trigger('hueMove', position)
+    this.instance.trigger('hueMove', position - this.size)
     this.update()
   }
 
   position(color) {
     this.hue = color.value.h
-    const position = (1 - this.hue / 360) * this.maxLength
+    const position = (1 - this.hue / 360) * this.maxLength - this.size
     setStyle({ top: position }, this.$pointer)
   }
   update() {

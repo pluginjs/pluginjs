@@ -130,7 +130,7 @@ class FontPicker extends Component {
       this.$activated = children(this.$activatedPackage)
       const $activatedLastElement = this.$activated[this.$activated.length - 1]
       this.$searchList = children(query('ul', $activatedLastElement))
-      Scrollable.of($activatedLastElement)
+      // Scrollable.of($activatedLastElement)
     }
     this.initSources()
     this.initController()
@@ -148,7 +148,7 @@ class FontPicker extends Component {
         getStyle('marginTop', query(`.${this.classes.FONT}`, this.$panel)),
         10
       )
-
+    // console.log(this.options)
     if (this.options.manage) {
       const text = this.translate('manage')
       this.$controller.append(
@@ -285,7 +285,6 @@ class FontPicker extends Component {
       // const sourceName = getObjData('source', $source)
       this.toggleSources($source)
       this.categoriesHeight = contentHeight(parent(this.$activated[0]))
-
       if (this.sources[sourceName]) {
         prepend(
           parseHTML(
@@ -725,6 +724,7 @@ class FontPicker extends Component {
       exclusive: false,
       width: 260,
       icon: 'icon-char icon-chevron-down',
+      // list整条选项
       templates: {
         panel() {
           return `<div class=${that.classes.PANEL}></div>`
@@ -747,13 +747,12 @@ class FontPicker extends Component {
         selector: this.classes.SELECTOR
       })
     )
-
+    console.log(this.$controller)
     Object.entries(this.sources).forEach(([, source]) => {
       data.push({ label: source.title })
     })
 
     data.push({ label: localeText })
-
     this.$panel.append(this.$controller)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
     this.$selectorPanel = Dropdown.of(this.$selector, {
@@ -767,7 +766,7 @@ class FontPicker extends Component {
       icon: 'icon-char icon-chevron-down',
       classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` }
     })
-
+    // 选中的dropdown activated上面那块
     queryAll('li', this.$selectorPanel.panel).forEach(el => {
       Object.entries(this.sources).forEach(([sourceName, source]) => {
         if (el.dataset.value === source.title) {

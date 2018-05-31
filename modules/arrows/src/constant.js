@@ -15,6 +15,7 @@ export const classes = {
   NAMESPACE: 'pj-arrow',
   CONTAINER: '{namespace}s',
   THEME: '{namespace}s--{theme}',
+  TYPE: '{namespace}s-{type}',
   PREV: '{namespace}-prev',
   NEXT: '{namespace}-next',
   VERTICAL: '{namespace}s-vertical',
@@ -39,6 +40,7 @@ export const methods = [
 
 export const defaults = {
   theme: null,
+  type: null,
   prev: {
     href: 'javascript:void(0);',
     text: 'Previous'

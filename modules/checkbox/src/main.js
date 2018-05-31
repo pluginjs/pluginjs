@@ -139,7 +139,7 @@ class Checkbox extends Component {
         if (value.includes(this.value)) {
           api.check(true, false)
         } else {
-          api.uncheck(true, false)
+          // api.uncheck(true, false)
         }
       })
     } else if (this.element.value === value) {
@@ -230,10 +230,7 @@ class Checkbox extends Component {
   enable(trigger = true) {
     if (this.is('disabled')) {
       this.$group.forEach(element => {
-        compose(
-          removeParentClass(this.classes.DISABLED),
-          removeParentClass(this.classes.CHECKED)
-        )(element)
+        compose(removeParentClass(this.classes.DISABLED))(element)
         element.disabled = false
       })
       // this.$wrap.removeClass(this.classes.CHECKED);

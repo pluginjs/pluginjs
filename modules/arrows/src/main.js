@@ -60,7 +60,10 @@ class Arrows extends Component {
       addClass(this.getThemeClass(), this.element)
     }
 
-    // addClass(this.element)
+    if (this.options.type) {
+      addClass(this.getTypeClass(), this.element)
+    }
+
     this.$prev = this.getPrev()
     this.$next = this.getNext()
     if (!this.$prev) {
@@ -70,7 +73,6 @@ class Arrows extends Component {
     if (!this.$next) {
       this.buildNext(this.options.next)
     }
-    // console.log('arrows initialized')
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -137,7 +139,6 @@ class Arrows extends Component {
     const template = templateEngine.compile(
       this.options.templates.prev.call(this)
     )
-    // console.log(parseHTML(template({ classes: this.classes, ...prev })))
     this.$prev = append(
       parseHTML(template({ classes: this.classes, ...prev })),
       this.element
@@ -161,12 +162,44 @@ class Arrows extends Component {
     this.buildNext(next)
   }
 
+  empty() {
+    const arrows = Array.prototype.slice.call(this.element.children)
+    arrows.map(arrow => {
+      arrow.remove()
+    })
+  }
+
   prev() {
     this.trigger(EVENTS.PREV, this.getArrowValue(this.$prev))
   }
 
   next() {
     this.trigger(EVENTS.NEXT, this.getArrowValue(this.$next))
+  }
+
+  getTypeClass(types, TYPE) {
+    if (is.undefined(types) && this.options.type) {
+      return this.getTypeClass(this.options.type)
+    }
+    if (is.string(types)) {
+      if (is.undefined(TYPE)) {
+        TYPE = this.classes.TYPE
+      }
+      types = types.split(' ')
+
+      if (TYPE) {
+        for (let i = 0; i < types.length; i++) {
+          types[i] = TYPE.replace('{type}', types[i])
+        }
+      } else {
+        for (let i = 0; i < types.length; i++) {
+          types[i] = this.getClass(types[i])
+        }
+      }
+      return types
+    }
+
+    return ''
   }
 
   getArrowValue($arrow) {

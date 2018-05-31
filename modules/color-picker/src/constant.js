@@ -23,7 +23,7 @@ export const PREVIEWCLASS = {
 export const PANELCLASS = {
   PANEL: '{namespace}-panel',
   OPENPANEL: '{namespace}-open',
-
+  OPENACTIVE: '{namespace}-input-active',
   PANELWRAP: '{namespace}-panel-wrap',
 
   PANELTRIGGER: '{namespace}-panel-trigger',
@@ -42,13 +42,17 @@ export const PANELCLASS = {
 export const SOLIDCLASS = {
   SOLIDHANDLE: '{namespace}-solid-handle',
   SOLIDPRIMARY: '{namespace}-solid-primary',
-  SOLIDACTION: '{namespace}-solid-action'
+  SOLIDACTION: '{namespace}-solid-action',
+  SOLIDHISTORY: '{namespace}-solid-history',
+  SOLIDDONE: '{namespace}-solid-done'
 }
 
 export const GRADIENTCLASS = {
   GRADIENTHANDLE: '{namespace}-gradient-handle',
   GRADIENTPRIMARY: '{namespace}-gradient-primary',
   GRADIENTACTION: '{namespace}-gradient-action',
+  GRADIENTHISTORY: '{namespace}-gradient-history',
+  GRADIENTDONE: '{namespace}-gradient-done',
   GRADIENTBAR: '{namespace}-gradient-bar',
   GRADIENTBARVIEW: '{namespace}-gradient-bar-view',
   GRADIENTCONTENT: '{namespace}-gradient-content',
@@ -70,7 +74,8 @@ export const CONTRASTCLASS = {
 
 export const HISTORYCLASS = {
   HISTORY: '{namespace}-history',
-  HISTORYITEM: '{namespace}-history-item'
+  HISTORYITEM: '{namespace}-history-item',
+  HISTORYITEMEMPTY: '{namespace}-history-item-empty'
 }
 export const COLLECTIONCLASS = {
   FAVORITES: '{namespace}-favorites',
@@ -91,7 +96,6 @@ export const PALETTECLASS = {
   POINTER: '{namespace}-pointer',
   ALPHA: '{namespace}-alpha',
   HUE: '{namespace}-hue',
-  HEX: '{namespace}-hex',
   SATURATION: '{namespace}-saturation'
 }
 
@@ -107,8 +111,18 @@ export const BASECLASS = {
   MASK: '{namespace}-mask'
 }
 
+export const HEXCLASS = {
+  NAMESPACE: `pj-${namespace}`,
+  HEX: '{namespace}-hex',
+  HEXMODE: '{namespace}-hex-mode',
+  HEXANGLE: '{namespace}-hex-angle',
+  HEXBOX: '{namespace}-hex-box',
+  HEXUNIT: '{namespace}-hex-unit'
+}
+
 export const classes = Object.assign(
   {},
+  HEXCLASS,
   BASECLASS,
   PREVIEWCLASS,
   PANELCLASS,
@@ -125,7 +139,7 @@ export const methods = ['enable', 'disable', 'get', 'set', 'update']
 
 export const translations = {
   en: {
-    ok: 'ok',
+    ok: 'OK',
     cancel: 'Cancel',
     manage: 'Manage',
     collection: 'Collection',
@@ -135,7 +149,7 @@ export const translations = {
     myColors: 'MY COLORS'
   },
   zh: {
-    ok: '保存',
+    ok: 'DONE',
     cancel: '取消',
     manage: '管理',
     collection: '收藏',
@@ -205,7 +219,7 @@ export const defaults = {
       return '<i class="{class} icon-star" data-type="collection"></i>'
     },
     solidTrigger() {
-      return '<i class="{class} icon-paint" data-type="solid"></i>'
+      return '<i class="{class}" data-type="solid"></i>'
     },
     gradientTrigger() {
       return '<i class="{class}" data-type="gradient"></i>'
@@ -224,7 +238,9 @@ export const defaults = {
     content() {
       return `<div class='{handle}'></div>
         <div class='{primary}'></div>
-        <div class='{action}'></div>`
+        <div class='{action}'></div>
+        <div class='{history}'></div>
+        <div class='{done}'></div>`
     },
     cancel() {
       return '<button type="button" class="{class} pj-btn pj-btn-xs pj-btn-outline">{text}</button>'
@@ -245,13 +261,16 @@ export const defaults = {
       return '<div class="{class}"></div>'
     },
     hex() {
-      return '<input class="pj-input {class}" type="text" />'
+      return '<div class="{class}"></div>'
     },
     saturation() {
       return '<div class="{class}"></div>'
     },
     gradient() {
       return '<div class="{class}"></div>'
+    },
+    angles() {
+      return '<input class="{class} pj-input" type="number"/>'
     }
   },
   process(data, module) {

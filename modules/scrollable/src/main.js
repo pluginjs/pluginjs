@@ -2,6 +2,7 @@ import Component from '@pluginjs/component'
 import is from '@pluginjs/is'
 import easing from '@pluginjs/easing'
 import SCROLLBAR from '@pluginjs/scrollbar'
+
 import {
   convertFloatToPercentage,
   convertPercentageToFloat,
@@ -132,6 +133,7 @@ class Scrollable extends Component {
           : '0px'
 
       if (position !== 'static') {
+        console.log(this.wrap)
         setStyle({ position }, this.wrap)
       } else {
         setStyle({ position: 'relative' }, this.wrap)
@@ -359,7 +361,7 @@ class Scrollable extends Component {
         handler: e => {
           const [value, direction] = e.detail.data
           this.onScroll(value, direction)
-          // console.log('debug222')
+          console.log('debug222')
         }
       },
       this.element
@@ -690,7 +692,9 @@ class Scrollable extends Component {
       if (api.is('disabled')) {
         api.enable()
       }
-      // console.log(api.getBarLength() * containerLength / (scrollLength + containerLength))
+      console.log(
+        api.getBarLength() * containerLength / (scrollLength + containerLength)
+      )
       api.setHandleLength(
         api.getBarLength() * containerLength / (scrollLength + containerLength),
         true

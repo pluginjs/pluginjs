@@ -91,6 +91,7 @@ class ColorPicker extends Component {
 
     this.data = DATA
     this.color = null
+    this.oldColor = null
     this.solidModule = this.options.solidModule
 
     this.info = {
@@ -315,27 +316,53 @@ class ColorPicker extends Component {
     const solid = this.createEl('content', {
       handle: this.classes.SOLIDHANDLE,
       primary: this.classes.SOLIDPRIMARY,
-      action: this.classes.SOLIDACTION
+      action: this.classes.SOLIDACTION,
+      history: this.classes.SOLIDHISTORY,
+      done: this.classes.SOLIDDONE
     })
     this.$solid = query(`.${this.classes.PANELSOLID}`, this.$panel)
     this.$solid.append(...solid)
     this.registerComponent()
     // cancel
-    const cancel = this.createEl('cancel', {
-      class: this.classes.CANCEL,
-      text: this.translate('cancel')
-    })
+    // const cancel = this.createEl('cancel', {
+    //   class: this.classes.CANCEL,
+    //   text: this.translate('cancel')
+    // })
 
     // ok
+    // const ok = this.createEl('ok', {
+    //   class: this.classes.OK,
+    //   text: this.translate('ok')
+    // })
+    // const solidAction = query(`.${this.classes.SOLIDACTION}`, this.$solid)
+    // if (solidAction) {
+    //   ;[ok].map(el =>
+    //     append(el, query(`.${this.classes.SOLIDACTION}`, this.$solid))
+    //   )
+    // }
+  }
+  initDone(gradient) {
     const ok = this.createEl('ok', {
       class: this.classes.OK,
       text: this.translate('ok')
     })
-    const solidAction = query(`.${this.classes.SOLIDACTION}`, this.$solid)
-    if (solidAction) {
-      ;[ok, cancel].map(el =>
-        append(el, query(`.${this.classes.SOLIDACTION}`, this.$solid))
+    if (gradient) {
+      const gradientDone = query(
+        `.${this.classes.GRADIENTDONE}`,
+        this.$gradient
       )
+      if (gradientDone) {
+        ;[ok].map(el =>
+          append(el, query(`.${this.classes.GRADIENTDONE}`, this.$gradient))
+        )
+      }
+    } else {
+      const solidDone = query(`.${this.classes.SOLIDDONE}`, this.$solid)
+      if (solidDone) {
+        ;[ok].map(el =>
+          append(el, query(`.${this.classes.SOLIDDONE}`, this.$solid))
+        )
+      }
     }
   }
 
@@ -343,7 +370,9 @@ class ColorPicker extends Component {
     const gradient = this.createEl('content', {
       handle: this.classes.GRADIENTHANDLE,
       primary: this.classes.GRADIENTPRIMARY,
-      action: this.classes.GRADIENTACTION
+      action: this.classes.GRADIENTACTION,
+      history: this.classes.GRADIENTHISTORY,
+      done: this.classes.GRADIENTDONE
     })
     this.$gradient = query(`.${this.classes.PANELGRADIENT}`, this.$panel)
     this.$gradient.append(...gradient)
@@ -363,28 +392,33 @@ class ColorPicker extends Component {
     // init gradient hex
     this.initHex(true)
 
+    this.initHistory(true)
+
+    this.initDone(true)
+
     // cancel
-    const cancel = this.createEl('cancel', {
-      class: this.classes.CANCEL,
-      text: this.translate('cancel')
-    })
+    // const cancel = this.createEl('cancel', {
+    //   class: this.classes.CANCEL,
+    //   text: this.translate('cancel')
+    // })
 
     // ok
-    const ok = this.createEl('ok', {
-      class: this.classes.OK,
-      text: this.translate('ok')
-    })
-    ;[ok, cancel].map(el =>
-      append(el, query(`.${this.classes.GRADIENTACTION}`, this.$gradient))
-    )
+    // const ok = this.createEl('ok', {
+    //   class: this.classes.OK,
+    //   text: this.translate('ok')
+    // })
+    // ;[ok].map(el =>
+    //   append(el, query(`.${this.classes.GRADIENTACTION}`, this.$gradient))
+    // )
   }
 
   registerComponent() {
     const solidMode = this.options.solidMode
 
     if (solidMode === 'full') {
-      this.initContrast()
+      // this.initContrast()
       this.initHistory()
+      this.initDone()
     }
 
     if (solidMode === 'default') {
@@ -499,24 +533,32 @@ class ColorPicker extends Component {
     this.trigger(EVENTS.SWITCHMODULE, this.module)
   }
 
-  initContrast() {
-    const contrast = this.createEl('contrast', {
-      class: this.classes.CONTRAST,
-      now: this.classes.CONTRASTNOW,
-      prev: this.classes.CONTRASTPREV
-    })
-    query(`.${this.classes.SOLIDHANDLE}`, this.$panel).append(contrast)
-    const contrastElement = query(`.${this.classes.CONTRAST}`, this.$panel)
-    this.CONTRAST = new Contrast(this, contrastElement)
-  }
+  // initContrast() {
+  //   const contrast = this.createEl('contrast', {
+  //     class: this.classes.CONTRAST,
+  //     now: this.classes.CONTRASTNOW,
+  //     prev: this.classes.CONTRASTPREV
+  //   })
+  //   query(`.${this.classes.SOLIDHANDLE}`, this.$panel).append(contrast)
+  //   const contrastElement = query(`.${this.classes.CONTRAST}`, this.$panel)
+  //   this.CONTRAST = new Contrast(this, contrastElement)
+  // }
 
-  initHistory() {
+  initHistory(gradient) {
     const history = this.createEl('history', { class: this.classes.HISTORY })
-    append(history, query(`.${this.classes.SOLIDHANDLE}`, this.$solid))
-    this.HISTORY = new History(
-      this,
-      query(`.${this.classes.HISTORY}`, this.$solid)
-    )
+    if (gradient) {
+      append(history, query(`.${this.classes.GRADIENTHISTORY}`, this.$gradient))
+      this.HISTORY = new History(
+        this,
+        query(`.${this.classes.HISTORY}`, this.$gradient)
+      )
+    } else {
+      append(history, query(`.${this.classes.SOLIDHISTORY}`, this.$solid))
+      this.HISTORY = new History(
+        this,
+        query(`.${this.classes.HISTORY}`, this.$solid)
+      )
+    }
   }
 
   initSaturation(gradient) {
@@ -581,12 +623,14 @@ class ColorPicker extends Component {
           const val = e.target.value
 
           this.set(this.options.parse.call(this, val))
+          // console.log(this)
         }
       }),
       // switch panel
       bindEvent({
         type: this.eventName('click'),
         handler: () => {
+          // console.log(this.is('disabled'))
           if (this.is('disabled')) {
             return false
           }
@@ -611,7 +655,20 @@ class ColorPicker extends Component {
         type: this.eventName('click'),
         identity: { type: 'selector', value: `.${this.classes.OK}` },
         handler: () => {
+          if (this.is('disabled')) {
+            return false
+          }
+
+          if (this.oldColor != null) {
+            if (this.oldColor.indexOf('linear-gradient') > -1) {
+              this.setGradient(this.oldColor)
+            } else {
+              this.setSolid(this.oldColor)
+            }
+          }
+
           this.closePanel()
+          return null
         }
       }),
       // action event
@@ -626,6 +683,14 @@ class ColorPicker extends Component {
           if (this.hasModule('solid')) {
             this.setSolid(this.HISTORY.colors[this.HISTORY.colors.length - 1])
           }
+
+          // if (this.hasModule('gradient')) {
+
+          //   this.setGradient(
+          //     this.HISTORY.colors[this.HISTORY.colors.length - 1]
+          //   )
+          //   // console.log(this)
+          // }
           this.closePanel()
           return null
         }
@@ -708,8 +773,16 @@ class ColorPicker extends Component {
       {
         type: this.eventName('click'),
         handler: ({ target }) => {
-          if (!this.$wrap.contains(target)) {
-            this.closePanel()
+          // console.log(this.is('openPanel'))
+          if (this.is('openPanel')) {
+            // console.log(target)
+            if (!this.$wrap.contains(target)) {
+              if (this.is('disabled')) {
+                return false
+              }
+              this.closePanel()
+              // console.log(this)
+            }
           }
         }
       },
@@ -723,26 +796,37 @@ class ColorPicker extends Component {
 
   openPanel() {
     addClass(this.classes.OPENPANEL, this.$panelWrap)
+    addClass(this.classes.OPENACTIVE, this.element)
     showElement(this.$mask)
-    this.element.style.borderColor = '#4c93d9'
-
+    // console.log(this.element)
     // update scollable height
     if (this.scrollable) {
       this.scrollable.update()
     }
 
     this.POPPER.scheduleUpdate()
+    // this.element.openPanel = true
     this.enter('openPanel')
+    // console.log(this.enter('openPanel'))
     this.trigger(EVENTS.OPENPANEL)
+
+    this.oldColor = this.color
+    // console.log(this.oldColor + 1)
+    // console.log(this.color + 1)
+    // console.log(this.asColor.toHEX() + 1)
   }
 
   closePanel() {
     removeClass(this.classes.OPENPANEL, this.$panelWrap)
+    removeClass(this.classes.OPENACTIVE, this.element)
     hideElement(this.$mask)
-    this.element.style.removeProperty('border-color')
+    // console.log(this.element)
+    // this.element.style.removeProperty('border-color')
 
     this.update()
+    // this.element.openPanel = false;
     this.leave('openPanel')
+    // console.log(this.leave('openPanel'))
   }
 
   get() {
@@ -808,13 +892,39 @@ class ColorPicker extends Component {
   }
 
   setGradient(color) {
+    if (!color) {
+      color = this.info.gradient
+    }
+    // console.log(color)
     this.GRADIENT.set(color)
   }
 
+  // setGradient(val) {
+  //   if (!val) {
+  //     val = this.info.gradient
+  //   }
+  //   const color = this.asColor.val(val)
+  //   if (is.string(val) && val.indexOf('#') > -1) {
+  //     this.setInput(color.toHEX())
+  //   } else if (is.string(val) && !val.match(/\d/g)) {
+  //     this.setInput(color.toNAME())
+  //   } else {
+  //     this.setInput(color.toRGBA())
+  //   }
+
+  //   this.tempColor = color
+  //   this.PREVIEW.update(color)
+  //   this.trigger(EVENTS.CHANGE, color)
+
+  // }
+
   setSolid(val) {
+    // console.log(val)
     if (!val) {
       val = this.info.solid
     }
+
+    // console.log(this.asColor)
     const color = this.asColor.val(val)
     if (is.string(val) && val.indexOf('#') > -1) {
       this.setInput(color.toHEX())
@@ -834,7 +944,8 @@ class ColorPicker extends Component {
       return false
     }
     this.color = this.info[this.module]
-
+    // console.log(this)
+    // console.log(this.element)
     if (this.color === '') {
       this.color = 'transparent'
     }
@@ -918,6 +1029,7 @@ class ColorPicker extends Component {
       this.unbind()
       this.POPPER.destroy()
       empty(this.element)
+      console.log(this.element)
       this.element.className = this.firstClassName
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
@@ -929,7 +1041,7 @@ class ColorPicker extends Component {
       }
       this.leave('initialized')
     }
-
+    this.clear()
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }

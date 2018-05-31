@@ -51,6 +51,10 @@ class Hotspots extends Component {
   initialize() {
     addClass(this.classes.CONTAINER, this.element)
 
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.element)
+    }
+
     this.createHotspots()
     this.$hotspots = queryAll(`.${this.classes.HOTSPOT}`, this.element)
     this.bind()
@@ -165,7 +169,11 @@ class Hotspots extends Component {
         classes: this.classes,
         title: item.title,
         content: item.content,
-        theme: this.getThemeClass(item.theme),
+        skin: this.getClasses(
+          item.skin ? item.skin : this.options.skin,
+          this.classes.SKIN,
+          'skin'
+        ),
         type: this.getClass(this.classes.TYPE, 'type', type),
         styles: this.getHotspotStyles(item),
         label,
@@ -179,6 +187,7 @@ class Hotspots extends Component {
   getHotspotOptions(item) {
     const options = [
       'theme',
+      'skin',
       'placement',
       'trigger',
       'hideOutClick',
@@ -213,9 +222,9 @@ class Hotspots extends Component {
   }
 
   setupPopover() {
-    this.$hotspotsInstance = this.$hotspots.map(el =>
+    this.$hotspotsInstance = this.$hotspots.map(el => {
       Popover.of(el, this.options.popover)
-    )
+    })
     this.$hotspots.map(
       compose(
         bindEvent({
@@ -266,7 +275,7 @@ class Hotspots extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.element)
-      this.$hotspotsInstance.map(instance => instance.disabl())
+      this.$hotspotsInstance.map(instance => instance.disable())
 
       this.enter('disabled')
     }
@@ -276,16 +285,11 @@ class Hotspots extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      this.$hotspotsInstance.map(instance => instance.destro())
+      this.$hotspotsInstance.map(instance => instance.destroy())
+      this.unbind()
       this.leave('initialized')
     }
-    this.getThemeClass()
-      .split(' ')
-      .map(
-        className =>
-          className &&
-          removeClass(className, query(`.${className}`, this.element))
-      )
+
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }

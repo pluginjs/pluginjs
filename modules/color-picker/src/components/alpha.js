@@ -18,6 +18,7 @@ class Alpha {
 
   init() {
     append(this.$pointer, this.element)
+    this.size = parseInt(getStyle('width', this.$pointer), 10) / 2
     this.maxLength = parseInt(getStyle('height', this.element), 10)
     this.bind()
   }
@@ -34,7 +35,7 @@ class Alpha {
             this.move(e.offsetY)
           }
 
-          this.offset = e.pageY
+          this.offset = e.pageY - this.size
           const pointerY = parseInt(getStyle('top', this.$pointer), 10)
 
           bindEvent(
@@ -76,6 +77,7 @@ class Alpha {
           }
         }) => {
           this.position(color)
+          // console.log(color)
         }
       },
       this.instance.element
@@ -84,17 +86,17 @@ class Alpha {
 
   move(size) {
     const position = Math.max(0, Math.min(size, this.maxLength))
-    setStyle({ top: position }, this.$pointer)
+    setStyle({ top: position - this.size }, this.$pointer)
 
     this.alpha = (position / this.maxLength).toFixed(2)
 
-    this.instance.trigger('alphaMove', position)
+    this.instance.trigger('alphaMove', position - this.size)
     this.update()
   }
 
   position(color) {
     this.alpha = color.value.a
-    const position = this.alpha * this.maxLength
+    const position = this.alpha * this.maxLength - this.size
 
     setStyle({ top: position }, this.$pointer)
   }

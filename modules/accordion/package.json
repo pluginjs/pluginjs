@@ -27,7 +27,8 @@
 	"scripts": {
 		"build": "plugin build",
 		"build:scss": "plugin script build-scss",
-		"build:js": "plugin script build-js"
+		"build:js": "plugin script build-js",
+		"lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
 	},
 	"version": "0.2.20",
 	"description": "A flexible modern accordion js plugin.",

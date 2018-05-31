@@ -81,7 +81,7 @@ export const defaults = {
       return `<li class={icon} data-value="{iconId}">{iconSvg}</li>`
     },
     type() {
-      return `<div class="pj-dropdown-item {type}" data-value="{typeName}"><div class="{typeTitle}">{typeName} <span class='{tip}'></span> <i class="icon-chevron-down"></i></div><ul class="{iconWrap}">{icons}</ul></div>`
+      return `<div class="pj-dropdown-item {type}" data-value="{typeName}"><div class="{typeTitle}"> <span class='{tip}'></span> <i class="icon-chevron-down">&nbsp;</i>{typeName}</div><ul class="{iconWrap}">{icons}</ul></div>`
     },
     manage() {
       return `<div class={manage}><i class="{icon} icon-cog"></i> {manageText}</div>`

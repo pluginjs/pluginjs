@@ -42,14 +42,15 @@ import { cube, linear, fade } from './animate'
   INFO
 )
 class Slider extends Component {
-  arrows = true
-  dots = true
   state = true
+  current = 0
 
   constructor(element, options = {}) {
     super(NAMESPACE, element)
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
     this.initClasses(CLASSES)
+    this.sliderBox = this.element.querySelector(`.${this.classes.BOX}`)
+    this.sliderCards = this.element.querySelectorAll(`.${this.classes.CARD}`)
     this.itemSelector = this.classes.ITEM
     this.initStates()
     this.initialize()
@@ -59,24 +60,128 @@ class Slider extends Component {
     this.tooltipTranslate()
   }
 
-  sliderBox = this.element.querySelector('.pj-slider-box')
+  initialize() {
+    addClass(this.classes.CONTAINER, this.element)
+    addClass(this.classes.ACTIVE, this.sliderCards[0])
+    const element = this.element.querySelector(`.${this.classes.BOX}`)
+    const touchEvent = Hammer(element)
+    if (this.options.direction === 'vertical') {
+      compose(addClass(this.classes.VERTICAL))(this.element)
+      touchEvent.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL })
+      touchEvent
+        .on('swipedown', () => {
+          this.prevTimeout()
+        })
+        .on('swipeup', () => {
+          this.nextTimeout()
+        })
+    } else {
+      compose(addClass(this.classes.HORIZONTAL))(this.element)
+      touchEvent
+        .on('swiperight', () => {
+          this.prevTimeout()
+        })
+        .on('swipeleft', () => {
+          this.nextTimeout()
+        })
+    }
+    this.bind()
+    this.initializeArrows()
+    this.initializeDots()
+    this.setAnimation(this.options.animation)
+    if (this.options.autoplay) {
+      this.autoPlay()
+    }
+    if (this.options.playcycle) {
+      this.setAutoPlayCycle(this.options.playcycle)
+    }
+    this.enter('initialized')
+    this.trigger(EVENTS.READY)
+  }
 
-  sliderCards = this.element.querySelectorAll('.pj-slider-card')
+  initializeArrows() {
+    if (this.options.arrows) {
+      const nSpace = this.options.arrowNameSpace
+        ? this.options.arrowNameSpace
+        : 'pj-arrow'
+      const opts = Object.assign({}, this.options, {
+        classes: {
+          NAMESPACE: nSpace
+        }
+      })
+      this._arrows = Arrows.of(this.element, opts)
+      compose(
+        bindEvent({
+          type: 'arrows:next',
+          handler: () => {
+            this.nextTimeout()
+          }
+        }),
+        bindEvent({
+          type: 'arrows:prev',
+          handler: () => {
+            this.prevTimeout()
+          }
+        })
+      )(this._arrows.element)
+    }
+  }
 
-  animation = 'linear'
-
-  current = 0
+  initializeDots() {
+    if (this.options.dots) {
+      const nSpace = this.options.dotNameSpace
+        ? this.options.dotNameSpace
+        : 'pj-dot'
+      const opts = Object.assign({}, this.options, {
+        classes: {
+          NAMESPACE: nSpace
+        }
+      })
+      this._dots = Dots.of(this.element.querySelector(`.${nSpace}s`), {
+        ...opts,
+        direction: 'horizontal'
+      })
+      const container = [...this._dots.element.children]
+      bindEvent(
+        {
+          type: 'dots:change',
+          handler: () => {
+            if (this.state == true) {
+              const time = this._animation === 'cube' ? '600' : '200'
+              this.state = false
+              const activeItem = this._dots.element.querySelector(
+                `.${nSpace}-active`
+              )
+              const key = container.indexOf(activeItem)
+              this.current = key
+              this.autoPlay()
+              this.setActive(key)
+              this.setSpecPage(key)
+              setTimeout(() => {
+                this.state = true
+                this.autoPlay()
+              }, time)
+            } else {
+              return
+            }
+          }
+        },
+        this._dots.element
+      )
+    }
+  }
 
   _interval = {
     status: false,
     createTimer: time =>
       window.setInterval(() => {
         if (this.state == true) {
+          const t = this._animation === 'cube' ? '600' : '200'
           this.state = false
           this.goNext()
           setTimeout(() => {
             this.state = true
-          }, 500)
+          }, t)
         } else {
           return
         }
@@ -267,20 +372,24 @@ class Slider extends Component {
   goPrev() {
     const location = this.moveLocationtoPrev()
     const key = location.filter(item => Boolean(item.active))[0].key
-    const children = this._dots.element.children
-    const element = children[key]
+    if (this.options.dots) {
+      const children = this._dots.element.children
+      const element = children[key]
+      this._dots.setActiveItem(element)
+    }
     this.setActive(key)
-    this._dots.setActiveItem(element)
     this.location = location
   }
 
   goNext() {
     const location = this.moveLocationtoNext()
     const key = location.filter(item => Boolean(item.active))[0].key
-    const children = this._dots.element.children
-    const element = children[key]
+    if (this.options.dots) {
+      const children = this._dots.element.children
+      const element = children[key]
+      this._dots.setActiveItem(element)
+    }
     this.setActive(key)
-    this._dots.setActiveItem(element)
     this.location = location
   }
 
@@ -318,141 +427,45 @@ class Slider extends Component {
     this.location = location
   }
 
-  initialize() {
-    addClass(this.classes.CONTAINER, this.element)
-    addClass(this.classes.ACTIVE, this.sliderCards[0])
-    const element = this.element.querySelector('.pj-slider-box')
-    const touchEvent = Hammer(element)
-    if (this.options.direction === 'vertical') {
-      compose(addClass(this.classes.VERTICAL))(this.element)
-      touchEvent.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL })
-      touchEvent
-        .on('swipedown', () => {
-          if (this.state == true) {
-            this.state = false
-            this.goPrev()
-            setTimeout(() => {
-              this.state = true
-            }, 500)
-          } else {
-            return
-          }
-        })
-        .on('swipeup', () => {
-          if (this.state == true) {
-            this.state = false
-            this.goNext()
-            setTimeout(() => {
-              this.state = true
-            }, 500)
-          } else {
-            return
-          }
-        })
+  prevTimeout() {
+    if (this.state == true) {
+      const time = this._animation === 'cube' ? '600' : '200'
+      this.state = false
+      this.autoPlay()
+      this.goPrev()
+      setTimeout(() => {
+        this.state = true
+        this.autoPlay()
+      }, time)
     } else {
-      compose(addClass(this.classes.HORIZONTAL))(this.element)
-      touchEvent
-        .on('swiperight', () => {
-          if (this.state == true) {
-            this.state = false
-            this.goPrev()
-            setTimeout(() => {
-              this.state = true
-            }, 500)
-          } else {
-            return
-          }
-        })
-        .on('swipeleft', () => {
-          if (this.state == true) {
-            this.state = false
-            this.goNext()
-            setTimeout(() => {
-              this.state = true
-            }, 500)
-          } else {
-            return
-          }
-        })
+      return
     }
-    this.bind()
-    this.initializeArrows()
-    this.initializeDots()
-    this.enter('initialized')
-    this.trigger(EVENTS.READY)
   }
 
-  initializeArrows() {
-    this._arrows = Arrows.of(this.element, this.options)
-    compose(
-      bindEvent({
-        type: 'arrows:next',
-        handler: () => {
-          if (this.state == true) {
-            this.state = false
-            this.goNext()
-            setTimeout(() => {
-              this.state = true
-            }, 500)
-          } else {
-            return
-          }
-        }
-      }),
-      bindEvent({
-        type: 'arrows:prev',
-        handler: () => {
-          if (this.state == true) {
-            this.state = false
-            this.goPrev()
-            setTimeout(() => {
-              this.state = true
-            }, 500)
-          } else {
-            return
-          }
-        }
-      })
-    )(this._arrows.element)
-  }
-
-  initializeDots() {
-    this._dots = Dots.of(this.element.querySelector('.pj-dots'), {
-      ...this.options,
-      direction: 'horizontal'
-    })
-    const container = [...this._dots.element.children]
-    bindEvent(
-      {
-        type: 'dots:change',
-        handler: () => {
-          if (this.state == true) {
-            this.state = false
-            const activeItem = this._dots.element.querySelector(
-              '.pj-dot-active'
-            )
-            const key = container.indexOf(activeItem)
-            this.current = key
-            this.setActive(key)
-            this.setSpecPage(key)
-            setTimeout(() => {
-              this.state = true
-            }, 400)
-          } else {
-            return
-          }
-        }
-      },
-      this._dots.element
-    )
+  nextTimeout() {
+    if (this.state == true) {
+      const time = this._animation === 'cube' ? '600' : '200'
+      this.state = false
+      this.autoPlay()
+      this.goNext()
+      setTimeout(() => {
+        this.state = true
+        this.autoPlay()
+      }, time)
+    } else {
+      return
+    }
   }
 
   tooltipTranslate() {
+    const nSpace = this.options.arrowNameSpace
+      ? this.options.arrowNameSpace
+      : 'pj-arrow'
     this.element
-      .querySelector('.pj-arrow-prev')
+      .querySelector(`.${nSpace}-prev`)
       .setAttribute('data-original-title', this.translate('prev'))
     this.element
-      .querySelector('.pj-arrow-next')
+      .querySelector(`.${nSpace}-next`)
       .setAttribute('data-original-title', this.translate('next'))
   }
 

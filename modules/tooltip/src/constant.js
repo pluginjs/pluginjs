@@ -36,13 +36,23 @@ export const defaults = {
   animation: true,
   template() {
     return (
-      '<div class="{classes.TOOLTIP}" role="tooltip">' +
+      '<div class="{classes.TOOLTIP} {custom}" role="tooltip">' +
       '<div class="{classes.TOOLTIPINNER}"></div>' +
       '</div>'
     )
   },
+  custom() {
+    const classes = this.options.customClass.split(' ')
+
+    for (let i = 0; i < classes.length; i++) {
+      classes[i] = `${this.classes.NAMESPACE}-${classes[i]}`
+    }
+
+    return classes.join(' ')
+  },
+  customClass: '',
   trigger: 'hover focus', // hover focus, click, manual
-  hideOutClick: false, // When clicking outside of the tooltip, trigger hide event
+  hideOutClick: true, // When clicking outside of the tooltip, trigger hide event
   title: '', // Default title value if title attribute isn't present.
   delay: 0, // { "show": 500, "hide": 100 }
   html: false,

@@ -84,19 +84,6 @@ class Dots extends Component {
   }
 
   bind() {
-    // let that = this
-    // this.$element.on(
-    //   this.eventName('click touch'),
-    //   this.itemSelector,
-    //   function () {
-    //     if (!that.is('disabled')) {
-    //       that.setActiveItem($(this))
-    //     }
-    //     // console.log('text', that.classes.ITEM)
-    //     that.trigger(EVENTS.CLICK, that.getItemValue($(this)))
-    //   }
-    // )
-
     this.clickItemCallback = e => {
       if (!e.target.parentNode.classList.contains(this.classes.ITEM)) {
         return
@@ -117,7 +104,6 @@ class Dots extends Component {
   unbind() {
     removeEvent('click', this.element)
     removeEvent('touch', this.element)
-    // this.$element.off(this.eventName())
   }
 
   getDots() {
@@ -296,7 +282,6 @@ class Dots extends Component {
       this.dots.map(dot => {
         removeClass(this.classes.DISABLED, dot).setAttribute('disabled', false)
       })
-      // this.$dots.removeClass(this.classes.DISABLED).prop('disabled', false)
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -307,7 +292,6 @@ class Dots extends Component {
       this.dots.map(dot => {
         addClass(this.classes.DISABLED, dot).setAttribute('disabled', true)
       })
-      // this.$dots.addClass(this.classes.DISABLED).prop('disabled', true)
       this.enter('disabled')
     }
     this.trigger(EVENTS.DISABLE)
@@ -338,7 +322,6 @@ class Dots extends Component {
             false
           )
         })
-        // this.$dots.removeClass(this.classes.DISABLED).prop('disabled', false)
       }
 
       this.leave('initialized')

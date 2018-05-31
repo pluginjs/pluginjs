@@ -102,3 +102,7 @@ $dot-disable-color: $gray-lighter !default;
     }
   }
 }
+
+.#{$dot}-hidden {
+  visibility: hidden;
+}
