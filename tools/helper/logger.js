@@ -1,4 +1,7 @@
 /* eslint-disable no-console*/
+const chalk = require('chalk')
+const emoji = require('./emoji')
+
 class Logger {
   constructor(namespace) {
     this.namespace = namespace
@@ -10,12 +13,22 @@ class Logger {
   }
 
   info(...msg) {
-    console.info(`[${this.namespace}]:`, ...msg)
+    console.info(...msg)
     return this
   }
 
-  clearTerminal() {
-    process.stdin.printf('\x1Bc')
+  title(msg, color = 'gray') {
+    console.log(chalk[color](`$ ${msg}`))
+    return this
+  }
+
+  success(msg, color = 'green') {
+    console.log(chalk.bold[color](`${emoji.success} ${msg}`))
+    return this
+  }
+
+  clear() {
+    process.stdout.write('\x1Bc')
   }
 }
 

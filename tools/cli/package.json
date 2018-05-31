@@ -7,9 +7,12 @@
 		"plugin": "index.js"
 	},
 	"private": true,
-	"license": "GPL-v3",
+	"license": "UNLICENSED",
 	"dependencies": {
 		"@pluginjs/helper": "^0.0.1",
+		"node-sass": "^4.9.0",
+		"rollup": "^0.59.4",
+		"rollup-plugin-json": "^3.0.0",
 		"yargs": "^11.0.0"
 	}
 }

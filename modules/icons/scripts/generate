@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+const path = require('path')
+const expand = require('glob-expand')
+const webfontsGenerator = require('webfonts-generator')
+const logger = require('@pluginjs/helper/logger')('script/generate')
+
+const files = expand(
+  {
+    cwd: process.cwd()
+  },
+  'src/svgs/**/*.svg'
+)
+
+webfontsGenerator(
+  {
+    files,
+    dest: 'dist',
+    fontName: 'plugin-icons',
+    css: true,
+    cssTemplate: path.join('src/templates/css.hbs'),
+    templateOptions: {
+      classPrefix: 'icon-',
+      baseSelector: '.icon'
+    },
+    types: ['eot', 'woff2', 'woff', 'ttf', 'svg'],
+    order: ['eot', 'woff2', 'woff', 'ttf', 'svg']
+  },
+  error => {
+    if (error) {
+      logger.error(error)
+    } else {
+      logger.success(
+        'Icon generated → dist/plugin-icons.{css,eot,woff2,woff,ttf,svg}'
+      )
+    }
+  }
+)

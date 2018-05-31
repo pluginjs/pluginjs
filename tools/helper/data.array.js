@@ -13,4 +13,4 @@ const nubWith = (fn, arr) =>
     return [...result, item]
   }, [])
 
-export { nub, nubWith }
+module.exports = { nub, nubWith }

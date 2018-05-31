@@ -1,29 +1,49 @@
 #!/usr/bin/env node
 const yargs = require('yargs')
+const fs = require('fs')
+const path = require('path')
 const logger = require('@pluginjs/helper/logger')('cli/index')
-const run = require('./commands/run')
-const start = require('./commands/start')
+const utils = require('./scripts/utils')
 
-const argv = yargs
-  .command(
-    'run [moduleName]',
-    'run module',
-    yargs => {
-      yargs.positional('moduleName', {
-        describe: 'module name',
-        default: 'all'
+const scriptProcesser = (name, options) => {
+  const scriptsList = fs
+    .readdirSync(path.join(__dirname, './scripts'))
+    .map(file => file.split('.')[0])
+  if (!scriptsList.includes(name)) {
+    logger.log(`named '${name}' script is not exists.`)
+    return false
+  }
+  const script = require(`./scripts/${name}`)
+  return script(Object.assign(options, utils))
+}
+const alias = (key, alias) => ({
+  ...alias,
+  handler: argv => scriptProcesser(key, argv)
+})
+
+yargs
+  .command({
+    command: ['script [scriptName]', 'exec'],
+    desc: 'exec script from script repositories',
+    bundler: yargs => {
+      return yargs.positional('scriptName', {
+        desc: 'script name',
+        type: 'string',
+        default: 'ls'
       })
     },
-    argv => run(argv)
-  )
-  .option('verbose', {
-    alias: 'v',
-    default: false
+    handler: argv => scriptProcesser(argv.scriptName, argv)
   })
-  .command({
-    command: 'start',
-    desc: 'start with pluginjs cli',
-    handler: argv => start(argv)
-  }).argv
-
-// logger.log(argv)
+  .command(
+    alias('start', {
+      command: 'run [moduleName]',
+      desc: 'start a dev server.'
+    })
+  )
+  .command(
+    alias('build', {
+      command: 'build [moduleName]',
+      desc: 'build a bundle.'
+    })
+  )
+  .parse()

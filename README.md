@@ -12,12 +12,13 @@ yarn
 
 ## Contributing Guide
 Hi, Thank you for chooing Plugin.js
+
 Plugin.js is a collection of modern JavaScript components.
 We are excited that you are interested in contributing to us. Before submitting your contribution though, please make sure to take a moment and read through the following guidelines.
 
 ## Pull Request Guide
 - Fork this repository to your own account. Do not create branches here.
-- Commit info should be formatted as `[Component name]: info about commit.`(e.g. `Slider: Fix xxx bug`)
+- Commit info reference [Commit Message Guidelines](COMMITMESSAGE.md).
 - Make sure that running `npm run dist` outputs the correct files.
 - Rebase before creating a PR to keep commit history clear.
 - Make sure PRs are created to `dev` branch instead of `master` branch
@@ -34,3 +35,5 @@ We are excited that you are interested in contributing to us. Before submitting 
 - [Prettier](https://prettier.io/)
 - [ESLint](https://eslint.org/)
 - [Stylelint](https://stylelint.io)
+
+## [CSS variables](CSSVARIABLES.md)
