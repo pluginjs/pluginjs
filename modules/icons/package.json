@@ -9,7 +9,8 @@
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
   "scripts": {
-    "build": "./scripts/generate"
+    "build": "./scripts/generate",
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "glob-expand": "^0.2.1",

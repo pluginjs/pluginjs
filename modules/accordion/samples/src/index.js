@@ -1,7 +1,12 @@
-import Accordion from '@pluginjs/accordion'
-import { queryAll } from '@pluginjs/dom'
-import '@pluginjs/accordion/src/css/accordion.scss'
+import html from './samples.html'
+import { html as render, query } from '@pluginjs/dom'
+// import icons and primary.css
 import '@pluginjs/icons/dist/plugin-icons.css'
 import 'primary.css/css/primary.css'
+// import accordion module
+import Accordion from '@pluginjs/accordion'
+import '@pluginjs/accordion/src/css/accordion.scss'
 
-queryAll('.accordion').map(el => Accordion.of(el))
+render(html, query('#app'))
+  .querySelectorAll('.accordion')
+  .forEach(el => Accordion.of(el))

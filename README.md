@@ -10,6 +10,19 @@ git clone https://github.com/pluginjs/plugin.js.git && cd plugin.js
 yarn
 ```
 
+## Usage
+Run a development server:
+```sh
+npx plugin <moduleName>
+// or npx plugin start <moduleName>
+// or npx plugin run <moduleName>
+```
+Build production bundle:
+```sh
+npx plugin build <moduleName>
+// or npx plugin b <moduleName>
+```
+
 ## Contributing Guide
 Hi, Thank you for chooing Plugin.js
 

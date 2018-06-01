@@ -36,14 +36,20 @@ yargs
   })
   .command(
     alias('start', {
-      command: 'run [moduleName]',
+      command: ['run [moduleName]', 'start', '$0'],
       desc: 'start a dev server.'
     })
   )
   .command(
     alias('build', {
-      command: 'build [moduleName]',
+      command: ['build [moduleName]', 'b'],
       desc: 'build a bundle.'
+    })
+  )
+  .command(
+    alias('publish', {
+      command: 'publish [moduleName]',
+      desc: 'publish module to npm.'
     })
   )
   .parse()

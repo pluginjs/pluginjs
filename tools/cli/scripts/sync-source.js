@@ -9,7 +9,7 @@ function syncSource(ctx) {
   const rootPath = fetchRootPath()
   if (!ctx.moduleName) {
     const sourceList = globby
-      .sync([`${path.join(rootPath, 'modules')}/**/src/**/*.{scss,js}`])
+      .sync([`${path.join(rootPath, 'modules')}/*/src/**/*.{scss,js}`])
       .map(p => p.split(rootPath)[1])
     logger.success(`Copied: ${originRepo} → ${rootPath}`)
     logger.info(sourceList)
