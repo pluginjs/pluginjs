@@ -1,9 +1,11 @@
 # Slider
-> A flexible modern slider js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/slider.svg)](https://www.npmjs.com/package/@pluginjs/slider)
 
-#### [Demo]()
----
+A flexible modern slider js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/slider/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/slider
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import slider from "@pluginjs/slider"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/slider")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/slider.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/slider.css">
+<script src="https://unpkg.com/@pluginjs/slider/dist/slider.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/slider/dist/slider.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/slider.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/slider.min.css">
+<script src="https://unpkg.com/@pluginjs/slider/dist/slider.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/slider/dist/slider.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Slider from "@pluginjs/slider"
+import "@pluginjs/slider/dist/slider.css"
+
+Slider.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/slider/dist/slider.css")
+const Slider = require("@pluginjs/slider")
+
+Slider.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/slider/dist/slider.css">
+  <script async src="https://unpkg.com/@pluginjs/slider/dist/slider.js"></script>
+</head>
+```
 ```javascript
 Pj.slider('.element', options);
 ```
@@ -77,7 +88,7 @@ Name | Description
 `"show"` | Gets fired when plugin has show
 `"hide"` | Gets fired when plugin has hide
 
-```
+
 ### Methods:
 Methods are called on slider instances through the slider method itself.
 You can also save the instances to variable for further use.
@@ -96,12 +107,6 @@ Name | Description
 `"setAnimation"` | Destroy setAnimation
 `"setSpecPage"` | Destroy setSpecPage
 
-**example:**
-```javascript
-Pj.$slider('.element', enable)
-Pj.$slider('.element', enable, "foo")
-Pj.$slider('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -135,19 +140,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/slider is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/slider project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

@@ -1,9 +1,11 @@
 # Dots
-> A flexible modern dots js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/dots.svg)](https://www.npmjs.com/package/@pluginjs/dots)
 
-#### [Demo]()
----
+A flexible modern dots js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/dots/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/dots
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import dots from "@pluginjs/dots"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/dots")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/dots.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/dots.css">
+<script src="https://unpkg.com/@pluginjs/dots/dist/dots.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/dots/dist/dots.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/dots.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/dots.min.css">
+<script src="https://unpkg.com/@pluginjs/dots/dist/dots.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/dots/dist/dots.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Dots from "@pluginjs/dots"
+import "@pluginjs/dots/dist/dots.css"
+
+Dots.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/dots/dist/dots.css")
+const Dots = require("@pluginjs/dots")
+
+Dots.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dots/dist/dots.css">
+  <script async src="https://unpkg.com/@pluginjs/dots/dist/dots.js"></script>
+</head>
+```
 ```javascript
 Pj.dots('.element', options);
 ```
@@ -85,7 +96,7 @@ Name | Description
 `"hide"` | Gets fired when plugin is hide
 `"click"` | Gets fired when plugin is clicked
 
-```
+
 ### Methods:
 Methods are called on dots instances through the dots method itself.
 You can also save the instances to variable for further use.
@@ -107,12 +118,6 @@ Name | Description
 `"show"` | Show plugin when it has be hided
 `"hide"` | Hide plugin
 
-**example:**
-```javascript
-Pj.$dots('.element', enable)
-Pj.$dots('.element', enable, "foo")
-Pj.$dots('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -136,19 +141,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/dots is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/dots project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.19
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

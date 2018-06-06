@@ -1,9 +1,11 @@
 # Select
-> A flexible modern select js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/select.svg)](https://www.npmjs.com/package/@pluginjs/select)
 
-#### [Demo]()
----
+A flexible modern select js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/select/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/select
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import select from "@pluginjs/select"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/select")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/select.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/select.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/select.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/select.min.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Select from "@pluginjs/select"
+import "@pluginjs/select/dist/select.css"
+
+Select.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/select/dist/select.css")
+const Select = require("@pluginjs/select")
+
+Select.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
+  <script async src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
+</head>
+```
 ```javascript
 Pj.select('.element', options);
 ```
@@ -100,7 +111,7 @@ Name | Description
 `"unselect"` | Gets fired when plugin has unselect
 `"hide"` | Gets fired when plugin has hide
 
-```
+
 ### Methods:
 Methods are called on select instances through the select method itself.
 You can also save the instances to variable for further use.
@@ -117,12 +128,6 @@ Name | Description
 `"open"` | Get value of open
 `"close"` | Get value of close
 
-**example:**
-```javascript
-Pj.$select('.element', get)
-Pj.$select('.element', get, "foo")
-Pj.$select('.element', get, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -165,19 +170,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/select is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.23
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

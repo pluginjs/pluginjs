@@ -1,9 +1,11 @@
 # Gradient
-> A flexible modern gradient js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/gradient.svg)](https://www.npmjs.com/package/@pluginjs/gradient)
 
-#### [Demo]()
----
+A flexible modern gradient js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/gradient/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/gradient
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import gradient from "@pluginjs/gradient"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/gradient")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/gradient.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/gradient.css">
+<script src="https://unpkg.com/@pluginjs/gradient/dist/gradient.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient/dist/gradient.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/gradient.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/gradient.min.css">
+<script src="https://unpkg.com/@pluginjs/gradient/dist/gradient.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient/dist/gradient.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Gradient from "@pluginjs/gradient"
+import "@pluginjs/gradient/dist/gradient.css"
+
+Gradient.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/gradient/dist/gradient.css")
+const Gradient = require("@pluginjs/gradient")
+
+Gradient.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient/dist/gradient.css">
+  <script async src="https://unpkg.com/@pluginjs/gradient/dist/gradient.js"></script>
+</head>
+```
 ```javascript
 Pj.gradient('.element', options);
 ```
@@ -80,19 +91,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/gradient is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/gradient project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

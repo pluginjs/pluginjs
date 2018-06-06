@@ -1,9 +1,11 @@
 # FontPicker
-> A flexible modern font-picker js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/font-picker.svg)](https://www.npmjs.com/package/@pluginjs/font-picker)
 
-#### [Demo]()
----
+A flexible modern font-picker js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/fontPicker/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/font-picker
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import fontPicker from "@pluginjs/font-picker"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/font-picker")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/font-picker.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/font-picker.css">
+<script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/font-picker.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/font-picker.min.css">
+<script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import FontPicker from "@pluginjs/font-picker"
+import "@pluginjs/font-picker/dist/font-picker.css"
+
+FontPicker.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/font-picker/dist/font-picker.css")
+const FontPicker = require("@pluginjs/font-picker")
+
+FontPicker.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
+  <script async src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
+</head>
+```
 ```javascript
 Pj.fontPicker('.element', options);
 ```
@@ -88,7 +99,7 @@ Name | Description
 `"change"` | Gets fired when plugin has changed
 `"searching"` | Gets fired when plugin has searching
 
-```
+
 ### Methods:
 Methods are called on fontPicker instances through the fontPicker method itself.
 You can also save the instances to variable for further use.
@@ -102,12 +113,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$fontPicker('.element', get)
-Pj.$fontPicker('.element', get, "foo")
-Pj.$fontPicker('.element', get, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -149,7 +154,7 @@ Name | EN | ZH
 -----|------|-------
 `"searchText"` | Search... | 搜索...
 `"manage"` | manage | 管理
-`"activatedFonts"` | activated fonts | 已选字体
+`"activatedFonts"` | activated | 已选字体
 `"emptyTitle"` | Befor using font, you need add fonts.  | 使用字体之前，请先添加。
 `"emptyLinkTitle"` | Go add now | 现在添加
 
@@ -166,19 +171,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/font-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/font-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.22
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

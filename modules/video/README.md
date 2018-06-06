@@ -1,9 +1,11 @@
 # Video
-> A flexible modern video js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/video.svg)](https://www.npmjs.com/package/@pluginjs/video)
 
-#### [Demo]()
----
+A flexible modern video js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/video/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/video
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import video from "@pluginjs/video"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/video")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/video.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/video.css">
+<script src="https://unpkg.com/@pluginjs/video/dist/video.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/video/dist/video.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/video.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/video.min.css">
+<script src="https://unpkg.com/@pluginjs/video/dist/video.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/video/dist/video.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Video from "@pluginjs/video"
+import "@pluginjs/video/dist/video.css"
+
+Video.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/video/dist/video.css")
+const Video = require("@pluginjs/video")
+
+Video.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/video/dist/video.css">
+  <script async src="https://unpkg.com/@pluginjs/video/dist/video.js"></script>
+</head>
+```
 ```javascript
 Pj.video('.element', options);
 ```
@@ -88,7 +99,7 @@ Name | Description
 `"playend"` | Gets fired when video is playend
 `"playerr"` | Gets fired when video is playerr
 
-```
+
 ### Methods:
 Methods are called on video instances through the video method itself.
 You can also save the instances to variable for further use.
@@ -104,12 +115,6 @@ Name | Description
 `"stop"` | Stop video
 `"volume"` | Set the video volume
 
-**example:**
-```javascript
-Pj.$video('.element', value)
-Pj.$video('.element', value, "foo")
-Pj.$video('.element', value, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -127,19 +132,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/video is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/video project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

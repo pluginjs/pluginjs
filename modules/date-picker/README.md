@@ -1,9 +1,11 @@
 # DatePicker
-> A flexible modern date-picker js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/date-picker.svg)](https://www.npmjs.com/package/@pluginjs/date-picker)
 
-#### [Demo]()
----
+A flexible modern date-picker js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/datePicker/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/date-picker
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import datePicker from "@pluginjs/date-picker"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/date-picker")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/date-picker.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/date-picker.css">
+<script src="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/date-picker.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/date-picker.min.css">
+<script src="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import DatePicker from "@pluginjs/date-picker"
+import "@pluginjs/date-picker/dist/date-picker.css"
+
+DatePicker.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/date-picker/dist/date-picker.css")
+const DatePicker = require("@pluginjs/date-picker")
+
+DatePicker.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.css">
+  <script async src="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.js"></script>
+</head>
+```
 ```javascript
 Pj.datePicker('.element', options);
 ```
@@ -112,7 +123,7 @@ Name | Description
 `"show"` | Gets fired when plugin has show
 `"hide"` | Gets fired when plugin has hide
 
-```
+
 ### Methods:
 Methods are called on datePicker instances through the datePicker method itself.
 You can also save the instances to variable for further use.
@@ -134,12 +145,6 @@ Name | Description
 `"set"` | Set value by key
 `"val"` | Set or get value by key
 
-**example:**
-```javascript
-Pj.$datePicker('.element', enable)
-Pj.$datePicker('.element', enable, "foo")
-Pj.$datePicker('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -195,19 +200,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/date-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/date-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.21
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

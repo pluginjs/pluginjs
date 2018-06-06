@@ -1,9 +1,11 @@
 # Tooltip
-> A flexible modern tooltip js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/tooltip.svg)](https://www.npmjs.com/package/@pluginjs/tooltip)
 
-#### [Demo]()
----
+A flexible modern tooltip js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/tooltip/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/tooltip
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import tooltip from "@pluginjs/tooltip"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/tooltip")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/tooltip.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/tooltip.css">
+<script src="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/tooltip.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/tooltip.min.css">
+<script src="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Tooltip from "@pluginjs/tooltip"
+import "@pluginjs/tooltip/dist/tooltip.css"
+
+Tooltip.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/tooltip/dist/tooltip.css")
+const Tooltip = require("@pluginjs/tooltip")
+
+Tooltip.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.css">
+  <script async src="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.js"></script>
+</head>
+```
 ```javascript
 Pj.tooltip('.element', options);
 ```
@@ -94,7 +105,7 @@ Name | Description
 `"shown"` | Gets fired when plugin has shown
 `"inserted"` | Gets fired when plugin has inserted
 
-```
+
 ### Methods:
 Methods are called on tooltip instances through the tooltip method itself.
 You can also save the instances to variable for further use.
@@ -108,12 +119,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$tooltip('.element', show)
-Pj.$tooltip('.element', show, "foo")
-Pj.$tooltip('.element', show, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -135,19 +140,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/tooltip is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/tooltip project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.19
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

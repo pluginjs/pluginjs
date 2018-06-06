@@ -1,9 +1,11 @@
 # Rate
-> A flexible modern rate js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/rate.svg)](https://www.npmjs.com/package/@pluginjs/rate)
 
-#### [Demo]()
----
+A flexible modern rate js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/rate/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/rate
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import rate from "@pluginjs/rate"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/rate")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/rate.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/rate.css">
+<script src="https://unpkg.com/@pluginjs/rate/dist/rate.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/rate/dist/rate.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/rate.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/rate.min.css">
+<script src="https://unpkg.com/@pluginjs/rate/dist/rate.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/rate/dist/rate.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Rate from "@pluginjs/rate"
+import "@pluginjs/rate/dist/rate.css"
+
+Rate.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/rate/dist/rate.css")
+const Rate = require("@pluginjs/rate")
+
+Rate.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/rate/dist/rate.css">
+  <script async src="https://unpkg.com/@pluginjs/rate/dist/rate.js"></script>
+</head>
+```
 ```javascript
 Pj.rate('.element', options);
 ```
@@ -88,7 +99,7 @@ Name | Description
 `"changeScore"` | Get fired when score has be change
 `"click"` | Get fired when plugin has be clicked
 
-```
+
 ### Methods:
 Methods are called on rate instances through the rate method itself.
 You can also save the instances to variable for further use.
@@ -104,12 +115,6 @@ Name | Description
 `"setColor"` | Set color
 `"resetIcon"` | Reset icon to default
 
-**example:**
-```javascript
-Pj.$rate('.element', destroy)
-Pj.$rate('.element', destroy, "foo")
-Pj.$rate('.element', destroy, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -133,19 +138,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/rate is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/rate project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

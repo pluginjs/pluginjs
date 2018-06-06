@@ -1,9 +1,11 @@
 # Hotspots
-> A flexible modern hotspots js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/hotspots.svg)](https://www.npmjs.com/package/@pluginjs/hotspots)
 
-#### [Demo]()
----
+A flexible modern hotspots js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/hotspots/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/hotspots
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import hotspots from "@pluginjs/hotspots"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/hotspots")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/hotspots.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/hotspots.css">
+<script src="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/hotspots.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/hotspots.min.css">
+<script src="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Hotspots from "@pluginjs/hotspots"
+import "@pluginjs/hotspots/dist/hotspots.css"
+
+Hotspots.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/hotspots/dist/hotspots.css")
+const Hotspots = require("@pluginjs/hotspots")
+
+Hotspots.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.css">
+  <script async src="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.js"></script>
+</head>
+```
 ```javascript
 Pj.hotspots('.element', options);
 ```
@@ -89,7 +100,7 @@ Name | Description
 `"popoverHide"` | Gets fired when plugin has popoverHide
 `"popoverHidden"` | Gets fired when plugin has popoverHiden
 
-```
+
 ### Methods:
 Methods are called on hotspots instances through the hotspots method itself.
 You can also save the instances to variable for further use.
@@ -101,12 +112,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$hotspots('.element', value)
-Pj.$hotspots('.element', value, "foo")
-Pj.$hotspots('.element', value, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -137,19 +142,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/hotspots is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/hotspots project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

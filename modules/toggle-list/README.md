@@ -1,9 +1,11 @@
 # ToggleList
-> A flexible modern toggle-list js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/toggle-list.svg)](https://www.npmjs.com/package/@pluginjs/toggle-list)
 
-#### [Demo]()
----
+A flexible modern toggle-list js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/toggleList/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/toggle-list
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import toggleList from "@pluginjs/toggle-list"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/toggle-list")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/toggle-list.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/toggle-list.css">
+<script src="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/toggle-list.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/toggle-list.min.css">
+<script src="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import ToggleList from "@pluginjs/toggle-list"
+import "@pluginjs/toggle-list/dist/toggle-list.css"
+
+ToggleList.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/toggle-list/dist/toggle-list.css")
+const ToggleList = require("@pluginjs/toggle-list")
+
+ToggleList.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.css">
+  <script async src="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.js"></script>
+</head>
+```
 ```javascript
 Pj.toggleList('.element', options);
 ```
@@ -81,7 +92,7 @@ Name | Description
 `"uncheck"` | Gets fired when plugin has uncheck
 `"destroy"` | Gets fired when plugin has destroy
 
-```
+
 ### Methods:
 Methods are called on toggleList instances through the toggleList method itself.
 You can also save the instances to variable for further use.
@@ -93,12 +104,6 @@ Name | Description
 `"val"` | Set or get value by key
 `"toggle"` | Set toggle
 
-**example:**
-```javascript
-Pj.$toggleList('.element', set)
-Pj.$toggleList('.element', set, "foo")
-Pj.$toggleList('.element', set, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -125,19 +130,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/toggle-list is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/toggle-list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.20
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

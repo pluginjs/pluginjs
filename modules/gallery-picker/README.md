@@ -1,9 +1,11 @@
 # GalleryPicker
-> A flexible modern gallery-picker js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/gallery-picker.svg)](https://www.npmjs.com/package/@pluginjs/gallery-picker)
 
-#### [Demo]()
----
+A flexible modern gallery-picker js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/galleryPicker/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/gallery-picker
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import galleryPicker from "@pluginjs/gallery-picker"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/gallery-picker")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/gallery-picker.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/gallery-picker.css">
+<script src="https://unpkg.com/@pluginjs/gallery-picker/dist/gallery-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gallery-picker/dist/gallery-picker.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/gallery-picker.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/gallery-picker.min.css">
+<script src="https://unpkg.com/@pluginjs/gallery-picker/dist/gallery-picker.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gallery-picker/dist/gallery-picker.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import GalleryPicker from "@pluginjs/gallery-picker"
+import "@pluginjs/gallery-picker/dist/gallery-picker.css"
+
+GalleryPicker.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/gallery-picker/dist/gallery-picker.css")
+const GalleryPicker = require("@pluginjs/gallery-picker")
+
+GalleryPicker.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gallery-picker/dist/gallery-picker.css">
+  <script async src="https://unpkg.com/@pluginjs/gallery-picker/dist/gallery-picker.js"></script>
+</head>
+```
 ```javascript
 Pj.galleryPicker('.element', options);
 ```
@@ -86,7 +97,7 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
-```
+
 ### Methods:
 Methods are called on galleryPicker instances through the galleryPicker method itself.
 You can also save the instances to variable for further use.
@@ -104,12 +115,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$galleryPicker('.element', val)
-Pj.$galleryPicker('.element', val, "foo")
-Pj.$galleryPicker('.element', val, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -163,19 +168,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/gallery-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/gallery-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.19
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

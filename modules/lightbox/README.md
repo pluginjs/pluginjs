@@ -1,9 +1,11 @@
 # Lightbox
-> A flexible modern lightbox js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/lightbox.svg)](https://www.npmjs.com/package/@pluginjs/lightbox)
 
-#### [Demo]()
----
+A flexible modern lightbox js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/lightbox/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/lightbox
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import lightbox from "@pluginjs/lightbox"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/lightbox")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/lightbox.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/lightbox.css">
+<script src="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/lightbox.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/lightbox.min.css">
+<script src="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Lightbox from "@pluginjs/lightbox"
+import "@pluginjs/lightbox/dist/lightbox.css"
+
+Lightbox.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/lightbox/dist/lightbox.css")
+const Lightbox = require("@pluginjs/lightbox")
+
+Lightbox.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.css">
+  <script async src="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.js"></script>
+</head>
+```
 ```javascript
 Pj.lightbox('.element', options);
 ```
@@ -82,7 +93,7 @@ Name | Description
 `"disable"` | Gets fired when plugin is disabled
 `"destroy"` | Gets fired when plugin is destroy
 
-```
+
 ### Methods:
 Methods are called on lightbox instances through the lightbox method itself.
 You can also save the instances to variable for further use.
@@ -94,12 +105,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$lightbox('.element', value)
-Pj.$lightbox('.element', value, "foo")
-Pj.$lightbox('.element', value, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -172,19 +177,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/lightbox is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/lightbox project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

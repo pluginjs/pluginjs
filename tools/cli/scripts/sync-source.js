@@ -5,11 +5,12 @@ const fs = require('fs')
 const logger = require('@pluginjs/helper/logger')('script/syncSource')
 
 function syncSource(ctx) {
+  const glob = ctx.glob || 'src/**/*.{scss,js}'
   const originRepo = path.resolve(ctx.originRepo)
   const rootPath = fetchRootPath()
   if (!ctx.moduleName) {
     const sourceList = globby
-      .sync([`${path.join(rootPath, 'modules')}/*/src/**/*.{scss,js}`])
+      .sync([`${path.join(rootPath, 'modules')}/*/${glob}`])
       .map(p => p.split(rootPath)[1])
     logger.success(`Copied: ${originRepo} → ${rootPath}`)
     logger.info(sourceList)
@@ -20,7 +21,7 @@ function syncSource(ctx) {
   const name = ctx.moduleName
   const modulePath = findModule(name)
   const sourceList = globby
-    .sync([`${modulePath}/src/**/*.{scss,js}`])
+    .sync([`${modulePath}/${glob}`])
     .map(p => p.split(rootPath)[1])
   logger.success(`Copied: ${originRepo} → ${rootPath}`)
   logger.info(sourceList)

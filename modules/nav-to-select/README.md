@@ -1,9 +1,11 @@
 # NavToSelect
-> A flexible modern nav-to-select js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/nav-to-select.svg)](https://www.npmjs.com/package/@pluginjs/nav-to-select)
 
-#### [Demo]()
----
+A flexible modern nav-to-select js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/navToSelect/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/nav-to-select
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import navToSelect from "@pluginjs/nav-to-select"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/nav-to-select")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/nav-to-select.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/nav-to-select.css">
+<script src="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/nav-to-select.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/nav-to-select.min.css">
+<script src="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import NavToSelect from "@pluginjs/nav-to-select"
+import "@pluginjs/nav-to-select/dist/nav-to-select.css"
+
+NavToSelect.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/nav-to-select/dist/nav-to-select.css")
+const NavToSelect = require("@pluginjs/nav-to-select")
+
+NavToSelect.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.css">
+  <script async src="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.js"></script>
+</head>
+```
 ```javascript
 Pj.navToSelect('.element', options);
 ```
@@ -87,7 +98,7 @@ Name | Description
 `"disable"` | Gets fired when plugin is disabled
 `"destroy"` | Gets fired when plugin is destroy
 
-```
+
 ### Methods:
 Methods are called on navToSelect instances through the navToSelect method itself.
 You can also save the instances to variable for further use.
@@ -103,12 +114,6 @@ Name | Description
 `"isBuilded"` | Get has builded or not
 `"getSelect"` | Get select value
 
-**example:**
-```javascript
-Pj.$navToSelect('.element', enable)
-Pj.$navToSelect('.element', enable, "foo")
-Pj.$navToSelect('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -126,19 +131,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/nav-to-select is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/nav-to-select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

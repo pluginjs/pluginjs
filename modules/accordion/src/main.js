@@ -38,7 +38,9 @@ import Responsive from './responsive'
 class Accordion extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
+
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+
     this.initClasses(CLASSES)
     this.initStates()
     this.initialize()

@@ -1,9 +1,11 @@
 # Spinner
-> A flexible modern spinner js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/spinner.svg)](https://www.npmjs.com/package/@pluginjs/spinner)
 
-#### [Demo]()
----
+A flexible modern spinner js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/spinner/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/spinner
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import spinner from "@pluginjs/spinner"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/spinner")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/spinner.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/spinner.css">
+<script src="https://unpkg.com/@pluginjs/spinner/dist/spinner.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/spinner/dist/spinner.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/spinner.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/spinner.min.css">
+<script src="https://unpkg.com/@pluginjs/spinner/dist/spinner.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/spinner/dist/spinner.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Spinner from "@pluginjs/spinner"
+import "@pluginjs/spinner/dist/spinner.css"
+
+Spinner.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/spinner/dist/spinner.css")
+const Spinner = require("@pluginjs/spinner")
+
+Spinner.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/spinner/dist/spinner.css">
+  <script async src="https://unpkg.com/@pluginjs/spinner/dist/spinner.js"></script>
+</head>
+```
 ```javascript
 Pj.spinner('.element', options);
 ```
@@ -91,7 +102,7 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
-```
+
 ### Methods:
 Methods are called on spinner instances through the spinner method itself.
 You can also save the instances to variable for further use.
@@ -108,12 +119,6 @@ Name | Description
 `"spinDown"` | Get value of subtraction
 `"spinUp"` | Get value of add
 
-**example:**
-```javascript
-Pj.$spinner('.element', get)
-Pj.$spinner('.element', get, "foo")
-Pj.$spinner('.element', get, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -141,19 +146,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/spinner is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/spinner project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.19
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

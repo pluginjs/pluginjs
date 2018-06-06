@@ -1,9 +1,11 @@
 # Tree
-> A flexible modern tree js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/tree.svg)](https://www.npmjs.com/package/@pluginjs/tree)
 
-#### [Demo]()
----
+A flexible modern tree js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/tree/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/tree
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import tree from "@pluginjs/tree"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/tree")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/tree.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/tree.css">
+<script src="https://unpkg.com/@pluginjs/tree/dist/tree.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/tree/dist/tree.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/tree.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/tree.min.css">
+<script src="https://unpkg.com/@pluginjs/tree/dist/tree.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/tree/dist/tree.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Tree from "@pluginjs/tree"
+import "@pluginjs/tree/dist/tree.css"
+
+Tree.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/tree/dist/tree.css")
+const Tree = require("@pluginjs/tree")
+
+Tree.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tree/dist/tree.css">
+  <script async src="https://unpkg.com/@pluginjs/tree/dist/tree.js"></script>
+</head>
+```
 ```javascript
 Pj.tree('.element', options);
 ```
@@ -87,7 +98,7 @@ Name | Description
 `"select"` | Gets fired when plugin has select
 `"unselect"` | Gets fired when plugin has unselect
 
-```
+
 ### Methods:
 Methods are called on tree instances through the tree method itself.
 You can also save the instances to variable for further use.
@@ -107,12 +118,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$tree('.element', open)
-Pj.$tree('.element', open, "foo")
-Pj.$tree('.element', open, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -135,19 +140,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/tree is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/tree project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

@@ -1,9 +1,11 @@
 # Popover
-> A flexible modern popover js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/popover.svg)](https://www.npmjs.com/package/@pluginjs/popover)
 
-#### [Demo]()
----
+A flexible modern popover js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/popover/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/popover
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import popover from "@pluginjs/popover"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/popover")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/popover.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/popover.css">
+<script src="https://unpkg.com/@pluginjs/popover/dist/popover.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/popover/dist/popover.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/popover.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/popover.min.css">
+<script src="https://unpkg.com/@pluginjs/popover/dist/popover.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/popover/dist/popover.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Popover from "@pluginjs/popover"
+import "@pluginjs/popover/dist/popover.css"
+
+Popover.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/popover/dist/popover.css")
+const Popover = require("@pluginjs/popover")
+
+Popover.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/popover/dist/popover.css">
+  <script async src="https://unpkg.com/@pluginjs/popover/dist/popover.js"></script>
+</head>
+```
 ```javascript
 Pj.popover('.element', options);
 ```
@@ -87,7 +98,7 @@ Name | Description
 `"shown"` | Gets fired when plugin has shown
 `"inserted"` | Gets fired when plugin has inserted
 
-```
+
 ### Methods:
 Methods are called on popover instances through the popover method itself.
 You can also save the instances to variable for further use.
@@ -101,12 +112,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$popover('.element', show)
-Pj.$popover('.element', show, "foo")
-Pj.$popover('.element', show, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -133,19 +138,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/popover is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/popover project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.19
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

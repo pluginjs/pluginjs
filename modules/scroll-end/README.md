@@ -1,9 +1,11 @@
 # ScrollEnd
-> A flexible modern scroll-end js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/scroll-end.svg)](https://www.npmjs.com/package/@pluginjs/scroll-end)
 
-#### [Demo]()
----
+A flexible modern scroll-end js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/scrollEnd/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/scroll-end
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import scrollEnd from "@pluginjs/scroll-end"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/scroll-end")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-end.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-end.css">
+<script src="https://unpkg.com/@pluginjs/scroll-end/dist/scroll-end.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-end/dist/scroll-end.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-end.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-end.min.css">
+<script src="https://unpkg.com/@pluginjs/scroll-end/dist/scroll-end.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-end/dist/scroll-end.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import ScrollEnd from "@pluginjs/scroll-end"
+import "@pluginjs/scroll-end/dist/scroll-end.css"
+
+ScrollEnd.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/scroll-end/dist/scroll-end.css")
+const ScrollEnd = require("@pluginjs/scroll-end")
+
+ScrollEnd.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-end/dist/scroll-end.css">
+  <script async src="https://unpkg.com/@pluginjs/scroll-end/dist/scroll-end.js"></script>
+</head>
+```
 ```javascript
 Pj.scrollEnd('.element', options);
 ```
@@ -75,19 +86,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/scroll-end is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-end project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

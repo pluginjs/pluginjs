@@ -1,9 +1,11 @@
 # Units
-> A flexible modern units js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/units.svg)](https://www.npmjs.com/package/@pluginjs/units)
 
-#### [Demo]()
----
+A flexible modern units js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/units/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/units
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import units from "@pluginjs/units"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/units")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/units.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/units.css">
+<script src="https://unpkg.com/@pluginjs/units/dist/units.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/units/dist/units.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/units.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/units.min.css">
+<script src="https://unpkg.com/@pluginjs/units/dist/units.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/units/dist/units.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Units from "@pluginjs/units"
+import "@pluginjs/units/dist/units.css"
+
+Units.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/units/dist/units.css")
+const Units = require("@pluginjs/units")
+
+Units.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/units/dist/units.css">
+  <script async src="https://unpkg.com/@pluginjs/units/dist/units.js"></script>
+</head>
+```
 ```javascript
 Pj.units('.element', options);
 ```
@@ -89,7 +100,7 @@ Name | Description
 `"setunit"` | Gets fired when plugin has setunit
 `"changeVal"` | Gets fired when plugin has changeVal
 
-```
+
 ### Methods:
 Methods are called on units instances through the units method itself.
 You can also save the instances to variable for further use.
@@ -106,12 +117,6 @@ Name | Description
 `"set"` | Set value by key
 `"toggleUnit"` | Set value of input
 
-**example:**
-```javascript
-Pj.$units('.element', enable)
-Pj.$units('.element', enable, "foo")
-Pj.$units('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -138,19 +143,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/units is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/units project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.21
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

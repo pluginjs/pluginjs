@@ -1,9 +1,11 @@
 # EditPanel
-> A flexible modern edit-panel js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/edit-panel.svg)](https://www.npmjs.com/package/@pluginjs/edit-panel)
 
-#### [Demo]()
----
+A flexible modern edit-panel js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/editPanel/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/edit-panel
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import editPanel from "@pluginjs/edit-panel"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/edit-panel")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/edit-panel.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/edit-panel.css">
+<script src="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/edit-panel.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/edit-panel.min.css">
+<script src="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import EditPanel from "@pluginjs/edit-panel"
+import "@pluginjs/edit-panel/dist/edit-panel.css"
+
+EditPanel.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/edit-panel/dist/edit-panel.css")
+const EditPanel = require("@pluginjs/edit-panel")
+
+EditPanel.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.css">
+  <script async src="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.js"></script>
+</head>
+```
 ```javascript
 Pj.editPanel('.element', options);
 ```
@@ -87,7 +98,7 @@ Name | Description
 `"openSelector"` | Get fired when plugin has openSelector
 `"closeSelector"` | Get fired when plugin has closeSelector
 
-```
+
 ### Methods:
 Methods are called on editPanel instances through the editPanel method itself.
 You can also save the instances to variable for further use.
@@ -104,12 +115,6 @@ Name | Description
 `"disabledSelector"` | DisabledSelector the defaults is true
 `"enabledSelector"` | EnabledSelector the defaults is false
 
-**example:**
-```javascript
-Pj.$editPanel('.element', enable)
-Pj.$editPanel('.element', enable, "foo")
-Pj.$editPanel('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -156,19 +161,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/edit-panel is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/edit-panel project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.20
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

@@ -1,9 +1,11 @@
 # PatternPicker
-> A flexible modern pattern-picker js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/pattern-picker.svg)](https://www.npmjs.com/package/@pluginjs/pattern-picker)
 
-#### [Demo]()
----
+A flexible modern pattern-picker js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/patternPicker/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/pattern-picker
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import patternPicker from "@pluginjs/pattern-picker"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/pattern-picker")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/pattern-picker.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/pattern-picker.css">
+<script src="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/pattern-picker.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/pattern-picker.min.css">
+<script src="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import PatternPicker from "@pluginjs/pattern-picker"
+import "@pluginjs/pattern-picker/dist/pattern-picker.css"
+
+PatternPicker.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/pattern-picker/dist/pattern-picker.css")
+const PatternPicker = require("@pluginjs/pattern-picker")
+
+PatternPicker.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.css">
+  <script async src="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.js"></script>
+</head>
+```
 ```javascript
 Pj.patternPicker('.element', options);
 ```
@@ -83,7 +94,7 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
-```
+
 ### Methods:
 Methods are called on patternPicker instances through the patternPicker method itself.
 You can also save the instances to variable for further use.
@@ -98,12 +109,6 @@ Name | Description
 `"val"` | Set or get value by key
 `"clear"` | Clear plugin
 
-**example:**
-```javascript
-Pj.$patternPicker('.element', enable)
-Pj.$patternPicker('.element', enable, "foo")
-Pj.$patternPicker('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -166,19 +171,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/pattern-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/pattern-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.22
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

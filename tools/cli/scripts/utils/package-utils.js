@@ -29,6 +29,11 @@ class Pkg {
     return this
   }
 
+  merge(data) {
+    this.pkg = { ...this.pkg, ...data }
+    return this
+  }
+
   removeField(key) {
     if (Array.isArray(key)) {
       key.forEach(k => delete this.pkg[k])

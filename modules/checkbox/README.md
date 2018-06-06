@@ -1,9 +1,11 @@
 # Checkbox
-> A flexible modern checkbox js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/checkbox.svg)](https://www.npmjs.com/package/@pluginjs/checkbox)
 
-#### [Demo]()
----
+A flexible modern checkbox js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/checkbox/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/checkbox
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import checkbox from "@pluginjs/checkbox"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/checkbox")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/checkbox.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/checkbox.css">
+<script src="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/checkbox.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/checkbox.min.css">
+<script src="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Checkbox from "@pluginjs/checkbox"
+import "@pluginjs/checkbox/dist/checkbox.css"
+
+Checkbox.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/checkbox/dist/checkbox.css")
+const Checkbox = require("@pluginjs/checkbox")
+
+Checkbox.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.css">
+  <script async src="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.js"></script>
+</head>
+```
 ```javascript
 Pj.checkbox('.element', options);
 ```
@@ -85,7 +96,7 @@ Name | Description
 `"check"` | Gets fired when plugin has check
 `"uncheck"` | Gets fired when plugin has uncheck
 
-```
+
 ### Methods:
 Methods are called on checkbox instances through the checkbox method itself.
 You can also save the instances to variable for further use.
@@ -101,12 +112,6 @@ Name | Description
 `"check"` | Set check
 `"uncheck"` | Set uncheck
 
-**example:**
-```javascript
-Pj.$checkbox('.element', enable)
-Pj.$checkbox('.element', enable, "foo")
-Pj.$checkbox('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -127,19 +132,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/checkbox is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/checkbox project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.19
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

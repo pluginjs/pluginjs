@@ -1,9 +1,11 @@
 # ImageSelector
-> A flexible modern image-selector js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/image-selector.svg)](https://www.npmjs.com/package/@pluginjs/image-selector)
 
-#### [Demo]()
----
+A flexible modern image-selector js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/imageSelector/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/image-selector
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import imageSelector from "@pluginjs/image-selector"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/image-selector")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/image-selector.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/image-selector.css">
+<script src="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/image-selector.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/image-selector.min.css">
+<script src="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import ImageSelector from "@pluginjs/image-selector"
+import "@pluginjs/image-selector/dist/image-selector.css"
+
+ImageSelector.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/image-selector/dist/image-selector.css")
+const ImageSelector = require("@pluginjs/image-selector")
+
+ImageSelector.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.css">
+  <script async src="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.js"></script>
+</head>
+```
 ```javascript
 Pj.imageSelector('.element', options);
 ```
@@ -80,7 +91,7 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
-```
+
 ### Methods:
 Methods are called on imageSelector instances through the imageSelector method itself.
 You can also save the instances to variable for further use.
@@ -94,12 +105,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$imageSelector('.element', get)
-Pj.$imageSelector('.element', get, "foo")
-Pj.$imageSelector('.element', get, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -138,19 +143,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/image-selector is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/image-selector project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.19
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

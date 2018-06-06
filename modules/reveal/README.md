@@ -1,9 +1,11 @@
 # Reveal
-> A flexible modern reveal js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/reveal.svg)](https://www.npmjs.com/package/@pluginjs/reveal)
 
-#### [Demo]()
----
+A flexible modern reveal js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/reveal/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/reveal
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import reveal from "@pluginjs/reveal"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/reveal")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/reveal.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/reveal.css">
+<script src="https://unpkg.com/@pluginjs/reveal/dist/reveal.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/reveal/dist/reveal.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/reveal.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/reveal.min.css">
+<script src="https://unpkg.com/@pluginjs/reveal/dist/reveal.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/reveal/dist/reveal.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Reveal from "@pluginjs/reveal"
+import "@pluginjs/reveal/dist/reveal.css"
+
+Reveal.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/reveal/dist/reveal.css")
+const Reveal = require("@pluginjs/reveal")
+
+Reveal.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/reveal/dist/reveal.css">
+  <script async src="https://unpkg.com/@pluginjs/reveal/dist/reveal.js"></script>
+</head>
+```
 ```javascript
 Pj.reveal('.element', options);
 ```
@@ -86,7 +97,7 @@ Name | Description
 `"enable"` | Gets fired when plugin is enabled
 `"animationEnd"` | Gets fired When stopped animation
 
-```
+
 ### Methods:
 Methods are called on reveal instances through the reveal method itself.
 You can also save the instances to variable for further use.
@@ -98,12 +109,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"isVisible"` | Return is in view
 
-**example:**
-```javascript
-Pj.$reveal('.element', destroy)
-Pj.$reveal('.element', destroy, "foo")
-Pj.$reveal('.element', destroy, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -120,19 +125,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/reveal is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/reveal project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

@@ -1,9 +1,11 @@
 # ScrollTop
-> A flexible modern scroll-top js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/scroll-top.svg)](https://www.npmjs.com/package/@pluginjs/scroll-top)
 
-#### [Demo]()
----
+A flexible modern scroll-top js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/scrollTop/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/scroll-top
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import scrollTop from "@pluginjs/scroll-top"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/scroll-top")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-top.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-top.css">
+<script src="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-top.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-top.min.css">
+<script src="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import ScrollTop from "@pluginjs/scroll-top"
+import "@pluginjs/scroll-top/dist/scroll-top.css"
+
+ScrollTop.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/scroll-top/dist/scroll-top.css")
+const ScrollTop = require("@pluginjs/scroll-top")
+
+ScrollTop.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.css">
+  <script async src="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.js"></script>
+</head>
+```
 ```javascript
 Pj.scrollTop('.element', options);
 ```
@@ -90,7 +101,7 @@ Name | Description
 `"hide"` | Gets fired when plugin has hide
 `"show"` | Gets fired when plugin has show
 
-```
+
 ### Methods:
 Methods are called on scrollTop instances through the scrollTop method itself.
 You can also save the instances to variable for further use.
@@ -104,12 +115,6 @@ Name | Description
 `"hide"` | Hide plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$scrollTop('.element', jump)
-Pj.$scrollTop('.element', jump, "foo")
-Pj.$scrollTop('.element', jump, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -136,19 +141,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/scroll-top is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-top project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

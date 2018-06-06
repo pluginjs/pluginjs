@@ -1,9 +1,11 @@
 # Lazyload
-> A flexible modern lazyload js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/lazyload.svg)](https://www.npmjs.com/package/@pluginjs/lazyload)
 
-#### [Demo]()
----
+A flexible modern lazyload js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/lazyload/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/lazyload
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import lazyload from "@pluginjs/lazyload"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/lazyload")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/lazyload.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/lazyload.css">
+<script src="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/lazyload.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/lazyload.min.css">
+<script src="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Lazyload from "@pluginjs/lazyload"
+import "@pluginjs/lazyload/dist/lazyload.css"
+
+Lazyload.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/lazyload/dist/lazyload.css")
+const Lazyload = require("@pluginjs/lazyload")
+
+Lazyload.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.css">
+  <script async src="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.js"></script>
+</head>
+```
 ```javascript
 Pj.lazyload('.element', options);
 ```
@@ -81,7 +92,7 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"enter"` | Gets fired when plugin has enter
 
-```
+
 ### Methods:
 Methods are called on lazyload instances through the lazyload method itself.
 You can also save the instances to variable for further use.
@@ -100,12 +111,6 @@ Name | Description
 `"isLoad"` | Set value of isLoad
 `"setDelay"` | Set value of delay
 
-**example:**
-```javascript
-Pj.$lazyload('.element', value)
-Pj.$lazyload('.element', value, "foo")
-Pj.$lazyload('.element', value, "foo", "bar")
-```
 
 
 
@@ -116,19 +121,11 @@ Pj.$lazyload('.element', value, "foo", "bar")
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/lazyload is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/lazyload project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

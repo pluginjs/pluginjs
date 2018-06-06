@@ -1,9 +1,11 @@
 # Collapse
-> A flexible modern collapse js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/collapse.svg)](https://www.npmjs.com/package/@pluginjs/collapse)
 
-#### [Demo]()
----
+A flexible modern collapse js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/collapse/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/collapse
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import collapse from "@pluginjs/collapse"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/collapse")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/collapse.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/collapse.css">
+<script src="https://unpkg.com/@pluginjs/collapse/dist/collapse.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/collapse/dist/collapse.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/collapse.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/collapse.min.css">
+<script src="https://unpkg.com/@pluginjs/collapse/dist/collapse.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/collapse/dist/collapse.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Collapse from "@pluginjs/collapse"
+import "@pluginjs/collapse/dist/collapse.css"
+
+Collapse.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/collapse/dist/collapse.css")
+const Collapse = require("@pluginjs/collapse")
+
+Collapse.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/collapse/dist/collapse.css">
+  <script async src="https://unpkg.com/@pluginjs/collapse/dist/collapse.js"></script>
+</head>
+```
 ```javascript
 Pj.collapse('.element', options);
 ```
@@ -82,7 +93,7 @@ Name | Description
 `"collapse"` | Gets fired when plugin is collapse
 `"collapsed"` | Gets fired when plugin is collapsed
 
-```
+
 ### Methods:
 Methods are called on collapse instances through the collapse method itself.
 You can also save the instances to variable for further use.
@@ -96,12 +107,6 @@ Name | Description
 `"collapse"` | Set collapse with plugin
 `"expand"` | Set expand with plugin
 
-**example:**
-```javascript
-Pj.$collapse('.element', enable)
-Pj.$collapse('.element', enable, "foo")
-Pj.$collapse('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -127,19 +132,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/collapse is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/collapse project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

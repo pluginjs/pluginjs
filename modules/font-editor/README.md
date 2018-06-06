@@ -1,9 +1,11 @@
 # FontEditor
-> A flexible modern font-editor js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/font-editor.svg)](https://www.npmjs.com/package/@pluginjs/font-editor)
 
-#### [Demo]()
----
+A flexible modern font-editor js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/fontEditor/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/font-editor
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import fontEditor from "@pluginjs/font-editor"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/font-editor")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/font-editor.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/font-editor.css">
+<script src="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/font-editor.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/font-editor.min.css">
+<script src="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import FontEditor from "@pluginjs/font-editor"
+import "@pluginjs/font-editor/dist/font-editor.css"
+
+FontEditor.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/font-editor/dist/font-editor.css")
+const FontEditor = require("@pluginjs/font-editor")
+
+FontEditor.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.css">
+  <script async src="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.js"></script>
+</head>
+```
 ```javascript
 Pj.fontEditor('.element', options);
 ```
@@ -92,7 +103,7 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
-```
+
 ### Methods:
 Methods are called on fontEditor instances through the fontEditor method itself.
 You can also save the instances to variable for further use.
@@ -113,12 +124,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$fontEditor('.element', val)
-Pj.$fontEditor('.element', val, "foo")
-Pj.$fontEditor('.element', val, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -165,19 +170,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/font-editor is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/font-editor project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.19
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

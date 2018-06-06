@@ -1,9 +1,11 @@
 # Scrollbar
-> A flexible modern scrollbar js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/scrollbar.svg)](https://www.npmjs.com/package/@pluginjs/scrollbar)
 
-#### [Demo]()
----
+A flexible modern scrollbar js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/scrollbar/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/scrollbar
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import scrollbar from "@pluginjs/scrollbar"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/scrollbar")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/scrollbar.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/scrollbar.css">
+<script src="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/scrollbar.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/scrollbar.min.css">
+<script src="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Scrollbar from "@pluginjs/scrollbar"
+import "@pluginjs/scrollbar/dist/scrollbar.css"
+
+Scrollbar.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/scrollbar/dist/scrollbar.css")
+const Scrollbar = require("@pluginjs/scrollbar")
+
+Scrollbar.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.css">
+  <script async src="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.js"></script>
+</head>
+```
 ```javascript
 Pj.scrollbar('.element', options);
 ```
@@ -102,7 +113,7 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
-```
+
 ### Methods:
 Methods are called on scrollbar instances through the scrollbar method itself.
 You can also save the instances to variable for further use.
@@ -115,12 +126,6 @@ Name | Description
 `"moveBy"` | Get moveBy function
 `"moveTo"` | Get moveTo function
 
-**example:**
-```javascript
-Pj.$scrollbar('.element', enable)
-Pj.$scrollbar('.element', enable, "foo")
-Pj.$scrollbar('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -144,19 +149,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/scrollbar is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scrollbar project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

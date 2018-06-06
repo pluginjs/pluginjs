@@ -3,4 +3,6 @@ import html from './index.html'
 import Accordion from '@pluginjs/accordion'
 
 const element = query('.accordion', render(html, query('#horizontal')))
-Accordion.of(element, {})
+Accordion.of(element, {
+  /** options **/
+})

@@ -1,9 +1,11 @@
 # Scrolldir
-> A flexible modern scroll-dir js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/scroll-dir.svg)](https://www.npmjs.com/package/@pluginjs/scroll-dir)
 
-#### [Demo]()
----
+A flexible modern scroll-dir js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/scrolldir/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/scroll-dir
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import scrolldir from "@pluginjs/scroll-dir"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/scroll-dir")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-dir.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-dir.css">
+<script src="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-dir.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/scroll-dir.min.css">
+<script src="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Scrolldir from "@pluginjs/scroll-dir"
+import "@pluginjs/scroll-dir/dist/scroll-dir.css"
+
+Scrolldir.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/scroll-dir/dist/scroll-dir.css")
+const Scrolldir = require("@pluginjs/scroll-dir")
+
+Scrolldir.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.css">
+  <script async src="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.js"></script>
+</head>
+```
 ```javascript
 Pj.scrolldir('.element', options);
 ```
@@ -75,19 +86,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/scroll-dir is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-dir project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

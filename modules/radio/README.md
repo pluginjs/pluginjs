@@ -1,9 +1,11 @@
 # Radio
-> A flexible modern radio js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/radio.svg)](https://www.npmjs.com/package/@pluginjs/radio)
 
-#### [Demo]()
----
+A flexible modern radio js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/radio/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/radio
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import radio from "@pluginjs/radio"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/radio")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/radio.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/radio.css">
+<script src="https://unpkg.com/@pluginjs/radio/dist/radio.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/radio/dist/radio.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/radio.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/radio.min.css">
+<script src="https://unpkg.com/@pluginjs/radio/dist/radio.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/radio/dist/radio.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import Radio from "@pluginjs/radio"
+import "@pluginjs/radio/dist/radio.css"
+
+Radio.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/radio/dist/radio.css")
+const Radio = require("@pluginjs/radio")
+
+Radio.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/radio/dist/radio.css">
+  <script async src="https://unpkg.com/@pluginjs/radio/dist/radio.js"></script>
+</head>
+```
 ```javascript
 Pj.radio('.element', options);
 ```
@@ -85,7 +96,7 @@ Name | Description
 `"check"` | Gets fired when plugin has check
 `"uncheck"` | Gets fired when plugin has uncheck
 
-```
+
 ### Methods:
 Methods are called on radio instances through the radio method itself.
 You can also save the instances to variable for further use.
@@ -101,12 +112,6 @@ Name | Description
 `"check"` | Set check
 `"uncheck"` | Set uncheck
 
-**example:**
-```javascript
-Pj.$radio('.element', enable)
-Pj.$radio('.element', enable, "foo")
-Pj.$radio('.element', enable, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -127,19 +132,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/radio is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/radio project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.21
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

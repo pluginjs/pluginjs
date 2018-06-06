@@ -1,9 +1,11 @@
 # BeforeAfter
-> A flexible modern before-after js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/before-after.svg)](https://www.npmjs.com/package/@pluginjs/before-after)
 
-#### [Demo]()
----
+A flexible modern before-after js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/beforeAfter/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/before-after
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import beforeAfter from "@pluginjs/before-after"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/before-after")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/before-after.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/before-after.css">
+<script src="https://unpkg.com/@pluginjs/before-after/dist/before-after.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/before-after/dist/before-after.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/before-after.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/before-after.min.css">
+<script src="https://unpkg.com/@pluginjs/before-after/dist/before-after.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/before-after/dist/before-after.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import BeforeAfter from "@pluginjs/before-after"
+import "@pluginjs/before-after/dist/before-after.css"
+
+BeforeAfter.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/before-after/dist/before-after.css")
+const BeforeAfter = require("@pluginjs/before-after")
+
+BeforeAfter.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/before-after/dist/before-after.css">
+  <script async src="https://unpkg.com/@pluginjs/before-after/dist/before-after.js"></script>
+</head>
+```
 ```javascript
 Pj.beforeAfter('.element', options);
 ```
@@ -93,7 +104,7 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
-```
+
 ### Methods:
 Methods are called on beforeAfter instances through the beforeAfter method itself.
 You can also save the instances to variable for further use.
@@ -106,12 +117,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$beforeAfter('.element', moveBy)
-Pj.$beforeAfter('.element', moveBy, "foo")
-Pj.$beforeAfter('.element', moveBy, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -144,19 +149,11 @@ Name | Description | Default
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/before-after is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/before-after project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.19
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.

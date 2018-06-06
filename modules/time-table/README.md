@@ -1,9 +1,11 @@
 # TimeTable
-> A flexible modern time-table js plugin.
-## Introduction
+[![npm package](https://img.shields.io/npm/v/@pluginjs/time-table.svg)](https://www.npmjs.com/package/@pluginjs/time-table)
 
-#### [Demo]()
----
+A flexible modern time-table js plugin.
+
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/timeTable/samples)**
+
+## Introduction
 ### Installation
 
 #### Yarn
@@ -17,29 +19,18 @@ npm i @pluginjs/time-table
 ---
 
 ## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import timeTable from "@pluginjs/time-table"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/time-table")
-```
 
 **CDN:**
+
 Development:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/time-table.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/time-table.css">
+<script src="https://unpkg.com/@pluginjs/time-table/dist/time-table.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/time-table/dist/time-table.css">
 ```
 Production:
 ```html
-<script src="https://unpkg.com/@pluginjs/{moduleName}/dist/time-table.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/{moduleName}/dist/time-table.min.css">
+<script src="https://unpkg.com/@pluginjs/time-table/dist/time-table.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/time-table/dist/time-table.min.css">
 ```
 
 ### Initialize
@@ -49,7 +40,27 @@ HTML:
   <div class="element"></div>
 </body>
 ```
-JS:
+ECMAScript Module:
+```javascript
+import TimeTable from "@pluginjs/time-table"
+import "@pluginjs/time-table/dist/time-table.css"
+
+TimeTable.of(document.querySelector('.element'), options)
+```
+CommonJS:
+```javascript
+require("@pluginjs/time-table/dist/time-table.css")
+const TimeTable = require("@pluginjs/time-table")
+
+TimeTable.of(document.querySelector('.element'), options)
+```
+Browser:
+```html
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/time-table/dist/time-table.css">
+  <script async src="https://unpkg.com/@pluginjs/time-table/dist/time-table.js"></script>
+</head>
+```
 ```javascript
 Pj.timeTable('.element', options);
 ```
@@ -81,7 +92,7 @@ Name | Description
 `"click"` | Gets fired when plugin has click
 `"detail"` | Gets fired when plugin has detail
 
-```
+
 ### Methods:
 Methods are called on timeTable instances through the timeTable method itself.
 You can also save the instances to variable for further use.
@@ -95,12 +106,6 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
-**example:**
-```javascript
-Pj.$timeTable('.element', get)
-Pj.$timeTable('.element', get, "foo")
-Pj.$timeTable('.element', get, "foo", "bar")
-```
 
 ### Classes:
 Name | Description | Default
@@ -184,19 +189,11 @@ Name | EN | ZH
 Tested on all major browsers.
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-## Contributing
-See [Contribution.md](Contribution.md).
+## License
+@pluginjs/time-table is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/time-table project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/plugin/plugin.js/releases).
-
-## Version
-Version: 0.2.18
-
-## Copyright and license
+## Copyright
 Copyright (C) 2018 Creation Studio Limited.
-
-@pluginjs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
