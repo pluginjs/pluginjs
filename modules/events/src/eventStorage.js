@@ -115,7 +115,7 @@ class EventStorage {
   }
 
   clear() {
-    Object.entries(this.listeners).map(([key, value]) => {
+    Object.entries(this.listeners).forEach(([key]) => {
       this.deleteEventListener(key)
     })
 
@@ -126,7 +126,7 @@ class EventStorage {
     const [eventName, namespace] = _eventName.split('.')
     //   .example  || click  || click.example
     if (!eventName && namespace) {
-      Object.entries(this.listeners).map(([key, value]) => {
+      Object.entries(this.listeners).forEach(([key]) => {
         this.listeners[key] = this.listeners[key].filter(
           eventTuple =>
             eventTuple.handler !== handler || eventTuple.namespace !== namespace
@@ -161,7 +161,7 @@ class EventStorage {
     const [eventName, namespace] = _eventName.split('.')
     //   .example  || click  || click.example
     if (!eventName && namespace) {
-      Object.entries(this.listeners).map(([key, value]) => {
+      Object.entries(this.listeners).forEach(([key]) => {
         this.listeners[key] = this.listeners[key].filter(
           eventTuple => eventTuple.namespace !== namespace
         )

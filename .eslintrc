@@ -4,18 +4,25 @@
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "jest/globals": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "jest"],
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "module"
   },
   "rules": {
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+
     // Possible Errors
     "no-await-in-loop": "error",
     "no-prototype-builtins": "error",

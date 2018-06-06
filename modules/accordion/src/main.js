@@ -55,7 +55,6 @@ class Accordion extends Component {
 
     this.bind()
     this.open(this.current, false)
-
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }

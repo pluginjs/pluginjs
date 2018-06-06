@@ -9,12 +9,15 @@ export const trigger = curry((options, el) => {
   const { type = options, data } = options
   const eventName = type
 
-  const eventStorage = EVENTSTORAGE.getEventStorage(el)
+  // const eventStorage = EVENTSTORAGE.getEventStorage(el)
 
-  if (eventStorage && eventStorage.hasListeners(eventName)) {
-    eventStorage.trigger(eventName, data)
-  }
-
+  // if (eventStorage && eventStorage.hasListeners(eventName)) {
+  //   eventStorage.trigger(eventName, data)
+  // }
+  const event = new CustomEvent(eventName, {
+    detail: data
+  })
+  el.dispatchEvent(event)
   return el
 })
 /**
