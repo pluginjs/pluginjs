@@ -43,6 +43,17 @@ class Pkg {
     return this
   }
 
+  reduce(key, fn, initialResult) {
+    if (!this.pkg[key]) {
+      return this
+    }
+    this.pkg[key] = Object.entries(this.pkg[key]).reduce(
+      fn,
+      initialResult || {}
+    )
+    return this
+  }
+
   dest() {
     const pkg = JSON.stringify(this.pkg, null, '\t')
     fs.writeFileSync(this.pkgPath, pkg)

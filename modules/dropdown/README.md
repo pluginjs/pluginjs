@@ -1,4 +1,5 @@
 # Dropdown
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/dropdown.svg)](https://www.npmjs.com/package/@pluginjs/dropdown)
 
 A flexible modern dropdown js plugin.
@@ -6,16 +7,21 @@ A flexible modern dropdown js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/dropdown/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/dropdown
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/dropdown
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/dropdown
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/dropdown/dist/dropdown.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dropdown/dist/dropdown.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/dropdown/dist/dropdown.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dropdown/dist/dropdown.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Dropdown from "@pluginjs/dropdown"
 import "@pluginjs/dropdown/dist/dropdown.css"
 
 Dropdown.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/dropdown/dist/dropdown.css")
 const Dropdown = require("@pluginjs/dropdown")
 
 Dropdown.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dropdown/dist/dropdown.css">
   <script async src="https://unpkg.com/@pluginjs/dropdown/dist/dropdown.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.dropdown('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on dropdown instances through the dropdown options itself.
 You can also save the instances to variable for further use.
 
@@ -93,7 +114,8 @@ Name | Description | Default
 `"constraintToWindow"` | Set constraint to window | `true`
 `"templates"` | Set plugin default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on dropdown instances through the dropdown events itself.
 You can also save the instances to variable for further use.
 
@@ -109,8 +131,8 @@ Name | Description
 `"click"` | Gets fired when plugin is clicked
 `"trigger"` | Gets fired when plugin is triggerd
 
+### Methods
 
-### Methods:
 Methods are called on dropdown instances through the dropdown method itself.
 You can also save the instances to variable for further use.
 
@@ -128,8 +150,8 @@ Name | Description
 `"replaceByData"` | Replace items by data
 `"appendByData"` | Append items from data
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-dropdown`
@@ -149,9 +171,6 @@ Name | Description | Default
 `"FOCUS"` | Declare focus status | `{namespace}-focus`
 `"ACITVE"` | Declare active status | `{namespace}-active`
 `"HOVER"` | Declare hover status | `{namespace}-hover`
-
-
-
 ---
 
 ## Browser support
@@ -163,7 +182,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/dropdown is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/dropdown project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

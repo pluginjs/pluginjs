@@ -1,4 +1,5 @@
 # Hotspots
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/hotspots.svg)](https://www.npmjs.com/package/@pluginjs/hotspots)
 
 A flexible modern hotspots js plugin.
@@ -6,16 +7,21 @@ A flexible modern hotspots js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/hotspots/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/hotspots
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/hotspots
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/hotspots
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Hotspots from "@pluginjs/hotspots"
 import "@pluginjs/hotspots/dist/hotspots.css"
 
 Hotspots.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/hotspots/dist/hotspots.css")
 const Hotspots = require("@pluginjs/hotspots")
 
 Hotspots.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.css">
   <script async src="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.hotspots('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on hotspots instances through the hotspots options itself.
 You can also save the instances to variable for further use.
 
@@ -80,7 +101,8 @@ Name | Description | Default
 `"icon"` | Set default icon | ``
 `"templates"` | Set default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on hotspots instances through the hotspots events itself.
 You can also save the instances to variable for further use.
 
@@ -100,8 +122,8 @@ Name | Description
 `"popoverHide"` | Gets fired when plugin has popoverHide
 `"popoverHidden"` | Gets fired when plugin has popoverHiden
 
+### Methods
 
-### Methods:
 Methods are called on hotspots instances through the hotspots method itself.
 You can also save the instances to variable for further use.
 
@@ -112,8 +134,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-hotspot`
@@ -128,13 +150,6 @@ Name | Description | Default
 `"TEXT"` | Declare plugin text | `{namespace}-text`
 `"HOTSPOTHOVERING"` | Declare plugin hotspothovering | `{namespace}-hovering`
 `"HOTSPOTACTIVE"` | Declare plugin hotspotactive | `{namespace}-active`
-
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -146,7 +161,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/hotspots is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/hotspots project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

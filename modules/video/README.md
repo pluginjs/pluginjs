@@ -1,4 +1,5 @@
 # Video
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/video.svg)](https://www.npmjs.com/package/@pluginjs/video)
 
 A flexible modern video js plugin.
@@ -6,16 +7,21 @@ A flexible modern video js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/video/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/video
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/video
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/video
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/video/dist/video.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/video/dist/video.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/video/dist/video.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/video/dist/video.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Video from "@pluginjs/video"
 import "@pluginjs/video/dist/video.css"
 
 Video.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/video/dist/video.css")
 const Video = require("@pluginjs/video")
 
 Video.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/video/dist/video.css">
   <script async src="https://unpkg.com/@pluginjs/video/dist/video.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.video('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on video instances through the video options itself.
 You can also save the instances to variable for further use.
 
@@ -83,7 +104,8 @@ Name | Description | Default
 `"controls"` | Whether to show the video controller | `false`
 `"poster"` | Whether to display the poster | ``
 
-### Events:
+### Events
+
 Events are called on video instances through the video events itself.
 You can also save the instances to variable for further use.
 
@@ -99,8 +121,8 @@ Name | Description
 `"playend"` | Gets fired when video is playend
 `"playerr"` | Gets fired when video is playerr
 
+### Methods
 
-### Methods:
 Methods are called on video instances through the video method itself.
 You can also save the instances to variable for further use.
 
@@ -115,16 +137,13 @@ Name | Description
 `"stop"` | Stop video
 `"volume"` | Set the video volume
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-video`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"POSTER"` | Declare plugin poster | `{namespace}-poster`
-
-
-
 ---
 
 ## Browser support
@@ -136,7 +155,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/video is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/video project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

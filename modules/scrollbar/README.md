@@ -1,4 +1,5 @@
 # Scrollbar
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/scrollbar.svg)](https://www.npmjs.com/package/@pluginjs/scrollbar)
 
 A flexible modern scrollbar js plugin.
@@ -6,16 +7,21 @@ A flexible modern scrollbar js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/scrollbar/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/scrollbar
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/scrollbar
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/scrollbar
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Scrollbar from "@pluginjs/scrollbar"
 import "@pluginjs/scrollbar/dist/scrollbar.css"
 
 Scrollbar.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/scrollbar/dist/scrollbar.css")
 const Scrollbar = require("@pluginjs/scrollbar")
 
 Scrollbar.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.css">
   <script async src="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.scrollbar('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on scrollbar instances through the scrollbar options itself.
 You can also save the instances to variable for further use.
 
@@ -97,7 +118,8 @@ Name | Description | Default
 `"duration"` | Set duretion | `500`
 `"easing"` | Set easing | `ease`
 
-### Events:
+### Events
+
 Events are called on scrollbar instances through the scrollbar events itself.
 You can also save the instances to variable for further use.
 
@@ -113,8 +135,8 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on scrollbar instances through the scrollbar method itself.
 You can also save the instances to variable for further use.
 
@@ -126,8 +148,8 @@ Name | Description
 `"moveBy"` | Get moveBy function
 `"moveTo"` | Get moveTo function
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-scrollbar`
@@ -139,9 +161,6 @@ Name | Description | Default
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"DRAGGING"` | Declare plugin dragging | `{namespace}-dragging`
 `"HOVERING"` | Announce plugin is hoverd | `{namespace}-hovering`
-
-
-
 ---
 
 ## Browser support
@@ -153,7 +172,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/scrollbar is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scrollbar project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

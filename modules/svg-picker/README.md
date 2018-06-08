@@ -1,4 +1,5 @@
 # SvgPicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/svg-picker.svg)](https://www.npmjs.com/package/@pluginjs/svg-picker)
 
 A flexible modern svg-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern svg-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/svgPicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/svg-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/svg-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/svg-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import SvgPicker from "@pluginjs/svg-picker"
 import "@pluginjs/svg-picker/dist/svg-picker.css"
 
 SvgPicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/svg-picker/dist/svg-picker.css")
 const SvgPicker = require("@pluginjs/svg-picker")
 
 SvgPicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.css">
   <script async src="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.svgPicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on svgPicker instances through the svgPicker options itself.
 You can also save the instances to variable for further use.
 
@@ -83,7 +104,8 @@ Name | Description | Default
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on svgPicker instances through the svgPicker events itself.
 You can also save the instances to variable for further use.
 
@@ -96,8 +118,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on svgPicker instances through the svgPicker method itself.
 You can also save the instances to variable for further use.
 
@@ -111,8 +133,8 @@ Name | Description
 `"destroy"` | Destroy plugin
 `"add"` | Get value of add
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-svgPicker`
@@ -142,8 +164,8 @@ Name | Description | Default
 `"MANAGE"` | Declare plugin mange | `{namespace}-manage`
 `"MANAGEICON"` | Declare plugin mange icon | `{namespace}-manage-icon`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"emptyText"` | Befor using SVG icons, you need add icons to &quot;my collections&quot; | 在使用SVG图标之前，您需要添加图标到“我的收藏”
@@ -151,13 +173,6 @@ Name | EN | ZH
 `"searchText"` | Search | 搜索
 `"manage"` | Manage My Collections | 管理我的收藏
 `"founded"` | founded | 结果
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -169,7 +184,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/svg-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/svg-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

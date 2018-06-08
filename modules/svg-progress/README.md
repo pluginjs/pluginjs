@@ -1,4 +1,5 @@
 # SvgProgress
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/svg-progress.svg)](https://www.npmjs.com/package/@pluginjs/svg-progress)
 
 A flexible modern svg-progress js plugin.
@@ -6,16 +7,21 @@ A flexible modern svg-progress js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/svgProgress/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/svg-progress
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/svg-progress
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/svg-progress
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/svg-progress/dist/svg-progress.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-progress/dist/svg-progress.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/svg-progress/dist/svg-progress.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-progress/dist/svg-progress.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import SvgProgress from "@pluginjs/svg-progress"
 import "@pluginjs/svg-progress/dist/svg-progress.css"
 
 SvgProgress.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/svg-progress/dist/svg-progress.css")
 const SvgProgress = require("@pluginjs/svg-progress")
 
 SvgProgress.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-progress/dist/svg-progress.css">
   <script async src="https://unpkg.com/@pluginjs/svg-progress/dist/svg-progress.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.svgProgress('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on svgProgress instances through the svgProgress options itself.
 You can also save the instances to variable for further use.
 
@@ -87,7 +108,8 @@ Name | Description | Default
 `"numberCallback"` | Set number call back function | `function() {...}`
 `"contentCallback"` | Set content call back function | `null`
 
-### Events:
+### Events
+
 Events are called on svgProgress instances through the svgProgress events itself.
 You can also save the instances to variable for further use.
 
@@ -104,8 +126,8 @@ Name | Description
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
 
+### Methods
 
-### Methods:
 Methods are called on svgProgress instances through the svgProgress method itself.
 You can also save the instances to variable for further use.
 
@@ -121,8 +143,8 @@ Name | Description
 `"enable"` | Enabled plugin if plugin is disabled
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-svgProgress`
@@ -133,9 +155,6 @@ Name | Description | Default
 `"CONTENT"` | Declare content | `{namespace}-content`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"INFOS"` | Declare info | `{namespace}-infos`
-
-
-
 ---
 
 ## Browser support
@@ -147,7 +166,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/svg-progress is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/svg-progress project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

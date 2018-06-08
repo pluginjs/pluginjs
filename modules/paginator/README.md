@@ -1,4 +1,5 @@
 # Paginator
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/paginator.svg)](https://www.npmjs.com/package/@pluginjs/paginator)
 
 A flexible modern paginator js plugin.
@@ -6,16 +7,21 @@ A flexible modern paginator js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/paginator/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/paginator
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/paginator
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/paginator
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/paginator/dist/paginator.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/paginator/dist/paginator.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/paginator/dist/paginator.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/paginator/dist/paginator.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Paginator from "@pluginjs/paginator"
 import "@pluginjs/paginator/dist/paginator.css"
 
 Paginator.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/paginator/dist/paginator.css")
 const Paginator = require("@pluginjs/paginator")
 
 Paginator.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/paginator/dist/paginator.css">
   <script async src="https://unpkg.com/@pluginjs/paginator/dist/paginator.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.paginator('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on paginator instances through the paginator options itself.
 You can also save the instances to variable for further use.
 
@@ -83,7 +104,8 @@ Name | Description | Default
 `"onReady"` | Set onReady | `null`
 `"onChange"` | Set onChange | `null`
 
-### Events:
+### Events
+
 Events are called on paginator instances through the paginator events itself.
 You can also save the instances to variable for further use.
 
@@ -96,8 +118,8 @@ Name | Description
 `"resize"` | Gets fired when plugin has resize
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on paginator instances through the paginator method itself.
 You can also save the instances to variable for further use.
 
@@ -113,8 +135,8 @@ Name | Description
 `"goTo"` | Get value of goTo
 `"update"` | Get value of update
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-paginator`
@@ -125,9 +147,6 @@ Name | Description | Default
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"JUMPER"` | Declare plugin jumper | `{namespace}-jumper`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-
-
-
 ---
 
 ## Browser support
@@ -139,7 +158,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/paginator is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/paginator project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

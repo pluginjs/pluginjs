@@ -1,4 +1,5 @@
 # Choice
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/choice.svg)](https://www.npmjs.com/package/@pluginjs/choice)
 
 A flexible modern choice js plugin.
@@ -6,16 +7,21 @@ A flexible modern choice js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/choice/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/choice
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/choice
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/choice
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/choice/dist/choice.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/choice/dist/choice.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/choice/dist/choice.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/choice/dist/choice.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Choice from "@pluginjs/choice"
 import "@pluginjs/choice/dist/choice.css"
 
 Choice.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/choice/dist/choice.css")
 const Choice = require("@pluginjs/choice")
 
 Choice.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/choice/dist/choice.css">
   <script async src="https://unpkg.com/@pluginjs/choice/dist/choice.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.choice('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on choice instances through the choice options itself.
 You can also save the instances to variable for further use.
 
@@ -82,7 +103,8 @@ Name | Description | Default
 `"toggleIcon"` | Set toggleIcon | `fa fa-caret-down`
 `"templates"` | Set default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on choice instances through the choice events itself.
 You can also save the instances to variable for further use.
 
@@ -96,8 +118,8 @@ Name | Description
 `"select"` | Gets fired when plugin has select
 `"unselect"` | Gets fired when plugin has unselect
 
+### Methods
 
-### Methods:
 Methods are called on choice instances through the choice method itself.
 You can also save the instances to variable for further use.
 
@@ -112,8 +134,8 @@ Name | Description
 `"set"` | Set value by key
 `"val"` | Set or get value by key
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-choice`
@@ -125,9 +147,6 @@ Name | Description | Default
 `"TOGGLE"` | Declare plugin toggle | `{namespace}-toggle`
 `"SELECTED"` | Declare plugin selected | `{namespace}-selected`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-
-
-
 ---
 
 ## Browser support
@@ -139,7 +158,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/choice is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/choice project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

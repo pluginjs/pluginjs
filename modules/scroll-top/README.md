@@ -1,4 +1,5 @@
 # ScrollTop
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/scroll-top.svg)](https://www.npmjs.com/package/@pluginjs/scroll-top)
 
 A flexible modern scroll-top js plugin.
@@ -6,16 +7,21 @@ A flexible modern scroll-top js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/scrollTop/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/scroll-top
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/scroll-top
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/scroll-top
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import ScrollTop from "@pluginjs/scroll-top"
 import "@pluginjs/scroll-top/dist/scroll-top.css"
 
 ScrollTop.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/scroll-top/dist/scroll-top.css")
 const ScrollTop = require("@pluginjs/scroll-top")
 
 ScrollTop.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.css">
   <script async src="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.scrollTop('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on scrollTop instances through the scrollTop options itself.
 You can also save the instances to variable for further use.
 
@@ -86,7 +107,8 @@ Name | Description | Default
 `"localeFallbacks"` | Set plugin is localeFallbacks or not | `true`
 `"throttle"` | Set throttle | `undefined`
 
-### Events:
+### Events
+
 Events are called on scrollTop instances through the scrollTop events itself.
 You can also save the instances to variable for further use.
 
@@ -101,8 +123,8 @@ Name | Description
 `"hide"` | Gets fired when plugin has hide
 `"show"` | Gets fired when plugin has show
 
+### Methods
 
-### Methods:
 Methods are called on scrollTop instances through the scrollTop method itself.
 You can also save the instances to variable for further use.
 
@@ -115,8 +137,8 @@ Name | Description
 `"hide"` | Hide plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-scrollTop`
@@ -127,13 +149,11 @@ Name | Description | Default
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"SHOW"` | Announce plugin is show | `{namespace}-show`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"label"` | Scroll To Top | 置顶
-
-
 ---
 
 ## Browser support
@@ -145,7 +165,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/scroll-top is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-top project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

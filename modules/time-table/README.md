@@ -1,4 +1,5 @@
 # TimeTable
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/time-table.svg)](https://www.npmjs.com/package/@pluginjs/time-table)
 
 A flexible modern time-table js plugin.
@@ -6,16 +7,21 @@ A flexible modern time-table js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/timeTable/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/time-table
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/time-table
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/time-table
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/time-table/dist/time-table.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/time-table/dist/time-table.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/time-table/dist/time-table.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/time-table/dist/time-table.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import TimeTable from "@pluginjs/time-table"
 import "@pluginjs/time-table/dist/time-table.css"
 
 TimeTable.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/time-table/dist/time-table.css")
 const TimeTable = require("@pluginjs/time-table")
 
 TimeTable.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/time-table/dist/time-table.css">
   <script async src="https://unpkg.com/@pluginjs/time-table/dist/time-table.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.timeTable('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on timeTable instances through the timeTable options itself.
 You can also save the instances to variable for further use.
 
@@ -81,7 +102,8 @@ Name | Description | Default
 `"weekly"` | Set weekly | `{&quot;controllerLabel&quot;:[&quot;MMM DD &quot;,&quot;- MMM DD, YYYY&quot;],&quot;headerLabel&quot;:&quot;ddd,DD MMM&quot;,&quot;timeBetween&quot;:&quot;09:00-19:30&quot;}`
 `"monthly"` | Set monthly | `{&quot;controllerLabel&quot;:&quot;MMM YYYY&quot;,&quot;eventLabel&quot;:&quot;HH:mm&quot;}`
 
-### Events:
+### Events
+
 Events are called on timeTable instances through the timeTable events itself.
 You can also save the instances to variable for further use.
 
@@ -92,8 +114,8 @@ Name | Description
 `"click"` | Gets fired when plugin has click
 `"detail"` | Gets fired when plugin has detail
 
+### Methods
 
-### Methods:
 Methods are called on timeTable instances through the timeTable method itself.
 You can also save the instances to variable for further use.
 
@@ -106,8 +128,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-timeTable`
@@ -164,8 +186,8 @@ Name | Description | Default
 `"LISTEVENTCONTENT"` | Declare plugin listEvent content | `{namespace}-listEvent-content`
 `"LISTEVENTITEMWRAP"` | Declare plugin listEvent item wrap | `{namespace}-listEvent-item-wrap`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"weekday"` | Sun,Mon,Tue,Wed,Thu,Fri,Sat | 周日,周一,周二,周三,周四,周五,周六
@@ -176,12 +198,6 @@ Name | EN | ZH
 `"today"` | today | 今日
 `"add"` | ADD EVENT | 添加事项
 `"all"` | All Classes | 全部
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -193,7 +209,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/time-table is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/time-table project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

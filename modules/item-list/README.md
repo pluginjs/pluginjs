@@ -1,4 +1,5 @@
 # ItemList
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/item-list.svg)](https://www.npmjs.com/package/@pluginjs/item-list)
 
 A flexible modern item-list js plugin.
@@ -6,16 +7,21 @@ A flexible modern item-list js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/itemList/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/item-list
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/item-list
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/item-list
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/item-list/dist/item-list.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/item-list/dist/item-list.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/item-list/dist/item-list.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/item-list/dist/item-list.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import ItemList from "@pluginjs/item-list"
 import "@pluginjs/item-list/dist/item-list.css"
 
 ItemList.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/item-list/dist/item-list.css")
 const ItemList = require("@pluginjs/item-list")
 
 ItemList.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/item-list/dist/item-list.css">
   <script async src="https://unpkg.com/@pluginjs/item-list/dist/item-list.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.itemList('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on itemList instances through the itemList options itself.
 You can also save the instances to variable for further use.
 
@@ -80,7 +101,8 @@ Name | Description | Default
 `"actions"` | Set plugin actions option | `[{&quot;tagName&quot;:&quot;i&quot;,&quot;trigger&quot;:&quot;icon-clone pj-itemList-item-clone&quot;,&quot;event&quot;:&quot;click&quot;,&quot;init&quot;:null},{&quot;tagName&quot;:&quot;i&quot;,&quot;trigger&quot;:&quot;icon-close pj-list-close&quot;,&quot;event&quot;:&quot;click&quot;}]`
 `"templates"` | Set default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on itemList instances through the itemList events itself.
 You can also save the instances to variable for further use.
 
@@ -95,9 +117,8 @@ Name | Description
 `"clickItem"` | Gets fired when plugin has clickItem
 `"clone"` | Gets fired when plugin has clone
 
+### Classes
 
-
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-itemList`
@@ -108,21 +129,13 @@ Name | Description | Default
 `"CLONE"` | Announce plugin is close | `{namespace}-item-clone`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"cancel"` | Cancel | 取消
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
 `"delete"` | Delete | 删除
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -134,7 +147,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/item-list is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/item-list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

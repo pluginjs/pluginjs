@@ -1,4 +1,5 @@
 # Collapse
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/collapse.svg)](https://www.npmjs.com/package/@pluginjs/collapse)
 
 A flexible modern collapse js plugin.
@@ -6,16 +7,21 @@ A flexible modern collapse js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/collapse/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/collapse
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/collapse
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/collapse
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/collapse/dist/collapse.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/collapse/dist/collapse.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/collapse/dist/collapse.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/collapse/dist/collapse.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Collapse from "@pluginjs/collapse"
 import "@pluginjs/collapse/dist/collapse.css"
 
 Collapse.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/collapse/dist/collapse.css")
 const Collapse = require("@pluginjs/collapse")
 
 Collapse.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/collapse/dist/collapse.css">
   <script async src="https://unpkg.com/@pluginjs/collapse/dist/collapse.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.collapse('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on collapse instances through the collapse options itself.
 You can also save the instances to variable for further use.
 
@@ -77,7 +98,8 @@ Name | Description | Default
 `"instructions"` | Add plugin instructions option | `false`
 `"collapsed"` | Set plugin is collapsed or not | `false`
 
-### Events:
+### Events
+
 Events are called on collapse instances through the collapse events itself.
 You can also save the instances to variable for further use.
 
@@ -93,8 +115,8 @@ Name | Description
 `"collapse"` | Gets fired when plugin is collapse
 `"collapsed"` | Gets fired when plugin is collapsed
 
+### Methods
 
-### Methods:
 Methods are called on collapse instances through the collapse method itself.
 You can also save the instances to variable for further use.
 
@@ -107,8 +129,8 @@ Name | Description
 `"collapse"` | Set collapse with plugin
 `"expand"` | Set expand with plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-collapse`
@@ -122,9 +144,6 @@ Name | Description | Default
 `"CONTENT"` | Declare content node | `{namespace}-content`
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-
-
-
 ---
 
 ## Browser support
@@ -136,7 +155,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/collapse is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/collapse project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

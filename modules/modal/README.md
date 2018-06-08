@@ -1,4 +1,5 @@
 # Modal
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/modal.svg)](https://www.npmjs.com/package/@pluginjs/modal)
 
 A flexible modern modal js plugin.
@@ -6,16 +7,21 @@ A flexible modern modal js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/modal/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/modal
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/modal
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/modal
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/modal/dist/modal.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/modal/dist/modal.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/modal/dist/modal.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/modal/dist/modal.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Modal from "@pluginjs/modal"
 import "@pluginjs/modal/dist/modal.css"
 
 Modal.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/modal/dist/modal.css")
 const Modal = require("@pluginjs/modal")
 
 Modal.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/modal/dist/modal.css">
   <script async src="https://unpkg.com/@pluginjs/modal/dist/modal.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.modal('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on modal instances through the modal options itself.
 You can also save the instances to variable for further use.
 
@@ -112,7 +133,8 @@ Name | Description | Default
 `"iconColor"` | Modify the icon color | ``
 `"iconClass"` | Add your icon | ``
 
-### Events:
+### Events
+
 Events are called on modal instances through the modal events itself.
 You can also save the instances to variable for further use.
 
@@ -124,8 +146,8 @@ Name | Description
 `"show"` | Gets fired when plugin is show
 `"hide"` | Gets fired when plugin is hide
 
+### Methods
 
-### Methods:
 Methods are called on modal instances through the modal method itself.
 You can also save the instances to variable for further use.
 
@@ -133,8 +155,8 @@ Name | Description
 -----|-----
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-modal`
@@ -155,14 +177,12 @@ Name | Description | Default
 `"BUTTON"` | Declare element is button | `{namespace}-btn`
 `"ICON"` | Declare element is icon | `{namespace}-icon`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"Cancel"` | Cancel | 取消
 `"Yes"` | Yes | 确定
-
-
 ---
 
 ## Browser support
@@ -174,7 +194,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/modal is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/modal project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

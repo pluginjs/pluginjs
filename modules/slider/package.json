@@ -10,12 +10,7 @@
 		"@pluginjs/events": "^0.0.5",
 		"@pluginjs/pluginjs": "^0.2.25",
 		"@pluginjs/utils": "^0.2.20",
-		"hammerjs": "*",
-		"rollup": "^0.59.2",
-		"rollup-plugin-babel": "^4.0.0-beta.4",
-		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-node-resolve": "^3.3.0",
-		"@pluginjs/cli": "^0.5.18"
+		"hammerjs": "*"
 	},
 	"version": "0.2.24",
 	"description": "A flexible modern slider js plugin.",
@@ -46,12 +41,30 @@
 	"scripts": {
 		"build": "plugin build",
 		"build:js": "plugin script build-js",
-		"build:scss": "plugin script build-scss"
+		"build:scss": "plugin script build-scss",
+		"test": "jest"
 	},
 	"css": {
 		"source": "src/css/slider.scss",
 		"main": "dist/slider.css",
 		"min": "dist/slider.min.css"
 	},
-	"cjs": "dist/slider.cjs.js"
+	"cjs": "dist/slider.cjs.js",
+	"jest": {
+		"setupTestFrameworkScriptFile": "jest-extended",
+		"verbose": true,
+		"testPathIgnorePatterns": [
+			"fixtures"
+		]
+	},
+	"devDependencies": {
+		"babel-jest": "^23.0.1",
+		"jest": "^23.1.0",
+		"jest-extended": "^0.7.2",
+		"rollup": "^0.59.2",
+		"rollup-plugin-babel": "^4.0.0-beta.4",
+		"rollup-plugin-commonjs": "^9.1.3",
+		"rollup-plugin-node-resolve": "^3.3.0",
+		"@pluginjs/cli": "^0.5.18"
+	}
 }

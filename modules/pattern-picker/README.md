@@ -1,4 +1,5 @@
 # PatternPicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/pattern-picker.svg)](https://www.npmjs.com/package/@pluginjs/pattern-picker)
 
 A flexible modern pattern-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern pattern-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/patternPicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/pattern-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/pattern-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/pattern-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import PatternPicker from "@pluginjs/pattern-picker"
 import "@pluginjs/pattern-picker/dist/pattern-picker.css"
 
 PatternPicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/pattern-picker/dist/pattern-picker.css")
 const PatternPicker = require("@pluginjs/pattern-picker")
 
 PatternPicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.css">
   <script async src="https://unpkg.com/@pluginjs/pattern-picker/dist/pattern-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.patternPicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on patternPicker instances through the patternPicker options itself.
 You can also save the instances to variable for further use.
 
@@ -83,7 +104,8 @@ Name | Description | Default
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"format"` | Set plugin format option | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on patternPicker instances through the patternPicker events itself.
 You can also save the instances to variable for further use.
 
@@ -94,8 +116,8 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on patternPicker instances through the patternPicker method itself.
 You can also save the instances to variable for further use.
 
@@ -109,8 +131,8 @@ Name | Description
 `"val"` | Set or get value by key
 `"clear"` | Clear plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-patternPicker`
@@ -133,8 +155,8 @@ Name | Description | Default
 `"SELECTORLIST"` | Declare plugin selectorlist | `{namespace}-selector-list`
 `"SELECTORITEM"` | Declare plugin selectoritem | `{namespace}-selector-item`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
@@ -148,22 +170,6 @@ Name | EN | ZH
 `"useIt"` | Use It | 使用
 `"selectorTitle"` | Preset Background Library | 预设背景库
 `"selectorContent"` | Choose a PatternPicker | 选择一个模式
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -175,7 +181,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/pattern-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/pattern-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

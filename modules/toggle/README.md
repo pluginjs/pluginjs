@@ -1,4 +1,5 @@
 # Toggle
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/toggle.svg)](https://www.npmjs.com/package/@pluginjs/toggle)
 
 A flexible modern toggle js plugin.
@@ -6,16 +7,21 @@ A flexible modern toggle js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/toggle/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/toggle
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/toggle
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/toggle
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/toggle/dist/toggle.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle/dist/toggle.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/toggle/dist/toggle.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle/dist/toggle.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Toggle from "@pluginjs/toggle"
 import "@pluginjs/toggle/dist/toggle.css"
 
 Toggle.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/toggle/dist/toggle.css")
 const Toggle = require("@pluginjs/toggle")
 
 Toggle.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle/dist/toggle.css">
   <script async src="https://unpkg.com/@pluginjs/toggle/dist/toggle.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.toggle('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on toggle instances through the toggle options itself.
 You can also save the instances to variable for further use.
 
@@ -85,7 +106,8 @@ Name | Description | Default
 `"checked"` | Set plugin checked option | `null`
 `"duration"` | Set duretion | `200`
 
-### Events:
+### Events
+
 Events are called on toggle instances through the toggle events itself.
 You can also save the instances to variable for further use.
 
@@ -98,8 +120,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on toggle instances through the toggle method itself.
 You can also save the instances to variable for further use.
 
@@ -113,8 +135,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-toggle`
@@ -127,14 +149,12 @@ Name | Description | Default
 `"HANDLE"` | Declare plugin handle | `{namespace}-handle`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"on"` | ON | 开
 `"off"` | OFF | 关
-
-
 ---
 
 ## Browser support
@@ -146,7 +166,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/toggle is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/toggle project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

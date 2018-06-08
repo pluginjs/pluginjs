@@ -1,4 +1,5 @@
 # Breadcrumb
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/breadcrumb.svg)](https://www.npmjs.com/package/@pluginjs/breadcrumb)
 
 A flexible modern breadcrumb js plugin.
@@ -6,16 +7,21 @@ A flexible modern breadcrumb js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/breadcrumb/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/breadcrumb
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/breadcrumb
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/breadcrumb
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/breadcrumb/dist/breadcrumb.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/breadcrumb/dist/breadcrumb.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/breadcrumb/dist/breadcrumb.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/breadcrumb/dist/breadcrumb.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Breadcrumb from "@pluginjs/breadcrumb"
 import "@pluginjs/breadcrumb/dist/breadcrumb.css"
 
 Breadcrumb.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/breadcrumb/dist/breadcrumb.css")
 const Breadcrumb = require("@pluginjs/breadcrumb")
 
 Breadcrumb.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/breadcrumb/dist/breadcrumb.css">
   <script async src="https://unpkg.com/@pluginjs/breadcrumb/dist/breadcrumb.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.breadcrumb('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on breadcrumb instances through the breadcrumb options itself.
 You can also save the instances to variable for further use.
 
@@ -82,7 +103,8 @@ Name | Description | Default
 `"getDropdownMenu"` | Add getDropdownMenu method | `function() {...}`
 `"templates"` | Plugin default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on breadcrumb instances through the breadcrumb events itself.
 You can also save the instances to variable for further use.
 
@@ -94,8 +116,8 @@ Name | Description
 `"disable"` | Gets fired when plugin is disabled
 `"destroy"` | Gets fired when plugin is destroy
 
+### Methods
 
-### Methods:
 Methods are called on breadcrumb instances through the breadcrumb method itself.
 You can also save the instances to variable for further use.
 
@@ -105,8 +127,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-breadcrumb`
@@ -122,9 +144,6 @@ Name | Description | Default
 `"DROPDOWNITEMDISABLE"` | Declare dropdown has disabled | `disabled`
 `"ELLIPSIS"` | Declare is Ellipsis element | `{namespace}-ellipsis`
 `"HIDDEN"` | Declare plugin has hidden | `{namespace}-hidden`
-
-
-
 ---
 
 ## Browser support
@@ -136,7 +155,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/breadcrumb is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/breadcrumb project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

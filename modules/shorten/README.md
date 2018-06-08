@@ -1,4 +1,5 @@
 # Shorten
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/shorten.svg)](https://www.npmjs.com/package/@pluginjs/shorten)
 
 A flexible modern shorten js plugin.
@@ -6,16 +7,21 @@ A flexible modern shorten js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/shorten/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/shorten
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/shorten
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/shorten
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/shorten/dist/shorten.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/shorten/dist/shorten.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/shorten/dist/shorten.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/shorten/dist/shorten.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Shorten from "@pluginjs/shorten"
 import "@pluginjs/shorten/dist/shorten.css"
 
 Shorten.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/shorten/dist/shorten.css")
 const Shorten = require("@pluginjs/shorten")
 
 Shorten.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/shorten/dist/shorten.css">
   <script async src="https://unpkg.com/@pluginjs/shorten/dist/shorten.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.shorten('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on shorten instances through the shorten options itself.
 You can also save the instances to variable for further use.
 
@@ -79,7 +100,8 @@ Name | Description | Default
 `"more"` | Set more text | `more`
 `"less"` | Set less text | `less`
 
-### Events:
+### Events
+
 Events are called on shorten instances through the shorten events itself.
 You can also save the instances to variable for further use.
 
@@ -90,8 +112,8 @@ Name | Description
 `"expand"` | Gets fired when plugin is expand
 `"collapse"` | Gets fired when plugin is collapse
 
+### Methods
 
-### Methods:
 Methods are called on shorten instances through the shorten method itself.
 You can also save the instances to variable for further use.
 
@@ -101,8 +123,8 @@ Name | Description
 `"expand"` | Setup plugin into expand status
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-shorten`
@@ -111,9 +133,6 @@ Name | Description | Default
 `"DETAIL"` | Declare detail node | `{namespace}-detail`
 `"ELLIPSES"` | Declare ellipses node | `{namespace}-ellipses`
 `"TOGGLE"` | Declare toggle node | `{namespace}-toggle`
-
-
-
 ---
 
 ## Browser support
@@ -125,7 +144,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/shorten is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/shorten project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

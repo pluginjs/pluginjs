@@ -1,4 +1,5 @@
 # ScrollSpy
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/scroll-spy.svg)](https://www.npmjs.com/package/@pluginjs/scroll-spy)
 
 A flexible modern scroll-spy js plugin.
@@ -6,16 +7,21 @@ A flexible modern scroll-spy js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/scrollSpy/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/scroll-spy
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/scroll-spy
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/scroll-spy
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import ScrollSpy from "@pluginjs/scroll-spy"
 import "@pluginjs/scroll-spy/dist/scroll-spy.css"
 
 ScrollSpy.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/scroll-spy/dist/scroll-spy.css")
 const ScrollSpy = require("@pluginjs/scroll-spy")
 
 ScrollSpy.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.css">
   <script async src="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.scrollSpy('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on scrollSpy instances through the scrollSpy options itself.
 You can also save the instances to variable for further use.
 
@@ -82,7 +103,8 @@ Name | Description | Default
 `"cloestActive"` | Find the element you want to add activeClass | `parent`
 `"reference"` | Anchor reference direction | `top`
 
-### Events:
+### Events
+
 Events are called on scrollSpy instances through the scrollSpy events itself.
 You can also save the instances to variable for further use.
 
@@ -94,8 +116,8 @@ Name | Description
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
 
+### Methods
 
-### Methods:
 Methods are called on scrollSpy instances through the scrollSpy method itself.
 You can also save the instances to variable for further use.
 
@@ -105,10 +127,6 @@ Name | Description
 `"getCurrHref"` | get the current item Id
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
-
-
-
-
 ---
 
 ## Browser support
@@ -120,7 +138,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/scroll-spy is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-spy project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

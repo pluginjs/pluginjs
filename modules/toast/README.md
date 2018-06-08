@@ -1,4 +1,5 @@
 # Toast
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/toast.svg)](https://www.npmjs.com/package/@pluginjs/toast)
 
 A flexible modern toast js plugin.
@@ -6,16 +7,21 @@ A flexible modern toast js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/toast/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/toast
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/toast
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/toast
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/toast/dist/toast.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toast/dist/toast.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/toast/dist/toast.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toast/dist/toast.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Toast from "@pluginjs/toast"
 import "@pluginjs/toast/dist/toast.css"
 
 Toast.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/toast/dist/toast.css")
 const Toast = require("@pluginjs/toast")
 
 Toast.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toast/dist/toast.css">
   <script async src="https://unpkg.com/@pluginjs/toast/dist/toast.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.toast('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on toast instances through the toast options itself.
 You can also save the instances to variable for further use.
 
@@ -98,7 +119,8 @@ Name | Description | Default
 `"loader"` | Set is enable loader or not | `true`
 `"loaderBgColor"` | Set loader bg color | ``
 
-### Events:
+### Events
+
 Events are called on toast instances through the toast events itself.
 You can also save the instances to variable for further use.
 
@@ -109,9 +131,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 
+### Classes
 
-
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-toast`
@@ -128,9 +149,6 @@ Name | Description | Default
 `"BUTTONS"` | Declare buttons node | `{namespace}-buttons`
 `"LOADER"` | Declare loader node | `{namespace}-loader`
 `"STRIPED"` | Declare striped node | `{namespace}-loader-striped`
-
-
-
 ---
 
 ## Browser support
@@ -142,7 +160,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/toast is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/toast project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

@@ -1,4 +1,5 @@
 # Notice
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/notice.svg)](https://www.npmjs.com/package/@pluginjs/notice)
 
 A flexible modern notice js plugin.
@@ -6,16 +7,21 @@ A flexible modern notice js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/notice/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/notice
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/notice
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/notice
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/notice/dist/notice.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/notice/dist/notice.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/notice/dist/notice.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/notice/dist/notice.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Notice from "@pluginjs/notice"
 import "@pluginjs/notice/dist/notice.css"
 
 Notice.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/notice/dist/notice.css")
 const Notice = require("@pluginjs/notice")
 
 Notice.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/notice/dist/notice.css">
   <script async src="https://unpkg.com/@pluginjs/notice/dist/notice.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.notice('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on notice instances through the notice options itself.
 You can also save the instances to variable for further use.
 
@@ -92,7 +113,8 @@ Name | Description | Default
 `"fixedWidth"` | Set fixed width or not | `false`
 `"layout"` | Set layout location | `top`
 
-### Events:
+### Events
+
 Events are called on notice instances through the notice events itself.
 You can also save the instances to variable for further use.
 
@@ -103,9 +125,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin is destroy
 `"ready"` | Gets fired when plugin is ready
 
+### Classes
 
-
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-notice`
@@ -119,9 +140,6 @@ Name | Description | Default
 `"BUTTONS"` | Declare plugin buttons | `{namespace}-buttons`
 `"POSITION"` | Declare plugin position | `{namespace}-position`
 `"BACKGROUND"` | Declare plugin background | `{namespace}-with-bg`
-
-
-
 ---
 
 ## Browser support
@@ -133,7 +151,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/notice is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/notice project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

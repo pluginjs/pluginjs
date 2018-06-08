@@ -1,4 +1,5 @@
 # Tree
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/tree.svg)](https://www.npmjs.com/package/@pluginjs/tree)
 
 A flexible modern tree js plugin.
@@ -6,16 +7,21 @@ A flexible modern tree js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/tree/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/tree
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/tree
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/tree
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/tree/dist/tree.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tree/dist/tree.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/tree/dist/tree.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tree/dist/tree.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Tree from "@pluginjs/tree"
 import "@pluginjs/tree/dist/tree.css"
 
 Tree.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/tree/dist/tree.css")
 const Tree = require("@pluginjs/tree")
 
 Tree.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tree/dist/tree.css">
   <script async src="https://unpkg.com/@pluginjs/tree/dist/tree.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.tree('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on tree instances through the tree options itself.
 You can also save the instances to variable for further use.
 
@@ -83,7 +104,8 @@ Name | Description | Default
 `"tabindex"` | Set tabindex | `0`
 `"templates"` | Set default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on tree instances through the tree events itself.
 You can also save the instances to variable for further use.
 
@@ -98,8 +120,8 @@ Name | Description
 `"select"` | Gets fired when plugin has select
 `"unselect"` | Gets fired when plugin has unselect
 
+### Methods
 
-### Methods:
 Methods are called on tree instances through the tree method itself.
 You can also save the instances to variable for further use.
 
@@ -118,8 +140,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-tree`
@@ -130,9 +152,6 @@ Name | Description | Default
 `"OPEN"` | Declare plugin open | `{namespace}-open`
 `"SELECTED"` | Declare plugin selected | `{namespace}-selected`
 `"CHILDRENSELECTED"` |  | `{namespace}-childrenSelected`
-
-
-
 ---
 
 ## Browser support
@@ -144,7 +163,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/tree is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/tree project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

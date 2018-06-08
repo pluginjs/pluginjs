@@ -1,20 +1,20 @@
 {
-  "version": "0.0.10",
-  "name": "@pluginjs/icons",
-  "description": "TODO: fill in this description later",
-  "author": "Creation Studio Limited",
-  "license": "MIT",
-  "repository": "https://github.com/pluginjs/pluginjs/tree/master/tools/sample-icons",
-  "bugs": {
-    "url": "https://github.com/pluginjs/pluginjs/issues"
-  },
-  "scripts": {
-    "build": "./scripts/generate",
-    "postinstall": "yarn build"
-  },
-  "devDependencies": {
-    "glob-expand": "^0.2.1",
-    "webfonts-generator": "^0.4.0"
-  },
-  "category": "css"
+	"version": "0.0.10",
+	"name": "@pluginjs/icons",
+	"description": "TODO: fill in this description later",
+	"author": "Creation Studio Limited",
+	"license": "MIT",
+	"repository": "https://github.com/pluginjs/pluginjs/tree/master/tools/sample-icons",
+	"bugs": {
+		"url": "https://github.com/pluginjs/pluginjs/issues"
+	},
+	"scripts": {
+		"build": "./scripts/generate",
+		"postinstall": "yarn build"
+	},
+	"devDependencies": {
+		"glob-expand": "^0.2.1",
+		"webfonts-generator": "^0.4.0"
+	},
+	"category": "css"
 }

@@ -1,4 +1,5 @@
 # BgPicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/bg-picker.svg)](https://www.npmjs.com/package/@pluginjs/bg-picker)
 
 A flexible modern bg-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern bg-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/bgPicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/bg-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/bg-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/bg-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import BgPicker from "@pluginjs/bg-picker"
 import "@pluginjs/bg-picker/dist/bg-picker.css"
 
 BgPicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/bg-picker/dist/bg-picker.css")
 const BgPicker = require("@pluginjs/bg-picker")
 
 BgPicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.css">
   <script async src="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.bgPicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on bgPicker instances through the bgPicker options itself.
 You can also save the instances to variable for further use.
 
@@ -89,7 +110,8 @@ Name | Description | Default
 `"select"` | Set select event | `function() {...}`
 `"onChange"` | The onchange event occurs when the content of the domain changes | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on bgPicker instances through the bgPicker events itself.
 You can also save the instances to variable for further use.
 
@@ -101,8 +123,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on bgPicker instances through the bgPicker method itself.
 You can also save the instances to variable for further use.
 
@@ -121,8 +143,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-bgPicker`
@@ -147,8 +169,8 @@ Name | Description | Default
 `"EXIST"` | Declare plugin exist | `{namespace}-exist`
 `"EXPAND"` | Declare plugin expand | `{namespace}-expand`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"placeholder"` | Add Image | 添加图片
@@ -159,11 +181,6 @@ Name | EN | ZH
 `"bgSize"` | Scalling | 比例
 `"cancel"` | cancel | 取消
 `"save"` | save | 保存
-
-
-### Dependencies:
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -175,7 +192,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/bg-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/bg-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

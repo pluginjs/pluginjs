@@ -1,4 +1,5 @@
 # ImagePicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/image-picker.svg)](https://www.npmjs.com/package/@pluginjs/image-picker)
 
 A flexible modern image-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern image-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/imagePicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/image-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/image-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/image-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/image-picker/dist/image-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-picker/dist/image-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/image-picker/dist/image-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-picker/dist/image-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import ImagePicker from "@pluginjs/image-picker"
 import "@pluginjs/image-picker/dist/image-picker.css"
 
 ImagePicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/image-picker/dist/image-picker.css")
 const ImagePicker = require("@pluginjs/image-picker")
 
 ImagePicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-picker/dist/image-picker.css">
   <script async src="https://unpkg.com/@pluginjs/image-picker/dist/image-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.imagePicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on imagePicker instances through the imagePicker options itself.
 You can also save the instances to variable for further use.
 
@@ -84,7 +105,8 @@ Name | Description | Default
 `"select"` | Gets fired when plugin has select | `function() {...}`
 `"strings"` | Gets fired when plugin has strings | `{}`
 
-### Events:
+### Events
+
 Events are called on imagePicker instances through the imagePicker events itself.
 You can also save the instances to variable for further use.
 
@@ -96,8 +118,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on imagePicker instances through the imagePicker method itself.
 You can also save the instances to variable for further use.
 
@@ -111,8 +133,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-imagePicker`
@@ -128,21 +150,14 @@ Name | Description | Default
 `"INFOREMOVE"` | Declare plugin is inforemove | `{namespace}-info-remove`
 `"INFORESELECT"` | Declare plugin is inforeselect | `{namespace}-info-reselect`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"placeholder"` | Click to upload | 点击上传
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
 `"cancel"` | Cancel | 取消
 `"delete"` | Delete | 删除
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -154,7 +169,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/image-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/image-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

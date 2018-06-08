@@ -1,4 +1,5 @@
 # NavToSelect
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/nav-to-select.svg)](https://www.npmjs.com/package/@pluginjs/nav-to-select)
 
 A flexible modern nav-to-select js plugin.
@@ -6,16 +7,21 @@ A flexible modern nav-to-select js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/navToSelect/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/nav-to-select
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/nav-to-select
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/nav-to-select
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import NavToSelect from "@pluginjs/nav-to-select"
 import "@pluginjs/nav-to-select/dist/nav-to-select.css"
 
 NavToSelect.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/nav-to-select/dist/nav-to-select.css")
 const NavToSelect = require("@pluginjs/nav-to-select")
 
 NavToSelect.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.css">
   <script async src="https://unpkg.com/@pluginjs/nav-to-select/dist/nav-to-select.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.navToSelect('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on navToSelect instances through the navToSelect options itself.
 You can also save the instances to variable for further use.
 
@@ -86,7 +107,8 @@ Name | Description | Default
 `"getItemsFromList"` | Set get items from list callback | `function() {...}`
 `"onChange"` | Set change event callback | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on navToSelect instances through the navToSelect events itself.
 You can also save the instances to variable for further use.
 
@@ -98,8 +120,8 @@ Name | Description
 `"disable"` | Gets fired when plugin is disabled
 `"destroy"` | Gets fired when plugin is destroy
 
+### Methods
 
-### Methods:
 Methods are called on navToSelect instances through the navToSelect method itself.
 You can also save the instances to variable for further use.
 
@@ -114,16 +136,13 @@ Name | Description
 `"isBuilded"` | Get has builded or not
 `"getSelect"` | Get select value
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-navToSelect`
 `"SELECT"` | Declare plugin select | `{namespace}`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
-
-
-
 ---
 
 ## Browser support
@@ -135,7 +154,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/nav-to-select is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/nav-to-select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

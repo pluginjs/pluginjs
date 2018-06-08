@@ -1,4 +1,5 @@
 # Scrollable
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/scrollable.svg)](https://www.npmjs.com/package/@pluginjs/scrollable)
 
 A flexible modern scrollable js plugin.
@@ -6,16 +7,21 @@ A flexible modern scrollable js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/scrollable/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/scrollable
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/scrollable
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/scrollable
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Scrollable from "@pluginjs/scrollable"
 import "@pluginjs/scrollable/dist/scrollable.css"
 
 Scrollable.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/scrollable/dist/scrollable.css")
 const Scrollable = require("@pluginjs/scrollable")
 
 Scrollable.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.css">
   <script async src="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.scrollable('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on scrollable instances through the scrollable options itself.
 You can also save the instances to variable for further use.
 
@@ -85,7 +106,8 @@ Name | Description | Default
 `"throttle"` | Set throttle | `20`
 `"scrollbar"` | Set scrollbar | `{}`
 
-### Events:
+### Events
+
 Events are called on scrollable instances through the scrollable events itself.
 You can also save the instances to variable for further use.
 
@@ -102,8 +124,8 @@ Name | Description
 `"scrollEnd"` | Gets fired when plugin has scrollEnd
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on scrollable instances through the scrollable method itself.
 You can also save the instances to variable for further use.
 
@@ -116,8 +138,8 @@ Name | Description
 `"destroy"` | Destroy plugin
 `"update"` | 
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-scrollable`
@@ -134,12 +156,6 @@ Name | Description | Default
 `"DRAGGING"` | Declare plugin dragging | `{namespace}-dragging`
 `"HOVERING"` | Announce plugin is hoverd | `{namespace}-hovering`
 `"SCROLLING"` | Declare plugin scrolling | `{namespace}-scrolling`
-
-
-
-### Dependencies:
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -151,7 +167,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/scrollable is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scrollable project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

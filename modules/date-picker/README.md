@@ -1,4 +1,5 @@
 # DatePicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/date-picker.svg)](https://www.npmjs.com/package/@pluginjs/date-picker)
 
 A flexible modern date-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern date-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/datePicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/date-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/date-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/date-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import DatePicker from "@pluginjs/date-picker"
 import "@pluginjs/date-picker/dist/date-picker.css"
 
 DatePicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/date-picker/dist/date-picker.css")
 const DatePicker = require("@pluginjs/date-picker")
 
 DatePicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.css">
   <script async src="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.datePicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on datePicker instances through the datePicker options itself.
 You can also save the instances to variable for further use.
 
@@ -107,7 +128,8 @@ Name | Description | Default
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on datePicker instances through the datePicker events itself.
 You can also save the instances to variable for further use.
 
@@ -123,8 +145,8 @@ Name | Description
 `"show"` | Gets fired when plugin has show
 `"hide"` | Gets fired when plugin has hide
 
+### Methods
 
-### Methods:
 Methods are called on datePicker instances through the datePicker method itself.
 You can also save the instances to variable for further use.
 
@@ -145,8 +167,8 @@ Name | Description
 `"set"` | Set value by key
 `"val"` | Set or get value by key
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-datePicker`
@@ -182,8 +204,8 @@ Name | Description | Default
 `"INLINEMODE"` | Declare plugin inlinemode | `{namespace}-inline`
 `"PICKERWRAP"` | Declare plugin pickerwrap | `{namespace}-picker-wrap`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"days"` | Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday | 周日,周一,周二,周三,周四,周五,周六
@@ -191,8 +213,6 @@ Name | EN | ZH
 `"months"` | January,February,March,April,May,June,July,August,September,October,November,December | 一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月
 `"monthsShort"` | Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec | 1,2,3,4,5,6,7,8,9,10,11,12
 `"buttons"` | Cancel,Save | 取消,保存
-
-
 ---
 
 ## Browser support
@@ -204,7 +224,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/date-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/date-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

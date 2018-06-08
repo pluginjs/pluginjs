@@ -1,4 +1,5 @@
 # BgVideo
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/bg-video.svg)](https://www.npmjs.com/package/@pluginjs/bg-video)
 
 A flexible modern bg-video js plugin.
@@ -6,16 +7,21 @@ A flexible modern bg-video js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/bgVideo/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/bg-video
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/bg-video
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/bg-video
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/bg-video/dist/bg-video.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/bg-video/dist/bg-video.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/bg-video/dist/bg-video.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/bg-video/dist/bg-video.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import BgVideo from "@pluginjs/bg-video"
 import "@pluginjs/bg-video/dist/bg-video.css"
 
 BgVideo.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/bg-video/dist/bg-video.css")
 const BgVideo = require("@pluginjs/bg-video")
 
 BgVideo.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/bg-video/dist/bg-video.css">
   <script async src="https://unpkg.com/@pluginjs/bg-video/dist/bg-video.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.bgVideo('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on bgVideo instances through the bgVideo options itself.
 You can also save the instances to variable for further use.
 
@@ -77,7 +98,8 @@ Name | Description | Default
 `"type"` | Different video sources, such as HTML5 Youtube Vimeo | ``
 `"video"` | Video configuration | `{&quot;id&quot;:&quot;&quot;,&quot;url&quot;:&quot;&quot;,&quot;mute&quot;:true,&quot;repeat&quot;:true,&quot;autoplay&quot;:true,&quot;mobileImage&quot;:&quot;&quot;}`
 
-### Events:
+### Events
+
 Events are called on bgVideo instances through the bgVideo events itself.
 You can also save the instances to variable for further use.
 
@@ -89,8 +111,8 @@ Name | Description
 `"pause"` | Gets fired when video is pause
 `"stop"` | Gets fired when video is stop
 
+### Methods
 
-### Methods:
 Methods are called on bgVideo instances through the bgVideo method itself.
 You can also save the instances to variable for further use.
 
@@ -103,19 +125,13 @@ Name | Description
 `"setVolume"` | Set the video volume
 `"change"` | Switch video
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-bgVideo`
 `"OVERLAY"` | Declare plugin overlay | `{namespace}-overlay`
 `"POINTEREVENTNONE"` | Event penetration effect | `pointer-events-none`
-
-
-
-### Dependencies:
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -127,7 +143,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/bg-video is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/bg-video project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

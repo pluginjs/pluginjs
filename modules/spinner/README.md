@@ -1,4 +1,5 @@
 # Spinner
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/spinner.svg)](https://www.npmjs.com/package/@pluginjs/spinner)
 
 A flexible modern spinner js plugin.
@@ -6,16 +7,21 @@ A flexible modern spinner js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/spinner/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/spinner
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/spinner
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/spinner
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/spinner/dist/spinner.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/spinner/dist/spinner.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/spinner/dist/spinner.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/spinner/dist/spinner.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Spinner from "@pluginjs/spinner"
 import "@pluginjs/spinner/dist/spinner.css"
 
 Spinner.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/spinner/dist/spinner.css")
 const Spinner = require("@pluginjs/spinner")
 
 Spinner.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/spinner/dist/spinner.css">
   <script async src="https://unpkg.com/@pluginjs/spinner/dist/spinner.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.spinner('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on spinner instances through the spinner options itself.
 You can also save the instances to variable for further use.
 
@@ -89,7 +110,8 @@ Name | Description | Default
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on spinner instances through the spinner events itself.
 You can also save the instances to variable for further use.
 
@@ -102,8 +124,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on spinner instances through the spinner method itself.
 You can also save the instances to variable for further use.
 
@@ -119,8 +141,8 @@ Name | Description
 `"spinDown"` | Get value of subtraction
 `"spinUp"` | Get value of add
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-spinner`
@@ -132,13 +154,6 @@ Name | Description | Default
 `"UP"` | Declare plugin up | `{namespace}-up`
 `"WRAP"` | Declare plugin wrap | `{namespace}`
 `"CONTROLRIGHT"` | Declare plugin control right | `{namespace}-control-right`
-
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -150,7 +165,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/spinner is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/spinner project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

@@ -1,4 +1,5 @@
 # Progress
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/progress.svg)](https://www.npmjs.com/package/@pluginjs/progress)
 
 A flexible modern progress js plugin.
@@ -6,16 +7,21 @@ A flexible modern progress js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/progress/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/progress
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/progress
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/progress
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/progress/dist/progress.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/progress/dist/progress.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/progress/dist/progress.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/progress/dist/progress.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Progress from "@pluginjs/progress"
 import "@pluginjs/progress/dist/progress.css"
 
 Progress.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/progress/dist/progress.css")
 const Progress = require("@pluginjs/progress")
 
 Progress.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/progress/dist/progress.css">
   <script async src="https://unpkg.com/@pluginjs/progress/dist/progress.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.progress('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on progress instances through the progress options itself.
 You can also save the instances to variable for further use.
 
@@ -84,7 +105,8 @@ Name | Description | Default
 `"templates"` | Set templates for plugin | `{}`
 `"valueCallback"` | Set value callback for plugin | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on progress instances through the progress events itself.
 You can also save the instances to variable for further use.
 
@@ -100,8 +122,8 @@ Name | Description
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
 
+### Methods
 
-### Methods:
 Methods are called on progress instances through the progress method itself.
 You can also save the instances to variable for further use.
 
@@ -117,8 +139,8 @@ Name | Description
 `"enable"` | Enabled plugin if plugin is disabled
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-progress`
@@ -129,9 +151,6 @@ Name | Description | Default
 `"BAR"` | Declare plugin bar | `{namespace}-bar`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"VERTICAL"` | Declare plugin direction is vertical | `{namespace}-vertical`
-
-
-
 ---
 
 ## Browser support
@@ -143,7 +162,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/progress is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/progress project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

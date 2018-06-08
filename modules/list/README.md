@@ -1,4 +1,5 @@
 # List
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/list.svg)](https://www.npmjs.com/package/@pluginjs/list)
 
 A flexible modern list js plugin.
@@ -6,16 +7,21 @@ A flexible modern list js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/list/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/list
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/list
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/list
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/list/dist/list.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/list/dist/list.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/list/dist/list.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/list/dist/list.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import List from "@pluginjs/list"
 import "@pluginjs/list/dist/list.css"
 
 List.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/list/dist/list.css")
 const List = require("@pluginjs/list")
 
 List.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/list/dist/list.css">
   <script async src="https://unpkg.com/@pluginjs/list/dist/list.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.list('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on list instances through the list options itself.
 You can also save the instances to variable for further use.
 
@@ -84,7 +105,8 @@ Name | Description | Default
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on list instances through the list events itself.
 You can also save the instances to variable for further use.
 
@@ -99,8 +121,8 @@ Name | Description
 `"clear"` | Gets fired when plugin has clear
 `"edited"` | Gets fired when plugin has edited
 
+### Methods
 
-### Methods:
 Methods are called on list instances through the list method itself.
 You can also save the instances to variable for further use.
 
@@ -116,8 +138,8 @@ Name | Description
 `"insert"` | Insert plugin
 `"clear"` | Clear plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-list`
@@ -133,20 +155,13 @@ Name | Description | Default
 `"POPVER"` | Declare plugin popver | `{namespace}-popver`
 `"CLONEANIMATE"` | Declare plugin cloneanimate | `{namespace}-item-clone-animate`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"cancel"` | Cancel | 取消
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
 `"delete"` | Delete | 删除
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -158,7 +173,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/list is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

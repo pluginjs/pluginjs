@@ -1,4 +1,5 @@
 # Gmap
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/gmap.svg)](https://www.npmjs.com/package/@pluginjs/gmap)
 
 A flexible modern gmap js plugin.
@@ -6,16 +7,21 @@ A flexible modern gmap js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/gmap/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/gmap
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/gmap
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/gmap
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/gmap/dist/gmap.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gmap/dist/gmap.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/gmap/dist/gmap.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gmap/dist/gmap.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Gmap from "@pluginjs/gmap"
 import "@pluginjs/gmap/dist/gmap.css"
 
 Gmap.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/gmap/dist/gmap.css")
 const Gmap = require("@pluginjs/gmap")
 
 Gmap.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gmap/dist/gmap.css">
   <script async src="https://unpkg.com/@pluginjs/gmap/dist/gmap.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.gmap('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on gmap instances through the gmap options itself.
 You can also save the instances to variable for further use.
 
@@ -103,7 +124,8 @@ Name | Description | Default
 `"onInit"` | Set onInit | `null`
 `"onReady"` | Set onReady | `null`
 
-### Events:
+### Events
+
 Events are called on gmap instances through the gmap events itself.
 You can also save the instances to variable for further use.
 
@@ -114,8 +136,8 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on gmap instances through the gmap method itself.
 You can also save the instances to variable for further use.
 
@@ -129,17 +151,14 @@ Name | Description
 `"removerMarker"` | Remove value of removerMarker
 `"clearMarkers"` | Clear value of markers
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `as-gmap`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"ELEMENT"` | Declare plugin element | `{namespace}`
 `"CONTENT"` | Declare plugin content | `{namespace}-content`
-
-
-
 ---
 
 ## Browser support
@@ -151,7 +170,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/gmap is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/gmap project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

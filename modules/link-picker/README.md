@@ -1,4 +1,5 @@
 # LinkPicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/link-picker.svg)](https://www.npmjs.com/package/@pluginjs/link-picker)
 
 A flexible modern link-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern link-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/linkPicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/link-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/link-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/link-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import LinkPicker from "@pluginjs/link-picker"
 import "@pluginjs/link-picker/dist/link-picker.css"
 
 LinkPicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/link-picker/dist/link-picker.css")
 const LinkPicker = require("@pluginjs/link-picker")
 
 LinkPicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.css">
   <script async src="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.linkPicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on linkPicker instances through the linkPicker options itself.
 You can also save the instances to variable for further use.
 
@@ -82,7 +103,8 @@ Name | Description | Default
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on linkPicker instances through the linkPicker events itself.
 You can also save the instances to variable for further use.
 
@@ -93,8 +115,8 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on linkPicker instances through the linkPicker method itself.
 You can also save the instances to variable for further use.
 
@@ -108,8 +130,8 @@ Name | Description
 `"update"` | Update plugin
 `"get"` | Get value by key
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-linkPicker`
@@ -143,8 +165,8 @@ Name | Description | Default
 `"FILL"` | Declare plugin fill | `{namespace}-fill`
 `"HOVER"` | Announce plugin is hover | `{namespace}-hover`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"type"` | Type | 类型
@@ -159,15 +181,6 @@ Name | EN | ZH
 `"typeData"` | [object Object],[object Object],[object Object],[object Object],[object Object] | [object Object],[object Object],[object Object],[object Object],[object Object]
 `"contentData"` | [object Object],[object Object],[object Object],[object Object],[object Object] | [object Object],[object Object],[object Object],[object Object],[object Object]
 `"openModeData"` | [object Object],[object Object] | [object Object],[object Object]
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -179,7 +192,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/link-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/link-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

@@ -1,4 +1,5 @@
 # GradientPicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/gradient-picker.svg)](https://www.npmjs.com/package/@pluginjs/gradient-picker)
 
 A flexible modern gradient-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern gradient-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/gradientPicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/gradient-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/gradient-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/gradient-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import GradientPicker from "@pluginjs/gradient-picker"
 import "@pluginjs/gradient-picker/dist/gradient-picker.css"
 
 GradientPicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/gradient-picker/dist/gradient-picker.css")
 const GradientPicker = require("@pluginjs/gradient-picker")
 
 GradientPicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.css">
   <script async src="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.gradientPicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on gradientPicker instances through the gradientPicker options itself.
 You can also save the instances to variable for further use.
 
@@ -81,7 +102,8 @@ Name | Description | Default
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on gradientPicker instances through the gradientPicker events itself.
 You can also save the instances to variable for further use.
 
@@ -92,8 +114,8 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on gradientPicker instances through the gradientPicker method itself.
 You can also save the instances to variable for further use.
 
@@ -107,8 +129,8 @@ Name | Description
 `"val"` | Set or get value by key
 `"clear"` | Clear plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-gradientPicker`
@@ -134,8 +156,8 @@ Name | Description | Default
 `"SELECTORLIST"` | Declare plugin selectorlist | `{namespace}-selector-list`
 `"SELECTORITEM"` | Declare plugin selectoritem | `{namespace}-selector-item`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"chooseGradient"` | Choose Gradient | 选择渐变
@@ -151,22 +173,6 @@ Name | EN | ZH
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
 `"cancel"` | Cancel | 取消
 `"delete"` | Delete | 删除
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -178,7 +184,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/gradient-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/gradient-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

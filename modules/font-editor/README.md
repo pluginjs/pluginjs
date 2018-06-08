@@ -1,4 +1,5 @@
 # FontEditor
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/font-editor.svg)](https://www.npmjs.com/package/@pluginjs/font-editor)
 
 A flexible modern font-editor js plugin.
@@ -6,16 +7,21 @@ A flexible modern font-editor js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/fontEditor/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/font-editor
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/font-editor
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/font-editor
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import FontEditor from "@pluginjs/font-editor"
 import "@pluginjs/font-editor/dist/font-editor.css"
 
 FontEditor.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/font-editor/dist/font-editor.css")
 const FontEditor = require("@pluginjs/font-editor")
 
 FontEditor.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.css">
   <script async src="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.fontEditor('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on fontEditor instances through the fontEditor options itself.
 You can also save the instances to variable for further use.
 
@@ -91,7 +112,8 @@ Name | Description | Default
 `"onChange"` | Gets fired when plugin has change | `function() {...}`
 `"onClick"` | Gets fired when plugin has click | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on fontEditor instances through the fontEditor events itself.
 You can also save the instances to variable for further use.
 
@@ -103,8 +125,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on fontEditor instances through the fontEditor method itself.
 You can also save the instances to variable for further use.
 
@@ -124,8 +146,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-fontEditor`
@@ -142,8 +164,8 @@ Name | Description | Default
 `"EXPANDSAVE"` | declare plugin expandsave | `{namespace}-expand-save`
 `"INHERIT"` | declare plugin inherit | `{namespace}-inherit`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"addTypography"` | Add Typography | 添加排版
@@ -153,16 +175,6 @@ Name | EN | ZH
 `"fontSize"` | Font Size | 字号
 `"lineHeight"` | Line Height | 行高
 `"weight"` | Weight | 字重
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -174,7 +186,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/font-editor is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/font-editor project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

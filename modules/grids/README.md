@@ -1,4 +1,5 @@
 # Grids
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/grids.svg)](https://www.npmjs.com/package/@pluginjs/grids)
 
 A flexible modern grids js plugin.
@@ -6,16 +7,21 @@ A flexible modern grids js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/grids/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/grids
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/grids
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/grids
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/grids/dist/grids.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/grids/dist/grids.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/grids/dist/grids.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/grids/dist/grids.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Grids from "@pluginjs/grids"
 import "@pluginjs/grids/dist/grids.css"
 
 Grids.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/grids/dist/grids.css")
 const Grids = require("@pluginjs/grids")
 
 Grids.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/grids/dist/grids.css">
   <script async src="https://unpkg.com/@pluginjs/grids/dist/grids.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.grids('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on grids instances through the grids options itself.
 You can also save the instances to variable for further use.
 
@@ -95,7 +116,8 @@ Name | Description | Default
 `"sort"` | Set sort | `function() {...}`
 `"parseTagsStr"` | Set parseTagsStr | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on grids instances through the grids events itself.
 You can also save the instances to variable for further use.
 
@@ -111,8 +133,8 @@ Name | Description
 `"sort"` | Gets fired when plugin has sort
 `"reverse"` | Gets fired when plugin has reverse
 
+### Methods
 
-### Methods:
 Methods are called on grids instances through the grids method itself.
 You can also save the instances to variable for further use.
 
@@ -126,8 +148,8 @@ Name | Description
 `"sort"` | Make plugin sort
 `"reverse"` | Make plugin reverse
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `as-grids`
@@ -150,17 +172,6 @@ Name | Description | Default
 `"CAROUSELNEXT"` | Declare plugin carousel next | `{namespace}-carousel-next`
 `"CAROUSELDOTS"` | Declare plugin carousel dots | `{namespace}-carousel-dots`
 `"DRAG"` | Declare plugin drag | `{namespace}-drag`
-
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -172,7 +183,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/grids is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/grids project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

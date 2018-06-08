@@ -1,4 +1,5 @@
 # Wizard
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/wizard.svg)](https://www.npmjs.com/package/@pluginjs/wizard)
 
 A flexible modern wizard js plugin.
@@ -6,16 +7,21 @@ A flexible modern wizard js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/wizard/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/wizard
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/wizard
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/wizard
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/wizard/dist/wizard.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/wizard/dist/wizard.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/wizard/dist/wizard.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/wizard/dist/wizard.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Wizard from "@pluginjs/wizard"
 import "@pluginjs/wizard/dist/wizard.css"
 
 Wizard.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/wizard/dist/wizard.css")
 const Wizard = require("@pluginjs/wizard")
 
 Wizard.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/wizard/dist/wizard.css">
   <script async src="https://unpkg.com/@pluginjs/wizard/dist/wizard.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.wizard('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on wizard instances through the wizard options itself.
 You can also save the instances to variable for further use.
 
@@ -86,7 +107,8 @@ Name | Description | Default
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set is enabled locale fallbacks or not | `true`
 
-### Events:
+### Events
+
 Events are called on wizard instances through the wizard events itself.
 You can also save the instances to variable for further use.
 
@@ -104,8 +126,8 @@ Name | Description
 `"finish"` | Gets fired when plugin has finish
 `"init"` | Gets fired when plugin is initialing
 
+### Methods
 
-### Methods:
 Methods are called on wizard instances through the wizard method itself.
 You can also save the instances to variable for further use.
 
@@ -116,8 +138,8 @@ Name | Description
 `"destroy"` | Destroy plugin
 `"get"` | Get value by key
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-wizard`
@@ -129,15 +151,13 @@ Name | Description | Default
 `"BUTTONS"` | Declare buttons node | `[object Object]`
 `"BUTTON"` | Declare button node | `[object Object]`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"back"` | Back | 返回
 `"next"` | Next | 前进
 `"finish"` | Finish | 完成
-
-
 ---
 
 ## Browser support
@@ -149,7 +169,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/wizard is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/wizard project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

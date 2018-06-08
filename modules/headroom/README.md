@@ -1,4 +1,5 @@
 # Headroom
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/headroom.svg)](https://www.npmjs.com/package/@pluginjs/headroom)
 
 A flexible modern headroom js plugin.
@@ -6,16 +7,21 @@ A flexible modern headroom js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/headroom/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/headroom
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/headroom
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/headroom
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/headroom/dist/headroom.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/headroom/dist/headroom.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/headroom/dist/headroom.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/headroom/dist/headroom.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Headroom from "@pluginjs/headroom"
 import "@pluginjs/headroom/dist/headroom.css"
 
 Headroom.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/headroom/dist/headroom.css")
 const Headroom = require("@pluginjs/headroom")
 
 Headroom.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/headroom/dist/headroom.css">
   <script async src="https://unpkg.com/@pluginjs/headroom/dist/headroom.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.headroom('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on headroom instances through the headroom options itself.
 You can also save the instances to variable for further use.
 
@@ -79,7 +100,8 @@ Name | Description | Default
 `"mode"` | Different judgments | `pinned`
 `"offsetSide"` | If offset is an element selector, you can specify his size | `top`
 
-### Events:
+### Events
+
 Events are called on headroom instances through the headroom events itself.
 You can also save the instances to variable for further use.
 
@@ -90,8 +112,8 @@ Name | Description
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
 
+### Methods
 
-### Methods:
 Methods are called on headroom instances through the headroom method itself.
 You can also save the instances to variable for further use.
 
@@ -101,8 +123,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"enable"` | Enabled plugin if plugin is disabled
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-headroom`
@@ -112,12 +134,6 @@ Name | Description | Default
 `"NOTTOP"` | Announce plugin is notTop | `{namespace}-notTop`
 `"STICK"` | Announce plugin is stick | `{namespace}-stick`
 `"UNSTICK"` | Announce plugin is unstick | `{namespace}-unstick`
-
-
-
-### Dependencies:
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -129,7 +145,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/headroom is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/headroom project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

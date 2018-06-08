@@ -1,4 +1,5 @@
 # AutoComplete
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/auto-complete.svg)](https://www.npmjs.com/package/@pluginjs/auto-complete)
 
 A flexible modern auto-complete js plugin.
@@ -6,16 +7,21 @@ A flexible modern auto-complete js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/autoComplete/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/auto-complete
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/auto-complete
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/auto-complete
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/auto-complete/dist/auto-complete.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/auto-complete/dist/auto-complete.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/auto-complete/dist/auto-complete.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/auto-complete/dist/auto-complete.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import AutoComplete from "@pluginjs/auto-complete"
 import "@pluginjs/auto-complete/dist/auto-complete.css"
 
 AutoComplete.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/auto-complete/dist/auto-complete.css")
 const AutoComplete = require("@pluginjs/auto-complete")
 
 AutoComplete.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/auto-complete/dist/auto-complete.css">
   <script async src="https://unpkg.com/@pluginjs/auto-complete/dist/auto-complete.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.autoComplete('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on autoComplete instances through the autoComplete options itself.
 You can also save the instances to variable for further use.
 
@@ -92,7 +113,8 @@ Name | Description | Default
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"onChange"` | The onchange event occurs when the content of the domain changes | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on autoComplete instances through the autoComplete events itself.
 You can also save the instances to variable for further use.
 
@@ -104,8 +126,8 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on autoComplete instances through the autoComplete method itself.
 You can also save the instances to variable for further use.
 
@@ -123,8 +145,8 @@ Name | Description
 `"val"` | Set or get value by key
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-autoComplete`
@@ -144,12 +166,6 @@ Name | Description | Default
 `"SHOW"` | Announce plugin is show | `{namespace}-show`
 `"OPEN"` | Announce plugin is open | `{namespace}-open`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-
-
-
-### Dependencies:
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -161,7 +177,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/auto-complete is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/auto-complete project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

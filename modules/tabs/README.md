@@ -1,4 +1,5 @@
 # Tabs
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/tabs.svg)](https://www.npmjs.com/package/@pluginjs/tabs)
 
 A flexible modern tabs js plugin.
@@ -6,16 +7,21 @@ A flexible modern tabs js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/tabs/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/tabs
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/tabs
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/tabs
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/tabs/dist/tabs.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tabs/dist/tabs.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/tabs/dist/tabs.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tabs/dist/tabs.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Tabs from "@pluginjs/tabs"
 import "@pluginjs/tabs/dist/tabs.css"
 
 Tabs.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/tabs/dist/tabs.css")
 const Tabs = require("@pluginjs/tabs")
 
 Tabs.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tabs/dist/tabs.css">
   <script async src="https://unpkg.com/@pluginjs/tabs/dist/tabs.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.tabs('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on tabs instances through the tabs options itself.
 You can also save the instances to variable for further use.
 
@@ -96,7 +117,8 @@ Name | Description | Default
 `"onInit"` | Set initial callback | `null`
 `"onReady"` | Set ready callback | `null`
 
-### Events:
+### Events
+
 Events are called on tabs instances through the tabs events itself.
 You can also save the instances to variable for further use.
 
@@ -110,8 +132,8 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on tabs instances through the tabs method itself.
 You can also save the instances to variable for further use.
 
@@ -133,8 +155,8 @@ Name | Description
 `"remove"` | Remove a tab by index
 `"append"` | Append a tab by label and content
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-tabs`
@@ -149,9 +171,6 @@ Name | Description | Default
 `"NAV"` | Declare nav dom node | `{namespace}-nav`
 `"CONTENT"` | Declare content node | `{namespace}-content`
 `"LOADING"` | Announce plugin is loading | `{namespace}-loading`
-
-
-
 ---
 
 ## Browser support
@@ -163,7 +182,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/tabs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/tabs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

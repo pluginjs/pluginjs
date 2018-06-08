@@ -1,5 +1,5 @@
 const fetchPkg = require('./utils/package-utils')
-const { findModule } = require('./utils')
+const { findModule, fetchModuleList } = require('./utils')
 
 const jestOptions = {
   jest: {
@@ -9,9 +9,14 @@ const jestOptions = {
   }
 }
 function syncTestConfig(ctx) {
+  if (!ctx.moduleName || ctx.moduleName === 'all') {
+    return fetchModuleList().map(moduleName =>
+      syncTestConfig({ ...ctx, moduleName })
+    )
+  }
   const name = ctx.moduleName
   const pkg = fetchPkg(findModule(name))
-  pkg
+  return pkg
     .merge(jestOptions)
     .assign('devDependencies', {
       'babel-jest': '^23.0.1',

@@ -1,4 +1,5 @@
 # ToggleList
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/toggle-list.svg)](https://www.npmjs.com/package/@pluginjs/toggle-list)
 
 A flexible modern toggle-list js plugin.
@@ -6,16 +7,21 @@ A flexible modern toggle-list js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/toggleList/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/toggle-list
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/toggle-list
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/toggle-list
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import ToggleList from "@pluginjs/toggle-list"
 import "@pluginjs/toggle-list/dist/toggle-list.css"
 
 ToggleList.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/toggle-list/dist/toggle-list.css")
 const ToggleList = require("@pluginjs/toggle-list")
 
 ToggleList.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.css">
   <script async src="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.toggleList('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on toggleList instances through the toggleList options itself.
 You can also save the instances to variable for further use.
 
@@ -81,7 +102,8 @@ Name | Description | Default
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on toggleList instances through the toggleList events itself.
 You can also save the instances to variable for further use.
 
@@ -92,8 +114,8 @@ Name | Description
 `"uncheck"` | Gets fired when plugin has uncheck
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on toggleList instances through the toggleList method itself.
 You can also save the instances to variable for further use.
 
@@ -104,8 +126,8 @@ Name | Description
 `"val"` | Set or get value by key
 `"toggle"` | Set toggle
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-toggleList`
@@ -113,16 +135,6 @@ Name | Description | Default
 `"SWITCH"` | Declare plugin switch | `{namespace}-toggle`
 `"UNCHECKED"` | Declare plugin unchecked | `{namespace}-unchecked`
 `"CHECKED"` | Declare plugin checked | `{namespace}-checked`
-
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -134,7 +146,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/toggle-list is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/toggle-list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

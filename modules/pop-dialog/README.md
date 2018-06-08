@@ -1,4 +1,5 @@
 # PopDialog
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/pop-dialog.svg)](https://www.npmjs.com/package/@pluginjs/pop-dialog)
 
 A flexible modern pop-dialog js plugin.
@@ -6,16 +7,21 @@ A flexible modern pop-dialog js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/popDialog/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/pop-dialog
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/pop-dialog
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/pop-dialog
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/pop-dialog/dist/pop-dialog.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/pop-dialog/dist/pop-dialog.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/pop-dialog/dist/pop-dialog.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/pop-dialog/dist/pop-dialog.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import PopDialog from "@pluginjs/pop-dialog"
 import "@pluginjs/pop-dialog/dist/pop-dialog.css"
 
 PopDialog.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/pop-dialog/dist/pop-dialog.css")
 const PopDialog = require("@pluginjs/pop-dialog")
 
 PopDialog.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/pop-dialog/dist/pop-dialog.css">
   <script async src="https://unpkg.com/@pluginjs/pop-dialog/dist/pop-dialog.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.popDialog('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on popDialog instances through the popDialog options itself.
 You can also save the instances to variable for further use.
 
@@ -81,7 +102,8 @@ Name | Description | Default
 `"templates"` | Set default templates | `{}`
 `"buttons"` | Set default button | `{}`
 
-### Events:
+### Events
+
 Events are called on popDialog instances through the popDialog events itself.
 You can also save the instances to variable for further use.
 
@@ -97,8 +119,8 @@ Name | Description
 `"shown"` | Gets fired when plugin has shown
 `"inserted"` | Gets fired when plugin has inserted
 
+### Methods
 
-### Methods:
 Methods are called on popDialog instances through the popDialog method itself.
 You can also save the instances to variable for further use.
 
@@ -112,8 +134,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-popover`
@@ -129,13 +151,6 @@ Name | Description | Default
 `"BUTTONCOLOR"` | Announce plugin is color | `{namespace}-button-{color}`
 `"BUTTONS"` | Announce plugin is buttons | `{namespace}-buttons`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -147,7 +162,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/pop-dialog is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/pop-dialog project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

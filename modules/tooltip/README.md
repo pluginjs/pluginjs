@@ -1,4 +1,5 @@
 # Tooltip
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/tooltip.svg)](https://www.npmjs.com/package/@pluginjs/tooltip)
 
 A flexible modern tooltip js plugin.
@@ -6,16 +7,21 @@ A flexible modern tooltip js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/tooltip/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/tooltip
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/tooltip
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/tooltip
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Tooltip from "@pluginjs/tooltip"
 import "@pluginjs/tooltip/dist/tooltip.css"
 
 Tooltip.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/tooltip/dist/tooltip.css")
 const Tooltip = require("@pluginjs/tooltip")
 
 Tooltip.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.css">
   <script async src="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.tooltip('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on tooltip instances through the tooltip options itself.
 You can also save the instances to variable for further use.
 
@@ -89,7 +110,8 @@ Name | Description | Default
 `"constraints"` | Set constraints of tether | `[]`
 `"container"` | Set is enabled container | `false`
 
-### Events:
+### Events
+
 Events are called on tooltip instances through the tooltip events itself.
 You can also save the instances to variable for further use.
 
@@ -105,8 +127,8 @@ Name | Description
 `"shown"` | Gets fired when plugin has shown
 `"inserted"` | Gets fired when plugin has inserted
 
+### Methods
 
-### Methods:
 Methods are called on tooltip instances through the tooltip method itself.
 You can also save the instances to variable for further use.
 
@@ -119,8 +141,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-tooltip`
@@ -130,9 +152,6 @@ Name | Description | Default
 `"SHOW"` | Announce plugin is in show status | `{namespace}-show`
 `"FADE"` | Announce plugin is in fade animation mode | `{namespace}-fade`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-
-
-
 ---
 
 ## Browser support
@@ -144,7 +163,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/tooltip is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/tooltip project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

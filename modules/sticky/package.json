@@ -8,12 +8,7 @@
 		"@pluginjs/events": "^0.0.5",
 		"@pluginjs/pluginjs": "^0.2.25",
 		"@pluginjs/styled": "^0.0.3",
-		"@pluginjs/template": "^0.2.19",
-		"rollup": "^0.59.2",
-		"rollup-plugin-babel": "^4.0.0-beta.4",
-		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-node-resolve": "^3.3.0",
-		"@pluginjs/cli": "^0.5.18"
+		"@pluginjs/template": "^0.2.19"
 	},
 	"version": "0.2.18",
 	"description": "A flexible modern sticky js plugin.",
@@ -41,12 +36,30 @@
 	"scripts": {
 		"build": "plugin build",
 		"build:js": "plugin script build-js",
-		"build:scss": "plugin script build-scss"
+		"build:scss": "plugin script build-scss",
+		"test": "jest"
 	},
 	"css": {
 		"source": "src/css/sticky.scss",
 		"main": "dist/sticky.css",
 		"min": "dist/sticky.min.css"
 	},
-	"cjs": "dist/sticky.cjs.js"
+	"cjs": "dist/sticky.cjs.js",
+	"jest": {
+		"setupTestFrameworkScriptFile": "jest-extended",
+		"verbose": true,
+		"testPathIgnorePatterns": [
+			"fixtures"
+		]
+	},
+	"devDependencies": {
+		"babel-jest": "^23.0.1",
+		"jest": "^23.1.0",
+		"jest-extended": "^0.7.2",
+		"rollup": "^0.59.2",
+		"rollup-plugin-babel": "^4.0.0-beta.4",
+		"rollup-plugin-commonjs": "^9.1.3",
+		"rollup-plugin-node-resolve": "^3.3.0",
+		"@pluginjs/cli": "^0.5.18"
+	}
 }

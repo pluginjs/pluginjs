@@ -1,4 +1,5 @@
 # Accordion
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/accordion.svg)](https://www.npmjs.com/package/@pluginjs/accordion)
 
 A flexible modern accordion js plugin.
@@ -6,16 +7,21 @@ A flexible modern accordion js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/accordion/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/accordion
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/accordion
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/accordion
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/accordion/dist/accordion.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/accordion/dist/accordion.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/accordion/dist/accordion.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/accordion/dist/accordion.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Accordion from "@pluginjs/accordion"
 import "@pluginjs/accordion/dist/accordion.css"
 
 Accordion.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/accordion/dist/accordion.css")
 const Accordion = require("@pluginjs/accordion")
 
 Accordion.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/accordion/dist/accordion.css">
   <script async src="https://unpkg.com/@pluginjs/accordion/dist/accordion.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.accordion('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on accordion instances through the accordion options itself.
 You can also save the instances to variable for further use.
 
@@ -87,7 +108,8 @@ Name | Description | Default
 `"responsiveDuration"` | Set responsive duration | `300`
 `"onReady"` | Set ready callback | `null`
 
-### Events:
+### Events
+
 Events are called on accordion instances through the accordion events itself.
 You can also save the instances to variable for further use.
 
@@ -98,8 +120,8 @@ Name | Description
 `"close"` | Gets fired when plugin is close
 `"resize"` | Gets fired when plugin is resize
 
+### Methods
 
-### Methods:
 Methods are called on accordion instances through the accordion method itself.
 You can also save the instances to variable for further use.
 
@@ -108,8 +130,8 @@ Name | Description
 `"open"` | Open plugin
 `"close"` | Close plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-accordion`
@@ -126,9 +148,6 @@ Name | Description | Default
 `"PANEHEADER"` | Announce plugin pane header node | `{namespace}-pane-header`
 `"PANECONTENT"` | Announce plugin pane content node | `{namespace}-pane-content`
 `"PANECONTENTINNER"` | Announce plugin pane contentinner node | `{namespace}-pane-content-inner`
-
-
-
 ---
 
 ## Browser support
@@ -140,7 +159,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/accordion is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/accordion project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

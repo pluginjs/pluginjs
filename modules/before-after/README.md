@@ -1,4 +1,5 @@
 # BeforeAfter
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/before-after.svg)](https://www.npmjs.com/package/@pluginjs/before-after)
 
 A flexible modern before-after js plugin.
@@ -6,16 +7,21 @@ A flexible modern before-after js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/beforeAfter/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/before-after
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/before-after
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/before-after
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/before-after/dist/before-after.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/before-after/dist/before-after.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/before-after/dist/before-after.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/before-after/dist/before-after.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import BeforeAfter from "@pluginjs/before-after"
 import "@pluginjs/before-after/dist/before-after.css"
 
 BeforeAfter.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/before-after/dist/before-after.css")
 const BeforeAfter = require("@pluginjs/before-after")
 
 BeforeAfter.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/before-after/dist/before-after.css">
   <script async src="https://unpkg.com/@pluginjs/before-after/dist/before-after.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.beforeAfter('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on beforeAfter instances through the beforeAfter options itself.
 You can also save the instances to variable for further use.
 
@@ -88,7 +109,8 @@ Name | Description | Default
 `"arrows"` | Set arrows | `{&quot;left&quot;:&quot;fa fa-caret-left&quot;,&quot;right&quot;:&quot;fa fa-caret-right&quot;,&quot;up&quot;:&quot;fa fa-caret-up&quot;,&quot;down&quot;:&quot;fa fa-caret-down&quot;}`
 `"templates"` | Set default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on beforeAfter instances through the beforeAfter events itself.
 You can also save the instances to variable for further use.
 
@@ -104,8 +126,8 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on beforeAfter instances through the beforeAfter method itself.
 You can also save the instances to variable for further use.
 
@@ -117,8 +139,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `as-beforeAfter`
@@ -139,9 +161,6 @@ Name | Description | Default
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"DRAGGING"` | Announce plugin is dragging | `{namespace}-dragging`
 `"HOVERING"` | Announce plugin is hoverd | `{namespace}-hovering`
-
-
-
 ---
 
 ## Browser support
@@ -153,7 +172,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/before-after is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/before-after project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

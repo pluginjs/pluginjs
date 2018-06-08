@@ -1,4 +1,5 @@
 # Lightbox
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/lightbox.svg)](https://www.npmjs.com/package/@pluginjs/lightbox)
 
 A flexible modern lightbox js plugin.
@@ -6,16 +7,21 @@ A flexible modern lightbox js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/lightbox/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/lightbox
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/lightbox
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/lightbox
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Lightbox from "@pluginjs/lightbox"
 import "@pluginjs/lightbox/dist/lightbox.css"
 
 Lightbox.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/lightbox/dist/lightbox.css")
 const Lightbox = require("@pluginjs/lightbox")
 
 Lightbox.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.css">
   <script async src="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.lightbox('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on lightbox instances through the lightbox options itself.
 You can also save the instances to variable for further use.
 
@@ -81,7 +102,8 @@ Name | Description | Default
 `"title"` | Whether to display title, true or false | `true`
 `"templates"` | Element templates | `{}`
 
-### Events:
+### Events
+
 Events are called on lightbox instances through the lightbox events itself.
 You can also save the instances to variable for further use.
 
@@ -93,8 +115,8 @@ Name | Description
 `"disable"` | Gets fired when plugin is disabled
 `"destroy"` | Gets fired when plugin is destroy
 
+### Methods
 
-### Methods:
 Methods are called on lightbox instances through the lightbox method itself.
 You can also save the instances to variable for further use.
 
@@ -105,8 +127,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-lightbox`
@@ -158,18 +180,13 @@ Name | Description | Default
 `"WHITE"` | Announce plugin theme | `{namespace}-theme-white`
 `"BLACK"` | Announce plugin theme | `{namespace}-theme-black`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"hello"` | Hello world | 世界你好
 `"greeting"` | Hello {name}! | {name} 你好!
 `"plurals"` | {count} product,{count} products,no product | {count} 个产品
-
-
-### Dependencies:
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -181,7 +198,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/lightbox is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/lightbox project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

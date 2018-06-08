@@ -1,4 +1,5 @@
 # EditPanel
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/edit-panel.svg)](https://www.npmjs.com/package/@pluginjs/edit-panel)
 
 A flexible modern edit-panel js plugin.
@@ -6,16 +7,21 @@ A flexible modern edit-panel js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/editPanel/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/edit-panel
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/edit-panel
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/edit-panel
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import EditPanel from "@pluginjs/edit-panel"
 import "@pluginjs/edit-panel/dist/edit-panel.css"
 
 EditPanel.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/edit-panel/dist/edit-panel.css")
 const EditPanel = require("@pluginjs/edit-panel")
 
 EditPanel.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.css">
   <script async src="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.editPanel('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on editPanel instances through the editPanel options itself.
 You can also save the instances to variable for further use.
 
@@ -81,7 +102,8 @@ Name | Description | Default
 `"action"` | Set plugin action option | `{&quot;panel&quot;:{&quot;cancel&quot;:{&quot;title&quot;:&quot;Cancel&quot;,&quot;class&quot;:&quot;&quot;},&quot;save&quot;:{&quot;title&quot;:&quot;Save&quot;,&quot;class&quot;:&quot;&quot;}},&quot;selector&quot;:{&quot;cancel&quot;:{&quot;title&quot;:&quot;Cancel&quot;,&quot;class&quot;:&quot;&quot;},&quot;save&quot;:{&quot;title&quot;:&quot;Use It&quot;,&quot;class&quot;:&quot;&quot;}}}`
 `"templates"` | Set default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on editPanel instances through the editPanel events itself.
 You can also save the instances to variable for further use.
 
@@ -98,8 +120,8 @@ Name | Description
 `"openSelector"` | Get fired when plugin has openSelector
 `"closeSelector"` | Get fired when plugin has closeSelector
 
+### Methods
 
-### Methods:
 Methods are called on editPanel instances through the editPanel method itself.
 You can also save the instances to variable for further use.
 
@@ -115,8 +137,8 @@ Name | Description
 `"disabledSelector"` | DisabledSelector the defaults is true
 `"enabledSelector"` | EnabledSelector the defaults is false
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-editPanel`
@@ -148,12 +170,6 @@ Name | Description | Default
 `"ACTION"` | Declare plugin action | `{namespace}-action`
 `"CANCEL"` | Declare plugin cancel | `{namespace}-cancel`
 `"SAVE"` | Declare plugin save | `{namespace}-save`
-
-
-
-### Dependencies:
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -165,7 +181,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/edit-panel is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/edit-panel project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

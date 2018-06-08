@@ -1,4 +1,5 @@
 # DynamicNumber
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/dynamic-number.svg)](https://www.npmjs.com/package/@pluginjs/dynamic-number)
 
 A flexible modern dynamic-number js plugin.
@@ -6,16 +7,21 @@ A flexible modern dynamic-number js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/dynamicNumber/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/dynamic-number
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/dynamic-number
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/dynamic-number
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import DynamicNumber from "@pluginjs/dynamic-number"
 import "@pluginjs/dynamic-number/dist/dynamic-number.css"
 
 DynamicNumber.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/dynamic-number/dist/dynamic-number.css")
 const DynamicNumber = require("@pluginjs/dynamic-number")
 
 DynamicNumber.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.css">
   <script async src="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.dynamicNumber('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on dynamicNumber instances through the dynamicNumber options itself.
 You can also save the instances to variable for further use.
 
@@ -82,7 +103,8 @@ Name | Description | Default
 `"currency"` | Set currency config | `{&quot;indicator&quot;:&quot;$&quot;,&quot;size&quot;:3,&quot;decimals&quot;:&quot;2&quot;,&quot;separator&quot;:&quot;,&quot;,&quot;decimalsPoint&quot;:&quot;.&quot;}`
 `"group"` | Set group config | `{&quot;size&quot;:3,&quot;decimals&quot;:&quot;2&quot;,&quot;separator&quot;:&quot;,&quot;,&quot;decimalsPoint&quot;:&quot;.&quot;}`
 
-### Events:
+### Events
+
 Events are called on dynamicNumber instances through the dynamicNumber events itself.
 You can also save the instances to variable for further use.
 
@@ -95,8 +117,8 @@ Name | Description
 `"reset"` | Gets fired when plugin has be reset
 `"destroy"` | Gets fired when plugin is destroy
 
+### Methods
 
-### Methods:
 Methods are called on dynamicNumber instances through the dynamicNumber method itself.
 You can also save the instances to variable for further use.
 
@@ -108,10 +130,6 @@ Name | Description
 `"reset"` | Reset plugin
 `"destroy"` | Destroy plugin
 `"go"` | 
-
-
-
-
 ---
 
 ## Browser support
@@ -123,7 +141,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/dynamic-number is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/dynamic-number project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

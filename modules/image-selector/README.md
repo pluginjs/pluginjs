@@ -1,4 +1,5 @@
 # ImageSelector
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/image-selector.svg)](https://www.npmjs.com/package/@pluginjs/image-selector)
 
 A flexible modern image-selector js plugin.
@@ -6,16 +7,21 @@ A flexible modern image-selector js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/imageSelector/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/image-selector
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/image-selector
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/image-selector
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import ImageSelector from "@pluginjs/image-selector"
 import "@pluginjs/image-selector/dist/image-selector.css"
 
 ImageSelector.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/image-selector/dist/image-selector.css")
 const ImageSelector = require("@pluginjs/image-selector")
 
 ImageSelector.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.css">
   <script async src="https://unpkg.com/@pluginjs/image-selector/dist/image-selector.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.imageSelector('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on imageSelector instances through the imageSelector options itself.
 You can also save the instances to variable for further use.
 
@@ -80,7 +101,8 @@ Name | Description | Default
 `"data"` | Set plugin data option | `null`
 `"hideOutClick"` | Set plugin is hideOutClick or not  | `true`
 
-### Events:
+### Events
+
 Events are called on imageSelector instances through the imageSelector events itself.
 You can also save the instances to variable for further use.
 
@@ -91,8 +113,8 @@ Name | Description
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
 
+### Methods
 
-### Methods:
 Methods are called on imageSelector instances through the imageSelector method itself.
 You can also save the instances to variable for further use.
 
@@ -105,8 +127,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-imageSelector`
@@ -125,17 +147,11 @@ Name | Description | Default
 `"WRAPPER"` | Declare plugin wrapper | `{namespace}-wrapper`
 `"MASK"` | Declare plugin mask | `{namespace}-mask`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"change"` | Change | 改变布局
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -147,7 +163,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/image-selector is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/image-selector project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

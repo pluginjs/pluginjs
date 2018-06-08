@@ -1,4 +1,5 @@
 # IconPicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/icon-picker.svg)](https://www.npmjs.com/package/@pluginjs/icon-picker)
 
 A flexible modern icon-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern icon-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/iconPicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/icon-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/icon-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/icon-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import IconPicker from "@pluginjs/icon-picker"
 import "@pluginjs/icon-picker/dist/icon-picker.css"
 
 IconPicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/icon-picker/dist/icon-picker.css")
 const IconPicker = require("@pluginjs/icon-picker")
 
 IconPicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.css">
   <script async src="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.iconPicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on iconPicker instances through the iconPicker options itself.
 You can also save the instances to variable for further use.
 
@@ -83,7 +104,8 @@ Name | Description | Default
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on iconPicker instances through the iconPicker events itself.
 You can also save the instances to variable for further use.
 
@@ -95,8 +117,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on iconPicker instances through the iconPicker method itself.
 You can also save the instances to variable for further use.
 
@@ -109,8 +131,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-iconPicker`
@@ -145,8 +167,8 @@ Name | Description | Default
 `"EMPTY"` | Declare plugin empty | `{namespace}-empty`
 `"EMPTYLINK"` | Declare plugin emptylink | `{namespace}-empty-link`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"allIcons"` | All Icons | 全部图标
@@ -155,14 +177,6 @@ Name | EN | ZH
 `"founded"` | founded | 结果
 `"emptyTitle"` | Befor using icons, you need add icons.  | 使用图标之前，请先添加。
 `"emptyLinkTitle"` | Go add now | 现在添加
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -174,7 +188,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/icon-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/icon-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

@@ -1,4 +1,5 @@
 # VideoPicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/video-picker.svg)](https://www.npmjs.com/package/@pluginjs/video-picker)
 
 A flexible modern video-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern video-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/videoPicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/video-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/video-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/video-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/video-picker/dist/video-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/video-picker/dist/video-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/video-picker/dist/video-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/video-picker/dist/video-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import VideoPicker from "@pluginjs/video-picker"
 import "@pluginjs/video-picker/dist/video-picker.css"
 
 VideoPicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/video-picker/dist/video-picker.css")
 const VideoPicker = require("@pluginjs/video-picker")
 
 VideoPicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/video-picker/dist/video-picker.css">
   <script async src="https://unpkg.com/@pluginjs/video-picker/dist/video-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.videoPicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on videoPicker instances through the videoPicker options itself.
 You can also save the instances to variable for further use.
 
@@ -83,7 +104,8 @@ Name | Description | Default
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on videoPicker instances through the videoPicker events itself.
 You can also save the instances to variable for further use.
 
@@ -96,8 +118,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on videoPicker instances through the videoPicker method itself.
 You can also save the instances to variable for further use.
 
@@ -110,8 +132,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-videoPicker`
@@ -152,8 +174,8 @@ Name | Description | Default
 `"POSTERDELETE"` | Declare plugin poster delete | `{namespace}-poster-delete`
 `"WARNING"` | Declare plugin warning | `{namespace}-warning`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"inputPlaceholder"` | Add Video | 添加视频
@@ -172,16 +194,6 @@ Name | EN | ZH
 `"delete"` | Delete | 删除
 `"useIt"` | Use It | 使用
 `"inputURL"` | Please input URL | 请输入URL
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -193,7 +205,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/video-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/video-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

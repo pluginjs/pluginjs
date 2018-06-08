@@ -1,4 +1,5 @@
 # FontPicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/font-picker.svg)](https://www.npmjs.com/package/@pluginjs/font-picker)
 
 A flexible modern font-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern font-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/fontPicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/font-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/font-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/font-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import FontPicker from "@pluginjs/font-picker"
 import "@pluginjs/font-picker/dist/font-picker.css"
 
 FontPicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/font-picker/dist/font-picker.css")
 const FontPicker = require("@pluginjs/font-picker")
 
 FontPicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
   <script async src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.fontPicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on fontPicker instances through the fontPicker options itself.
 You can also save the instances to variable for further use.
 
@@ -86,7 +107,8 @@ Name | Description | Default
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on fontPicker instances through the fontPicker events itself.
 You can also save the instances to variable for further use.
 
@@ -99,8 +121,8 @@ Name | Description
 `"change"` | Gets fired when plugin has changed
 `"searching"` | Gets fired when plugin has searching
 
+### Methods
 
-### Methods:
 Methods are called on fontPicker instances through the fontPicker method itself.
 You can also save the instances to variable for further use.
 
@@ -113,8 +135,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-fontPicker`
@@ -148,8 +170,8 @@ Name | Description | Default
 `"EMPTY"` | Declare plugin empty | `{namespace}-empty`
 `"EMPTYLINK"` | Declare plugin emptylink | `{namespace}-empty-link`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"searchText"` | Search... | 搜索...
@@ -157,13 +179,6 @@ Name | EN | ZH
 `"activatedFonts"` | activated | 已选字体
 `"emptyTitle"` | Befor using font, you need add fonts.  | 使用字体之前，请先添加。
 `"emptyLinkTitle"` | Go add now | 现在添加
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -175,7 +190,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/font-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/font-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

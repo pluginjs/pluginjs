@@ -1,4 +1,5 @@
 # Offset
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/offset.svg)](https://www.npmjs.com/package/@pluginjs/offset)
 
 A flexible modern offset js plugin.
@@ -6,16 +7,21 @@ A flexible modern offset js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/offset/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/offset
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/offset
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/offset
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/offset/dist/offset.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/offset/dist/offset.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/offset/dist/offset.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/offset/dist/offset.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Offset from "@pluginjs/offset"
 import "@pluginjs/offset/dist/offset.css"
 
 Offset.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/offset/dist/offset.css")
 const Offset = require("@pluginjs/offset")
 
 Offset.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/offset/dist/offset.css">
   <script async src="https://unpkg.com/@pluginjs/offset/dist/offset.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.offset('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on offset instances through the offset options itself.
 You can also save the instances to variable for further use.
 
@@ -82,7 +103,8 @@ Name | Description | Default
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on offset instances through the offset events itself.
 You can also save the instances to variable for further use.
 
@@ -94,8 +116,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 
+### Methods
 
-### Methods:
 Methods are called on offset instances through the offset method itself.
 You can also save the instances to variable for further use.
 
@@ -110,8 +132,8 @@ Name | Description
 `"destroy"` | Destroy plugin
 `"clear"` | Clear plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-offset`
@@ -134,19 +156,12 @@ Name | Description | Default
 `"CONNECTUNLINK"` | Declare plugin connect unlink | `{namespace}-connect-unlink`
 `"CONNECTACTIVE"` | Declare plugin connect active | `{namespace}-connect-active`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"brokenLink"` | Broken Link | 解开链接
 `"keepLink"` | Keep Them Constant | 保持链接
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -158,7 +173,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/offset is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/offset project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

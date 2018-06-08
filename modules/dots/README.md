@@ -1,4 +1,5 @@
 # Dots
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/dots.svg)](https://www.npmjs.com/package/@pluginjs/dots)
 
 A flexible modern dots js plugin.
@@ -6,16 +7,21 @@ A flexible modern dots js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/dots/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/dots
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/dots
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/dots
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/dots/dist/dots.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dots/dist/dots.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/dots/dist/dots.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dots/dist/dots.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Dots from "@pluginjs/dots"
 import "@pluginjs/dots/dist/dots.css"
 
 Dots.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/dots/dist/dots.css")
 const Dots = require("@pluginjs/dots")
 
 Dots.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dots/dist/dots.css">
   <script async src="https://unpkg.com/@pluginjs/dots/dist/dots.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.dots('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on dots instances through the dots options itself.
 You can also save the instances to variable for further use.
 
@@ -80,7 +101,8 @@ Name | Description | Default
 `"valueFrom"` | pass attribute or tag name set where is value from | `[&quot;a&quot;,&quot;href&quot;]`
 `"template"` | Set dots default html template | `{}`
 
-### Events:
+### Events
+
 Events are called on dots instances through the dots events itself.
 You can also save the instances to variable for further use.
 
@@ -96,8 +118,8 @@ Name | Description
 `"hide"` | Gets fired when plugin is hide
 `"click"` | Gets fired when plugin is clicked
 
+### Methods
 
-### Methods:
 Methods are called on dots instances through the dots method itself.
 You can also save the instances to variable for further use.
 
@@ -118,8 +140,8 @@ Name | Description
 `"show"` | Show plugin when it has be hided
 `"hide"` | Hide plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-dot`
@@ -131,9 +153,6 @@ Name | Description | Default
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"HIDDEN"` | Annouce plugin is hidden | `{namespace}-hidden`
-
-
-
 ---
 
 ## Browser support
@@ -145,7 +164,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/dots is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/dots project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

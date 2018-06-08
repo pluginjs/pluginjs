@@ -1,4 +1,5 @@
 # Lazyload
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/lazyload.svg)](https://www.npmjs.com/package/@pluginjs/lazyload)
 
 A flexible modern lazyload js plugin.
@@ -6,16 +7,21 @@ A flexible modern lazyload js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/lazyload/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/lazyload
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/lazyload
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/lazyload
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Lazyload from "@pluginjs/lazyload"
 import "@pluginjs/lazyload/dist/lazyload.css"
 
 Lazyload.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/lazyload/dist/lazyload.css")
 const Lazyload = require("@pluginjs/lazyload")
 
 Lazyload.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.css">
   <script async src="https://unpkg.com/@pluginjs/lazyload/dist/lazyload.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.lazyload('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on lazyload instances through the lazyload options itself.
 You can also save the instances to variable for further use.
 
@@ -80,7 +101,8 @@ Name | Description | Default
 `"delay"` | Set delay | `null`
 `"animation"` | Set animation | `null`
 
-### Events:
+### Events
+
 Events are called on lazyload instances through the lazyload events itself.
 You can also save the instances to variable for further use.
 
@@ -92,8 +114,8 @@ Name | Description
 `"destroy"` | Gets fired when plugin has destroy
 `"enter"` | Gets fired when plugin has enter
 
+### Methods
 
-### Methods:
 Methods are called on lazyload instances through the lazyload method itself.
 You can also save the instances to variable for further use.
 
@@ -110,10 +132,6 @@ Name | Description
 `"load"` | Set value of load
 `"isLoad"` | Set value of isLoad
 `"setDelay"` | Set value of delay
-
-
-
-
 ---
 
 ## Browser support
@@ -125,7 +143,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/lazyload is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/lazyload project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

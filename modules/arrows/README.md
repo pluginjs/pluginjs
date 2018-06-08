@@ -1,4 +1,5 @@
 # Arrows
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/arrows.svg)](https://www.npmjs.com/package/@pluginjs/arrows)
 
 A flexible modern arrows js plugin.
@@ -6,16 +7,21 @@ A flexible modern arrows js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/arrows/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/arrows
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/arrows
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/arrows
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/arrows/dist/arrows.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/arrows/dist/arrows.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/arrows/dist/arrows.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/arrows/dist/arrows.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Arrows from "@pluginjs/arrows"
 import "@pluginjs/arrows/dist/arrows.css"
 
 Arrows.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/arrows/dist/arrows.css")
 const Arrows = require("@pluginjs/arrows")
 
 Arrows.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/arrows/dist/arrows.css">
   <script async src="https://unpkg.com/@pluginjs/arrows/dist/arrows.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.arrows('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on arrows instances through the arrows options itself.
 You can also save the instances to variable for further use.
 
@@ -80,7 +101,8 @@ Name | Description | Default
 `"valueFrom"` | Set where is value from | `href`
 `"templates"` | Arrows default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on arrows instances through the arrows events itself.
 You can also save the instances to variable for further use.
 
@@ -95,8 +117,8 @@ Name | Description
 `"show"` | Gets fired when plugin is show
 `"hide"` | Gets fired when plugin is hide
 
+### Methods
 
-### Methods:
 Methods are called on arrows instances through the arrows method itself.
 You can also save the instances to variable for further use.
 
@@ -112,8 +134,8 @@ Name | Description
 `"show"` | Show plugin if it is hiden
 `"hide"` | Hide plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-arrow`
@@ -126,9 +148,6 @@ Name | Description | Default
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"HIDDEN"` | Announce plugin is hidden | `{namespace}-hidden`
-
-
-
 ---
 
 ## Browser support
@@ -140,7 +159,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/arrows is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/arrows project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

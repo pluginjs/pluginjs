@@ -1,4 +1,5 @@
 # ColorPicker
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/color-picker.svg)](https://www.npmjs.com/package/@pluginjs/color-picker)
 
 A flexible modern color-picker js plugin.
@@ -6,16 +7,21 @@ A flexible modern color-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/colorPicker/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/color-picker
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/color-picker
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/color-picker
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import ColorPicker from "@pluginjs/color-picker"
 import "@pluginjs/color-picker/dist/color-picker.css"
 
 ColorPicker.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/color-picker/dist/color-picker.css")
 const ColorPicker = require("@pluginjs/color-picker")
 
 ColorPicker.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.css">
   <script async src="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.colorPicker('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on colorPicker instances through the colorPicker options itself.
 You can also save the instances to variable for further use.
 
@@ -88,7 +109,8 @@ Name | Description | Default
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on colorPicker instances through the colorPicker events itself.
 You can also save the instances to variable for further use.
 
@@ -103,8 +125,8 @@ Name | Description
 `"openPanel"` | Gets fired when plugin has openPanel
 `"switchModule"` | Gets fired when plugin has switchModule
 
+### Methods
 
-### Methods:
 Methods are called on colorPicker instances through the colorPicker method itself.
 You can also save the instances to variable for further use.
 
@@ -116,8 +138,8 @@ Name | Description
 `"set"` | Set value by key
 `"update"` | Update plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-colorPicker`
@@ -181,8 +203,8 @@ Name | Description | Default
 `"WHEELHANDLE"` | Declare plugin wheel handle | `{namespace}-wheel-handle`
 `"WHEELANGLE"` | Declare plugin wheel angle | `{namespace}-wheel-angle`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"ok"` | ok | 保存
@@ -193,15 +215,6 @@ Name | EN | ZH
 `"gradient"` | Gradient | 渐变
 `"colorInScheme"` | COLORS IN SCHEME | 颜色格式
 `"myColors"` | MY COLORS | 我的颜色
-
-
-### Dependencies:
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -213,7 +226,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/color-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/color-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

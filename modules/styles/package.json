@@ -30,5 +30,20 @@
 		"node": ">= 8",
 		"npm": ">= 5"
 	},
-	"category": "css"
+	"category": "css",
+	"jest": {
+		"setupTestFrameworkScriptFile": "jest-extended",
+		"verbose": true,
+		"testPathIgnorePatterns": [
+			"fixtures"
+		]
+	},
+	"devDependencies": {
+		"babel-jest": "^23.0.1",
+		"jest": "^23.1.0",
+		"jest-extended": "^0.7.2"
+	},
+	"scripts": {
+		"test": "jest"
+	}
 }

@@ -1,4 +1,5 @@
 # Rate
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/rate.svg)](https://www.npmjs.com/package/@pluginjs/rate)
 
 A flexible modern rate js plugin.
@@ -6,16 +7,21 @@ A flexible modern rate js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/rate/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/rate
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/rate
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/rate
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/rate/dist/rate.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/rate/dist/rate.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/rate/dist/rate.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/rate/dist/rate.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Rate from "@pluginjs/rate"
 import "@pluginjs/rate/dist/rate.css"
 
 Rate.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/rate/dist/rate.css")
 const Rate = require("@pluginjs/rate")
 
 Rate.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/rate/dist/rate.css">
   <script async src="https://unpkg.com/@pluginjs/rate/dist/rate.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.rate('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on rate instances through the rate options itself.
 You can also save the instances to variable for further use.
 
@@ -86,7 +107,8 @@ Name | Description | Default
 `"iconSize"` | Set icon size | ``
 `"svg"` | Set svg | ``
 
-### Events:
+### Events
+
 Events are called on rate instances through the rate events itself.
 You can also save the instances to variable for further use.
 
@@ -99,8 +121,8 @@ Name | Description
 `"changeScore"` | Get fired when score has be change
 `"click"` | Get fired when plugin has be clicked
 
+### Methods
 
-### Methods:
 Methods are called on rate instances through the rate method itself.
 You can also save the instances to variable for further use.
 
@@ -115,8 +137,8 @@ Name | Description
 `"setColor"` | Set color
 `"resetIcon"` | Reset icon to default
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-rate`
@@ -128,9 +150,6 @@ Name | Description | Default
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"CLEARCOLOR"` | Announce color has be clear | `{namespace}-clear-color`
 `"DEFAULTCOLOR"` | Announce default color | `{namespace}-default-color`
-
-
-
 ---
 
 ## Browser support
@@ -142,7 +161,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/rate is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/rate project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

@@ -1,4 +1,5 @@
 # Strength
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/strength.svg)](https://www.npmjs.com/package/@pluginjs/strength)
 
 A flexible modern strength js plugin.
@@ -6,16 +7,21 @@ A flexible modern strength js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/strength/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/strength
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/strength
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/strength
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/strength/dist/strength.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/strength/dist/strength.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/strength/dist/strength.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/strength/dist/strength.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Strength from "@pluginjs/strength"
 import "@pluginjs/strength/dist/strength.css"
 
 Strength.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/strength/dist/strength.css")
 const Strength = require("@pluginjs/strength")
 
 Strength.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/strength/dist/strength.css">
   <script async src="https://unpkg.com/@pluginjs/strength/dist/strength.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.strength('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on strength instances through the strength options itself.
 You can also save the instances to variable for further use.
 
@@ -86,7 +107,8 @@ Name | Description | Default
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set plugin is  localeFallbacks or not | `true`
 
-### Events:
+### Events
+
 Events are called on strength instances through the strength events itself.
 You can also save the instances to variable for further use.
 
@@ -101,8 +123,8 @@ Name | Description
 `"statusChange"` | Gets fired when plugin has statusChange
 `"toggle"` | Gets fired when plugin has toggle
 
+### Methods
 
-### Methods:
 Methods are called on strength instances through the strength method itself.
 You can also save the instances to variable for further use.
 
@@ -114,8 +136,8 @@ Name | Description
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-strength`
@@ -128,8 +150,8 @@ Name | Description | Default
 `"SCORE"` | Declare plugin score | `{namespace}-score`
 `"SHOWN"` | Declare plugin shown | `{namespace}-shown`
 
+### Translations
 
-### Translations:
 Name | EN | ZH
 -----|------|-------
 `"Empty"` | Empty | 空
@@ -138,8 +160,6 @@ Name | EN | ZH
 `"Good"` | Good | 中
 `"Strong"` | Strong | 强
 `"toggle"` | Show/Hide Password | 显示/隐藏 密码
-
-
 ---
 
 ## Browser support
@@ -151,7 +171,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/strength is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/strength project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

@@ -1,4 +1,5 @@
 # Radio
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/radio.svg)](https://www.npmjs.com/package/@pluginjs/radio)
 
 A flexible modern radio js plugin.
@@ -6,16 +7,21 @@ A flexible modern radio js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/radio/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/radio
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/radio
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/radio
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/radio/dist/radio.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/radio/dist/radio.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/radio/dist/radio.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/radio/dist/radio.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Radio from "@pluginjs/radio"
 import "@pluginjs/radio/dist/radio.css"
 
 Radio.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/radio/dist/radio.css")
 const Radio = require("@pluginjs/radio")
 
 Radio.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/radio/dist/radio.css">
   <script async src="https://unpkg.com/@pluginjs/radio/dist/radio.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.radio('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on radio instances through the radio options itself.
 You can also save the instances to variable for further use.
 
@@ -82,7 +103,8 @@ Name | Description | Default
 `"getGroup"` | Set the value of the input attribute | `function() {...}`
 `"templates"` | Set default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on radio instances through the radio events itself.
 You can also save the instances to variable for further use.
 
@@ -96,8 +118,8 @@ Name | Description
 `"check"` | Gets fired when plugin has check
 `"uncheck"` | Gets fired when plugin has uncheck
 
+### Methods
 
-### Methods:
 Methods are called on radio instances through the radio method itself.
 You can also save the instances to variable for further use.
 
@@ -112,8 +134,8 @@ Name | Description
 `"check"` | Set check
 `"uncheck"` | Set uncheck
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-radio`
@@ -122,9 +144,6 @@ Name | Description | Default
 `"ICON"` | Declare plugin icon | ``
 `"CHECKED"` | Declare plugin checked | `{namespace}-checked`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disable`
-
-
-
 ---
 
 ## Browser support
@@ -136,7 +155,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/radio is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/radio project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

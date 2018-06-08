@@ -1,4 +1,5 @@
 # Checkbox
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/checkbox.svg)](https://www.npmjs.com/package/@pluginjs/checkbox)
 
 A flexible modern checkbox js plugin.
@@ -6,16 +7,21 @@ A flexible modern checkbox js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/checkbox/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/checkbox
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/checkbox
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/checkbox
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Checkbox from "@pluginjs/checkbox"
 import "@pluginjs/checkbox/dist/checkbox.css"
 
 Checkbox.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/checkbox/dist/checkbox.css")
 const Checkbox = require("@pluginjs/checkbox")
 
 Checkbox.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.css">
   <script async src="https://unpkg.com/@pluginjs/checkbox/dist/checkbox.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.checkbox('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on checkbox instances through the checkbox options itself.
 You can also save the instances to variable for further use.
 
@@ -82,7 +103,8 @@ Name | Description | Default
 `"getGroup"` | Get value of getgroup | `function() {...}`
 `"templates"` | Set default templates | `{}`
 
-### Events:
+### Events
+
 Events are called on checkbox instances through the checkbox events itself.
 You can also save the instances to variable for further use.
 
@@ -96,8 +118,8 @@ Name | Description
 `"check"` | Gets fired when plugin has check
 `"uncheck"` | Gets fired when plugin has uncheck
 
+### Methods
 
-### Methods:
 Methods are called on checkbox instances through the checkbox method itself.
 You can also save the instances to variable for further use.
 
@@ -112,8 +134,8 @@ Name | Description
 `"check"` | Set check
 `"uncheck"` | Set uncheck
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-checkbox`
@@ -122,9 +144,6 @@ Name | Description | Default
 `"ICON"` | Declare plugin icon | ``
 `"CHECKED"` | Announce plugin is checked | `{namespace}-checked`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-
-
-
 ---
 
 ## Browser support
@@ -136,7 +155,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/checkbox is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/checkbox project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

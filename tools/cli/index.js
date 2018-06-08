@@ -52,4 +52,10 @@ yargs
       desc: 'publish module to npm.'
     })
   )
+  .command(
+    alias('test', {
+      command: ['test [moduleName]', 't'],
+      desc: 'test module by jest.'
+    })
+  )
   .parse()

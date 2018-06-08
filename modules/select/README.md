@@ -1,4 +1,5 @@
 # Select
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/select.svg)](https://www.npmjs.com/package/@pluginjs/select)
 
 A flexible modern select js plugin.
@@ -6,16 +7,21 @@ A flexible modern select js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/select/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/select
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/select
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/select
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/select/dist/select.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Select from "@pluginjs/select"
 import "@pluginjs/select/dist/select.css"
 
 Select.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/select/dist/select.css")
 const Select = require("@pluginjs/select")
 
 Select.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
   <script async src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.select('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on select instances through the select options itself.
 You can also save the instances to variable for further use.
 
@@ -91,7 +112,8 @@ Name | Description | Default
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
 
-### Events:
+### Events
+
 Events are called on select instances through the select events itself.
 You can also save the instances to variable for further use.
 
@@ -111,8 +133,8 @@ Name | Description
 `"unselect"` | Gets fired when plugin has unselect
 `"hide"` | Gets fired when plugin has hide
 
+### Methods
 
-### Methods:
 Methods are called on select instances through the select method itself.
 You can also save the instances to variable for further use.
 
@@ -128,8 +150,8 @@ Name | Description
 `"open"` | Get value of open
 `"close"` | Get value of close
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-select`
@@ -157,12 +179,6 @@ Name | Description | Default
 `"LOADING"` | Declare plugin loading | `{namespace}-loading`
 `"ERROR"` | Declare plugin error | `{namespace}-error`
 `"HIDEICON"` | Declare plugin hideicon | `{namespace}-hideIcon`
-
-
-
-### Dependencies:
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -174,7 +190,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/select is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.

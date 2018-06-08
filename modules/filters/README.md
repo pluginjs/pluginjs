@@ -1,4 +1,5 @@
 # Filters
+
 [![npm package](https://img.shields.io/npm/v/@pluginjs/filters.svg)](https://www.npmjs.com/package/@pluginjs/filters)
 
 A flexible modern filters js plugin.
@@ -6,16 +7,21 @@ A flexible modern filters js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/filters/samples)**
 
 ## Introduction
+
 ### Installation
 
 #### Yarn
+
 ```javascript
 yarn add @pluginjs/filters
 ```
+
 #### NPM
+
 ```javascript
 npm i @pluginjs/filters
 ```
+
 ---
 
 ## Getting Started
@@ -23,51 +29,66 @@ npm i @pluginjs/filters
 **CDN:**
 
 Development:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/filters/dist/filters.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/filters/dist/filters.css">
 ```
+
 Production:
+
 ```html
 <script src="https://unpkg.com/@pluginjs/filters/dist/filters.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/filters/dist/filters.min.css">
 ```
 
 ### Initialize
+
 HTML:
+
 ```html
 <body>
   <div class="element"></div>
 </body>
 ```
+
 ECMAScript Module:
+
 ```javascript
 import Filters from "@pluginjs/filters"
 import "@pluginjs/filters/dist/filters.css"
 
 Filters.of(document.querySelector('.element'), options)
 ```
+
 CommonJS:
+
 ```javascript
 require("@pluginjs/filters/dist/filters.css")
 const Filters = require("@pluginjs/filters")
 
 Filters.of(document.querySelector('.element'), options)
 ```
+
 Browser:
+
 ```html
 <head>
   <link rel="stylesheet" href="https://unpkg.com/@pluginjs/filters/dist/filters.css">
   <script async src="https://unpkg.com/@pluginjs/filters/dist/filters.js"></script>
 </head>
 ```
+
 ```javascript
 Pj.filters('.element', options);
 ```
+
 ---
+
 ## API
 
-### Options:
+### Options
+
 Options are called on filters instances through the filters options itself.
 You can also save the instances to variable for further use.
 
@@ -79,7 +100,8 @@ Name | Description | Default
 `"valueFrom"` | Set value from | `data-id`
 `"template"` | Set plugin default template | `{}`
 
-### Events:
+### Events
+
 Events are called on filters instances through the filters events itself.
 You can also save the instances to variable for further use.
 
@@ -91,8 +113,8 @@ Name | Description
 `"disable"` | Gets fired when plugin is disabled
 `"destroy"` | Gets fired when plugin is destroy
 
+### Methods
 
-### Methods:
 Methods are called on filters instances through the filters method itself.
 You can also save the instances to variable for further use.
 
@@ -106,8 +128,8 @@ Name | Description
 `"get"` | Get value by key
 `"set"` | Set value by key
 
+### Classes
 
-### Classes:
 Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-filter`
@@ -116,12 +138,6 @@ Name | Description | Default
 `"ITEM"` | Declare plugin item | `{namespace}`
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-
-
-
-### Dependencies:
-- `[object Object]`
-
 ---
 
 ## Browser support
@@ -133,7 +149,9 @@ Tested on all major browsers.
 | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
 ## License
+
 @pluginjs/filters is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/filters project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
+
 Copyright (C) 2018 Creation Studio Limited.
