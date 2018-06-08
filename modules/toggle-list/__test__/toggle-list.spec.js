@@ -32,65 +32,65 @@ const data = [
 ]
 describe('ToggleList', () => {
   describe('ToggleList()', () => {
-    it('should have ToggleList', () => {
-      expect(ToggleList).to.be.an('function')
+    test('should have ToggleList', () => {
+      expect(ToggleList).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(ToggleList.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(ToggleList.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(ToggleList.events).to.be.an('object')
+    test('should have events', () => {
+      expect(ToggleList.events).toBeObject()
     })
-    it('should have classes', () => {
-      expect(ToggleList.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(ToggleList.classes).toBeObject()
     })
-    it('should have methods', () => {
-      expect(ToggleList.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(ToggleList.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const toggleList = new ToggleList(element, { data })
-      expect(toggleList).to.be.an('object')
-      // expect(others).to.be.eql(deepMerge(List.defaults, DEFAULTS));
+      expect(toggleList).toBeObject()
+      // expect(others).toEqual(deepMerge(List.defaults, DEFAULTS));
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const toggleList = new ToggleList(element, { data })
 
-      expect(toggleList.options).to.be.an('object')
+      expect(toggleList.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asToggleList({ data })).to.be.equal($element)
+      expect($element.asToggleList({ data })).toEqual($element)
 
       const api = $element.data('toggleList')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asToggleList({ data })
-      expect($element.asToggleList('bind')).to.be.undefined
+      expect($element.asToggleList('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asToggleList({ data })
       $element.asToggleList('destroy')
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -101,16 +101,16 @@ describe('ToggleList', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('toggleList:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asToggleList({ data })
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -123,17 +123,17 @@ describe('ToggleList', () => {
       api = $element.data('toggleList')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('toggleList:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asToggleList('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -146,23 +146,23 @@ describe('ToggleList', () => {
       api = $element.data('toggleList')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asToggleList('disable')
       $element.asToggleList('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('toggleList:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asToggleList('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -175,22 +175,22 @@ describe('ToggleList', () => {
       api = $element.data('toggleList')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asToggleList('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('toggleList:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asToggleList('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

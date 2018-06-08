@@ -5,63 +5,63 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Reveal', () => {
   describe('Reveal()', () => {
-    it('should have Reveal', () => {
-      expect(Reveal).to.be.an('function')
+    test('should have Reveal', () => {
+      expect(Reveal).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Reveal.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Reveal.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Reveal.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Reveal.events).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Reveal.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Reveal.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const reveal = new Reveal(element)
 
-      expect(reveal).to.be.an('object')
-      expect(reveal.options).to.be.eql(DEFAULTS)
+      expect(reveal).toBeObject()
+      expect(reveal.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const reveal = new Reveal(element)
 
-      expect(reveal.options).to.be.an('object')
+      expect(reveal.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asReveal()).to.be.equal($element)
+      expect($element.asReveal()).toEqual($element)
 
       const api = $element.data('reveal')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asReveal()
-      expect($element.asReveal('bind')).to.be.undefined
+      expect($element.asReveal('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asReveal()
-      expect($element.asReveal('destroy')).to.be.equal($element)
+      expect($element.asReveal('destroy')).toEqual($element)
     })
   })
 
@@ -72,16 +72,16 @@ describe('Reveal', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('reveal:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asReveal()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -94,17 +94,17 @@ describe('Reveal', () => {
       api = $element.data('reveal')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('reveal:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asReveal('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -117,23 +117,23 @@ describe('Reveal', () => {
       api = $element.data('reveal')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asReveal('disable')
       $element.asReveal('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('reveal:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asReveal('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -146,22 +146,22 @@ describe('Reveal', () => {
       api = $element.data('reveal')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asReveal('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('reveal:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asReveal('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

@@ -6,70 +6,70 @@ import { defaults as DEFAULTS } from '../../src/constant'
 const data = ['px', '%']
 describe('Units', () => {
   describe('Units()', () => {
-    it('should have Units', () => {
-      expect(Units).to.be.an('function')
+    test('should have Units', () => {
+      expect(Units).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Units.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Units.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Units.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Units.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Units.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Units.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Units.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Units.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const units = new Units(element, { data })
 
-      expect(units).to.be.an('object')
-      expect(units.options).to.be.eql({
+      expect(units).toBeObject()
+      expect(units.options).toEqual({
         ...DEFAULTS,
         data
       })
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const units = new Units(element, { data })
 
-      expect(units.options).to.be.an('object')
+      expect(units.options).toBeObject()
     })
 
-    it('should have classes', () => {
+    test('should have classes', () => {
       const element = document.createElement('div')
       const units = new Units(element, { data })
 
-      expect(units.classes).to.be.an('object')
+      expect(units.classes).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asUnits({ data })).to.be.equal($element)
+      expect($element.asUnits({ data })).toEqual($element)
 
       const api = $element.data('units')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('classes', () => {
-    it('should use classes options', () => {
+    test('should use classes options', () => {
       const element = document.createElement('div')
       const units = new Units(element, {
         data,
@@ -80,11 +80,11 @@ describe('Units', () => {
         data
       })
 
-      expect(units.classes.CONTAINER).to.be.equal('pj-units-wrap')
-      expect(units.classes.ACTIVE).to.be.equal('pj-units-active')
+      expect(units.classes.CONTAINER).toEqual('pj-units-wrap')
+      expect(units.classes.ACTIVE).toEqual('pj-units-active')
     })
 
-    it('should override class namespace', () => {
+    test('should override class namespace', () => {
       const element = document.createElement('div')
       const units = new Units(element, {
         data,
@@ -95,31 +95,31 @@ describe('Units', () => {
         data
       })
 
-      expect(units.classes.NAMESPACE).to.be.equal('units')
-      expect(units.classes.CONTAINER).to.be.equal('units-wrap')
+      expect(units.classes.NAMESPACE).toEqual('units')
+      expect(units.classes.CONTAINER).toEqual('units-wrap')
     })
 
     describe('getClass()', () => {
-      it('should get class with namespace', () => {
+      test('should get class with namespace', () => {
         const element = document.createElement('div')
         const units = new Units(element, {
           data,
           classes: { namespace: 'hello' }
         })
 
-        expect(units.getClass('foo')).to.be.equal('foo')
-        expect(units.getClass('{namespace}-foo')).to.be.equal('hello-foo')
+        expect(units.getClass('foo')).toEqual('foo')
+        expect(units.getClass('{namespace}-foo')).toEqual('hello-foo')
       })
 
-      it('should get class with arg', () => {
+      test('should get class with arg', () => {
         const element = document.createElement('div')
         const units = new Units(element, {
           data,
           classes: { namespace: 'hello' }
         })
 
-        expect(units.getClass('foo', 'arg', 'value')).to.be.equal('foo')
-        expect(units.getClass('{namespace}-{arg}', 'arg', 'value')).to.be.equal(
+        expect(units.getClass('foo', 'arg', 'value')).toEqual('foo')
+        expect(units.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
           'hello-value'
         )
       })
@@ -128,7 +128,7 @@ describe('Units', () => {
 
   describe('theme', () => {
     describe('getThemeClass()', () => {
-      it('should get theme classes with default namespace', () => {
+      test('should get theme classes with default namespace', () => {
         const element = document.createElement('div')
         const units = new Units(element, {
           data,
@@ -136,14 +136,14 @@ describe('Units', () => {
           classes: { theme: '{namespace}--{theme}' }
         })
 
-        expect(units.getThemeClass()).to.be.equal('')
-        expect(units.getThemeClass('bar')).to.be.equal('pj-units--bar')
-        expect(units.getThemeClass('foo bar')).to.be.equal(
+        expect(units.getThemeClass()).toEqual('')
+        expect(units.getThemeClass('bar')).toEqual('pj-units--bar')
+        expect(units.getThemeClass('foo bar')).toEqual(
           'pj-units--foo pj-units--bar'
         )
       })
 
-      it('should get theme classes with namespace override', () => {
+      test('should get theme classes with namespace override', () => {
         const element = document.createElement('div')
         const units = new Units(element, {
           data,
@@ -155,14 +155,12 @@ describe('Units', () => {
           data
         })
 
-        expect(units.getThemeClass()).to.be.equal('')
-        expect(units.getThemeClass('bar')).to.be.equal('hello--bar')
-        expect(units.getThemeClass('foo bar')).to.be.equal(
-          'hello--foo hello--bar'
-        )
+        expect(units.getThemeClass()).toEqual('')
+        expect(units.getThemeClass('bar')).toEqual('hello--bar')
+        expect(units.getThemeClass('foo bar')).toEqual('hello--foo hello--bar')
       })
 
-      it('should get theme classes correctly when no classes.THEME defined', () => {
+      test('should get theme classes correctly when no classes.THEME defined', () => {
         const element = document.createElement('div')
         const units = new Units(element, {
           data,
@@ -172,19 +170,17 @@ describe('Units', () => {
         // set to null for test
         units.classes.THEME = null
 
-        expect(units.getThemeClass()).to.be.equal('pj-units--foo')
-        expect(units.getThemeClass('bar')).to.be.equal('bar')
-        expect(units.getThemeClass('{namespace}--bar')).to.be.equal(
-          'pj-units--bar'
-        )
-        expect(units.getThemeClass('foo bar')).to.be.equal('foo bar')
+        expect(units.getThemeClass()).toEqual('pj-units--foo')
+        expect(units.getThemeClass('bar')).toEqual('bar')
+        expect(units.getThemeClass('{namespace}--bar')).toEqual('pj-units--bar')
+        expect(units.getThemeClass('foo bar')).toEqual('foo bar')
         expect(
           units.getThemeClass('{namespace}--foo {namespace}--bar')
-        ).to.be.equal('pj-units--foo pj-units--bar')
+        ).toEqual('pj-units--foo pj-units--bar')
       })
     })
 
-    it('should add theme class after initialize and remove after destroy', () => {
+    test('should add theme class after initialize and remove after destroy', () => {
       const element = document.createElement('div')
       const $element = $(element)
       const units = new Units(element, {
@@ -193,12 +189,12 @@ describe('Units', () => {
         classes: { theme: '{namespace}--{theme}' }
       })
 
-      expect(units.$wrap.hasClass('pj-units--foo')).to.be.true
+      expect(units.$wrap.hasClass('pj-units--foo')).toBeTrue()
       units.destroy()
-      expect(units.$wrap.hasClass('pj-units--foo')).to.be.false
+      expect(units.$wrap.hasClass('pj-units--foo')).toBeFalse()
     })
 
-    it('should works with more than one theme', () => {
+    test('should works with more than one theme', () => {
       const element = document.createElement('div')
       const $element = $(element)
       const units = new Units(element, {
@@ -207,23 +203,23 @@ describe('Units', () => {
         classes: { theme: '{namespace}--{theme}' }
       })
 
-      expect(units.$wrap.hasClass('pj-units--foo')).to.be.true
-      expect(units.$wrap.hasClass('pj-units--bar')).to.be.true
+      expect(units.$wrap.hasClass('pj-units--foo')).toBeTrue()
+      expect(units.$wrap.hasClass('pj-units--bar')).toBeTrue()
       units.destroy()
-      expect(units.$wrap.hasClass('pj-units--foo')).to.be.false
-      expect(units.$wrap.hasClass('pj-units--bar')).to.be.false
+      expect(units.$wrap.hasClass('pj-units--foo')).toBeFalse()
+      expect(units.$wrap.hasClass('pj-units--bar')).toBeFalse()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asUnits({ data })
-      expect($element.asUnits('bind')).to.be.undefined
+      expect($element.asUnits('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asUnits({ data })
-      expect($element.asUnits('destroy')).to.be.equal($element)
+      expect($element.asUnits('destroy')).toEqual($element)
     })
   })
 
@@ -234,16 +230,16 @@ describe('Units', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('units:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asUnits({ data })
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -256,18 +252,18 @@ describe('Units', () => {
       api = $element.data('units')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('units:destroy', (event, api) => {
         console.log('11111111111')
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asUnits('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -280,23 +276,23 @@ describe('Units', () => {
       api = $element.data('units')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asUnits('disable')
       $element.asUnits('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('units:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asUnits('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -309,22 +305,22 @@ describe('Units', () => {
       api = $element.data('units')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asUnits('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('units:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asUnits('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

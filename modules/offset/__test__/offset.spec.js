@@ -7,67 +7,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Offset', () => {
   describe('Offset()', () => {
-    it('should have Offset', () => {
-      expect(Offset).to.be.an('function')
+    test('should have Offset', () => {
+      expect(Offset).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Offset.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Offset.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Offset.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Offset.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Offset.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Offset.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Offset.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Offset.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const offset = new Offset(element)
 
-      expect(offset).to.be.an('object')
-      expect(offset.options).to.be.eql(DEFAULTS)
+      expect(offset).toBeObject()
+      expect(offset.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const offset = new Offset(element)
 
-      expect(offset.options).to.be.an('object')
+      expect(offset.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asOffset()).to.be.equal($element)
+      expect($element.asOffset()).toEqual($element)
 
       const api = $element.data('offset')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asOffset()
-      expect($element.asOffset('bind')).to.be.undefined
+      expect($element.asOffset('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asOffset()
-      expect($element.asOffset('destroy')).to.be.equal($element)
+      expect($element.asOffset('destroy')).toEqual($element)
     })
   })
 
@@ -78,16 +78,16 @@ describe('Offset', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('offset:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asOffset()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -100,17 +100,17 @@ describe('Offset', () => {
       api = $element.data('offset')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('offset:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asOffset('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -123,23 +123,23 @@ describe('Offset', () => {
       api = $element.data('offset')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asOffset('disable')
       $element.asOffset('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('offset:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asOffset('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -152,22 +152,22 @@ describe('Offset', () => {
       api = $element.data('offset')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asOffset('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('offset:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asOffset('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

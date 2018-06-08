@@ -5,25 +5,25 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('dynamicNumber', () => {
   describe('dynamicNumber()', () => {
-    it('should have dynamicNumber', () => {
-      expect(DynamicNumber).to.be.an('function')
+    test('should have dynamicNumber', () => {
+      expect(DynamicNumber).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(DynamicNumber.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(DynamicNumber.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(DynamicNumber.events).to.be.an('object')
+    test('should have events', () => {
+      expect(DynamicNumber.events).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(DynamicNumber.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(DynamicNumber.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       $(element).attr({
         'data-from': '0',
@@ -32,50 +32,50 @@ describe('dynamicNumber', () => {
 
       const dynamicNumber = new DynamicNumber(element)
 
-      expect(dynamicNumber).to.be.an('object')
-      expect(dynamicNumber.options).to.be.an('object')
-      expect(dynamicNumber.options.from).to.be.an('number')
-      expect(dynamicNumber.options.from).to.be.equal(0)
-      expect(dynamicNumber.options.to).to.be.equal(30)
+      expect(dynamicNumber).toBeObject()
+      expect(dynamicNumber.options).toBeObject()
+      expect(dynamicNumber.options.from).toBeNumber()
+      expect(dynamicNumber.options.from).toEqual(0)
+      expect(dynamicNumber.options.to).toEqual(30)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const dynamicNumber = new DynamicNumber(element, {
         from: 0,
         to: 30
       })
 
-      expect(dynamicNumber.options).to.be.an('object')
-      expect(dynamicNumber.options.from).to.be.an('number')
-      expect(dynamicNumber.options.from).to.be.equal(0)
-      expect(dynamicNumber.options.to).to.be.equal(30)
+      expect(dynamicNumber.options).toBeObject()
+      expect(dynamicNumber.options.from).toBeNumber()
+      expect(dynamicNumber.options.from).toEqual(0)
+      expect(dynamicNumber.options.to).toEqual(30)
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asDynamicNumber()).to.be.equal($element)
+      expect($element.asDynamicNumber()).toEqual($element)
 
       const api = $element.data('dynamicNumber')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should call start', () => {
+    test('should call start', () => {
       const $element = $(document.createElement('div'))
-      expect($element.is('start')).to.be.false
+      expect($element.is('start')).toBeFalse()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asDynamicNumber()
-      expect($element.asDynamicNumber('destroy')).to.be.equal($element)
+      expect($element.asDynamicNumber('destroy')).toEqual($element)
     })
   })
 
@@ -86,16 +86,16 @@ describe('dynamicNumber', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('dynamicNumber:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asDynamicNumber()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -108,17 +108,17 @@ describe('dynamicNumber', () => {
       api = $element.data('asDynamicNumber')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('dynamicNumber:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asDynamicNumber('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -131,17 +131,17 @@ describe('dynamicNumber', () => {
       api = $element.data('asDynamicNumber')
     })
 
-    it('should trigger start event', () => {
+    test('should trigger start event', () => {
       let called = 0
 
       $element.on('dynamicNumber:start', (event, api) => {
-        expect(api.is('start')).to.be.true
+        expect(api.is('start')).toBeTrue()
         called++
       })
 
       $element.asDynamicNumber('start')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

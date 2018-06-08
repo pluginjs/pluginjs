@@ -40,78 +40,78 @@ const testStr = `<div class="pj-slider-prev">
 </div>`
 describe('Slider', () => {
   describe('Slider()', () => {
-    it('should have Slider', () => {
-      expect(Slider).to.be.an('function')
+    test('should have Slider', () => {
+      expect(Slider).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Slider.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Slider.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(Slider.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Slider.events).toBeObject()
     })
-    it('should have classes', () => {
-      expect(Slider.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Slider.classes).toBeObject()
     })
-    it('should have methods', () => {
-      expect(Slider.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Slider.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       document.body.appendChild(element)
       const slider = new Slider(element)
 
-      expect(slider).to.be.an('object')
-      expect(slider.options).to.be.eql(DEFAULTS)
+      expect(slider).toBeObject()
+      expect(slider.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       document.body.appendChild(element)
       const slider = new Slider(element)
 
-      expect(slider.options).to.be.an('object')
+      expect(slider.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       document.body.appendChild(element)
       const $element = $(element)
 
-      expect($element.asSlider()).to.be.equal($element)
+      expect($element.asSlider()).toEqual($element)
 
       const api = $element.data('slider')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       document.body.appendChild(element)
       const $element = $(element).asSlider()
-      expect($element.asSlider('bind')).to.be.undefined
+      expect($element.asSlider('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       document.body.appendChild(element)
       const $element = $(element).asSlider()
       $element.asSlider('destroy')
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -125,16 +125,16 @@ describe('Slider', () => {
       $element = $(element)
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('slider:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asSlider()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -150,17 +150,17 @@ describe('Slider', () => {
       api = $element.data('slider')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('slider:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asSlider('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -176,23 +176,23 @@ describe('Slider', () => {
       api = $element.data('slider')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asSlider('disable')
       $element.asSlider('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('slider:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asSlider('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -208,22 +208,22 @@ describe('Slider', () => {
       api = $element.data('slider')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asSlider('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('slider:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asSlider('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

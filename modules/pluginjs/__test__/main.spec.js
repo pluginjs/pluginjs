@@ -4,8 +4,8 @@ import Component from '@pluginjs/component'
 import Pj, { register, eventable, styleable } from '../../src/main'
 
 describe('As', () => {
-  it('should have As', () => {
-    expect(As).to.be.an('object')
+  test('should have As', () => {
+    expect(As).toBeObject()
   })
 
   describe('register()', () => {
@@ -50,78 +50,78 @@ describe('As', () => {
       Pj.plugins = {}
     })
 
-    it('should register the plugin', () => {
-      expect(Pj.get('test')).to.be.null
+    test('should register the plugin', () => {
+      expect(Pj.get('test')).toBeNil()
 
       Pj.register('test', Test)
 
-      expect(Pj.get('test')).to.not.be.null
+      expect(Pj.get('test')).not.toBeNil()
     })
 
-    it('should assign obj to plugin', () => {
+    test('should assign obj to plugin', () => {
       const defaults = { foo: 'bar' }
       Pj.register('test', Test, { defaults })
       const test = Pj.get('test')
 
-      expect(test.defaults).to.be.eql(defaults)
+      expect(test.defaults).toEqual(defaults)
     })
 
-    it('should assign info to plugin', () => {
+    test('should assign info to plugin', () => {
       const info = { version: '0.0.1' }
       Pj.register('test', Test, {}, info)
       const test = Pj.get('test')
 
-      expect(test.version).to.be.equal(info.version)
+      expect(test.version).toEqual(info.version)
     })
 
     describe('setDefaults()', () => {
-      it('should override the defaults', () => {
+      test('should override the defaults', () => {
         const defaults = { foo: 'bar' }
         Pj.register('test', Test, { defaults })
         const test = Pj.get('test')
 
-        expect(test.defaults).to.be.eql(defaults)
+        expect(test.defaults).toEqual(defaults)
 
-        expect(Test.setDefaults).to.be.an('function')
+        expect(Test.setDefaults).toBeFunction()
 
         const override = { foo: 'another' }
         Test.setDefaults(override)
 
-        expect(Test.defaults).to.be.eql(override)
+        expect(Test.defaults).toEqual(override)
       })
     })
 
     describe('setEvents()', () => {
-      it('should override the defaults', () => {
+      test('should override the defaults', () => {
         const events = { CLICK: 'click' }
         Pj.register('test', Test, { events })
         const test = Pj.get('test')
 
-        expect(test.events).to.be.eql(events)
+        expect(test.events).toEqual(events)
 
-        expect(Test.setEvents).to.be.an('function')
+        expect(Test.setEvents).toBeFunction()
 
         const override = { CLICK: 'tap' }
         Test.setEvents(override)
 
-        expect(Test.events).to.be.eql(override)
+        expect(Test.events).toEqual(override)
       })
     })
 
     describe('setClasses()', () => {
-      it('should override the defaults', () => {
+      test('should override the defaults', () => {
         const classes = { CONTAINER: 'container' }
         Pj.register('test', Test, { classes })
         const test = Pj.get('test')
 
-        expect(test.classes).to.be.eql(classes)
+        expect(test.classes).toEqual(classes)
 
-        expect(Test.setClasses).to.be.an('function')
+        expect(Test.setClasses).toBeFunction()
 
         const override = { CONTAINER: 'test-container' }
         Test.setClasses(override)
 
-        expect(Test.classes).to.be.eql(override)
+        expect(Test.classes).toEqual(override)
       })
     })
 
@@ -137,49 +137,49 @@ describe('As', () => {
       })
 
       describe('instanceId', () => {
-        it('should have instanceId', () => {
+        test('should have instanceId', () => {
           $element.asTest()
           const api = $element.data('test')
 
-          expect(api.instanceId).to.be.an('number')
-          expect(Pj.instances.test.length).to.be.equal(1)
+          expect(api.instanceId).toBeNumber()
+          expect(Pj.instances.test).toHaveLength(1)
         })
 
-        it('should have different instanceId', () => {
+        test('should have different instanceId', () => {
           $element.asTest()
           const api = $element.data('test')
-          expect(api.instanceId).to.be.an('number')
+          expect(api.instanceId).toBeNumber()
 
           const $another = $(document.createElement('div')).asTest()
           const another = $another.data('test')
-          expect(another.instanceId).to.be.an('number')
+          expect(another.instanceId).toBeNumber()
 
-          expect(api.instanceId).to.not.equal(another.instanceId)
+          expect(api.instanceId).not.toEqual(another.instanceId)
         })
       })
 
       describe('instances', () => {
-        it('should be empty if no instance exists', () => {
-          expect(Pj.instances.test.length).to.be.equal(0)
+        test('should be empty if no instance exists', () => {
+          expect(Pj.instances.test).toHaveLength(0)
         })
-        it('should cache instances', () => {
+        test('should cache instances', () => {
           $element.asTest()
-          expect(Pj.instances.test.length).to.be.equal(1)
+          expect(Pj.instances.test).toHaveLength(1)
 
           $(document.createElement('div')).asTest()
-          expect(Pj.instances.test.length).to.be.equal(2)
+          expect(Pj.instances.test).toHaveLength(2)
         })
 
-        it('should remove instance after destroy', () => {
+        test('should remove instance after destroy', () => {
           const $another = $(document.createElement('div')).asTest()
           $element.asTest()
-          expect(Pj.instances.test.length).to.be.equal(2)
+          expect(Pj.instances.test).toHaveLength(2)
 
           $element.asTest('destroy')
-          expect(Pj.instances.test.length).to.be.equal(1)
+          expect(Pj.instances.test).toHaveLength(1)
 
           $another.asTest('destroy')
-          expect(Pj.instances.test.length).to.be.equal(0)
+          expect(Pj.instances.test).toHaveLength(0)
         })
       })
 
@@ -191,28 +191,28 @@ describe('As', () => {
           api = $element.data('test')
         })
 
-        it('should return .namespace when no args filled', () => {
-          expect(api.eventNameWithId()).to.be.equal('.test-1')
+        test('should return .namespace when no args filled', () => {
+          expect(api.eventNameWithId()).toEqual('.test-1')
         })
 
-        it('should return event name with namespace', () => {
-          expect(api.eventNameWithId('click')).to.be.equal('click.test-1')
+        test('should return event name with namespace', () => {
+          expect(api.eventNameWithId('click')).toEqual('click.test-1')
         })
 
-        it('should work with multi events', () => {
-          expect(api.eventNameWithId('click touch')).to.be.equal(
+        test('should work with multi events', () => {
+          expect(api.eventNameWithId('click touch')).toEqual(
             'click.test-1 touch.test-1'
           )
         })
       })
 
-      it('should works with jquery fn', () => {
-        expect($element.asTest()).to.be.equal($element)
+      test('should works with jquery fn', () => {
+        expect($element.asTest()).toEqual($element)
 
         const api = $element.data('test')
 
-        expect(api).to.be.an('object')
-        expect(api.options).to.be.an('object')
+        expect(api).toBeObject()
+        expect(api.options).toBeObject()
       })
 
       describe('api call', () => {
@@ -220,25 +220,23 @@ describe('As', () => {
           $element.asTest()
         })
 
-        it('should not call methods that not defined in obj', () => {
-          expect($element.asTest('private')).to.be.undefined
+        test('should not call methods that not defined in obj', () => {
+          expect($element.asTest('private')).toBeNil()
         })
 
-        it('should call methods that defined in obj', () => {
-          expect($element.asTest('public')).to.be.equal($element)
+        test('should call methods that defined in obj', () => {
+          expect($element.asTest('public')).toEqual($element)
         })
 
-        it('should return the result if methods name contains get string', () => {
+        test('should return the result if methods name contains get string', () => {
           const api = $element.data('test')
-          expect($element.asTest('get')).to.be.equal(api.get())
+          expect($element.asTest('get')).toEqual(api.get())
         })
 
-        it('should return the result correctly with args', () => {
+        test('should return the result correctly with args', () => {
           const api = $element.data('test')
-          expect($element.asTest('getArg', 'test')).to.be.equal(
-            api.getArg('test')
-          )
-          expect($element.asTest('getTwoArgs', 1, 2)).to.be.eql(
+          expect($element.asTest('getArg', 'test')).toEqual(api.getArg('test'))
+          expect($element.asTest('getTwoArgs', 1, 2)).toEqual(
             api.getTwoArgs(1, 2)
           )
         })

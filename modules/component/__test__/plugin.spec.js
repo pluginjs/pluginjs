@@ -4,28 +4,28 @@ import Pj from '@pluginjs/pluginjs'
 
 describe('Plugin', () => {
   describe('Plugin()', () => {
-    it('should have Plugin', () => {
-      expect(Plugin).to.be.an('function')
+    test('should have Plugin', () => {
+      expect(Plugin).toBeFunction()
     })
 
-    it('should construct with element', () => {
+    test('should construct with element', () => {
       const element = document.createElement('div')
       const instance = new Plugin('plugin', element)
 
-      expect(instance.element).to.be.equal(element)
-      expect(instance.plugin).to.be.equal('plugin')
+      expect(instance.element).toEqual(element)
+      expect(instance.plugin).toEqual('plugin')
     })
   })
 
   describe('destroy()', () => {
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const element = document.createElement('div')
       const instance = new Plugin('plugin', element)
 
       if (Pj.instances.plugin) {
         instance.destroy()
-        expect($(element).data('plugin')).to.be.equal(null)
-        expect(Pj.instance[instance.plugin].length).to.be.equal(0)
+        expect($(element).data('plugin')).toEqual(null)
+        expect(Pj.instance[instance.plugin]).toHaveLength(0)
       }
     })
   })

@@ -5,66 +5,66 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('List', () => {
   describe('List()', () => {
-    it('should have List', () => {
-      expect(List).to.be.an('function')
+    test('should have List', () => {
+      expect(List).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(List.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(List.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(List.events).to.be.an('object')
+    test('should have events', () => {
+      expect(List.events).toBeObject()
     })
-    it('should have classes', () => {
-      expect(List.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(List.classes).toBeObject()
     })
-    it('should have methods', () => {
-      expect(List.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(List.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const list = new List(element)
 
-      expect(list).to.be.an('object')
-      expect(list.options).to.be.eql(DEFAULTS)
+      expect(list).toBeObject()
+      expect(list.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const list = new List(element)
 
-      expect(list.options).to.be.an('object')
+      expect(list.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asList()).to.be.equal($element)
+      expect($element.asList()).toEqual($element)
 
       const api = $element.data('list')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asList()
-      expect($element.asList('bind')).to.be.undefined
+      expect($element.asList('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asList()
       $element.asList('destroy')
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -75,16 +75,16 @@ describe('List', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('list:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asList()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('List', () => {
       api = $element.data('list')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('list:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asList('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('List', () => {
       api = $element.data('list')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asList('disable')
       $element.asList('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('list:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asList('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('List', () => {
       api = $element.data('list')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asList('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('list:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asList('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

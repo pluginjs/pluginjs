@@ -3,8 +3,8 @@ import '@pluginjs/color'
 
 describe('Gradient', () => {
   describe('Gradient()', () => {
-    it('should have Gradient', () => {
-      expect(Gradient).to.be.an('function')
+    test('should have Gradient', () => {
+      expect(Gradient).toBeFunction()
     })
   })
 })

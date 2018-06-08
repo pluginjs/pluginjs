@@ -3,8 +3,8 @@ import matchSorter from '../../src/main'
 const rankings = matchSorter.rankings
 
 describe('matchSorter', () => {
-  it('should have matchSorter', () => {
-    expect(matchSorter).to.be.an('function')
+  test('should have matchSorter', () => {
+    expect(matchSorter).toBeFunction()
   })
 
   const tests = {
@@ -301,7 +301,7 @@ describe('matchSorter', () => {
 
     if (!skip) {
       it(title, () => {
-        expect(matchSorter(...input)).to.be.eql(output)
+        expect(matchSorter(...input)).toEqual(output)
       })
     }
   })

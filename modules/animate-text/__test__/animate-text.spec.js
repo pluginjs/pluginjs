@@ -13,46 +13,46 @@ const getInitialElement = () => parseHTML`
 const getNewAnimateTextInstance = () => AnimateText.of(getInitialElement())
 describe('AnimateText', () => {
   describe('AnimateText()', () => {
-    it('should have AnimateText', () => {
-      expect(AnimateText).to.be.an('function')
+    test('should have AnimateText', () => {
+      expect(AnimateText).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(AnimateText.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(AnimateText.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(AnimateText.events).to.be.an('object')
+    test('should have events', () => {
+      expect(AnimateText.events).toBeObject()
     })
-    it('should have classes', () => {
-      expect(AnimateText.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(AnimateText.classes).toBeObject()
     })
-    it('should have methods', () => {
-      expect(AnimateText.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(AnimateText.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const animateText = getNewAnimateTextInstance()
 
-      expect(animateText).to.be.an('object')
-      expect(animateText.options).to.be.eql(DEFAULTS)
+      expect(animateText).toBeObject()
+      expect(animateText.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = getInitialElement()
       const animateText = AnimateText.of(element)
 
-      expect(animateText.options).to.be.an('object')
+      expect(animateText.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const animateTextInstance = getNewAnimateTextInstance()
       animateTextInstance.destroy()
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -63,17 +63,17 @@ describe('AnimateText', () => {
       $element = getInitialElement()
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.addEventListener('animateText:ready', event => {
         const api = event.detail.instance
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       AnimateText.of($element)
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -86,17 +86,17 @@ describe('AnimateText', () => {
       api = AnimateText.of($element)
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.addEventListener('animateText:destroy', () => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       api.destroy()
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -109,23 +109,23 @@ describe('AnimateText', () => {
       api = AnimateText.of($element)
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       api.disable()
       api.enable()
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.addEventListener('animateText:enable', () => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asAnimateText('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -138,22 +138,22 @@ describe('AnimateText', () => {
       api = AnimateText.of($element)
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       api.disable()
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.addEventListener('animateText:disable', () => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       api.disable()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

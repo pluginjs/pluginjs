@@ -4,60 +4,60 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Radio', () => {
   describe('Radio()', () => {
-    it('should have Radio', () => {
-      expect(Radio).to.be.an('function')
+    test('should have Radio', () => {
+      expect(Radio).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Radio.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Radio.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Radio.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Radio.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Radio.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Radio.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Radio.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Radio.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const radio = new Radio(element)
 
-      expect(radio).to.be.an('object')
-      // expect(radio.options).to.be.eql(DEFAULTS);
+      expect(radio).toBeObject()
+      // expect(radio.options).toEqual(DEFAULTS);
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const radio = new Radio(element)
 
-      expect(radio.options).to.be.an('object')
+      expect(radio.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asRadio()).to.be.equal($element)
+      expect($element.asRadio()).toEqual($element)
 
       const api = $element.data('radio')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('classes', () => {
-    it('should use classes options', () => {
+    test('should use classes options', () => {
       const element = document.createElement('div')
       const radio = new Radio(element, {
         classes: {
@@ -66,11 +66,11 @@ describe('Radio', () => {
         }
       })
 
-      expect(radio.classes.LABEL).to.be.equal('pj-radio-wrap')
-      expect(radio.classes.CHECKED).to.be.equal('pj-radio-checked')
+      expect(radio.classes.LABEL).toEqual('pj-radio-wrap')
+      expect(radio.classes.CHECKED).toEqual('pj-radio-checked')
     })
 
-    it('should override class namespace', () => {
+    test('should override class namespace', () => {
       const element = document.createElement('div')
       const radio = new Radio(element, {
         classes: {
@@ -79,30 +79,30 @@ describe('Radio', () => {
         }
       })
 
-      expect(radio.classes.NAMESPACE).to.be.equal('radio')
-      expect(radio.classes.LABEL).to.be.equal('radio-label')
+      expect(radio.classes.NAMESPACE).toEqual('radio')
+      expect(radio.classes.LABEL).toEqual('radio-label')
     })
 
     describe('getClass()', () => {
-      it('should get class with namespace', () => {
+      test('should get class with namespace', () => {
         const element = document.createElement('div')
         const radio = new Radio(element, { classes: { namespace: 'hello' } })
 
-        expect(radio.getClass('foo')).to.be.equal('foo')
-        expect(radio.getClass('{namespace}-foo')).to.be.equal('hello-foo')
+        expect(radio.getClass('foo')).toEqual('foo')
+        expect(radio.getClass('{namespace}-foo')).toEqual('hello-foo')
       })
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asRadio()
-      expect($element.asRadio('bind')).to.be.undefined
+      expect($element.asRadio('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asRadio()
-      expect($element.asRadio('destroy')).to.be.equal($element)
+      expect($element.asRadio('destroy')).toEqual($element)
     })
   })
 
@@ -113,16 +113,16 @@ describe('Radio', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('radio:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asRadio()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -135,17 +135,17 @@ describe('Radio', () => {
       api = $element.data('radio')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('radio:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asRadio('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -158,23 +158,23 @@ describe('Radio', () => {
       api = $element.data('radio')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asRadio('disable')
       $element.asRadio('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('radio:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asRadio('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -187,22 +187,22 @@ describe('Radio', () => {
       api = $element.data('radio')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asRadio('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('radio:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asRadio('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

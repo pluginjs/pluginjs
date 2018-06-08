@@ -5,67 +5,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Filters', () => {
   describe('Filters()', () => {
-    it('should have Filters', () => {
-      expect(Filters).to.be.an('function')
+    test('should have Filters', () => {
+      expect(Filters).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Filters.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Filters.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Filters.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Filters.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Filters.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Filters.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Filters.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Filters.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const filters = new Filters(element)
 
-      expect(filters).to.be.an('object')
-      expect(filters.options).to.be.eql(DEFAULTS)
+      expect(filters).toBeObject()
+      expect(filters.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const filters = new Filters(element)
 
-      expect(filters.options).to.be.an('object')
+      expect(filters.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asFilters()).to.be.equal($element)
+      expect($element.asFilters()).toEqual($element)
 
       const api = $element.data('filters')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asFilters()
-      expect($element.asFilters('bind')).to.be.undefined
+      expect($element.asFilters('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asFilters()
-      expect($element.asFilters('destroy')).to.be.equal($element)
+      expect($element.asFilters('destroy')).toEqual($element)
     })
   })
 
@@ -76,16 +76,16 @@ describe('Filters', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('filters:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asFilters()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -98,17 +98,17 @@ describe('Filters', () => {
       api = $element.data('filters')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('filters:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asFilters('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -121,23 +121,23 @@ describe('Filters', () => {
       api = $element.data('filters')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asFilters('disable')
       $element.asFilters('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('filters:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asFilters('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -150,22 +150,22 @@ describe('Filters', () => {
       api = $element.data('filters')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asFilters('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('filters:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asFilters('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

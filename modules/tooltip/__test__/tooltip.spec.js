@@ -6,67 +6,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Tooltip', () => {
   describe('Tooltip()', () => {
-    it('should have Tooltip', () => {
-      expect(Tooltip).to.be.an('function')
+    test('should have Tooltip', () => {
+      expect(Tooltip).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Tooltip.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Tooltip.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Tooltip.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Tooltip.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Tooltip.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Tooltip.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Tooltip.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Tooltip.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const tooltip = new Tooltip(element)
 
-      expect(tooltip).to.be.an('object')
-      expect(tooltip.options).to.be.an('object')
+      expect(tooltip).toBeObject()
+      expect(tooltip.options).toBeObject()
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const tooltip = new Tooltip(element)
 
-      expect(tooltip.options).to.be.an('object')
+      expect(tooltip.options).toBeObject()
     })
 
-    it('should have classes', () => {
+    test('should have classes', () => {
       const element = document.createElement('div')
       const tooltip = new Tooltip(element)
 
-      expect(tooltip.classes).to.be.an('object')
+      expect(tooltip.classes).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asTooltip()).to.be.equal($element)
+      expect($element.asTooltip()).toEqual($element)
 
       const api = $element.data('tooltip')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('classes', () => {
-    it('should use classes options', () => {
+    test('should use classes options', () => {
       const element = document.createElement('div')
       const tooltip = new Tooltip(element, {
         classes: {
@@ -75,11 +75,11 @@ describe('Tooltip', () => {
         }
       })
 
-      expect(tooltip.classes.CONTAINER).to.be.equal('pj-tooltip-wrap')
-      expect(tooltip.classes.ACTIVE).to.be.equal('pj-tooltip-active')
+      expect(tooltip.classes.CONTAINER).toEqual('pj-tooltip-wrap')
+      expect(tooltip.classes.ACTIVE).toEqual('pj-tooltip-active')
     })
 
-    it('should override class namespace', () => {
+    test('should override class namespace', () => {
       const element = document.createElement('div')
       const tooltip = new Tooltip(element, {
         classes: {
@@ -88,44 +88,44 @@ describe('Tooltip', () => {
         }
       })
 
-      expect(tooltip.classes.NAMESPACE).to.be.equal('tooltip')
-      expect(tooltip.classes.CONTAINER).to.be.equal('tooltip-wrap')
+      expect(tooltip.classes.NAMESPACE).toEqual('tooltip')
+      expect(tooltip.classes.CONTAINER).toEqual('tooltip-wrap')
     })
 
     describe('getClass()', () => {
-      it('should get class with namespace', () => {
+      test('should get class with namespace', () => {
         const element = document.createElement('div')
         const tooltip = new Tooltip(element, {
           classes: { namespace: 'hello' }
         })
 
-        expect(tooltip.getClass('foo')).to.be.equal('foo')
-        expect(tooltip.getClass('{namespace}-foo')).to.be.equal('hello-foo')
+        expect(tooltip.getClass('foo')).toEqual('foo')
+        expect(tooltip.getClass('{namespace}-foo')).toEqual('hello-foo')
       })
 
-      it('should get class with arg', () => {
+      test('should get class with arg', () => {
         const element = document.createElement('div')
         const tooltip = new Tooltip(element, {
           classes: { namespace: 'hello' }
         })
 
-        expect(tooltip.getClass('foo', 'arg', 'value')).to.be.equal('foo')
-        expect(
-          tooltip.getClass('{namespace}-{arg}', 'arg', 'value')
-        ).to.be.equal('hello-value')
+        expect(tooltip.getClass('foo', 'arg', 'value')).toEqual('foo')
+        expect(tooltip.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
+          'hello-value'
+        )
       })
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asTooltip()
-      expect($element.asTooltip('bind')).to.be.undefined
+      expect($element.asTooltip('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asTooltip()
-      expect($element.asTooltip('destroy')).to.be.equal($element)
+      expect($element.asTooltip('destroy')).toEqual($element)
     })
   })
 
@@ -136,16 +136,16 @@ describe('Tooltip', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('tooltip:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asTooltip()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -158,17 +158,17 @@ describe('Tooltip', () => {
       api = $element.data('tooltip')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('tooltip:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asTooltip('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -181,23 +181,23 @@ describe('Tooltip', () => {
       api = $element.data('tooltip')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asTooltip('disable')
       $element.asTooltip('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('tooltip:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asTooltip('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -210,22 +210,22 @@ describe('Tooltip', () => {
       api = $element.data('tooltip')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asTooltip('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('tooltip:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asTooltip('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

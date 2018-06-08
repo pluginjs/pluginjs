@@ -4,63 +4,63 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Video', () => {
   describe('Video()', () => {
-    it('should have Video', () => {
-      expect(Video).to.be.an('function')
+    test('should have Video', () => {
+      expect(Video).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Video.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Video.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Video.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Video.events).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Video.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Video.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const video = new Video(element)
 
-      expect(video).to.be.an('object')
-      expect(video.options).to.be.eql(DEFAULTS)
+      expect(video).toBeObject()
+      expect(video.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const video = new Video(element)
 
-      expect(video.options).to.be.an('object')
+      expect(video.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asVideo()).to.be.equal($element)
+      expect($element.asVideo()).toEqual($element)
 
       const api = $element.data('video')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asVideo()
-      expect($element.asVideo('bind')).to.be.undefined
+      expect($element.asVideo('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asVideo()
-      expect($element.asVideo('destroy')).to.be.equal($element)
+      expect($element.asVideo('destroy')).toEqual($element)
     })
   })
 
@@ -71,16 +71,16 @@ describe('Video', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('video:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asVideo()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -93,17 +93,17 @@ describe('Video', () => {
       api = $element.data('video')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('video:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asVideo('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

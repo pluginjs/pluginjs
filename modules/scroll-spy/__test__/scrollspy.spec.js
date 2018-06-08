@@ -5,63 +5,63 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('ScrollSpy', () => {
   describe('ScrollSpy()', () => {
-    it('should have ScrollSpy', () => {
-      expect(ScrollSpy).to.be.an('function')
+    test('should have ScrollSpy', () => {
+      expect(ScrollSpy).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(ScrollSpy.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(ScrollSpy.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(ScrollSpy.events).to.be.an('object')
+    test('should have events', () => {
+      expect(ScrollSpy.events).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(ScrollSpy.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(ScrollSpy.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const scrollSpy = new ScrollSpy(element)
 
-      expect(scrollSpy).to.be.an('object')
-      expect(scrollSpy.options).to.be.eql(DEFAULTS)
+      expect(scrollSpy).toBeObject()
+      expect(scrollSpy.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const scrollSpy = new ScrollSpy(element)
 
-      expect(scrollSpy.options).to.be.an('object')
+      expect(scrollSpy.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asScrollSpy()).to.be.equal($element)
+      expect($element.asScrollSpy()).toEqual($element)
 
       const api = $element.data('scrollSpy')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asScrollSpy()
-      expect($element.asScrollSpy('bind')).to.be.undefined
+      expect($element.asScrollSpy('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asScrollSpy()
-      expect($element.asScrollSpy('destroy')).to.be.equal($element)
+      expect($element.asScrollSpy('destroy')).toEqual($element)
     })
   })
 
@@ -72,16 +72,16 @@ describe('ScrollSpy', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('scrollSpy:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asScrollSpy()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -94,17 +94,17 @@ describe('ScrollSpy', () => {
       api = $element.data('scrollSpy')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('scrollSpy:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asScrollSpy('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -117,23 +117,23 @@ describe('ScrollSpy', () => {
       api = $element.data('scrollSpy')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asScrollSpy('disable')
       $element.asScrollSpy('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('scrollSpy:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asScrollSpy('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -146,22 +146,22 @@ describe('ScrollSpy', () => {
       api = $element.data('scrollSpy')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asScrollSpy('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('scrollSpy:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asScrollSpy('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

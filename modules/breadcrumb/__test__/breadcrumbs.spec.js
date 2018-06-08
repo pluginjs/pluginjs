@@ -5,67 +5,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Breadcrumb', () => {
   describe('Breadcrumb()', () => {
-    it('should have Breadcrumb', () => {
-      expect(Breadcrumb).to.be.an('function')
+    test('should have Breadcrumb', () => {
+      expect(Breadcrumb).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Breadcrumb.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Breadcrumb.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Breadcrumb.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Breadcrumb.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Breadcrumb.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Breadcrumb.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Breadcrumb.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Breadcrumb.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const breadcrumb = new Breadcrumb(element)
 
-      expect(breadcrumb).to.be.an('object')
-      expect(breadcrumb.options).to.be.eql(DEFAULTS)
+      expect(breadcrumb).toBeObject()
+      expect(breadcrumb.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const breadcrumb = new Breadcrumb(element)
 
-      expect(breadcrumb.options).to.be.an('object')
+      expect(breadcrumb.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asBreadcrumb()).to.be.equal($element)
+      expect($element.asBreadcrumb()).toEqual($element)
 
       const api = $element.data('breadcrumb')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asBreadcrumb()
-      expect($element.asBreadcrumb('bind')).to.be.undefined
+      expect($element.asBreadcrumb('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asBreadcrumb()
-      expect($element.asBreadcrumb('destroy')).to.be.equal($element)
+      expect($element.asBreadcrumb('destroy')).toEqual($element)
     })
   })
 
@@ -76,16 +76,16 @@ describe('Breadcrumb', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('breadcrumb:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asBreadcrumb()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -98,17 +98,17 @@ describe('Breadcrumb', () => {
       api = $element.data('breadcrumb')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('breadcrumb:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asBreadcrumb('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -121,23 +121,23 @@ describe('Breadcrumb', () => {
       api = $element.data('breadcrumb')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asBreadcrumb('disable')
       $element.asBreadcrumb('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('breadcrumb:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asBreadcrumb('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -150,22 +150,22 @@ describe('Breadcrumb', () => {
       api = $element.data('breadcrumb')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asBreadcrumb('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('breadcrumb:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asBreadcrumb('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

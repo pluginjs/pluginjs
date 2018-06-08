@@ -5,66 +5,66 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Checkbox', () => {
   describe('Checkbox()', () => {
-    it('should have Checkbox', () => {
-      expect(Checkbox).to.be.an('function')
+    test('should have Checkbox', () => {
+      expect(Checkbox).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Checkbox.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Checkbox.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(Checkbox.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Checkbox.events).toBeObject()
     })
-    it('should have classes', () => {
-      expect(Checkbox.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Checkbox.classes).toBeObject()
     })
-    it('should have methods', () => {
-      expect(Checkbox.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Checkbox.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const checkbox = new Checkbox(element)
 
-      expect(checkbox).to.be.an('object')
-      expect(checkbox.options).to.be.eql(DEFAULTS)
+      expect(checkbox).toBeObject()
+      expect(checkbox.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const checkbox = new Checkbox(element)
 
-      expect(checkbox.options).to.be.an('object')
+      expect(checkbox.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asCheckbox()).to.be.equal($element)
+      expect($element.asCheckbox()).toEqual($element)
 
       const api = $element.data('checkbox')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asCheckbox()
-      expect($element.asCheckbox('bind')).to.be.undefined
+      expect($element.asCheckbox('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asCheckbox()
       $element.asCheckbox('destroy')
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -75,16 +75,16 @@ describe('Checkbox', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('checkbox:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asCheckbox()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('Checkbox', () => {
       api = $element.data('checkbox')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('checkbox:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asCheckbox('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('Checkbox', () => {
       api = $element.data('checkbox')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asCheckbox('disable')
       $element.asCheckbox('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('checkbox:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asCheckbox('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('Checkbox', () => {
       api = $element.data('checkbox')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asCheckbox('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('checkbox:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asCheckbox('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

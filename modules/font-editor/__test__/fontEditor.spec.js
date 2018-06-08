@@ -13,70 +13,70 @@ const defaultValue =
   "{'fontFamily': 'Arial', 'fontSize': '30px', 'lineHeight': '1.5em', 'fontWeight': 'bold', 'textAlign': 'left', 'fontStyle': 'italy', 'textTransform': 'capitalize', 'textDecoration': 'underline'}"
 describe('FontEditor', () => {
   describe('FontEditor()', () => {
-    it('should have FontEditor', () => {
-      expect(FontEditor).to.be.an('function')
+    test('should have FontEditor', () => {
+      expect(FontEditor).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(FontEditor.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(FontEditor.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(FontEditor.events).to.be.an('object')
+    test('should have events', () => {
+      expect(FontEditor.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(FontEditor.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(FontEditor.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(FontEditor.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(FontEditor.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('input')
       element.value = defaultValue
       const fontEditor = new FontEditor(element)
 
-      expect(fontEditor).to.be.an('object')
-      expect(fontEditor.options).to.be.eql(DEFAULTS)
+      expect(fontEditor).toBeObject()
+      expect(fontEditor.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('input')
       element.value = defaultValue
       const fontEditor = new FontEditor(element)
 
-      expect(fontEditor.options).to.be.an('object')
+      expect(fontEditor.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('input')
       element.value = defaultValue
       const $element = $(element)
 
-      expect($element.asFontEditor()).to.be.equal($element)
+      expect($element.asFontEditor()).toEqual($element)
 
       const api = $element.data('fontEditor')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('input')).asFontEditor()
-      expect($element.asFontEditor('bind')).to.be.undefined
+      expect($element.asFontEditor('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('input')).asFontEditor()
-      expect($element.asFontEditor('destroy')).to.be.equal($element)
+      expect($element.asFontEditor('destroy')).toEqual($element)
     })
   })
 
@@ -87,16 +87,16 @@ describe('FontEditor', () => {
       $element = $(document.createElement('input'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('fontEditor:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asFontEditor()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -109,17 +109,17 @@ describe('FontEditor', () => {
       api = $element.data('fontEditor')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('fontEditor:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asFontEditor('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -132,23 +132,23 @@ describe('FontEditor', () => {
       api = $element.data('fontEditor')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asFontEditor('disable')
       $element.asFontEditor('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('fontEditor:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asFontEditor('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -161,22 +161,22 @@ describe('FontEditor', () => {
       api = $element.data('fontEditor')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asFontEditor('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('fontEditor:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asFontEditor('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -189,55 +189,55 @@ describe('FontEditor', () => {
       api = $element.data('fontEditor')
     })
 
-    it('should have I18N', () => {
-      expect(FontEditor.I18N).to.be.an('object')
+    test('should have I18N', () => {
+      expect(FontEditor.I18N).toBeObject()
     })
 
     describe('getLocale()', () => {
-      it('should get default locale', () => {
-        expect(api.getLocale()).to.be.equal(DEFAULTS.locale)
+      test('should get default locale', () => {
+        expect(api.getLocale()).toEqual(DEFAULTS.locale)
       })
 
-      it('should get locale with options set', () => {
+      test('should get locale with options set', () => {
         $element = $(document.createElement('input')).asFontEditor({
           locale: 'zh-cn'
         })
         api = $element.data('fontEditor')
-        expect(api.getLocale()).to.be.equal('zh-cn')
+        expect(api.getLocale()).toEqual('zh-cn')
       })
     })
 
     describe('setLocale()', () => {
-      it('should override default locale', () => {
-        expect(api.getLocale()).to.be.equal(DEFAULTS.locale)
+      test('should override default locale', () => {
+        expect(api.getLocale()).toEqual(DEFAULTS.locale)
 
         api.setLocale('zh-cn')
 
-        expect(api.getLocale()).to.be.equal('zh-cn')
+        expect(api.getLocale()).toEqual('zh-cn')
       })
     })
 
     describe('addTransition', () => {
-      it('should add transtion correctly', () => {
+      test('should add transtion correctly', () => {
         FontEditor.I18N.addTranslation('zh-tw', { hello: '世界妳好' })
         api.setLocale('zh-tw')
-        expect(api.translate('hello')).to.be.equal('世界妳好')
+        expect(api.translate('hello')).toEqual('世界妳好')
       })
     })
 
     describe('fallbacks', () => {
-      it('should fallbacks to less specific locale', () => {
+      test('should fallbacks to less specific locale', () => {
         api.setLocale('zh-cn')
-        expect(api.translate('change')).to.be.equal('更改')
+        expect(api.translate('change')).toEqual('更改')
       })
     })
 
     describe('translate()', () => {
-      it('should get translated message', () => {
-        expect(api.translate('change')).to.be.equal('Change')
+      test('should get translated message', () => {
+        expect(api.translate('change')).toEqual('Change')
 
         api.setLocale('zh')
-        expect(api.translate('change')).to.be.equal('更改')
+        expect(api.translate('change')).toEqual('更改')
       })
     })
   })

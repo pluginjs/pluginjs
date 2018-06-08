@@ -4,63 +4,63 @@ import Shorten from '../../src/main.js'
 import { defaults as DEFAULTS } from '../../src/constant'
 describe('Shorten', () => {
   describe('Shorten()', () => {
-    it('should have Shorten', () => {
-      expect(Shorten).to.be.an('function')
+    test('should have Shorten', () => {
+      expect(Shorten).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Shorten.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Shorten.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Shorten.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Shorten.events).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Shorten.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Shorten.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const shorten = new Shorten(element)
 
-      expect(shorten).to.be.an('object')
+      expect(shorten).toBeObject()
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const shorten = new Shorten(element, {
         chars: 200,
         ellipses: '***'
       })
 
-      expect(shorten.options).to.be.an('object')
-      expect(shorten.options.chars).to.be.equal(200)
-      expect(shorten.options.ellipses).to.be.equal('***')
-      expect(shorten.options.chars).to.be.an('number')
+      expect(shorten.options).toBeObject()
+      expect(shorten.options.chars).toEqual(200)
+      expect(shorten.options.ellipses).toEqual('***')
+      expect(shorten.options.chars).toBeNumber()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asShorten()).to.be.equal($element)
+      expect($element.asShorten()).toEqual($element)
 
       const api = $element.data('shorten')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asShorten()
-      expect($element.asShorten('destroy')).to.be.equal($element)
+      expect($element.asShorten('destroy')).toEqual($element)
     })
   })
 
@@ -74,16 +74,16 @@ describe('Shorten', () => {
       )
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('shorten:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asShorten()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -100,17 +100,17 @@ describe('Shorten', () => {
       api = $element.data('shorten')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('shorten:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asShorten('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

@@ -256,66 +256,66 @@ LinkPicker.registerDatas(datas)
 
 describe('LinkPicker', () => {
   describe('LinkPicker()', () => {
-    it('should have LinkPicker', () => {
-      expect(LinkPicker).to.be.an('function')
+    test('should have LinkPicker', () => {
+      expect(LinkPicker).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(LinkPicker.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(LinkPicker.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(LinkPicker.events).to.be.an('object')
+    test('should have events', () => {
+      expect(LinkPicker.events).toBeObject()
     })
-    it('should have classes', () => {
-      expect(LinkPicker.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(LinkPicker.classes).toBeObject()
     })
-    it('should have methods', () => {
-      expect(LinkPicker.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(LinkPicker.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('input')
       const linkPicker = new LinkPicker(element)
 
-      expect(linkPicker).to.be.an('object')
-      expect(linkPicker.options).to.be.eql(DEFAULTS)
+      expect(linkPicker).toBeObject()
+      expect(linkPicker.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('input')
       const linkPicker = new LinkPicker(element)
 
-      expect(linkPicker.options).to.be.an('object')
+      expect(linkPicker.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('input')
       const $element = $(element)
 
-      expect($element.asLinkPicker()).to.be.equal($element)
+      expect($element.asLinkPicker()).toEqual($element)
 
       const api = $element.data('linkPicker')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('input')).asLinkPicker()
-      expect($element.asLinkPicker('bind')).to.be.undefined
+      expect($element.asLinkPicker('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('input')).asLinkPicker()
       $element.asLinkPicker('destroy')
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -328,16 +328,16 @@ describe('LinkPicker', () => {
       $element = $(element)
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('linkPicker:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asLinkPicker()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -350,17 +350,17 @@ describe('LinkPicker', () => {
       api = $element.data('linkPicker')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('linkPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asLinkPicker('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -373,23 +373,23 @@ describe('LinkPicker', () => {
       api = $element.data('linkPicker')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asLinkPicker('disable')
       $element.asLinkPicker('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('linkPicker:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asLinkPicker('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -402,22 +402,22 @@ describe('LinkPicker', () => {
       api = $element.data('linkPicker')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asLinkPicker('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('linkPicker:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asLinkPicker('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

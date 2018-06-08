@@ -17,74 +17,74 @@ const testStr = `<ul>
 </div>`
 describe('Tabs', () => {
   describe('Tabs()', () => {
-    it('should have Tabs', () => {
-      expect(Tabs).to.be.an('function')
+    test('should have Tabs', () => {
+      expect(Tabs).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Tabs.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Tabs.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Tabs.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Tabs.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Tabs.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Tabs.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Tabs.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Tabs.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       const tabs = new Tabs(element)
 
-      expect(tabs).to.be.an('object')
-      expect(tabs.options).to.be.eql(DEFAULTS)
+      expect(tabs).toBeObject()
+      expect(tabs.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       const tabs = new Tabs(element)
 
-      expect(tabs.options).to.be.an('object')
+      expect(tabs.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       const $element = $(element)
 
-      expect($element.asTabs()).to.be.equal($element)
+      expect($element.asTabs()).toEqual($element)
 
       const api = $element.data('tabs')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       const $element = $(element).asTabs()
-      expect($element.asTabs('bind')).to.be.undefined
+      expect($element.asTabs('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       const $element = $(element).asTabs()
-      expect($element.asTabs('destroy')).to.be.equal($element)
+      expect($element.asTabs('destroy')).toEqual($element)
     })
   })
 
@@ -97,16 +97,16 @@ describe('Tabs', () => {
       $element = $(element)
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('tabs:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asTabs()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -121,17 +121,17 @@ describe('Tabs', () => {
       api = $element.data('tabs')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('tabs:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asTabs('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -146,23 +146,23 @@ describe('Tabs', () => {
       api = $element.data('tabs')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asTabs('disable')
       $element.asTabs('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('tabs:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asTabs('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -177,22 +177,22 @@ describe('Tabs', () => {
       api = $element.data('tabs')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asTabs('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('tabs:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asTabs('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

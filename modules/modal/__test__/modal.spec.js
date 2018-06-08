@@ -5,50 +5,50 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Modal', () => {
   describe('Modal()', () => {
-    it('should have Modal', () => {
-      expect(Modal).to.be.an('function')
+    test('should have Modal', () => {
+      expect(Modal).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Modal.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Modal.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Modal.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Modal.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Modal.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Modal.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Modal.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Modal.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work correctly', () => {
+    test('should work correctly', () => {
       const modal = new Modal()
 
-      expect(modal).to.be.an('object')
-      expect(modal.options).to.be.eql(DEFAULTS)
+      expect(modal).toBeObject()
+      expect(modal.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const modal = new Modal()
 
-      expect(modal.options).to.be.an('object')
+      expect(modal.options).toBeObject()
     })
 
-    it('should have classes', () => {
+    test('should have classes', () => {
       const modal = new Modal()
 
-      expect(modal.classes).to.be.an('object')
+      expect(modal.classes).toBeObject()
     })
   })
 
   // describe('classes', () => {
-  //   it('should use classes options', () => {
+  //   test('should use classes options', () => {
   //     let modal = new Modal({
   //       classes: {
   //         container: '{namespace}-body',
@@ -56,11 +56,11 @@ describe('Modal', () => {
   //       }
   //     });
 
-  //     expect(modal.classes.CONTAINER).to.be.equal('pj-modal-body');
-  //     expect(modal.classes.ACTIVE).to.be.equal('pj-modal-active');
+  //     expect(modal.classes.CONTAINER).toEqual('pj-modal-body');
+  //     expect(modal.classes.ACTIVE).toEqual('pj-modal-active');
   //   });
 
-  //   it('should override class namespace', () => {
+  //   test('should override class namespace', () => {
   //     let modal = new Modal({
   //       classes: {
   //         namespace: 'modal',
@@ -68,31 +68,31 @@ describe('Modal', () => {
   //       }
   //     });
 
-  //     expect(modal.classes.NAMESPACE).to.be.equal('modal');
-  //     expect(modal.classes.CONTAINER).to.be.equal('modal-wrap');
+  //     expect(modal.classes.NAMESPACE).toEqual('modal');
+  //     expect(modal.classes.CONTAINER).toEqual('modal-wrap');
   //   });
 
   //   describe('getClass()', () => {
-  //     it('should get class with namespace', () => {
+  //     test('should get class with namespace', () => {
   //       let modal = new Modal({
   //         classes: {
   //           namespace: 'hello'
   //         }
   //       });
 
-  //       expect(modal.getClass('foo')).to.be.equal('foo');
-  //       expect(modal.getClass('{namespace}-foo')).to.be.equal('hello-foo');
+  //       expect(modal.getClass('foo')).toEqual('foo');
+  //       expect(modal.getClass('{namespace}-foo')).toEqual('hello-foo');
   //     });
 
-  //     it('should get class with arg', () => {
+  //     test('should get class with arg', () => {
   //       let modal = new Modal({
   //         classes: {
   //           namespace: 'hello'
   //         }
   //       });
 
-  //       expect(modal.getClass('foo', 'arg', 'value')).to.be.equal('foo');
-  //       expect(modal.getClass('{namespace}-{arg}', 'arg', 'value')).to.be.equal(
+  //       expect(modal.getClass('foo', 'arg', 'value')).toEqual('foo');
+  //       expect(modal.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
   //         'hello-value'
   //       );
   //     });
@@ -101,7 +101,7 @@ describe('Modal', () => {
 
   // describe('theme', () => {
   //   describe('getThemeClass()', () => {
-  //     it('should get theme classes with default namespace', () => {
+  //     test('should get theme classes with default namespace', () => {
   //       let modal = new Modal({
   //         theme: null,
   //         classes: {
@@ -109,14 +109,14 @@ describe('Modal', () => {
   //         }
   //       });
 
-  //       expect(modal.getThemeClass()).to.be.equal('');
-  //       expect(modal.getThemeClass('bar')).to.be.equal('pj-modal--bar');
-  //       expect(modal.getThemeClass('foo bar')).to.be.equal(
+  //       expect(modal.getThemeClass()).toEqual('');
+  //       expect(modal.getThemeClass('bar')).toEqual('pj-modal--bar');
+  //       expect(modal.getThemeClass('foo bar')).toEqual(
   //         'pj-modal--foo pj-modal--bar'
   //       );
   //     });
 
-  //     it('should get theme classes with namespace override', () => {
+  //     test('should get theme classes with namespace override', () => {
   //       let modal = new Modal({
   //         theme: null,
   //         classes: {
@@ -125,14 +125,14 @@ describe('Modal', () => {
   //         }
   //       });
 
-  //       expect(modal.getThemeClass()).to.be.equal('');
-  //       expect(modal.getThemeClass('bar')).to.be.equal('hello--bar');
-  //       expect(modal.getThemeClass('foo bar')).to.be.equal(
+  //       expect(modal.getThemeClass()).toEqual('');
+  //       expect(modal.getThemeClass('bar')).toEqual('hello--bar');
+  //       expect(modal.getThemeClass('foo bar')).toEqual(
   //         'hello--foo hello--bar'
   //       );
   //     });
 
-  //     it('should get theme classes correctly when no classes.THEME defined', () => {
+  //     test('should get theme classes correctly when no classes.THEME defined', () => {
   //       let modal = new Modal({
   //         theme: '{namespace}--foo'
   //       });
@@ -140,15 +140,15 @@ describe('Modal', () => {
   //       // set to null for test
   //       modal.classes.THEME = null;
 
-  //       expect(modal.getThemeClass()).to.be.equal('pj-modal--foo');
-  //       expect(modal.getThemeClass('bar')).to.be.equal('bar');
-  //       expect(modal.getThemeClass('{namespace}--bar')).to.be.equal(
+  //       expect(modal.getThemeClass()).toEqual('pj-modal--foo');
+  //       expect(modal.getThemeClass('bar')).toEqual('bar');
+  //       expect(modal.getThemeClass('{namespace}--bar')).toEqual(
   //         'pj-modal--bar'
   //       );
-  //       expect(modal.getThemeClass('foo bar')).to.be.equal('foo bar');
+  //       expect(modal.getThemeClass('foo bar')).toEqual('foo bar');
   //       expect(
   //         modal.getThemeClass('{namespace}--foo {namespace}--bar')
-  //       ).to.be.equal('pj-modal--foo pj-modal--bar');
+  //       ).toEqual('pj-modal--foo pj-modal--bar');
   //     });
   //   });
   // });
@@ -160,16 +160,16 @@ describe('Modal', () => {
   //     $doc.off('modal:ready');
   //   });
 
-  //   it('should trigger ready event', () => {
+  //   test('should trigger ready event', () => {
   //     let called = 0;
 
   //     $doc.on('modal:ready', function(event, api) {
-  //       expect(api.is('initialized')).to.be.true;
+  //       expect(api.is('initialized')).toBeTrue();
   //       called++;
   //     });
 
   //     new Modal();
-  //     expect(called).to.be.equal(1);
+  //     expect(called).toEqual(1);
   //   });
   // });
 
@@ -181,17 +181,17 @@ describe('Modal', () => {
   //     $doc.off('modal:destroy');
   //   });
 
-  //   it('should trigger destroy event', () => {
+  //   test('should trigger destroy event', () => {
   //     let called = 0;
 
   //     $doc.on('modal:destroy', function(event, api) {
-  //       expect(api.is('initialized')).to.be.false;
+  //       expect(api.is('initialized')).toBeFalse();
   //       called++;
   //     });
 
   //     api.destroy();
 
-  //     expect(called).to.be.equal(1);
+  //     expect(called).toEqual(1);
   //   });
   // });
 
@@ -199,69 +199,69 @@ describe('Modal', () => {
   //   let api = new Modal();
   //   let $doc = $(window.document.body);
 
-  //   it('should have I18N', () => {
-  //     expect(Modal.I18N).to.be.an('object');
+  //   test('should have I18N', () => {
+  //     expect(Modal.I18N).toBeObject();
   //   });
 
   //   describe('getLocale()', () => {
-  //     it('should get default locale', () => {
-  //       expect(api.getLocale()).to.be.equal(DEFAULTS.locale);
+  //     test('should get default locale', () => {
+  //       expect(api.getLocale()).toEqual(DEFAULTS.locale);
   //     });
 
-  //     it('should get locale with options set', () => {
+  //     test('should get locale with options set', () => {
   //       api = new Modal({
   //         locale: 'zh-cn'
   //       });
-  //       expect(api.getLocale()).to.be.equal('zh-cn');
+  //       expect(api.getLocale()).toEqual('zh-cn');
   //     });
   //   });
 
   //   describe('setLocale()', () => {
-  //     it('should override default locale', () => {
+  //     test('should override default locale', () => {
   //       api = new Modal();
-  //       expect(api.getLocale()).to.be.equal(DEFAULTS.locale);
+  //       expect(api.getLocale()).toEqual(DEFAULTS.locale);
 
   //       api.setLocale('zh-cn');
 
-  //       expect(api.getLocale()).to.be.equal('zh-cn');
+  //       expect(api.getLocale()).toEqual('zh-cn');
   //     });
   //   });
 
   //   describe('addTransition', () => {
-  //     it('should add transtion correctly', () => {
+  //     test('should add transtion correctly', () => {
   //       Modal.I18N.addTranslation('zh-tw', {
   //         hello: '世界妳好'
   //       });
   //       api.setLocale('zh-tw');
-  //       expect(api.translate('hello')).to.be.equal('世界妳好');
+  //       expect(api.translate('hello')).toEqual('世界妳好');
   //     });
   //   });
 
   //   describe('fallbacks', () => {
-  //     it('should fallbacks to less specific locale', () => {
+  //     test('should fallbacks to less specific locale', () => {
   //       api.setLocale('zh-cn');
-  //       expect(api.translate('hello')).to.be.equal('世界你好');
+  //       expect(api.translate('hello')).toEqual('世界你好');
   //     });
   //   });
 
   //   describe('translate()', () => {
-  //     it('should get translated message', () => {
+  //     test('should get translated message', () => {
   //       api = new Modal();
 
-  //       expect(api.translate('hello')).to.be.equal('Hello world');
+  //       expect(api.translate('hello')).toEqual('Hello world');
 
   //       api.setLocale('zh');
-  //       expect(api.translate('hello')).to.be.equal('世界你好');
+  //       expect(api.translate('hello')).toEqual('世界你好');
   //     });
 
-  //     it('should pass the variable to message', () => {
+  //     test('should pass the variable to message', () => {
   //       api = new Modal();
 
   //       expect(
   //         api.translate('greeting', {
   //           name: 'John'
   //         })
-  //       ).to.be.equal('Hello John!');
+  //       ).toEqual('Hello John!');
 
   //       api.setLocale('zh');
 
@@ -269,10 +269,10 @@ describe('Modal', () => {
   //         api.translate('greeting', {
   //           name: 'John'
   //         })
-  //       ).to.be.equal('John 你好!');
+  //       ).toEqual('John 你好!');
   //     });
 
-  //     it('should works with plurals', () => {
+  //     test('should works with plurals', () => {
   //       api = new Modal();
 
   //       expect(
@@ -280,21 +280,21 @@ describe('Modal', () => {
   //           count: '0',
   //           _number: 'count'
   //         })
-  //       ).to.be.equal('no product');
+  //       ).toEqual('no product');
 
   //       expect(
   //         api.translate('plurals', {
   //           count: '1',
   //           _number: 'count'
   //         })
-  //       ).to.be.equal('1 product');
+  //       ).toEqual('1 product');
 
   //       expect(
   //         api.translate('plurals', {
   //           count: '2',
   //           _number: 'count'
   //         })
-  //       ).to.be.equal('2 products');
+  //       ).toEqual('2 products');
 
   //       api.setLocale('zh');
 
@@ -303,21 +303,21 @@ describe('Modal', () => {
   //           count: '0',
   //           _number: 'count'
   //         })
-  //       ).to.be.equal('0 个产品');
+  //       ).toEqual('0 个产品');
 
   //       expect(
   //         api.translate('plurals', {
   //           count: '1',
   //           _number: 'count'
   //         })
-  //       ).to.be.equal('1 个产品');
+  //       ).toEqual('1 个产品');
 
   //       expect(
   //         api.translate('plurals', {
   //           count: '2',
   //           _number: 'count'
   //         })
-  //       ).to.be.equal('2 个产品');
+  //       ).toEqual('2 个产品');
   //     });
   //   });
   // });

@@ -5,66 +5,66 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('ScrollTop', () => {
   describe('ScrollTop()', () => {
-    it('should have ScrollTop', () => {
-      expect(ScrollTop).to.be.an('function')
+    test('should have ScrollTop', () => {
+      expect(ScrollTop).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(ScrollTop.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(ScrollTop.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(ScrollTop.events).to.be.an('object')
+    test('should have events', () => {
+      expect(ScrollTop.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(ScrollTop.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(ScrollTop.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(ScrollTop.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(ScrollTop.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const scrollTop = new ScrollTop(element)
-      expect(scrollTop).to.be.an('object')
-      expect(scrollTop.options.theme).to.be.eql('default')
+      expect(scrollTop).toBeObject()
+      expect(scrollTop.options.theme).toEqual('default')
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const scrollTop = new ScrollTop(element)
 
-      expect(scrollTop.options).to.be.an('object')
+      expect(scrollTop.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asScrollTop()).to.be.equal($element)
+      expect($element.asScrollTop()).toEqual($element)
 
       const api = $element.data('scrollTop')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asScrollTop()
-      expect($element.asScrollTop('bind')).to.be.undefined
+      expect($element.asScrollTop('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asScrollTop()
-      expect($element.asScrollTop('destroy')).to.be.equal($element)
+      expect($element.asScrollTop('destroy')).toEqual($element)
     })
   })
 
@@ -75,16 +75,16 @@ describe('ScrollTop', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('scrollTop:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asScrollTop()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('ScrollTop', () => {
       api = $element.data('scrollTop')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('scrollTop:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asScrollTop('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('ScrollTop', () => {
       api = $element.data('scrollTop')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asScrollTop('disable')
       $element.asScrollTop('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('scrollTop:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asScrollTop('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('ScrollTop', () => {
       api = $element.data('scrollTop')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asScrollTop('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('scrollTop:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asScrollTop('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })
