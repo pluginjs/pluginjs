@@ -4,67 +4,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Spinner', () => {
   describe('Spinner()', () => {
-    it('should have Spinner', () => {
-      expect(Spinner).to.be.an('function')
+    test('should have Spinner', () => {
+      expect(Spinner).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Spinner.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Spinner.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Spinner.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Spinner.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Spinner.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Spinner.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Spinner.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Spinner.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const spinner = new Spinner(element)
 
-      expect(spinner).to.be.an('object')
-      expect(spinner.options).to.be.eql(DEFAULTS)
+      expect(spinner).toBeObject()
+      expect(spinner.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const spinner = new Spinner(element)
 
-      expect(spinner.options).to.be.an('object')
+      expect(spinner.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asSpinner()).to.be.equal($element)
+      expect($element.asSpinner()).toEqual($element)
 
       const api = $element.data('spinner')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asSpinner()
-      expect($element.asSpinner('bind')).to.be.undefined
+      expect($element.asSpinner('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asSpinner()
-      expect($element.asSpinner('destroy')).to.be.equal($element)
+      expect($element.asSpinner('destroy')).toEqual($element)
     })
   })
 
@@ -75,16 +75,16 @@ describe('Spinner', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('spinner:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asSpinner()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('Spinner', () => {
       api = $element.data('spinner')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('spinner:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asSpinner('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('Spinner', () => {
       api = $element.data('spinner')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asSpinner('disable')
       $element.asSpinner('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('spinner:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asSpinner('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('Spinner', () => {
       api = $element.data('spinner')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asSpinner('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('spinner:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asSpinner('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

@@ -5,66 +5,66 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Sticky', () => {
   describe('Sticky()', () => {
-    it('should have Sticky', () => {
-      expect(Sticky).to.be.an('function')
+    test('should have Sticky', () => {
+      expect(Sticky).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Sticky.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Sticky.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(Sticky.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Sticky.events).toBeObject()
     })
-    it('should have classes', () => {
-      expect(Sticky.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Sticky.classes).toBeObject()
     })
-    it('should have methods', () => {
-      expect(Sticky.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Sticky.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const sticky = new Sticky(element)
 
-      expect(sticky).to.be.an('object')
-      expect(sticky.options).to.be.eql(DEFAULTS)
+      expect(sticky).toBeObject()
+      expect(sticky.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const sticky = new Sticky(element)
 
-      expect(sticky.options).to.be.an('object')
+      expect(sticky.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asSticky()).to.be.equal($element)
+      expect($element.asSticky()).toEqual($element)
 
       const api = $element.data('sticky')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asSticky()
-      expect($element.asSticky('bind')).to.be.undefined
+      expect($element.asSticky('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asSticky()
       $element.asSticky('destroy')
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -75,16 +75,16 @@ describe('Sticky', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('sticky:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asSticky()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('Sticky', () => {
       api = $element.data('sticky')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('sticky:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asSticky('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('Sticky', () => {
       api = $element.data('sticky')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asSticky('disable')
       $element.asSticky('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('sticky:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asSticky('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('Sticky', () => {
       api = $element.data('sticky')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asSticky('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('sticky:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asSticky('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

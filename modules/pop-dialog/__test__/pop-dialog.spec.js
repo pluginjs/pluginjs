@@ -7,67 +7,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('PopDialog', () => {
   describe('PopDialog()', () => {
-    it('should have PopDialog', () => {
-      expect(PopDialog).to.be.an('function')
+    test('should have PopDialog', () => {
+      expect(PopDialog).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(PopDialog.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(PopDialog.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(PopDialog.events).to.be.an('object')
+    test('should have events', () => {
+      expect(PopDialog.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(PopDialog.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(PopDialog.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(PopDialog.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(PopDialog.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const popDialog = new PopDialog(element)
 
-      expect(popDialog).to.be.an('object')
-      expect(popDialog.options).to.be.an('object')
+      expect(popDialog).toBeObject()
+      expect(popDialog.options).toBeObject()
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const popDialog = new PopDialog(element)
 
-      expect(popDialog.options).to.be.an('object')
+      expect(popDialog.options).toBeObject()
     })
 
-    it('should have classes', () => {
+    test('should have classes', () => {
       const element = document.createElement('div')
       const popDialog = new PopDialog(element)
 
-      expect(popDialog.classes).to.be.an('object')
+      expect(popDialog.classes).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asPopDialog()).to.be.equal($element)
+      expect($element.asPopDialog()).toEqual($element)
 
       const api = $element.data('popDialog')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   // describe('classes', () => {
-  //   it('should use classes options', () => {
+  //   test('should use classes options', () => {
   //     let element = document.createElement('div');
   //     let popDialog = new PopDialog(element, {
   //       classes: {
@@ -76,11 +76,11 @@ describe('PopDialog', () => {
   //       }
   //     });
 
-  //     expect(popDialog.classes.CONTAINER).to.be.equal('pj-popDialog-wrap');
-  //     expect(popDialog.classes.ACTIVE).to.be.equal('pj-popDialog-active');
+  //     expect(popDialog.classes.CONTAINER).toEqual('pj-popDialog-wrap');
+  //     expect(popDialog.classes.ACTIVE).toEqual('pj-popDialog-active');
   //   });
 
-  //   it('should override class namespace', () => {
+  //   test('should override class namespace', () => {
   //     let element = document.createElement('div');
   //     let popDialog = new PopDialog(element, {
   //       classes: {
@@ -89,12 +89,12 @@ describe('PopDialog', () => {
   //       }
   //     });
 
-  //     expect(popDialog.classes.NAMESPACE).to.be.equal('popDialog');
-  //     expect(popDialog.classes.CONTAINER).to.be.equal('popDialog-wrap');
+  //     expect(popDialog.classes.NAMESPACE).toEqual('popDialog');
+  //     expect(popDialog.classes.CONTAINER).toEqual('popDialog-wrap');
   //   });
 
   //   describe('getClass()', () => {
-  //     it('should get class with namespace', () => {
+  //     test('should get class with namespace', () => {
   //       let element = document.createElement('div');
   //       let popDialog = new PopDialog(element, {
   //         classes: {
@@ -102,11 +102,11 @@ describe('PopDialog', () => {
   //         }
   //       });
 
-  //       expect(popDialog.getClass('foo')).to.be.equal('foo');
-  //       expect(popDialog.getClass('{namespace}-foo')).to.be.equal('hello-foo');
+  //       expect(popDialog.getClass('foo')).toEqual('foo');
+  //       expect(popDialog.getClass('{namespace}-foo')).toEqual('hello-foo');
   //     });
 
-  //     it('should get class with arg', () => {
+  //     test('should get class with arg', () => {
   //       let element = document.createElement('div');
   //       let popDialog = new PopDialog(element, {
   //         classes: {
@@ -114,21 +114,21 @@ describe('PopDialog', () => {
   //         }
   //       });
 
-  //       expect(popDialog.getClass('foo', 'arg', 'value')).to.be.equal('foo');
-  //       expect(popDialog.getClass('{namespace}-{arg}', 'arg', 'value')).to.be.equal('hello-value');
+  //       expect(popDialog.getClass('foo', 'arg', 'value')).toEqual('foo');
+  //       expect(popDialog.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual('hello-value');
   //     });
   //   });
   // });
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asPopDialog()
-      expect($element.asPopDialog('bind')).to.be.undefined
+      expect($element.asPopDialog('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asPopDialog()
-      expect($element.asPopDialog('destroy')).to.be.equal($element)
+      expect($element.asPopDialog('destroy')).toEqual($element)
     })
   })
 
@@ -139,16 +139,16 @@ describe('PopDialog', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('popDialog:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asPopDialog()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -161,17 +161,17 @@ describe('PopDialog', () => {
       api = $element.data('popDialog')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('popDialog:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asPopDialog('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -184,23 +184,23 @@ describe('PopDialog', () => {
       api = $element.data('popDialog')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asPopDialog('disable')
       $element.asPopDialog('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('popDialog:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asPopDialog('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -213,22 +213,22 @@ describe('PopDialog', () => {
       api = $element.data('popDialog')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asPopDialog('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('popDialog:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asPopDialog('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

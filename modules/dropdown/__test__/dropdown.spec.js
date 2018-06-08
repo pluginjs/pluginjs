@@ -6,29 +6,29 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Dropdown', () => {
   describe('Dropdown()', () => {
-    it('should have Dropdown', () => {
-      expect(Dropdown).to.be.an('function')
+    test('should have Dropdown', () => {
+      expect(Dropdown).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Dropdown.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Dropdown.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Dropdown.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Dropdown.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Dropdown.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Dropdown.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Dropdown.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Dropdown.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const container = document.createElement('div')
       const element = document.createElement('div')
       const ul = document.createElement('ul')
@@ -36,10 +36,10 @@ describe('Dropdown', () => {
       container.appendChild(ul)
       const dropdown = new Dropdown(element)
 
-      expect(dropdown).to.be.an('object')
+      expect(dropdown).toBeObject()
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const container = document.createElement('div')
       const element = document.createElement('div')
       const ul = document.createElement('ul')
@@ -47,12 +47,12 @@ describe('Dropdown', () => {
       container.appendChild(ul)
       const dropdown = new Dropdown(element)
 
-      expect(dropdown.options).to.be.an('object')
+      expect(dropdown.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const container = document.createElement('div')
       const element = document.createElement('div')
       const ul = document.createElement('ul')
@@ -60,34 +60,34 @@ describe('Dropdown', () => {
       container.appendChild(ul)
       const $element = $(element)
 
-      expect($element.asDropdown()).to.be.equal($element)
+      expect($element.asDropdown()).toEqual($element)
 
       const api = $element.data('dropdown')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const container = document.createElement('div')
       const element = document.createElement('div')
       const ul = document.createElement('ul')
       container.appendChild(element)
       container.appendChild(ul)
       const $element = $(element).asDropdown()
-      expect($element.asDropdown('bind')).to.be.undefined
+      expect($element.asDropdown('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const container = document.createElement('div')
       const element = document.createElement('div')
       const ul = document.createElement('ul')
       container.appendChild(element)
       container.appendChild(ul)
       const $element = $(element).asDropdown()
-      expect($element.asDropdown('destroy')).to.be.equal($element)
+      expect($element.asDropdown('destroy')).toEqual($element)
     })
   })
 
@@ -103,16 +103,16 @@ describe('Dropdown', () => {
       $element = $(element)
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('dropdown:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asDropdown()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -130,16 +130,16 @@ describe('Dropdown', () => {
       api = $element.data('dropdown')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('dropdown:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asDropdown('destroy')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -157,23 +157,23 @@ describe('Dropdown', () => {
       api = $element.data('dropdown')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asDropdown('disable')
       $element.asDropdown('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('dropdown:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asDropdown('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -191,21 +191,21 @@ describe('Dropdown', () => {
       api = $element.data('dropdown')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asDropdown('disable')
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('dropdown:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asDropdown('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

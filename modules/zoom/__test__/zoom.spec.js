@@ -5,66 +5,66 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Zoom', () => {
   describe('Zoom()', () => {
-    it('should have Zoom', () => {
-      expect(Zoom).to.be.an('function')
+    test('should have Zoom', () => {
+      expect(Zoom).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Zoom.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Zoom.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(Zoom.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Zoom.events).toBeObject()
     })
-    it('should have classes', () => {
-      expect(Zoom.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Zoom.classes).toBeObject()
     })
-    it('should have methods', () => {
-      expect(Zoom.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Zoom.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const zoom = new Zoom(element)
 
-      expect(zoom).to.be.an('object')
-      expect(zoom.options).to.be.eql(DEFAULTS)
+      expect(zoom).toBeObject()
+      expect(zoom.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const zoom = new Zoom(element)
 
-      expect(zoom.options).to.be.an('object')
+      expect(zoom.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asZoom()).to.be.equal($element)
+      expect($element.asZoom()).toEqual($element)
 
       const api = $element.data('zoom')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asZoom()
-      expect($element.asZoom('bind')).to.be.undefined
+      expect($element.asZoom('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asZoom()
       $element.asZoom('destroy')
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -75,16 +75,16 @@ describe('Zoom', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('zoom:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asZoom()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('Zoom', () => {
       api = $element.data('zoom')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('zoom:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asZoom('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('Zoom', () => {
       api = $element.data('zoom')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asZoom('disable')
       $element.asZoom('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('zoom:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asZoom('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('Zoom', () => {
       api = $element.data('zoom')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asZoom('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('zoom:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asZoom('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

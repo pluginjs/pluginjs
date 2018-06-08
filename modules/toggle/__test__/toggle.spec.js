@@ -4,67 +4,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Toggle', () => {
   describe('Toggle()', () => {
-    it('should have Toggle', () => {
-      expect(Toggle).to.be.an('function')
+    test('should have Toggle', () => {
+      expect(Toggle).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Toggle.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Toggle.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Toggle.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Toggle.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Toggle.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Toggle.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Toggle.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Toggle.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const _toggle = new Toggle(element)
 
-      expect(_toggle).to.be.an('object')
-      expect(_toggle.options).to.be.eql(DEFAULTS)
+      expect(_toggle).toBeObject()
+      expect(_toggle.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const _toggle = new Toggle(element)
 
-      expect(_toggle.options).to.be.an('object')
+      expect(_toggle.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asToggle()).to.be.equal($element)
+      expect($element.asToggle()).toEqual($element)
 
       const api = $element.data('toggle')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asToggle()
-      expect($element.asToggle('bind')).to.be.undefined
+      expect($element.asToggle('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asToggle()
-      expect($element.asToggle('destroy')).to.be.equal($element)
+      expect($element.asToggle('destroy')).toEqual($element)
     })
   })
 
@@ -75,16 +75,16 @@ describe('Toggle', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('toggle:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asToggle()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('Toggle', () => {
       api = $element.data('toggle')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('toggle:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asToggle('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('Toggle', () => {
       api = $element.data('toggle')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asToggle('disable')
       $element.asToggle('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('toggle:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asToggle('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('Toggle', () => {
       api = $element.data('toggle')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asToggle('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('toggle:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asToggle('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

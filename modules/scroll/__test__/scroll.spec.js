@@ -3,7 +3,7 @@ import $ from 'jquery'
 import scroll from '../../src/main'
 
 describe('scroll', () => {
-  it('should have scroll', () => {
-    expect(scroll).to.be.an('object')
+  test('should have scroll', () => {
+    expect(scroll).toBeObject()
   })
 })

@@ -1,43 +1,43 @@
 import Easing from '../src'
 
 describe('Easing', () => {
-  it('should have Easing.bezier', () => {
-    expect(Easing).to.be.an('object')
+  test('should have Easing.bezier', () => {
+    expect(Easing).toBeObject()
   })
 
   describe('get()', () => {
-    it('should return predefined easings', () => {
+    test('should return predefined easings', () => {
       const easing = Easing.get('linear')
 
-      expect(easing).to.be.an('function')
-      expect(easing(0.5)).to.be.equal(0.5)
+      expect(easing).toBeFunction()
+      expect(easing(0.5)).toEqual(0.5)
     })
 
-    it('should return the css string with name', () => {
+    test('should return the css string with name', () => {
       const easing = Easing.get('easeIn')
-      expect(easing.css()).to.be.equal('ease-in')
+      expect(easing.css()).toEqual('ease-in')
     })
 
-    it('should return the css bezier string if name is not set', () => {
+    test('should return the css bezier string if name is not set', () => {
       const easing = Easing.get('easeInQuad')
-      expect(easing.css()).to.be.equal('cubic-bezier(0.55, 0.085, 0.68, 0.53)')
+      expect(easing.css()).toEqual('cubic-bezier(0.55, 0.085, 0.68, 0.53)')
     })
   })
 
   describe('register()', () => {
-    it('should register easing', () => {
+    test('should register easing', () => {
       let easing = Easing.get('custom')
-      expect(easing).to.be.undefined
+      expect(easing).toBeNil()
 
       Easing.register('custom', 0, 0, 1, 1)
       easing = Easing.get('custom')
-      expect(easing).to.be.an('function')
+      expect(easing).toBeFunction()
     })
 
-    it('should throw an Error', () => {
+    test('should throw an Error', () => {
       expect(() => {
         Easing.register('custom', 0.5, 0.5, -5, 0.5)
-      }).to.throw(Error)
+      }).toThrow(Error)
     })
   })
 
@@ -48,7 +48,7 @@ describe('Easing', () => {
     }
 
     function assertClose(a, b, precision = 0.000001) {
-      expect(Math.abs(a - b)).to.be.below(precision)
+      expect(Math.abs(a - b)).toBeLessThan(precision)
     }
 
     function makeAssertCloseWithPrecision(precision) {
@@ -73,55 +73,55 @@ describe('Easing', () => {
       }
     }
 
-    it('should have bezier', () => {
-      expect(Easing.bezier).to.be.an('function')
+    test('should have bezier', () => {
+      expect(Easing.bezier).toBeFunction()
     })
 
-    it('should creates an function', () => {
-      expect(Easing.bezier(0, 0, 1, 1)).to.be.an('function')
+    test('should creates an function', () => {
+      expect(Easing.bezier(0, 0, 1, 1)).toBeFunction()
     })
 
-    it('should fail with wrong arguments', () => {
+    test('should fail with wrong arguments', () => {
       expect(() => {
         Easing.bezier(0.5, 0.5, -5, 0.5)
-      }).to.throw(Error)
+      }).toThrow(Error)
 
       expect(() => {
         Easing.bezier(0.5, 0.5, 5, 0.5)
-      }).to.throw(Error)
+      }).toThrow(Error)
 
       expect(() => {
         Easing.bezier(-2, 0.5, 0.5, 0.5)
-      }).to.throw(Error)
+      }).toThrow(Error)
 
       expect(() => {
         Easing.bezier(2, 0.5, 0.5, 0.5)
-      }).to.throw(Error)
+      }).toThrow(Error)
     })
 
     describe('css()', () => {
-      it('should return Easing.bezier css string', () => {
+      test('should return Easing.bezier css string', () => {
         const easing = Easing.bezier(0.39, 0.575, 0.565, 1)
 
-        expect(easing.css()).to.be.equal('cubic-bezier(0.39, 0.575, 0.565, 1)')
+        expect(easing.css()).toEqual('cubic-bezier(0.39, 0.575, 0.565, 1)')
       })
 
-      it('should return linear if mX1 === mY1 && mX2 === mY2', () => {
+      test('should return linear if mX1 === mY1 && mX2 === mY2', () => {
         const easing = Easing.bezier(0.5, 0.5, 1, 1)
 
-        expect(easing.css()).to.be.equal('linear')
+        expect(easing.css()).toEqual('linear')
       })
     })
 
     describe('linear curves', () => {
-      it('should be linear', () => {
+      test('should be linear', () => {
         allEquals(Easing.bezier(0, 0, 1, 1), Easing.bezier(1, 1, 0, 0), 100)
         allEquals(Easing.bezier(0, 0, 1, 1), identity, 100)
       })
     })
 
     describe('common properties', () => {
-      it('should be the right value at extremes', () => {
+      test('should be the right value at extremes', () => {
         repeat(100)(() => {
           let a = Math.random(),
             b = 2 * Math.random() - 0.5,
@@ -129,12 +129,12 @@ describe('Easing', () => {
             d = 2 * Math.random() - 0.5
           const easing = Easing.bezier(a, b, c, d)
 
-          expect(easing(0)).to.be.equal(0)
-          expect(easing(1)).to.be.equal(1)
+          expect(easing(0)).toEqual(0)
+          expect(easing(1)).toEqual(1)
         })
       })
 
-      it('should approach the projected value of its x=y projected curve', () => {
+      test('should approach the projected value of its x=y projected curve', () => {
         repeat(100)(() => {
           let a = Math.random(),
             b = Math.random(),
@@ -151,7 +151,7 @@ describe('Easing', () => {
     })
 
     describe('two same instances', () => {
-      it('should be strictly equals', () => {
+      test('should be strictly equals', () => {
         repeat(100)(() => {
           let a = Math.random(),
             b = 2 * Math.random() - 0.5,
@@ -163,7 +163,7 @@ describe('Easing', () => {
     })
 
     describe('symetric curves', () => {
-      it('should have a central value y~=0.5 at x=0.5', () => {
+      test('should have a central value y~=0.5 at x=0.5', () => {
         repeat(100)(() => {
           let a = Math.random(),
             b = 2 * Math.random() - 0.5,
@@ -174,7 +174,7 @@ describe('Easing', () => {
         })
       })
 
-      it('should be symetrical', () => {
+      test('should be symetrical', () => {
         repeat(100)(() => {
           let a = Math.random(),
             b = 2 * Math.random() - 0.5,

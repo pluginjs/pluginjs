@@ -5,67 +5,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Paginator', () => {
   // describe('Paginator()', () => {
-  //   it('should have Paginator', () => {
-  //     expect(Paginator).to.be.an('function');
+  //   test('should have Paginator', () => {
+  //     expect(Paginator).toBeFunction();
   //   });
 
-  //   it('should have defaults', () => {
-  //     expect(Paginator.defaults).to.be.an('object');
+  //   test('should have defaults', () => {
+  //     expect(Paginator.defaults).toBeObject();
   //   });
 
-  //   it('should have events', () => {
-  //     expect(Paginator.events).to.be.an('object');
+  //   test('should have events', () => {
+  //     expect(Paginator.events).toBeObject();
   //   });
 
-  //   it('should have classes', () => {
-  //     expect(Paginator.classes).to.be.an('object');
+  //   test('should have classes', () => {
+  //     expect(Paginator.classes).toBeObject();
   //   });
 
-  //   it('should have methods', () => {
-  //     expect(Paginator.methods).to.be.an('array');
+  //   test('should have methods', () => {
+  //     expect(Paginator.methods).toBeArray();
   //   });
   // });
 
   // describe('constructor()', () => {
-  //   it('should work with element', () => {
+  //   test('should work with element', () => {
   //     let element = document.createElement('div');
   //     let paginator = new Paginator(element);
 
-  //     expect(paginator).to.be.an('object');
-  //     expect(paginator.options).to.be.eql(DEFAULTS);
+  //     expect(paginator).toBeObject();
+  //     expect(paginator.options).toEqual(DEFAULTS);
   //   });
 
-  //   it('should have options', () => {
+  //   test('should have options', () => {
   //     let element = document.createElement('div');
   //     let paginator = new Paginator(element);
 
-  //     expect(paginator.options).to.be.an('object');
+  //     expect(paginator.options).toBeObject();
   //   });
   // });
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asPaginator()).to.be.equal($element)
+      expect($element.asPaginator()).toEqual($element)
 
       const api = $element.data('paginator')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   // describe('api call', () => {
-  //   it('should not call bind', () => {
+  //   test('should not call bind', () => {
   //     let $element = $(document.createElement('div')).asPaginator();
-  //     expect($element.asPaginator('bind')).to.be.undefined;
+  //     expect($element.asPaginator('bind')).toBeNil();
   //   });
 
-  //   it('should call destroy', () => {
+  //   test('should call destroy', () => {
   //     let $element = $(document.createElement('div')).asPaginator();
-  //     expect($element.asPaginator('destroy')).to.be.equal($element);
+  //     expect($element.asPaginator('destroy')).toEqual($element);
   //   });
   // });
 
@@ -76,16 +76,16 @@ describe('Paginator', () => {
   //     $element = $(document.createElement('div'))
   //   });
 
-  //   it('should trigger ready event', () => {
+  //   test('should trigger ready event', () => {
   //     let called = 0;
 
   //     $element.on('paginator:ready', function(event, api) {
-  //       expect(api.is('initialized')).to.be.true;
+  //       expect(api.is('initialized')).toBeTrue();
   //       called ++;
   //     });
 
   //     $element.asPaginator();
-  //     expect(called).to.be.equal(1);
+  //     expect(called).toEqual(1);
   //   });
   // });
 
@@ -98,17 +98,17 @@ describe('Paginator', () => {
   //     api = $element.data('paginator');
   //   });
 
-  //   it('should trigger destroy event', () => {
+  //   test('should trigger destroy event', () => {
   //     let called = 0;
 
   //     $element.on('paginator:destroy', function(event, api) {
-  //       expect(api.is('initialized')).to.be.false;
+  //       expect(api.is('initialized')).toBeFalse();
   //       called ++;
   //     });
 
   //     $element.asPaginator('destroy');
 
-  //     expect(called).to.be.equal(1);
+  //     expect(called).toEqual(1);
   //   });
   // });
 
@@ -121,23 +121,23 @@ describe('Paginator', () => {
   //     api = $element.data('paginator');
   //   });
 
-  //   it('should enable the plugin', () => {
+  //   test('should enable the plugin', () => {
   //     $element.asPaginator('disable');
   //     $element.asPaginator('enable');
 
-  //     expect(api.is('disabled')).to.be.false;
+  //     expect(api.is('disabled')).toBeFalse();
   //   });
 
-  //   it('should trigger enable event', () => {
+  //   test('should trigger enable event', () => {
   //     let called = 0;
 
   //     $element.on('paginator:enable', function(event, api) {
-  //       expect(api.is('disabled')).to.be.false;
+  //       expect(api.is('disabled')).toBeFalse();
   //       called ++;
   //     });
 
   //     $element.asPaginator('enable');
-  //     expect(called).to.be.equal(1);
+  //     expect(called).toEqual(1);
   //   });
   // });
 
@@ -150,22 +150,22 @@ describe('Paginator', () => {
   //      api = $element.data('paginator');
   //   });
 
-  //   it('should disable the plugin', () => {
+  //   test('should disable the plugin', () => {
   //     $element.asPaginator('disable');
 
-  //     expect(api.is('disabled')).to.be.true;
+  //     expect(api.is('disabled')).toBeTrue();
   //   });
 
-  //   it('should trigger disable event', () => {
+  //   test('should trigger disable event', () => {
   //     let called = 0;
 
   //     $element.on('paginator:disable', function(event, api) {
-  //       expect(api.is('disabled')).to.be.true;
+  //       expect(api.is('disabled')).toBeTrue();
   //       called ++;
   //     });
 
   //     $element.asPaginator('disable');
-  //     expect(called).to.be.equal(1);
+  //     expect(called).toEqual(1);
   //   });
   // });
 })

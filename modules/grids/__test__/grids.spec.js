@@ -5,66 +5,66 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Grids', () => {
   describe('Grids()', () => {
-    it('should have Grids', () => {
-      expect(Grids).to.be.an('function')
+    test('should have Grids', () => {
+      expect(Grids).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Grids.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Grids.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(Grids.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Grids.events).toBeObject()
     })
-    it('should have classes', () => {
-      expect(Grids.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Grids.classes).toBeObject()
     })
-    it('should have methods', () => {
-      expect(Grids.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Grids.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const grids = new Grids(element)
 
-      expect(grids).to.be.an('object')
-      expect(grids.options).to.be.eql(DEFAULTS)
+      expect(grids).toBeObject()
+      expect(grids.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const grids = new Grids(element)
 
-      expect(grids.options).to.be.an('object')
+      expect(grids.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asGrids()).to.be.equal($element)
+      expect($element.asGrids()).toEqual($element)
 
       const api = $element.data('grids')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asGrids()
-      expect($element.asGrids('bind')).to.be.undefined
+      expect($element.asGrids('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asGrids()
       $element.asGrids('destroy')
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -75,16 +75,16 @@ describe('Grids', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('grids:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asGrids()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('Grids', () => {
       api = $element.data('grids')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('grids:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asGrids('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('Grids', () => {
       api = $element.data('grids')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asGrids('disable')
       $element.asGrids('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('grids:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asGrids('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('Grids', () => {
       api = $element.data('grids')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asGrids('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('grids:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asGrids('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

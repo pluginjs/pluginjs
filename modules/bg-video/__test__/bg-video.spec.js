@@ -12,25 +12,25 @@ const options = {
 
 describe('BgVideo', () => {
   describe('BgVideo()', () => {
-    it('should have BgVideo', () => {
-      expect(BgVideo).to.be.an('function')
+    test('should have BgVideo', () => {
+      expect(BgVideo).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(BgVideo.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(BgVideo.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(BgVideo.events).to.be.an('object')
+    test('should have events', () => {
+      expect(BgVideo.events).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(BgVideo.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(BgVideo.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const bgVideo = new BgVideo(element, {
         type: options.type,
@@ -44,11 +44,11 @@ describe('BgVideo', () => {
         }
       })
 
-      expect(bgVideo).to.be.an('object')
-      // expect(bgVideo.options).to.be.eql(DEFAULTS);
+      expect(bgVideo).toBeObject()
+      // expect(bgVideo.options).toEqual(DEFAULTS);
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const bgVideo = new BgVideo(element, {
         type: options.type,
@@ -62,12 +62,12 @@ describe('BgVideo', () => {
         }
       })
 
-      expect(bgVideo.options).to.be.an('object')
+      expect(bgVideo.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
@@ -83,17 +83,17 @@ describe('BgVideo', () => {
             mobileImage: ''
           }
         })
-      ).to.be.equal($element)
+      ).toEqual($element)
 
       const api = $element.data('bgVideo')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asBgVideo({
         type: options.type,
         video: {
@@ -105,10 +105,10 @@ describe('BgVideo', () => {
           mobileImage: ''
         }
       })
-      expect($element.asBgVideo('bind')).to.be.undefined
+      expect($element.asBgVideo('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asBgVideo({
         type: options.type,
         video: {
@@ -120,7 +120,7 @@ describe('BgVideo', () => {
           mobileImage: ''
         }
       })
-      expect($element.asBgVideo('destroy')).to.be.equal($element)
+      expect($element.asBgVideo('destroy')).toEqual($element)
     })
   })
 
@@ -131,11 +131,11 @@ describe('BgVideo', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('bgVideo:ready', (event, api) => {
-        // expect(api.is('initialized')).to.be.true;
+        // expect(api.is('initialized')).toBeTrue();
         called++
       })
 
@@ -150,7 +150,7 @@ describe('BgVideo', () => {
           mobileImage: ''
         }
       })
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -173,17 +173,17 @@ describe('BgVideo', () => {
       api = $element.data('bgVideo')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('bgVideo:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asBgVideo('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

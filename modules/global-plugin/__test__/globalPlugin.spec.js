@@ -4,24 +4,24 @@ import Pj from '@pluginjs/pluginjs'
 
 describe('GlobalComponent', () => {
   describe('GlobalComponent()', () => {
-    it('should have GlobalComponent', () => {
-      expect(GlobalComponent).to.be.an('function')
+    test('should have GlobalComponent', () => {
+      expect(GlobalComponent).toBeFunction()
     })
 
-    it('should construct correctly', () => {
+    test('should construct correctly', () => {
       const instance = new GlobalComponent('plugin')
 
-      expect(instance).to.be.exist
-      expect(instance.plugin).to.be.equal('plugin')
+      expect(instance).not.toBeNil()
+      expect(instance.plugin).toEqual('plugin')
     })
   })
 
   describe('destroy()', () => {
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       if (Pj.instances.plugin) {
         const instance = new GlobalComponent('plugin')
         instance.destroy()
-        expect(Pj.instance[instance.plugin].length).to.be.equal(0)
+        expect(Pj.instance[instance.plugin]).toHaveLength(0)
       }
     })
   })

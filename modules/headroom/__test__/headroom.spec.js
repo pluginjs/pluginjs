@@ -5,66 +5,66 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Headroom', () => {
   describe('Headroom()', () => {
-    it('should have Headroom', () => {
-      expect(Headroom).to.be.an('function')
+    test('should have Headroom', () => {
+      expect(Headroom).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Headroom.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Headroom.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Headroom.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Headroom.events).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Headroom.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Headroom.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const headroom = new Headroom(element)
 
-      expect(headroom).to.be.an('object')
-      expect(headroom.options).to.be.eql(DEFAULTS)
+      expect(headroom).toBeObject()
+      expect(headroom.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const headroom = new Headroom(element)
 
-      expect(headroom.options).to.be.an('object')
+      expect(headroom.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asHeadroom()).to.be.equal($element)
+      expect($element.asHeadroom()).toEqual($element)
 
       const api = $element.data('headroom')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asHeadroom()
-      expect($element.asHeadroom('bind')).to.be.undefined
+      expect($element.asHeadroom('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asHeadroom({
         type: 'stick'
       })
 
-      expect($element.asHeadroom('destroy')).to.be.equal($element)
+      expect($element.asHeadroom('destroy')).toEqual($element)
     })
   })
 
@@ -75,16 +75,16 @@ describe('Headroom', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('headroom:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asHeadroom()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('Headroom', () => {
       api = $element.data('headroom')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('headroom:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asHeadroom('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('Headroom', () => {
       api = $element.data('headroom')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asHeadroom('disable')
       $element.asHeadroom('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('headroom:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asHeadroom('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('Headroom', () => {
       api = $element.data('headroom')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asHeadroom('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('headroom:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asHeadroom('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

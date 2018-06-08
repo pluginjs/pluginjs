@@ -1,33 +1,33 @@
 import Fullscreen from '../../src/main'
 
 describe('Fullscreen', () => {
-  it('should have Fullscreen', () => {
-    expect(Fullscreen).to.be.an('function')
+  test('should have Fullscreen', () => {
+    expect(Fullscreen).toBeFunction()
   })
 
   describe('constructor()', () => {
-    it('should use documentElement when no args', () => {
+    test('should use documentElement when no args', () => {
       const fs = new Fullscreen()
-      expect(fs.element).to.be.equal(document.documentElement)
+      expect(fs.element).toEqual(document.documentElement)
     })
 
-    it('should pass first arg as element', () => {
+    test('should pass first arg as element', () => {
       const element = document.createElement('div')
       const fs = new Fullscreen(element)
 
-      expect(fs.element).to.be.equal(element)
+      expect(fs.element).toEqual(element)
     })
   })
 
   describe('enabled()', () => {
-    it('should return boolean', () => {
-      expect(Fullscreen.enabled()).to.be.an('boolean')
+    test('should return boolean', () => {
+      expect(Fullscreen.enabled()).toBeBoolean()
     })
   })
 
   describe('isFullscreen()', () => {
-    it('should return boolean', () => {
-      expect(Fullscreen.isFullscreen()).to.be.an('boolean')
+    test('should return boolean', () => {
+      expect(Fullscreen.isFullscreen()).toBeBoolean()
     })
   })
 })

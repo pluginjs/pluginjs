@@ -5,67 +5,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Collapse', () => {
   describe('Collapse()', () => {
-    it('should have Collapse', () => {
-      expect(Collapse).to.be.an('function')
+    test('should have Collapse', () => {
+      expect(Collapse).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Collapse.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Collapse.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Collapse.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Collapse.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Collapse.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Collapse.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Collapse.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Collapse.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const collapse = new Collapse(element)
 
-      expect(collapse).to.be.an('object')
-      expect(collapse.options).to.be.eql(DEFAULTS)
+      expect(collapse).toBeObject()
+      expect(collapse.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const collapse = new Collapse(element)
 
-      expect(collapse.options).to.be.an('object')
+      expect(collapse.options).toBeObject()
     })
 
-    it('should have classes', () => {
+    test('should have classes', () => {
       const element = document.createElement('div')
       const collapse = new Collapse(element)
 
-      expect(collapse.classes).to.be.an('object')
+      expect(collapse.classes).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asCollapse()).to.be.equal($element)
+      expect($element.asCollapse()).toEqual($element)
 
       const api = $element.data('collapse')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('classes', () => {
-    it('should use classes options', () => {
+    test('should use classes options', () => {
       const element = document.createElement('div')
       const collapse = new Collapse(element, {
         classes: {
@@ -74,11 +74,11 @@ describe('Collapse', () => {
         }
       })
 
-      expect(collapse.classes.CONTAINER).to.be.equal('pj-collapse-wrap')
-      expect(collapse.classes.ACTIVE).to.be.equal('pj-collapse-active')
+      expect(collapse.classes.CONTAINER).toEqual('pj-collapse-wrap')
+      expect(collapse.classes.ACTIVE).toEqual('pj-collapse-active')
     })
 
-    it('should override class namespace', () => {
+    test('should override class namespace', () => {
       const element = document.createElement('div')
       const collapse = new Collapse(element, {
         classes: {
@@ -87,52 +87,52 @@ describe('Collapse', () => {
         }
       })
 
-      expect(collapse.classes.NAMESPACE).to.be.equal('collapse')
-      expect(collapse.classes.CONTAINER).to.be.equal('collapse-wrap')
+      expect(collapse.classes.NAMESPACE).toEqual('collapse')
+      expect(collapse.classes.CONTAINER).toEqual('collapse-wrap')
     })
 
     describe('getClass()', () => {
-      it('should get class with namespace', () => {
+      test('should get class with namespace', () => {
         const element = document.createElement('div')
         const collapse = new Collapse(element, {
           classes: { namespace: 'hello' }
         })
 
-        expect(collapse.getClass('foo')).to.be.equal('foo')
-        expect(collapse.getClass('{namespace}-foo')).to.be.equal('hello-foo')
+        expect(collapse.getClass('foo')).toEqual('foo')
+        expect(collapse.getClass('{namespace}-foo')).toEqual('hello-foo')
       })
 
-      it('should get class with arg', () => {
+      test('should get class with arg', () => {
         const element = document.createElement('div')
         const collapse = new Collapse(element, {
           classes: { namespace: 'hello' }
         })
 
-        expect(collapse.getClass('foo', 'arg', 'value')).to.be.equal('foo')
-        expect(
-          collapse.getClass('{namespace}-{arg}', 'arg', 'value')
-        ).to.be.equal('hello-value')
+        expect(collapse.getClass('foo', 'arg', 'value')).toEqual('foo')
+        expect(collapse.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
+          'hello-value'
+        )
       })
     })
   })
 
   describe('theme', () => {
     describe('getThemeClass()', () => {
-      it('should get theme classes with default namespace', () => {
+      test('should get theme classes with default namespace', () => {
         const element = document.createElement('div')
         const collapse = new Collapse(element, {
           theme: null,
           classes: { theme: '{namespace}--{theme}' }
         })
 
-        expect(collapse.getThemeClass()).to.be.equal('')
-        expect(collapse.getThemeClass('bar')).to.be.equal('pj-collapse--bar')
-        expect(collapse.getThemeClass('foo bar')).to.be.equal(
+        expect(collapse.getThemeClass()).toEqual('')
+        expect(collapse.getThemeClass('bar')).toEqual('pj-collapse--bar')
+        expect(collapse.getThemeClass('foo bar')).toEqual(
           'pj-collapse--foo pj-collapse--bar'
         )
       })
 
-      it('should get theme classes with namespace override', () => {
+      test('should get theme classes with namespace override', () => {
         const element = document.createElement('div')
         const collapse = new Collapse(element, {
           theme: null,
@@ -142,33 +142,33 @@ describe('Collapse', () => {
           }
         })
 
-        expect(collapse.getThemeClass()).to.be.equal('')
-        expect(collapse.getThemeClass('bar')).to.be.equal('hello--bar')
-        expect(collapse.getThemeClass('foo bar')).to.be.equal(
+        expect(collapse.getThemeClass()).toEqual('')
+        expect(collapse.getThemeClass('bar')).toEqual('hello--bar')
+        expect(collapse.getThemeClass('foo bar')).toEqual(
           'hello--foo hello--bar'
         )
       })
 
-      it('should get theme classes correctly when no classes.THEME defined', () => {
+      test('should get theme classes correctly when no classes.THEME defined', () => {
         const element = document.createElement('div')
         const collapse = new Collapse(element, { theme: '{namespace}--foo' })
 
         // set to null for test
         collapse.classes.THEME = null
 
-        expect(collapse.getThemeClass()).to.be.equal('pj-collapse--foo')
-        expect(collapse.getThemeClass('bar')).to.be.equal('bar')
-        expect(collapse.getThemeClass('{namespace}--bar')).to.be.equal(
+        expect(collapse.getThemeClass()).toEqual('pj-collapse--foo')
+        expect(collapse.getThemeClass('bar')).toEqual('bar')
+        expect(collapse.getThemeClass('{namespace}--bar')).toEqual(
           'pj-collapse--bar'
         )
-        expect(collapse.getThemeClass('foo bar')).to.be.equal('foo bar')
+        expect(collapse.getThemeClass('foo bar')).toEqual('foo bar')
         expect(
           collapse.getThemeClass('{namespace}--foo {namespace}--bar')
-        ).to.be.equal('pj-collapse--foo pj-collapse--bar')
+        ).toEqual('pj-collapse--foo pj-collapse--bar')
       })
     })
 
-    it('should add theme class after initialize and remove after destroy', () => {
+    test('should add theme class after initialize and remove after destroy', () => {
       const element = document.createElement('div')
       const $element = $(element)
       const collapse = new Collapse(element, {
@@ -176,12 +176,12 @@ describe('Collapse', () => {
         classes: { theme: '{namespace}--{theme}' }
       })
 
-      expect($element.hasClass('pj-collapse--foo')).to.be.true
+      expect($element.hasClass('pj-collapse--foo')).toBeTrue()
       collapse.destroy()
-      expect($element.hasClass('pj-collapse--foo')).to.be.false
+      expect($element.hasClass('pj-collapse--foo')).toBeFalse()
     })
 
-    it('should works with more than one theme', () => {
+    test('should works with more than one theme', () => {
       const element = document.createElement('div')
       const $element = $(element)
       const collapse = new Collapse(element, {
@@ -189,24 +189,24 @@ describe('Collapse', () => {
         classes: { theme: '{namespace}--{theme}' }
       })
 
-      expect($element.hasClass('pj-collapse--foo')).to.be.true
-      expect($element.hasClass('pj-collapse--bar')).to.be.true
+      expect($element.hasClass('pj-collapse--foo')).toBeTrue()
+      expect($element.hasClass('pj-collapse--bar')).toBeTrue()
 
       collapse.destroy()
-      expect($element.hasClass('pj-collapse--foo')).to.be.false
-      expect($element.hasClass('pj-collapse--bar')).to.be.false
+      expect($element.hasClass('pj-collapse--foo')).toBeFalse()
+      expect($element.hasClass('pj-collapse--bar')).toBeFalse()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asCollapse()
-      expect($element.asCollapse('bind')).to.be.undefined
+      expect($element.asCollapse('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asCollapse()
-      expect($element.asCollapse('destroy')).to.be.equal($element)
+      expect($element.asCollapse('destroy')).toEqual($element)
     })
   })
 
@@ -217,16 +217,16 @@ describe('Collapse', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('collapse:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asCollapse()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -239,17 +239,17 @@ describe('Collapse', () => {
       api = $element.data('collapse')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('collapse:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asCollapse('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -262,23 +262,23 @@ describe('Collapse', () => {
       api = $element.data('collapse')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asCollapse('disable')
       $element.asCollapse('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('collapse:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asCollapse('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -291,22 +291,22 @@ describe('Collapse', () => {
       api = $element.data('collapse')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asCollapse('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('collapse:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asCollapse('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

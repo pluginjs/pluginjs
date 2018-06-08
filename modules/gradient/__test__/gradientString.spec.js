@@ -2,41 +2,39 @@ import GradientString from '../../src/gradientString'
 
 describe('GradientString', () => {
   describe('matchString()', () => {
-    it('should match gradient string', () => {
+    test('should match gradient string', () => {
       expect(
         GradientString.matchString(
           '-webkit-linear-gradient(50deg, #2F2727, #1a82f7)'
         )
-      ).to.be.equal(true)
+      ).toEqual(true)
       expect(
         GradientString.matchString(
           '-moz-linear-gradient(left, rgba(248,80,50,0.8) 1%, rgba(241,111,92,0.8) 50%, rgba(240,47,23,0.8) 71%, rgba(231,56,39,0.8) 99%)'
         )
-      ).to.be.equal(true)
-      expect(GradientString.matchString('yellow')).to.be.equal(false)
-      expect(GradientString.matchString('#2F2727')).to.be.equal(false)
-      expect(GradientString.matchString('rgba(248,80,50,0.8)')).to.be.equal(
+      ).toEqual(true)
+      expect(GradientString.matchString('yellow')).toEqual(false)
+      expect(GradientString.matchString('#2F2727')).toEqual(false)
+      expect(GradientString.matchString('rgba(248,80,50,0.8)')).toEqual(false)
+      expect(GradientString.matchString('linear-gradient(50deg)')).toEqual(
         false
       )
-      expect(GradientString.matchString('linear-gradient(50deg)')).to.be.equal(
-        false
-      )
-      expect(GradientString.matchString('linear-gradient(to top)')).to.be.equal(
+      expect(GradientString.matchString('linear-gradient(to top)')).toEqual(
         false
       )
       expect(
         GradientString.matchString('linear-gradient(50deg, #2F2727)')
-      ).to.be.equal(false)
+      ).toEqual(false)
     })
   })
 
   describe('parseString()', () => {
-    it('should parse gradient string', () => {
+    test('should parse gradient string', () => {
       expect(
         GradientString.parseString(
           '-webkit-linear-gradient(left, #d4e4ef 0%, #86aecc 100%)'
         )
-      ).to.be.eql({
+      ).toEqual({
         prefix: '-webkit-',
         type: 'linear',
         value: {
@@ -58,7 +56,7 @@ describe('GradientString', () => {
         GradientString.parseString(
           '-moz-linear-gradient(left, #d4e4ef, #86aecc)'
         )
-      ).to.be.eql({
+      ).toEqual({
         prefix: '-moz-',
         type: 'linear',
         value: {
@@ -80,7 +78,7 @@ describe('GradientString', () => {
         GradientString.parseString(
           'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)'
         )
-      ).to.be.eql({
+      ).toEqual({
         prefix: null,
         type: 'linear',
         value: {
@@ -105,10 +103,10 @@ describe('GradientString', () => {
   })
 
   describe('parseParameters()', () => {
-    it('should parse parameters', () => {
+    test('should parse parameters', () => {
       expect(
         GradientString.parseParameters('left, #d4e4ef 0%, #86aecc 100%')
-      ).to.be.eql({
+      ).toEqual({
         angle: 'left',
         stops: [
           {
@@ -125,10 +123,10 @@ describe('GradientString', () => {
   })
 
   describe('parseStops()', () => {
-    it('should parse stops', () => {
+    test('should parse stops', () => {
       expect(
         GradientString.parseStops('#d4e4ef 0%, rgb(255, 90, 0) 10%')
-      ).to.deep.equal([
+      ).toEqual([
         {
           color: '#d4e4ef',
           position: 0
@@ -139,9 +137,7 @@ describe('GradientString', () => {
         }
       ])
 
-      expect(
-        GradientString.parseStops('#d4e4ef, rgb(255, 90, 0)')
-      ).to.deep.equal([
+      expect(GradientString.parseStops('#d4e4ef, rgb(255, 90, 0)')).toEqual([
         {
           color: '#d4e4ef',
           position: null
@@ -152,14 +148,14 @@ describe('GradientString', () => {
         }
       ])
 
-      expect(GradientString.parseStops('red')).to.deep.equal([
+      expect(GradientString.parseStops('red')).toEqual([
         {
           color: 'red',
           position: null
         }
       ])
 
-      expect(GradientString.parseStops('rgba(0, 0, 0, 0) 50%')).to.deep.equal([
+      expect(GradientString.parseStops('rgba(0, 0, 0, 0) 50%')).toEqual([
         {
           color: 'rgba(0, 0, 0, 0)',
           position: 0.5
@@ -169,7 +165,7 @@ describe('GradientString', () => {
   })
 
   describe('formatStops()', () => {
-    it('should format stops', () => {
+    test('should format stops', () => {
       expect(
         GradientString.formatStops([
           {
@@ -177,7 +173,7 @@ describe('GradientString', () => {
             position: 0
           }
         ])
-      ).to.be.equal('white 0%')
+      ).toEqual('white 0%')
 
       expect(
         GradientString.formatStops([
@@ -190,7 +186,7 @@ describe('GradientString', () => {
             position: 1
           }
         ])
-      ).to.be.equal('rgb(0, 0, 0) 0%, rgb(255, 90, 0) 100%')
+      ).toEqual('rgb(0, 0, 0) 0%, rgb(255, 90, 0) 100%')
 
       expect(
         GradientString.formatStops([
@@ -207,7 +203,7 @@ describe('GradientString', () => {
             position: 1
           }
         ])
-      ).to.be.equal(
+      ).toEqual(
         'rgb(0, 0, 0) 0%, rgba(100, 100, 100) 50%, rgb(255, 90, 0) 100%'
       )
 
@@ -222,10 +218,10 @@ describe('GradientString', () => {
             position: null
           }
         ])
-      ).to.be.equal('rgb(0, 0, 0) 0%, rgb(255, 90, 0) 100%')
+      ).toEqual('rgb(0, 0, 0) 0%, rgb(255, 90, 0) 100%')
     })
 
-    it('should clean clean position', () => {
+    test('should clean clean position', () => {
       expect(
         GradientString.formatStops(
           [
@@ -240,7 +236,7 @@ describe('GradientString', () => {
           ],
           true
         )
-      ).to.be.equal('rgb(0, 0, 0), rgb(255, 90, 0)')
+      ).toEqual('rgb(0, 0, 0), rgb(255, 90, 0)')
 
       expect(
         GradientString.formatStops(
@@ -260,7 +256,7 @@ describe('GradientString', () => {
           ],
           true
         )
-      ).to.be.equal('rgb(0, 0, 0), rgba(100, 100, 100) 50%, rgb(255, 90, 0)')
+      ).toEqual('rgb(0, 0, 0), rgba(100, 100, 100) 50%, rgb(255, 90, 0)')
 
       expect(
         GradientString.formatStops(
@@ -276,40 +272,38 @@ describe('GradientString', () => {
           ],
           true
         )
-      ).to.be.equal('rgb(0, 0, 0), rgb(255, 90, 0)')
+      ).toEqual('rgb(0, 0, 0), rgb(255, 90, 0)')
     })
   })
 
   describe('parseStop()', () => {
-    it('should parse stop', () => {
-      expect(GradientString.parseStop('#d4e4ef 0%')).to.be.eql({
+    test('should parse stop', () => {
+      expect(GradientString.parseStop('#d4e4ef 0%')).toEqual({
         color: '#d4e4ef',
         position: 0
       })
 
-      expect(GradientString.parseStop('rgb(255, 90, 0) 10%')).to.be.eql({
+      expect(GradientString.parseStop('rgb(255, 90, 0) 10%')).toEqual({
         color: 'rgb(255, 90, 0)',
         position: 0.1
       })
 
-      expect(
-        GradientString.parseStop('rgba(100, 100, 100, 20%) 10%')
-      ).to.be.eql({
+      expect(GradientString.parseStop('rgba(100, 100, 100, 20%) 10%')).toEqual({
         color: 'rgba(100, 100, 100, 20%)',
         position: 0.1
       })
 
-      expect(GradientString.parseStop('white 50%')).to.be.eql({
+      expect(GradientString.parseStop('white 50%')).toEqual({
         color: 'white',
         position: 0.5
       })
 
-      expect(GradientString.parseStop('hsl(0, 0%, 100%) 100%')).to.be.eql({
+      expect(GradientString.parseStop('hsl(0, 0%, 100%) 100%')).toEqual({
         color: 'hsl(0, 0%, 100%)',
         position: 1
       })
 
-      expect(GradientString.parseStop('hsla(0, 0%, 100%, 0.8)')).to.be.eql({
+      expect(GradientString.parseStop('hsla(0, 0%, 100%, 0.8)')).toEqual({
         color: 'hsla(0, 0%, 100%, 0.8)',
         position: null
       })
@@ -317,71 +311,71 @@ describe('GradientString', () => {
   })
 
   describe('parsePosition()', () => {
-    it('should parse positon', () => {
-      expect(GradientString.parsePosition('100%')).to.be.equal(1)
-      expect(GradientString.parsePosition('1')).to.be.equal(1)
+    test('should parse positon', () => {
+      expect(GradientString.parsePosition('100%')).toEqual(1)
+      expect(GradientString.parsePosition('1')).toEqual(1)
 
-      expect(GradientString.parsePosition('50%')).to.be.equal(0.5)
-      expect(GradientString.parsePosition('0.5')).to.be.equal(0.5)
+      expect(GradientString.parsePosition('50%')).toEqual(0.5)
+      expect(GradientString.parsePosition('0.5')).toEqual(0.5)
 
-      expect(GradientString.parsePosition('0.05')).to.be.equal(0.05)
+      expect(GradientString.parsePosition('0.05')).toEqual(0.05)
     })
 
-    it('should return null if value is undefined', () => {
-      expect(GradientString.parsePosition()).to.be.equal(null)
+    test('should return null if value is undefined', () => {
+      expect(GradientString.parsePosition()).toEqual(null)
     })
   })
 
   describe('formatPosition()', () => {
-    it('should format positon', () => {
-      expect(GradientString.formatPosition(1)).to.be.equal('100%')
-      expect(GradientString.formatPosition(0.1)).to.be.equal('10%')
-      expect(GradientString.formatPosition(0.5)).to.be.equal('50%')
-      expect(GradientString.formatPosition(0)).to.be.equal('0%')
+    test('should format positon', () => {
+      expect(GradientString.formatPosition(1)).toEqual('100%')
+      expect(GradientString.formatPosition(0.1)).toEqual('10%')
+      expect(GradientString.formatPosition(0.5)).toEqual('50%')
+      expect(GradientString.formatPosition(0)).toEqual('0%')
     })
   })
 
   describe('parseAngle', () => {
-    it('should parse angle', () => {
-      expect(GradientString.parseAngle('top')).to.be.equal(180)
-      expect(GradientString.parseAngle('right')).to.be.equal(270)
-      expect(GradientString.parseAngle('bottom')).to.be.equal(0)
-      expect(GradientString.parseAngle('left')).to.be.equal(90)
+    test('should parse angle', () => {
+      expect(GradientString.parseAngle('top')).toEqual(180)
+      expect(GradientString.parseAngle('right')).toEqual(270)
+      expect(GradientString.parseAngle('bottom')).toEqual(0)
+      expect(GradientString.parseAngle('left')).toEqual(90)
 
-      expect(GradientString.parseAngle('to top')).to.be.equal(0)
-      expect(GradientString.parseAngle('to right')).to.be.equal(90)
-      expect(GradientString.parseAngle('to bottom')).to.be.equal(180)
-      expect(GradientString.parseAngle('to left')).to.be.equal(270)
+      expect(GradientString.parseAngle('to top')).toEqual(0)
+      expect(GradientString.parseAngle('to right')).toEqual(90)
+      expect(GradientString.parseAngle('to bottom')).toEqual(180)
+      expect(GradientString.parseAngle('to left')).toEqual(270)
 
-      expect(GradientString.parseAngle('top right')).to.be.equal(225)
-      expect(GradientString.parseAngle('right bottom')).to.be.equal(315)
-      expect(GradientString.parseAngle('bottom left')).to.be.equal(45)
-      expect(GradientString.parseAngle('left top')).to.be.equal(135)
+      expect(GradientString.parseAngle('top right')).toEqual(225)
+      expect(GradientString.parseAngle('right bottom')).toEqual(315)
+      expect(GradientString.parseAngle('bottom left')).toEqual(45)
+      expect(GradientString.parseAngle('left top')).toEqual(135)
 
-      expect(GradientString.parseAngle('to top right')).to.be.equal(45)
-      expect(GradientString.parseAngle('to right bottom')).to.be.equal(135)
-      expect(GradientString.parseAngle('to bottom left')).to.be.equal(225)
-      expect(GradientString.parseAngle('to left top')).to.be.equal(315)
+      expect(GradientString.parseAngle('to top right')).toEqual(45)
+      expect(GradientString.parseAngle('to right bottom')).toEqual(135)
+      expect(GradientString.parseAngle('to bottom left')).toEqual(225)
+      expect(GradientString.parseAngle('to left top')).toEqual(315)
 
-      expect(GradientString.parseAngle('90deg')).to.be.equal(90)
+      expect(GradientString.parseAngle('90deg')).toEqual(90)
     })
 
-    it('should parse angle with non-standard', () => {
-      expect(GradientString.parseAngle('90deg', true)).to.be.equal(0)
-      expect(GradientString.parseAngle('180deg', true)).to.be.equal(270)
+    test('should parse angle with non-standard', () => {
+      expect(GradientString.parseAngle('90deg', true)).toEqual(0)
+      expect(GradientString.parseAngle('180deg', true)).toEqual(270)
     })
   })
 
   describe('formatAngle()', () => {
-    it('should format angle', () => {
-      expect(GradientString.formatAngle(0)).to.be.equal('0deg')
-      expect(GradientString.formatAngle(90)).to.be.equal('90deg')
-      expect(GradientString.formatAngle(120)).to.be.equal('120deg')
+    test('should format angle', () => {
+      expect(GradientString.formatAngle(0)).toEqual('0deg')
+      expect(GradientString.formatAngle(90)).toEqual('90deg')
+      expect(GradientString.formatAngle(120)).toEqual('120deg')
     })
 
-    it('should format angle with non-standard', () => {
-      expect(GradientString.formatAngle(0, true)).to.be.equal('90deg')
-      expect(GradientString.formatAngle(270, true)).to.be.equal('180deg')
+    test('should format angle with non-standard', () => {
+      expect(GradientString.formatAngle(0, true)).toEqual('90deg')
+      expect(GradientString.formatAngle(270, true)).toEqual('180deg')
     })
   })
 })

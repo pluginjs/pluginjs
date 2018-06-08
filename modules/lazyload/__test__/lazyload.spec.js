@@ -7,64 +7,64 @@ const testStr =
   '<img class="img-shell" lazyload data-src="http://oqcgupxln.bkt.clouddn.com/61295983_p0.png?imageView2/1/w/400/h/400" alt="" />'
 describe('Lazyload', () => {
   describe('Lazyload()', () => {
-    it('should have Lazyload', () => {
-      expect(Lazyload).to.be.an('function')
+    test('should have Lazyload', () => {
+      expect(Lazyload).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Lazyload.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Lazyload.defaults).toBeObject()
     })
-    it('should have events', () => {
-      expect(Lazyload.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Lazyload.events).toBeObject()
     })
-    it('should have methods', () => {
-      expect(Lazyload.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Lazyload.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const lazyload = new Lazyload(element)
 
-      expect(lazyload).to.be.an('object')
-      expect(lazyload.options).to.be.eql(DEFAULTS)
+      expect(lazyload).toBeObject()
+      expect(lazyload.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const lazyload = new Lazyload(element)
 
-      expect(lazyload.options).to.be.an('object')
+      expect(lazyload.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const container = document.createElement('div')
       container.innerHTML = testStr
       const $element = $(container).find('[lazyload]')
 
-      expect($element.asLazyload()).to.be.equal($element)
+      expect($element.asLazyload()).toEqual($element)
 
       const api = $element.data('lazyload')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asLazyload()
-      expect($element.asLazyload('bind')).to.be.undefined
+      expect($element.asLazyload('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asLazyload()
       $element.asLazyload('destroy')
-      // expect().to.be.equal($element);
-      // expect($element).to.be.equal($element);
+      // expect().toEqual($element);
+      // expect($element).toEqual($element);
     })
   })
 
@@ -75,16 +75,16 @@ describe('Lazyload', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('lazyload:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asLazyload()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -97,17 +97,17 @@ describe('Lazyload', () => {
       api = $element.data('lazyload')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('lazyload:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asLazyload('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -120,23 +120,23 @@ describe('Lazyload', () => {
       api = $element.data('lazyload')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asLazyload('disable')
       $element.asLazyload('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('lazyload:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asLazyload('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,22 +149,22 @@ describe('Lazyload', () => {
       api = $element.data('lazyload')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asLazyload('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('lazyload:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asLazyload('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

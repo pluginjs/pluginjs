@@ -5,67 +5,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Rate', () => {
   describe('Rate()', () => {
-    it('should have Rate', () => {
-      expect(Rate).to.be.an('function')
+    test('should have Rate', () => {
+      expect(Rate).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Rate.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Rate.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Rate.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Rate.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Rate.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Rate.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Rate.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Rate.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const rate = new Rate(element)
 
-      expect(rate).to.be.an('object')
-      expect(rate.options).to.be.eql(DEFAULTS)
+      expect(rate).toBeObject()
+      expect(rate.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const rate = new Rate(element)
 
-      expect(rate.options).to.be.an('object')
+      expect(rate.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asRate()).to.be.equal($element)
+      expect($element.asRate()).toEqual($element)
 
       const api = $element.data('rate')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asRate()
-      expect($element.asRate('bind')).to.be.undefined
+      expect($element.asRate('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asRate()
-      expect($element.asRate('destroy')).to.be.equal($element)
+      expect($element.asRate('destroy')).toEqual($element)
     })
   })
 
@@ -76,16 +76,16 @@ describe('Rate', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('rate:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asRate()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -98,17 +98,17 @@ describe('Rate', () => {
       api = $element.data('rate')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('rate:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asRate('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

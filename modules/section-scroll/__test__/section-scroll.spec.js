@@ -14,29 +14,29 @@ const testStr = `<section id="home" class="section">
 </div>`
 describe('SectionScroll', () => {
   describe('SectionScroll()', () => {
-    it('should have SectionScroll', () => {
-      expect(SectionScroll).to.be.an('function')
+    test('should have SectionScroll', () => {
+      expect(SectionScroll).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(SectionScroll.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(SectionScroll.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(SectionScroll.events).to.be.an('object')
+    test('should have events', () => {
+      expect(SectionScroll.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(SectionScroll.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(SectionScroll.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(SectionScroll.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(SectionScroll.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       document.body.appendChild(element)
@@ -44,11 +44,11 @@ describe('SectionScroll', () => {
         itemSelector: '.section'
       })
 
-      expect(sectionScroll).to.be.an('object')
-      // expect(sectionScroll.options).to.be.eql(DEFAULTS);
+      expect(sectionScroll).toBeObject()
+      // expect(sectionScroll.options).toEqual(DEFAULTS);
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       document.body.appendChild(element)
@@ -56,42 +56,42 @@ describe('SectionScroll', () => {
         itemSelector: '.section'
       })
 
-      expect(sectionScroll.options).to.be.an('object')
+      expect(sectionScroll.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       document.body.appendChild(element)
       const $element = $(element)
 
-      expect(
-        $element.asSectionScroll({ itemSelector: '.section' })
-      ).to.be.equal($element)
+      expect($element.asSectionScroll({ itemSelector: '.section' })).toEqual(
+        $element
+      )
 
       const api = $element.data('sectionScroll')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const element = document.createElement('div')
       element.innerHTML = testStr
       document.body.appendChild(element)
       const $element = $(element).asSectionScroll({ itemSelector: '.section' })
-      expect($element.asSectionScroll('bind')).to.be.undefined
+      expect($element.asSectionScroll('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asSectionScroll({
         itemSelector: '.section'
       })
-      expect($element.asSectionScroll('destroy')).to.be.equal($element)
+      expect($element.asSectionScroll('destroy')).toEqual($element)
     })
   })
 
@@ -105,16 +105,16 @@ describe('SectionScroll', () => {
       $element = $(element)
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('sectionScroll:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asSectionScroll({ itemSelector: '.section' })
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -130,17 +130,17 @@ describe('SectionScroll', () => {
       api = $element.data('sectionScroll')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('sectionScroll:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asSectionScroll('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -156,23 +156,23 @@ describe('SectionScroll', () => {
       api = $element.data('sectionScroll')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asSectionScroll('disable')
       $element.asSectionScroll('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('sectionScroll:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asSectionScroll('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -188,22 +188,22 @@ describe('SectionScroll', () => {
       api = $element.data('sectionScroll')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asSectionScroll('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('sectionScroll:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asSectionScroll('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

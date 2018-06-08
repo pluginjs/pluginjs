@@ -5,67 +5,67 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Scrollbar', () => {
   describe('Scrollbar()', () => {
-    it('should have Scrollbar', () => {
-      expect(Scrollbar).to.be.an('function')
+    test('should have Scrollbar', () => {
+      expect(Scrollbar).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Scrollbar.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Scrollbar.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Scrollbar.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Scrollbar.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Scrollbar.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Scrollbar.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Scrollbar.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Scrollbar.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work with element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const scrollbar = new Scrollbar(element)
 
-      expect(scrollbar).to.be.an('object')
-      expect(scrollbar.options).to.be.eql(DEFAULTS)
+      expect(scrollbar).toBeObject()
+      expect(scrollbar.options).toEqual(DEFAULTS)
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const element = document.createElement('div')
       const scrollbar = new Scrollbar(element)
 
-      expect(scrollbar.options).to.be.an('object')
+      expect(scrollbar.options).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
-    it('should works with jquery fn', () => {
+    test('should works with jquery fn', () => {
       const element = document.createElement('div')
       const $element = $(element)
 
-      expect($element.asScrollbar()).to.be.equal($element)
+      expect($element.asScrollbar()).toEqual($element)
 
       const api = $element.data('scrollbar')
 
-      expect(api).to.be.an('object')
-      expect(api.options).to.be.an('object')
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    it('should not call bind', () => {
+    test('should not call bind', () => {
       const $element = $(document.createElement('div')).asScrollbar()
-      expect($element.asScrollbar('bind')).to.be.undefined
+      expect($element.asScrollbar('bind')).toBeNil()
     })
 
-    it('should call destroy', () => {
+    test('should call destroy', () => {
       const $element = $(document.createElement('div')).asScrollbar()
-      expect($element.asScrollbar('destroy')).to.be.equal($element)
+      expect($element.asScrollbar('destroy')).toEqual($element)
     })
   })
 
@@ -76,16 +76,16 @@ describe('Scrollbar', () => {
       $element = $(document.createElement('div'))
     })
 
-    it('should trigger ready event', () => {
+    test('should trigger ready event', () => {
       let called = 0
 
       $element.on('scrollbar:ready', (event, api) => {
-        expect(api.is('initialized')).to.be.true
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
 
       $element.asScrollbar()
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -98,17 +98,17 @@ describe('Scrollbar', () => {
       api = $element.data('scrollbar')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('scrollbar:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       $element.asScrollbar('destroy')
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -121,23 +121,23 @@ describe('Scrollbar', () => {
       api = $element.data('scrollbar')
     })
 
-    it('should enable the plugin', () => {
+    test('should enable the plugin', () => {
       $element.asScrollbar('disable')
       $element.asScrollbar('enable')
 
-      expect(api.is('disabled')).to.be.false
+      expect(api.is('disabled')).toBeFalse()
     })
 
-    it('should trigger enable event', () => {
+    test('should trigger enable event', () => {
       let called = 0
 
       $element.on('scrollbar:enable', (event, api) => {
-        expect(api.is('disabled')).to.be.false
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
       $element.asScrollbar('enable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 
@@ -150,22 +150,22 @@ describe('Scrollbar', () => {
       api = $element.data('scrollbar')
     })
 
-    it('should disable the plugin', () => {
+    test('should disable the plugin', () => {
       $element.asScrollbar('disable')
 
-      expect(api.is('disabled')).to.be.true
+      expect(api.is('disabled')).toBeTrue()
     })
 
-    it('should trigger disable event', () => {
+    test('should trigger disable event', () => {
       let called = 0
 
       $element.on('scrollbar:disable', (event, api) => {
-        expect(api.is('disabled')).to.be.true
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       $element.asScrollbar('disable')
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })

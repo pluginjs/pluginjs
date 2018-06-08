@@ -11,151 +11,151 @@ describe('Color', () => {
   }
 
   describe('matchString()', () => {
-    it('should match hex', () => {
-      expect(Color.matchString('')).to.be.equal(false)
-      expect(Color.matchString('#')).to.be.equal(false)
-      expect(Color.matchString('#3')).to.be.equal(false)
-      expect(Color.matchString('#33')).to.be.equal(false)
-      expect(Color.matchString('#333')).to.be.equal(true)
-      expect(Color.matchString('#3333')).to.be.equal(false)
-      expect(Color.matchString('#33333')).to.be.equal(false)
-      expect(Color.matchString('#333333')).to.be.equal(true)
-      expect(Color.matchString('#333333 ')).to.be.equal(true)
-      expect(Color.matchString('#3333333')).to.be.equal(false)
+    test('should match hex', () => {
+      expect(Color.matchString('')).toEqual(false)
+      expect(Color.matchString('#')).toEqual(false)
+      expect(Color.matchString('#3')).toEqual(false)
+      expect(Color.matchString('#33')).toEqual(false)
+      expect(Color.matchString('#333')).toEqual(true)
+      expect(Color.matchString('#3333')).toEqual(false)
+      expect(Color.matchString('#33333')).toEqual(false)
+      expect(Color.matchString('#333333')).toEqual(true)
+      expect(Color.matchString('#333333 ')).toEqual(true)
+      expect(Color.matchString('#3333333')).toEqual(false)
     })
 
-    it('should match rgb', () => {
-      expect(Color.matchString('R')).to.be.equal(false)
-      expect(Color.matchString('RG')).to.be.equal(false)
-      expect(Color.matchString('RGB')).to.be.equal(false)
-      expect(Color.matchString('RGB(')).to.be.equal(false)
-      expect(Color.matchString('RGB(6')).to.be.equal(false)
-      expect(Color.matchString('RGB(60,')).to.be.equal(false)
-      expect(Color.matchString('RGB(60,6')).to.be.equal(false)
-      expect(Color.matchString('RGB(60,60,')).to.be.equal(false)
-      expect(Color.matchString('RGB(60,60,6')).to.be.equal(false)
-      expect(Color.matchString('RGB(60,60,60')).to.be.equal(false)
-      expect(Color.matchString('RGB(60,60,60)')).to.be.equal(true)
-      expect(Color.matchString('RGB(60,60,60) ')).to.be.equal(true)
-      expect(Color.matchString('RGB(60,60,60),')).to.be.equal(false)
+    test('should match rgb', () => {
+      expect(Color.matchString('R')).toEqual(false)
+      expect(Color.matchString('RG')).toEqual(false)
+      expect(Color.matchString('RGB')).toEqual(false)
+      expect(Color.matchString('RGB(')).toEqual(false)
+      expect(Color.matchString('RGB(6')).toEqual(false)
+      expect(Color.matchString('RGB(60,')).toEqual(false)
+      expect(Color.matchString('RGB(60,6')).toEqual(false)
+      expect(Color.matchString('RGB(60,60,')).toEqual(false)
+      expect(Color.matchString('RGB(60,60,6')).toEqual(false)
+      expect(Color.matchString('RGB(60,60,60')).toEqual(false)
+      expect(Color.matchString('RGB(60,60,60)')).toEqual(true)
+      expect(Color.matchString('RGB(60,60,60) ')).toEqual(true)
+      expect(Color.matchString('RGB(60,60,60),')).toEqual(false)
     })
 
-    it('should match rgba', () => {
-      expect(Color.matchString('R')).to.be.equal(false)
-      expect(Color.matchString('RG')).to.be.equal(false)
-      expect(Color.matchString('RGB')).to.be.equal(false)
-      expect(Color.matchString('RGBA(')).to.be.equal(false)
-      expect(Color.matchString('RGBA(6')).to.be.equal(false)
-      expect(Color.matchString('RGBA(60,')).to.be.equal(false)
-      expect(Color.matchString('RGBA(60,6')).to.be.equal(false)
-      expect(Color.matchString('RGBA(60,60,')).to.be.equal(false)
-      expect(Color.matchString('RGBA(60,60,6')).to.be.equal(false)
-      expect(Color.matchString('RGBA(60,60,60')).to.be.equal(false)
-      expect(Color.matchString('RGBA(60,60,60,')).to.be.equal(false)
-      expect(Color.matchString('RGBA(60,60,60,1')).to.be.equal(false)
-      expect(Color.matchString('RGBA(60,60,60,1)')).to.be.equal(true)
-      expect(Color.matchString('RGBA(60,60,60,1) ')).to.be.equal(true)
-      expect(Color.matchString('RGBA(60,60,60,1),')).to.be.equal(false)
+    test('should match rgba', () => {
+      expect(Color.matchString('R')).toEqual(false)
+      expect(Color.matchString('RG')).toEqual(false)
+      expect(Color.matchString('RGB')).toEqual(false)
+      expect(Color.matchString('RGBA(')).toEqual(false)
+      expect(Color.matchString('RGBA(6')).toEqual(false)
+      expect(Color.matchString('RGBA(60,')).toEqual(false)
+      expect(Color.matchString('RGBA(60,6')).toEqual(false)
+      expect(Color.matchString('RGBA(60,60,')).toEqual(false)
+      expect(Color.matchString('RGBA(60,60,6')).toEqual(false)
+      expect(Color.matchString('RGBA(60,60,60')).toEqual(false)
+      expect(Color.matchString('RGBA(60,60,60,')).toEqual(false)
+      expect(Color.matchString('RGBA(60,60,60,1')).toEqual(false)
+      expect(Color.matchString('RGBA(60,60,60,1)')).toEqual(true)
+      expect(Color.matchString('RGBA(60,60,60,1) ')).toEqual(true)
+      expect(Color.matchString('RGBA(60,60,60,1),')).toEqual(false)
     })
 
-    it('should match hsl', () => {
-      expect(Color.matchString('H')).to.be.equal(false)
-      expect(Color.matchString('HS')).to.be.equal(false)
-      expect(Color.matchString('HSL')).to.be.equal(false)
-      expect(Color.matchString('HSL(')).to.be.equal(false)
-      expect(Color.matchString('HSL(0')).to.be.equal(false)
-      expect(Color.matchString('HSL(0,')).to.be.equal(false)
-      expect(Color.matchString('HSL(0,10')).to.be.equal(false)
-      expect(Color.matchString('HSL(0,100')).to.be.equal(false)
-      expect(Color.matchString('HSL(0,100%,')).to.be.equal(false)
-      expect(Color.matchString('HSL(0,100%,50')).to.be.equal(false)
-      expect(Color.matchString('HSL(0,100%,50%')).to.be.equal(false)
-      expect(Color.matchString('HSL(0,100%,50%)')).to.be.equal(true)
-      expect(Color.matchString('HSL(0,100%,50%) ')).to.be.equal(true)
-      expect(Color.matchString('HSL(0,100%,50%),')).to.be.equal(false)
+    test('should match hsl', () => {
+      expect(Color.matchString('H')).toEqual(false)
+      expect(Color.matchString('HS')).toEqual(false)
+      expect(Color.matchString('HSL')).toEqual(false)
+      expect(Color.matchString('HSL(')).toEqual(false)
+      expect(Color.matchString('HSL(0')).toEqual(false)
+      expect(Color.matchString('HSL(0,')).toEqual(false)
+      expect(Color.matchString('HSL(0,10')).toEqual(false)
+      expect(Color.matchString('HSL(0,100')).toEqual(false)
+      expect(Color.matchString('HSL(0,100%,')).toEqual(false)
+      expect(Color.matchString('HSL(0,100%,50')).toEqual(false)
+      expect(Color.matchString('HSL(0,100%,50%')).toEqual(false)
+      expect(Color.matchString('HSL(0,100%,50%)')).toEqual(true)
+      expect(Color.matchString('HSL(0,100%,50%) ')).toEqual(true)
+      expect(Color.matchString('HSL(0,100%,50%),')).toEqual(false)
     })
 
-    it('should match rgba', () => {
-      expect(Color.matchString('H')).to.be.equal(false)
-      expect(Color.matchString('HS')).to.be.equal(false)
-      expect(Color.matchString('HSL')).to.be.equal(false)
-      expect(Color.matchString('HSLA(')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,1')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,10')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,100')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,100%')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,100%,')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,100%,5')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,100%,50')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,100%,50%')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,100%,50%,')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,100%,50%,1')).to.be.equal(false)
-      expect(Color.matchString('HSLA(0,100%,50%,1)')).to.be.equal(true)
-      expect(Color.matchString('HSLA(0,100%,50%,1) ')).to.be.equal(true)
-      expect(Color.matchString('HSLA(0,100%,50%,1),')).to.be.equal(false)
+    test('should match rgba', () => {
+      expect(Color.matchString('H')).toEqual(false)
+      expect(Color.matchString('HS')).toEqual(false)
+      expect(Color.matchString('HSL')).toEqual(false)
+      expect(Color.matchString('HSLA(')).toEqual(false)
+      expect(Color.matchString('HSLA(0')).toEqual(false)
+      expect(Color.matchString('HSLA(0,')).toEqual(false)
+      expect(Color.matchString('HSLA(0,1')).toEqual(false)
+      expect(Color.matchString('HSLA(0,10')).toEqual(false)
+      expect(Color.matchString('HSLA(0,100')).toEqual(false)
+      expect(Color.matchString('HSLA(0,100%')).toEqual(false)
+      expect(Color.matchString('HSLA(0,100%,')).toEqual(false)
+      expect(Color.matchString('HSLA(0,100%,5')).toEqual(false)
+      expect(Color.matchString('HSLA(0,100%,50')).toEqual(false)
+      expect(Color.matchString('HSLA(0,100%,50%')).toEqual(false)
+      expect(Color.matchString('HSLA(0,100%,50%,')).toEqual(false)
+      expect(Color.matchString('HSLA(0,100%,50%,1')).toEqual(false)
+      expect(Color.matchString('HSLA(0,100%,50%,1)')).toEqual(true)
+      expect(Color.matchString('HSLA(0,100%,50%,1) ')).toEqual(true)
+      expect(Color.matchString('HSLA(0,100%,50%,1),')).toEqual(false)
     })
 
-    it('should match transparent', () => {
-      expect(Color.matchString('trans')).to.be.equal(false)
-      expect(Color.matchString('transparent')).to.be.equal(true)
+    test('should match transparent', () => {
+      expect(Color.matchString('trans')).toEqual(false)
+      expect(Color.matchString('transparent')).toEqual(true)
     })
 
-    it('should match name', () => {
-      expect(Color.matchString('w')).to.be.equal(false)
-      expect(Color.matchString('wh')).to.be.equal(false)
-      expect(Color.matchString('whi')).to.be.equal(false)
-      expect(Color.matchString('whit')).to.be.equal(false)
-      expect(Color.matchString('white')).to.be.equal(true)
-      expect(Color.matchString('whitea')).to.be.equal(false)
+    test('should match name', () => {
+      expect(Color.matchString('w')).toEqual(false)
+      expect(Color.matchString('wh')).toEqual(false)
+      expect(Color.matchString('whi')).toEqual(false)
+      expect(Color.matchString('whit')).toEqual(false)
+      expect(Color.matchString('white')).toEqual(true)
+      expect(Color.matchString('whitea')).toEqual(false)
 
-      expect(Color.matchString('r')).to.be.equal(false)
-      expect(Color.matchString('re')).to.be.equal(false)
-      expect(Color.matchString('red')).to.be.equal(true)
-      expect(Color.matchString('reda')).to.be.equal(false)
+      expect(Color.matchString('r')).toEqual(false)
+      expect(Color.matchString('re')).toEqual(false)
+      expect(Color.matchString('red')).toEqual(true)
+      expect(Color.matchString('reda')).toEqual(false)
     })
 
-    it('should call with instance', () => {
+    test('should call with instance', () => {
       const color = new Color('', 'HEX')
 
-      expect(color.matchString('red')).to.be.equal(true)
+      expect(color.matchString('red')).toEqual(true)
     })
   })
 
   describe('toString()', () => {
-    it('should to string correctly', () => {
+    test('should to string correctly', () => {
       const color = new Color({
         format: false,
         alphaConvert: false
       })
 
       color.val('#123456')
-      expect(color.toString()).to.be.equal('#123456')
+      expect(color.toString()).toEqual('#123456')
       color.val('rgb(255,255,255)')
-      expect(color.toString()).to.be.equal('rgb(255, 255, 255)')
+      expect(color.toString()).toEqual('rgb(255, 255, 255)')
       color.val('rgba(255,255,255,0.8)')
-      expect(color.toString()).to.be.equal('rgba(255, 255, 255, 0.8)')
+      expect(color.toString()).toEqual('rgba(255, 255, 255, 0.8)')
       color.val('hsl(0,0%,50%)')
-      expect(color.toString()).to.be.equal('hsl(0, 0%, 50%)')
+      expect(color.toString()).toEqual('hsl(0, 0%, 50%)')
       color.val('hsla(0,0%,50%,0.8)')
-      expect(color.toString()).to.be.equal('hsla(0, 0%, 50%, 0.8)')
+      expect(color.toString()).toEqual('hsla(0, 0%, 50%, 0.8)')
       color.val('white')
-      expect(color.toString()).to.be.equal('white')
+      expect(color.toString()).toEqual('white')
 
       color.format('rgba')
       color.val('#123456')
-      expect(color.toString()).to.be.equal('rgba(18, 52, 86, 1)')
+      expect(color.toString()).toEqual('rgba(18, 52, 86, 1)')
 
       color.val('white')
-      expect(color.toString()).to.be.equal('rgba(255, 255, 255, 1)')
+      expect(color.toString()).toEqual('rgba(255, 255, 255, 1)')
 
       color.format('rgb')
       color.val('rgba(255,255,255,0.8)')
-      expect(color.toString()).to.be.equal('rgb(255, 255, 255)')
+      expect(color.toString()).toEqual('rgb(255, 255, 255)')
     })
 
-    it('should convent to alphaConvert if alpha is defined', () => {
+    test('should convent to alphaConvert if alpha is defined', () => {
       let color = new Color({
         format: false,
         alphaConvert: false
@@ -163,7 +163,7 @@ describe('Color', () => {
 
       color.format('rgb')
       color.val('rgba(255,255,255,0.8)')
-      expect(color.toString()).to.be.equal('rgb(255, 255, 255)')
+      expect(color.toString()).toEqual('rgb(255, 255, 255)')
 
       color = new Color({
         format: false,
@@ -172,7 +172,7 @@ describe('Color', () => {
 
       color.format('rgb')
       color.val('rgba(255,255,255,0.8)')
-      expect(color.toString()).to.be.equal('rgba(255, 255, 255, 0.8)')
+      expect(color.toString()).toEqual('rgba(255, 255, 255, 0.8)')
 
       color = new Color({
         format: false,
@@ -186,43 +186,41 @@ describe('Color', () => {
 
       color.format('rgb')
       color.val('rgba(255,255,255,0.8)')
-      expect(color.toString()).to.be.equal('rgba(255, 255, 255, 0.8)')
+      expect(color.toString()).toEqual('rgba(255, 255, 255, 0.8)')
 
       color.val('white')
-      expect(color.toString()).to.be.equal('rgb(255, 255, 255)')
+      expect(color.toString()).toEqual('rgb(255, 255, 255)')
       color.alpha(0.8)
-      expect(color.toString()).to.be.equal('rgba(255, 255, 255, 0.8)')
+      expect(color.toString()).toEqual('rgba(255, 255, 255, 0.8)')
 
       color.val('#fff')
-      expect(color.toString()).to.be.equal('rgb(255, 255, 255)')
+      expect(color.toString()).toEqual('rgb(255, 255, 255)')
       color.alpha(0.8)
-      expect(color.toString()).to.be.equal('rgba(255, 255, 255, 0.8)')
+      expect(color.toString()).toEqual('rgba(255, 255, 255, 0.8)')
     })
 
-    it('should work with upper strings', () => {
+    test('should work with upper strings', () => {
       const color = new Color('#000000', 'HEX')
 
-      expect(color.val('RGB(60,60,60)').toString()).to.be.equal('#3c3c3c')
+      expect(color.val('RGB(60,60,60)').toString()).toEqual('#3c3c3c')
 
-      expect(color.val('RGBA(60,60,60,1)').toString()).to.be.equal('#3c3c3c')
+      expect(color.val('RGBA(60,60,60,1)').toString()).toEqual('#3c3c3c')
 
-      expect(color.val('HSL(0, 0%, 24%)').toString()).to.be.equal(
+      expect(color.val('HSL(0, 0%, 24%)').toString()).toEqual('#3d3d3d') /* ! */
+
+      expect(color.val('HSLA(0, 0%, 24%, 1)').toString()).toEqual(
         '#3d3d3d'
       ) /* ! */
 
-      expect(color.val('HSLA(0, 0%, 24%, 1)').toString()).to.be.equal(
-        '#3d3d3d'
-      ) /* ! */
-
-      expect(color.val('TRANSPARENT').toString()).to.be.equal('transparent')
+      expect(color.val('TRANSPARENT').toString()).toEqual('transparent')
     })
   })
 
-  it('should return #000000 if no value defined', () => {
+  test('should return #000000 if no value defined', () => {
     const color = new Color()
 
-    expect(color.val()).to.be.equal('#000000')
-    expect(color.get()).to.be.eql({
+    expect(color.val()).toEqual('#000000')
+    expect(color.get()).toEqual({
       r: 0,
       g: 0,
       b: 0,
@@ -231,56 +229,56 @@ describe('Color', () => {
       v: 0,
       a: 1
     })
-    expect(color.format()).to.be.equal('HEX')
-    expect(color.toString()).to.be.equal('#000000')
+    expect(color.format()).toEqual('HEX')
+    expect(color.toString()).toEqual('#000000')
   })
 
   describe('options', () => {
     describe('nameDegradation', () => {
-      it('should degradation to the format with options.nameDegradation if color dont have a name', () => {
+      test('should degradation to the format with options.nameDegradation if color dont have a name', () => {
         let color = new Color('#126782', { format: 'name' })
 
-        expect(color.format()).to.be.equal('NAME')
-        expect(color.toString()).to.be.equal('#126782')
+        expect(color.format()).toEqual('NAME')
+        expect(color.toString()).toEqual('#126782')
 
         color = new Color('#126782', {
           format: 'name',
           nameDegradation: 'rgb'
         })
 
-        expect(color.format()).to.be.equal('NAME')
-        expect(color.toString()).to.be.equal('rgb(18, 103, 130)')
+        expect(color.format()).toEqual('NAME')
+        expect(color.toString()).toEqual('rgb(18, 103, 130)')
       })
     })
 
     describe('hexUseName', () => {
-      it('should use name when from hex color', () => {
+      test('should use name when from hex color', () => {
         let color = new Color('#8fbc8f', { hexUseName: false })
-        expect(color.format()).to.be.equal('HEX')
-        expect(color.toString()).to.be.equal('#8fbc8f')
+        expect(color.format()).toEqual('HEX')
+        expect(color.toString()).toEqual('#8fbc8f')
 
         color = new Color('#8fbc8f', { hexUseName: true })
-        expect(color.format()).to.be.equal('HEX')
-        expect(color.toString()).to.be.equal('darkseagreen')
+        expect(color.format()).toEqual('HEX')
+        expect(color.toString()).toEqual('darkseagreen')
       })
     })
 
     describe('shortenHex', () => {
-      it('should use short hex', () => {
+      test('should use short hex', () => {
         let color = new Color('#fff')
-        expect(color.toString()).to.be.equal('#ffffff')
+        expect(color.toString()).toEqual('#ffffff')
 
         color = new Color('#fff', { shortenHex: true })
 
-        expect(color.format()).to.be.equal('HEX')
-        expect(color.toString()).to.be.equal('#fff')
+        expect(color.format()).toEqual('HEX')
+        expect(color.toString()).toEqual('#fff')
       })
     })
 
     describe('invalidValue', () => {
-      it('should return the color when invalid', () => {
+      test('should return the color when invalid', () => {
         let color = new Color('hello world', { invalidValue: '' })
-        expect(color.toString()).to.be.equal('')
+        expect(color.toString()).toEqual('')
 
         color = new Color('hello world', {
           invalidValue: {
@@ -290,126 +288,124 @@ describe('Color', () => {
             a: 1
           }
         })
-        expect(color.toString()).to.be.equal('#000000')
+        expect(color.toString()).toEqual('#000000')
       })
     })
 
     describe('reduceAlpha', () => {
-      it('should reduce alpha', () => {
+      test('should reduce alpha', () => {
         let color = new Color('rgba(255,255,255,1)', { reduceAlpha: false })
-        expect(color.toString()).to.be.equal('rgba(255, 255, 255, 1)')
+        expect(color.toString()).toEqual('rgba(255, 255, 255, 1)')
 
         color = new Color('rgba(255,255,255,1)', { reduceAlpha: true })
-        expect(color.toString()).to.be.equal('rgb(255, 255, 255)')
+        expect(color.toString()).toEqual('rgb(255, 255, 255)')
 
         color = new Color('hsla(0,0%,50%,1)', { reduceAlpha: false })
-        expect(color.toString()).to.be.equal('hsla(0, 0%, 50%, 1)')
+        expect(color.toString()).toEqual('hsla(0, 0%, 50%, 1)')
 
         color = new Color('hsla(0,0%,50%,1)', { reduceAlpha: true })
-        expect(color.toString()).to.be.equal('hsl(0, 0%, 50%)')
+        expect(color.toString()).toEqual('hsl(0, 0%, 50%)')
       })
     })
 
     describe('zeroAlphaAsTransparent', () => {
-      it('should use transparent when alpha equal zero', () => {
+      test('should use transparent when alpha equal zero', () => {
         let color = new Color('rgba(255,255,255,0)', {
           zeroAlphaAsTransparent: false
         })
 
-        expect(color.toString()).to.be.equal('rgba(255, 255, 255, 0)')
+        expect(color.toString()).toEqual('rgba(255, 255, 255, 0)')
 
         color = new Color('rgba(255,255,255,0)', {
           zeroAlphaAsTransparent: true
         })
 
-        expect(color.toString()).to.be.equal('transparent')
+        expect(color.toString()).toEqual('transparent')
       })
     })
 
     describe('instance', () => {
-      it('val()', () => {
+      test('val()', () => {
         const color = new Color('#000000', 'HEX')
 
-        expect(color.val()).to.be.equal('#000000')
+        expect(color.val()).toEqual('#000000')
 
-        expect(color.val('rgb(66, 50, 50)').toString()).to.be.equal('#423232')
+        expect(color.val('rgb(66, 50, 50)').toString()).toEqual('#423232')
 
-        expect(color.val('rgba(66, 50, 50, 1)').toString()).to.be.equal(
-          '#423232'
-        )
+        expect(color.val('rgba(66, 50, 50, 1)').toString()).toEqual('#423232')
 
-        expect(color.val('hsl(0, 14%, 23%)').toString()).to.be.equal(
+        expect(color.val('hsl(0, 14%, 23%)').toString()).toEqual(
           '#433232'
         ) /* ! */
 
-        expect(color.val('hsla(0, 14%, 23%, 1)').toString()).to.be.equal(
+        expect(color.val('hsla(0, 14%, 23%, 1)').toString()).toEqual(
           '#433232'
         ) /* ! */
 
-        expect(color.val('transparent').toString()).to.be.equal('transparent')
+        expect(color.val('transparent').toString()).toEqual('transparent')
       })
 
-      it('isValid()', () => {
+      test('isValid()', () => {
         const color = new Color()
         color.val('#fff')
 
-        expect(color.isValid()).to.be.equal(true)
+        expect(color.isValid()).toEqual(true)
 
         color.val('fff')
 
-        expect(color.isValid()).to.be.equal(false)
+        expect(color.isValid()).toEqual(false)
 
         color.val('its not valid')
 
-        expect(color.isValid()).to.be.equal(false)
+        expect(color.isValid()).toEqual(false)
       })
 
-      it('format()', () => {
+      test('format()', () => {
         let color = new Color()
-        expect(color.format()).to.be.equal('HEX')
+        expect(color.format()).toEqual('HEX')
 
         color = new Color('#000000')
-        expect(color.format()).to.be.equal('HEX')
+        expect(color.format()).toEqual('HEX')
 
         color = new Color('rgb(0, 0, 0)')
-        expect(color.format()).to.be.equal('RGB')
+        expect(color.format()).toEqual('RGB')
 
         color = new Color('rgba(0, 0, 0, 1)')
-        expect(color.format()).to.be.equal('RGBA')
+        expect(color.format()).toEqual('RGBA')
 
         color = new Color('hsl(59, 100%, 50%)')
-        expect(color.format()).to.be.equal('HSL')
+        expect(color.format()).toEqual('HSL')
 
         color = new Color('hsla(59, 100%, 50%, 1)')
-        expect(color.format()).to.be.equal('HSLA')
+        expect(color.format()).toEqual('HSLA')
 
         color = new Color('#000000', 'rgba')
-        expect(color.format()).to.be.equal('RGBA')
+        expect(color.format()).toEqual('RGBA')
 
         color.format('rgb')
-        expect(color.format()).to.be.equal('RGB')
+        expect(color.format()).toEqual('RGB')
 
         color.format('rgba')
-        expect(color.format()).to.be.equal('RGBA')
+        expect(color.format()).toEqual('RGBA')
 
         color.format('hsl')
-        expect(color.format()).to.be.equal('HSL')
+        expect(color.format()).toEqual('HSL')
 
         color.format('hsla')
-        expect(color.format()).to.be.equal('HSLA')
+        expect(color.format()).toEqual('HSLA')
 
         color.format('hex')
-        expect(color.format()).to.be.equal('HEX')
+        expect(color.format()).toEqual('HEX')
       })
 
-      it('set()', () => {
+      test('set()', () => {
         const color = new Color()
         color.set({
           r: 255,
           g: 255,
           b: 255
         })
-        expect(color.toHEX()).to.be.equal('#ffffff')
+        expect(color.toHEX()).toEqual('#ffffff')
 
         color.set({
           r: 255,
@@ -417,9 +413,9 @@ describe('Color', () => {
           b: 255,
           a: 0.5
         })
-        expect(color.toRGB()).to.be.equal('rgb(255, 255, 255)')
-        expect(color.toRGBA()).to.be.equal('rgba(255, 255, 255, 0.5)')
-        expect(color.toHSLA()).to.be.equal('hsla(0, 0%, 100%, 0.5)')
+        expect(color.toRGB()).toEqual('rgb(255, 255, 255)')
+        expect(color.toRGBA()).toEqual('rgba(255, 255, 255, 0.5)')
+        expect(color.toHSLA()).toEqual('hsla(0, 0%, 100%, 0.5)')
 
         color.set({
           h: 0,
@@ -427,8 +423,8 @@ describe('Color', () => {
           v: 1,
           a: 0.5
         })
-        expect(color.toRGBA()).to.be.equal('rgba(255, 255, 255, 0.5)')
-        expect(color.toHSLA()).to.be.equal('hsla(0, 0%, 100%, 0.5)')
+        expect(color.toRGBA()).toEqual('rgba(255, 255, 255, 0.5)')
+        expect(color.toHSLA()).toEqual('hsla(0, 0%, 100%, 0.5)')
 
         color.set({
           h: 1,
@@ -436,13 +432,13 @@ describe('Color', () => {
           v: 1,
           a: 0.5
         })
-        expect(color.toRGBA()).to.be.equal('rgba(255, 255, 255, 0.5)')
-        expect(color.toHSLA()).to.be.equal('hsla(0, 0%, 100%, 0.5)')
+        expect(color.toRGBA()).toEqual('rgba(255, 255, 255, 0.5)')
+        expect(color.toHSLA()).toEqual('hsla(0, 0%, 100%, 0.5)')
       })
 
-      it('get()', () => {
+      test('get()', () => {
         const color = new Color('rgba(0, 0, 0, 1)')
-        expect(color.get()).to.be.eql({
+        expect(color.get()).toEqual({
           r: 0,
           g: 0,
           b: 0,
@@ -453,7 +449,7 @@ describe('Color', () => {
         })
 
         color.val('hsla(0, 0%, 100%, 0.5)')
-        expect(color.get()).to.be.eql({
+        expect(color.get()).toEqual({
           r: 255,
           g: 255,
           b: 255,
@@ -465,7 +461,7 @@ describe('Color', () => {
 
         color.val('#fff600')
         color.alpha(1)
-        expect(color.get()).to.be.eql({
+        expect(color.get()).toEqual({
           r: 255,
           g: 246,
           b: 0,
@@ -476,208 +472,208 @@ describe('Color', () => {
         })
       })
 
-      it('alpha()', () => {
+      test('alpha()', () => {
         const color = new Color('#8c9cdf', 'rgba')
 
-        expect(color.alpha()).to.be.equal(1)
-        expect(color.toRGBA()).to.be.equal('rgba(140, 156, 223, 1)')
-        expect(color.toHSLA()).to.be.equal('hsla(228, 56%, 71%, 1)')
+        expect(color.alpha()).toEqual(1)
+        expect(color.toRGBA()).toEqual('rgba(140, 156, 223, 1)')
+        expect(color.toHSLA()).toEqual('hsla(228, 56%, 71%, 1)')
 
         color.alpha(0.5)
-        expect(color.alpha()).to.be.equal(0.5)
-        expect(color.toRGBA()).to.be.equal('rgba(140, 156, 223, 0.5)')
-        expect(color.toHSLA()).to.be.equal('hsla(228, 56%, 71%, 0.5)')
+        expect(color.alpha()).toEqual(0.5)
+        expect(color.toRGBA()).toEqual('rgba(140, 156, 223, 0.5)')
+        expect(color.toHSLA()).toEqual('hsla(228, 56%, 71%, 0.5)')
 
         color.alpha(5)
-        expect(color.alpha()).to.be.equal(1)
+        expect(color.alpha()).toEqual(1)
 
         color.alpha(-5)
-        expect(color.alpha()).to.be.equal(0)
+        expect(color.alpha()).toEqual(0)
 
         color.alpha('1')
-        expect(color.alpha()).to.be.equal(1)
+        expect(color.alpha()).toEqual(1)
 
         color.alpha('abc')
-        expect(color.alpha()).to.be.equal(1)
+        expect(color.alpha()).toEqual(1)
       })
 
-      it('to()', () => {
+      test('to()', () => {
         const color = new Color('rgba(255, 128, 36, 0.5)')
 
-        expect(color.toRGBA()).to.be.equal('rgba(255, 128, 36, 0.5)')
-        expect(color.to('rgba')).to.be.equal('rgba(255, 128, 36, 0.5)')
+        expect(color.toRGBA()).toEqual('rgba(255, 128, 36, 0.5)')
+        expect(color.to('rgba')).toEqual('rgba(255, 128, 36, 0.5)')
 
-        expect(color.toRGB()).to.be.equal('rgb(255, 128, 36)')
-        expect(color.to('rgb')).to.be.equal('rgb(255, 128, 36)')
+        expect(color.toRGB()).toEqual('rgb(255, 128, 36)')
+        expect(color.to('rgb')).toEqual('rgb(255, 128, 36)')
 
-        expect(color.toHSLA()).to.be.equal('hsla(25, 100%, 57%, 0.5)')
-        expect(color.to('hsla')).to.be.equal('hsla(25, 100%, 57%, 0.5)')
+        expect(color.toHSLA()).toEqual('hsla(25, 100%, 57%, 0.5)')
+        expect(color.to('hsla')).toEqual('hsla(25, 100%, 57%, 0.5)')
 
-        expect(color.toHEX()).to.be.equal('#ff8024')
-        expect(color.to('hex')).to.be.equal('#ff8024')
+        expect(color.toHEX()).toEqual('#ff8024')
+        expect(color.to('hex')).toEqual('#ff8024')
 
-        expect(color.to('name')).to.be.equal('#ff8024')
+        expect(color.to('name')).toEqual('#ff8024')
 
         color.val('#fff')
-        expect(color.to('name')).to.be.equal('white')
+        expect(color.to('name')).toEqual('white')
       })
 
-      it('from rgb', () => {
+      test('from rgb', () => {
         const color = new Color(colorForm.rgb)
-        expect(color.toRGBA()).to.be.equal('rgba(0, 0, 0, 1)')
-        expect(color.toRGB()).to.be.equal('rgb(0, 0, 0)')
-        expect(color.toHSLA()).to.be.equal('hsla(0, 0%, 0%, 1)')
-        expect(color.toHEX()).to.be.equal('#000000')
-        expect(color.toString()).to.be.equal('rgb(0, 0, 0)')
+        expect(color.toRGBA()).toEqual('rgba(0, 0, 0, 1)')
+        expect(color.toRGB()).toEqual('rgb(0, 0, 0)')
+        expect(color.toHSLA()).toEqual('hsla(0, 0%, 0%, 1)')
+        expect(color.toHEX()).toEqual('#000000')
+        expect(color.toString()).toEqual('rgb(0, 0, 0)')
       })
 
-      it('from name', () => {
+      test('from name', () => {
         const color = new Color('red')
 
-        expect(color.isValid()).to.be.equal(true)
-        expect(color.toHEX()).to.be.equal('#ff0000')
-        expect(color.format()).to.be.equal('NAME')
-        expect(color.toString()).to.be.equal('red')
+        expect(color.isValid()).toEqual(true)
+        expect(color.toHEX()).toEqual('#ff0000')
+        expect(color.format()).toEqual('NAME')
+        expect(color.toString()).toEqual('red')
       })
 
-      it('from transparent', () => {
+      test('from transparent', () => {
         const color = new Color('transparent')
 
-        expect(color.format()).to.be.equal('HEX')
-        expect(color.toRGB()).to.be.equal('rgb(0, 0, 0)')
-        expect(color.toRGBA()).to.be.equal('rgba(0, 0, 0, 0)')
-        expect(color.toHSL()).to.be.equal('hsl(0, 0%, 0%)')
-        expect(color.toHSLA()).to.be.equal('hsla(0, 0%, 0%, 0)')
-        expect(color.toHEX()).to.be.equal('#000000')
-        expect(color.toString()).to.be.equal('transparent')
+        expect(color.format()).toEqual('HEX')
+        expect(color.toRGB()).toEqual('rgb(0, 0, 0)')
+        expect(color.toRGBA()).toEqual('rgba(0, 0, 0, 0)')
+        expect(color.toHSL()).toEqual('hsl(0, 0%, 0%)')
+        expect(color.toHSLA()).toEqual('hsla(0, 0%, 0%, 0)')
+        expect(color.toHEX()).toEqual('#000000')
+        expect(color.toString()).toEqual('transparent')
       })
 
-      it('from hex', () => {
+      test('from hex', () => {
         const color = new Color('#000000')
 
-        expect(color.toRGBA()).to.be.equal('rgba(0, 0, 0, 1)')
-        expect(color.toRGB()).to.be.equal('rgb(0, 0, 0)')
-        expect(color.toHSLA()).to.be.equal('hsla(0, 0%, 0%, 1)')
-        expect(color.toHEX()).to.be.equal('#000000')
-        expect(color.toString()).to.be.equal('#000000')
+        expect(color.toRGBA()).toEqual('rgba(0, 0, 0, 1)')
+        expect(color.toRGB()).toEqual('rgb(0, 0, 0)')
+        expect(color.toHSLA()).toEqual('hsla(0, 0%, 0%, 1)')
+        expect(color.toHEX()).toEqual('#000000')
+        expect(color.toString()).toEqual('#000000')
 
         color.val('#fff')
-        expect(color.toHEX()).to.be.equal('#ffffff')
+        expect(color.toHEX()).toEqual('#ffffff')
 
         color.val('#323')
-        expect(color.toHEX()).to.be.equal('#332233')
+        expect(color.toHEX()).toEqual('#332233')
       })
 
-      it('from hsl', () => {
+      test('from hsl', () => {
         const color = new Color()
 
         color.val('#bada55')
-        expect(color.toHSL()).to.be.equal('hsl(74, 64%, 59%)')
+        expect(color.toHSL()).toEqual('hsl(74, 64%, 59%)')
 
         color.val('#bad954')
-        expect(color.toHSL()).to.be.equal('hsl(74, 64%, 59%)')
+        expect(color.toHSL()).toEqual('hsl(74, 64%, 59%)')
 
         color.val('hsl(74, 64%, 59%)')
-        expect(color.toHEX()).to.be.equal('#bad954')
+        expect(color.toHEX()).toEqual('#bad954')
 
         color.val('#3d3d3d')
-        expect(color.toHSL()).to.be.equal('hsl(0, 0%, 24%)')
+        expect(color.toHSL()).toEqual('hsl(0, 0%, 24%)')
 
         color.val('#3c3c3c')
-        expect(color.toHSL()).to.be.equal('hsl(0, 0%, 24%)')
+        expect(color.toHSL()).toEqual('hsl(0, 0%, 24%)')
 
         color.val('#3d3d3d')
-        expect(color.toHSL()).to.be.equal('hsl(0, 0%, 24%)')
+        expect(color.toHSL()).toEqual('hsl(0, 0%, 24%)')
 
         color.val('hsl(0, 0%, 24%)')
-        expect(color.toHEX()).to.be.equal('#3d3d3d')
+        expect(color.toHEX()).toEqual('#3d3d3d')
 
         color.val('rgb(75, 96, 6)')
-        expect(color.toHSL()).to.be.equal('hsl(74, 88%, 20%)')
+        expect(color.toHSL()).toEqual('hsl(74, 88%, 20%)')
 
         color.val('hsl(74, 88%, 20%)')
-        expect(color.toRGB()).to.be.equal('rgb(75, 96, 6)')
+        expect(color.toRGB()).toEqual('rgb(75, 96, 6)')
 
         color.val('rgba(117, 149, 9, 0.65)')
-        expect(color.toHSLA()).to.be.equal('hsla(74, 89%, 31%, 0.65)')
+        expect(color.toHSLA()).toEqual('hsla(74, 89%, 31%, 0.65)')
 
         color.val('hsla(74, 89%, 31%, 0.65)')
-        expect(color.toRGBA()).to.be.equal('rgba(117, 149, 9, 0.65)')
+        expect(color.toRGBA()).toEqual('rgba(117, 149, 9, 0.65)')
 
         color.val('rgb(35, 22, 204)')
-        expect(color.toHSL()).to.be.equal('hsl(244, 81%, 44%)')
+        expect(color.toHSL()).toEqual('hsl(244, 81%, 44%)')
 
         color.val('rgb(33, 21, 203)')
-        expect(color.toHSL()).to.be.equal('hsl(244, 81%, 44%)')
+        expect(color.toHSL()).toEqual('hsl(244, 81%, 44%)')
 
         color.val('hsl(244, 81%, 44%)')
-        expect(color.toRGB()).to.be.equal('rgb(33, 21, 203)')
+        expect(color.toRGB()).toEqual('rgb(33, 21, 203)')
       })
 
-      it('from #4fb9ee', () => {
+      test('from #4fb9ee', () => {
         const color = new Color('#4fb9ee')
 
-        expect(color.toRGB()).to.be.equal('rgb(79, 185, 238)')
-        expect(color.toRGBA()).to.be.equal('rgba(79, 185, 238, 1)')
-        expect(color.toHSL()).to.be.equal('hsl(200, 82%, 62%)')
-        expect(color.toHSLA()).to.be.equal('hsla(200, 82%, 62%, 1)')
-        expect(color.toHEX()).to.be.equal('#4fb9ee')
-        expect(color.toString()).to.be.equal('#4fb9ee')
+        expect(color.toRGB()).toEqual('rgb(79, 185, 238)')
+        expect(color.toRGBA()).toEqual('rgba(79, 185, 238, 1)')
+        expect(color.toHSL()).toEqual('hsl(200, 82%, 62%)')
+        expect(color.toHSLA()).toEqual('hsla(200, 82%, 62%, 1)')
+        expect(color.toHEX()).toEqual('#4fb9ee')
+        expect(color.toString()).toEqual('#4fb9ee')
       })
 
-      it('color #000000', () => {
+      test('color #000000', () => {
         const color = new Color('#000000')
 
-        expect(color.toRGB()).to.be.equal('rgb(0, 0, 0)')
-        expect(color.toRGBA()).to.be.equal('rgba(0, 0, 0, 1)')
-        expect(color.toHSL()).to.be.equal('hsl(0, 0%, 0%)')
-        expect(color.toHSLA()).to.be.equal('hsla(0, 0%, 0%, 1)')
-        expect(color.toHEX()).to.be.equal('#000000')
-        expect(color.toString()).to.be.equal('#000000')
+        expect(color.toRGB()).toEqual('rgb(0, 0, 0)')
+        expect(color.toRGBA()).toEqual('rgba(0, 0, 0, 1)')
+        expect(color.toHSL()).toEqual('hsl(0, 0%, 0%)')
+        expect(color.toHSLA()).toEqual('hsla(0, 0%, 0%, 1)')
+        expect(color.toHEX()).toEqual('#000000')
+        expect(color.toString()).toEqual('#000000')
       })
 
-      it('color #ffffff', () => {
+      test('color #ffffff', () => {
         const color = new Color('#ffffff')
 
-        expect(color.toRGB()).to.be.equal('rgb(255, 255, 255)')
-        expect(color.toRGBA()).to.be.equal('rgba(255, 255, 255, 1)')
-        expect(color.toHSL()).to.be.equal('hsl(0, 0%, 100%)')
-        expect(color.toHSLA()).to.be.equal('hsla(0, 0%, 100%, 1)')
-        expect(color.toHEX()).to.be.equal('#ffffff')
-        expect(color.toString()).to.be.equal('#ffffff')
+        expect(color.toRGB()).toEqual('rgb(255, 255, 255)')
+        expect(color.toRGBA()).toEqual('rgba(255, 255, 255, 1)')
+        expect(color.toHSL()).toEqual('hsl(0, 0%, 100%)')
+        expect(color.toHSLA()).toEqual('hsla(0, 0%, 100%, 1)')
+        expect(color.toHEX()).toEqual('#ffffff')
+        expect(color.toString()).toEqual('#ffffff')
       })
 
-      it('color rgb(255, 0, 6)', () => {
+      test('color rgb(255, 0, 6)', () => {
         const color = new Color('rgb(255, 0, 6)')
 
-        expect(color.toRGB()).to.be.equal('rgb(255, 0, 6)')
-        expect(color.toRGBA()).to.be.equal('rgba(255, 0, 6, 1)')
-        expect(color.toHSL()).to.be.equal('hsl(359, 100%, 50%)')
-        expect(color.toHSLA()).to.be.equal('hsla(359, 100%, 50%, 1)')
-        expect(color.toHEX()).to.be.equal('#ff0006')
-        expect(color.toString()).to.be.equal('rgb(255, 0, 6)')
+        expect(color.toRGB()).toEqual('rgb(255, 0, 6)')
+        expect(color.toRGBA()).toEqual('rgba(255, 0, 6, 1)')
+        expect(color.toHSL()).toEqual('hsl(359, 100%, 50%)')
+        expect(color.toHSLA()).toEqual('hsla(359, 100%, 50%, 1)')
+        expect(color.toHEX()).toEqual('#ff0006')
+        expect(color.toString()).toEqual('rgb(255, 0, 6)')
       })
 
-      it('color rgb(238, 79, 185)', () => {
+      test('color rgb(238, 79, 185)', () => {
         const color = new Color('rgb(238, 79, 185)')
 
-        expect(color.toRGB()).to.be.equal('rgb(238, 79, 185)')
-        expect(color.toRGBA()).to.be.equal('rgba(238, 79, 185, 1)')
-        expect(color.toHSL()).to.be.equal('hsl(320, 82%, 62%)')
-        expect(color.toHSLA()).to.be.equal('hsla(320, 82%, 62%, 1)')
-        expect(color.toHEX()).to.be.equal('#ee4fb9')
-        expect(color.toString()).to.be.equal('rgb(238, 79, 185)')
+        expect(color.toRGB()).toEqual('rgb(238, 79, 185)')
+        expect(color.toRGBA()).toEqual('rgba(238, 79, 185, 1)')
+        expect(color.toHSL()).toEqual('hsl(320, 82%, 62%)')
+        expect(color.toHSLA()).toEqual('hsla(320, 82%, 62%, 1)')
+        expect(color.toHEX()).toEqual('#ee4fb9')
+        expect(color.toString()).toEqual('rgb(238, 79, 185)')
       })
 
-      it('color hsl(244, 81%, 44%)', () => {
+      test('color hsl(244, 81%, 44%)', () => {
         const color = new Color('hsl(244, 81%, 44%)')
 
-        expect(color.toRGB()).to.be.equal('rgb(33, 21, 203)')
-        expect(color.toRGBA()).to.be.equal('rgba(33, 21, 203, 1)')
-        expect(color.toHSL()).to.be.equal('hsl(244, 81%, 44%)')
-        expect(color.toHSLA()).to.be.equal('hsla(244, 81%, 44%, 1)')
-        expect(color.toHEX()).to.be.equal('#2115cb')
-        expect(color.toString()).to.be.equal('hsl(244, 81%, 44%)')
+        expect(color.toRGB()).toEqual('rgb(33, 21, 203)')
+        expect(color.toRGBA()).toEqual('rgba(33, 21, 203, 1)')
+        expect(color.toHSL()).toEqual('hsl(244, 81%, 44%)')
+        expect(color.toHSLA()).toEqual('hsla(244, 81%, 44%, 1)')
+        expect(color.toHEX()).toEqual('#2115cb')
+        expect(color.toString()).toEqual('hsl(244, 81%, 44%)')
       })
     })
   })

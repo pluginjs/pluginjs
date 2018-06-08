@@ -5,50 +5,50 @@ import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Toast', () => {
   describe('Toast()', () => {
-    it('should have Toast', () => {
-      expect(Toast).to.be.an('function')
+    test('should have Toast', () => {
+      expect(Toast).toBeFunction()
     })
 
-    it('should have defaults', () => {
-      expect(Toast.defaults).to.be.an('object')
+    test('should have defaults', () => {
+      expect(Toast.defaults).toBeObject()
     })
 
-    it('should have events', () => {
-      expect(Toast.events).to.be.an('object')
+    test('should have events', () => {
+      expect(Toast.events).toBeObject()
     })
 
-    it('should have classes', () => {
-      expect(Toast.classes).to.be.an('object')
+    test('should have classes', () => {
+      expect(Toast.classes).toBeObject()
     })
 
-    it('should have methods', () => {
-      expect(Toast.methods).to.be.an('array')
+    test('should have methods', () => {
+      expect(Toast.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
-    it('should work correctly', () => {
+    test('should work correctly', () => {
       const toast = new Toast()
 
-      expect(toast).to.be.an('object')
-      // expect(toast.options).to.be.eql(DEFAULTS);
+      expect(toast).toBeObject()
+      // expect(toast.options).toEqual(DEFAULTS);
     })
 
-    it('should have options', () => {
+    test('should have options', () => {
       const toast = new Toast()
 
-      expect(toast.options).to.be.an('object')
+      expect(toast.options).toBeObject()
     })
 
-    it('should have classes', () => {
+    test('should have classes', () => {
       const toast = new Toast()
 
-      expect(toast.classes).to.be.an('object')
+      expect(toast.classes).toBeObject()
     })
   })
 
   describe('classes', () => {
-    it('should use classes options', () => {
+    test('should use classes options', () => {
       const toast = new Toast({
         classes: {
           container: '{namespace}-wrap',
@@ -56,11 +56,11 @@ describe('Toast', () => {
         }
       })
 
-      expect(toast.classes.CONTAINER).to.be.equal('pj-toast-wrap')
-      expect(toast.classes.ACTIVE).to.be.equal('pj-toast-active')
+      expect(toast.classes.CONTAINER).toEqual('pj-toast-wrap')
+      expect(toast.classes.ACTIVE).toEqual('pj-toast-active')
     })
 
-    it('should override class namespace', () => {
+    test('should override class namespace', () => {
       const toast = new Toast({
         classes: {
           namespace: 'toast',
@@ -68,23 +68,23 @@ describe('Toast', () => {
         }
       })
 
-      expect(toast.classes.NAMESPACE).to.be.equal('toast')
-      expect(toast.classes.CONTAINER).to.be.equal('toast-wrap')
+      expect(toast.classes.NAMESPACE).toEqual('toast')
+      expect(toast.classes.CONTAINER).toEqual('toast-wrap')
     })
 
     describe('getClass()', () => {
-      it('should get class with namespace', () => {
+      test('should get class with namespace', () => {
         const toast = new Toast({ classes: { namespace: 'hello' } })
 
-        expect(toast.getClass('foo')).to.be.equal('foo')
-        expect(toast.getClass('{namespace}-foo')).to.be.equal('hello-foo')
+        expect(toast.getClass('foo')).toEqual('foo')
+        expect(toast.getClass('{namespace}-foo')).toEqual('hello-foo')
       })
 
-      it('should get class with arg', () => {
+      test('should get class with arg', () => {
         const toast = new Toast({ classes: { namespace: 'hello' } })
 
-        expect(toast.getClass('foo', 'arg', 'value')).to.be.equal('foo')
-        expect(toast.getClass('{namespace}-{arg}', 'arg', 'value')).to.be.equal(
+        expect(toast.getClass('foo', 'arg', 'value')).toEqual('foo')
+        expect(toast.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
           'hello-value'
         )
       })
@@ -93,20 +93,20 @@ describe('Toast', () => {
 
   describe('theme', () => {
     describe('getThemeClass()', () => {
-      it('should get theme classes with default namespace', () => {
+      test('should get theme classes with default namespace', () => {
         const toast = new Toast({
           theme: null,
           classes: { theme: '{namespace}--{theme}' }
         })
 
-        expect(toast.getThemeClass()).to.be.equal('')
-        expect(toast.getThemeClass('bar')).to.be.equal('pj-toast--bar')
-        expect(toast.getThemeClass('foo bar')).to.be.equal(
+        expect(toast.getThemeClass()).toEqual('')
+        expect(toast.getThemeClass('bar')).toEqual('pj-toast--bar')
+        expect(toast.getThemeClass('foo bar')).toEqual(
           'pj-toast--foo pj-toast--bar'
         )
       })
 
-      it('should get theme classes with namespace override', () => {
+      test('should get theme classes with namespace override', () => {
         const toast = new Toast({
           theme: null,
           classes: {
@@ -115,28 +115,24 @@ describe('Toast', () => {
           }
         })
 
-        expect(toast.getThemeClass()).to.be.equal('')
-        expect(toast.getThemeClass('bar')).to.be.equal('hello--bar')
-        expect(toast.getThemeClass('foo bar')).to.be.equal(
-          'hello--foo hello--bar'
-        )
+        expect(toast.getThemeClass()).toEqual('')
+        expect(toast.getThemeClass('bar')).toEqual('hello--bar')
+        expect(toast.getThemeClass('foo bar')).toEqual('hello--foo hello--bar')
       })
 
-      it('should get theme classes correctly when no classes.THEME defined', () => {
+      test('should get theme classes correctly when no classes.THEME defined', () => {
         const toast = new Toast({ theme: '{namespace}--foo' })
 
         // set to null for test
         toast.classes.THEME = null
 
-        expect(toast.getThemeClass()).to.be.equal('pj-toast--foo')
-        expect(toast.getThemeClass('bar')).to.be.equal('bar')
-        expect(toast.getThemeClass('{namespace}--bar')).to.be.equal(
-          'pj-toast--bar'
-        )
-        expect(toast.getThemeClass('foo bar')).to.be.equal('foo bar')
+        expect(toast.getThemeClass()).toEqual('pj-toast--foo')
+        expect(toast.getThemeClass('bar')).toEqual('bar')
+        expect(toast.getThemeClass('{namespace}--bar')).toEqual('pj-toast--bar')
+        expect(toast.getThemeClass('foo bar')).toEqual('foo bar')
         expect(
           toast.getThemeClass('{namespace}--foo {namespace}--bar')
-        ).to.be.equal('pj-toast--foo pj-toast--bar')
+        ).toEqual('pj-toast--foo pj-toast--bar')
       })
     })
   })
@@ -149,8 +145,8 @@ describe('Toast', () => {
       $element.off('toast:ready')
     })
 
-    it('should in initialized status', () => {
-      expect(api.is('initialized')).to.be.true
+    test('should in initialized status', () => {
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
@@ -162,17 +158,17 @@ describe('Toast', () => {
       $element.off('toast:destroy')
     })
 
-    it('should trigger destroy event', () => {
+    test('should trigger destroy event', () => {
       let called = 0
 
       $element.on('toast:destroy', (event, api) => {
-        expect(api.is('initialized')).to.be.false
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       api.destroy()
 
-      expect(called).to.be.equal(1)
+      expect(called).toEqual(1)
     })
   })
 })
