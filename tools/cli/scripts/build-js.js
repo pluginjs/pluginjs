@@ -2,6 +2,8 @@ const { execSync } = require('child_process')
 const logger = require('@pluginjs/helper/logger')('script/build')
 const requireRc = require('./utils/require-rc-file')
 const rollup = require('rollup')
+const path = require('path')
+const fs = require('fs')
 
 async function buildJs(ctx) {
   if (ctx.moduleName) {
@@ -12,6 +14,9 @@ async function buildJs(ctx) {
     return execSync(command, { stdio: 'inherit' })
   }
   logger.title('plugin script build-js')
+  if (!fs.existsSync(path.resolve('./dist'))) {
+    fs.mkdirSync(path.resolve('./dist'))
+  }
   const rolluprc = await requireRc('./.rolluprc.js')
   await Promise.all(
     [].concat(rolluprc).map(async task => {

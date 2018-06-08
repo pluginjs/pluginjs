@@ -13,6 +13,9 @@ function buildScss(ctx) {
     return execSync(command, { stdio: 'inherit' })
   }
   logger.title('plugin script build-scss')
+  if (!fs.existsSync(path.resolve('./dist'))) {
+    fs.mkdirSync(path.resolve('./dist'))
+  }
   const { input, output, ...options } = require(path.resolve('./.sassrc.js'))
   Array.of()
     .concat(output)
