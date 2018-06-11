@@ -7923,7 +7923,7 @@ pretty-format@^23.0.1:
 
 primary.css@^1.0.0:
   version "1.0.0"
-  resolved "http://registry.npm.taobao.org/primary.css/download/primary.css-1.0.0.tgz#dcccbf699a8c27687702e2c90de4274e6bb3695b"
+  resolved "https://registry.yarnpkg.com/primary.css/-/primary.css-1.0.0.tgz#dcccbf699a8c27687702e2c90de4274e6bb3695b"
   dependencies:
     jquery "^3.2.1"
 

@@ -7,15 +7,12 @@
   line-height: 1;
 }
 
-{{baseSelector}}:before {
-  font-family: {{fontName}} !important;
-  font-style: normal;
-  font-weight: normal !important;
-  vertical-align: top;
-}
-
 {{#each codepoints}}
 .{{../classPrefix}}{{@key}}:before {
   content: "\\{{this}}";
+  font-family: {{../fontName}} !important;
+  font-style: normal;
+  font-weight: normal !important;
+  vertical-align: top;
 }
 {{/each}}

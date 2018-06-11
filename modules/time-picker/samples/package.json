@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@pluginjs/time-picker": "^0.2.20",
+		"@pluginjs/icons": "^0.0.10",
 		"babel-plugin-transform-html-import-to-string": "^0.0.1",
 		"primary.css": "^1.0.0"
 	},
