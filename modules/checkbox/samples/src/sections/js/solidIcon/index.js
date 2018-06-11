@@ -3,7 +3,7 @@ import html from './index.html'
 import Checkbox from '@pluginjs/checkbox'
 
 const element = query(
-  '.js input[type="checkbox"]',
+  'input[type="checkbox"]',
   render(html, query('#jsSolidIcon'))
 )
 Checkbox.of(element, {
