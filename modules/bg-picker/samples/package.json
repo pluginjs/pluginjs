@@ -8,10 +8,15 @@
 		"build": "parcel build index.html"
 	},
 	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-preset-env": "1.7.0",
+		"babel-plugin-transform-html-import-to-string": "^0.0.1",
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"@pluginjs/bg-picker": "^0.2.21"
+		"@pluginjs/bg-picker": "^0.2.21",
+		"@pluginjs/dom": "^0.0.15",
+		"poper": "^0.1.1"
 	},
 	"license": "UNLICENSED"
 }
