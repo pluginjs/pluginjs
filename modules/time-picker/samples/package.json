@@ -11,7 +11,9 @@
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"@pluginjs/time-picker": "^0.2.20"
+		"@pluginjs/time-picker": "^0.2.20",
+		"babel-plugin-transform-html-import-to-string": "^0.0.1",
+		"primary.css": "^1.0.0"
 	},
 	"license": "UNLICENSED"
 }
