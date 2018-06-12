@@ -2,6 +2,7 @@
 import '@pluginjs/icons/dist/plugin-icons.css'
 // import checkbox css
 import '@pluginjs/checkbox/src/css/checkbox.scss'
+import 'font-awesome/css/font-awesome.css'
 // import 'css/font-awesome.min.css'
 // import sections
 import './sections/js/inline'
