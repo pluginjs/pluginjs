@@ -1,116 +1,36 @@
-# Core
-> A flexible modern core js plugin.
-## Introduction
+# Pluginjs
 
-#### [Demo]()
----
-### Installation
+[![npm package](https://img.shields.io/npm/v/@pluginjs/pluginjs.svg)](https://www.npmjs.com/package/@pluginjs/pluginjs)
 
-#### NPM
-```javascript
-npm i @pluginjs/pluginjs
-```
-#### Yarn
-```javascript
-yarn add @pluginjs/pluginjs
-```
-
-### Dependencies
-- jQuery
-- @pluginjs/pluginjs
+`pluginjs` is a utility JavaScript library for pluginjs.
 
 ---
 
-## Getting Started
-### Include
-**Webpack && Rollup:**
-
-ECMAScript Modules
-```javascript
-import core from "@pluginjs/pluginjs"
-```
-
-CommonJS
-```javascript
-require("@pluginjs/pluginjs")
-```
-
-**CDN:**
-Development:
-```html
-<script src="/path/to/core.js"></script>
-<link rel="stylesheet" href="/path/to/core.css">
-```
-Production:
-```html
-<script src="/path/to/core.min.js"></script>
-<link rel="stylesheet" href="/path/to/core.min.css">
-```
-
-### Initialize
-HTML:
-```html
-<body>
-  <div class="element"></div>
-</body>
-```
-JS:
-```javascript
-Pj.Core('.element', options);
-// or jquery way
-$('.element').plugin('Core', options);
-```
----
 ## API
 
-
-### Methods:
-Methods are called on core instances through the core method itself.
-You can also save the instances to variable for further use.
-
-Name | Description
------|-----
-`"themeable"` | Make plugin themeable
-`"styleable"` | Make plugin styleable
-`"eventable"` | Make plugin eventable
-`"stateable"` | Make plugin stateable
-`"register"` | Register plugin to core
-`"translateable"` | Make plugin translateable
-
-**example:**
-```javascript
-$core.plugin('Core', register)
-$core.plugin('Core', register, "foo")
-$core.plugin('Core', register, "foo", "bar")
-```
-
-
-
-### Dependencies:
-- `component`
-
----
+- register
+- stateable
+- eventable
+- themeable
+- styleable
+- translateable
 
 ## Browser support
 
 Tested on all major browsers.
 
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/internet-explorer/internet-explorer_32x32.png" alt="IE"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
-|:--:|:--:|:--:|:--:|:--:|:--:|
-| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | >=10 ✓ | Latest ✓ |
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_32x32.png" alt="Safari"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_32x32.png" alt="Chrome"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_32x32.png" alt="Firefox"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_32x32.png" alt="Edge"> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_32x32.png" alt="Opera"> |
+|:--:|:--:|:--:|:--:|:--:|
+| Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ | Latest ✓ |
 
-As a jQuery plugin, you also need to see the [jQuery Browser Support](http://jquery.com/browser-support/).
+## License
 
-## Contributing
-See [Contribution.md](Contribution.md).
+@pluginjs/pluginjs is Licensed under [the GPL-v3 license](LICENSE).
 
-## Changelog
-To see the list of recent changes, see [Releases section](https://github.com/amazingSurge/plugin.js/releases).
+If you want to use @pluginjs/pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
 
-## Version
-Version: 0.0.1
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
-## Copyright and license
-Copyright (C) 2017 Creation Studio Limited.
+## Copyright
 
-Licensed under [the GPL-v3 license](LICENSE).
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

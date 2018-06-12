@@ -73,14 +73,11 @@ List.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/list/dist/list.css">
-  <script async src="https://unpkg.com/@pluginjs/list/dist/list.js"></script>
-</head>
-```
-
-```javascript
-Pj.list('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/list/dist/list.css">
+<script src="https://unpkg.com/@pluginjs/list/dist/list.js"></script>
+<script>
+  Pj.list('.element', options)
+</script>
 ```
 
 ---
@@ -100,7 +97,7 @@ Name | Description | Default
 `"data"` | Set data option | `null`
 `"disabled"` | Disabled option | `false`
 `"label"` | Set label | `function() {...}`
-`"actions"` | Set actions option | `[{&quot;tagName&quot;:&quot;i&quot;,&quot;trigger&quot;:&quot;icon-close pj-list-close&quot;,&quot;event&quot;:&quot;click&quot;}]`
+`"actions"` | Set actions option | `[{"tagName":"i","trigger":"icon-close pj-list-close","event":"click"}]`
 `"templates"` | Set default templates | `{}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
@@ -174,8 +171,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/list is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/list is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

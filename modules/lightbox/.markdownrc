@@ -1,0 +1,349 @@
+{
+	"meta": {
+		"moduleName": "lightbox",
+		"namespace": "lightbox",
+		"Namespace": "Lightbox",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Add plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "delegate",
+				"desc": "Picture element selector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "clickBgClose",
+				"desc": "Click the background to turn off the lightbox, true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "clickImageClose",
+				"desc": "Click the picture to turn off the lightbox, true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "thumbs",
+				"desc": "Whether to display thumbnails, true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "title",
+				"desc": "Whether to display title, true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "templates",
+				"desc": "Element templates",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			}
+		],
+		"event": "update",
+		"Event": "Update",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "value",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-lightbox"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare plugin range",
+				"value": "{namespace}-container"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "OVERLAY",
+				"desc": "Announce element is overlay",
+				"value": "{namespace}-overlay"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Announce element is wrap",
+				"value": "{namespace}-wrap"
+			},
+			{
+				"name": "FOOTER",
+				"desc": "Announce element is footer",
+				"value": "{namespace}-footer"
+			},
+			{
+				"name": "CAPTION",
+				"desc": "Announce element is caption",
+				"value": "{namespace}-caption"
+			},
+			{
+				"name": "TITLE",
+				"desc": "Announce element is title",
+				"value": "{namespace}-title"
+			},
+			{
+				"name": "THUMBNAILS",
+				"desc": "Announce element is thumbnails",
+				"value": "{namespace}-thumbnails"
+			},
+			{
+				"name": "INNER",
+				"desc": "Announce element is thumbnails inner",
+				"value": "{namespace}-thumbnails-inner"
+			},
+			{
+				"name": "THUMB",
+				"desc": "Announce element is thumb",
+				"value": "{namespace}-thumb"
+			},
+			{
+				"name": "THUMBBG",
+				"desc": "Announce element is thumb background",
+				"value": "{namespace}-thumb-bg"
+			},
+			{
+				"name": "SLIDE",
+				"desc": "Announce element is slide",
+				"value": "{namespace}-slide"
+			},
+			{
+				"name": "ITEM",
+				"desc": "Announce element is item",
+				"value": "{namespace}-item"
+			},
+			{
+				"name": "ITEMINNER",
+				"desc": "Announce element is item inner",
+				"value": "{namespace}-item-inner"
+			},
+			{
+				"name": "LOADER",
+				"desc": "Announce element is loader",
+				"value": "{namespace}-loader"
+			},
+			{
+				"name": "CONTENT",
+				"desc": "Announce element is content",
+				"value": "{namespace}-content"
+			},
+			{
+				"name": "IMAGE",
+				"desc": "Announce element is image",
+				"value": "{namespace}-image"
+			},
+			{
+				"name": "VIDEO",
+				"desc": "Announce element is video",
+				"value": "{namespace}-video"
+			},
+			{
+				"name": "PLAY",
+				"desc": "Announce element is play",
+				"value": "{namespace}-play"
+			},
+			{
+				"name": "LOADING",
+				"desc": "Announce element is loading",
+				"value": "{namespace}-loading"
+			},
+			{
+				"name": "MAP",
+				"desc": "Announce element is map",
+				"value": "{namespace}-map"
+			},
+			{
+				"name": "IFRAME",
+				"desc": "Announce element is iframe",
+				"value": "{namespace}-iframe"
+			},
+			{
+				"name": "INLINE",
+				"desc": "Announce element is inline",
+				"value": "{namespace}-inline"
+			},
+			{
+				"name": "AJAX",
+				"desc": "Announce element is ajax",
+				"value": "{namespace}-ajax"
+			},
+			{
+				"name": "ARROW",
+				"desc": "Announce element is arrow",
+				"value": "{namespace}-arrow"
+			},
+			{
+				"name": "READY",
+				"desc": "Announce plugin Loading completed",
+				"value": "{namespace}-ready"
+			},
+			{
+				"name": "OVERFLOWHIDE",
+				"desc": "Announce the style of the element overflow-hide",
+				"value": "{namespace}-overflow-hide"
+			},
+			{
+				"name": "SLIDEBOTTOM",
+				"desc": "Announce the style of the element slide-bottom",
+				"value": "{namespace}-slide-bottom"
+			},
+			{
+				"name": "SLIDELEFT",
+				"desc": "Announce the style of the element slide-left",
+				"value": "{namespace}-slide-left"
+			},
+			{
+				"name": "SLIDERIGHT",
+				"desc": "Announce the style of the element slide-right",
+				"value": "{namespace}-slide-right"
+			},
+			{
+				"name": "SLIDETOP",
+				"desc": "Announce the style of the element slide-top",
+				"value": "{namespace}-slide-top"
+			},
+			{
+				"name": "THUMBACTIVE",
+				"desc": "Announce the style of the element thumb-active",
+				"value": "{namespace}-thumb-active"
+			},
+			{
+				"name": "THUMBSTRANSITION",
+				"desc": "Announce the style of the element thumbs-transition",
+				"value": "{namespace}-thumbs-transition"
+			},
+			{
+				"name": "SLIDETRANSITION",
+				"desc": "Announce the style of the element slide-transition",
+				"value": "{namespace}-slide-transition"
+			},
+			{
+				"name": "VERTICALCENTER",
+				"desc": "Announce the style of the element vertical-center",
+				"value": "{namespace}-vertical-center"
+			},
+			{
+				"name": "LOADED",
+				"desc": "Announce image loading completed",
+				"value": "{namespace}-loaded"
+			},
+			{
+				"name": "HIDE",
+				"desc": "Announce the style of the element hide",
+				"value": "{namespace}-hide"
+			},
+			{
+				"name": "TOPBAR",
+				"desc": "Announce element is topBar",
+				"value": "{namespace}-topBar"
+			},
+			{
+				"name": "COUNTER",
+				"desc": "Announce element is counter",
+				"value": "{namespace}-counter"
+			},
+			{
+				"name": "SHARE",
+				"desc": "Announce element is share",
+				"value": "{namespace}-share"
+			},
+			{
+				"name": "DOWNLOAD",
+				"desc": "Announce element is download",
+				"value": "{namespace}-download"
+			},
+			{
+				"name": "FULLSCREEN",
+				"desc": "Announce element is fullScreen",
+				"value": "{namespace}-fullScreen"
+			},
+			{
+				"name": "CLOSE",
+				"desc": "Announce element is close",
+				"value": "{namespace}-close"
+			},
+			{
+				"name": "WHITE",
+				"desc": "Announce plugin theme",
+				"value": "{namespace}-theme-white"
+			},
+			{
+				"name": "BLACK",
+				"desc": "Announce plugin theme",
+				"value": "{namespace}-theme-black"
+			}
+		],
+		"translations": [
+			{
+				"name": "hello",
+				"en": "Hello world",
+				"zh": "世界你好"
+			},
+			{
+				"name": "greeting",
+				"en": "Hello {name}!",
+				"zh": "{name} 你好!"
+			},
+			{
+				"name": "plurals",
+				"en": [
+					"{count} product",
+					"{count} products",
+					"no product"
+				],
+				"zh": "{count} 个产品"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

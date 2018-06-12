@@ -73,14 +73,11 @@ Scrollable.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.css">
-  <script async src="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.js"></script>
-</head>
-```
-
-```javascript
-Pj.scrollable('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.css">
+<script src="https://unpkg.com/@pluginjs/scrollable/dist/scrollable.js"></script>
+<script>
+  Pj.scrollable('.element', options)
+</script>
 ```
 
 ---
@@ -131,12 +128,12 @@ You can also save the instances to variable for further use.
 
 Name | Description
 -----|-----
-`"scrollTo"` | 
-`"scrollBy"` | 
+`"scrollTo"` | scroll to the specified value
+`"scrollBy"` | scroll by current value to the specified value
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
-`"update"` | 
+`"update"` | update scrollable layout
 
 ### Classes
 
@@ -168,8 +165,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/scrollable is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scrollable project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/scrollable is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/scrollable project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

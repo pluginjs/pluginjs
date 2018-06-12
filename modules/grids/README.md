@@ -73,14 +73,11 @@ Grids.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/grids/dist/grids.css">
-  <script async src="https://unpkg.com/@pluginjs/grids/dist/grids.js"></script>
-</head>
-```
-
-```javascript
-Pj.grids('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/grids/dist/grids.css">
+<script src="https://unpkg.com/@pluginjs/grids/dist/grids.js"></script>
+<script>
+  Pj.grids('.element', options)
+</script>
 ```
 
 ---
@@ -106,13 +103,13 @@ Name | Description | Default
 `"duration"` | Set duretion | `800`
 `"direction"` | Set direction | `topLeft`
 `"filters"` | Set filters | `[]`
-`"filterbar"` | Set filterbar | `{&quot;filters&quot;:false,&quot;sort&quot;:false,&quot;reverse&quot;:false}`
+`"filterbar"` | Set filterbar | `{"filters":false,"sort":false,"reverse":false}`
 `"sortby"` | Set sortby | ``
 `"sortDirection"` | Set sortDirection | `max`
 `"carousel"` | Set carousel | `false`
 `"animate"` | Set animate | `fadeInUp`
 `"effects"` | Set effects | `{}`
-`"nestedConfig"` | Set nestedConfig | `{&quot;width&quot;:100,&quot;height&quot;:100}`
+`"nestedConfig"` | Set nestedConfig | `{"width":100,"height":100}`
 `"sort"` | Set sort | `function() {...}`
 `"parseTagsStr"` | Set parseTagsStr | `function() {...}`
 
@@ -184,8 +181,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/grids is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/grids project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/grids is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/grids project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

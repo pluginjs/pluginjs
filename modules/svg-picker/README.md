@@ -73,14 +73,11 @@ SvgPicker.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.css">
-  <script async src="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.js"></script>
-</head>
-```
-
-```javascript
-Pj.svgPicker('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.css">
+<script src="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.js"></script>
+<script>
+  Pj.svgPicker('.element', options)
+</script>
 ```
 
 ---
@@ -168,7 +165,7 @@ Name | Description | Default
 
 Name | EN | ZH
 -----|------|-------
-`"emptyText"` | Befor using SVG icons, you need add icons to &quot;my collections&quot; | 在使用SVG图标之前，您需要添加图标到“我的收藏”
+`"emptyText"` | Befor using SVG icons, you need add icons to "my collections" | 在使用SVG图标之前，您需要添加图标到“我的收藏”
 `"emptyHrefText"` | Go add now | 去添加
 `"searchText"` | Search | 搜索
 `"manage"` | Manage My Collections | 管理我的收藏
@@ -185,8 +182,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/svg-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/svg-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/svg-picker is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/svg-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

@@ -73,14 +73,11 @@ Parallax.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/parallax/dist/parallax.css">
-  <script async src="https://unpkg.com/@pluginjs/parallax/dist/parallax.js"></script>
-</head>
-```
-
-```javascript
-Pj.parallax('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/parallax/dist/parallax.css">
+<script src="https://unpkg.com/@pluginjs/parallax/dist/parallax.js"></script>
+<script>
+  Pj.parallax('.element', options)
+</script>
 ```
 
 ---
@@ -145,8 +142,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/parallax is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/parallax project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/parallax is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/parallax project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

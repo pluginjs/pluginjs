@@ -10,7 +10,8 @@
 	},
 	"scripts": {
 		"build": "./scripts/generate",
-		"postinstall": "yarn build"
+		"postinstall": "yarn build",
+		"build:md": "plugin script build-md"
 	},
 	"devDependencies": {
 		"glob-expand": "^0.2.1",

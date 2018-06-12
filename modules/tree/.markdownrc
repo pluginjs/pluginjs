@@ -1,0 +1,186 @@
+{
+	"meta": {
+		"moduleName": "tree",
+		"namespace": "tree",
+		"Namespace": "Tree",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "autoOpen",
+				"desc": "Set autoOpenSet aytoOpenSet",
+				"defaultValue": "[1,2]"
+			},
+			{
+				"name": "keyboard",
+				"desc": "Set keyboard",
+				"defaultValue": "true"
+			},
+			{
+				"name": "dataFromHtml",
+				"desc": "Set dataFromHtml",
+				"defaultValue": "false"
+			},
+			{
+				"name": "data",
+				"desc": "Set data",
+				"defaultValue": "null"
+			},
+			{
+				"name": "multiSelect",
+				"desc": "Set multiSelect",
+				"defaultValue": "false"
+			},
+			{
+				"name": "canUnselect",
+				"desc": "Set canUnselect",
+				"defaultValue": "true"
+			},
+			{
+				"name": "tabindex",
+				"desc": "Set tabindex",
+				"defaultValue": "0"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "close",
+				"desc": "Gets fired when plugin has close"
+			},
+			{
+				"name": "open",
+				"desc": "Gets fired when plugin has open"
+			},
+			{
+				"name": "select",
+				"desc": "Gets fired when plugin has select"
+			},
+			{
+				"name": "unselect",
+				"desc": "Gets fired when plugin has unselect"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "open",
+				"desc": "Set value of open"
+			},
+			{
+				"name": "close",
+				"desc": "close element"
+			},
+			{
+				"name": "before",
+				"desc": "Set value of before element"
+			},
+			{
+				"name": "after",
+				"desc": "Set value of after element"
+			},
+			{
+				"name": "append",
+				"desc": "Set value of append element"
+			},
+			{
+				"name": "prepend",
+				"desc": "Set value of prepend element"
+			},
+			{
+				"name": "remove",
+				"desc": "Set value of prepend remove"
+			},
+			{
+				"name": "getRoot",
+				"desc": "Set value of prepend getRoot"
+			},
+			{
+				"name": "getSelected",
+				"desc": "Set value of getSelected"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "open",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-tree"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "TREE",
+				"desc": "Declare plugin tree",
+				"value": "{namespace}"
+			},
+			{
+				"name": "TOGGLER",
+				"desc": "Declare plugin toggle",
+				"value": "{namespace}-toggler"
+			},
+			{
+				"name": "BRANCH",
+				"desc": "Declare plugin branch",
+				"value": "{namespace}-branch"
+			},
+			{
+				"name": "OPEN",
+				"desc": "Declare plugin open",
+				"value": "{namespace}-open"
+			},
+			{
+				"name": "SELECTED",
+				"desc": "Declare plugin selected",
+				"value": "{namespace}-selected"
+			},
+			{
+				"name": "CHILDRENSELECTED",
+				"desc": "Declare selected child",
+				"value": "{namespace}-childrenSelected"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

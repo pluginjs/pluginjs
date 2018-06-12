@@ -73,14 +73,11 @@ Scrollbar.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.css">
-  <script async src="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.js"></script>
-</head>
-```
-
-```javascript
-Pj.scrollbar('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.css">
+<script src="https://unpkg.com/@pluginjs/scrollbar/dist/scrollbar.js"></script>
+<script>
+  Pj.scrollbar('.element', options)
+</script>
 ```
 
 ---
@@ -96,11 +93,11 @@ Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
 `"handleSelector"` | Set handleSelector | `null`
-`"handleTemplate"` | Set handleTemplate | `&lt;div class&#x3D;&quot;{handle}&quot;&gt;&lt;/div&gt;`
+`"handleTemplate"` | Set handleTemplate | `<div class="{handle}"></div>`
 `"barClass"` | Set barClass | `null`
 `"handleClass"` | Set handleClass | `null`
 `"direction"` | Set direction | `vertical`
-`"barLength"` |  | `null`
+`"barLength"` | scroll bar default length | `null`
 `"handleLength"` | Set handleLength | `null`
 `"minHandleLength"` | Set minHandleLength | `30`
 `"maxHandleLength"` | Set maxHandleLength | `null`
@@ -173,8 +170,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/scrollbar is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scrollbar project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/scrollbar is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/scrollbar project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

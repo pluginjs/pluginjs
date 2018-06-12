@@ -10,7 +10,7 @@ async function buildJs(ctx) {
     const moduleName = ctx.scope
       ? `@${ctx.scope}/${ctx.moduleName}`
       : ctx.moduleName
-    const command = `yarn workspace ${moduleName} build:scss`
+    const command = `yarn workspace ${moduleName} build:js`
     return execSync(command, { stdio: 'inherit' })
   }
   logger.title('plugin script build-js')
@@ -18,16 +18,12 @@ async function buildJs(ctx) {
     fs.mkdirSync(path.resolve('./dist'))
   }
   const rolluprc = await requireRc('./.rolluprc.js')
-  await Promise.all(
-    [].concat(rolluprc).map(async task => {
-      const { output, ...inputOptions } = task
-      const bundle = await rollup.rollup(inputOptions)
-      return [].concat(output).map(outOps => {
-        logger.success(`Created js(${outOps.format}) → ${outOps.file}`)
-        return bundle.write(outOps)
-      })
-    })
-  )
+  await rolluprc.process(async config => {
+    const { output, ...others } = config
+    const bundle = await rollup.rollup(others)
+    logger.success(`Created js(${output.format}) → ${output.file}`)
+    return bundle.write(output)
+  })
   return ctx
 }
 

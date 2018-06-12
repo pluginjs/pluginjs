@@ -1,0 +1,143 @@
+{
+	"meta": {
+		"moduleName": "time-picker",
+		"namespace": "timePicker",
+		"Namespace": "TimePicker",
+		"options": [
+			{
+				"name": "value",
+				"desc": "sET VALUE",
+				"defaultValue": "null"
+			},
+			{
+				"name": "name",
+				"desc": "set name",
+				"defaultValue": "time-picker"
+			},
+			{
+				"name": "use24HourFormat",
+				"desc": "Set use24HourFormat",
+				"defaultValue": "true"
+			},
+			{
+				"name": "placeholder",
+				"desc": "Set input box prompt information",
+				"defaultValue": "Select Time"
+			},
+			{
+				"name": "keyboard",
+				"desc": "Set keyboard",
+				"defaultValue": "true"
+			},
+			{
+				"name": "disabled",
+				"desc": "Set disabled",
+				"defaultValue": "false"
+			},
+			{
+				"name": "maxTime",
+				"desc": "Set maxTime",
+				"defaultValue": ""
+			},
+			{
+				"name": "minTime",
+				"desc": "Set minTime",
+				"defaultValue": ""
+			},
+			{
+				"name": "step",
+				"desc": "Set step",
+				"defaultValue": "30"
+			}
+		],
+		"option": "value",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "timeLimit",
+				"desc": "Set value of timeLimit"
+			},
+			{
+				"name": "observeOtherTimePicker",
+				"desc": "Set value of observeOtherTimePicker"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-timePicker"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Declare plugin wrap",
+				"value": "{namespace}-wrap"
+			},
+			{
+				"name": "INFO",
+				"desc": "Declare plugin info",
+				"value": "{namespace}-info"
+			},
+			{
+				"name": "DROPDOWN",
+				"desc": "Declare plugin dropdown",
+				"value": "{namespace}-dropdown"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

@@ -34,7 +34,8 @@
 		"build": "plugin build",
 		"build:js": "plugin script build-js",
 		"build:scss": "plugin script build-scss",
-		"test": "jest"
+		"test": "jest",
+		"build:md": "plugin script build-md"
 	},
 	"cjs": "dist/dynamic-number.cjs.js",
 	"jest": {

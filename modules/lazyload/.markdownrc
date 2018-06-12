@@ -1,0 +1,113 @@
+{
+	"meta": {
+		"moduleName": "lazyload",
+		"namespace": "lazyload",
+		"Namespace": "Lazyload",
+		"options": [
+			{
+				"name": "threshold",
+				"desc": "Set threshold",
+				"defaultValue": "0"
+			},
+			{
+				"name": "src",
+				"desc": "Set src",
+				"defaultValue": "null"
+			},
+			{
+				"name": "retina",
+				"desc": "Set retina",
+				"defaultValue": "false"
+			},
+			{
+				"name": "srcset",
+				"desc": "Set srcset",
+				"defaultValue": "null"
+			},
+			{
+				"name": "delay",
+				"desc": "Set delay",
+				"defaultValue": "null"
+			},
+			{
+				"name": "animation",
+				"desc": "Set animation",
+				"defaultValue": "null"
+			}
+		],
+		"option": "threshold",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "enter",
+				"desc": "Gets fired when plugin has enter"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "value",
+				"desc": "Get vaule"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "setAnimation",
+				"desc": "Set value of animation"
+			},
+			{
+				"name": "setAnimationDelay",
+				"desc": "Set value of animationDelay"
+			},
+			{
+				"name": "beforeLoad",
+				"desc": "Set value of beforeLoad"
+			},
+			{
+				"name": "afterLoad",
+				"desc": "Set value of afterLoad"
+			},
+			{
+				"name": "load",
+				"desc": "Set value of load"
+			},
+			{
+				"name": "isLoad",
+				"desc": "Set value of isLoad"
+			},
+			{
+				"name": "setDelay",
+				"desc": "Set value of delay"
+			}
+		],
+		"method": "value"
+	},
+	"output": "./README.md",
+	"template": "README"
+}

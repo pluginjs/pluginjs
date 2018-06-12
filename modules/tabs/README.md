@@ -73,14 +73,11 @@ Tabs.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tabs/dist/tabs.css">
-  <script async src="https://unpkg.com/@pluginjs/tabs/dist/tabs.js"></script>
-</head>
-```
-
-```javascript
-Pj.tabs('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/tabs/dist/tabs.css">
+<script src="https://unpkg.com/@pluginjs/tabs/dist/tabs.js"></script>
+<script>
+  Pj.tabs('.element', options)
+</script>
 ```
 
 ---
@@ -110,8 +107,8 @@ Name | Description | Default
 `"breakWidth"` | Set break width value | `null`
 `"navLabelSelector"` | Set nav label dom selector | `null`
 `"navWrapSelector"` | Set nav wrap selector | `null`
-`"navLabelTpl"` | Set nav label html | `&lt;a href&#x3D;&quot;javascript:void(0)&quot;&gt;&lt;i class&#x3D;&#x27;icon-char icon-chevron-down&#x27;&gt;&lt;/i&gt;tab1&lt;/a&gt;`
-`"navWrapTpl"` | Set nav wrap html | `&lt;div&gt;&lt;/div&gt;`
+`"navLabelTpl"` | Set nav label html | `<a href="javascript:void(0)"><i class='icon-char icon-chevron-down'></i>tab1</a>`
+`"navWrapTpl"` | Set nav wrap html | `<div></div>`
 `"resizeReference"` | Set resize reference | `window`
 `"responsiveMode"` | Set responsive mode | `drop`
 `"onInit"` | Set initial callback | `null`
@@ -183,8 +180,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/tabs is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/tabs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/tabs is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/tabs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

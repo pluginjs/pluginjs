@@ -73,14 +73,11 @@ MapPicker.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/map-picker/dist/map-picker.css">
-  <script async src="https://unpkg.com/@pluginjs/map-picker/dist/map-picker.js"></script>
-</head>
-```
-
-```javascript
-Pj.mapPicker('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/map-picker/dist/map-picker.css">
+<script src="https://unpkg.com/@pluginjs/map-picker/dist/map-picker.js"></script>
+<script>
+  Pj.mapPicker('.element', options)
+</script>
 ```
 
 ---
@@ -102,8 +99,8 @@ Name | Description | Default
 `"place"` | Set place | `null`
 `"latlng"` | Set latlng | `{}`
 `"showLatlng"` | Set the plugin is showLatlng or not | `true`
-`"gmapOptions"` | Set gmapOptions | `{&quot;apiKey&quot;:&quot;AIzaSyDSx-q31rWQKqLwUahg6TrZ3R_5NT0LhFE&quot;,&quot;mapTypeControl&quot;:false,&quot;zoomControl&quot;:true,&quot;zoom&quot;:12,&quot;libraries&quot;:&quot;places&quot;}`
-`"markerOptions"` | Set markerOptions | `{&quot;draggable&quot;:true}`
+`"gmapOptions"` | Set gmapOptions | `{"apiKey":"AIzaSyDSx-q31rWQKqLwUahg6TrZ3R_5NT0LhFE","mapTypeControl":false,"zoomControl":true,"zoom":12,"libraries":"places"}`
+`"markerOptions"` | Set markerOptions | `{"draggable":true}`
 `"templates"` | Set default templates | `{}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
@@ -193,8 +190,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/map-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/map-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/map-picker is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/map-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

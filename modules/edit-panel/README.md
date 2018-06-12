@@ -73,14 +73,11 @@ EditPanel.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.css">
-  <script async src="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.js"></script>
-</head>
-```
-
-```javascript
-Pj.editPanel('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.css">
+<script src="https://unpkg.com/@pluginjs/edit-panel/dist/edit-panel.js"></script>
+<script>
+  Pj.editPanel('.element', options)
+</script>
 ```
 
 ---
@@ -95,11 +92,11 @@ You can also save the instances to variable for further use.
 Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
-`"init"` | Set plugin init option | `{&quot;icon&quot;:&quot;icon-picture&quot;,&quot;text&quot;:&quot;default text&quot;}`
-`"components"` | Set plugin components option | `[{&quot;title&quot;:&quot;&quot;,&quot;element&quot;:null,&quot;type&quot;:&quot;&quot;,&quot;options&quot;:{}}]`
+`"init"` | Set plugin init option | `{"icon":"icon-picture","text":"default text"}`
+`"components"` | Set plugin components option | `[{"title":"","element":null,"type":"","options":{}}]`
 `"hasSelector"` | Set plugin is  hasSelector or not | `true`
-`"selector"` | Set plugin selector option | `{&quot;title&quot;:&quot;default selector title&quot;,&quot;icon&quot;:&quot;icon-close&quot;}`
-`"action"` | Set plugin action option | `{&quot;panel&quot;:{&quot;cancel&quot;:{&quot;title&quot;:&quot;Cancel&quot;,&quot;class&quot;:&quot;&quot;},&quot;save&quot;:{&quot;title&quot;:&quot;Save&quot;,&quot;class&quot;:&quot;&quot;}},&quot;selector&quot;:{&quot;cancel&quot;:{&quot;title&quot;:&quot;Cancel&quot;,&quot;class&quot;:&quot;&quot;},&quot;save&quot;:{&quot;title&quot;:&quot;Use It&quot;,&quot;class&quot;:&quot;&quot;}}}`
+`"selector"` | Set plugin selector option | `{"title":"default selector title","icon":"icon-close"}`
+`"action"` | Set plugin action option | `{"panel":{"cancel":{"title":"Cancel","class":""},"save":{"title":"Save","class":""}},"selector":{"cancel":{"title":"Cancel","class":""},"save":{"title":"Use It","class":""}}}`
 `"templates"` | Set default templates | `{}`
 
 ### Events
@@ -182,8 +179,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/edit-panel is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/edit-panel project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/edit-panel is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/edit-panel project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

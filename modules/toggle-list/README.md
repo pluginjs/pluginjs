@@ -73,14 +73,11 @@ ToggleList.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.css">
-  <script async src="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.js"></script>
-</head>
-```
-
-```javascript
-Pj.toggleList('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.css">
+<script src="https://unpkg.com/@pluginjs/toggle-list/dist/toggle-list.js"></script>
+<script>
+  Pj.toggleList('.element', options)
+</script>
 ```
 
 ---
@@ -97,7 +94,7 @@ Name | Description | Default
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set the plugin is localeFallbacks or not | `true`
-`"actions"` | Set plugin actions options | `[{&quot;tagName&quot;:&quot;input&quot;,&quot;trigger&quot;:&quot;pj-toggleList-toggle&quot;,&quot;attrs&quot;:&quot;checked&#x3D;\&quot;checked\&quot;&quot;,&quot;event&quot;:&quot;click&quot;,&quot;init&quot;:null}]`
+`"actions"` | Set plugin actions options | `[{"tagName":"input","trigger":"pj-toggleList-toggle","attrs":"checked=\"checked\"","event":"click","init":null}]`
 `"format"` | Set format function | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
@@ -147,8 +144,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/toggle-list is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/toggle-list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/toggle-list is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/toggle-list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

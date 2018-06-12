@@ -1,0 +1,151 @@
+{
+	"meta": {
+		"moduleName": "collapse",
+		"namespace": "collapse",
+		"Namespace": "Collapse",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Add plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "instructions",
+				"desc": "Add plugin instructions option",
+				"defaultValue": "false"
+			},
+			{
+				"name": "collapsed",
+				"desc": "Set plugin is collapsed or not",
+				"defaultValue": "false"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "expand",
+				"desc": "Gets fired when plugin is expand"
+			},
+			{
+				"name": "expanded",
+				"desc": "Gets fired when plugin is expanded"
+			},
+			{
+				"name": "collapse",
+				"desc": "Gets fired when plugin is collapse"
+			},
+			{
+				"name": "collapsed",
+				"desc": "Gets fired when plugin is collapsed"
+			}
+		],
+		"event": "update",
+		"Event": "Update",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "toggle",
+				"desc": "Toggle plugin"
+			},
+			{
+				"name": "collapse",
+				"desc": "Set collapse with plugin"
+			},
+			{
+				"name": "expand",
+				"desc": "Set expand with plugin"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-collapse"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare plugin range",
+				"value": "{namespace}"
+			},
+			{
+				"name": "COLLAPSED",
+				"desc": "Declare plugin collapsed",
+				"value": "{namespace}-collapsed"
+			},
+			{
+				"name": "COLLAPSING",
+				"desc": "Declare plugin is collapsing",
+				"value": "{namespace}-collapsing"
+			},
+			{
+				"name": "EXPANDED",
+				"desc": "Declare plugin is expanded",
+				"value": "{namespace}-expanded"
+			},
+			{
+				"name": "EXPANDING",
+				"desc": "Declare plugin is expanding",
+				"value": "{namespace}-expanding"
+			},
+			{
+				"name": "HEADER",
+				"desc": "Declare header element",
+				"value": "{namespace}-header"
+			},
+			{
+				"name": "CONTENT",
+				"desc": "Declare content node",
+				"value": "{namespace}-content"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

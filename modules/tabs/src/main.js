@@ -25,6 +25,7 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
+import axios from 'axios'
 
 @themeable()
 @styleable(CLASSES)
@@ -105,8 +106,8 @@ class Tabs extends Component {
 
     if (this.options.ajax === true) {
       this.ajax = []
-      this.tabs.map(n => {
-        this.ajax.push({ href: $(n).data('href') })
+      this.tabs.forEach(n => {
+        this.ajax.push({ href: n.dataset.href })
       })
     }
   }
@@ -178,7 +179,7 @@ class Tabs extends Component {
   getPanelMinHeight() {
     let tempHeight = 0
 
-    Array.from(this.nav.children).map(tab => {
+    Array.from(this.nav.children).forEach(tab => {
       tempHeight += tab.clientHeight
     })
 
@@ -279,25 +280,38 @@ class Tabs extends Component {
   ajaxLoad(index) {
     this.showLoading()
 
-    let dtd
+    // let dtd
 
     if (!(this.options.cached === true && this.ajax[index].cached === true)) {
-      dtd = $.ajax({ url: this.ajax[index].href })
+      axios(this.ajax[index].href)
+        .then(response => {
+          this.ajax[index].cached = true
+          this.hideLoading()
+          this.panes[index].html(response.data)
+        })
+        .catch(() => {
+          this.hideLoading()
+          this.panes[index].html('Not Found')
+        })
+        .then(() => {
+          this.trigger(EVENTS.LOADED, index)
+        })
+      // dtd = $.ajax({ url: this.ajax[index].href })
 
-      dtd.done(data => {
-        this.ajax[index].cached = true
-        this.hideLoading()
-        this.panes[index].html(data)
-      })
+      // dtd.done(data => {
+      //   this.ajax[index].cached = true
+      //   this.hideLoading()
+      //   this.panes[index].html(data)
+      // })
 
-      dtd.fail(() => {
-        this.hideLoading()
-        this.panes[index].html('Not Found')
-      })
+      // dtd.fail(() => {
+      //   this.hideLoading()
+      //   this.panes[index].html('Not Found')
+      // })
 
-      dtd.always(() => {
-        this.trigger(EVENTS.LOADED, index)
-      })
+      // dtd.always(() => {
+      //   this.trigger(EVENTS.LOADED, index)
+      // })
     }
   }
 
@@ -316,7 +330,7 @@ class Tabs extends Component {
 
     if (!is.undefined(options)) {
       for (const m in options) {
-        if (options.hasOwnProperty(m)) {
+        if (Object.prototype.hasOwnProperty.call(options, m)) {
           this.options[m] = options[m]
         }
       }

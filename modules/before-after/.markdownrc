@@ -1,0 +1,237 @@
+{
+	"meta": {
+		"moduleName": "before-after",
+		"namespace": "beforeAfter",
+		"Namespace": "BeforeAfter",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "labelTheme",
+				"desc": "Set labelTheme",
+				"defaultValue": "null"
+			},
+			{
+				"name": "direction",
+				"desc": "Set is horizontal or vertical",
+				"defaultValue": "horizontal"
+			},
+			{
+				"name": "initial",
+				"desc": "Set initial options",
+				"defaultValue": "0.5"
+			},
+			{
+				"name": "showLabel",
+				"desc": "Set showLabel",
+				"defaultValue": "true"
+			},
+			{
+				"name": "mouseDrag",
+				"desc": "Set mouseDrag",
+				"defaultValue": "true"
+			},
+			{
+				"name": "touchDrag",
+				"desc": "Set touchDrag",
+				"defaultValue": "true"
+			},
+			{
+				"name": "pointerDrag",
+				"desc": "Set pointerDrag",
+				"defaultValue": "true"
+			},
+			{
+				"name": "clickMove",
+				"desc": "Set clickMove",
+				"defaultValue": "true"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duretion",
+				"defaultValue": "500"
+			},
+			{
+				"name": "easing",
+				"desc": "Set easing",
+				"defaultValue": "easeInOut"
+			},
+			{
+				"name": "labels",
+				"desc": "Set labels",
+				"defaultValue": "{\"before\":\"Before\",\"after\":\"After\"}"
+			},
+			{
+				"name": "arrows",
+				"desc": "Set arrows",
+				"defaultValue": "{\"left\":\"fa fa-caret-left\",\"right\":\"fa fa-caret-right\",\"up\":\"fa fa-caret-up\",\"down\":\"fa fa-caret-down\"}"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "hover",
+				"desc": "Gets fired when plugin has hover"
+			},
+			{
+				"name": "hovered",
+				"desc": "Gets fired when plugin has hovered"
+			},
+			{
+				"name": "drag",
+				"desc": "Gets fired when plugin has drag"
+			},
+			{
+				"name": "dragged",
+				"desc": "Gets fired when plugin has dragged"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "moveBy",
+				"desc": "Get value of moveBy"
+			},
+			{
+				"name": "moveTo",
+				"desc": "Get value of moveTo"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "moveBy",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "as-beforeAfter"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "DIRECTION",
+				"desc": "Declare plugin direction",
+				"value": "{namespace}-{direction}"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare plugin range",
+				"value": "{namespace}"
+			},
+			{
+				"name": "BEFORE",
+				"desc": "Declare plugin before",
+				"value": "{namespace}-before"
+			},
+			{
+				"name": "AFTER",
+				"desc": "Declare plugin after",
+				"value": "{namespace}-after"
+			},
+			{
+				"name": "HANDLE",
+				"desc": "Declare plugin handle",
+				"value": "{namespace}-handle"
+			},
+			{
+				"name": "ARROWBEFORE",
+				"desc": "Declare plugin arrow before",
+				"value": "{namespace}-arrow-before"
+			},
+			{
+				"name": "ARROWAFTER",
+				"desc": "Declare plugin arrow after",
+				"value": "{namespace}-arrow-after"
+			},
+			{
+				"name": "LABELS",
+				"desc": "Declare plugin labels",
+				"value": "{namespace}-labels"
+			},
+			{
+				"name": "LABELTHEME",
+				"desc": "Declare plugin labels theme",
+				"value": "{namespace}-labels-{theme}"
+			},
+			{
+				"name": "LABELBEFORE",
+				"desc": "Declare plugin before",
+				"value": "{namespace}-label-before"
+			},
+			{
+				"name": "LABELAFTER",
+				"desc": "Declare plugin after",
+				"value": "{namespace}-label-after"
+			},
+			{
+				"name": "LABELHIDE",
+				"desc": "Declare plugin label hide",
+				"value": "{namespace}-label-hide"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "DRAGGING",
+				"desc": "Announce plugin is dragging",
+				"value": "{namespace}-dragging"
+			},
+			{
+				"name": "HOVERING",
+				"desc": "Announce plugin is hoverd",
+				"value": "{namespace}-hovering"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

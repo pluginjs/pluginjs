@@ -1,0 +1,158 @@
+{
+	"meta": {
+		"moduleName": "breadcrumb",
+		"namespace": "breadcrumb",
+		"Namespace": "Breadcrumb",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Add plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "responsive",
+				"desc": "Add responsive callback",
+				"defaultValue": "true"
+			},
+			{
+				"name": "overflow",
+				"desc": "Add direction of overflow",
+				"defaultValue": "left"
+			},
+			{
+				"name": "ellipsisText",
+				"desc": "Add is ellipsisText or not",
+				"defaultValue": "&#8230;"
+			},
+			{
+				"name": "getItems",
+				"desc": "Add getItems method",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "getItemLink",
+				"desc": "Add getItemLink method",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "getDropdownMenu",
+				"desc": "Add getDropdownMenu method",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "templates",
+				"desc": "Plugin default templates",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			}
+		],
+		"event": "update",
+		"Event": "Update",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-breadcrumb"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "OVERFLOW",
+				"desc": "Declare overflow direction",
+				"value": "{namespace}-{overflow}"
+			},
+			{
+				"name": "ELEMENT",
+				"desc": "Declare plugin element",
+				"value": "{namespace}"
+			},
+			{
+				"name": "TOGGLE",
+				"desc": "Declare toggle element",
+				"value": "{namespace}-toggle"
+			},
+			{
+				"name": "TOGGLEICON",
+				"desc": "Declare toggleicon element",
+				"value": "caret"
+			},
+			{
+				"name": "DROPDOWN",
+				"desc": "Declare dropdown scope",
+				"value": "dropdown"
+			},
+			{
+				"name": "DROPDOWNMENU",
+				"desc": "Declare dropdown menu node",
+				"value": "dropdown-menu"
+			},
+			{
+				"name": "DROPDOWNMENURIGHT",
+				"desc": "Declare dropdown menu right space",
+				"value": "dropdown-menu-right"
+			},
+			{
+				"name": "DROPDOWNITEM",
+				"desc": "Declare dropdown item node",
+				"value": ""
+			},
+			{
+				"name": "DROPDOWNITEMDISABLE",
+				"desc": "Declare dropdown has disabled",
+				"value": "disabled"
+			},
+			{
+				"name": "ELLIPSIS",
+				"desc": "Declare is Ellipsis element",
+				"value": "{namespace}-ellipsis"
+			},
+			{
+				"name": "HIDDEN",
+				"desc": "Declare plugin has hidden",
+				"value": "{namespace}-hidden"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

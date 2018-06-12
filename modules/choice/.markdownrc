@@ -1,0 +1,166 @@
+{
+	"meta": {
+		"moduleName": "choice",
+		"namespace": "choice",
+		"Namespace": "Choice",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "multiple",
+				"desc": "Set multiple",
+				"defaultValue": "false"
+			},
+			{
+				"name": "value",
+				"desc": "Set vakue",
+				"defaultValue": ""
+			},
+			{
+				"name": "overflow",
+				"desc": "Set overflow",
+				"defaultValue": "false"
+			},
+			{
+				"name": "disabled",
+				"desc": "Disabled plugin",
+				"defaultValue": "false"
+			},
+			{
+				"name": "toggleTrigger",
+				"desc": "Set toggleTrigger",
+				"defaultValue": "hover"
+			},
+			{
+				"name": "toggleIcon",
+				"desc": "Set toggleIcon",
+				"defaultValue": "fa fa-caret-down"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			},
+			{
+				"name": "select",
+				"desc": "Gets fired when plugin has select"
+			},
+			{
+				"name": "unselect",
+				"desc": "Gets fired when plugin has unselect"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "select",
+				"desc": "Set value of select"
+			},
+			{
+				"name": "unselect",
+				"desc": "Set value of unselect"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-choice"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Declare plugin wrap",
+				"value": "{namespace}"
+			},
+			{
+				"name": "ITEM",
+				"desc": "Declare plugin item",
+				"value": "{namespace}-item"
+			},
+			{
+				"name": "DROPDOWN",
+				"desc": "Declare dropdown scope",
+				"value": "{namespace}-dropdown"
+			},
+			{
+				"name": "DROPDOWNSHOW",
+				"desc": "Declare plugin dropdown show",
+				"value": "{namespace}-dropdown-show"
+			},
+			{
+				"name": "TOGGLE",
+				"desc": "Declare plugin toggle",
+				"value": "{namespace}-toggle"
+			},
+			{
+				"name": "SELECTED",
+				"desc": "Declare plugin selected",
+				"value": "{namespace}-selected"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

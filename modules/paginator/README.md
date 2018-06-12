@@ -73,14 +73,11 @@ Paginator.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/paginator/dist/paginator.css">
-  <script async src="https://unpkg.com/@pluginjs/paginator/dist/paginator.js"></script>
-</head>
-```
-
-```javascript
-Pj.paginator('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/paginator/dist/paginator.css">
+<script src="https://unpkg.com/@pluginjs/paginator/dist/paginator.js"></script>
+<script>
+  Pj.paginator('.element', options)
+</script>
 ```
 
 ---
@@ -99,7 +96,7 @@ Name | Description | Default
 `"itemsPerPage"` | Set itemsPerPage | `10`
 `"layout"` | Set layout | `total, prev, list, next`
 `"theme"` | Set plugin theme option | `null`
-`"components"` | Set components | `{&quot;first&quot;:{},&quot;prev&quot;:{},&quot;next&quot;:{},&quot;last&quot;:{},&quot;list&quot;:{},&quot;jumper&quot;:{}}`
+`"components"` | Set components | `{"first":{},"prev":{},"next":{},"last":{},"list":{},"jumper":{}}`
 `"onInit"` | Set onInit | `null`
 `"onReady"` | Set onReady | `null`
 `"onChange"` | Set onChange | `null`
@@ -159,8 +156,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/paginator is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/paginator project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/paginator is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/paginator project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

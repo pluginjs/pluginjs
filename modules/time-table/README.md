@@ -73,14 +73,11 @@ TimeTable.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/time-table/dist/time-table.css">
-  <script async src="https://unpkg.com/@pluginjs/time-table/dist/time-table.js"></script>
-</head>
-```
-
-```javascript
-Pj.timeTable('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/time-table/dist/time-table.css">
+<script src="https://unpkg.com/@pluginjs/time-table/dist/time-table.js"></script>
+<script>
+  Pj.timeTable('.element', options)
+</script>
 ```
 
 ---
@@ -98,9 +95,9 @@ Name | Description | Default
 `"data"` | Set data | `null`
 `"view"` | Set view | `monthly`
 `"templates"` | Set default templates | `{}`
-`"listly"` | Set listly | `{&quot;controllerLabel&quot;:[&quot;DD MMM&quot;,&quot;- DD MMM ,YYYY&quot;],&quot;headerLabel&quot;:&quot;MMMM DD, YYYY&quot;,&quot;eventLabel&quot;:[&quot;HH:mm&quot;,&quot;-HH:mm&quot;]}`
-`"weekly"` | Set weekly | `{&quot;controllerLabel&quot;:[&quot;MMM DD &quot;,&quot;- MMM DD, YYYY&quot;],&quot;headerLabel&quot;:&quot;ddd,DD MMM&quot;,&quot;timeBetween&quot;:&quot;09:00-19:30&quot;}`
-`"monthly"` | Set monthly | `{&quot;controllerLabel&quot;:&quot;MMM YYYY&quot;,&quot;eventLabel&quot;:&quot;HH:mm&quot;}`
+`"listly"` | Set listly | `{"controllerLabel":["DD MMM","- DD MMM ,YYYY"],"headerLabel":"MMMM DD, YYYY","eventLabel":["HH:mm","-HH:mm"]}`
+`"weekly"` | Set weekly | `{"controllerLabel":["MMM DD ","- MMM DD, YYYY"],"headerLabel":"ddd,DD MMM","timeBetween":"09:00-19:30"}`
+`"monthly"` | Set monthly | `{"controllerLabel":"MMM YYYY","eventLabel":"HH:mm"}`
 
 ### Events
 
@@ -191,10 +188,10 @@ Name | Description | Default
 Name | EN | ZH
 -----|------|-------
 `"weekday"` | Sun,Mon,Tue,Wed,Thu,Fri,Sat | 周日,周一,周二,周三,周四,周五,周六
-`"month"` | [object Object] | [object Object]
+`"month"` | Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec | 一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月
 `"fullWeek"` | Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday | 星期一,星期二,星期三,星期四,星期五,星期六,星期日
-`"fullMonth"` | [object Object] | [object Object]
-`"choice"` | [object Object] | [object Object]
+`"fullMonth"` | January,February,March,April,May,June ,July,August,September,October,November,December | 一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月
+`"choice"` | Week,Month | 周视图,月视图
 `"today"` | today | 今日
 `"add"` | ADD EVENT | 添加事项
 `"all"` | All Classes | 全部
@@ -210,8 +207,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/time-table is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/time-table project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/time-table is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/time-table project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

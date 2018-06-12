@@ -23,6 +23,7 @@
 		"build": "plugin build",
 		"build:scss": "plugin script build-scss",
 		"build:js": "plugin script build-js",
+		"build:md": "plugin script build-md",
 		"lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
 		"test": "jest"
 	},

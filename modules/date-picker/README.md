@@ -73,14 +73,11 @@ DatePicker.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.css">
-  <script async src="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.js"></script>
-</head>
-```
-
-```javascript
-Pj.datePicker('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.css">
+<script src="https://unpkg.com/@pluginjs/date-picker/dist/date-picker.js"></script>
+<script>
+  Pj.datePicker('.element', options)
+</script>
 ```
 
 ---
@@ -118,7 +115,7 @@ Name | Description | Default
 `"selectableDayOfWeek"` | Set value of selectableDayofWeek | `[]`
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set plugin is localeFallbacks or not | `true`
-`"views"` | Set view | `[&quot;days&quot;]`
+`"views"` | Set view | `["days"]`
 `"outputFormat"` | Set outputForm | `yyyy/mm/dd`
 `"mobileMode"` | Set mobileMode | `false`
 `"constrainToWindow"` | Set plugin is  contrainToWindow or not | `true`
@@ -225,8 +222,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/date-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/date-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/date-picker is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/date-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

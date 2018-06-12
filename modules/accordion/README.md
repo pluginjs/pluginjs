@@ -73,14 +73,11 @@ Accordion.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/accordion/dist/accordion.css">
-  <script async src="https://unpkg.com/@pluginjs/accordion/dist/accordion.js"></script>
-</head>
-```
-
-```javascript
-Pj.accordion('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/accordion/dist/accordion.css">
+<script src="https://unpkg.com/@pluginjs/accordion/dist/accordion.js"></script>
+<script>
+  Pj.accordion('.element', options)
+</script>
 ```
 
 ---
@@ -104,7 +101,7 @@ Name | Description | Default
 `"breakWidth"` | Set width limit | `null`
 `"resizeReference"` | Set resize reference | `window`
 `"responsiveEffect"` | Set responsive effect | `easeInQuad`
-`"dropdownLabelTpl"` | Set dropdown label | `&lt;a href&#x3D;&quot;javascript:void(0)&quot;&gt;&lt;/a&gt;`
+`"dropdownLabelTpl"` | Set dropdown label | `<a href="javascript:void(0)"></a>`
 `"responsiveDuration"` | Set responsive duration | `300`
 `"onReady"` | Set ready callback | `null`
 
@@ -136,18 +133,18 @@ Name | Description | Default
 -----|------|------
 `"NAMESPACE"` | Declare plugin namespace | `pj-accordion`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
-`"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
-`"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-`"RESPONSIVE"` | Annouce plugin is responsive | `{namespace}-responsive`
-`"HORIZONTAL"` | Annouce plugin has in horizontal status | `{namespace}-horizontal`
-`"DROPDOWN"` | Annouce plugin dropdown node | `{namespace}-dropdown`
-`"DROPDOWNLABEL"` | Annouce plugin dropdown label node | `{namespace}-dropdown-label`
-`"DROPDOWNLIST"` | Announce plugin dropdown list node | `{namespace}-dropdown-list`
-`"DROPDOWNOPEN"` | Announce plugin dropdown open node | `{namespace}-open`
-`"PANE"` | Announce plugin pane node | `{namespace}-pane`
-`"PANEHEADER"` | Announce plugin pane header node | `{namespace}-pane-header`
-`"PANECONTENT"` | Announce plugin pane content node | `{namespace}-pane-content`
-`"PANECONTENTINNER"` | Announce plugin pane contentinner node | `{namespace}-pane-content-inner`
+`"ACTIVE"` | Declare plugin is actived | `{namespace}-active`
+`"DISABLED"` | Declare plugin is disabled | `{namespace}-disabled`
+`"RESPONSIVE"` | Declare plugin is responsive | `{namespace}-responsive`
+`"HORIZONTAL"` | Declare plugin has in horizontal status | `{namespace}-horizontal`
+`"DROPDOWN"` | Declare plugin dropdown node | `{namespace}-dropdown`
+`"DROPDOWNLABEL"` | Declare plugin dropdown label node | `{namespace}-dropdown-label`
+`"DROPDOWNLIST"` | Declare plugin dropdown list node | `{namespace}-dropdown-list`
+`"DROPDOWNOPEN"` | Declare plugin dropdown open node | `{namespace}-open`
+`"PANE"` | Declare plugin pane node | `{namespace}-pane`
+`"PANEHEADER"` | Declare plugin pane header node | `{namespace}-pane-header`
+`"PANECONTENT"` | Declare plugin pane content node | `{namespace}-pane-content`
+`"PANECONTENTINNER"` | Declare plugin pane contentinner node | `{namespace}-pane-content-inner`
 ---
 
 ## Browser support
@@ -160,8 +157,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/accordion is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/accordion project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/accordion is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/accordion project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

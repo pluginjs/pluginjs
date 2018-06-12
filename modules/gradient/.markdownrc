@@ -1,0 +1,47 @@
+{
+	"meta": {
+		"moduleName": "gradient",
+		"namespace": "gradient",
+		"Namespace": "Gradient",
+		"options": [
+			{
+				"name": "prefixes",
+				"desc": "Set prefixes",
+				"defaultValue": "[\"-webkit-\",\"-moz-\",\"-ms-\",\"-o-\"]"
+			},
+			{
+				"name": "forceStandard",
+				"desc": "Set forceStandard",
+				"defaultValue": "true"
+			},
+			{
+				"name": "angleUseKeyword",
+				"desc": "Set angleUseKeyword",
+				"defaultValue": "true"
+			},
+			{
+				"name": "emptyString",
+				"desc": "Set emptyString",
+				"defaultValue": ""
+			},
+			{
+				"name": "degradationFormat",
+				"desc": "Set degradationFormat",
+				"defaultValue": "false"
+			},
+			{
+				"name": "cleanPosition",
+				"desc": "Set cleanPosition",
+				"defaultValue": "true"
+			},
+			{
+				"name": "color",
+				"desc": "Set color",
+				"defaultValue": "{\"format\":false,\"hexUseName\":false,\"reduceAlpha\":true,\"shortenHex\":true,\"zeroAlphaAsTransparent\":false,\"invalidValue\":{\"r\":0,\"g\":0,\"b\":0,\"a\":1}}"
+			}
+		],
+		"option": "prefixes"
+	},
+	"output": "./README.md",
+	"template": "README"
+}

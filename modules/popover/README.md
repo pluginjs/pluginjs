@@ -73,14 +73,11 @@ Popover.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/popover/dist/popover.css">
-  <script async src="https://unpkg.com/@pluginjs/popover/dist/popover.js"></script>
-</head>
-```
-
-```javascript
-Pj.popover('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/popover/dist/popover.css">
+<script src="https://unpkg.com/@pluginjs/popover/dist/popover.js"></script>
+<script>
+  Pj.popover('.element', options)
+</script>
 ```
 
 ---
@@ -159,8 +156,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/popover is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/popover project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/popover is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/popover project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

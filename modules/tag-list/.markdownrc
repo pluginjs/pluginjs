@@ -1,0 +1,139 @@
+{
+	"meta": {
+		"moduleName": "tag-list",
+		"namespace": "tagList",
+		"Namespace": "TagList",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "localeFallbacks",
+				"desc": "Set localeFallbacks",
+				"defaultValue": "true"
+			},
+			{
+				"name": "data",
+				"desc": "Set data",
+				"defaultValue": "null"
+			},
+			{
+				"name": "actions",
+				"desc": "Set actions",
+				"defaultValue": "[{\"tagName\":\"i\",\"trigger\":\"icon-close pj-list-close\",\"event\":\"click\"}]"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			}
+		],
+		"event": "update",
+		"Event": "Update",
+		"methods": [
+			{
+				"name": "value",
+				"desc": "Get value"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "value",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-tagList"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "ADD",
+				"desc": "Declare plugin add",
+				"value": "{namespace}-add"
+			},
+			{
+				"name": "ADDINPUT",
+				"desc": "Declare plugin addinput",
+				"value": "{namespace}-input"
+			},
+			{
+				"name": "ADDBTN",
+				"desc": "Declare plugin addbtn",
+				"value": "{namespace}-btn"
+			}
+		],
+		"translations": [
+			{
+				"name": "addPlaceholder",
+				"en": "Enter new tags...",
+				"zh": "添加新标签..."
+			},
+			{
+				"name": "add",
+				"en": "Add",
+				"zh": "添加"
+			},
+			{
+				"name": "cancel",
+				"en": "Cancel",
+				"zh": "取消"
+			},
+			{
+				"name": "deleteTitle",
+				"en": "Are you sure you want to delete?",
+				"zh": "你确定要删除？"
+			},
+			{
+				"name": "delete",
+				"en": "Delete",
+				"zh": "删除"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

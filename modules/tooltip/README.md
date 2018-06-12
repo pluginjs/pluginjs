@@ -73,14 +73,11 @@ Tooltip.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.css">
-  <script async src="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.js"></script>
-</head>
-```
-
-```javascript
-Pj.tooltip('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.css">
+<script src="https://unpkg.com/@pluginjs/tooltip/dist/tooltip.js"></script>
+<script>
+  Pj.tooltip('.element', options)
+</script>
 ```
 
 ---
@@ -99,8 +96,8 @@ Name | Description | Default
 `"template"` | Set default template | `function() {...}`
 `"trigger"` | Set trigger action list | `hover focus`
 `"hideOutClick"` | Set when clicking outside of the tooltip, trigger hide event | `false`
-`"title"` | Set default title value if title attribute isn&#x27;t present | ``
-`"delay"` | Set delay (allow number or allow { &quot;show&quot;: 500, &quot;hide&quot;: 100 } pattern) | `0`
+`"title"` | Set default title value if title attribute isn't present | ``
+`"delay"` | Set delay (allow number or allow { "show": 500, "hide": 100 } pattern) | `0`
 `"html"` | Set is enable html or not | `false`
 `"selector"` | Set if a selector is provided, popover objects will be delegated to the specified targets | `false`
 `"placement"` | Set position of plugin | `top`
@@ -164,8 +161,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/tooltip is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/tooltip project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/tooltip is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/tooltip project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

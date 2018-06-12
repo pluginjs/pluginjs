@@ -73,14 +73,11 @@ Notice.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/notice/dist/notice.css">
-  <script async src="https://unpkg.com/@pluginjs/notice/dist/notice.js"></script>
-</head>
-```
-
-```javascript
-Pj.notice('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/notice/dist/notice.css">
+<script src="https://unpkg.com/@pluginjs/notice/dist/notice.js"></script>
+<script>
+  Pj.notice('.element', options)
+</script>
 ```
 
 ---
@@ -107,7 +104,7 @@ Name | Description | Default
 `"backgroundColor"` | Set background color | `null`
 `"backgroundImage"` | Set background image | `null`
 `"fontColor"` | Set font color | `null`
-`"buttons"` | Set buttons | `{&quot;ok&quot;:{&quot;title&quot;:&quot;Ok&quot;,&quot;class&quot;:&quot;pj-btn pj-btn-success&quot;}}`
+`"buttons"` | Set buttons | `{"ok":{"title":"Ok","class":"pj-btn pj-btn-success"}}`
 `"buttonAlign"` | Set button align | `center`
 `"timeout"` | Set timeout | `30000`
 `"fixedWidth"` | Set fixed width or not | `false`
@@ -152,8 +149,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/notice is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/notice project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/notice is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/notice project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

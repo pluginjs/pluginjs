@@ -73,14 +73,11 @@ Radio.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/radio/dist/radio.css">
-  <script async src="https://unpkg.com/@pluginjs/radio/dist/radio.js"></script>
-</head>
-```
-
-```javascript
-Pj.radio('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/radio/dist/radio.css">
+<script src="https://unpkg.com/@pluginjs/radio/dist/radio.js"></script>
+<script>
+  Pj.radio('.element', options)
+</script>
 ```
 
 ---
@@ -95,7 +92,7 @@ You can also save the instances to variable for further use.
 Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
-`"classes"` | Set the button class name  | `{&quot;button&quot;:&quot;{namespace}-default&quot;}`
+`"classes"` | Set the button class name  | `{"button":"{namespace}-default"}`
 `"disabled"` | Disabled plugin | `false`
 `"getWrap"` | Get the parent element of each element | `function() {...}`
 `"getLabel"` | Get the adjacent element of each element | `function() {...}`
@@ -156,8 +153,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/radio is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/radio project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/radio is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/radio project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

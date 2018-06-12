@@ -44,6 +44,7 @@
 		"jest-extended": "^0.7.2"
 	},
 	"scripts": {
-		"test": "jest"
+		"test": "jest",
+		"build:md": "plugin script build-md"
 	}
 }

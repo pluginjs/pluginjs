@@ -73,14 +73,11 @@ Toast.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/toast/dist/toast.css">
-  <script async src="https://unpkg.com/@pluginjs/toast/dist/toast.js"></script>
-</head>
-```
-
-```javascript
-Pj.toast('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/toast/dist/toast.css">
+<script src="https://unpkg.com/@pluginjs/toast/dist/toast.js"></script>
+<script>
+  Pj.toast('.element', options)
+</script>
 ```
 
 ---
@@ -111,7 +108,7 @@ Name | Description | Default
 `"stack"` | Set stack number | `6`
 `"position"` | Set position | `bottom-right`
 `"icon"` | Set default icon | `success`
-`"icons"` | Set icons options | `{&quot;success&quot;:[&quot;icon-check-circle&quot;,&quot;#4be1ab&quot;],&quot;info&quot;:[&quot;icon-exclamation-circle&quot;,&quot;#4c93d9&quot;],&quot;warning&quot;:[&quot;icon-exclamation-triangle&quot;,&quot;#dabd49&quot;],&quot;danger&quot;:[&quot;icon-times-circle&quot;,&quot;#f86b67&quot;]}`
+`"icons"` | Set icons options | `{"success":["icon-check-circle","#4be1ab"],"info":["icon-exclamation-circle","#4c93d9"],"warning":["icon-exclamation-triangle","#dabd49"],"danger":["icon-times-circle","#f86b67"]}`
 `"iconColor"` | Set icon color | ``
 `"iconClass"` | Set icon class | ``
 `"bgColor"` | Set bg color | `null`
@@ -161,8 +158,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/toast is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/toast project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/toast is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/toast project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

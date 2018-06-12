@@ -1,0 +1,279 @@
+{
+	"meta": {
+		"moduleName": "tabs",
+		"namespace": "tabs",
+		"Namespace": "Tabs",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Add plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "navSelector",
+				"desc": "Set nav dom selector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "contentSelector",
+				"desc": "Set content dom selector",
+				"defaultValue": "+"
+			},
+			{
+				"name": "navPosition",
+				"desc": "Set nav position",
+				"defaultValue": "null"
+			},
+			{
+				"name": "initialIndex",
+				"desc": "Setup index of tab list",
+				"defaultValue": "0"
+			},
+			{
+				"name": "ajax",
+				"desc": "Set is enabled ajax to loading data",
+				"defaultValue": "false"
+			},
+			{
+				"name": "cached",
+				"desc": "Set ajax data could be cached or not",
+				"defaultValue": "false"
+			},
+			{
+				"name": "history",
+				"desc": "Set history",
+				"defaultValue": "false"
+			},
+			{
+				"name": "historyAttr",
+				"desc": "Set history attribute",
+				"defaultValue": "id"
+			},
+			{
+				"name": "keyboard",
+				"desc": "Set keyboard",
+				"defaultValue": "false"
+			},
+			{
+				"name": "effect",
+				"desc": "Set effect",
+				"defaultValue": "fadeIn"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duration",
+				"defaultValue": "300"
+			},
+			{
+				"name": "event",
+				"desc": "Set action of event handle",
+				"defaultValue": "click"
+			},
+			{
+				"name": "breakWidth",
+				"desc": "Set break width value",
+				"defaultValue": "null"
+			},
+			{
+				"name": "navLabelSelector",
+				"desc": "Set nav label dom selector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "navWrapSelector",
+				"desc": "Set nav wrap selector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "navLabelTpl",
+				"desc": "Set nav label html",
+				"defaultValue": "<a href=\"javascript:void(0)\"><i class='icon-char icon-chevron-down'></i>tab1</a>"
+			},
+			{
+				"name": "navWrapTpl",
+				"desc": "Set nav wrap html",
+				"defaultValue": "<div></div>"
+			},
+			{
+				"name": "resizeReference",
+				"desc": "Set resize reference",
+				"defaultValue": "window"
+			},
+			{
+				"name": "responsiveMode",
+				"desc": "Set responsive mode",
+				"defaultValue": "drop"
+			},
+			{
+				"name": "onInit",
+				"desc": "Set initial callback",
+				"defaultValue": "null"
+			},
+			{
+				"name": "onReady",
+				"desc": "Set ready callback",
+				"defaultValue": "null"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "active",
+				"desc": "Get fired when plugin has actived"
+			},
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "resize",
+				"desc": "Get fired when plugin has resize"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			}
+		],
+		"event": "active",
+		"Event": "Active",
+		"methods": [
+			{
+				"name": "update",
+				"desc": "Refresh plugin by new options"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "getTabs",
+				"desc": "Get tabs jquery element"
+			},
+			{
+				"name": "getPanes",
+				"desc": "Get panes jquery element"
+			},
+			{
+				"name": "getCurrentPane",
+				"desc": "Get current pane jquery element"
+			},
+			{
+				"name": "getCurrentTab",
+				"desc": "Get current tab jquery element"
+			},
+			{
+				"name": "getIndex",
+				"desc": "Get current index"
+			},
+			{
+				"name": "getSize",
+				"desc": "Get current size"
+			},
+			{
+				"name": "next",
+				"desc": "Go next tab"
+			},
+			{
+				"name": "prev",
+				"desc": "Go prev tab"
+			},
+			{
+				"name": "add",
+				"desc": "Add a tab by label, content, and index"
+			},
+			{
+				"name": "remove",
+				"desc": "Remove a tab by index"
+			},
+			{
+				"name": "append",
+				"desc": "Append a tab by label and content"
+			}
+		],
+		"method": "update",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-tabs"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}-{theme}"
+			},
+			{
+				"name": "ELEMENT",
+				"desc": "Declare tabs element",
+				"value": "{namespace}"
+			},
+			{
+				"name": "RESPONSIVE",
+				"desc": "Declare responsive node",
+				"value": "{namespace}-{responsiveMode}"
+			},
+			{
+				"name": "NAVLABEL",
+				"desc": "Declare nav label",
+				"value": "{namespace}-nav-label"
+			},
+			{
+				"name": "NAVWRAP",
+				"desc": "Declare nav wrap",
+				"value": "{namespace}-nav-wrap"
+			},
+			{
+				"name": "DROPOPEN",
+				"desc": "Announce drop open",
+				"value": "{namespace}-drop-open"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "NAV",
+				"desc": "Declare nav dom node",
+				"value": "{namespace}-nav"
+			},
+			{
+				"name": "CONTENT",
+				"desc": "Declare content node",
+				"value": "{namespace}-content"
+			},
+			{
+				"name": "LOADING",
+				"desc": "Announce plugin is loading",
+				"value": "{namespace}-loading"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

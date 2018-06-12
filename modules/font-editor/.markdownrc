@@ -1,0 +1,280 @@
+{
+	"meta": {
+		"moduleName": "font-editor",
+		"namespace": "fontEditor",
+		"Namespace": "FontEditor",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "localeFallbacks",
+				"desc": "Set the plugin is localeFallbacks or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "disabled",
+				"desc": "Disabled plugin",
+				"defaultValue": "false"
+			},
+			{
+				"name": "fontFamily",
+				"desc": "Defined element of the font family",
+				"defaultValue": "{\"value\":\"inherit\",\"values\":{\"Arial\":\"Arial\",\"Bpreplay\":\"Bpreplay\",\"Cambira\":\"Cambira\",\"Gabriola\":\"Gabriola\",\"inherit\":\"inherit\"}}"
+			},
+			{
+				"name": "fontWeight",
+				"desc": "Dfined element of the font weight",
+				"defaultValue": "{\"value\":\"inherit\",\"values\":[\"inherit\",\"bold\",\"400\",\"500\",\"600\",\"700\"]}"
+			},
+			{
+				"name": "fontSize",
+				"desc": "Defined element of the font size",
+				"defaultValue": "{\"value\":\"inherit\",\"unit\":\"px\",\"units\":[\"inherit\",\"px\",\"em\",\"rem\"],\"min\":0,\"max\":100,\"step\":2}"
+			},
+			{
+				"name": "lineHeight",
+				"desc": "Defined element of the line height",
+				"defaultValue": "{\"value\":\"inherit\",\"unit\":\"em\",\"units\":[\"inherit\",\"px\",\"em\",\"rem\"],\"min\":1,\"max\":10,\"step\":0.5}"
+			},
+			{
+				"name": "textAlign",
+				"desc": "Defined element of the text align",
+				"defaultValue": "{\"value\":\"left\",\"values\":[\"left\",\"center\",\"right\"]}"
+			},
+			{
+				"name": "fontStyle",
+				"desc": "Defined element of the font style",
+				"defaultValue": "{\"value\":\"normal\",\"values\":[\"italic\",\"normal\"]}"
+			},
+			{
+				"name": "textTransform",
+				"desc": "Defined element of the text transform",
+				"defaultValue": "{\"value\":\"none\",\"values\":[\"uppercase\",\"lowercase\",\"capitalize\"]}"
+			},
+			{
+				"name": "textDecoration",
+				"desc": "Defined element of the text decoration",
+				"defaultValue": "{\"value\":\"none\",\"values\":[\"underline\",\"line-through\"]}"
+			},
+			{
+				"name": "template",
+				"desc": "Set default template",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "process",
+				"desc": "The type of object change the type of JSON",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "parse",
+				"desc": "The type of JSON change the type of object",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "onChange",
+				"desc": "Gets fired when plugin has change",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "onClick",
+				"desc": "Gets fired when plugin has click",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "clear",
+				"desc": "clear plugin"
+			},
+			{
+				"name": "setTextDecoration",
+				"desc": "Set value of text decoration"
+			},
+			{
+				"name": "setTextTranform",
+				"desc": "Set value of text tranform"
+			},
+			{
+				"name": "setTextAlign",
+				"desc": "Set value of text align"
+			},
+			{
+				"name": "setFontStyle",
+				"desc": "Set value of font style"
+			},
+			{
+				"name": "setFontWeight",
+				"desc": "Set value of font weight"
+			},
+			{
+				"name": "setFontFamily",
+				"desc": "Set value of font family"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "val",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-fontEditor"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "HOVER",
+				"desc": "Announce plugin is hover",
+				"value": "{namespace}-hover"
+			},
+			{
+				"name": "EXSIT",
+				"desc": "Announce plugin is exsit",
+				"value": "{namespace}-exsit"
+			},
+			{
+				"name": "EMPTY",
+				"desc": "Announce plugin is empyt",
+				"value": "{namespace}-empty"
+			},
+			{
+				"name": "EXPAND",
+				"desc": "Announce plugin is expand",
+				"value": "{namespace}-expand"
+			},
+			{
+				"name": "EXPANDPANEL",
+				"desc": "declare plugin expandpanel",
+				"value": "{namespace}-expand-panel"
+			},
+			{
+				"name": "EXPANDCONTROL",
+				"desc": "declare plugin expandcontrol",
+				"value": "{namespace}-expand-control"
+			},
+			{
+				"name": "EXPANDCANCEL",
+				"desc": "declare plugin expandcancel",
+				"value": "{namespace}-expand-cancel"
+			},
+			{
+				"name": "EXPANDSAVE",
+				"desc": "declare plugin expandsave",
+				"value": "{namespace}-expand-save"
+			},
+			{
+				"name": "INHERIT",
+				"desc": "declare plugin inherit",
+				"value": "{namespace}-inherit"
+			}
+		],
+		"translations": [
+			{
+				"name": "addTypography",
+				"en": "Add Typography",
+				"zh": "添加排版"
+			},
+			{
+				"name": "fontFamily",
+				"en": "Font Family",
+				"zh": "字体"
+			},
+			{
+				"name": "change",
+				"en": "Change",
+				"zh": "更改"
+			},
+			{
+				"name": "typeface",
+				"en": "Typeface",
+				"zh": "风格"
+			},
+			{
+				"name": "fontSize",
+				"en": "Font Size",
+				"zh": "字号"
+			},
+			{
+				"name": "lineHeight",
+				"en": "Line Height",
+				"zh": "行高"
+			},
+			{
+				"name": "weight",
+				"en": "Weight",
+				"zh": "字重"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

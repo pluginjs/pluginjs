@@ -1,0 +1,254 @@
+{
+	"meta": {
+		"moduleName": "swipe",
+		"namespace": "swipe",
+		"Namespace": "Swipe",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Add plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale",
+				"defaultValue": "en"
+			},
+			{
+				"name": "wrapperSelector",
+				"desc": "Wrapper selector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "containerSelector",
+				"desc": "Container selector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "itemSelector",
+				"desc": "Item selector",
+				"defaultValue": "div"
+			},
+			{
+				"name": "arrows",
+				"desc": "Active arrows",
+				"defaultValue": "false"
+			},
+			{
+				"name": "imgdot",
+				"desc": "Img dot",
+				"defaultValue": "false"
+			},
+			{
+				"name": "pagination",
+				"desc": "Active pagination",
+				"defaultValue": "false"
+			},
+			{
+				"name": "drag",
+				"desc": "Support drag",
+				"defaultValue": "true"
+			},
+			{
+				"name": "dragFree",
+				"desc": "Support dragfree",
+				"defaultValue": "false"
+			},
+			{
+				"name": "frictionFactor",
+				"desc": "friction factor",
+				"defaultValue": "0.8"
+			},
+			{
+				"name": "group",
+				"desc": "group",
+				"defaultValue": "false"
+			},
+			{
+				"name": "loop",
+				"desc": "Active loop mode",
+				"defaultValue": "false"
+			},
+			{
+				"name": "multiple",
+				"desc": "Active multiple mode",
+				"defaultValue": "false"
+			},
+			{
+				"name": "center",
+				"desc": "Set center model",
+				"defaultValue": "false"
+			},
+			{
+				"name": "itemNums",
+				"desc": "Number of swipe per column",
+				"defaultValue": "1"
+			},
+			{
+				"name": "gutter",
+				"desc": "'10px 10px' => 'top&bottom left&right', 10 => top&bottom&left&right",
+				"defaultValue": "0"
+			},
+			{
+				"name": "height",
+				"desc": "Set swipe height",
+				"defaultValue": "100%"
+			},
+			{
+				"name": "advanced",
+				"desc": "Advance options",
+				"defaultValue": "{ getItemInstances: null, computeItemLocation: null, computeWidthResize: null }"
+			},
+			{
+				"name": "defaultActive",
+				"desc": "default index of active item",
+				"defaultValue": "0"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duration",
+				"defaultValue": "400"
+			},
+			{
+				"name": "imgdotArr",
+				"desc": "Img dot list",
+				"defaultValue": "[]"
+			},
+			{
+				"name": "templates",
+				"desc": "HTML template engine",
+				"defaultValue": "{ wrapper, container, pagination }"
+			}
+		],
+		"events": [
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin is update"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has change"
+			},
+			{
+				"name": "next",
+				"desc": "Gets fired when plugin has next"
+			},
+			{
+				"name": "prev",
+				"desc": "Gets fired when plugin has goes prev"
+			},
+			{
+				"name": "dragStart",
+				"desc": "Gets fired when plugin has be dragStart"
+			},
+			{
+				"name": "dragEnd",
+				"desc": "Gets fired when plugin has be dragEnd"
+			},
+			{
+				"name": "moveEnd",
+				"desc": "Gets fired when plugin has be moveEnd"
+			},
+			{
+				"name": "resize",
+				"desc": "Gets fired when plugin has be resize"
+			}
+		],
+		"methods": [
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-swipe"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "WRAPPER",
+				"desc": "Declare wrapper node",
+				"value": "{namespace}-wrapper"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare container node",
+				"value": "{namespace}-container"
+			},
+			{
+				"name": "ITEM",
+				"desc": "Declare item node",
+				"value": "{namespace}-item"
+			},
+			{
+				"name": "REPLICA",
+				"desc": "Declare replica node",
+				"value": "{namespace}-replica"
+			},
+			{
+				"name": "PAGINATION",
+				"desc": "Declare pagination node",
+				"value": "{namespace}-pagination"
+			},
+			{
+				"name": "PAGINATIONITEM",
+				"desc": "Declare pagination item node",
+				"value": "{namespace}-pagination-item"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Declare active status",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "INFOS",
+				"desc": "Declare info",
+				"value": "{namespace}-infos"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

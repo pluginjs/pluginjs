@@ -1,0 +1,262 @@
+{
+	"meta": {
+		"moduleName": "pattern-picker",
+		"namespace": "patternPicker",
+		"Namespace": "PatternPicker",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "data",
+				"desc": "Set data",
+				"defaultValue": "null"
+			},
+			{
+				"name": "bgcolor",
+				"desc": "Set bgcolor",
+				"defaultValue": "#eee"
+			},
+			{
+				"name": "disabled",
+				"desc": "Disable plugin",
+				"defaultValue": "false"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			},
+			{
+				"name": "process",
+				"desc": "The type of object change the type of JSON",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "parse",
+				"desc": "The type of JSON change the type of object",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "format",
+				"desc": "Set plugin format option",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "clear",
+				"desc": "Clear plugin"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-patternPicker"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}-{theme}"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Declare plugin wrap",
+				"value": "{namespace}-wrap"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "SHOW",
+				"desc": "Annouce plugin is show",
+				"value": "{namespace}-show"
+			},
+			{
+				"name": "CLOSE",
+				"desc": "Annouce plugin is close",
+				"value": "{namespace}-close"
+			},
+			{
+				"name": "INFO",
+				"desc": "Declare plugin info",
+				"value": "{namespace}-info"
+			},
+			{
+				"name": "INFOIMG",
+				"desc": "Declare plugin infoimg",
+				"value": "{namespace}-info-img"
+			},
+			{
+				"name": "EDITOR",
+				"desc": "Declare plugin editor",
+				"value": "{namespace}-editor"
+			},
+			{
+				"name": "REMOVE",
+				"desc": "Declare plugin remove",
+				"value": "{namespace}-remove"
+			},
+			{
+				"name": "EMPTY",
+				"desc": "Declare plugin empty",
+				"value": "{namespace}-empty"
+			},
+			{
+				"name": "HOVER",
+				"desc": "Annouce plugin is hover",
+				"value": "{namespace}-hover"
+			},
+			{
+				"name": "PREVIEWIMG",
+				"desc": "Declare plugin previewimg",
+				"value": "{namespace}-preview-img"
+			},
+			{
+				"name": "FORECOLOR",
+				"desc": "Declare plugin forecolor",
+				"value": "{namespace}-forecolor"
+			},
+			{
+				"name": "BGCOLOR",
+				"desc": "Declare plugin bgcolor",
+				"value": "{namespace}-bgcolor"
+			},
+			{
+				"name": "OPACITY",
+				"desc": "Declare plugin opacity",
+				"value": "{namespace}-opacity"
+			},
+			{
+				"name": "SELECTORLIST",
+				"desc": "Declare plugin selectorlist",
+				"value": "{namespace}-selector-list"
+			},
+			{
+				"name": "SELECTORITEM",
+				"desc": "Declare plugin selectoritem",
+				"value": "{namespace}-selector-item"
+			}
+		],
+		"translations": [
+			{
+				"name": "deleteTitle",
+				"en": "Are you sure you want to delete?",
+				"zh": "你确定要删除？"
+			},
+			{
+				"name": "delete",
+				"en": "Delete",
+				"zh": "删除"
+			},
+			{
+				"name": "choosePattern",
+				"en": "Choose Pattern",
+				"zh": "选择图片"
+			},
+			{
+				"name": "foreColor",
+				"en": "ForeColor",
+				"zh": "前颜色"
+			},
+			{
+				"name": "bgColor",
+				"en": "BgColor",
+				"zh": "背景颜色"
+			},
+			{
+				"name": "opacity",
+				"en": "Opacity",
+				"zh": "透明度"
+			},
+			{
+				"name": "save",
+				"en": "Save",
+				"zh": "保存"
+			},
+			{
+				"name": "cancel",
+				"en": "Cancel",
+				"zh": "取消"
+			},
+			{
+				"name": "useIt",
+				"en": "Use It",
+				"zh": "使用"
+			},
+			{
+				"name": "selectorTitle",
+				"en": "Preset Background Library",
+				"zh": "预设背景库"
+			},
+			{
+				"name": "selectorContent",
+				"en": "Choose a PatternPicker",
+				"zh": "选择一个模式"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

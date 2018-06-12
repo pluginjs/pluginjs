@@ -361,7 +361,6 @@ class Scrollable extends Component {
         handler: e => {
           const [value, direction] = e.detail.data
           this.onScroll(value, direction)
-          console.log('debug222')
         }
       },
       this.element

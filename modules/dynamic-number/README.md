@@ -73,14 +73,11 @@ DynamicNumber.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.css">
-  <script async src="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.js"></script>
-</head>
-```
-
-```javascript
-Pj.dynamicNumber('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.css">
+<script src="https://unpkg.com/@pluginjs/dynamic-number/dist/dynamic-number.js"></script>
+<script>
+  Pj.dynamicNumber('.element', options)
+</script>
 ```
 
 ---
@@ -99,9 +96,9 @@ Name | Description | Default
 `"duration"` | Set duration | `1000`
 `"decimals"` | Set decimals value | `0`
 `"format"` | Set format callback | `function() {...}`
-`"percentage"` | Set percentage config | `{&quot;decimals&quot;:0}`
-`"currency"` | Set currency config | `{&quot;indicator&quot;:&quot;$&quot;,&quot;size&quot;:3,&quot;decimals&quot;:&quot;2&quot;,&quot;separator&quot;:&quot;,&quot;,&quot;decimalsPoint&quot;:&quot;.&quot;}`
-`"group"` | Set group config | `{&quot;size&quot;:3,&quot;decimals&quot;:&quot;2&quot;,&quot;separator&quot;:&quot;,&quot;,&quot;decimalsPoint&quot;:&quot;.&quot;}`
+`"percentage"` | Set percentage config | `{"decimals":0}`
+`"currency"` | Set currency config | `{"indicator":"$","size":3,"decimals":"2","separator":",","decimalsPoint":"."}`
+`"group"` | Set group config | `{"size":3,"decimals":"2","separator":",","decimalsPoint":"."}`
 
 ### Events
 
@@ -129,7 +126,7 @@ Name | Description
 `"finish"` | Finish plugin
 `"reset"` | Reset plugin
 `"destroy"` | Destroy plugin
-`"go"` | 
+`"go"` | Move the number to the specified value
 ---
 
 ## Browser support
@@ -142,8 +139,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/dynamic-number is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/dynamic-number project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/dynamic-number is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/dynamic-number project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

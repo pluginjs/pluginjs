@@ -1,0 +1,191 @@
+{
+	"meta": {
+		"moduleName": "tooltip",
+		"namespace": "tooltip",
+		"Namespace": "Tooltip",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "animation",
+				"desc": "Set plugin animation",
+				"defaultValue": "true"
+			},
+			{
+				"name": "template",
+				"desc": "Set default template",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "trigger",
+				"desc": "Set trigger action list",
+				"defaultValue": "hover focus"
+			},
+			{
+				"name": "hideOutClick",
+				"desc": "Set when clicking outside of the tooltip, trigger hide event",
+				"defaultValue": "false"
+			},
+			{
+				"name": "title",
+				"desc": "Set default title value if title attribute isn't present",
+				"defaultValue": ""
+			},
+			{
+				"name": "delay",
+				"desc": "Set delay (allow number or allow { \"show\": 500, \"hide\": 100 } pattern)",
+				"defaultValue": "0"
+			},
+			{
+				"name": "html",
+				"desc": "Set is enable html or not",
+				"defaultValue": "false"
+			},
+			{
+				"name": "selector",
+				"desc": "Set if a selector is provided, popover objects will be delegated to the specified targets",
+				"defaultValue": "false"
+			},
+			{
+				"name": "placement",
+				"desc": "Set position of plugin",
+				"defaultValue": "top"
+			},
+			{
+				"name": "offset",
+				"desc": "Set tether offset",
+				"defaultValue": "0 0"
+			},
+			{
+				"name": "constrainToWindow",
+				"desc": "Set is enable constrain to window or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "constrainToScrollParent",
+				"desc": "Set is enabled constrain to scroll parent or not",
+				"defaultValue": "false"
+			},
+			{
+				"name": "constraints",
+				"desc": "Set constraints of tether",
+				"defaultValue": "[]"
+			},
+			{
+				"name": "container",
+				"desc": "Set is enabled container",
+				"defaultValue": "false"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "hide",
+				"desc": "Get fired when plugin has hidden"
+			},
+			{
+				"name": "hidden",
+				"desc": "Gets fired when plugin has hidden"
+			},
+			{
+				"name": "show",
+				"desc": "Gets fired when plugin has show"
+			},
+			{
+				"name": "shown",
+				"desc": "Gets fired when plugin has shown"
+			},
+			{
+				"name": "inserted",
+				"desc": "Gets fired when plugin has inserted"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "show",
+				"desc": "Show this plugin"
+			},
+			{
+				"name": "hide",
+				"desc": "Hidden this plugin"
+			},
+			{
+				"name": "toggle",
+				"desc": "Active event by event name"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "show",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-tooltip"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "TOOLTIP",
+				"desc": "Declare tooltip node",
+				"value": "{namespace}"
+			},
+			{
+				"name": "TOOLTIPINNER",
+				"desc": "Declare tooltip inner node",
+				"value": "{namespace}-inner"
+			},
+			{
+				"name": "SHOW",
+				"desc": "Announce plugin is in show status",
+				"value": "{namespace}-show"
+			},
+			{
+				"name": "FADE",
+				"desc": "Announce plugin is in fade animation mode",
+				"value": "{namespace}-fade"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

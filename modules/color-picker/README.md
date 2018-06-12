@@ -73,14 +73,11 @@ ColorPicker.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.css">
-  <script async src="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.js"></script>
-</head>
-```
-
-```javascript
-Pj.colorPicker('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.css">
+<script src="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.js"></script>
+<script>
+  Pj.colorPicker('.element', options)
+</script>
 ```
 
 ---
@@ -97,13 +94,13 @@ Name | Description | Default
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"placeholder"` | Set input box prompt information | `choose color`
-`"module"` | Set plugin module option | `[&quot;collection&quot;,&quot;solid&quot;,&quot;gradient&quot;]`
+`"module"` | Set plugin module option | `["collection","solid","gradient"]`
 `"solidMode"` | Set plugin solidMode option | `full`
-`"solidModule"` | Set plugin solidModile option | `{&quot;saturation&quot;:true,&quot;hue&quot;:true,&quot;alpha&quot;:true,&quot;hex&quot;:true}`
+`"solidModule"` | Set plugin solidModile option | `{"saturation":true,"hue":true,"alpha":true,"hex":true}`
 `"gradientMode"` | Set plugin gradientMode option | `linear`
 `"defaultColor"` | Set plugin defaultColor option | `#000`
 `"data"` | Set plugin data option | `null`
-`"color"` | Set plugin color option | `{&quot;format&quot;:false,&quot;alphaConvert&quot;:{&quot;RGB&quot;:&quot;RGBA&quot;,&quot;HSL&quot;:&quot;HSLA&quot;,&quot;HEX&quot;:&quot;RGBA&quot;,&quot;NAMESPACE&quot;:&quot;RGBA&quot;},&quot;shortenHex&quot;:false,&quot;hexUseName&quot;:false,&quot;reduceAlpha&quot;:true,&quot;nameDegradation&quot;:&quot;HEX&quot;,&quot;invalidValue&quot;:&quot;&quot;,&quot;zeroAlphaAsTransparent&quot;:true}`
+`"color"` | Set plugin color option | `{"format":false,"alphaConvert":{"RGB":"RGBA","HSL":"HSLA","HEX":"RGBA","NAMESPACE":"RGBA"},"shortenHex":false,"hexUseName":false,"reduceAlpha":true,"nameDegradation":"HEX","invalidValue":"","zeroAlphaAsTransparent":true}`
 `"manage"` | Set plugin manage option | `function() {...}`
 `"templates"` | Set default templates | `{}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
@@ -227,8 +224,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/color-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/color-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/color-picker is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/color-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

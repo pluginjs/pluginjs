@@ -73,14 +73,11 @@ Gradient.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient/dist/gradient.css">
-  <script async src="https://unpkg.com/@pluginjs/gradient/dist/gradient.js"></script>
-</head>
-```
-
-```javascript
-Pj.gradient('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient/dist/gradient.css">
+<script src="https://unpkg.com/@pluginjs/gradient/dist/gradient.js"></script>
+<script>
+  Pj.gradient('.element', options)
+</script>
 ```
 
 ---
@@ -94,13 +91,13 @@ You can also save the instances to variable for further use.
 
 Name | Description | Default
 -----|--------------|-----
-`"prefixes"` | Set prefixes | `[&quot;-webkit-&quot;,&quot;-moz-&quot;,&quot;-ms-&quot;,&quot;-o-&quot;]`
+`"prefixes"` | Set prefixes | `["-webkit-","-moz-","-ms-","-o-"]`
 `"forceStandard"` | Set forceStandard | `true`
 `"angleUseKeyword"` | Set angleUseKeyword | `true`
 `"emptyString"` | Set emptyString | ``
 `"degradationFormat"` | Set degradationFormat | `false`
 `"cleanPosition"` | Set cleanPosition | `true`
-`"color"` | Set color | `{&quot;format&quot;:false,&quot;hexUseName&quot;:false,&quot;reduceAlpha&quot;:true,&quot;shortenHex&quot;:true,&quot;zeroAlphaAsTransparent&quot;:false,&quot;invalidValue&quot;:{&quot;r&quot;:0,&quot;g&quot;:0,&quot;b&quot;:0,&quot;a&quot;:1}}`
+`"color"` | Set color | `{"format":false,"hexUseName":false,"reduceAlpha":true,"shortenHex":true,"zeroAlphaAsTransparent":false,"invalidValue":{"r":0,"g":0,"b":0,"a":1}}`
 ---
 
 ## Browser support
@@ -113,8 +110,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/gradient is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/gradient project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/gradient is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/gradient project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

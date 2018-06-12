@@ -73,14 +73,11 @@ Gmap.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/gmap/dist/gmap.css">
-  <script async src="https://unpkg.com/@pluginjs/gmap/dist/gmap.js"></script>
-</head>
-```
-
-```javascript
-Pj.gmap('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gmap/dist/gmap.css">
+<script src="https://unpkg.com/@pluginjs/gmap/dist/gmap.js"></script>
+<script>
+  Pj.gmap('.element', options)
+</script>
 ```
 
 ---
@@ -111,12 +108,12 @@ Name | Description | Default
 `"styles"` | Set styles | `false`
 `"zoom"` | Set zoom | `3`
 `"zoomControl"` | Set zoomControl | `true`
-`"controlsPositions"` | Set controlsPositions | `{&quot;mapType&quot;:null,&quot;pan&quot;:null,&quot;rotate&quot;:null,&quot;scale&quot;:null,&quot;streetView&quot;:null,&quot;zoom&quot;:null}`
+`"controlsPositions"` | Set controlsPositions | `{"mapType":null,"pan":null,"rotate":null,"scale":null,"streetView":null,"zoom":null}`
 `"latitude"` | Set latitude | `null`
 `"longitude"` | Set longitude | `null`
 `"address"` | Set address | ``
 `"markers"` | Set markers | `[]`
-`"icon"` | Set default icon | `{&quot;url&quot;:&quot;http://www.google.com/mapfiles/marker.png&quot;,&quot;size&quot;:[20,34],&quot;anchor&quot;:[9,34]}`
+`"icon"` | Set default icon | `{"url":"http://www.google.com/mapfiles/marker.png","size":[20,34],"anchor":[9,34]}`
 `"marker"` | Set marker | `true`
 `"content"` | Set content | ``
 `"popup"` | Set poup | `true`
@@ -171,8 +168,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/gmap is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/gmap project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/gmap is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/gmap project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

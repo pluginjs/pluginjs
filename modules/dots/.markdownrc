@@ -1,0 +1,188 @@
+{
+	"meta": {
+		"moduleName": "dots",
+		"namespace": "dots",
+		"Namespace": "Dots",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Add plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "items",
+				"desc": "Add extend item with plugin",
+				"defaultValue": "null"
+			},
+			{
+				"name": "default",
+				"desc": "Set default status with plugin",
+				"defaultValue": "null"
+			},
+			{
+				"name": "direction",
+				"desc": "Set direction",
+				"defaultValue": "horizontal"
+			},
+			{
+				"name": "valueFrom",
+				"desc": "pass attribute or tag name set where is value from",
+				"defaultValue": "[\"a\",\"href\"]"
+			},
+			{
+				"name": "template",
+				"desc": "Set dots default html template",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin is changed"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "load",
+				"desc": "Gets fired when plugin is load"
+			},
+			{
+				"name": "show",
+				"desc": "Gets fired when plugin is show"
+			},
+			{
+				"name": "hide",
+				"desc": "Gets fired when plugin is hide"
+			},
+			{
+				"name": "click",
+				"desc": "Gets fired when plugin is clicked"
+			}
+		],
+		"event": "change",
+		"Event": "Change",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "build",
+				"desc": "Build template"
+			},
+			{
+				"name": "append",
+				"desc": "Append something"
+			},
+			{
+				"name": "prepend",
+				"desc": "Append something behind of plugin"
+			},
+			{
+				"name": "add",
+				"desc": "Add something"
+			},
+			{
+				"name": "remove",
+				"desc": "Remove interface"
+			},
+			{
+				"name": "empty",
+				"desc": "Set empty"
+			},
+			{
+				"name": "load",
+				"desc": "Load something"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "show",
+				"desc": "Show plugin when it has be hided"
+			},
+			{
+				"name": "hide",
+				"desc": "Hide plugin"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-dot"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare plugin range",
+				"value": "{namespace}s"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}s--{theme}"
+			},
+			{
+				"name": "ITEM",
+				"desc": "Declare item element of plugin",
+				"value": "{namespace}"
+			},
+			{
+				"name": "VERTICAL",
+				"desc": "Declare direction style",
+				"value": "{namespace}s-vertical"
+			},
+			{
+				"name": "HORIZONTAL",
+				"desc": "Declare direction style",
+				"value": "{namespace}s-horizontal"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "HIDDEN",
+				"desc": "Annouce plugin is hidden",
+				"value": "{namespace}-hidden"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

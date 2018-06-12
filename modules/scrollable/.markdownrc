@@ -1,0 +1,210 @@
+{
+	"meta": {
+		"moduleName": "scrollable",
+		"namespace": "scrollable",
+		"Namespace": "Scrollable",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "contentSelector",
+				"desc": "Set contentSelector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "containerSelector",
+				"desc": "Set containerSelector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "direction",
+				"desc": "Set direction",
+				"defaultValue": "vertical"
+			},
+			{
+				"name": "showOnHover",
+				"desc": "Set showOnHover",
+				"defaultValue": "true"
+			},
+			{
+				"name": "showOnBarHover",
+				"desc": "Set showBarHover",
+				"defaultValue": "false"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duretion",
+				"defaultValue": "500"
+			},
+			{
+				"name": "easing",
+				"desc": "Set easting",
+				"defaultValue": "ease-in"
+			},
+			{
+				"name": "responsive",
+				"desc": "Set responsive",
+				"defaultValue": "true"
+			},
+			{
+				"name": "throttle",
+				"desc": "Set throttle",
+				"defaultValue": "20"
+			},
+			{
+				"name": "scrollbar",
+				"desc": "Set scrollbar",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "hover",
+				"desc": "Gets fired when plugin has hover"
+			},
+			{
+				"name": "hovered",
+				"desc": "Gets fired when plugin has hovered"
+			},
+			{
+				"name": "scroll",
+				"desc": "Gets fired when plugin has scroll"
+			},
+			{
+				"name": "scrollTop",
+				"desc": "Gets fired when plugin has scrollTop"
+			},
+			{
+				"name": "scrollEnd",
+				"desc": "Gets fired when plugin has scrollEnd"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "scrollTo",
+				"desc": "scroll to the specified value"
+			},
+			{
+				"name": "scrollBy",
+				"desc": "scroll by current value to the specified value"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "update",
+				"desc": "update scrollable layout"
+			}
+		],
+		"method": "scrollTo",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-scrollable"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "WARP",
+				"desc": "Declare plugin wrap",
+				"value": "{namespace}"
+			},
+			{
+				"name": "VERTICAL",
+				"desc": "Declare plugin vertical",
+				"value": "{namespace}-vertical"
+			},
+			{
+				"name": "HORIZONTAL",
+				"desc": "Declare plugin horizontal",
+				"value": "{namespace}-horizontal"
+			},
+			{
+				"name": "CONTENT",
+				"desc": "Declare plugin content",
+				"value": "{namespace}-content"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare plugin range",
+				"value": "{namespace}-container"
+			},
+			{
+				"name": "BAR",
+				"desc": "Declare plugin bar",
+				"value": "{namespace}-bar"
+			},
+			{
+				"name": "BARHIDE",
+				"desc": "Declare plugin bar hide",
+				"value": "{namespace}-bar-hide"
+			},
+			{
+				"name": "ENABLED",
+				"desc": "Declare plugin enabled",
+				"value": "{namespace}-enabled"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "DRAGGING",
+				"desc": "Declare plugin dragging",
+				"value": "{namespace}-dragging"
+			},
+			{
+				"name": "HOVERING",
+				"desc": "Announce plugin is hoverd",
+				"value": "{namespace}-hovering"
+			},
+			{
+				"name": "SCROLLING",
+				"desc": "Declare plugin scrolling",
+				"value": "{namespace}-scrolling"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

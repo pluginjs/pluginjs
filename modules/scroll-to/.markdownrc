@@ -1,0 +1,106 @@
+{
+	"meta": {
+		"moduleName": "scroll-to",
+		"namespace": "scrollTo",
+		"Namespace": "ScrollTo",
+		"options": [
+			{
+				"name": "selector",
+				"desc": "Set selector",
+				"defaultValue": "[data-scrollto]"
+			},
+			{
+				"name": "href",
+				"desc": "Set href",
+				"defaultValue": "data-scrollto"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duretion",
+				"defaultValue": "500"
+			},
+			{
+				"name": "easing",
+				"desc": "Set easting",
+				"defaultValue": "ease"
+			},
+			{
+				"name": "offsetTop",
+				"desc": "Set offsetTop",
+				"defaultValue": "50"
+			},
+			{
+				"name": "mobile",
+				"desc": "Set mobile",
+				"defaultValue": "{\"width\":768,\"duration\":500,\"easing\":\"ease\"}"
+			}
+		],
+		"option": "selector",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "jump",
+				"desc": "Gets fired when plugin has jump"
+			},
+			{
+				"name": "done",
+				"desc": "Gets fired when plugin has done"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "jump",
+				"desc": "Set jump function"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "jump",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-scrollTo"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "ANIMATING",
+				"desc": "Declare plugin animating",
+				"value": "{namespace}-animating"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

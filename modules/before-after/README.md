@@ -73,14 +73,11 @@ BeforeAfter.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/before-after/dist/before-after.css">
-  <script async src="https://unpkg.com/@pluginjs/before-after/dist/before-after.js"></script>
-</head>
-```
-
-```javascript
-Pj.beforeAfter('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/before-after/dist/before-after.css">
+<script src="https://unpkg.com/@pluginjs/before-after/dist/before-after.js"></script>
+<script>
+  Pj.beforeAfter('.element', options)
+</script>
 ```
 
 ---
@@ -105,8 +102,8 @@ Name | Description | Default
 `"clickMove"` | Set clickMove | `true`
 `"duration"` | Set duretion | `500`
 `"easing"` | Set easing | `easeInOut`
-`"labels"` | Set labels | `{&quot;before&quot;:&quot;Before&quot;,&quot;after&quot;:&quot;After&quot;}`
-`"arrows"` | Set arrows | `{&quot;left&quot;:&quot;fa fa-caret-left&quot;,&quot;right&quot;:&quot;fa fa-caret-right&quot;,&quot;up&quot;:&quot;fa fa-caret-up&quot;,&quot;down&quot;:&quot;fa fa-caret-down&quot;}`
+`"labels"` | Set labels | `{"before":"Before","after":"After"}`
+`"arrows"` | Set arrows | `{"left":"fa fa-caret-left","right":"fa fa-caret-right","up":"fa fa-caret-up","down":"fa fa-caret-down"}`
 `"templates"` | Set default templates | `{}`
 
 ### Events
@@ -173,8 +170,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/before-after is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/before-after project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/before-after is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/before-after project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

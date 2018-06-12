@@ -1,0 +1,185 @@
+{
+	"meta": {
+		"moduleName": "toggle",
+		"namespace": "toggle",
+		"Namespace": "Toggle",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "dragable",
+				"desc": "Set plugin is dragable or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "clickable",
+				"desc": "Set plugin is clickable or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "disabled",
+				"desc": "Disable plugin",
+				"defaultValue": "false"
+			},
+			{
+				"name": "size",
+				"desc": "Set plugin size option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "showText",
+				"desc": "Set plugin is showText or not",
+				"defaultValue": "false"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "onContent",
+				"desc": "Set plugin onContent option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "offContent",
+				"desc": "Set plugin offContent option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "checked",
+				"desc": "Set plugin checked option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duretion",
+				"defaultValue": "200"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			}
+		],
+		"event": "update",
+		"Event": "Update",
+		"methods": [
+			{
+				"name": "check",
+				"desc": "set check"
+			},
+			{
+				"name": "uncheck",
+				"desc": "Set uncheck"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "check",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-toggle"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "SIZE",
+				"desc": "Declare plugin size",
+				"value": "{namespace}-{size}"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Declare plugin wrap",
+				"value": "{namespace}"
+			},
+			{
+				"name": "ON",
+				"desc": "Declare plugin on",
+				"value": "{namespace}-on"
+			},
+			{
+				"name": "OFF",
+				"desc": "Declare plugin off",
+				"value": "{namespace}-off"
+			},
+			{
+				"name": "ISOFF",
+				"desc": "Declare plugin is off",
+				"value": "{namespace}-is-off"
+			},
+			{
+				"name": "HANDLE",
+				"desc": "Declare plugin handle",
+				"value": "{namespace}-handle"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		],
+		"translations": [
+			{
+				"name": "on",
+				"en": "ON",
+				"zh": "开"
+			},
+			{
+				"name": "off",
+				"en": "OFF",
+				"zh": "关"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

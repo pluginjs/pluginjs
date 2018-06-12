@@ -73,14 +73,11 @@ Scrolldir.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.css">
-  <script async src="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.js"></script>
-</head>
-```
-
-```javascript
-Pj.scrolldir('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.css">
+<script src="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.js"></script>
+<script>
+  Pj.scrolldir('.element', options)
+</script>
 ```
 
 ---
@@ -94,7 +91,7 @@ You can also save the instances to variable for further use.
 
 Name | Description | Default
 -----|--------------|-----
-`"offset"` | Set offset | `{&quot;top&quot;:0,&quot;right&quot;:0,&quot;bottom&quot;:0,&quot;left&quot;:0}`
+`"offset"` | Set offset | `{"top":0,"right":0,"bottom":0,"left":0}`
 `"threshold"` | Ser threshold | `0`
 ---
 
@@ -108,8 +105,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/scroll-dir is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-dir project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/scroll-dir is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/scroll-dir project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

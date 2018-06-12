@@ -1,0 +1,297 @@
+{
+	"meta": {
+		"moduleName": "icon-picker",
+		"namespace": "iconPicker",
+		"Namespace": "IconPicker",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "manage",
+				"desc": "Set manage",
+				"defaultValue": "true"
+			},
+			{
+				"name": "keyboard",
+				"desc": "Set keyboard",
+				"defaultValue": "true"
+			},
+			{
+				"name": "placehoder",
+				"desc": "Set input box prompt information",
+				"defaultValue": "Choose a icon"
+			},
+			{
+				"name": "disabled",
+				"desc": "Disabled plugin",
+				"defaultValue": "false"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			},
+			{
+				"name": "process",
+				"desc": "The type of object change the type of JSON",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "parse",
+				"desc": "The type of JSON change the type of object",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "get",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-iconPicker"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "ELEMENT",
+				"desc": "Declare plugin element",
+				"value": "{namespace}"
+			},
+			{
+				"name": "TRIGGER",
+				"desc": "Declare plugin trigger",
+				"value": "{namespace}-trigger"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Declare plugin wrap",
+				"value": "{namespace}-wrap"
+			},
+			{
+				"name": "PANEL",
+				"desc": "Declare plugin panel",
+				"value": "{namespace}-panel"
+			},
+			{
+				"name": "CATEGORIES",
+				"desc": "Declare plugin categories",
+				"value": "{namespace}-categories"
+			},
+			{
+				"name": "CATEGORIESTITLE",
+				"desc": "Declare plugin categories title",
+				"value": "{namespace}-categories-title"
+			},
+			{
+				"name": "ICON",
+				"desc": "Declare plugin icon",
+				"value": "{namespace}-icon"
+			},
+			{
+				"name": "ICONHOVER",
+				"desc": "Declare plugin icon hover",
+				"value": "{namespace}-icon-hover"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "PACKAGE",
+				"desc": "Declare plugin package",
+				"value": "{namespace}-package"
+			},
+			{
+				"name": "PACKAGESWRAP",
+				"desc": "Declare plugin package wrap",
+				"value": "{namespace}-package-wrap"
+			},
+			{
+				"name": "PACKAGETITLE",
+				"desc": "Declare plugin package etitle",
+				"value": "{namespace}-package-title"
+			},
+			{
+				"name": "PACKAGEBODY",
+				"desc": "Declare plugin package body",
+				"value": "{namespace}-package-body"
+			},
+			{
+				"name": "PACKAGEOPEN",
+				"desc": "Declare plugin package open",
+				"value": "{namespace}-package-open"
+			},
+			{
+				"name": "PACKAGEHIDE",
+				"desc": "Declare plugin package hide",
+				"value": "{namespace}-package-hide"
+			},
+			{
+				"name": "PACKAGETIP",
+				"desc": "Declare plugin package etip",
+				"value": "{namespace}-package-tip"
+			},
+			{
+				"name": "SEARCH",
+				"desc": "Declare plugin search",
+				"value": "{namespace}-search"
+			},
+			{
+				"name": "SEARCHING",
+				"desc": "Declare plugin searching",
+				"value": "{namespace}-searching"
+			},
+			{
+				"name": "SEARCHED",
+				"desc": "Declare plugin searched",
+				"value": "{namespace}-searched"
+			},
+			{
+				"name": "SEARCHCLOSE",
+				"desc": "Declare plugin searchlose",
+				"value": "{namespace}-search-close"
+			},
+			{
+				"name": "SEARCHLIST",
+				"desc": "Declare plugin searchlist",
+				"value": "{namespace}-search-list"
+			},
+			{
+				"name": "SEARCHOWNDATA",
+				"desc": "Declare plugin searchowndata",
+				"value": "{namespace}-search-data"
+			},
+			{
+				"name": "CONTROLLER",
+				"desc": "Declare plugin controller",
+				"value": "{namespace}-controller"
+			},
+			{
+				"name": "SELECTOR",
+				"desc": "Declare plugin selector",
+				"value": "{namespace}-selector"
+			},
+			{
+				"name": "SELECTORPANEL",
+				"desc": "Declare plugin selectorpanel",
+				"value": "{namespace}-selector-panel"
+			},
+			{
+				"name": "MANAGE",
+				"desc": "Declare plugin manage",
+				"value": "{namespace}-manage"
+			},
+			{
+				"name": "EMPTY",
+				"desc": "Declare plugin empty",
+				"value": "{namespace}-empty"
+			},
+			{
+				"name": "EMPTYLINK",
+				"desc": "Declare plugin emptylink",
+				"value": "{namespace}-empty-link"
+			}
+		],
+		"translations": [
+			{
+				"name": "allIcons",
+				"en": "All Icons",
+				"zh": "全部图标"
+			},
+			{
+				"name": "searchText",
+				"en": "Search...",
+				"zh": "搜索..."
+			},
+			{
+				"name": "manage",
+				"en": "manage",
+				"zh": "管理"
+			},
+			{
+				"name": "founded",
+				"en": "founded",
+				"zh": "结果"
+			},
+			{
+				"name": "emptyTitle",
+				"en": "Befor using icons, you need add icons. ",
+				"zh": "使用图标之前，请先添加。"
+			},
+			{
+				"name": "emptyLinkTitle",
+				"en": "Go add now",
+				"zh": "现在添加"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

@@ -73,14 +73,11 @@ Zoom.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/zoom/dist/zoom.css">
-  <script async src="https://unpkg.com/@pluginjs/zoom/dist/zoom.js"></script>
-</head>
-```
-
-```javascript
-Pj.zoom('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/zoom/dist/zoom.css">
+<script src="https://unpkg.com/@pluginjs/zoom/dist/zoom.js"></script>
+<script>
+  Pj.zoom('.element', options)
+</script>
 ```
 
 ---
@@ -98,8 +95,8 @@ Name | Description | Default
 `"type"` | Set type | `window`
 `"animation"` | Set animation | `true`
 `"level"` | Set level | `1`
-`"window"` | Set window | `{&quot;clickOpen&quot;:false,&quot;height&quot;:&quot;400&quot;,&quot;width&quot;:&quot;400&quot;,&quot;borderSize&quot;:&quot;1&quot;,&quot;borderColor&quot;:&quot;black&quot;,&quot;position&quot;:1,&quot;offetY&quot;:0,&quot;offetX&quot;:0,&quot;lensSize&quot;:200,&quot;lensBorderSize&quot;:1,&quot;lensBorderColor&quot;:&quot;&quot;,&quot;lensColor&quot;:&quot;&quot;,&quot;lensOpacity&quot;:&quot;&quot;,&quot;overlay&quot;:false,&quot;overlayColor&quot;:&quot;&quot;,&quot;overlayOpacity&quot;:&quot;&quot;}`
-`"lens"` | Set lens | `{&quot;color&quot;:&quot;&quot;,&quot;opacity&quot;:&quot;&quot;,&quot;size&quot;:200,&quot;borderSize&quot;:&quot;5&quot;,&quot;borderColor&quot;:&quot;#fff&quot;,&quot;lensShape&quot;:&quot;round&quot;,&quot;flexWidth&quot;:false}`
+`"window"` | Set window | `{"clickOpen":false,"height":"400","width":"400","borderSize":"1","borderColor":"black","position":1,"offetY":0,"offetX":0,"lensSize":200,"lensBorderSize":1,"lensBorderColor":"","lensColor":"","lensOpacity":"","overlay":false,"overlayColor":"","overlayOpacity":""}`
+`"lens"` | Set lens | `{"color":"","opacity":"","size":200,"borderSize":"5","borderColor":"#fff","lensShape":"round","flexWidth":false}`
 `"templates"` | Set default templates | `{}`
 
 ### Events
@@ -161,8 +158,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/zoom is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/zoom project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/zoom is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/zoom project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

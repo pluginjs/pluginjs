@@ -73,14 +73,11 @@ ScrollTop.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.css">
-  <script async src="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.js"></script>
-</head>
-```
-
-```javascript
-Pj.scrollTop('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.css">
+<script src="https://unpkg.com/@pluginjs/scroll-top/dist/scroll-top.js"></script>
+<script>
+  Pj.scrollTop('.element', options)
+</script>
 ```
 
 ---
@@ -101,7 +98,7 @@ Name | Description | Default
 `"easing"` | Set easing | `linear`
 `"animation"` | Set animation | `fade`
 `"animationDuration"` | Set animationDuration | `500`
-`"mobile"` | Set mobile | `{&quot;width&quot;:768,&quot;distance&quot;:100,&quot;duration&quot;:1000,&quot;easing&quot;:&quot;easeInOutElastic&quot;,&quot;animation&quot;:&quot;slide&quot;,&quot;animationDuration&quot;:200}`
+`"mobile"` | Set mobile | `{"width":768,"distance":100,"duration":1000,"easing":"easeInOutElastic","animation":"slide","animationDuration":200}`
 `"theme"` | Set plugin theme option | `default`
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set plugin is localeFallbacks or not | `true`
@@ -166,8 +163,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/scroll-top is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-top project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/scroll-top is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/scroll-top project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

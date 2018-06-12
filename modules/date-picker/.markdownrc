@@ -1,0 +1,557 @@
+{
+	"meta": {
+		"moduleName": "date-picker",
+		"namespace": "datePicker",
+		"Namespace": "DatePicker",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "firstDayOfWeek",
+				"desc": "Set plugin first day of week option",
+				"defaultValue": "0"
+			},
+			{
+				"name": "mode",
+				"desc": "Set mode",
+				"defaultValue": "single"
+			},
+			{
+				"name": "displayMode",
+				"desc": "Set display mode",
+				"defaultValue": "dropdown"
+			},
+			{
+				"name": "calendars",
+				"desc": "Set calendars",
+				"defaultValue": "1"
+			},
+			{
+				"name": "date",
+				"desc": "Set date",
+				"defaultValue": "today"
+			},
+			{
+				"name": "keyboard",
+				"desc": "Set plugin keyboard event",
+				"defaultValue": "true"
+			},
+			{
+				"name": "rangeSeparator",
+				"desc": "Set plugin range separator",
+				"defaultValue": "to"
+			},
+			{
+				"name": "multipleSeparator",
+				"desc": "Set multip separator",
+				"defaultValue": ","
+			},
+			{
+				"name": "multipleSize",
+				"desc": "Set multiple size",
+				"defaultValue": "5"
+			},
+			{
+				"name": "disabled",
+				"desc": "Disabled plugin",
+				"defaultValue": "false"
+			},
+			{
+				"name": "container",
+				"desc": "Set plugin container",
+				"defaultValue": "body"
+			},
+			{
+				"name": "position",
+				"desc": "Set position",
+				"defaultValue": "bottom"
+			},
+			{
+				"name": "alwaysShow",
+				"desc": "Set plugin is alwaysShow or not",
+				"defaultValue": "false"
+			},
+			{
+				"name": "onceClick",
+				"desc": "Set plugin is onceClick or not",
+				"defaultValue": "false"
+			},
+			{
+				"name": "min",
+				"desc": "Set value of min",
+				"defaultValue": "null"
+			},
+			{
+				"name": "max",
+				"desc": "Set value of max",
+				"defaultValue": "null"
+			},
+			{
+				"name": "selectableDate",
+				"desc": "Set value of selectableDate",
+				"defaultValue": "[]"
+			},
+			{
+				"name": "selectableYear",
+				"desc": "Set value of selectableYear",
+				"defaultValue": "[]"
+			},
+			{
+				"name": "selectableMonth",
+				"desc": "Set value of selectableMonth",
+				"defaultValue": "[]"
+			},
+			{
+				"name": "selectableDay",
+				"desc": "Set value of selectableDay",
+				"defaultValue": "[]"
+			},
+			{
+				"name": "selectableDayOfWeek",
+				"desc": "Set value of selectableDayofWeek",
+				"defaultValue": "[]"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "localeFallbacks",
+				"desc": "Set plugin is localeFallbacks or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "views",
+				"desc": "Set view",
+				"defaultValue": "[\"days\"]"
+			},
+			{
+				"name": "outputFormat",
+				"desc": "Set outputForm",
+				"defaultValue": "yyyy/mm/dd"
+			},
+			{
+				"name": "mobileMode",
+				"desc": "Set mobileMode",
+				"defaultValue": "false"
+			},
+			{
+				"name": "constrainToWindow",
+				"desc": "Set plugin is  contrainToWindow or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "constrainToScrollParent",
+				"desc": "Set plugin is  contrainToScrollParent or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "constraints",
+				"desc": "Set constraints",
+				"defaultValue": "[]"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			},
+			{
+				"name": "process",
+				"desc": "The type of object change the type of JSON",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "parse",
+				"desc": "The type of JSON change the type of object",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "beforeShow",
+				"desc": "BeforeShow of event that triggered the selected element"
+			},
+			{
+				"name": "beforeHide",
+				"desc": "Hide of event that triggered the selected element"
+			},
+			{
+				"name": "show",
+				"desc": "Gets fired when plugin has show"
+			},
+			{
+				"name": "hide",
+				"desc": "Gets fired when plugin has hide"
+			}
+		],
+		"event": "change",
+		"Event": "Change",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "update",
+				"desc": "Update plugin"
+			},
+			{
+				"name": "reset",
+				"desc": "Reset olugin"
+			},
+			{
+				"name": "multipleClear",
+				"desc": "multiple clear plugin"
+			},
+			{
+				"name": "getInput",
+				"desc": "Get value of getInput"
+			},
+			{
+				"name": "getDate",
+				"desc": "Get value of getDate"
+			},
+			{
+				"name": "getWrap",
+				"desc": "Get value of getWrap"
+			},
+			{
+				"name": "show",
+				"desc": "Show plugin if it is hiden"
+			},
+			{
+				"name": "hide",
+				"desc": "Hide plugin"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-datePicker"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "INPUT",
+				"desc": "Declare plugin input",
+				"value": "{namespace}-input"
+			},
+			{
+				"name": "ICON",
+				"desc": "Declare plugin icon",
+				"value": "{namespace}-icon"
+			},
+			{
+				"name": "COVER",
+				"desc": "Declare plugin cover",
+				"value": "{namespace}-cover"
+			},
+			{
+				"name": "ISMOBILE",
+				"desc": "Declare plugin ismobile",
+				"value": "{namespace}-isMobile"
+			},
+			{
+				"name": "CONTENT",
+				"desc": "Declare plugin content",
+				"value": "{namespace}-content"
+			},
+			{
+				"name": "PREV",
+				"desc": "Declare prev element",
+				"value": "{namespace}-prev"
+			},
+			{
+				"name": "NEXT",
+				"desc": "Declare next element",
+				"value": "{namespace}-next"
+			},
+			{
+				"name": "CAPTION",
+				"desc": "Declare plugin caption",
+				"value": "{namespace}-caption"
+			},
+			{
+				"name": "DATS",
+				"desc": "Declare plugin dats",
+				"value": "{namespace}-days"
+			},
+			{
+				"name": "MONTHS",
+				"desc": "Declare plugin months",
+				"value": "{namespace}-months"
+			},
+			{
+				"name": "YEARS",
+				"desc": "Declare plugin years",
+				"value": "{namespace}-years"
+			},
+			{
+				"name": "ISDAYS",
+				"desc": "Declare plugin isdays",
+				"value": "{namespace}-isDays"
+			},
+			{
+				"name": "ISMONTHS",
+				"desc": "Declare plugin ismonths",
+				"value": "{namespace}-isMonths"
+			},
+			{
+				"name": "ISYEARS",
+				"desc": "Declare plugin isyears",
+				"value": "{namespace}-isYears"
+			},
+			{
+				"name": "OTHERMONTH",
+				"desc": "Declare plugin othermonth",
+				"value": "{namespace}-otherMonth"
+			},
+			{
+				"name": "FOCUS",
+				"desc": "Declare plugin focus",
+				"value": "{namespace}-focus"
+			},
+			{
+				"name": "BUTTONS",
+				"desc": "Declare plugin buttons",
+				"value": "{namespace}-buttons"
+			},
+			{
+				"name": "BUTTONCANCELS",
+				"desc": "Declare plugin buttonCancels",
+				"value": "{namespace}-button-cancel"
+			},
+			{
+				"name": "BUTTONSAVES",
+				"desc": "Declare plugin button saves",
+				"value": "{namespace}-button-save"
+			},
+			{
+				"name": "SHOW",
+				"desc": "Announce plugin is show",
+				"value": "{namespace}-show"
+			},
+			{
+				"name": "HEAD",
+				"desc": "Declare plugin head",
+				"value": "{namespace}-head"
+			},
+			{
+				"name": "HEADER",
+				"desc": "Declare plugin header",
+				"value": "{namespace}-header"
+			},
+			{
+				"name": "BODY",
+				"desc": "Declare plugin body",
+				"value": "{namespace}-body"
+			},
+			{
+				"name": "ROW",
+				"desc": "Declare plugin row",
+				"value": "{namespace}-row"
+			},
+			{
+				"name": "BLOCKED",
+				"desc": "Declare plugin blocked",
+				"value": "{namespace}-blocked"
+			},
+			{
+				"name": "UNTOUCHABLE",
+				"desc": "Declare plugin untouchable",
+				"value": "{namespace}-untouchable"
+			},
+			{
+				"name": "INRANGE",
+				"desc": "Declare plugin inrange",
+				"value": "{namespace}-inRange"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "INLINEMODE",
+				"desc": "Declare plugin inlinemode",
+				"value": "{namespace}-inline"
+			},
+			{
+				"name": "PICKERWRAP",
+				"desc": "Declare plugin pickerwrap",
+				"value": "{namespace}-picker-wrap"
+			}
+		],
+		"translations": [
+			{
+				"name": "days",
+				"en": [
+					"Sunday",
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday",
+					"Saturday"
+				],
+				"zh": [
+					"周日",
+					"周一",
+					"周二",
+					"周三",
+					"周四",
+					"周五",
+					"周六"
+				]
+			},
+			{
+				"name": "daysShort",
+				"en": [
+					"Su",
+					"Mo",
+					"Tu",
+					"We",
+					"Th",
+					"Fr",
+					"Sa",
+					"Su"
+				],
+				"zh": [
+					"日",
+					"一",
+					"二",
+					"三",
+					"四",
+					"五",
+					"六",
+					"日"
+				]
+			},
+			{
+				"name": "months",
+				"en": [
+					"January",
+					"February",
+					"March",
+					"April",
+					"May",
+					"June",
+					"July",
+					"August",
+					"September",
+					"October",
+					"November",
+					"December"
+				],
+				"zh": [
+					"一月",
+					"二月",
+					"三月",
+					"四月",
+					"五月",
+					"六月",
+					"七月",
+					"八月",
+					"九月",
+					"十月",
+					"十一月",
+					"十二月"
+				]
+			},
+			{
+				"name": "monthsShort",
+				"en": [
+					"Jan",
+					"Feb",
+					"Mar",
+					"Apr",
+					"May",
+					"Jun",
+					"Jul",
+					"Aug",
+					"Sep",
+					"Oct",
+					"Nov",
+					"Dec"
+				],
+				"zh": [
+					"1",
+					"2",
+					"3",
+					"4",
+					"5",
+					"6",
+					"7",
+					"8",
+					"9",
+					"10",
+					"11",
+					"12"
+				]
+			},
+			{
+				"name": "buttons",
+				"en": [
+					"Cancel",
+					"Save"
+				],
+				"zh": [
+					"取消",
+					"保存"
+				]
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

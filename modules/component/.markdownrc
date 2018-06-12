@@ -1,0 +1,16 @@
+{
+	"meta": {
+		"moduleName": "component",
+		"namespace": "component",
+		"Namespace": "Component",
+		"methods": [
+			{
+				"name": "getDataOptions",
+				"desc": "Make plugin themeable"
+			}
+		],
+		"method": "getDataOptions"
+	},
+	"output": "./README.md",
+	"template": "README"
+}

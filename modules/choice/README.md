@@ -73,14 +73,11 @@ Choice.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/choice/dist/choice.css">
-  <script async src="https://unpkg.com/@pluginjs/choice/dist/choice.js"></script>
-</head>
-```
-
-```javascript
-Pj.choice('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/choice/dist/choice.css">
+<script src="https://unpkg.com/@pluginjs/choice/dist/choice.js"></script>
+<script>
+  Pj.choice('.element', options)
+</script>
 ```
 
 ---
@@ -142,7 +139,7 @@ Name | Description | Default
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"WRAP"` | Declare plugin wrap | `{namespace}`
 `"ITEM"` | Declare plugin item | `{namespace}-item`
-`"DROPDOWN"` |  | `{namespace}-dropdown`
+`"DROPDOWN"` | Declare dropdown scope | `{namespace}-dropdown`
 `"DROPDOWNSHOW"` | Declare plugin dropdown show | `{namespace}-dropdown-show`
 `"TOGGLE"` | Declare plugin toggle | `{namespace}-toggle`
 `"SELECTED"` | Declare plugin selected | `{namespace}-selected`
@@ -159,8 +156,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/choice is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/choice project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/choice is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/choice project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

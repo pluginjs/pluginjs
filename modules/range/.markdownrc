@@ -1,0 +1,237 @@
+{
+	"meta": {
+		"moduleName": "range",
+		"namespace": "range",
+		"Namespace": "Range",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "max",
+				"desc": "Set plugin max option",
+				"defaultValue": "100"
+			},
+			{
+				"name": "min",
+				"desc": "Set plugin min option",
+				"defaultValue": "0"
+			},
+			{
+				"name": "value",
+				"desc": "Set plugin value option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "step",
+				"desc": "Set plugin step option",
+				"defaultValue": "1"
+			},
+			{
+				"name": "unit",
+				"desc": "Set plugin unit option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "defaultUnit",
+				"desc": "Set plugin defaultUnit option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "limit",
+				"desc": "Set plugin limit option",
+				"defaultValue": "true"
+			},
+			{
+				"name": "isRange",
+				"desc": "Set plugin isRange option",
+				"defaultValue": "false"
+			},
+			{
+				"name": "direction",
+				"desc": "Set plugin direction option",
+				"defaultValue": "h"
+			},
+			{
+				"name": "keyboard",
+				"desc": "Set plugin keyboard event",
+				"defaultValue": "true"
+			},
+			{
+				"name": "tip",
+				"desc": "Set plugin is tip or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "scale",
+				"desc": "Set plugin is scale or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "parse",
+				"desc": "The type of JSON change the type of object",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "process",
+				"desc": "The type of object change the type of JSON",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			},
+			{
+				"name": "changeUnit",
+				"desc": "Gets fired when plugin has changeUnit"
+			}
+		],
+		"event": "update",
+		"Event": "Update",
+		"methods": [
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "setInterval",
+				"desc": "Set value about interval"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "val",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-range"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Declare plugin wrap",
+				"value": "{namespace}"
+			},
+			{
+				"name": "CONTROL",
+				"desc": "Declare plugin control",
+				"value": "{namespace}-control"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "BAR",
+				"desc": "Declare plugin bar",
+				"value": "{namespace}-bar"
+			},
+			{
+				"name": "POINTER",
+				"desc": "Declare plugin pointer",
+				"value": "{namespace}-pointer"
+			},
+			{
+				"name": "POINTERACTIVE",
+				"desc": "Declare plugin pointer active",
+				"value": "{namespace}-pointer-active"
+			},
+			{
+				"name": "SCALE",
+				"desc": "Declare plugin scale",
+				"value": "{namespace}-scale"
+			},
+			{
+				"name": "LINES",
+				"desc": "Declare plugin scale lines",
+				"value": "{namespace}-scale-lines"
+			},
+			{
+				"name": "GRID",
+				"desc": "Declare plugin scale grid",
+				"value": "{namespace}-scale-grid"
+			},
+			{
+				"name": "INLINEGRID",
+				"desc": "Declare plugin scale inlineGrid",
+				"value": "{namespace}-scale-inlineGrid"
+			},
+			{
+				"name": "VALUES",
+				"desc": "Declare plugin scale values",
+				"value": "{namespace}-scale-values"
+			},
+			{
+				"name": "SELECTED",
+				"desc": "Declare plugin selectd",
+				"value": "{namespace}-selected"
+			},
+			{
+				"name": "TIP",
+				"desc": "Declare plugin tip",
+				"value": "{namespace}-tip"
+			},
+			{
+				"name": "SHOW",
+				"desc": "Declare plugin show",
+				"value": "{namespace}-tip-show"
+			},
+			{
+				"name": "UNIT",
+				"desc": "Declare plugin unit",
+				"value": "{namespace}-unit"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

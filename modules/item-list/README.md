@@ -73,14 +73,11 @@ ItemList.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/item-list/dist/item-list.css">
-  <script async src="https://unpkg.com/@pluginjs/item-list/dist/item-list.js"></script>
-</head>
-```
-
-```javascript
-Pj.itemList('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/item-list/dist/item-list.css">
+<script src="https://unpkg.com/@pluginjs/item-list/dist/item-list.js"></script>
+<script>
+  Pj.itemList('.element', options)
+</script>
 ```
 
 ---
@@ -98,7 +95,7 @@ Name | Description | Default
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set the plugin is localeFallbacks or not | `true`
 `"data"` | Set data option | `null`
-`"actions"` | Set plugin actions option | `[{&quot;tagName&quot;:&quot;i&quot;,&quot;trigger&quot;:&quot;icon-clone pj-itemList-item-clone&quot;,&quot;event&quot;:&quot;click&quot;,&quot;init&quot;:null},{&quot;tagName&quot;:&quot;i&quot;,&quot;trigger&quot;:&quot;icon-close pj-list-close&quot;,&quot;event&quot;:&quot;click&quot;}]`
+`"actions"` | Set plugin actions option | `[{"tagName":"i","trigger":"icon-clone pj-itemList-item-clone","event":"click","init":null},{"tagName":"i","trigger":"icon-close pj-list-close","event":"click"}]`
 `"templates"` | Set default templates | `{}`
 
 ### Events
@@ -148,8 +145,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/item-list is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/item-list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/item-list is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/item-list project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

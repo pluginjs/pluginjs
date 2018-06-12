@@ -73,14 +73,11 @@ BgPicker.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.css">
-  <script async src="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.js"></script>
-</head>
-```
-
-```javascript
-Pj.bgPicker('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.css">
+<script src="https://unpkg.com/@pluginjs/bg-picker/dist/bg-picker.js"></script>
+<script>
+  Pj.bgPicker('.element', options)
+</script>
 ```
 
 ---
@@ -100,10 +97,10 @@ Name | Description | Default
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set plugin is localeFallbacks or not | `true`
 `"disabled"` | Disable plugin | `false`
-`"repeat"` | Set repeat | `{&quot;defaultValue&quot;:&quot;repeat&quot;,&quot;values&quot;:[&quot;no-repeat&quot;,&quot;repeat&quot;,&quot;repeat-x&quot;,&quot;repeat-y&quot;]}`
-`"position"` | Set position | `{&quot;defaultValue&quot;:&quot;top left&quot;,&quot;values&quot;:[&quot;top left&quot;,&quot;top center&quot;,&quot;top right&quot;,&quot;center left&quot;,&quot;center center&quot;,&quot;center right&quot;,&quot;bottom left&quot;,&quot;bottom center&quot;,&quot;bottom right&quot;]}`
-`"size"` | Set size | `{&quot;defaultValue&quot;:&quot;auto&quot;,&quot;values&quot;:[&quot;auto 100%&quot;,&quot;100% auto&quot;,&quot;100% 100%&quot;,&quot;auto&quot;]}`
-`"attachment"` | Set attachment | `{&quot;namespace&quot;:&quot;pj-dropdown&quot;,&quot;defaultValue&quot;:&quot;scroll&quot;,&quot;values&quot;:[&quot;scroll&quot;,&quot;fixed&quot;,&quot;inherit&quot;]}`
+`"repeat"` | Set repeat | `{"defaultValue":"repeat","values":["no-repeat","repeat","repeat-x","repeat-y"]}`
+`"position"` | Set position | `{"defaultValue":"top left","values":["top left","top center","top right","center left","center center","center right","bottom left","bottom center","bottom right"]}`
+`"size"` | Set size | `{"defaultValue":"auto","values":["auto 100%","100% auto","100% 100%","auto"]}`
+`"attachment"` | Set attachment | `{"namespace":"pj-dropdown","defaultValue":"scroll","values":["scroll","fixed","inherit"]}`
 `"template"` | Set default template | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
@@ -193,8 +190,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/bg-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/bg-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/bg-picker is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/bg-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

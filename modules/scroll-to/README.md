@@ -73,14 +73,11 @@ ScrollTo.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-to/dist/scroll-to.css">
-  <script async src="https://unpkg.com/@pluginjs/scroll-to/dist/scroll-to.js"></script>
-</head>
-```
-
-```javascript
-Pj.scrollTo('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-to/dist/scroll-to.css">
+<script src="https://unpkg.com/@pluginjs/scroll-to/dist/scroll-to.js"></script>
+<script>
+  Pj.scrollTo('.element', options)
+</script>
 ```
 
 ---
@@ -99,7 +96,7 @@ Name | Description | Default
 `"duration"` | Set duretion | `500`
 `"easing"` | Set easting | `ease`
 `"offsetTop"` | Set offsetTop | `50`
-`"mobile"` | Set mobile | `{&quot;width&quot;:768,&quot;duration&quot;:500,&quot;easing&quot;:&quot;ease&quot;}`
+`"mobile"` | Set mobile | `{"width":768,"duration":500,"easing":"ease"}`
 
 ### Events
 
@@ -146,8 +143,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/scroll-to is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-to project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/scroll-to is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/scroll-to project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

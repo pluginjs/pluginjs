@@ -73,14 +73,11 @@ Select.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
-  <script async src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
-</head>
-```
-
-```javascript
-Pj.select('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
+<script>
+  Pj.select('.element', options)
+</script>
 ```
 
 ---
@@ -191,8 +188,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/select is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/select is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

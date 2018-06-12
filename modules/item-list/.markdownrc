@@ -1,0 +1,132 @@
+{
+	"meta": {
+		"moduleName": "item-list",
+		"namespace": "itemList",
+		"Namespace": "ItemList",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "localeFallbacks",
+				"desc": "Set the plugin is localeFallbacks or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "data",
+				"desc": "Set data option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "actions",
+				"desc": "Set plugin actions option",
+				"defaultValue": "[{\"tagName\":\"i\",\"trigger\":\"icon-clone pj-itemList-item-clone\",\"event\":\"click\",\"init\":null},{\"tagName\":\"i\",\"trigger\":\"icon-close pj-list-close\",\"event\":\"click\"}]"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "add",
+				"desc": "Gets fired when plugin has add"
+			},
+			{
+				"name": "clickAddBtn",
+				"desc": "Gets fired when plugin has clickAddBtn"
+			},
+			{
+				"name": "clickItem",
+				"desc": "Gets fired when plugin has clickItem"
+			},
+			{
+				"name": "clone",
+				"desc": "Gets fired when plugin has clone"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-itemList"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "ADD",
+				"desc": "Declare plugin add",
+				"value": "{namespace}-add"
+			},
+			{
+				"name": "CANCEL",
+				"desc": "Declare plugin cancel",
+				"value": "{namespace}-cancel"
+			},
+			{
+				"name": "SAVE",
+				"desc": "Announce plugin is save",
+				"value": "{namespace}-save"
+			},
+			{
+				"name": "CLONE",
+				"desc": "Announce plugin is close",
+				"value": "{namespace}-item-clone"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		],
+		"translations": [
+			{
+				"name": "cancel",
+				"en": "Cancel",
+				"zh": "取消"
+			},
+			{
+				"name": "deleteTitle",
+				"en": "Are you sure you want to delete?",
+				"zh": "你确定要删除？"
+			},
+			{
+				"name": "delete",
+				"en": "Delete",
+				"zh": "删除"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

@@ -73,14 +73,11 @@ SectionScroll.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/section-scroll/dist/section-scroll.css">
-  <script async src="https://unpkg.com/@pluginjs/section-scroll/dist/section-scroll.js"></script>
-</head>
-```
-
-```javascript
-Pj.sectionScroll('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/section-scroll/dist/section-scroll.css">
+<script src="https://unpkg.com/@pluginjs/section-scroll/dist/section-scroll.js"></script>
+<script>
+  Pj.sectionScroll('.element', options)
+</script>
 ```
 
 ---
@@ -102,7 +99,7 @@ Name | Description | Default
 `"touch"` | Set touch | `true`
 `"mousewheel"` | Set mousewheel | `true`
 `"touchSensitivity"` | Set touchSensitivity | `5`
-`"dots"` | Set dots | `{&quot;theme&quot;:null,&quot;items&quot;:null,&quot;default&quot;:null,&quot;direction&quot;:&quot;vertical&quot;,&quot;valueFrom&quot;:&quot;data-href&quot;,&quot;template&quot;:{}}`
+`"dots"` | Set dots | `{"theme":null,"items":null,"default":null,"direction":"vertical","valueFrom":"data-href","template":{}}`
 `"template"` | Set default template | `function() {...}`
 
 ### Events
@@ -156,8 +153,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/section-scroll is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/section-scroll project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/section-scroll is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/section-scroll project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

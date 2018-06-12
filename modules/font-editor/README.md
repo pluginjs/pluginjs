@@ -73,14 +73,11 @@ FontEditor.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.css">
-  <script async src="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.js"></script>
-</head>
-```
-
-```javascript
-Pj.fontEditor('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.css">
+<script src="https://unpkg.com/@pluginjs/font-editor/dist/font-editor.js"></script>
+<script>
+  Pj.fontEditor('.element', options)
+</script>
 ```
 
 ---
@@ -98,14 +95,14 @@ Name | Description | Default
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set the plugin is localeFallbacks or not | `true`
 `"disabled"` | Disabled plugin | `false`
-`"fontFamily"` | Defined element of the font family | `{&quot;value&quot;:&quot;inherit&quot;,&quot;values&quot;:{&quot;Arial&quot;:&quot;Arial&quot;,&quot;Bpreplay&quot;:&quot;Bpreplay&quot;,&quot;Cambira&quot;:&quot;Cambira&quot;,&quot;Gabriola&quot;:&quot;Gabriola&quot;,&quot;inherit&quot;:&quot;inherit&quot;}}`
-`"fontWeight"` | Dfined element of the font weight | `{&quot;value&quot;:&quot;inherit&quot;,&quot;values&quot;:[&quot;inherit&quot;,&quot;bold&quot;,&quot;400&quot;,&quot;500&quot;,&quot;600&quot;,&quot;700&quot;]}`
-`"fontSize"` | Defined element of the font size | `{&quot;value&quot;:&quot;inherit&quot;,&quot;unit&quot;:&quot;px&quot;,&quot;units&quot;:[&quot;inherit&quot;,&quot;px&quot;,&quot;em&quot;,&quot;rem&quot;],&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:2}`
-`"lineHeight"` | Defined element of the line height | `{&quot;value&quot;:&quot;inherit&quot;,&quot;unit&quot;:&quot;em&quot;,&quot;units&quot;:[&quot;inherit&quot;,&quot;px&quot;,&quot;em&quot;,&quot;rem&quot;],&quot;min&quot;:1,&quot;max&quot;:10,&quot;step&quot;:0.5}`
-`"textAlign"` | Defined element of the text align | `{&quot;value&quot;:&quot;left&quot;,&quot;values&quot;:[&quot;left&quot;,&quot;center&quot;,&quot;right&quot;]}`
-`"fontStyle"` | Defined element of the font style | `{&quot;value&quot;:&quot;normal&quot;,&quot;values&quot;:[&quot;italic&quot;,&quot;normal&quot;]}`
-`"textTransform"` | Defined element of the text transform | `{&quot;value&quot;:&quot;none&quot;,&quot;values&quot;:[&quot;uppercase&quot;,&quot;lowercase&quot;,&quot;capitalize&quot;]}`
-`"textDecoration"` | Defined element of the text decoration | `{&quot;value&quot;:&quot;none&quot;,&quot;values&quot;:[&quot;underline&quot;,&quot;line-through&quot;]}`
+`"fontFamily"` | Defined element of the font family | `{"value":"inherit","values":{"Arial":"Arial","Bpreplay":"Bpreplay","Cambira":"Cambira","Gabriola":"Gabriola","inherit":"inherit"}}`
+`"fontWeight"` | Dfined element of the font weight | `{"value":"inherit","values":["inherit","bold","400","500","600","700"]}`
+`"fontSize"` | Defined element of the font size | `{"value":"inherit","unit":"px","units":["inherit","px","em","rem"],"min":0,"max":100,"step":2}`
+`"lineHeight"` | Defined element of the line height | `{"value":"inherit","unit":"em","units":["inherit","px","em","rem"],"min":1,"max":10,"step":0.5}`
+`"textAlign"` | Defined element of the text align | `{"value":"left","values":["left","center","right"]}`
+`"fontStyle"` | Defined element of the font style | `{"value":"normal","values":["italic","normal"]}`
+`"textTransform"` | Defined element of the text transform | `{"value":"none","values":["uppercase","lowercase","capitalize"]}`
+`"textDecoration"` | Defined element of the text decoration | `{"value":"none","values":["underline","line-through"]}`
 `"template"` | Set default template | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
@@ -187,8 +184,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/font-editor is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/font-editor project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/font-editor is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/font-editor project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

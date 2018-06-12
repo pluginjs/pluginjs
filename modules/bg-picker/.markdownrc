@@ -1,0 +1,311 @@
+{
+	"meta": {
+		"moduleName": "bg-picker",
+		"namespace": "bgPicker",
+		"Namespace": "BgPicker",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "image",
+				"desc": "Set plugin image option",
+				"defaultValue": ""
+			},
+			{
+				"name": "thumbnail",
+				"desc": "Set plugin thumbnail option",
+				"defaultValue": ""
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "localeFallbacks",
+				"desc": "Set plugin is localeFallbacks or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "disabled",
+				"desc": "Disable plugin",
+				"defaultValue": "false"
+			},
+			{
+				"name": "repeat",
+				"desc": "Set repeat",
+				"defaultValue": "{\"defaultValue\":\"repeat\",\"values\":[\"no-repeat\",\"repeat\",\"repeat-x\",\"repeat-y\"]}"
+			},
+			{
+				"name": "position",
+				"desc": "Set position",
+				"defaultValue": "{\"defaultValue\":\"top left\",\"values\":[\"top left\",\"top center\",\"top right\",\"center left\",\"center center\",\"center right\",\"bottom left\",\"bottom center\",\"bottom right\"]}"
+			},
+			{
+				"name": "size",
+				"desc": "Set size",
+				"defaultValue": "{\"defaultValue\":\"auto\",\"values\":[\"auto 100%\",\"100% auto\",\"100% 100%\",\"auto\"]}"
+			},
+			{
+				"name": "attachment",
+				"desc": "Set attachment",
+				"defaultValue": "{\"namespace\":\"pj-dropdown\",\"defaultValue\":\"scroll\",\"values\":[\"scroll\",\"fixed\",\"inherit\"]}"
+			},
+			{
+				"name": "template",
+				"desc": "Set default template",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "process",
+				"desc": "The type of object change the type of JSON",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "parse",
+				"desc": "The type of JSON change the type of object",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "select",
+				"desc": "Set select event",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "onChange",
+				"desc": "The onchange event occurs when the content of the domain changes",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "setAttachment",
+				"desc": "Set value of attachment"
+			},
+			{
+				"name": "setPosition",
+				"desc": "Set value of position"
+			},
+			{
+				"name": "setSize",
+				"desc": "Set value of size"
+			},
+			{
+				"name": "setRepeat",
+				"desc": "Set value of repeat"
+			},
+			{
+				"name": "setImage",
+				"desc": "Set value of image"
+			},
+			{
+				"name": "clear",
+				"desc": "clear plugin"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "val",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-bgPicker"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "INPUT",
+				"desc": "Declare plugin input",
+				"value": "{namespace}-input"
+			},
+			{
+				"name": "INITIATE",
+				"desc": "Declare plugin initate",
+				"value": "{namespace}-initiate"
+			},
+			{
+				"name": "INFO",
+				"desc": "Declare plugin info",
+				"value": "{namespace}-info"
+			},
+			{
+				"name": "INFOIMAGE",
+				"desc": "Declare plugin infoimage",
+				"value": "{namespace}-info-image"
+			},
+			{
+				"name": "IMAGENAMEINFO",
+				"desc": "Declare plugin imagenameinfo",
+				"value": "{namespace}-info-image-name"
+			},
+			{
+				"name": "REMOVE",
+				"desc": "Declare plugin remove",
+				"value": "{namespace}-info-remove"
+			},
+			{
+				"name": "EDIT",
+				"desc": "Declare plugin edit",
+				"value": "{namespace}-info-edit"
+			},
+			{
+				"name": "EXPANDPANEL",
+				"desc": "Declare plugin expandpanel",
+				"value": "{namespace}-expand-panel"
+			},
+			{
+				"name": "CONTROL",
+				"desc": "Declare plugin control",
+				"value": "{namespace}-expand-control"
+			},
+			{
+				"name": "CANCEL",
+				"desc": "Declare plugin cancel",
+				"value": "{namespace}-expand-cancel"
+			},
+			{
+				"name": "SAVE",
+				"desc": "Declare plugin save",
+				"value": "{namespace}-expand-save"
+			},
+			{
+				"name": "IMAGEWRAP",
+				"desc": "Declare plugin imagewrap",
+				"value": "{namespace}-expand-image-wrap"
+			},
+			{
+				"name": "IMAGE",
+				"desc": "Declare plugin image",
+				"value": "{namespace}-expand-image"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "HOVER",
+				"desc": "Announce plugin is hover",
+				"value": "{namespace}-hover"
+			},
+			{
+				"name": "EMPTY",
+				"desc": "Declare plugin empty",
+				"value": "{namespace}-empty"
+			},
+			{
+				"name": "EXIST",
+				"desc": "Declare plugin exist",
+				"value": "{namespace}-exist"
+			},
+			{
+				"name": "EXPAND",
+				"desc": "Declare plugin expand",
+				"value": "{namespace}-expand"
+			}
+		],
+		"translations": [
+			{
+				"name": "placeholder",
+				"en": "Add Image",
+				"zh": "添加图片"
+			},
+			{
+				"name": "change",
+				"en": "change",
+				"zh": "更换图片"
+			},
+			{
+				"name": "bgRepeat",
+				"en": "Repeat",
+				"zh": "重复"
+			},
+			{
+				"name": "bgPosition",
+				"en": "Position",
+				"zh": "位置"
+			},
+			{
+				"name": "bgAttach",
+				"en": "Attach",
+				"zh": "附着"
+			},
+			{
+				"name": "bgSize",
+				"en": "Scalling",
+				"zh": "比例"
+			},
+			{
+				"name": "cancel",
+				"en": "cancel",
+				"zh": "取消"
+			},
+			{
+				"name": "save",
+				"en": "save",
+				"zh": "保存"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

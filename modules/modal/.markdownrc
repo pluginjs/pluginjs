@@ -1,0 +1,257 @@
+{
+	"meta": {
+		"moduleName": "modal",
+		"namespace": "modal",
+		"Namespace": "Modal",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Add plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "template",
+				"desc": "The main element templates",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "templates",
+				"desc": "Element templates",
+				"defaultValue": "{}"
+			},
+			{
+				"name": "autoDestroy",
+				"desc": "Remove the element when closed, true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "title",
+				"desc": "Whether to display title, true or false",
+				"defaultValue": ""
+			},
+			{
+				"name": "content",
+				"desc": "Whether to display content, true or false",
+				"defaultValue": ""
+			},
+			{
+				"name": "html",
+				"desc": "Whether the content is html, true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "close",
+				"desc": "Whether to display close button, true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "locale",
+				"desc": "Multilingual settings",
+				"defaultValue": "en"
+			},
+			{
+				"name": "localeFallbacks",
+				"desc": "Multilingual settings",
+				"defaultValue": "true"
+			},
+			{
+				"name": "buttons",
+				"desc": "Whether to display button",
+				"defaultValue": "null"
+			},
+			{
+				"name": "overlay",
+				"desc": "Whether to display overlay, true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "overlayClosesOnClick",
+				"desc": "Click the background to turn off the modal, true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "appendTo",
+				"desc": "where modal will be inserted",
+				"defaultValue": "body"
+			},
+			{
+				"name": "effect",
+				"desc": "Open and close the animation",
+				"defaultValue": "fadeScale"
+			},
+			{
+				"name": "contentAlignment",
+				"desc": "content alignment, left, center or right",
+				"defaultValue": "left"
+			},
+			{
+				"name": "buttonAlignment",
+				"desc": "button alignment, left, center or right",
+				"defaultValue": "right"
+			},
+			{
+				"name": "titleAlignment",
+				"desc": "title alignment, left or center",
+				"defaultValue": "left"
+			},
+			{
+				"name": "defaultButtonClass",
+				"desc": "Default button style",
+				"defaultValue": "pj-btn pj-btn-primary"
+			},
+			{
+				"name": "icon",
+				"desc": "Whether to display icon, If you need to fill in success, info or error",
+				"defaultValue": ""
+			},
+			{
+				"name": "icons",
+				"desc": "Default button style description",
+				"defaultValue": "{\"success\":[\"icon-check-circle\",\"#4be1ab\"],\"info\":[\"icon-exclamation-circle\",\"#4c93d9\"],\"error\":[\"icon-times-circle\",\"#f86b67\"]}"
+			},
+			{
+				"name": "iconColor",
+				"desc": "Modify the icon color",
+				"defaultValue": ""
+			},
+			{
+				"name": "iconClass",
+				"desc": "Add your icon",
+				"defaultValue": ""
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "open",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "close",
+				"desc": "Gets fired when plugin is close"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "show",
+				"desc": "Gets fired when plugin is show"
+			},
+			{
+				"name": "hide",
+				"desc": "Gets fired when plugin is hide"
+			}
+		],
+		"event": "open",
+		"Event": "Open",
+		"methods": [
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "destroy",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-modal"
+			},
+			{
+				"name": "ELEMENT",
+				"desc": "Declare plugin",
+				"value": "{namespace}"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}-{theme}"
+			},
+			{
+				"name": "CLOSE",
+				"desc": "Declare element is close",
+				"value": "{namespace}-close"
+			},
+			{
+				"name": "CONTENT",
+				"desc": "Declare element is body",
+				"value": "{namespace}-body"
+			},
+			{
+				"name": "TITLE",
+				"desc": "Declare element is title",
+				"value": "{namespace}-title"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Declare plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Declare plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare plugin range",
+				"value": "{namespace}-container"
+			},
+			{
+				"name": "HEADER",
+				"desc": "Declare element is header",
+				"value": "{namespace}-header"
+			},
+			{
+				"name": "BUTTONS",
+				"desc": "Declare element is buttons",
+				"value": "{namespace}-buttons"
+			},
+			{
+				"name": "OVERLAY",
+				"desc": "Declare element is overlay",
+				"value": "{namespace}-overlay"
+			},
+			{
+				"name": "FADEIN",
+				"desc": "Declare the style of the element fadeIn",
+				"value": "{namespace}--fadeIn"
+			},
+			{
+				"name": "OPEN",
+				"desc": "Declare element is open",
+				"value": "{namespace}-open"
+			},
+			{
+				"name": "IN",
+				"desc": "Declare element is in",
+				"value": "{namespace}-in"
+			},
+			{
+				"name": "BUTTON",
+				"desc": "Declare element is button",
+				"value": "{namespace}-btn"
+			},
+			{
+				"name": "ICON",
+				"desc": "Declare element is icon",
+				"value": "{namespace}-icon"
+			}
+		],
+		"translations": [
+			{
+				"name": "Cancel",
+				"en": "Cancel",
+				"zh": "取消"
+			},
+			{
+				"name": "Yes",
+				"en": "Yes",
+				"zh": "确定"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

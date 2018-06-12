@@ -73,14 +73,11 @@ Dots.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/dots/dist/dots.css">
-  <script async src="https://unpkg.com/@pluginjs/dots/dist/dots.js"></script>
-</head>
-```
-
-```javascript
-Pj.dots('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/dots/dist/dots.css">
+<script src="https://unpkg.com/@pluginjs/dots/dist/dots.js"></script>
+<script>
+  Pj.dots('.element', options)
+</script>
 ```
 
 ---
@@ -98,7 +95,7 @@ Name | Description | Default
 `"items"` | Add extend item with plugin | `null`
 `"default"` | Set default status with plugin | `null`
 `"direction"` | Set direction | `horizontal`
-`"valueFrom"` | pass attribute or tag name set where is value from | `[&quot;a&quot;,&quot;href&quot;]`
+`"valueFrom"` | pass attribute or tag name set where is value from | `["a","href"]`
 `"template"` | Set dots default html template | `{}`
 
 ### Events
@@ -165,8 +162,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/dots is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/dots project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/dots is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/dots project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

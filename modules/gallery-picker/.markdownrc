@@ -1,0 +1,278 @@
+{
+	"meta": {
+		"moduleName": "gallery-picker",
+		"namespace": "galleryPicker",
+		"Namespace": "GalleryPicker",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "localeFallbacks",
+				"desc": "Set the plugin is localeFallbacks or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "viewportSize",
+				"desc": "Set viewportSize option",
+				"defaultValue": "330"
+			},
+			{
+				"name": "disabled",
+				"desc": "Disabled plugin",
+				"defaultValue": "false"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			},
+			{
+				"name": "process",
+				"desc": "The type of object change the type of JSON",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "parse",
+				"desc": "The type of JSON change the type of object",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "getImage",
+				"desc": "Get value of image",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "change",
+				"desc": "Get  value of image url",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "add",
+				"desc": "Get an array of image url list",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "clear",
+				"desc": "Clear plugin"
+			},
+			{
+				"name": "remove",
+				"desc": "Remove plugin"
+			},
+			{
+				"name": "change",
+				"desc": "Change plugin"
+			},
+			{
+				"name": "add",
+				"desc": "add plugin"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "val",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-galleryPicker"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "EMPTY",
+				"desc": "Announce plugin is empty",
+				"value": "{namespace}-empty"
+			},
+			{
+				"name": "EXIST",
+				"desc": "Announce plugin is exist",
+				"value": "{namespace}-exist"
+			},
+			{
+				"name": "EXPAND",
+				"desc": "Announce plugin is expand",
+				"value": "{namespace}-expand"
+			},
+			{
+				"name": "HOVER",
+				"desc": "Announce plugin is hover",
+				"value": "{namespace}-hover"
+			},
+			{
+				"name": "INFO",
+				"desc": "Declare plugin info",
+				"value": "{namespace}-info"
+			},
+			{
+				"name": "INFOEDIT",
+				"desc": "Declare plugin infoedit",
+				"value": "{namespace}-info-edit"
+			},
+			{
+				"name": "INFOREMOVE",
+				"desc": "Declare plugin inforemove",
+				"value": "{namespace}-info-remove"
+			},
+			{
+				"name": "EXPANDCANCELBTN",
+				"desc": "Declare plugin expandcancelbtn",
+				"value": "{namespace}-expand-cancel-btn"
+			},
+			{
+				"name": "EXPANDSAVEBTN",
+				"desc": "Declare plugin expandsavebtn",
+				"value": "{namespace}-expand-save-btn"
+			},
+			{
+				"name": "EXPANDADDBTN",
+				"desc": "Declare plugin expandaddbtn",
+				"value": "{namespace}-expand-add-btn"
+			},
+			{
+				"name": "EXPANDADD",
+				"desc": "Declare plugin expandadd",
+				"value": "{namespace}-expand-add"
+			},
+			{
+				"name": "ITEM",
+				"desc": "Declare plugin item",
+				"value": "{namespace}-item"
+			},
+			{
+				"name": "ITEMIMAGE",
+				"desc": "Declare plugin itemimage",
+				"value": "{namespace}-item-image"
+			},
+			{
+				"name": "ITEMREMOVE",
+				"desc": "Declare plugin itemremove",
+				"value": "{namespace}-item-remove"
+			},
+			{
+				"name": "ITEMRESELECT",
+				"desc": "Declare plugin itemselect",
+				"value": "{namespace}-item-reselect"
+			}
+		],
+		"translations": [
+			{
+				"name": "placeholder",
+				"en": "Choose images",
+				"zh": "点击添加"
+			},
+			{
+				"name": "count",
+				"en": "zero",
+				"zh": "零"
+			},
+			{
+				"name": "expand",
+				"en": "expand",
+				"zh": "展开"
+			},
+			{
+				"name": "change",
+				"en": "change",
+				"zh": "更换图片"
+			},
+			{
+				"name": "deleteTitle",
+				"en": "Are you sure you want to delete?",
+				"zh": "你确定要删除？"
+			},
+			{
+				"name": "cancel",
+				"en": "Cancel",
+				"zh": "取消"
+			},
+			{
+				"name": "delete",
+				"en": "Delete",
+				"zh": "删除"
+			},
+			{
+				"name": "add",
+				"en": "Add",
+				"zh": "添加"
+			},
+			{
+				"name": "save",
+				"en": "Save",
+				"zh": "保存"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

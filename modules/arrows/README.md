@@ -73,14 +73,11 @@ Arrows.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/arrows/dist/arrows.css">
-  <script async src="https://unpkg.com/@pluginjs/arrows/dist/arrows.js"></script>
-</head>
-```
-
-```javascript
-Pj.arrows('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/arrows/dist/arrows.css">
+<script src="https://unpkg.com/@pluginjs/arrows/dist/arrows.js"></script>
+<script>
+  Pj.arrows('.element', options)
+</script>
 ```
 
 ---
@@ -95,8 +92,8 @@ You can also save the instances to variable for further use.
 Name | Description | Default
 -----|--------------|-----
 `"theme"` | Add plugin theme option | `null`
-`"prev"` | Add value of prev button | `{&quot;href&quot;:&quot;#&quot;,&quot;text&quot;:&quot;Previous&quot;}`
-`"next"` | Add value of next button | `{&quot;href&quot;:&quot;#&quot;,&quot;text&quot;:&quot;Next&quot;}`
+`"prev"` | Add value of prev button | `{"href":"#","text":"Previous"}`
+`"next"` | Add value of next button | `{"href":"#","text":"Next"}`
 `"direction"` | Set plugin initial direction | `horizontal`
 `"valueFrom"` | Set where is value from | `href`
 `"templates"` | Arrows default templates | `{}`
@@ -160,8 +157,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/arrows is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/arrows project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/arrows is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/arrows project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

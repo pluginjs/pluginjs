@@ -73,14 +73,11 @@ Lightbox.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.css">
-  <script async src="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.js"></script>
-</head>
-```
-
-```javascript
-Pj.lightbox('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.css">
+<script src="https://unpkg.com/@pluginjs/lightbox/dist/lightbox.js"></script>
+<script>
+  Pj.lightbox('.element', options)
+</script>
 ```
 
 ---
@@ -122,7 +119,6 @@ You can also save the instances to variable for further use.
 
 Name | Description
 -----|-----
-`"value"` | 
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -199,8 +195,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/lightbox is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/lightbox project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/lightbox is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/lightbox project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

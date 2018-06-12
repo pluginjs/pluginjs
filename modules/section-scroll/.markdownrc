@@ -1,0 +1,153 @@
+{
+	"meta": {
+		"moduleName": "section-scroll",
+		"namespace": "sectionScroll",
+		"Namespace": "SectionScroll",
+		"options": [
+			{
+				"name": "itemSelector",
+				"desc": "Set itemSelector",
+				"defaultValue": ""
+			},
+			{
+				"name": "titleSelector",
+				"desc": "Set titleSelector",
+				"defaultValue": ""
+			},
+			{
+				"name": "animation",
+				"desc": "Set animation",
+				"defaultValue": "scroll"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duretion",
+				"defaultValue": ""
+			},
+			{
+				"name": "easing",
+				"desc": "Set easing",
+				"defaultValue": ""
+			},
+			{
+				"name": "touch",
+				"desc": "Set touch",
+				"defaultValue": "true"
+			},
+			{
+				"name": "mousewheel",
+				"desc": "Set mousewheel",
+				"defaultValue": "true"
+			},
+			{
+				"name": "touchSensitivity",
+				"desc": "Set touchSensitivity",
+				"defaultValue": "5"
+			},
+			{
+				"name": "dots",
+				"desc": "Set dots",
+				"defaultValue": "{\"theme\":null,\"items\":null,\"default\":null,\"direction\":\"vertical\",\"valueFrom\":\"data-href\",\"template\":{}}"
+			},
+			{
+				"name": "template",
+				"desc": "Set default template",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "itemSelector",
+		"events": [
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin has changed"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			}
+		],
+		"event": "destroy",
+		"Event": "Destroy",
+		"methods": [
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "next",
+				"desc": "Set next function"
+			},
+			{
+				"name": "previous",
+				"desc": "Set previous function"
+			},
+			{
+				"name": "goTo",
+				"desc": "Set value of goTo"
+			},
+			{
+				"name": "scrollTo",
+				"desc": "Set value of scrollTo"
+			},
+			{
+				"name": "getId",
+				"desc": "Set value of getId"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			}
+		],
+		"method": "destroy",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-sectionScroll"
+			},
+			{
+				"name": "DOTS",
+				"desc": "Declare plugin dots",
+				"value": "{namespace}-dots"
+			},
+			{
+				"name": "SECTION",
+				"desc": "Declare plugin section",
+				"value": "{namespace}-section"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare plugin range",
+				"value": "{namespace}-container"
+			},
+			{
+				"name": "OPEN",
+				"desc": "Declare plugin open",
+				"value": "{namespace}-open"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

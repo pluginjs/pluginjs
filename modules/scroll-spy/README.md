@@ -73,14 +73,11 @@ ScrollSpy.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.css">
-  <script async src="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.js"></script>
-</head>
-```
-
-```javascript
-Pj.scrollSpy('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.css">
+<script src="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.js"></script>
+<script>
+  Pj.scrollSpy('.element', options)
+</script>
 ```
 
 ---
@@ -139,8 +136,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/scroll-spy is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-spy project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/scroll-spy is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/scroll-spy project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

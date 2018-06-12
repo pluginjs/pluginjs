@@ -73,14 +73,11 @@ Tree.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/tree/dist/tree.css">
-  <script async src="https://unpkg.com/@pluginjs/tree/dist/tree.js"></script>
-</head>
-```
-
-```javascript
-Pj.tree('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/tree/dist/tree.css">
+<script src="https://unpkg.com/@pluginjs/tree/dist/tree.js"></script>
+<script>
+  Pj.tree('.element', options)
+</script>
 ```
 
 ---
@@ -151,7 +148,7 @@ Name | Description | Default
 `"BRANCH"` | Declare plugin branch | `{namespace}-branch`
 `"OPEN"` | Declare plugin open | `{namespace}-open`
 `"SELECTED"` | Declare plugin selected | `{namespace}-selected`
-`"CHILDRENSELECTED"` |  | `{namespace}-childrenSelected`
+`"CHILDRENSELECTED"` | Declare selected child | `{namespace}-childrenSelected`
 ---
 
 ## Browser support
@@ -164,8 +161,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/tree is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/tree project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/tree is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/tree project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

@@ -1,0 +1,166 @@
+{
+	"meta": {
+		"moduleName": "popover",
+		"namespace": "popover",
+		"Namespace": "Popover",
+		"options": [
+			{
+				"name": "template",
+				"desc": "Set default template",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			},
+			{
+				"name": "content",
+				"desc": "Set content",
+				"defaultValue": ""
+			},
+			{
+				"name": "html",
+				"desc": "Set html",
+				"defaultValue": "true"
+			},
+			{
+				"name": "close",
+				"desc": "Set close",
+				"defaultValue": "false"
+			},
+			{
+				"name": "trigger",
+				"desc": "Set trigger",
+				"defaultValue": "click"
+			},
+			{
+				"name": "hideOutClick",
+				"desc": "Set hideOutClick",
+				"defaultValue": "true"
+			},
+			{
+				"name": "placement",
+				"desc": "Set placement",
+				"defaultValue": "right"
+			}
+		],
+		"option": "template",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "hide",
+				"desc": "Gets fired when plugin has hide"
+			},
+			{
+				"name": "hidden",
+				"desc": "Gets fired when plugin has hidden"
+			},
+			{
+				"name": "show",
+				"desc": "Gets fired when plugin has show"
+			},
+			{
+				"name": "shown",
+				"desc": "Gets fired when plugin has shown"
+			},
+			{
+				"name": "inserted",
+				"desc": "Gets fired when plugin has inserted"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "show",
+				"desc": "Show plugin if it is hiden"
+			},
+			{
+				"name": "hide",
+				"desc": "Hide plugin"
+			},
+			{
+				"name": "toggle",
+				"desc": "Toggle plugin"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "show",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-popover"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "POPOVER",
+				"desc": "Declare plugin popover",
+				"value": "{namespace}"
+			},
+			{
+				"name": "CONTENT",
+				"desc": "Declare plugin content",
+				"value": "{namespace}-content"
+			},
+			{
+				"name": "TITLE",
+				"desc": "Declare plugin title",
+				"value": "{namespace}-title"
+			},
+			{
+				"name": "CLOSE",
+				"desc": "Declare plugin close",
+				"value": "{namespace}-close"
+			},
+			{
+				"name": "SHOW",
+				"desc": "Declare plugin show",
+				"value": "{namespace}-show"
+			},
+			{
+				"name": "FADE",
+				"desc": "Declare plugin fade",
+				"value": "{namespace}-fade"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

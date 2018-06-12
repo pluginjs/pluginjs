@@ -1,0 +1,281 @@
+{
+	"meta": {
+		"moduleName": "dropdown",
+		"namespace": "dropdown",
+		"Namespace": "Dropdown",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Add plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "panel",
+				"desc": "Add panel to plugin",
+				"defaultValue": "+"
+			},
+			{
+				"name": "trigger",
+				"desc": "Add trigger action",
+				"defaultValue": "click"
+			},
+			{
+				"name": "exclusive",
+				"desc": "Show exclusive true or false",
+				"defaultValue": "true"
+			},
+			{
+				"name": "hideOnSelect",
+				"desc": "Hidden or not when plugin has be select",
+				"defaultValue": "true"
+			},
+			{
+				"name": "hideOutClick",
+				"desc": "When clicking outside of the dropdown, trigger hide event",
+				"defaultValue": "true"
+			},
+			{
+				"name": "keyboard",
+				"desc": "Enable keyboard of not",
+				"defaultValue": "false"
+			},
+			{
+				"name": "placement",
+				"desc": "Set dropdown items display placement",
+				"defaultValue": "bottom-left"
+			},
+			{
+				"name": "imitateSelect",
+				"desc": "Behave like select",
+				"defaultValue": "false"
+			},
+			{
+				"name": "inputLabel",
+				"desc": "Input label with select",
+				"defaultValue": "false"
+			},
+			{
+				"name": "placeholder",
+				"desc": "Input element placeholder",
+				"defaultValue": "Please select"
+			},
+			{
+				"name": "icon",
+				"desc": "Set icon",
+				"defaultValue": "false"
+			},
+			{
+				"name": "select",
+				"desc": "Set initial select value, when imitateSelect is true",
+				"defaultValue": "null"
+			},
+			{
+				"name": "itemValueAttr",
+				"desc": "Set item tag name",
+				"defaultValue": "value"
+			},
+			{
+				"name": "data",
+				"desc": "Add a json for loading",
+				"defaultValue": "null"
+			},
+			{
+				"name": "width",
+				"desc": "Set width",
+				"defaultValue": "null"
+			},
+			{
+				"name": "constraintToScrollParent",
+				"desc": "Set constraint to scroll parent",
+				"defaultValue": "true"
+			},
+			{
+				"name": "constraintToWindow",
+				"desc": "Set constraint to window",
+				"defaultValue": "true"
+			},
+			{
+				"name": "templates",
+				"desc": "Set plugin default templates",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "hide",
+				"desc": "Gets fired when plugin is hidden"
+			},
+			{
+				"name": "show",
+				"desc": "Gets fired when plugin is show"
+			},
+			{
+				"name": "change",
+				"desc": "Gets fired when plugin is changed"
+			},
+			{
+				"name": "click",
+				"desc": "Gets fired when plugin is clicked"
+			},
+			{
+				"name": "trigger",
+				"desc": "Gets fired when plugin is triggerd"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "show",
+				"desc": "Show plugin"
+			},
+			{
+				"name": "hide",
+				"desc": "Hide plugin"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "toggle",
+				"desc": "Active plugin or anti-active"
+			},
+			{
+				"name": "update",
+				"desc": "Update plugin"
+			},
+			{
+				"name": "replaceByData",
+				"desc": "Replace items by data"
+			},
+			{
+				"name": "appendByData",
+				"desc": "Append items from data"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-dropdown"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "INPUTMODE",
+				"desc": "Declare input mode",
+				"value": "{namespace}-input"
+			},
+			{
+				"name": "SELECTMODE",
+				"desc": "Declare select mode",
+				"value": "{namespace}-select"
+			},
+			{
+				"name": "ELEMENT",
+				"desc": "Declare dropdown element",
+				"value": "{namespace}"
+			},
+			{
+				"name": "LABEL",
+				"desc": "Declare dropdown label",
+				"value": "{namespace}-label"
+			},
+			{
+				"name": "ICON",
+				"desc": "Declare icon element of dropdown",
+				"value": "{namespace}-icon"
+			},
+			{
+				"name": "ITEM",
+				"desc": "Declare item element of dropdown",
+				"value": "{namespace}-item"
+			},
+			{
+				"name": "SHOW",
+				"desc": "Declare show plugin",
+				"value": "{namespace}-show"
+			},
+			{
+				"name": "MASK",
+				"desc": "Declare mask of dropdown",
+				"value": "{namespace}-mask"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Declare wrap of dropdown",
+				"value": "{namespace}-wrap"
+			},
+			{
+				"name": "PANEL",
+				"desc": "Declare panel element of dropdown",
+				"value": "{namespace}-panel"
+			},
+			{
+				"name": "PANELWRAP",
+				"desc": "Declare panel wrap element of dropdown",
+				"value": "{namespace}-panel-wrap"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "FOCUS",
+				"desc": "Declare focus status",
+				"value": "{namespace}-focus"
+			},
+			{
+				"name": "ACITVE",
+				"desc": "Declare active status",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "HOVER",
+				"desc": "Declare hover status",
+				"value": "{namespace}-hover"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

@@ -73,14 +73,11 @@ LinkPicker.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.css">
-  <script async src="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.js"></script>
-</head>
-```
-
-```javascript
-Pj.linkPicker('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.css">
+<script src="https://unpkg.com/@pluginjs/link-picker/dist/link-picker.js"></script>
+<script>
+  Pj.linkPicker('.element', options)
+</script>
 ```
 
 ---
@@ -178,9 +175,18 @@ Name | EN | ZH
 `"cancel"` | Cancel | 取消
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
 `"delete"` | Delete | 删除
-`"typeData"` | [object Object],[object Object],[object Object],[object Object],[object Object] | [object Object],[object Object],[object Object],[object Object],[object Object]
-`"contentData"` | [object Object],[object Object],[object Object],[object Object],[object Object] | [object Object],[object Object],[object Object],[object Object],[object Object]
-`"openModeData"` | [object Object],[object Object] | [object Object],[object Object]
+`"site content"` | site content | 网站内容
+`"site archive"` | site archive | 网站存档
+`"external url"` | external url | 外部网址
+`"submit form"` | submit form | 提交表单
+`"scroll to target"` | scroll to target | 滚动到目标
+`"page"` | page | 页面
+`"post"` | post | 推送
+`"portfolio"` | portfolio | 组合
+`"categogry archive"` | categogry archive | 类别档案
+`"tag archive"` | tag archive | 标签档案
+`"same window"` | same window | 同一窗口
+`"new window"` | new window | 新窗口
 ---
 
 ## Browser support
@@ -193,8 +199,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/link-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/link-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/link-picker is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/link-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

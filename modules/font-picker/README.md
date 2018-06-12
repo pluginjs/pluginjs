@@ -73,14 +73,11 @@ FontPicker.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
-  <script async src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
-</head>
-```
-
-```javascript
-Pj.fontPicker('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
+<script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
+<script>
+  Pj.fontPicker('.element', options)
+</script>
 ```
 
 ---
@@ -176,7 +173,7 @@ Name | EN | ZH
 -----|------|-------
 `"searchText"` | Search... | 搜索...
 `"manage"` | manage | 管理
-`"activatedFonts"` | activated | 已选字体
+`"activatedFonts"` | activated fonts | 已选字体
 `"emptyTitle"` | Befor using font, you need add fonts.  | 使用字体之前，请先添加。
 `"emptyLinkTitle"` | Go add now | 现在添加
 ---
@@ -191,8 +188,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/font-picker is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/font-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/font-picker is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/font-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

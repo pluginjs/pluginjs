@@ -1,0 +1,148 @@
+{
+	"meta": {
+		"moduleName": "nav-to-select",
+		"namespace": "navToSelect",
+		"Namespace": "NavToSelect",
+		"options": [
+			{
+				"name": "maxLevel",
+				"desc": "Set max of plugin level",
+				"defaultValue": "4"
+			},
+			{
+				"name": "prependTo",
+				"desc": "Set prepento",
+				"defaultValue": "null"
+			},
+			{
+				"name": "activeClass",
+				"desc": "Set active class",
+				"defaultValue": "active"
+			},
+			{
+				"name": "linkSelector",
+				"desc": "Set link selector",
+				"defaultValue": "a:first"
+			},
+			{
+				"name": "indentString",
+				"desc": "Set indent string",
+				"defaultValue": "&ndash;"
+			},
+			{
+				"name": "indentSpace",
+				"desc": "Set enable indent space or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "placeholder",
+				"desc": "Set placeholder value",
+				"defaultValue": "Navigate to..."
+			},
+			{
+				"name": "useOptgroup",
+				"desc": "Set enable use opt group or not",
+				"defaultValue": "false"
+			},
+			{
+				"name": "itemFilter",
+				"desc": "Set item filter callback",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "getItemLabel",
+				"desc": "Set get item label callback",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "getItemsFromList",
+				"desc": "Set get items from list callback",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "onChange",
+				"desc": "Set change event callback",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "maxLevel",
+		"events": [
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			}
+		],
+		"event": "update",
+		"Event": "Update",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "getItemValue",
+				"desc": "Get item value of plugin"
+			},
+			{
+				"name": "isLinkable",
+				"desc": "Get if linkable or not"
+			},
+			{
+				"name": "isActived",
+				"desc": "Get is Actived"
+			},
+			{
+				"name": "isBuilded",
+				"desc": "Get has builded or not"
+			},
+			{
+				"name": "getSelect",
+				"desc": "Get select value"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-navToSelect"
+			},
+			{
+				"name": "SELECT",
+				"desc": "Declare plugin select",
+				"value": "{namespace}"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

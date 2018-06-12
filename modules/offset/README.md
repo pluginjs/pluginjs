@@ -73,14 +73,11 @@ Offset.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/offset/dist/offset.css">
-  <script async src="https://unpkg.com/@pluginjs/offset/dist/offset.js"></script>
-</head>
-```
-
-```javascript
-Pj.offset('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/offset/dist/offset.css">
+<script src="https://unpkg.com/@pluginjs/offset/dist/offset.js"></script>
+<script>
+  Pj.offset('.element', options)
+</script>
 ```
 
 ---
@@ -174,8 +171,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/offset is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/offset project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/offset is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/offset project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

@@ -1,0 +1,120 @@
+{
+	"meta": {
+		"moduleName": "reveal",
+		"namespace": "reveal",
+		"Namespace": "Reveal",
+		"options": [
+			{
+				"name": "animation",
+				"desc": "Animation name",
+				"defaultValue": "fadeIn"
+			},
+			{
+				"name": "duration",
+				"desc": "Animation duration",
+				"defaultValue": "400"
+			},
+			{
+				"name": "easing",
+				"desc": "Animation easing",
+				"defaultValue": "ease"
+			},
+			{
+				"name": "delay",
+				"desc": "Animation delay",
+				"defaultValue": "0"
+			},
+			{
+				"name": "count",
+				"desc": "Animation count, Numbers or infinite",
+				"defaultValue": "1"
+			},
+			{
+				"name": "mode",
+				"desc": "Animation mode, Always or once",
+				"defaultValue": "always"
+			},
+			{
+				"name": "mobile",
+				"desc": "Whether to support the mobile",
+				"defaultValue": "false"
+			},
+			{
+				"name": "tablet",
+				"desc": "Whether to support the tablet",
+				"defaultValue": "false"
+			},
+			{
+				"name": "anchor",
+				"desc": "You can set the trigger anchor, Enter the element selector",
+				"defaultValue": ""
+			}
+		],
+		"option": "animation",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "enter",
+				"desc": "Gets fired when element in view"
+			},
+			{
+				"name": "exit",
+				"desc": "Gets fired when element out view"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "animationEnd",
+				"desc": "Gets fired When stopped animation"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "isVisible",
+				"desc": "Return is in view"
+			}
+		],
+		"method": "destroy",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-reveal"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

@@ -1,0 +1,107 @@
+{
+	"meta": {
+		"moduleName": "scroll-progress",
+		"namespace": "scrollProgress",
+		"Namespace": "ScrollProgress",
+		"options": [
+			{
+				"name": "size",
+				"desc": "Define the size of Progress bar",
+				"defaultValue": "5"
+			},
+			{
+				"name": "color",
+				"desc": "Define the color of Progress bar",
+				"defaultValue": "#50bcb6"
+			},
+			{
+				"name": "opacity",
+				"desc": "Define the opacity of Progress bar, value must be between 0 and 1",
+				"defaultValue": "1"
+			},
+			{
+				"name": "custom",
+				"desc": "Define the scroll element, the false is window, the true is element",
+				"defaultValue": "false"
+			},
+			{
+				"name": "appendTo",
+				"desc": "Define the progress bar appendTo element, value must be an element selector",
+				"defaultValue": "body"
+			},
+			{
+				"name": "position",
+				"desc": "Define the position of Progress bar(top and bottom for horizontal's position, left or right for vertical's position )",
+				"defaultValue": "top-left"
+			},
+			{
+				"name": "templates",
+				"desc": "Template blocks",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "size",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "refresh",
+				"desc": "Gets fired when refresh Progress bar"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "refresh",
+				"desc": "refresh Progress bar"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-scrollProgress"
+			},
+			{
+				"name": "BAR",
+				"desc": "Declare bar",
+				"value": "{namespace}-bar"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

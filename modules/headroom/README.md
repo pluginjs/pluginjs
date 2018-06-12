@@ -73,14 +73,11 @@ Headroom.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/headroom/dist/headroom.css">
-  <script async src="https://unpkg.com/@pluginjs/headroom/dist/headroom.js"></script>
-</head>
-```
-
-```javascript
-Pj.headroom('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/headroom/dist/headroom.css">
+<script src="https://unpkg.com/@pluginjs/headroom/dist/headroom.js"></script>
+<script>
+  Pj.headroom('.element', options)
+</script>
 ```
 
 ---
@@ -94,7 +91,7 @@ You can also save the instances to variable for further use.
 
 Name | Description | Default
 -----|--------------|-----
-`"tolerance"` | normalize Tolerance, Mainly used in pinned mode | `{&quot;down&quot;:10,&quot;up&quot;:20}`
+`"tolerance"` | normalize Tolerance, Mainly used in pinned mode | `{"down":10,"up":20}`
 `"offset"` | Anchor offset, Mainly used for pinned mode and stick mode | `0`
 `"scroller"` | Scroll element | `window`
 `"mode"` | Different judgments | `pinned`
@@ -146,8 +143,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/headroom is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/headroom project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/headroom is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/headroom project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

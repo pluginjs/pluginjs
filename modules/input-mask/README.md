@@ -73,14 +73,11 @@ InputMask.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/input-mask/dist/input-mask.css">
-  <script async src="https://unpkg.com/@pluginjs/input-mask/dist/input-mask.js"></script>
-</head>
-```
-
-```javascript
-Pj.inputMask('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/input-mask/dist/input-mask.css">
+<script src="https://unpkg.com/@pluginjs/input-mask/dist/input-mask.js"></script>
+<script>
+  Pj.inputMask('.element', options)
+</script>
 ```
 
 ---
@@ -141,8 +138,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/input-mask is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/input-mask project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/input-mask is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/input-mask project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

@@ -19,7 +19,8 @@
 		"test": "jest",
 		"new": "cp -r ./plugins/sample ./plugins/$Component",
 		"build:js": "plugin script build-js",
-		"build:scss": "plugin script build-scss"
+		"build:scss": "plugin script build-scss",
+		"build:md": "plugin script build-md"
 	},
 	"repository": {
 		"url": "git@github.com:amazingSurge/plugin.js.git",

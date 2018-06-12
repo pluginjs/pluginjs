@@ -1,0 +1,149 @@
+{
+	"meta": {
+		"moduleName": "video",
+		"namespace": "video",
+		"Namespace": "Video",
+		"options": [
+			{
+				"name": "template",
+				"desc": "Main structure template",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "templates",
+				"desc": "Template blocks",
+				"defaultValue": "{}"
+			},
+			{
+				"name": "url",
+				"desc": "Video url",
+				"defaultValue": ""
+			},
+			{
+				"name": "id",
+				"desc": "Video id",
+				"defaultValue": ""
+			},
+			{
+				"name": "type",
+				"desc": "Different video sources, such as HTML5 Youtube Vimeo",
+				"defaultValue": ""
+			},
+			{
+				"name": "autoplay",
+				"desc": "Whether to play automatically when loading video",
+				"defaultValue": "true"
+			},
+			{
+				"name": "loop",
+				"desc": "Whether to loop the video",
+				"defaultValue": "true"
+			},
+			{
+				"name": "controls",
+				"desc": "Whether to show the video controller",
+				"defaultValue": "false"
+			},
+			{
+				"name": "poster",
+				"desc": "Whether to display the poster",
+				"defaultValue": ""
+			}
+		],
+		"option": "template",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+			{
+				"name": "load",
+				"desc": "Gets fired when video is loading"
+			},
+			{
+				"name": "loaded",
+				"desc": "Gets fired when video is loaded"
+			},
+			{
+				"name": "play",
+				"desc": "Gets fired when video is play"
+			},
+			{
+				"name": "pause",
+				"desc": "Gets fired when video is pause"
+			},
+			{
+				"name": "stop",
+				"desc": "Gets fired when video is stop"
+			},
+			{
+				"name": "playend",
+				"desc": "Gets fired when video is playend"
+			},
+			{
+				"name": "playerr",
+				"desc": "Gets fired when video is playerr"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "pause",
+				"desc": "Pause  video"
+			},
+			{
+				"name": "load",
+				"desc": "Load video"
+			},
+			{
+				"name": "play",
+				"desc": "Play video"
+			},
+			{
+				"name": "stop",
+				"desc": "Stop video"
+			},
+			{
+				"name": "volume",
+				"desc": "Set the video volume"
+			}
+		],
+		"method": "value",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-video"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "POSTER",
+				"desc": "Declare plugin poster",
+				"value": "{namespace}-poster"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

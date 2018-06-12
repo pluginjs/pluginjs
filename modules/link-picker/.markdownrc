@@ -1,0 +1,374 @@
+{
+	"meta": {
+		"moduleName": "link-picker",
+		"namespace": "linkPicker",
+		"Namespace": "LinkPicker",
+		"options": [
+			{
+				"name": "title",
+				"desc": "Add plugin title",
+				"defaultValue": "Click to Add Link"
+			},
+			{
+				"name": "placeholder",
+				"desc": "Set input box prompt information",
+				"defaultValue": "Title"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "disabled",
+				"desc": "Disabled plugin",
+				"defaultValue": "false"
+			},
+			{
+				"name": "sources",
+				"desc": "Set list of source name",
+				"defaultValue": "null"
+			},
+			{
+				"name": "templates",
+				"desc": "Set default templates",
+				"defaultValue": "{}"
+			},
+			{
+				"name": "process",
+				"desc": "The type of object change the type of JSON",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "parse",
+				"desc": "The type of JSON change the type of object",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "title",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "val",
+				"desc": "Set or get value by key"
+			},
+			{
+				"name": "set",
+				"desc": "Set value by key"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "update",
+				"desc": "Update plugin"
+			},
+			{
+				"name": "get",
+				"desc": "Get value by key"
+			}
+		],
+		"method": "val",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-linkPicker"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare plugin range",
+				"value": "{namespace}-container"
+			},
+			{
+				"name": "ACTIVE",
+				"desc": "Announce plugin is actived",
+				"value": "{namespace}-active"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "INIT",
+				"desc": "Declare plugin init",
+				"value": "{namespace}-init"
+			},
+			{
+				"name": "INFO",
+				"desc": "Declare plugin info",
+				"value": "{namespace}-info"
+			},
+			{
+				"name": "PREVIEW",
+				"desc": "Declare plugin preview",
+				"value": "{namespace}-preview"
+			},
+			{
+				"name": "TYPESWITCH",
+				"desc": "Declare plugin types switch",
+				"value": "{namespace}-types-switch"
+			},
+			{
+				"name": "TYPESPANEL",
+				"desc": "Declare plugin types panel",
+				"value": "{namespace}-types-panel"
+			},
+			{
+				"name": "TYPESCONTAINER",
+				"desc": "Declare plugin types container",
+				"value": "{namespace}-types-container"
+			},
+			{
+				"name": "TYPESCOMPONENT",
+				"desc": "Declare plugin types component",
+				"value": "{namespace}-types-component"
+			},
+			{
+				"name": "RADIO",
+				"desc": "Declare plugin type is radio",
+				"value": "{namespace}-radio"
+			},
+			{
+				"name": "RADIOINPUT",
+				"desc": "Declare plugin radio input",
+				"value": "{namespace}-radio-input"
+			},
+			{
+				"name": "LINK",
+				"desc": "Declare plugin link",
+				"value": "{namespace}-link"
+			},
+			{
+				"name": "ACTION",
+				"desc": "Declare plugin action",
+				"value": "{namespace}-action"
+			},
+			{
+				"name": "ACTIONEDIT",
+				"desc": "Declare plugin edit",
+				"value": "{namespace}-action-edit"
+			},
+			{
+				"name": "ACTIONREMOVE",
+				"desc": "Declare plugin action remove",
+				"value": "{namespace}-action-remove"
+			},
+			{
+				"name": "PANEL",
+				"desc": "Declare plugin panel",
+				"value": "{namespace}-panel"
+			},
+			{
+				"name": "PANELACTION",
+				"desc": "Declare plugin panel action",
+				"value": "{namespace}-panel-action"
+			},
+			{
+				"name": "PANELSAVE",
+				"desc": "Declare plugin panel save",
+				"value": "{namespace}-panel-save"
+			},
+			{
+				"name": "PANELCANCEL",
+				"desc": "Declare plugin panel cancel",
+				"value": "{namespace}-panel-cancel"
+			},
+			{
+				"name": "ITEM",
+				"desc": "Declare plugin item",
+				"value": "{namespace}-item"
+			},
+			{
+				"name": "ITEMTITLE",
+				"desc": "Declare plugin item title",
+				"value": "{namespace}-item-title"
+			},
+			{
+				"name": "ITEMBODY",
+				"desc": "Declare plugin item body",
+				"value": "{namespace}-item-body"
+			},
+			{
+				"name": "LINKTITLE",
+				"desc": "Declare plugin link title",
+				"value": "{namespace}-link-title"
+			},
+			{
+				"name": "DROPDOWNPANEL",
+				"desc": "Declare plugin dropdown panel",
+				"value": "{namespace}-dropdown-panel"
+			},
+			{
+				"name": "SHOW",
+				"desc": "Announce plugin is show",
+				"value": "{namespace}-show"
+			},
+			{
+				"name": "FILL",
+				"desc": "Declare plugin fill",
+				"value": "{namespace}-fill"
+			},
+			{
+				"name": "HOVER",
+				"desc": "Announce plugin is hover",
+				"value": "{namespace}-hover"
+			}
+		],
+		"translations": [
+			{
+				"name": "type",
+				"en": "Type",
+				"zh": "类型"
+			},
+			{
+				"name": "contentType",
+				"en": "Content Type",
+				"zh": "内容样式"
+			},
+			{
+				"name": "content",
+				"en": "Content",
+				"zh": "内容"
+			},
+			{
+				"name": "openMode",
+				"en": "Open Mode",
+				"zh": "打开模式"
+			},
+			{
+				"name": "linkTitle",
+				"en": "Link Title",
+				"zh": "链接标题"
+			},
+			{
+				"name": "save",
+				"en": "Save",
+				"zh": "保存"
+			},
+			{
+				"name": "cancel",
+				"en": "Cancel",
+				"zh": "取消"
+			},
+			{
+				"name": "deleteTitle",
+				"en": "Are you sure you want to delete?",
+				"zh": "你确定要删除？"
+			},
+			{
+				"name": "delete",
+				"en": "Delete",
+				"zh": "删除"
+			},
+			{
+				"name": "site content",
+				"en": "site content",
+				"zh": "网站内容",
+				"category": "typeData"
+			},
+			{
+				"name": "site archive",
+				"en": "site archive",
+				"zh": "网站存档",
+				"category": "typeData"
+			},
+			{
+				"name": "external url",
+				"en": "external url",
+				"zh": "外部网址",
+				"category": "typeData"
+			},
+			{
+				"name": "submit form",
+				"en": "submit form",
+				"zh": "提交表单",
+				"category": "typeData"
+			},
+			{
+				"name": "scroll to target",
+				"en": "scroll to target",
+				"zh": "滚动到目标",
+				"category": "typeData"
+			},
+			{
+				"name": "page",
+				"en": "page",
+				"zh": "页面",
+				"category": "contentData"
+			},
+			{
+				"name": "post",
+				"en": "post",
+				"zh": "推送",
+				"category": "contentData"
+			},
+			{
+				"name": "portfolio",
+				"en": "portfolio",
+				"zh": "组合",
+				"category": "contentData"
+			},
+			{
+				"name": "categogry archive",
+				"en": "categogry archive",
+				"zh": "类别档案",
+				"category": "contentData"
+			},
+			{
+				"name": "tag archive",
+				"en": "tag archive",
+				"zh": "标签档案",
+				"category": "contentData"
+			},
+			{
+				"name": "same window",
+				"en": "same window",
+				"zh": "同一窗口",
+				"category": "openModeData"
+			},
+			{
+				"name": "new window",
+				"en": "new window",
+				"zh": "新窗口",
+				"category": "openModeData"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

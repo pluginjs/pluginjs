@@ -73,14 +73,11 @@ Strength.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/strength/dist/strength.css">
-  <script async src="https://unpkg.com/@pluginjs/strength/dist/strength.js"></script>
-</head>
-```
-
-```javascript
-Pj.strength('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/strength/dist/strength.css">
+<script src="https://unpkg.com/@pluginjs/strength/dist/strength.js"></script>
+<script>
+  Pj.strength('.element', options)
+</script>
 ```
 
 ---
@@ -98,9 +95,9 @@ Name | Description | Default
 `"showMeter"` | rendering meter | `true`
 `"showToggle"` | rendering toggle | `true`
 `"usernameField"` | Set plugin usernameField option | ``
-`"templates"` | Set default templates | `{&quot;toggle&quot;:&quot;&lt;span class&#x3D;\&quot;input-group-addon\&quot;&gt;&lt;input type&#x3D;\&quot;checkbox\&quot; class&#x3D;\&quot;{classes.TOGGLE}\&quot; title&#x3D;\&quot;{label}\&quot; /&gt;&lt;/span&gt;&quot;,&quot;meter&quot;:&quot;&lt;div class&#x3D;\&quot;{classes.METER}\&quot;&gt;{score}&lt;/div&gt;&quot;,&quot;score&quot;:&quot;&lt;span class&#x3D;\&quot;label {classes.SCORE}\&quot;&gt;&lt;/span&gt;&quot;,&quot;main&quot;:&quot;&lt;div class&#x3D;\&quot;{classes.CONTAINER}\&quot;&gt;&lt;div class&#x3D;\&quot;input-group\&quot;&gt;{input}{toggle}&lt;/div&gt;{meter}&lt;/div&gt;&quot;}`
-`"scoreLables"` | Set plugin scoreLables option | `{&quot;empty&quot;:&quot;Empty&quot;,&quot;invalid&quot;:&quot;Invalid&quot;,&quot;weak&quot;:&quot;Weak&quot;,&quot;good&quot;:&quot;Good&quot;,&quot;strong&quot;:&quot;Strong&quot;}`
-`"scoreClasses"` | Set plugin scoreClasses option | `{&quot;empty&quot;:&quot;&quot;,&quot;invalid&quot;:&quot;label-danger&quot;,&quot;weak&quot;:&quot;label-warning&quot;,&quot;good&quot;:&quot;label-info&quot;,&quot;strong&quot;:&quot;label-success&quot;}`
+`"templates"` | Set default templates | `{"toggle":"<span class=\"input-group-addon\"><input type=\"checkbox\" class=\"{classes.TOGGLE}\" title=\"{label}\" /></span>","meter":"<div class=\"{classes.METER}\">{score}</div>","score":"<span class=\"label {classes.SCORE}\"></span>","main":"<div class=\"{classes.CONTAINER}\"><div class=\"input-group\">{input}{toggle}</div>{meter}</div>"}`
+`"scoreLables"` | Set plugin scoreLables option | `{"empty":"Empty","invalid":"Invalid","weak":"Weak","good":"Good","strong":"Strong"}`
+`"scoreClasses"` | Set plugin scoreClasses option | `{"empty":"","invalid":"label-danger","weak":"label-warning","good":"label-info","strong":"label-success"}`
 `"emptyStatus"` | Set plugin emptyStatus option | `true`
 `"scoreCallback"` | Set plugin scoreCallback option | `null`
 `"statusCallback"` | Set plugin statusCallback option | `null`
@@ -172,8 +169,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/strength is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/strength project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/strength is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/strength project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

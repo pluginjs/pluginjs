@@ -64,7 +64,6 @@ export const classes = {
   SHARE: '{namespace}-share',
   DOWNLOAD: '{namespace}-download',
   FULLSCREEN: '{namespace}-fullScreen',
-  PLAY: '{namespace}-play',
   CLOSE: '{namespace}-close',
 
   // theme
@@ -72,7 +71,7 @@ export const classes = {
   BLACK: '{namespace}-theme-black'
 }
 
-export const methods = ['value', 'enable', 'disable', 'destroy']
+export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
   theme: null,
@@ -145,9 +144,6 @@ export const defaults = {
     },
     inline() {
       return '<div class="{classes.INLINE} {classes.VERTICALCENTER}">'
-    },
-    inline() {
-      return '<div class="{classes.AJAX} {classes.VERTICALCENTER}">'
     },
     // arrow
     arrow() {

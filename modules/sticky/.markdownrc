@@ -1,0 +1,99 @@
+{
+	"meta": {
+		"moduleName": "sticky",
+		"namespace": "sticky",
+		"Namespace": "Sticky",
+		"options": [
+			{
+				"name": "verticalPosition",
+				"desc": "top or down",
+				"defaultValue": "top"
+			},
+			{
+				"name": "spacing",
+				"desc": "Space when sticky, value must number",
+				"defaultValue": "0"
+			},
+			{
+				"name": "templates",
+				"desc": "Element templates",
+				"defaultValue": "{}"
+			}
+		],
+		"option": "verticalPosition",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "enable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-sticky"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "PARENT",
+				"desc": "Announce element is parent",
+				"value": "{namespace}-parent"
+			},
+			{
+				"name": "STICKY",
+				"desc": "Announce element is sticky",
+				"value": "{namespace}-sticky"
+			},
+			{
+				"name": "STUCK",
+				"desc": "Announce element is stuck",
+				"value": "{namespace}-stuck"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Announce element is wrap",
+				"value": "{namespace}-wrap"
+			},
+			{
+				"name": "DEFAULT",
+				"desc": "Announce element is default",
+				"value": "{namespace}-default"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

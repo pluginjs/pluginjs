@@ -73,14 +73,11 @@ ScrollProgress.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-progress/dist/scroll-progress.css">
-  <script async src="https://unpkg.com/@pluginjs/scroll-progress/dist/scroll-progress.js"></script>
-</head>
-```
-
-```javascript
-Pj.scrollProgress('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-progress/dist/scroll-progress.css">
+<script src="https://unpkg.com/@pluginjs/scroll-progress/dist/scroll-progress.js"></script>
+<script>
+  Pj.scrollProgress('.element', options)
+</script>
 ```
 
 ---
@@ -99,7 +96,7 @@ Name | Description | Default
 `"opacity"` | Define the opacity of Progress bar, value must be between 0 and 1 | `1`
 `"custom"` | Define the scroll element, the false is window, the true is element | `false`
 `"appendTo"` | Define the progress bar appendTo element, value must be an element selector | `body`
-`"position"` | Define the position of Progress bar(top and bottom for horizontal&#x27;s position, left or right for vertical&#x27;s position ) | `top-left`
+`"position"` | Define the position of Progress bar(top and bottom for horizontal's position, left or right for vertical's position ) | `top-left`
 `"templates"` | Template blocks | `{}`
 
 ### Events
@@ -146,8 +143,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/scroll-progress is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/scroll-progress project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/scroll-progress is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/scroll-progress project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

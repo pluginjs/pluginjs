@@ -3,8 +3,10 @@ const fs = require('fs')
 const { execSync } = require('child_process')
 const logger = require('@pluginjs/helper/logger')('scripts/build-scss')
 const path = require('path')
+const requireRc = require('./utils/require-rc-file')
+const { writeFileSync } = require('fs')
 
-function buildScss(ctx) {
+async function buildScss(ctx) {
   if (ctx.moduleName) {
     const moduleName = ctx.scope
       ? `@${ctx.scope}/${ctx.moduleName}`
@@ -16,20 +18,22 @@ function buildScss(ctx) {
   if (!fs.existsSync(path.resolve('./dist'))) {
     fs.mkdirSync(path.resolve('./dist'))
   }
-  const { input, output, ...options } = require(path.resolve('./.sassrc.js'))
-  Array.of()
-    .concat(output)
-    .map(task => {
-      const { file, ...outputOps } = task
-      const { css } = sass.renderSync({
-        file: input,
-        ...options,
-        ...outputOps
-      })
-      logger.success(`Created css(${outputOps.outputStyle}) → ${file}`)
-      return fs.writeFileSync(file, css)
+  const sassrc = await requireRc(path.resolve('./.sassrc.js'))
+  await sassrc.process(config => {
+    const {
+      input,
+      output: { file, ...othersOutputOptions },
+      ...others
+    } = config
+    const { css } = sass.renderSync({
+      file: input,
+      ...others,
+      ...othersOutputOptions
     })
-  return Promise.resolve(ctx)
+    logger.success(`Created css(${othersOutputOptions.outputStyle}) → ${file}`)
+    return writeFileSync(file, css)
+  })
+  return ctx
 }
 
 module.exports = buildScss

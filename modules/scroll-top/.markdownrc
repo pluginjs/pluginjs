@@ -1,0 +1,179 @@
+{
+	"meta": {
+		"moduleName": "scroll-top",
+		"namespace": "scrollTop",
+		"Namespace": "ScrollTop",
+		"options": [
+			{
+				"name": "trigger",
+				"desc": "Set trigger",
+				"defaultValue": "null"
+			},
+			{
+				"name": "target",
+				"desc": "Set target",
+				"defaultValue": "null"
+			},
+			{
+				"name": "distance",
+				"desc": "Set distance",
+				"defaultValue": "200"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duretion",
+				"defaultValue": "1000"
+			},
+			{
+				"name": "easing",
+				"desc": "Set easing",
+				"defaultValue": "linear"
+			},
+			{
+				"name": "animation",
+				"desc": "Set animation",
+				"defaultValue": "fade"
+			},
+			{
+				"name": "animationDuration",
+				"desc": "Set animationDuration",
+				"defaultValue": "500"
+			},
+			{
+				"name": "mobile",
+				"desc": "Set mobile",
+				"defaultValue": "{\"width\":768,\"distance\":100,\"duration\":1000,\"easing\":\"easeInOutElastic\",\"animation\":\"slide\",\"animationDuration\":200}"
+			},
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "default"
+			},
+			{
+				"name": "locale",
+				"desc": "Set locale environment",
+				"defaultValue": "en"
+			},
+			{
+				"name": "localeFallbacks",
+				"desc": "Set plugin is localeFallbacks or not",
+				"defaultValue": "true"
+			},
+			{
+				"name": "throttle",
+				"desc": "Set throttle",
+				"defaultValue": "undefined"
+			}
+		],
+		"option": "trigger",
+		"events": [
+			{
+				"name": "update",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "jump",
+				"desc": "Gets fired when plugin has jump"
+			},
+			{
+				"name": "hide",
+				"desc": "Gets fired when plugin has hide"
+			},
+			{
+				"name": "show",
+				"desc": "Gets fired when plugin has show"
+			}
+		],
+		"event": "update",
+		"Event": "Update",
+		"methods": [
+			{
+				"name": "jump",
+				"desc": "Get value of jump"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "show",
+				"desc": "Show plugin if it is hiden"
+			},
+			{
+				"name": "hide",
+				"desc": "Hide plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "jump",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-scrollTop"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "TRIGGER",
+				"desc": "Declare plugin trigger",
+				"value": "{namespace}"
+			},
+			{
+				"name": "ANIMATION",
+				"desc": "Declare plugin animation",
+				"value": "{namespace}-{animation}"
+			},
+			{
+				"name": "ANIMATING",
+				"desc": "Declare plugin animating",
+				"value": "{namespace}-animating"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Announce plugin is disabled",
+				"value": "{namespace}-disabled"
+			},
+			{
+				"name": "SHOW",
+				"desc": "Announce plugin is show",
+				"value": "{namespace}-show"
+			}
+		],
+		"translations": [
+			{
+				"name": "label",
+				"en": "Scroll To Top",
+				"zh": "置顶"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

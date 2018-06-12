@@ -73,14 +73,11 @@ Modal.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/modal/dist/modal.css">
-  <script async src="https://unpkg.com/@pluginjs/modal/dist/modal.js"></script>
-</head>
-```
-
-```javascript
-Pj.modal('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/modal/dist/modal.css">
+<script src="https://unpkg.com/@pluginjs/modal/dist/modal.js"></script>
+<script>
+  Pj.modal('.element', options)
+</script>
 ```
 
 ---
@@ -104,22 +101,7 @@ Name | Description | Default
 `"close"` | Whether to display close button, true or false | `true`
 `"locale"` | Multilingual settings | `en`
 `"localeFallbacks"` | Multilingual settings | `true`
-`"buttons"` | Whether to display button
-              example
-              buttons: {
-                cancel: {
-                  title: &#x27;cancel&#x27;,
-                  class: &#x27;pj-btn pj-btn-outline&#x27;
-                },
-                active: {
-                  title: &#x27;Share&#x27;,
-                  class: &#x27;pj-btn pj-btn-danger&#x27;,
-                  fn: function() {
-                    // console.log(&#x27;active callback&#x27;)
-                  }
-                },
-              },
-             | `null`
+`"buttons"` | Whether to display button | `null`
 `"overlay"` | Whether to display overlay, true or false | `true`
 `"overlayClosesOnClick"` | Click the background to turn off the modal, true or false | `true`
 `"appendTo"` | where modal will be inserted | `body`
@@ -129,7 +111,7 @@ Name | Description | Default
 `"titleAlignment"` | title alignment, left or center | `left`
 `"defaultButtonClass"` | Default button style | `pj-btn pj-btn-primary`
 `"icon"` | Whether to display icon, If you need to fill in success, info or error | ``
-`"icons"` | Default button style description | `{&quot;success&quot;:[&quot;icon-check-circle&quot;,&quot;#4be1ab&quot;],&quot;info&quot;:[&quot;icon-exclamation-circle&quot;,&quot;#4c93d9&quot;],&quot;error&quot;:[&quot;icon-times-circle&quot;,&quot;#f86b67&quot;]}`
+`"icons"` | Default button style description | `{"success":["icon-check-circle","#4be1ab"],"info":["icon-exclamation-circle","#4c93d9"],"error":["icon-times-circle","#f86b67"]}`
 `"iconColor"` | Modify the icon color | ``
 `"iconClass"` | Add your icon | ``
 
@@ -195,8 +177,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/modal is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/modal project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/modal is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/modal project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

@@ -1,0 +1,107 @@
+{
+	"meta": {
+		"moduleName": "dynamic-number",
+		"namespace": "dynamicNumber",
+		"Namespace": "DynamicNumber",
+		"options": [
+			{
+				"name": "from",
+				"desc": "Set smallest number",
+				"defaultValue": "0"
+			},
+			{
+				"name": "to",
+				"desc": "Set the largest number",
+				"defaultValue": "100"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duration",
+				"defaultValue": "1000"
+			},
+			{
+				"name": "decimals",
+				"desc": "Set decimals value",
+				"defaultValue": "0"
+			},
+			{
+				"name": "format",
+				"desc": "Set format callback",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "percentage",
+				"desc": "Set percentage config",
+				"defaultValue": "{\"decimals\":0}"
+			},
+			{
+				"name": "currency",
+				"desc": "Set currency config",
+				"defaultValue": "{\"indicator\":\"$\",\"size\":3,\"decimals\":\"2\",\"separator\":\",\",\"decimalsPoint\":\".\"}"
+			},
+			{
+				"name": "group",
+				"desc": "Set group config",
+				"defaultValue": "{\"size\":3,\"decimals\":\"2\",\"separator\":\",\",\"decimalsPoint\":\".\"}"
+			}
+		],
+		"option": "from",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "start",
+				"desc": "Gets fired when plugin is started"
+			},
+			{
+				"name": "stop",
+				"desc": "Gets fired when plugin is stop"
+			},
+			{
+				"name": "finish",
+				"desc": "Gets fired when plugin is finish"
+			},
+			{
+				"name": "reset",
+				"desc": "Gets fired when plugin has be reset"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "start",
+				"desc": "Start plugin"
+			},
+			{
+				"name": "stop",
+				"desc": "Stop plugin"
+			},
+			{
+				"name": "finish",
+				"desc": "Finish plugin"
+			},
+			{
+				"name": "reset",
+				"desc": "Reset plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "go",
+				"desc": "Move the number to the specified value"
+			}
+		],
+		"method": "start"
+	},
+	"output": "./README.md",
+	"template": "README"
+}

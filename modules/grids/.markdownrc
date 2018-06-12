@@ -1,0 +1,290 @@
+{
+	"meta": {
+		"moduleName": "grids",
+		"namespace": "grids",
+		"Namespace": "Grids",
+		"options": [
+			{
+				"name": "theme",
+				"desc": "Set plugin theme option",
+				"defaultValue": "null"
+			},
+			{
+				"name": "wrapSelector",
+				"desc": "Set wrapSelector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "itemSelector",
+				"desc": "Set itemSelector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "model",
+				"desc": "Set model",
+				"defaultValue": "grid"
+			},
+			{
+				"name": "maxColumn",
+				"desc": "Set the max column number",
+				"defaultValue": "5"
+			},
+			{
+				"name": "gutter",
+				"desc": "Set gutter",
+				"defaultValue": "0"
+			},
+			{
+				"name": "minHeight",
+				"desc": "Set minHeight",
+				"defaultValue": "150"
+			},
+			{
+				"name": "minWidth",
+				"desc": "Set minWidth",
+				"defaultValue": "200"
+			},
+			{
+				"name": "delay",
+				"desc": "Set delay",
+				"defaultValue": "60"
+			},
+			{
+				"name": "duration",
+				"desc": "Set duretion",
+				"defaultValue": "800"
+			},
+			{
+				"name": "direction",
+				"desc": "Set direction",
+				"defaultValue": "topLeft"
+			},
+			{
+				"name": "filters",
+				"desc": "Set filters",
+				"defaultValue": "[]"
+			},
+			{
+				"name": "filterbar",
+				"desc": "Set filterbar",
+				"defaultValue": "{\"filters\":false,\"sort\":false,\"reverse\":false}"
+			},
+			{
+				"name": "sortby",
+				"desc": "Set sortby",
+				"defaultValue": ""
+			},
+			{
+				"name": "sortDirection",
+				"desc": "Set sortDirection",
+				"defaultValue": "max"
+			},
+			{
+				"name": "carousel",
+				"desc": "Set carousel",
+				"defaultValue": "false"
+			},
+			{
+				"name": "animate",
+				"desc": "Set animate",
+				"defaultValue": "fadeInUp"
+			},
+			{
+				"name": "effects",
+				"desc": "Set effects",
+				"defaultValue": "{}"
+			},
+			{
+				"name": "nestedConfig",
+				"desc": "Set nestedConfig",
+				"defaultValue": "{\"width\":100,\"height\":100}"
+			},
+			{
+				"name": "sort",
+				"desc": "Set sort",
+				"defaultValue": "function() {...}"
+			},
+			{
+				"name": "parseTagsStr",
+				"desc": "Set parseTagsStr",
+				"defaultValue": "function() {...}"
+			}
+		],
+		"option": "theme",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin has ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin has enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin has disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin has destroy"
+			},
+			{
+				"name": "changed",
+				"desc": "Gets fired when plugin has changed"
+			},
+			{
+				"name": "resized",
+				"desc": "Gets fired when plugin has resized"
+			},
+			{
+				"name": "filter",
+				"desc": "Gets fired when plugin has filter"
+			},
+			{
+				"name": "sort",
+				"desc": "Gets fired when plugin has sort"
+			},
+			{
+				"name": "reverse",
+				"desc": "Gets fired when plugin has reverse"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "value",
+				"desc": "Get value"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			},
+			{
+				"name": "filter",
+				"desc": "Make plugin filter"
+			},
+			{
+				"name": "sort",
+				"desc": "Make plugin sort"
+			},
+			{
+				"name": "reverse",
+				"desc": "Make plugin reverse"
+			}
+		],
+		"method": "value",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "as-grids"
+			},
+			{
+				"name": "THEME",
+				"desc": "Declare plugin theme",
+				"value": "{namespace}--{theme}"
+			},
+			{
+				"name": "WRAP",
+				"desc": "Declare plugin wrap",
+				"value": "{namespace}-wrap"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare plugin range",
+				"value": "{namespace}-container"
+			},
+			{
+				"name": "FILTERBAR",
+				"desc": "Declare plugin filterbar",
+				"value": "{namespace}-filterbar"
+			},
+			{
+				"name": "FILTERS",
+				"desc": "Declare plugin filterbar filters",
+				"value": "{namespace}-filterbar-filters"
+			},
+			{
+				"name": "SORT",
+				"desc": "Declare plugin filterbar sort",
+				"value": "{namespace}-filterbar-sort"
+			},
+			{
+				"name": "REVERSE",
+				"desc": "Declare plugin filterbar reverse",
+				"value": "{namespace}-filterbar-reverse"
+			},
+			{
+				"name": "REVERSEMIN",
+				"desc": "Declare plugin filterbar reverse min",
+				"value": "{namespace}-filterbar-reverse-min"
+			},
+			{
+				"name": "CHUNK",
+				"desc": "Declare plugin chunk",
+				"value": "{namespace}-chunk"
+			},
+			{
+				"name": "HIDE",
+				"desc": "Declare plugin hide",
+				"value": "{namespace}-hide"
+			},
+			{
+				"name": "GRIDMODEL",
+				"desc": "Declare plugin grid model",
+				"value": "{namespace}-grid-model"
+			},
+			{
+				"name": "MASONRYMODEL",
+				"desc": "Declare plugin masonry model",
+				"value": "{namespace}-masonry-model"
+			},
+			{
+				"name": "JUSTIFIEDMODEL",
+				"desc": "Declare plugin justified model",
+				"value": "{namespace}-justified-model"
+			},
+			{
+				"name": "NESTEDMODEL",
+				"desc": "Declare plugin nested model",
+				"value": "{namespace}-nested-model"
+			},
+			{
+				"name": "CAROUSEL",
+				"desc": "Declare plugin carousel",
+				"value": "{namespace}-carousel"
+			},
+			{
+				"name": "CAROUSELPREV",
+				"desc": "Declare plugin carousel prev",
+				"value": "{namespace}-carousel-prev"
+			},
+			{
+				"name": "CAROUSELNEXT",
+				"desc": "Declare plugin carousel next",
+				"value": "{namespace}-carousel-next"
+			},
+			{
+				"name": "CAROUSELDOTS",
+				"desc": "Declare plugin carousel dots",
+				"value": "{namespace}-carousel-dots"
+			},
+			{
+				"name": "DRAG",
+				"desc": "Declare plugin drag",
+				"value": "{namespace}-drag"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

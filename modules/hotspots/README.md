@@ -73,14 +73,11 @@ Hotspots.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.css">
-  <script async src="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.js"></script>
-</head>
-```
-
-```javascript
-Pj.hotspots('.element', options);
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.css">
+<script src="https://unpkg.com/@pluginjs/hotspots/dist/hotspots.js"></script>
+<script>
+  Pj.hotspots('.element', options)
+</script>
 ```
 
 ---
@@ -96,7 +93,7 @@ Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
 `"data"` | Set data | `[]`
-`"popover"` | Set popover | `{&quot;theme&quot;:&quot;hotspot&quot;,&quot;placement&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;hover focus&quot;,&quot;hideOutClick&quot;:true,&quot;delay&quot;:0,&quot;close&quot;:false,&quot;html&quot;:true}`
+`"popover"` | Set popover | `{"theme":"hotspot","placement":"top","trigger":"hover focus","hideOutClick":true,"delay":0,"close":false,"html":true}`
 `"type"` | Set type | `dot`
 `"icon"` | Set default icon | ``
 `"templates"` | Set default templates | `{}`
@@ -162,8 +159,12 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/hotspots is Licensed under [the GPL-v3 license](LICENSE).If you want to use @pluginjs/hotspots project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. For purchase an Commercial License, contact us purchase@thecreation.co.
+@pluginjs/hotspots is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs/hotspots project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 Creation Studio Limited.
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).
