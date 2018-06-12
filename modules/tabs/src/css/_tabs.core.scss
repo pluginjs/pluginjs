@@ -5,49 +5,60 @@
 $tabs: "pj-tabs" !default;
 $tabs-dropdown-zindex: $zindex-dropdown !default;
 $tabs-active-color: $color-primary !default;
-$tabs-vertical-min-width: 120px !default;
+$tabs-duration: 0.5s !default;
 
 // Core
 // =====================
 .#{$tabs} {
-  display: flex;
-  flex-direction: column;
-
   &-nav {
+    position: relative;
     display: flex;
     padding: 0;
     margin: 0;
     list-style: none;
 
-    > li {
+    li {
       cursor: pointer;
+    }
 
-      &.#{$tabs}-active {
-        color: $tabs-active-color;
-      }
+    .#{$tabs}-active {
+      z-index: 1;
+      color: $tabs-active-color;
     }
   }
 
   &-content {
-    width: 100%;
+    position: relative;
+    z-index: 0;
     overflow: hidden;
-    transition: all 0.5s ease-in-out;
+    transition: all $tabs-duration ease-in-out;
 
     > div {
       display: none;
-      width: 100%;
+    }
 
-      &.#{$tabs}-active {
-        display: block;
-      }
+    .#{$tabs}-active {
+      display: block;
     }
   }
 
-  //Position
+  &[class*="-bottom"] {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
   &-topright,
   &-bottomright {
     .#{$tabs}-nav {
       justify-content: flex-end;
+    }
+  }
+
+  &-topjustify,
+  &-bottomjustify {
+    .#{$tabs}-nav li {
+      flex: 1;
+      text-align: center;
     }
   }
 
@@ -58,56 +69,26 @@ $tabs-vertical-min-width: 120px !default;
     }
   }
 
-  &-topjustify,
-  &-bottomjustify {
+  &-left,
+  &-right {
+    display: flex;
+
     .#{$tabs}-nav {
-      text-align: center;
+      flex-direction: column;
+    }
 
-      > li {
-        flex: 1;
-      }
+    .#{$tabs}-content {
+      flex: 3;
     }
   }
 
-  &-bottomleft,
-  &-bottomright,
-  &-bottomcenter,
-  &-bottomjustify {
-    flex-direction: column-reverse;
+  &-right {
+    flex-direction: row-reverse;
   }
+}
 
-  &.#{$tabs}-vertical {
-    flex-direction: row;
-
-    &.#{$tabs} {
-      &-right {
-        flex-direction: row-reverse;
-
-        .#{$tabs}-nav {
-          text-align: right;
-        }
-      }
-    }
-
-    .#{$tabs} {
-      &-nav {
-        flex: none;
-        flex-direction: column;
-
-        > li {
-          min-width: $tabs-vertical-min-width;
-        }
-      }
-
-      &-content {
-        > div {
-          // min-height: 100%;
-        }
-      }
-    }
-  }
-
-  //Responsive Scroll
+//responsive
+.#{$tabs}.#{$tabs} {
   &-scroll {
     .#{$tabs} {
       &-nav {
@@ -120,34 +101,49 @@ $tabs-vertical-min-width: 120px !default;
     }
   }
 
-  //Responsive Drop
   &-drop {
     position: relative;
+    display: flex;
+    flex-direction: column;
 
-    .#{$tabs} {
-      &-nav {
-        position: absolute;
-        z-index: $tabs-dropdown-zindex;
-        display: none;
-        width: 100%;
-        background-color: #fff;
+    .#{$tabs}-nav-label {
+      display: block;
+      height: 1rem;
+      line-height: 1;
+      text-decoration: none;
 
-        > li {
-          display: block;
-        }
+      .icon {
+        font-size: inherit;
+      }
+    }
 
-        &-label {
-          display: block;
-          text-decoration: none;
+    .#{$tabs}-nav {
+      position: absolute;
+      top: 1rem;
+      right: auto;
+      bottom: auto;
+      left: 0;
+      z-index: 1;
+      display: none;
+      width: 100%;
+      background-color: #fff;
+
+      li {
+        display: block;
+
+        .icon {
+          font-size: inherit;
         }
       }
     }
 
+    .#{$tabs}-content {
+      order: 2;
+    }
+
     &-open {
-      .#{$tabs} {
-        &-nav {
-          display: block;
-        }
+      .#{$tabs}-nav {
+        display: block;
       }
     }
   }
