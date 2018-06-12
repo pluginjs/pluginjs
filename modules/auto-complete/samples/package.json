@@ -17,6 +17,7 @@
 		"@pluginjs/auto-complete": "^0.2.20",
 		"@pluginjs/dom": "^0.0.15",
 		"css": "^2.2.3",
+		"font-awesome": "^4.7.0",
 		"poper": "^0.1.1"
 	},
 	"license": "UNLICENSED"

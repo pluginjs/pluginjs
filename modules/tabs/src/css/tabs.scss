@@ -1,161 +1,181 @@
 @import "@pluginjs/styles/variables.scss";
 @import "tabs.core";
+
 // Vars
 // =====================
 $tabs: "pj-tabs" !default;
-$tabs-font-size: $font-size-base !default;
-$tavs-line-height: $line-height-sm !default;
-$tabs-nav-color: $text-color !default;
-$tabs-nav-hover-color: $gray-dark !default;
-$tabs-nav-active-color: $gray-darker !default;
-$tabs-nav-bgColor: transparent !default;
-$tabs-nav-active-bgColor: $color-white !default;
-$tabs-content-color: $text-color !default;
-$tabs-content-hover-color: $gray-dark !default;
-$tabs-content-active-color: $gray-darker !default;
-$tabs-content-bgColor: $color-white !default;
-$tabs-drop-label-color: $text-color !default;
-$tabs-drop-label-bgcolor: $color-white !default;
-$tabs-drop-menu-color: $text-color !default;
-$tabs-drop-menu-bgcolor: $color-white !default;
-$tabs-drop-menu-active-color: $color-white !default;
-$tabs-drop-menu-active-bgcolor: $gray-lightest !default;
-$tabs-drop-menu-space-x: 2px !default;
-$tabs-drop-menu-space-y: 4px !default;
-$space-x: 15px !default;
-$space-y: 10px !default;
+$tabs-font-size-base: $font-size-base !default;
+
+$tabs-bg-color: $color-white !default;
+$tabs-border-color: $border-color !default;
+
+$tabs-gutter-width: 1px !default;
+
+$tabs-label-padding-x: 1.25 * $tabs-font-size-base !default;
+$tabs-label-padding-y: $tabs-font-size-base !default;
+
+$tabs-label-color: $gray-light !default;
+$tabs-label-hover-color: $gray-dark !default;
+
+$tabs-nav-cover-height: 2 * $tabs-font-size-base !default;
+$tabs-nav-shadow: 0 0 $tabs-nav-cover-height 0 rgba($color-black, 0.05) !default;
+
+$tabs-content-padding-x: 1.25 * $tabs-font-size-base !default;
+$tabs-content-padding-y: 1.875 * $tabs-font-size-base !default;
+
+$tabs-content-shadow: 0 5px 35px 0 rgba($color-black, 0.05) !default;
+
+$tabs-drop-nav-bg: $color-white !default;
+$tabs-drop-content-bg: transparent !default;
+
+$tabs-drop-nav-item-color: $gray-light !default;
+$tabs-drop-nav-item-hover-color: $gray-dark !default;
+$tabs-drop-nav-item-active-color: $color-white !default;
+$tabs-drop-nav-item-active-bg: $color-primary !default;
+
 // default
 // =====================
-// line-height: $tavs-line-height;
-.#{$tabs} {
-  &-nav {
-    z-index: 1;
-    font-size: $tabs-font-size;
-    transform: translateY(1px);
-    > li {
-      position: relative;
-      padding: $space-y $space-x;
-      color: $tabs-nav-color;
-      background-color: $tabs-nav-bgColor;
-      border-radius: $border-radius-base $border-radius-base 0 0;
-      &:hover {
-        color: $tabs-nav-hover-color;
-      }
-      &::after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        display: block;
-        width: 100%;
-        height: calc(100% - 7px);
-        content: "";
-        box-shadow: $box-shadow-base;
-        opacity: 0;
-      }
-      &.#{$tabs}-active {
-        color: $tabs-nav-active-color;
-        background-color: $tabs-nav-active-bgColor;
-        &::after {
-          opacity: 1;
-        }
-      }
+.#{$tabs}-nav {
+  li {
+    position: relative;
+    padding: $tabs-label-padding-y $tabs-label-padding-x;
+    color: $tabs-label-color;
+    background-color: $tabs-bg-color;
+
+    &::after {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: $tabs-nav-cover-height;
+      content: " ";
+      background: $tabs-bg-color;
+    }
+
+    &:hover {
+      color: $tabs-label-hover-color;
     }
   }
-  &-content {
-    font-size: $font-size-base;
-    // padding: $space-y $space-x;
-    background-color: $tabs-content-bgColor;
-    border-radius: $border-radius-base;
-    box-shadow: $box-shadow-base;
 
-    > div {
-      padding: $space-y $space-x;
-      background-color: $tabs-content-bgColor;
-      // border-radius: $border-radius-base;
-      // box-shadow: $box-shadow-base;
-    }
+  li + li {
+    margin-left: $tabs-gutter-width;
+  }
 
-    &.#{$tabs}-vertical {
-      > div {
-        // min-height: 100%;
-      }
+  .#{$tabs}-active {
+    color: $tabs-label-hover-color;
+    box-shadow: $tabs-nav-shadow;
+  }
+}
+
+.#{$tabs}-content {
+  text-align: left;
+  background-color: $tabs-bg-color;
+  box-shadow: $tabs-content-shadow;
+
+  > div {
+    padding: $tabs-content-padding-y $tabs-content-padding-x;
+  }
+}
+
+//position
+[class*="-bottom"] {
+  .#{$tabs}-nav {
+    li::after {
+      top: auto;
+      bottom: 100%;
     }
   }
 }
 
-&.#{$tabs} {
-  &-vertical {
-    &.#{$tabs} {
-      &-left {
-        .#{$tabs}-nav {
-          transform: translate(1px, 0);
-          > li {
-            border-radius: $border-radius-base 0 0 $border-radius-base; // &::after {
-            //   left: 0;
-            //   width: calc(100% - 7px);
-            //   height: 100%;
-            // }
-          }
-          > li::after {
-            left: 0;
-            width: calc(100% - 7px);
-            height: 100%;
-          }
-        }
+.#{$tabs}-left,
+.#{$tabs}-right {
+  .#{$tabs}-nav {
+    li::after {
+      width: $tabs-nav-cover-height;
+      height: 100%;
+    }
+
+    li + li {
+      margin-top: $tabs-gutter-width;
+      margin-left: 0;
+    }
+  }
+}
+
+.#{$tabs}-left {
+  .#{$tabs}-nav {
+    li::after {
+      top: 0;
+      left: 100%;
+    }
+  }
+}
+
+.#{$tabs}-right {
+  .#{$tabs}-nav {
+    li::after {
+      top: 0;
+      right: 100%;
+      left: auto;
+    }
+  }
+}
+
+//responsive
+.#{$tabs}.#{$tabs}-drop {
+  .#{$tabs}-nav-label {
+    padding: $tabs-label-padding-y $tabs-label-padding-x;
+    color: inherit;
+    background-color: $tabs-drop-nav-bg;
+    border: 1px solid $tabs-border-color;
+  }
+
+  .#{$tabs}-nav {
+    top: $tabs-label-padding-y * 2 + $tabs-font-size-base;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    background-color: $tabs-drop-nav-bg;
+    border: 1px solid $tabs-border-color;
+
+    li {
+      margin: 0;
+      color: $tabs-drop-nav-item-color;
+      text-align: initial;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+
+      &:hover {
+        color: $tabs-drop-nav-item-hover-color;
       }
-      &-right {
-        .#{$tabs}-nav {
-          transform: translate(-1px, 0);
-          > li {
-            border-radius: 0 $border-radius-base $border-radius-base 0; // &::after {
-            //   right: 0;
-            //   left: auto;
-            //   width: calc(100% - 7px);
-            //   height: 100%;
-            // }
-          }
-          > li::after {
-            right: 0;
-            left: auto;
-            width: calc(100% - 7px);
-            height: 100%;
-          }
-        }
+
+      &:active,
+      &.#{$tabs}-active {
+        color: $tabs-drop-nav-item-active-color;
+        background-color: $tabs-drop-nav-item-active-bg;
+      }
+
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      + li {
+        border-top: 1px solid $tabs-border-color;
       }
     }
-  } //Responsive Drop
-  &-drop {
-    .#{$tabs} {
-      &-nav {
-        padding: $tabs-drop-menu-space-y $tabs-drop-menu-space-x;
-        color: $tabs-drop-menu-color;
-        background-color: $tabs-drop-menu-bgcolor;
-        border-top-width: 0;
-        border-radius: $border-radius-base;
-        transform: translateY(53px);
-        > li {
-          border-radius: 0 0 $border-radius-base $border-radius-base;
-          &::after {
-            opacity: 0 !important;
-          }
-          &:hover {
-            color: inherit;
-            background-color: $tabs-drop-menu-active-bgcolor;
-          }
-          &.#{$tabs}-active {
-            color: $tabs-drop-menu-active-color;
-            background-color: $color-primary;
-          }
-        }
-        &-label {
-          padding: $space-x $space-y;
-          color: $tabs-drop-label-color;
-          background-color: $tabs-drop-label-bgcolor;
-          border-bottom: $border-width solid rgba(33, 43, 59, 0.1);
-          border-radius: $border-radius-base $border-radius-base 0 0;
-        }
-      }
+  }
+
+  .#{$tabs}-content {
+    margin: 0;
+    background-color: $tabs-drop-content-bg;
+    border: none;
+    box-shadow: none;
+
+    > div {
+      border: none;
+      box-shadow: none;
     }
   }
 }
