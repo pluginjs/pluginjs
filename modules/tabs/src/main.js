@@ -81,7 +81,6 @@ class Tabs extends Component {
   initPointer() {
     if (this.options.navSelector) {
       this.nav = children(this.element)[0]
-      // this.nav = this.$element.find(this.options.navSelector, this.element)
     } else {
       this.nav = children(this.element)[0]
     }
@@ -171,7 +170,7 @@ class Tabs extends Component {
   }
 
   resize() {
-    // this.content.height(this.getCurrentPane().outerHeight());
+    this.resetHeight()
     this.RESPONSIVE.resize()
     this.trigger(EVENTS.RESIZE)
   }
@@ -224,14 +223,20 @@ class Tabs extends Component {
     removeEvent(this.eventName(), Pj.doc)
   }
 
-  active(index, update) {
-    if (index === -1) {
-      return
+  resetHeight() {
+    this.previousHeight = this.panes[this.current].clientHeight
+
+    if (this.vertical) {
+      this.previousHeight = Math.max(this.previousHeight, this.panelMinHeight)
     }
 
-    // if (!important && this.current === index) {
-    //   return
-    // }
+    this.EFFECT.active()
+  }
+
+  active(index, update = true) {
+    if (index === -1 || (update && this.current === index)) {
+      return
+    }
 
     this.previousHeight = this.panes[this.current].clientHeight
 
@@ -260,9 +265,6 @@ class Tabs extends Component {
       if (this.options.responsiveMode === 'drop') {
         this.RESPONSIVE.dropActive(index)
       }
-      // else if (this.options.responsiveMode === 'scroll') {
-
-      // }
     }
 
     if (update !== false) {
@@ -280,8 +282,6 @@ class Tabs extends Component {
   ajaxLoad(index) {
     this.showLoading()
 
-    // let dtd
-
     if (!(this.options.cached === true && this.ajax[index].cached === true)) {
       axios(this.ajax[index].href)
         .then(response => {
@@ -296,22 +296,6 @@ class Tabs extends Component {
         .then(() => {
           this.trigger(EVENTS.LOADED, index)
         })
-      // dtd = $.ajax({ url: this.ajax[index].href })
-
-      // dtd.done(data => {
-      //   this.ajax[index].cached = true
-      //   this.hideLoading()
-      //   this.panes[index].html(data)
-      // })
-
-      // dtd.fail(() => {
-      //   this.hideLoading()
-      //   this.panes[index].html('Not Found')
-      // })
-
-      // dtd.always(() => {
-      //   this.trigger(EVENTS.LOADED, index)
-      // })
     }
   }
 
@@ -419,7 +403,6 @@ class Tabs extends Component {
     newTab.style = ''
     newTab.innerHTML = label
 
-    // index = index < 0 ? 0 : index > this.size + 1 ? this.size + 1 : index;
     index = index < 0 ? 0 : index
     index = index > this.size + 1 ? this.size + 1 : index
 
@@ -474,10 +457,8 @@ class Tabs extends Component {
         index = 0
       }
 
-      // this.active(index, true, true)
       this.active(index, true)
     }
-    // this.EFFECT.active()
 
     return this
   }

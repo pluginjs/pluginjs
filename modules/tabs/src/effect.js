@@ -87,18 +87,6 @@ class Effect {
       }
     }
     anime(config)
-    // $previous[0].animate(keyframes[this.instance.effects.out], {
-    //   duration: duration / 2,
-    //   fill: 'both'
-    // }).onfinish = () => {
-    //   $previous.removeClass(this.instance.classes.ACTIVE)
-    //   $current.addClass(this.instance.classes.ACTIVE)
-    //   this.active()
-    //   $current[0].animate(keyframes[this.instance.effects.in], {
-    //     duration: duration / 2,
-    //     fill: 'both'
-    //   })
-    // }
     this.instance.isAnimating = false
   }
 
@@ -115,12 +103,6 @@ class Effect {
       duration: this.instance.options.duration / 2,
       easing: 'easeOutExpo'
     })
-    // this.instance.$content[0].animate({
-    //   height:[`${this.instance.previousHeight  }px`, `${height  }px`]
-    // }, {
-    //   duration: this.instance.options.duration / 2,
-    //   fill: 'none'
-    // })
   }
 }
 export default Effect

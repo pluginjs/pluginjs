@@ -17,7 +17,7 @@ $tabs-label-padding-y: $tabs-font-size-base !default;
 $tabs-label-color: $gray-light !default;
 $tabs-label-hover-color: $gray-dark !default;
 
-$tabs-nav-cover-height: 2 * $tabs-font-size-base !default;
+$tabs-nav-cover-height: $tabs-font-size-base !default;
 $tabs-nav-shadow: 0 0 $tabs-nav-cover-height 0 rgba($color-black, 0.05) !default;
 
 $tabs-content-padding-x: 1.25 * $tabs-font-size-base !default;
