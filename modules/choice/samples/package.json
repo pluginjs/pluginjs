@@ -15,7 +15,8 @@
 	},
 	"dependencies": {
 		"@pluginjs/choice": "^0.2.22",
-		"@pluginjs/dom": "^0.0.15"
+		"@pluginjs/dom": "^0.0.15",
+		"font-awesome": "^4.7.0"
 	},
 	"license": "UNLICENSED"
 }
