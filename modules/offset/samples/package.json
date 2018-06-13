@@ -8,10 +8,14 @@
 		"build": "parcel build index.html"
 	},
 	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-plugin-transform-html-import-to-string": "^0.0.1",
+		"babel-preset-env": "1.7.0",
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"@pluginjs/offset": "^0.2.20"
+		"@pluginjs/offset": "^0.2.20",
+		"@pluginjs/dom": "^0.0.15"
 	},
 	"license": "UNLICENSED"
 }
