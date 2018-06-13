@@ -8,10 +8,15 @@
 		"build": "parcel build index.html"
 	},
 	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-plugin-transform-html-import-to-string": "^0.0.1",
+		"babel-preset-env": "1.7.0",
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"@pluginjs/icon-picker": "^0.2.19"
+		"@pluginjs/icon-picker": "^0.2.19",
+		"@pluginjs/dom": "^0.0.15",
+		"font-awesome": "^4.7.0"
 	},
 	"license": "UNLICENSED"
 }
