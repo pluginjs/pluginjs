@@ -1,3 +1,14 @@
-import Range from '@pluginjs/range'
-
-console.log(Range)
+// import icons and primary.css
+import '@pluginjs/icons/dist/plugin-icons.css'
+// import range css
+import '@pluginjs/range/src/css/range.scss'
+import '@pluginjs/dropdown/src/css/dropdown.scss'
+import '@pluginjs/units/src/css/units.scss'
+// import sections
+import './sections/default'
+import './sections/initvalue'
+import './sections/range'
+import './sections/attribute'
+import './sections/keyboard'
+import './sections/units'
+import './sections/units-range'
