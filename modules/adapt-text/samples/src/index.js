@@ -1,3 +1,5 @@
-import AdaptText from '@pluginjs/adapt-text'
-
-console.log(AdaptText)
+// import sections
+import './sections/inline'
+import './sections/inline-block'
+import './sections/min-max'
+import './sections/scrollable'

@@ -7,7 +7,8 @@
 		"@pluginjs/events": "^0.0.5",
 		"@pluginjs/pluginjs": "^0.2.25",
 		"@pluginjs/styled": "^0.0.3",
-		"@pluginjs/utils": "^0.2.20"
+		"@pluginjs/utils": "^0.2.20",
+		"animejs": "*"
 	},
 	"version": "0.2.18",
 	"description": "A flexible modern adapt-text js plugin.",

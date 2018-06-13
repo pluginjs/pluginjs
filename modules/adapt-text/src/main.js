@@ -11,6 +11,7 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
+import anime from 'animejs'
 
 let viewportWidth = Pj.windowWidth
 
@@ -80,25 +81,52 @@ class AdaptText extends Component {
           Math.sqrt(distance / this.width) * this.options.scrollSpeed
 
         setStyle({ cursor: 'e-resize' }, this.element)
-        return this.$element
-          .stop()
-          .animate({ 'text-indent': -distance }, scrollSpeed, () =>
-            this.$element.css({
-              cursor: 'text',
-              'text-overflow': ''
-            })
-          )
+        anime.remove(this.element)
+        anime({
+          targets: this.element,
+          textIndent: -distance,
+          duration: scrollSpeed,
+          complete: () =>
+            setStyle(
+              {
+                cursor: 'text',
+                textOverflow: ''
+              },
+              this.element
+            )
+        })
+        // this.$element
+        //   .stop()
+        //   .animate({ 'text-indent': -distance }, scrollSpeed, () =>
+        //     this.$element.css({
+        //       cursor: 'text',
+        //       'text-overflow': ''
+        //     })
+        //   )
       }
     }
     const mouseleaveHandle = () => {
       if (this.is('disabled')) {
         return
       }
-      this.$element
-        .stop()
-        .animate({ 'text-indent': 0 }, this.options.scrollResetSpeed, () =>
-          setStyle({ textOverflow: 'ellipsis' }, this.element)
-        )
+      anime.remove(this.element)
+      anime({
+        targets: this.element,
+        textIndent: 0,
+        duration: this.options.scrollResetSpeed,
+        complete: () =>
+          setStyle(
+            {
+              textOverflow: 'ellipsis'
+            },
+            this.element
+          )
+      })
+      // this.$element
+      //   .stop()
+      //   .animate({ 'text-indent': 0 }, this.options.scrollResetSpeed, () =>
+      //     setStyle({ textOverflow: 'ellipsis' }, this.element)
+      //   )
     }
     compose(
       bindEvent({
