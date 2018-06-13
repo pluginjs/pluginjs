@@ -1,3 +1,19 @@
-import PatternPicker from '@pluginjs/pattern-picker'
-
-console.log(PatternPicker)
+// import icons and primary.css
+import '@pluginjs/icons/dist/plugin-icons.css'
+// import pattern-picker css
+import '@pluginjs/pattern-picker/src/css/pattern-picker.scss'
+import '@pluginjs/dropdown/src/css/dropdown.scss'
+import '@pluginjs/range/src/css/range.scss'
+import '@pluginjs/units/src/css/units.scss'
+import '@pluginjs/tooltip/src/css/tooltip.scss'
+import '@pluginjs/popover/src/css/popover.scss'
+import '@pluginjs/pop-dialog/src/css/pop-dialog.scss'
+import '@pluginjs/scrollable/src/css/scrollable.scss'
+import '@pluginjs/color-picker/src/css/color-picker.scss'
+import '@pluginjs/modal/src/css/modal.scss'
+import '@pluginjs/edit-panel/src/css/edit-panel.scss'
+import 'font-awesome/css/font-awesome.css'
+// import sections
+import './sections/default'
+import './sections/initvalue'
+import './sections/locale'

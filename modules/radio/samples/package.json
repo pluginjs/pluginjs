@@ -11,7 +11,8 @@
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"@pluginjs/radio": "^0.2.21"
+		"@pluginjs/radio": "^0.2.21",
+		"font-awesome": "^4.7.0"
 	},
 	"license": "UNLICENSED"
 }
