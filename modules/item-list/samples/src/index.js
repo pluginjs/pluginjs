@@ -1,3 +1,10 @@
-import ItemList from '@pluginjs/item-list'
-
-console.log(ItemList)
+import '@pluginjs/tooltip/src/css/tooltip.scss'
+import '@pluginjs/popover/src/css/popover.scss'
+import '@pluginjs/pop-dialog/src/css/pop-dialog.scss'
+import '@pluginjs/list/src/css/list.scss'
+import '@pluginjs/item-list/src/css/item-list.scss'
+// import 'css/font-awesome.min.css'
+// import sections
+import './sections/default'
+import './sections/simple'
+import './sections/locale'
