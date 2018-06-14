@@ -54,6 +54,7 @@ export const attrVerify = (attrName, value, el) => {
         }
         return true
       }
+      return false
     },
     tagName: element => element.nodeName.toLowerCase() === value,
     class: element => element.classList.contains(value),
@@ -69,6 +70,7 @@ export const attrVerify = (attrName, value, el) => {
         }
         return true
       }
+      return false
     }
   }
   return Obj[attrName] && Obj[attrName](el)
@@ -81,7 +83,7 @@ export const childQuery = ({ type, value, level = 3 }, el) => {
 
   const childNodeCompare = (element, l) => {
     if (hasChild(element)) {
-      Array.from(element.children).map(c => {
+      Array.from(element.children).forEach(c => {
         if (attrVerify(type, value, c)) {
           res.push(c)
         }
@@ -99,8 +101,8 @@ export const childQuery = ({ type, value, level = 3 }, el) => {
 }
 
 export const Each = (obj, callback) => {
-  let i = 0,
-    length
+  let i = 0
+  let length
 
   if (is.array(obj)) {
     length = obj.length
@@ -219,7 +221,8 @@ export const insertBefore = curry((newElement, el) => {
   if (is.string(newElement)) {
     el.insertAdjacentHTML('beforebegin', newElement)
   } else {
-    el.insertAdjacentElement('beforebegin', newElement)
+    const parentElement = parent(el)
+    parentElement.insertBefore(newElement, el)
   }
   return el
 })
@@ -228,7 +231,8 @@ export const insertAfter = curry((newElement, el) => {
   if (is.string(newElement)) {
     el.insertAdjacentHTML('afterend', newElement)
   } else {
-    el.insertAdjacentElement('afterend', newElement)
+    const parentElement = parent(el)
+    parentElement.insertBefore(newElement, el.nextElementSibling)
   }
   return el
 })

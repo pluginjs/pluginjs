@@ -5,7 +5,7 @@ import Units from '@pluginjs/units'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { getStyle, getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, query, insertAfter, Each } from '@pluginjs/dom'
+import { append, parseHTML, insertAfter, Each } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -28,7 +28,6 @@ import Pointer from './pointer'
 import scale from './scale'
 import selected from './selected'
 import tip from './tip'
-import units from '@pluginjs/units'
 
 const components = {}
 
@@ -67,7 +66,6 @@ class Range extends Component {
     this.control = document.createElement('div')
     append(this.control, this.wrap)
     insertAfter(this.wrap, this.element)
-
     this.options = deepMerge(
       {},
       DEFAULTS,

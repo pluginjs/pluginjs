@@ -26,16 +26,27 @@ describe('Range', () => {
   })
 
   describe('constructor()', () => {
-    test('should work wtesth element', () => {
-      const range = Range.of(generateHTMLSample())
+    test('should work with element', () => {
+      const html = generateHTMLSample()
+      const range = Range.of(html.querySelector('.example-default'))
 
       expect(range).toBeObject()
-      expect(range.options).toEqual(DEFAULTS)
+      expect(range.options).toEqual(
+        Object.assign(DEFAULTS, {
+          units: {
+            px: {
+              max: 100,
+              min: 10,
+              step: 10
+            }
+          }
+        })
+      )
     })
 
     test('should have options', () => {
-      const range = Range.of(generateHTMLSample())
-
+      const html = generateHTMLSample()
+      const range = Range.of(html.querySelector('.example-default'))
       expect(range.options).toBeObject()
     })
   })
@@ -44,7 +55,7 @@ describe('Range', () => {
     let $element
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample().querySelector('.example-default')
     })
 
     test('should trigger ready event', () => {
