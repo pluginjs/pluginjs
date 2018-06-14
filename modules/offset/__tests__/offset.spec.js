@@ -1,9 +1,9 @@
+import $ from 'jquery'
 import '@pluginjs/tooltip'
 import '@pluginjs/dropdown'
 import '@pluginjs/units'
-import Offset from '../src/main'
-import { defaults as DEFAULTS } from '../src/constant'
-import generateHTMLSample from './fixtures/sample'
+import Offset from '../../src/main'
+import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('Offset', () => {
   describe('Offset()', () => {
@@ -29,35 +29,146 @@ describe('Offset', () => {
   })
 
   describe('constructor()', () => {
-    test('should work wtesth element', () => {
-      const offset = Offset.of(generateHTMLSample())
+    test('should work with element', () => {
+      const element = document.createElement('div')
+      const offset = new Offset(element)
 
       expect(offset).toBeObject()
       expect(offset.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const offset = Offset.of(generateHTMLSample())
+      const element = document.createElement('div')
+      const offset = new Offset(element)
 
       expect(offset.options).toBeObject()
     })
   })
 
-  describe('initialized()', () => {
+  describe('jquery constructor', () => {
+    test('should works with jquery fn', () => {
+      const element = document.createElement('div')
+      const $element = $(element)
+
+      expect($element.asOffset()).toEqual($element)
+
+      const api = $element.data('offset')
+
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
+    })
+  })
+
+  describe('api call', () => {
+    test('should not call bind', () => {
+      const $element = $(document.createElement('div')).asOffset()
+      expect($element.asOffset('bind')).toBeNil()
+    })
+
+    test('should call destroy', () => {
+      const $element = $(document.createElement('div')).asOffset()
+      expect($element.asOffset('destroy')).toEqual($element)
+    })
+  })
+
+  describe('initialize()', () => {
     let $element
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = $(document.createElement('div'))
     })
 
     test('should trigger ready event', () => {
       let called = 0
-      $element.addEventListener('offset:ready', () => {
+
+      $element.on('offset:ready', (event, api) => {
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
-      const instance = Offset.of($element)
+
+      $element.asOffset()
       expect(called).toEqual(1)
-      expect(instance.is('initialized')).toBeTrue()
+    })
+  })
+
+  describe('destroy()', () => {
+    let $element
+    // let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asOffset()
+      // api =
+      $element.data('offset')
+    })
+
+    test('should trigger destroy event', () => {
+      let called = 0
+
+      $element.on('offset:destroy', (event, api) => {
+        expect(api.is('initialized')).toBeFalse()
+        called++
+      })
+
+      $element.asOffset('destroy')
+
+      expect(called).toEqual(1)
+    })
+  })
+
+  describe('enable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asOffset()
+      api = $element.data('offset')
+    })
+
+    test('should enable the plugin', () => {
+      $element.asOffset('disable')
+      $element.asOffset('enable')
+
+      expect(api.is('disabled')).toBeFalse()
+    })
+
+    test('should trigger enable event', () => {
+      let called = 0
+
+      $element.on('offset:enable', (event, api) => {
+        expect(api.is('disabled')).toBeFalse()
+        called++
+      })
+
+      $element.asOffset('enable')
+      expect(called).toEqual(1)
+    })
+  })
+
+  describe('disable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asOffset()
+      api = $element.data('offset')
+    })
+
+    test('should disable the plugin', () => {
+      $element.asOffset('disable')
+
+      expect(api.is('disabled')).toBeTrue()
+    })
+
+    test('should trigger disable event', () => {
+      let called = 0
+
+      $element.on('offset:disable', (event, api) => {
+        expect(api.is('disabled')).toBeTrue()
+        called++
+      })
+
+      $element.asOffset('disable')
+      expect(called).toEqual(1)
     })
   })
 })

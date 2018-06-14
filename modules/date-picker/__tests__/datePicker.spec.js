@@ -1,6 +1,6 @@
-import DatePicker from '../src/main'
-import { defaults as DEFAULTS } from '../src/constant'
-import generateHTMLSample from './fixtures/sample'
+import $ from 'jquery'
+import DatePicker from '../../src/main'
+import { defaults as DEFAULTS } from '../../src/constant'
 
 describe('DatePicker', () => {
   describe('DatePicker()', () => {
@@ -26,35 +26,208 @@ describe('DatePicker', () => {
   })
 
   describe('constructor()', () => {
-    test('should work wtesth element', () => {
-      const datePicker = DatePicker.of(generateHTMLSample())
+    test('should work with element', () => {
+      const element = document.createElement('div')
+      const datePicker = new DatePicker(element)
 
       expect(datePicker).toBeObject()
-      expect(datePicker.options).toEqual(DEFAULTS)
+      expect(datePicker.options).toBeObject()
     })
 
     test('should have options', () => {
-      const datePicker = DatePicker.of(generateHTMLSample())
+      const element = document.createElement('div')
+      const datePicker = new DatePicker(element)
 
       expect(datePicker.options).toBeObject()
     })
   })
 
-  describe('initialized()', () => {
+  describe('jquery constructor', () => {
+    test('should works with jquery fn', () => {
+      const element = document.createElement('div')
+      const $element = $(element)
+
+      expect($element.asDatePicker()).toEqual($element)
+
+      const api = $element.data('datePicker')
+
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
+    })
+  })
+
+  describe('api call', () => {
+    test('should not call bind', () => {
+      const $element = $(document.createElement('div')).asDatePicker()
+      expect($element.asDatePicker('bind')).toBeNil()
+    })
+
+    test('should call destroy', () => {
+      const $element = $(document.createElement('div')).asDatePicker()
+      expect($element.asDatePicker('destroy')).toEqual($element)
+    })
+  })
+
+  describe('initialize()', () => {
     let $element
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = $(document.createElement('div'))
     })
 
     test('should trigger ready event', () => {
       let called = 0
-      $element.addEventListener('datePicker:ready', () => {
+
+      $element.on('datePicker:ready', (event, api) => {
+        expect(api.is('initialized')).toBeTrue()
         called++
       })
-      const instance = DatePicker.of($element)
+
+      $element.asDatePicker()
       expect(called).toEqual(1)
-      expect(instance.is('initialized')).toBeTrue()
+    })
+  })
+
+  describe('destroy()', () => {
+    let $element
+    // let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asDatePicker()
+      // api =
+      $element.data('datePicker')
+    })
+
+    test('should trigger destroy event', () => {
+      let called = 0
+
+      $element.on('datePicker:destroy', (event, api) => {
+        expect(api.is('initialized')).toBeFalse()
+        called++
+      })
+
+      $element.asDatePicker('destroy')
+
+      expect(called).toEqual(1)
+    })
+  })
+
+  describe('enable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asDatePicker()
+      api = $element.data('datePicker')
+    })
+
+    test('should enable the plugin', () => {
+      $element.asDatePicker('disable')
+      $element.asDatePicker('enable')
+
+      expect(api.is('disabled')).toBeFalse()
+    })
+
+    test('should trigger enable event', () => {
+      let called = 0
+
+      $element.on('datePicker:enable', (event, api) => {
+        expect(api.is('disabled')).toBeFalse()
+        called++
+      })
+
+      $element.asDatePicker('enable')
+      expect(called).toEqual(1)
+    })
+  })
+
+  describe('disable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asDatePicker()
+      api = $element.data('datePicker')
+    })
+
+    test('should disable the plugin', () => {
+      $element.asDatePicker('disable')
+
+      expect(api.is('disabled')).toBeTrue()
+    })
+
+    test('should trigger disable event', () => {
+      let called = 0
+
+      $element.on('datePicker:disable', (event, api) => {
+        expect(api.is('disabled')).toBeTrue()
+        called++
+      })
+
+      $element.asDatePicker('disable')
+      expect(called).toEqual(1)
+    })
+  })
+
+  describe('i18n', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = $(document.createElement('div')).asDatePicker()
+      api = $element.data('datePicker')
+    })
+
+    test('should have I18N', () => {
+      expect(DatePicker.I18N).toBeObject()
+    })
+
+    describe('getLocale()', () => {
+      test('should get default locale', () => {
+        expect(api.getLocale()).toEqual(DEFAULTS.locale)
+      })
+
+      test('should get locale with options set', () => {
+        $element = $(document.createElement('div')).asDatePicker({
+          locale: 'zh-cn'
+        })
+        api = $element.data('datePicker')
+        expect(api.getLocale()).toEqual('zh-cn')
+      })
+    })
+
+    describe('setLocale()', () => {
+      test('should override default locale', () => {
+        expect(api.getLocale()).toEqual(DEFAULTS.locale)
+
+        api.setLocale('zh-cn')
+
+        expect(api.getLocale()).toEqual('zh-cn')
+      })
+    })
+
+    describe('addTransition', () => {
+      test('should add transtion correctly', () => {
+        DatePicker.I18N.addTranslation('zh-tw', { hello: '世界妳好' })
+        api.setLocale('zh-tw')
+        expect(api.translate('hello')).toEqual('世界妳好')
+      })
+    })
+
+    describe('fallbacks', () => {
+      test('should fallbacks to less specific locale', () => {
+        api.setLocale('zh')
+        expect(api.translate('buttons')).toEqual(['取消', '保存'])
+      })
+    })
+
+    describe('translate()', () => {
+      test('should get translated message', () => {
+        expect(api.translate('buttons')).toEqual(['Cancel', 'Save'])
+
+        api.setLocale('zh')
+        expect(api.translate('buttons')).toEqual(['取消', '保存'])
+      })
     })
   })
 })
