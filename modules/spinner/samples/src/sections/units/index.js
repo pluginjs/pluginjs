@@ -3,8 +3,7 @@ import html from './index.html'
 import Spinner from '@pluginjs/spinner'
 
 const element = query('.example-units', render(html, query('#units')))
-
-Spinner.of(element, {
+const datas = {
   theme: null,
   unit: {
     px: {
@@ -18,4 +17,5 @@ Spinner.of(element, {
       step: 5
     }
   }
-})
+}
+Spinner.of(element, { datas })
