@@ -2,6 +2,7 @@
 import '@pluginjs/icons/dist/plugin-icons.css'
 // import units css
 import '@pluginjs/units/src/css/units.scss'
+import '@pluginjs/dropdown/src/css/dropdown.scss'
 // import sections
 import './sections/default'
 import './sections/initvalue'

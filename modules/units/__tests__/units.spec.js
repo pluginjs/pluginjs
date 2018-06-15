@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import '@pluginjs/dropdown'
-import Units from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Units from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 
 const data = ['px', '%']
 describe('Units', () => {

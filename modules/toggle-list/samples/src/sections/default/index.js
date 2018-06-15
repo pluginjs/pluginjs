@@ -1,6 +1,6 @@
 import { html as render, query } from '@pluginjs/dom'
 import html from './index.html'
-import Units from '@pluginjs/units'
+import ToggleList from '@pluginjs/toggle-list'
 
 const element = query('.example-default', render(html, query('#default')))
 const data = [
@@ -25,4 +25,4 @@ const data = [
     checked: false
   }
 ]
-Units.of(element, { data })
+ToggleList.of(element, { data })
