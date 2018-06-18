@@ -1,3 +1,5 @@
+// import icons and primary.css
+import '@pluginjs/icons/dist/plugin-icons.css'
 // import gallery-picker css
 import '@pluginjs/popover/src/css/popover.scss'
 import '@pluginjs/pop-dialog/src/css/pop-dialog.scss'
