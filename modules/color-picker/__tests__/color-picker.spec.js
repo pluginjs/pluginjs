@@ -1,10 +1,6 @@
-import $ from 'jquery'
-import '@pluginjs/scrollbar'
-import '@pluginjs/scrollable'
-import '@pluginjs/dropdown'
-import '@pluginjs/tooltip'
-import ColorPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import ColorPicker from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('ColorPicker', () => {
   describe('ColorPicker()', () => {
@@ -28,16 +24,14 @@ describe('ColorPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const colorPicker = new ColorPicker(element)
+      const colorPicker = ColorPicker.of(generateHTMLSample())
 
       expect(colorPicker).toBeObject()
       expect(colorPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const colorPicker = new ColorPicker(element)
+      const colorPicker = ColorPicker.of(generateHTMLSample())
 
       expect(colorPicker.options).toBeObject()
     })
@@ -45,13 +39,10 @@ describe('ColorPicker', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = ColorPicker.of($element)
 
-      expect($element.asColorPicker()).toEqual($element)
-
-      const api = $element.data('colorPicker')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -59,13 +50,13 @@ describe('ColorPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asColorPicker()
-      expect($element.asColorPicker('bind')).toBeNil()
+      const $element = ColorPicker.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asColorPicker()
-      $element.asColorPicker('destroy')
+      const $element = ColorPicker.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -73,45 +64,46 @@ describe('ColorPicker', () => {
 
   describe('initialize()', () => {
     let $element
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
+      // api = ColorPicker.of($element)
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('colorPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('colorPicker:ready', () => {
         called++
       })
 
-      $element.asColorPicker()
+      api = ColorPicker.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asColorPicker()
-      // api =
-      $element.data('colorPicker')
+      $element = generateHTMLSample()
+      api = ColorPicker.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('colorPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('colorPicker:destroy', () => {
         called++
       })
 
-      $element.asColorPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -120,13 +112,13 @@ describe('ColorPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asColorPicker()
-      api = $element.data('colorPicker')
+      $element = generateHTMLSample()
+      api = ColorPicker.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asColorPicker('disable')
-      $element.asColorPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -134,13 +126,13 @@ describe('ColorPicker', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('colorPicker:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('colorPicker:enable', () => {
         called++
       })
 
-      $element.asColorPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -149,12 +141,12 @@ describe('ColorPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asColorPicker()
-      api = $element.data('colorPicker')
+      $element = generateHTMLSample()
+      api = ColorPicker.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asColorPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -162,13 +154,13 @@ describe('ColorPicker', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('colorPicker:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('colorPicker:disable', () => {
         called++
       })
 
-      $element.asColorPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

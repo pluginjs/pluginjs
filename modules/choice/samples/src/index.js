@@ -1,5 +1,5 @@
 // import icons and primary.css
-// import '@pluginjs/icons/dist/plugin-icons.css'
+import '@pluginjs/icons/dist/plugin-icons.css'
 // import accordion css
 import '@pluginjs/choice/src/css/choice.scss'
 import 'font-awesome/css/font-awesome.css'

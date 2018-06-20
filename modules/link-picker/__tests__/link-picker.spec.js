@@ -1,12 +1,7 @@
-// import jsdom from 'mocha-jsdom'
 import $ from 'jquery'
-import '@pluginjs/radio'
-import '@pluginjs/dropdown'
-import '@pluginjs/tooltip'
-import '@pluginjs/popover'
-import '@pluginjs/pop-dialog'
-import LinkPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import LinkPicker from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 const sources = {
   content: {
@@ -276,16 +271,14 @@ describe('LinkPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('input')
-      const linkPicker = new LinkPicker(element)
+      const linkPicker = LinkPicker.of(generateHTMLSample())
 
       expect(linkPicker).toBeObject()
       expect(linkPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('input')
-      const linkPicker = new LinkPicker(element)
+      const linkPicker = LinkPicker.of(generateHTMLSample())
 
       expect(linkPicker.options).toBeObject()
     })
@@ -293,8 +286,7 @@ describe('LinkPicker', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('input')
-      const $element = $(element)
+      const $element = generateHTMLSample()
 
       expect($element.asLinkPicker()).toEqual($element)
 
@@ -307,12 +299,12 @@ describe('LinkPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('input')).asLinkPicker()
+      const $element = generateHTMLSample().asLinkPicker()
       expect($element.asLinkPicker('bind')).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('input')).asLinkPicker()
+      const $element = generateHTMLSample().asLinkPicker()
       $element.asLinkPicker('destroy')
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -325,7 +317,7 @@ describe('LinkPicker', () => {
     beforeEach(() => {
       const element = document.createElement('input')
       element.value = '{"source":"scroll","target":"#top", "title":"sdfsdf"}'
-      $element = $(element)
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -346,7 +338,7 @@ describe('LinkPicker', () => {
     // let api
 
     beforeEach(() => {
-      $element = $(document.createElement('input')).asLinkPicker()
+      $element = generateHTMLSample().asLinkPicker()
       // api =
       $element.data('linkPicker')
     })
@@ -370,7 +362,7 @@ describe('LinkPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('input')).asLinkPicker()
+      $element = generateHTMLSample().asLinkPicker()
       api = $element.data('linkPicker')
     })
 
@@ -399,7 +391,7 @@ describe('LinkPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('input')).asLinkPicker()
+      $element = generateHTMLSample().asLinkPicker()
       api = $element.data('linkPicker')
     })
 

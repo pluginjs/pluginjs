@@ -1,10 +1,6 @@
-// import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import '@pluginjs/dropdown'
-import '@pluginjs/scrollable'
-import '@pluginjs/tooltip'
-import IconPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import IconPicker from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('IconPicker', () => {
   describe('IconPicker()', () => {
@@ -28,16 +24,14 @@ describe('IconPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const iconPicker = new IconPicker(element)
+      const iconPicker = IconPicker.of(generateHTMLSample())
 
       expect(iconPicker).toBeObject()
       expect(iconPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const iconPicker = new IconPicker(element)
+      const iconPicker = IconPicker.of(generateHTMLSample())
 
       expect(iconPicker.options).toBeObject()
     })
@@ -45,13 +39,9 @@ describe('IconPicker', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asIconPicker()).toEqual($element)
-
-      const api = $element.data('iconPicker')
-
+      const $element = generateHTMLSample()
+      const api = IconPicker.of($element)
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -59,13 +49,13 @@ describe('IconPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asIconPicker()
-      expect($element.asIconPicker('bind')).toBeNil()
+      const $element = IconPicker.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asIconPicker()
-      $element.asIconPicker('destroy')
+      const $element = IconPicker.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -75,43 +65,42 @@ describe('IconPicker', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('iconPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('iconPicker:ready', () => {
         called++
       })
 
-      $element.asIconPicker()
+      const api = IconPicker.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asIconPicker()
-      // api =
-      $element.data('iconPicker')
+      $element = generateHTMLSample()
+      api = IconPicker.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('iconPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('iconPicker:destroy', () => {
         called++
       })
 
-      $element.asIconPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -120,13 +109,13 @@ describe('IconPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asIconPicker()
-      api = $element.data('iconPicker')
+      $element = generateHTMLSample()
+      api = IconPicker.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asIconPicker('disable')
-      $element.asIconPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -134,13 +123,13 @@ describe('IconPicker', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('iconPicker:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('iconPicker:enable', () => {
         called++
       })
 
-      $element.asIconPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -149,12 +138,12 @@ describe('IconPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asIconPicker()
-      api = $element.data('iconPicker')
+      $element = generateHTMLSample()
+      api = IconPicker.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asIconPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -162,13 +151,13 @@ describe('IconPicker', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('iconPicker:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('iconPicker:disable', () => {
         called++
       })
 
-      $element.asIconPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

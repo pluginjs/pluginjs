@@ -1,17 +1,13 @@
-import $ from 'jquery'
-import '@pluginjs/tooltip'
-import '@pluginjs/popover'
-import '@pluginjs/pop-dialog'
-import '@pluginjs/dropdown'
-import BgPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import BgPicker from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
-const inputValue = `{
-  'repeat':'repeat-x',
-  'position':'center center',
-  'attachment':'inherit',
-  'image': 'http://via.placeholder.com/350x150'
-}`
+// const inputValue = `{
+//   'repeat':'repeat-x',
+//   'position':'center center',
+//   'attachment':'inherit',
+//   'image': 'http://via.placeholder.com/350x150'
+// }`
 describe('BgPicker', () => {
   describe('BgPicker()', () => {
     test('should have BgPicker', () => {
@@ -34,18 +30,14 @@ describe('BgPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('input')
-      element.value = inputValue
-      const bgPicker = new BgPicker(element)
+      const bgPicker = BgPicker.of(generateHTMLSample())
 
       expect(bgPicker).toBeObject()
       expect(bgPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('input')
-      element.value = inputValue
-      const bgPicker = new BgPicker(element)
+      const bgPicker = BgPicker.of(generateHTMLSample())
 
       expect(bgPicker.options).toBeObject()
     })
@@ -53,14 +45,10 @@ describe('BgPicker', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('input')
-      element.value = inputValue
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = BgPicker.of($element)
 
-      expect($element.asBgPicker()).toEqual($element)
-
-      const api = $element.data('bgPicker')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -68,17 +56,13 @@ describe('BgPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const element = document.createElement('input')
-      element.value = inputValue
-      const $element = $(element).asBgPicker()
-      expect($element.asBgPicker('bind')).toBeNil()
+      const $element = BgPicker.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const element = document.createElement('input')
-      element.value = inputValue
-      const $element = $(element).asBgPicker()
-      $element.asBgPicker('destroy')
+      const $element = BgPicker.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -86,49 +70,45 @@ describe('BgPicker', () => {
 
   describe('initialize()', () => {
     let $element
+    let api
 
     beforeEach(() => {
-      const element = document.createElement('input')
-      element.value = inputValue
-      $element = $(element)
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('bgPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('bgPicker:ready', () => {
         called++
       })
 
-      $element.asBgPicker()
+      api = BgPicker.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      const element = document.createElement('input')
-      element.value = inputValue
-      $element = $(element).asBgPicker()
-      // api =
-      $element.data('bgPicker')
+      $element = generateHTMLSample()
+      api = BgPicker.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('bgPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('bgPicker:destroy', () => {
         called++
       })
 
-      $element.asBgPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -137,15 +117,13 @@ describe('BgPicker', () => {
     let api
 
     beforeEach(() => {
-      const element = document.createElement('input')
-      element.value = inputValue
-      $element = $(element).asBgPicker()
-      api = $element.data('bgPicker')
+      $element = generateHTMLSample()
+      api = BgPicker.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asBgPicker('disable')
-      $element.asBgPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -153,13 +131,13 @@ describe('BgPicker', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('bgPicker:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('bgPicker:enable', () => {
         called++
       })
 
-      $element.asBgPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -168,14 +146,12 @@ describe('BgPicker', () => {
     let api
 
     beforeEach(() => {
-      const element = document.createElement('input')
-      element.value = inputValue
-      $element = $(element).asBgPicker()
-      api = $element.data('bgPicker')
+      $element = generateHTMLSample()
+      api = BgPicker.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asBgPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -183,13 +159,13 @@ describe('BgPicker', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('bgPicker:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('bgPicker:disable', () => {
         called++
       })
 
-      $element.asBgPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

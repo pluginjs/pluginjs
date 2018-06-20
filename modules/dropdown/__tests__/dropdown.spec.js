@@ -1,8 +1,6 @@
-// import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-// import Popper from 'popper.js'
-import Dropdown from '../../src/main'
-// import { defaults as DEFAULTS } from '../../src/constant'
+import Dropdown from '../src/main'
+// import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Dropdown', () => {
   describe('Dropdown()', () => {
@@ -29,23 +27,15 @@ describe('Dropdown', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const container = document.createElement('div')
-      const element = document.createElement('div')
-      const ul = document.createElement('ul')
-      container.appendChild(element)
-      container.appendChild(ul)
-      const dropdown = new Dropdown(element)
+      const html = generateHTMLSample()
+      const dropdown = Dropdown.of(html.querySelector('.dropdown-example'))
 
       expect(dropdown).toBeObject()
     })
 
     test('should have options', () => {
-      const container = document.createElement('div')
-      const element = document.createElement('div')
-      const ul = document.createElement('ul')
-      container.appendChild(element)
-      container.appendChild(ul)
-      const dropdown = new Dropdown(element)
+      const html = generateHTMLSample()
+      const dropdown = Dropdown.of(html.querySelector('.dropdown-example'))
 
       expect(dropdown.options).toBeObject()
     })
@@ -53,16 +43,10 @@ describe('Dropdown', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const container = document.createElement('div')
-      const element = document.createElement('div')
-      const ul = document.createElement('ul')
-      container.appendChild(element)
-      container.appendChild(ul)
-      const $element = $(element)
+      const html = generateHTMLSample()
+      const api = Dropdown.of(html.querySelector('.dropdown-example'))
 
-      expect($element.asDropdown()).toEqual($element)
-
-      const api = $element.data('dropdown')
+      expect(api).toEqual(api)
 
       expect(api).toBeObject()
       expect(api.options).toBeObject()
@@ -71,76 +55,58 @@ describe('Dropdown', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const container = document.createElement('div')
-      const element = document.createElement('div')
-      const ul = document.createElement('ul')
-      container.appendChild(element)
-      container.appendChild(ul)
-      const $element = $(element).asDropdown()
-      expect($element.asDropdown('bind')).toBeNil()
+      const html = generateHTMLSample()
+      const api = Dropdown.of(html.querySelector('.dropdown-example'))
+      expect(api.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const container = document.createElement('div')
-      const element = document.createElement('div')
-      const ul = document.createElement('ul')
-      container.appendChild(element)
-      container.appendChild(ul)
-      const $element = $(element).asDropdown()
-      expect($element.asDropdown('destroy')).toEqual($element)
+      const html = generateHTMLSample()
+      const api = Dropdown.of(html.querySelector('.dropdown-example'))
+      api.destroy()
     })
   })
 
   describe('initialize()', () => {
     let $element
+    let api
 
     beforeEach(() => {
-      const container = document.createElement('div')
-      const element = document.createElement('div')
-      const ul = document.createElement('ul')
-      container.appendChild(element)
-      container.appendChild(ul)
-      $element = $(element)
+      $element = generateHTMLSample().querySelector('.dropdown-example')
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('dropdown:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('dropdown:ready', () => {
         called++
       })
 
-      $element.asDropdown()
+      api = Dropdown.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      const container = document.createElement('div')
-      const element = document.createElement('div')
-      const ul = document.createElement('ul')
-      container.appendChild(element)
-      container.appendChild(ul)
-      $element = $(element).asDropdown()
-      // api =
-      $element.data('dropdown')
+      $element = generateHTMLSample().querySelector('.dropdown-example')
+      api = Dropdown.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('dropdown:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('dropdown:destroy', () => {
         called++
       })
 
-      $element.asDropdown('destroy')
+      api.destroy()
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -149,18 +115,13 @@ describe('Dropdown', () => {
     let api
 
     beforeEach(() => {
-      const container = document.createElement('div')
-      const element = document.createElement('div')
-      const ul = document.createElement('ul')
-      container.appendChild(element)
-      container.appendChild(ul)
-      $element = $(element).asDropdown()
-      api = $element.data('dropdown')
+      $element = generateHTMLSample().querySelector('.dropdown-example')
+      api = Dropdown.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asDropdown('disable')
-      $element.asDropdown('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -168,13 +129,13 @@ describe('Dropdown', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('dropdown:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('dropdown:enable', () => {
         called++
       })
 
-      $element.asDropdown('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -183,30 +144,25 @@ describe('Dropdown', () => {
     let api
 
     beforeEach(() => {
-      const container = document.createElement('div')
-      const element = document.createElement('div')
-      const ul = document.createElement('ul')
-      container.appendChild(element)
-      container.appendChild(ul)
-      $element = $(element).asDropdown()
-      api = $element.data('dropdown')
+      $element = generateHTMLSample().querySelector('.dropdown-example')
+      api = Dropdown.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asDropdown('disable')
+      api.disable()
       expect(api.is('disabled')).toBeTrue()
     })
 
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('dropdown:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('dropdown:disable', () => {
         called++
       })
 
-      $element.asDropdown('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

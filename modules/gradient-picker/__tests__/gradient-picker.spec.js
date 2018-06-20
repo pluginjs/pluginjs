@@ -1,17 +1,6 @@
-import $ from 'jquery'
-import '@pluginjs/modal'
-import '@pluginjs/edit-panel'
-import '@pluginjs/scrollbar'
-import '@pluginjs/scrollable'
-import '@pluginjs/dropdown'
-import '@pluginjs/tooltip'
-import '@pluginjs/popover'
-import '@pluginjs/pop-dialog'
-import '@pluginjs/gradient'
-import '@pluginjs/color-picker'
-import '@pluginjs/range'
-import GradientPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import GradientPicker from '../src/main'
+// import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 const data = {
   'warm-flame':
@@ -49,16 +38,14 @@ describe('GradientPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const gradientPicker = new GradientPicker(element)
+      const gradientPicker = GradientPicker.of(generateHTMLSample(), { data })
 
       expect(gradientPicker).toBeObject()
-      expect(gradientPicker.options).toEqual(DEFAULTS)
+      // expect(gradientPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const gradientPicker = new GradientPicker(element)
+      const gradientPicker = GradientPicker.of(generateHTMLSample(), { data })
 
       expect(gradientPicker.options).toBeObject()
     })
@@ -66,13 +53,10 @@ describe('GradientPicker', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = GradientPicker.of($element, { data })
 
-      expect($element.asGradientPicker()).toEqual($element)
-
-      const api = $element.data('gradientPicker')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -80,13 +64,13 @@ describe('GradientPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asGradientPicker()
-      expect($element.asGradientPicker('bind')).toBeNil()
+      const $element = GradientPicker.of(generateHTMLSample(), { data })
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asGradientPicker()
-      $element.asGradientPicker('destroy')
+      const $element = GradientPicker.of(generateHTMLSample(), { data })
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -96,43 +80,42 @@ describe('GradientPicker', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('gradientPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('gradientPicker:ready', () => {
         called++
       })
 
-      $element.asGradientPicker()
+      const api = GradientPicker.of($element, { data })
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGradientPicker()
-      // api =
-      $element.data('gradientPicker')
+      $element = generateHTMLSample()
+      api = GradientPicker.of($element, { data })
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('gradientPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('gradientPicker:destroy', () => {
         called++
       })
 
-      $element.asGradientPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -141,13 +124,13 @@ describe('GradientPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGradientPicker()
-      api = $element.data('gradientPicker')
+      $element = generateHTMLSample()
+      api = GradientPicker.of($element, { data })
     })
 
     test('should enable the plugin', () => {
-      $element.asGradientPicker('disable')
-      $element.asGradientPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -155,13 +138,13 @@ describe('GradientPicker', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('gradientPicker:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('gradientPicker:enable', () => {
         called++
       })
 
-      $element.asGradientPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -170,12 +153,12 @@ describe('GradientPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGradientPicker()
-      api = $element.data('gradientPicker')
+      $element = generateHTMLSample()
+      api = GradientPicker.of($element, { data })
     })
 
     test('should disable the plugin', () => {
-      $element.asGradientPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -183,13 +166,13 @@ describe('GradientPicker', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('gradientPicker:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('gradientPicker:disable', () => {
         called++
       })
 
-      $element.asGradientPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

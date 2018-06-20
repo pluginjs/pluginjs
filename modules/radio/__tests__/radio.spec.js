@@ -1,6 +1,6 @@
-import $ from 'jquery'
-import Radio from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Radio from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Radio', () => {
   describe('Radio()', () => {
@@ -27,16 +27,14 @@ describe('Radio', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const radio = new Radio(element)
+      const radio = Radio.of(generateHTMLSample())
 
       expect(radio).toBeObject()
-      // expect(radio.options).toEqual(DEFAULTS);
+      expect(radio.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const radio = new Radio(element)
+      const radio = Radio.of(generateHTMLSample())
 
       expect(radio.options).toBeObject()
     })
@@ -44,8 +42,7 @@ describe('Radio', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
 
       expect($element.asRadio()).toEqual($element)
 
@@ -58,8 +55,7 @@ describe('Radio', () => {
 
   describe('classes', () => {
     test('should use classes options', () => {
-      const element = document.createElement('div')
-      const radio = new Radio(element, {
+      const radio = Radio.of(generateHTMLSample(), {
         classes: {
           label: '{namespace}-wrap',
           checked: '{namespace}-checked'
@@ -71,8 +67,7 @@ describe('Radio', () => {
     })
 
     test('should override class namespace', () => {
-      const element = document.createElement('div')
-      const radio = new Radio(element, {
+      const radio = Radio.of(generateHTMLSample(), {
         classes: {
           namespace: 'radio',
           label: '{namespace}-label'
@@ -85,9 +80,9 @@ describe('Radio', () => {
 
     describe('getClass()', () => {
       test('should get class with namespace', () => {
-        const element = document.createElement('div')
-        const radio = new Radio(element, { classes: { namespace: 'hello' } })
-
+        const radio = Radio.of(generateHTMLSample(), {
+          classes: { namespace: 'hello' }
+        })
         expect(radio.getClass('foo')).toEqual('foo')
         expect(radio.getClass('{namespace}-foo')).toEqual('hello-foo')
       })
@@ -96,12 +91,12 @@ describe('Radio', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asRadio()
+      const $element = generateHTMLSample().asRadio()
       expect($element.asRadio('bind')).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asRadio()
+      const $element = generateHTMLSample().asRadio()
       expect($element.asRadio('destroy')).toEqual($element)
     })
   })
@@ -110,7 +105,7 @@ describe('Radio', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -131,21 +126,21 @@ describe('Radio', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asRadio()
+      $element = generateHTMLSample().asRadio()
       api = $element.data('radio')
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('radio:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.on('radio:destroy', () => {
         called++
       })
 
       $element.asRadio('destroy')
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -154,7 +149,7 @@ describe('Radio', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asRadio()
+      $element = generateHTMLSample().asRadio()
       api = $element.data('radio')
     })
 
@@ -183,7 +178,7 @@ describe('Radio', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asRadio()
+      $element = generateHTMLSample().asRadio()
       api = $element.data('radio')
     })
 

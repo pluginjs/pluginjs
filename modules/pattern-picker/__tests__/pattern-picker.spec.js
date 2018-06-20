@@ -1,16 +1,6 @@
-import $ from 'jquery'
-import '@pluginjs/modal'
-import '@pluginjs/edit-panel'
-import '@pluginjs/scrollbar'
-import '@pluginjs/scrollable'
-import '@pluginjs/dropdown'
-import '@pluginjs/tooltip'
-import '@pluginjs/popover'
-import '@pluginjs/pop-dialog'
-import '@pluginjs/color-picker'
-import '@pluginjs/range'
-import PatternPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import PatternPicker from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('PatternPicker', () => {
   describe('PatternPicker()', () => {
@@ -34,16 +24,14 @@ describe('PatternPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const patternPicker = new PatternPicker(element)
+      const patternPicker = PatternPicker.of(generateHTMLSample())
 
       expect(patternPicker).toBeObject()
       expect(patternPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const patternPicker = new PatternPicker(element)
+      const patternPicker = PatternPicker.of(generateHTMLSample())
 
       expect(patternPicker.options).toBeObject()
     })
@@ -51,8 +39,7 @@ describe('PatternPicker', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
 
       expect($element.asPatternPicker()).toEqual($element)
 
@@ -65,12 +52,12 @@ describe('PatternPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asPatternPicker()
+      const $element = generateHTMLSample().asPatternPicker()
       expect($element.asPatternPicker('bind')).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asPatternPicker()
+      const $element = generateHTMLSample().asPatternPicker()
       $element.asPatternPicker('destroy')
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -81,7 +68,7 @@ describe('PatternPicker', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -102,7 +89,7 @@ describe('PatternPicker', () => {
     // let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asPatternPicker()
+      $element = generateHTMLSample().asPatternPicker()
       // api = $element.data('patternPicker')
     })
 
@@ -125,7 +112,7 @@ describe('PatternPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asPatternPicker()
+      $element = generateHTMLSample().asPatternPicker()
       api = $element.data('patternPicker')
     })
 
@@ -154,7 +141,7 @@ describe('PatternPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asPatternPicker()
+      $element = generateHTMLSample().asPatternPicker()
       api = $element.data('patternPicker')
     })
 

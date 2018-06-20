@@ -1,7 +1,8 @@
 // import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Checkbox from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+// import $ from 'jquery'
+import Checkbox from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Checkbox', () => {
   describe('Checkbox()', () => {
@@ -25,16 +26,14 @@ describe('Checkbox', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const checkbox = new Checkbox(element)
+      const checkbox = Checkbox.of(generateHTMLSample())
 
       expect(checkbox).toBeObject()
       expect(checkbox.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const checkbox = new Checkbox(element)
+      const checkbox = Checkbox.of(generateHTMLSample())
 
       expect(checkbox.options).toBeObject()
     })
@@ -42,12 +41,9 @@ describe('Checkbox', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asCheckbox()).toEqual($element)
-
-      const api = $element.data('checkbox')
+      const $element = generateHTMLSample()
+      const api = Checkbox.of($element)
+      expect(api.asCheckbox()).toEqual(api)
 
       expect(api).toBeObject()
       expect(api.options).toBeObject()
@@ -56,13 +52,13 @@ describe('Checkbox', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asCheckbox()
-      expect($element.asCheckbox('bind')).toBeNil()
+      const $element = Checkbox.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asCheckbox()
-      $element.asCheckbox('destroy')
+      const $element = Checkbox.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -70,45 +66,45 @@ describe('Checkbox', () => {
 
   describe('initialize()', () => {
     let $element
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
+      api = Checkbox.of($element)
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('checkbox:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.on('checkbox:ready', () => {
         called++
       })
 
-      $element.asCheckbox()
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asCheckbox()
-      // api =
-      $element.data('checkbox')
+      $element = generateHTMLSample()
+      api = Checkbox.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('checkbox:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.on('checkbox:destroy', () => {
         called++
       })
 
-      $element.asCheckbox('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -117,13 +113,13 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asCheckbox()
-      api = $element.data('checkbox')
+      $element = generateHTMLSample()
+      api = Checkbox.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asCheckbox('disable')
-      $element.asCheckbox('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,13 +127,13 @@ describe('Checkbox', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('checkbox:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.on('checkbox:enable', () => {
         called++
       })
 
-      $element.asCheckbox('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -146,12 +142,12 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asCheckbox()
-      api = $element.data('checkbox')
+      $element = generateHTMLSample()
+      api = Checkbox.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asCheckbox('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,13 +155,13 @@ describe('Checkbox', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('checkbox:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.on('checkbox:disable', () => {
         called++
       })
 
-      $element.asCheckbox('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

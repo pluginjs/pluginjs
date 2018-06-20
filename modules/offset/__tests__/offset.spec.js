@@ -1,9 +1,6 @@
-import $ from 'jquery'
-import '@pluginjs/tooltip'
-import '@pluginjs/dropdown'
-import '@pluginjs/units'
-import Offset from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Offset from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Offset', () => {
   describe('Offset()', () => {
@@ -30,16 +27,14 @@ describe('Offset', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const offset = new Offset(element)
+      const offset = Offset.of(generateHTMLSample())
 
       expect(offset).toBeObject()
       expect(offset.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const offset = new Offset(element)
+      const offset = Offset.of(generateHTMLSample())
 
       expect(offset.options).toBeObject()
     })
@@ -47,8 +42,7 @@ describe('Offset', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
 
       expect($element.asOffset()).toEqual($element)
 
@@ -61,12 +55,12 @@ describe('Offset', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asOffset()
+      const $element = generateHTMLSample().asOffset()
       expect($element.asOffset('bind')).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asOffset()
+      const $element = generateHTMLSample().asOffset()
       expect($element.asOffset('destroy')).toEqual($element)
     })
   })
@@ -75,7 +69,7 @@ describe('Offset', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -96,7 +90,7 @@ describe('Offset', () => {
     // let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asOffset()
+      $element = generateHTMLSample().asOffset()
       // api =
       $element.data('offset')
     })
@@ -120,7 +114,7 @@ describe('Offset', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asOffset()
+      $element = generateHTMLSample().asOffset()
       api = $element.data('offset')
     })
 
@@ -149,7 +143,7 @@ describe('Offset', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asOffset()
+      $element = generateHTMLSample().asOffset()
       api = $element.data('offset')
     })
 

@@ -1,16 +1,10 @@
-import $ from 'jquery'
-import '@pluginjs/units'
-import '@pluginjs/dropdown'
-import '@pluginjs/range'
-import '@pluginjs/tooltip'
-import '@pluginjs/popover'
-import '@pluginjs/pop-dialog'
-// import '@pluginjs/pop-dialog'
-import FontEditor from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import FontEditor from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
-const defaultValue =
-  '{"fontFamily": "Arial", "fontSize": "30px", "lineHeight": "1.5em", "fontWeight": "bold", "textAlign": "left", "fontStyle": "italy", "textTransform": "capitalize", "textDecoration": "underline"}'
+// const defaultValue =
+//   '{"fontFamily": "Arial", "fontSize": "30px", "lineHeight": "1.5em", "fontWeight": "bold", "textAlign": "left", "fontStyle": "italy", "textTransform": "capitalize", "textDecoration": "underline"}'
+
 describe('FontEditor', () => {
   describe('FontEditor()', () => {
     test('should have FontEditor', () => {
@@ -36,18 +30,19 @@ describe('FontEditor', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('input')
-      element.value = defaultValue
-      const fontEditor = new FontEditor(element)
+      const fontEditor = FontEditor.of(generateHTMLSample())
+      // element.value = defaultValue
+      // const fontEditor = new FontEditor(element)
 
       expect(fontEditor).toBeObject()
       expect(fontEditor.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('input')
-      element.value = defaultValue
-      const fontEditor = new FontEditor(element)
+      // const element = document.createElement('input')
+      // element.value = defaultValue
+      // const fontEditor = new FontEditor(element)
+      const fontEditor = FontEditor.of(generateHTMLSample())
 
       expect(fontEditor.options).toBeObject()
     })
@@ -55,14 +50,12 @@ describe('FontEditor', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('input')
-      element.value = defaultValue
-      const $element = $(element)
+      // const element = document.createElement('input')
+      // element.value = defaultValue
+      const $element = generateHTMLSample()
+      const api = FontEditor.of($element)
 
-      expect($element.asFontEditor()).toEqual($element)
-
-      const api = $element.data('fontEditor')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -70,57 +63,57 @@ describe('FontEditor', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('input')).asFontEditor()
-      expect($element.asFontEditor('bind')).toBeNil()
+      const $element = FontEditor.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('input')).asFontEditor()
-      expect($element.asFontEditor('destroy')).toEqual($element)
+      const $element = FontEditor.of(generateHTMLSample())
+      $element.destroy()
     })
   })
 
   describe('initialize()', () => {
     let $element
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('input'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('fontEditor:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('fontEditor:ready', () => {
         called++
       })
 
-      $element.asFontEditor()
+      api = FontEditor.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('input')).asFontEditor()
-      // api =
-      $element.data('fontEditor')
+      $element = generateHTMLSample()
+      api = FontEditor.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('fontEditor:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('fontEditor:destroy', () => {
         called++
       })
 
-      $element.asFontEditor('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -129,13 +122,13 @@ describe('FontEditor', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('input')).asFontEditor()
-      api = $element.data('fontEditor')
+      $element = generateHTMLSample()
+      api = FontEditor.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asFontEditor('disable')
-      $element.asFontEditor('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -143,13 +136,13 @@ describe('FontEditor', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('fontEditor:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('fontEditor:enable', () => {
         called++
       })
 
-      $element.asFontEditor('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -158,12 +151,12 @@ describe('FontEditor', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('input')).asFontEditor()
-      api = $element.data('fontEditor')
+      $element = generateHTMLSample()
+      api = FontEditor.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asFontEditor('disable')
+      api.disable(0)
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -171,13 +164,13 @@ describe('FontEditor', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('fontEditor:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('fontEditor:disable', () => {
         called++
       })
 
-      $element.asFontEditor('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 
@@ -186,8 +179,8 @@ describe('FontEditor', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('input')).asFontEditor()
-      api = $element.data('fontEditor')
+      $element = generateHTMLSample()
+      api = FontEditor.of($element)
     })
 
     test('should have I18N', () => {
@@ -200,10 +193,9 @@ describe('FontEditor', () => {
       })
 
       test('should get locale with options set', () => {
-        $element = $(document.createElement('input')).asFontEditor({
+        api = FontEditor.of(generateHTMLSample(), {
           locale: 'zh-cn'
         })
-        api = $element.data('fontEditor')
         expect(api.getLocale()).toEqual('zh-cn')
       })
     })

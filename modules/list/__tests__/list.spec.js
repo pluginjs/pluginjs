@@ -1,7 +1,6 @@
-// import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import List from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import List from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('List', () => {
   describe('List()', () => {
@@ -25,16 +24,14 @@ describe('List', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const list = new List(element)
+      const list = List.of(generateHTMLSample())
 
       expect(list).toBeObject()
       expect(list.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const list = new List(element)
+      const list = List.of(generateHTMLSample())
 
       expect(list.options).toBeObject()
     })
@@ -42,8 +39,7 @@ describe('List', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
 
       expect($element.asList()).toEqual($element)
 
@@ -56,12 +52,12 @@ describe('List', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asList()
+      const $element = generateHTMLSample().asList()
       expect($element.asList('bind')).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asList()
+      const $element = generateHTMLSample().asList()
       $element.asList('destroy')
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -72,7 +68,7 @@ describe('List', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -93,7 +89,7 @@ describe('List', () => {
     // let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asList()
+      $element = generateHTMLSample().asList()
       // api =
       $element.data('list')
     })
@@ -117,7 +113,7 @@ describe('List', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asList()
+      $element = generateHTMLSample().asList()
       api = $element.data('list')
     })
 
@@ -146,7 +142,7 @@ describe('List', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asList()
+      $element = generateHTMLSample().asList()
       api = $element.data('list')
     })
 

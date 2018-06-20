@@ -5,7 +5,7 @@ import '@pluginjs/pop-dialog'
 // import List from '@pluginjs/list'
 import '@pluginjs/toggle'
 // import { deepMerge } from '@pluginjs/utils'
-import ToggleList from '../../src/main'
+import ToggleList from '../src/main'
 // import { defaults as DEFAULTS } from '../../src/constant'
 
 const data = [

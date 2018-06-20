@@ -1,7 +1,6 @@
-// import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
 import ImageSelector from '../../src/main'
 import { defaults as DEFAULTS } from '../../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('ImageSelector', () => {
   describe('ImageSelector()', () => {
@@ -25,8 +24,7 @@ describe('ImageSelector', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const imageSelector = new ImageSelector(element)
+      const imageSelector = ImageSelector.of(generateHTMLSample())
 
       expect(imageSelector).toBeObject()
       expect(imageSelector.options).toEqual(DEFAULTS)
@@ -42,8 +40,7 @@ describe('ImageSelector', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
 
       expect($element.asImageSelector()).toEqual($element)
 
@@ -56,12 +53,12 @@ describe('ImageSelector', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asImageSelector()
+      const $element = generateHTMLSample().asImageSelector()
       expect($element.asImageSelector('bind')).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asImageSelector()
+      const $element = generateHTMLSample().asImageSelector()
       $element.asImageSelector('destroy')
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -72,7 +69,7 @@ describe('ImageSelector', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -93,7 +90,7 @@ describe('ImageSelector', () => {
     // let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asImageSelector()
+      $element = generateHTMLSample().asImageSelector()
       // api =
       $element.data('imageSelector')
     })
@@ -117,7 +114,7 @@ describe('ImageSelector', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asImageSelector()
+      $element = generateHTMLSample().asImageSelector()
       api = $element.data('imageSelector')
     })
 
@@ -146,7 +143,7 @@ describe('ImageSelector', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asImageSelector()
+      $element = generateHTMLSample().asImageSelector()
       api = $element.data('imageSelector')
     })
 

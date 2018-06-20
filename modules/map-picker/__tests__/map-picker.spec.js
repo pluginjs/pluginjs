@@ -1,10 +1,6 @@
-import $ from 'jquery'
-import '@pluginjs/gmap'
-import '@pluginjs/tooltip'
-import '@pluginjs/popover'
-import '@pluginjs/pop-dialog'
-import MapPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import MapPicker from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('MapPicker', () => {
   describe('MapPicker()', () => {
@@ -28,16 +24,14 @@ describe('MapPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const mapPicker = new MapPicker(element)
+      const mapPicker = MapPicker.of(generateHTMLSample())
 
       expect(mapPicker).toBeObject()
       expect(mapPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const mapPicker = new MapPicker(element)
+      const mapPicker = MapPicker.of(generateHTMLSample())
 
       expect(mapPicker.options).toBeObject()
     })
@@ -45,8 +39,7 @@ describe('MapPicker', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
 
       expect($element.asMapPicker()).toEqual($element)
 
@@ -59,12 +52,12 @@ describe('MapPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asMapPicker()
+      const $element = generateHTMLSample().asMapPicker()
       expect($element.asMapPicker('bind')).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asMapPicker()
+      const $element = generateHTMLSample().asMapPicker()
       $element.asMapPicker('destroy')
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -75,7 +68,7 @@ describe('MapPicker', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -96,7 +89,7 @@ describe('MapPicker', () => {
     // let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asMapPicker()
+      $element = generateHTMLSample().asMapPicker()
       // api =
       $element.data('mapPicker')
     })
@@ -120,7 +113,7 @@ describe('MapPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asMapPicker()
+      $element = generateHTMLSample().asMapPicker()
       api = $element.data('mapPicker')
     })
 
@@ -149,7 +142,7 @@ describe('MapPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asMapPicker()
+      $element = generateHTMLSample().asMapPicker()
       api = $element.data('mapPicker')
     })
 

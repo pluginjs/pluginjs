@@ -1,6 +1,7 @@
-import $ from 'jquery'
-import AutoComplete from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+// import $ from 'jquery'
+import AutoComplete from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 const data = [
   'JAVA',
@@ -36,8 +37,7 @@ describe('AutoComplete', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const autoComplete = new AutoComplete(element, { data })
+      const autoComplete = AutoComplete.of(generateHTMLSample(), { data })
 
       expect(autoComplete).toBeObject()
       expect(autoComplete.options).toEqual({
@@ -47,8 +47,7 @@ describe('AutoComplete', () => {
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const autoComplete = new AutoComplete(element, { data })
+      const autoComplete = AutoComplete.of(generateHTMLSample(), { data })
 
       expect(autoComplete.options).toBeObject()
     })
@@ -56,13 +55,9 @@ describe('AutoComplete', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asAutoComplete({ data })).toEqual($element)
-
-      const api = $element.data('autoComplete')
-
+      const $element = generateHTMLSample()
+      const api = AutoComplete.of($element, { data })
+      // expect(api).toEqual($element)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -70,13 +65,13 @@ describe('AutoComplete', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asAutoComplete({ data })
-      expect($element.asAutoComplete('bind')).toBeNil()
+      const $element = AutoComplete.of(generateHTMLSample(), { data })
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asAutoComplete({ data })
-      $element.asAutoComplete('destroy')
+      const $element = AutoComplete.of(generateHTMLSample(), { data })
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -86,43 +81,42 @@ describe('AutoComplete', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('autoComplete:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('autoComplete:ready', () => {
         called++
       })
 
-      $element.asAutoComplete({ data })
+      const api = AutoComplete.of($element, { data })
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asAutoComplete({ data })
-      // api =
-      $element.data('autoComplete')
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element, { data })
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('autoComplete:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('autoComplete:destroy', () => {
         called++
       })
 
-      $element.asAutoComplete('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -131,13 +125,13 @@ describe('AutoComplete', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asAutoComplete({ data })
-      api = $element.data('autoComplete')
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element, { data })
     })
 
     test('should enable the plugin', () => {
-      $element.asAutoComplete('disable')
-      $element.asAutoComplete('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -145,13 +139,13 @@ describe('AutoComplete', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('autoComplete:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('autoComplete:enable', () => {
         called++
       })
 
-      $element.asAutoComplete('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -160,12 +154,12 @@ describe('AutoComplete', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asAutoComplete({ data })
-      api = $element.data('autoComplete')
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element, { data })
     })
 
     test('should disable the plugin', () => {
-      $element.asAutoComplete('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -173,13 +167,13 @@ describe('AutoComplete', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('autoComplete:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('autoComplete:disable', () => {
         called++
       })
 
-      $element.asAutoComplete('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

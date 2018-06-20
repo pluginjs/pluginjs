@@ -1,12 +1,6 @@
-// import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import '@pluginjs/scrollbar'
-import '@pluginjs/scrollable'
-import '@pluginjs/tooltip'
-import '@pluginjs/popover'
-import '@pluginjs/pop-dialog'
-import GalleryPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import GalleryPicker from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('GalleryPicker', () => {
   describe('GalleryPicker()', () => {
@@ -30,16 +24,14 @@ describe('GalleryPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const galleryPicker = new GalleryPicker(element)
+      const galleryPicker = GalleryPicker.of(generateHTMLSample())
 
       expect(galleryPicker).toBeObject()
       expect(galleryPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const galleryPicker = new GalleryPicker(element)
+      const galleryPicker = GalleryPicker.of(generateHTMLSample())
 
       expect(galleryPicker.options).toBeObject()
     })
@@ -47,13 +39,10 @@ describe('GalleryPicker', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = GalleryPicker.of($element)
 
-      expect($element.asGalleryPicker()).toEqual($element)
-
-      const api = $element.data('galleryPicker')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -61,13 +50,13 @@ describe('GalleryPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asGalleryPicker()
-      expect($element.asGalleryPicker('bind')).toBeNil()
+      const $element = GalleryPicker.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asGalleryPicker()
-      $element.asGalleryPicker('destroy')
+      const $element = GalleryPicker.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -77,43 +66,42 @@ describe('GalleryPicker', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('galleryPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('galleryPicker:ready', () => {
         called++
       })
 
-      $element.asGalleryPicker()
+      const api = GalleryPicker.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGalleryPicker()
-      // api =
-      $element.data('galleryPicker')
+      $element = generateHTMLSample()
+      api = GalleryPicker.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('galleryPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('galleryPicker:destroy', () => {
         called++
       })
 
-      $element.asGalleryPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -122,13 +110,13 @@ describe('GalleryPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGalleryPicker()
-      api = $element.data('galleryPicker')
+      $element = generateHTMLSample()
+      api = GalleryPicker.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asGalleryPicker('disable')
-      $element.asGalleryPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -136,13 +124,13 @@ describe('GalleryPicker', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('galleryPicker:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('galleryPicker:enable', () => {
         called++
       })
 
-      $element.asGalleryPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -151,12 +139,12 @@ describe('GalleryPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGalleryPicker()
-      api = $element.data('galleryPicker')
+      $element = generateHTMLSample()
+      api = GalleryPicker.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asGalleryPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -164,13 +152,13 @@ describe('GalleryPicker', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('galleryPicker:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('galleryPicker:disable', () => {
         called++
       })
 
-      $element.asGalleryPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

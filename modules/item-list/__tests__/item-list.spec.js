@@ -1,8 +1,8 @@
-import $ from 'jquery'
 import { deepMerge } from '@pluginjs/utils'
 import List from '@pluginjs/list'
-import ItemList from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import ItemList from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('ItemList', () => {
   describe('ItemList()', () => {
@@ -26,16 +26,14 @@ describe('ItemList', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const itemList = new ItemList(element)
+      const itemList = ItemList.of(generateHTMLSample())
 
       expect(itemList).toBeObject()
       expect(itemList.options).toEqual(deepMerge(DEFAULTS, List.defaults))
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const itemList = new ItemList(element)
+      const itemList = ItemList.of(generateHTMLSample())
 
       expect(itemList.options).toBeObject()
     })
@@ -43,8 +41,7 @@ describe('ItemList', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
 
       expect($element.asItemList()).toEqual($element)
 
@@ -57,12 +54,12 @@ describe('ItemList', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asItemList()
+      const $element = generateHTMLSample().asItemList()
       expect($element.asItemList('bind')).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asItemList()
+      const $element = generateHTMLSample().asItemList()
       $element.asItemList('destroy')
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -73,7 +70,7 @@ describe('ItemList', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -94,7 +91,7 @@ describe('ItemList', () => {
     // let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asItemList()
+      $element = generateHTMLSample().asItemList()
       // api =
       $element.data('itemList')
     })
@@ -118,7 +115,7 @@ describe('ItemList', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asItemList()
+      $element = generateHTMLSample().asItemList()
       api = $element.data('itemList')
     })
 
@@ -147,7 +144,7 @@ describe('ItemList', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asItemList()
+      $element = generateHTMLSample().asItemList()
       api = $element.data('itemList')
     })
 

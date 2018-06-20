@@ -1,5 +1,5 @@
 // import icons and primary.css
-// import '@pluginjs/icons/dist/plugin-icons.css'
+import '@pluginjs/icons/dist/plugin-icons.css'
 // import auto-complete css
 import '@pluginjs/auto-complete/src/css/auto-complete.scss'
 import 'font-awesome/css/font-awesome.css'
