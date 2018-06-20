@@ -1,4 +1,4 @@
 // import accordion css
-import '@pluginjs/{{name}}/src/css/{{name}}.scss'
+import '@pluginjs/{{moduleName}}/src/css/{{moduleName}}.scss'
 // import sections
 import './sections/default'

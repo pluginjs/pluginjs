@@ -1,42 +1,42 @@
-import {{Name}} from '../src/main'
+import Accordion from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-describe('{{Name}}', () => {
-  describe('{{Name}}()', () => {
-    test('should have {{Name}}', () => {
-      expect({{Name}}).toBeFunction()
+describe('Accordion', () => {
+  describe('Accordion()', () => {
+    test('should have Accordion', () => {
+      expect(Accordion).toBeFunction()
     })
 
     test('should have defaults', () => {
-      expect({{Name}}.defaults).toBeObject()
+      expect(Accordion.defaults).toBeObject()
     })
 
     test('should have events', () => {
-      expect({{Name}}.events).toBeObject()
+      expect(Accordion.events).toBeObject()
     })
 
     test('should have classes', () => {
-      expect({{Name}}.classes).toBeObject()
+      expect(Accordion.classes).toBeObject()
     })
 
     test('should have methods', () => {
-      expect({{Name}}.methods).toBeArray()
+      expect(Accordion.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
     test('should work wtesth element', () => {
-      const {{name}} = {{Name}}.of(generateHTMLSample())
+      const accordion = Accordion.of(generateHTMLSample())
 
-      expect({{name}}).toBeObject()
-      expect({{name}}.options).toEqual(DEFAULTS)
+      expect(accordion).toBeObject()
+      expect(accordion.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const {{name}} = {{Name}}.of(generateHTMLSample())
+      const accordion = Accordion.of(generateHTMLSample())
 
-      expect({{name}}.options).toBeObject()
+      expect(accordion.options).toBeObject()
     })
   })
 
@@ -49,10 +49,10 @@ describe('{{Name}}', () => {
 
     test('should trigger ready event', () => {
       let called = 0
-      $element.addEventListener('{{name}}:ready', () => {
+      $element.addEventListener('accordion:ready', () => {
         called++
       })
-      const instance = {{Name}}.of($element)
+      const instance = Accordion.of($element)
       expect(called).toEqual(1)
       expect(instance.is('initialized')).toBeTrue()
     })

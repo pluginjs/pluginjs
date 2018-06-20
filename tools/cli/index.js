@@ -27,7 +27,7 @@ yargs
     desc: 'exec script from script repositories',
     bundler: yargs => {
       return yargs.positional('scriptName', {
-        desc: 'script name',
+        desc: 'Script name',
         type: 'string',
         default: 'ls'
       })
@@ -37,25 +37,31 @@ yargs
   .command(
     alias('start', {
       command: ['run [moduleName]', 'start', '$0'],
-      desc: 'start a dev server.'
+      desc: 'Start a dev server.'
     })
   )
   .command(
     alias('build', {
       command: ['build [moduleName]', 'b'],
-      desc: 'build a bundle.'
+      desc: 'Build a bundle.'
     })
   )
   .command(
     alias('publish', {
       command: 'publish [moduleName]',
-      desc: 'publish module to npm.'
+      desc: 'Publish module to npm.'
     })
   )
   .command(
     alias('test', {
       command: ['test [moduleName]', 't'],
-      desc: 'test module by jest.'
+      desc: 'Test module by jest.'
+    })
+  )
+  .command(
+    alias('new', {
+      command: ['new [moduleName]', 'n'],
+      desc: 'Create a new plugin.'
     })
   )
   .parse()

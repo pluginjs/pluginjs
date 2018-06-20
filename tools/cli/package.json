@@ -10,6 +10,8 @@
 	"license": "UNLICENSED",
 	"dependencies": {
 		"@pluginjs/helper": "^0.0.1",
+		"fs-extra": "^6.0.1",
+		"inquirer": "^6.0.0",
 		"node-sass": "^4.9.0",
 		"rollup": "^0.59.4",
 		"rollup-plugin-json": "^3.0.0",

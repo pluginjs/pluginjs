@@ -1,15 +1,12 @@
-import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
-import Pj, {
-  eventable,
-  register,
-  stateable,
-  styleable,
-  themeable
-} from '@pluginjs/pluginjs'
-import {
-  classes as CLASSES,
-  defaults as DEFAULTS,
+import { html as render, query } from '@pluginjs/dom'
+import html from './index.html'
+import Accordion from '@pluginjs/accordion'
+
+const element = query('.accordion', render(html, query('#default')))
+Accordion.of(element, {
+  /** options **/
+})
+,
   dependencies as DEPENDENCIES,
   events as EVENTS,
   info as INFO,
@@ -30,7 +27,7 @@ import {
   },
   INFO
 )
-class {{Name}} extends Component {
+class Accordion extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
@@ -52,4 +49,4 @@ class {{Name}} extends Component {
   destroy() { ... }
 }
 
-export default {{Name}}
+export default Accordion

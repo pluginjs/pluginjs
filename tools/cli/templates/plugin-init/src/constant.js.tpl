@@ -1,5 +1,3 @@
-export const namespace = 'accordion'
-
 const events = {}
 
 const classes = {}
@@ -8,12 +6,6 @@ const methods = []
 
 const defaults = {}
 
-const namespace = '{{name}}'
+const namespace = '{{namespace}}'
 
-export {
-  classes,
-  defaults,
-  events,
-  methods,
-  namespace
-}
+export { classes, defaults, events, methods, namespace }

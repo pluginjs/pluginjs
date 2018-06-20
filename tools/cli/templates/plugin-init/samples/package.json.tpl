@@ -1,7 +1,7 @@
 {
-	"name": "{{name}}-samples",
+	"name": "{{moduleName}}-samples",
 	"version": "1.0.0",
-	"description": "Simple {{name}} example",
+	"description": "Simple {{moduleName}} example",
 	"main": "index.html",
 	"scripts": {
 		"start": "parcel index.html --open",
@@ -14,7 +14,7 @@
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"@pluginjs/{{name}}": "^0.0.1",
+		"@pluginjs/{{moduleName}}": "^0.0.1",
 		"@pluginjs/dom": "^0.0.15"
 	},
 	"license": "UNLICENSED"

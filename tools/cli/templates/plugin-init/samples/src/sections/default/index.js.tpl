@@ -1,8 +1,8 @@
 import { html as render, query } from '@pluginjs/dom'
 import html from './index.html'
-import {{Name}} from '@pluginjs/{{name}}'
+import {{Namespace}} from '@pluginjs/{{moduleName}}'
 
-const element = query('.{{name}}', render(html, query('#default')))
-{{Name}}.of(element, {
+const element = query('.{{moduleName}}', render(html, query('#default')))
+{{Namespace}}.of(element, {
   /** options **/
 })

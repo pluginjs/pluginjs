@@ -1,4 +1,6 @@
 {
-  "name": "repo name, example: accordion",
-  "Name": "repo name, example: Accordion"
+  "moduleName": "Repo name, such as 'color-picker'",
+  "namespace": "Repo name, such as 'colorPicker'",
+  "Namespace": "Repo name, such as 'ColorPicker'",
+  "category": "Category name, such as 'ui'"
 }
