@@ -1,6 +1,9 @@
 # @pluginjs
+
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+
 ## Installation
+
 `Nodejs 8+` and `Yarn` are required, make sure Yarn version is up-to-date.
 
 If you do not have yarn installed, follow https://yarnpkg.com/en/docs/install.
@@ -11,25 +14,46 @@ yarn
 ```
 
 ## Usage
+
 Run a development server:
+
 ```sh
 npx plugin <moduleName>
 // or npx plugin start <moduleName>
 // or npx plugin run <moduleName>
 ```
+
 Build production bundle:
+
 ```sh
 npx plugin build <moduleName>
 // or npx plugin b <moduleName>
 ```
 
+Create a new plugin:
+
+```sh
+npx plugin new <moduleName>
+```
+
+Test by jest
+
+```sh
+/* When execute test command first time
+npx plugin build all
+*/
+npx plugin test <moduleName>
+```
+
 ## Contributing Guide
+
 Hi, Thank you for chooing Plugin.js
 
 Plugin.js is a collection of modern JavaScript components.
 We are excited that you are interested in contributing to us. Before submitting your contribution though, please make sure to take a moment and read through the following guidelines.
 
 ## Pull Request Guide
+
 - Fork this repository to your own account. Do not create branches here.
 - Commit info reference [Commit Message Guidelines](COMMITMESSAGE.md).
 - Make sure that running `yarn build` outputs the correct files.
@@ -39,14 +63,16 @@ We are excited that you are interested in contributing to us. Before submitting 
 - Mergeing a PR takes two maintainers: one approves the changes after reviewing, and then the other reviews and merges.
 
 ## Issues Guide
+
 - Before submitting an issue, please check if similar problems have already been issued.
 - Please provide OS and browser information. [codesandbox](https://codesandbox.io/) is recommended to build a live demo so that your issue can be reproduced clearly.
 
 ## Code Style
+
 - [Prettier](https://prettier.io/)
 - [ESLint](https://eslint.org/)
 - [Stylelint](https://stylelint.io)
 
 ## [CSS variables](CSSVARIABLES.md)
-## [Commit Message Guidelines](COMMITMESSAGE.md)
 
+## [Commit Message Guidelines](COMMITMESSAGE.md)
