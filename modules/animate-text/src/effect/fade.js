@@ -1,4 +1,6 @@
-export default ({ target, delay, duration, loop }) => {
+import SyncAnimation from './sync-animation'
+
+export default function({ target, delay, duration, loop }) {
   const childrens = Array.from(target.children)
   const getWidthList = target => {
     const container = target.cloneNode(true)
@@ -12,78 +14,64 @@ export default ({ target, delay, duration, loop }) => {
     return widthList
   }
   const widthList = getWidthList(target)
-  const clientHeight = target.clientHeight
-  // console.log(widthList)
-  const childrenWrap = fn => (el, i) => {
-    if (el !== target) {
-      return fn(el, i - 1)
+  const childrensOriginStyle = childrens.map(el => {
+    const styles = window.getComputedStyle(el)
+    const originStyle = {
+      opacity: styles.opacity,
+      position: styles.position
     }
-    return undefined
-  }
-  const parentWrap = fn => (el, i) => {
-    if (el === target) {
-      return fn(el, i)
-    }
-    return undefined
-  }
+    el.style.opacity = 0
+    el.style.position = 'absolute'
+    return originStyle
+  })
+  target.style.height = `${target.parentElement.clientHeight}px`
+  const animationGroup = SyncAnimation.of().createAnimationGroup(
+    anime => anime.pause(),
+    anime => anime.play()
+  )
+  const joinSyncAnimationGroup = anime => animationGroup.push(anime)
+  const totalDuration = duration * childrens.length
+  const childrensDuration = totalDuration / 2
+  const delayDuration = childrensDuration / 4
+  const shownDuration = (childrensDuration - delayDuration) / 15
+  const gradientDuration =
+    (childrensDuration - delayDuration - shownDuration) / 2
   return {
-    targets: [target, ...childrens],
-    translateY: childrens.map((v, keyframeIndex) => {
-      let value = childrenWrap(() => clientHeight * (keyframeIndex + 1) * -1)
-      if (keyframeIndex === childrens.length - 1) {
-        value = childrenWrap(
-          (el, i) => (i ? clientHeight * (keyframeIndex + 1) * -1 : 0)
-        )
-      }
-      if (keyframeIndex === childrens.length - 2) {
-        value = childrenWrap(
-          (el, i) =>
-            i ? clientHeight * (keyframeIndex + 1) * -1 : clientHeight
-        )
-      }
+    container: {
+      targets: target,
+      width: [
+        [widthList[widthList.length - 1], widthList[0]],
+        ...widthList.slice(1)
+      ],
+      duration: 1000 * childrens.length,
+      easing: 'easeInOutQuart',
+      begin: joinSyncAnimationGroup,
+      loop
+    },
+    childrens: childrens.map(el => {
       return {
-        value,
-        duration: duration / 2,
-        delay: duration / 2
+        targets: el,
+        opacity: [
+          { value: [0, 1], duration: gradientDuration }, // 700
+          { value: 1, duration: shownDuration }, // 100
+          { value: [1, 0], duration: gradientDuration }, // 700
+          {
+            value: 0,
+            duration: delayDuration, // 500
+            delay: childrensDuration // 2000
+          }
+        ],
+        easing: 'easeInOutQuart',
+        duration: childrensDuration, // 2000
+        begin: joinSyncAnimationGroup,
+        complete: () => {
+          childrens.forEach((el, index) => {
+            Object.assign(el.style, childrensOriginStyle[index])
+          })
+        },
+        delay,
+        loop
       }
-    }),
-    visibility: childrens.map((v, keyframeIndex) => {
-      if (keyframeIndex === childrens.length - 2) {
-        return {
-          value: childrenWrap((el, i) => (i ? 'visible' : 'hidden')),
-          duration
-        }
-      }
-      return {
-        value: childrenWrap(() => 'visible'),
-        duration
-      }
-    }),
-    opacity: Array.from(
-      { length: childrens.length * 2 },
-      (v, keyframeIndex) => {
-        const isVisible = keyframeIndex % 2
-        return {
-          value: parentWrap(() => (isVisible ? 1 : 0)),
-          duration: duration / 2
-        }
-      }
-    ),
-    width: childrens.map((v, keyframeIndex) => {
-      if (keyframeIndex === childrens.length - 1) {
-        return {
-          value: parentWrap(() => widthList[0]),
-          duration
-        }
-      }
-      return {
-        value: parentWrap(() => widthList[keyframeIndex + 1]),
-        duration
-      }
-    }),
-    easing: 'easeInOutQuart',
-    // duration,
-    delay,
-    loop
+    })
   }
 }

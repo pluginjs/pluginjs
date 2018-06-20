@@ -58,7 +58,14 @@ class AnimateText extends Component {
       return animeGateWay(animeOptions)
     }
     const animeConfig = getAnimeConfigByOptions(options)
-    anime(animeConfig)
+    if (animeConfig.childrens) {
+      anime(animeConfig.container)
+      animeConfig.childrens.forEach((children, index) =>
+        setTimeout(() => anime(children), index * 1000)
+      )
+    } else {
+      anime(animeConfig)
+    }
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
