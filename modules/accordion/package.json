@@ -14,7 +14,7 @@
 		"@pluginjs/is": "^0.5.0",
 		"@pluginjs/pluginjs": "^0.5.0",
 		"@pluginjs/styled": "0.5.0",
-		"@pluginjs/styles": "^0.5.0",
+		"@pluginjs/styles": "^0.5.1",
 		"@pluginjs/utils": "^0.5.0",
 		"animejs": "^2.2.0",
 		"hammerjs": "*"
@@ -27,7 +27,7 @@
 		"lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
 		"test": "jest"
 	},
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"description": "A flexible modern accordion js plugin.",
 	"author": "Creation Studio Limited",
 	"homepage": "https://github.com/pluginjs/plugin.js",
