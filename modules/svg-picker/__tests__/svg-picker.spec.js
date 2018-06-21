@@ -1,8 +1,6 @@
-import $ from 'jquery'
-import '@pluginjs/dropdown'
-import '@pluginjs/scrollable'
-import SvgPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import SvgPicker from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('SvgPicker', () => {
   describe('SvgPicker()', () => {
@@ -26,16 +24,14 @@ describe('SvgPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const svgPicker = new SvgPicker(element)
+      const svgPicker = SvgPicker.of(generateHTMLSample())
 
       expect(svgPicker).toBeObject()
       expect(svgPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const svgPicker = new SvgPicker(element)
+      const svgPicker = SvgPicker.of(generateHTMLSample())
 
       expect(svgPicker.options).toBeObject()
     })
@@ -43,13 +39,10 @@ describe('SvgPicker', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = SvgPicker.of($element)
 
-      expect($element.asSvgPicker()).toEqual($element)
-
-      const api = $element.data('svgPicker')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -57,13 +50,13 @@ describe('SvgPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asSvgPicker()
-      expect($element.asSvgPicker('bind')).toBeNil()
+      const $element = SvgPicker.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asSvgPicker()
-      $element.asSvgPicker('destroy')
+      const $element = SvgPicker.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -73,43 +66,42 @@ describe('SvgPicker', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('svgPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.on('svgPicker:ready', () => {
         called++
       })
 
-      $element.asSvgPicker()
+      const api = SvgPicker.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSvgPicker()
-      // api =
-      $element.data('svgPicker')
+      $element = generateHTMLSample()
+      api = SvgPicker.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('svgPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.on('svgPicker:destroy', () => {
         called++
       })
 
-      $element.asSvgPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -118,13 +110,13 @@ describe('SvgPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSvgPicker()
-      api = $element.data('svgPicker')
+      $element = generateHTMLSample()
+      api = SvgPicker.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asSvgPicker('disable')
-      $element.asSvgPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -132,13 +124,13 @@ describe('SvgPicker', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('svgPicker:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.on('svgPicker:enable', () => {
         called++
       })
 
-      $element.asSvgPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -147,12 +139,12 @@ describe('SvgPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSvgPicker()
-      api = $element.data('svgPicker')
+      $element = generateHTMLSample()
+      api = SvgPicker.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asSvgPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -160,13 +152,13 @@ describe('SvgPicker', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('svgPicker:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.on('svgPicker:disable', () => {
         called++
       })
 
-      $element.asSvgPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

@@ -40,11 +40,9 @@ describe('PatternPicker', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
+      const api = PatternPicker.of($element)
 
-      expect($element.asPatternPicker()).toEqual($element)
-
-      const api = $element.data('patternPicker')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -52,13 +50,13 @@ describe('PatternPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = generateHTMLSample().asPatternPicker()
-      expect($element.asPatternPicker('bind')).toBeNil()
+      const $element = PatternPicker.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = generateHTMLSample().asPatternPicker()
-      $element.asPatternPicker('destroy')
+      const $element = PatternPicker.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -74,36 +72,36 @@ describe('PatternPicker', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('patternPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('patternPicker:ready', () => {
         called++
       })
 
-      $element.asPatternPicker()
+      const api = PatternPicker.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
       $element = generateHTMLSample().asPatternPicker()
-      // api = $element.data('patternPicker')
+      api = PatternPicker.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('patternPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('patternPicker:destroy', () => {
         called++
       })
 
-      $element.asPatternPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -112,13 +110,13 @@ describe('PatternPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asPatternPicker()
-      api = $element.data('patternPicker')
+      $element = generateHTMLSample()
+      api = PatternPicker.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asPatternPicker('disable')
-      $element.asPatternPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -126,13 +124,13 @@ describe('PatternPicker', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('patternPicker:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('patternPicker:enable', () => {
         called++
       })
 
-      $element.asPatternPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -141,12 +139,12 @@ describe('PatternPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asPatternPicker()
-      api = $element.data('patternPicker')
+      $element = generateHTMLSample()
+      api = PatternPicker.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asPatternPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -154,13 +152,13 @@ describe('PatternPicker', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('patternPicker:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('patternPicker:disable', () => {
         called++
       })
 
-      $element.asPatternPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

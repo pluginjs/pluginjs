@@ -1,7 +1,6 @@
-// import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Sample from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Sample from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Sample', () => {
   describe('Sample()', () => {
@@ -28,23 +27,20 @@ describe('Sample', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const sample = new Sample(element)
+      const sample = Sample.of(generateHTMLSample())
 
       expect(sample).toBeObject()
       expect(sample.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const sample = new Sample(element)
+      const sample = Sample.of(generateHTMLSample())
 
       expect(sample.options).toBeObject()
     })
 
     test('should have classes', () => {
-      const element = document.createElement('div')
-      const sample = new Sample(element)
+      const sample = Sample.of(generateHTMLSample())
 
       expect(sample.classes).toBeObject()
     })
@@ -52,13 +48,10 @@ describe('Sample', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = Sample.of($element)
 
-      expect($element.asSample()).toEqual($element)
-
-      const api = $element.data('sample')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -66,8 +59,8 @@ describe('Sample', () => {
 
   describe('classes', () => {
     test('should use classes options', () => {
-      const element = document.createElement('div')
-      const sample = new Sample(element, {
+      const element = generateHTMLSample()
+      const sample = Sample.of(element, {
         classes: {
           container: '{namespace}-wrap',
           active: '{namespace}-active'
@@ -79,8 +72,8 @@ describe('Sample', () => {
     })
 
     test('should override class namespace', () => {
-      const element = document.createElement('div')
-      const sample = new Sample(element, {
+      const element = generateHTMLSample()
+      const sample = Sample.of(element, {
         classes: {
           namespace: 'sample',
           container: '{namespace}-wrap'
@@ -93,16 +86,16 @@ describe('Sample', () => {
 
     describe('getClass()', () => {
       test('should get class with namespace', () => {
-        const element = document.createElement('div')
-        const sample = new Sample(element, { classes: { namespace: 'hello' } })
+        const element = generateHTMLSample()
+        const sample = Sample.of(element, { classes: { namespace: 'hello' } })
 
         expect(sample.getClass('foo')).toEqual('foo')
         expect(sample.getClass('{namespace}-foo')).toEqual('hello-foo')
       })
 
       test('should get class with arg', () => {
-        const element = document.createElement('div')
-        const sample = new Sample(element, { classes: { namespace: 'hello' } })
+        const element = generateHTMLSample()
+        const sample = Sample.of(element, { classes: { namespace: 'hello' } })
 
         expect(sample.getClass('foo', 'arg', 'value')).toEqual('foo')
         expect(sample.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
@@ -115,8 +108,8 @@ describe('Sample', () => {
   describe('theme', () => {
     describe('getThemeClass()', () => {
       test('should get theme classes with default namespace', () => {
-        const element = document.createElement('div')
-        const sample = new Sample(element, {
+        const element = generateHTMLSample()
+        const sample = Sample.of(element, {
           theme: null,
           classes: { theme: '{namespace}--{theme}' }
         })
@@ -129,8 +122,8 @@ describe('Sample', () => {
       })
 
       test('should get theme classes with namespace override', () => {
-        const element = document.createElement('div')
-        const sample = new Sample(element, {
+        const element = generateHTMLSample()
+        const sample = Sample.of(element, {
           theme: null,
           classes: {
             namespace: 'hello',
@@ -144,8 +137,8 @@ describe('Sample', () => {
       })
 
       test('should get theme classes correctly when no classes.THEME defined', () => {
-        const element = document.createElement('div')
-        const sample = new Sample(element, { theme: '{namespace}--foo' })
+        const element = generateHTMLSample()
+        const sample = Sample.of(element, { theme: '{namespace}--foo' })
 
         // set to null for test
         sample.classes.THEME = null
@@ -163,9 +156,8 @@ describe('Sample', () => {
     })
 
     test('should add theme class after initialize and remove after destroy', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-      const sample = new Sample(element, {
+      const $element = generateHTMLSample()
+      const sample = Sample.of($element, {
         theme: 'foo',
         classes: { theme: '{namespace}--{theme}' }
       })
@@ -176,9 +168,8 @@ describe('Sample', () => {
     })
 
     test('should works with more than one theme', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-      const sample = new Sample(element, {
+      const $element = generateHTMLSample()
+      const sample = Sample.of($element, {
         theme: 'foo bar',
         classes: { theme: '{namespace}--{theme}' }
       })
@@ -194,13 +185,13 @@ describe('Sample', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asSample()
-      expect($element.asSample('bind')).toBeNil()
+      const $element = Sample.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asSample()
-      expect($element.asSample('destroy')).toEqual($element)
+      const $element = Sample.of(generateHTMLSample())
+      expect($element.destroy()).toEqual($element)
     })
   })
 
@@ -208,43 +199,42 @@ describe('Sample', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('sample:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.on('sample:ready', () => {
         called++
       })
 
-      $element.asSample()
+      const api = Sample.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSample()
-      // api =
-      $element.data('sample')
+      $element = generateHTMLSample()
+      api = Sample.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('sample:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.on('sample:destroy', () => {
         called++
       })
 
-      $element.asSample('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -253,13 +243,13 @@ describe('Sample', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSample()
-      api = $element.data('sample')
+      $element = generateHTMLSample()
+      api = Sample.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asSample('disable')
-      $element.asSample('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -267,13 +257,13 @@ describe('Sample', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('sample:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.on('sample:enable', () => {
         called++
       })
 
-      $element.asSample('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -282,12 +272,12 @@ describe('Sample', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSample()
-      api = $element.data('sample')
+      $element = generateHTMLSample()
+      api = Sample.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asSample('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -295,13 +285,13 @@ describe('Sample', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('sample:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.on('sample:disable', () => {
         called++
       })
 
-      $element.asSample('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 
@@ -310,8 +300,8 @@ describe('Sample', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSample()
-      api = $element.data('sample')
+      $element = generateHTMLSample()
+      api = Sample.of($element)
     })
 
     test('should have I18N', () => {
@@ -324,10 +314,9 @@ describe('Sample', () => {
       })
 
       test('should get locale with options set', () => {
-        $element = $(document.createElement('div')).asSample({
+        api = Sample.of(generateHTMLSample(), {
           locale: 'zh-cn'
         })
-        api = $element.data('sample')
         expect(api.getLocale()).toEqual('zh-cn')
       })
     })

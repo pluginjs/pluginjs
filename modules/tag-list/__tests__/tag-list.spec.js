@@ -1,7 +1,6 @@
-import $ from 'jquery'
-// import List from '@pluginjs/list'
-import TagList from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import TagList from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('TagList', () => {
   describe('TagList()', () => {
@@ -25,16 +24,14 @@ describe('TagList', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const tagList = new TagList(element)
+      const tagList = TagList.of(generateHTMLSample())
 
       expect(tagList).toBeObject()
       expect(tagList.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const tagList = new TagList(element)
+      const tagList = TagList.of(generateHTMLSample())
 
       expect(tagList.options).toBeObject()
     })
@@ -42,13 +39,10 @@ describe('TagList', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = TagList.of($element)
 
-      expect($element.asTagList()).toEqual($element)
-
-      const api = $element.data('tagList')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -56,13 +50,13 @@ describe('TagList', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asTagList()
-      expect($element.asTagList('bind')).toBeNil()
+      const $element = TagList.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asTagList()
-      $element.asTagList('destroy')
+      const $element = TagList.of(generateHTMLSample())
+      $element.destroy(0)
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -72,43 +66,42 @@ describe('TagList', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('tagList:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('tagList:ready', () => {
         called++
       })
 
-      $element.asTagList()
+      const api = TagList.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asTagList()
-      // api =
-      $element.data('tagList')
+      $element = generateHTMLSample()
+      api = TagList.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('tagList:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('tagList:destroy', () => {
         called++
       })
 
-      $element.asTagList('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -117,13 +110,13 @@ describe('TagList', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asTagList()
-      api = $element.data('tagList')
+      $element = generateHTMLSample(0)
+      api = TagList.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asTagList('disable')
-      $element.asTagList('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,13 +124,13 @@ describe('TagList', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('tagList:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('tagList:enable', () => {
         called++
       })
 
-      $element.asTagList('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -146,12 +139,12 @@ describe('TagList', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asTagList()
-      api = $element.data('tagList')
+      $element = generateHTMLSample(0)
+      api = TagList.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asTagList('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,13 +152,13 @@ describe('TagList', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('tagList:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('tagList:disable', () => {
         called++
       })
 
-      $element.asTagList('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

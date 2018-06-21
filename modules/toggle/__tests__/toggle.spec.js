@@ -1,6 +1,6 @@
-import $ from 'jquery'
-import Toggle from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Toggle from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Toggle', () => {
   describe('Toggle()', () => {
@@ -27,16 +27,14 @@ describe('Toggle', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const _toggle = new Toggle(element)
+      const _toggle = Toggle.of(generateHTMLSample())
 
       expect(_toggle).toBeObject()
       expect(_toggle.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const _toggle = new Toggle(element)
+      const _toggle = Toggle.of(generateHTMLSample())
 
       expect(_toggle.options).toBeObject()
     })
@@ -44,13 +42,10 @@ describe('Toggle', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = Toggle.of($element)
 
-      expect($element.asToggle()).toEqual($element)
-
-      const api = $element.data('toggle')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -58,13 +53,13 @@ describe('Toggle', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asToggle()
-      expect($element.asToggle('bind')).toBeNil()
+      const $element = Toggle.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asToggle()
-      expect($element.asToggle('destroy')).toEqual($element)
+      const $element = Toggle.of(generateHTMLSample())
+      $element.destroy()
     })
   })
 
@@ -72,43 +67,42 @@ describe('Toggle', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('toggle:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('toggle:ready', () => {
         called++
       })
 
-      $element.asToggle()
+      const api = Toggle.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asToggle()
-      // api =
-      $element.data('toggle')
+      $element = generateHTMLSample()
+      api = Toggle.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('toggle:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('toggle:destroy', () => {
         called++
       })
 
-      $element.asToggle('destroy')
+      api.destroy(0)
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -117,13 +111,13 @@ describe('Toggle', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asToggle()
-      api = $element.data('toggle')
+      $element = generateHTMLSample()
+      api = Toggle.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asToggle('disable')
-      $element.asToggle('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,13 +125,13 @@ describe('Toggle', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('toggle:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('toggle:enable', () => {
         called++
       })
 
-      $element.asToggle('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -146,12 +140,12 @@ describe('Toggle', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asToggle()
-      api = $element.data('toggle')
+      $element = generateHTMLSample()
+      api = Toggle.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asToggle('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,13 +153,13 @@ describe('Toggle', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('toggle:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('toggle:disable', () => {
         called++
       })
 
-      $element.asToggle('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

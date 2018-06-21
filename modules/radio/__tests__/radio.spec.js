@@ -43,11 +43,9 @@ describe('Radio', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
+      const api = Radio.of($element)
 
-      expect($element.asRadio()).toEqual($element)
-
-      const api = $element.data('radio')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -91,13 +89,13 @@ describe('Radio', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = generateHTMLSample().asRadio()
-      expect($element.asRadio('bind')).toBeNil()
+      const $element = Radio.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = generateHTMLSample().asRadio()
-      expect($element.asRadio('destroy')).toEqual($element)
+      const $element = Radio.of(generateHTMLSample())
+      expect($element.destroy()).toEqual($element)
     })
   })
 
@@ -111,13 +109,13 @@ describe('Radio', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('radio:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('radio:ready', () => {
         called++
       })
 
-      $element.asRadio()
+      const api = Radio.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
@@ -126,18 +124,18 @@ describe('Radio', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asRadio()
-      api = $element.data('radio')
+      $element = generateHTMLSample()
+      api = Radio.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('radio:destroy', () => {
+      $element.addEventListener('radio:destroy', () => {
         called++
       })
 
-      $element.asRadio('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeFalse()
@@ -149,13 +147,13 @@ describe('Radio', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asRadio()
-      api = $element.data('radio')
+      $element = generateHTMLSample()
+      api = Radio.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asRadio('disable')
-      $element.asRadio('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -163,13 +161,13 @@ describe('Radio', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('radio:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('radio:enable', () => {
         called++
       })
 
-      $element.asRadio('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -178,12 +176,12 @@ describe('Radio', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asRadio()
-      api = $element.data('radio')
+      $element = generateHTMLSample()
+      api = Radio.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asRadio('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -191,13 +189,13 @@ describe('Radio', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('radio:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('radio:disable', () => {
         called++
       })
 
-      $element.asRadio('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

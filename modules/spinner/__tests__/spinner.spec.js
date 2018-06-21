@@ -1,6 +1,6 @@
-import $ from 'jquery'
-import Spinner from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Spinner from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Spinner', () => {
   describe('Spinner()', () => {
@@ -27,16 +27,14 @@ describe('Spinner', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const spinner = new Spinner(element)
+      const spinner = Spinner.of(generateHTMLSample())
 
       expect(spinner).toBeObject()
       expect(spinner.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const spinner = new Spinner(element)
+      const spinner = Spinner.of(generateHTMLSample())
 
       expect(spinner.options).toBeObject()
     })
@@ -44,13 +42,10 @@ describe('Spinner', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = Spinner.of($element)
 
-      expect($element.asSpinner()).toEqual($element)
-
-      const api = $element.data('spinner')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -58,13 +53,13 @@ describe('Spinner', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asSpinner()
-      expect($element.asSpinner('bind')).toBeNil()
+      const $element = Spinner.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asSpinner()
-      expect($element.asSpinner('destroy')).toEqual($element)
+      const $element = Spinner.of(generateHTMLSample())
+      expect($element.destroy()).toEqual($element)
     })
   })
 
@@ -72,43 +67,42 @@ describe('Spinner', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('spinner:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('spinner:ready', () => {
         called++
       })
 
-      $element.asSpinner()
+      const api = Spinner.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSpinner()
-      // api =
-      $element.data('spinner')
+      $element = generateHTMLSample()
+      api = Spinner.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('spinner:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('spinner:destroy', () => {
         called++
       })
 
-      $element.asSpinner('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -117,13 +111,13 @@ describe('Spinner', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSpinner()
-      api = $element.data('spinner')
+      $element = generateHTMLSample()
+      api = Spinner.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asSpinner('disable')
-      $element.asSpinner('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,13 +125,13 @@ describe('Spinner', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('spinner:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('spinner:enable', () => {
         called++
       })
 
-      $element.asSpinner('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -146,12 +140,12 @@ describe('Spinner', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSpinner()
-      api = $element.data('spinner')
+      $element = generateHTMLSample()
+      api = Spinner.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asSpinner('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,13 +153,13 @@ describe('Spinner', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('spinner:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('spinner:disable', () => {
         called++
       })
 
-      $element.asSpinner('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })
