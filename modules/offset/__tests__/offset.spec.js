@@ -43,11 +43,9 @@ describe('Offset', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
+      const api = Offset.of($element)
 
-      expect($element.asOffset()).toEqual($element)
-
-      const api = $element.data('offset')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -55,13 +53,13 @@ describe('Offset', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = generateHTMLSample().asOffset()
-      expect($element.asOffset('bind')).toBeNil()
+      const $element = Offset.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = generateHTMLSample().asOffset()
-      expect($element.asOffset('destroy')).toEqual($element)
+      const $element = Offset.of(generateHTMLSample())
+      $element.destroy()
     })
   })
 
@@ -75,37 +73,36 @@ describe('Offset', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('offset:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('offset:ready', () => {
         called++
       })
 
-      $element.asOffset()
+      const api = Offset.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asOffset()
-      // api =
-      $element.data('offset')
+      $element = generateHTMLSample()
+      api = Offset.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('offset:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('offset:destroy', () => {
         called++
       })
 
-      $element.asOffset('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -114,13 +111,13 @@ describe('Offset', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asOffset()
-      api = $element.data('offset')
+      $element = generateHTMLSample()
+      api = Offset.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asOffset('disable')
-      $element.asOffset('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -128,13 +125,13 @@ describe('Offset', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('offset:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('offset:enable', () => {
         called++
       })
 
-      $element.asOffset('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -143,12 +140,12 @@ describe('Offset', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asOffset()
-      api = $element.data('offset')
+      $element = generateHTMLSample()
+      api = Offset.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asOffset('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -156,13 +153,13 @@ describe('Offset', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('offset:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('offset:disable', () => {
         called++
       })
 
-      $element.asOffset('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })
