@@ -38,14 +38,14 @@ describe('GradientPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const gradientPicker = GradientPicker.of(generateHTMLSample(), { data })
+      const gradientPicker = GradientPicker.of(generateHTMLSample())
 
       expect(gradientPicker).toBeObject()
       // expect(gradientPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const gradientPicker = GradientPicker.of(generateHTMLSample(), { data })
+      const gradientPicker = GradientPicker.of(generateHTMLSample())
 
       expect(gradientPicker.options).toBeObject()
     })
@@ -54,7 +54,7 @@ describe('GradientPicker', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
-      const api = GradientPicker.of($element, { data })
+      const api = GradientPicker.of($element)
 
       expect(api).toEqual(api)
       expect(api).toBeObject()
@@ -64,12 +64,12 @@ describe('GradientPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = GradientPicker.of(generateHTMLSample(), { data })
+      const $element = GradientPicker.of(generateHTMLSample())
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = GradientPicker.of(generateHTMLSample(), { data })
+      const $element = GradientPicker.of(generateHTMLSample())
       $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -90,7 +90,7 @@ describe('GradientPicker', () => {
         called++
       })
 
-      const api = GradientPicker.of($element, { data })
+      const api = GradientPicker.of($element)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -102,7 +102,7 @@ describe('GradientPicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = GradientPicker.of($element, { data })
+      api = GradientPicker.of($element)
     })
 
     test('should trigger destroy event', () => {
@@ -125,7 +125,7 @@ describe('GradientPicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = GradientPicker.of($element, { data })
+      api = GradientPicker.of($element)
     })
 
     test('should enable the plugin', () => {
@@ -154,7 +154,7 @@ describe('GradientPicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = GradientPicker.of($element, { data })
+      api = GradientPicker.of($element)
     })
 
     test('should disable the plugin', () => {

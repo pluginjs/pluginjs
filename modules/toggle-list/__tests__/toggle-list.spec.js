@@ -1,35 +1,29 @@
-import $ from 'jquery'
-import '@pluginjs/tooltip'
-import '@pluginjs/popover'
-import '@pluginjs/pop-dialog'
-// import List from '@pluginjs/list'
-import '@pluginjs/toggle'
-// import { deepMerge } from '@pluginjs/utils'
 import ToggleList from '../src/main'
-// import { defaults as DEFAULTS } from '../../src/constant'
+// import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
-const data = [
-  {
-    title: 'Interfaces',
-    checked: true
-  },
-  {
-    title: 'UI Design',
-    checked: false
-  },
-  {
-    title: 'Web Design',
-    checked: false
-  },
-  {
-    title: 'Typography',
-    checked: true
-  },
-  {
-    title: 'Landing',
-    checked: false
-  }
-]
+// const data = [
+//   {
+//     title: 'Interfaces',
+//     checked: true
+//   },
+//   {
+//     title: 'UI Design',
+//     checked: false
+//   },
+//   {
+//     title: 'Web Design',
+//     checked: false
+//   },
+//   {
+//     title: 'Typography',
+//     checked: true
+//   },
+//   {
+//     title: 'Landing',
+//     checked: false
+//   }
+// ]
 describe('ToggleList', () => {
   describe('ToggleList()', () => {
     test('should have ToggleList', () => {
@@ -52,15 +46,13 @@ describe('ToggleList', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const toggleList = new ToggleList(element, { data })
+      const toggleList = ToggleList.of(generateHTMLSample())
       expect(toggleList).toBeObject()
       // expect(others).toEqual(deepMerge(List.defaults, DEFAULTS));
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const toggleList = new ToggleList(element, { data })
+      const toggleList = ToggleList.of(generateHTMLSample())
 
       expect(toggleList.options).toBeObject()
     })
@@ -68,13 +60,10 @@ describe('ToggleList', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = ToggleList.of($element)
 
-      expect($element.asToggleList({ data })).toEqual($element)
-
-      const api = $element.data('toggleList')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -82,13 +71,13 @@ describe('ToggleList', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asToggleList({ data })
-      expect($element.asToggleList('bind')).toBeNil()
+      const $element = ToggleList.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asToggleList({ data })
-      $element.asToggleList('destroy')
+      const $element = ToggleList.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -98,43 +87,42 @@ describe('ToggleList', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('toggleList:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('toggleList:ready', () => {
         called++
       })
 
-      $element.asToggleList({ data })
+      const api = ToggleList.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asToggleList({ data })
-      // api =
-      $element.data('toggleList')
+      $element = generateHTMLSample()
+      api = ToggleList.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('toggleList:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('toggleList:destroy', () => {
         called++
       })
 
-      $element.asToggleList('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -143,13 +131,13 @@ describe('ToggleList', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asToggleList({ data })
-      api = $element.data('toggleList')
+      $element = generateHTMLSample()
+      api = ToggleList.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asToggleList('disable')
-      $element.asToggleList('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -157,13 +145,13 @@ describe('ToggleList', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('toggleList:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('toggleList:enable', () => {
         called++
       })
 
-      $element.asToggleList('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -172,12 +160,12 @@ describe('ToggleList', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asToggleList({ data })
-      api = $element.data('toggleList')
+      $element = generateHTMLSample()
+      api = ToggleList.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asToggleList('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -185,13 +173,13 @@ describe('ToggleList', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('toggleList:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('toggleList:disable', () => {
         called++
       })
 
-      $element.asToggleList('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

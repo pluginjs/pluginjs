@@ -1,7 +1,6 @@
-import $ from 'jquery'
-import '@pluginjs/dropdown'
 import Units from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 const data = ['px', '%']
 describe('Units', () => {
@@ -29,8 +28,7 @@ describe('Units', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const units = new Units(element, { data })
+      const units = Units.of(generateHTMLSample(), { data })
 
       expect(units).toBeObject()
       expect(units.options).toEqual({
@@ -40,15 +38,13 @@ describe('Units', () => {
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const units = new Units(element, { data })
+      const units = Units.of(generateHTMLSample(), { data })
 
       expect(units.options).toBeObject()
     })
 
     test('should have classes', () => {
-      const element = document.createElement('div')
-      const units = new Units(element, { data })
+      const units = Units.of(generateHTMLSample(), { data })
 
       expect(units.classes).toBeObject()
     })
@@ -56,13 +52,9 @@ describe('Units', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asUnits({ data })).toEqual($element)
-
-      const api = $element.data('units')
-
+      const $element = generateHTMLSample()
+      const api = Units.of($element, { data })
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -70,8 +62,8 @@ describe('Units', () => {
 
   describe('classes', () => {
     test('should use classes options', () => {
-      const element = document.createElement('div')
-      const units = new Units(element, {
+      const element = generateHTMLSample()
+      const units = Units.of(element, {
         data,
         classes: {
           container: '{namespace}-wrap',
@@ -85,8 +77,8 @@ describe('Units', () => {
     })
 
     test('should override class namespace', () => {
-      const element = document.createElement('div')
-      const units = new Units(element, {
+      const element = generateHTMLSample()
+      const units = Units.of(element, {
         data,
         classes: {
           namespace: 'units',
@@ -101,8 +93,8 @@ describe('Units', () => {
 
     describe('getClass()', () => {
       test('should get class with namespace', () => {
-        const element = document.createElement('div')
-        const units = new Units(element, {
+        const element = generateHTMLSample()
+        const units = Units.of(element, {
           data,
           classes: { namespace: 'hello' }
         })
@@ -112,8 +104,8 @@ describe('Units', () => {
       })
 
       test('should get class with arg', () => {
-        const element = document.createElement('div')
-        const units = new Units(element, {
+        const element = generateHTMLSample()
+        const units = Units.of(element, {
           data,
           classes: { namespace: 'hello' }
         })
@@ -129,8 +121,8 @@ describe('Units', () => {
   describe('theme', () => {
     describe('getThemeClass()', () => {
       test('should get theme classes with default namespace', () => {
-        const element = document.createElement('div')
-        const units = new Units(element, {
+        const element = generateHTMLSample()
+        const units = Units.of(element, {
           data,
           theme: null,
           classes: { theme: '{namespace}--{theme}' }
@@ -144,8 +136,8 @@ describe('Units', () => {
       })
 
       test('should get theme classes with namespace override', () => {
-        const element = document.createElement('div')
-        const units = new Units(element, {
+        const element = generateHTMLSample()
+        const units = Units.of(element, {
           data,
           theme: null,
           classes: {
@@ -161,8 +153,8 @@ describe('Units', () => {
       })
 
       test('should get theme classes correctly when no classes.THEME defined', () => {
-        const element = document.createElement('div')
-        const units = new Units(element, {
+        const element = generateHTMLSample()
+        const units = Units.of(element, {
           data,
           theme: '{namespace}--foo'
         })
@@ -181,9 +173,8 @@ describe('Units', () => {
     })
 
     test('should add theme class after initialize and remove after destroy', () => {
-      const element = document.createElement('div')
-      // const $element = $(element)
-      const units = new Units(element, {
+      const element = generateHTMLSample()
+      const units = Units.of(element, {
         data,
         theme: 'foo',
         classes: { theme: '{namespace}--{theme}' }
@@ -195,9 +186,8 @@ describe('Units', () => {
     })
 
     test('should works with more than one theme', () => {
-      const element = document.createElement('div')
-      // const $element = $(element)
-      const units = new Units(element, {
+      const element = generateHTMLSample()
+      const units = Units.of(element, {
         data,
         theme: 'foo bar',
         classes: { theme: '{namespace}--{theme}' }
@@ -213,13 +203,13 @@ describe('Units', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asUnits({ data })
-      expect($element.asUnits('bind')).toBeNil()
+      const $element = Units.of(generateHTMLSample(), { data })
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asUnits({ data })
-      expect($element.asUnits('destroy')).toEqual($element)
+      const $element = Units.of(generateHTMLSample(), { data })
+      expect($element.destroy()).toEqual($element)
     })
   })
 
@@ -227,44 +217,42 @@ describe('Units', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('units:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('units:ready', () => {
         called++
       })
 
-      $element.asUnits({ data })
+      const api = Units.of($element, { data })
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asUnits({ data })
-      // api =
-      $element.data('units')
+      $element = generateHTMLSample()
+      api = Units.of($element, { data })
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('units:destroy', (event, api) => {
-        console.log('11111111111')
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('units:destroy', () => {
         called++
       })
 
-      $element.asUnits('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -273,13 +261,13 @@ describe('Units', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asUnits({ data })
-      api = $element.data('units')
+      $element = generateHTMLSample()
+      api = Units.of($element, { data })
     })
 
     test('should enable the plugin', () => {
-      $element.asUnits('disable')
-      $element.asUnits('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -287,13 +275,13 @@ describe('Units', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('units:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('units:enable', () => {
         called++
       })
 
-      $element.asUnits('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -302,12 +290,12 @@ describe('Units', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asUnits({ data })
-      api = $element.data('units')
+      $element = generateHTMLSample()
+      api = Units.of($element, { data })
     })
 
     test('should disable the plugin', () => {
-      $element.asUnits('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -315,13 +303,13 @@ describe('Units', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('units:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('units:disable', () => {
         called++
       })
 
-      $element.asUnits('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })
