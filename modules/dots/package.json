@@ -9,7 +9,8 @@
 		"@pluginjs/is": "^0.2.19",
 		"@pluginjs/pluginjs": "^0.2.25",
 		"@pluginjs/template": "^0.2.19",
-		"@pluginjs/utils": "^0.2.20"
+		"@pluginjs/utils": "^0.2.20",
+		"@pluginjs/styles": "^0.5.1"
 	},
 	"version": "0.2.19",
 	"description": "A flexible modern dots js plugin.",
