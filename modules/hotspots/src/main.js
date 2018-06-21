@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { deepMerge, compose } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { query, queryAll, parseHTML } from '@pluginjs/dom'
+import { queryAll, parseHTML } from '@pluginjs/dom'
 import Popover from '@pluginjs/popover'
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
@@ -52,7 +52,8 @@ class Hotspots extends Component {
     addClass(this.classes.CONTAINER, this.element)
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.element)
+      const themeClasses = this.getThemeClass().split(' ')
+      addClass(themeClasses, this.element)
     }
 
     this.createHotspots()
@@ -222,9 +223,9 @@ class Hotspots extends Component {
   }
 
   setupPopover() {
-    this.$hotspotsInstance = this.$hotspots.map(el => {
+    this.$hotspotsInstance = this.$hotspots.map(el =>
       Popover.of(el, this.options.popover)
-    })
+    )
     this.$hotspots.map(
       compose(
         bindEvent({

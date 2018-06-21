@@ -27,6 +27,11 @@ class Logger {
     return this
   }
 
+  error(msg) {
+    console.error(msg)
+    return this
+  }
+
   clear() {
     process.stdout.write('\x1Bc')
   }

@@ -10,6 +10,7 @@
 		"@pluginjs/events": "^0.0.5",
 		"@pluginjs/pluginjs": "^0.2.25",
 		"@pluginjs/utils": "^0.2.20",
+		"@pluginjs/tooltip": "^0.2.19",
 		"hammerjs": "*"
 	},
 	"version": "0.2.24",

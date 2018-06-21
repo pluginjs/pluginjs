@@ -8,10 +8,16 @@
 		"build": "parcel build index.html"
 	},
 	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-preset-env": "1.7.0",
+		"babel-plugin-transform-html-import-to-string": "^0.0.1",
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"@pluginjs/slider": "^0.2.18"
+		"@pluginjs/slider": "^0.2.24",
+		"@pluginjs/dom": "^0.0.15",
+		"@pluginjs/styles": "^0.2.19",
+		"@pluginjs/icons": "^0.5.0"
 	},
 	"license": "UNLICENSED"
 }

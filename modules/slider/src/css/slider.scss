@@ -10,7 +10,7 @@ $arrow: "pj-arrow" !default;
 .#{$slider} {
   position: relative;
   display: flex;
-  opacity: 1;
+  width: 100%;
 
   &.#{$slider}-hidden {
     opacity: 0;
@@ -32,167 +32,82 @@ $arrow: "pj-arrow" !default;
     }
   }
 
-  &-horizontal {
+  &.#{$slider}-horizontal {
     .#{$slider}-prev,
     .#{$slider}-next {
-      position: absolute;
-    }
-
-    .#{$slider}-prev {
-      left: -60px;
-    }
-
-    .#{$slider}-next {
-      right: -60px;
+      margin: 0 1rem;
     }
   }
 
-  &-box {
+  .#{$slider}-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .#{$slider}-box {
     position: relative;
-    width: 490px;
-    height: 270px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-      0 1px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
     transition-timing-function: ease-in;
     transition-duration: 0.218s;
     transition-property: box-shadow;
 
-    .#{$slider}-card {
-      position: absolute;
-      width: 490px;
-      height: 270px;
-      background-color: #5e5e5e;
-      border-radius: 8px;
-
-      > img {
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-      }
-    }
-
     &:hover {
-      box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent,
-        0 2px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0, 0, 0, 0.3);
     }
   }
 
-  &-dots {
+  .#{$slider}-card {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #5e5e5e;
+    border-radius: 8px;
+  }
+
+  .#{$slider}-active {
+    position: relative;
+  }
+
+  img {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .#{$slider}-dots {
     z-index: 10;
     margin-top: 20px;
 
     .#{$dot}s {
       display: flex;
       justify-content: center;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-
-      .#{$dot} {
-        display: flex;
-        width: 8px;
-        height: 8px;
-        margin: 0 5px;
-        cursor: pointer;
-
-        > a {
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          overflow: hidden;
-          text-indent: 100%;
-          background-color: rgba(0, 0, 0, 0.2);
-          border-radius: 50%;
-
-          &:hover {
-            background-color: rgba(0, 0, 0, 0.3);
-          }
-        }
-
-        &-active a,
-        &-active a:hover {
-          background-color: #333;
-        }
-      }
     }
   }
 
-  &-prev,
-  &-next {
+  .#{$slider}-prev,
+  .#{$slider}-next {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 270px;
-    transition: background 0.3s;
-
-    > .arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      color: #333;
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: 50%;
-
-      &:hover {
-        color: #333;
-        text-decoration: none;
-      }
-    }
   }
 
-  &-vertical {
+  &.#{$slider}-vertical {
     flex-direction: column;
-    width: 490px;
 
     & .#{$slider}-prev,
     & .#{$slider}-next {
       width: 100%;
-      height: 60px;
+      margin: 1rem 0;
 
       > .#{$arrow} {
         transform: rotate(90deg);
       }
-    }
-  }
-}
-
-@media (max-width: 640px) {
-  .#{$slider}-horizontal {
-    width: 100%;
-
-    & .#{$slider}-prev,
-    & .#{$slider}-next,
-    & .#{$slider}-dots {
-      display: none;
-    }
-
-    & .#{$slider}-container,
-    & .#{$slider}-box,
-    & .#{$slider}-box > div {
-      width: 100%;
-    }
-  }
-}
-
-@media (max-width: 640px) {
-  .#{$slider}-vertical {
-    width: 100%;
-
-    & .#{$slider}-prev,
-    & .#{$slider}-dots {
-      display: none;
-    }
-
-    & .#{$slider}-box,
-    & .#{$slider}-box > div {
-      height: 100%;
     }
   }
 }

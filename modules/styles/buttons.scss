@@ -1,3 +1,4 @@
+@import "@pluginjs/styles/variables.scss";
 // Button
 // ==========================================
 //
@@ -70,6 +71,26 @@ button {
   border: 1px solid $btn-border-color;
   border-radius: $btn-border-radius;
   transition: all 0.3s;
+
+  // button with icon
+  .icon,
+  .text {
+    // position: relative;
+    // margin-bottom: -2%;
+    display: inline-block;
+    // margin: 0 .5em;
+    margin: 0;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+  }
+
+  .icon + .text {
+    margin-left: 0.5em;
+  }
+
+  .text + .icon {
+    margin-left: 0.5em;
+  }
 
   &:hover,
   &:active {
@@ -382,28 +403,6 @@ button {
 
   &-link-default {
     color: $btn-link-default-color;
-  }
-
-  // button with icon
-  & {
-    .icon,
-    .text {
-      // position: relative;
-      // margin-bottom: -2%;
-      display: inline-block;
-      // margin: 0 .5em;
-      margin: 0;
-      vertical-align: middle;
-      transition: all 0.3s ease;
-    }
-
-    .icon + .text {
-      margin-left: 0.5em;
-    }
-
-    .text + .icon {
-      margin-left: 0.5em;
-    }
   }
 
   // button only icon in

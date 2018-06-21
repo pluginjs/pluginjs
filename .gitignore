@@ -16,3 +16,4 @@ yarn-error.log
 temp
 .cache
 .plugin-cache
+!dist/assets

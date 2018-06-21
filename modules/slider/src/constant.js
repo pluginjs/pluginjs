@@ -45,7 +45,7 @@ export const defaults = {
   direction: 'horizontal',
   dots: false,
   dotNameSpace: null,
-  playcycle: false
+  playcycle: 1500
 }
 
 export const dependencies = ['Hammer', 'dots', 'arrows']

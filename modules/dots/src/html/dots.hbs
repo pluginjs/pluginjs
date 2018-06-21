@@ -22,37 +22,37 @@ scripts:
 
   <section class="top-gap">
     <h4>Stroke</h4>
-    <ul class="pj-dots example-stroke pj-dots-stroke">
-      <li class="pj-dot pj-dot-active"><a href="#">1</a></li>
-      <li class="pj-dot"><a href="#">2</a></li>
-      <li class="pj-dot"><a href="#">3</a></li>
-      <li class="pj-dot"><a href="#">4</a></li>
-      <li class="pj-dot"><a href="#">5</a></li>
-      <li class="pj-dot"><a href="#">6</a></li>
+    <ul class="pj-dots example-stroke">
+      <li class="pj-dot pj-dot-active"><a href="javascript:void(0);">1</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">2</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">3</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">4</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">5</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">6</a></li>
     </ul>
   </section>
 
    <section class="top-gap">
     <h4>Square</h4>
-    <ul class="pj-dots example-square pj-dots-square">
-      <li class="pj-dot pj-dot-active"><a href="#">1</a></li>
-      <li class="pj-dot"><a href="#">2</a></li>
-      <li class="pj-dot"><a href="#">3</a></li>
-      <li class="pj-dot"><a href="#">4</a></li>
-      <li class="pj-dot"><a href="#">5</a></li>
-      <li class="pj-dot"><a href="#">6</a></li>
+    <ul class="pj-dots example-square">
+      <li class="pj-dot pj-dot-active"><a href="javascript:void(0);">1</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">2</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">3</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">4</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">5</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">6</a></li>
     </ul>
   </section>
 
   <section class="top-gap">
     <h4>Vertical</h4>
-    <ul class="pj-dots pj-dots-vertical example-vertical">
-      <li class="pj-dot pj-dot-active"><a href="#">1</a></li>
-      <li class="pj-dot"><a href="#">2</a></li>
-      <li class="pj-dot"><a href="#">3</a></li>
-      <li class="pj-dot"><a href="#">4</a></li>
-      <li class="pj-dot"><a href="#">5</a></li>
-      <li class="pj-dot"><a href="#">6</a></li>
+    <ul class="pj-dots example-vertical">
+      <li class="pj-dot pj-dot-active"><a href="javascript:void(0);">1</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">2</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">3</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">4</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">5</a></li>
+      <li class="pj-dot"><a href="javascript:void(0);">6</a></li>
     </ul>
   </section>
 <script>
@@ -64,6 +64,7 @@ scripts:
   })
 
   Pj.dots('.example-stroke', {
+    type:'stroke',
     valueFrom: 'text',
     onChange: function(val) {
       console.info('select: '+ val);
@@ -71,6 +72,7 @@ scripts:
   })
 
   Pj.dots('.example-square', {
+    type:'square',
     valueFrom: 'text',
     onChange: function(val) {
       console.info('select: '+ val);
@@ -78,6 +80,7 @@ scripts:
   })
 
   Pj.dots('.example-vertical', {
+    direction:'vertical',
     onChange: function(val) {
       console.info('select: '+ val);
     }
@@ -114,63 +117,63 @@ scripts:
       console.info('init');
       exampleApi = Pj.dots('.example-api', {
         onChange: function(val) {
-          log('changeSelect: '+ val, 'event');
+          console.log('changeSelect: '+ val, 'event');
         },
         onReady: function() {
-          log('ready', 'event');
+          console.log('ready', 'event');
         },
         onDestroy: function() {
-          log('destroy', 'event');
+          console.log('destroy', 'event');
         },
         onEnable: function() {
-          log('enable', 'event');
+          console.log('enable', 'event');
         },
         onDisable: function() {
-          log('disable', 'event');
+          console.log('disable', 'event');
         },
         onShow: function() {
-          log('show', 'event');
+          console.log('show', 'event');
         },
         onHide: function() {
-          log('hide', 'event');
+          console.log('hide', 'event');
         },
         onLoad: function() {
-          log('load', 'event');
+          console.log('load', 'event');
         },
         onClick: function(val) {
-          log('click value: ' + val, 'event');
+          console.log('click value: ' + val, 'event');
         },
       })
     });
 
     document.querySelector('.api-destroy').addEventListener('click', function() {
       console.info('destroy');
-      exampleApi('destroy')
+      exampleApi.destroy()
     });
 
     document.querySelector('.api-enable').addEventListener('click', function() {
       console.info('enable');
-      exampleApi('enable')
+      exampleApi.enable()
     });
 
     document.querySelector('.api-disable').addEventListener('click', function() {
       console.info('disable');
-      exampleApi('disable')
+      exampleApi.disable()
     });
 
     document.querySelector('.api-show').addEventListener('click', function() {
       console.info('show');
-      exampleApi('show')
+      exampleApi.show()
     });
 
     document.querySelector('.api-hide').addEventListener('click', function() {
       console.info('hide');
-      exampleApi('hide')
+      exampleApi.hide()
     });
 
     document.querySelector('.api-get').addEventListener('click', function() {
       console.info('get');
-      console.info('current value is ' + exampleApi('get'));
+      console.info('current value is ' + exampleApi.get());
     });
   })();
   </script>
@@ -215,7 +218,7 @@ scripts:
       valueFrom: 'data-href', // text or data-attr
       template: {
         item: function(css) {
-          return '<li class="'+ css + '" data-href="{href}"><a href="#">{text}</a></li>';
+          return '<li class="'+ css + '" data-href="{href}"><a href="javascript:void(0);">{text}</a></li>';
         }
       },
       onChange: function(val) {
@@ -225,7 +228,7 @@ scripts:
 
     document.querySelector('.js-api-append').addEventListener('click', function() {
       console.info('append');
-      $jsDot('append', [{
+      $jsDot.append([{
         text: 'Products',
         href: '#products'
       }]);
@@ -233,7 +236,7 @@ scripts:
 
     document.querySelector('.js-api-prepend').addEventListener('click', function() {
       console.info('prepend');
-      $jsDot('prepend', [{
+      $jsDot.prepend([{
         text: 'Home',
         href: '#home'
       }]);
@@ -241,7 +244,7 @@ scripts:
 
     document.querySelector('.js-api-add').addEventListener('click', function() {
       console.info('add');
-      $jsDot('add', {
+      $jsDot.add({
         text: 'Office',
         href: '#office'
       });
@@ -249,17 +252,17 @@ scripts:
 
     document.querySelector('.js-api-remove').addEventListener('click', function() {
       console.info('remove');
-      $jsDot('remove', '#office');
+      $jsDot.remove('#office');
     });
 
     document.querySelector('.js-api-empty').addEventListener('click', function() {
       console.info('empty');
-      $jsDot('empty');
+      $jsDot.empty();
     });
 
     document.querySelector('.js-api-load').addEventListener('click', function() {
       console.info('load');
-      $jsDot('load', [
+      $jsDot.load([
         {
           text: 'Portfolio',
           href: '#portfolio'
@@ -281,12 +284,12 @@ scripts:
 
     document.querySelector('.js-api-get').addEventListener('click', function() {
       console.info('get');
-      console.info('current value is ' + $jsDot('get'));
+      console.info('current value is ' + $jsDot.get());
     });
 
     document.querySelector('.js-api-set').addEventListener('click', function() {
       console.info('set');
-      $jsDot('set', '#blog');
+      $jsDot.set('#blog');
     });
   })();
   </script>

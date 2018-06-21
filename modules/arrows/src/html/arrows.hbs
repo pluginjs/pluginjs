@@ -23,10 +23,9 @@ scripts:
 <section class="top-gap">
   <h4>Text</h4>
   <div class="pj-arrows example-text">
-    <a class="pj-arrow pj-arrow-prev" href="#" alt="Previous">Previous</a>
-    <a class="pj-arrow pj-arrow-next" href="#" alt="Next">Next</a>
+    <a class="pj-arrow pj-arrow-prev" href="#prev" alt="Previous">Previous</a>
+    <a class="pj-arrow pj-arrow-next" href="#next" alt="Next">Next</a>
   </div>
-
   <script>
   (function(){
     Pj.arrows('.example-text', {
@@ -45,7 +44,7 @@ scripts:
   <script>
   (function(){
     var $arrows = Pj.arrows('.example-square-outline', {
-      theme: 'outline square'
+      type: 'outline square'
     });
   })();
   </script>
@@ -60,7 +59,7 @@ scripts:
   <script>
   (function(){
     var $arrows = Pj.arrows('.example-circle-outline', {
-      theme: 'outline circle'
+      type: 'outline circle'
     });
   })();
   </script>
@@ -75,7 +74,7 @@ scripts:
   <script>
   (function(){
     var $arrows = Pj.arrows('.example-solid', {
-      theme: 'circle solid'
+      type: 'circle solid'
     });
   })();
   </script>
@@ -90,7 +89,7 @@ scripts:
   <script>
   (function(){
     var $arrows = Pj.arrows('.example-shadow', {
-      theme: 'circle shadow'
+      type: 'circle shadow'
     });
   })();
   </script>
@@ -118,6 +117,7 @@ scripts:
 
   <div class="pad-top-20">
     <button class="btn js-api-load">load</button>
+    <button class="btn js-api-empty">empty</button>
   </div>
   <script>
   (function(){
@@ -149,17 +149,22 @@ scripts:
         }
       }
     });
-/*
-    Pj.arrows('.js-api-load').on('click', function() {
-      $jsArro, 'load', {
+
+    document.querySelector('.js-api-load').addEventListener('click', function() {
+      console.info('load');
+      $jsArrow.load({
         text: 'Previous',
         href: '#previous'
       }, {
         text: 'Next',
         href: '#next'
-      }
+      });
     });
-*/
+
+    document.querySelector('.js-api-empty').addEventListener('click', function() {
+      console.log('empty');
+      $jsArrow.empty();
+    });
   })()
   </script>
 </section>
@@ -171,81 +176,71 @@ scripts:
     <a class="pj-arrow pj-arrow-next" href="#next" alt="Next"><i class="pj-arrow-icon icon-chevron-right"></i></a>
   </div>
   <div class="apis top-gap">
-    <button data-api="init" class="btn">init</button>
-    <button data-api="destroy" class="btn">destroy</button>
-    <button data-api="enable" class="btn">enable</button>
-    <button data-api="disable" class="btn">disable</button>
-    <button data-api="show" class="btn">show</button>
-    <button data-api="hide" class="btn">hide</button>
+    <button class="btn api-init">init</button>
+    <button class="btn api-destroy">destroy</button>
+    <button class="btn api-enable">enable</button>
+    <button class="btn api-disable">disable</button>
+    <button class="btn api-show">show</button>
+    <button class="btn api-hide">hide</button>
   </div>
   <div class="console top-gap"></div>
   <script>
   (function(){
-    //var $arrows = $(".example-api");
-
-    /*$arrows.on('arrows:next', function(event, api, value) {
-      console.info('next:');
-      console.info(value);
+    var $elementApi;
+    document.querySelector('.api-init').addEventListener('click', function() {
+      console.info('init');
+      $elementApi = Pj.arrows('.example-api', {
+        onReady: function() {
+          console.log('ready', 'event');
+        },
+        onDestroy: function() {
+          console.log('destroy', 'event');
+        },
+        onEnable: function() {
+          console.log('enable', 'event');
+        },
+        onDisable: function() {
+          console.log('disable', 'event');
+        },
+        onShow: function() {
+          console.log('show', 'event');
+        },
+        onHide: function() {
+          console.log('hide', 'event');
+        },
+        onPrev: function(value) {
+          console.log('prev: ' + value, 'event');
+        },
+        onNext: function(value) {
+          console.log('next: ' + value, 'event');
+        }
+      })
     });
 
-    $arrows.on('arrows:prev', function(event, api, value) {
-      console.info('prev:');
-      console.info(value);
-    });*/
+    document.querySelector('.api-destroy').addEventListener('click', function() {
+      console.info('destroy');
+      $elementApi.destroy()
+    });
 
-    var $elementApi;
-    var APIS = {
-      init() {
-        $elementApi = Pj.arrows('.example-api', {
-          onReady: function() {
-            log('ready', 'event');
-          },
-          onDestroy: function() {
-            log('destroy', 'event');
-          },
-          onEnable: function() {
-            log('enable', 'event');
-          },
-          onDisable: function() {
-            log('disable', 'event');
-          },
-          onShow: function() {
-            log('show', 'event');
-          },
-          onHide: function() {
-            log('hide', 'event');
-          },
-          onPrev: function(value) {
-            log('prev: ' + value, 'event');
-          },
-          onNext: function(value) {
-            log('next: ' + value, 'event');
-          }
-        }).data('arrows');
-      },
-      destroy() {
-        $elementApi.destroy()
-      },
-      disable() {
-        $elementApi.disable()
-      },
-      enable() {
-        $elementApi.enable()
-      },
-      hide() {
-        $elementApi.hide()
-      },
-      show() {
-        $elementApi.show()
-      }
-    }
+    document.querySelector('.api-enable').addEventListener('click', function() {
+      console.info('enable');
+      $elementApi.enable()
+    });
 
-    Pj.arrows('.apis')/*.on('click', '[data-api]', function(event) {
-      var api = $(this).data('api');
-      if (api) {
-        APIS[api]()
-      }
-    })*/
+    document.querySelector('.api-disable').addEventListener('click', function() {
+      console.info('disable');
+      $elementApi.disable()
+    });
+
+    document.querySelector('.api-show').addEventListener('click', function() {
+      console.info('show');
+      $elementApi.show()
+    });
+
+    document.querySelector('.api-hide').addEventListener('click', function() {
+      console.info('hide');
+      $elementApi.hide()
+    });
   })();
   </script>
 </section>

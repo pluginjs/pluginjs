@@ -64,4 +64,16 @@ yargs
       desc: 'Create a new plugin.'
     })
   )
+  .command(
+    alias('samples-generate', {
+      command: ['samples [moduleName]', 's'],
+      desc: 'generate samples.'
+    })
+  )
+  .command(
+    alias('publish', {
+      command: ['publish [moduleName...]'],
+      desc: 'Publish package to npm'
+    })
+  )
   .parse()

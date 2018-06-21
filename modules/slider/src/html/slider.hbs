@@ -14,35 +14,7 @@ scripts:
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 610px;
     padding-bottom: 20px;
-  }
-  .pj-slider-card {
-    background-color: #5e5e5e;
-    background-size: cover;
-  }
-  .pj-slider-card:nth-of-type(1) {
-    background-image: url('https://picsum.photos/800/?image=10;?random;?gravity=center');
-  }
-  .pj-slider-card:nth-of-type(2) {
-    background-image: url('https://picsum.photos/800/?image=20;?random;?gravity=center');
-  }
-  .pj-slider-card:nth-of-type(3) {
-    background-image: url('https://picsum.photos/800/?image=30;?random;?gravity=center');
-  }
-  .pj-slider-card:nth-of-type(4) {
-    background-image: url('https://picsum.photos/800/?image=50;?random;?gravity=center');
-  }
-  .pj-slider-card:nth-of-type(5) {
-    background-image: url('https://picsum.photos/800/?image=60;?random;?gravity=center');
-  }
-  .pj-slider-card:nth-of-type(6) {
-    background-image: url('https://picsum.photos/800/?image=90;?random;?gravity=center');
-  }
-  @media (max-width: 640px) {
-    section {
-      width: 490px;
-    }
   }
 </style>
 
@@ -50,38 +22,51 @@ scripts:
 <section>
   <h4>Default</h4>
   <div class="pj-slider pj-arrows example-default">
-    <div class="pj-slider-prev">
+    <div class="pj-slider-prev pj-arrows-outline pj-arrows-circle">
       <a class="pj-arrow pj-arrow-prev"
-          href="#prev"
+          href="javascript:void(0);"
           alt="Previous"
           data-toggle="tooltip"
-          data-trigger="hover">
+          data-trigger="hover"
+          title="上一页">
         <i class="pj-arrow-icon icon-chevron-left"></i>
       </a>
     </div>
     <div class="pj-slider-container">
       <div class="pj-slider-box">
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=10;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=20;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=30;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=50;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=60;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=90;?random;?gravity=center">
+        </div>
       </div>
       <div class="pj-slider-dots">
         <ul class="pj-dots">
-          <li class="pj-dot pj-dot-active"><a href="#first">first</a></li>
-          <li class="pj-dot"><a href="#second">second</a></li>
-          <li class="pj-dot"><a href="#third">third</a></li>
-          <li class="pj-dot"><a href="#fourth">fourth</a></li>
-          <li class="pj-dot"><a href="#fifth">fifth</a></li>
-          <li class="pj-dot"><a href="#sixth">sixth</a></li>
+          <li class="pj-dot pj-dot-active"><a href="javascript:void(0);">first</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">second</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">third</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">fourth</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">fifth</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">sixth</a></li>
         </ul>
       </div>
     </div>
-    <div class="pj-slider-next">
+    <div class="pj-slider-next pj-arrows-outline pj-arrows-circle">
       <a class="pj-arrow pj-arrow-next"
-          href="#next"
+          href="javascript:void(0);"
           alt="Next"
           data-toggle="tooltip"
           data-trigger="hover"
@@ -113,9 +98,9 @@ scripts:
 <section class="top-gap">
   <h4>Vertical</h4>
   <div class="pj-slider pj-arrows example-vertical">
-    <div class="pj-slider-prev">
+    <div class="pj-slider-prev pj-arrows-outline pj-arrows-circle">
       <a class="pj-arrow pj-arrow-prev"
-          href="#prev"
+          href="javascript:void(0);"
           alt="Previous"
           data-toggle="tooltip"
           data-trigger="hover">
@@ -124,27 +109,39 @@ scripts:
     </div>
     <div class="pj-slider-container">
       <div class="pj-slider-box">
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
-        <div class="pj-slider-card"></div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=10;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=20;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=30;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=50;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=60;?random;?gravity=center">
+        </div>
+        <div class="pj-slider-card">
+          <img src="https://picsum.photos/500/280/?image=90;?random;?gravity=center">
+        </div>
       </div>
       <div class="pj-slider-dots">
         <ul class="pj-dots">
-          <li class="pj-dot pj-dot-active"><a href="#first">1</a></li>
-          <li class="pj-dot"><a href="#second">2</a></li>
-          <li class="pj-dot"><a href="#third">3</a></li>
-          <li class="pj-dot"><a href="#fourth">4</a></li>
-          <li class="pj-dot"><a href="#fifth">5</a></li>
-          <li class="pj-dot"><a href="#sixth">6</a></li>
+          <li class="pj-dot pj-dot-active"><a href="javascript:void(0);">1</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">2</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">3</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">4</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">5</a></li>
+          <li class="pj-dot"><a href="javascript:void(0);">6</a></li>
         </ul>
       </div>
     </div>
-    <div class="pj-slider-prev">
+    <div class="pj-slider-prev pj-arrows-outline pj-arrows-circle">
       <a class="pj-arrow pj-arrow-next"
-          href="#next"
+          href="javascript:void(0);"
           alt="Next"
           data-toggle="tooltip"
           data-trigger="hover">
@@ -163,8 +160,19 @@ scripts:
      console.log(event.type, 'event');
    });
   }
-  var $slider = Pj.slider('.example-default')
-  var $vSlider = Pj.slider('.example-vertical', { direction: 'vertical' })
+  var options1 = {
+    arrows: true,
+    dots: true,
+    autoplay: true,
+    playcycle: 3000
+  }
+  var options2 = {
+    direction: 'vertical',
+    arrows: true,
+    dots: true
+  }
+  var $slider = Pj.slider('.example-default', options1)
+  var $vSlider = Pj.slider('.example-vertical', options2)
   document.querySelector('.api-cube').addEventListener('click', function() {
     console.info('cube');
     $slider.setAnimation('cube');

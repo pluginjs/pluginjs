@@ -69,6 +69,10 @@ class Dots extends Component {
       this.build(this.options.items)
     }
 
+    if (this.options.type) {
+      addClass(this.getTypeClass(), this.element)
+    }
+
     if (!this.$dots) {
       this.dots = this._getDots()
     }
@@ -161,7 +165,7 @@ class Dots extends Component {
   }
 
   empty() {
-    this.dots.map(dot => {
+    this.dots.forEach(dot => {
       dot.remove()
     })
   }
@@ -176,6 +180,31 @@ class Dots extends Component {
     }
 
     this.trigger(EVENTS.LOAD, items)
+  }
+
+  getTypeClass(types, TYPE) {
+    if (is.undefined(types) && this.options.type) {
+      return this.getTypeClass(this.options.type)
+    }
+    if (is.string(types)) {
+      if (is.undefined(TYPE)) {
+        TYPE = this.classes.TYPE
+      }
+      types = types.split(' ')
+
+      if (TYPE) {
+        for (let i = 0; i < types.length; i++) {
+          types[i] = TYPE.replace('{type}', types[i])
+        }
+      } else {
+        for (let i = 0; i < types.length; i++) {
+          types[i] = this.getClass(types[i])
+        }
+      }
+      return types
+    }
+
+    return ''
   }
 
   getItemsHtml(items) {
@@ -196,7 +225,7 @@ class Dots extends Component {
 
   setActiveItem(activeItem) {
     if (activeItem && !activeItem.classList.contains(this.classes.ACTIVE)) {
-      this.dots.map(dot => {
+      this.dots.forEach(dot => {
         removeClass(this.classes.ACTIVE, dot).setAttribute(
           'aria-hidden',
           'true'
@@ -213,7 +242,7 @@ class Dots extends Component {
   setActiveItemByValue(value) {
     let activeItem
     if (this.options.valueFrom === 'text') {
-      this.dots.map(dot => {
+      this.dots.forEach(dot => {
         if (value === dot.innerHTML.trim()) {
           activeItem = dot
         }
@@ -249,11 +278,10 @@ class Dots extends Component {
   getItemByValue(value) {
     let match = null
 
-    this.dots.map(dot => {
+    this.dots.forEach(dot => {
       if (this.getItemValue(dot) === value) {
         /* eslint consistent-return: "off" */
         match = dot
-        return false
       }
     })
 
@@ -279,7 +307,7 @@ class Dots extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      this.dots.map(dot => {
+      this.dots.forEach(dot => {
         removeClass(this.classes.DISABLED, dot).setAttribute('disabled', false)
       })
       this.leave('disabled')
@@ -289,7 +317,7 @@ class Dots extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      this.dots.map(dot => {
+      this.dots.forEach(dot => {
         addClass(this.classes.DISABLED, dot).setAttribute('disabled', true)
       })
       this.enter('disabled')
@@ -316,7 +344,7 @@ class Dots extends Component {
       }
 
       if (this.is('disabled')) {
-        this.dots.map(dot => {
+        this.dots.forEach(dot => {
           removeClass(this.classes.DISABLED, dot).setAttribute(
             'disabled',
             false

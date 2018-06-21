@@ -16,6 +16,7 @@ export const classes = {
   NAMESPACE: 'pj-dot',
   CONTAINER: '{namespace}s',
   THEME: '{namespace}s--{theme}',
+  TYPE: '{namespace}s-{type}',
   ITEM: '{namespace}',
   VERTICAL: '{namespace}s-vertical',
   HORIZONTAL: '{namespace}s-horizontal',
@@ -44,6 +45,7 @@ export const methods = [
 export const defaults = {
   theme: null,
   items: null,
+  type: null,
   default: null,
   direction: 'horizontal', // vertical
   valueFrom: ['a', 'href'], // text or data-attr

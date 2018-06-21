@@ -19,15 +19,15 @@ Run a development server:
 
 ```sh
 npx plugin <moduleName>
-// or npx plugin start <moduleName>
-// or npx plugin run <moduleName>
+# or npx plugin start <moduleName>
+# or npx plugin run <moduleName>
 ```
 
 Build production bundle:
 
 ```sh
 npx plugin build <moduleName>
-// or npx plugin b <moduleName>
+# or npx plugin b <moduleName>
 ```
 
 Create a new plugin:
@@ -39,9 +39,8 @@ npx plugin new <moduleName>
 Test by jest
 
 ```sh
-/* When execute test command first time
-npx plugin build all
-*/
+## When execute test command first time
+# npx plugin build all
 npx plugin test <moduleName>
 ```
 

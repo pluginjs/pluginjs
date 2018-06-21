@@ -5,7 +5,7 @@ const fs = require('fs')
 const logger = require('@pluginjs/helper/logger')('script/syncSource')
 
 function syncSource(ctx) {
-  const glob = ctx.glob || 'src/**/*.{scss,js}'
+  const glob = ctx.glob || 'src/**/*.{scss,js,hbs}'
   const originRepo = path.resolve(ctx.originRepo)
   const rootPath = fetchRootPath()
   if (!ctx.moduleName) {

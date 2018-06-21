@@ -1,0 +1,9 @@
+{
+  "moduleName": "Repo name",
+  "Namespace": "sections namespace",
+  "namespace": "sections namespace",
+  "sectionName": "section name",
+  "importSections": "Import sections",
+  "htmlSections": "sections in HTML",
+  "moduleVersion": "Version of target"
+}

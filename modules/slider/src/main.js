@@ -57,7 +57,6 @@ class Slider extends Component {
     this.setupI18n()
     this.defaultLocation = this.initLocation()
     this.location = this.defaultLocation
-    this.tooltipTranslate()
   }
 
   initialize() {
@@ -91,9 +90,6 @@ class Slider extends Component {
     this.setAnimation(this.options.animation)
     if (this.options.autoplay) {
       this.autoPlay()
-    }
-    if (this.options.playcycle) {
-      this.setAutoPlayCycle(this.options.playcycle)
     }
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -146,7 +142,7 @@ class Slider extends Component {
         {
           type: 'dots:change',
           handler: () => {
-            if (this.state == true) {
+            if (this.state === true) {
               const time = this._animation === 'cube' ? '600' : '200'
               this.state = false
               const activeItem = this._dots.element.querySelector(
@@ -175,7 +171,7 @@ class Slider extends Component {
     status: false,
     createTimer: time =>
       window.setInterval(() => {
-        if (this.state == true) {
+        if (this.state === true) {
           const t = this._animation === 'cube' ? '600' : '200'
           this.state = false
           this.goNext()
@@ -200,7 +196,7 @@ class Slider extends Component {
   set interval(toggler) {
     if (toggler) {
       this._interval.status = true
-      this.intervalTime = 1500
+      this.intervalTime = this.options.playcycle
     } else {
       this._interval.status = false
       this._interval.removeTimer()
@@ -298,6 +294,7 @@ class Slider extends Component {
               ...animation.prev
             }
           }
+          return null
       }
     })
   }
@@ -349,7 +346,7 @@ class Slider extends Component {
   @processor
   processor(action, defaultLocation = this.defaultLocation) {
     if (action.type !== 'INIT') {
-      if (this._animation == 'cube') {
+      if (this._animation === 'cube') {
         this.sliderBox.style.overflow = 'visible'
       } else {
         this.sliderBox.style.overflow = 'hidden'
@@ -397,7 +394,7 @@ class Slider extends Component {
     const cards = Array.prototype.slice.call(this.sliderCards)
     const element = cards[key]
     const active = this.classes.ACTIVE
-    cards.map(card => {
+    cards.forEach(card => {
       removeClass(active, card)
     })
     addClass(active, element)
@@ -413,12 +410,13 @@ class Slider extends Component {
 
   setAnimation(v) {
     this.animation = v
-    this.initLocation(this.current).map((v, k) => {
+    this.initLocation(this.current).forEach((v, k) => {
       setStyle(v, this.sliderBox.children[k])
     })
   }
 
   setAutoPlayCycle(v) {
+    this.options.playcycle = v
     this.intervalTime = v
   }
 
@@ -428,7 +426,7 @@ class Slider extends Component {
   }
 
   prevTimeout() {
-    if (this.state == true) {
+    if (this.state === true) {
       const time = this._animation === 'cube' ? '600' : '200'
       this.state = false
       this.autoPlay()
@@ -443,7 +441,7 @@ class Slider extends Component {
   }
 
   nextTimeout() {
-    if (this.state == true) {
+    if (this.state === true) {
       const time = this._animation === 'cube' ? '600' : '200'
       this.state = false
       this.autoPlay()

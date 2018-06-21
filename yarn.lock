@@ -797,6 +797,75 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.0.2.tgz#d056b68999769728a1cff8d643bc59eb6f0be436"
 
+"@pluginjs/classes@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@pluginjs/classes/-/classes-0.0.3.tgz#77cfa006c70a1ab9ffdb1d03865058ee8aff1eab"
+  dependencies:
+    "@pluginjs/utils" "^0.2.20"
+
+"@pluginjs/component@^0.2.22":
+  version "0.2.23"
+  resolved "https://registry.yarnpkg.com/@pluginjs/component/-/component-0.2.23.tgz#ef00448b1938c50b601cea14c36fbf619c9a75bf"
+
+"@pluginjs/dom@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@pluginjs/dom/-/dom-0.0.13.tgz#c59581e9d469d2f9e1d2ef60917260b8640fe5a8"
+  dependencies:
+    "@pluginjs/is" "^0.2.19"
+    "@pluginjs/utils" "^0.2.20"
+
+"@pluginjs/dom@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@pluginjs/dom/-/dom-0.0.15.tgz#aa59e9055ca6e90ccfb297c484919de3e164c96a"
+  dependencies:
+    "@pluginjs/is" "^0.2.19"
+    "@pluginjs/utils" "^0.2.20"
+
+"@pluginjs/events@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@pluginjs/events/-/events-0.0.5.tgz#4cc13c67c46215ceece4b32a836051403cf2ea41"
+  dependencies:
+    "@pluginjs/dom" "^0.0.15"
+    "@pluginjs/utils" "^0.2.20"
+
+"@pluginjs/is@^0.2.19":
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/@pluginjs/is/-/is-0.2.19.tgz#3c1d9ea6879b740b6026ddd67f76e71d4090985b"
+
+"@pluginjs/pluginjs@^0.2.25":
+  version "0.2.34"
+  resolved "https://registry.yarnpkg.com/@pluginjs/pluginjs/-/pluginjs-0.2.34.tgz#51b08df62fc4f4bd23fe9bbbe22f1fca78f64df1"
+  dependencies:
+    "@pluginjs/dom" "^0.0.15"
+    "@pluginjs/emitter" "^0.2.19"
+    "@pluginjs/events" "^0.0.5"
+    "@pluginjs/global-plugin" "^0.2.19"
+    "@pluginjs/i18n" "^0.2.19"
+    "@pluginjs/is" "^0.2.19"
+    "@pluginjs/utils" "^0.2.20"
+
+"@pluginjs/styled@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@pluginjs/styled/-/styled-0.0.3.tgz#6d43375868266d9aa0712d6fa393fc190044bdc2"
+  dependencies:
+    "@pluginjs/is" "^0.2.19"
+    "@pluginjs/utils" "^0.2.20"
+
+"@pluginjs/styles@^0.2.19":
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/@pluginjs/styles/-/styles-0.2.19.tgz#73ecba8e991fcfa718861dcded8d3d3b8a57a5ee"
+  dependencies:
+    "@pluginjs/component" "^0.2.22"
+    "@pluginjs/dom" "^0.0.13"
+    "@pluginjs/pluginjs" "^0.2.25"
+    "@pluginjs/template" "^0.2.19"
+
+"@pluginjs/utils@^0.2.20":
+  version "0.2.20"
+  resolved "https://registry.yarnpkg.com/@pluginjs/utils/-/utils-0.2.20.tgz#7a1c020104c66cd47d114bb38de75f97ed05e032"
+  dependencies:
+    "@pluginjs/feature" "^0.2.19"
+
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"

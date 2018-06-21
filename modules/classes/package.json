@@ -6,7 +6,7 @@
 	"dependencies": {
 		"@pluginjs/utils": "^0.2.20"
 	},
-	"version": "0.0.3",
+	"version": "0.5.2",
 	"description": "A flexible modern classes js plugin.",
 	"author": "Creation Studio Limited",
 	"homepage": "https://github.com/pluginjs/plugin.js",
@@ -43,13 +43,13 @@
 		]
 	},
 	"devDependencies": {
+		"@pluginjs/cli": "^0.5.18",
 		"babel-jest": "^23.0.1",
 		"jest": "^23.1.0",
 		"jest-extended": "^0.7.2",
 		"rollup": "^0.59.2",
 		"rollup-plugin-babel": "^4.0.0-beta.4",
 		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-node-resolve": "^3.3.0",
-		"@pluginjs/cli": "^0.5.18"
+		"rollup-plugin-node-resolve": "^3.3.0"
 	}
 }
