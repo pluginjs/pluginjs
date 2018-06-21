@@ -287,11 +287,9 @@ describe('LinkPicker', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
+      const api = LinkPicker.of($element)
 
-      expect($element.asLinkPicker()).toEqual($element)
-
-      const api = $element.data('linkPicker')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -299,13 +297,13 @@ describe('LinkPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = generateHTMLSample().asLinkPicker()
-      expect($element.asLinkPicker('bind')).toBeNil()
+      const $element = LinkPicker.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = generateHTMLSample().asLinkPicker()
-      $element.asLinkPicker('destroy')
+      const $element = LinkPicker.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -315,45 +313,42 @@ describe('LinkPicker', () => {
     let $element
 
     beforeEach(() => {
-      const element = document.createElement('input')
-      element.value = '{"source":"scroll","target":"#top", "title":"sdfsdf"}'
       $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('linkPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('linkPicker:ready', () => {
         called++
       })
 
-      $element.asLinkPicker()
+      const api = LinkPicker.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asLinkPicker()
-      // api =
-      $element.data('linkPicker')
+      $element = generateHTMLSample()
+      api = LinkPicker.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('linkPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('linkPicker:destroy', () => {
         called++
       })
 
-      $element.asLinkPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -362,13 +357,13 @@ describe('LinkPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asLinkPicker()
-      api = $element.data('linkPicker')
+      $element = generateHTMLSample()
+      api = LinkPicker.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asLinkPicker('disable')
-      $element.asLinkPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -376,13 +371,13 @@ describe('LinkPicker', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('linkPicker:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('linkPicker:enable', () => {
         called++
       })
 
-      $element.asLinkPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -391,12 +386,12 @@ describe('LinkPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asLinkPicker()
-      api = $element.data('linkPicker')
+      $element = generateHTMLSample()
+      api = LinkPicker.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asLinkPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -404,13 +399,13 @@ describe('LinkPicker', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('linkPicker:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('linkPicker:disable', () => {
         called++
       })
 
-      $element.asLinkPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

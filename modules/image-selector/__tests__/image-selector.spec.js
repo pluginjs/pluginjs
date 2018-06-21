@@ -1,5 +1,5 @@
-import ImageSelector from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import ImageSelector from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
 describe('ImageSelector', () => {
@@ -31,8 +31,7 @@ describe('ImageSelector', () => {
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const imageSelector = new ImageSelector(element)
+      const imageSelector = ImageSelector.of(generateHTMLSample())
 
       expect(imageSelector.options).toBeObject()
     })
@@ -41,11 +40,9 @@ describe('ImageSelector', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
+      const api = ImageSelector.of($element)
 
-      expect($element.asImageSelector()).toEqual($element)
-
-      const api = $element.data('imageSelector')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -53,13 +50,13 @@ describe('ImageSelector', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = generateHTMLSample().asImageSelector()
-      expect($element.asImageSelector('bind')).toBeNil()
+      const $element = ImageSelector.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = generateHTMLSample().asImageSelector()
-      $element.asImageSelector('destroy')
+      const $element = ImageSelector.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -75,37 +72,36 @@ describe('ImageSelector', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('imageSelector:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('imageSelector:ready', () => {
         called++
       })
 
-      $element.asImageSelector()
+      const api = ImageSelector.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asImageSelector()
-      // api =
-      $element.data('imageSelector')
+      $element = generateHTMLSample()
+      api = ImageSelector.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('imageSelector:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('imageSelector:destroy', () => {
         called++
       })
 
-      $element.asImageSelector('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -114,13 +110,13 @@ describe('ImageSelector', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asImageSelector()
-      api = $element.data('imageSelector')
+      $element = generateHTMLSample()
+      api = ImageSelector.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asImageSelector('disable')
-      $element.asImageSelector('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -128,13 +124,13 @@ describe('ImageSelector', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('imageSelector:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('imageSelector:enable', () => {
         called++
       })
 
-      $element.asImageSelector('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -143,12 +139,12 @@ describe('ImageSelector', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asImageSelector()
-      api = $element.data('imageSelector')
+      $element = generateHTMLSample()
+      api = ImageSelector.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asImageSelector('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -156,13 +152,13 @@ describe('ImageSelector', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('imageSelector:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('imageSelector:disable', () => {
         called++
       })
 
-      $element.asImageSelector('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

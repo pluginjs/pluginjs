@@ -40,11 +40,9 @@ describe('List', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
+      const api = List.of($element)
 
-      expect($element.asList()).toEqual($element)
-
-      const api = $element.data('list')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -52,13 +50,13 @@ describe('List', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = generateHTMLSample().asList()
-      expect($element.asList('bind')).toBeNil()
+      const $element = List.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = generateHTMLSample().asList()
-      $element.asList('destroy')
+      const $element = List.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -74,37 +72,36 @@ describe('List', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('list:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('list:ready', () => {
         called++
       })
 
-      $element.asList()
+      const api = List.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asList()
-      // api =
-      $element.data('list')
+      $element = generateHTMLSample()
+      api = List.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('list:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('list:destroy', () => {
         called++
       })
 
-      $element.asList('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -113,13 +110,13 @@ describe('List', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asList()
-      api = $element.data('list')
+      $element = generateHTMLSample()
+      api = List.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asList('disable')
-      $element.asList('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -127,13 +124,13 @@ describe('List', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('list:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('list:enable', () => {
         called++
       })
 
-      $element.asList('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -142,12 +139,12 @@ describe('List', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asList()
-      api = $element.data('list')
+      $element = generateHTMLSample()
+      api = List.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asList('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -155,13 +152,13 @@ describe('List', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('list:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('list:disable', () => {
         called++
       })
 
-      $element.asList('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

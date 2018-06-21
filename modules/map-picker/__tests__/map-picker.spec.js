@@ -40,11 +40,9 @@ describe('MapPicker', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
+      const api = MapPicker.of($element)
 
-      expect($element.asMapPicker()).toEqual($element)
-
-      const api = $element.data('mapPicker')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -52,13 +50,13 @@ describe('MapPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = generateHTMLSample().asMapPicker()
-      expect($element.asMapPicker('bind')).toBeNil()
+      const $element = MapPicker.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = generateHTMLSample().asMapPicker()
-      $element.asMapPicker('destroy')
+      const $element = MapPicker.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -74,37 +72,36 @@ describe('MapPicker', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('mapPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('mapPicker:ready', () => {
         called++
       })
 
-      $element.asMapPicker()
+      const api = MapPicker.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
   describe('destroy()', () => {
     let $element
-    // let api
+    let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asMapPicker()
-      // api =
-      $element.data('mapPicker')
+      $element = generateHTMLSample()
+      api = MapPicker.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('mapPicker:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('mapPicker:destroy', () => {
         called++
       })
 
-      $element.asMapPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -113,13 +110,13 @@ describe('MapPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asMapPicker()
-      api = $element.data('mapPicker')
+      $element = generateHTMLSample()
+      api = MapPicker.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asMapPicker('disable')
-      $element.asMapPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -127,13 +124,13 @@ describe('MapPicker', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('mapPicker:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('mapPicker:enable', () => {
         called++
       })
 
-      $element.asMapPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -142,12 +139,12 @@ describe('MapPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample().asMapPicker()
-      api = $element.data('mapPicker')
+      $element = generateHTMLSample()
+      api = MapPicker.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asMapPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -155,13 +152,13 @@ describe('MapPicker', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('mapPicker:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('mapPicker:disable', () => {
         called++
       })
 
-      $element.asMapPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })
