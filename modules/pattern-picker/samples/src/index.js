@@ -1,7 +1,6 @@
 // import icons and primary.css
 import '@pluginjs/icons/dist/plugin-icons.css'
 // import pattern-picker css
-import '@pluginjs/pattern-picker/src/css/pattern-picker.scss'
 import '@pluginjs/dropdown/src/css/dropdown.scss'
 import '@pluginjs/range/src/css/range.scss'
 import '@pluginjs/units/src/css/units.scss'
@@ -13,6 +12,7 @@ import '@pluginjs/color-picker/src/css/color-picker.scss'
 import '@pluginjs/modal/src/css/modal.scss'
 import '@pluginjs/edit-panel/src/css/edit-panel.scss'
 import 'font-awesome/css/font-awesome.css'
+import '@pluginjs/pattern-picker/src/css/pattern-picker.scss'
 // import sections
 import './sections/default'
 import './sections/initvalue'

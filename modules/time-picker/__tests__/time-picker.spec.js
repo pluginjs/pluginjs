@@ -1,55 +1,55 @@
-import Sample from '../src/main'
+import TimePicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-describe('Sample', () => {
-  describe('Sample()', () => {
-    test('should have Sample', () => {
-      expect(Sample).toBeFunction()
+describe('TimePicker', () => {
+  describe('TimePicker()', () => {
+    test('should have TimePicker', () => {
+      expect(TimePicker).toBeFunction()
     })
 
     test('should have defaults', () => {
-      expect(Sample.defaults).toBeObject()
+      expect(TimePicker.defaults).toBeObject()
     })
 
     test('should have events', () => {
-      expect(Sample.events).toBeObject()
+      expect(TimePicker.events).toBeObject()
     })
 
     test('should have classes', () => {
-      expect(Sample.classes).toBeObject()
+      expect(TimePicker.classes).toBeObject()
     })
 
     test('should have methods', () => {
-      expect(Sample.methods).toBeArray()
+      expect(TimePicker.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const sample = Sample.of(generateHTMLSample())
+      const timePicker = TimePicker.of(generateHTMLSample())
 
-      expect(sample).toBeObject()
-      expect(sample.options).toEqual(DEFAULTS)
+      expect(timePicker).toBeObject()
+      expect(timePicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const sample = Sample.of(generateHTMLSample())
+      const timePicker = TimePicker.of(generateHTMLSample())
 
-      expect(sample.options).toBeObject()
+      expect(timePicker.options).toBeObject()
     })
 
     test('should have classes', () => {
-      const sample = Sample.of(generateHTMLSample())
+      const timePicker = TimePicker.of(generateHTMLSample())
 
-      expect(sample.classes).toBeObject()
+      expect(timePicker.classes).toBeObject()
     })
   })
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
-      const api = Sample.of($element)
+      const api = TimePicker.of($element)
 
       expect(api).toEqual(api)
       expect(api).toBeObject()
@@ -60,47 +60,51 @@ describe('Sample', () => {
   describe('classes', () => {
     test('should use classes options', () => {
       const element = generateHTMLSample()
-      const sample = Sample.of(element, {
+      const timePicker = TimePicker.of(element, {
         classes: {
           container: '{namespace}-wrap',
           active: '{namespace}-active'
         }
       })
 
-      expect(sample.classes.CONTAINER).toEqual('pj-sample-wrap')
-      expect(sample.classes.ACTIVE).toEqual('pj-sample-active')
+      expect(timePicker.classes.CONTAINER).toEqual('pj-timePicker-wrap')
+      expect(timePicker.classes.ACTIVE).toEqual('pj-timePicker-active')
     })
 
     test('should override class namespace', () => {
       const element = generateHTMLSample()
-      const sample = Sample.of(element, {
+      const timePicker = TimePicker.of(element, {
         classes: {
-          namespace: 'sample',
+          namespace: 'timePicker',
           container: '{namespace}-wrap'
         }
       })
 
-      expect(sample.classes.NAMESPACE).toEqual('sample')
-      expect(sample.classes.CONTAINER).toEqual('sample-wrap')
+      expect(timePicker.classes.NAMESPACE).toEqual('timePicker')
+      expect(timePicker.classes.CONTAINER).toEqual('timePicker-wrap')
     })
 
     describe('getClass()', () => {
       test('should get class with namespace', () => {
         const element = generateHTMLSample()
-        const sample = Sample.of(element, { classes: { namespace: 'hello' } })
+        const timePicker = TimePicker.of(element, {
+          classes: { namespace: 'hello' }
+        })
 
-        expect(sample.getClass('foo')).toEqual('foo')
-        expect(sample.getClass('{namespace}-foo')).toEqual('hello-foo')
+        expect(timePicker.getClass('foo')).toEqual('foo')
+        expect(timePicker.getClass('{namespace}-foo')).toEqual('hello-foo')
       })
 
       test('should get class with arg', () => {
         const element = generateHTMLSample()
-        const sample = Sample.of(element, { classes: { namespace: 'hello' } })
+        const timePicker = TimePicker.of(element, {
+          classes: { namespace: 'hello' }
+        })
 
-        expect(sample.getClass('foo', 'arg', 'value')).toEqual('foo')
-        expect(sample.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
-          'hello-value'
-        )
+        expect(timePicker.getClass('foo', 'arg', 'value')).toEqual('foo')
+        expect(
+          timePicker.getClass('{namespace}-{arg}', 'arg', 'value')
+        ).toEqual('hello-value')
       })
     })
   })
@@ -109,21 +113,21 @@ describe('Sample', () => {
     describe('getThemeClass()', () => {
       test('should get theme classes with default namespace', () => {
         const element = generateHTMLSample()
-        const sample = Sample.of(element, {
+        const timePicker = TimePicker.of(element, {
           theme: null,
           classes: { theme: '{namespace}--{theme}' }
         })
 
-        expect(sample.getThemeClass()).toEqual('')
-        expect(sample.getThemeClass('bar')).toEqual('pj-sample--bar')
-        expect(sample.getThemeClass('foo bar')).toEqual(
-          'pj-sample--foo pj-sample--bar'
+        expect(timePicker.getThemeClass()).toEqual('')
+        expect(timePicker.getThemeClass('bar')).toEqual('pj-timePicker--bar')
+        expect(timePicker.getThemeClass('foo bar')).toEqual(
+          'pj-timePicker--foo pj-timePicker--bar'
         )
       })
 
       test('should get theme classes with namespace override', () => {
         const element = generateHTMLSample()
-        const sample = Sample.of(element, {
+        const timePicker = TimePicker.of(element, {
           theme: null,
           classes: {
             namespace: 'hello',
@@ -131,67 +135,69 @@ describe('Sample', () => {
           }
         })
 
-        expect(sample.getThemeClass()).toEqual('')
-        expect(sample.getThemeClass('bar')).toEqual('hello--bar')
-        expect(sample.getThemeClass('foo bar')).toEqual('hello--foo hello--bar')
+        expect(timePicker.getThemeClass()).toEqual('')
+        expect(timePicker.getThemeClass('bar')).toEqual('hello--bar')
+        expect(timePicker.getThemeClass('foo bar')).toEqual(
+          'hello--foo hello--bar'
+        )
       })
 
       test('should get theme classes correctly when no classes.THEME defined', () => {
         const element = generateHTMLSample()
-        const sample = Sample.of(element, { theme: '{namespace}--foo' })
+        const timePicker = TimePicker.of(element, { theme: '{namespace}--foo' })
 
         // set to null for test
-        sample.classes.THEME = null
+        timePicker.classes.THEME = null
 
-        expect(sample.getThemeClass()).toEqual('pj-sample--foo')
-        expect(sample.getThemeClass('bar')).toEqual('bar')
-        expect(sample.getThemeClass('{namespace}--bar')).toEqual(
-          'pj-sample--bar'
+        expect(timePicker.getThemeClass()).toEqual('pj-timePicker--foo')
+        expect(timePicker.getThemeClass('bar')).toEqual('bar')
+        expect(timePicker.getThemeClass('{namespace}--bar')).toEqual(
+          'pj-timePicker--bar'
         )
-        expect(sample.getThemeClass('foo bar')).toEqual('foo bar')
+        expect(timePicker.getThemeClass('foo bar')).toEqual('foo bar')
         expect(
-          sample.getThemeClass('{namespace}--foo {namespace}--bar')
-        ).toEqual('pj-sample--foo pj-sample--bar')
+          timePicker.getThemeClass('{namespace}--foo {namespace}--bar')
+        ).toEqual('pj-timePicker--foo pj-timePicker--bar')
       })
     })
 
     test('should add theme class after initialize and remove after destroy', () => {
       const $element = generateHTMLSample()
-      const sample = Sample.of($element, {
+      const timePicker = TimePicker.of($element, {
         theme: 'foo',
         classes: { theme: '{namespace}--{theme}' }
       })
 
-      expect($element.hasClass('pj-sample--foo')).toBeTrue()
-      sample.destroy()
-      expect($element.hasClass('pj-sample--foo')).toBeFalse()
+      expect($element.hasClass('pj-timePicker--foo')).toBeTrue()
+      timePicker.destroy()
+      expect($element.hasClass('pj-timePicker--foo')).toBeFalse()
     })
 
     test('should works with more than one theme', () => {
       const $element = generateHTMLSample()
-      const sample = Sample.of($element, {
+      const timePicker = TimePicker.of($element, {
         theme: 'foo bar',
         classes: { theme: '{namespace}--{theme}' }
       })
 
-      expect($element.hasClass('pj-sample--foo')).toBeTrue()
-      expect($element.hasClass('pj-sample--bar')).toBeTrue()
+      expect($element.hasClass('pj-timePicker--foo')).toBeTrue()
+      expect($element.hasClass('pj-timePicker--bar')).toBeTrue()
 
-      sample.destroy()
-      expect($element.hasClass('pj-sample--foo')).toBeFalse()
-      expect($element.hasClass('pj-sample--bar')).toBeFalse()
+      timePicker.destroy()
+      expect($element.hasClass('pj-timePicker--foo')).toBeFalse()
+      expect($element.hasClass('pj-timePicker--bar')).toBeFalse()
     })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = Sample.of(generateHTMLSample())
+      const $element = TimePicker.of(generateHTMLSample())
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = Sample.of(generateHTMLSample())
-      expect($element.destroy()).toEqual($element)
+      const $element = TimePicker.of(generateHTMLSample())
+      $element.destroy()
     })
   })
 
@@ -205,11 +211,11 @@ describe('Sample', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('sample:ready', () => {
+      $element.addEventListener('timePicker:ready', () => {
         called++
       })
 
-      const api = Sample.of($element)
+      const api = TimePicker.of($element)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -221,13 +227,13 @@ describe('Sample', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Sample.of($element)
+      api = TimePicker.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('sample:destroy', () => {
+      $element.addEventListener('timePicker:destroy', () => {
         called++
       })
 
@@ -244,7 +250,7 @@ describe('Sample', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Sample.of($element)
+      api = TimePicker.of($element)
     })
 
     test('should enable the plugin', () => {
@@ -257,7 +263,7 @@ describe('Sample', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('sample:enable', () => {
+      $element.addEventListener('timePicker:enable', () => {
         called++
       })
 
@@ -273,7 +279,7 @@ describe('Sample', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Sample.of($element)
+      api = TimePicker.of($element)
     })
 
     test('should disable the plugin', () => {
@@ -285,7 +291,7 @@ describe('Sample', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('sample:disable', () => {
+      $element.addEventListener('timePicker:disable', () => {
         called++
       })
 
@@ -301,11 +307,11 @@ describe('Sample', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Sample.of($element)
+      api = TimePicker.of($element)
     })
 
     test('should have I18N', () => {
-      expect(Sample.I18N).toBeObject()
+      expect(TimePicker.I18N).toBeObject()
     })
 
     describe('getLocale()', () => {
@@ -314,7 +320,7 @@ describe('Sample', () => {
       })
 
       test('should get locale with options set', () => {
-        api = Sample.of(generateHTMLSample(), {
+        api = TimePicker.of(generateHTMLSample(), {
           locale: 'zh-cn'
         })
         expect(api.getLocale()).toEqual('zh-cn')
@@ -333,7 +339,7 @@ describe('Sample', () => {
 
     describe('addTransition', () => {
       test('should add transtion correctly', () => {
-        Sample.I18N.addTranslation('zh-tw', { hello: '世界妳好' })
+        TimePicker.I18N.addTranslation('zh-tw', { hello: '世界妳好' })
         api.setLocale('zh-tw')
         expect(api.translate('hello')).toEqual('世界妳好')
       })
