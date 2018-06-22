@@ -2,6 +2,15 @@ import GalleryPicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const data = {
+  add() {
+    return ['../../plugins/gallery-picker/images/dog.jpg']
+  },
+  change() {
+    return '../../plugins/gallery-picker/images/sun.jpg'
+  }
+}
+
 describe('GalleryPicker', () => {
   describe('GalleryPicker()', () => {
     test('should have GalleryPicker', () => {
@@ -24,14 +33,14 @@ describe('GalleryPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const galleryPicker = GalleryPicker.of(generateHTMLSample())
+      const galleryPicker = GalleryPicker.of(generateHTMLSample(), data)
 
       expect(galleryPicker).toBeObject()
       expect(galleryPicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const galleryPicker = GalleryPicker.of(generateHTMLSample())
+      const galleryPicker = GalleryPicker.of(generateHTMLSample(), data)
 
       expect(galleryPicker.options).toBeObject()
     })
@@ -50,12 +59,12 @@ describe('GalleryPicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = GalleryPicker.of(generateHTMLSample())
+      const $element = GalleryPicker.of(generateHTMLSample(), data)
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = GalleryPicker.of(generateHTMLSample())
+      const $element = GalleryPicker.of(generateHTMLSample(), data)
       $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -76,7 +85,7 @@ describe('GalleryPicker', () => {
         called++
       })
 
-      const api = GalleryPicker.of($element)
+      const api = GalleryPicker.of($element, data)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -88,7 +97,7 @@ describe('GalleryPicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = GalleryPicker.of($element)
+      api = GalleryPicker.of($element, data)
     })
 
     test('should trigger destroy event', () => {
@@ -111,7 +120,7 @@ describe('GalleryPicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = GalleryPicker.of($element)
+      api = GalleryPicker.of($element, data)
     })
 
     test('should enable the plugin', () => {
@@ -140,7 +149,7 @@ describe('GalleryPicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = GalleryPicker.of($element)
+      api = GalleryPicker.of($element, data)
     })
 
     test('should disable the plugin', () => {

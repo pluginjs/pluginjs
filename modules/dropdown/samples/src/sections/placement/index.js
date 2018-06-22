@@ -2,54 +2,19 @@ import { html as render, query } from '@pluginjs/dom'
 import html from './index.html'
 import Dropdown from '@pluginjs/dropdown'
 
-const element1 = query(
-  '.dropdown-placement-1',
-  render(html, query('#placement'))
-)
-const element2 = query(
-  '.dropdown-placement-2',
-  render(html, query('#placement'))
-)
-const element3 = query(
-  '.dropdown-placement-3',
-  render(html, query('#placement'))
-)
-const element4 = query(
-  '.dropdown-placement-4',
-  render(html, query('#placement'))
-)
-const element5 = query(
-  '.dropdown-placement-5',
-  render(html, query('#placement'))
-)
-const element6 = query(
-  '.dropdown-placement-6',
-  render(html, query('#placement'))
-)
-const element7 = query(
-  '.dropdown-placement-7',
-  render(html, query('#placement'))
-)
-const element8 = query(
-  '.dropdown-placement-8',
-  render(html, query('#placement'))
-)
-const element9 = query(
-  '.dropdown-placement-9',
-  render(html, query('#placement'))
-)
-const element10 = query(
-  '.dropdown-placement-10',
-  render(html, query('#placement'))
-)
-const element11 = query(
-  '.dropdown-placement-11',
-  render(html, query('#placement'))
-)
-const element12 = query(
-  '.dropdown-placement-12',
-  render(html, query('#placement'))
-)
+const body = render(html, query('#placement'))
+const element1 = query('.dropdown-placement-1', body)
+const element2 = query('.dropdown-placement-2', body)
+const element3 = query('.dropdown-placement-3', body)
+const element4 = query('.dropdown-placement-4', body)
+const element5 = query('.dropdown-placement-5', body)
+const element6 = query('.dropdown-placement-6', body)
+const element7 = query('.dropdown-placement-7', body)
+const element8 = query('.dropdown-placement-8', body)
+const element9 = query('.dropdown-placement-9', body)
+const element10 = query('.dropdown-placement-10', body)
+const element11 = query('.dropdown-placement-11', body)
+const element12 = query('.dropdown-placement-12', body)
 
 Dropdown.of(element1, {
   placement: 'left-end'

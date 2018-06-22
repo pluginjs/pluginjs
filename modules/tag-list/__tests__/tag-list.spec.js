@@ -2,6 +2,10 @@ import TagList from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const datas = {
+  data: ['hello', 'world']
+}
+
 describe('TagList', () => {
   describe('TagList()', () => {
     test('should have TagList', () => {
@@ -24,14 +28,14 @@ describe('TagList', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const tagList = TagList.of(generateHTMLSample())
+      const tagList = TagList.of(generateHTMLSample(), datas)
 
       expect(tagList).toBeObject()
       expect(tagList.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const tagList = TagList.of(generateHTMLSample())
+      const tagList = TagList.of(generateHTMLSample(), datas)
 
       expect(tagList.options).toBeObject()
     })
@@ -40,7 +44,7 @@ describe('TagList', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
-      const api = TagList.of($element)
+      const api = TagList.of($element, datas)
 
       expect(api).toEqual(api)
       expect(api).toBeObject()
@@ -50,12 +54,12 @@ describe('TagList', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = TagList.of(generateHTMLSample())
+      const $element = TagList.of(generateHTMLSample(), datas)
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = TagList.of(generateHTMLSample())
+      const $element = TagList.of(generateHTMLSample(), datas)
       $element.destroy(0)
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -76,7 +80,7 @@ describe('TagList', () => {
         called++
       })
 
-      const api = TagList.of($element)
+      const api = TagList.of($element, datas)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -88,7 +92,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = TagList.of($element)
+      api = TagList.of($element, datas)
     })
 
     test('should trigger destroy event', () => {
@@ -111,7 +115,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample(0)
-      api = TagList.of($element)
+      api = TagList.of($element, datas)
     })
 
     test('should enable the plugin', () => {
@@ -140,7 +144,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample(0)
-      api = TagList.of($element)
+      api = TagList.of($element, datas)
     })
 
     test('should disable the plugin', () => {

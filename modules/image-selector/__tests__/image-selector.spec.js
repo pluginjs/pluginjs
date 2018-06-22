@@ -2,6 +2,41 @@ import ImageSelector from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const datas = {
+  data: [
+    {
+      value: 'without',
+      label: 'Without',
+      img: '../../plugins/image-selector/images/without.png'
+    },
+    {
+      value: 'left',
+      label: 'Left',
+      img: '../../plugins/image-selector/images/left.png'
+    },
+    {
+      value: 'double-left',
+      label: 'Double Left',
+      img: '../../plugins/image-selector/images/double-left.png'
+    },
+    {
+      value: 'right',
+      label: 'Right',
+      img: '../../plugins/image-selector/images/right.png'
+    },
+    {
+      value: 'double-right',
+      label: 'Double Right',
+      img: '../../plugins/image-selector/images/double-right.png'
+    },
+    {
+      value: 'both-sider',
+      label: 'Both Sider',
+      img: '../../plugins/image-selector/images/both-sider.png'
+    }
+  ]
+}
+
 describe('ImageSelector', () => {
   describe('ImageSelector()', () => {
     test('should have ImageSelector', () => {
@@ -24,14 +59,14 @@ describe('ImageSelector', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const imageSelector = ImageSelector.of(generateHTMLSample())
+      const imageSelector = ImageSelector.of(generateHTMLSample(), datas)
 
       expect(imageSelector).toBeObject()
       expect(imageSelector.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const imageSelector = ImageSelector.of(generateHTMLSample())
+      const imageSelector = ImageSelector.of(generateHTMLSample(), datas)
 
       expect(imageSelector.options).toBeObject()
     })
@@ -40,7 +75,7 @@ describe('ImageSelector', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
-      const api = ImageSelector.of($element)
+      const api = ImageSelector.of($element, datas)
 
       expect(api).toEqual(api)
       expect(api).toBeObject()
@@ -50,12 +85,12 @@ describe('ImageSelector', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = ImageSelector.of(generateHTMLSample())
+      const $element = ImageSelector.of(generateHTMLSample(), datas)
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = ImageSelector.of(generateHTMLSample())
+      const $element = ImageSelector.of(generateHTMLSample(), datas)
       $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -76,7 +111,7 @@ describe('ImageSelector', () => {
         called++
       })
 
-      const api = ImageSelector.of($element)
+      const api = ImageSelector.of($element, datas)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -88,7 +123,7 @@ describe('ImageSelector', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImageSelector.of($element)
+      api = ImageSelector.of($element, datas)
     })
 
     test('should trigger destroy event', () => {
@@ -111,7 +146,7 @@ describe('ImageSelector', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImageSelector.of($element)
+      api = ImageSelector.of($element, datas)
     })
 
     test('should enable the plugin', () => {
@@ -140,7 +175,7 @@ describe('ImageSelector', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImageSelector.of($element)
+      api = ImageSelector.of($element, datas)
     })
 
     test('should disable the plugin', () => {

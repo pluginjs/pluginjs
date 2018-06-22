@@ -4,4 +4,6 @@ import LinkPicker from '@pluginjs/link-picker'
 
 const element = query('.link-picker-locale', render(html, query('#locale')))
 
-LinkPicker.of(element, {})
+LinkPicker.of(element, {
+  locale: 'zh'
+})

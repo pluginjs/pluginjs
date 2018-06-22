@@ -48,7 +48,7 @@ describe('ToggleList', () => {
     test('should work with element', () => {
       const toggleList = ToggleList.of(generateHTMLSample())
       expect(toggleList).toBeObject()
-      // expect(others).toEqual(deepMerge(List.defaults, DEFAULTS));
+      // expect(others).toEqual(deepMerge(List.defaults, DEFAULTS))
     })
 
     test('should have options', () => {
