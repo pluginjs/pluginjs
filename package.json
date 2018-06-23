@@ -30,7 +30,8 @@
 		"last 4 Edge versions"
 	],
 	"workspaces": [
-		"modules/**",
+		"modules/*",
+		"modules/*/samples",
 		"tools/*"
 	],
 	"devDependencies": {

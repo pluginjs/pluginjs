@@ -828,6 +828,10 @@
     "@pluginjs/dom" "^0.0.15"
     "@pluginjs/utils" "^0.2.20"
 
+"@pluginjs/helper@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@pluginjs/helper/-/helper-0.0.2.tgz#d586e3070912aa069b7e4d76b09d500273bbd6e1"
+
 "@pluginjs/is@^0.2.19":
   version "0.2.19"
   resolved "https://registry.yarnpkg.com/@pluginjs/is/-/is-0.2.19.tgz#3c1d9ea6879b740b6026ddd67f76e71d4090985b"
