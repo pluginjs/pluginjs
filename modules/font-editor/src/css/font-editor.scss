@@ -104,6 +104,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
       overflow: hidden;
       font-size: $fontEditor-info-font-size;
       color: $fontEditor-color;
+      text-align: left;
 
       &-name {
         display: block;
@@ -148,6 +149,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   &-expand {
     &-panel {
       position: relative;
+      z-index: 100;
       box-sizing: border-box;
       width: 27.2 * $fontEditor-sizer; //272px
       height: 49.2 * $fontEditor-sizer; //49.2px
@@ -309,7 +311,8 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   }
 }
 
-.#{$fontEditor}-expand {
+/* stylelint-disable*/
+.#{$fontEditor}-expand {      
   .#{$fontEditor}-initial,
   .#{$fontEditor}-info {
     display: none !important;
@@ -328,6 +331,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     }
   }
 }
+/* stylelint-enable*/
 
 .#{$fontEditor}-disabled {
   .#{$fontEditor}-info {

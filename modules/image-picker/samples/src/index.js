@@ -1,3 +1,11 @@
-import ImagePicker from '@pluginjs/image-picker'
+// import icons and primary.css
+import '@pluginjs/icons/dist/plugin-icons.css'
+import '@pluginjs/styles/inputs.scss'
+import '@pluginjs/styles/buttons.scss'
 
-console.log(ImagePicker)
+import '@pluginjs/popover/src/css/popover.scss'
+import '@pluginjs/pop-dialog/src/css/pop-dialog.scss'
+import '@pluginjs/image-picker/src/css/image-picker.scss'
+// import sections
+import './sections/default'
+import './sections/locale'
