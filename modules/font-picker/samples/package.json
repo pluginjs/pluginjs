@@ -16,6 +16,8 @@
 	"dependencies": {
 		"@pluginjs/dom": "^0.0.15",
 		"@pluginjs/font-picker": "^0.2.22",
+		"@pluginjs/icons": "^0.5.0",
+		"@pluginjs/styles": "^0.5.1",
 		"webfontloader": "^1.6.28"
 	},
 	"license": "UNLICENSED"

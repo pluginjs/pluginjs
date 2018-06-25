@@ -16,6 +16,7 @@
 	"dependencies": {
 		"@pluginjs/radio": "^0.2.21",
 		"@pluginjs/dom": "^0.0.15",
+		"@pluginjs/icons": "^0.5.0",
 		"font-awesome": "^4.7.0"
 	},
 	"license": "UNLICENSED"

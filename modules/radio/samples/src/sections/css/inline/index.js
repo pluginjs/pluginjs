@@ -2,7 +2,7 @@ import { html as render, query } from '@pluginjs/dom'
 import html from './index.html'
 import Radio from '@pluginjs/radio'
 
-const element = query('input', render(html, query('#cssInsline')))
+const element = query('input[type="radio"]', render(html, query('#cssInline')))
 Radio.of(element, {
   classes: {
     icon: 'icon-check-mini'

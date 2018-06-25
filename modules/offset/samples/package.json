@@ -15,7 +15,9 @@
 	},
 	"dependencies": {
 		"@pluginjs/offset": "^0.2.20",
-		"@pluginjs/dom": "^0.0.15"
+		"@pluginjs/dom": "^0.0.15",
+		"@pluginjs/icons": "^0.5.0",
+		"@pluginjs/styles": "^0.5.1"
 	},
 	"license": "UNLICENSED"
 }

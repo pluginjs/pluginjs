@@ -18,7 +18,9 @@
 		"@pluginjs/dom": "^0.0.15",
 		"css": "^2.2.3",
 		"font-awesome": "^4.7.0",
-		"poper": "^0.1.1"
+		"poper": "^0.1.1",
+		"@pluginjs/icons": "^0.5.0",
+		"@pluginjs/styles": "^0.5.1"
 	},
 	"license": "UNLICENSED"
 }

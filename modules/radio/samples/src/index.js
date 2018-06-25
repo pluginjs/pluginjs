@@ -1,5 +1,8 @@
+// import icons and primary.css
+import '@pluginjs/icons/dist/plugin-icons.css'
+// import radio
 import '@pluginjs/radio/src/css/radio.scss'
-// import 'css/font-awesome.min.css'
+import 'font-awesome/css/font-awesome.min.css'
 // import sections
 import './sections/js/inline'
 import './sections/js/icon'

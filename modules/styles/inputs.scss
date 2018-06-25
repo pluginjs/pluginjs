@@ -1,3 +1,4 @@
+@import "@pluginjs/styles/variables.scss";
 // Vars
 // =====================
 $input: pj-input !default;
@@ -29,17 +30,17 @@ $disabled-color: $gray-border;
 // Core
 // =====================
 // Global
-// input {
-//   box-sizing: border-box;
-//   height: $input-height;
-//   padding: $input-padding-top $input-padding-left;
-//   margin-bottom: 0;
-//   font-size: $input-font-size;
-//   line-height: $input-line-height;
-//   color: $input-color;
-//   border: $input-border-width $input-border-style $input-border-color;
-//   border-radius: $border-radius-base;
-// }
+input {
+  box-sizing: border-box;
+  height: $input-height;
+  padding: $input-padding-top $input-padding-left;
+  margin-bottom: 0;
+  font-size: $input-font-size;
+  line-height: $input-line-height;
+  color: $input-color;
+  border: $input-border-width $input-border-style $input-border-color;
+  border-radius: $border-radius-base;
+}
 
 .#{$input}[type="text"],
 .#{$input}:not([type]) {
@@ -48,7 +49,7 @@ $disabled-color: $gray-border;
   border-radius: $border-radius-base;
   &:focus {
     // border: 1px solid $input-border-color-focus;
-    border:none;
+    border: none;
     outline: none;
     box-shadow: none;
   }

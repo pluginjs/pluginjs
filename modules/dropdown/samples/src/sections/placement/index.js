@@ -16,38 +16,36 @@ const element10 = query('.dropdown-placement-10', body)
 const element11 = query('.dropdown-placement-11', body)
 const element12 = query('.dropdown-placement-12', body)
 
-Dropdown.of(element1, {
-  placement: 'left-end'
-})
+Dropdown.of(element1, {})
 Dropdown.of(element2, {
-  placement: 'left-end'
+  placement: 'bottom'
 })
 Dropdown.of(element3, {
-  placement: 'left-end'
+  placement: 'bottom-end'
 })
 Dropdown.of(element4, {
-  placement: 'left-end'
+  placement: 'top-start'
 })
 Dropdown.of(element5, {
-  placement: 'left-end'
+  placement: 'top'
 })
 Dropdown.of(element6, {
-  placement: 'left-end'
+  placement: 'top-end'
 })
 Dropdown.of(element7, {
-  placement: 'left-end'
+  placement: 'right-start'
 })
 Dropdown.of(element8, {
-  placement: 'left-end'
+  placement: 'right'
 })
 Dropdown.of(element9, {
-  placement: 'left-end'
+  placement: 'right-end'
 })
 Dropdown.of(element10, {
-  placement: 'left-end'
+  placement: 'left-start'
 })
 Dropdown.of(element11, {
-  placement: 'left-end'
+  placement: 'left'
 })
 Dropdown.of(element12, {
   placement: 'left-end'

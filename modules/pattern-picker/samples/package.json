@@ -16,6 +16,8 @@
 	"dependencies": {
 		"@pluginjs/dom": "^0.0.15",
 		"@pluginjs/pattern-picker": "^0.2.22",
+		"@pluginjs/icons": "^0.5.0",
+		"@pluginjs/styles": "^0.5.1",
 		"font-awesome": "^4.7.0"
 	},
 	"license": "UNLICENSED"

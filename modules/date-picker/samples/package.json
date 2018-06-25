@@ -17,7 +17,8 @@
 		"@pluginjs/date-picker": "^0.2.21",
 		"@pluginjs/dom": "^0.0.15",
 		"hammer": "^0.0.5",
-		"popper": "^1.0.1"
+		"popper": "^1.0.1",
+		"@pluginjs/icons": "^0.5.0"
 	},
 	"license": "UNLICENSED"
 }
