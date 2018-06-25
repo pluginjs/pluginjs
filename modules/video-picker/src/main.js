@@ -563,6 +563,7 @@ class VideoPicker extends Component {
     this.element.value = ''
     this.$urlInput.value = ''
     // this.$video.data('video', '')
+    this.videoApi = VideoPicker.of(this.$video)
     this.videoApi.destroy()
     query('.pj-video', this.$wrap).remove()
     setStyle(

@@ -26,7 +26,15 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
 .#{$videoPicker} {
   &-init {
     i {
+      font-size: 16px;
       transform: rotate(90deg);
+    }
+
+    &:hover {
+      background-color: $color-white;
+      i {
+        color: $color-primary-black;
+      }
     }
   }
 
@@ -47,6 +55,10 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
 
       &-action {
         margin-top: 0;
+      }
+
+      &-preview {
+        padding: 0;
       }
     }
 
@@ -105,7 +117,7 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
 
       &:hover {
         .#{$videoPicker}-video-btn {
-          color: $videoPicker-active-color;
+          color: $color-white;
           transition: color 0.2s;
         }
       }
@@ -126,7 +138,7 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     }
 
     &-btn {
-      font-size: 56px;
+      font-size: 20px;
     }
 
     &-animate {
@@ -233,6 +245,15 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
       .#{$videoPicker}-poster-change,
       .#{$videoPicker}-poster-delete {
         display: inline-block;
+      }
+
+      .#{$videoPicker}-local-url-delete,
+      .#{$videoPicker}-poster-delete {
+        color: #fa6557;
+
+        &:hover {
+          border-bottom-color: #fa6557;
+        }
       }
     }
   }
