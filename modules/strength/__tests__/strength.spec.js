@@ -1,6 +1,6 @@
-import $ from 'jquery'
-import Strength from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Strength from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Strength', () => {
   describe('Strength()', () => {
@@ -27,16 +27,16 @@ describe('Strength', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const strength = new Strength(element)
+      const $element = generateHTMLSample().querySelector('input')
+      const strength = Strength.of($element)
 
       expect(strength).toBeObject()
       expect(strength.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const strength = new Strength(element)
+      const $element = generateHTMLSample().querySelector('input')
+      const strength = Strength.of($element)
 
       expect(strength.options).toBeObject()
     })
@@ -44,13 +44,10 @@ describe('Strength', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample().querySelector('input')
+      const api = Strength.of($element)
 
-      expect($element.asStrength()).toEqual($element)
-
-      const api = $element.data('strength')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -58,13 +55,13 @@ describe('Strength', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asStrength()
-      expect($element.asStrength('bind')).toBeNil()
+      const $element = Strength.of(generateHTMLSample().querySelector('input'))
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asStrength()
-      expect($element.asStrength('destroy')).toEqual($element)
+      const $element = Strength.of(generateHTMLSample().querySelector('input'))
+      expect($element.destroy()).toEqual($element)
     })
   })
 
@@ -72,19 +69,19 @@ describe('Strength', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample().querySelector('input')
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('strength:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('strength:ready', () => {
         called++
       })
 
-      $element.asStrength()
+      const api = Strength.of($element)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
@@ -93,21 +90,21 @@ describe('Strength', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asStrength()
-      api = $element.data('strength')
+      $element = generateHTMLSample().querySelector('input')
+      api = Strength.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('strength:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('strength:destroy', () => {
         called++
       })
 
-      $element.asStrength('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -116,13 +113,13 @@ describe('Strength', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asStrength()
-      api = $element.data('strength')
+      $element = generateHTMLSample().querySelector('input')
+      api = Strength.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asStrength('disable')
-      $element.asStrength('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -130,13 +127,13 @@ describe('Strength', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('strength:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('strength:enable', () => {
         called++
       })
 
-      $element.asStrength('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -145,12 +142,12 @@ describe('Strength', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asStrength()
-      api = $element.data('strength')
+      $element = generateHTMLSample().querySelector('input')
+      api = Strength.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asStrength('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -158,13 +155,13 @@ describe('Strength', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('strength:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('strength:disable', () => {
         called++
       })
 
-      $element.asStrength('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 
@@ -173,8 +170,8 @@ describe('Strength', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asStrength()
-      api = $element.data('strength')
+      $element = generateHTMLSample().querySelector('input')
+      api = Strength.of($element)
     })
 
     test('should have I18N', () => {
@@ -187,10 +184,9 @@ describe('Strength', () => {
       })
 
       test('should get locale with options set', () => {
-        $element = $(document.createElement('div')).asStrength({
+        api = Strength.of(generateHTMLSample().querySelector('input'), {
           locale: 'zh-cn'
         })
-        api = $element.data('strength')
         expect(api.getLocale()).toEqual('zh-cn')
       })
     })

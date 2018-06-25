@@ -2028,6 +2028,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
+bootstrap.min.js@^3.3.5:
+  version "3.3.5"
+  resolved "https://registry.yarnpkg.com/bootstrap.min.js/-/bootstrap.min.js-3.3.5.tgz#1a86b4ef6fa904869df72dbe058c331225555e83"
+
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -6017,6 +6021,10 @@ jquery-validation@*:
   resolved "https://registry.yarnpkg.com/jquery-validation/-/jquery-validation-1.17.0.tgz#ab66b6b583d7740b9bbd148993e50e8ac041f35b"
   dependencies:
     jquery "^1.7 || ^2.0 || ^3.1"
+
+jquery.js@^0.0.2-security:
+  version "0.0.2-security"
+  resolved "https://registry.yarnpkg.com/jquery.js/-/jquery.js-0.0.2-security.tgz#4ecc6b652a6910cf9e638ce2fa90c655017b7ca4"
 
 "jquery@^1.7 || ^2.0 || ^3.1", jquery@^3.2.1:
   version "3.3.1"
