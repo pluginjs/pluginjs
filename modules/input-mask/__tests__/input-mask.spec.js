@@ -1,6 +1,6 @@
-import $ from 'jquery'
-import InputMask from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import InputMask from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 const options = {
   type: 'custom',
@@ -29,8 +29,7 @@ describe('InputMask', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const inputMask = new InputMask(element, options)
+      const inputMask = InputMask.of(generateHTMLSample(), options)
 
       expect(inputMask).toBeObject()
       expect(inputMask.options).toEqual({
@@ -40,8 +39,7 @@ describe('InputMask', () => {
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const inputMask = new InputMask(element, options)
+      const inputMask = InputMask.of(generateHTMLSample(), options)
 
       expect(inputMask.options).toBeObject()
     })
@@ -49,13 +47,10 @@ describe('InputMask', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = InputMask.of($element, options)
 
-      expect($element.asInputMask(options)).toEqual($element)
-
-      const api = $element.data('inputMask')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -63,13 +58,13 @@ describe('InputMask', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asInputMask(options)
-      expect($element.asInputMask('bind')).toBeNil()
+      const $element = InputMask.of(generateHTMLSample(), options)
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asInputMask(options)
-      $element.asInputMask('destroy')
+      const $element = InputMask.of(generateHTMLSample(), options)
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -79,19 +74,19 @@ describe('InputMask', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('inputMask:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('inputMask:ready', () => {
         called++
       })
 
-      $element.asInputMask(options)
+      const api = InputMask.of($element, options)
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
@@ -100,21 +95,21 @@ describe('InputMask', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asInputMask(options)
-      api = $element.data('inputMask')
+      $element = generateHTMLSample()
+      api = InputMask.of($element, options)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('inputMask:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      $element.addEventListener('inputMask:destroy', () => {
         called++
       })
 
-      $element.asInputMask('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -123,13 +118,13 @@ describe('InputMask', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asInputMask(options)
-      api = $element.data('inputMask')
+      $element = generateHTMLSample()
+      api = InputMask.of($element, options)
     })
 
     test('should enable the plugin', () => {
-      $element.asInputMask('disable')
-      $element.asInputMask('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -137,13 +132,13 @@ describe('InputMask', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('inputMask:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      $element.addEventListener('inputMask:enable', () => {
         called++
       })
 
-      $element.asInputMask('enable')
+      api.enable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -152,12 +147,12 @@ describe('InputMask', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asInputMask(options)
-      api = $element.data('inputMask')
+      $element = generateHTMLSample()
+      api = InputMask.of($element, options)
     })
 
     test('should disable the plugin', () => {
-      $element.asInputMask('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -165,13 +160,13 @@ describe('InputMask', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('inputMask:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      $element.addEventListener('inputMask:disable', () => {
         called++
       })
 
-      $element.asInputMask('disable')
+      api.disable()
       expect(called).toEqual(1)
+      expect(api.is('disabled')).toBeTrue()
     })
   })
 })
