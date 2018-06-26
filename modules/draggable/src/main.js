@@ -4,7 +4,7 @@ import Hammer from 'hammerjs'
 import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import getSize from './getSize'
-import { bindEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   eventable,
   register,
@@ -79,7 +79,7 @@ class Draggable extends Component {
     this.position = {}
     this.pointer = {}
     this.type = ''
-    this.getPosition()
+    this._getPosition()
 
     this.dragPoint = { x: 0, y: 0 }
 
@@ -93,7 +93,7 @@ class Draggable extends Component {
     this.enable()
   }
 
-  getPosition() {
+  _getPosition() {
     const style = getComputedStyle(this.element)
     const x = this.getPositionCoord(style.left, 'width')
     const y = this.getPositionCoord(style.top, 'height')
@@ -362,6 +362,14 @@ class Draggable extends Component {
     this.pointer.y = y
   }
 
+  getPointer() {
+    return this.pointer
+  }
+
+  getPosition() {
+    return this.position
+  }
+
   triggerEvent(event) {
     if (typeof event === 'function') {
       event()
@@ -370,19 +378,28 @@ class Draggable extends Component {
 
   unbind() {
     this.bindHandles(false)
+    removeEvent(this.eventName(), this.element)
   }
 
   enable() {
     this.isEnabled = true
+    if (this.is('disabled')) {
+      removeClass(this.classes.DISABLED, this.element)
+      this.leave('disabled')
+    }
     this.trigger(EVENTS.ENABLE)
   }
 
   disable() {
-    this.isEnabled = false
-    if (this.isDragging) {
-      this.dragEnd(null, null)
+    if (!this.is('disabled')) {
+      addClass(this.classes.DISABLED, this.element)
+      this.isEnabled = false
+      if (this.isDragging) {
+        this.dragEnd(null, null)
+      }
+      this.unbind()
+      this.enter('disabled')
     }
-    this.unbind()
     this.trigger(EVENTS.DISABLE)
   }
 

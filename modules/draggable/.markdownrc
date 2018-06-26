@@ -1,0 +1,109 @@
+{
+	"meta": {
+		"moduleName": "draggable",
+		"namespace": "draggable",
+		"Namespace": "Draggable",
+		"options": [
+			{
+				"name": "containment",
+				"desc": "Contains movement to the bounds of the element",
+				"defaultValue": "null"
+			},
+			{
+				"name": "grid",
+				"desc": "Snaps the element to a grid",
+				"defaultValue": "[0, 0]"
+			},
+			{
+				"name": "axis",
+				"desc": "Constrains movement to horizontal or vertical axis",
+				"defaultValue": "null"
+			}
+		],
+		"option": "containment",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+            {
+				"name": "dragStart",
+				"desc": "Gets fired when plugin has be dragStart"
+			},
+            {
+				"name": "dragMove",
+				"desc": "Gets fired when plugin has be dragMove"
+			},
+            {
+				"name": "dragEnd",
+				"desc": "Gets fired when plugin has be dragEnd"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "getPosition",
+				"desc": "Get dragPosition"
+			},
+			{
+				"name": "setPosition",
+				"desc": "Set dragPosition by key"
+			},
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "getPosition",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-draggable"
+			},
+			{
+				"name": "VERTICAL",
+				"desc": "Declare plugin vertical",
+				"value": "{namespace}-vertical"
+			},
+			{
+				"name": "HORIZONTAL",
+				"desc": "Declare plugin horizontal",
+				"value": "{namespace}-horizontal"
+			},
+			{
+				"name": "GRID",
+				"desc": "Declare plugin grid node",
+				"value": "{namespace}-grid"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Declare plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}

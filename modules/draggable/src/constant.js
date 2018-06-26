@@ -6,7 +6,7 @@ const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   DRAGSTART: 'dragStart',
-  DRAGMOVE: 'dragmove',
+  DRAGMOVE: 'dragMove',
   DRAGEND: 'dragEnd'
 }
 
@@ -14,11 +14,11 @@ const classes = {
   NAMESPACE: `${namespace}`,
   VERTICAL: '{namespace}-vertical',
   HORIZONTAL: '{namespace}-horizontal',
-  GRID: '{namespace-grid}',
+  GRID: '{namespace}-grid',
   DISABLED: '{namespace}-disabled'
 }
 
-const methods = ['get', 'set', 'enable', 'disable', 'destroy']
+const methods = ['getPosition', 'setPosition', 'enable', 'disable', 'destroy']
 
 const defaults = {
   containment: null,
@@ -28,4 +28,6 @@ const defaults = {
 
 const dependencies = ['Hammer']
 
-export { namespace, classes, defaults, events, methods, dependencies }
+const info = { version: '0.0.1' }
+
+export { namespace, classes, defaults, events, methods, dependencies, info }

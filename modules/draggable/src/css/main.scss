@@ -25,6 +25,7 @@ $draggable-code-margin-bottom: 10px !default;
 // draggable
 // =====================
 .#{$draggable} {
+  position: relative;
   z-index: 1;
   display: inline-block;
   width: $draggable-width;

@@ -14,7 +14,7 @@
 		"parcel-bundler": "^1.6.1"
 	},
 	"dependencies": {
-		"@pluginjs/draggable": "^0.0.1",
+		"@pluginjs/draggable": "^0.0.2",
 		"@pluginjs/dom": "^0.0.15"
 	},
 	"license": "UNLICENSED"
