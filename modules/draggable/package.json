@@ -7,9 +7,9 @@
 		"min": "dist/draggable.min.css"
 	},
 	"dependencies": {
-		"@pluginjs/component": "^0.2.22",
-		"@pluginjs/pluginjs": "^0.2.25",
-		"@pluginjs/styles": "^0.2.19"
+		"@pluginjs/component": "^0.5.0",
+		"@pluginjs/pluginjs": "^0.5.0",
+		"@pluginjs/styles": "^0.5.2"
 	},
 	"scripts": {
 		"build": "plugin build",
@@ -19,7 +19,7 @@
 		"lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
 		"test": "jest"
 	},
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A flexible modern draggable js plugin.",
 	"author": "Creation Studio Limited",
 	"homepage": "https://github.com/pluginjs/plugin.js",

@@ -821,6 +821,13 @@
     "@pluginjs/is" "^0.2.19"
     "@pluginjs/utils" "^0.2.20"
 
+"@pluginjs/draggable@^0.0.3":
+  version "0.0.2"
+  dependencies:
+    "@pluginjs/component" "^0.5.0"
+    "@pluginjs/pluginjs" "^0.5.0"
+    "@pluginjs/styles" "^0.5.2"
+
 "@pluginjs/events@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@pluginjs/events/-/events-0.0.5.tgz#4cc13c67c46215ceece4b32a836051403cf2ea41"
@@ -863,6 +870,10 @@
     "@pluginjs/dom" "^0.0.13"
     "@pluginjs/pluginjs" "^0.2.25"
     "@pluginjs/template" "^0.2.19"
+
+"@pluginjs/styles@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@pluginjs/styles/-/styles-0.5.2.tgz#bf7766ffd2da253b8aff9114ecdb085ae9128259"
 
 "@pluginjs/utils@^0.2.20":
   version "0.2.20"
