@@ -3,7 +3,7 @@
 	"variables": "variables.scss",
 	"inputs": "inputs.scss",
 	"buttons": "buttons.scss",
-	"version": "0.5.1",
+	"version": "0.5.2",
 	"description": "A flexible modern style js plugin.",
 	"author": "Creation Studio Limited",
 	"homepage": "https://github.com/pluginjs/plugin.js",

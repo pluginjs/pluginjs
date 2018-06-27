@@ -1,3 +1,2 @@
-import ImageLoader from '@pluginjs/image-loader'
-
-console.log(ImageLoader)
+// import sections
+import './sections/defaults'

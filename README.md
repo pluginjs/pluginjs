@@ -44,6 +44,18 @@ Test by jest
 npx plugin test <moduleName>
 ```
 
+Generate samples
+
+```sh
+npx plugin samples <moduleName> --sections=foo,bar
+```
+
+Publish
+
+```sh
+npx plugin publish <moduleName> [--repo-version=x.x.x]
+```
+
 ## Contributing Guide
 
 Hi, Thank you for chooing Plugin.js

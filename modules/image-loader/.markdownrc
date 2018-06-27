@@ -51,20 +51,20 @@
 				"desc": "Load image file"
 			},
 			{
-				"name": "isDone",
+				"name": "onComplete",
 				"desc": "Get whether image was loaded"
 			},
 			{
-				"name": "isFailed",
-				"desc": "Get whether image was load failed"
-			},
-			{
-				"name": "isFinally",
+				"name": "finally",
 				"desc": "Get is finally"
 			},
 			{
-				"name": "onProgress",
-				"desc": "Set onProgress callback"
+				"name": "onLoaded",
+				"desc": "Set onLoaded callback"
+			},
+			{
+				"name": "onError",
+				"desc": "Set error callback"
 			},
 			{
 				"name": "add",
@@ -87,7 +87,7 @@
 			{
 				"name": "NAMESPACE",
 				"desc": "Declare plugin namespace",
-				"value": "pj-imagePicker"
+				"value": "pj-imageLoader"
 			},
 			{
 				"name": "THEME",

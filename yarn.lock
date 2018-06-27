@@ -855,6 +855,20 @@
     "@pluginjs/is" "^0.2.19"
     "@pluginjs/utils" "^0.2.20"
 
+"@pluginjs/slider@^0.2.24":
+  version "0.2.28"
+  resolved "https://registry.yarnpkg.com/@pluginjs/slider/-/slider-0.2.28.tgz#95dd97c04663674e35143978d2de0195c4cf8f6c"
+  dependencies:
+    "@pluginjs/arrows" "^0.2.22"
+    "@pluginjs/classes" "^0.0.3"
+    "@pluginjs/component" "^0.2.22"
+    "@pluginjs/dom" "^0.0.15"
+    "@pluginjs/dots" "^0.2.19"
+    "@pluginjs/events" "^0.0.5"
+    "@pluginjs/pluginjs" "^0.2.25"
+    "@pluginjs/utils" "^0.2.20"
+    hammerjs "*"
+
 "@pluginjs/styled@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@pluginjs/styled/-/styled-0.0.3.tgz#6d43375868266d9aa0712d6fa393fc190044bdc2"

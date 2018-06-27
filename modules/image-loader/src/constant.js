@@ -17,10 +17,10 @@ export const methods = [
   'disable',
   'destroy',
   'load',
-  'isDone',
-  'isFailed',
-  'isFinally',
-  'onProgress',
+  'onError',
+  'onComplete',
+  'onLoaded',
+  'finally',
   'add'
 ]
 

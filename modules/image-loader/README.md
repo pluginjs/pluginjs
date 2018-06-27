@@ -116,10 +116,10 @@ You can also save the instances to variable for further use.
 Name | Description
 -----|-----
 `"load"` | Load image file
-`"isDone"` | Get whether image was loaded
-`"isFailed"` | Get whether image was load failed
-`"isFinally"` | Get is finally
-`"onProgress"` | Set onProgress callback
+`"onComplete"` | Get whether image was loaded
+`"finally"` | Get is finally
+`"onLoaded"` | Set onLoaded callback
+`"onError"` | Set error callback
 `"add"` | Add image
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -129,7 +129,7 @@ Name | Description
 
 Name | Description | Default
 -----|------|------
-`"NAMESPACE"` | Declare plugin namespace | `pj-imagePicker`
+`"NAMESPACE"` | Declare plugin namespace | `pj-imageLoader`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 ---
 

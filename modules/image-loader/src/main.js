@@ -1,12 +1,6 @@
 import Component from '@pluginjs/component'
 import { deepMerge } from '@pluginjs/utils'
-import Pj, {
-  eventable,
-  register,
-  stateable,
-  styleable
-} from '@pluginjs/pluginjs'
-
+import { eventable, register, stateable, styleable } from '@pluginjs/pluginjs'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -30,79 +24,43 @@ import {
 class ImageLoader extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-
     this.options = deepMerge(true, {}, DEFAULTS, options, this.getDataOptions())
     this.initClasses(CLASSES)
-
     this.history = []
     this.imgLoadAll = []
     this.selector = this.options.selector || 'img'
-
     this.initStates()
     this.initialize()
   }
 
   initialize() {
     this.$imgs = Array.from(this.getImgs())
-
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
-
   /*
-   * When a img loading success.
+   * When an img loading success.
    */
-  onProgress(callback) {
-    this.element.addEventListener('progress', event => {
-      callback.apply(this, [event.detail.el, this])
-    })
+  onLoaded(onLoadHandler) {
+    this.onLoadHandler = onLoadHandler
+    return this
+  }
 
+  onError(onErrorHandler) {
+    this.onErrorHandler = onErrorHandler
     return this
   }
   /*
    * When all of imgs loading success.
    */
-  isDone(callback) {
-    Promise.all(this.imgLoadAll)
-      .then(imgs => {
-        callback(imgs)
-      })
-      .catch(err => false)
-
+  onComplete(onCompleteHandler) {
+    this.onCompleteHandler = onCompleteHandler
     return this
   }
 
-  // /*
-  //  * when all of imgs loading failed.
-  //  */
-  // isFailed(callback) {
-  //   Promise.all(this.imgLoadAll)
-  //     .catch(err => {
-  //       return false;
-  //     }).finally(() => {
-  //       // console.log(this.fail)
-  //       if (this.fail === this.imgLoadAll.length) {
-  //         callback();
-  //         // console.log('is failed => ', this.imgLoadAll)
-  //       }
-  //     })
-
-  //   return this;
-  // }
-
-  /*
-   * When all of imgs loading end.
-   */
-  isFinally(callback) {
-    Promise.all(this.imgLoadAll)
-      .catch(
-        err =>
-          // console.error('finally,but has error: ', this.fail)
-          false
-      )
-      .finally(() => {
-        callback()
-      })
+  finally(onFinallyHandler) {
+    this.onFinallyHandler = onFinallyHandler
+    return this
   }
 
   getImgs() {
@@ -146,37 +104,41 @@ class ImageLoader extends Component {
 
   loading() {
     this.history = [].concat([this.history, this.$imgs])
+    this.imgLoadAll = this.imgLoadAll.concat(
+      this.$imgs.map($img => {
+        const imgLoad = new Promise((resolve, reject) => {
+          if ($img.complete) {
+            this.done += 1
+            resolve($img)
+          }
 
-    this.$imgs.forEach($img => {
-      const imgLoad = new Promise((resolve, reject) => {
-        if ($img.complete) {
-          this.done += 1
+          $img.addEventListener('load', () => {
+            this.done += 1
+            resolve($img)
+          })
 
-          resolve($img)
-        }
-
-        $img.addEventListener('load', () => {
-          this.done += 1
-
-          const event = new CustomEvent('progress', { detail: { el: $img } })
-          this.element.dispatchEvent(event)
-
-          resolve($img)
+          $img.addEventListener('error', () => {
+            this.fail += 1
+            reject($img)
+          })
         })
-
-        $img.addEventListener('error', () => {
-          this.fail += 1
-
-          reject($img)
-        })
+        return imgLoad
+          .then(img => {
+            this.onLoadHandler(img)
+            return img
+          })
+          .catch(img => {
+            this.onErrorHandler(img)
+            return img
+          })
       })
-
-      this.imgLoadAll.push(imgLoad)
-    })
-  }
-
-  unbind() {
-    this.element.removeEventListener('progress')
+    )
+    Promise.all(this.imgLoadAll)
+      .then(imgs => {
+        this.onCompleteHandler(imgs)
+        return imgs
+      })
+      .finally(this.onFinallyHandler)
   }
 
   enable() {
@@ -196,8 +158,6 @@ class ImageLoader extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      this.unbind()
-
       this.leave('initialized')
     }
 

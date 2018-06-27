@@ -9,11 +9,12 @@
 		"@pluginjs/dots": "^0.2.19",
 		"@pluginjs/events": "^0.0.5",
 		"@pluginjs/pluginjs": "^0.2.25",
-		"@pluginjs/utils": "^0.2.20",
+		"@pluginjs/styles": "^0.5.2",
 		"@pluginjs/tooltip": "^0.2.19",
+		"@pluginjs/utils": "^0.2.20",
 		"hammerjs": "*"
 	},
-	"version": "0.2.24",
+	"version": "0.3.7",
 	"description": "A flexible modern slider js plugin.",
 	"author": "Creation Studio Limited",
 	"homepage": "https://github.com/pluginjs/plugin.js",
@@ -60,13 +61,14 @@
 		]
 	},
 	"devDependencies": {
+		"@pluginjs/cli": "^0.5.18",
 		"babel-jest": "^23.0.1",
 		"jest": "^23.1.0",
 		"jest-extended": "^0.7.2",
 		"rollup": "^0.59.2",
 		"rollup-plugin-babel": "^4.0.0-beta.4",
 		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-node-resolve": "^3.3.0",
-		"@pluginjs/cli": "^0.5.18"
-	}
+		"rollup-plugin-node-resolve": "^3.3.0"
+	},
+	"sassConfig": "./sassrc.js"
 }
