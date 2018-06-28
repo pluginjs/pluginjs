@@ -1,6 +1,4 @@
-import is from '@pluginjs/is'
-
-export const namespace = 'swipe'
+export const namespace = 'pj-swipe'
 
 export const events = {
   UPDATE: 'update',
@@ -18,7 +16,7 @@ export const events = {
 }
 
 export const classes = {
-  NAMESPACE: `pj-${namespace}`,
+  NAMESPACE: `${namespace}`,
   THEME: '{namespace}--{theme}',
   WRAPPER: '{namespace}-wrapper',
   CONTAINER: '{namespace}-container',
@@ -40,8 +38,10 @@ export const defaults = {
   itemSelector: 'div',
   // data: null, // [Array] item => {'title':'','el':[HTML element]}
   arrows: false,
-  imgdot: false,
+  arrowNameSpace: null,
+  arrowType: null,
   pagination: false,
+  customPagination: false,
   drag: true,
   dragFree: false,
   frictionFactor: 0.8, // 0 - 1
@@ -59,16 +59,24 @@ export const defaults = {
   },
   defaultActive: 0, // default active item
   duration: 400,
-  imgdotArr: [],
+  dotConfig: false,
   templates: {
     wrapper() {
-      return `<div class="{class}"></div>`
+      return '<div class="{class}"></div>'
     },
     container() {
-      return `<div class="{class}"></div>`
+      return '<div class="{class}"></div>'
     },
     pagination() {
-      return `<ul class="{class}"></ul>`
+      return '<ul class="{class}"></ul>'
+    },
+    arrow: {
+      prev() {
+        return '<a class="{classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} icon-chevron-left"></i></a>'
+      },
+      next() {
+        return '<a class="{classes.NEXT}" href="{href}" alt="{text}"><i class="{classes.ICON} icon-chevron-right"></i></a>'
+      }
     }
   }
 }

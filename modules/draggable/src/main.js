@@ -3,6 +3,7 @@ import Component from '@pluginjs/component'
 import Hammer from 'hammerjs'
 import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
+import { setStyle } from '@pluginjs/styled'
 import getSize from './getSize'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -43,10 +44,11 @@ class Draggable extends Component {
       typeof element === 'string' ? document.querySelector(element) : element
 
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
     this.initClasses(CLASSES)
 
     addClass(this.classes.NAMESPACE, this.element)
+    this.frictionFactor =
+      this.options.frictionFactor < 1 ? 1 : this.options.frictionFactor
 
     this.initStates()
     this.initialize()
@@ -62,7 +64,6 @@ class Draggable extends Component {
     }
 
     this.build()
-
     this.bind()
 
     this.enter('initialized')
@@ -100,7 +101,6 @@ class Draggable extends Component {
     // clean up 'auto' or other non-integer values
     this.position.x = isNaN(x) ? 0 : x
     this.position.y = isNaN(y) ? 0 : y
-
     this.addTransformPosition(style)
   }
 
@@ -118,13 +118,12 @@ class Draggable extends Component {
     if (transform.indexOf('martix') !== 0) {
       return
     }
-
     const matrixValues = transform.split(',')
     const xIndex = transform.indexOf('matrix3d') === 0 ? 12 : 4
     const translateX = parseInt(matrixValues[xIndex], 10)
     const translateY = parseInt(matrixValues[xIndex + 1], 10)
     this.position.x += translateX
-    this.position.Y += translateY
+    this.position.y += translateY
   }
 
   bind() {
@@ -212,28 +211,9 @@ class Draggable extends Component {
 
     this.dragPoint.x = 0
     this.dragPoint.y = 0
-
     addClass('is-dragging', this.element)
-    this.trigger(EVENTS.DRAGSTART)
     this.animate()
-  }
-
-  getContainer() {
-    const containment = this.options.containment
-    if (!containment) {
-      return null
-    }
-    const isElement = containment instanceof HTMLElement
-    // use as element
-    if (isElement) {
-      return containment
-    }
-    // querySelector if string
-    if (typeof containment === 'string') {
-      return document.querySelector(containment)
-    }
-
-    return this.element.parentNode
+    this.trigger(EVENTS.DRAGSTART)
   }
 
   measureContainment() {
@@ -268,6 +248,24 @@ class Draggable extends Component {
       height:
         containerSize.height - borderSizeY - position.y - elementSize.height
     }
+  }
+
+  getContainer() {
+    const containment = this.options.containment
+    if (!containment) {
+      return null
+    }
+    const isElement = containment instanceof HTMLElement
+    // use as element
+    if (isElement) {
+      return containment
+    }
+    // querySelector if string
+    if (typeof containment === 'string') {
+      return document.querySelector(containment)
+    }
+
+    return this.element.parentNode
   }
 
   dragMove(deltaX, deltaY) {
@@ -322,8 +320,8 @@ class Draggable extends Component {
       return
     }
     this.type = 'dragEnd'
-    this.element.style.transform = ''
     this.setLeftTop()
+    this.element.style.transform = ''
     removeClass('is-dragging', this.element)
     this.trigger(EVENTS.DRAGEND)
   }
@@ -337,18 +335,20 @@ class Draggable extends Component {
     if (!this.isDragging) {
       return
     }
-    this.positionDrag()
+
+    setStyle(
+      {
+        transform: `
+          translate3d(${this.dragPoint.x}px, ${this.dragPoint.y}px, 0)
+        `
+      },
+      this.element
+    )
 
     const that = this
     requestAnimationFrame(() => {
       that.animate()
     })
-  }
-
-  positionDrag() {
-    this.element.style.transform = `translate3d(${this.dragPoint.x}px,${
-      this.dragPoint.y
-    }px,0)`
   }
 
   setPosition(x, y) {

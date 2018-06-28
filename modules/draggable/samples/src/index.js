@@ -1,5 +1,5 @@
 // import draggable css
-import '@pluginjs/draggable/src/css/main.scss'
+import '@pluginjs/draggable/src/css/draggable.scss'
 // import sections
 import './sections/default'
 import './sections/axis'

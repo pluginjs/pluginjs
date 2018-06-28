@@ -9,7 +9,7 @@ $draggable-hover-bg-color: #fa0 !default;
 $draggable-code-bg-color: #555 !default;
 $draggable-code-color: #fff !default;
 
-$draggable-width: 150px !default;
+$draggable-width: 120px !default;
 $draggable-height: 100px !default;
 $draggable-border-radius: 10px !default;
 $draggable-centered-font-size: 1.3 * $draggable-font-size !default;
@@ -58,6 +58,7 @@ $draggable-code-margin-bottom: 10px !default;
 .container {
   max-width: $draggable-container-max-width;
   min-height: $draggable-container-min-height;
+  overflow: hidden;
   border: 5px solid $draggable-hover-bg-color;
   border-radius: $draggable-container-border-radius;
 }

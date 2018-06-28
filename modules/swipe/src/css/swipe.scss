@@ -8,7 +8,6 @@ $arrow: "pj-arrow" !default;
 .#{$swipe} {
   &-wrapper {
     width: 100%;
-    height: 100%;
     overflow: hidden;
   }
 
@@ -41,4 +40,19 @@ $arrow: "pj-arrow" !default;
   &-item {
     position: absolute;
   }
+}
+.swipe {
+  height: 300px;
+}
+.example-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.2);
+}
+.example-item:nth-of-type(2n){
+  background: rgba(133, 83, 83, 0.2);
+}
+.item-active{
+  opacity: 0.5;
 }

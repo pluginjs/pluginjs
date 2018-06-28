@@ -821,13 +821,6 @@
     "@pluginjs/is" "^0.2.19"
     "@pluginjs/utils" "^0.2.20"
 
-"@pluginjs/draggable@^0.0.3":
-  version "0.0.2"
-  dependencies:
-    "@pluginjs/component" "^0.5.0"
-    "@pluginjs/pluginjs" "^0.5.0"
-    "@pluginjs/styles" "^0.5.2"
-
 "@pluginjs/events@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@pluginjs/events/-/events-0.0.5.tgz#4cc13c67c46215ceece4b32a836051403cf2ea41"

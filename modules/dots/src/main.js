@@ -282,6 +282,7 @@ class Dots extends Component {
       if (this.getItemValue(dot) === value) {
         /* eslint consistent-return: "off" */
         match = dot
+        return false
       }
     })
 

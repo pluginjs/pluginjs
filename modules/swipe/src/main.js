@@ -76,7 +76,6 @@ class Swipe extends Component {
     this.itemNums = this.options.itemNums
     this.gutter = this.options.gutter
     this.active = 0
-    this.maxActiveCount
     this.frictionFactor =
       this.options.frictionFactor < 1 ? 1 : this.options.frictionFactor
 
@@ -94,7 +93,7 @@ class Swipe extends Component {
         : this.options.defaultActive
 
     this.move(this.itemInstances[this.active].info.x, { trigger: false })
-    // this.moveTo()
+
     if (!this.options.group) {
       addClass(
         `${this.classes.ACTIVE}`,
@@ -123,7 +122,11 @@ class Swipe extends Component {
     }
 
     if (this.options.pagination) {
-      this.buildPagination()
+      if (this.options.customPagination) {
+        this.initPagination()
+      } else {
+        this.buildPagination()
+      }
     }
 
     if (this.options.drag) {
@@ -145,7 +148,6 @@ class Swipe extends Component {
     } else {
       const $itemsParent = parent(this.$items[0])
       $container = this.createEl('container', { class: this.classes.CONTAINER })
-
       append($container, $itemsParent)
       this.$container = find(`.${this.classes.CONTAINER}`, this.element)
 
@@ -184,7 +186,6 @@ class Swipe extends Component {
     const itemInstances = []
 
     items.forEach((item, index) => {
-      // const $item = $(item)
       const instanced = new Item(item)
 
       instanced.index = index
@@ -289,10 +290,41 @@ class Swipe extends Component {
     this.computeItemLocation(this.itemInstances)
 
     this.width = parseFloat(getStyle('width', this.element), 10)
+
+    setTimeout(() => {
+      this.moveTo(this.active)
+    }, 50)
   }
 
   buildArrows() {
-    this.$arrows = Arrows.of(this.element, { theme: 'square' })
+    let opts = {
+      type: this.options.arrowType || 'square',
+      templates: this.options.templates.arrow
+    }
+
+    if (this.options.arrowNameSpace) {
+      opts = Object.assign({}, opts, {
+        classes: {
+          NAMESPACE: this.options.arrowNameSpace
+        }
+      })
+    }
+
+    this.$arrows = Arrows.of(this.element, opts)
+  }
+
+  initPagination() {
+    let config = {
+      valueFrom: 'data-href',
+      default: `${this.active}`
+    }
+
+    config = Object.assign({}, config, this.options.dotConfig)
+
+    this.$pagination = Dots.of(
+      find(`.${this.classes.PAGINATION}`, this.$wrapper),
+      config
+    )
   }
 
   buildPagination() {
@@ -300,20 +332,14 @@ class Swipe extends Component {
     const $pagination = this.createEl('pagination', {
       class: this.classes.PAGINATION
     })
-    const items1 = []
+    const items = []
 
     for (let index = 0; index < this.maxActiveCount; index++) {
-      items1.push({ index })
+      items.push({ index })
     }
 
-    const items2 = []
-
-    for (let index = 0; index < this.maxActiveCount; index++) {
-      items2.push({ index, src: this.options.imgdotArr[index] })
-    }
-
-    const config1 = {
-      items: items1,
+    let config = {
+      items,
       valueFrom: 'data-href',
       default: `${this.active}`,
       template: {
@@ -325,22 +351,9 @@ class Swipe extends Component {
       }
     }
 
-    const config2 = {
-      items: items2,
-      valueFrom: 'data-href',
-      default: `${this.active}`,
-      template: {
-        item(css) {
-          return `<li class="${css} ${
-            that.classes.PAGINATIONITEM
-          }" data-href="{index}"><img src="{src}"></li>`
-        }
-      }
-    }
-
     append($pagination, this.$wrapper)
 
-    const config = this.options.imgdot ? config2 : config1
+    config = Object.assign({}, config, this.options.dotConfig)
 
     this.$pagination = Dots.of(
       find(`.${this.classes.PAGINATION}`, this.$wrapper),
@@ -391,9 +404,11 @@ class Swipe extends Component {
   bind() {
     /* lazy resize */
     Pj.emitter.on('resize', () => {
-      this.options.computeWidthResize
-        ? this.options.computeWidthResize.bind(this)()
-        : this.computeWidthResize()
+      if (!this.options.computeWidthResize) {
+        this.computeWidthResize()
+      } else {
+        this.options.computeWidthResize.bind(this)()
+      }
       this.trigger(EVENTS.RESIZE)
     })
 
@@ -716,19 +731,12 @@ class Swipe extends Component {
   }
 
   setPagination(num, active = this.active) {
-    const items1 = []
-    const items2 = []
+    const items = []
     this.$pagination.empty()
 
     for (let index = 0; index < num; index++) {
-      items1.push({ index })
+      items.push({ index })
     }
-
-    for (let index = 0; index < num; index++) {
-      items2.push({ index, src: this.options.imgdotArr[index] })
-    }
-
-    const items = this.options.imgdot ? items2 : items1
 
     this.$pagination.load(items, true)
 

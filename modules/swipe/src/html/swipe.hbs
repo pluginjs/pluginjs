@@ -10,7 +10,6 @@ scripts:
 - ../../plugins/swipe/swipe.js
 ---
 
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
   .example{
@@ -30,6 +29,7 @@ scripts:
     opacity: .5;
   }
 </style>
+
 {{!-- default --}}
 <section>
   <h2>Default</h2>
@@ -43,21 +43,8 @@ scripts:
     <div class="example-item">7</div>
     <div class="example-item">8</div>
   </div>
-
-  <script>
-    window.onload = function(){
-      Pj.swipe('.example-default', {
-        arrows: true,
-        pagination: true,
-        drag: true,
-        onResize: function(){
-          console.log('is resize')
-        }
-        // wrapperSelector: '.example-default'
-      })
-    }
-  </script>
 </section>
+
 {{!-- default active --}}
 <section>
   <h2>Group && default active</h2>
@@ -71,27 +58,8 @@ scripts:
     <div class="example-item">7</div>
     <div class="example-item">8</div>
   </div>
-
-  <script>
-    Pj.swipe('.example-group-active', {
-      itemNums: 3,
-      gutter: 20,
-      group: true,
-      pagination: true,
-      defaultActive: 1
-    })
-    /*
-    $(function(){
-      $('.example-group-active').asSwipe({
-        itemNums: 3,
-        gutter: 20,
-        group: true,
-        pagination: true,
-        defaultActive: 1
-      });
-    })*/
-  </script>
 </section>
+
 {{!-- Arrows --}}
 <section>
   <h2>Arrows</h2>
@@ -105,21 +73,8 @@ scripts:
     <div class="example-item">7</div>
     <div class="example-item">8</div>
   </div>
-
-  <script>
-    Pj.swipe('.example-arrows',{
-      arrows: true,
-      // loop: true
-    })
-    /*
-    $(function(){
-      $('.example-arrows').asSwipe({
-        arrows: true,
-        loop: true
-      });
-    })*/
-  </script>
 </section>
+
 {{!-- Pagination --}}
 <section>
   <h2>Pagination</h2>
@@ -133,20 +88,8 @@ scripts:
     <div class="example-item">7</div>
     <div class="example-item">8</div>
   </div>
-
-  <script>
-    Pj.swipe('.example-pagination', {
-      pagination: true
-    })
-    /*
-    $(function(){
-      $('.example-pagination').asSwipe({
-        pagination: true
-      });
-    })
-    */
-  </script>
 </section>
+
 {{!-- Multiple item --}}
 <section>
   <h2>Multiple item pre view</h2>
@@ -160,20 +103,8 @@ scripts:
     <div class="example-item">7</div>
     <div class="example-item">8</div>
   </div>
-
-  <script>
-    Pj.swipe('.example-multiple-item', {
-      itemNums: 3
-    })
-
-    /*
-    $(function(){
-      $('.example-multiple-item').asSwipe({
-        itemNums: 3
-      });
-    })*/
-  </script>
 </section>
+
 {{!-- Gutter --}}
 <section>
   <h2>Multiple item pre view && gutter</h2>
@@ -187,23 +118,8 @@ scripts:
     <div class="example-item">7</div>
     <div class="example-item">8</div>
   </div>
-
-  <script>
-    Pj.swipe('.example-multiple-item-gutter', {
-      pagination: true,
-      itemNums: 3,
-      gutter: 20
-    })
-
-    /*
-    $(function(){
-      $('.example-multiple-item-gutter').asSwipe({
-        itemNums: 3,
-        gutter: 20
-      });
-    })*/
-  </script>
 </section>
+
 {{!-- drag free --}}
 <section>
   <h2>drag free</h2>
@@ -224,27 +140,8 @@ scripts:
     <div class="example-item">14</div>
     <div class="example-item">15</div>
   </div>
-
-  <script>
-    Pj.swipe('.example-drag-free', {
-      itemNums: 3,
-      gutter: 15,
-      arrows: true,
-      pagination: true,
-      dragFree: true
-    })
-    /*
-    $(function(){
-      $('.example-drag-free').asSwipe({
-        itemNums: 3,
-        gutter: 15,
-        arrows: true,
-        pagination: true,
-        dragFree: true
-      });
-    })*/
-  </script>
 </section>
+
 {{!-- Group --}}
 <section>
   <h2>Group</h2>
@@ -258,25 +155,8 @@ scripts:
     <div class="example-item">7</div>
     <div class="example-item">8</div>
   </div>
-
-  <script>
-    Pj.swipe('.example-group', {
-      itemNums: 3,
-      gutter: 20,
-      group: true,
-      pagination: true
-    })
-    /*
-    $(function(){
-      $('.example-group').asSwipe({
-        itemNums: 3,
-        gutter: 20,
-        group: true,
-        pagination: true
-      });
-    })*/
-  </script>
 </section>
+
 {{!-- Multiple --}}
 <section>
   <h2>Multiple</h2>
@@ -299,29 +179,6 @@ scripts:
     <div class="example-item">16</div>
     <div class="example-item">17</div>
   </div>
-
-  <script>
-    Pj.swipe('.example-multiple', {
-      itemNums: 3,
-      gutter: 20,
-      // group: true,
-      pagination: true,
-      multiple: true,
-      dragFree: true
-    })
-
-    /*
-    $(function(){
-      $('.example-multiple').asSwipe({
-        itemNums: 3,
-        gutter: 20,
-        // group: true,
-        pagination: true,
-        multiple: true,
-        dragFree: true
-      });
-    })*/
-  </script>
 </section>
 
 {{!-- center --}}
@@ -342,8 +199,72 @@ scripts:
     <div class="example-item">11</div>
     <div class="example-item">12</div>
   </div>
+</section>
 
-  <script>
+{{!-- script --}}
+<script>
+  window.onload = () => {
+    Pj.swipe('.example-default', {
+      arrows: true,
+      pagination: true,
+      drag: true,
+      loop: true,
+      onResize: function(){
+        console.log('is resize')
+      }
+    });
+
+    Pj.swipe('.example-group-active', {
+      itemNums: 3,
+      gutter: 20,
+      group: true,
+      pagination: true,
+      defaultActive: 1
+    });
+
+    Pj.swipe('.example-arrows',{
+      arrows: true,
+      loop: true
+    });
+
+    Pj.swipe('.example-pagination', {
+      pagination: true
+    });
+
+    Pj.swipe('.example-multiple-item', {
+      itemNums: 3
+    });
+
+    Pj.swipe('.example-multiple-item-gutter', {
+      pagination: true,
+      itemNums: 3,
+      gutter: 20
+    });
+
+    Pj.swipe('.example-drag-free', {
+      itemNums: 3,
+      gutter: 15,
+      arrows: true,
+      pagination: true,
+      dragFree: false
+    });
+
+    Pj.swipe('.example-group', {
+      itemNums: 3,
+      gutter: 20,
+      group: true,
+      pagination: true
+    });
+
+    Pj.swipe('.example-multiple', {
+      itemNums: 3,
+      gutter: 20,
+      // group: true,
+      pagination: true,
+      multiple: true,
+      dragFree: true
+    });
+
     Pj.swipe('.example-center', {
       center: true,
       gutter: 10,
@@ -353,22 +274,11 @@ scripts:
       pagination: true,
       dragFree: true
       //loop: true
-    })
-    /*
-    $(function(){
-      $('.example-center').asSwipe({
-        center: true,
-        gutter: 10,
-        // multiple: true,
-        itemNums: 2,
-        arrows: true,
-        pagination: true,
-        dragFree: true
-        //loop: true
-      })
-    })*/
-  </script>
-</section>
+    });
+  }
+    
+</script>
+
 {{!-- API --}}
 <section>
   <h2>Api</h2>
@@ -437,89 +347,5 @@ scripts:
     $initBtn.addEventListener('click', function(){
       init()
     })
-
-
-    /*
-    $(function () {
-      // Pj.swipe.setData(data);
-
-      function createData(num){
-        var list = [];
-
-        for(var i = 0; i < num; i++){
-          list.push({
-            title: 'item ' + i,
-            el: '<div class="example-swipe-item">'+i+'</div>'
-          })
-        }
-
-        return list;
-      }
-      const data = createData(10);
-
-      var $swipe;
-
-      function init() {
-        $swipe = $('.example-api').asSwipe({
-          arrows: true,
-          itemNums: 3,
-          gutter: 20,
-          group: true,
-          // loop: true,
-          pagination: true,
-          drag: true,
-          multiple: true,
-          dragFree: true,
-          // defaultActive: 4,
-          onReady: function () {
-            log('ready', 'event');
-          },
-          onDestroy: function () {
-            log('destroy', 'event');
-          },
-          onEnable: function () {
-            log('enable', 'event');
-          },
-          onDisable: function () {
-            log('disable', 'event');
-          },
-          onChange: function (val) {
-            log('change: ' + JSON.stringify(val), 'event');
-          },
-          onMoveEnd: function(active){
-            log(active, 'move end to => ')
-          }
-        }).data('swipe');
-      }
-      $('.api-init').on('click', function () {
-        init();
-      });
-
-      $('.api-set').on('click', function () {
-        $swipe.set({
-          id: "coin-yen"
-        });
-        log('', 'set(data)');
-      });
-      $('.api-get').on('click', function () {
-        log(JSON.stringify($swipe.get()), 'get()');
-      });
-      $('.api-val').on('click', function () {
-        log($swipe.val(), 'val()');
-      });
-      $('.api-val-set').on('click', function () {
-        $swipe.val('{"id":"connection"}');
-        log('', 'val(data)');
-      });
-      $('.api-destroy').on('click', function () {
-        $swipe.destroy()
-      });
-      $('.api-disable').on('click', function () {
-        $swipe.disable()
-      });
-      $('.api-enable').on('click', function () {
-        $swipe.enable()
-      });
-    });*/
   </script>
 </section>

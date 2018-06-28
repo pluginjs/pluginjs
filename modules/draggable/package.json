@@ -2,7 +2,7 @@
 	"name": "@pluginjs/draggable",
 	"main": "dist/draggable.umd.js",
 	"css": {
-		"source": "src/css/main.scss",
+		"source": "src/css/draggable.scss",
 		"main": "dist/draggable.css",
 		"min": "dist/draggable.min.css"
 	},
@@ -12,6 +12,7 @@
 		"@pluginjs/events": "^0.5.0",
 		"@pluginjs/pluginjs": "^0.5.0",
 		"@pluginjs/styles": "^0.5.2",
+		"@pluginjs/styled": "^0.5.0",
 		"@pluginjs/utils": "^0.5.0",
 		"hammerjs": "*"
 	},
