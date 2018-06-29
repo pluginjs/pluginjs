@@ -878,10 +878,6 @@
     "@pluginjs/pluginjs" "^0.2.25"
     "@pluginjs/template" "^0.2.19"
 
-"@pluginjs/styles@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@pluginjs/styles/-/styles-0.5.2.tgz#bf7766ffd2da253b8aff9114ecdb085ae9128259"
-
 "@pluginjs/utils@^0.2.20":
   version "0.2.20"
   resolved "https://registry.yarnpkg.com/@pluginjs/utils/-/utils-0.2.20.tgz#7a1c020104c66cd47d114bb38de75f97ed05e032"
@@ -2049,6 +2045,10 @@ boom@5.x.x:
 bootstrap.min.js@^3.3.5:
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/bootstrap.min.js/-/bootstrap.min.js-3.3.5.tgz#1a86b4ef6fa904869df72dbe058c331225555e83"
+
+bootstrap@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.1.1.tgz#3aec85000fa619085da8d2e4983dfd67cf2114cb"
 
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.11"

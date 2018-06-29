@@ -5,8 +5,8 @@
 		"@pluginjs/classes": "^0.0.3",
 		"@pluginjs/component": "^0.2.22",
 		"@pluginjs/dom": "^0.0.15",
-		"@pluginjs/events": "^0.0.5",
-		"@pluginjs/pluginjs": "^0.2.25",
+		"@pluginjs/events": "^0.5.0",
+		"@pluginjs/pluginjs": "^0.5.0",
 		"@pluginjs/utils": "^0.2.20",
 		"animejs": "*"
 	},

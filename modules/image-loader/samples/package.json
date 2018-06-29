@@ -15,8 +15,7 @@
 	},
 	"dependencies": {
 		"@pluginjs/image-loader": "^0.2.18",
-		"@pluginjs/dom": "^0.0.15",
-		"@pluginjs/styles": "^0.5.2"
+		"@pluginjs/dom": "^0.0.15"
 	},
 	"license": "UNLICENSED"
 }

@@ -21,7 +21,7 @@ describe('AdaptText', () => {
   })
 
   describe('constructor()', () => {
-    test('should work wtesth element', () => {
+    test('should work with element', () => {
       const element = document.createElement('div')
       const adaptText = AdaptText.of(element)
 

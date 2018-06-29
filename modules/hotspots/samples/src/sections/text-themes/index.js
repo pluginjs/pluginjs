@@ -3,7 +3,7 @@ import html from './index.html'
 import Hotspots from '@pluginjs/hotspots'
 import escapeHTML from '../escape-html'
 
-queryAll('.hotspots', render(html, query('#text-themes'))).map(element =>
+queryAll('.pj-hotspots', render(html, query('#text-themes'))).map(element =>
   Hotspots.of(element, {
     icon: 'fa fa-map-marker',
     data: [

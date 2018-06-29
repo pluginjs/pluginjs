@@ -52,8 +52,7 @@ class Hotspots extends Component {
     addClass(this.classes.CONTAINER, this.element)
 
     if (this.options.theme) {
-      const themeClasses = this.getThemeClass().split(' ')
-      addClass(themeClasses, this.element)
+      addClass(this.getThemeClass(), this.element)
     }
 
     this.createHotspots()
@@ -223,9 +222,9 @@ class Hotspots extends Component {
   }
 
   setupPopover() {
-    this.$hotspotsInstance = this.$hotspots.map(el =>
-      Popover.of(el, this.options.popover)
-    )
+    this.$hotspotsInstance = this.$hotspots.map(el => {
+      return Popover.of(el, this.options.popover)
+    })
     this.$hotspots.map(
       compose(
         bindEvent({

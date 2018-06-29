@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Breadcrumb from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Breadcrumb from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import sample from './fixtures/sample'
 
 describe('Breadcrumb', () => {
   describe('Breadcrumb()', () => {
@@ -28,7 +27,7 @@ describe('Breadcrumb', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
+      const element = sample()
       const breadcrumb = new Breadcrumb(element)
 
       expect(breadcrumb).toBeObject()
@@ -36,94 +35,79 @@ describe('Breadcrumb', () => {
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
+      const element = sample()
       const breadcrumb = new Breadcrumb(element)
 
       expect(breadcrumb.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asBreadcrumb()).toEqual($element)
-
-      const api = $element.data('breadcrumb')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asBreadcrumb()
-      expect($element.asBreadcrumb('bind')).toBeNil()
+      const instance = Breadcrumb.of(sample())
+      expect(instance.bind).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asBreadcrumb()
-      expect($element.asBreadcrumb('destroy')).toEqual($element)
+      const instance = Breadcrumb.of(sample())
+      expect(instance.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let $element
+    let element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      element = sample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('breadcrumb:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      element.addEventListener('breadcrumb:ready', () => {
         called++
       })
 
-      $element.asBreadcrumb()
+      const api = Breadcrumb.of(element)
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asBreadcrumb()
-      api = $element.data('breadcrumb')
+      element = sample()
+      api = Breadcrumb.of(element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('breadcrumb:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      element.addEventListener('breadcrumb:destroy', () => {
         called++
       })
 
-      $element.asBreadcrumb('destroy')
-
+      api.destroy()
+      expect(api.is('initialized')).toBeFalse()
       expect(called).toEqual(1)
     })
   })
 
   describe('enable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asBreadcrumb()
-      api = $element.data('breadcrumb')
+      element = sample()
+      api = Breadcrumb.of(element)
     })
 
     test('should enable the plugin', () => {
-      $element.asBreadcrumb('disable')
-      $element.asBreadcrumb('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,27 +115,27 @@ describe('Breadcrumb', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('breadcrumb:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      element.addEventListener('breadcrumb:enable', () => {
         called++
       })
 
-      $element.asBreadcrumb('enable')
+      api.enable()
+      expect(api.is('disabled')).toBeFalse()
       expect(called).toEqual(1)
     })
   })
 
   describe('disable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asBreadcrumb()
-      api = $element.data('breadcrumb')
+      element = sample()
+      api = Breadcrumb.of(element)
     })
 
     test('should disable the plugin', () => {
-      $element.asBreadcrumb('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,12 +143,12 @@ describe('Breadcrumb', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('breadcrumb:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      element.addEventListener('breadcrumb:disable', () => {
         called++
       })
 
-      $element.asBreadcrumb('disable')
+      api.disable()
+      expect(api.is('disabled')).toBeTrue()
       expect(called).toEqual(1)
     })
   })

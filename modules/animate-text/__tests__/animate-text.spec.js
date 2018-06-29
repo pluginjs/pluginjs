@@ -1,6 +1,5 @@
-import jsdom from 'mocha-jsdom'
-import AnimateText from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import AnimateText from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 import { parseHTML } from '@pluginjs/dom'
 
 const getInitialElement = () => parseHTML`
@@ -36,7 +35,12 @@ describe('AnimateText', () => {
       const animateText = getNewAnimateTextInstance()
 
       expect(animateText).toBeObject()
-      expect(animateText.options).toEqual(DEFAULTS)
+      expect(animateText.options).toEqual({
+        ...DEFAULTS,
+        mode: 'fadeDown',
+        delay: 1000,
+        text: 'World!'
+      })
     })
 
     test('should have options', () => {
@@ -66,14 +70,13 @@ describe('AnimateText', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.addEventListener('animateText:ready', event => {
-        const api = event.detail.instance
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('animateText:ready', () => {
         called++
       })
 
-      AnimateText.of($element)
+      const instance = AnimateText.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -124,7 +127,7 @@ describe('AnimateText', () => {
         called++
       })
 
-      $element.asAnimateText('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })

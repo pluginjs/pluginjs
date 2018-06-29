@@ -1,6 +1,5 @@
-import $ from 'jquery'
-import Video from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Video from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 
 describe('Video', () => {
   describe('Video()', () => {
@@ -38,71 +37,51 @@ describe('Video', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asVideo()).toEqual($element)
-
-      const api = $element.data('video')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
-    test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asVideo()
-      expect($element.asVideo('bind')).toBeNil()
-    })
-
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asVideo()
-      expect($element.asVideo('destroy')).toEqual($element)
+      const video = Video.of(document.createElement('div'))
+      expect(video.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let $element
+    let element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      element = document.createElement('div')
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('video:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      element.addEventListener('video:ready', () => {
         called++
       })
 
-      $element.asVideo()
+      const api = Video.of(element)
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asVideo()
-      api = $element.data('video')
+      element = document.createElement('div')
+      api = Video.of(element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('video:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      element.addEventListener('video:destroy', () => {
         called++
       })
 
-      $element.asVideo('destroy')
-
+      api.destroy()
+      expect(api.is('initialized')).toBeFalse()
       expect(called).toEqual(1)
     })
   })

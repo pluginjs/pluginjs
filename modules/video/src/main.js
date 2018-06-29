@@ -1,16 +1,5 @@
 import Component from '@pluginjs/component'
 import { deepMerge } from '@pluginjs/utils'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle, getStyle } from '@pluginjs/styled'
-import {
-  prepend,
-  append,
-  parseHTML,
-  queryAll,
-  query,
-  insertAfter,
-  remove
-} from '@pluginjs/dom'
 import { eventable, register, stateable, styleable } from '@pluginjs/pluginjs'
 import {
   classes as CLASSES,
@@ -20,7 +9,6 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-
 import HTML5API from './source/html5'
 import VIMEOAPI from './source/vimeo'
 import YOUTUBEAPI from './source/youtube'

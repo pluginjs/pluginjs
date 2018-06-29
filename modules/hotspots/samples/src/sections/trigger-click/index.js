@@ -3,7 +3,7 @@ import html from './index.html'
 import Hotspots from '@pluginjs/hotspots'
 import escapeHTML from '../escape-html'
 
-const element = query('.hotspots', render(html, query('#trigger-click')))
+const element = query('.pj-hotspots', render(html, query('#trigger-click')))
 Hotspots.of(element, {
   icon: 'fa fa-map-marker',
   data: [

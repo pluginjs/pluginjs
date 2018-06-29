@@ -26,7 +26,7 @@ describe('Draggable', () => {
   })
 
   describe('constructor()', () => {
-    test('should work wtesth element', () => {
+    test('should work with element', () => {
       const draggable = Draggable.of(generateHTMLSample())
 
       expect(draggable).toBeObject()

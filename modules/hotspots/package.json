@@ -7,7 +7,7 @@
 		"@pluginjs/dom": "^0.0.15",
 		"@pluginjs/events": "^0.0.5",
 		"@pluginjs/is": "^0.2.19",
-		"@pluginjs/pluginjs": "^0.2.25",
+		"@pluginjs/pluginjs": "^0.5.0",
 		"@pluginjs/popover": "^0.2.19",
 		"@pluginjs/template": "^0.2.19",
 		"@pluginjs/tooltip": "^0.2.19"

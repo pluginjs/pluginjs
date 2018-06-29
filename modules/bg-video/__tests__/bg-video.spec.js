@@ -1,8 +1,5 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import BgVideo from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
-import '@pluginjs/video'
+import BgVideo from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 
 const options = {
   type: 'html5',
@@ -45,7 +42,18 @@ describe('BgVideo', () => {
       })
 
       expect(bgVideo).toBeObject()
-      // expect(bgVideo.options).toEqual(DEFAULTS);
+      expect(bgVideo.options).toEqual({
+        ...DEFAULTS,
+        type: options.type,
+        video: {
+          url: options.url,
+          id: options.id,
+          repeat: true,
+          mute: true,
+          autoplay: true,
+          mobileImage: ''
+        }
+      })
     })
 
     test('should have options', () => {
@@ -66,35 +74,9 @@ describe('BgVideo', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect(
-        $element.asBgVideo({
-          type: options.type,
-          video: {
-            url: options.url,
-            id: options.id,
-            repeat: true,
-            mute: true,
-            autoplay: true,
-            mobileImage: ''
-          }
-        })
-      ).toEqual($element)
-
-      const api = $element.data('bgVideo')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asBgVideo({
+      const instance = BgVideo.of(document.createElement('div'), {
         type: options.type,
         video: {
           url: options.url,
@@ -105,11 +87,11 @@ describe('BgVideo', () => {
           mobileImage: ''
         }
       })
-      expect($element.asBgVideo('bind')).toBeNil()
+      expect(instance.bind).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asBgVideo({
+      const instance = BgVideo.of(document.createElement('div'), {
         type: options.type,
         video: {
           url: options.url,
@@ -120,26 +102,25 @@ describe('BgVideo', () => {
           mobileImage: ''
         }
       })
-      expect($element.asBgVideo('destroy')).toEqual($element)
+      expect(instance.destroy).toBeFunction()
     })
   })
 
   describe('initialize()', () => {
-    let $element
+    let element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      element = document.createElement('div')
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('bgVideo:ready', (event, api) => {
-        // expect(api.is('initialized')).toBeTrue();
+      element.addEventListener('bgVideo:ready', () => {
         called++
       })
 
-      $element.asBgVideo({
+      const api = BgVideo.of(element, {
         type: options.type,
         video: {
           url: options.url,
@@ -150,16 +131,18 @@ describe('BgVideo', () => {
           mobileImage: ''
         }
       })
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asBgVideo({
+      element = document.createElement('div')
+      api = BgVideo.of(element, {
         type: options.type,
         video: {
           url: options.url,
@@ -170,19 +153,17 @@ describe('BgVideo', () => {
           mobileImage: ''
         }
       })
-      api = $element.data('bgVideo')
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('bgVideo:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      element.addEventListener('bgVideo:destroy', () => {
         called++
       })
 
-      $element.asBgVideo('destroy')
-
+      api.destroy()
+      expect(api.is('initialized')).toBeFalse()
       expect(called).toEqual(1)
     })
   })

@@ -161,7 +161,7 @@ class BgVideo extends Component {
       this.leave('initialized')
     }
 
-    this.videoApi('destroy')
+    this.videoApi.destroy()
     this.video.remove()
 
     this.trigger(EVENTS.DESTROY)

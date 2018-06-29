@@ -26,7 +26,7 @@ describe('Accordion', () => {
   })
 
   describe('constructor()', () => {
-    test('should work wtesth element', () => {
+    test('should work with element', () => {
       const accordion = Accordion.of(generateHTMLSample())
 
       expect(accordion).toBeObject()
