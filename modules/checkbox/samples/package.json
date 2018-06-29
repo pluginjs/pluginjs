@@ -15,7 +15,7 @@
 	},
 	"dependencies": {
 		"@pluginjs/checkbox": "^0.2.19",
-		"@pluginjs/dom": "^0.5.0",
+		"@pluginjs/dom": "^0.0.15",
 		"font-awesome": "^4.7.0"
 
 	},

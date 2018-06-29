@@ -7,7 +7,7 @@
 		"@pluginjs/is": "^0.2.19",
 		"@pluginjs/utils": "^0.2.20"
 	},
-	"version": "0.5.0",
+	"version": "0.0.15",
 	"description": "A flexible modern dom js plugin.",
 	"author": "Creation Studio Limited",
 	"homepage": "https://github.com/pluginjs/plugin.js",

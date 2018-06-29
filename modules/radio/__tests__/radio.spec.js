@@ -27,14 +27,14 @@ describe('Radio', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const radio = Radio.of(generateHTMLSample())
+      const radio = Radio.of(generateHTMLSample().querySelector('input'))
 
       expect(radio).toBeObject()
       expect(radio.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const radio = Radio.of(generateHTMLSample())
+      const radio = Radio.of(generateHTMLSample().querySelector('input'))
 
       expect(radio.options).toBeObject()
     })
@@ -42,7 +42,7 @@ describe('Radio', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
+      const $element = generateHTMLSample().querySelector('input')
       const api = Radio.of($element)
 
       expect(api).toEqual(api)
@@ -53,7 +53,7 @@ describe('Radio', () => {
 
   describe('classes', () => {
     test('should use classes options', () => {
-      const radio = Radio.of(generateHTMLSample(), {
+      const radio = Radio.of(generateHTMLSample().querySelector('input'), {
         classes: {
           label: '{namespace}-wrap',
           checked: '{namespace}-checked'
@@ -65,7 +65,7 @@ describe('Radio', () => {
     })
 
     test('should override class namespace', () => {
-      const radio = Radio.of(generateHTMLSample(), {
+      const radio = Radio.of(generateHTMLSample().querySelector('input'), {
         classes: {
           namespace: 'radio',
           label: '{namespace}-label'
@@ -78,7 +78,7 @@ describe('Radio', () => {
 
     describe('getClass()', () => {
       test('should get class with namespace', () => {
-        const radio = Radio.of(generateHTMLSample(), {
+        const radio = Radio.of(generateHTMLSample().querySelector('input'), {
           classes: { namespace: 'hello' }
         })
         expect(radio.getClass('foo')).toEqual('foo')
@@ -89,13 +89,13 @@ describe('Radio', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = Radio.of(generateHTMLSample())
+      const $element = Radio.of(generateHTMLSample().querySelector('input'))
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = Radio.of(generateHTMLSample())
-      expect($element.destroy()).toEqual($element)
+      const $element = Radio.of(generateHTMLSample().querySelector('input'))
+      $element.destroy()
     })
   })
 
@@ -103,7 +103,7 @@ describe('Radio', () => {
     let $element
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample().querySelector('input')
     })
 
     test('should trigger ready event', () => {
@@ -124,7 +124,7 @@ describe('Radio', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample().querySelector('input')
       api = Radio.of($element)
     })
 
@@ -147,7 +147,7 @@ describe('Radio', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample().querySelector('input')
       api = Radio.of($element)
     })
 
@@ -176,7 +176,7 @@ describe('Radio', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample().querySelector('input')
       api = Radio.of($element)
     })
 
