@@ -1,7 +1,17 @@
-// import jsdom from 'mocha-jsdom';
-import $ from 'jquery'
-import Arrows from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Arrows from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import { parseHTML } from '@pluginjs/dom'
+
+const getInitialElement = () => parseHTML`
+<div class="pj-arrows">
+  <a class="pj-arrow pj-arrow-prev" href="javascript:void(0);" alt="Previous">
+    <i class="pj-arrow-icon icon-chevron-left"></i>
+  </a>
+  <a class="pj-arrow pj-arrow-next" href="javascript:void(0);" alt="Next">
+    <i class="pj-arrow-icon icon-chevron-right"></i>
+  </a>
+</div>
+`
 
 describe('Arrows', () => {
   describe('Arrows()', () => {
@@ -28,44 +38,28 @@ describe('Arrows', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const arrows = new Arrows(element)
+      const arrows = Arrows.of(getInitialElement())
 
       expect(arrows).toBeObject()
       expect(arrows.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const arrows = new Arrows(element)
+      const arrows = Arrows.of(getInitialElement())
 
       expect(arrows.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asArrows()).toEqual($element)
-
-      const api = $element.data('arrows')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asArrows()
-      expect($element.asArrows('bind')).toBeNil()
+      const arrows = Arrows.of(getInitialElement())
+      expect(arrows.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asArrows()
-      expect($element.asArrows('destroy')).toEqual($element)
+      const arrows = Arrows.of(getInitialElement())
+      arrows.destroy()
     })
   })
 
@@ -73,19 +67,18 @@ describe('Arrows', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = getInitialElement()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('arrows:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('arrows:ready', () => {
         called++
       })
-
-      $element.asArrows()
+      const instance = Arrows.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -94,19 +87,19 @@ describe('Arrows', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asArrows()
-      api = $element.data('arrows')
+      $element = getInitialElement()
+      api = Arrows.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('arrows:destroy', (event, api) => {
+      $element.addEventListener('arrows:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asArrows('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -117,13 +110,13 @@ describe('Arrows', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asArrows()
-      api = $element.data('arrows')
+      $element = getInitialElement()
+      api = Arrows.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asArrows('disable')
-      $element.asArrows('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,12 +124,12 @@ describe('Arrows', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('arrows:enable', (event, api) => {
+      $element.addEventListener('arrows:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asArrows('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -146,12 +139,12 @@ describe('Arrows', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asArrows()
-      api = $element.data('arrows')
+      $element = getInitialElement()
+      api = Arrows.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asArrows('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,12 +152,12 @@ describe('Arrows', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('arrows:disable', (event, api) => {
+      $element.addEventListener('arrows:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asArrows('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

@@ -1,7 +1,7 @@
-import jsdom from 'mocha-jsdom'
+// import jsdom from 'mocha-jsdom'
 import $ from 'jquery'
-import Dots from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Dots from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 
 describe('Dots', () => {
   describe('Dots()', () => {
@@ -94,14 +94,14 @@ describe('Dots', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asDots()
-      api = $element.data('dots')
+      $element = document.createElement('div')
+      api = Dots.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('dots:destroy', (event, api) => {
+      $element.on('dots:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })

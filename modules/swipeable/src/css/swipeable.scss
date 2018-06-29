@@ -1,0 +1,45 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$swipeable: "pj-swipeable" !default;
+$bg-purple: #9b65de !default;
+$bg-blue: #198fe3 !default;
+$bg-green: #14d790 !default;
+$bg-pink: #ff1c68 !default;
+
+$swipeable-height: 150px !default;
+$swipeable-item-border-radius: 5px !default;
+$swipeable-item-margin-right: 15px !default;
+$swipeable-item-width: 110px !default;
+
+// swipeable
+// =====================
+section {
+  overflow: hidden;
+}
+
+.#{$swipeable} {
+  position: relative;
+  display: flex;
+  height: $swipeable-height;
+
+  &-item {
+    flex: 0 0 $swipeable-item-width;
+    margin-right: $swipeable-item-margin-right;
+    background-color: $bg-purple;
+    border-radius: $swipeable-item-border-radius;
+
+    &:nth-child(4n + 2) {
+      background-color: $bg-green;
+    }
+
+    &:nth-child(4n + 3) {
+      background-color: $bg-pink;
+    }
+
+    &:nth-child(4n + 4) {
+      background-color: $bg-blue;
+    }
+  }
+}

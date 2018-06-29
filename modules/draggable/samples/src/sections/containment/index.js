@@ -4,7 +4,5 @@ import Draggable from '@pluginjs/draggable'
 
 const element = query('.draggable', render(html, query('#containment')))
 Draggable.of(element, {
-  containment: '.container',
-  axis: 'x',
-  dragFree: true
+  containment: '.container'
 })

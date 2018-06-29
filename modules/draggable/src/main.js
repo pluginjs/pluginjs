@@ -47,8 +47,6 @@ class Draggable extends Component {
     this.initClasses(CLASSES)
 
     addClass(this.classes.NAMESPACE, this.element)
-    this.frictionFactor =
-      this.options.frictionFactor < 1 ? 1 : this.options.frictionFactor
 
     this.initStates()
     this.initialize()
@@ -115,7 +113,7 @@ class Draggable extends Component {
 
   addTransformPosition(style) {
     const transform = style.transform
-    if (transform.indexOf('martix') !== 0) {
+    if (transform.indexOf('matrix') !== 0) {
       return
     }
     const matrixValues = transform.split(',')
