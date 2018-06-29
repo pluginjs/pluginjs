@@ -57,10 +57,6 @@ input.#{$imagePicker}-input {
   border: $imagePicker-border;
   border-radius: $imagePicker-border-radius;
 
-  &:hover {
-    background-color: $imagePicker-init-hover-bg;
-  }
-
   &-initial {
     box-sizing: border-box;
     width: 100%;
@@ -78,6 +74,10 @@ input.#{$imagePicker}-input {
     i {
       display: block;
       font-size: $font-size-base + 5; //18px
+    }
+
+    &:hover {
+      color: $color-primary-black;
     }
   }
 

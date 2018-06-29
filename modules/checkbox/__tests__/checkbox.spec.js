@@ -2,11 +2,6 @@ import Checkbox from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-const data = {
-  classes: {
-    icon: 'icon-check-mini'
-  }
-}
 describe('Checkbox', () => {
   describe('Checkbox()', () => {
     test('should have Checkbox', () => {
@@ -29,14 +24,16 @@ describe('Checkbox', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const checkbox = Checkbox.of(generateHTMLSample(), { data })
+      const $element = generateHTMLSample().querySelector('input')
+      const checkbox = Checkbox.of($element)
 
       expect(checkbox).toBeObject()
       expect(checkbox.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const checkbox = Checkbox.of(generateHTMLSample(), { data })
+      const $element = generateHTMLSample().querySelector('input')
+      const checkbox = Checkbox.of($element)
 
       expect(checkbox.options).toBeObject()
     })
@@ -44,8 +41,8 @@ describe('Checkbox', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = Checkbox.of($element, { data })
+      const $element = generateHTMLSample().querySelector('input')
+      const api = Checkbox.of($element)
       expect(api.asCheckbox()).toEqual(api)
 
       expect(api).toBeObject()
@@ -55,12 +52,12 @@ describe('Checkbox', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = Checkbox.of(generateHTMLSample(), { data })
+      const $element = Checkbox.of(generateHTMLSample().querySelector('input'))
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = Checkbox.of(generateHTMLSample(), { data })
+      const $element = Checkbox.of(generateHTMLSample().querySelector('input'))
       $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -72,8 +69,8 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Checkbox.of($element, { data })
+      $element = generateHTMLSample().querySelector('input')
+      api = Checkbox.of($element)
     })
 
     test('should trigger ready event', () => {
@@ -93,8 +90,8 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Checkbox.of($element, { data })
+      $element = generateHTMLSample().querySelector('input')
+      api = Checkbox.of($element)
     })
 
     test('should trigger destroy event', () => {
@@ -116,8 +113,8 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Checkbox.of($element, { data })
+      $element = generateHTMLSample().querySelector('input')
+      api = Checkbox.of($element)
     })
 
     test('should enable the plugin', () => {
@@ -145,8 +142,9 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Checkbox.of($element, { data })
+      console.log(generateHTMLSample())
+      $element = generateHTMLSample().querySelector('input')
+      api = Checkbox.of($element)
     })
 
     test('should disable the plugin', () => {

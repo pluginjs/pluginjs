@@ -2,7 +2,7 @@ import Choice from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-const data = {
+const options = {
   value: 'default',
   data: {
     on: {
@@ -40,14 +40,14 @@ describe('Choice', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const choice = Choice.of(generateHTMLSample(), data)
+      const choice = Choice.of(generateHTMLSample(), options)
 
       expect(choice).toBeObject()
       expect(choice.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const choice = Choice.of(generateHTMLSample())
+      const choice = Choice.of(generateHTMLSample(), options)
 
       expect(choice.options).toBeObject()
     })
@@ -56,7 +56,7 @@ describe('Choice', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
-      const api = Choice.of($element, data)
+      const api = Choice.of($element, options)
 
       expect(api).toEqual(api)
       expect(api).toBeObject()
@@ -66,12 +66,12 @@ describe('Choice', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = Choice.of(generateHTMLSample(), data)
+      const $element = Choice.of(generateHTMLSample(), options)
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = Choice.of(generateHTMLSample(), data)
+      const $element = Choice.of(generateHTMLSample(), options)
       $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -84,7 +84,7 @@ describe('Choice', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Choice.of($element, { data })
+      api = Choice.of($element, options)
     })
 
     test('should trigger ready event', () => {
@@ -105,7 +105,7 @@ describe('Choice', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Choice.of($element, data)
+      api = Choice.of($element, options)
     })
 
     test('should trigger destroy event', () => {
@@ -128,7 +128,7 @@ describe('Choice', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Choice.of($element, data)
+      api = Choice.of($element, options)
     })
 
     test('should enable the plugin', () => {
@@ -157,7 +157,7 @@ describe('Choice', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Choice.of($element, data)
+      api = Choice.of($element, options)
     })
 
     test('should disable the plugin', () => {

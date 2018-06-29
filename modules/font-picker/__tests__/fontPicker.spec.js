@@ -923,7 +923,7 @@ import generateHTMLSample from './fixtures/sample'
 //     }
 //   }
 // }
-// Pj.fontPicker.registerSources(data)
+// FontPicker.registerSources(data)
 
 // /* packages:[{
 //   'name': 'google',
