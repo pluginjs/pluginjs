@@ -14,7 +14,7 @@ import {
   getObjData,
   unwrap
 } from '@pluginjs/dom'
-import { bindEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hasClass, addClass, removeClass } from '@pluginjs/classes'
 import PopDialog from '@pluginjs/pop-dialog'
 import is from '@pluginjs/is'
@@ -276,7 +276,7 @@ class List extends Component {
 
   unbind() {
     // unbind
-    this.$list.unbind()
+    removeEvent(this.eventName(), this.$list)
   }
 
   buildItem(item) {
@@ -390,6 +390,7 @@ class List extends Component {
 
     this.initList()
     this.element.value = this.val()
+    return null
   }
 
   get(index) {

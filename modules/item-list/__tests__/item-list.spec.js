@@ -4,41 +4,6 @@ import ItemList from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-const datas = {
-  data: [
-    {
-      title: 'Interfaces',
-      value: 'interface'
-    },
-    {
-      title: 'UI Design',
-      value: 'ui-design'
-    },
-    {
-      title: 'Web Design',
-      value: 'web-design'
-    },
-    {
-      title: 'Typography',
-      value: 'typography'
-    },
-    {
-      title: 'Landing',
-      value: 'landing'
-    }
-  ],
-  onClickAddBtn() {
-    this.insert({
-      title: 'Test',
-      value: 'test'
-    })
-  },
-  onClickItem(item, i) {
-    item.title += ' edited'
-    this.edit(item, i)
-  }
-}
-
 describe('ItemList', () => {
   describe('ItemList()', () => {
     test('should have ItemList', () => {
@@ -61,14 +26,14 @@ describe('ItemList', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const itemList = ItemList.of(generateHTMLSample(), datas)
+      const itemList = ItemList.of(generateHTMLSample())
 
       expect(itemList).toBeObject()
       expect(itemList.options).toEqual(deepMerge(DEFAULTS, List.defaults))
     })
 
     test('should have options', () => {
-      const itemList = ItemList.of(generateHTMLSample(), datas)
+      const itemList = ItemList.of(generateHTMLSample())
 
       expect(itemList.options).toBeObject()
     })
@@ -77,7 +42,7 @@ describe('ItemList', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
-      const api = ItemList.of($element, datas)
+      const api = ItemList.of($element)
 
       expect(api).toEqual(api)
       expect(api).toBeObject()
@@ -87,12 +52,12 @@ describe('ItemList', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = ItemList.of(generateHTMLSample(), datas)
+      const $element = ItemList.of(generateHTMLSample())
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = ItemList.of(generateHTMLSample(), datas)
+      const $element = ItemList.of(generateHTMLSample())
       $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -113,7 +78,7 @@ describe('ItemList', () => {
         called++
       })
 
-      const api = ItemList.of($element, datas)
+      const api = ItemList.of($element)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -125,7 +90,7 @@ describe('ItemList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ItemList.of($element, datas)
+      api = ItemList.of($element)
     })
 
     test('should trigger destroy event', () => {
@@ -148,7 +113,7 @@ describe('ItemList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ItemList.of($element, datas)
+      api = ItemList.of($element)
     })
 
     test('should enable the plugin', () => {
@@ -177,7 +142,7 @@ describe('ItemList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ItemList.of($element, datas)
+      api = ItemList.of($element)
     })
 
     test('should disable the plugin', () => {
