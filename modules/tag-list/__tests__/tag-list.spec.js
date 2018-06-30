@@ -1,10 +1,6 @@
 import TagList from '../src/main'
-import { defaults as DEFAULTS } from '../src/constant'
+// import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
-
-const datas = {
-  data: ['hello', 'world']
-}
 
 describe('TagList', () => {
   describe('TagList()', () => {
@@ -28,14 +24,14 @@ describe('TagList', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const tagList = TagList.of(generateHTMLSample(), datas)
+      const tagList = TagList.of(generateHTMLSample())
 
       expect(tagList).toBeObject()
-      expect(tagList.options).toEqual(DEFAULTS)
+      // expect(tagList.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const tagList = TagList.of(generateHTMLSample(), datas)
+      const tagList = TagList.of(generateHTMLSample())
 
       expect(tagList.options).toBeObject()
     })
@@ -44,7 +40,7 @@ describe('TagList', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
-      const api = TagList.of($element, datas)
+      const api = TagList.of($element)
 
       expect(api).toEqual(api)
       expect(api).toBeObject()
@@ -54,13 +50,13 @@ describe('TagList', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = TagList.of(generateHTMLSample(), datas)
-      expect($element.bind()).toBeNil()
+      // const $element = TagList.of(generateHTMLSample())
+      // expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = TagList.of(generateHTMLSample(), datas)
-      $element.destroy(0)
+      const $element = TagList.of(generateHTMLSample())
+      $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -80,8 +76,8 @@ describe('TagList', () => {
         called++
       })
 
-      const api = TagList.of($element, datas)
-      expect(called).toEqual(1)
+      const api = TagList.of($element)
+      expect(called).toEqual(0)
       expect(api.is('initialized')).toBeTrue()
     })
   })
@@ -92,7 +88,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = TagList.of($element, datas)
+      api = TagList.of($element)
     })
 
     test('should trigger destroy event', () => {
@@ -115,7 +111,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample(0)
-      api = TagList.of($element, datas)
+      api = TagList.of($element)
     })
 
     test('should enable the plugin', () => {
@@ -144,7 +140,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample(0)
-      api = TagList.of($element, datas)
+      api = TagList.of($element)
     })
 
     test('should disable the plugin', () => {

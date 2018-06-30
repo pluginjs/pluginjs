@@ -3,7 +3,7 @@ import is from '@pluginjs/is'
 import { deepMerge } from '@pluginjs/utils'
 import { query, parseHTML, setObjData, parent } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import Pj, {
+import {
   eventable,
   register,
   stateable,
@@ -94,7 +94,7 @@ class TagList extends List {
   }
 
   unbind() {
-    this.$addBtn.unbind()
+    removeEvent(this.eventName(), this.$addBtn)
   }
 
   addItem(val) {
