@@ -334,7 +334,7 @@ class ImageSelector extends Component {
         removeClass(this.getThemeClass(), this.$wrapper)
       }
 
-      this.element.unwrap()
+      // this.element.unwrap()
       removeClass(this.classes.DATA, this.element)
       this.element.value = ''
       this.$panel.remove()
