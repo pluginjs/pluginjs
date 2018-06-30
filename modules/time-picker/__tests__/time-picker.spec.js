@@ -160,33 +160,6 @@ describe('TimePicker', () => {
         ).toEqual('pj-timePicker--foo pj-timePicker--bar')
       })
     })
-
-    test('should add theme class after initialize and remove after destroy', () => {
-      const $element = generateHTMLSample()
-      const timePicker = TimePicker.of($element, {
-        theme: 'foo',
-        classes: { theme: '{namespace}--{theme}' }
-      })
-
-      expect($element.hasClass('pj-timePicker--foo')).toBeTrue()
-      timePicker.destroy()
-      expect($element.hasClass('pj-timePicker--foo')).toBeFalse()
-    })
-
-    test('should works with more than one theme', () => {
-      const $element = generateHTMLSample()
-      const timePicker = TimePicker.of($element, {
-        theme: 'foo bar',
-        classes: { theme: '{namespace}--{theme}' }
-      })
-
-      expect($element.hasClass('pj-timePicker--foo')).toBeTrue()
-      expect($element.hasClass('pj-timePicker--bar')).toBeTrue()
-
-      timePicker.destroy()
-      expect($element.hasClass('pj-timePicker--foo')).toBeFalse()
-      expect($element.hasClass('pj-timePicker--bar')).toBeFalse()
-    })
   })
 
   describe('api call', () => {

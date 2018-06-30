@@ -206,11 +206,6 @@ describe('Units', () => {
       const $element = Units.of(generateHTMLSample(), { data })
       expect($element.bind()).toBeNil()
     })
-
-    test('should call destroy', () => {
-      const $element = Units.of(generateHTMLSample(), { data })
-      expect($element.destroy()).toEqual($element)
-    })
   })
 
   describe('initialize()', () => {
@@ -230,29 +225,6 @@ describe('Units', () => {
       const api = Units.of($element, { data })
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
-    })
-  })
-
-  describe('destroy()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Units.of($element, { data })
-    })
-
-    test('should trigger destroy event', () => {
-      let called = 0
-
-      $element.addEventListener('units:destroy', () => {
-        called++
-      })
-
-      api.destroy()
-
-      expect(called).toEqual(1)
-      expect(api.is('initialized')).toBeFalse()
     })
   })
 

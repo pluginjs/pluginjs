@@ -3,7 +3,7 @@ import { deepMerge, compose } from '@pluginjs/utils'
 import { parent, parseHTML, parentWith, children, dataset } from '@pluginjs/dom'
 import { removeClass, addClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import Pj, {
+import {
   eventable,
   register,
   stateable,
@@ -168,7 +168,7 @@ class ItemList extends List {
   }
 
   unbind() {
-    this.$wrapper.unbind()
+    removeEvent(this.eventName(), this.$wrapper)
   }
 
   clone(index) {
