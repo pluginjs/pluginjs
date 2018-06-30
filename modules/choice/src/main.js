@@ -137,7 +137,6 @@ class Choice extends Component {
     const itemTemplate = template.compile(
       this.options.templates.item.call(this)
     )
-    console.log(this.data)
     Object.entries(this.data).forEach(([value, item]) => {
       const $item = parseHTML(
         itemTemplate({

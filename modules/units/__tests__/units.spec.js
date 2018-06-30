@@ -171,34 +171,6 @@ describe('Units', () => {
         ).toEqual('pj-units--foo pj-units--bar')
       })
     })
-
-    test('should add theme class after initialize and remove after destroy', () => {
-      const element = generateHTMLSample()
-      const units = Units.of(element, {
-        data,
-        theme: 'foo',
-        classes: { theme: '{namespace}--{theme}' }
-      })
-
-      expect(units.$wrap.hasClass('pj-units--foo')).toBeTrue()
-      units.destroy()
-      expect(units.$wrap.hasClass('pj-units--foo')).toBeFalse()
-    })
-
-    test('should works with more than one theme', () => {
-      const element = generateHTMLSample()
-      const units = Units.of(element, {
-        data,
-        theme: 'foo bar',
-        classes: { theme: '{namespace}--{theme}' }
-      })
-
-      expect(units.$wrap.hasClass('pj-units--foo')).toBeTrue()
-      expect(units.$wrap.hasClass('pj-units--bar')).toBeTrue()
-      units.destroy()
-      expect(units.$wrap.hasClass('pj-units--foo')).toBeFalse()
-      expect(units.$wrap.hasClass('pj-units--bar')).toBeFalse()
-    })
   })
 
   describe('api call', () => {

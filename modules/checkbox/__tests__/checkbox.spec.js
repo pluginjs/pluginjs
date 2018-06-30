@@ -44,7 +44,6 @@ describe('Checkbox', () => {
       const $element = generateHTMLSample().querySelector('input')
       const api = Checkbox.of($element)
       expect(api.asCheckbox()).toEqual(api)
-
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -142,7 +141,6 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      console.log(generateHTMLSample())
       $element = generateHTMLSample().querySelector('input')
       api = Checkbox.of($element)
     })
