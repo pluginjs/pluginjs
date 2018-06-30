@@ -566,7 +566,7 @@ class SvgPicker extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$svgPicker)
-      this.$element.disabled = true
+      this.element.disabled = true
       this.$dropdown.disable()
       this.enter('disabled')
     }

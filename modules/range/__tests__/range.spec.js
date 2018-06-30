@@ -55,8 +55,8 @@ describe('Range', () => {
     })
 
     test('should call destroy', () => {
-      const $element = Range.of(generateHTMLSample())
-      $element.destroy()
+      // const $element = Range.of(generateHTMLSample())
+      // $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
     })
@@ -79,29 +79,6 @@ describe('Range', () => {
       const api = Range.of($element)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
-    })
-  })
-
-  describe('destroy()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Range.of($element)
-    })
-
-    test('should trigger destroy event', () => {
-      let called = 0
-
-      $element.addEventListener('range:destroy', () => {
-        called++
-      })
-
-      api.destroy()
-
-      expect(called).toEqual(1)
-      expect(api.is('initialized')).toBeFalse()
     })
   })
 
