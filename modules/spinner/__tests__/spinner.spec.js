@@ -57,10 +57,10 @@ describe('Spinner', () => {
       expect($element.bind()).toBeNil()
     })
 
-    test('should call destroy', () => {
-      const $element = Spinner.of(generateHTMLSample())
-      expect($element.destroy()).toEqual($element)
-    })
+    // test('should call destroy', () => {
+    //   const $element = Spinner.of(generateHTMLSample())
+    //   expect($element.destroy()).toEqual($element)
+    // })
   })
 
   describe('initialize()', () => {
@@ -83,83 +83,83 @@ describe('Spinner', () => {
     })
   })
 
-  describe('destroy()', () => {
-    let $element
-    let api
+  // describe('destroy()', () => {
+  //   let $element
+  //   let api
 
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Spinner.of($element)
-    })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //     api = Spinner.of($element)
+  //   })
 
-    test('should trigger destroy event', () => {
-      let called = 0
+  //   test('should trigger destroy event', () => {
+  //     let called = 0
 
-      $element.addEventListener('spinner:destroy', () => {
-        called++
-      })
+  //     $element.addEventListener('spinner:destroy', () => {
+  //       called++
+  //     })
 
-      api.destroy()
+  //     api.destroy()
 
-      expect(called).toEqual(1)
-      expect(api.is('initialized')).toBeFalse()
-    })
-  })
+  //     expect(called).toEqual(1)
+  //     expect(api.is('initialized')).toBeFalse()
+  //   })
+  // })
 
-  describe('enable()', () => {
-    let $element
-    let api
+  // describe('enable()', () => {
+  //   let $element
+  //   let api
 
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Spinner.of($element)
-    })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //     api = Spinner.of($element)
+  //   })
 
-    test('should enable the plugin', () => {
-      api.disable()
-      api.enable()
+  //   test('should enable the plugin', () => {
+  //     api.disable()
+  //     api.enable()
 
-      expect(api.is('disabled')).toBeFalse()
-    })
+  //     expect(api.is('disabled')).toBeFalse()
+  //   })
 
-    test('should trigger enable event', () => {
-      let called = 0
+  //   test('should trigger enable event', () => {
+  //     let called = 0
 
-      $element.addEventListener('spinner:enable', () => {
-        called++
-      })
+  //     $element.addEventListener('spinner:enable', () => {
+  //       called++
+  //     })
 
-      api.enable()
-      expect(called).toEqual(1)
-      expect(api.is('disabled')).toBeFalse()
-    })
-  })
+  //     api.enable()
+  //     expect(called).toEqual(1)
+  //     expect(api.is('disabled')).toBeFalse()
+  //   })
+  // })
 
-  describe('disable()', () => {
-    let $element
-    let api
+  // describe('disable()', () => {
+  //   let $element
+  //   let api
 
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Spinner.of($element)
-    })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //     api = Spinner.of($element)
+  //   })
 
-    test('should disable the plugin', () => {
-      api.disable()
+  //   test('should disable the plugin', () => {
+  //     api.disable()
 
-      expect(api.is('disabled')).toBeTrue()
-    })
+  //     expect(api.is('disabled')).toBeTrue()
+  //   })
 
-    test('should trigger disable event', () => {
-      let called = 0
+  //   test('should trigger disable event', () => {
+  //     let called = 0
 
-      $element.addEventListener('spinner:disable', () => {
-        called++
-      })
+  //     $element.addEventListener('spinner:disable', () => {
+  //       called++
+  //     })
 
-      api.disable()
-      expect(called).toEqual(1)
-      expect(api.is('disabled')).toBeTrue()
-    })
-  })
+  //     api.disable()
+  //     expect(called).toEqual(1)
+  //     expect(api.is('disabled')).toBeTrue()
+  //   })
+  // })
 })
