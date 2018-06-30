@@ -11,7 +11,7 @@ import {
 } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
-import Pj, {
+import {
   eventable,
   register,
   stateable,
@@ -176,7 +176,7 @@ class ToggleList extends List {
 
   enable() {
     super.enable()
-    this.getItems().each(item => {
+    this.getItems().forEach(item => {
       getObjData('toggle', item).enable()
     })
   }
@@ -184,7 +184,7 @@ class ToggleList extends List {
   disable() {
     super.disable()
     this.getItems().forEach(item => {
-      item.getObjData('toggle').disable()
+      getObjData('toggle', item).disable()
     })
   }
 }
