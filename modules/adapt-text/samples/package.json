@@ -17,5 +17,5 @@
 		"@pluginjs/adapt-text": "^0.2.18",
 		"@pluginjs/dom": "^0.0.15"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

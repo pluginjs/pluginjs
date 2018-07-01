@@ -18,5 +18,5 @@
 		"@pluginjs/dom": "^0.0.15",
 		"@pluginjs/styles": "^0.2.19"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

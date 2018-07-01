@@ -17,5 +17,5 @@
 		"@pluginjs/swipeable": "^0.0.1",
 		"@pluginjs/dom": "^0.5.0"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

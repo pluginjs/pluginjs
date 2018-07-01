@@ -18,5 +18,5 @@
 		"@pluginjs/svg-picker": "^0.2.21",
 		"popper": "^1.0.1"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

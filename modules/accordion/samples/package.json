@@ -18,5 +18,5 @@
 		"@pluginjs/dom": "^0.5.0",
 		"@pluginjs/icons": "^0.5.0"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

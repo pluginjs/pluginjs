@@ -17,5 +17,5 @@
 		"@pluginjs/animate-text": "^0.2.19",
 		"@pluginjs/dom": "^0.0.15"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

@@ -13,5 +13,5 @@
 	"dependencies": {
 		"@pluginjs/grids": "^0.2.22"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

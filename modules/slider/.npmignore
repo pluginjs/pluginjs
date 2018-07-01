@@ -1,4 +1,8 @@
-.plugin-cache
 samples
-test
+__mocks__
+__tests__
+.babelrc
+.markdownrc
+.rolluprc.js
+.sassrc.js
 !.sassrc.js

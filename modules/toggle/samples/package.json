@@ -18,5 +18,5 @@
 		"@pluginjs/toggle": "^0.2.20",
 		"hammer": "^0.0.5"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

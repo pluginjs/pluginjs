@@ -13,5 +13,5 @@
 	"dependencies": {
 		"@pluginjs/scrollbar": "^0.2.18"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

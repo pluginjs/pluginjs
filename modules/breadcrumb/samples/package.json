@@ -19,5 +19,5 @@
 		"@pluginjs/styles": "^0.5.2",
 		"bootstrap": "^4.1.1"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

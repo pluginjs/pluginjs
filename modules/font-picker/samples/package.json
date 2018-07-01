@@ -20,5 +20,5 @@
 		"@pluginjs/styles": "^0.5.1",
 		"webfontloader": "^1.6.28"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

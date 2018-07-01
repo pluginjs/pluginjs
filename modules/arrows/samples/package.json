@@ -17,5 +17,5 @@
 		"@pluginjs/arrows": "^0.2.23",
 		"@pluginjs/dom": "^0.5.0"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

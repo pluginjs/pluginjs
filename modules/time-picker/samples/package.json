@@ -16,5 +16,5 @@
 		"babel-plugin-transform-html-import-to-string": "^0.0.1",
 		"primary.css": "^1.0.0"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

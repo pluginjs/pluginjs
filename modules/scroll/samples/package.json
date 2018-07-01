@@ -13,5 +13,5 @@
 	"dependencies": {
 		"@pluginjs/scroll": "^0.2.19"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

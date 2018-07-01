@@ -20,5 +20,5 @@
 		"@pluginjs/styles": "^0.5.1",
 		"font-awesome": "^4.7.0"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

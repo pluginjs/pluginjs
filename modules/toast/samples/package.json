@@ -13,5 +13,5 @@
 	"dependencies": {
 		"@pluginjs/toast": "^0.2.18"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }

@@ -13,5 +13,5 @@
 	"dependencies": {
 		"@pluginjs/edit-panel": "^0.2.20"
 	},
-	"license": "UNLICENSED"
+	"license": "GPL-3.0"
 }
