@@ -8,12 +8,12 @@
 	},
 	"dependencies": {
 		"@pluginjs/classes": "^0.5.2",
-		"@pluginjs/events": "^0.5.0",
 		"@pluginjs/component": "^0.5.0",
 		"@pluginjs/pluginjs": "^0.5.0",
 		"@pluginjs/styles": "^0.5.2",
 		"@pluginjs/styled": "^0.5.0",
 		"@pluginjs/utils": "^0.5.0",
+		"animejs": "^2.2.0",
 		"hammerjs": "*"
 	},
 	"scripts": {

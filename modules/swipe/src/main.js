@@ -451,7 +451,6 @@ class Swipe extends Component {
           oldLocation = this.getLocationX($target)
           cacheDistance = oldLocation
           cacheOffset = 0
-
           this.trigger(EVENTS.DRAGSTART)
         })
         .on('panmove', e => {

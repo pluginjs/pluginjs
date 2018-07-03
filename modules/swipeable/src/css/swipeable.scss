@@ -3,15 +3,14 @@
 // Vars
 // =====================
 $swipeable: "pj-swipeable" !default;
-$bg-purple: #9b65de !default;
-$bg-blue: #198fe3 !default;
-$bg-green: #14d790 !default;
-$bg-pink: #ff1c68 !default;
+$swipeable-bg-color: rgba(133, 83, 83, 0.2) !default;
 
+$swipeable-width: 5625px !default;
 $swipeable-height: 150px !default;
 $swipeable-item-border-radius: 5px !default;
 $swipeable-item-margin-right: 15px !default;
-$swipeable-item-width: 110px !default;
+$swipeable-item-width: 361px !default;
+$swipeable-item-font-size: 20px !default;
 
 // swipeable
 // =====================
@@ -19,27 +18,45 @@ section {
   overflow: hidden;
 }
 
+.container {
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
 .#{$swipeable} {
   position: relative;
   display: flex;
+  width: $swipeable-width;
   height: $swipeable-height;
+  margin-right: $swipeable-item-margin-right;
+  cursor: pointer;
 
   &-item {
     flex: 0 0 $swipeable-item-width;
     margin-right: $swipeable-item-margin-right;
-    background-color: $bg-purple;
+    font-size: $swipeable-item-font-size;
+    line-height: $swipeable-height;
+    text-align: center;
+    background-color: $swipeable-bg-color;
     border-radius: $swipeable-item-border-radius;
+  }
+}
+.container.vertical {
+  width: 150px;
+  height: 560px;
 
-    &:nth-child(4n + 2) {
-      background-color: $bg-green;
-    }
+  .#{$swipeable} {
+    flex-direction: column;
+    width: 150px;
+    height: 1710px;
+    margin: 0;
+  }
 
-    &:nth-child(4n + 3) {
-      background-color: $bg-pink;
-    }
-
-    &:nth-child(4n + 4) {
-      background-color: $bg-blue;
-    }
+  .#{$swipeable}-item {
+    flex: 0 0 100px;
+    margin: 0;
+    margin-bottom: 15px;
+    line-height: 100px;
   }
 }
