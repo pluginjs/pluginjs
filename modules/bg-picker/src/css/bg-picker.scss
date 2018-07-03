@@ -87,7 +87,8 @@ input.#{$bgPicker}-input {
     border-style: $bgPicker-initiate-border-style;
 
     &:hover {
-      background-color: $bgPicker-initiate-hover-bg;
+      // background-color: $bgPicker-initiate-hover-bg;
+      color: $gray-darker;
     }
 
     > i {
@@ -247,6 +248,7 @@ input.#{$bgPicker}-input {
       height: 100%;
       padding: 0;
       margin-left: -1px;
+      color: $gray-darker;
       text-align: center;
       list-style: none;
       cursor: pointer;
@@ -358,6 +360,10 @@ input.#{$bgPicker}-input {
       display: block !important;
     }
   }
+
+  &-active.pj-dropdown-item{
+    color: #b3b3b3 !important;
+  }
 }
 
 .#{$bgPicker}-exist {
@@ -381,7 +387,7 @@ input.#{$bgPicker}-input {
     display: none !important;
   }
 }
-
+/* stylelint-disable */
 .#{$bgPicker}-expand {
   .#{$bgPicker}-expand-panel {
     display: block !important;

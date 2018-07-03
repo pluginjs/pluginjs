@@ -22,7 +22,7 @@ $list-border-width: 1px !default;
 $list-border: $list-border-width $list-border-style $list-border-color !default;
 $list-border-radius: $border-radius-base !default;
 $list-item-handle-bg: $list-border-color !default;
-$list-active-color: $color-primary !default;
+$list-active-color: $color-primary-black !default;
 $list-adduser-height: 3 * $list-sizer !default; //30px
 $list-adduser-btn-bg: $color-primary !default; //#66adf3 !default;
 //clone
@@ -88,9 +88,9 @@ $pop-buttons-danger-color: $color-danger !default;
       height: $list-item-height;
       font-size: $font-size-sm;
       line-height: $list-item-height;
-      color: $color-white;
+      // color: $color-white;
       text-align: center;
-      background-color: $list-item-handle-bg;
+      background-color: $color-white;
 
       &:hover {
         cursor: grab;
@@ -98,7 +98,7 @@ $pop-buttons-danger-color: $color-danger !default;
 
       &:active {
         cursor: grabbing;
-        background-color: $gray-light;
+        // background-color: $gray-light;
       }
 
       > i {

@@ -58,8 +58,9 @@ $galleryPicker-expand-control-btn-height: 30px !default;
     border-style: $galleryPicker-border-style;
 
     &:hover {
+      color: $gray-darker;
       cursor: pointer;
-      border-color: $color-primary-gray;
+      // border-color: $color-primary-gray;
     }
 
     i {
@@ -182,8 +183,9 @@ $galleryPicker-expand-control-btn-height: 30px !default;
       border-style: dashed !important;
 
       &:hover {
+        color: $gray-darker;
         cursor: pointer;
-        background-color: $galleryPicker-initial-hover-bg;
+        // background-color: $galleryPicker-initial-hover-bg;
       }
 
       i {
@@ -298,7 +300,7 @@ $galleryPicker-expand-control-btn-height: 30px !default;
     display: none !important;
   }
 }
-
+/* stylelint-disable */
 .#{$galleryPicker}-expand {
   .#{$galleryPicker}-initial,
   .#{$galleryPicker}-info {

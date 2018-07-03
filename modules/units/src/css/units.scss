@@ -33,6 +33,7 @@ $units-trigger-font-size: $font-size-base !default;
 
     &:focus {
       border-color: $units-active-color;
+      outline: none;
     }
 
     .#{$units}-trigger {

@@ -19,6 +19,7 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
     width: $timePicker-width !important;
     input {
       min-width: 16.7 * $timePicker-sizer; //167px;
+      margin-bottom: 0;
     }
 
     &:active {
@@ -71,7 +72,7 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
 .#{$timePicker}-wrap .#{$dropdown}-label {
   border: none;
 }
-
+/* stylelint-disable */
 .#{$timePicker}-wrap
 .#{$dropdown}-input.#{$dropdown}-select
 .#{$dropdown}-panel {
@@ -92,7 +93,7 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
     border: none;
   }
 }
-
+/* stylelint-enable */
 .#{$timePicker}-remove:hover {
   color: $color-primary-black;
   cursor: pointer;

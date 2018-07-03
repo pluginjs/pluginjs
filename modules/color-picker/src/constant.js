@@ -219,10 +219,10 @@ export const defaults = {
       return '<i class="{class} icon-star" data-type="collection"></i>'
     },
     solidTrigger() {
-      return '<i class="{class}" data-type="solid"></i>'
+      return '<i class="{class} icon-solid" data-type="solid"></i>'
     },
     gradientTrigger() {
-      return '<i class="{class}" data-type="gradient"></i>'
+      return '<i class="{class} icon-solid" data-type="gradient"></i>'
     },
     moduleWrap() {
       return '<div class="{class}"></div>'

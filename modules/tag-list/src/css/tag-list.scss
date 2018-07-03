@@ -24,9 +24,9 @@ $tagList-empty-color: $gray-lighter !default;
 .#{$tagList} {
   &-add {
     display: flex;
+    justify-content: center;
     width: 100%;
     height: $tagList-height;
-    justify-item-label: center;
   }
 
   &-input[type="text"] {
@@ -43,6 +43,7 @@ $tagList-empty-color: $gray-lighter !default;
   }
 
   &-btn {
+    box-sizing: content-box;
     order: 1;
     width: 20%;
     height: 100%;

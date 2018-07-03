@@ -44,7 +44,7 @@ export const defaults = {
     return (
       '<div class="{namespace}">' +
       '<div class="{namespace}-initial">' +
-      '<i class="icon-lightbox"></i>{placeholder}' +
+      '<i class="icon-picture"></i>{placeholder}' +
       '</div>' +
       '<div class="{namespace}-info">' +
       '<img class="{namespace}-info-image" src="">' +
@@ -72,7 +72,7 @@ export const defaults = {
     }
     return null
   },
-  onChange() {},
+  onChange() {}, // eslint-disable-line no-empty-function
   select() {
     return false
   },

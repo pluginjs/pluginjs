@@ -18,15 +18,15 @@ $fontEditor-height: 5 * $fontEditor-sizer !default; //50px
 // info
 $fontEditor-info-width: 26 * $fontEditor-sizer !default; //260px
 $fontEditor-info-font-size: $font-size-sm !default;
-$fontEditor-info-change-bg: $btn-color-primary !default;
+$fontEditor-info-change-bg: $color-btn-opact !default;
 $fontEditor-info-change-opacity: 0.9 !default;
 $fontEditor-info-i-color: $gray-light !default; //#ccd1d9
 // initial
 $fontEditor-initial-border-style: dashed !default;
 $fontEditor-initial-hover-bg: $gray-lightest !default;
 // decorations
-$fontEditor-decorations-li: $gray-light !default; //#ccd1d9
-$fontEditor-decorations-active: $gray !default;
+$fontEditor-decorations-li: $gray-darker !default; //#ccd1d9
+$fontEditor-decorations-active: $color-primary-active !default;
 // control
 $fontEditor-control-color: $gray !default;
 // content

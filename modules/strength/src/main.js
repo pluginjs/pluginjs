@@ -4,6 +4,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, insertBefore, parseHTML } from '@pluginjs/dom'
+import { PasswordStrength } from './password_strength'
 import {
   eventable,
   register,
@@ -237,7 +238,6 @@ class Strength extends Component {
         status = this.options.statusCallback.call(this, score)
       }
     } else {
-      /* global PasswordStrength*/
       const CHECK = new PasswordStrength()
       const value = this.username ? this.username.value : null
       CHECK.username = value

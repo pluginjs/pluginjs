@@ -5,27 +5,27 @@
 $offset: "pj-offset" !default;
 $offset-sizer: $sizer !default;
 
-$offset-width: 26.4 * $offset-sizer !default; //264px
-$offset-height: 17.4 * $offset-sizer !default; //174px
+$offset-width: 38.4 * $offset-sizer !default; //264px
+$offset-height: 22.4 * $offset-sizer !default; //174px
 $global-color: $text-color !default;
-$offset-label-bg: $gray-lighter !default;
-$offset-active-color: $color-primary !default;
+$offset-label-bg: $gray-border !default;
+$offset-active-color: $btn-color-primary !default;
 // inner
-$inner-width: 18 * $offset-sizer !default; //180px
-$inner-height: 13 * $offset-sizer !default; //130px
+$inner-width: 23 * $offset-sizer !default; //180px
+$inner-height: 15 * $offset-sizer !default; //130px
 // margin
-$margin-label-horizontal-width: 15 * $offset-sizer !default; //150px
+$margin-label-horizontal-width: 20 * $offset-sizer !default; //150px
 $margin-label-horizontal-height: 1.2 * $offset-sizer !default; //12px
 $margin-label-vertical-width: 1.2 * $offset-sizer !default; //12px
-$margin-label-vertical-height: 10.2 * $offset-sizer !default; //102px
+$margin-label-vertical-height: 12.6 * $offset-sizer !default; //102px
 // padding
-$padding-label-horizontal-width: 11.8 * $offset-sizer !default; //118px
+$padding-label-horizontal-width: 16.8 * $offset-sizer !default; //118px
 $padding-label-horizontal-height: 1.2 * $offset-sizer !default; //12px
 $padding-label-vertical-width: 1.2 * $offset-sizer !default; //12px
-$padding-label-vertical-height: 6.8 * $offset-sizer !default; //68px
+$padding-label-vertical-height: 9.4 * $offset-sizer !default; //68px
 // inputer
-$input-width: 5 * $offset-sizer !default; //50px
-$input-height: 2 * $offset-sizer !default; //20px
+$input-width: 6.6 * $offset-sizer !default; //50px
+$input-height: 2.4 * $offset-sizer !default; //20px
 $input-color: $gray !default;
 $input-padding: 0 1px !default; //0 1px
 $input-trigger-width: 2.5 * $offset-sizer !default; //25px
@@ -350,7 +350,7 @@ $connect-active-bg: $gray-lightest !default;
   &-marginRight {
     > .pj-units-wrap,
     .#{$offset}-view {
-      left: $margin-label-vertical-width + 2px;
+      left: $margin-label-vertical-width + 10px;
       box-sizing: border-box;
     }
   }
@@ -360,7 +360,7 @@ $connect-active-bg: $gray-lightest !default;
 
     > .pj-units-wrap,
     .#{$offset}-view {
-      right: 2px;
+      right: 10px;
     }
   }
 
@@ -398,7 +398,7 @@ $connect-active-bg: $gray-lightest !default;
   &-marginLeft {
     > .pj-units-wrap,
     .#{$offset}-view {
-      right: 2px;
+      right: 10px;
     }
   }
 
@@ -407,7 +407,7 @@ $connect-active-bg: $gray-lightest !default;
 
     > .pj-units-wrap,
     .#{$offset}-view {
-      left: $padding-label-vertical-width + 2px;
+      left: $padding-label-vertical-width + 10px;
     }
   }
 
@@ -474,7 +474,7 @@ $connect-active-bg: $gray-lightest !default;
     }
   }
 }
-
+/* stylelint-disable */
 .#{$offset}-disabled {
   label:active {
     background-color: $gray-lighter;

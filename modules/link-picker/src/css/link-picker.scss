@@ -61,7 +61,7 @@ $linkPicker-disabled-bg: $disabled-bg;
     opacity: 0;
     transition: opacity 0.3s;
     &:hover {
-      background-color: $btn-color-primary;
+      background-color: $color-btn-opact;
       opacity: 0.9;
     }
     > i {
@@ -103,8 +103,9 @@ $linkPicker-disabled-bg: $disabled-bg;
     display: flex;
 
     &:hover {
+      color: $color-primary-black;
       cursor: pointer;
-      background-color: $init-hover-bg-color;
+      // background-color: $init-hover-bg-color;
     }
   }
 

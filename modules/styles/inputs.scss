@@ -48,8 +48,8 @@ input{
   margin: 0;
   border-radius: $border-radius-base;
   &:focus {
-    // border: 1px solid $input-border-color-focus;
-    border: none;
+    border: 1px solid $input-border-color-focus;
+    // border: none;
     outline: none;
     box-shadow: none;
   }

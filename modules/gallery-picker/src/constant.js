@@ -57,7 +57,7 @@ export const defaults = {
       return (
         '<div class="{namespace}">' +
         '<div class="{namespace}-initial">' +
-        '<i class="icon-picture"></i>{placeholder}' +
+        '<i class="icon-image-group"></i>{placeholder}' +
         '</div>' +
         '<div class="{namespace}-info">' +
         '<div class="{namespace}-info-image" style=""></div>' +
