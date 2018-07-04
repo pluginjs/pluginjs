@@ -1,10 +1,10 @@
 {
-	"meta": {
-		"moduleName": "color",
-		"namespace": "color",
-		"Namespace": "Color",
-		"desc": "`color` is a utility for control color's value or status."
-	},
-	"output": "./README.md",
-	"template": "README.utils"
+  "meta": {
+    "moduleName": "color",
+    "namespace": "color",
+    "Namespace": "Color",
+    "desc": "`color` is a utility for control color's value or status."
+  },
+  "output": "./README.md",
+  "template": "README.utils"
 }

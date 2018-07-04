@@ -1,319 +1,319 @@
 {
-	"meta": {
-		"moduleName": "select",
-		"namespace": "select",
-		"Namespace": "Select",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "trigger",
-				"desc": "Set trigger",
-				"defaultValue": "click"
-			},
-			{
-				"name": "offset",
-				"desc": "Set offset",
-				"defaultValue": "[0,0]"
-			},
-			{
-				"name": "icon",
-				"desc": "Set default icon",
-				"defaultValue": "icon-char icon-chevron-down"
-			},
-			{
-				"name": "multiple",
-				"desc": "Set multiple",
-				"defaultValue": "false"
-			},
-			{
-				"name": "clearable",
-				"desc": "Set clearable",
-				"defaultValue": "false"
-			},
-			{
-				"name": "filterable",
-				"desc": "Set filterable",
-				"defaultValue": "false"
-			},
-			{
-				"name": "closeAllButten",
-				"desc": "Set closeAllButton",
-				"defaultValue": "true"
-			},
-			{
-				"name": "placeholder",
-				"desc": "Set input box prompt information",
-				"defaultValue": "Please select"
-			},
-			{
-				"name": "notFoundText",
-				"desc": "Set notoFoundText",
-				"defaultValue": "Badge not found"
-			},
-			{
-				"name": "selected",
-				"desc": "Set selected",
-				"defaultValue": "null"
-			},
-			{
-				"name": "data",
-				"desc": "Set data",
-				"defaultValue": "null"
-			},
-			{
-				"name": "keyboard",
-				"desc": "Set keyboard",
-				"defaultValue": "true"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disabled plugin",
-				"defaultValue": "false"
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "update",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "load",
-				"desc": "Gets fired when plugin has load"
-			},
-			{
-				"name": "open",
-				"desc": "Gets fired when plugin has open"
-			},
-			{
-				"name": "close",
-				"desc": "Gets fired when plugin has close"
-			},
-			{
-				"name": "click",
-				"desc": "Gets fired when plugin has click"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			},
-			{
-				"name": "select",
-				"desc": "Gets fired when plugin has select"
-			},
-			{
-				"name": "unselect",
-				"desc": "Gets fired when plugin has unselect"
-			},
-			{
-				"name": "hide",
-				"desc": "Gets fired when plugin has hide"
-			}
-		],
-		"event": "update",
-		"Event": "Update",
-		"methods": [
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "removeData",
-				"desc": "Set removeData"
-			},
-			{
-				"name": "open",
-				"desc": "Get value of open"
-			},
-			{
-				"name": "close",
-				"desc": "Get value of close"
-			}
-		],
-		"method": "get",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-select"
-			},
-			{
-				"name": "WRAP",
-				"desc": "Declare plugin wrap",
-				"value": "{namespace}-wrap"
-			},
-			{
-				"name": "MULTIPLE",
-				"desc": "Declare plugin multiple",
-				"value": "{namespace}-multiple"
-			},
-			{
-				"name": "FILTERABLE",
-				"desc": "Declare plugin filterable",
-				"value": "{namespace}-filterable"
-			},
-			{
-				"name": "DROPDOWNLIST",
-				"desc": "Declare plugin dropdownlist",
-				"value": "{namespace}-dropdown"
-			},
-			{
-				"name": "TRIGGER",
-				"desc": "Declare plugin trigger",
-				"value": "{namespace}-trigger"
-			},
-			{
-				"name": "HASBADGE",
-				"desc": "Declare plugin hasbadge",
-				"value": "{namespace}-hpj-badge"
-			},
-			{
-				"name": "BADGE",
-				"desc": "Declare plugin badge",
-				"value": "{namespace}-badge"
-			},
-			{
-				"name": "BADGECONTENT",
-				"desc": "Declare plugin badge content",
-				"value": "{namespace}-badge-content"
-			},
-			{
-				"name": "BADGEDELETE",
-				"desc": "Declare plugin badge delete",
-				"value": "{namespace}-badge-delete"
-			},
-			{
-				"name": "LABEL",
-				"desc": "Declare plugin label",
-				"value": "{namespace}-label"
-			},
-			{
-				"name": "LIST",
-				"desc": "Declare plugin list",
-				"value": "{namespace}-list"
-			},
-			{
-				"name": "SUBLIST",
-				"desc": "Declare plugin sublist",
-				"value": "{namespace}-sublist"
-			},
-			{
-				"name": "ITEM",
-				"desc": "Declare plugin item",
-				"value": "{namespace}-item"
-			},
-			{
-				"name": "GROUP",
-				"desc": "Declare plugin group",
-				"value": "{namespace}-group"
-			},
-			{
-				"name": "GROUPLABEL",
-				"desc": "Declare plugin label",
-				"value": "{namespace}-group-label"
-			},
-			{
-				"name": "OPEN",
-				"desc": "Declare plugin open",
-				"value": "{namespace}-open"
-			},
-			{
-				"name": "NOTFOUND",
-				"desc": "Declare plugin not found",
-				"value": "{namespace}-not-found"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "MARK",
-				"desc": "Declare plugin mark",
-				"value": "{namespace}-mark"
-			},
-			{
-				"name": "SELECTED",
-				"desc": "Declare plugin selected",
-				"value": "{namespace}-selected"
-			},
-			{
-				"name": "FOCUS",
-				"desc": "Declare plugin focus",
-				"value": "{namespace}-focus"
-			},
-			{
-				"name": "LOADING",
-				"desc": "Declare plugin loading",
-				"value": "{namespace}-loading"
-			},
-			{
-				"name": "ERROR",
-				"desc": "Declare plugin error",
-				"value": "{namespace}-error"
-			},
-			{
-				"name": "HIDEICON",
-				"desc": "Declare plugin hideicon",
-				"value": "{namespace}-hideIcon"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "select",
+    "namespace": "select",
+    "Namespace": "Select",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "trigger",
+        "desc": "Set trigger",
+        "defaultValue": "click"
+      },
+      {
+        "name": "offset",
+        "desc": "Set offset",
+        "defaultValue": "[0,0]"
+      },
+      {
+        "name": "icon",
+        "desc": "Set default icon",
+        "defaultValue": "icon-char icon-chevron-down"
+      },
+      {
+        "name": "multiple",
+        "desc": "Set multiple",
+        "defaultValue": "false"
+      },
+      {
+        "name": "clearable",
+        "desc": "Set clearable",
+        "defaultValue": "false"
+      },
+      {
+        "name": "filterable",
+        "desc": "Set filterable",
+        "defaultValue": "false"
+      },
+      {
+        "name": "closeAllButten",
+        "desc": "Set closeAllButton",
+        "defaultValue": "true"
+      },
+      {
+        "name": "placeholder",
+        "desc": "Set input box prompt information",
+        "defaultValue": "Please select"
+      },
+      {
+        "name": "notFoundText",
+        "desc": "Set notoFoundText",
+        "defaultValue": "Badge not found"
+      },
+      {
+        "name": "selected",
+        "desc": "Set selected",
+        "defaultValue": "null"
+      },
+      {
+        "name": "data",
+        "desc": "Set data",
+        "defaultValue": "null"
+      },
+      {
+        "name": "keyboard",
+        "desc": "Set keyboard",
+        "defaultValue": "true"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disabled plugin",
+        "defaultValue": "false"
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "update",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "load",
+        "desc": "Gets fired when plugin has load"
+      },
+      {
+        "name": "open",
+        "desc": "Gets fired when plugin has open"
+      },
+      {
+        "name": "close",
+        "desc": "Gets fired when plugin has close"
+      },
+      {
+        "name": "click",
+        "desc": "Gets fired when plugin has click"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      },
+      {
+        "name": "select",
+        "desc": "Gets fired when plugin has select"
+      },
+      {
+        "name": "unselect",
+        "desc": "Gets fired when plugin has unselect"
+      },
+      {
+        "name": "hide",
+        "desc": "Gets fired when plugin has hide"
+      }
+    ],
+    "event": "update",
+    "Event": "Update",
+    "methods": [
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "removeData",
+        "desc": "Set removeData"
+      },
+      {
+        "name": "open",
+        "desc": "Get value of open"
+      },
+      {
+        "name": "close",
+        "desc": "Get value of close"
+      }
+    ],
+    "method": "get",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-select"
+      },
+      {
+        "name": "WRAP",
+        "desc": "Declare plugin wrap",
+        "value": "{namespace}-wrap"
+      },
+      {
+        "name": "MULTIPLE",
+        "desc": "Declare plugin multiple",
+        "value": "{namespace}-multiple"
+      },
+      {
+        "name": "FILTERABLE",
+        "desc": "Declare plugin filterable",
+        "value": "{namespace}-filterable"
+      },
+      {
+        "name": "DROPDOWNLIST",
+        "desc": "Declare plugin dropdownlist",
+        "value": "{namespace}-dropdown"
+      },
+      {
+        "name": "TRIGGER",
+        "desc": "Declare plugin trigger",
+        "value": "{namespace}-trigger"
+      },
+      {
+        "name": "HASBADGE",
+        "desc": "Declare plugin hasbadge",
+        "value": "{namespace}-hpj-badge"
+      },
+      {
+        "name": "BADGE",
+        "desc": "Declare plugin badge",
+        "value": "{namespace}-badge"
+      },
+      {
+        "name": "BADGECONTENT",
+        "desc": "Declare plugin badge content",
+        "value": "{namespace}-badge-content"
+      },
+      {
+        "name": "BADGEDELETE",
+        "desc": "Declare plugin badge delete",
+        "value": "{namespace}-badge-delete"
+      },
+      {
+        "name": "LABEL",
+        "desc": "Declare plugin label",
+        "value": "{namespace}-label"
+      },
+      {
+        "name": "LIST",
+        "desc": "Declare plugin list",
+        "value": "{namespace}-list"
+      },
+      {
+        "name": "SUBLIST",
+        "desc": "Declare plugin sublist",
+        "value": "{namespace}-sublist"
+      },
+      {
+        "name": "ITEM",
+        "desc": "Declare plugin item",
+        "value": "{namespace}-item"
+      },
+      {
+        "name": "GROUP",
+        "desc": "Declare plugin group",
+        "value": "{namespace}-group"
+      },
+      {
+        "name": "GROUPLABEL",
+        "desc": "Declare plugin label",
+        "value": "{namespace}-group-label"
+      },
+      {
+        "name": "OPEN",
+        "desc": "Declare plugin open",
+        "value": "{namespace}-open"
+      },
+      {
+        "name": "NOTFOUND",
+        "desc": "Declare plugin not found",
+        "value": "{namespace}-not-found"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "MARK",
+        "desc": "Declare plugin mark",
+        "value": "{namespace}-mark"
+      },
+      {
+        "name": "SELECTED",
+        "desc": "Declare plugin selected",
+        "value": "{namespace}-selected"
+      },
+      {
+        "name": "FOCUS",
+        "desc": "Declare plugin focus",
+        "value": "{namespace}-focus"
+      },
+      {
+        "name": "LOADING",
+        "desc": "Declare plugin loading",
+        "value": "{namespace}-loading"
+      },
+      {
+        "name": "ERROR",
+        "desc": "Declare plugin error",
+        "value": "{namespace}-error"
+      },
+      {
+        "name": "HIDEICON",
+        "desc": "Declare plugin hideicon",
+        "value": "{namespace}-hideIcon"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

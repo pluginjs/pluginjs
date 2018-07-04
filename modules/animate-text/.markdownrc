@@ -1,87 +1,87 @@
 {
-	"meta": {
-		"moduleName": "animate-text",
-		"namespace": "animateText",
-		"Namespace": "AnimateText",
-		"options": [
-			{
-				"name": "mode",
-				"desc": "Set mode options",
-				"defaultValue": "fadeDown"
-			},
-			{
-				"name": "loop",
-				"desc": "Set loop options",
-				"defaultValue": "true"
-			},
-			{
-				"name": "delay",
-				"desc": "Set delay options",
-				"defaultValue": "0"
-			},
-			{
-				"name": "duration",
-				"desc": "Set duretion",
-				"defaultValue": "1000"
-			}
-		],
-		"option": "mode",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "value",
-				"desc": "Get value"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			}
-		],
-		"method": "value",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "as-animateText"
-			},
-			{
-				"name": "CONTAINER",
-				"desc": "Declare plugin range",
-				"value": "{namespace}-multiple "
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "animate-text",
+    "namespace": "animateText",
+    "Namespace": "AnimateText",
+    "options": [
+      {
+        "name": "mode",
+        "desc": "Set mode options",
+        "defaultValue": "fadeDown"
+      },
+      {
+        "name": "loop",
+        "desc": "Set loop options",
+        "defaultValue": "true"
+      },
+      {
+        "name": "delay",
+        "desc": "Set delay options",
+        "defaultValue": "0"
+      },
+      {
+        "name": "duration",
+        "desc": "Set duretion",
+        "defaultValue": "1000"
+      }
+    ],
+    "option": "mode",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "value",
+        "desc": "Get value"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      }
+    ],
+    "method": "value",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "as-animateText"
+      },
+      {
+        "name": "CONTAINER",
+        "desc": "Declare plugin range",
+        "value": "{namespace}-multiple "
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

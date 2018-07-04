@@ -1,104 +1,104 @@
 {
-	"meta": {
-		"moduleName": "shorten",
-		"namespace": "shorten",
-		"Namespace": "Shorten",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Add plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "chars",
-				"desc": "Set chars",
-				"defaultValue": "100"
-			},
-			{
-				"name": "ellipses",
-				"desc": "Set ellipses text",
-				"defaultValue": "..."
-			},
-			{
-				"name": "more",
-				"desc": "Set more text",
-				"defaultValue": "more"
-			},
-			{
-				"name": "less",
-				"desc": "Set less text",
-				"defaultValue": "less"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "expand",
-				"desc": "Gets fired when plugin is expand"
-			},
-			{
-				"name": "collapse",
-				"desc": "Gets fired when plugin is collapse"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "collapse",
-				"desc": "Setup plugin into collapse status"
-			},
-			{
-				"name": "expand",
-				"desc": "Setup plugin into expand status"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "collapse",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-shorten"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "EXPAND",
-				"desc": "Delcare plugin is at expend status",
-				"value": "{namespace}-expand"
-			},
-			{
-				"name": "DETAIL",
-				"desc": "Declare detail node",
-				"value": "{namespace}-detail"
-			},
-			{
-				"name": "ELLIPSES",
-				"desc": "Declare ellipses node",
-				"value": "{namespace}-ellipses"
-			},
-			{
-				"name": "TOGGLE",
-				"desc": "Declare toggle node",
-				"value": "{namespace}-toggle"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "shorten",
+    "namespace": "shorten",
+    "Namespace": "Shorten",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Add plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "chars",
+        "desc": "Set chars",
+        "defaultValue": "100"
+      },
+      {
+        "name": "ellipses",
+        "desc": "Set ellipses text",
+        "defaultValue": "..."
+      },
+      {
+        "name": "more",
+        "desc": "Set more text",
+        "defaultValue": "more"
+      },
+      {
+        "name": "less",
+        "desc": "Set less text",
+        "defaultValue": "less"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "expand",
+        "desc": "Gets fired when plugin is expand"
+      },
+      {
+        "name": "collapse",
+        "desc": "Gets fired when plugin is collapse"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "collapse",
+        "desc": "Setup plugin into collapse status"
+      },
+      {
+        "name": "expand",
+        "desc": "Setup plugin into expand status"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "collapse",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-shorten"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "EXPAND",
+        "desc": "Delcare plugin is at expend status",
+        "value": "{namespace}-expand"
+      },
+      {
+        "name": "DETAIL",
+        "desc": "Declare detail node",
+        "value": "{namespace}-detail"
+      },
+      {
+        "name": "ELLIPSES",
+        "desc": "Declare ellipses node",
+        "value": "{namespace}-ellipses"
+      },
+      {
+        "name": "TOGGLE",
+        "desc": "Declare toggle node",
+        "value": "{namespace}-toggle"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

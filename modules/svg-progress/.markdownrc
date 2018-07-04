@@ -1,202 +1,202 @@
 {
-	"meta": {
-		"moduleName": "svg-progress",
-		"namespace": "svgProgress",
-		"Namespace": "SvgProgress",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Add plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "min",
-				"desc": "Set min value",
-				"defaultValue": "0"
-			},
-			{
-				"name": "max",
-				"desc": "Set max value",
-				"defaultValue": "100"
-			},
-			{
-				"name": "goal",
-				"desc": "Set goal value",
-				"defaultValue": "100"
-			},
-			{
-				"name": "size",
-				"desc": "Set size value",
-				"defaultValue": "80"
-			},
-			{
-				"name": "speed",
-				"desc": "Set progress speed value",
-				"defaultValue": "15"
-			},
-			{
-				"name": "barcolor",
-				"desc": "Set progress bar color",
-				"defaultValue": "#55a4f2"
-			},
-			{
-				"name": "barsize",
-				"desc": "Set progress bar size",
-				"defaultValue": "4"
-			},
-			{
-				"name": "trackcolor",
-				"desc": "Set track bar color",
-				"defaultValue": "#f7f9fc"
-			},
-			{
-				"name": "fillcolor",
-				"desc": "Set fill color (default none)",
-				"defaultValue": "none"
-			},
-			{
-				"name": "easing",
-				"desc": "Set easing animation",
-				"defaultValue": "ease"
-			},
-			{
-				"name": "numberCallback",
-				"desc": "Set number call back function",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "contentCallback",
-				"desc": "Set content call back function",
-				"defaultValue": "null"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "update",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "start",
-				"desc": "Gets fired when plugin has start"
-			},
-			{
-				"name": "go",
-				"desc": "Gets fired when plugin has goes"
-			},
-			{
-				"name": "reset",
-				"desc": "Gets fired when plugin has be reset"
-			},
-			{
-				"name": "stop",
-				"desc": "Gets fired when progress has stop"
-			},
-			{
-				"name": "finish",
-				"desc": "Gets fired when plugin has finish"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin is enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin is disabled"
-			}
-		],
-		"event": "update",
-		"Event": "Update",
-		"methods": [
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "start",
-				"desc": "Start to progress"
-			},
-			{
-				"name": "finish",
-				"desc": "Finish progress"
-			},
-			{
-				"name": "stop",
-				"desc": "Stop progress"
-			},
-			{
-				"name": "reset",
-				"desc": "Reset progress"
-			},
-			{
-				"name": "go",
-				"desc": "Go the specified progress by value"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "get",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-svgProgress"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "SVG",
-				"desc": "Declare svg node",
-				"value": "{namespace}-svg"
-			},
-			{
-				"name": "ELEMENT",
-				"desc": "Declare svgProgress element",
-				"value": "{namespace}"
-			},
-			{
-				"name": "NUMBER",
-				"desc": "Declare number node",
-				"value": "{namespace}-number"
-			},
-			{
-				"name": "CONTENT",
-				"desc": "Declare content",
-				"value": "{namespace}-content"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "INFOS",
-				"desc": "Declare info",
-				"value": "{namespace}-infos"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "svg-progress",
+    "namespace": "svgProgress",
+    "Namespace": "SvgProgress",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Add plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "min",
+        "desc": "Set min value",
+        "defaultValue": "0"
+      },
+      {
+        "name": "max",
+        "desc": "Set max value",
+        "defaultValue": "100"
+      },
+      {
+        "name": "goal",
+        "desc": "Set goal value",
+        "defaultValue": "100"
+      },
+      {
+        "name": "size",
+        "desc": "Set size value",
+        "defaultValue": "80"
+      },
+      {
+        "name": "speed",
+        "desc": "Set progress speed value",
+        "defaultValue": "15"
+      },
+      {
+        "name": "barcolor",
+        "desc": "Set progress bar color",
+        "defaultValue": "#55a4f2"
+      },
+      {
+        "name": "barsize",
+        "desc": "Set progress bar size",
+        "defaultValue": "4"
+      },
+      {
+        "name": "trackcolor",
+        "desc": "Set track bar color",
+        "defaultValue": "#f7f9fc"
+      },
+      {
+        "name": "fillcolor",
+        "desc": "Set fill color (default none)",
+        "defaultValue": "none"
+      },
+      {
+        "name": "easing",
+        "desc": "Set easing animation",
+        "defaultValue": "ease"
+      },
+      {
+        "name": "numberCallback",
+        "desc": "Set number call back function",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "contentCallback",
+        "desc": "Set content call back function",
+        "defaultValue": "null"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "update",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "start",
+        "desc": "Gets fired when plugin has start"
+      },
+      {
+        "name": "go",
+        "desc": "Gets fired when plugin has goes"
+      },
+      {
+        "name": "reset",
+        "desc": "Gets fired when plugin has be reset"
+      },
+      {
+        "name": "stop",
+        "desc": "Gets fired when progress has stop"
+      },
+      {
+        "name": "finish",
+        "desc": "Gets fired when plugin has finish"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin is enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin is disabled"
+      }
+    ],
+    "event": "update",
+    "Event": "Update",
+    "methods": [
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "start",
+        "desc": "Start to progress"
+      },
+      {
+        "name": "finish",
+        "desc": "Finish progress"
+      },
+      {
+        "name": "stop",
+        "desc": "Stop progress"
+      },
+      {
+        "name": "reset",
+        "desc": "Reset progress"
+      },
+      {
+        "name": "go",
+        "desc": "Go the specified progress by value"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "get",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-svgProgress"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "SVG",
+        "desc": "Declare svg node",
+        "value": "{namespace}-svg"
+      },
+      {
+        "name": "ELEMENT",
+        "desc": "Declare svgProgress element",
+        "value": "{namespace}"
+      },
+      {
+        "name": "NUMBER",
+        "desc": "Declare number node",
+        "value": "{namespace}-number"
+      },
+      {
+        "name": "CONTENT",
+        "desc": "Declare content",
+        "value": "{namespace}-content"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "INFOS",
+        "desc": "Declare info",
+        "value": "{namespace}-infos"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

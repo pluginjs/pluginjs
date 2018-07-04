@@ -1,86 +1,86 @@
 {
-	"meta": {
-		"moduleName": "adapt-text",
-		"namespace": "adaptText",
-		"Namespace": "AdaptText",
-		"options": [
-			{
-				"name": "ratio",
-				"desc": "AdaptText ratio value",
-				"defaultValue": "10"
-			},
-			{
-				"name": "max",
-				"desc": "Max value",
-				"defaultValue": "Infinity"
-			},
-			{
-				"name": "min",
-				"desc": "Min value",
-				"defaultValue": "-Infinity"
-			},
-			{
-				"name": "scrollable",
-				"desc": "Can be scroll or not",
-				"defaultValue": "false"
-			},
-			{
-				"name": "scrollSpeed",
-				"desc": "factor of scroll speed",
-				"defaultValue": "1200"
-			},
-			{
-				"name": "scrollResetSpeed",
-				"desc": "Reset threshold of scroll speed",
-				"defaultValue": "300"
-			},
-			{
-				"name": "resize",
-				"desc": "Can be resize or not",
-				"defaultValue": "true"
-			}
-		],
-		"option": "ratio",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin is enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin is disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "resize",
-				"desc": "Resize handle"
-			}
-		],
-		"method": "enable"
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "adapt-text",
+    "namespace": "adaptText",
+    "Namespace": "AdaptText",
+    "options": [
+      {
+        "name": "ratio",
+        "desc": "AdaptText ratio value",
+        "defaultValue": "10"
+      },
+      {
+        "name": "max",
+        "desc": "Max value",
+        "defaultValue": "Infinity"
+      },
+      {
+        "name": "min",
+        "desc": "Min value",
+        "defaultValue": "-Infinity"
+      },
+      {
+        "name": "scrollable",
+        "desc": "Can be scroll or not",
+        "defaultValue": "false"
+      },
+      {
+        "name": "scrollSpeed",
+        "desc": "factor of scroll speed",
+        "defaultValue": "1200"
+      },
+      {
+        "name": "scrollResetSpeed",
+        "desc": "Reset threshold of scroll speed",
+        "defaultValue": "300"
+      },
+      {
+        "name": "resize",
+        "desc": "Can be resize or not",
+        "defaultValue": "true"
+      }
+    ],
+    "option": "ratio",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin is enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin is disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "resize",
+        "desc": "Resize handle"
+      }
+    ],
+    "method": "enable"
+  },
+  "output": "./README.md",
+  "template": "README"
 }

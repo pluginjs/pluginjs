@@ -1,216 +1,216 @@
 {
-	"meta": {
-		"moduleName": "list",
-		"namespace": "list",
-		"Namespace": "List",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "localeFallbacks",
-				"desc": "Set the plugin is localeFallbacks or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "data",
-				"desc": "Set data option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disabled option",
-				"defaultValue": "false"
-			},
-			{
-				"name": "label",
-				"desc": "Set label",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "actions",
-				"desc": "Set actions option",
-				"defaultValue": "[{\"tagName\":\"i\",\"trigger\":\"icon-close pj-list-close\",\"event\":\"click\"}]"
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "add",
-				"desc": "Gets fired when plugin has add"
-			},
-			{
-				"name": "clickItem",
-				"desc": "Gets fired when plugin has clickItem"
-			},
-			{
-				"name": "clear",
-				"desc": "Gets fired when plugin has clear"
-			},
-			{
-				"name": "edited",
-				"desc": "Gets fired when plugin has edited"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "init",
-				"desc": "Initial plugin"
-			},
-			{
-				"name": "insert",
-				"desc": "Insert plugin"
-			},
-			{
-				"name": "clear",
-				"desc": "Clear plugin"
-			}
-		],
-		"method": "set",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-list"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "CONTAINER",
-				"desc": "Declare plugin range",
-				"value": "{namespace}-container"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "ITEM",
-				"desc": "Declare plugin item",
-				"value": "{namespace}-item"
-			},
-			{
-				"name": "LABEL",
-				"desc": "Declare plugin label",
-				"value": "{namespace}-item-label"
-			},
-			{
-				"name": "ACTIONS",
-				"desc": "Declare plugin actions",
-				"value": "{namespace}-item-actions"
-			},
-			{
-				"name": "HANDLE",
-				"desc": "Declare plugin handle",
-				"value": "{namespace}-item-handle"
-			},
-			{
-				"name": "SOTRE",
-				"desc": "Declare plugin store",
-				"value": "{namespace}-store"
-			},
-			{
-				"name": "POPVER",
-				"desc": "Declare plugin popver",
-				"value": "{namespace}-popver"
-			},
-			{
-				"name": "CLONEANIMATE",
-				"desc": "Declare plugin cloneanimate",
-				"value": "{namespace}-item-clone-animate"
-			}
-		],
-		"translations": [
-			{
-				"name": "cancel",
-				"en": "Cancel",
-				"zh": "取消"
-			},
-			{
-				"name": "deleteTitle",
-				"en": "Are you sure you want to delete?",
-				"zh": "你确定要删除？"
-			},
-			{
-				"name": "delete",
-				"en": "Delete",
-				"zh": "删除"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "list",
+    "namespace": "list",
+    "Namespace": "List",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "localeFallbacks",
+        "desc": "Set the plugin is localeFallbacks or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "data",
+        "desc": "Set data option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disabled option",
+        "defaultValue": "false"
+      },
+      {
+        "name": "label",
+        "desc": "Set label",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "actions",
+        "desc": "Set actions option",
+        "defaultValue": "[{\"tagName\":\"i\",\"trigger\":\"icon-close pj-list-close\",\"event\":\"click\"}]"
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "add",
+        "desc": "Gets fired when plugin has add"
+      },
+      {
+        "name": "clickItem",
+        "desc": "Gets fired when plugin has clickItem"
+      },
+      {
+        "name": "clear",
+        "desc": "Gets fired when plugin has clear"
+      },
+      {
+        "name": "edited",
+        "desc": "Gets fired when plugin has edited"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "init",
+        "desc": "Initial plugin"
+      },
+      {
+        "name": "insert",
+        "desc": "Insert plugin"
+      },
+      {
+        "name": "clear",
+        "desc": "Clear plugin"
+      }
+    ],
+    "method": "set",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-list"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "CONTAINER",
+        "desc": "Declare plugin range",
+        "value": "{namespace}-container"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "ITEM",
+        "desc": "Declare plugin item",
+        "value": "{namespace}-item"
+      },
+      {
+        "name": "LABEL",
+        "desc": "Declare plugin label",
+        "value": "{namespace}-item-label"
+      },
+      {
+        "name": "ACTIONS",
+        "desc": "Declare plugin actions",
+        "value": "{namespace}-item-actions"
+      },
+      {
+        "name": "HANDLE",
+        "desc": "Declare plugin handle",
+        "value": "{namespace}-item-handle"
+      },
+      {
+        "name": "SOTRE",
+        "desc": "Declare plugin store",
+        "value": "{namespace}-store"
+      },
+      {
+        "name": "POPVER",
+        "desc": "Declare plugin popver",
+        "value": "{namespace}-popver"
+      },
+      {
+        "name": "CLONEANIMATE",
+        "desc": "Declare plugin cloneanimate",
+        "value": "{namespace}-item-clone-animate"
+      }
+    ],
+    "translations": [
+      {
+        "name": "cancel",
+        "en": "Cancel",
+        "zh": "取消"
+      },
+      {
+        "name": "deleteTitle",
+        "en": "Are you sure you want to delete?",
+        "zh": "你确定要删除？"
+      },
+      {
+        "name": "delete",
+        "en": "Delete",
+        "zh": "删除"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

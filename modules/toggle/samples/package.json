@@ -1,22 +1,22 @@
 {
-	"name": "toggle-samples",
-	"version": "1.0.0",
-	"description": "Simple toggle example",
-	"main": "index.html",
-	"scripts": {
-		"start": "parcel index.html --open",
-		"build": "parcel build index.html"
-	},
-	"devDependencies": {
-		"babel-core": "^6.26.3",
-		"babel-plugin-transform-html-import-to-string": "^0.0.1",
-		"babel-preset-env": "1.7.0",
-		"parcel-bundler": "^1.6.1"
-	},
-	"dependencies": {
-		"@pluginjs/dom": "^0.0.15",
-		"@pluginjs/toggle": "^0.2.20",
-		"hammer": "^0.0.5"
-	},
-	"license": "GPL-3.0"
+  "name": "toggle-samples",
+  "description": "Simple toggle example",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "build": "parcel build index.html",
+    "start": "parcel index.html --open"
+  },
+  "dependencies": {
+    "@pluginjs/dom": "*",
+    "@pluginjs/toggle": "*",
+    "hammer": "^0.0.5"
+  },
+  "devDependencies": {
+    "babel-core": "*",
+    "parcel-bundler": "*",
+    "babel-preset-env": "*",
+    "babel-plugin-transform-html-import-to-string": "*"
+  }
 }

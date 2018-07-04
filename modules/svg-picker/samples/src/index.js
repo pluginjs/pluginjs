@@ -1,4 +1,4 @@
-// import icons and primary.css
+// import icons
 import '@pluginjs/icons/dist/plugin-icons.css'
 // import svg-picker css
 import '@pluginjs/svg-picker/src/css/svg-picker.scss'

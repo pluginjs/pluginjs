@@ -1,82 +1,82 @@
 {
-	"meta": {
-		"moduleName": "input-mask",
-		"namespace": "inputMask",
-		"Namespace": "InputMask",
-		"options": [
-			{
-				"name": "type",
-				"desc": "Set plugin type option",
-				"defaultValue": "custom"
-			},
-			{
-				"name": "delimiter",
-				"desc": "Set plugin delimiter option",
-				"defaultValue": ""
-			},
-			{
-				"name": "blocks",
-				"desc": "Set plugin blocks option",
-				"defaultValue": "noLimit"
-			}
-		],
-		"option": "type",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "focus",
-				"desc": "Gets fired when plugin has focus"
-			},
-			{
-				"name": "blur",
-				"desc": "Gets fired when plugin has blur"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "enable",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-inputMask"
-			},
-			{
-				"name": "INPUT",
-				"desc": "Declare plugin input",
-				"value": "{namespace}-input"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "input-mask",
+    "namespace": "inputMask",
+    "Namespace": "InputMask",
+    "options": [
+      {
+        "name": "type",
+        "desc": "Set plugin type option",
+        "defaultValue": "custom"
+      },
+      {
+        "name": "delimiter",
+        "desc": "Set plugin delimiter option",
+        "defaultValue": ""
+      },
+      {
+        "name": "blocks",
+        "desc": "Set plugin blocks option",
+        "defaultValue": "noLimit"
+      }
+    ],
+    "option": "type",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "focus",
+        "desc": "Gets fired when plugin has focus"
+      },
+      {
+        "name": "blur",
+        "desc": "Gets fired when plugin has blur"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-inputMask"
+      },
+      {
+        "name": "INPUT",
+        "desc": "Declare plugin input",
+        "value": "{namespace}-input"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

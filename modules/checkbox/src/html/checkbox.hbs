@@ -8,529 +8,529 @@ scripts:
 - ../../plugins/checkbox/checkbox.js
 ---
 <section>
-	<h4>Api</h4>
-	<div class="example">
-		<div class="pj-checkbox">
-			<input type="checkbox" name="api[]" id="api-foo" value="foo" checked="checked" />
-			<label for="api-foo"><i class="icon-check-mini"></i> Foo</label>
-		</div>
-		<div class="pj-checkbox">
-			<input type="checkbox" name="api[]" id="api-bar" value="bar" />
-			<label for="api-bar"><i class="icon-check-mini"></i> Bar</label>
-		</div>
-		<div class="pj-checkbox">
-			<input type="checkbox" name="api[]" id="api-baz" value="baz"/>
-			<label for="api-baz"><i class="icon-check-mini"></i> Baz</label>
-		</div>
-	</div>
-	<div class="apis top-gap">
-		<button class="btn api-init">init</button>
-		<button class="btn api-destroy">destroy</button>
-		<button class="btn api-get">get</button>
-		<button class="btn api-set">set(['bar'])</button>
-		<button class="btn api-val">val</button>
-		<button class="btn api-val-set">val(['foo','baz'])</button>
-		<button class="btn api-enable">enable</button>
-		<button class="btn api-disable">disable</button>
-	</div>
-	<div class="console console-api"></div>
-	<script type="text/javascript">
-		(function() {
-			var $element = document.querySelector('input[name="api[]"]');
-			console.log('text', $element)
-			var $checkbox = null;
-			var $console_api = document.querySelector('.console-api');
+  <h4>Api</h4>
+  <div class="example">
+    <div class="pj-checkbox">
+      <input type="checkbox" name="api[]" id="api-foo" value="foo" checked="checked" />
+      <label for="api-foo"><i class="icon-check-mini"></i> Foo</label>
+    </div>
+    <div class="pj-checkbox">
+      <input type="checkbox" name="api[]" id="api-bar" value="bar" />
+      <label for="api-bar"><i class="icon-check-mini"></i> Bar</label>
+    </div>
+    <div class="pj-checkbox">
+      <input type="checkbox" name="api[]" id="api-baz" value="baz"/>
+      <label for="api-baz"><i class="icon-check-mini"></i> Baz</label>
+    </div>
+  </div>
+  <div class="apis top-gap">
+    <button class="btn api-init">init</button>
+    <button class="btn api-destroy">destroy</button>
+    <button class="btn api-get">get</button>
+    <button class="btn api-set">set(['bar'])</button>
+    <button class="btn api-val">val</button>
+    <button class="btn api-val-set">val(['foo','baz'])</button>
+    <button class="btn api-enable">enable</button>
+    <button class="btn api-disable">disable</button>
+  </div>
+  <div class="console console-api"></div>
+  <script type="text/javascript">
+    (function() {
+      var $element = document.querySelector('input[name="api[]"]');
+      console.log('text', $element)
+      var $checkbox = null;
+      var $console_api = document.querySelector('.console-api');
 
-			function init() {
-				$checkbox = Pj.checkbox($element, {
-					onChange: function(value) {
-						console.log('change: '+value, 'event');
-					},
-					onCheck: function() {
-						console.log('check: '+this.element.value, 'event');
-					},
-					onUncheck: function() {
-						console.log('uncheck: '+this.element.value, 'event');
-					},
-				});
-			}
+      function init() {
+        $checkbox = Pj.checkbox($element, {
+          onChange: function(value) {
+            console.log('change: '+value, 'event');
+          },
+          onCheck: function() {
+            console.log('check: '+this.element.value, 'event');
+          },
+          onUncheck: function() {
+            console.log('uncheck: '+this.element.value, 'event');
+          },
+        });
+      }
 
-			// init();
+      // init();
 
-			document.querySelector('.api-init').addEventListener('click', function() {
-				init();
-				console.log('', 'init', $console_api);
-			});
+      document.querySelector('.api-init').addEventListener('click', function() {
+        init();
+        console.log('', 'init', $console_api);
+      });
 
-			document.querySelector('.api-get').addEventListener('click', function() {
-				console.log($checkbox.get(), 'get()', $console_api);
-			});
+      document.querySelector('.api-get').addEventListener('click', function() {
+        console.log($checkbox.get(), 'get()', $console_api);
+      });
 
-			document.querySelector('.api-set').addEventListener('click', function() {
-				$checkbox.set(['bar']);
-				console.log('', 'set(["bar"])', $console_api);
-			});
+      document.querySelector('.api-set').addEventListener('click', function() {
+        $checkbox.set(['bar']);
+        console.log('', 'set(["bar"])', $console_api);
+      });
 
-			document.querySelector('.api-val').addEventListener('click', function() {
-				console.log($checkbox.val(), "val()", $console_api);
-			});
+      document.querySelector('.api-val').addEventListener('click', function() {
+        console.log($checkbox.val(), "val()", $console_api);
+      });
 
-			document.querySelector('.api-val-set').addEventListener('click', function() {
-				$checkbox.val(['foo','baz']);
-				console.log('', 'val(["foo","baz"])', $console_api);
-			});
+      document.querySelector('.api-val-set').addEventListener('click', function() {
+        $checkbox.val(['foo','baz']);
+        console.log('', 'val(["foo","baz"])', $console_api);
+      });
 
-			document.querySelector('.api-destroy').addEventListener('click', function() {
-				$checkbox.destroy();
-				console.log('', 'destroy()', $console_api);
-			});
+      document.querySelector('.api-destroy').addEventListener('click', function() {
+        $checkbox.destroy();
+        console.log('', 'destroy()', $console_api);
+      });
 
-			document.querySelector('.api-enable').addEventListener('click', function() {
-				$checkbox.enable();
-				console.log('', 'enable()', $console_api);
-			});
+      document.querySelector('.api-enable').addEventListener('click', function() {
+        $checkbox.enable();
+        console.log('', 'enable()', $console_api);
+      });
 
-			document.querySelector('.api-disable').addEventListener('click', function() {
-				$checkbox.disable();
-				console.log('', 'disable()', $console_api);
-			});
-		})();
-	</script>
+      document.querySelector('.api-disable').addEventListener('click', function() {
+        $checkbox.disable();
+        console.log('', 'disable()', $console_api);
+      });
+    })();
+  </script>
 </section>
 <section class="top-gap">
-	<h4>Single Api</h4>
-	<div class="example">
-		<div class="pj-checkbox">
-			<input type="checkbox" name="single" id="single" value="true" checked="checked" />
-			<label for="single"><i class="icon-check-mini"></i> Enable</label>
-		</div>
-	</div>
-	<div class="apis top-gap">
-		<button class="btn api-single-init">init</button>
-		<button class="btn api-single-destroy">destroy</button>
-		<button class="btn api-single-get">get</button>
-		<button class="btn api-single-set">set('true')</button>
-		<button class="btn api-single-val">val</button>
-		<button class="btn api-single-val-set">val('false')</button>
-		<button class="btn api-single-enable">enable</button>
-		<button class="btn api-single-disable">disable</button>
-	<div class="console console-single-api"></div>
-	<script type="text/javascript">
-		(function() {
-			var $single = document.querySelector('input[name="single"]');
-			var $checkbox_single = null;
-			var $console_single_api = document.querySelector('.console-single-api');
+  <h4>Single Api</h4>
+  <div class="example">
+    <div class="pj-checkbox">
+      <input type="checkbox" name="single" id="single" value="true" checked="checked" />
+      <label for="single"><i class="icon-check-mini"></i> Enable</label>
+    </div>
+  </div>
+  <div class="apis top-gap">
+    <button class="btn api-single-init">init</button>
+    <button class="btn api-single-destroy">destroy</button>
+    <button class="btn api-single-get">get</button>
+    <button class="btn api-single-set">set('true')</button>
+    <button class="btn api-single-val">val</button>
+    <button class="btn api-single-val-set">val('false')</button>
+    <button class="btn api-single-enable">enable</button>
+    <button class="btn api-single-disable">disable</button>
+  <div class="console console-single-api"></div>
+  <script type="text/javascript">
+    (function() {
+      var $single = document.querySelector('input[name="single"]');
+      var $checkbox_single = null;
+      var $console_single_api = document.querySelector('.console-single-api');
 
-			function init() {
-				$checkbox_single = Pj.checkbox($single, {
-					onChange: function(value) {
-						console.log('change:'+value);
-					},
-					onCheck: function() {
-						console.log('check: '+this.element.value);
-					},
-					onUncheck: function() {
-						console.log('uncheck: '+this.element.value);
-					}
-				});
-			}
+      function init() {
+        $checkbox_single = Pj.checkbox($single, {
+          onChange: function(value) {
+            console.log('change:'+value);
+          },
+          onCheck: function() {
+            console.log('check: '+this.element.value);
+          },
+          onUncheck: function() {
+            console.log('uncheck: '+this.element.value);
+          }
+        });
+      }
 
-			init();
+      init();
 
-			document.querySelector('.api-single-init').addEventListener('click', function() {
-				init();
-				console.log('', 'init', $console_single_api);
-			});
+      document.querySelector('.api-single-init').addEventListener('click', function() {
+        init();
+        console.log('', 'init', $console_single_api);
+      });
 
-			document.querySelector('.api-single-get').addEventListener('click', function() {
-				console.log($checkbox_single.get(), 'get()', $console_single_api);
-			});
+      document.querySelector('.api-single-get').addEventListener('click', function() {
+        console.log($checkbox_single.get(), 'get()', $console_single_api);
+      });
 
-			document.querySelector('.api-single-set').addEventListener('click', function() {
-				$checkbox_single.set('true');
-				console.log('', 'set("true")', $console_single_api);
-			});
+      document.querySelector('.api-single-set').addEventListener('click', function() {
+        $checkbox_single.set('true');
+        console.log('', 'set("true")', $console_single_api);
+      });
 
-			document.querySelector('.api-single-val').addEventListener('click', function() {
-				console.log($checkbox_single.val(), 'val()', $console_single_api);
-			});
+      document.querySelector('.api-single-val').addEventListener('click', function() {
+        console.log($checkbox_single.val(), 'val()', $console_single_api);
+      });
 
-			document.querySelector('.api-single-val-set').addEventListener('click', function() {
-				$checkbox_single.val('false');
-				console.log('', 'val("false")', $console_single_api);
-			});
+      document.querySelector('.api-single-val-set').addEventListener('click', function() {
+        $checkbox_single.val('false');
+        console.log('', 'val("false")', $console_single_api);
+      });
 
-			document.querySelector('.api-single-destroy').addEventListener('click', function() {
-				$checkbox_single.destroy();
-				console.log('', 'destroy()', $console_single_api);
-			});
+      document.querySelector('.api-single-destroy').addEventListener('click', function() {
+        $checkbox_single.destroy();
+        console.log('', 'destroy()', $console_single_api);
+      });
 
-			document.querySelector('.api-single-enable').addEventListener('click', function() {
-				$checkbox_single.enable();
-				console.log('', 'enable()', $console_single_api);
-			});
+      document.querySelector('.api-single-enable').addEventListener('click', function() {
+        $checkbox_single.enable();
+        console.log('', 'enable()', $console_single_api);
+      });
 
-			document.querySelector('.api-single-disable').addEventListener('click', function() {
-				$checkbox_single.disable();
-				console.log('', 'disable()', $console_single_api);
-			});
-		})();
-	</script>
+      document.querySelector('.api-single-disable').addEventListener('click', function() {
+        $checkbox_single.disable();
+        console.log('', 'disable()', $console_single_api);
+      });
+    })();
+  </script>
 </section>
 <section class="js top-gap">
-	<h3>JS</h3>
-	<section>
-		<h4>Inline</h4>
-		<div class="example">
-				<input type="checkbox" name="js-inline[]" id="js-inline-foo" value="foo" data-theme="inline" checked="checked" />
-				<label for="js-inline-foo"><i class="icon-check-mini"></i> Foo</label>
-				<input type="checkbox" name="js-inline[]" id="js-inline-bar" value="bar" data-theme="inline"  />
-				<label for="js-inline-bar"><i class="icon-check-mini"></i> Bar</label>
-				<input type="checkbox" name="js-inline[]" id="js-inline-baz" value="baz" data-theme="inline" />
-				<label for="js-inline-baz"><i class="icon-check-mini"></i> Baz</label>
-		</div>
-	</section>
-	{{!-- <section>
-		<h4>Colors</h4>
-		<div class="example">
-			<div>
-				<input type="checkbox" name="js-colors[]" id="js-color-default" value="default" data-theme="" checked="checked" />
-				<label for="js-color-default"><i class="icon-check-mini"></i> default</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-colors[]" id="js-color-primary" value="primary" data-theme="primary" />
-				<label for="js-color-primary"><i class="icon-check-mini"></i> primary</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-colors[]" id="js-color-success" value="success" data-theme="success" />
-				<label for="js-color-success"><i class="icon-check-mini"></i> success</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-colors[]" id="js-color-info" value="info" data-theme="info" />
-				<label for="js-color-info"><i class="icon-check-mini"></i> info</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-colors[]" id="js-color-warning" value="warning" data-theme="warning" />
-				<label for="js-color-warning"><i class="icon-check-mini"></i> warning</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-colors[]" id="js-color-danger" value="danger" data-theme="danger" disabled="disabled"/>
-				<label for="js-color-danger"><i class="icon-check-mini"></i> danger</label>
-			</div>
-		</div>
-	</section> --}}
-	<section>
-		<h4>Icon</h4>
-		<div class="example">
-			<div>
-				<input type="checkbox" name="js-icon[]" id="js-color-icon-default" value="default" data-theme="" checked="checked" />
-				<label for="js-color-icon-default"> default</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-icon[]" id="js-color-icon-primary" value="primary" data-theme="primary" />
-				<label for="js-color-icon-primary"> primary</label>
-			</div>
-			{{!-- <div>
-				<input type="checkbox" name="js-icon[]" id="js-color-icon-success" value="success" data-theme="success" />
-				<label for="js-color-icon-success"> success</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-icon[]" id="js-color-icon-info" value="info" data-theme="info" />
-				<label for="js-color-icon-info"> info</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-icon[]" id="js-color-icon-warning" value="warning" data-theme="warning" />
-				<label for="js-color-icon-warning"> warning</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-icon[]" id="js-color-icon-danger" value="danger" data-theme="danger" disabled="disabled"/>
-				<label for="js-color-icon-danger"> danger</label>
-			</div> --}}
-		</div>
-	</section>
-	<section>
-		<h4>Solid</h4>
-		<div class="example">
-			<div>
-				<input type="checkbox" name="js-solid[]" id="js-color-solid-default" value="default" data-theme="default solid" checked="checked" />
-				<label for="js-color-solid-default"><i class="icon-check-mini"></i> default</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-solid[]" id="js-color-solid-primary" value="primary" data-theme="primary solid" />
-				<label for="js-color-solid-primary"><i class="icon-check-mini"></i> primary</label>
-			</div>
-			{{!-- <div>
-				<input type="checkbox" name="js-solid[]" id="js-color-solid-success" value="success" data-theme="success solid" />
-				<label for="js-color-solid-success"><i class="icon-check-mini"></i> success</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-solid[]" id="js-color-solid-info" value="info" data-theme="info solid" />
-				<label for="js-color-solid-info"><i class="icon-check-mini"></i> info</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-solid[]" id="js-color-solid-warning" value="warning" data-theme="warning solid" />
-				<label for="js-color-solid-warning"><i class="icon-check-mini"></i> warning</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-solid[]" id="js-color-solid-danger" value="danger" data-theme="danger solid" disabled="disabled"/>
-				<label for="js-color-solid-danger"><i class="icon-check-mini"></i> danger</label>
-			</div> --}}
-		</div>
-	</section>
-	<section>
-		<h4>Solid Icon</h4>
-		<div class="example">
-			<div>
-				<input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-default" value="default" data-theme="solid" checked="checked" />
-				<label for="js-color-solid-icon-default">default</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-primary" value="primary" data-theme="primary solid" />
-				<label for="js-color-solid-icon-primary">primary</label>
-			</div>
-			{{!-- <div>
-				<input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-success" value="success" data-theme="success solid" />
-				<label for="js-color-solid-icon-success">success</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-info" value="info" data-theme="info solid" />
-				<label for="js-color-solid-icon-info">info</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-warning" value="warning" data-theme="warning solid" />
-				<label for="js-color-solid-icon-warning">warning</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-danger" value="danger" data-theme="danger solid" disabled="disabled"/>
-				<label for="js-color-solid-icon-danger">danger</label>
-			</div> --}}
-		</div>
-	</section>
-	<section>
-		<h4>Plain Icon</h4>
-		<div class="example">
-			<div>
-				<input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-default" value="default" data-theme="plain" checked="checked" />
-				<label for="js-color-plain-icon-default">default</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-primary" value="primary" data-theme="plain primary" />
-				<label for="js-color-plain-icon-primary">primary</label>
-			</div>
-			{{!-- <div>
-				<input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-success" value="success" data-theme="plain success" />
-				<label for="js-color-plain-icon-success">success</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-info" value="info" data-theme="plain info" />
-				<label for="js-color-plain-icon-info">info</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-warning" value="warning" data-theme="plain warning" />
-				<label for="js-color-plain-icon-warning">warning</label>
-			</div>
-			<div>
-				<input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-danger" value="danger" data-theme="plain danger" disabled="disabled"/>
-				<label for="js-color-plain-icon-danger">danger</label>
-			</div> --}}
-		</div>
-	</section>
-	<script type="text/javascript">
-		(function(){
-			document.querySelectorAll('.js input[type="checkbox"]')
-				.forEach(el => Pj.checkbox(el, {
-					classes: {
-						icon: 'icon-check-mini'
-					}
-				}))
-		})();
-	</script>
+  <h3>JS</h3>
+  <section>
+    <h4>Inline</h4>
+    <div class="example">
+        <input type="checkbox" name="js-inline[]" id="js-inline-foo" value="foo" data-theme="inline" checked="checked" />
+        <label for="js-inline-foo"><i class="icon-check-mini"></i> Foo</label>
+        <input type="checkbox" name="js-inline[]" id="js-inline-bar" value="bar" data-theme="inline"  />
+        <label for="js-inline-bar"><i class="icon-check-mini"></i> Bar</label>
+        <input type="checkbox" name="js-inline[]" id="js-inline-baz" value="baz" data-theme="inline" />
+        <label for="js-inline-baz"><i class="icon-check-mini"></i> Baz</label>
+    </div>
+  </section>
+  {{!-- <section>
+    <h4>Colors</h4>
+    <div class="example">
+      <div>
+        <input type="checkbox" name="js-colors[]" id="js-color-default" value="default" data-theme="" checked="checked" />
+        <label for="js-color-default"><i class="icon-check-mini"></i> default</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-colors[]" id="js-color-primary" value="primary" data-theme="primary" />
+        <label for="js-color-primary"><i class="icon-check-mini"></i> primary</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-colors[]" id="js-color-success" value="success" data-theme="success" />
+        <label for="js-color-success"><i class="icon-check-mini"></i> success</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-colors[]" id="js-color-info" value="info" data-theme="info" />
+        <label for="js-color-info"><i class="icon-check-mini"></i> info</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-colors[]" id="js-color-warning" value="warning" data-theme="warning" />
+        <label for="js-color-warning"><i class="icon-check-mini"></i> warning</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-colors[]" id="js-color-danger" value="danger" data-theme="danger" disabled="disabled"/>
+        <label for="js-color-danger"><i class="icon-check-mini"></i> danger</label>
+      </div>
+    </div>
+  </section> --}}
+  <section>
+    <h4>Icon</h4>
+    <div class="example">
+      <div>
+        <input type="checkbox" name="js-icon[]" id="js-color-icon-default" value="default" data-theme="" checked="checked" />
+        <label for="js-color-icon-default"> default</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-icon[]" id="js-color-icon-primary" value="primary" data-theme="primary" />
+        <label for="js-color-icon-primary"> primary</label>
+      </div>
+      {{!-- <div>
+        <input type="checkbox" name="js-icon[]" id="js-color-icon-success" value="success" data-theme="success" />
+        <label for="js-color-icon-success"> success</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-icon[]" id="js-color-icon-info" value="info" data-theme="info" />
+        <label for="js-color-icon-info"> info</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-icon[]" id="js-color-icon-warning" value="warning" data-theme="warning" />
+        <label for="js-color-icon-warning"> warning</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-icon[]" id="js-color-icon-danger" value="danger" data-theme="danger" disabled="disabled"/>
+        <label for="js-color-icon-danger"> danger</label>
+      </div> --}}
+    </div>
+  </section>
+  <section>
+    <h4>Solid</h4>
+    <div class="example">
+      <div>
+        <input type="checkbox" name="js-solid[]" id="js-color-solid-default" value="default" data-theme="default solid" checked="checked" />
+        <label for="js-color-solid-default"><i class="icon-check-mini"></i> default</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-solid[]" id="js-color-solid-primary" value="primary" data-theme="primary solid" />
+        <label for="js-color-solid-primary"><i class="icon-check-mini"></i> primary</label>
+      </div>
+      {{!-- <div>
+        <input type="checkbox" name="js-solid[]" id="js-color-solid-success" value="success" data-theme="success solid" />
+        <label for="js-color-solid-success"><i class="icon-check-mini"></i> success</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-solid[]" id="js-color-solid-info" value="info" data-theme="info solid" />
+        <label for="js-color-solid-info"><i class="icon-check-mini"></i> info</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-solid[]" id="js-color-solid-warning" value="warning" data-theme="warning solid" />
+        <label for="js-color-solid-warning"><i class="icon-check-mini"></i> warning</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-solid[]" id="js-color-solid-danger" value="danger" data-theme="danger solid" disabled="disabled"/>
+        <label for="js-color-solid-danger"><i class="icon-check-mini"></i> danger</label>
+      </div> --}}
+    </div>
+  </section>
+  <section>
+    <h4>Solid Icon</h4>
+    <div class="example">
+      <div>
+        <input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-default" value="default" data-theme="solid" checked="checked" />
+        <label for="js-color-solid-icon-default">default</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-primary" value="primary" data-theme="primary solid" />
+        <label for="js-color-solid-icon-primary">primary</label>
+      </div>
+      {{!-- <div>
+        <input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-success" value="success" data-theme="success solid" />
+        <label for="js-color-solid-icon-success">success</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-info" value="info" data-theme="info solid" />
+        <label for="js-color-solid-icon-info">info</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-warning" value="warning" data-theme="warning solid" />
+        <label for="js-color-solid-icon-warning">warning</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-solid-icon[]" id="js-color-solid-icon-danger" value="danger" data-theme="danger solid" disabled="disabled"/>
+        <label for="js-color-solid-icon-danger">danger</label>
+      </div> --}}
+    </div>
+  </section>
+  <section>
+    <h4>Plain Icon</h4>
+    <div class="example">
+      <div>
+        <input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-default" value="default" data-theme="plain" checked="checked" />
+        <label for="js-color-plain-icon-default">default</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-primary" value="primary" data-theme="plain primary" />
+        <label for="js-color-plain-icon-primary">primary</label>
+      </div>
+      {{!-- <div>
+        <input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-success" value="success" data-theme="plain success" />
+        <label for="js-color-plain-icon-success">success</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-info" value="info" data-theme="plain info" />
+        <label for="js-color-plain-icon-info">info</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-warning" value="warning" data-theme="plain warning" />
+        <label for="js-color-plain-icon-warning">warning</label>
+      </div>
+      <div>
+        <input type="checkbox" name="js-plain-icon[]" id="js-color-plain-icon-danger" value="danger" data-theme="plain danger" disabled="disabled"/>
+        <label for="js-color-plain-icon-danger">danger</label>
+      </div> --}}
+    </div>
+  </section>
+  <script type="text/javascript">
+    (function(){
+      document.querySelectorAll('.js input[type="checkbox"]')
+        .forEach(el => Pj.checkbox(el, {
+          classes: {
+            icon: 'icon-check-mini'
+          }
+        }))
+    })();
+  </script>
 </section>
 <section class="css top-gap">
-	<h3>Css</h3>
-	<section>
-		<h4>Inline</h4>
-		<div class="example">
-			<div class="pj-checkbox pj-checkbox-inline">
-				<input type="checkbox" name="inline[]" id="inline-foo" value="foo" checked="checked" />
-				<label for="inline-foo"><i class="icon-check-mini"></i> Foo</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-inline">
-				<input type="checkbox" name="inline[]" id="inline-bar" value="bar" />
-				<label for="inline-bar"><i class="icon-check-mini"></i> Bar</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-inline">
-				<input type="checkbox" name="inline[]" id="inline-baz" value="baz"/>
-				<label for="inline-baz"><i class="icon-check-mini"></i> Baz</label>
-			</div>
-		</div>
-	</section>
-	{{!-- <section>
-		<h4>Colors</h4>
-		<div class="example">
-			<div class="pj-checkbox">
-				<input type="checkbox" name="colors[]" id="color-default" value="default" checked="checked" />
-				<label for="color-default"><i class="icon-check-mini"></i> default</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-primary">
-				<input type="checkbox" name="colors[]" id="color-primary" value="primary" />
-				<label for="color-primary"><i class="icon-check-mini"></i> primary</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-success">
-				<input type="checkbox" name="colors[]" id="color-success" value="success" />
-				<label for="color-success"><i class="icon-check-mini"></i> success</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-info">
-				<input type="checkbox" name="colors[]" id="color-info" value="info" />
-				<label for="color-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-warning">
-				<input type="checkbox" name="colors[]" id="color-warning" value="warning" />
-				<label for="color-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-danger">
-				<input type="checkbox" name="colors[]" id="color-danger" value="danger" disabled="disabled"/>
-				<label for="color-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
-			</div>
-		</div>
-	</section> --}}
-	<section>
-		<h4>Icon</h4>
-		<div class="example">
-			<div class="pj-checkbox">
-				<input type="checkbox" name="icon[]" id="color-icon-default" value="default" checked="checked" />
-				<label for="color-icon-default"><i class="icon-check-mini"></i> default</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-primary">
-				<input type="checkbox" name="icon[]" id="color-icon-primary" value="primary" />
-				<label for="color-icon-primary"><i class="icon-check-mini"></i> primary</label>
-			</div>
-			{{!-- <div class="pj-checkbox pj-checkbox-success">
-				<input type="checkbox" name="icon[]" id="color-icon-success" value="success" />
-				<label for="color-icon-success"><i class="icon-check-mini"></i> success</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-info">
-				<input type="checkbox" name="icon[]" id="color-icon-info" value="info" />
-				<label for="color-icon-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-warning">
-				<input type="checkbox" name="icon[]" id="color-icon-warning" value="warning" />
-				<label for="color-icon-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-danger">
-				<input type="checkbox" name="icon[]" id="color-icon-danger" value="danger" disabled="disabled"/>
-				<label for="color-icon-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
-			</div> --}}
-		</div>
-	</section>
-	<section>
-		<h4>Solid</h4>
-		<div class="example">
-			<div class="pj-checkbox pj-checkbox-solid">
-				<input type="checkbox" name="solid[]" id="color-solid-default" value="default" checked="checked" />
-				<label for="color-solid-default"><i class="icon-check-mini"></i> default</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-solid pj-checkbox-primary">
-				<input type="checkbox" name="solid[]" id="color-solid-primary" value="primary" />
-				<label for="color-solid-primary"><i class="icon-check-mini"></i> primary</label>
-			</div>
-			{{!-- <div class="pj-checkbox pj-checkbox-solid pj-checkbox-success">
-				<input type="checkbox" name="solid[]" id="color-solid-success" value="success" />
-				<label for="color-solid-success"><i class="icon-check-mini"></i> success</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-solid pj-checkbox-info">
-				<input type="checkbox" name="solid[]" id="color-solid-info" value="info" />
-				<label for="color-solid-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-solid pj-checkbox-warning">
-				<input type="checkbox" name="solid[]" id="color-solid-warning" value="warning" />
-				<label for="color-solid-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-solid pj-checkbox-danger">
-				<input type="checkbox" name="solid[]" id="color-solid-danger" value="danger" disabled="disabled"/>
-				<label for="color-solid-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
-			</div> --}}
-		</div>
-	</section>
-	<section>
-		<h4>Solid Icon</h4>
-		<div class="example">
-			<div class="pj-checkbox pj-checkbox-solid">
-				<input type="checkbox" name="solid-icon[]" id="color-solid-icon-default" value="default" checked="checked" />
-				<label for="color-solid-icon-default"><i class="icon-check-mini"></i> default</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-solid pj-checkbox-primary">
-				<input type="checkbox" name="solid-icon[]" id="color-solid-icon-primary" value="primary" />
-				<label for="color-solid-icon-primary"><i class="icon-check-mini"></i> primary</label>
-			</div>
-			{{!-- <div class="pj-checkbox pj-checkbox-solid pj-checkbox-success">
-				<input type="checkbox" name="solid-icon[]" id="color-solid-icon-success" value="success" />
-				<label for="color-solid-icon-success"><i class="icon-check-mini"></i> success</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-solid pj-checkbox-info">
-				<input type="checkbox" name="solid-icon[]" id="color-solid-icon-info" value="info" />
-				<label for="color-solid-icon-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-solid pj-checkbox-warning">
-				<input type="checkbox" name="solid-icon[]" id="color-solid-icon-warning" value="warning" />
-				<label for="color-solid-icon-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-solid pj-checkbox-danger">
-				<input type="checkbox" name="solid-icon[]" id="color-solid-icon-danger" value="danger" disabled="disabled"/>
-				<label for="color-solid-icon-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
-			</div> --}}
-		</div>
-	</section>
-	<section>
-		<h4>Plain Icon</h4>
-		<div class="example">
-			<div class="pj-checkbox pj-checkbox-plain">
-				<input type="checkbox" name="plain-icon[]" id="color-plain-icon-default" value="default" checked="checked" />
-				<label for="color-plain-icon-default"><i class="icon-check-mini"></i> default</label>
-			</div>
-			{{!-- <div class="pj-checkbox pj-checkbox-plain pj-checkbox-primary">
-				<input type="checkbox" name="plain-icon[]" id="color-plain-icon-primary" value="primary" />
-				<label for="color-plain-icon-primary"><i class="icon-check-mini"></i> primary</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-plain pj-checkbox-success">
-				<input type="checkbox" name="plain-icon[]" id="color-plain-icon-success" value="success" />
-				<label for="color-plain-icon-success"><i class="icon-check-mini"></i> success</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-plain pj-checkbox-info">
-				<input type="checkbox" name="plain-icon[]" id="color-plain-icon-info" value="info" />
-				<label for="color-plain-icon-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-plain pj-checkbox-warning">
-				<input type="checkbox" name="plain-icon[]" id="color-plain-icon-warning" value="warning" />
-				<label for="color-plain-icon-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
-			</div>
-			<div class="pj-checkbox pj-checkbox-plain pj-checkbox-danger">
-				<input type="checkbox" name="plain-icon[]" id="color-plain-icon-danger" value="danger" disabled="disabled"/>
-				<label for="color-plain-icon-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
-			</div> --}}
-		</div>
-	</section>
-	<section>
-		<h4>WordPress demo</h4>
-		<div class="example">
-			<div data-theme="solid success">
-				<input id="wordpress-demo" type="checkbox" data-plugin="checkbox" id="checkbox" name="checkbox">
-				<label for="wordpress-demo" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</i>
-			</div>
-		</div>
-		<script>
-			(function() {
-				Pj.checkbox('[data-plugin]')
-			})()
-		</script>
-	</section>
-	<section>
-		<h4>Custom Colors</h4>
-		<div class="example">
-			<div class="pj-checkbox pj-checkbox-solid pj-checkbox-primary">
-				<input type="checkbox" name="solid[]" id="color-custom" value="primary" />
-				<label for="color-custom"><i class="icon-check-mini"></i> Blue</label>
-			</div>
-		</div>
-	</section>
+  <h3>Css</h3>
+  <section>
+    <h4>Inline</h4>
+    <div class="example">
+      <div class="pj-checkbox pj-checkbox-inline">
+        <input type="checkbox" name="inline[]" id="inline-foo" value="foo" checked="checked" />
+        <label for="inline-foo"><i class="icon-check-mini"></i> Foo</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-inline">
+        <input type="checkbox" name="inline[]" id="inline-bar" value="bar" />
+        <label for="inline-bar"><i class="icon-check-mini"></i> Bar</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-inline">
+        <input type="checkbox" name="inline[]" id="inline-baz" value="baz"/>
+        <label for="inline-baz"><i class="icon-check-mini"></i> Baz</label>
+      </div>
+    </div>
+  </section>
+  {{!-- <section>
+    <h4>Colors</h4>
+    <div class="example">
+      <div class="pj-checkbox">
+        <input type="checkbox" name="colors[]" id="color-default" value="default" checked="checked" />
+        <label for="color-default"><i class="icon-check-mini"></i> default</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-primary">
+        <input type="checkbox" name="colors[]" id="color-primary" value="primary" />
+        <label for="color-primary"><i class="icon-check-mini"></i> primary</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-success">
+        <input type="checkbox" name="colors[]" id="color-success" value="success" />
+        <label for="color-success"><i class="icon-check-mini"></i> success</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-info">
+        <input type="checkbox" name="colors[]" id="color-info" value="info" />
+        <label for="color-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-warning">
+        <input type="checkbox" name="colors[]" id="color-warning" value="warning" />
+        <label for="color-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-danger">
+        <input type="checkbox" name="colors[]" id="color-danger" value="danger" disabled="disabled"/>
+        <label for="color-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
+      </div>
+    </div>
+  </section> --}}
+  <section>
+    <h4>Icon</h4>
+    <div class="example">
+      <div class="pj-checkbox">
+        <input type="checkbox" name="icon[]" id="color-icon-default" value="default" checked="checked" />
+        <label for="color-icon-default"><i class="icon-check-mini"></i> default</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-primary">
+        <input type="checkbox" name="icon[]" id="color-icon-primary" value="primary" />
+        <label for="color-icon-primary"><i class="icon-check-mini"></i> primary</label>
+      </div>
+      {{!-- <div class="pj-checkbox pj-checkbox-success">
+        <input type="checkbox" name="icon[]" id="color-icon-success" value="success" />
+        <label for="color-icon-success"><i class="icon-check-mini"></i> success</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-info">
+        <input type="checkbox" name="icon[]" id="color-icon-info" value="info" />
+        <label for="color-icon-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-warning">
+        <input type="checkbox" name="icon[]" id="color-icon-warning" value="warning" />
+        <label for="color-icon-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-danger">
+        <input type="checkbox" name="icon[]" id="color-icon-danger" value="danger" disabled="disabled"/>
+        <label for="color-icon-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
+      </div> --}}
+    </div>
+  </section>
+  <section>
+    <h4>Solid</h4>
+    <div class="example">
+      <div class="pj-checkbox pj-checkbox-solid">
+        <input type="checkbox" name="solid[]" id="color-solid-default" value="default" checked="checked" />
+        <label for="color-solid-default"><i class="icon-check-mini"></i> default</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-solid pj-checkbox-primary">
+        <input type="checkbox" name="solid[]" id="color-solid-primary" value="primary" />
+        <label for="color-solid-primary"><i class="icon-check-mini"></i> primary</label>
+      </div>
+      {{!-- <div class="pj-checkbox pj-checkbox-solid pj-checkbox-success">
+        <input type="checkbox" name="solid[]" id="color-solid-success" value="success" />
+        <label for="color-solid-success"><i class="icon-check-mini"></i> success</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-solid pj-checkbox-info">
+        <input type="checkbox" name="solid[]" id="color-solid-info" value="info" />
+        <label for="color-solid-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-solid pj-checkbox-warning">
+        <input type="checkbox" name="solid[]" id="color-solid-warning" value="warning" />
+        <label for="color-solid-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-solid pj-checkbox-danger">
+        <input type="checkbox" name="solid[]" id="color-solid-danger" value="danger" disabled="disabled"/>
+        <label for="color-solid-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
+      </div> --}}
+    </div>
+  </section>
+  <section>
+    <h4>Solid Icon</h4>
+    <div class="example">
+      <div class="pj-checkbox pj-checkbox-solid">
+        <input type="checkbox" name="solid-icon[]" id="color-solid-icon-default" value="default" checked="checked" />
+        <label for="color-solid-icon-default"><i class="icon-check-mini"></i> default</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-solid pj-checkbox-primary">
+        <input type="checkbox" name="solid-icon[]" id="color-solid-icon-primary" value="primary" />
+        <label for="color-solid-icon-primary"><i class="icon-check-mini"></i> primary</label>
+      </div>
+      {{!-- <div class="pj-checkbox pj-checkbox-solid pj-checkbox-success">
+        <input type="checkbox" name="solid-icon[]" id="color-solid-icon-success" value="success" />
+        <label for="color-solid-icon-success"><i class="icon-check-mini"></i> success</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-solid pj-checkbox-info">
+        <input type="checkbox" name="solid-icon[]" id="color-solid-icon-info" value="info" />
+        <label for="color-solid-icon-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-solid pj-checkbox-warning">
+        <input type="checkbox" name="solid-icon[]" id="color-solid-icon-warning" value="warning" />
+        <label for="color-solid-icon-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-solid pj-checkbox-danger">
+        <input type="checkbox" name="solid-icon[]" id="color-solid-icon-danger" value="danger" disabled="disabled"/>
+        <label for="color-solid-icon-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
+      </div> --}}
+    </div>
+  </section>
+  <section>
+    <h4>Plain Icon</h4>
+    <div class="example">
+      <div class="pj-checkbox pj-checkbox-plain">
+        <input type="checkbox" name="plain-icon[]" id="color-plain-icon-default" value="default" checked="checked" />
+        <label for="color-plain-icon-default"><i class="icon-check-mini"></i> default</label>
+      </div>
+      {{!-- <div class="pj-checkbox pj-checkbox-plain pj-checkbox-primary">
+        <input type="checkbox" name="plain-icon[]" id="color-plain-icon-primary" value="primary" />
+        <label for="color-plain-icon-primary"><i class="icon-check-mini"></i> primary</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-plain pj-checkbox-success">
+        <input type="checkbox" name="plain-icon[]" id="color-plain-icon-success" value="success" />
+        <label for="color-plain-icon-success"><i class="icon-check-mini"></i> success</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-plain pj-checkbox-info">
+        <input type="checkbox" name="plain-icon[]" id="color-plain-icon-info" value="info" />
+        <label for="color-plain-icon-info" class="pj-checkbox pj-checkbox-info"><i class="icon-check-mini"></i> info</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-plain pj-checkbox-warning">
+        <input type="checkbox" name="plain-icon[]" id="color-plain-icon-warning" value="warning" />
+        <label for="color-plain-icon-warning" class="pj-checkbox pj-checkbox-warning"><i class="icon-check-mini"></i> warning</label>
+      </div>
+      <div class="pj-checkbox pj-checkbox-plain pj-checkbox-danger">
+        <input type="checkbox" name="plain-icon[]" id="color-plain-icon-danger" value="danger" disabled="disabled"/>
+        <label for="color-plain-icon-danger" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</label>
+      </div> --}}
+    </div>
+  </section>
+  <section>
+    <h4>WordPress demo</h4>
+    <div class="example">
+      <div data-theme="solid success">
+        <input id="wordpress-demo" type="checkbox" data-plugin="checkbox" id="checkbox" name="checkbox">
+        <label for="wordpress-demo" class="pj-checkbox pj-checkbox-danger"><i class="icon-check-mini"></i> danger</i>
+      </div>
+    </div>
+    <script>
+      (function() {
+        Pj.checkbox('[data-plugin]')
+      })()
+    </script>
+  </section>
+  <section>
+    <h4>Custom Colors</h4>
+    <div class="example">
+      <div class="pj-checkbox pj-checkbox-solid pj-checkbox-primary">
+        <input type="checkbox" name="solid[]" id="color-custom" value="primary" />
+        <label for="color-custom"><i class="icon-check-mini"></i> Blue</label>
+      </div>
+    </div>
+  </section>
 </section>

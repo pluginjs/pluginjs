@@ -1,95 +1,95 @@
 {
-	"meta": {
-		"moduleName": "bg-video",
-		"namespace": "bgVideo",
-		"Namespace": "BgVideo",
-		"options": [
-			{
-				"name": "template",
-				"desc": "Main structure template",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "type",
-				"desc": "Different video sources, such as HTML5 Youtube Vimeo",
-				"defaultValue": ""
-			},
-			{
-				"name": "video",
-				"desc": "Video configuration",
-				"defaultValue": "{\"id\":\"\",\"url\":\"\",\"mute\":true,\"repeat\":true,\"autoplay\":true,\"mobileImage\":\"\"}"
-			}
-		],
-		"option": "template",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "play",
-				"desc": "Gets fired when video is play"
-			},
-			{
-				"name": "pause",
-				"desc": "Gets fired when video is pause"
-			},
-			{
-				"name": "stop",
-				"desc": "Gets fired when video is stop"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "play",
-				"desc": "Play video"
-			},
-			{
-				"name": "pause",
-				"desc": "Pause  video"
-			},
-			{
-				"name": "stop",
-				"desc": "Stop video"
-			},
-			{
-				"name": "setVolume",
-				"desc": "Set the video volume"
-			},
-			{
-				"name": "change",
-				"desc": "Switch video"
-			}
-		],
-		"method": "destroy",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-bgVideo"
-			},
-			{
-				"name": "OVERLAY",
-				"desc": "Declare plugin overlay",
-				"value": "{namespace}-overlay"
-			},
-			{
-				"name": "POINTEREVENTNONE",
-				"desc": "Event penetration effect",
-				"value": "pointer-events-none"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "bg-video",
+    "namespace": "bgVideo",
+    "Namespace": "BgVideo",
+    "options": [
+      {
+        "name": "template",
+        "desc": "Main structure template",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "type",
+        "desc": "Different video sources, such as HTML5 Youtube Vimeo",
+        "defaultValue": ""
+      },
+      {
+        "name": "video",
+        "desc": "Video configuration",
+        "defaultValue": "{\"id\":\"\",\"url\":\"\",\"mute\":true,\"repeat\":true,\"autoplay\":true,\"mobileImage\":\"\"}"
+      }
+    ],
+    "option": "template",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "play",
+        "desc": "Gets fired when video is play"
+      },
+      {
+        "name": "pause",
+        "desc": "Gets fired when video is pause"
+      },
+      {
+        "name": "stop",
+        "desc": "Gets fired when video is stop"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "play",
+        "desc": "Play video"
+      },
+      {
+        "name": "pause",
+        "desc": "Pause  video"
+      },
+      {
+        "name": "stop",
+        "desc": "Stop video"
+      },
+      {
+        "name": "setVolume",
+        "desc": "Set the video volume"
+      },
+      {
+        "name": "change",
+        "desc": "Switch video"
+      }
+    ],
+    "method": "destroy",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-bgVideo"
+      },
+      {
+        "name": "OVERLAY",
+        "desc": "Declare plugin overlay",
+        "value": "{namespace}-overlay"
+      },
+      {
+        "name": "POINTEREVENTNONE",
+        "desc": "Event penetration effect",
+        "value": "pointer-events-none"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

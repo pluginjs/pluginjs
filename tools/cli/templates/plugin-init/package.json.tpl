@@ -1,53 +1,48 @@
 {
-	"name": "@pluginjs/{{moduleName}}",
-	"main": "dist/{{moduleName}}.umd.js",
-	"css": {
-		"source": "src/css/main.scss",
-		"main": "dist/{{moduleName}}.css",
-		"min": "dist/{{moduleName}}.min.css"
-	},
-	"dependencies": {
-		"@pluginjs/component": "^0.2.22",
-		"@pluginjs/pluginjs": "^0.2.25",
-		"@pluginjs/styles": "^0.2.19"
-	},
-	"scripts": {
-		"build": "plugin build",
-		"build:scss": "plugin script build-scss",
-		"build:js": "plugin script build-js",
-		"build:md": "plugin script build-md",
-		"lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
-		"test": "jest"
-	},
-	"version": "0.0.1",
-	"description": "A flexible modern {{moduleName}} js plugin.",
-	"author": "Creation Studio Limited",
-	"homepage": "https://github.com/pluginjs/plugin.js",
-	"license": "GPL-3.0",
-	"jest": {
-		"setupTestFrameworkScriptFile": "jest-extended",
-		"verbose": true,
-		"testPathIgnorePatterns": [
-			"fixtures"
-		]
-	},
-	"category": "{{category}}",
-	"module": "dist/{{moduleName}}.esm.js",
-	"source": "src/main.js",
-	"cjs": "dist/{{moduleName}}.cjs.js",
-	"devDependencies": {
-		"@babel/core": "^7.0.0-beta.47",
-		"@babel/plugin-proposal-class-properties": "^7.0.0-beta.47",
-		"@babel/plugin-proposal-decorators": "^7.0.0-beta.47",
-		"@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.47",
-		"@babel/preset-env": "^7.0.0-beta.47",
-		"@pluginjs/cli": "^0.5.18",
-		"babel-jest": "^23.0.1",
-		"jest": "^23.1.0",
-		"jest-extended": "^0.7.2",
-		"rollup-plugin-babel": "^4.0.0-beta.4",
-		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-node-resolve": "^3.3.0",
-		"rollup": "^0.59.2"
-	}
+  "name": "@pluginjs/{{moduleName}}",
+  "description": "A flexible modern {{moduleName}} js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "version": "0.0.1",
+  "main": "dist/{{moduleName}}.umd.js",
+  "module": "dist/{{moduleName}}.esm.js",
+  "cjs": "dist/{{moduleName}}.cjs.js",
+  "source": "src/main.js",
+  "css": {
+    "source": "src/css/main.scss",
+    "main": "dist/{{moduleName}}.css",
+    "min": "dist/{{moduleName}}.min.css"
+  },
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/component": "*",
+    "@pluginjs/pluginjs": "*",
+    "@pluginjs/styles": "*"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "category": "{{category}}",
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  }
 }

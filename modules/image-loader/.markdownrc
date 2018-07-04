@@ -1,101 +1,101 @@
 {
-	"meta": {
-		"moduleName": "image-loader",
-		"namespace": "imageLoader",
-		"Namespace": "ImageLoader",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "localeFallbacks",
-				"desc": "Set the plugin is localeFallbacks or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "selector",
-				"desc": "Img selector",
-				"defaultValue": "img"
-			}
-		],
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "load",
-				"desc": "Load image file"
-			},
-			{
-				"name": "onComplete",
-				"desc": "Get whether image was loaded"
-			},
-			{
-				"name": "finally",
-				"desc": "Get is finally"
-			},
-			{
-				"name": "onLoaded",
-				"desc": "Set onLoaded callback"
-			},
-			{
-				"name": "onError",
-				"desc": "Set error callback"
-			},
-			{
-				"name": "add",
-				"desc": "Add image"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-imageLoader"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "image-loader",
+    "namespace": "imageLoader",
+    "Namespace": "ImageLoader",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "localeFallbacks",
+        "desc": "Set the plugin is localeFallbacks or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "selector",
+        "desc": "Img selector",
+        "defaultValue": "img"
+      }
+    ],
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "load",
+        "desc": "Load image file"
+      },
+      {
+        "name": "onComplete",
+        "desc": "Get whether image was loaded"
+      },
+      {
+        "name": "finally",
+        "desc": "Get is finally"
+      },
+      {
+        "name": "onLoaded",
+        "desc": "Set onLoaded callback"
+      },
+      {
+        "name": "onError",
+        "desc": "Set error callback"
+      },
+      {
+        "name": "add",
+        "desc": "Add image"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-imageLoader"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

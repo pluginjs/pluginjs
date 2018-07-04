@@ -1,218 +1,218 @@
 {
-	"meta": {
-		"moduleName": "wizard",
-		"namespace": "wizard",
-		"Namespace": "Wizard",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "step",
-				"desc": "Set step value",
-				"defaultValue": ".pj-wizard-steps > li"
-			},
-			{
-				"name": "getPane",
-				"desc": "Set getPane callback",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "buttonsAppendTo",
-				"desc": "Set button append path",
-				"defaultValue": "this"
-			},
-			{
-				"name": "autoFocus",
-				"desc": "Set is enabled auto focus or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "keyboard",
-				"desc": "Set is enabled keyboard or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "enableWhenVisited",
-				"desc": "Set is enable visite or not",
-				"defaultValue": "false"
-			},
-			{
-				"name": "loading",
-				"desc": "Set loading step callback (include show, hide and fail)",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "cacheContent",
-				"desc": "Set is enabled cache content or not",
-				"defaultValue": "false"
-			},
-			{
-				"name": "validator",
-				"desc": "Set validator callback",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "localeFallbacks",
-				"desc": "Set is enabled locale fallbacks or not",
-				"defaultValue": "true"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "update",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "afterChange",
-				"desc": "Gets fired when plugin has changed"
-			},
-			{
-				"name": "beforeChange",
-				"desc": "Gets fired when plugin before change"
-			},
-			{
-				"name": "next",
-				"desc": "Gets fired when plugin has trigger next event"
-			},
-			{
-				"name": "back",
-				"desc": "Gets fired when plugin has trigger back event"
-			},
-			{
-				"name": "finish",
-				"desc": "Gets fired when plugin has finish"
-			},
-			{
-				"name": "init",
-				"desc": "Gets fired when plugin is initialing"
-			}
-		],
-		"event": "update",
-		"Event": "Update",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			}
-		],
-		"method": "enable",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-wizard"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "SUCCESS",
-				"desc": "Announce plugin is loading success",
-				"value": "{namespace}-success"
-			},
-			{
-				"name": "ERROR",
-				"desc": "Announce plugin has throw a error",
-				"value": "{namespace}-error"
-			},
-			{
-				"name": "STEP",
-				"desc": "Declare plugin step",
-				"value": {
-					"DONE": "{namespace}-done",
-					"ERROR": "{namespace}-error",
-					"ACTIVE": "{namespace}-current",
-					"DISABLED": "{namespace}-disabled",
-					"ACTIVING": "{namespace}-activing",
-					"LOADING": "{namespace}-loading",
-					"FORMGROUP": "{namespace}-formGroup"
-				}
-			},
-			{
-				"name": "PANE",
-				"desc": "Declare plugin pane",
-				"value": {
-					"CONTENT": "{namespace}-content",
-					"ACTIVE": "{namespace}-active",
-					"ACTIVING": "{namespace}-activing"
-				}
-			},
-			{
-				"name": "BUTTONS",
-				"desc": "Declare buttons node",
-				"value": {
-					"CONTAINER": "{namespace}-buttons",
-					"BACK": "{namespace}-back",
-					"NEXT": "{namespace}-next",
-					"FINISH": "{namespace}-finish"
-				}
-			},
-			{
-				"name": "BUTTON",
-				"desc": "Declare button node",
-				"value": {
-					"HIDE": "{namespace}-hide",
-					"DISABLED": "{namespace}-disabled"
-				}
-			}
-		],
-		"translations": [
-			{
-				"name": "back",
-				"en": "Back",
-				"zh": "返回"
-			},
-			{
-				"name": "next",
-				"en": "Next",
-				"zh": "前进"
-			},
-			{
-				"name": "finish",
-				"en": "Finish",
-				"zh": "完成"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "wizard",
+    "namespace": "wizard",
+    "Namespace": "Wizard",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "step",
+        "desc": "Set step value",
+        "defaultValue": ".pj-wizard-steps > li"
+      },
+      {
+        "name": "getPane",
+        "desc": "Set getPane callback",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "buttonsAppendTo",
+        "desc": "Set button append path",
+        "defaultValue": "this"
+      },
+      {
+        "name": "autoFocus",
+        "desc": "Set is enabled auto focus or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "keyboard",
+        "desc": "Set is enabled keyboard or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "enableWhenVisited",
+        "desc": "Set is enable visite or not",
+        "defaultValue": "false"
+      },
+      {
+        "name": "loading",
+        "desc": "Set loading step callback (include show, hide and fail)",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "cacheContent",
+        "desc": "Set is enabled cache content or not",
+        "defaultValue": "false"
+      },
+      {
+        "name": "validator",
+        "desc": "Set validator callback",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "localeFallbacks",
+        "desc": "Set is enabled locale fallbacks or not",
+        "defaultValue": "true"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "update",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "afterChange",
+        "desc": "Gets fired when plugin has changed"
+      },
+      {
+        "name": "beforeChange",
+        "desc": "Gets fired when plugin before change"
+      },
+      {
+        "name": "next",
+        "desc": "Gets fired when plugin has trigger next event"
+      },
+      {
+        "name": "back",
+        "desc": "Gets fired when plugin has trigger back event"
+      },
+      {
+        "name": "finish",
+        "desc": "Gets fired when plugin has finish"
+      },
+      {
+        "name": "init",
+        "desc": "Gets fired when plugin is initialing"
+      }
+    ],
+    "event": "update",
+    "Event": "Update",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-wizard"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "SUCCESS",
+        "desc": "Announce plugin is loading success",
+        "value": "{namespace}-success"
+      },
+      {
+        "name": "ERROR",
+        "desc": "Announce plugin has throw a error",
+        "value": "{namespace}-error"
+      },
+      {
+        "name": "STEP",
+        "desc": "Declare plugin step",
+        "value": {
+          "DONE": "{namespace}-done",
+          "ERROR": "{namespace}-error",
+          "ACTIVE": "{namespace}-current",
+          "DISABLED": "{namespace}-disabled",
+          "ACTIVING": "{namespace}-activing",
+          "LOADING": "{namespace}-loading",
+          "FORMGROUP": "{namespace}-formGroup"
+        }
+      },
+      {
+        "name": "PANE",
+        "desc": "Declare plugin pane",
+        "value": {
+          "CONTENT": "{namespace}-content",
+          "ACTIVE": "{namespace}-active",
+          "ACTIVING": "{namespace}-activing"
+        }
+      },
+      {
+        "name": "BUTTONS",
+        "desc": "Declare buttons node",
+        "value": {
+          "CONTAINER": "{namespace}-buttons",
+          "BACK": "{namespace}-back",
+          "NEXT": "{namespace}-next",
+          "FINISH": "{namespace}-finish"
+        }
+      },
+      {
+        "name": "BUTTON",
+        "desc": "Declare button node",
+        "value": {
+          "HIDE": "{namespace}-hide",
+          "DISABLED": "{namespace}-disabled"
+        }
+      }
+    ],
+    "translations": [
+      {
+        "name": "back",
+        "en": "Back",
+        "zh": "返回"
+      },
+      {
+        "name": "next",
+        "en": "Next",
+        "zh": "前进"
+      },
+      {
+        "name": "finish",
+        "en": "Finish",
+        "zh": "完成"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

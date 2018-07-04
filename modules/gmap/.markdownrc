@@ -1,230 +1,230 @@
 {
-	"meta": {
-		"moduleName": "gmap",
-		"namespace": "gmap",
-		"Namespace": "Gmap",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "apiKey",
-				"desc": "Set apiKey",
-				"defaultValue": ""
-			},
-			{
-				"name": "mapType",
-				"desc": "Set mapType",
-				"defaultValue": "ROADMAP"
-			},
-			{
-				"name": "backgroundColor",
-				"desc": "Set background color",
-				"defaultValue": "#e5e3df"
-			},
-			{
-				"name": "defaultUI",
-				"desc": "Set default UI",
-				"defaultValue": "true"
-			},
-			{
-				"name": "doubleClickZoom",
-				"desc": "Set double click zoom",
-				"defaultValue": "false"
-			},
-			{
-				"name": "mapTypeControl",
-				"desc": "Set mapTypeControl",
-				"defaultValue": "true"
-			},
-			{
-				"name": "maxZoom",
-				"desc": "Set maxZoom",
-				"defaultValue": "null"
-			},
-			{
-				"name": "minZoom",
-				"desc": "Set maxZoom",
-				"defaultValue": "null"
-			},
-			{
-				"name": "panControl",
-				"desc": "Set panControl",
-				"defaultValue": "false"
-			},
-			{
-				"name": "rotateControl",
-				"desc": "Set rotateControl",
-				"defaultValue": "false"
-			},
-			{
-				"name": "scaleControl",
-				"desc": "Set scaleControl",
-				"defaultValue": "false"
-			},
-			{
-				"name": "scrollwheel",
-				"desc": "Set scrollwheel",
-				"defaultValue": "false"
-			},
-			{
-				"name": "streetViewControl",
-				"desc": "Set streetViewControl",
-				"defaultValue": "false"
-			},
-			{
-				"name": "styles",
-				"desc": "Set styles",
-				"defaultValue": "false"
-			},
-			{
-				"name": "zoom",
-				"desc": "Set zoom",
-				"defaultValue": "3"
-			},
-			{
-				"name": "zoomControl",
-				"desc": "Set zoomControl",
-				"defaultValue": "true"
-			},
-			{
-				"name": "controlsPositions",
-				"desc": "Set controlsPositions",
-				"defaultValue": "{\"mapType\":null,\"pan\":null,\"rotate\":null,\"scale\":null,\"streetView\":null,\"zoom\":null}"
-			},
-			{
-				"name": "latitude",
-				"desc": "Set latitude",
-				"defaultValue": "null"
-			},
-			{
-				"name": "longitude",
-				"desc": "Set longitude",
-				"defaultValue": "null"
-			},
-			{
-				"name": "address",
-				"desc": "Set address",
-				"defaultValue": ""
-			},
-			{
-				"name": "markers",
-				"desc": "Set markers",
-				"defaultValue": "[]"
-			},
-			{
-				"name": "icon",
-				"desc": "Set default icon",
-				"defaultValue": "{\"url\":\"http://www.google.com/mapfiles/marker.png\",\"size\":[20,34],\"anchor\":[9,34]}"
-			},
-			{
-				"name": "marker",
-				"desc": "Set marker",
-				"defaultValue": "true"
-			},
-			{
-				"name": "content",
-				"desc": "Set content",
-				"defaultValue": ""
-			},
-			{
-				"name": "popup",
-				"desc": "Set poup",
-				"defaultValue": "true"
-			},
-			{
-				"name": "libraries",
-				"desc": "Set libraries",
-				"defaultValue": "null"
-			},
-			{
-				"name": "onInit",
-				"desc": "Set onInit",
-				"defaultValue": "null"
-			},
-			{
-				"name": "onReady",
-				"desc": "Set onReady",
-				"defaultValue": "null"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "addMarker",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "addMarkers",
-				"desc": "Add value of addMarkers"
-			},
-			{
-				"name": "removerMarker",
-				"desc": "Remove value of removerMarker"
-			},
-			{
-				"name": "clearMarkers",
-				"desc": "Clear value of markers"
-			}
-		],
-		"method": "enable",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "as-gmap"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "ELEMENT",
-				"desc": "Declare plugin element",
-				"value": "{namespace}"
-			},
-			{
-				"name": "CONTENT",
-				"desc": "Declare plugin content",
-				"value": "{namespace}-content"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "gmap",
+    "namespace": "gmap",
+    "Namespace": "Gmap",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "apiKey",
+        "desc": "Set apiKey",
+        "defaultValue": ""
+      },
+      {
+        "name": "mapType",
+        "desc": "Set mapType",
+        "defaultValue": "ROADMAP"
+      },
+      {
+        "name": "backgroundColor",
+        "desc": "Set background color",
+        "defaultValue": "#e5e3df"
+      },
+      {
+        "name": "defaultUI",
+        "desc": "Set default UI",
+        "defaultValue": "true"
+      },
+      {
+        "name": "doubleClickZoom",
+        "desc": "Set double click zoom",
+        "defaultValue": "false"
+      },
+      {
+        "name": "mapTypeControl",
+        "desc": "Set mapTypeControl",
+        "defaultValue": "true"
+      },
+      {
+        "name": "maxZoom",
+        "desc": "Set maxZoom",
+        "defaultValue": "null"
+      },
+      {
+        "name": "minZoom",
+        "desc": "Set maxZoom",
+        "defaultValue": "null"
+      },
+      {
+        "name": "panControl",
+        "desc": "Set panControl",
+        "defaultValue": "false"
+      },
+      {
+        "name": "rotateControl",
+        "desc": "Set rotateControl",
+        "defaultValue": "false"
+      },
+      {
+        "name": "scaleControl",
+        "desc": "Set scaleControl",
+        "defaultValue": "false"
+      },
+      {
+        "name": "scrollwheel",
+        "desc": "Set scrollwheel",
+        "defaultValue": "false"
+      },
+      {
+        "name": "streetViewControl",
+        "desc": "Set streetViewControl",
+        "defaultValue": "false"
+      },
+      {
+        "name": "styles",
+        "desc": "Set styles",
+        "defaultValue": "false"
+      },
+      {
+        "name": "zoom",
+        "desc": "Set zoom",
+        "defaultValue": "3"
+      },
+      {
+        "name": "zoomControl",
+        "desc": "Set zoomControl",
+        "defaultValue": "true"
+      },
+      {
+        "name": "controlsPositions",
+        "desc": "Set controlsPositions",
+        "defaultValue": "{\"mapType\":null,\"pan\":null,\"rotate\":null,\"scale\":null,\"streetView\":null,\"zoom\":null}"
+      },
+      {
+        "name": "latitude",
+        "desc": "Set latitude",
+        "defaultValue": "null"
+      },
+      {
+        "name": "longitude",
+        "desc": "Set longitude",
+        "defaultValue": "null"
+      },
+      {
+        "name": "address",
+        "desc": "Set address",
+        "defaultValue": ""
+      },
+      {
+        "name": "markers",
+        "desc": "Set markers",
+        "defaultValue": "[]"
+      },
+      {
+        "name": "icon",
+        "desc": "Set default icon",
+        "defaultValue": "{\"url\":\"http://www.google.com/mapfiles/marker.png\",\"size\":[20,34],\"anchor\":[9,34]}"
+      },
+      {
+        "name": "marker",
+        "desc": "Set marker",
+        "defaultValue": "true"
+      },
+      {
+        "name": "content",
+        "desc": "Set content",
+        "defaultValue": ""
+      },
+      {
+        "name": "popup",
+        "desc": "Set poup",
+        "defaultValue": "true"
+      },
+      {
+        "name": "libraries",
+        "desc": "Set libraries",
+        "defaultValue": "null"
+      },
+      {
+        "name": "onInit",
+        "desc": "Set onInit",
+        "defaultValue": "null"
+      },
+      {
+        "name": "onReady",
+        "desc": "Set onReady",
+        "defaultValue": "null"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "addMarker",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "addMarkers",
+        "desc": "Add value of addMarkers"
+      },
+      {
+        "name": "removerMarker",
+        "desc": "Remove value of removerMarker"
+      },
+      {
+        "name": "clearMarkers",
+        "desc": "Clear value of markers"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "as-gmap"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "ELEMENT",
+        "desc": "Declare plugin element",
+        "value": "{namespace}"
+      },
+      {
+        "name": "CONTENT",
+        "desc": "Declare plugin content",
+        "value": "{namespace}-content"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

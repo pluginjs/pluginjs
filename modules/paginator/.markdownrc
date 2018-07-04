@@ -1,166 +1,166 @@
 {
-	"meta": {
-		"moduleName": "paginator",
-		"namespace": "paginator",
-		"Namespace": "Paginator",
-		"options": [
-			{
-				"name": "totalItems",
-				"desc": "Set totalItem",
-				"defaultValue": "100"
-			},
-			{
-				"name": "currentPage",
-				"desc": "Set currentPage",
-				"defaultValue": "1"
-			},
-			{
-				"name": "itemsPerPage",
-				"desc": "Set itemsPerPage",
-				"defaultValue": "10"
-			},
-			{
-				"name": "layout",
-				"desc": "Set layout",
-				"defaultValue": "total, prev, list, next"
-			},
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "components",
-				"desc": "Set components",
-				"defaultValue": "{\"first\":{},\"prev\":{},\"next\":{},\"last\":{},\"list\":{},\"jumper\":{}}"
-			},
-			{
-				"name": "onInit",
-				"desc": "Set onInit",
-				"defaultValue": "null"
-			},
-			{
-				"name": "onReady",
-				"desc": "Set onReady",
-				"defaultValue": "null"
-			},
-			{
-				"name": "onChange",
-				"desc": "Set onChange",
-				"defaultValue": "null"
-			}
-		],
-		"option": "totalItems",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "resize",
-				"desc": "Gets fired when plugin has resize"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "first",
-				"desc": "Get value of first"
-			},
-			{
-				"name": "last",
-				"desc": "Get value of last"
-			},
-			{
-				"name": "next",
-				"desc": "Get value of next"
-			},
-			{
-				"name": "prev",
-				"desc": "Get value of prev"
-			},
-			{
-				"name": "goTo",
-				"desc": "Get value of goTo"
-			},
-			{
-				"name": "update",
-				"desc": "Get value of update"
-			}
-		],
-		"method": "enable",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-paginator"
-			},
-			{
-				"name": "ELEMENT",
-				"desc": "Declare plugin element",
-				"value": "{namespace}"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}-{theme}"
-			},
-			{
-				"name": "LINK",
-				"desc": "Declare plugin link",
-				"value": "{namespace}-link"
-			},
-			{
-				"name": "ITEM",
-				"desc": "Declare plugin item",
-				"value": "{namespace}-item"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "JUMPER",
-				"desc": "Declare plugin jumper",
-				"value": "{namespace}-jumper"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "paginator",
+    "namespace": "paginator",
+    "Namespace": "Paginator",
+    "options": [
+      {
+        "name": "totalItems",
+        "desc": "Set totalItem",
+        "defaultValue": "100"
+      },
+      {
+        "name": "currentPage",
+        "desc": "Set currentPage",
+        "defaultValue": "1"
+      },
+      {
+        "name": "itemsPerPage",
+        "desc": "Set itemsPerPage",
+        "defaultValue": "10"
+      },
+      {
+        "name": "layout",
+        "desc": "Set layout",
+        "defaultValue": "total, prev, list, next"
+      },
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "components",
+        "desc": "Set components",
+        "defaultValue": "{\"first\":{},\"prev\":{},\"next\":{},\"last\":{},\"list\":{},\"jumper\":{}}"
+      },
+      {
+        "name": "onInit",
+        "desc": "Set onInit",
+        "defaultValue": "null"
+      },
+      {
+        "name": "onReady",
+        "desc": "Set onReady",
+        "defaultValue": "null"
+      },
+      {
+        "name": "onChange",
+        "desc": "Set onChange",
+        "defaultValue": "null"
+      }
+    ],
+    "option": "totalItems",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "resize",
+        "desc": "Gets fired when plugin has resize"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "first",
+        "desc": "Get value of first"
+      },
+      {
+        "name": "last",
+        "desc": "Get value of last"
+      },
+      {
+        "name": "next",
+        "desc": "Get value of next"
+      },
+      {
+        "name": "prev",
+        "desc": "Get value of prev"
+      },
+      {
+        "name": "goTo",
+        "desc": "Get value of goTo"
+      },
+      {
+        "name": "update",
+        "desc": "Get value of update"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-paginator"
+      },
+      {
+        "name": "ELEMENT",
+        "desc": "Declare plugin element",
+        "value": "{namespace}"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}-{theme}"
+      },
+      {
+        "name": "LINK",
+        "desc": "Declare plugin link",
+        "value": "{namespace}-link"
+      },
+      {
+        "name": "ITEM",
+        "desc": "Declare plugin item",
+        "value": "{namespace}-item"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "JUMPER",
+        "desc": "Declare plugin jumper",
+        "value": "{namespace}-jumper"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

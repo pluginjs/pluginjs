@@ -1,62 +1,63 @@
 {
-	"name": "@pluginjs/countdown",
-	"main": "dist/countdown.umd.js",
-	"dependencies": {
-		"@pluginjs/component": "^0.2.22",
-		"@pluginjs/dom": "^0.0.15",
-		"@pluginjs/pluginjs": "^0.2.25",
-		"@pluginjs/utils": "^0.2.20"
-	},
-	"version": "0.2.18",
-	"description": "A flexible modern countdown js plugin.",
-	"author": "Creation Studio Limited",
-	"homepage": "https://github.com/pluginjs/plugin.js",
-	"license": "GPL-3.0",
-	"files": [
-		"dist",
-		"src"
-	],
-	"repository": {
-		"url": "git@github.com:pluginjs/plugin.js.git",
-		"type": "git"
-	},
-	"bugs": {
-		"url": "https://github.com/pluginjs/plugin.js/issues"
-	},
-	"engines": {
-		"node": ">= 8",
-		"npm": ">= 5"
-	},
-	"category": "ui",
-	"module": "dist/countdown.esm.js",
-	"scripts": {
-		"build": "plugin build",
-		"build:js": "plugin script build-js",
-		"build:scss": "plugin script build-scss",
-		"test": "jest",
-		"build:md": "plugin script build-md"
-	},
-	"css": {
-		"source": "src/css/countdown.scss",
-		"main": "dist/countdown.css",
-		"min": "dist/countdown.min.css"
-	},
-	"cjs": "dist/countdown.cjs.js",
-	"jest": {
-		"setupTestFrameworkScriptFile": "jest-extended",
-		"verbose": true,
-		"testPathIgnorePatterns": [
-			"fixtures"
-		]
-	},
-	"devDependencies": {
-		"babel-jest": "^23.0.1",
-		"jest": "^23.1.0",
-		"jest-extended": "^0.7.2",
-		"rollup": "^0.59.2",
-		"rollup-plugin-babel": "^4.0.0-beta.4",
-		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-node-resolve": "^3.3.0",
-		"@pluginjs/cli": "^0.5.18"
-	}
+  "name": "@pluginjs/countdown",
+  "description": "A flexible modern countdown js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/plugin.js/issues"
+  },
+  "version": "0.2.18",
+  "main": "dist/countdown.umd.js",
+  "module": "dist/countdown.esm.js",
+  "cjs": "dist/countdown.cjs.js",
+  "source": "src/main.js",
+  "css": {
+    "source": "src/css/countdown.scss",
+    "main": "dist/countdown.css",
+    "min": "dist/countdown.min.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/component": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/pluginjs": "*",
+    "@pluginjs/utils": "*"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "category": "ui",
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  }
 }

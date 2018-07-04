@@ -1,24 +1,24 @@
 {
-	"name": "font-picker-samples",
-	"version": "1.0.0",
-	"description": "Simple font-picker example",
-	"main": "index.html",
-	"scripts": {
-		"start": "parcel index.html --open",
-		"build": "parcel build index.html"
-	},
-	"devDependencies": {
-		"babel-core": "^6.26.3",
-		"babel-plugin-transform-html-import-to-string": "^0.0.1",
-		"babel-preset-env": "1.7.0",
-		"parcel-bundler": "^1.6.1"
-	},
-	"dependencies": {
-		"@pluginjs/dom": "^0.0.15",
-		"@pluginjs/font-picker": "^0.2.22",
-		"@pluginjs/icons": "^0.5.0",
-		"@pluginjs/styles": "^0.5.1",
-		"webfontloader": "^1.6.28"
-	},
-	"license": "GPL-3.0"
+  "name": "font-picker-samples",
+  "version": "1.0.0",
+  "description": "Simple font-picker example",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "babel-core": "*",
+    "parcel-bundler": "*",
+    "babel-preset-env": "*",
+    "babel-plugin-transform-html-import-to-string": "*"
+  },
+  "dependencies": {
+    "@pluginjs/dom": "*",
+    "@pluginjs/font-picker": "*",
+    "@pluginjs/icons": "*",
+    "@pluginjs/styles": "*",
+    "webfontloader": "*"
+  },
+  "license": "GPL-3.0"
 }

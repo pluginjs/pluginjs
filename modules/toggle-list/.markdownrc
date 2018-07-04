@@ -1,113 +1,113 @@
 {
-	"meta": {
-		"moduleName": "toggle-list",
-		"namespace": "toggleList",
-		"Namespace": "ToggleList",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "localeFallbacks",
-				"desc": "Set the plugin is localeFallbacks or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "actions",
-				"desc": "Set plugin actions options",
-				"defaultValue": "[{\"tagName\":\"input\",\"trigger\":\"pj-toggleList-toggle\",\"attrs\":\"checked=\\\"checked\\\"\",\"event\":\"click\",\"init\":null}]"
-			},
-			{
-				"name": "format",
-				"desc": "Set format function",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "check",
-				"desc": "Gets fired when plugin has check"
-			},
-			{
-				"name": "uncheck",
-				"desc": "Gets fired when plugin has uncheck"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "toggle",
-				"desc": "Set toggle"
-			}
-		],
-		"method": "set",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-toggleList"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "SWITCH",
-				"desc": "Declare plugin switch",
-				"value": "{namespace}-toggle"
-			},
-			{
-				"name": "UNCHECKED",
-				"desc": "Declare plugin unchecked",
-				"value": "{namespace}-unchecked"
-			},
-			{
-				"name": "CHECKED",
-				"desc": "Declare plugin checked",
-				"value": "{namespace}-checked"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "toggle-list",
+    "namespace": "toggleList",
+    "Namespace": "ToggleList",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "localeFallbacks",
+        "desc": "Set the plugin is localeFallbacks or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "actions",
+        "desc": "Set plugin actions options",
+        "defaultValue": "[{\"tagName\":\"input\",\"trigger\":\"pj-toggleList-toggle\",\"attrs\":\"checked=\\\"checked\\\"\",\"event\":\"click\",\"init\":null}]"
+      },
+      {
+        "name": "format",
+        "desc": "Set format function",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "check",
+        "desc": "Gets fired when plugin has check"
+      },
+      {
+        "name": "uncheck",
+        "desc": "Gets fired when plugin has uncheck"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "toggle",
+        "desc": "Set toggle"
+      }
+    ],
+    "method": "set",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-toggleList"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "SWITCH",
+        "desc": "Declare plugin switch",
+        "value": "{namespace}-toggle"
+      },
+      {
+        "name": "UNCHECKED",
+        "desc": "Declare plugin unchecked",
+        "value": "{namespace}-unchecked"
+      },
+      {
+        "name": "CHECKED",
+        "desc": "Declare plugin checked",
+        "value": "{namespace}-checked"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

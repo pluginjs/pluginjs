@@ -1,183 +1,183 @@
 {
-	"meta": {
-		"moduleName": "progress",
-		"namespace": "progress",
-		"Namespace": "Progress",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Add plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "bootstrap",
-				"desc": "Enable bootstrap or not",
-				"defaultValue": "false"
-			},
-			{
-				"name": "min",
-				"desc": "Set min value",
-				"defaultValue": "0"
-			},
-			{
-				"name": "max",
-				"desc": "Set max value",
-				"defaultValue": "100"
-			},
-			{
-				"name": "goal",
-				"desc": "Set goal value",
-				"defaultValue": "100"
-			},
-			{
-				"name": "speed",
-				"desc": "Set speed from 1 to 100",
-				"defaultValue": "20"
-			},
-			{
-				"name": "easing",
-				"desc": "Set easing for plugin",
-				"defaultValue": "ease"
-			},
-			{
-				"name": "direction",
-				"desc": "Set direction for plugin",
-				"defaultValue": "horizontal"
-			},
-			{
-				"name": "templates",
-				"desc": "Set templates for plugin",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "valueCallback",
-				"desc": "Set value callback for plugin",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "update",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "finish",
-				"desc": "Gets fired when plugin is finish"
-			},
-			{
-				"name": "stop",
-				"desc": "Gets fired when plugin is stop"
-			},
-			{
-				"name": "reset",
-				"desc": "Gets fired when plugin is reset"
-			},
-			{
-				"name": "start",
-				"desc": "Gets fired when plugin is start"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin is enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin is disabled"
-			}
-		],
-		"event": "update",
-		"Event": "Update",
-		"methods": [
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "start",
-				"desc": "Start plugin"
-			},
-			{
-				"name": "stop",
-				"desc": "Stop plugin"
-			},
-			{
-				"name": "finish",
-				"desc": "Finish plugin"
-			},
-			{
-				"name": "reset",
-				"desc": "Reset plugin"
-			},
-			{
-				"name": "go",
-				"desc": "Go to something progress"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "get",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-progress"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "ELEMENT",
-				"desc": "Declare plugin element",
-				"value": "{namespace}"
-			},
-			{
-				"name": "LABEL",
-				"desc": "Declare plugin label",
-				"value": "{namespace}-label"
-			},
-			{
-				"name": "VALUE",
-				"desc": "Declare plugin value",
-				"value": "{namespace}-value"
-			},
-			{
-				"name": "BAR",
-				"desc": "Declare plugin bar",
-				"value": "{namespace}-bar"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "VERTICAL",
-				"desc": "Declare plugin direction is vertical",
-				"value": "{namespace}-vertical"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "progress",
+    "namespace": "progress",
+    "Namespace": "Progress",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Add plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "bootstrap",
+        "desc": "Enable bootstrap or not",
+        "defaultValue": "false"
+      },
+      {
+        "name": "min",
+        "desc": "Set min value",
+        "defaultValue": "0"
+      },
+      {
+        "name": "max",
+        "desc": "Set max value",
+        "defaultValue": "100"
+      },
+      {
+        "name": "goal",
+        "desc": "Set goal value",
+        "defaultValue": "100"
+      },
+      {
+        "name": "speed",
+        "desc": "Set speed from 1 to 100",
+        "defaultValue": "20"
+      },
+      {
+        "name": "easing",
+        "desc": "Set easing for plugin",
+        "defaultValue": "ease"
+      },
+      {
+        "name": "direction",
+        "desc": "Set direction for plugin",
+        "defaultValue": "horizontal"
+      },
+      {
+        "name": "templates",
+        "desc": "Set templates for plugin",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "valueCallback",
+        "desc": "Set value callback for plugin",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "update",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "finish",
+        "desc": "Gets fired when plugin is finish"
+      },
+      {
+        "name": "stop",
+        "desc": "Gets fired when plugin is stop"
+      },
+      {
+        "name": "reset",
+        "desc": "Gets fired when plugin is reset"
+      },
+      {
+        "name": "start",
+        "desc": "Gets fired when plugin is start"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin is enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin is disabled"
+      }
+    ],
+    "event": "update",
+    "Event": "Update",
+    "methods": [
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "start",
+        "desc": "Start plugin"
+      },
+      {
+        "name": "stop",
+        "desc": "Stop plugin"
+      },
+      {
+        "name": "finish",
+        "desc": "Finish plugin"
+      },
+      {
+        "name": "reset",
+        "desc": "Reset plugin"
+      },
+      {
+        "name": "go",
+        "desc": "Go to something progress"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "get",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-progress"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "ELEMENT",
+        "desc": "Declare plugin element",
+        "value": "{namespace}"
+      },
+      {
+        "name": "LABEL",
+        "desc": "Declare plugin label",
+        "value": "{namespace}-label"
+      },
+      {
+        "name": "VALUE",
+        "desc": "Declare plugin value",
+        "value": "{namespace}-value"
+      },
+      {
+        "name": "BAR",
+        "desc": "Declare plugin bar",
+        "value": "{namespace}-bar"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "VERTICAL",
+        "desc": "Declare plugin direction is vertical",
+        "value": "{namespace}-vertical"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

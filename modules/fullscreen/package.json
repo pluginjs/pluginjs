@@ -1,56 +1,55 @@
 {
-	"name": "@pluginjs/fullscreen",
-	"main": "dist/fullscreen.umd.js",
-	"version": "0.2.19",
-	"description": "A flexible modern fullscreen js plugin.",
-	"author": "Creation Studio Limited",
-	"homepage": "https://github.com/pluginjs/plugin.js",
-	"license": "GPL-3.0",
-	"files": [
-		"dist",
-		"src"
-	],
-	"repository": {
-		"url": "git@github.com:pluginjs/plugin.js.git",
-		"type": "git"
-	},
-	"bugs": {
-		"url": "https://github.com/pluginjs/plugin.js/issues"
-	},
-	"engines": {
-		"node": ">= 8",
-		"npm": ">= 5"
-	},
-	"category": "core",
-	"module": "dist/fullscreen.esm.js",
-	"dependencies": {
-		"@pluginjs/emitter": "^0.2.19",
-		"@pluginjs/pluginjs": "^0.2.25"
-	},
-	"source": "src/main.js",
-	"scripts": {
-		"build": "plugin build",
-		"build:js": "plugin script build-js",
-		"build:scss": "plugin script build-scss",
-		"test": "jest",
-		"build:md": "plugin script build-md"
-	},
-	"cjs": "dist/fullscreen.cjs.js",
-	"jest": {
-		"setupTestFrameworkScriptFile": "jest-extended",
-		"verbose": true,
-		"testPathIgnorePatterns": [
-			"fixtures"
-		]
-	},
-	"devDependencies": {
-		"babel-jest": "^23.0.1",
-		"jest": "^23.1.0",
-		"jest-extended": "^0.7.2",
-		"rollup": "^0.59.2",
-		"rollup-plugin-babel": "^4.0.0-beta.4",
-		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-node-resolve": "^3.3.0",
-		"@pluginjs/cli": "^0.5.18"
-	}
+  "name": "@pluginjs/fullscreen",
+  "description": "A flexible modern fullscreen js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/plugin.js/issues"
+  },
+  "version": "0.2.19",
+  "main": "dist/fullscreen.umd.js",
+  "module": "dist/fullscreen.esm.js",
+  "cjs": "dist/fullscreen.cjs.js",
+  "source": "src/main.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/emitter": "*",
+    "@pluginjs/pluginjs": "*"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "category": "core",
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  }
 }

@@ -1,201 +1,201 @@
 {
-	"meta": {
-		"moduleName": "image-picker",
-		"namespace": "imagePicker",
-		"Namespace": "ImagePicker",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disabled plugin",
-				"defaultValue": "false"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "localeFallbacks",
-				"desc": "Set the plugin is localeFallbacks or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "template",
-				"desc": "Set default template",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "onChange",
-				"desc": "Gets fired when plugin has change",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "select",
-				"desc": "Gets fired when plugin has select",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "strings",
-				"desc": "Gets fired when plugin has strings",
-				"defaultValue": "{}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "clear",
-				"desc": "Clear plugin"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "get",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-imagePicker"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "EMPTY",
-				"desc": "Declare plugin empty",
-				"value": "{namespace}-empty"
-			},
-			{
-				"name": "EXIST",
-				"desc": "Declare plugin exist",
-				"value": "{namespace}-exist"
-			},
-			{
-				"name": "HOVER",
-				"desc": "Announce plugin is hover",
-				"value": "{namespace}-hover"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "INITIAL",
-				"desc": "Declare plugin is initial",
-				"value": "{namespace}-initial"
-			},
-			{
-				"name": "INFO",
-				"desc": "Declare plugin is info",
-				"value": "{namespace}-info"
-			},
-			{
-				"name": "INFOCHANGE",
-				"desc": "Declare plugin is infohange",
-				"value": "{namespace}-info-change"
-			},
-			{
-				"name": "INFOIMAGE",
-				"desc": "Declare plugin is infoimage",
-				"value": "{namespace}-info-image"
-			},
-			{
-				"name": "INFOREMOVE",
-				"desc": "Declare plugin is inforemove",
-				"value": "{namespace}-info-remove"
-			},
-			{
-				"name": "INFORESELECT",
-				"desc": "Declare plugin is inforeselect",
-				"value": "{namespace}-info-reselect"
-			}
-		],
-		"translations": [
-			{
-				"name": "placeholder",
-				"en": "Click to upload",
-				"zh": "点击上传"
-			},
-			{
-				"name": "deleteTitle",
-				"en": "Are you sure you want to delete?",
-				"zh": "你确定要删除？"
-			},
-			{
-				"name": "cancel",
-				"en": "Cancel",
-				"zh": "取消"
-			},
-			{
-				"name": "delete",
-				"en": "Delete",
-				"zh": "删除"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "image-picker",
+    "namespace": "imagePicker",
+    "Namespace": "ImagePicker",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disabled plugin",
+        "defaultValue": "false"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "localeFallbacks",
+        "desc": "Set the plugin is localeFallbacks or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "template",
+        "desc": "Set default template",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "onChange",
+        "desc": "Gets fired when plugin has change",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "select",
+        "desc": "Gets fired when plugin has select",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "strings",
+        "desc": "Gets fired when plugin has strings",
+        "defaultValue": "{}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "clear",
+        "desc": "Clear plugin"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "get",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-imagePicker"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "EMPTY",
+        "desc": "Declare plugin empty",
+        "value": "{namespace}-empty"
+      },
+      {
+        "name": "EXIST",
+        "desc": "Declare plugin exist",
+        "value": "{namespace}-exist"
+      },
+      {
+        "name": "HOVER",
+        "desc": "Announce plugin is hover",
+        "value": "{namespace}-hover"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "INITIAL",
+        "desc": "Declare plugin is initial",
+        "value": "{namespace}-initial"
+      },
+      {
+        "name": "INFO",
+        "desc": "Declare plugin is info",
+        "value": "{namespace}-info"
+      },
+      {
+        "name": "INFOCHANGE",
+        "desc": "Declare plugin is infohange",
+        "value": "{namespace}-info-change"
+      },
+      {
+        "name": "INFOIMAGE",
+        "desc": "Declare plugin is infoimage",
+        "value": "{namespace}-info-image"
+      },
+      {
+        "name": "INFOREMOVE",
+        "desc": "Declare plugin is inforemove",
+        "value": "{namespace}-info-remove"
+      },
+      {
+        "name": "INFORESELECT",
+        "desc": "Declare plugin is inforeselect",
+        "value": "{namespace}-info-reselect"
+      }
+    ],
+    "translations": [
+      {
+        "name": "placeholder",
+        "en": "Click to upload",
+        "zh": "点击上传"
+      },
+      {
+        "name": "deleteTitle",
+        "en": "Are you sure you want to delete?",
+        "zh": "你确定要删除？"
+      },
+      {
+        "name": "cancel",
+        "en": "Cancel",
+        "zh": "取消"
+      },
+      {
+        "name": "delete",
+        "en": "Delete",
+        "zh": "删除"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

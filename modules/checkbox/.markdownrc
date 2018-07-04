@@ -1,151 +1,151 @@
 {
-	"meta": {
-		"moduleName": "checkbox",
-		"namespace": "checkbox",
-		"Namespace": "Checkbox",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "classes",
-				"desc": "Set classes",
-				"defaultValue": "{\"button\":\"{namespace}-default\"}"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disabled plugin",
-				"defaultValue": "false"
-			},
-			{
-				"name": "getWrap",
-				"desc": "Get value of getWrap",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "getLabel",
-				"desc": "Get value of getlabel",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "getIcon",
-				"desc": "Get value of geticon",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "getGroup",
-				"desc": "Get value of getgroup",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			},
-			{
-				"name": "check",
-				"desc": "Gets fired when plugin has check"
-			},
-			{
-				"name": "uncheck",
-				"desc": "Gets fired when plugin has uncheck"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "check",
-				"desc": "Set check"
-			},
-			{
-				"name": "uncheck",
-				"desc": "Set uncheck"
-			}
-		],
-		"method": "enable",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-checkbox"
-			},
-			{
-				"name": "WRAP",
-				"desc": "Declare plugin wrap",
-				"value": "{namespace}"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}-{theme}"
-			},
-			{
-				"name": "ICON",
-				"desc": "Declare plugin icon",
-				"value": ""
-			},
-			{
-				"name": "CHECKED",
-				"desc": "Announce plugin is checked",
-				"value": "{namespace}-checked"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "checkbox",
+    "namespace": "checkbox",
+    "Namespace": "Checkbox",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "classes",
+        "desc": "Set classes",
+        "defaultValue": "{\"button\":\"{namespace}-default\"}"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disabled plugin",
+        "defaultValue": "false"
+      },
+      {
+        "name": "getWrap",
+        "desc": "Get value of getWrap",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "getLabel",
+        "desc": "Get value of getlabel",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "getIcon",
+        "desc": "Get value of geticon",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "getGroup",
+        "desc": "Get value of getgroup",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      },
+      {
+        "name": "check",
+        "desc": "Gets fired when plugin has check"
+      },
+      {
+        "name": "uncheck",
+        "desc": "Gets fired when plugin has uncheck"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "check",
+        "desc": "Set check"
+      },
+      {
+        "name": "uncheck",
+        "desc": "Set uncheck"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-checkbox"
+      },
+      {
+        "name": "WRAP",
+        "desc": "Declare plugin wrap",
+        "value": "{namespace}"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}-{theme}"
+      },
+      {
+        "name": "ICON",
+        "desc": "Declare plugin icon",
+        "value": ""
+      },
+      {
+        "name": "CHECKED",
+        "desc": "Announce plugin is checked",
+        "value": "{namespace}-checked"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

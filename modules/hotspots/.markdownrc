@@ -1,179 +1,179 @@
 {
-	"meta": {
-		"moduleName": "hotspots",
-		"namespace": "hotspots",
-		"Namespace": "Hotspots",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "data",
-				"desc": "Set data",
-				"defaultValue": "[]"
-			},
-			{
-				"name": "popover",
-				"desc": "Set popover",
-				"defaultValue": "{\"theme\":\"hotspot\",\"placement\":\"top\",\"trigger\":\"hover focus\",\"hideOutClick\":true,\"delay\":0,\"close\":false,\"html\":true}"
-			},
-			{
-				"name": "type",
-				"desc": "Set type",
-				"defaultValue": "dot"
-			},
-			{
-				"name": "icon",
-				"desc": "Set default icon",
-				"defaultValue": ""
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "hover",
-				"desc": "Gets fired when plugin has hover"
-			},
-			{
-				"name": "hovered",
-				"desc": "Gets fired when plugin has hovered"
-			},
-			{
-				"name": "hotspotHover",
-				"desc": "Gets fired when plugin has hotspotHover"
-			},
-			{
-				"name": "hotspotHovered",
-				"desc": "Gets fired when plugin has hotspotHovered"
-			},
-			{
-				"name": "popoverShow",
-				"desc": "Gets fired when plugin has popoverShow"
-			},
-			{
-				"name": "popoverShown",
-				"desc": "Gets fired when plugin has popoverShon"
-			},
-			{
-				"name": "popoverInserted",
-				"desc": "Gets fired when plugin has popoverInserted"
-			},
-			{
-				"name": "popoverHide",
-				"desc": "Gets fired when plugin has popoverHide"
-			},
-			{
-				"name": "popoverHidden",
-				"desc": "Gets fired when plugin has popoverHiden"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "value",
-				"desc": "Get value"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "value",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-hotspot"
-			},
-			{
-				"name": "CONTAINER",
-				"desc": "Declare plugin range",
-				"value": "{namespace}s"
-			},
-			{
-				"name": "HOVERING",
-				"desc": "Announce plugin is hoverd",
-				"value": "{namespace}s-hovering"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}s-disabled"
-			},
-			{
-				"name": "HOTSPOT",
-				"desc": "Declare plugin hotspot",
-				"value": "{namespace}"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "TYPE",
-				"desc": "Declare plugin type",
-				"value": "{namespace}--{type}"
-			},
-			{
-				"name": "DOT",
-				"desc": "Declare plugin dot",
-				"value": "{namespace}-dot"
-			},
-			{
-				"name": "ICON",
-				"desc": "Declare plugin icon",
-				"value": "{namespace}-icon"
-			},
-			{
-				"name": "TEXT",
-				"desc": "Declare plugin text",
-				"value": "{namespace}-text"
-			},
-			{
-				"name": "HOTSPOTHOVERING",
-				"desc": "Declare plugin hotspothovering",
-				"value": "{namespace}-hovering"
-			},
-			{
-				"name": "HOTSPOTACTIVE",
-				"desc": "Declare plugin hotspotactive",
-				"value": "{namespace}-active"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "hotspots",
+    "namespace": "hotspots",
+    "Namespace": "Hotspots",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "data",
+        "desc": "Set data",
+        "defaultValue": "[]"
+      },
+      {
+        "name": "popover",
+        "desc": "Set popover",
+        "defaultValue": "{\"theme\":\"hotspot\",\"placement\":\"top\",\"trigger\":\"hover focus\",\"hideOutClick\":true,\"delay\":0,\"close\":false,\"html\":true}"
+      },
+      {
+        "name": "type",
+        "desc": "Set type",
+        "defaultValue": "dot"
+      },
+      {
+        "name": "icon",
+        "desc": "Set default icon",
+        "defaultValue": ""
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "hover",
+        "desc": "Gets fired when plugin has hover"
+      },
+      {
+        "name": "hovered",
+        "desc": "Gets fired when plugin has hovered"
+      },
+      {
+        "name": "hotspotHover",
+        "desc": "Gets fired when plugin has hotspotHover"
+      },
+      {
+        "name": "hotspotHovered",
+        "desc": "Gets fired when plugin has hotspotHovered"
+      },
+      {
+        "name": "popoverShow",
+        "desc": "Gets fired when plugin has popoverShow"
+      },
+      {
+        "name": "popoverShown",
+        "desc": "Gets fired when plugin has popoverShon"
+      },
+      {
+        "name": "popoverInserted",
+        "desc": "Gets fired when plugin has popoverInserted"
+      },
+      {
+        "name": "popoverHide",
+        "desc": "Gets fired when plugin has popoverHide"
+      },
+      {
+        "name": "popoverHidden",
+        "desc": "Gets fired when plugin has popoverHiden"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "value",
+        "desc": "Get value"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "value",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-hotspot"
+      },
+      {
+        "name": "CONTAINER",
+        "desc": "Declare plugin range",
+        "value": "{namespace}s"
+      },
+      {
+        "name": "HOVERING",
+        "desc": "Announce plugin is hoverd",
+        "value": "{namespace}s-hovering"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}s-disabled"
+      },
+      {
+        "name": "HOTSPOT",
+        "desc": "Declare plugin hotspot",
+        "value": "{namespace}"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "TYPE",
+        "desc": "Declare plugin type",
+        "value": "{namespace}--{type}"
+      },
+      {
+        "name": "DOT",
+        "desc": "Declare plugin dot",
+        "value": "{namespace}-dot"
+      },
+      {
+        "name": "ICON",
+        "desc": "Declare plugin icon",
+        "value": "{namespace}-icon"
+      },
+      {
+        "name": "TEXT",
+        "desc": "Declare plugin text",
+        "value": "{namespace}-text"
+      },
+      {
+        "name": "HOTSPOTHOVERING",
+        "desc": "Declare plugin hotspothovering",
+        "value": "{namespace}-hovering"
+      },
+      {
+        "name": "HOTSPOTACTIVE",
+        "desc": "Declare plugin hotspotactive",
+        "value": "{namespace}-active"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

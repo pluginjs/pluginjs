@@ -1,21 +1,21 @@
 {
-	"name": "{{moduleName}}-samples",
-	"version": "1.0.0",
-	"description": "Simple {{moduleName}} example",
-	"main": "index.html",
-	"scripts": {
-		"start": "parcel index.html --open",
-		"build": "parcel build index.html"
-	},
-	"devDependencies": {
-		"babel-core": "^6.26.3",
-		"babel-preset-env": "1.7.0",
-		"babel-plugin-transform-html-import-to-string": "^0.0.1",
-		"parcel-bundler": "^1.6.1"
-	},
-	"dependencies": {
-		"@pluginjs/{{moduleName}}": "^0.0.1",
-		"@pluginjs/dom": "^0.0.15"
-	},
-	"license": "UNLICENSED"
+  "name": "{{moduleName}}-samples",
+  "description": "Simple {{moduleName}} example",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "build": "parcel build index.html",
+    "start": "parcel index.html --open"
+  },
+  "dependencies": {
+    "@pluginjs/{{moduleName}}": "*",
+    "@pluginjs/dom": "*"
+  },
+  "devDependencies": {
+    "babel-core": "*",
+    "parcel-bundler": "*",
+    "babel-preset-env": "*",
+    "babel-plugin-transform-html-import-to-string": "*"
+  }
 }

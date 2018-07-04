@@ -165,20 +165,20 @@ scripts:
     var elementApi;
     var position = 1;
     var APIS = {
-  		init() {
+      init() {
         elementApi = Pj.zoom('#zoom_10', {
           onReady: function() {
-  		      log('ready', 'event');
-  		    },
-  		    onDestroy: function() {
-  		      log('destroy', 'event');
-  		    },
-  		    onEnable: function() {
-  		      log('enable', 'event');
-  		    },
-  		    onDisable: function() {
-  		      log('disable', 'event');
-  		    },
+            log('ready', 'event');
+          },
+          onDestroy: function() {
+            log('destroy', 'event');
+          },
+          onEnable: function() {
+            log('enable', 'event');
+          },
+          onDisable: function() {
+            log('disable', 'event');
+          },
           onLoadingShow: function (instance) {
             log('onLoadingShow', 'event')
           },

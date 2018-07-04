@@ -1,22 +1,22 @@
 {
-	"name": "accordion-samples",
-	"version": "1.0.0",
-	"description": "Simple accordion example",
-	"main": "index.html",
-	"scripts": {
-		"start": "parcel index.html --open",
-		"build": "parcel build index.html"
-	},
-	"devDependencies": {
-		"babel-core": "^6.26.3",
-		"babel-preset-env": "1.7.0",
-		"babel-plugin-transform-html-import-to-string": "^0.0.1",
-		"parcel-bundler": "^1.6.1"
-	},
-	"dependencies": {
-		"@pluginjs/accordion": "^0.5.2",
-		"@pluginjs/dom": "^0.5.0",
-		"@pluginjs/icons": "^0.5.0"
-	},
-	"license": "GPL-3.0"
+  "name": "accordion-samples",
+  "description": "Simple accordion example",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "build": "parcel build index.html",
+    "start": "parcel index.html --open"
+  },
+  "dependencies": {
+    "@pluginjs/accordion": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/icons": "*"
+  },
+  "devDependencies": {
+    "babel-core": "*",
+    "parcel-bundler": "*",
+    "babel-preset-env": "*",
+    "babel-plugin-transform-html-import-to-string": "*"
+  }
 }

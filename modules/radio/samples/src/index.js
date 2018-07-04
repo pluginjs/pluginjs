@@ -1,4 +1,4 @@
-// import icons and primary.css
+// import icons
 import '@pluginjs/icons/dist/plugin-icons.css'
 // import radio
 import '@pluginjs/radio/src/css/radio.scss'

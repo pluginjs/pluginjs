@@ -1,17 +1,20 @@
 {
-	"name": "edit-panel-samples",
-	"version": "1.0.0",
-	"description": "Simple edit-panel example",
-	"main": "index.html",
-	"scripts": {
-		"start": "parcel index.html --open",
-		"build": "parcel build index.html"
-	},
-	"devDependencies": {
-		"parcel-bundler": "^1.6.1"
-	},
-	"dependencies": {
-		"@pluginjs/edit-panel": "^0.2.20"
-	},
-	"license": "GPL-3.0"
+  "name": "edit-panel-samples",
+  "description": "Simple edit-panel example",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "build": "parcel build index.html",
+    "start": "parcel index.html --open"
+  },
+  "dependencies": {
+    "@pluginjs/edit-panel": "*"
+  },
+  "devDependencies": {
+    "babel-core": "*",
+    "parcel-bundler": "*",
+    "babel-preset-env": "*",
+    "babel-plugin-transform-html-import-to-string": "*"
+  }
 }

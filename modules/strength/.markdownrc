@@ -1,210 +1,210 @@
 {
-	"meta": {
-		"moduleName": "strength",
-		"namespace": "strength",
-		"Namespace": "Strength",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "showMeter",
-				"desc": "rendering meter",
-				"defaultValue": "true"
-			},
-			{
-				"name": "showToggle",
-				"desc": "rendering toggle",
-				"defaultValue": "true"
-			},
-			{
-				"name": "usernameField",
-				"desc": "Set plugin usernameField option",
-				"defaultValue": ""
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{\"toggle\":\"<span class=\\\"input-group-addon\\\"><input type=\\\"checkbox\\\" class=\\\"{classes.TOGGLE}\\\" title=\\\"{label}\\\" /></span>\",\"meter\":\"<div class=\\\"{classes.METER}\\\">{score}</div>\",\"score\":\"<span class=\\\"label {classes.SCORE}\\\"></span>\",\"main\":\"<div class=\\\"{classes.CONTAINER}\\\"><div class=\\\"input-group\\\">{input}{toggle}</div>{meter}</div>\"}"
-			},
-			{
-				"name": "scoreLables",
-				"desc": "Set plugin scoreLables option",
-				"defaultValue": "{\"empty\":\"Empty\",\"invalid\":\"Invalid\",\"weak\":\"Weak\",\"good\":\"Good\",\"strong\":\"Strong\"}"
-			},
-			{
-				"name": "scoreClasses",
-				"desc": "Set plugin scoreClasses option",
-				"defaultValue": "{\"empty\":\"\",\"invalid\":\"label-danger\",\"weak\":\"label-warning\",\"good\":\"label-info\",\"strong\":\"label-success\"}"
-			},
-			{
-				"name": "emptyStatus",
-				"desc": "Set plugin emptyStatus option",
-				"defaultValue": "true"
-			},
-			{
-				"name": "scoreCallback",
-				"desc": "Set plugin scoreCallback option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "statusCallback",
-				"desc": "Set plugin statusCallback option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "localeFallbacks",
-				"desc": "Set plugin is  localeFallbacks or not",
-				"defaultValue": "true"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "update",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "check",
-				"desc": "Gets fired when plugin has check"
-			},
-			{
-				"name": "statusChange",
-				"desc": "Gets fired when plugin has statusChange"
-			},
-			{
-				"name": "toggle",
-				"desc": "Gets fired when plugin has toggle"
-			}
-		],
-		"event": "update",
-		"Event": "Update",
-		"methods": [
-			{
-				"name": "getScore",
-				"desc": "Get score"
-			},
-			{
-				"name": "getStatus",
-				"desc": "Get status"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "getScore",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-strength"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}-{theme}"
-			},
-			{
-				"name": "CONTAINER",
-				"desc": "Declare plugin range",
-				"value": "{namespace}-container"
-			},
-			{
-				"name": "STATUS",
-				"desc": "Declare plugin status",
-				"value": "{namespace}-{status}"
-			},
-			{
-				"name": "INPUT",
-				"desc": "Declare plugin input",
-				"value": "{namespace}-input"
-			},
-			{
-				"name": "TOGGLE",
-				"desc": "Declare plugin toggle",
-				"value": "{namespace}-toggle"
-			},
-			{
-				"name": "METER",
-				"desc": "Declare plugin meter",
-				"value": "{namespace}-meter"
-			},
-			{
-				"name": "SCORE",
-				"desc": "Declare plugin score",
-				"value": "{namespace}-score"
-			},
-			{
-				"name": "SHOWN",
-				"desc": "Declare plugin shown",
-				"value": "{namespace}-shown"
-			}
-		],
-		"translations": [
-			{
-				"name": "Empty",
-				"en": "Empty",
-				"zh": "空"
-			},
-			{
-				"name": "Invalid",
-				"en": "Invalid",
-				"zh": "无效"
-			},
-			{
-				"name": "Weak",
-				"en": "Weak",
-				"zh": "弱"
-			},
-			{
-				"name": "Good",
-				"en": "Good",
-				"zh": "中"
-			},
-			{
-				"name": "Strong",
-				"en": "Strong",
-				"zh": "强"
-			},
-			{
-				"name": "toggle",
-				"en": "Show/Hide Password",
-				"zh": "显示/隐藏 密码"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "strength",
+    "namespace": "strength",
+    "Namespace": "Strength",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "showMeter",
+        "desc": "rendering meter",
+        "defaultValue": "true"
+      },
+      {
+        "name": "showToggle",
+        "desc": "rendering toggle",
+        "defaultValue": "true"
+      },
+      {
+        "name": "usernameField",
+        "desc": "Set plugin usernameField option",
+        "defaultValue": ""
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{\"toggle\":\"<span class=\\\"input-group-addon\\\"><input type=\\\"checkbox\\\" class=\\\"{classes.TOGGLE}\\\" title=\\\"{label}\\\" /></span>\",\"meter\":\"<div class=\\\"{classes.METER}\\\">{score}</div>\",\"score\":\"<span class=\\\"label {classes.SCORE}\\\"></span>\",\"main\":\"<div class=\\\"{classes.CONTAINER}\\\"><div class=\\\"input-group\\\">{input}{toggle}</div>{meter}</div>\"}"
+      },
+      {
+        "name": "scoreLables",
+        "desc": "Set plugin scoreLables option",
+        "defaultValue": "{\"empty\":\"Empty\",\"invalid\":\"Invalid\",\"weak\":\"Weak\",\"good\":\"Good\",\"strong\":\"Strong\"}"
+      },
+      {
+        "name": "scoreClasses",
+        "desc": "Set plugin scoreClasses option",
+        "defaultValue": "{\"empty\":\"\",\"invalid\":\"label-danger\",\"weak\":\"label-warning\",\"good\":\"label-info\",\"strong\":\"label-success\"}"
+      },
+      {
+        "name": "emptyStatus",
+        "desc": "Set plugin emptyStatus option",
+        "defaultValue": "true"
+      },
+      {
+        "name": "scoreCallback",
+        "desc": "Set plugin scoreCallback option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "statusCallback",
+        "desc": "Set plugin statusCallback option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "localeFallbacks",
+        "desc": "Set plugin is  localeFallbacks or not",
+        "defaultValue": "true"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "update",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "check",
+        "desc": "Gets fired when plugin has check"
+      },
+      {
+        "name": "statusChange",
+        "desc": "Gets fired when plugin has statusChange"
+      },
+      {
+        "name": "toggle",
+        "desc": "Gets fired when plugin has toggle"
+      }
+    ],
+    "event": "update",
+    "Event": "Update",
+    "methods": [
+      {
+        "name": "getScore",
+        "desc": "Get score"
+      },
+      {
+        "name": "getStatus",
+        "desc": "Get status"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "getScore",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-strength"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}-{theme}"
+      },
+      {
+        "name": "CONTAINER",
+        "desc": "Declare plugin range",
+        "value": "{namespace}-container"
+      },
+      {
+        "name": "STATUS",
+        "desc": "Declare plugin status",
+        "value": "{namespace}-{status}"
+      },
+      {
+        "name": "INPUT",
+        "desc": "Declare plugin input",
+        "value": "{namespace}-input"
+      },
+      {
+        "name": "TOGGLE",
+        "desc": "Declare plugin toggle",
+        "value": "{namespace}-toggle"
+      },
+      {
+        "name": "METER",
+        "desc": "Declare plugin meter",
+        "value": "{namespace}-meter"
+      },
+      {
+        "name": "SCORE",
+        "desc": "Declare plugin score",
+        "value": "{namespace}-score"
+      },
+      {
+        "name": "SHOWN",
+        "desc": "Declare plugin shown",
+        "value": "{namespace}-shown"
+      }
+    ],
+    "translations": [
+      {
+        "name": "Empty",
+        "en": "Empty",
+        "zh": "空"
+      },
+      {
+        "name": "Invalid",
+        "en": "Invalid",
+        "zh": "无效"
+      },
+      {
+        "name": "Weak",
+        "en": "Weak",
+        "zh": "弱"
+      },
+      {
+        "name": "Good",
+        "en": "Good",
+        "zh": "中"
+      },
+      {
+        "name": "Strong",
+        "en": "Strong",
+        "zh": "强"
+      },
+      {
+        "name": "toggle",
+        "en": "Show/Hide Password",
+        "zh": "显示/隐藏 密码"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

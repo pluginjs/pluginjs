@@ -1,74 +1,74 @@
 {
-	"name": "@pluginjs/slider",
-	"main": "dist/slider.umd.js",
-	"dependencies": {
-		"@pluginjs/arrows": "^0.2.21",
-		"@pluginjs/classes": "^0.0.3",
-		"@pluginjs/component": "^0.2.22",
-		"@pluginjs/dom": "^0.0.15",
-		"@pluginjs/dots": "^0.2.19",
-		"@pluginjs/events": "^0.0.5",
-		"@pluginjs/pluginjs": "^0.2.25",
-		"@pluginjs/styles": "^0.5.2",
-		"@pluginjs/tooltip": "^0.2.19",
-		"@pluginjs/utils": "^0.2.20",
-		"hammerjs": "*"
-	},
-	"version": "0.3.7",
-	"description": "A flexible modern slider js plugin.",
-	"author": "Creation Studio Limited",
-	"homepage": "https://github.com/pluginjs/plugin.js",
-	"license": "GPL-3.0",
-	"files": [
-		"dist",
-		"src"
-	],
-	"repository": {
-		"url": "git@github.com:pluginjs/plugin.js.git",
-		"type": "git"
-	},
-	"bugs": {
-		"url": "https://github.com/pluginjs/plugin.js/issues"
-	},
-	"engines": {
-		"node": ">= 8",
-		"npm": ">= 5"
-	},
-	"category": "media",
-	"module": "dist/slider.esm.js",
-	"source": "src/main.js",
-	"globals": {
-		"hammerjs": "Hammer"
-	},
-	"scripts": {
-		"build": "plugin build",
-		"build:js": "plugin script build-js",
-		"build:scss": "plugin script build-scss",
-		"test": "jest",
-		"build:md": "plugin script build-md"
-	},
-	"css": {
-		"source": "src/css/slider.scss",
-		"main": "dist/slider.css",
-		"min": "dist/slider.min.css"
-	},
-	"cjs": "dist/slider.cjs.js",
-	"jest": {
-		"setupTestFrameworkScriptFile": "jest-extended",
-		"verbose": true,
-		"testPathIgnorePatterns": [
-			"fixtures"
-		]
-	},
-	"devDependencies": {
-		"@pluginjs/cli": "^0.5.18",
-		"babel-jest": "^23.0.1",
-		"jest": "^23.1.0",
-		"jest-extended": "^0.7.2",
-		"rollup": "^0.59.2",
-		"rollup-plugin-babel": "^4.0.0-beta.4",
-		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-node-resolve": "^3.3.0"
-	},
-	"sassConfig": "./sassrc.js"
+  "name": "@pluginjs/slider",
+  "description": "A flexible modern slider js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/plugin.js/issues"
+  },
+  "version": "0.3.7",
+  "main": "dist/slider.umd.js",
+  "module": "dist/slider.esm.js",
+  "cjs": "dist/slider.cjs.js",
+  "source": "src/main.js",
+  "css": {
+    "source": "src/css/slider.scss",
+    "main": "dist/slider.css",
+    "min": "dist/slider.min.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/arrows": "*",
+    "@pluginjs/classes": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/dots": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/pluginjs": "*",
+    "@pluginjs/styles": "*",
+    "@pluginjs/tooltip": "*",
+    "@pluginjs/utils": "*",
+    "hammerjs": "*"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "category": "media",
+"globals": {
+    "hammerjs": "Hammer"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  },
+  "sassConfig": "./sassrc.js"
 }

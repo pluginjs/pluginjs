@@ -1,19 +1,19 @@
 {
-	"name": "@pluginjs/cli",
-	"version": "0.5.19",
-	"description": "",
-	"main": "index.js",
-	"bin": {
-		"plugin": "index.js"
-	},
-	"license": "GPL-3.0",
-	"dependencies": {
-		"@pluginjs/helper": "^0.0.2",
-		"fs-extra": "^6.0.1",
-		"inquirer": "^6.0.0",
-		"node-sass": "^4.9.0",
-		"rollup": "^0.59.4",
-		"rollup-plugin-json": "^3.0.0",
-		"yargs": "^11.0.0"
-	}
+  "name": "@pluginjs/cli",
+  "description": "",
+  "license": "GPL-3.0",
+  "version": "0.5.19",
+  "main": "index.js",
+  "bin": {
+    "plugin": "index.js"
+  },
+  "dependencies": {
+    "@pluginjs/helper": "*",
+    "fs-extra": "^6.0.1",
+    "inquirer": "^6.0.0",
+    "node-sass": "^4.9.0",
+    "rollup": "*",
+    "rollup-plugin-json": "*",
+    "yargs": "^12.0.1"
+  }
 }
