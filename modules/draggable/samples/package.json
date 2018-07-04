@@ -13,9 +13,6 @@
     "@pluginjs/draggable": "*"
   },
   "devDependencies": {
-    "babel-core": "*",
-    "parcel-bundler": "*",
-    "babel-preset-env": "*",
-    "babel-plugin-transform-html-import-to-string": "*"
+    "parcel-bundler": "*"
   }
 }
