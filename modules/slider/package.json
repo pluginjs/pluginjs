@@ -60,7 +60,7 @@
     "npm": ">= 5"
   },
   "category": "media",
-"globals": {
+  "globals": {
     "hammerjs": "Hammer"
   },
   "jest": {

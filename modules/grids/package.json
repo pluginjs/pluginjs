@@ -65,7 +65,7 @@
     "npm": ">= 5"
   },
   "category": "media",
-"globals": {
+  "globals": {
     "animejs": "anime",
     "hammerjs": "Hammer"
   },

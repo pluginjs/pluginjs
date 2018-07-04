@@ -59,7 +59,7 @@
     "npm": ">= 5"
   },
   "category": "form",
-"globals": {
+  "globals": {
     "hammerjs": "Hammer"
   },
   "jest": {

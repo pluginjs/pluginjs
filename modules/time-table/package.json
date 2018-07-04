@@ -60,7 +60,7 @@
     "npm": ">= 5"
   },
   "category": "ui",
-"globals": {},
+  "globals": {},
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

@@ -1,17 +1,12 @@
 {
   "name": "font-picker-samples",
-  "version": "1.0.0",
   "description": "Simple font-picker example",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
   "main": "index.html",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html"
-  },
-  "devDependencies": {
-    "babel-core": "*",
-    "parcel-bundler": "*",
-    "babel-preset-env": "*",
-    "babel-plugin-transform-html-import-to-string": "*"
+    "build": "parcel build index.html",
+    "start": "parcel index.html --open"
   },
   "dependencies": {
     "@pluginjs/dom": "*",
@@ -20,5 +15,10 @@
     "@pluginjs/styles": "*",
     "webfontloader": "*"
   },
-  "license": "GPL-3.0"
+  "devDependencies": {
+    "babel-core": "*",
+    "babel-plugin-transform-html-import-to-string": "*",
+    "babel-preset-env": "*",
+    "parcel-bundler": "*"
+  }
 }

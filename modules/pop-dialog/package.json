@@ -58,7 +58,7 @@
     "npm": ">= 5"
   },
   "category": "ui",
-"globals": {
+  "globals": {
     "tether": "Tether"
   },
   "jest": {

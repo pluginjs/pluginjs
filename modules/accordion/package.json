@@ -61,7 +61,7 @@
     "npm": ">= 5"
   },
   "category": "ui",
-"globals": {
+  "globals": {
     "animejs": "anime",
     "hammerjs": "Hammer"
   },

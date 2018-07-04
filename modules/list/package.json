@@ -58,7 +58,7 @@
     "npm": ">= 5"
   },
   "category": "form",
-"globals": {
+  "globals": {
     "sortablejs": "Sortable"
   },
   "jest": {

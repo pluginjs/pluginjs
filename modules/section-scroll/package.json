@@ -57,7 +57,7 @@
     "npm": ">= 5"
   },
   "category": "scroll",
-"globals": {
+  "globals": {
     "hammerjs": "Hammer"
   },
   "jest": {

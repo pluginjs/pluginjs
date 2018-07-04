@@ -8,6 +8,7 @@ tools/cli/build
 ### Node ###
 package-lock.json
 yarn-lock.json
+yarn.lock
 
 # Logs
 logs
@@ -29,9 +30,9 @@ coverage
 build/Release
 
 # Dependency directories
-/node_modules
-/jspm_packages
-/bower_components
+node_modules
+jspm_packages
+bower_components
 
 # Yarn Integrity file
 .yarn-integrity
