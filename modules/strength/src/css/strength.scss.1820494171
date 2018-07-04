@@ -1,7 +1,0 @@
-@import "@pluginjs/styles/variables.scss";
-
-$strength: "pj-strength" !default;
-
-.#{$strength} {
-  cursor: pointer;
-}

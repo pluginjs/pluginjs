@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { deepMerge } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, insertBefore, parseHTML } from '@pluginjs/dom'
 import { PasswordStrength } from './password_strength'
@@ -67,6 +67,7 @@ class Strength extends Component {
 
     this.scoreElement = query(`.${this.classes.SCORE}`, this.container)
     this.input = query(`.${this.classes.INPUT}`, this.container)
+    this.wrap = query(`.${this.classes.ADDON}`, this.container)
 
     this.bind()
 
@@ -161,6 +162,22 @@ class Strength extends Component {
         }
       },
       this.element
+    )
+    bindEvent(
+      {
+        type: this.eventName('click'),
+        identity: `.${this.classes.ADDON}`,
+        handler: () => {
+          if (hasClass(this.classes.ACTIVE, this.wrap)) {
+            removeClass(this.classes.ACTIVE, this.wrap)
+            this.iconToggle()
+            return
+          }
+          addClass(this.classes.ACTIVE, this.wrap)
+          this.iconToggle()
+        }
+      },
+      this.wrap
     )
   }
 
@@ -272,10 +289,30 @@ class Strength extends Component {
     return this.status
   }
 
+  iconToggle() {
+    let type
+    if (this.wrap.matches('.pj-istrength-addon')) {
+      type = hasClass(this.classes.ACTIVE, this.wrap) ? 'text' : 'password'
+    } else {
+      type = this.shown === false ? 'text' : 'password'
+    }
+
+    this.shown = type === 'text'
+
+    if (this.shown) {
+      addClass(this.classes.SHOWN, this.container)
+    } else {
+      removeClass(this.classes.SHOWN, this.container)
+    }
+    this.input.setAttribute('type', type)
+
+    this.trigger(EVENTS.TOGGLE, type)
+  }
+
   toggle() {
     let type
 
-    if (this.$toggle.matches(':checkbox')) {
+    if (this.$toggle.matches('.pj-strength-addon input')) {
       type = this.$toggle.matches(':checked') ? 'text' : 'password'
     } else {
       type = this.shown === false ? 'text' : 'password'

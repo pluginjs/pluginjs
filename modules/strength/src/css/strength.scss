@@ -3,5 +3,32 @@
 $strength: "pj-strength" !default;
 
 .#{$strength} {
-  cursor: pointer;
+  &-container {
+    position: relative;
+  }
+  &-box {
+    position: absolute;
+    top: 10px;
+    left: 180px;
+    font-size: 12px;
+  }
+  &-toggle {
+    height: 13px;
+  }
+  &-addon{
+    .icon-show {
+      display: block;
+    }
+    .icon-hide {
+      display: none;
+    }
+  }
+  &-active {
+    .icon-show {
+      display: none;
+    }
+    .icon-hide {
+      display: block;
+    }
+  }
 }

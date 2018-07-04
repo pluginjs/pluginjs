@@ -17,10 +17,7 @@
 		"@pluginjs/dom": "^0.0.15",
 		"@pluginjs/icons": "^0.5.0",
 		"@pluginjs/strength": "^0.2.19",
-		"@pluginjs/styles": "^0.5.1",
-		"bootstrap.min.js": "^3.3.5",
-		"jquery.js": "^0.0.2-security",
-		"password_strength": "*"
+		"@pluginjs/styles": "^0.5.1"
 	},
 	"license": "GPL-3.0"
 }
