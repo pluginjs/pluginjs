@@ -5,25 +5,27 @@ const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  DRAGSTART: 'dragStart',
-  DRAGEND: 'dragEnd',
+  DRAGSTART: 'dragstart',
+  DRAGMOVE: 'dragmove',
+  DRAGEND: 'dragend',
   RESIZE: 'resize'
 }
 
 const classes = {
   NAMESPACE: `${namespace}`,
+  CONTAINER: '{namespace}-container',
+  VERTICAL: '{namespace}-vertical',
   DISABLED: '{namespace}-disabled'
 }
 
 const methods = ['enable', 'disable', 'destroy']
 
 const defaults = {
-  containment: null,
+  container: null,
   rebound: false,
-  reboundPercent: 100, // 1%~100% (without %)
+  reboundPos: 100, // 1%~100% (without %)
   offset: 0,
-  frictionFactor: 0.8,
-  timeConstant: 400,
+  duration: 400,
   power: 2,
   decay: false,
   axis: 'x' // 'x' or 'y'

@@ -4,5 +4,5 @@ import Swipeable from '@pluginjs/swipeable'
 
 const element = query('.swipeable', render(html, query('#default')))
 Swipeable.of(element, {
-  containment: '.default'
+  container: '.default'
 })

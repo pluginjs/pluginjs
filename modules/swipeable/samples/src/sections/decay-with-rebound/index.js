@@ -4,7 +4,7 @@ import Swipeable from '@pluginjs/swipeable'
 
 const element = query('.swipeable', render(html, query('#decayWithRebound')))
 Swipeable.of(element, {
-  containment: '.decayRebound',
+  container: '.decayRebound',
   decay: true,
   rebound: true
 })
