@@ -31,7 +31,7 @@ const defaults = {
   axis: 'x' // 'x' or 'y'
 }
 
-const dependencies = ['Hammer']
+const dependencies = ['Hammer', 'anime']
 
 const info = { version: '0.0.1' }
 

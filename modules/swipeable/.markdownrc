@@ -1,0 +1,125 @@
+{
+	"meta": {
+		"moduleName": "swipeable",
+		"namespace": "swipeable",
+		"Namespace": "Swipeable",
+		"options": [
+			{
+				"name": "container",
+				"desc": "Container selector",
+				"defaultValue": "null"
+			},
+			{
+				"name": "rebound",
+				"desc": "Support rebound",
+				"defaultValue": "false"
+			},
+			{
+				"name": "reboundPos",
+				"desc": "Set rebound position",
+				"defaultValue": "100"
+			},
+      {
+				"name": "offset",
+				"desc": "Set rebound offset",
+				"defaultValue": "0"
+			},
+      {
+				"name": "duration",
+				"desc": "Set duration",
+				"defaultValue": "400"
+			},
+      {
+				"name": "power",
+				"desc": "Set decay power",
+				"defaultValue": "2"
+			},
+      {
+				"name": "decay",
+				"desc": "Support decay",
+				"defaultValue": "false"
+			},
+      {
+				"name": "axis",
+				"desc": "Set direction, 'x' or 'y'",
+				"defaultValue": "'x'"
+			}
+		],
+		"option": "container",
+		"events": [
+			{
+				"name": "ready",
+				"desc": "Gets fired when plugin is ready"
+			},
+			{
+				"name": "enable",
+				"desc": "Gets fired when plugin is enabled"
+			},
+			{
+				"name": "disable",
+				"desc": "Gets fired when plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Gets fired when plugin is destroy"
+			},
+      {
+				"name": "dragstart",
+				"desc": "Gets fired when plugin has be dragStart"
+			},
+      {
+				"name": "dragmove",
+				"desc": "Gets fired when plugin has be dragMove"
+			},
+      {
+				"name": "dragend",
+				"desc": "Gets fired when plugin has be dragEnd"
+			},
+      {
+				"name": "resize",
+				"desc": "Gets fired when plugin has be resize"
+			}
+		],
+		"event": "ready",
+		"Event": "Ready",
+		"methods": [
+			{
+				"name": "disable",
+				"desc": "Disable plugin"
+			},
+			{
+				"name": "enable",
+				"desc": "Enabled plugin if plugin is disabled"
+			},
+			{
+				"name": "destroy",
+				"desc": "Destroy plugin"
+			}
+		],
+		"method": "disable",
+		"classes": [
+			{
+				"name": "NAMESPACE",
+				"desc": "Declare plugin namespace",
+				"value": "pj-swipeable"
+			},
+			{
+				"name": "VERTICAL",
+				"desc": "Declare plugin vertical",
+				"value": "{namespace}-vertical"
+			},
+			{
+				"name": "CONTAINER",
+				"desc": "Declare container node",
+				"value": "{namespace}-container"
+			},
+			{
+				"name": "DISABLED",
+				"desc": "Declare plugin is disabled",
+				"value": "{namespace}-disabled"
+			}
+		]
+	},
+	"output": "./README.md",
+	"template": "README"
+}
