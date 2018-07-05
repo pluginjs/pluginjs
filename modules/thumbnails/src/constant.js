@@ -40,7 +40,7 @@ const defaults = {
       )
     }
   },
-  data: null, // html or DATA
+  data: 'html', // html or DATA
   delegate: 'img',
   vertical: false,
   current: 0,

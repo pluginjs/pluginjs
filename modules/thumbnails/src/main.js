@@ -2,10 +2,10 @@ import anime from 'animejs'
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { deepMerge } from '@pluginjs/utils'
+import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, closest } from '@pluginjs/dom'
-import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import {
   eventable,
   register,
@@ -103,7 +103,6 @@ class Thumbnails extends Component {
 
       data.push(info)
     })
-
     return data
   }
 
