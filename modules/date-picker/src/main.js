@@ -87,7 +87,7 @@ class DatePicker extends Component {
       ),
       addClass(this.classes.INPUT, this.element)
     )
-
+    addClass(this.classes.INPUTMODE, this.element)
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$inputWrap)
     }
@@ -609,7 +609,7 @@ class DatePicker extends Component {
       content = year - 7 + m
       if (m > 0 && m % 4 === 0) {
         html += `</div><div class="${this.classes.ROW}">`
-      } else if (m == 0 || m == 11) {
+      } else if (m === 0 || m === 11) {
         className += `${this.classes.OTHERYEAR}`
       }
       dateArray[m] = new Date(content, 0, 1, 0, 0, 0, 0)

@@ -46,7 +46,8 @@ export const classes = {
   INRANGE: '{namespace}-inRange',
   ACTIVE: '{namespace}-active',
   INLINEMODE: '{namespace}-inline',
-  PICKERWRAP: '{namespace}-picker-wrap'
+  PICKERWRAP: '{namespace}-picker-wrap',
+  INPUTMODE: 'pj-input'
 }
 
 export const methods = [
@@ -141,7 +142,7 @@ export const defaults = {
   },
 
   process(value) {
-    /* global As*/
+    // /* global As*/
     if (value && !is.undefined()) {
       return JSON.stringify(value)
     }
