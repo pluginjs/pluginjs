@@ -9,7 +9,10 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/select": "*"
+    "@pluginjs/select": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/icons": "*",
+    "@pluginjs/styles": "*"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
