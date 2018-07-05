@@ -1,8 +1,8 @@
-# Styled
+# Styles
 
 [![npm package](https://img.shields.io/npm/v/@pluginjs/styled.svg)](https://www.npmjs.com/package/@pluginjs/styled)
 
-`styled` is a css library for common style generated.
+`styles` is a css library for common style generated.
 
 ---
 
@@ -18,9 +18,9 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/styled is Licensed under [the GPL-v3 license](LICENSE).
+@pluginjs/styles is Licensed under [the GPL-v3 license](LICENSE).
 
-If you want to use @pluginjs/styled project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+If you want to use @pluginjs/styles project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
 
 For purchase an Commercial License, contact us purchase@thecreation.co.
 
