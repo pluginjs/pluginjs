@@ -1,0 +1,106 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+
+$countdowns: "pj-countdown" !default;
+$countdown: "countdown" !default;
+$countdown-width: 4rem !default;
+$countdown-height: 6rem !default;
+$countdown-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !default;
+$countdown-flip-color: #f8f8f8 !default;
+$countdown-background: #202020 !default;
+$countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
+
+// flip
+// =====================
+
+.#{$countdowns}-flip {
+  .#{$countdown}-time {
+    position: relative;
+    display: inline-block;
+    width: $countdown-width;
+    height: $countdown-height;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: $countdown-shadow;
+    perspective: 479px;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .#{$countdown}-number {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    font-size: 2em;
+    line-height: 95px;
+    color: $countdown-flip-color;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    background: $countdown-background;
+    transform: translateZ(0);
+    transform-style: flat;
+  }
+
+  .#{$countdown}-number.#{$countdown}-top {
+    height: 50%;
+    border-top: 1px solid $countdown-flip-border;
+    border-bottom: 1px solid $countdown-flip-border;
+    border-radius: 5px 5px 0 0;
+    transform-origin: 50% 100%;
+  }
+
+  .#{$countdown}-number.#{$countdown}-curr.#{$countdown}-top {
+    z-index: 3;
+    transform: rotateX(0deg);
+  }
+
+  .#{$countdown}-number.#{$countdown}-bottom {
+    top: 50%;
+    height: 50%;
+    line-height: 0;
+    background-image: $countdown-flip-border transparent;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-radius: 0 0 5px 5px;
+    transform-origin: 50% 0;
+  }
+
+  .#{$countdown}-number.#{$countdown}-next.#{$countdown}-bottom {
+    z-index: 2;
+    transform: rotateX(90deg);
+  }
+
+  .#{$countdown}-label {
+    position: absolute;
+    top: 100%;
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .#{$countdown}-label.above {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  .#{$countdown}-flip {
+    .#{$countdown}-number.#{$countdown}-curr.#{$countdown}-top {
+      transition: all 500ms ease-in-out;
+      transform: rotateX(-90deg);
+    }
+
+    .#{$countdown}-number.#{$countdown}-next.#{$countdown}-bottom {
+      transition: all 500ms ease-in-out 500ms;
+      transform: rotateX(0deg);
+    }
+  }
+}
+

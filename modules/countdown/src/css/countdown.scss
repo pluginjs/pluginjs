@@ -1,257 +1,42 @@
 @import "@pluginjs/styles/variables.scss";
+@import "./_progress.scss";
+@import "./_flip.scss";
+
+// Vars
+// =====================
 
 $countdown: "countdown" !default;
+$countdowns: "pj-countdown" !default;
+$countdown-color: #333 !default;
+$countdown-size: 2rem !default;
+$countdown-label-size: 1rem !default;
+$countdown-space: 2rem !default;
+
+// progress
+// =====================
 
 .#{$countdown} {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: $countdown-space;
   text-align: center;
-  .#{$countdown}-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 1rem;
-  }
-  .#{$countdown}-number {
-    position: relative;
-    margin: 0;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-  }
-  .#{$countdown}-label {
-    font-size: 1rem;
-    color: #666;
-  }
 }
-
-.#{$countdown}-progress {
-  .#{$countdown}-inner {
-    position: relative;
-    width: 10rem;
-    height: 10rem;
-    .#{$countdown}-number {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #333;
-      transform: translateY(-70%);
-    }
-    .#{$countdown}-label {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      font-size: 1rem;
-      color: #666;
-      transform: translateY(30%);
-    }
-  }
-  .countdown-ring-progress {
-    //position: absolute;
-    width: 100%;
-  }
-  svg {
-    transform: rotate(-90deg);
-  }
-  .dSvg,
-  .hSvg,
-  .mSvg,
-  .sSvg {
-    stroke-dasharray: 255%;
-    stroke-dashoffset: 0%;
-    fill: none;
-  }
-  .dCircle,
-  .hCircle,
-  .mCircle,
-  .sCircle {
-    transition: all 0.5s;
-  }
-}
-
-.#{$countdown}-card {
-  position: relative;
+.#{$countdown}-time {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 8rem;
-  height: 8rem;
-  margin: 1rem;
-  line-height: 8rem;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.06),
-    1px 1px 20px 0 rgba(0, 0, 0, 0.06), -2px 0 20px 0 rgba(0, 0, 0, 0.06);
-  a {
-    display: block;
-    height: 100%;
-    margin: 0;
-    overflow: visible;
-    cursor: default;
-    perspective: 200px;
-    span {
-      position: absolute;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      height: 50%;
-      overflow: hidden;
-      line-height: 8rem;
-      outline: 1px solid transparent;
-      .shadow {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        //z-index: 2;
-      }
-    }
-  }
-  .up {
-    top: 0;
-    transform-origin: 50% 100%;
-  }
-  .#{$countdown}-before,
-  .#{$countdown}-active {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    line-height: 8rem;
-    &::after {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      height: 1px;
-      content: "";
-      background-color: #e5e5e5;
-    }
-    .#{$countdown}-number {
-      position: absolute;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      height: 200%;
-      margin: 0;
-      text-align: center;
-    }
-  }
-  .#{$countdown}-before {
-    z-index: 3;
-    .up {
-      z-index: 2;
-    }
-    .down {
-      bottom: 0;
-      border-bottom-right-radius: 2px;
-      border-bottom-left-radius: 2px;
-      transform-origin: 50% 0;
-    }
-  }
-  .#{$countdown}-active {
-    z-index: 5;
-    .down {
-      bottom: 0;
-      z-index: 2;
-      border-bottom-right-radius: 2px;
-      border-bottom-left-radius: 2px;
-      transform-origin: 50% 0;
-    }
-  }
-  .shadow {
-    background-color: #fff;
-    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.06);
-  }
-  span.up .#{$countdown}-number {
-    top: 0;
-  }
-  span.down .#{$countdown}-number {
-    bottom: 0;
-  }
-  .up {
-    top: 0;
-    transform-origin: 50% 100%;
-  }
+  margin: 0 0.5rem;
 }
-
-.#{$countdown}-card.play {
-  .#{$countdown}-active {
-    animation: asd 0.25s 0.25s linear both;
-    .up {
-      .shadow {
-        animation: hide 0.25s 0.25s linear both;
-      }
-    }
-    .down {
-      animation: turn2 0.25s 0.25s linear both;
-    }
-  }
-  .#{$countdown}-before {
-    .up {
-      animation: turn 0.25s linear both;
-    }
-    .show {
-      animation: show 0.25s linear both;
-    }
-  }
+.#{$countdown}-number {
+  position: relative;
+  margin: 0;
+  font-size: $countdown-size;
+  font-weight: 700;
+  color: $countdown-color;
 }
-
-@keyframes turn {
-  0% {
-    transform: rotateX(0deg);
-  }
-  100% {
-    transform: rotateX(-90deg);
-  }
-}
-
-@keyframes turn2 {
-  0% {
-    transform: rotateX(90deg);
-  }
-  100% {
-    transform: rotateX(0deg);
-  }
-}
-
-@keyframes asd {
-  0% {
-    z-index: 2;
-  }
-  20% {
-    z-index: 4;
-  }
-  100% {
-    z-index: 4;
-  }
-}
-
-@keyframes shadow {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes hide {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
+.#{$countdown}-label {
+  font-size: $countdown-label-size;
+  color: $countdown-color;
 }

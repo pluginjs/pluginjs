@@ -1,0 +1,67 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+
+$countdowns: "pj-countdown" !default;
+$countdown: "countdown" !default;
+$countdown-progress-width: 10rem !default;
+$countdown-progress-height: 10rem !default;
+$countdown-progress-color: #333 !default;
+
+// progress
+// =====================
+
+.#{$countdowns}-progress {
+  .#{$countdown}-time {
+    position: relative;
+    width: $countdown-progress-width;
+    height: $countdown-progress-height;
+
+    .#{$countdown}-number {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      color: $countdown-progress-color;
+      transform: translateY(-70%);
+    }
+
+    .#{$countdown}-label {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      color: $countdown-progress-color;
+      transform: translateY(30%);
+    }
+
+    .#{$countdown}-number.above {
+      position: absolute;
+      top: auto;
+      transform: translateY(20%);
+    }
+
+    .#{$countdown}-label.above {
+      position: absolute;
+      top: auto;
+      transform: translateY(-80%);
+    }
+  }
+
+  .#{$countdowns}-progress-ring {
+    //position: absolute;
+    width: 100%;
+  }
+
+  svg {
+    transform: rotate(-90deg);
+    stroke-dasharray: 255%;
+    stroke-dashoffset: 0%;
+    fill: none;
+  }
+
+  circle {
+    transition: all 0.5s;
+  }
+}

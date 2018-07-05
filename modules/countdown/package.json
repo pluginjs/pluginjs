@@ -21,22 +21,25 @@
     "main": "dist/countdown.css",
     "min": "dist/countdown.min.css"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "scripts": {
     "build": "plugin build",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/pluginjs": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/styled": "*",
+    "@pluginjs/styles": "*",
+    "@pluginjs/utils": "*",
+    "@pluginjs/template": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -47,10 +50,6 @@
     "rollup-plugin-babel": "^4.0.0-beta.7",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
-  },
-  "engines": {
-    "node": ">= 8",
-    "npm": ">= 5"
   },
   "category": "ui",
   "jest": {
