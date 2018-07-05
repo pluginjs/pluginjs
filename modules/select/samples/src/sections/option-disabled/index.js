@@ -1,10 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Select from '@pluginjs/select'
 
-const element = query(
-  '.example-option-disabled',
-  render(html, query('#option-disabled'))
-)
+const element = query('#option-disabled .example-option-disabled')
 
 Select.of(element, {})

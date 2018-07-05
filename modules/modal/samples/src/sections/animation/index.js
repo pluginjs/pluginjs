@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Modal from '@pluginjs/modal'
 
 const basicModal = {
@@ -30,7 +29,7 @@ const basicModal = {
     }
   }
 }
-const element = query('.modal', render(html, query('#animation')))
+const element = query('#animation .modal')
 element.addEventListener('click', () => {
   const data = event.target.dataset.effect
   basicModal.effect = data

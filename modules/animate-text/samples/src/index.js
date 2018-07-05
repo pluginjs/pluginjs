@@ -1,16 +1,2 @@
 // import animate-text css
 import '@pluginjs/animate-text/src/css/animate-text.scss'
-// import sections
-import './sections/fade-down'
-import './sections/fade-top'
-import './sections/fade-left'
-import './sections/fade-right'
-import './sections/zoom'
-import './sections/bounce'
-import './sections/swing'
-import './sections/typewrite'
-import './sections/slider'
-import './sections/slider-not-loop'
-import './sections/fade'
-import './sections/rotate'
-import './sections/push'

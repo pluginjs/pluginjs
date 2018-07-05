@@ -1,9 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import ImageSelector from '@pluginjs/image-selector'
 
-const element = query(
-  '.example-build-by-element',
-  render(html, query('#build'))
-)
+const element = query('#build .example-build-by-element')
 ImageSelector.of(element, {})

@@ -6,13 +6,34 @@
   <title>Swipeable</title>
 </head>
 <body>
-  <section id="default"></section>
-  <section id="decay"></section>
-  <section id="rebound"></section>
-  <section id="decayWithRebound"></section>
-  <section id="position"></section>
-  <section id="vertical" style="display: inline-block;margin-right: 50px"></section>
-  <section id="position-vertical" style="display: inline-block"></section>
+  <section id="default">
+    <include src="src/sections/default/index.html"></include>
+    <script src="src/sections/default/index.js"></script>
+  </section>
+  <section id="decay">
+    <include src="src/sections/decay/index.html"></include>
+    <script src="src/sections/decay/index.js"></script>
+  </section>
+  <section id="rebound">
+    <include src="src/sections/rebound/index.html"></include>
+    <script src="src/sections/rebound/index.js"></script>
+  </section>
+  <section id="decayWithRebound">
+    <include src="src/sections/decayWithRebound/index.html"></include>
+    <script src="src/sections/decayWithRebound/index.js"></script>
+  </section>
+  <section id="position">
+    <include src="src/sections/position/index.html"></include>
+    <script src="src/sections/position/index.js"></script>
+  </section>
+  <section id="vertical" style="display: inline-block;margin-right: 50px">
+    <include src="src/sections/vertical" style="display: inline-block;margin-right: 50px/index.html"></include>
+    <script src="src/sections/vertical" style="display: inline-block;margin-right: 50px/index.js"></script>
+  </section>
+  <section id="position-vertical" style="display: inline-block">
+    <include src="src/sections/position-vertical" style="display: inline-block/index.html"></include>
+    <script src="src/sections/position-vertical" style="display: inline-block/index.js"></script>
+  </section>
   <script src="src/index.js"></script>
 </body>
 </html>

@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Dots from '@pluginjs/dots'
 
-const element = query('.example-vertical', render(html, query('#vertical')))
+const element = query('#vertical .example-vertical')
 Dots.of(element, {
   direction: 'vertical',
   onChange(val) {

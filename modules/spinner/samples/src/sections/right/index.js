@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Spinner from '@pluginjs/spinner'
 
-const element = query('.example-right', render(html, query('#right')))
+const element = query('#right .example-right')
 
 Spinner.of(element, { layout: 'right' })

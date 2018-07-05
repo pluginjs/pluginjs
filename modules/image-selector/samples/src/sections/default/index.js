@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import ImageSelector from '@pluginjs/image-selector'
 
-const element = query('.example-default', render(html, query('#default')))
+const element = query('#default .example-default')
 ImageSelector.of(element, {
   data: [
     {

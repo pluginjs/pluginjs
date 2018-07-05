@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Thumbnails from '@pluginjs/thumbnails'
 
-const element = query('.thumbnails', render(html, query('#delegate')))
+const element = query('#delegate .thumbnails')
 
 Thumbnails.of(element, {
   delegate: '.pj-thumb-loaded'

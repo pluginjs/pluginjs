@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import CountDown from '@pluginjs/countdown'
 
-const element = query('.countdown', render(html, query('#progress')))
+const element = query('#progress .countdown')
 CountDown.of(element, {})

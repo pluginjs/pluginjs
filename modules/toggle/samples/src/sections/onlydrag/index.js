@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Toggle from '@pluginjs/toggle'
 
-const element = query('.example-drag', render(html, query('#onlydrag')))
+const element = query('#onlydrag .example-drag')
 
 Toggle.of(element, { theme: null, dragable: true, clickable: false })

@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Arrows from '@pluginjs/arrows'
 
-const element = query('.example-solid', render(html, query('#solid')))
+const element = query('#solid .example-solid')
 Arrows.of(element, {
   type: 'circle solid'
 })

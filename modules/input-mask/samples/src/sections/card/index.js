@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import InputMask from '@pluginjs/input-mask'
 
-const element = query('#input-mask-card', render(html, query('#card')))
+const element = query('#card #input-mask-card')
 InputMask.of(element, {
   type: 'card'
 })

@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import MapPicker from '@pluginjs/map-picker'
 
-const element = query('.example-locale', render(html, query('#locale')))
+const element = query('#locale .example-locale')
 
 MapPicker.of(element, { locale: 'zh' })

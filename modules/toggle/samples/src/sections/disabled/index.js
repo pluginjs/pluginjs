@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Toggle from '@pluginjs/toggle'
 
-const element = query('.example-disabled', render(html, query('#disabled')))
+const element = query('#disabled .example-disabled')
 
 Toggle.of(element, { disabled: true })

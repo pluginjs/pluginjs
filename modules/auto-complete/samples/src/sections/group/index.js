@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
 const dataGroup = [
@@ -13,7 +12,7 @@ const dataGroup = [
   }
 ]
 
-const element = query('.auto-complete-group', render(html, query('#group')))
+const element = query('#group .auto-complete-group')
 AutoComplete.of(element, {
   data: dataGroup,
   highlight: true,

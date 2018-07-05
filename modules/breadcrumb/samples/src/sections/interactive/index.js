@@ -1,9 +1,8 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Breadcrumb from '@pluginjs/breadcrumb'
 import Interactive from './Interactive'
 
-const root = render(html, query('#interactive'))
+const root = query('#interactive')
 const interactiveConsole = new Interactive(() => {
   const element = query('.breadcrumb', root)
   return Breadcrumb.of(element, {

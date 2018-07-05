@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import AdaptText from '@pluginjs/adapt-text'
 
-const element = query('.adapt-text', render(html, query('#inline-block')))
+const element = query('#inline-block .adapt-text')
 AdaptText.of(element, {
   /** options **/
 })

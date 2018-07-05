@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Spinner from '@pluginjs/spinner'
 
-const element = query('.example-disabled', render(html, query('#disabled')))
+const element = query('#disabled .example-disabled')
 
 Spinner.of(element, { disabled: true })

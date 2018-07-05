@@ -1,10 +1,9 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
 const dataArr = [['England', 'UK'], ['China', 'CN'], ['America', 'USA']]
 
-const element = query('.auto-complete-render', render(html, query('#render')))
+const element = query('#render .auto-complete-render')
 AutoComplete.of(element, {
   data: dataArr,
   highlight: true,

@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Thumbnails from '@pluginjs/thumbnails'
 
-const element = query('.thumbnails', render(html, query('#default')))
+const element = query('#default .thumbnails')
 Thumbnails.of(element, {})

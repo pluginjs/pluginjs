@@ -6,6 +6,3 @@ import '@pluginjs/styles/buttons.scss'
 import '@pluginjs/popover/src/css/popover.scss'
 import '@pluginjs/pop-dialog/src/css/pop-dialog.scss'
 import '@pluginjs/image-picker/src/css/image-picker.scss'
-// import sections
-import './sections/default'
-import './sections/locale'

@@ -1,11 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Range from '@pluginjs/range'
 
-const element = query(
-  '.example-units-range',
-  render(html, query('#units-range'))
-)
+const element = query('#units-range .example-units-range')
 
 Range.of(element, {
   isRange: true,

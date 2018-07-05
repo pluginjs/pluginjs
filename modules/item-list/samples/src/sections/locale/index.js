@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import ItemList from '@pluginjs/item-list'
 
 const data = [
@@ -25,7 +24,7 @@ const data = [
   }
 ]
 
-const element = query('.example-locale', render(html, query('#locale')))
+const element = query('#locale .example-locale')
 ItemList.of(element, {
   locale: 'zh',
   data,

@@ -1,11 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Select from '@pluginjs/select'
 
-const element = query(
-  '.example-multiple-filterable',
-  render(html, query('#multiple-filterable'))
-)
+const element = query('#multiple-filterable .example-multiple-filterable')
 
 Select.of(element, {
   multiple: true,

@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import GalleryPicker from '@pluginjs/gallery-picker'
 
-const element = query('.example-attribute', render(html, query('#attribute')))
+const element = query('#attribute .example-attribute')
 GalleryPicker.of(element, {
   add() {
     return [

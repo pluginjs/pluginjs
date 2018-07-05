@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
 const dataGroup = [
@@ -13,7 +12,7 @@ const dataGroup = [
   }
 ]
 
-const element = query('.auto-complete-ajax', render(html, query('#ajax')))
+const element = query('#ajax .auto-complete-ajax')
 AutoComplete.of(element, {
   ajax: true,
   group: true,

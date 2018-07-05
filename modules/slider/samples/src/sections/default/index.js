@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Slider from '@pluginjs/slider'
 
-const element = query('.slider', render(html, query('#default')))
+const element = query('#default .slider')
 Slider.of(element, {
   arrows: true,
   dots: true,

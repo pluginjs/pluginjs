@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Modal from '@pluginjs/modal'
 
-const root = render(html, query('#overlay'))
+const root = query('#overlay')
 query('.overlay', root).addEventListener('click', () => {
   Modal.open({
     theme: 'sm',

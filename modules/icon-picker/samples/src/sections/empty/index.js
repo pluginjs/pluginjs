@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import IconPicker from '@pluginjs/icon-picker'
 
-const element = query('.example-empty', render(html, query('#empty')))
+const element = query('#empty .example-empty')
 IconPicker.of(element, {})

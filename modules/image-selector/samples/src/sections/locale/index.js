@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import ImageSelector from '@pluginjs/image-selector'
 
-const element = query('.example-locale', render(html, query('#locale')))
+const element = query('#locale .example-locale')
 ImageSelector.of(element, {
   locale: 'zh',
   select: 'right',

@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const element = query('.dropdown-input', render(html, query('#input')))
+const element = query('#input .dropdown-input')
 Dropdown.of(element, {
   imitateSelect: true,
   inputLabel: true,

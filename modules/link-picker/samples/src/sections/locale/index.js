@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import LinkPicker from '@pluginjs/link-picker'
 
-const element = query('.link-picker-locale', render(html, query('#locale')))
+const element = query('#locale .link-picker-locale')
 
 LinkPicker.of(element, {
   locale: 'zh'

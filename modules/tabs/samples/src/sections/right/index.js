@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Tabs from '@pluginjs/tabs'
 
-const element = query('.tabs', render(html, query('#right')))
+const element = query('#right .tabs')
 Tabs.of(element, {})

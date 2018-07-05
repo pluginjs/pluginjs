@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Arrows from '@pluginjs/arrows'
 
-const element = query('.example-text', render(html, query('#text')))
+const element = query('#text .example-text')
 Arrows.of(element, {
   valueFrom: 'text'
 })

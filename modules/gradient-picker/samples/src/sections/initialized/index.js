@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import GradientPicker from '@pluginjs/gradient-picker'
 
 const data = {
@@ -18,5 +17,5 @@ const data = {
 
 GradientPicker.setData(data)
 
-const element = query('.example-input', render(html, query('#initialized')))
+const element = query('#initialized .example-input')
 GradientPicker.of(element, {})

@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Strength from '@pluginjs/strength'
 
-const element = query('.password-input-image', render(html, query('#image')))
+const element = query('#image .password-input-image')
 
 Strength.of(element, {
   templates: {

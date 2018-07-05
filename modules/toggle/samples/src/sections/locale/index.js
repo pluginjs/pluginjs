@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Toggle from '@pluginjs/toggle'
 
-const element = query('.example-locale', render(html, query('#locale')))
+const element = query('#locale .example-locale')
 
 Toggle.of(element, { showText: true, locale: 'zh' })

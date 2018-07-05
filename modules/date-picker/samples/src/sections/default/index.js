@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import DatePicker from '@pluginjs/date-picker'
 
-const element = query('#calendar', render(html, query('#default')))
+const element = query('#default #calendar')
 DatePicker.of(element, {})

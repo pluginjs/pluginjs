@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import ColorPicker from '@pluginjs/color-picker'
 
-const element = query('.module-solid-gradient', render(html, query('#solid')))
+const element = query('#solid .module-solid-gradient')
 ColorPicker.of(element, {
   module: ['solid', 'gradient']
 })

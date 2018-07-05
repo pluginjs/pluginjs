@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Choice from '@pluginjs/choice'
 
-const element = query('.blank', render(html, query('#blank')))
+const element = query('#blank .blank')
 Choice.of(element, {
   value: 'default',
   data: {

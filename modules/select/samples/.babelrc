@@ -1,8 +1,5 @@
 {
   "presets": [
     "env"
-  ],
-  "plugins": [
-    "transform-html-import-to-string"
   ]
 }

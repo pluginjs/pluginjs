@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Popover from '@pluginjs/popover'
 
-const root = render(html, query('#contents'))
+const root = query('#contents')
 const tableElement = query('[data-toggle="popover-table"]', root)
 const largeContentElement = query('[data-toggle="popover-largeContent"]', root)
 const iframeElement = query('[data-toggle="popover-iframe"]', root)

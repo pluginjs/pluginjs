@@ -1,11 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Popover from '@pluginjs/popover'
 
-const element = query(
-  '[data-toggle="popover"]',
-  render(html, query('#hide-out-click'))
-)
+const element = query('#hide-out-click [data-toggle="popover"]')
 Popover.of(element, {
   /** options **/
 })

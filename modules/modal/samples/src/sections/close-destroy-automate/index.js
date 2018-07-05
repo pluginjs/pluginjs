@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Modal from '@pluginjs/modal'
 
-const root = render(html, query('#close-destroy-automate'))
+const root = query('#close-destroy-automate')
 let instance = null
 query('.autoDestroy_init', root).addEventListener('click', () => {
   instance = Modal.init({

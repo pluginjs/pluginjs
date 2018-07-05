@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Slider from '@pluginjs/slider'
 
-const element = query('.slider-vertical', render(html, query('#vertical')))
+const element = query('#vertical .slider-vertical')
 const slider = Slider.of(element, {
   direction: 'vertical',
   arrows: true,

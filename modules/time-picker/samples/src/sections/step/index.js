@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import TimePicker from '@pluginjs/time-picker'
 
-const element = query('.time-picker-step', render(html, query('#step')))
+const element = query('#step .time-picker-step')
 TimePicker.of(element, { step: 80 })

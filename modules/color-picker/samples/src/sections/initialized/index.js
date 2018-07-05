@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import ColorPicker from '@pluginjs/color-picker'
 
 const data = {
@@ -21,5 +20,5 @@ const data = {
 
 ColorPicker.setCollectionData(data)
 
-const element = query('.input', render(html, query('#initialized')))
+const element = query('#initialized .input')
 ColorPicker.of(element, {})

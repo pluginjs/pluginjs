@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Strength from '@pluginjs/strength'
 
-const element = query('.password-input', render(html, query('#default')))
+const element = query('#default .password-input')
 
 Strength.of(element, {
   locale: 'zh'

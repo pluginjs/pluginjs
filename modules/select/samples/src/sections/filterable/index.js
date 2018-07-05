@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Select from '@pluginjs/select'
 
-const element = query('.example-filterable', render(html, query('#filterable')))
+const element = query('#filterable .example-filterable')
 
 Select.of(element, { filterable: true })

@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Spinner from '@pluginjs/spinner'
 
-const element = query('.example-units', render(html, query('#units')))
+const element = query('#units .example-units')
 const datas = {
   theme: null,
   unit: {

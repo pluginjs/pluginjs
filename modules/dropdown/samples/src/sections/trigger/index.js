@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const element = query('.dropdown-trigger', render(html, query('#trigger')))
+const element = query('#trigger .dropdown-trigger')
 Dropdown.of(element, {
   trigger: 'hover'
 })

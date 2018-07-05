@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
-const element = query('.auto-complete-basic', render(html, query('#basic')))
+const element = query('#basic .auto-complete-basic')
 AutoComplete.of(element, {})

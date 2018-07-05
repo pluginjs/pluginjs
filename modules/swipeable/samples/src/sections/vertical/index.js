@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Swipeable from '@pluginjs/swipeable'
 
-const element = query('.swipeable', render(html, query('#vertical')))
+const element = query('#vertical .swipeable')
 Swipeable.of(element, {
   axis: 'y',
   container: '.vertical',

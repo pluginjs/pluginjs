@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import AnimateText from '@pluginjs/animate-text'
 
-const element = query('.animate-text', render(html, query('#bounce')))
+const element = query('#bounce .animate-text')
 AnimateText.of(element, {
   /** options **/
 })

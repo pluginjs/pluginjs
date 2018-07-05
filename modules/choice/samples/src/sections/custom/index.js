@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Choice from '@pluginjs/choice'
 
-const element = query('.blank-custom', render(html, query('#custom')))
+const element = query('#custom .blank-custom')
 Choice.of(element, {
   value: ['ship', 'plane'],
   overflow: true,

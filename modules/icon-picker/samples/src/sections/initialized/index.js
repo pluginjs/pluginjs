@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import IconPicker from '@pluginjs/icon-picker'
 
 const data = {
@@ -56,5 +55,5 @@ const data = {
 
 IconPicker.setData(data)
 
-const element = query('.example-input', render(html, query('#initialized')))
+const element = query('#initialized .example-input')
 IconPicker.of(element, {})

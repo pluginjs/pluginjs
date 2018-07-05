@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import LinkPicker from '@pluginjs/link-picker'
 
-const element = query('.link-picker-default', render(html, query('#default')))
+const element = query('#default .link-picker-default')
 
 LinkPicker.of(element, {})

@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import InputMask from '@pluginjs/input-mask'
 
-const element = query('#input-mask-time', render(html, query('#time')))
+const element = query('#time #input-mask-time')
 InputMask.of(element, {
   type: 'time'
 })

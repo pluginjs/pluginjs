@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import BgPicker from '@pluginjs/bg-picker'
 
-const element = query('.example-format', render(html, query('#format')))
+const element = query('#format .example-format')
 BgPicker.of(element, {
   process() {
     return ''

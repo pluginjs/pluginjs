@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import TagList from '@pluginjs/tag-list'
 
-const element = query('.example-default', render(html, query('#default')))
+const element = query('#default .example-default')
 const datas = ['hello', 'world']
 TagList.of(element, { data: datas })

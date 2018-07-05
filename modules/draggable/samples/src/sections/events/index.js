@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Draggable from '@pluginjs/draggable'
 
-const element = query('.draggable', render(html, query('#events')))
+const element = query('#events .draggable')
 Draggable.of(element, {
   onDragstart() {
     message(this, 'DragStart')

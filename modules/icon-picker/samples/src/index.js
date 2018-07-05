@@ -9,8 +9,3 @@ import 'font-awesome/css/font-awesome.css'
 import '@pluginjs/scrollable/src/css/scrollable.scss'
 import '@pluginjs/icon-picker/src/css/icon-picker.scss'
 import 'font-awesome/css/font-awesome.min.css'
-// import sections
-import './sections/default'
-import './sections/empty'
-import './sections/initialized'
-import './sections/locale'

@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Spinner from '@pluginjs/spinner'
 
-const element = query('.example-mousewheel', render(html, query('#mousewheel')))
+const element = query('#mousewheel .example-mousewheel')
 
 Spinner.of(element, { mousewheel: true })

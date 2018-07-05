@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import TimePicker from '@pluginjs/time-picker'
 
-const element = query('.time-picker', render(html, query('#default')))
+const element = query('#default .time-picker')
 TimePicker.of(element, {})

@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import LinkPicker from '@pluginjs/link-picker'
 
-const element = query('.example-input', render(html, query('#initvalue')))
+const element = query('#initvalue .example-input')
 
 const sources = {
   content: {

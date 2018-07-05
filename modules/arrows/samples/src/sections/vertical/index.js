@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Arrows from '@pluginjs/arrows'
 
-const element = query('.example-vertical', render(html, query('#vertical')))
+const element = query('#vertical .example-vertical')
 Arrows.of(element, {
   direction: 'vertical'
 })

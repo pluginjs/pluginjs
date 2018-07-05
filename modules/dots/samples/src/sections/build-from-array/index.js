@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Dots from '@pluginjs/dots'
 
-const element = query('.js-dots', render(html, query('#build-from-array')))
+const element = query('#build-from-array .js-dots')
 const $jsDot = Dots.of(element, {
   default: null,
   items: [

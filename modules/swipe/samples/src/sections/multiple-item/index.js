@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Swipe from '@pluginjs/swipe'
 
-const element = query('.swipe', render(html, query('#multiple-item')))
+const element = query('#multiple-item .swipe')
 Swipe.of(element, {
   itemNums: 3
 })

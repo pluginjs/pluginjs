@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 
-const root = render(html, query('#youtube'))
+const root = query('#youtube')
 const element = query('.video', root)
 const instance = Video.of(element, {
   type: 'youtube',

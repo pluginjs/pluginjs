@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const body = render(html, query('#placement'))
+const body = query('#placement')
 const element1 = query('.dropdown-placement-1', body)
 const element2 = query('.dropdown-placement-2', body)
 const element3 = query('.dropdown-placement-3', body)

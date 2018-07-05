@@ -1,9 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import DatePicker from '@pluginjs/date-picker'
 
-const element = query(
-  '#calendar-api-displayMode',
-  render(html, query('#displayMode'))
-)
+const element = query('#displayMode #calendar-api-displayMode')
 DatePicker.of(element, { displayMode: 'inline' })

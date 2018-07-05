@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import ColorPicker from '@pluginjs/color-picker'
 
-const element = query('.module-collection', render(html, query('#collection')))
+const element = query('#collection .module-collection')
 ColorPicker.of(element, {
   module: ['collection']
 })

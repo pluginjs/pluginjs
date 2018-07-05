@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Accordion from '@pluginjs/accordion'
 
-const element = query('.accordion', render(html, query('#vertical')))
+const element = query('#vertical .accordion')
 Accordion.of(element, {})

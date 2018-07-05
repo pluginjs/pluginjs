@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import List from '@pluginjs/list'
 
 const data = [
@@ -25,5 +24,5 @@ const data = [
   }
 ]
 
-const element = query('.example-default', render(html, query('#default')))
+const element = query('#default .example-default')
 List.of(element, { data })

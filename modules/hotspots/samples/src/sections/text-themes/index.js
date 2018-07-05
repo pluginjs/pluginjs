@@ -1,9 +1,8 @@
-import { html as render, query, queryAll } from '@pluginjs/dom'
-import html from './index.html'
+import { queryAll } from '@pluginjs/dom'
 import Hotspots from '@pluginjs/hotspots'
 import escapeHTML from '../escape-html'
 
-queryAll('.pj-hotspots', render(html, query('#text-themes'))).map(element =>
+queryAll('#text-themes .pj-hotspots').map(element =>
   Hotspots.of(element, {
     icon: 'fa fa-map-marker',
     data: [

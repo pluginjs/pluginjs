@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Dots from '@pluginjs/dots'
 
-const element = query('.example-stroke', render(html, query('#stroke')))
+const element = query('#stroke .example-stroke')
 Dots.of(element, {
   type: 'stroke',
   valueFrom: 'text',

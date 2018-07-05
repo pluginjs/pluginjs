@@ -1,11 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Arrows from '@pluginjs/arrows'
 
-const element = query(
-  '.example-square-outline',
-  render(html, query('#square-outline'))
-)
+const element = query('#square-outline .example-square-outline')
 Arrows.of(element, {
   type: 'outline square'
 })

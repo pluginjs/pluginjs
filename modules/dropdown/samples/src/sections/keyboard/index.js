@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const element = query('.dropdown-keyboard', render(html, query('#keyboard')))
+const element = query('#keyboard .dropdown-keyboard')
 Dropdown.of(element, {})

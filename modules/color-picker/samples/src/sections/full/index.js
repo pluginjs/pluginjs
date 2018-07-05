@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import ColorPicker from '@pluginjs/color-picker'
 
-const element = query('.solid-full', render(html, query('#full')))
+const element = query('#full .solid-full')
 ColorPicker.of(element, {
   module: ['solid'],
   solidMode: 'full'

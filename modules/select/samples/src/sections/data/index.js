@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Select from '@pluginjs/select'
 
 const data = [
@@ -37,6 +36,6 @@ const data = [
   }
 ]
 
-const element = query('.example-data', render(html, query('#data')))
+const element = query('#data .example-data')
 
 Select.of(element, { data })

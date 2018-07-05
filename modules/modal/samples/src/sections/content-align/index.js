@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Modal from '@pluginjs/modal'
 
-const root = render(html, query('#content-align'))
+const root = query('#content-align')
 const alignContent = {
   content: 'this is a modal',
   buttonAlignment: 'center',

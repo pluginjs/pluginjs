@@ -1,11 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import DatePicker from '@pluginjs/date-picker'
 
-const element = query(
-  '#calendar-mobile-multiple',
-  render(html, query('#MMultiple'))
-)
+const element = query('#MMultiple #calendar-mobile-multiple')
 DatePicker.of(element, {
   mode: 'multiple',
   mobileMode: true

@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import fontPicker from '@pluginjs/font-picker'
 import WebFont from 'webfontloader'
 const activated = {
@@ -924,7 +923,7 @@ const data = {
   }
 }
 
-const element = query('.font-picker-locale', render(html, query('#locale')))
+const element = query('#locale .font-picker-locale')
 fontPicker.registerSources(data)
 fontPicker.setActivated(activated)
 fontPicker.of(element, {})

@@ -1,9 +1,8 @@
-import { html as render, queryAll, query } from '@pluginjs/dom'
-import html from './index.html'
+import { queryAll, query } from '@pluginjs/dom'
 import Hotspots from '@pluginjs/hotspots'
 import escapeHTML from '../escape-html'
 
-const section = render(html, query('#types'))
+const section = query('#types')
 queryAll('.hotspots-car', section).map(element =>
   Hotspots.of(element, {
     icon: 'fa fa-map-marker',

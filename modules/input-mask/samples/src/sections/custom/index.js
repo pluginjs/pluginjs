@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import InputMask from '@pluginjs/input-mask'
 
-const element = query('#input-mask-custom', render(html, query('#custom')))
+const element = query('#custom #input-mask-custom')
 InputMask.of(element, {
   type: 'custom',
   delimiter: '-',

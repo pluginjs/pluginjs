@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
 const dataObj = [
@@ -8,7 +7,7 @@ const dataObj = [
   { label: 'America', value: 'USA' }
 ]
 
-const element = query('.auto-complete-label-obj', render(html, query('#obj')))
+const element = query('#obj .auto-complete-label-obj')
 AutoComplete.of(element, {
   data: dataObj
 })

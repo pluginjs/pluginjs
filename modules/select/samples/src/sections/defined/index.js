@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Select from '@pluginjs/select'
 
-const element = query('.example-defined', render(html, query('#defined')))
+const element = query('#defined .example-defined')
 
 Select.of(element, {
   templates: {

@@ -1,6 +1,5 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Units from '@pluginjs/units'
 
-const element = query('.example-disabled', render(html, query('#disabled')))
+const element = query('#disabled .example-disabled')
 Units.of(element, { disabled: true, data: ['px'] })

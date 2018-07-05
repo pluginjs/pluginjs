@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Choice from '@pluginjs/choice'
 
-const element = query('.select-event', render(html, query('#event')))
+const element = query('#event .select-event')
 Choice.of(element, {
   onChange(val) {
     console.log(`change: ${val}`, 'change')

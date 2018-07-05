@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Hotspots from '@pluginjs/hotspots'
 
-const element = query('.hotspots', render(html, query('#css')))
+const element = query('#css .hotspots')
 Hotspots.of(element, {
   /** options **/
 })

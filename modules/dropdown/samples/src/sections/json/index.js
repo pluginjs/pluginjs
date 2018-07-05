@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const element = query('.dropdown-json', render(html, query('#json')))
+const element = query('#json .dropdown-json')
 
 const data = [
   {

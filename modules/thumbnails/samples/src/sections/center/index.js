@@ -1,5 +1,4 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Thumbnails from '@pluginjs/thumbnails'
 
 const data = [
@@ -65,7 +64,7 @@ const data = [
   }
 ]
 
-const element = query('.thumbnails', render(html, query('#center')))
+const element = query('#center .thumbnails')
 
 Thumbnails.of(element, {
   data

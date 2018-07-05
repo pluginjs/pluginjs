@@ -1,11 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const element = query(
-  '.dropdown-hideOnSelect',
-  render(html, query('#hideOnSelect'))
-)
+const element = query('#hideOnSelect .dropdown-hideOnSelect')
 Dropdown.of(element, {
   hideOnSelect: false
 })

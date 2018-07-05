@@ -1,7 +1,6 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import SvgPicker from '@pluginjs/svg-picker'
 
-const element = query('.example-locale', render(html, query('#locale')))
+const element = query('#locale .example-locale')
 
 SvgPicker.of(element, { locale: 'zh' })

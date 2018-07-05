@@ -1,8 +1,7 @@
-import { html as render, query, queryAll } from '@pluginjs/dom'
-import html from './index.html'
+import { queryAll } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 
-queryAll('[data-toggle="tooltip"]', render(html, query('#skin'))).map(element =>
+queryAll('#skin [data-toggle="tooltip"]').map(element =>
   Tooltip.of(element, {
     /** options **/
   })

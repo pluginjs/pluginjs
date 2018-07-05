@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Spinner from '@pluginjs/spinner'
 
-const element = query('.example-rule', render(html, query('#rule')))
+const element = query('#rule .example-rule')
 // day month hour minute second
 
 Spinner.of(element, { rule: 'month' })

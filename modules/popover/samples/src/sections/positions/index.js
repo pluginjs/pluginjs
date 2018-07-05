@@ -1,10 +1,8 @@
-import { html as render, query, queryAll } from '@pluginjs/dom'
-import html from './index.html'
+import { queryAll } from '@pluginjs/dom'
 import Popover from '@pluginjs/popover'
 
-queryAll('[data-toggle="popover"]', render(html, query('#positions'))).map(
-  element =>
-    Popover.of(element, {
-      /** options **/
-    })
+queryAll('#positions [data-toggle="popover"]').map(element =>
+  Popover.of(element, {
+    /** options **/
+  })
 )

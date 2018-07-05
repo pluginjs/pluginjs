@@ -1,8 +1,7 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import GalleryPicker from '@pluginjs/gallery-picker'
 
-const element = query('.example-locale', render(html, query('#locale')))
+const element = query('#locale .example-locale')
 GalleryPicker.of(element, {
   locale: 'zh',
   add() {

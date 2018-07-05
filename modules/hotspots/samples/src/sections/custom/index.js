@@ -1,9 +1,8 @@
-import { html as render, query } from '@pluginjs/dom'
-import html from './index.html'
+import { query } from '@pluginjs/dom'
 import Hotspots from '@pluginjs/hotspots'
 import escapeHTML from '../escape-html'
 
-const element = query('.pj-hotspots', render(html, query('#custom')))
+const element = query('#custom .pj-hotspots')
 
 Hotspots.of(element, {
   type: 'icon',
