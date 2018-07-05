@@ -1,306 +1,306 @@
 {
-	"meta": {
-		"moduleName": "font-picker",
-		"namespace": "fontPicker",
-		"Namespace": "FontPicker",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "activated",
-				"desc": "Set plugin activated option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disavled plugin",
-				"defaultValue": "false"
-			},
-			{
-				"name": "manage",
-				"desc": "Set plugin manage option",
-				"defaultValue": "true"
-			},
-			{
-				"name": "lazyNumber",
-				"desc": "Set plugin lazyNumber option",
-				"defaultValue": "12"
-			},
-			{
-				"name": "delay",
-				"desc": "Set plugin delay option",
-				"defaultValue": "250"
-			},
-			{
-				"name": "keyboard",
-				"desc": "Set plugin keyboard event",
-				"defaultValue": "true"
-			},
-			{
-				"name": "placeholder",
-				"desc": "Set input box prompt information",
-				"defaultValue": "choose a font"
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			},
-			{
-				"name": "searching",
-				"desc": "Gets fired when plugin has searching"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "get",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-fontPicker"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "ELEMENT",
-				"desc": "Declare plugin element",
-				"value": "{namespace}"
-			},
-			{
-				"name": "TRIGGER",
-				"desc": "Declare plugin trigger",
-				"value": "{namespace}-trigger"
-			},
-			{
-				"name": "FONT",
-				"desc": "Declare plugin font",
-				"value": "{namespace}-font"
-			},
-			{
-				"name": "FONTFOCUS",
-				"desc": "Declare plugin fontfocus",
-				"value": "{namespace}-font-focus"
-			},
-			{
-				"name": "WRAP",
-				"desc": "Declare plugin wrap",
-				"value": "{namespace}-wrap"
-			},
-			{
-				"name": "PANEL",
-				"desc": "Declare plugin panel",
-				"value": "{namespace}-panel"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "SOURCES",
-				"desc": "Declare plugin sources",
-				"value": "{namespace}-sources"
-			},
-			{
-				"name": "SOURCEICON",
-				"desc": "Declare plugin source icon",
-				"value": "{namespace}-source-icon"
-			},
-			{
-				"name": "ACTIVATED",
-				"desc": "Declare plugin activated",
-				"value": "{namespace}-activated"
-			},
-			{
-				"name": "FONTWRAP",
-				"desc": "Declare plugin font wrap",
-				"value": "{namespace}-font-wrap"
-			},
-			{
-				"name": "PACKAGE",
-				"desc": "Declare plugin package",
-				"value": "{namespace}-package"
-			},
-			{
-				"name": "PACKAGESWRAP",
-				"desc": "Declare plugin package wrap",
-				"value": "{namespace}-package-wrap"
-			},
-			{
-				"name": "PACKAGETITLE",
-				"desc": "Declare plugin package title",
-				"value": "{namespace}-package-title"
-			},
-			{
-				"name": "PACKAGEOPEN",
-				"desc": "Declare plugin package open",
-				"value": "{namespace}-package-open"
-			},
-			{
-				"name": "PACKAGEHIDE",
-				"desc": "Declare plugin package hide",
-				"value": "{namespace}-package-hide"
-			},
-			{
-				"name": "SEARCH",
-				"desc": "Declare plugin search",
-				"value": "{namespace}-search"
-			},
-			{
-				"name": "SEARCHING",
-				"desc": "Declare plugin searching",
-				"value": "{namespace}-searching"
-			},
-			{
-				"name": "SEARCHED",
-				"desc": "Declare plugin searched",
-				"value": "{namespace}-searched"
-			},
-			{
-				"name": "SEARCHLIST",
-				"desc": "Declare plugin searchlist",
-				"value": "{namespace}-search-list"
-			},
-			{
-				"name": "SEARCHREADY",
-				"desc": "Declare plugin searchready",
-				"value": "{namespace}-search-ready"
-			},
-			{
-				"name": "CONTROLLER",
-				"desc": "Declare plugin controller",
-				"value": "{namespace}-controller"
-			},
-			{
-				"name": "SELECTOR",
-				"desc": "Declare plugin selector",
-				"value": "{namespace}-selector"
-			},
-			{
-				"name": "SELECTORPANEL",
-				"desc": "Declare plugin selector panel",
-				"value": "{namespace}-selector-panel"
-			},
-			{
-				"name": "MANAGE",
-				"desc": "Declare plugin manage",
-				"value": "{namespace}-manage"
-			},
-			{
-				"name": "EMPTY",
-				"desc": "Declare plugin empty",
-				"value": "{namespace}-empty"
-			},
-			{
-				"name": "EMPTYLINK",
-				"desc": "Declare plugin emptylink",
-				"value": "{namespace}-empty-link"
-			}
-		],
-		"translations": [
-			{
-				"name": "searchText",
-				"en": "Search...",
-				"zh": "搜索..."
-			},
-			{
-				"name": "manage",
-				"en": "manage",
-				"zh": "管理"
-			},
-			{
-				"name": "activatedFonts",
-				"en": "activated fonts",
-				"zh": "已选字体"
-			},
-			{
-				"name": "emptyTitle",
-				"en": "Befor using font, you need add fonts. ",
-				"zh": "使用字体之前，请先添加。"
-			},
-			{
-				"name": "emptyLinkTitle",
-				"en": "Go add now",
-				"zh": "现在添加"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "font-picker",
+    "namespace": "fontPicker",
+    "Namespace": "FontPicker",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "activated",
+        "desc": "Set plugin activated option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disavled plugin",
+        "defaultValue": "false"
+      },
+      {
+        "name": "manage",
+        "desc": "Set plugin manage option",
+        "defaultValue": "true"
+      },
+      {
+        "name": "lazyNumber",
+        "desc": "Set plugin lazyNumber option",
+        "defaultValue": "12"
+      },
+      {
+        "name": "delay",
+        "desc": "Set plugin delay option",
+        "defaultValue": "250"
+      },
+      {
+        "name": "keyboard",
+        "desc": "Set plugin keyboard event",
+        "defaultValue": "true"
+      },
+      {
+        "name": "placeholder",
+        "desc": "Set input box prompt information",
+        "defaultValue": "choose a font"
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      },
+      {
+        "name": "searching",
+        "desc": "Gets fired when plugin has searching"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "get",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-fontPicker"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "ELEMENT",
+        "desc": "Declare plugin element",
+        "value": "{namespace}"
+      },
+      {
+        "name": "TRIGGER",
+        "desc": "Declare plugin trigger",
+        "value": "{namespace}-trigger"
+      },
+      {
+        "name": "FONT",
+        "desc": "Declare plugin font",
+        "value": "{namespace}-font"
+      },
+      {
+        "name": "FONTFOCUS",
+        "desc": "Declare plugin fontfocus",
+        "value": "{namespace}-font-focus"
+      },
+      {
+        "name": "WRAP",
+        "desc": "Declare plugin wrap",
+        "value": "{namespace}-wrap"
+      },
+      {
+        "name": "PANEL",
+        "desc": "Declare plugin panel",
+        "value": "{namespace}-panel"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "SOURCES",
+        "desc": "Declare plugin sources",
+        "value": "{namespace}-sources"
+      },
+      {
+        "name": "SOURCEICON",
+        "desc": "Declare plugin source icon",
+        "value": "{namespace}-source-icon"
+      },
+      {
+        "name": "ACTIVATED",
+        "desc": "Declare plugin activated",
+        "value": "{namespace}-activated"
+      },
+      {
+        "name": "FONTWRAP",
+        "desc": "Declare plugin font wrap",
+        "value": "{namespace}-font-wrap"
+      },
+      {
+        "name": "PACKAGE",
+        "desc": "Declare plugin package",
+        "value": "{namespace}-package"
+      },
+      {
+        "name": "PACKAGESWRAP",
+        "desc": "Declare plugin package wrap",
+        "value": "{namespace}-package-wrap"
+      },
+      {
+        "name": "PACKAGETITLE",
+        "desc": "Declare plugin package title",
+        "value": "{namespace}-package-title"
+      },
+      {
+        "name": "PACKAGEOPEN",
+        "desc": "Declare plugin package open",
+        "value": "{namespace}-package-open"
+      },
+      {
+        "name": "PACKAGEHIDE",
+        "desc": "Declare plugin package hide",
+        "value": "{namespace}-package-hide"
+      },
+      {
+        "name": "SEARCH",
+        "desc": "Declare plugin search",
+        "value": "{namespace}-search"
+      },
+      {
+        "name": "SEARCHING",
+        "desc": "Declare plugin searching",
+        "value": "{namespace}-searching"
+      },
+      {
+        "name": "SEARCHED",
+        "desc": "Declare plugin searched",
+        "value": "{namespace}-searched"
+      },
+      {
+        "name": "SEARCHLIST",
+        "desc": "Declare plugin searchlist",
+        "value": "{namespace}-search-list"
+      },
+      {
+        "name": "SEARCHREADY",
+        "desc": "Declare plugin searchready",
+        "value": "{namespace}-search-ready"
+      },
+      {
+        "name": "CONTROLLER",
+        "desc": "Declare plugin controller",
+        "value": "{namespace}-controller"
+      },
+      {
+        "name": "SELECTOR",
+        "desc": "Declare plugin selector",
+        "value": "{namespace}-selector"
+      },
+      {
+        "name": "SELECTORPANEL",
+        "desc": "Declare plugin selector panel",
+        "value": "{namespace}-selector-panel"
+      },
+      {
+        "name": "MANAGE",
+        "desc": "Declare plugin manage",
+        "value": "{namespace}-manage"
+      },
+      {
+        "name": "EMPTY",
+        "desc": "Declare plugin empty",
+        "value": "{namespace}-empty"
+      },
+      {
+        "name": "EMPTYLINK",
+        "desc": "Declare plugin emptylink",
+        "value": "{namespace}-empty-link"
+      }
+    ],
+    "translations": [
+      {
+        "name": "searchText",
+        "en": "Search...",
+        "zh": "搜索..."
+      },
+      {
+        "name": "manage",
+        "en": "manage",
+        "zh": "管理"
+      },
+      {
+        "name": "activatedFonts",
+        "en": "activated fonts",
+        "zh": "已选字体"
+      },
+      {
+        "name": "emptyTitle",
+        "en": "Befor using font, you need add fonts. ",
+        "zh": "使用字体之前，请先添加。"
+      },
+      {
+        "name": "emptyLinkTitle",
+        "en": "Go add now",
+        "zh": "现在添加"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

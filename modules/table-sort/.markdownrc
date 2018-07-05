@@ -1,79 +1,79 @@
 {
-	"meta": {
-		"moduleName": "table-sort",
-		"namespace": "tableSort",
-		"Namespace": "TableSort",
-		"options": [
-			{
-				"name": "icons",
-				"desc": "Set table icon",
-				"defaultValue": "{\"sort\":\"icon-sort\",\"asc\":\"icon-sort-ascending\",\"desc\":\"icon-sort-descending\"}"
-			}
-		],
-		"option": "icons",
-		"events": [
-			{
-				"name": "update",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin is enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin is disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			}
-		],
-		"event": "update",
-		"Event": "Update",
-		"methods": [
-			{
-				"name": "init",
-				"desc": "Initial plugin"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "append",
-				"desc": "Append data to table"
-			},
-			{
-				"name": "replace",
-				"desc": "Replace data to table"
-			},
-			{
-				"name": "sort",
-				"desc": "Sort data to table"
-			}
-		],
-		"method": "init",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-tableSort"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "table-sort",
+    "namespace": "tableSort",
+    "Namespace": "TableSort",
+    "options": [
+      {
+        "name": "icons",
+        "desc": "Set table icon",
+        "defaultValue": "{\"sort\":\"icon-sort\",\"asc\":\"icon-sort-ascending\",\"desc\":\"icon-sort-descending\"}"
+      }
+    ],
+    "option": "icons",
+    "events": [
+      {
+        "name": "update",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin is enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin is disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      }
+    ],
+    "event": "update",
+    "Event": "Update",
+    "methods": [
+      {
+        "name": "init",
+        "desc": "Initial plugin"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "append",
+        "desc": "Append data to table"
+      },
+      {
+        "name": "replace",
+        "desc": "Replace data to table"
+      },
+      {
+        "name": "sort",
+        "desc": "Sort data to table"
+      }
+    ],
+    "method": "init",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-tableSort"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

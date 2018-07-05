@@ -1,185 +1,185 @@
 {
-	"meta": {
-		"moduleName": "pop-dialog",
-		"namespace": "popDialog",
-		"Namespace": "PopDialog",
-		"options": [
-			{
-				"name": "hideOutClick",
-				"desc": "Set hideOutClick",
-				"defaultValue": "true"
-			},
-			{
-				"name": "placement",
-				"desc": "Set placement",
-				"defaultValue": "left"
-			},
-			{
-				"name": "constrainToWindow",
-				"desc": "Set constrainTowindow",
-				"defaultValue": "false"
-			},
-			{
-				"name": "constrainToScrollParent",
-				"desc": "Set constrainToScrollParent",
-				"defaultValue": "false"
-			},
-			{
-				"name": "template",
-				"desc": "Set default template",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "buttons",
-				"desc": "Set default button",
-				"defaultValue": "{}"
-			}
-		],
-		"option": "hideOutClick",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "hide",
-				"desc": "Gets fired when plugin has hide"
-			},
-			{
-				"name": "hidden",
-				"desc": "Gets fired when plugin has hidden"
-			},
-			{
-				"name": "show",
-				"desc": "Gets fired when plugin has show"
-			},
-			{
-				"name": "shown",
-				"desc": "Gets fired when plugin has shown"
-			},
-			{
-				"name": "inserted",
-				"desc": "Gets fired when plugin has inserted"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "do",
-				"desc": "Set do function"
-			},
-			{
-				"name": "show",
-				"desc": "Show plugin if it is hiden"
-			},
-			{
-				"name": "hide",
-				"desc": "Hide plugin"
-			},
-			{
-				"name": "toggle",
-				"desc": "Toggle plugin"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "do",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-popover"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "POPDIALOG",
-				"desc": "Declare plugin dialog",
-				"value": "{namespace}-dialog"
-			},
-			{
-				"name": "POPOVER",
-				"desc": "Declare plugin popover",
-				"value": "{namespace}"
-			},
-			{
-				"name": "CONTENT",
-				"desc": "Declare plugin content",
-				"value": "{namespace}-content"
-			},
-			{
-				"name": "TITLE",
-				"desc": "Declare plugin title",
-				"value": "{namespace}-title"
-			},
-			{
-				"name": "CLOSE",
-				"desc": "Announce plugin is close",
-				"value": "{namespace}-close"
-			},
-			{
-				"name": "SHOW",
-				"desc": "Announce plugin is show",
-				"value": "{namespace}-show"
-			},
-			{
-				"name": "FADE",
-				"desc": "Announce plugin is fade",
-				"value": "{namespace}-fade"
-			},
-			{
-				"name": "BUTTON",
-				"desc": "Announce plugin is button",
-				"value": "{namespace}-button"
-			},
-			{
-				"name": "BUTTONCOLOR",
-				"desc": "Announce plugin is color",
-				"value": "{namespace}-button-{color}"
-			},
-			{
-				"name": "BUTTONS",
-				"desc": "Announce plugin is buttons",
-				"value": "{namespace}-buttons"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "pop-dialog",
+    "namespace": "popDialog",
+    "Namespace": "PopDialog",
+    "options": [
+      {
+        "name": "hideOutClick",
+        "desc": "Set hideOutClick",
+        "defaultValue": "true"
+      },
+      {
+        "name": "placement",
+        "desc": "Set placement",
+        "defaultValue": "left"
+      },
+      {
+        "name": "constrainToWindow",
+        "desc": "Set constrainTowindow",
+        "defaultValue": "false"
+      },
+      {
+        "name": "constrainToScrollParent",
+        "desc": "Set constrainToScrollParent",
+        "defaultValue": "false"
+      },
+      {
+        "name": "template",
+        "desc": "Set default template",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "buttons",
+        "desc": "Set default button",
+        "defaultValue": "{}"
+      }
+    ],
+    "option": "hideOutClick",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "hide",
+        "desc": "Gets fired when plugin has hide"
+      },
+      {
+        "name": "hidden",
+        "desc": "Gets fired when plugin has hidden"
+      },
+      {
+        "name": "show",
+        "desc": "Gets fired when plugin has show"
+      },
+      {
+        "name": "shown",
+        "desc": "Gets fired when plugin has shown"
+      },
+      {
+        "name": "inserted",
+        "desc": "Gets fired when plugin has inserted"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "do",
+        "desc": "Set do function"
+      },
+      {
+        "name": "show",
+        "desc": "Show plugin if it is hiden"
+      },
+      {
+        "name": "hide",
+        "desc": "Hide plugin"
+      },
+      {
+        "name": "toggle",
+        "desc": "Toggle plugin"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "do",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-popover"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "POPDIALOG",
+        "desc": "Declare plugin dialog",
+        "value": "{namespace}-dialog"
+      },
+      {
+        "name": "POPOVER",
+        "desc": "Declare plugin popover",
+        "value": "{namespace}"
+      },
+      {
+        "name": "CONTENT",
+        "desc": "Declare plugin content",
+        "value": "{namespace}-content"
+      },
+      {
+        "name": "TITLE",
+        "desc": "Declare plugin title",
+        "value": "{namespace}-title"
+      },
+      {
+        "name": "CLOSE",
+        "desc": "Announce plugin is close",
+        "value": "{namespace}-close"
+      },
+      {
+        "name": "SHOW",
+        "desc": "Announce plugin is show",
+        "value": "{namespace}-show"
+      },
+      {
+        "name": "FADE",
+        "desc": "Announce plugin is fade",
+        "value": "{namespace}-fade"
+      },
+      {
+        "name": "BUTTON",
+        "desc": "Announce plugin is button",
+        "value": "{namespace}-button"
+      },
+      {
+        "name": "BUTTONCOLOR",
+        "desc": "Announce plugin is color",
+        "value": "{namespace}-button-{color}"
+      },
+      {
+        "name": "BUTTONS",
+        "desc": "Announce plugin is buttons",
+        "value": "{namespace}-buttons"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

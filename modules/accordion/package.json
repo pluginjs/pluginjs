@@ -1,81 +1,76 @@
 {
-	"name": "@pluginjs/accordion",
-	"main": "dist/accordion.umd.js",
-	"css": {
-		"source": "src/css/accordion.scss",
-		"main": "dist/accordion.css",
-		"min": "dist/accordion.min.css"
-	},
-	"sassrc": ".sassrc.js",
-	"dependencies": {
-		"@pluginjs/classes": "0.5.2",
-		"@pluginjs/component": "^0.5.0",
-		"@pluginjs/dom": "^0.5.0",
-		"@pluginjs/events": "0.5.0",
-		"@pluginjs/is": "^0.5.0",
-		"@pluginjs/pluginjs": "^0.5.0",
-		"@pluginjs/styled": "0.5.0",
-		"@pluginjs/styles": "^0.5.1",
-		"@pluginjs/utils": "^0.5.0",
-		"animejs": "^2.2.0",
-		"hammerjs": "*"
-	},
-	"scripts": {
-		"build": "plugin build",
-		"build:scss": "plugin script build-scss",
-		"build:js": "plugin script build-js",
-		"build:md": "plugin script build-md",
-		"lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
-		"test": "jest"
-	},
-	"version": "0.5.2",
-	"description": "A flexible modern accordion js plugin.",
-	"author": "Creation Studio Limited",
-	"homepage": "https://github.com/pluginjs/plugin.js",
-	"license": "GPL-3.0",
-	"files": [
-		"dist",
-		"src"
-	],
-	"repository": {
-		"url": "git@github.com:pluginjs/plugin.js.git",
-		"type": "git"
-	},
-	"bugs": {
-		"url": "https://github.com/pluginjs/plugin.js/issues"
-	},
-	"engines": {
-		"node": ">= 8",
-		"npm": ">= 5"
-	},
-	"jest": {
-		"setupTestFrameworkScriptFile": "jest-extended",
-		"verbose": true,
-		"testPathIgnorePatterns": [
-			"fixtures"
-		]
-	},
-	"category": "ui",
-	"module": "dist/accordion.esm.js",
-	"source": "src/main.js",
-	"cjs": "dist/accordion.cjs.js",
-	"devDependencies": {
-		"@babel/core": "^7.0.0-beta.47",
-		"@babel/plugin-proposal-class-properties": "^7.0.0-beta.47",
-		"@babel/plugin-proposal-decorators": "^7.0.0-beta.47",
-		"@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.47",
-		"@babel/preset-env": "^7.0.0-beta.47",
-		"@pluginjs/cli": "^0.5.18",
-		"babel-jest": "^23.0.1",
-		"jest": "^23.1.0",
-		"jest-extended": "^0.7.2",
-		"rollup": "^0.59.2",
-		"rollup-plugin-babel": "^4.0.0-beta.4",
-		"rollup-plugin-commonjs": "^9.1.3",
-		"rollup-plugin-node-resolve": "^3.3.0"
-	},
-	"globals": {
-		"animejs": "anime",
-		"hammerjs": "Hammer"
-	}
+  "name": "@pluginjs/accordion",
+  "description": "A flexible modern accordion js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/plugin.js/issues"
+  },
+  "version": "0.5.2",
+  "main": "dist/accordion.umd.js",
+  "module": "dist/accordion.esm.js",
+  "cjs": "dist/accordion.cjs.js",
+  "source": "src/main.js",
+  "css": {
+    "source": "src/css/accordion.scss",
+    "main": "dist/accordion.css",
+    "min": "dist/accordion.min.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/classes": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/pluginjs": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/styles": "*",
+    "@pluginjs/utils": "*",
+    "animejs": "^2.2.0",
+    "hammerjs": "*"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "^4.0.0-beta.7",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "category": "ui",
+  "globals": {
+    "animejs": "anime",
+    "hammerjs": "Hammer"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  },
+  "sassrc": ".sassrc.js"
 }

@@ -1,188 +1,188 @@
 {
-	"meta": {
-		"moduleName": "units",
-		"namespace": "units",
-		"Namespace": "Units",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disabled plugin",
-				"defaultValue": "false"
-			},
-			{
-				"name": "width",
-				"desc": "Set plugin width",
-				"defaultValue": "null"
-			},
-			{
-				"name": "data",
-				"desc": "Set plugin data option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "placement",
-				"desc": "Set placement value",
-				"defaultValue": "bottom-right"
-			},
-			{
-				"name": "defaultUnit",
-				"desc": "Set plugin defaultUnit option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "onChange",
-				"desc": "The onchange event occurs when the content of the domain changes",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "onSubmit",
-				"desc": "submit data",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "update",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			},
-			{
-				"name": "submit",
-				"desc": "Gets fired when plugin has submit"
-			},
-			{
-				"name": "setunit",
-				"desc": "Gets fired when plugin has setunit"
-			},
-			{
-				"name": "changeVal",
-				"desc": "Gets fired when plugin has changeVal"
-			}
-		],
-		"event": "update",
-		"Event": "Update",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "getUnit",
-				"desc": "Get value of unit"
-			},
-			{
-				"name": "getInput",
-				"desc": "Get value of input"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "toggleUnit",
-				"desc": "Set value of input"
-			}
-		],
-		"method": "enable",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-units"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "WRAP",
-				"desc": "Declare plugin wrap",
-				"value": "{namespace}-wrap"
-			},
-			{
-				"name": "TRIGGER",
-				"desc": "Declare plugin trigger",
-				"value": "{namespace}-trigger"
-			},
-			{
-				"name": "PANEL",
-				"desc": "Declare plugin panel",
-				"value": "{namespace}-panel"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "ONLY",
-				"desc": "Declare plugin only",
-				"value": "{namespace}-only"
-			},
-			{
-				"name": "INPUT",
-				"desc": "Declare plugin input",
-				"value": "{namespace}-input"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "units",
+    "namespace": "units",
+    "Namespace": "Units",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disabled plugin",
+        "defaultValue": "false"
+      },
+      {
+        "name": "width",
+        "desc": "Set plugin width",
+        "defaultValue": "null"
+      },
+      {
+        "name": "data",
+        "desc": "Set plugin data option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "placement",
+        "desc": "Set placement value",
+        "defaultValue": "bottom-right"
+      },
+      {
+        "name": "defaultUnit",
+        "desc": "Set plugin defaultUnit option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "onChange",
+        "desc": "The onchange event occurs when the content of the domain changes",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "onSubmit",
+        "desc": "submit data",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "update",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      },
+      {
+        "name": "submit",
+        "desc": "Gets fired when plugin has submit"
+      },
+      {
+        "name": "setunit",
+        "desc": "Gets fired when plugin has setunit"
+      },
+      {
+        "name": "changeVal",
+        "desc": "Gets fired when plugin has changeVal"
+      }
+    ],
+    "event": "update",
+    "Event": "Update",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "getUnit",
+        "desc": "Get value of unit"
+      },
+      {
+        "name": "getInput",
+        "desc": "Get value of input"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "toggleUnit",
+        "desc": "Set value of input"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-units"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "WRAP",
+        "desc": "Declare plugin wrap",
+        "value": "{namespace}-wrap"
+      },
+      {
+        "name": "TRIGGER",
+        "desc": "Declare plugin trigger",
+        "value": "{namespace}-trigger"
+      },
+      {
+        "name": "PANEL",
+        "desc": "Declare plugin panel",
+        "value": "{namespace}-panel"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "ONLY",
+        "desc": "Declare plugin only",
+        "value": "{namespace}-only"
+      },
+      {
+        "name": "INPUT",
+        "desc": "Declare plugin input",
+        "value": "{namespace}-input"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

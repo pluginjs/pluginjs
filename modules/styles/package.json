@@ -1,23 +1,23 @@
 {
-	"name": "@pluginjs/styles",
-	"variables": "variables.scss",
-	"inputs": "inputs.scss",
-	"buttons": "buttons.scss",
-	"version": "0.5.2",
-	"description": "A flexible modern style js plugin.",
-	"author": "Creation Studio Limited",
-	"homepage": "https://github.com/pluginjs/plugin.js",
-	"license": "GPL-3.0",
-	"repository": {
-		"url": "git@github.com:pluginjs/plugin.js.git",
-		"type": "git"
-	},
-	"bugs": {
-		"url": "https://github.com/pluginjs/plugin.js/issues"
-	},
-	"engines": {
-		"node": ">= 8",
-		"npm": ">= 5"
-	},
-	"category": "css"
+  "name": "@pluginjs/styles",
+  "description": "A flexible modern style js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/plugin.js/issues"
+  },
+  "version": "0.5.2",
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "buttons": "buttons.scss",
+  "category": "css",
+  "inputs": "inputs.scss",
+  "variables": "variables.scss"
 }

@@ -4,7 +4,7 @@ import Anime from 'animejs'
 import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
-import Pj, {
+import {
   eventable,
   register,
   stateable,
@@ -46,8 +46,6 @@ class Swipeable extends Component {
 
     addClass(this.classes.NAMESPACE, this.element)
 
-    this.frictionFactor =
-      this.options.frictionFactor < 1 ? 1 : this.options.frictionFactor
     this.power = this.options.power
 
     this.initStates()
@@ -56,23 +54,15 @@ class Swipeable extends Component {
 
   initialize() {
     this.position = { x: 0, y: 0 }
-    this.pointer = {}
-    this.type = ''
-
+    this.startPosition = { x: 0, y: 0 }
     this.getLocation(this.element)
     this.container = this.getContainer()
+    addClass(this.classes.CONTAINER, this.container)
+    if (this.options.axis === 'y') {
+      addClass(this.classes.VERTICAL, this.container)
+    }
+
     this.getSize()
-
-    setStyle(
-      {
-        transform: `
-          translateX(${this.position.x}px) translateY(${this.position.y}px
-        `
-      },
-      this.element
-    )
-
-    this.startPosition = { x: 0, y: 0 }
     this.isEnabled = true
 
     this.$drag = new Hammer(this.element)
@@ -81,20 +71,18 @@ class Swipeable extends Component {
     } else if (this.options.axis === 'y') {
       this.$drag.get('pan').set({ direction: Hammer.DIRECTION_VERTICAL })
     }
-    this.bind()
 
+    this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  bind() {
-    // resize
-    Pj.emitter.on('resize', () => {
-      this.getSize()
-      this.trigger(EVENTS.RESIZE)
-    })
+  resize() {
+    this.getSize()
+    this.trigger(EVENTS.RESIZE)
+  }
 
-    // drag
+  bind() {
     this.$drag.on('panstart panmove panend', e => {
       switch (e.type) {
         case 'panstart':
@@ -128,10 +116,14 @@ class Swipeable extends Component {
       this.isdecaying = false
       this.anime.pause()
     }
-    this.setType('dragStart')
+
     addClass('is-dragging', this.element)
     this.startPosition.x = this.getLocation($target).translateX
+      ? this.getLocation($target).translateX
+      : 0
     this.startPosition.y = this.getLocation($target).translateY
+      ? this.getLocation($target).translateY
+      : 0
     this.trigger(EVENTS.DRAGSTART)
   }
 
@@ -140,7 +132,7 @@ class Swipeable extends Component {
     if (!this.isEnabled) {
       return
     }
-    this.setType('dragMove')
+
     let dragX = e.deltaX
     let dragY = e.deltaY
     dragX = this.options.axis === 'y' ? 0 : dragX
@@ -157,6 +149,7 @@ class Swipeable extends Component {
       },
       $target
     )
+    this.trigger(EVENTS.DRAGMOVE)
   }
 
   panEnd(e) {
@@ -170,7 +163,7 @@ class Swipeable extends Component {
     if (this.options.rebound) {
       this.reboundMove($target)
     }
-    this.setType('dragEnd')
+
     removeClass('is-dragging', this.element)
     this.trigger(EVENTS.DRAGEND)
   }
@@ -192,7 +185,7 @@ class Swipeable extends Component {
       targets: $target,
       translateX: [this.position.x, moveX],
       translateY: [this.position.y, moveY],
-      duration: this.options.timeConstant,
+      duration: this.options.duration,
       easing: 'easeOutExpo',
       update() {
         if (that.options.rebound) {
@@ -225,14 +218,14 @@ class Swipeable extends Component {
       Anime({
         targets: target,
         translateX: distance,
-        duration: that.options.timeConstant,
+        duration: that.options.duration,
         easing: 'easeOutExpo'
       })
     } else {
       Anime({
         targets: target,
         translateY: distance,
-        duration: that.options.timeConstant,
+        duration: that.options.duration,
         easing: 'easeOutExpo'
       })
     }
@@ -252,15 +245,11 @@ class Swipeable extends Component {
     }
   }
 
-  setType(type) {
-    this.type = type
-  }
-
   getDistance() {
     let minDistance = 0
     let maxDistance
     let addDistance
-    const percent = this.options.reboundPercent / 100
+    const percent = this.options.reboundPos / 100
     if (this.options.axis === 'x') {
       maxDistance = this.width - this.containerWidth
       addDistance =
@@ -281,8 +270,7 @@ class Swipeable extends Component {
   }
 
   getMoveSize(velocity) {
-    let size =
-      Math.pow(velocity, 2) / (2 * this.frictionFactor) * (10 * this.power)
+    let size = (Math.pow(velocity, 2) / 2) * (10 * this.power)
     if (velocity < 0) {
       size *= -1
     }
@@ -302,13 +290,13 @@ class Swipeable extends Component {
   }
 
   getContainer() {
-    const containment = this.options.containment
-    const isElement = containment instanceof HTMLElement
+    const container = this.options.container
+    const isElement = container instanceof HTMLElement
     if (isElement) {
-      return containment
+      return container
     }
-    if (typeof containment === 'string') {
-      return document.querySelector(containment)
+    if (typeof container === 'string') {
+      return document.querySelector(container)
     }
     return this.element.parentNode
   }

@@ -8,257 +8,257 @@ scripts:
 - ../../plugins/choice/choice.js
 ---
 <section>
-	<h3>Built on single select</h3>
-	<div class="example">
-		<select class="select">
-			<option value ="default">default</option>
-			<option value ="on" selected>on</option>
-			<option value="off" disabled="disabled">off</option>
-		</select>
-		<div class="pad-top-20">
-			<button class="btn api-init">init</button>
-			<button class="btn api-destroy">destroy()</button>
-			<button class="btn api-enable">enable()</button>
-			<button class="btn api-disable">disable()</button>
-			<button class="btn api-set">set('on')</button>
-			<button class="btn api-get">get()</button>
-			<button class="btn api-val">val()</button>
-			<button class="btn api-val-set">val('off')</button>
-		</div>
-		<div class="console console-single"></div>
-		<script type="text/javascript">
-			(function() {
-				var $select = document.querySelector('.select');
-				var $selectChoice = null;
-				var $console_single = document.querySelector('.console-single');
-				function init() {
-					$selectChoice = Pj.choice('.select');
-				}
+  <h3>Built on single select</h3>
+  <div class="example">
+    <select class="select">
+      <option value ="default">default</option>
+      <option value ="on" selected>on</option>
+      <option value="off" disabled="disabled">off</option>
+    </select>
+    <div class="pad-top-20">
+      <button class="btn api-init">init</button>
+      <button class="btn api-destroy">destroy()</button>
+      <button class="btn api-enable">enable()</button>
+      <button class="btn api-disable">disable()</button>
+      <button class="btn api-set">set('on')</button>
+      <button class="btn api-get">get()</button>
+      <button class="btn api-val">val()</button>
+      <button class="btn api-val-set">val('off')</button>
+    </div>
+    <div class="console console-single"></div>
+    <script type="text/javascript">
+      (function() {
+        var $select = document.querySelector('.select');
+        var $selectChoice = null;
+        var $console_single = document.querySelector('.console-single');
+        function init() {
+          $selectChoice = Pj.choice('.select');
+        }
 
-				init();
+        init();
 
-				document.querySelector('.api-init').addEventListener('click', function() {
-					init();
-					console.log('', 'init', $console_single);
-				});
+        document.querySelector('.api-init').addEventListener('click', function() {
+          init();
+          console.log('', 'init', $console_single);
+        });
 
-				document.querySelector('.api-destroy').addEventListener('click', function() {
-					$selectChoice.destroy();
-					console.log('', 'destroy()', $console_single);
-				});
+        document.querySelector('.api-destroy').addEventListener('click', function() {
+          $selectChoice.destroy();
+          console.log('', 'destroy()', $console_single);
+        });
 
-				document.querySelector('.api-enable').addEventListener('click', function() {
-					$selectChoice.enable();
-					console.log('', 'enable()', $console_single);
-				});
+        document.querySelector('.api-enable').addEventListener('click', function() {
+          $selectChoice.enable();
+          console.log('', 'enable()', $console_single);
+        });
 
-				document.querySelector('.api-disable').addEventListener('click', function() {
-					$selectChoice.disable();
-					console.log('', 'disable()', $console_single);
-				});
+        document.querySelector('.api-disable').addEventListener('click', function() {
+          $selectChoice.disable();
+          console.log('', 'disable()', $console_single);
+        });
 
-				document.querySelector('.api-set').addEventListener('click', function() {
-					$selectChoice.set('on');
-					console.log('', 'set("on")', $console_single);
-				});
+        document.querySelector('.api-set').addEventListener('click', function() {
+          $selectChoice.set('on');
+          console.log('', 'set("on")', $console_single);
+        });
 
-				document.querySelector('.api-get').addEventListener('click', function() {
-					console.log($selectChoice.get(), 'get()', $console_single);
-				});
+        document.querySelector('.api-get').addEventListener('click', function() {
+          console.log($selectChoice.get(), 'get()', $console_single);
+        });
 
-				document.querySelector('.api-val').addEventListener('click', function() {
-					console.log($selectChoice.val(), 'val()', $console_single);
-				});
+        document.querySelector('.api-val').addEventListener('click', function() {
+          console.log($selectChoice.val(), 'val()', $console_single);
+        });
 
-				document.querySelector('.api-val-set').addEventListener('click', function() {
-					$selectChoice.val('off');
-					console.log('', 'val("off")', $console_single);
-				});
-			})();
-		</script>
-	</div>
+        document.querySelector('.api-val-set').addEventListener('click', function() {
+          $selectChoice.val('off');
+          console.log('', 'val("off")', $console_single);
+        });
+      })();
+    </script>
+  </div>
 </section>
 <section class="top-gap">
-	<h3>Built on multiple select + overflow</h3>
-	<div class="example">
-		<select class="select-multi" multiple="multiple">
-			<option value="car" data-icon="fa-car" selected="selected">Car</option>
-			<option value="ship" data-icon="fa-ship">Ship</option>
-			<option value="plane" data-icon="fa-plane">Plane</option>
-			<option value="cab" data-icon="fa-cab">Cab</option>
-			<option value="subway" data-icon="fa-subway">Subway</option>
-			<option value="train" data-icon="fa-train">Train</option>
-			<option value="rocket" data-icon="fa-rocket" disabled="disabled">Rocket</option>
-		</select>
-		<div class="pad-top-20">
-			<button class="btn api-multi-init">init</button>
-			<button class="btn api-multi-destroy">destroy</button>
-			<button class="btn api-multi-enable">enable</button>
-			<button class="btn api-multi-disable">disable</button>
-			<button class="btn api-multi-set">set(['ship', 'cab'])</button>
-			<button class="btn api-multi-get">get</button>
-			<button class="btn api-multi-val">val</button>
-			<button class="btn api-multi-val-set">val(['subway', 'train'])</button>
-		</div>
-		<div class="console console-multiple"></div>
-		<script type="text/javascript">
-			(function() {
-				var $multi = document.querySelector('.select-multi');
-				var $console_multi = document.querySelector('.console-multiple');
-				var $multiChoice = null;
+  <h3>Built on multiple select + overflow</h3>
+  <div class="example">
+    <select class="select-multi" multiple="multiple">
+      <option value="car" data-icon="fa-car" selected="selected">Car</option>
+      <option value="ship" data-icon="fa-ship">Ship</option>
+      <option value="plane" data-icon="fa-plane">Plane</option>
+      <option value="cab" data-icon="fa-cab">Cab</option>
+      <option value="subway" data-icon="fa-subway">Subway</option>
+      <option value="train" data-icon="fa-train">Train</option>
+      <option value="rocket" data-icon="fa-rocket" disabled="disabled">Rocket</option>
+    </select>
+    <div class="pad-top-20">
+      <button class="btn api-multi-init">init</button>
+      <button class="btn api-multi-destroy">destroy</button>
+      <button class="btn api-multi-enable">enable</button>
+      <button class="btn api-multi-disable">disable</button>
+      <button class="btn api-multi-set">set(['ship', 'cab'])</button>
+      <button class="btn api-multi-get">get</button>
+      <button class="btn api-multi-val">val</button>
+      <button class="btn api-multi-val-set">val(['subway', 'train'])</button>
+    </div>
+    <div class="console console-multiple"></div>
+    <script type="text/javascript">
+      (function() {
+        var $multi = document.querySelector('.select-multi');
+        var $console_multi = document.querySelector('.console-multiple');
+        var $multiChoice = null;
 
-				function init() {
-					$multiChoice = Pj.choice($multi, {
-						templates: {
-							item: function() {
-								return '<button class="{classes.ITEM}" data-value="{value}"><i class="fa {item.icon}" aria-hidden="true"></i> {item.label}</button>';
-							}
-						},
-						overflow: true
-					});
-				}
+        function init() {
+          $multiChoice = Pj.choice($multi, {
+            templates: {
+              item: function() {
+                return '<button class="{classes.ITEM}" data-value="{value}"><i class="fa {item.icon}" aria-hidden="true"></i> {item.label}</button>';
+              }
+            },
+            overflow: true
+          });
+        }
 
-				init();
+        init();
 
-				document.querySelector('.api-multi-init').addEventListener('click', function() {
-					init();
-					console.log('', 'init', $console_multi);
-				});
+        document.querySelector('.api-multi-init').addEventListener('click', function() {
+          init();
+          console.log('', 'init', $console_multi);
+        });
 
-				document.querySelector('.api-multi-destroy').addEventListener('click', function() {
-					$multiChoice.destroy();
-					console.log('', 'destroy()', $console_multi);
-				});
+        document.querySelector('.api-multi-destroy').addEventListener('click', function() {
+          $multiChoice.destroy();
+          console.log('', 'destroy()', $console_multi);
+        });
 
-				document.querySelector('.api-multi-enable').addEventListener('click', function() {
-					$multiChoice.enable();
-					console.log('', 'enable()', $console_multi);
-				});
+        document.querySelector('.api-multi-enable').addEventListener('click', function() {
+          $multiChoice.enable();
+          console.log('', 'enable()', $console_multi);
+        });
 
-				document.querySelector('.api-multi-disable').addEventListener('click', function() {
-					$multiChoice.disable();
-					console.log('', 'disable()', $console_multi);
-				});
+        document.querySelector('.api-multi-disable').addEventListener('click', function() {
+          $multiChoice.disable();
+          console.log('', 'disable()', $console_multi);
+        });
 
-				document.querySelector('.api-multi-set').addEventListener('click', function() {
-					$multiChoice.set(['ship', 'cab']);
-					console.log('', 'set([ship, cab])', $console_multi);
-				});
+        document.querySelector('.api-multi-set').addEventListener('click', function() {
+          $multiChoice.set(['ship', 'cab']);
+          console.log('', 'set([ship, cab])', $console_multi);
+        });
 
-				document.querySelector('.api-multi-get').addEventListener('click', function() {
-					console.log($multiChoice.get(), 'get()', $console_multi);
-				});
+        document.querySelector('.api-multi-get').addEventListener('click', function() {
+          console.log($multiChoice.get(), 'get()', $console_multi);
+        });
 
-				document.querySelector('.api-multi-val').addEventListener('click', function() {
-					console.log($multiChoice.val(), 'val()', $console_multi);
-				});
+        document.querySelector('.api-multi-val').addEventListener('click', function() {
+          console.log($multiChoice.val(), 'val()', $console_multi);
+        });
 
-				document.querySelector('.api-multi-val-set').addEventListener('click', function() {
-					$multiChoice.val(['subway', 'train'])
-					console.log('', 'val([subway, train])', $console_multi);
-				});
-			})();
-		</script>
-	</div>
+        document.querySelector('.api-multi-val-set').addEventListener('click', function() {
+          $multiChoice.val(['subway', 'train'])
+          console.log('', 'val([subway, train])', $console_multi);
+        });
+      })();
+    </script>
+  </div>
 </section>
 <section class="top-gap">
-	<h3>Built from data</h3>
-	<div class="example">
-		<div class="blank"></div>
-		<script type="text/javascript">
-			(function() {
-				Pj.choice('.blank', {
-					value: 'default',
-					data: {
-						on: {
-							label: 'on',
-						},
-						off: {
-							label: 'off',
-						},
-						default: {
-							label: 'default',
-						}
-					},
-					multiple: false
-				});
-			})();
-		</script>
-	</div>
+  <h3>Built from data</h3>
+  <div class="example">
+    <div class="blank"></div>
+    <script type="text/javascript">
+      (function() {
+        Pj.choice('.blank', {
+          value: 'default',
+          data: {
+            on: {
+              label: 'on',
+            },
+            off: {
+              label: 'off',
+            },
+            default: {
+              label: 'default',
+            }
+          },
+          multiple: false
+        });
+      })();
+    </script>
+  </div>
 </section>
 <section class="top-gap">
-	<h3>Built on empty div</h3>
-	<div class="example">
-		<div class="blank-custom"></div>
-		<script type="text/javascript">
-			(function() {
-				Pj.choice('.blank-custom', {
-					value: ['ship', 'plane'],
-					overflow: true,
-					data: {
-						car: {
-							icon: 'fa-car',
-							label: 'Car',
-						},
-						ship: {
-							icon: 'fa-ship',
-							label: 'Ship',
-						},
-						plane: {
-							icon: 'fa-plane',
-							label: 'Plane',
-						},
-						cab: {
-							icon: 'fa-cab',
-							label: 'Cab',
-						},
-						subway: {
-							icon: 'fa-subway',
-							label: 'Subway',
-						},
-						train: {
-							icon: 'fa-train',
-							label: 'Train',
-						},
-						rocket: {
-							icon: 'fa-rocket',
-							label: 'Rocket',
-						},
-					},
-					templates: {
-						item: function() {
-							return '<button class="{classes.ITEM}" data-value="{value}"><i class="fa {item.icon}" aria-hidden="true"></i> {item.label}</button>';
-						}
-					},
-					multiple: true
-				});
-			})();
-		</script>
-	</div>
+  <h3>Built on empty div</h3>
+  <div class="example">
+    <div class="blank-custom"></div>
+    <script type="text/javascript">
+      (function() {
+        Pj.choice('.blank-custom', {
+          value: ['ship', 'plane'],
+          overflow: true,
+          data: {
+            car: {
+              icon: 'fa-car',
+              label: 'Car',
+            },
+            ship: {
+              icon: 'fa-ship',
+              label: 'Ship',
+            },
+            plane: {
+              icon: 'fa-plane',
+              label: 'Plane',
+            },
+            cab: {
+              icon: 'fa-cab',
+              label: 'Cab',
+            },
+            subway: {
+              icon: 'fa-subway',
+              label: 'Subway',
+            },
+            train: {
+              icon: 'fa-train',
+              label: 'Train',
+            },
+            rocket: {
+              icon: 'fa-rocket',
+              label: 'Rocket',
+            },
+          },
+          templates: {
+            item: function() {
+              return '<button class="{classes.ITEM}" data-value="{value}"><i class="fa {item.icon}" aria-hidden="true"></i> {item.label}</button>';
+            }
+          },
+          multiple: true
+        });
+      })();
+    </script>
+  </div>
 </section>
 <section class="top-gap">
-	<h3>Event</h3>
-	<div class="example">
-		<select class="select-event" multiple="multiple">
-			<option value ="default" selected="selected">default</option>
-			<option value ="on" selected="selected">on</option>
-			<option value="off">off</option>
-		</select>
-		<div class="console console-event"></div>
-		<script type="text/javascript">
-			(function() {
-				var $console_event = document.querySelector('.console-event');
-				Pj.choice('.select-event', {
-					onChange: function(val) {
-						console.log('change: ' + val, 'change');
-					},
-					onSelect: function(val, item) {
-						console.log('select: ' + val + '  item: ' + JSON.stringify(item), 'select');
-					},
-					onUnselect: function(val, item) {
-						console.log('unselect: ' + val + '  item: ' + JSON.stringify(item), 'unselect');
-					},
-					onReady: function() {
+  <h3>Event</h3>
+  <div class="example">
+    <select class="select-event" multiple="multiple">
+      <option value ="default" selected="selected">default</option>
+      <option value ="on" selected="selected">on</option>
+      <option value="off">off</option>
+    </select>
+    <div class="console console-event"></div>
+    <script type="text/javascript">
+      (function() {
+        var $console_event = document.querySelector('.console-event');
+        Pj.choice('.select-event', {
+          onChange: function(val) {
+            console.log('change: ' + val, 'change');
+          },
+          onSelect: function(val, item) {
+            console.log('select: ' + val + '  item: ' + JSON.stringify(item), 'select');
+          },
+          onUnselect: function(val, item) {
+            console.log('unselect: ' + val + '  item: ' + JSON.stringify(item), 'unselect');
+          },
+          onReady: function() {
             console.log('ready', 'event');
           },
           onDestroy: function() {
@@ -270,8 +270,8 @@ scripts:
           onDisable: function() {
             console.log('disable', 'event');
           }
-				});
-			})();
-		</script>
-	</div>
+        });
+      })();
+    </script>
+  </div>
 </section>

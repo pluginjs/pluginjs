@@ -1,260 +1,260 @@
 {
-	"meta": {
-		"moduleName": "auto-complete",
-		"namespace": "autoComplete",
-		"Namespace": "AutoComplete",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "data",
-				"desc": "Set plugin data option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "keyboard",
-				"desc": "Set plugin keyboard event",
-				"defaultValue": "true"
-			},
-			{
-				"name": "ajax",
-				"desc": "Use AJAX requests to get JSON data",
-				"defaultValue": "false"
-			},
-			{
-				"name": "minChars",
-				"desc": "Set plugin the smallest character",
-				"defaultValue": "1"
-			},
-			{
-				"name": "maxItems",
-				"desc": "Set plugin the most options",
-				"defaultValue": "5"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disable plugin",
-				"defaultValue": "false"
-			},
-			{
-				"name": "panelWidth",
-				"desc": "Set plugin panel width",
-				"defaultValue": "null"
-			},
-			{
-				"name": "sensitivity",
-				"desc": "Set plugin sensitivity",
-				"defaultValue": "false"
-			},
-			{
-				"name": "highlight",
-				"desc": "Set plugin is highlight or not",
-				"defaultValue": "false"
-			},
-			{
-				"name": "group",
-				"desc": "Set the plugin template content",
-				"defaultValue": "false"
-			},
-			{
-				"name": "placeholder",
-				"desc": "Set input box prompt information",
-				"defaultValue": "Please Search..."
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "render",
-				"desc": "Plugin rendering",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "source",
-				"desc": "return matching text",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "onChange",
-				"desc": "The onchange event occurs when the content of the domain changes",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "open",
-				"desc": "Open plugin"
-			},
-			{
-				"name": "close",
-				"desc": "Close plugin"
-			},
-			{
-				"name": "clear",
-				"desc": "clear plugin"
-			},
-			{
-				"name": "next",
-				"desc": "Set value of next button"
-			},
-			{
-				"name": "prev",
-				"desc": "Set value of prev button"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "enable",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-autoComplete"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "INPUT",
-				"desc": "Declare plugin input",
-				"value": "pj-input {namespace}-input"
-			},
-			{
-				"name": "PANEL",
-				"desc": "Declare plugin panel",
-				"value": "{namespace}-panel"
-			},
-			{
-				"name": "CLOSE",
-				"desc": "Declare plugin close",
-				"value": "{namespace}-close"
-			},
-			{
-				"name": "ITEM",
-				"desc": "Declare plugin item",
-				"value": "{namespace}-item"
-			},
-			{
-				"name": "RESULT",
-				"desc": "Declare plugin result",
-				"value": "{namespace}-result"
-			},
-			{
-				"name": "MARK",
-				"desc": "Declare plugin mark",
-				"value": "{namespace}-mark"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "HOVER",
-				"desc": "Announce plugin is hover",
-				"value": "{namespace}-hover"
-			},
-			{
-				"name": "GROUP",
-				"desc": "Declare plugin group",
-				"value": "{namespace}-group"
-			},
-			{
-				"name": "GROUPTITLE",
-				"desc": "Declare plugin group title",
-				"value": "{namespace}-group-title"
-			},
-			{
-				"name": "GROUPCONTENTS",
-				"desc": "Declare plugin group contents",
-				"value": "{namespace}-group-contents"
-			},
-			{
-				"name": "GROUPSHOW",
-				"desc": "Declare plugin group show",
-				"value": "{namespace}-group-show"
-			},
-			{
-				"name": "SHOW",
-				"desc": "Announce plugin is show",
-				"value": "{namespace}-show"
-			},
-			{
-				"name": "OPEN",
-				"desc": "Announce plugin is open",
-				"value": "{namespace}-open"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "auto-complete",
+    "namespace": "autoComplete",
+    "Namespace": "AutoComplete",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "data",
+        "desc": "Set plugin data option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "keyboard",
+        "desc": "Set plugin keyboard event",
+        "defaultValue": "true"
+      },
+      {
+        "name": "ajax",
+        "desc": "Use AJAX requests to get JSON data",
+        "defaultValue": "false"
+      },
+      {
+        "name": "minChars",
+        "desc": "Set plugin the smallest character",
+        "defaultValue": "1"
+      },
+      {
+        "name": "maxItems",
+        "desc": "Set plugin the most options",
+        "defaultValue": "5"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disable plugin",
+        "defaultValue": "false"
+      },
+      {
+        "name": "panelWidth",
+        "desc": "Set plugin panel width",
+        "defaultValue": "null"
+      },
+      {
+        "name": "sensitivity",
+        "desc": "Set plugin sensitivity",
+        "defaultValue": "false"
+      },
+      {
+        "name": "highlight",
+        "desc": "Set plugin is highlight or not",
+        "defaultValue": "false"
+      },
+      {
+        "name": "group",
+        "desc": "Set the plugin template content",
+        "defaultValue": "false"
+      },
+      {
+        "name": "placeholder",
+        "desc": "Set input box prompt information",
+        "defaultValue": "Please Search..."
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "render",
+        "desc": "Plugin rendering",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "source",
+        "desc": "return matching text",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "onChange",
+        "desc": "The onchange event occurs when the content of the domain changes",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "open",
+        "desc": "Open plugin"
+      },
+      {
+        "name": "close",
+        "desc": "Close plugin"
+      },
+      {
+        "name": "clear",
+        "desc": "clear plugin"
+      },
+      {
+        "name": "next",
+        "desc": "Set value of next button"
+      },
+      {
+        "name": "prev",
+        "desc": "Set value of prev button"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-autoComplete"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "INPUT",
+        "desc": "Declare plugin input",
+        "value": "pj-input {namespace}-input"
+      },
+      {
+        "name": "PANEL",
+        "desc": "Declare plugin panel",
+        "value": "{namespace}-panel"
+      },
+      {
+        "name": "CLOSE",
+        "desc": "Declare plugin close",
+        "value": "{namespace}-close"
+      },
+      {
+        "name": "ITEM",
+        "desc": "Declare plugin item",
+        "value": "{namespace}-item"
+      },
+      {
+        "name": "RESULT",
+        "desc": "Declare plugin result",
+        "value": "{namespace}-result"
+      },
+      {
+        "name": "MARK",
+        "desc": "Declare plugin mark",
+        "value": "{namespace}-mark"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "HOVER",
+        "desc": "Announce plugin is hover",
+        "value": "{namespace}-hover"
+      },
+      {
+        "name": "GROUP",
+        "desc": "Declare plugin group",
+        "value": "{namespace}-group"
+      },
+      {
+        "name": "GROUPTITLE",
+        "desc": "Declare plugin group title",
+        "value": "{namespace}-group-title"
+      },
+      {
+        "name": "GROUPCONTENTS",
+        "desc": "Declare plugin group contents",
+        "value": "{namespace}-group-contents"
+      },
+      {
+        "name": "GROUPSHOW",
+        "desc": "Declare plugin group show",
+        "value": "{namespace}-group-show"
+      },
+      {
+        "name": "SHOW",
+        "desc": "Announce plugin is show",
+        "value": "{namespace}-show"
+      },
+      {
+        "name": "OPEN",
+        "desc": "Announce plugin is open",
+        "value": "{namespace}-open"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

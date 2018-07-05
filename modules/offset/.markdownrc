@@ -1,220 +1,220 @@
 {
-	"meta": {
-		"moduleName": "offset",
-		"namespace": "offset",
-		"Namespace": "Offset",
-		"options": [
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "template",
-				"desc": "Set default template",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "defaultUnit",
-				"desc": "Set defaultUnit",
-				"defaultValue": "px"
-			},
-			{
-				"name": "data",
-				"desc": "Set data",
-				"defaultValue": "null"
-			},
-			{
-				"name": "min",
-				"desc": "Set min",
-				"defaultValue": "-1000"
-			},
-			{
-				"name": "max",
-				"desc": "Set max",
-				"defaultValue": "1000"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "locale",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "move",
-				"desc": "Get value of move"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "clear",
-				"desc": "Clear plugin"
-			}
-		],
-		"method": "get",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-offset"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "INNER",
-				"desc": "Declare plugin inner",
-				"value": "{namespace}-inner"
-			},
-			{
-				"name": "ITEM",
-				"desc": "Declare plugin item",
-				"value": "{namespace}-item"
-			},
-			{
-				"name": "MARGINTOP",
-				"desc": "Declare plugin marginTop",
-				"value": "{namespace}-marginTop"
-			},
-			{
-				"name": "MARGINBOTTOM",
-				"desc": "Declare plugin marginBottom",
-				"value": "{namespace}-marginBottom"
-			},
-			{
-				"name": "MARGINLEFT",
-				"desc": "Declare plugin marginLeft",
-				"value": "{namespace}-marginLeft"
-			},
-			{
-				"name": "MARGINRIGHT",
-				"desc": "Declare plugin marginRight",
-				"value": "{namespace}-marginRight"
-			},
-			{
-				"name": "PADDINGTOP",
-				"desc": "Declare plugin paddingTop",
-				"value": "{namespace}-paddingTop"
-			},
-			{
-				"name": "PADDINGBOTTOM",
-				"desc": "Declare plugin paddingBottom",
-				"value": "{namespace}-paddingBottom"
-			},
-			{
-				"name": "PADDINGLEFT",
-				"desc": "Declare plugin paddingLeft",
-				"value": "{namespace}-paddingLeft"
-			},
-			{
-				"name": "PADDINGRIGHT",
-				"desc": "Declare plugin paddingLeft",
-				"value": "{namespace}-paddingRight"
-			},
-			{
-				"name": "VIEW",
-				"desc": "Declare plugin view",
-				"value": "{namespace}-view"
-			},
-			{
-				"name": "UNITSHOW",
-				"desc": "Declare plugin unit show",
-				"value": "{namespace}-unit-show"
-			},
-			{
-				"name": "CONNECT",
-				"desc": "Declare plugin connect",
-				"value": "{namespace}-connect"
-			},
-			{
-				"name": "CONNECTLINK",
-				"desc": "Declare plugin connect link",
-				"value": "{namespace}-connect-link"
-			},
-			{
-				"name": "CONNECTUNLINK",
-				"desc": "Declare plugin connect unlink",
-				"value": "{namespace}-connect-unlink"
-			},
-			{
-				"name": "CONNECTACTIVE",
-				"desc": "Declare plugin connect active",
-				"value": "{namespace}-connect-active"
-			}
-		],
-		"translations": [
-			{
-				"name": "brokenLink",
-				"en": "Broken Link",
-				"zh": "解开链接"
-			},
-			{
-				"name": "keepLink",
-				"en": "Keep Them Constant",
-				"zh": "保持链接"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "offset",
+    "namespace": "offset",
+    "Namespace": "Offset",
+    "options": [
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "template",
+        "desc": "Set default template",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "defaultUnit",
+        "desc": "Set defaultUnit",
+        "defaultValue": "px"
+      },
+      {
+        "name": "data",
+        "desc": "Set data",
+        "defaultValue": "null"
+      },
+      {
+        "name": "min",
+        "desc": "Set min",
+        "defaultValue": "-1000"
+      },
+      {
+        "name": "max",
+        "desc": "Set max",
+        "defaultValue": "1000"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "locale",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "move",
+        "desc": "Get value of move"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "clear",
+        "desc": "Clear plugin"
+      }
+    ],
+    "method": "get",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-offset"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "INNER",
+        "desc": "Declare plugin inner",
+        "value": "{namespace}-inner"
+      },
+      {
+        "name": "ITEM",
+        "desc": "Declare plugin item",
+        "value": "{namespace}-item"
+      },
+      {
+        "name": "MARGINTOP",
+        "desc": "Declare plugin marginTop",
+        "value": "{namespace}-marginTop"
+      },
+      {
+        "name": "MARGINBOTTOM",
+        "desc": "Declare plugin marginBottom",
+        "value": "{namespace}-marginBottom"
+      },
+      {
+        "name": "MARGINLEFT",
+        "desc": "Declare plugin marginLeft",
+        "value": "{namespace}-marginLeft"
+      },
+      {
+        "name": "MARGINRIGHT",
+        "desc": "Declare plugin marginRight",
+        "value": "{namespace}-marginRight"
+      },
+      {
+        "name": "PADDINGTOP",
+        "desc": "Declare plugin paddingTop",
+        "value": "{namespace}-paddingTop"
+      },
+      {
+        "name": "PADDINGBOTTOM",
+        "desc": "Declare plugin paddingBottom",
+        "value": "{namespace}-paddingBottom"
+      },
+      {
+        "name": "PADDINGLEFT",
+        "desc": "Declare plugin paddingLeft",
+        "value": "{namespace}-paddingLeft"
+      },
+      {
+        "name": "PADDINGRIGHT",
+        "desc": "Declare plugin paddingLeft",
+        "value": "{namespace}-paddingRight"
+      },
+      {
+        "name": "VIEW",
+        "desc": "Declare plugin view",
+        "value": "{namespace}-view"
+      },
+      {
+        "name": "UNITSHOW",
+        "desc": "Declare plugin unit show",
+        "value": "{namespace}-unit-show"
+      },
+      {
+        "name": "CONNECT",
+        "desc": "Declare plugin connect",
+        "value": "{namespace}-connect"
+      },
+      {
+        "name": "CONNECTLINK",
+        "desc": "Declare plugin connect link",
+        "value": "{namespace}-connect-link"
+      },
+      {
+        "name": "CONNECTUNLINK",
+        "desc": "Declare plugin connect unlink",
+        "value": "{namespace}-connect-unlink"
+      },
+      {
+        "name": "CONNECTACTIVE",
+        "desc": "Declare plugin connect active",
+        "value": "{namespace}-connect-active"
+      }
+    ],
+    "translations": [
+      {
+        "name": "brokenLink",
+        "en": "Broken Link",
+        "zh": "解开链接"
+      },
+      {
+        "name": "keepLink",
+        "en": "Keep Them Constant",
+        "zh": "保持链接"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

@@ -5,7 +5,7 @@ import Swipeable from '@pluginjs/swipeable'
 const element = query('.swipeable', render(html, query('#vertical')))
 Swipeable.of(element, {
   axis: 'y',
-  containment: '.vertical',
+  container: '.vertical',
   decay: true,
   rebound: true
 })

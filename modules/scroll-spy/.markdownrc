@@ -1,95 +1,95 @@
 {
-	"meta": {
-		"moduleName": "scroll-spy",
-		"namespace": "scrollSpy",
-		"Namespace": "ScrollSpy",
-		"options": [
-			{
-				"name": "itemSelector",
-				"desc": "You must include the href data",
-				"defaultValue": "a"
-			},
-			{
-				"name": "activeClass",
-				"desc": "Current anchor avtiveItem",
-				"defaultValue": "active"
-			},
-			{
-				"name": "threshold",
-				"desc": "Offset of anchor",
-				"defaultValue": "0"
-			},
-			{
-				"name": "hashTimeout",
-				"desc": "Delay change hash",
-				"defaultValue": "600"
-			},
-			{
-				"name": "hrefFrom",
-				"desc": "Anchor element selector",
-				"defaultValue": "data-href"
-			},
-			{
-				"name": "changeHash",
-				"desc": "Whether you need to change the hash",
-				"defaultValue": "true"
-			},
-			{
-				"name": "cloestActive",
-				"desc": "Find the element you want to add activeClass",
-				"defaultValue": "parent"
-			},
-			{
-				"name": "reference",
-				"desc": "Anchor reference direction",
-				"defaultValue": "top"
-			}
-		],
-		"option": "itemSelector",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin is changed"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin is enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin is disabled"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "getCurrHref",
-				"desc": "get the current item Id"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			}
-		],
-		"method": "destroy"
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "scroll-spy",
+    "namespace": "scrollSpy",
+    "Namespace": "ScrollSpy",
+    "options": [
+      {
+        "name": "itemSelector",
+        "desc": "You must include the href data",
+        "defaultValue": "a"
+      },
+      {
+        "name": "activeClass",
+        "desc": "Current anchor avtiveItem",
+        "defaultValue": "active"
+      },
+      {
+        "name": "threshold",
+        "desc": "Offset of anchor",
+        "defaultValue": "0"
+      },
+      {
+        "name": "hashTimeout",
+        "desc": "Delay change hash",
+        "defaultValue": "600"
+      },
+      {
+        "name": "hrefFrom",
+        "desc": "Anchor element selector",
+        "defaultValue": "data-href"
+      },
+      {
+        "name": "changeHash",
+        "desc": "Whether you need to change the hash",
+        "defaultValue": "true"
+      },
+      {
+        "name": "cloestActive",
+        "desc": "Find the element you want to add activeClass",
+        "defaultValue": "parent"
+      },
+      {
+        "name": "reference",
+        "desc": "Anchor reference direction",
+        "defaultValue": "top"
+      }
+    ],
+    "option": "itemSelector",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin is changed"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin is enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin is disabled"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "getCurrHref",
+        "desc": "get the current item Id"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      }
+    ],
+    "method": "destroy"
+  },
+  "output": "./README.md",
+  "template": "README"
 }

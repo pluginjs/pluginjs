@@ -4,6 +4,6 @@ import Swipeable from '@pluginjs/swipeable'
 
 const element = query('.swipeable', render(html, query('#decay')))
 Swipeable.of(element, {
-  containment: '.decay',
+  container: '.decay',
   decay: true
 })

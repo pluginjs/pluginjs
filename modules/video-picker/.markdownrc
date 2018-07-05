@@ -1,381 +1,381 @@
 {
-	"meta": {
-		"moduleName": "video-picker",
-		"namespace": "videoPicker",
-		"Namespace": "VideoPicker",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "sources",
-				"desc": "Set sources",
-				"defaultValue": "[\"YouTube\",\"Vimeo\",\"Local File\"]"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disable plugin",
-				"defaultValue": "false"
-			},
-			{
-				"name": "date",
-				"desc": "Set data",
-				"defaultValue": "null"
-			},
-			{
-				"name": "selectCover",
-				"desc": "Set selectCover",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "selectLocalVideo",
-				"desc": "Set selectVideo",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "update",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			}
-		],
-		"event": "update",
-		"Event": "Update",
-		"methods": [
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "set",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-videoPicker"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}-{theme}"
-			},
-			{
-				"name": "WRAP",
-				"desc": "Declare plugin wrap",
-				"value": "{namespace}-wrap"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "SHOW",
-				"desc": "Announce plugin is show",
-				"value": "{namespace}-show"
-			},
-			{
-				"name": "BUTTON",
-				"desc": "Announce plugin is button",
-				"value": "{namespace}-button"
-			},
-			{
-				"name": "INIT",
-				"desc": "Announce plugin is init",
-				"value": "{namespace}-init"
-			},
-			{
-				"name": "INFOPOSTER",
-				"desc": "Announce plugin is infoposter",
-				"value": "{namespace}-info-poster"
-			},
-			{
-				"name": "EDITOR",
-				"desc": "Announce plugin is editor",
-				"value": "{namespace}-info-editor"
-			},
-			{
-				"name": "REMOVE",
-				"desc": "Declare plugin remove",
-				"value": "{namespace}-info-remove"
-			},
-			{
-				"name": "HOVER",
-				"desc": "Announce plugin is hover",
-				"value": "{namespace}-hover"
-			},
-			{
-				"name": "PANEL",
-				"desc": "Declare plugin panel",
-				"value": "{namespace}-panel"
-			},
-			{
-				"name": "DROPDOWNPANEL",
-				"desc": "Declare plugin dropdownpanel",
-				"value": "{namespace}-dropdown-panel"
-			},
-			{
-				"name": "CLOSE",
-				"desc": "Announce plugin is close",
-				"value": "{namespace}-close"
-			},
-			{
-				"name": "DATA",
-				"desc": "Declare plugin data",
-				"value": "{namespace}-data"
-			},
-			{
-				"name": "SOURCE",
-				"desc": "Declare plugin source",
-				"value": "{namespace}-source"
-			},
-			{
-				"name": "VIDEO",
-				"desc": "Declare plugin video",
-				"value": "{namespace}-video"
-			},
-			{
-				"name": "VIDEOPLAYING",
-				"desc": "Declare plugin videoplaying",
-				"value": "{namespace}-video-playing"
-			},
-			{
-				"name": "VIDEOLOADING",
-				"desc": "Declare plugin videoloading",
-				"value": "{namespace}-video-loading"
-			},
-			{
-				"name": "VIDEOANIMATE",
-				"desc": "Declare plugin videoanimate",
-				"value": "{namespace}-video-animate"
-			},
-			{
-				"name": "VIDEOACTION",
-				"desc": "Declare plugin videoaction",
-				"value": "{namespace}-video-action"
-			},
-			{
-				"name": "VIDEOBTN",
-				"desc": "Declare plugin videobtn",
-				"value": "{namespace}-video-btn"
-			},
-			{
-				"name": "VIDEOPOSTER",
-				"desc": "Declare plugin videoposter",
-				"value": "{namespace}-video-poster"
-			},
-			{
-				"name": "VIDEOURL",
-				"desc": "Declare plugin videourl",
-				"value": "{namespace}-video-url"
-			},
-			{
-				"name": "LOCALURL",
-				"desc": "Declare plugin local url",
-				"value": "{namespace}-local-url"
-			},
-			{
-				"name": "LOCALURLADD",
-				"desc": "Declare plugin local url add",
-				"value": "{namespace}-local-url-add"
-			},
-			{
-				"name": "LOCALURLCHANGE",
-				"desc": "Declare plugin local url change",
-				"value": "{namespace}-local-url-change"
-			},
-			{
-				"name": "LOCALURLDELETE",
-				"desc": "Declare plugin local url delete",
-				"value": "{namespace}-local-url-delete"
-			},
-			{
-				"name": "LOCALURLSELECTED",
-				"desc": "Declare plugin local url selected",
-				"value": "{namespace}-local-url-selected"
-			},
-			{
-				"name": "RATIO",
-				"desc": "Declare plugin ratio",
-				"value": "{namespace}-ratio"
-			},
-			{
-				"name": "POSTER",
-				"desc": "Declare plugin poster",
-				"value": "{namespace}-poster"
-			},
-			{
-				"name": "POSTERSELECTED",
-				"desc": "Declare plugin poster selected",
-				"value": "{namespace}-poster-selected"
-			},
-			{
-				"name": "POSTERADD",
-				"desc": "Declare plugin poster add",
-				"value": "{namespace}-poster-add"
-			},
-			{
-				"name": "POSTERCHANGE",
-				"desc": "Declare plugin poster change",
-				"value": "{namespace}-poster-change"
-			},
-			{
-				"name": "POSTERDELETE",
-				"desc": "Declare plugin poster delete",
-				"value": "{namespace}-poster-delete"
-			},
-			{
-				"name": "WARNING",
-				"desc": "Declare plugin warning",
-				"value": "{namespace}-warning"
-			}
-		],
-		"translations": [
-			{
-				"name": "inputPlaceholder",
-				"en": "Add Video",
-				"zh": "添加视频"
-			},
-			{
-				"name": "videoSource",
-				"en": "Video Source",
-				"zh": "视频类型"
-			},
-			{
-				"name": "videoURL",
-				"en": "Video URL",
-				"zh": "视频URL"
-			},
-			{
-				"name": "aspectRatio",
-				"en": "Aspect Ratio",
-				"zh": "长宽比"
-			},
-			{
-				"name": "chooseVideo",
-				"en": "Choose Video",
-				"zh": "选择视频"
-			},
-			{
-				"name": "poster",
-				"en": "Poster",
-				"zh": "海报"
-			},
-			{
-				"name": "addVideo",
-				"en": "Add Video",
-				"zh": "添加视频"
-			},
-			{
-				"name": "addPoster",
-				"en": "Add Poster",
-				"zh": "添加海报"
-			},
-			{
-				"name": "changeVideo",
-				"en": "Change Video",
-				"zh": "修改视频"
-			},
-			{
-				"name": "changePoster",
-				"en": "Change Poster",
-				"zh": "修改海报"
-			},
-			{
-				"name": "save",
-				"en": "Save",
-				"zh": "保存"
-			},
-			{
-				"name": "cancel",
-				"en": "Cancel",
-				"zh": "取消"
-			},
-			{
-				"name": "deleteTitle",
-				"en": "Are you sure you want to delete?",
-				"zh": "你确定要删除？"
-			},
-			{
-				"name": "delete",
-				"en": "Delete",
-				"zh": "删除"
-			},
-			{
-				"name": "useIt",
-				"en": "Use It",
-				"zh": "使用"
-			},
-			{
-				"name": "inputURL",
-				"en": "Please input URL",
-				"zh": "请输入URL"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "video-picker",
+    "namespace": "videoPicker",
+    "Namespace": "VideoPicker",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "sources",
+        "desc": "Set sources",
+        "defaultValue": "[\"YouTube\",\"Vimeo\",\"Local File\"]"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disable plugin",
+        "defaultValue": "false"
+      },
+      {
+        "name": "date",
+        "desc": "Set data",
+        "defaultValue": "null"
+      },
+      {
+        "name": "selectCover",
+        "desc": "Set selectCover",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "selectLocalVideo",
+        "desc": "Set selectVideo",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "update",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      }
+    ],
+    "event": "update",
+    "Event": "Update",
+    "methods": [
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "set",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-videoPicker"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}-{theme}"
+      },
+      {
+        "name": "WRAP",
+        "desc": "Declare plugin wrap",
+        "value": "{namespace}-wrap"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "SHOW",
+        "desc": "Announce plugin is show",
+        "value": "{namespace}-show"
+      },
+      {
+        "name": "BUTTON",
+        "desc": "Announce plugin is button",
+        "value": "{namespace}-button"
+      },
+      {
+        "name": "INIT",
+        "desc": "Announce plugin is init",
+        "value": "{namespace}-init"
+      },
+      {
+        "name": "INFOPOSTER",
+        "desc": "Announce plugin is infoposter",
+        "value": "{namespace}-info-poster"
+      },
+      {
+        "name": "EDITOR",
+        "desc": "Announce plugin is editor",
+        "value": "{namespace}-info-editor"
+      },
+      {
+        "name": "REMOVE",
+        "desc": "Declare plugin remove",
+        "value": "{namespace}-info-remove"
+      },
+      {
+        "name": "HOVER",
+        "desc": "Announce plugin is hover",
+        "value": "{namespace}-hover"
+      },
+      {
+        "name": "PANEL",
+        "desc": "Declare plugin panel",
+        "value": "{namespace}-panel"
+      },
+      {
+        "name": "DROPDOWNPANEL",
+        "desc": "Declare plugin dropdownpanel",
+        "value": "{namespace}-dropdown-panel"
+      },
+      {
+        "name": "CLOSE",
+        "desc": "Announce plugin is close",
+        "value": "{namespace}-close"
+      },
+      {
+        "name": "DATA",
+        "desc": "Declare plugin data",
+        "value": "{namespace}-data"
+      },
+      {
+        "name": "SOURCE",
+        "desc": "Declare plugin source",
+        "value": "{namespace}-source"
+      },
+      {
+        "name": "VIDEO",
+        "desc": "Declare plugin video",
+        "value": "{namespace}-video"
+      },
+      {
+        "name": "VIDEOPLAYING",
+        "desc": "Declare plugin videoplaying",
+        "value": "{namespace}-video-playing"
+      },
+      {
+        "name": "VIDEOLOADING",
+        "desc": "Declare plugin videoloading",
+        "value": "{namespace}-video-loading"
+      },
+      {
+        "name": "VIDEOANIMATE",
+        "desc": "Declare plugin videoanimate",
+        "value": "{namespace}-video-animate"
+      },
+      {
+        "name": "VIDEOACTION",
+        "desc": "Declare plugin videoaction",
+        "value": "{namespace}-video-action"
+      },
+      {
+        "name": "VIDEOBTN",
+        "desc": "Declare plugin videobtn",
+        "value": "{namespace}-video-btn"
+      },
+      {
+        "name": "VIDEOPOSTER",
+        "desc": "Declare plugin videoposter",
+        "value": "{namespace}-video-poster"
+      },
+      {
+        "name": "VIDEOURL",
+        "desc": "Declare plugin videourl",
+        "value": "{namespace}-video-url"
+      },
+      {
+        "name": "LOCALURL",
+        "desc": "Declare plugin local url",
+        "value": "{namespace}-local-url"
+      },
+      {
+        "name": "LOCALURLADD",
+        "desc": "Declare plugin local url add",
+        "value": "{namespace}-local-url-add"
+      },
+      {
+        "name": "LOCALURLCHANGE",
+        "desc": "Declare plugin local url change",
+        "value": "{namespace}-local-url-change"
+      },
+      {
+        "name": "LOCALURLDELETE",
+        "desc": "Declare plugin local url delete",
+        "value": "{namespace}-local-url-delete"
+      },
+      {
+        "name": "LOCALURLSELECTED",
+        "desc": "Declare plugin local url selected",
+        "value": "{namespace}-local-url-selected"
+      },
+      {
+        "name": "RATIO",
+        "desc": "Declare plugin ratio",
+        "value": "{namespace}-ratio"
+      },
+      {
+        "name": "POSTER",
+        "desc": "Declare plugin poster",
+        "value": "{namespace}-poster"
+      },
+      {
+        "name": "POSTERSELECTED",
+        "desc": "Declare plugin poster selected",
+        "value": "{namespace}-poster-selected"
+      },
+      {
+        "name": "POSTERADD",
+        "desc": "Declare plugin poster add",
+        "value": "{namespace}-poster-add"
+      },
+      {
+        "name": "POSTERCHANGE",
+        "desc": "Declare plugin poster change",
+        "value": "{namespace}-poster-change"
+      },
+      {
+        "name": "POSTERDELETE",
+        "desc": "Declare plugin poster delete",
+        "value": "{namespace}-poster-delete"
+      },
+      {
+        "name": "WARNING",
+        "desc": "Declare plugin warning",
+        "value": "{namespace}-warning"
+      }
+    ],
+    "translations": [
+      {
+        "name": "inputPlaceholder",
+        "en": "Add Video",
+        "zh": "添加视频"
+      },
+      {
+        "name": "videoSource",
+        "en": "Video Source",
+        "zh": "视频类型"
+      },
+      {
+        "name": "videoURL",
+        "en": "Video URL",
+        "zh": "视频URL"
+      },
+      {
+        "name": "aspectRatio",
+        "en": "Aspect Ratio",
+        "zh": "长宽比"
+      },
+      {
+        "name": "chooseVideo",
+        "en": "Choose Video",
+        "zh": "选择视频"
+      },
+      {
+        "name": "poster",
+        "en": "Poster",
+        "zh": "海报"
+      },
+      {
+        "name": "addVideo",
+        "en": "Add Video",
+        "zh": "添加视频"
+      },
+      {
+        "name": "addPoster",
+        "en": "Add Poster",
+        "zh": "添加海报"
+      },
+      {
+        "name": "changeVideo",
+        "en": "Change Video",
+        "zh": "修改视频"
+      },
+      {
+        "name": "changePoster",
+        "en": "Change Poster",
+        "zh": "修改海报"
+      },
+      {
+        "name": "save",
+        "en": "Save",
+        "zh": "保存"
+      },
+      {
+        "name": "cancel",
+        "en": "Cancel",
+        "zh": "取消"
+      },
+      {
+        "name": "deleteTitle",
+        "en": "Are you sure you want to delete?",
+        "zh": "你确定要删除？"
+      },
+      {
+        "name": "delete",
+        "en": "Delete",
+        "zh": "删除"
+      },
+      {
+        "name": "useIt",
+        "en": "Use It",
+        "zh": "使用"
+      },
+      {
+        "name": "inputURL",
+        "en": "Please input URL",
+        "zh": "请输入URL"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

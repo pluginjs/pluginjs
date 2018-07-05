@@ -1,109 +1,109 @@
 {
-	"meta": {
-		"moduleName": "headroom",
-		"namespace": "headroom",
-		"Namespace": "Headroom",
-		"options": [
-			{
-				"name": "tolerance",
-				"desc": "normalize Tolerance, Mainly used in pinned mode",
-				"defaultValue": "{\"down\":10,\"up\":20}"
-			},
-			{
-				"name": "offset",
-				"desc": "Anchor offset, Mainly used for pinned mode and stick mode",
-				"defaultValue": "0"
-			},
-			{
-				"name": "scroller",
-				"desc": "Scroll element",
-				"defaultValue": "window"
-			},
-			{
-				"name": "mode",
-				"desc": "Different judgments",
-				"defaultValue": "pinned"
-			},
-			{
-				"name": "offsetSide",
-				"desc": "If offset is an element selector, you can specify his size",
-				"defaultValue": "top"
-			}
-		],
-		"option": "tolerance",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin is enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin is disabled"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			}
-		],
-		"method": "destroy",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-headroom"
-			},
-			{
-				"name": "PINNED",
-				"desc": "Announce plugin is pinned",
-				"value": "{namespace}-pinned"
-			},
-			{
-				"name": "UNPINNED",
-				"desc": "Announce plugin is unpinned",
-				"value": "{namespace}-unpinned"
-			},
-			{
-				"name": "TOP",
-				"desc": "Announce plugin is top",
-				"value": "{namespace}-top"
-			},
-			{
-				"name": "NOTTOP",
-				"desc": "Announce plugin is notTop",
-				"value": "{namespace}-notTop"
-			},
-			{
-				"name": "STICK",
-				"desc": "Announce plugin is stick",
-				"value": "{namespace}-stick"
-			},
-			{
-				"name": "UNSTICK",
-				"desc": "Announce plugin is unstick",
-				"value": "{namespace}-unstick"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "headroom",
+    "namespace": "headroom",
+    "Namespace": "Headroom",
+    "options": [
+      {
+        "name": "tolerance",
+        "desc": "normalize Tolerance, Mainly used in pinned mode",
+        "defaultValue": "{\"down\":10,\"up\":20}"
+      },
+      {
+        "name": "offset",
+        "desc": "Anchor offset, Mainly used for pinned mode and stick mode",
+        "defaultValue": "0"
+      },
+      {
+        "name": "scroller",
+        "desc": "Scroll element",
+        "defaultValue": "window"
+      },
+      {
+        "name": "mode",
+        "desc": "Different judgments",
+        "defaultValue": "pinned"
+      },
+      {
+        "name": "offsetSide",
+        "desc": "If offset is an element selector, you can specify his size",
+        "defaultValue": "top"
+      }
+    ],
+    "option": "tolerance",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin is enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin is disabled"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      }
+    ],
+    "method": "destroy",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-headroom"
+      },
+      {
+        "name": "PINNED",
+        "desc": "Announce plugin is pinned",
+        "value": "{namespace}-pinned"
+      },
+      {
+        "name": "UNPINNED",
+        "desc": "Announce plugin is unpinned",
+        "value": "{namespace}-unpinned"
+      },
+      {
+        "name": "TOP",
+        "desc": "Announce plugin is top",
+        "value": "{namespace}-top"
+      },
+      {
+        "name": "NOTTOP",
+        "desc": "Announce plugin is notTop",
+        "value": "{namespace}-notTop"
+      },
+      {
+        "name": "STICK",
+        "desc": "Announce plugin is stick",
+        "value": "{namespace}-stick"
+      },
+      {
+        "name": "UNSTICK",
+        "desc": "Announce plugin is unstick",
+        "value": "{namespace}-unstick"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

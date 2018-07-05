@@ -1,180 +1,180 @@
 {
-	"meta": {
-		"moduleName": "accordion",
-		"namespace": "accordion",
-		"Namespace": "Accordion",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Add plugin theme option",
-				"defaultValue": "default"
-			},
-			{
-				"name": "panelSelector",
-				"desc": "Add panel selector to plugin",
-				"defaultValue": "null"
-			},
-			{
-				"name": "initialIndex",
-				"desc": "Set index of this plugin",
-				"defaultValue": "0"
-			},
-			{
-				"name": "duration",
-				"desc": "Set duration value",
-				"defaultValue": "300"
-			},
-			{
-				"name": "horizontal",
-				"desc": "Set is horizontal or not",
-				"defaultValue": "false"
-			},
-			{
-				"name": "multiple",
-				"desc": "Active multiple support",
-				"defaultValue": "false"
-			},
-			{
-				"name": "ajax",
-				"desc": "Enable ajax",
-				"defaultValue": "false"
-			},
-			{
-				"name": "breakWidth",
-				"desc": "Set width limit",
-				"defaultValue": "null"
-			},
-			{
-				"name": "resizeReference",
-				"desc": "Set resize reference",
-				"defaultValue": "window"
-			},
-			{
-				"name": "responsiveEffect",
-				"desc": "Set responsive effect",
-				"defaultValue": "easeInQuad"
-			},
-			{
-				"name": "dropdownLabelTpl",
-				"desc": "Set dropdown label",
-				"defaultValue": "<a href=\"javascript:void(0)\"></a>"
-			},
-			{
-				"name": "responsiveDuration",
-				"desc": "Set responsive duration",
-				"defaultValue": "300"
-			},
-			{
-				"name": "onReady",
-				"desc": "Set ready callback",
-				"defaultValue": "null"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "open",
-				"desc": "Gets fired when plugin is open"
-			},
-			{
-				"name": "close",
-				"desc": "Gets fired when plugin is close"
-			},
-			{
-				"name": "resize",
-				"desc": "Gets fired when plugin is resize"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "open",
-				"desc": "Open plugin"
-			},
-			{
-				"name": "close",
-				"desc": "Close plugin"
-			}
-		],
-		"method": "open",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-accordion"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Declare plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Declare plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "RESPONSIVE",
-				"desc": "Declare plugin is responsive",
-				"value": "{namespace}-responsive"
-			},
-			{
-				"name": "HORIZONTAL",
-				"desc": "Declare plugin has in horizontal status",
-				"value": "{namespace}-horizontal"
-			},
-			{
-				"name": "DROPDOWN",
-				"desc": "Declare plugin dropdown node",
-				"value": "{namespace}-dropdown"
-			},
-			{
-				"name": "DROPDOWNLABEL",
-				"desc": "Declare plugin dropdown label node",
-				"value": "{namespace}-dropdown-label"
-			},
-			{
-				"name": "DROPDOWNLIST",
-				"desc": "Declare plugin dropdown list node",
-				"value": "{namespace}-dropdown-list"
-			},
-			{
-				"name": "DROPDOWNOPEN",
-				"desc": "Declare plugin dropdown open node",
-				"value": "{namespace}-open"
-			},
-			{
-				"name": "PANE",
-				"desc": "Declare plugin pane node",
-				"value": "{namespace}-pane"
-			},
-			{
-				"name": "PANEHEADER",
-				"desc": "Declare plugin pane header node",
-				"value": "{namespace}-pane-header"
-			},
-			{
-				"name": "PANECONTENT",
-				"desc": "Declare plugin pane content node",
-				"value": "{namespace}-pane-content"
-			},
-			{
-				"name": "PANECONTENTINNER",
-				"desc": "Declare plugin pane contentinner node",
-				"value": "{namespace}-pane-content-inner"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "accordion",
+    "namespace": "accordion",
+    "Namespace": "Accordion",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Add plugin theme option",
+        "defaultValue": "default"
+      },
+      {
+        "name": "panelSelector",
+        "desc": "Add panel selector to plugin",
+        "defaultValue": "null"
+      },
+      {
+        "name": "initialIndex",
+        "desc": "Set index of this plugin",
+        "defaultValue": "0"
+      },
+      {
+        "name": "duration",
+        "desc": "Set duration value",
+        "defaultValue": "300"
+      },
+      {
+        "name": "horizontal",
+        "desc": "Set is horizontal or not",
+        "defaultValue": "false"
+      },
+      {
+        "name": "multiple",
+        "desc": "Active multiple support",
+        "defaultValue": "false"
+      },
+      {
+        "name": "ajax",
+        "desc": "Enable ajax",
+        "defaultValue": "false"
+      },
+      {
+        "name": "breakWidth",
+        "desc": "Set width limit",
+        "defaultValue": "null"
+      },
+      {
+        "name": "resizeReference",
+        "desc": "Set resize reference",
+        "defaultValue": "window"
+      },
+      {
+        "name": "responsiveEffect",
+        "desc": "Set responsive effect",
+        "defaultValue": "easeInQuad"
+      },
+      {
+        "name": "dropdownLabelTpl",
+        "desc": "Set dropdown label",
+        "defaultValue": "<a href=\"javascript:void(0)\"></a>"
+      },
+      {
+        "name": "responsiveDuration",
+        "desc": "Set responsive duration",
+        "defaultValue": "300"
+      },
+      {
+        "name": "onReady",
+        "desc": "Set ready callback",
+        "defaultValue": "null"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "open",
+        "desc": "Gets fired when plugin is open"
+      },
+      {
+        "name": "close",
+        "desc": "Gets fired when plugin is close"
+      },
+      {
+        "name": "resize",
+        "desc": "Gets fired when plugin is resize"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "open",
+        "desc": "Open plugin"
+      },
+      {
+        "name": "close",
+        "desc": "Close plugin"
+      }
+    ],
+    "method": "open",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-accordion"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Declare plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Declare plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "RESPONSIVE",
+        "desc": "Declare plugin is responsive",
+        "value": "{namespace}-responsive"
+      },
+      {
+        "name": "HORIZONTAL",
+        "desc": "Declare plugin has in horizontal status",
+        "value": "{namespace}-horizontal"
+      },
+      {
+        "name": "DROPDOWN",
+        "desc": "Declare plugin dropdown node",
+        "value": "{namespace}-dropdown"
+      },
+      {
+        "name": "DROPDOWNLABEL",
+        "desc": "Declare plugin dropdown label node",
+        "value": "{namespace}-dropdown-label"
+      },
+      {
+        "name": "DROPDOWNLIST",
+        "desc": "Declare plugin dropdown list node",
+        "value": "{namespace}-dropdown-list"
+      },
+      {
+        "name": "DROPDOWNOPEN",
+        "desc": "Declare plugin dropdown open node",
+        "value": "{namespace}-open"
+      },
+      {
+        "name": "PANE",
+        "desc": "Declare plugin pane node",
+        "value": "{namespace}-pane"
+      },
+      {
+        "name": "PANEHEADER",
+        "desc": "Declare plugin pane header node",
+        "value": "{namespace}-pane-header"
+      },
+      {
+        "name": "PANECONTENT",
+        "desc": "Declare plugin pane content node",
+        "value": "{namespace}-pane-content"
+      },
+      {
+        "name": "PANECONTENTINNER",
+        "desc": "Declare plugin pane contentinner node",
+        "value": "{namespace}-pane-content-inner"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

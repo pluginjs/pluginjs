@@ -1,179 +1,179 @@
 {
-	"meta": {
-		"moduleName": "notice",
-		"namespace": "notice",
-		"Namespace": "Notice",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Add plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "template",
-				"desc": "Add template",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "templates",
-				"desc": "Add templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "locale",
-				"desc": "Add locale env declare",
-				"defaultValue": "en"
-			},
-			{
-				"name": "html",
-				"desc": "Set enable html or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "localeFallbacks",
-				"desc": "Set enable localeFallbacks",
-				"defaultValue": "true"
-			},
-			{
-				"name": "content",
-				"desc": "Set content",
-				"defaultValue": ""
-			},
-			{
-				"name": "contentAlignment",
-				"desc": "Set where is content alignment",
-				"defaultValue": "center"
-			},
-			{
-				"name": "allowClose",
-				"desc": "Set allow close or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "closeBottonColor",
-				"desc": "Set close button color",
-				"defaultValue": ""
-			},
-			{
-				"name": "backgroundColor",
-				"desc": "Set background color",
-				"defaultValue": "null"
-			},
-			{
-				"name": "backgroundImage",
-				"desc": "Set background image",
-				"defaultValue": "null"
-			},
-			{
-				"name": "fontColor",
-				"desc": "Set font color",
-				"defaultValue": "null"
-			},
-			{
-				"name": "buttons",
-				"desc": "Set buttons",
-				"defaultValue": "{\"ok\":{\"title\":\"Ok\",\"class\":\"pj-btn pj-btn-success\"}}"
-			},
-			{
-				"name": "buttonAlign",
-				"desc": "Set button align",
-				"defaultValue": "center"
-			},
-			{
-				"name": "timeout",
-				"desc": "Set timeout",
-				"defaultValue": "30000"
-			},
-			{
-				"name": "fixedWidth",
-				"desc": "Set fixed width or not",
-				"defaultValue": "false"
-			},
-			{
-				"name": "layout",
-				"desc": "Set layout location",
-				"defaultValue": "top"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "show",
-				"desc": "Gets fired when plugin is show"
-			},
-			{
-				"name": "hide",
-				"desc": "Gets fired when plugin is hidden"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			}
-		],
-		"event": "show",
-		"Event": "Show",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-notice"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "CONTENT",
-				"desc": "Declare plugin content",
-				"value": "{namespace}-content"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "CLOSE",
-				"desc": "Declare plugin is close",
-				"value": "{namespace}-close"
-			},
-			{
-				"name": "CONTAINER",
-				"desc": "Declare plugin range",
-				"value": "{namespace}-container"
-			},
-			{
-				"name": "BUTTON",
-				"desc": "Declare plugin button",
-				"value": "{namespace}-btn"
-			},
-			{
-				"name": "BUTTONS",
-				"desc": "Declare plugin buttons",
-				"value": "{namespace}-buttons"
-			},
-			{
-				"name": "POSITION",
-				"desc": "Declare plugin position",
-				"value": "{namespace}-position"
-			},
-			{
-				"name": "BACKGROUND",
-				"desc": "Declare plugin background",
-				"value": "{namespace}-with-bg"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "notice",
+    "namespace": "notice",
+    "Namespace": "Notice",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Add plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "template",
+        "desc": "Add template",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "templates",
+        "desc": "Add templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "locale",
+        "desc": "Add locale env declare",
+        "defaultValue": "en"
+      },
+      {
+        "name": "html",
+        "desc": "Set enable html or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "localeFallbacks",
+        "desc": "Set enable localeFallbacks",
+        "defaultValue": "true"
+      },
+      {
+        "name": "content",
+        "desc": "Set content",
+        "defaultValue": ""
+      },
+      {
+        "name": "contentAlignment",
+        "desc": "Set where is content alignment",
+        "defaultValue": "center"
+      },
+      {
+        "name": "allowClose",
+        "desc": "Set allow close or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeBottonColor",
+        "desc": "Set close button color",
+        "defaultValue": ""
+      },
+      {
+        "name": "backgroundColor",
+        "desc": "Set background color",
+        "defaultValue": "null"
+      },
+      {
+        "name": "backgroundImage",
+        "desc": "Set background image",
+        "defaultValue": "null"
+      },
+      {
+        "name": "fontColor",
+        "desc": "Set font color",
+        "defaultValue": "null"
+      },
+      {
+        "name": "buttons",
+        "desc": "Set buttons",
+        "defaultValue": "{\"ok\":{\"title\":\"Ok\",\"class\":\"pj-btn pj-btn-success\"}}"
+      },
+      {
+        "name": "buttonAlign",
+        "desc": "Set button align",
+        "defaultValue": "center"
+      },
+      {
+        "name": "timeout",
+        "desc": "Set timeout",
+        "defaultValue": "30000"
+      },
+      {
+        "name": "fixedWidth",
+        "desc": "Set fixed width or not",
+        "defaultValue": "false"
+      },
+      {
+        "name": "layout",
+        "desc": "Set layout location",
+        "defaultValue": "top"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "show",
+        "desc": "Gets fired when plugin is show"
+      },
+      {
+        "name": "hide",
+        "desc": "Gets fired when plugin is hidden"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      }
+    ],
+    "event": "show",
+    "Event": "Show",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-notice"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "CONTENT",
+        "desc": "Declare plugin content",
+        "value": "{namespace}-content"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "CLOSE",
+        "desc": "Declare plugin is close",
+        "value": "{namespace}-close"
+      },
+      {
+        "name": "CONTAINER",
+        "desc": "Declare plugin range",
+        "value": "{namespace}-container"
+      },
+      {
+        "name": "BUTTON",
+        "desc": "Declare plugin button",
+        "value": "{namespace}-btn"
+      },
+      {
+        "name": "BUTTONS",
+        "desc": "Declare plugin buttons",
+        "value": "{namespace}-buttons"
+      },
+      {
+        "name": "POSITION",
+        "desc": "Declare plugin position",
+        "value": "{namespace}-position"
+      },
+      {
+        "name": "BACKGROUND",
+        "desc": "Declare plugin background",
+        "value": "{namespace}-with-bg"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

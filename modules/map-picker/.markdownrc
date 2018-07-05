@@ -1,318 +1,318 @@
 {
-	"meta": {
-		"moduleName": "map-picker",
-		"namespace": "mapPicker",
-		"Namespace": "MapPicker",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "localeFallbacks",
-				"desc": "Set the plugin is localeFallbacks or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "icon",
-				"desc": "Set default icon",
-				"defaultValue": "icon-pin-map"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disabled plugin",
-				"defaultValue": "false"
-			},
-			{
-				"name": "place",
-				"desc": "Set place",
-				"defaultValue": "null"
-			},
-			{
-				"name": "latlng",
-				"desc": "Set latlng",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "showLatlng",
-				"desc": "Set the plugin is showLatlng or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "gmapOptions",
-				"desc": "Set gmapOptions",
-				"defaultValue": "{\"apiKey\":\"AIzaSyDSx-q31rWQKqLwUahg6TrZ3R_5NT0LhFE\",\"mapTypeControl\":false,\"zoomControl\":true,\"zoom\":12,\"libraries\":\"places\"}"
-			},
-			{
-				"name": "markerOptions",
-				"desc": "Set markerOptions",
-				"defaultValue": "{\"draggable\":true}"
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "set",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-mapPicker"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "MAP",
-				"desc": "Declare plugin map",
-				"value": "{namespace}-map"
-			},
-			{
-				"name": "INFO",
-				"desc": "Declare plugin info",
-				"value": "{namespace}-info"
-			},
-			{
-				"name": "INIT",
-				"desc": "Declare plugin init",
-				"value": "{namespace}-init"
-			},
-			{
-				"name": "FILL",
-				"desc": "Declare plugin fill",
-				"value": "{namespace}-fill"
-			},
-			{
-				"name": "HOVER",
-				"desc": "Announce plugin is hover",
-				"value": "{namespace}-hover"
-			},
-			{
-				"name": "REMOVEANIMATE",
-				"desc": "Announce plugin is removeanimate",
-				"value": "{namespace}-remove-animate"
-			},
-			{
-				"name": "PREVIEW",
-				"desc": "Announce plugin is preview",
-				"value": "{namespace}-preview"
-			},
-			{
-				"name": "PREVIEWACTION",
-				"desc": "Announce plugin is previewaction",
-				"value": "{namespace}-preview-action"
-			},
-			{
-				"name": "PREVIEWCONTENT",
-				"desc": "Announce plugin is previewcontent",
-				"value": "{namespace}-preview-content"
-			},
-			{
-				"name": "PREVIEWNAME",
-				"desc": "Announce plugin is previewname",
-				"value": "{namespace}-preview-name"
-			},
-			{
-				"name": "PREVIEWCOORD",
-				"desc": "Announce plugin is previewcoord",
-				"value": "{namespace}-preview-coord"
-			},
-			{
-				"name": "EDIT",
-				"desc": "Announce plugin is edit",
-				"value": "{namespace}-edit"
-			},
-			{
-				"name": "REMOVE",
-				"desc": "Announce plugin is remove",
-				"value": "{namespace}-remove"
-			},
-			{
-				"name": "ICON",
-				"desc": "Announce plugin is icon",
-				"value": "{namespace}-icon"
-			},
-			{
-				"name": "PANEL",
-				"desc": "Announce plugin is panel",
-				"value": "{namespace}-panel"
-			},
-			{
-				"name": "CONTENT",
-				"desc": "Announce plugin is content",
-				"value": "{namespace}-panel-content"
-			},
-			{
-				"name": "ITEM",
-				"desc": "Announce plugin is item",
-				"value": "{namespace}-item"
-			},
-			{
-				"name": "ITEMTITLE",
-				"desc": "Announce plugin is itemitle",
-				"value": "{namespace}-item-title"
-			},
-			{
-				"name": "LAT",
-				"desc": "Announce plugin is lat",
-				"value": "{namespace}-lat"
-			},
-			{
-				"name": "LNG",
-				"desc": "Announce plugin is lng",
-				"value": "{namespace}-lng"
-			},
-			{
-				"name": "PLACE",
-				"desc": "Announce plugin is place",
-				"value": "{namespace}-place"
-			},
-			{
-				"name": "ACTION",
-				"desc": "Announce plugin is action",
-				"value": "{namespace}-action"
-			},
-			{
-				"name": "CANCEL",
-				"desc": "Announce plugin is cancel",
-				"value": "{namespace}-canel"
-			},
-			{
-				"name": "SAVE",
-				"desc": "Announce plugin is save",
-				"value": "{namespace}-save"
-			},
-			{
-				"name": "SHOW",
-				"desc": "Announce plugin is show",
-				"value": "{namespace}-show"
-			},
-			{
-				"name": "LOADING",
-				"desc": "Announce plugin is loading",
-				"value": "{namespace}-loading"
-			},
-			{
-				"name": "LOADINGWRAP",
-				"desc": "Announce plugin is loadingwrap",
-				"value": "{namespace}-loading-wrap"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			}
-		],
-		"translations": [
-			{
-				"name": "cancel",
-				"en": "Cancel",
-				"zh": "取消"
-			},
-			{
-				"name": "deleteTitle",
-				"en": "Are you sure you want to delete?",
-				"zh": "你确定要删除？"
-			},
-			{
-				"name": "delete",
-				"en": "Delete",
-				"zh": "删除"
-			},
-			{
-				"name": "addPlace",
-				"en": "Add Places",
-				"zh": "添加地址"
-			},
-			{
-				"name": "save",
-				"en": "Save",
-				"zh": "保存"
-			},
-			{
-				"name": "place",
-				"en": "Places",
-				"zh": "地址"
-			},
-			{
-				"name": "latitude",
-				"en": "Latitude",
-				"zh": "纬度"
-			},
-			{
-				"name": "longitude",
-				"en": "Longitude",
-				"zh": "经度"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "map-picker",
+    "namespace": "mapPicker",
+    "Namespace": "MapPicker",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "localeFallbacks",
+        "desc": "Set the plugin is localeFallbacks or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "icon",
+        "desc": "Set default icon",
+        "defaultValue": "icon-pin-map"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disabled plugin",
+        "defaultValue": "false"
+      },
+      {
+        "name": "place",
+        "desc": "Set place",
+        "defaultValue": "null"
+      },
+      {
+        "name": "latlng",
+        "desc": "Set latlng",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "showLatlng",
+        "desc": "Set the plugin is showLatlng or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "gmapOptions",
+        "desc": "Set gmapOptions",
+        "defaultValue": "{\"apiKey\":\"AIzaSyDSx-q31rWQKqLwUahg6TrZ3R_5NT0LhFE\",\"mapTypeControl\":false,\"zoomControl\":true,\"zoom\":12,\"libraries\":\"places\"}"
+      },
+      {
+        "name": "markerOptions",
+        "desc": "Set markerOptions",
+        "defaultValue": "{\"draggable\":true}"
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "set",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-mapPicker"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "MAP",
+        "desc": "Declare plugin map",
+        "value": "{namespace}-map"
+      },
+      {
+        "name": "INFO",
+        "desc": "Declare plugin info",
+        "value": "{namespace}-info"
+      },
+      {
+        "name": "INIT",
+        "desc": "Declare plugin init",
+        "value": "{namespace}-init"
+      },
+      {
+        "name": "FILL",
+        "desc": "Declare plugin fill",
+        "value": "{namespace}-fill"
+      },
+      {
+        "name": "HOVER",
+        "desc": "Announce plugin is hover",
+        "value": "{namespace}-hover"
+      },
+      {
+        "name": "REMOVEANIMATE",
+        "desc": "Announce plugin is removeanimate",
+        "value": "{namespace}-remove-animate"
+      },
+      {
+        "name": "PREVIEW",
+        "desc": "Announce plugin is preview",
+        "value": "{namespace}-preview"
+      },
+      {
+        "name": "PREVIEWACTION",
+        "desc": "Announce plugin is previewaction",
+        "value": "{namespace}-preview-action"
+      },
+      {
+        "name": "PREVIEWCONTENT",
+        "desc": "Announce plugin is previewcontent",
+        "value": "{namespace}-preview-content"
+      },
+      {
+        "name": "PREVIEWNAME",
+        "desc": "Announce plugin is previewname",
+        "value": "{namespace}-preview-name"
+      },
+      {
+        "name": "PREVIEWCOORD",
+        "desc": "Announce plugin is previewcoord",
+        "value": "{namespace}-preview-coord"
+      },
+      {
+        "name": "EDIT",
+        "desc": "Announce plugin is edit",
+        "value": "{namespace}-edit"
+      },
+      {
+        "name": "REMOVE",
+        "desc": "Announce plugin is remove",
+        "value": "{namespace}-remove"
+      },
+      {
+        "name": "ICON",
+        "desc": "Announce plugin is icon",
+        "value": "{namespace}-icon"
+      },
+      {
+        "name": "PANEL",
+        "desc": "Announce plugin is panel",
+        "value": "{namespace}-panel"
+      },
+      {
+        "name": "CONTENT",
+        "desc": "Announce plugin is content",
+        "value": "{namespace}-panel-content"
+      },
+      {
+        "name": "ITEM",
+        "desc": "Announce plugin is item",
+        "value": "{namespace}-item"
+      },
+      {
+        "name": "ITEMTITLE",
+        "desc": "Announce plugin is itemitle",
+        "value": "{namespace}-item-title"
+      },
+      {
+        "name": "LAT",
+        "desc": "Announce plugin is lat",
+        "value": "{namespace}-lat"
+      },
+      {
+        "name": "LNG",
+        "desc": "Announce plugin is lng",
+        "value": "{namespace}-lng"
+      },
+      {
+        "name": "PLACE",
+        "desc": "Announce plugin is place",
+        "value": "{namespace}-place"
+      },
+      {
+        "name": "ACTION",
+        "desc": "Announce plugin is action",
+        "value": "{namespace}-action"
+      },
+      {
+        "name": "CANCEL",
+        "desc": "Announce plugin is cancel",
+        "value": "{namespace}-canel"
+      },
+      {
+        "name": "SAVE",
+        "desc": "Announce plugin is save",
+        "value": "{namespace}-save"
+      },
+      {
+        "name": "SHOW",
+        "desc": "Announce plugin is show",
+        "value": "{namespace}-show"
+      },
+      {
+        "name": "LOADING",
+        "desc": "Announce plugin is loading",
+        "value": "{namespace}-loading"
+      },
+      {
+        "name": "LOADINGWRAP",
+        "desc": "Announce plugin is loadingwrap",
+        "value": "{namespace}-loading-wrap"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      }
+    ],
+    "translations": [
+      {
+        "name": "cancel",
+        "en": "Cancel",
+        "zh": "取消"
+      },
+      {
+        "name": "deleteTitle",
+        "en": "Are you sure you want to delete?",
+        "zh": "你确定要删除？"
+      },
+      {
+        "name": "delete",
+        "en": "Delete",
+        "zh": "删除"
+      },
+      {
+        "name": "addPlace",
+        "en": "Add Places",
+        "zh": "添加地址"
+      },
+      {
+        "name": "save",
+        "en": "Save",
+        "zh": "保存"
+      },
+      {
+        "name": "place",
+        "en": "Places",
+        "zh": "地址"
+      },
+      {
+        "name": "latitude",
+        "en": "Latitude",
+        "zh": "纬度"
+      },
+      {
+        "name": "longitude",
+        "en": "Longitude",
+        "zh": "经度"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

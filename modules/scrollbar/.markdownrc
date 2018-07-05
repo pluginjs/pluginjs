@@ -1,237 +1,237 @@
 {
-	"meta": {
-		"moduleName": "scrollbar",
-		"namespace": "scrollbar",
-		"Namespace": "Scrollbar",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "handleSelector",
-				"desc": "Set handleSelector",
-				"defaultValue": "null"
-			},
-			{
-				"name": "handleTemplate",
-				"desc": "Set handleTemplate",
-				"defaultValue": "<div class=\"{handle}\"></div>"
-			},
-			{
-				"name": "barClass",
-				"desc": "Set barClass",
-				"defaultValue": "null"
-			},
-			{
-				"name": "handleClass",
-				"desc": "Set handleClass",
-				"defaultValue": "null"
-			},
-			{
-				"name": "direction",
-				"desc": "Set direction",
-				"defaultValue": "vertical"
-			},
-			{
-				"name": "barLength",
-				"desc": "scroll bar default length",
-				"defaultValue": "null"
-			},
-			{
-				"name": "handleLength",
-				"desc": "Set handleLength",
-				"defaultValue": "null"
-			},
-			{
-				"name": "minHandleLength",
-				"desc": "Set minHandleLength",
-				"defaultValue": "30"
-			},
-			{
-				"name": "maxHandleLength",
-				"desc": "Set maxHandleLength",
-				"defaultValue": "null"
-			},
-			{
-				"name": "mouseDrag",
-				"desc": "Set mouseDrag",
-				"defaultValue": "true"
-			},
-			{
-				"name": "touchDrag",
-				"desc": "Set touchDrag",
-				"defaultValue": "true"
-			},
-			{
-				"name": "pointerDrag",
-				"desc": "Set touchDrag",
-				"defaultValue": "true"
-			},
-			{
-				"name": "clickMove",
-				"desc": "Set clickMove",
-				"defaultValue": "true"
-			},
-			{
-				"name": "clickMoveStep",
-				"desc": "Set clickMoveStep",
-				"defaultValue": "0.3"
-			},
-			{
-				"name": "mousewheel",
-				"desc": "Set mousserwheel",
-				"defaultValue": "true"
-			},
-			{
-				"name": "mousewheelSpeed",
-				"desc": "Set mousewheelSpeed",
-				"defaultValue": "50"
-			},
-			{
-				"name": "keyboard",
-				"desc": "Set keyboard",
-				"defaultValue": "true"
-			},
-			{
-				"name": "useCssTransforms3D",
-				"desc": "Set useCssTransforms3D",
-				"defaultValue": "true"
-			},
-			{
-				"name": "useCssTransforms",
-				"desc": "Set useCssTransforms",
-				"defaultValue": "true"
-			},
-			{
-				"name": "useCssTransitions",
-				"desc": "Set useCssTransitions",
-				"defaultValue": "true"
-			},
-			{
-				"name": "duration",
-				"desc": "Set duretion",
-				"defaultValue": "500"
-			},
-			{
-				"name": "easing",
-				"desc": "Set easing",
-				"defaultValue": "ease"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "hover",
-				"desc": "Gets fired when plugin has hover"
-			},
-			{
-				"name": "hovered",
-				"desc": "Gets fired when plugin has hovered"
-			},
-			{
-				"name": "drag",
-				"desc": "Gets fired when plugin has drag"
-			},
-			{
-				"name": "dragged",
-				"desc": "Gets fired when plugin has draged"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "moveBy",
-				"desc": "Get moveBy function"
-			},
-			{
-				"name": "moveTo",
-				"desc": "Get moveTo function"
-			}
-		],
-		"method": "enable",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-scrollbar"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}-{theme}"
-			},
-			{
-				"name": "VERTICAL",
-				"desc": "Declare plugin vertical",
-				"value": "{namespace}-vertical"
-			},
-			{
-				"name": "HORIZONTAL",
-				"desc": "Declare plugin horizontal",
-				"value": "{namespace}-horizontal"
-			},
-			{
-				"name": "CONTAINER",
-				"desc": "Declare plugin range",
-				"value": "{namespace}"
-			},
-			{
-				"name": "HANDLE",
-				"desc": "Declare plugin handle",
-				"value": "{namespace}-handle"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "DRAGGING",
-				"desc": "Declare plugin dragging",
-				"value": "{namespace}-dragging"
-			},
-			{
-				"name": "HOVERING",
-				"desc": "Announce plugin is hoverd",
-				"value": "{namespace}-hovering"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "scrollbar",
+    "namespace": "scrollbar",
+    "Namespace": "Scrollbar",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "handleSelector",
+        "desc": "Set handleSelector",
+        "defaultValue": "null"
+      },
+      {
+        "name": "handleTemplate",
+        "desc": "Set handleTemplate",
+        "defaultValue": "<div class=\"{handle}\"></div>"
+      },
+      {
+        "name": "barClass",
+        "desc": "Set barClass",
+        "defaultValue": "null"
+      },
+      {
+        "name": "handleClass",
+        "desc": "Set handleClass",
+        "defaultValue": "null"
+      },
+      {
+        "name": "direction",
+        "desc": "Set direction",
+        "defaultValue": "vertical"
+      },
+      {
+        "name": "barLength",
+        "desc": "scroll bar default length",
+        "defaultValue": "null"
+      },
+      {
+        "name": "handleLength",
+        "desc": "Set handleLength",
+        "defaultValue": "null"
+      },
+      {
+        "name": "minHandleLength",
+        "desc": "Set minHandleLength",
+        "defaultValue": "30"
+      },
+      {
+        "name": "maxHandleLength",
+        "desc": "Set maxHandleLength",
+        "defaultValue": "null"
+      },
+      {
+        "name": "mouseDrag",
+        "desc": "Set mouseDrag",
+        "defaultValue": "true"
+      },
+      {
+        "name": "touchDrag",
+        "desc": "Set touchDrag",
+        "defaultValue": "true"
+      },
+      {
+        "name": "pointerDrag",
+        "desc": "Set touchDrag",
+        "defaultValue": "true"
+      },
+      {
+        "name": "clickMove",
+        "desc": "Set clickMove",
+        "defaultValue": "true"
+      },
+      {
+        "name": "clickMoveStep",
+        "desc": "Set clickMoveStep",
+        "defaultValue": "0.3"
+      },
+      {
+        "name": "mousewheel",
+        "desc": "Set mousserwheel",
+        "defaultValue": "true"
+      },
+      {
+        "name": "mousewheelSpeed",
+        "desc": "Set mousewheelSpeed",
+        "defaultValue": "50"
+      },
+      {
+        "name": "keyboard",
+        "desc": "Set keyboard",
+        "defaultValue": "true"
+      },
+      {
+        "name": "useCssTransforms3D",
+        "desc": "Set useCssTransforms3D",
+        "defaultValue": "true"
+      },
+      {
+        "name": "useCssTransforms",
+        "desc": "Set useCssTransforms",
+        "defaultValue": "true"
+      },
+      {
+        "name": "useCssTransitions",
+        "desc": "Set useCssTransitions",
+        "defaultValue": "true"
+      },
+      {
+        "name": "duration",
+        "desc": "Set duretion",
+        "defaultValue": "500"
+      },
+      {
+        "name": "easing",
+        "desc": "Set easing",
+        "defaultValue": "ease"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "hover",
+        "desc": "Gets fired when plugin has hover"
+      },
+      {
+        "name": "hovered",
+        "desc": "Gets fired when plugin has hovered"
+      },
+      {
+        "name": "drag",
+        "desc": "Gets fired when plugin has drag"
+      },
+      {
+        "name": "dragged",
+        "desc": "Gets fired when plugin has draged"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "moveBy",
+        "desc": "Get moveBy function"
+      },
+      {
+        "name": "moveTo",
+        "desc": "Get moveTo function"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-scrollbar"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}-{theme}"
+      },
+      {
+        "name": "VERTICAL",
+        "desc": "Declare plugin vertical",
+        "value": "{namespace}-vertical"
+      },
+      {
+        "name": "HORIZONTAL",
+        "desc": "Declare plugin horizontal",
+        "value": "{namespace}-horizontal"
+      },
+      {
+        "name": "CONTAINER",
+        "desc": "Declare plugin range",
+        "value": "{namespace}"
+      },
+      {
+        "name": "HANDLE",
+        "desc": "Declare plugin handle",
+        "value": "{namespace}-handle"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "DRAGGING",
+        "desc": "Declare plugin dragging",
+        "value": "{namespace}-dragging"
+      },
+      {
+        "name": "HOVERING",
+        "desc": "Announce plugin is hoverd",
+        "value": "{namespace}-hovering"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

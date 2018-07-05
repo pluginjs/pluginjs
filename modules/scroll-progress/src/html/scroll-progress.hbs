@@ -197,21 +197,21 @@ scripts:
     $(function(){
       let elementApi;
       const APIS = {
-    		init() {
+        init() {
           console.log('init')
           elementApi = Pj.scrollProgress('.apiExample', {
             onReady: function() {
-    		      console.log('ready', 'event');
-    		    },
-    		    onDestroy: function() {
-    		      console.log('destroy', 'event');
-    		    },
-    		    onEnable: function() {
-    		      console.log('enable', 'event');
-    		    },
-    		    onDisable: function() {
-    		      console.log('disable', 'event');
-    		    },
+              console.log('ready', 'event');
+            },
+            onDestroy: function() {
+              console.log('destroy', 'event');
+            },
+            onEnable: function() {
+              console.log('enable', 'event');
+            },
+            onDisable: function() {
+              console.log('disable', 'event');
+            },
             onRefresh: function () {
               console.log('refresh', 'event')
             }

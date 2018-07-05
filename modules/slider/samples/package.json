@@ -1,23 +1,23 @@
 {
-	"name": "slider-samples",
-	"version": "1.0.0",
-	"description": "Simple slider example",
-	"main": "index.html",
-	"scripts": {
-		"start": "parcel index.html --open",
-		"build": "parcel build index.html"
-	},
-	"devDependencies": {
-		"babel-core": "^6.26.3",
-		"babel-preset-env": "1.7.0",
-		"babel-plugin-transform-html-import-to-string": "^0.0.1",
-		"parcel-bundler": "^1.6.1"
-	},
-	"dependencies": {
-		"@pluginjs/slider": "^0.2.24",
-		"@pluginjs/dom": "^0.0.15",
-		"@pluginjs/styles": "^0.5.1",
-		"@pluginjs/icons": "^0.5.0"
-	},
-	"license": "GPL-3.0"
+  "name": "slider-samples",
+  "description": "Simple slider example",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "build": "parcel build index.html",
+    "start": "parcel index.html --open"
+  },
+  "dependencies": {
+    "@pluginjs/dom": "*",
+    "@pluginjs/icons": "*",
+    "@pluginjs/slider": "*",
+    "@pluginjs/styles": "*"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "1.7.0",
+    "babel-plugin-transform-html-import-to-string": "^0.0.1",
+    "parcel-bundler": "*"
+  }
 }

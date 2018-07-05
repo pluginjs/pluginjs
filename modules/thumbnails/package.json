@@ -1,0 +1,55 @@
+{
+  "name": "@pluginjs/thumbnails",
+  "description": "A flexible modern thumbnails js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "version": "0.0.1",
+  "main": "dist/thumbnails.umd.js",
+  "module": "dist/thumbnails.esm.js",
+  "cjs": "dist/thumbnails.cjs.js",
+  "source": "src/main.js",
+  "css": {
+    "source": "src/css/main.scss",
+    "main": "dist/thumbnails.css",
+    "min": "dist/thumbnails.min.css"
+  },
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/classes": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/pluginjs": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/styles": "*",
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*",
+    "animejs": "^2.2.0"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "^4.0.0-beta.7",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "category": "",
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  }
+}

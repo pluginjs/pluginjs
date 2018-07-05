@@ -14,14 +14,29 @@ $swipeable-item-font-size: 20px !default;
 
 // swipeable
 // =====================
-section {
-  overflow: hidden;
-}
-
-.container {
+.#{$swipeable}-container {
   padding: 10px;
   overflow: hidden;
   border: 1px solid #333;
+
+  &.#{$swipeable}-vertical {
+    width: 150px;
+    height: 560px;
+
+    .#{$swipeable} {
+      flex-direction: column;
+      width: 150px;
+      height: 1710px;
+      margin: 0;
+    }
+
+    .#{$swipeable}-item {
+      flex: 0 0 100px;
+      margin: 0;
+      margin-bottom: 15px;
+      line-height: 100px;
+    }
+  }
 }
 
 .#{$swipeable} {
@@ -42,21 +57,8 @@ section {
     border-radius: $swipeable-item-border-radius;
   }
 }
-.container.vertical {
-  width: 150px;
-  height: 560px;
-
+.position-vertical {
   .#{$swipeable} {
-    flex-direction: column;
-    width: 150px;
-    height: 1710px;
-    margin: 0;
-  }
-
-  .#{$swipeable}-item {
-    flex: 0 0 100px;
-    margin: 0;
-    margin-bottom: 15px;
-    line-height: 100px;
+    transform: translateY(230px);
   }
 }

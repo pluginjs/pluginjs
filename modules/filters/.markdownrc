@@ -1,124 +1,124 @@
 {
-	"meta": {
-		"moduleName": "filters",
-		"namespace": "filters",
-		"Namespace": "Filters",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Add plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "items",
-				"desc": "Set items with plugin",
-				"defaultValue": "null"
-			},
-			{
-				"name": "default",
-				"desc": "Set default with filters",
-				"defaultValue": "null"
-			},
-			{
-				"name": "valueFrom",
-				"desc": "Set value from",
-				"defaultValue": "data-id"
-			},
-			{
-				"name": "template",
-				"desc": "Set plugin default template",
-				"defaultValue": "{}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin is changed"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin is enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin is disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			}
-		],
-		"event": "change",
-		"Event": "Change",
-		"methods": [
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "build",
-				"desc": "Build plugin template"
-			},
-			{
-				"name": "append",
-				"desc": "Append data to plugin"
-			},
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			}
-		],
-		"method": "enable",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-filter"
-			},
-			{
-				"name": "CONTAINER",
-				"desc": "Declare plugin range",
-				"value": "{namespace}s"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}s--{theme}"
-			},
-			{
-				"name": "ITEM",
-				"desc": "Declare plugin item",
-				"value": "{namespace}"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "filters",
+    "namespace": "filters",
+    "Namespace": "Filters",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Add plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "items",
+        "desc": "Set items with plugin",
+        "defaultValue": "null"
+      },
+      {
+        "name": "default",
+        "desc": "Set default with filters",
+        "defaultValue": "null"
+      },
+      {
+        "name": "valueFrom",
+        "desc": "Set value from",
+        "defaultValue": "data-id"
+      },
+      {
+        "name": "template",
+        "desc": "Set plugin default template",
+        "defaultValue": "{}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin is changed"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin is enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin is disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      }
+    ],
+    "event": "change",
+    "Event": "Change",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "build",
+        "desc": "Build plugin template"
+      },
+      {
+        "name": "append",
+        "desc": "Append data to plugin"
+      },
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-filter"
+      },
+      {
+        "name": "CONTAINER",
+        "desc": "Declare plugin range",
+        "value": "{namespace}s"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}s--{theme}"
+      },
+      {
+        "name": "ITEM",
+        "desc": "Declare plugin item",
+        "value": "{namespace}"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

@@ -4,6 +4,6 @@ import Swipeable from '@pluginjs/swipeable'
 
 const element = query('.swipeable', render(html, query('#rebound')))
 Swipeable.of(element, {
-  containment: '.rebound',
+  container: '.rebound',
   rebound: true
 })

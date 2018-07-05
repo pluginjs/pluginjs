@@ -91,7 +91,7 @@ You can also save the instances to variable for further use.
 
 Name | Description | Default
 -----|--------------|-----
-`"containment"` | Contains movement to the bounds of the element | `null`
+`"container"` | Contains movement to the bounds of the element | `null`
 `"grid"` | Snaps the element to a grid | `[0, 0]`
 `"axis"` | Constrains movement to horizontal or vertical axis | `null`
 
@@ -106,9 +106,10 @@ Name | Description
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
 `"destroy"` | Gets fired when plugin is destroy
-`"dragStart"` | Gets fired when plugin has be dragStart
-`"dragMove"` | Gets fired when plugin has be dragMove
-`"dragEnd"` | Gets fired when plugin has be dragEnd
+`"dragstart"` | Gets fired when plugin has be dragstart
+`"dragmove"` | Gets fired when plugin has be dragmove
+`"dragend"` | Gets fired when plugin has be dragend
+`"pointer"` | Gets fired when plugin has be pointer
 
 ### Methods
 
@@ -117,7 +118,6 @@ You can also save the instances to variable for further use.
 
 Name | Description
 -----|-----
-`"getPosition"` | Get dragPosition
 `"setPosition"` | Set dragPosition by key
 `"disable"` | Disable plugin
 `"enable"` | Enabled plugin if plugin is disabled

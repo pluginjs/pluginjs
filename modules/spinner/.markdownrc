@@ -1,201 +1,201 @@
 {
-	"meta": {
-		"moduleName": "spinner",
-		"namespace": "spinner",
-		"Namespace": "Spinner",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "disabled",
-				"desc": "Disabled plugin",
-				"defaultValue": "false"
-			},
-			{
-				"name": "min",
-				"desc": "Set plugin min option",
-				"defaultValue": "0"
-			},
-			{
-				"name": "max",
-				"desc": "Set plugin max option",
-				"defaultValue": "100"
-			},
-			{
-				"name": "step",
-				"desc": "Set plugin step option",
-				"defaultValue": "1"
-			},
-			{
-				"name": "name",
-				"desc": "Set plugin name option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "precision",
-				"desc": "Set plugin precision option",
-				"defaultValue": "0"
-			},
-			{
-				"name": "rule",
-				"desc": "Set plugin rule option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "unit",
-				"desc": "Set plugin unit option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "layout",
-				"desc": "Set plugin layout option",
-				"defaultValue": "both"
-			},
-			{
-				"name": "looping",
-				"desc": "Set plugin looping option",
-				"defaultValue": "true"
-			},
-			{
-				"name": "mousewheel",
-				"desc": "Set plugin mousewheel option",
-				"defaultValue": "false"
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "process",
-				"desc": "The type of object change the type of JSON",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "parse",
-				"desc": "The type of JSON change the type of object",
-				"defaultValue": "function() {...}"
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "update",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			},
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Gets fired when plugin has disabled"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "change",
-				"desc": "Gets fired when plugin has changed"
-			}
-		],
-		"event": "update",
-		"Event": "Update",
-		"methods": [
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "update",
-				"desc": "Update plugin"
-			},
-			{
-				"name": "spinDown",
-				"desc": "Get value of subtraction"
-			},
-			{
-				"name": "spinUp",
-				"desc": "Get value of add"
-			}
-		],
-		"method": "get",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-spinner"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "FOCUS",
-				"desc": "Declare plugin focus",
-				"value": "{namespace}-focus"
-			},
-			{
-				"name": "CONTROL",
-				"desc": "Declare plugin control",
-				"value": "{namespace}-control"
-			},
-			{
-				"name": "DOWN",
-				"desc": "Declare plugin down",
-				"value": "{namespace}-down"
-			},
-			{
-				"name": "UP",
-				"desc": "Declare plugin up",
-				"value": "{namespace}-up"
-			},
-			{
-				"name": "WRAP",
-				"desc": "Declare plugin wrap",
-				"value": "{namespace}"
-			},
-			{
-				"name": "CONTROLRIGHT",
-				"desc": "Declare plugin control right",
-				"value": "{namespace}-control-right"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "spinner",
+    "namespace": "spinner",
+    "Namespace": "Spinner",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "disabled",
+        "desc": "Disabled plugin",
+        "defaultValue": "false"
+      },
+      {
+        "name": "min",
+        "desc": "Set plugin min option",
+        "defaultValue": "0"
+      },
+      {
+        "name": "max",
+        "desc": "Set plugin max option",
+        "defaultValue": "100"
+      },
+      {
+        "name": "step",
+        "desc": "Set plugin step option",
+        "defaultValue": "1"
+      },
+      {
+        "name": "name",
+        "desc": "Set plugin name option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "precision",
+        "desc": "Set plugin precision option",
+        "defaultValue": "0"
+      },
+      {
+        "name": "rule",
+        "desc": "Set plugin rule option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "unit",
+        "desc": "Set plugin unit option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "layout",
+        "desc": "Set plugin layout option",
+        "defaultValue": "both"
+      },
+      {
+        "name": "looping",
+        "desc": "Set plugin looping option",
+        "defaultValue": "true"
+      },
+      {
+        "name": "mousewheel",
+        "desc": "Set plugin mousewheel option",
+        "defaultValue": "false"
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "process",
+        "desc": "The type of object change the type of JSON",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "parse",
+        "desc": "The type of JSON change the type of object",
+        "defaultValue": "function() {...}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "update",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin has disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "change",
+        "desc": "Gets fired when plugin has changed"
+      }
+    ],
+    "event": "update",
+    "Event": "Update",
+    "methods": [
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "update",
+        "desc": "Update plugin"
+      },
+      {
+        "name": "spinDown",
+        "desc": "Get value of subtraction"
+      },
+      {
+        "name": "spinUp",
+        "desc": "Get value of add"
+      }
+    ],
+    "method": "get",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-spinner"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "FOCUS",
+        "desc": "Declare plugin focus",
+        "value": "{namespace}-focus"
+      },
+      {
+        "name": "CONTROL",
+        "desc": "Declare plugin control",
+        "value": "{namespace}-control"
+      },
+      {
+        "name": "DOWN",
+        "desc": "Declare plugin down",
+        "value": "{namespace}-down"
+      },
+      {
+        "name": "UP",
+        "desc": "Declare plugin up",
+        "value": "{namespace}-up"
+      },
+      {
+        "name": "WRAP",
+        "desc": "Declare plugin wrap",
+        "value": "{namespace}"
+      },
+      {
+        "name": "CONTROLRIGHT",
+        "desc": "Declare plugin control right",
+        "value": "{namespace}-control-right"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

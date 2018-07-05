@@ -1,182 +1,182 @@
 {
-	"meta": {
-		"moduleName": "rate",
-		"namespace": "rate",
-		"Namespace": "Rate",
-		"options": [
-			{
-				"name": "template",
-				"desc": "Set plugin default template",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "templates",
-				"desc": "Set plugin default template",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "iconClass",
-				"desc": "Set icon class",
-				"defaultValue": "icon-star"
-			},
-			{
-				"name": "iconColorClass",
-				"desc": "Set icon color class",
-				"defaultValue": ""
-			},
-			{
-				"name": "min",
-				"desc": "Set min value",
-				"defaultValue": "2"
-			},
-			{
-				"name": "max",
-				"desc": "Set max value",
-				"defaultValue": "5"
-			},
-			{
-				"name": "value",
-				"desc": "Set default value",
-				"defaultValue": "0"
-			},
-			{
-				"name": "readonly",
-				"desc": "Set is read only or not",
-				"defaultValue": "false"
-			},
-			{
-				"name": "halfStar",
-				"desc": "Set is half start or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "step",
-				"desc": "Set step value",
-				"defaultValue": "0.5"
-			},
-			{
-				"name": "iconSize",
-				"desc": "Set icon size",
-				"defaultValue": ""
-			},
-			{
-				"name": "svg",
-				"desc": "Set svg",
-				"defaultValue": ""
-			}
-		],
-		"option": "template",
-		"events": [
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin is ready"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin is destroy"
-			},
-			{
-				"name": "changeHoverScore",
-				"desc": "Gets fired when hover score has be change"
-			},
-			{
-				"name": "mouseLeave",
-				"desc": "Gets fired when mouse leave"
-			},
-			{
-				"name": "changeScore",
-				"desc": "Get fired when score has be change"
-			},
-			{
-				"name": "click",
-				"desc": "Get fired when plugin has be clicked"
-			}
-		],
-		"event": "ready",
-		"Event": "Ready",
-		"methods": [
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			},
-			{
-				"name": "getScore",
-				"desc": "Get current score"
-			},
-			{
-				"name": "getHoverScore",
-				"desc": "Get current hover score"
-			},
-			{
-				"name": "setScore",
-				"desc": "Set current score"
-			},
-			{
-				"name": "clear",
-				"desc": "clean all score"
-			},
-			{
-				"name": "readonly",
-				"desc": "Set plugin status to read only"
-			},
-			{
-				"name": "setColor",
-				"desc": "Set color"
-			},
-			{
-				"name": "resetIcon",
-				"desc": "Reset icon to default"
-			}
-		],
-		"method": "destroy",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-rate"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "STAR",
-				"desc": "Declare star node",
-				"value": "{namespace}-star"
-			},
-			{
-				"name": "HALFSTAR",
-				"desc": "Declare half star node",
-				"value": "{namespace}-star-first"
-			},
-			{
-				"name": "FULlSTAR",
-				"desc": "Declare full star",
-				"value": "{namespace}-star-second"
-			},
-			{
-				"name": "HALFSTARACTIVE",
-				"desc": "Declare half star is active",
-				"value": "{namespace}-star-half"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "CLEARCOLOR",
-				"desc": "Announce color has be clear",
-				"value": "{namespace}-clear-color"
-			},
-			{
-				"name": "DEFAULTCOLOR",
-				"desc": "Announce default color",
-				"value": "{namespace}-default-color"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "rate",
+    "namespace": "rate",
+    "Namespace": "Rate",
+    "options": [
+      {
+        "name": "template",
+        "desc": "Set plugin default template",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "templates",
+        "desc": "Set plugin default template",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "iconClass",
+        "desc": "Set icon class",
+        "defaultValue": "icon-star"
+      },
+      {
+        "name": "iconColorClass",
+        "desc": "Set icon color class",
+        "defaultValue": ""
+      },
+      {
+        "name": "min",
+        "desc": "Set min value",
+        "defaultValue": "2"
+      },
+      {
+        "name": "max",
+        "desc": "Set max value",
+        "defaultValue": "5"
+      },
+      {
+        "name": "value",
+        "desc": "Set default value",
+        "defaultValue": "0"
+      },
+      {
+        "name": "readonly",
+        "desc": "Set is read only or not",
+        "defaultValue": "false"
+      },
+      {
+        "name": "halfStar",
+        "desc": "Set is half start or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "step",
+        "desc": "Set step value",
+        "defaultValue": "0.5"
+      },
+      {
+        "name": "iconSize",
+        "desc": "Set icon size",
+        "defaultValue": ""
+      },
+      {
+        "name": "svg",
+        "desc": "Set svg",
+        "defaultValue": ""
+      }
+    ],
+    "option": "template",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "changeHoverScore",
+        "desc": "Gets fired when hover score has be change"
+      },
+      {
+        "name": "mouseLeave",
+        "desc": "Gets fired when mouse leave"
+      },
+      {
+        "name": "changeScore",
+        "desc": "Get fired when score has be change"
+      },
+      {
+        "name": "click",
+        "desc": "Get fired when plugin has be clicked"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "getScore",
+        "desc": "Get current score"
+      },
+      {
+        "name": "getHoverScore",
+        "desc": "Get current hover score"
+      },
+      {
+        "name": "setScore",
+        "desc": "Set current score"
+      },
+      {
+        "name": "clear",
+        "desc": "clean all score"
+      },
+      {
+        "name": "readonly",
+        "desc": "Set plugin status to read only"
+      },
+      {
+        "name": "setColor",
+        "desc": "Set color"
+      },
+      {
+        "name": "resetIcon",
+        "desc": "Reset icon to default"
+      }
+    ],
+    "method": "destroy",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-rate"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "STAR",
+        "desc": "Declare star node",
+        "value": "{namespace}-star"
+      },
+      {
+        "name": "HALFSTAR",
+        "desc": "Declare half star node",
+        "value": "{namespace}-star-first"
+      },
+      {
+        "name": "FULlSTAR",
+        "desc": "Declare full star",
+        "value": "{namespace}-star-second"
+      },
+      {
+        "name": "HALFSTARACTIVE",
+        "desc": "Declare half star is active",
+        "value": "{namespace}-star-half"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "CLEARCOLOR",
+        "desc": "Announce color has be clear",
+        "value": "{namespace}-clear-color"
+      },
+      {
+        "name": "DEFAULTCOLOR",
+        "desc": "Announce default color",
+        "value": "{namespace}-default-color"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

@@ -1,224 +1,224 @@
 {
-	"meta": {
-		"moduleName": "toast",
-		"namespace": "toast",
-		"Namespace": "Toast",
-		"options": [
-			{
-				"name": "theme",
-				"desc": "Set plugin theme option",
-				"defaultValue": "null"
-			},
-			{
-				"name": "template",
-				"desc": "Set default template",
-				"defaultValue": "function() {...}"
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "html",
-				"desc": "Set is enable html or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "localeFallbacks",
-				"desc": "Set is enable locale fallback or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "content",
-				"desc": "Set content",
-				"defaultValue": ""
-			},
-			{
-				"name": "title",
-				"desc": "Set title",
-				"defaultValue": "This is Title"
-			},
-			{
-				"name": "titleColor",
-				"desc": "Set title color",
-				"defaultValue": ""
-			},
-			{
-				"name": "contentColor",
-				"desc": "Set content color",
-				"defaultValue": ""
-			},
-			{
-				"name": "closeBtnColor",
-				"desc": "Set close button color",
-				"defaultValue": ""
-			},
-			{
-				"name": "effect",
-				"desc": "Set effect",
-				"defaultValue": "fade"
-			},
-			{
-				"name": "allowClose",
-				"desc": "Set is allow close or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "duration",
-				"desc": "Set duretion",
-				"defaultValue": "3000"
-			},
-			{
-				"name": "stack",
-				"desc": "Set stack number",
-				"defaultValue": "6"
-			},
-			{
-				"name": "position",
-				"desc": "Set position",
-				"defaultValue": "bottom-right"
-			},
-			{
-				"name": "icon",
-				"desc": "Set default icon",
-				"defaultValue": "success"
-			},
-			{
-				"name": "icons",
-				"desc": "Set icons options",
-				"defaultValue": "{\"success\":[\"icon-check-circle\",\"#4be1ab\"],\"info\":[\"icon-exclamation-circle\",\"#4c93d9\"],\"warning\":[\"icon-exclamation-triangle\",\"#dabd49\"],\"danger\":[\"icon-times-circle\",\"#f86b67\"]}"
-			},
-			{
-				"name": "iconColor",
-				"desc": "Set icon color",
-				"defaultValue": ""
-			},
-			{
-				"name": "iconClass",
-				"desc": "Set icon class",
-				"defaultValue": ""
-			},
-			{
-				"name": "bgColor",
-				"desc": "Set bg color",
-				"defaultValue": "null"
-			},
-			{
-				"name": "buttons",
-				"desc": "Set buttons",
-				"defaultValue": "null"
-			},
-			{
-				"name": "loader",
-				"desc": "Set is enable loader or not",
-				"defaultValue": "true"
-			},
-			{
-				"name": "loaderBgColor",
-				"desc": "Set loader bg color",
-				"defaultValue": ""
-			}
-		],
-		"option": "theme",
-		"events": [
-			{
-				"name": "show",
-				"desc": "Gets fired when plugin has show"
-			},
-			{
-				"name": "hide",
-				"desc": "Gets fired when plugin has hidden"
-			},
-			{
-				"name": "destroy",
-				"desc": "Gets fired when plugin has destroy"
-			},
-			{
-				"name": "ready",
-				"desc": "Gets fired when plugin has ready"
-			}
-		],
-		"event": "show",
-		"Event": "Show",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-toast"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "CONTENT",
-				"desc": "Declare plugin content",
-				"value": "{namespace}-content"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "CLOSE",
-				"desc": "Announce plugin has closed",
-				"value": "{namespace}-close"
-			},
-			{
-				"name": "WRAP",
-				"desc": "Declare wrap node",
-				"value": "{namespace}-wrap"
-			},
-			{
-				"name": "ICON",
-				"desc": "Declare icon node",
-				"value": "{namespace}-icon"
-			},
-			{
-				"name": "TITLE",
-				"desc": "Declare title node",
-				"value": "{namespace}-title"
-			},
-			{
-				"name": "POSITION",
-				"desc": "Declare position node",
-				"value": "{namespace}-{position}"
-			},
-			{
-				"name": "BUTTON",
-				"desc": "Declare button node",
-				"value": "{namespace}-btn"
-			},
-			{
-				"name": "BUTTONS",
-				"desc": "Declare buttons node",
-				"value": "{namespace}-buttons"
-			},
-			{
-				"name": "LOADER",
-				"desc": "Declare loader node",
-				"value": "{namespace}-loader"
-			},
-			{
-				"name": "STRIPED",
-				"desc": "Declare striped node",
-				"value": "{namespace}-loader-striped"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "toast",
+    "namespace": "toast",
+    "Namespace": "Toast",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Set plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "template",
+        "desc": "Set default template",
+        "defaultValue": "function() {...}"
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "html",
+        "desc": "Set is enable html or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "localeFallbacks",
+        "desc": "Set is enable locale fallback or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "content",
+        "desc": "Set content",
+        "defaultValue": ""
+      },
+      {
+        "name": "title",
+        "desc": "Set title",
+        "defaultValue": "This is Title"
+      },
+      {
+        "name": "titleColor",
+        "desc": "Set title color",
+        "defaultValue": ""
+      },
+      {
+        "name": "contentColor",
+        "desc": "Set content color",
+        "defaultValue": ""
+      },
+      {
+        "name": "closeBtnColor",
+        "desc": "Set close button color",
+        "defaultValue": ""
+      },
+      {
+        "name": "effect",
+        "desc": "Set effect",
+        "defaultValue": "fade"
+      },
+      {
+        "name": "allowClose",
+        "desc": "Set is allow close or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "duration",
+        "desc": "Set duretion",
+        "defaultValue": "3000"
+      },
+      {
+        "name": "stack",
+        "desc": "Set stack number",
+        "defaultValue": "6"
+      },
+      {
+        "name": "position",
+        "desc": "Set position",
+        "defaultValue": "bottom-right"
+      },
+      {
+        "name": "icon",
+        "desc": "Set default icon",
+        "defaultValue": "success"
+      },
+      {
+        "name": "icons",
+        "desc": "Set icons options",
+        "defaultValue": "{\"success\":[\"icon-check-circle\",\"#4be1ab\"],\"info\":[\"icon-exclamation-circle\",\"#4c93d9\"],\"warning\":[\"icon-exclamation-triangle\",\"#dabd49\"],\"danger\":[\"icon-times-circle\",\"#f86b67\"]}"
+      },
+      {
+        "name": "iconColor",
+        "desc": "Set icon color",
+        "defaultValue": ""
+      },
+      {
+        "name": "iconClass",
+        "desc": "Set icon class",
+        "defaultValue": ""
+      },
+      {
+        "name": "bgColor",
+        "desc": "Set bg color",
+        "defaultValue": "null"
+      },
+      {
+        "name": "buttons",
+        "desc": "Set buttons",
+        "defaultValue": "null"
+      },
+      {
+        "name": "loader",
+        "desc": "Set is enable loader or not",
+        "defaultValue": "true"
+      },
+      {
+        "name": "loaderBgColor",
+        "desc": "Set loader bg color",
+        "defaultValue": ""
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "show",
+        "desc": "Gets fired when plugin has show"
+      },
+      {
+        "name": "hide",
+        "desc": "Gets fired when plugin has hidden"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin has destroy"
+      },
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin has ready"
+      }
+    ],
+    "event": "show",
+    "Event": "Show",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-toast"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "CONTENT",
+        "desc": "Declare plugin content",
+        "value": "{namespace}-content"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "CLOSE",
+        "desc": "Announce plugin has closed",
+        "value": "{namespace}-close"
+      },
+      {
+        "name": "WRAP",
+        "desc": "Declare wrap node",
+        "value": "{namespace}-wrap"
+      },
+      {
+        "name": "ICON",
+        "desc": "Declare icon node",
+        "value": "{namespace}-icon"
+      },
+      {
+        "name": "TITLE",
+        "desc": "Declare title node",
+        "value": "{namespace}-title"
+      },
+      {
+        "name": "POSITION",
+        "desc": "Declare position node",
+        "value": "{namespace}-{position}"
+      },
+      {
+        "name": "BUTTON",
+        "desc": "Declare button node",
+        "value": "{namespace}-btn"
+      },
+      {
+        "name": "BUTTONS",
+        "desc": "Declare buttons node",
+        "value": "{namespace}-buttons"
+      },
+      {
+        "name": "LOADER",
+        "desc": "Declare loader node",
+        "value": "{namespace}-loader"
+      },
+      {
+        "name": "STRIPED",
+        "desc": "Declare striped node",
+        "value": "{namespace}-loader-striped"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }

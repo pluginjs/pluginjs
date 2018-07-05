@@ -1,0 +1,76 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$thumb: "pj-thumb" !default;
+$thumb-font-size: $font-size-base !default;
+
+$thumb-height: 6 * $thumb-font-size !default;
+$thumb-gutter: 5px !default;
+$thumb-width: 8 * $thumb-font-size !default;
+
+$thumb-vertical-wrap-height: 30 * $thumb-font-size !default;
+$thumb-vertical-height: 6 * $thumb-font-size !default;
+$thumb-vertical-gutter: 5px !default;
+$thumb-vertical-width: 8 * $thumb-font-size !default;
+
+.#{$thumb}s {
+  position: relative;
+  width: 100%;
+  height: $thumb-height;
+  overflow: hidden;
+  text-align: center;
+
+  &-inner {
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+.#{$thumb} {
+  display: inline-block;
+  width: $thumb-width;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0.5;
+  flex-shrink: 0;
+
+  &-loaded {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+  }
+
+  & + & {
+    margin-left: $thumb-gutter;
+  }
+
+  &.#{$thumb}-active {
+    opacity: 1;
+  }
+}
+
+.#{$thumb}s-vertical {
+  width: $thumb-vertical-width;
+  height: $thumb-vertical-wrap-height;
+
+  .#{$thumb}s-inner {
+    width: 100%;
+    height: auto;
+  }
+
+  .#{$thumb} {
+    display: block;
+    width: 100%;
+    height: $thumb-vertical-height;
+
+    & + .#{$thumb} {
+      margin-top: $thumb-gutter;
+      margin-left: 0;
+    }
+  }
+}

@@ -1,17 +1,20 @@
 {
-	"name": "tree-samples",
-	"version": "1.0.0",
-	"description": "Simple tree example",
-	"main": "index.html",
-	"scripts": {
-		"start": "parcel index.html --open",
-		"build": "parcel build index.html"
-	},
-	"devDependencies": {
-		"parcel-bundler": "^1.6.1"
-	},
-	"dependencies": {
-		"@pluginjs/tree": "^0.2.18"
-	},
-	"license": "GPL-3.0"
+  "name": "tree-samples",
+  "description": "Simple tree example",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "build": "parcel build index.html",
+    "start": "parcel index.html --open"
+  },
+  "dependencies": {
+    "@pluginjs/tree": "*"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "1.7.0",
+    "babel-plugin-transform-html-import-to-string": "^0.0.1",
+    "parcel-bundler": "*"
+  }
 }

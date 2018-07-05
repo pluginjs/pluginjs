@@ -1,493 +1,493 @@
 {
-	"meta": {
-		"moduleName": "time-table",
-		"namespace": "timeTable",
-		"Namespace": "TimeTable",
-		"options": [
-			{
-				"name": "locale",
-				"desc": "Set locale environment",
-				"defaultValue": "en"
-			},
-			{
-				"name": "data",
-				"desc": "Set data",
-				"defaultValue": "null"
-			},
-			{
-				"name": "view",
-				"desc": "Set view",
-				"defaultValue": "monthly"
-			},
-			{
-				"name": "templates",
-				"desc": "Set default templates",
-				"defaultValue": "{}"
-			},
-			{
-				"name": "listly",
-				"desc": "Set listly",
-				"defaultValue": "{\"controllerLabel\":[\"DD MMM\",\"- DD MMM ,YYYY\"],\"headerLabel\":\"MMMM DD, YYYY\",\"eventLabel\":[\"HH:mm\",\"-HH:mm\"]}"
-			},
-			{
-				"name": "weekly",
-				"desc": "Set weekly",
-				"defaultValue": "{\"controllerLabel\":[\"MMM DD \",\"- MMM DD, YYYY\"],\"headerLabel\":\"ddd,DD MMM\",\"timeBetween\":\"09:00-19:30\"}"
-			},
-			{
-				"name": "monthly",
-				"desc": "Set monthly",
-				"defaultValue": "{\"controllerLabel\":\"MMM YYYY\",\"eventLabel\":\"HH:mm\"}"
-			}
-		],
-		"option": "locale",
-		"events": [
-			{
-				"name": "enable",
-				"desc": "Gets fired when plugin has enabled"
-			},
-			{
-				"name": "editable",
-				"desc": "Gets fired when plugin has editable"
-			},
-			{
-				"name": "click",
-				"desc": "Gets fired when plugin has click"
-			},
-			{
-				"name": "detail",
-				"desc": "Gets fired when plugin has detail"
-			}
-		],
-		"event": "enable",
-		"Event": "Enable",
-		"methods": [
-			{
-				"name": "get",
-				"desc": "Get value by key"
-			},
-			{
-				"name": "set",
-				"desc": "Set value by key"
-			},
-			{
-				"name": "val",
-				"desc": "Set or get value by key"
-			},
-			{
-				"name": "enable",
-				"desc": "Enabled plugin if plugin is disabled"
-			},
-			{
-				"name": "disable",
-				"desc": "Disable plugin"
-			},
-			{
-				"name": "destroy",
-				"desc": "Destroy plugin"
-			}
-		],
-		"method": "get",
-		"classes": [
-			{
-				"name": "NAMESPACE",
-				"desc": "Declare plugin namespace",
-				"value": "pj-timeTable"
-			},
-			{
-				"name": "INIT",
-				"desc": "Declare plugin init",
-				"value": "{namespace}-init"
-			},
-			{
-				"name": "DETAIL",
-				"desc": "Declare plugin month-detail",
-				"value": "{namespace}-month-detail"
-			},
-			{
-				"name": "ACTIVE",
-				"desc": "Announce plugin is actived",
-				"value": "{namespace}-active"
-			},
-			{
-				"name": "THEME",
-				"desc": "Declare plugin theme",
-				"value": "{namespace}--{theme}"
-			},
-			{
-				"name": "DISABLED",
-				"desc": "Announce plugin is disabled",
-				"value": "{namespace}-disabled"
-			},
-			{
-				"name": "DATA",
-				"desc": "Declare plugin data",
-				"value": "{namespace}-data"
-			},
-			{
-				"name": "WEBVIEW",
-				"desc": "Declare plugin webview",
-				"value": "{namespace}-webview"
-			},
-			{
-				"name": "DATEPICKER",
-				"desc": "Declare plugin datePicker",
-				"value": "{namespace}-datePicker"
-			},
-			{
-				"name": "WEEK",
-				"desc": "Declare plugin weekly",
-				"value": "{namespace}-weekly"
-			},
-			{
-				"name": "BASELINE",
-				"desc": "Declare plugin baseline",
-				"value": "{namespace}-baseline"
-			},
-			{
-				"name": "EVENTWRAP",
-				"desc": "Declare plugin event-wrap",
-				"value": "{namespace}-event-wrap"
-			},
-			{
-				"name": "AFFAIR",
-				"desc": "Declare plugin affair",
-				"value": "{namespace}-affair"
-			},
-			{
-				"name": "OTHERMONTH",
-				"desc": "Declare plugin other badge",
-				"value": "{namespace}-other-badge"
-			},
-			{
-				"name": "CLASSIFY",
-				"desc": "Declare plugin classify",
-				"value": "{namespace}-classify"
-			},
-			{
-				"name": "ITEM",
-				"desc": "Declare plugin classify item",
-				"value": "{namespace}-classify-item"
-			},
-			{
-				"name": "TEXT",
-				"desc": "Declare plugin controller text",
-				"value": "{namespace}-controller-text"
-			},
-			{
-				"name": "CONTROL",
-				"desc": "Declare plugin controller",
-				"value": "{namespace}-controller"
-			},
-			{
-				"name": "ARROW",
-				"desc": "Declare plugin arrow",
-				"value": "{namespace}-arrow"
-			},
-			{
-				"name": "PREVIEW",
-				"desc": "Declare plugin controller preview",
-				"value": "{namespace}-controller-preview"
-			},
-			{
-				"name": "NEXT",
-				"desc": "Declare plugin controller next",
-				"value": "{namespace}-controller-next"
-			},
-			{
-				"name": "VIEW",
-				"desc": "Declare plugin view",
-				"value": "{namespace}-view"
-			},
-			{
-				"name": "HIDE",
-				"desc": "Declare plugin hide",
-				"value": "{namespace}-hide"
-			},
-			{
-				"name": "MONTH",
-				"desc": "Declare plugin monthly",
-				"value": "{namespace}-monthly"
-			},
-			{
-				"name": "LIST",
-				"desc": "Declare plugin listly",
-				"value": "{namespace}-listly"
-			},
-			{
-				"name": "HEADER",
-				"desc": "Declare plugin header",
-				"value": "{namespace}-header"
-			},
-			{
-				"name": "EDIT",
-				"desc": "Declare plugin edit",
-				"value": "{namespace}-edit"
-			},
-			{
-				"name": "EVENTSGROUP",
-				"desc": "Declare plugin events group",
-				"value": "{namespace}-events-group"
-			},
-			{
-				"name": "EVENTS",
-				"desc": "Declare plugin events events",
-				"value": "{namespace}-events"
-			},
-			{
-				"name": "WEEKEVENT",
-				"desc": "Declare plugin weekEvent",
-				"value": "{namespace}-weekEvent"
-			},
-			{
-				"name": "WEEKEVENTTIME",
-				"desc": "Declare plugin weekEvent time",
-				"value": "{namespace}-weekEvent-time"
-			},
-			{
-				"name": "WEEKEVENTTITLE",
-				"desc": "Declare plugin weekEvent title",
-				"value": "{namespace}-weekEvent-title"
-			},
-			{
-				"name": "ACTIVEWEEKEVENT",
-				"desc": "Declare plugin weekEvent active",
-				"value": "{namespace}-weekEvent-active"
-			},
-			{
-				"name": "WEEKEVENTWRAP",
-				"desc": "Declare plugin weekEvent wrap",
-				"value": "{namespace}-weekEvent-wrap"
-			},
-			{
-				"name": "OVERLAY",
-				"desc": "Declare plugin overlay",
-				"value": "{namespace}-overlay"
-			},
-			{
-				"name": "SMOVERLAY",
-				"desc": "Declare plugin sm overlay",
-				"value": "{namespace}-sm-overlay"
-			},
-			{
-				"name": "MONTHEVENT",
-				"desc": "Declare plugin monthly event",
-				"value": "{namespace}-monthly-event"
-			},
-			{
-				"name": "MONTHEVENTSWRAP",
-				"desc": "Declare plugin monthEvents wrap",
-				"value": "{namespace}-monthEvents-wrap"
-			},
-			{
-				"name": "MONTHEVENTWRAP",
-				"desc": "Declare plugin month eventwrap",
-				"value": "{namespace}-month-eventwrap"
-			},
-			{
-				"name": "MONTHSHOWLIST",
-				"desc": "Declare plugin month showList",
-				"value": "{namespace}-month-showList"
-			},
-			{
-				"name": "MONTHSINGLEEVENT",
-				"desc": "Declare plugin month singleEvent",
-				"value": "{namespace}-month-singleEvent"
-			},
-			{
-				"name": "BADGE",
-				"desc": "Declare plugin badge",
-				"value": "{namespace}-badge"
-			},
-			{
-				"name": "MONTHEVENTMORE",
-				"desc": "Declare plugin monthEvent more",
-				"value": "{namespace}-monthEvent-more"
-			},
-			{
-				"name": "MONTHEVENTTIME",
-				"desc": "Declare plugin monthEvent time",
-				"value": "{namespace}-monthEvent-time"
-			},
-			{
-				"name": "MONTHEVENTTITLE",
-				"desc": "Declare plugin monthEvent title",
-				"value": "{namespace}-monthEvent-title"
-			},
-			{
-				"name": "HIGHHEIGHT",
-				"desc": "Declare plugin high height",
-				"value": "{namespace}-high-height"
-			},
-			{
-				"name": "LISTEVENTWRAP",
-				"desc": "Declare plugin listEvent wrap",
-				"value": "{namespace}-listEvent-wrap"
-			},
-			{
-				"name": "LISTEVENTHEAD",
-				"desc": "Declare plugin listEvent head",
-				"value": "{namespace}-listEvent-head"
-			},
-			{
-				"name": "LISTEVENTITEM",
-				"desc": "Declare plugin listEvent item",
-				"value": "{namespace}-listEvent-item"
-			},
-			{
-				"name": "LISTEVENTTIME",
-				"desc": "Declare plugin listEvent time",
-				"value": "{namespace}-listEvent-time"
-			},
-			{
-				"name": "LISTEVENTTITLE",
-				"desc": "Declare plugin listEvent title",
-				"value": "{namespace}-listEvent-title"
-			},
-			{
-				"name": "LISTEVENTCONTENT",
-				"desc": "Declare plugin listEvent content",
-				"value": "{namespace}-listEvent-content"
-			},
-			{
-				"name": "LISTEVENTITEMWRAP",
-				"desc": "Declare plugin listEvent item wrap",
-				"value": "{namespace}-listEvent-item-wrap"
-			}
-		],
-		"translations": [
-			{
-				"name": "weekday",
-				"en": [
-					"Sun",
-					"Mon",
-					"Tue",
-					"Wed",
-					"Thu",
-					"Fri",
-					"Sat"
-				],
-				"zh": [
-					"周日",
-					"周一",
-					"周二",
-					"周三",
-					"周四",
-					"周五",
-					"周六"
-				]
-			},
-			{
-				"name": "month",
-				"en": [
-					"Jan",
-					"Feb",
-					"Mar",
-					"Apr",
-					"May",
-					"Jun",
-					"Jul",
-					"Aug",
-					"Sep",
-					"Oct",
-					"Nov",
-					"Dec"
-				],
-				"zh": [
-					"一月",
-					"二月",
-					"三月",
-					"四月",
-					"五月",
-					"六月",
-					"七月",
-					"八月",
-					"九月",
-					"十月",
-					"十一月",
-					"十二月"
-				]
-			},
-			{
-				"name": "fullWeek",
-				"en": [
-					"Monday",
-					"Tuesday",
-					"Wednesday",
-					"Thursday",
-					"Friday",
-					"Saturday",
-					"Sunday"
-				],
-				"zh": [
-					"星期一",
-					"星期二",
-					"星期三",
-					"星期四",
-					"星期五",
-					"星期六",
-					"星期日"
-				]
-			},
-			{
-				"name": "fullMonth",
-				"en": [
-					"January",
-					"February",
-					"March",
-					"April",
-					"May",
-					"June ",
-					"July",
-					"August",
-					"September",
-					"October",
-					"November",
-					"December"
-				],
-				"zh": [
-					"一月",
-					"二月",
-					"三月",
-					"四月",
-					"五月",
-					"六月",
-					"七月",
-					"八月",
-					"九月",
-					"十月",
-					"十一月",
-					"十二月"
-				]
-			},
-			{
-				"name": "choice",
-				"en": [
-					"Week",
-					"Month"
-				],
-				"zh": [
-					"周视图",
-					"月视图"
-				]
-			},
-			{
-				"name": "today",
-				"en": "today",
-				"zh": "今日"
-			},
-			{
-				"name": "add",
-				"en": "ADD EVENT",
-				"zh": "添加事项"
-			},
-			{
-				"name": "all",
-				"en": "All Classes",
-				"zh": "全部"
-			}
-		]
-	},
-	"output": "./README.md",
-	"template": "README"
+  "meta": {
+    "moduleName": "time-table",
+    "namespace": "timeTable",
+    "Namespace": "TimeTable",
+    "options": [
+      {
+        "name": "locale",
+        "desc": "Set locale environment",
+        "defaultValue": "en"
+      },
+      {
+        "name": "data",
+        "desc": "Set data",
+        "defaultValue": "null"
+      },
+      {
+        "name": "view",
+        "desc": "Set view",
+        "defaultValue": "monthly"
+      },
+      {
+        "name": "templates",
+        "desc": "Set default templates",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "listly",
+        "desc": "Set listly",
+        "defaultValue": "{\"controllerLabel\":[\"DD MMM\",\"- DD MMM ,YYYY\"],\"headerLabel\":\"MMMM DD, YYYY\",\"eventLabel\":[\"HH:mm\",\"-HH:mm\"]}"
+      },
+      {
+        "name": "weekly",
+        "desc": "Set weekly",
+        "defaultValue": "{\"controllerLabel\":[\"MMM DD \",\"- MMM DD, YYYY\"],\"headerLabel\":\"ddd,DD MMM\",\"timeBetween\":\"09:00-19:30\"}"
+      },
+      {
+        "name": "monthly",
+        "desc": "Set monthly",
+        "defaultValue": "{\"controllerLabel\":\"MMM YYYY\",\"eventLabel\":\"HH:mm\"}"
+      }
+    ],
+    "option": "locale",
+    "events": [
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin has enabled"
+      },
+      {
+        "name": "editable",
+        "desc": "Gets fired when plugin has editable"
+      },
+      {
+        "name": "click",
+        "desc": "Gets fired when plugin has click"
+      },
+      {
+        "name": "detail",
+        "desc": "Gets fired when plugin has detail"
+      }
+    ],
+    "event": "enable",
+    "Event": "Enable",
+    "methods": [
+      {
+        "name": "get",
+        "desc": "Get value by key"
+      },
+      {
+        "name": "set",
+        "desc": "Set value by key"
+      },
+      {
+        "name": "val",
+        "desc": "Set or get value by key"
+      },
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      }
+    ],
+    "method": "get",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-timeTable"
+      },
+      {
+        "name": "INIT",
+        "desc": "Declare plugin init",
+        "value": "{namespace}-init"
+      },
+      {
+        "name": "DETAIL",
+        "desc": "Declare plugin month-detail",
+        "value": "{namespace}-month-detail"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}--{theme}"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "DATA",
+        "desc": "Declare plugin data",
+        "value": "{namespace}-data"
+      },
+      {
+        "name": "WEBVIEW",
+        "desc": "Declare plugin webview",
+        "value": "{namespace}-webview"
+      },
+      {
+        "name": "DATEPICKER",
+        "desc": "Declare plugin datePicker",
+        "value": "{namespace}-datePicker"
+      },
+      {
+        "name": "WEEK",
+        "desc": "Declare plugin weekly",
+        "value": "{namespace}-weekly"
+      },
+      {
+        "name": "BASELINE",
+        "desc": "Declare plugin baseline",
+        "value": "{namespace}-baseline"
+      },
+      {
+        "name": "EVENTWRAP",
+        "desc": "Declare plugin event-wrap",
+        "value": "{namespace}-event-wrap"
+      },
+      {
+        "name": "AFFAIR",
+        "desc": "Declare plugin affair",
+        "value": "{namespace}-affair"
+      },
+      {
+        "name": "OTHERMONTH",
+        "desc": "Declare plugin other badge",
+        "value": "{namespace}-other-badge"
+      },
+      {
+        "name": "CLASSIFY",
+        "desc": "Declare plugin classify",
+        "value": "{namespace}-classify"
+      },
+      {
+        "name": "ITEM",
+        "desc": "Declare plugin classify item",
+        "value": "{namespace}-classify-item"
+      },
+      {
+        "name": "TEXT",
+        "desc": "Declare plugin controller text",
+        "value": "{namespace}-controller-text"
+      },
+      {
+        "name": "CONTROL",
+        "desc": "Declare plugin controller",
+        "value": "{namespace}-controller"
+      },
+      {
+        "name": "ARROW",
+        "desc": "Declare plugin arrow",
+        "value": "{namespace}-arrow"
+      },
+      {
+        "name": "PREVIEW",
+        "desc": "Declare plugin controller preview",
+        "value": "{namespace}-controller-preview"
+      },
+      {
+        "name": "NEXT",
+        "desc": "Declare plugin controller next",
+        "value": "{namespace}-controller-next"
+      },
+      {
+        "name": "VIEW",
+        "desc": "Declare plugin view",
+        "value": "{namespace}-view"
+      },
+      {
+        "name": "HIDE",
+        "desc": "Declare plugin hide",
+        "value": "{namespace}-hide"
+      },
+      {
+        "name": "MONTH",
+        "desc": "Declare plugin monthly",
+        "value": "{namespace}-monthly"
+      },
+      {
+        "name": "LIST",
+        "desc": "Declare plugin listly",
+        "value": "{namespace}-listly"
+      },
+      {
+        "name": "HEADER",
+        "desc": "Declare plugin header",
+        "value": "{namespace}-header"
+      },
+      {
+        "name": "EDIT",
+        "desc": "Declare plugin edit",
+        "value": "{namespace}-edit"
+      },
+      {
+        "name": "EVENTSGROUP",
+        "desc": "Declare plugin events group",
+        "value": "{namespace}-events-group"
+      },
+      {
+        "name": "EVENTS",
+        "desc": "Declare plugin events events",
+        "value": "{namespace}-events"
+      },
+      {
+        "name": "WEEKEVENT",
+        "desc": "Declare plugin weekEvent",
+        "value": "{namespace}-weekEvent"
+      },
+      {
+        "name": "WEEKEVENTTIME",
+        "desc": "Declare plugin weekEvent time",
+        "value": "{namespace}-weekEvent-time"
+      },
+      {
+        "name": "WEEKEVENTTITLE",
+        "desc": "Declare plugin weekEvent title",
+        "value": "{namespace}-weekEvent-title"
+      },
+      {
+        "name": "ACTIVEWEEKEVENT",
+        "desc": "Declare plugin weekEvent active",
+        "value": "{namespace}-weekEvent-active"
+      },
+      {
+        "name": "WEEKEVENTWRAP",
+        "desc": "Declare plugin weekEvent wrap",
+        "value": "{namespace}-weekEvent-wrap"
+      },
+      {
+        "name": "OVERLAY",
+        "desc": "Declare plugin overlay",
+        "value": "{namespace}-overlay"
+      },
+      {
+        "name": "SMOVERLAY",
+        "desc": "Declare plugin sm overlay",
+        "value": "{namespace}-sm-overlay"
+      },
+      {
+        "name": "MONTHEVENT",
+        "desc": "Declare plugin monthly event",
+        "value": "{namespace}-monthly-event"
+      },
+      {
+        "name": "MONTHEVENTSWRAP",
+        "desc": "Declare plugin monthEvents wrap",
+        "value": "{namespace}-monthEvents-wrap"
+      },
+      {
+        "name": "MONTHEVENTWRAP",
+        "desc": "Declare plugin month eventwrap",
+        "value": "{namespace}-month-eventwrap"
+      },
+      {
+        "name": "MONTHSHOWLIST",
+        "desc": "Declare plugin month showList",
+        "value": "{namespace}-month-showList"
+      },
+      {
+        "name": "MONTHSINGLEEVENT",
+        "desc": "Declare plugin month singleEvent",
+        "value": "{namespace}-month-singleEvent"
+      },
+      {
+        "name": "BADGE",
+        "desc": "Declare plugin badge",
+        "value": "{namespace}-badge"
+      },
+      {
+        "name": "MONTHEVENTMORE",
+        "desc": "Declare plugin monthEvent more",
+        "value": "{namespace}-monthEvent-more"
+      },
+      {
+        "name": "MONTHEVENTTIME",
+        "desc": "Declare plugin monthEvent time",
+        "value": "{namespace}-monthEvent-time"
+      },
+      {
+        "name": "MONTHEVENTTITLE",
+        "desc": "Declare plugin monthEvent title",
+        "value": "{namespace}-monthEvent-title"
+      },
+      {
+        "name": "HIGHHEIGHT",
+        "desc": "Declare plugin high height",
+        "value": "{namespace}-high-height"
+      },
+      {
+        "name": "LISTEVENTWRAP",
+        "desc": "Declare plugin listEvent wrap",
+        "value": "{namespace}-listEvent-wrap"
+      },
+      {
+        "name": "LISTEVENTHEAD",
+        "desc": "Declare plugin listEvent head",
+        "value": "{namespace}-listEvent-head"
+      },
+      {
+        "name": "LISTEVENTITEM",
+        "desc": "Declare plugin listEvent item",
+        "value": "{namespace}-listEvent-item"
+      },
+      {
+        "name": "LISTEVENTTIME",
+        "desc": "Declare plugin listEvent time",
+        "value": "{namespace}-listEvent-time"
+      },
+      {
+        "name": "LISTEVENTTITLE",
+        "desc": "Declare plugin listEvent title",
+        "value": "{namespace}-listEvent-title"
+      },
+      {
+        "name": "LISTEVENTCONTENT",
+        "desc": "Declare plugin listEvent content",
+        "value": "{namespace}-listEvent-content"
+      },
+      {
+        "name": "LISTEVENTITEMWRAP",
+        "desc": "Declare plugin listEvent item wrap",
+        "value": "{namespace}-listEvent-item-wrap"
+      }
+    ],
+    "translations": [
+      {
+        "name": "weekday",
+        "en": [
+          "Sun",
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri",
+          "Sat"
+        ],
+        "zh": [
+          "周日",
+          "周一",
+          "周二",
+          "周三",
+          "周四",
+          "周五",
+          "周六"
+        ]
+      },
+      {
+        "name": "month",
+        "en": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        "zh": [
+          "一月",
+          "二月",
+          "三月",
+          "四月",
+          "五月",
+          "六月",
+          "七月",
+          "八月",
+          "九月",
+          "十月",
+          "十一月",
+          "十二月"
+        ]
+      },
+      {
+        "name": "fullWeek",
+        "en": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "zh": [
+          "星期一",
+          "星期二",
+          "星期三",
+          "星期四",
+          "星期五",
+          "星期六",
+          "星期日"
+        ]
+      },
+      {
+        "name": "fullMonth",
+        "en": [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June ",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ],
+        "zh": [
+          "一月",
+          "二月",
+          "三月",
+          "四月",
+          "五月",
+          "六月",
+          "七月",
+          "八月",
+          "九月",
+          "十月",
+          "十一月",
+          "十二月"
+        ]
+      },
+      {
+        "name": "choice",
+        "en": [
+          "Week",
+          "Month"
+        ],
+        "zh": [
+          "周视图",
+          "月视图"
+        ]
+      },
+      {
+        "name": "today",
+        "en": "today",
+        "zh": "今日"
+      },
+      {
+        "name": "add",
+        "en": "ADD EVENT",
+        "zh": "添加事项"
+      },
+      {
+        "name": "all",
+        "en": "All Classes",
+        "zh": "全部"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
 }
