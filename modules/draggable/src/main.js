@@ -77,7 +77,6 @@ class Draggable extends Component {
 
     this.position = {}
     this.pointer = {}
-    this.type = ''
     this._getPosition()
 
     this.dragPoint = { x: 0, y: 0 }
@@ -96,7 +95,7 @@ class Draggable extends Component {
     const style = getComputedStyle(this.element)
     const x = this.getPositionCoord(style.left, 'width')
     const y = this.getPositionCoord(style.top, 'height')
-    // clean up 'auto' or other non-integer values
+
     this.position.x = isNaN(x) ? 0 : x
     this.position.y = isNaN(y) ? 0 : y
     this.addTransformPosition(style)
@@ -105,7 +104,7 @@ class Draggable extends Component {
   getPositionCoord(side, measure) {
     if (side.indexOf('%') !== -1) {
       const parentSize = getSize(this.element.parentNode)
-      return !parentSize ? 0 : parseFloat(side) / 100 * parentSize[measure]
+      return !parentSize ? 0 : (parseFloat(side) / 100) * parentSize[measure]
     }
 
     return parseInt(side, 10)
@@ -129,8 +128,8 @@ class Draggable extends Component {
       {
         type: this.eventName('mousedown'),
         handler: e => {
-          this.type = 'pointerDown'
           this.setPointer(e.pageX, e.pageY)
+          this.trigger(EVENTS.POINTER)
         }
       },
       this.element
@@ -140,77 +139,45 @@ class Draggable extends Component {
 
   bindHandles(isAdd) {
     if (isAdd) {
-      this.$drag = new Hammer(this.element, { touchAction: 'auto' })
-      this.on('dragStart')
-      this.on('dragMove')
-      this.on('dragEnd')
-    } else {
-      this.$drag
-        .off('panstart')
-        .off('panmove')
-        .off('panend')
-      return
-    }
-  }
-
-  on(type, event) {
-    switch (type) {
-      case 'dragStart':
-        this.$drag.on('panstart', e => {
-          this.isDragging = true
-          this.setPointer(e.center.x, e.center.y)
-          this.dragStart()
-          this.triggerEvent(event)
-        })
-        break
-      case 'dragMove':
-        this.$drag.on('panmove', e => {
-          if (!this.isDragging) {
+      this.$drag = new Hammer(this.element)
+      this.$drag.on('panstart panmove panend', e => {
+        switch (e.type) {
+          case 'panstart':
+            this.dragStart(e)
+            break
+          case 'panmove':
+            this.dragMove(e)
+            break
+          case 'panend':
+            this.dragEnd(e)
+            break
+          default:
             return
-          }
-          this.setPointer(e.center.x, e.center.y)
-          this.dragMove(e.deltaX, e.deltaY)
-          this.triggerEvent(event)
-        })
-        break
-      case 'dragEnd':
-        this.$drag.on('panend', e => {
-          this.isDragging = false
-          this.setPointer(e.center.x, e.center.y)
-          this.dragEnd()
-          this.triggerEvent(event)
-        })
-        break
-      default:
-        this.$drag.on(type, () => {
-          this.triggerEvent(event)
-        })
+        }
+      })
+    } else {
+      this.$drag.off('panstart panmove panend')
     }
   }
 
-  off(type, event) {
-    this.$drag.off(type, () => {
-      this.triggerEvent(event)
-    })
-  }
-
-  dragStart() {
+  dragStart(e) {
     if (!this.isEnabled) {
       return
     }
-    this.type = 'dragStart'
+    this.isDragging = true
+    this.setPointer(e.center.x, e.center.y)
     this.getPosition()
     this.measureContainment()
-    // position  drag began
+
     this.startPosition.x = this.position.x
     this.startPosition.y = this.position.y
-    // reset left/top style
+
     this.setLeftTop()
 
     this.dragPoint.x = 0
     this.dragPoint.y = 0
     addClass('is-dragging', this.element)
-    this.animate()
+
     this.trigger(EVENTS.DRAGSTART)
   }
 
@@ -249,30 +216,31 @@ class Draggable extends Component {
   }
 
   getContainer() {
-    const containment = this.options.containment
-    if (!containment) {
+    const container = this.options.container
+    if (!container) {
       return null
     }
-    const isElement = containment instanceof HTMLElement
-    // use as element
+    const isElement = container instanceof HTMLElement
+
     if (isElement) {
-      return containment
+      return container
     }
-    // querySelector if string
-    if (typeof containment === 'string') {
-      return document.querySelector(containment)
+
+    if (typeof container === 'string') {
+      return document.querySelector(container)
     }
 
     return this.element.parentNode
   }
 
-  dragMove(deltaX, deltaY) {
+  dragMove(e) {
     if (!this.isEnabled) {
       return
     }
-    this.type = 'dragMove'
-    let dragX = deltaX
-    let dragY = deltaY
+    this.setPointer(e.center.x, e.center.y)
+
+    let dragX = e.deltaX
+    let dragY = e.deltaY
 
     const grid = this.options.grid
     const gridX = grid && grid[0]
@@ -292,6 +260,16 @@ class Draggable extends Component {
 
     this.dragPoint.x = dragX
     this.dragPoint.y = dragY
+
+    setStyle(
+      {
+        transform: `
+          translate3d(${this.dragPoint.x}px, ${this.dragPoint.y}px, 0)
+        `
+      },
+      this.element
+    )
+
     this.trigger(EVENTS.DRAGMOVE)
   }
 
@@ -301,7 +279,7 @@ class Draggable extends Component {
   }
 
   containDrag(axis, drag, grid) {
-    if (!this.options.containment) {
+    if (!this.options.container) {
       return drag
     }
 
@@ -313,13 +291,14 @@ class Draggable extends Component {
     return Math.max(min, Math.min(max, drag))
   }
 
-  dragEnd() {
+  dragEnd(e) {
     if (!this.isEnabled) {
       return
     }
-    this.type = 'dragEnd'
-    this.setLeftTop()
+    this.isDragging = false
+    this.setPointer(e.center.x, e.center.y)
     this.element.style.transform = ''
+    this.setLeftTop()
     removeClass('is-dragging', this.element)
     this.trigger(EVENTS.DRAGEND)
   }
@@ -327,26 +306,6 @@ class Draggable extends Component {
   setLeftTop() {
     this.element.style.left = `${this.position.x}px`
     this.element.style.top = `${this.position.y}px`
-  }
-
-  animate() {
-    if (!this.isDragging) {
-      return
-    }
-
-    setStyle(
-      {
-        transform: `
-          translate3d(${this.dragPoint.x}px, ${this.dragPoint.y}px, 0)
-        `
-      },
-      this.element
-    )
-
-    const that = this
-    requestAnimationFrame(() => {
-      that.animate()
-    })
   }
 
   setPosition(x, y) {
@@ -360,18 +319,8 @@ class Draggable extends Component {
     this.pointer.y = y
   }
 
-  getPointer() {
-    return this.pointer
-  }
-
   getPosition() {
     return this.position
-  }
-
-  triggerEvent(event) {
-    if (typeof event === 'function') {
-      event()
-    }
   }
 
   unbind() {
@@ -402,14 +351,16 @@ class Draggable extends Component {
   }
 
   destroy() {
-    this.disable()
-
-    this.element.style.transform = ''
-    this.element.style.left = ''
-    this.element.style.top = ''
-    this.element.style.position = ''
-
+    if (this.is('initialized')) {
+      this.disable()
+      this.element.style.transform = ''
+      this.element.style.left = ''
+      this.element.style.top = ''
+      this.element.style.position = ''
+      this.leave('initialized')
+    }
     this.trigger(EVENTS.DESTROY)
+    super.destroy()
   }
 }
 

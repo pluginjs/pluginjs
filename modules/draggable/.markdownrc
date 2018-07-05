@@ -5,7 +5,7 @@
     "Namespace": "Draggable",
     "options": [
       {
-        "name": "containment",
+        "name": "container",
         "desc": "Contains movement to the bounds of the element",
         "defaultValue": "null"
       },
@@ -20,7 +20,7 @@
         "defaultValue": "null"
       }
     ],
-    "option": "containment",
+    "option": "container",
     "events": [
       {
         "name": "ready",
@@ -38,26 +38,26 @@
         "name": "destroy",
         "desc": "Gets fired when plugin is destroy"
       },
-            {
-        "name": "dragStart",
-        "desc": "Gets fired when plugin has be dragStart"
+      {
+        "name": "dragstart",
+        "desc": "Gets fired when plugin has be dragstart"
       },
-            {
-        "name": "dragMove",
-        "desc": "Gets fired when plugin has be dragMove"
+      {
+        "name": "dragmove",
+        "desc": "Gets fired when plugin has be dragmove"
       },
-            {
-        "name": "dragEnd",
-        "desc": "Gets fired when plugin has be dragEnd"
+      {
+        "name": "dragend",
+        "desc": "Gets fired when plugin has be dragend"
+      },
+      {
+        "name": "pointer",
+        "desc": "Gets fired when plugin has be pointer"
       }
     ],
     "event": "ready",
     "Event": "Ready",
     "methods": [
-      {
-        "name": "getPosition",
-        "desc": "Get dragPosition"
-      },
       {
         "name": "setPosition",
         "desc": "Set dragPosition by key"
@@ -75,7 +75,7 @@
         "desc": "Destroy plugin"
       }
     ],
-    "method": "getPosition",
+    "method": "setPosition",
     "classes": [
       {
         "name": "NAMESPACE",

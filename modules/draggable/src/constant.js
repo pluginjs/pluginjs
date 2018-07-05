@@ -5,9 +5,10 @@ const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  DRAGSTART: 'dragStart',
-  DRAGMOVE: 'dragMove',
-  DRAGEND: 'dragEnd'
+  DRAGSTART: 'dragstart',
+  DRAGMOVE: 'dragmove',
+  DRAGEND: 'dragend',
+  POINTER: 'pointer'
 }
 
 const classes = {
@@ -18,10 +19,10 @@ const classes = {
   DISABLED: '{namespace}-disabled'
 }
 
-const methods = ['getPosition', 'setPosition', 'enable', 'disable', 'destroy']
+const methods = ['setPosition', 'enable', 'disable', 'destroy']
 
 const defaults = {
-  containment: null,
+  container: null,
   grid: [0, 0],
   axis: null // 'x' or 'y'
 }
