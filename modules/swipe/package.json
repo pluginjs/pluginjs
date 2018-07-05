@@ -42,6 +42,7 @@
     "@pluginjs/pluginjs": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
+    "@pluginjs/swipeable": "*",
     "hammerjs": "*"
   },
   "devDependencies": {

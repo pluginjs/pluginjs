@@ -44,7 +44,7 @@ export const defaults = {
   customPagination: false,
   drag: true,
   dragFree: false,
-  frictionFactor: 0.8, // 0 - 1
+  power: 2,
   group: false,
   loop: false,
   multiple: false,

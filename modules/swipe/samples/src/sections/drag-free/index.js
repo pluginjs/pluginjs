@@ -3,11 +3,11 @@ import html from './index.html'
 import Swipe from '@pluginjs/swipe'
 
 const element = query('.swipe', render(html, query('#drag-free')))
-const a = Swipe.of(element, {
+Swipe.of(element, {
   itemNums: 3,
-  gutter: 15,
+  gutter: 20,
   arrows: true,
   pagination: true,
-  dragFree: true
+  dragFree: true,
+  loop: true
 })
-console.log(a)

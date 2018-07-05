@@ -4,7 +4,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, wrap, closest, find, finds, parent } from '@pluginjs/dom'
-import Pj, {
+import {
   eventable,
   register,
   stateable,
@@ -12,7 +12,6 @@ import Pj, {
   themeable
 } from '@pluginjs/pluginjs'
 import templateEngine from '@pluginjs/template'
-import Hammer from 'hammerjs'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -22,10 +21,9 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-// import Keyboard from './keyboard'
 
 import Item from './item'
-
+import Swipeable from '@pluginjs/swipeable'
 import Arrows from '@pluginjs/arrows'
 import Dots from '@pluginjs/dots'
 
@@ -130,7 +128,13 @@ class Swipe extends Component {
     }
 
     if (this.options.drag) {
-      this.buildDrag()
+      const opts = {
+        container: this.element,
+        decay: this.options.dragFree,
+        power: this.options.power,
+        duration: this.options.duration
+      }
+      this.$swipe = Swipeable.of(this.$container, opts)
     }
   }
 
@@ -397,21 +401,16 @@ class Swipe extends Component {
     return tempArr
   }
 
-  buildDrag() {
-    this.$drag = new Hammer(this.$container, { touchAction: 'pan-x' })
+  resize() {
+    if (!this.options.computeWidthResize) {
+      this.computeWidthResize()
+    } else {
+      this.options.computeWidthResize.bind(this)()
+    }
+    this.trigger(EVENTS.RESIZE)
   }
 
   bind() {
-    /* lazy resize */
-    Pj.emitter.on('resize', () => {
-      if (!this.options.computeWidthResize) {
-        this.computeWidthResize()
-      } else {
-        this.options.computeWidthResize.bind(this)()
-      }
-      this.trigger(EVENTS.RESIZE)
-    })
-
     /* arrows events */
     if (this.options.arrows) {
       this.$arrows.options.onNext = () => {
@@ -441,63 +440,87 @@ class Swipe extends Component {
 
     /* drag event */
     if (this.options.drag) {
-      let cacheDistance
-      let cacheOffset
-      let oldLocation
-      const $target = this.$container
+      this.$swipe.options.onDragstart = () => {
+        this.trigger(EVENTS.DRAGSTART)
+      }
 
-      this.$drag
-        .on('panstart', () => {
-          oldLocation = this.getLocationX($target)
-          cacheDistance = oldLocation
-          cacheOffset = 0
-          this.trigger(EVENTS.DRAGSTART)
-        })
-        .on('panmove', e => {
-          let offsetX = e.deltaX
-          let distance = oldLocation + offsetX
+      this.$swipe.options.onDragmove = e => {
+        setStyle({ transition: '' }, e.element)
+      }
 
-          if (!this.options.loop) {
-            let maxDistance = this.containerWidth - this.width
-            let minDistance = 0
-
-            if (this.options.center) {
-              const addDistance =
-                (this.width - this.itemInstances[this.active].info.width) / 2
-
-              minDistance += addDistance
-              maxDistance += addDistance
-            }
-
-            if (distance < -maxDistance || distance >= minDistance) {
-              offsetX = e.deltaX - cacheOffset
-              distance = cacheDistance + offsetX / 10
-            } else {
-              cacheOffset = e.deltaX
-              cacheDistance = distance
-            }
+      this.$swipe.options.onDragend = e => {
+        if (e.isdecaying) {
+          this.$swipe.options.onDecaymoveend = () => {
+            const locationX = e.getLocation(e.element).translateX
+            const index = this.getIndexByDistance(locationX)
+            this.moveTo(index)
           }
-
-          setStyle(
-            {
-              transform: `translate3d(${distance}px, 0, 0)`,
-              transition: '',
-              'transition-timing-function': 'linear'
-            },
-            $target
-          )
-        })
-        .on('panend', e => {
-          oldLocation = this.getLocationX($target)
-          if (this.options.dragFree) {
-            oldLocation += this.getMoveSize(e.velocityX)
-          }
-
-          const index = this.getIndexByDistance(oldLocation)
+        } else {
+          const locationX = e.getLocation(e.element).translateX
+          const index = this.getIndexByDistance(locationX)
           this.moveTo(index)
+        }
+        this.trigger(EVENTS.DRAGEND)
+      }
 
-          this.trigger(EVENTS.DRAGEND)
-        })
+      // this.$swipe.options.onDecaymoveend = () => {
+      //   const locationX = this.$swipe.getLocation(this.$container).translateX
+      //   const index = this.getIndexByDistance(locationX)
+      //   this.moveTo(index)
+      // }
+
+      // this.$drag
+      //   .on('panstart', () => {
+      //     oldLocation = this.getLocationX($target)
+      //     cacheDistance = oldLocation
+      //     cacheOffset = 0
+      //     this.trigger(EVENTS.DRAGSTART)
+      //   })
+      //   .on('panmove', e => {
+      //     let offsetX = e.deltaX
+      //     let distance = oldLocation + offsetX
+
+      //     if (!this.options.loop) {
+      //       let maxDistance = this.containerWidth - this.width
+      //       let minDistance = 0
+
+      //       if (this.options.center) {
+      //         const addDistance =
+      //           (this.width - this.itemInstances[this.active].info.width) / 2
+
+      //         minDistance += addDistance
+      //         maxDistance += addDistance
+      //       }
+
+      //       if (distance < -maxDistance || distance >= minDistance) {
+      //         offsetX = e.deltaX - cacheOffset
+      //         distance = cacheDistance + offsetX / 10
+      //       } else {
+      //         cacheOffset = e.deltaX
+      //         cacheDistance = distance
+      //       }
+      //     }
+
+      //     setStyle(
+      //       {
+      //         transform: `translate3d(${distance}px, 0, 0)`,
+      //         transition: '',
+      //         'transition-timing-function': 'linear'
+      //       },
+      //       $target
+      //     )
+      //   })
+      //   .on('panend', e => {
+      //     oldLocation = this.getLocationX($target)
+      //     if (this.options.dragFree) {
+      //       oldLocation += this.getMoveSize(e.velocityX)
+      //     }
+
+      //     const index = this.getIndexByDistance(oldLocation)
+      //     this.moveTo(index)
+
+      //     this.trigger(EVENTS.DRAGEND)
+      //   })
     }
   }
 
@@ -614,7 +637,7 @@ class Swipe extends Component {
 
     this.move(distance, {
       trigger: true,
-      ease: this.options.dragFree ? 'easeOutExpo' : 'easeInExpo',
+      ease: this.options.dragFree ? 'ease-out' : 'ease-in',
       callback
     })
   }
@@ -634,16 +657,6 @@ class Swipe extends Component {
 
     setStyle(config, this.$container)
   }
-
-  // get() {}
-
-  // set(data) {
-  //   if (!is.object(data)) {
-  //     return
-  //   }
-  // }
-
-  // val(value) {}
 
   getItemWidth() {
     return (
@@ -717,18 +730,6 @@ class Swipe extends Component {
     return index
   }
 
-  /*
-   * compute the distance when the speed is [velocity]
-   */
-  getMoveSize(velocity) {
-    let size = Math.pow(velocity, 2) / (2 * this.frictionFactor) * 80
-    if (velocity < 0) {
-      size *= -1
-    }
-
-    return size
-  }
-
   setPagination(num, active = this.active) {
     const items = []
     this.$pagination.empty()
@@ -769,9 +770,6 @@ class Swipe extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      if (this.options.theme) {
-        // this.$svgPicker.removeClass(this.getThemeClass())
-      }
       this.leave('initialized')
     }
 
