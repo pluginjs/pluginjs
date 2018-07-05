@@ -30,7 +30,8 @@ export const classes = {
   DISABLED: '{namespace}-disabled',
   FOCUS: '{namespace}-focus',
   ACITVE: '{namespace}-active',
-  HOVER: '{namespace}-hover'
+  HOVER: '{namespace}-hover',
+  INPUT: 'pj-input'
 }
 
 export const methods = [

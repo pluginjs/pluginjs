@@ -38,6 +38,7 @@ class InputMask extends Component {
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
     this.initClasses(CLASSES)
     addClass(this.classes.INPUT, this.element)
+    addClass(this.classes.INPUTMODE, this.element)
     this.data = ''
     this.initStates()
     this.initialize()
@@ -63,10 +64,16 @@ class InputMask extends Component {
         case 'time': {
           const { format } = options
           const timeLens = format === '12' ? lens + 2 : lens
-          return compose(timeLimit(format), lensLimit(timeLens))
+          return compose(
+            timeLimit(format),
+            lensLimit(timeLens)
+          )
         }
         case 'date': {
-          return compose(dateLimit, lensLimit(lens))
+          return compose(
+            dateLimit,
+            lensLimit(lens)
+          )
         }
         default: {
           return lensLimit(lens)
@@ -78,7 +85,10 @@ class InputMask extends Component {
       const { type } = options
       switch (type) {
         case 'time': {
-          return compose(timeFormat, baseFormat(options))
+          return compose(
+            timeFormat,
+            baseFormat(options)
+          )
         }
         default: {
           return baseFormat(options)
@@ -87,10 +97,16 @@ class InputMask extends Component {
     }
 
     // update :: String -> monad
-    const update = compose(chain(updateMiddleware(options)), input)
+    const update = compose(
+      chain(updateMiddleware(options)),
+      input
+    )
 
     // getFormattedData :: {} -> String
-    const format = compose(chain(formatMiddleware(options)), Model.of)
+    const format = compose(
+      chain(formatMiddleware(options)),
+      Model.of
+    )
     this.onChange = event => {
       const data = event.target.value.slice(this.lastValue.length)
       this.data = update(data)

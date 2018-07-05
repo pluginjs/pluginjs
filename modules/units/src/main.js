@@ -65,7 +65,9 @@ class Units extends Component {
     )
     const name = this.options.name ? `name="${this.options.name}"` : ''
     const input = parseHTML(
-      `<input type="text" ${name} class="${this.classes.INPUT}">`
+      `<input type="text" ${name} class="${this.classes.INPUT} ${
+        this.classes.INPT
+      }">`
     )
     addClass(this.classes.NAMESPACE, this.element)
     addClass(this.classes.WRAP, this.wrap)

@@ -16,7 +16,7 @@
 	"dependencies": {
 		"@pluginjs/tooltip": "^0.2.19",
 		"@pluginjs/dom": "^0.0.15",
-		"@pluginjs/styles": "^0.2.19"
+		"@pluginjs/styles": "^0.5.1"
 	},
 	"license": "GPL-3.0"
 }

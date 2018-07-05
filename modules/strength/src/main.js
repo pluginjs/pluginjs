@@ -182,7 +182,7 @@ class Strength extends Component {
   }
 
   unbind() {
-    this.$element.off(this.eventName())
+    // this.$element.off(this.eventName())
     removeEvent('click', this.$toggle)
     removeEvent('change', this.$toggle)
     removeEvent('keydown', this.$toggle)

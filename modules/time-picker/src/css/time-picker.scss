@@ -14,6 +14,7 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
 // Core
 // =====================
 .#{$timePicker} {
+  padding: 10px;
   &-dropdown {
     box-sizing: border-box;
     width: $timePicker-width !important;
@@ -47,6 +48,7 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
   }
 
   .#{$dropdown}-show {
+    top: 0 !important;
     border-color: $color-primary-active !important;
   }
 
@@ -70,6 +72,7 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
 }
 
 .#{$timePicker}-wrap .#{$dropdown}-label {
+  color: $gray-darker;
   border: none;
 }
 /* stylelint-disable */

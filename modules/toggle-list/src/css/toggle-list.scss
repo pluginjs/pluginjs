@@ -24,6 +24,10 @@ $toggleList-unchecked-bg: $gray-lightest !default;
         border-color: $toggleList-border-color;
       }
 
+      &-handle:hover {
+        cursor: not-allowed;
+      }
+
       &.#{$toggleList}-checked {
         // background-color: #fff;
         // transition: background-color 1s;
@@ -35,6 +39,10 @@ $toggleList-unchecked-bg: $gray-lightest !default;
         }
         &:active {
           border-color: $color-primary-dark;
+        }
+
+        .pj-list-item-handle:hover {
+          cursor: pointer;
         }
       }
       &.sortable-ghost.sortable-chosen {

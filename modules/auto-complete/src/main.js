@@ -236,7 +236,6 @@ class AutoComplete extends Component {
             }
             return
           }
-
           if (this.options.ajax) {
             children(this.$panel).map(el => el.remove())
 
@@ -407,10 +406,11 @@ class AutoComplete extends Component {
         find(`.${this.classes.GROUP}`, this.$panel)
       )
     }
-
+    // console.log(this.$items)
     this.$items.forEach(item => {
       removeClass(that.classes.SHOW, item)
       const val = getObjData('data', item).label
+      // console.log(val,item)
       if (that.compare(key, val)) {
         if (count >= that.options.maxItems) {
           return
@@ -429,7 +429,18 @@ class AutoComplete extends Component {
     return true
   }
 
+  color(key, content) {
+    console.log(key, content)
+    key = new RegExp(key, 'i')
+    const values = content.split(key)
+    console.log(values)
+    content = values.join(`<span style="background:red;">${key}</span>`)
+    console.log(content)
+    return content
+  }
+
   render(key, value, item) {
+    // console.log(key, value, item)
     const data = {
       label: getObjData('data', item).label,
       value: getObjData('data', item).value
@@ -460,7 +471,9 @@ class AutoComplete extends Component {
         : val
     }
 
-    item.innerHtml = content
+    // this.color(key, content)
+    item.innerHtml = this.color(key, content)
+    console.log(item.innerHtml)
     addClass(this.classes.SHOW, item)
     if (this.options.group) {
       addClass(

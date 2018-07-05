@@ -23,7 +23,8 @@ export const classes = {
   ONLY: '{namespace}-only',
   INPUT: '{namespace}-input',
   TOP: '{namespace}-top',
-  BOTTOM: '{namespace}-bottom'
+  BOTTOM: '{namespace}-bottom',
+  INPT: 'pj-input'
 }
 
 export const methods = [

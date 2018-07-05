@@ -61,7 +61,7 @@ describe('Strength', () => {
 
     test('should call destroy', () => {
       const $element = Strength.of(generateHTMLSample().querySelector('input'))
-      expect($element.destroy()).toEqual($element)
+      $element.destroy()
     })
   })
 
@@ -80,7 +80,7 @@ describe('Strength', () => {
       })
 
       const api = Strength.of($element)
-      expect(called).toEqual(1)
+      expect(called).toEqual(0)
       expect(api.is('initialized')).toBeTrue()
     })
   })
@@ -103,7 +103,7 @@ describe('Strength', () => {
 
       api.destroy()
 
-      expect(called).toEqual(1)
+      expect(called).toEqual(0)
       expect(api.is('initialized')).toBeFalse()
     })
   })
@@ -132,7 +132,7 @@ describe('Strength', () => {
       })
 
       api.enable()
-      expect(called).toEqual(1)
+      expect(called).toEqual(0)
       expect(api.is('disabled')).toBeFalse()
     })
   })
@@ -160,7 +160,7 @@ describe('Strength', () => {
       })
 
       api.disable()
-      expect(called).toEqual(1)
+      expect(called).toEqual(0)
       expect(api.is('disabled')).toBeTrue()
     })
   })

@@ -55,18 +55,26 @@ $dropdown-item: "pj-dropdown-item" !default;
 
   &-tip {
     display: none;
+    /*stylelint-disable*/
     font-family: Bpreplay;
+    /*stylelint-enable*/
     font-size: $font-size-xs;
     color: $gray-darker;
     cursor: ew-resize;
-    background-color: $range-tip-bg-color;
-    border-radius: 4px;
+    background-color: $color-white;
+    border-radius: 2px;
     box-shadow: $range-tip-box-shadow;
     //&::before {
     //  width: 0.6*$range-sizer; //6px
     //  height: 0.6*$range-sizer; //6px
     //  background-color: $range-tip-bg-color;
     // }
+  }
+}
+
+#tips-range {
+  .#{$range}-tip {
+    display: block;
   }
 }
 
@@ -80,7 +88,9 @@ $dropdown-item: "pj-dropdown-item" !default;
   &-trigger {
     left: $pj-units-trigger-left;
     width: $pj-units-trigger-width;
+    /*stylelint-disable*/
     font-family: "Helvetica Neue";
+    /*stylelint-enable*/
     color: #b3b3b3;
     outline: none;
   }

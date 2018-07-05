@@ -11,7 +11,8 @@ export const events = {
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
-  INPUT: '{namespace}-input'
+  INPUT: '{namespace}-input',
+  INPUTMODE: 'pj-input'
 }
 
 export const methods = ['enable', 'disable', 'destroy']

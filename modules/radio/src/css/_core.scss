@@ -17,10 +17,15 @@
   }
 
   label {
+    /*stylelint-disable*/
     font-weight: normal;
+    /*stylelint-enable*/
     cursor: pointer;
   }
 
+  .icon-check-mini {
+    top: 2px;
+  }
   i:first-child {
     position: relative;
     box-sizing: initial;

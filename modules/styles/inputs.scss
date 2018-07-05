@@ -92,7 +92,13 @@ input{
   &::placeholder {
     color: $input-placeholder-color;
   }
+  &:focus {
+    border-color: $color-primary-active;
+  }
 
+  &:hover {
+    border-color: $color-primary-gray;
+  }
   // hover
   &:not(:disabled):hover,
   &[type="text"]:not(:disabled):hover {

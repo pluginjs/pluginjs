@@ -86,7 +86,7 @@ $range-selected-bg: $color-info !default; //#7ebdcb !default;
   &-tip {
     position: absolute;
     top: -3.3 * $range-sizer; //-33px
-    left: 0;
+    left: 5px;
     width: 3.4 * $range-sizer; //34px
     height: 2 * $range-sizer; //20px
     margin-left: -15px;
@@ -135,7 +135,7 @@ $range-selected-bg: $color-info !default; //#7ebdcb !default;
     }
   }
 }
-
+/*stylelint-disable*/
 .#{$range}-scale {
   position: relative;
   width: 33.1 * $range-sizer; //331px

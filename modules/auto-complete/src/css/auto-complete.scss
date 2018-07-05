@@ -22,7 +22,7 @@ $autoComplete-input-border: $autoComplete-input-border-width
 $autoComplete-input-hover-border-color: $color-primary-gray !default;
 $autoComplete-input-focus-border-color: $color-primary-active !default;
 // panel
-$autoComplete-panel-top: 0.4 * $autoComplete-sizer !default; //4px
+$autoComplete-panel-top: 0 * $autoComplete-sizer !default; //4px
 $autoComplete-panel-box-shadow: $box-shadow-base !default;
 $autoComplete-panel-padding: 2px !default;
 // item
@@ -62,10 +62,10 @@ $autoComplete-disabled-bg: $disabled-bg !default;
     height: $autoComplete-input-height;
     padding: $autoComplete-input-padding !important;
     color: $autoComplete-color;
-    border-radius: $autoComplete-border-radius !important;
+    // border-radius: $autoComplete-border-radius !important;
 
     &:focus {
-      border-color: $autoComplete-input-focus-border-color !important;
+      border-color: $autoComplete-input-focus-border-color;
     }
 
     &:hover {
@@ -115,7 +115,9 @@ $autoComplete-disabled-bg: $disabled-bg !default;
     padding: $autoComplete-item-padding;
     font-size: $autoComplete-item-font-size;
     // border-radius: $autoComplete-border-radius;
+    /*stylelint-disable*/
     background: white;
+    /*stylelint-enable*/
 
     &.#{$autoComplete}-active {
       cursor: default;

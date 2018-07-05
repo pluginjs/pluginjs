@@ -15,7 +15,7 @@ $datePicker-input-color: $text-color !default;
 $datePicker-input-width: 13 * $datePicker-sizer !default; //130
 // border vars
 $datePicker-border-width: 1px !default;
-$datePicker-border-color: $gray-lighter !default;
+$datePicker-border-color: $gray-border !default;
 $datePicker-border-style: solid !default;
 $datePicker-border: $datePicker-border-width $datePicker-border-style
   $datePicker-border-color !default;
@@ -110,7 +110,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     }
 
     &-input:hover {
-      border-color: $datePicker-active-color;
+      // border-color: $datePicker-active-color;
     }
 
     &-input:active {
@@ -179,7 +179,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     //line-height: 30px;
     //vertical-align: middle;
     border: $datePicker-border;
-    border-radius: $datePicker-border-radius !important;
+    border-radius: $datePicker-border-radius;
   }
 
   &-input,
@@ -247,7 +247,9 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
   }
 
   &-content {
+    /*stylelint-disable*/
     font-family: "Helvetica Neue";
+    /*stylelint-enable*/
     color: $datePicker-color;
     box-shadow: $datePicker-box-shadow;
 
@@ -492,7 +494,7 @@ input[type="text"][disabled] {
     border-left: 0;
   }
 }
-
+/*stylelint-disable*/
 .#{$datePicker}-body {
   span.#{$datePicker}-otherMonth.#{$datePicker}-inRange.#{$datePicker}-active.#{$datePicker}-startDay {
     color: $gray-light;

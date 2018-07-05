@@ -17,13 +17,15 @@
   }
 
   label {
+    /*stylelint-disable*/
     font-weight: normal;
+    /*stylelint-ensable*/
     cursor: pointer;
   }
 
   i:first-child {
     position: relative;
-    top: 2px;
+    top: 5px;
     box-sizing: initial;
     display: inline-block;
     width: 1.6 * $checkbox-sizer !important; //16px
