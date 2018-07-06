@@ -47,7 +47,7 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
     transform-style: flat;
   }
 
-  .#{$countdown}-number.#{$countdown}-top {
+  .#{$countdown}-number.#{$countdowns}-top {
     height: 50%;
     border-top: 1px solid $countdown-flip-border;
     border-bottom: 1px solid $countdown-flip-border;
@@ -55,12 +55,12 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
     transform-origin: 50% 100%;
   }
 
-  .#{$countdown}-number.#{$countdown}-curr.#{$countdown}-top {
+  .#{$countdown}-number.#{$countdowns}-curr.#{$countdowns}-top {
     z-index: 3;
     transform: rotateX(0deg);
   }
 
-  .#{$countdown}-number.#{$countdown}-bottom {
+  .#{$countdown}-number.#{$countdowns}-bottom {
     top: 50%;
     height: 50%;
     line-height: 0;
@@ -71,7 +71,7 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
     transform-origin: 50% 0;
   }
 
-  .#{$countdown}-number.#{$countdown}-next.#{$countdown}-bottom {
+  .#{$countdown}-number.#{$countdowns}-next.#{$countdowns}-bottom {
     z-index: 2;
     transform: rotateX(90deg);
   }
@@ -91,13 +91,13 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
     margin-bottom: 5px;
   }
 
-  .#{$countdown}-flip {
-    .#{$countdown}-number.#{$countdown}-curr.#{$countdown}-top {
+  .#{$countdowns}-flip-animation {
+    .#{$countdown}-number.#{$countdowns}-curr.#{$countdowns}-top {
       transition: all 500ms ease-in-out;
       transform: rotateX(-90deg);
     }
 
-    .#{$countdown}-number.#{$countdown}-next.#{$countdown}-bottom {
+    .#{$countdown}-number.#{$countdowns}-next.#{$countdowns}-bottom {
       transition: all 500ms ease-in-out 500ms;
       transform: rotateX(0deg);
     }

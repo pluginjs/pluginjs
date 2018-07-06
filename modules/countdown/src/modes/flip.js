@@ -24,7 +24,6 @@ class Flip {
 
     flip[type] = templateEngine.render(this.options.template.call(this), {
       classes: this.instance.classes,
-      flipClass: this.options.flipClass,
       labelType: getLabel.labelMap
     })
 
@@ -63,7 +62,7 @@ class Flip {
 
     if (!is.undefined(this.lastTime[type])) {
       updateDomValue(
-        `.${this.options.flipClass.CURR}.${this.options.flipClass.TOP}.${
+        `.${this.instance.classes.CURR}.${this.instance.classes.TOP}.${
           this.instance.classes.NAMESPACE
         }-${name}`,
         this.instance.element,
@@ -71,7 +70,7 @@ class Flip {
       )
 
       updateDomValue(
-        `.${this.options.flipClass.CURR}.${this.options.flipClass.BOTTOM}.${
+        `.${this.instance.classes.CURR}.${this.instance.classes.BOTTOM}.${
           this.instance.classes.NAMESPACE
         }-${name}`,
         this.instance.element,
@@ -80,7 +79,7 @@ class Flip {
     }
 
     updateDomValue(
-      `.${this.options.flipClass.NEXT}.${this.options.flipClass.TOP}.${
+      `.${this.instance.classes.NEXT}.${this.instance.classes.TOP}.${
         this.instance.classes.NAMESPACE
       }-${name}`,
       this.instance.element,
@@ -88,7 +87,7 @@ class Flip {
     )
 
     updateDomValue(
-      `.${this.options.flipClass.NEXT}.${this.options.flipClass.BOTTOM}.${
+      `.${this.instance.classes.NEXT}.${this.instance.classes.BOTTOM}.${
         this.instance.classes.NAMESPACE
       }-${name}`,
       this.instance.element,
@@ -105,10 +104,10 @@ class Flip {
     if (dom) {
       for (const type in this.lastTime) {
         if (this.lastTime[type] !== this.currenTime[type]) {
-          dom.classList.remove(`${this.options.flipClass.FLIP}`)
+          dom.classList.remove(`${this.instance.classes.FLIPANIMATION}`)
 
           setTimeout(() => {
-            dom.classList.add(`${this.options.flipClass.FLIP}`)
+            dom.classList.add(`${this.instance.classes.FLIPANIMATION}`)
           }, 50)
         }
       }
@@ -119,16 +118,21 @@ class Flip {
 Flip.defaults = {
   template() {
     return `<div class="{classes.TIME} {labelType}">
-                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {flipClass.FLIP} {flipClass.CURR} {flipClass.TOP}"></span>
-                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {flipClass.FLIP} {flipClass.NEXT} {flipClass.TOP}"></span>
-                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {flipClass.FLIP} {flipClass.NEXT} {flipClass.BOTTOM}"></span>
-                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {flipClass.FLIP} {flipClass.CURR} {flipClass.BOTTOM}"></span>
+                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {classes.FLIPANIMATION} {classes.CURR} {classes.TOP}"></span>
+                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {classes.FLIPANIMATION} {classes.NEXT} {classes.TOP}"></span>
+                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {classes.FLIPANIMATION} {classes.NEXT} {classes.BOTTOM}"></span>
+                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {classes.FLIPANIMATION} {classes.CURR} {classes.BOTTOM}"></span>
                   </div>`
   }
 }
 
 Flip.classes = {
-  FLIP: '{namespace}-flip'
+  FLIP: '{namespace}-flip',
+  CURR: '{namespace}-curr',
+  NEXT: '{namespace}-next',
+  TOP: '{namespace}-top',
+  BOTTOM: '{namespace}-bottom',
+  FLIPANIMATION: '{namespace}-flip-animation'
 }
 
 export default Flip

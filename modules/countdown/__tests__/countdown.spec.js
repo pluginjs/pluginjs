@@ -26,7 +26,7 @@ describe('Countdown', () => {
   })
 
   describe('constructor()', () => {
-    test('should work wtesth element', () => {
+    test('should work with element', () => {
       const countdown = Countdown.of(generateHTMLSample())
 
       expect(countdown).toBeObject()

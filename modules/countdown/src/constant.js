@@ -13,12 +13,10 @@ export const events = {
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
-  DESTROY: 'destroy',
-  START: 'start',
-  STOP: 'stop'
+  DESTROY: 'destroy'
 }
 
-export const methods = ['init', 'enable', 'disable', 'destroy']
+export const methods = ['init', 'enable', 'disable', 'destroy', 'start', 'stop']
 
 export const labelMap = {
   Y: 'years',
@@ -40,16 +38,7 @@ export const defaults = {
   mode: 'ordinary', // 'ordinary','flip','progress
   modes: {
     ordinary: {},
-
-    flip: {
-      flipClass: {
-        CURR: `${namespace}-curr`,
-        NEXT: `${namespace}-next`,
-        TOP: `${namespace}-top`,
-        BOTTOM: `${namespace}-bottom`,
-        FLIP: `${namespace}-flip`
-      }
-    },
+    flip: {},
     progress: {
       size: 100, // progress circle size
       barcolor: '#ccc', // progress circle base color

@@ -92,11 +92,13 @@ You can also save the instances to variable for further use.
 Name | Description | Default
 -----|--------------|-----
 `"mode"` | Add plugin mode option | `ordinary`
+`"modes"` | Set modes | `{"ordinary":{},"flip":{},"progress":{size: 100,barcolor:'#ccc',barsize:4,trackcolor:'#55a4f2'}}`
 `"format"` | Add plugin format option | `d,h,m,s`
 `"label"` | Set label value | `true`
 `"site"` | Set label site | `under`
 `"due"` | Set due time | `2018-12-28 19:32:28`
 `"now"` | Set now time | `new Date()`
+`"templates"` | Set default templates | `{}`
 
 ### Events
 Events are called on countdown instances through the countdown events itself.
@@ -108,8 +110,19 @@ Name | Description
 `"enable"` | Gets fired when plugin is enable
 `"disable"` | Gets fired when plugin is disable
 `"destroy"` | Gets fired when plugin is destroy
-`"start"` | Gets fired when plugin is start
-`"stop"` | Gets fired when plugin is stop
+
+### Methods
+
+Methods are called on coundown instances through the coundown method itself.
+You can also save the instances to variable for further use.
+
+Name | Description
+-----|-----
+`"enable"` | Enabled plugin if plugin is disabled
+`"disable"` | Disable plugin
+`"destroy"` | Destroy plugin
+`"start"` | Start plugin
+`"stop"` | Stop plugin
 
 ### Classes
 Name | Description | Default
