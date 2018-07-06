@@ -923,7 +923,7 @@ const data = {
   }
 }
 
-const element = query('#default .font-picker-default')
 fontPicker.registerSources(data)
 fontPicker.setActivated(activated)
+const element = query('#default .font-picker-default')
 fontPicker.of(element, {})

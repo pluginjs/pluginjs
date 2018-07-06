@@ -34,6 +34,10 @@ $dropdown-active-border-color: $color-drop-border !default;
   box-sizing: border-box;
   height: $dropdown-height;
 
+  &-label-active {
+    color: $gray-darker !important;
+  }
+
   input.#{$dropdown}-label {
     border-width: 0;
   }
@@ -84,6 +88,7 @@ $dropdown-active-border-color: $color-drop-border !default;
 
 // Theme
 // =====================
+/*stylelint-disable*/
 .#{$dropdown} {
   position: relative;
   display: inline-block;

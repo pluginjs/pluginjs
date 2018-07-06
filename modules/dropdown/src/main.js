@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { deepMerge } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -51,9 +51,10 @@ import {
 )
 class Dropdown extends Component {
   constructor(element, options = {}) {
-    console.log(options)
+    // console.log(options)
     super(NAMESPACE, element)
     this.parent = this.element.parentNode
+    console.log(this.parent)
     // options
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
     this.firstClassName = this.element.className
@@ -298,6 +299,11 @@ class Dropdown extends Component {
           const item = e.target
           that.itemUsable = true
           that.trigger(EVENTS.CLICK, this, item)
+
+          if (hasClass(that.classes.SELECTMODE, that.parent)) {
+            addClass(that.classes.LABELACTIVE, that.$label)
+          }
+
           if (!that.itemUsable) {
             return
           }
@@ -449,7 +455,7 @@ class Dropdown extends Component {
         Pj.doc
       )
     }
-
+    /*eslint-disable*/
     if (this.options.exclusive) {
       Pj.instances[this.plugin].map(dropdown => {
         if (dropdown.is('show')) {
