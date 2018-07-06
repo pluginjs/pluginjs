@@ -5,3 +5,8 @@ import '@pluginjs/styles/inputs.scss'
 import '@pluginjs/scrollable/src/css/scrollable.scss'
 import '@pluginjs/dropdown/src/css/dropdown.scss'
 import '@pluginjs/font-picker/src/css/font-picker.scss'
+
+// import sections
+import './sections/default/index.js'
+import './sections/input/index.js'
+import './sections/locale/index.js'

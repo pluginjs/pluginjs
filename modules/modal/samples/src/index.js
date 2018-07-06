@@ -1,3 +1,16 @@
 // import accordion css
 import '@pluginjs/modal/src/css/modal.scss'
 import '@pluginjs/styles/buttons.scss'
+
+// import sections
+import './sections/animation/index.js'
+import './sections/types/index.js'
+import './sections/icons/index.js'
+import './sections/multi-level/index.js'
+import './sections/button/index.js'
+import './sections/content-align/index.js'
+import './sections/theme/index.js'
+import './sections/overlay/index.js'
+import './sections/design-stype/index.js'
+import './sections/close-destroy-automate/index.js'
+import './sections/locale/index.js'

@@ -14,3 +14,8 @@ import '@pluginjs/popover/src/css/popover.scss'
 import '@pluginjs/pop-dialog/src/css/pop-dialog.scss'
 import '@pluginjs/edit-panel/src/css/edit-panel.scss'
 import '@pluginjs/gradient-picker/src/css/gradient-picker.scss'
+
+// import sections
+import './sections/default/index.js'
+import './sections/initialized/index.js'
+import './sections/locale/index.js'

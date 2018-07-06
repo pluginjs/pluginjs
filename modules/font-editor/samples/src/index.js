@@ -9,3 +9,7 @@ import '@pluginjs/units/src/css/units.scss'
 import '@pluginjs/popover/src/css/popover.scss'
 import '@pluginjs/pop-dialog/src/css/pop-dialog.scss'
 import '@pluginjs/font-editor/src/css/font-editor.scss'
+
+// import sections
+import './sections/default/index.js'
+import './sections/attribute/index.js'

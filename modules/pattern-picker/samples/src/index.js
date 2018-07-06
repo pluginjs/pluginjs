@@ -15,3 +15,8 @@ import '@pluginjs/modal/src/css/modal.scss'
 import '@pluginjs/edit-panel/src/css/edit-panel.scss'
 import 'font-awesome/css/font-awesome.css'
 import '@pluginjs/pattern-picker/src/css/pattern-picker.scss'
+
+// import sections
+import './sections/default/index.js'
+import './sections/initvalue/index.js'
+import './sections/locale/index.js'

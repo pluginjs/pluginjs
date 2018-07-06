@@ -9,3 +9,8 @@ import '@pluginjs/pop-dialog/src/css/pop-dialog.scss'
 import '@pluginjs/radio/src/css/radio.scss'
 import '@pluginjs/dropdown/src/css/dropdown.scss'
 import '@pluginjs/link-picker/src/css/link-picker.scss'
+
+// import sections
+import './sections/default/index.js'
+import './sections/initvalue/index.js'
+import './sections/locale/index.js'

@@ -10,3 +10,8 @@ import '@pluginjs/video/src/css/video.scss'
 import '@pluginjs/modal/src/css/modal.scss'
 import '@pluginjs/edit-panel/src/css/edit-panel.scss'
 import '@pluginjs/video-picker/src/css/video-picker.scss'
+
+// import sections
+import './sections/default/index.js'
+import './sections/initialized/index.js'
+import './sections/locale/index.js'

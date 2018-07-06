@@ -8,3 +8,8 @@ import '@pluginjs/pop-dialog/src/css/pop-dialog.scss'
 import '@pluginjs/popover/src/css/popover.scss'
 import '@pluginjs/gmap/src/css/gmap.scss'
 import '@pluginjs/map-picker/src/css/map-picker.scss'
+
+// import sections
+import './sections/default/index.js'
+import './sections/initvalue/index.js'
+import './sections/locale/index.js'
