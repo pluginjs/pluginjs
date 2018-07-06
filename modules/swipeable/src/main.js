@@ -175,9 +175,10 @@ class Swipeable extends Component {
     decayX = this.options.axis === 'y' ? 0 : decayX
     decayY = this.options.axis === 'x' ? 0 : decayY
 
-    if (Math.abs(decayX) < 2) {
+    if (this.options.axis === 'x' && Math.abs(decayX) < 2) {
       return
     }
+
     const moveX = this.position.x + this.getMoveSize(decayX)
     const moveY = this.position.y + this.getMoveSize(decayY)
 
@@ -208,7 +209,7 @@ class Swipeable extends Component {
         that.position.x = that.getLocation($target).translateX
         that.position.y = that.getLocation($target).translateY
         that.isdecaying = false
-        that.trigger(EVENTS.DECAYMOVEEND)
+        that.trigger(EVENTS.DECAYEND)
       }
     }
     this.isdecaying = true

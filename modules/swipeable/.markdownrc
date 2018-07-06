@@ -78,6 +78,10 @@
       {
         "name": "resize",
         "desc": "Gets fired when plugin has be resize"
+      },
+      {
+        "name": "decayend",
+        "desc": "Gets fired when plugin has be decayend"
       }
     ],
     "event": "ready",

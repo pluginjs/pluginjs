@@ -35,8 +35,8 @@
         "defaultValue": "false"
       },
       {
-        "name": "imgdot",
-        "desc": "Img dot",
+        "name": "arrowConfig",
+        "desc": "Arrows config",
         "defaultValue": "false"
       },
       {
@@ -55,9 +55,9 @@
         "defaultValue": "false"
       },
       {
-        "name": "frictionFactor",
-        "desc": "friction factor",
-        "defaultValue": "0.8"
+        "name": "power",
+        "desc": "Dragfree power",
+        "defaultValue": "2"
       },
       {
         "name": "group",
@@ -110,14 +110,9 @@
         "defaultValue": "400"
       },
       {
-        "name": "imgdotArr",
-        "desc": "Img dot list",
-        "defaultValue": "[]"
-      },
-      {
         "name": "templates",
         "desc": "HTML template engine",
-        "defaultValue": "{ wrapper, container, pagination }"
+        "defaultValue": "{ wrapper, container, pagination, arrow: (prev, next) }"
       }
     ],
     "events": [
@@ -172,18 +167,6 @@
     ],
     "methods": [
       {
-        "name": "get",
-        "desc": "Get value by key"
-      },
-      {
-        "name": "set",
-        "desc": "Set value by key"
-      },
-      {
-        "name": "val",
-        "desc": "Set or get value by key"
-      },
-      {
         "name": "disable",
         "desc": "Disable plugin"
       },
@@ -223,11 +206,6 @@
         "value": "{namespace}-item"
       },
       {
-        "name": "REPLICA",
-        "desc": "Declare replica node",
-        "value": "{namespace}-replica"
-      },
-      {
         "name": "PAGINATION",
         "desc": "Declare pagination node",
         "value": "{namespace}-pagination"
@@ -241,11 +219,6 @@
         "name": "ACTIVE",
         "desc": "Declare active status",
         "value": "{namespace}-active"
-      },
-      {
-        "name": "INFOS",
-        "desc": "Declare info",
-        "value": "{namespace}-infos"
       }
     ]
   },

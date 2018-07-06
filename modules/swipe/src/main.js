@@ -1,9 +1,17 @@
 import Component from '@pluginjs/component'
 import { deepMerge } from '@pluginjs/utils'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
-import { append, wrap, closest, find, finds, parent } from '@pluginjs/dom'
+import {
+  append,
+  wrap,
+  closest,
+  find,
+  finds,
+  parent,
+  parentWith
+} from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -105,10 +113,9 @@ class Swipe extends Component {
 
   build() {
     this.buildWrapper()
-    this.buildInfo()
-
     this.$items = this.getItems()
     this.itemInstances = this.getItemInstances(this.$items)
+
     this.buildContainer()
     this.computeItemLocation(this.itemInstances)
 
@@ -120,11 +127,7 @@ class Swipe extends Component {
     }
 
     if (this.options.pagination) {
-      if (this.options.customPagination) {
-        this.initPagination()
-      } else {
-        this.buildPagination()
-      }
+      this.buildPagination()
     }
 
     if (this.options.drag) {
@@ -138,47 +141,51 @@ class Swipe extends Component {
     }
   }
 
-  buildInfo() {
-    append(`<input class="${this.classes.INFO}" type="text">`, this.$wrapper)
-    this.$info = find(`.${this.classes.INFO}`, this.$wrapper)
-  }
-
   buildContainer() {
-    let $container
+    this.$container = find(`.${this.classes.CONTAINER}`, this.element)
 
-    if (this.options.containerSelector) {
-      this.$container = find(this.options.containerSelector, this.element)
-      addClass(this.classes.CONTAINER, this.$container)
-    } else {
-      const $itemsParent = parent(this.$items[0])
-      $container = this.createEl('container', { class: this.classes.CONTAINER })
-      append($container, $itemsParent)
-      this.$container = find(`.${this.classes.CONTAINER}`, this.element)
+    if (!this.$container) {
+      if (this.options.containerSelector) {
+        this.$container = find(this.options.containerSelector, this.element)
+        addClass(this.classes.CONTAINER, this.$container)
+      } else {
+        const $itemsParent = parent(this.$items[0])
+        const $container = this.createEl('container', {
+          class: this.classes.CONTAINER
+        })
+        append($container, $itemsParent)
+        this.$container = find(`.${this.classes.CONTAINER}`, this.element)
 
-      this.$items.forEach($item => {
-        append($item, this.$container)
-      })
+        this.$items.forEach($item => {
+          append($item, this.$container)
+        })
+      }
     }
   }
 
   buildWrapper() {
-    if (this.options.wrapperSelector) {
-      addClass(
-        this.classes.WRAPPER,
-        closest(this.options.wrapperSelector, this.element)
-      )
-    } else {
-      wrap(`<div class="${this.classes.WRAPPER}"></div>`, this.element)
+    this.$wrapper = parentWith(hasClass(this.classes.WRAPPER), this.element)
+    if (!this.$wrapper) {
+      if (this.options.wrapperSelector) {
+        addClass(
+          this.classes.WRAPPER,
+          closest(this.options.wrapperSelector, this.element)
+        )
+      } else {
+        wrap(`<div class="${this.classes.WRAPPER}"></div>`, this.element)
+      }
+      this.$wrapper = closest(`.${this.classes.WRAPPER}`, this.element)
     }
-
-    this.$wrapper = closest(`.${this.classes.WRAPPER}`, this.element)
   }
 
   getItems() {
-    const $items = finds(this.options.itemSelector, this.element)
-    $items.forEach($item => {
-      addClass(this.classes.ITEM, $item)
-    })
+    let $items = finds(`.${this.classes.ITEM}`, this.element)
+    if ($items.length === 0) {
+      $items = finds(this.options.itemSelector, this.element)
+      $items.forEach($item => {
+        addClass(this.classes.ITEM, $item)
+      })
+    }
 
     return $items
   }
@@ -302,33 +309,13 @@ class Swipe extends Component {
 
   buildArrows() {
     let opts = {
-      type: this.options.arrowType || 'square',
+      type: this.options.arrowConfig.type || 'square',
       templates: this.options.templates.arrow
     }
 
-    if (this.options.arrowNameSpace) {
-      opts = Object.assign({}, opts, {
-        classes: {
-          NAMESPACE: this.options.arrowNameSpace
-        }
-      })
-    }
+    opts = Object.assign({}, opts, this.options.arrowConfig)
 
     this.$arrows = Arrows.of(this.element, opts)
-  }
-
-  initPagination() {
-    let config = {
-      valueFrom: 'data-href',
-      default: `${this.active}`
-    }
-
-    config = Object.assign({}, config, this.options.dotConfig)
-
-    this.$pagination = Dots.of(
-      find(`.${this.classes.PAGINATION}`, this.$wrapper),
-      config
-    )
   }
 
   buildPagination() {
@@ -450,7 +437,7 @@ class Swipe extends Component {
 
       this.$swipe.options.onDragend = e => {
         if (e.isdecaying) {
-          this.$swipe.options.onDecaymoveend = () => {
+          this.$swipe.options.onDecayend = () => {
             const locationX = e.getLocation(e.element).translateX
             const index = this.getIndexByDistance(locationX)
             this.moveTo(index)
@@ -462,65 +449,6 @@ class Swipe extends Component {
         }
         this.trigger(EVENTS.DRAGEND)
       }
-
-      // this.$swipe.options.onDecaymoveend = () => {
-      //   const locationX = this.$swipe.getLocation(this.$container).translateX
-      //   const index = this.getIndexByDistance(locationX)
-      //   this.moveTo(index)
-      // }
-
-      // this.$drag
-      //   .on('panstart', () => {
-      //     oldLocation = this.getLocationX($target)
-      //     cacheDistance = oldLocation
-      //     cacheOffset = 0
-      //     this.trigger(EVENTS.DRAGSTART)
-      //   })
-      //   .on('panmove', e => {
-      //     let offsetX = e.deltaX
-      //     let distance = oldLocation + offsetX
-
-      //     if (!this.options.loop) {
-      //       let maxDistance = this.containerWidth - this.width
-      //       let minDistance = 0
-
-      //       if (this.options.center) {
-      //         const addDistance =
-      //           (this.width - this.itemInstances[this.active].info.width) / 2
-
-      //         minDistance += addDistance
-      //         maxDistance += addDistance
-      //       }
-
-      //       if (distance < -maxDistance || distance >= minDistance) {
-      //         offsetX = e.deltaX - cacheOffset
-      //         distance = cacheDistance + offsetX / 10
-      //       } else {
-      //         cacheOffset = e.deltaX
-      //         cacheDistance = distance
-      //       }
-      //     }
-
-      //     setStyle(
-      //       {
-      //         transform: `translate3d(${distance}px, 0, 0)`,
-      //         transition: '',
-      //         'transition-timing-function': 'linear'
-      //       },
-      //       $target
-      //     )
-      //   })
-      //   .on('panend', e => {
-      //     oldLocation = this.getLocationX($target)
-      //     if (this.options.dragFree) {
-      //       oldLocation += this.getMoveSize(e.velocityX)
-      //     }
-
-      //     const index = this.getIndexByDistance(oldLocation)
-      //     this.moveTo(index)
-
-      //     this.trigger(EVENTS.DRAGEND)
-      //   })
     }
   }
 
@@ -573,14 +501,23 @@ class Swipe extends Component {
       distance -= (this.width - activeItemWidth) / 2
     }
 
-    setStyle(
-      {
-        transform: `translate3d(${-distance}px, 0, 0)`,
-        transition: `transform ${duration}ms`,
-        'transition-timing-function': ease
-      },
-      this.$container
-    )
+    if (trigger) {
+      setStyle(
+        {
+          transform: `translate3d(${-distance}px, 0, 0)`,
+          transition: `transform ${duration}ms`,
+          'transition-timing-function': ease
+        },
+        this.$container
+      )
+    } else {
+      setStyle(
+        {
+          transform: `translate3d(${-distance}px, 0, 0)`
+        },
+        this.$container
+      )
+    }
 
     setTimeout(() => {
       if (callback) {
@@ -588,6 +525,12 @@ class Swipe extends Component {
       }
 
       if (trigger) {
+        setStyle(
+          {
+            transition: ''
+          },
+          this.$container
+        )
         this.trigger(EVENTS.MOVEEND, this.active)
       }
     }, duration)

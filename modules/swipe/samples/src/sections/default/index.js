@@ -5,6 +5,7 @@ const element = query('#default .swipe')
 Swipe.of(element, {
   arrows: true,
   pagination: true,
-  drag: true,
+  itemNums: 3,
+  gutter: 20,
   loop: true
 })

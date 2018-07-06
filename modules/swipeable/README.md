@@ -115,6 +115,7 @@ Name | Description
 `"dragmove"` | Gets fired when plugin has be dragMove
 `"dragend"` | Gets fired when plugin has be dragEnd
 `"resize"` | Gets fired when plugin has be resize
+`"decayend"` | Gets fired when plugin has be decayend
 
 ### Methods
 

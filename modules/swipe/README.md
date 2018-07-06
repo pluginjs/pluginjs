@@ -97,12 +97,12 @@ Name | Description | Default
 `"containerSelector"` | Container selector | `null`
 `"itemSelector"` | Item selector | `div`
 `"arrows"` | Active arrows | `false`
-`"imgdot"` | Img dot | `false`
+`"arrowConfig"` | Arrows config | `false`
 `"pagination"` | Active pagination | `false`
 `"drag"` | Support drag | `true`
 `"dragFree"` | Support dragfree | `false`
-`"frictionFactor"` | friction factor | `0.8`
-`"group"` | group | `false`
+`"power"` | Dragfree power | `2`
+`"group"` | Group | `false`
 `"loop"` | Active loop mode | `false`
 `"multiple"` | Active multiple mode | `false`
 `"center"` | Set center model | `false`
@@ -112,8 +112,7 @@ Name | Description | Default
 `"advanced"` | Advance options | `{ getItemInstances: null, computeItemLocation: null, computeWidthResize: null }`
 `"defaultActive"` | default index of active item | `0`
 `"duration"` | Set duration | `400`
-`"imgdotArr"` | Img dot list | `[]`
-`"templates"` | HTML template engine | `{ wrapper, container, pagination }`
+`"templates"` | HTML template engine | `{ wrapper, container, pagination, arrow: (prev, next) }`
 
 ### Events
 
@@ -142,9 +141,6 @@ You can also save the instances to variable for further use.
 
 Name | Description
 -----|-----
-`"get"` | Get value by key
-`"set"` | Set value by key
-`"val"` | Set or get value by key
 `"disable"` | Disable plugin
 `"enable"` | Enabled plugin if plugin is disabled
 `"destroy"` | Destroy plugin
@@ -158,11 +154,9 @@ Name | Description | Default
 `"WRAPPER"` | Declare wrapper node | `{namespace}-wrapper`
 `"CONTAINER"` | Declare container node | `{namespace}-container`
 `"ITEM"` | Declare item node | `{namespace}-item`
-`"REPLICA"` | Declare replica node | `{namespace}-replica`
 `"PAGINATION"` | Declare pagination node | `{namespace}-pagination`
 `"PAGINATIONITEM"` | Declare pagination item node | `{namespace}-pagination-item`
 `"ACTIVE"` | Declare active status | `{namespace}-active`
-`"INFOS"` | Declare info | `{namespace}-infos`
 ---
 
 ## Browser support

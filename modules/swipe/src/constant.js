@@ -21,14 +21,12 @@ export const classes = {
   WRAPPER: '{namespace}-wrapper',
   CONTAINER: '{namespace}-container',
   ITEM: '{namespace}-item',
-  REPLICA: '{namespace}-replica',
   PAGINATION: '{namespace}-pagination',
   PAGINATIONITEM: '{namespace}-pagination-item',
-  ACTIVE: '{namespace}-active',
-  INFO: '{namespace}-info'
+  ACTIVE: '{namespace}-active'
 }
 
-export const methods = ['get', 'set', 'val', 'enable', 'disable', 'destroy']
+export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
   theme: null,
@@ -38,10 +36,9 @@ export const defaults = {
   itemSelector: 'div',
   // data: null, // [Array] item => {'title':'','el':[HTML element]}
   arrows: false,
-  arrowNameSpace: null,
-  arrowType: null,
+  arrowConfig: false,
   pagination: false,
-  customPagination: false,
+  dotConfig: false,
   drag: true,
   dragFree: false,
   power: 2,
@@ -59,7 +56,6 @@ export const defaults = {
   },
   defaultActive: 0, // default active item
   duration: 400,
-  dotConfig: false,
   templates: {
     wrapper() {
       return '<div class="{class}"></div>'
@@ -82,22 +78,5 @@ export const defaults = {
 }
 
 export const dependencies = ['arrows', 'dots', 'Hammer']
-
-// export const translations = {
-//   en: {
-//     emptyText: 'Befor using SVG icons, you need add icons to "my collections"',
-//     emptyHrefText: 'Go add now',
-//     searchText: 'Search',
-//     manage: 'Manage My Collections',
-//     founded: 'founded'
-//   },
-//   zh: {
-//     emptyText: '在使用SVG图标之前，您需要添加图标到“我的收藏”',
-//     emptyHrefText: '去添加',
-//     searchText: '搜索',
-//     manage: '管理我的收藏',
-//     founded: '结果'
-//   }
-// }
 
 export const info = { version: '0.0.1' }

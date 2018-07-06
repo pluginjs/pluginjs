@@ -9,7 +9,7 @@ const events = {
   DRAGMOVE: 'dragmove',
   DRAGEND: 'dragend',
   RESIZE: 'resize',
-  DECAYMOVEEND: 'decaymoveend'
+  DECAYEND: 'decayend'
 }
 
 const classes = {
