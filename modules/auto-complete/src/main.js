@@ -163,7 +163,6 @@ class AutoComplete extends Component {
         label = v[0]
         value = v[1]
       }
-
       const $item = parseHTML(
         template.compile(this.options.templates.item())({
           class: this.classes.ITEM,
@@ -229,7 +228,6 @@ class AutoComplete extends Component {
         type: this.eventName('input'),
         handler: ({ target }) => {
           const val = target.value
-
           if (val.length <= 0 || val.length < this.options.minChars) {
             if (this.is('open')) {
               this.close()
@@ -429,15 +427,17 @@ class AutoComplete extends Component {
     return true
   }
 
-  color(key, content) {
-    console.log(key, content)
-    key = new RegExp(key, 'i')
-    const values = content.split(key)
-    console.log(values)
-    content = values.join(`<span style="background:red;">${key}</span>`)
-    console.log(content)
-    return content
-  }
+  // color(key, content) {
+  //   console.log(key, content)
+  //   key = new RegExp(key, 'i')
+  //   const values = content.split(key)
+  //   console.log(values)
+  //   content = values.join(`<span style="background:red;">${key}</span>`)
+  //   console.log(content)
+  //   console.log(this.$items)
+
+  //   return content
+  // }
 
   render(key, value, item) {
     // console.log(key, value, item)
@@ -450,30 +450,30 @@ class AutoComplete extends Component {
       ? this.options.render(data, item)
       : value
 
-    if (this.options.highlight) {
-      let REG
-      if (this.options.sensitivity) {
-        REG = new RegExp(key, 'g')
-      } else {
-        REG = new RegExp(key, 'gi')
-      }
-
-      const val = value.replace(REG, match =>
-        template.compile(this.options.templates.mark())({
-          class: this.classes.MARK,
-          contents: match
-        })
-      )
-
-      data.label = val
-      content = this.options.render(data, item)
-        ? this.options.render(data, item)
-        : val
+    // if (this.options.highlight) {
+    let REG
+    if (this.options.sensitivity) {
+      REG = new RegExp(key, 'g')
+    } else {
+      REG = new RegExp(key, 'gi')
     }
 
+    const val = value.replace(REG, match =>
+      template.compile(this.options.templates.mark())({
+        class: this.classes.MARK,
+        contents: match
+      })
+    )
+
+    data.label = val
+    content = this.options.render(data, item)
+      ? this.options.render(data, item)
+      : val
+    // }
+
     // this.color(key, content)
-    item.innerHtml = this.color(key, content)
-    console.log(item.innerHtml)
+    item.innerHTML = content
+    // console.log(item.innerHtml)
     addClass(this.classes.SHOW, item)
     if (this.options.group) {
       addClass(

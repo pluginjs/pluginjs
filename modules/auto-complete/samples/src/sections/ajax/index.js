@@ -21,6 +21,6 @@ AutoComplete.of(element, {
     this.handleEl(_data)
   },
   render(data) {
-    return `<span class="test">${data.label}<span>${data.value}</span></span>`
+    return `<span class="test">${data.label}</span>`
   }
 })
