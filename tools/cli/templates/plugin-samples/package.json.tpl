@@ -4,7 +4,7 @@
   "description": "Simple {{moduleName}} example",
   "main": "index.html",
   "scripts": {
-    "start": "parcel index.html --open --no-cache",
+    "start": "parcel index.html --open",
     "build": "parcel build index.html"
   },
   "dependencies": {
