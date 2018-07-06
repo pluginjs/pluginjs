@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
-import { reflow, deepMerge, compose } from '@pluginjs/utils'
+import { deepMerge, compose } from '@pluginjs/utils'
 import { children } from '@pluginjs/dom'
-import { hasClass, addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { outerHeight } from '@pluginjs/styled'
 import {

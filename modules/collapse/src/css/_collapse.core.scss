@@ -1,0 +1,23 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$collapse: "pj-collapse";
+
+// Core
+// =====================
+.#{$collapse} [role="button"] {
+  cursor: pointer;
+}
+
+.#{$collapse}-content {
+  margin: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.#{$collapse}-collapsed {
+  .#{$collapse}-content {
+    height: 0;
+  }
+}

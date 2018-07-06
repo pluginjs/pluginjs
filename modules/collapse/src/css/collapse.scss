@@ -1,23 +1,33 @@
 @import "@pluginjs/styles/variables.scss";
+@import "collapse.core";
 
 // Vars
 // =====================
 $collapse: "pj-collapse";
+$collapse-gutter-width: 1px !default;
+$collapse-padding: 1rem !default;
 
-// Core
+// default
 // =====================
-.#{$collapse} [role="button"] {
-  cursor: pointer;
+.#{$collapse} {
+  border-color: inherit;
+  border-style: solid;
+  border-width: $collapse-gutter-width;
 }
 
-.#{$collapse}-content {
-  margin: 0;
-  overflow: hidden;
-  transition: height 0.3s ease;
+.#{$collapse}-header {
+  padding: $collapse-padding;
 }
 
-.#{$collapse}-collapsed {
-  .#{$collapse}-content {
-    height: 0;
-  }
+.#{$collapse}-content-inner {
+  padding: $collapse-padding;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0 0 $collapse-gutter-width;
+}
+
+.#{$collapse}-header + .#{$collapse}-content .#{$collapse}-content-inner {
+  border-color: inherit;
+  border-style: solid;
+  border-width: $collapse-gutter-width 0 0;
 }

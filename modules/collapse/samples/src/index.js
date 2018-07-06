@@ -1,3 +1,2 @@
-import Collapse from '@pluginjs/collapse'
-
-console.log(Collapse)
+// import collapse css
+import '@pluginjs/collapse/src/css/collapse.scss'
