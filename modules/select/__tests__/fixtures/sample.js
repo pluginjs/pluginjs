@@ -1,7 +1,7 @@
 import { parseHTML } from '@pluginjs/dom'
 
 export default () => parseHTML`
-<select class="example-default" data-identity="1">
+<select class="example-default">
       <optgroup value="group-one" label="group-one">
         <option value="a">beijing</option>
         <option value="b" selected>fujian</option>

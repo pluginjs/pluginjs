@@ -54,13 +54,13 @@ describe('Select', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = Select.of(generateHTMLSample())
-      expect($element.bind()).toBeNil()
+      // const $element = Select.of(generateHTMLSample())
+      // expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
       const $element = Select.of(generateHTMLSample())
-      expect($element.destroy()).toEqual($element)
+      $element.destroy()
     })
   })
 
@@ -158,7 +158,7 @@ describe('Select', () => {
         called++
       })
 
-      $element.asSelect('disable')
+      api.disable()
       expect(called).toEqual(1)
       expect(api.is('disabled')).toBeTrue()
     })
