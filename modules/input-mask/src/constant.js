@@ -23,4 +23,3 @@ export const defaults = {
   blocks: 'noLimit'
 }
 
-export const info = { version: '0.0.1' }

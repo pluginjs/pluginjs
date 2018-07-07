@@ -13,7 +13,7 @@ import {
 
 class monthEvents {
   constructor(element, month) {
-    this.element = element
+    this.$element = element
     this.month = month
     this.classes = month.classes
 
@@ -27,11 +27,11 @@ class monthEvents {
     this.wrap = this.month.getElement('eventsWrap')
     this.hideMore()
     append(this.more, this.wrap)
-    append(this.wrap, this.element)
+    append(this.wrap, this.$element)
 
     this.events = []
 
-    setObjData('monthEvent', this, this.element)
+    setObjData('monthEvent', this, this.$element)
     // this.$element.data('monthEvent', this)
 
     this.bind()
@@ -130,7 +130,7 @@ class monthEvents {
 
     this.more.remove()
 
-    setObjData('monthEvent', null, this.element)
+    setObjData('monthEvent', null, this.$element)
   }
 }
 

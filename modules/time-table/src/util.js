@@ -30,16 +30,13 @@ function dateCompare(dateString, compareDateString) {
 
 function isDateBetween(dateString, startDateString, endDateString) {
   if (isEmpty(dateString)) {
-    // console.log('dateString不能为空')
-    return
+        return
   }
   if (isEmpty(startDateString)) {
-    // console.log('startDateString不能为空')
-    return
+        return
   }
   if (isEmpty(endDateString)) {
-    // console.log('endDateString不能为空')
-    return
+        return
   }
   let flag = false
   const startFlag = dateCompare(dateString, startDateString) < 1
@@ -78,20 +75,16 @@ function isDatesBetween(
   endDateCompareString
 ) {
   if (isEmpty(startDateString)) {
-    // console.log('startDateString不能为空')
-    return
+        return
   }
   if (isEmpty(endDateString)) {
-    // console.log('endDateString不能为空')
-    return
+        return
   }
   if (isEmpty(startDateCompareString)) {
-    // console.log('startDateCompareString不能为空')
-    return
+        return
   }
   if (isEmpty(endDateCompareString)) {
-    // console.log('endDateCompareString不能为空')
-    return
+        return
   }
   let flag = false
   const startFlag = dateCompare(startDateCompareString, startDateString) < 1

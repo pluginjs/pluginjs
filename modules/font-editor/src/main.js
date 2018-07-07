@@ -20,7 +20,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -45,8 +44,7 @@ import TextTransform from './textTransform'
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class FontEditor extends Component {
   constructor(element, options = {}) {

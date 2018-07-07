@@ -5,7 +5,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -23,8 +22,7 @@ const sources = {}
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Video extends Component {
   constructor(element, options = {}) {

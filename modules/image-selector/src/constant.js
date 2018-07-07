@@ -45,4 +45,3 @@ export const translations = {
   zh: { change: '改变布局' }
 }
 
-export const info = { version: '0.0.1' }

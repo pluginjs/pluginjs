@@ -16,8 +16,8 @@ class Dots {
   init() {
     this.items = this.parseItems()
 
-    this.dots = parseHTML(this.createHtml())
-    const dot = query(`.${this.classes.DOTS}`, this.dots)
+    this.$dots = parseHTML(this.createHtml())
+    const dot = query(`.${this.classes.DOTS}`, this.$dots)
     const o = {
       items: this.items,
       onClick: val => {
@@ -30,12 +30,12 @@ class Dots {
         ? query(this.options.appendTo)
         : this.options.appendTo
 
-    append(this.dots, appendToElement)
+    append(this.$dots, appendToElement)
 
     this.dotAPI = Pj.dots(dot, options)
 
     if (this.options.dots === false) {
-      this.dots.style.display = 'none'
+      this.$dots.style.display = 'none'
     }
   }
 

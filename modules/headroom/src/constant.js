@@ -33,4 +33,3 @@ export const defaults = {
   sticky: { spacing: 20 }
 }
 export const dependencies = ['sticky', 'scroll-dir']
-export const info = { version: '0.0.1' }

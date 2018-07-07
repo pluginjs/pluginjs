@@ -40,7 +40,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -59,8 +58,7 @@ let DATA = null
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class IconsPicker extends Component {
   constructor(element, options = {}) {
@@ -89,7 +87,6 @@ class IconsPicker extends Component {
         linkTitle: this.translate('emptyLinkTitle')
       })
     )
-    // console.log(this.$empty)
 
     this.$dropdown = Dropdown.of(this.$iconPicker, {
       data,
@@ -191,8 +188,7 @@ class IconsPicker extends Component {
 
   initData() {
     const inputVal = this.element.value.trim()
-    // console.log(inputVal)
-    if (inputVal !== '') {
+        if (inputVal !== '') {
       this.val(inputVal)
     }
   }
@@ -583,8 +579,7 @@ class IconsPicker extends Component {
     const that = this
     const data = []
 
-    // console.log(this.data)
-    for (const i in this.data) {
+        for (const i in this.data) {
       if ({}.hasOwnProperty.call(this.data, i)) {
         data.push({ label: this.data[i].title })
       }

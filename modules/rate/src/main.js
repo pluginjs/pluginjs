@@ -17,7 +17,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -31,8 +30,7 @@ import {
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Rate extends Component {
   constructor(element, options = {}) {
@@ -109,8 +107,7 @@ class Rate extends Component {
 
   verification() {
     if (this.element.tagName.toLowerCase() === 'input') {
-      // console.log('debug', this.element.dataset.min)
-      if (this.element.dataset.min || this.element.dataset.min === 0) {
+            if (this.element.dataset.min || this.element.dataset.min === 0) {
         const m = this.element.dataset.min
         const n = Number(m)
         if (n >= this.options.max) {

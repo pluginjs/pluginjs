@@ -16,7 +16,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -40,8 +39,7 @@ const POSITIONS = [
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class ScrollProgress extends Component {
   constructor(element, options = {}) {
@@ -57,7 +55,7 @@ class ScrollProgress extends Component {
   initialize() {
     addClass(this.classes.NAMESPACE, this.element)
 
-    this.bar = query(`.${this.classes.BAR}`)
+    this.$bar = query(`.${this.classes.BAR}`)
       ? query(`.${this.classes.BAR}`)
       : parseHTML(this.creatHtml())
 
@@ -67,7 +65,7 @@ class ScrollProgress extends Component {
     this.direction = this.getDirection()
     this.resetBarPosition()
 
-    prepend(this.bar, query(this.options.appendTo))
+    prepend(this.$bar, query(this.options.appendTo))
 
     this.bind()
     if (this.options.custom === true) {
@@ -86,7 +84,7 @@ class ScrollProgress extends Component {
           backgroundColor: this.options.color,
           opacity: this.options.opacity
         },
-        this.bar
+        this.$bar
       )
     } else {
       setStyle(
@@ -95,20 +93,20 @@ class ScrollProgress extends Component {
           backgroundColor: this.options.color,
           opacity: this.options.opacity
         },
-        this.bar
+        this.$bar
       )
     }
   }
 
   resetBarPosition() {
-    if (hasClass(this.getClass(`{namespace}-${this.position}`), this.bar)) {
+    if (hasClass(this.getClass(`{namespace}-${this.position}`), this.$bar)) {
       return
     }
     this.setBardefaultAttr()
     for (let i = 0; i < POSITIONS.length; i++) {
-      removeClass(this.getClass(`{namespace}-${POSITIONS[i]}`), this.bar)
+      removeClass(this.getClass(`{namespace}-${POSITIONS[i]}`), this.$bar)
     }
-    addClass(this.getClass(`{namespace}-${this.position}`), this.bar)
+    addClass(this.getClass(`{namespace}-${this.position}`), this.$bar)
   }
 
   getDirection() {
@@ -137,9 +135,9 @@ class ScrollProgress extends Component {
 
   setBarSize(size) {
     if (this.direction === 'vertical') {
-      setStyle({ height: `${size}%` }, this.bar)
+      setStyle({ height: `${size}%` }, this.$bar)
     } else {
-      setStyle({ width: `${size}%` }, this.bar)
+      setStyle({ width: `${size}%` }, this.$bar)
     }
   }
 

@@ -76,3 +76,4 @@ class Ajax extends Base {
 }
 
 export default Ajax
+ Ajax

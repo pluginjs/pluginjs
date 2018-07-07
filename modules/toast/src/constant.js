@@ -94,4 +94,3 @@ export const defaults = {
   loaderBgColor: ''
 }
 
-export const info = { version: '0.0.1' }

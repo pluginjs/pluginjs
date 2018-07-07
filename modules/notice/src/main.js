@@ -17,7 +17,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   namespace as NAMESPACE
 } from './constant'
 
@@ -31,7 +30,7 @@ class Notice extends GlobalComponent {
     super(NAMESPACE)
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
     this.initClasses(CLASSES)
-    this.element = parseHTML(this.createHtml())
+    this.$element = parseHTML(this.createHtml())
 
     this.initStates()
     this.initialize()
@@ -44,21 +43,21 @@ class Notice extends GlobalComponent {
     this.setStyles()
     this.bind()
     this.animate()
-    append(this.element, window.document.body)
+    append(this.$element, window.document.body)
     this.trigger(EVENTS.SHOW)
   }
 
   animate() {
-    reflow(this.element)
+    reflow(this.$element)
     if (this.options.layout === 'top') {
-      addClass(`${this.classes.NAMESPACE}-Intop`, this.element)
+      addClass(`${this.classes.NAMESPACE}-Intop`, this.$element)
     } else {
-      addClass(`${this.classes.NAMESPACE}-Inbottom`, this.element)
+      addClass(`${this.classes.NAMESPACE}-Inbottom`, this.$element)
     }
   }
 
   setStyles() {
-    setStyle({ 'text-align': this.options.contentAlignment }, this.container)
+    setStyle({ 'text-align': this.options.contentAlignment }, this.$container)
 
     if (this.options.backgroundImage) {
       const url = `url(${this.options.backgroundImage})`
@@ -67,28 +66,28 @@ class Notice extends GlobalComponent {
           background: url,
           color: this.options.fontColor
         },
-        this.element
+        this.$element
       )
-      addClass(this.classes.BACKGROUND, this.element)
+      addClass(this.classes.BACKGROUND, this.$element)
     } else {
       setStyle(
         {
           'background-color': this.options.backgroundColor,
           color: this.options.fontColor
         },
-        this.element
+        this.$element
       )
     }
     if (this.options.layout === 'bottom') {
-      setStyle({ bottom: '0px' }, this.element)
+      setStyle({ bottom: '0px' }, this.$element)
     } else {
-      setStyle({ top: '0px' }, this.element)
+      setStyle({ top: '0px' }, this.$element)
     }
     if (this.options.buttonAlign === 'right') {
-      setStyle({ float: this.options.buttonAlign }, this.position)
+      setStyle({ float: this.options.buttonAlign }, this.$position)
     }
     if (this.options.closeBottonColor) {
-      setStyle({ color: this.options.closeBottonColor }, this.closeBtn)
+      setStyle({ color: this.options.closeBottonColor }, this.$closeBtn)
     }
   }
 
@@ -104,7 +103,7 @@ class Notice extends GlobalComponent {
           this.hide()
         }
       },
-      this.element
+      this.$element
     )
 
     if (this.options.buttons) {
@@ -122,7 +121,7 @@ class Notice extends GlobalComponent {
             this.hide()
           }
         },
-        this.buttons
+        this.$buttons
       )
     }
 
@@ -138,7 +137,7 @@ class Notice extends GlobalComponent {
             clearInterval(settime)
           }
         },
-        this.element
+        this.$element
       )
       bindEvent(
         {
@@ -149,7 +148,7 @@ class Notice extends GlobalComponent {
             }, this.options.timeout)
           }
         },
-        this.element
+        this.$element
       )
     }
   }
@@ -157,11 +156,11 @@ class Notice extends GlobalComponent {
   hide() {
     this.trigger(EVENTS.HIDE)
     if (this.options.layout === 'top') {
-      removeClass(`${this.classes.NAMESPACE}-Intop`, this.element)
-      addClass(`${this.classes.NAMESPACE}-Outtop`, this.element)
+      removeClass(`${this.classes.NAMESPACE}-Intop`, this.$element)
+      addClass(`${this.classes.NAMESPACE}-Outtop`, this.$element)
     } else {
-      removeClass(`${this.classes.NAMESPACE}-Inbottom`, this.element)
-      addClass(`${this.classes.NAMESPACE}-Outbottom`, this.element)
+      removeClass(`${this.classes.NAMESPACE}-Inbottom`, this.$element)
+      addClass(`${this.classes.NAMESPACE}-Outbottom`, this.$element)
     }
     bindEvent(
       {
@@ -170,21 +169,21 @@ class Notice extends GlobalComponent {
           this.destroy()
         }
       },
-      this.element
+      this.$element
     )
   }
 
   initialize() {
-    this.content = query(`.${this.classes.CONTENT}`, this.element)
-    this.buttons = query(`.${this.classes.BUTTONS}`, this.element)
-    this.container = query(`.${this.classes.CONTAINER}`, this.element)
-    this.position = query(`.${this.classes.POSITION}`, this.element)
-    this.closeBtn = query(`.${this.classes.CLOSE}`, this.element)
+    this.$content = query(`.${this.classes.CONTENT}`, this.$element)
+    this.$buttons = query(`.${this.classes.BUTTONS}`, this.$element)
+    this.$container = query(`.${this.classes.CONTAINER}`, this.$element)
+    this.$position = query(`.${this.classes.POSITION}`, this.$element)
+    this.$closeBtn = query(`.${this.classes.CLOSE}`, this.$element)
 
     this.setContent(this.options.content)
 
     if (this.options.fixedWidth) {
-      addClass(`${this.classes.NAMESPACE}-fixed`, this.element)
+      addClass(`${this.classes.NAMESPACE}-fixed`, this.$element)
     }
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -192,9 +191,9 @@ class Notice extends GlobalComponent {
 
   setContent(content) {
     if (this.options.html) {
-      this.content.innerHTML = content
+      this.$content.innerHTML = content
     } else {
-      this.content.textContent = content
+      this.$content.textContent = content
     }
   }
 
@@ -203,7 +202,7 @@ class Notice extends GlobalComponent {
       this.leave('initialized')
     }
     this.trigger(EVENTS.DESTROY)
-    remove(this.element)
+    remove(this.$element)
 
     super.destroy()
   }

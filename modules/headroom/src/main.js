@@ -12,7 +12,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -32,8 +31,7 @@ const mode = {}
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Headroom extends Component {
   constructor(element, options = {}) {
@@ -47,8 +45,7 @@ class Headroom extends Component {
 
   initialize() {
     if (typeof mode[this.options.type] !== 'undefined') {
-      // console.log('debug', this.options.type)
-      this.modal = new mode[this.options.type](this)
+            this.modal = new mode[this.options.type](this)
     }
 
     addClass(this.classes.NAMESPACE, this.element)

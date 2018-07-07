@@ -16,7 +16,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -31,8 +30,7 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class NavToSelect extends Component {
   constructor(element, options = {}) {
@@ -62,9 +60,9 @@ class NavToSelect extends Component {
     bindEvent(
       {
         type: this.eventName('change'),
-        handler: this.options.onChange.bind(this.select)
+        handler: this.options.onChange.bind(this.$select)
       },
-      this.select
+      this.$select
     )
 
     /* fix orientation change issue */
@@ -73,7 +71,7 @@ class NavToSelect extends Component {
         type: this.eventName('orientationchange'),
         handler: () => {
           if (this.$select.is(':hidden') && this.$select.is(':focus')) {
-            this.select.blur()
+            this.$select.blur()
           }
         }
       },
@@ -82,22 +80,22 @@ class NavToSelect extends Component {
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.select)
+    removeEvent(this.eventName(), this.$select)
     removeEvent(this.eventName(), document.body)
   }
 
   build(items) {
-    this.select = parseHTML(`<select class=${this.classes.SELECT} />`)
-    this.select.innerHTML = this.buildOptions(items, 1)
+    this.$select = parseHTML(`<select class=${this.classes.SELECT} />`)
+    this.$select.innerHTML = this.buildOptions(items, 1)
 
     if (this.options.prependTo === null) {
-      insertAfter(this.select, this.element)
+      insertAfter(this.$select, this.element)
     } else {
       const prependTo =
         typeof this.options.prependTo === 'string'
           ? this.options.prependTo
           : query(this.options.prependTo)
-      insertBefore(this.select, prependTo)
+      insertBefore(this.$select, prependTo)
     }
 
     this.enter('builded')
@@ -180,7 +178,7 @@ class NavToSelect extends Component {
   }
 
   getSelect() {
-    return this.select
+    return this.$select
   }
 
   enable() {

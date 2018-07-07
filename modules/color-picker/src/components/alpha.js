@@ -77,7 +77,6 @@ class Alpha {
           }
         }) => {
           this.position(color)
-          // console.log(color)
         }
       },
       this.instance.element

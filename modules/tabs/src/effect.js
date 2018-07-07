@@ -96,9 +96,9 @@ class Effect {
       height = Math.max(this.instance.panelMinHeight, height)
     }
 
-    this.instance.content.style.cssText = ''
+    this.instance.$content.style.cssText = ''
     anime({
-      targets: this.instance.content,
+      targets: this.instance.$content,
       height: [this.instance.previousHeight, height],
       duration: this.instance.options.duration / 2,
       easing: 'easeOutExpo'

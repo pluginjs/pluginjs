@@ -37,4 +37,3 @@ export const dependencies = ['scroll']
 
 export const translations = {}
 
-export const info = { version: '0.2.1' }

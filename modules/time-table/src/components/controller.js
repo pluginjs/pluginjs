@@ -16,7 +16,7 @@ class Controller {
     this.options = instance.options
     this.classes = instance.classes
 
-    this.element = parseHTML(
+    this.$element = parseHTML(
       this.createEl('controller', {
         class: this.classes.CONTROL,
         previewClass: this.classes.PREVIEW,
@@ -26,13 +26,13 @@ class Controller {
       })
     )
 
-    append(this.element, instance.wrap)
+    append(this.$element, instance.wrap)
 
     this.init()
   }
 
   init() {
-    this.content = query('span', this.element)
+    this.$content = query('span', this.$element)
     this.update()
 
     this.bind()
@@ -61,7 +61,7 @@ class Controller {
       this.instance.currentDay,
       this.options.monthly.controllerLabel
     )
-    this.content.textContent = controllerStr
+    this.$content.textContent = controllerStr
   }
 
   updateWeek() {
@@ -75,7 +75,7 @@ class Controller {
       this.instance.options.weekly.controllerLabel[1]
     )
     // log('test  cssss', this.controllerStr)
-    this.content.textContent = controllerStr
+    this.$content.textContent = controllerStr
   }
 
   bind() {
@@ -95,19 +95,19 @@ class Controller {
           }
         }
       },
-      this.element
+      this.$element
     )
   }
 
   hide() {
-    if (!hasClass(this.classes.HIDE, this.element)) {
-      addClass(this.classes.HIDE, this.element)
+    if (!hasClass(this.classes.HIDE, this.$element)) {
+      addClass(this.classes.HIDE, this.$element)
     }
   }
 
   show() {
-    if (hasClass(this.classes.HIDE, this.element)) {
-      removeClass(this.classes.HIDE, this.element)
+    if (hasClass(this.classes.HIDE, this.$element)) {
+      removeClass(this.classes.HIDE, this.$element)
     }
   }
 
@@ -115,7 +115,7 @@ class Controller {
     return templateEngine.compile(this.options.templates[tempName]())(options)
   }
   get() {
-    return this.content.textContent
+    return this.$content.textContent
   }
 }
 

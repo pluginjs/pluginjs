@@ -25,7 +25,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   namespace as NAMESPACE
 } from './constant'
 
@@ -49,7 +48,7 @@ class Toast extends GlobalComponent {
     super(NAMESPACE)
     this.options = deepMerge(DEFAULTS, options)
     this.initClasses(CLASSES)
-    this.element = parseHTML(this.createHtml())
+    this.$element = parseHTML(this.createHtml())
 
     this.initStates()
     this.initialize()
@@ -58,9 +57,9 @@ class Toast extends GlobalComponent {
 
   show() {
     this.addToDom()
-    append(this.element, this.wrap)
+    append(this.$element, this.$wrap)
     if (this.options.stack && is.number(this.options.stack)) {
-      const instances = queryAll(`.${this.classes.NAMESPACE}`, this.wrap)
+      const instances = queryAll(`.${this.classes.NAMESPACE}`, this.$wrap)
       const _prevToastCount = instances.length
       const _extToastCount = _prevToastCount - this.options.stack
       if (_extToastCount > 0) {
@@ -71,7 +70,7 @@ class Toast extends GlobalComponent {
     }
     // toast bg
     if (this.options.bgColor) {
-      setStyle({ background: this.options.bgColor }, this.element)
+      setStyle({ background: this.options.bgColor }, this.$element)
     }
 
     this.processLoader()
@@ -81,19 +80,19 @@ class Toast extends GlobalComponent {
   }
 
   processLoader() {
-    if (!this.loader || !is.number(this.options.duration)) {
+    if (!this.$loader || !is.number(this.options.duration)) {
       return
     }
 
     if (!this.options.loaderBgColor) {
-      addClass(this.classes.STRIPED, this.loader)
+      addClass(this.classes.STRIPED, this.$loader)
     } else {
-      setStyle({ 'background-color': this.options.loaderBgColor }, this.loader)
+      setStyle({ 'background-color': this.options.loaderBgColor }, this.$loader)
     }
 
     this.pauseTime = 0
 
-    reflow(this.loader)
+    reflow(this.$loader)
 
     this.startLoader()
   }
@@ -101,7 +100,7 @@ class Toast extends GlobalComponent {
   startLoader() {
     this.startTime = new Date().getTime()
     const time = this.options.duration - this.pauseTime
-    this.$loader = $(this.loader)
+    this.$loader = $(this.$loader)
     this.$loader.animate({ width: '100%' }, time)
 
     this.setTimeOut = setTimeout(() => {
@@ -118,18 +117,18 @@ class Toast extends GlobalComponent {
   }
 
   animate() {
-    addClass(`${this.classes.NAMESPACE}-iconIn`, this.icon)
+    addClass(`${this.classes.NAMESPACE}-iconIn`, this.$icon)
 
-    if (this.content) {
-      addClass(`${this.classes.NAMESPACE}-contentIn`, this.content)
+    if (this.$content) {
+      addClass(`${this.classes.NAMESPACE}-contentIn`, this.$content)
     }
 
-    if (this.buttons) {
-      addClass(`${this.classes.NAMESPACE}-contentIn`, this.buttons)
+    if (this.$buttons) {
+      addClass(`${this.classes.NAMESPACE}-contentIn`, this.$buttons)
     }
 
-    if (this.title) {
-      addClass(`${this.classes.NAMESPACE}-contentIn`, this.title)
+    if (this.$title) {
+      addClass(`${this.classes.NAMESPACE}-contentIn`, this.$title)
     }
 
     let effect = ''
@@ -146,7 +145,7 @@ class Toast extends GlobalComponent {
     }
     this.options.effect = effect
 
-    addClass(`${this.classes.NAMESPACE}-${effect}`, this.element)
+    addClass(`${this.classes.NAMESPACE}-${effect}`, this.$element)
   }
 
   position() {
@@ -160,16 +159,16 @@ class Toast extends GlobalComponent {
             left:
               window.outerWidth / 2 -
               parseInt(
-                getStyle('width', this.wrap).substring(
+                getStyle('width', this.$wrap).substring(
                   0,
-                  getStyle('width', this.wrap).length - 2
+                  getStyle('width', this.$wrap).length - 2
                 ),
                 10
               ) /
                 2,
             bottom: 20
           },
-          this.wrap
+          this.$wrap
         )
       } else if (this.options.position === 'top-center') {
         setStyle(
@@ -177,16 +176,16 @@ class Toast extends GlobalComponent {
             left:
               window.outerWidth / 2 -
               parseInt(
-                getStyle('width', this.wrap).substring(
+                getStyle('width', this.$wrap).substring(
                   0,
-                  getStyle('width', this.wrap).length - 2
+                  getStyle('width', this.$wrap).length - 2
                 ),
                 10
               ) /
                 2,
             top: 20
           },
-          this.wrap
+          this.$wrap
         )
       } else if (this.options.position === 'mid-center') {
         setStyle(
@@ -194,9 +193,9 @@ class Toast extends GlobalComponent {
             left:
               window.outerWidth / 2 -
               parseInt(
-                getStyle('width', this.wrap).substring(
+                getStyle('width', this.$wrap).substring(
                   0,
-                  getStyle('width', this.wrap).length - 2
+                  getStyle('width', this.$wrap).length - 2
                 ),
                 10
               ) /
@@ -204,21 +203,21 @@ class Toast extends GlobalComponent {
             top:
               window.outerHeight / 2 -
               parseInt(
-                getStyle('height', this.wrap).substring(
+                getStyle('height', this.$wrap).substring(
                   0,
-                  getStyle('height', this.wrap).length - 2
+                  getStyle('height', this.$wrap).length - 2
                 ),
                 10
               ) /
                 2
           },
-          this.wrap
+          this.$wrap
         )
       }
 
       addClass(
         this.getClass(this.classes.POSITION, 'position', this.options.position),
-        this.wrap
+        this.$wrap
       )
     } else if (typeof this.options.position === 'object') {
       setStyle(
@@ -234,56 +233,56 @@ class Toast extends GlobalComponent {
             ? this.options.position.right
             : 'auto'
         },
-        this.wrap
+        this.$wrap
       )
     } else {
       addClass(
         this.getClass(this.classes.POSITION, 'position', 'bottom-left'),
-        this.wrap
+        this.$wrap
       )
     }
   }
 
   hide() {
-    if (this.icon) {
-      remove(this.icon)
+    if (this.$icon) {
+      remove(this.$icon)
     }
 
-    if (this.content) {
-      removeClass(`${this.classes.NAMESPACE}-contentIn`, this.content)
-      addClass(`${this.classes.NAMESPACE}-contentOut`, this.content)
+    if (this.$content) {
+      removeClass(`${this.classes.NAMESPACE}-contentIn`, this.$content)
+      addClass(`${this.classes.NAMESPACE}-contentOut`, this.$content)
     }
 
-    if (this.title) {
-      removeClass(`${this.classes.NAMESPACE}-contentIn`, this.title)
-      addClass(`${this.classes.NAMESPACE}-contentOut`, this.title)
+    if (this.$title) {
+      removeClass(`${this.classes.NAMESPACE}-contentIn`, this.$title)
+      addClass(`${this.classes.NAMESPACE}-contentOut`, this.$title)
     }
 
     removeClass(
       `${this.classes.NAMESPACE}-${this.options.effect}`,
-      this.element
+      this.$element
     )
-    addClass(`${this.classes.NAMESPACE}-Out`, this.element)
+    addClass(`${this.classes.NAMESPACE}-Out`, this.$element)
 
-    if (this.buttons) {
-      removeClass(`${this.classes.NAMESPACE}-contentIn`, this.buttons)
-      addClass(`${this.classes.NAMESPACE}-contentOut`, this.buttons)
+    if (this.$buttons) {
+      removeClass(`${this.classes.NAMESPACE}-contentIn`, this.$buttons)
+      addClass(`${this.classes.NAMESPACE}-contentOut`, this.$buttons)
     }
 
     bindEvent(
       {
         type: this.eventName('animationend'),
         handler: () => {
-          remove(this.element)
+          remove(this.$element)
           this.destroy()
         }
       },
-      this.element
+      this.$element
     )
   }
 
   bind() {
-    if (this.close) {
+    if (this.$close) {
       bindEvent(
         {
           type: this.eventName('click'),
@@ -291,11 +290,11 @@ class Toast extends GlobalComponent {
             this.hide()
           }
         },
-        this.close
+        this.$close
       )
     }
 
-    if (is.number(this.options.duration) && this.loader) {
+    if (is.number(this.options.duration) && this.$loader) {
       bindEvent(
         {
           type: this.eventName('mouseenter'),
@@ -303,7 +302,7 @@ class Toast extends GlobalComponent {
             this.pauseLoader()
           }
         },
-        this.element
+        this.$element
       )
       bindEvent(
         {
@@ -312,7 +311,7 @@ class Toast extends GlobalComponent {
             this.startLoader()
           }
         },
-        this.element
+        this.$element
       )
     }
 
@@ -333,7 +332,7 @@ class Toast extends GlobalComponent {
             this.hide()
           }
         },
-        this.buttons
+        this.$buttons
       )
     }
   }
@@ -348,17 +347,17 @@ class Toast extends GlobalComponent {
       )
     }
 
-    this.wrap = query(`.${this.classes.WRAP}.${positionClass}`)
-    if (!this.wrap) {
+    this.$wrap = query(`.${this.classes.WRAP}.${positionClass}`)
+    if (!this.$wrap) {
       const wrap = templateEngine.render(
         this.options.templates.wrap.call(this),
         { classes: this.classes }
       )
-      this.wrap = parseHTML(wrap)
-      append(this.wrap, window.document.body)
+      this.$wrap = parseHTML(wrap)
+      append(this.$wrap, window.document.body)
       this.position()
     } else if (!this.options.stack) {
-      this.wrap.innerHTML = ''
+      this.$wrap.innerHTML = ''
     }
   }
 
@@ -459,12 +458,12 @@ class Toast extends GlobalComponent {
   }
 
   initialize() {
-    this.icon = query(`.${this.classes.ICON}`, this.element)
-    this.content = query(`.${this.classes.CONTENT}`, this.element)
-    this.title = query(`.${this.classes.TITLE}`, this.element)
-    this.buttons = query(`.${this.classes.BUTTONS}`, this.element)
-    this.loader = query(`.${this.classes.LOADER}`, this.element)
-    this.close = query(`.${this.classes.CLOSE}`, this.element)
+    this.$icon = query(`.${this.classes.ICON}`, this.$element)
+    this.$content = query(`.${this.classes.CONTENT}`, this.$element)
+    this.$title = query(`.${this.classes.TITLE}`, this.$element)
+    this.$buttons = query(`.${this.classes.BUTTONS}`, this.$element)
+    this.$loader = query(`.${this.classes.LOADER}`, this.$element)
+    this.$close = query(`.${this.classes.CLOSE}`, this.$element)
 
     if (this.options.content) {
       this.setContent(this.options.content)
@@ -472,17 +471,17 @@ class Toast extends GlobalComponent {
     this.setTitle(this.options.title)
     // set icon
     if (this.options.iconClass === '' && this.options.icon !== '') {
-      setStyle({ color: this.options.icons[this.options.icon][1] }, this.icon)
+      setStyle({ color: this.options.icons[this.options.icon][1] }, this.$icon)
       if (this.options.iconColor !== '') {
-        setStyle({ color: this.options.iconColor }, this.icon)
+        setStyle({ color: this.options.iconColor }, this.$icon)
       }
-    } else if (this.icon) {
-      setStyle({ color: this.options.iconColor }, this.icon)
+    } else if (this.$icon) {
+      setStyle({ color: this.options.iconColor }, this.$icon)
     }
 
     // set X btn
     if (this.options.closeBtnColor) {
-      setStyle({ color: this.options.closeBtnColor }, this.close)
+      setStyle({ color: this.options.closeBtnColor }, this.$close)
     }
 
     this.enter('initialized')
@@ -491,34 +490,34 @@ class Toast extends GlobalComponent {
 
   setContent(content) {
     if (this.options.html) {
-      this.content.innerHTML = content
+      this.$content.innerHTML = content
     } else {
-      this.content.textContent = content
+      this.$content.textContent = content
     }
 
     if (this.options.icon) {
-      setStyle({ 'margin-left': '25px' }, this.content)
+      setStyle({ 'margin-left': '25px' }, this.$content)
     }
 
     if (this.options.contentColor) {
-      setStyle({ color: this.options.contentColor }, this.content)
+      setStyle({ color: this.options.contentColor }, this.$content)
     }
   }
 
   setTitle(title) {
-    const icon = query('i', this.title)
+    const icon = query('i', this.$title)
     if (icon) {
       insertAfter(title, icon)
     } else {
-      this.title.textContent = title
+      this.$title.textContent = title
     }
 
     if (this.options.icon || this.options.iconClass) {
-      setStyle({ 'margin-left': '25px' }, this.title)
+      setStyle({ 'margin-left': '25px' }, this.$title)
     }
 
     if (this.options.titleColor) {
-      setStyle({ color: this.options.titleColor }, this.title)
+      setStyle({ color: this.options.titleColor }, this.$title)
     }
   }
 

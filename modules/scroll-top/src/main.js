@@ -20,7 +20,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -37,8 +36,7 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class ScrollTop extends Component {
   /* eslint consistent-return: "off" */

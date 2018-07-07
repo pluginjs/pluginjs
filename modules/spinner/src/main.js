@@ -18,7 +18,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -33,8 +32,7 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Spinner extends Component {
   constructor(element, options = {}) {
@@ -67,15 +65,15 @@ class Spinner extends Component {
   }
 
   initialize() {
-    this.control = parseHTML(
+    this.$control = parseHTML(
       template.compile(this.options.templates.control())({
         control: this.classes.CONTROL,
         up: this.classes.UP,
         down: this.classes.DOWN
       })
     )
-    this.down = query(`.${this.classes.DOWN}`, this.control)
-    this.up = query(`.${this.classes.UP}`, this.control)
+    this.$down = query(`.${this.classes.DOWN}`, this.$control)
+    this.$up = query(`.${this.classes.UP}`, this.$control)
     wrap(`<div tabindex="0" class="${this.classes.WRAP}"></div>`, this.element)
     this.wrap = this.element.parentNode
 
@@ -85,13 +83,13 @@ class Spinner extends Component {
 
     if (this.options.layout === 'right') {
       addClass(this.classes.CONTROLRIGHT, this.wrap)
-      removeClass('icon-plus', this.up)
-      addClass('icon-plus-mini', this.up)
-      removeClass('icon-minus', this.down)
-      addClass('icon-minus-mini', this.down)
+      removeClass('icon-plus', this.$up)
+      addClass('icon-plus-mini', this.$up)
+      removeClass('icon-minus', this.$down)
+      addClass('icon-minus-mini', this.$down)
     }
 
-    append(this.control, this.wrap)
+    append(this.$control, this.wrap)
 
     this.data = {}
 
@@ -195,11 +193,11 @@ class Spinner extends Component {
     if (this.options.layout === 'both') {
       width =
         parseInt(this.element.clientWidth, 10) -
-        parseInt(this.up.clientWidth, 10) * 2
+        parseInt(this.$up.clientWidth, 10) * 2
     } else {
       width =
         parseInt(this.element.clientWidth, 10) -
-        parseInt(this.control.clientWidth, 10)
+        parseInt(this.$control.clientWidth, 10)
     }
 
     return new UNITS(this.element, {
@@ -247,7 +245,7 @@ class Spinner extends Component {
           that.spin(that.spinDown)
         }
       },
-      this.down
+      this.$down
     )
     bindEvent(
       {
@@ -257,7 +255,7 @@ class Spinner extends Component {
           removeEvent(this.eventName('mouseup'), document)
         }
       },
-      this.down
+      this.$down
     )
     bindEvent(
       {
@@ -266,7 +264,7 @@ class Spinner extends Component {
           that.spinDown()
         }
       },
-      this.down
+      this.$down
     )
 
     bindEvent(
@@ -285,7 +283,7 @@ class Spinner extends Component {
           that.spin(that.spinUp)
         }
       },
-      this.up
+      this.$up
     )
     bindEvent(
       {
@@ -295,7 +293,7 @@ class Spinner extends Component {
           removeEvent(this.eventName('mouseup'), document)
         }
       },
-      this.up
+      this.$up
     )
     bindEvent(
       {
@@ -304,7 +302,7 @@ class Spinner extends Component {
           that.spinUp()
         }
       },
-      this.up
+      this.$up
     )
 
     bindEvent(
@@ -394,8 +392,8 @@ class Spinner extends Component {
     this.leave('bind')
 
     removeEvent(this.eventName, this.element)
-    removeEvent(this.eventName, this.down)
-    removeEvent(this.eventName, this.up)
+    removeEvent(this.eventName, this.$down)
+    removeEvent(this.eventName, this.$up)
     removeEvent(this.eventName, this.wrap)
   }
 
@@ -537,7 +535,7 @@ class Spinner extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      this.control.remove()
+      this.$control.remove()
       unwrap(this.element)
 
       if (this.UNITS) {

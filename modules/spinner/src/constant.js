@@ -73,4 +73,3 @@ export const defaults = {
 
 export const dependencies = ['units', 'mousewheel']
 
-export const info = { version: '0.4.2' }

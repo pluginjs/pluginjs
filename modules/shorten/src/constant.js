@@ -26,4 +26,3 @@ export const defaults = {
   less: 'less'
 }
 
-export const info = { version: '0.3.1' }

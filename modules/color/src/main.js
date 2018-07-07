@@ -15,8 +15,7 @@ Object.assign(
     matchString: Color.matchString,
     setDefaults: Color.setDefaults
   },
-  Converter,
-  INFO
+  Converter
 )
 Pj.color = color
 export default color

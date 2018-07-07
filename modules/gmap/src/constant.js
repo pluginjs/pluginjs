@@ -80,4 +80,3 @@ export const defaults = {
   onReady: null
 }
 
-export const info = { version: '0.3.4' }

@@ -54,4 +54,3 @@ export const defaults = {
   poster: ''
 }
 
-export const info = { version: '0.0.1' }

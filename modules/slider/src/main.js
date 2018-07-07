@@ -17,7 +17,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -38,8 +37,7 @@ import { cube, linear, fade } from './animate'
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Slider extends Component {
   state = true

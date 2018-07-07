@@ -76,4 +76,3 @@ export const defaults = {
 
 export const dependencies = ['Hammer', 'anime']
 
-export const info = { version: '0.2.0' }

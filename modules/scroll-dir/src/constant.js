@@ -10,4 +10,3 @@ export const defaults = {
   threshold: 0
 }
 
-export const info = { version: '0.0.1' }

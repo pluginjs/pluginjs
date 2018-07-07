@@ -16,7 +16,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -34,8 +33,7 @@ const optionsExtendPopover = deepMerge(Popover.defaults, DEFAULTS)
     defaults: optionsExtendPopover,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class PopDialog extends Popover {
   constructor(element, options = {}) {
@@ -49,8 +47,7 @@ class PopDialog extends Popover {
 
   bind() {
     super.bind()
-    // console.log('debug', this.selfEventName('show'))
-    bindEvent(
+        bindEvent(
       {
         type: this.selfEventName('show'),
         handler: () => this.bindButtonEvents()

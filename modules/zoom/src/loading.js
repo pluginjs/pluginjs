@@ -16,7 +16,7 @@ class Loading {
     const html = templateEngine.render(options.templates.loading.call(this), {
       classes: this.classes
     })
-    // this.element = query(html)
+    // this.$element = query(html)
     // options.loading.appendTo
 
     this._builded = true

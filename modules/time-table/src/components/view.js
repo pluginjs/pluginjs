@@ -9,27 +9,27 @@ class View {
     this.options = instance.options
     this.classes = instance.classes
 
-    this.element = parseHTML(`<div class="${this.classes.VIEW}"></div>`)
-    append(this.element, instance.wrap)
+    this.$element = parseHTML(`<div class="${this.classes.VIEW}"></div>`)
+    append(this.$element, instance.wrap)
 
     this.init()
   }
 
   init() {
-    append(`<div class="${this.classes.WEEK}"></div>`, this.element)
+    append(`<div class="${this.classes.WEEK}"></div>`, this.$element)
     this.weekly = new Weekly(
       this.instance,
-      query(`.${this.classes.WEEK}`, this.element)
+      query(`.${this.classes.WEEK}`, this.$element)
     )
-    append(`<div class="${this.classes.MONTH}"></div>`, this.element)
+    append(`<div class="${this.classes.MONTH}"></div>`, this.$element)
     this.monthly = new Monthly(
       this.instance,
-      query(`.${this.classes.MONTH}`, this.element)
+      query(`.${this.classes.MONTH}`, this.$element)
     )
-    append(`<div class="${this.classes.LIST}"></div>`, this.element)
+    append(`<div class="${this.classes.LIST}"></div>`, this.$element)
     this.listly = new Listly(
       this.instance,
-      query(`.${this.classes.LIST}`, this.element)
+      query(`.${this.classes.LIST}`, this.$element)
     )
 
     this.update() // update when  init

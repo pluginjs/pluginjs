@@ -17,7 +17,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -31,8 +30,7 @@ import {
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class SvgProgress extends Component {
   constructor(element, options = {}) {
@@ -67,8 +65,8 @@ class SvgProgress extends Component {
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
-    this.number = query(`.${this.classes.NUMBER}`, this.element)
-    this.content = query(`.${this.classes.CONTENT}`, this.element)
+    this.$number = query(`.${this.classes.NUMBER}`, this.element)
+    this.$content = query(`.${this.classes.CONTENT}`, this.element)
 
     this.size = this.options.size
     this.width = this.size
@@ -90,9 +88,9 @@ class SvgProgress extends Component {
     this.buildTrack()
     this.buildBar()
 
-    this.svg = parseHTML(`<div class="${this.classes.SVG}"></div>`)
-    append(this.SVG, this.svg)
-    append(this.svg, this.element)
+    this.$svg = parseHTML(`<div class="${this.classes.SVG}"></div>`)
+    append(this.SVG, this.$svg)
+    append(this.$svg, this.element)
   }
 
   buildTrack() {
@@ -351,11 +349,11 @@ class SvgProgress extends Component {
     this.updateBar()
 
     this.element.setAttribute('aria-valuenow', this.now)
-    if (this.number && typeof this.options.numberCallback === 'function') {
-      this.number.innerHTML = this.options.numberCallback.call(this, [this.now])
+    if (this.$number && typeof this.options.numberCallback === 'function') {
+      this.$number.innerHTML = this.options.numberCallback.call(this, [this.now])
     }
-    if (this.content && typeof this.options.contentCallback === 'function') {
-      this.content.innerHTML = this.options.contentCallback.call(this, [
+    if (this.$content && typeof this.options.contentCallback === 'function') {
+      this.$content.innerHTML = this.options.contentCallback.call(this, [
         this.now
       ])
     }
@@ -437,7 +435,7 @@ class SvgProgress extends Component {
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }
-      this.svg.remove()
+      this.$svg.remove()
       this.leave('initialized')
     }
 

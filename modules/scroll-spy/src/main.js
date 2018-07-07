@@ -7,7 +7,6 @@ import Pj, { eventable, register, stateable } from '@pluginjs/pluginjs'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -19,8 +18,7 @@ import {
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class ScrollSpy extends Component {
   constructor(element, options = {}) {

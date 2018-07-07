@@ -16,7 +16,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -34,8 +33,7 @@ const optionsExtendTooltip = deepMerge(Tooltip.defaults, DEFAULTS)
     defaults: optionsExtendTooltip,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Popover extends Tooltip {
   constructor(element, options = {}, namespace, defaults, classes) {

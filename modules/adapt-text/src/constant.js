@@ -19,4 +19,3 @@ export const defaults = {
   resize: true
 }
 
-export const info = { version: '1.3.2' }

@@ -5,7 +5,7 @@ import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML } from '@pluginjs/dom'
 
-class tip {
+class Tip {
   constructor(instance) {
     this.defaults = { active: 'always' }
     this.init(instance)
@@ -99,8 +99,8 @@ class tip {
   }
 
   static init(instance) {
-    return new tip(instance)
+    return new Tip(instance)
   }
 }
 
-export default tip
+export default Tip

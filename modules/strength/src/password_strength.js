@@ -1034,7 +1034,7 @@ const commonWords = [
 
 export class PasswordStrength {
   constructor() {
-    this.username = null
+    this.$username = null
     this.password = null
     this.score = 0
     this.status = null
@@ -1150,9 +1150,9 @@ export class PasswordStrength {
         break
 
       case 'username':
-        if (this.password == this.username) {
+        if (this.password == this.$username) {
           score = -100
-        } else if (this.password.includes(this.username)) {
+        } else if (this.password.includes(this.$username)) {
           score = -15
         }
         break

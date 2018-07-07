@@ -14,7 +14,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -37,8 +36,7 @@ const COMPONENTS = {}
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Paginator extends Component {
   constructor(element, options = {}) {

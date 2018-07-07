@@ -43,8 +43,7 @@ class Thumbnails {
           if (target.classList.contains(this.classes.THUMBBG)) {
             const data = parseInt(event.target.dataset.index)
             this.instance.goTo(data)
-            // console.log('text', data)
-          }
+                      }
         }
       },
       this.thumbs

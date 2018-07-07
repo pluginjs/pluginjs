@@ -24,7 +24,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -40,8 +39,7 @@ import Modal from '@pluginjs/modal'
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class EditPanel extends Component {
   constructor(element, options = {}) {
@@ -265,8 +263,7 @@ class EditPanel extends Component {
         contentClass: this.classes.COMPONENTCONTENT
       })
       append($el, query(`.${this.classes.COMPONENTCONTENT}`, $wrap))
-      // console.log(query(`.${this.classes.ACTION}`, this.$panel), $wrap)
-      insertBefore($wrap, query(`.${this.classes.ACTION}`, this.$panel))
+            insertBefore($wrap, query(`.${this.classes.ACTION}`, this.$panel))
 
       const pluginStore = window.Pj.plugins
       if (v.type && v.type.length > 0) {

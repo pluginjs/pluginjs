@@ -118,4 +118,3 @@ export const defaults = {
 
 export const dependencies = ['units']
 
-export const info = { version: '0.3.2' }

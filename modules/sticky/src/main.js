@@ -10,7 +10,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -25,8 +24,7 @@ const TYPES = {}
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Sticky extends Component {
   constructor(element, options = {}) {
@@ -59,8 +57,7 @@ class Sticky extends Component {
   bind() {
     // Pj.emitter.on('scroll', () => {
     //   const offset = this.offset(this.element)
-    //   // console.log('offset', offset)
-    // })
+    //       // })
   }
 
   offset(el) {

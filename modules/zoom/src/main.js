@@ -16,7 +16,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -32,8 +31,7 @@ const TYPES = {}
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Zoom extends Component {
   constructor(element, options = {}) {
@@ -44,7 +42,7 @@ class Zoom extends Component {
     this.initClasses(CLASSES)
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.element)
+      addClass(this.getThemeClass(), this.$element)
     }
 
     this.initStates()
@@ -52,9 +50,9 @@ class Zoom extends Component {
   }
 
   initialize() {
-    this.imageSrc = this.element.dataset[camelize('zoom-image', false)]
-      ? this.element.dataset[camelize('zoom-image', false)]
-      : this.element.src
+    this.imageSrc = this.$element.dataset[camelize('zoom-image', false)]
+      ? this.$element.dataset[camelize('zoom-image', false)]
+      : this.$element.src
 
     this.loading = new LOADING(this)
     // this.loaded = false
@@ -101,7 +99,7 @@ class Zoom extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.element)
+      removeClass(this.classes.DISABLED, this.$element)
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -109,7 +107,7 @@ class Zoom extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.element)
+      addClass(this.classes.DISABLED, this.$element)
       this.enter('disabled')
     }
 
@@ -121,7 +119,7 @@ class Zoom extends Component {
       this.unbind()
 
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.element)
+        removeClass(this.getThemeClass(), this.$element)
       }
       this.leave('initialized')
     }

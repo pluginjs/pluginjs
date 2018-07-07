@@ -18,7 +18,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -38,8 +37,7 @@ const ANIMATION = {}
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class SectionScroll extends Component {
   constructor(element, options = {}) {
@@ -114,8 +112,7 @@ class SectionScroll extends Component {
       document.body
     )
     // bindEvent('DOMMouseScroll', e => {
-    //   // console.log('mous scroll')
-    // }, query('body'))
+    //       // }, query('body'))
   }
 
   offMousewheel() {

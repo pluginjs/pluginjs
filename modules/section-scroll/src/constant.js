@@ -63,4 +63,3 @@ export const defaults = {
 
 export const dependencies = ['Hammer', 'mousewheel', 'dots']
 
-export const info = { version: '0.0.1' }

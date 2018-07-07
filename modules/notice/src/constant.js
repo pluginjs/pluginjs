@@ -74,4 +74,3 @@ export const defaults = {
   layout: 'top' // 'bottom'
 }
 
-export const info = { version: '0.0.1' }

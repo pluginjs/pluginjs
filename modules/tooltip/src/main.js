@@ -48,8 +48,7 @@ const Trigger = {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Tooltip extends Component {
   constructor(element, options = {}, namespace, defaults, classes) {

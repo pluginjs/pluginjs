@@ -31,4 +31,3 @@ export const defaults = {
   animation: null
 }
 
-export const info = { version: '0.0.1' }

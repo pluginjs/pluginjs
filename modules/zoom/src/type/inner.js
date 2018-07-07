@@ -26,9 +26,9 @@ class inner extends Base {
   }
 
   init() {
-    this.window = parseHTML(this.creatHTML('window'))
-    this.windowImage = query(`.${this.classes.WINDOWIMAGE}`, this.window)
-    append(this.window, this.container)
+    this.$window = parseHTML(this.creatHTML('window'))
+    this.$windowImage = query(`.${this.classes.WINDOWIMAGE}`, this.$window)
+    append(this.$window, this.container)
 
     addClass(this.getClass('{namespace}-typeInner'), this.container)
     this.setStyle()
@@ -64,10 +64,10 @@ class inner extends Base {
 
   setWindowPosition() {
     this.windowLeftPos = String(
-      (this.mouseLeft * this.widthRatio - this.window.clientWidth / 2) * -1
+      (this.mouseLeft * this.widthRatio - this.$window.clientWidth / 2) * -1
     )
     this.windowTopPos = String(
-      (this.mouseTop * this.heightRatio - this.window.clientHeight / 2) * -1
+      (this.mouseTop * this.heightRatio - this.$window.clientHeight / 2) * -1
     )
     if (this.ontop) {
       this.windowTopPos = 0
@@ -78,13 +78,13 @@ class inner extends Base {
     if (this.onbom) {
       this.windowTopPos =
         (this.instance.largeHeight * this.options.level -
-          this.window.clientHeight) *
+          this.$window.clientHeight) *
         -1
     }
     if (this.onright) {
       this.windowLeftPos =
         (this.instance.largeWidth * this.options.level -
-          this.window.clientWidth) *
+          this.$window.clientWidth) *
         -1
     }
 
@@ -92,10 +92,9 @@ class inner extends Base {
       const backgroundPosition = `${this.windowLeftPos}px, ${
         this.windowTopPos
       }px`
-      // console.log('text', backgroundPosition)
-      setStyle(
+            setStyle(
         { transform: `translate(${backgroundPosition})` },
-        this.windowImage
+        this.$windowImage
       )
     } else {
       setStyle(
@@ -103,7 +102,7 @@ class inner extends Base {
           top: `${this.windowTopPos}px`,
           left: `${this.windowLeftPos}px`
         },
-        this.windowImage
+        this.$windowImage
       )
     }
   }
@@ -111,20 +110,20 @@ class inner extends Base {
   changeStatus(status) {
     if (this.status !== status) {
       if (status === 'show') {
-        removeEvent('animationend', this.window)
+        removeEvent('animationend', this.$window)
 
-        this.addClass(this.window, status)
-        this.addClass(this.window, 'in')
+        this.addClass(this.$window, status)
+        this.addClass(this.$window, 'in')
       } else {
-        this.addClass(this.window, 'out')
+        this.addClass(this.$window, 'out')
         bindEvent(
           {
             type: 'animationend',
             handler: this.callback.bind(this)
           },
-          this.window
+          this.$window
         )
-        // this.window.on('animationend', this.callback.bind(this))
+        // this.$window.on('animationend', this.callback.bind(this))
       }
 
       this.status = status
@@ -132,8 +131,8 @@ class inner extends Base {
   }
 
   callback() {
-    this.addClass(this.window, 'hide')
-    removeEvent('animationend', this.window)
+    this.addClass(this.$window, 'hide')
+    removeEvent('animationend', this.$window)
   }
 
   setStyle() {
@@ -146,7 +145,7 @@ class inner extends Base {
         top: 0,
         left: 0
       },
-      this.window
+      this.$window
     )
 
     setStyle(
@@ -155,7 +154,7 @@ class inner extends Base {
         width: this.largeWidth,
         backgroundImage: `url(${this.instance.imageSrc})`
       },
-      this.windowImage
+      this.$windowImage
     )
   }
 }

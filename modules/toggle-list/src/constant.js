@@ -68,4 +68,3 @@ export const defaults = {
 
 export const dependencies = ['toggle', 'list']
 
-export const info = { version: '0.0.1' }

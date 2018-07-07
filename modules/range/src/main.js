@@ -18,16 +18,15 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
 // import * as util from './util'
 import Keyboard from './keyboard'
 import Pointer from './pointer'
-import scale from './scale'
-import selected from './selected'
-import tip from './tip'
+import Scale from './scale'
+import Selected from './selected'
+import Tip from './tip'
 
 const components = {}
 
@@ -41,8 +40,7 @@ const components = {}
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Range extends Component {
   constructor(element, options = {}) {
@@ -140,13 +138,13 @@ class Range extends Component {
     this.buildPointers()
 
     // initial components
-    this.components.selected.init(this)
+    this.components.Selected.init(this)
 
     if (this.options.tip !== false) {
-      this.components.tip.init(this)
+      this.components.Tip.init(this)
     }
     if (this.options.scale !== false) {
-      this.components.scale.init(this)
+      this.components.Scale.init(this)
     }
 
     if (this.options.unit) {
@@ -233,8 +231,7 @@ class Range extends Component {
         {
           type: `${NAMESPACE}:move`,
           handler: () => {
-            // console.log('bindEvent:moved')
-            if (!this.is('initialized') || this.is('updating')) {
+                        if (!this.is('initialized') || this.is('updating')) {
               return false
             }
             if (this.data.value !== this.getPointerVal()) {
@@ -281,8 +278,7 @@ class Range extends Component {
           value: val,
           unit: this.data.unit
         }
-        // console.log('units:onChangeVal', data)
-        this.unitsApi.set(data)
+                this.unitsApi.set(data)
         this.trigger(EVENTS.CHANGE, data)
         this.set(data)
       }
@@ -541,9 +537,9 @@ class Range extends Component {
   }
 }
 
-Range.registerComponent('scale', scale)
-Range.registerComponent('selected', selected)
-Range.registerComponent('tip', tip)
+Range.registerComponent('Scale', Scale)
+Range.registerComponent('Selected', Selected)
+Range.registerComponent('Tip', Tip)
 // keyboard();
 
 export default Range

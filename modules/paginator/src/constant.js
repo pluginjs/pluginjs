@@ -61,4 +61,3 @@ export const defaults = {
 
 export const translations = {}
 
-export const info = { version: '0.1.0' }

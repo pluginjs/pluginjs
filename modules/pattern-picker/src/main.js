@@ -32,7 +32,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -51,8 +50,7 @@ let DATA = null
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class PatternPicker extends Component {
   constructor(element, options = {}) {
@@ -506,8 +504,7 @@ class PatternPicker extends Component {
         this.setAttr(key, $this)
       }
     )
-    // console.log(this.options.process.call(this, getObjData('info', this.$previewImg)))
-    this.element.value = this.options.process.call(
+        this.element.value = this.options.process.call(
       this,
       getObjData('info', this.$previewImg)
     )

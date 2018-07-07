@@ -173,4 +173,3 @@ export const defaults = {
 
 export const dependencies = ['modal']
 
-export const info = { version: '0.1.0' }

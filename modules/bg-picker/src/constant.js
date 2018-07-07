@@ -213,4 +213,3 @@ export const translations = {
 
 export const dependencies = ['dropdown', 'pop-dialog', 'popover', 'tooltip']
 
-export const info = { version: '0.1.3' }

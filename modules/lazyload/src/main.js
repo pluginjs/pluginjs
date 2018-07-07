@@ -4,7 +4,6 @@ import { eventable, register, stateable } from '@pluginjs/pluginjs'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -19,8 +18,7 @@ import viewport from '@pluginjs/viewport'
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Lazyload extends Component {
   beforeLoadHook = [() => this.animationLifeCycle('start')]

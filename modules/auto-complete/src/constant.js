@@ -122,4 +122,3 @@ export const defaults = {
 
 export const dependencies = ['popper.js']
 
-export const info = { version: '0.0.1' }

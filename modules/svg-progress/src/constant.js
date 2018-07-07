@@ -55,4 +55,3 @@ export const defaults = {
   contentCallback: null
 }
 
-export const info = { version: '0.4.6' }

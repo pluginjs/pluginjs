@@ -7,7 +7,6 @@ import Pj, { eventable, register, stateable } from '@pluginjs/pluginjs'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -22,8 +21,7 @@ let viewportWidth = Pj.windowWidth
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class AdaptText extends Component {
   constructor(element, options = {}) {

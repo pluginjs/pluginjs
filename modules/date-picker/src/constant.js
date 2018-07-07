@@ -240,4 +240,3 @@ export const translations = {
 
 export const dependencies = ['Hammer', 'Popper']
 
-export const info = { version: '0.4.2' }

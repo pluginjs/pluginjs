@@ -21,4 +21,3 @@ export const defaults = {
   reference: 'top' // ["top"|"bottom"] Which side to use as base when calculation element position.
 }
 
-export const info = { version: '0.0.1' }

@@ -74,7 +74,6 @@ class History {
           }
           const color = getStyle('background-color', el)
           that.instance.setSolid(color)
-          // console.log(getStyle('background-color', el))
         }
       },
       this.element
@@ -82,25 +81,20 @@ class History {
   }
 
   update(color) {
-    // console.log(this.colors)
-    // console.log(this.colors.indexOf(color))
     if (this.colors.indexOf(color) == -1) {
       this.colors.push(color)
-      // console.log(this.colors)
       this.count++
 
       if (this.count >= 18) {
         this.colors.shift()
       }
       this.$items.forEach((v, i) => {
-        //       console.log(v,i)
         setStyle({ background: this.colors[this.colors.length - 1 - i] }, v)
         if (i < this.count) {
           addClass(this.classes.HISTORYITEMEMPTY, v)
         }
       })
     }
-    // console.log(this.colors)
   }
 }
 

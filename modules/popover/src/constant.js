@@ -64,4 +64,3 @@ export const defaults = {
 
 export const dependencies = ['tooltip']
 
-export const info = { version: '0.0.1' }

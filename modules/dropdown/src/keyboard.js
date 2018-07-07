@@ -38,7 +38,7 @@ class Keyboard {
     this.KEYBOARD.on('down', 'enter', () => {
       if (this.instance.is('show')) {
         this.instance.set(
-          this.instance.$items[this.instance.markIndex].dataset[
+          this.instance.$items[this.instance.$markIndex].dataset[
             this.instance.options.itemValueAttr
           ]
         )

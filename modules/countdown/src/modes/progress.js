@@ -65,7 +65,7 @@ class Progress {
           class: `${type}Svg`
         })
 
-        this.svg = parseHTML(
+        this.$svg = parseHTML(
           `'<span class=${this.instance.classes.RING}></span>'`
         )
 
@@ -85,9 +85,9 @@ class Progress {
 
         this.Svg.appendChild(progressBase)
 
-        append(append(progressTrack, this.Svg), this.svg)
+        append(append(progressTrack, this.Svg), this.$svg)
 
-        append(this.svg, $wrap)
+        append(this.$svg, $wrap)
 
         append($wrap, this.instance.element)
       }

@@ -12,7 +12,7 @@ class Monthly {
     this.options = instance.options
     this.classes = instance.classes
 
-    this.element = element
+    this.$element = element
 
     this.init()
   }
@@ -27,7 +27,7 @@ class Monthly {
     })
 
     append(headerUl, this.header)
-    append(this.header, this.element)
+    append(this.header, this.$element)
   }
 
   buildBaseline() {
@@ -47,7 +47,7 @@ class Monthly {
     }
 
     append(this.baselineUl, this.monthBaseline)
-    append(this.monthBaseline, this.element)
+    append(this.monthBaseline, this.$element)
   }
 
   buildEventLine() {
@@ -62,7 +62,7 @@ class Monthly {
     this.eventLis = queryAll(`.${this.classes.EVENTSGROUP}`, eventsUl)
 
     append(eventsUl, eventWrap)
-    append(eventWrap, this.element)
+    append(eventWrap, this.$element)
   }
 
   init() {
@@ -103,7 +103,7 @@ class Monthly {
           }
         }
       },
-      this.element
+      this.$element
     )
   }
 
@@ -211,14 +211,14 @@ class Monthly {
   }
 
   hide() {
-    if (!hasClass(this.classes.HIDE, this.element)) {
-      addClass(this.classes.HIDE, this.element)
+    if (!hasClass(this.classes.HIDE, this.$element)) {
+      addClass(this.classes.HIDE, this.$element)
     }
   }
 
   show() {
-    if (hasClass(this.classes.HIDE, this.element)) {
-      removeClass(this.classes.HIDE, this.element)
+    if (hasClass(this.classes.HIDE, this.$element)) {
+      removeClass(this.classes.HIDE, this.$element)
     }
   }
 }
@@ -250,3 +250,4 @@ function liHtml(classes) {
 }
 
 export default Monthly
+Monthly

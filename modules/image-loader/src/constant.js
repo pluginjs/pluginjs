@@ -31,4 +31,3 @@ export const defaults = {
   selector: null // img selector, default is 'img' tag.
 }
 
-export const info = { version: '0.2.2' }

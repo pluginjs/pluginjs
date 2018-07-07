@@ -42,4 +42,3 @@ export const defaults = {
   switch: false // custom switch (class name)
 }
 
-export const info = { version: '0.3.1' }

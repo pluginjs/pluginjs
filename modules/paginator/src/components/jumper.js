@@ -23,8 +23,8 @@ class Jumper {
 
   bind() {
     const instance = this.instance
-    this.jumper = query(`.${instance.classes.JUMPER}`, instance.element)
-    this.input = query('input', this.jumper)
+    this.$jumper = query(`.${instance.classes.JUMPER}`, instance.element)
+    this.$input = query('input', this.$jumper)
 
     bindEvent(
       {
@@ -38,12 +38,12 @@ class Jumper {
           }
         }
       },
-      this.input
+      this.$input
     )
   }
 
   unbind() {
-    removeEvent('keydown', this.input)
+    removeEvent('keydown', this.$input)
   }
 }
 

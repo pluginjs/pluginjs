@@ -27,7 +27,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -44,8 +43,7 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class ImageSelector extends Component {
   constructor(element, options = {}) {
@@ -279,8 +277,7 @@ class ImageSelector extends Component {
   }
 
   close() {
-    // console.log('this. close ==> ', this.$panel)
-    removeClass(this.classes.SHOW, this.$panel)
+        removeClass(this.classes.SHOW, this.$panel)
     removeClass(this.classes.HIDE, this.$init)
     this.leave('open')
 

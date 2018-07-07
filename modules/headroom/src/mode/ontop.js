@@ -8,8 +8,7 @@ class ontop {
       top: api.classes.TOP,
       notTop: api.classes.NOTTOP
     }
-    // console.log('bind top')
-    Pj.emitter.on('scroll', this.update, this)
+        Pj.emitter.on('scroll', this.update, this)
     this.update()
   }
 

@@ -35,4 +35,3 @@ export const defaults = {
   }
 }
 
-export const info = { version: '0.2.2' }

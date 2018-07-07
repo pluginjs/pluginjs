@@ -68,8 +68,7 @@ class Hex {
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(
             color.value.a * 100
           )
-          // console.log(this.dropdown.options.select)
-          // console.log(this.classify)
+
           this.updateColor(this.dropdown.options.select)
         }
       },
@@ -110,8 +109,6 @@ class Hex {
     ]
     this.$selector.querySelector('span').innerText = this.mode
     this.dropdown.options.select = val
-    // console.log(this.data)
-    // query(`.pj-dropdown-item`,this.dropdown)
     this.element
       .querySelectorAll('.pj-dropdown-item')
       .forEach((value, index) => {

@@ -22,20 +22,20 @@ class Weekly {
   }
 
   buildHeader() {
-    this.header = parseHTML(`<div class="${this.classes.HEADER}"></div>`)
+    this.$header = parseHTML(`<div class="${this.classes.HEADER}"></div>`)
 
-    this.weekHeader = parseHTML('<ul></ul>')
+    this.$weekHeader = parseHTML('<ul></ul>')
     this.instance.fullWeek.map(item => {
       const li = `<li>${item}</li>`
-      append(li, this.weekHeader)
+      append(li, this.$weekHeader)
     })
 
-    append(this.weekHeader, this.header)
-    append(this.header, this.element)
+    append(this.$weekHeader, this.$header)
+    append(this.$header, this.element)
   }
 
   buildBaseline() {
-    this.baseline = parseHTML(`<div class="${this.classes.BASELINE}"></div>`)
+    this.$baseline = parseHTML(`<div class="${this.classes.BASELINE}"></div>`)
 
     const baselineUl = parseHTML('<ul></ul>')
     let [start, end] = this.options.weekly.timeBetween.split('-')
@@ -51,15 +51,15 @@ class Weekly {
       append(li, baselineUl)
     }
 
-    append(baselineUl, this.baseline)
-    append(this.baseline, this.element)
+    append(baselineUl, this.$baseline)
+    append(this.$baseline, this.element)
   }
 
   buildTable() {
-    this.eventPanel = parseHTML(`<div class="${this.classes.EVENTS}"></div>`)
+    this.$eventPanel = parseHTML(`<div class="${this.classes.EVENTS}"></div>`)
 
     const eventsUl = parseHTML('<ul></ul>')
-    append(eventsUl, this.eventPanel)
+    append(eventsUl, this.$eventPanel)
     for (let i = 0; i < 7; i++) {
       if (typeof this.group[i] === 'undefined') {
         this.group[i] = {}
@@ -70,9 +70,9 @@ class Weekly {
       append(li, eventsUl)
     }
 
-    setStyle({ height: this.timeDruation * this.stepHeight }, this.eventPanel)
+    setStyle({ height: this.timeDruation * this.stepHeight }, this.$eventPanel)
 
-    append(this.eventPanel, this.element)
+    append(this.$eventPanel, this.element)
   }
 
   init() {

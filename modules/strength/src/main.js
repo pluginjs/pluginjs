@@ -17,7 +17,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -33,8 +32,7 @@ import {
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Strength extends Component {
   constructor(element, options = {}) {
@@ -44,7 +42,7 @@ class Strength extends Component {
     this.initClasses(CLASSES)
 
     if (this.options.usernameField) {
-      this.username = query(this.options.usernameField)
+      this.$username = query(this.options.usernameField)
     }
 
     this.score = 0
@@ -62,12 +60,12 @@ class Strength extends Component {
 
     addClass(this.classes.INPUT, this.element)
 
-    this.$toggle = query(`.${this.classes.TOGGLE}`, this.container)
-    this.meter = query(`.${this.classes.METER}`, this.container)
+    this.$toggle = query(`.${this.classes.TOGGLE}`, this.$container)
+    this.$meter = query(`.${this.classes.METER}`, this.$container)
 
-    this.scoreElement = query(`.${this.classes.SCORE}`, this.container)
-    this.input = query(`.${this.classes.INPUT}`, this.container)
-    this.wrap = query(`.${this.classes.ADDON}`, this.container)
+    this.$scoreElement = query(`.${this.classes.SCORE}`, this.$container)
+    this.$input = query(`.${this.classes.INPUT}`, this.$container)
+    this.$wrap = query(`.${this.classes.ADDON}`, this.$container)
 
     this.bind()
 
@@ -107,7 +105,7 @@ class Strength extends Component {
           this.check()
         }
       },
-      this.input
+      this.$input
     )
     bindEvent(
       {
@@ -116,7 +114,7 @@ class Strength extends Component {
           this.check()
         }
       },
-      this.input
+      this.$input
     )
 
     bindEvent(
@@ -124,7 +122,7 @@ class Strength extends Component {
         type: `${NAMESPACE}:check`,
         handler: e => {
           const [score, status] = e.detail.data
-          this.scoreElement.innerHTML = this.translate(
+          this.$scoreElement.innerHTML = this.translate(
             this.options.scoreLables[status]
           )
 
@@ -132,10 +130,10 @@ class Strength extends Component {
             const newClass = this.options.scoreClasses[status]
             const oldClass = this.options.scoreClasses[this.status]
             if (oldClass) {
-              removeClass(oldClass, this.scoreElement)
+              removeClass(oldClass, this.$scoreElement)
             }
             if (newClass) {
-              addClass(newClass, this.scoreElement)
+              addClass(newClass, this.$scoreElement)
             }
 
             this.trigger(EVENTS.STATUSCHANGE, status, this.status)
@@ -154,10 +152,10 @@ class Strength extends Component {
         handler: e => {
           const [current, old] = e.detail.data
           if (old) {
-            removeClass(this.getStatusClass(old), this.container)
+            removeClass(this.getStatusClass(old), this.$container)
           }
           if (current) {
-            addClass(this.getStatusClass(current), this.container)
+            addClass(this.getStatusClass(current), this.$container)
           }
         }
       },
@@ -168,16 +166,16 @@ class Strength extends Component {
         type: this.eventName('click'),
         identity: `.${this.classes.ADDON}`,
         handler: () => {
-          if (hasClass(this.classes.ACTIVE, this.wrap)) {
-            removeClass(this.classes.ACTIVE, this.wrap)
+          if (hasClass(this.classes.ACTIVE, this.$wrap)) {
+            removeClass(this.classes.ACTIVE, this.$wrap)
             this.iconToggle()
             return
           }
-          addClass(this.classes.ACTIVE, this.wrap)
+          addClass(this.classes.ACTIVE, this.$wrap)
           this.iconToggle()
         }
       },
-      this.wrap
+      this.$wrap
     )
   }
 
@@ -200,15 +198,15 @@ class Strength extends Component {
       meter: this.generateMeter(),
       input: `<div class="${this.classes.INPUT}"></div>`
     })
-    this.container = parseHTML(html)
+    this.$container = parseHTML(html)
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.container)
+      addClass(this.getThemeClass(), this.$container)
     }
 
-    insertBefore(this.container, this.element)
+    insertBefore(this.$container, this.element)
 
-    const holder = query(`.${this.classes.INPUT}`, this.container)
+    const holder = query(`.${this.classes.INPUT}`, this.$container)
     // this.element.remove()
     insertBefore(this.element, holder)
     holder.remove()
@@ -256,9 +254,9 @@ class Strength extends Component {
       }
     } else {
       const CHECK = new PasswordStrength()
-      const value = this.username ? this.username.value : null
+      const value = this.$username ? this.$username.value : null
       CHECK.username = value
-      CHECK.password = this.input.value
+      CHECK.password = this.$input.value
 
       score = CHECK.test()
       status = CHECK.status
@@ -267,7 +265,7 @@ class Strength extends Component {
     if (
       this.options.emptyStatus &&
       status !== 'invalid' &&
-      this.input.value === ''
+      this.$input.value === ''
     ) {
       status = 'empty'
     }
@@ -291,8 +289,8 @@ class Strength extends Component {
 
   iconToggle() {
     let type
-    if (this.wrap.matches('.pj-istrength-addon')) {
-      type = hasClass(this.classes.ACTIVE, this.wrap) ? 'text' : 'password'
+    if (this.$wrap.matches('.pj-istrength-addon')) {
+      type = hasClass(this.classes.ACTIVE, this.$wrap) ? 'text' : 'password'
     } else {
       type = this.shown === false ? 'text' : 'password'
     }
@@ -300,11 +298,11 @@ class Strength extends Component {
     this.shown = type === 'text'
 
     if (this.shown) {
-      addClass(this.classes.SHOWN, this.container)
+      addClass(this.classes.SHOWN, this.$container)
     } else {
-      removeClass(this.classes.SHOWN, this.container)
+      removeClass(this.classes.SHOWN, this.$container)
     }
-    this.input.setAttribute('type', type)
+    this.$input.setAttribute('type', type)
 
     this.trigger(EVENTS.TOGGLE, type)
   }
@@ -321,11 +319,11 @@ class Strength extends Component {
     this.shown = type === 'text'
 
     if (this.shown) {
-      addClass(this.classes.SHOWN, this.container)
+      addClass(this.classes.SHOWN, this.$container)
     } else {
-      removeClass(this.classes.SHOWN, this.container)
+      removeClass(this.classes.SHOWN, this.$container)
     }
-    this.input.setAttribute('type', type)
+    this.$input.setAttribute('type', type)
 
     this.trigger(EVENTS.TOGGLE, type)
   }

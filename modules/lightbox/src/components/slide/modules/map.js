@@ -88,3 +88,4 @@ class Map extends Base {
 }
 
 export default Map
+ Map

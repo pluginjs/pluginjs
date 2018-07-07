@@ -81,11 +81,11 @@ class weekEvent {
   }
 
   setContent() {
-    this.title = query(`.${this.week.classes.WEEKEVENTTITLE}`, this.element)
-    this.time = query(`.${this.week.classes.WEEKEVENTTIME}`, this.element)
+    this.$title = query(`.${this.week.classes.WEEKEVENTTITLE}`, this.element)
+    this.$time = query(`.${this.week.classes.WEEKEVENTTIME}`, this.element)
 
-    this.title.textContent = this.data.title
-    this.time.textContent = this.data.timeBucket
+    this.$title.textContent = this.data.title
+    this.$time.textContent = this.data.timeBucket
   }
 
   mouseenter() {
@@ -135,3 +135,4 @@ class weekEvent {
 }
 
 export default weekEvent
+ault weekEvent

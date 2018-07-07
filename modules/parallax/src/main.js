@@ -5,7 +5,6 @@ import { eventable, register, stateable } from '@pluginjs/pluginjs'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -18,8 +17,7 @@ import Maybe from './maybe'
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Parallax extends Component {
   constructor(element, options = {}) {

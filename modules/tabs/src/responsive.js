@@ -69,7 +69,7 @@ class Responsive {
       } else {
         this.instance.navLabel = parseHTML(options.navLabelTpl)
         addClass(this.instance.classes.NAVLABEL, this.instance.navLabel)
-        insertBefore(this.instance.navLabel, this.instance.nav)
+        insertBefore(this.instance.navLabel, this.instance.$nav)
       }
 
       this.dropToggle(true)
@@ -82,7 +82,7 @@ class Responsive {
       } else {
         const navWrap = parseHTML(options.navWrapTpl)
         addClass(this.instance.classes.NAVWRAP, navWrap)
-        wrap(navWrap, this.instance.nav)
+        wrap(navWrap, this.instance.$nav)
 
         this.instance.navWrap = query(
           `.${this.instance.classes.NAVWRAP}`,
@@ -111,7 +111,7 @@ class Responsive {
 
       this.dropToggle(false)
     } else if (this.mode === 'scroll') {
-      unwrap(this.instance.nav)
+      unwrap(this.instance.$nav)
       this.scrollToggle(false)
     }
 
@@ -122,7 +122,7 @@ class Responsive {
 
   dropToggle(isOpen) {
     if (isOpen) {
-      this.instance.navLabel.innerHTML = this.instance.tabs[
+      this.instance.navLabel.innerHTML = this.instance.$tabs[
         this.instance.current
       ].innerHTML
 
@@ -144,7 +144,7 @@ class Responsive {
 
   dropActive(index) {
     removeClass(this.instance.classes.DROPOPEN, this.instance.element)
-    this.instance.navLabel.innerHTML = this.instance.tabs[index].innerHTML
+    this.instance.navLabel.innerHTML = this.instance.$tabs[index].innerHTML
   }
 
   scrollToggle(isOpen) {
@@ -162,7 +162,7 @@ class Responsive {
         })
       }
     } else {
-      setStyle({ transform: 'none' }, this.instance.nav)
+      setStyle({ transform: 'none' }, this.instance.$nav)
       this.navWrap.destroy()
     }
   }
@@ -174,8 +174,8 @@ class Responsive {
         : this.instance.navWrap.clientWidth
     this.innerMax =
       this.instance.vertical === true
-        ? this.instance.nav.scrollHeight
-        : this.instance.nav.scrollWidth
+        ? this.instance.$nav.scrollHeight
+        : this.instance.$nav.scrollWidth
 
     if (this.delta === undefined) {
       this.delta = 0
@@ -227,7 +227,7 @@ class Responsive {
 
     setStyle(
       { transform: `translate(${deltaX}px, ${deltaY}px)` },
-      this.instance.nav
+      this.instance.$nav
     )
   }
 

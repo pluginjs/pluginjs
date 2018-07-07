@@ -2,7 +2,7 @@ import { addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { append, parseHTML } from '@pluginjs/dom'
 
-class scale {
+class Scale {
   constructor(instance) {
     this.defaults = {
       scale: {
@@ -72,8 +72,8 @@ class scale {
   }
 
   static init(instance) {
-    return new scale(instance)
+    return new Scale(instance)
   }
 }
 
-export default scale
+export default Scale

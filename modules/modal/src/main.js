@@ -18,7 +18,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
@@ -35,8 +34,8 @@ class Modal extends GlobalComponent {
     // this.options = deepMerge(window.Pj.modal.defaults, options);
     this.options = deepMerge(DEFAULTS, options)
     this.initClasses(CLASSES)
-    this.element = parseHTML(this.createHtml())
-    this.container = query(`.${this.classes.CONTAINER}`, this.element)
+    this.$element = parseHTML(this.createHtml())
+    this.$container = query(`.${this.classes.CONTAINER}`, this.$element)
     this.autoDestroy = this.options.autoDestroy
 
     this.initStates()
@@ -75,27 +74,27 @@ class Modal extends GlobalComponent {
     addClass(`${this.classes.OPEN}`, query('body'))
 
     if (this.options.autoDestroy === true) {
-      append(this.element, query(this.options.appendTo))
+      append(this.$element, query(this.options.appendTo))
     } else {
       if (this.firstAppend) {
-        append(this.element, query(this.options.appendTo))
+        append(this.$element, query(this.options.appendTo))
         this.firstAppend = false
       }
-      this.element.style.display = ''
+      this.$element.style.display = ''
     }
 
     if (this.options.overlay) {
-      addClass(`${this.classes.NAMESPACE}-fadeIn`, this.overlay)
-      removeClass(`${this.classes.NAMESPACE}-fadeOut`, this.overlay)
+      addClass(`${this.classes.NAMESPACE}-fadeIn`, this.$overlay)
+      removeClass(`${this.classes.NAMESPACE}-fadeOut`, this.$overlay)
     }
 
     removeClass(
       `${this.classes.NAMESPACE}-${this.options.effect}Out`,
-      this.container
+      this.$container
     )
     addClass(
       `${this.classes.NAMESPACE}-${this.options.effect}In`,
-      this.container
+      this.$container
     )
     // trigger open
     this.trigger(EVENTS.OPEN)
@@ -113,7 +112,7 @@ class Modal extends GlobalComponent {
             this.close()
           }
         },
-        this.closeBtn
+        this.$closeBtn
       )
     }
     // band buttons
@@ -137,7 +136,7 @@ class Modal extends GlobalComponent {
             this.close()
           }
         },
-        this.buttons
+        this.$buttons
       )
     }
 
@@ -150,7 +149,7 @@ class Modal extends GlobalComponent {
             this.close()
           }
         },
-        this.overlay
+        this.$overlay
       )
     }
   }
@@ -171,23 +170,23 @@ class Modal extends GlobalComponent {
     }
     // close animation
     if (this.options.overlay) {
-      addClass(`${this.classes.NAMESPACE}-fadeOut`, this.overlay)
-      removeClass(`${this.classes.NAMESPACE}-fadeIn`, this.overlay)
+      addClass(`${this.classes.NAMESPACE}-fadeOut`, this.$overlay)
+      removeClass(`${this.classes.NAMESPACE}-fadeIn`, this.$overlay)
     }
 
     addClass(
       `${this.classes.NAMESPACE}-${this.options.effect}Out`,
-      this.container
+      this.$container
     )
     removeClass(
       `${this.classes.NAMESPACE}-${this.options.effect}In`,
-      this.container
+      this.$container
     )
 
     const animationendCallback = () => {
       if (!this.options.autoDestroy) {
         compose(removeEvent('animationend'), setStyle({ display: 'none' }))(
-          this.element
+          this.$element
         )
         this.enter('hide')
         this.removeOverflow()
@@ -199,7 +198,7 @@ class Modal extends GlobalComponent {
 
     // const animationendCallback = () => do {
     //   if (!this.options.autoDestroy) {
-    //     this.element
+    //     this.$element
     //       |> removeEvent('animationend', animationendCallback)
     //       |> setStyle({ display: 'none' })
     //     this.enter('hide')
@@ -212,7 +211,7 @@ class Modal extends GlobalComponent {
 
     bindEvent(
       { type: 'animationend', handler: animationendCallback },
-      this.element
+      this.$element
     )
     // trigger close
     this.trigger(EVENTS.CLOSE)
@@ -255,17 +254,17 @@ class Modal extends GlobalComponent {
       return
     }
 
-    this.content = query(`.${this.classes.CONTENT}`, this.element)
-    this.title = query(`.${this.classes.TITLE}`, this.element)
-    this.closeBtn = query(`.${this.classes.CLOSE}`, this.element)
-    this.buttons = query(`.${this.classes.BUTTONS}`, this.element)
+    this.$content = query(`.${this.classes.CONTENT}`, this.$element)
+    this.$title = query(`.${this.classes.TITLE}`, this.$element)
+    this.$closeBtn = query(`.${this.classes.CLOSE}`, this.$element)
+    this.$buttons = query(`.${this.classes.BUTTONS}`, this.$element)
 
     if (this.options.overlay) {
-      this.overlay = query(`.${this.classes.OVERLAY}`, this.element)
+      this.$overlay = query(`.${this.classes.OVERLAY}`, this.$element)
     }
     // theme
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.container)
+      addClass(this.getThemeClass(), this.$container)
     }
     // set
     if (this.options.title !== '') {
@@ -288,30 +287,30 @@ class Modal extends GlobalComponent {
   setTitleloction(location) {
     const loc = ['left', 'center']
     if (!loc.includes(location)) {
-      setStyle({ 'text-align': 'left' }, this.title)
+      setStyle({ 'text-align': 'left' }, this.$title)
     } else {
-      setStyle({ 'text-align': location }, this.title)
+      setStyle({ 'text-align': location }, this.$title)
     }
   }
 
   setContentloction(location) {
     const loc = ['left', 'center', 'right']
     if (!loc.includes(location)) {
-      setStyle({ 'text-align': 'left' }, this.content)
+      setStyle({ 'text-align': 'left' }, this.$content)
     } else {
-      setStyle({ 'text-align': location }, this.content)
+      setStyle({ 'text-align': location }, this.$content)
     }
   }
 
   setBtnLocation(btnLocation) {
     if (btnLocation === 'right') {
-      this.buttons.style['justify-content'] = 'flex-end'
+      this.$buttons.style['justify-content'] = 'flex-end'
     } else if (btnLocation === 'left') {
-      this.buttons.style['justify-content'] = 'flex-start'
+      this.$buttons.style['justify-content'] = 'flex-start'
     } else if (btnLocation === 'center') {
-      this.buttons.style['justify-content'] = 'center'
+      this.$buttons.style['justify-content'] = 'center'
     } else {
-      this.buttons.style['justify-content'] = 'flex-end'
+      this.$buttons.style['justify-content'] = 'flex-end'
     }
   }
 
@@ -361,9 +360,9 @@ class Modal extends GlobalComponent {
         classes: this.classes,
         iconClass: this.getIconClass()
       })
-      this.icon = parseHTML(icon)
+      this.$icon = parseHTML(icon)
       const color = this.getIconColor()
-      this.icon.style.color = color
+      this.$icon.style.color = color
     }
     const html = templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
@@ -392,9 +391,9 @@ class Modal extends GlobalComponent {
   }
 
   setTitle(title) {
-    this.title.innerHTML = ''
+    this.$title.innerHTML = ''
     if (this.options.icon) {
-      append(this.icon, this.title)
+      append(this.$icon, this.$title)
       if (this.options.titleAlignment === 'center') {
         setStyle(
           {
@@ -403,7 +402,7 @@ class Modal extends GlobalComponent {
             'padding-top': '10px',
             'padding-bottom': '5px'
           },
-          this.icon
+          this.$icon
         )
       } else {
         setStyle(
@@ -413,19 +412,19 @@ class Modal extends GlobalComponent {
             bottom: '-5px',
             position: 'relative'
           },
-          this.icon
+          this.$icon
         )
       }
     }
 
-    append(title, this.title)
+    append(title, this.$title)
   }
 
   setContent(content) {
     if (this.options.html) {
-      this.content.innerHTML = content
+      this.$content.innerHTML = content
     } else {
-      this.content.textContent = content
+      this.$content.textContent = content
     }
   }
 
@@ -459,11 +458,11 @@ class Modal extends GlobalComponent {
 
   setButtons(buttons) {
     const length = Object.keys(buttons).length
-    this.buttons.innerHTML = ''
+    this.$buttons.innerHTML = ''
     for (const key in buttons) {
       if (buttons.hasOwnProperty(key)) {
         const btn = this._creatBtn(buttons, key, length)
-        append(btn, this.buttons)
+        append(btn, this.$buttons)
       }
     }
   }
@@ -471,7 +470,7 @@ class Modal extends GlobalComponent {
   destroy() {
     if (this.is('initialized')) {
       this.leave('initialized')
-      this.element.parentNode.removeChild(this.element)
+      this.$element.parentNode.removeChild(this.$element)
     }
 
     this.trigger(EVENTS.DESTROY)

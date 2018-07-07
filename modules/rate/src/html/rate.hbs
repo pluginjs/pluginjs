@@ -74,16 +74,14 @@ scripts:
         // var hoverScore = $('.fullStar').asRate('getHoverScore')
         var hoverScore = api1('getHoverScore')
 
-        // console.log('onChangeHoverScore', score)
-        var t = 'score: ' + hoverScore
+                var t = 'score: ' + hoverScore
         $('.fullStarscore').text(t)
       },
       onChangeScore: function() {
         console.log('onChangeScore')
       },
       onMouseLeave: function() {
-        // console.log('onMouseLeave')
-        // var score = $('.fullStar').asRate('getScore')
+                // var score = $('.fullStar').asRate('getScore')
         var score = api1('getScore')
         var t = 'score: ' + score
         $('.fullStarscore').text(t)

@@ -6,9 +6,9 @@ class Classifier {
     this.options = instance.options
     this.classes = instance.classes
 
-    this.element = parseHTML(`<div class="${this.classes.CLASSIFY}"></div>`)
+    this.$element = parseHTML(`<div class="${this.classes.CLASSIFY}"></div>`)
     // instance.$wrap.append(this.$element)
-    append(this.element, instance.wrap)
+    append(this.$element, instance.wrap)
 
     this.init()
   }
@@ -46,7 +46,7 @@ class Classifier {
 
     this.filterApi('set', this.instance.currentClass)
 
-    append(filter, this.element)
+    append(filter, this.$element)
   }
 
   getClassType() {

@@ -24,7 +24,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -38,8 +37,7 @@ import {
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Radio extends Component {
   constructor(element, options = {}) {
@@ -104,15 +102,15 @@ class Radio extends Component {
   }
 
   createIcon() {
-    this.icon = this.options.getIcon.call(this)
+    this.$icon = this.options.getIcon.call(this)
 
-    if (!this.icon) {
-      this.icon = parseHTML(
+    if (!this.$icon) {
+      this.$icon = parseHTML(
         template.render(this.options.templates.icon.call(this), {
           classes: this.classes
         })
       )
-      prepend(this.icon, this.label)
+      prepend(this.$icon, this.label)
     }
   }
 
@@ -268,7 +266,7 @@ class Radio extends Component {
       removeClass(this.classes.CHECKED, this.wrap)
       if (this.is('wrapped')) {
         unwrap(this.element)
-        this.icon.remove()
+        this.$icon.remove()
       }
       this.unbind()
       this.leave('initialized')
@@ -278,12 +276,5 @@ class Radio extends Component {
     super.destroy()
   }
 }
-
-// core.register(NAMESPACE, Radio, {
-//   defaults: DEFAULTS,
-//   events: EVENTS,
-//   classes: CLASSES,
-//   methods: ['enable', 'disable', 'destroy', 'get', 'set', 'val', 'check', 'uncheck']
-// }, INFO)
 
 export default Radio

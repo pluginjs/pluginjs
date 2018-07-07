@@ -11,8 +11,7 @@ gradient.Constructor = Gradient
 Object.assign(
   gradient,
   { setDefaults: Gradient.setDefaults },
-  GradientString,
-  INFO
+  GradientString
 )
 window.Pj.gradient = gradient
 export default gradient

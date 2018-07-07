@@ -10,7 +10,7 @@ class Listly {
     this.options = instance.options
     this.classes = instance.classes
 
-    this.element = element
+    this.$element = element
 
     this.init()
   }
@@ -114,14 +114,14 @@ class Listly {
   }
 
   hide() {
-    if (!hasClass(this.classes.HIDE, this.element)) {
-      addClass(this.classes.HIDE, this.element)
+    if (!hasClass(this.classes.HIDE, this.$element)) {
+      addClass(this.classes.HIDE, this.$element)
     }
   }
 
   show() {
-    if (hasClass(this.classes.HIDE, this.element)) {
-      removeClass(this.classes.HIDE, this.element)
+    if (hasClass(this.classes.HIDE, this.$element)) {
+      removeClass(this.classes.HIDE, this.$element)
     }
   }
 }

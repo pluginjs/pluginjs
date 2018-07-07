@@ -280,8 +280,7 @@ export const clearChild = el => {
 
 export const parentWith = curry((fn, el) => {
   const parentElement = parent(el)
-  // console.log(el, parentElement)
-  if (!parentElement || parentElement === document) {
+    if (!parentElement || parentElement === document) {
     return false
   }
   if (fn(parentElement)) {

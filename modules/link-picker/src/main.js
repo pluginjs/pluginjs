@@ -36,7 +36,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -56,8 +55,7 @@ const DATA = {}
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class LinkPicker extends Component {
   constructor(element, options = {}) {
@@ -400,8 +398,7 @@ class LinkPicker extends Component {
     const radioOptions = deepMerge(radioDefaults, options)
     const $radio = queryAll(`input[name='${source}-${name}']`, parent)
     const api = $radio.map(el => Radio.of(el, radioOptions))
-    // console.log(active)
-    api.forEach(plugin => plugin.check(active, true))
+        api.forEach(plugin => plugin.check(active, true))
 
     const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
       ? parent

@@ -15,7 +15,7 @@ class TopBar {
     this.topBar = this.instance.getElement('topBar')
     append(this.topBar, this.instance.wrap)
 
-    this.counter = query(`#${this.classes.COUNTER}`, this.topBar)
+    this.$counter = query(`#${this.classes.COUNTER}`, this.topBar)
 
     this.bind()
     this.actions = {
@@ -24,20 +24,16 @@ class TopBar {
       },
       play() {
         // this.play()
-        // console.log('play')
-      },
+              },
       download() {
         // this.download()
-        // console.log('download')
-      },
+              },
       fullScreen() {
         // this.fullScreen()
-        // console.log('fullScreen')
-      },
+              },
       share() {
         // this.share()
-        // console.log('share')
-      }
+              }
     }
   }
 
@@ -45,7 +41,7 @@ class TopBar {
     const length = this.instance.length
     const count = this.instance.activeIndex
     const t = `${count} / ${length}`
-    this.counter.textContent = t
+    this.$counter.textContent = t
   }
 
   bind() {

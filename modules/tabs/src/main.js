@@ -21,7 +21,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -37,8 +36,7 @@ import axios from 'axios'
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Tabs extends Component {
   constructor(element, options = {}) {
@@ -80,22 +78,22 @@ class Tabs extends Component {
 
   initPointer() {
     if (this.options.navSelector) {
-      this.nav = children(this.element)[0]
+      this.$nav = children(this.element)[0]
     } else {
-      this.nav = children(this.element)[0]
+      this.$nav = children(this.element)[0]
     }
 
     if (this.options.contentSelector === '+') {
-      this.content = this.nav.nextElementSibling
+      this.$content = this.$nav.nextElementSibling
     } else {
-      this.content = query(this.options.contentSelector, this.element)
+      this.$content = query(this.options.contentSelector, this.element)
     }
-    this.tabs = children(this.nav)
-    this.panes = this.content ? children(this.content) : null
+    this.$tabs = children(this.$nav)
+    this.panes = this.$content ? children(this.$content) : null
 
-    this.size = this.tabs.length
+    this.size = this.$tabs.length
 
-    this.loading = parseHTML(`<span class=${this.classes.LOADING}"></span>`)
+    this.$loading = parseHTML(`<span class=${this.classes.LOADING}"></span>`)
   }
 
   initStatus() {
@@ -105,7 +103,7 @@ class Tabs extends Component {
 
     if (this.options.ajax === true) {
       this.ajax = []
-      this.tabs.forEach(n => {
+      this.$tabs.forEach(n => {
         this.ajax.push({ href: n.dataset.href })
       })
     }
@@ -113,8 +111,8 @@ class Tabs extends Component {
 
   processHtml() {
     addClass(this.classes.ELEMENT, this.element)
-    addClass(this.classes.NAV, this.nav)
-    addClass(this.classes.CONTENT, this.content)
+    addClass(this.classes.NAV, this.$nav)
+    addClass(this.classes.CONTENT, this.$content)
 
     // theme : excuting after all elements are generated
     if (this.options.theme) {
@@ -127,10 +125,10 @@ class Tabs extends Component {
   }
 
   initActive() {
-    const activeItem = query(`.${this.classes.ACTIVE}`, this.nav)
+    const activeItem = query(`.${this.classes.ACTIVE}`, this.$nav)
 
     if (activeItem) {
-      const index = this.tabs.indexOf(activeItem)
+      const index = this.$tabs.indexOf(activeItem)
       this.active(index, false)
     } else if (this.options.initialIndex >= 0) {
       this.active(this.options.initialIndex, false)
@@ -178,7 +176,7 @@ class Tabs extends Component {
   getPanelMinHeight() {
     let tempHeight = 0
 
-    Array.from(this.nav.children).forEach(tab => {
+    Array.from(this.$nav.children).forEach(tab => {
       tempHeight += tab.clientHeight
     })
 
@@ -187,7 +185,7 @@ class Tabs extends Component {
 
   bind() {
     // nav event
-    this.navEvent = new Hammer(this.nav)
+    this.navEvent = new Hammer(this.$nav)
 
     this.navEvent.on('tap', e => {
       if (this.is('disabled')) {
@@ -195,7 +193,7 @@ class Tabs extends Component {
       }
 
       const li = e.target.closest('li')
-      const index = this.tabs.indexOf(li)
+      const index = this.$tabs.indexOf(li)
 
       this.active(index)
     })
@@ -247,8 +245,8 @@ class Tabs extends Component {
     this.previous = this.current
     this.current = index
 
-    removeClass(this.classes.ACTIVE, this.tabs[this.previous])
-    addClass(this.classes.ACTIVE, this.tabs[index])
+    removeClass(this.classes.ACTIVE, this.$tabs[this.previous])
+    addClass(this.classes.ACTIVE, this.$tabs[index])
 
     if (this.options.effect !== false) {
       this.EFFECT.animation(this.previous, index)
@@ -300,11 +298,11 @@ class Tabs extends Component {
   }
 
   showLoading() {
-    append(this.loading, this.content)
+    append(this.$loading, this.$content)
   }
 
   hideLoading() {
-    this.loading.remove()
+    this.$loading.remove()
   }
 
   update(options) {
@@ -354,7 +352,7 @@ class Tabs extends Component {
   }
 
   getTabs() {
-    return this.tabs
+    return this.$tabs
   }
 
   getPanes() {
@@ -366,7 +364,7 @@ class Tabs extends Component {
   }
 
   getCurrentTab() {
-    return this.tabs[this.current]
+    return this.$tabs[this.current]
   }
 
   getIndex() {
@@ -398,7 +396,7 @@ class Tabs extends Component {
     newPane.style = ''
     newPane.innerHTML = content
 
-    const newTab = this.tabs[0].cloneNode(true)
+    const newTab = this.$tabs[0].cloneNode(true)
     removeClass(this.classes.ACTIVE, newTab)
     newTab.style = ''
     newTab.innerHTML = label
@@ -407,11 +405,11 @@ class Tabs extends Component {
     index = index > this.size + 1 ? this.size + 1 : index
 
     if (index === 0) {
-      append(newTab, this.nav)
-      append(newPane, this.content)
+      append(newTab, this.$nav)
+      append(newPane, this.$content)
       this.current++
     } else {
-      insertAfter(newTab, this.tabs[index - 1])
+      insertAfter(newTab, this.$tabs[index - 1])
       insertAfter(newPane, this.panes[index - 1])
     }
 
@@ -435,7 +433,7 @@ class Tabs extends Component {
       return this
     }
 
-    this.tabs[index].remove()
+    this.$tabs[index].remove()
     this.panes[index].remove()
 
     this.initPointer()

@@ -26,7 +26,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -43,8 +42,7 @@ import { formatTime, splitTime, time2Minute } from './lib'
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class TimePicker extends Component {
   constructor(element, options = {}) {
@@ -88,7 +86,7 @@ class TimePicker extends Component {
     this.wrap = this.timePicker.parentNode
     addClass(this.classes.WRAP, this.wrap)
 
-    this.dropdownEl = query(`.${this.classes.DROPDOWN}`, this.timePicker)
+    this.$dropdownEl = query(`.${this.classes.DROPDOWN}`, this.timePicker)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.timePicker)
@@ -121,7 +119,7 @@ class TimePicker extends Component {
       constraintToScrollParent: false,
       templates: this.options.templates
     }
-    this.dropdown = Dropdown.of(this.dropdownEl, dropdownConf)
+    this.dropdown = Dropdown.of(this.$dropdownEl, dropdownConf)
     this.$remove = parseHTML(
       `<i class="${this.classes.REMOVE} icon-close" style="display: none;"></i>`
     )
@@ -162,14 +160,14 @@ class TimePicker extends Component {
         }
       })
     )(this.wrap)
-    // this.dropdown = this.dropdownEl.asDropdown(dropdownConf).data('dropdown')
+    // this.dropdown = this.$dropdownEl.asDropdown(dropdownConf).data('dropdown')
   }
 
   initInputMask() {
-    this.inputEl = query('input', this.dropdownEl)
-    this.inputEl.setAttribute('name', this.options.name)
+    this.$inputEl = query('input', this.$dropdownEl)
+    this.$inputEl.setAttribute('name', this.options.name)
 
-    this.mask = InputMask.of(this.inputEl, {
+    this.mask = InputMask.of(this.$inputEl, {
       type: 'time',
       onFocus: () => {
         if (this.is('focus') || this.is('disabled')) {
@@ -213,11 +211,10 @@ class TimePicker extends Component {
   //   const $elDropdown = $(el).data(NAMESPACE).$dropdown
   //
   //   $elDropdown.on('dropdown:change', (e, i) => {
-  //     // console.log('el dropdown change.')
-  //     this.timeLimit({ minTime: i.value })
+  //       //     this.timeLimit({ minTime: i.value })
   //   })
   //
-  //   this.dropdownEl.on('dropdown:change', (e, i) => {
+  //   this.$dropdownEl.on('dropdown:change', (e, i) => {
   //     el.asTimePicker('timeLimit', { maxTime: i.value })
   //   })
   // }
@@ -306,7 +303,7 @@ class TimePicker extends Component {
           this.trigger(EVENTS.CHANGE, this.dropdown.get())
         }
       },
-      this.dropdownEl
+      this.$dropdownEl
     )
     bindEvent(
       {
@@ -315,13 +312,13 @@ class TimePicker extends Component {
           this.correctionScrollTop()
         }
       },
-      this.dropdownEl
+      this.$dropdownEl
     )
     bindEvent(
       {
         type: this.eventName('change'),
         handler: () => {
-          const time = this.inputEl.value.trim()
+          const time = this.$inputEl.value.trim()
           const timeList = this.getTimeList()
 
           if (timeList.indexOf(time) < 0) {
@@ -331,7 +328,7 @@ class TimePicker extends Component {
           this.dropdown.set(time)
         }
       },
-      this.inputEl
+      this.$inputEl
     )
 
     bindEvent(
@@ -348,8 +345,8 @@ class TimePicker extends Component {
   }
 
   unbind() {
-    removeEvent(this.eventName('change'), this.inputEl)
-    removeEvent(this.eventName(), this.dropdownEl)
+    removeEvent(this.eventName('change'), this.$inputEl)
+    removeEvent(this.eventName(), this.$dropdownEl)
     removeEvent(this.eventName(), this.element)
   }
 
@@ -384,7 +381,7 @@ class TimePicker extends Component {
       this.dropdown.destroy()
       unwrap(this.element)
       removeClass(this.classes.INFO, this.element)
-      this.dropdownEl.remove()
+      this.$dropdownEl.remove()
       this.leave('initialized')
     }
 

@@ -13,7 +13,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -29,8 +28,7 @@ let googleMapsApiLoaded = false
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Gmap extends Component {
   constructor(element, options = {}) {
@@ -143,8 +141,7 @@ class Gmap extends Component {
       }
 
       this.addMarkers(this.options.markers)
-      // console.log('[gmap] ready.')
-      this.enter('initialized')
+            this.enter('initialized')
       this.trigger(EVENTS.READY)
     }
 

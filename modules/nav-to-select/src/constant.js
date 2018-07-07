@@ -80,12 +80,10 @@ export const defaults = {
   },
   onChange() {
     if (this.dataset.linkable !== false) {
-      // console.log('this', this.autofocus)
-      // document.location.href = this.value
+            // document.location.href = this.value
     }
   }
 }
 
 export const dependencies = []
 
-export const info = { version: '0.5.1' }

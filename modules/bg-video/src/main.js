@@ -16,7 +16,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -30,8 +29,7 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class BgVideo extends Component {
   constructor(element, options = {}) {
@@ -44,9 +42,9 @@ class BgVideo extends Component {
   }
 
   initialize() {
-    this.video = parseHTML(this.createHtml())
+    this.$video = parseHTML(this.createHtml())
 
-    append(this.video, this.element)
+    append(this.$video, this.element)
 
     this.appendVideo(this.options.video)
 
@@ -55,7 +53,7 @@ class BgVideo extends Component {
   }
 
   appendVideo(options) {
-    this.videoApi = Video.of(this.video, {
+    this.videoApi = Video.of(this.$video, {
       type: this.options.type,
       url: options.url,
       id: options.id,
@@ -74,26 +72,26 @@ class BgVideo extends Component {
   }
 
   setVideoSize() {
-    this.player = query('iframe', this.video)
-    if (!this.player) {
-      this.player = query('video', this.video)
+    this.$player = query('iframe', this.$video)
+    if (!this.$player) {
+      this.$player = query('video', this.$video)
     }
     this.ratio =
-      parseInt(getStyle('width', this.player), 10) /
-      parseInt(getStyle('height', this.player), 10)
+      parseInt(getStyle('width', this.$player), 10) /
+      parseInt(getStyle('height', this.$player), 10)
 
     const { width, height } = this.getPlayerSize()
 
     Pj.emitter.on('resize', this.resizeHandle, this)
 
-    addClass(this.classes.POINTEREVENTNONE, this.player)
+    addClass(this.classes.POINTEREVENTNONE, this.$player)
     setStyle(
       {
         width,
         height,
         visibility: 'visible'
       },
-      this.player
+      this.$player
     )
   }
 
@@ -120,7 +118,7 @@ class BgVideo extends Component {
         width,
         height
       },
-      this.player
+      this.$player
     )
   }
 
@@ -162,7 +160,7 @@ class BgVideo extends Component {
     }
 
     this.videoApi.destroy()
-    this.video.remove()
+    this.$video.remove()
 
     this.trigger(EVENTS.DESTROY)
     super.destroy()

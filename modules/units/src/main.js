@@ -24,7 +24,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -39,8 +38,7 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Units extends Component {
   constructor(element, options = {}) {
@@ -48,7 +46,7 @@ class Units extends Component {
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
     this.initClasses(CLASSES)
 
-    this.wrap = parseHTML('<div></div>')
+    this.$wrap = parseHTML('<div></div>')
 
     this.value = ''
     this.data = {}
@@ -70,12 +68,12 @@ class Units extends Component {
       }">`
     )
     addClass(this.classes.NAMESPACE, this.element)
-    addClass(this.classes.WRAP, this.wrap)
+    addClass(this.classes.WRAP, this.$wrap)
 
-    append(input, this.wrap)
-    append(trigger, this.wrap)
+    append(input, this.$wrap)
+    append(trigger, this.$wrap)
 
-    this.input = query(`.${this.classes.INPUT}`, this.wrap)
+    this.$input = query(`.${this.classes.INPUT}`, this.$wrap)
 
     this.options.data.forEach(v => {
       this.data[v] = ''
@@ -96,7 +94,7 @@ class Units extends Component {
     }
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.wrap)
+      addClass(this.getThemeClass(), this.$wrap)
       queryAll(`.${this.classes.PANEL}`).map(panel =>
         addClass(this.getThemeClass(), panel)
       )
@@ -119,11 +117,11 @@ class Units extends Component {
       insertBefore(input, this.element)
       // this.$element.before($input)
 
-      this.wrap = this.element
+      this.$wrap = this.element
       this.element = input
     } else {
-      insertAfter(this.wrap, this.element)
-      // this.wrap.insertBefore(this.$element).append(this.$element)
+      insertAfter(this.$wrap, this.element)
+      // this.$wrap.insertBefore(this.$element).append(this.$element)
       // this.$element.addClass(this.classes.NAMESPACE);
     }
   }
@@ -188,7 +186,7 @@ class Units extends Component {
       {
         type: this.eventName('change'),
         handler: () => {
-          const value = this.input.value
+          const value = this.$input.value
           // if (value !== '' && !parseFloat(value, 10)) {
           //   return false;
           // }
@@ -200,7 +198,7 @@ class Units extends Component {
           this.trigger(EVENTS.CHANGEVAL, this.value)
         }
       },
-      this.input
+      this.$input
     )
 
     this.TRIGGER.options.onChange = () => {
@@ -248,7 +246,7 @@ class Units extends Component {
   unbind() {
     this.leave('bind')
 
-    removeEvent(this.eventName(), this.input)
+    removeEvent(this.eventName(), this.$input)
     this.TRIGGER.disable()
   }
 
@@ -259,7 +257,7 @@ class Units extends Component {
     this.unit = hasUnit ? data.unit : this.unit
     this.value = data.value
 
-    this.input.value = this.value
+    this.$input.value = this.value
     this.element.value = `${this.value}${this.unit}`
     // this.$element.val(`${this.value}${this.unit}`)
     this.cacheValue(this.unit, this.value)
@@ -277,7 +275,7 @@ class Units extends Component {
   update(unit) {
     this.value = this.get(unit).value
 
-    this.input.value = this.value
+    this.$input.value = this.value
     this.unit = unit
     this.trigger(EVENTS.UPDATE, this.unit)
   }
@@ -324,9 +322,9 @@ class Units extends Component {
     if (this.is('disabled')) {
       this.leave('disabled')
       this.element.disabled = false
-      this.input.disabled = false
+      this.$input.disabled = false
       this.TRIGGER.enable()
-      removeClass(this.classes.DISABLED, this.wrap)
+      removeClass(this.classes.DISABLED, this.$wrap)
     }
 
     this.trigger(EVENTS.ENABLE)
@@ -338,8 +336,8 @@ class Units extends Component {
     if (!this.is('disabled')) {
       this.enter('disabled')
       this.element.disabled = true
-      this.input.disabled = true
-      addClass(this.classes.DISABLED, this.wrap)
+      this.$input.disabled = true
+      addClass(this.classes.DISABLED, this.$wrap)
       this.TRIGGER.disable()
     }
     this.trigger(EVENTS.DISABLE)
@@ -354,9 +352,9 @@ class Units extends Component {
       this.TRIGGER.destroy()
       // this.$element.unwrap()
       removeClass(this.classes.NAMESPACE, this.element)
-      removeClass(this.getThemeClass(), this.wrap)
+      removeClass(this.getThemeClass(), this.$wrap)
       this.element.value = ''
-      this.input.remove()
+      this.$input.remove()
       this.leave('initialized')
     }
 

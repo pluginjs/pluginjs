@@ -17,21 +17,21 @@ class Loader {
     const instance = this.IS
     const options = this.IS.options
 
-    this.loading = parseHTML(
+    this.$loading = parseHTML(
       templateEngine.render(options.templates.loading.call(this), {
         classes: instance.classes,
         label: instance.translate('loading')
       })
     )
 
-    this.noMoreData = parseHTML(
+    this.$noMoreData = parseHTML(
       templateEngine.render(options.templates.noMoreData.call(this), {
         classes: instance.classes,
         label: instance.translate('noMoreData')
       })
     )
 
-    this.exception = parseHTML(
+    this.$exception = parseHTML(
       templateEngine.render(options.templates.exception.call(this), {
         classes: instance.classes,
         label: instance.translate('exception')
@@ -50,7 +50,7 @@ class Loader {
   appendLoad() {
     const instance = this.IS
 
-    this.resetHtml(this.loading)
+    this.resetHtml(this.$loading)
 
     append(this.element, instance.container)
   }
@@ -58,7 +58,7 @@ class Loader {
   appendEnd() {
     const instance = this.IS
 
-    this.resetHtml(this.noMoreData)
+    this.resetHtml(this.$noMoreData)
 
     append(this.element, instance.container)
   }
@@ -66,7 +66,7 @@ class Loader {
   appendErr() {
     const instance = this.IS
 
-    this.resetHtml(this.exception)
+    this.resetHtml(this.$exception)
 
     append(this.element, instance.container)
   }

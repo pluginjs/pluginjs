@@ -59,4 +59,3 @@ export const defaults = {
 
 export const dependencies = ['Popper']
 
-export const info = { version: '0.3.1' }

@@ -28,7 +28,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -45,8 +44,7 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class MapPicker extends Component {
   constructor(element, options = {}) {
@@ -255,8 +253,7 @@ class MapPicker extends Component {
 
     const options = deepMerge(this.options.gmapOptions, {
       onReady() {
-        // console.log('google map is on ready.')
-        // init autoComplete
+                // init autoComplete
         that.initAutoComplete()
 
         if (that.hasLatlng()) {
@@ -605,7 +602,6 @@ class MapPicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      // console.log('text', this.$wrap)
       addClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = true
       this.pop.disable()

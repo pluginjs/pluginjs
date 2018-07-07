@@ -31,7 +31,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -46,13 +45,11 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Dropdown extends Component {
   constructor(element, options = {}) {
-    // console.log(options)
-    super(NAMESPACE, element)
+        super(NAMESPACE, element)
     this.parent = this.element.parentNode
     console.log(this.parent)
     // options
@@ -102,8 +99,7 @@ class Dropdown extends Component {
         itemsEl.map(item => append(item, panel))
       }
       append(panel, this.parent)
-      // console.log(this.parent)
-      // this.parent.append($panel.append($items))
+            // this.parent.append($panel.append($items))
     }
     this.panel = this.getPanel()
     wrap(`<div class='${this.classes.PANELWRAP}'></div>`, this.panel)
@@ -111,9 +107,7 @@ class Dropdown extends Component {
 
     this.items = queryAll('li', this.panel)
     this.items.map(i => addClass(this.classes.ITEM, i))
-    // console.log(this.panel)
-    // console.log(this.items)
-    // init
+            // init
     this.initStates()
     this.initialize()
   }
@@ -122,7 +116,7 @@ class Dropdown extends Component {
     let parentClass = this.classes.WRAP
 
     this.active = null
-    this.markIndex = 0
+    this.$markIndex = 0
 
     if (this.options.imitateSelect) {
       parentClass += ` ${this.classes.SELECTMODE}`
@@ -143,13 +137,13 @@ class Dropdown extends Component {
 
     if (this.options.inputSelect || this.options.imitateSelect) {
       if (this.options.icon) {
-        this.icon = parseHTML(
+        this.$icon = parseHTML(
           templateEngine.render(this.options.templates.icon(), {
             that: this,
             icon: this.options.icon ? this.options.icon : ''
           })
         )
-        append(this.icon, this.element)
+        append(this.$icon, this.element)
       }
     }
     parentClass.split(' ').map(c => addClass(c, this.parent))
@@ -466,7 +460,7 @@ class Dropdown extends Component {
 
     if (this.options.keyboard) {
       if (this.active !== null) {
-        this.markIndex = children(parent(this.active)).indexOf(this.active)
+        this.$markIndex = children(parent(this.active)).indexOf(this.active)
       }
       this.markItem(null, true)
     }
@@ -573,8 +567,7 @@ class Dropdown extends Component {
     } else if (is.string(this.options.panel)) {
       return query(this.options.panel)
     }
-    // console.log('not find panel')
-  }
+      }
 
   get() {
     return this.value
@@ -600,14 +593,14 @@ class Dropdown extends Component {
   markItem(action, trigger = false) {
     switch (action) {
       case 'up':
-        if (this.markIndex > 0) {
-          this.markIndex--
+        if (this.$markIndex > 0) {
+          this.$markIndex--
           trigger = true
         }
         break
       case 'down':
-        if (this.markIndex < this.items.length - 1) {
-          this.markIndex++
+        if (this.$markIndex < this.items.length - 1) {
+          this.$markIndex++
           trigger = true
         }
         break
@@ -617,7 +610,7 @@ class Dropdown extends Component {
 
     if (trigger) {
       this.items.map(item => removeClass(this.classes.HOVER, item))
-      addClass(this.classes.HOVER, this.items[this.markIndex])
+      addClass(this.classes.HOVER, this.items[this.$markIndex])
     }
   }
 

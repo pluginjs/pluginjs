@@ -7,21 +7,21 @@ class Keyboard {
   }
 
   initialize() {
-    this.KEYBOARD = KEYBOARDENGINE.init(this.instance.inputEl)
+    this.KEYBOARD = KEYBOARDENGINE.init(this.instance.$inputEl)
   }
 
   bind() {
     this.KEYBOARD.on('down', 'enter', () => {
       if (this.instance.dropdown.is('show')) {
         this.instance.dropdown.hide()
-        this.instance.inputEl.blur()
+        this.instance.$inputEl.blur()
       }
       return
     })
       .on('down', 'esc', () => {
         if (this.instance.dropdown.is('show')) {
           this.instance.dropdown.hide()
-          this.instance.inputEl.blur()
+          this.instance.$inputEl.blur()
         }
         return
       })

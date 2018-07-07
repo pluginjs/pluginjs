@@ -61,4 +61,3 @@ export const defaults = {
   }
 }
 
-export const info = { version: '0.0.1' }

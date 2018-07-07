@@ -87,28 +87,28 @@ class List {
   }
 
   getItems() {
-    this.items = FilterFromData(
+    this.$items = FilterFromData(
       this.options.itemAttr,
       true,
       queryAll('li', this.instance.element)
     )
-    return this.items
+    return this.$items
   }
 
   getNext() {
-    this.next = query(
+    this.$next = query(
       `.${this.instance.classes.LISTNEXT}`,
       this.instance.element
     )
-    return this.next
+    return this.$next
   }
 
   getPrev() {
-    this.prev = query(
+    this.$prev = query(
       `.${this.instance.classes.LISTPREV}`,
       this.instance.element
     )
-    return this.prev
+    return this.$prev
   }
 
   bind() {
@@ -202,7 +202,7 @@ class List {
     const oldPages = this.visiblePages
     const newPages = this.getVisiblePages()
 
-    const items = this.items
+    const items = this.$items
 
     if (this.currentPage !== this.instance.currentPage) {
       items.map(item => removeClass(this.instance.classes.ACTIVE, item))
@@ -219,23 +219,23 @@ class List {
         items
       )[0]
       if (this.hasPrev()) {
-        if (this.prev) {
-          this.prev.remove()
+        if (this.$prev) {
+          this.$prev.remove()
         }
-        this.prev = parseHTML(this.generatePrev())
-        insertBefore(this.prev, start)
-      } else if (this.prev) {
-        this.prev.remove()
+        this.$prev = parseHTML(this.generatePrev())
+        insertBefore(this.$prev, start)
+      } else if (this.$prev) {
+        this.$prev.remove()
       }
 
       if (this.hasNext()) {
-        if (this.next) {
-          this.next.remove()
+        if (this.$next) {
+          this.$next.remove()
         }
-        this.next = parseHTML(this.generateNext())
-        insertBefore(this.next, end)
-      } else if (this.next) {
-        this.next.remove()
+        this.$next = parseHTML(this.generateNext())
+        insertBefore(this.$next, end)
+      } else if (this.$next) {
+        this.$next.remove()
       }
 
       newPages.map((page, i) => {

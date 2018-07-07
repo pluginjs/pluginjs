@@ -26,7 +26,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -42,8 +41,7 @@ import * as util from './util'
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Scrollable extends Component {
   constructor(element, options = {}) {
@@ -114,9 +112,9 @@ class Scrollable extends Component {
     const position = getStyle('position', this.element)
     if (this.options.containerSelector) {
       if (this.options.containerSelector === '>') {
-        this.container = children(this.element)[0]
+        this.$container = children(this.element)[0]
       } else {
-        this.container = query(this.options.containerSelector, this.element)
+        this.$container = query(this.options.containerSelector, this.element)
       }
       this.wrap = this.element
 
@@ -125,8 +123,8 @@ class Scrollable extends Component {
       }
     } else {
       wrap('<div></div>', this.element)
-      this.container = this.element
-      this.wrap = parent(this.container)
+      this.$container = this.element
+      this.wrap = parent(this.$container)
       this.wrap.style.height =
         contentHeight(this.element) >= 0
           ? `${contentHeight(this.element)}px`
@@ -142,14 +140,14 @@ class Scrollable extends Component {
 
     if (this.options.contentSelector) {
       if (this.options.contentSelector === '>') {
-        this.content = children(this.container)[0]
+        this.$content = children(this.$container)[0]
       } else {
-        this.content = query(this.options.contentSelector, this.container)
+        this.$content = query(this.options.contentSelector, this.$container)
       }
     } else {
-      wrap('<div></div>', this.container)
-      this.content = this.container
-      this.container = parent(this.content)
+      wrap('<div></div>', this.$container)
+      this.$content = this.$container
+      this.$container = parent(this.$content)
     }
 
     switch (this.options.direction) {
@@ -187,8 +185,8 @@ class Scrollable extends Component {
       return
     }
     addClass(this.classes.WARP, this.wrap)
-    addClass(this.classes.CONTAINER, this.container)
-    addClass(this.classes.CONTENT, this.content)
+    addClass(this.classes.CONTAINER, this.$container)
+    addClass(this.classes.CONTENT, this.$content)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.wrap)
@@ -352,7 +350,7 @@ class Scrollable extends Component {
           }
         }
       },
-      this.container
+      this.$container
     )
 
     bindEvent(
@@ -424,28 +422,28 @@ class Scrollable extends Component {
     removeEvent(`${NAMESPACE}:scroll`, this.element)
     removeEvent(`${NAMESPACE}:hover`, this.element)
     removeEvent(`${NAMESPACE}:hovered`, this.element)
-    removeEvent(this.eventName(), this.container)
+    removeEvent(this.eventName(), this.$container)
   }
 
   initLayout(direction) {
     if (direction === 'vertical') {
-      setStyle({ height: contentHeight(this.wrap) }, this.container)
+      setStyle({ height: contentHeight(this.wrap) }, this.$container)
     }
     const attributes = this.attributes[direction]
-    const container = this.container
+    const container = this.$container
 
-    // this.container.css(attributes.overflow, 'scroll');
+    // this.$container.css(attributes.overflow, 'scroll');
     const parentLength = container.parentNode[attributes.crossClientLength]
     const scrollbarWidth = this.getBrowserScrollbarWidth(direction)
 
-    setStyle({ [attributes.crossLength]: `${parentLength}px` }, this.content)
+    setStyle({ [attributes.crossLength]: `${parentLength}px` }, this.$content)
     setStyle(
       { [attributes.crossLength]: `${scrollbarWidth + parentLength}px` },
-      this.container
+      this.$container
     )
 
     if (scrollbarWidth === 0 && util.isFFLionScrollbar) {
-      setStyle({ [attributes.ffPadding]: 16 }, this.container)
+      setStyle({ [attributes.ffPadding]: 16 }, this.$container)
     }
   }
 
@@ -495,7 +493,7 @@ class Scrollable extends Component {
 
   getOffset(direction) {
     const attributes = this.attributes[direction]
-    const container = this.container
+    const container = this.$container
 
     return container[attributes.pageOffset] || container[attributes.scroll]
   }
@@ -505,11 +503,11 @@ class Scrollable extends Component {
   }
 
   getContainerLength(direction) {
-    return this.container[this.attributes[direction].clientLength]
+    return this.$container[this.attributes[direction].clientLength]
   }
 
   getScrollLength(direction) {
-    const scrollLength = this.content[this.attributes[direction].scrollLength]
+    const scrollLength = this.$content[this.attributes[direction].scrollLength]
     return scrollLength - this.getContainerLength(direction)
   }
 
@@ -574,7 +572,7 @@ class Scrollable extends Component {
     }
 
     if (sync) {
-      this.container[attributes.scroll] = value
+      this.$container[attributes.scroll] = value
 
       if (trigger !== false) {
         this.trigger(
@@ -601,7 +599,7 @@ class Scrollable extends Component {
         percent = this.easing(percent)
 
         const current = parseFloat(start + percent * (end - start), 10)
-        that.container[attributes.scroll] = current
+        that.$container[attributes.scroll] = current
 
         if (trigger !== false) {
           that.trigger(
@@ -756,9 +754,9 @@ class Scrollable extends Component {
           height: '',
           paddingBottom: ''
         },
-        this.container
+        this.$container
       )
-      setStyle({ height: '' }, this.content)
+      setStyle({ height: '' }, this.$content)
     }
     if (this.vertical) {
       setStyle(
@@ -767,9 +765,9 @@ class Scrollable extends Component {
           width: '',
           paddingRight: ''
         },
-        this.container
+        this.$container
       )
-      setStyle({ width: '' }, this.content)
+      setStyle({ width: '' }, this.$content)
     }
     if (!this.options.containerSelector) {
       setStyle({ height: '' }, this.wrap)
@@ -797,14 +795,14 @@ class Scrollable extends Component {
       this.unbind()
 
       if (this.options.containerSelector) {
-        removeClass(this.classes.CONTAINER, this.container)
+        removeClass(this.classes.CONTAINER, this.$container)
       } else {
-        unwrap(this.container)
+        unwrap(this.$container)
       }
       if (!this.options.contentSelector) {
-        unwrap(this.content)
+        unwrap(this.$content)
       }
-      removeClass(this.classes.CONTENT, this.content)
+      removeClass(this.classes.CONTENT, this.$content)
       this.leave('initialized')
     }
     this.trigger(EVENTS.DESTROY)

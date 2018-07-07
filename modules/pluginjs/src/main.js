@@ -42,7 +42,7 @@ function globalScrollHanle() {
   Pj.emitter.emit('scroll')
 }
 
-export function register(name, obj = {}, info = {}) {
+export function register(name, obj = {}) {
   return function(plugin) {
     const {
       defaults: options = {},
@@ -67,8 +67,7 @@ export function register(name, obj = {}, info = {}) {
           ? deepMerge(plugin.dependencies, dependencies)
           : dependencies,
         ...others
-      },
-      info
+      }
     )
 
     if (plugin.prototype.resize && is.undefined(plugin.resize)) {

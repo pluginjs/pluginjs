@@ -6,7 +6,6 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   labelMap as LABELMAP
@@ -27,8 +26,7 @@ const MODES = {}
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class CountDown extends Component {
   constructor(element, options = {}) {

@@ -24,7 +24,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -43,8 +42,7 @@ const optionsExtendList = deepMerge(List.defaults, DEFAULTS)
     defaults: optionsExtendList,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class ToggleList extends List {
   constructor(element, options = {}) {

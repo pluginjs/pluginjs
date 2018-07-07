@@ -19,7 +19,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -34,8 +33,7 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Filters extends Component {
   constructor(element, options = {}) {
@@ -108,8 +106,7 @@ class Filters extends Component {
   getFiltersData($filters) {
     const itemArr = []
     $filters.forEach(($item, index) => {
-      // console.log('filter:::', outerWidthWithMargin($item))
-      itemArr.push({
+            itemArr.push({
         $el: $item,
         width: outerWidthWithMargin($item),
         data: {

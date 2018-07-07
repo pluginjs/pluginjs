@@ -79,4 +79,3 @@ export const defaults = {
 
 export const dependencies = ['arrows', 'dots', 'Hammer']
 
-export const info = { version: '0.0.1' }

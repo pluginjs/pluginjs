@@ -16,22 +16,22 @@ class Arrow {
   }
 
   init() {
-    this.arrowRight = parseHTML(
+    this.$arrowRight = parseHTML(
       templateEngine.render(this.options.templates.arrow.call(this), {
         classes: this.classes,
         title: 'Prev',
         dir: 'right'
       })
     )
-    this.arrowLeft = parseHTML(
+    this.$arrowLeft = parseHTML(
       templateEngine.render(this.options.templates.arrow.call(this), {
         classes: this.classes,
         title: 'Next',
         dir: 'left'
       })
     )
-    append(this.arrowRight, this.instance.wrap)
-    append(this.arrowLeft, this.instance.wrap)
+    append(this.$arrowRight, this.instance.wrap)
+    append(this.$arrowLeft, this.instance.wrap)
     this.bind()
   }
 
@@ -43,7 +43,7 @@ class Arrow {
           this.instance.pre()
         }
       },
-      this.arrowLeft
+      this.$arrowLeft
     )
 
     bindEvent(
@@ -53,24 +53,24 @@ class Arrow {
           this.instance.next()
         }
       },
-      this.arrowRight
+      this.$arrowRight
     )
   }
 
   in() {
     this.reflow()
-    addClass(this.classes.SLIDERIGHT, this.arrowRight)
-    addClass(this.classes.SLIDELEFT, this.arrowLeft)
+    addClass(this.classes.SLIDERIGHT, this.$arrowRight)
+    addClass(this.classes.SLIDELEFT, this.$arrowLeft)
   }
 
   reflow() {
-    const reflow = this.arrowRight.offsetHeight
-    return this.arrowLeft.offsetHeight
+    const reflow = this.$arrowRight.offsetHeight
+    return this.$arrowLeft.offsetHeight
   }
 
   out() {
-    removeClass(this.classes.SLIDERIGHT, this.arrowRight)
-    removeClass(this.classes.SLIDELEFT, this.arrowLeft)
+    removeClass(this.classes.SLIDERIGHT, this.$arrowRight)
+    removeClass(this.classes.SLIDELEFT, this.$arrowLeft)
   }
 }
 

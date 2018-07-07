@@ -17,7 +17,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -81,8 +80,7 @@ const defaultActions = [
     defaults: optionsExtendList,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class ItemList extends List {
   constructor(element, options = {}) {

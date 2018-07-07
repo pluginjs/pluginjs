@@ -61,4 +61,3 @@ export const defaults = {
 
 export const dependencies = ['scrollbar']
 
-export const info = { version: '0.4.5' }

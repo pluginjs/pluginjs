@@ -30,7 +30,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -44,8 +43,7 @@ import {
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Scrollbar extends Component {
   constructor(element, options = {}) {
@@ -92,17 +90,17 @@ class Scrollbar extends Component {
   initialize() {
     const options = this.options
 
-    this.handle = query(this.options.handleSelector, this.element)
+    this.$handle = query(this.options.handleSelector, this.element)
 
-    if (!this.handle) {
-      this.handle = parseHTML(
+    if (!this.$handle) {
+      this.$handle = parseHTML(
         templateEngine.compile(options.handleTemplate)({
           handle: this.classes.HANDLE
         })
       )
-      append(this.handle, this.element)
+      append(this.$handle, this.element)
     } else {
-      addClass(this.classes.HANDLE, this.handle)
+      addClass(this.classes.HANDLE, this.$handle)
     }
 
     addClass(this.classes.CONTAINER, this.element).setAttribute(
@@ -146,21 +144,21 @@ class Scrollbar extends Component {
           type: this.eventName('mousedown'),
           handler: this.onDragStart.bind(this)
         },
-        this.handle
+        this.$handle
       )
       bindEvent(
         {
           type: this.eventName('dragstart'),
           handler: () => false
         },
-        this.handle
+        this.$handle
       )
       bindEvent(
         {
           type: this.eventName('selectstart'),
           handler: () => false
         },
-        this.handle
+        this.$handle
       )
     }
 
@@ -170,14 +168,14 @@ class Scrollbar extends Component {
           type: this.eventName('touchstart'),
           handler: this.onDragStart.bind(this)
         },
-        this.handle
+        this.$handle
       )
       bindEvent(
         {
           type: this.eventName('touchcancel'),
           handler: this.onDragEnd.bind(this)
         },
-        this.handle
+        this.$handle
       )
     }
 
@@ -187,14 +185,14 @@ class Scrollbar extends Component {
           type: this.eventName(pointerEvent('pointerdown')),
           handler: this.onDragStart.bind(this)
         },
-        this.handle
+        this.$handle
       )
       bindEvent(
         {
           type: this.eventName(pointerEvent('pointercancel')),
           handler: this.onDragEnd.bind(this)
         },
-        this.handle
+        this.$handle
       )
     }
 
@@ -270,13 +268,13 @@ class Scrollbar extends Component {
       return
     }
 
-    if (event.target === this.handle) {
+    if (event.target === this.$handle) {
       return
     }
 
     this._drag.time = new Date().getTime()
     this._drag.pointer = this.pointer(event)
-    const offset = getOffset(this.handle)
+    const offset = getOffset(this.$handle)
     let distance = this.distance(
       {
         x: offset.left,
@@ -474,7 +472,7 @@ class Scrollbar extends Component {
         length = this.options.maxHandleLength
       }
 
-      this.handle.style[this.attributes.length] = `${length.toString()}px`
+      this.$handle.style[this.attributes.length] = `${length.toString()}px`
 
       if (update !== false) {
         this.updateLength(length)
@@ -500,13 +498,13 @@ class Scrollbar extends Component {
   }
 
   getHandleLenght() {
-    return this.handle[this.attributes.clientLength]
+    return this.$handle[this.attributes.clientLength]
   }
 
   getHandlePosition() {
     let value
     if (this.options.useCssTransforms && transform) {
-      const transform = this.handle.style[transformProperty()]
+      const transform = this.$handle.style[transformProperty()]
       const reg = /[^\(\)]+(?=\))/g
       value = transform
         .match(reg)[0]
@@ -523,7 +521,7 @@ class Scrollbar extends Component {
         value = value[1]
       }
     } else {
-      value = this.handle.style[this.attributes.position]
+      value = this.$handle.style[this.attributes.position]
     }
 
     return parseFloat(value.replace('px', ''))
@@ -559,7 +557,7 @@ class Scrollbar extends Component {
 
   setHandlePosition(value) {
     const style = this.makeHandlePositionStyle(value)
-    setStyle(style, this.handle)
+    setStyle(style, this.$handle)
 
     if (!this.is('dragging')) {
       this.handlePosition = parseFloat(value)
@@ -674,9 +672,9 @@ class Scrollbar extends Component {
       this.enter('transition')
       this.prepareTransition(property, duration, easing.css())
 
-      this.oneBind(transitionEndEvent(), this.handle, () => {
+      this.oneBind(transitionEndEvent(), this.$handle, () => {
         const key = transitionProperty()
-        this.handle.style[transitionProperty()] = ''
+        this.$handle.style[transitionProperty()] = ''
 
         if (trigger) {
           this.trigger(
@@ -748,7 +746,7 @@ class Scrollbar extends Component {
     if (delay) {
       temp.push(delay)
     }
-    this.handle.style[transitionProperty()] = temp.join(' ')
+    this.$handle.style[transitionProperty()] = temp.join(' ')
   }
 
   enable() {
@@ -770,14 +768,14 @@ class Scrollbar extends Component {
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.handle)
+    removeEvent(this.eventName(), this.$handle)
     removeEvent(this.eventName(), this.element)
     this.KEYBOARD.unbind()
   }
 
   destroy() {
     if (this.is('initialized')) {
-      removeClass(this.classes.HANDLE, this.handle)
+      removeClass(this.classes.HANDLE, this.$handle)
 
       removeClass(this.classes.CONTAINER, this.element)
       removeClass(this.classes.VERTICAL, this.element)

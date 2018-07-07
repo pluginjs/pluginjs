@@ -29,7 +29,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -56,8 +55,7 @@ function parseElementValue(value) {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Select extends Component {
   constructor(element, options = {}) {
@@ -428,8 +426,7 @@ class Select extends Component {
         if (this.options.multiple) {
           this.unselectItem(item)
         }
-        // console.log(1)
-        //   this.selectItem(item)
+                //   this.selectItem(item)
         // }
       } else {
         this.selectItem(item)
@@ -472,11 +469,7 @@ class Select extends Component {
   deleteTag(item) {
     const value = item.dataset.value
     const pos = this.selected.indexOf(value)
-    // console.log('this.selected:', this.selected)
-    // console.log('value:', value)
-    // console.log('pos:', pos)
-    // console.log('this.badges:', this.badges)
-    this.badges[pos].remove()
+                    this.badges[pos].remove()
     this.selectedProcess(value, false)
 
     this.badges = queryAll(`.${this.classes.BADGE}`, this.triggerElement)

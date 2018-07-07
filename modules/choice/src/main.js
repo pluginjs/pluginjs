@@ -38,7 +38,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -61,8 +60,7 @@ const childrenMatchSelector = (selector, el) =>
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Choice extends Component {
   constructor(element, options = {}) {
@@ -191,7 +189,6 @@ class Choice extends Component {
 
     this.POPPER = new Popper(toggle, dropdown, { placement: 'bottom' })
 
-    // console.log('create setup popper.')
     this.enter('popper')
   }
 

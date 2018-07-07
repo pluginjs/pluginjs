@@ -45,8 +45,7 @@ class Pointer {
         this.data.position + (event[axis] || this.data.start) - this.data.start
       )
       this.set(value)
-      // console.log('pointer:mousemove', value)
-      event.preventDefault()
+            event.preventDefault()
       return false
     }
 

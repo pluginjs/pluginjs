@@ -61,4 +61,3 @@ export const defaults = {
   easing: 'ease' // linear, ease-in, ease-out, ease-in-out
 }
 
-export const info = { version: '0.5.4' }

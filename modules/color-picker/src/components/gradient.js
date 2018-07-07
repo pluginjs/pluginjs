@@ -399,11 +399,8 @@ class Gradient {
   getMarkerPercent(position) {
     const minPosition = this.markers[0].elSize / 2
     const maxPosition = this.markers[0].wrapSize - this.markers[0].elSize / 2
-    console.log(minPosition)
-    console.log(maxPosition)
 
     position = Math.min(maxPosition, Math.max(minPosition, position))
-    console.log(position)
     return (position - minPosition) / this.actionBarSize * 100
   }
 
@@ -436,7 +433,6 @@ class Gradient {
       removeClass(this.classes.MARKERACTIVE),
       find(`.${this.classes.MARKER}`)
     )(this.$actionBar)
-    console.log(this.$actionBar)
 
     removeClass(
       this.classes.MARKERACTIVE,
@@ -462,24 +458,16 @@ class Gradient {
   }
 
   set(val) {
-    console.log(val)
     const info = val.match(/\(.*\)/g)[0]
-    console.log(info)
     const angleKey = val
       .match(/\(.+?\,/gi)[0]
       .split(',')[0]
       .split('(')[1]
 
-    // $.each(this.key, i => {
-    //   const reg = new RegExp(`${i}\,`, 'gi')
-    //   const value = info.match()
-    // })
-
     const colors = info
       .replace(/^\((([0-9]+deg)|((([a-zA-Z]+)\s)+[a-zA-Z]+))\,/gi, '')
       .match(/(?:rgba|rgb|hsla|hsl)\s*\([\s\d.,%]+\)|#[a-z0-9]{3,6}|[a-z]+/gi)
     const percents = info.match(/(\d{1,3}|\d{1,3}\.\d+)%/gi)
-    console.log(colors)
     if (val.indexOf('linear') > -1) {
       let angle
       if (this.key[angleKey]) {
@@ -495,7 +483,6 @@ class Gradient {
       this.WHEEL.set(this.angle)
       this.$angle.value = `${this.angle}°`
     } else {
-      // colors.shift();
       this.mode = 'radial'
     }
 

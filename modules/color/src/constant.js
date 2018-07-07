@@ -17,4 +17,3 @@ export const defaults = {
   zeroAlphaAsTransparent: true
 }
 
-export const info = { version: '0.3.4' }

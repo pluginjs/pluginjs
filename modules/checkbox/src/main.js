@@ -24,7 +24,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -45,8 +44,7 @@ const addParentClass = curry((className, el) =>
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class Checkbox extends Component {
   constructor(element, options = {}) {

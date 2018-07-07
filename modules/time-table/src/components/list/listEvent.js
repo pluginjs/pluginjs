@@ -8,8 +8,8 @@ class listEvent {
     this.data = data
     this.list = list
     this.classes = list.classes
-    this.element = list.getElement('listEvent')
-    append(this.element, list.element)
+    this.$element = list.getElement('listEvent')
+    append(this.$element, list.element)
 
     this.init()
   }
@@ -17,14 +17,14 @@ class listEvent {
   init() {
     const { month, day, year, weekday } = this.data[0]
     const t = `${month} ${day}, ${year} (<span>${weekday}</span>)`
-    this.head = query(`.${this.classes.LISTEVENTHEAD}`, this.element)
+    this.head = query(`.${this.classes.LISTEVENTHEAD}`, this.$element)
     this.head.innerHTML = t
     this.events = []
 
     for (let i = 0; i < this.data.length; i++) {
       const item = this.createItem(this.data[i])
       this.events.push(item)
-      append(item, this.element)
+      append(item, this.$element)
     }
   }
 
@@ -60,16 +60,17 @@ class listEvent {
   }
 
   hide() {
-    if (!hasClass(this.classes.HIDE, this.element)) {
-      addClass(this.classes.HIDE, this.element)
+    if (!hasClass(this.classes.HIDE, this.$element)) {
+      addClass(this.classes.HIDE, this.$element)
     }
   }
 
   show() {
-    if (hasClass(this.classes.HIDE, this.element)) {
-      removeClass(this.classes.HIDE, this.element)
+    if (hasClass(this.classes.HIDE, this.$element)) {
+      removeClass(this.classes.HIDE, this.$element)
     }
   }
 }
 
 export default listEvent
+t

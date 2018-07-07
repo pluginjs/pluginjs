@@ -45,7 +45,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -63,8 +62,7 @@ let DATA = {}
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class ColorPicker extends Component {
   constructor(element, options = {}) {
@@ -481,10 +479,6 @@ class ColorPicker extends Component {
     if (typeName === 'gradient') {
       if (this.$marker) {
         this.lastActiveMarker = this.$marker
-        // console.log(
-        //   'save lastActiveMarker',
-        //   this.lastActiveMarker.data('value').color
-        // )
       }
     }
   }
@@ -623,14 +617,12 @@ class ColorPicker extends Component {
           const val = e.target.value
 
           this.set(this.options.parse.call(this, val))
-          // console.log(this)
         }
       }),
       // switch panel
       bindEvent({
         type: this.eventName('click'),
         handler: () => {
-          // console.log(this.is('disabled'))
           if (this.is('disabled')) {
             return false
           }
@@ -689,8 +681,7 @@ class ColorPicker extends Component {
           //   this.setGradient(
           //     this.HISTORY.colors[this.HISTORY.colors.length - 1]
           //   )
-          //   // console.log(this)
-          // }
+          //             // }
           this.closePanel()
           return null
         }
@@ -773,15 +764,12 @@ class ColorPicker extends Component {
       {
         type: this.eventName('click'),
         handler: ({ target }) => {
-          // console.log(this.is('openPanel'))
           if (this.is('openPanel')) {
-            // console.log(target)
             if (!this.$wrap.contains(target)) {
               if (this.is('disabled')) {
                 return false
               }
               this.closePanel()
-              // console.log(this)
             }
           }
         }
@@ -798,7 +786,6 @@ class ColorPicker extends Component {
     addClass(this.classes.OPENPANEL, this.$panelWrap)
     addClass(this.classes.OPENACTIVE, this.element)
     showElement(this.$mask)
-    // console.log(this.element)
     // update scollable height
     if (this.scrollable) {
       this.scrollable.update()
@@ -807,26 +794,20 @@ class ColorPicker extends Component {
     this.POPPER.scheduleUpdate()
     // this.element.openPanel = true
     this.enter('openPanel')
-    // console.log(this.enter('openPanel'))
     this.trigger(EVENTS.OPENPANEL)
 
     this.oldColor = this.color
-    // console.log(this.oldColor + 1)
-    // console.log(this.color + 1)
-    // console.log(this.asColor.toHEX() + 1)
   }
 
   closePanel() {
     removeClass(this.classes.OPENPANEL, this.$panelWrap)
     removeClass(this.classes.OPENACTIVE, this.element)
     hideElement(this.$mask)
-    // console.log(this.element)
     // this.element.style.removeProperty('border-color')
 
     this.update()
     // this.element.openPanel = false;
     this.leave('openPanel')
-    // console.log(this.leave('openPanel'))
   }
 
   get() {
@@ -895,8 +876,7 @@ class ColorPicker extends Component {
     if (!color) {
       color = this.info.gradient
     }
-    // console.log(color)
-    this.GRADIENT.set(color)
+        this.GRADIENT.set(color)
   }
 
   // setGradient(val) {
@@ -919,13 +899,11 @@ class ColorPicker extends Component {
   // }
 
   setSolid(val) {
-    // console.log(val)
-    if (!val) {
+        if (!val) {
       val = this.info.solid
     }
 
-    // console.log(this.asColor)
-    const color = this.asColor.val(val)
+        const color = this.asColor.val(val)
     if (is.string(val) && val.indexOf('#') > -1) {
       this.setInput(color.toHEX())
     } else if (is.string(val) && !val.match(/\d/g)) {
@@ -944,9 +922,7 @@ class ColorPicker extends Component {
       return false
     }
     this.color = this.info[this.module]
-    // console.log(this)
-    // console.log(this.element)
-    if (this.color === '') {
+            if (this.color === '') {
       this.color = 'transparent'
     }
     this.element.value = this.color

@@ -14,7 +14,6 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -47,8 +46,7 @@ const Store = class {
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class TableSort extends Component {
   beforeSort = []
@@ -289,8 +287,7 @@ class TableSort extends Component {
   }
 
   destroy() {
-    // console.log('run destroy')
-    if (this.is('initialized')) {
+        if (this.is('initialized')) {
       this.unbind()
 
       this.leave('initialized')

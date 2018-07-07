@@ -64,3 +64,4 @@ class Inline extends Base {
 }
 
 export default Inline
+Inline

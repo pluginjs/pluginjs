@@ -54,4 +54,3 @@ export const translations = {
   zh: { label: '置顶' }
 }
 
-export const info = { version: '0.4.2' }

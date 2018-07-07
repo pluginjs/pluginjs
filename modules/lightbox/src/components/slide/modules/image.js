@@ -112,3 +112,4 @@ class Image extends Base {
 }
 
 export default Image
+Image

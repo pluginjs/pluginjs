@@ -95,8 +95,7 @@ class Responsive {
         [direction]: 'auto'
       })
     )
-    // console.log(this.instance.$panes)
-    // console.log(this.instance.$contentInners)
+
     this.instance.$contentInners.map(setStyle({ [direction]: 'auto' }))
 
     setStyle(
@@ -254,7 +253,7 @@ class Responsive {
 
   close(index, trigger) {
     const pane = this.instance.$panes[this.instance.prev[0]]
-    // console.log(this.instance.prev)
+
     anime({
       targets: pane,
       translateY: '50%',

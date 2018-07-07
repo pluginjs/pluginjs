@@ -32,7 +32,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE,
   translations as TRANSLATIONS
@@ -60,8 +59,7 @@ const KEYS = {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class Offset extends Component {
   constructor(element, options = {}) {
@@ -133,7 +131,7 @@ class Offset extends Component {
     //
     //     this.set(newData, true)
     //   }
-    // }, this.wrap)
+    // }, this.$wrap)
 
     bindEvent(
       {
@@ -144,8 +142,7 @@ class Offset extends Component {
             data: [val]
           }
         }) => {
-          // console.log('changeVal')
-          if (that.is('disabled')) {
+                    if (that.is('disabled')) {
             return
           }
           const info = getObjData(
@@ -165,7 +162,7 @@ class Offset extends Component {
             .map(removeClass(this.classes.UNITSHOW))
         }
       },
-      this.wrap
+      this.$wrap
     )
 
     bindEvent(
@@ -205,7 +202,7 @@ class Offset extends Component {
           return
         }
       },
-      this.wrap
+      this.$wrap
     )
 
     bindEvent(
@@ -219,7 +216,7 @@ class Offset extends Component {
           const $this = closest(`.${this.classes.VIEW}`, e.target)
           const $el = query(
             `.${that.classes.NAMESPACE}-${$this.dataset.value}`,
-            this.wrap
+            this.$wrap
           )
           const $unit = query('input', $el)
           const unit = that.data[$unit.getAttribute('name')].unit
@@ -234,7 +231,7 @@ class Offset extends Component {
           query('input', $el).focus()
         }
       },
-      this.wrap
+      this.$wrap
     )
 
     bindEvent(
@@ -276,39 +273,39 @@ class Offset extends Component {
           that.enter('connect')
         }
       },
-      this.wrap
+      this.$wrap
     )
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.wrap)
+    removeEvent(this.eventName(), this.$wrap)
     removeEvent(this.eventName(), document.body)
   }
 
   create() {
-    this.wrap = parseHTML(
+    this.$wrap = parseHTML(
       template.compile(this.options.template())({
         namespace: this.classes.NAMESPACE,
         view: this.classes.VIEW
       })
     )
 
-    insertAfter(this.wrap, this.element)
+    insertAfter(this.$wrap, this.element)
 
-    this.items = queryAll(`.${this.classes.ITEM}`, this.wrap)
+    this.items = queryAll(`.${this.classes.ITEM}`, this.$wrap)
 
-    this.$inner = query(`.${this.classes.INNER}`, this.wrap)
-    this.$view = query(`.${this.classes.VIEW}`, this.wrap)
-    this.$marginTop = query(`.${this.classes.MARGINTOP}`, this.wrap)
-    this.$marginRight = query(`.${this.classes.MARGINRIGHT}`, this.wrap)
-    this.$marginBottom = query(`.${this.classes.MARGINBOTTOM}`, this.wrap)
-    this.$marginLeft = query(`.${this.classes.MARGINLEFT}`, this.wrap)
-    this.$paddingTop = query(`.${this.classes.PADDINGTOP}`, this.wrap)
-    this.$paddingRight = query(`.${this.classes.PADDINGRIGHT}`, this.wrap)
-    this.$paddingBottom = query(`.${this.classes.PADDINGBOTTOM}`, this.wrap)
-    this.$paddingLeft = query(`.${this.classes.PADDINGLEFT}`, this.wrap)
-    this.$link = query(`.${this.classes.CONNECTLINK}`, this.wrap)
-    this.$unlink = query(`.${this.classes.CONNECTUNLINK}`, this.wrap)
+    this.$inner = query(`.${this.classes.INNER}`, this.$wrap)
+    this.$view = query(`.${this.classes.VIEW}`, this.$wrap)
+    this.$marginTop = query(`.${this.classes.MARGINTOP}`, this.$wrap)
+    this.$marginRight = query(`.${this.classes.MARGINRIGHT}`, this.$wrap)
+    this.$marginBottom = query(`.${this.classes.MARGINBOTTOM}`, this.$wrap)
+    this.$marginLeft = query(`.${this.classes.MARGINLEFT}`, this.$wrap)
+    this.$paddingTop = query(`.${this.classes.PADDINGTOP}`, this.$wrap)
+    this.$paddingRight = query(`.${this.classes.PADDINGRIGHT}`, this.$wrap)
+    this.$paddingBottom = query(`.${this.classes.PADDINGBOTTOM}`, this.$wrap)
+    this.$paddingLeft = query(`.${this.classes.PADDINGLEFT}`, this.$wrap)
+    this.$link = query(`.${this.classes.CONNECTLINK}`, this.$wrap)
+    this.$unlink = query(`.${this.classes.CONNECTUNLINK}`, this.$wrap)
 
     this.setUnits(this.$marginTop, 'margin-top')
     this.setUnits(this.$marginRight, 'margin-right')
@@ -397,8 +394,8 @@ class Offset extends Component {
     const id = label.getAttribute('for')
     const first =
       direction === 'horizontal'
-        ? getOffset(query(`#${id}`, this.wrap)).left
-        : getOffset(query(`#${id}`, this.wrap)).top
+        ? getOffset(query(`#${id}`, this.$wrap)).left
+        : getOffset(query(`#${id}`, this.$wrap)).top
     const start = direction === 'horizontal' ? e.pageX : e.pageY
     let end
 
@@ -415,7 +412,7 @@ class Offset extends Component {
       //
       removeEvent('mousemove', document.body)
       removeEvent('mouseup', document.body)
-      const $this = query(`#${id}`, this.wrap)
+      const $this = query(`#${id}`, this.$wrap)
       let value = $this.value
       const key = $this.getAttribute('name')
       // const unit = $this.asUnits('getUnit')
@@ -459,7 +456,7 @@ class Offset extends Component {
   }
 
   move(id, position) {
-    const $this = query(`#${id}`, this.wrap)
+    const $this = query(`#${id}`, this.$wrap)
     const api = getObjData('units', $this)
     if (api.getUnit() === 'auto') {
       childQuery(
@@ -467,7 +464,7 @@ class Offset extends Component {
           type: 'data',
           value: `value=${id}`
         },
-        this.wrap
+        this.$wrap
       )[0].innerHTML =
         'auto'
       return
@@ -493,7 +490,7 @@ class Offset extends Component {
         type: 'data',
         value: `value=${id}`
       },
-      this.wrap
+      this.$wrap
     )[0].innerHTML = `${value}${getObjData('units', $this).getUnit()}`
   }
 
@@ -600,7 +597,7 @@ class Offset extends Component {
           type: 'attr',
           value: `name=${i}`
         },
-        this.wrap
+        this.$wrap
       )[0]
 
       const item = closest(`.${this.classes.ITEM}`, input)
@@ -677,7 +674,7 @@ class Offset extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.wrap)
+      removeClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = false
       this.enableTooltip()
       this.leave('disabled')
@@ -687,7 +684,7 @@ class Offset extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.wrap)
+      addClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = true
       this.disableTooltip()
       this.enter('disabled')
@@ -705,7 +702,7 @@ class Offset extends Component {
       }
 
       this.element.display = ''
-      this.wrap.remove()
+      this.$wrap.remove()
       this.leave('initialized')
     }
 

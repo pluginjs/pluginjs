@@ -49,11 +49,11 @@ class History {
           type: this.instance.options.historyAttr,
           value: slug
         },
-        this.instance.nav
+        this.instance.$nav
       )
 
       if ($tab.length >= 1) {
-        this.instance.initialIndex = this.instance.tabs.indexOf($tab)
+        this.instance.initialIndex = this.instance.$tabs.indexOf($tab)
       } else if (!isNaN(parseFloat(slug)) && isFinite(slug)) {
         this.instance.initialIndex = slug
       }
@@ -100,7 +100,7 @@ class History {
     }
 
     const current = this.instance.current
-    const attr = this.instance.tabs[current].getAttribute(
+    const attr = this.instance.$tabs[current].getAttribute(
       this.instance.options.historyAttr
     )
     const REG = new RegExp(`#*${this.instance.historyId}=[^&]+`, 'i')

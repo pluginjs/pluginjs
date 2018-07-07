@@ -179,7 +179,6 @@ export const dependencies = [
   'image-loader'
 ]
 
-export const info = { version: '0.0.1' }
 
 /* chunks options */
 /*

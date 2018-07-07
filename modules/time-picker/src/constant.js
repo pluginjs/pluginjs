@@ -59,4 +59,3 @@ export const defaults = {
 
 export const dependencies = ['dropdown', 'input-mask']
 
-export const info = { version: '0.0.1' }

@@ -3,11 +3,11 @@ import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML } from '@pluginjs/dom'
 
-class selected {
+class Selected {
   constructor(instance) {
-    this.arrow = parseHTML('<span></span>')
-    append(this.arrow, instance.control)
-    addClass(instance.classes.SELECTED, this.arrow)
+    this.$arrow = parseHTML('<span></span>')
+    append(this.$arrow, instance.control)
+    addClass(instance.classes.SELECTED, this.$arrow)
     if (instance.options.isRange === false) {
       bindEvent(
         {
@@ -19,7 +19,7 @@ class selected {
                 left: 0,
                 width: `${pointer.getPercent()}%`
               },
-              this.arrow
+              this.$arrow
             )
           }
         },
@@ -43,7 +43,7 @@ class selected {
             left: `${left}%`,
             width: `${width}%`
           },
-          this.arrow
+          this.$arrow
         )
       }
 
@@ -65,8 +65,8 @@ class selected {
   }
 
   static init(instance) {
-    return new selected(instance)
+    return new Selected(instance)
   }
 }
 
-export default selected
+export default Selected

@@ -4,7 +4,6 @@ import { eventable, register, stateable } from '@pluginjs/pluginjs'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -17,8 +16,7 @@ import formaters from './formaters'
   {
     defaults: DEFAULTS,
     methods: METHODS
-  },
-  INFO
+  }
 )
 class DynamicNumber extends Component {
   constructor(element, options = {}) {
