@@ -34,14 +34,11 @@ const components = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Range extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -231,7 +228,7 @@ class Range extends Component {
         {
           type: `${NAMESPACE}:move`,
           handler: () => {
-                        if (!this.is('initialized') || this.is('updating')) {
+            if (!this.is('initialized') || this.is('updating')) {
               return false
             }
             if (this.data.value !== this.getPointerVal()) {
@@ -278,7 +275,7 @@ class Range extends Component {
           value: val,
           unit: this.data.unit
         }
-                this.unitsApi.set(data)
+        this.unitsApi.set(data)
         this.trigger(EVENTS.CHANGE, data)
         this.set(data)
       }
@@ -363,7 +360,7 @@ class Range extends Component {
 
   getValueFromPosition(val) {
     if (val > 0) {
-      return this.min + val / this.getLength() * this.interval
+      return this.min + (val / this.getLength()) * this.interval
     }
     return 0
   }

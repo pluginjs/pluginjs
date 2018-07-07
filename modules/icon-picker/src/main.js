@@ -52,14 +52,11 @@ let DATA = null
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class IconsPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -188,7 +185,7 @@ class IconsPicker extends Component {
 
   initData() {
     const inputVal = this.element.value.trim()
-        if (inputVal !== '') {
+    if (inputVal !== '') {
       this.val(inputVal)
     }
   }
@@ -579,7 +576,7 @@ class IconsPicker extends Component {
     const that = this
     const data = []
 
-        for (const i in this.data) {
+    for (const i in this.data) {
       if ({}.hasOwnProperty.call(this.data, i)) {
         data.push({ label: this.data[i].title })
       }

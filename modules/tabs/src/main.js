@@ -30,14 +30,11 @@ import axios from 'axios'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Tabs extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

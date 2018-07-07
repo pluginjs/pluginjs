@@ -30,4 +30,3 @@ export const defaults = {
   delay: null,
   animation: null
 }
-

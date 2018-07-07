@@ -27,14 +27,11 @@ const optionsExtendPopover = deepMerge(Popover.defaults, DEFAULTS)
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: optionsExtendPopover,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: optionsExtendPopover,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class PopDialog extends Popover {
   constructor(element, options = {}) {
     super(element, options, NAMESPACE, optionsExtendPopover, CLASSES)
@@ -47,7 +44,7 @@ class PopDialog extends Popover {
 
   bind() {
     super.bind()
-        bindEvent(
+    bindEvent(
       {
         type: this.selfEventName('show'),
         handler: () => this.bindButtonEvents()

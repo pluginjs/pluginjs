@@ -29,23 +29,26 @@ import {
 } from './constant'
 
 const removeParentClass = curry((className, el) =>
-  compose(removeClass(className), parent)(el)
+  compose(
+    removeClass(className),
+    parent
+  )(el)
 )
 const addParentClass = curry((className, el) =>
-  compose(addClass(className), parent)(el)
+  compose(
+    addClass(className),
+    parent
+  )(el)
 )
 
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class Checkbox extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

@@ -25,7 +25,7 @@ class Video extends Base {
         handler: e => {
           if (!this.instance.drap) {
             e.stopPropagation()
-                        addClass(this.classes.LOADING, this.videoContainer)
+            addClass(this.classes.LOADING, this.videoContainer)
             if (!this.instance.video) {
               this.createVideo()
             }
@@ -50,7 +50,7 @@ class Video extends Base {
         addClass(this.classes.PLAY, this.videoContainer)
       },
       onDestroy: () => {
-                removeClass(this.classes.PLAY, this.videoContainer)
+        removeClass(this.classes.PLAY, this.videoContainer)
         this.instance.video = ''
       }
     })

@@ -75,4 +75,3 @@ export const defaults = {
 }
 
 export const dependencies = ['Hammer', 'anime']
-

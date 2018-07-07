@@ -49,14 +49,11 @@ function parseElementValue(value) {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Select extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -426,7 +423,7 @@ class Select extends Component {
         if (this.options.multiple) {
           this.unselectItem(item)
         }
-                //   this.selectItem(item)
+        //   this.selectItem(item)
         // }
       } else {
         this.selectItem(item)
@@ -469,7 +466,7 @@ class Select extends Component {
   deleteTag(item) {
     const value = item.dataset.value
     const pos = this.selected.indexOf(value)
-                    this.badges[pos].remove()
+    this.badges[pos].remove()
     this.selectedProcess(value, false)
 
     this.badges = queryAll(`.${this.classes.BADGE}`, this.triggerElement)

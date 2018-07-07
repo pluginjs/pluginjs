@@ -38,14 +38,11 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class MapPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -253,7 +250,7 @@ class MapPicker extends Component {
 
     const options = deepMerge(this.options.gmapOptions, {
       onReady() {
-                // init autoComplete
+        // init autoComplete
         that.initAutoComplete()
 
         if (that.hasLatlng()) {
@@ -618,7 +615,11 @@ class MapPicker extends Component {
       if (this.options.theme) {
         // this.$wrapper.removeClass(this.getThemeClass());
       }
-      compose(unwrap, clearData, removeClass(this.classes.INFO))(this.element)
+      compose(
+        unwrap,
+        clearData,
+        removeClass(this.classes.INFO)
+      )(this.element)
       this.$init.remove()
       this.$preview.remove()
       this.$panel.remove()

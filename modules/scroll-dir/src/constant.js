@@ -9,4 +9,3 @@ export const defaults = {
   },
   threshold: 0
 }
-

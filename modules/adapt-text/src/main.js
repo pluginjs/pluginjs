@@ -16,13 +16,10 @@ let viewportWidth = Pj.windowWidth
 
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class AdaptText extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -61,7 +58,10 @@ class AdaptText extends Component {
 
   getWidth() {
     if (this.inline) {
-      return compose(contentWidth, parent)(this.element)
+      return compose(
+        contentWidth,
+        parent
+      )(this.element)
     }
     return contentWidth(this.element)
   }

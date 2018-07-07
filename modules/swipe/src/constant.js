@@ -78,4 +78,3 @@ export const defaults = {
 }
 
 export const dependencies = ['arrows', 'dots', 'Hammer']
-

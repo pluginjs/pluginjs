@@ -39,17 +39,14 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Dropdown extends Component {
   constructor(element, options = {}) {
-        super(NAMESPACE, element)
+    super(NAMESPACE, element)
     this.parent = this.element.parentNode
     console.log(this.parent)
     // options
@@ -99,7 +96,7 @@ class Dropdown extends Component {
         itemsEl.map(item => append(item, panel))
       }
       append(panel, this.parent)
-            // this.parent.append($panel.append($items))
+      // this.parent.append($panel.append($items))
     }
     this.panel = this.getPanel()
     wrap(`<div class='${this.classes.PANELWRAP}'></div>`, this.panel)
@@ -107,7 +104,7 @@ class Dropdown extends Component {
 
     this.items = queryAll('li', this.panel)
     this.items.map(i => addClass(this.classes.ITEM, i))
-            // init
+    // init
     this.initStates()
     this.initialize()
   }

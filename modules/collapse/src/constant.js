@@ -41,4 +41,3 @@ export const defaults = {
   collapsed: false,
   switch: false // custom switch (class name)
 }
-

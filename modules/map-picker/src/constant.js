@@ -127,4 +127,3 @@ export const translations = {
     longitude: '经度'
   }
 }
-

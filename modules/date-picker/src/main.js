@@ -53,14 +53,11 @@ const compileTemplate = template.compile
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class DatePicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -270,7 +267,7 @@ class DatePicker extends Component {
   }
 
   initSections() {
-        this.calendars = queryAll(`.${this.classes.CONTENT}`, this.$picker)
+    this.calendars = queryAll(`.${this.classes.CONTENT}`, this.$picker)
     this.calendarPrevs = this.calendars.map(find(`.${this.classes.PREV}`))
     this.calendarCaptions = this.calendars.map(find(`.${this.classes.CAPTION}`))
     this.calendarNexts = this.calendars.map(find(`.${this.classes.NEXT}`))
@@ -1512,7 +1509,7 @@ class DatePicker extends Component {
           }
         }
       }
-            if (queryParent(`.${this.classes.BUTTONS}`, privateTarget)) {
+      if (queryParent(`.${this.classes.BUTTONS}`, privateTarget)) {
         const k = queryContentAndIndexOfParentElement(privateTarget)
         const flag = privateTarget.className === this.classes.BUTTONSAVES
         if (flag) {

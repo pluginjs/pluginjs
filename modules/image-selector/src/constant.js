@@ -44,4 +44,3 @@ export const translations = {
   en: { change: 'Change' },
   zh: { change: '改变布局' }
 }
-

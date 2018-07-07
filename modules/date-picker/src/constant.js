@@ -239,4 +239,3 @@ export const translations = {
 }
 
 export const dependencies = ['Hammer', 'Popper']
-

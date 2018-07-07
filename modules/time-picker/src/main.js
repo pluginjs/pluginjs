@@ -36,14 +36,11 @@ import { formatTime, splitTime, time2Minute } from './lib'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class TimePicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

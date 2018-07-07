@@ -132,4 +132,3 @@ export const translations = {
     inputURL: '请输入URL'
   }
 }
-

@@ -23,13 +23,10 @@ let googleMapsApiLoaded = false
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class Gmap extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -141,7 +138,7 @@ class Gmap extends Component {
       }
 
       this.addMarkers(this.options.markers)
-            this.enter('initialized')
+      this.enter('initialized')
       this.trigger(EVENTS.READY)
     }
 

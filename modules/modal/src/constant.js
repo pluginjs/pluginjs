@@ -94,7 +94,6 @@ export const defaults = {
   iconClass: ''
 }
 
-
 export const translations = {
   en: {
     Cancel: 'Cancel',

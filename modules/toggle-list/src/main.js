@@ -36,14 +36,11 @@ const optionsExtendList = deepMerge(List.defaults, DEFAULTS)
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: optionsExtendList,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: optionsExtendList,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class ToggleList extends List {
   constructor(element, options = {}) {
     const defaultOptions = deepMerge(optionsExtendList, options)

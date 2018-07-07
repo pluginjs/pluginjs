@@ -27,4 +27,3 @@ export const defaults = {
     desc: 'icon-sort-descending'
   }
 }
-

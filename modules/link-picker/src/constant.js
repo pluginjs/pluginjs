@@ -161,4 +161,3 @@ export const translations = {
     openModeData: [{ label: '同一窗口' }, { label: '新窗口' }]
   }
 }
-

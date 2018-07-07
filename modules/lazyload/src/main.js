@@ -13,13 +13,10 @@ import viewport from '@pluginjs/viewport'
 
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class Lazyload extends Component {
   beforeLoadHook = [() => this.animationLifeCycle('start')]
 

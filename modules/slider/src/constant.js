@@ -60,4 +60,3 @@ export const translations = {
     next: '下一页'
   }
 }
-

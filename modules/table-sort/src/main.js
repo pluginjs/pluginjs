@@ -41,13 +41,10 @@ const Store = class {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class TableSort extends Component {
   beforeSort = []
   afterSore = []
@@ -287,7 +284,7 @@ class TableSort extends Component {
   }
 
   destroy() {
-        if (this.is('initialized')) {
+    if (this.is('initialized')) {
       this.unbind()
 
       this.leave('initialized')

@@ -55,4 +55,3 @@ export const translations = {
     exception: '异常错误'
   }
 }
-

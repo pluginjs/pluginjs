@@ -25,13 +25,10 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class SvgProgress extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -231,7 +228,7 @@ class SvgProgress extends Component {
     if (percentage === 100) {
       percentage -= 0.0001
     }
-    const endAngle = startAngle + percentage * Math.PI * 2 / 100
+    const endAngle = startAngle + (percentage * Math.PI * 2) / 100
 
     const x1 = cx + r * Math.sin(startAngle)
     const x2 = cx + r * Math.sin(endAngle)
@@ -270,7 +267,7 @@ class SvgProgress extends Component {
 
   // Return the percentage based on the current step
   getPercentage(n) {
-    return 100 * (n - this.min) / (this.max - this.min)
+    return (100 * (n - this.min)) / (this.max - this.min)
   }
 
   go(goal) {
@@ -283,7 +280,7 @@ class SvgProgress extends Component {
 
     if (is.percentage(goal)) {
       goal = parseInt(goal.replace('%', ''), 10)
-      goal = Math.round(this.min + goal / 100 * (this.max - this.min))
+      goal = Math.round(this.min + (goal / 100) * (this.max - this.min))
     }
     if (typeof goal === 'undefined') {
       goal = this.goal
@@ -303,7 +300,8 @@ class SvgProgress extends Component {
     const startTime = getTime()
     const endTime =
       startTime +
-      Math.abs(start - goal) * 100 * that.options.speed / (that.max - that.min)
+      (Math.abs(start - goal) * 100 * that.options.speed) /
+        (that.max - that.min)
 
     const animation = time => {
       let next
@@ -350,7 +348,9 @@ class SvgProgress extends Component {
 
     this.element.setAttribute('aria-valuenow', this.now)
     if (this.$number && typeof this.options.numberCallback === 'function') {
-      this.$number.innerHTML = this.options.numberCallback.call(this, [this.now])
+      this.$number.innerHTML = this.options.numberCallback.call(this, [
+        this.now
+      ])
     }
     if (this.$content && typeof this.options.contentCallback === 'function') {
       this.$content.innerHTML = this.options.contentCallback.call(this, [

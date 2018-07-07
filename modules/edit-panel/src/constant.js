@@ -172,4 +172,3 @@ export const defaults = {
 }
 
 export const dependencies = ['modal']
-

@@ -53,4 +53,3 @@ export const translations = {
   en: { label: 'Scroll To Top' },
   zh: { label: '置顶' }
 }
-

@@ -80,10 +80,9 @@ export const defaults = {
   },
   onChange() {
     if (this.dataset.linkable !== false) {
-            // document.location.href = this.value
+      // document.location.href = this.value
     }
   }
 }
 
 export const dependencies = []
-

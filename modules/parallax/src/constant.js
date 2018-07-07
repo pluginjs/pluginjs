@@ -31,4 +31,3 @@ export const defaults = {
   max: null,
   min: null
 }
-

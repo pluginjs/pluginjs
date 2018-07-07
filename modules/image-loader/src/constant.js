@@ -30,4 +30,3 @@ export const defaults = {
   localeFallbacks: true,
   selector: null // img selector, default is 'img' tag.
 }
-

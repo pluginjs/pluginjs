@@ -42,14 +42,11 @@ const Trigger = {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Tooltip extends Component {
   constructor(element, options = {}, namespace, defaults, classes) {
     if (!is.string(namespace)) {

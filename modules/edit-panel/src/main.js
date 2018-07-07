@@ -33,14 +33,11 @@ import Modal from '@pluginjs/modal'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class EditPanel extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -263,7 +260,7 @@ class EditPanel extends Component {
         contentClass: this.classes.COMPONENTCONTENT
       })
       append($el, query(`.${this.classes.COMPONENTCONTENT}`, $wrap))
-            insertBefore($wrap, query(`.${this.classes.ACTION}`, this.$panel))
+      insertBefore($wrap, query(`.${this.classes.ACTION}`, this.$panel))
 
       const pluginStore = window.Pj.plugins
       if (v.type && v.type.length > 0) {

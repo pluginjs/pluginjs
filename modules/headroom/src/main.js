@@ -26,13 +26,10 @@ const mode = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class Headroom extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -45,7 +42,7 @@ class Headroom extends Component {
 
   initialize() {
     if (typeof mode[this.options.type] !== 'undefined') {
-            this.modal = new mode[this.options.type](this)
+      this.modal = new mode[this.options.type](this)
     }
 
     addClass(this.classes.NAMESPACE, this.element)

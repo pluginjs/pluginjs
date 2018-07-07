@@ -74,14 +74,11 @@ const defaultActions = [
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: optionsExtendList,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: optionsExtendList,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class ItemList extends List {
   constructor(element, options = {}) {
     const defaultOptions = deepMerge(optionsExtendList, options)

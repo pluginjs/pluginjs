@@ -30,13 +30,13 @@ function dateCompare(dateString, compareDateString) {
 
 function isDateBetween(dateString, startDateString, endDateString) {
   if (isEmpty(dateString)) {
-        return
+    return
   }
   if (isEmpty(startDateString)) {
-        return
+    return
   }
   if (isEmpty(endDateString)) {
-        return
+    return
   }
   let flag = false
   const startFlag = dateCompare(dateString, startDateString) < 1
@@ -75,16 +75,16 @@ function isDatesBetween(
   endDateCompareString
 ) {
   if (isEmpty(startDateString)) {
-        return
+    return
   }
   if (isEmpty(endDateString)) {
-        return
+    return
   }
   if (isEmpty(startDateCompareString)) {
-        return
+    return
   }
   if (isEmpty(endDateCompareString)) {
-        return
+    return
   }
   let flag = false
   const startFlag = dateCompare(startDateCompareString, startDateString) < 1

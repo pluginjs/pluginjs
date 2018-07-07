@@ -99,7 +99,7 @@ class Vimeo {
     const vimeoApiReady = setInterval(() => {
       if (count > 50) {
         clearInterval(vimeoApiReady)
-                this.instance.destroy()
+        this.instance.destroy()
       }
       count++
       if (typeof window.Vimeo === 'undefined') {

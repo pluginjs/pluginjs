@@ -67,4 +67,3 @@ export const defaults = {
 }
 
 export const dependencies = ['tooltip', 'popover']
-

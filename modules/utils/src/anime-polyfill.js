@@ -64,7 +64,7 @@ function mapToScale(matrix) {
   const result = matrix.map((value, index) => {
     const n = parseFloat(value, 10)
     const result = { [`scale${T[index]}`]: n || 0 }
-        return result
+    return result
   })
   return result.reduce(mergeObject)
 }
@@ -166,7 +166,7 @@ export default function mapKeyFramesToAnime(keyframes) {
           return value
         })
         .filter(value => typeof value !== 'string')
-            if (!arr.length) {
+      if (!arr.length) {
         transformNoneIndex.push(keyframeIndex)
         return newKeyFrame
       }

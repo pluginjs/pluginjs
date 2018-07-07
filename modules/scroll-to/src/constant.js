@@ -36,4 +36,3 @@ export const defaults = {
 export const dependencies = ['scroll']
 
 export const translations = {}
-

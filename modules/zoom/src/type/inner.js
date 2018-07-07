@@ -92,7 +92,7 @@ class inner extends Base {
       const backgroundPosition = `${this.windowLeftPos}px, ${
         this.windowTopPos
       }px`
-            setStyle(
+      setStyle(
         { transform: `translate(${backgroundPosition})` },
         this.$windowImage
       )

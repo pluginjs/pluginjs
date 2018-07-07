@@ -79,4 +79,3 @@ export const defaults = {
   onInit: null,
   onReady: null
 }
-

@@ -23,7 +23,7 @@ class Window extends Base {
   constructor(instance) {
     super(instance)
     this.configuration = this.options[this.options.type]
-        this.init()
+    this.init()
   }
 
   init() {
@@ -268,7 +268,9 @@ class Window extends Base {
   }
 
   setlensImagePosition(o) {
-    this.lensImaLeft = String((this.mouseLeft - this.$lens.clientWidth / 2) * -1)
+    this.lensImaLeft = String(
+      (this.mouseLeft - this.$lens.clientWidth / 2) * -1
+    )
     this.lensImgTop = String((this.mouseTop - this.$lens.clientHeight / 2) * -1)
     if (this.ontop) {
       this.lensImgTop = 0 - this.configuration.lensBorderSize
@@ -456,7 +458,7 @@ class Window extends Base {
     )
 
     const imgUrl = this.instance.element.src
-        setStyle(
+    setStyle(
       {
         width,
         height,

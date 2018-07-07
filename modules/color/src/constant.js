@@ -16,4 +16,3 @@ export const defaults = {
   invalidValue: '',
   zeroAlphaAsTransparent: true
 }
-

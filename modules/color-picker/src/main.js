@@ -56,14 +56,11 @@ let DATA = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class ColorPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -876,7 +873,7 @@ class ColorPicker extends Component {
     if (!color) {
       color = this.info.gradient
     }
-        this.GRADIENT.set(color)
+    this.GRADIENT.set(color)
   }
 
   // setGradient(val) {
@@ -899,11 +896,11 @@ class ColorPicker extends Component {
   // }
 
   setSolid(val) {
-        if (!val) {
+    if (!val) {
       val = this.info.solid
     }
 
-        const color = this.asColor.val(val)
+    const color = this.asColor.val(val)
     if (is.string(val) && val.indexOf('#') > -1) {
       this.setInput(color.toHEX())
     } else if (is.string(val) && !val.match(/\d/g)) {
@@ -922,7 +919,7 @@ class ColorPicker extends Component {
       return false
     }
     this.color = this.info[this.module]
-            if (this.color === '') {
+    if (this.color === '') {
       this.color = 'transparent'
     }
     this.element.value = this.color

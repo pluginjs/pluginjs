@@ -68,4 +68,3 @@ export const defaults = {
 export const dependencies = ['Popper']
 
 export const translations = {}
-

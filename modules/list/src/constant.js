@@ -104,4 +104,3 @@ export const translations = {
     delete: '删除'
   }
 }
-

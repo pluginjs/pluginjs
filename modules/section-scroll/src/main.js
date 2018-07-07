@@ -31,14 +31,11 @@ const ANIMATION = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class SectionScroll extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -148,7 +145,7 @@ class SectionScroll extends Component {
 
       const offset =
         Math.abs(startY) >
-        Pj.$window.height() / 100 * this.options.touchSensitivity
+        (Pj.$window.height() / 100) * this.options.touchSensitivity
       if (!offset) {
         return
       }

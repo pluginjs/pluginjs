@@ -45,7 +45,7 @@ class Pointer {
         this.data.position + (event[axis] || this.data.start) - this.data.start
       )
       this.set(value)
-            event.preventDefault()
+      event.preventDefault()
       return false
     }
 
@@ -145,7 +145,7 @@ class Pointer {
   }
 
   getPercent() {
-    return (this.value - this.instance.min) / this.instance.interval * 100
+    return ((this.value - this.instance.min) / this.instance.interval) * 100
   }
 
   get() {

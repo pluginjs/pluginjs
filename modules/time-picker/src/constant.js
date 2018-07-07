@@ -58,4 +58,3 @@ export const defaults = {
 }
 
 export const dependencies = ['dropdown', 'input-mask']
-

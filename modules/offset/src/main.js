@@ -53,14 +53,11 @@ const KEYS = {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Offset extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -142,7 +139,7 @@ class Offset extends Component {
             data: [val]
           }
         }) => {
-                    if (that.is('disabled')) {
+          if (that.is('disabled')) {
             return
           }
           const info = getObjData(

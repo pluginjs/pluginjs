@@ -29,14 +29,11 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class ImagePicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -211,13 +208,15 @@ class ImagePicker extends Component {
 
   setState(state) {
     if (state === 'exist') {
-      compose(removeClass(this.classes.EMPTY), addClass(this.classes.EXIST))(
-        this.$wrap
-      )
+      compose(
+        removeClass(this.classes.EMPTY),
+        addClass(this.classes.EXIST)
+      )(this.$wrap)
     } else if (state === 'empty') {
-      compose(removeClass(this.classes.EXIST), addClass(this.classes.EMPTY))(
-        this.$wrap
-      )
+      compose(
+        removeClass(this.classes.EXIST),
+        addClass(this.classes.EMPTY)
+      )(this.$wrap)
     }
   }
 

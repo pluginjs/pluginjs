@@ -25,4 +25,3 @@ export const defaults = {
   more: 'more',
   less: 'less'
 }
-

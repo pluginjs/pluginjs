@@ -96,4 +96,3 @@ export const translations = {
     finish: '完成'
   }
 }
-

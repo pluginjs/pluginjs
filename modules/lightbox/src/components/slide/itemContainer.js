@@ -22,7 +22,7 @@ class ItemContainer {
     this.inner = query(`.${this.classes.ITEMINNER}`, this.item)
     // this.instance.lastType = ''
     this.lastType = 'null'
-        // this.uptate()
+    // this.uptate()
     this.updateType = {
       image: () => {
         this.updateImage()

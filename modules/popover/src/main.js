@@ -27,14 +27,11 @@ const optionsExtendTooltip = deepMerge(Tooltip.defaults, DEFAULTS)
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: optionsExtendTooltip,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: optionsExtendTooltip,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Popover extends Tooltip {
   constructor(element, options = {}, namespace, defaults, classes) {
     if (!is.string(namespace)) {

@@ -38,14 +38,11 @@ import TextTransform from './textTransform'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class FontEditor extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -89,14 +86,16 @@ class FontEditor extends Component {
       this.value.fontFamily === 'inherit' ||
       is.undefined(this.value.fontFamily)
     ) {
-      compose(removeClass(this.classes.EXSIT), addClass(this.classes.EMPTY))(
-        this.$wrap
-      )
+      compose(
+        removeClass(this.classes.EXSIT),
+        addClass(this.classes.EMPTY)
+      )(this.$wrap)
       this.$infoFontName.textContent = this.translate('fontFamily')
     } else {
-      compose(addClass(this.classes.EXSIT), removeClass(this.classes.EMPTY))(
-        this.$wrap
-      )
+      compose(
+        addClass(this.classes.EXSIT),
+        removeClass(this.classes.EMPTY)
+      )(this.$wrap)
       this.$infoFontName.textContent = this.value.fontFamily
     }
 
@@ -331,9 +330,10 @@ class FontEditor extends Component {
     this.$infoFontSub.textContent = `${this.value.fontSize ||
       'inherit'} / ${this.value.lineHeight || 'inherit'}`
     if (this.value.fontFamily && this.value.fontFamily !== 'inherit') {
-      compose(removeClass(this.classes.EXPAND), addClass(this.classes.EXSIT))(
-        this.$wrap
-      )
+      compose(
+        removeClass(this.classes.EXPAND),
+        addClass(this.classes.EXSIT)
+      )(this.$wrap)
     }
     this.trigger(EVENTS.CHANGE, value)
   }

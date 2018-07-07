@@ -144,9 +144,10 @@ class Responsive {
       addClass(this.instance.getThemeClass(), this.$dropdown)
     }
     const insertBeforeInstanceElement = dropdown =>
-      compose(insertBefore(dropdown), addClass(classes.RESPONSIVE))(
-        this.instance.element
-      )
+      compose(
+        insertBefore(dropdown),
+        addClass(classes.RESPONSIVE)
+      )(this.instance.element)
     compose(
       insertBeforeInstanceElement,
       append(this.$dropdownList),

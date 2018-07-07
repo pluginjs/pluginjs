@@ -401,7 +401,7 @@ class Gradient {
     const maxPosition = this.markers[0].wrapSize - this.markers[0].elSize / 2
 
     position = Math.min(maxPosition, Math.max(minPosition, position))
-    return (position - minPosition) / this.actionBarSize * 100
+    return ((position - minPosition) / this.actionBarSize) * 100
   }
 
   addMarker(position, options = null) {

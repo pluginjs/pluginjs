@@ -25,13 +25,10 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class Rate extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -107,7 +104,7 @@ class Rate extends Component {
 
   verification() {
     if (this.element.tagName.toLowerCase() === 'input') {
-            if (this.element.dataset.min || this.element.dataset.min === 0) {
+      if (this.element.dataset.min || this.element.dataset.min === 0) {
         const m = this.element.dataset.min
         const n = Number(m)
         if (n >= this.options.max) {

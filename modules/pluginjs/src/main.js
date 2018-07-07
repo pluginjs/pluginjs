@@ -53,22 +53,17 @@ export function register(name, obj = {}) {
 
     Pj.instances[name] = []
 
-    Pj.plugins[name] = Object.assign(
-      plugin,
-      {
-        setDefaults(options = {}) {
-          plugin.defaults = deepMerge(plugin.defaults, options)
-        },
-        defaults: plugin.defaults
-          ? deepMerge(plugin.defaults, options)
-          : options,
-        methods: plugin.methods ? deepMerge(plugin.methods, methods) : methods,
-        dependencies: plugin.dependencies
-          ? deepMerge(plugin.dependencies, dependencies)
-          : dependencies,
-        ...others
-      }
-    )
+    Pj.plugins[name] = Object.assign(plugin, {
+      setDefaults(options = {}) {
+        plugin.defaults = deepMerge(plugin.defaults, options)
+      },
+      defaults: plugin.defaults ? deepMerge(plugin.defaults, options) : options,
+      methods: plugin.methods ? deepMerge(plugin.methods, methods) : methods,
+      dependencies: plugin.dependencies
+        ? deepMerge(plugin.dependencies, dependencies)
+        : dependencies,
+      ...others
+    })
 
     if (plugin.prototype.resize && is.undefined(plugin.resize)) {
       plugin.resize = function() {

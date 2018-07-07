@@ -79,4 +79,3 @@ export const defaults = {
   iconSize: '',
   svg: ''
 }
-

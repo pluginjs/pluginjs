@@ -27,14 +27,11 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Filters extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -106,7 +103,7 @@ class Filters extends Component {
   getFiltersData($filters) {
     const itemArr = []
     $filters.forEach(($item, index) => {
-            itemArr.push({
+      itemArr.push({
         $el: $item,
         width: outerWidthWithMargin($item),
         data: {

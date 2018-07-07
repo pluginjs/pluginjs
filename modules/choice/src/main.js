@@ -43,25 +43,25 @@ import {
 } from './constant'
 
 const childrenMatchSelector = (selector, el) =>
-  compose(elementList => {
-    if (elementList) {
-      return elementList.filter(el => el.matches(selector))
-    }
-    return []
-  }, children)(el)
+  compose(
+    elementList => {
+      if (elementList) {
+        return elementList.filter(el => el.matches(selector))
+      }
+      return []
+    },
+    children
+  )(el)
 
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Choice extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

@@ -312,4 +312,3 @@ export const dependencies = [
   'scrollable',
   'scrollbar'
 ]
-

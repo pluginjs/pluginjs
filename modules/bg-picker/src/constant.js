@@ -212,4 +212,3 @@ export const translations = {
 }
 
 export const dependencies = ['dropdown', 'pop-dialog', 'popover', 'tooltip']
-

@@ -185,9 +185,10 @@ class Modal extends GlobalComponent {
 
     const animationendCallback = () => {
       if (!this.options.autoDestroy) {
-        compose(removeEvent('animationend'), setStyle({ display: 'none' }))(
-          this.$element
-        )
+        compose(
+          removeEvent('animationend'),
+          setStyle({ display: 'none' })
+        )(this.$element)
         this.enter('hide')
         this.removeOverflow()
       } else {

@@ -27,13 +27,10 @@ let counter = 0
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class Wizard extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

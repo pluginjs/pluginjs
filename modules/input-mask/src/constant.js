@@ -22,4 +22,3 @@ export const defaults = {
   delimiter: '',
   blocks: 'noLimit'
 }
-

@@ -183,4 +183,3 @@ export const translations = {
 }
 
 export const dependencies = ['video']
-

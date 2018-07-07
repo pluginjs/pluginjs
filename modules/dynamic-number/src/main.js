@@ -11,13 +11,10 @@ import formaters from './formaters'
 
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class DynamicNumber extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

@@ -12,13 +12,10 @@ import Maybe from './maybe'
 
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class Parallax extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -89,7 +86,7 @@ class Parallax extends Component {
     }
     const computePercent = curry((documentHeight, scrollTop) => {
       const multiple = 100
-      return Math.round(scrollTop / documentHeight * multiple)
+      return Math.round((scrollTop / documentHeight) * multiple)
     })
     const getMaxValue = (max, min) => {
       const multiple = 100
@@ -123,7 +120,7 @@ class Parallax extends Component {
         case 'translateX':
           this.element.style.transform = `translateX(${computeOffset(
             this.element.clientWidth / 2,
-            this.element.clientWidth / 2 * -1,
+            (this.element.clientWidth / 2) * -1,
             percent
           ) * speed}px)`
           break
@@ -147,7 +144,11 @@ class Parallax extends Component {
       return null
     })
     return Maybe.of(getScrollTop()).map(
-      compose(modeMatch(mode), computePercent(getDocumentHeight()), offsetCheck)
+      compose(
+        modeMatch(mode),
+        computePercent(getDocumentHeight()),
+        offsetCheck
+      )
     )
   }
 
@@ -163,9 +164,10 @@ class Parallax extends Component {
   }
 
   unbind() {
-    compose(removeEvent({ type: 'scroll' }), removeEvent({ type: 'resize' }))(
-      this.scrollParent
-    )
+    compose(
+      removeEvent({ type: 'scroll' }),
+      removeEvent({ type: 'resize' })
+    )(this.scrollParent)
   }
 
   setDelay(type) {

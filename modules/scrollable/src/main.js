@@ -35,14 +35,11 @@ import * as util from './util'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Scrollable extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -690,10 +687,12 @@ class Scrollable extends Component {
         api.enable()
       }
       console.log(
-        api.getBarLength() * containerLength / (scrollLength + containerLength)
+        (api.getBarLength() * containerLength) /
+          (scrollLength + containerLength)
       )
       api.setHandleLength(
-        api.getBarLength() * containerLength / (scrollLength + containerLength),
+        (api.getBarLength() * containerLength) /
+          (scrollLength + containerLength),
         true
       )
     } else {

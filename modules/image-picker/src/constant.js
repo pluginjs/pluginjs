@@ -97,4 +97,3 @@ export const translations = {
     change: '更换图片'
   }
 }
-

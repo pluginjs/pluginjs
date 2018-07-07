@@ -179,7 +179,6 @@ export const dependencies = [
   'image-loader'
 ]
 
-
 /* chunks options */
 /*
   {

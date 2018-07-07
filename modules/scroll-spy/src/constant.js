@@ -20,4 +20,3 @@ export const defaults = {
   cloestActive: '',
   reference: 'top' // ["top"|"bottom"] Which side to use as base when calculation element position.
 }
-

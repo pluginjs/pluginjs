@@ -30,14 +30,11 @@ const optionsExtendList = deepMerge(List.defaults, DEFAULTS)
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: optionsExtendList,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: optionsExtendList,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class TagList extends List {
   constructor(element, options = {}) {
     super(element, options)

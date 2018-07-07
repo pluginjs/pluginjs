@@ -129,4 +129,3 @@ export const translations = {
     founded: '结果'
   }
 }
-

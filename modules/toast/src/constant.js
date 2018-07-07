@@ -93,4 +93,3 @@ export const defaults = {
   loader: true,
   loaderBgColor: ''
 }
-

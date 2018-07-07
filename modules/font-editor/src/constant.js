@@ -229,4 +229,3 @@ export const translations = {
     weight: '字重'
   }
 }
-

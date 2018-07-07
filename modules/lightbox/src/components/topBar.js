@@ -24,16 +24,16 @@ class TopBar {
       },
       play() {
         // this.play()
-              },
+      },
       download() {
         // this.download()
-              },
+      },
       fullScreen() {
         // this.fullScreen()
-              },
+      },
       share() {
         // this.share()
-              }
+      }
     }
   }
 

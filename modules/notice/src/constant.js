@@ -73,4 +73,3 @@ export const defaults = {
   fixedWidth: false,
   layout: 'top' // 'bottom'
 }
-

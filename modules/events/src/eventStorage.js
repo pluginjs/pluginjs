@@ -137,7 +137,7 @@ class EventStorage {
         }
       })
     } else if (eventName && !namespace) {
-            this.listeners[eventName] = this.listeners[eventName].filter(
+      this.listeners[eventName] = this.listeners[eventName].filter(
         eventTuple => eventTuple.handler !== handler
       )
 

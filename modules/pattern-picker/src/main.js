@@ -44,14 +44,11 @@ let DATA = null
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class PatternPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -504,7 +501,7 @@ class PatternPicker extends Component {
         this.setAttr(key, $this)
       }
     )
-        this.element.value = this.options.process.call(
+    this.element.value = this.options.process.call(
       this,
       getObjData('info', this.$previewImg)
     )

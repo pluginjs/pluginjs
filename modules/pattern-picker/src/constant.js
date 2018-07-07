@@ -139,4 +139,3 @@ export const translations = {
     selectorContent: '选择一个模式'
   }
 }
-

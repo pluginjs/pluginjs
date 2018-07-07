@@ -138,9 +138,10 @@ export const parseHTML = (...args) => {
   const htmlString = Array.isArray(args[0])
     ? args[0].reduce((result, str, index) => result + args[index] + str)
     : args[0]
-  const childNodes = compose(children, html(htmlString))(
-    document.createElement('div')
-  )
+  const childNodes = compose(
+    children,
+    html(htmlString)
+  )(document.createElement('div'))
   if (childNodes.length === 1) {
     return childNodes[0]
   }
@@ -280,7 +281,7 @@ export const clearChild = el => {
 
 export const parentWith = curry((fn, el) => {
   const parentElement = parent(el)
-    if (!parentElement || parentElement === document) {
+  if (!parentElement || parentElement === document) {
     return false
   }
   if (fn(parentElement)) {

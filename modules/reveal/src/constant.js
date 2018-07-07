@@ -28,4 +28,3 @@ export const defaults = {
   tablet: false,
   anchor: ''
 }
-

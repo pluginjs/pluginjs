@@ -60,4 +60,3 @@ export const defaults = {
   duration: '500',
   easing: 'ease' // linear, ease-in, ease-out, ease-in-out
 }
-

@@ -58,14 +58,11 @@ let ACTIVATED = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class FontPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -146,7 +143,7 @@ class FontPicker extends Component {
         getStyle('marginTop', query(`.${this.classes.FONT}`, this.$panel)),
         10
       )
-        if (this.options.manage) {
+    if (this.options.manage) {
       const text = this.translate('manage')
       this.$controller.append(
         parseHTML(
@@ -415,7 +412,7 @@ class FontPicker extends Component {
               return
             }
             // let $this = $(this);
-                        that.KEYBOARD.init(that.$searchList)
+            that.KEYBOARD.init(that.$searchList)
           }
         },
         query('input', this.$search)
@@ -497,7 +494,7 @@ class FontPicker extends Component {
       bindEvent({
         type: this.eventName('focus'),
         handler: () => {
-                    addClass(that.classes.SEARCHREADY, that.$panel)
+          addClass(that.classes.SEARCHREADY, that.$panel)
           that.enter('searchReady')
         }
       })
@@ -826,7 +823,7 @@ class FontPicker extends Component {
         removeClass(this.classes.SEARCHED, $font)
       }
     })
-        if (!this.$showFonts.length) {
+    if (!this.$showFonts.length) {
       return
     }
     const $sourceFont = getObjData('mapping', this.$showFonts[0])

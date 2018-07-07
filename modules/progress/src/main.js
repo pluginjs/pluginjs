@@ -24,13 +24,10 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class Progress extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -95,7 +92,7 @@ class Progress extends Component {
   }
 
   getPercentage(n) {
-    return Math.round(100 * (n - this.min) / (this.max - this.min))
+    return Math.round((100 * (n - this.min)) / (this.max - this.min))
   }
 
   go(goal) {
@@ -105,7 +102,7 @@ class Progress extends Component {
 
       if (is.percentage(goal)) {
         goal = parseInt(goal.replace('%', ''), 10)
-        goal = Math.round(this.min + goal / 100 * (this.max - this.min))
+        goal = Math.round(this.min + (goal / 100) * (this.max - this.min))
       }
       if (typeof goal === 'undefined') {
         goal = this.goal

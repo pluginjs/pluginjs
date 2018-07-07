@@ -49,14 +49,11 @@ const DATA = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class LinkPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -398,7 +395,7 @@ class LinkPicker extends Component {
     const radioOptions = deepMerge(radioDefaults, options)
     const $radio = queryAll(`input[name='${source}-${name}']`, parent)
     const api = $radio.map(el => Radio.of(el, radioOptions))
-        api.forEach(plugin => plugin.check(active, true))
+    api.forEach(plugin => plugin.check(active, true))
 
     const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
       ? parent

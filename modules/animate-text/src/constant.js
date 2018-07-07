@@ -22,4 +22,3 @@ export const defaults = {
 }
 
 export const dependencies = ['anime']
-

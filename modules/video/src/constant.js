@@ -53,4 +53,3 @@ export const defaults = {
   controls: false,
   poster: ''
 }
-

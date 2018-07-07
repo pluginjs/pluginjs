@@ -54,4 +54,3 @@ export const defaults = {
   },
   contentCallback: null
 }
-

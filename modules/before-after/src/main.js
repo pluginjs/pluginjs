@@ -26,13 +26,10 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class BeforeAfter extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -76,9 +73,10 @@ class BeforeAfter extends Component {
       addClass(this.classes.BEFORE),
       find('img:first-child')
     )(this.element)
-    this.$after = compose(addClass(this.classes.AFTER), find('img:last-child'))(
-      this.element
-    )
+    this.$after = compose(
+      addClass(this.classes.AFTER),
+      find('img:last-child')
+    )(this.element)
 
     this.createHandle()
     if (this.options.labels) {

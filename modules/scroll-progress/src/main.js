@@ -34,13 +34,10 @@ const POSITIONS = [
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class ScrollProgress extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -129,7 +126,7 @@ class ScrollProgress extends Component {
     const clientHeight = document.documentElement.clientHeight
     const height = document.body.scrollHeight
 
-    const total = scrollTop / (height - clientHeight) * 100
+    const total = (scrollTop / (height - clientHeight)) * 100
     this.setBarSize(total)
   }
 
@@ -170,7 +167,10 @@ class ScrollProgress extends Component {
       return
     }
     this.resetBarPosition()
-    let clientHeight, height, scrollTop, total
+    let clientHeight
+    let height
+    let scrollTop
+    let total
 
     if (this.options.custom === false) {
       scrollTop = this.scrollTop()
@@ -182,7 +182,7 @@ class ScrollProgress extends Component {
       height = this.element.scrollHeight
     }
 
-    total = scrollTop / (height - clientHeight) * 100
+    total = (scrollTop / (height - clientHeight)) * 100
     this.setBarSize(total)
   }
 

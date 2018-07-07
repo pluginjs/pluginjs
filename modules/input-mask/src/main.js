@@ -23,13 +23,10 @@ import {
 @eventable(EVENTS)
 @styleable(CLASSES)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS
-  }
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS
+})
 class InputMask extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

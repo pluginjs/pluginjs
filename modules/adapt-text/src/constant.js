@@ -18,4 +18,3 @@ export const defaults = {
   scrollResetSpeed: 300,
   resize: true
 }
-

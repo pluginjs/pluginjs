@@ -147,4 +147,3 @@ export const translations = {
     save: '保存'
   }
 }
-
