@@ -33,6 +33,7 @@ import {
 })
 class Thumbnails extends Component {
   distances = []
+  pos = 0
   current = null
   dif = null
 
@@ -69,14 +70,13 @@ class Thumbnails extends Component {
   parseHtml() {
     const data = []
     const items = this.element.querySelectorAll(this.options.delegate)
+    const regex = new RegExp('"([^"]*)"')
 
     items.forEach(item => {
       let info = {
         src:
           item.getAttribute('src') ||
-          window
-            .getComputedStyle(item)
-            ['background-image'].match('/[^(")]+(?="))/g')[0]
+          window.getComputedStyle(item)['background-image'].match(regex)[1]
       }
 
       const _data = Object.entries(item.dataset).reduce((result, [k, v]) => {
@@ -197,8 +197,8 @@ class Thumbnails extends Component {
 
   getItemPos(index, center = false) {
     return (
+      (center ? this.distances[index] / 2 : this.distances[index]) -
       this.distances.slice(0, index + 1).reduce((a, b) => a + b) -
-      (center ? this.distances[index] / 2 : this.distances[index]) +
       this.gutter * index
     )
   }
@@ -209,22 +209,19 @@ class Thumbnails extends Component {
 
     if (mode === 'full') {
       if (this.innerDistance > this.wrapDistance) {
-        const dif = this.innerDistance - this.wrapDistance
+        const dif = this.wrapDistance - this.innerDistance
 
         if (this.current === null) {
           const itemPos = this.getItemPos(index)
 
-          pos = dif > itemPos ? -itemPos : -dif
+          pos = dif < itemPos ? itemPos : dif
         } else {
-          const oldPos = parseInt(
-            anime.getValue(this.inner, vertical ? 'translateY' : 'translateX'),
-            10
-          )
+          const oldPos = this.pos
 
           if (index > this.current) {
             const newPos = oldPos - this.distances[this.current] - this.gutter
 
-            pos = dif > Math.abs(newPos) ? newPos : -dif
+            pos = dif < newPos ? newPos : dif
           } else if (index < this.current) {
             const newPos = oldPos + this.distances[this.current] + this.gutter
 
@@ -233,7 +230,7 @@ class Thumbnails extends Component {
         }
       }
     } else if (mode === 'center') {
-      pos = this.wrapDistance / 2 - this.getItemPos(index, true)
+      pos = this.wrapDistance / 2 + this.getItemPos(index, true)
     }
 
     const opts = {
@@ -245,17 +242,25 @@ class Thumbnails extends Component {
     opts[vertical ? 'translateY' : 'translateX'] = pos
 
     anime(opts)
+
+    this.pos = pos
   }
 
   resetPos(vertical = false) {
+    const wrapDistance = this.wrapDistance
+
+    this.setDistance(this.options.vertical)
+    if (this.wrapDistance === wrapDistance) {
+      return
+    }
+    this.setItemsDistance(this.options.vertical)
+
     if (this.innerDistance < this.wrapDistance) {
       return
     }
-    const oldPos = parseInt(
-      anime.getValue(this.inner, vertical ? 'translateY' : 'translateX'),
-      10
-    )
-    const dif = this.innerDistance - this.wrapDistance
+
+    const oldPos = this.pos
+    const dif = this.wrapDistance - this.innerDistance
     let pos = 0
 
     if (this.dif === null) {
@@ -264,13 +269,17 @@ class Thumbnails extends Component {
 
     if (this.options.mode === 'center') {
       pos = this.wrapDistance / 2 - this.getItemPos(this.current, true)
-    } else if (oldPos > 0) {
-      pos = 0
-    } else if (oldPos > -dif) {
-      pos =
-        this.current === this.length - 1 ? oldPos - (dif - this.dif) : oldPos
     } else {
-      pos = oldPos - (dif - this.dif)
+      pos =
+        this.current === this.length - 1 ? oldPos + (dif - this.dif) : oldPos
+
+      if (pos > 0) {
+        pos = 0
+      }
+
+      if (pos < dif) {
+        pos = dif
+      }
     }
 
     this.dif = dif
@@ -283,6 +292,8 @@ class Thumbnails extends Component {
     opts[vertical ? 'translateY' : 'translateX'] = pos
 
     anime(opts)
+
+    this.pos = pos
   }
 
   go(index) {
@@ -322,14 +333,6 @@ class Thumbnails extends Component {
   }
 
   resize() {
-    const wrapDistance = this.wrapDistance
-
-    this.setDistance(this.options.vertical)
-
-    if (this.wrapDistance === wrapDistance) {
-      return
-    }
-    this.setItemsDistance(this.options.vertical)
     this.resetPos(this.options.vertical)
   }
 

@@ -41,10 +41,6 @@ const data = [
     src: 'http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg'
   },
   {
-    src:
-      'http://b.thumbs.redditmedia.com/Q9vfMPNE79WOrZsRT9suOfawCMwGofqR3m6YuWnhwHc.jpg'
-  },
-  {
     src: 'http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_s.jpg'
   },
   {
