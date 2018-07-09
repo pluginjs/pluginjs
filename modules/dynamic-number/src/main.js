@@ -4,6 +4,7 @@ import { eventable, register, stateable } from '@pluginjs/pluginjs'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
+  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -11,10 +12,14 @@ import formaters from './formaters'
 
 @eventable(EVENTS)
 @stateable()
-@register(NAMESPACE, {
-  defaults: DEFAULTS,
-  methods: METHODS
-})
+@register(
+  NAMESPACE,
+  {
+    defaults: DEFAULTS,
+    methods: METHODS
+  },
+  INFO
+)
 class DynamicNumber extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

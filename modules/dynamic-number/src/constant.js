@@ -34,3 +34,5 @@ export const defaults = {
     decimalsPoint: '.'
   }
 }
+
+export const info = { version: '0.2.2' }
