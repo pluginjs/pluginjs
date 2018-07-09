@@ -49,7 +49,7 @@ class Progress {
 
         append($number, $wrap)
 
-        if (this.instance.options.site === 'above') {
+        if (this.instance.options.labelPosition === 'above') {
           $label.classList.add(this.instance.getClass('above'))
           $number.classList.add(this.instance.getClass('above'))
           prepend($label, $wrap)

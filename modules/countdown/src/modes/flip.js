@@ -40,7 +40,7 @@ class Flip {
         $flip = parseHTML(flip[type])
         $label = parseHTML(label[type])
 
-        if (this.instance.options.site === 'above') {
+        if (this.instance.options.labelPosition === 'above') {
           $label.classList.add(this.instance.getClass('above'))
           prepend($label, $flip)
         } else {

@@ -48,7 +48,7 @@ class Ordinary {
 
         append($number, $wrap)
 
-        if (this.instance.options.site === 'above') {
+        if (this.instance.options.labelPosition === 'above') {
           prepend($label, $wrap)
         } else {
           append($label, $wrap)
