@@ -39,11 +39,9 @@ import {
 class Radio extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-
+    this.$element = this.element
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
-    this.group = this.options.getGroup.call(this)
-
+    this.$group = this.options.getGroup.call(this)
     this.initClasses(CLASSES)
     this.initStates()
     this.initialize()
@@ -57,29 +55,29 @@ class Radio extends Component {
     // update checked state based on checked prop
     this.update(false)
 
-    if (this.element.disabled || this.options.disabled) {
+    if (this.$element.disabled || this.options.disabled) {
       this.disable(false)
     }
 
     this.bind()
-    setObjData(NAMESPACE, this, this.element)
+    setObjData(NAMESPACE, this, this.$element)
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
   createWrap() {
-    this.wrap = this.options.getWrap.call(this)
+    this.$wrap = this.options.getWrap.call(this)
 
-    if (!this.wrap) {
+    if (!this.$wrap) {
       const html = template.render(this.options.templates.wrap.call(this), {
         classes: this.classes
       })
 
-      wrap(html, this.element)
+      wrap(html, this.$element)
 
-      this.wrap = this.options.getWrap.call(this)
-      append(this.label, this.wrap)
+      this.$wrap = this.options.getWrap.call(this)
+      append(this.$label, this.$wrap)
       this.enter('wrapped')
     }
 
@@ -87,15 +85,15 @@ class Radio extends Component {
       if (this.getThemeClass().split(' ').length > 1) {
         this.getThemeClass()
           .split(' ')
-          .map(c => addClass(c, this.wrap))
+          .map(c => addClass(c, this.$wrap))
       } else {
-        addClass(this.getThemeClass(), this.wrap)
+        addClass(this.getThemeClass(), this.$wrap)
       }
     }
   }
 
   createLabel() {
-    this.label = this.options.getLabel.call(this)
+    this.$label = this.options.getLabel.call(this)
   }
 
   createIcon() {
@@ -107,16 +105,16 @@ class Radio extends Component {
           classes: this.classes
         })
       )
-      prepend(this.$icon, this.label)
+      prepend(this.$icon, this.$label)
     }
   }
 
   set(value) {
-    if (this.element.value === value) {
+    if (this.$element.value === value) {
       this.check()
     } else {
-      this.group.map((item, i) => {
-        const api = getObjData(NAMESPACE, this.element)
+      this.$group.map((item, i) => { /* eslint-disable-line */
+        const api = getObjData(NAMESPACE, this.$element)
         if (api && value === this.value) {
           api.check(true, true)
         }
@@ -125,25 +123,25 @@ class Radio extends Component {
   }
 
   get() {
-    return this.group.filter(i => i.getAttribute('checked')).map(j => j.value)
+    return this.$group.filter(i => i.getAttribute('checked')).map(j => j.value)
   }
 
   check(trigger = true, update = true) {
     if (!this.is('checked')) {
       this.enter('checked')
-      addClass(this.classes.CHECKED, this.wrap)
+      addClass(this.classes.CHECKED, this.$wrap)
       if (trigger) {
-        this.element.setAttribute('checked', true)
-        this.trigger(EVENTS.CHECK, this.element.value)
-        this.trigger(EVENTS.CHANGE, this.element.value)
+        this.$element.setAttribute('checked', true)
+        this.trigger(EVENTS.CHECK, this.$element.value)
+        this.trigger(EVENTS.CHANGE, this.$element.value)
       }
     }
 
     if (update) {
       const that = this
-      this.group.map((item, i) => {
+      this.$group.map((item, i) => { /* eslint-disable-line */
         if (item === that.element) {
-          return
+           return /* eslint-disable-line */
         }
         const api = getObjData(NAMESPACE, item)
         if (api) {
@@ -157,18 +155,18 @@ class Radio extends Component {
     if (this.is('checked')) {
       this.leave('checked')
 
-      removeClass(this.classes.CHECKED, this.wrap)
+      removeClass(this.classes.CHECKED, this.$wrap)
       if (trigger) {
-        this.element.setAttribute('checked', false)
-        this.trigger(EVENTS.UNCHECK, this.element.value)
+        this.$element.setAttribute('checked', false)
+        this.trigger(EVENTS.UNCHECK, this.$element.value)
       }
     }
 
     if (update) {
       const that = this
-      this.group.map((item, i) => {
+      this.$group.map((item, i) => { /* eslint-disable-line */
         if (item === that.element) {
-          return
+         return /* eslint-disable-line */
         }
         const api = getObjData(NAMESPACE, item)
         if (api) {
@@ -197,12 +195,12 @@ class Radio extends Component {
           this.toggle()
         }
       },
-      this.element
+      this.$element
     )
   }
 
   unbind() {
-    removeEvent('click', this.element)
+    removeEvent('click', this.$element)
   }
 
   val(value) {
@@ -215,8 +213,8 @@ class Radio extends Component {
 
   enable(trigger = true) {
     if (this.is('disabled')) {
-      this.element.disabled = false
-      removeClass(this.classes.DISABLED, this.wrap)
+      this.$element.disabled = false
+      removeClass(this.classes.DISABLED, this.$wrap)
       this.leave('disabled')
     }
 
@@ -227,8 +225,8 @@ class Radio extends Component {
 
   disable(trigger = true) {
     if (!this.is('disabled')) {
-      this.element.disabled = true
-      addClass(this.classes.DISABLED, this.wrap)
+      this.$element.disabled = true
+      addClass(this.classes.DISABLED, this.$wrap)
       // this.wrap.addClass(this.classes.DISABLED);
       // this.$element.prop('disabled', true);
       this.enter('disabled')
@@ -244,7 +242,7 @@ class Radio extends Component {
     // if (this.element.getAttribute('checked') === 'false') {
     //   this.element.checked = false
     // }
-    const checked = this.element.checked
+    const checked = this.$element.checked
     if (checked !== this.is('checked')) {
       if (checked) {
         this.check(trigger, false)
@@ -257,12 +255,12 @@ class Radio extends Component {
   destroy() {
     if (this.is('initialized')) {
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.wrap)
+        removeClass(this.getThemeClass(), this.$wrap)
       }
-      removeClass(this.classes.DISABLED, this.wrap)
-      removeClass(this.classes.CHECKED, this.wrap)
+      removeClass(this.classes.DISABLED, this.$wrap)
+      removeClass(this.classes.CHECKED, this.$wrap)
       if (this.is('wrapped')) {
-        unwrap(this.element)
+        unwrap(this.$element)
         this.$icon.remove()
       }
       this.unbind()

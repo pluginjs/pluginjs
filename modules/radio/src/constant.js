@@ -54,7 +54,7 @@ export const defaults = {
     )[0]
   },
   getIcon() {
-    return this.label.querySelector('i')
+    return this.$label.querySelector('i')
   },
 
   getGroup() {
