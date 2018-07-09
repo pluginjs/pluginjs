@@ -16,7 +16,7 @@ $imagePicker-color: $gray-light !default;
 $imagePicker-empty-border-style: dashed !default;
 // change
 $imagePicker-change-bg: $gray-darker !default;
-$imagePicker-change-opacity: 0.9 !default;
+$imagePicker-change-opacity:  rgba(0,0,0,0.7) !default;
 // init
 $imagePicker-init-hover-bg: $gray-lightest !default;
 
@@ -170,7 +170,8 @@ input.#{$imagePicker}-input {
   &.#{$imagePicker}-hover {
     .#{$imagePicker} {
       &-info-change {
-        opacity: $imagePicker-change-opacity;
+        background: $imagePicker-change-opacity;
+        opacity: 1;
         transition: all 300ms ease-in-out;
         // display: block;
       }

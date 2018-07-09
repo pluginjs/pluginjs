@@ -241,7 +241,7 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
     color: $fontPicker-active-color;
 
     .pj-dropdown-label {
-      color: $fontPicker-active-color;
+      color: $fontPicker-active-color !important;
     }
   }
 
@@ -294,6 +294,10 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
 
     > li {
       padding: 0.4 * $fontPicker-sizer $fontPicker-sizer; //4px 10px
+    }
+
+    > li:hover {
+      background-color: $fontPicker-hover-color;
     }
 
     &::before {

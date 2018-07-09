@@ -6,7 +6,7 @@ ImagePicker.of(element, {
   locale: 'zh',
   select() {
     this.set({
-      image: '../../plugins/image-picker/images/nvnv.png'
+      image: 'https://picsum.photos/200/300?image=1041'
     })
   }
 })

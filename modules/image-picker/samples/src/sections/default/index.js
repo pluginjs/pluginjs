@@ -5,7 +5,7 @@ const element = query('#default .example-default')
 ImagePicker.of(element, {
   select() {
     this.set({
-      image: '../../plugins/image-picker/images/nvnv.png'
+      image: 'https://picsum.photos/200/300?image=1067'
     })
   }
 })

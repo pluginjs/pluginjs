@@ -77,16 +77,16 @@ export const defaults = {
       {contents}</div>`
     },
     group() {
-      return `<section class='{class}' data-group='{group}'>
-        <header class='{titleClass}'>{title}</header>
-        <div class="{contentsClass}"></div>
+      return `<section class='{classes.GROUP}' data-group='{group}'>
+        <header class='{classes.GROUPTITLE}'>{title}</header>
+        <div class="{classes.GROUPCONTENTS}"></div>
       </section>`
     },
     icon() {
       return '<i class="{classes.CLOSE} {icon}"></i>'
     },
     mark() {
-      return `<mark class='{class}'>
+      return `<mark class='{classes.MARK}'>
       {contents}</mark>`
     }
   },

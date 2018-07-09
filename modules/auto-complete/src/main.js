@@ -177,11 +177,9 @@ class AutoComplete extends Component {
       const title = v.id
       const $group = parseHTML(
         template.compile(this.options.templates.group())({
-          class: this.classes.GROUP,
+          classes: this.classes,
           group: title,
-          titleClass: this.classes.GROUPTITLE,
-          title: title.toUpperCase(),
-          contentsClass: this.classes.GROUPCONTENTS
+          title: title.toUpperCase()
         })
       )
 
@@ -281,15 +279,15 @@ class AutoComplete extends Component {
         identity: `.${this.classes.ITEM}`,
         handler: ({ target }) => {
           const hasItemClass = hasClass(this.classes.ITEM)
-          const item = hasItemClass(target)
+          const $item = hasItemClass(target)
             ? target
             : parentWith(hasItemClass, target)
-          this.$selected = item
+          this.$selected = $item
           removeClass(
             this.classes.ACTIVE,
             queryAll(`.${this.classes.ITEM}`, this.$panel)
           )
-          addClass(this.classes.ACTIVE, item)
+          addClass(this.classes.ACTIVE, $item)
         }
       }),
       bindEvent({
@@ -297,13 +295,13 @@ class AutoComplete extends Component {
         identity: `.${this.classes.ITEM}`,
         handler: ({ target }) => {
           const hasItemClass = hasClass(this.classes.ITEM)
-          const item = hasItemClass(target)
+          const $item = hasItemClass(target)
             ? target
             : parentWith(hasItemClass, target)
-          this.$selected = item
+          this.$selected = $item
           this.close()
-          console.log(getObjData('data', item))
-          this.trigger(EVENTS.CHANGE, getObjData('data', item))
+          // console.log(getObjData('data', $item))
+          this.trigger(EVENTS.CHANGE, getObjData('data', $item))
         }
       })
     )(this.$panel)
@@ -339,7 +337,6 @@ class AutoComplete extends Component {
                   if (e.keyCode === 13 && e.which === 13) {
                     // update
                     this.close()
-
                     this.trigger(
                       EVENTS.CHANGE,
                       getObjData('data', this.$selected),
@@ -401,15 +398,15 @@ class AutoComplete extends Component {
       )
     }
 
-    this.$items.forEach(item => {
-      removeClass(that.classes.SHOW, item)
-      const val = getObjData('data', item).label
+    this.$items.forEach($item => {
+      removeClass(that.classes.SHOW, $item)
+      const val = getObjData('data', $item).label
 
       if (that.compare(key, val)) {
         if (count >= that.options.maxItems) {
           return
         }
-        that.render(key, val, item)
+        that.render(key, val, $item)
         count++
       }
     })
@@ -423,14 +420,14 @@ class AutoComplete extends Component {
     return true
   }
 
-  render(key, value, item) {
+  render(key, value, $item) {
     const data = {
-      label: getObjData('data', item).label,
-      value: getObjData('data', item).value
+      label: getObjData('data', $item).label,
+      value: getObjData('data', $item).value
     }
 
-    let content = this.options.render(data, item)
-      ? this.options.render(data, item)
+    let content = this.options.render(data, $item)
+      ? this.options.render(data, $item)
       : value
 
     // if (this.options.highlight) {
@@ -443,24 +440,24 @@ class AutoComplete extends Component {
 
     const val = value.replace(REG, match =>
       template.compile(this.options.templates.mark())({
-        class: this.classes.MARK,
+        classes: this.classes,
         contents: match
       })
     )
 
     data.label = val
-    content = this.options.render(data, item)
-      ? this.options.render(data, item)
+    content = this.options.render(data, $item)
+      ? this.options.render(data, $item)
       : val
     // }
 
     // this.color(key, content)
-    item.innerHTML = content
-    addClass(this.classes.SHOW, item)
+    $item.innerHTML = content
+    addClass(this.classes.SHOW, $item)
     if (this.options.group) {
       addClass(
         this.classes.GROUPSHOW,
-        parentWith(el => el.matches(`.${this.classes.GROUP}`), item)
+        parentWith(el => el.matches(`.${this.classes.GROUP}`), $item)
       )
     }
 
@@ -537,7 +534,7 @@ class AutoComplete extends Component {
     if (!hasClass(this.classes.OPEN, this.$panel)) {
       addClass(this.classes.OPEN, this.$element)
       addClass(this.classes.OPEN, this.$panel)
-      console.log(this.$panel)
+      // console.log(this.$panel)
       this.enter('open')
 
       this.POPPER.scheduleUpdate()
