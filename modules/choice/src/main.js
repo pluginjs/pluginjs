@@ -415,7 +415,6 @@ class Choice extends Component {
         this.unselect($item, false)
       }
     })
-
     this.trigger(EVENTS.CHANGE, this.value)
   }
 

@@ -46,17 +46,17 @@ import {
 class AutoComplete extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-
+    this.$element = this.element
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
 
     this.initClasses(CLASSES)
 
     wrap(
       parseHTML(`<div class="${this.classes.NAMESPACE}"></div>`),
-      this.element
+      this.$element
     )
 
-    this.$wrapper = parent(this.element)
+    this.$wrapper = parent(this.$element)
 
     this.data = this.options.data
     this.$panel = null
@@ -77,7 +77,7 @@ class AutoComplete extends Component {
     this.initData()
     this.bind()
 
-    if (this.element.disabled || this.options.disabled) {
+    if (this.$element.disabled || this.options.disabled) {
       this.disable()
     }
 
@@ -88,19 +88,19 @@ class AutoComplete extends Component {
   }
 
   create() {
-    this.firstClassName = this.element.className
-    addClass(this.classes.INPUT.split(' '), this.element)
-    this.element.setAttribute('placeholder', this.options.placeholder)
+    this.firstClassName = this.$element.className
+    addClass(this.classes.INPUT.split(' '), this.$element)
+    this.$element.setAttribute('placeholder', this.options.placeholder)
     this.$panel = parseHTML(
       template.compile(this.options.templates.panel())({
-        class: this.classes.PANEL
+        classes: this.classes
       })
     )
 
     // close button
     this.$close = parseHTML(
       template.compile(this.options.templates.icon())({
-        class: this.classes.CLOSE,
+        classes: this.classes,
         icon: 'icon-char icon-close-mini'
       })
     )
@@ -108,11 +108,11 @@ class AutoComplete extends Component {
     this.$wrapper.append(this.$panel, this.$close)
     const panelWidth = this.options.panelWidth
       ? this.options.panelWidth
-      : getStyle('width', this.element)
+      : getStyle('width', this.$element)
     setStyle({ width: panelWidth }, this.$panel)
 
     if (this.options.keyboard) {
-      this.element.setAttribute('tabindex', 1)
+      this.$element.setAttribute('tabindex', 1)
     }
     if (!this.options.ajax) {
       this.handleEl(this.data)
@@ -120,7 +120,7 @@ class AutoComplete extends Component {
   }
 
   setupPopper() {
-    this.POPPER = new Popper(this.element, this.$panel, {
+    this.POPPER = new Popper(this.$element, this.$panel, {
       placement: 'bottom',
       modifiers: { preventOverflow: { boundariesElement: 'window' } },
       onUpdate: data => {
@@ -138,7 +138,7 @@ class AutoComplete extends Component {
   }
 
   initData() {
-    const val = this.element.value
+    const val = this.$element.value
     if (val) {
       this.set(val)
     }
@@ -160,7 +160,7 @@ class AutoComplete extends Component {
       }
       const $item = parseHTML(
         template.compile(this.options.templates.item())({
-          class: this.classes.ITEM,
+          classes: this.classes,
           contents: label
         })
       )
@@ -238,7 +238,7 @@ class AutoComplete extends Component {
           debounce(this.search(val), 200)
         }
       },
-      this.element
+      this.$element
     )
 
     compose(
@@ -249,7 +249,7 @@ class AutoComplete extends Component {
           if (this.is('disabled')) {
             return
           }
-          this.element.value = ''
+          this.$element.value = ''
           hideElement(this.$close)
         }
       }),
@@ -302,6 +302,7 @@ class AutoComplete extends Component {
             : parentWith(hasItemClass, target)
           this.$selected = item
           this.close()
+          console.log(getObjData('data', item))
           this.trigger(EVENTS.CHANGE, getObjData('data', item))
         }
       })
@@ -313,7 +314,7 @@ class AutoComplete extends Component {
           type: this.eventName('blur'),
           handler: () => {
             this.leave('focus')
-            removeEvent('keydown', this.element)
+            removeEvent('keydown', this.$element)
           }
         }),
         bindEvent({
@@ -348,11 +349,11 @@ class AutoComplete extends Component {
                   }
                 }
               },
-              this.element
+              this.$element
             )
           }
         })
-      )(this.element)
+      )(this.$element)
     }
 
     bindEvent(
@@ -374,7 +375,7 @@ class AutoComplete extends Component {
   }
 
   isShowButton() {
-    if (this.element.value) {
+    if (this.$element.value) {
       showElement(this.$close)
     } else {
       hideElement(this.$close)
@@ -383,7 +384,7 @@ class AutoComplete extends Component {
 
   unbind() {
     // this.$wrapper.off(this.eventName());
-    removeEvent(this.eventName(), this.element)
+    removeEvent(this.eventName(), this.$element)
     removeEvent(this.eventName(), this.$wrapper)
     removeEvent(this.eventName(), document)
   }
@@ -534,9 +535,9 @@ class AutoComplete extends Component {
 
   open() {
     if (!hasClass(this.classes.OPEN, this.$panel)) {
-      addClass(this.classes.OPEN, this.element)
+      addClass(this.classes.OPEN, this.$element)
       addClass(this.classes.OPEN, this.$panel)
-
+      console.log(this.$panel)
       this.enter('open')
 
       this.POPPER.scheduleUpdate()
@@ -569,11 +570,11 @@ class AutoComplete extends Component {
   }
 
   set(value) {
-    this.element.value = value
+    this.$element.value = value
   }
 
   get() {
-    return this.element.value
+    return this.$element.value
   }
 
   val(value) {
@@ -588,24 +589,24 @@ class AutoComplete extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      if (hasClass(this.classes.DISABLED, this.element)) {
-        removeClass(this.classes.DISABLED, this.element)
+      if (hasClass(this.classes.DISABLED, this.$element)) {
+        removeClass(this.classes.DISABLED, this.$element)
       }
       this.leave('disabled')
       this.triggerCloseButten()
-      this.element.disabled = false
+      this.$element.disabled = false
     }
     this.trigger(EVENTS.ENABLE)
   }
 
   disable() {
     if (!this.is('disabled')) {
-      if (!hasClass(this.classes.DISABLED, this.element)) {
-        addClass(this.classes.DISABLED, this.element)
+      if (!hasClass(this.classes.DISABLED, this.$element)) {
+        addClass(this.classes.DISABLED, this.$element)
       }
       this.triggerCloseButten()
       this.enter('disabled')
-      this.element.disabled = true
+      this.$element.disabled = true
     }
 
     this.trigger(EVENTS.DISABLE)
@@ -619,9 +620,9 @@ class AutoComplete extends Component {
         removeClass(this.getThemeClass(), this.$wrapper)
       }
       this.POPPER.destroy()
-      unwrap(this.element)
-      this.element.className = this.firstClassName
-      this.element.setAttribute('placeholder', null)
+      unwrap(this.$element)
+      this.$element.className = this.firstClassName
+      this.$element.setAttribute('placeholder', null)
       this.leave('initialized')
     }
     this.trigger(EVENTS.DESTROY)

@@ -65,13 +65,16 @@ export const defaults = {
   placeholder: 'Please Search...',
   templates: {
     input() {
-      return `<input type='text' class='pj-input {class}' placeholder='{placeholder}'/>`
+      return `<input type='text' class='pj-input {class}' placeholder='{placeholder}'
+      />`
     },
     panel() {
-      return `<div class='{class}'></div>`
+      return `<div class='{classes.PANEL}'>
+      </div>`
     },
     item() {
-      return `<div class='{class}'>{contents}</div>`
+      return `<div class='{classes.ITEM}'>
+      {contents}</div>`
     },
     group() {
       return `<section class='{class}' data-group='{group}'>
@@ -80,10 +83,11 @@ export const defaults = {
       </section>`
     },
     icon() {
-      return '<i class="{class} {icon}"></i>'
+      return '<i class="{classes.CLOSE} {icon}"></i>'
     },
     mark() {
-      return `<mark class='{class}'>{contents}</mark>`
+      return `<mark class='{class}'>
+      {contents}</mark>`
     }
   },
 
@@ -91,19 +95,20 @@ export const defaults = {
     return false
   },
   source(val) {
+    /* eslint-disable */
     $.getJSON('/ajax', { q: val }, data => {
       this.handleEl.bind(this, data)
     })
+    /* eslint-enable */
   },
+
   process(value) {
-    /* global As*/
     if (value && !is.undefined(value)) {
       return JSON.stringify(value)
     }
     return ''
   },
   parse(value) {
-    /* global As*/
     if (value && is.string(value)) {
       try {
         return JSON.parse(value)
