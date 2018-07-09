@@ -102,9 +102,6 @@ $font-weight-light: lighter !default;
 $font-weight-bold: bold !default;
 $font-weight-base: $font-weight-normal !default;
 
-// $line-height-base:   1.5 !default;
-// $line-height-lg:     (4 / 3) !default;
-// $line-height-sm:     1.2 !default;
 $line-height-base: 1.5 !default;
 $line-height-lg: (4 / 3) !default;
 $line-height-sm: 1.2 !default;
@@ -170,8 +167,7 @@ $cursor-disabled: not-allowed !default;
 // Transition duration
 $transition-duration: 150ms !default;
 
-// 9. disabled bg color [by: FreMaNgo]
-//$disabled-color: rgba(223, 228, 237, 0.4) !default;
+// 9. disabled bg color
 $disabled-bg: $color-white;
 $disabled-border: $gray-border;
 $disabled-color: $gray-border;

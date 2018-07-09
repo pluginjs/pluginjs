@@ -1,5 +1,6 @@
 const pkg = require('./package.json')
 const path = require('path')
+const path = require('path')
 
 const includePaths = [
   '../../node_modules',

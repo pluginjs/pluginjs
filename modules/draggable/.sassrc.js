@@ -1,4 +1,5 @@
 const pkg = require('./package.json')
+const path = require('path')
 
 module.exports = {
   input: pkg.css.source,
