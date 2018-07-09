@@ -109,10 +109,6 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
       border-color: $datePicker-active-color;
     }
 
-    &-input:hover {
-      // border-color: $datePicker-active-color;
-    }
-
     &-input:active {
       border-color: $color-primary-dark;
     }
@@ -174,10 +170,6 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
   &-input,
   &-icon,
   &-mobile-trigger {
-    //display: table-cell;
-    //height: 30px;
-    //line-height: 30px;
-    //vertical-align: middle;
     border: $datePicker-border;
     border-radius: $datePicker-border-radius;
   }
@@ -186,7 +178,8 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
   &-mobile-trigger {
     //width: $datePicker-input-width;
     padding: 0 16px;
-    font-size: 12px;
+    font-size: 13px;
+    line-height: 20px;
     color: $datePicker-input-color;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -377,29 +370,6 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
         &:hover::after {
           background: none;
         }
-      }
-
-      &.#{$datePicker}-inRange {
-        // background-color: $datePicker-inrange-color;
-        // &:hover::after,
-        // &.#{$datePicker}-active {
-        //   background-color: #fff;
-        // }
-
-        // &.#{$datePicker}-active::after {
-        //   background-color: $datePicker-active-color !important;
-        //   border-radius: 100%;
-        // }
-
-        // &:first-of-type {
-        //   border-top-left-radius: 100%;
-        //   border-bottom-left-radius: 100%;
-        // }
-
-        // &:last-of-type {
-        //   border-top-right-radius: 100%;
-        //   border-bottom-right-radius: 100%;
-        // }
       }
 
       &.#{$datePicker}-inRange:hover::after,

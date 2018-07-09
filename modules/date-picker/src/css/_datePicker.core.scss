@@ -123,13 +123,12 @@ $datePicker-mobile-height: 80% !default;
     height: 85%;
   }
 
-  &-months,
-  &-years {
-    span {
-      line-height: 61px;
-      // vertical-align: middle;
-    }
-  }
+  // &-months,
+  // &-years {
+  //   span {
+  //     // vertical-align: middle;
+  //   }
+  // }
 
   &-days {
     span {
@@ -184,6 +183,7 @@ $datePicker-mobile-height: 80% !default;
       width: 33.3%;
       height: 100%;
       font-size: $font-size-lg;
+      line-height: 61px;
       cursor: pointer;
 
       &.#{$datePicker}-untouchable {
@@ -201,7 +201,7 @@ $datePicker-mobile-height: 80% !default;
   }
 
   &-picker-wrap {
-    z-index: 9999;
+    // z-index: 9999;
     display: none;
     padding: 14px 0;
   }

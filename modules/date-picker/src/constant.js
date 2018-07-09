@@ -47,7 +47,15 @@ export const classes = {
   ACTIVE: '{namespace}-active',
   INLINEMODE: '{namespace}-inline',
   PICKERWRAP: '{namespace}-picker-wrap',
-  INPUTMODE: 'pj-input'
+  INPUTMODE: 'pj-input',
+  WRAP: '{namespace}-wrap',
+  INPUTWRAP: '{namespace}-inputWrap',
+  TITLE: '{namespace}-title',
+  STARTDAY: '{namespace}-startDay',
+  ENDDAY: '{namespace}-endDay',
+  LASTMONTH: '{namespace}-select-last-in-month',
+  FIRSTMONTH: '{namespace}-select-first-in-month',
+  MOBILETRIGGER: '{namespace}-mobile-trigger'
 }
 
 export const methods = [
@@ -110,34 +118,34 @@ export const defaults = {
 
   templates: {
     inputWrap() {
-      return '<div class="{namespace}-inputWrap"></div>'
+      return '<div class="{classes.INPUTWRAP}"></div>'
     },
     inputIcon() {
-      return '<i class="{namespace}-icon icon-calendar"></i>'
+      return '<i class="{classes.ICON} icon-calendar"></i>'
     },
     wrap() {
-      return '<div class="{namespace}-wrap"></div>'
+      return '<div class="{classes.WRAP}"></div>'
     },
     content() {
       return (
-        '<div class="{namespace}-content">' +
-        '<div class="{namespace}-header">' +
-        '<div class="{namespace}-caption"></div>' +
-        '<div class="{namespace}-prev icon-chevron-left"></div>' +
-        '<div class="{namespace}-next icon-chevron-right"></div>' +
+        '<div class="{classes.CONTENT}">' +
+        '<div class="{classes.HEADER}">' +
+        '<div class="{classes.CAPTION}"></div>' +
+        '<div class="{classes.PREV} icon-chevron-left"></div>' +
+        '<div class="{classes.NEXT} icon-chevron-right"></div>' +
         '</div>' +
-        '<div class="{namespace}-days"></div>' +
-        '<div class="{namespace}-months"></div>' +
-        '<div class="{namespace}-years"></div>' +
-        '<div class="{namespace}-buttons">' +
-        '<div class="{namespace}-button-cancel"></div>' +
-        '<div class="{namespace}-button-save"></div>' +
+        '<div class="{classes.DATS}"></div>' +
+        '<div class="{classes.MONTHS}"></div>' +
+        '<div class="{classes.YEARS}"></div>' +
+        '<div class="{classes.BUTTONS}">' +
+        '<div class="{classes.BUTTONCANCELS}"></div>' +
+        '<div class="{classes.BUTTONSAVES}"></div>' +
         '</div>' +
         '</div>'
       )
     },
     title() {
-      return '<div class="{namespace}-title">test</div>'
+      return '<div class="{classes.TITLE}">test</div>'
     }
   },
 

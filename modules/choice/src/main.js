@@ -42,6 +42,7 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
+const $doc = Pj.doc
 const childrenMatchSelector = (selector, el) =>
   compose(
     elementList => {
@@ -331,7 +332,7 @@ class Choice extends Component {
             this.hideDropdown()
           }
         },
-        Pj.doc
+        $doc
       )
     }
 
@@ -350,7 +351,7 @@ class Choice extends Component {
     removeEvent(this.eventName(), this.$wrap)
     removeEvent(this.eventName(), this.$element)
     if (this.options.overflow === true) {
-      removeEvent(this.eventNameWithId(), Pj.doc)
+      removeEvent(this.eventNameWithId(), $doc)
     }
   }
 

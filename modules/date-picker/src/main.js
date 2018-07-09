@@ -46,7 +46,7 @@ import {
 import Keyboard from './keyboard'
 
 const $doc = Pj.doc
-const compileTemplate = template.compile
+// const compileTemplate = template.compile
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -61,11 +61,12 @@ const compileTemplate = template.compile
 class DatePicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
+    this.$element = this.element
     const data = this.getDataOptions()
 
     this.defaultOptions = deepMerge(DEFAULTS, options, data)
     this.options = deepMerge(DEFAULTS, options, data)
-    this.firstClassName = this.element.className
+    this.firstClassName = this.$element.className
 
     this.initClasses(CLASSES)
 
@@ -76,20 +77,20 @@ class DatePicker extends Component {
 
     this.$inputWrap = wrapElement(
       parseHTML(
-        compileTemplate(this.options.templates.inputWrap.call(this))({
-          namespace: this.classes.NAMESPACE
+        template.render(this.options.templates.inputWrap.call(this), {
+          classes: this.classes
         })
       ),
-      addClass(this.classes.INPUT, this.element)
+      addClass(this.classes.INPUT, this.$element)
     )
-    addClass(this.classes.INPUTMODE, this.element)
+    addClass(this.classes.INPUTMODE, this.$element)
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$inputWrap)
     }
 
     this.$inputIcon = parseHTML(
-      compileTemplate(this.options.templates.inputIcon.call(this))({
-        namespace: this.classes.NAMESPACE
+      template.render(this.options.templates.inputIcon.call(this), {
+        classes: this.classes
       })
     )
 
@@ -107,7 +108,7 @@ class DatePicker extends Component {
       this.options.outputFormat || 'yyyy/mm/dd'
     )
 
-    const inputDate = this.element.value
+    const inputDate = this.$element.value
     if (inputDate) {
       this.options.date = this.formatDate(inputDate, this.format)
     }
@@ -120,16 +121,16 @@ class DatePicker extends Component {
     this.isMobile = this.options.mobileMode // with other judgements
 
     const wrap = parseHTML(
-      compileTemplate(this.options.templates.wrap.call(this))({
-        namespace: this.classes.NAMESPACE
+      template.render(this.options.templates.wrap.call(this), {
+        classes: this.classes
       })
     )
-    const content = compileTemplate(this.options.templates.content.call(this))({
-      namespace: this.classes.NAMESPACE
+    const content = template.render(this.options.templates.content.call(this), {
+      classes: this.classes
     })
     const title = parseHTML(
-      compileTemplate(this.options.templates.title.call(this))({
-        namespace: this.classes.NAMESPACE
+      template.render(this.options.templates.title.call(this), {
+        classes: this.classes
       })
     )
 
@@ -163,11 +164,11 @@ class DatePicker extends Component {
       const innerWidth = window.innerWidth
       const innerHeight = window.innerHeight
       const min = Math.min(innerWidth, innerHeight)
-      this.element.setAttribute('readonly', 'readonly')
+      this.$element.setAttribute('readonly', 'readonly')
       this.$mobileTrigger = parseHTML(
-        `<div class='${this.classes.NAMESPACE}-mobile-trigger'></div>`
+        `<div class='${this.classes.MOBILETRIGGER}'></div>`
       )
-      insertAfter(this.$mobileTrigger, hideElement(this.element))
+      insertAfter(this.$mobileTrigger, hideElement(this.$element))
       this.$cover = parseHTML(`<div class="${this.classes.COVER}"></div>`)
 
       addClass(this.classes.ISMOBILE, append(title, this.$picker))
@@ -198,8 +199,8 @@ class DatePicker extends Component {
     for (let j = 0; j < this.calendarsNum; j++) {
       this.manageViews(j)
       if (this.isMobile) {
-        this.buttonCancels[j].innerHTML = buttons[0]
-        this.buttonSaves[j].innerHTML = buttons[1]
+        this.$buttonCancels[j].innerHTML = buttons[0]
+        this.$buttonSaves[j].innerHTML = buttons[1]
       }
     }
 
@@ -251,9 +252,9 @@ class DatePicker extends Component {
             type: 'blur',
             handler: this.blur.bind(this)
           })
-        )(this.element)
+        )(this.$element)
       }
-      // this.element.on('blur', $.proxy(this.toggle, this));
+      // this.$element.on('blur', $.proxy(this.toggle, this));
       bindEvent(
         {
           type: 'click.inputIcon',
@@ -267,17 +268,21 @@ class DatePicker extends Component {
   }
 
   initSections() {
-    this.calendars = queryAll(`.${this.classes.CONTENT}`, this.$picker)
-    this.calendarPrevs = this.calendars.map(find(`.${this.classes.PREV}`))
-    this.calendarCaptions = this.calendars.map(find(`.${this.classes.CAPTION}`))
-    this.calendarNexts = this.calendars.map(find(`.${this.classes.NEXT}`))
-    this.daypickers = this.calendars.map(find(`.${this.classes.DATS}`))
-    this.monthpickers = this.calendars.map(find(`.${this.classes.MONTHS}`))
-    this.yearpickers = this.calendars.map(find(`.${this.classes.YEARS}`))
-    this.buttonCancels = this.calendars.map(
+    this.$calendars = queryAll(`.${this.classes.CONTENT}`, this.$picker)
+    this.$calendarPrevs = this.$calendars.map(find(`.${this.classes.PREV}`))
+    this.$calendarCaptions = this.$calendars.map(
+      find(`.${this.classes.CAPTION}`)
+    )
+    this.$calendarNexts = this.$calendars.map(find(`.${this.classes.NEXT}`))
+    this.$daypickers = this.$calendars.map(find(`.${this.classes.DATS}`))
+    this.$monthpickers = this.$calendars.map(find(`.${this.classes.MONTHS}`))
+    this.$yearpickers = this.$calendars.map(find(`.${this.classes.YEARS}`))
+    this.$buttonCancels = this.$calendars.map(
       find(`.${this.classes.BUTTONCANCELS}`)
     )
-    this.buttonSaves = this.calendars.map(find(`.${this.classes.BUTTONSAVES}`))
+    this.$buttonSaves = this.$calendars.map(
+      find(`.${this.classes.BUTTONSAVES}`)
+    )
   }
 
   initShowHide(alwaysShow) {
@@ -353,7 +358,7 @@ class DatePicker extends Component {
           addClass(this.classes.ISDAYS),
           removeClass(this.classes.ISMONTHS),
           removeClass(this.classes.ISYEARS)
-        )(this.calendars[index])
+        )(this.$calendars[index])
         break
       case 'months':
         this.generateMonthpicker(index)
@@ -361,7 +366,7 @@ class DatePicker extends Component {
           removeClass(this.classes.ISDAYS),
           addClass(this.classes.ISMONTHS),
           removeClass(this.classes.ISYEARS)
-        )(this.calendars[index])
+        )(this.$calendars[index])
         break
       case 'years':
         this.generateYearpicker(index)
@@ -369,7 +374,7 @@ class DatePicker extends Component {
           removeClass(this.classes.ISDAYS),
           removeClass(this.classes.ISMONTHS),
           addClass(this.classes.ISYEARS)
-        )(this.calendars[index])
+        )(this.$calendars[index])
         break
       default:
         break
@@ -383,12 +388,12 @@ class DatePicker extends Component {
         this.privateDate.currentYear[index]
       }`
     )
-    this.daypickers[index].innerHTML = this.generateDays(index)
+    this.$daypickers[index].innerHTML = this.generateDays(index)
   }
 
   generateMonthpicker(index) {
     this.generateHeader(index, this.privateDate.currentYear[index])
-    this.monthpickers[index].innerHTML = this.generateMonths(index)
+    this.$monthpickers[index].innerHTML = this.generateMonths(index)
   }
 
   generateYearpicker(index) {
@@ -398,11 +403,11 @@ class DatePicker extends Component {
         this.options.rangeSeparator
       } ${this.privateDate.currentYear[index] + 3}`
     )
-    this.yearpickers[index].innerHTML = this.generateYears(index)
+    this.$yearpickers[index].innerHTML = this.generateYears(index)
   }
 
   generateHeader(index, caption) {
-    this.calendarCaptions[index].innerHTML = caption
+    this.$calendarCaptions[index].innerHTML = caption
     this.judgeLock(index)
   }
 
@@ -503,18 +508,12 @@ class DatePicker extends Component {
     )
     const $inRangeFirst = $inRanges[0]
     const $inRangeLast = $inRanges[$inRanges.length - 1]
-    if (
-      $inRangeFirst &&
-      hasClass(`${this.classes.NAMESPACE}-startDay`, $inRangeFirst)
-    ) {
-      addClass(`${this.classes.NAMESPACE}-select-last-in-month`, $inRangeLast)
+    if ($inRangeFirst && hasClass(`${this.classes.STARTDAY}`, $inRangeFirst)) {
+      addClass(`${this.classes.LASTMONTH}`, $inRangeLast)
     }
 
-    if (
-      $inRangeLast &&
-      hasClass(`${this.classes.NAMESPACE}-endDay`, $inRangeLast)
-    ) {
-      addClass(`${this.classes.NAMESPACE}-select-first-in-month`, $inRangeFirst)
+    if ($inRangeLast && hasClass(`${this.classes.ENDDAY}`, $inRangeLast)) {
+      addClass(`${this.classes.FIRSTMONTH}`, $inRangeFirst)
     }
 
     html = ''
@@ -696,15 +695,15 @@ class DatePicker extends Component {
         break
     }
     if (prevLock === true) {
-      addClass(this.classes.BLOCKED, this.calendarPrevs[index])
+      addClass(this.classes.BLOCKED, this.$calendarPrevs[index])
     } else {
-      removeClass(this.classes.BLOCKED, this.calendarPrevs[index])
+      removeClass(this.classes.BLOCKED, this.$calendarPrevs[index])
     }
 
     if (nextLock === true) {
-      addClass(this.classes.BLOCKED, this.calendarNexts[index])
+      addClass(this.classes.BLOCKED, this.$calendarNexts[index])
     } else {
-      removeClass(this.classes.BLOCKED, this.calendarNexts[index])
+      removeClass(this.classes.BLOCKED, this.$calendarNexts[index])
     }
   }
 
@@ -726,7 +725,7 @@ class DatePicker extends Component {
           dateArray.forEach(date => {
             if (!status) {
               switch (date.length) {
-                case undefined:
+                case undefined: /* eslint-disable-line */
                   if (currentDate === Date.parse(date)) {
                     status = true
                   }
@@ -749,7 +748,7 @@ class DatePicker extends Component {
           dateArray.forEach(date => {
             if (!status) {
               switch (date.length) {
-                case undefined:
+                case undefined:  /* eslint-disable-line */
                   if (Date.parse(date) >= min && Date.parse(date) <= max) {
                     status = true
                   }
@@ -771,7 +770,7 @@ class DatePicker extends Component {
         dateArray.forEach(date => {
           if (!status) {
             switch (date.length) {
-              case undefined:
+              case undefined:  /* eslint-disable-line */
                 if (currentDate === date) {
                   status = true
                 }
@@ -790,7 +789,7 @@ class DatePicker extends Component {
         dateArray.forEach(date => {
           if (!status) {
             switch (date.length) {
-              case undefined:
+              case undefined:   /* eslint-disable-line */
                 if (curr === date) {
                   status = true
                 }
@@ -909,7 +908,7 @@ class DatePicker extends Component {
     }
     return privateStatus
   }
-
+  /* eslint-disable */
   isSelectable(view, y, m, d) {
     let isSelectable = true
     const min = this.parseDate(this.options.min, this.format)
@@ -993,7 +992,7 @@ class DatePicker extends Component {
 
     return isSelectable
   }
-
+  /* eslint-enable */
   renderStatus(status, ...args) {
     const untouch = status[0]
     const active = status[1]
@@ -1016,10 +1015,10 @@ class DatePicker extends Component {
       if (this.options.mode === 'range') {
         switch (args[0]) {
           case 0:
-            className += ` ${this.classes.NAMESPACE}-startDay`
+            className += ` ${this.classes.STARTDAY}`
             break
           case 1:
-            className += ` ${this.classes.NAMESPACE}-endDay`
+            className += ` ${this.classes.ENDDAY}`
             break
           default:
             break
@@ -1378,7 +1377,7 @@ class DatePicker extends Component {
       config.modifiers.preventOverflow.boundariesElement = 'scrollParent'
     }
 
-    this.POPPER = new Popper(this.element, this.$pickerWrap, config)
+    this.POPPER = new Popper(this.$element, this.$pickerWrap, config)
 
     this.enter('popper')
 
@@ -1426,13 +1425,13 @@ class DatePicker extends Component {
       this.KEYBOARD.unbind()
     }
   }
-
+  /* eslint-disable */
   click(e) {
     const $target = e.target
     if (
       !this.$inputIcon.contains($target) &&
       !this.$picker.contains($target) &&
-      !this.element.contains($target) &&
+      !this.$element.contains($target) &&
       this.options.alwaysShow === false
     ) {
       if (this.isMobile) {
@@ -1441,7 +1440,7 @@ class DatePicker extends Component {
         this.hide()
       }
     } else if (
-      !this.element.contains($target) &&
+      !this.$element.contains($target) &&
       this.$picker.contains($target)
     ) {
       const privateTarget = closest('div', $target)
@@ -1526,13 +1525,13 @@ class DatePicker extends Component {
         ) {
           this.hide()
         } else if (this.options.displayMode === 'dropdown') {
-          this.element.focus()
+          this.$element.focus()
         }
       }
     }
     e.preventDefault()
   }
-
+  /* eslint-enable */
   changeValue(target, i) {
     let newVal = ''
     let newDate = ''
@@ -1595,7 +1594,7 @@ class DatePicker extends Component {
           this.privateDate.selectedDate[0],
           this.outputFormat
         )
-        this.element.value = formated
+        this.$element.value = formated
         if (this.isMobile) {
           this.$mobileTrigger.innerHTML = formated
         }
@@ -1610,7 +1609,7 @@ class DatePicker extends Component {
           this.privateDate.selectedDate[1],
           this.outputFormat
         )
-        this.element.value = `${formatedStart} ${
+        this.$element.value = `${formatedStart} ${
           this.options.rangeSeparator
         } ${formatedEnd}`
 
@@ -1635,7 +1634,7 @@ class DatePicker extends Component {
             val += this.options.multipleSeparator + privateFormated
           }
         }
-        this.element.value = val
+        this.$element.value = val
         if (this.isMobile) {
           this.$mobileTrigger.innerHTML = val
         }
@@ -1646,10 +1645,10 @@ class DatePicker extends Component {
     }
 
     if (trigger) {
-      this.trigger(EVENTS.CHANGE, this.getDate('yyyy-mm-dd'), this.options.name)
+      this.trigger(EVENTS.CHANGE, this.getDate('yyyy-mm-dd'))
     }
 
-    this.oldValue = this.element.value
+    this.oldValue = this.$element.value
     return null
   }
 
@@ -1668,8 +1667,8 @@ class DatePicker extends Component {
       removeEvent(this.eventNameWithId('click'), $doc)
     }
 
-    removeEvent('focus', this.element)
-    removeEvent('blur', this.element)
+    removeEvent('focus', this.$element)
+    removeEvent('blur', this.$element)
   }
 
   prev(i, isTurning) {
@@ -1874,13 +1873,13 @@ class DatePicker extends Component {
   }
 
   mobilePrev(index) {
-    removeClass(this.classes.SHOW, this.calendars[index])
-    addClass(this.classes.SHOW, this.calendars[index - 1])
+    removeClass(this.classes.SHOW, this.$calendars[index])
+    addClass(this.classes.SHOW, this.$calendars[index - 1])
   }
 
   mobileNext(index) {
-    removeClass(this.classes.SHOW, this.calendars[index])
-    addClass(this.classes.SHOW, this.calendars[index + 1])
+    removeClass(this.classes.SHOW, this.$calendars[index])
+    addClass(this.classes.SHOW, this.$calendars[index + 1])
   }
 
   mobileInteDate(index) {
@@ -1969,9 +1968,9 @@ class DatePicker extends Component {
       addClass(this.classes.SHOW, this.$pickerWrap)
 
       if (this.isMobile) {
-        addClass(this.classes.SHOW, this.calendars[0])
+        addClass(this.classes.SHOW, this.$calendars[0])
         if (this.mode === 'range') {
-          removeClass(this.classes.SHOW, this.calendars[1])
+          removeClass(this.classes.SHOW, this.$calendars[1])
         }
 
         setStyle({ overflow: 'hidden' }, append(this.$cover, query('body')))
@@ -2036,7 +2035,7 @@ class DatePicker extends Component {
         },
         window
       )
-      // this.element.focus();
+      // this.$element.focus();
       bindEvent(
         {
           type: this.eventNameWithId('mousedown'),
@@ -2071,7 +2070,7 @@ class DatePicker extends Component {
         removeEvent(this.eventNameWithId('click scrollstart swipe'), $doc)
       }
 
-      this.element.blur()
+      this.$element.blur()
       this.trigger(EVENTS.HIDE)
       if (this.is('popper')) {
         this.POPPER.disableEventListeners()
@@ -2089,16 +2088,16 @@ class DatePicker extends Component {
 
   getInput() {
     if (this.is('disabled')) {
-      return undefined
+      return undefined  /* eslint-disable-line */
     }
-    return this.element
+    return this.$element
   }
 
   getDate(format) {
     if (this.is('disabled')) {
       return null
     }
-    if (format === undefined) {
+    if (format === undefined) { /* eslint-disable-line */
       return this.privateDate.selectedDate
     }
     const privateFormat = this.parseFormat(format)
@@ -2121,12 +2120,12 @@ class DatePicker extends Component {
       this.manageViews(i)
     }
     this.setValue()
-    return undefined
+    return undefined    /* eslint-disable-line */
   }
 
   enable() {
     if (this.is('disabled')) {
-      this.element.disabled = false
+      this.$element.disabled = false
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -2134,7 +2133,7 @@ class DatePicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      this.element.disabled = true
+      this.$element.disabled = true
       this.enter('disabled')
     }
 
@@ -2146,16 +2145,16 @@ class DatePicker extends Component {
       this.unbind()
 
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.element)
+        removeClass(this.getThemeClass(), this.$element)
       }
-      unwrap(this.element)
+      unwrap(this.$element)
       this.$picker.remove()
       this.$pickerWrap.remove()
       this.$inputIcon.remove()
 
       this.POPPER.destroy()
-      this.element.className = this.firstClassName
-      this.element.value = ''
+      this.$element.className = this.firstClassName
+      this.$element.value = ''
       this.leave('initialized')
     }
 
@@ -2178,7 +2177,7 @@ class DatePicker extends Component {
     this.$picker.remove()
     this.initStates()
     this.initialize()
-    return undefined
+    return undefined    /* eslint-disable-line */
   }
 
   reset(_options) {
@@ -2201,7 +2200,7 @@ class DatePicker extends Component {
     this.$picker.remove()
     this.initStates()
     this.initialize()
-    return undefined
+    return undefined  /* eslint-disable-line */
   }
 
   set(value) {
