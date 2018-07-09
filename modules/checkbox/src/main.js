@@ -52,7 +52,6 @@ const addParentClass = curry((className, el) =>
 class Checkbox extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
 
     this.$group = this.options.getGroup.call(this)

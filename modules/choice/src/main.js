@@ -65,25 +65,25 @@ const childrenMatchSelector = (selector, el) =>
 class Choice extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-
-    this.$options = queryAll('option', this.element)
+    this.$element = this.element
+    this.$options = queryAll('option', this.$element)
     const override = {}
     if (this.$options.length !== 0) {
       override.data = {}
-      override.value = this.element.multiple
-        ? Array.from(this.element.selectedOptions).map(el => el.value)
-        : this.element.value
-      override.multiple = this.element.multiple
+      override.value = this.$element.multiple
+        ? Array.from(this.$element.selectedOptions).map(el => el.value)
+        : this.$element.value
+      override.multiple = this.$element.multiple
 
-      this.$options.forEach(item => {
-        const value = item.getAttribute('value')
-        const data = item.dataset
+      this.$options.forEach($item => {
+        const value = $item.getAttribute('value')
+        const data = $item.dataset
 
         if (is.undefined(data.label)) {
-          data.label = item.innerHTML
+          data.label = $item.innerHTML
         }
 
-        if (item.disabled) {
+        if ($item.disabled) {
           data.disabled = true
         }
         override.data[value] = data
@@ -98,7 +98,7 @@ class Choice extends Component {
   }
 
   initialize() {
-    hideElement(this.element)
+    hideElement(this.$element)
 
     this.createWrap()
     this.createItems()
@@ -111,7 +111,7 @@ class Choice extends Component {
     }
 
     this.bind()
-    if (this.element.disabled || this.options.disabled) {
+    if (this.$element.disabled || this.options.disabled) {
       this.disable()
     }
 
@@ -159,7 +159,7 @@ class Choice extends Component {
 
     this.$items = queryAll('[data-value]', this.$wrap)
 
-    insertAfter(this.$wrap, this.element)
+    insertAfter(this.$wrap, this.$element)
   }
 
   createToggle() {
@@ -339,16 +339,16 @@ class Choice extends Component {
       {
         type: this.eventName('change'),
         handler: () => {
-          this.set(this.element.value)
+          this.set(this.$element.value)
         }
       },
-      this.element
+      this.$element
     )
   }
 
   unbind() {
     removeEvent(this.eventName(), this.$wrap)
-    removeEvent(this.eventName(), this.element)
+    removeEvent(this.eventName(), this.$element)
     if (this.options.overflow === true) {
       removeEvent(this.eventNameWithId(), Pj.doc)
     }
@@ -404,7 +404,7 @@ class Choice extends Component {
     }
 
     this.value = value
-    this.element.value = this.value
+    this.$element.value = this.value
 
     this.$items.forEach($item => {
       const value = $item.dataset.value
@@ -470,7 +470,7 @@ class Choice extends Component {
         this.value = value
       }
 
-      this.element.value = this.value
+      this.$element.value = this.value
       this.trigger(EVENTS.CHANGE, this.value)
     }
 
@@ -512,7 +512,7 @@ class Choice extends Component {
         this.value = ''
       }
 
-      this.element.value = this.value
+      this.$element.value = this.value
       this.trigger(EVENTS.CHANGE, this.value)
     }
 
@@ -614,7 +614,7 @@ class Choice extends Component {
       }
 
       this.leave('disabled')
-      this.element.disabled = false
+      this.$element.disabled = false
     }
     this.trigger(EVENTS.ENABLE)
     return this
@@ -627,7 +627,7 @@ class Choice extends Component {
         $item.setAttribute('disabled', 'disabled')
       })
       this.enter('disabled')
-      this.element.disabled = true
+      this.$element.disabled = true
     }
 
     if (this.options.overflow) {
@@ -643,7 +643,7 @@ class Choice extends Component {
       this.unbind()
 
       this.$wrap.map(el => el.remove)
-      showElement(this.element)
+      showElement(this.$element)
       this.leave('initialized')
     }
 
