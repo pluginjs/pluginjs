@@ -63,13 +63,16 @@ export const defaults = {
   ],
   templates: {
     container() {
-      return `<ul class='{className}'></ul>`
+      return `<ul class='{classes.CONTAINER}'>
+      </ul>`
     },
     item() {
-      return `<li class='{className}'><span class='{handleClass}'><i class='icon-drag-bar'></i></span><div class='{labelClass}'>{label}</div></li>`
+      return `<li class='{classes.ITEM}'>
+      <span class='{classes.HANDLE}'><i class='icon-drag-bar'></i></span><div class='{classes.LABEL}'>{label}</div></li>`
     },
     actions() {
-      return `<div class='{className}'></div>`
+      return `<div class='{classes.ACTIONS}'>
+      </div>`
     }
   },
   parse(data) {

@@ -71,7 +71,7 @@ class List extends Component {
 
     this.$list = parseHTML(
       template.compile(this.options.templates.container())({
-        className: this.classes.CONTAINER
+        classes: this.classes
       })
     )
     insertAfter(this.$list, this.element)
@@ -182,7 +182,7 @@ class List extends Component {
   buildActions() {
     const $actions = parseHTML(
       template.compile(this.options.templates.actions())({
-        className: this.classes.ACTIONS
+        classes: this.classes
       })
     )
 
@@ -277,9 +277,7 @@ class List extends Component {
   buildItem(item) {
     return parseHTML(
       template.compile(this.options.templates.item())({
-        className: this.classes.ITEM,
-        handleClass: this.classes.HANDLE,
-        labelClass: this.classes.LABEL,
+        classes: this.classes,
         label: this.getLabel(item)
       })
     )
