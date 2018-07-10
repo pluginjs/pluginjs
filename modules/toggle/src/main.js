@@ -86,7 +86,6 @@ class Toggle extends Component {
     this.distance = this.$wrap.clientWidth - contentWidth(this.$handle)
     this.bind()
     this.set(this.checked, false)
-
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
@@ -97,7 +96,6 @@ class Toggle extends Component {
 
   initContent() {
     const isShow = this.options.showText
-
     if (isShow) {
       if (this.options.onContent === null) {
         this.onContent = this.translate('on')
@@ -116,7 +114,6 @@ class Toggle extends Component {
       this.offContent = ''
     }
   }
-
   bind() {
     if (this.options.clickable === true) {
       this.wrapHammer = new Hammer(this.$wrap)

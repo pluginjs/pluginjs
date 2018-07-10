@@ -27,6 +27,7 @@ $dropdown-item: "pj-dropdown-item" !default;
 
   &-pointer {
     top: 50%;
+    box-sizing: border-box;
     width: 16px;
     height: 16px;
     cursor: ew-resize;
@@ -59,9 +60,9 @@ $dropdown-item: "pj-dropdown-item" !default;
     font-family: Bpreplay;
     /*stylelint-enable*/
     font-size: $font-size-xs;
-    color: $gray-darker;
+    color: $color-white;
     cursor: ew-resize;
-    background-color: $color-white;
+    background-color: $gray-darker;
     border-radius: 2px;
     box-shadow: $range-tip-box-shadow;
     //&::before {
