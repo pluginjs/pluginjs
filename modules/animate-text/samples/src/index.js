@@ -1,6 +1,3 @@
-// import animate-text css
-import '@pluginjs/animate-text/src/css/animate-text.scss'
-
 // import sections
 import './sections/fade-down/index.js'
 import './sections/fade-top/index.js'

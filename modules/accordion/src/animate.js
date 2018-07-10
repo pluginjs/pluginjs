@@ -65,7 +65,10 @@ class Animate {
       }
       return compose(
         outerHeight,
-        compose(parentWith, hasClass)(this.instance.classes.PANECONTENT)
+        compose(
+          parentWith,
+          hasClass
+        )(this.instance.classes.PANECONTENT)
       )(element)
     })
     return this.contentDistance

@@ -1,7 +1,3 @@
-// import accordion css
-import '@pluginjs/styles/buttons.scss'
-import '@pluginjs/popover/src/css/popover.scss'
-
 // import sections
 import './sections/default/index.js'
 import './sections/layout/index.js'
