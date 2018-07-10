@@ -57,6 +57,7 @@ class Range extends Component {
         metas[key] = val
       }
     })
+
     this.element.style.display = 'none'
     this.$control = document.createElement('div')
     append(this.$control, this.$wrap)
