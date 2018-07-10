@@ -38,7 +38,7 @@ queryAll('#icon-themes .pj-hotspots').map(element =>
         title: 'S line® exterior',
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
-        position: ['75%', '30%']
+        position: ['56.6%', '30%']
       }
     ]
   })
