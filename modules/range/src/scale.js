@@ -63,7 +63,7 @@ class Scale {
 
     append(this.lines, this.scale)
     append(this.values, this.scale)
-    append(this.scale, instance.control)
+    append(this.scale, instance.$control)
   }
 
   update(instance) {

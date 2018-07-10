@@ -6,7 +6,7 @@ import { append, parseHTML } from '@pluginjs/dom'
 class Selected {
   constructor(instance) {
     this.$arrow = parseHTML('<span></span>')
-    append(this.$arrow, instance.control)
+    append(this.$arrow, instance.$control)
     addClass(instance.classes.SELECTED, this.$arrow)
     if (instance.options.isRange === false) {
       bindEvent(

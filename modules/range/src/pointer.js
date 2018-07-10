@@ -17,7 +17,7 @@ class Pointer {
   mousedown(event) {
     const axis = this.instance.direction.axis
     const position = this.instance.direction.position
-    const offset = getOffset(this.instance.control)
+    const offset = getOffset(this.instance.$control)
 
     trigger(
       {

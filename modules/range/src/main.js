@@ -48,7 +48,7 @@ class Range extends Component {
     this.data = {}
 
     this.cacheValue = []
-    this.wrap = document.createElement('div')
+    this.$wrap = document.createElement('div')
     // if (this.$element.is('input')) {
     const value = this.element.value
     Each(['min', 'max', 'step'], key => {
@@ -58,9 +58,9 @@ class Range extends Component {
       }
     })
     this.element.style.display = 'none'
-    this.control = document.createElement('div')
-    append(this.control, this.wrap)
-    insertAfter(this.wrap, this.element)
+    this.$control = document.createElement('div')
+    append(this.$control, this.$wrap)
+    insertAfter(this.$wrap, this.element)
     this.options = deepMerge(
       {},
       DEFAULTS,
@@ -113,11 +113,11 @@ class Range extends Component {
       }
     }
 
-    addClass(this.classes.CONTROL, this.control)
-    addClass(this.classes.WRAP, this.wrap)
+    addClass(this.classes.CONTROL, this.$control)
+    addClass(this.classes.WRAP, this.$wrap)
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.wrap)
+      addClass(this.getThemeClass(), this.$wrap)
     }
 
     if (this.max < this.min || this.step >= this.interval) {
@@ -129,7 +129,7 @@ class Range extends Component {
   }
 
   initialize() {
-    append(`<div class="${this.classes.BAR}" />`, this.control)
+    append(`<div class="${this.classes.BAR}" />`, this.$control)
 
     // build pointers
     this.buildPointers()
@@ -184,7 +184,7 @@ class Range extends Component {
         return
       }
 
-      const offset = getOffset(this.control)
+      const offset = getOffset(this.$control)
       const start = event[that.direction.axis] - offset[that.direction.position]
       const p = that.getAdjacentPointer(start)
 
@@ -196,14 +196,14 @@ class Range extends Component {
         type: this.eventName('mousedown'),
         handler: mousedownCallback.bind(this)
       },
-      this.control
+      this.$control
     )
     bindEvent(
       {
         type: this.eventName('touchstart'),
         handler: mousedownCallback.bind(this)
       },
-      this.control
+      this.$control
     )
 
     if (this.element.tagName.toLowerCase() === 'input') {
@@ -284,7 +284,7 @@ class Range extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.element)
-    removeEvent(this.eventName(), this.control)
+    removeEvent(this.eventName(), this.$control)
   }
 
   setUnitsAttr(data) {
@@ -322,13 +322,13 @@ class Range extends Component {
       data.push(i)
     })
 
-    const input = parseHTML(
+    const $input = parseHTML(
       `<input class='${this.classes.UNIT}' type='text' />`
     )
-    append(input, this.wrap)
-    return Units.of(input, {
+    append($input, this.$wrap)
+    return Units.of($input, {
       theme: 'default',
-      width: parseInt(getStyle('width', input), 10),
+      width: parseInt(getStyle('width', $input), 10),
       data,
       defaultUnit: this.data.unit
     })
@@ -341,13 +341,13 @@ class Range extends Component {
       pointerCount = 2
     }
     for (let i = 1; i <= pointerCount; i++) {
-      const pointer = parseHTML(
+      const $pointer = parseHTML(
         `<div class="${this.classes.POINTER} ${
           this.classes.POINTER
         }-${i}"></div>`
       )
-      append(pointer, this.control)
-      const POINTER = new Pointer(pointer, i, this)
+      append($pointer, this.$control)
+      const POINTER = new Pointer($pointer, i, this)
       this.pointer.push(POINTER)
     }
 
@@ -389,9 +389,9 @@ class Range extends Component {
 
   getLength() {
     if (this.options.direction === 'v') {
-      return this.control.clientHeight
+      return this.$control.clientHeight
     }
-    return this.control.clientWidth
+    return this.$control.clientWidth
   }
 
   update(options) {
@@ -494,7 +494,7 @@ class Range extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.control)
+      removeClass(this.classes.DISABLED, this.$control)
 
       if (this.unitsApi) {
         this.unitsApi.enable()
@@ -506,7 +506,7 @@ class Range extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.control)
+      addClass(this.classes.DISABLED, this.$control)
 
       if (this.unitsApi) {
         this.unitsApi.disable()
@@ -520,8 +520,8 @@ class Range extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      removeClass(this.classes.WRAP, this.control)
-      removeClass(this.getThemeClass(), this.control)
+      removeClass(this.classes.WRAP, this.$control)
+      removeClass(this.getThemeClass(), this.$control)
       this.leave('initialized')
     }
 
