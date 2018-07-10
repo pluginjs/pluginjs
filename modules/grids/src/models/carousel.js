@@ -8,7 +8,6 @@ const DEFAULT = {
   pagination: false,
   drag: true,
   dragFree: false,
-  frictionFactor: 0.8, // 0 - 1
   group: false,
   multiple: false,
   defaultActive: 0,

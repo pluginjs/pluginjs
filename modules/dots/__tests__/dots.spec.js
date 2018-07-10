@@ -1,7 +1,6 @@
-// import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
 import Dots from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Dots', () => {
   describe('Dots()', () => {
@@ -28,44 +27,28 @@ describe('Dots', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const dots = new Dots(element)
+      const dots = Dots.of(generateHTMLSample())
 
       expect(dots).toBeObject()
       expect(dots.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const dots = new Dots(element)
+      const dots = Dots.of(generateHTMLSample())
 
       expect(dots.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asDots()).toEqual($element)
-
-      const api = $element.data('dots')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asDots()
-      expect($element.asDots('bind')).toBeNil()
+      const dots = Dots.of(generateHTMLSample())
+      expect(dots.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asDots()
-      expect($element.asDots('destroy')).toEqual($element)
+      const dots = Dots.of(generateHTMLSample())
+      dots.destroy()
     })
   })
 
@@ -73,19 +56,18 @@ describe('Dots', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('dots:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('dots:ready', () => {
         called++
       })
-
-      $element.asDots()
+      const instance = Dots.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -94,19 +76,19 @@ describe('Dots', () => {
     let api
 
     beforeEach(() => {
-      $element = document.createElement('div')
+      $element = generateHTMLSample()
       api = Dots.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('dots:destroy', () => {
+      $element.addEventListener('dots:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asDots('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -117,13 +99,13 @@ describe('Dots', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asDots()
-      api = $element.data('dots')
+      $element = generateHTMLSample()
+      api = Dots.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asDots('disable')
-      $element.asDots('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,12 +113,12 @@ describe('Dots', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('dots:enable', (event, api) => {
+      $element.addEventListener('dots:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asDots('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -146,12 +128,12 @@ describe('Dots', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asDots()
-      api = $element.data('dots')
+      $element = generateHTMLSample()
+      api = Dots.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asDots('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,12 +141,12 @@ describe('Dots', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('dots:disable', (event, api) => {
+      $element.addEventListener('dots:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asDots('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

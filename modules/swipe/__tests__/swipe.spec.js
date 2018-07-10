@@ -1,43 +1,43 @@
 import $ from 'jquery'
 import '@pluginjs/dropdown'
 import '@pluginjs/scrollable'
-import SvgPicker from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Swipe from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 
-describe('SvgPicker', () => {
-  describe('SvgPicker()', () => {
-    test('should have SvgPicker', () => {
-      expect(SvgPicker).toBeFunction()
+describe('Swipe', () => {
+  describe('Swipe()', () => {
+    test('should have Swipe', () => {
+      expect(Swipe).toBeFunction()
     })
 
     test('should have defaults', () => {
-      expect(SvgPicker.defaults).toBeObject()
+      expect(Swipe.defaults).toBeObject()
     })
     test('should have events', () => {
-      expect(SvgPicker.events).toBeObject()
+      expect(Swipe.events).toBeObject()
     })
     test('should have classes', () => {
-      expect(SvgPicker.classes).toBeObject()
+      expect(Swipe.classes).toBeObject()
     })
     test('should have methods', () => {
-      expect(SvgPicker.methods).toBeArray()
+      expect(Swipe.methods).toBeArray()
     })
   })
 
   describe('constructor()', () => {
     test('should work with element', () => {
       const element = document.createElement('div')
-      const svgPicker = new SvgPicker(element)
+      const swipe = new Swipe(element)
 
-      expect(svgPicker).toBeObject()
-      expect(svgPicker.options).toEqual(DEFAULTS)
+      expect(swipe).toBeObject()
+      expect(swipe.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
       const element = document.createElement('div')
-      const svgPicker = new SvgPicker(element)
+      const swipe = new Swipe(element)
 
-      expect(svgPicker.options).toBeObject()
+      expect(swipe.options).toBeObject()
     })
   })
 
@@ -94,19 +94,19 @@ describe('SvgPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSvgPicker()
-      api = $element.data('svgPicker')
+      $element = document.createElement('div')
+      api = Swipe.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('svgPicker:destroy', (event, api) => {
+      $element.addEventListener('swipe:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asSvgPicker('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })

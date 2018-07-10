@@ -1,4 +1,4 @@
-const namespace = 'pj-draggable'
+const namespace = 'draggable'
 
 const events = {
   READY: 'ready',
@@ -12,7 +12,7 @@ const events = {
 }
 
 const classes = {
-  NAMESPACE: `${namespace}`,
+  NAMESPACE: `pj-${namespace}`,
   VERTICAL: '{namespace}-vertical',
   HORIZONTAL: '{namespace}-horizontal',
   GRID: '{namespace}-grid',

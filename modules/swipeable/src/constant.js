@@ -1,4 +1,4 @@
-const namespace = 'pj-swipeable'
+const namespace = 'swipeable'
 
 const events = {
   READY: 'ready',
@@ -13,7 +13,7 @@ const events = {
 }
 
 const classes = {
-  NAMESPACE: `${namespace}`,
+  NAMESPACE: `pj-${namespace}`,
   CONTAINER: '{namespace}-container',
   VERTICAL: '{namespace}-vertical',
   DISABLED: '{namespace}-disabled'

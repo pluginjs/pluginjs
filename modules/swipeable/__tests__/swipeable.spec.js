@@ -26,7 +26,7 @@ describe('Swipeable', () => {
   })
 
   describe('constructor()', () => {
-    test('should work wtesth element', () => {
+    test('should work with element', () => {
       const swipeable = Swipeable.of(generateHTMLSample())
 
       expect(swipeable).toBeObject()
