@@ -176,4 +176,47 @@ describe('AutoComplete', () => {
       expect(api.is('disabled')).toBeTrue()
     })
   })
+
+  describe('set()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element, { data })
+    })
+
+    test('should set the plugin', () => {
+      // expect(api.set('value')).toBe
+      api.set()
+    })
+  })
+
+  describe('get()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element, { data })
+    })
+
+    test('should get the plugin', () => {
+      api.set()
+    })
+  })
+
+  describe('val()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element, { data })
+    })
+
+    test('should val the plugin', () => {
+      api.set()
+    })
+  })
 })
