@@ -52,7 +52,6 @@ class Toggle extends Component {
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
     }
-
     this.checked =
       this.options.checked === null ? element.checked : this.options.checked
 
@@ -83,12 +82,9 @@ class Toggle extends Component {
         this.$wrap
       )
     }
-
     // get components width
     this.distance = this.$wrap.clientWidth - contentWidth(this.$handle)
-
     this.bind()
-
     this.set(this.checked, false)
 
     if (this.element.disabled || this.options.disabled) {
@@ -254,7 +250,6 @@ class Toggle extends Component {
       // trigger(EVENTS.CHANGE, this.element)
       this.trigger(EVENTS.CHANGE, this.checked)
     }
-
     return this
   }
 

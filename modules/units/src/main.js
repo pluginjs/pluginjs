@@ -44,7 +44,6 @@ class Units extends Component {
     this.initClasses(CLASSES)
 
     this.$wrap = parseHTML('<div></div>')
-
     this.value = ''
     this.data = {}
 
@@ -55,11 +54,11 @@ class Units extends Component {
   initialize() {
     this.judgeElType()
 
-    const trigger = parseHTML(
+    const $trigger = parseHTML(
       `<div class="${this.classes.TRIGGER}" tabindex="1"></div>`
     )
     const name = this.options.name ? `name="${this.options.name}"` : ''
-    const input = parseHTML(
+    const $input = parseHTML(
       `<input type="text" ${name} class="${this.classes.INPUT} ${
         this.classes.INPT
       }">`
@@ -67,9 +66,8 @@ class Units extends Component {
     addClass(this.classes.NAMESPACE, this.element)
     addClass(this.classes.WRAP, this.$wrap)
 
-    append(input, this.$wrap)
-    append(trigger, this.$wrap)
-
+    append($input, this.$wrap)
+    append($trigger, this.$wrap)
     this.$input = query(`.${this.classes.INPUT}`, this.$wrap)
 
     this.options.data.forEach(v => {
@@ -81,19 +79,17 @@ class Units extends Component {
       this.dropdownWidth = '80px'
     }
 
-    this.triggerElement = trigger
-
-    this.TRIGGER = this.dropdownInit(trigger)
-
+    this.$triggerElement = $trigger
+    this.TRIGGER = this.dropdownInit($trigger)
     if (this.options.data.length < 2) {
-      addClass(this.classes.ONLY, trigger)
+      addClass(this.classes.ONLY, $trigger)
       this.TRIGGER.disable()
     }
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
-      queryAll(`.${this.classes.PANEL}`).map(panel =>
-        addClass(this.getThemeClass(), panel)
+      queryAll(`.${this.classes.PANEL}`).map($panel =>
+        addClass(this.getThemeClass(), $panel)
       )
     }
 
@@ -110,12 +106,12 @@ class Units extends Component {
 
   judgeElType() {
     if (this.element.nodeName !== 'INPUT') {
-      const input = parseHTML('<input type="text"/>')
-      insertBefore(input, this.element)
+      const $input = parseHTML('<input type="text"/>')
+      insertBefore($input, this.element)
       // this.$element.before($input)
 
       this.$wrap = this.element
-      this.element = input
+      this.element = $input
     } else {
       insertAfter(this.$wrap, this.element)
       // this.$wrap.insertBefore(this.$element).append(this.$element)
@@ -143,7 +139,7 @@ class Units extends Component {
     }
   }
 
-  dropdownInit(trigger) {
+  dropdownInit($trigger) {
     const data = []
 
     for (const i in this.data) {
@@ -151,10 +147,9 @@ class Units extends Component {
         data.push({ label: i })
       }
     }
-
     this.unit = this.options.defaultUnit || data[0].label
 
-    const dropdowninstance = new DROPDOWN(trigger, {
+    const dropdowninstance = new DROPDOWN($trigger, {
       width: this.dropdownWidth,
       trigger: 'click',
       // keyboard: true,
@@ -163,10 +158,9 @@ class Units extends Component {
       select: this.unit,
       placement: this.options.placement
     })
-    addClass(this.classes.PANEL, dropdowninstance.panel)
+    addClass(this.classes.PANEL, dropdowninstance.$panel)
     return dropdowninstance
   }
-
   cacheValue(unit, value = '') {
     if (value) {
       this.data[unit] = value
@@ -212,17 +206,17 @@ class Units extends Component {
     // Pj.emitter.on('scroll', this.checkDropdownDir.bind(this))
 
     this.TRIGGER.options.onShow = () => {
-      const el = this.TRIGGER.element.closest(`.${this.classes.WRAP}`)
-      addClass(this.classes.ACTIVE, el)
+      const $el = this.TRIGGER.element.closest(`.${this.classes.WRAP}`)
+      addClass(this.classes.ACTIVE, $el)
       this.enter('open')
 
       // this.checkDropdownDir()
     }
 
     this.TRIGGER.options.onHide = () => {
-      const el = this.TRIGGER.element.closest(`.${this.classes.WRAP}`)
+      const $el = this.TRIGGER.element.closest(`.${this.classes.WRAP}`)
 
-      removeClass(this.classes.ACTIVE, el)
+      removeClass(this.classes.ACTIVE, $el)
       this.leave('open')
     }
   }
@@ -357,7 +351,6 @@ class Units extends Component {
 
     this.trigger(EVENTS.DESTROY)
     super.destroy()
-
     return this
   }
 }
