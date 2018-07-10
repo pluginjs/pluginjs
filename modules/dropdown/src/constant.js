@@ -71,19 +71,19 @@ export const defaults = {
   constraintToWindow: true,
   templates: {
     inputLabel() {
-      return '<input class="{that.classes.LABEL}" placeholder="{that.options.placeholder}" />'
+      return '<input class="{classes.LABEL}" placeholder="{that.options.placeholder}" />'
     },
     label() {
-      return '<span class="{that.classes.LABEL}"></span>'
+      return '<span class="{classes.LABEL}"></span>'
     },
     icon() {
-      return '<i class="{that.classes.ICON} {icon}"></i>'
+      return '<i class="{classes.ICON} {icon}"></i>'
     },
     panel() {
       return '<ul></ul>'
     },
     item() {
-      return '<li class="{that.classes.ITEM}" data-{that.options.itemValueAttr}="{tag}">{item.label}</li>'
+      return '<li class="{classes.ITEM}" data-{that.options.itemValueAttr}="{tag}">{item.label}</li>'
     }
   }
 }

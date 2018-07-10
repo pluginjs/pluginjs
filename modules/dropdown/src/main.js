@@ -47,11 +47,11 @@ import {
 class Dropdown extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.parent = this.element.parentNode
-    console.log(this.parent)
+    this.$element = this.element
+    this.parent = this.$element.parentNode
     // options
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-    this.firstClassName = this.element.className
+    this.firstClassName = this.$element.className
 
     // this.constraints = []
     // if (this.options.constraintToScrollParent) {
@@ -72,38 +72,39 @@ class Dropdown extends Component {
 
     // theme
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.element)
+      addClass(this.getThemeClass(), this.$element)
     }
 
     // content
     if (this.options.data) {
       let items = ''
 
-      const panel = parseHTML(this.options.templates.panel())
+      const $panel = parseHTML(this.options.templates.panel())
       this.options.data.forEach(v => {
         const tag = v[this.options.itemValueAttr] || v.label
         items += templateEngine.render(this.options.templates.item(), {
           that: this,
+          classes: this.classes,
           item: v,
           tag
         })
       })
 
-      const itemsEl = parseHTML(items)
-      if (!itemsEl.length) {
-        append(itemsEl, panel)
+      const $itemsEl = parseHTML(items)
+      if (!$itemsEl.length) {
+        append($itemsEl, $panel)
       } else {
-        itemsEl.map(item => append(item, panel))
+        $itemsEl.map($item => append($item, $panel))
       }
-      append(panel, this.parent)
+      append($panel, this.parent)
       // this.parent.append($panel.append($items))
     }
-    this.panel = this.getPanel()
-    wrap(`<div class='${this.classes.PANELWRAP}'></div>`, this.panel)
-    this.panelWrap = this.panel.parentNode
+    this.$panel = this.getPanel()
+    wrap(`<div class='${this.classes.PANELWRAP}'></div>`, this.$panel)
+    this.$panelWrap = this.$panel.parentNode
 
-    this.items = queryAll('li', this.panel)
-    this.items.map(i => addClass(this.classes.ITEM, i))
+    this.$items = queryAll('li', this.$panel)
+    this.$items.map(i => addClass(this.classes.ITEM, i))
     // init
     this.initStates()
     this.initialize()
@@ -120,34 +121,39 @@ class Dropdown extends Component {
     }
     if (this.options.imitateSelect && this.options.inputLabel) {
       parentClass += ` ${this.classes.INPUTMODE}`
-      this.element.innerHTML = templateEngine.render(
+      this.$element.innerHTML = templateEngine.render(
         this.options.templates.inputLabel(),
-        { that: this }
+        {
+          that: this,
+          classes: this.classes
+        }
       )
     } else {
       wrapInner(
-        templateEngine.render(this.options.templates.label(), { that: this }),
-        this.element
+        templateEngine.render(this.options.templates.label(), {
+          classes: this.classes
+        }),
+        this.$element
       )
     }
-    this.$label = query(`.${this.classes.LABEL}`, this.element)
+    this.$label = query(`.${this.classes.LABEL}`, this.$element)
 
     if (this.options.inputSelect || this.options.imitateSelect) {
       if (this.options.icon) {
         this.$icon = parseHTML(
           templateEngine.render(this.options.templates.icon(), {
-            that: this,
+            classes: this.classes,
             icon: this.options.icon ? this.options.icon : ''
           })
         )
-        append(this.$icon, this.element)
+        append(this.$icon, this.$element)
       }
     }
     parentClass.split(' ').map(c => addClass(c, this.parent))
     // addClass(parentClass, this.parent)
-    addClass(this.classes.ELEMENT, this.element)
+    addClass(this.classes.ELEMENT, this.$element)
     this.classes.PANEL.split(' ').map(className =>
-      addClass(className, this.panel)
+      addClass(className, this.$panel)
     )
     this.bind()
 
@@ -224,7 +230,7 @@ class Dropdown extends Component {
             return
           }
         },
-        this.element
+        this.$element
       )
 
       if (this.options.inputLabel) {
@@ -287,9 +293,9 @@ class Dropdown extends Component {
           if (that.is('disabled')) {
             return
           }
-          const item = e.target
+          const $item = e.target
           that.itemUsable = true
-          that.trigger(EVENTS.CLICK, this, item)
+          that.trigger(EVENTS.CLICK, this, $item)
 
           if (hasClass(that.classes.SELECTMODE, that.parent)) {
             addClass(that.classes.LABELACTIVE, that.$label)
@@ -299,7 +305,7 @@ class Dropdown extends Component {
             return
           }
 
-          that.set(item.dataset[that.options.itemValueAttr])
+          that.set($item.dataset[that.options.itemValueAttr])
           if (that.options.hideOnSelect) {
             that.hide()
           }
@@ -307,13 +313,13 @@ class Dropdown extends Component {
           // return false
         }
       },
-      this.panel
+      this.$panel
     )
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.element)
-    removeEvent(this.eventName(), this.panel)
+    removeEvent(this.eventName(), this.$element)
+    removeEvent(this.eventName(), this.$panel)
     removeEvent(this.eventName(), this.parent)
   }
 
@@ -326,7 +332,7 @@ class Dropdown extends Component {
             width,
             minWidth: 'inherit'
           },
-          this.panel
+          this.$panel
         )
       }
 
@@ -337,7 +343,7 @@ class Dropdown extends Component {
             width: elementWidth,
             minWidth: 'inherit'
           },
-          this.panel
+          this.$panel
         )
       }
     }
@@ -349,29 +355,30 @@ class Dropdown extends Component {
   }
 
   replaceByData(data) {
-    this.items.map(i => i.remove())
+    this.$items.map(i => i.remove())
     this.appendByData(data)
   }
 
   appendByData(data) {
     if (data) {
-      // this.panel.innerHTML = ''
+      // this.$panel.innerHTML = ''
       let items = ''
 
       data.forEach(v => {
         const tag = v[this.options.itemValueAttr] || v.label
         items += templateEngine.render(this.options.templates.item(), {
           that: this,
+          classes: this.classes,
           item: v,
           tag
         })
       })
 
       const itemsEl = parseHTML(items)
-      itemsEl.map(item => append(item, this.panel))
+      itemsEl.map($item => append($item, this.$panel))
     }
-    this.items = queryAll('li', this.panel)
-    this.items.map(i => addClass(this.classes.ITEM, i))
+    this.$items = queryAll('li', this.$panel)
+    this.$items.map(i => addClass(this.classes.ITEM, i))
   }
 
   setupPopper() {
@@ -404,7 +411,7 @@ class Dropdown extends Component {
       config.modifiers.preventOverflow.boundariesElement = 'scrollParent'
     }
 
-    this.POPPER = new Popper(this.element, this.panelWrap, config)
+    this.POPPER = new Popper(this.$element, this.$panelWrap, config)
 
     this.enter('popper')
   }
@@ -463,8 +470,8 @@ class Dropdown extends Component {
     }
 
     this.enter('show')
-    addClass(this.classes.SHOW, this.element)
-    addClass(this.classes.SHOW, this.panelWrap)
+    addClass(this.classes.SHOW, this.$element)
+    addClass(this.classes.SHOW, this.$panelWrap)
 
     if (this.is('popper')) {
       this.POPPER.enableEventListeners()
@@ -488,8 +495,8 @@ class Dropdown extends Component {
     if (this.is('popper')) {
       this.POPPER.disableEventListeners()
     }
-    removeClass(this.classes.SHOW, this.element)
-    removeClass(this.classes.SHOW, this.panelWrap)
+    removeClass(this.classes.SHOW, this.$element)
+    removeClass(this.classes.SHOW, this.$panelWrap)
 
     this.trigger(EVENTS.HIDE)
 
@@ -504,12 +511,12 @@ class Dropdown extends Component {
     if (this.options.imitateSelect) {
       this.text = null
 
-      this.items.map((item, index) => {
-        if (item.dataset[this.options.itemValueAttr] === value) {
-          this.selectItem(item)
+      this.$items.map(($item, index) => {
+        if ($item.dataset[this.options.itemValueAttr] === value) {
+          this.selectItem($item)
           this.value = value
-          if (!is.undefined(item.textContent)) {
-            this.text = item.textContent
+          if (!is.undefined($item.textContent)) {
+            this.text = $item.textContent
           }
         }
       })
@@ -531,10 +538,10 @@ class Dropdown extends Component {
   }
 
   generateMask() {
-    this.mask = document.createElement('div')
-    addClass(this.classes.MASK, this.mask)
+    this.$mask = document.createElement('div')
+    addClass(this.classes.MASK, this.$mark)
     // .show()
-    append(this.mask, document.body)
+    append(this.$mark, document.body)
     bindEvent(
       {
         type: 'click',
@@ -543,21 +550,21 @@ class Dropdown extends Component {
           return
         }
       },
-      this.mask
+      this.$mark
     )
   }
 
   clearMask() {
-    if (this.mask) {
-      removeEvent('click', this.mask)
-      this.mask.remove()
-      this.mask = null
+    if (this.$mark) {
+      removeEvent('click', this.$mark)
+      this.$mark.remove()
+      this.$mark = null
     }
   }
 
   getPanel() {
     if (this.options.panel === '+') {
-      return this.element.nextElementSibling
+      return this.$element.nextElementSibling
     }
     if (is.domNode(this.options.panel)) {
       return this.options.panel
@@ -571,11 +578,11 @@ class Dropdown extends Component {
   }
 
   getActiveItem() {
-    return query(`.${this.classes.ACITVE}`, this.panel)
+    return query(`.${this.classes.ACITVE}`, this.$panel)
   }
 
   update(html) {
-    this.panel.innerHTML = html
+    this.$panel.innerHTML = html
   }
 
   selectItem(item) {
@@ -596,7 +603,7 @@ class Dropdown extends Component {
         }
         break
       case 'down':
-        if (this.$markIndex < this.items.length - 1) {
+        if (this.$markIndex < this.$items.length - 1) {
           this.$markIndex++
           trigger = true
         }
@@ -606,8 +613,8 @@ class Dropdown extends Component {
     }
 
     if (trigger) {
-      this.items.map(item => removeClass(this.classes.HOVER, item))
-      addClass(this.classes.HOVER, this.items[this.$markIndex])
+      this.$items.map($item => removeClass(this.classes.HOVER, $item))
+      addClass(this.classes.HOVER, this.$items[this.$markIndex])
     }
   }
 
@@ -634,25 +641,25 @@ class Dropdown extends Component {
       this.hide()
       this.unbind()
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.element)
+        removeClass(this.getThemeClass(), this.$element)
       }
 
       this.POPPER.destroy()
-      this.element.innerHTML = ''
-      this.element.className = this.firstClassName
+      this.$element.innerHTML = ''
+      this.$element.className = this.firstClassName
 
       if (this.options.data) {
-        unwrap(this.panel)
-        this.panel.remove()
-        this.items.map(item => item.remove())
+        unwrap(this.$panel)
+        this.$panel.remove()
+        this.$items.map($item => $item.remove())
         removeClass(this.classes.WRAP, this.parent)
       } else if (this.options.panel === '+') {
-        unwrap(this.panel)
-        removeClass(this.classes.PANEL, this.panel)
-        this.items.map(item => removeClass(this.classes.ITEM, item))
+        unwrap(this.$panel)
+        removeClass(this.classes.PANEL, this.$panel)
+        this.$items.map($item => removeClass(this.classes.ITEM, $item))
         removeClass(this.classes.WRAP, this.parent)
       } else {
-        this.panelWrap.remove()
+        this.$panelWrap.remove()
         removeClass(this.classes.WRAP, this.parent)
       }
       this.leave('initialized')
