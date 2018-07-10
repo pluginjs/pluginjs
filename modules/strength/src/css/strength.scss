@@ -5,22 +5,78 @@ $strength: "pj-strength" !default;
 .#{$strength} {
   &-container {
     position: relative;
+    height: 56px;
+    margin-top: 10px;
+  }
+  &-input {
+    width: 205px;
+    padding: 4px 35px 4px 15px !important;
+    outline: none;
   }
   &-box {
-    position: absolute;
+    position: absolute !important;
     top: 10px;
-    left: 180px;
+    left: 170px;
     font-size: 12px;
   }
   &-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999999;
+    display: block;
     height: 13px;
+    margin: 0;
+    cursor: pointer;
+    opacity: 0;
   }
   &-addon{
+    position: relative;
+    margin-left: 10px;
+    color: $color-gray;
+    cursor: pointer;
     .icon-show {
       display: block;
     }
     .icon-hide {
       display: none;
+    }
+    .#{$strength}-check {
+      position: relative;
+      top: 1px;
+      box-sizing: initial;
+      display: inline-block;
+      width: 16px !important;
+      min-width: 1em;
+      height: 16px !important;
+      min-height: 1em;
+      margin-right: 6px;
+      font-size: 1em !important;
+      line-height: 18px;
+      color: transparent;
+      text-align: center;
+    }
+    .#{$strength}-check::before {
+      position: relative;
+      top: -1px;
+      left: 0;
+      z-index: 999;
+      display: inline-block;
+      vertical-align: bottom;
+      transition: transform 0.25s;
+      transform: scale(0);
+    }
+    .#{$strength}-check::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      color: transparent;
+      content: "\0000";
+      border: 1px solid #e6e6e6;
+      border-radius: 2px;
     }
   }
   &-active {
@@ -29,6 +85,12 @@ $strength: "pj-strength" !default;
     }
     .icon-hide {
       display: block;
+    }
+    .#{$strength}-check {
+      color: $btn-color-primary;
+    }
+    .#{$strength}-check::before {
+      transform: scale(1);
     }
   }
 }

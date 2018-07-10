@@ -9,8 +9,11 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
+    "@pluginjs/dom": "*",
     "@pluginjs/icons": "*",
-    "@pluginjs/time-picker": "*"
+    "@pluginjs/styles": "*",
+    "@pluginjs/time-picker": "*",
+    "primary.css": "^1.0.0"
   },
   "devDependencies": {
     "babel-plugin-transform-html-import-to-string": "*",

@@ -22,7 +22,8 @@ export const classes = {
   SCORE: '{namespace}-score',
   SHOWN: '{namespace}-shown',
   ACTIVE: '{namespace}-active',
-  ADDON: '{namespace}-addon'
+  ADDON: '{namespace}-addon',
+  CHECK: '{namespace}-check'
 }
 
 export const methods = ['getScore', 'getStatus', 'enable', 'disable', 'destroy']
@@ -37,7 +38,7 @@ export const defaults = {
 
   templates: {
     toggle:
-      '<span class="{classes.ADDON}"><input type="checkbox" class="{classes.TOGGLE}" title="{label}" checked /></span>',
+      '<span class="{classes.ADDON}"><input type="checkbox" class="{classes.TOGGLE}" title="{label}" checked /><i class="{classes.CHECK} icon-check-mini"></i></span>',
     meter: '<div class="{classes.METER}">{score}</div>',
     score: '<span class="label {classes.SCORE}"></span>',
     main:
