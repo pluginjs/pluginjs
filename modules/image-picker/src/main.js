@@ -41,7 +41,7 @@ class ImagePicker extends Component {
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
     this.initClasses(CLASSES)
 
-    addClass(`${this.classes.NAMESPACE}-input`, this.element)
+    addClass(`${this.classes.INPUT}`, this.element)
 
     this.setupI18n()
     this.initStates()
@@ -88,9 +88,9 @@ class ImagePicker extends Component {
             return false
           }
 
-          addClass(`${this.classes.NAMESPACE}-fadeIn`, $info)
+          addClass(`${this.classes.FADEIN}`, $info)
           window.setTimeout(() => {
-            removeClass(`${this.classes.NAMESPACE}-fadeIn`, $info)
+            removeClass(`${this.classes.FADEIN}`, $info)
           }, 300)
           return false
         }
@@ -161,7 +161,7 @@ class ImagePicker extends Component {
     const that = this
     this.$wrap = parseHTML(
       template.compile(this.options.template())({
-        namespace: this.classes.NAMESPACE,
+        classes: this.classes,
         placeholder: this.translate('placeholder')
       })
     )
@@ -189,9 +189,9 @@ class ImagePicker extends Component {
                   el => el.matches(`.${that.classes.INFO}`),
                   that.$remove
                 )
-            addClass(`${that.classes.NAMESPACE}-fadeOut`, $info)
+            addClass(`${that.classes.FADEOUT}`, $info)
             window.setTimeout(() => {
-              removeClass(`${that.classes.NAMESPACE}-fadeOut`, $info)
+              removeClass(`${that.classes.FADEOUT}`, $info)
               that.clear()
             }, 300)
             // that.$remove.closest(`.${that.classes.INFO}`).fadeOut(100, () => {
@@ -292,7 +292,7 @@ class ImagePicker extends Component {
         removeClass(this.getThemeClass(), this.element)
       }
 
-      removeClass(`${this.classes.NAMESPACE}-input`, this.element)
+      removeClass(`${this.classes.INPUT}`, this.element)
       this.element.value = ''
       this.$wrap.remove()
       this.leave('initialized')

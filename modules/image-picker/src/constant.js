@@ -22,7 +22,10 @@ export const classes = {
   INFOCHANGE: '{namespace}-info-change',
   INFOIMAGE: '{namespace}-info-image',
   INFOREMOVE: '{namespace}-info-remove',
-  INFORESELECT: '{namespace}-info-reselect'
+  INFORESELECT: '{namespace}-info-reselect',
+  INPUT: '{namespace}-input',
+  FADEIN: '{namespace}--fadeIn',
+  FADEOUT: '{namespace}--fadeOut'
 }
 
 export const methods = [
@@ -42,15 +45,15 @@ export const defaults = {
   localeFallbacks: true,
   template() {
     return (
-      '<div class="{namespace}">' +
-      '<div class="{namespace}-initial">' +
+      '<div class="{classes.NAMESPACE}">' +
+      '<div class="{classes.INITIAL}">' +
       '<i class="icon-picture"></i>{placeholder}' +
       '</div>' +
-      '<div class="{namespace}-info">' +
-      '<img class="{namespace}-info-image" src="">' +
-      '<div class="{namespace}-info-change">' +
-      '<i class="{namespace}-info-reselect icon-repeat"></i>' +
-      '<i class="{namespace}-info-remove icon-trash"></i>' +
+      '<div class="{classes.INFO}">' +
+      '<img class="{classes.INFOIMAGE}" src="">' +
+      '<div class="{classes.INFOCHANGE}">' +
+      '<i class="{classes.INFORESELECT} icon-repeat"></i>' +
+      '<i class="{classes.INFOREMOVE} icon-trash"></i>' +
       '</div>' +
       '</div>' +
       '</div>'
