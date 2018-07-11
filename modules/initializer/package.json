@@ -1,0 +1,58 @@
+{
+  "name": "@pluginjs/initializer",
+  "description": "A utility JavaScript library for initialize plugins.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/plugin.js/issues"
+  },
+  "version": "0.2.1",
+  "main": "dist/initializer.umd.js",
+  "module": "dist/initializer.esm.js",
+  "cjs": "dist/initializer.cjs.js",
+  "source": "src/main.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "test": "jest",
+    "lint": "eslint ./src/**/*.js --fix"
+  },
+  "dependencies": {
+    "@pluginjs/dom": "*",
+    "@pluginjs/utils": "*",
+    "@pluginjs/pluginjs": "*",
+    "@pluginjs/component": "*"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "^4.0.0-beta.7",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "category": "core",
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  }
+}

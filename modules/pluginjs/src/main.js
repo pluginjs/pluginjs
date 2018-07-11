@@ -24,10 +24,17 @@ if (!window.Pj) {
       return window.document.documentElement.clientHeight
     },
     get(name) {
-      if (typeof this.plugins[name] !== 'undefined') {
+      if (this.has(name)) {
         return this.plugins[name]
       }
       return null
+    },
+    has(name) {
+      if (typeof this.plugins[name] !== 'undefined') {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }
@@ -92,8 +99,12 @@ export function register(name, obj = {}) {
         ) {
           return Array.from(selector)
         }
-        return Array.of(selector)
+        if(selector instanceof Node) {
+          return Array.of(selector)
+        }
+        return []
       }
+
       Pj[name] = (selector, options) => {
         const elements = elementParse(selector)
         if (!elements.length) {
