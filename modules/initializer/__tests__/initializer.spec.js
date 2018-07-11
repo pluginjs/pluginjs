@@ -1,6 +1,6 @@
 import Initializer from '../src/main'
 import { queryAll, parseHTML } from '@pluginjs/dom'
-import Sample from './fixtures/sample'
+import Sample from './fixtures/sample' /* eslint-disable-line no-unused-vars */
 
 describe('Initializer', () => {
   describe('Initializer()', () => {
@@ -10,11 +10,15 @@ describe('Initializer', () => {
   })
 
   describe('of()', () => {
-    Initializer.register('example', (element, options) => {
-      element.setAttribute('hello', options.value)
-    }, {
-      value: 'world'
-    })
+    Initializer.register(
+      'example',
+      (element, options) => {
+        element.setAttribute('hello', options.value)
+      },
+      {
+        value: 'world'
+      }
+    )
 
     test('should work with element', () => {
       const $example = parseHTML`<div data-plugin="example"><div>`
@@ -24,7 +28,7 @@ describe('Initializer', () => {
 
     test('should work with elements', () => {
       const $doc = parseHTML`<div class="example" data-plugin="example"><div><div class="example" data-plugin="example"><div>`
-      const $examples = queryAll('.example');
+      const $examples = queryAll('.example', $doc)
       Initializer.of($examples)
 
       $examples.forEach($example => {
@@ -46,16 +50,20 @@ describe('Initializer', () => {
     })
 
     test('should set defaults with the 3rd param', () => {
-      const defaults = {foo:'bar'}
-      Initializer.register('test-plugin', (element, options) => {
-
-      }, defaults)
+      const defaults = { foo: 'bar' }
+      Initializer.register(
+        'test-plugin',
+        (element, options) => {
+          element.setAttribute('hello', options.value)
+        },
+        defaults
+      )
       expect(Initializer.defaults('test-plugin')).toEqual(defaults)
     })
   })
 
   describe('defaults()', () => {
-    const defaults = {foo:'bar'}
+    const defaults = { foo: 'bar' }
 
     test('should have defaults() method', () => {
       expect(Initializer.defaults).toBeFunction()
@@ -121,11 +129,15 @@ describe('Initializer', () => {
   })
 
   describe('initialize()', () => {
-    Initializer.register('example', (element, options) => {
-      element.setAttribute('hello', options.value)
-    }, {
-      value: 'world'
-    })
+    Initializer.register(
+      'example',
+      (element, options) => {
+        element.setAttribute('hello', options.value)
+      },
+      {
+        value: 'world'
+      }
+    )
 
     test('should have initialize() method', () => {
       expect(Initializer.initialize).toBeFunction()

@@ -32,9 +32,8 @@ if (!window.Pj) {
     has(name) {
       if (typeof this.plugins[name] !== 'undefined') {
         return true
-      } else {
-        return false
       }
+      return false
     }
   }
 }
@@ -99,7 +98,7 @@ export function register(name, obj = {}) {
         ) {
           return Array.from(selector)
         }
-        if(selector instanceof Node) {
+        if (selector instanceof Node) {
           return Array.of(selector)
         }
         return []

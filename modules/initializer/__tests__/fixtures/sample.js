@@ -1,7 +1,5 @@
 import Component from '@pluginjs/component'
-import {
-  register
-} from '@pluginjs/pluginjs'
+import { register } from '@pluginjs/pluginjs'
 
 const NAMESPACE = 'sample'
 const DEFAULTS = {

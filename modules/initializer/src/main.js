@@ -1,11 +1,11 @@
 import { deepMerge } from '@pluginjs/utils'
-import { attr, queryAll, query } from '@pluginjs/dom'
+import { attr, queryAll } from '@pluginjs/dom'
 
-let PLUGINS = {}
-let DEFAULTS = {}
+const PLUGINS = {}
+const DEFAULTS = {}
 
 function getDefaults(name) {
-  if(DEFAULTS.hasOwnProperty(name)) {
+  if (Object.prototype.hasOwnProperty.call(DEFAULTS, name)) {
     return DEFAULTS[name]
   }
   return {}
@@ -16,15 +16,16 @@ function setDefaults(name, defaults = {}) {
 }
 
 function getPlugin(name) {
-  if(PLUGINS.hasOwnProperty(name)) {
-    return PLUGINS[name];
+  if (Object.prototype.hasOwnProperty.call(PLUGINS, name)) {
+    return PLUGINS[name]
   }
 
-  if(window.Pj && window.Pj.has(name)) {
-    const Plugin = Pj.get(name)
+  /* eslint-disable-next-line no-undef */
+  if (window.Pj && window.Pj.has(name)) {
+    const Plugin = window.Pj.get(name)
 
     return function(element, options) {
-      Plugin.of(element, options);
+      Plugin.of(element, options)
     }
   }
 
@@ -34,7 +35,7 @@ function getPlugin(name) {
 function hasPlugin(name) {
   const Plugin = getPlugin(name)
 
-  if(Plugin !== null) {
+  if (Plugin !== null) {
     return true
   }
 
@@ -42,11 +43,11 @@ function hasPlugin(name) {
 }
 
 function initializePlugin(name, element, options = {}) {
-  const Plugin = getPlugin(name);
+  const Plugin = getPlugin(name)
 
   options = deepMerge(getDefaults(name), options)
 
-  return Plugin(element, options);
+  return Plugin(element, options)
 }
 
 export default {
@@ -60,34 +61,35 @@ export default {
       selector instanceof HTMLCollection
     ) {
       elements = Array.from(selector)
-    } else if(
-      selector instanceof Node
-    ){
+    } else if (selector instanceof Node) {
       elements = Array.of(selector)
+    } else if (selector instanceof Array) {
+      elements = selector;
     }
 
-    if(elements.length > 0) {
+    if (elements.length > 0) {
       elements.map(el => initializePlugin(attr(attrKey, el), el))
     }
   },
 
   register(plugin, callback, defaults = null) {
-    if(toString.call(callback) === '[object Function]' ||
-      typeof callback === 'function') {
+    if (
+      toString.call(callback) === '[object Function]' ||
+      typeof callback === 'function'
+    ) {
       PLUGINS[plugin] = callback
     }
 
-    if(defaults) {
+    if (defaults) {
       setDefaults(plugin, defaults)
     }
   },
 
   defaults(plugin, defaults = null) {
-    if(defaults) {
-      setDefaults(plugin, defaults)
-    } else {
-      return getDefaults(plugin)
+    if (defaults) {
+      return setDefaults(plugin, defaults)
     }
+    return getDefaults(plugin)
   },
 
   initialize(plugin, element, options = {}) {
@@ -95,7 +97,7 @@ export default {
   },
 
   get(plugin) {
-    if(hasPlugin(plugin)) {
+    if (hasPlugin(plugin)) {
       return function(element, options = {}) {
         initializePlugin(plugin, element, options)
       }

@@ -1,7 +1,7 @@
-import { query } from '@pluginjs/dom'
+import { queryAll } from '@pluginjs/dom'
 import Toggle from '@pluginjs/toggle' /* eslint-disable-line no-unused-vars */
 import Initializer from '@pluginjs/initializer'
 
-const element = query('#element .example-element')
+const elements = queryAll('#elements .example-elements')
 
-Initializer.of(element)
+Initializer.of(elements)
