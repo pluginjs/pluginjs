@@ -87,3 +87,15 @@ We are excited that you are interested in contributing to us. Before submitting 
 ## [CSS variables](CSSVARIABLES.md)
 
 ## [Commit Message Guidelines](COMMITMESSAGE.md)
+
+## License
+
+@pluginjs is Licensed under [the GPL-v3 license](LICENSE).
+
+If you want to use @pluginjs project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+For purchase an Commercial License, contact us purchase@thecreation.co.
+
+## Copyright
+
+Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).

@@ -27,8 +27,7 @@ import {
     defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
-  },
-  INFO
+  }
 )
 class {{Namespace}} extends Component {
   constructor(element, options = {}) {
