@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Collapse from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Collapse from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Collapse', () => {
   describe('Collapse()', () => {
@@ -28,23 +27,19 @@ describe('Collapse', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const collapse = new Collapse(element)
-
+      const collapse = Collapse.of(generateHTMLSample())
       expect(collapse).toBeObject()
       expect(collapse.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const collapse = new Collapse(element)
+      const collapse = Collapse.of(generateHTMLSample())
 
       expect(collapse.options).toBeObject()
     })
 
     test('should have classes', () => {
-      const element = document.createElement('div')
-      const collapse = new Collapse(element)
+      const collapse = Collapse.of(generateHTMLSample())
 
       expect(collapse.classes).toBeObject()
     })
@@ -52,13 +47,10 @@ describe('Collapse', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = Collapse.of($element)
 
-      expect($element.asCollapse()).toEqual($element)
-
-      const api = $element.data('collapse')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -66,8 +58,7 @@ describe('Collapse', () => {
 
   describe('classes', () => {
     test('should use classes options', () => {
-      const element = document.createElement('div')
-      const collapse = new Collapse(element, {
+      const collapse = Collapse.of(generateHTMLSample(), {
         classes: {
           container: '{namespace}-wrap',
           active: '{namespace}-active'
@@ -79,8 +70,7 @@ describe('Collapse', () => {
     })
 
     test('should override class namespace', () => {
-      const element = document.createElement('div')
-      const collapse = new Collapse(element, {
+      const collapse = Collapse.of(generateHTMLSample(), {
         classes: {
           namespace: 'collapse',
           container: '{namespace}-wrap'
@@ -93,8 +83,7 @@ describe('Collapse', () => {
 
     describe('getClass()', () => {
       test('should get class with namespace', () => {
-        const element = document.createElement('div')
-        const collapse = new Collapse(element, {
+        const collapse = Collapse.of(generateHTMLSample(), {
           classes: { namespace: 'hello' }
         })
 
@@ -103,8 +92,7 @@ describe('Collapse', () => {
       })
 
       test('should get class with arg', () => {
-        const element = document.createElement('div')
-        const collapse = new Collapse(element, {
+        const collapse = Collapse.of(generateHTMLSample(), {
           classes: { namespace: 'hello' }
         })
 
@@ -119,8 +107,7 @@ describe('Collapse', () => {
   describe('theme', () => {
     describe('getThemeClass()', () => {
       test('should get theme classes with default namespace', () => {
-        const element = document.createElement('div')
-        const collapse = new Collapse(element, {
+        const collapse = Collapse.of(generateHTMLSample(), {
           theme: null,
           classes: { theme: '{namespace}--{theme}' }
         })
@@ -133,8 +120,7 @@ describe('Collapse', () => {
       })
 
       test('should get theme classes with namespace override', () => {
-        const element = document.createElement('div')
-        const collapse = new Collapse(element, {
+        const collapse = Collapse.of(generateHTMLSample(), {
           theme: null,
           classes: {
             namespace: 'hello',
@@ -150,8 +136,9 @@ describe('Collapse', () => {
       })
 
       test('should get theme classes correctly when no classes.THEME defined', () => {
-        const element = document.createElement('div')
-        const collapse = new Collapse(element, { theme: '{namespace}--foo' })
+        const collapse = Collapse.of(generateHTMLSample(), {
+          theme: '{namespace}--foo'
+        })
 
         // set to null for test
         collapse.classes.THEME = null
@@ -169,44 +156,26 @@ describe('Collapse', () => {
     })
 
     test('should add theme class after initialize and remove after destroy', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-      const collapse = new Collapse(element, {
+      const collapse = Collapse.of(generateHTMLSample(), {
         theme: 'foo',
         classes: { theme: '{namespace}--{theme}' }
       })
 
-      expect($element.hasClass('pj-collapse--foo')).toBeTrue()
+      expect(collapse.getThemeClass()).toEqual('pj-collapse--foo')
       collapse.destroy()
-      expect($element.hasClass('pj-collapse--foo')).toBeFalse()
-    })
-
-    test('should works with more than one theme', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-      const collapse = new Collapse(element, {
-        theme: 'foo bar',
-        classes: { theme: '{namespace}--{theme}' }
-      })
-
-      expect($element.hasClass('pj-collapse--foo')).toBeTrue()
-      expect($element.hasClass('pj-collapse--bar')).toBeTrue()
-
-      collapse.destroy()
-      expect($element.hasClass('pj-collapse--foo')).toBeFalse()
-      expect($element.hasClass('pj-collapse--bar')).toBeFalse()
+      expect(collapse.getThemeClass()).toEqual('pj-collapse--foo')
     })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asCollapse()
-      expect($element.asCollapse('bind')).toBeNil()
+      const $element = Collapse.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asCollapse()
-      expect($element.asCollapse('destroy')).toEqual($element)
+      const $element = Collapse.of(generateHTMLSample())
+      $element.destroy()
     })
   })
 
@@ -214,99 +183,19 @@ describe('Collapse', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('collapse:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('collapse:ready', () => {
         called++
       })
 
-      $element.asCollapse()
+      const instance = Collapse.of($element)
       expect(called).toEqual(1)
-    })
-  })
-
-  describe('destroy()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = $(document.createElement('div')).asCollapse()
-      api = $element.data('collapse')
-    })
-
-    test('should trigger destroy event', () => {
-      let called = 0
-
-      $element.on('collapse:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
-        called++
-      })
-
-      $element.asCollapse('destroy')
-
-      expect(called).toEqual(1)
-    })
-  })
-
-  describe('enable()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = $(document.createElement('div')).asCollapse()
-      api = $element.data('collapse')
-    })
-
-    test('should enable the plugin', () => {
-      $element.asCollapse('disable')
-      $element.asCollapse('enable')
-
-      expect(api.is('disabled')).toBeFalse()
-    })
-
-    test('should trigger enable event', () => {
-      let called = 0
-
-      $element.on('collapse:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
-        called++
-      })
-
-      $element.asCollapse('enable')
-      expect(called).toEqual(1)
-    })
-  })
-
-  describe('disable()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = $(document.createElement('div')).asCollapse()
-      api = $element.data('collapse')
-    })
-
-    test('should disable the plugin', () => {
-      $element.asCollapse('disable')
-
-      expect(api.is('disabled')).toBeTrue()
-    })
-
-    test('should trigger disable event', () => {
-      let called = 0
-
-      $element.on('collapse:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
-        called++
-      })
-
-      $element.asCollapse('disable')
-      expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 })
