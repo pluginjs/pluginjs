@@ -10,8 +10,7 @@ import {
   setObjData,
   find,
   parseHTML,
-  parent,
-  queryAll
+  parent
 } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 import { hasClass, removeClass, addClass } from '@pluginjs/classes'
@@ -74,7 +73,7 @@ class Gradient {
       `<input class="pj-input ${this.classes.WHEELANGLE}" type="text"/>`
     )
     this.$remove = parseHTML(
-      `<i class='icon-trash ${this.classes.GRADIENTREMOVE}'></i>`
+      `<i class='icon-delete ${this.classes.GRADIENTREMOVE}'></i>`
     )
     const selector = parseHTML(
       `<div class='${this.classes.GRADIENTMODE}'><div><div/></div>`
@@ -265,7 +264,7 @@ class Gradient {
         },
         handler: ({ target: $this }) => {
           if ($this.dataset.type !== 'gradient') {
-            this.markers.map((marker, i) => {
+            this.markers.map((marker, i) => { /* eslint-disable-line */
               const $item = marker.$el
               if (hasClass(this.classes.MARKERACTIVE, $item)) {
                 this.lastActiveMarkerIndex = i
@@ -460,12 +459,12 @@ class Gradient {
   set(val) {
     const info = val.match(/\(.*\)/g)[0]
     const angleKey = val
-      .match(/\(.+?\,/gi)[0]
+      .match(/\(.+?\,/gi)[0]    /* eslint-disable-line */
       .split(',')[0]
       .split('(')[1]
 
     const colors = info
-      .replace(/^\((([0-9]+deg)|((([a-zA-Z]+)\s)+[a-zA-Z]+))\,/gi, '')
+      .replace(/^\((([0-9]+deg)|((([a-zA-Z]+)\s)+[a-zA-Z]+))\,/gi, '')  /* eslint-disable-line */
       .match(/(?:rgba|rgb|hsla|hsl)\s*\([\s\d.,%]+\)|#[a-z0-9]{3,6}|[a-z]+/gi)
     const percents = info.match(/(\d{1,3}|\d{1,3}\.\d+)%/gi)
     if (val.indexOf('linear') > -1) {

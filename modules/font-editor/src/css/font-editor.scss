@@ -192,7 +192,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     align-items: center;
     justify-content: space-between;
     // padding: 5px 0;
-    margin-bottom: 3 * $fontEditor-sizer; //30px
+    margin-bottom: 2 * $fontEditor-sizer; //30px
 
     &-title {
       order: 0;
@@ -201,6 +201,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
     &-content {
       width: $fontEditor-content-width;
+      margin-top: $fontEditor-sizer;
     }
   }
 

@@ -33,9 +33,9 @@ $tagList-empty-color: $gray-lighter !default;
     order: 0;
     width: 80%;
     margin: 0;
-    border-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border-right: none !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 
     &:disabled:hover {
       border-color: transparent;

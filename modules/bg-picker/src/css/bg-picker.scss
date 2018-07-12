@@ -190,6 +190,12 @@ input.#{$bgPicker}-input {
     // }
   }
 
+  &-dropdown-trigger {
+    > .pj-dropdown-label {
+      color: $gray-darker;
+    }
+  }
+
   &-position,
   &-repeat,
   &-size {

@@ -49,6 +49,7 @@ $dropdown-item: "pj-dropdown-item" !default;
 
     &:hover,
     &:focus {
+      z-index: 1000;
       transition: transform 0.2s;
       transform: translateY(-50%) scale(1.1, 1.1);
     }

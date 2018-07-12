@@ -90,6 +90,7 @@ $pop-buttons-danger-color: $color-danger !default;
       line-height: $list-item-height;
       // color: $color-white;
       text-align: center;
+      cursor: pointer;
       background-color: $color-white;
 
       &:hover {

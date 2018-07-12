@@ -55,6 +55,7 @@ $toggleList-unchecked-bg: $gray-lightest !default;
     // }
 
     &-item-actions {
+      top: 19px !important;
       &:hover {
         cursor: default;
       }
