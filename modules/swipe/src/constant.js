@@ -1,4 +1,4 @@
-export const namespace = 'pj-swipe'
+export const namespace = 'swipe'
 
 export const events = {
   UPDATE: 'update',
@@ -16,7 +16,7 @@ export const events = {
 }
 
 export const classes = {
-  NAMESPACE: `${namespace}`,
+  NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   WRAPPER: '{namespace}-wrapper',
   CONTAINER: '{namespace}-container',

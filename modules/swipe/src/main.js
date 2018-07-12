@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
-import { bindEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   append,
   wrap,
@@ -448,7 +448,7 @@ class Swipe extends Component {
   }
 
   unbind() {
-    this.$element.off(this.eventName())
+    removeEvent(this.eventName(), this.$wrapper)
   }
 
   next() {

@@ -1,8 +1,6 @@
-import $ from 'jquery'
-import '@pluginjs/dropdown'
-import '@pluginjs/scrollable'
 import Swipe from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Swipe', () => {
   describe('Swipe()', () => {
@@ -26,46 +24,28 @@ describe('Swipe', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const swipe = new Swipe(element)
+      const swipe = Swipe.of(generateHTMLSample())
 
       expect(swipe).toBeObject()
       expect(swipe.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const swipe = new Swipe(element)
+      const swipe = Swipe.of(generateHTMLSample())
 
       expect(swipe.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asSvgPicker()).toEqual($element)
-
-      const api = $element.data('svgPicker')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asSvgPicker()
-      expect($element.asSvgPicker('bind')).toBeNil()
+      const swipe = Swipe.of(generateHTMLSample())
+      expect(swipe.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asSvgPicker()
-      $element.asSvgPicker('destroy')
-      // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      const swipe = Swipe.of(generateHTMLSample())
+      swipe.destroy()
     })
   })
 
@@ -73,19 +53,18 @@ describe('Swipe', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('svgPicker:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('swipe:ready', () => {
         called++
       })
-
-      $element.asSvgPicker()
+      const instance = Swipe.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -94,7 +73,7 @@ describe('Swipe', () => {
     let api
 
     beforeEach(() => {
-      $element = document.createElement('div')
+      $element = generateHTMLSample()
       api = Swipe.of($element)
     })
 
@@ -117,13 +96,13 @@ describe('Swipe', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSvgPicker()
-      api = $element.data('svgPicker')
+      $element = generateHTMLSample()
+      api = Swipe.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asSvgPicker('disable')
-      $element.asSvgPicker('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,12 +110,12 @@ describe('Swipe', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('svgPicker:enable', (event, api) => {
+      $element.addEventListener('swipe:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asSvgPicker('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -146,12 +125,12 @@ describe('Swipe', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSvgPicker()
-      api = $element.data('svgPicker')
+      $element = generateHTMLSample()
+      api = Swipe.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asSvgPicker('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,12 +138,12 @@ describe('Swipe', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('svgPicker:disable', (event, api) => {
+      $element.addEventListener('swipe:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asSvgPicker('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })
