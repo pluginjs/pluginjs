@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import DynamicNumber from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import DynamicNumber from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('dynamicNumber', () => {
   describe('dynamicNumber()', () => {
@@ -24,24 +23,16 @@ describe('dynamicNumber', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      $(element).attr({
-        'data-from': '0',
-        'data-to': '30'
-      })
+      const element = generateHTMLSample()
 
-      const dynamicNumber = new DynamicNumber(element)
+      const dynamicNumber = DynamicNumber.of(element)
 
       expect(dynamicNumber).toBeObject()
-      expect(dynamicNumber.options).toBeObject()
-      expect(dynamicNumber.options.from).toBeNumber()
-      expect(dynamicNumber.options.from).toEqual(0)
-      expect(dynamicNumber.options.to).toEqual(30)
+      expect(dynamicNumber.options).toBeObject(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const dynamicNumber = new DynamicNumber(element, {
+      const dynamicNumber = DynamicNumber.of(generateHTMLSample(), {
         from: 0,
         to: 30
       })
@@ -55,13 +46,10 @@ describe('dynamicNumber', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const element = generateHTMLSample()
+      const api = DynamicNumber.of(element)
 
-      expect($element.asDynamicNumber()).toEqual($element)
-
-      const api = $element.data('dynamicNumber')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -69,13 +57,13 @@ describe('dynamicNumber', () => {
 
   describe('api call', () => {
     test('should call start', () => {
-      const $element = $(document.createElement('div'))
-      expect($element.is('start')).toBeFalse()
+      const $element = DynamicNumber.of(generateHTMLSample())
+      $element.start()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asDynamicNumber()
-      expect($element.asDynamicNumber('destroy')).toEqual($element)
+      const $element = DynamicNumber.of(generateHTMLSample())
+      $element.destroy()
     })
   })
 
@@ -83,19 +71,19 @@ describe('dynamicNumber', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('dynamicNumber:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('dynamicNumber:ready', () => {
         called++
       })
 
-      $element.asDynamicNumber()
+      const instance = DynamicNumber.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -104,19 +92,19 @@ describe('dynamicNumber', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asDynamicNumber()
-      api = $element.data('asDynamicNumber')
+      $element = generateHTMLSample()
+      api = DynamicNumber.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('dynamicNumber:destroy', (event, api) => {
+      $element.addEventListener('dynamicNumber:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asDynamicNumber('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -127,19 +115,19 @@ describe('dynamicNumber', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asDynamicNumber()
-      api = $element.data('asDynamicNumber')
+      $element = generateHTMLSample()
+      api = DynamicNumber.of($element)
     })
 
     test('should trigger start event', () => {
       let called = 0
 
-      $element.on('dynamicNumber:start', (event, api) => {
+      $element.addEventListener('dynamicNumber:start', () => {
         expect(api.is('start')).toBeTrue()
         called++
       })
 
-      $element.asDynamicNumber('start')
+      api.start()
 
       expect(called).toEqual(1)
     })
