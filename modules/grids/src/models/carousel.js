@@ -8,6 +8,7 @@ const DEFAULT = {
   pagination: false,
   drag: true,
   dragFree: false,
+  power: 2,
   group: false,
   multiple: false,
   defaultActive: 0,

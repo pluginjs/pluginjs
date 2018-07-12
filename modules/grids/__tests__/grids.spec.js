@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Grids from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Grids from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Grids', () => {
   describe('Grids()', () => {
@@ -25,46 +24,28 @@ describe('Grids', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const grids = new Grids(element)
+      const grids = Grids.of(generateHTMLSample())
 
       expect(grids).toBeObject()
       expect(grids.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const grids = new Grids(element)
+      const grids = Grids.of(generateHTMLSample())
 
       expect(grids.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asGrids()).toEqual($element)
-
-      const api = $element.data('grids')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asGrids()
-      expect($element.asGrids('bind')).toBeNil()
+      const grids = Grids.of(generateHTMLSample())
+      expect(grids.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asGrids()
-      $element.asGrids('destroy')
-      // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      const grids = Grids.of(generateHTMLSample())
+      grids.destroy()
     })
   })
 
@@ -72,19 +53,19 @@ describe('Grids', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('grids:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('grids:ready', () => {
         called++
       })
 
-      $element.asGrids()
+      const instance = Grids.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -93,19 +74,19 @@ describe('Grids', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGrids()
-      api = $element.data('grids')
+      $element = generateHTMLSample()
+      api = Grids.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('grids:destroy', (event, api) => {
+      $element.addEventListener('grids:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asGrids('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -116,13 +97,13 @@ describe('Grids', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGrids()
-      api = $element.data('grids')
+      $element = generateHTMLSample()
+      api = Grids.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asGrids('disable')
-      $element.asGrids('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -130,12 +111,12 @@ describe('Grids', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('grids:enable', (event, api) => {
+      $element.addEventListener('grids:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asGrids('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -145,12 +126,12 @@ describe('Grids', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGrids()
-      api = $element.data('grids')
+      $element = generateHTMLSample()
+      api = Grids.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asGrids('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -158,12 +139,12 @@ describe('Grids', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('grids:disable', (event, api) => {
+      $element.addEventListener('grids:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asGrids('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

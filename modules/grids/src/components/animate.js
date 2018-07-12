@@ -1,7 +1,7 @@
 import { deepMerge } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import anime from 'animejs'
-import { setStyle, getStyle } from '@pluginjs/styled'
+import { setStyle } from '@pluginjs/styled'
 import { setObjData, getObjData } from '@pluginjs/dom'
 
 const EFFECTS = {
@@ -78,30 +78,38 @@ const EFFECTS = {
         duration: 100,
         easing: 'linear'
       },
-      translateX(el, i) {
-        let docScrolls = {
-            left: document.body.scrollLeft + document.documentElement.scrollLeft
-          },
-          x1 = window.innerWidth / 2 + docScrolls.left,
-          tBounds = el.getBoundingClientRect(),
-          x2 = tBounds.left + docScrolls.left + tBounds.width / 2
+      translateX(el) {
+        const docScrolls = {
+          left: document.body.scrollLeft + document.documentElement.scrollLeft
+        }
+
+        const x1 = window.innerWidth / 2 + docScrolls.left
+
+        const tBounds = el.getBoundingClientRect()
+
+        const x2 = tBounds.left + docScrolls.left + tBounds.width / 2
 
         return [x1 - x2, 0]
       },
-      translateY(el, i) {
-        let docScrolls = {
-            top: document.body.scrollTop + document.documentElement.scrollTop
-          },
-          y1 = window.innerHeight + docScrolls.top,
-          tBounds = el.getBoundingClientRect(),
-          y2 = tBounds.top + docScrolls.top + tBounds.height / 2
+      translateY(el) {
+        const docScrolls = {
+          top: document.body.scrollTop + document.documentElement.scrollTop
+        }
+
+        const y1 = window.innerHeight + docScrolls.top
+
+        const tBounds = el.getBoundingClientRect()
+
+        const y2 = tBounds.top + docScrolls.top + tBounds.height / 2
 
         return [y1 - y2, 0]
       },
-      rotate(el, i) {
-        let x1 = window.innerWidth / 2,
-          tBounds = el.getBoundingClientRect(),
-          x2 = tBounds.left + tBounds.width / 2
+      rotate(el) {
+        const x1 = window.innerWidth / 2
+
+        const tBounds = el.getBoundingClientRect()
+
+        const x2 = tBounds.left + tBounds.width / 2
 
         return [x2 < x1 ? 90 : -90, 0]
       },
@@ -198,14 +206,19 @@ const EFFECTS = {
   },
   fan: {
     resetChunksSort(a, b) {
-      let docScrolls = {
-          top: document.body.scrollTop + document.documentElement.scrollTop
-        },
-        y1 = window.innerHeight + docScrolls.top,
-        aBounds = a.getBoundingClientRect(),
-        ay1 = aBounds.top + docScrolls.top + aBounds.height / 2,
-        bBounds = b.getBoundingClientRect(),
-        by1 = bBounds.top + docScrolls.top + bBounds.height / 2
+      const docScrolls = {
+        top: document.body.scrollTop + document.documentElement.scrollTop
+      }
+
+      const y1 = window.innerHeight + docScrolls.top
+
+      const aBounds = a.getBoundingClientRect()
+
+      const ay1 = aBounds.top + docScrolls.top + aBounds.height / 2
+
+      const bBounds = b.getBoundingClientRect()
+
+      const by1 = bBounds.top + docScrolls.top + bBounds.height / 2
 
       return Math.abs(y1 - ay1) - Math.abs(y1 - by1)
     },
@@ -295,8 +308,6 @@ class Animate {
       ? 'fadeInUp'
       : this.api.options.animate
     this.config = deepMerge({}, this.effects[this.effectName].animeOpts)
-
-    this.animation
   }
 
   loading(chunks, callback) {
@@ -328,7 +339,7 @@ class Animate {
       setObjData('animeApi', animation, el)
     })
     // run the animation
-    const animation = anime(this.config)
+    anime(this.config)
   }
 
   show(chunk) {

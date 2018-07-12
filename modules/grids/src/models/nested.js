@@ -1,6 +1,6 @@
 import { addClass } from '@pluginjs/classes'
 
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEvent } from '@pluginjs/events'
 
 class Nested {
   constructor(instanced) {
@@ -11,7 +11,7 @@ class Nested {
   }
 
   init() {
-    addClass(this.api.classes.NESTEDDMODEL, this.api.element)
+    addClass(this.api.classes.NESTEDMODEL, this.api.element)
     this.handleState()
     this.height = this.getHeight()
 
@@ -49,8 +49,9 @@ class Nested {
 
   findEmpty(size, arr = this.chunksArr, maxCol = this.columnCount) {
     let position
-    const rowSize = size.row,
-      colSize = size.col
+    const rowSize = size.row
+
+    const colSize = size.col
 
     for (let rowIndex = 0; rowIndex < arr.length; rowIndex++) {
       if (this.isFullArr(arr[rowIndex])) {
@@ -202,7 +203,7 @@ class Nested {
         index > 0 &&
         row[count].index === this.chunksArr[index - 1][count].index
       ) {
-        return false
+        return
       }
 
       height += row[count].info.height + this.gutter
@@ -219,7 +220,7 @@ class Nested {
         ),
         handler: e => {
           if (e.detail.data[0] < this.api.minWidth) {
-            return false
+            return
           }
           this.handleState()
           this.render()
