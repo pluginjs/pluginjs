@@ -80,7 +80,7 @@ input{
 // nomoral
 .#{$input} {
   box-sizing: border-box;
-  height: $input-height;
+  // height: $input-height;
   padding: $input-padding-top $input-padding-left;
   margin-bottom: 0;
   font-size: $input-font-size;

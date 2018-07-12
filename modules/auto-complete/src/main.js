@@ -568,6 +568,7 @@ class AutoComplete extends Component {
 
   set(value) {
     this.$element.value = value
+    // console.log(value)
   }
 
   get() {

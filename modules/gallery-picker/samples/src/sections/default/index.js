@@ -4,9 +4,9 @@ import GalleryPicker from '@pluginjs/gallery-picker'
 const element = query('#default .example-default')
 GalleryPicker.of(element, {
   add() {
-    return ['../../plugins/gallery-picker/images/dog.jpg']
+    return ['https://picsum.photos/200/300?image=929']
   },
   change() {
-    return '../../plugins/gallery-picker/images/sun.jpg'
+    return 'https://picsum.photos/200/300?image=927'
   }
 })

@@ -5,9 +5,9 @@ const element = query('#locale .example-locale')
 GalleryPicker.of(element, {
   locale: 'zh',
   add() {
-    return ['../../plugins/gallery-picker/images/dog.jpg']
+    return ['https://picsum.photos/200/300?image=921']
   },
   change() {
-    return '../../plugins/gallery-picker/images/sun.jpg'
+    return 'https://picsum.photos/200/300?image=916'
   }
 })

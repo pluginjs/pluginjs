@@ -222,7 +222,7 @@ export const defaults = {
       return '<i class="{class} icon-solid" data-type="solid"></i>'
     },
     gradientTrigger() {
-      return '<i class="{class} icon-solid" data-type="gradient"></i>'
+      return '<i class="{class} icon-gradient" data-type="gradient"></i>'
     },
     moduleWrap() {
       return '<div class="{class}"></div>'

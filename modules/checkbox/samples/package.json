@@ -12,12 +12,13 @@
     "@pluginjs/checkbox": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/styles": "*",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "font-awesome.css": "^4.7.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "posthtml-include": "^1.2.0",
-    "parcel-bundler": "*"
+    "parcel-bundler": "*",
+    "posthtml-include": "^1.2.0"
   }
 }

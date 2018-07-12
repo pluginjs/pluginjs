@@ -177,7 +177,7 @@ describe('AutoComplete', () => {
     })
   })
 
-  describe('set()', () => {
+  describe('value()', () => {
     let $element
     let api
 
@@ -187,22 +187,8 @@ describe('AutoComplete', () => {
     })
 
     test('should set the plugin', () => {
-      // expect(api.set('value')).toBe
-      api.set()
-    })
-  })
-
-  describe('get()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = AutoComplete.of($element, { data })
-    })
-
-    test('should get the plugin', () => {
-      api.set()
+      api.set('java')
+      expect(api.get()).toBeEqual(api)
     })
   })
 

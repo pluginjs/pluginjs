@@ -34,7 +34,7 @@ import Pj, {
 import color from '@pluginjs/color'
 import Alpha from './components/alpha'
 import Preview from './components/preview'
-import Contrast from './components/contrast'
+// import Contrast from './components/contrast'
 import Gradient from './components/gradient'
 import Hex from './components/hex'
 import History from './components/history'
@@ -562,10 +562,10 @@ class ColorPicker extends Component {
         saturation,
         query(`.${this.classes.GRADIENTPRIMARY}`, this.$gradient)
       )
-      new Saturation(this, query(`.${this.classes.SATURATION}`, this.$gradient))
+      new Saturation(this, query(`.${this.classes.SATURATION}`, this.$gradient))  /* eslint-disable-line */
     } else {
       append(saturation, query(`.${this.classes.SOLIDPRIMARY}`, this.$solid))
-      new Saturation(this, query(`.${this.classes.SATURATION}`, this.$solid))
+      new Saturation(this, query(`.${this.classes.SATURATION}`, this.$solid))   /* eslint-disable-line */
     }
   }
 
@@ -574,10 +574,10 @@ class ColorPicker extends Component {
 
     if (gradient) {
       append(hue, query(`.${this.classes.GRADIENTPRIMARY}`, this.$gradient))
-      new Hue(this, query(`.${this.classes.HUE}`, this.$gradient))
+      new Hue(this, query(`.${this.classes.HUE}`, this.$gradient))    /* eslint-disable-line */
     } else {
       append(hue, query(`.${this.classes.SOLIDPRIMARY}`, this.$solid))
-      new Hue(this, query(`.${this.classes.HUE}`, this.$solid))
+      new Hue(this, query(`.${this.classes.HUE}`, this.$solid))   /* eslint-disable-line */
     }
   }
 
@@ -586,10 +586,10 @@ class ColorPicker extends Component {
 
     if (gradient) {
       append(alpha, query(`.${this.classes.GRADIENTPRIMARY}`, this.$gradient))
-      new Alpha(this, query(`.${this.classes.ALPHA}`, this.$gradient))
+      new Alpha(this, query(`.${this.classes.ALPHA}`, this.$gradient))    /* eslint-disable-line */
     } else {
       append(alpha, query(`.${this.classes.SOLIDPRIMARY}`, this.$solid))
-      new Alpha(this, query(`.${this.classes.ALPHA}`, this.$solid))
+      new Alpha(this, query(`.${this.classes.ALPHA}`, this.$solid))   /* eslint-disable-line */
     }
   }
 
@@ -598,10 +598,10 @@ class ColorPicker extends Component {
 
     if (gradient) {
       append(hex, query(`.${this.classes.GRADIENTACTION}`, this.$gradient))
-      new Hex(this, query(`.${this.classes.HEX}`, this.$gradient))
+      new Hex(this, query(`.${this.classes.HEX}`, this.$gradient))    /* eslint-disable-line */
     } else {
       append(hex, query(`.${this.classes.SOLIDACTION}`, this.$solid))
-      new Hex(this, query(`.${this.classes.HEX}`, this.$solid))
+      new Hex(this, query(`.${this.classes.HEX}`, this.$solid))  /* eslint-disable-line */
     }
   }
 
@@ -648,7 +648,7 @@ class ColorPicker extends Component {
             return false
           }
 
-          if (this.oldColor != null) {
+          if (this.oldColor != null) {  /* eslint-disable-line */
             if (this.oldColor.indexOf('linear-gradient') > -1) {
               this.setGradient(this.oldColor)
             } else {
@@ -760,7 +760,7 @@ class ColorPicker extends Component {
     bindEvent(
       {
         type: this.eventName('click'),
-        handler: ({ target }) => {
+        handler: ({ target }) => {  /* eslint-disable-line */
           if (this.is('openPanel')) {
             if (!this.$wrap.contains(target)) {
               if (this.is('disabled')) {
@@ -1002,7 +1002,7 @@ class ColorPicker extends Component {
       this.unbind()
       this.POPPER.destroy()
       empty(this.element)
-      console.log(this.element)
+      // console.log(this.element)
       this.element.className = this.firstClassName
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
