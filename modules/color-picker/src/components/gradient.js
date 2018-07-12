@@ -22,7 +22,6 @@ class Gradient {
     this.classes = this.instance.classes
     this.color = this.instance.asColor
     this.element = element
-
     this.mode = this.instance.options.gradientMode
     this.angle = 90
     this.first = true
