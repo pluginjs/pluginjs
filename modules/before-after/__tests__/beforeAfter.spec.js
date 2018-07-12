@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import BeforeAfter from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import BeforeAfter from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('BeforeAfter', () => {
   describe('BeforeAfter()', () => {
@@ -28,23 +27,20 @@ describe('BeforeAfter', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const beforeAfter = new BeforeAfter(element)
+      const beforeAfter = BeforeAfter.of(generateHTMLSample())
 
       expect(beforeAfter).toBeObject()
       expect(beforeAfter.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const beforeAfter = new BeforeAfter(element)
+      const beforeAfter = BeforeAfter.of(generateHTMLSample())
 
       expect(beforeAfter.options).toBeObject()
     })
 
     test('should have classes', () => {
-      const element = document.createElement('div')
-      const beforeAfter = new BeforeAfter(element)
+      const beforeAfter = BeforeAfter.of(generateHTMLSample())
 
       expect(beforeAfter.classes).toBeObject()
     })
@@ -52,13 +48,10 @@ describe('BeforeAfter', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = BeforeAfter.of($element)
 
-      expect($element.asBeforeAfter()).toEqual($element)
-
-      const api = $element.data('beforeAfter')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -66,8 +59,7 @@ describe('BeforeAfter', () => {
 
   describe('classes', () => {
     test('should use classes options', () => {
-      const element = document.createElement('div')
-      const beforeAfter = new BeforeAfter(element, {
+      const beforeAfter = BeforeAfter.of(generateHTMLSample(), {
         classes: {
           container: '{namespace}-wrap',
           active: '{namespace}-active'
@@ -79,8 +71,7 @@ describe('BeforeAfter', () => {
     })
 
     test('should override class namespace', () => {
-      const element = document.createElement('div')
-      const beforeAfter = new BeforeAfter(element, {
+      const beforeAfter = BeforeAfter.of(generateHTMLSample(), {
         classes: {
           namespace: 'beforeAfter',
           container: '{namespace}-wrap'
@@ -93,8 +84,7 @@ describe('BeforeAfter', () => {
 
     describe('getClass()', () => {
       test('should get class with namespace', () => {
-        const element = document.createElement('div')
-        const beforeAfter = new BeforeAfter(element, {
+        const beforeAfter = BeforeAfter.of(generateHTMLSample(), {
           classes: { namespace: 'hello' }
         })
 
@@ -103,8 +93,7 @@ describe('BeforeAfter', () => {
       })
 
       test('should get class with arg', () => {
-        const element = document.createElement('div')
-        const beforeAfter = new BeforeAfter(element, {
+        const beforeAfter = BeforeAfter.of(generateHTMLSample(), {
           classes: { namespace: 'hello' }
         })
 
@@ -119,8 +108,7 @@ describe('BeforeAfter', () => {
   describe('theme', () => {
     describe('getThemeClass()', () => {
       test('should get theme classes with default namespace', () => {
-        const element = document.createElement('div')
-        const beforeAfter = new BeforeAfter(element, {
+        const beforeAfter = BeforeAfter.of(generateHTMLSample(), {
           theme: null,
           classes: { theme: '{namespace}--{theme}' }
         })
@@ -133,8 +121,7 @@ describe('BeforeAfter', () => {
       })
 
       test('should get theme classes with namespace override', () => {
-        const element = document.createElement('div')
-        const beforeAfter = new BeforeAfter(element, {
+        const beforeAfter = BeforeAfter.of(generateHTMLSample(), {
           theme: null,
           classes: {
             namespace: 'hello',
@@ -150,8 +137,7 @@ describe('BeforeAfter', () => {
       })
 
       test('should get theme classes correctly when no classes.THEME defined', () => {
-        const element = document.createElement('div')
-        const beforeAfter = new BeforeAfter(element, {
+        const beforeAfter = BeforeAfter.of(generateHTMLSample(), {
           theme: '{namespace}--foo'
         })
 
@@ -169,46 +155,17 @@ describe('BeforeAfter', () => {
         ).toEqual('pj-beforeAfter--foo pj-beforeAfter--bar')
       })
     })
-
-    test('should add theme class after initialize and remove after destroy', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-      const beforeAfter = new BeforeAfter(element, {
-        theme: 'foo',
-        classes: { theme: '{namespace}--{theme}' }
-      })
-
-      expect($element.hasClass('pj-beforeAfter--foo')).toBeTrue()
-      beforeAfter.destroy()
-      expect($element.hasClass('pj-beforeAfter--foo')).toBeFalse()
-    })
-
-    test('should works with more than one theme', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-      const beforeAfter = new BeforeAfter(element, {
-        theme: 'foo bar',
-        classes: { theme: '{namespace}--{theme}' }
-      })
-
-      expect($element.hasClass('pj-beforeAfter--foo')).toBeTrue()
-      expect($element.hasClass('pj-beforeAfter--bar')).toBeTrue()
-
-      beforeAfter.destroy()
-      expect($element.hasClass('pj-beforeAfter--foo')).toBeFalse()
-      expect($element.hasClass('pj-beforeAfter--bar')).toBeFalse()
-    })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asBeforeAfter()
-      expect($element.asBeforeAfter('bind')).toBeNil()
+      const $element = BeforeAfter.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asBeforeAfter()
-      expect($element.asBeforeAfter('destroy')).toEqual($element)
+      const $element = BeforeAfter.of(generateHTMLSample())
+      $element.destroy()
     })
   })
 
@@ -216,19 +173,19 @@ describe('BeforeAfter', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('beforeAfter:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('beforeAfter:ready', () => {
         called++
       })
 
-      $element.asBeforeAfter()
+      const instance = BeforeAfter.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -237,19 +194,19 @@ describe('BeforeAfter', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asBeforeAfter()
-      api = $element.data('beforeAfter')
+      $element = generateHTMLSample()
+      api = BeforeAfter.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('beforeAfter:destroy', (event, api) => {
+      $element.addEventListener('beforeAfter:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asBeforeAfter('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -260,13 +217,13 @@ describe('BeforeAfter', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asBeforeAfter()
-      api = $element.data('beforeAfter')
+      $element = generateHTMLSample()
+      api = BeforeAfter.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asBeforeAfter('disable')
-      $element.asBeforeAfter('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -274,12 +231,12 @@ describe('BeforeAfter', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('beforeAfter:enable', (event, api) => {
+      $element.addEventListener('beforeAfter:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asBeforeAfter('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -289,12 +246,12 @@ describe('BeforeAfter', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asBeforeAfter()
-      api = $element.data('beforeAfter')
+      $element = generateHTMLSample()
+      api = BeforeAfter.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asBeforeAfter('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -302,12 +259,12 @@ describe('BeforeAfter', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('beforeAfter:disable', (event, api) => {
+      $element.addEventListener('beforeAfter:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asBeforeAfter('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })
