@@ -1,6 +1,5 @@
 // imports css
 import '@pluginjs/dropdown/src/css/dropdown.scss'
-import '@pluginjs/filters/src/css/filters.scss'
 
 // import sections
 import './sections/defaults/index.js'

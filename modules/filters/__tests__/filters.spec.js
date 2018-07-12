@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Filters from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Filters from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Filters', () => {
   describe('Filters()', () => {
@@ -28,16 +27,14 @@ describe('Filters', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const filters = new Filters(element)
+      const filters = Filters.of(generateHTMLSample())
 
       expect(filters).toBeObject()
       expect(filters.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const filters = new Filters(element)
+      const filters = Filters.of(generateHTMLSample())
 
       expect(filters.options).toBeObject()
     })
@@ -45,13 +42,10 @@ describe('Filters', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = Filters.of($element)
 
-      expect($element.asFilters()).toEqual($element)
-
-      const api = $element.data('filters')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -59,13 +53,13 @@ describe('Filters', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asFilters()
-      expect($element.asFilters('bind')).toBeNil()
+      const $element = Filters.of(generateHTMLSample())
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asFilters()
-      expect($element.asFilters('destroy')).toEqual($element)
+      const $element = Filters.of(generateHTMLSample())
+      $element.destroy()
     })
   })
 
@@ -73,19 +67,19 @@ describe('Filters', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('filters:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('filters:ready', () => {
         called++
       })
 
-      $element.asFilters()
+      const instance = Filters.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -94,19 +88,19 @@ describe('Filters', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asFilters()
-      api = $element.data('filters')
+      $element = generateHTMLSample()
+      api = Filters.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('filters:destroy', (event, api) => {
+      $element.addEventListener('filters:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asFilters('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -117,13 +111,13 @@ describe('Filters', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asFilters()
-      api = $element.data('filters')
+      $element = generateHTMLSample()
+      api = Filters.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asFilters('disable')
-      $element.asFilters('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,12 +125,12 @@ describe('Filters', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('filters:enable', (event, api) => {
+      $element.addEventListener('filters:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asFilters('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -146,12 +140,12 @@ describe('Filters', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asFilters()
-      api = $element.data('filters')
+      $element = generateHTMLSample()
+      api = Filters.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asFilters('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,12 +153,12 @@ describe('Filters', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('filters:disable', (event, api) => {
+      $element.addEventListener('filters:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asFilters('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })
