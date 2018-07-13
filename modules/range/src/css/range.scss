@@ -71,6 +71,19 @@ $dropdown-item: "pj-dropdown-item" !default;
     //  height: 0.6*$range-sizer; //6px
     //  background-color: $range-tip-bg-color;
     // }
+
+    &::after{
+      position: absolute;
+      top: 23px;
+      left: 15px;
+      display: block;
+      width: 0;
+      height: 0;
+      content: " ";
+      border-top: 6px solid $gray-darkest;
+      border-right: 6px solid transparent;
+      border-left: 6px solid transparent;
+    }
   }
 }
 

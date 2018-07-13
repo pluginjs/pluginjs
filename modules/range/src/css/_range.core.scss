@@ -86,7 +86,7 @@ $range-selected-bg: $color-info !default; //#7ebdcb !default;
   &-tip {
     position: absolute;
     top: -3.3 * $range-sizer; //-33px
-    left: 5px;
+    left: 0;
     width: 4.3 * $range-sizer; //34px
     height: 2.5 * $range-sizer; //20px
     margin-left: -15px;
