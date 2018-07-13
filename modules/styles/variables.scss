@@ -12,9 +12,9 @@ $gray-darker: #666 !default;
 $gray-dark: #b3b3b3 !default;
 $gray: #e6e6e6 !default;
 $gray-light: #f2f2f2 !default;
-$gray-lighter: #dfe4ed !default;
-$gray-lightest: #fafafa !default;
-$gray-border: #fcfcfc !default;
+$gray-lighter: #fafafa !default;
+$gray-lightest: #fcfcfc !default;
+$gray-border: #e6e6e6 !default;
 
 $btn-color-primary:#215fdb;
 $btn-color-hover:#2376eb;
@@ -38,7 +38,7 @@ $color-danger-dark: #e9595b !default;
 $color-danger-light: #fa7a7a !default;
 
 // $gray-lightest: #b3b3b3;  wentit;
-$color-btn-opact: rgba(0,0,0,0.7) !default;
+$color-opacity: rgba(0,0,0,0.7) !default;
 // 2. Options
 //
 // Quickly modify global styling by enabling or disabling optional features.
@@ -100,7 +100,7 @@ $line-height-sm: 1.2 !default;
 //
 // Border width, border radius
 $border-width: 1px !default;
-$border-color: $gray-border !default;
+$border-color: $gray !default;
 $border-color-hover: $gray-darker !default;
 $border-color-active: $color-primary-active !default;
 $border-radius-base: 2px !default;

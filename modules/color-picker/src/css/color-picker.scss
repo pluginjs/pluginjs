@@ -30,7 +30,7 @@ $colorPicker-preview-color-width: $colorPicker-preview-bg-width !default;
 $colorPicker-preview-color-height: $colorPicker-preview-bg-width !default;
 // remove
 $colorPicker-remove-right: $colorPicker-preview-width + 6px !default;
-$colorPicker-remove-color: $gray-lighter !default;
+$colorPicker-remove-color: $gray-dark !default;
 $colorPicker-remove-hover-color: $color-primary-black !default;
 // input
 $colorPicker-input-padding-right: $colorPicker-preview-width + 4px !default;
@@ -107,7 +107,7 @@ $colorPicker-gradient-bar-width: 24 * $colorPicker-sizer !default; //220px
 $colorPicker-gradient-bar-height: 1.6 * $colorPicker-sizer !default; //20px
 $colorPicker-gradient-bar-top: -1 * $colorPicker-sizer !default; //-13px
 $colorPicker-gradient-bar-bg-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABlBMVEXLy8v////hf8FnAAAAGklEQVQoz2PghwEG/KwPMECANWreqHkDaB4AtSFCzONj1qEAAAAASUVORK5CYII=") !default;
-$colorPicker-gradient-remove-color: $gray-lighter !default;
+$colorPicker-gradient-remove-color: $gray-dark !default;
 $colorPicker-gradient-remove-size: $font-size-lg !default;
 $colorPicker-gradient-remove-color-active: $gray-light !default;
 $colorPicker-gradient-mode-width: 12.4 * $colorPicker-sizer !default; //90px
@@ -298,7 +298,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
         height: 100%;
         font-size: $colorPicker-panel-trigger-icon-size;
         line-height: $colorPicker-panel-trigger-height;
-        color: $colorPicker-panel-trigger-icon-color;
+        // color: $colorPicker-panel-trigger-icon-color;
         text-align: center;
 
         // &::after {

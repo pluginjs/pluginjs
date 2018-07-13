@@ -4,11 +4,11 @@
 // =====================
 $galleryPicker: "pj-galleryPicker" !default;
 $galleryPicker-border-width: 1px !default;
-$galleryPicker-border-color: $gray-lighter !default;
+$galleryPicker-border-color: $gray !default;
 $galleryPicker-border: $galleryPicker-border-width solid
   $galleryPicker-border-color !default;
 $galleryPicker-border-radius: $border-radius-base !default;
-$galleryPicker-color: $gray-light !default;
+$galleryPicker-color: $gray-dark !default;
 $galleryPicker-font-size: $font-size-base !default;
 $galleryPicker-icon-size: 16px !default;
 $galleryPicker-active-color: $color-primary !default;
@@ -18,7 +18,7 @@ $galleryPicker-initial-height: 90px !default;
 $galleryPicker-border-style: dashed !default;
 $galleryPicker-initial-hover-bg: $gray-lightest !default;
 // info
-$galleryPicker-info-expand-bg: $gray-darker !default;
+$galleryPicker-info-expand-bg: $color-opacity !default;
 $galleryPicker-info-expand-opacity: 0.9 !default;
 $galleryPicker-info-count-width: 15px !default;
 $galleryPicker-info-count-height: $galleryPicker-info-count-width !default;
@@ -26,10 +26,10 @@ $galleryPicker-info-count-height: $galleryPicker-info-count-width !default;
 $galleryPicker-expand-width: 300px !default;
 $galleryPicker-expand-height: 360px !default;
 $galleryPicker-expand-item-width: 124px !default;
-$galleryPicker-expand-item-change-bg: $gray-darker !default;
-$galleryPicker-expand-item-change-opacity: 0.9 !default;
-$galleryPicker-expand-control-btn-width: 66px !default;
-$galleryPicker-expand-control-btn-height: 30px !default;
+$galleryPicker-expand-item-change-bg: $color-opacity !default;
+$galleryPicker-expand-item-change-opacity: 1 !default;
+$galleryPicker-expand-control-btn-width: 95px !default;
+$galleryPicker-expand-control-btn-height: 32px !default;
 
 // Core
 // =====================
@@ -58,7 +58,7 @@ $galleryPicker-expand-control-btn-height: 30px !default;
     border-style: $galleryPicker-border-style;
 
     &:hover {
-      color: $gray-darker;
+      color: $gray-darkest;
       cursor: pointer;
       // border-color: $gray-darker;
     }
@@ -183,7 +183,7 @@ $galleryPicker-expand-control-btn-height: 30px !default;
       border-style: dashed !important;
 
       &:hover {
-        color: $gray-darker;
+        color: $gray-darkest;
         cursor: pointer;
         // background-color: $galleryPicker-initial-hover-bg;
       }

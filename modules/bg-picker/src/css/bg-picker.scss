@@ -8,9 +8,9 @@ $bgPicker-sizer: $sizer !default;
 
 $bgPicker-width: 16 * $bgPicker-sizer !default; //160px
 $bgPicker-height: 9 * $bgPicker-sizer !default; //90px
-$bgPicker-color: $gray-light !default;
+$bgPicker-color:$gray-dark !default;
 $bgPicker-border-width: 1px !default;
-$bgPicker-border-color: $gray-lighter !default;
+$bgPicker-border-color: $gray-border !default;
 $bgPicker-border: $bgPicker-border-width solid $bgPicker-border-color !default;
 $bgPicker-border-radius: $border-radius-base !default;
 $bgPicker-font-size: $font-size-base !default;
@@ -23,8 +23,8 @@ $bgPicker-initiate-font-size: $font-size-sm !default;
 $bgPicker-initiate-icon-size: 2 * $bgPicker-sizer !default; //20px
 $bgPicker-initiate-hover-bg: $gray-lightest !default;
 // info
-$bgPicker-info-change-bg: $gray-darker !default;
-$bgPicker-info-change-opacity: 0.9 !default;
+$bgPicker-info-change-bg: $color-opacity !default;
+$bgPicker-info-change-opacity: 1 !default;
 $bgPicker-info-hover-color: $gray-lighter !default;
 
 $bgPicker-info-change-font-size: $font-size-lg !default;
@@ -35,23 +35,23 @@ $bgPicker-info-remove-margin: 0 $bgPicker-sizer !default; //0 10px
 $bgPicker-expand-width: 30 * $bgPicker-sizer !default; //300px
 $bgPicker-expand-image-width: 26 * $bgPicker-sizer !default; //260px
 $bgPicker-expand-image-height: 16 * $bgPicker-sizer !default; //160px
-$bgPicker-expand-control-btn-width: 6.6 * $bgPicker-sizer !default; //66px
-$bgPicker-expand-control-btn-height: 3 * $bgPicker-sizer !default; //30px
+$bgPicker-expand-control-btn-width: 9.5* $bgPicker-sizer !default; //66px
+$bgPicker-expand-control-btn-height: 3.2 * $bgPicker-sizer !default; //30px
 $bgPicker-expand-content-width: 18 * $bgPicker-sizer !default; //180px
 $bgPicker-expand-repeat-size-width: $bgPicker-expand-content-width / 4 + 1px !default;
 $bgPicker-expand-position-width: $bgPicker-expand-content-width / 3 + 1px !default;
 
-$bgPicker-expand-panel-padding: 3 * $bgPicker-sizer 2 * $bgPicker-sizer !default; //30px 20px
+$bgPicker-expand-panel-padding: 2 * $bgPicker-sizer 2 * $bgPicker-sizer !default; //30px 20px
 
 //size-content
 $bgPicker-size-content-height: 3 * $bgPicker-sizer !default; //30px
 //position-content
-$bgPicker-position-content-height: 12.4 * $bgPicker-sizer !default; //124px
-$bgPicker-position-content-li-height: 4.2 * $bgPicker-sizer !default; //42px
+$bgPicker-position-content-height: 9.4 * $bgPicker-sizer !default; //124px
+$bgPicker-position-content-li-height: 3.2 * $bgPicker-sizer !default; //42px
 // pj-dropdown
 $asDropdown-trigger-width: 18 * $bgPicker-sizer !default; //180px
 //repeat-title
-$bgPicker-repeat-title-color: $gray !default; //#6e7a8a
+$bgPicker-repeat-title-color: $gray-darkest !default; //#6e7a8a
 $bgPicker-repeat-content-color: $gray-light !default; //#8f9196
 
 // Core
@@ -88,7 +88,7 @@ input.#{$bgPicker}-input {
 
     &:hover {
       // background-color: $bgPicker-initiate-hover-bg;
-      color: $gray-darker;
+      color: $gray-darkest;
     }
 
     > i {
@@ -228,7 +228,7 @@ input.#{$bgPicker}-input {
       width: $bgPicker-expand-content-width;
       padding: 0;
       margin: 0;
-      font-size: $font-size-lg + 4px; //20px
+      font-size: $font-size-base; //20px
       color: $bgPicker-repeat-content-color;
 
       &-item {
@@ -436,5 +436,8 @@ input.#{$bgPicker}-input {
   .#{$bgPicker}-initiate {
     cursor: not-allowed;
     background-color: $bgPicker-initiate-hover-bg;
+    &:hover {
+      color: $gray-dark;
+    }
   }
 }

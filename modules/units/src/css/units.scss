@@ -10,9 +10,9 @@ $units-width: 8 * $units-sizer !default; //80px
 $units-height: 3 * $units-sizer !default; //30px
 $units-font-size: $font-size-base !default;
 $units-color: $gray !default;
-$units-border-color: $gray-lighter !default;
-$units-hover-color: #666 !default;
-$units-active-color: #215fdb !default;
+$units-border-color: $gray !default;
+$units-hover-color: $gray-darker !default;
+$units-active-color: $border-color-active !default;
 $units-border-radius: $border-radius-base !default;
 $units-trigger-width: 22px !default;
 $units-trigger-font-size: $font-size-base !default;

@@ -12,7 +12,7 @@ $linkPicker-border-radius: $border-radius-base !default;
 $linkPicker-color: $text-color !default;
 $linkPicker-font-size: $font-size-base !default;
 $linkPicker-active-color: $color-primary !default;
-$linkPicker-border: 1px solid $gray-lighter !default;
+$linkPicker-border: 1px solid $gray-border !default;
 $linkPicker-padding: 0 2 * $linkPicker-sizer !default; //0 20px
 $linkPicker-icon-margin-right: $linkPicker-sizer !default; //10px
 // init
@@ -61,8 +61,7 @@ $linkPicker-disabled-bg: $disabled-bg;
     opacity: 0;
     transition: opacity 0.3s;
     &:hover {
-      background-color: $color-btn-opact;
-      opacity: 0.9;
+      background-color: $color-opacity;
     }
     > i {
       &:hover {
@@ -87,7 +86,7 @@ $linkPicker-disabled-bg: $disabled-bg;
     height: $linkPicker-height;
     padding: $linkPicker-padding;
     line-height: $linkPicker-height;
-    color: $init-color;
+    color: $gray-dark;
     background-color: $color-white;
     border: $linkPicker-border;
     border-style: dashed;
@@ -95,7 +94,7 @@ $linkPicker-disabled-bg: $disabled-bg;
 
     > i {
       margin-right: $linkPicker-icon-margin-right;
-      color: $init-color;
+      color: $gray-dark;
     }
   }
 
@@ -106,6 +105,9 @@ $linkPicker-disabled-bg: $disabled-bg;
       color: $color-primary-black;
       cursor: pointer;
       // background-color: $init-hover-bg-color;
+      i {
+        color: $color-primary-black;
+      }
     }
   }
 
@@ -131,6 +133,8 @@ $linkPicker-disabled-bg: $disabled-bg;
 
     &-save,
     &-cancel {
+      width: 95px;
+      height: 32px;
       padding: $panel-btn-padding;
     }
 

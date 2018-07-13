@@ -16,7 +16,7 @@ $list-item-active-border-color: $color-primary !default;
 $list-item-hover-border-color: $gray-light !default;
 $list-font-size: $font-size-base !default;
 $list-ghost-bg: $gray-lightest !default;
-$list-border-color: $gray-lighter !default;
+$list-border-color: $gray-border !default;
 $list-border-style: solid !default;
 $list-border-width: 1px !default;
 $list-border: $list-border-width $list-border-style $list-border-color !default;
@@ -28,7 +28,7 @@ $list-adduser-btn-bg: $color-primary !default; //#66adf3 !default;
 //clone
 $list-clone-bg: rgba($color-warning, 0.2) !default; //#f3d351
 // actions
-$list-item-actions-color: $gray-light !default;
+$list-item-actions-color: $gray-dark !default;
 // pop
 $pop-item-label-padding-top: 2 * $list-sizer !default; //20px
 $pop-item-label-padding: $pop-item-label-padding-top 3 * $list-sizer !default; //30px

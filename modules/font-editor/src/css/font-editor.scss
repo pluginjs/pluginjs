@@ -9,7 +9,7 @@ $fontEditor-sizer: $sizer;
 $fontEditor-color: $gray-dark !default;
 $fontEditor-color-light: $gray-light !default;
 $fontEditor-border-width: 1px !default;
-$fontEditor-border-color: $gray-lighter !default;
+$fontEditor-border-color: $gray-border !default;
 $fontEditor-border-style: solid !default;
 $fontEditor-border: $fontEditor-border-width $fontEditor-border-style
   $fontEditor-border-color !default;
@@ -18,9 +18,9 @@ $fontEditor-height: 5 * $fontEditor-sizer !default; //50px
 // info
 $fontEditor-info-width: 26 * $fontEditor-sizer !default; //260px
 $fontEditor-info-font-size: $font-size-sm !default;
-$fontEditor-info-change-bg: $color-btn-opact !default;
-$fontEditor-info-change-opacity: 0.9 !default;
-$fontEditor-info-i-color: $gray-light !default; //#ccd1d9
+$fontEditor-info-change-bg: $color-opacity !default;
+$fontEditor-info-change-opacity: 1 !default;
+$fontEditor-info-i-color: $gray-dark !default; //#ccd1d9
 // initial
 $fontEditor-initial-border-style: dashed !default;
 $fontEditor-initial-hover-bg: $gray-lightest !default;

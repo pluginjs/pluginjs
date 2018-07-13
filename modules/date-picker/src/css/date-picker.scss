@@ -15,7 +15,7 @@ $datePicker-input-color: $text-color !default;
 $datePicker-input-width: 13 * $datePicker-sizer !default; //130
 // border vars
 $datePicker-border-width: 1px !default;
-$datePicker-border-color: $gray-border !default;
+$datePicker-border-color: $gray !default;
 $datePicker-border-style: solid !default;
 $datePicker-border: $datePicker-border-width $datePicker-border-style
   $datePicker-border-color !default;
@@ -23,7 +23,7 @@ $datePicker-border-radius: $border-radius-base !default;
 // shadow vars
 $datePicker-box-shadow: $box-shadow-base !default;
 // icon vars
-$datePicker-icon-color: $gray-lighter !default; //#ccd1d9 !default;
+$datePicker-icon-color: $gray-dark !default; //#ccd1d9 !default;
 // head vars
 $datePicker-head-color: $gray-dark !default;
 // font-size vars
