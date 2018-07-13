@@ -16,7 +16,7 @@ $input-padding-top: 0.4*$input-sizer !default; //4px
 $input-padding-left: 1.5*$input-sizer !default; //15px
 $input-line-height: 1.6*$input-sizer !default; //16px
 // placeholder
-$input-placeholder-color: $color-gray !default;
+$input-placeholder-color: $gray-dark !default;
 // hover
 $input-border-color-hover: $border-color-hover !default;
 // focus
@@ -97,7 +97,7 @@ input{
   }
 
   &:hover {
-    border-color: $color-primary-gray;
+    border-color: $gray-darker;
   }
   // hover
   &:not(:disabled):hover,

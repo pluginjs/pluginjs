@@ -19,15 +19,15 @@ $dropdown-space-y: 0.5 * $dropdown-sizer !default; //5px
 $dropdown-panel-space-x: 0.2 * $dropdown-sizer !default; //2px
 $dropdown-panel-space-y: 0.2 * $dropdown-sizer !default; //2px
 $dropdown-panel-min-width: 20 * $dropdown-sizer !default; //200px
-$dropdown-item-hover-bg: $color-drop-hover !default;
+$dropdown-item-hover-bg: $gray-lightest !default;
 $dropdown-item-active-color: $color-primary-active !default;
 $dropdown-item-active-bg: $color-white !default;
 $dropdown-item-margin-bottom: 1px !default;
 $dropdown-box-shadow: $box-shadow-6 !default;
-$dropdown-border-color: $color-drop-border !default;
+$dropdown-border-color: $gray-light !default;
 $dropdown-border-radius: $border-radius-base !default;
 $dropdown-hover-border-color: $border-color-hover !default;
-$dropdown-active-border-color: $color-drop-border !default;
+$dropdown-active-border-color: $gray-light !default;
 // Core
 // =====================
 .#{$dropdown} {

@@ -6,25 +6,21 @@ $color-black: #000 !default;
 $color-red: #f00 !default;
 $color-yellow: #ff0 !default;
 $color-blue: #00f !default;
-$color-light-grey: #ddd !default;
-$color-light-gray: #ccc !default;
 
-$gray-darkest: #212b3b !default;
-$gray-darker: #333 !default;
-$gray-dark: #5b6779 !default;
-$gray: #808c9e !default;
-$gray-light: #aab3bf !default;
+$gray-darkest: #333 !default;
+$gray-darker: #666 !default;
+$gray-dark: #b3b3b3 !default;
+$gray: #e6e6e6 !default;
+$gray-light: #f2f2f2 !default;
 $gray-lighter: #dfe4ed !default;
-$gray-lightest: #f7f9fc !default;
-$gray-border: #e6e6e6 !default;
-$gray-text: #2376eb !default;
-$gray-text-blue: #1d60bf !default;
-$btn-color-primary:#216fdb;
+$gray-lightest: #fafafa !default;
+$gray-border: #fcfcfc !default;
+
+$btn-color-primary:#215fdb;
 $btn-color-hover:#2376eb;
 $btn-color-disable:#acc4e6;
 $color-primary: #215fdb;
 $color-primary-active: #215fdb !default;
-$color-primary-gray: #666 !default;
 $color-primary-dark: #4c93d9;
 $color-primary-light: #77b6f5;
 $color-primary-black:#333 !default;
@@ -40,15 +36,9 @@ $color-warning-light: #f4b066 !default;
 $color-danger: #f96868 !default;
 $color-danger-dark: #e9595b !default;
 $color-danger-light: #fa7a7a !default;
-$color-btn-hover: #fcfcfc !default;
-$color-gray: #999;
-$color-input-gray: #b3b3b3;
-$color-drop-hover: #fafafa !default;
-$color-drop-border: #f2f2f2 !default;
-$color-btn-border: #296df7 !default;
-$color-btn-font:#1d53bf !default;
-$color-date-hover:#f2f2f2 !default;
-$color-btn-opact: rgba(0,0,0,0.8) !default;
+
+// $gray-lightest: #b3b3b3;  wentit;
+$color-btn-opact: rgba(0,0,0,0.7) !default;
 // 2. Options
 //
 // Quickly modify global styling by enabling or disabling optional features.
@@ -111,7 +101,7 @@ $line-height-sm: 1.2 !default;
 // Border width, border radius
 $border-width: 1px !default;
 $border-color: $gray-border !default;
-$border-color-hover: $color-primary-gray !default;
+$border-color-hover: $gray-darker !default;
 $border-color-active: $color-primary-active !default;
 $border-radius-base: 2px !default;
 $border-radius-lg: 6px !default;

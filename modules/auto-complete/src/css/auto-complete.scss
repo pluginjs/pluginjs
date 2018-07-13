@@ -19,7 +19,7 @@ $autoComplete-input-padding: $autoComplete-sizer/2.5 $autoComplete-sizer * 1.2 !
 $autoComplete-input-border-color: $gray-lighter !default;
 $autoComplete-input-border: $autoComplete-input-border-width
   $autoComplete-input-border-style $autoComplete-input-border-color !default;
-$autoComplete-input-hover-border-color: $color-primary-gray !default;
+$autoComplete-input-hover-border-color: $gray-darker !default;
 $autoComplete-input-focus-border-color: $color-primary-active !default;
 // panel
 $autoComplete-panel-top: 0 * $autoComplete-sizer !default; //4px
@@ -28,7 +28,7 @@ $autoComplete-panel-padding: 2px !default;
 // item
 $autoComplete-item-padding: $autoComplete-sizer * 0.8 $autoComplete-sizer * 1.4
   $autoComplete-sizer * 0.9 !default; //4px 14px
-$autoComplete-item-hover-bg-color: $color-drop-hover !default;
+$autoComplete-item-hover-bg-color: $gray-lightest !default;
 $autoComplete-item-active-bg-color: $gray-lightest !default;
 $autoComplete-item-font-size: $font-size-base !default; //13px
 // group
@@ -38,7 +38,7 @@ $autoComplete-group-border-style: solid !default;
 $autoComplete-group-border: $autoComplete-group-border-width
   $autoComplete-group-border-style $autoComplete-group-border-color !default;
 $autoComplete-group-title-pading: $autoComplete-item-padding !default;
-$autoComplete-group-title-color: $color-gray !default;
+$autoComplete-group-title-color: $gray-dark !default;
 $autoComplete-group-title-font-size: $font-size-xs !default; //12px
 $autoComplete-disabled-color: $disabled-color !default;
 $autoComplete-disabled-bg: $disabled-bg !default;

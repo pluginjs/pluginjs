@@ -9,7 +9,7 @@ $svgPicker-width: 16 * $svgPicker-sizer !default; //160px
 $svgPicker-height: 3 * $svgPicker-sizer !default; //30px
 $svgPicker-font-size: $font-size-base !default;
 $svgPicker-border-color: $gray-lighter !default;
-$svgPicker-active-color: $color-primary-gray !default;
+$svgPicker-active-color: $gray-darker !default;
 $svgPicker-hover-color: $gray-light !default;
 // icon
 $svgPicker-icon-width: 4.8 * $svgPicker-sizer !default; //52px
@@ -175,7 +175,7 @@ $svgPicker-search-icon-color: $gray-light !default;
       border-radius: 0.8 * $svgPicker-sizer; //8px
       &-hover,
       &:hover {
-        background-color: $color-drop-border;
+        background-color: $gray-light;
       }
       svg {
         width: 2.4 * $svgPicker-sizer; //24px
@@ -255,8 +255,7 @@ $svgPicker-search-icon-color: $gray-light !default;
     display: flex;
     align-items: center;
     height: $svgPicker-search-height;
-    padding: 0.4 * $svgPicker-sizer $svgPicker-sizer 0.4 * $svgPicker-sizer 2 *
-      $svgPicker-sizer; //4px 10px 4px 20px
+    padding: 0.4 * $svgPicker-sizer $svgPicker-sizer 0.4 * $svgPicker-sizer 2 * $svgPicker-sizer; //4px 10px 4px 20px
     margin-bottom: $svgPicker-search-margin-bottom;
     font-size: $svgPicker-font-size;
     border-bottom: $svgPicker-search-border;

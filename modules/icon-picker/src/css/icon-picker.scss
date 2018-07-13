@@ -9,7 +9,7 @@ $iconPicker-width: 16 * $iconPicker-sizer !default; //160px
 $iconPicker-height: 3 * $iconPicker-sizer !default; //30px
 $iconPicker-font-size: $font-size-base !default;
 $iconPicker-border-color: $gray-lighter !default;
-$iconPicker-hover-color: $color-primary-gray !default;
+$iconPicker-hover-color: $gray-darker !default;
 $iconPicker-active-color: $color-primary !default;
 $iconPicker-body-padding: 1.5 * $iconPicker-sizer $iconPicker-sizer
   $iconPicker-sizer !default; //15px 10px 10px
@@ -265,7 +265,7 @@ $iconPicker-controller-bg: $color-white;
   display: flex;
   width: 100%;
   height: $iconPicker-controller-height;
-  font-family: "icons";
+  font-family: "icons"; /* stylelint-disable-line */
   font-size: $iconPicker-font-size;
   line-height: $iconPicker-controller-height;
   text-align: center;
@@ -370,8 +370,7 @@ $iconPicker-controller-bg: $color-white;
   display: flex;
   align-items: center;
   height: $iconPicker-search-height;
-  padding: 0.4 * $iconPicker-sizer 2 * $iconPicker-sizer 0.4 * $iconPicker-sizer
-    1 * $iconPicker-sizer; //4px 20px 4px 10px
+  padding: 0.4 * $iconPicker-sizer 2 * $iconPicker-sizer 0.4 * $iconPicker-sizer 1 * $iconPicker-sizer; //4px 20px 4px 10px
   margin-bottom: $iconPicker-search-margin-bottom;
   font-size: $iconPicker-font-size;
   border-bottom: $iconPicker-search-border;

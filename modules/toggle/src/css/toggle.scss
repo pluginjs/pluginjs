@@ -13,7 +13,7 @@ $toggle-border-width: 2px !default;
 $toggle-handle-width: $toggle-height - $toggle-border-width * 2 !default;
 $toggle-color: $color-white !default;
 $toggle-bg-color-on: $color-primary-active !default;
-$toggle-bg-color-off: $color-light-gray !default;
+$toggle-bg-color-off: $gray-dark !default;
 $toggle-handle-color: $color-white !default;
 $toggle-small-width: 3.2 * $toggle-sizer !default; //32px
 $toggle-small-height: 1.6 * $toggle-sizer !default; //16px
@@ -96,6 +96,11 @@ $toggle-handle-hover: rgba(255, 255, 255, 0.95) !default;
       border-color: $toggle-bg-color-off;
     }
 
+    &.#{$toggle}-is-off {
+      .#{$toggle}-handle {
+        background: $color-white;
+      }
+    }
     // &.#{$toggle}-is-off:hover{
     //   .#{$toggle}-off {
     //     background: $gray-border;
@@ -105,14 +110,6 @@ $toggle-handle-hover: rgba(255, 255, 255, 0.95) !default;
 
     &-disabled {
       opacity: 0.3;
-    }
-  }
-
-  &.#{$toggle} {
-    &.#{$toggle}-is-off {
-      .#{$toggle}-handle {
-        background: $color-white;
-      }
     }
   }
 

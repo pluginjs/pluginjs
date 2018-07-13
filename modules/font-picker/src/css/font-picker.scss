@@ -12,7 +12,7 @@ $fontPicker-hover-color: $gray-lightest !default;
 $fontPicker-font-size: $font-size-base !default;
 $fontPicker-icon-size: $font-size-lg;
 $fontPicker-border-color: $gray-border !default;
-$fontPicker-border-hover-color: $color-primary-gray !default;
+$fontPicker-border-hover-color: $gray-darker !default;
 $fontPicker-active-color: $color-primary-active !default;
 $fontPicker-font-color: $gray-light !default;
 $fontPicker-font-hover-color: $color-primary-active !default;
@@ -26,7 +26,7 @@ $fontPicker-search-height: 4 * $fontPicker-sizer !default; //40px
 $fontPicker-search-border: 1px solid $gray-lighter !default;
 $fontPicker-empty-padding: 2 * $fontPicker-sizer !default; //20px
 
-$fontPicker-search-input-hover-color: $color-light-grey !default;
+$fontPicker-search-input-hover-color: $gray !default;
 
 // Core
 // =====================
@@ -465,7 +465,7 @@ $fontPicker-search-input-hover-color: $color-light-grey !default;
 }
 
 .icon-search {
-  color: $color-gray;
+  color: $gray-dark;
 }
 
 .pj-dropdown-item:last-child {

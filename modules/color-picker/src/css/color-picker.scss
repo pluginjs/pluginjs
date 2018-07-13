@@ -524,7 +524,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
         }
       }
       > .pj-dropdown.pj-dropdown-show {
-        border-color: $color-input-gray !important;
+        border-color: $gray-lightest !important;
       }
     }
   }
@@ -709,7 +709,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
         display: inline-block;
         height: $colorPicker-wheel-angle-height;
         line-height: $colorPicker-wheel-angle-height;
-        color: $color-gray;
+        color: $gray-dark;
       }
     }
   }

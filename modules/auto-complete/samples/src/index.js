@@ -1,6 +1,7 @@
 // import icons
 import '@pluginjs/icons/dist/plugin-icons.css'
 import '@pluginjs/styles/inputs.scss'
+import 'font-awesome/css/font-awesome.css'
 // import sections
 import './sections/basic/index.js'
 import './sections/input/index.js'
