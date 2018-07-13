@@ -14,7 +14,7 @@ const time2AST = time => {
 // parseTimeAST :: AST -> String
 const parseTimeAST = timeAST => {
   const { hour, min, format } = timeAST
-  const isGtTen = n => (n >= 10 ? n : `0${n}`)
+  const isGtTen = n => (n >= 10 ? n : `0${n}`)  /* eslint-disable-line */
   return `${isGtTen(hour)}:${isGtTen(min)}${format ? ` ${format}` : ''}`
 }
 
@@ -46,7 +46,10 @@ const minute2TimeAST = minute => {
   }
 }
 
-const time2Minute = compose(timeAST2Minute, time2AST)
+const time2Minute = compose(
+  timeAST2Minute,
+  time2AST
+)
 
 // convertTo12HourFormat :: { hour, min } -> { hour, min, format }
 const convertTo12HourFormat = timeAST => {
@@ -91,11 +94,20 @@ const splitTime = (step, range) => {
 const formatTime = (use24HourFormat, timeList) => {
   if (!use24HourFormat) {
     return timeList.map(
-      compose(parseTimeAST, convertTo12HourFormat, minute2TimeAST)
+      compose(
+        parseTimeAST,
+        convertTo12HourFormat,
+        minute2TimeAST
+      )
     )
   }
 
-  return timeList.map(compose(parseTimeAST, minute2TimeAST))
+  return timeList.map(
+    compose(
+      parseTimeAST,
+      minute2TimeAST
+    )
+  )
 }
 
 export { time2Minute, splitTime, formatTime }

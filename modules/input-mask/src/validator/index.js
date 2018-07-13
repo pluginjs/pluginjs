@@ -17,7 +17,10 @@ const getRange = curry((blocks, index) => {
 
 const sum = (a, b) => a + b
 
-export const computeLens = compose(map(reduce(sum)), Model.of)
+export const computeLens = compose(
+  map(reduce(sum)),
+  Model.of
+)
 
 // baseFormat :: config => String
 export const baseFormat = curry(({ blocks, delimiter }, data) => {
