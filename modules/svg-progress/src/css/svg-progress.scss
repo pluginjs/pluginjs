@@ -5,12 +5,27 @@
 $svgPicker: "pj-svgProgress" !default;
 $svgProgress-color: $gray-dark !default;
 
+$svgProgress-value-width: 10rem !default;
+$svgProgress-value-max-width: 18.75rem !default;
+// $svgProgress-value-space: 0.625rem !default;
+
 // Core
 // ======================
 .#{$svgPicker} {
   position: relative;
+  width: $svgProgress-value-width;
+  // margin: $svgProgress-value-space auto;
+  color: $svgProgress-color;
   text-align: center;
   transform-style: preserve-3d;
+
+  &-number {
+    font-size: 16px;
+  }
+
+  &-label {
+    font-size: 12px;
+  }
 
   &-svg {
     position: relative;
@@ -60,15 +75,22 @@ $svgProgress-color: $gray-dark !default;
   }
 }
 
-// styles
-.#{$svgPicker} {
-  color: $svgProgress-color;
+// // styles
+// .#{$svgPicker} {
+//   color: $svgProgress-color;
 
-  &-number {
-    font-size: 16px;
-  }
+//   &-number {
+//     font-size: 16px;
+//   }
 
-  &-label {
-    font-size: 12px;
+//   &-label {
+//     font-size: 12px;
+//   }
+// }
+
+@media all and (max-width: 768px) {
+  .pj-svgProgress {
+    width: 80%;
+    max-width: $svgProgress-value-max-width;
   }
 }

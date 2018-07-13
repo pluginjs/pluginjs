@@ -43,6 +43,7 @@ export const defaults = {
   goal: 100,
   size: 80,
   speed: 15, // speed of 1/100
+  shape: 'circle',
   barcolor: '#55a4f2',
   barsize: '4',
   trackcolor: '#f7f9fc',

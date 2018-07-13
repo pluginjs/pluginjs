@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import SvgProgress from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import SvgProgress from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('SvgProgress', () => {
   describe('SvgProgress()', () => {
@@ -28,151 +27,143 @@ describe('SvgProgress', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      element.setAttribute('data-shape', 'circle')
-      const svgProgress = new SvgProgress(element)
+      const svgProgress = SvgProgress.of(generateHTMLSample())
 
       expect(svgProgress).toBeObject()
+      expect(svgProgress.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      element.setAttribute('data-shape', 'circle')
-      const svgProgress = new SvgProgress(element)
+      const svgProgress = SvgProgress.of(generateHTMLSample(), {
+        shape: 'circle'
+      })
 
       expect(svgProgress.options).toBeObject()
+      expect(svgProgress.options.shape).toEqual('circle')
     })
   })
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      element.setAttribute('data-shape', 'circle')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = SvgProgress.of($element)
 
-      expect($element.asSvgProgress()).toEqual($element)
-
-      const api = $element.data('svgProgress')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
+    test('should call start', () => {
+      const $element = SvgProgress.of(generateHTMLSample())
+      $element.start()
+    })
+
     test('should call destroy', () => {
-      const element = document.createElement('div')
-      element.setAttribute('data-shape', 'circle')
-      const $element = $(element).asSvgProgress()
-      expect($element.asSvgProgress('destroy')).toEqual($element)
+      const $element = SvgProgress.of(generateHTMLSample())
+      $element.destroy()
     })
   })
 
-  describe('initialize()', () => {
-    let $element
+  // describe('initialized()', () => {
+  //   let $element
 
-    beforeEach(() => {
-      const element = document.createElement('div')
-      element.setAttribute('data-shape', 'circle')
-      $element = $(element)
-    })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //   })
 
-    test('should trigger ready event', () => {
-      let called = 0
+  //   test('should trigger ready event', () => {
+  //     let called = 0
 
-      $element.on('svgProgress:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
-        called++
-      })
+  //     $element.addEventListener('svgProgress:ready', () => {
+  //       called++
+  //     })
 
-      $element.asSvgProgress()
-      expect(called).toEqual(1)
-    })
-  })
+  //     const instance = SvgProgress.of($element)
+  //     expect(called).toEqual(1)
+  //     console.log(called)
+  //     expect(instance.is('initialized')).toBeTrue()
+  //   })
+  // })
 
-  describe('destroy()', () => {
-    let $element
-    let api
+  // describe('destroy()', () => {
+  //   let $element
+  //   let api
 
-    beforeEach(() => {
-      const element = document.createElement('div')
-      element.setAttribute('data-shape', 'circle')
-      $element = $(element).asSvgProgress()
-      api = $element.data('svgProgress')
-    })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //     api = SvgProgress.of($element)
+  //   })
 
-    test('should trigger destroy event', () => {
-      let called = 0
+  //   test('should trigger destroy event', () => {
+  //     let called = 0
 
-      $element.on('svgProgress:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
-        called++
-      })
+  //     $element.addEventListener('svgProgress:destroy', () => {
+  //       expect(api.is('initialized')).toBeFalse()
+  //       called++
+  //     })
 
-      $element.asSvgProgress('destroy')
+  //     api.destroy()
 
-      expect(called).toEqual(1)
-    })
-  })
+  //     expect(called).toEqual(1)
+  //   })
+  // })
 
-  describe('enable()', () => {
-    let $element
-    let api
+  // describe('enable()', () => {
+  //   let $element
+  //   let api
 
-    beforeEach(() => {
-      const element = document.createElement('div')
-      element.setAttribute('data-shape', 'circle')
-      $element = $(element).asSvgProgress()
-      api = $element.data('svgProgress')
-    })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //     api = SvgProgress.of($element)
+  //   })
 
-    test('should enable the plugin', () => {
-      $element.asSvgProgress('disable')
-      $element.asSvgProgress('enable')
+  //   test('should enable the plugin', () => {
+  //     api.disable()
+  //     api.enable()
 
-      expect(api.is('disabled')).toBeFalse()
-    })
+  //     expect(api.is('disabled')).toBeFalse()
+  //   })
 
-    test('should trigger enable event', () => {
-      let called = 0
+  //   test('should trigger enable event', () => {
+  //     let called = 0
 
-      $element.on('svgProgress:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
-        called++
-      })
+  //     $element.addEventListener('svgProgress:enable', () => {
+  //       expect(api.is('disabled')).toBeFalse()
+  //       called++
+  //     })
 
-      $element.asSvgProgress('enable')
-      expect(called).toEqual(1)
-    })
-  })
+  //     api.enable()
+  //     expect(called).toEqual(1)
+  //   })
+  // })
 
-  describe('disable()', () => {
-    let $element
-    let api
+  // describe('disable()', () => {
+  //   let $element
+  //   let api
 
-    beforeEach(() => {
-      const element = document.createElement('div')
-      element.setAttribute('data-shape', 'circle')
-      $element = $(element).asSvgProgress()
-      api = $element.data('svgProgress')
-    })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //     api = SvgProgress.of($element)
+  //   })
 
-    test('should disable the plugin', () => {
-      $element.asSvgProgress('disable')
+  //   test('should disable the plugin', () => {
+  //     api.disable()
 
-      expect(api.is('disabled')).toBeTrue()
-    })
+  //     expect(api.is('disabled')).toBeTrue()
+  //   })
 
-    test('should trigger disable event', () => {
-      let called = 0
+  //   test('should trigger disable event', () => {
+  //     let called = 0
 
-      $element.on('svgProgress:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
-        called++
-      })
+  //     $element.addEventListener('svgProgress:disable', () => {
+  //       expect(api.is('disabled')).toBeTrue()
+  //       called++
+  //     })
 
-      $element.asSvgProgress('disable')
-      expect(called).toEqual(1)
-    })
-  })
+  //     api.disable()
+  //     expect(called).toEqual(1)
+  //   })
+  // })
 })
