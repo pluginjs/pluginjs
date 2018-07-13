@@ -15,7 +15,6 @@ import Pj, {
   themeable
 } from '@pluginjs/pluginjs'
 
-import is from '@pluginjs/is'
 import templateEngine from '@pluginjs/template'
 import ImageLoader from '@pluginjs/image-loader'
 
@@ -24,6 +23,7 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
+  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -46,11 +46,15 @@ import Carousel from './models/carousel'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(NAMESPACE, {
-  defaults: DEFAULTS,
-  methods: METHODS,
-  dependencies: DEPENDENCIES
-})
+@register(
+  NAMESPACE,
+  {
+    defaults: DEFAULTS,
+    methods: METHODS,
+    dependencies: DEPENDENCIES
+  },
+  INFO
+)
 class Grids extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -184,7 +188,7 @@ class Grids extends Component {
   initFilterbar() {
     const { filters, sort } = this.options.filterbar
     if (!filters && !sort) {
-      return false
+      return
     }
 
     this.FILTERBAR = new Filterbar(this, this.options.filterbar)
@@ -222,7 +226,7 @@ class Grids extends Component {
 
   getTags() {
     let tags = []
-    this.$items.forEach((el, i) => {
+    this.$items.forEach(el => {
       const tag = this.options.parseTagsStr(el.dataset.tags)
 
       if (tag) {
@@ -240,7 +244,7 @@ class Grids extends Component {
   getSortData() {
     const sortData = []
 
-    this.$items.forEach((el, index) => {
+    this.$items.forEach(el => {
       sortData.push(el.dataset.sort)
     })
 
@@ -277,7 +281,7 @@ class Grids extends Component {
     const chunkList = [].concat(chunks)
     const tempArr = []
 
-    chunkList.forEach((chunk, index) => {
+    chunkList.forEach(chunk => {
       const chunkTagsSize = chunk.tags ? chunk.tags.length : 0
       const filterSize = tags.length
 
@@ -293,7 +297,7 @@ class Grids extends Component {
 
   filter(filters = this.filters) {
     if (filters.toString() === this.filters.toString()) {
-      return false
+      return
     }
 
     this.filters = filters
@@ -354,7 +358,7 @@ class Grids extends Component {
         if (item.index === tempItem.index) {
           tempArr.splice(index, 1)
 
-          return true
+          return
         }
       })
     })
@@ -378,6 +382,8 @@ class Grids extends Component {
     if (model === 'nested') {
       return new Nested(this)
     }
+
+    return null
   }
 
   bind() {
@@ -390,7 +396,7 @@ class Grids extends Component {
     bindEvent({
       type: this.eventName('click'),
       identity: `.${this.classes.CHUNK}`,
-      handler: () => {
+      handler: e => {
         this.trigger(EVENTS.CHUNKCLICK, e.currentTarget)
       }
     })
@@ -474,7 +480,7 @@ class Grids extends Component {
 
   setOptions(attr, value) {
     if (this.options[attr] === value) {
-      return false
+      return
     }
 
     this.options[attr] = value
@@ -493,7 +499,7 @@ class Grids extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      this.model = undefined
+      this.model = null
 
       if (this.options.theme) {
         this.$element.removeClass(this.getThemeClass())

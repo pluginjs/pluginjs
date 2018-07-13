@@ -34,9 +34,12 @@ describe('Countdown', () => {
     })
 
     test('should have options', () => {
-      const countdown = Countdown.of(generateHTMLSample())
+      const countdown = Countdown.of(generateHTMLSample(), {
+        mode: 'flip'
+      })
 
       expect(countdown.options).toBeObject()
+      expect(countdown.options.mode).toEqual('flip')
     })
   })
 

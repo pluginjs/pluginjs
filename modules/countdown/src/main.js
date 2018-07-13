@@ -1,12 +1,13 @@
 import Component from '@pluginjs/component'
 import { deepMerge } from '@pluginjs/utils'
-import { register, stateable, styleable } from '@pluginjs/pluginjs'
+import { register, stateable, styleable, eventable } from '@pluginjs/pluginjs'
 import is from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
   methods as METHODS,
+  events as EVENTS,
   namespace as NAMESPACE,
   labelMap as LABELMAP
 } from './constant'
@@ -20,6 +21,7 @@ import Progress from './modes/progress'
 const MODES = {}
 
 @styleable(CLASSES)
+@eventable(EVENTS)
 @stateable()
 @register(NAMESPACE, {
   defaults: DEFAULTS,
@@ -36,6 +38,7 @@ class CountDown extends Component {
     this.initClasses(CLASSES)
     this.initStates()
     this.initialize()
+    this.trigger(EVENTS.READY)
   }
 
   initialize() {

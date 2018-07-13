@@ -18,7 +18,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -27,15 +26,11 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  },
-  INFO
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Hotspots extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

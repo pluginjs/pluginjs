@@ -67,5 +67,3 @@ export const defaults = {
 }
 
 export const dependencies = ['tooltip', 'popover']
-
-export const info = { version: '0.0.1' }

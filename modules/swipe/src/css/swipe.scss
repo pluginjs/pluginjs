@@ -41,6 +41,10 @@ $arrow: "pj-arrow" !default;
     position: absolute;
   }
 }
+.pj-swipe-pagination {
+  justify-content: center;
+  margin: 10px 0;
+}
 .swipe {
   height: 300px;
 }

@@ -67,7 +67,7 @@ export const methods = [
 export const defaults = {
   theme: null,
   wrapSelector: null,
-  itemSelector: 'article', // [selector / null] // select the grids item element. if not, select children of the wraper.
+  itemSelector: 'figure', // [selector / null] // select the grids item element. if not, select children of the wraper.
   imgSelector: null, // [selector / null] If there is any image in item, the grid will select an IMG element marked by Imgselector
   model: 'grid', // select model
   maxColumn: 5, // [number] set the max column number.
@@ -95,7 +95,7 @@ export const defaults = {
       drag: true,
       center: false,
       dragFree: false,
-      frictionFactor: 0.8, // 0 - 1
+      power: 2,
       group: false,
       multiple: false,
       defaultActive: 0,
@@ -112,7 +112,7 @@ export const defaults = {
 
   templates: {
     loader() {
-      return `<div class='{class}'></div>`
+      return '<div class="{class}"></div>'
     }
   },
   sort(key, chunks) {
@@ -178,6 +178,8 @@ export const dependencies = [
   'swipe',
   'image-loader'
 ]
+
+export const info = { version: '0.0.1' }
 
 /* chunks options */
 /*
