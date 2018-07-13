@@ -14,7 +14,7 @@
 		"@pluginjs/utils": "^0.2.20",
 		"popper.js": "1.14.1"
 	},
-	"version": "0.2.21",
+	"version": "0.2.23",
 	"description": "A flexible modern tooltip js plugin.",
 	"author": "Creation Studio Limited",
 	"homepage": "https://github.com/pluginjs/plugin.js",

@@ -1,9 +1,5 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Popper from 'popper'
-import Tooltip from '@pluginjs/tooltip'
-import Popover from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Popover from '../src/main'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Popover', () => {
   describe('Popover()', () => {
@@ -49,20 +45,6 @@ describe('Popover', () => {
       const popover = new Popover(element)
 
       expect(popover.classes).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asPopover()).toEqual($element)
-
-      const api = $element.data('popover')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
     })
   })
 
@@ -120,13 +102,13 @@ describe('Popover', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asPopover()
-      expect($element.asPopover('bind')).toBeNil()
+      const popover = Popover.of(generateHTMLSample())
+      expect(popover.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asPopover()
-      expect($element.asPopover('destroy')).toEqual($element)
+      const popover = Popover.of(generateHTMLSample())
+      popover.destroy()
     })
   })
 
@@ -134,19 +116,18 @@ describe('Popover', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('popover:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('popover:ready', () => {
         called++
       })
-
-      $element.asPopover()
+      const instance = Popover.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -155,19 +136,19 @@ describe('Popover', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asPopover()
-      api = $element.data('popover')
+      $element = generateHTMLSample()
+      api = Popover.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('popover:destroy', (event, api) => {
+      $element.addEventListener('popover:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asPopover('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -178,13 +159,13 @@ describe('Popover', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asPopover()
-      api = $element.data('popover')
+      $element = generateHTMLSample()
+      api = Popover.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asPopover('disable')
-      $element.asPopover('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -192,12 +173,12 @@ describe('Popover', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('popover:enable', (event, api) => {
+      $element.addEventListener('popover:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asPopover('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -207,12 +188,12 @@ describe('Popover', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asPopover()
-      api = $element.data('popover')
+      $element = generateHTMLSample()
+      api = Popover.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asPopover('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -220,12 +201,12 @@ describe('Popover', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('popover:disable', (event, api) => {
+      $element.addEventListener('popover:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asPopover('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

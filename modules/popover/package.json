@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.20",
+  "version": "0.2.22",
   "main": "dist/popover.umd.js",
   "module": "dist/popover.esm.js",
   "cjs": "dist/popover.cjs.js",

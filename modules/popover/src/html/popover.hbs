@@ -4,8 +4,6 @@ layout: plugin
 styles:
 - ../../plugins/popover/css/popover.css
 scripts:
-- ../../vendor/popper.js
-- ../../plugins/tooltip/tooltip.js
 - ../../plugins/popover/popover.js
 ---
 <style>
@@ -13,8 +11,13 @@ scripts:
   position: relative;
   padding: 20px;
   margin: 20px 0;
-  border: 1px solid #f7f7f9;
+  border: 1px solid lightgray;
 }
+
+.top-gap {
+  margin-top: 50px;
+}
+
 .position-grid {
   display: flex;
   flex-wrap: wrap;
@@ -30,12 +33,16 @@ scripts:
   padding: 16px 5px;
 }
 </style>
+
+{{!-- Default --}}
 <section>
-  <h3>Example</h3>
+  <h3>Default</h3>
   <div class="example">
     <button type="button" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
   </div>
 </section>
+
+{{!-- Layout --}}
 <section class="top-gap">
   <h3>Layout</h3>
   <div class="example">
@@ -45,6 +52,8 @@ scripts:
     <button type="button" data-toggle="popover" data-close="true" title="Popover title" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Title + Content + Close</button>
   </div>
 </section>
+
+{{!-- Contents --}}
 <section class="top-gap">
   <h3>Contents</h3>
   <div class="example">
@@ -53,47 +62,68 @@ scripts:
     <button type="button" data-toggle="popover-iframe" title="Popover title">Pop with iframe</button>
   </div>
 
-  <script>
-  $(function(){
-    Pj.popover('[data-toggle="popover-table"]', {
-      content: function() {
-        return $('#tableContent').html();
-      }
-    });
+  <div id="tableContent" style="display:none;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>User Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    Pj.popover('[data-toggle="popover-largeContent"]', {
-      content: function() {
-        return $('#largeContent').html();
-      }
-    });
-
-    Pj.popover('[data-toggle="popover-iframe"]', {
-      content: function() {
-        return '<iframe src="http://getbootstrap.com" frameborder="0" allowtransparency="true" height="100%" width="100%"></iframe>';
-      }
-    });
-  });
-  </script>
+  <div id="largeContent" style="display:none;">
+    <p><Irure anim officia tempor est proident non voluptate est pariatur. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat occaecat amet sit ut esse veniam.</p>
+    <p>Irure anim officia tempor est proident non voluptate est pariatur. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat occaecat amet sit ut esse veniam.Irure anim officia tempor est proident non voluptate est pariatur. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat occaecat amet sit ut esse veniam.</p>
+    <p>Irure anim officia tempor est proident non voluptate est pariatur. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat occaecat amet sit ut esse veniam.Irure anim officia tempor est proident non voluptate est pariatur. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat occaecat amet sit ut esse veniam.</p>
+    <p>Irure anim officia tempor est proident non voluptate est pariatur. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat occaecat amet sit ut esse veniam.Irure anim officia tempor est proident non voluptate est pariatur. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat occaecat amet sit ut esse veniam.Irure anim officia tempor est proident non voluptate est pariatur. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat occaecat amet sit ut esse veniam.</p>
+  </div>
 </section>
+
+{{!-- close --}}
 <section class="top-gap">
-  <h3>close</h3>
+  <h3>Close</h3>
   <div class="example">
     <button type="button" data-toggle="popover" data-close="true" data-placement="top" title="Popover with without" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
       Popover with close
     </button>
-    <button type="button" data-toggle="popover" data-close="false" data-placement="top" title="Popover without close" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-      Popover without close
-    </button>
   </div>
 </section>
+
+{{!-- hideOutClick --}}
 <section class="top-gap">
-  <h3>hideOutClick</h3>
+  <h3>HideOutClick</h3>
   <div class="example">
-    <button type="button" data-toggle="popover" data-hide-out-click="true" data-placement="top" title="Popover with hideOutClick" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+    <button type="button" data-toggle="popover" data-hide-out-click="false" data-placement="top" title="Popover with hideOutClick" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
       Popover with hideOutClick
     </button>
   </div>
 </section>
+
+{{!-- Skin --}}
 <section class="top-gap">
   <h3>Skin</h3>
   <div class="example">
@@ -102,6 +132,8 @@ scripts:
     </button>
   </div>
 </section>
+
+{{!-- Trigger --}}
 <section class="top-gap">
   <h3>Trigger</h3>
   <div class="example">
@@ -122,77 +154,38 @@ scripts:
     </button>
   </div>
 </section>
+
+{{!-- Positon --}}
 <section class="top-gap">
-  <h3>Positons</h3>
+  <h3>Positon</h3>
   <div class="example position-grid">
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="top left" title="Top Left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Top Left</a></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="top" title="Top Middle" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Top Middle</a></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="top right" title="Top Right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Top Right</a></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="left top" title="Left Top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Left Top</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="top-start" title="Top Start" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Top Start</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="top" title="Top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Top</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="top-end" title="Top End" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Top End</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="left-start" title="Left Start" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Left Start</a></div>
     <div class="position-cell"></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="right top" title="Right Top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Right Top</a></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="left" title="Left Middle" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Left Middle</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="right-start" title="Right Top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Right Start</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="left" title="Left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Left</a></div>
     <div class="position-cell"></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="right" title="Right Middle" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Right Middle</a></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="left bottom" title="Left Bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Left Bottom</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="right" title="Right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Right</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="left-end" title="Left End" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Left End</a></div>
     <div class="position-cell"></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="right bottom" title="Right Bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Right Bottom</a></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="bottom left" title="Bottom Left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Bottom Left</a></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="bottom" title="Bottom Middle" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Bottom Middle</a></div>
-    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-placement="bottom right" title="Bottom Right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Bottom Right</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="right-end" title="Right End" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Right End</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="bottom-start" title="Bottom Start" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Bottom Start</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="bottom" title="Bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Bottom</a></div>
+    <div class="position-cell"><a href="javascript:void(0)" data-toggle="popover" data-trigger="hover focus" data-placement="bottom-end" title="Bottom End" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Bottom End</a></div>
   </div>
 </section>
+
+{{!-- Api --}}
 <section class="top-gap">
-  <h3>Events</h3>
+  <h3>Api</h3>
   <div class="example">
-    <button type="button" class="popover-event" data-html="true" title="hello world" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-      Popover with event
+    <button type="button" data-toggle="popover-api" data-html="true" title="hello world" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+      Popover Api
     </button>
     <div class="console"></div>
-    <script>
-      $(document).ready(function() {
-        var $element = document.querySelector('.popover-event');
-
-        var events = ['ready', 'enable', 'disable', 'destroy', 'hide', 'hidden', 'show', 'shown', 'inserted']
-
-        for(var i = 0; i < events.length; i++) {
-          $element.addEventListener('popover:'+events[i], function(event, instance) {
-            $('<div><span class="console-info">' + event.type + '</a></div>:triggered</div>').prependTo('.console');
-          });
-        }
-
-        let popoverApi = Pj.popover($element);
-
-        $('.api-init').on('click', function() {
-          popoverApi = Pj.popover($element);
-        });
-
-        $('.api-destroy').on('click', function() {
-          popoverApi('destroy');
-        });
-
-        $('.api-enable').on('click', function() {
-          popoverApi('enable');
-        });
-
-        $('.api-disable').on('click', function() {
-          popoverApi('disable');
-        });
-
-        $('.api-show').on('click', function() {
-          popoverApi('show');
-        });
-
-        $('.api-hide').on('click', function() {
-          popoverApi('hide');
-        });
-
-        $('.api-toggle').on('click', function() {
-          popoverApi('toggle');
-        });
-      });
-    </script>
-    <div class="apis pad-top-20">
+    <div class="apis top-gap">
       <button class="btn api-init">init</button>
       <button class="btn api-destroy">destroy</button>
       <button class="btn api-enable">enable</button>
@@ -205,49 +198,82 @@ scripts:
 </section>
 
 <script>
-$(function(){
-  Pj.popover('[data-toggle="popover"]');
-});
+  window.onload = function() {
+    Pj.popover('[data-toggle="popover"]')
+
+    Pj.popover('[data-toggle="popover-table"]', {
+      content: function() {
+        return document.querySelector("#tableContent").innerHTML;
+      }
+    });
+
+    Pj.popover('[data-toggle="popover-largeContent"]', {
+      content: function() {
+        return document.querySelector("#largeContent").innerHTML;
+      }
+    });
+
+    Pj.popover('[data-toggle="popover-iframe"]', {
+      content: function() {
+        return '<iframe src="http://getbootstrap.com" frameborder="0" allowtransparency="true" height="100%" width="100%"></iframe>';
+      }
+    });
+
+
+    var info = document.querySelector('.console');
+    var API = null;
+
+    document.querySelector('.api-init').addEventListener('click', function() {
+      API = Pj.popover('[data-toggle="popover-api"]', {
+        onReady: function() {
+          info.insertAdjacentHTML('beforeend', '<p>init()</p>');
+        },
+        onDestroy: function() {
+          info.insertAdjacentHTML('beforeend', '<p>destroy()</p>');
+        },
+        onEnable: function() {
+          info.insertAdjacentHTML('beforeend', '<p>enable()</p>');
+        },
+        onDisable: function() {
+          info.insertAdjacentHTML('beforeend', '<p>disable()</p>');
+        },
+        onShown: function() {
+          info.insertAdjacentHTML('beforeend', '<p>show()</p>');
+        },
+        onHidden: function() {
+          info.insertAdjacentHTML('beforeend', '<p>hide()</p>');
+        }
+      })
+    });
+
+    document.querySelector('.api-destroy').addEventListener('click', function() {
+      API.destroy();
+    });
+
+    document.querySelector('.api-enable').addEventListener('click', function() {
+      API.enable();
+    });
+
+    document.querySelector('.api-disable').addEventListener('click', function() {
+      API.disable();
+    });
+
+    document.querySelector('.api-show').addEventListener('click', function(e) {
+      API.show();
+
+      e.stopPropagation()
+    });
+
+    document.querySelector('.api-hide').addEventListener('click', function(e) {
+      API.hide();
+
+      e.stopPropagation()
+    });
+
+    document.querySelector('.api-toggle').addEventListener('click', function(e) {
+      API.toggle();
+
+      e.stopPropagation()
+    });
+  };
 </script>
-
-<div id="tableContent" style="display:none;">
-      <table class="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>User Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-
-    </div>
-
-    <div id="largeContent" style="display:none;">
-      <p><a href="#" class="pop-click">click</a> The jQuery Foundation&#8217;s <a href="http://jquery.org/mission">mission</a> has always been about more than just our namesake projects of jQuery, jQuery UI, and jQuery Mobile. We already host several projects such as Sizzle, QUnit and Globalize that are not dependent on the jQuery library.</p>
-<p>This wider web-oriented mission is evident in our jQuery Conferences, which span a wide range of developer concerns beyond jQuery, including Node, CSS, tooling, testing and much more. Over the years we&#8217;ve had talks on build tools, accessibility, security, performance, design patterns, and frameworks such as Ember and Angular. At our San Diego conference this past February, for example, Lenny Markus gave a great talk on <a title="NodeJS In the Enterprise" href="https://www.youtube.com/watch?v=qJVk6KiOEBA" target="_blank">PayPal&#8217;s continuing adoption of Node</a> as they move away from Java and proprietary solutions, Catherine Farman talked about <a title="Real World Responsive Design Projects and Patterns" href="https://www.youtube.com/watch?v=CkC8F3x8-nc" target="_blank">real world responsive design</a>, and John Dimm gave a talk on the <a title="Fun with Speech" href="https://www.youtube.com/watch?v=n8G1CuR2zZc" target="_blank">HTML5 speech APIs</a>.</p>
-<p>The jQuery Foundation is participating in the continuing evolution of the web platform via our memberships in both the W3C and ECMA TC39 (The group standardizing what we know as JavaScript). We feel that it&#8217;s essential to have strong representation in those standards groups to ensure they meet the needs of developers. The Foundation provides a platform for developers to have a voice in these standards bodies.</p>
-<p>Beyond the technical compatibility between our projects, we also share the open source model and all the benefits it provides. The Foundation adds the benefit of a top-level structure designed to serve the projects, providing the resources they need but letting the contributors decide the best direction for the project based on community input. Any project that joins the Foundation is given the ability to serve their community&#8217;s needs rather than be constrained by the goals of a for-profit company.</p>
-<p>Though this has been our mission for a long time, we felt we needed to make this clearer. We are excited to start bringing this part of our mission into the light and start actively working toward a more open web accessible to everyone. If you are excited as well, please help us. Contribute your time to <a href="https://jquery.org/projects/" target="_blank">Foundation projects</a>. Offer your company&#8217;s services. If you or your company have an established open source project that you believe could benefit everyone and flourish by becoming part of the jQuery Foundation, check out our philosophy around <a href="https://jquery.org/projects/join/">projects joining the Foundation</a> and <a href="mailto:info@jquery.org">var us know you’re interested</a>. If you would rather just support the existing and future projects of the Foundation through financial support, <a href="https://jquery.org/join/">become a member of the Foundation.</a> Open source projects will only thrive if everyone who benefits from them contributes back in whatever way they can.</p>
-    </div>

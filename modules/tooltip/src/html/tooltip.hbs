@@ -104,7 +104,7 @@ scripts:
 <section class="top-gap">
   <h3>Events</h3>
   <div class="example">
-    <button type="button" class="btn tooltip-event" data-html="true" title="hello world">
+    <button type="button" class="btn tooltip-event" data-html="true" data-trigger="click" title="hello world">
       Tooltip with event
     </button>
     <div class="console"></div>
@@ -118,10 +118,12 @@ scripts:
       <button class="btn api-toggle">toggle</button>
     </div>
     <script>
-      (function() {
+      window.onload = function(){
+        Pj.tooltip('[data-toggle="tooltip"]')
+
         var $element = document.querySelector('.tooltip-event');
 
-        var events = ['ready', 'enable', 'disable', 'destroy', 'hide', 'hidden', 'show', 'shown', 'inserted']
+        var events = ['ready', 'enable', 'disable', 'destroy', 'hidden', 'shown', 'inserted']
 
         for(var i = 0; i < events.length; i++) {
           $element.addEventListener('tooltip:'+events[i], function(event, instance) {
@@ -130,62 +132,61 @@ scripts:
         }
 
         var info = document.querySelector('.console');
-        let API = null;
+        var API = null;
 
         document.querySelector('.api-init').addEventListener('click', function() {
-          API = Pj.tooltip('.tooltip-event', {
+          API = Pj.tooltip($element, {
             onReady: function() {
               info.insertAdjacentHTML('beforeend', '<p>init()</p>');
+            },
+            onDestroy: function() {
+              info.insertAdjacentHTML('beforeend', '<p>destroy()</p>');
+            },
+            onEnable: function() {
+              info.insertAdjacentHTML('beforeend', '<p>enable()</p>');
+            },
+            onDisable: function() {
+              info.insertAdjacentHTML('beforeend', '<p>disable()</p>');
+            },
+            onShown: function() {
+              info.insertAdjacentHTML('beforeend', '<p>show()</p>');
+            },
+            onHidden: function() {
+              info.insertAdjacentHTML('beforeend', '<p>hide()</p>');
             }
           })
         });
 
         document.querySelector('.api-destroy').addEventListener('click', function() {
           API.destroy();
-
-          info.insertAdjacentHTML('beforeend', '<p>destroy()</p>');
         });
 
         document.querySelector('.api-enable').addEventListener('click', function() {
           API.enable();
-
-          info.insertAdjacentHTML('beforeend', '<p>enable()</p>');
         });
 
         document.querySelector('.api-disable').addEventListener('click', function() {
           API.disable();
-
-          info.insertAdjacentHTML('beforeend', '<p>disable()</p>');
         });
 
-        document.querySelector('.api-show').addEventListener('click', function() {
+        document.querySelector('.api-show').addEventListener('click', function(e) {
           API.show();
 
-          info.insertAdjacentHTML('beforeend', '<p>show()</p>');
+          e.stopPropagation()
         });
 
-        document.querySelector('.api-hide').addEventListener('click', function() {
+        document.querySelector('.api-hide').addEventListener('click', function(e) {
           API.hide();
 
-          info.insertAdjacentHTML('beforeend', '<p>hide()</p>');
+          e.stopPropagation()
         });
 
-        document.querySelector('.api-toggle').addEventListener('click', function() {
+        document.querySelector('.api-toggle').addEventListener('click', function(e) {
           API.toggle();
 
-          info.insertAdjacentHTML('beforeend', '<p>toggle()</p>');
+          e.stopPropagation()
         });
-      })();
+      };
     </script>
   </div>
 </section>
-
-<script>
-(function(){
-  Pj.tooltip('[data-toggle="tooltip"]', {
-    onMove() {
-
-    }
-  });
-})();
-</script>
