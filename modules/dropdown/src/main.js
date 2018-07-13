@@ -507,7 +507,7 @@ class Dropdown extends Component {
     if (value === undefined) {
       return
     }
-    console.log('dropdown:set ', value)
+    
     if (this.options.imitateSelect) {
       this.text = null
 

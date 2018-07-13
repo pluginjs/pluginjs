@@ -1,8 +1,5 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Popper from 'popper.js'
-import Tooltip from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Tooltip from '../src/main'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Tooltip', () => {
   describe('Tooltip()', () => {
@@ -48,20 +45,6 @@ describe('Tooltip', () => {
       const tooltip = new Tooltip(element)
 
       expect(tooltip.classes).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asTooltip()).toEqual($element)
-
-      const api = $element.data('tooltip')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
     })
   })
 
@@ -119,13 +102,13 @@ describe('Tooltip', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asTooltip()
-      expect($element.asTooltip('bind')).toBeNil()
+      const tooltip = Tooltip.of(generateHTMLSample())
+      expect(tooltip.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asTooltip()
-      expect($element.asTooltip('destroy')).toEqual($element)
+      const tooltip = Tooltip.of(generateHTMLSample())
+      tooltip.destroy()
     })
   })
 
@@ -133,19 +116,19 @@ describe('Tooltip', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('tooltip:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('tooltip:ready', () => {
+        console.log(111)
         called++
       })
-
-      $element.asTooltip()
+      const instance = Tooltip.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -154,19 +137,19 @@ describe('Tooltip', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asTooltip()
-      api = $element.data('tooltip')
+      $element = generateHTMLSample()
+      api = Tooltip.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('tooltip:destroy', (event, api) => {
+      $element.addEventListener('tooltip:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asTooltip('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -177,13 +160,13 @@ describe('Tooltip', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asTooltip()
-      api = $element.data('tooltip')
+      $element = generateHTMLSample()
+      api = Tooltip.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asTooltip('disable')
-      $element.asTooltip('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -191,12 +174,12 @@ describe('Tooltip', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('tooltip:enable', (event, api) => {
+      $element.addEventListener('tooltip:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asTooltip('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -206,12 +189,12 @@ describe('Tooltip', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asTooltip()
-      api = $element.data('tooltip')
+      $element = generateHTMLSample()
+      api = Tooltip.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asTooltip('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -219,12 +202,12 @@ describe('Tooltip', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('tooltip:disable', (event, api) => {
+      $element.addEventListener('tooltip:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asTooltip('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

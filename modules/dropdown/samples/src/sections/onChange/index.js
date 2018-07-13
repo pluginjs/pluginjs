@@ -8,6 +8,6 @@ Dropdown.of(element, {
   imitateSelect: true,
   select: 'sport',
   onChange(value) {
-    console.info(`selected ${value}`)
+    console.info(`selected ${value.innerText}`)
   }
 })
