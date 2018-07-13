@@ -1,3 +1,2 @@
-import Progress from '@pluginjs/progress'
-
-console.log(Progress)
+// import sections
+import './sections/defaults/index.js'

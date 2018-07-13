@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Progress from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Progress from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Progress', () => {
   describe('Progress()', () => {
@@ -28,44 +27,42 @@ describe('Progress', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const progress = new Progress(element)
+      const progress = Progress.of(generateHTMLSample())
 
       expect(progress).toBeObject()
       expect(progress.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const progress = new Progress(element)
+      const progress = Progress.of(generateHTMLSample(), {
+        goal: 30
+      })
 
       expect(progress.options).toBeObject()
+      expect(progress.options.goal).toEqual(30)
     })
   })
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const $element = generateHTMLSample()
+      const api = Progress.of($element)
 
-      expect($element.asProgress()).toEqual($element)
-
-      const api = $element.data('progress')
-
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
-    test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asProgress()
-      expect($element.asProgress('bind')).toBeNil()
+    test('should not call start', () => {
+      const $element = Progress.of(generateHTMLSample())
+      expect($element.start()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asProgress()
-      expect($element.asProgress('destroy')).toEqual($element)
+      const api = Progress.of(generateHTMLSample())
+      api.destroy()
     })
   })
 
@@ -73,19 +70,19 @@ describe('Progress', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('progress:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('progress:ready', () => {
         called++
       })
 
-      $element.asProgress()
+      const instance = Progress.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -94,19 +91,42 @@ describe('Progress', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asProgress()
-      api = $element.data('progress')
+      $element = generateHTMLSample()
+      api = Progress.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('progress:destroy', (event, api) => {
+      $element.addEventListener('progress:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asProgress('destroy')
+      api.destroy()
+
+      expect(called).toEqual(1)
+    })
+  })
+
+  describe('start()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = Progress.of($element)
+    })
+
+    test('should trigger start event', () => {
+      let called = 0
+
+      $element.addEventListener('progress:start', () => {
+        expect(!api.is('disabled')).toBeTrue()
+        called++
+      })
+
+      api.start()
 
       expect(called).toEqual(1)
     })
@@ -117,13 +137,13 @@ describe('Progress', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asProgress()
-      api = $element.data('progress')
+      $element = generateHTMLSample()
+      api = Progress.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asProgress('disable')
-      $element.asProgress('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,12 +151,12 @@ describe('Progress', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('progress:enable', (event, api) => {
+      $element.addEventListener('progress:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asProgress('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -146,12 +166,12 @@ describe('Progress', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asProgress()
-      api = $element.data('progress')
+      $element = generateHTMLSample()
+      api = Progress.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asProgress('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,12 +179,12 @@ describe('Progress', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('progress:disable', (event, api) => {
+      $element.addEventListener('progress:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asProgress('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

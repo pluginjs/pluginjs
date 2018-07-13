@@ -64,25 +64,32 @@ export const defaults = {
   markerOptions: { draggable: true },
   templates: {
     init() {
-      return `<div class="{class}"><i class="{icon} icon-pin-map"></i>{addPlace}</div>`
+      return `<div class="{class}"><i class="{icon} icon-pin-map"></i>{addPlace}
+      </div>`
     },
     preview() {
-      return `<div class="{class}"><i class="{icon} icon-pin-map"></i><div class='{content}'><span class='{placename}'></span><span class='{coord}'></span></div></div>`
+      return `<div class="{class}"><i class="{icon} icon-pin-map"></i><div class='{content}'><span class='{placename}'></span><span class='{coord}'></span></div>
+      </div>`
     },
     previewAction() {
-      return `<div class="{class}"><i class="{edit} icon-pencil-square"></i><i class="{remove} icon-trash"></i></div>`
+      return `<div class="{class}"><i class="{edit} icon-pencil-square"></i><i class="{remove} icon-trash"></i>
+      </div>`
     },
     panel() {
-      return `<div class='{class}'><div class='{content}'></div></div>`
+      return `<div class='{class}'><div class='{content}'></div>
+      </div>`
     },
     action() {
-      return `<div class='{class}'><button type='button' class='{cancel} pj-btn pj-btn-transparent'>{cancelTitle}</button><button type='button' class='{save} pj-btn pj-btn-primary'>{saveTitle}</button></div>`
+      return `<div class='{class}'><button type='button' class='{cancel} pj-btn pj-btn-transparent'>{cancelTitle}</button><button type='button' class='{save} pj-btn pj-btn-primary'>{saveTitle}</button>
+      </div>`
     },
     item() {
-      return `<div class='{class}'><span class='{title}'>{titleName}</span><input class='{type} pj-input' type="text"></div>`
+      return `<div class='{class}'><span class='{title}'>{titleName}</span><input class='{type} pj-input' type="text">
+      </div>`
     },
     loading() {
-      return `<div class='{classwrap}'><div class="{class}"></div></div>`
+      return `<div class='{classwrap}'><div class='{class}'></div>
+      </div>`
     }
   },
   parse(data) {

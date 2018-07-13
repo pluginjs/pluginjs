@@ -76,7 +76,7 @@ class Marker {
   }
 
   getOffset() {
-    this.offset = this.percent / 100 * this.maxLenght
+    this.offset = (this.percent / 100) * this.maxLenght
     return Math.max(0, Math.min(this.maxLenght, this.offset))
   }
   position(percent) {
