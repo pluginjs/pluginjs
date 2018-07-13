@@ -44,17 +44,24 @@ class Sticky extends Component {
 
   initialize() {
     this.seppuku()
+
     // if (this.canSticky()) {
     //   this.setSticky()
     // } else {
     //   this.seppuku()
     // }
+    this.enter('initialized')
+    this.trigger(EVENTS.READY)
   }
 
   bind() {
     // Pj.emitter.on('scroll', () => {
     //   const offset = this.offset(this.element)
     //       // })
+  }
+
+  unbind() {
+    //
   }
 
   offset(el) {
@@ -68,8 +75,8 @@ class Sticky extends Component {
 
   setSticky() {
     setStyle({ position: 'sticky' }, this.element)
-    const { verticalPosition, spacing } = this.options
-    setStyle({ top: `${parseInt(spacing)}px` }, this.element)
+    const { spacing } = this.options
+    setStyle({ top: `${parseInt(spacing, 10)}px` }, this.element)
   }
 
   canSticky() {

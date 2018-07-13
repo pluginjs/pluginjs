@@ -1,3 +1,2 @@
-import Sticky from '@pluginjs/sticky'
-
-console.log(Sticky)
+// import sections
+import './sections/default/index.js'

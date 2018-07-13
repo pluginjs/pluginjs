@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Sticky from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Sticky from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Sticky', () => {
   describe('Sticky()', () => {
@@ -25,46 +24,28 @@ describe('Sticky', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const sticky = new Sticky(element)
+      const sticky = Sticky.of(generateHTMLSample())
 
       expect(sticky).toBeObject()
       expect(sticky.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const sticky = new Sticky(element)
+      const sticky = Sticky.of(generateHTMLSample())
 
       expect(sticky.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asSticky()).toEqual($element)
-
-      const api = $element.data('sticky')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asSticky()
-      expect($element.asSticky('bind')).toBeNil()
+      const sticky = Sticky.of(generateHTMLSample())
+      expect(sticky.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asSticky()
-      $element.asSticky('destroy')
-      // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      const sticky = Sticky.of(generateHTMLSample())
+      sticky.destroy()
     })
   })
 
@@ -72,19 +53,19 @@ describe('Sticky', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('sticky:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('sticky:ready', () => {
         called++
       })
 
-      $element.asSticky()
+      const instance = Sticky.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -93,19 +74,19 @@ describe('Sticky', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSticky()
-      api = $element.data('sticky')
+      $element = generateHTMLSample()
+      api = Sticky.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('sticky:destroy', (event, api) => {
+      $element.addEventListener('sticky:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asSticky('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -116,13 +97,13 @@ describe('Sticky', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSticky()
-      api = $element.data('sticky')
+      $element = generateHTMLSample()
+      api = Sticky.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asSticky('disable')
-      $element.asSticky('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -130,12 +111,12 @@ describe('Sticky', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('sticky:enable', (event, api) => {
+      $element.addEventListener('sticky:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asSticky('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -145,12 +126,12 @@ describe('Sticky', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asSticky()
-      api = $element.data('sticky')
+      $element = generateHTMLSample()
+      api = Sticky.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asSticky('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -158,12 +139,12 @@ describe('Sticky', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('sticky:disable', (event, api) => {
+      $element.addEventListener('sticky:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asSticky('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

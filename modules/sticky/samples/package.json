@@ -9,6 +9,7 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
+    "@pluginjs/dom": "*",
     "@pluginjs/sticky": "*"
   },
   "devDependencies": {
