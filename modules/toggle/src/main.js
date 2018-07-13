@@ -218,22 +218,21 @@ class Toggle extends Component {
       value = value === 'false' ? false : Boolean(value)
     }
 
-    this.checked = Boolean(value)
+    if (is.boolean(value)) {
+      this.checked = value
+    } else {
+      this.checked = Boolean(value)
+    }
 
     if (this.checked === true) {
-      // this.$inner.style.marginLeft = 0
       toggleAnimation(
         { marginLeft: 0 },
         { duration: this.options.duration },
         this.$inner
       )
-      // this.$inner.animate(
-      //   { marginLeft: 0 },
-      //   { duration: this.options.duration }
-      // )
+
       removeClass(this.classes.ISOFF, this.$wrap)
     } else {
-      // this.$inner.style.marginLeft = `${-this.distance}px`
       toggleAnimation(
         { marginLeft: `${-this.distance}px` },
         { duration: this.options.duration },
@@ -242,9 +241,9 @@ class Toggle extends Component {
       addClass(this.classes.ISOFF, this.$wrap)
     }
 
+    this.element.checked = this.checked
+
     if (update) {
-      this.element.checked = this.checked
-      // trigger(EVENTS.CHANGE, this.element)
       this.trigger(EVENTS.CHANGE, this.checked)
     }
     return this
@@ -271,7 +270,7 @@ class Toggle extends Component {
   }
 
   val(value) {
-    if (value) {
+    if (typeof value !== 'undefined') {
       this.set(value)
     } else {
       return this.get()
