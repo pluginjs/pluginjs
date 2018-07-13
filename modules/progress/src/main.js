@@ -36,9 +36,9 @@ class Progress extends Component {
     this.initClasses(CLASSES)
 
     if (this.options.bootstrap) {
-      this.$target = query(`.${this.classes.BAR}`, this.element)
+      this.target = query(`.${this.classes.BAR}`, this.element)
     } else {
-      this.$target = this.element
+      this.target = this.element
 
       addClass(this.classes.ELEMENT, this.element)
     }
@@ -55,11 +55,11 @@ class Progress extends Component {
 
     this.easing = easing.get(this.options.easing) || easing.get('ease')
 
-    this.min = this.$target.getAttribute('aria-valuemin')
-    this.max = this.$target.getAttribute('aria-valuemax')
+    this.min = this.target.getAttribute('aria-valuemin')
+    this.max = this.target.getAttribute('aria-valuemax')
     this.min = this.min ? parseInt(this.min, 10) : this.options.min
     this.max = this.max ? parseInt(this.max, 10) : this.options.max
-    this.first = this.$target.getAttribute('aria-valuenow')
+    this.first = this.target.getAttribute('aria-valuenow')
     this.first = this.first ? parseInt(this.first, 10) : this.min
 
     this.now = this.first
@@ -71,18 +71,18 @@ class Progress extends Component {
   }
 
   initialize() {
-    this.$bar = query(`.${this.classes.BAR}`, this.element)
-    this.$value = query(`.${this.classes.VALUE}`, this.element)
+    this.bar = query(`.${this.classes.BAR}`, this.element)
+    this.value = query(`.${this.classes.VALUE}`, this.element)
 
     if (this.options.label) {
-      this.$label = parseHTML(
+      this.label = parseHTML(
         templateEngine.compile(this.options.templates.label())({
           class: this.classes.LABEL,
           content: this.options.label
         })
       )
 
-      append(this.$label, this.$bar)
+      append(this.label, this.bar)
     }
 
     this.reset()
@@ -155,10 +155,10 @@ class Progress extends Component {
     this.now = n
     const percenage = this.getPercentage(this.now)
     const style = this.cssProp
-    this.$bar.style[style] = `${percenage}%`
-    this.$target.setAttribute('aria-valuenow', this.now)
-    if (this.$value && typeof this.options.valueCallback === 'function') {
-      this.$value.innerHTML = this.options.valueCallback.call(this, [this.now])
+    this.bar.style[style] = `${percenage}%`
+    this.target.setAttribute('aria-valuenow', this.now)
+    if (this.value && typeof this.options.valueCallback === 'function') {
+      this.value.innerHTML = this.options.valueCallback.call(this, [this.now])
     }
 
     this.trigger(EVENTS.UPDATE, n)

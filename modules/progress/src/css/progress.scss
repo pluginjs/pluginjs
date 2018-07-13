@@ -29,6 +29,9 @@ $progress-value-bg-color: #fff !default;
 $progress-value-radius: $border-radius-base !default;
 $progress-value-box-shadow: $box-shadow-base !default;
 
+$progress-value-vertical-height: 300px !default;
+$progress-value-vertical-width: 3px !default;
+
 // default
 // ======================================
 .#{$progress} {
@@ -57,5 +60,10 @@ $progress-value-box-shadow: $box-shadow-base !default;
         border-top-color: $progress-value-bg-color;
       }
     }
+  }
+
+  &-vertical {
+    width: $progress-value-vertical-width;
+    height: $progress-value-vertical-height;
   }
 }
