@@ -9,10 +9,8 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
-    "@pluginjs/dom": "*",
-    "@pluginjs/icons": "*",
     "@pluginjs/slider": "*",
-    "@pluginjs/styles": "*"
+    "@pluginjs/dom": "*"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

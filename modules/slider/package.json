@@ -4,47 +4,36 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "repository": {
-    "url": "git@github.com:pluginjs/plugin.js.git",
-    "type": "git"
-  },
-  "bugs": {
-    "url": "https://github.com/pluginjs/plugin.js/issues"
-  },
-  "version": "0.3.7",
+  "version": "0.0.1",
   "main": "dist/slider.umd.js",
   "module": "dist/slider.esm.js",
   "cjs": "dist/slider.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/slider.scss",
+    "source": "src/css/main.scss",
     "main": "dist/slider.css",
     "min": "dist/slider.min.css"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "scripts": {
     "build": "plugin build",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@pluginjs/arrows": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
-    "@pluginjs/dots": "*",
     "@pluginjs/events": "*",
     "@pluginjs/pluginjs": "*",
-    "@pluginjs/styles": "*",
-    "@pluginjs/tooltip": "*",
+    "@pluginjs/icons": "*",
+    "@pluginjs/swipeable": "*",
+    "@pluginjs/template": "*",
     "@pluginjs/utils": "*",
-    "hammerjs": "*"
+    "animejs": "^2.2.0"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -56,20 +45,12 @@
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
-  "engines": {
-    "node": ">= 8",
-    "npm": ">= 5"
-  },
-  "category": "media",
-  "globals": {
-    "hammerjs": "Hammer"
-  },
+  "category": "",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  },
-  "sassConfig": "./sassrc.js"
+  }
 }

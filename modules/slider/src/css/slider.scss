@@ -2,108 +2,82 @@
 
 // Vars
 // =====================
-
 $slider: "pj-slider" !default;
-$dot: "pj-dot" !default;
-$arrow: "pj-arrow" !default;
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 .#{$slider} {
-  position: relative;
-  display: flex;
   width: 100%;
+  height: 500px;
+  overflow: hidden;
 
-  &.#{$slider}-hidden {
-    opacity: 0;
-  }
-
-  &.#{$slider}-disabled {
-    cursor: not-allowed;
-
-    a {
-      cursor: not-allowed;
-      background-color: #dfe4ed;
-      opacity: 0.5;
-    }
-  }
-
-  &.#{$slider}-active {
-    a {
-      background-color: #54a3f2;
-    }
-  }
-
-  &.#{$slider}-horizontal {
-    .#{$slider}-prev,
-    .#{$slider}-next {
-      margin: 0 1rem;
-    }
-  }
-
-  .#{$slider}-container {
-    width: 100%;
-  }
-
-  .#{$slider}-box {
+  &-box {
     position: relative;
     width: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
-    transition-timing-function: ease-in;
-    transition-duration: 0.218s;
-    transition-property: box-shadow;
-
-    &:hover {
-      box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0, 0, 0, 0.3);
-    }
+    height: 100%;
   }
 
-  .#{$slider}-card {
+  &-card {
     position: absolute;
-    top: 0;
+    display: flex;
+    justify-content: center;
     width: 100%;
-    background-color: #5e5e5e;
-    border-radius: 8px;
+    height: 100%;
   }
 
-  .#{$slider}-active {
-    position: relative;
+  &-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 1px #000 solid;
+    border-radius: 50%;
+    animation: rotation 1s ease-in-out infinite;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      content: "";
+      background-color: #000;
+      border-radius: 100%;
+      transform: translateX(-50%);
+    }
   }
 
-  img {
-    z-index: 1;
-    width: 100%;
+  &-image {
+    display: block;
+    height: 100%;
     pointer-events: none;
   }
 
-  .#{$slider}-dots {
-    z-index: 10;
-    margin-top: 20px;
-
-    .#{$dot}s {
-      display: flex;
-      justify-content: center;
-    }
+  &-prev,
+  &-next {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: #789;
   }
 
-  .#{$slider}-prev,
-  .#{$slider}-next {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &-prev {
+    left: 0;
   }
 
-  &.#{$slider}-vertical {
-    flex-direction: column;
-
-    & .#{$slider}-prev,
-    & .#{$slider}-next {
-      width: 100%;
-      margin: 1rem 0;
-
-      > .#{$arrow} {
-        transform: rotate(90deg);
-      }
-    }
+  &-next {
+    right: 0;
   }
 }
+

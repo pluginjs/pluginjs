@@ -5,4 +5,3 @@ __tests__
 .markdownrc
 .rolluprc.js
 .sassrc.js
-!.sassrc.js

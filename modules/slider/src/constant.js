@@ -1,62 +1,58 @@
-export const namespace = 'slider'
+const namespace = 'slider'
 
-export const events = {
+const events = {
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  SHOW: 'show',
-  HIDE: 'hide'
+  RESIZE: 'resize',
+  PREV: 'prev',
+  NEXT: 'next'
 }
 
-export const classes = {
+const classes = {
   NAMESPACE: `pj-${namespace}`,
   CONTAINER: '{namespace}',
-  THEME: '{namespace}--{theme}',
-  ITEM: '{namespace}',
   BOX: '{namespace}-box',
   CARD: '{namespace}-card',
-  VERTICAL: '{namespace}-vertical',
-  HORIZONTAL: '{namespace}-horizontal',
+  LOADER: '{namespace}-loader',
+  LOADED: '{namespace}-loaded',
+  IMAGE: '{namespace}-image',
+  VIDEO: '{namespace}-video',
   ACTIVE: '{namespace}-active',
-  DISABLED: '{namespace}-disabled',
-  HIDDEN: '{namespace}-hidden'
+  VERTICAL: '{namespace}-vertical',
+  DISABLED: '{namespace}-disabled'
 }
 
-export const methods = [
-  'enable',
-  'disable',
-  'destroy',
-  'show',
-  'hide',
-  'goNext',
-  'goPrev',
-  'autoPlay',
-  'setAutoPlayCycle',
-  'setAnimation',
-  'setSpecPage'
-]
+const methods = ['enable', 'disable', 'destroy', 'prev', 'next']
 
-export const defaults = {
-  animation: 'linear',
-  arrowNameSpace: null,
-  arrows: false,
-  autoplay: false,
-  direction: 'horizontal',
-  dots: false,
-  dotNameSpace: null,
-  playcycle: 1500
-}
-
-export const dependencies = ['Hammer', 'dots', 'arrows']
-
-export const translations = {
-  en: {
-    prev: 'Last page',
-    next: 'Next page'
-  },
-  zh: {
-    prev: '上一页',
-    next: '下一页'
+const defaults = {
+  data: null,
+  arrows: true,
+  vertical: false,
+  current: null,
+  duration: 300,
+  locale: 'en',
+  templates: {
+    box() {
+      return '<div class="{classes.BOX}"></div>'
+    },
+    card() {
+      return (
+        '<div class="{classes.CARD}">' +
+        '<div class="{classes.LOADER}"></div>' +
+        '</div>'
+      )
+    },
+    image() {
+      return '<img class="{classes.IMAGE} {classes.LOADED}" src="{data.src}">'
+    },
+    video() {
+      return '<div class="{classes.VIDEO} {classes.LOADED}"></div>'
+    }
   }
 }
+
+const dependencies = ['arrows']
+
+export { classes, defaults, events, methods, namespace, dependencies }
