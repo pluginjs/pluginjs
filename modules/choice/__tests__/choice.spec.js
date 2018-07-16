@@ -105,11 +105,11 @@ describe('Choice', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Choice.of($element)
+      api = Choice.of($element, options)
     })
 
     test('should get the value', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeString()
     })
   })
 
@@ -119,37 +119,37 @@ describe('Choice', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Choice.of($element)
+      api = Choice.of($element, options)
     })
 
     test('should set the value', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeString()
 
       api.set(false)
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeBoolean()
 
       api.set(true)
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeBoolean()
     })
 
     test('should set the value with string', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeString()
 
       api.set('false')
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeString()
 
       api.set('true')
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeString()
     })
 
     test('should set the value with number', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeString()
 
       api.set(0)
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeNumber()
 
       api.set(1)
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeNumber()
     })
   })
 
@@ -159,41 +159,41 @@ describe('Choice', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Choice.of($element)
+      api = Choice.of($element, options)
     })
 
     test('should get the value', () => {
-      expect(api.val()).toEqual(true)
+      expect(api.val()).toBeString()
     })
 
     test('should set the value', () => {
       api.val(false)
 
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeBoolean()
 
       api.val(true)
 
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeBoolean()
     })
 
     test('should set the value with string', () => {
       api.val('false')
 
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeString()
 
       api.val('true')
 
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeString()
     })
 
     test('should set the value with number', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeString()
 
       api.val(0)
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeNumber()
 
       api.val(1)
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeNumber()
     })
   })
 

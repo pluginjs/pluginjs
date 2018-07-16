@@ -122,7 +122,7 @@ describe('BgPicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
     })
   })
 
@@ -136,33 +136,33 @@ describe('BgPicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
 
       api.set(false)
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeObject()
 
       api.set(true)
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
     })
 
     test('should set the value with string', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
 
       api.set('false')
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeObject()
 
       api.set('true')
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
     })
 
     test('should set the value with number', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
 
       api.set(0)
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeObject()
 
       api.set(1)
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
     })
   })
 
@@ -176,37 +176,37 @@ describe('BgPicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.val()).toEqual(true)
+      expect(api.val()).toBeObject()
     })
 
     test('should set the value', () => {
       api.val(false)
 
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeObject()
 
       api.val(true)
 
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
     })
 
     test('should set the value with string', () => {
       api.val('false')
 
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeObject()
 
       api.val('true')
 
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
     })
 
     test('should set the value with number', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
 
       api.val(0)
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeObject()
 
       api.val(1)
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeObject()
     })
   })
 
