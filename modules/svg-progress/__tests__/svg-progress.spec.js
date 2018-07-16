@@ -57,113 +57,131 @@ describe('SvgProgress', () => {
   describe('api call', () => {
     test('should call start', () => {
       const $element = SvgProgress.of(generateHTMLSample())
-      $element.start()
+      setTimeout(() => {
+        expect($element.start()).toBeNil()
+      }, 0)
     })
 
     test('should call destroy', () => {
       const $element = SvgProgress.of(generateHTMLSample())
-      $element.destroy()
+      setTimeout(() => {
+        $element.destroy()
+      }, 0)
     })
   })
 
-  // describe('initialized()', () => {
-  //   let $element
+  describe('initialized()', () => {
+    let $element
 
-  //   beforeEach(() => {
-  //     $element = generateHTMLSample()
-  //   })
+    beforeEach(() => {
+      $element = generateHTMLSample()
+    })
 
-  //   test('should trigger ready event', () => {
-  //     let called = 0
+    test('should trigger ready event', () => {
+      let called = 0
 
-  //     $element.addEventListener('svgProgress:ready', () => {
-  //       called++
-  //     })
+      $element.addEventListener('svgProgress:ready', () => {
+        called++
+      })
 
-  //     const instance = SvgProgress.of($element)
-  //     expect(called).toEqual(1)
-  //     console.log(called)
-  //     expect(instance.is('initialized')).toBeTrue()
-  //   })
-  // })
+      const instance = SvgProgress.of($element)
+      setTimeout(() => {
+        expect(called).toEqual(1)
+        expect(instance.is('initialized')).toBeTrue()
+      }, 0)
+    })
+  })
 
-  // describe('destroy()', () => {
-  //   let $element
-  //   let api
+  describe('destroy()', () => {
+    let $element
+    let api
 
-  //   beforeEach(() => {
-  //     $element = generateHTMLSample()
-  //     api = SvgProgress.of($element)
-  //   })
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = SvgProgress.of($element)
+    })
 
-  //   test('should trigger destroy event', () => {
-  //     let called = 0
+    test('should trigger destroy event', () => {
+      let called = 0
 
-  //     $element.addEventListener('svgProgress:destroy', () => {
-  //       expect(api.is('initialized')).toBeFalse()
-  //       called++
-  //     })
+      $element.addEventListener('svgProgress:destroy', () => {
+        setTimeout(() => {
+          expect(api.is('initialized')).toBeFalse()
+        }, 0)
+        called++
+      })
 
-  //     api.destroy()
+      setTimeout(() => {
+        api.destroy()
+        expect(called).toEqual(1)
+      }, 0)
+    })
+  })
 
-  //     expect(called).toEqual(1)
-  //   })
-  // })
+  describe('enable()', () => {
+    let $element
+    let api
 
-  // describe('enable()', () => {
-  //   let $element
-  //   let api
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = SvgProgress.of($element)
+    })
 
-  //   beforeEach(() => {
-  //     $element = generateHTMLSample()
-  //     api = SvgProgress.of($element)
-  //   })
+    test('should enable the plugin', () => {
+      setTimeout(() => {
+        api.disable()
+        api.enable()
+        expect(api.is('disabled')).toBeFalse()
+      }, 0)
+    })
 
-  //   test('should enable the plugin', () => {
-  //     api.disable()
-  //     api.enable()
+    test('should trigger enable event', () => {
+      let called = 0
 
-  //     expect(api.is('disabled')).toBeFalse()
-  //   })
+      $element.addEventListener('svgProgress:enable', () => {
+        setTimeout(() => {
+          expect(api.is('disabled')).toBeFalse()
+        }, 0)
+        called++
+      })
 
-  //   test('should trigger enable event', () => {
-  //     let called = 0
+      setTimeout(() => {
+        api.enable()
+        expect(called).toEqual(1)
+      }, 0)
+    })
+  })
 
-  //     $element.addEventListener('svgProgress:enable', () => {
-  //       expect(api.is('disabled')).toBeFalse()
-  //       called++
-  //     })
+  describe('disable()', () => {
+    let $element
+    let api
 
-  //     api.enable()
-  //     expect(called).toEqual(1)
-  //   })
-  // })
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = SvgProgress.of($element)
+    })
 
-  // describe('disable()', () => {
-  //   let $element
-  //   let api
+    test('should disable the plugin', () => {
+      setTimeout(() => {
+        api.disable()
+        expect(api.is('disabled')).toBeTrue()
+      }, 0)
+    })
 
-  //   beforeEach(() => {
-  //     $element = generateHTMLSample()
-  //     api = SvgProgress.of($element)
-  //   })
+    test('should trigger disable event', () => {
+      let called = 0
 
-  //   test('should disable the plugin', () => {
-  //     api.disable()
+      $element.addEventListener('svgProgress:disable', () => {
+        setTimeout(() => {
+          expect(api.is('disabled')).toBeTrue()
+        }, 0)
+        called++
+      })
 
-  //     expect(api.is('disabled')).toBeTrue()
-  //   })
-
-  //   test('should trigger disable event', () => {
-  //     let called = 0
-
-  //     $element.addEventListener('svgProgress:disable', () => {
-  //       expect(api.is('disabled')).toBeTrue()
-  //       called++
-  //     })
-
-  //     api.disable()
-  //     expect(called).toEqual(1)
-  //   })
-  // })
+      setTimeout(() => {
+        api.disable()
+        expect(called).toEqual(1)
+      }, 0)
+    })
+  })
 })
