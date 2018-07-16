@@ -30,6 +30,7 @@ class ImageLoader extends Component {
 
   initialize() {
     this.$imgs = Array.from(this.getImgs())
+    this.loading()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
@@ -60,41 +61,6 @@ class ImageLoader extends Component {
 
   getImgs() {
     return this.element.querySelectorAll(this.selector)
-  }
-
-  add(imgs) {
-    this.done = 0
-    this.fail = 0
-    this.imgLoadAll = []
-    this.$imgs = []
-
-    if (Array.isArray(imgs)) {
-      imgs.forEach(imgSrc => {
-        const $img = new Image()
-        $img.src = imgSrc
-
-        this.element.append($img)
-        this.$imgs.push($img)
-      })
-    }
-
-    this.loading()
-
-    return this
-  }
-
-  load(imgs) {
-    this.done = 0
-    this.fail = 0
-    this.imgLoadAll = []
-
-    if (imgs) {
-      this.add(imgs)
-    } else {
-      this.loading()
-    }
-
-    return this
   }
 
   loading() {

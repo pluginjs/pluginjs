@@ -28,6 +28,7 @@ Build production bundle:
 ```sh
 npx plugin build <moduleName>
 # or npx plugin b <moduleName>
+npx plugin build all
 ```
 
 Create a new plugin:

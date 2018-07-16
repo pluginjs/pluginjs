@@ -38,8 +38,8 @@
     "@pluginjs/pluginjs": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
-    "@pluginjs/utils": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

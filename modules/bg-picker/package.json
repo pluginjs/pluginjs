@@ -42,7 +42,8 @@
     "@pluginjs/is": "*",
     "@pluginjs/pluginjs": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/styles": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

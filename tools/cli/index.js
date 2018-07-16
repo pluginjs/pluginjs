@@ -76,4 +76,10 @@ yargs
       desc: 'Publish package to npm'
     })
   )
+  .command(
+    alias('lint', {
+      command: ['lint [moduleName]'],
+      desc: 'Lint JavaScript code by ESLint.'
+    })
+  )
   .parse()
