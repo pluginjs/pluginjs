@@ -129,7 +129,7 @@ describe('Radio', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
     })
   })
 
@@ -143,33 +143,33 @@ describe('Radio', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
 
       api.set(false)
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeArray()
 
       api.set(true)
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
     })
 
     test('should set the value with string', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
 
       api.set('false')
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeArray()
 
       api.set('true')
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
     })
 
     test('should set the value with number', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
 
       api.set(0)
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeArray()
 
       api.set(1)
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
     })
   })
 
@@ -183,37 +183,37 @@ describe('Radio', () => {
     })
 
     test('should get the value', () => {
-      expect(api.val()).toEqual(true)
+      expect(api.val()).toBeArray()
     })
 
     test('should set the value', () => {
       api.val(false)
 
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeArray()
 
       api.val(true)
 
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
     })
 
     test('should set the value with string', () => {
       api.val('false')
 
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeArray()
 
       api.val('true')
 
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
     })
 
     test('should set the value with number', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
 
       api.val(0)
-      expect(api.get()).toEqual(false)
+      expect(api.get()).toBeArray()
 
       api.val(1)
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
     })
   })
 
