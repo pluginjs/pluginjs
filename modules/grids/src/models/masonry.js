@@ -1,7 +1,6 @@
 import { addClass } from '@pluginjs/classes'
 
-import { bindEvent, removeEvent } from '@pluginjs/events'
-
+/* eslint-disable */
 class Masonry {
   constructor(instanced) {
     this.api = instanced

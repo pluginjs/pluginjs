@@ -2,8 +2,6 @@ import { addClass } from '@pluginjs/classes'
 import { find, append, children } from '@pluginjs/dom'
 import { setStyle, getStyle } from '@pluginjs/styled'
 
-import anime from 'animejs'
-
 class Item {
   constructor(instanced, el, opts) {
     this.api = instanced
@@ -14,6 +12,7 @@ class Item {
     this.init()
   }
 
+  /* eslint-disable */
   init() {
     addClass(this.api.classes.CHUNK, this.$el)
 

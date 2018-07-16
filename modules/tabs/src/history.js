@@ -1,7 +1,6 @@
 import { bindEvent } from '@pluginjs/events'
 import { childQuery } from '@pluginjs/dom'
 import is from '@pluginjs/is'
-import Pj from '@pluginjs/pluginjs'
 
 class History {
   constructor(instance) {
@@ -106,7 +105,7 @@ class History {
     const REG = new RegExp(`#*${this.instance.historyId}=[^&]+`, 'i')
     const state = {
       index: current,
-      slug: attr !== undefined && attr != null ? attr : current,
+      slug: attr === undefined && attr === null ? current : attr, /* eslint-disable-line */
       initial: current === this.instance.options.initialIndex
     }
     let url = window.location.hash

@@ -1,6 +1,5 @@
 import keyboard from '@pluginjs/keyboard'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import Pj from '@pluginjs/pluginjs'
+import { bindEvent } from '@pluginjs/events'
 
 class Keyboard {
   constructor(instance) {

@@ -115,9 +115,7 @@ $filters-button-gap: 10px !default;
     &:first-child {
       margin-left: 0;
     }
-  }
 
-  .#{$filter} {
     &:not(:disabled):hover,
     &:not(:disabled):focus {
       border-color: $filter-border-color;

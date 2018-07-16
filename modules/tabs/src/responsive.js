@@ -177,7 +177,7 @@ class Responsive {
         ? this.instance.$nav.scrollHeight
         : this.instance.$nav.scrollWidth
 
-    if (this.delta === undefined) {
+    if (this.delta === undefined) { /* eslint-disable-line */
       this.delta = 0
     }
   }

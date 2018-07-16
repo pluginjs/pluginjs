@@ -47,7 +47,7 @@ export const defaults = {
 
   templates: {
     label() {
-      return `<span class="{class}">{content}</span>`
+      return '<span class="{class}">{content}</span>'
     }
   },
   valueCallback(n) {

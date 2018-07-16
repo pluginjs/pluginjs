@@ -3,7 +3,7 @@
 // Vars
 // =====================
 $progress: "pj-progress" !default;
-$progress-bar-bg: lightpink;
+$progress-bar-bg: $color-danger-light !default;
 $progress-label-bottom: 4px !default;
 $progress-margin-bottom: 40px !default;
 $progress-border-radius: 1px !default;

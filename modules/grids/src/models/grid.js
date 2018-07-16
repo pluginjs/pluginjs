@@ -1,6 +1,7 @@
 import { addClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 
+/* eslint-disable */
 class Grid {
   constructor(instanced) {
     this.api = instanced

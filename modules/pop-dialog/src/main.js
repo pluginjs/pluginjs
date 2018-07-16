@@ -4,7 +4,7 @@ import { deepMerge, compose } from '@pluginjs/utils'
 import { bindEvent } from '@pluginjs/events'
 import { dataset, parentWith, query } from '@pluginjs/dom'
 import { hasClass, removeClass } from '@pluginjs/classes'
-import Pj, {
+import {
   eventable,
   register,
   stateable,

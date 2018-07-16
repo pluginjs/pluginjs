@@ -100,5 +100,5 @@ $dot-active-background-color: rgb(51, 51, 51) !default;
 }
 
 .#{$drag} .#{$grids}-container {
-  cursor: -webkit-grab;
+  cursor: -webkit-grab; /* stylelint-disable-line */
 }

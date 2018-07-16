@@ -217,8 +217,9 @@ class Responsive {
 
   labelActive(index) {
     this.index = index
-    const noExistsIndex = -1
-    if (this.instance.current.indexOf(index) !== noExistsIndex) {
+    const BASE_INDEX = -1
+
+    if (this.instance.current.indexOf(index) !== BASE_INDEX) {
       removeClass(this.instance.classes.DROPDOWNOPEN, this.$dropdown)
       return
     }
@@ -236,13 +237,15 @@ class Responsive {
 
   open(index, trigger) {
     this.index = index
+
+    const BASE_DURATION = 1
     const $pane = this.instance.$panes[index]
     const magicNumber = 1
     anime({
       targets: $pane,
       translateY: 0,
       opacity: 1,
-      duration: trigger ? this.duration : magicNumber,
+      duration: trigger ? this.duration : BASE_DURATION,
       easing: this.effects.in,
       begin: () => {
         addClass(this.instance.classes.ACTIVE, $pane)
@@ -254,12 +257,12 @@ class Responsive {
 
   close(index, trigger) {
     const pane = this.instance.$panes[this.instance.prev[0]]
-    const magicNumber = 1
+    const BASE_DURATION = 1
     anime({
       targets: pane,
       translateY: '50%',
       opacity: 0,
-      duration: trigger ? this.duration : magicNumber,
+      duration: trigger ? this.duration : BASE_DURATION,
       easing: this.effects.out,
       complete: () =>
         compose(
