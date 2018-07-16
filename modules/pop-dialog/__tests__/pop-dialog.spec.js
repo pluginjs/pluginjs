@@ -1,9 +1,5 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Tooltip from '@pluginjs/tooltip'
-import Popover from '@pluginjs/popover'
-import PopDialog from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import PopDialog from '../src/main'
+import generateHTMLSample from './fixtures/sample'
 
 describe('PopDialog', () => {
   describe('PopDialog()', () => {
@@ -49,20 +45,6 @@ describe('PopDialog', () => {
       const popDialog = new PopDialog(element)
 
       expect(popDialog.classes).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asPopDialog()).toEqual($element)
-
-      const api = $element.data('popDialog')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
     })
   })
 
@@ -122,13 +104,13 @@ describe('PopDialog', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asPopDialog()
-      expect($element.asPopDialog('bind')).toBeNil()
+      const popDialog = PopDialog.of(generateHTMLSample())
+      expect(popDialog.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asPopDialog()
-      expect($element.asPopDialog('destroy')).toEqual($element)
+      const popDialog = PopDialog.of(generateHTMLSample())
+      popDialog.destroy()
     })
   })
 
@@ -136,19 +118,18 @@ describe('PopDialog', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('popDialog:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('popDialog:ready', () => {
         called++
       })
-
-      $element.asPopDialog()
+      const instance = PopDialog.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -157,19 +138,19 @@ describe('PopDialog', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asPopDialog()
-      api = $element.data('popDialog')
+      $element = generateHTMLSample()
+      api = PopDialog.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('popDialog:destroy', (event, api) => {
+      $element.addEventListener('popDialog:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asPopDialog('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -180,13 +161,13 @@ describe('PopDialog', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asPopDialog()
-      api = $element.data('popDialog')
+      $element = generateHTMLSample()
+      api = PopDialog.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asPopDialog('disable')
-      $element.asPopDialog('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -194,12 +175,12 @@ describe('PopDialog', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('popDialog:enable', (event, api) => {
+      $element.addEventListener('popDialog:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asPopDialog('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -209,12 +190,12 @@ describe('PopDialog', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asPopDialog()
-      api = $element.data('popDialog')
+      $element = generateHTMLSample()
+      api = PopDialog.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asPopDialog('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -222,12 +203,12 @@ describe('PopDialog', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('popDialog:disable', (event, api) => {
+      $element.addEventListener('popDialog:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asPopDialog('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

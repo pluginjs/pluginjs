@@ -45,34 +45,27 @@ $popover-dark-arrow-color: $popover-dark-bg !default;
 $popover-dark-border-color: rgba(255, 255, 255, 0.1) !default;
 $popover-shadow-box-shadow: $box-shadow-5 !default;
 
-//base style var
-$popover-example-padding: 20px !default;
-$popover-example-margin-y: 20px !default;
-$popover-example-border-color: #f7f7f9 !default;
-$popover-position-cell-a-width: 33.33% !default;
-$popover-position-cell-a-bgColor: rgba(91,192,235,0.37) !default;
-$popover-position-cell-a-padding: 16px 5px !default;
+//base style vars
+$popover-position-grid-margin-x: 100px !default;
+$popover-position-cell-a-padding-y: 0.9rem !default;
+$popover-position-cell-a-padding-x: 2rem !default;
+$popover-position-cell-a-margin-y: 20px !default;
 
 //base style
-.example {
-  position: relative;
-  padding: $popover-example-padding;
-  margin: $popover-example-margin-y 0;
-  border: 1px solid $popover-example-border-color;
-}
 .position-grid {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 $popover-position-grid-margin-x;
 }
+
 .position-cell {
-  flex: 1 $popover-position-cell-a-width;
+  flex: 1 33.33%;
 }
+
 .position-cell a {
   display: inline-block;
-  width: 90%;
-  padding: $popover-position-cell-a-padding;
-  margin: 2px 0;
-  background: $popover-position-cell-a-bgColor;
+  padding: $popover-position-cell-a-padding-y $popover-position-cell-a-padding-x;
+  margin-top: $popover-position-cell-a-margin-y;
 }
 
 @mixin reset-text {
