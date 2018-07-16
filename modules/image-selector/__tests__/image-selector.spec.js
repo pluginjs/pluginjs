@@ -140,6 +140,104 @@ describe('ImageSelector', () => {
     })
   })
 
+  describe('get()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = ImageSelector.of($element, datas)
+    })
+
+    test('should get the value', () => {
+      expect(api.get()).toBeString()
+    })
+  })
+
+  describe('set()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = ImageSelector.of($element, datas)
+    })
+
+    test('should set the value', () => {
+      expect(api.get()).toBeString()
+
+      api.set(false)
+      expect(api.get()).toBeBoolean()
+
+      api.set(true)
+      expect(api.get()).toBeBoolean()
+    })
+
+    test('should set the value with string', () => {
+      expect(api.get()).toBeString()
+
+      api.set('false')
+      expect(api.get()).toBeString()
+
+      api.set('true')
+      expect(api.get()).toBeString()
+    })
+
+    test('should set the value with number', () => {
+      expect(api.get()).toBeString()
+
+      api.set(0)
+      expect(api.get()).toBeNumber()
+
+      api.set(1)
+      expect(api.get()).toBeNumber()
+    })
+  })
+
+  describe('val()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = ImageSelector.of($element, datas)
+    })
+
+    test('should get the value', () => {
+      expect(api.val()).toBeString()
+    })
+
+    test('should set the value', () => {
+      api.val(false)
+
+      expect(api.get()).toBeFalse()
+
+      api.val(true)
+
+      expect(api.get()).toBeTrue()
+    })
+
+    test('should set the value with string', () => {
+      api.val('false')
+
+      expect(api.get()).toBeString()
+
+      api.val('true')
+
+      expect(api.get()).toBeString()
+    })
+
+    test('should set the value with number', () => {
+      expect(api.get()).toBeString()
+
+      api.val(0)
+      expect(api.get()).toBeNumber()
+
+      api.val(1)
+      expect(api.get()).toBeNumber()
+    })
+  })
+
   describe('enable()', () => {
     let $element
     let api
