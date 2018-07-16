@@ -1,5 +1,5 @@
 // import As from '@pluginjs/pluginjs';
-
+import $ from 'jquery'
 class Keyboard {
   constructor(instance) {
     this.instance = instance

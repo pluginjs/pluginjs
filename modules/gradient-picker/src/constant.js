@@ -60,13 +60,15 @@ export const defaults = {
       </div>`
     },
     item() {
-      return `<li class='{class}'></li>`
+      return `<li class='{class}'>
+      </li>`
     }
   },
   parse(val) {
     if (val) {
       try {
-        return JSON.parse(val.replace(/\'/g, '"'))
+        return JSON.parse(val.replace(/\'/g, '"'))/* eslint-disable-line */
+
       } catch (e) {
         return null
       }

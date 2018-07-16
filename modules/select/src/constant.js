@@ -115,8 +115,8 @@ export const defaults = {
     return this.options.multiple ? [] : ''
   },
   process(value) {
-    if (value && !is.undefined(value)) {
-      return is.array(value) ? value.join(',') : value
+    if (value && !is.undefined(value)) { /* eslint-disable-line */
+      return is.array(value) ? value.join(',') : value  /* eslint-disable-line */
     }
     return ''
   }

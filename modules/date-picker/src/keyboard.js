@@ -1,7 +1,7 @@
 import keyboard from '@pluginjs/keyboard'
 import { hasClass } from '@pluginjs/classes'
 import { query } from '@pluginjs/dom'
-
+import $ from 'jquery'
 class Keyboard {
   constructor(instance) {
     this.instance = instance

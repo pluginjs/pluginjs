@@ -21,7 +21,7 @@ class Tip {
       show: instance.classes.SHOW
     }
 
-    instance.pointer.map((p, i) => {
+    instance.pointer.map((p, i) => { /* eslint-disable-line */
       const tip = parseHTML('<span></span>')
       append(tip, instance.pointer[i].element)
 
@@ -69,7 +69,7 @@ class Tip {
                 if (is.object(instance.options.replaceFirst)) {
                   for (const key in instance.options.replaceFirst) {
                     if (
-                      Object.hasOwnProperty(instance.options.replaceFirst, key)
+                      Object.hasOwnProperty(instance.options.replaceFirst, key)/* eslint-disable-line */
                     ) {
                       value = instance.options.replaceFirst[key]
                     }

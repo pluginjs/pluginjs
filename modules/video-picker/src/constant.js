@@ -62,7 +62,8 @@ export const defaults = {
   date: null,
 
   selectCover() {
-    return `https://www.smashingmagazine.com/images/music-videos/rabbit.jpg`
+    return `https://www.smashingmagazine.com/images/music-videos/rabbit.jpg
+    `
   },
   selectLocalVideo() {
     return 'http://vjs.zencdn.net/v/oceans.mp4'
@@ -76,7 +77,7 @@ export const defaults = {
   parse(value) {
     if (value) {
       try {
-        return JSON.parse(value.replace(/\'/g, '"'))
+        return JSON.parse(value.replace(/\'/g, '"')) /* eslint-disable-line */
       } catch (e) {
         return {}
       }

@@ -1,3 +1,4 @@
+import $ from 'jquery'
 class Keyboard {
   constructor(instance) {
     this.instance = instance

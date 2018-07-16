@@ -13,7 +13,7 @@
   &.#{$radio}-checked,
   & > input[type="radio"]:checked + label {
     i:first-child {
-      &::after {
+      &::after { /* stylelint-disable-line */
         border-color: $color;
       }
     }

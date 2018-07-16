@@ -53,6 +53,23 @@ $select-active-border-color: $border-color-active !default;
     .#{$dropdown}-panel {
       border-color: $select-border-color;
     }
+    li.#{$select}-group {
+      padding: 0;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    .#{$select}-selected {
+      color: $select-item-selected-color;
+      background-color: $select-item-selected-bg;
+      &:hover {
+        color: $select-item-selected-color;
+        background-color: $select-item-selected-bg;
+      }
+    }
+    .pj-dropdown-panel-wrap {
+      z-index: 999999;
+    }
   }
 
   &-label {
@@ -71,7 +88,9 @@ $select-active-border-color: $border-color-active !default;
     // vertical-align: middle;
     margin: 0.3 * $select-sizer; //3px
     line-height: 2.1 * $select-sizer; //21px
-
+    cursor: default;
+    background-color: $select-badge-bg;
+    border-radius: $select-badge-border-radius;
     &:hover {
       background-color: $select-badge-border-color;
     }
@@ -84,18 +103,33 @@ $select-active-border-color: $border-color-active !default;
 
   &-badge-delete {
     margin-left: $select-badge-space;
+    color: $select-badge-delete-color;
     cursor: pointer;
+    &:hover {
+      color: $select-badge-delete-color-hover;
+    }
   }
 
   &-group-label {
+    display: block;
+    padding: $select-space-y $select-label-space-x;
+    font-size: $font-size-xs;
+    color: $select-group-label-color;
     cursor: default;
+
   }
 
   &-item {
     cursor: pointer;
-
     &.#{$select}-disabled {
+      color: inherit;
       cursor: not-allowed !important;
+      background-color: $select-disabled-bg !important;
+      opacity: 0.4;
+    }
+    &.#{$select}-mark {
+      color: inherit;
+      background-color: $select-item-hover-bg;
     }
   }
 
@@ -135,11 +169,6 @@ $select-active-border-color: $border-color-active !default;
       }
     }
   }
-}
-
-// Theme
-// =====================
-.#{$select} {
   &-trigger {
     z-index: 1001;
     width: $select-width;
@@ -161,41 +190,6 @@ $select-active-border-color: $border-color-active !default;
     margin: 0;
     list-style: none;
   }
-
-  &-badge {
-    cursor: default;
-    background-color: $select-badge-bg;
-    border-radius: $select-badge-border-radius;
-  }
-
-  &-badge-delete {
-    color: $select-badge-delete-color;
-
-    &:hover {
-      color: $select-badge-delete-color-hover;
-    }
-  }
-
-  &-group-label {
-    display: block;
-    padding: $select-space-y $select-label-space-x;
-    font-size: $font-size-xs;
-    color: $select-group-label-color;
-  }
-
-  &-item {
-    &.#{$select}-disabled {
-      color: inherit;
-      background-color: $select-disabled-bg !important;
-      opacity: 0.4;
-    }
-
-    &.#{$select}-mark {
-      color: inherit;
-      background-color: $select-item-hover-bg;
-    }
-  }
-
   &-item + .#{$select}-item {
     margin-top: 1px;
   }
@@ -208,29 +202,8 @@ $select-active-border-color: $border-color-active !default;
   &-focus .#{$select}-trigger {
     border-color: $select-hover-border-color;
   }
-}
 
-.#{$select}-wrap {
-  li.#{$select}-group {
-    padding: 0;
 
-    &:hover {
-      background-color: transparent;
-    }
-  }
-
-  .#{$select}-selected {
-    color: $select-item-selected-color;
-    background-color: $select-item-selected-bg;
-
-    &:hover {
-      color: $select-item-selected-color;
-      background-color: $select-item-selected-bg;
-    }
-  }
-  .pj-dropdown-panel-wrap {
-    z-index: 999999;
-  }
 }
 
 .#{$dropdown}-panel li {

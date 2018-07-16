@@ -110,7 +110,7 @@ export const defaults = {
   parse(value) {
     if (value) {
       try {
-        return JSON.parse(value.replace(/\'/g, '"'))
+        return JSON.parse(value.replace(/\'/g, '"')) /* eslint-disable-line */
       } catch (e) {
         return {}
       }

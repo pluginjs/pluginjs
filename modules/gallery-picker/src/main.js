@@ -5,18 +5,19 @@ import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
+  fadeIn,
+  fadeOut,
   query,
   queryAll,
   find,
   parent,
   parseHTML,
-  getObjData,
+  // getObjData,
   children,
   parentWith,
   insertAfter,
   insertBefore
 } from '@pluginjs/dom'
-import { fadeIn, fadeOut } from '@pluginjs/dom'
 import { setStyle, showElement, hideElement } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
 import Scrollable from '@pluginjs/scrollable'

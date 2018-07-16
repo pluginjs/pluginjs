@@ -41,7 +41,7 @@ class Spinner extends Component {
     if (this.options.rule) {
       const that = this
       const array = ['min', 'max', 'step', 'precision']
-      array.map(value => {
+      array.map(value => {/* eslint-disable-line */
         that[value] = RULES[that.options.rule][value]
       })
     } else {
@@ -182,7 +182,7 @@ class Spinner extends Component {
     let width
 
     for (const key in this.options.unit) {
-      if (this.options.unit.hasOwnProperty(key)) {
+      if (this.options.unit.hasOwnProperty(key)) {/* eslint-disable-line */
         data.push(key)
       }
     }
@@ -197,7 +197,8 @@ class Spinner extends Component {
         parseInt(this.$control.clientWidth, 10)
     }
 
-    return new UNITS(this.element, {
+    return new UNITS(this.element, { /* eslint-disable-line */
+
       data,
       width
     })
@@ -439,7 +440,7 @@ class Spinner extends Component {
 
   /* Public methods */
   update(obj) {
-    const that = this[('min', 'max', 'precision', 'step')].map(value => {
+    const that = this[('min', 'max', 'precision', 'step')].map(value => { /* eslint-disable-line */
       if (obj[value]) {
         that[value] = obj[value]
       }

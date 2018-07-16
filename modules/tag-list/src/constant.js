@@ -61,7 +61,8 @@ export const defaults = {
   ],
   templates: {
     add() {
-      return `<div class="{className}"><input type="text" class="pj-input {input}" placeholder={placeholder}><button type="button" class="{button}">{BtnText}</button></div>`
+      return `<div class="{className}"><input type="text" class="pj-input {input}" placeholder={placeholder}><button type="button" class="{button}">{BtnText}</button>
+      </div>`
     }
   }
 }

@@ -1,4 +1,12 @@
 .#{$radio} {
+  &.#{$radio}-checked,
+  & > input[type="radio"]:checked + label {
+    i:first-child:not([class]) {
+      &::before {
+        transform: scale(0.5);
+      }
+    }
+  }
   i:first-child:not([class]) {
     &::before {
       display: block;
@@ -9,17 +17,6 @@
       border-radius: 50%;
       transition: transform 0.25s;
       transform: scale(0);
-    }
-  }
-}
-
-.#{$radio} {
-  &.#{$radio}-checked,
-  & > input[type="radio"]:checked + label {
-    i:first-child:not([class]) {
-      &::before {
-        transform: scale(0.5);
-      }
     }
   }
 }

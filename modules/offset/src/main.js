@@ -415,7 +415,7 @@ class Offset extends Component {
       // const unit = $this.asUnits('getUnit')
       const unit = getObjData('units', $this).getUnit()
       const val = {}
-      if (!is.number(parseInt(value))) {
+      if (!is.number(parseInt(value, 2))) {
         value = 0
       }
 
@@ -492,7 +492,7 @@ class Offset extends Component {
   }
 
   setView() {
-    this.items.map((item, i) => {
+    this.items.map((item, i) => { /* eslint-disable-line */
       const input = query('input', item)
       const key = input.getAttribute('name')
       const view = query(`.${this.classes.VIEW}`, item)
@@ -500,17 +500,17 @@ class Offset extends Component {
 
       if (info && info.unit === 'auto') {
         view.innerHTML = 'auto'
-        return
+        return /* eslint-disable-line */
       }
 
       if (info && info.value.length < 1) {
         view.innerHTML = '-'
-        return
+        return /* eslint-disable-line */
       }
 
       if (info && info.value === 0) {
         view.innerHTML = 0
-        return
+        return /* eslint-disable-line */
       }
 
       view.innerHTML = `${this.data[key].value}${this.data[key].unit}`
@@ -564,22 +564,22 @@ class Offset extends Component {
       if (this.is('connect')) {
         let key
         let name
-        let val
+        let val /* eslint-disable-line */
 
-        Each(value, (i, v) => {
+        Each(value, (i, v) => { /* eslint-disable-line */
           name = i
           key = i.split('-')[0]
           val = value[i]
         })
 
-        Each(this.value, (i, v) => {
+        Each(this.value, (i, v) => { /* eslint-disable-line */
           if (i.indexOf(key) > -1) {
             this.value[i] = value[name]
           }
         })
       }
     } else {
-      Each(value, (i, v) => {
+      Each(value, (i, v) => { /* eslint-disable-line */
         if (value[i]) {
           this.value[i] = value[i]
         } else {

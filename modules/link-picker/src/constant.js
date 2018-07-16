@@ -72,19 +72,24 @@ export const defaults = {
         </div>`
     },
     preview() {
-      return `<div class='{class}'><i class='icon-chain'></i><div class='{link}'></div></div>`
+      return `<div class='{class}'><i class='icon-chain'></i><div class='{link}'></div>
+      </div>`
     },
     panel() {
-      return `<div class='{class}'></div>`
+      return `<div class='{class}'>
+      </div>`
     },
     container() {
-      return `<div class='{class}' data-type='{type}'></div>`
+      return `<div class='{class}' data-type='{type}'>
+      </div>`
     },
     item() {
-      return `<div class='{class}' data-value='{name}'><div class='{titleClass}'>{title}: </div><div class='{body} data-connect="{parent}"'></div></div>`
+      return `<div class='{class}' data-value='{name}'><div class='{titleClass}'>{title}: </div><div class='{body} data-connect="{parent}"'></div>
+      </div>`
     },
     panelAction() {
-      return `<div class='{class}'><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {cancel}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {save}'>{saveTitle}</button></div>`
+      return `<div class='{class}'><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {cancel}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {save}'>{saveTitle}</button>
+      </div>`
     }
   },
   process(value) {

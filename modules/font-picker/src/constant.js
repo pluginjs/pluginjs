@@ -80,33 +80,38 @@ export const defaults = {
   // sourcelist: ['google', 'typekit', 'fontsquirrel', 'custom', 'system'],
   templates: {
     empty() {
-      return `<div class='{class}'>{title}<a href="#" class='{link}'>{linkTitle}</a></div>`
+      return `<div class='{class}'>{title}<a href="#" class='{link}'>{linkTitle}</a>
+      </div>`
     },
     trigger() {
-      return `<div class={trigger}><i class='icon-chevron-down'></i></div>`
+      return `<div class={trigger}><i class='icon-chevron-down'></i>
+      </div>`
     },
     font() {
-      return `<li class="{font}" data-value="{fontName}">{fontName}</li>`
+      return `<li class="{font}" data-value="{fontName}">{fontName}
+      </li>`
     },
     categories() {
-      return `<div class='pj-dropdown-item {categories}' data-value='{categoriesName}'><div class={categoriesTitle}>{title}<i class='icon-chevron-down'></i></div></div>`
+      return `<div class='pj-dropdown-item {categories}' data-value='{categoriesName}'><div class={categoriesTitle}>{title}<i class='icon-chevron-down'></i></div>
+      </div>`
     },
     controller() {
-      return `<div class={controller}><div class={selector}></div></div>`
+      return `<div class={controller}><div class={selector}></div>
+      </div>`
     },
     search() {
-      return `<form class={search} action="#"><i class='{search}-icon icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class="{search}-close icon-close"></i></form>`
+      return `<form class={search} action="#"><i class='{search}-icon icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class="{search}-close icon-close"></i>
+      </form>`
     }
   },
   process(value) {
-    /* global As*/
     if (value && !is.undefined(value)) {
       return JSON.stringify(value)
     }
     return ''
   },
   parse(val) {
-    return JSON.parse(val.replace(/\'/g, '"'))
+    return JSON.parse(val.replace(/\'/g, '"'))/* eslint-disable-line */
     // const values = val.split(':');
     // return {
     //   source: values[0],

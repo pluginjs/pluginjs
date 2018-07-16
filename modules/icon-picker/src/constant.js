@@ -75,22 +75,28 @@ export const defaults = {
   disabled: false,
   templates: {
     empty() {
-      return `<div class='{class}'>{title}<a href="#" class='{link}'>{linkTitle}</a></div>`
+      return `<div class='{class}'>{title}<a href="#" class='{link}'>{linkTitle}</a>
+      </div>`
     },
     trigger() {
-      return `<div class={trigger}><i class='{trigger}-switch icon-chevron-down'></i></div>`
+      return `<div class={trigger}><i class='{trigger}-switch icon-chevron-down'></i>
+      </div>`
     },
     icon() {
-      return `<li class={icon}><i class='{font} {iconName}' data-value={iconName}></i></li>`
+      return `<li class={icon}><i class='{font} {iconName}' data-value={iconName}></i>
+      </li>`
     },
     categories() {
-      return `<div class='{categories} {categoriesName}'><div class={categoriesTitle}>{title}</div></div>`
+      return `<div class='{categories} {categoriesName}'><div class={categoriesTitle}>{title}</div>
+      </div>`
     },
     controller() {
-      return `<div class={controller}><div class={selector}></div></div>`
+      return `<div class={controller}><div class={selector}></div>
+      </div>`
     },
     search() {
-      return `<form class={search} action="#"><i class='icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='icon-close {close}'></i></form>`
+      return `<form class={search} action="#"><i class='icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='icon-close {close}'></i>
+      </form>`
     }
   },
   process(value) {
@@ -101,7 +107,8 @@ export const defaults = {
   },
   parse(value) {
     if (value) {
-      return JSON.parse(value.replace(/\'/g, '"'))
+      return JSON.parse(value.replace(/\'/g, '"'))/* eslint-disable-line */
+
     }
 
     return false

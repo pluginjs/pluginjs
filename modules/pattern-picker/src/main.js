@@ -281,13 +281,13 @@ class PatternPicker extends Component {
         name: key,
         'background-color': this.bgColor,
         // make '#' to '%23', fixed svg data image not working on FireFox.
-        'background-image': val.replace(/\#+/g, '%23')
+        'background-image': val.replace(/\#+/g, '%23')/* eslint-disable-line */
       }
       setObjData('info', info, $img)
       setStyle(
         {
           backgroundColor: this.bgColor,
-          backgroundImage: val.replace(/\#+/g, '%23')
+          backgroundImage: val.replace(/\#+/g, '%23') /* eslint-disable-line */
         },
         $img
       )
@@ -514,7 +514,8 @@ class PatternPicker extends Component {
         backgroundColor: imgData['background-color'],
 
         // make '#' to '%23', fixed svg data image not working on FireFox.
-        backgroundImage: imgData['background-image'].replace(/\#+/g, '%23')
+        backgroundImage: imgData['background-image'].replace(/\#+/g, '%23')/* eslint-disable-line */
+
       },
       img
     )

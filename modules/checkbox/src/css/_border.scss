@@ -13,7 +13,7 @@
   &.#{$checkbox}-checked,
   & > input[type="checkbox"]:checked + label {
     i:first-child {
-      &::after {
+      &::after {   /* stylelint-disable-line */
         border-color: $color;
       }
     }

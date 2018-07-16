@@ -32,19 +32,6 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-
-function parseElementValue(value) {
-  if (Array.isArray(value)) {
-    return JSON.stringify(value)
-  }
-
-  try {
-    return JSON.parse(value)
-  } catch (error) {
-    return value
-  }
-}
-
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)

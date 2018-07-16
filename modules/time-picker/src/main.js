@@ -314,7 +314,7 @@ class TimePicker extends Component {
     bindEvent(
       {
         type: this.eventName('change'),
-        handler: () => {
+        handler: () => { /* eslint-disable-line */
           const time = this.$inputEl.value.trim()
           const timeList = this.getTimeList()
 

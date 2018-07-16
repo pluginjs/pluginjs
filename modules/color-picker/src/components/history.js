@@ -1,12 +1,12 @@
 import { bindEvent } from '@pluginjs/events'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import { addClass } from '@pluginjs/classes'
 import {
   parseHTML,
   queryAll,
-  parentWith,
-  parent,
-  query,
-  children
+  parentWith
+  // parent,
+  // query,
+  // children
 } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 
@@ -62,14 +62,14 @@ class History {
       {
         type: 'click',
         identity: { type: 'selector', value: `.${this.classes.HISTORYITEM}` },
-        handler: ({ target }) => {
+        handler: ({ target }) => { /* eslint-disable-line */
           const el = target.matches(`.${this.classes.HISTORYITEM}`)
             ? target
             : parentWith(
                 el => el.matches(`.${this.classes.HISTORYITEM}`),
                 target
               )
-          if (getStyle('cursor', el) == 'not-allowed') {
+          if (getStyle('cursor', el) === 'not-allowed') {
             return false
           }
           const color = getStyle('background-color', el)
@@ -81,7 +81,7 @@ class History {
   }
 
   update(color) {
-    if (this.colors.indexOf(color) == -1) {
+    if (this.colors.indexOf(color) === -1) {
       this.colors.push(color)
       this.count++
 

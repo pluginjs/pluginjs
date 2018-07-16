@@ -55,7 +55,9 @@ $spinner-focus-hover-border-color: $gray-light !default;
     padding-left: 3.5 * $spinner-sizer; //35px
     border-radius: 4px;
   }
-
+  .pj-dropdown-select .pj-dropdown-label {
+    padding: 0;
+  }
   input {
     box-sizing: border-box;
     width: $spinner-width;
@@ -172,11 +174,5 @@ $spinner-focus-hover-border-color: $gray-light !default;
 
   .#{$units}-trigger {
     right: 2 * $spinner-sizer; //20px
-  }
-}
-
-.#{$spinner} {
-  .pj-dropdown-select .pj-dropdown-label {
-    padding: 0;
   }
 }

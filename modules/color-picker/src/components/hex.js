@@ -1,16 +1,16 @@
-import alpha from './alpha'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+// import alpha from './alpha'
+import { bindEvent } from '@pluginjs/events'
 import {
   query,
-  getObjData,
-  setObjData,
-  find,
+  // getObjData,
+  // setObjData,
+  // find,
   parseHTML,
-  parent,
-  queryAll
+  parent
+  // queryAll
 } from '@pluginjs/dom'
-import { getStyle, setStyle } from '@pluginjs/styled'
-import { hasClass, removeClass, addClass } from '@pluginjs/classes'
+// import { getStyle, setStyle } from '@pluginjs/styled'
+// import { hasClass, removeClass, addClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 class Hex {
   constructor(instance, element) {
@@ -66,7 +66,8 @@ class Hex {
           }
         }) => {
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(
-            color.value.a * 100
+            color.value.a * 100,
+            2
           )
 
           this.updateColor(this.dropdown.options.select)

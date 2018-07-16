@@ -39,7 +39,7 @@
 @mixin radio-icon-variant($color) {
   &.#{$radio}-checked,
   & > input[type="radio"]:checked + label {
-    i[class]:first-child {
+    i[class]:first-child { /* stylelint-disable-line */
       color: $color;
     }
   }

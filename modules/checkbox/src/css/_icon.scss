@@ -45,7 +45,7 @@
 @mixin checkbox-icon-variant($color) {
   &.#{$checkbox}-checked,
   & > input[type="checkbox"]:checked + label {
-    i[class]:first-child {
+    i[class]:first-child { /* stylelint-disable-line */
       color: $color;
     }
   }

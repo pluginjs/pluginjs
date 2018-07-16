@@ -259,11 +259,11 @@ class FontPicker extends Component {
         this.open($selectedPackage)
 
         // count scrollTop number
-        let scrollLength = 0
+        let scrollLength = 0  /* eslint-disable-line */
         getObjData('$fonts', $source).forEach(v => {
           if (v.dataset.categorie === this.$font.dataset.categorie) {
             if (v.dataset.value === this.$font.dataset.value) {
-              // parent(this.$font).scrollTop(scrollLength)
+              // parent(this.$font).scrollT op(scrollLength)
               return
             }
             scrollLength += this.itemHeight

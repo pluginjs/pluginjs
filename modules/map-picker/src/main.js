@@ -283,7 +283,7 @@ class MapPicker extends Component {
 
     const config = {}
 
-    this.autoComplete = new google.maps.places.Autocomplete($place, config)
+    this.autoComplete = new google.maps.places.Autocomplete($place, config) /* eslint-disable-line */
 
     // autoComplete event
     this.autoComplete.addListener('place_changed', () => {
@@ -332,7 +332,7 @@ class MapPicker extends Component {
         position[i] = parseFloat(v)
       })
 
-      const latlng = new google.maps.LatLng(position)
+      const latlng = new google.maps.LatLng(position)  /* eslint-disable-line */
       this.place.setPosition(latlng)
       this.$map.move(latlng)
       this.data = {

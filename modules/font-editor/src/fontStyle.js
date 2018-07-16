@@ -2,7 +2,7 @@ import template from '@pluginjs/template'
 import { parseHTML } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
-
+import $ from 'jquery'
 export default class FontStyle {
   constructor(instance) {
     this.instance = instance

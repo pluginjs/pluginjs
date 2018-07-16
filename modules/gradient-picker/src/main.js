@@ -4,6 +4,8 @@ import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
+  fadeOut,
+  fadeIn,
   query,
   queryAll,
   parent,
@@ -12,7 +14,6 @@ import {
   getObjData,
   closest
 } from '@pluginjs/dom'
-import { fadeOut, fadeIn } from '@pluginjs/dom'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
 import EditPanel from '@pluginjs/edit-panel'
