@@ -142,10 +142,10 @@ describe('MapPicker', () => {
       expect(api.get()).toBeObject()
 
       api.set('false')
-      expect(api.get()).toEqual("false")  /* eslint-disable-line */
+      expect(api.get()).toBeString()
 
       api.set('true')
-      expect(api.get()).toEqual("true") /* eslint-disable-line */
+      expect(api.get()).toBeString()
     })
 
     test('should set the value with number', () => {
@@ -169,7 +169,7 @@ describe('MapPicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.val()).toEqual("{}")   /* eslint-disable-line */
+      expect(api.val()).toBeString()
     })
 
     test('should set the value', () => {
