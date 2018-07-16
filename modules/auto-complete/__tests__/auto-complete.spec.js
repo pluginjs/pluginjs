@@ -120,6 +120,104 @@ describe('AutoComplete', () => {
     })
   })
 
+  describe('get()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element)
+    })
+
+    test('should get the value', () => {
+      expect(api.get()).toEqual(true)
+    })
+  })
+
+  describe('set()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element)
+    })
+
+    test('should set the value', () => {
+      expect(api.get()).toEqual(true)
+
+      api.set(false)
+      expect(api.get()).toEqual(false)
+
+      api.set(true)
+      expect(api.get()).toEqual(true)
+    })
+
+    test('should set the value with string', () => {
+      expect(api.get()).toEqual(true)
+
+      api.set('false')
+      expect(api.get()).toEqual(false)
+
+      api.set('true')
+      expect(api.get()).toEqual(true)
+    })
+
+    test('should set the value with number', () => {
+      expect(api.get()).toEqual(true)
+
+      api.set(0)
+      expect(api.get()).toEqual(false)
+
+      api.set(1)
+      expect(api.get()).toEqual(true)
+    })
+  })
+
+  describe('val()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element)
+    })
+
+    test('should get the value', () => {
+      expect(api.val()).toEqual(true)
+    })
+
+    test('should set the value', () => {
+      api.val(false)
+
+      expect(api.get()).toEqual(false)
+
+      api.val(true)
+
+      expect(api.get()).toEqual(true)
+    })
+
+    test('should set the value with string', () => {
+      api.val('false')
+
+      expect(api.get()).toEqual(false)
+
+      api.val('true')
+
+      expect(api.get()).toEqual(true)
+    })
+
+    test('should set the value with number', () => {
+      expect(api.get()).toEqual(true)
+
+      api.val(0)
+      expect(api.get()).toEqual(false)
+
+      api.val(1)
+      expect(api.get()).toEqual(true)
+    })
+  })
+
   describe('enable()', () => {
     let $element
     let api
@@ -174,35 +272,6 @@ describe('AutoComplete', () => {
       api.disable()
       expect(called).toEqual(1)
       expect(api.is('disabled')).toBeTrue()
-    })
-  })
-
-  describe('value()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = AutoComplete.of($element, { data })
-    })
-
-    test('should set the plugin', () => {
-      api.set('java')
-      expect(api.get()).toBeEqual(api)
-    })
-  })
-
-  describe('val()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = AutoComplete.of($element, { data })
-    })
-
-    test('should val the plugin', () => {
-      api.set()
     })
   })
 })
