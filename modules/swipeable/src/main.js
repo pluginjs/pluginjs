@@ -119,7 +119,7 @@ class Swipeable extends Component {
     this.startPosition.y = this.getLocation($target).translateY
       ? this.getLocation($target).translateY
       : 0
-    this.trigger(EVENTS.DRAGSTART)
+    this.trigger(EVENTS.START)
   }
 
   panMove(e) {
@@ -144,14 +144,17 @@ class Swipeable extends Component {
       },
       $target
     )
-    this.trigger(EVENTS.DRAGMOVE)
+    this.trigger(EVENTS.MOVE)
   }
 
   panEnd(e) {
-    const $target = this.element
     if (!this.isEnabled) {
       return
     }
+
+    this.trigger(EVENTS.BEFOREEND)
+    const $target = this.element
+
     if (this.options.decay) {
       this.decayMove(e, $target)
     }
@@ -159,7 +162,7 @@ class Swipeable extends Component {
       this.reboundMove($target)
     }
     removeClass('is-dragging', this.element)
-    this.trigger(EVENTS.DRAGEND)
+    this.trigger(EVENTS.AFTEREND)
   }
 
   decayMove(e, $target) {

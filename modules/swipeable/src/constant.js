@@ -5,9 +5,10 @@ const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  DRAGSTART: 'dragstart',
-  DRAGMOVE: 'dragmove',
-  DRAGEND: 'dragend',
+  START: 'start',
+  MOVE: 'move',
+  BEFOREEND: 'beforeend',
+  AFTEREND: 'afterend',
   RESIZE: 'resize',
   DECAYEND: 'decayend'
 }
