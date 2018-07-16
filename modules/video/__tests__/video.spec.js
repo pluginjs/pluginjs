@@ -1,5 +1,6 @@
 import Video from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Video', () => {
   describe('Video()', () => {
@@ -22,16 +23,14 @@ describe('Video', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const video = new Video(element)
+      const video = Video.of(generateHTMLSample())
 
       expect(video).toBeObject()
       expect(video.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const video = new Video(element)
+      const video = Video.of(generateHTMLSample())
 
       expect(video.options).toBeObject()
     })
@@ -39,7 +38,7 @@ describe('Video', () => {
 
   describe('api call', () => {
     test('should call destroy', () => {
-      const video = Video.of(document.createElement('div'))
+      const video = Video.of(generateHTMLSample())
       expect(video.destroy()).toBeNil()
     })
   })
@@ -48,7 +47,7 @@ describe('Video', () => {
     let element
 
     beforeEach(() => {
-      element = document.createElement('div')
+      element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -69,7 +68,7 @@ describe('Video', () => {
     let api
 
     beforeEach(() => {
-      element = document.createElement('div')
+      element = generateHTMLSample()
       api = Video.of(element)
     })
 
