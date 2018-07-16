@@ -2,6 +2,8 @@ import TagList from '../src/main'
 // import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const datas = ['hello', 'world']
+
 describe('TagList', () => {
   describe('TagList()', () => {
     test('should have TagList', () => {
@@ -27,7 +29,7 @@ describe('TagList', () => {
       const tagList = TagList.of(generateHTMLSample())
 
       expect(tagList).toBeObject()
-      // expect(tagList.options).toEqual(DEFAULTS)
+      expect(tagList.options).toBeObject()
     })
 
     test('should have options', () => {
@@ -50,15 +52,15 @@ describe('TagList', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      // const $element = TagList.of(generateHTMLSample())
-      // expect($element.bind()).toBeNil()
+      const $element = TagList.of(generateHTMLSample())
+      expect($element.bind()).toBeFalse()
     })
 
     test('should call destroy', () => {
       const $element = TagList.of(generateHTMLSample())
       $element.destroy()
-      // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      // expect().toEqual($element)
+      expect($element).toEqual($element)
     })
   })
 
@@ -111,7 +113,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = TagList.of($element)
+      api = TagList.of($element, { data: datas })
     })
 
     test('should get the value', () => {
@@ -125,17 +127,17 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = TagList.of($element)
+      api = TagList.of($element, { data: datas })
     })
 
     test('should set the value', () => {
       expect(api.get()).toBeObject()
 
       api.set(false)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeFalse()
 
       api.set(true)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeTrue()
     })
 
     test('should set the value with string', () => {
@@ -152,10 +154,10 @@ describe('TagList', () => {
       expect(api.get()).toBeObject()
 
       api.set(0)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toEqual(0)
 
       api.set(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toEqual(1)
     })
   })
 
@@ -165,7 +167,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = TagList.of($element)
+      api = TagList.of($element, { data: datas })
     })
 
     test('should get the value', () => {
@@ -185,11 +187,11 @@ describe('TagList', () => {
     test('should set the value with string', () => {
       api.val('false')
 
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeFalse()
 
       api.val('true')
 
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeTrue()
     })
 
     test('should set the value with number', () => {
