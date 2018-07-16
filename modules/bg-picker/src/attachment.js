@@ -24,7 +24,7 @@ export default class Attachment {
   initialize() {
     const html = template.compile(this.instance.options.attachment.template())({
       attachNamespace: this.instance.options.attachment.namespace,
-      namespace: this.instance.classes.NAMESPACE,
+      classes: this.instance.classes,
       bgAttach: this.instance.translate('bgAttach')
     })
 
@@ -32,7 +32,7 @@ export default class Attachment {
     insertAfter(this.$Attachment, this.instance.$imageWrap)
 
     this.$attachment = query(
-      `.${this.instance.classes.NAMESPACE}-attachment`,
+      `.${this.instance.classes.ATTACHMENT}`,
       this.instance.$expandPanel
     )
     this.$dropdown = query(
@@ -53,9 +53,7 @@ export default class Attachment {
         width: this.$dropdown,
         icon: 'icon-char icon-chevron-down',
         classes: {
-          panel: `pj-dropdown-panel ${
-            this.instance.classes.NAMESPACE
-          }-dropdown-panel`
+          panel: `pj-dropdown-panel ${this.instance.classes.DROPDOWNTRIGGER}`
         },
         onChange(value) {
           if (that.instance.disabled) {

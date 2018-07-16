@@ -22,7 +22,7 @@ export default class Size {
 
   initialize() {
     const html = template.compile(this.instance.options.size.template())({
-      namespace: this.instance.classes.NAMESPACE,
+      classes: this.instance.classes,
       bgSize: this.instance.translate('bgSize')
     })
 
@@ -30,7 +30,7 @@ export default class Size {
     insertAfter(this.$Size, this.instance.$imageWrap)
 
     this.$size = query(
-      `.${this.instance.classes.NAMESPACE}-size`,
+      `.${this.instance.classes.SIZE}`,
       this.instance.$expandPanel
     )
     this.$items = queryAll('li', this.$size)

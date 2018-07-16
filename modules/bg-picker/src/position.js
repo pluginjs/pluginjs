@@ -22,7 +22,7 @@ export default class Position {
 
   initialize() {
     const html = template.compile(this.instance.options.position.template())({
-      namespace: this.instance.classes.NAMESPACE,
+      classes: this.instance.classes,
       bgPosition: this.instance.translate('bgPosition')
     })
 
@@ -30,7 +30,7 @@ export default class Position {
     insertAfter(this.$Position, this.instance.$imageWrap)
 
     this.$position = query(
-      `.${this.instance.classes.NAMESPACE}-position`,
+      `.${this.instance.classes.POSITION}`,
       this.instance.$expandPanel
     )
     this.$items = queryAll('li', this.$position)

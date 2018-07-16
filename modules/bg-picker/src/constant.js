@@ -35,7 +35,29 @@ export const classes = {
   HOVER: '{namespace}-hover',
   EMPTY: '{namespace}-empty',
   EXIST: '{namespace}-exist',
-  EXPAND: '{namespace}-expand'
+  EXPAND: '{namespace}-expand',
+
+  // repeat
+  REPEAT: '{namespace}-repeat',
+  REPEATTITLE: '{namespace}-repeat-title',
+  REPEATCONTENT: '{namespace}-repeat-content',
+  REPEATCONTENTITEM: '{namespace}-repeat-content-item',
+  // position
+  POSITION: '{namespace}-position',
+  POSITIONTITLE: '{namespace}-position-title',
+  POSITIONCONTENT: '{namespace}-position-content',
+  POSITIONCONTENTITEM: '{namespace}-position-content-item',
+  // size
+  SIZE: '{namespace}-size',
+  SIZETITLE: '{namespace}-size-title',
+  SIZECONTENT: '{namespace}-size-content',
+  SIZECONTENTITEM: '{namespace}-size-content-item',
+  // attachment
+  ATTACHMENT: '{namespace}-attachment',
+  ATTACHMENTTITLE: '{namespace}-attachment-title',
+  ATTACHMENTCONTENT: '{namespace}-attachment-content',
+  DROPDOWNTRIGGER: '{namespace}-dropdown-trigger',
+  ATTACH: '{attachNamespace}'
 }
 
 export const methods = [
@@ -65,13 +87,13 @@ export const defaults = {
     values: ['no-repeat', 'repeat', 'repeat-x', 'repeat-y'],
     template() {
       return (
-        '<div class="{namespace}-repeat">' +
-        '<span class="{namespace}-repeat-title">{bgRepeat}</span>' +
-        '<ul class="{namespace}-repeat-content">' +
-        '<li class="{namespace}-repeat-content-item icon-ellipsis-square"></li>' +
-        '<li class="{namespace}-repeat-content-item icon-th"></li>' +
-        '<li class="{namespace}-repeat-content-item icon-ellipsis-h"></li>' +
-        '<li class="{namespace}-repeat-content-item icon-ellipsis-v"></li>' +
+        '<div class="{classes.REPEAT}">' +
+        '<span class="{classes.REPEATTITLE}</span>' +
+        '<ul class="{classes.REPEATCONTENT}">' +
+        '<li class="{classes.REPEATCONTENTITEM} icon-ellipsis-square"></li>' +
+        '<li class="{classes.REPEATCONTENTITEM} icon-th"></li>' +
+        '<li class="{classes.REPEATCONTENTITEM} icon-ellipsis-h"></li>' +
+        '<li class="{classes.REPEATCONTENTITEM} icon-ellipsis-v"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -93,18 +115,18 @@ export const defaults = {
     ],
     template() {
       return (
-        '<div class="{namespace}-position">' +
-        '<span class="{namespace}-position-title">{bgPosition}</span>' +
-        '<ul class="{namespace}-position-content">' +
-        '<li class="{namespace}-position-content-item icon-arrow-left-up"></li>' +
-        '<li class="{namespace}-position-content-item icon-arrow-up"></li>' +
-        '<li class="{namespace}-position-content-item icon-arrow-right-up"></li>' +
-        '<li class="{namespace}-position-content-item icon-arrow-left"></li>' +
-        '<li class="{namespace}-position-content-item icon-center-center"></li>' +
-        '<li class="{namespace}-position-content-item icon-arrow-right"></li>' +
-        '<li class="{namespace}-position-content-item icon-arrow-left-down"></li>' +
-        '<li class="{namespace}-position-content-item icon-arrow-down"></li>' +
-        '<li class="{namespace}-position-content-item icon-arrow-right-down"></li>' +
+        '<div class="{classes.POSITION}">' +
+        '<span class="{classes.POSITIONTITLE}">{bgPosition}</span>' +
+        '<ul class="{classes.POSITIONCONTENT}">' +
+        '<li class="{classes.POSITIONCONTENTITEM} icon-arrow-left-up"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} icon-arrow-up"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} icon-arrow-right-up"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} icon-arrow-left"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} icon-center-center"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} icon-arrow-right"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} icon-arrow-left-down"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} icon-arrow-down"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} icon-arrow-right-down"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -116,13 +138,13 @@ export const defaults = {
     values: ['auto 100%', '100% auto', '100% 100%', 'auto'],
     template() {
       return (
-        '<div class="{namespace}-size">' +
-        '<span class="{namespace}-size-title">{bgSize}</span>' +
-        '<ul class="{namespace}-size-content">' +
-        '<li class="{namespace}-size-content-item icon-full-height"></li>' +
-        '<li class="{namespace}-size-content-item icon-full-width"></li>' +
-        '<li class="{namespace}-size-content-item icon-full-screen"></li>' +
-        '<li class="{namespace}-size-content-item icon-auto-fit"></li>' +
+        '<div class="{classes.SIZE}">' +
+        '<span class="{classes.SIZETITLE}">{bgSize}</span>' +
+        '<ul class="{classes.SIZECONTENT}">' +
+        '<li class="{classes.SIZECONTENTITEM} icon-full-height"></li>' +
+        '<li class="{classes.SIZECONTENTITEM} icon-full-width"></li>' +
+        '<li class="{classes.SIZECONTENTITEM} icon-full-screen"></li>' +
+        '<li class="{classes.SIZECONTENTITEM} icon-auto-fit"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -135,10 +157,10 @@ export const defaults = {
     values: ['scroll', 'fixed', 'inherit'],
     template() {
       return (
-        '<div class="{namespace}-attachment">' +
-        '<span class="{namespace}-attachment-title">{bgAttach}</span>' +
-        '<div class="{namespace}-attachment-content">' +
-        '<div class="{attachNamespace} {namespace}-dropdown-trigger"><i class="asIcon-caret-down"></i></div>' +
+        '<div class="{classes.ATTACHMENT}">' +
+        '<span class="{classes.ATTACHMENTTITLE}">{bgAttach}</span>' +
+        '<div class="{classes.ATTACHMENTCONTENT}">' +
+        '<div class="{attachNamespace} {classes.DROPDOWNTRIGGER}"><i class="asIcon-caret-down"></i></div>' +
         '</div>' +
         '</div>'
       )
@@ -147,21 +169,21 @@ export const defaults = {
 
   template() {
     return (
-      '<div class="{namespace}">' +
-      '<div class="{namespace}-initiate">' +
+      '<div class="{classes.NAMESPACE}">' +
+      '<div class="{classes.INITIATE}">' +
       '<i class="icon-picture"></i>{placeholder}' +
       '</div>' +
-      '<div class="{namespace}-info">' +
-      '<div class="{namespace}-info-image">' +
-      '<div class="{namespace}-info-image-name">{placeholder}</div>' +
+      '<div class="{classes.INFO}">' +
+      '<div class="{classes.INFOIMAGE}">' +
+      '<div class="{classes.IMAGENAMEINFO}</div>' +
       '</div>' +
-      '<div class="{namespace}-info-change"><i class="{namespace}-info-edit icon-pencil-square"></i><i class="{namespace}-info-remove icon-trash"></i></div>' +
+      '<div class="{classes.INFOCHANGE}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i></div>' +
       '</div>' +
-      '<div class="{namespace}-expand-panel">' +
-      '<div class="{namespace}-expand-image-wrap">' +
-      '<div class="{namespace}-expand-image"></div>' +
+      '<div class="{classes.EXPANDPANEL}">' +
+      '<div class="{classes.IMAGEWRAP}">' +
+      '<div class="{classes.IMAGE}"></div>' +
       '</div>' +
-      '<div class="{namespace}-expand-control" href="#"><button type="button" class="{namespace}-expand-cancel pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{namespace}-expand-save pj-btn pj-btn-primary">{save}</button></div>' +
+      '<div class="{classes.CONTROL}" href="#"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">{save}</button></div>' +
       '</div>' +
       '</div>'
     )

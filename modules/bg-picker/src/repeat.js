@@ -22,14 +22,14 @@ export default class Repeat {
 
   initialize() {
     const html = template.compile(this.instance.options.repeat.template())({
-      namespace: this.instance.classes.NAMESPACE,
+      classes: this.instance.classes,
       bgRepeat: this.instance.translate('bgRepeat')
     })
     this.$Repeat = parseHTML(html)
     insertAfter(this.$Repeat, this.instance.$imageWrap)
 
     this.$repeat = query(
-      `.${this.instance.classes.NAMESPACE}-repeat`,
+      `.${this.instance.classes.REPEAT}`,
       this.instance.$expandPanel
     )
     this.$items = queryAll('li', this.$repeat)
