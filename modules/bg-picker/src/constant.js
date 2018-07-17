@@ -22,6 +22,7 @@ export const classes = {
   IMAGENAMEINFO: '{namespace}-info-image-name',
   REMOVE: '{namespace}-info-remove',
   EDIT: '{namespace}-info-edit',
+  CHANGE: '{namespace}-info-change',
   EXPANDPANEL: '{namespace}-expand-panel',
   CONTROL: '{namespace}-expand-control',
   CANCEL: '{namespace}-expand-cancel',
@@ -88,7 +89,7 @@ export const defaults = {
     template() {
       return (
         '<div class="{classes.REPEAT}">' +
-        '<span class="{classes.REPEATTITLE}</span>' +
+        '<span class="{classes.REPEATTITLE}">{bgRepeat}</span>' +
         '<ul class="{classes.REPEATCONTENT}">' +
         '<li class="{classes.REPEATCONTENTITEM} icon-ellipsis-square"></li>' +
         '<li class="{classes.REPEATCONTENTITEM} icon-th"></li>' +
@@ -175,9 +176,9 @@ export const defaults = {
       '</div>' +
       '<div class="{classes.INFO}">' +
       '<div class="{classes.INFOIMAGE}">' +
-      '<div class="{classes.IMAGENAMEINFO}</div>' +
+      '<div class="{classes.IMAGENAMEINFO}">{placeholder}</div>' +
       '</div>' +
-      '<div class="{classes.INFOCHANGE}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i></div>' +
+      '<div class="{classes.CHANGE}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i></div>' +
       '</div>' +
       '<div class="{classes.EXPANDPANEL}">' +
       '<div class="{classes.IMAGEWRAP}">' +
