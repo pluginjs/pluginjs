@@ -60,7 +60,7 @@ class Thumbnails extends Component {
     this.items = this.inner.querySelectorAll(`.${this.classes.THUMB}`)
     this.setDistance(this.options.vertical)
     this.setItemsDistance(this.options.vertical)
-    this.go(this.options.current || 0)
+    this.go(this.options.current || 0, false)
     this.bind()
 
     this.enter('initialized')
@@ -296,7 +296,7 @@ class Thumbnails extends Component {
     this.pos = pos
   }
 
-  go(index) {
+  go(index, change = true) {
     if (this.is('disable')) {
       return
     }
@@ -311,7 +311,9 @@ class Thumbnails extends Component {
 
     this.current = index
 
-    this.trigger(EVENTS.CHANGE)
+    if (change) {
+      this.trigger(EVENTS.CHANGE)
+    }
   }
 
   next() {

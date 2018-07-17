@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $slider: "pj-slider" !default;
+$arrow: "pj-arrow" !default;
 
 @keyframes rotation {
   0% {
@@ -63,21 +64,22 @@ $slider: "pj-slider" !default;
     pointer-events: none;
   }
 
-  &-prev,
-  &-next {
-    position: absolute;
-    top: 50%;
-    width: 30px;
-    height: 30px;
-    background-color: #789;
-  }
+  .#{$arrow} {
+    &-prev,
+    &-next {
+      position: absolute;
+      top: 50%;
+      color: #789;
+      transform: translateY(-50%);
+    }
 
-  &-prev {
-    left: 0;
-  }
+    &-prev {
+      left: 0;
+    }
 
-  &-next {
-    right: 0;
+    &-next {
+      right: 0;
+    }
   }
 }
 

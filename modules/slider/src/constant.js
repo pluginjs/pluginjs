@@ -6,6 +6,7 @@ const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   RESIZE: 'resize',
+  CHANGE: 'change',
   PREV: 'prev',
   NEXT: 'next'
 }

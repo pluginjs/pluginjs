@@ -92,18 +92,10 @@ class Slider extends Component {
     append(this.box, this.element)
 
     if (this.options.arrows) {
-      this.arrows = Arrows.of(this.element, {
-        classes: {
-          NAMESPACE: this.classes.NAMESPACE
-        }
-      })
+      this.arrows = Arrows.of(this.element, {})
     }
 
-    Swipeable.of(this.box, {
-      decay: true,
-      rebound: true,
-      reboundPos: 100
-    })
+    Swipeable.of(this.box, {})
   }
 
   getElement(type) {
@@ -175,7 +167,7 @@ class Slider extends Component {
     return parseHTML(html)
   }
 
-  go(index) {
+  go(index, change = true) {
     const length = this.data.length
     const current = this.current
     let direction = true
@@ -219,16 +211,22 @@ class Slider extends Component {
     anime(opts)
 
     this.current = index
+
+    if (change) {
+      this.trigger(EVENTS.CHANGE)
+    }
   }
 
   prev() {
     const index = this.current === 0 ? this.data.length - 1 : this.current - 1
     this.go(index)
+    this.trigger(EVENTS.PREV)
   }
 
   next() {
     const index = this.current === this.data.length - 1 ? 0 : this.current + 1
     this.go(index)
+    this.trigger(EVENTS.NEXT)
   }
 
   bind() {

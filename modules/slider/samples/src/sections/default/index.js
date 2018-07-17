@@ -1,4 +1,4 @@
-import { html as query } from '@pluginjs/dom'
+import { query } from '@pluginjs/dom'
 import Slider from '@pluginjs/slider'
 
 const data = [

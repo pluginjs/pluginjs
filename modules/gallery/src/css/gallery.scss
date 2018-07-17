@@ -1,0 +1,12 @@
+@import "@pluginjs/styles/variables.scss";
+
+
+$gallery: "pj-gallery" !default;
+$thumb: "pj-thumb" !default;
+$slider: "pj-slider" !default;
+
+.#{$gallery} {
+  .#{$thumb}s {
+    margin: 5px 0;
+  }
+}
