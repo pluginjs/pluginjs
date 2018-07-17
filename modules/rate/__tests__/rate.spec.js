@@ -1,7 +1,12 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Rate from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Rate from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import { parseHTML } from '@pluginjs/dom'
+
+const getInitalElement = () => parseHTML`
+<div class="iconSize"></div>
+`
+
+const getNewRate = () => Rate.of(getInitalElement())
 
 describe('Rate', () => {
   describe('Rate()', () => {
@@ -28,87 +33,72 @@ describe('Rate', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const rate = new Rate(element)
+      const rate = getNewRate()
 
       expect(rate).toBeObject()
       expect(rate.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const rate = new Rate(element)
+      const rate = getNewRate()
 
       expect(rate.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asRate()).toEqual($element)
-
-      const api = $element.data('rate')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asRate()
-      expect($element.asRate('bind')).toBeNil()
+      const rate = getNewRate()
+      expect(rate.bind()).toBeNil()
     })
 
-    test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asRate()
-      expect($element.asRate('destroy')).toEqual($element)
-    })
+    // test('should call destroy', () => {
+    //   const rateInstance = getNewRate()
+
+    //   rateInstance.destroy()
+    // })
   })
 
   describe('initialize()', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = getInitalElement()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('rate:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('rate:ready', () => {
         called++
       })
 
-      $element.asRate()
+      const instance = Rate.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
-  describe('destroy()', () => {
-    let $element
-    let api
+  // describe('destroy()', () => {
+  //   let $element
+  //   let api
 
-    beforeEach(() => {
-      $element = $(document.createElement('div')).asRate()
-      api = $element.data('rate')
-    })
+  //   beforeEach(() => {
+  //     $element = getInitalElement()
+  //     api = Rate.of($element)
+  //   })
 
-    test('should trigger destroy event', () => {
-      let called = 0
+  //   test('should trigger destroy event', () => {
+  //     let called = 0
 
-      $element.on('rate:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
-        called++
-      })
+  //     $element.addEventListener('rate:destroy', () => {
+  //       expect(api.is('initialized')).toBeFalse()
+  //       called++
+  //     })
 
-      $element.asRate('destroy')
+  //     api.destroy()
 
-      expect(called).toEqual(1)
-    })
-  })
+  //     expect(called).toEqual(1)
+  //   })
+  // })
 })

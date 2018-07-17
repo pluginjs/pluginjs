@@ -104,6 +104,7 @@ class Rate extends Component {
 
   verification() {
     if (this.element.tagName.toLowerCase() === 'input') {
+      // console.log('debug', this.element.dataset.min)
       if (this.element.dataset.min || this.element.dataset.min === 0) {
         const m = this.element.dataset.min
         const n = Number(m)
@@ -143,7 +144,7 @@ class Rate extends Component {
     bindEvent(
       {
         type: this.eventName('mouseleave'),
-        handler: event => {
+        handler: () => {
           this.updateStar(this.score)
           this.changeHoverScore(0)
           this.trigger(EVENTS.MOUSELEAVE)
@@ -225,7 +226,7 @@ class Rate extends Component {
         addClass(this.classes.HALFSTARACTIVE, this.stars[fullStar])
       }
 
-      length = this.svgs.length
+      const length = this.svgs.length
       for (let i = 0; i < length; i++) {
         if (i < starNub * 2) {
           this.svgs[i].src = this.options.svg.defaultPath
