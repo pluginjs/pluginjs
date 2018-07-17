@@ -2,28 +2,28 @@ import ToggleList from '../src/main'
 // import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-// const data = [
-//   {
-//     title: 'Interfaces',
-//     checked: true
-//   },
-//   {
-//     title: 'UI Design',
-//     checked: false
-//   },
-//   {
-//     title: 'Web Design',
-//     checked: false
-//   },
-//   {
-//     title: 'Typography',
-//     checked: true
-//   },
-//   {
-//     title: 'Landing',
-//     checked: false
-//   }
-// ]
+const data = [
+  {
+    title: 'Interfaces',
+    checked: true
+  },
+  {
+    title: 'UI Design',
+    checked: false
+  },
+  {
+    title: 'Web Design',
+    checked: false
+  },
+  {
+    title: 'Typography',
+    checked: true
+  },
+  {
+    title: 'Landing',
+    checked: false
+  }
+]
 describe('ToggleList', () => {
   describe('ToggleList()', () => {
     test('should have ToggleList', () => {
@@ -152,31 +152,8 @@ describe('ToggleList', () => {
     test('should set the value', () => {
       expect(api.get()).toBeObject()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set(data)
+      expect(api.get()).toBeArray()
     })
   })
 
@@ -204,11 +181,7 @@ describe('ToggleList', () => {
     })
 
     test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeObject()
-
-      api.val('true')
+      api.val(data)
 
       expect(api.get()).toBeObject()
     })
