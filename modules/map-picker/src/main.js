@@ -113,8 +113,7 @@ class MapPicker extends Component {
     // create init
     this.$init = parseHTML(
       this.createEl('init', {
-        class: this.classes.INIT,
-        icon: this.classes.ICON,
+        classes: this.classes,
         addPlace: this.translate('addPlace')
       })
     )
@@ -122,11 +121,7 @@ class MapPicker extends Component {
     // create preview
     this.$preview = parseHTML(
       this.createEl('preview', {
-        class: this.classes.PREVIEW,
-        icon: this.classes.ICON,
-        content: this.classes.PREVIEWCONTENT,
-        placename: this.classes.PREVIEWNAME,
-        coord: this.classes.PREVIEWCOORD,
+        classes: this.classes,
         action: this.classes.PREVIEWACTION
       })
     )
@@ -136,20 +131,16 @@ class MapPicker extends Component {
     // create preview action
     this.$previewAction = parseHTML(
       this.createEl('previewAction', {
-        class: this.classes.PREVIEWACTION,
-        edit: this.classes.EDIT,
-        remove: this.classes.REMOVE
+        classes: this.classes
       })
     )
 
     // create panel
     this.$panel = parseHTML(
       this.createEl('panel', {
-        class: this.classes.PANEL,
-        content: this.classes.CONTENT
+        classes: this.classes
       })
     )
-
     this.$wrap.append(this.$init, this.$preview, this.$panel)
 
     this.$preview.append(this.$previewAction)
@@ -190,8 +181,7 @@ class MapPicker extends Component {
     // create input items
     this.$place = parseHTML(
       this.createEl('item', {
-        class: this.classes.ITEM,
-        title: this.classes.ITEMTITLE,
+        classes: this.classes,
         titleName: this.translate('place'),
         type: this.classes.PLACE
       })
@@ -200,9 +190,7 @@ class MapPicker extends Component {
     // create action
     this.$action = parseHTML(
       this.createEl('action', {
-        class: this.classes.ACTION,
-        cancel: this.classes.CANCEL,
-        save: this.classes.SAVE,
+        classes: this.classes,
         saveTitle: this.translate('save'),
         cancelTitle: this.translate('cancel')
       })
@@ -212,8 +200,7 @@ class MapPicker extends Component {
     if (this.options.showLatlng) {
       const $lat = parseHTML(
         this.createEl('item', {
-          class: this.classes.ITEM,
-          title: this.classes.ITEMTITLE,
+          classes: this.classes,
           titleName: this.translate('latitude'),
           type: this.classes.LAT
         })
@@ -221,8 +208,7 @@ class MapPicker extends Component {
 
       const $lng = parseHTML(
         this.createEl('item', {
-          class: this.classes.ITEM,
-          title: this.classes.ITEMTITLE,
+          classes: this.classes,
           titleName: this.translate('longitude'),
           type: this.classes.LNG
         })
@@ -467,7 +453,6 @@ class MapPicker extends Component {
           handler: () => {
             const lat = this.$lat.value
             const lng = this.$lng.value
-
             this.setPosition({ lat, lng })
           }
         },

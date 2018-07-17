@@ -64,27 +64,27 @@ export const defaults = {
   markerOptions: { draggable: true },
   templates: {
     init() {
-      return `<div class="{class}"><i class="{icon} icon-pin-map"></i>{addPlace}
+      return `<div class="{classes.INIT}"><i class="{classes.ICON} icon-pin-map"></i>{addPlace}
       </div>`
     },
     preview() {
-      return `<div class="{class}"><i class="{icon} icon-pin-map"></i><div class='{content}'><span class='{placename}'></span><span class='{coord}'></span></div>
+      return `<div class="{classes.PREVIEW}"><i class="{classes.ICON} icon-pin-map"></i><div class='{classes.PREVIEWCONTENT}'><span class='{classes.PREVIEWNAME}'></span><span class='{classes.PREVIEWCOORD}'></span></div>
       </div>`
     },
     previewAction() {
-      return `<div class="{class}"><i class="{edit} icon-pencil-square"></i><i class="{remove} icon-trash"></i>
+      return `<div class="{classes.PREVIEWACTION}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i>
       </div>`
     },
     panel() {
-      return `<div class='{class}'><div class='{content}'></div>
+      return `<div class='{classes.PANEL}'><div class='{classes.CONTENT}'></div>
       </div>`
     },
     action() {
-      return `<div class='{class}'><button type='button' class='{cancel} pj-btn pj-btn-transparent'>{cancelTitle}</button><button type='button' class='{save} pj-btn pj-btn-primary'>{saveTitle}</button>
+      return `<div class='{classes.ACTION}'><button type='button' class='{classes.CANCEL} pj-btn pj-btn-transparent'>{cancelTitle}</button><button type='button' class='{classes.SAVE} pj-btn pj-btn-primary'>{saveTitle}</button>
       </div>`
     },
     item() {
-      return `<div class='{class}'><span class='{title}'>{titleName}</span><input class='{type} pj-input' type="text">
+      return `<div class='{classes.ITEM}'><span class='{classes.ITEMTITLE}'>{titleName}</span><input class='{type} pj-input' type="text">
       </div>`
     },
     loading() {

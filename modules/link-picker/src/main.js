@@ -74,6 +74,7 @@ class LinkPicker extends Component {
     })
 
     this.source = this.sources[0]
+    console.log(this.source)
     this.info = {}
     this.initialize()
   }
