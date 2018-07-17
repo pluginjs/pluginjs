@@ -1,3 +1,5 @@
+// import icons
+import 'font-awesome/css/font-awesome.css'
 // import sections
 import './sections/less/index.js'
 import './sections/more/index.js'
