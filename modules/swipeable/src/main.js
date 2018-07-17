@@ -93,7 +93,7 @@ class Swipeable extends Component {
           this.panEnd(e)
           break
         default:
-          return
+          break
       }
     })
   }
@@ -155,12 +155,9 @@ class Swipeable extends Component {
       return
     }
 
-    this.trigger(EVENTS.DECAY)
     const $target = this.element
 
-    if (this.options.decay) {
-      this.decayMove(e, $target)
-    }
+    this.triggerDecay(e, $target)
 
     if (this.options.rebound) {
       this.reboundMove($target)
@@ -169,7 +166,7 @@ class Swipeable extends Component {
     this.trigger(EVENTS.END)
   }
 
-  decayMove(e, $target) {
+  triggerDecay(e, $target) {
     const that = this
     let decayX = e.velocityX
     let decayY = e.velocityY
@@ -181,41 +178,45 @@ class Swipeable extends Component {
       return
     }
 
-    const moveX = this.position.x + this.getMoveSize(decayX)
-    const moveY = this.position.y + this.getMoveSize(decayY)
+    this.trigger(EVENTS.DECAY)
 
-    const minDistance = this.getDistance().minDistance
-    const maxDistance = this.getDistance().maxDistance
-    const opts = {
-      targets: $target,
-      translateX: moveX,
-      translateY: moveY,
-      duration: this.options.duration,
-      easing: 'easeOutExpo',
-      update() {
-        if (that.options.rebound) {
-          const distance =
-            that.options.axis === 'x'
-              ? that.getLocation($target).translateX
-              : that.getLocation($target).translateY
-          if (distance >= minDistance) {
-            that.anime.pause()
-            that.triggerAnime($target, minDistance)
-          } else if (distance < -maxDistance) {
-            that.anime.pause()
-            that.triggerAnime($target, -maxDistance)
+    if (this.options.decay) {
+      const moveX = this.position.x + this.getMoveSize(decayX)
+      const moveY = this.position.y + this.getMoveSize(decayY)
+
+      const minDistance = this.getDistance().minDistance
+      const maxDistance = this.getDistance().maxDistance
+      const opts = {
+        targets: $target,
+        translateX: moveX,
+        translateY: moveY,
+        duration: this.options.duration,
+        easing: 'easeOutExpo',
+        update() {
+          if (that.options.rebound) {
+            const distance =
+              that.options.axis === 'x'
+                ? that.getLocation($target).translateX
+                : that.getLocation($target).translateY
+            if (distance >= minDistance) {
+              that.anime.pause()
+              that.triggerAnime($target, minDistance)
+            } else if (distance < -maxDistance) {
+              that.anime.pause()
+              that.triggerAnime($target, -maxDistance)
+            }
           }
+        },
+        complete() {
+          that.position.x = that.getLocation($target).translateX
+          that.position.y = that.getLocation($target).translateY
+          that.isdecaying = false
+          that.trigger(EVENTS.DECAYEND)
         }
-      },
-      complete() {
-        that.position.x = that.getLocation($target).translateX
-        that.position.y = that.getLocation($target).translateY
-        that.isdecaying = false
-        that.trigger(EVENTS.DECAYEND)
       }
+      this.isdecaying = true
+      this.anime = Anime(opts)
     }
-    this.isdecaying = true
-    this.anime = Anime(opts)
   }
 
   triggerAnime(target, distance) {

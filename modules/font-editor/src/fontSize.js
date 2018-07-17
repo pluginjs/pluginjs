@@ -37,7 +37,6 @@ export default class FontSize {
     const that = this
     const unit = {}
     const value = this.value
-
     // create $fontSize
     const html = template.compile(this.instance.options.fontSize.template())({
       classes: this.instance.classes,
