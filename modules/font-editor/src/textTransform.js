@@ -18,12 +18,12 @@ export default class TextTransform {
 
     const html = template.compile(
       this.instance.options.textTransform.template()
-    )({ namespace: this.instance.classes.NAMESPACE })
+    )({ classes: this.instance.classes })
     this.$TextTransform = parseHTML(html)
     this.instance.$typoDecorations.append(...this.$TextTransform)
 
     this.$items = queryAll(
-      `.${this.instance.classes.NAMESPACE}-textTransform`,
+      `.${this.instance.classes.TEXTTRANSFORM}`,
       this.instance.$expandPanel
     )
 

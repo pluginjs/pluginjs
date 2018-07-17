@@ -23,7 +23,48 @@ export const classes = {
   EXPANDCONTROL: '{namespace}-expand-control',
   EXPANDCANCEL: '{namespace}-expand-cancel',
   EXPANDSAVE: '{namespace}-expand-save',
-  INHERIT: '{namespace}-inherit'
+  INHERIT: '{namespace}-inherit',
+  INFOCHANGE: '{namespace}-info-change',
+  INFOEDIT: '{namespace}-info-edit',
+  INFOREMOVE: '{namespace}-info-remove',
+  INITIAL: '{namespace}-initial',
+  INFO: '{namespace}-info',
+  INFOFONT: '{namespace}-info-font',
+  INFOFONTNAME: '{namespace}-info-font-name',
+  INFOFONTSUB: '{namespace}-info-font-sub',
+  // fontfamily
+  FONTFAMILY: '{namespace}-fontFamily',
+  FONTFAMILYTITLE: '{namespace}-fontFamily-title',
+  FONTFAMILYCONTENT: '{namespace}-fontFamily-content',
+  FONTFAMILYNAMESPACE: '{fontFamilyNamespace}',
+  FONTFAMILYDROPDOWN: '{namespace}-fontFamily-dropdown',
+  // fontweight
+  FONTWEIGHT: '{namespace}-fontWeight',
+  FONTWEIGHTTITLE: '"{namespace}-fontWeight-title',
+  FONTWEIGHTCONTENT: '{namespace}-fontWeight-content',
+  FONTWEIGHTNAMESPACE: '{fontWeightNamespace}',
+  FONTWEIGHTDROPDOWN: '{namespace}-fontWeight-dropdown',
+  // fontsize
+  FONTSIZE: '{namespace}-fontSize',
+  FONTSIZETITLE: '{namespace}-fontSize-title',
+  FONTSIZECONTENT: '{namespace}-fontSize-content',
+  FONTSIZENAMESPACE: '{fontSizeNamespace}',
+  FONTSIZERANGE: '{namespace}-fontSize-range',
+  // lineHeight
+  LINEHEIGHT: '{namespace}-lineHeight',
+  LINEHEIGHTTITLE: '{namespace}-lineHeight-title',
+  LINEHEIGHTCONTENT: '{namespace}-lineHeight-content',
+  LINEHEIGHTNAMESPACE: '{lineHeightNamespace}',
+  LINEHEIGHTRANGE: '{namespace}-lineHeight-range',
+  // textalign
+  DECORATIONS: '{namespace}-decorations',
+  TEXTALIGN: '{namespace}-textAlign',
+  // fontstyle
+  FONTSTYLE: '{namespace}-fontStyle',
+  // texttransform
+  TEXTTRANSFORM: '{namespace}-textTransform',
+  // textDecoration
+  TEXTDECORATION: '{namespace}-textDecoration'
 }
 
 export const methods = [
@@ -58,10 +99,10 @@ export const defaults = {
     },
     template() {
       return (
-        '<div class="{namespace}-fontFamily">' +
-        '<span class="{namespace}-fontFamily-title">{typeface}</span>' +
-        '<div class="{namespace}-fontFamily-content">' +
-        '<div class="{fontFamilyNamespace} {namespace}-fontFamily-dropdown"><i class="asIcon-caret-down"></i></div>' +
+        '<div class="{classes.FONTFAMILY}">' +
+        '<span class="{classes.FONTFAMILYTITLE}">{typeface}</span>' +
+        '<div class="{classes.FONTFAMILYCONTENT}">' +
+        '<div class="{classes.FONTFAMILYNAMESPACE} {classes.FONTFAMILYDROPDOWN}"><i class="asIcon-caret-down"></i></div>' +
         '<ul>' +
         '</ul>' +
         '</div>' +
@@ -74,10 +115,10 @@ export const defaults = {
     values: ['inherit', 'bold', '400', '500', '600', '700'],
     template() {
       return (
-        '<div class="{namespace}-fontWeight">' +
-        '<span class="{namespace}-fontWeight-title">{weight}</span>' +
-        '<div class="{namespace}-fontWeight-content">' +
-        '<div class="{fontWeightNamespace} {namespace}-fontWeight-dropdown"><i class="asIcon-caret-down"></i></div>' +
+        '<div class="{classes.FONTWEIGHT}">' +
+        '<span class="{classes.FONTWEIGHTTITLE}">{weight}</span>' +
+        '<div class="{classes.FONTWEIGHTCONTENT}">' +
+        '<div class="{classes.FONTWEIGHTNAMESPACE} {classes.FONTWEIGHTDROPDOWN}"><i class="asIcon-caret-down"></i></div>' +
         // '<ul>' +
         // '<li>inherit</li>' +
         // '<li>bold</li>' +
@@ -101,10 +142,10 @@ export const defaults = {
     step: 2,
     template() {
       return (
-        '<div class="{namespace}-fontSize">' +
-        '<span class="{namespace}-fontSize-title">{fontSize}</span>' +
-        '<div class="{namespace}-fontSize-content">' +
-        '<div class="{fontSizeNamespace} {namespace}-fontSize-range"></div>' +
+        '<div class="{classes.FONTSIZE}">' +
+        '<span class="{classes.FONTSIZETITLE}">{fontSize}</span>' +
+        '<div class="{classes.FONTSIZECONTENT}">' +
+        '<div class="{classes.FONTSIZENAMESPACE} {classes.FONTSIZERANGE}"></div>' +
         '</div>' +
         '</div>'
       )
@@ -119,10 +160,10 @@ export const defaults = {
     step: 0.5,
     template() {
       return (
-        '<div class="{namespace}-lineHeight">' +
-        '<span class="{namespace}-lineHeight-title">{lineHeight}</span>' +
-        '<div class="{namespace}-lineHeight-content">' +
-        '<div class="{lineHeightNamespace} {namespace}-lineHeight-range"></div>' +
+        '<div class="{classes.LINEHEIGHT}">' +
+        '<span class="{classes.LINEHEIGHTTITLE}">{lineHeight}</span>' +
+        '<div class="{classes. LINEHEIGHTCONTENT}">' +
+        '<div class="{classes.LINEHEIGHTNAMESPACE} {classes.LINEHEIGHTRANGE}"></div>' +
         // '<div class="{namespace}-lineHeight-value">1</div>' +
         '</div>' +
         '</div>'
@@ -134,10 +175,10 @@ export const defaults = {
     values: ['left', 'center', 'right'],
     template() {
       return (
-        '<ul class="{namespace}-decorations">' +
-        '<li class="{namespace}-textAlign icon-align-left"></li>' +
-        '<li class="{namespace}-textAlign icon-align-center"></li>' +
-        '<li class="{namespace}-textAlign icon-align-right"></li>' +
+        '<ul class="{classes.DECORATIONS}">' +
+        '<li class="{classes.TEXTALIGN}"></li>' +
+        '<li class="{classes.TEXTALIGN} icon-align-center"></li>' +
+        '<li class="{classes.TEXTALIGN} icon-align-right"></li>' +
         '</ul>'
       )
     }
@@ -146,7 +187,7 @@ export const defaults = {
     value: 'normal',
     values: ['italic', 'normal'],
     template() {
-      return '<li class="{namespace}-fontStyle icon-imitation-italics"></li>'
+      return '<li class="{FONTSTYLE}-fontStyle icon-imitation-italics"></li>'
     }
   },
   textTransform: {
@@ -154,9 +195,9 @@ export const defaults = {
     values: ['uppercase', 'lowercase', 'capitalize'],
     template() {
       return (
-        '<li class="{namespace}-textTransform icon-all-caps"></li>' +
-        '<li class="{namespace}-textTransform icon-all-lowercase"></li>' +
-        '<li class="{namespace}-textTransform icon-small-caps"></li>'
+        '<li class="{classes.TEXTTRANSFORM} icon-all-caps"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} icon-all-lowercase"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} icon-small-caps"></li>'
       )
     }
   },
@@ -165,24 +206,24 @@ export const defaults = {
     values: ['underline', 'line-through'],
     template() {
       return (
-        '<li class="{namespace}-textDecoration icon-underline"></li>' +
-        '<li class="{namespace}-textDecoration icon-line-through"></li>'
+        '<li class="{classes.TEXTDECORATION} icon-underline"></li>' +
+        '<li class="{classes.TEXTDECORATION} icon-line-through"></li>'
       )
     }
   },
   template() {
     return (
-      '<div class="{namespace}">' +
-      '<div class="{namespace}-initial">' +
+      '<div class="{classes.NAMESPACE}">' +
+      '<div class="{classes.INITIAL}">' +
       '<i>T</i>{addTypography}' +
       '</div>' +
-      '<div class="{namespace}-info">' +
+      '<div class="{classes.INFO}">' +
       '<i>T</i>' +
-      '<div class="{namespace}-info-font"><span class="{namespace}-info-font-name">{fontFamily}</span><span class="{namespace}-info-font-sub"></span></div>' +
-      '<div class="{namespace}-info-change"><i class="{namespace}-info-edit icon-pencil-square"></i><i class="{namespace}-info-remove icon-trash"></i></div>' +
+      '<div class="{classes.INFOFONT}"><span class="{classes.INFOFONTNAME}">{fontFamily}</span><span class="{classes.INFOFONTSUB}"></span></div>' +
+      '<div class="{classes.INFOCHANGE}"><i class="{classes.INFOEDIT} icon-pencil-square"></i><i class="{classes.INFOREMOVE} icon-trash"></i></div>' +
       '</div>' +
-      '<div class="{namespace}-expand-panel">' +
-      '<div class="{namespace}-expand-control"><button type="button" class="{namespace}-expand-cancel pj-btn pj-btn-transparent">Cancel</button><button type="button" class="{namespace}-expand-save pj-btn pj-btn-primary">Save</button></div>' +
+      '<div class="{classes.EXPANDPANEL}">' +
+      '<div class="{classes.EXPANDCONTROL}"><button type="button" class="{classes.EXPANDCANCEL} pj-btn pj-btn-transparent">Cancel</button><button type="button" class="{classes.EXPANDSAVE} pj-btn pj-btn-primary">Save</button></div>' +
       '</div>' +
       '</div>'
     )

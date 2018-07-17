@@ -40,14 +40,14 @@ export default class FontSize {
 
     // create $fontSize
     const html = template.compile(this.instance.options.fontSize.template())({
-      namespace: this.instance.classes.NAMESPACE,
+      classes: this.instance.classes,
       fontSize: this.instance.translate('fontSize')
     })
 
     insertBefore(parseHTML(html), this.instance.$expandControl)
 
     this.$fontSize = query(
-      `.${this.instance.classes.NAMESPACE}-fontSize-range`,
+      `.${this.instance.classes.FONTSIZERANGE}`,
       this.instance.$expandPanel
     )
 

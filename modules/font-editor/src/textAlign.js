@@ -17,17 +17,17 @@ export default class TextAlign {
     const that = this
 
     const html = template.compile(this.instance.options.textAlign.template())({
-      namespace: this.instance.classes.NAMESPACE
+      classes: this.instance.classes
     })
     this.$TextAlign = parseHTML(html)
     insertBefore(this.$TextAlign, this.instance.$expandControl)
 
     this.instance.$typoDecorations = query(
-      `.${this.instance.classes.NAMESPACE}-decorations`,
+      `.${this.instance.classes.DECORATIONS}`,
       this.instance.$expandPanel
     )
     this.$items = queryAll(
-      `.${this.instance.classes.NAMESPACE}-textAlign`,
+      `.${this.instance.classes.TEXTALIGN}`,
       this.instance.$typoDecorations
     )
 

@@ -17,12 +17,12 @@ export default class TextDecoration {
     const that = this
     const html = template.compile(
       this.instance.options.textDecoration.template()
-    )({ namespace: this.instance.classes.NAMESPACE })
+    )({ classes: this.instance.classes })
     this.$TextDecoration = parseHTML(html)
     this.instance.$typoDecorations.append(...this.$TextDecoration)
 
     this.$items = queryAll(
-      `.${this.instance.classes.NAMESPACE}-textDecoration`,
+      `.${this.instance.classes.TEXTDECORATION}`,
       this.instance.$expandPanel
     )
 

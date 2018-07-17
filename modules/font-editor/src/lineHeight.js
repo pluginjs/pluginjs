@@ -55,14 +55,14 @@ export default class LineHeight {
 
     // create lineHeight
     const html = template.compile(this.instance.options.lineHeight.template())({
-      namespace: this.instance.classes.NAMESPACE,
+      classes: this.instance.classes,
       lineHeight: this.instance.translate('lineHeight')
     })
 
     insertBefore(parseHTML(html), this.instance.$expandControl)
 
     this.$lineHeight = query(
-      `.${this.instance.classes.NAMESPACE}-lineHeight-range`,
+      `.${this.instance.classes.LINEHEIGHTRANGE}`,
       this.instance.$expandPanel
     )
 

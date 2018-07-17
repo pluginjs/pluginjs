@@ -232,7 +232,7 @@ class FontEditor extends Component {
     const that = this
     this.$wrap = parseHTML(
       template.compile(this.options.template())({
-        namespace: this.classes.NAMESPACE,
+        classes: this.classes,
         addTypography: this.translate('addTypography'),
         fontFamily: this.translate('fontFamily')
       })
@@ -240,27 +240,15 @@ class FontEditor extends Component {
 
     insertAfter(this.$wrap, this.element)
 
-    this.$initial = query(`.${this.classes.NAMESPACE}-initial`, this.$wrap)
+    this.$initial = query(`.${this.classes.INITIAL}`, this.$wrap)
 
-    this.$info = query(`.${this.classes.NAMESPACE}-info`, this.$wrap)
-    this.$infoFont = query(`.${this.classes.NAMESPACE}-info-font`, this.$info)
-    this.$infoFontName = query(
-      `.${this.classes.NAMESPACE}-info-font-name`,
-      this.$info
-    )
-    this.$infoFontSub = query(
-      `.${this.classes.NAMESPACE}-info-font-sub`,
-      this.$info
-    )
-    this.$infoChange = query(
-      `.${this.classes.NAMESPACE}-info-change`,
-      this.$info
-    )
-    this.$infoRemove = query(
-      `.${this.classes.NAMESPACE}-info-remove`,
-      this.$info
-    )
-    this.$editBtn = query(`.${this.classes.NAMESPACE}-info-edit`, this.$info)
+    this.$info = query(`.${this.classes.INFO}`, this.$wrap)
+    this.$infoFont = query(`.${this.classes.INFOFONT}`, this.$info)
+    this.$infoFontName = query(`.${this.classes.INFOFONTNAME}`, this.$info)
+    this.$infoFontSub = query(`.${this.classes.INFOFONTSUB}`, this.$info)
+    this.$infoChange = query(`.${this.classes.INFOCHANGE}`, this.$info)
+    this.$infoRemove = query(`.${this.classes.INFOREMOVE}`, this.$info)
+    this.$editBtn = query(`.${this.classes.INFOEDIT}`, this.$info)
 
     this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
     this.$expandControl = query(

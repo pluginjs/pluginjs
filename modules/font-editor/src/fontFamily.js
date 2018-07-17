@@ -13,7 +13,7 @@ export default class FontFamily {
 
   initialize() {
     const html = template.compile(this.instance.options.fontFamily.template())({
-      namespace: this.instance.classes.NAMESPACE,
+      classes: this.instance.classes,
       typeface: this.instance.translate('typeface')
     })
 
@@ -21,11 +21,11 @@ export default class FontFamily {
     insertBefore(this.$FontFamily, this.instance.$expandControl)
 
     this.$content = query(
-      `.${this.instance.classes.NAMESPACE}-fontFamily-content`,
+      `.${this.instance.classes.FONTFAMILYCONTENT}`,
       this.instance.$expandPanel
     )
     this.$dropdown = query(
-      `.${this.instance.classes.NAMESPACE}-fontFamily-dropdown`,
+      `.${this.instance.classes.FONTFAMILYDROPDOWN}`,
       this.instance.$expandPanel
     )
     this.$list = query('ul', this.$content)

@@ -14,7 +14,7 @@ export default class FontWeight {
 
   initialize() {
     const html = template.compile(this.instance.options.fontWeight.template())({
-      namespace: this.instance.classes.NAMESPACE,
+      classes: this.instance.classes,
       weight: this.instance.translate('weight')
     })
 
@@ -22,11 +22,11 @@ export default class FontWeight {
     insertBefore(this.$FontWeight, this.instance.$expandControl)
 
     this.$content = query(
-      `.${this.instance.classes.NAMESPACE}-fontWeight-content`,
+      `.${this.instance.classes.FONTWEIGHTCONTENT}`,
       this.instance.$expandPanel
     )
     this.$dropdown = query(
-      `.${this.instance.classes.NAMESPACE}-fontWeight-dropdown`,
+      `.${this.instance.classes.FONTWEIGHTDROPDOWN}`,
       this.instance.$expandPanel
     )
 
