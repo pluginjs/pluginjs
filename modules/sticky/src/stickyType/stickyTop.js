@@ -1,8 +1,5 @@
-import Pj from '@pluginjs/pluginjs'
 import Base from './base'
-import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getStyle, offset, height } from '@pluginjs/styled'
-import { wrap, append } from '@pluginjs/dom'
+import { offset } from '@pluginjs/styled'
 
 class stickyTop extends Base {
   constructor(instance) {

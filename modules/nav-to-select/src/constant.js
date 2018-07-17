@@ -33,7 +33,7 @@ export const defaults = {
   indentString: '&ndash;',
   indentSpace: true,
   placeholder: 'Navigate to...',
-  useOptgroup: false,
+  useOptgroup: true,
   itemFilter() {
     return true
   },
@@ -47,7 +47,7 @@ export const defaults = {
     const childrenSelect = (el, selector) =>
       Array.from(el.children).filter(c => c.nodeName.toLowerCase() === selector)
 
-    childrenSelect(list, 'li').map(li => {
+    childrenSelect(list, 'li').forEach(li => {
       if (!that.options.itemFilter(li)) {
         return
       }
@@ -59,7 +59,7 @@ export const defaults = {
       }
       if (childrenSelect(li, 'ul').length) {
         item.items = []
-        childrenSelect(li, 'ul').map(childLi => {
+        childrenSelect(li, 'ul').forEach(childLi => {
           item.items = item.items.concat(
             that.options.getItemsFromList.call(that, childLi, level + 1)
           )
@@ -67,7 +67,7 @@ export const defaults = {
       }
       if (childrenSelect(li, 'ol').length) {
         item.items = []
-        childrenSelect(li, 'ol').map(childLi => {
+        childrenSelect(li, 'ol').forEach(childLi => {
           item.items = item.items.concat(
             that.options.getItemsFromList.call(that, childLi, level + 1)
           )
@@ -80,9 +80,12 @@ export const defaults = {
   },
   onChange() {
     if (this.dataset.linkable !== false) {
+      // console.log('this', this.autofocus)
       // document.location.href = this.value
     }
   }
 }
 
 export const dependencies = []
+
+export const info = { version: '0.5.1' }

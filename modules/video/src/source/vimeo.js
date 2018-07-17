@@ -69,7 +69,7 @@ class Vimeo {
     } else if (this.options.url) {
       return this.options.url.split('/')[3].split('?')[0]
     }
-    return undefined
+    return undefined /* eslint-disable-line */
   }
 
   createHtml() {

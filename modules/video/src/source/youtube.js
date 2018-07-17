@@ -91,7 +91,7 @@ class Youtube {
     } else if (this.options.url) {
       return this.options.url.split('/')[3].split('?v=')[1]
     }
-    return undefined
+    return undefined /* eslint-disable-line */
   }
 
   loadApi() {
