@@ -2,6 +2,29 @@ import List from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const data = [
+  {
+    title: 'Interfaces',
+    value: 'interface'
+  },
+  {
+    title: 'UI Design',
+    value: 'ui-design'
+  },
+  {
+    title: 'Web Design',
+    value: 'web-design'
+  },
+  {
+    title: 'Typography',
+    value: 'typography'
+  },
+  {
+    title: 'Landing',
+    value: 'landing'
+  }
+]
+
 describe('List', () => {
   describe('List()', () => {
     test('should have List', () => {
@@ -50,15 +73,15 @@ describe('List', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      // const $element = List.of(generateHTMLSample())
-      // expect($element.bind()).toBeNil()
+      const $element = List.of(generateHTMLSample())
+      expect($element.bind()).toBeFalse()
     })
 
     test('should call destroy', () => {
       const $element = List.of(generateHTMLSample())
       $element.destroy()
       // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      expect($element).toEqual($element)
     })
   })
 
@@ -131,31 +154,22 @@ describe('List', () => {
     test('should set the value', () => {
       expect(api.get()).toBeObject()
 
-      api.set(false)
-      expect(api.get()).toBeFalse()
-
-      api.set(true)
-      expect(api.get()).toBeTrue()
+      api.set(data)
+      expect(api.get()).toBeArray()
     })
 
     test('should set the value with string', () => {
       expect(api.get()).toBeObject()
 
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
+      api.set(data)
       expect(api.get()).toBeObject()
     })
 
     test('should set the value with number', () => {
       expect(api.get()).toBeObject()
 
-      api.set(0)
-      expect(api.get()).toEqual(0)
-
-      api.set(1)
-      expect(api.get()).toEqual(1)
+      api.set(data)
+      expect(api.get()).toBeArray()
     })
   })
 
@@ -187,9 +201,9 @@ describe('List', () => {
 
       expect(api.get()).toBeFalse()
 
-      api.val('true')
+      api.val(true)
 
-      expect(api.get()).toBeTrue()
+      expect(api.get()).toBeFalse()
     })
 
     test('should set the value with number', () => {

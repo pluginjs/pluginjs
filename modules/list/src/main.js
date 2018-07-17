@@ -365,7 +365,7 @@ class List extends Component {
       this.enter('empty')
       return false
     }
-
+    console.log(this.data)
     this.data.forEach(item => {
       if (is.string(item)) {
         this.enter('simple')

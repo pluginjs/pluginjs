@@ -836,7 +836,10 @@ class LinkPicker extends Component {
 
   val(data) {
     if (data) {
-      data = JSON.parse(data.replace(/\'/g, '"')) /* eslint-disable-line */
+      if (isNaN(data)) {
+        data = JSON.parse(data.replace(/\'/g, '"')) /* eslint-disable-line */
+      }
+
       this.set(data)
     }
 

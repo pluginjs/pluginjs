@@ -97,6 +97,7 @@ class IconsPicker extends Component {
       }
     })
     children(this.$dropdown.panel).map(el => el.remove())
+    console.log(children(this.$dropdown.panel).map(el => el.remove()))
     this.$dropdown.panel.append(this.$empty)
   }
 
