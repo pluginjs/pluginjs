@@ -43,7 +43,6 @@ export default class FontSize {
       classes: this.instance.classes,
       fontSize: this.instance.translate('fontSize')
     })
-
     insertBefore(parseHTML(html), this.instance.$expandControl)
 
     this.$fontSize = query(
