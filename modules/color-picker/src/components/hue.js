@@ -89,7 +89,6 @@ class Hue {
     this.instance.trigger('hueMove', position - this.size)
     this.update()
   }
-
   position(color) {
     this.hue = color.value.h
     const position = (1 - this.hue / 360) * this.maxLength - this.size

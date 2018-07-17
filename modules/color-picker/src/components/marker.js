@@ -12,7 +12,6 @@ class Marker {
     this.color = this.options.color
     this.percent = this.options.percent
     this.index = this.options.index
-
     this.$wrap = query(
       `.${this.instance.classes.GRADIENTBAR}`,
       this.instance.$gradient
@@ -22,7 +21,6 @@ class Marker {
 
     this.wrapSize = parseInt(getStyle('width', this.$wrap), 10)
     this.elSize = parseInt(getStyle('width', this.$el), 10)
-
     this.maxLenght = this.wrapSize - this.elSize
     this.init()
   }

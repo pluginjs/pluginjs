@@ -74,13 +74,13 @@ class Gradient {
     this.$remove = parseHTML(
       `<i class='icon-delete ${this.classes.GRADIENTREMOVE}'></i>`
     )
-    const selector = parseHTML(
+    const $selector = parseHTML(
       `<div class='${this.classes.GRADIENTMODE}'><div><div/></div>`
     )
 
     this.element.append(
       this.$actionBar,
-      selector,
+      $selector,
       this.$angle,
       this.$wheel,
       this.$remove
@@ -118,11 +118,8 @@ class Gradient {
       getObjData('value', $leftMarker),
       getObjData('value', $rightMarker)
     )
-
     this.selectMarker($rightMarker)
-
     this.actionBarSize = getObjData('value', $leftMarker).maxLenght
-
     // initial wheel
     this.WHEEL = new Wheel(this.instance, this.$wheel)
   }

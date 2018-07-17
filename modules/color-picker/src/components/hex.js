@@ -40,11 +40,10 @@ class Hex {
          <div class="${this.classes.HEXUNIT}">%</div>
        </div>`
     )
-    const selector = parseHTML(
+    const $selector = parseHTML(
       `<div class='${this.classes.HEXMODE}'><div><div/></div>`
     )
-
-    this.element.append(selector, this.$opac)
+    this.element.append($selector, this.$opac)
 
     this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
     this.dropdown = Dropdown.of(this.$selector, {

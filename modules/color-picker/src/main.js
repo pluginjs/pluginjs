@@ -154,19 +154,18 @@ class ColorPicker extends Component {
   }
 
   initRemove() {
-    const remove = this.createEl('remove', { class: this.classes.REMOVE })
-
-    append(remove, query(`.${this.classes.TRIGGER}`, this.$wrap))
+    const $remove = this.createEl('remove', { class: this.classes.REMOVE })
+    append($remove, query(`.${this.classes.TRIGGER}`, this.$wrap))
     this.$remove = query(`.${this.classes.REMOVE}`, this.$wrap)
   }
 
   initPreview() {
-    const preview = this.createEl('preview', {
+    const $preview = this.createEl('preview', {
       class: this.classes.PREVIEW,
       color: this.classes.PREVIEWCOLOR,
       background: this.classes.PREVIEWBG
     })
-    append(preview, query(`.${this.classes.TRIGGER}`, this.$wrap))
+    append($preview, query(`.${this.classes.TRIGGER}`, this.$wrap))
     this.PREVIEW = new Preview(
       this,
       query(`.${this.classes.PREVIEW}`, this.$wrap)
@@ -209,7 +208,6 @@ class ColorPicker extends Component {
       const wrapClassName = `${this.classes.PANEL}-${v}`
       const trigger = this.createEl(`${v}Trigger`, { class: triggerClassName })
       const wrap = this.createEl('moduleWrap', { class: wrapClassName })
-
       append(trigger, query(`.${this.classes.PANELTRIGGER}`, this.$panel))
       append(wrap, query(`.${this.classes.PANELCONTAINER}`, this.$panel))
       if (this.options.module.length <= 1) {
@@ -256,7 +254,7 @@ class ColorPicker extends Component {
       return false
     }
     // create group
-    const collection = this.createEl('collection', {
+    const $collection = this.createEl('collection', {
       favorites: this.classes.FAVORITES,
       scheme: this.classes.SCHEME,
       title: this.classes.GROUPTITLE,
@@ -266,9 +264,8 @@ class ColorPicker extends Component {
       favoritesText: this.translate('colorInScheme'),
       schemeText: this.translate('myColors')
     })
-
     this.$collection = query(`.${this.classes.PANELCOLLECTION}`, this.$panel)
-    this.$collection.append(...collection)
+    this.$collection.append(...$collection)
     // create favorite item
     Object.keys(this.data).forEach(groupName => {
       const $groupList = query(
@@ -308,7 +305,7 @@ class ColorPicker extends Component {
   }
 
   initSolid() {
-    const solid = this.createEl('content', {
+    const $solid = this.createEl('content', {
       handle: this.classes.SOLIDHANDLE,
       primary: this.classes.SOLIDPRIMARY,
       action: this.classes.SOLIDACTION,
@@ -316,7 +313,7 @@ class ColorPicker extends Component {
       done: this.classes.SOLIDDONE
     })
     this.$solid = query(`.${this.classes.PANELSOLID}`, this.$panel)
-    this.$solid.append(...solid)
+    this.$solid.append(...$solid)
     this.registerComponent()
     // cancel
     // const cancel = this.createEl('cancel', {
@@ -337,7 +334,7 @@ class ColorPicker extends Component {
     // }
   }
   initDone(gradient) {
-    const ok = this.createEl('ok', {
+    const $ok = this.createEl('ok', {
       class: this.classes.OK,
       text: this.translate('ok')
     })
@@ -347,14 +344,14 @@ class ColorPicker extends Component {
         this.$gradient
       )
       if (gradientDone) {
-        ;[ok].map(el =>
+        ;[$ok].map(el =>
           append(el, query(`.${this.classes.GRADIENTDONE}`, this.$gradient))
         )
       }
     } else {
       const solidDone = query(`.${this.classes.SOLIDDONE}`, this.$solid)
       if (solidDone) {
-        ;[ok].map(el =>
+        ;[$ok].map(el =>
           append(el, query(`.${this.classes.SOLIDDONE}`, this.$solid))
         )
       }
@@ -362,7 +359,7 @@ class ColorPicker extends Component {
   }
 
   initGradient() {
-    const gradient = this.createEl('content', {
+    const $gradient = this.createEl('content', {
       handle: this.classes.GRADIENTHANDLE,
       primary: this.classes.GRADIENTPRIMARY,
       action: this.classes.GRADIENTACTION,
@@ -370,7 +367,7 @@ class ColorPicker extends Component {
       done: this.classes.GRADIENTDONE
     })
     this.$gradient = query(`.${this.classes.PANELGRADIENT}`, this.$panel)
-    this.$gradient.append(...gradient)
+    this.$gradient.append(...$gradient)
 
     // init gradient handle
     this.GRADIENT = new Gradient(
@@ -409,7 +406,6 @@ class ColorPicker extends Component {
 
   registerComponent() {
     const solidMode = this.options.solidMode
-
     if (solidMode === 'full') {
       // this.initContrast()
       this.initHistory()
@@ -612,7 +608,6 @@ class ColorPicker extends Component {
         type: this.eventName('change'),
         handler: e => {
           const val = e.target.value
-
           this.set(this.options.parse.call(this, val))
         }
       }),
@@ -913,7 +908,6 @@ class ColorPicker extends Component {
     this.PREVIEW.update(color)
     this.trigger(EVENTS.CHANGE, color)
   }
-
   update() {
     if (this.module === 'gradient' && this.is('noSelectedMarker')) {
       return false

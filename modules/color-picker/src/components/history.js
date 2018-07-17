@@ -24,8 +24,8 @@ class History {
   }
   build() {
     for (let i = 0; i < 18; i++) {
-      const item = `<span class='${this.classes.HISTORYITEM}'></span>`
-      this.element.append(parseHTML(item))
+      const $item = `<span class='${this.classes.HISTORYITEM}'></span>`
+      this.element.append(parseHTML($item))
     }
 
     this.$items = queryAll(`.${this.classes.HISTORYITEM}`, this.element)
