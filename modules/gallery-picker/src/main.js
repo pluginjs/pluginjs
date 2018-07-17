@@ -307,7 +307,7 @@ class GalleryPicker extends Component {
     const that = this
     this.$wrap = parseHTML(
       template.compile(this.options.templates.main())({
-        namespace: this.classes.NAMESPACE,
+        classes: this.classes,
         placeholder: this.translate('placeholder'),
         add: this.translate('add'),
         count: this.translate('count'),
@@ -320,28 +320,18 @@ class GalleryPicker extends Component {
 
     insertAfter(this.$wrap, this.element)
 
-    this.$initial = query(`.${this.classes.NAMESPACE}-initial`, this.$wrap)
+    this.$initial = query(`.${this.classes.INITIAL}`, this.$wrap)
 
-    this.$info = query(`.${this.classes.NAMESPACE}-info`, this.$wrap)
-    this.$infoCount = query(`.${this.classes.NAMESPACE}-info-count`, this.$wrap)
-    this.$infoExpand = query(
-      `.${this.classes.NAMESPACE}-info-expand`,
-      this.$wrap
-    )
+    this.$info = query(`.${this.classes.INFO}`, this.$wrap)
+    this.$infoCount = query(`.${this.classes.INFOCOUNT}`, this.$wrap)
+    this.$infoExpand = query(`.${this.classes.INFOEXPAND}`, this.$wrap)
     this.$infoEdit = query(`.${this.classes.INFOEDIT}`, this.$infoExpand)
     this.$infoRemove = query(`.${this.classes.INFOREMOVE}`, this.$infoExpand)
-    this.$infoAdd = query(`.${this.classes.NAMESPACE}-info-add`, this.$wrap)
-    this.$infoImage = query(`.${this.classes.NAMESPACE}-info-image`, this.$wrap)
-    this.$expandPanel = query(
-      `.${this.classes.NAMESPACE}-expand-panel`,
-      this.$wrap
-    )
+    this.$infoAdd = query(`.${this.classes.INFOADD}`, this.$wrap)
+    this.$infoImage = query(`.${this.classes.INFOIMAGE}`, this.$wrap)
+    this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
     this.$expandAdd = query(`.${this.classes.EXPANDADD}`, this.$expandPanel)
-    this.$expandItems = query(
-      `.${this.classes.NAMESPACE}-expand-items`,
-      this.$expandPanel
-    )
-
+    this.$expandItems = query(`.${this.classes.EXPANDITEM}`, this.$expandPanel)
     // init pop
     this.pop = PopDialog.of(this.$infoRemove, {
       placement: 'bottom',

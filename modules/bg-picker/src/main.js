@@ -229,7 +229,7 @@ class BgPicker extends Component {
   createHtml() {
     this.$wrap = parseHTML(
       template.compile(this.options.template())({
-        classes: this.classes,
+        namespace: this.classes.NAMESPACE,
         placeholder: this.translate('placeholder'),
         cancel: this.translate('cancel'),
         save: this.translate('save')

@@ -22,14 +22,22 @@ export const classes = {
   INFO: '{namespace}-info',
   INFOEDIT: '{namespace}-info-edit',
   INFOREMOVE: '{namespace}-info-remove',
+  INFOIMAGE: '{namespace}-info-image',
+  INFOCOUNT: '{namespace}-info-count',
+  INFOADD: '{namespace}-info-add',
+  INFOEXPAND: '{namespace}-info-expand',
   EXPANDCANCELBTN: '{namespace}-expand-cancel-btn',
   EXPANDSAVEBTN: '{namespace}-expand-save-btn',
   EXPANDADDBTN: '{namespace}-expand-add-btn',
   EXPANDADD: '{namespace}-expand-add',
+  EXPANDPANEL: '{namespace}-expand-panel',
+  EXPANDITEM: '{namespace}-expand-items',
+  EXPANDCONTROL: '{namespace}-expand-control',
   ITEM: '{namespace}-item',
   ITEMIMAGE: '{namespace}-item-image',
   ITEMREMOVE: '{namespace}-item-remove',
-  ITEMRESELECT: '{namespace}-item-reselect'
+  ITEMRESELECT: '{namespace}-item-reselect',
+  INITIAL: '{namespace}-initial'
 }
 
 export const methods = [
@@ -55,25 +63,25 @@ export const defaults = {
   templates: {
     main() {
       return (
-        '<div class="{namespace}">' +
-        '<div class="{namespace}-initial">' +
+        '<div class="{classes.NAMESPACE}">' +
+        '<div class="{classes.INITIAL}">' +
         '<i class="icon-image-group"></i>{placeholder}' +
         '</div>' +
-        '<div class="{namespace}-info">' +
-        '<div class="{namespace}-info-image" style=""></div>' +
-        '<span class="{namespace}-info-count">{count}</span>' +
-        '<div class="{namespace}-info-expand"><i class="{namespace}-info-edit icon-pencil-square"></i><i class="{namespace}-info-remove icon-trash"></i></div>' +
+        '<div class="{classes.INFO}">' +
+        '<div class="{classes.INFOIMAGE}" style=""></div>' +
+        '<span class="{classes.INFOCOUNT}">{count}</span>' +
+        '<div class="{classes.INFOEXPAND}"><i class="{classes.INFOEDIT} icon-pencil-square"></i><i class="{classes.INFOREMOVE} icon-trash"></i></div>' +
         '</div>' +
-        '<div class="{namespace}-expand-panel">' +
-        '<ul class="{namespace}-expand-items">' +
-        '<li class="{namespace}-expand-add">' +
+        '<div class="{classes.EXPANDPANEL}">' +
+        '<ul class="{classes.EXPANDITEM}">' +
+        '<li class="{classes.EXPANDADD}">' +
         '<i class="icon-picture"></i>{add}' +
         '</li>' +
         '</ul>' +
-        '<div class="{namespace}-expand-control">' +
-        '<button class="{namespace}-expand-cancel-btn pj-btn pj-btn-transparent">{footerCancel}</button>' +
+        '<div class="{classes.EXPANDCONTROL}">' +
+        '<button class="{classes.EXPANDCANCELBTN} pj-btn pj-btn-transparent">{footerCancel}</button>' +
         // '<button class="{namespace}-expand-add-btn pj-btn pj-btn-outline-default">{footerAdd}</button>' +
-        '<button class="{namespace}-expand-save-btn pj-btn pj-btn-primary">{footerSave}</button>' +
+        '<button class="{classes.EXPANDSAVEBTN} pj-btn pj-btn-primary">{footerSave}</button>' +
         '</div>' +
         '</div>' +
         '</div>'

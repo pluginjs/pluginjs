@@ -36,7 +36,6 @@ export const classes = {
   EMPTY: '{namespace}-empty',
   EXIST: '{namespace}-exist',
   EXPAND: '{namespace}-expand',
-
   // repeat
   REPEAT: '{namespace}-repeat',
   REPEATTITLE: '{namespace}-repeat-title',
@@ -169,21 +168,21 @@ export const defaults = {
 
   template() {
     return (
-      '<div class="{classes.NAMESPACE}">' +
-      '<div class="{classes.INITIATE}">' +
+      '<div class="{namespace}">' +
+      '<div class="{namespace}-initiate">' +
       '<i class="icon-picture"></i>{placeholder}' +
       '</div>' +
-      '<div class="{classes.INFO}">' +
-      '<div class="{classes.INFOIMAGE}">' +
-      '<div class="{classes.IMAGENAMEINFO}</div>' +
+      '<div class="{namespace}-info">' +
+      '<div class="{namespace}-info-image">' +
+      '<div class="{namespace}-info-image-name">{placeholder}</div>' +
       '</div>' +
-      '<div class="{classes.INFOCHANGE}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i></div>' +
+      '<div class="{namespace}-info-change"><i class="{namespace}-info-edit icon-pencil-square"></i><i class="{namespace}-info-remove icon-trash"></i></div>' +
       '</div>' +
-      '<div class="{classes.EXPANDPANEL}">' +
-      '<div class="{classes.IMAGEWRAP}">' +
-      '<div class="{classes.IMAGE}"></div>' +
+      '<div class="{namespace}-expand-panel">' +
+      '<div class="{namespace}-expand-image-wrap">' +
+      '<div class="{namespace}-expand-image"></div>' +
       '</div>' +
-      '<div class="{classes.CONTROL}" href="#"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">{save}</button></div>' +
+      '<div class="{namespace}-expand-control" href="#"><button type="button" class="{namespace}-expand-cancel pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{namespace}-expand-save pj-btn pj-btn-primary">{save}</button></div>' +
       '</div>' +
       '</div>'
     )

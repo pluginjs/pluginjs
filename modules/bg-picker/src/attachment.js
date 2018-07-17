@@ -53,7 +53,9 @@ export default class Attachment {
         width: this.$dropdown,
         icon: 'icon-char icon-chevron-down',
         classes: {
-          panel: `pj-dropdown-panel ${this.instance.classes.DROPDOWNTRIGGER}`
+          panel: `pj-dropdown-panel ${
+            this.instance.classes.NAMESPACE
+          }-dropdown-panel`
         },
         onChange(value) {
           if (that.instance.disabled) {
