@@ -111,10 +111,11 @@ Name | Description
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
 `"destroy"` | Gets fired when plugin is destroy
-`"dragstart"` | Gets fired when plugin has be dragStart
-`"dragmove"` | Gets fired when plugin has be dragMove
-`"dragend"` | Gets fired when plugin has be dragEnd
+`"start"` | Gets fired when plugin has be start
+`"move"` | Gets fired when plugin has be move
+`"end"` | Gets fired when plugin has be end
 `"resize"` | Gets fired when plugin has be resize
+`"decay"` | Gets fired when plugin has be decay
 `"decayend"` | Gets fired when plugin has be decayend
 
 ### Methods

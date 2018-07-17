@@ -7,9 +7,9 @@ const events = {
   DESTROY: 'destroy',
   START: 'start',
   MOVE: 'move',
-  BEFOREEND: 'beforeend',
-  AFTEREND: 'afterend',
+  END: 'end',
   RESIZE: 'resize',
+  DECAY: 'decay',
   DECAYEND: 'decayend'
 }
 

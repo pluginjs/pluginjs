@@ -81,12 +81,15 @@ class Swipeable extends Component {
     this.$drag.on('panstart panmove panend', e => {
       switch (e.type) {
         case 'panstart':
+          this.setInfo(e)
           this.panStart()
           break
         case 'panmove':
+          this.setInfo(e)
           this.panMove(e)
           break
         case 'panend':
+          this.setInfo(e)
           this.panEnd(e)
           break
         default:
@@ -152,17 +155,18 @@ class Swipeable extends Component {
       return
     }
 
-    this.trigger(EVENTS.BEFOREEND)
+    this.trigger(EVENTS.DECAY)
     const $target = this.element
 
     if (this.options.decay) {
       this.decayMove(e, $target)
     }
+
     if (this.options.rebound) {
       this.reboundMove($target)
     }
     removeClass('is-dragging', this.element)
-    this.trigger(EVENTS.AFTEREND)
+    this.trigger(EVENTS.END)
   }
 
   decayMove(e, $target) {
@@ -301,6 +305,25 @@ class Swipeable extends Component {
       return document.querySelector(container)
     }
     return this.element.parentNode
+  }
+
+  setInfo(e) {
+    this.$info = {
+      pointer: e.center,
+      deltaTime: e.deltaTime,
+      deltaX: e.deltaX,
+      deltaY: e.deltaY,
+      type: e.type,
+      velocityX: e.velocityX,
+      velocityY: e.velocityY
+    }
+  }
+
+  back() {
+    const target = this.element
+    const distance =
+      this.options.axis === 'x' ? this.startPosition.x : this.startPosition.y
+    this.triggerAnime(target, distance)
   }
 
   unbind() {

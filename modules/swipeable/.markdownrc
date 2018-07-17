@@ -64,20 +64,24 @@
         "desc": "Gets fired when plugin is destroy"
       },
       {
-        "name": "dragstart",
-        "desc": "Gets fired when plugin has be dragStart"
+        "name": "start",
+        "desc": "Gets fired when plugin has be start"
       },
       {
-        "name": "dragmove",
-        "desc": "Gets fired when plugin has be dragMove"
+        "name": "move",
+        "desc": "Gets fired when plugin has be move"
       },
       {
-        "name": "dragend",
-        "desc": "Gets fired when plugin has be dragEnd"
+        "name": "end",
+        "desc": "Gets fired when plugin has be end"
       },
       {
         "name": "resize",
         "desc": "Gets fired when plugin has be resize"
+      },
+      {
+        "name": "decay",
+        "desc": "Gets fired when plugin has be decay"
       },
       {
         "name": "decayend",
