@@ -157,20 +157,6 @@ describe('List', () => {
       api.set(data)
       expect(api.get()).toBeArray()
     })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(data)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(data)
-      expect(api.get()).toBeArray()
-    })
   })
 
   describe('val()', () => {

@@ -2,7 +2,7 @@ import TagList from '../src/main'
 // import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-const datas = ['hello', 'world']
+const data = ['hello', 'world']
 
 describe('TagList', () => {
   describe('TagList()', () => {
@@ -113,7 +113,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = TagList.of($element, { data: datas })
+      api = TagList.of($element)
     })
 
     test('should get the value', () => {
@@ -127,37 +127,14 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = TagList.of($element, { data: datas })
+      api = TagList.of($element)
     })
 
     test('should set the value', () => {
       expect(api.get()).toBeObject()
 
-      api.set(false)
-      expect(api.get()).toBeFalse()
-
-      api.set(true)
-      expect(api.get()).toBeTrue()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toEqual(0)
-
-      api.set(1)
-      expect(api.get()).toEqual(1)
+      api.set(data)
+      expect(api.get()).toBeArray()
     })
   })
 
@@ -167,7 +144,7 @@ describe('TagList', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = TagList.of($element, { data: datas })
+      api = TagList.of($element)
     })
 
     test('should get the value', () => {
@@ -185,13 +162,9 @@ describe('TagList', () => {
     })
 
     test('should set the value with string', () => {
-      api.val('false')
+      api.val(data)
 
-      expect(api.get()).toBeFalse()
-
-      api.val('true')
-
-      expect(api.get()).toBeTrue()
+      expect(api.get()).toBeNull()
     })
 
     test('should set the value with number', () => {
