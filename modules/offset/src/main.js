@@ -62,7 +62,7 @@ class Offset extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.doc = document.body
+    this.$doc = document.body
 
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
     this.initClasses(CLASSES)
@@ -247,7 +247,7 @@ class Offset extends Component {
           )
         }
       },
-      document.body
+      this.$doc
     )
 
     bindEvent(
@@ -276,20 +276,19 @@ class Offset extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.$wrap)
-    removeEvent(this.eventName(), document.body)
+    removeEvent(this.eventName(), this.$doc)
   }
 
   create() {
     this.$wrap = parseHTML(
       template.compile(this.options.template())({
-        namespace: this.classes.NAMESPACE,
-        view: this.classes.VIEW
+        classes: this.classes
       })
     )
 
     insertAfter(this.$wrap, this.element)
 
-    this.items = queryAll(`.${this.classes.ITEM}`, this.$wrap)
+    this.$items = queryAll(`.${this.classes.ITEM}`, this.$wrap)
 
     this.$inner = query(`.${this.classes.INNER}`, this.$wrap)
     this.$view = query(`.${this.classes.VIEW}`, this.$wrap)
@@ -324,9 +323,9 @@ class Offset extends Component {
 
     const that = this
 
-    const input = query('input', $el)
-    input.setAttribute('name', name)
-    const apiDate = new UNITS(input, {
+    const $input = query('input', $el)
+    $input.setAttribute('name', name)
+    const apiDate = new UNITS($input, {
       theme: 'default',
       data: units,
       defaultUnit: this.options.defaultUnit,
@@ -335,15 +334,15 @@ class Offset extends Component {
           return
         }
 
-        const trigger = input.nextElementSibling
+        const $trigger = $input.nextElementSibling
         const newData = {}
 
-        newData[input.getAttribute('name')] = this.get(unit)
+        newData[$input.getAttribute('name')] = this.get(unit)
 
         if (unit === 'auto') {
-          addClass(`${this.classes.NAMESPACE}-unit-auto`, trigger)
+          addClass(`${this.classes.UNITAUTO}`, $trigger)
         } else {
-          removeClass(`${this.classes.NAMESPACE}-unit-auto`, trigger)
+          removeClass(`${this.classes.UNITAUTO}`, $trigger)
         }
 
         that.set(newData, true)
@@ -352,9 +351,9 @@ class Offset extends Component {
         if (that.is('disabled')) {
           return
         }
-        const item = closest(`.${that.classes.ITEM}`, input)
-        const info = getObjData('info', item)
-        const key = input.getAttribute('name')
+        const $item = closest(`.${that.classes.ITEM}`, $input)
+        const info = getObjData('info', $item)
+        const key = $input.getAttribute('name')
         const newData = {}
 
         info.value = value ? value : ''
@@ -367,7 +366,7 @@ class Offset extends Component {
         )
       }
     })
-    setObjData('units', apiDate, input)
+    setObjData('units', apiDate, $input)
   }
 
   initTooltip() {
@@ -407,8 +406,8 @@ class Offset extends Component {
     this.mouseup = function() {
       this.enableTooltip()
       //
-      removeEvent('mousemove', document.body)
-      removeEvent('mouseup', document.body)
+      removeEvent('mousemove', this.$doc)
+      removeEvent('mouseup', this.$doc)
       const $this = query(`#${id}`, this.$wrap)
       let value = $this.value
       const key = $this.getAttribute('name')
@@ -440,14 +439,14 @@ class Offset extends Component {
         type: 'mousemove',
         handler: this.mousemove.bind(this)
       },
-      document.body
+      this.$doc
     )
     bindEvent(
       {
         type: 'mouseup',
         handler: this.mouseup.bind(this)
       },
-      document.body
+      this.$doc
     )
     return false
   }
@@ -492,28 +491,28 @@ class Offset extends Component {
   }
 
   setView() {
-    this.items.map((item, i) => { /* eslint-disable-line */
-      const input = query('input', item)
-      const key = input.getAttribute('name')
-      const view = query(`.${this.classes.VIEW}`, item)
+    this.$items.map((item, i) => { /* eslint-disable-line */
+      const $input = query('input', item)
+      const key = $input.getAttribute('name')
+      const $view = query(`.${this.classes.VIEW}`, item)
       const info = getObjData('info', item)
 
       if (info && info.unit === 'auto') {
-        view.innerHTML = 'auto'
+        $view.innerHTML = 'auto'
         return /* eslint-disable-line */
       }
 
       if (info && info.value.length < 1) {
-        view.innerHTML = '-'
+        $view.innerHTML = '-'
         return /* eslint-disable-line */
       }
 
       if (info && info.value === 0) {
-        view.innerHTML = 0
+        $view.innerHTML = 0
         return /* eslint-disable-line */
       }
 
-      view.innerHTML = `${this.data[key].value}${this.data[key].unit}`
+      $view.innerHTML = `${this.data[key].value}${this.data[key].unit}`
     })
   }
 
@@ -597,12 +596,12 @@ class Offset extends Component {
         this.$wrap
       )[0]
 
-      const item = closest(`.${this.classes.ITEM}`, input)
+      const $item = closest(`.${this.classes.ITEM}`, input)
       const api = getObjData('units', input)
 
       const info = this.parse(v)
       this.data[i] = info
-      setObjData('info', info, item)
+      setObjData('info', info, $item)
 
       api.set(info)
     })
