@@ -61,9 +61,7 @@ class TagList extends List {
   initAddBtn() {
     this.$add = parseHTML(
       templateEngine.compile(this.options.templates.add())({
-        className: this.classes.ADD,
-        input: this.classes.ADDINPUT,
-        button: this.classes.ADDBTN,
+        classes: this.classes,
         placeholder: this.translate('addPlaceholder'),
         BtnText: this.translate('add')
       })
