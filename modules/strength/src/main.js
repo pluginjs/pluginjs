@@ -203,10 +203,10 @@ class Strength extends Component {
 
     insertBefore(this.$container, this.element)
 
-    const holder = query(`.${this.classes.INPUT}`, this.$container)
+    const $holder = query(`.${this.classes.INPUT}`, this.$container)
     // this.element.remove()
-    insertBefore(this.element, holder)
-    holder.remove()
+    insertBefore(this.element, $holder)
+    $holder.remove()
   }
 
   generateToggle() {
