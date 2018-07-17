@@ -1,6 +1,6 @@
 import { addClass } from '@pluginjs/classes'
+import { bindEvent } from '@pluginjs/events'
 
-/* eslint-disable */
 class Masonry {
   constructor(instanced) {
     this.api = instanced
@@ -10,7 +10,6 @@ class Masonry {
 
   init() {
     addClass(this.api.classes.MASONRYMODEL, this.api.element)
-    // this.api.$element.addClass(this.api.classes.MASONRYMODEL)
     this.handleState()
     this.height = this.getHeight()
 
@@ -100,7 +99,7 @@ class Masonry {
         ),
         handler: e => {
           if (e.detail.data[0] < this.api.minWidth) {
-            return false
+            return
           }
           this.handleState()
           this.render()
@@ -153,50 +152,6 @@ class Masonry {
       },
       this.api.element
     )
-
-    // this.api.$element.on(
-    //   this.api.eventName(`${this.api.namespace}:${this.api.events.RESIZED}`),
-    //   (e, el, data) => {
-    //     if (data < this.api.minWidth) {
-    //       return false
-    //     }
-    //     this.handleState()
-    //     this.render()
-    //   }
-    // )
-
-    // this.api.$element.on(
-    //   this.api.eventName(`${this.api.namespace}:${this.api.events.FILTER}`),
-    //   (e, el, data) => {
-    //     const {
-    //       showChunks,
-    //       hideChunks,
-    //       moveChunks
-    //     } = data
-
-    //     this.handleState()
-    //     this.api.setHeight(this.getHeight())
-
-    //     hideChunks.forEach(chunk => {
-    //       chunk.hide()
-    //     })
-
-    //     showChunks.forEach(chunk => {
-    //       chunk.show()
-    //     })
-
-    //     moveChunks.forEach(chunk => {
-    //       chunk.moveTo(chunk.movePosition)
-    //     })
-    //   }
-    // )
-
-    // this.api.$element.on(
-    //   this.api.eventName(`${this.api.namespace}:${this.api.events.SORT}`),
-    //   () => {
-    //     this.api.setHeight(this.getHeight())
-    //   }
-    // )
   }
 
   update() {
@@ -235,7 +190,6 @@ class Masonry {
   render() {
     this.api.chunks.forEach(item => {
       // set item size.
-      // item.info = $.extend({}, item.info, item.movePosition)
       item.info = Object.assign({}, item.info, item.movePosition)
 
       if (this.api.options.delay) {

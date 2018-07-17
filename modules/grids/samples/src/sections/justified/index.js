@@ -5,6 +5,6 @@ const element = query('#justified .grids')
 Grids.of(element, {
   itemSelector: '.grids-item',
   gutter: 20,
-  minHeight: 270,
+  minHeight: 260,
   model: 'justified'
 })

@@ -1,5 +1,4 @@
 import { addClass } from '@pluginjs/classes'
-
 import { bindEvent } from '@pluginjs/events'
 
 class Nested {

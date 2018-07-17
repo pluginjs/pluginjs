@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.22",
+  "version": "0.2.28",
   "main": "dist/grids.umd.js",
   "module": "dist/grids.esm.js",
   "cjs": "dist/grids.cjs.js",

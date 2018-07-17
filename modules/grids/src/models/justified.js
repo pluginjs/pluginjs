@@ -1,6 +1,6 @@
 import { addClass } from '@pluginjs/classes'
+import { bindEvent } from '@pluginjs/events'
 
-/* eslint-disable */
 class Justified {
   constructor(instanced) {
     this.api = instanced
@@ -31,19 +31,18 @@ class Justified {
 
   compute() {
     let tempArr = []
-    const waitArr = []
+    // const waitArr = []
     let count = 0
     let countItemAspectRatio
 
     this.api.chunks.forEach(chunk => {
-      let tempHeight
       countItemAspectRatio = chunk.aspectRatio
 
       tempArr.forEach(tempChunk => {
         countItemAspectRatio += tempChunk.aspectRatio
       })
 
-      tempHeight =
+      const tempHeight =
         (this.api.width - (tempArr.length - 1) * this.api.gutter) /
         countItemAspectRatio
       if (tempHeight >= this.minHeight) {
@@ -105,7 +104,7 @@ class Justified {
         ),
         handler: e => {
           if (e.detail.data[0] < this.api.minWidth) {
-            return false
+            return
           }
           this.handleState()
           this.render()

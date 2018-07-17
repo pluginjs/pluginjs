@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.30",
+  "version": "0.2.31",
   "main": "dist/swipe.umd.js",
   "module": "dist/swipe.esm.js",
   "cjs": "dist/swipe.cjs.js",
@@ -42,8 +42,8 @@
     "@pluginjs/is": "*",
     "@pluginjs/pluginjs": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/template": "*",
     "@pluginjs/swipeable": "*",
+    "@pluginjs/template": "*",
     "hammerjs": "*"
   },
   "devDependencies": {

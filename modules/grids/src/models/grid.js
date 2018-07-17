@@ -1,7 +1,6 @@
 import { addClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 
-/* eslint-disable */
 class Grid {
   constructor(instanced) {
     this.api = instanced
@@ -11,7 +10,6 @@ class Grid {
 
   init() {
     addClass(this.api.classes.GRIDMODEL, this.api.element)
-    // this.api.$element.addClass(this.api.classes.GRIDMODEL)
 
     this.handleState()
 
@@ -98,7 +96,7 @@ class Grid {
         type: `${this.api.namespace}:${this.api.events.RESIZED}`,
         handler: e => {
           if (e.detail.data[0] < this.api.minWidth) {
-            return false
+            return
           }
 
           this.handleState()
@@ -137,42 +135,6 @@ class Grid {
       },
       this.api.element
     )
-    // this.api.$element.on(
-    //   this.api.eventName(`${this.api.namespace}:${this.api.events.RESIZED}`),
-    //   (e, el, data) => {
-    //     if (data < this.api.minWidth) {
-    //       return false
-    //     }
-
-    //     this.handleState()
-    //     this.render()
-    //   }
-    // )
-
-    // this.api.$element.on(
-    //   this.api.eventName(`${this.api.namespace}:${this.api.events.FILTER}`),
-    //   (e, el, data) => {
-    //     const {
-    //       showChunks,
-    //       hideChunks,
-    //       moveChunks
-    //     } = data
-
-    //     this.handleState()
-
-    //     hideChunks.forEach(chunk => {
-    //       chunk.hide()
-    //     })
-
-    //     this.api.ANIMATE.loading(showChunks, () => {
-    //       this.api.setHeight(this.getHeight(this.chunksArr))
-    //     })
-
-    //     moveChunks.forEach(chunk => {
-    //       chunk.moveTo(chunk.movePosition)
-    //     })
-    //   }
-    // )
   }
 
   update(chunksArr) {
@@ -201,10 +163,8 @@ class Grid {
   }
 
   render() {
-    // this.chunksArr = this.compute(this.api.chunks);
     this.api.chunks.forEach(item => {
       // set item size.
-      // item.info = $.extend({}, item.info, item.movePosition)
       item.info = Object.assign({}, item.info, item.movePosition)
 
       if (this.api.options.delay) {

@@ -426,11 +426,11 @@ class Swipe extends Component {
         this.trigger(EVENTS.DRAGSTART)
       }
 
-      this.$swipe.options.onDragmove = e => {
+      this.$swipe.options.onMove = e => {
         setStyle({ transition: '' }, e.element)
       }
 
-      this.$swipe.options.onDragend = e => {
+      this.$swipe.options.onEnd = e => {
         if (e.isdecaying) {
           this.$swipe.options.onDecayend = () => {
             const locationX = e.getLocation(e.element).translateX

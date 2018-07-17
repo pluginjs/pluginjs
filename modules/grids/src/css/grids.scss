@@ -16,6 +16,7 @@ $grids: "pj-grids" !default;
     // overflow: hidden;
   }
   &-inner {
+    overflow: hidden;
     visibility: hidden;
     // position: relative;
     opacity: 0;

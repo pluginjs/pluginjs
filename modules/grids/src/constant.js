@@ -72,7 +72,7 @@ export const defaults = {
   model: 'grid', // select model
   maxColumn: 5, // [number] set the max column number.
   gutter: 0,
-  minHeight: 150, // item min height. unit: px.
+  minHeight: 100, // item min height. unit: px.
   minWidth: 200, // item min width. unit: px.
   aspectRatio: null, // 'Width:Height' global items aspect ratio. item own aspect ratio can be replaced by it. item own aspect ratio > global aspect ratio > item own size
   delay: 60, // chunk animating delay for each of list. unit: ms.

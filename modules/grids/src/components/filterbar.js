@@ -74,13 +74,14 @@ class Filterbar {
         that.api.sort(sortby)
       }
     }
-    /* eslint-disable */
+
     this.api.chunks.forEach(chunk => {
       for (const key in chunk.sort) {
-        sorts.push(key)
+        if (Object.prototype.hasOwnProperty.call(chunk.sort, key)) {
+          sorts.push(key)
+        }
       }
     })
-    /* eslint-enable */
 
     sorts = Array.from(new Set(sorts))
     sorts.forEach((sort, index) => {
