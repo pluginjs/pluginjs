@@ -1,171 +1,161 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Paginator from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Paginator from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import { parseHTML } from '@pluginjs/dom'
 
+const getInitialElement = () => parseHTML`
+  <div class="example">
+    <ul class="paginator-less"></ul>
+  </div>
+`
+const getNewPaginator = () => Paginator.of(getInitialElement())
 describe('Paginator', () => {
-  // describe('Paginator()', () => {
-  //   test('should have Paginator', () => {
-  //     expect(Paginator).toBeFunction();
-  //   });
+  describe('Paginator()', () => {
+    test('should have Paginator', () => {
+      expect(Paginator).toBeFunction()
+    })
 
-  //   test('should have defaults', () => {
-  //     expect(Paginator.defaults).toBeObject();
-  //   });
+    test('should have defaults', () => {
+      expect(Paginator.defaults).toBeObject()
+    })
 
-  //   test('should have events', () => {
-  //     expect(Paginator.events).toBeObject();
-  //   });
+    test('should have events', () => {
+      expect(Paginator.events).toBeObject()
+    })
 
-  //   test('should have classes', () => {
-  //     expect(Paginator.classes).toBeObject();
-  //   });
+    test('should have classes', () => {
+      expect(Paginator.classes).toBeObject()
+    })
 
-  //   test('should have methods', () => {
-  //     expect(Paginator.methods).toBeArray();
-  //   });
-  // });
-
-  // describe('constructor()', () => {
-  //   test('should work with element', () => {
-  //     let element = document.createElement('div');
-  //     let paginator = new Paginator(element);
-
-  //     expect(paginator).toBeObject();
-  //     expect(paginator.options).toEqual(DEFAULTS);
-  //   });
-
-  //   test('should have options', () => {
-  //     let element = document.createElement('div');
-  //     let paginator = new Paginator(element);
-
-  //     expect(paginator.options).toBeObject();
-  //   });
-  // });
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asPaginator()).toEqual($element)
-
-      const api = $element.data('paginator')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
+    test('should have methods', () => {
+      expect(Paginator.methods).toBeArray()
     })
   })
 
-  // describe('api call', () => {
-  //   test('should not call bind', () => {
-  //     let $element = $(document.createElement('div')).asPaginator();
-  //     expect($element.asPaginator('bind')).toBeNil();
-  //   });
+  describe('constructor()', () => {
+    test('should work with element', () => {
+      const paginator = getNewPaginator()
 
-  //   test('should call destroy', () => {
-  //     let $element = $(document.createElement('div')).asPaginator();
-  //     expect($element.asPaginator('destroy')).toEqual($element);
-  //   });
-  // });
+      expect(paginator).toBeObject()
+      expect(paginator.options).toEqual(DEFAULTS)
+    })
 
-  // describe('initialize()', () => {
-  //   let $element;
+    test('should have options', () => {
+      const $element = getInitialElement()
+      const paginator = Paginator.of($element)
 
-  //   beforeEach(function() {
-  //     $element = $(document.createElement('div'))
-  //   });
+      expect(paginator.options).toBeObject()
+    })
+  })
 
-  //   test('should trigger ready event', () => {
-  //     let called = 0;
+  describe('api call', () => {
+    test('should not call bind', () => {
+      const paginator = getNewPaginator()
+      expect(paginator.bind()).toBeNil()
+    })
 
-  //     $element.on('paginator:ready', function(event, api) {
-  //       expect(api.is('initialized')).toBeTrue();
-  //       called ++;
-  //     });
+    test('should call destroy', () => {
+      const paginator = getNewPaginator()
+      paginator.destroy()
+    })
+  })
 
-  //     $element.asPaginator();
-  //     expect(called).toEqual(1);
-  //   });
-  // });
+  describe('initialize()', () => {
+    let $element
 
-  // describe('destroy()', () => {
-  //   let $element;
-  //   let api;
+    beforeEach(() => {
+      $element = getInitialElement()
+    })
 
-  //   beforeEach(function() {
-  //     $element = $(document.createElement('div')).asPaginator();
-  //     api = $element.data('paginator');
-  //   });
+    test('should trigger ready event', () => {
+      let called = 0
 
-  //   test('should trigger destroy event', () => {
-  //     let called = 0;
+      $element.addEventListener('paginator:ready', () => {
+        called++
+      })
 
-  //     $element.on('paginator:destroy', function(event, api) {
-  //       expect(api.is('initialized')).toBeFalse();
-  //       called ++;
-  //     });
+      const instance = Paginator.of($element)
+      expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
+    })
+  })
 
-  //     $element.asPaginator('destroy');
+  describe('destroy()', () => {
+    let $element
+    let api
 
-  //     expect(called).toEqual(1);
-  //   });
-  // });
+    beforeEach(() => {
+      $element = getInitialElement()
+      api = Paginator.of($element)
+    })
 
-  // describe('enable()', () => {
-  //   let $element;
-  //   let api;
+    test('should trigger destroy event', () => {
+      let called = 0
 
-  //   beforeEach(function() {
-  //     $element = $(document.createElement('div')).asPaginator();
-  //     api = $element.data('paginator');
-  //   });
+      $element.addEventListener('paginator:destroy', () => {
+        expect(api.is('initialized')).toBeFalse()
+        called++
+      })
 
-  //   test('should enable the plugin', () => {
-  //     $element.asPaginator('disable');
-  //     $element.asPaginator('enable');
+      api.destroy()
 
-  //     expect(api.is('disabled')).toBeFalse();
-  //   });
+      expect(called).toEqual(1)
+    })
+  })
 
-  //   test('should trigger enable event', () => {
-  //     let called = 0;
+  describe('enable()', () => {
+    let $element
+    let api
 
-  //     $element.on('paginator:enable', function(event, api) {
-  //       expect(api.is('disabled')).toBeFalse();
-  //       called ++;
-  //     });
+    beforeEach(() => {
+      $element = getInitialElement()
+      api = Paginator.of($element)
+    })
 
-  //     $element.asPaginator('enable');
-  //     expect(called).toEqual(1);
-  //   });
-  // });
+    test('should enable the plugin', () => {
+      api.disable()
+      api.enable()
 
-  // describe('disable()', () => {
-  //   let $element;
-  //   let api;
+      expect(api.is('disabled')).toBeFalse()
+    })
 
-  //   beforeEach(function() {
-  //      $element = $(document.createElement('div')).asPaginator();
-  //      api = $element.data('paginator');
-  //   });
+    test('should trigger enable event', () => {
+      let called = 0
 
-  //   test('should disable the plugin', () => {
-  //     $element.asPaginator('disable');
+      $element.addEventListener('paginator:enable', () => {
+        expect(api.is('disabled')).toBeFalse()
+        called++
+      })
 
-  //     expect(api.is('disabled')).toBeTrue();
-  //   });
+      api.enable()
+      expect(called).toEqual(1)
+    })
+  })
 
-  //   test('should trigger disable event', () => {
-  //     let called = 0;
+  describe('disable()', () => {
+    let $element
+    let api
 
-  //     $element.on('paginator:disable', function(event, api) {
-  //       expect(api.is('disabled')).toBeTrue();
-  //       called ++;
-  //     });
+    beforeEach(() => {
+      $element = getInitialElement()
+      api = Paginator.of($element)
+    })
 
-  //     $element.asPaginator('disable');
-  //     expect(called).toEqual(1);
-  //   });
-  // });
+    test('should disable the plugin', () => {
+      api.disable()
+
+      expect(api.is('disabled')).toBeTrue()
+    })
+
+    test('should trigger disable event', () => {
+      let called = 0
+
+      $element.addEventListener('paginator:disable', () => {
+        expect(api.is('disabled')).toBeTrue()
+        called++
+      })
+
+      api.disable()
+      expect(called).toEqual(1)
+    })
+  })
 })

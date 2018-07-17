@@ -20,15 +20,15 @@ class Prev {
   bind() {
     const instance = this.instance
 
-    if (!this.$prev) {
-      this.$prev = query(`.${instance.classes.PREV}`, instance.element)
+    if (!this.prev) {
+      this.prev = query(`.${instance.classes.PREV}`, instance.element)
     }
     bindEvent(
       {
         type: 'click',
         handler: instance.prev.bind(instance)
       },
-      this.$prev
+      this.prev
     )
 
     bindEvent(
@@ -41,9 +41,9 @@ class Prev {
           }
         }) => {
           if (page === 1) {
-            addClass(instance.classes.DISABLED, this.$prev)
+            addClass(instance.classes.DISABLED, this.prev)
           } else {
-            removeClass(instance.classes.DISABLED, this.$prev)
+            removeClass(instance.classes.DISABLED, this.prev)
           }
         }
       },
@@ -52,7 +52,7 @@ class Prev {
   }
 
   unbind() {
-    removeEvent('click', this.$prev)
+    removeEvent('click', this.prev)
     removeEvent('paginator:change', this.instance.element)
   }
 }

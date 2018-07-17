@@ -25,15 +25,15 @@ class Total {
   bind() {
     const instance = this.instance
 
-    if (!this.$total) {
-      this.$total = query(`.${instance.classes.TOTAL}`, instance.element)
+    if (!this.total) {
+      this.total = query(`.${instance.classes.TOTAL}`, instance.element)
     }
 
     bindEvent(
       {
         type: 'paginator:change',
         handler: () => {
-          this.$total.textContent = this.getLabel()
+          this.total.textContent = this.getLabel()
         }
       },
       this.instance.element

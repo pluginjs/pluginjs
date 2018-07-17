@@ -20,15 +20,15 @@ class Next {
   bind() {
     const instance = this.instance
 
-    if (!this.$next) {
-      this.$next = query(`.${instance.classes.NEXT}`, instance.element)
+    if (!this.next) {
+      this.next = query(`.${instance.classes.NEXT}`, instance.element)
     }
     bindEvent(
       {
         type: 'click',
         handler: instance.next.bind(instance)
       },
-      this.$next
+      this.next
     )
 
     bindEvent(
@@ -41,9 +41,9 @@ class Next {
           }
         }) => {
           if (page === instance.totalPages) {
-            addClass(instance.classes.DISABLED, this.$next)
+            addClass(instance.classes.DISABLED, this.next)
           } else {
-            removeClass(instance.classes.DISABLED, this.$next)
+            removeClass(instance.classes.DISABLED, this.next)
           }
         }
       },
@@ -52,7 +52,7 @@ class Next {
   }
 
   unbind() {
-    removeEvent('click', this.$next)
+    removeEvent('click', this.next)
     removeEvent('paginator:change', this.instance.element)
   }
 }
