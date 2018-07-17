@@ -117,7 +117,6 @@ export const defaults = {
   getImage(value) {
     return value
   },
-
   change() {
     return false // return an image url;
   },

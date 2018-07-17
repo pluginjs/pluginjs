@@ -42,11 +42,11 @@ export const defaults = {
   theme: null,
   type: null,
   prev: {
-    href: 'javascript:void(0);',
+    href: 'javascript:void(0);' /* eslint-disable-line no-script-url */,
     text: 'Previous'
   },
   next: {
-    href: 'javascript:void(0);',
+    href: 'javascript:void(0);' /* eslint-disable-line no-script-url */,
     text: 'Next'
   },
   direction: 'horizontal', // vertical

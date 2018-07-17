@@ -1,8 +1,7 @@
 import Pj from '@pluginjs/pluginjs'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { setStyle } from '@pluginjs/styled'
 import { wrap, append } from '@pluginjs/dom'
 
 class Base {
@@ -117,15 +116,15 @@ class Base {
   }
 
   changeStatus(newStatus) {
-    this.stateSet.map(s => {
+    this.stateSet.forEach(s => {
       if (s.status === newStatus) {
         this.instance.enter(s.status)
         if (s.className) {
           addClass(s.className, this.element)
         }
         if (s.styles) {
-          s.styles.map(type => {
-            const val = `${parseInt(this.triggerStyle[type].now)}px`
+          s.styles.forEach(type => {
+            const val = `${parseInt(this.triggerStyle[type].now, 0)}px`
             this.element.style[type] = val
           })
         }
@@ -135,7 +134,7 @@ class Base {
           removeClass(s.className, this.element)
         }
         if (s.styles) {
-          s.styles.map(type => {
+          s.styles.forEach(type => {
             const val = this.triggerStyle[type].def
             this.element.style[type] = val
           })

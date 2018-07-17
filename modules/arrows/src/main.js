@@ -159,9 +159,7 @@ class Arrows extends Component {
 
   empty() {
     const arrows = Array.prototype.slice.call(this.element.children)
-    arrows.map(arrow => {
-      arrow.remove()
-    })
+    arrows.map(arrow => arrow.remove())
   }
 
   prev() {

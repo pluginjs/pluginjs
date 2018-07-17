@@ -1,3 +1,2 @@
-import NavToSelect from '@pluginjs/nav-to-select'
-
-console.log(NavToSelect)
+import './sections/default/index.js'
+import './sections/multistep/index.js'

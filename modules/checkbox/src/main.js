@@ -203,7 +203,7 @@ class Checkbox extends Component {
           if (this.is('disabled')) {
             return
           }
-
+          console.log(this.$element)
           this.toggle()
         }
       },

@@ -26,10 +26,12 @@ export const classes = {
   PADDINGRIGHT: '{namespace}-paddingRight',
   VIEW: '{namespace}-view',
   UNITSHOW: '{namespace}-unit-show',
+  UNITAUTO: '{namespace}-unit-auto',
   CONNECT: '{namespace}-connect',
   CONNECTLINK: '{namespace}-connect-link',
   CONNECTUNLINK: '{namespace}-connect-unlink',
-  CONNECTACTIVE: '{namespace}-connect-active'
+  CONNECTACTIVE: '{namespace}-connect-active',
+  WRAP: '{namespace}-wrap'
 }
 
 export const methods = [
@@ -46,51 +48,51 @@ export const methods = [
 export const defaults = {
   locale: 'en',
   template() {
-    return `<div class="{namespace}-wrap">
-            <div class="{namespace}-inner">
-              <div class="{namespace}-item {namespace}-marginTop">
+    return `<div class="{classes.WRAP}">
+            <div class="{classes.INNER}">
+              <div class="{classes.ITEM} {classes.MARGINTOP}">
                 <label for="marginTop"><i class="icon-padding-up"></i></label>
                 <input id="marginTop" type="text" value="0">
-                <span class="{view}" data-value="marginTop"></span>
+                <span class="{classes.VIEW}" data-value="marginTop"></span>
               </div>
-              <div class="{namespace}-item {namespace}-marginRight">
+              <div class="{classes.ITEM} {classes.MARGINRIGHT}"">
                 <label for="marginRight"><i class="icon-padding-right"></i></label>
                 <input id="marginRight" type="text" value="0">
-                <span class="{view}" data-value="marginRight"></span>
+                <span class="{classes.VIEW}" data-value="marginRight"></span>
               </div>
-              <div class="{namespace}-item {namespace}-marginBottom">
+              <div class="{classes.ITEM} {classes.MARGINBOTTOM}">
                 <label for="marginBottom"><i class="icon-padding-bottom"></i></label>
                 <input id="marginBottom" type="text" value="0">
-                <span class="{view}" data-value="marginBottom"></span>
+                <span class="{classes.VIEW}" data-value="marginBottom"></span>
               </div>
-              <div class="{namespace}-item {namespace}-marginLeft">
+              <div class="{classes.ITEM} {classes.MARGINLEFT}">
                 <label for="marginLeft"><i class="icon-padding-left"></i></label>
                 <input id="marginLeft" type="text" value="0">
-                <span class="{view}" data-value="marginLeft"></span>
+                <span class="{classes.VIEW}" data-value="marginLeft"></span>
               </div>
-              <div class="{namespace}-item {namespace}-paddingTop">
+              <div class="{classes.ITEM} {classes.PADDINGTOP}">
                 <label for="paddingTop"><i class="icon-padding-up"></i></label>
                 <input id="paddingTop" type="text" value="0">
-                <span class="{view}" data-value="paddingTop"></span>
+                <span class="{classes.VIEW}" data-value="paddingTop"></span>
               </div>
-              <div class="{namespace}-item {namespace}-paddingRight">
+              <div class="{classes.ITEM} {classes.PADDINGRIGHT}">
                 <label for="paddingRight"><i class="icon-padding-right"></i></label>
                 <input id="paddingRight" type="text" value="0">
-                <span class="{view}" data-value="paddingRight"></span>
+                <span class="{classes.VIEW}" data-value="paddingRight"></span>
               </div>
-              <div class="{namespace}-item {namespace}-paddingBottom">
+              <div class="{classes.ITEM} {classes.PADDINGBOTTOM}">
                 <label for="paddingBottom"><i class="icon-padding-bottom"></i></label>
                 <input id="paddingBottom" type="text" value="0">
-                <span class="{view}" data-value="paddingBottom"></span>
+                <span class="{classes.VIEW}" data-value="paddingBottom"></span>
               </div>
-              <div class="{namespace}-item {namespace}-paddingLeft">
+              <div class="{classes.ITEM} {classes.PADDINGLEFT}">
                 <label for="paddingLeft"><i class="icon-padding-left"></i></label>
                 <input id="paddingLeft" type="text" value="0">
-                <span class="{view}" data-value="paddingLeft"></span>
+                <span class="{classes.VIEW}" data-value="paddingLeft"></span>
               </div>
-              <div class="{namespace}-connect">
-                <i class='{namespace}-connect-link icon-link'></i>
-                <i class="{namespace}-connect-unlink icon-unlink"></i>
+              <div class="{classes.CONNECT}">
+                <i class='{classes.CONNECTLINK} icon-link'></i>
+                <i class="{classes.CONNECTUNLINK} icon-unlink"></i>
               </div>
             </div>
           </div>`

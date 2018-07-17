@@ -4,6 +4,29 @@ import ItemList from '../src/main'
 // import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const data = [
+  {
+    title: 'Interfaces',
+    value: 'interface'
+  },
+  {
+    title: 'UI Design',
+    value: 'ui-design'
+  },
+  {
+    title: 'Web Design',
+    value: 'web-design'
+  },
+  {
+    title: 'Typography',
+    value: 'typography'
+  },
+  {
+    title: 'Landing',
+    value: 'landing'
+  }
+]
+
 describe('ItemList', () => {
   describe('ItemList()', () => {
     test('should have ItemList', () => {
@@ -26,8 +49,8 @@ describe('ItemList', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      // const itemList = ItemList.of(generateHTMLSample())
-      // expect(itemList).toBeObject()
+      const itemList = ItemList.of(generateHTMLSample())
+      expect(itemList).toBeObject()
       // expect(itemList.options).toEqual(DEFAULTS)
     })
 
@@ -51,8 +74,8 @@ describe('ItemList', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      // const $element = ItemList.of(generateHTMLSample())
-      // expect($element.bind()).toBeNil()
+      const $element = ItemList.of(generateHTMLSample())
+      expect($element.bind()).toBeFalse()
     })
 
     test('should call destroy', () => {
@@ -109,31 +132,8 @@ describe('ItemList', () => {
     test('should set the value', () => {
       expect(api.get()).toBeObject()
 
-      api.set(false)
-      expect(api.get()).toBeFalse()
-
-      api.set(true)
-      expect(api.get()).toBeTrue()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toEqual(0)
-
-      api.set(1)
-      expect(api.get()).toEqual(1)
+      api.set(data)
+      expect(api.get()).toBeArray()
     })
   })
 
@@ -161,13 +161,9 @@ describe('ItemList', () => {
     })
 
     test('should set the value with string', () => {
-      api.val('false')
+      api.val(data)
 
-      expect(api.get()).toBeFalse()
-
-      api.val('true')
-
-      expect(api.get()).toBeTrue()
+      expect(api.get()).toBeNull()
     })
 
     test('should set the value with number', () => {
