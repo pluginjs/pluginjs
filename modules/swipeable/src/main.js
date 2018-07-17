@@ -58,7 +58,6 @@ class Swipeable extends Component {
     }
 
     this.getSize()
-    this.isEnabled = true
 
     this.$drag = new Hammer(this.element)
     if (this.options.axis === 'x') {
@@ -107,7 +106,7 @@ class Swipeable extends Component {
 
   panStart() {
     const $target = this.element
-    if (!this.isEnabled) {
+    if (!this.is('disabled')) {
       return
     }
     if (this.isdecaying === true) {
@@ -127,7 +126,7 @@ class Swipeable extends Component {
 
   panMove(e) {
     const $target = this.element
-    if (!this.isEnabled) {
+    if (!this.is('disabled')) {
       return
     }
 
@@ -151,7 +150,7 @@ class Swipeable extends Component {
   }
 
   panEnd(e) {
-    if (!this.isEnabled) {
+    if (!this.is('disabled')) {
       return
     }
 
@@ -332,7 +331,6 @@ class Swipeable extends Component {
   }
 
   enable() {
-    this.isEnabled = true
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.element)
       this.leave('disabled')
@@ -343,7 +341,6 @@ class Swipeable extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.element)
-      this.isEnabled = false
       this.unbind()
       this.enter('disabled')
     }
