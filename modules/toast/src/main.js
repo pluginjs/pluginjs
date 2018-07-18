@@ -122,6 +122,15 @@ class Toast extends GlobalComponent {
     this.$anime.pause()
   }
 
+  playLoader() {
+    this.startTime = new Date().getTime()
+    const time = this.options.duration - this.pauseTime
+    this.$anime.play()
+    this.setTimeOut = setTimeout(() => {
+      this.hide()
+    }, time)
+  }
+
   animate() {
     addClass(`${this.classes.NAMESPACE}-iconIn`, this.$icon)
 
@@ -284,6 +293,7 @@ class Toast extends GlobalComponent {
         }
       },
       this.$element
+      // this.$loader
     )
   }
 
@@ -314,7 +324,8 @@ class Toast extends GlobalComponent {
         {
           type: this.eventName('mouseleave'),
           handler: () => {
-            this.startLoader()
+            this.playLoader()
+            // this.startLoader()
           }
         },
         this.$element

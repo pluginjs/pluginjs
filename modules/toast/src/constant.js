@@ -57,7 +57,7 @@ export const defaults = {
       return '<div class="{classes.WRAP}"></div>'
     },
     buttons() {
-      return '<div class="{classes.BUTTONS}">' + '{button}' + '</div>'
+      return '<div class="{classes.BUTTONS}">{button}</div>'
     },
     button() {
       return '<div class="{classes.BUTTON} {btnClass}" data-btntype={key}>{title}</div>'

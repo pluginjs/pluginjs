@@ -1,7 +1,5 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Toast from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Toast from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 
 describe('Toast', () => {
   describe('Toast()', () => {
@@ -31,7 +29,7 @@ describe('Toast', () => {
       const toast = new Toast()
 
       expect(toast).toBeObject()
-      // expect(toast.options).toEqual(DEFAULTS);
+      expect(toast.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
@@ -139,10 +137,10 @@ describe('Toast', () => {
 
   describe('initialize()', () => {
     const api = new Toast()
-    const $element = $(window.document.body)
+    // const $element = $(window.document.body)
 
     afterEach(() => {
-      $element.off('toast:ready')
+      // $element.off('toast:ready')
     })
 
     test('should in initialized status', () => {
