@@ -6,7 +6,7 @@ $fontEditor: "pj-fontEditor" !default;
 
 $fontEditor-sizer: $sizer;
 // ======= core vars ====== //
-$fontEditor-color: $gray-dark !default;
+$fontEditor-color: $gray-darker !default;
 $fontEditor-color-light: $gray-light !default;
 $fontEditor-border-width: 1px !default;
 $fontEditor-border-color: $gray-border !default;
@@ -93,6 +93,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
   &-info {
     align-items: center;
+    color: $fontEditor-color;
 
     &-font {
       display: flex;
@@ -103,7 +104,6 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
       height: 100%;
       overflow: hidden;
       font-size: $fontEditor-info-font-size;
-      color: $fontEditor-color;
       text-align: left;
 
       &-name {

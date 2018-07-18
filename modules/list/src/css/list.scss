@@ -177,16 +177,22 @@ $pop-buttons-danger-color: $color-danger !default;
       &:hover,
       &:active {
         cursor: not-allowed;
-        background-color: $list-item-handle-bg;
+        background-color: $disabled-bg;
+        border-color: $disabled-border;
       }
     }
 
     .#{$list}-item {
-      background-color: $gray-lightest !important;
+      // background-color: $gray-lightest !important;
+      color: $disabled-color;
 
-      &:hover {
+      &:hover,
+      &:active {
         cursor: not-allowed;
         border-color: $list-border-color;
+      }
+      &-handle:hover {
+        background-color: $disabled-bg;
       }
     }
 
@@ -196,7 +202,7 @@ $pop-buttons-danger-color: $color-danger !default;
       }
 
       > i {
-        color: $list-item-actions-color !important;
+        color: $disabled-color !important;
         cursor: not-allowed;
       }
     }

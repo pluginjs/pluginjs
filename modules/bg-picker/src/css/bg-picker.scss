@@ -418,7 +418,7 @@ input.#{$bgPicker}-input {
 .#{$bgPicker}-disabled {
   .#{$bgPicker}-info {
     cursor: not-allowed;
-    background-color: $bgPicker-initiate-hover-bg;
+    background-color: $disabled-bg;
 
     &-remove,
     &-edit {
@@ -427,17 +427,18 @@ input.#{$bgPicker}-input {
   }
   .#{$bgPicker}-initial {
     cursor: not-allowed;
-    background-color: $bgPicker-initiate-hover-bg;
+    background-color: $disabled-bg;
   }
   .#{$bgPicker}-info-change {
     cursor: not-allowed;
-    background-color: $bgPicker-initiate-hover-bg;
+    background-color: $disabled-bg;
   }
   .#{$bgPicker}-initiate {
+    color: $disabled-color;
     cursor: not-allowed;
-    background-color: $bgPicker-initiate-hover-bg;
+    background-color:$disabled-bg;
     &:hover {
-      color: $gray-dark;
+      color: $disabled-color;
     }
   }
 }

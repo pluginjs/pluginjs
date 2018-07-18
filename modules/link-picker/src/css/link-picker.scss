@@ -16,7 +16,7 @@ $linkPicker-border: 1px solid $gray-border !default;
 $linkPicker-padding: 0 2 * $linkPicker-sizer !default; //0 20px
 $linkPicker-icon-margin-right: $linkPicker-sizer !default; //10px
 // init
-$init-color: $gray-light !default;
+$init-color: $gray-dark !default;
 $init-hover-bg-color: $gray-lightest !default;
 // action
 $action-hover-color: $gray-lighter !default;
@@ -217,6 +217,7 @@ $linkPicker-disabled-bg: $disabled-bg;
 
 .#{$linkPicker}-disabled {
   .#{$linkPicker}-action {
+    color: $disabled-color;
     cursor: not-allowed;
     background-color: $linkPicker-disabled-bg;
 
@@ -226,8 +227,12 @@ $linkPicker-disabled-bg: $disabled-bg;
     }
   }
   .#{$linkPicker}-init {
+    color: $disabled-color;
     cursor: not-allowed;
     background-color: $linkPicker-disabled-bg;
+    .icon-chain {
+      color: $disabled-color;
+    }
   }
 }
 .pj-btn-primary {

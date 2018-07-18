@@ -204,8 +204,9 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
 
 .#{$mapPicker}-disabled {
   .#{$mapPicker}-preview {
+    color: $disabled-color;
     cursor: not-allowed;
-    background-color: $mapPicker-init-hover-bg-color;
+    background-color: $disabled-bg;
 
     .#{$mapPicker}-remove,
     .#{$mapPicker}-edit {
@@ -213,7 +214,12 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     }
   }
   .#{$mapPicker}-init {
+    color: $disabled-color;
     cursor: not-allowed;
-    background-color: $mapPicker-init-hover-bg-color;
+    background-color: $disabled-bg;
+    > i {
+      color: $disabled-color;
+      cursor: not-allowed;
+    }
   }
 }

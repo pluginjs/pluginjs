@@ -472,6 +472,9 @@ $connect-active-bg: $gray-lightest !default;
     &:active {
       color: $offset-active-color;
     }
+    > i:active {
+      color: $disabled-color;
+    }
   }
 }
 /* stylelint-disable */
@@ -555,5 +558,6 @@ $connect-active-bg: $gray-lightest !default;
 }
 
 .#{$offset}-wrap.#{$offset}-disabled {
+  color: $disabled-color;
   cursor: not-allowed;
 }

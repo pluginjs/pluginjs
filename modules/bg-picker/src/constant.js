@@ -169,8 +169,8 @@ export const defaults = {
 
   template() {
     return (
-      '<div class="{namespace}">' +
-      '<div class="{namespace}-initiate">' +
+      '<div class="{classes.NAMESPACE}">' +
+      '<div class="{classes.INITIATE}">' +
       '<i class="icon-picture"></i>{placeholder}' +
       '</div>' +
       '<div class="{classes.INFO}">' +
@@ -179,11 +179,11 @@ export const defaults = {
       '</div>' +
       '<div class="{classes.CHANGE}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i></div>' +
       '</div>' +
-      '<div class="{namespace}-expand-panel">' +
-      '<div class="{namespace}-expand-image-wrap">' +
-      '<div class="{namespace}-expand-image"></div>' +
+      '<div class="{classes.EXPANDPANEL}">' +
+      '<div class="{classes.IMAGEWRAP}">' +
+      '<div class="{classes.IMAGE}"></div>' +
       '</div>' +
-      '<div class="{namespace}-expand-control" href="#"><button type="button" class="{namespace}-expand-cancel pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{namespace}-expand-save pj-btn pj-btn-primary">{save}</button></div>' +
+      '<div class="{classes.CONTROL}" href="#"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">{save}</button></div>' +
       '</div>' +
       '</div>'
     )

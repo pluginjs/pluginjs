@@ -324,7 +324,7 @@ $galleryPicker-expand-control-btn-height: 32px !default;
 .#{$galleryPicker}-disabled {
   .#{$galleryPicker}-info {
     cursor: not-allowed;
-    background-color: $galleryPicker-initial-hover-bg;
+    background-color: $disabled-bg;
 
     &-remove,
     &-edit {
@@ -333,10 +333,14 @@ $galleryPicker-expand-control-btn-height: 32px !default;
   }
   .#{$galleryPicker}-initial {
     cursor: not-allowed;
-    background-color: $galleryPicker-initial-hover-bg;
+    background-color: $disabled-bg;
+    &:hover {
+      color: $disabled-color;
+      cursor: not-allowed;
+    }
   }
   .#{$galleryPicker}-info-change {
     cursor: not-allowed;
-    background-color: $galleryPicker-initial-hover-bg;
+    background-color: $disabled-bg;
   }
 }
