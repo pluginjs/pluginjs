@@ -154,16 +154,14 @@ class ColorPicker extends Component {
   }
 
   initRemove() {
-    const $remove = this.createEl('remove', { class: this.classes.REMOVE })
+    const $remove = this.createEl('remove', { classes: this.classes })
     append($remove, query(`.${this.classes.TRIGGER}`, this.$wrap))
     this.$remove = query(`.${this.classes.REMOVE}`, this.$wrap)
   }
 
   initPreview() {
     const $preview = this.createEl('preview', {
-      class: this.classes.PREVIEW,
-      color: this.classes.PREVIEWCOLOR,
-      background: this.classes.PREVIEWBG
+      classes: this.classes
     })
     append($preview, query(`.${this.classes.TRIGGER}`, this.$wrap))
     this.PREVIEW = new Preview(
@@ -197,9 +195,7 @@ class ColorPicker extends Component {
 
   initPanel() {
     this.$panel = this.createEl('panel', {
-      class: this.classes.PANEL,
-      trigger: this.classes.PANELTRIGGER,
-      container: this.classes.PANELCONTAINER
+      classes: this.classes
     })
 
     // set module
@@ -255,11 +251,7 @@ class ColorPicker extends Component {
     }
     // create group
     const $collection = this.createEl('collection', {
-      favorites: this.classes.FAVORITES,
-      scheme: this.classes.SCHEME,
-      title: this.classes.GROUPTITLE,
-      list: this.classes.GROUPLIST,
-      manage: this.classes.MANAGE,
+      classes: this.classes,
       manageText: this.translate('manage'),
       favoritesText: this.translate('colorInScheme'),
       schemeText: this.translate('myColors')
@@ -443,7 +435,7 @@ class ColorPicker extends Component {
   createCollectionItem(groupName, groupList) {
     Object.entries(this.data[groupName]).forEach(([i, v]) => {
       const $item = this.createEl('collectionItem', {
-        class: this.classes.COLLECTIONITEM
+        classes: this.classes
       })
 
       // set tooltip
@@ -532,7 +524,7 @@ class ColorPicker extends Component {
   // }
 
   initHistory(gradient) {
-    const history = this.createEl('history', { class: this.classes.HISTORY })
+    const history = this.createEl('history', { classes: this.classes })
     if (gradient) {
       append(history, query(`.${this.classes.GRADIENTHISTORY}`, this.$gradient))
       this.HISTORY = new History(
@@ -550,7 +542,7 @@ class ColorPicker extends Component {
 
   initSaturation(gradient) {
     const saturation = this.createEl('saturation', {
-      class: this.classes.SATURATION
+      classes: this.classes
     })
 
     if (gradient) {
@@ -566,7 +558,7 @@ class ColorPicker extends Component {
   }
 
   initHue(gradient) {
-    const hue = this.createEl('hue', { class: this.classes.HUE })
+    const hue = this.createEl('hue', { classes: this.classes })
 
     if (gradient) {
       append(hue, query(`.${this.classes.GRADIENTPRIMARY}`, this.$gradient))
@@ -578,7 +570,7 @@ class ColorPicker extends Component {
   }
 
   initAlpha(gradient) {
-    const alpha = this.createEl('alpha', { class: this.classes.ALPHA })
+    const alpha = this.createEl('alpha', { classes: this.classes })
 
     if (gradient) {
       append(alpha, query(`.${this.classes.GRADIENTPRIMARY}`, this.$gradient))
@@ -590,7 +582,7 @@ class ColorPicker extends Component {
   }
 
   initHex(gradient) {
-    const hex = this.createEl('hex', { class: this.classes.HEX })
+    const hex = this.createEl('hex', { classes: this.classes })
 
     if (gradient) {
       append(hex, query(`.${this.classes.GRADIENTACTION}`, this.$gradient))

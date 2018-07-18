@@ -201,19 +201,19 @@ export const defaults = {
       return '<div class="{class}"></div>'
     },
     preview() {
-      return `<div class="{class}">
-                <span class="{color}"></span>
-                <span class="{background}"></span>
-              </div>`
+      return `<div class="{classes.PREVIEW}">
+      <span class="{classes.PREVIEWCOLOR}"></span>
+      <span class="{classes.PREVIEWBG}"></span>
+            </div>`
     },
     remove() {
-      return '<i class="{class} icon-close"></i>'
+      return '<i class="{classes.REMOVE} icon-close"></i>'
     },
     panel() {
-      return `<div class='{class}'>
-          <div class='{trigger}'></div>
-          <div class='{container}'></div>
-        </div>`
+      return `<div class='{classes.PANEL}'>
+      <div class='{classes.PANELTRIGGER}'></div>
+      <div class='{classes.PANELCONTAINER}'></div>
+    </div>`
     },
     collectionTrigger() {
       return '<i class="{class} icon-star" data-type="collection"></i>'
@@ -228,12 +228,12 @@ export const defaults = {
       return '<div class="{class}"></div>'
     },
     collection() {
-      return `<div class='{scheme}'><div class='{title}'>{favoritesText}</div><ul class='{list}'></ul></div>
-        <div class='{favorites}'><div class='{title}'>{schemeText}</div><ul class='{list}'></ul></div>
-        <div class='{manage}'><i class='icon-cog'></i>{manageText}</div>`
+      return `<div class='{classes.SCHEME}'><div class='{classes.GROUPTITLE}'>{favoritesText}</div><ul class='{classes.GROUPLIST}'></ul></div>
+        <div class='{classes.FAVORITES}'><div class='{classes.GROUPTITLE}'>{schemeText}</div><ul class='{classes.GROUPLIST}'></ul></div>
+        <div class='{classes.MANAGE}'><i class='icon-cog'></i>{manageText}</div>`
     },
     collectionItem() {
-      return '<li class="{class}"></li>'
+      return '<li class="{classes.COLLECTIONITEM}"></li>'
     },
     content() {
       return `<div class='{handle}'></div>
@@ -252,19 +252,19 @@ export const defaults = {
       return '<div class="{class}"><span class="{now}"></span><span class="{prev}"></span></div>'
     },
     history() {
-      return '<div class="{class}"></div>'
+      return '<div class="{classes.HISTORY}"></div>'
     },
     alpha() {
-      return '<div class="{class}"></div>'
+      return '<div class="{classes.ALPHA}"></div>'
     },
     hue() {
-      return '<div class="{class}"></div>'
+      return '<div class="{classes.HUE}"></div>'
     },
     hex() {
-      return '<div class="{class}"></div>'
+      return '<div class="{classes.HEX}"></div>'
     },
     saturation() {
-      return '<div class="{class}"></div>'
+      return '<div class="{classes.SATURATION}"></div>'
     },
     gradient() {
       return '<div class="{class}"></div>'
