@@ -13,22 +13,23 @@ scripts:
   {{!-- <button class="btn onHide">onHide</button> --}}
   <div class="console"></div>
 <script>
-$(function(){
-  $('.example-event').on('click', function(event) {
-    Pj.notice.show({
-      content: 'Check Out And Download Premui Psd Template',
-      onShow: function() {
-        log('show', 'event');
-      },
-      onHide: function() {
-        log('hide', 'event');
-      },
-      onDestroy: function() {
-        log('destroy', 'event');
-      },
-    });
-  });
-});
+  (function() {
+    document.querySelector('.example-event').addEventListener('click', () => {
+      console.log(Pj.notice)
+      // Pj.notice.show({
+      //   content: 'Check Out And Download Premui Psd Template',
+      //   onShow() {
+      //     console.log('show', 'event');
+      //   },
+      //   onHide() {
+      //     console.log('hide', 'event');
+      //   },
+      //   onDestroy() {
+      //     console.log('destroy', 'event');
+      //   },
+      // });
+    })
+  })()
 </script>
 </section>
 
@@ -39,23 +40,19 @@ $(function(){
     <button class="btn closetrue">true</button>
     <button class="btn closenull">false</button>
 <script>
-//allowClose
-$(function(){
-  $('.closetrue').on('click', function(event) {
+  //allowClose
+  document.querySelector('.closetrue').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       allowClose: true,
     })
-  });
-});
-$(function(){
-  $('.closenull').on('click', function(event) {
+  })
+  document.querySelector('.closenull').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       allowClose: false,
     })
-  });
-});
+  })
 </script>
 </section>
 
@@ -65,33 +62,26 @@ $(function(){
     <button class="btn background2" style="background: #F6D851;">show notice</button>
     <button class="btn background3">picture Bg</button>
 <script>
-
-//set color
-$(function(){
-  $('.background1').on('click', function(event) {
+  //set color
+  document.querySelector('.background1').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       backgroundColor: '#2DB578',
     })
-  });
-});
-$(function(){
-  $('.background2').on('click', function(event) {
+  })
+  document.querySelector('.background2').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       backgroundColor: '#F6D851',
     })
-  });
-});
-$(function(){
-  $('.background3').on('click', function(event) {
+  })
+  document.querySelector('.background3').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       closeBottonColor: '#fff',
       backgroundImage: '../../plugins/video/assets/bigpic.jpeg',
     })
-  });
-});
+  })
 </script>
 </section>
 
@@ -100,23 +90,19 @@ $(function(){
     <button class="btn alignleft">left</button>
     <button class="btn aligncenter">center</button>
 <script>
-//content alignment
-$(function(){
-  $('.alignleft').on('click', function(event) {
+  //content alignment
+  document.querySelector('.alignleft').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       contentAlignment: 'left',
     })
-  });
-});
-$(function(){
-  $('.aligncenter').on('click', function(event) {
+  })
+  document.querySelector('.aligncenter').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       contentAlignment: 'center',
     })
-  });
-});
+  })
 </script>
 
 </section>
@@ -126,24 +112,19 @@ $(function(){
     <button class="btn fontwhite">show notice</button>
     <button class="btn fontblack">show notice</button>
 <script>
-
-$(function(){
-  $('.fontwhite').on('click', function(event) {
+  document.querySelector('.fontwhite').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       fontColor: 'white',
       backgroundColor: '#333333'
     })
-  });
-});
-$(function(){
-  $('.fontblack').on('click', function(event) {
+  })
+  document.querySelector('.fontblack').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       fontColor: 'black',
     })
-  });
-});
+  })
 </script>
 
 </section>
@@ -153,9 +134,8 @@ $(function(){
     <button class="btn buttons1">button</button>
     <button class="btn buttons2">buttons</button>
 <script>
-//buttons
-$(function(){
-  $('.buttons1').on('click', function(event) {
+  //buttons
+  document.querySelector('.buttons1').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       buttons: {
@@ -164,11 +144,9 @@ $(function(){
           class: 'btn-square'
         },
       },
-    });
-  });
-});
-$(function(){
-  $('.buttons2').on('click', function(event) {
+    })
+  })
+  document.querySelector('.buttons2').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       buttons: {
@@ -201,9 +179,8 @@ $(function(){
           }
         },
       },
-    });
-  });
-});
+    })
+  })
 </script>
 
 </section>
@@ -213,23 +190,18 @@ $(function(){
     <button class="btn btncenter">fontBehind</button>
     <button class="btn btnright">right</button>
 <script>
-
-$(function(){
-  $('.btncenter').on('click', function(event) {
+  document.querySelector('.btncenter').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       buttonAlign: '',
     })
-  });
-});
-$(function(){
-  $('.btnright').on('click', function(event) {
+  })
+  document.querySelector('.btnright').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       buttonAlign: 'right',
     })
-  });
-});
+  })
 </script>
 
 </section>
@@ -240,26 +212,22 @@ $(function(){
     <button class="btn fixed2">show notice</button>
 <script>
   //fixed
-$(function(){
-  $('.fixed1').on('click', function(event) {
+  document.querySelector('.fixed1').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       fixedWidth: true,
       contentAlignment: 'left',
       buttonAlign: 'right'
     })
-  });
-});
-$(function(){
-  $('.fixed2').on('click', function(event) {
+  })
+  document.querySelector('.fixed2').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       fixedWidth: true,
       contentAlignment: 'left',
       buttonAlign: 'center'
     })
-  });
-});
+  })
 </script>
 
 </section>
@@ -268,15 +236,12 @@ $(function(){
     <h3>layout</h3>
     <button class="btn layout">show notice</button>
 <script>
-//layout
-$(function(){
-  $('.layout').on('click', function(event) {
+  document.querySelector('.layout').addEventListener('click', () => {
     Pj.notice.show({
       content: 'Check Out And Download Premui Psd Template',
       layout: 'bottom',
     })
-  });
-});
+  })
 
 </script>
   </section>

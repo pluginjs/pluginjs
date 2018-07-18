@@ -27,6 +27,7 @@ import {
   events as EVENTS,
   namespace as NAMESPACE
 } from './constant'
+import Anime from 'animejs'
 
 const POSITIONS = [
   'bottom-left',
@@ -42,7 +43,7 @@ const POSITIONS = [
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(NAMESPACE, { defaults: DEFAULTS }, INFO)
+@register(NAMESPACE, { defaults: DEFAULTS })
 class Toast extends GlobalComponent {
   constructor(options = {}) {
     super(NAMESPACE)
@@ -100,8 +101,13 @@ class Toast extends GlobalComponent {
   startLoader() {
     this.startTime = new Date().getTime()
     const time = this.options.duration - this.pauseTime
-    this.$loader = $(this.$loader)
-    this.$loader.animate({ width: '100%' }, time)
+    const target = this.$loader
+    this.$anime = Anime({
+      targets: target,
+      width: '100%',
+      duration: time,
+      easing: 'linear'
+    })
 
     this.setTimeOut = setTimeout(() => {
       this.hide()
@@ -113,7 +119,7 @@ class Toast extends GlobalComponent {
     this.pauseTime += t - this.startTime
 
     clearInterval(this.setTimeOut)
-    this.$loader.stop(true)
+    this.$anime.pause()
   }
 
   animate() {
@@ -449,7 +455,7 @@ class Toast extends GlobalComponent {
     const buttons = this.options.buttons
     let result = ''
     for (const key in buttons) {
-      if (buttons.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(buttons, key)) {
         const btn = this._creatBtn(buttons, key)
         result += btn
       }

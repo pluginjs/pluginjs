@@ -46,7 +46,7 @@ export const defaults = {
       return '<div class="{classes.CONTENT}"></div>'
     },
     buttons() {
-      return '<div class="{classes.BUTTONS}">' + '{buttons}' + '</div>'
+      return '<div class="{classes.BUTTONS}">{buttons}</div>'
     },
     button() {
       return '<div class="{classes.BUTTON} {btnClass}" data-btntype={key}>{title}</div>'
@@ -69,7 +69,7 @@ export const defaults = {
     }
   },
   buttonAlign: 'center',
-  timeout: 30000,
+  timeout: 5000,
   fixedWidth: false,
   layout: 'top' // 'bottom'
 }

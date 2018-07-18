@@ -24,7 +24,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(NAMESPACE, { defaults: DEFAULTS }, INFO)
+@register(NAMESPACE, { defaults: DEFAULTS })
 class Notice extends GlobalComponent {
   constructor(options = {}) {
     super(NAMESPACE)
@@ -38,8 +38,7 @@ class Notice extends GlobalComponent {
   }
 
   show() {
-    Notice.hideAll()
-
+    // Notice.hideAll()
     this.setStyles()
     this.bind()
     this.animate()
@@ -234,7 +233,6 @@ class Notice extends GlobalComponent {
         }
       )
     }
-
     const html = templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
       close,
@@ -257,7 +255,7 @@ class Notice extends GlobalComponent {
     const buttons = this.options.buttons
     let result = ''
     for (const key in buttons) {
-      if (buttons.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(buttons, key)) {
         const btn = this.creatBtn(buttons[key], key)
         result += btn
       }
@@ -272,7 +270,6 @@ class Notice extends GlobalComponent {
 
   static hideAll() {
     const instances = Pj.instances[NAMESPACE]
-
     for (let i = 0; i < instances.length; i++) {
       if (i !== instances.length - 1) {
         instances[i].hide()

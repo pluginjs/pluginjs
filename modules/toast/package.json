@@ -42,7 +42,8 @@
     "@pluginjs/pluginjs": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/utils": "*",
+    "animejs": "^2.2.0"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
