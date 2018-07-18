@@ -3,22 +3,8 @@ import is from '@pluginjs/is'
 import { deepMerge } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  append,
-  parseHTML,
-  query,
-  queryAll,
-  setObjData,
-  getObjData,
-  unwrap,
-  wrap,
-  wrapInner,
-  insertBefore,
-  insertAfter,
-  childrenSelect
-} from '@pluginjs/dom'
+import { queryAll, setObjData, getObjData, childrenSelect } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -294,7 +280,7 @@ export default class Tree extends Component {
     if (children) {
       // has child
       const iterate = tree => {
-        childrenSelect('li', tree).map(node => {
+        childrenSelect('li', tree).forEach(node => {
           this.attach(node, false, api)
         })
       }
@@ -336,7 +322,7 @@ export default class Tree extends Component {
 
   get(position) {
     if (this.is('disabled')) {
-      return
+      return null
     }
     if (!is.array(position)) {
       position = []
@@ -352,20 +338,20 @@ export default class Tree extends Component {
       }
       return node
     } catch (e) {
-      return undefined
+      return null
     }
   }
 
   getRoot() {
     if (this.is('disabled')) {
-      return undefined
+      return null
     }
     return this.root
   }
 
   getSelected() {
     if (this.is('disabled')) {
-      return undefined
+      return null
     }
     return this.selected
   }
@@ -375,7 +361,7 @@ export default class Tree extends Component {
 
     switch (typeof this.options.autoOpen) {
       case 'boolean': {
-        queryAll('li', root).map((item, i) => {
+        queryAll('li', root).forEach(item => {
           const node = getObjData('node', item)
           if (this.options.autoOpen === true && node.type === 'branch') {
             node.open()
@@ -384,7 +370,7 @@ export default class Tree extends Component {
         break
       }
       case 'number': {
-        queryAll('li', root).map((item, i) => {
+        queryAll('li', root).forEach(item => {
           const node = getObjData('node', item)
           if (node.type === 'branch' && node.level <= this.options.autoOpen) {
             node.open()

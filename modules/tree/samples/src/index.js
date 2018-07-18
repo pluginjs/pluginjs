@@ -1,3 +1,1 @@
-import Tree from '@pluginjs/tree'
-
-console.log(Tree)
+import './files/index.js'

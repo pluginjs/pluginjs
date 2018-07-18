@@ -1,35 +1,8 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Tree from '../../src/main'
-import Node from '../../src/node'
-import { defaults as DEFAULTS } from '../../src/constant'
-
-const data = [
-  {
-    name: 'node',
-    children: [{ name: 'child1.png' }, { name: 'child2.jpg' }]
-  },
-  {
-    name: 'node2',
-    children: [
-      {
-        name: 'node3',
-        children: [
-          { name: 'child3.txt' },
-          { name: 'child4.js' },
-          {
-            name: 'node4',
-            children: [{ name: 'child5.png' }, { name: 'child6.jpg' }]
-          }
-        ]
-      }
-    ]
-  },
-  { name: 'child5.php' }
-]
+import Tree from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Tree', () => {
-  jsdom()
   describe('Tree()', () => {
     test('should have Tree', () => {
       expect(Tree).toBeFunction()
@@ -54,43 +27,39 @@ describe('Tree', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const tree = new Tree(element, { data })
+      setTimeout(() => {
+        const element = generateHTMLSample()
+        const tree = Tree.of(element)
 
-      expect(tree).toBeObject()
-      // expect(tree.options).toEqual(DEFAULTS);
+        expect(tree).toBeObject()
+        expect(tree.options).toEqual(DEFAULTS)
+      }, 0)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const tree = new Tree(element, { data })
+      setTimeout(() => {
+        const tree = Tree.of(generateHTMLSample())
 
-      expect(tree.options).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asTree({ data })).toEqual($element)
-
-      const api = $element.data('tree')
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
+        expect(tree.options).toBeObject()
+      }, 0)
     })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asTree({ data })
-      expect($element.asTree('bind')).toBeNil()
+      setTimeout(() => {
+        const $element = generateHTMLSample()
+        const tree = Tree.of($element)
+        expect(tree.bind()).toBeNil()
+      }, 0)
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asTree({ data })
-      expect($element.asTree('destroy')).toEqual($element)
+      setTimeout(() => {
+        const $element = generateHTMLSample()
+        const tree = Tree.of($element)
+        tree.destroy()
+      }, 0)
     })
   })
 
@@ -98,19 +67,21 @@ describe('Tree', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('tree:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('tree:ready', () => {
         called++
       })
 
-      $element.asTree({ data })
-      expect(called).toEqual(1)
+      setTimeout(() => {
+        const instance = Tree.of($element)
+        expect(called).toEqual(1)
+        expect(instance.is('initialized')).toBeTrue()
+      }, 0)
     })
   })
 
@@ -119,21 +90,24 @@ describe('Tree', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asTree({ data })
-      api = $element.data('tree')
+      setTimeout(() => {
+        $element = generateHTMLSample()
+        api = Tree.of($element)
+      }, 0)
     })
 
     test('should trigger destroy event', () => {
-      let called = 0
+      setTimeout(() => {
+        let called = 0
 
-      $element.on('tree:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
-        called++
-      })
+        $element.addEventListener('tree:destroy', () => {
+          expect(api.is('initialized')).toBeFalse()
+          called++
+        })
+        api.destroy()
 
-      $element.asTree('destroy')
-
-      expect(called).toEqual(1)
+        expect(called).toEqual(1)
+      }, 0)
     })
   })
 
@@ -142,27 +116,33 @@ describe('Tree', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asTree({ data })
-      api = $element.data('tree')
+      setTimeout(() => {
+        $element = generateHTMLSample()
+        api = Tree.of($element)
+      }, 0)
     })
 
     test('should enable the plugin', () => {
-      $element.asTree('disable')
-      $element.asTree('enable')
+      setTimeout(() => {
+        api.destroy()
+        api.enable()
 
-      expect(api.is('disabled')).toBeFalse()
+        expect(api.is('disabled')).toBeFalse()
+      }, 0)
     })
 
     test('should trigger enable event', () => {
-      let called = 0
+      setTimeout(() => {
+        let called = 0
 
-      $element.on('tree:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
-        called++
-      })
+        $element.addEventListener('tree:enable', () => {
+          expect(api.is('disabled')).toBeFalse()
+          called++
+        })
 
-      $element.asTree('enable')
-      expect(called).toEqual(1)
+        api.enable()
+        expect(called).toEqual(1)
+      }, 0)
     })
   })
 
@@ -171,26 +151,32 @@ describe('Tree', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asTree({ data })
-      api = $element.data('tree')
+      setTimeout(() => {
+        $element = generateHTMLSample()
+        api = Tree.of($element)
+      }, 0)
     })
 
     test('should disable the plugin', () => {
-      $element.asTree('disable')
+      setTimeout(() => {
+        api.disabled()
 
-      expect(api.is('disabled')).toBeTrue()
+        expect(api.is('disabled')).toBeTrue()
+      }, 0)
     })
 
     test('should trigger disable event', () => {
-      let called = 0
+      setTimeout(() => {
+        let called = 0
 
-      $element.on('tree:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
-        called++
-      })
+        $element.addEventListener('tree:disable', () => {
+          expect(api.is('disabled')).toBeTrue()
+          called++
+        })
 
-      $element.asTree('disable')
-      expect(called).toEqual(1)
+        api.disable()
+        expect(called).toEqual(1)
+      }, 0)
     })
   })
 })

@@ -19,7 +19,7 @@ ul.pj-tree {
     padding: 0;
     margin: 0;
     list-style: none;
-
+    // stylelint-disable
     li {
       text-indent: 30px;
 
@@ -86,7 +86,7 @@ ul.pj-tree {
     height: 20px;
     cursor: pointer;
     *zoom: 1;
-    background-image: url("../images/arrow-right.png");
+    background-image: url("./images/arrow-right.png");
     background-repeat: no-repeat;
     background-position: 8px 6px;
     transition: transform 0.25s ease-in-out;
@@ -169,3 +169,4 @@ ul.pj-tree {
     }
   }
 }
+// stylelint-enable
