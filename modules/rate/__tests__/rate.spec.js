@@ -52,11 +52,13 @@ describe('Rate', () => {
       expect(rate.bind()).toBeNil()
     })
 
-    // test('should call destroy', () => {
-    //   const rateInstance = getNewRate()
+    test('should call destroy', () => {
+      const rateInstance = Rate.of(getInitalElement())
 
-    //   rateInstance.destroy()
-    // })
+      setTimeout(() => {
+        rateInstance.destroy()
+      }, 0)
+    })
   })
 
   describe('initialize()', () => {
@@ -79,26 +81,28 @@ describe('Rate', () => {
     })
   })
 
-  // describe('destroy()', () => {
-  //   let $element
-  //   let api
+  describe('destroy()', () => {
+    let $element
+    let api
 
-  //   beforeEach(() => {
-  //     $element = getInitalElement()
-  //     api = Rate.of($element)
-  //   })
+    beforeEach(() => {
+      $element = getInitalElement()
+      api = Rate.of($element)
+    })
 
-  //   test('should trigger destroy event', () => {
-  //     let called = 0
+    test('should trigger destroy event', () => {
+      let called = 0
 
-  //     $element.addEventListener('rate:destroy', () => {
-  //       expect(api.is('initialized')).toBeFalse()
-  //       called++
-  //     })
+      $element.addEventListener('rate:destroy', () => {
+        expect(api.is('initialized')).toBeFalse()
+        called++
+      })
 
-  //     api.destroy()
+      setTimeout(() => {
+        api.destroy()
 
-  //     expect(called).toEqual(1)
-  //   })
-  // })
+        expect(called).toEqual(1)
+      }, 0)
+    })
+  })
 })
