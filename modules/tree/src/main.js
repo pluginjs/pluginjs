@@ -204,7 +204,11 @@ export default class Tree extends Component {
               return
             }
             const dir = keyCodeDir[e.keyCode]
-            keydownCallback[dir].call(this)
+            if (dir) {
+              keydownCallback[dir].call(this)
+            } else {
+              return
+            }
           }
         },
         this.element
