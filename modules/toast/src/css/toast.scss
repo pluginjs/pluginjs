@@ -28,16 +28,17 @@ $toast-progress-height: 15px !default;
 }
 
 @mixin gradient-striped($color: rgba(255, 255, 255, 0.15), $angle: 45deg) {
-  background-image: linear-gradient(
-    $angle,
-    $color 25%,
-    transparent 25%,
-    transparent 50%,
-    $color 50%,
-    $color 75%,
-    transparent 75%,
-    transparent
-  );
+  background-image:
+    linear-gradient(
+      $angle,
+      $color 25%,
+      transparent 25%,
+      transparent 50%,
+      $color 50%,
+      $color 75%,
+      transparent 75%,
+      transparent
+    );
 }
 
 @keyframes progress-bar-stripes {
