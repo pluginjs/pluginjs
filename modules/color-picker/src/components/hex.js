@@ -64,11 +64,7 @@ class Hex {
             data: [color]
           }
         }) => {
-          query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(
-            color.value.a * 100,
-            2
-          )
-
+          query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
           this.updateColor(this.dropdown.options.select)
         }
       },

@@ -170,9 +170,6 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
     &:hover .pj-input {
       border-color: $colorPicker-wrap-hover-border-color;
     }
-    &:active .pj-input {
-      border-color: $color-primary-dark;
-    }
     &:focus .pj-input {
       border-color: $color-primary-dark;
     }
