@@ -67,7 +67,6 @@ class DatePicker extends Component {
     this.defaultOptions = deepMerge(DEFAULTS, options, data)
     this.options = deepMerge(DEFAULTS, options, data)
     this.firstClassName = this.$element.className
-
     this.initClasses(CLASSES)
 
     Object.entries(data).forEach(([value, option]) => {
@@ -120,7 +119,7 @@ class DatePicker extends Component {
     this.views = []
     this.isMobile = this.options.mobileMode // with other judgements
 
-    const wrap = parseHTML(
+    const $wrap = parseHTML(
       template.render(this.options.templates.wrap.call(this), {
         classes: this.classes
       })
@@ -128,14 +127,13 @@ class DatePicker extends Component {
     const content = template.render(this.options.templates.content.call(this), {
       classes: this.classes
     })
-    const title = parseHTML(
+    const $title = parseHTML(
       template.render(this.options.templates.title.call(this), {
         classes: this.classes
       })
     )
-
     const buttons = this.translate('buttons')
-    this.$picker = wrap
+    this.$picker = $wrap
 
     // set model default property
     switch (this.mode) {
@@ -171,7 +169,7 @@ class DatePicker extends Component {
       insertAfter(this.$mobileTrigger, hideElement(this.$element))
       this.$cover = parseHTML(`<div class="${this.classes.COVER}"></div>`)
 
-      addClass(this.classes.ISMOBILE, append(title, this.$picker))
+      addClass(this.classes.ISMOBILE, append($title, this.$picker))
 
       setStyle({ fontSize: `${Math.round(min * 0.04)}px` }, this.$picker)
 
@@ -439,11 +437,9 @@ class DatePicker extends Component {
           : this.options.firstDayOfWeek + i
       html += `<span>${this.translate('daysShort')[pos]}</span>`
     }
-
     html += `</div><div class="${this.classes.BODY}"><div class="${
       this.classes.ROW
     }">`
-
     for (let j = 0; j < 42; j++) {
       day = j - daysFromPrevMonth + 1
       isActive = false
