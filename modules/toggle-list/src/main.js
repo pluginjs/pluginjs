@@ -62,7 +62,6 @@ class ToggleList extends List {
     this.sortable.options.draggable = `.${this.classes.ITEM}.${
       this.classes.CHECKED
     }`
-
     const $toggle = new Toggle(query(`.${this.classes.SWITCH}`, $item), {
       theme: this.options.theme,
       size: 'small',
@@ -115,7 +114,6 @@ class ToggleList extends List {
 
   toggle($item, check, trigger = true) {
     const index = children(parent($item)).indexOf($item)
-
     let endIndex = 0
     const $checkeds = this.getCheckeds()
     const checkedsLength = $checkeds.length
