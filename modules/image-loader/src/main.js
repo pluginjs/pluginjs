@@ -31,8 +31,32 @@ class ImageLoader extends Component {
   initialize() {
     this.$imgs = Array.from(this.getImgs())
     this.loading()
+    this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  bind() {
+    this.observer = new MutationObserver(mutationsList => {
+      const observer = mutationsList.find(
+        mutation => mutation.attributeName === 'src'
+      )
+      if (observer) {
+        this.imageLoadHandler(observer.target)
+          .then(imgs => {
+            this.onCompleteHandler(imgs)
+            return imgs
+          })
+          .finally(this.onFinallyHandler)
+      }
+    })
+    const observeImageChange = config => element => {
+      this.observer.observe(element, config)
+    }
+    this.$imgs.map(observeImageChange({ attributes: true }))
+  }
+  unbind() {
+    this.observer.disconnect()
   }
   /*
    * When an img loading success.
@@ -63,36 +87,40 @@ class ImageLoader extends Component {
     return this.element.querySelectorAll(this.selector)
   }
 
+  imageLoadHandler($img) {
+    const imgLoad = new Promise((resolve, reject) => {
+      if ($img.complete) {
+        this.done += 1
+        resolve($img)
+      }
+
+      $img.addEventListener('load', () => {
+        this.done += 1
+        resolve($img)
+      })
+
+      $img.addEventListener('error', () => {
+        this.fail += 1
+        reject($img)
+      })
+    })
+    return imgLoad
+      .then(img => {
+        this.onLoadHandler(img)
+        return img
+      })
+      .catch(img => {
+        if (this.onErrorHandler) {
+          this.onErrorHandler(img)
+        }
+        return img
+      })
+  }
+
   loading() {
     this.history = [].concat([this.history, this.$imgs])
     this.imgLoadAll = this.imgLoadAll.concat(
-      this.$imgs.map($img => {
-        const imgLoad = new Promise((resolve, reject) => {
-          if ($img.complete) {
-            this.done += 1
-            resolve($img)
-          }
-
-          $img.addEventListener('load', () => {
-            this.done += 1
-            resolve($img)
-          })
-
-          $img.addEventListener('error', () => {
-            this.fail += 1
-            reject($img)
-          })
-        })
-        return imgLoad
-          .then(img => {
-            this.onLoadHandler(img)
-            return img
-          })
-          .catch(img => {
-            this.onErrorHandler(img)
-            return img
-          })
-      })
+      this.$imgs.map(this.imageLoadHandler.bind(this))
     )
     Promise.all(this.imgLoadAll)
       .then(imgs => {
@@ -121,7 +149,7 @@ class ImageLoader extends Component {
     if (this.is('initialized')) {
       this.leave('initialized')
     }
-
+    this.unbind()
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }
