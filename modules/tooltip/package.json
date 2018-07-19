@@ -1,72 +1,71 @@
 {
-	"name": "@pluginjs/tooltip",
-	"main": "dist/tooltip.umd.js",
-	"dependencies": {
-		"@pluginjs/classes": "*",
-		"@pluginjs/component": "^0.2.22",
-		"@pluginjs/dom": "*",
-		"@pluginjs/events": "*",
-		"@pluginjs/feature": "^0.2.19",
-		"@pluginjs/is": "*",
-		"@pluginjs/pluginjs": "^0.2.25",
-		"@pluginjs/styled": "^0.5.1",
-		"@pluginjs/template": "*",
-		"@pluginjs/utils": "^0.2.20",
-		"popper.js": "1.14.1"
-	},
-	"version": "0.2.23",
-	"description": "A flexible modern tooltip js plugin.",
-	"author": "Creation Studio Limited",
-	"homepage": "https://github.com/pluginjs/plugin.js",
-	"license": "GPL-3.0",
-	"files": [
-		"dist",
-		"src"
-	],
-	"repository": {
-		"url": "git@github.com:pluginjs/plugin.js.git",
-		"type": "git"
-	},
-	"bugs": {
-		"url": "https://github.com/pluginjs/plugin.js/issues"
-	},
-	"engines": {
-		"node": ">= 8",
-		"npm": ">= 5"
-	},
-	"category": "ui",
-	"module": "dist/tooltip.esm.js",
-	"source": "src/main.js",
-	"globals": {},
-	"scripts": {
-		"build": "plugin build",
-		"build:js": "plugin script build-js",
-		"build:scss": "plugin script build-scss",
-		"test": "jest",
-		"build:md": "plugin script build-md",
-		"lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
-	},
-	"css": {
-		"source": "src/css/tooltip.scss",
-		"main": "dist/tooltip.css",
-		"min": "dist/tooltip.min.css"
-	},
-	"cjs": "dist/tooltip.cjs.js",
-	"jest": {
-		"setupTestFrameworkScriptFile": "jest-extended",
-		"verbose": true,
-		"testPathIgnorePatterns": [
-			"fixtures"
-		]
-	},
-	"devDependencies": {
-		"@pluginjs/cli": "*",
-		"babel-jest": "*",
-		"jest": "*",
-		"jest-extended": "*",
-		"rollup": "*",
-		"rollup-plugin-babel": "^4.0.0-beta.4",
-		"rollup-plugin-commonjs": "*",
-		"rollup-plugin-node-resolve": "*"
-	}
+  "name": "@pluginjs/tooltip",
+  "description": "A flexible modern tooltip js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/plugin.js/issues"
+  },
+  "version": "0.2.25",
+  "main": "dist/tooltip.umd.js",
+  "module": "dist/tooltip.esm.js",
+  "cjs": "dist/tooltip.cjs.js",
+  "source": "src/main.js",
+  "css": {
+    "source": "src/css/tooltip.scss",
+    "main": "dist/tooltip.css",
+    "min": "dist/tooltip.min.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "test": "jest",
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+  },
+  "dependencies": {
+    "@pluginjs/classes": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/feature": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/pluginjs": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*",
+    "popper.js": "1.14.1"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "^4.0.0-beta.7",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "category": "ui",
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  }
 }
