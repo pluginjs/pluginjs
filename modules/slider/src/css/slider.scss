@@ -17,11 +17,16 @@ $arrow: "pj-arrow" !default;
 
 .#{$slider} {
   width: 100%;
-  height: 500px;
+  height: 0;
+  padding-bottom: 50%;
   overflow: hidden;
 
   &-box {
-    position: relative;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 100%;
   }
@@ -32,6 +37,15 @@ $arrow: "pj-arrow" !default;
     justify-content: center;
     width: 100%;
     height: 100%;
+    // float: left;
+
+    // &.#{$slider}-active {
+    //   position: relative;
+    // }
+
+    &::after {
+      clear: both;
+    }
   }
 
   &-loader {
@@ -60,7 +74,11 @@ $arrow: "pj-arrow" !default;
 
   &-image {
     display: block;
-    height: 100%;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    margin: auto;
     pointer-events: none;
   }
 

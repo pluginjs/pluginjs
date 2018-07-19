@@ -2,7 +2,7 @@ import anime from 'animejs'
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { deepMerge, compose } from '@pluginjs/utils'
-import { outerWidth } from '@pluginjs/styled'
+import { outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML } from '@pluginjs/dom'
@@ -41,6 +41,8 @@ import Swipeable from '@pluginjs/swipeable'
 )
 class Slider extends Component {
   page = 0
+  stash = 0
+  direction = true
 
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -61,9 +63,11 @@ class Slider extends Component {
     }
 
     this.data = this.options.data
-    this.stash = 0
+    this.axis = this.options.vertical ? 'translateY' : 'translateX'
     this.generate()
     this.setPos()
+    this.initAnimeOpts()
+    this.initSwipeable()
 
     this.bind()
 
@@ -78,11 +82,11 @@ class Slider extends Component {
       addClass(this.classes.VERTICAL, this.element)
     }
 
-    this.box = this.getElement('box')
+    this.box = this.createElement('box')
     this.cards = []
 
     for (let i = 0; i < 3; i++) {
-      const card = this.getElement('card')
+      const card = this.createElement('card')
 
       this.cards.push(card)
       append(card, this.box)
@@ -92,13 +96,53 @@ class Slider extends Component {
     append(this.box, this.element)
 
     if (this.options.arrows) {
-      this.arrows = Arrows.of(this.element, {})
+      this.initArrows()
     }
-
-    Swipeable.of(this.box, {})
   }
 
-  getElement(type) {
+  initAnimeOpts() {
+    this.boxOpts = {
+      targets: this.box,
+      easing: 'linear',
+      duration: this.options.duration,
+      complete: () => {
+        if (this.direction) {
+          this.page = this.page === 2 ? 0 : this.page + 1
+        } else {
+          this.page = this.page === 0 ? 2 : this.page - 1
+        }
+        this.setPos()
+      }
+    }
+  }
+
+  initArrows() {
+    this.arrows = Arrows.of(this.element, {})
+  }
+
+  initSwipeable() {
+    const that = this
+
+    Swipeable.of(this.box, {
+      onEnd() {
+        console.log(111)
+      },
+      onDecay() {
+        const distance = this.$info[this.options.vertical ? 'deltaY' : 'deltaX']
+        that.decay(distance)
+      }
+    })
+  }
+
+  decay(distance) {
+    if (distance > 0) {
+      this.prev()
+    } else {
+      this.next()
+    }
+  }
+
+  createElement(type) {
     const template = this.options.templates[type]
     let html = ''
 
@@ -109,11 +153,15 @@ class Slider extends Component {
     return parseHTML(html)
   }
 
+  getDistance(target, vertical = false) {
+    return vertical ? outerHeight(target) : outerWidth(target)
+  }
+
   setPos() {
     const length = this.data.length
 
     const distance = parseInt(
-      anime.getValue(this.cards[this.page], 'translateX'),
+      anime.getValue(this.cards[this.page], this.axis),
       10
     )
 
@@ -129,16 +177,19 @@ class Slider extends Component {
         case this.page + 1:
         case this.page - 2:
           index = this.current === length - 1 ? 0 : this.current + 1
-          opts.translateX = `${distance + 100}%`
+          opts[this.axis] = `${distance + 100}%`
+          removeClass(this.classes.ACTIVE, this.cards[i])
           break
         case this.page - 1:
         case this.page + 2:
           index = this.current === 0 ? length - 1 : this.current - 1
-          opts.translateX = `${distance - 100}%`
+          opts[this.axis] = `${distance - 100}%`
+          removeClass(this.classes.ACTIVE, this.cards[i])
           break
         default:
           index = this.current
-          opts.translateX = `${distance}%`
+          opts[this.axis] = `${distance}%`
+          addClass(this.classes.ACTIVE, this.cards[i])
           break
       }
 
@@ -151,6 +202,7 @@ class Slider extends Component {
       } else {
         append(this.createItem(this.data[index]), this.cards[i])
       }
+
       anime(opts)
     }
   }
@@ -170,7 +222,7 @@ class Slider extends Component {
   go(index, change = true) {
     const length = this.data.length
     const current = this.current
-    let direction = true
+    this.direction = true
 
     if (
       index === null ||
@@ -181,34 +233,20 @@ class Slider extends Component {
       return
     }
 
-    const distance = outerWidth(this.box)
+    const distance = this.getDistance(this.box, this.options.vertical)
 
     if (
       (index < current && !(current === length - 1 && index === 0)) ||
       (current === 0 && index === length - 1)
     ) {
-      direction = false
+      this.direction = false
     }
 
-    this.stash = direction ? this.stash + 1 : this.stash - 1
+    this.stash = this.direction ? this.stash + 1 : this.stash - 1
 
-    const opts = {
-      targets: this.box,
-      easing: 'linear',
-      duration: this.options.duration,
-      complete: () => {
-        if (direction) {
-          this.page = this.page === 2 ? 0 : this.page + 1
-        } else {
-          this.page = this.page === 0 ? 2 : this.page - 1
-        }
-        this.setPos()
-      }
-    }
+    this.boxOpts[this.axis] = `${this.stash * -distance}px`
 
-    opts.translateX = `${this.stash * -distance}px`
-
-    anime(opts)
+    anime(this.boxOpts)
 
     this.current = index
 
@@ -269,6 +307,22 @@ class Slider extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.element)
+  }
+
+  resize() {
+    const distance = this.getDistance(this.box, this.options.vertical)
+    const opts = {
+      targets: this.box,
+      easing: 'linear',
+      duration: 0
+    }
+
+    opts[this.axis] = `${this.stash * -distance}px`
+    anime(opts)
+
+    if (!this.is('disable')) {
+      this.trigger(EVENTS.RESIZE)
+    }
   }
 
   enable() {

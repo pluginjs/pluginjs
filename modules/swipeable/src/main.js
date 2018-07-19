@@ -106,7 +106,7 @@ class Swipeable extends Component {
 
   panStart() {
     const $target = this.element
-    if (!this.is('disabled')) {
+    if (this.is('disabled')) {
       return
     }
     if (this.isdecaying === true) {
@@ -126,7 +126,7 @@ class Swipeable extends Component {
 
   panMove(e) {
     const $target = this.element
-    if (!this.is('disabled')) {
+    if (this.is('disabled')) {
       return
     }
 
@@ -150,7 +150,7 @@ class Swipeable extends Component {
   }
 
   panEnd(e) {
-    if (!this.is('disabled')) {
+    if (this.is('disabled')) {
       return
     }
 
