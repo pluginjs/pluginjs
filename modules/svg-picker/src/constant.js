@@ -75,27 +75,27 @@ export const defaults = {
   disabled: false,
   templates: {
     trigger() {
-      return `<div class={trigger}><i class='{trigger}-switch icon-chevron-down'></i>
+      return `<div class={classes.ELEMENT}><i class='{classes.ELEMENT}-switch icon-chevron-down'></i>
       </div>`
     },
     icon() {
-      return `<li class={icon} data-value="{iconId}">{iconSvg}
+      return `<li class={classes.ICON} data-value="{iconId}">{iconSvg}
       </li>`
     },
     type() {
-      return `<div class="pj-dropdown-item {type}" data-value="{typeName}"><div class="{typeTitle}"> <span class='{tip}'></span> <i class="icon-chevron-down">&nbsp;</i>{typeName}</div><ul class="{iconWrap}">{icons}</ul>
+      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <span class='{classes.TYPETIP}'></span> <i class="icon-chevron-down">&nbsp;</i>{typeName}</div><ul class="{classes.ICONWRAP}">{icons}</ul>
       </div>`
     },
     manage() {
-      return `<div class={manage}><i class="{icon} icon-cog"></i> {manageText}
+      return `<div class={classes.MANAGE}><i class="{classes.MANAGEICON} icon-cog"></i> {manageText}
       </div>`
     },
     search() {
-      return `<form class={search} action="#"><i class='icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='{close} icon-close'></i>
+      return `<form class={classes.SEARCH} action="#"><i class='icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='{classes.SEARCHCLOSE} icon-close'></i>
       </form>`
     },
     empty() {
-      return `{emptyText}. <a class="{add}" href="#">{emptyHrefText}
+      return `{emptyText}. <a class="{classes.ADD}" href="#">{emptyHrefText}
       </a>`
     }
   },

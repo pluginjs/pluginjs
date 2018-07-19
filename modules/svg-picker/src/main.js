@@ -63,7 +63,7 @@ class SvgPicker extends Component {
       this.classes.ELEMENT,
       parseHTML(
         template.compile(this.options.templates.trigger())({
-          trigger: this.classes.ELEMENT
+          classes: this.classes
         })
       )
     )
@@ -291,7 +291,7 @@ class SvgPicker extends Component {
     const that = this
 
     const empty = template.compile(this.options.templates.empty())({
-      add: this.classes.ADD,
+      classes: this.classes,
       emptyText: this.translate('emptyText'),
       emptyHrefText: this.translate('emptyHrefText')
     })
@@ -320,8 +320,7 @@ class SvgPicker extends Component {
   initManage() {
     this.$manage = parseHTML(
       template.compile(this.options.templates.manage())({
-        manage: this.classes.MANAGE,
-        icon: this.classes.MANAGEICON,
+        classes: this.classes,
         manageText: this.translate('manage')
       })
     )
@@ -333,7 +332,7 @@ class SvgPicker extends Component {
     this.data.forEach(v => {
       if (v.type === type) {
         const icon = template.compile(this.options.templates.icon())({
-          icon: this.classes.ICON,
+          classes: this.classes,
           iconId: v.id,
           iconSvg: v.svg
         })
@@ -353,11 +352,8 @@ class SvgPicker extends Component {
         typeArr.push(v.type)
         const icons = this.handleIcons(v.type)
         const type = template.compile(this.options.templates.type())({
-          type: this.classes.TYPE,
-          typeTitle: this.classes.TYPETITLE,
-          iconWrap: this.classes.ICONWRAP,
+          classes: this.classes,
           typeName: v.type,
-          tip: this.classes.TYPETIP,
           icons
         })
         types += type
@@ -410,8 +406,7 @@ class SvgPicker extends Component {
   handleSearch() {
     this.$search = parseHTML(
       template.compile(this.options.templates.search())({
-        search: this.classes.SEARCH,
-        close: this.classes.SEARCHCLOSE,
+        classes: this.classes,
         placeholder: this.translate('searchText')
       })
     )
@@ -518,10 +513,7 @@ class SvgPicker extends Component {
         id
       })
     )
-    console.log($selected)
-    console.log($selected.innerHTML)
     $selected.innerHTML = `${value} ${id}`
-    console.log($selected.innerHTML)
     this.trigger(EVENTS.CHANGE, this.$icon)
   }
 
