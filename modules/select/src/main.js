@@ -272,6 +272,8 @@ class Select extends Component {
     if (this.options.multiple && this.options.closeAllButten) {
       iconClassName = 'icon-char icon-close-mini'
     }
+    console.log(this.triggerElement)
+    console.log(this.$dropdown)
     this.dropdown = Dropdown.of(this.triggerElement, {
       panel: this.$dropdown,
       trigger: this.options.trigger,

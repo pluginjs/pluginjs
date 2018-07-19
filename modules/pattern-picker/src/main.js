@@ -61,6 +61,7 @@ class PatternPicker extends Component {
     this.setupI18n()
 
     this.imgs = DATA
+    console.log(DATA)
     this.data = {}
 
     this.foreColor = ''
@@ -109,8 +110,11 @@ class PatternPicker extends Component {
     this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
     this.$selectorList = query(
       `.${this.classes.SELECTORLIST} ul`,
-      this.$editPanel.MODAL.content
+      this.$editPanel.MODAL.$content
     )
+    // console.log(this.$editPanel)
+    // console.log(this.$editPanel.MODAL.$content)
+    // console.log(this.$selectorList)
     this.$scrollable = Scrollable.of(
       closest(`.${this.classes.SELECTORLIST}`, this.$selectorList),
       {
@@ -270,6 +274,7 @@ class PatternPicker extends Component {
   }
 
   render() {
+    console.log(this.imgs)
     Object.entries(this.imgs).forEach(([key, val]) => {
       const $img = parseHTML(
         template.compile(this.options.templates.item())({
@@ -572,6 +577,7 @@ class PatternPicker extends Component {
       el.remove()
     )
     this.imgs = data
+    console.log(data)
     this.render()
   }
 

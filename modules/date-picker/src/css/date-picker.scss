@@ -25,7 +25,7 @@ $datePicker-box-shadow: $box-shadow-base !default;
 // icon vars
 $datePicker-icon-color: $gray-dark !default; //#ccd1d9 !default;
 // head vars
-$datePicker-head-color: $gray-dark !default;
+$datePicker-head-color: $gray !default;
 // font-size vars
 $datePicker-header-font-size: $font-size-lg !default;
 $datePicker-head-font-size: $font-size-sm !default;
@@ -314,7 +314,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 
   &-head {
     font-size: $datePicker-head-font-size;
-    font-weight: $font-weight-bold;
+    // font-weight: $font-weight-bold;
     color: $datePicker-head-color;
   }
 
@@ -358,7 +358,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 
       &.#{$datePicker}-otherMonth,
       &.#{$datePicker}-untouchable {
-        color: $gray-light;
+        color: $gray;
 
         &::after {
           content: none;

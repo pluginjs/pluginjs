@@ -112,9 +112,9 @@ class GradientPicker extends Component {
     this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
     this.$selectorList = query(
       `.${this.classes.SELECTORLIST} ul`,
-      this.$editPanel.MODAL.content
+      this.$editPanel.MODAL.$content
     )
-    console.log(this.$selectorList)
+    // console.log(this.$selectorList)
     this.$scrollable = Scrollable.of(
       closest(`.${this.classes.SELECTORLIST}`, this.$selectorList),
       {
