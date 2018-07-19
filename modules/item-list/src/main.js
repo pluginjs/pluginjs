@@ -127,7 +127,7 @@ class ItemList extends List {
   initAddBtn() {
     this.$add = parseHTML(
       template.compile(this.options.templates.add())({
-        className: this.classes.ADD
+        classes: this.classes
       })
     )
 

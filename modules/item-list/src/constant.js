@@ -31,7 +31,7 @@ export const defaults = {
   actions: [],
   templates: {
     add() {
-      return `<div class="{className} icon-plus">
+      return `<div class="{classes.ADD} icon-plus">
       </div>`
     }
   }
