@@ -1,22 +1,10 @@
 import { transform } from '@pluginjs/feature'
 import Base from './base'
 
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import { addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  append,
-  prepend,
-  parseHTML,
-  query,
-  queryAll,
-  getObjData,
-  unwrap,
-  wrap,
-  wrapInner,
-  insertBefore,
-  insertAfter
-} from '@pluginjs/dom'
+import { append, parseHTML } from '@pluginjs/dom'
 
 class Lens extends Base {
   constructor(instance) {
@@ -26,10 +14,10 @@ class Lens extends Base {
   }
 
   init() {
-    this.$lens = parseHTML(this.creatHTML('lens'))
-    this.$lensImage = parseHTML(this.creatHTML('lensImage'))
-    append(this.$lensImage, this.$lens)
-    append(this.$lens, this.container)
+    this.lens = parseHTML(this.creatHTML('lens'))
+    this.lensImage = parseHTML(this.creatHTML('lensImage'))
+    append(this.lensImage, this.lens)
+    append(this.lens, this.container)
     addClass(this.getClass('{namespace}-typeLens'), this.container)
     this.setStyle()
 
@@ -46,21 +34,21 @@ class Lens extends Base {
 
     this.positionLeft = String(
       (this.mouseLeft * this.widthRatio -
-        this.$lens.clientWidth / 2 +
+        this.lens.clientWidth / 2 +
         this.configuration.borderSize) *
         -1
     )
     this.positionTop = String(
       (this.mouseTop * this.heightRatio -
-        this.$lens.clientHeight / 2 +
+        this.lens.clientHeight / 2 +
         this.configuration.borderSize) *
         -1
     )
     this.lensLeftPos = String(
-      Math.floor(this.mouseLeft - this.$lens.clientWidth / 2)
+      Math.floor(this.mouseLeft - this.lens.clientWidth / 2)
     )
     this.lensTopPos = String(
-      Math.floor(this.mouseTop - this.$lens.clientHeight / 2)
+      Math.floor(this.mouseTop - this.lens.clientHeight / 2)
     )
 
     if (
@@ -80,13 +68,13 @@ class Lens extends Base {
     if (transform) {
       setStyle(
         { transform: `translate(${this.lensLeftPos}px, ${this.lensTopPos}px)` },
-        this.$lens
+        this.lens
       )
       setStyle(
         {
           transform: `translate(${this.positionLeft}px, ${this.positionTop}px)`
         },
-        this.$lensImage
+        this.lensImage
       )
     } else {
       setStyle(
@@ -94,14 +82,14 @@ class Lens extends Base {
           left: `${this.lensLeftPos}px`,
           top: `${this.lensTopPos}px`
         },
-        this.$lens
+        this.lens
       )
       setStyle(
         {
           left: `${this.positionLeft}px`,
           top: `${this.positionTop}px`
         },
-        this.$lensImage
+        this.lensImage
       )
     }
   }
@@ -117,7 +105,7 @@ class Lens extends Base {
         width: `${this.configuration.size}px`,
         height: `${this.configuration.size}px`
       },
-      this.$lens
+      this.lens
     )
 
     setStyle(
@@ -126,7 +114,7 @@ class Lens extends Base {
         width: this.largeWidth,
         backgroundImage: `url(${this.instance.imageSrc})`
       },
-      this.$lensImage
+      this.lensImage
     )
 
     setStyle({ overflow: 'hidden' }, this.container)
@@ -141,7 +129,7 @@ class Lens extends Base {
           'border-radius': `${this.configuration.size +
             this.configuration.size}px`
         },
-        this.$lens
+        this.lens
       )
     }
   }
@@ -149,18 +137,18 @@ class Lens extends Base {
   changeStatus(status) {
     if (this.status !== status) {
       if (status === 'show') {
-        removeEvent('animationend', this.$lens)
+        removeEvent('animationend', this.lens)
 
-        this.addClass(this.$lens, status)
-        this.addClass(this.$lens, 'in')
+        this.addClass(this.lens, status)
+        this.addClass(this.lens, 'in')
       } else {
-        this.addClass(this.$lens, 'out')
+        this.addClass(this.lens, 'out')
         bindEvent(
           {
             type: 'animationend',
             handler: this.callback.bind(this)
           },
-          this.$lens
+          this.lens
         )
       }
 
@@ -169,8 +157,8 @@ class Lens extends Base {
   }
 
   callback() {
-    this.addClass(this.$lens, 'hide')
-    removeEvent('animationend', this.$lens)
+    this.addClass(this.lens, 'hide')
+    removeEvent('animationend', this.lens)
   }
 }
 

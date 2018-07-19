@@ -1,3 +1,8 @@
-import Zoom from '@pluginjs/zoom'
-
-console.log(Zoom)
+import './sections/defaults/index.js'
+import './sections/postions/index.js'
+import './sections/overlay/index.js'
+import './sections/inner/index.js'
+import './sections/lens/index.js'
+import './sections/clickOpen/index.js'
+import './sections/level/index.js'
+import './sections/flexWidth/index.js'
