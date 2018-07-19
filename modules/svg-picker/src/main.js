@@ -78,7 +78,7 @@ class SvgPicker extends Component {
 
     this.data = DATA
     this.$dropdown = this.initDropdown()
-    this.$panel = this.$dropdown.panel
+    this.$panel = this.$dropdown.$panel
 
     this.icon = null
     this.$icons = null
@@ -251,7 +251,11 @@ class SvgPicker extends Component {
 
       query('input', this.$search).setAttribute('tabindex', 1)
       this.$manage.setAttribute('tabindex', 1)
-      this.$types.setAttribute('tabindex', 1)
+      // console.log(this.$types)
+      this.$types.forEach(v => {
+        v.setAttribute('tabindex', 1)
+        this.$type = v
+      })
       bindEvent(
         {
           type: 'focus',
@@ -273,7 +277,7 @@ class SvgPicker extends Component {
             })
           }
         },
-        this.$types
+        this.$type
       )
     }
   }
@@ -471,7 +475,7 @@ class SvgPicker extends Component {
   }
 
   open(el) {
-    console.log(el)
+    // console.log(el)
     this.$types.forEach(v => {
       const $this = v
       removeClass(this.classes.TYPEOPEN, $this)
@@ -514,8 +518,10 @@ class SvgPicker extends Component {
         id
       })
     )
+    console.log($selected)
+    console.log($selected.innerHTML)
     $selected.innerHTML = `${value} ${id}`
-
+    console.log($selected.innerHTML)
     this.trigger(EVENTS.CHANGE, this.$icon)
   }
 
