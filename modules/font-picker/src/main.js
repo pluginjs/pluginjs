@@ -75,7 +75,7 @@ class FontPicker extends Component {
       this.classes.ELEMENT,
       parseHTML(
         templateEngine.compile(this.options.templates.trigger())({
-          trigger: this.classes.ELEMENT
+          classes: this.classes
         })
       )
     )
@@ -191,8 +191,7 @@ class FontPicker extends Component {
   initEmpty() {
     this.$empty = parseHTML(
       templateEngine.compile(this.options.templates.empty())({
-        class: this.classes.EMPTY,
-        link: this.classes.EMPTYLINK,
+        classes: this.classes,
         title: this.translate('emptyTitle'),
         linkTitle: this.translate('emptyLinkTitle')
       })
@@ -638,9 +637,8 @@ class FontPicker extends Component {
       Object.entries(source.fonts).forEach(([categorieName, categorie]) => {
         const $categorie = parseHTML(
           templateEngine.compile(this.options.templates.categories())({
-            categories: this.classes.PACKAGE,
+            classes: this.classes,
             categoriesName: categorieName,
-            categoriesTitle: this.classes.PACKAGETITLE,
             title: categorieName.replace(/^.?/g, match =>
               match.toLocaleUpperCase()
             )
@@ -656,7 +654,7 @@ class FontPicker extends Component {
         categorie.forEach(fontName => {
           const $font = parseHTML(
             templateEngine.compile(this.options.templates.font())({
-              font: this.classes.FONT,
+              classes: this.classes,
               fontName
             })
           )
@@ -735,8 +733,7 @@ class FontPicker extends Component {
     const localeText = this.translate('activatedFonts')
     this.$controller = parseHTML(
       templateEngine.compile(this.options.templates.controller())({
-        controller: this.classes.CONTROLLER,
-        selector: this.classes.SELECTOR
+        classes: this.classes
       })
     )
 
@@ -806,7 +803,7 @@ class FontPicker extends Component {
   handleSearch() {
     this.$search = parseHTML(
       templateEngine.compile(this.options.templates.search())({
-        search: this.classes.SEARCH,
+        classes: this.classes,
         placeholder: this.translate('searchText')
       })
     )
@@ -1024,7 +1021,6 @@ class FontPicker extends Component {
 
     const valueObj = this.options.parse(value)
     const $source = this.$sources[valueObj.source.toLowerCase()]
-
     if (!$source) {
       return
     }
