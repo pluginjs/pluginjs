@@ -745,6 +745,7 @@ class FontPicker extends Component {
     })
 
     data.push({ label: localeText })
+
     // console.log(this.$controller)
     // console.log(this.$panel)
     this.$panel.append(this.$controller)
