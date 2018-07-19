@@ -1,6 +1,8 @@
-import Pj from '@pluginjs/pluginjs'
+// import Pj from '@pluginjs/pluginjs'
 import Base from './base'
 import { events as EVENTS } from '../constant'
+import ScrollSpy from '@pluginjs/scroll-spy'
+import PjScroll from '@pluginjs/scroll'
 
 class Scroll extends Base {
   constructor(instance) {
@@ -14,14 +16,10 @@ class Scroll extends Base {
 
   bind() {
     const dots = this.instance.Dots.dots
-    Pj.scrollSpy(dots, {
+    ScrollSpy.of(dots, {
       itemSelector: 'li',
-      // activeClass: 'active',
-      // threshold: -100,
       changeHash: false,
-      // reference: 'bottom',
       onChange: id => {
-        // console.info('asScrollSpy change:', id);
         if (!this.instance.is('moveing') && this.instance.is('initialized')) {
           this.instance.trigger(EVENTS.CHANGE, id)
           this.instance.Dots.setActive(id)
@@ -31,25 +29,33 @@ class Scroll extends Base {
       }
     })
   }
-  // destroy() {
-  //   this.instance.$dots.asScrollSpy('destroy')
-  //   super.destroy()
-  // }
 
   changePage() {
     const index = this.instance.currIndex - 1
-    const top = $(this.$sections[index]).offset().top
+    const top = this.getOffset(this.$sections[index])
     const duration = this.options.duration
     const easing = this.options.easing
-    Pj.scroll.to({
+    PjScroll.to({
       y: top,
       duration,
       easing
-      // complete: () => {
-      // }
     })
 
     super.changePage()
+  }
+
+  getOffset(node, offsetTop) {
+    if (!offsetTop) {
+      offsetTop = 0
+    }
+
+    if (node === document.body || node === null) {
+      return offsetTop
+    }
+
+    offsetTop += node.offsetTop
+
+    return this.getOffset(node.parentNode, offsetTop)
   }
 }
 

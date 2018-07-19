@@ -4,7 +4,6 @@ export const events = {
   DESTROY: 'destroy',
   CHANGE: 'change',
   READY: 'ready',
-  DESTROY: 'destroy',
   ENABLE: 'enable',
   DISABLE: 'disable'
 }
@@ -62,3 +61,5 @@ export const defaults = {
 }
 
 export const dependencies = ['Hammer', 'mousewheel', 'dots']
+
+export const info = { version: '0.0.1' }

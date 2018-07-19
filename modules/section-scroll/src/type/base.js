@@ -6,7 +6,7 @@ class Base {
     this.classes = this.instance.classes
     this.options = this.instance.options
     this.$sections = this.instance.$sections
-    this.$element = this.instance.$element
+    this.element = this.instance.element
     this.second = this.options.duration / 1000
   }
 

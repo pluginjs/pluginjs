@@ -1,23 +1,22 @@
 import templateEngine from '@pluginjs/template'
 import { deepMerge } from '@pluginjs/utils'
 import { append, parseHTML, queryAll, query } from '@pluginjs/dom'
-
-import Pj from '@pluginjs/pluginjs'
+import PjDots from '@pluginjs/dots'
 
 class Dots {
   constructor(sectionScroll) {
     this.sectionScroll = sectionScroll
     this.options = sectionScroll.options
     this.classes = sectionScroll.classes
-    this.sections = sectionScroll.sections
+    this.sections = sectionScroll.$sections
     this.init()
   }
 
   init() {
     this.items = this.parseItems()
 
-    this.$dots = parseHTML(this.createHtml())
-    const dot = query(`.${this.classes.DOTS}`, this.$dots)
+    this.dots = parseHTML(this.createHtml())
+    const dot = query(`.${this.classes.DOTS}`, this.dots)
     const o = {
       items: this.items,
       onClick: val => {
@@ -30,17 +29,15 @@ class Dots {
         ? query(this.options.appendTo)
         : this.options.appendTo
 
-    append(this.$dots, appendToElement)
-
-    this.dotAPI = Pj.dots(dot, options)
-
+    append(this.dots, appendToElement)
+    this.dotAPI = PjDots.of(dot, options)
     if (this.options.dots === false) {
-      this.$dots.style.display = 'none'
+      this.dots.style.display = 'none'
     }
   }
 
   setActive(id) {
-    this.dotAPI('set', id)
+    this.dotAPI.set(id)
   }
 
   parseItems() {
@@ -48,9 +45,9 @@ class Dots {
     // const titles = [].slice.call($(this.options.titleSelector))
     const titles = queryAll(this.options.titleSelector)
 
-    this.sections.map((section, index) => {
+    this.sections.forEach((section, index) => {
       const item = {}
-      item.href = `#${section.id}`
+      item.href = `#${section.getAttribute('id')}`
       item.text = titles[index] ? titles[index].innerHTML : ''
       items.push(item)
     })

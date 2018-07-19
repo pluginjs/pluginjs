@@ -1,9 +1,7 @@
 import Component from '@pluginjs/component'
 import Hammer from 'hammerjs'
-import '@pluginjs/scroll-spy'
-import '@pluginjs/scroll'
 import { deepMerge } from '@pluginjs/utils'
-import { addClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, queryAll, query } from '@pluginjs/dom'
 import Pj, {
@@ -18,6 +16,7 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
+  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -31,11 +30,15 @@ const ANIMATION = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(NAMESPACE, {
-  defaults: DEFAULTS,
-  methods: METHODS,
-  dependencies: DEPENDENCIES
-})
+@register(
+  NAMESPACE,
+  {
+    defaults: DEFAULTS,
+    methods: METHODS,
+    dependencies: DEPENDENCIES
+  },
+  INFO
+)
 class SectionScroll extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -47,17 +50,13 @@ class SectionScroll extends Component {
   }
 
   initialize() {
-    this.$element = $(this.element)
-    this.$sections = $(this.options.itemSelector)
-    this.sections = queryAll(this.options.itemSelector)
+    this.$sections = queryAll(this.options.itemSelector, this.element)
     this.currIndex = 1
-
     this.initStyle()
-
     this.Dots = new Dots(this)
     this.Animation = ANIMATION[this.options.animation]
       ? new ANIMATION[this.options.animation](this)
-      : new ANIMATION.scroll(this)
+      : new ANIMATION.SCROLL(this)
 
     this.bind()
 
@@ -108,8 +107,6 @@ class SectionScroll extends Component {
       },
       document.body
     )
-    // bindEvent('DOMMouseScroll', e => {
-    //       // }, query('body'))
   }
 
   offMousewheel() {
@@ -172,17 +169,16 @@ class SectionScroll extends Component {
 
   getIdByIndex(index) {
     const v = index - 1
-    const id = `#${this.$sections[v].id}`
+    const id = `#${this.$sections[v].getAttribute('id')}`
     return id
   }
 
   getIndexById(id) {
     let index = 0
     let result = 0
-
-    this.$sections.each(function() {
-      const secionId = `#${this.id}`
-      if (secionId === id) {
+    this.$sections.forEach(section => {
+      const sectionId = `#${section.getAttribute('id')}`
+      if (sectionId === id) {
         result = index + 1
       }
       index++
@@ -226,7 +222,6 @@ class SectionScroll extends Component {
 
   scrollTo(id) {
     const index = this.getIndexById(id)
-
     if (index > 0 < this.$sections.length && this.currIndex !== index) {
       if (!this.is('moveing')) {
         this.currIndex = index
@@ -237,7 +232,7 @@ class SectionScroll extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      this.$element.removeClass(this.classes.DISABLED)
+      removeClass(this.classes.DISABLED, this.element)
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -245,7 +240,7 @@ class SectionScroll extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      this.$element.addClass(this.classes.DISABLED)
+      addClass(this.classes.DISABLED, this.element)
       this.enter('disabled')
     }
 

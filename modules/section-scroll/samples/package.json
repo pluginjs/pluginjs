@@ -9,6 +9,8 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
+    "@pluginjs/dom": "*",
+    "@pluginjs/classes": "*",
     "@pluginjs/section-scroll": "*"
   },
   "devDependencies": {

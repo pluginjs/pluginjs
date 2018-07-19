@@ -1,4 +1,6 @@
 import Base from './base'
+import { queryAll } from '@pluginjs/dom'
+import { setStyle } from '@pluginjs/styled'
 
 class Stack extends Base {
   constructor(instance) {
@@ -7,10 +9,18 @@ class Stack extends Base {
   }
 
   init() {
-    this.$sections.css({
-      transition: `${this.second}s transform ${this.options.easing}`
+    this.$sections.forEach(ele => {
+      setStyle(
+        {
+          transition: `${this.second}s transform ${this.options.easing}`,
+          width: '100%'
+        },
+        ele
+      )
     })
-    $('html, body').css({ overflow: 'hidden' })
+    queryAll('html, body').forEach(ele => {
+      setStyle({ overflow: 'hidden' }, ele)
+    })
 
     this.get3DPosition()
     this.initSection()
@@ -21,17 +31,17 @@ class Stack extends Base {
     let i = 0
     const that = this
 
-    this.$sections.each(function() {
+    this.$sections.forEach(section => {
       if (index > i) {
         const translate3d = `translate3d(${that.position[0].x}, ${
           that.position[0].y
         }, 0px)`
-        $(this).css({ transform: translate3d })
+        setStyle({ transform: translate3d }, section)
       } else {
         const translate3d = `translate3d(${that.position[1].x}, ${
           that.position[1].y
         }, 0px)`
-        $(this).css({ transform: translate3d })
+        setStyle({ transform: translate3d }, section)
       }
       i++
     })
@@ -46,12 +56,15 @@ class Stack extends Base {
   initSection() {
     let i = 0
     const that = this
-    this.$sections.each(function() {
+    this.$sections.forEach(section => {
       const index = Math.abs(i - that.$sections.length)
-      $(this).css({
-        'z-index': index,
-        position: 'absolute'
-      })
+      setStyle(
+        {
+          position: 'absolute'
+        },
+        section
+      )
+      section.style.zIndex = index
       i++
     })
   }

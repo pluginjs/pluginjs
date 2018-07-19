@@ -44,23 +44,6 @@ $paginator-disabled-border: $gray-lighter !default;
 .#{$paginator}-link {
   position: relative;
   // float: left; // Collapse white-space
-}
-
-.#{$paginator}-active {
-  z-index: 2;
-}
-
-.#{$paginator}-disabled {
-  .#{$paginator}-link {
-    pointer-events: none;
-    // height: 60px;
-    cursor: $cursor-disabled;
-  }
-}
-
-// Theme
-// =====================
-.#{$paginator}-link {
   box-sizing: border-box;
   // border: $paginator-border-width solid $paginator-border-color;
   // margin-left: -$paginator-border-width;
@@ -77,6 +60,37 @@ $paginator-disabled-border: $gray-lighter !default;
     border-color: $paginator-hover-border;
   }
 }
+
+.#{$paginator}-active {
+  z-index: 2;
+
+  .#{$paginator}-link {
+    &,
+    &:hover,
+    &:focus {
+      color: $paginator-active-bg;
+      border-bottom: 1px solid $paginator-active-border;
+    }
+  }
+}
+
+.#{$paginator}-disabled {
+  .#{$paginator}-link {
+    pointer-events: none;
+    // height: 60px;
+    cursor: $cursor-disabled;
+
+    &,
+    &:hover,
+    &:focus {
+      color: $paginator-disabled-color;
+      background-color: $paginator-disabled-bg;
+    }
+  }
+}
+
+// Theme
+// =====================
 
 .#{$paginator}-prev {
   float: left;
@@ -96,16 +110,6 @@ $paginator-disabled-border: $gray-lighter !default;
   }
 }
 
-.#{$paginator}-active {
-  .#{$paginator}-link {
-    &,
-    &:hover,
-    &:focus {
-      color: $paginator-active-bg;
-      border-bottom: 1px solid $paginator-active-border;
-    }
-  }
-}
 
 .#{$paginator}-prev,
 .#{$paginator}-next {
@@ -120,16 +124,6 @@ $paginator-disabled-border: $gray-lighter !default;
   }
 }
 
-.#{$paginator}-disabled {
-  .#{$paginator}-link {
-    &,
-    &:hover,
-    &:focus {
-      color: $paginator-disabled-color;
-      background-color: $paginator-disabled-bg;
-    }
-  }
-}
 
 .#{$paginator}-total,
 .#{$paginator}-jumper {

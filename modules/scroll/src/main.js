@@ -45,7 +45,9 @@ const scroll = (function() {
         window.getComputedStyle(el, null).overflow === 'visible'
     } while (!isBody && !(hasScrollableSpace && !hasVisibleOverflow))
 
-    isBody = hasScrollableSpace = hasVisibleOverflow = null
+    isBody = null
+    hasScrollableSpace = null
+    hasVisibleOverflow = null
 
     return el
   }
@@ -59,9 +61,8 @@ const scroll = (function() {
    */
   function step(context) {
     // call method again on next available frame
-    currentFrame = context.frame = window.requestAnimationFrame(
-      step.bind(window, context)
-    )
+    context.frame = window.requestAnimationFrame(step.bind(window, context))
+    currentFrame = context.frame
 
     const time = now()
     let elapsed = (time - context.startTime) / context.duration

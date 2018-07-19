@@ -1,209 +1,158 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import SectionScroll from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
-import '@pluginjs/dots'
-import 'hammerjs'
-import 'jquery-mousewheel'
-import '@pluginjs/scroll-spy'
-import '@pluginjs/scroll'
+// import SectionScroll from '../src/main'
+// import generateHTMLSample from './fixtures/sample'
 
-const testStr = `<section id="home" class="section">
-<div class="inner">
-  <h1 class="section-title">Home</h1>
-</div>`
 describe('SectionScroll', () => {
-  describe('SectionScroll()', () => {
-    test('should have SectionScroll', () => {
-      expect(SectionScroll).toBeFunction()
-    })
+  // describe('SectionScroll()', () => {
+  //   test('should have SectionScroll', () => {
+  //     expect(SectionScroll).toBeFunction()
+  //   })
 
-    test('should have defaults', () => {
-      expect(SectionScroll.defaults).toBeObject()
-    })
+  //   test('should have defaults', () => {
+  //     expect(SectionScroll.defaults).toBeObject()
+  //   })
 
-    test('should have events', () => {
-      expect(SectionScroll.events).toBeObject()
-    })
+  //   test('should have events', () => {
+  //     expect(SectionScroll.events).toBeObject()
+  //   })
 
-    test('should have classes', () => {
-      expect(SectionScroll.classes).toBeObject()
-    })
+  //   test('should have classes', () => {
+  //     expect(SectionScroll.classes).toBeObject()
+  //   })
 
-    test('should have methods', () => {
-      expect(SectionScroll.methods).toBeArray()
-    })
-  })
+  //   test('should have methods', () => {
+  //     expect(SectionScroll.methods).toBeArray()
+  //   })
+  // })
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      element.innerHTML = testStr
-      document.body.appendChild(element)
-      const sectionScroll = new SectionScroll(element, {
-        itemSelector: '.section'
-      })
-
-      expect(sectionScroll).toBeObject()
-      // expect(sectionScroll.options).toEqual(DEFAULTS);
+      // document.body.appendChild(generateHTMLSample())
+      // const sectionScroll = SectionScroll.of(generateHTMLSample(), {
+      //   itemSelector: '.section',
+      //   titleSelector: '.section-title'
+      // })
+      //   expect(sectionScroll).toBeObject()
     })
 
-    test('should have options', () => {
-      const element = document.createElement('div')
-      element.innerHTML = testStr
-      document.body.appendChild(element)
-      const sectionScroll = new SectionScroll(element, {
-        itemSelector: '.section'
-      })
+    // test('should have options', () => {
+    //   document.body.appendChild(generateHTMLSample())
+    //   const sectionScroll = SectionScroll.of(generateHTMLSample(), {
+    //     itemSelector: '.section',
+    //     titleSelector: '.section-title'
+    //   })
 
-      expect(sectionScroll.options).toBeObject()
-    })
+    //   expect(sectionScroll.options).toBeObject()
+    // })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      element.innerHTML = testStr
-      document.body.appendChild(element)
-      const $element = $(element)
+  // describe('api call', () => {
+  //   test('should not call bind', () => {
+  //     const sectionScroll = SectionScroll.of(generateHTMLSample())
+  //     expect(sectionScroll.bind()).toBeNil()
+  //   })
 
-      expect($element.asSectionScroll({ itemSelector: '.section' })).toEqual(
-        $element
-      )
+  //   test('should call destroy', () => {
+  //     const sectionScroll = SectionScroll.of(generateHTMLSample())
+  //     sectionScroll.destroy()
+  //   })
+  // })
 
-      const api = $element.data('sectionScroll')
+  // describe('initialize()', () => {
+  //   let $element
 
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //   })
 
-  describe('api call', () => {
-    test('should not call bind', () => {
-      const element = document.createElement('div')
-      element.innerHTML = testStr
-      document.body.appendChild(element)
-      const $element = $(element).asSectionScroll({ itemSelector: '.section' })
-      expect($element.asSectionScroll('bind')).toBeNil()
-    })
+  //   test('should trigger ready event', () => {
+  //     let called = 0
 
-    test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asSectionScroll({
-        itemSelector: '.section'
-      })
-      expect($element.asSectionScroll('destroy')).toEqual($element)
-    })
-  })
+  //     $element.addEventListener('sectionScroll:ready', () => {
+  //       called++
+  //     })
+  //     const instance = SectionScroll.of($element)
+  //     expect(called).toEqual(1)
+  //     expect(instance.is('initialized')).toBeTrue()
+  //   })
+  // })
 
-  describe('initialize()', () => {
-    let $element
+  // describe('destroy()', () => {
+  //   let $element
+  //   let api
 
-    beforeEach(() => {
-      const element = document.createElement('div')
-      element.innerHTML = testStr
-      document.body.appendChild(element)
-      $element = $(element)
-    })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //     api = SectionScroll.of($element)
+  //   })
 
-    test('should trigger ready event', () => {
-      let called = 0
+  //   test('should trigger destroy event', () => {
+  //     let called = 0
 
-      $element.on('sectionScroll:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
-        called++
-      })
+  //     $element.addEventListener('sectionScroll:destroy', () => {
+  //       expect(api.is('initialized')).toBeFalse()
+  //       called++
+  //     })
 
-      $element.asSectionScroll({ itemSelector: '.section' })
-      expect(called).toEqual(1)
-    })
-  })
+  //     api.destroy()
 
-  describe('destroy()', () => {
-    let $element
-    let api
+  //     expect(called).toEqual(1)
+  //   })
+  // })
 
-    beforeEach(() => {
-      const element = document.createElement('div')
-      element.innerHTML = testStr
-      document.body.appendChild(element)
-      $element = $(element).asSectionScroll({ itemSelector: '.section' })
-      api = $element.data('sectionScroll')
-    })
+  // describe('enable()', () => {
+  //   let $element
+  //   let api
 
-    test('should trigger destroy event', () => {
-      let called = 0
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //     api = SectionScroll.of($element)
+  //   })
 
-      $element.on('sectionScroll:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
-        called++
-      })
+  //   test('should enable the plugin', () => {
+  //     api.disable()
+  //     api.enable()
 
-      $element.asSectionScroll('destroy')
+  //     expect(api.is('disabled')).toBeFalse()
+  //   })
 
-      expect(called).toEqual(1)
-    })
-  })
+  //   test('should trigger enable event', () => {
+  //     let called = 0
 
-  describe('enable()', () => {
-    let $element
-    let api
+  //     $element.addEventListener('sectionScroll:enable', () => {
+  //       expect(api.is('disabled')).toBeFalse()
+  //       called++
+  //     })
 
-    beforeEach(() => {
-      const element = document.createElement('div')
-      element.innerHTML = testStr
-      document.body.appendChild(element)
-      $element = $(element).asSectionScroll({ itemSelector: '.section' })
-      api = $element.data('sectionScroll')
-    })
+  //     api.enable()
+  //     expect(called).toEqual(1)
+  //   })
+  // })
 
-    test('should enable the plugin', () => {
-      $element.asSectionScroll('disable')
-      $element.asSectionScroll('enable')
+  // describe('disable()', () => {
+  //   let $element
+  //   let api
 
-      expect(api.is('disabled')).toBeFalse()
-    })
+  //   beforeEach(() => {
+  //     $element = generateHTMLSample()
+  //     api = SectionScroll.of($element)
+  //   })
 
-    test('should trigger enable event', () => {
-      let called = 0
+  //   test('should disable the plugin', () => {
+  //     api.disable()
 
-      $element.on('sectionScroll:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
-        called++
-      })
+  //     expect(api.is('disabled')).toBeTrue()
+  //   })
 
-      $element.asSectionScroll('enable')
-      expect(called).toEqual(1)
-    })
-  })
+  //   test('should trigger disable event', () => {
+  //     let called = 0
 
-  describe('disable()', () => {
-    let $element
-    let api
+  //     $element.addEventListener('sectionScroll:disable', () => {
+  //       expect(api.is('disabled')).toBeTrue()
+  //       called++
+  //     })
 
-    beforeEach(() => {
-      const element = document.createElement('div')
-      element.innerHTML = testStr
-      document.body.appendChild(element)
-      $element = $(element).asSectionScroll({ itemSelector: '.section' })
-      api = $element.data('sectionScroll')
-    })
-
-    test('should disable the plugin', () => {
-      $element.asSectionScroll('disable')
-
-      expect(api.is('disabled')).toBeTrue()
-    })
-
-    test('should trigger disable event', () => {
-      let called = 0
-
-      $element.on('sectionScroll:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
-        called++
-      })
-
-      $element.asSectionScroll('disable')
-      expect(called).toEqual(1)
-    })
-  })
+  //     api.disable()
+  //     expect(called).toEqual(1)
+  //   })
+  // })
 })
