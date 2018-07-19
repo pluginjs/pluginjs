@@ -78,6 +78,10 @@ class Swipeable extends Component {
 
   bind() {
     this.$drag.on('panstart panmove panend', e => {
+      if (this.is('disabled')) {
+        return
+      }
+
       switch (e.type) {
         case 'panstart':
           this.setInfo(e)
@@ -95,6 +99,8 @@ class Swipeable extends Component {
           break
       }
     })
+
+    this.enter('bind')
   }
 
   getSize() {
@@ -173,7 +179,8 @@ class Swipeable extends Component {
     decayX = this.options.axis === 'y' ? 0 : decayX
     decayY = this.options.axis === 'x' ? 0 : decayY
 
-    if (this.options.axis === 'x' && Math.abs(decayX) < 2) {
+    if (this.options.axis === 'x' && Math.abs(decayX) < 1) {
+      this.trigger(EVENTS.SNAIL)
       return
     }
 
@@ -328,6 +335,7 @@ class Swipeable extends Component {
 
   unbind() {
     this.$drag.off('panstart panmove panend')
+    this.leave('bind')
   }
 
   enable() {
@@ -341,7 +349,6 @@ class Swipeable extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.element)
-      this.unbind()
       this.enter('disabled')
     }
     this.trigger(EVENTS.DISABLE)

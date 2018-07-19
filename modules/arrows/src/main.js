@@ -116,10 +116,12 @@ class Arrows extends Component {
         }
       })
     )(this.element)
+    this.enter('bind')
   }
 
   unbind() {
     removeEvent(this.eventName(), this.element)
+    this.leave('bind')
   }
 
   getPrev() {

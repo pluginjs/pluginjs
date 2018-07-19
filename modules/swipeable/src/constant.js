@@ -9,6 +9,7 @@ const events = {
   MOVE: 'move',
   END: 'end',
   RESIZE: 'resize',
+  SNAIL: 'snail',
   DECAY: 'decay',
   DECAYEND: 'decayend'
 }

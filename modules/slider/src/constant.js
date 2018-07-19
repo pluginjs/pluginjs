@@ -29,9 +29,10 @@ const methods = ['enable', 'disable', 'destroy', 'prev', 'next']
 
 const defaults = {
   data: null,
+  height: 50, // width 100% default, height percentage default
   arrows: true,
   vertical: false,
-  current: null,
+  current: 1,
   duration: 300,
   locale: 'en',
   templates: {

@@ -124,7 +124,9 @@ class ImageLoader extends Component {
     )
     Promise.all(this.imgLoadAll)
       .then(imgs => {
-        this.onCompleteHandler(imgs)
+        if (this.onCompleteHandler) {
+          this.onCompleteHandler(imgs)
+        }
         return imgs
       })
       .finally(this.onFinallyHandler)
