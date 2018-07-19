@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.18",
+  "version": "0.2.19",
   "main": "dist/image-loader.umd.js",
   "module": "dist/image-loader.esm.js",
   "cjs": "dist/image-loader.cjs.js",
