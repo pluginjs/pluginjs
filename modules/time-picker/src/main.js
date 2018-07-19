@@ -97,7 +97,8 @@ class TimePicker extends Component {
     }
 
     this.itemValues = []
-    this.dropdown.items.forEach(item => {
+    // console.log(this.dropdown)
+    this.dropdown.$items.forEach(item => {
       const text = item.textContent
       this.itemValues.push(text)
     })
