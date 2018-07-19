@@ -445,7 +445,6 @@ class SvgPicker extends Component {
       const $this = v
       const $thisTip = query(`.${this.classes.TYPETIP}`, $this)
       const name = $this.dataset.value
-
       Object.entries(this.icons).forEach(([i, v]) => {
         if (i === name) {
           let count = 0

@@ -83,7 +83,7 @@ export const defaults = {
       </li>`
     },
     type() {
-      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <span class='{classes.TYPETIP}'></span> <i class="icon-chevron-down">&nbsp;</i>{typeName}</div><ul class="{classes.ICONWRAP}">{icons}</ul>
+      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="icon-chevron-down">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
       </div>`
     },
     manage() {

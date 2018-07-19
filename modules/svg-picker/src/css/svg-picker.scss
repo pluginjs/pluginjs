@@ -8,9 +8,9 @@ $svgPicker-sizer: $sizer !default;
 $svgPicker-width: 16 * $svgPicker-sizer !default; //160px
 $svgPicker-height: 3 * $svgPicker-sizer !default; //30px
 $svgPicker-font-size: $font-size-base !default;
-$svgPicker-border-color: $gray-lighter !default;
+$svgPicker-border-color: $gray-border !default;
 $svgPicker-active-color: $gray-darker !default;
-$svgPicker-hover-color: $gray-light !default;
+$svgPicker-hover-color: $gray-darkest !default;
 // icon
 $svgPicker-icon-width: 4.8 * $svgPicker-sizer !default; //52px
 $svgPicker-icon-height: 4.8 * $svgPicker-sizer !default; //52px
@@ -38,7 +38,7 @@ $svgPicker-search-height: 4 * $svgPicker-sizer !default; //40px
 // search
 $svgPicker-search-border: 1px solid $gray-lighter !default;
 $svgPicker-search-margin-bottom: 1px !default;
-$svgPicker-search-icon-color: $gray-light !default;
+$svgPicker-search-icon-color: $gray-dark !default;
 
 // Core
 // =====================
@@ -97,6 +97,7 @@ $svgPicker-search-icon-color: $gray-light !default;
     top: 50%;
     right: 0.6 * $svgPicker-sizer; //6px
     font-size: $font-size-base;
+    color: $gray-darkest;
     transition: all 0.3s;
     transform: translateY(-50%);
   }
@@ -282,6 +283,7 @@ $svgPicker-search-icon-color: $gray-light !default;
       font-size: $svgPicker-font-size;
       line-height: 1;
       border: 0;
+      outline: none;
       flex-shrink: 1;
 
       &:focus {
@@ -296,7 +298,7 @@ $svgPicker-search-icon-color: $gray-light !default;
       opacity: 0;
 
       &:hover {
-        color: $gray-lighter;
+        color: $gray-darkest;
         cursor: pointer;
       }
     }
