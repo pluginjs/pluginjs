@@ -107,7 +107,7 @@ class FontPicker extends Component {
     // const that = this;
     this.$dropdown = this.initDropdown()
 
-    this.$panel = this.$dropdown.panel
+    this.$panel = this.$dropdown.$panel
     this.$activated = queryAll(`.${this.classes.FONT}`, this.$panel)
     this.$activatedPackage = wrapAll(
       parseHTML(`<div class=${this.classes.ACTIVATED}></div>`),
@@ -739,12 +739,14 @@ class FontPicker extends Component {
         selector: this.classes.SELECTOR
       })
     )
-    console.log(this.$controller)
+
     Object.entries(this.sources).forEach(([, source]) => {
       data.push({ label: source.title })
     })
 
     data.push({ label: localeText })
+    // console.log(this.$controller)
+    // console.log(this.$panel)
     this.$panel.append(this.$controller)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
     this.$selectorPanel = Dropdown.of(this.$selector, {
