@@ -83,6 +83,7 @@ class Select extends Component {
     }
 
     addClass(this.classes.LABEL, this.label)
+    console.log(this.label)
 
     if (this.element.disabled || this.options.disabled) {
       this.disable()
@@ -338,6 +339,10 @@ class Select extends Component {
         this.dropdown.itemUsable = false
       }
     })
+
+    console.log(this.dropdown)
+    console.log(this.dropdown.$label)
+    console.log(this.options)
     this.label = this.dropdown.$label
     if (!this.options.filterable && this.options.multiple) {
       this.label.style.display = 'none'
