@@ -64,29 +64,27 @@ class Spinner extends Component {
   initialize() {
     this.$control = parseHTML(
       template.compile(this.options.templates.control())({
-        control: this.classes.CONTROL,
-        up: this.classes.UP,
-        down: this.classes.DOWN
+        classes: this.classes
       })
     )
     this.$down = query(`.${this.classes.DOWN}`, this.$control)
     this.$up = query(`.${this.classes.UP}`, this.$control)
     wrap(`<div tabindex="0" class="${this.classes.WRAP}"></div>`, this.element)
-    this.wrap = this.element.parentNode
+    this.$wrap = this.element.parentNode
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.wrap)
+      addClass(this.getThemeClass(), this.$wrap)
     }
 
     if (this.options.layout === 'right') {
-      addClass(this.classes.CONTROLRIGHT, this.wrap)
+      addClass(this.classes.CONTROLRIGHT, this.$wrap)
       removeClass('icon-plus', this.$up)
       addClass('icon-plus-mini', this.$up)
       removeClass('icon-minus', this.$down)
       addClass('icon-minus-mini', this.$down)
     }
 
-    append(this.$control, this.wrap)
+    append(this.$control, this.$wrap)
 
     this.data = {}
 
@@ -212,19 +210,19 @@ class Spinner extends Component {
       {
         type: this.eventName('focus'),
         handler: () => {
-          addClass(this.classes.FOCUS, this.wrap)
+          addClass(this.classes.FOCUS, this.$wrap)
         }
       },
-      this.wrap
+      this.$wrap
     )
     bindEvent(
       {
         type: this.eventName('blur'),
         handler: () => {
-          removeClass(this.classes.FOCUS, this.wrap)
+          removeClass(this.classes.FOCUS, this.$wrap)
         }
       },
-      this.wrap
+      this.$wrap
     )
 
     bindEvent(
@@ -308,7 +306,7 @@ class Spinner extends Component {
         type: this.eventName('focus'),
         handler: () => {
           that.enter('focused')
-          addClass(that.classes.FOCUS, this.wrap)
+          addClass(that.classes.FOCUS, this.$wrap)
 
           // keyboard support
           bindEvent(
@@ -362,7 +360,7 @@ class Spinner extends Component {
         type: this.eventName('blur'),
         handler: () => {
           that.leave('focused')
-          removeClass(that.classes.FOCUS, this.wrap)
+          removeClass(that.classes.FOCUS, this.$wrap)
           removeEvent(that.eventName('keydown'), this.element)
           if (that.mousewheel === true) {
             removeEvent(this.eventName('wheel'), this.element)
@@ -392,7 +390,7 @@ class Spinner extends Component {
     removeEvent(this.eventName, this.element)
     removeEvent(this.eventName, this.$down)
     removeEvent(this.eventName, this.$up)
-    removeEvent(this.eventName, this.wrap)
+    removeEvent(this.eventName, this.$wrap)
   }
 
   isOutOfBounds(value) {
@@ -502,7 +500,7 @@ class Spinner extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.wrap)
+      removeClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = false
 
       if (!this.is('eventBinded')) {
@@ -521,7 +519,7 @@ class Spinner extends Component {
       this.enter('disabled')
 
       this.element.disabled = true
-      addClass(this.classes.DISABLED, this.wrap)
+      addClass(this.classes.DISABLED, this.$wrap)
 
       this.unbind()
     }

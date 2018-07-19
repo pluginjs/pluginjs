@@ -50,7 +50,7 @@ export const defaults = {
   mousewheel: false, // support mouse wheel
   templates: {
     control() {
-      return `<div class="{control}"><span class="{up} icon-plus"></span><span class="{down} icon-minus"></span>
+      return `<div class="{classes.CONTROL}"><span class="{classes.UP} icon-plus"></span><span class="{classes.DOWN} icon-minus"></span>
       </div>`
     }
   },
