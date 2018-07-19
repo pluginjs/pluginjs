@@ -27,7 +27,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(NAMESPACE, { defaults: DEFAULTS }, INFO)
+@register(NAMESPACE, { defaults: DEFAULTS })
 class Modal extends GlobalComponent {
   constructor(options = {}) {
     super(NAMESPACE)
@@ -49,7 +49,7 @@ class Modal extends GlobalComponent {
     if (this.options.buttons) {
       const buttons = this.options.buttons
       for (const id in this.options.buttons) {
-        if (this.options.buttons.hasOwnProperty(id)) {
+        if (this.options.buttons.hasOwnProperty(id)) {  /* eslint-disable-line */
           if (!buttons[id].class) {
             buttons[id].class = this.options.defaultButtonClass
           }
@@ -461,7 +461,7 @@ class Modal extends GlobalComponent {
     const length = Object.keys(buttons).length
     this.$buttons.innerHTML = ''
     for (const key in buttons) {
-      if (buttons.hasOwnProperty(key)) {
+      if (buttons.hasOwnProperty(key)) {  /* eslint-disable-line */
         const btn = this._creatBtn(buttons, key, length)
         append(btn, this.$buttons)
       }

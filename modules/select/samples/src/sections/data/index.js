@@ -37,5 +37,4 @@ const data = [
 ]
 
 const element = query('#data .example-data')
-
 Select.of(element, { data })

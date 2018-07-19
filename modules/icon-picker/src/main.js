@@ -123,7 +123,7 @@ class IconsPicker extends Component {
       this.initEmpty()
     } else {
       this.$dropdown = this.initDropdown()
-      this.$panel = this.$dropdown.panel
+      this.$panel = this.$dropdown.$panel
       this.$packages = children(this.$panel).filter(el =>
         el.matches(`.${this.classes.PACKAGE}`)
       )
