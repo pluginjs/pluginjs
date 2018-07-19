@@ -78,8 +78,7 @@ class IconsPicker extends Component {
 
     this.$empty = parseHTML(
       template.compile(this.options.templates.empty())({
-        class: this.classes.EMPTY,
-        link: this.classes.EMPTYLINK,
+        classes: this.classes,
         title: this.translate('emptyTitle'),
         linkTitle: this.translate('emptyLinkTitle')
       })
@@ -97,7 +96,7 @@ class IconsPicker extends Component {
       }
     })
     children(this.$dropdown.panel).map(el => el.remove())
-    console.log(children(this.$dropdown.panel).map(el => el.remove()))
+    // console.log(children(this.$dropdown.panel).map(el => el.remove()))
     this.$dropdown.panel.append(this.$empty)
   }
 
@@ -547,7 +546,7 @@ class IconsPicker extends Component {
 
     const $icon = parseHTML(
       template.compile(this.options.templates.icon())({
-        icon: this.classes.ICON,
+        classes: this.classes,
         font: getObjData('base', _package),
         iconName: `${getObjData('prefix', _package)}${icon}`
       })
@@ -576,7 +575,6 @@ class IconsPicker extends Component {
   initDropdown() {
     const that = this
     const data = []
-
     for (const i in this.data) {
       if ({}.hasOwnProperty.call(this.data, i)) {
         data.push({ label: this.data[i].title })
@@ -620,8 +618,7 @@ class IconsPicker extends Component {
             const $categories = parseHTML(
               template.compile(this.options.templates.categories())({
                 categoriesName: name,
-                categories: this.classes.CATEGORIES,
-                categoriesTitle: this.classes.CATEGORIESTITLE,
+                classes: this.classes,
                 title: name.toLocaleUpperCase()
               })
             )
@@ -642,8 +639,7 @@ class IconsPicker extends Component {
 
     this.$controller = parseHTML(
       template.compile(this.options.templates.controller())({
-        controller: this.classes.CONTROLLER,
-        selector: this.classes.SELECTOR
+        classes: this.classes
       })
     )
 
@@ -716,8 +712,7 @@ class IconsPicker extends Component {
   handleSearch() {
     this.$search = parseHTML(
       template.compile(this.options.templates.search())({
-        search: this.classes.SEARCH,
-        close: this.classes.SEARCHCLOSE,
+        classes: this.classes,
         placeholder: this.translate('searchText')
       })
     )

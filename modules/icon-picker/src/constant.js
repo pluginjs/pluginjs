@@ -75,7 +75,7 @@ export const defaults = {
   disabled: false,
   templates: {
     empty() {
-      return `<div class='{class}'>{title}<a href="#" class='{link}'>{linkTitle}</a>
+      return `<div class='{classes.EMPTY}'>{title}<a href="#" class='{classes.EMPTYLINK}'>{linkTitle}</a>
       </div>`
     },
     trigger() {
@@ -83,19 +83,19 @@ export const defaults = {
       </div>`
     },
     icon() {
-      return `<li class={icon}><i class='{font} {iconName}' data-value={iconName}></i>
+      return `<li class={classes.ICON}><i class='{font} {iconName}' data-value={iconName}></i>
       </li>`
     },
     categories() {
-      return `<div class='{categories} {categoriesName}'><div class={categoriesTitle}>{title}</div>
+      return `<div class='{classes.CATEGORIES} {categoriesName}'><div class={classes.CATEGORIESTITLE}>{title}</div>
       </div>`
     },
     controller() {
-      return `<div class={controller}><div class={selector}></div>
+      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}></div>s
       </div>`
     },
     search() {
-      return `<form class={search} action="#"><i class='icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='icon-close {close}'></i>
+      return `<form class={classes.SEARCH} action="#"><i class='icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='icon-close {classes.SEARCHCLOSE}'></i>
       </form>`
     }
   },
