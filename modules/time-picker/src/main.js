@@ -79,14 +79,12 @@ class TimePicker extends Component {
     wrap(`<div class="${this.classes.NAMESPACE}"></div>`, this.element)
     insertAfter(`<div class="${this.classes.DROPDOWN}"></div>`, this.element)
 
-    this.timePicker = this.element.parentNode
-    this.wrap = this.timePicker.parentNode
-    addClass(this.classes.WRAP, this.wrap)
-
-    this.$dropdownEl = query(`.${this.classes.DROPDOWN}`, this.timePicker)
-
+    this.$timePicker = this.element.parentNode
+    this.$wrap = this.$timePicker.parentNode
+    addClass(this.classes.WRAP, this.$wrap)
+    this.$dropdownEl = query(`.${this.classes.DROPDOWN}`, this.$timePicker)
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.timePicker)
+      addClass(this.getThemeClass(), this.$timePicker)
     }
 
     this.initDropdown()
@@ -157,7 +155,7 @@ class TimePicker extends Component {
           }
         }
       })
-    )(this.wrap)
+    )(this.$wrap)
     // this.dropdown = this.$dropdownEl.asDropdown(dropdownConf).data('dropdown')
   }
 
@@ -375,7 +373,7 @@ class TimePicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      removeClass(this.classes.WRAP, this.wrap)
+      removeClass(this.classes.WRAP, this.$wrap)
       this.dropdown.destroy()
       unwrap(this.element)
       removeClass(this.classes.INFO, this.element)
