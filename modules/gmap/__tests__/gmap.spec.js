@@ -1,8 +1,11 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Gmap from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Gmap from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import { parseHTML } from '@pluginjs/dom'
 
+const getInitialElement = () => parseHTML`
+  <div class="gmap"></div>
+`
+const getNewGmap = () => Gmap.of(getInitialElement())
 describe('Gmap', () => {
   describe('Gmap()', () => {
     test('should have Gmap', () => {
@@ -28,44 +31,45 @@ describe('Gmap', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const gmap = new Gmap(element)
+      const gmap = getNewGmap()
 
       expect(gmap).toBeObject()
       expect(gmap.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const gmap = new Gmap(element)
+      const gmap = Gmap.of(getInitialElement(), {
+        address: 'china',
+        content: 'Fu zhou'
+      })
 
       expect(gmap.options).toBeObject()
+      expect(gmap.options.address).toEqual('china')
+      expect(gmap.options.content).toEqual('Fu zhou')
     })
   })
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
+      const gmap = getNewGmap()
 
-      expect($element.asGmap()).toEqual($element)
-
-      const api = $element.data('gmap')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
+      expect(gmap).toEqual(gmap)
+      expect(gmap).toBeObject()
+      expect(gmap.options).toBeObject()
     })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asGmap()
-      expect($element.asGmap('bind')).toBeNil()
+      setTimeout(() => {
+        const api = getNewGmap()
+        expect(api.bind()).toBeNil()
+      }, 0)
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asGmap()
-      expect($element.asGmap('destroy')).toEqual($element)
+      const api = getNewGmap()
+      api.destroy()
     })
   })
 
@@ -73,19 +77,21 @@ describe('Gmap', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = getInitialElement()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('gmap:ready', (event, api) => {
-        // expect(api.is('initialized')).toBeTrue();
+      $element.addEventListener('gmap:ready', () => {
         called++
-        expect(called).toEqual(1)
       })
 
-      $element.asGmap()
+      setTimeout(() => {
+        const instance = Gmap.of($element)
+        expect(called).toEqual(1)
+        expect(instance.is('initialized')).toBeTrue()
+      }, 0)
     })
   })
 
@@ -94,21 +100,23 @@ describe('Gmap', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGmap()
-      api = $element.data('gmap')
+      $element = getInitialElement()
+      api = getNewGmap()
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('gmap:destroy', (event, api) => {
+      $element.addEventListener('gmap:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asGmap('destroy')
+      setTimeout(() => {
+        api.destroy()
 
-      expect(called).toEqual(1)
+        expect(called).toEqual(1)
+      }, 0)
     })
   })
 
@@ -117,13 +125,15 @@ describe('Gmap', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGmap()
-      api = $element.data('gmap')
+      $element = getInitialElement()
+      api = getNewGmap()
     })
 
     test('should enable the plugin', () => {
-      $element.asGmap('disable')
-      $element.asGmap('enable')
+      setTimeout(() => {
+        api.disanle()
+        api.enable()
+      }, 0)
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,13 +141,15 @@ describe('Gmap', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('gmap:enable', (event, api) => {
+      $element.addEventListener('gmap:enable', (event, api) => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asGmap('enable')
-      expect(called).toEqual(1)
+      setTimeout(() => {
+        api.enable()
+        expect(called).toEqual(1)
+      }, 0)
     })
   })
 
@@ -146,12 +158,12 @@ describe('Gmap', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asGmap()
-      api = $element.data('gmap')
+      $element = getInitialElement()
+      api = getNewGmap()
     })
 
     test('should disable the plugin', () => {
-      $element.asGmap('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,13 +171,15 @@ describe('Gmap', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('gmap:disable', (event, api) => {
+      $element.addEventListener('gmap:disable', (event, api) => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asGmap('disable')
-      expect(called).toEqual(1)
+      setTimeout(() => {
+        api.disable()
+        expect(called).toEqual(1)
+      }, 0)
     })
   })
 })

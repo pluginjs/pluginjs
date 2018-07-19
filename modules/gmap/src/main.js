@@ -215,8 +215,8 @@ class Gmap extends Component {
     }
 
     if (
-      opts.hasOwnProperty('latitude') &&
-      opts.hasOwnProperty('longitude') &&
+      Object.prototype.hasOwnProperty.call(opts, 'latitude') &&
+      Object.prototype.hasOwnProperty.call(opts, 'longitude') &&
       opts.latitude &&
       opts.longitude
     ) {
@@ -230,7 +230,7 @@ class Gmap extends Component {
       }
 
       process()
-    } else if (opts.hasOwnProperty('address')) {
+    } else if (Object.prototype.hasOwnProperty.call(opts, 'address')) {
       this.GEOCEDER.geocode({ address: opts.address }, result => {
         if (result && result.length) {
           markerOptions.position = result[0].geometry.location

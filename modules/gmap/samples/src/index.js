@@ -1,3 +1,2 @@
-import Gmap from '@pluginjs/gmap'
-
-console.log(Gmap)
+import './sections/content/index.js'
+import './sections/marker/index.js'

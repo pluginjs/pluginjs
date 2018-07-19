@@ -3,11 +3,15 @@
 // Vars
 // =====================
 $gmap: "pj-gmap" !default;
+$gmap-width: 31.25rem !default;
+$gmap-height: 25rem !default;
 
 // Core
 // =====================
 .#{$gmap} {
   position: relative;
+  width: $gmap-width;
+  height: $gmap-height;
   overflow: hidden;
 
   * {
