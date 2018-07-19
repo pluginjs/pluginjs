@@ -74,7 +74,6 @@ class LinkPicker extends Component {
     })
 
     this.source = this.sources[0]
-    console.log(this.source)
     this.info = {}
     this.initialize()
   }
@@ -143,32 +142,24 @@ class LinkPicker extends Component {
 
     this.$init = parseHTML(
       this.parseTemp('init', {
-        class: this.classes.INIT,
+        classes: this.classes,
         title: this.options.title
       })
     )
     this.$preview = parseHTML(
       this.parseTemp('preview', {
-        class: this.classes.PREVIEW,
-        link: this.classes.LINK
+        classes: this.classes
       })
     )
     this.$action = parseHTML(
       this.parseTemp('action', {
-        class: this.classes.ACTION,
-        edit: this.classes.ACTIONEDIT,
-        remove: this.classes.ACTIONREMOVE
+        classes: this.classes
       })
     )
-    this.$panel = parseHTML(
-      this.parseTemp('panel', { class: this.classes.PANEL })
-    )
-
+    this.$panel = parseHTML(this.parseTemp('panel', { classes: this.classes }))
     this.$panelAction = parseHTML(
       this.parseTemp('panelAction', {
-        class: this.classes.PANELACTION,
-        save: this.classes.PANELSAVE,
-        cancel: this.classes.PANELCANCEL,
+        classes: this.classes,
         cancelTitle: this.translate('cancel'),
         saveTitle: this.translate('save')
       })

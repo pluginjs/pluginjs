@@ -60,23 +60,23 @@ export const defaults = {
   sources: null, // [Array] list of source name.
   templates: {
     init() {
-      return `<div class='{class}'>
+      return `<div class='{classes.INIT}'>
         <i class='icon-chain'></i>
         {title}
       </div>`
     },
     action() {
-      return `<div class='{class}'>
-          <i class='icon-pencil-square {edit}'></i>
-          <i class='icon-trash {remove}'></i>
+      return `<div class='{classes.ACTION}'>
+          <i class='icon-pencil-square {classes.ACTIONEDIT}'></i>
+          <i class='icon-trash {classes.ACTIONREMOVE}'></i>
         </div>`
     },
     preview() {
-      return `<div class='{class}'><i class='icon-chain'></i><div class='{link}'></div>
+      return `<div class='{classes.PREVIEW}'><i class='icon-chain'></i><div class='{classes.LINK}'></div>
       </div>`
     },
     panel() {
-      return `<div class='{class}'>
+      return `<div class='{classes.PANEL}'>
       </div>`
     },
     container() {
@@ -88,7 +88,7 @@ export const defaults = {
       </div>`
     },
     panelAction() {
-      return `<div class='{class}'><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {cancel}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {save}'>{saveTitle}</button>
+      return `<div class='{classes.PANELACTION}'><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {classes.PANELCANCEL}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {classes.PANELSAVE}'>{saveTitle}</button>
       </div>`
     }
   },
