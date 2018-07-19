@@ -288,6 +288,7 @@ class FontPicker extends Component {
           query('.pj-dropdown-label', this.$selector)
         )
       }
+      console.log(this.$selectorPanel)
     }
 
     /*
@@ -759,7 +760,7 @@ class FontPicker extends Component {
       classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` }
     })
     // 选中的dropdown activated上面那块
-    queryAll('li', this.$selectorPanel.panel).forEach(el => {
+    queryAll('li', this.$selectorPanel.$panel).forEach(el => {
       Object.entries(this.sources).forEach(([sourceName, source]) => {
         if (el.dataset.value === source.title) {
           el.dataset.source = sourceName

@@ -91,7 +91,7 @@ export const defaults = {
       </div>`
     },
     controller() {
-      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}></div>s
+      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}></div>
       </div>`
     },
     search() {

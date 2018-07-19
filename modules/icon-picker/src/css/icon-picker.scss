@@ -8,13 +8,13 @@ $iconPicker-sizer: $sizer !default;
 $iconPicker-width: 16 * $iconPicker-sizer !default; //160px
 $iconPicker-height: 3 * $iconPicker-sizer !default; //30px
 $iconPicker-font-size: $font-size-base !default;
-$iconPicker-border-color: $gray-lighter !default;
+$iconPicker-border-color: $gray-border !default;
 $iconPicker-hover-color: $gray-darker !default;
 $iconPicker-active-color: $color-primary !default;
 $iconPicker-body-padding: 1.5 * $iconPicker-sizer $iconPicker-sizer
   $iconPicker-sizer !default; //15px 10px 10px
-$iconPicker-icon-color: $gray-light !default;
-$iconPicker-icon-hover-color: $gray-lightest !default;
+$iconPicker-icon-color: $gray-darkest !default;
+$iconPicker-icon-hover-color: $gray-light !default;
 $iconPicker-icon-active-color: $color-primary !default;
 $iconPicker-trigger-icon-left: $iconPicker-width - 20px !default;
 $iconPicker-panel-height: 32 * $iconPicker-sizer !default; //320px
@@ -25,7 +25,7 @@ $iconPicker-controller-height: 3 * $iconPicker-sizer !default; //30px
 $iconPicker-search-height: 4 * $iconPicker-sizer !default; //40px
 $iconPicker-search-border: 1px solid $gray-lighter !default;
 $iconPicker-search-margin-bottom: 1px !default;
-$iconPicker-search-icon-color: $gray-light !default;
+$iconPicker-search-icon-color: $gray-dark !default;
 $iconPicker-package-body-height: 18.8 * $iconPicker-sizer !default; //188px
 $iconPicker-empty-padding: 2 * $iconPicker-sizer !default; //20px
 
@@ -171,7 +171,7 @@ $iconPicker-controller-bg: $color-white;
       padding: 0 $iconPicker-sizer; //10px
       margin-bottom: $iconPicker-sizer; //10px
       font-size: $font-size-xs;
-      color: $gray-light;
+      color: $gray-dark;
     }
   }
 
@@ -396,6 +396,7 @@ $iconPicker-controller-bg: $color-white;
     margin-left: $iconPicker-sizer; //10px
     font-size: $iconPicker-font-size;
     border: 0;
+    outline: none;
     box-shadow: none;
     flex-shrink: 1;
     &:focus {
@@ -410,7 +411,7 @@ $iconPicker-controller-bg: $color-white;
     opacity: 0;
 
     &:hover {
-      color: $gray-lighter;
+      color: $gray-darkest;
       cursor: pointer;
     }
   }
