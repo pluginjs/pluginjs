@@ -59,6 +59,7 @@ $iconPicker-controller-bg: $color-white;
     top: 50%;
     right: 0.6 * $iconPicker-sizer; //6px
     font-size: $font-size-base;
+    color: $gray-darkest;
     transition: all 0.3s;
     transform: translateY(-50%);
 

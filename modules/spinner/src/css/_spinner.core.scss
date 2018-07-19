@@ -15,12 +15,12 @@ $spinner-control-width: 3.5 * $spinner-sizer !default; //35px
 
 $spinner-border-width: 1px !default;
 $spinner-border-radius: 2px !default;
-$spinner-border-color: $gray-lighter !default;
+$spinner-border-color: $gray-border !default;
 $spinner-font-size: $font-size-xs !default;
 $spinner-color: $gray-dark !default;
 
 $spinner-focus-border-color: $color-primary !default;
-$spinner-focus-hover-border-color: $gray-light !default;
+$spinner-focus-hover-border-color: $gray-darkest !default;
 
 // Core
 // ======================

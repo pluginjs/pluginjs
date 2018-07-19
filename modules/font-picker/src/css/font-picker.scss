@@ -70,6 +70,7 @@ $fontPicker-search-input-hover-color: $gray !default;
     position: absolute;
     top: 50%;
     right: 0.6 * $fontPicker-sizer; //6px
+    color: $gray-darkest;
     transition: all 0.3s;
     transform: translateY(-50%);
   }
