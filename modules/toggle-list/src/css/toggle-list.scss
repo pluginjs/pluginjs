@@ -74,6 +74,9 @@ $toggleList-unchecked-bg: $gray-lightest !default;
   .#{$toggleList}-checked:hover {
     border-color: $gray-border !important;
   }
+  .pj-list-item-handle:hover {
+    cursor: not-allowed !important;
+  }
 }
 
 @keyframes todark {
