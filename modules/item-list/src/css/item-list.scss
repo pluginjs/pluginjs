@@ -50,9 +50,9 @@ $clone-margin-right: 0.4 * $itemList-sizer !default; //4px
   height: $itemList-height;
   font-size: $font-size-sm;
   line-height: $itemList-height;
-  color: $itemList-color;
+  color: #b3b3b3;
   text-align: center;
-  border: $itemList-border;
+  border: 1px dashed #e6e6e6;
   border-radius: $itemList-border-radius;
 
   &:hover {
@@ -67,7 +67,11 @@ $clone-margin-right: 0.4 * $itemList-sizer !default; //4px
     cursor: not-allowed;
     background-color: inherit;
   }
+  .icon-plus::before {
+    color: #e6e6e6;
+  }
 }
+
 
 // .#{$itemList}-modal {
 //   width: $modal-width;
