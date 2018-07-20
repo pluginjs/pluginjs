@@ -34,7 +34,7 @@ export const methods = [
 
 export const defaults = {
   template() {
-    return '<ul class="{classes.NAMESPACE}">' + '</ul>'
+    return '<ul class="{classes.NAMESPACE}"></ul>'
   },
   templates: {
     star() {

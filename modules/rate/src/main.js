@@ -130,9 +130,9 @@ class Rate extends Component {
         type: this.eventName('mousemove'),
         handler: event => {
           const score = this._getScore(event)
-          if (this.hoverscore !== score && score !== undefined) {
+          if (this.hoverscore !== score && score !== undefined) { /* eslint-disable-line */
             this.updateStar(score)
-            if (score !== this.hoverscore && score !== undefined) {
+            if (score !== this.hoverscore && score !== undefined) { /* eslint-disable-line */
               this.changeHoverScore(score)
             }
           }
@@ -198,11 +198,11 @@ class Rate extends Component {
       return index + Number(this.options.step)
     }
 
-    return undefined
+    return undefined /* eslint-disable-line */
   }
 
   updateStar(score) {
-    if (score === undefined) {
+    if (score === undefined) { /* eslint-disable-line */
       return
     }
 
