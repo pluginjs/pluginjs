@@ -227,7 +227,7 @@ describe('TimePicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
     })
   })
 
@@ -241,33 +241,33 @@ describe('TimePicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.set(false)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.set(true)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
     })
 
     test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.set('false')
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.set('true')
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
     })
 
     test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.set(0)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.set(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
     })
   })
 
@@ -287,31 +287,31 @@ describe('TimePicker', () => {
     test('should set the value', () => {
       api.val(false)
 
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.val(true)
 
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
     })
 
     test('should set the value with string', () => {
       api.val('false')
 
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.val('true')
 
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
     })
 
     test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.val(0)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
       api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
     })
   })
 
