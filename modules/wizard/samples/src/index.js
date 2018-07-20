@@ -1,3 +1,2 @@
-import Wizard from '@pluginjs/wizard'
-
-console.log(Wizard)
+// import sections
+import './sections/default/index.js'

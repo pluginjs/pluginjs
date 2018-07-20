@@ -1,3 +1,5 @@
+import { find, children } from '@pluginjs/dom'
+
 export const namespace = 'wizard'
 
 export const events = {
@@ -56,10 +58,7 @@ export const defaults = {
   step: '.pj-wizard-steps > li',
 
   getPane(index, step, classes) {
-    return this.$element
-      .find(`.${classes.CONTENT}`)
-      .children()
-      .eq(index)
+    return children(find(`.${classes.CONTENT}`, step))[index]
   },
 
   buttonsAppendTo: 'this',
@@ -69,14 +68,20 @@ export const defaults = {
   enableWhenVisited: false,
 
   loading: {
-    show(step) {},
-    hide(step) {},
-    fail(step) {}
+    show() {
+      //
+    },
+    hide() {
+      //
+    },
+    fail() {
+      //
+    }
   },
 
   cacheContent: false,
 
-  validator(step) {
+  validator() {
     return true
   },
 

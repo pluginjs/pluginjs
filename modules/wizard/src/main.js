@@ -1,7 +1,10 @@
 import Component from '@pluginjs/component'
 import { deepMerge } from '@pluginjs/utils'
+import { find, finds, attr, Each, dataset } from '@pluginjs/dom'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { bindEvent } from '@pluginjs/events'
 import is from '@pluginjs/is'
-import Pj, {
+import {
   eventable,
   register,
   stateable,
@@ -38,13 +41,18 @@ class Wizard extends Component {
     this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
     this.initClasses(CLASSES)
 
-    this.$steps = this.$element.find(this.options.step)
+    this.$steps = finds(this.options.step, this.element)
 
-    this.id = this.$element.attr('id')
+    // this.$steps = this.$element.find(this.options.step)
+
+    this.id = attr('id', this.element)
+
+    // this.id = this.$element.attr('id')
 
     if (!this.id) {
       this.id = `${NAMESPACE}-${++counter}`
-      this.$element.attr('id', this.id)
+      attr({ id: this.id }, this.element)
+      // this.$element.attr('id', this.id)
     }
 
     this.setupI18n()
@@ -55,22 +63,30 @@ class Wizard extends Component {
 
   initialize() {
     if (this.options.theme) {
-      this.$element.addClass(this.getThemeClass())
+      addClass(this.getThemeClass(), this.element)
+      // this.$element.addClass(this.getThemeClass())
     }
 
     this.steps = []
     const that = this
 
-    this.$steps.each(function(index) {
-      that.steps.push(new Step(this, that, index))
+    Each(this.$steps, (element, index) => {
+      that.steps.push(new Step(element, that, index))
     })
+    // this.$steps.each(function(index) {
+    //   that.steps.push(new Step(this, that, index))
+    // })
 
     this.present = 0
     this.transitioning = null
 
-    $.each(this.steps, (i, step) => {
+    Each(this.steps, step => {
       step.setup()
     })
+
+    // $.each(this.steps, (i, step) => {
+    //   step.setup()
+    // })
 
     this.setup()
 
@@ -85,31 +101,54 @@ class Wizard extends Component {
 
   bind() {
     const that = this
+    bindEvent(
+      {
+        type: this.eventName('click'),
+        identity: this.options.step,
+        handler: e => {
+          const index = dataset('wizardIndex', e.target)
+          // const index = $(this).data('wizard-index')
+          if (!that.get(index).is('disabled')) {
+            that.goTo(index)
+          }
 
-    this.$element.on(this.eventName('click'), this.options.step, function(e) {
-      const index = $(this).data('wizard-index')
+          e.preventDefault()
+          e.stopPropagation()
+        }
+      },
+      this.element
+    )
 
-      if (!that.get(index).is('disabled')) {
-        that.goTo(index)
-      }
+    // this.$element.on(this.eventName('click'), this.options.step, function(e) {
+    //   const index = $(this).data('wizard-index')
 
-      e.preventDefault()
-      e.stopPropagation()
-    })
+    //   if (!that.get(index).is('disabled')) {
+    //     that.goTo(index)
+    //   }
+
+    //   e.preventDefault()
+    //   e.stopPropagation()
+    // })
   }
 
   unbind() {
     if (this.options.keyboard) {
       this.KEYBOARD.unbind()
     }
-    this.$element.off(this.eventName())
+    this.element.off(this.eventName())
   }
 
   getButtons() {
     const className = this.classes.BUTTONS.CONTAINER
-    const $buttons = $(this.element).find(`.${className}`)
+    const $buttons = find(`.${className}`, this.element)
+    // console.log($buttons)
+    // const $buttons = $(this.element).find(`.${className}`)
     const id = `#${this.id}`
-    $buttons.find('a').attr({ href: id })
+
+    Each(finds('a', $buttons), a => {
+      attr({ href: id }, a)
+    })
+    // $buttons.find('a').attr({ href: id })
 
     return $buttons
   }
@@ -122,27 +161,36 @@ class Wizard extends Component {
 
   updateButtons() {
     const classes = this.classes.BUTTON
-    const $back = this.$buttons.find('[data-wizard="back"]')
-    const $next = this.$buttons.find('[data-wizard="next"]')
-    const $finish = this.$buttons.find('[data-wizard="finish"]')
+    const $back = find('[data-wizard="back"]', this.$buttons)
+    const $next = find('[data-wizard="next"]', this.$buttons)
+    const $finish = find('[data-wizard="finish"]', this.$buttons)
+    // const $back = this.$buttons.find('[data-wizard="back"]')
+    // const $next = this.$buttons.find('[data-wizard="next"]')
+    // const $finish = this.$buttons.find('[data-wizard="finish"]')
 
     if (this.present === 0) {
-      $back.addClass(classes.DISABLED)
+      addClass(classes.DISABLED, $back)
+      // $back.addClass(classes.DISABLED)
     } else {
-      $back.removeClass(classes.DISABLED)
+      removeClass(classes.DISABLED, $back)
+      // $back.removeClass(classes.DISABLED)
     }
 
     if (this.present === this.lastIndex()) {
-      $next.addClass(classes.HIDE)
-      $finish.removeClass(classes.HIDE)
+      addClass(classes.HIDE, $next)
+      removeClass(classes.HIDE, $finish)
+      // $next.addClass(classes.HIDE)
+      // $finish.removeClass(classes.HIDE)
     } else {
-      $next.removeClass(classes.HIDE)
-      $finish.addClass(classes.HIDE)
+      removeClass(classes.HIDE, $next)
+      addClass(classes.HIDE, $finish)
+      // $next.removeClass(classes.HIDE)
+      // $finish.addClass(classes.HIDE)
     }
   }
 
   updateSteps() {
-    $.each(this.steps, (i, step) => {
+    Each(this.steps, (step, i) => {
       if (i > this.present) {
         step.leave('error')
         step.leave('active')
@@ -153,6 +201,17 @@ class Wizard extends Component {
         }
       }
     })
+    // $.each(this.steps, (i, step) => {
+    //   if (i > this.present) {
+    //     step.leave('error')
+    //     step.leave('active')
+    //     step.leave('done')
+
+    //     if (!this.options.enableWhenVisited) {
+    //       step.enter('disabled')
+    //     }
+    //   }
+    // })
   }
 
   keydown(e) {
@@ -178,7 +237,7 @@ class Wizard extends Component {
     if (is.string(index) && index.substring(0, 1) === '#') {
       const id = index.substring(1)
       for (const i in this.steps) {
-        if (this.steps[i].$pane.attr('id') === id) {
+        if (attr('id', this.steps[i].pane) === id) {
           return this.steps[i]
         }
       }
@@ -228,17 +287,24 @@ class Wizard extends Component {
         that.updateSteps()
 
         if (that.options.autoFocus) {
-          const $input = this.$pane.find(':input')
+          const $input = finds(':input', this.pane)
+          // const $input = this.pane.find(':input')
           if ($input.length > 0) {
+            // $input[0]
+            // console.log('11111')
             $input.eq(0).focus()
           } else {
-            this.$pane.focus()
+            // console.log('22222')
+            this.pane.focus()
           }
         }
 
-        if ($.isFunction(callback)) {
+        if (is.function(callback)) {
           callback.call(that)
         }
+        // if ($.isFunction(callback)) {
+        //   callback.call(that)
+        // }
 
         that.trigger(EVENTS.AFTERCHANGE, current, to)
       })
@@ -334,7 +400,8 @@ class Wizard extends Component {
       this.unbind()
 
       if (this.options.theme) {
-        this.$element.removeClass(this.getThemeClass())
+        removeClass(this.getThemeClass(), this.element)
+        // this.$element.removeClass(this.getThemeClass())
       }
       this.leave('initialized')
     }
@@ -344,27 +411,27 @@ class Wizard extends Component {
   }
 }
 
-Pj.$doc.on('click', '[data-wizard]', function(e) {
-  let href
-  const $this = $(this)
-  const $target = $(
-    $this.attr('data-target') ||
-      ((href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, ''))
-  )
+// Pj.$doc.on('click', '[data-wizard]', function(e) {
+//   let href
+//   const $this = $(this)
+//   const $target = $(
+//     $this.attr('data-target') ||
+//       ((href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, ''))
+//   )
 
-  const wizard = $target.data(NAMESPACE)
+//   const wizard = $target.data(NAMESPACE)
 
-  if (!wizard) {
-    return
-  }
+//   if (!wizard) {
+//     return
+//   }
 
-  const method = $this.data(NAMESPACE)
+//   const method = $this.data(NAMESPACE)
 
-  if (/^(back|next|first|finish|reset)$/.test(method)) {
-    wizard[method]()
-  }
+//   if (/^(back|next|first|finish|reset)$/.test(method)) {
+//     wizard[method]()
+//   }
 
-  e.preventDefault()
-})
+//   e.preventDefault()
+// })
 
 export default Wizard

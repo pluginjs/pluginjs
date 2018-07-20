@@ -1,5 +1,4 @@
 import keyboard from '@pluginjs/keyboard'
-import Pj from '@pluginjs/pluginjs'
 
 class Keyboard {
   constructor(instance) {

@@ -37,9 +37,12 @@
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/feature": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/classes": "*",
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
     "@pluginjs/pluginjs": "*",
+    "axios": "^0.18.0",
     "jquery-validation": "*"
   },
   "devDependencies": {
