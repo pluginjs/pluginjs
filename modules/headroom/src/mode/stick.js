@@ -30,7 +30,7 @@ class stick {
     const classes = this.classes
 
     for (const key in classes) {
-      if (classes.hasOwnProperty(key)) {
+      if ({}.hasOwnProperty.call(classes, key)) {
         this.api.element.classList.remove(classes[key])
       }
     }

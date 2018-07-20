@@ -1,3 +1,1 @@
-import Headroom from '@pluginjs/headroom'
-
-console.log(Headroom)
+import './sections/default/index.js'

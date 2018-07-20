@@ -12,6 +12,7 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
+  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -26,10 +27,14 @@ const mode = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(NAMESPACE, {
-  defaults: DEFAULTS,
-  methods: METHODS
-})
+@register(
+  NAMESPACE,
+  {
+    defaults: DEFAULTS,
+    methods: METHODS
+  },
+  INFO
+)
 class Headroom extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -42,9 +47,9 @@ class Headroom extends Component {
 
   initialize() {
     if (typeof mode[this.options.type] !== 'undefined') {
+      // console.log('debug', this.options.type)
       this.modal = new mode[this.options.type](this)
     }
-
     addClass(this.classes.NAMESPACE, this.element)
     this.enter('initialized')
     this.trigger(EVENTS.READY)

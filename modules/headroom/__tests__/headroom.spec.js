@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Headroom from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Headroom from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Headroom', () => {
   describe('Headroom()', () => {
@@ -24,47 +23,32 @@ describe('Headroom', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const headroom = new Headroom(element)
+      const headroom = Headroom.of(generateHTMLSample())
 
       expect(headroom).toBeObject()
       expect(headroom.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const headroom = new Headroom(element)
+      const headroom = Headroom.of(generateHTMLSample())
 
       expect(headroom.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asHeadroom()).toEqual($element)
-
-      const api = $element.data('headroom')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asHeadroom()
-      expect($element.asHeadroom('bind')).toBeNil()
+      const headroom = Headroom.of(generateHTMLSample())
+      setTimeout(() => {
+        expect(headroom.bind()).toBeNil()
+      }, 0)
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asHeadroom({
-        type: 'stick'
+      const headroom = Headroom.of(generateHTMLSample(), {
+        type: 'pinned'
       })
-
-      expect($element.asHeadroom('destroy')).toEqual($element)
+      headroom.destroy()
     })
   })
 
@@ -72,19 +56,19 @@ describe('Headroom', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('headroom:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('headroom:ready', () => {
         called++
       })
 
-      $element.asHeadroom()
+      const instance = Headroom.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -93,19 +77,19 @@ describe('Headroom', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asHeadroom({ type: 'stick' })
-      api = $element.data('headroom')
+      $element = generateHTMLSample()
+      api = Headroom.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('headroom:destroy', (event, api) => {
+      $element.addEventListener('headroom:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asHeadroom('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -116,13 +100,13 @@ describe('Headroom', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asHeadroom()
-      api = $element.data('headroom')
+      $element = generateHTMLSample()
+      api = Headroom.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asHeadroom('disable')
-      $element.asHeadroom('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -130,12 +114,12 @@ describe('Headroom', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('headroom:enable', (event, api) => {
+      $element.addEventListener('headroom:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asHeadroom('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -145,12 +129,12 @@ describe('Headroom', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asHeadroom()
-      api = $element.data('headroom')
+      $element = generateHTMLSample()
+      api = Headroom.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asHeadroom('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -158,12 +142,12 @@ describe('Headroom', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('headroom:disable', (event, api) => {
+      $element.addEventListener('headroom:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asHeadroom('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

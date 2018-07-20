@@ -34,3 +34,81 @@ $headroom: "pj-headroom" !default;
 .#{$headroom}-unstick {
   transform: translateY(0);
 }
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fixed-header li {
+  display: inline-block;
+  *display: inline;
+  margin: 0 5px;
+  vertical-align: top;
+  zoom: 1;
+}
+
+.fixed-header a {
+  display: block;
+  padding: 0 20px;
+  line-height: 60px;
+  color: #444;
+  text-decoration: none;
+  -webkit-transition: 0.2s; /* stylelint-disable-line */
+  transition: 0.2s;
+}
+
+.fixed-header .active a {
+  color: #fff;
+  background: #222;
+}
+
+section {
+
+  @at-root #default & {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  height: 1080px;
+  color: #fff;
+  text-align: center;
+}
+
+section .inner {
+  display: inline-block;
+  *display: inline;
+  max-width: 540px;
+  margin: auto;
+  vertical-align: middle;
+  zoom: 1;
+}
+
+#home {
+  margin-top: 60px;
+  background: #c2185b;
+}
+
+#section-1 {
+  background: #2f51b5;
+}
+
+#section-2 {
+  background: #00695c;
+}
+
+#section-3 {
+  background: #ef6c00;
+}

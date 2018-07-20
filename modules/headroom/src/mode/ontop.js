@@ -1,4 +1,4 @@
-import Pj from '@pluginjs/pluginjs'
+import PjEmitter from '@pluginjs/emitter'
 
 class ontop {
   constructor(api) {
@@ -8,7 +8,8 @@ class ontop {
       top: api.classes.TOP,
       notTop: api.classes.NOTTOP
     }
-    Pj.emitter.on('scroll', this.update, this)
+    // console.log('bind top')
+    PjEmitter.on('scroll', this.update, this)
     this.update()
   }
 
@@ -16,12 +17,12 @@ class ontop {
     const classes = this.classes
 
     for (const key in classes) {
-      if (classes.hasOwnProperty(key)) {
+      if ({}.hasOwnProperty.call(classes, key)) {
         this.instance.element.classList.remove(classes[key])
       }
     }
 
-    Pj.emitter.off('scroll', this.update)
+    PjEmitter.off('scroll', this.update)
   }
 
   update() {

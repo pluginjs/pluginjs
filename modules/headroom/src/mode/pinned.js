@@ -1,4 +1,4 @@
-import Pj from '@pluginjs/pluginjs'
+import ScrollDir from '@pluginjs/scroll-dir'
 
 class pinned {
   constructor(instance) {
@@ -17,20 +17,19 @@ class pinned {
       // console.info('Invalid offset:', this.options.offset);
       return
     }
-
-    Pj.scrolldir.on(this.update, this)
+    ScrollDir.on(this.update, this)
   }
 
   destroy() {
     const classes = this.classes
 
     for (const key in classes) {
-      if (classes.hasOwnProperty(key)) {
+      if ({}.hasOwnProperty.call(classes, key)) {
         this.instance.element.classList.remove(classes[key])
       }
     }
 
-    Pj.scrolldir.off(this.update)
+    ScrollDir.off(this.update)
   }
 
   update(direction, currentScrollY, delta) {
@@ -59,7 +58,7 @@ class pinned {
     ) {
       classList.add(classes.unpinned)
       classList.remove(classes.pinned)
-      this.instance.trigger('pinned')
+      this.instance.trigger('unpinned')
     }
   }
 
@@ -70,7 +69,7 @@ class pinned {
     if (classList.contains(classes.unpinned)) {
       classList.remove(classes.unpinned)
       classList.add(classes.pinned)
-      this.instance.trigger('unpinned')
+      this.instance.trigger('pinned')
     }
   }
 
@@ -91,10 +90,7 @@ class pinned {
   normalizeTolerance(tolerance) {
     return tolerance === Object(tolerance)
       ? tolerance
-      : {
-          down: tolerance,
-          up: tolerance
-        }
+      : { down: tolerance, up: tolerance }
   }
 
   setScrollOffset() {
@@ -104,7 +100,7 @@ class pinned {
         this.options.offsetSide
       )
     }
-    return undefined
+    return undefined /* eslint-disable-line */
   }
 
   getElementY(element, side) {
