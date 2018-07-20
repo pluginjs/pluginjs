@@ -7,8 +7,8 @@ $toggleList: "pj-toggleList" !default;
 $toggleList-sizer: $sizer !default;
 $parent: "pj-list" !default;
 $toggle: "pj-toggle" !default;
-$toggleList-border-color: $gray-lighter !default;
-$toggleList-hover-color: $gray-light !default;
+$toggleList-border-color: $gray-border !default;
+$toggleList-hover-color: $gray-darkest !default;
 $toggleList-unchecked-bg: $gray-lightest !default;
 
 // Core
@@ -68,10 +68,11 @@ $toggleList-unchecked-bg: $gray-lightest !default;
 }
 
 .#{$parent}-disabled {
-  .#{$toggleList}-checked {
-    &:hover {
-      border-color: $toggleList-border-color !important;
-    }
+  .#{$toggleList}-checked:active {
+    border-color: $gray-border !important;
+  }
+  .#{$toggleList}-checked:hover {
+    border-color: $gray-border !important;
   }
 }
 

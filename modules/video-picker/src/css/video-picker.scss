@@ -9,11 +9,11 @@ $dropdown: "pj-dropdown" !default;
 $editPanel: "pj-editPanel" !default;
 $imagePicker: "pj-imagePicker" !default;
 // global
-$videoPicker-border-color: $gray-lighter !default;
+$videoPicker-border-color: $gray-border !default;
 $videoPicker-border: 1px solid $videoPicker-border-color !default;
 $videoPicker-border-radius: $border-radius-base !default;
 $videoPicker-font-size: $font-size-base !default;
-$videoPicker-color: $gray !default;
+$videoPicker-color: $gray-dark !default;
 $videoPicker-active-color: $color-primary !default;
 // component
 $component-width: 16 * $videoPicker-sizer !default; //160px
@@ -25,6 +25,8 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
 // =====================
 .#{$videoPicker} {
   &-init {
+    color: $videoPicker-color;
+    border-color: $videoPicker-border-color;
     i {
       font-size: 16px;
       transform: rotate(90deg);
@@ -38,9 +40,10 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     }
   }
 
-  .#{$editPanel}-info .#{$editPanel}-action {
-    opacity: 0;
-    transform: opacity 0.3s;
+  &-wrap{
+    .#{$editPanel}-info .#{$editPanel}-action {
+      background-color: $color-opacity;
+    }
   }
 
   &-panel {
@@ -281,6 +284,18 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
 
   &-warning {
     animation: warning 400ms ease both;
+  }
+
+  &-disabled {
+    .#{$videoPicker}-init {
+      color: $disabled-color;
+      background-color: $color-white;
+      &:hover {
+        i {
+          color: $disabled-color !important;
+        }
+      }
+    }
   }
 }
 
