@@ -332,15 +332,20 @@ $galleryPicker-expand-control-btn-height: 32px !default;
     }
   }
   .#{$galleryPicker}-initial {
+    color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
     &:hover {
-      color: $galleryPicker-color;
+      color: $disabled-color;
       cursor: not-allowed;
     }
   }
   .#{$galleryPicker}-info-change {
     cursor: not-allowed;
     background-color: $disabled-bg;
+  }
+  .icon-image-group{
+    color: $disabled-color;
+
   }
 }
