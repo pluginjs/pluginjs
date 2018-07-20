@@ -1,19 +1,8 @@
 import templateEngine from '@pluginjs/template'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle, getStyle } from '@pluginjs/styled'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  append,
-  parseHTML,
-  query,
-  queryAll,
-  getObjData,
-  unwrap,
-  wrap,
-  wrapInner,
-  insertBefore,
-  insertAfter
-} from '@pluginjs/dom'
+import { wrap } from '@pluginjs/dom'
 
 class Base {
   constructor(instance) {

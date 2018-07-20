@@ -7,8 +7,8 @@ $zoom-duration: 0.3s !default;
 
 // Core
 // =====================
-.#{$zoom} {
-}
+// .#{$zoom} {
+// }
 
 .#{$zoom}-typeInner {
   .#{$zoom}-window {
@@ -16,7 +16,7 @@ $zoom-duration: 0.3s !default;
     z-index: 999;
     display: none;
     overflow: hidden;
-    cursor: Crosshair;
+    cursor: "Crosshair";
 
     .#{$zoom}-windowImage {
       position: absolute;
@@ -97,8 +97,6 @@ $zoom-duration: 0.3s !default;
 
   .#{$zoom}-overlay {
     position: absolute;
-    position: absolute;
-    display: none;
     display: none;
     // z-index: 999;
     // overflow: hidden;
