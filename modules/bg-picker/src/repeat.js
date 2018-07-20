@@ -21,6 +21,7 @@ export default class Repeat {
   }
 
   initialize() {
+    console.log(this)
     const html = template.compile(this.instance.options.repeat.template())({
       classes: this.instance.classes,
       bgRepeat: this.instance.translate('bgRepeat')

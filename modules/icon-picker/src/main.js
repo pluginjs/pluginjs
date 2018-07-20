@@ -95,9 +95,9 @@ class IconsPicker extends Component {
         }
       }
     })
-    children(this.$dropdown.panel).map(el => el.remove())
+    children(this.$dropdown.$panel).map(el => el.remove())
     // console.log(children(this.$dropdown.panel).map(el => el.remove()))
-    this.$dropdown.panel.append(this.$empty)
+    this.$dropdown.$panel.append(this.$empty)
   }
 
   initialize() {
@@ -872,13 +872,14 @@ class IconsPicker extends Component {
     if (is.undefined(value)) {
       return
     }
-
-    this.$icons.forEach($icon => {
-      const data = $icon.objData
-      if (data.package === value.package && data.title === value.title) {
-        this.select($icon)
-      }
-    })
+    if (this.$icons !== undefined) {
+      this.$icons.forEach($icon => {
+        const data = $icon.objData
+        if (data.package === value.package && data.title === value.title) {
+          this.select($icon)
+        }
+      })
+    }
   }
 
   setData(data) {
