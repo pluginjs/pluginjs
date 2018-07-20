@@ -335,7 +335,7 @@ $galleryPicker-expand-control-btn-height: 32px !default;
     cursor: not-allowed;
     background-color: $disabled-bg;
     &:hover {
-      color: $disabled-color;
+      color: $galleryPicker-color;
       cursor: not-allowed;
     }
   }
