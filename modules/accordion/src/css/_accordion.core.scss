@@ -5,8 +5,8 @@
 $accordion: "pj-accordion" !default;
 $accordion-font-size: $font-size-base !default;
 $accordion-line-height: $line-height-sm !default;
-$accordion-header-spacer-y: 10px !default;
-$accordion-horizontal-height: 260px !default;
+$accordion-header-spacer-y: 16px !default;
+$accordion-horizontal-height: 234px !default;
 $accordion-horizontal-header-width: ceil(
   $accordion-font-size * $accordion-line-height + $accordion-header-spacer-y * 2
 ) !default;
@@ -36,6 +36,9 @@ $accordion-dropdown-active-color: $color-primary !default;
   }
 
   &-pane-header {
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     white-space: nowrap;
     cursor: pointer;
   }
@@ -91,16 +94,20 @@ $accordion-dropdown-active-color: $color-primary !default;
     position: relative;
 
     &-label {
+      position: relative;
+      z-index: $accordion-dropdown-zindex;
       box-sizing: border-box;
       display: block;
       width: 100%;
       text-decoration: none;
+      background-color: $color-white;
     }
   }
 
   &-dropdown-list {
     position: absolute;
     z-index: $accordion-dropdown-zindex;
+    box-sizing: border-box;
     display: none;
     width: 100%;
     padding: 0;
