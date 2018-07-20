@@ -1,17 +1,10 @@
 import is from '@pluginjs/is'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { addClass, removeClass } from '@pluginjs/classes'
 import {
   append,
   parseHTML,
-  query,
   queryAll,
-  setObjData,
   getObjData,
-  unwrap,
-  wrap,
-  wrapInner,
   insertBefore,
   insertAfter,
   childrenSelect,
@@ -253,7 +246,7 @@ export default class Node {
     if (!this.api.options.multiSelect && this.hasChildrenSelectBranch()) {
       queryAll(`li.${this.classes.CHILDRENSELECTED}`, this.api.element).map(
         el => {
-          removeClass(this.classes.CHILDRENSELECTED, el)
+          return removeClass(this.classes.CHILDRENSELECTED, el)
         }
       )
     }

@@ -1,7 +1,5 @@
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, query, insertAfter, childrenSelect } from '@pluginjs/dom'
+import { addClass } from '@pluginjs/classes'
+import { query, insertAfter, childrenSelect } from '@pluginjs/dom'
 
 class HtmlParser {
   constructor(options, api) {
@@ -39,7 +37,7 @@ class HtmlParser {
       addClass(this.classes.BRANCH, node)
 
       const privateIterate = tree => {
-        childrenSelect('li', tree).map((node, i) => {
+        childrenSelect('li', tree).forEach(node => {
           const data = this.getBranch(node)
           const branchHtml = this.api.getBranchHtml(data)
 
