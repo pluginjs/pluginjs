@@ -1,7 +1,14 @@
 import { transition, transitionEndEvent } from '@pluginjs/feature'
 import is from '@pluginjs/is'
-import { bindEventOnce } from '@pluginjs/events'
-import { dataset, attr, html, each } from '@pluginjs/dom'
+import { bindEventOnce, trigger } from '@pluginjs/events'
+import {
+  dataset,
+  attr,
+  html,
+  each,
+  setObjData,
+  getObjData
+} from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import axios from 'axios'
 
@@ -40,8 +47,7 @@ class Step {
     }
 
     this.index = index
-    dataset({ wizardIndex: index }, this.$element)
-    // this.$element.data('wizard-index', index)
+    setObjData('wizard-index', index, this.$element)
 
     this.pane = this.getPaneFromTarget()
     if (!this.pane) {
@@ -58,18 +64,15 @@ class Step {
   }
 
   getPaneFromTarget() {
-    let selector = dataset('target', this.$element)
-    // let selector = this.$element.data('target')
+    let selector = getObjData('target', this.$element)
 
     if (!selector) {
       selector = attr('href', this.$element)
-      // selector = this.$element.attr('href')
       selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '')
     }
 
     if (selector) {
       return selector
-      // return $(selector)
     }
     return null
   }
@@ -85,19 +88,14 @@ class Step {
     } else if (this.index > current) {
       this.enter('disabled')
     }
-
-    attr({ ariaExpanded: this.is('active') }, this.$element)
-    attr({ ariaExpanded: this.is('active') }, this.pane)
-    // this.$element.attr('aria-expanded', this.is('active'))
-    // this.pane.attr('aria-expanded', this.is('active'))
+    this.$element.setAttribute('aria-expanded', this.is('active'))
+    this.pane.setAttribute('aria-expanded', this.is('active'))
 
     const classes = this.wizard.classes.PANE
     if (this.is('active')) {
       addClass(classes.ACTIVE, this.pane)
-      // this.pane.addClass(classes.ACTIVE)
     } else {
       removeClass(classes.ACTIVE, this.pane)
-      // this.pane.removeClass(classes.ACTIVE)
     }
   }
 
@@ -110,31 +108,22 @@ class Step {
     this.enter('activing')
 
     const classes = this.wizard.classes.PANE
-
-    attr({ ariaExpanded: true }, this.$element)
-    // this.$element.attr('aria-expanded', true)
+    this.$element.setAttribute('aria-expanded', true)
 
     addClass(classes.ACTIVING, classes.ACTIVE, this.pane)
-    attr({ ariaExpanded: true }, this.pane)
-    // this.pane
-    //   .addClass(classes.ACTIVING)
-    //   .addClass(classes.ACTIVE)
-    //   .attr('aria-expanded', true)
+    this.pane.setAttribute('aria-expanded', true)
 
     const complete = function() {
       removeClass(classes.ACTIVING, this.pane)
-      // this.pane.removeClass(classes.ACTIVING)
 
       this.leave('activing')
+      this.leave('disabled')
       this.enter('active')
       this.trigger(EVENTS.AFTERSHOW)
 
       if (is.function(callback)) {
         callback.call(this)
       }
-      // if ($.isFunction(callback)) {
-      //   callback.call(this)
-      // }
     }
 
     if (!transition) {
@@ -144,17 +133,14 @@ class Step {
 
     bindEventOnce(
       {
-        type: transitionEndEvent,
+        type: transitionEndEvent(),
         handler: () => {
-          complete.bind(this)
+          complete.bind(this)()
         }
       },
       this.pane
     )
-
-    // this.pane
-    //   .one(transitionEndEvent, $.proxy(complete, this))
-    //   .asTransitionEnd(this.TRANSITION_DURATION)
+    this.emulateTransitionEnd(this.pane, this.TRANSITION_DURATION)
   }
 
   hide(callback) {
@@ -167,20 +153,14 @@ class Step {
 
     const classes = this.wizard.classes.PANE
 
-    attr({ ariaExpanded: false }, this.$element)
-    // this.$element.attr('aria-expanded', false)
+    this.$element.setAttribute('aria-expanded', false)
 
     addClass(classes.ACTIVING, this.pane)
     removeClass(classes.ACTIVE, this.pane)
-    attr({ ariaExpanded: false }, this.pane)
-    // this.pane
-    //   .addClass(classes.ACTIVING)
-    //   .removeClass(classes.ACTIVE)
-    //   .attr('aria-expanded', false)
+    this.pane.setAttribute('aria-expanded', false)
 
     const complete = function() {
       removeClass(classes.ACTIVING, this.pane)
-      // this.pane.removeClass(classes.ACTIVING)
 
       this.leave('activing')
       this.leave('active')
@@ -189,28 +169,43 @@ class Step {
       if (is.function(callback)) {
         callback.call(this)
       }
-      // if ($.isFunction(callback)) {
-      //   callback.call(this)
-      // }
     }
 
     if (!transition) {
       complete.call(this)
       return
     }
-
     bindEventOnce(
       {
-        type: transitionEndEvent,
+        type: transitionEndEvent(),
         handler: () => {
-          complete.bind(this)
+          complete.bind(this)()
         }
       },
       this.pane
     )
-    // this.pane
-    //   .one(transitionEndEvent, $.proxy(complete, this))
-    //   .asTransitionEnd(this.TRANSITION_DURATION)
+    this.emulateTransitionEnd(this.pane, this.TRANSITION_DURATION)
+  }
+
+  emulateTransitionEnd(el, duration) {
+    let called = false
+
+    bindEventOnce(
+      {
+        type: transitionEndEvent(),
+        handler: () => {
+          called = true
+        }
+      },
+      el
+    )
+
+    const callback = () => {
+      if (!called) {
+        trigger(transitionEndEvent(), el)
+      }
+    }
+    setTimeout(callback, duration)
   }
 
   empty() {
@@ -224,17 +219,11 @@ class Step {
     if (is.function(loader)) {
       loader = loader.call(this.wizard, this)
     }
-    // if ($.isFunction(loader)) {
-    //   loader = loader.call(this.wizard, this)
-    // }
 
     if (this.wizard.options.cacheContent && this.loaded) {
       if (is.function(callback)) {
         callback.call(this)
       }
-      // if ($.isFunction(callback)) {
-      //   callback.call(this)
-      // }
       return
     }
 
@@ -243,7 +232,6 @@ class Step {
 
     function setContent(content) {
       html(content, that.pane)
-      // that.pane.html(content)
 
       that.leave('loading')
       that.loaded = true
@@ -252,9 +240,6 @@ class Step {
       if (is.function(callback)) {
         callback.call(that)
       }
-      // if ($.isFunction(callback)) {
-      //   callback.call(that)
-      // }
     }
 
     if (is.string(loader)) {
@@ -270,16 +255,6 @@ class Step {
         .catch(() => {
           that.wizard.options.loading.fail.call(that.wizard, that)
         })
-
-      // $.ajax(loader.url, loader.settings || {})
-      //   .done(data => {
-      //     setContent(data)
-
-      //     that.wizard.options.loading.hide.call(that.wizard, that)
-      //   })
-      //   .fail(() => {
-      //     that.wizard.options.loading.fail.call(that.wizard, that)
-      //   })
     } else {
       setContent('')
     }
@@ -302,7 +277,6 @@ class Step {
 
     const classes = this.wizard.classes.STEP
     addClass(classes[state.toUpperCase()], this.$element)
-    // this.$element.addClass(classes[state.toUpperCase()])
 
     this.trigger(EVENTS.STATECHANGE, true, state)
   }
@@ -313,7 +287,6 @@ class Step {
 
       const classes = this.wizard.classes.STEP
       removeClass(classes[state.toUpperCase()], this.$element)
-      // this.$element.removeClass(classes[state.toUpperCase()])
 
       this.trigger(EVENTS.STATECHANGE, false, state)
     }
@@ -324,26 +297,18 @@ class Step {
     if (validator && is.function(window[validator])) {
       this.validator = window[validator]
     }
-
-    // const validator = this.pane.data('validator')
-    // if (validator && $.isFunction(window[validator])) {
-    //   this.validator = window[validator]
-    // }
   }
 
   setLoaderFromData() {
-    const loader = dataset('loader', this.pane)
+    const loader = getObjData('loader', this.pane)
     // const loader = this.pane.data('loader')
 
     if (loader) {
       if (is.function(window[loader])) {
         this.loader = window[loader]
       }
-      // if ($.isFunction(window[loader])) {
-      //   this.loader = window[loader]
-      // }
     } else {
-      const url = dataset('loaderUrl', this.pane)
+      const url = getObjData('loader-url', this.pane)
       // const url = this.pane.data('loader-url')
       if (url) {
         this.loader = {
@@ -370,13 +335,6 @@ class Step {
         this.events[event] = [handler]
       }
     }
-    // if ($.isFunction(handler)) {
-    //   if (is.array(this.events[event])) {
-    //     this.events[event].push(handler)
-    //   } else {
-    //     this.events[event] = [handler]
-    //   }
-    // }
 
     return this
   }
@@ -391,15 +349,6 @@ class Step {
         }
       })
     }
-    // if ($.isFunction(handler) && is.array(this.events[event])) {
-    //   $.each(this.events[event], function(i, f) {
-    //     /* eslint consistent-return: "off"*/
-    //     if (f === handler) {
-    //       delete this.events[event][i]
-    //       return false
-    //     }
-    //   })
-    // }
 
     return this
   }
@@ -433,15 +382,13 @@ class Step {
     if (is.function(validator)) {
       this.validator = validator
     }
-    // if ($.isFunction(validator)) {
-    //   this.validator = validator
-    // }
 
     return this
   }
 
   validate() {
-    return this.validator.call(this.pane.get(0), this)
+    return this.validator.call(this.pane, this)
+    // return this.validator.call(this.pane.get(0), this)
   }
 }
 

@@ -1,4 +1,6 @@
-<h3>Default</h3>
+import { parseHTML } from '@pluginjs/dom'
+
+export default () => parseHTML`
 <div class="wizard">
   <ul class="pj-wizard-steps" role="tablist">
     <li class="active" role="tab">
@@ -22,3 +24,4 @@
     <a class="pj-wizard-success" data-wizard="finish">Finish</a>
   </div>
 </div>
+`

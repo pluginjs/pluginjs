@@ -1,3 +1,4 @@
+/* eslint no-empty-function: "off" */
 import { find, children } from '@pluginjs/dom'
 
 export const namespace = 'wizard'
@@ -68,15 +69,9 @@ export const defaults = {
   enableWhenVisited: false,
 
   loading: {
-    show() {
-      //
-    },
-    hide() {
-      //
-    },
-    fail() {
-      //
-    }
+    show() {},
+    hide() {},
+    fail() {}
   },
 
   cacheContent: false,

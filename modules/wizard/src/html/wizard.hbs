@@ -264,11 +264,11 @@ scripts:
   </div>
   <script type="text/javascript">
     (function() {
-      var wizard = $('#exampleSetValidator').asWizard({
+      var wizard = Pj.wizard('#exampleSetValidator', {
         onFinish: function() {
           alert('finish');
         }
-      }).data('wizard');
+      });
       wizard.get('#form1').setValidator(function() {
         if ($(this).find('[name="a"]').val() === 'a') {
           return true;

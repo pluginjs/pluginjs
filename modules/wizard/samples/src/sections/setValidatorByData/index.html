@@ -1,0 +1,53 @@
+<h3>SetValidator using Data Attr</h3>
+<div id="exampleSetValidatorAttr" class="wizard">
+  <ul class="pj-wizard-steps" role="tablist">
+    <li class="active" role="tab">
+      Form 1
+    </li>
+    <li role="tab">
+      Form 2
+    </li>
+    <li role="tab">
+      Form 3
+    </li>
+  </ul>
+  <div class="pj-wizard-content">
+    <div class="pj-wizard-pane active" data-validator="validateCallbackA" role="tabpanel">
+      <div class="pj-wizard-formGroup">
+        <input type="text" class="pj-wizard-formControl" placeholder="Please input 'a'" name="a" />
+      </div>
+    </div>
+    <div class="pj-wizard-pane" data-validator="validateCallbackB" role="tabpanel">
+      <div class="pj-wizard-formGroup">
+        <input type="text" class="pj-wizard-formControl" placeholder="Please input 'b'" name="b" />
+      </div>
+    </div>
+    <div class="pj-wizard-pane" data-validator="validateCallbackC" role="tabpanel">
+      <div class="pj-wizard-formGroup">
+        <input type="text" class="pj-wizard-formControl" placeholder="Please input 'c'" name="c" />
+      </div>
+    </div>
+  </div>
+  <div class="pj-wizard-buttons">
+    <a class="pj-wizard-default" data-wizard="back">Previous</a>
+    <a class="pj-wizard-primary" data-wizard="next">Next</a>
+    <a class="pj-wizard-success" data-wizard="finish">Finish</a>
+  </div>
+</div>
+<script>
+  function validateCallbackA() {
+    if (this.querySelector('[name="a"]').value === 'a') {
+      return true
+    }
+  }
+  function validateCallbackB() {
+    if (this.querySelector('[name="b"]').value === 'b') {
+      return true
+    }
+  }
+  function validateCallbackC() {
+    if (this.querySelector('[name="c"]').value === 'c') {
+      return true
+    }
+  }
+</script>

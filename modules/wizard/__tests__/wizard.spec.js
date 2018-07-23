@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Wizard from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Wizard from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 
 describe('Wizard', () => {
   describe('Wizard()', () => {
@@ -28,44 +27,28 @@ describe('Wizard', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const wizard = new Wizard(element)
+      const wizard = Wizard.of(generateHTMLSample())
 
       expect(wizard).toBeObject()
       expect(wizard.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const wizard = new Wizard(element)
+      const wizard = Wizard.of(generateHTMLSample())
 
       expect(wizard.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asWizard()).toEqual($element)
-
-      const api = $element.data('wizard')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asWizard()
-      expect($element.asWizard('bind')).toBeNil()
+      const wizard = Wizard.of(generateHTMLSample())
+      expect(wizard.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asWizard()
-      expect($element.asWizard('destroy')).toEqual($element)
+      const wizard = Wizard.of(generateHTMLSample())
+      wizard.destroy()
     })
   })
 
@@ -73,19 +56,19 @@ describe('Wizard', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('wizard:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('wizard:ready', () => {
         called++
       })
 
-      $element.asWizard()
+      const instance = Wizard.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -94,19 +77,19 @@ describe('Wizard', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asWizard()
-      api = $element.data('wizard')
+      $element = generateHTMLSample()
+      api = Wizard.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('wizard:destroy', (event, api) => {
+      $element.addEventListener('wizard:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asWizard('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -117,13 +100,13 @@ describe('Wizard', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asWizard()
-      api = $element.data('wizard')
+      $element = generateHTMLSample()
+      api = Wizard.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asWizard('disable')
-      $element.asWizard('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -131,12 +114,12 @@ describe('Wizard', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('wizard:enable', (event, api) => {
+      $element.addEventListener('wizard:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asWizard('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -146,12 +129,12 @@ describe('Wizard', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asWizard()
-      api = $element.data('wizard')
+      $element = generateHTMLSample()
+      api = Wizard.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asWizard('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -159,12 +142,12 @@ describe('Wizard', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('wizard:disable', (event, api) => {
+      $element.addEventListener('wizard:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asWizard('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })
