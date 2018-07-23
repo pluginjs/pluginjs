@@ -143,6 +143,10 @@ $accordion-dropdown-active-color: $color-white !default;
       transform: translateY(-50%);
     }
 
+    .#{$accordion}-icon {
+      margin-right: $accordion-dropdown-header-icon-sapce-x;
+    }
+
     .#{$accordion}-rotate-0 {
       transform: translateY(-50%) rotate(0deg);
     }

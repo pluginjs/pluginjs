@@ -6,9 +6,18 @@ $arrow: "pj-arrow" !default;
 $arrow-space-x: 10px !default;
 $arrow-space-y: 10px !default;
 $arrow-font-size: 24px !default;
-$arrow-color: $gray-light !default;
-$arrow-hover-color: $color-primary-light !default;
-$arrow-disable-color: $gray-lighter !default;
+
+$arrow-space-lg: 48px !default;
+$arrow-space-sm: 40px !default;
+$arrow-space-xs: 32px !default;
+
+$arrow-font-size-lg: 38px !default;
+$arrow-font-size-sm: 24px !default;
+$arrow-font-size-xs: 16px !default;
+
+$arrow-color: $color-primary-black !default;
+$arrow-hover-color: $color-primary !default;
+$arrow-disable-color: $gray-dark !default;
 
 /* theme vars */
 $arrow-theme-size: 40px !default;
@@ -39,6 +48,10 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
       opacity: 0.5;
     }
   }
+
+  + .#{$arrow}s {
+    margin-top: $arrow-space-y;
+  }
 }
 
 .#{$arrow}-prev,
@@ -48,6 +61,39 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
   cursor: pointer;
   .#{$arrow}-icon {
     font-size: $arrow-font-size;
+  }
+
+  &.#{$arrow}-lg {
+    width: $arrow-space-lg;
+    height: $arrow-space-lg;
+    line-height: $arrow-space-lg;
+    text-align: center;
+
+    .#{$arrow}-icon {
+      font-size: $arrow-font-size-lg;
+    }
+  }
+
+  &.#{$arrow}-sm {
+    width: $arrow-space-sm;
+    height: $arrow-space-sm;
+    line-height: $arrow-space-sm;
+    text-align: center;
+
+    .#{$arrow}-icon {
+      font-size: $arrow-font-size-sm;
+    }
+  }
+
+  &.#{$arrow}-xs {
+    width: $arrow-space-xs;
+    height: $arrow-space-xs;
+    line-height: $arrow-space-xs;
+    text-align: center;
+
+    .#{$arrow}-icon {
+      font-size: $arrow-font-size-xs;
+    }
   }
 
   &,
@@ -89,6 +135,39 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
     height: $arrow-theme-size;
     line-height: $arrow-theme-size;
     text-align: center;
+
+    &.#{$arrow}-lg {
+      width: $arrow-space-lg;
+      height: $arrow-space-lg;
+      line-height: $arrow-space-lg;
+      text-align: center;
+
+      .#{$arrow}-icon {
+        font-size: $arrow-font-size-lg;
+      }
+    }
+
+    &.#{$arrow}-sm {
+      width: $arrow-space-sm;
+      height: $arrow-space-sm;
+      line-height: $arrow-space-sm;
+      text-align: center;
+
+      .#{$arrow}-icon {
+        font-size: $arrow-font-size-sm;
+      }
+    }
+
+    &.#{$arrow}-xs {
+      width: $arrow-space-xs;
+      height: $arrow-space-xs;
+      line-height: $arrow-space-xs;
+      text-align: center;
+
+      .#{$arrow}-icon {
+        font-size: $arrow-font-size-xs;
+      }
+    }
   }
 }
 
@@ -96,6 +175,19 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
   .#{$arrow}-prev,
   .#{$arrow}-next {
     border: $arrow-outline-border;
+
+    &:hover {
+      border-color: $arrow-hover-color;
+    }
+  }
+
+  &.#{$arrow}-disabled {
+    .#{$arrow}-prev,
+    .#{$arrow}-next {
+      cursor: not-allowed;
+      border-color: $arrow-disable-color;
+      opacity: 0.5;
+    }
   }
 }
 
@@ -120,7 +212,17 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
     background-color: $arrow-solid-bg-color;
     &:active,
     &:hover {
-      color: $arrow-hover-color;
+      background-color: $arrow-hover-color;
+    }
+  }
+
+  &.#{$arrow}-disabled {
+    .#{$arrow}-prev,
+    .#{$arrow}-next {
+      color: $arrow-solid-color;
+      cursor: not-allowed;
+      background-color: $arrow-disable-color;
+      opacity: 0.5;
     }
   }
 }

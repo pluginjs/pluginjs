@@ -1,7 +1,9 @@
-import { query } from '@pluginjs/dom'
+import { queryAll } from '@pluginjs/dom'
 import Arrows from '@pluginjs/arrows'
 
-const element = query('#shadow .example-shadow')
-Arrows.of(element, {
-  type: 'circle shadow'
+const elementAttr = queryAll('#shadow .example-shadow')
+elementAttr.forEach(e => {
+  Arrows.of(e, {
+    type: 'circle shadow'
+  })
 })
