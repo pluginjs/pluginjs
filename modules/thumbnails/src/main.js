@@ -2,8 +2,8 @@ import anime from 'animejs'
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { deepMerge } from '@pluginjs/utils'
-import { outerWidth, outerHeight } from '@pluginjs/styled'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, closest } from '@pluginjs/dom'
 import {
@@ -23,6 +23,7 @@ import {
 } from './constant'
 
 import Swipeable from '@pluginjs/swipeable'
+import ImageLoader from '@pluginjs/image-loader'
 
 @themeable()
 @styleable(CLASSES)
@@ -34,7 +35,7 @@ import Swipeable from '@pluginjs/swipeable'
   dependencies: DEPENDENCIES
 })
 class Thumbnails extends Component {
-  distances = []
+  distance = 0
   pos = 0
   current = null
   dif = null
@@ -61,8 +62,9 @@ class Thumbnails extends Component {
     this.generate()
     this.items = this.inner.querySelectorAll(`.${this.classes.THUMB}`)
     this.setDistance(this.options.vertical)
-    this.setItemsDistance(this.options.vertical)
+    this.setItemDistance(this.options.vertical)
     this.go(this.options.current || 0, false)
+    this.initImageLoader()
     this.initSwipeable()
     this.bind()
 
@@ -76,6 +78,8 @@ class Thumbnails extends Component {
     const regex = new RegExp(/\((.+?)\)/)
 
     items.forEach(item => {
+      const thumb = closest(`.${this.classes.NAMESPACE}`, item)
+
       let info = {
         src:
           item.getAttribute('src') ||
@@ -84,6 +88,10 @@ class Thumbnails extends Component {
             ['background-image'].match(regex)[1]
             .replace(/'/g, '')
             .replace(/"/g, '')
+      }
+
+      if (thumb) {
+        info.type = hasClass(this.classes.VIDEO, thumb) ? 'video' : 'image'
       }
 
       const _data = Object.entries(item.dataset).reduce((result, [k, v]) => {
@@ -124,13 +132,10 @@ class Thumbnails extends Component {
       }
 
       thumb.dataset.index = index
-      // setStyle(
-      // { backgroundImage: `url("${item.src}")` },
-      // thumb.querySelector(`.${this.classes.LOADED}`)
-      // )
       thumb
-        .querySelector(`.${this.classes.LOADED}`)
+        .querySelector(`.${this.classes.IMAGE}`)
         .setAttribute('src', item.src)
+
       append(thumb, this.inner)
     })
 
@@ -138,10 +143,37 @@ class Thumbnails extends Component {
     append(this.inner, this.element)
   }
 
+  initImageLoader() {
+    const that = this
+
+    this.imageLoader = ImageLoader.of(this.inner)
+
+    this.imageLoader.onLoaded(img => {
+      const thumb = closest(`.${that.classes.NAMESPACE}`, img)
+      const loader = thumb.querySelector(`.${that.classes.LOADER}`)
+
+      addClass(that.classes.LOADED, thumb)
+      setStyle(
+        {
+          visibility: 'hidden'
+        },
+        loader
+      )
+    })
+  }
+
   initSwipeable() {
+    const that = this
+
     this.swipeable = Swipeable.of(this.inner, {
       rebound: true,
-      decay: true
+      decay: true,
+      axis: this.options.vertical ? 'y' : 'x',
+      reboundPos: this.options.mode === 'center' ? 50 : 100,
+      offset: this.options.mode === 'center' ? this.distance / 2 : 0,
+      onEnd() {
+        that.pos = this.position[that.options.vetical ? 'y' : 'x']
+      }
     })
   }
 
@@ -156,10 +188,6 @@ class Thumbnails extends Component {
     return parseHTML(html)
   }
 
-  getItems() {
-    return this.items
-  }
-
   setDistance(vertical) {
     this.wrapDistance = vertical
       ? outerHeight(this.element)
@@ -169,7 +197,7 @@ class Thumbnails extends Component {
       : this.inner.scrollWidth
   }
 
-  setItemsDistance(vertical) {
+  setItemDistance(vertical) {
     this.length = this.items.length
     this.gutter = parseInt(
       window.getComputedStyle(this.items[1])[
@@ -178,10 +206,9 @@ class Thumbnails extends Component {
       10
     )
 
-    this.items.forEach(item => {
-      const diatance = vertical ? outerHeight(item) : outerWidth(item)
-      this.distances.push(diatance)
-    })
+    this.distance = vertical
+      ? outerHeight(this.items[0])
+      : outerWidth(this.items[0])
   }
 
   bind() {
@@ -213,8 +240,8 @@ class Thumbnails extends Component {
 
   getItemPos(index, center = false) {
     return (
-      (center ? this.distances[index] / 2 : this.distances[index]) -
-      this.distances.slice(0, index + 1).reduce((a, b) => a + b) -
+      (center ? this.distance / 2 : this.distance) -
+      this.distance * (index + 1) -
       this.gutter * index
     )
   }
@@ -235,11 +262,11 @@ class Thumbnails extends Component {
           const oldPos = this.pos
 
           if (index > this.current) {
-            const newPos = oldPos - this.distances[this.current] - this.gutter
+            const newPos = oldPos - this.distance - this.gutter
 
             pos = dif < newPos ? newPos : dif
           } else if (index < this.current) {
-            const newPos = oldPos + this.distances[this.current] + this.gutter
+            const newPos = oldPos + this.distance + this.gutter
 
             pos = newPos > 0 ? 0 : newPos
           }
@@ -258,7 +285,6 @@ class Thumbnails extends Component {
     opts[vertical ? 'translateY' : 'translateX'] = pos
 
     anime(opts)
-
     this.pos = pos
   }
 
@@ -269,7 +295,7 @@ class Thumbnails extends Component {
     if (this.wrapDistance === wrapDistance) {
       return
     }
-    this.setItemsDistance(this.options.vertical)
+    this.setItemDistance(this.options.vertical)
 
     if (this.innerDistance < this.wrapDistance) {
       return

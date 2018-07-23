@@ -36,7 +36,7 @@ const defaults = {
       return (
         '<div class="{classes.THUMB}">' +
         '<div class="{classes.LOADER}"></div>' +
-        '<img class="{classes.LOADED}">' +
+        '<img class="{classes.IMAGE}">' +
         '</div>'
       )
     }
