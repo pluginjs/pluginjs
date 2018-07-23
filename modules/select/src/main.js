@@ -83,7 +83,6 @@ class Select extends Component {
     }
 
     addClass(this.classes.LABEL, this.label)
-    console.log(this.label)
 
     if (this.element.disabled || this.options.disabled) {
       this.disable()
@@ -272,8 +271,6 @@ class Select extends Component {
     if (this.options.multiple && this.options.closeAllButten) {
       iconClassName = 'icon-char icon-close-mini'
     }
-    console.log(this.triggerElement)
-    console.log(this.$dropdown)
     this.dropdown = Dropdown.of(this.triggerElement, {
       panel: this.$dropdown,
       trigger: this.options.trigger,
@@ -284,8 +281,8 @@ class Select extends Component {
       placeholder: this.options.placeholder,
       icon: iconClassName,
       templates: {
-        inputLabel: () => this.options.templates.filterLabel(),
-        label: () => this.options.templates.label()
+        inputLabel: () => this.options.templates.filterLabel()
+        // label: () => this.options.templates.label()
       },
       onShow: () => {
         this.trigger(EVENTS.OPEN)
@@ -302,7 +299,6 @@ class Select extends Component {
       },
       onHide: () => {
         this.trigger(EVENTS.HIDE)
-
         if (this.options.filterable) {
           if (this.options.multiple) {
             this.label.value = ''
@@ -342,14 +338,11 @@ class Select extends Component {
       }
     })
 
-    console.log(this.dropdown)
-    console.log(this.dropdown.$label)
-    console.log(this.options)
     this.label = this.dropdown.$label
     if (!this.options.filterable && this.options.multiple) {
       this.label.style.display = 'none'
     }
-    this.icon = this.dropdown.icon
+    this.icon = this.dropdown.$icon
     if (this.options.multiple && this.options.closeAllButten) {
       bindEvent(
         {
