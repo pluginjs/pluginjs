@@ -84,6 +84,7 @@ class Swipeable extends Component {
 
       switch (e.type) {
         case 'panstart':
+          this.enter('paning')
           this.setInfo(e)
           this.panStart()
           break
@@ -94,6 +95,10 @@ class Swipeable extends Component {
         case 'panend':
           this.setInfo(e)
           this.panEnd(e)
+
+          setTimeout(() => {
+            this.leave('paning')
+          }, 0)
           break
         default:
           break

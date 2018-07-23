@@ -14,6 +14,15 @@ $thumb-vertical-height: 6 * $thumb-font-size !default;
 $thumb-vertical-gutter: 5px !default;
 $thumb-vertical-width: 8 * $thumb-font-size !default;
 
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .#{$thumb}s {
   position: relative;
   width: 100%;
@@ -30,26 +39,59 @@ $thumb-vertical-width: 8 * $thumb-font-size !default;
 }
 
 .#{$thumb} {
+  position: relative;
   display: inline-block;
   width: $thumb-width;
   height: 100%;
+  overflow: hidden;
   cursor: pointer;
-  opacity: 0.5;
-  flex-shrink: 0;
+
+  &-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 1px #000 solid;
+    border-radius: 50%;
+    animation: rotation 1s ease-in-out infinite;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      content: "";
+      background-color: #000;
+      border-radius: 100%;
+      transform: translateX(-50%);
+    }
+  }
 
   &-loaded {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    min-width: 100%;
+    height: auto;
+    min-height: 100%;
+    margin: auto;
+    pointer-events: none;
     background-position: center;
     background-size: cover;
+    opacity: 0.5;
   }
 
   & + & {
     margin-left: $thumb-gutter;
   }
 
-  &.#{$thumb}-active {
+  &.#{$thumb}-active .#{$thumb}-loaded {
     opacity: 1;
   }
 }

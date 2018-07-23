@@ -2,7 +2,7 @@ import anime from 'animejs'
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { deepMerge } from '@pluginjs/utils'
-import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
+import { outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, closest } from '@pluginjs/dom'
@@ -21,6 +21,8 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
+
+import Swipeable from '@pluginjs/swipeable'
 
 @themeable()
 @styleable(CLASSES)
@@ -61,6 +63,7 @@ class Thumbnails extends Component {
     this.setDistance(this.options.vertical)
     this.setItemsDistance(this.options.vertical)
     this.go(this.options.current || 0, false)
+    this.initSwipeable()
     this.bind()
 
     this.enter('initialized')
@@ -70,13 +73,17 @@ class Thumbnails extends Component {
   parseHtml() {
     const data = []
     const items = this.element.querySelectorAll(this.options.delegate)
-    const regex = new RegExp('"([^"]*)"')
+    const regex = new RegExp(/\((.+?)\)/)
 
     items.forEach(item => {
       let info = {
         src:
           item.getAttribute('src') ||
-          window.getComputedStyle(item)['background-image'].match(regex)[1]
+          window
+            .getComputedStyle(item)
+            ['background-image'].match(regex)[1]
+            .replace(/'/g, '')
+            .replace(/"/g, '')
       }
 
       const _data = Object.entries(item.dataset).reduce((result, [k, v]) => {
@@ -117,16 +124,25 @@ class Thumbnails extends Component {
       }
 
       thumb.dataset.index = index
-      setStyle(
-        { backgroundImage: `url("${item.src}")` },
-        thumb.querySelector(`.${this.classes.LOADED}`)
-      )
-
+      // setStyle(
+      // { backgroundImage: `url("${item.src}")` },
+      // thumb.querySelector(`.${this.classes.LOADED}`)
+      // )
+      thumb
+        .querySelector(`.${this.classes.LOADED}`)
+        .setAttribute('src', item.src)
       append(thumb, this.inner)
     })
 
     this.element.innerHTML = ''
     append(this.inner, this.element)
+  }
+
+  initSwipeable() {
+    this.swipeable = Swipeable.of(this.inner, {
+      rebound: true,
+      decay: true
+    })
   }
 
   getElement(type) {
@@ -173,7 +189,7 @@ class Thumbnails extends Component {
       {
         type: this.eventName('click'),
         handler: event => {
-          if (this.is('disable')) {
+          if (this.is('disable') || this.swipeable.is('paning')) {
             return false
           }
 
@@ -268,7 +284,7 @@ class Thumbnails extends Component {
     }
 
     if (this.options.mode === 'center') {
-      pos = this.wrapDistance / 2 - this.getItemPos(this.current, true)
+      pos = this.wrapDistance / 2 + this.getItemPos(this.current, true)
     } else {
       pos =
         this.current === this.length - 1 ? oldPos + (dif - this.dif) : oldPos

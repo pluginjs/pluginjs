@@ -16,6 +16,7 @@ const classes = {
   THUMBS: '{namespace}s',
   INNER: '{namespace}s-inner',
   THUMB: '{namespace}',
+  LOADER: '{namespace}-loader',
   LOADED: '{namespace}-loaded',
   VIDEO: '{namespace}-video',
   IMAGE: '{namespace}-img',
@@ -34,8 +35,8 @@ const defaults = {
     thumb() {
       return (
         '<div class="{classes.THUMB}">' +
-        '<div class="{classes.LOADED}">' +
-        '</div>' +
+        '<div class="{classes.LOADER}"></div>' +
+        '<img class="{classes.LOADED}">' +
         '</div>'
       )
     }
