@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/amazingSurge/plugin.js/issues"
   },
-  "version": "0.2.19",
+  "version": "0.2.20",
   "main": "dist/global-plugin.umd.js",
   "module": "dist/global-plugin.esm.js",
   "cjs": "dist/global-plugin.cjs.js",
@@ -26,7 +26,9 @@
     "build:md": "plugin script build-md",
     "test": "jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@pluginjs/component": "*"
+  },
   "devDependencies": {
     "@pluginjs/cli": "*",
     "babel-jest": "*",

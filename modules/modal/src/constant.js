@@ -5,7 +5,8 @@ export const events = {
   CLOSE: 'close',
   DESTROY: 'destroy',
   SHOW: 'show',
-  HIDE: 'hide'
+  HIDE: 'hide',
+  READY: 'ready'
 }
 
 export const methods = ['destroy']

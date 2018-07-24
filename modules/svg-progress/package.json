@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.18",
+  "version": "0.3.0",
   "main": "dist/svg-progress.umd.js",
   "module": "dist/svg-progress.esm.js",
   "cjs": "dist/svg-progress.cjs.js",

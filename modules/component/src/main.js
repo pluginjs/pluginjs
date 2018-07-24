@@ -29,11 +29,13 @@ class Plugin {
           instance => instance.element === this.element
         )
       ) {
-        throw new Error(
-          `${this.plugin} has been installed on this element.\n\nElement: ${
-            this.element.outerHTML
-          }\n`
-        )
+        if (this.globalComponent) {
+          throw new Error(
+            `${this.plugin} has been installed on this element.\n\nElement: ${
+              this.element.outerHTML
+            }\n`
+          )
+        }
       }
       window.Pj.instances[this.plugin].push(this)
     }

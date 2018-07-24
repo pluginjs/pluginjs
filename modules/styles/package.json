@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.5.2",
+  "version": "0.5.3",
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"

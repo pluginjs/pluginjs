@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/amazingSurge/plugin.js/issues"
   },
-  "version": "0.5.0",
+  "version": "0.5.1",
   "main": "dist/component.umd.js",
   "module": "dist/component.esm.js",
   "cjs": "dist/component.cjs.js",

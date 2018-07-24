@@ -254,7 +254,6 @@ class Modal extends GlobalComponent {
     if (this.validate() === false) {
       return
     }
-
     this.$content = query(`.${this.classes.CONTENT}`, this.$element)
     this.$title = query(`.${this.classes.TITLE}`, this.$element)
     this.$closeBtn = query(`.${this.classes.CLOSE}`, this.$element)
@@ -282,6 +281,7 @@ class Modal extends GlobalComponent {
     this.setContentloction(this.options.contentAlignment)
     // trigger ready
     this.firstAppend = true
+    this.trigger(EVENTS.READY)
     this.enter('initialized')
   }
 

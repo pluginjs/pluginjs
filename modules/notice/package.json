@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.18",
+  "version": "0.2.20",
   "main": "dist/notice.umd.js",
   "module": "dist/notice.esm.js",
   "cjs": "dist/notice.cjs.js",
