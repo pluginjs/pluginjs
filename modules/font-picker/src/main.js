@@ -288,7 +288,6 @@ class FontPicker extends Component {
           query('.pj-dropdown-trigger', this.$selector)
         )
       }
-      console.log(this.$selectorPanel)
     }
 
     /*

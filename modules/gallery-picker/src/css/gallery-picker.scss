@@ -12,16 +12,16 @@ $galleryPicker-color: $gray-dark !default;
 $galleryPicker-font-size: $font-size-base !default;
 $galleryPicker-icon-size: 16px !default;
 $galleryPicker-active-color: $color-primary !default;
-// initial
-$galleryPicker-initial-width: 160px !default;
-$galleryPicker-initial-height: 90px !default;
+// empty
+$galleryPicker-empty-width: 160px !default;
+$galleryPicker-empty-height: 90px !default;
 $galleryPicker-border-style: dashed !default;
-$galleryPicker-initial-hover-bg: $gray-lightest !default;
-// info
-$galleryPicker-info-expand-bg: $color-opacity !default;
-$galleryPicker-info-expand-opacity: 0.9 !default;
-$galleryPicker-info-count-width: 15px !default;
-$galleryPicker-info-count-height: $galleryPicker-info-count-width !default;
+$galleryPicker-empty-hover-bg: $gray-lightest !default;
+// fill
+$galleryPicker-fill-expand-bg: $color-opacity !default;
+$galleryPicker-fill-expand-opacity: 0.9 !default;
+$galleryPicker-fill-count-width: 15px !default;
+$galleryPicker-fill-count-height: $galleryPicker-fill-count-width !default;
 // expand
 $galleryPicker-expand-width: 300px !default;
 $galleryPicker-expand-height: 360px !default;
@@ -39,18 +39,18 @@ $galleryPicker-expand-control-btn-height: 32px !default;
   font-size: $galleryPicker-font-size;
   color: $galleryPicker-color;
 
-  &-initial,
-  &-info {
+  &-empty,
+  &-fill {
     position: relative;
     box-sizing: border-box;
-    width: $galleryPicker-initial-width;
-    height: $galleryPicker-initial-height;
+    width: $galleryPicker-empty-width;
+    height: $galleryPicker-empty-height;
     text-align: center;
     border: $galleryPicker-border;
     border-radius: $galleryPicker-border-radius;
   }
 
-  &-initial {
+  &-empty {
     flex-direction: column;
     justify-content: center;
     font-size: 14px;
@@ -68,7 +68,7 @@ $galleryPicker-expand-control-btn-height: 32px !default;
     }
   }
 
-  &-info {
+  &-fill {
     position: relative;
     padding: 2px;
 
@@ -108,9 +108,9 @@ $galleryPicker-expand-control-btn-height: 32px !default;
       position: absolute;
       right: 5px;
       bottom: 5px;
-      width: $galleryPicker-info-count-width;
-      height: $galleryPicker-info-count-height;
-      line-height: $galleryPicker-info-count-width;
+      width: $galleryPicker-fill-count-width;
+      height: $galleryPicker-fill-count-height;
+      line-height: $galleryPicker-fill-count-width;
       color: #fff;
       text-align: center;
       background-color: $galleryPicker-active-color;
@@ -124,12 +124,12 @@ $galleryPicker-expand-control-btn-height: 32px !default;
       // display: none;
       width: 100%;
       height: 100%;
-      line-height: $galleryPicker-initial-height;
+      line-height: $galleryPicker-empty-height;
       color: #fff;
-      background-color: $galleryPicker-info-expand-bg;
+      background-color: $galleryPicker-fill-expand-bg;
       border-radius: $galleryPicker-border-radius;
       opacity: 0;
-      // opacity: $galleryPicker-info-expand-opacity;
+      // opacity: $galleryPicker-fill-expand-opacity;
     }
 
     &-edit,
@@ -185,7 +185,7 @@ $galleryPicker-expand-control-btn-height: 32px !default;
       &:hover {
         color: $gray-darkest;
         cursor: pointer;
-        // background-color: $galleryPicker-initial-hover-bg;
+        // background-color: $galleryPicker-empty-hover-bg;
       }
 
       i {
@@ -281,29 +281,29 @@ $galleryPicker-expand-control-btn-height: 32px !default;
 }
 
 .#{$galleryPicker}-exist {
-  .#{$galleryPicker}-info {
+  .#{$galleryPicker}-fill {
     display: block !important;
   }
 
-  .#{$galleryPicker}-initial,
+  .#{$galleryPicker}-empty,
   .#{$galleryPicker}-expand-panel {
     display: none !important;
   }
 }
 
-.#{$galleryPicker}-empty {
-  .#{$galleryPicker}-initial {
+.#{$galleryPicker}-write {
+  .#{$galleryPicker}-empty {
     display: flex !important;
   }
 
-  .#{$galleryPicker}-info {
+  .#{$galleryPicker}-fill {
     display: none !important;
   }
 }
 /* stylelint-disable */
 .#{$galleryPicker}-expand {
-  .#{$galleryPicker}-initial,
-  .#{$galleryPicker}-info {
+  .#{$galleryPicker}-empty,
+  .#{$galleryPicker}-fill {
     display: none !important;
   }
 
@@ -313,16 +313,16 @@ $galleryPicker-expand-control-btn-height: 32px !default;
 }
 
 .#{$galleryPicker}-hover {
-  .#{$galleryPicker}-info-add,
-  .#{$galleryPicker}-info-expand,
-  .#{$galleryPicker}-item-change {
+  .#{$galleryPicker}-fill-add,
+  .#{$galleryPicker}-fill-expand,
+  .#{$galleryPicker}-fill-change {
     opacity: $galleryPicker-expand-item-change-opacity;
     transition: all 300ms ease-in-out;
   }
 }
 
 .#{$galleryPicker}-disabled {
-  .#{$galleryPicker}-info {
+  .#{$galleryPicker}-fill {
     cursor: not-allowed;
     background-color: $disabled-bg;
 
@@ -331,7 +331,7 @@ $galleryPicker-expand-control-btn-height: 32px !default;
       cursor: not-allowed;
     }
   }
-  .#{$galleryPicker}-initial {
+  .#{$galleryPicker}-empty {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
@@ -340,7 +340,7 @@ $galleryPicker-expand-control-btn-height: 32px !default;
       cursor: not-allowed;
     }
   }
-  .#{$galleryPicker}-info-change {
+  .#{$galleryPicker}-fill-change {
     cursor: not-allowed;
     background-color: $disabled-bg;
   }

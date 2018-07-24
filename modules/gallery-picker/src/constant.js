@@ -15,17 +15,17 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   DISABLED: '{namespace}-disabled',
   ACTIVE: '{namespace}-active',
-  EMPTY: '{namespace}-empty',
+  WRITE: '{namespace}-write',
   EXIST: '{namespace}-exist',
   EXPAND: '{namespace}-expand',
   HOVER: '{namespace}-hover',
-  INFO: '{namespace}-info',
-  INFOEDIT: '{namespace}-info-edit',
-  INFOREMOVE: '{namespace}-info-remove',
-  INFOIMAGE: '{namespace}-info-image',
-  INFOCOUNT: '{namespace}-info-count',
-  INFOADD: '{namespace}-info-add',
-  INFOEXPAND: '{namespace}-info-expand',
+  FILL: '{namespace}-fill',
+  FILLEDIT: '{namespace}-fill-edit',
+  FILLREMOVE: '{namespace}-fill-remove',
+  FILLIMAGE: '{namespace}-fill-image',
+  FILLCOUNT: '{namespace}-fill-count',
+  FILLADD: '{namespace}-fill-add',
+  FILLEXPAND: '{namespace}-fill-expand',
   EXPANDCANCELBTN: '{namespace}-expand-cancel-btn',
   EXPANDSAVEBTN: '{namespace}-expand-save-btn',
   EXPANDADDBTN: '{namespace}-expand-add-btn',
@@ -37,7 +37,9 @@ export const classes = {
   ITEMIMAGE: '{namespace}-item-image',
   ITEMREMOVE: '{namespace}-item-remove',
   ITEMRESELECT: '{namespace}-item-reselect',
-  INITIAL: '{namespace}-initial'
+  EMPTY: '{namespace}-empty',
+  DROPDOWN: '{namespace}-dropdown',
+  TRIGGER: '{namespace}-trigger'
 }
 
 export const methods = [
@@ -64,14 +66,17 @@ export const defaults = {
     main() {
       return (
         '<div class="{classes.NAMESPACE}">' +
-        '<div class="{classes.INITIAL}">' +
+        '<div class="{classes.TRIGGER}">' +
+        '<div class="{classes.EMPTY}">' +
         '<i class="icon-image-group"></i>{placeholder}' +
         '</div>' +
-        '<div class="{classes.INFO}">' +
-        '<div class="{classes.INFOIMAGE}" style=""></div>' +
-        '<span class="{classes.INFOCOUNT}">{count}</span>' +
-        '<div class="{classes.INFOEXPAND}"><i class="{classes.INFOEDIT} icon-pencil-square"></i><i class="{classes.INFOREMOVE} icon-trash"></i></div>' +
+        '<div class="{classes.FILL}">' +
+        '<div class="{classes.FILLIMAGE}" style=""></div>' +
+        '<span class="{classes.FILLCOUNT}">{count}</span>' +
+        '<div class="{classes.FILLEXPAND}"><i class="{classes.FILLEDIT} icon-pencil-square"></i><i class="{classes.FILLREMOVE} icon-trash"></i></div>' +
         '</div>' +
+        '</div>' +
+        '<div class="{classes.DROPDOWN}">' +
         '<div class="{classes.EXPANDPANEL}">' +
         '<ul class="{classes.EXPANDITEM}">' +
         '<li class="{classes.EXPANDADD}">' +
@@ -82,6 +87,7 @@ export const defaults = {
         '<button class="{classes.EXPANDCANCELBTN} pj-btn pj-btn-transparent">{footerCancel}</button>' +
         // '<button class="{namespace}-expand-add-btn pj-btn pj-btn-outline-default">{footerAdd}</button>' +
         '<button class="{classes.EXPANDSAVEBTN} pj-btn pj-btn-primary">{footerSave}</button>' +
+        '</div>' +
         '</div>' +
         '</div>' +
         '</div>'

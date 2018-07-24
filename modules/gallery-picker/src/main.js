@@ -102,11 +102,11 @@ class GalleryPicker extends Component {
           return null
         }
       },
-      this.$initial
+      this.$empty
     )
 
     // add
-    if (this.$infoAdd) {
+    if (this.$fillAdd) {
       bindEvent(
         {
           type: this.eventName('click'),
@@ -120,11 +120,11 @@ class GalleryPicker extends Component {
             return null
           }
         },
-        this.$infoAdd
+        this.$fillAdd
       )
     }
 
-    // info expand
+    // fill expand
     bindEvent(
       {
         type: this.eventName('click'),
@@ -136,10 +136,10 @@ class GalleryPicker extends Component {
           return null
         }
       },
-      this.$infoEdit
+      this.$fillEdit
     )
 
-    // info
+    // fill
     compose(
       bindEvent({
         type: this.eventName('mouseenter'),
@@ -147,7 +147,7 @@ class GalleryPicker extends Component {
           if (this.is('disabled')) {
             return
           }
-          addClass(this.classes.HOVER, this.$info)
+          addClass(this.classes.HOVER, this.$fill)
         }
       }),
       bindEvent({
@@ -160,12 +160,12 @@ class GalleryPicker extends Component {
             return false
           }
 
-          removeClass(this.classes.HOVER, this.$info)
+          removeClass(this.classes.HOVER, this.$fill)
           this.leave('holdHover')
           return null
         }
       })
-    )(this.$info)
+    )(this.$fill)
 
     compose(
       // change
@@ -290,17 +290,17 @@ class GalleryPicker extends Component {
       this.enter('holdHover')
     }
     this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$info)
+      removeClass(this.classes.HOVER, this.$fill)
       this.leave('holdHover')
     }
   }
 
   unbind() {
     removeEvent(this.eventName(), this.$expandPanel)
-    removeEvent(this.eventName(), this.$info)
-    removeEvent(this.eventName(), this.$infoExpand)
-    removeEvent(this.eventName(), this.$initial)
-    removeEvent(this.eventName(), this.$infoAdd)
+    removeEvent(this.eventName(), this.$fill)
+    removeEvent(this.eventName(), this.$fillExpand)
+    removeEvent(this.eventName(), this.$empty)
+    removeEvent(this.eventName(), this.$fillAdd)
   }
 
   createHtml() {
@@ -320,20 +320,20 @@ class GalleryPicker extends Component {
 
     insertAfter(this.$wrap, this.element)
 
-    this.$initial = query(`.${this.classes.INITIAL}`, this.$wrap)
+    this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
 
-    this.$info = query(`.${this.classes.INFO}`, this.$wrap)
-    this.$infoCount = query(`.${this.classes.INFOCOUNT}`, this.$wrap)
-    this.$infoExpand = query(`.${this.classes.INFOEXPAND}`, this.$wrap)
-    this.$infoEdit = query(`.${this.classes.INFOEDIT}`, this.$infoExpand)
-    this.$infoRemove = query(`.${this.classes.INFOREMOVE}`, this.$infoExpand)
-    this.$infoAdd = query(`.${this.classes.INFOADD}`, this.$wrap)
-    this.$infoImage = query(`.${this.classes.INFOIMAGE}`, this.$wrap)
+    this.$fill = query(`.${this.classes.FILL}`, this.$wrap)
+    this.$fillCount = query(`.${this.classes.FILLCOUNT}`, this.$wrap)
+    this.$fillExpand = query(`.${this.classes.FILLEXPAND}`, this.$wrap)
+    this.$fillEdit = query(`.${this.classes.FILLEDIT}`, this.$fillExpand)
+    this.$fillRemove = query(`.${this.classes.FILLREMOVE}`, this.$fillExpand)
+    this.$fillAdd = query(`.${this.classes.FILLADD}`, this.$wrap)
+    this.$fillImage = query(`.${this.classes.FILLIMAGE}`, this.$wrap)
     this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
     this.$expandAdd = query(`.${this.classes.EXPANDADD}`, this.$expandPanel)
     this.$expandItems = query(`.${this.classes.EXPANDITEM}`, this.$expandPanel)
     // init pop
-    this.pop = PopDialog.of(this.$infoRemove, {
+    this.pop = PopDialog.of(this.$fillRemove, {
       placement: 'bottom',
       content: this.translate('deleteTitle'),
       buttons: {
@@ -347,10 +347,10 @@ class GalleryPicker extends Component {
                 duration: 100,
                 callback: () => {
                   that.clear()
-                  fadeIn({ duration: 100 }, that.$info)
+                  fadeIn({ duration: 100 }, that.$fill)
                 }
               },
-              that.$info
+              that.$fill
             )
 
             resolve()
@@ -368,17 +368,17 @@ class GalleryPicker extends Component {
 
   setState() {
     // const that = this;
-    this.$infoCount.textContent = this.count
+    this.$fillCount.textContent = this.count
     if (this.count > 0) {
-      // const $removeBtn = this.$infoExpand.find(`.${this.classes.INFOREMOVE}`);
+      // const $removeBtn = this.$fillExpand.find(`.${this.classes.FILLREMOVE}`);
       setStyle(
         { backgroundImage: `url(${this.getImageByIndex(this.count - 1)})` },
-        this.$infoImage
+        this.$fillImage
       )
-      removeClass(this.classes.EMPTY, this.$wrap)
+      removeClass(this.classes.WRITE, this.$wrap)
     } else {
-      setStyle({ backgroundImage: 'none' }, this.$infoImage)
-      addClass(this.classes.EMPTY, this.$wrap)
+      setStyle({ backgroundImage: 'none' }, this.$fillImage)
+      addClass(this.classes.WRITE, this.$wrap)
     }
   }
 
