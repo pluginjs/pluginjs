@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const element = query('#onChange .dropdown-onChange')
+const element = query('#onChange .pj-dropdown-trigger')
 Dropdown.of(element, {
   panel: '.onChange',
   itemValueAttr: 'category',

@@ -18,7 +18,7 @@ export const classes = {
   INPUTMODE: '{namespace}-input',
   SELECTMODE: '{namespace}-select',
   ELEMENT: '{namespace}',
-  LABEL: '{namespace}-label',
+  TRIGGRER: '{namespace}-trigger',
   ICON: '{namespace}-icon',
   ITEM: '{namespace}-item',
   SHOW: '{namespace}-show',
@@ -32,7 +32,7 @@ export const classes = {
   ACITVE: '{namespace}-active',
   HOVER: '{namespace}-hover',
   INPUT: 'pj-input',
-  LABELACTIVE: '{namespace}-label-active'
+  TRIGGERACTIVE: '{namespace}-trigger-active'
 }
 
 export const methods = [
@@ -60,7 +60,7 @@ export const defaults = {
   keyboard: false,
   placement: 'bottom-start', // ['auto','bottom', 'top', 'right', 'left'] and ['start', 'end'] can be combination, like 'bottom-start', 'left-end'. when use a single value, like 'bottom', means 'bottom-center'.
   imitateSelect: false, // Behave like select
-  inputLabel: false, // input with select
+  // inputLabel: false, // input with select
   placeholder: 'Please select',
   icon: false, // false or icon class, when imitateSelect is true
   select: null, // set initial select value, when imitateSelect is true
@@ -70,12 +70,12 @@ export const defaults = {
   constraintToScrollParent: true,
   constraintToWindow: true,
   templates: {
-    inputLabel() {
-      return '<input class="{classes.LABEL}" placeholder="{that.options.placeholder}" />'
-    },
-    label() {
-      return '<span class="{classes.LABEL}"></span>'
-    },
+    // inputLabel() {
+    //   return '<input class="{classes.LABEL}" placeholder="{that.options.placeholder}" />'
+    // },
+    // label() {
+    //   return '<span class="{classes.LABEL}"></span>'
+    // },
     icon() {
       return '<i class="{classes.ICON} {icon}"></i>'
     },

@@ -173,7 +173,7 @@ class FontPicker extends Component {
     if (this.element.value) {
       this.val(this.element.value)
     } else {
-      query('.pj-dropdown-label', this.$fontPicker).append(
+      query('.pj-dropdown-trigger', this.$fontPicker).append(
         parseHTML(`<span>${this.options.placeholder}</span>`)
       )
     }
@@ -285,7 +285,7 @@ class FontPicker extends Component {
               sourceName
             )}"></i>`
           ),
-          query('.pj-dropdown-label', this.$selector)
+          query('.pj-dropdown-trigger', this.$selector)
         )
       }
       console.log(this.$selectorPanel)
@@ -986,7 +986,7 @@ class FontPicker extends Component {
   setValue(val) {
     if (!this.$font) {
       if (this.element.value) {
-        append('<span></span>', query('.pj-dropdown-label', this.$fontPicker))
+        append('<span></span>', query('.pj-dropdown-trigger', this.$fontPicker))
       }
     } else {
       removeClass(this.classes.ACTIVE, this.$font)
@@ -995,7 +995,7 @@ class FontPicker extends Component {
     this.$font = getObjData('mapping', val) ? getObjData('mapping', val) : val
     const fontFamily = this.$font.dataset.value
     const sourceName = this.$font.dataset.source
-    const $preView = query('.pj-dropdown-label span', this.$fontPicker)
+    const $preView = query('.pj-dropdown-trigger span', this.$fontPicker)
     addClass(this.classes.ACTIVE, this.$font)
     this.element.setAttribute('value', this.val())
     $preView.innerHTML = fontFamily

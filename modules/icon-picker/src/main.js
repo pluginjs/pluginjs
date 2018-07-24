@@ -139,7 +139,7 @@ class IconsPicker extends Component {
       this.initScrollable()
       append(
         parseHTML(`<span>${this.options.placehoder}</span>`),
-        query('.pj-dropdown-label', this.$iconPicker)
+        query('.pj-dropdown-trigger', this.$iconPicker)
       )
 
       if (this.options.manage) {
@@ -843,7 +843,7 @@ class IconsPicker extends Component {
 
     info.package = targetData.package
 
-    const $selected = query('.pj-dropdown-label span', this.$iconPicker)
+    const $selected = query('.pj-dropdown-trigger span', this.$iconPicker)
 
     addClass(this.classes.ACTIVE, $target)
     this.element.setAttribute('value', this.options.process(info))

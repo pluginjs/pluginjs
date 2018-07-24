@@ -49,7 +49,7 @@ $iconPicker-controller-bg: $color-white;
     outline: none;
   }
 
-  .pj-dropdown-label {
+  .pj-dropdown-trigger {
     padding: 0 $iconPicker-sizer; //0 10px
     line-height: $iconPicker-height;
   }
@@ -306,7 +306,7 @@ $iconPicker-controller-bg: $color-white;
     }
   }
 
-  .pj-dropdown-label {
+  .pj-dropdown-trigger {
     display: inline-block;
     width: auto;
     padding: 0;

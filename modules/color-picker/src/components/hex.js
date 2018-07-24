@@ -41,11 +41,13 @@ class Hex {
        </div>`
     )
     const $selector = parseHTML(
-      `<div class='${this.classes.HEXMODE}'><div><div/></div>`
+      `<div class='${
+        this.classes.HEXMODE
+      }'><div><span class="pj-dropdown-trigger"></span><div/></div>`
     )
     this.element.append($selector, this.$opac)
 
-    this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
+    this.$selector = query(`.${this.classes.HEXMODE}>div>span`, this.element)
     this.dropdown = Dropdown.of(this.$selector, {
       imitateSelect: true,
       select: this.classify,
@@ -103,7 +105,8 @@ class Hex {
       this.instance.asColor.toHSL().toUpperCase(),
       this.instance.asColor.toRGB().toUpperCase()
     ]
-    this.$selector.querySelector('span').innerText = this.mode
+    console.log(this.$selector)
+    this.$selector.querySelector('span').value = this.mode
     this.dropdown.options.select = val
     this.element
       .querySelectorAll('.pj-dropdown-item')

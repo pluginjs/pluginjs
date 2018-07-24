@@ -106,7 +106,7 @@ class SvgPicker extends Component {
 
     append(
       `<span>${this.options.placehoder}</span>`,
-      query('.pj-dropdown-label', this.$svgPicker)
+      query('.pj-dropdown-trigger', this.$svgPicker)
     )
 
     if (this.element.value.trim() !== '' && this.data && this.data.length) {
@@ -493,7 +493,7 @@ class SvgPicker extends Component {
 
   select(item) {
     // if (!this.$icon) {
-    //   this.$svgPicker.find('.pj-dropdown-label').append('<span></span>')
+    //   this.$svgPicker.find('.pj-dropdown-trigger').append('<span></span>')
     // }
     this.$icon = item
     this.$icons.map(removeClass(this.classes.ACTIVE))
@@ -502,7 +502,7 @@ class SvgPicker extends Component {
     const { type, id } = info
     // const id = this.$icon.data('value');
     const value = this.getIconInfo(id).svg
-    const $selected = query('.pj-dropdown-label span', this.$svgPicker)
+    const $selected = query('.pj-dropdown-trigger span', this.$svgPicker)
 
     addClass(this.classes.ACTIVE, this.$icon)
     this.element.setAttribute(

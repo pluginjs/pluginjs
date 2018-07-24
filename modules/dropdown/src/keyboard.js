@@ -10,9 +10,9 @@ class Keyboard {
   }
 
   initialize() {
-    this.KEYBOARD = keyboard.init(this.instance.$label)
+    this.KEYBOARD = keyboard.init(this.instance.element)
     if (!this.instance.options.inputLabel) {
-      this.instance.$label.setAttribute('tabindex', 0)
+      this.instance.element.setAttribute('tabindex', 0)
     }
     compose(
       bindEvent({
@@ -29,7 +29,7 @@ class Keyboard {
           removeClass(this.instance.classes.FOCUS, this.instance.$parent)
         }
       })
-    )(this.instance.$label)
+    )(this.instance.element)
 
     this.instance.enter('keyboard')
   }

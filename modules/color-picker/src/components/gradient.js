@@ -75,7 +75,9 @@ class Gradient {
       `<i class='icon-delete ${this.classes.GRADIENTREMOVE}'></i>`
     )
     const $selector = parseHTML(
-      `<div class='${this.classes.GRADIENTMODE}'><div><div/></div>`
+      `<div class='${
+        this.classes.GRADIENTMODE
+      }'><div><span  class="pj-dropdown-trigger" ></span><div/></div>`
     )
 
     this.element.append(
@@ -87,7 +89,11 @@ class Gradient {
     )
 
     this.$view = query(`.${this.classes.GRADIENTBARVIEW}`, this.element)
-    this.$selector = query(`.${this.classes.GRADIENTMODE}>div`, this.element)
+    this.$selector = query(
+      `.${this.classes.GRADIENTMODE}>div>span`,
+      this.element
+    )
+    console.log(parent(this.$selector))
     this.dropdown = Dropdown.of(this.$selector, {
       imitateSelect: true,
       select: this.mode.replace(/^.?/g, match => match.toUpperCase()),

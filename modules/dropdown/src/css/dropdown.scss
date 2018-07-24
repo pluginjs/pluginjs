@@ -34,11 +34,11 @@ $dropdown-active-border-color: $gray-light !default;
   box-sizing: border-box;
   height: $dropdown-height;
 
-  &-label-active {
+  &-trigger-active {
     color: $gray-darker !important;
   }
 
-  input.#{$dropdown}-label {
+  input.#{$dropdown}-trigger {
     border-width: 0;
   }
 
@@ -97,7 +97,7 @@ $dropdown-active-border-color: $gray-light !default;
   cursor: pointer;
   border-radius: $dropdown-border-radius;
   outline: none !important;
-  &-label {
+  &-trigger {
     position: relative;
     box-sizing: border-box;
     //display: block;
@@ -185,7 +185,7 @@ $dropdown-active-border-color: $gray-light !default;
         border-color: $dropdown-hover-border-color;
       }
 
-      &-label {
+      &-trigger {
         padding: $dropdown-space-y $dropdown-space-x;
       }
 
@@ -244,7 +244,7 @@ $dropdown-active-border-color: $gray-light !default;
         border-color: $dropdown-hover-border-color;
       }
 
-      &-label {
+      &-trigger {
         padding: $dropdown-space-y $dropdown-space-x-right $dropdown-space-y
           $dropdown-space-x-left; // line-height: $dropdown-line-height;
       }
@@ -296,7 +296,7 @@ $dropdown-active-border-color: $gray-light !default;
         border-color: $disabled-border;
       }
 
-      .#{$dropdown}-label[disabled] {
+      .#{$dropdown}-trigger[disabled] {
         color: $disabled-color;
         cursor: not-allowed;
         background-color: $disabled-bg;

@@ -45,7 +45,7 @@ $units-trigger-font-size: $font-size-base !default;
         color: $units-active-color;
       }
 
-      .pj-dropdown-label:hover {
+      .pj-dropdown-trigger:hover {
         color: $units-active-color;
       }
     }
@@ -55,7 +55,7 @@ $units-trigger-font-size: $font-size-base !default;
       background-color: transparent;
       opacity: 1;
 
-      .pj-dropdown-label:hover {
+      .pj-dropdown-trigger:hover {
         color: $text-color;
       }
     }
@@ -67,7 +67,7 @@ $units-trigger-font-size: $font-size-base !default;
       border-bottom-left-radius: 0;
     }
 
-    .pj-dropdown-label {
+    .pj-dropdown-trigger {
       color: $units-active-color;
     }
     &.#{$dropdown}-panel-on-top {

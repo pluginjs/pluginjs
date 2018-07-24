@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const element = query('#json .dropdown-json')
+const element = query('#json .pj-dropdown-trigger')
 
 const data = [
   {

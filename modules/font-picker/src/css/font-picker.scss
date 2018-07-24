@@ -57,7 +57,7 @@ $fontPicker-search-input-hover-color: $gray !default;
     }
   }
 
-  .pj-dropdown-label {
+  .pj-dropdown-trigger {
     padding: 0 $fontPicker-sizer; //0 10px
     line-height: $fontPicker-height - 2px;
 
@@ -241,7 +241,7 @@ $fontPicker-search-input-hover-color: $gray !default;
   &:hover {
     color: $fontPicker-active-color;
 
-    .pj-dropdown-label {
+    .pj-dropdown-trigger {
       color: $fontPicker-active-color !important;
     }
   }
@@ -254,7 +254,7 @@ $fontPicker-search-input-hover-color: $gray !default;
   &.pj-dropdown-show {
     color: $fontPicker-active-color;
 
-    .pj-dropdown-label {
+    .pj-dropdown-trigger {
       color: $fontPicker-active-color;
     }
 
@@ -265,7 +265,7 @@ $fontPicker-search-input-hover-color: $gray !default;
     }
   }
 
-  .pj-dropdown-label {
+  .pj-dropdown-trigger {
     width: auto;
     height: auto;
     padding: 0;
