@@ -9,29 +9,27 @@ $tabs-font-size-base: $font-size-base !default;
 $tabs-bg-color: $color-white !default;
 $tabs-border-color: $border-color !default;
 
-$tabs-gutter-width: 1px !default;
+$tabs-gutter-width: -1px !default;
 
-$tabs-label-padding-x: 1.25 * $tabs-font-size-base !default;
-$tabs-label-padding-y: $tabs-font-size-base !default;
+$tabs-label-padding-x: 1.85 * $tabs-font-size-base !default;
+$tabs-label-padding-y: 1.1 * $tabs-font-size-base !default;
 
-$tabs-label-color: $gray-light !default;
-$tabs-label-hover-color: $gray-dark !default;
+$tabs-label-color: $gray-darkest !default;
+$tabs-label-hover-color: $color-primary !default;
 
 $tabs-nav-cover-height: $tabs-font-size-base !default;
-$tabs-nav-shadow: 0 0 $tabs-nav-cover-height 0 rgba($color-black, 0.05) !default;
+$tabs-nav-border-color: $gray-border !default;
+$tabs-nav-icon-margin-right: 0.76 * $tabs-font-size-base !default;
 
-$tabs-content-padding-x: 1.25 * $tabs-font-size-base !default;
-$tabs-content-padding-y: 1.875 * $tabs-font-size-base !default;
-
-$tabs-content-shadow: 0 5px 35px 0 rgba($color-black, 0.05) !default;
+$tabs-content-padding-x: 1.85 * $tabs-font-size-base !default;
+$tabs-content-padding-y: 1.85 * $tabs-font-size-base !default;
+$tabs-content-color: $gray-darker !default;
 
 $tabs-drop-nav-bg: $color-white !default;
 $tabs-drop-content-bg: transparent !default;
 
 $tabs-drop-nav-item-color: $gray-light !default;
-$tabs-drop-nav-item-hover-color: $gray-dark !default;
 $tabs-drop-nav-item-active-color: $color-white !default;
-$tabs-drop-nav-item-active-bg: $color-primary !default;
 
 // default
 // =====================
@@ -41,6 +39,7 @@ $tabs-drop-nav-item-active-bg: $color-primary !default;
     padding: $tabs-label-padding-y $tabs-label-padding-x;
     color: $tabs-label-color;
     background-color: $tabs-bg-color;
+    border: 1px solid $tabs-nav-border-color;
 
     &::after {
       position: absolute;
@@ -63,14 +62,19 @@ $tabs-drop-nav-item-active-bg: $color-primary !default;
 
   .#{$tabs}-active {
     color: $tabs-label-hover-color;
-    box-shadow: $tabs-nav-shadow;
+    border: 1px solid $tabs-nav-border-color;
+  }
+
+  &-icon {
+    margin-right: $tabs-nav-icon-margin-right;
   }
 }
 
 .#{$tabs}-content {
+  color: $tabs-content-color;
   text-align: left;
   background-color: $tabs-bg-color;
-  box-shadow: $tabs-content-shadow;
+  border: 1px solid $tabs-border-color;
 
   > div {
     padding: $tabs-content-padding-y $tabs-content-padding-x;
@@ -128,6 +132,10 @@ $tabs-drop-nav-item-active-bg: $color-primary !default;
     color: inherit;
     background-color: $tabs-drop-nav-bg;
     border: 1px solid $tabs-border-color;
+
+    &:hover {
+      color: $tabs-label-hover-color;
+    }
   }
 
   .#{$tabs}-nav {
@@ -140,21 +148,11 @@ $tabs-drop-nav-item-active-bg: $color-primary !default;
 
     li {
       margin: 0;
-      color: $tabs-drop-nav-item-color;
+      // color: $tabs-drop-nav-item-color;
       text-align: initial;
       background-color: transparent;
       border: none;
       border-radius: 0;
-
-      &:hover {
-        color: $tabs-drop-nav-item-hover-color;
-      }
-
-      &:active,
-      &.#{$tabs}-active {
-        color: $tabs-drop-nav-item-active-color;
-        background-color: $tabs-drop-nav-item-active-bg;
-      }
 
       &::before,
       &::after {
@@ -170,7 +168,8 @@ $tabs-drop-nav-item-active-bg: $color-primary !default;
   .#{$tabs}-content {
     margin: 0;
     background-color: $tabs-drop-content-bg;
-    border: none;
+    border: 1px solid $tabs-border-color;
+    border-top: none;
     box-shadow: none;
 
     > div {

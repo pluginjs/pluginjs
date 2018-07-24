@@ -148,3 +148,9 @@ $tabs-duration: 0.5s !default;
     }
   }
 }
+
+#keyboard {
+  .pj-tabs {
+    outline: none;
+  }
+}
