@@ -55,7 +55,7 @@ export const defaults = {
     computeWidthResize: null // [function] compute when window resize
   },
   defaultActive: 0, // default active item
-  duration: 400,
+  duration: 300,
   templates: {
     wrapper() {
       return '<div class="{class}"></div>'

@@ -1,3 +1,4 @@
+import anime from 'animejs'
 import Component from '@pluginjs/component'
 import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
@@ -86,6 +87,9 @@ class Swipe extends Component {
 
   initialize() {
     this.build()
+    if (this.options.drag) {
+      this.initSwipeable()
+    }
     this.bind()
 
     this.active =
@@ -124,16 +128,39 @@ class Swipe extends Component {
     if (this.options.pagination) {
       this.buildPagination()
     }
+  }
 
-    if (this.options.drag) {
-      const opts = {
-        container: this.element,
-        decay: this.options.dragFree,
-        power: this.options.power,
-        duration: this.options.duration
+  initSwipeable() {
+    const that = this
+
+    this.$swipe = Swipeable.of(this.$container, {
+      container: that.container,
+      decay: that.options.dragFree,
+      power: that.options.power,
+      duration: that.options.duration,
+      onStart() {
+        if (that.$anime) {
+          that.$anime.pause()
+        }
+        that.trigger(EVENTS.DRAGSTART)
+      },
+      onEnd() {
+        if (!this.isdecaying) {
+          const locationX = this.getLocation(this.element).translateX
+          const index = that.getIndexByDistance(locationX)
+          that.moveTo(index)
+        }
+        this.trigger(EVENTS.DRAGEND)
+      },
+      onDecayend() {
+        const locationX = this.getLocation(this.element).translateX
+        const index = that.getIndexByDistance(locationX)
+        if (that.$anime) {
+          that.$anime.pause()
+        }
+        that.moveTo(index)
       }
-      this.$swipe = Swipeable.of(this.$container, opts)
-    }
+    })
   }
 
   buildContainer() {
@@ -419,32 +446,6 @@ class Swipe extends Component {
         this.$wrapper
       )
     }
-
-    /* drag event */
-    if (this.options.drag) {
-      this.$swipe.options.onDragstart = () => {
-        this.trigger(EVENTS.DRAGSTART)
-      }
-
-      this.$swipe.options.onMove = e => {
-        setStyle({ transition: '' }, e.element)
-      }
-
-      this.$swipe.options.onEnd = e => {
-        if (e.isdecaying) {
-          this.$swipe.options.onDecayend = () => {
-            const locationX = e.getLocation(e.element).translateX
-            const index = this.getIndexByDistance(locationX)
-            this.moveTo(index)
-          }
-        } else {
-          const locationX = e.getLocation(e.element).translateX
-          const index = this.getIndexByDistance(locationX)
-          this.moveTo(index)
-        }
-        this.trigger(EVENTS.DRAGEND)
-      }
-    }
   }
 
   unbind() {
@@ -486,6 +487,7 @@ class Swipe extends Component {
     trigger = trigger || false
     ease = ease || 'linear'
     duration = duration || this.options.duration
+    const _duration = duration
 
     if (
       this.options.center &&
@@ -496,23 +498,12 @@ class Swipe extends Component {
       distance -= (this.width - activeItemWidth) / 2
     }
 
-    if (trigger) {
-      setStyle(
-        {
-          transform: `translate3d(${-distance}px, 0, 0)`,
-          transition: `transform ${duration}ms`,
-          'transition-timing-function': ease
-        },
-        this.$container
-      )
-    } else {
-      setStyle(
-        {
-          transform: `translate3d(${-distance}px, 0, 0)`
-        },
-        this.$container
-      )
-    }
+    this.$anime = anime({
+      targets: this.$container,
+      translateX: -distance,
+      easing: ease,
+      duration: _duration
+    })
 
     setTimeout(() => {
       if (callback) {
@@ -520,12 +511,6 @@ class Swipe extends Component {
       }
 
       if (trigger) {
-        setStyle(
-          {
-            transition: ''
-          },
-          this.$container
-        )
         this.trigger(EVENTS.MOVEEND, this.active)
       }
     }, duration)
@@ -575,7 +560,7 @@ class Swipe extends Component {
 
     this.move(distance, {
       trigger: true,
-      ease: this.options.dragFree ? 'ease-out' : 'ease-in',
+      ease: this.options.dragFree ? 'easeOutExpo' : 'linear',
       callback
     })
   }

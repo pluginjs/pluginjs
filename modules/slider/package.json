@@ -10,7 +10,7 @@
   "cjs": "dist/slider.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/main.scss",
+    "source": "src/css/slider.scss",
     "main": "dist/slider.css",
     "min": "dist/slider.min.css"
   },

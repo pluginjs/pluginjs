@@ -202,7 +202,7 @@ class Swipeable extends Component {
         translateX: moveX,
         translateY: moveY,
         duration: this.options.duration,
-        easing: 'easeOutExpo',
+        easing: 'easeOutSine',
         update() {
           if (that.options.rebound) {
             const distance =

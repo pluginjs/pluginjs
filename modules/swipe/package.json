@@ -44,7 +44,8 @@
     "@pluginjs/styled": "*",
     "@pluginjs/swipeable": "*",
     "@pluginjs/template": "*",
-    "hammerjs": "*"
+    "hammerjs": "*",
+    "animejs": "^2.2.0"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
