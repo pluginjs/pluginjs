@@ -3,15 +3,14 @@
 // Vars
 // =====================
 $tooltip: "pj-tooltip" !default;
+$tooltip-font-size: $font-size-lg !default;
 $tooltip-light-color: $text-color !default;
 $tooltip-light-bg: $color-white !default;
 $tooltip-light-box-shadow: $box-shadow-base !default;
 $tooltip-light-arrow-color: $tooltip-light-bg !default;
 
 //base style vars
-$tooltip-position-grid-margin-x: 100px !default;
-$tooltip-position-cell-a-padding-y: 0.9rem !default;
-$tooltip-position-cell-a-padding-x: 2rem !default;
+$tooltip-position-grid-margin-x: 6.25 * $tooltip-font-size !default;
 $tooltip-position-cell-a-margin-y: 20px !default;
 
 //base style
@@ -26,8 +25,6 @@ $tooltip-position-cell-a-margin-y: 20px !default;
 }
 
 .position-cell a {
-  display: inline-block;
-  padding: $tooltip-position-cell-a-padding-y $tooltip-position-cell-a-padding-x;
   margin-top: $tooltip-position-cell-a-margin-y;
 }
 

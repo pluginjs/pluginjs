@@ -5,12 +5,12 @@
 $tooltip: "pj-tooltip" !default;
 $tooltip-zindex: $zindex-tooltip !default;
 $tooltip-font-size: $font-size-sm !default;
-$tooltip-max-width: 200px !default;
+$tooltip-max-width: 14 * $tooltip-font-size !default;
 $tooltip-color: $color-white !default;
 $tooltip-bg: $gray-darkest !default;
 $tooltip-opacity: 0.9 !default;
-$tooltip-padding-y: 3px !default;
-$tooltip-padding-x: 8px !default;
+$tooltip-padding-y: 0.7 * $tooltip-font-size !default;
+$tooltip-padding-x: 0.93 * $tooltip-font-size !default;
 $tooltip-margin: 3px !default;
 $tooltip-border-radius: $border-radius-base !default;
 $tooltip-arrow-width: 5px !default;
@@ -21,6 +21,9 @@ $tooltip-light-color: $text-color !default;
 $tooltip-light-bg: $color-white !default;
 $tooltip-light-arrow-color: $tooltip-light-bg !default;
 $tooltip-shadow-box-shadow: $box-shadow-5 !default;
+
+$tooltip-btn-padding-y: 0.89 * $tooltip-font-size !default;
+$tooltip-btn-padding-x: 1.94 * $tooltip-font-size !default;
 
 @mixin reset-text {
   font-family: $font-family-base;
@@ -61,6 +64,11 @@ $tooltip-shadow-box-shadow: $box-shadow-5 !default;
 
   .#{$tooltip}-inner::before {
     pointer-events: none;
+  }
+
+  &-btn {
+    display: inline-block;
+    padding: $tooltip-btn-padding-y $tooltip-btn-padding-x;
   }
 
   // placement^="top"
