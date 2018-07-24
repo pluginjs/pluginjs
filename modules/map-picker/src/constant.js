@@ -13,20 +13,21 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   MAP: '{namespace}-map',
-  INFO: '{namespace}-info',
-  INIT: '{namespace}-init',
-  FILL: '{namespace}-fill',
-  HOVER: '{namespace}-hover',
+  INPUT: '{namespace}-input',
+  EMPTY: '{namespace}-empty',
+  WRITE: '{namespace}-write',
+  TRIGGER: '{namespace}-trigger',
+  HOVER: '{namespace}-fill-hover',
   REMOVEANIMATE: '{namespace}-remove-animate',
-  PREVIEW: '{namespace}-preview',
-  PREVIEWACTION: '{namespace}-preview-action',
-  PREVIEWCONTENT: '{namespace}-preview-content',
-  PREVIEWNAME: '{namespace}-preview-name',
-  PREVIEWCOORD: '{namespace}-preview-coord',
+  FILL: '{namespace}-fill',
+  FILLACTION: '{namespace}-fill-action',
+  FILLCONTENT: '{namespace}-fill-content',
+  FILLNAME: '{namespace}-fill-name',
+  FILLCOORD: '{namespace}-fill-coord',
   EDIT: '{namespace}-edit',
   REMOVE: '{namespace}-remove',
   ICON: '{namespace}-icon',
-  PANEL: '{namespace}-panel',
+  DROPDOWN: '{namespace}-dropdown',
   CONTENT: '{namespace}-panel-content',
   ITEM: '{namespace}-item',
   ITEMTITLE: '{namespace}-item-title',
@@ -63,20 +64,24 @@ export const defaults = {
   },
   markerOptions: { draggable: true },
   templates: {
-    init() {
-      return `<div class="{classes.INIT}"><i class="{classes.ICON} icon-pin-map"></i>{addPlace}
+    trigger() {
+      return `<div class="{classes.TRIGGER}">
       </div>`
     },
-    preview() {
-      return `<div class="{classes.PREVIEW}"><i class="{classes.ICON} icon-pin-map"></i><div class='{classes.PREVIEWCONTENT}'><span class='{classes.PREVIEWNAME}'></span><span class='{classes.PREVIEWCOORD}'></span></div>
+    empty() {
+      return `<div class="{classes.EMPTY}"><i class="{classes.ICON} icon-pin-map"></i>{addPlace}
       </div>`
     },
-    previewAction() {
-      return `<div class="{classes.PREVIEWACTION}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i>
+    fill() {
+      return `<div class="{classes.FILL}"><i class="{classes.ICON} icon-pin-map"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
       </div>`
     },
-    panel() {
-      return `<div class='{classes.PANEL}'><div class='{classes.CONTENT}'></div>
+    fillAction() {
+      return `<div class="{classes.FILLACTION}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i>
+      </div>`
+    },
+    dropdown() {
+      return `<div class='{classes.DROPDOWN}'><div class='{classes.CONTENT}'></div>
       </div>`
     },
     action() {

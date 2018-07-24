@@ -104,46 +104,52 @@ class MapPicker extends Component {
     if (this.options.theme) {
       addClass(this.classes.THEME, $wrap)
     }
-    wrap($wrap, addClass(this.classes.INFO, this.element))
+    wrap($wrap, addClass(this.classes.INPUT, this.element))
     this.$wrap = parentWith(
       el => el.matches(`.${this.classes.NAMESPACE}`),
       this.element
     )
+    // creat trigger
+    this.$trigger = parseHTML(
+      this.createEl('trigger', {
+        classes: this.classes
+      })
+    )
 
-    // create init
-    this.$init = parseHTML(
-      this.createEl('init', {
+    // create empty
+    this.$empty = parseHTML(
+      this.createEl('empty', {
         classes: this.classes,
         addPlace: this.translate('addPlace')
       })
     )
 
-    // create preview
-    this.$preview = parseHTML(
-      this.createEl('preview', {
+    // create fill
+    this.$fill = parseHTML(
+      this.createEl('fill', {
         classes: this.classes,
-        action: this.classes.PREVIEWACTION
+        action: this.classes.FILLACTION
       })
     )
-    this.$previewName = query(`.${this.classes.PREVIEWNAME}`, this.$preview)
-    this.$previewCoord = query(`.${this.classes.PREVIEWCOORD}`, this.$preview)
+    this.$fillName = query(`.${this.classes.FILLNAME}`, this.$fill)
+    this.$fillCoord = query(`.${this.classes.FILLCOORD}`, this.$fill)
 
-    // create preview action
-    this.$previewAction = parseHTML(
-      this.createEl('previewAction', {
+    // create fill action
+    this.$fillAction = parseHTML(
+      this.createEl('fillAction', {
         classes: this.classes
       })
     )
 
-    // create panel
-    this.$panel = parseHTML(
-      this.createEl('panel', {
+    // create dropdown
+    this.$dropdown = parseHTML(
+      this.createEl('dropdown', {
         classes: this.classes
       })
     )
-    this.$wrap.append(this.$init, this.$preview, this.$panel)
-
-    this.$preview.append(this.$previewAction)
+    this.$trigger.append(this.$empty, this.$fill)
+    this.$wrap.append(this.$trigger, this.$dropdown)
+    this.$fill.append(this.$fillAction)
     this.buildPanelItem()
     this.buildPop()
   }
@@ -152,7 +158,7 @@ class MapPicker extends Component {
     const that = this
 
     this.pop = PopDialog.of(
-      query(`.${this.classes.REMOVE}`, this.$previewAction),
+      query(`.${this.classes.REMOVE}`, this.$fillAction),
       {
         placement: 'bottom',
         content: this.translate('deleteTitle'),
@@ -162,10 +168,10 @@ class MapPicker extends Component {
             label: this.translate('delete'),
             color: 'danger',
             fn(resolve) {
-              addClass(that.classes.REMOVEANIMATE, that.$preview)
+              addClass(that.classes.REMOVEANIMATE, that.$fill)
               setTimeout(() => {
                 that.clear()
-                removeClass(that.classes.REMOVEANIMATE, that.$preview)
+                removeClass(that.classes.REMOVEANIMATE, that.$fill)
               }, 500)
               resolve()
             }
@@ -225,14 +231,14 @@ class MapPicker extends Component {
       this.$action
     )
 
-    this.$panel.append(...list)
+    this.$dropdown.append(...list)
 
     // this.initMap();
   }
 
   initMap(set = false) {
     const that = this
-    const $map = query(`.${this.classes.MAP}`, this.$panel)
+    const $map = query(`.${this.classes.MAP}`, this.$dropdown)
 
     const options = deepMerge(this.options.gmapOptions, {
       onReady() {
@@ -265,7 +271,7 @@ class MapPicker extends Component {
   }
 
   initAutoComplete() {
-    const $place = query(`.${this.classes.PLACE}`, this.$panel)
+    const $place = query(`.${this.classes.PLACE}`, this.$dropdown)
 
     const config = {}
 
@@ -297,7 +303,7 @@ class MapPicker extends Component {
     this.$map.clearMarkers()
     this.$map.addMarker(options, true)
 
-    // set lat&lng preview
+    // set lat&lng fill
     this.setLatLng({ lat, lng })
 
     this.place = this.$map.markers[0]
@@ -377,12 +383,12 @@ class MapPicker extends Component {
         },
         handler: () => this.close()
       }),
-      // preview action button event
+      // fill action button event
       bindEvent({
         type: this.eventName('click'),
         identity: {
           type: 'selector',
-          value: `.${this.classes.PREVIEWACTION} .${this.classes.EDIT}`
+          value: `.${this.classes.FILLACTION} .${this.classes.EDIT}`
         },
         handler: () => {
           if (this.is('disabled')) {
@@ -391,7 +397,7 @@ class MapPicker extends Component {
           this.open()
         }
       }),
-      // $preview event
+      // $fill event
       bindEvent({
         type: this.eventName('mouseleave'),
         handler: () => {
@@ -402,30 +408,30 @@ class MapPicker extends Component {
             return
           }
 
-          removeClass(this.classes.HOVER, this.$preview)
+          removeClass(this.classes.HOVER, this.$fill)
           this.leave('holdHover')
         }
       }),
-      // $preview event
+      // $fill event
       bindEvent({
         type: this.eventName('mouseover'),
         identity: {
           type: 'selector',
-          value: `.${this.classes.PREVIEW}`
+          value: `.${this.classes.FILL}`
         },
         handler: () => {
           if (this.is('disabled')) {
             return
           }
 
-          addClass(this.classes.HOVER, this.$preview)
+          addClass(this.classes.HOVER, this.$fill)
         }
       }),
       bindEvent({
         type: this.eventName('click'),
         identity: {
           type: 'selector',
-          value: `.${this.classes.INIT}`
+          value: `.${this.classes.EMPTY}`
         },
         handler: () => {
           if (this.is('disabled')) {
@@ -441,7 +447,7 @@ class MapPicker extends Component {
     // pop event
     this.pop.options.onShow = () => this.enter('holdHover')
     this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$preview)
+      removeClass(this.classes.HOVER, this.$fill)
       this.leave('holdHover')
     }
 
@@ -456,7 +462,7 @@ class MapPicker extends Component {
             this.setPosition({ lat, lng })
           }
         },
-        query(`.${this.classes.LAT}`, this.$panel)
+        query(`.${this.classes.LAT}`, this.$dropdown)
       )
 
       bindEvent(
@@ -469,7 +475,7 @@ class MapPicker extends Component {
             this.setPosition({ lat, lng })
           }
         },
-        query(`.${this.classes.LNG}`, this.$panel)
+        query(`.${this.classes.LNG}`, this.$dropdown)
       )
     }
   }
@@ -543,7 +549,7 @@ class MapPicker extends Component {
   }
 
   update() {
-    this.$previewName.textContent = this.data.place
+    this.$fillName.textContent = this.data.place
     if (this.hasLatlng()) {
       const latitude = `${this.translate('latitude')}:${this.data.lat.toFixed(
         2
@@ -551,21 +557,19 @@ class MapPicker extends Component {
       const longitude = `${this.translate('longitude')}:${this.data.lng.toFixed(
         2
       )}`
-      this.$previewCoord.textContent = `${latitude} ${longitude}`
+      this.$fillCoord.textContent = `${latitude} ${longitude}`
     }
     this.element.value = this.val()
-    addClass(this.classes.FILL, this.$wrap)
+    addClass(this.classes.WRITE, this.$wrap)
   }
 
   clear() {
     this.data = {}
-    removeClass(this.classes.FILL, this.$wrap)
-    children(query(`.${this.classes.PREVIEWCONTENT}`, this.$preview)).forEach(
-      el => {
-        el.textContent = ''
-      }
-    )
-    query(`.${this.classes.ITEM} input`, this.$panel).value = ''
+    removeClass(this.classes.WRITE, this.$wrap)
+    children(query(`.${this.classes.FILLCONTENT}`, this.$fill)).forEach(el => {
+      el.textContent = ''
+    })
+    query(`.${this.classes.ITEM} input`, this.$dropdown).value = ''
 
     if (this.$map) {
       this.$map.clearMarkers()
@@ -603,11 +607,11 @@ class MapPicker extends Component {
       compose(
         unwrap,
         clearData,
-        removeClass(this.classes.INFO)
+        removeClass(this.classes.INPUT)
       )(this.element)
-      this.$init.remove()
-      this.$preview.remove()
-      this.$panel.remove()
+      this.$empty.remove()
+      this.$fill.remove()
+      this.$dropdown.remove()
 
       this.leave('initialized')
     }
