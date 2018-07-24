@@ -5,18 +5,21 @@
 $dot: "pj-dot" !default;
 $dot-width: 0.5rem !default; //16px !default;
 $dot-height: 0.5rem !default; //16px !default;
+$dot-line-width: 1.375rem !default;
+$dot-line-height: 0.125rem !default;
 $dot-radius: 50% !default;
 $dot-margin: 0.3125rem !default;
-$dot-color: $gray-light !default; //#ccc
+$dot-vertical-space: 1rem !default;
+$dot-color: $gray-dark !default; //#d5d5d5
+$dot-stroke-color: $color-white !default;
 $dot-active-color: $color-primary !default;
-$dot-hover-color: $color-primary-light !default;
+$dot-hover-color: rgba($color-black, 0.5) !default;
 $dot-disable-color: $gray-lighter !default;
 
 // Core
 // =====================
 .#{$dot}s {
   display: flex;
-  flex-direction: row;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -24,7 +27,6 @@ $dot-disable-color: $gray-lighter !default;
 
 .#{$dot} {
   position: relative;
-  float: left;
   width: $dot-width;
   height: $dot-height;
   margin: $dot-margin;
@@ -48,10 +50,6 @@ $dot-disable-color: $gray-lighter !default;
     &:hover {
       background-color: $dot-hover-color;
     }
-
-    &:active {
-      box-shadow: inset 0 0 0 5px $dot-active-color;
-    }
   }
 
   &.#{$dot}-disabled {
@@ -66,7 +64,7 @@ $dot-disable-color: $gray-lighter !default;
 
   &.#{$dot}-active {
     a {
-      box-shadow: inset 0 0 0 5px $dot-active-color;
+      background-color: $dot-active-color;
     }
   }
 }
@@ -74,28 +72,56 @@ $dot-disable-color: $gray-lighter !default;
 .#{$dot}s-vertical {
   flex-direction: column;
   .#{$dot} {
-    margin: 8px;
+    width: $dot-line-width;
+    height: $dot-line-height;
+    + .#{$dot} {
+      margin-top: $dot-vertical-space;
+    }
+  }
+
+  .#{$dot}-active {
+    a {
+      transform: scaleX(1.5);
+      transform-origin: right;
+    }
+  }
+
+  a {
+    border-radius: 0;
+    transition: transform 0.3s;
+    transform-origin: right;
   }
 }
 
 .#{$dot}s-stroke {
   .#{$dot}-active {
     a {
-      background-color: $color-white;
+      background-color: $dot-stroke-color;
       box-shadow: inset 0 0 0 1px $dot-active-color;
+      &:hover {
+        background-color: $dot-stroke-color;
+      }
+    }
+  }
+
+  a {
+    &:hover {
+      background-color: $dot-hover-color;
     }
   }
 }
 
 .#{$dot}s-square {
   .#{$dot} {
-    width: 1.25rem;
-    height: 0.125rem;
+    width: $dot-line-width;
+    height: $dot-line-height;
   }
+
   a {
     border-radius: 0;
     transition: background-color 0.3s ease;
   }
+
   .#{$dot}-active {
     a {
       background-color: $dot-active-color;
