@@ -15,18 +15,18 @@ $linkPicker-active-color: $color-primary !default;
 $linkPicker-border: 1px solid $gray-border !default;
 $linkPicker-padding: 0 2 * $linkPicker-sizer !default; //0 20px
 $linkPicker-icon-margin-right: $linkPicker-sizer !default; //10px
-// init
-$init-color: $gray-dark !default;
-$init-hover-bg-color: $gray-lightest !default;
+// empty
+$empty-color: $gray-dark !default;
+$empty-hover-bg-color: $gray-lightest !default;
 // action
 $action-hover-color: $gray-lighter !default;
 $action-active-color: $color-primary !default;
-// panel
-$panel-width: 27.2 * $linkPicker-sizer !default; //300px
-$panel-padding: 2 * $linkPicker-sizer !default; //20px
-$panel-border: $linkPicker-border !default;
-$panel-border-radius: $linkPicker-border-radius !default;
-$panel-btn-padding: 0.4 * $linkPicker-sizer 1.2 * $linkPicker-sizer !default; //4px 12px
+// dropdown
+$dropdown-width: 27.2 * $linkPicker-sizer !default; //300px
+$dropdown-padding: 2 * $linkPicker-sizer !default; //20px
+$dropdown-border: $linkPicker-border !default;
+$dropdown-border-radius: $linkPicker-border-radius !default;
+$dropdown-btn-padding: 0.4 * $linkPicker-sizer 1.2 * $linkPicker-sizer !default; //4px 12px
 // item
 $item-margin-bottom: 2 * $linkPicker-sizer !default; //20px
 $item-body-width: 22.4 * $linkPicker-sizer !default; //224px
@@ -42,8 +42,8 @@ $linkPicker-disabled-bg: $disabled-bg;
   box-sizing: border-box;
   font-size: $linkPicker-font-size;
 
-  .#{$linkPicker}-info,
-  &-preview {
+  .#{$linkPicker}-input,
+  &-fill {
     display: none;
   }
 
@@ -79,8 +79,8 @@ $linkPicker-disabled-bg: $disabled-bg;
     }
   }
 
-  &-init,
-  &-preview {
+  &-empty,
+  &-fill {
     box-sizing: border-box;
     width: $linkPicker-width;
     height: $linkPicker-height;
@@ -98,33 +98,33 @@ $linkPicker-disabled-bg: $disabled-bg;
     }
   }
 
-  &-init {
+  &-empty {
     display: flex;
 
     &:hover {
       color: $color-primary-black;
       cursor: pointer;
-      // background-color: $init-hover-bg-color;
+      // background-color: $empty-hover-bg-color;
       i {
         color: $color-primary-black;
       }
     }
   }
 
-  &-preview {
+  &-fill {
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  &-panel {
+  &-dropdown {
     box-sizing: border-box;
     display: none;
     flex-direction: column;
-    width: $panel-width;
-    padding: $panel-padding;
+    width: $dropdown-width;
+    padding: $dropdown-padding;
     background-color: $color-white;
-    border: $panel-border;
-    border-radius: $panel-border-radius;
+    border: $dropdown-border;
+    border-radius: $dropdown-border-radius;
 
     &-action {
       margin-top: $linkPicker-sizer * 2; //20px
@@ -135,7 +135,7 @@ $linkPicker-disabled-bg: $disabled-bg;
     &-cancel {
       width: 95px;
       height: 32px;
-      padding: $panel-btn-padding;
+      padding: $dropdown-btn-padding;
     }
 
     &-cancel:hover {
@@ -187,28 +187,28 @@ $linkPicker-disabled-bg: $disabled-bg;
   }
 
   &-show {
-    .#{$linkPicker}-init,
-    .#{$linkPicker}-preview {
+    .#{$linkPicker}-empty,
+    .#{$linkPicker}-fill {
       display: none !important;
     }
 
-    .#{$linkPicker}-panel {
+    .#{$linkPicker}-dropdown {
       display: block;
     }
   }
 
-  &-hover {
+  &-fill-hover {
     opacity: 1;
     transition: opacity 0.3s;
   }
 
-  &-fill {
+  &-write {
     .#{$linkPicker} {
-      &-init {
+      &-empty {
         display: none;
       }
 
-      &-preview {
+      &-fill {
         display: flex;
       }
     }
@@ -226,7 +226,7 @@ $linkPicker-disabled-bg: $disabled-bg;
       cursor: not-allowed;
     }
   }
-  .#{$linkPicker}-init {
+  .#{$linkPicker}-empty {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $linkPicker-disabled-bg;

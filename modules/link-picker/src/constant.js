@@ -14,9 +14,9 @@ export const classes = {
   CONTAINER: '{namespace}-container',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
-  INIT: '{namespace}-init',
-  INFO: '{namespace}-info',
-  PREVIEW: '{namespace}-preview',
+  EMPTY: '{namespace}-empty',
+  INPUT: '{namespace}-input',
+  FILL: '{namespace}-fill',
   TYPESWITCH: '{namespace}-types-switch',
   TYPESPANEL: '{namespace}-types-panel',
   TYPESCONTAINER: '{namespace}-types-container',
@@ -27,18 +27,19 @@ export const classes = {
   ACTION: '{namespace}-action',
   ACTIONEDIT: '{namespace}-action-edit',
   ACTIONREMOVE: '{namespace}-action-remove',
-  PANEL: '{namespace}-panel',
-  PANELACTION: '{namespace}-panel-action',
-  PANELSAVE: '{namespace}-panel-save',
-  PANELCANCEL: '{namespace}-panel-cancel',
+  DROPDOWN: '{namespace}-dropdown',
+  DROPDOWNACTION: '{namespace}-dropdown-action',
+  DROPDOWNSAVE: '{namespace}-dropdown-save',
+  DROPDOWNCANCEL: '{namespace}-dropdown-cancel',
   ITEM: '{namespace}-item',
   ITEMTITLE: '{namespace}-item-title',
   ITEMBODY: '{namespace}-item-body',
   LINKTITLE: '{namespace}-link-title',
   DROPDOWNPANEL: '{namespace}-dropdown-panel',
   SHOW: '{namespace}-show',
-  FILL: '{namespace}-fill',
-  HOVER: '{namespace}-hover'
+  WRITE: '{namespace}-write',
+  HOVER: '{namespace}-fill-hover',
+  TRIGGER: '{namespace}-trigger'
 }
 
 export const methods = [
@@ -59,8 +60,12 @@ export const defaults = {
   //  data: null,
   sources: null, // [Array] list of source name.
   templates: {
-    init() {
-      return `<div class='{classes.INIT}'>
+    trigger() {
+      return `<div class='{classes.TRIGGER}'>
+      </div>`
+    },
+    empty() {
+      return `<div class='{classes.EMPTY}'>
         <i class='icon-chain'></i>
         {title}
       </div>`
@@ -71,12 +76,12 @@ export const defaults = {
           <i class='icon-trash {classes.ACTIONREMOVE}'></i>
         </div>`
     },
-    preview() {
-      return `<div class='{classes.PREVIEW}'><i class='icon-chain'></i><div class='{classes.LINK}'></div>
+    fill() {
+      return `<div class='{classes.FILL}'><i class='icon-chain'></i><div class='{classes.LINK}'></div>
       </div>`
     },
-    panel() {
-      return `<div class='{classes.PANEL}'>
+    dropdown() {
+      return `<div class='{classes.DROPDOWN}'>
       </div>`
     },
     container() {
@@ -87,8 +92,8 @@ export const defaults = {
       return `<div class='{class}' data-value='{name}'><div class='{titleClass}'>{title}: </div><div class='{body} data-connect="{parent}"'></div>
       </div>`
     },
-    panelAction() {
-      return `<div class='{classes.PANELACTION}'><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {classes.PANELCANCEL}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {classes.PANELSAVE}'>{saveTitle}</button>
+    dropdownAction() {
+      return `<div class='{classes.DROPDOWNACTION}'><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {classes.DROPDOWNCANCEL}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {classes.DROPDOWNSAVE}'>{saveTitle}</button>
       </div>`
     }
   },

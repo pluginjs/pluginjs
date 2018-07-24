@@ -74,7 +74,7 @@ class LinkPicker extends Component {
     })
 
     this.source = this.sources[0]
-    this.info = {}
+    this.input = {}
     this.initialize()
   }
 
@@ -111,10 +111,10 @@ class LinkPicker extends Component {
   initialize() {
     wrap(
       parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`),
-      addClass(this.classes.INFO, this.element)
+      addClass(this.classes.INPUT, this.element)
     )
 
-    this.info = {}
+    this.input = {}
 
     this.build()
     this.bind()
@@ -139,15 +139,19 @@ class LinkPicker extends Component {
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
     }
-
-    this.$init = parseHTML(
-      this.parseTemp('init', {
+    this.$trigger = parseHTML(
+      this.parseTemp('trigger', {
+        classes: this.classes
+      })
+    )
+    this.$empty = parseHTML(
+      this.parseTemp('empty', {
         classes: this.classes,
         title: this.options.title
       })
     )
-    this.$preview = parseHTML(
-      this.parseTemp('preview', {
+    this.$fill = parseHTML(
+      this.parseTemp('fill', {
         classes: this.classes
       })
     )
@@ -156,20 +160,24 @@ class LinkPicker extends Component {
         classes: this.classes
       })
     )
-    this.$panel = parseHTML(this.parseTemp('panel', { classes: this.classes }))
-    this.$panelAction = parseHTML(
-      this.parseTemp('panelAction', {
+    this.$dropdown = parseHTML(
+      this.parseTemp('dropdown', { classes: this.classes })
+    )
+    this.$dropdownAction = parseHTML(
+      this.parseTemp('dropdownAction', {
         classes: this.classes,
         cancelTitle: this.translate('cancel'),
         saveTitle: this.translate('save')
       })
     )
-    ;[this.$init, this.$preview, this.$panel].map(el =>
+    ;[this.$empty, this.$fill, this.$dropdown].map(el =>
       insertAfter(el, this.element)
     )
 
-    this.$preview.append(this.$action)
-    this.$panel.append(this.$panelAction)
+    this.$fill.append(this.$action)
+    this.$dropdown.append(this.$dropdownAction)
+    this.$trigger.append(this.$empty, this.$fill)
+    this.$wrap.append(this.$trigger, this.$dropdown)
 
     this.buildTypes()
     // create pop
@@ -224,20 +232,20 @@ class LinkPicker extends Component {
       query(`.${this.classes.ITEMBODY}`, $types)
     )
 
-    prepend($types, this.$panel)
+    prepend($types, this.$dropdown)
 
     this.$typeDropdown = Dropdown.of(
-      query(`.${this.classes.TYPESWITCH}`, this.$panel),
+      query(`.${this.classes.TYPESWITCH}`, this.$dropdown),
       {
         theme: 'default',
         imitateSelect: true,
         constraintToScrollParent: false,
         icon: 'icon-char icon-chevron-down',
         data: typeData,
-        width: query(`.${this.classes.TYPESWITCH}`, this.$panel),
+        width: query(`.${this.classes.TYPESWITCH}`, this.$dropdown),
         select: this.source,
         templates: {
-          panel() {
+          dropdown() {
             return `<ul class='${that.classes.TYPESPANEL}'></ul>`
           },
           item() {
@@ -278,7 +286,7 @@ class LinkPicker extends Component {
 
       $container.append($item)
 
-      const info = {
+      const input = {
         source: type,
         item,
         parent: query(`.${this.classes.ITEMBODY}`, $item)
@@ -286,19 +294,22 @@ class LinkPicker extends Component {
 
       switch (item.type) {
         case 'dropdown':
-          this.handleDropdownMode(info)
+          this.handleDropdownMode(input)
           break
         case 'radio':
-          this.handleRadioMode(info)
+          this.handleRadioMode(input)
           break
         case 'input':
-          this.handleInputMode(info)
+          this.handleInputMode(input)
           break
         default:
           break
       }
     })
-    insertBefore($container, query(`.${this.classes.PANELACTION}`, this.$panel))
+    insertBefore(
+      $container,
+      query(`.${this.classes.DROPDOWNACTION}`, this.$dropdown)
+    )
   }
 
   handleInputMode(details) {
@@ -314,7 +325,7 @@ class LinkPicker extends Component {
     parent.append($input)
     $input.value = data
     setObjData(
-      'info',
+      'input',
       {
         source,
         itemName: name
@@ -407,7 +418,7 @@ class LinkPicker extends Component {
     )
 
     setObjData(
-      'info',
+      'input',
       {
         source,
         itemName: item.name
@@ -482,7 +493,7 @@ class LinkPicker extends Component {
       onChange(el) {
         const name = el.dataset.value
         // const connect = this.element.data('connect')
-        const { source, itemName } = getObjData('info', this.element)
+        const { source, itemName } = getObjData('input', this.element)
 
         that.getSourceItem(source, itemName).data.active = name
         that.trigger(`${source}:${itemName}:change`, name)
@@ -508,12 +519,12 @@ class LinkPicker extends Component {
 
   swtichType() {
     // this.$typeDropdown.set(this.source);
-    queryAll(`.${this.classes.TYPESCONTAINER}`, this.$panel).map(
+    queryAll(`.${this.classes.TYPESCONTAINER}`, this.$dropdown).map(
       removeClass(this.classes.ACTIVE)
     )
     queryAll(
       `.${this.classes.TYPESCONTAINER}[data-type='${this.source}']`,
-      this.$panel
+      this.$dropdown
     ).map(addClass(this.classes.ACTIVE))
   }
 
@@ -522,11 +533,11 @@ class LinkPicker extends Component {
   }
 
   bind() {
-    // open panel
+    // open dropdown
     bindEvent(
       {
         type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.INIT}` },
+        identity: { type: 'selector', value: `.${this.classes.EMPTY}` },
         handler: () => {
           if (this.is('disabled')) {
             return
@@ -565,16 +576,16 @@ class LinkPicker extends Component {
           if (window.getComputedStyle($input).display === 'none') {
             return
           }
-          const info = getObjData('info', $input)
-          if (!info) {
+          const input = getObjData('input', $input)
+          if (!input) {
             return
           }
-          const { source, itemName } = info
+          const { source, itemName } = input
           const inputVal = $input.value
           this.getSourceItem(source, itemName).data = inputVal
         }
       },
-      this.$panel
+      this.$dropdown
     )
 
     // hold hover
@@ -583,7 +594,7 @@ class LinkPicker extends Component {
         type: 'mouseover',
         identity: {
           type: 'selector',
-          value: `.${this.classes.PREVIEW}`
+          value: `.${this.classes.FILL}`
         },
         handler: () => {
           if (this.is('disabled')) {
@@ -596,7 +607,7 @@ class LinkPicker extends Component {
         type: 'mouseout',
         identity: {
           type: 'selector',
-          value: `.${this.classes.PREVIEW}`
+          value: `.${this.classes.FILL}`
         },
         handler: () => {
           if (this.is('disabled')) {
@@ -626,7 +637,7 @@ class LinkPicker extends Component {
         type: this.eventName('click'),
         identity: {
           type: 'selector',
-          value: `.${this.classes.PANELCANCEL}`
+          value: `.${this.classes.DROPDOWNCANCEL}`
         },
         handler: () => this.hide()
       }),
@@ -636,7 +647,7 @@ class LinkPicker extends Component {
         type: this.eventName('click'),
         identity: {
           type: 'selector',
-          value: `.${this.classes.PANELSAVE}`
+          value: `.${this.classes.DROPDOWNSAVE}`
         },
         handler: () => {
           this.update()
@@ -674,9 +685,9 @@ class LinkPicker extends Component {
   }
 
   clear() {
-    removeClass(this.classes.FILL, this.$wrap)
+    removeClass(this.classes.WRITE, this.$wrap)
     this.element.value = ''
-    query('input[type="text"]', this.$panel).value = ''
+    query('input[type="text"]', this.$dropdown).value = ''
     // this.data = this.options.data;
 
     removeClass(this.classes.HOVER, this.$action)
@@ -727,7 +738,7 @@ class LinkPicker extends Component {
   render(data) {
     const $source = query(
       `.${this.classes.TYPESCONTAINER}[data-type='${this.source}']`,
-      this.$panel
+      this.$dropdown
     )
 
     const dataTypes = []
@@ -767,20 +778,20 @@ class LinkPicker extends Component {
   }
 
   update() {
-    this.info = {}
+    this.input = {}
     const globalData = this.getData()
-    this.info.source = this.source
+    this.input.source = this.source
 
     Object.entries(globalData).forEach(([sourceName, details]) => {
       if (sourceName === this.source) {
         details.fields.forEach(item => {
           const active = is.string(item.data) ? item.data : item.data.active
-          this.info[item.name] = active
+          this.input[item.name] = active
         })
       }
     })
 
-    this.element.value = JSON.stringify(this.info)
+    this.element.value = JSON.stringify(this.input)
 
     this.updatePreview()
   }
@@ -818,12 +829,12 @@ class LinkPicker extends Component {
       })
     }
 
-    addClass(this.classes.FILL, this.$wrap)
-    query(`.${this.classes.LINK}`, this.$preview).textContent = preview
+    addClass(this.classes.WRITE, this.$wrap)
+    query(`.${this.classes.LINK}`, this.$fill).textContent = preview
   }
 
   get() {
-    return this.info
+    return this.input
   }
 
   val(data) {
@@ -869,10 +880,10 @@ class LinkPicker extends Component {
 
       this.$typeDropdown.destroy()
       unwrap(this.element)
-      removeClass(this.classes.INFO, this.element)
-      this.$init.remove()
+      removeClass(this.classes.INPUT, this.element)
+      this.$empty.remove()
       this.$preview.remove()
-      this.$panel.remove()
+      this.$dropdown.remove()
       this.leave('initialized')
     }
 
