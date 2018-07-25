@@ -11,7 +11,7 @@ $tooltip-light-arrow-color: $tooltip-light-bg !default;
 
 //base style vars
 $tooltip-position-grid-margin-x: 6.25 * $tooltip-font-size !default;
-$tooltip-position-cell-a-margin-y: 20px !default;
+$tooltip-position-cell-a-margin-y: 1.25 * $tooltip-font-size !default;
 
 //base style
 .position-grid {

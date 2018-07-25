@@ -3,8 +3,9 @@
 // Vars
 // =====================
 $popover: "pj-popover" !default;
-$popover-zindex: $zindex-popover !default;
 $popover-font-size: $font-size-base !default;
+$popover-zindex: $zindex-popover !default;
+$popover-top: - 1.5 * $popover-font-size !default;
 $popover-max-width: 300px !default;
 $popover-max-height: 50vh !default;
 $popover-color: $text-color !default;
@@ -15,8 +16,8 @@ $popover-border-width: 1px !default;
 $popover-border-color: $border-color !default;
 $popover-border-radius: $border-radius-base !default;
 $popover-box-shadow: $box-shadow-base !default;
-$popover-spacer-x: 30px !default;
-$popover-spacer-y: 20px !default;
+$popover-spacer-x: 20.5px !default;
+$popover-spacer-y: 18px !default;
 $popover-simple-spacer-x: 10px !default;
 $popover-simple-spacer-y: 10px !default;
 $popover-close-spacer-x: 10px !default;
@@ -25,7 +26,9 @@ $popover-simple-title-spacer: $popover-simple-spacer-y $popover-simple-spacer-x
   0 $popover-simple-spacer-x !default;
 $popover-simple-content-spacer: 0 $popover-simple-spacer-x
   $popover-simple-spacer-y !default;
+
 $popover-title-spacer: $popover-spacer-y $popover-spacer-x 0 $popover-spacer-x !default;
+$popover-title-margin-bottom: 0.7 * $popover-font-size !default;
 $popover-title-color: $popover-color !default;
 $popover-title-font-size: $font-size-sm !default;
 $popover-title-line-height: 1.5em !default;
@@ -44,6 +47,9 @@ $popover-dark-bg: $gray-darkest !default;
 $popover-dark-arrow-color: $popover-dark-bg !default;
 $popover-dark-border-color: rgba(255, 255, 255, 0.1) !default;
 $popover-shadow-box-shadow: $box-shadow-5 !default;
+
+$popover-btn-padding-y: 0.875 * $popover-font-size !default;
+$popover-btn-padding-x: 2.3 * $popover-font-size !default;
 
 //base style vars
 $popover-position-grid-margin-x: 100px !default;
@@ -92,7 +98,7 @@ $popover-position-cell-a-margin-y: 20px !default;
   @include reset-text();
 
   position: absolute;
-  top: 0;
+  top: $popover-top;
   left: 0;
   z-index: $popover-zindex;
   display: block;
@@ -135,6 +141,10 @@ $popover-position-cell-a-margin-y: 20px !default;
   &::after {
     content: "";
     border-width: $popover-arrow-width;
+  }
+
+  &-btn {
+    padding: $popover-btn-padding-y $popover-btn-padding-x;
   }
 
   // placement^="top"
@@ -322,7 +332,7 @@ $popover-position-cell-a-margin-y: 20px !default;
 // Offset the popover to account for the popover arrow
 .#{$popover}-title {
   padding: $popover-title-spacer;
-  margin-bottom: 0;
+  margin-bottom: $popover-title-margin-bottom;
   font-size: $popover-title-font-size;
   line-height: $popover-title-line-height;
 
