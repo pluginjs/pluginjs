@@ -53,8 +53,6 @@ $popover-btn-padding-x: 2.3 * $popover-font-size !default;
 
 //base style vars
 $popover-position-grid-margin-x: 100px !default;
-$popover-position-cell-a-padding-y: 0.9rem !default;
-$popover-position-cell-a-padding-x: 2rem !default;
 $popover-position-cell-a-margin-y: 20px !default;
 
 //base style
@@ -70,8 +68,15 @@ $popover-position-cell-a-margin-y: 20px !default;
 
 .position-cell a {
   display: inline-block;
-  padding: $popover-position-cell-a-padding-y $popover-position-cell-a-padding-x;
   margin-top: $popover-position-cell-a-margin-y;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 @mixin reset-text {
