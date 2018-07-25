@@ -18,7 +18,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -31,15 +30,11 @@ import ImageLoader from '@pluginjs/image-loader'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  },
-  INFO
-)
+@register(NAMESPACE, {
+  defaults: DEFAULTS,
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Slider extends Component {
   page = 0
   stash = 0

@@ -17,7 +17,8 @@ function publish(ctx) {
   const childProcessOptions = { stdio: 'inherit' }
   return ctx.moduleName
     .map(name => `@${ctx.scope}/${name}`)
-    .forEach(moduleName =>
+    .forEach(moduleName => {
+      execSync(`npx plugin build ${ctx.moduleName}`, childProcessOptions)
       execSync(
         `npx lerna publish \
         --scope=${moduleName} \
@@ -26,7 +27,7 @@ function publish(ctx) {
         ${versionInfo}`,
         childProcessOptions
       )
-    )
+    })
 }
 
 module.exports = publish

@@ -7,11 +7,10 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.5.0",
+  "version": "0.5.1",
   "scripts": {
     "build": "./scripts/generate",
-    "build:md": "plugin script build-md",
-    "postinstall": "yarn build"
+    "build:md": "plugin script build-md"
   },
   "devDependencies": {
     "glob-expand": "^0.2.1",

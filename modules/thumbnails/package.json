@@ -4,13 +4,13 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/thumbnails.umd.js",
   "module": "dist/thumbnails.esm.js",
   "cjs": "dist/thumbnails.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/main.scss",
+    "source": "src/css/thumbnails.scss",
     "main": "dist/thumbnails.css",
     "min": "dist/thumbnails.min.css"
   },

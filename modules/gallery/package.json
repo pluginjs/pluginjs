@@ -4,13 +4,13 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "main": "dist/gallery.umd.js",
   "module": "dist/gallery.esm.js",
   "cjs": "dist/gallery.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/main.scss",
+    "source": "src/css/gallery.scss",
     "main": "dist/gallery.css",
     "min": "dist/gallery.min.css"
   },
@@ -28,9 +28,11 @@
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/slider": "^4.0.0",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
     "@pluginjs/template": "*",
+    "@pluginjs/thumbnails": "*",
     "@pluginjs/utils": "*",
     "animejs": "^2.2.0"
   },

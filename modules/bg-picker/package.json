@@ -21,6 +21,7 @@
     "main": "dist/bg-picker.css",
     "min": "dist/bg-picker.min.css"
   },
+  "style": "src/css/bg-picker.scss",
   "files": [
     "dist",
     "src"
