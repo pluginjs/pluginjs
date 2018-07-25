@@ -14,7 +14,7 @@ import {
 import TimeType from './time'
 import { getDiffTime } from './util'
 
-import Ordinary from './modes/ordinary'
+import simple from './modes/simple'
 import Flip from './modes/flip'
 import Progress from './modes/progress'
 
@@ -141,7 +141,7 @@ class CountDown extends Component {
   }
 }
 
-CountDown.registerMode('ordinary', Ordinary)
+CountDown.registerMode('simple', simple)
 CountDown.registerMode('progress', Progress)
 CountDown.registerMode('flip', Flip)
 

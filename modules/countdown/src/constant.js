@@ -35,9 +35,9 @@ export const labelMap = {
 }
 
 export const defaults = {
-  mode: 'ordinary', // 'ordinary','flip','progress
+  mode: 'simple', // 'simple','flip','progress
   modes: {
-    ordinary: {},
+    simple: {},
     flip: {},
     progress: {
       size: 100, // progress circle size

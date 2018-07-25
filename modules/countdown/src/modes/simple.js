@@ -4,9 +4,9 @@ import { append, parseHTML, prepend } from '@pluginjs/dom'
 import { labelMap as LABELMAP } from '../constant'
 import { updateDomValue } from '../util'
 
-class Ordinary {
+class simple {
   constructor(instance) {
-    this.options = deepMerge(instance.options.modes.ordinary)
+    this.options = deepMerge(instance.options.modes.simple)
     this.instance = instance
   }
 
@@ -70,6 +70,6 @@ class Ordinary {
   }
 }
 
-Ordinary.classes = { ORDINARY: '{namespace}-ordinary' }
+simple.classes = { simple: '{namespace}-simple' }
 
-export default Ordinary
+export default simple
