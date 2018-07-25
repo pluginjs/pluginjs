@@ -55,7 +55,7 @@ export default class Size {
         this.instance.value.size = value
         addClass(this.instance.classes.ACTIVE, this.$items[i])
         setStyle({ 'background-size': value }, this.instance.$image)
-        setStyle({ 'background-size': value }, this.instance.$infoImage)
+        setStyle({ 'background-size': value }, this.instance.$fillImage)
         found = true
       }
     }

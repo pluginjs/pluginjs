@@ -16,13 +16,13 @@ export const classes = {
 
   // components
   INPUT: '{namespace}-input',
-  INITIATE: '{namespace}-initiate',
-  INFO: '{namespace}-info',
-  INFOIMAGE: '{namespace}-info-image',
-  IMAGENAMEINFO: '{namespace}-info-image-name',
-  REMOVE: '{namespace}-info-remove',
-  EDIT: '{namespace}-info-edit',
-  CHANGE: '{namespace}-info-change',
+  EMPTY: '{namespace}-empty',
+  FILL: '{namespace}-fill',
+  FILLIMAGE: '{namespace}-fill-image',
+  IMAGENAMEFILL: '{namespace}-fill-image-name',
+  REMOVE: '{namespace}-fill-remove',
+  EDIT: '{namespace}-fill-edit',
+  CHANGE: '{namespace}-fill-change',
   EXPANDPANEL: '{namespace}-expand-panel',
   CONTROL: '{namespace}-expand-control',
   CANCEL: '{namespace}-expand-cancel',
@@ -34,7 +34,7 @@ export const classes = {
   DISABLED: '{namespace}-disabled',
   ACTIVE: '{namespace}-active',
   HOVER: '{namespace}-hover',
-  EMPTY: '{namespace}-empty',
+  WRITE: '{namespace}-write',
   EXIST: '{namespace}-exist',
   EXPAND: '{namespace}-expand',
   // repeat
@@ -57,7 +57,9 @@ export const classes = {
   ATTACHMENTTITLE: '{namespace}-attachment-title',
   ATTACHMENTCONTENT: '{namespace}-attachment-content',
   DROPDOWNTRIGGER: '{namespace}-dropdown-trigger',
-  ATTACH: '{attachNamespace}'
+  ATTACH: '{attachNamespace}',
+  DROPDOWN: '{namespace}-dropdown',
+  TRIGGER: '{namespace}-trigger'
 }
 
 export const methods = [
@@ -170,20 +172,24 @@ export const defaults = {
   template() {
     return (
       '<div class="{classes.NAMESPACE}">' +
-      '<div class="{classes.INITIATE}">' +
+      '<div class="{classes.TRIGGER}">' +
+      '<div class="{classes.EMPTY}">' +
       '<i class="icon-picture"></i>{placeholder}' +
       '</div>' +
-      '<div class="{classes.INFO}">' +
-      '<div class="{classes.INFOIMAGE}">' +
-      '<div class="{classes.IMAGENAMEINFO}">{placeholder}</div>' +
+      '<div class="{classes.FILL}">' +
+      '<div class="{classes.FILLIMAGE}">' +
+      '<div class="{classes.IMAGENAMEFILL}">{placeholder}</div>' +
       '</div>' +
       '<div class="{classes.CHANGE}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i></div>' +
       '</div>' +
+      '</div>' +
+      '<div class="{classes.DROPDOWN}">' +
       '<div class="{classes.EXPANDPANEL}">' +
       '<div class="{classes.IMAGEWRAP}">' +
       '<div class="{classes.IMAGE}"></div>' +
       '</div>' +
       '<div class="{classes.CONTROL}" href="#"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">{save}</button></div>' +
+      '</div>' +
       '</div>' +
       '</div>'
     )

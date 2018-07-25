@@ -21,7 +21,6 @@ export default class Repeat {
   }
 
   initialize() {
-    console.log(this)
     const html = template.compile(this.instance.options.repeat.template())({
       classes: this.instance.classes,
       bgRepeat: this.instance.translate('bgRepeat')
@@ -43,7 +42,6 @@ export default class Repeat {
       ? this.instance.value.repeat
       : this.defaultValue
     this.set(value)
-
     this.bind()
   }
 
@@ -55,7 +53,7 @@ export default class Repeat {
         this.instance.value.repeat = value
         addClass(this.instance.classes.ACTIVE, this.$items[i])
         setStyle({ 'background-repeat': value }, this.instance.$image)
-        setStyle({ 'background-repeat': value }, this.instance.$infoImage)
+        setStyle({ 'background-repeat': value }, this.instance.$fillImage)
         found = true
       }
     }

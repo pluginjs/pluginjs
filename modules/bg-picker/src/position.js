@@ -54,7 +54,7 @@ export default class Position {
         this.instance.value.position = value
         addClass(this.instance.classes.ACTIVE, this.$items[i])
         setStyle({ 'background-position': value }, this.instance.$image)
-        setStyle({ 'background-position': value }, this.instance.$infoImage)
+        setStyle({ 'background-position': value }, this.instance.$fillImage)
         found = true
       }
     }

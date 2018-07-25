@@ -66,7 +66,7 @@ class BgPicker extends Component {
 
     // init
     if (!this.value.image) {
-      addClass(this.classes.EMPTY, this.$wrap)
+      addClass(this.classes.WRITE, this.$wrap)
     }
 
     this.SIZE = new Size(this)
@@ -102,7 +102,7 @@ class BgPicker extends Component {
           )
         }
       },
-      this.$initiate
+      this.$empty
     )
 
     compose(
@@ -130,7 +130,7 @@ class BgPicker extends Component {
           return null
         }
       })
-    )(this.$info)
+    )(this.$fill)
 
     bindEvent(
       {
@@ -209,7 +209,7 @@ class BgPicker extends Component {
       this.enter('holdHover')
     }
     this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$info)
+      removeClass(this.classes.HOVER, this.$fill)
       this.leave('holdHover')
     }
   }
@@ -217,8 +217,8 @@ class BgPicker extends Component {
   unbind() {
     ;[
       this.element,
-      this.$initiate,
-      this.$info,
+      this.$empty,
+      this.$fill,
       this.$cancel,
       this.$image,
       this.$edit,
@@ -237,15 +237,15 @@ class BgPicker extends Component {
     )
     insertAfter(this.$wrap, this.element)
 
-    this.$initiate = query(`.${this.classes.INITIATE}`, this.$wrap)
+    this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
 
-    this.$info = query(`.${this.classes.INFO}`, this.$wrap)
-    this.$infoImageName = hideElement(
-      query(`.${this.classes.IMAGENAMEINFO}`, this.$info)
+    this.$fill = query(`.${this.classes.FILL}`, this.$wrap)
+    this.$fillImageName = hideElement(
+      query(`.${this.classes.IMAGENAMEFILL}`, this.$fill)
     )
-    this.$infoImage = query(`.${this.classes.INFOIMAGE}`, this.$info)
-    this.$remove = query(`.${this.classes.REMOVE}`, this.$info)
-    this.$edit = query(`.${this.classes.EDIT}`, this.$info)
+    this.$fillImage = query(`.${this.classes.FILLIMAGE}`, this.$fill)
+    this.$remove = query(`.${this.classes.REMOVE}`, this.$fill)
+    this.$edit = query(`.${this.classes.EDIT}`, this.$fill)
 
     this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
     this.$control = query(`.${this.classes.CONTROL}`, this.$expandPanel)
@@ -264,7 +264,7 @@ class BgPicker extends Component {
           label: 'Delete',
           color: 'danger',
           fn: resolve => {
-            // this.$remove.closest(`.${this.classes.INFO}`).fadeOut(100, () => {
+            // this.$remove.closest(`.${this.classes.FILL}`).fadeOut(100, () => {
             //   this.clear()
             //   this.$remove.fadeIn()
             // })
@@ -278,19 +278,19 @@ class BgPicker extends Component {
 
   setState(image) {
     if (!image || image === this.options.image) {
-      addClass(this.classes.EMPTY, this.$wrap)
+      addClass(this.classes.WRITE, this.$wrap)
     } else {
-      removeClass(this.classes.EMPTY, this.$wrap)
+      removeClass(this.classes.WRITE, this.$wrap)
     }
   }
 
-  returnInfo(image) {
+  returnFill(image) {
     let imgName
     if (!image || image === this.options.image) {
-      this.$infoImageName.textContent = this.translate('placeholder')
+      this.$fillImageName.textContent = this.translate('placeholder')
     } else {
       imgName = image.match(/([\S]+[/])([\S]+\w+$)/i)[2]
-      this.$infoImageName.textContent = imgName
+      this.$fillImageName.textContent = imgName
     }
   }
 
@@ -365,18 +365,18 @@ class BgPicker extends Component {
   setImage(image) {
     let thumbnailUrl
     this.setState(image)
-    this.returnInfo(image)
+    this.returnFill(image)
     if (image === '' || is.undefined(image)) {
-      showElement(this.$infoImageName)
+      showElement(this.$fillImageName)
       setStyle({ 'background-image': 'none' }, this.$image)
 
-      setStyle({ 'background-image': 'none' }, this.$infoImage)
+      setStyle({ 'background-image': 'none' }, this.$fillImage)
     } else if (image || image !== this.options.image) {
       thumbnailUrl = this.options.thumbnail ? this.options.thumbnail : image
       const IMG = new Image()
       IMG.onload = () => {
         this.value.image = thumbnailUrl
-        this.returnInfo(this.value.image)
+        this.returnFill(this.value.image)
         setStyle(
           { 'background-image': `url('${this.value.image}')` },
           this.$image
@@ -384,15 +384,15 @@ class BgPicker extends Component {
 
         setStyle(
           { 'background-image': `url('${this.value.image}')` },
-          this.$infoImage
+          this.$fillImage
         )
       }
       IMG.onerror = () => {
         this.value.image = image
-        this.returnInfo(image)
+        this.returnFill(image)
         this.update()
         setStyle({ 'background-image': 'none' }, this.$image)
-        setStyle({ 'background-image': 'none' }, this.$infoImage)
+        setStyle({ 'background-image': 'none' }, this.$fillImage)
       }
       IMG.src = thumbnailUrl
     }

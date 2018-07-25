@@ -69,7 +69,7 @@ export default class Attachment {
           )
           setStyle(
             { 'background-attachment': that.instance.value.attachment },
-            that.instance.$infoImage
+            that.instance.$fillImage
           )
         }
       }),
