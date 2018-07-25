@@ -1,7 +1,6 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
-import Scrollable from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Scrollable from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import generateHTMLSample from './fixtures/sample'
 import '@pluginjs/scrollbar'
 
 describe('Scrollable', () => {
@@ -29,44 +28,32 @@ describe('Scrollable', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const scrollable = new Scrollable(element)
+      const scrollable = Scrollable.of(generateHTMLSample())
 
       expect(scrollable).toBeObject()
-      // expect(scrollable.options).toEqual(DEFAULTS);
+      expect(scrollable.options).toEqual({
+        ...DEFAULTS,
+        containerSelector: '.scrollable > div',
+        contentSelector: 'div > div'
+      })
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const scrollable = new Scrollable(element)
+      const scrollable = Scrollable.of(generateHTMLSample())
 
       expect(scrollable.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asScrollable()).toEqual($element)
-
-      const api = $element.data('scrollable')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asScrollable()
-      expect($element.asScrollable('bind')).toBeNil()
+      const scrollable = Scrollable.of(generateHTMLSample())
+      expect(scrollable.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asScrollable()
-      expect($element.asScrollable('destroy')).toEqual($element)
+      const scrollable = Scrollable.of(generateHTMLSample())
+      scrollable.destroy()
     })
   })
 
@@ -74,19 +61,18 @@ describe('Scrollable', () => {
     let $element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('scrollable:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      $element.addEventListener('scrollable:ready', () => {
         called++
       })
-
-      $element.asScrollable()
+      const instance = Scrollable.of($element)
       expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -95,19 +81,19 @@ describe('Scrollable', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asScrollable()
-      api = $element.data('scrollable')
+      $element = generateHTMLSample()
+      api = Scrollable.of($element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('scrollable:destroy', (event, api) => {
+      $element.addEventListener('scrollable:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asScrollable('destroy')
+      api.destroy()
 
       expect(called).toEqual(1)
     })
@@ -118,13 +104,13 @@ describe('Scrollable', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asScrollable()
-      api = $element.data('scrollable')
+      $element = generateHTMLSample()
+      api = Scrollable.of($element)
     })
 
     test('should enable the plugin', () => {
-      $element.asScrollable('disable')
-      $element.asScrollable('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -132,12 +118,12 @@ describe('Scrollable', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('scrollable:enable', (event, api) => {
+      $element.addEventListener('scrollable:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asScrollable('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
@@ -147,12 +133,12 @@ describe('Scrollable', () => {
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asScrollable()
-      api = $element.data('scrollable')
+      $element = generateHTMLSample()
+      api = Scrollable.of($element)
     })
 
     test('should disable the plugin', () => {
-      $element.asScrollable('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -160,12 +146,12 @@ describe('Scrollable', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('scrollable:disable', (event, api) => {
+      $element.addEventListener('scrollable:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asScrollable('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })

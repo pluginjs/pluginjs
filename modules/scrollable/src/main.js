@@ -104,7 +104,7 @@ class Scrollable extends Component {
     this.initStates()
     this.initialize()
   }
-
+  /* eslint-disable complexity */
   initialize() {
     const position = getStyle('position', this.element)
     if (this.options.containerSelector) {
@@ -128,7 +128,6 @@ class Scrollable extends Component {
           : '0px'
 
       if (position !== 'static') {
-        console.log(this.wrap)
         setStyle({ position }, this.wrap)
       } else {
         setStyle({ position: 'relative' }, this.wrap)
@@ -208,6 +207,7 @@ class Scrollable extends Component {
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
+  /* eslint-enable complexity */
 
   resize() {
     if (this.options.responsive) {
@@ -686,10 +686,6 @@ class Scrollable extends Component {
       if (api.is('disabled')) {
         api.enable()
       }
-      console.log(
-        (api.getBarLength() * containerLength) /
-          (scrollLength + containerLength)
-      )
       api.setHandleLength(
         (api.getBarLength() * containerLength) /
           (scrollLength + containerLength),
