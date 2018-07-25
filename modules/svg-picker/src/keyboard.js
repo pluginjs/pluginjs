@@ -1,4 +1,3 @@
-import $ from 'jquery'
 class Keyboard {
   constructor(instance) {
     this.instance = instance
@@ -145,9 +144,12 @@ class Keyboard {
 
   selectIcon() {
     if (this.selected && this.selected.hasClass(this.classes.ICONHOVER)) {
-      this.selected.removeClass(this.classes.ICONHOVER)
+      removeClass(this.classes.ICONHOVER, this.selected)
     }
-    this.selected = this.$icons[this.x][this.y].addClass(this.classes.ICONHOVER)
+    this.selected = addClass(
+      this.classes.ICONHOVER,
+      this.$icons[this.x][this.y]
+    )
   }
 
   bind() {
@@ -183,7 +185,7 @@ class Keyboard {
   unbind() {
     this.$el.off('keydown')
     if (this.selected) {
-      this.selected.removeClass(this.classes.ICONHOVER)
+      removeClass(this.classes.ICONHOVER, this.selected)
       this.selected = null
     }
     this.instance.leave('keyboard')

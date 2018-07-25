@@ -1,6 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
-import { reflow, deepMerge } from '@pluginjs/utils'
+import { reflow } from '@pluginjs/utils'
 
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
@@ -13,14 +13,16 @@ import {
   insertAfter,
   remove
 } from '@pluginjs/dom'
-import GlobalComponent from '@pluginjs/global-plugin'
-import Pj, {
+import GlobalComponent from '@pluginjs/global-component'
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -43,11 +45,12 @@ const POSITIONS = [
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(false)
 @register(NAMESPACE, { defaults: DEFAULTS })
 class Toast extends GlobalComponent {
   constructor(options = {}) {
     super(NAMESPACE)
-    this.options = deepMerge(DEFAULTS, options)
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.$element = parseHTML(this.createHtml())
 

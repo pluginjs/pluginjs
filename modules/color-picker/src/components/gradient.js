@@ -1,4 +1,4 @@
-import core from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/pluginjs'
 import keyboard from '@pluginjs/keyboard'
 import Marker from './marker'
 import Wheel from './wheel'
@@ -208,7 +208,7 @@ class Gradient {
                 this.instance.trigger('gradientChange')
               }
             },
-            core.doc
+            Pj.doc
           )
           // e.preventDefault()
           return false
@@ -221,11 +221,11 @@ class Gradient {
       {
         type: 'mouseup',
         handler: () => {
-          removeEvent('mousemove', core.doc)
-          // removeEvent('mouseup', core.doc)
+          removeEvent('mousemove', Pj.doc)
+          // removeEvent('mouseup', Pj.doc)
         }
       },
-      core.doc
+      Pj.doc
     )
 
     bindEvent(
@@ -251,8 +251,8 @@ class Gradient {
     //     $this.parent().hasClass(this.classes.PANELCONTAINER) ||
     //     $this.parent().hasClass(this.classes.PANELTRIGGER)
     //   ) {
-    //     this.instance.$marker.removeClass(this.classes.MARKERACTIVE);
-    //     this.$remove.removeClass(this.classes.GRADIENTREMOVEACTIVE);
+    //     removeClass(this.classes.MARKERACTIVE, this.instance.$marker);
+    //     removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove);
     //     this.instance.enter('noSelectedMarker');
     //   }
     // });

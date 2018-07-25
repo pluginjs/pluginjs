@@ -1,16 +1,17 @@
 import Component from '@pluginjs/component'
 import Hammer from 'hammerjs'
-import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, queryAll, query } from '@pluginjs/dom'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -30,6 +31,7 @@ const ANIMATION = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(
   NAMESPACE,
   {
@@ -42,7 +44,7 @@ const ANIMATION = {}
 class SectionScroll extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options)
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     this.initStates()

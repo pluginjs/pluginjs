@@ -26,14 +26,16 @@ import {
   parseHTML,
   find
 } from '@pluginjs/dom'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -53,6 +55,7 @@ const $doc = Pj.doc
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -261,7 +264,7 @@ class DatePicker extends Component {
         this.$inputIcon
       )
 
-      // this.$picker.addClass(this.namespace + '_absolute');
+      // addClass(this.namespace + '_absolute', this.$picker);
     }
   }
 
@@ -1960,7 +1963,7 @@ class DatePicker extends Component {
     } else if (!this.is('showed')) {
       this.trigger(EVENTS.BEFORESHOW)
       addClass(this.classes.ACTIVE, this.$inputWrap)
-      // this.$picker.removeClass(this.namespace + '_hide');
+      // removeClass(this.namespace + '_hide', this.$picker);
       addClass(this.classes.SHOW, this.$pickerWrap)
 
       if (this.isMobile) {
@@ -2093,7 +2096,7 @@ class DatePicker extends Component {
     if (this.is('disabled')) {
       return null
     }
-    if (format === undefined) { /* eslint-disable-line */
+    if (typeof format === 'undefined') {
       return this.privateDate.selectedDate
     }
     const privateFormat = this.parseFormat(format)

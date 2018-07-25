@@ -10,7 +10,7 @@ $zoom-duration: 0.3s !default;
 // .#{$zoom} {
 // }
 
-.#{$zoom}-typeInner {
+.#{$zoom}-modeInner {
   .#{$zoom}-window {
     position: absolute;
     z-index: 999;
@@ -29,7 +29,7 @@ $zoom-duration: 0.3s !default;
   }
 }
 
-.#{$zoom}-typeLens {
+.#{$zoom}-modeLens {
   .#{$zoom}-lens {
     position: absolute;
     z-index: 999;
@@ -50,7 +50,7 @@ $zoom-duration: 0.3s !default;
   }
 }
 
-.#{$zoom}-typeWindow {
+.#{$zoom}-modeWindow {
   .#{$zoom}-lens {
     position: absolute;
     z-index: 999;

@@ -9,8 +9,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import Hammer from 'hammerjs'
 import {
   classes as CLASSES,
@@ -28,6 +29,7 @@ import toggleAnimation from './animate'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -39,11 +41,7 @@ class Toggle extends Component {
     wrap('<div></div>', element)
     this.$wrap = parent(this.element)
 
-    this.options = {
-      ...DEFAULTS,
-      ...options,
-      ...this.getDataOptions()
-    }
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.initStates()
 

@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import Plugin from '../../src'
 import Pj from '@pluginjs/pluginjs'
 

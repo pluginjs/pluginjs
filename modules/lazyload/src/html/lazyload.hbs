@@ -87,7 +87,7 @@ $(function(){
     $element.asLazyload({
       onEnter: function() {
         console.info('element onEnter')
-        this.$element.addClass('element-entered')
+        addClass('element-entered', this.$element)
       }
     });
   }

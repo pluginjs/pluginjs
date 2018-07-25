@@ -1,8 +1,8 @@
-import { deepMerge } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import anime from 'animejs'
 import { setStyle } from '@pluginjs/styled'
 import { setObjData, getObjData } from '@pluginjs/dom'
+import { deepMerge } from '@pluginjs/utils'
 
 const EFFECTS = {
   bounce: {
@@ -324,7 +324,7 @@ class Animate {
 
       const animation = anime(config)
       animation.begin = () => {
-        // $(el).addClass(this.api.classes.SHOW)
+        // addClass(this.api.classes.SHOW, $(el))
         // el.style.display = 'block'
       }
 

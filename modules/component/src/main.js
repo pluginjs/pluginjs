@@ -1,22 +1,4 @@
-function datasetParse(dataset) {
-  const data = Object.entries(dataset).reduce((result, [k, v]) => {
-    try {
-      const content = JSON.parse(`{"data": ${v.replace(/'/g, '"')}}`).data
-      return {
-        ...result,
-        [k]: content
-      }
-    } catch (err) {
-      return {
-        ...result,
-        [k]: v
-      }
-    }
-  }, {})
-  return data
-}
-
-class Plugin {
+export default class Component {
   constructor(namespace, element) {
     this.plugin = namespace
     this.element = element
@@ -41,10 +23,6 @@ class Plugin {
     }
   }
 
-  getDataOptions() {
-    return datasetParse(this.element.dataset)
-  }
-
   static of(...args) {
     return new this(...args)
   }
@@ -59,5 +37,3 @@ class Plugin {
     }
   }
 }
-
-export default Plugin

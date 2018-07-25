@@ -46,7 +46,6 @@ export const lensLimit = curry((length, data) => {
 const isNumber = data => {
   const result = !isNaN(Number(data.slice(-1)))
   if (!result) {
-    // console.log('not number');
   }
   return result
 }

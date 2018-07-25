@@ -208,11 +208,11 @@ $(function(){
     easing: '',
     onChange: function(val) {
       console.log('onChange', val)
-      $sections.removeClass('active')
+      removeClass('active', $sections)
       $sections.each(function() {
         var href = $(this).attr('data-href')
         if (href === val) {
-          $(this).addClass('active')
+          addClass('active', $(this))
         }
       })
     }
@@ -222,8 +222,8 @@ $(function(){
     var target = $(event.currentTarget)
     var href = target.attr('data-href')
     API('goTo', href)
-    $sections.removeClass('active')
-    target.addClass('active')
+    removeClass('active', $sections)
+    addClass('active', target)
   })
 
   $('.next').on('click', function() {

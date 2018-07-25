@@ -124,7 +124,6 @@ class Html5 {
 
   removeListener(eventName, element) {
     if (!this.listeners[eventName]) {
-      // console.log('not bind eventName:', eventName)
     }
 
     this.listeners[eventName].map(callback => {

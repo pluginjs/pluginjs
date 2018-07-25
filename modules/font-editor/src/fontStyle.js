@@ -2,7 +2,7 @@ import template from '@pluginjs/template'
 import { parseHTML } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
-import $ from 'jquery'
+
 export default class FontStyle {
   constructor(instance) {
     this.instance = instance
@@ -52,10 +52,10 @@ export default class FontStyle {
           const $this = $(this)
           if (that.instance.value.fontStyle === 'normal') {
             that.instance.value.fontStyle = 'italic'
-            $this.addClass(that.instance.classes.ACTIVE)
+            addClass(that.instance.classes.ACTIVE, $this)
           } else {
             that.instance.value.fontStyle = 'normal'
-            $this.removeClass(that.instance.classes.ACTIVE)
+            removeClass(that.instance.classes.ACTIVE, $this)
           }
           return null
         }

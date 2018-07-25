@@ -57,7 +57,7 @@ const dispatch = event => {
     )
     return nodeTreeCheck(parent(node), result.concat(matchEventList))
   }
-  // nodeTreeCheck(target).map(e => console.log(e.handler.toString()))
+  // nodeTreeCheck(target).map(e =>))
   nodeTreeCheck(target).reduce(
     (result, { handler }) => result !== false && handler(event),
     true

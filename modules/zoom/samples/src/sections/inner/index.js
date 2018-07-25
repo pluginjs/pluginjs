@@ -3,5 +3,5 @@ import Zoom from '@pluginjs/zoom'
 
 const element = query('#inner .zoom')
 Zoom.of(element, {
-  type: 'inner'
+  mode: 'inner'
 })

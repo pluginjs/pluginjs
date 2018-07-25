@@ -123,10 +123,13 @@ describe('Easing', () => {
     describe('common properties', () => {
       test('should be the right value at extremes', () => {
         repeat(100)(() => {
-          let a = Math.random(),
-            b = 2 * Math.random() - 0.5,
-            c = Math.random(),
-            d = 2 * Math.random() - 0.5
+          const a = Math.random()
+
+          const b = 2 * Math.random() - 0.5
+
+          const c = Math.random()
+
+          const d = 2 * Math.random() - 0.5
           const easing = Easing.bezier(a, b, c, d)
 
           expect(easing(0)).toEqual(0)
@@ -136,10 +139,13 @@ describe('Easing', () => {
 
       test('should approach the projected value of its x=y projected curve', () => {
         repeat(100)(() => {
-          let a = Math.random(),
-            b = Math.random(),
-            c = Math.random(),
-            d = Math.random()
+          const a = Math.random()
+
+          const b = Math.random()
+
+          const c = Math.random()
+
+          const d = Math.random()
           const easing = Easing.bezier(a, b, c, d)
           const projected = Easing.bezier(b, a, d, c)
           const composed = function(x) {
@@ -153,10 +159,13 @@ describe('Easing', () => {
     describe('two same instances', () => {
       test('should be strictly equals', () => {
         repeat(100)(() => {
-          let a = Math.random(),
-            b = 2 * Math.random() - 0.5,
-            c = Math.random(),
-            d = 2 * Math.random() - 0.5
+          const a = Math.random()
+
+          const b = 2 * Math.random() - 0.5
+
+          const c = Math.random()
+
+          const d = 2 * Math.random() - 0.5
           allEquals(Easing.bezier(a, b, c, d), Easing.bezier(a, b, c, d), 100)
         })
       })
@@ -165,10 +174,13 @@ describe('Easing', () => {
     describe('symetric curves', () => {
       test('should have a central value y~=0.5 at x=0.5', () => {
         repeat(100)(() => {
-          let a = Math.random(),
-            b = 2 * Math.random() - 0.5,
-            c = 1 - a,
-            d = 1 - b
+          const a = Math.random()
+
+          const b = 2 * Math.random() - 0.5
+
+          const c = 1 - a
+
+          const d = 1 - b
           const easing = Easing.bezier(a, b, c, d)
           assertClose(easing(0.5), 0.5)
         })
@@ -176,10 +188,13 @@ describe('Easing', () => {
 
       test('should be symetrical', () => {
         repeat(100)(() => {
-          let a = Math.random(),
-            b = 2 * Math.random() - 0.5,
-            c = 1 - a,
-            d = 1 - b
+          const a = Math.random()
+
+          const b = 2 * Math.random() - 0.5
+
+          const c = 1 - a
+
+          const d = 1 - b
           const easing = Easing.bezier(a, b, c, d)
           const sym = function(x) {
             return 1 - easing(1 - x)

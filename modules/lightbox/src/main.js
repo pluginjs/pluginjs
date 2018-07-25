@@ -1,18 +1,19 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML, query, queryAll } from '@pluginjs/dom'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import ZOOM from './zoom'
 import OVERLAY from './components/overlay'
 import UTILS from './utils'
@@ -35,6 +36,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -44,8 +46,7 @@ class Lightbox extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.setupI18n()
 

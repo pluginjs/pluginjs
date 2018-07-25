@@ -1,7 +1,7 @@
 import templateEngine from '@pluginjs/template'
-import { deepMerge } from '@pluginjs/utils'
 import { query } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
+import { deepMerge } from '@pluginjs/utils'
 
 class Total {
   constructor(instance) {

@@ -1,7 +1,6 @@
 import Component from '@pluginjs/component'
 import Hammer from 'hammerjs'
 import Anime from 'animejs'
-import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import {
@@ -9,8 +8,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -24,6 +24,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -35,8 +36,7 @@ class Swipeable extends Component {
 
     this.element =
       typeof element === 'string' ? document.querySelector(element) : element
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     addClass(this.classes.NAMESPACE, this.element)

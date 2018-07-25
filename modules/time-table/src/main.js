@@ -1,4 +1,3 @@
-import { deepMerge } from '@pluginjs/utils'
 import Component from '@pluginjs/component'
 import {
   eventable,
@@ -6,8 +5,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import { addClass } from '@pluginjs/classes'
 import { wrap } from '@pluginjs/dom'
 import {
@@ -46,6 +46,7 @@ const COMPONENTS = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -54,7 +55,7 @@ const COMPONENTS = {}
 class TimeTable extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     wrap(`<div class="${this.classes.NAMESPACE}"></div>`, this.element)
@@ -216,14 +217,14 @@ class TimeTable extends Component {
   initLocale() {
     this.month = this.translate('month')
     for (const mon in this.month) {
-      if (this.month.hasOwnProperty(mon)) {
+      if (Object.prototype.hasOwnProperty.call(this.month, mon)) {
         const v = this.month[mon]
         this.month[v] = mon
       }
     }
     this.fullMonth = this.translate('fullMonth')
     for (const mon in this.fullMonth) {
-      if (this.fullMonth.hasOwnProperty(mon)) {
+      if (Object.prototype.hasOwnProperty.call(this.fullMonth, mon)) {
         const v = this.fullMonth[mon]
         this.fullMonth[v] = mon
       }

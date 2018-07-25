@@ -1,8 +1,8 @@
 import is from '@pluginjs/is'
-import { deepMerge } from '@pluginjs/utils'
 import ColorStrings from './colorStrings'
 import Converter from './converter'
 import { defaults as DEFAULTS } from './constant'
+import { deepMerge } from '@pluginjs/utils'
 
 class Color {
   constructor(string, options) {

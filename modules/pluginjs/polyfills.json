@@ -3,15 +3,10 @@
   "Array.prototype.filter",
   "Array.prototype.find",
   "Array.from",
-  "Date.now",
   "String.prototype.includes",
   "Object.assign",
   "Object.keys",
   "Object.values",
   "Object.entries",
-  "Object.getOwnPropertyDescriptor",
-  "performance.now",
-  "matchMedia",
-  "requestAnimationFrame",
   "IntersectionObserver"
 ]

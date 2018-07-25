@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, curry, compose } from '@pluginjs/utils'
+import { curry, compose } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -18,8 +18,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -45,6 +46,7 @@ const addParentClass = curry((className, el) =>
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -53,7 +55,7 @@ class Checkbox extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
     this.$element = this.element
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.$group = this.options.getGroup.call(this)
     if (
       this.$group.length > 1 ||
@@ -203,7 +205,6 @@ class Checkbox extends Component {
           if (this.is('disabled')) {
             return
           }
-          console.log(this.$element)
           this.toggle()
         }
       },
@@ -229,8 +230,8 @@ class Checkbox extends Component {
         compose(removeParentClass(this.classes.DISABLED))(element)
         element.disabled = false
       })
-      // this.$wrap.removeClass(this.classes.CHECKED);
-      // this.$wrap.removeClass(this.classes.DISABLED);
+      // removeClass(this.classes.CHECKED, this.$wrap);
+      // removeClass(this.classes.DISABLED, this.$wrap);
       // this.$element.prop('disabled', null);
       this.leave('disabled')
     }
@@ -248,7 +249,7 @@ class Checkbox extends Component {
       // })
       addParentClass(this.classes.DISABLED, this.$element)
       this.$element.disabled = true
-      // this.$wrap.addClass(this.classes.DISABLED);
+      // addClass(this.classes.DISABLED, this.$wrap);
       // this.$element.prop('disabled', true);
       this.enter('disabled')
     }

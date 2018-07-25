@@ -73,8 +73,6 @@ scripts:
       onChangeHoverScore: function() {
         // var hoverScore = $('.fullStar').asRate('getHoverScore')
         var hoverScore = api1('getHoverScore')
-
-        // console.log('onChangeHoverScore', score)
         var t = 'score: ' + hoverScore
         $('.fullStarscore').text(t)
       },
@@ -82,7 +80,6 @@ scripts:
         console.log('onChangeScore')
       },
       onMouseLeave: function() {
-        // console.log('onMouseLeave')
         // var score = $('.fullStar').asRate('getScore')
         var score = api1('getScore')
         var t = 'score: ' + score
@@ -174,7 +171,6 @@ scripts:
       // })
       // $('.getScore').on('click', function() {
       //   var score = rateApi('getScore')
-      //   console.log('score:', score)
       //   var t = 'score: ' + score
       //   $('.apireturn').text(t)
       // })
@@ -214,7 +210,6 @@ scripts:
     //       $('.text11').text(t)
     //     },
     //     onChangeScore: function() {
-    //       console.log('onChangeScore')
     //     },
     //     onMouseLeave: function() {
     //       var score = $('.text').asRate('getScore')
@@ -238,7 +233,6 @@ scripts:
     //   })
     //
     //   $('.setColor').on('click', function() {
-    //     console.log("set color")
     //     $('.text').asRate('setColor', 'pj-rate-danger')
     //   })
     //

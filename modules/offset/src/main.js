@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import UNITS from '@pluginjs/units'
 import TOOLTIP from '@pluginjs/tooltip'
 import is from '@pluginjs/is'
@@ -25,8 +24,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -53,6 +53,7 @@ const KEYS = {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -64,7 +65,7 @@ class Offset extends Component {
 
     this.$doc = document.body
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.setupI18n()
 
@@ -119,9 +120,9 @@ class Offset extends Component {
     //     newData[$this.attr('name')] = instance.get(unit)
     //
     //     if (unit === 'auto') {
-    //       $trigger.addClass(`${this.classes.NAMESPACE}-unit-auto`)
+    //       addClass(`${this.classes.NAMESPACE}-unit-auto`, $trigger)
     //     } else {
-    //       $trigger.removeClass(`${this.classes.NAMESPACE}-unit-auto`)
+    //       removeClass(`${this.classes.NAMESPACE}-unit-auto`, $trigger)
     //     }
     //
     //     // newData = Object.assign({}, this.data, newData);
@@ -655,7 +656,6 @@ class Offset extends Component {
     }
 
     this.set(this.options.parse.call(this, value))
-    return undefined
   }
 
   disableTooltip() {

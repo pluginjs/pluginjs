@@ -1,15 +1,15 @@
 import Component from '@pluginjs/component'
-
-import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { append, query } from '@pluginjs/dom'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -26,6 +26,7 @@ import LOADER from './loader'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -35,10 +36,10 @@ class Infinite extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options)
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.setupI18n()
-    this.container = this.element
+    this.$container = this.element
 
     this.initStates()
     this.initialize()
@@ -88,7 +89,7 @@ class Infinite extends Component {
   }
 
   getContainerOfset() {
-    const o = this.offset(this.container)
+    const o = this.offset(this.$container)
     return o.bottom - this.options.threshold
   }
 
@@ -124,7 +125,7 @@ class Infinite extends Component {
       }
     } else {
       this.loader.hide()
-      append(data, this.container)
+      append(data, this.$container)
     }
 
     this.appendEnd()

@@ -2,6 +2,7 @@ export const namespace = 'countdown'
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
+  THEME: '{namespace}--{theme}',
   DISABLED: '{namespace}-disabled',
   MODE: '{namespace}-{mode}',
   TIME: `${namespace}-time`,
@@ -35,6 +36,7 @@ export const labelMap = {
 }
 
 export const defaults = {
+  theme: null,
   mode: 'simple', // 'simple','flip','progress
   modes: {
     simple: {},

@@ -11,13 +11,14 @@ import {
 } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
+import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
   register,
   stateable,
   styleable,
   themeable
-} from '@pluginjs/pluginjs'
+} from '@pluginjs/decorator'
 import Toggle from '@pluginjs/toggle'
 import {
   classes as CLASSES,
@@ -27,23 +28,20 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import { deepMerge } from '@pluginjs/utils'
 import List from '@pluginjs/list'
-
-const optionsExtendList = deepMerge(List.defaults, DEFAULTS)
 
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
 @register(NAMESPACE, {
-  defaults: optionsExtendList,
+  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
 class ToggleList extends List {
   constructor(element, options = {}) {
-    const defaultOptions = deepMerge(optionsExtendList, options)
+    const defaultOptions = deepMerge(DEFAULTS, options)
     super(element, defaultOptions)
     this.$wrapper = parent(this.element)
     addClass(this.classes.NAMESPACE, this.$wrapper)

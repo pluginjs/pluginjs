@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { register } from '@pluginjs/pluginjs'
+import { register } from '@pluginjs/decorator'
 
 const NAMESPACE = 'sample'
 const DEFAULTS = {
@@ -15,8 +15,7 @@ class Sample extends Component {
 
     this.options = {
       ...DEFAULTS,
-      ...options,
-      ...this.getDataOptions()
+      ...options
     }
 
     this.initialize()

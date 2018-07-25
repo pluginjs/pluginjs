@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML, empty } from '@pluginjs/dom'
@@ -9,8 +9,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import is from '@pluginjs/is'
 import {
   classes as CLASSES,
@@ -24,6 +25,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -32,7 +34,7 @@ class Arrows extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     this.prevSelector = this.classes.PREV

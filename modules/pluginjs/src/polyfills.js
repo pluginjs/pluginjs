@@ -130,8 +130,8 @@
           while (!done) {
             iterableResponse = arraylike.next()
             if (
-              iterableResponse.hasOwnProperty('value') &&
-              iterableResponse.hasOwnProperty('done')
+              Object.prototype.hasOwnProperty.call(iterableResponse, 'value') &&
+              Object.prototype.hasOwnProperty.call(iterableResponse, 'done')
             ) {
               if (iterableResponse.done === true) {
                 done = true

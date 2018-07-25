@@ -1,6 +1,5 @@
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
-import { deepMerge } from '@pluginjs/utils'
 import { query } from '@pluginjs/dom'
 import { removeClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
@@ -10,7 +9,7 @@ import {
   stateable,
   styleable,
   themeable
-} from '@pluginjs/pluginjs'
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -22,7 +21,6 @@ import {
 } from './constant'
 import Tooltip from '@pluginjs/tooltip'
 
-const optionsExtendTooltip = deepMerge(Tooltip.defaults, DEFAULTS)
 /* Credit to bootstrap popover http://getbootstrap.com MIT */
 @themeable()
 @styleable(CLASSES)
@@ -31,7 +29,7 @@ const optionsExtendTooltip = deepMerge(Tooltip.defaults, DEFAULTS)
 @register(
   NAMESPACE,
   {
-    defaults: optionsExtendTooltip,
+    defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
   },
@@ -44,7 +42,7 @@ class Popover extends Tooltip {
     }
 
     if (is.undefined(defaults)) {
-      defaults = optionsExtendTooltip
+      defaults = DEFAULTS
     }
 
     if (is.undefined(classes)) {

@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import * as util from '../src'
 
 describe('util', () => {

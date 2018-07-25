@@ -1,5 +1,3 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
 import Shorten from '../../src/main.js'
 import { defaults as DEFAULTS } from '../../src/constant'
 describe('Shorten', () => {

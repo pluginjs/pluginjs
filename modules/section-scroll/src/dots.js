@@ -1,7 +1,7 @@
 import templateEngine from '@pluginjs/template'
-import { deepMerge } from '@pluginjs/utils'
 import { append, parseHTML, queryAll, query } from '@pluginjs/dom'
 import PjDots from '@pluginjs/dots'
+import { deepMerge } from '@pluginjs/utils'
 
 class Dots {
   constructor(sectionScroll) {

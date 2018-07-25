@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -32,8 +32,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import Keyboard from './keyboard'
 import {
   classes as CLASSES,
@@ -52,6 +53,7 @@ let DATA = null
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -60,8 +62,7 @@ let DATA = null
 class IconsPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.setupI18n()
 
@@ -95,8 +96,7 @@ class IconsPicker extends Component {
         }
       }
     })
-    children(this.$dropdown.$panel).map(el => el.remove())
-    // console.log(children(this.$dropdown.panel).map(el => el.remove()))
+    children(this.$dropdown.$panel).map(el => el.remove()).map(el => el.remove())
     this.$dropdown.$panel.append(this.$empty)
   }
 
@@ -201,7 +201,6 @@ class IconsPicker extends Component {
       return
     }
     this.$dropdown.options.onHide = () => {
-      // hideElement(this.$selectorPanel.element)
       removeClass(this.classes.SEARCHOWNDATA, this.$search)
       query('input', this.$panel).value = ''
       this.searching('')
@@ -282,8 +281,7 @@ class IconsPicker extends Component {
               {
                 type: 'keydown',
                 handler: e => {
-                  if (e.keyCode === 13 && e.which === 13) {
-                    // console.log('manage enter');
+                  if (e.keyCode === 13 && e.which === 13) {;
                   }
                 }
               },
@@ -874,7 +872,7 @@ class IconsPicker extends Component {
     if (is.undefined(value)) {
       return
     }
-    if (this.$icons !== undefined) {
+    if (typeof this.$icons !== 'undefined') {
       this.$icons.forEach($icon => {
         const data = $icon.objData
         if (data.package === value.package && data.title === value.title) {
@@ -923,7 +921,7 @@ class IconsPicker extends Component {
       this.unbind()
       removeClass(this.classes.ELEMENT, this.$iconPicker)
       if (this.options.theme) {
-        this.$this.options.theme.removeClass(this.getThemeClass())
+        removeClass(this.getThemeClass(), this.$iconPicker)
       }
 
       showElement(this.element)

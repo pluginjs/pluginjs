@@ -170,7 +170,6 @@ describe('Notice', () => {
   //     let called = 0
 
   //     $element.on('notice:destroy', (event, api) => {
-  //       console.log(1)
   //       expect(api.is('initialized')).toBeFalse()
   //       called++
   //     })

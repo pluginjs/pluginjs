@@ -27,12 +27,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/dom": "*",
     "@pluginjs/emitter": "*",
-    "@pluginjs/events": "*",
-    "@pluginjs/global-plugin": "*",
-    "@pluginjs/i18n": "*",
-    "@pluginjs/is": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {

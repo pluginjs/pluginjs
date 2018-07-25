@@ -128,7 +128,7 @@ class List {
         handler: e => {
           const page = e.target.closest('li').dataset.page
 
-          if (page === undefined) { /* eslint-disable-line */
+          if (typeof page === 'undefined') {
             return false
           }
 

@@ -1,9 +1,9 @@
-import { deepMerge } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import { append, parseHTML, prepend, queryAll } from '@pluginjs/dom'
 import { labelMap as LABELMAP } from '../constant'
 import { updateDomValue } from '../util'
 import SvgElement from '../svgElement'
+import { deepMerge } from '@pluginjs/utils'
 
 class Progress {
   constructor(instance) {

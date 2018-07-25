@@ -3,7 +3,7 @@ import Zoom from '@pluginjs/zoom'
 
 const element = query('#clickOpen .zoom')
 Zoom.of(element, {
-  type: 'window',
+  mode: 'window',
   window: {
     clickOpen: true,
     position: 2,

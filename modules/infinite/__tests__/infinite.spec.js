@@ -1,5 +1,3 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
 import Infinite from '../../src/main'
 import { defaults as DEFAULTS } from '../../src/constant'
 import '@pluginjs/scroll-end'
@@ -35,7 +33,6 @@ describe('Infinite', () => {
     test('should have options', () => {
       const element = document.createElement('div')
       const infinite = new Infinite(element)
-      console.log('debug', typeof infinite)
 
       expect(infinite.options).toBeObject()
     })

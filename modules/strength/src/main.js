@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -11,8 +10,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -27,6 +27,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -35,7 +36,7 @@ class Strength extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     if (this.options.usernameField) {

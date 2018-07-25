@@ -9,7 +9,7 @@ import { append, parseHTML, query } from '@pluginjs/dom'
 class inner extends Base {
   constructor(instance) {
     super(instance)
-    // this.configuration = this.options[this.options.type]
+    // this.configuration = this.options[this.options.mode]
     this.init()
   }
 
@@ -18,7 +18,7 @@ class inner extends Base {
     this.windowImage = query(`.${this.classes.WINDOWIMAGE}`, this.window)
     append(this.window, this.container)
 
-    addClass(this.getClass('{namespace}-typeInner'), this.container)
+    addClass(this.getClass('{namespace}-modeInner'), this.container)
     this.setStyle()
 
     const offset = this.getElementOffset()
@@ -80,7 +80,6 @@ class inner extends Base {
       const backgroundPosition = `${this.windowLeftPos}px, ${
         this.windowTopPos
       }px`
-      // console.log('text', backgroundPosition)
       setStyle(
         { transform: `translate(${backgroundPosition})` },
         this.windowImage
@@ -107,7 +106,7 @@ class inner extends Base {
         this.addClass(this.window, 'out')
         bindEvent(
           {
-            type: 'animationend',
+            mode: 'animationend',
             handler: this.callback.bind(this)
           },
           this.window

@@ -1,18 +1,20 @@
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
-import GlobalComponent from '@pluginjs/global-plugin'
-import { reflow, deepMerge } from '@pluginjs/utils'
+import GlobalComponent from '@pluginjs/global-component'
+import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML, query, remove } from '@pluginjs/dom'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -24,11 +26,12 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, { defaults: DEFAULTS })
 class Notice extends GlobalComponent {
   constructor(options = {}) {
     super(NAMESPACE)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.$element = parseHTML(this.createHtml())
 

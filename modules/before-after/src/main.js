@@ -1,19 +1,21 @@
 import Component from '@pluginjs/component'
 import { pointer, pointerEvent, touch } from '@pluginjs/feature'
-import { getTime, deepMerge, compose } from '@pluginjs/utils'
+import { getTime, compose } from '@pluginjs/utils'
 import { contentWidth, contentHeight, setStyle } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { query, find, append, parseHTML } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import easing from '@pluginjs/easing'
 import template from '@pluginjs/template'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -26,6 +28,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -34,8 +37,7 @@ class BeforeAfter extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     // Current state information for the drag operation.

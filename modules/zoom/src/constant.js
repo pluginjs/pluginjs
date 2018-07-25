@@ -33,7 +33,7 @@ export const methods = ['changePosition', 'destroy', 'enable', 'disable']
 
 export const defaults = {
   theme: null,
-  type: 'window', // lens   inner
+  mode: 'window', // lens   inner
   animation: true,
   level: 1, // 1.5 And 0.7
   // clickOpen: false,

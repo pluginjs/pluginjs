@@ -1,5 +1,6 @@
 import ToggleList from '../src/main'
 // import { defaults as DEFAULTS } from '../src/constant'
+// import { deepMerge } from '@pluginjs/utils'
 import generateHTMLSample from './fixtures/sample'
 
 const data = [

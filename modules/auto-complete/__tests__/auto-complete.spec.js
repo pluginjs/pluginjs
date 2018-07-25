@@ -1,4 +1,4 @@
-// import $ from 'jquery'
+//
 import AutoComplete from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'

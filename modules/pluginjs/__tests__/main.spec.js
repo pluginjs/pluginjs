@@ -1,7 +1,6 @@
-import $ from 'jquery'
-import { deepMerge } from '@pluginjs/utils'
 import Component from '@pluginjs/component'
 import Pj, { register, eventable, styleable } from '../../src/main'
+import { deepMerge } from '@pluginjs/utils'
 
 describe('As', () => {
   test('should have As', () => {
@@ -38,7 +37,7 @@ describe('As', () => {
       }
 
       val(value) {
-        if (typeof value !== undefined) {
+        if (typeof typeof value !== 'undefined') {
           this.value = value
         } else {
           return this.value
@@ -122,124 +121,6 @@ describe('As', () => {
         Test.setClasses(override)
 
         expect(Test.classes).toEqual(override)
-      })
-    })
-
-    describe('jquery constructor', () => {
-      let $element
-
-      beforeEach(() => {
-        Pj.register('test', Test, {
-          methods: ['get', 'getArg', 'getTwoArgs', 'value', 'public', 'destroy']
-        })
-
-        $element = $(document.createElement('div'))
-      })
-
-      describe('instanceId', () => {
-        test('should have instanceId', () => {
-          $element.asTest()
-          const api = $element.data('test')
-
-          expect(api.instanceId).toBeNumber()
-          expect(Pj.instances.test).toHaveLength(1)
-        })
-
-        test('should have different instanceId', () => {
-          $element.asTest()
-          const api = $element.data('test')
-          expect(api.instanceId).toBeNumber()
-
-          const $another = $(document.createElement('div')).asTest()
-          const another = $another.data('test')
-          expect(another.instanceId).toBeNumber()
-
-          expect(api.instanceId).not.toEqual(another.instanceId)
-        })
-      })
-
-      describe('instances', () => {
-        test('should be empty if no instance exists', () => {
-          expect(Pj.instances.test).toHaveLength(0)
-        })
-        test('should cache instances', () => {
-          $element.asTest()
-          expect(Pj.instances.test).toHaveLength(1)
-
-          $(document.createElement('div')).asTest()
-          expect(Pj.instances.test).toHaveLength(2)
-        })
-
-        test('should remove instance after destroy', () => {
-          const $another = $(document.createElement('div')).asTest()
-          $element.asTest()
-          expect(Pj.instances.test).toHaveLength(2)
-
-          $element.asTest('destroy')
-          expect(Pj.instances.test).toHaveLength(1)
-
-          $another.asTest('destroy')
-          expect(Pj.instances.test).toHaveLength(0)
-        })
-      })
-
-      describe('eventNameWithId()', () => {
-        let api
-
-        beforeEach(() => {
-          $element.asTest()
-          api = $element.data('test')
-        })
-
-        test('should return .namespace when no args filled', () => {
-          expect(api.eventNameWithId()).toEqual('.test-1')
-        })
-
-        test('should return event name with namespace', () => {
-          expect(api.eventNameWithId('click')).toEqual('click.test-1')
-        })
-
-        test('should work with multi events', () => {
-          expect(api.eventNameWithId('click touch')).toEqual(
-            'click.test-1 touch.test-1'
-          )
-        })
-      })
-
-      test('should works with jquery fn', () => {
-        expect($element.asTest()).toEqual($element)
-
-        const api = $element.data('test')
-
-        expect(api).toBeObject()
-        expect(api.options).toBeObject()
-      })
-
-      describe('api call', () => {
-        beforeEach(() => {
-          $element.asTest()
-        })
-
-        test('should not call methods that not defined in obj', () => {
-          expect($element.asTest('private')).toBeNil()
-        })
-
-        test('should call methods that defined in obj', () => {
-          expect($element.asTest('public')).toEqual($element)
-        })
-
-        test('should return the result if methods name contains get string', () => {
-          const api = $element.data('test')
-          expect($element.asTest('get')).toEqual(api.get())
-        })
-
-        test('should return the result correctly with args', () => {
-          const api = $element.data('test')
-          expect($element.asTest('getArg', 'test')).toEqual(api.getArg('test'))
-          expect($element.asTest('getTwoArgs', 1, 2)).toEqual(
-            api.getTwoArgs(1, 2)
-          )
-        })
       })
     })
   })

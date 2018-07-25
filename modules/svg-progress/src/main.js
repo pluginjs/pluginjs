@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { isSupportedSvg } from '@pluginjs/feature'
 import easing from '@pluginjs/easing'
 import is from '@pluginjs/is'
-import { getTime, deepMerge } from '@pluginjs/utils'
+import { getTime } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { append, parseHTML, query } from '@pluginjs/dom'
 import {
@@ -10,8 +10,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import SvgElement from './svgElement'
 import {
   classes as CLASSES,
@@ -25,6 +26,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -33,7 +35,7 @@ class SvgProgress extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     this.easing = easing.get(this.options.easing) || easing.get('ease')

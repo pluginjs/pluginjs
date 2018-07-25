@@ -1,4 +1,6 @@
 import is from '@pluginjs/is'
+import List from '@pluginjs/list'
+import { deepMerge } from '@pluginjs/utils'
 
 export const namespace = 'toggleList'
 
@@ -27,7 +29,7 @@ export const methods = [
   'destroy'
 ]
 
-export const defaults = {
+export const defaults = deepMerge(List.defaults, {
   theme: null,
   locale: 'en',
   localeFallbacks: true,
@@ -64,6 +66,6 @@ export const defaults = {
     }
     return ''
   }
-}
+})
 
 export const dependencies = ['toggle', 'list']

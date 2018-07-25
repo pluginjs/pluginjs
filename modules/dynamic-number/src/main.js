@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
-import { getTime, deepMerge } from '@pluginjs/utils'
-import { eventable, register, stateable } from '@pluginjs/pluginjs'
+import { getTime } from '@pluginjs/utils'
+import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
@@ -12,6 +12,7 @@ import formaters from './formaters'
 
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(
   NAMESPACE,
   {
@@ -24,7 +25,7 @@ class DynamicNumber extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.options.step = parseFloat(this.options.step, 10)
 
     this.first = this.element.getAttribute('aria-valuenow')

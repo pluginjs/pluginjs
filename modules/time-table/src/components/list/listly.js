@@ -24,7 +24,7 @@ class Listly {
 
   createEvents() {
     for (const key in this.items) {
-      if (this.items.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(this.items, key)) {
         const data = this.items[key].data
         const instance = new listEvent(data, this)
         this.items[key].instance = instance
@@ -35,7 +35,7 @@ class Listly {
   update() {
     //  xuanhuan   items  meiyou d gei ta hide
     for (const key in this.items) {
-      if (this.items.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(this.items, key)) {
         this.items[key].instance.update()
       }
     }

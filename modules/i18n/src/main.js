@@ -41,13 +41,13 @@ class I18N {
     return {
       translate(key, args = {}, locale = _locale) {
         let message = getMessage(key, locale)
-        if (message === undefined && _options.fallbacks) {
+        if (typeof message === 'undefined' && _options.fallbacks) {
           const locales = locale.split('-')
           if (locales.length > 1 && that.hasTranslation(locales[0])) {
             message = getMessage(key, locales[0])
           }
 
-          if (message === undefined) {
+          if (typeof message === 'undefined') {
             let fallbackLocale
             if (
               _options.fallbacks !== true &&

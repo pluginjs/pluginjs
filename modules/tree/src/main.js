@@ -1,6 +1,5 @@
 import Component from '@pluginjs/component'
 import is from '@pluginjs/is'
-import { deepMerge } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -10,8 +9,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import DataParser from './dataParser'
 import Node from './node'
 import HtmlParser from './htmlParser'
@@ -27,6 +27,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -35,7 +36,7 @@ export default class Tree extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     this.DATAPARSER = new DataParser(this.options, this)

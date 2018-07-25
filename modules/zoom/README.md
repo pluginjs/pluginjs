@@ -92,7 +92,7 @@ You can also save the instances to variable for further use.
 Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
-`"type"` | Set type | `window`
+`"mode"` | Set mode | `window`
 `"animation"` | Set animation | `true`
 `"level"` | Set level | `1`
 `"window"` | Set window | `{"clickOpen":false,"height":"400","width":"400","borderSize":"1","borderColor":"black","position":1,"offetY":0,"offetX":0,"lensSize":200,"lensBorderSize":1,"lensBorderColor":"","lensColor":"","lensOpacity":"","overlay":false,"overlayColor":"","overlayOpacity":""}`

@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import is from '@pluginjs/is'
 import template from '@pluginjs/template'
-import { debounce, deepMerge, compose } from '@pluginjs/utils'
+import { debounce, compose } from '@pluginjs/utils'
 import {
   query,
   queryAll,
@@ -18,13 +18,15 @@ import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle, setStyle, showElement, hideElement } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import Popper from 'popper.js'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -38,6 +40,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -47,8 +50,7 @@ class AutoComplete extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
     this.$element = this.element
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     wrap(
@@ -300,7 +302,6 @@ class AutoComplete extends Component {
             : parentWith(hasItemClass, target)
           this.$selected = $item
           this.close()
-          // console.log(getObjData('data', $item))
           this.trigger(EVENTS.CHANGE, getObjData('data', $item))
         }
       })
@@ -534,7 +535,6 @@ class AutoComplete extends Component {
     if (!hasClass(this.classes.OPEN, this.$panel)) {
       addClass(this.classes.OPEN, this.$element)
       addClass(this.classes.OPEN, this.$panel)
-      // console.log(this.$panel)
       this.enter('open')
 
       this.POPPER.scheduleUpdate()
@@ -568,7 +568,6 @@ class AutoComplete extends Component {
 
   set(value) {
     this.$element.value = value
-    // console.log(value)
   }
 
   get() {

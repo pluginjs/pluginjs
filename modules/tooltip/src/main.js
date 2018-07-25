@@ -7,13 +7,15 @@ import { getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { parseHTML, query, setObjData, getObjData } from '@pluginjs/dom'
 import { getUID, reflow, deepMerge } from '@pluginjs/utils'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   register,
   styleable,
   themeable,
   eventable,
-  stateable
-} from '@pluginjs/pluginjs'
+  stateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   namespace as NAMESPACE,
   defaults as DEFAULTS,
@@ -42,6 +44,7 @@ const Trigger = {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(
   NAMESPACE,
   {
@@ -67,9 +70,8 @@ class Tooltip extends Component {
 
     super(namespace, element)
 
-    this.options = deepMerge(defaults, options, this.getDataOptions())
-
-    this.initClasses(CLASSES)
+    this.initOptions(defaults, options)
+    this.initClasses(classes)
     this._timeout = 0
     this._activeTrigger = {}
     this.POPPER = null

@@ -11,9 +11,10 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
-import GlobalComponent from '@pluginjs/global-plugin'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
+import GlobalComponent from '@pluginjs/global-component'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -27,16 +28,18 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@register(NAMESPACE, { defaults: DEFAULTS })
+@optionable(false)
+@register(NAMESPACE, {
+  defaults: DEFAULTS
+})
 class Modal extends GlobalComponent {
   constructor(options = {}) {
     super(NAMESPACE)
     // this.options = deepMerge(window.Pj.modal.defaults, options);
-    this.options = deepMerge(DEFAULTS, options)
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.$element = parseHTML(this.createHtml())
     this.$container = query(`.${this.classes.CONTAINER}`, this.$element)
-    this.autoDestroy = this.options.autoDestroy
 
     this.initStates()
     this.setupI18n()
@@ -49,7 +52,7 @@ class Modal extends GlobalComponent {
     if (this.options.buttons) {
       const buttons = this.options.buttons
       for (const id in this.options.buttons) {
-        if (this.options.buttons.hasOwnProperty(id)) {  /* eslint-disable-line */
+        if (Object.prototype.hasOwnProperty.call(this.options.buttons, id)) {
           if (!buttons[id].class) {
             buttons[id].class = this.options.defaultButtonClass
           }
@@ -461,7 +464,7 @@ class Modal extends GlobalComponent {
     const length = Object.keys(buttons).length
     this.$buttons.innerHTML = ''
     for (const key in buttons) {
-      if (buttons.hasOwnProperty(key)) {  /* eslint-disable-line */
+      if (Object.prototype.hasOwnProperty.call(buttons, key)) {
         const btn = this._creatBtn(buttons, key, length)
         append(btn, this.$buttons)
       }

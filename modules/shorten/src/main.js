@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { removeClass, addClass, hasClass } from '@pluginjs/classes'
 import { parentWith, setObjData, query } from '@pluginjs/dom'
@@ -8,8 +8,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -22,6 +23,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -33,7 +35,7 @@ class Shorten extends Component {
     this.text = this.element.textContent
 
     // options
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.initStates()
 

@@ -1,5 +1,5 @@
-import { deepMerge } from '@pluginjs/utils'
 import { attr, queryAll } from '@pluginjs/dom'
+import { deepMerge } from '@pluginjs/utils'
 
 const PLUGINS = {}
 const DEFAULTS = {}
@@ -64,7 +64,7 @@ export default {
     } else if (selector instanceof Node) {
       elements = Array.of(selector)
     } else if (selector instanceof Array) {
-      elements = selector;
+      elements = selector
     }
 
     if (elements.length > 0) {

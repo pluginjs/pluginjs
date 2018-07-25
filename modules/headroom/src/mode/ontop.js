@@ -8,7 +8,6 @@ class ontop {
       top: api.classes.TOP,
       notTop: api.classes.NOTTOP
     }
-    // console.log('bind top')
     PjEmitter.on('scroll', this.update, this)
     this.update()
   }
@@ -63,9 +62,9 @@ class ontop {
   }
 
   // getScrollY() {
-  //   if (this.options.scroller.pageYOffset !== undefined) {
+  //   if (typeof this.options.scroller.pageYOffset !== "undefined") {
   //     return this.options.scroller.pageYOffset;
-  //   } else if (this.options.scroller.scrollTop !== undefined) {
+  //   } else if (typeof this.options.scroller.scrollTop !== "undefined") {
   //     return this.options.scroller.scrollTop;
   //   }
   //   return (document.documentElement ||

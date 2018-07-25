@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import GlobalComponent from '../../src'
 import Pj from '@pluginjs/pluginjs'
 

@@ -25,13 +25,14 @@ import {
 } from '@pluginjs/styled'
 import { removeClass, addClass, hasClass } from '@pluginjs/classes'
 import { removeEvent, bindEvent } from '@pluginjs/events'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
   themeable
-} from '@pluginjs/pluginjs'
+} from '@pluginjs/decorator'
 import Popper from 'popper.js'
 import {
   classes as CLASSES,

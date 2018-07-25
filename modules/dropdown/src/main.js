@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
@@ -17,13 +16,15 @@ import {
   parent,
   closest
 } from '@pluginjs/dom'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import Keyboard from './keyboard'
 import Popper from 'popper.js'
 import {
@@ -39,6 +40,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -47,11 +49,10 @@ import {
 class Dropdown extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    // console.log(this.element)
     this.parent = this.element.parentNode.parentNode
     this.$triggerBox = this.element.parentNode
     // options
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.firstClassName = this.$triggerBox.className
 
     // this.constraints = []
@@ -145,7 +146,6 @@ class Dropdown extends Component {
 
     if (this.options.select !== null) {
       this.set(this.options.select)
-      // console.log(this.options.select)
     }
 
     this.setupPopper()
@@ -490,10 +490,10 @@ class Dropdown extends Component {
   }
 
   set(value) {
-    if (value === undefined) {
+    if (typeof value === "undefined") {
       return
     }
-    
+
     if (this.options.imitateSelect) {
       this.text = null
 

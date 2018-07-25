@@ -1,0 +1,55 @@
+{
+  "name": "@pluginjs/global-component",
+  "description": "A workflow for modern frontend development.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/amazingSurge/plugin.js",
+  "repository": {
+    "url": "git@github.com:amazingSurge/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/amazingSurge/plugin.js/issues"
+  },
+  "version": "0.2.20",
+  "main": "dist/global-plugin.umd.js",
+  "module": "dist/global-plugin.esm.js",
+  "cjs": "dist/global-plugin.cjs.js",
+  "source": "src/main.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/component": "*"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "^4.0.0-beta.7",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "category": "core",
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  },
+  "title": "Plugin"
+}

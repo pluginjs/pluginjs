@@ -28,7 +28,7 @@ yargs
     bundler: yargs => {
       return yargs.positional('scriptName', {
         desc: 'Script name',
-        type: 'string',
+        mode: 'string',
         default: 'ls'
       })
     },

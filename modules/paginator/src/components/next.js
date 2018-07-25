@@ -1,8 +1,8 @@
 import templateEngine from '@pluginjs/template'
-import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query } from '@pluginjs/dom'
+import { deepMerge } from '@pluginjs/utils'
 
 class Next {
   constructor(instance) {

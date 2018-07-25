@@ -14,17 +14,18 @@ import {
   transformProperty,
   transition,
   transitionEndEvent,
-  transitionProperty
+  transitionProperty,
+  optionable
 } from '@pluginjs/feature'
 import is from '@pluginjs/is'
-import { convertPercentageToFloat, getTime, deepMerge } from '@pluginjs/utils'
+import { convertPercentageToFloat, getTime } from '@pluginjs/utils'
 import {
   eventable,
   register,
   stateable,
   styleable,
   themeable
-} from '@pluginjs/pluginjs'
+} from '@pluginjs/decorator'
 import Keyboard from './keyboard'
 import {
   classes as CLASSES,
@@ -38,6 +39,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -46,7 +48,7 @@ class Scrollbar extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     element.direction = this.options.direction
 

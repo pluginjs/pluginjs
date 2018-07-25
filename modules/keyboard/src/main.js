@@ -238,7 +238,7 @@ class Keyboard {
   }
 
   distribute(action, key, func) {
-    return func === null || func === undefined
+    return func === null || typeof func === 'undefined'
       ? this.off(action, key, func)
       : this.on(action, key, func)
   }

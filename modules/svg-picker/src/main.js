@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import {
@@ -24,8 +23,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -46,6 +46,7 @@ let DATA = null
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -54,8 +55,7 @@ let DATA = null
 class SvgPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.setupI18n()
 
@@ -251,7 +251,6 @@ class SvgPicker extends Component {
 
       query('input', this.$search).setAttribute('tabindex', 1)
       this.$manage.setAttribute('tabindex', 1)
-      // console.log(this.$types)
       this.$types.forEach(v => {
         v.setAttribute('tabindex', 1)
         this.$type = v
@@ -399,8 +398,6 @@ class SvgPicker extends Component {
 
       this.icons[v.type].push(v.id)
     })
-
-    // console.log(this.icons);
   }
 
   handleSearch() {
@@ -465,11 +462,9 @@ class SvgPicker extends Component {
         showElement($this)
       }
     })
-    return undefined
   }
 
   open(el) {
-    // console.log(el)
     this.$types.forEach(v => {
       const $this = v
       removeClass(this.classes.TYPEOPEN, $this)
@@ -539,7 +534,6 @@ class SvgPicker extends Component {
     }
 
     this.set(this.options.parse.call(this, value))
-    return undefined
   }
 
   getIconInfo(id) {

@@ -193,9 +193,7 @@ export const defaults = {
     invalidValue: '',
     zeroAlphaAsTransparent: true
   },
-  manage() {
-    // console.log('click manage');
-  },
+  manage() {},
   templates: {
     wrap() {
       return '<div class="{class}"></div>'

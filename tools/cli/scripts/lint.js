@@ -1,10 +1,6 @@
 const { execSync } = require('child_process')
-// const { logger } = require('@pluginjs/helper/logger')('script/lint')
 
 function lint(ctx) {
-  // if (!ctx.moduleName && ctx.category) {
-  //   logger.log('This feature is coming soon')
-  // }
   const execName = [
     {
       name: 'eslint',

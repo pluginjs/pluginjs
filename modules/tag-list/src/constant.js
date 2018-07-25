@@ -1,3 +1,6 @@
+import List from '@pluginjs/list'
+import { deepMerge } from '@pluginjs/utils'
+
 export const namespace = 'tagList'
 
 export const events = {
@@ -8,17 +11,17 @@ export const events = {
   DESTROY: 'destroy'
 }
 
-export const classes = {
+export const classes = deepMerge(List.classes, {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   ADD: '{namespace}-add',
   ADDINPUT: '{namespace}-input',
   ADDBTN: '{namespace}-btn'
-}
+})
 
 export const methods = ['value', 'enable', 'disable', 'destroy']
 
-export const defaults = {
+export const defaults = deepMerge(List.defaults, {
   theme: null,
   locale: 'en',
   localeFallbacks: true,
@@ -65,7 +68,7 @@ export const defaults = {
       </div>`
     }
   }
-}
+})
 
 export const dependencies = ['list']
 

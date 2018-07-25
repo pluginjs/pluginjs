@@ -4,7 +4,10 @@ class Can {
     if (typeof window !== 'undefined') {
       if (
         window.Modernizr &&
-        window.Modernizr.hasOwnProperty('csspositionsticky')
+        Object.prototype.hasOwnProperty.call(
+          window.Modernizr,
+          'csspositionsticky'
+        )
       ) {
         return (_canSticky = window.Modernizr.csspositionsticky)
       }

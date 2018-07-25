@@ -1,3 +1,6 @@
+import Popover from '@pluginjs/popover'
+import { deepMerge } from '@pluginjs/utils'
+
 export const namespace = 'popDialog'
 
 export const events = {
@@ -38,7 +41,7 @@ export const methods = [
   'destroy'
 ]
 
-export const defaults = {
+export const defaults = deepMerge(Popover.defaults, {
   hideOutClick: true,
   placement: 'left',
   constrainToWindow: false,
@@ -71,6 +74,6 @@ export const defaults = {
     }
   },
   buttons: {}
-}
+})
 
 export const dependencies = ['popover', 'tooltip']

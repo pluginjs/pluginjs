@@ -10,8 +10,7 @@ import { append, prepend, parseHTML, query } from '@pluginjs/dom'
 class Window extends Base {
   constructor(instance) {
     super(instance)
-    this.configuration = this.options[this.options.type]
-    // console.log('text', this.configuration)
+    this.configuration = this.options[this.options.mode]
     this.init()
   }
 
@@ -26,7 +25,7 @@ class Window extends Base {
     }
 
     this.setStyle()
-    addClass(this.getClass('{namespace}-typeWindow'), this.container)
+    addClass(this.getClass('{namespace}-modeWindow'), this.container)
     append(this.window, this.container)
 
     if (!this.configuration.overlay) {
@@ -75,42 +74,42 @@ class Window extends Base {
 
     bindEvent(
       {
-        type: 'mousemove',
+        mode: 'mousemove',
         handler: mousemoveCallback
       },
       this.container
     )
     bindEvent(
       {
-        type: 'mouseleave',
+        mode: 'mouseleave',
         handler: mouseleaveCallback
       },
       this.container
     )
     bindEvent(
       {
-        type: 'mouseenter',
+        mode: 'mouseenter',
         handler: mouseenterCallback
       },
       this.container
     )
     bindEvent(
       {
-        type: 'touchmove',
+        mode: 'touchmove',
         handler: mousemoveCallback
       },
       this.container
     )
     bindEvent(
       {
-        type: 'touchend',
+        mode: 'touchend',
         handler: mouseleaveCallback
       },
       this.container
     )
     bindEvent(
       {
-        type: 'touchstart',
+        mode: 'touchstart',
         handler: mouseenterCallback
       },
       this.container
@@ -120,7 +119,7 @@ class Window extends Base {
       this.openWindow = false
       bindEvent(
         {
-          type: 'click',
+          mode: 'click',
           handler: () => {
             if (this.openWindow) {
               // reflow(this.lens[0]);
@@ -166,8 +165,8 @@ class Window extends Base {
     }
   }
 
-  windowtrigger(type) {
-    if (type === 'show') {
+  windowtrigger(mode) {
+    if (mode === 'show') {
       // this.window.unbind()
       // removeEvent('animationend', this.window)
       this.windowShow()
@@ -185,7 +184,7 @@ class Window extends Base {
     this.addClass(this.window, 'out')
 
     bindEvent({
-      type: 'animationend',
+      mode: 'animationend',
       handler: this.callback.bind(this)
     })
     // this.window.on('animationend', this.callback.bind(this))
@@ -445,7 +444,6 @@ class Window extends Base {
     )
 
     const imgUrl = this.instance.element.src
-    // console.log('text', imgUrl)
     setStyle(
       {
         width,

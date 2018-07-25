@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import keyboard from '../src'
 
 describe('keyboard', () => {

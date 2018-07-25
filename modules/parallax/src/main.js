@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
-import { compose, curry, debounce, throttle, deepMerge } from '@pluginjs/utils'
+import { compose, curry, debounce, throttle } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { eventable, register, stateable } from '@pluginjs/pluginjs'
+import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
@@ -12,6 +12,7 @@ import Maybe from './maybe'
 
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -19,7 +20,7 @@ import Maybe from './maybe'
 class Parallax extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initStates()
     this.initialize()
   }
@@ -172,7 +173,6 @@ class Parallax extends Component {
 
   setDelay(type) {
     if (type !== 'debounce' && type !== 'throttle') {
-      // console.log(`${type} type is undefined`);
       return false
     }
     this.delayType = type

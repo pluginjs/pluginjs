@@ -1,6 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import { bindEvent } from '@pluginjs/events'
 import { dataset, parentWith, query } from '@pluginjs/dom'
 import { hasClass, removeClass } from '@pluginjs/classes'
@@ -10,7 +10,7 @@ import {
   stateable,
   styleable,
   themeable
-} from '@pluginjs/pluginjs'
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -21,20 +21,18 @@ import {
 } from './constant'
 import Popover from '@pluginjs/popover'
 
-const optionsExtendPopover = deepMerge(Popover.defaults, DEFAULTS)
-
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
 @register(NAMESPACE, {
-  defaults: optionsExtendPopover,
+  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
 class PopDialog extends Popover {
   constructor(element, options = {}) {
-    super(element, options, NAMESPACE, optionsExtendPopover, CLASSES)
+    super(element, options, NAMESPACE, DEFAULTS, CLASSES)
 
     if (is.emptyObject(this.options.buttons)) {
       this.options.buttons = { dismiss: { label: 'Dismiss' } }

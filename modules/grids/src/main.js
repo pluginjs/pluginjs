@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 
 import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
@@ -7,13 +6,15 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 
 import { append, prepend, find, finds, parent, children } from '@pluginjs/dom'
 
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 
 import templateEngine from '@pluginjs/template'
 import ImageLoader from '@pluginjs/image-loader'
@@ -46,6 +47,7 @@ import Carousel from './models/carousel'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(
   NAMESPACE,
   {
@@ -61,8 +63,7 @@ class Grids extends Component {
 
     this.namespace = NAMESPACE
     this.events = EVENTS
-    this.options = deepMerge({}, DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     // Init
@@ -502,7 +503,7 @@ class Grids extends Component {
       this.model = null
 
       if (this.options.theme) {
-        this.$element.removeClass(this.getThemeClass())
+        removeClass(this.getThemeClass(), this.element)
       }
 
       this.leave('initialized')

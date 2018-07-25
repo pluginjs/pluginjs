@@ -5,7 +5,7 @@ let position = 1
 const element = query('#postions .zoom')
 const api = Zoom.of(element, {
   position,
-  type: 'window',
+  mode: 'window',
   window: {
     overlay: true,
     overlayColor: '#333',

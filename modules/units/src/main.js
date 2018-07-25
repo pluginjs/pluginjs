@@ -1,4 +1,3 @@
-import { deepMerge } from '@pluginjs/utils'
 import Component from '@pluginjs/component'
 import DROPDOWN from '@pluginjs/dropdown'
 import is from '@pluginjs/is'
@@ -17,8 +16,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -32,6 +32,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -40,7 +41,7 @@ import {
 class Units extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     this.$wrap = parseHTML('<div></div>')
@@ -111,14 +112,11 @@ class Units extends Component {
     if (this.element.nodeName !== 'INPUT') {
       const $input = parseHTML('<input type="text"/>')
       insertBefore($input, this.element)
-      // this.$element.before($input)
 
       this.$wrap = this.element
       this.element = $input
     } else {
       insertAfter(this.$wrap, this.element)
-      // this.$wrap.insertBefore(this.$element).append(this.$element)
-      // this.$element.addClass(this.classes.NAMESPACE);
     }
   }
 
@@ -212,8 +210,6 @@ class Units extends Component {
       const $el = this.TRIGGER.element.closest(`.${this.classes.WRAP}`)
       addClass(this.classes.ACTIVE, $el)
       this.enter('open')
-
-      // this.checkDropdownDir()
     }
 
     this.TRIGGER.options.onHide = () => {
@@ -223,19 +219,6 @@ class Units extends Component {
       this.leave('open')
     }
   }
-
-  // checkDropdownDir () {
-  //   if (!this.is('open')) {
-  //     return
-  //   }
-  //   if (this.TRIGGERElement.hasClass('tether-target-attached-top')) {
-  //     this.$input.addClass(this.classes.TOP)
-  //     this.$input.removeClass(this.classes.BOTTOM)
-  //   } else {
-  //     this.$input.removeClass(this.classes.TOP)
-  //     this.$input.addClass(this.classes.BOTTOM)
-  //   }
-  // }
 
   unbind() {
     this.leave('bind')

@@ -85,16 +85,6 @@ Browser:
 ## API
 
 
-### Methods
-
-Methods are called on component instances through the component method itself.
-You can also save the instances to variable for further use.
-
-Name | Description
------|-----
-`"getDataOptions"` | Make plugin themeable
----
-
 ## Browser support
 
 Tested on all major browsers.

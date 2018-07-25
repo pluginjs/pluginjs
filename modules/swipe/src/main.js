@@ -1,6 +1,5 @@
 import anime from 'animejs'
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -18,8 +17,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import templateEngine from '@pluginjs/template'
 import {
   classes as CLASSES,
@@ -39,6 +39,7 @@ import Dots from '@pluginjs/dots'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -47,8 +48,7 @@ import Dots from '@pluginjs/dots'
 class Swipe extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge({}, DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     if (this.options.advanced.getItemInstances) {

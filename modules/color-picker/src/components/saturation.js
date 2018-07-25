@@ -1,4 +1,4 @@
-import core from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/pluginjs'
 import { parseHTML } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -50,17 +50,17 @@ class Saturation {
                 this.move([sizeX, sizeY])
               }
             },
-            core.doc
+            Pj.doc
           )
           bindEvent(
             {
               type: 'mouseup',
               handler: () => {
-                removeEvent('mousemove', core.doc)
-                // removeEvent('mouseup', core.doc)
+                removeEvent('mousemove', Pj.doc)
+                // removeEvent('mouseup', Pj.doc)
               }
             },
-            core.doc
+            Pj.doc
           )
           return null
         }
@@ -114,7 +114,7 @@ class Saturation {
 
     setStyle(
       {
-        backgroundColor: core.color.HSLtoHEX({
+        backgroundColor: Pj.color.HSLtoHEX({
           h: hue,
           s: 1,
           l: 0.5

@@ -1,12 +1,11 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
   register,
   stateable,
   styleable,
   themeable
-} from '@pluginjs/pluginjs'
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -21,6 +20,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(
   NAMESPACE,
   {
@@ -33,8 +33,7 @@ class {{Namespace}} extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.initStates()
     this.initialize()

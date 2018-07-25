@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose, deepMerge } from '@pluginjs/utils'
 import {
   parseHTML,
   query,
@@ -19,8 +19,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import PopDialog from '@pluginjs/pop-dialog'
 import Gmap from '@pluginjs/gmap'
 import {
@@ -38,6 +39,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -47,7 +49,7 @@ class MapPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
 
     this.initStates()
     this.initClasses(CLASSES)
@@ -602,7 +604,7 @@ class MapPicker extends Component {
       this.unbind()
 
       if (this.options.theme) {
-        // this.$wrapper.removeClass(this.getThemeClass());
+        // removeClass(this.getThemeClass(, this.$wrapper));
       }
       compose(
         unwrap,

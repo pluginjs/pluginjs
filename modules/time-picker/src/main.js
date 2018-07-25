@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import InputMask from '@pluginjs/input-mask'
@@ -19,8 +19,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -36,6 +37,7 @@ import { formatTime, splitTime, time2Minute } from './lib'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -45,7 +47,7 @@ class TimePicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     this.time = ''
@@ -85,8 +87,6 @@ class TimePicker extends Component {
     )
 
     this.$timePicker = this.element.parentNode
-    // console.log(this.element)
-    // console.log(this.$timePicker)
     this.$wrap = this.$timePicker.parentNode
     addClass(this.classes.WRAP, this.$wrap)
     this.$dropdownEl = query(`.${this.classes.DROPDOWN}`, this.$timePicker)
@@ -103,7 +103,6 @@ class TimePicker extends Component {
     }
 
     this.itemValues = []
-    // console.log(this.dropdown)
     this.dropdown.$items.forEach(item => {
       const text = item.textContent
       this.itemValues.push(text)
@@ -156,10 +155,6 @@ class TimePicker extends Component {
           value: `.${this.classes.DROPDOWN}`
         },
         handler: () => {
-          // console.log(this.time)
-          // console.log(this.get())
-          // console.log(this)
-          // console.log(this.dropdown)
           if (hasClass('pj-dropdown-trigger-active', this.$timeTrigger)) {
             if (!this.is('disabled')) {
               this.$remove.style.display = 'block'
@@ -230,7 +225,6 @@ class TimePicker extends Component {
 
   get() {
     return this.time
-    // console.log(this.time)
   }
 
   set(time) {
@@ -330,8 +324,6 @@ class TimePicker extends Component {
         handler: () => { /* eslint-disable-line */
           const time = this.$inputEl.value.trim()
           const timeList = this.getTimeList()
-
-          // console.log(this.time)
           if (timeList.indexOf(time) < 0) {
             this.dropdown.set(this.time)
             return false
@@ -349,8 +341,6 @@ class TimePicker extends Component {
           const [value] = e.detail.data
           this.markIndex = this.itemValues.indexOf(value)
           this.update(value)
-          // console.log(value)
-          // console.log(e.detail.data)
         }
       },
       this.element

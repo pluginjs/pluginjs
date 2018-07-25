@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, hideElement } from '@pluginjs/styled'
@@ -11,8 +10,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -25,6 +25,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -32,7 +33,7 @@ import {
 class Rate extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge({}, DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     if (this.options.theme) {
@@ -104,7 +105,6 @@ class Rate extends Component {
 
   verification() {
     if (this.element.tagName.toLowerCase() === 'input') {
-      // console.log('debug', this.element.dataset.min)
       if (this.element.dataset.min || this.element.dataset.min === 0) {
         const m = this.element.dataset.min
         const n = Number(m)
@@ -130,9 +130,9 @@ class Rate extends Component {
         type: this.eventName('mousemove'),
         handler: event => {
           const score = this._getScore(event)
-          if (this.hoverscore !== score && score !== undefined) { /* eslint-disable-line */
+          if (this.hoverscore !== score && typeof score !== "undefined") { /* eslint-disable-line */
             this.updateStar(score)
-            if (score !== this.hoverscore && score !== undefined) { /* eslint-disable-line */
+            if (score !== this.hoverscore && typeof score !== "undefined") { /* eslint-disable-line */
               this.changeHoverScore(score)
             }
           }
@@ -202,7 +202,7 @@ class Rate extends Component {
   }
 
   updateStar(score) {
-    if (score === undefined) { /* eslint-disable-line */
+    if (typeof score === 'undefined') {
       return
     }
 
@@ -222,7 +222,7 @@ class Rate extends Component {
       const fullStar = Math.floor(starNub)
       this.removeClassAll(this.classes.HALFSTARACTIVE)
       if (starNub > fullStar) {
-        // $(this.$stars[fullStar]).addClass(this.classes.HALFSTARACTIVE)
+        // addClass(this.classes.HALFSTARACTIVE, $(this.$stars[fullStar]))
         addClass(this.classes.HALFSTARACTIVE, this.stars[fullStar])
       }
 

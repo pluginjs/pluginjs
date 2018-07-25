@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import is from '@pluginjs/is'
-import { debounce, deepMerge, compose } from '@pluginjs/utils'
+import { debounce, compose } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -34,8 +34,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import Keyboard from './keyboard'
 // import Webfontloader from 'webfontloader';
 import {
@@ -58,6 +59,7 @@ let ACTIVATED = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -66,8 +68,7 @@ let ACTIVATED = {}
 class FontPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.setupI18n()
 
@@ -743,9 +744,6 @@ class FontPicker extends Component {
     })
 
     data.push({ label: localeText })
-
-    // console.log(this.$controller)
-    // console.log(this.$panel)
     this.$panel.append(this.$controller)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
     this.selectTrigger = query('.pj-dropdown-trigger', this.$selector)
@@ -976,7 +974,6 @@ class FontPicker extends Component {
   getIconName(sourceName) {
     const source = this.sources[sourceName.toLowerCase()]
     if (!source) {
-      // console.warn(`not font ${sourceName} source.`)
       return ''
     }
     const icon = source.icon
@@ -1074,7 +1071,7 @@ class FontPicker extends Component {
       this.unbind()
       removeClass(this.classes.ELEMENT, this.$fontPicker)
       if (this.options.theme) {
-        this.$this.options.theme.removeClass(this.getThemeClass())
+        removeClass(this.getThemeClass(), this.$fontPicker)
       }
 
       this.$dropdown.destroy()

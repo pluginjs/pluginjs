@@ -26,7 +26,7 @@ scripts:
   <script>
     var position = 1
     var zoomApi = Pj.zoom('#zoom_02', {
-      type: 'window',
+      mode: 'window',
       window: {
         position: position,
         overlay: true,
@@ -47,7 +47,7 @@ scripts:
   <img id="zoom_03" src="https://i.imgur.com/jnRTmfe.jpg" data-zoom-image="https://i.imgur.com/z9yzdPO.jpg"/>
   <script>
     Pj.zoom('#zoom_03', {
-      type: 'window',
+      mode: 'window',
       window: {
         position: 2,
         overlay: true,
@@ -58,20 +58,20 @@ scripts:
   </script>
 </section>
 <section>
-  <h3>type: inner</h3>
+  <h3>mode: inner</h3>
   <img id="zoom_04" src="../assets/small/image3.png" data-zoom-image="../../plugins/zoom/assets/large/image3.jpg"/>
   <script>
     Pj.zoom('#zoom_04', {
-      type: 'inner'
+      mode: 'inner'
     });
   </script>
 </section>
 <section>
-  <h3>type: lens</h3>
+  <h3>mode: lens</h3>
   <img id="zoom_06" src="../assets/small/image3.png" data-zoom-image="../../plugins/zoom/assets/large/image3.jpg"/>
   <script>
     Pj.zoom('#zoom_06', {
-      type: 'lens',
+      mode: 'lens',
       lens: {
         borderSize: 5,
         borderColor: '#fff',
@@ -85,7 +85,7 @@ scripts:
   <img id="zoom_08" src="https://i.imgur.com/jnRTmfe.jpg" data-zoom-image="https://i.imgur.com/z9yzdPO.jpg"/>
   <script>
     Pj.zoom('#zoom_08', {
-      type: 'window',
+      mode: 'window',
       window: {
         clickOpen: true,
         position: 2,
@@ -128,10 +128,10 @@ scripts:
       }
     });
     Pj.zoom('#zoom_12', {
-      type: 'inner'
+      mode: 'inner'
     });
     Pj.zoom('#zoom_13', {
-      type: 'lens',
+      mode: 'lens',
       lens: {
         borderSize: 5,
         borderColor: '#fff',

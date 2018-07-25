@@ -1,5 +1,3 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
 import ScrollProgress from '../../src/main'
 import { defaults as DEFAULTS } from '../../src/constant'
 

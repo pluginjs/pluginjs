@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import Emitter from '../../src'
 
 function getObjectSize(obj) {

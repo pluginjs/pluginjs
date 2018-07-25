@@ -1,17 +1,18 @@
 import Component from '@pluginjs/component'
-import { deepMerge, camelize } from '@pluginjs/utils'
+import { camelize } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import LOADING from './loading'
-import WINDOW from './type/window'
-import INNER from './type/inner'
-import LENS from './type/lens'
+import WINDOW from './mode/window'
+import INNER from './mode/inner'
+import LENS from './mode/lens'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -20,12 +21,13 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
-const TYPES = {}
+const MODES = {}
 
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -34,8 +36,7 @@ class Zoom extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-    this.events = EVENTS
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     if (this.options.theme) {
@@ -59,9 +60,7 @@ class Zoom extends Component {
     this.trigger(EVENTS.READY)
   }
 
-  bind() {
-    console.log('bind')
-  }
+  bind() {}
 
   refresh() {
     const newImg = document.createElement('img')
@@ -86,14 +85,14 @@ class Zoom extends Component {
   }
 
   startZoom() {
-    const type = this.options.type.toUpperCase()
-    if (typeof TYPES[type] !== 'undefined') {
-      this.modal = new TYPES[type](this)
+    const mode = this.options.mode.toUpperCase()
+    if (typeof MODES[mode] !== 'undefined') {
+      this.mode = new MODES[mode](this)
     }
   }
 
   unbind() {
-    return this.modal && this.modal.unbind()
+    return this.mode && this.mode.unbind()
   }
 
   enable() {
@@ -128,16 +127,16 @@ class Zoom extends Component {
   }
 
   changePosition(p) {
-    this.modal.changePosition(p)
+    this.mode.changePosition(p)
   }
 
-  static registerType(type, API) {
-    TYPES[type] = API
+  static registerMode(mode, API) {
+    MODES[mode] = API
   }
 }
 
-Zoom.registerType('WINDOW', WINDOW)
-Zoom.registerType('INNER', INNER)
-Zoom.registerType('LENS', LENS)
+Zoom.registerMode('WINDOW', WINDOW)
+Zoom.registerMode('INNER', INNER)
+Zoom.registerMode('LENS', LENS)
 
 export default Zoom

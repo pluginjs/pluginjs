@@ -1,15 +1,16 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import { deepMerge } from '@pluginjs/utils'
 import { addClass } from '@pluginjs/classes'
 import { append, parseHTML } from '@pluginjs/dom'
+import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -27,6 +28,7 @@ import Thumbnails from '@pluginjs/thumbnails'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(
   NAMESPACE,
   {
@@ -40,8 +42,7 @@ class Gallery extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.initStates()
     this.initialize()
@@ -49,14 +50,11 @@ class Gallery extends Component {
 
   initialize() {
     if (!this.options.data || this.options.data.length < 0) {
-      // console.error('NO DATA EXIST')
       return
     }
 
     this.data =
       this.options.data === 'html' ? this.parseHtml() : this.options.data
-
-    console.log(this.data)
     this.generate()
 
     this.enter('initialized')

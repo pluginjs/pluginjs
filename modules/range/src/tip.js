@@ -69,7 +69,10 @@ class Tip {
                 if (is.object(instance.options.replaceFirst)) {
                   for (const key in instance.options.replaceFirst) {
                     if (
-                      Object.hasOwnProperty(instance.options.replaceFirst, key)/* eslint-disable-line */
+                      Object.prototype.hasOwnProperty.call(
+                        instance.options.replaceFirst,
+                        key
+                      )
                     ) {
                       value = instance.options.replaceFirst[key]
                     }

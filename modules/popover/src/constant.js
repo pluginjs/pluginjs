@@ -1,3 +1,6 @@
+import Tooltip from '@pluginjs/tooltip'
+import { deepMerge } from '@pluginjs/utils'
+
 export const namespace = 'popover'
 
 export const events = {
@@ -33,7 +36,7 @@ export const methods = [
   'destroy'
 ]
 
-export const defaults = {
+export const defaults = deepMerge(Tooltip.defaults, {
   template() {
     return (
       '<div class="{classes.POPOVER} {custom}" role="tooltip">' +
@@ -60,8 +63,6 @@ export const defaults = {
   trigger: 'click', // hover focus, click, manual
   hideOutClick: true, // When clicking outside of the popover, trigger hide event
   placement: 'right' // top, bottom, left, right, top-start, top-end, bottom-start, bottom-end, left-start, left-end, right-start, right-end
-}
+})
 
 export const dependencies = ['tooltip']
-
-export const info = { version: '0.0.1' }

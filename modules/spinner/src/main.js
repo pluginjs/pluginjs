@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -10,8 +9,9 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import RULES from './rules'
 import {
   classes as CLASSES,
@@ -26,6 +26,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -35,7 +36,7 @@ class Spinner extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     if (this.options.rule) {
@@ -180,7 +181,7 @@ class Spinner extends Component {
     let width
 
     for (const key in this.options.unit) {
-      if (this.options.unit.hasOwnProperty(key)) {/* eslint-disable-line */
+      if (Object.prototype.hasOwnProperty.call(this.options.unit, key)) {
         data.push(key)
       }
     }
@@ -196,7 +197,6 @@ class Spinner extends Component {
     }
 
     return new UNITS(this.element, { /* eslint-disable-line */
-
       data,
       width
     })

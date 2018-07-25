@@ -1,8 +1,14 @@
 import Component from '@pluginjs/component'
-import { compose, deepMerge } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import { addClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { eventable, register, stateable, styleable } from '@pluginjs/pluginjs'
+import {
+  eventable,
+  register,
+  stateable,
+  styleable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -23,6 +29,7 @@ import {
 @eventable(EVENTS)
 @styleable(CLASSES)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -30,7 +37,7 @@ import {
 class InputMask extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     addClass(this.classes.INPUT, this.element)
     addClass(this.classes.INPUTMODE, this.element)

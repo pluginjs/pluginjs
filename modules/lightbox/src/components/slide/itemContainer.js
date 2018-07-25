@@ -20,9 +20,7 @@ class ItemContainer {
   init() {
     this.item = this.instance.getElement('item')
     this.inner = query(`.${this.classes.ITEMINNER}`, this.item)
-    // this.instance.lastType = ''
     this.lastType = 'null'
-    // this.uptate()
     this.updateType = {
       image: () => {
         this.updateImage()
@@ -123,7 +121,7 @@ class ItemContainer {
   }
 
   updateImage() {
-    if (this.image === undefined) {
+    if (typeof this.image === 'undefined') {
       this.image = new Image(this.instance)
       if (this.type !== this.lastType || this.lastType === 'null') {
         this.removeType[this.lastType]()
@@ -140,7 +138,7 @@ class ItemContainer {
   }
 
   updateVideo() {
-    if (this.video === undefined) {
+    if (typeof this.video === 'undefined') {
       this.video = new Video(this.instance)
       if (this.type !== this.lastType || this.lastType === 'null') {
         this.removeType[this.lastType]()
@@ -157,7 +155,7 @@ class ItemContainer {
   }
 
   updateMap() {
-    if (this.map === undefined) {
+    if (typeof this.map === 'undefined') {
       this.map = new Map(this.instance)
       if (this.type !== this.lastType || this.lastType === 'null') {
         this.removeType[this.lastType]()
@@ -170,7 +168,7 @@ class ItemContainer {
   }
 
   updateIframe() {
-    if (this.iframe === undefined) {
+    if (typeof this.iframe === 'undefined') {
       this.iframe = new Iframe(this.instance)
       if (this.type !== this.lastType || this.lastType === 'null') {
         this.removeType[this.lastType]()
@@ -183,7 +181,7 @@ class ItemContainer {
   }
 
   updateInline() {
-    if (this.inline === undefined) {
+    if (typeof this.inline === 'undefined') {
       this.inline = new Inline(this.instance)
       if (this.type !== this.lastType || this.lastType === 'null') {
         this.removeType[this.lastType]()

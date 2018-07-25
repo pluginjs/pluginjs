@@ -1,6 +1,11 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
-import { eventable, register, stateable, styleable } from '@pluginjs/pluginjs'
+import {
+  eventable,
+  register,
+  stateable,
+  styleable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -17,6 +22,7 @@ const sources = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -25,7 +31,7 @@ class Video extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.initStates()
     this.initialize()

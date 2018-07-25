@@ -1,16 +1,18 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import { addClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import Video from '@pluginjs/video'
 import { append, parseHTML, query } from '@pluginjs/dom'
-import Pj, {
+import { deepMerge } from '@pluginjs/utils'
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
-  styleable
-} from '@pluginjs/pluginjs'
+  styleable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -22,6 +24,7 @@ import {
 
 @styleable(CLASSES)
 @eventable(EVENTS)
+@optionable(true)
 @stateable()
 @register(NAMESPACE, {
   defaults: DEFAULTS,
@@ -31,7 +34,7 @@ import {
 class BgVideo extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options)
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     this.initStates()

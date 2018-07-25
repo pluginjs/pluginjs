@@ -20,13 +20,13 @@ const template = (function() {
         return i
       }
 
-      if (args.hasOwnProperty(i)) {
+      if (Object.prototype.hasOwnProperty.call(args, i)) {
         result = args[i]
       } else if (i.indexOf('.') !== -1) {
         result = getValueByPath(args, i)
       }
 
-      if (result === null || result === undefined) {
+      if (result === null || typeof result === 'undefined') {
         return ''
       }
 

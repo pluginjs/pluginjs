@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { parseHTML, query, insertAfter } from '@pluginjs/dom'
@@ -13,8 +13,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -38,6 +39,7 @@ import TextTransform from './textTransform'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -47,7 +49,7 @@ class FontEditor extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     hideElement(addClass(`${this.classes.NAMESPACE}-input`, this.element))
@@ -176,7 +178,7 @@ class FontEditor extends Component {
     // type: this.eventName('click'),
     // handler: () => {
     //   that.clear(true);
-    //   that.$wrap.removeClass(that.classes.EXSIT).addClass(that.classes.EMPTY);
+    //   addClass(that.classes.EMPTY, removeClass(that.classes.EXSIT, that.$wrap));
     //   return false;
     // });
 
@@ -196,7 +198,7 @@ class FontEditor extends Component {
         type: this.eventName('click'),
         handler: () => {
           // if ($.isEmptyObject(that.value)) {
-          //   that.$wrap.removeClass(that.classes.EXSIT).addClass(that.classes.EMPTY);
+          //   addClass(that.classes.EMPTY, removeClass(that.classes.EXSIT, that.$wrap));
           // }
           this.update()
           return

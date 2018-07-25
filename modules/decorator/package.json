@@ -1,20 +1,20 @@
 {
-  "name": "@pluginjs/global-plugin",
-  "description": "A workflow for modern frontend development.",
+  "name": "@pluginjs/decorator",
+  "description": "A flexible modern decorator js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/amazingSurge/plugin.js",
+  "homepage": "https://github.com/pluginjs/plugin.js",
   "repository": {
-    "url": "git@github.com:amazingSurge/plugin.js.git",
+    "url": "git@github.com:pluginjs/plugin.js.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/amazingSurge/plugin.js/issues"
+    "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.20",
-  "main": "dist/global-plugin.umd.js",
-  "module": "dist/global-plugin.esm.js",
-  "cjs": "dist/global-plugin.cjs.js",
+  "version": "0.5.0",
+  "main": "dist/decorator.umd.js",
+  "module": "dist/decorator.esm.js",
+  "cjs": "dist/decorator.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",
@@ -27,7 +27,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/component": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/utils": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/i18n": "*",
+    "@pluginjs/global-component": "*",
+    "@pluginjs/pluginjs": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -50,6 +56,5 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  },
-  "title": "Plugin"
+  }
 }

@@ -1,11 +1,11 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
+import { deepMerge } from '@pluginjs/utils'
 import {
   append,
   parseHTML,
@@ -13,7 +13,8 @@ import {
   unwrap,
   wrap,
   children,
-  insertBefore
+  insertBefore,
+  optionable
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -21,7 +22,7 @@ import {
   stateable,
   styleable,
   themeable
-} from '@pluginjs/pluginjs'
+} from '@pluginjs/decorator'
 import Keyboard from './keyboard'
 import Search from './search'
 import {
@@ -36,6 +37,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -45,8 +47,7 @@ class Select extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.initStates()
     this.initialize()
@@ -632,7 +633,7 @@ class Select extends Component {
   }
 
   query(data, value, name = 'label', nest = true) {
-    if (value.length === 0 || value === null || value === undefined) {
+    if (value.length === 0 || value === null || is.undefined(value)) {
       return data
     }
     const newData = []

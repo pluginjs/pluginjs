@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import {
   find,
   finds,
@@ -14,14 +13,16 @@ import {
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent, trigger } from '@pluginjs/events'
 import is from '@pluginjs/is'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -40,6 +41,7 @@ let counter = 0
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -48,7 +50,7 @@ class Wizard extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     setObjData(NAMESPACE, this, this.element)
     this.$steps = finds(this.options.step, this.element)

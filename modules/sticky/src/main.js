@@ -1,9 +1,14 @@
-import { deepMerge } from '@pluginjs/utils'
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { canSticky } from '@pluginjs/feature'
-import { eventable, register, stateable, styleable } from '@pluginjs/pluginjs'
+import {
+  eventable,
+  register,
+  stateable,
+  styleable,
+  optionable
+} from '@pluginjs/decorator'
 import STICKYTOP from './stickyType/stickyTop'
 import STICKYBOTTOM from './stickyType/stickyBottom'
 import {
@@ -19,6 +24,7 @@ const TYPES = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -26,8 +32,7 @@ const TYPES = {}
 class Sticky extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.initStates()
     this.EVENTS = EVENTS

@@ -49,7 +49,7 @@ class Search {
       value === this.value ||
       ((value.length === 0 || value === ' ') &&
         (this.value === null ||
-          this.value === undefined ||
+          typeof this.value === 'undefined' ||
           this.value.length === 0))
     ) {
       return

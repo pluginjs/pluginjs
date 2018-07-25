@@ -1,9 +1,9 @@
-import { deepMerge } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import { query, append, prepend, parseHTML } from '@pluginjs/dom'
 import is from '@pluginjs/is'
 import { updateDomValue } from '../util'
 import { labelMap as LABELMAP } from '../constant'
+import { deepMerge } from '@pluginjs/utils'
 
 class Flip {
   constructor(instance) {

@@ -9,7 +9,7 @@ import { append, parseHTML } from '@pluginjs/dom'
 class Lens extends Base {
   constructor(instance) {
     super(instance)
-    this.configuration = this.options[this.options.type]
+    this.configuration = this.options[this.options.mode]
     this.init()
   }
 
@@ -18,7 +18,7 @@ class Lens extends Base {
     this.lensImage = parseHTML(this.creatHTML('lensImage'))
     append(this.lensImage, this.lens)
     append(this.lens, this.container)
-    addClass(this.getClass('{namespace}-typeLens'), this.container)
+    addClass(this.getClass('{namespace}-modeLens'), this.container)
     this.setStyle()
 
     const offset = this.getElementOffset()
@@ -145,7 +145,7 @@ class Lens extends Base {
         this.addClass(this.lens, 'out')
         bindEvent(
           {
-            type: 'animationend',
+            mode: 'animationend',
             handler: this.callback.bind(this)
           },
           this.lens

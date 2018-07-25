@@ -1,13 +1,13 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import { addClass } from '@pluginjs/classes'
 import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -27,6 +27,7 @@ const mode = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(
   NAMESPACE,
   {
@@ -38,7 +39,7 @@ const mode = {}
 class Headroom extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     this.initStates()
@@ -47,7 +48,6 @@ class Headroom extends Component {
 
   initialize() {
     if (typeof mode[this.options.type] !== 'undefined') {
-      // console.log('debug', this.options.type)
       this.modal = new mode[this.options.type](this)
     }
     addClass(this.classes.NAMESPACE, this.element)

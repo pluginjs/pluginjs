@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import { parseHTML, insertAfter, query } from '@pluginjs/dom'
 import { hideElement, showElement, setStyle } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -13,8 +13,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import Attachment from './attachment'
 import Position from './position'
 import Repeat from './repeat'
@@ -34,6 +35,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -43,7 +45,7 @@ class BgPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge({}, DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     addClass(this.classes.INPUT, this.element)

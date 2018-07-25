@@ -6,9 +6,11 @@ export const deepClone = obj => {
   }
   return JSON.parse(JSON.stringify(obj))
 }
+
 export function nub(arr) {
   return Array.from(new Set(arr))
 }
+
 export function isPlainObject(data) {
   if (typeof data !== 'object') {
     return false
@@ -28,6 +30,7 @@ export function isPlainObject(data) {
 
   return true
 }
+
 function deepMergeTwo(x, y) {
   if (
     (isPlainObject(y) && isPlainObject(x)) ||
@@ -69,9 +72,11 @@ function deepMergeTwo(x, y) {
   }
   return y
 }
+
 function isObject(obj) {
   return Object(obj) === obj
 }
+
 export function deepMerge(...args) {
   return args.filter(isObject).reduce(deepMergeTwo)
 }
@@ -119,7 +124,7 @@ export function arraysEqual(a, b) {
   if (a === b) {
     return true
   }
-  if (a === undefined || b === undefined) {
+  if (typeof a === 'undefined' || typeof b === 'undefined') {
     return false
   }
   if (a.length !== b.length) {
@@ -229,7 +234,7 @@ export function throttle(func, delay) {
     running = false
   }
 
-  if (delay !== undefined || delay !== null) {
+  if (typeof delay !== 'undefined' || delay !== null) {
     return (...args) => {
       const that = this
 
@@ -283,6 +288,7 @@ export function fromPairs(arr) {
     {}
   )
 }
+
 export function mergeWith(obj1, obj2, customizer) {
   return Object.entries(obj1).reduce(
     (r, [k, v]) => ({

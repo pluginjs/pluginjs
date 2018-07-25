@@ -1,4 +1,4 @@
-import core from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/pluginjs'
 import { hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { parseHTML, append } from '@pluginjs/dom'
@@ -47,18 +47,18 @@ class Alpha {
                 this.move(size)
               }
             },
-            core.doc
+            Pj.doc
           )
 
           bindEvent(
             {
               type: 'mouseup',
               handler: () => {
-                removeEvent('mousemove', core.doc)
-                // removeEvent('mouseup', core.doc)
+                removeEvent('mousemove', Pj.doc)
+                // removeEvent('mouseup', Pj.doc)
               }
             },
-            core.doc
+            Pj.doc
           )
 
           return null

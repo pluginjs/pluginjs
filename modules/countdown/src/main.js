@@ -1,6 +1,12 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
-import { register, stateable, styleable, eventable } from '@pluginjs/pluginjs'
+import {
+  register,
+  stateable,
+  styleable,
+  eventable,
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import is from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
@@ -20,9 +26,11 @@ import Progress from './modes/progress'
 
 const MODES = {}
 
+@themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -31,11 +39,17 @@ class CountDown extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
 
     this.$counters = this.options.format.split(/,|，|\s+/)
 
     this.initClasses(CLASSES)
+
+    // theme
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.element)
+    }
+
     this.initStates()
     this.initialize()
     this.trigger(EVENTS.READY)

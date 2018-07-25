@@ -1,3 +1,6 @@
+import List from '@pluginjs/list'
+import { deepMerge } from '@pluginjs/utils'
+
 export const namespace = 'itemList'
 
 export const events = {
@@ -11,7 +14,7 @@ export const events = {
   CLONE: 'clone'
 }
 
-export const classes = {
+export const classes = deepMerge(List.classes, {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   ADD: '{namespace}-add',
@@ -19,7 +22,7 @@ export const classes = {
   SAVE: '{namespace}-save',
   CLONE: '{namespace}-item-clone',
   DISABLED: '{namespace}-disabled'
-}
+})
 
 export const methods = []
 

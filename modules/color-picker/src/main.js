@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -23,14 +23,16 @@ import {
 import Tooltip from '@pluginjs/tooltip'
 import Scrollable from '@pluginjs/scrollable'
 import Popper from 'popper.js'
-import Pj, {
+import Pj from '@pluginjs/pluginjs'
+import {
   eventable,
   register,
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import color from '@pluginjs/color'
 import Alpha from './components/alpha'
 import Preview from './components/preview'
@@ -56,6 +58,7 @@ let DATA = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -65,7 +68,7 @@ class ColorPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
     // options
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     if (options.module) {
       this.options.module = options.module
     }
@@ -631,8 +634,6 @@ class ColorPicker extends Component {
         type: this.eventName('click'),
         identity: { type: 'selector', value: `.${this.classes.OK}` },
         handler: () => {
-          console.log(this.oldColor)
-          console.log(this.color)
           if (this.is('disabled')) {
             return false
           }
@@ -654,7 +655,6 @@ class ColorPicker extends Component {
         type: this.eventName('click'),
         identity: { type: 'selector', value: `.${this.classes.CANCEL}` },
         handler: () => {
-          console.log(this.oldColor)
           if (this.is('disabled')) {
             return false
           }
@@ -784,9 +784,6 @@ class ColorPicker extends Component {
     this.trigger(EVENTS.OPENPANEL)
 
     this.oldColor = this.color
-
-    console.log(this.color)
-    console.log(this.oldColor)
   }
 
   closePanel() {
@@ -911,11 +908,7 @@ class ColorPicker extends Component {
     if (this.module === 'gradient' && this.is('noSelectedMarker')) {
       return false
     }
-    // console.log(this.color)
-    // console.log(this.module)
-    console.log(this.info)
     this.color = this.info[this.module]
-    // console.log(this.color)
     if (this.color === '') {
       this.color = 'transparent'
     }
@@ -933,9 +926,7 @@ class ColorPicker extends Component {
     if (this.module === 'gradient' && this.is('noSelectedMarker')) {
       return false
     }
-    console.log(val)
     this.info[this.module] = val
-    console.log(this.info)
     this.element.value = val
     return null
   }
@@ -1001,7 +992,6 @@ class ColorPicker extends Component {
       this.unbind()
       this.POPPER.destroy()
       empty(this.element)
-      // console.log(this.element)
       this.element.className = this.firstClassName
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))

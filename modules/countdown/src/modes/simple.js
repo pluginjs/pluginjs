@@ -1,10 +1,10 @@
-import { deepMerge } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import { append, parseHTML, prepend } from '@pluginjs/dom'
 import { labelMap as LABELMAP } from '../constant'
 import { updateDomValue } from '../util'
+import { deepMerge } from '@pluginjs/utils'
 
-class simple {
+class Simple {
   constructor(instance) {
     this.options = deepMerge(instance.options.modes.simple)
     this.instance = instance
@@ -70,6 +70,6 @@ class simple {
   }
 }
 
-simple.classes = { simple: '{namespace}-simple' }
+Simple.classes = { simple: '{namespace}-simple' }
 
-export default simple
+export default Simple

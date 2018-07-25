@@ -97,7 +97,6 @@ class Vimeo {
     const vimeoApiReady = setInterval(() => {
       if (count > 50) {
         clearInterval(vimeoApiReady)
-        // console.log('loadApi error')
         this.instance.destroy()
       }
       count++

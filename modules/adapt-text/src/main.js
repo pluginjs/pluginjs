@@ -1,9 +1,10 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import { setStyle, getStyle, contentWidth } from '@pluginjs/styled'
 import { parent } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import Pj, { eventable, register, stateable } from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/pluginjs'
+import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
@@ -16,6 +17,7 @@ let viewportWidth = Pj.windowWidth
 
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -23,7 +25,7 @@ let viewportWidth = Pj.windowWidth
 class AdaptText extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
 
     const display = getStyle('display', this.element)
     this.inline = display === 'inline' || Boolean(display === 'inline-block')

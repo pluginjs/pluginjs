@@ -80,7 +80,6 @@ export const defaults = {
   },
   onChange() {
     if (this.dataset.linkable !== false) {
-      // console.log('this', this.autofocus)
       // document.location.href = this.value
     }
   }

@@ -1,9 +1,10 @@
 import Component from '@pluginjs/component'
-import { debounce, deepMerge } from '@pluginjs/utils'
+import { debounce } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { offset } from '@pluginjs/styled'
 import { attr, queryAll, query } from '@pluginjs/dom'
-import Pj, { eventable, register, stateable } from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/pluginjs'
+import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
@@ -13,6 +14,7 @@ import {
 
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -20,7 +22,7 @@ import {
 class ScrollSpy extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
 
     this.initStates()
     this.initialize()
@@ -84,7 +86,6 @@ class ScrollSpy extends Component {
           offset: _offset
         }
       }
-      // console.warn('MenuSpy warning: %s not found on page.', element.href);
       return undefined
     })
 

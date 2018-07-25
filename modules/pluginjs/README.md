@@ -8,12 +8,8 @@
 
 ## API
 
-- register
-- stateable
-- eventable
-- themeable
-- styleable
-- translateable
+- get
+- has
 
 ## Browser support
 

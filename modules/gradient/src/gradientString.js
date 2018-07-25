@@ -201,7 +201,7 @@ export default {
         keyword = util.reverseDirection(keyword)
       }
       keyword = `to ${keyword}`
-      if (keywordAngleMap.hasOwnProperty(keyword)) {
+      if (Object.prototype.hasOwnProperty.call(keywordAngleMap, keyword)) {
         string = keywordAngleMap[keyword]
       }
     }
@@ -228,7 +228,10 @@ export default {
 
   formatAngle(value, notStandard, useKeyword) {
     value = parseInt(value, 10)
-    if (useKeyword && angleKeywordMap.hasOwnProperty(value)) {
+    if (
+      useKeyword &&
+      Object.prototype.hasOwnProperty.call(angleKeywordMap, value)
+    ) {
       value = angleKeywordMap[value]
       if (notStandard) {
         value = util.reverseDirection(value.substr(3))

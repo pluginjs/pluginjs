@@ -1,7 +1,7 @@
 import templateEngine from '@pluginjs/template'
-import { deepMerge } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query } from '@pluginjs/dom'
+import { deepMerge } from '@pluginjs/utils'
 
 class Jumper {
   constructor(instance) {

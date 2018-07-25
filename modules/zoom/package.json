@@ -6,7 +6,7 @@
   "homepage": "https://github.com/pluginjs/plugin.js",
   "repository": {
     "url": "git@github.com:pluginjs/plugin.js.git",
-    "type": "git"
+    "mode": "git"
   },
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"

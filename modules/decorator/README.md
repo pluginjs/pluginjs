@@ -1,12 +1,19 @@
-# GlobalPlugin
+# Decorator
 
-[![npm package](https://img.shields.io/npm/v/@pluginjs/global-plugin.svg)](https://www.npmjs.com/package/@pluginjs/global-plugin)
+[![npm package](https://img.shields.io/npm/v/@pluginjs/decorator.svg)](https://www.npmjs.com/package/@pluginjs/decorator)
 
-`global-plugin` is a utility JavaScript library for global pluginjs library.
+`decorator` is a class decorator library for extend component class.
 
 ---
 
+## API
 
+- register
+- eventable
+- stateable
+- styleable
+- themeable
+- translateable
 
 ## Browser support
 
@@ -18,9 +25,9 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/global-plugin is Licensed under [the GPL-v3 license](LICENSE).
+@pluginjs/decorator is Licensed under [the GPL-v3 license](LICENSE).
 
-If you want to use @pluginjs/global-plugin project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+If you want to use @pluginjs/decorator project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
 
 For purchase an Commercial License, contact us purchase@thecreation.co.
 

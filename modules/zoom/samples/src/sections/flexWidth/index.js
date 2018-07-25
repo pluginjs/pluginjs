@@ -14,12 +14,12 @@ Zoom.of(element, {
 
 const element2 = query('#flexWidth .zoom_2')
 Zoom.of(element2, {
-  type: 'inner'
+  mode: 'inner'
 })
 
 const element3 = query('#flexWidth .zoom_3')
 Zoom.of(element3, {
-  type: 'lens',
+  mode: 'lens',
   lens: {
     borderSize: 5,
     borderColor: '#fff',

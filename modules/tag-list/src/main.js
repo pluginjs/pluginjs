@@ -1,6 +1,5 @@
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
-import { deepMerge } from '@pluginjs/utils'
 import { query, parseHTML, setObjData, parent } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -9,8 +8,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -22,16 +22,14 @@ import {
 } from './constant'
 import List from '@pluginjs/list'
 
-// const List = Pj.get('list')
-const optionsExtendList = deepMerge(List.defaults, DEFAULTS)
-
 @translateable(TRANSLATIONS)
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
-  defaults: optionsExtendList,
+  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -39,9 +37,8 @@ class TagList extends List {
   constructor(element, options = {}) {
     super(element, options)
 
-    this.options = deepMerge(optionsExtendList, options, this.getDataOptions())
-    this.classes = { ...this.classes, ...CLASSES }
-    this.initClasses(this.classes)
+    this.initOptions(DEFAULTS, options)
+    this.initClasses(CLASSES)
     this.setupI18n()
 
     this.$wrapper = parent(this.element)
@@ -113,19 +110,21 @@ class TagList extends List {
   }
 
   enable() {
-    super.enable()
-    if (!this.element.disabled) {
+    if (this.is('disabled')) {
       this.$addBtn.disabled = false
       this.$addInput.disabled = false
     }
+
+    super.enable()
   }
 
   disable() {
-    super.disable()
-    if (this.element.disabled) {
+    if (!this.is('disabled')) {
       this.$addBtn.disabled = true
       this.$addInput.disabled = true
     }
+
+    super.disable()
   }
 }
 

@@ -40,7 +40,6 @@ class Item {
     this.row = parseInt(this.opts.row, 10) || 1
 
     if (this.col > 2 || this.row > 2) {
-      // console.error('the row && col no more than 2.')
       return false
     }
 

@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -11,7 +10,8 @@ import {
   getObjData,
   unwrap,
   wrap,
-  prepend
+  prepend,
+  optionable
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -19,7 +19,7 @@ import {
   stateable,
   styleable,
   themeable
-} from '@pluginjs/pluginjs'
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -32,6 +32,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -40,7 +41,7 @@ class Radio extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
     this.$element = this.element
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.$group = this.options.getGroup.call(this)
     this.initClasses(CLASSES)
     this.initStates()
@@ -227,7 +228,7 @@ class Radio extends Component {
     if (!this.is('disabled')) {
       this.$element.disabled = true
       addClass(this.classes.DISABLED, this.$wrap)
-      // this.wrap.addClass(this.classes.DISABLED);
+      // addClass(this.classes.DISABLED, this.wrap);
       // this.$element.prop('disabled', true);
       this.enter('disabled')
     }

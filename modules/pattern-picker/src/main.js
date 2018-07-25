@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose } from '@pluginjs/utils'
+import { compose } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -25,8 +25,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -44,6 +45,7 @@ let DATA = null
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -52,8 +54,7 @@ let DATA = null
 class PatternPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
-
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
     addClass(this.classes.NAMESPACE, this.element)
@@ -61,7 +62,6 @@ class PatternPicker extends Component {
     this.setupI18n()
 
     this.imgs = DATA
-    console.log(DATA)
     this.data = {}
 
     this.foreColor = ''
@@ -112,9 +112,6 @@ class PatternPicker extends Component {
       `.${this.classes.SELECTORLIST} ul`,
       this.$editPanel.MODAL.$content
     )
-    // console.log(this.$editPanel)
-    // console.log(this.$editPanel.MODAL.$content)
-    // console.log(this.$selectorList)
     this.$scrollable = Scrollable.of(
       closest(`.${this.classes.SELECTORLIST}`, this.$selectorList),
       {
@@ -274,7 +271,6 @@ class PatternPicker extends Component {
   }
 
   render() {
-    console.log(this.imgs)
     Object.entries(this.imgs).forEach(([key, val]) => {
       const $img = parseHTML(
         template.compile(this.options.templates.item())({
@@ -577,7 +573,6 @@ class PatternPicker extends Component {
       el.remove()
     )
     this.imgs = data
-    console.log(data)
     this.render()
   }
 

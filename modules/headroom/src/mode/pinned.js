@@ -14,7 +14,6 @@ class pinned {
     } else if (typeof this.options.offset === 'string') {
       this.offset = this.setScrollOffset()
     } else {
-      // console.info('Invalid offset:', this.options.offset);
       return
     }
     ScrollDir.on(this.update, this)

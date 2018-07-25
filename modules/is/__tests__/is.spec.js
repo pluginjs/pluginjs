@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import is from '../src'
 
 /* Credit to http://is.js.org */

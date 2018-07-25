@@ -4,9 +4,10 @@ import {
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
-import { compose, curry, deepMerge } from '@pluginjs/utils'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
+import { compose, curry } from '@pluginjs/utils'
 import { attr, append, children, query } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass } from '@pluginjs/classes'
@@ -41,6 +42,7 @@ const Store = class {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -52,7 +54,7 @@ class TableSort extends Component {
 
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     addClass(this.classes.NAMESPACE, this.element)
     this.initStates()

@@ -1,18 +1,19 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import Units from '@pluginjs/units'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { getStyle, getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
+import { deepMerge } from '@pluginjs/utils'
 import { append, parseHTML, insertAfter, Each } from '@pluginjs/dom'
 import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
-} from '@pluginjs/pluginjs'
+  themeable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -21,7 +22,6 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-// import * as util from './util'
 import Keyboard from './keyboard'
 import Pointer from './pointer'
 import Scale from './scale'
@@ -34,6 +34,7 @@ const components = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -49,7 +50,6 @@ class Range extends Component {
 
     this.cacheValue = []
     this.$wrap = document.createElement('div')
-    // if (this.$element.is('input')) {
     const value = this.element.value
     Each(['min', 'max', 'step'], key => {
       const val = parseFloat(this.element.getAttribute(key), 10)
@@ -538,6 +538,5 @@ class Range extends Component {
 Range.registerComponent('Scale', Scale)
 Range.registerComponent('Selected', Selected)
 Range.registerComponent('Tip', Tip)
-// keyboard();
 
 export default Range

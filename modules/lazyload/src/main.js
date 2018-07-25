@@ -1,6 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
-import { eventable, register, stateable } from '@pluginjs/pluginjs'
+import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
@@ -13,6 +12,7 @@ import viewport from '@pluginjs/viewport'
 
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS
@@ -34,12 +34,9 @@ class Lazyload extends Component {
 
   _delay = 0
 
-  // dpr = window.devicePixelRatio || window.screen.deviceXDPI / window.screen.logicalXDPI;
-  // retina = this.dpr > 1 && this.retina;
-
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.isHorizontal = Boolean(this.options.horizontal)
     this.initStates()
     this.initialize()
@@ -178,7 +175,6 @@ class Lazyload extends Component {
 
   setDelay(type) {
     if (type !== 'debounce' && type !== 'throttle') {
-      // console.log(`${type} type is undefined`);
       return false
     }
     this.delayType = type

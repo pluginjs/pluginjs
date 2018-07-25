@@ -86,7 +86,7 @@ class Image extends Base {
 
   updateStatus(status) {
     if (status === 'error') {
-      this.content.removeClass(this.classes.LOADED, this.content)
+      removeClass(this.classes.LOADED, this.content, this.content)
       this.loader.innerHTML = 'loadError'
       removeClass(this.classes.HIDE, this.loader)
       // todo   show  error tip

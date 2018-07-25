@@ -232,7 +232,8 @@ describe('Translate', () => {
 })
 
 describe('Interpolation', () => {
-  let actual, expected
+  let actual
+  let expected
 
   let i18n
   let instance

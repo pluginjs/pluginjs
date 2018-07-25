@@ -1,5 +1,3 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
 import TableSort from '../../src/main'
 import { defaults as DEFAULTS } from '../../src/constant'
 
@@ -39,7 +37,6 @@ const testString = `<thead>
 </tbody>`
 
 describe('TableSort', () => {
-  console.log(TableSort.defaults)
   describe('TableSort()', () => {
     test('should have TableSort', () => {
       expect(TableSort).toBeFunction()

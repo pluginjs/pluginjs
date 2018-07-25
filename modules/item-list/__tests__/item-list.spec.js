@@ -1,5 +1,4 @@
-// import { deepMerge } from '@pluginjs/utils'
-// import List from '@pluginjs/list'
+// // import List from '@pluginjs/list'
 import ItemList from '../src/main'
 // import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'

@@ -1,4 +1,3 @@
-import { deepMerge } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent, trigger } from '@pluginjs/events'
@@ -8,7 +7,7 @@ class Pointer {
     this.element = element
     this.uid = id
     this.instance = instance
-    this.options = deepMerge(this.instance.options)
+    this.options = this.instance.options
     this.direction = this.options.direction
     this.value = null
     this.classes = { active: this.instance.classes.POINTERACTIVE }

@@ -60,7 +60,6 @@ function mapMatch(type) {
 }
 
 function mapToScale(matrix) {
-  // console.group('scale')
   const result = matrix.map((value, index) => {
     const n = parseFloat(value, 10)
     const result = { [`scale${T[index]}`]: n || 0 }
@@ -130,7 +129,7 @@ function filterEmptyValues(obj) {
       })
       .map(([k, v]) => {
         const value = v.map(i => {
-          if (i === undefined) {
+          if (typeof i === 'undefined') {
             if (/scale/g.test(k)) {
               return 1
             }

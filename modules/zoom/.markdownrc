@@ -10,8 +10,8 @@
         "defaultValue": "null"
       },
       {
-        "name": "type",
-        "desc": "Set type",
+        "name": "mode",
+        "desc": "Set mode",
         "defaultValue": "window"
       },
       {

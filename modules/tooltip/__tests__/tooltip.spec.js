@@ -123,7 +123,6 @@ describe('Tooltip', () => {
       let called = 0
 
       $element.addEventListener('tooltip:ready', () => {
-        console.log(111)
         called++
       })
       const instance = Tooltip.of($element)

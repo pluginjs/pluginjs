@@ -57,7 +57,7 @@ const ColorStrings = {
     match: new RegExp(`^hsl${PERMISSIVE_MATCH3}$`, 'i'),
     parse(result) {
       const hsl = {
-        h: (result[1] % 360 + 360) % 360,
+        h: ((result[1] % 360) + 360) % 360,
         s: is.percentage(result[2])
           ? convertPercentageToFloat(result[2])
           : parseFloat(result[2], 10),
@@ -80,7 +80,7 @@ const ColorStrings = {
     match: new RegExp(`^hsla${PERMISSIVE_MATCH4}$`, 'i'),
     parse(result) {
       const hsla = {
-        h: (result[1] % 360 + 360) % 360,
+        h: ((result[1] % 360) + 360) % 360,
         s: is.percentage(result[2])
           ? convertPercentageToFloat(result[2])
           : parseFloat(result[2], 10),

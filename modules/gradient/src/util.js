@@ -16,7 +16,7 @@ export function getPrefix() {
 export function flip(o) {
   const flipped = {}
   for (const i in o) {
-    if (o.hasOwnProperty(i)) {
+    if (Object.prototype.hasOwnProperty.call(o, i)) {
       flipped[o[i]] = i
     }
   }
@@ -38,7 +38,9 @@ export function reverseDirection(direction) {
     'top left': 'bottom right',
     'left top': 'right bottom'
   }
-  return mapping.hasOwnProperty(direction) ? mapping[direction] : direction
+  return Object.prototype.hasOwnProperty.call(mapping, direction)
+    ? mapping[direction]
+    : direction
 }
 
 export function isDirection(n) {

@@ -29,8 +29,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -49,6 +50,7 @@ const DATA = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -58,7 +60,7 @@ class LinkPicker extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge({}, DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
     this.initStates()
     this.initClasses(CLASSES)
     this.setupI18n()

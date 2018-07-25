@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { deepMerge } from '@pluginjs/utils'
 import {
   parseHTML,
   parentWith,
@@ -14,6 +13,7 @@ import {
   getObjData,
   unwrap
 } from '@pluginjs/dom'
+import { deepMerge } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hasClass, addClass, removeClass } from '@pluginjs/classes'
 import PopDialog from '@pluginjs/pop-dialog'
@@ -26,8 +26,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -43,6 +44,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: DEFAULTS,
   methods: METHODS,
@@ -52,7 +54,7 @@ class List extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.options = deepMerge(DEFAULTS, options, this.getDataOptions())
+    this.initOptions(DEFAULTS, options)
 
     this.initStates()
     this.initClasses(CLASSES)
@@ -365,7 +367,6 @@ class List extends Component {
       this.enter('empty')
       return false
     }
-    console.log(this.data)
     this.data.forEach(item => {
       if (is.string(item)) {
         this.enter('simple')

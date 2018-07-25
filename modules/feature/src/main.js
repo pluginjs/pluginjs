@@ -22,7 +22,7 @@ const pfx = (function() {
       memory[prop] = null
 
       for (const i in props) {
-        if (style[props[i]] !== undefined) {
+        if (typeof style[props[i]] !== 'undefined') {
           memory[prop] = props[i]
           break
         }
@@ -51,8 +51,8 @@ export const transitionEndEvent = () => {
   }
   const style = document.createElement('dummy').style
   for (const i in eventNames) {
-    if (eventNames.hasOwnProperty(i)) {
-      if (style[i] !== undefined) {
+    if (Object.prototype.hasOwnProperty.call(eventNames, i)) {
+      if (typeof style[i] !== 'undefined') {
         return eventNames[i]
       }
     }
@@ -71,8 +71,8 @@ export const animationEndEvent = () => {
   // const style = document.body.style
   const style = {}
   for (const i in eventNames) {
-    if (eventNames.hasOwnProperty(i)) {
-      if (style[i] !== undefined) {
+    if (Object.prototype.hasOwnProperty.call(eventNames, i)) {
+      if (typeof style[i] !== 'undefined') {
         return eventNames[i]
       }
     }

@@ -6,7 +6,7 @@ const Utils = {
   },
   getScrollbarSize() {
     let scrollbarSize = 0
-    if (scrollbarSize === undefined) {
+    if (typeof scrollbarSize === 'undefined') {
       const scrollDiv = document.createElement('div')
       scrollDiv.style.cssText =
         'width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;'

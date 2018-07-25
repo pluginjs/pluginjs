@@ -129,7 +129,7 @@ export default class Emitter {
   }
 
   getListeners(event) {
-    if (!this.sortedListeners.hasOwnProperty(event)) {
+    if (!Object.prototype.hasOwnProperty.call(this.sortedListeners, event)) {
       this.sortedListeners[event] = this.getSortedListeners(event)
     }
 

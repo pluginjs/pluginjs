@@ -68,11 +68,11 @@ export default {
     if (min === max) {
       h = 0
     } else if (r === max) {
-      h = 60 * (g - b) / diff + 360
+      h = (60 * (g - b)) / diff + 360
     } else if (g === max) {
-      h = 60 * (b - r) / diff + 120
+      h = (60 * (b - r)) / diff + 120
     } else {
-      h = 60 * (r - g) / diff + 240
+      h = (60 * (r - g)) / diff + 240
     }
     if (diff === 0) {
       s = 0
@@ -161,7 +161,7 @@ export default {
     const s = hsv.s
     const v = hsv.v
     const c = v * s
-    const x = c * (1 - Math.abs(h % 2 - 1))
+    const x = c * (1 - Math.abs((h % 2) - 1))
 
     r = v - c
     g = v - c
@@ -205,14 +205,14 @@ export default {
   },
 
   isNAME(string) {
-    if (NAMES.hasOwnProperty(string)) {
+    if (Object.prototype.hasOwnProperty.call(NAMES, string)) {
       return true
     }
     return false
   },
 
   NAMEtoHEX(name) {
-    if (NAMES.hasOwnProperty(name)) {
+    if (Object.prototype.hasOwnProperty.call(NAMES, name)) {
       return `#${NAMES[name]}`
     }
     return null
@@ -236,7 +236,7 @@ export default {
       hex = hex.substr(1)
     }
 
-    if (hexNames.hasOwnProperty(hex)) {
+    if (Object.prototype.hasOwnProperty.call(hexNames, hex)) {
       return hexNames[hex]
     }
     return false

@@ -1,5 +1,3 @@
-import jsdom from 'mocha-jsdom'
-import $ from 'jquery'
 import Scrollbar from '../../src/main'
 import { defaults as DEFAULTS } from '../../src/constant'
 

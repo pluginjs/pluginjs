@@ -9,8 +9,9 @@ import {
   stateable,
   styleable,
   themeable,
-  translateable
-} from '@pluginjs/pluginjs'
+  translateable,
+  optionable
+} from '@pluginjs/decorator'
 import PopDialog from '@pluginjs/pop-dialog'
 import {
   classes as CLASSES,
@@ -74,6 +75,7 @@ const defaultActions = [
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(true)
 @register(NAMESPACE, {
   defaults: optionsExtendList,
   methods: METHODS,
@@ -91,7 +93,6 @@ class ItemList extends List {
     )
     this.$wrapper = parent(this.element)
 
-    this.classes = { ...this.classes, ...CLASSES }
     this.initClasses(this.classes)
     this.setupI18n()
 
