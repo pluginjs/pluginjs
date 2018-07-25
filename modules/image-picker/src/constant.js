@@ -13,16 +13,16 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
-  EMPTY: '{namespace}-empty',
+  WRITE: '{namespace}-write',
   EXIST: '{namespace}-exist',
   HOVER: '{namespace}-hover',
   DISABLED: '{namespace}-disabled',
-  INITIAL: '{namespace}-initial',
-  INFO: '{namespace}-info',
-  INFOCHANGE: '{namespace}-info-change',
-  INFOIMAGE: '{namespace}-info-image',
-  INFOREMOVE: '{namespace}-info-remove',
-  INFORESELECT: '{namespace}-info-reselect',
+  EMPTY: '{namespace}-empty',
+  FILL: '{namespace}-fill',
+  FILLCHANGE: '{namespace}-fill-change',
+  FILLIMAGE: '{namespace}-fill-image',
+  FILLREMOVE: '{namespace}-fill-remove',
+  FILLRESELECT: '{namespace}-fill-reselect',
   INPUT: '{namespace}-input',
   FADEIN: '{namespace}--fadeIn',
   FADEOUT: '{namespace}--fadeOut'
@@ -46,14 +46,14 @@ export const defaults = {
   template() {
     return (
       '<div class="{classes.NAMESPACE}">' +
-      '<div class="{classes.INITIAL}">' +
+      '<div class="{classes.EMPTY}">' +
       '<i class="icon-picture"></i>{placeholder}' +
       '</div>' +
-      '<div class="{classes.INFO}">' +
-      '<img class="{classes.INFOIMAGE}" src="">' +
-      '<div class="{classes.INFOCHANGE}">' +
-      '<i class="{classes.INFORESELECT} icon-repeat"></i>' +
-      '<i class="{classes.INFOREMOVE} icon-trash"></i>' +
+      '<div class="{classes.FILL}">' +
+      '<img class="{classes.FILLIMAGE}" src="">' +
+      '<div class="{classes.FILLCHANGE}">' +
+      '<i class="{classes.FILLRESELECT} icon-repeat"></i>' +
+      '<i class="{classes.FILLREMOVE} icon-trash"></i>' +
       '</div>' +
       '</div>' +
       '</div>'

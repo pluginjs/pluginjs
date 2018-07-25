@@ -62,7 +62,7 @@ class ImagePicker extends Component {
     // set initialed value
     this.value = this.options.parse(this.element.value.replace(/'/g, '"'))
 
-    this.setState('empty')
+    this.setState('write')
     this.set(this.value, false)
 
     if (this.element.disabled || this.options.disabled) {
@@ -74,7 +74,7 @@ class ImagePicker extends Component {
   }
 
   bind() {
-    // this.$initial.on(this.eventName('click'), (e) => {
+    // this.$empty.on(this.eventName('click'), (e) => {
     bindEvent(
       {
         type: this.eventName('click'),
@@ -82,20 +82,20 @@ class ImagePicker extends Component {
           if (this.is('disabled')) {
             return null
           }
-          const $info = this.$initial.nextElementSibling
+          const $fill = this.$empty.nextElementSibling
           const val = this.options.select.call(this)
           if (!val) {
             return false
           }
 
-          addClass(`${this.classes.FADEIN}`, $info)
+          addClass(`${this.classes.FADEIN}`, $fill)
           window.setTimeout(() => {
-            removeClass(`${this.classes.FADEIN}`, $info)
+            removeClass(`${this.classes.FADEIN}`, $fill)
           }, 300)
           return false
         }
       },
-      this.$initial
+      this.$empty
     )
 
     bindEvent(
@@ -154,7 +154,7 @@ class ImagePicker extends Component {
     removeEvent(this.eventName(), this.$wrap)
     removeEvent(this.eventName(), this.$remove)
     removeEvent(this.eventName(), this.$reselect)
-    removeEvent(this.eventName(), this.$initial)
+    removeEvent(this.eventName(), this.$empty)
   }
 
   createHtml() {
@@ -168,10 +168,10 @@ class ImagePicker extends Component {
 
     insertAfter(this.$wrap, this.element)
 
-    this.$initial = query(`.${this.classes.INITIAL}`, this.$wrap)
-    this.$image = query(`.${this.classes.INFOIMAGE}`, this.$wrap)
-    this.$remove = query(`.${this.classes.INFOREMOVE}`, this.$wrap)
-    this.$reselect = query(`.${this.classes.INFORESELECT}`, this.$wrap)
+    this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
+    this.$image = query(`.${this.classes.FILLIMAGE}`, this.$wrap)
+    this.$remove = query(`.${this.classes.FILLREMOVE}`, this.$wrap)
+    this.$reselect = query(`.${this.classes.FILLRESELECT}`, this.$wrap)
 
     // init popDialog
     this.pop = PopDialog.of(this.$remove, {
@@ -183,18 +183,18 @@ class ImagePicker extends Component {
           label: this.translate('delete'),
           color: 'danger',
           fn(resolve) {
-            const $info = that.$remove.matches(`.${that.classes.INFO}`)
+            const $fill = that.$remove.matches(`.${that.classes.FILL}`)
               ? that.$remove
               : parentWith(
-                  el => el.matches(`.${that.classes.INFO}`),
+                  el => el.matches(`.${that.classes.FILL}`),
                   that.$remove
                 )
-            addClass(`${that.classes.FADEOUT}`, $info)
+            addClass(`${that.classes.FADEOUT}`, $fill)
             window.setTimeout(() => {
-              removeClass(`${that.classes.FADEOUT}`, $info)
+              removeClass(`${that.classes.FADEOUT}`, $fill)
               that.clear()
             }, 300)
-            // that.$remove.closest(`.${that.classes.INFO}`).fadeOut(100, () => {
+            // that.$remove.closest(`.${that.classes.FILL}`).fadeOut(100, () => {
             //   that.clear();
             //   that.$remove.fadeIn();
             // });
@@ -209,13 +209,13 @@ class ImagePicker extends Component {
   setState(state) {
     if (state === 'exist') {
       compose(
-        removeClass(this.classes.EMPTY),
+        removeClass(this.classes.WRITE),
         addClass(this.classes.EXIST)
       )(this.$wrap)
-    } else if (state === 'empty') {
+    } else if (state === 'write') {
       compose(
         removeClass(this.classes.EXIST),
-        addClass(this.classes.EMPTY)
+        addClass(this.classes.WRITE)
       )(this.$wrap)
     }
   }
@@ -230,7 +230,7 @@ class ImagePicker extends Component {
 
     this.$image.setAttribute('src', null)
 
-    this.setState('empty')
+    this.setState('write')
 
     if (update !== false) {
       this.update()

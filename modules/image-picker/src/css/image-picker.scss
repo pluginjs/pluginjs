@@ -12,8 +12,8 @@ $imagePicker-border-color: $gray-border !default;
 $imagePicker-border: $imagePicker-border-width solid $imagePicker-border-color !default;
 $imagePicker-border-radius: $border-radius-base !default;
 $imagePicker-color: $gray-dark !default;
-// empty
-$imagePicker-empty-border-style: dashed !default;
+// write
+$imagePicker-write-border-style: dashed !default;
 // change
 $imagePicker-change-bg: $gray-darker !default;
 $imagePicker-change-opacity:  rgba(0,0,0,0.7) !default;
@@ -57,7 +57,7 @@ input.#{$imagePicker}-input {
   border: $imagePicker-border;
   border-radius: $imagePicker-border-radius;
 
-  &-initial {
+  &-empty {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -83,14 +83,14 @@ input.#{$imagePicker}-input {
     }
   }
 
-  &-info {
+  &-fill {
     width: 100%;
     height: 100%;
     overflow: hidden;
     border-radius: $imagePicker-border-radius;
   }
 
-  &-info-change {
+  &-fill-change {
     position: absolute;
     top: 0;
     left: 0;
@@ -107,8 +107,8 @@ input.#{$imagePicker}-input {
     border-radius: $imagePicker-border-radius;
   }
 
-  &-info-remove,
-  &-info-reselect {
+  &-fill-remove,
+  &-fill-reselect {
     margin: 0 $imagePicker-sizer; //0 10px
 
     &:hover {
@@ -117,7 +117,7 @@ input.#{$imagePicker}-input {
     }
   }
 
-  &-info-image {
+  &-fill-image {
     width: 100%;
     height: 100%;
   }
@@ -134,17 +134,17 @@ input.#{$imagePicker}-input {
 }
 
 //state
-.#{$imagePicker}-empty {
+.#{$imagePicker}-write {
   &.#{$imagePicker} {
-    border-style: $imagePicker-empty-border-style;
+    border-style: $imagePicker-write-border-style;
   }
 
   .#{$imagePicker} {
-    // &-initial {
+    // &-empty {
     //   display: block;
     // }
 
-    &-info {
+    &-fill {
       display: none;
     }
   }
@@ -154,22 +154,22 @@ input.#{$imagePicker}-input {
   border-style: solid;
 
   .#{$imagePicker} {
-    &-initial {
+    &-empty {
       display: none;
     }
 
-    &-info-change {
+    &-fill-change {
       opacity: 0;
     }
 
-    &-info-image {
+    &-fill-image {
       display: block;
     }
   }
 
   &.#{$imagePicker}-hover {
     .#{$imagePicker} {
-      &-info-change {
+      &-fill-change {
         background: $imagePicker-change-opacity;
         opacity: 1;
         transition: all 300ms ease-in-out;
@@ -182,7 +182,7 @@ input.#{$imagePicker}-input {
 .#{$imagePicker}-disabled {
   background-color: $disabled-bg;
   border-color: $disabled-border;
-  .#{$imagePicker}-info {
+  .#{$imagePicker}-fill {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
@@ -193,8 +193,8 @@ input.#{$imagePicker}-input {
       cursor: not-allowed;
     }
   }
-  .#{$imagePicker}-initial,
-  .#{$imagePicker}-info-change {
+  .#{$imagePicker}-empty,
+  .#{$imagePicker}-fill-change {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
