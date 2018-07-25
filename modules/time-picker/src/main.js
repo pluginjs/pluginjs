@@ -3,7 +3,7 @@ import { deepMerge, compose } from '@pluginjs/utils'
 import is from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import InputMask from '@pluginjs/input-mask'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle, hideElement } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -77,12 +77,20 @@ class TimePicker extends Component {
   build() {
     addClass(this.classes.INFO, this.element)
     wrap(`<div class="${this.classes.NAMESPACE}"></div>`, this.element)
-    insertAfter(`<div class="${this.classes.DROPDOWN}"></div>`, this.element)
+    insertAfter(
+      `<div class="${
+        this.classes.DROPDOWN
+      }"><input class="pj-dropdown-trigger" /></div>`,
+      this.element
+    )
 
     this.$timePicker = this.element.parentNode
+    // console.log(this.element)
+    // console.log(this.$timePicker)
     this.$wrap = this.$timePicker.parentNode
     addClass(this.classes.WRAP, this.$wrap)
     this.$dropdownEl = query(`.${this.classes.DROPDOWN}`, this.$timePicker)
+    this.$timeTrigger = query('.pj-dropdown-trigger', this.$dropdownEl)
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$timePicker)
     }
@@ -115,11 +123,11 @@ class TimePicker extends Component {
       constraintToScrollParent: false,
       templates: this.options.templates
     }
-    this.dropdown = Dropdown.of(this.$dropdownEl, dropdownConf)
+    this.dropdown = Dropdown.of(this.$timeTrigger, dropdownConf)
     this.$remove = parseHTML(
       `<i class="${this.classes.REMOVE} icon-close" style="display: none;"></i>`
     )
-    insertAfter(this.$remove, this.dropdown.$label)
+    insertAfter(this.$remove, this.dropdown.element)
     compose(
       bindEvent({
         type: this.eventName('click'),
@@ -148,7 +156,11 @@ class TimePicker extends Component {
           value: `.${this.classes.DROPDOWN}`
         },
         handler: () => {
-          if (this.get().length > 0) {
+          // console.log(this.time)
+          // console.log(this.get())
+          // console.log(this)
+          // console.log(this.dropdown)
+          if (hasClass('pj-dropdown-trigger-active', this.$timeTrigger)) {
             if (!this.is('disabled')) {
               this.$remove.style.display = 'block'
             }
@@ -162,6 +174,7 @@ class TimePicker extends Component {
   initInputMask() {
     this.$inputEl = query('input', this.$dropdownEl)
     this.$inputEl.setAttribute('name', this.options.name)
+    this.$inputEl.setAttribute('placeholder', 'Select Time')
 
     this.mask = InputMask.of(this.$inputEl, {
       type: 'time',
@@ -217,6 +230,7 @@ class TimePicker extends Component {
 
   get() {
     return this.time
+    // console.log(this.time)
   }
 
   set(time) {
@@ -317,6 +331,7 @@ class TimePicker extends Component {
           const time = this.$inputEl.value.trim()
           const timeList = this.getTimeList()
 
+          // console.log(this.time)
           if (timeList.indexOf(time) < 0) {
             this.dropdown.set(this.time)
             return false
@@ -334,6 +349,8 @@ class TimePicker extends Component {
           const [value] = e.detail.data
           this.markIndex = this.itemValues.indexOf(value)
           this.update(value)
+          // console.log(value)
+          // console.log(e.detail.data)
         }
       },
       this.element

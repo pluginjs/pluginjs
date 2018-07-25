@@ -24,10 +24,10 @@ $dropdown-item-active-color: $color-primary-active !default;
 $dropdown-item-active-bg: $color-white !default;
 $dropdown-item-margin-bottom: 1px !default;
 $dropdown-box-shadow: $box-shadow-6 !default;
-$dropdown-border-color: $gray-light !default;
+$dropdown-border-color: $gray-border !default;
 $dropdown-border-radius: $border-radius-base !default;
 $dropdown-hover-border-color: $border-color-hover !default;
-$dropdown-active-border-color: $gray-light !default;
+$dropdown-active-border-color: $gray-border !default;
 // Core
 // =====================
 .#{$dropdown} {

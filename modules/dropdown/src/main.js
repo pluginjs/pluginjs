@@ -47,7 +47,7 @@ import {
 class Dropdown extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    console.log(this.element)
+    // console.log(this.element)
     this.parent = this.element.parentNode.parentNode
     this.$triggerBox = this.element.parentNode
     // options
@@ -145,6 +145,7 @@ class Dropdown extends Component {
 
     if (this.options.select !== null) {
       this.set(this.options.select)
+      // console.log(this.options.select)
     }
 
     this.setupPopper()
@@ -282,7 +283,6 @@ class Dropdown extends Component {
           const $item = e.target
           that.itemUsable = true
           that.trigger(EVENTS.CLICK, this, $item)
-
           if (hasClass(that.classes.SELECTMODE, that.parent)) {
             addClass(that.classes.TRIGGERACTIVE, that.element)
           }
