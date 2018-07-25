@@ -84,7 +84,7 @@ class IconsPicker extends Component {
       })
     )
 
-    this.$dropdown = Dropdown.of(this.$iconPicker, {
+    this.$dropdown = Dropdown.of(this.$iconTrigger, {
       data,
       hideOnSelect: false,
       width: 260,
@@ -109,6 +109,7 @@ class IconsPicker extends Component {
         })
       )
     )
+    this.$iconTrigger = query('.pj-dropdown-trigger', this.$iconPicker)
     insertAfter(this.$iconPicker, this.element)
     wrap(`<div class="${this.classes.WRAP}"></div>`, this.$iconPicker)
 
@@ -299,7 +300,7 @@ class IconsPicker extends Component {
         bindEvent({
           type: 'focus',
           handler: ({ target }) => {
-            let $selectItem = this.$selectorPanel.items.find(el =>
+            let $selectItem = this.$selectorPanel.$items.find(el =>
               el.matches('.pj-dropdown-active')
             )
             bindEvent(
@@ -581,7 +582,7 @@ class IconsPicker extends Component {
       }
     }
 
-    return Dropdown.of(this.$iconPicker, {
+    return Dropdown.of(this.$iconTrigger, {
       data,
       hideOnSelect: false,
       width: 260,
@@ -650,7 +651,8 @@ class IconsPicker extends Component {
 
     this.$panel.append(this.$controller)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
-    this.$selectorPanel = Dropdown.of(this.$selector, {
+    this.$selectorTrigger = query('.pj-dropdown-trigger', this.$selector)
+    this.$selectorPanel = Dropdown.of(this.$selectorTrigger, {
       placement: 'top-center',
       data,
       // keyboard: true,
@@ -662,6 +664,7 @@ class IconsPicker extends Component {
       icon: 'icon-char icon-chevron-down',
       classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` }
     })
+    console.log(this.$selectorPanel)
   }
 
   initScrollable() {

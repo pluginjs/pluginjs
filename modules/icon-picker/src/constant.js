@@ -79,7 +79,7 @@ export const defaults = {
       </div>`
     },
     trigger() {
-      return `<div class={trigger}><i class='{trigger}-switch icon-chevron-down'></i>
+      return `<div class={trigger}><span class="pj-dropdown-trigger"></span><i class='{trigger}-switch icon-chevron-down'></i>
       </div>`
     },
     icon() {
@@ -91,7 +91,7 @@ export const defaults = {
       </div>`
     },
     controller() {
-      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}></div>
+      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}><span class="pj-dropdown-trigger"></span></div>
       </div>`
     },
     search() {
