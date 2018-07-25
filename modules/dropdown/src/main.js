@@ -84,8 +84,8 @@ class Dropdown extends Component {
       this.options.data.forEach(v => {
         const tag = v[this.options.itemValueAttr] || v.label
         items += templateEngine.render(this.options.templates.item(), {
-          that: this,
           classes: this.classes,
+          itemValueAttr: this.options.itemValueAttr,
           item: v,
           tag
         })
@@ -353,8 +353,8 @@ class Dropdown extends Component {
       data.forEach(v => {
         const tag = v[this.options.itemValueAttr] || v.label
         items += templateEngine.render(this.options.templates.item(), {
-          that: this,
           classes: this.classes,
+          itemValueAttr: this.options.itemValueAttr,
           item: v,
           tag
         })

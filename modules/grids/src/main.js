@@ -133,7 +133,7 @@ class Grids extends Component {
       const $loaderInner = templateEngine.compile(
         this.options.templates.loader()
       )({
-        class: this.classes.LOADERINNER
+        class: this.classes
       })
       append($loaderInner, this.$loader)
     }

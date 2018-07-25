@@ -83,7 +83,7 @@ export const defaults = {
       return '<ul></ul>'
     },
     item() {
-      return '<li class="{classes.ITEM}" data-{that.options.itemValueAttr}="{tag}">{item.label}</li>'
+      return '<li class="{classes.ITEM}" data-{itemValueAttr}="{tag}">{item.label}</li>'
     }
   }
 }

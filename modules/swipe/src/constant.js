@@ -57,14 +57,14 @@ export const defaults = {
   defaultActive: 0, // default active item
   duration: 300,
   templates: {
-    wrapper() {
-      return '<div class="{class}"></div>'
-    },
+    // wrapper() {
+    //   return '<div class="{class}"></div>'
+    // },
     container() {
-      return '<div class="{class}"></div>'
+      return '<div class="{classes.CONTAINER}"></div>'
     },
     pagination() {
-      return '<ul class="{class}"></ul>'
+      return '<ul class="{classes.PAGINATION}"></ul>'
     },
     arrow: {
       prev() {

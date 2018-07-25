@@ -112,7 +112,7 @@ export const defaults = {
 
   templates: {
     loader() {
-      return '<div class="{class}"></div>'
+      return '<div class="{class.LOADERINNER}"></div>'
     }
   },
   sort(key, chunks) {

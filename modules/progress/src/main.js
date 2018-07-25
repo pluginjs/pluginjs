@@ -77,7 +77,7 @@ class Progress extends Component {
     if (this.options.label) {
       this.label = parseHTML(
         templateEngine.compile(this.options.templates.label())({
-          class: this.classes.LABEL,
+          classes: this.classes,
           content: this.options.label
         })
       )

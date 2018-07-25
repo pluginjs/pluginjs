@@ -173,7 +173,7 @@ class Swipe extends Component {
       } else {
         const $itemsParent = parent(this.$items[0])
         const $container = this.createEl('container', {
-          class: this.classes.CONTAINER
+          classes: this.classes
         })
         append($container, $itemsParent)
         this.$container = find(`.${this.classes.CONTAINER}`, this.element)
@@ -343,7 +343,7 @@ class Swipe extends Component {
   buildPagination() {
     const that = this
     const $pagination = this.createEl('pagination', {
-      class: this.classes.PAGINATION
+      classes: this.classes
     })
     const items = []
 

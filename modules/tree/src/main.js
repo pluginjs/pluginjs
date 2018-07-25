@@ -233,6 +233,7 @@ export default class Tree extends Component {
     const branchHtml = template.render(
       this.options.templates.branch.call(this),
       {
+        classes: this.classes,
         tabindex,
         toggler,
         branchContent

@@ -18,6 +18,7 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   TREE: '{namespace}',
   TOGGLER: '{namespace}-toggler',
+  ELEMENT: '{namespace}-element',
   BRANCH: '{namespace}-branch',
   OPEN: '{namespace}-open',
   SELECTED: '{namespace}-selected',
@@ -51,13 +52,13 @@ export const defaults = {
 
   templates: {
     toggler() {
-      return '<i class="pj-tree-toggler"></i>'
+      return '<i class="{classes.TOGGLER}"></i>'
     },
-    icon(className) {
-      return `<i class="${className} pj-tree-icon"></i>`
-    },
+    // icon(className) {
+    //  return `<i class="${className} pj-tree-icon"></i>`
+    // },
     branch() {
-      return '<div class="pj-tree-element" tabindex="{tabindex}">{toggler}<div class="element-content">{branchContent}</div></div>'
+      return '<div class="{classes.ELEMENT}" tabindex="{tabindex}">{toggler}<div class="element-content">{branchContent}</div></div>'
     },
     branchContent(node) {
       if (typeof node === 'object') {
