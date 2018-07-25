@@ -38,7 +38,7 @@ export const methods = [
 
 export const defaults = {
   template() {
-    return '<div class="{classes.NAMESPACE}">' + '{poster}' + '</div>'
+    return '<div class="{classes.NAMESPACE}">{poster}</div>'
   },
   templates: {
     poster() {

@@ -24,7 +24,6 @@ class Youtube {
         this.poster
       )
     }
-
     if (window.AsYTAPIReady) {
       this.init()
       this.instance.trigger(EVENTS.LOAD)

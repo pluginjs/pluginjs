@@ -86,6 +86,13 @@ class Html5 {
         width,
         height
       },
+      this.video
+    )
+    setStyle(
+      {
+        width,
+        height
+      },
       this.wrap
     )
   }

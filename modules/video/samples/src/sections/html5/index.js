@@ -6,7 +6,8 @@ const element = query('.video', root)
 
 const instance = Video.of(element, {
   type: 'html5',
-  url: 'http://vjs.zencdn.net/v/oceans.mp4'
+  url: 'http://vjs.zencdn.net/v/oceans.mp4',
+  autoplay: false
 })
 let trigger = true
 const instances = {
@@ -24,14 +25,15 @@ const instances = {
     instance.stop()
   },
   volume() {
-    const val = parseInt(Math.random() * 100, 1)
+    const val = parseInt(Math.random() * 100, 10)
+    console.log('volume:', val)
     instance.volume(val)
   },
   switchVideo() {
     instance.switchVideo('../../assets/towers.mp4')
   },
   currentTime() {
-    console.log('duration:', instance.currentTime())
+    console.log('currentTime:', instance.currentTime())
   },
   duration() {
     console.log('duration:', instance.duration())
@@ -46,7 +48,7 @@ const instances = {
     instance.destroy()
   },
   setCurrentTime() {
-    instance.setCurrentTime('20')
+    instance.setCurrentTime('30')
   },
   setSize() {
     const size = '400'

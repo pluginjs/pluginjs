@@ -39,6 +39,7 @@ class Video extends Component {
         this.options
       )
     }
+    this.load()
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -104,7 +105,9 @@ class Video extends Component {
       this.leave('loaded')
       this.player.destroy()
     }
-    this.trigger(EVENTS.DESTROY)
+    if (this.plugin) {
+      this.trigger(EVENTS.DESTROY)
+    }
     super.destroy()
   }
 
