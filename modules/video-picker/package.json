@@ -37,7 +37,6 @@
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
-    "@pluginjs/edit-panel": "*",
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
     "@pluginjs/pluginjs": "*",
