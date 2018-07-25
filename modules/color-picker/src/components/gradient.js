@@ -93,7 +93,6 @@ class Gradient {
       `.${this.classes.GRADIENTMODE}>div>span`,
       this.element
     )
-    console.log(parent(this.$selector))
     this.dropdown = Dropdown.of(this.$selector, {
       imitateSelect: true,
       select: this.mode.replace(/^.?/g, match => match.toUpperCase()),

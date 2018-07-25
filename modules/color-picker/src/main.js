@@ -631,10 +631,12 @@ class ColorPicker extends Component {
         type: this.eventName('click'),
         identity: { type: 'selector', value: `.${this.classes.OK}` },
         handler: () => {
+          console.log(this.oldColor)
+          console.log(this.color)
           if (this.is('disabled')) {
             return false
           }
-
+          this.oldColor = this.color
           if (this.oldColor != null) {  /* eslint-disable-line */
             if (this.oldColor.indexOf('linear-gradient') > -1) {
               this.setGradient(this.oldColor)
@@ -652,6 +654,7 @@ class ColorPicker extends Component {
         type: this.eventName('click'),
         identity: { type: 'selector', value: `.${this.classes.CANCEL}` },
         handler: () => {
+          console.log(this.oldColor)
           if (this.is('disabled')) {
             return false
           }
@@ -781,6 +784,9 @@ class ColorPicker extends Component {
     this.trigger(EVENTS.OPENPANEL)
 
     this.oldColor = this.color
+
+    console.log(this.color)
+    console.log(this.oldColor)
   }
 
   closePanel() {
@@ -790,6 +796,7 @@ class ColorPicker extends Component {
     // this.element.style.removeProperty('border-color')
 
     this.update()
+
     // this.element.openPanel = false;
     this.leave('openPanel')
   }
@@ -904,7 +911,11 @@ class ColorPicker extends Component {
     if (this.module === 'gradient' && this.is('noSelectedMarker')) {
       return false
     }
+    // console.log(this.color)
+    // console.log(this.module)
+    console.log(this.info)
     this.color = this.info[this.module]
+    // console.log(this.color)
     if (this.color === '') {
       this.color = 'transparent'
     }
@@ -922,7 +933,9 @@ class ColorPicker extends Component {
     if (this.module === 'gradient' && this.is('noSelectedMarker')) {
       return false
     }
+    console.log(val)
     this.info[this.module] = val
+    console.log(this.info)
     this.element.value = val
     return null
   }

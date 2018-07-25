@@ -79,6 +79,7 @@ class FontPicker extends Component {
         })
       )
     )
+    this.fontTrigger = query('.pj-dropdown-trigger', this.$fontPicker)
     insertAfter(this.$fontPicker, this.element)
     wrap(`<div class='${this.classes.WRAP}'></div>`, this.$fontPicker)
     insertBefore(this.element, this.$fontPicker)
@@ -707,7 +708,7 @@ class FontPicker extends Component {
       })
     }
 
-    return Dropdown.of(this.$fontPicker, {
+    return Dropdown.of(this.fontTrigger, {
       theme: 'default',
       data,
       hideOnSelect: false,
@@ -747,7 +748,8 @@ class FontPicker extends Component {
     // console.log(this.$panel)
     this.$panel.append(this.$controller)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
-    this.$selectorPanel = Dropdown.of(this.$selector, {
+    this.selectTrigger = query('.pj-dropdown-trigger', this.$selector)
+    this.$selectorPanel = Dropdown.of(this.selectTrigger, {
       placement: 'top-center',
       data,
       exclusive: false,

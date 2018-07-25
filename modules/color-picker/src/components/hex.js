@@ -47,8 +47,9 @@ class Hex {
     )
     this.element.append($selector, this.$opac)
 
-    this.$selector = query(`.${this.classes.HEXMODE}>div>span`, this.element)
-    this.dropdown = Dropdown.of(this.$selector, {
+    this.$el = query(`.${this.classes.HEXMODE}>div>span`, this.element)
+    this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
+    this.dropdown = Dropdown.of(this.$el, {
       imitateSelect: true,
       select: this.classify,
       width: parent(this.$selector),
@@ -105,8 +106,8 @@ class Hex {
       this.instance.asColor.toHSL().toUpperCase(),
       this.instance.asColor.toRGB().toUpperCase()
     ]
-    console.log(this.$selector)
-    this.$selector.querySelector('span').value = this.mode
+
+    this.$selector.querySelector('span').innerText = this.mode
     this.dropdown.options.select = val
     this.element
       .querySelectorAll('.pj-dropdown-item')
