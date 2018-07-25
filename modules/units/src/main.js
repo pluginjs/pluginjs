@@ -55,7 +55,9 @@ class Units extends Component {
     this.judgeElType()
 
     const $trigger = parseHTML(
-      `<div class="${this.classes.TRIGGER}" tabindex="1"></div>`
+      `<div class="${
+        this.classes.TRIGGER
+      }" tabindex="1"><span class="pj-dropdown-trigger"></span></div>`
     )
     const name = this.options.name ? `name="${this.options.name}"` : ''
     const $input = parseHTML(
@@ -63,6 +65,7 @@ class Units extends Component {
         this.classes.INPT
       }">`
     )
+    const $unitsTrigger = query('.pj-dropdown-trigger', $trigger)
     addClass(this.classes.NAMESPACE, this.element)
     addClass(this.classes.WRAP, this.$wrap)
 
@@ -80,7 +83,7 @@ class Units extends Component {
     }
 
     this.$triggerElement = $trigger
-    this.TRIGGER = this.dropdownInit($trigger)
+    this.TRIGGER = this.dropdownInit($unitsTrigger)
     if (this.options.data.length < 2) {
       addClass(this.classes.ONLY, $trigger)
       this.TRIGGER.disable()
@@ -139,7 +142,7 @@ class Units extends Component {
     }
   }
 
-  dropdownInit($trigger) {
+  dropdownInit($unitsTrigger) {
     const data = []
 
     for (const i in this.data) {
@@ -149,7 +152,7 @@ class Units extends Component {
     }
     this.unit = this.options.defaultUnit || data[0].label
 
-    const dropdowninstance = new DROPDOWN($trigger, {
+    const dropdowninstance = new DROPDOWN($unitsTrigger, {
       width: this.dropdownWidth,
       trigger: 'click',
       // keyboard: true,

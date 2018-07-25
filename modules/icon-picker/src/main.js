@@ -664,7 +664,6 @@ class IconsPicker extends Component {
       icon: 'icon-char icon-chevron-down',
       classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` }
     })
-    console.log(this.$selectorPanel)
   }
 
   initScrollable() {
