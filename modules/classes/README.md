@@ -42,7 +42,7 @@ Parameters
 
 | Name | Type | Description |
 |------|------|-------------|
-| className | `String[]` | function rest parameter |
+| className | `String` | |
 | element | `HTMLElement` | |
 
 Returns
@@ -57,14 +57,14 @@ Parameters
 
 | Name | Type | Description |
 |------|------|-------------|
-| className | `String[]` | function rest parameter |
+| className | `String` | |
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
 |------|------|-------------|
-| hasClass | `Bool` | |
+| hasClass | `Boolean` | |
 
 ### toggleClass
 
