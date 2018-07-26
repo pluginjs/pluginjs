@@ -8,20 +8,61 @@
 
 ## API
 
-- addClass
+### addClass
 
 Parameters
 
-| className | Type: `String[]` |
+| Name | Type | Description |
+|------|------|-------------|
+| className | `String[]` | function rest parameter |
 
 Returns
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
 
-Element   | Type: `HTMLElement`
+### removeClass
 
-- removeClass
-- indexOfClass
-- hasClass
-- toggleClass
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| className | `String[]` | function rest parameter |
+
+Returns
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### indexOfClass
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| className | `String[]` | function rest parameter |
+| element | `HTMLElement` | |
+
+Returns
+| Name | Type | Description |
+|------|------|-------------|
+| index | `Number` | index of class |
+
+### hasClass
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| className | `String[]` | function rest parameter |
+| element | `HTMLElement` | |
+
+Returns
+| Name | Type | Description |
+|------|------|-------------|
+| hasClass | `Bool` | |
+
+### toggleClass
 
 ## Browser support
 
