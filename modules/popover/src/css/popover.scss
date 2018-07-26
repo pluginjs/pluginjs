@@ -12,6 +12,7 @@ $popover-color: $text-color !default;
 $popover-bg: #fff !default;
 $popover-opacity: 0.9 !default;
 $popover-margin: 3px !default;
+$popover-margin-spacer: 20px !default;
 $popover-border-width: 1px !default;
 $popover-border-color: $border-color !default;
 $popover-border-radius: $border-radius-base !default;
@@ -108,6 +109,7 @@ $popover-position-cell-a-margin-y: 20px !default;
   z-index: $popover-zindex;
   display: block;
   max-width: $popover-max-width;
+  margin-bottom: $popover-margin-spacer;
   font-size: $popover-font-size;
   color: $popover-color;
   // Allow breaking very long words so they don't overflow the popover's bounds
@@ -332,6 +334,27 @@ $popover-position-cell-a-margin-y: 20px !default;
       bottom: $popover-arrow-offset-y + 1;
     }
   }
+}
+
+*[x-placement="bottom"],
+*[x-placement="bottom-start"],
+*[x-placement="bottom-end"] {
+  margin: 0;
+  margin-top: $popover-margin-spacer;
+}
+
+*[x-placement="left"],
+*[x-placement="left-start"],
+*[x-placement="left-end"] {
+  margin: 0;
+  margin-right: $popover-margin-spacer;
+}
+
+*[x-placement="right"],
+*[x-placement="right-start"],
+*[x-placement="right-end"] {
+  margin: 0;
+  margin-left: $popover-margin-spacer;
 }
 
 // Offset the popover to account for the popover arrow

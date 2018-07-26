@@ -63,11 +63,11 @@ class Keyboard {
 
   update(val, key = 'by') {
     if (!this.instance.is('hovering')) {
-      return undefined
+      return undefined /* eslint-disable-line */
     }
 
     if (val === null) {
-      return undefined
+      return undefined /* eslint-disable-line */
     }
 
     switch (key) {
@@ -81,7 +81,7 @@ class Keyboard {
         break
     }
 
-    return undefined
+    return undefined /* eslint-disable-line */
   }
 
   unbind() {

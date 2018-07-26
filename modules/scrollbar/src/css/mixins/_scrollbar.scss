@@ -4,12 +4,12 @@
   $scrollbar: "pj-scrollbar",
   $scrollbar-size: 4px,
   $scrollbar-dragging-size: 10px,
-  $scrollbar-dragging-bg: rgba($gray-lighter, 0.4),
-  $scrollbar-hovering-bg: rgba($gray-lighter, 0.4),
+  $scrollbar-dragging-bg: rgba($gray-light, 0.4),
+  $scrollbar-hovering-bg: rgba($gray-light, 0.4),
   $scrollbar-handle-offset: 5px,
-  $scrollbar-handle-color: rgba($gray-light, 0.4),
+  $scrollbar-handle-color: rgba($gray, 0.6),
   $scrollbar-handle-hovering-color: rgba($gray-light, 0.4),
-  $scrollbar-handle-dragging-color: rgba($gray, 0.4)
+  $scrollbar-handle-dragging-color: rgba($gray, 0.6)
 ) {
   .#{$scrollbar} {
     position: absolute;
@@ -68,9 +68,7 @@
       height: #{calc(100% - 2 * #{$scrollbar-handle-offset})};
       margin: $scrollbar-handle-offset
         ($scrollbar-dragging-size - $scrollbar-size) / 2;
-    }
 
-    &-vertical {
       &.#{$scrollbar}-dragging,
       &.#{$scrollbar}-hovering {
         width: $scrollbar-dragging-size;
@@ -87,16 +85,14 @@
       height: $scrollbar-size;
       margin: ($scrollbar-dragging-size - $scrollbar-size) / 2
         $scrollbar-handle-offset;
-    }
 
-    &-horizontal {
       &.#{$scrollbar}-dragging,
       &.#{$scrollbar}-hovering {
         height: $scrollbar-dragging-size;
         margin: 1px $scrollbar-handle-offset;
       }
     }
-
+    
     &-horizontal .#{$scrollbar}-handle {
       height: 100%;
     }

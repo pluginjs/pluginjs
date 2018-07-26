@@ -674,7 +674,6 @@ class Scrollbar extends Component {
       this.oneBind(transitionEndEvent(), this.$handle, () => {
         transitionProperty()
         this.$handle.style[transitionProperty()] = ''
-
         if (trigger) {
           this.trigger(
             EVENTS.CHANGE,

@@ -1,3 +1,2 @@
-import Scrollbar from '@pluginjs/scrollbar'
-
-console.log(Scrollbar)
+import './sections/vertical/index.js'
+import './sections/horizontal/index.js'
