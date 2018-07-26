@@ -41,6 +41,7 @@
     "@pluginjs/gmap": "*",
     "@pluginjs/is": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/pop-dialog": "*",
     "@pluginjs/template": "*"
   },

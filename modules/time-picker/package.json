@@ -42,6 +42,7 @@
     "@pluginjs/input-mask": "*",
     "@pluginjs/is": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/utils": "*",
     "popper.js": "1.14.3"

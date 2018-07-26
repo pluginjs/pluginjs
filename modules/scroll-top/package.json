@@ -41,6 +41,7 @@
     "@pluginjs/feature": "*",
     "@pluginjs/is": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/scroll": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/utils": "*"

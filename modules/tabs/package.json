@@ -42,6 +42,7 @@
     "@pluginjs/keyboard": "*",
     "@pluginjs/keyframes": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/utils": "*",
     "animejs": "*",

@@ -41,6 +41,7 @@
     "@pluginjs/feature": "*",
     "@pluginjs/is": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {

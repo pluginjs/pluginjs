@@ -41,6 +41,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/list": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/toggle": "*"
   },
   "devDependencies": {

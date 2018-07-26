@@ -29,7 +29,8 @@
   "dependencies": {
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
-    "@pluginjs/pluginjs": "*"
+    "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

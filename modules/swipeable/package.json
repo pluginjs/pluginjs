@@ -26,6 +26,7 @@
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
     "@pluginjs/utils": "*",

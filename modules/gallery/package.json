@@ -28,6 +28,7 @@
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/slider": "^4.0.0",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",

@@ -64,10 +64,6 @@ export const defaults = {
 
   placeholder: 'Please Search...',
   templates: {
-    input() {
-      return `<input type='text' class='pj-input {class}' placeholder='{placeholder}'
-      />`
-    },
     panel() {
       return `<div class='{classes.PANEL}'>
       </div>`

@@ -13,15 +13,15 @@ import {
   unwrap,
   wrap,
   children,
-  insertBefore,
-  optionable
+  insertBefore
 } from '@pluginjs/dom'
 import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
+  themeable,
+  optionable
 } from '@pluginjs/decorator'
 import Keyboard from './keyboard'
 import Search from './search'

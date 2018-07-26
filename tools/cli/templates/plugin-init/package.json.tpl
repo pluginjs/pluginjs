@@ -25,6 +25,7 @@
   "dependencies": {
     "@pluginjs/component": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/styles": "*"
   },
   "devDependencies": {

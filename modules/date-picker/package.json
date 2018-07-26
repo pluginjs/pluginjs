@@ -41,6 +41,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
     "hammerjs": "*",

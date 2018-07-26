@@ -38,6 +38,7 @@
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/scroll-end": "*",
     "@pluginjs/template": "*"
   },

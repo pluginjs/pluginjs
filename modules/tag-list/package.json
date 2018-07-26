@@ -40,6 +40,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/list": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/template": "*"
   },
   "devDependencies": {

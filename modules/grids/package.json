@@ -45,6 +45,7 @@
     "@pluginjs/image-loader": "*",
     "@pluginjs/is": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/swipe": "*",
     "@pluginjs/template": "*",

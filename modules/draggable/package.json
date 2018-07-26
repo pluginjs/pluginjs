@@ -27,6 +27,7 @@
     "@pluginjs/component": "*",
     "@pluginjs/events": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
     "@pluginjs/utils": "*",

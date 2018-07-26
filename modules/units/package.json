@@ -40,7 +40,8 @@
     "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/pluginjs": "*"
+    "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

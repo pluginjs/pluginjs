@@ -30,6 +30,7 @@
     "@pluginjs/events": "*",
     "@pluginjs/icons": "*",
     "@pluginjs/pluginjs": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/swipeable": "*",
     "@pluginjs/template": "*",
