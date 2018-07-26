@@ -15,23 +15,23 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   DISABLED: '{namespace}-disabled',
   ACTIVE: '{namespace}-active',
-  HOVER: '{namespace}-hover',
+  HOVER: '{namespace}-fill-hover',
   EXSIT: '{namespace}-exsit',
-  EMPTY: '{namespace}-empty',
+  WRITE: '{namespace}-write',
   EXPAND: '{namespace}-expand',
   EXPANDPANEL: '{namespace}-expand-panel',
   EXPANDCONTROL: '{namespace}-expand-control',
   EXPANDCANCEL: '{namespace}-expand-cancel',
   EXPANDSAVE: '{namespace}-expand-save',
   INHERIT: '{namespace}-inherit',
-  INFOCHANGE: '{namespace}-info-change',
-  INFOEDIT: '{namespace}-info-edit',
-  INFOREMOVE: '{namespace}-info-remove',
-  INITIAL: '{namespace}-initial',
-  INFO: '{namespace}-info',
-  INFOFONT: '{namespace}-info-font',
-  INFOFONTNAME: '{namespace}-info-font-name',
-  INFOFONTSUB: '{namespace}-info-font-sub',
+  FILLCHANGE: '{namespace}-fill-change',
+  FILLEDIT: '{namespace}-fill-edit',
+  FILLREMOVE: '{namespace}-fill-remove',
+  EMPTY: '{namespace}-empty',
+  FILL: '{namespace}-fill',
+  FILLFONT: '{namespace}-fill-font',
+  FILLFONTNAME: '{namespace}-fill-font-name',
+  FILLFONTSUB: '{namespace}-fill-font-sub',
   // fontfamily
   FONTFAMILY: '{namespace}-fontFamily',
   FONTFAMILYTITLE: '{namespace}-fontFamily-title',
@@ -64,7 +64,9 @@ export const classes = {
   // texttransform
   TEXTTRANSFORM: '{namespace}-textTransform',
   // textDecoration
-  TEXTDECORATION: '{namespace}-textDecoration'
+  TEXTDECORATION: '{namespace}-textDecoration',
+  DROPDOWN: '{namespace}-dropdown',
+  TRIGGER: '{namespace}-trigger'
 }
 
 export const methods = [
@@ -214,16 +216,20 @@ export const defaults = {
   template() {
     return (
       '<div class="{classes.NAMESPACE}">' +
-      '<div class="{classes.INITIAL}">' +
+      '<div class="{classes.TRIGGER}">' +
+      '<div class="{classes.EMPTY}">' +
       '<i>T</i>{addTypography}' +
       '</div>' +
-      '<div class="{classes.INFO}">' +
+      '<div class="{classes.FILL}">' +
       '<i>T</i>' +
-      '<div class="{classes.INFOFONT}"><span class="{classes.INFOFONTNAME}">{fontFamily}</span><span class="{classes.INFOFONTSUB}"></span></div>' +
-      '<div class="{classes.INFOCHANGE}"><i class="{classes.INFOEDIT} icon-pencil-square"></i><i class="{classes.INFOREMOVE} icon-trash"></i></div>' +
+      '<div class="{classes.FILLFONT}"><span class="{classes.FILLFONTNAME}">{fontFamily}</span><span class="{classes.FILLFONTSUB}"></span></div>' +
+      '<div class="{classes.FILLCHANGE}"><i class="{classes.FILLEDIT} icon-pencil-square"></i><i class="{classes.FILLREMOVE} icon-trash"></i></div>' +
       '</div>' +
+      '</div>' +
+      '<div class="{classes.DROPDOWN}">' +
       '<div class="{classes.EXPANDPANEL}">' +
       '<div class="{classes.EXPANDCONTROL}"><button type="button" class="{classes.EXPANDCANCEL} pj-btn pj-btn-transparent">Cancel</button><button type="button" class="{classes.EXPANDSAVE} pj-btn pj-btn-primary">Save</button></div>' +
+      '</div>' +
       '</div>' +
       '</div>'
     )

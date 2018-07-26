@@ -15,15 +15,15 @@ $fontEditor-border: $fontEditor-border-width $fontEditor-border-style
   $fontEditor-border-color !default;
 $fontEditor-border-radius: $border-radius-base !default;
 $fontEditor-height: 5 * $fontEditor-sizer !default; //50px
-// info
-$fontEditor-info-width: 26 * $fontEditor-sizer !default; //260px
-$fontEditor-info-font-size: $font-size-sm !default;
-$fontEditor-info-change-bg: $color-opacity !default;
-$fontEditor-info-change-opacity: 1 !default;
-$fontEditor-info-i-color: $gray-dark !default; //#ccd1d9
-// initial
-$fontEditor-initial-border-style: dashed !default;
-$fontEditor-initial-hover-bg: $gray-lightest !default;
+// fill
+$fontEditor-fill-width: 26 * $fontEditor-sizer !default; //260px
+$fontEditor-fill-font-size: $font-size-sm !default;
+$fontEditor-fill-change-bg: $color-opacity !default;
+$fontEditor-fill-change-opacity: 1 !default;
+$fontEditor-fill-i-color: $gray-dark !default; //#ccd1d9
+// empty
+$fontEditor-empty-border-style: dashed !default;
+$fontEditor-empty-fill-hover-bg: $gray-lightest !default;
 // decorations
 $fontEditor-decorations-li: $gray-darker !default; //#ccd1d9
 $fontEditor-decorations-active: $color-primary-active !default;
@@ -40,13 +40,13 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 //$dropdown-trigger-color: #bbb !default;
 //$dropdown-trigger-border-color: #e4e4e4 !default;
 //$dropdown-trigger-bg-color: $color-white !default;
-//$dropdown-trigger-hover-border-color: #bbb !default;
+//$dropdown-trigger-fill-hover-border-color: #bbb !default;
 //$dropdown-panel-border-color: $dropdown-trigger-border-color !default;
 //$dropdown-panel-bg-color: $dropdown-trigger-bg-color !default;
 //$dropdown-panel-li-color: #777 !default;
 //$dropdown-panel-li-bg-color: $dropdown-trigger-bg-color !default;
-//$dropdown-panel-li-hover-color: $color-white !default;
-//$dropdown-panel-li-hover-bg-color: #41a9e5 !default;
+//$dropdown-panel-li-fill-hover-color: $color-white !default;
+//$dropdown-panel-li-fill-hover-bg-color: #41a9e5 !default;
 // unit
 
 // Core
@@ -56,12 +56,12 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   display: inline-block;
   height: $fontEditor-height;
 
-  &-initial,
-  &-info {
+  &-empty,
+  &-fill {
     position: relative;
     box-sizing: border-box;
     display: block;
-    min-width: $fontEditor-info-width;
+    min-width: $fontEditor-fill-width;
     //height: $fontEditor-height;
     height: 100%;
     padding: 0.6 * $fontEditor-sizer 2 * $fontEditor-sizer; //6px 20px
@@ -75,23 +75,23 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
       margin-right: 0.8 * $fontEditor-sizer; //8px
       font-size: $font-size-base + 5px; //20px
       font-style: normal;
-      color: $fontEditor-info-i-color;
+      color: $fontEditor-fill-i-color;
     }
   }
 
-  &-initial {
+  &-empty {
     font-size: $font-size-sm;
     color: $fontEditor-color-light;
     cursor: pointer;
-    border-style: $fontEditor-initial-border-style;
+    border-style: $fontEditor-empty-border-style;
 
     &:hover {
-      background-color: $fontEditor-initial-hover-bg;
+      background-color: $fontEditor-empty-fill-hover-bg;
       transition: background-color 0.3s;
     }
   }
 
-  &-info {
+  &-fill {
     align-items: center;
     color: $fontEditor-color;
 
@@ -103,7 +103,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
       width: 100%;
       height: 100%;
       overflow: hidden;
-      font-size: $fontEditor-info-font-size;
+      font-size: $fontEditor-fill-font-size;
       text-align: left;
 
       &-name {
@@ -129,7 +129,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
       line-height: $fontEditor-height;
       color: $color-white;
       text-align: center;
-      background-color: $fontEditor-info-change-bg;
+      background-color: $fontEditor-fill-change-bg;
       border-radius: $fontEditor-border-radius;
       opacity: 0;
       transition: opacity 0.3s;
@@ -288,34 +288,34 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   position: relative;
 }
 
-.#{$fontEditor}-empty {
-  .#{$fontEditor}-initial {
+.#{$fontEditor}-write {
+  .#{$fontEditor}-empty {
     display: block !important;
     //line-height: 50px;
     padding: 0 2 * $font-size-base; //0 20px
   }
 
-  .#{$fontEditor}-info,
+  .#{$fontEditor}-fill,
   .#{$fontEditor}-expand-panel {
     display: none !important;
   }
 }
 
 .#{$fontEditor}-exsit {
-  .#{$fontEditor}-initial,
+  .#{$fontEditor}-empty,
   .#{$fontEditor}-expand-panel {
     display: none !important;
   }
 
-  .#{$fontEditor}-info {
+  .#{$fontEditor}-fill {
     display: flex !important;
   }
 }
 
 /* stylelint-disable*/
 .#{$fontEditor}-expand {      
-  .#{$fontEditor}-initial,
-  .#{$fontEditor}-info {
+  .#{$fontEditor}-empty,
+  .#{$fontEditor}-fill {
     display: none !important;
   }
 
@@ -324,10 +324,10 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   }
 }
 
-.#{$fontEditor}-hover {
-  .#{$fontEditor}-info {
+.#{$fontEditor}-fill-hover {
+  .#{$fontEditor}-fill {
     &-change {
-      opacity: $fontEditor-info-change-opacity;
+      opacity: $fontEditor-fill-change-opacity;
       transition: all 300ms;
     }
   }
@@ -335,7 +335,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 /* stylelint-enable*/
 
 .#{$fontEditor}-disabled {
-  .#{$fontEditor}-info {
+  .#{$fontEditor}-fill {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
@@ -345,12 +345,12 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
       cursor: not-allowed;
     }
   }
-  .#{$fontEditor}-initial {
+  .#{$fontEditor}-empty {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
   }
-  .#{$fontEditor}-info-change {
+  .#{$fontEditor}-fill-change {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;

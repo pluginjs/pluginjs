@@ -57,10 +57,10 @@ class FontEditor extends Component {
     this.setupI18n()
 
     this.initStates()
-    this.initialize()
+    this.emptyize()
   }
 
-  initialize() {
+  emptyize() {
     this.createHtml()
 
     if (this.options.theme) {
@@ -90,15 +90,15 @@ class FontEditor extends Component {
     ) {
       compose(
         removeClass(this.classes.EXSIT),
-        addClass(this.classes.EMPTY)
+        addClass(this.classes.WRITE)
       )(this.$wrap)
-      this.$infoFontName.textContent = this.translate('fontFamily')
+      this.$fillFontName.textContent = this.translate('fontFamily')
     } else {
       compose(
         addClass(this.classes.EXSIT),
-        removeClass(this.classes.EMPTY)
+        removeClass(this.classes.WRITE)
       )(this.$wrap)
-      this.$infoFontName.textContent = this.value.fontFamily
+      this.$fillFontName.textContent = this.value.fontFamily
     }
 
     this.bind()
@@ -109,7 +109,7 @@ class FontEditor extends Component {
 
     this.set(this.value, true)
 
-    this.enter('initialized')
+    this.enter('emptyized')
     this.trigger(EVENTS.READY)
   }
 
@@ -128,7 +128,7 @@ class FontEditor extends Component {
           return
         }
       },
-      this.$initial
+      this.$empty
     )
 
     compose(
@@ -157,7 +157,7 @@ class FontEditor extends Component {
           return false
         }
       })
-    )(this.$info)
+    )(this.$fill)
 
     bindEvent(
       {
@@ -174,11 +174,11 @@ class FontEditor extends Component {
       this.$editBtn
     )
 
-    // this.$infoRemove.bindEvent({
+    // this.$fillRemove.bindEvent({
     // type: this.eventName('click'),
     // handler: () => {
     //   that.clear(true);
-    //   addClass(that.classes.EMPTY, removeClass(that.classes.EXSIT, that.$wrap));
+    //   addClass(that.classes.WRITE, removeClass(that.classes.EXSIT, that.$wrap));
     //   return false;
     // });
 
@@ -198,7 +198,7 @@ class FontEditor extends Component {
         type: this.eventName('click'),
         handler: () => {
           // if ($.isEmptyObject(that.value)) {
-          //   addClass(that.classes.EMPTY, removeClass(that.classes.EXSIT, that.$wrap));
+          //   addClass(that.classes.WRITE, removeClass(that.classes.EXSIT, that.$wrap));
           // }
           this.update()
           return
@@ -212,7 +212,7 @@ class FontEditor extends Component {
       this.enter('holdHover')
     }
     this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$info)
+      removeClass(this.classes.HOVER, this.$fill)
       this.leave('holdHover')
     }
   }
@@ -242,15 +242,15 @@ class FontEditor extends Component {
 
     insertAfter(this.$wrap, this.element)
 
-    this.$initial = query(`.${this.classes.INITIAL}`, this.$wrap)
+    this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
 
-    this.$info = query(`.${this.classes.INFO}`, this.$wrap)
-    this.$infoFont = query(`.${this.classes.INFOFONT}`, this.$info)
-    this.$infoFontName = query(`.${this.classes.INFOFONTNAME}`, this.$info)
-    this.$infoFontSub = query(`.${this.classes.INFOFONTSUB}`, this.$info)
-    this.$infoChange = query(`.${this.classes.INFOCHANGE}`, this.$info)
-    this.$infoRemove = query(`.${this.classes.INFOREMOVE}`, this.$info)
-    this.$editBtn = query(`.${this.classes.INFOEDIT}`, this.$info)
+    this.$fill = query(`.${this.classes.FILL}`, this.$wrap)
+    this.$fillFont = query(`.${this.classes.FILLFONT}`, this.$fill)
+    this.$fillFontName = query(`.${this.classes.FILLFONTNAME}`, this.$fill)
+    this.$fillFontSub = query(`.${this.classes.FILLFONTSUB}`, this.$fill)
+    this.$fillChange = query(`.${this.classes.FILLCHANGE}`, this.$fill)
+    this.$fillRemove = query(`.${this.classes.FILLREMOVE}`, this.$fill)
+    this.$editBtn = query(`.${this.classes.FILLEDIT}`, this.$fill)
 
     this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
     this.$expandControl = query(
@@ -264,7 +264,7 @@ class FontEditor extends Component {
     this.$expandSave = query(`.${this.classes.EXPANDSAVE}`, this.$expandPanel)
 
     // init pop
-    this.pop = PopDialog.of(this.$infoRemove, {
+    this.pop = PopDialog.of(this.$fillRemove, {
       content: 'Are you sure you want to delete?',
       placement: 'bottom',
       buttons: {
@@ -276,7 +276,7 @@ class FontEditor extends Component {
             that.clear(true)
             compose(
               removeClass(that.classes.EXSIT),
-              addClass(that.classes.EMPTY)
+              addClass(that.classes.WRITE)
             )(that.$wrap)
             resolve()
           }
@@ -302,22 +302,22 @@ class FontEditor extends Component {
         return
       }
       if (i === 'fontFamily' && v !== 'inherit') {
-        this.$infoFontName.textContent = v
+        this.$fillFontName.textContent = v
       }
       if (i === 'textAlign') {
         i = 'align-self'
-        setStyle({ alignSelf: v }, this.$infoFontSub)
+        setStyle({ alignSelf: v }, this.$fillFontSub)
       }
 
       i = i.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
 
       const attr = {}
       attr[i] = v
-      setStyle(attr, this.$infoFontName)
+      setStyle(attr, this.$fillFontName)
     })
 
     // set sub
-    this.$infoFontSub.textContent = `${this.value.fontSize ||
+    this.$fillFontSub.textContent = `${this.value.fontSize ||
       'inherit'} / ${this.value.lineHeight || 'inherit'}`
     if (this.value.fontFamily && this.value.fontFamily !== 'inherit') {
       compose(
@@ -486,7 +486,7 @@ class FontEditor extends Component {
   }
 
   destroy() {
-    if (this.is('initialized')) {
+    if (this.is('emptyized')) {
       this.unbind()
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
@@ -494,7 +494,7 @@ class FontEditor extends Component {
       this.$wrap.remove()
       showElement(removeClass(`${this.classes.NAMESPACE}-input`, this.element))
       this.element.value = ''
-      this.leave('initialized')
+      this.leave('emptyized')
     }
 
     this.trigger(EVENTS.DESTROY)

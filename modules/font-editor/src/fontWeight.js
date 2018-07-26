@@ -9,10 +9,10 @@ export default class FontWeight {
     this.values = instance.options.fontWeight.values
     this.defaultValue = instance.options.fontWeight.value
 
-    this.initialize()
+    this.emptyize()
   }
 
-  initialize() {
+  emptyize() {
     const html = template.compile(this.instance.options.fontWeight.template())({
       classes: this.instance.classes,
       weight: this.instance.translate('weight')
@@ -56,7 +56,7 @@ export default class FontWeight {
 
         that.instance.value.fontWeight = value.innerHTML
         // that.instance.update();
-        // that.instance.$infoFontName.css({
+        // that.instance.$fillFontName.css({
         //   'font-weight': value.innerHTML
         // });
       }

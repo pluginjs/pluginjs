@@ -8,10 +8,10 @@ export default class FontFamily {
     this.values = instance.options.fontFamily.values
     this.value = instance.value.fontFamily
 
-    this.initialize()
+    this.emptyize()
   }
 
-  initialize() {
+  emptyize() {
     const html = template.compile(this.instance.options.fontFamily.template())({
       classes: this.instance.classes,
       typeface: this.instance.translate('typeface')
@@ -53,11 +53,11 @@ export default class FontFamily {
         // if (fontFamily !== 'inherit') {
         //   that.instance.$wrap
         //     .addClass(that.instance.classes.EXSIT)
-        //     .removeClass(that.instance.classes.EMPTY);
+        //     .removeClass(that.instance.classes.WRITE);
         // }
-        // that.instance.$infoFontName.text(fontFamily);
+        // that.instance.$fillFontName.text(fontFamily);
         // that.instance.update();
-        // that.instance.$infoFontName.css({
+        // that.instance.$fillFontName.css({
         //   'font-family': fontFamily
         // });
       }

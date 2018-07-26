@@ -20,7 +20,7 @@ import {
 } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import '@pluginjs/dropdown'
-import EditPanel from '@pluginjs/edit-panel'
+// import EditPanel from '@pluginjs/edit-panel'
 import PopDialog from '@pluginjs/pop-dialog'
 import {
   eventable,
@@ -137,7 +137,7 @@ class VideoPicker extends Component {
     )
 
     // init eidtor panel
-    this.editPanel = EditPanel.of(this.element, {
+    this.editPanel = EditPanel.of(this.element, {/* eslint-disable-line */
       init: {
         icon: 'icon-chevron-circle-up',
         text: this.translate('inputPlaceholder')

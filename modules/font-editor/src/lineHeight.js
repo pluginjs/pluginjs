@@ -8,10 +8,10 @@ export default class LineHeight {
     this.instance = instance
     this.defaultValue = instance.options.lineHeight.value
 
-    this.initialize()
+    this.emptyize()
   }
 
-  initialize() {
+  emptyize() {
     this.parse(this.instance.value.lineHeight)
 
     this.initRange()

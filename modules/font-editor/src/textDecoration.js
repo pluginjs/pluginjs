@@ -10,10 +10,10 @@ export default class TextDecoration {
     this.values = instance.options.textDecoration.values
     this.defaultValue = instance.options.textDecoration.value
 
-    this.initialize()
+    this.emptyize()
   }
 
-  initialize() {
+  emptyize() {
     const that = this
     const html = template.compile(
       this.instance.options.textDecoration.template()
