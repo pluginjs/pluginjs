@@ -9,6 +9,15 @@
 ## API
 
 - addClass
+
+Parameters
+
+| className | Type: `String[]` |
+
+Returns
+
+Element   | Type: `HTMLElement`
+
 - removeClass
 - indexOfClass
 - hasClass

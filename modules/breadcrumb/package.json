@@ -40,7 +40,8 @@
     "@pluginjs/pluginjs": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/utils": "*",
+    "bootstrap": "^4.1.3"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
