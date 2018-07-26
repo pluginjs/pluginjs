@@ -102,7 +102,7 @@ export const defaults = {
         '<div class="{classes.FONTFAMILY}">' +
         '<span class="{classes.FONTFAMILYTITLE}">{typeface}</span>' +
         '<div class="{classes.FONTFAMILYCONTENT}">' +
-        '<div class="{classes.FONTFAMILYNAMESPACE} {classes.FONTFAMILYDROPDOWN}"><i class="asIcon-caret-down"></i></div>' +
+        '<div class="{classes.FONTFAMILYNAMESPACE} {classes.FONTFAMILYDROPDOWN}"><span class="pj-dropdown-trigger"></span><i class="asIcon-caret-down"></i></div>' +
         '<ul>' +
         '</ul>' +
         '</div>' +
@@ -118,7 +118,7 @@ export const defaults = {
         '<div class="{classes.FONTWEIGHT}">' +
         '<span class="{classes.FONTWEIGHTTITLE}">{weight}</span>' +
         '<div class="{classes.FONTWEIGHTCONTENT}">' +
-        '<div class="{classes.FONTWEIGHTNAMESPACE} {classes.FONTWEIGHTDROPDOWN}"><i class="asIcon-caret-down"></i></div>' +
+        '<div class="{classes.FONTWEIGHTNAMESPACE} {classes.FONTWEIGHTDROPDOWN}"><span class="pj-dropdown-trigger"></span><i class="asIcon-caret-down"></i></div>' +
         // '<ul>' +
         // '<li>inherit</li>' +
         // '<li>bold</li>' +
@@ -176,7 +176,7 @@ export const defaults = {
     template() {
       return (
         '<ul class="{classes.DECORATIONS}">' +
-        '<li class="{classes.TEXTALIGN}"></li>' +
+        '<li class="{classes.TEXTALIGN} icon-align-left"></li>' +
         '<li class="{classes.TEXTALIGN} icon-align-center"></li>' +
         '<li class="{classes.TEXTALIGN} icon-align-right"></li>' +
         '</ul>'

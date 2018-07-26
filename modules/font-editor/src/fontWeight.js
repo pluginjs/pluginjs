@@ -29,6 +29,7 @@ export default class FontWeight {
       `.${this.instance.classes.FONTWEIGHTDROPDOWN}`,
       this.instance.$expandPanel
     )
+    this.$dropWeight = query('.pj-dropdown-trigger', this.$dropdown)
 
     this.initDropdown()
   }
@@ -42,7 +43,7 @@ export default class FontWeight {
 
     const value = this.instance.value.fontWeight
 
-    this.dropdownInstance = Dropdown.of(this.$dropdown, {
+    this.dropdownInstance = Dropdown.of(this.$dropWeight, {
       imitateSelect: true,
       select: value,
       width: contentWidth(this.$dropdown),

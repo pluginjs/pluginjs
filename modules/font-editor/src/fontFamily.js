@@ -28,13 +28,14 @@ export default class FontFamily {
       `.${this.instance.classes.FONTFAMILYDROPDOWN}`,
       this.instance.$expandPanel
     )
+    this.$dropFamily = query('.pj-dropdown-trigger', this.$dropdown)
     this.$list = query('ul', this.$content)
     this.$list.append(...parseHTML(this.getListHtml()))
 
     const value = this.instance.value.fontFamily
 
     const that = this
-    this.dropdownInstance = Dropdown.of(this.$dropdown, {
+    this.dropdownInstance = Dropdown.of(this.$dropFamily, {
       imitateSelect: true,
       itemValueAttr: 'fontFamily',
       select: value,
