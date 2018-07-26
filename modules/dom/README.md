@@ -8,48 +8,544 @@
 
 ## API
 
-- query
-- queryAll
-- find
-- finds
-- remove
-- html
-- children
-- childrenSelect
-- getSiblings
-- attrVerify
-- childQuery
-- Each
-- parentQuery
-- parent
-- parseHTML
-- setObjData
-- getObjData
-- clone
-- empty
-- prev
-- next
-- attr
-- removeAttribute
-- dataset
-- text
-- append
-- prepend
-- insertBefore
-- insertAfter
-- wrap
-- wrapInner
-- wrapAll
-- unwrap
-- clearChild
-- parentWith
-- clearData
-- contains
-- closest
-- nextElementWith
-- fade
-- fadeOut
-- fadeIn
+### query
+
+Alias: parentNode.querySelector
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| selector | `String` | CSS selectors |
+| parent | `HTMLElement` | Default: `document` |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | An Element object representing the first element in the document that matches the specified set of CSS selectors, or null is returned if there are no matches. |
+
+### queryAll
+
+Alias: parentNode.querySelectorAll
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| selector | `String` | CSS selectors |
+| parent | `HTMLElement` | Default: `document` |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| elements | `Array<HTMLElement>` | A non-live Array containing one Element object for each element that matches at least one of the specified selectors or an empty Array in case of no matches. |
+
+### find
+
+Just like query, but it is Curried.
+
+### finds
+
+Just like queryAll, but it is Curried.
+
+### remove
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### html
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| content | `String` | html string |
+| element | `HTMLElement` | container |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | container |
+
+### children
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | container |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| elements | `Array<HTMLElement>` | a live Array type HTMLCollection which contains all of the child elements of the node upon which it was called.  |
+
+### childrenSelect
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| selector | `String` | CSS selectors |
+| parent | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| elements | `Array<HTMLElement>` | a Array which contains all of the child elements that matches the specified set of CSS selectors .  |
+
+### getSiblings
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### parent
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | parentNode |
+
+### parseHTML
+
+Support tagged template.
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| htmlString | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### setObjData
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| key | `String` | |
+| value | `Any` | |
+| el | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### getObjData
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| key | `String` | |
+| el | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### clone
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### empty
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### prev
+
+Alias: node.previousElementSibling
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### next
+
+Alias: node.nextElementSibling
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### attr
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| args | `String | Object` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### removeAttribute
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| key | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### dataset
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| args | `String | Object` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### text
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| content | `String` | textContent |
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### append
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| child | `HTMLElement` | childNode |
+| el | `HTMLElement` | parentNode |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | parentNode |
+
+### prepend
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| child | `HTMLElement` | childNode |
+| el | `HTMLElement` | parentNode |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | parentNode |
+
+### insertBefore
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| newElement | `HTMLElement` | new element |
+| el | `HTMLElement` | parentNode |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | parentNode |
+
+### insertAfter
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| newElement | `HTMLElement` | new element |
+| el | `HTMLElement` | parentNode |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | parentNode |
+
+### wrap
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| wrapElement | `HTMLElement` | wrapper |
+| el | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| wrapElement | `HTMLElement` | wrapper |
+
+### wrapInner
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| newElement | `HTMLElement` | new element |
+| wrap | `HTMLElement` | wrapper |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| wrap | `HTMLElement` | wrapper |
+
+### wrapAll
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| wrapElement | `HTMLElement` | wrapper |
+| elementList | `Array<HTMLElement>` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| wrapElement | `HTMLElement` | wrapper |
+
+### unwrap
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | |
+
+### clearChild
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | container |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | container |
+
+### parentWith
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| fn | `HTMLElement => Boolean` | |
+| el | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | parentNode |
+
+### clearData
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | |
+
+### contains
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| el | `HTMLElement` | |
+| parent | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| bool | `Boolean` | |
+
+### closest
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| selector | `String` | |
+| el | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| parentElement | `HTMLElement` | |
+
+### nextElementWith
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| fn | `HTMLElement => Boolean` | |
+| el | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| nextElement | `HTMLElement` | |
+
+### fade
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| type | `String` | |
+| Options | `{ duration: Number, callback: Function }` | |
+| element | `HTMLElement` |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| nextElement | `HTMLElement` | |
+
+### fadeOut
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| Options | `{ duration: Number, callback: Function }` | |
+| element | `HTMLElement` |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| nextElement | `HTMLElement` | |
+
+### fadeIn
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| Options | `{ duration: Number, callback: Function }` | |
+| element | `HTMLElement` |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| nextElement | `HTMLElement` | |
 
 ## Browser support
 

@@ -30,7 +30,7 @@ export const children = el => {
 }
 
 export const childrenSelect = (selector, el) =>
-  Array.from(el.children).filter(c => c.nodeName.toLowerCase() === selector)
+  Array.from(el.children).filter(c => c.matches(selector))
 
 export const getSiblings = el => {
   const childrenArr = children(el.parentNode)
@@ -183,7 +183,10 @@ export const attr = curry((args, el) => {
   Object.entries(args).forEach(([k, v]) => el.setAttribute(k, v))
   return el
 })
-export const removeAttribute = curry((name, el) => el.removeAttribute(name))
+export const removeAttribute = curry((name, el) => {
+  el.removeAttribute(name)
+  return el
+})
 
 export const dataset = curry((args, el) => {
   if (typeof args === 'string') {
