@@ -132,6 +132,7 @@ class LinkPicker extends Component {
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+    console.log(this.source)
   }
 
   build() {
@@ -230,14 +231,17 @@ class LinkPicker extends Component {
       })
     )
     append(
-      parseHTML(`<div class='${this.classes.TYPESWITCH}'></div>`),
+      parseHTML(
+        `<div class='${
+          this.classes.TYPESWITCH
+        }'><span class="pj-dropdown-trigger"></span></div>`
+      ),
       query(`.${this.classes.ITEMBODY}`, $types)
     )
 
     prepend($types, this.$dropdown)
-
     this.$typeDropdown = Dropdown.of(
-      query(`.${this.classes.TYPESWITCH}`, this.$dropdown),
+      query('.pj-dropdown-trigger', this.$dropdown),
       {
         theme: 'default',
         imitateSelect: true,
@@ -251,7 +255,7 @@ class LinkPicker extends Component {
             return `<ul class='${that.classes.TYPESPANEL}'></ul>`
           },
           item() {
-            return '<li class="{that.classes.ITEM}" data-{that.options.itemValueAttr}="{item.name}">{item.label}</li>'
+            return '<li class="{that.classes.ITEM}" data-value="{item.name}">{item.label}</li>'
           }
         }
       }
@@ -416,7 +420,9 @@ class LinkPicker extends Component {
 
     let values = data.values
     const $dropdown = parseHTML(
-      `<div class='${this.classes.TYPESCOMPONENT}'></div>`
+      `<div class='${
+        this.classes.TYPESCOMPONENT
+      }'><span class="pj-dropdown-trigger"></span></div>`
     )
 
     setObjData(
@@ -489,7 +495,7 @@ class LinkPicker extends Component {
       icon: 'icon-char icon-chevron-down',
       templates: {
         item() {
-          return '<li class="{that.classes.ITEM}" data-{that.options.itemValueAttr}="{item.name}">{item.label}</li>'
+          return '<li class="{that.classes.ITEM}" data-value="{item.name}">{item.label}</li>'
         }
       },
       onChange(el) {
@@ -697,7 +703,6 @@ class LinkPicker extends Component {
 
   getSourceItem(sourceName, itemName) {
     const data = this.getData()
-
     return data[sourceName].fields.filter(arr => arr.name === itemName)[0]
   }
 

@@ -50,118 +50,118 @@ const sources = {
           }
         }
       ]
-    },
-    archive: {
-      label: 'site archive',
-      preview: '{type}: {content}',
-      fields(data) {
-        return [
-          {
-            name: 'type',
-            label: 'archive type',
-            type: 'dropdown',
-            data: data.type,
-            options: {
-              // dropdown's options
-            }
-          },
-          {
-            name: 'content',
-            label: 'content',
-            type: 'dropdown',
-            connect: 'type',
-            data: data.content,
-            options: {
-              placeholder: 'Choose a content'
-            }
-          },
-          {
-            name: 'target',
-            label: 'open mode',
-            type: 'dropdown',
-            data: {
-              active: '_self',
-              values: {
-                _self: 'same window',
-                _blank: 'new window'
-              }
-            }
-          },
-          {
-            name: 'title',
-            label: 'link title',
-            type: 'input',
-            data: '',
-            options: {
-              placeholder: 'input title'
+    }
+  },
+  archive: {
+    label: 'site archive',
+    preview: '{type}: {content}',
+    fields(data) {
+      return [
+        {
+          name: 'type',
+          label: 'archive type',
+          type: 'dropdown',
+          data: data.type,
+          options: {
+            // dropdown's options
+          }
+        },
+        {
+          name: 'content',
+          label: 'content',
+          type: 'dropdown',
+          connect: 'type',
+          data: data.content,
+          options: {
+            placeholder: 'Choose a content'
+          }
+        },
+        {
+          name: 'target',
+          label: 'open mode',
+          type: 'dropdown',
+          data: {
+            active: '_self',
+            values: {
+              _self: 'same window',
+              _blank: 'new window'
             }
           }
-        ]
-      },
-      url: {
-        label: 'external url',
-        preview: '{url}',
-        fields(data) {
-          return [
-            {
-              name: 'url',
-              label: 'url',
-              type: 'input',
-              data: data.url,
-              options: {
-                placeholder: 'input url'
-              }
-            },
-            {
-              name: 'target',
-              label: 'open mode',
-              type: 'dropdown',
-              data: {
-                active: '_self',
-                values: {
-                  _self: 'same window',
-                  _blank: 'new window'
-                }
-              }
-            },
-            {
-              name: 'title',
-              label: 'link title',
-              type: 'input',
-              data: '',
-              options: {
-                placeholder: 'input title'
-              }
-            }
-          ]
         },
-        scroll: {
-          label: 'scroll to target',
-          preview: 'scroll to {target}',
-          fields(data) {
-            return [
-              {
-                name: 'target',
-                label: 'target',
-                type: 'radio',
-                data: data.target,
-                options: {
-                  // asRadio's options
-                }
-              },
-              {
-                name: 'title',
-                label: 'link title',
-                type: 'input',
-                data: '',
-                options: {
-                  placeholder: 'input title'
-                }
-              }
-            ]
+        {
+          name: 'title',
+          label: 'link title',
+          type: 'input',
+          data: '',
+          options: {
+            placeholder: 'input title'
           }
         }
-      }
+      ]
+    }
+  },
+  url: {
+    label: 'external url',
+    preview: '{url}',
+    fields(data) {
+      return [
+        {
+          name: 'url',
+          label: 'url',
+          type: 'input',
+          data: data.url,
+          options: {
+            placeholder: 'input url'
+          }
+        },
+        {
+          name: 'target',
+          label: 'open mode',
+          type: 'dropdown',
+          data: {
+            active: '_self',
+            values: {
+              _self: 'same window',
+              _blank: 'new window'
+            }
+          }
+        },
+        {
+          name: 'title',
+          label: 'link title',
+          type: 'input',
+          data: '',
+          options: {
+            placeholder: 'input title'
+          }
+        }
+      ]
+    }
+  },
+  scroll: {
+    label: 'scroll to target',
+    preview: 'scroll to {target}',
+    fields(data) {
+      return [
+        {
+          name: 'target',
+          label: 'target',
+          type: 'radio',
+          data: data.target,
+          options: {
+            // asRadio's options
+          }
+        },
+        {
+          name: 'title',
+          label: 'link title',
+          type: 'input',
+          data: '',
+          options: {
+            placeholder: 'input title'
+          }
+        }
+      ]
     }
   }
 }

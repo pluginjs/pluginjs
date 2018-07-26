@@ -10,15 +10,15 @@ import {
   getObjData,
   unwrap,
   wrap,
-  prepend,
-  optionable
+  prepend
 } from '@pluginjs/dom'
 import {
   eventable,
   register,
   stateable,
   styleable,
-  themeable
+  themeable,
+  optionable
 } from '@pluginjs/decorator'
 import {
   classes as CLASSES,
