@@ -123,9 +123,6 @@ class Html5 {
   }
 
   removeListener(eventName, element) {
-    if (!this.listeners[eventName]) {
-    }
-
     this.listeners[eventName].map(callback => {
       return element.removeEventListener(eventName, callback)
     })

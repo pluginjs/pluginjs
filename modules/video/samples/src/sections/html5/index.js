@@ -4,7 +4,7 @@ import Video from '@pluginjs/video'
 const root = query('#html5')
 const element = query('.video', root)
 
-const instance = Video.of(element, {
+let instance = Video.of(element, {
   type: 'html5',
   url: 'http://vjs.zencdn.net/v/oceans.mp4',
   autoplay: false
@@ -12,7 +12,13 @@ const instance = Video.of(element, {
 let trigger = true
 const instances = {
   load() {
-    instance.load()
+    if (!instance.plugin) {
+      instance = Video.of(element, {
+        type: 'html5',
+        url: 'http://vjs.zencdn.net/v/oceans.mp4',
+        autoplay: false
+      })
+    }
     instance.setSize('800px', '400px')
   },
   pause() {
@@ -30,7 +36,7 @@ const instances = {
     instance.volume(val)
   },
   switchVideo() {
-    instance.switchVideo('../../assets/towers.mp4')
+    instance.switchVideo('http://vjs.zencdn.net/v/oceans.mp4')
   },
   currentTime() {
     console.log('currentTime:', instance.currentTime())

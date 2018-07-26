@@ -23,14 +23,21 @@ describe('Video', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const video = Video.of(generateHTMLSample())
+      const video = Video.of(generateHTMLSample(), {
+        type: 'html5'
+      })
 
       expect(video).toBeObject()
-      expect(video.options).toEqual(DEFAULTS)
+      expect(video.options).toEqual({
+        ...DEFAULTS,
+        type: 'html5'
+      })
     })
 
     test('should have options', () => {
-      const video = Video.of(generateHTMLSample())
+      const video = Video.of(generateHTMLSample(), {
+        type: 'html5'
+      })
 
       expect(video.options).toBeObject()
     })
@@ -38,7 +45,9 @@ describe('Video', () => {
 
   describe('api call', () => {
     test('should call destroy', () => {
-      const video = Video.of(generateHTMLSample())
+      const video = Video.of(generateHTMLSample(), {
+        type: 'html5'
+      })
       expect(video.destroy()).toBeNil()
     })
   })
@@ -57,7 +66,9 @@ describe('Video', () => {
         called++
       })
 
-      const api = Video.of(element)
+      const api = Video.of(element, {
+        type: 'html5'
+      })
       expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
@@ -69,7 +80,9 @@ describe('Video', () => {
 
     beforeEach(() => {
       element = generateHTMLSample()
-      api = Video.of(element)
+      api = Video.of(element, {
+        type: 'html5'
+      })
     })
 
     test('should trigger destroy event', () => {
