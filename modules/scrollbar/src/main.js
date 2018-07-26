@@ -1,8 +1,8 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import easing from '@pluginjs/easing'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle, getStyle, getOffset } from '@pluginjs/styled'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { setStyle, getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, query } from '@pluginjs/dom'
 import {
@@ -14,8 +14,7 @@ import {
   transformProperty,
   transition,
   transitionEndEvent,
-  transitionProperty,
-  optionable
+  transitionProperty
 } from '@pluginjs/feature'
 import is from '@pluginjs/is'
 import { convertPercentageToFloat, getTime } from '@pluginjs/utils'
@@ -24,7 +23,8 @@ import {
   register,
   stateable,
   styleable,
-  themeable
+  themeable,
+  optionable
 } from '@pluginjs/decorator'
 import Keyboard from './keyboard'
 import {
@@ -504,7 +504,7 @@ class Scrollbar extends Component {
     let value
     if (this.options.useCssTransforms && transform) {
       const transform = this.$handle.style[transformProperty()]
-      const reg = /[^\(\)]+(?=\))/g
+      const reg = /[^\(\)]+(?=\))/g /* eslint-disable-line */
       value = transform
         .match(reg)[0]
         .split(',')
@@ -672,7 +672,7 @@ class Scrollbar extends Component {
       this.prepareTransition(property, duration, easing.css())
 
       this.oneBind(transitionEndEvent(), this.$handle, () => {
-        const key = transitionProperty()
+        transitionProperty()
         this.$handle.style[transitionProperty()] = ''
 
         if (trigger) {
@@ -778,7 +778,7 @@ class Scrollbar extends Component {
 
       removeClass(this.classes.CONTAINER, this.element)
       removeClass(this.classes.VERTICAL, this.element)
-      removeClass(this.classes.HORIZONTAL, thie.element)
+      removeClass(this.classes.HORIZONTAL, this.element)
       this.element.setAttribute('draggable', null)
 
       if (this.options.theme) {

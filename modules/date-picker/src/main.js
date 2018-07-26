@@ -85,6 +85,7 @@ class DatePicker extends Component {
       ),
       addClass(this.classes.INPUT, this.$element)
     )
+    console.log(this.$inputWrap)
     addClass(this.classes.INPUTMODE, this.$element)
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$inputWrap)

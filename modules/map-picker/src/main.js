@@ -12,6 +12,7 @@ import {
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import is from '@pluginjs/is'
+import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import {
   eventable,
@@ -111,7 +112,13 @@ class MapPicker extends Component {
       el => el.matches(`.${this.classes.NAMESPACE}`),
       this.element
     )
-    // creat trigger
+    // console.log(this.options.theme)
+    // console.log(this.classes.THEME)
+    console.log($wrap)
+    console.log(this.$wrap)
+    // create mapPicker dropdown
+
+    // create trigger
     this.$trigger = parseHTML(
       this.createEl('trigger', {
         classes: this.classes
@@ -154,6 +161,21 @@ class MapPicker extends Component {
     this.$fill.append(this.$fillAction)
     this.buildPanelItem()
     this.buildPop()
+    this.initDropdown()
+  }
+
+  initDropdown() {
+    const dropdownConf = {
+      // data: this.getTimeList().map(value => ({ label: value })),
+      // placeholder: this.options.placeholder,
+      placement: 'bottom-left',
+      imitateSelect: true,
+      // inputLabel: true,
+      hideOutClick: false,
+      constraintToScrollParent: false,
+      templates: this.options.templates
+    }
+    this.mapDropdown = Dropdown.of(this.$empty, dropdownConf)
   }
 
   buildPop() {
@@ -274,15 +296,12 @@ class MapPicker extends Component {
 
   initAutoComplete() {
     const $place = query(`.${this.classes.PLACE}`, this.$dropdown)
-
     const config = {}
 
     this.autoComplete = new google.maps.places.Autocomplete($place, config) /* eslint-disable-line */
-
     // autoComplete event
     this.autoComplete.addListener('place_changed', () => {
       const place = this.autoComplete.getPlace()
-
       if (place.geometry) {
         this.data.place = place.formatted_address
         const location = place.geometry.location
@@ -491,11 +510,17 @@ class MapPicker extends Component {
       this.initMap()
     }
 
+    addClass('pj-dropdown-show', this.$trigger)
+    addClass('pj-dropdown-show', this.$wrap)
+    addClass('pj-dropdown-show', this.$dropdown.parentNode)
     addClass(this.classes.SHOW, this.$wrap)
     this.enter('open')
   }
 
   close() {
+    removeClass('pj-dropdown-show', this.$trigger)
+    removeClass('pj-dropdown-show', this.$wrap)
+    removeClass('pj-dropdown-show', this.$dropdown.parentNode)
     removeClass(this.classes.SHOW, this.$wrap)
     this.leave('open')
   }

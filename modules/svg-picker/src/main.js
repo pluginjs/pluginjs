@@ -67,6 +67,7 @@ class SvgPicker extends Component {
         })
       )
     )
+    this.$svgTrigger = query('.pj-dropdown-trigger', this.$svgPicker)
     insertAfter(this.$svgPicker, this.element)
     wrap(`<div class="${this.classes.WRAP}"></div>`, this.$svgPicker)
 
@@ -302,7 +303,7 @@ class SvgPicker extends Component {
         that.classes.EMPTY
       }" data-{that.options.itemValueAttr}="{item.label}">${empty}</div>`
     }
-    return Dropdown.of(this.$svgPicker, {
+    return Dropdown.of(this.$svgTrigger, {
       data,
       hideOnSelect: false,
       width: 260,
@@ -410,7 +411,7 @@ class SvgPicker extends Component {
     insertBefore(this.$search, children(this.$panel)[0])
   }
 
-  searching(val) {
+  searching(val) {  /* eslint-disable-line */
     const searchedIcons = []
 
     this.$icons.forEach(v => {
@@ -528,7 +529,7 @@ class SvgPicker extends Component {
     this.select(this.getItem(data.id))
   }
 
-  val(value) {
+  val(value) { /* eslint-disable-line */
     if (is.undefined(value)) {
       return this.options.process.call(this, this.get())
     }

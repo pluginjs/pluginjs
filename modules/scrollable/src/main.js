@@ -14,11 +14,11 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import { children, append, query, wrap, unwrap, parent } from '@pluginjs/dom'
 import {
   eventable,
+  optionable,
   register,
   stateable,
   styleable,
-  themeable,
-  optionable
+  themeable
 } from '@pluginjs/decorator'
 import {
   classes as CLASSES,

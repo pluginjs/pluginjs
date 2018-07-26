@@ -43,6 +43,11 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
 */
 
 .#{$mapPicker} {
+  &-trigger {
+    width: 260px !important;
+    height: 50px;
+    border: none !important;
+  }
   &-input {
     display: none !important;
   }
@@ -182,10 +187,10 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     }
   }
   &-show {
-    .#{$mapPicker}-empty,
-    .#{$mapPicker}-fill {
-      display: none !important;
-    }
+    // .#{$mapPicker}-empty,
+    // .#{$mapPicker}-fill {
+    //   display: none !important;
+    // }
     .#{$mapPicker}-dropdown {
       display: block !important;
     }
@@ -222,4 +227,8 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
       cursor: not-allowed;
     }
   }
+}
+
+.pac-container {
+  z-index: 1000000;
 }
