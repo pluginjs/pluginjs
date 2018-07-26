@@ -1,6 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import is from '@pluginjs/is'
+import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
   setStyle,
@@ -13,10 +14,11 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   parseHTML,
   query,
-  parent,
+  // parent,
   parentWith,
   fadeIn,
-  fadeOut
+  fadeOut,
+  wrap
 } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import '@pluginjs/dropdown'
@@ -58,11 +60,8 @@ class VideoPicker extends Component {
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.setupI18n()
-
     addClass(this.classes.NAMESPACE, this.element)
-
     this.data = {}
-
     this.data.source = this.options.sources[0]
     this.data.url = ''
     this.data.poster = ''
@@ -94,13 +93,55 @@ class VideoPicker extends Component {
   }
   build() {
     const that = this
-
+    const $wrap = parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`)
+    if (this.options.theme) {
+      addClass(this.classes.THEME, $wrap)
+    }
+    wrap($wrap, addClass(this.classes.INPUT, this.element))
+    this.$wrap = parentWith(
+      el => el.matches(`.${this.classes.NAMESPACE}`),
+      this.element
+    )
+    // creat trigger
+    // this.$trigger = parseHTML(
+    //   this.createEl('trigger', {
+    //     classes: this.classes
+    //   })
+    // )
+    // create dropdown
+    // this.$dropdown = parseHTML(
+    //   this.createEl('dropdown', {
+    //     classes: this.classes
+    //   })
+    // )
+    this.$trigger = parseHTML(
+      template.compile(this.options.templates.trigger())({
+        classes: this.classes
+      })
+    )
+    this.$fill = parseHTML(
+      template.compile(this.options.templates.fill())({
+        classes: this.classes
+      })
+    )
+    this.$empty = parseHTML(
+      template.compile(this.options.templates.empty())({
+        classes: this.classes
+      })
+    )
+    this.$dropdown = parseHTML(
+      template.compile(this.options.templates.dropdown())({
+        classes: this.classes
+      })
+    )
+    this.$wrap.append(this.$trigger, this.$dropdown)
+    this.$trigger.append(this.$empty, this.$fill)
     // set Aspect Ratio
     const sourceData = []
     this.options.sources.forEach((v, i) => {
       sourceData[i] = { label: v }
     })
-    const ratioData = [{ label: 'auto' }, { label: '4:3' }, { label: '16:9' }]
+    // const ratioData = [{ label: 'auto' }, { label: '4:3' }, { label: '16:9' }]
     const localeCancel = this.translate('cancel')
     const localeDelete = this.translate('delete')
     // const localeSave = this.translate('save');
@@ -137,127 +178,127 @@ class VideoPicker extends Component {
     )
 
     // init eidtor panel
-    this.editPanel = EditPanel.of(this.element, {/* eslint-disable-line */
-      init: {
-        icon: 'icon-chevron-circle-up',
-        text: this.translate('inputPlaceholder')
-      },
-      hasSelector: false,
-      components: [
-        {
-          title: this.translate('videoSource'),
-          element: this.$source,
-          type: 'dropdown',
-          options: {
-            data: sourceData,
-            width: 160,
-            imitateSelect: true,
-            icon: 'icon-char icon-chevron-down',
-            select: sourceData[0].label,
-            templates: {
-              panel() {
-                return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
-              }
-            },
-            constraintToScrollParent: false,
-            constraintToWindow: false
-          }
-        },
-        {
-          title: this.translate('videoURL'),
-          element: this.$videoUrl
-        },
-        {
-          title: this.translate('chooseVideo'),
-          element: this.$localUrl
-        },
-        {
-          title: this.translate('aspectRatio'),
-          element: this.$ratio,
-          type: 'dropdown',
-          options: {
-            data: ratioData,
-            width: 160,
-            imitateSelect: true,
-            icon: 'icon-char icon-chevron-down',
-            select: ratioData[0].label,
-            templates: {
-              panel() {
-                return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
-              }
-            },
-            constraintToScrollParent: false,
-            constraintToWindow: false
-          }
-        },
-        {
-          title: this.translate('poster'),
-          element: this.$poster
-        }
-      ],
-      action: {
-        panel: {
-          cancel: {
-            title: this.translate('cancel'),
-            class: ''
-          },
-          save: {
-            title: this.translate('save'),
-            class: ''
-          }
-        },
-        selector: {
-          cancel: {
-            title: this.translate('cancel'),
-            class: ''
-          },
-          save: {
-            title: this.translate('useIt'),
-            class: ''
-          }
-        }
-      },
-      templates: {
-        wrap() {
-          return `<div class='${that.classes.WRAP} {class}'></div>`
-        },
-        init() {
-          return `<div class='{class} ${
-            that.classes.INIT
-          }'><i class='{icon}'></i>{text}</div>`
-        },
-        info() {
-          return `<div class='{class}'><image class='{content} ${
-            that.classes.INFOPOSTER
-          }' /></div>`
-        },
-        infoAction() {
-          return `<div class='{class}'><i class='icon-pencil-square ${
-            that.classes.EDITOR
-          }'></i><i class='icon-trash ${that.classes.REMOVE}'></i></div>`
-        },
-        previewContent() {
-          return `<div class='${that.classes.VIDEOACTION}'>
-              <i class='icon-chevron-circle-right ${that.classes.VIDEOBTN}'></i>
-              <div class='${that.classes.VIDEOPOSTER}'></div>
-              <div class="${
-                that.classes.VIDEOANIMATE
-              } cp-spinner cp-round"></div>
-            </div>
-            <div class='{class} ${that.classes.VIDEO}'></div>`
-        },
-        panel() {
-          return `<section class='{class} ${that.classes.PANEL}'>
-        <div class='{preview}'>
-        </div>
-      </section>`
-        }
-      }
-    })
+    // this.editPanel = EditPanel.of(this.element, {
+    //   init: {
+    //     icon: 'icon-chevron-circle-up',
+    //     text: this.translate('inputPlaceholder')
+    //   },
+    //   hasSelector: false,
+    //   components: [
+    //     {
+    //       title: this.translate('videoSource'),
+    //       element: this.$source,
+    //       type: 'dropdown',
+    //       options: {
+    //         data: sourceData,
+    //         width: 160,
+    //         imitateSelect: true,
+    //         icon: 'icon-char icon-chevron-down',
+    //         select: sourceData[0].label,
+    //         templates: {
+    //           panel() {
+    //             return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
+    //           }
+    //         },
+    //         constraintToScrollParent: false,
+    //         constraintToWindow: false
+    //       }
+    //     },
+    //     {
+    //       title: this.translate('videoURL'),
+    //       element: this.$videoUrl
+    //     },
+    //     {
+    //       title: this.translate('chooseVideo'),
+    //       element: this.$localUrl
+    //     },
+    //     {
+    //       title: this.translate('aspectRatio'),
+    //       element: this.$ratio,
+    //       type: 'dropdown',
+    //       options: {
+    //         data: ratioData,
+    //         width: 160,
+    //         imitateSelect: true,
+    //         icon: 'icon-char icon-chevron-down',
+    //         select: ratioData[0].label,
+    //         templates: {
+    //           panel() {
+    //             return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
+    //           }
+    //         },
+    //         constraintToScrollParent: false,
+    //         constraintToWindow: false
+    //       }
+    //     },
+    //     {
+    //       title: this.translate('poster'),
+    //       element: this.$poster
+    //     }
+    //   ],
+    //   action: {
+    //     panel: {
+    //       cancel: {
+    //         title: this.translate('cancel'),
+    //         class: ''
+    //       },
+    //       save: {
+    //         title: this.translate('save'),
+    //         class: ''
+    //       }
+    //     },
+    //     selector: {
+    //       cancel: {
+    //         title: this.translate('cancel'),
+    //         class: ''
+    //       },
+    //       save: {
+    //         title: this.translate('useIt'),
+    //         class: ''
+    //       }
+    //     }
+    //   },
+    //   templates: {
+    //     wrap() {
+    //       return `<div class='${that.classes.WRAP} {class}'></div>`
+    //     },
+    //     init() {
+    //       return `<div class='{class} ${
+    //         that.classes.INIT
+    //       }'><i class='{icon}'></i>{text}</div>`
+    //     },
+    //     info() {
+    //       return `<div class='{class}'><image class='{content} ${
+    //         that.classes.INFOPOSTER
+    //       }' /></div>`
+    //     },
+    //     infoAction() {
+    //       return `<div class='{class}'><i class='icon-pencil-square ${
+    //         that.classes.EDITOR
+    //       }'></i><i class='icon-trash ${that.classes.REMOVE}'></i></div>`
+    //     },
+    //     previewContent() {
+    //       return `<div class='${that.classes.VIDEOACTION}'>
+    //           <i class='icon-chevron-circle-right ${that.classes.VIDEOBTN}'></i>
+    //           <div class='${that.classes.VIDEOPOSTER}'></div>
+    //           <div class="${
+    //             that.classes.VIDEOANIMATE
+    //           } cp-spinner cp-round"></div>
+    //         </div>
+    //         <div class='{class} ${that.classes.VIDEO}'></div>`
+    //     },
+    //     panel() {
+    //       return `<section class='{class} ${that.classes.PANEL}'>
+    //     <div class='{preview}'>
+    //     </div>
+    //   </section>`
+    //     }
+    //   }
+    // })
 
-    hideElement(
-      parentWith(el => el.matches('.pj-editPanel-component'), this.$localUrl)
-    )
+    // hideElement(
+    //   parentWith(el => el.matches('.pj-editPanel-component'), this.$localUrl)
+    // )
 
     this.changeSource = window.Pj.instances.dropdown.find(
       plugin => plugin.element === this.$source
@@ -266,15 +307,14 @@ class VideoPicker extends Component {
       plugin => plugin.element === this.$ratio
     )
 
-    this.$wrap = parent(this.element)
+    // this.$wrap = parent(this.element)
     // this.$data = this.$wrap.find('.pj-editPanel-data');
-    this.$infoCover = query(`.${this.classes.INFOPOSTER}`, this.$wrap)
-    this.$video = query(`.${this.classes.VIDEO}`, this.$wrap)
-    this.$urlInput = query('input', this.$videoUrl)
-    this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$wrap)
-    this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$wrap)
-    this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
-
+    // this.$infoCover = query(`.${this.classes.INFOPOSTER}`, this.$wrap)
+    // this.$video = query(`.${this.classes.VIDEO}`, this.$wrap)
+    // this.$urlInput = query('input', this.$videoUrl)
+    // this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$wrap)
+    // this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$wrap)
+    // this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
     // init popDialog
     this.pop = PopDialog.of(
       query(`.${this.classes.REMOVE}`, this.$infoAction),

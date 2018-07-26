@@ -14,7 +14,6 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}-{theme}',
-  WRAP: '{namespace}-wrap',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
   SHOW: '{namespace}-show',
@@ -48,7 +47,11 @@ export const classes = {
   POSTERADD: '{namespace}-poster-add',
   POSTERCHANGE: '{namespace}-poster-change',
   POSTERDELETE: '{namespace}-poster-delete',
-  WARNING: '{namespace}-warning'
+  WARNING: '{namespace}-warning',
+  DROPDOWN: '{namespace}-dropdown',
+  TRIGGER: '{namespace}-trigger',
+  INPUT: '{namespace}-input',
+  EMPTY: '{namespace}-empty'
 }
 
 export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']
@@ -60,6 +63,43 @@ export const defaults = {
   sources: ['YouTube', 'Vimeo', 'Local File'],
   disabled: false,
   date: null,
+  templates: {
+    dropdown() {
+      return `<div class='{classes.DROPDOWN}'>
+      </div>`
+    },
+    trigger() {
+      return `<div class="{classes.TRIGGER}">
+      </div>`
+    },
+    input() {
+      return `<div class='{classes.INPUT}'>
+      </div>`
+    },
+    fill() {
+      return `<div class='{classes.INIT }'><i class='{icon}'></i>{text}
+      </div>`
+    },
+    empty() {
+      return `<div class='{classes.EMPTY}'><image class='{classes.INFOPOSTER}' />
+      </div>`
+    },
+    infoAction() {
+      return `<div class='{class}'><i class='icon-pencil-square {classes.EDITOR}'></i><i class='icon-trash {classes.REMOVE}'></i>
+      </div>`
+    },
+    previewContent() {
+      return `<div class='{classes.VIDEOACTION}'>
+      <i class='icon-chevron-circle-right {classes.VIDEOBTN}'></i>
+      <div class='{classes.VIDEOPOSTER}'></div>
+      <div class="{classes.VIDEOANIMATE} cp-spinner cp-round"></div></div>
+     <div class='{class} classes.VIDEO}'></div>`
+    },
+    panel() {
+      return `<section class='{class} {classes.PANEL}'>
+        <div class='{preview}'></div></section>`
+    }
+  },
 
   selectCover() {
     return `https://www.smashingmagazine.com/images/music-videos/rabbit.jpg
