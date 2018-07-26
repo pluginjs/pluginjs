@@ -17,6 +17,7 @@ Parameters
 | className | `String[]` | function rest parameter |
 
 Returns
+
 | Name | Type | Description |
 |------|------|-------------|
 | element | `HTMLElement` | |
@@ -30,6 +31,7 @@ Parameters
 | className | `String[]` | function rest parameter |
 
 Returns
+
 | Name | Type | Description |
 |------|------|-------------|
 | element | `HTMLElement` | |
@@ -44,6 +46,7 @@ Parameters
 | element | `HTMLElement` | |
 
 Returns
+
 | Name | Type | Description |
 |------|------|-------------|
 | index | `Number` | index of class |
@@ -58,6 +61,7 @@ Parameters
 | element | `HTMLElement` | |
 
 Returns
+
 | Name | Type | Description |
 |------|------|-------------|
 | hasClass | `Bool` | |
