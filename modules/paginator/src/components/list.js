@@ -203,9 +203,7 @@ class List {
   update() {
     const oldPages = this.visiblePages
     const newPages = this.getVisiblePages()
-
     const items = this.items
-
     if (this.currentPage !== this.instance.currentPage) {
       items.map(item => removeClass(this.instance.classes.ACTIVE, item))
     }
@@ -225,7 +223,7 @@ class List {
           this.prev.remove()
         }
         this.prev = parseHTML(this.generatePrev())
-        insertBefore(this.prev, start)
+        insertAfter(this.prev, items[0])
       } else if (this.prev) {
         this.prev.remove()
       }
@@ -235,7 +233,7 @@ class List {
           this.next.remove()
         }
         this.next = parseHTML(this.generateNext())
-        insertBefore(this.next, end)
+        insertBefore(this.next, items[items.length - 1])
       } else if (this.next) {
         this.next.remove()
       }
@@ -256,7 +254,8 @@ class List {
                 page
               })
             )
-            end = insertAfter(endEl, end)
+            insertAfter(endEl, end)
+            end = endEl
           }
         }
       })
@@ -428,9 +427,9 @@ List.translations = {
 
 List.classes = {
   LISTNEXT: '{namespace}-list-next',
-  LISTNEXTICON: 'fa fa-ellipsis-h',
+  LISTNEXTICON: 'icon-ellipsis-circle-h',
   LISTPREV: '{namespace}-list-prev',
-  LISTPREVICON: 'fa fa-ellipsis-h'
+  LISTPREVICON: 'icon-ellipsis-circle-h'
 }
 
 export default List

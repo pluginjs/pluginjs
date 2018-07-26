@@ -66,13 +66,12 @@ class Paginator extends Component {
 
   initialize() {
     const components = this.options.layout.split(',')
-
     this.components = []
 
     const that = this
     let component
 
-    components.map(name => {
+    components.forEach(name => {
       name = name.trim()
 
       if (!is.undefined(COMPONENTS[name])) {
@@ -90,7 +89,7 @@ class Paginator extends Component {
 
   createHtml() {
     let html = ''
-    this.components.map((component, i) => {
+    this.components.forEach(component => {
       html += component.generate()
     })
 
@@ -98,7 +97,7 @@ class Paginator extends Component {
   }
 
   bind() {
-    this.components.map((component, i) => {
+    this.components.forEach(component => {
       if (is.function(component.bind)) {
         component.bind()
       }
@@ -106,7 +105,7 @@ class Paginator extends Component {
   }
 
   unbind() {
-    this.components.map((component, i) => {
+    this.components.forEach(component => {
       if (is.function(component.unbind)) {
         component.unbind()
       }
@@ -117,7 +116,7 @@ class Paginator extends Component {
     const that = this
     that.trigger(EVENTS.RESIZE)
 
-    this.components.map((component, i) => {
+    this.components.forEach(component => {
       if (is.function(component.resize)) {
         component.resize()
       }
@@ -130,7 +129,6 @@ class Paginator extends Component {
     if (page === this.currentPage && this.is('initialized')) {
       return false
     }
-
     this.currentPage = page
 
     if (this.is('initialized')) {
@@ -277,6 +275,6 @@ Paginator.registerComponent('next', Next)
 Paginator.registerComponent('prev', Prev)
 Paginator.registerComponent('list', List)
 Paginator.registerComponent('jumper', Jumper)
-Paginator.registerComponent('list', List)
+// Paginator.registerComponent('list', List)
 
 export default Paginator

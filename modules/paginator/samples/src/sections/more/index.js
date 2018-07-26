@@ -16,6 +16,6 @@ Paginator.of(element, {
   layout: 'prev, list, next',
   onChange(page) {
     const url = `?page=${page}`
-    return url
+    console.log(`update content with ${url}`)
   }
 })
