@@ -60,6 +60,25 @@ class Flip {
 
     this.setFlipAnimation(`.${name}`)
 
+    if (this.currenTime[type] === 0) {
+      this.lastTime[type] = this.currenTime[type]
+      updateDomValue(
+        `.${this.instance.classes.CURR}.${this.instance.classes.TOP}.${
+          this.instance.classes.NAMESPACE
+        }-${name}`,
+        this.instance.element,
+        this.lastTime[type]
+      )
+
+      updateDomValue(
+        `.${this.instance.classes.CURR}.${this.instance.classes.BOTTOM}.${
+          this.instance.classes.NAMESPACE
+        }-${name}`,
+        this.instance.element,
+        this.lastTime[type]
+      )
+    }
+
     if (!is.undefined(this.lastTime[type])) {
       updateDomValue(
         `.${this.instance.classes.CURR}.${this.instance.classes.TOP}.${

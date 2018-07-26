@@ -93,17 +93,36 @@ class CountDown extends Component {
     if (!this.is('started')) {
       this.enter('started')
 
-      this.interval = setInterval(() => {
-        const dueTime = new Date(this.options.due).getTime()
-        const diffTime = getDiffTime(dueTime)
+      if (this.interval !== null) {
+        clearInterval(this.interval)
+      }
 
-        this.$counters.forEach(type => {
-          const countDownTime = new TimeType(type, diffTime, this.options.due)
-          if (!is.undefined(MODES[this.options.mode])) {
-            this.modeInstance.animate(countDownTime, type)
-          }
-        })
+      this.update()
+
+      this.interval = setInterval(() => {
+        this.update(this)
       }, 1000)
+    }
+  }
+
+  update() {
+    const dueTime = new Date(this.options.due.toString()).getTime()
+    const diffTime = getDiffTime(dueTime)
+
+    if (this.totalSecs === diffTime) {
+      return
+    }
+    this.totalSecs = diffTime
+
+    this.$counters.forEach(type => {
+      const countDownTime = new TimeType(type, this.totalSecs)
+      if (!is.undefined(MODES[this.options.mode])) {
+        this.modeInstance.animate(countDownTime, type)
+      }
+    })
+
+    if (this.totalSecs === 0) {
+      this.stop()
     }
   }
 

@@ -93,12 +93,12 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
 
   .#{$countdowns}-flip-animation {
     .#{$countdown}-number.#{$countdowns}-curr.#{$countdowns}-top {
-      transition: all 500ms ease-in-out;
+      transition: all 250ms ease-in-out;
       transform: rotateX(-90deg);
     }
 
     .#{$countdown}-number.#{$countdowns}-next.#{$countdowns}-bottom {
-      transition: all 500ms ease-in-out 500ms;
+      transition: all 250ms ease-in-out 250ms;
       transform: rotateX(0deg);
     }
   }

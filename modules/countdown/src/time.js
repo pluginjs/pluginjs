@@ -1,4 +1,4 @@
-const timeType = (type, time, due) => {
+const timeType = (type, time) => {
   switch (type) {
     case 's':
       return {
@@ -85,12 +85,8 @@ const timeType = (type, time, due) => {
 
     case 'Y':
       return {
-        current: Math.abs(
-          new Date(due).getFullYear() - new Date().getFullYear()
-        ),
-        remain: Math.abs(
-          new Date(due).getFullYear() - new Date().getFullYear()
-        ),
+        current: Math.floor(time / 86400 / 365),
+        remain: Math.floor(time / 86400 / 365),
         step: 5
       }
 

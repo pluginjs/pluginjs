@@ -51,7 +51,7 @@ export const defaults = {
   format: 'd,h,m,s',
   label: true, // "天,时，分，秒"
   labelPosition: 'bottom', // bottome | above
-  due: '2018-12-28 19:32:28', // scheduled time
+  due: `${new Date().getFullYear() + 1}-1-1`, // scheduled time
   now: new Date(), // now time
   templates: {
     wrap() {
