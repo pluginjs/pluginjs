@@ -1,6 +1,7 @@
 import Component from '@pluginjs/component'
 import { deepMerge, compose, curry } from '@pluginjs/utils'
 import is from '@pluginjs/is'
+import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -83,9 +84,23 @@ class GalleryPicker extends Component {
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
-
+    this.initDropdown()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+  // initDropdown
+  initDropdown() {
+    const dropdownConf = {
+      // data: this.getTimeList().map(value => ({ label: value })),
+      // placeholder: this.options.placeholder,
+      placement: 'bottom-left',
+      imitateSelect: true,
+      // inputLabel: true,
+      hideOutClick: false,
+      constraintToScrollParent: false,
+      templates: this.options.templates
+    }
+    this.mapDropdown = Dropdown.of(this.$empty, dropdownConf)
   }
 
   bind() {
@@ -105,7 +120,6 @@ class GalleryPicker extends Component {
       },
       this.$empty
     )
-
     // add
     if (this.$fillAdd) {
       bindEvent(

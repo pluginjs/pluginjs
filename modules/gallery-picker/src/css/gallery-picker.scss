@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $galleryPicker: "pj-galleryPicker" !default;
+$dropdown: "pj-dropdown" !default;
 $galleryPicker-border-width: 1px !default;
 $galleryPicker-border-color: $gray !default;
 $galleryPicker-border: $galleryPicker-border-width solid
@@ -30,15 +31,18 @@ $galleryPicker-expand-item-change-bg: $color-opacity !default;
 $galleryPicker-expand-item-change-opacity: 1 !default;
 $galleryPicker-expand-control-btn-width: 95px !default;
 $galleryPicker-expand-control-btn-height: 32px !default;
-
 // Core
 // =====================
+.#{$dropdown}-panel-wrap {
+   z-index: 9999;
+   will-change: transform !important;
+   transform: translate3d(0, 90px, 0) !important;
+}
 .#{$galleryPicker} {
   position: relative;
   display: inline-block;
   font-size: $galleryPicker-font-size;
   color: $galleryPicker-color;
-
   &-empty,
   &-fill {
     position: relative;
@@ -302,9 +306,11 @@ $galleryPicker-expand-control-btn-height: 32px !default;
 }
 /* stylelint-disable */
 .#{$galleryPicker}-expand {
-  .#{$galleryPicker}-empty,
-  .#{$galleryPicker}-fill {
+  .#{$galleryPicker}-empty {
     display: none !important;
+  }
+  .#{$galleryPicker}-fill {
+    display: block !important;
   }
 
   .#{$galleryPicker}-expand-panel {
