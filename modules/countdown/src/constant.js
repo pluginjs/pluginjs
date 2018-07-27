@@ -21,6 +21,7 @@ export const methods = ['init', 'enable', 'disable', 'destroy', 'start', 'stop']
 
 export const labelMap = {
   Y: 'years',
+  YM: 'month', // yearToMonths
   M: 'months',
   W: 'weeks',
   WM: 'weeks', // weekToMonths

@@ -83,10 +83,19 @@ const timeType = (type, time) => {
         step: 12
       }
 
+    case 'YM':
+      return {
+        current:
+          Math.floor(time / 3600 / 24 / 365) > 0
+            ? Math.floor((time / 3600 / 24 / 365) % 30.4368)
+            : Math.floor(time / 3600 / 24 / 30.4368),
+        step: 12
+      }
+
     case 'Y':
       return {
-        current: Math.floor(time / 86400 / 365),
-        remain: Math.floor(time / 86400 / 365),
+        current: Math.floor(time / 3600 / 24 / 365),
+        remain: Math.floor(time / 3600 / 24 / 365),
         step: 5
       }
 
