@@ -42,7 +42,6 @@ import {
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
-
 @translateable(TRANSLATIONS)
 @themeable()
 @styleable(CLASSES)
