@@ -39,7 +39,7 @@ export default class Attachment {
       `.${this.instance.options.attachment.namespace}`,
       this.instance.$expandPanel
     )
-
+    this.$attachTrigger = query('.pj-dropdown-trigger', this.$dropdown)
     this.values = this.instance.options.attachment.values
     const data = this.values.map(value => ({ label: value }))
 
@@ -47,7 +47,7 @@ export default class Attachment {
 
     setObjData(
       'dropdown',
-      Dropdown.of(this.$dropdown, {
+      Dropdown.of(this.$attachTrigger, {
         imitateSelect: true,
         data,
         width: this.$dropdown,

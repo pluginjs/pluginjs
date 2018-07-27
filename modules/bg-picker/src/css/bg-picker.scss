@@ -357,6 +357,9 @@ input.#{$bgPicker}-input {
     .pj-dropdown {
       width: $asDropdown-trigger-width;
     }
+    .pj-dropdown-panel-wrap {
+      margin-top: 0;
+    }
   }
 
   &-active {
