@@ -3,13 +3,13 @@
   "description": "A workflow for modern frontend development.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/amazingSurge/plugin.js",
+  "homepage": "https://github.com/pluginjs/plugin.js",
   "repository": {
-    "url": "git@github.com:amazingSurge/plugin.js.git",
+    "url": "git@github.com:pluginjs/plugin.js.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/amazingSurge/plugin.js/issues"
+    "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.19",
   "main": "dist/i18n.umd.js",

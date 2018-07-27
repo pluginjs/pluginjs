@@ -1,6 +1,6 @@
 {
-  "name": "@pluginjs/component",
-  "description": "A workflow for modern frontend development.",
+  "name": "@pluginjs/polyfills",
+  "description": "A utility JavaScript library for polyfills the browser.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
@@ -11,20 +11,25 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.5.1",
-  "main": "dist/component.umd.js",
-  "module": "dist/component.esm.js",
-  "cjs": "dist/component.cjs.js",
+  "version": "0.0.15",
+  "main": "dist/polyfills.umd.js",
+  "module": "dist/polyfills.esm.js",
+  "cjs": "dist/polyfills.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
+    "generate": "./scripts/generate",
     "build": "plugin build",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/is": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -40,13 +45,12 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "core",
+  "category": "utils",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  },
-  "title": "Plugin"
+  }
 }

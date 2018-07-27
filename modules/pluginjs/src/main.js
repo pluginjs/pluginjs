@@ -1,4 +1,3 @@
-// import './polyfills'
 import Emitter from '@pluginjs/emitter'
 import { throttle } from '@pluginjs/utils'
 

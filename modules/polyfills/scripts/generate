@@ -1,0 +1,70 @@
+#!/usr/bin/env node
+const fs = require('fs')
+const path = require('path')
+const features = require('../polyfills');
+const logger = require('@pluginjs/helper/logger')('script/generate')
+
+const dest = 'src/main.js'
+const baseUrl = "https://unpkg.com/polyfill-service@3.25.1/polyfills"
+
+function conventFeatureToPath(feature) {
+  return feature.replace(/\./g, '/');
+}
+
+const getContent = function(url) {
+  return new Promise((resolve, reject) => {
+    const lib = url.startsWith('https') ? require('https') : require('http');
+    const request = lib.get(url, (response) => {
+      if (response.statusCode < 200 || response.statusCode > 299) {
+        reject(new Error('Failed to load page, status code: ' + response.statusCode));
+      }
+
+      const body = [];
+      response.on('data', (chunk) => body.push(chunk));
+      response.on('end', () => resolve(body.join('')));
+    });
+    request.on('error', (err) => reject(err))
+  })
+};
+
+const getPolyfillCode = function(feature) {
+  return new Promise((resolve, reject) => {
+    let featureUrl = `${baseUrl}/${conventFeatureToPath(feature)}`;
+
+    Promise.all([
+      getContent(`${featureUrl}/detect.js`),
+      getContent(`${featureUrl}/polyfill.js`)
+    ]).then(function(contents) {
+      let detect = contents[0].replace(/\s*$/, '').trim() || null;
+      let code = contents[1].trim();
+
+      resolve(`if(!(${detect})) {
+${code}
+}
+`);
+    })
+  })
+}
+
+Promise.all(features.map(function(feature) {
+  return getPolyfillCode(feature)
+})).then(codes => {
+  let content = codes.join('');
+content = `/*eslint-disable */
+(function(){
+${content}
+}).call(window);
+`;
+
+  fs.writeFile(dest, content, error => {
+    if (error) {
+      logger.error(error)
+    } else {
+      logger.success(
+        'Polyfill generated'
+      )
+    }
+  });
+}).catch(error => {
+  logger.error(error)
+});
