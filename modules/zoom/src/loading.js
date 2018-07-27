@@ -1,10 +1,10 @@
 import templateEngine from '@pluginjs/template'
+import { events as EVENTS } from './constant'
 
 class Loading {
   constructor(instance) {
     this.instance = instance
     this.classes = instance.classes
-    this.events = instance.events
     this.build()
   }
   build() {
@@ -23,15 +23,15 @@ class Loading {
   }
 
   show() {
-    this.instance.trigger(this.events.LOADINGSHOW, this)
+    this.instance.trigger(EVENTS.LOADINGSHOW)
   }
 
   hide() {
-    this.instance.trigger(this.events.LOADINGHIDE, this)
+    this.instance.trigger(EVENTS.LOADINGHIDE)
   }
 
   error() {
-    this.instance.trigger(this.events.LOADINGERROR, this)
+    this.instance.trigger(EVENTS.LOADINGERROR)
   }
 }
 

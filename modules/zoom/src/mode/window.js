@@ -74,42 +74,42 @@ class Window extends Base {
 
     bindEvent(
       {
-        mode: 'mousemove',
+        type: 'mousemove',
         handler: mousemoveCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: 'mouseleave',
+        type: 'mouseleave',
         handler: mouseleaveCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: 'mouseenter',
+        type: 'mouseenter',
         handler: mouseenterCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: 'touchmove',
+        type: 'touchmove',
         handler: mousemoveCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: 'touchend',
+        type: 'touchend',
         handler: mouseleaveCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: 'touchstart',
+        type: 'touchstart',
         handler: mouseenterCallback
       },
       this.container
@@ -119,7 +119,7 @@ class Window extends Base {
       this.openWindow = false
       bindEvent(
         {
-          mode: 'click',
+          type: 'click',
           handler: () => {
             if (this.openWindow) {
               // reflow(this.lens[0]);
@@ -184,7 +184,7 @@ class Window extends Base {
     this.addClass(this.window, 'out')
 
     bindEvent({
-      mode: 'animationend',
+      type: 'animationend',
       handler: this.callback.bind(this)
     })
     // this.window.on('animationend', this.callback.bind(this))

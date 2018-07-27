@@ -92,42 +92,42 @@ class Base {
     }
     bindEvent(
       {
-        mode: this.instance.eventName('mousemove'),
+        type: this.instance.eventName('mousemove'),
         handler: mousemoveCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: this.instance.eventName('mouseleave'),
+        type: this.instance.eventName('mouseleave'),
         handler: mouseleaveCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: this.instance.eventName('mouseenter'),
+        type: this.instance.eventName('mouseenter'),
         handler: mouseenterCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: this.instance.eventName('touchmove'),
+        type: this.instance.eventName('touchmove'),
         handler: mousemoveCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: this.instance.eventName('touchend'),
+        type: this.instance.eventName('touchend'),
         handler: mouseleaveCallback
       },
       this.container
     )
     bindEvent(
       {
-        mode: this.instance.eventName('touchstart'),
+        type: this.instance.eventName('touchstart'),
         handler: mouseenterCallback
       },
       this.container

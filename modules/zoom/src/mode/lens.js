@@ -145,7 +145,7 @@ class Lens extends Base {
         this.addClass(this.lens, 'out')
         bindEvent(
           {
-            mode: 'animationend',
+            type: 'animationend',
             handler: this.callback.bind(this)
           },
           this.lens
