@@ -3,7 +3,7 @@
 // Vars
 // =====================
 $imageSelector: "pj-imageSelector" !default;
-
+$dropdown: "pj-dropdown" !default;
 $imageSelector-sizer: $sizer !default;
 
 $imageSelector-width: 17 * $imageSelector-sizer !default; //170px
@@ -31,6 +31,10 @@ $imageSelector-item-margin: $imageSelector-sizer $imageSelector-sizer 3 *
 $imageSelector-item-margin-bottom: 3 * $imageSelector-sizer !default; //30px
 $imageSelector-item-bg-color: $gray-lightest !default;
 
+.#{$dropdown}-show {
+  z-index: 999999;
+  background-color: $color-white
+}
 // Core
 // =====================
 .#{$imageSelector} {
@@ -44,7 +48,6 @@ $imageSelector-item-bg-color: $gray-lightest !default;
   background-position: center;
   border: 1px solid $imageSelector-border-color;
   border-radius: 0;
-
   &-wrapper {
     .#{$imageSelector}-data {
       display: none;
@@ -189,7 +192,7 @@ $imageSelector-item-bg-color: $gray-lightest !default;
   }
 
   &-hide {
-    display: none;
+    display: block;
   }
 
   &-show {

@@ -1,6 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import is from '@pluginjs/is'
+import Dropdown from '@pluginjs/dropdown'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
@@ -84,7 +85,6 @@ class ImageSelector extends Component {
     this.element.value = this.data.selected
 
     this.initPanel()
-
     this.setImg()
 
     this.bind()
@@ -96,11 +96,23 @@ class ImageSelector extends Component {
     // if(this.options.select) {
     //   this.set(this.options.select);
     // }
-
+    this.initDropdown()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
-
+  initDropdown() {
+    const dropdownConf = {
+      // data: this.getTimeList().map(value => ({ label: value })),
+      // placeholder: this.options.placeholder,
+      placement: 'bottom-left',
+      imitateSelect: true,
+      // inputLabel: true,
+      hideOutClick: false,
+      constraintToScrollParent: false,
+      templates: this.options.templates
+    }
+    this.mapDropdown = Dropdown.of(this.$change, dropdownConf)
+  }
   bind() {
     // $init
     compose(
