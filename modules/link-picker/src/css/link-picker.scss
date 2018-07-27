@@ -42,6 +42,12 @@ $linkPicker-disabled-bg: $disabled-bg;
   box-sizing: border-box;
   font-size: $linkPicker-font-size;
 
+  &-trigger {
+    width: $linkPicker-width !important;
+    height: $linkPicker-height;
+    border: none !important;
+  }
+
   .#{$linkPicker}-input,
   &-fill {
     display: none;
@@ -187,10 +193,10 @@ $linkPicker-disabled-bg: $disabled-bg;
   }
 
   &-show {
-    .#{$linkPicker}-empty,
-    .#{$linkPicker}-fill {
-      display: none !important;
-    }
+    // .#{$linkPicker}-empty,
+    // .#{$linkPicker}-fill {
+    //   display: none !important;
+    // }
 
     .#{$linkPicker}-dropdown {
       display: block;

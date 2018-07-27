@@ -9,6 +9,7 @@ import { deepMerge } from '@pluginjs/utils'
 import {
   append,
   parseHTML,
+  query,
   queryAll,
   unwrap,
   wrap,
@@ -184,6 +185,21 @@ class Select extends Component {
 
     this.wrap = this.element.parentNode
     this.triggerElement = this.buildFromTemplate('trigger', { that: this })
+    if (this.options.filterable) {
+      append(
+        `<input placeholder="${
+          this.options.placeholder
+        }" class="pj-dropdown-trigger" />`,
+        this.triggerElement
+      )
+    } else {
+      append(
+        `<span class="pj-dropdown-trigger">${this.options.placeholder}</span>`,
+        this.triggerElement
+      )
+    }
+    console.log(this.triggerElement)
+    this.triggerEl = query('.pj-dropdown-trigger', this.triggerElement)
     this.$dropdown = this.buildFromTemplate('dropdown', { that: this })
     this.list = this.buildList(this.data)
     append(this.list, this.$dropdown)
@@ -272,7 +288,7 @@ class Select extends Component {
     if (this.options.multiple && this.options.closeAllButten) {
       iconClassName = 'icon-char icon-close-mini'
     }
-    this.dropdown = Dropdown.of(this.triggerElement, {
+    this.dropdown = Dropdown.of(this.triggerEl, {
       panel: this.$dropdown,
       trigger: this.options.trigger,
       hideOnSelect: !this.options.multiple,
@@ -338,8 +354,8 @@ class Select extends Component {
         this.dropdown.itemUsable = false
       }
     })
-
-    this.label = this.dropdown.$label
+    console.log(this.dropdown)
+    this.label = this.dropdown.element
     if (!this.options.filterable && this.options.multiple) {
       this.label.style.display = 'none'
     }

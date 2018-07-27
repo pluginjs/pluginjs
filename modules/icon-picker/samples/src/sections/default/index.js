@@ -1,6 +1,8 @@
 import { query } from '@pluginjs/dom'
 import IconPicker from '@pluginjs/icon-picker'
+// import fontAwesome from '@icon/font-awesome/'
 
+// console.log(fontAwesome)
 const data = {
   remark: {
     title: 'Remark',

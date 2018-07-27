@@ -96,7 +96,9 @@ class IconsPicker extends Component {
         }
       }
     })
-    children(this.$dropdown.$panel).map(el => el.remove()).map(el => el.remove())
+    children(this.$dropdown.$panel)
+      .map(el => el.remove())
+      .map(el => el.remove())
     this.$dropdown.$panel.append(this.$empty)
   }
 
@@ -281,7 +283,8 @@ class IconsPicker extends Component {
               {
                 type: 'keydown',
                 handler: e => {
-                  if (e.keyCode === 13 && e.which === 13) {;
+                  if (e.keyCode === 13 && e.which === 13) {
+                    console.log('manage enter')
                   }
                 }
               },
@@ -592,7 +595,7 @@ class IconsPicker extends Component {
         item() {
           return `<div class="{that.classes.ITEM} ${
             that.classes.PACKAGE
-          }" data-{that.options.itemValueAttr}="{item.label}"><div class=${
+          }" data-value="{item.label}"><div class=${
             that.classes.PACKAGETITLE
           }>{item.label} <span class='${
             that.classes.PACKAGETIP

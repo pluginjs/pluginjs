@@ -132,7 +132,6 @@ class LinkPicker extends Component {
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
-    console.log(this.source)
   }
 
   build() {
@@ -202,6 +201,23 @@ class LinkPicker extends Component {
         }
       }
     )
+    this.initDropdown()
+
+    console.log(this.$dropdown)
+
+    // console.log($dropdown)
+    // console.log(this.$empty)
+  }
+
+  initDropdown() {
+    const dropdownConf = {
+      placement: 'bottom-left',
+      imitateSelect: true,
+      hideOutClick: false,
+      constraintToScrollParent: false,
+      templates: this.options.templates
+    }
+    Dropdown.of(this.$empty, dropdownConf)
   }
 
   buildTypes() {
@@ -238,7 +254,6 @@ class LinkPicker extends Component {
       ),
       query(`.${this.classes.ITEMBODY}`, $types)
     )
-
     prepend($types, this.$dropdown)
     this.$typeDropdown = Dropdown.of(
       query('.pj-dropdown-trigger', this.$dropdown),
@@ -424,7 +439,7 @@ class LinkPicker extends Component {
         this.classes.TYPESCOMPONENT
       }'><span class="pj-dropdown-trigger"></span></div>`
     )
-
+    console.log($dropdown)
     setObjData(
       'input',
       {
@@ -556,13 +571,29 @@ class LinkPicker extends Component {
       this.$wrap
     )
 
+    //
+    bindEvent(
+      {
+        type: this.eventName('click'),
+        identity: { type: 'selector', value: `.${this.classes.ITEMBODY}` },
+        handler: () => {
+          if (this.is('disabled')) {
+            return
+          }
+          addClass('pj-dropdown-show', this.$trigger)
+          addClass('pj-dropdown-show', this.$wrap)
+          addClass('pj-dropdown-show', this.$dropdown.parentNode)
+        }
+      },
+      this.$wrap
+    )
+
     // switch Types
     this.$typeDropdown.options.onChange = v => {
       this.source = v.dataset.value
 
       this.swtichType()
     }
-
     // $.each(this.data, (sourceName, details) => {
     //   $.each(details.fields, (index, item) => {
     //     let connect = item.connect;
@@ -685,10 +716,18 @@ class LinkPicker extends Component {
   }
 
   show() {
+    // addClass('pj-dropdown-show', this.$trigger)
+    // addClass('pj-dropdown-show', this.$wrap)
+    // addClass('pj-dropdown-show', this.$dropdown.parentNode)
     addClass(this.classes.SHOW, this.$wrap)
+    console.log(this.$dropdown)
+    console.log(this.$wrap)
   }
 
   hide() {
+    // removeClass('pj-dropdown-show', this.$trigger)
+    // removeClass('pj-dropdown-show', this.$wrap)
+    // removeClass('pj-dropdown-show', this.$dropdown.parentNode)
     removeClass(this.classes.SHOW, this.$wrap)
   }
 

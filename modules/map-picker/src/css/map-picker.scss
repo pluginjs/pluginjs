@@ -44,8 +44,8 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
 
 .#{$mapPicker} {
   &-trigger {
-    width: 260px !important;
-    height: 50px;
+    width: $mapPicker-width !important;
+    height: $mapPicker-height;
     border: none !important;
   }
   &-input {

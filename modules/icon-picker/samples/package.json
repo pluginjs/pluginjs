@@ -9,6 +9,7 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
+    "@icon/font-awesome": "^4.7.0-2",
     "@pluginjs/dom": "*",
     "@pluginjs/icon-picker": "*",
     "@pluginjs/icons": "*",
@@ -18,7 +19,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "posthtml-include": "^1.2.0",
-    "parcel-bundler": "*"
+    "parcel-bundler": "*",
+    "posthtml-include": "^1.2.0"
   }
 }
