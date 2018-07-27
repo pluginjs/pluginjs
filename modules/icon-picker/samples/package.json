@@ -9,6 +9,9 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
+    "@icon/dashicons": "^0.9.0-3",
+    "@icon/entypo": "^1.0.0-3",
+    "@icon/feather": "^1.1.0-2",
     "@icon/font-awesome": "^4.7.0-2",
     "@pluginjs/dom": "*",
     "@pluginjs/icon-picker": "*",

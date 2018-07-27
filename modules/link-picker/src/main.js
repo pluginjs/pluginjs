@@ -211,6 +211,7 @@ class LinkPicker extends Component {
 
   initDropdown() {
     const dropdownConf = {
+      theme: 'dafault',
       placement: 'bottom-left',
       imitateSelect: true,
       hideOutClick: false,
@@ -258,7 +259,7 @@ class LinkPicker extends Component {
     this.$typeDropdown = Dropdown.of(
       query('.pj-dropdown-trigger', this.$dropdown),
       {
-        theme: 'default',
+        // theme: 'default',
         imitateSelect: true,
         constraintToScrollParent: false,
         icon: 'icon-char icon-chevron-down',
@@ -466,7 +467,8 @@ class LinkPicker extends Component {
         {
           type: this.eventName(`linkPicker:${source}:${connect}:change`),
           handler: (e, instance, connectName) => {
-            const api = getObjData('dropdown', $dropdown)
+            const api = getObjData('input', $dropdown)
+            console.log($dropdown)
 
             const dropdownData = []
             // let globalData = this.getData();
@@ -483,6 +485,8 @@ class LinkPicker extends Component {
                 name: key
               })
             })
+            console.log(api)
+            console.log(dropdownData)
 
             api.replaceByData(dropdownData)
             api.set(apiActive)
@@ -501,7 +505,7 @@ class LinkPicker extends Component {
 
     // set dropdown default options
     const dropdownDefault = {
-      theme: 'default',
+      // theme: 'default',
       imitateSelect: true,
       width: 160,
       data: dropdownData,
