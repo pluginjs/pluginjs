@@ -387,10 +387,10 @@ class Spinner extends Component {
   unbind() {
     this.leave('bind')
 
-    removeEvent(this.eventName, this.element)
-    removeEvent(this.eventName, this.$down)
-    removeEvent(this.eventName, this.$up)
-    removeEvent(this.eventName, this.$wrap)
+    removeEvent(this.eventName(), this.element)
+    removeEvent(this.eventName(), this.$down)
+    removeEvent(this.eventName(), this.$up)
+    removeEvent(this.eventName(), this.$wrap)
   }
 
   isOutOfBounds(value) {
