@@ -8,11 +8,79 @@
 
 ## API
 
-- trigger
-- bindEvent
-- removeEvent
-- bindEventOnce
-- getEventStorage
+### trigger
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `TriggerOption` | |
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### bindEvent
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `Option` | |
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### removeEvent
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `Option` | |
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### bindEventOnce
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `Option` | |
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### getEventStorage
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| eventStorgae | `EventStorgae` | |
 
 ## Browser support
 
