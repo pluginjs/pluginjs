@@ -8,21 +8,205 @@
 
 ## API
 
-- setStyle
-- outerHeight
-- outerHeightWithMargin
-- outerWidth
-- outerWidthWithMargin
-- getStyle
-- clientHeight
-- clientWidth
-- contentWidth
-- contentHeight
-- offset
-- getOffset
-- css
-- hideElement
-- showElement
+### setStyle
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| style | `StyleSheet` | |
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### outerHeight
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| outerHeight | `Number` | |
+
+### outerHeightWithMargin
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| outerHeightWithMargin | `Number` | |
+
+### outerWidth
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| outerWidth | `Number` | |
+
+### outerWidthWithMargin
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| outerWidthWithMargin | `Number` | |
+
+### getStyle
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| attribute | `String` | |
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| style | `String` | |
+
+### clientHeight
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| clientHeight | `Number` | |
+
+### clientWidth
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| clientWidth | `Number` | |
+
+### contentWidth
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| contentWidth | `Number` | |
+
+### contentHeight
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| contentWidth | `Number` | |
+
+### offset
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| offset | `{ top: String, left: String }` | |
+
+### css
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+| style | `StyleSheet` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| styleValue | `String` | |
+
+### hideElement
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### showElement
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
 
 ## Browser support
 
