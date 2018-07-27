@@ -12,10 +12,12 @@ import {
   parseHTML,
   getObjData,
   setObjData,
-  closest
+  // closest,
+  wrap,
+  parentWith
 } from '@pluginjs/dom'
-import Scrollable from '@pluginjs/scrollable'
-import EditPanel from '@pluginjs/edit-panel'
+// import Scrollable from '@pluginjs/scrollable'
+// import EditPanel from '@pluginjs/edit-panel'
 import PopDialog from '@pluginjs/pop-dialog'
 import '@pluginjs/color-picker'
 import '@pluginjs/range'
@@ -103,24 +105,57 @@ class PatternPicker extends Component {
   }
 
   create() {
+    // const that = this
+    // this.handelComponent()
+
+    // this.$infoImg = query(`.${this.classes.INFOIMG}`, this.$wrap)
+    // this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
+    // this.$selectorList = query(
+    //   `.${this.classes.SELECTORLIST} ul`,
+    //   this.$editPanel.MODAL.$content
+    // )
+    // this.$scrollable = Scrollable.of(
+    //   closest(`.${this.classes.SELECTORLIST}`, this.$selectorList),
+    //   {
+    //     contentSelector: '>',
+    //     containerSelector: '>'
+    //   }
+    // )
+
+    // this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
     const that = this
-    this.handelComponent()
-
-    this.$infoImg = query(`.${this.classes.INFOIMG}`, this.$wrap)
-    this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
-    this.$selectorList = query(
-      `.${this.classes.SELECTORLIST} ul`,
-      this.$editPanel.MODAL.$content
+    const $wrap = parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`)
+    if (this.options.theme) {
+      addClass(this.classes.THEME, $wrap)
+    }
+    wrap($wrap, addClass(this.classes.INPUT, this.element))
+    this.$wrap = parentWith(
+      el => el.matches(`.${this.classes.NAMESPACE}`),
+      this.element
     )
-    this.$scrollable = Scrollable.of(
-      closest(`.${this.classes.SELECTORLIST}`, this.$selectorList),
-      {
-        contentSelector: '>',
-        containerSelector: '>'
-      }
+    this.$trigger = parseHTML(
+      template.compile(this.options.templates.trigger())({
+        classes: this.classes
+      })
     )
-
-    this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
+    this.$fill = parseHTML(
+      template.compile(this.options.templates.fill())({
+        classes: this.classes
+      })
+    )
+    this.$empty = parseHTML(
+      template.compile(this.options.templates.empty())({
+        classes: this.classes
+      })
+    )
+    this.$dropdown = parseHTML(
+      template.compile(this.options.templates.dropdown())({
+        classes: this.classes
+      })
+    )
+    this.$wrap.append(this.$trigger, this.$dropdown)
+    this.$trigger.append(this.$empty, this.$fill)
+    // init popDialog
     // init pop
     this.pop = PopDialog.of(
       query(`.${this.classes.REMOVE}`, this.$infoAction),
@@ -147,7 +182,7 @@ class PatternPicker extends Component {
   }
 
   handelComponent() {
-    const that = this
+    // const that = this
     const $forePicker = parseHTML(
       `<input class='${this.classes.FORECOLOR}' type="text"/>`
     )
@@ -158,105 +193,105 @@ class PatternPicker extends Component {
       `<input class='${this.classes.OPACITY}' type="text"/>`
     )
 
-    this.$editPanel = EditPanel.of(this.element, {
-      init: { text: this.translate('choosePattern') },
-      selector: {
-        title: this.translate('selectorTitle'),
-        contentTitle: this.translate('selectorContent')
-      },
-      components: [
-        {
-          title: this.translate('foreColor'),
-          element: $forePicker,
-          type: 'colorPicker',
-          options: {
-            theme: 'default',
-            module: ['solid'],
-            solidMode: 'sample',
-            solidModule: {
-              alpha: false,
-              hex: false
-            }
-          }
-        },
-        {
-          title: this.translate('bgColor'),
-          element: $bgPicker,
-          type: 'colorPicker',
-          options: {
-            theme: 'default',
-            module: ['solid'],
-            solidMode: 'sample',
-            solidModule: {
-              alpha: false,
-              hex: false
-            }
-          }
-        },
-        {
-          title: this.translate('opacity'),
-          element: $opacityPicker,
-          type: 'range',
-          options: {
-            theme: 'default',
-            tip: false,
-            range: false,
-            units: {
-              '%': {
-                min: 0,
-                max: 100,
-                step: 1
-              }
-            }
-          }
-        }
-      ],
-      action: {
-        panel: {
-          cancel: {
-            title: this.translate('cancel'),
-            class: ''
-          },
-          save: {
-            title: this.translate('save'),
-            class: ''
-          }
-        },
-        selector: {
-          cancel: {
-            title: this.translate('cancel'),
-            class: ''
-          },
-          save: {
-            title: this.translate('useIt'),
-            class: ''
-          }
-        }
-      },
-      templates: {
-        wrap() {
-          return `<div class='${that.classes.WRAP} {class}'></div>`
-        },
-        info() {
-          return `<div class='{class}'><image class='{content} ${
-            that.classes.INFOIMG
-          }' /></div>`
-        },
-        infoAction() {
-          return `<div class='{class}'><i class='icon-pencil-square  ${
-            that.classes.EDITOR
-          }'></i><i class='icon-trash ${that.classes.REMOVE}'></i></div>`
-        },
-        previewContent() {
-          return `<div class='{class} ${that.classes.PREVIEWIMG}'></div>`
-        },
-        selectorList() {
-          return `<div class='${
-            that.classes.SELECTORLIST
-          }'><div><ul class='{class}'></ul></div></div>`
-        }
-      }
-    })
+    // this.$editPanel = EditPanel.of(this.element, {
+    //   init: { text: this.translate('choosePattern') },
+    //   selector: {
+    //     title: this.translate('selectorTitle'),
+    //     contentTitle: this.translate('selectorContent')
+    //   },
+    //   components: [
+    //     {
+    //       title: this.translate('foreColor'),
+    //       element: $forePicker,
+    //       type: 'colorPicker',
+    //       options: {
+    //         theme: 'default',
+    //         module: ['solid'],
+    //         solidMode: 'sample',
+    //         solidModule: {
+    //           alpha: false,
+    //           hex: false
+    //         }
+    //       }
+    //     },
+    //     {
+    //       title: this.translate('bgColor'),
+    //       element: $bgPicker,
+    //       type: 'colorPicker',
+    //       options: {
+    //         theme: 'default',
+    //         module: ['solid'],
+    //         solidMode: 'sample',
+    //         solidModule: {
+    //           alpha: false,
+    //           hex: false
+    //         }
+    //       }
+    //     },
+    //     {
+    //       title: this.translate('opacity'),
+    //       element: $opacityPicker,
+    //       type: 'range',
+    //       options: {
+    //         theme: 'default',
+    //         tip: false,
+    //         range: false,
+    //         units: {
+    //           '%': {
+    //             min: 0,
+    //             max: 100,
+    //             step: 1
+    //           }
+    //         }
+    //       }
+    //     }
+    //   ],
+    //   action: {
+    //     panel: {
+    //       cancel: {
+    //         title: this.translate('cancel'),
+    //         class: ''
+    //       },
+    //       save: {
+    //         title: this.translate('save'),
+    //         class: ''
+    //       }
+    //     },
+    //     selector: {
+    //       cancel: {
+    //         title: this.translate('cancel'),
+    //         class: ''
+    //       },
+    //       save: {
+    //         title: this.translate('useIt'),
+    //         class: ''
+    //       }
+    //     }
+    //   },
+    //   templates: {
+    //     wrap() {
+    //       return `<div class='${that.classes.WRAP} {class}'></div>`
+    //     },
+    //     info() {
+    //       return `<div class='{class}'><image class='{content} ${
+    //         that.classes.INFOIMG
+    //       }' /></div>`
+    //     },
+    //     infoAction() {
+    //       return `<div class='{class}'><i class='icon-pencil-square  ${
+    //         that.classes.EDITOR
+    //       }'></i><i class='icon-trash ${that.classes.REMOVE}'></i></div>`
+    //     },
+    //     previewContent() {
+    //       return `<div class='{class} ${that.classes.PREVIEWIMG}'></div>`
+    //     },
+    //     selectorList() {
+    //       return `<div class='${
+    //         that.classes.SELECTORLIST
+    //       }'><div><ul class='{class}'></ul></div></div>`
+    //     }
+    //   }
+    // })
     const findInstanceByElement = (namespace, el) =>
       window.Pj.instances[namespace].find(plugin => plugin.element === el)
     this.$wrap = parent(this.element)

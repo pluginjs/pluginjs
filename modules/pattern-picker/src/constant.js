@@ -23,7 +23,7 @@ export const classes = {
   INFOIMG: '{namespace}-info-img',
   EDITOR: '{namespace}-editor',
   REMOVE: '{namespace}-remove',
-  EMPTY: '{namespace}-empty',
+  // EMPTY: '{namespace}-empty',
   HOVER: '{namespace}-hover',
   // panel
   PREVIEWIMG: '{namespace}-preview-img',
@@ -32,7 +32,13 @@ export const classes = {
   OPACITY: '{namespace}-opacity',
   // select panel
   SELECTORLIST: '{namespace}-selector-list',
-  SELECTORITEM: '{namespace}-selector-item'
+  SELECTORITEM: '{namespace}-selector-item',
+
+  DROPDOWN: '{namespace}-dropdown',
+  TRIGGER: '{namespace}-trigger',
+  INPUT: '{namespace}-input',
+  EMPTY: '{namespace}-empty',
+  FILL: '{namespace}-fill'
 }
 
 export const methods = [
@@ -54,6 +60,26 @@ export const defaults = {
   templates: {
     item() {
       return '<li class="{class}"></li>'
+    },
+    dropdown() {
+      return `<div class='{classes.DROPDOWN}'>
+      </div>`
+    },
+    trigger() {
+      return `<div class="{classes.TRIGGER}">
+      </div>`
+    },
+    input() {
+      return `<div class='{classes.INPUT}'>
+      </div>`
+    },
+    fill() {
+      return `<div class='{classes.FILL }'><i class='{icon}'></i>{text}
+      </div>`
+    },
+    empty() {
+      return `<div class='{classes.EMPTY}'><image class='{classes.INFOPOSTER}' />
+      </div>`
     }
   },
   process(value) {
