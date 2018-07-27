@@ -1,8 +1,5 @@
 $circle-handle-size: 35px !default;
 $circle-handle-bg: rgba($color-primary, 0.8) !default;
-$circle-handle-hover-bg: $color-primary !default;
-$circle-handle-line-color: rgba(#000, 0.3) !default;
-$circle-handle-hover-line-color: rgba(#000, 0.3) !default;
 
 .#{$beforeAfter}--circle {
   .#{$beforeAfter}-handle {
@@ -11,7 +8,8 @@ $circle-handle-hover-line-color: rgba(#000, 0.3) !default;
     width: $circle-handle-size;
     height: $circle-handle-size;
     background: $circle-handle-bg;
-    border: $beforeAfter-handle-border-size solid $circle-handle-line-color;
+    background-clip: padding-box;
+    border: $beforeAfter-handle-border-size solid $beforeAfter-handle-line-color;
     border-radius: 100%;
     transform: translate(-50%, -50%);
 
@@ -21,17 +19,16 @@ $circle-handle-hover-line-color: rgba(#000, 0.3) !default;
       z-index: 5;
       display: block;
       content: " ";
-      background: $circle-handle-hover-line-color;
+      background:  $beforeAfter-handle-line-color;
       box-shadow: $beforeAfter-handle-box-shadow;
     }
 
     &:hover {
-      background: $circle-handle-hover-bg;
-      border-color: $circle-handle-hover-line-color;
+      border-color: $beforeAfter-handle-hover-line-color;
 
       &::before,
       &::after {
-        background: $circle-handle-hover-line-color;
+        background: $beforeAfter-handle-hover-line-color;
       }
     }
   }

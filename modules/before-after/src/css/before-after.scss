@@ -3,11 +3,15 @@
 // Vars
 // =====================
 $beforeAfter: "pj-beforeAfter" !default;
-$beforeAfter-label-gap: 10px !default;
+
+$beforeAfter-border-radius: $border-radius-lg !default;
+$beforeAfter-label-gap: 16px !default;
 $beforeAfter-label-font-size: $font-size-sm !default;
 $beforeAfter-label-color: #fff !default;
 $beforeAfter-label-spacer: 8px 14px !default;
 $beforeAfter-label-border-radius: $border-radius-base !default;
+$beforeAfter-label-box-shadow: $box-shadow-base !default;
+
 $beforeAfter-handle-line-color: rgba(#fff, 0.6) !default;
 $beforeAfter-handle-border-size: 3px !default;
 $beforeAfter-handle-border-color: $beforeAfter-handle-line-color !default;
@@ -26,6 +30,7 @@ $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !d
   display: inline-block;
   overflow: hidden;
   user-select: none;
+  border-radius: $beforeAfter-border-radius;
 
   img {
     display: block;
@@ -53,11 +58,11 @@ $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !d
 .#{$beforeAfter}-label-after {
   position: absolute;
   z-index: 4;
-  padding: $beforeAfter-label-spacer;
   font-size: $beforeAfter-label-font-size;
   color: $beforeAfter-label-color;
   pointer-events: none;
   border-radius: $beforeAfter-label-border-radius;
+  box-shadow: $beforeAfter-label-box-shadow;
   transition: opacity 0.5s;
 }
 

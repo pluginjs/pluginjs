@@ -3,6 +3,7 @@ $solid-bg: rgba(#000, 0.4) !default;
 .#{$beforeAfter}-labels-solid {
   .#{$beforeAfter}-label-before,
   .#{$beforeAfter}-label-after {
+    padding: $beforeAfter-label-spacer;
     background: $solid-bg;
   }
 }

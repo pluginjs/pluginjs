@@ -178,3 +178,9 @@ $tabs-drop-nav-item-active-color: $color-white !default;
     }
   }
 }
+
+#keyboard {
+  .pj-tabs {
+    outline: none;
+  }
+}

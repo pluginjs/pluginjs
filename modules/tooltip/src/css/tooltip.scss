@@ -2,12 +2,8 @@
 @import "tooltip.core";
 // Vars
 // =====================
-$tooltip: "pj-tooltip" !default;
 $tooltip-font-size: $font-size-lg !default;
-$tooltip-light-color: $text-color !default;
-$tooltip-light-bg: $color-white !default;
 $tooltip-light-box-shadow: $box-shadow-base !default;
-$tooltip-light-arrow-color: $tooltip-light-bg !default;
 
 //base style vars
 $tooltip-position-grid-margin-x: 6.25 * $tooltip-font-size !default;
