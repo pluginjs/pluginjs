@@ -32,7 +32,11 @@ $imageSelector-item-margin-bottom: 3 * $imageSelector-sizer !default; //30px
 $imageSelector-item-bg-color: $gray-lightest !default;
 
 .#{$dropdown}-show {
-  z-index: 999999;
+  z-index: 999999 !important;
+  background-color: $color-white
+}
+.#{$dropdown}-panel-wrap {
+  z-index: 999999 !important;
   background-color: $color-white
 }
 // Core
@@ -137,7 +141,7 @@ $imageSelector-item-bg-color: $gray-lightest !default;
     &::before {
       position: absolute;
       right: 0;
-      bottom: 0;
+      bottom: 0.23 * $imageSelector-sizer; //2.3px
       display: none;
       color: $color-white;
     }

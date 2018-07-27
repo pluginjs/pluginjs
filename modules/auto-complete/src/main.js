@@ -184,9 +184,7 @@ class AutoComplete extends Component {
           title: title.toUpperCase()
         })
       )
-
       const $contents = query(`.${this.classes.GROUPCONTENTS}`, $group)
-
       wrap.append($group)
       this.build(v.list, $contents)
     })
@@ -398,7 +396,6 @@ class AutoComplete extends Component {
         find(`.${this.classes.GROUP}`, this.$panel)
       )
     }
-
     this.$items.forEach($item => {
       removeClass(that.classes.SHOW, $item)
       const val = getObjData('data', $item).label
@@ -451,7 +448,6 @@ class AutoComplete extends Component {
       ? this.options.render(data, $item)
       : val
     // }
-
     // this.color(key, content)
     $item.innerHTML = content
     addClass(this.classes.SHOW, $item)
@@ -461,7 +457,6 @@ class AutoComplete extends Component {
         parentWith(el => el.matches(`.${this.classes.GROUP}`), $item)
       )
     }
-
     this.$selected = queryAll(`.${this.classes.SHOW}`, this.$panel)[0]
     this.$shows = queryAll(`.${this.classes.SHOW}`, this.$panel)
 
