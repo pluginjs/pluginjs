@@ -34,7 +34,12 @@ export const classes = {
   OPACITY: '{namespace}-opacity',
   // select panel
   SELECTORLIST: '{namespace}-selector-list',
-  SELECTORITEM: '{namespace}-selector-item'
+  SELECTORITEM: '{namespace}-selector-item',
+  DROPDOWN: '{namespace}-dropdown',
+  TRIGGER: '{namespace}-trigger',
+  INPUT: '{namespace}-input',
+  EMPTY: '{namespace}-empty',
+  FILL: '{namespace}-fill'
 }
 
 export const methods = [
@@ -53,6 +58,26 @@ export const defaults = {
   data: null, // [json]images data
   disabled: false,
   templates: {
+    dropdown() {
+      return `<div class='{classes.DROPDOWN}'>
+      </div>`
+    },
+    trigger() {
+      return `<div class="{classes.TRIGGER}">
+      </div>`
+    },
+    input() {
+      return `<div class='{classes.INPUT}'>
+      </div>`
+    },
+    fill() {
+      return `<div class='{classes.FILL }'><i class='{icon}'></i>{text}
+      </div>`
+    },
+    empty() {
+      return `<div class='{classes.EMPTY}'><image class='{classes.INFOPOSTER}' />
+      </div>`
+    },
     colorType() {
       return `<div class='{class}'>
         <div class='{preset}' data-type='preset'>{PresetTitle}</div>

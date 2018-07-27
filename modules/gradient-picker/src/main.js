@@ -11,11 +11,13 @@ import {
   parseHTML,
   setObjData,
   getObjData,
-  closest
+  // closest
+  wrap,
+  parentWith
 } from '@pluginjs/dom'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
-import EditPanel from '@pluginjs/edit-panel'
+// import EditPanel from '@pluginjs/edit-panel'
 import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
@@ -36,7 +38,7 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 import color from '@pluginjs/color'
-import Scrollable from '@pluginjs/scrollable'
+// import Scrollable from '@pluginjs/scrollable'
 import '@pluginjs/range'
 import '@pluginjs/color-picker'
 
@@ -106,24 +108,54 @@ class GradientPicker extends Component {
   }
 
   create() {
+    // const that = this
+    // this.handelComponent()
+
+    // this.$infoImg = query(`.${this.classes.INFOIMG}`, this.$wrap)
+    // this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
+    // this.$selectorList = query(
+    //   `.${this.classes.SELECTORLIST} ul`,
+    //   this.$editPanel.MODAL.$content
+    // )
+    // this.$scrollable = Scrollable.of(
+    //   closest(`.${this.classes.SELECTORLIST}`, this.$selectorList),
+    //   {
+    //     contentSelector: '>',
+    //     containerSelector: '>'
+    //   }
+    // this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
     const that = this
-    this.handelComponent()
-
-    this.$infoImg = query(`.${this.classes.INFOIMG}`, this.$wrap)
-    this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
-    this.$selectorList = query(
-      `.${this.classes.SELECTORLIST} ul`,
-      this.$editPanel.MODAL.$content
+    const $wrap = parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`)
+    if (this.options.theme) {
+      addClass(this.classes.THEME, $wrap)
+    }
+    wrap($wrap, addClass(this.classes.INPUT, this.element))
+    this.$wrap = parentWith(
+      el => el.matches(`.${this.classes.NAMESPACE}`),
+      this.element
     )
-    this.$scrollable = Scrollable.of(
-      closest(`.${this.classes.SELECTORLIST}`, this.$selectorList),
-      {
-        contentSelector: '>',
-        containerSelector: '>'
-      }
+    this.$trigger = parseHTML(
+      template.compile(this.options.templates.trigger())({
+        classes: this.classes
+      })
     )
-
-    this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
+    this.$fill = parseHTML(
+      template.compile(this.options.templates.fill())({
+        classes: this.classes
+      })
+    )
+    this.$empty = parseHTML(
+      template.compile(this.options.templates.empty())({
+        classes: this.classes
+      })
+    )
+    this.$dropdown = parseHTML(
+      template.compile(this.options.templates.dropdown())({
+        classes: this.classes
+      })
+    )
+    this.$wrap.append(this.$trigger, this.$dropdown)
+    this.$trigger.append(this.$empty, this.$fill)
     // init popDialog
     this.pop = PopDialog.of(
       query(`.${this.classes.REMOVE}`, this.$infoAction),
@@ -161,7 +193,7 @@ class GradientPicker extends Component {
   }
 
   handelComponent() {
-    const that = this
+    // const that = this
     this.$colorPicker = parseHTML(
       `<input class='${this.classes.COLORPICKER}' />`
     )
@@ -169,91 +201,91 @@ class GradientPicker extends Component {
       `<input class='${this.classes.OPACITY}' type="text"/>`
     )
 
-    this.$editPanel = EditPanel.of(this.element, {
-      init: {
-        icon: 'icon-paint',
-        text: this.translate('chooseGradient')
-      },
-      selector: {
-        title: this.translate('selectTitle'),
-        contentTitle: this.translate('selectContentTitle')
-      },
-      components: [
-        {
-          title: this.translate('customColor'),
-          element: this.$colorPicker,
-          type: 'colorPicker',
-          options: {
-            theme: 'default',
-            module: ['gradient'],
-            locale: this.options.locale
-          }
-        },
-        {
-          title: this.translate('opacity'),
-          element: $opacity,
-          type: 'range',
-          options: {
-            theme: 'default',
-            tip: false,
-            range: false,
-            units: {
-              '%': {
-                min: 0,
-                max: 100,
-                step: 1
-              }
-            }
-          }
-        }
-      ],
-      action: {
-        panel: {
-          cancel: {
-            title: this.translate('cancel'),
-            class: ''
-          },
-          save: {
-            title: this.translate('save'),
-            class: ''
-          }
-        },
-        selector: {
-          cancel: {
-            title: this.translate('selectCancel'),
-            class: ''
-          },
-          save: {
-            title: this.translate('useIt'),
-            class: ''
-          }
-        }
-      },
-      templates: {
-        wrap() {
-          return `<div class='${that.classes.WRAP} {class}'></div>`
-        },
-        info() {
-          return `<div class='{class}'><div class='{content} ${
-            that.classes.INFOIMG
-          }'></div></div>`
-        },
+    // this.$editPanel = EditPanel.of(this.element, {
+    //   init: {
+    //     icon: 'icon-paint',
+    //     text: this.translate('chooseGradient')
+    //   },
+    //   selector: {
+    //     title: this.translate('selectTitle'),
+    //     contentTitle: this.translate('selectContentTitle')
+    //   },
+    //   components: [
+    //     {
+    //       title: this.translate('customColor'),
+    //       element: this.$colorPicker,
+    //       type: 'colorPicker',
+    //       options: {
+    //         theme: 'default',
+    //         module: ['gradient'],
+    //         locale: this.options.locale
+    //       }
+    //     },
+    //     {
+    //       title: this.translate('opacity'),
+    //       element: $opacity,
+    //       type: 'range',
+    //       options: {
+    //         theme: 'default',
+    //         tip: false,
+    //         range: false,
+    //         units: {
+    //           '%': {
+    //             min: 0,
+    //             max: 100,
+    //             step: 1
+    //           }
+    //         }
+    //       }
+    //     }
+    //   ],
+    //   action: {
+    //     panel: {
+    //       cancel: {
+    //         title: this.translate('cancel'),
+    //         class: ''
+    //       },
+    //       save: {
+    //         title: this.translate('save'),
+    //         class: ''
+    //       }
+    //     },
+    //     selector: {
+    //       cancel: {
+    //         title: this.translate('selectCancel'),
+    //         class: ''
+    //       },
+    //       save: {
+    //         title: this.translate('useIt'),
+    //         class: ''
+    //       }
+    //     }
+    //   },
+    //   templates: {
+    //     wrap() {
+    //       return `<div class='${that.classes.WRAP} {class}'></div>`
+    //     },
+    //     info() {
+    //       return `<div class='{class}'><div class='{content} ${
+    //         that.classes.INFOIMG
+    //       }'></div></div>`
+    //     },
 
-        infoAction() {
-          return `<div class='{class}'><i class='icon-pencil-square  ${
-            that.classes.EDITOR
-          }'></i><i class='icon-trash ${that.classes.REMOVE}'></i></div>`
-        },
-        previewContent() {
-          return `<div class='{class} ${that.classes.PREVIEWIMG}'></div>`
-        },
-        selectorList() {
-          return `<div class='${
-            that.classes.SELECTORLIST
-          }'><div><ul class='{class}'></ul></div></div>`
-        }
-      }
-    })
+    //     infoAction() {
+    //       return `<div class='{class}'><i class='icon-pencil-square  ${
+    //         that.classes.EDITOR
+    //       }'></i><i class='icon-trash ${that.classes.REMOVE}'></i></div>`
+    //     },
+    //     previewContent() {
+    //       return `<div class='{class} ${that.classes.PREVIEWIMG}'></div>`
+    //     },
+    //     selectorList() {
+    //       return `<div class='${
+    //         that.classes.SELECTORLIST
+    //       }'><div><ul class='{class}'></ul></div></div>`
+    //     }
+    //   }
+    // })
 
     this.$wrap = parent(this.element)
     // set initialization color
