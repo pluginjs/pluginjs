@@ -6,12 +6,14 @@ const aligncenter = query('#content-align .aligncenter')
 alignleft.addEventListener('click', () => {
   Notice.show({
     content: 'Check Out And Download Premui Psd Template',
-    contentAlignment: 'left'
+    contentAlignment: 'left',
+    closeBottonColor: '#b3b3b3'
   })
 })
 aligncenter.addEventListener('click', () => {
   Notice.show({
     content: 'Check Out And Download Premui Psd Template',
-    contentAlignment: 'center'
+    contentAlignment: 'center',
+    closeBottonColor: '#b3b3b3'
   })
 })

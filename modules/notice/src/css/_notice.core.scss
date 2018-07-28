@@ -1,0 +1,135 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$notice: "pj-notice" !default;
+$notice-font-size: $font-size-sm !default;
+$notice-color: #fff !default;
+$notice-bg: $gray-darkest !default;
+$notice-border-color: $gray-darker !default;
+$notice-border-radius: $border-radius-base !default;
+$notice-spacer: $spacer !default;
+$notice-primary-color: $color-primary !default;
+$notice-success-color: $color-success !default;
+$notice-info-color: $color-info !default;
+$notice-warning-color: $color-warning !default;
+$notice-danger-color: $color-danger !default;
+$notice-link-color: transparentize($gray-lightest, 0.1) !default;
+$notice-close-color: $notice-link-color !default;
+
+// Core
+// =====================
+@mixin notice-variant($color) {
+  background: transparentize($color, 0.1);
+  border-color: $color;
+}
+
+.#{$notice} {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 3.5rem;
+  min-height: 3.5rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px #d7d7d7;
+
+  &.#{$notice}-fixed {
+    .#{$notice}-container {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+  }
+
+  .#{$notice}-container {
+    position: relative;
+    width: 80%;
+    max-width: 1240px;
+    height: 100%;
+    margin: 0 auto;
+  }
+}
+
+.#{$notice}-content {
+  display: inline-block;
+  max-width: 25rem;
+  height: 100%;
+  font-size: 0.875rem;
+  line-height: 3.5rem;
+  vertical-align: middle;
+}
+
+.#{$notice}-position {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+
+  .#{$notice}-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+}
+
+.#{$notice}-btn {
+  display: inline-block;
+  margin-left: 20px;
+  line-height: 23px;
+  cursor: pointer;
+  border-radius: 2px;
+
+  &.btn-cancel {
+    padding: 0 10px;
+    text-align: right;
+    text-decoration: underline;
+    border: 0;
+  }
+
+  &.btn-success {
+    padding: 5px 20px;
+    color: #fff;
+    background: #3cc662;
+  }
+
+  &.btn-square {
+    padding: 5px 20px;
+    color: #fff;
+    background: #3cc662;
+    border-radius: 0;
+  }
+
+  &.btn-overLine {
+    padding: 5px 20px;
+    border: solid 0.5px;
+  }
+}
+
+.#{$notice}-with-bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.#{$notice}-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  padding: 21px 15px;
+  line-height: 1em;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  appearance: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::before {
+    font-size: 1.5em;
+    content: "\00d7";
+  }
+}

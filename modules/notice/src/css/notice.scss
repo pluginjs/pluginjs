@@ -1,137 +1,70 @@
 @import "@pluginjs/styles/variables.scss";
+@import "notice.core";
 
 // Vars
 // =====================
 $notice: "pj-notice" !default;
-$notice-font-size: $font-size-sm !default;
-$notice-color: #fff !default;
-$notice-bg: $gray-darkest !default;
-$notice-border-color: $gray-darker !default;
-$notice-border-radius: $border-radius-base !default;
-$notice-spacer: $spacer !default;
-$notice-primary-color: $color-primary !default;
-$notice-success-color: $color-success !default;
-$notice-info-color: $color-info !default;
-$notice-warning-color: $color-warning !default;
-$notice-danger-color: $color-danger !default;
-$notice-link-color: transparentize($gray-lightest, 0.1) !default;
-$notice-close-color: $notice-link-color !default;
 
-// Core
-// =====================
-@mixin notice-variant($color) {
-  background: transparentize($color, 0.1);
-  border-color: $color;
+.#{$notice}-Intop {
+  animation: #{$notice}-inTop 0.3s forwards;
 }
 
-.#{$notice} {
-  position: fixed;
-  left: 0;
-  width: 100%;
-  height: 75px;
-  background-color: #fff;
-  box-shadow: 0 0 10px #d7d7d7;
-
-  &.#{$notice}-fixed {
-    .#{$notice}-container {
-      position: relative;
-      width: 960px;
-      max-width: 100%;
-      margin: 0 auto;
-    }
+@keyframes #{$notice}-inTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 
-  .#{$notice}-container {
-    position: relative;
-    height: 100%;
-    margin: 0 50px;
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-.#{$notice}-content {
-  display: inline-block;
-  height: 100%;
-  font-size: 17px;
-  line-height: 75px;
-  vertical-align: middle;
+.#{$notice}-Outtop {
+  animation: #{$notice}-outTop 0.3s;
 }
 
-.#{$notice}-position {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
+@keyframes #{$notice}-outTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-  .#{$notice}-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 }
 
-.#{$notice}-btn {
-  display: inline-block;
-  margin-left: 20px;
-  line-height: 23px;
-  cursor: pointer;
-  border-radius: 5px;
+.#{$notice}-Inbottom {
+  animation: #{$notice}-inBottom 0.3s forwards;
+}
 
-  &.btn-cancel {
-    padding: 0 10px;
-    text-align: right;
-    text-decoration: underline;
-    border: 0;
+@keyframes #{$notice}-inBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
   }
 
-  &.btn-success {
-    padding: 5px 20px;
-    color: #fff;
-    background: #3cc662;
-  }
-
-  &.btn-square {
-    padding: 5px 20px;
-    color: #fff;
-    background: #3cc662;
-    border-radius: 0;
-  }
-
-  &.btn-overLine {
-    padding: 5px 20px;
-    border: solid 0.5px;
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-.#{$notice}-with-bg {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+.#{$notice}-Outbottom {
+  animation: #{$notice}-outBottom 0.3s;
 }
 
-.#{$notice}-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  // padding: 15px;
-  padding: 27px 15px;
-  line-height: 1em;
-  // color: $notice-close-color;
-  text-decoration: none;
-  background: transparent;
-  border: 0;
-  outline: 0;
-  // opacity: .5;
-  appearance: none;
-
-  &:hover {
-    cursor: pointer;
+@keyframes #{$notice}-outBottom {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  &::before {
-    font-size: 1.5em;
-    content: "\00d7";
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }
-
-@import "effect";

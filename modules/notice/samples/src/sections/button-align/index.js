@@ -6,12 +6,14 @@ const btnright = query('#button-align .btnright')
 btncenter.addEventListener('click', () => {
   Notice.show({
     content: 'Check Out And Download Premui Psd Template',
-    buttonAlign: 'center'
+    buttonAlign: 'center',
+    closeBottonColor: '#b3b3b3'
   })
 })
 btnright.addEventListener('click', () => {
   Notice.show({
     content: 'Check Out And Download Premui Psd Template',
-    buttonAlign: 'right'
+    buttonAlign: 'right',
+    closeBottonColor: '#b3b3b3'
   })
 })

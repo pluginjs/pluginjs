@@ -6,7 +6,8 @@ const closenull = query('#allow-close .closenull')
 closetrue.addEventListener('click', () => {
   Notice.show({
     content: 'Check Out And Download Premui Psd Template',
-    allowClose: true
+    allowClose: true,
+    closeBottonColor: '#b3b3b3'
   })
 })
 closenull.addEventListener('click', () => {

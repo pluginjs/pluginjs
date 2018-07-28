@@ -7,8 +7,9 @@ fixed1.addEventListener('click', () => {
   Notice.show({
     content: 'Check Out And Download Premui Psd Template',
     fixedWidth: true,
-    contentAlignment: 'left',
-    buttonAlign: 'right'
+    contentAlignment: 'center',
+    buttonAlign: 'center',
+    closeBottonColor: '#b3b3b3'
   })
 })
 fixed2.addEventListener('click', () => {
@@ -16,6 +17,7 @@ fixed2.addEventListener('click', () => {
     content: 'Check Out And Download Premui Psd Template',
     fixedWidth: true,
     contentAlignment: 'left',
-    buttonAlign: 'center'
+    buttonAlign: 'right',
+    closeBottonColor: '#b3b3b3'
   })
 })

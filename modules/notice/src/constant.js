@@ -64,8 +64,8 @@ export const defaults = {
   fontColor: null,
   buttons: {
     ok: {
-      title: 'Ok',
-      class: 'pj-btn pj-btn-success'
+      title: 'OK',
+      class: 'pj-btn pj-btn-primary'
     }
   },
   buttonAlign: 'center',
