@@ -99,8 +99,7 @@ export const transition = () => {
 }
 
 // Test if CSS sticky  are supported
-
-export const canSticky = () => {
+export const sticky = () => {
   let _canSticky = false
   const documentFragment = document.documentElement
   const testElement = document.createElement('div')
@@ -122,7 +121,7 @@ export const canSticky = () => {
 }
 
 // Test if SVG is supported
-export const isSupportedSvg = () =>
+export const svg = () =>
   Boolean(document.createElementNS) &&
   Boolean(
     document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect

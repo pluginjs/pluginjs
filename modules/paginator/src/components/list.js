@@ -10,7 +10,6 @@ import {
   insertAfter
 } from '@pluginjs/dom'
 import is from '@pluginjs/is'
-import Pj from '@pluginjs/pluginjs'
 
 const FilterFromData = (dataAttr, value = true, elements) =>
   elements.filter(item => {
@@ -77,7 +76,7 @@ class List {
       const keys = Object.keys(this.options.visibleSize)
       for (const k of keys) {
         const value = this.options.visibleSize[k]
-        if (Pj.windowWidth > 1) {
+        if (window.document.documentElement.clientWidth > 1) {
           size = value
         }
       }

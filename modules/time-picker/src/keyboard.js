@@ -1,4 +1,4 @@
-import KEYBOARDENGINE from '@pluginjs/keyboard'
+import keyboard from '@pluginjs/keyboard'
 
 class Keyboard {
   constructor(instance) {
@@ -7,7 +7,7 @@ class Keyboard {
   }
 
   initialize() {
-    this.KEYBOARD = KEYBOARDENGINE.init(this.instance.$inputEl)
+    this.KEYBOARD = keyboard(this.instance.$inputEl)
   }
 
   bind() {

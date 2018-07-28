@@ -243,6 +243,10 @@ class Color {
     return this
   }
 
+  static of(...args) {
+    return new this(...args)
+  }
+
   static matchString(string) {
     if (is.string(string)) {
       string = string.trim()

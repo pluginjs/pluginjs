@@ -7,7 +7,7 @@ class Keyboard {
   }
 
   initialize() {
-    this.KEYBOARD = keyboard.init()
+    this.KEYBOARD = keyboard()
 
     this.bind()
   }

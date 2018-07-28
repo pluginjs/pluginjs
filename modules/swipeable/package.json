@@ -25,7 +25,7 @@
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",

@@ -1,4 +1,3 @@
-import Pj from '@pluginjs/pluginjs'
 import { query } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle, getStyle, offset } from '@pluginjs/styled'
@@ -54,17 +53,20 @@ class Wheel {
                 this.update(e)
               }
             },
-            Pj.doc
+            window.document
           )
           bindEvent(
             {
               type: this.instance.eventName('mouseup'),
               handler: () => {
-                removeEvent(this.instance.eventName('mousemove'), Pj.doc)
-                // removeEvent(this.instance.eventName('mouseup'), Pj.doc)
+                removeEvent(
+                  this.instance.eventName('mousemove'),
+                  window.document
+                )
+                // removeEvent(this.instance.eventName('mouseup'), window.document)
               }
             },
-            Pj.doc
+            window.document
           )
         }
       },

@@ -26,7 +26,10 @@
     "build:md": "plugin script build-md",
     "test": "jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@pluginjs/dom": "*",
+    "@pluginjs/emitter": "*"
+  },
   "devDependencies": {
     "@pluginjs/cli": "*",
     "babel-jest": "*",

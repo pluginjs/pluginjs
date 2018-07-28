@@ -2,8 +2,8 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import { setStyle, getStyle, contentWidth } from '@pluginjs/styled'
 import { parent } from '@pluginjs/dom'
+import Pj from '@pluginjs/factory'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import Pj from '@pluginjs/pluginjs'
 import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
 import {
   defaults as DEFAULTS,
@@ -13,7 +13,7 @@ import {
 } from './constant'
 import anime from 'animejs'
 
-let viewportWidth = Pj.windowWidth
+let viewportWidth = window.document.documentElement.clientWidth
 
 @eventable(EVENTS)
 @stateable()

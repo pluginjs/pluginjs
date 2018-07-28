@@ -9,7 +9,7 @@ class Keyboard {
   }
 
   initialize() {
-    this.KEYBOARD = keyboard.init()
+    this.KEYBOARD = keyboard()
     this.KEYBOARD.filter = function() {
       return true
     }

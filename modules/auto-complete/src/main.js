@@ -18,7 +18,6 @@ import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle, setStyle, showElement, hideElement } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import Popper from 'popper.js'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -366,7 +365,7 @@ class AutoComplete extends Component {
           return null
         }
       },
-      Pj.doc
+      window.document
     )
   }
 

@@ -25,7 +25,6 @@ import {
 } from '@pluginjs/styled'
 import { removeClass, addClass, hasClass } from '@pluginjs/classes'
 import { removeEvent, bindEvent } from '@pluginjs/events'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -43,7 +42,7 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
-const $doc = Pj.doc
+const $doc = window.document
 const childrenMatchSelector = (selector, el) =>
   compose(
     elementList => {

@@ -39,7 +39,7 @@
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/pop-dialog": "*",
     "@pluginjs/range": "*",

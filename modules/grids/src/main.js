@@ -3,10 +3,9 @@ import Component from '@pluginjs/component'
 import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-
+import Pj from '@pluginjs/factory'
 import { append, prepend, find, finds, parent, children } from '@pluginjs/dom'
 
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,

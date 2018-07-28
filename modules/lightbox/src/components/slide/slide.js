@@ -134,7 +134,7 @@ class Slide {
     if (!hasClass(this.classes.SLIDETRANSITION, this.slide)) {
       addClass(this.classes.SLIDETRANSITION, this.slide)
     }
-    const p = size * -1 * Pj.windowWidth
+    const p = size * -1 * window.document.documentElement.clientWidth
     setStyle({ transform: `translate3d(${p}px, 0px, 0px)` }, this.slide)
   }
 
@@ -193,7 +193,9 @@ class Slide {
       if (hasClass(this.classes.SLIDETRANSITION, this.slide)) {
         removeClass(this.classes.SLIDETRANSITION, this.slide)
       }
-      const p = this.translate * -1 * Pj.windowWidth + drapDistance
+      const p =
+        this.translate * -1 * window.document.documentElement.clientWidth +
+        drapDistance
       setStyle({ transform: `translate3d(${p}px, 0px, 0px)` }, this.slide)
     })
     this.hammer.on('panend', event => {
@@ -202,7 +204,8 @@ class Slide {
         if (!hasClass(this.classes.SLIDETRANSITION, this.slide)) {
           addClass(this.classes.SLIDETRANSITION, this.slide)
         }
-        const p = this.translate * -1 * Pj.windowWidth
+        const p =
+          this.translate * -1 * window.document.documentElement.clientWidth
         setStyle({ transform: `translate3d(${p}px, 0px, 0px)` }, this.slide)
       } else {
         const direction = drapDistance > 0 ? 'pre' : 'next'
@@ -229,7 +232,7 @@ class Slide {
     if (hasClass(this.classes.SLIDETRANSITION, this.slide)) {
       removeClass(this.classes.SLIDETRANSITION, this.slide)
     }
-    const p = this.translate * -1 * Pj.windowWidth
+    const p = this.translate * -1 * window.document.documentElement.clientWidth
     setStyle({ transform: `translate3d(${p}px, 0px, 0px)` }, this.slide)
   }
 

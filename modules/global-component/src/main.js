@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 
 export default class GlobalComponent extends Component {
   constructor(namespace) {
-    super(namespace, window.Pj.doc.documentElement)
+    super(namespace, window.window.document.documentElement)
     this.globalComponent = true
     if (!window.Pj.instances[this.plugin]) {
       return

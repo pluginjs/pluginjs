@@ -30,7 +30,7 @@
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/utils": "*"

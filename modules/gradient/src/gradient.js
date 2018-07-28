@@ -218,6 +218,10 @@ class Gradient {
     return strings
   }
 
+  static of(...args) {
+    return new this(...args)
+  }
+
   static setDefaults(options) {
     DEFAULTS = deepMerge(DEFAULTS, isPlainObject(options) && options)
   }

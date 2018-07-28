@@ -1,6 +1,7 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
+import Pj from '@pluginjs/factory'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -16,7 +17,6 @@ import {
   parent,
   closest
 } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -436,7 +436,7 @@ class Dropdown extends Component {
             return
           }
         },
-        Pj.doc
+        window.document
       )
     }
     /*eslint-disable*/
@@ -475,7 +475,7 @@ class Dropdown extends Component {
     this.leave('show')
 
     if (this.options.hideOutClick) {
-      removeEvent('click', Pj.doc)
+      removeEvent('click', window.document)
     }
 
     if (this.is('popper')) {

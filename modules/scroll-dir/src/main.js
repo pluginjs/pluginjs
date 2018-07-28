@@ -1,5 +1,5 @@
-import Pj from '@pluginjs/pluginjs'
 import Emitter from '@pluginjs/emitter'
+import Pj from '@pluginjs/factory'
 
 /* Credit to http://naver.github.io/egjs/ MIT */
 const scrolldir = (function() {

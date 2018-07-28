@@ -1,6 +1,6 @@
 import is from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 import { deepMerge } from '@pluginjs/utils'
 
 export default function register(name, obj = {}) {
@@ -31,7 +31,10 @@ export default function register(name, obj = {}) {
         const instances = Pj.instances[name]
 
         for (let i = 0; i < instances.length; i++) {
-          instances[i].resize(Pj.windowWidth, Pj.windowHeight)
+          instances[i].resize(
+            window.document.documentElement.clientWidth,
+            window.document.documentElement.clientHeight
+          )
         }
       }
     }

@@ -26,7 +26,6 @@ import {
   parseHTML,
   find
 } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -47,7 +46,7 @@ import {
 } from './constant'
 import Keyboard from './keyboard'
 
-const $doc = Pj.doc
+const $doc = window.document
 // const compileTemplate = template.compile
 
 @translateable(TRANSLATIONS)

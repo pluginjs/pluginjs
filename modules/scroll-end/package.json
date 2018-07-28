@@ -29,7 +29,7 @@
   "dependencies": {
     "@pluginjs/dom": "*",
     "@pluginjs/emitter": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*"
   },
   "devDependencies": {

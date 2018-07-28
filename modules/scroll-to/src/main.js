@@ -4,7 +4,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { queryAll, query } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 import {
   eventable,
   register,
@@ -91,7 +91,9 @@ class ScrollTo extends Component {
   }
 
   isMobile() {
-    return Pj.windowWidth < this.options.mobile.width
+    return (
+      window.document.documentElement.clientWidth < this.options.mobile.width
+    )
   }
 
   active($index) {
@@ -116,7 +118,7 @@ class ScrollTo extends Component {
   }
 
   roll() {
-    queryAll('[id]', Pj.doc).map(item => {
+    queryAll('[id]', window.document).map(item => {
       if (
         this.scrollTop() > getOffset(item).top - this.options.offsetTop &&
         this.scrollTop() < getOffset(item).top + item.clientHeight
@@ -152,7 +154,7 @@ class ScrollTo extends Component {
     }
 
     if ($href) {
-      addClass(this.classes.ANIMATING, Pj.doc)
+      addClass(this.classes.ANIMATING, window.document)
 
       const top = getOffset($href).top
 
@@ -164,7 +166,7 @@ class ScrollTo extends Component {
           duration,
           easing,
           complete: () => {
-            removeClass(this.classes.ANIMATING, Pj.doc)
+            removeClass(this.classes.ANIMATING, window.document)
             this.trigger(EVENTS.READY)
           }
         })
@@ -175,7 +177,7 @@ class ScrollTo extends Component {
             duration,
             easing,
             complete: () => {
-              removeClass(this.classes.ANIMATING, Pj.doc)
+              removeClass(this.classes.ANIMATING, window.document)
               this.trigger(EVENTS.READY)
             }
           }

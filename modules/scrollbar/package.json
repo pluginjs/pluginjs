@@ -41,7 +41,7 @@
     "@pluginjs/feature": "*",
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",

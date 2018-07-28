@@ -27,8 +27,26 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/polyfills": "*",
     "@pluginjs/emitter": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/utils": "*",
+    "@pluginjs/factory": "*",
+    "@pluginjs/utils": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/global-component": "*",
+    "@pluginjs/i18n": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/easing": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/feature": "*",
+    "@pluginjs/template": "*",
+    "@pluginjs/keyboard": "*",
+    "@pluginjs/viewport": "*",
+    "@pluginjs/classes": "*",
+    "@pluginjs/utils": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/styled": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

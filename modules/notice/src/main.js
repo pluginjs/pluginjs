@@ -2,11 +2,11 @@ import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import { reflow } from '@pluginjs/utils'
+import Pj from '@pluginjs/factory'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML, query, remove } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,

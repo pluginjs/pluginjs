@@ -39,7 +39,7 @@
     "@pluginjs/dom": "*",
     "@pluginjs/dots": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/template": "*",
     "hammerjs": "*"

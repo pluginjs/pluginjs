@@ -7,26 +7,26 @@ describe('keyboard', () => {
 
   test('can construc with element', () => {
     const element = document.createElement('div')
-    const instance = keyboard.init(element)
+    const instance = keyboard(element)
 
     expect(instance.element).toEqual(element)
   })
 
   test('can construc without element', () => {
-    const instance = keyboard.init()
+    const instance = keyboard()
 
     expect(instance.element).toEqual(window.document)
   })
 
   test('should have emitter', () => {
-    const instance = keyboard.init()
+    const instance = keyboard()
     expect(instance.emitter).toBeObject()
   })
 
   let clavier
 
   beforeEach(() => {
-    clavier = keyboard.init()
+    clavier = keyboard()
   })
 
   describe('initialize()', () => {

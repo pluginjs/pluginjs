@@ -3,7 +3,7 @@ import { debounce } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { offset } from '@pluginjs/styled'
 import { attr, queryAll, query } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
 import {
   defaults as DEFAULTS,

@@ -20,10 +20,6 @@ class Viewport {
     this.observer.observe(this.element)
   }
 
-  static of(...args) {
-    return new Viewport(...args)
-  }
-
   on(eventName, func, instance) {
     this.instance = instance
     const adder = curry((func, middleware) => middleware.concat(func))
@@ -58,6 +54,10 @@ class Viewport {
     this.enterMiddleware = []
     this.exitMiddleware = []
     this.instance = null
+  }
+
+  static of(...args) {
+    return new Viewport(...args)
   }
 }
 

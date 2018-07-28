@@ -22,7 +22,7 @@ class overlay {
   setStyle() {
     setStyle(
       {
-        height: Pj.doc.innerHeight,
+        height: window.document.innerHeight,
         position: 'absolute'
       },
       this.overlay

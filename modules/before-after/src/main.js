@@ -7,7 +7,6 @@ import { query, find, append, parseHTML } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import easing from '@pluginjs/easing'
 import template from '@pluginjs/template'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -352,7 +351,7 @@ class BeforeAfter extends Component {
                 type: this.eventName('mousemove'),
                 handler: this.onDragMove.bind(this)
               },
-              Pj.doc
+              window.document
             )
             callback()
           }
@@ -361,7 +360,7 @@ class BeforeAfter extends Component {
           type: this.eventName('mouseup'),
           handler: this.onDragEnd.bind(this)
         })
-      )(Pj.doc)
+      )(window.document)
     }
 
     if (this.options.touchDrag && touch) {
@@ -374,7 +373,7 @@ class BeforeAfter extends Component {
                 type: this.eventName('touchmove'),
                 handler: this.onDragMove.bind(this)
               },
-              Pj.doc
+              window.document
             )
             callback()
           }
@@ -383,7 +382,7 @@ class BeforeAfter extends Component {
           type: this.eventName('touchend'),
           handler: this.onDragEnd.bind(this)
         })
-      )(Pj.doc)
+      )(window.document)
     }
 
     if (this.options.pointerDrag && pointer) {
@@ -396,7 +395,7 @@ class BeforeAfter extends Component {
                 type: this.eventName(pointerEvent('pointermove')),
                 handler: this.onDragMove.bind(this)
               },
-              Pj.doc
+              window.document
             )
             callback()
           }
@@ -405,7 +404,7 @@ class BeforeAfter extends Component {
           type: this.eventName(pointerEvent('pointerup')),
           handler: this.onDragEnd.bind(this)
         })
-      )(Pj.doc)
+      )(window.document)
     }
 
     bindEvent(
@@ -413,7 +412,7 @@ class BeforeAfter extends Component {
         type: this.eventName('blur'),
         handler: this.onDragEnd.bind(this)
       },
-      Pj.doc
+      window.document
     )
   }
 
@@ -436,7 +435,7 @@ class BeforeAfter extends Component {
       ...'mousemove mouseup touchmove touchend pointermove pointerup MSPointerMove MSPointerUp blur'
         .split(' ')
         .map(eventName => removeEvent(this.eventName(eventName)))
-    )(Pj.doc)
+    )(window.document)
 
     this.position = this._position
     removeClass(this.classes.DRAGGING, this.element)

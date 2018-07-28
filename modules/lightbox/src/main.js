@@ -4,7 +4,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML, query, queryAll } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 import {
   eventable,
   register,
@@ -291,7 +291,7 @@ class Lightbox extends Component {
   hideScrollbar() {
     const windowStyles = {}
 
-    if (UTILS.hasScrollBar(Pj.windowHeight)) {
+    if (UTILS.hasScrollBar(window.document.documentElement.clientHeight)) {
       const s = UTILS.getScrollbarSize()
       if (s) {
         windowStyles.marginRight += s
@@ -304,7 +304,7 @@ class Lightbox extends Component {
 
   reserveScrollbar() {
     const windowStyles = {}
-    if (UTILS.hasScrollBar(Pj.windowHeight)) {
+    if (UTILS.hasScrollBar(window.document.documentElement.clientHeight)) {
       const s = UTILS.getScrollbarSize()
       if (s) {
         windowStyles.marginRight -= s

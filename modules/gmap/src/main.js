@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import is from '@pluginjs/is'
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 import {
   eventable,
   register,

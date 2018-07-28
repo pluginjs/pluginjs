@@ -7,7 +7,7 @@ import {
   animationProperty,
   transitionEndEvent,
   animationEndEvent,
-  isSupportedSvg,
+  svg,
   pointer,
   pointerEvent,
   touch
@@ -47,7 +47,7 @@ describe('feature', () => {
   })
 
   test('should test svg', () => {
-    expect(isSupportedSvg()).toBeBoolean()
+    expect(svg()).toBeBoolean()
   })
 
   test('should test touch', () => {

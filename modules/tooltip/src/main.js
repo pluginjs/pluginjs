@@ -7,7 +7,6 @@ import { getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { parseHTML, query, setObjData, getObjData } from '@pluginjs/dom'
 import { getUID, reflow, deepMerge } from '@pluginjs/utils'
-import Pj from '@pluginjs/pluginjs'
 import {
   register,
   styleable,
@@ -150,7 +149,7 @@ class Tooltip extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.element)
-    removeEvent(this.eventNameWithId('click'), Pj.doc)
+    removeEvent(this.eventNameWithId('click'), window.document)
   }
 
   toggle(event) {
@@ -275,7 +274,7 @@ class Tooltip extends Component {
               this.hide()
             }
           },
-          Pj.doc
+          window.document
         )
       }
     }
@@ -357,7 +356,7 @@ class Tooltip extends Component {
     this._hoverState = ''
 
     if (this.options.hideOutClick && this.clickTrigger && !this.is('shown')) {
-      removeEvent(this.eventNameWithId('click'), Pj.doc)
+      removeEvent(this.eventNameWithId('click'), window.document)
     }
   }
 

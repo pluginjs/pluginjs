@@ -41,7 +41,7 @@
     "@pluginjs/classes": "*",
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "axios": "^0.18.0",
     "jquery-validation": "*"

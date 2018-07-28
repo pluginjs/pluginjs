@@ -17,8 +17,8 @@
 - transform3D
 - transform
 - transition
-- canSticky
-- isSupportedSvg
+- sticky
+- svg
 - touch
 - pointer
 - pointerEvent

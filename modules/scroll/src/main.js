@@ -1,6 +1,6 @@
 import is from '@pluginjs/is'
-import Pj from '@pluginjs/pluginjs'
 import easing from '@pluginjs/easing'
+import Pj from '@pluginjs/factory'
 
 /* Credit to https://github.com/iamdustan/smoothscroll MIT */
 const scroll = (function() {

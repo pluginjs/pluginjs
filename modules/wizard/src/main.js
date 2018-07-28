@@ -13,7 +13,6 @@ import {
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent, trigger } from '@pluginjs/events'
 import is from '@pluginjs/is'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -368,7 +367,7 @@ class Wizard extends Component {
   }
 }
 
-Each(queryAll('[data-wizard]', Pj.doc), ele => {
+Each(queryAll('[data-wizard]', window.document), ele => {
   ele.addEventListener('click', e => {
     let href
     const target =

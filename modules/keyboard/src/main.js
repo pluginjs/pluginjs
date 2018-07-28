@@ -258,12 +258,12 @@ class Keyboard {
   down(key, func) {
     return this.distribute('down', key, func)
   }
-}
 
-const keyboard = {
-  init(element) {
-    return new Keyboard(element)
+  static of(...args) {
+    return new this(...args)
   }
 }
+
+const keyboard = (...args) => Keyboard.of(...args)
 
 export default keyboard

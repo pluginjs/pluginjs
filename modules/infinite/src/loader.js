@@ -1,7 +1,6 @@
 import templateEngine from '@pluginjs/template'
-import Pj from '@pluginjs/pluginjs'
-import { addClass, removeClass } from '@pluginjs/classes'
-import { append, parseHTML, query } from '@pluginjs/dom'
+import { addClass } from '@pluginjs/classes'
+import { append, parseHTML } from '@pluginjs/dom'
 
 class Loader {
   constructor(IS) {

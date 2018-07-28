@@ -1,4 +1,4 @@
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 
 class stick {
   constructor(api) {

@@ -33,7 +33,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/i18n": "*",
     "@pluginjs/global-component": "*",
-    "@pluginjs/pluginjs": "*"
+    "@pluginjs/factory": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

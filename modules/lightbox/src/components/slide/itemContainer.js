@@ -78,7 +78,7 @@ class ItemContainer {
   }
 
   left(size) {
-    const left = size * Pj.windowWidth
+    const left = size * window.document.documentElement.clientWidth
     setStyle({ left }, this.item)
   }
 

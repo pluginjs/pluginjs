@@ -38,7 +38,7 @@
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*"
   },
   "devDependencies": {

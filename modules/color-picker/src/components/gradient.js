@@ -1,4 +1,3 @@
-import Pj from '@pluginjs/pluginjs'
 import keyboard from '@pluginjs/keyboard'
 import Marker from './marker'
 import Wheel from './wheel'
@@ -208,7 +207,7 @@ class Gradient {
                 this.instance.trigger('gradientChange')
               }
             },
-            Pj.doc
+            window.document
           )
           // e.preventDefault()
           return false
@@ -221,11 +220,11 @@ class Gradient {
       {
         type: 'mouseup',
         handler: () => {
-          removeEvent('mousemove', Pj.doc)
-          // removeEvent('mouseup', Pj.doc)
+          removeEvent('mousemove', window.document)
+          // removeEvent('mouseup', window.document)
         }
       },
-      Pj.doc
+      window.document
     )
 
     bindEvent(
@@ -306,7 +305,7 @@ class Gradient {
       },
       this.element
     )
-    this.KEYBOARD = keyboard.init()
+    this.KEYBOARD = keyboard()
 
     this.KEYBOARD.on('down', 'esc', () => {
       if (

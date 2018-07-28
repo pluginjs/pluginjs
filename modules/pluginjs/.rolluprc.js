@@ -1,6 +1,7 @@
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
 import pkg from './package.json'
+import resolve from 'rollup-plugin-node-resolve'
 
 const external = pkg.dependencies ? Object.keys(pkg.dependencies) : []
 const globals = Object.assign(
@@ -28,14 +29,14 @@ const babelCallback = (options = {}) => {
 export default [
   {
     input: 'src/main.js',
-    external,
+    //external,
     output: {
       name: pkg.name,
       file: pkg.main,
       format: 'umd',
       globals
     },
-    plugins: [babelCallback(), commonjs()]
+    plugins: [babelCallback(), commonjs(), resolve()]
   },
   {
     input: 'src/main.js',

@@ -23,7 +23,6 @@ import {
 import Tooltip from '@pluginjs/tooltip'
 import Scrollable from '@pluginjs/scrollable'
 import Popper from 'popper.js'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -33,7 +32,7 @@ import {
   translateable,
   optionable
 } from '@pluginjs/decorator'
-import color from '@pluginjs/color'
+import { Color } from '@pluginjs/color'
 import Alpha from './components/alpha'
 import Preview from './components/preview'
 // import Contrast from './components/contrast'
@@ -52,6 +51,8 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 let DATA = {}
+
+console.info(Color)
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -106,8 +107,8 @@ class ColorPicker extends Component {
     // take element defalut value
     this.elementColor = this.element.value
 
-    // init As Color
-    this.asColor = color(this.options.defaultColor, this.options.color)
+    // init Color
+    this.asColor = Color.of(this.options.defaultColor, this.options.color)
 
     // init frame
     this.initFrame()
@@ -761,7 +762,7 @@ class ColorPicker extends Component {
           }
         }
       },
-      Pj.doc
+      window.document
     )
   }
 

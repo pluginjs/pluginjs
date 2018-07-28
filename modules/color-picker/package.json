@@ -36,17 +36,21 @@
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/color": "*",
+    "@pluginjs/gradient": "*",
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/scrollable": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
-    "@pluginjs/tooltip": "*"
+    "@pluginjs/tooltip": "*",
+    "@pluginjs/utils": "*",
+    "popper.js": "*",
+    "@pluginjs/keyboard": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

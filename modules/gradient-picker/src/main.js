@@ -17,8 +17,6 @@ import {
 } from '@pluginjs/dom'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
-// import EditPanel from '@pluginjs/edit-panel'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -37,7 +35,7 @@ import {
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
-import color from '@pluginjs/color'
+import { Color } from '@pluginjs/color'
 // import Scrollable from '@pluginjs/scrollable'
 import '@pluginjs/range'
 import '@pluginjs/color-picker'
@@ -64,7 +62,7 @@ class GradientPicker extends Component {
 
     addClass(this.classes.NAMESPACE, this.element)
 
-    this.color = color()
+    this.color = new Color()
 
     this.data = {
       name: '',
@@ -477,7 +475,7 @@ class GradientPicker extends Component {
       /(rgba\(.+?\))|(rgb\(.+?\))|(#\w{3,6})/gi,
       val => {
         if (val) {
-          let color = Pj.color(val).toRGBA()
+          let color = Color.of(val).toRGBA()
           color = color.replace(/\d\.\d+\)$|\d\)$/gi, val => {
             const num = parseFloat(val.split(')')[0], 10)
 

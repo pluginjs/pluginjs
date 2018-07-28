@@ -1,4 +1,3 @@
-import Pj from '@pluginjs/pluginjs'
 import { curry } from '@pluginjs/utils'
 
 class Viewport {

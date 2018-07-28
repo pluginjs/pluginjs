@@ -2,7 +2,6 @@ import Component from '@pluginjs/component'
 import { children, find } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -67,7 +66,7 @@ class Accordion extends Component {
     this.isResponsive =
       this.options.breakWidth === null
         ? false
-        : Pj.windowWidth <= this.options.breakWidth
+        : window.document.documentElement.clientWidth <= this.options.breakWidth
 
     this.resetData()
   }

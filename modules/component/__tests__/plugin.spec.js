@@ -1,5 +1,5 @@
 import Plugin from '../../src'
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 
 describe('Plugin', () => {
   describe('Plugin()', () => {

@@ -40,7 +40,7 @@
     "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/pop-dialog": "*",
     "@pluginjs/radio": "*",

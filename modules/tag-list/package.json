@@ -39,7 +39,7 @@
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
     "@pluginjs/list": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/template": "*"
   },

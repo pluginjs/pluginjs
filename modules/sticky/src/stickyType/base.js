@@ -1,4 +1,4 @@
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'

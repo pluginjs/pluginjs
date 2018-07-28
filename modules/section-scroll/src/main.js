@@ -3,7 +3,7 @@ import Hammer from 'hammerjs'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, queryAll, query } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 import {
   eventable,
   register,

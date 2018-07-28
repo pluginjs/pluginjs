@@ -44,7 +44,7 @@
     "@pluginjs/filters": "*",
     "@pluginjs/image-loader": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/swipe": "*",

@@ -30,7 +30,7 @@
   "dependencies": {
     "@pluginjs/dom": "*",
     "@pluginjs/utils": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/component": "*"
   },
   "devDependencies": {

@@ -12,7 +12,7 @@ class Keyboard {
       return
     }
 
-    this.KEYBOARD = keyboard.init(this.instance.element)
+    this.KEYBOARD = keyboard(this.instance.element)
 
     // make ul div etc. get focus
     this.instance.element.setAttribute('tabindex', '0')

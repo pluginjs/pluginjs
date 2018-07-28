@@ -50,6 +50,4 @@ const defaults = {
 
 const dependencies = ['anime']
 
-const info = { version: '0.0.1' }
-
 export { classes, defaults, events, methods, namespace, dependencies, info }

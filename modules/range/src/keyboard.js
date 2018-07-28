@@ -8,7 +8,7 @@ class Keyboard {
   }
 
   initialize() {
-    this.KEYBOARD = keyboard.init(this.instance.$control)
+    this.KEYBOARD = keyboard(this.instance.$control)
 
     // make ul div etc. get focus
     this.instance.pointer.forEach(val => {

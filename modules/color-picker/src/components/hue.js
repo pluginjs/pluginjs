@@ -2,7 +2,6 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import { getStyle, setStyle } from '@pluginjs/styled'
 import { parseHTML } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
-import Pj from '@pluginjs/pluginjs'
 
 class Hue {
   constructor(instance, element) {
@@ -46,18 +45,18 @@ class Hue {
                 this.move(size)
               }
             },
-            Pj.doc
+            window.document
           )
 
           bindEvent(
             {
               type: 'mouseup',
               handler: () => {
-                removeEvent('mousemove', Pj.doc)
-                // removeEvent('mouseup', Pj.doc)
+                removeEvent('mousemove', window.document)
+                // removeEvent('mouseup', window.document)
               }
             },
-            Pj.doc
+            window.document
           )
 
           return null

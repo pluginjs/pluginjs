@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { canSticky } from '@pluginjs/feature'
+import { sticky as canSticky } from '@pluginjs/feature'
 import {
   eventable,
   register,

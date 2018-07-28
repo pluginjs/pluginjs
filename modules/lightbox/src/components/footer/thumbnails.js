@@ -2,7 +2,7 @@ import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, query } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 
 class Thumbnails {
   constructor(instance) {
@@ -88,7 +88,7 @@ class Thumbnails {
   }
 
   getHalfPosition() {
-    const p = Pj.windowWidth / 2 - 50
+    const p = window.document.documentElement.clientWidth / 2 - 50
     return Math.floor(p)
   }
 

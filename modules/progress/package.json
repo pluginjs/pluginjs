@@ -39,7 +39,7 @@
     "@pluginjs/dom": "*",
     "@pluginjs/easing": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/template": "*",
     "@pluginjs/utils": "*"

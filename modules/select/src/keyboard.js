@@ -9,7 +9,7 @@ class Keyboard {
   }
 
   initialize() {
-    this.KEYBOARD = keyboard.init(this.instance.label)
+    this.KEYBOARD = keyboard(this.instance.label)
     if (!this.instance.options.filterable) {
       this.instance.label.setAttribute('tabindex', 0)
     }

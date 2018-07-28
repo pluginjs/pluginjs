@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@pluginjs/is": "*",
-    "@pluginjs/pluginjs": "*"
+    "@pluginjs/factory": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -44,7 +44,7 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "core",
+  "category": "utils",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

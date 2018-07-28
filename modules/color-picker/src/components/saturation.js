@@ -1,8 +1,8 @@
-import Pj from '@pluginjs/pluginjs'
 import { parseHTML } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle, getStyle } from '@pluginjs/styled'
+import { Converter } from '@pluginjs/color'
 
 class Saturation {
   constructor(instance, element) {
@@ -50,17 +50,17 @@ class Saturation {
                 this.move([sizeX, sizeY])
               }
             },
-            Pj.doc
+            window.document
           )
           bindEvent(
             {
               type: 'mouseup',
               handler: () => {
-                removeEvent('mousemove', Pj.doc)
-                // removeEvent('mouseup', Pj.doc)
+                removeEvent('mousemove', window.document)
+                // removeEvent('mouseup', window.document)
               }
             },
-            Pj.doc
+            window.document
           )
           return null
         }
@@ -114,7 +114,7 @@ class Saturation {
 
     setStyle(
       {
-        backgroundColor: Pj.color.HSLtoHEX({
+        backgroundColor: Converter.HSLtoHEX({
           h: hue,
           s: 1,
           l: 0.5

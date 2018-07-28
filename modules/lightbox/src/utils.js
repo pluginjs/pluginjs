@@ -1,8 +1,11 @@
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 
 const Utils = {
   hasScrollBar(winHeight) {
-    return document.body.scrollHeight > (winHeight || Pj.windowHeight)
+    return (
+      document.body.scrollHeight >
+      (winHeight || window.document.documentElement.clientHeight)
+    )
   },
   getScrollbarSize() {
     let scrollbarSize = 0

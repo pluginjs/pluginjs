@@ -29,7 +29,7 @@
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/icons": "*",
-    "@pluginjs/pluginjs": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/swipeable": "*",

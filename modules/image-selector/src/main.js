@@ -15,7 +15,6 @@ import {
 } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
 import Scrollable from '@pluginjs/scrollable'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -161,7 +160,7 @@ class ImageSelector extends Component {
             }
           }
         },
-        Pj.doc
+        window.document
       )
     }
 
@@ -172,7 +171,7 @@ class ImageSelector extends Component {
     removeEvent(this.eventName(), this.$wrapper)
     removeEvent(this.eventName(), this.$panel)
     removeEvent(this.eventName(), this.$init)
-    removeEvent(this.eventName(), Pj.doc)
+    removeEvent(this.eventName(), window.document)
   }
 
   parseHtml() {
@@ -269,7 +268,7 @@ class ImageSelector extends Component {
     this.enter('open')
 
     // if (this.options.hideOutClick) {
-    // Pj.doc.on(this.eventName('click'), e => {
+    // window.document.on(this.eventName('click'), e => {
     //   if (!this.is('open')) {
     //     return false
     //   }
@@ -294,7 +293,7 @@ class ImageSelector extends Component {
     this.leave('open')
 
     // if (this.options.hideOutClick) {
-    //   Pj.doc.off(this.eventName('click'))
+    //   window.document.off(this.eventName('click'))
     // }
   }
 

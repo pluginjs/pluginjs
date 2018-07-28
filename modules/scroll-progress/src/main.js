@@ -1,11 +1,10 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-
+import Pj from '@pluginjs/factory'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { prepend, parseHTML, query } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -171,7 +170,6 @@ class ScrollProgress extends Component {
     let clientHeight
     let height
     let scrollTop
-    let total
 
     if (this.options.custom === false) {
       scrollTop = this.scrollTop()
@@ -183,7 +181,7 @@ class ScrollProgress extends Component {
       height = this.element.scrollHeight
     }
 
-    total = (scrollTop / (height - clientHeight)) * 100
+    const total = (scrollTop / (height - clientHeight)) * 100
     this.setBarSize(total)
   }
 

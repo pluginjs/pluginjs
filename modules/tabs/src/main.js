@@ -3,7 +3,6 @@ import is from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, query, insertAfter, children } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,
@@ -211,13 +210,13 @@ class Tabs extends Component {
           }
         }
       },
-      Pj.doc
+      window.document
     )
   }
 
   unbind() {
     this.navEvent.destroy()
-    removeEvent(this.eventName(), Pj.doc)
+    removeEvent(this.eventName(), window.document)
   }
 
   resetHeight() {

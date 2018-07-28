@@ -6,7 +6,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML } from '@pluginjs/dom'
-import Pj from '@pluginjs/pluginjs'
+import Pj from '@pluginjs/factory'
 import {
   eventable,
   register,
@@ -138,7 +138,10 @@ class ScrollTop extends Component {
   }
 
   toggleMobile() {
-    if (Pj.windowWidth < this.options.mobile.width && this.mobile !== true) {
+    if (
+      window.document.documentElement.clientWidth < this.options.mobile.width &&
+      this.mobile !== true
+    ) {
       this.distance = this.options.mobile.distance
       this.animation = this.options.mobile.animation
       this.duration = this.options.mobile.duration

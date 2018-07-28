@@ -2,10 +2,10 @@ import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { addClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
+import Pj from '@pluginjs/factory'
 import Video from '@pluginjs/video'
 import { append, parseHTML, query } from '@pluginjs/dom'
 import { deepMerge } from '@pluginjs/utils'
-import Pj from '@pluginjs/pluginjs'
 import {
   eventable,
   register,

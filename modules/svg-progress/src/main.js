@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { isSupportedSvg } from '@pluginjs/feature'
+import { svg as isSupportedSvg } from '@pluginjs/feature'
 import easing from '@pluginjs/easing'
 import is from '@pluginjs/is'
 import { getTime } from '@pluginjs/utils'
