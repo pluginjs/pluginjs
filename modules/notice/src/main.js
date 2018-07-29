@@ -2,7 +2,6 @@ import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import { reflow } from '@pluginjs/utils'
-import Pj from '@pluginjs/factory'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
@@ -26,7 +25,7 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, false)
 @register(NAMESPACE, { defaults: DEFAULTS })
 class Notice extends GlobalComponent {
   constructor(options = {}) {
@@ -272,12 +271,10 @@ class Notice extends GlobalComponent {
   }
 
   static hideAll() {
-    const instances = Pj.instances[NAMESPACE]
-    for (let i = 0; i < instances.length; i++) {
-      if (i !== instances.length - 1) {
-        instances[i].hide()
-      }
-    }
+    const instances = this.getInstances()
+
+    instances.forEach(instance => instance.hide())
+    return true
   }
 }
 

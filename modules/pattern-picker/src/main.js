@@ -17,10 +17,9 @@ import {
   parentWith
 } from '@pluginjs/dom'
 // import Scrollable from '@pluginjs/scrollable'
-// import EditPanel from '@pluginjs/edit-panel'
 import PopDialog from '@pluginjs/pop-dialog'
-import '@pluginjs/color-picker'
-import '@pluginjs/range'
+import ColorPicker from'@pluginjs/color-picker'
+import Range from '@pluginjs/range'
 import {
   eventable,
   register,
@@ -47,9 +46,8 @@ let DATA = null
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -292,12 +290,11 @@ class PatternPicker extends Component {
     //     }
     //   }
     // })
-    const findInstanceByElement = (namespace, el) =>
-      window.Pj.instances[namespace].find(plugin => plugin.element === el)
+
     this.$wrap = parent(this.element)
-    this.$forePicker = findInstanceByElement('colorPicker', $forePicker)
-    this.$bgPicker = findInstanceByElement('colorPicker', $bgPicker)
-    this.$opacityPicker = findInstanceByElement('range', $opacityPicker)
+    this.$forePicker = ColorPicker.findInstanceByElement($forePicker)
+    this.$bgPicker = ColorPicker.findInstanceByElement($bgPicker)
+    this.$opacityPicker = Range.findInstanceByElement($opacityPicker)
 
     // set initial color
     this.$forePicker.val('#000')

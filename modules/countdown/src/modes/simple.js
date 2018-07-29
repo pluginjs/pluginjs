@@ -6,7 +6,7 @@ import { deepMerge } from '@pluginjs/utils'
 
 class Simple {
   constructor(instance) {
-    this.options = deepMerge(instance.options.modes.simple)
+    this.options = deepMerge(Simple.defaults, instance.options.modes.simple)
     this.instance = instance
   }
 
@@ -70,6 +70,9 @@ class Simple {
   }
 }
 
-Simple.classes = { simple: '{namespace}-simple' }
+Simple.defaults = {}
+Simple.classes = {
+  simple: '{namespace}-simple'
+}
 
 export default Simple

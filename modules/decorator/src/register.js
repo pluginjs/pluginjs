@@ -5,31 +5,37 @@ import { deepMerge } from '@pluginjs/utils'
 
 export default function register(name, obj = {}) {
   return function(plugin) {
-    const {
-      defaults: options = {},
-      methods = [],
-      dependencies = {},
-      ...others
-    } = obj
+    const { methods = [], dependencies = {}, ...others } = obj
 
-    Pj.instances[name] = []
+    Pj.register(
+      name,
+      Object.assign(plugin, {
+        methods: plugin.methods ? deepMerge(plugin.methods, methods) : methods,
+        dependencies: plugin.dependencies
+          ? deepMerge(plugin.dependencies, dependencies)
+          : dependencies,
+        ...others
+      })
+    )
 
-    Pj.plugins[name] = Object.assign(plugin, {
-      setDefaults(options = {}) {
-        plugin.defaults = deepMerge(plugin.defaults, options)
-      },
-      defaults: plugin.defaults ? deepMerge(plugin.defaults, options) : options,
-      methods: plugin.methods ? deepMerge(plugin.methods, methods) : methods,
-      dependencies: plugin.dependencies
-        ? deepMerge(plugin.dependencies, dependencies)
-        : dependencies,
-      ...others
-    })
+    let instances = []
+    plugin.getInstances = () => {
+      return instances
+    }
+
+    plugin.addInstance = instance => {
+      instances.push(instance)
+    }
+
+    plugin.removeInstance = instance => {
+      instances = instances.filter(i => i === instance)
+    }
+
+    plugin.findInstanceByElement = (namespace, el) =>
+      instances.find(plugin => plugin.element === el)
 
     if (plugin.prototype.resize && is.undefined(plugin.resize)) {
       plugin.resize = function() {
-        const instances = Pj.instances[name]
-
         for (let i = 0; i < instances.length; i++) {
           instances[i].resize(
             window.document.documentElement.clientWidth,

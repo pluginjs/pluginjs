@@ -26,7 +26,6 @@ import Popover from '@pluginjs/popover'
 @eventable(EVENTS)
 @stateable()
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })

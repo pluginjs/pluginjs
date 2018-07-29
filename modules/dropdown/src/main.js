@@ -1,7 +1,6 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
-import Pj from '@pluginjs/factory'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -40,9 +39,8 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -54,21 +52,6 @@ class Dropdown extends Component {
     // options
     this.initOptions(DEFAULTS, options)
     this.firstClassName = this.$triggerBox.className
-
-    // this.constraints = []
-    // if (this.options.constraintToScrollParent) {
-    //   this.constraints.push({
-    //     to: 'scrollParent',
-    //     attachment: 'together none'
-    //   })
-    // }
-
-    // if (this.options.constraintToWindow) {
-    //   this.constraints.push({
-    //     to: 'window',
-    //     attachment: 'together none'
-    //   })
-    // }
 
     this.initClasses(CLASSES)
 
@@ -99,7 +82,6 @@ class Dropdown extends Component {
         $itemsEl.map($item => append($item, $panel))
       }
       append($panel, this.parent)
-      // this.parent.append($panel.append($items))
     }
     this.$panel = this.getPanel()
     wrap(`<div class='${this.classes.PANELWRAP}'></div>`, this.$panel)
@@ -137,7 +119,6 @@ class Dropdown extends Component {
       }
     }
     parentClass.split(' ').map(c => addClass(c, this.parent))
-    // addClass(parentClass, this.parent)
     addClass(this.classes.ELEMENT, this.$triggerBox)
     this.classes.PANEL.split(' ').map(className =>
       addClass(className, this.$panel)
@@ -296,7 +277,6 @@ class Dropdown extends Component {
             that.hide()
           }
           return
-          // return false
         }
       },
       this.$panel
@@ -347,7 +327,6 @@ class Dropdown extends Component {
 
   appendByData(data) {
     if (data) {
-      // this.$panel.innerHTML = ''
       let items = ''
 
       data.forEach(v => {
@@ -439,9 +418,8 @@ class Dropdown extends Component {
         window.document
       )
     }
-    /*eslint-disable*/
     if (this.options.exclusive) {
-      Pj.instances[this.plugin].map(dropdown => {
+      this.constructor.getInstances().map(dropdown => {
         if (dropdown.is('show')) {
           dropdown.hide()
         }
@@ -456,7 +434,7 @@ class Dropdown extends Component {
     }
 
     this.enter('show')
-    addClass(this.classes.SHOW, this.$triggerBox) //--------------------this.$element
+    addClass(this.classes.SHOW, this.$triggerBox)
     addClass(this.classes.SHOW, this.$panelWrap)
 
     if (this.is('popper')) {
@@ -481,7 +459,7 @@ class Dropdown extends Component {
     if (this.is('popper')) {
       this.POPPER.disableEventListeners()
     }
-    removeClass(this.classes.SHOW, this.$triggerBox) //----------------------------this.element
+    removeClass(this.classes.SHOW, this.$triggerBox)
     removeClass(this.classes.SHOW, this.$panelWrap)
 
     this.trigger(EVENTS.HIDE)
@@ -490,7 +468,7 @@ class Dropdown extends Component {
   }
 
   set(value) {
-    if (typeof value === "undefined") {
+    if (typeof value === 'undefined') {
       return
     }
 
@@ -511,10 +489,10 @@ class Dropdown extends Component {
         return
       }
 
-      if (this.element.tagName === 'INPUT') {//---------------------this.$label
-        this.element.value = this.text//---------------------
+      if (this.element.tagName === 'INPUT') {
+        this.element.value = this.text
       } else {
-        this.element.innerHTML = this.text//---------------------
+        this.element.innerHTML = this.text
       }
 
       if (this.is('initialized')) {
@@ -550,14 +528,14 @@ class Dropdown extends Component {
 
   getPanel() {
     if (this.options.panel === '+') {
-      return this.$triggerBox.nextElementSibling   //------------------------this.$element
+      return this.$triggerBox.nextElementSibling
     }
     if (is.domNode(this.options.panel)) {
       return this.options.panel
     } else if (is.string(this.options.panel)) {
       return query(this.options.panel)
     }
-      }
+  }
 
   get() {
     return this.value
@@ -606,7 +584,7 @@ class Dropdown extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      this.element.disabled = false//---------------------this.$label
+      this.element.disabled = false
       this.leave('disabled')
     }
     removeClass(this.classes.DISABLED, this.parent)
@@ -615,7 +593,7 @@ class Dropdown extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      this.element.disabled = true//---------------------this.$label
+      this.element.disabled = true
       this.enter('disabled')
     }
     addClass(this.classes.DISABLED, this.parent)
@@ -627,12 +605,12 @@ class Dropdown extends Component {
       this.hide()
       this.unbind()
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.$triggerBox)  //--------------------this.element
+        removeClass(this.getThemeClass(), this.$triggerBox)
       }
 
       this.POPPER.destroy()
-      this.$triggerBox.innerHTML = ''    //--------------------this.$element
-      this.$triggerBox.className = this.firstClassName   //--------------------this.$element
+      this.$triggerBox.innerHTML = ''
+      this.$triggerBox.className = this.firstClassName
 
       if (this.options.data) {
         unwrap(this.$panel)

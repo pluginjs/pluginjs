@@ -5,6 +5,7 @@ import { getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { queryAll, query } from '@pluginjs/dom'
 import Pj from '@pluginjs/factory'
+import Scroll from '@pluginjs/scroll'
 import {
   eventable,
   register,
@@ -26,9 +27,8 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -113,7 +113,7 @@ class ScrollTo extends Component {
 
   findAnchor(href) {
     return Array.from(this.element.children).filter(
-      c => c.dataset.scrollto == href
+      c => c.dataset.scrollto === href
     )[0]
   }
 
@@ -160,29 +160,15 @@ class ScrollTo extends Component {
 
       this.trigger(EVENTS.JUMP, top)
 
-      if (Pj.scroll.to) {
-        Pj.scroll.to({
-          y: top,
-          duration,
-          easing,
-          complete: () => {
-            removeClass(this.classes.ANIMATING, window.document)
-            this.trigger(EVENTS.READY)
-          }
-        })
-      } else {
-        $('html, body').animate(
-          { scrollTop: top },
-          {
-            duration,
-            easing,
-            complete: () => {
-              removeClass(this.classes.ANIMATING, window.document)
-              this.trigger(EVENTS.READY)
-            }
-          }
-        )
-      }
+      Scroll.to({
+        y: top,
+        duration,
+        easing,
+        complete: () => {
+          removeClass(this.classes.ANIMATING, window.document)
+          this.trigger(EVENTS.READY)
+        }
+      })
     }
   }
 

@@ -42,12 +42,7 @@ export const defaults = {
   modes: {
     simple: {},
     flip: {},
-    progress: {
-      size: 100, // progress circle size
-      barcolor: '#ccc', // progress circle base color
-      barsize: 4, // progress circle bar size
-      trackcolor: '#55a4f2' // progress circle bar color
-    }
+    progress: {}
   },
   format: 'd,h,m,s',
   label: true, // "天,时，分，秒"

@@ -1,7 +1,6 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import is from '@pluginjs/is'
-import Pj from '@pluginjs/factory'
 import {
   eventable,
   register,
@@ -24,9 +23,8 @@ let googleMapsApiLoaded = false
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS
 })
 class Gmap extends Component {
@@ -285,9 +283,7 @@ class Gmap extends Component {
 }
 
 window.gmapOnScriptLoaded = () => {
-  for (let i = 0; i < Pj.instances[NAMESPACE].length; i++) {
-    Pj.instances[NAMESPACE][i].initialize()
-  }
+  Gmap.getInstances().forEach(instance => instance.initialize())
 }
 
 export default Gmap

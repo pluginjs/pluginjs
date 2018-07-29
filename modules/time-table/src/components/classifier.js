@@ -1,4 +1,5 @@
 import { append, parseHTML } from '@pluginjs/dom'
+import Filters from '@pluginjs/filters'
 
 class Classifier {
   constructor(instance) {
@@ -29,10 +30,10 @@ class Classifier {
       })
     })
 
-    const filter = document.createElement('div')
+    const $filter = document.createElement('div')
     const that = this
 
-    this.filterApi = Pj.filters(filter, {
+    this.filterApi = Filters.of($filter, {
       default: this.instance.currentClass,
       items,
       onChange: () => {
@@ -46,7 +47,7 @@ class Classifier {
 
     this.filterApi('set', this.instance.currentClass)
 
-    append(filter, this.$element)
+    append($filter, this.$element)
   }
 
   getClassType() {

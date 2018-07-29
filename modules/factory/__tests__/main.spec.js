@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import Pj, { register, eventable, styleable } from '../../src/main'
+import { register, eventable, styleable } from '../../src/main'
 import { deepMerge } from '@pluginjs/utils'
 
 describe('As', () => {

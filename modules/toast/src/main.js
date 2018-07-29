@@ -1,7 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import is from '@pluginjs/is'
 import { reflow } from '@pluginjs/utils'
-import Pj from '@pluginjs/factory'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
@@ -44,7 +43,7 @@ const POSITIONS = [
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(false)
+@optionable(DEFAULTS, false)
 @register(NAMESPACE, { defaults: DEFAULTS })
 class Toast extends GlobalComponent {
   constructor(options = {}) {
@@ -556,13 +555,8 @@ class Toast extends GlobalComponent {
   }
 
   static reset() {
-    const length = Pj.instances[NAMESPACE].length
-    if (!length) {
-      return false
-    }
-    for (let i = 0; i < length; i++) {
-      Pj.instances[NAMESPACE][0].hide()
-    }
+    const instances = this.getInstances()
+    instances.forEach(instance => instance.hide())
     return true
   }
 

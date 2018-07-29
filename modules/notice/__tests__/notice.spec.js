@@ -1,5 +1,4 @@
 import Notice from '../src/main'
-// import Pj from '../../pluginjs'
 import { defaults as DEFAULTS } from '../src/constant'
 
 describe('Notice', () => {

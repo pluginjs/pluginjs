@@ -4,7 +4,6 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML, query, queryAll } from '@pluginjs/dom'
-import Pj from '@pluginjs/factory'
 import {
   eventable,
   register,
@@ -36,9 +35,8 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })

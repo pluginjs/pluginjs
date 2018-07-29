@@ -46,9 +46,8 @@ let DATA = null
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -473,8 +472,8 @@ class SvgPicker extends Component {
     })
     addClass(this.classes.TYPEOPEN, el)
     el.dataset.open = true
-    const scrollableApi = window.Pj.instances.scrollable.find(
-      plugin => plugin.element === query(`.${this.classes.ICONWRAP}`, el)
+    const scrollableApi = Scrollable.findInstanceByElement(
+      query(`.${this.classes.ICONWRAP}`, el)
     )
     scrollableApi.update()
   }

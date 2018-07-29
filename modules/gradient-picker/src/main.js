@@ -36,9 +36,9 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 import { Color } from '@pluginjs/color'
-// import Scrollable from '@pluginjs/scrollable'
-import '@pluginjs/range'
-import '@pluginjs/color-picker'
+import Scrollable from '@pluginjs/scrollable'
+import Range from '@pluginjs/range'
+import ColorPicker from '@pluginjs/color-picker'
 
 let DATA = {}
 
@@ -47,9 +47,8 @@ let DATA = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -287,14 +286,10 @@ class GradientPicker extends Component {
 
     this.$wrap = parent(this.element)
     // set initialization color
-    this.colorPicker = window.Pj.instances.colorPicker.find(
-      plugin => plugin.element === this.$colorPicker
-    )
+    this.colorPicker = ColorPicker.findInstanceByElement(this.$colorPicker)
     this.colorPicker.clear()
 
-    this.opacity = window.Pj.instances.range.find(
-      plugin => plugin.element === $opacity
-    )
+    this.opacity = Range.findInstanceByElement($opacity)
 
     this.opacity.val(100)
   }

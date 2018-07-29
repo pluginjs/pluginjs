@@ -2,7 +2,6 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import { setStyle, getStyle, contentWidth } from '@pluginjs/styled'
 import { parent } from '@pluginjs/dom'
-import Pj from '@pluginjs/factory'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
 import {
@@ -17,9 +16,8 @@ let viewportWidth = window.document.documentElement.clientWidth
 
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS
 })
 class AdaptText extends Component {
@@ -95,14 +93,6 @@ class AdaptText extends Component {
               this.element
             )
         })
-        // this.$element
-        //   .stop()
-        //   .animate({ 'text-indent': -distance }, scrollSpeed, () =>
-        //     this.$element.css({
-        //       cursor: 'text',
-        //       'text-overflow': ''
-        //     })
-        //   )
       }
     }
     const mouseleaveHandle = () => {
@@ -122,11 +112,6 @@ class AdaptText extends Component {
             this.element
           )
       })
-      // this.$element
-      //   .stop()
-      //   .animate({ 'text-indent': 0 }, this.options.scrollResetSpeed, () =>
-      //     setStyle({ textOverflow: 'ellipsis' }, this.element)
-      //   )
     }
     compose(
       bindEvent({
@@ -217,7 +202,7 @@ class AdaptText extends Component {
     }
     viewportWidth = window.clientWidth
 
-    const instances = Pj.instances[NAMESPACE]
+    const instances = this.getInstances()
 
     instances.forEach(instance => {
       if (instance.options.resize) {

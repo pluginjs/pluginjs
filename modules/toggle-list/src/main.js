@@ -35,7 +35,6 @@ import List from '@pluginjs/list'
 @eventable(EVENTS)
 @stateable()
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })

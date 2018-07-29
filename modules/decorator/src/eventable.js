@@ -6,7 +6,7 @@ export default function eventable(events = {}) {
     plugin.events = events
 
     plugin.setEvents = function(options = {}) {
-      deepMerge(plugin.events, options)
+      plugin.events = deepMerge(plugin.events, options)
     }
 
     plugin.prototype.eventName = function(events) {

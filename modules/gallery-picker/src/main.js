@@ -45,9 +45,8 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -478,15 +477,7 @@ class GalleryPicker extends Component {
   }
 
   updateScrollbar() {
-    const oldScrollable = window.Pj.instances.scrollable.find(
-      plugin => plugin.element === this.$expandItems
-    )
-    if (oldScrollable) {
-      oldScrollable.destroy()
-    }
-    const scrollableApi = Scrollable.of(this.$expandItems)
-    scrollableApi.scrollTo('vertical', '100%')
-    scrollableApi.enable()
+    const scrollableApi = Scrollable.findInstanceByElement(this.$expandItems)
     scrollableApi.update()
   }
 

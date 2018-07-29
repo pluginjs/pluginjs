@@ -1,5 +1,3 @@
-import Pj from '@pluginjs/factory'
-
 const Utils = {
   hasScrollBar(winHeight) {
     return (

@@ -53,9 +53,8 @@ let DATA = null
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -167,9 +166,8 @@ class IconsPicker extends Component {
         this.panel
       )
       this.$scrollable = this.$selectorList.map(el =>
-        window.Pj.instances.scrollable.find(
-          plugin =>
-            plugin.element === closest(`.${this.classes.PACKAGEBODY}`, el)
+        Scrollable.findInstanceByElement(
+          closest(`.${this.classes.PACKAGEBODY}`, el)
         )
       )
 

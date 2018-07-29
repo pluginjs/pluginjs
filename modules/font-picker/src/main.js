@@ -59,9 +59,8 @@ let ACTIVATED = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -672,7 +671,6 @@ class FontPicker extends Component {
         })
         $sourcePackage.append($categorie)
 
-        // $fontsWrap.asScrollable();
         $sourcePackage.dataset.source = sourceName
         $searchList.dataset.sourceName = sourceName
         // setObjData('source', sourceName, $sourcePackage)
@@ -933,9 +931,7 @@ class FontPicker extends Component {
     addClass(this.classes.PACKAGEOPEN, $el)
     $el.dataset.open = true
 
-    const scrollableApi = window.Pj.instances.scrollable.find(
-      plugin => plugin.element === $fontsList
-    )
+    const scrollableApi = Scrollable.findInstanceByElement($fontsList)
     scrollableApi.enable()
     setTimeout(() => {
       scrollableApi.update()

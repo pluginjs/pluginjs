@@ -451,6 +451,4 @@ const scroll = (function() {
   }
 })()
 
-Pj.scroll = scroll
-
 export default scroll

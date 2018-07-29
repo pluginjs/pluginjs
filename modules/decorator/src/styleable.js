@@ -5,7 +5,7 @@ export default function styleable(classes = {}) {
   return function(plugin) {
     plugin.classes = classes
     plugin.setClasses = function(options = {}) {
-      deepMerge(plugin.classes, options)
+      plugin.classes = deepMerge(plugin.classes, options)
     }
 
     plugin.prototype.getClass = function(classname, arg, value) {

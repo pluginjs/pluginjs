@@ -2,7 +2,7 @@ import Emitter from '@pluginjs/emitter'
 import Pj from '@pluginjs/factory'
 
 /* Credit to http://naver.github.io/egjs/ MIT */
-const scrolldir = (function() {
+const scrollDir = (function() {
   const emitter = new Emitter()
   let beforeScrollTop = window.pageYOffset || document.documentElement.scrollTop
   let beforeScrollLeft =
@@ -52,6 +52,4 @@ const scrolldir = (function() {
   }
 })()
 
-Pj.scrolldir = scrolldir
-
-export default scrolldir
+export default scrollDir

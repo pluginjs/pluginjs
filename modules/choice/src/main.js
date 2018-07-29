@@ -59,7 +59,6 @@ const childrenMatchSelector = (selector, el) =>
 @eventable(EVENTS)
 @stateable()
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })

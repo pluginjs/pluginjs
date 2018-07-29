@@ -28,14 +28,14 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(false)
+@optionable(DEFAULTS, false)
 @register(NAMESPACE, {
   defaults: DEFAULTS
 })
 class Modal extends GlobalComponent {
   constructor(options = {}) {
     super(NAMESPACE)
-    // this.options = deepMerge(window.Pj.modal.defaults, options);
+
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.$element = parseHTML(this.createHtml())
@@ -157,16 +157,6 @@ class Modal extends GlobalComponent {
     }
   }
 
-  _getIndex() {
-    const instances = window.Pj.instances[NAMESPACE]
-    for (let i = 0; i < instances.length; i++) {
-      if (instances[i].instanceId === this.instanceId) {
-        return i
-      }
-    }
-    return false
-  }
-
   close() {
     if (!this.is('opened')) {
       return false
@@ -225,12 +215,13 @@ class Modal extends GlobalComponent {
 
   removeOverflow() {
     let removeOverflow = true
-    const length = window.Pj.instances[NAMESPACE].length
+    const instances = this.constructor.getInstances()
+    const length = instances.length
     if (length === 0) {
       removeOverflow = true
     } else {
       let hideModel = 0
-      window.Pj.instances[NAMESPACE].forEach(instance => {
+      instances.forEach(instance => {
         if (instance.is('hide')) {
           hideModel++
         }
@@ -495,10 +486,12 @@ class Modal extends GlobalComponent {
   }
 
   static close(id) {
-    const instance = window.Pj.instances[NAMESPACE].filter(
-      instance => instance.instanceId === id
-    )
-    instance[0].close()
+    const instances = this.getInstances()
+    instancesf.forEach(instance => {
+      if (instance.instanceId === id) {
+        instance.close()
+      }
+    })
   }
 
   static confirm(...args) {
@@ -581,33 +574,38 @@ class Modal extends GlobalComponent {
   }
 
   static closeTop() {
-    const length = window.Pj.instances[NAMESPACE].length
+    const instances = this.getInstances()
+    const length = instances.length
     if (!length) {
       return false
     }
-    window.Pj.instances[NAMESPACE][length - 1].close()
+    instances[length - 1].close()
     return true
   }
 
   static closeAll() {
-    const length = window.Pj.instances[NAMESPACE].length
-    if (!length) {
-      return false
-    }
-    for (let i = 0; i < length; i++) {
-      window.Pj.instances[NAMESPACE][0].close()
-    }
+    const instances = this.getInstances()
+    instancesf.forEach(instance => {
+      instance.close()
+    })
     return true
   }
 
   static getAll() {
-    return window.Pj.instances[NAMESPACE]
+    return this.getInstances()
   }
 
   static getById(id) {
-    return window.Pj.instances[NAMESPACE].filter(
-      instance => instance.instanceId === id
-    )
+    const instances = this.getInstances()
+    let match = null
+
+    instances.forEach(instance => {
+      if (instance.instanceId === id) {
+        match = instance
+      }
+    })
+
+    return match
   }
 }
 

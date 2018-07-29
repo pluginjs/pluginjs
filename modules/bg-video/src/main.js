@@ -24,10 +24,9 @@ import {
 
 @styleable(CLASSES)
 @eventable(EVENTS)
-@optionable(true)
+@optionable(DEFAULTS, true)
 @stateable()
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })

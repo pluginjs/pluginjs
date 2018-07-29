@@ -75,7 +75,7 @@ const defaultActions = [
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
   defaults: optionsExtendList,
   methods: METHODS,

@@ -7,6 +7,7 @@ import { setStyle, getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML } from '@pluginjs/dom'
 import Pj from '@pluginjs/factory'
+import Scroll from '@pluginjs/scroll'
 import {
   eventable,
   register,
@@ -32,9 +33,8 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -259,32 +259,14 @@ class ScrollTop extends Component {
 
     const top = this.target
 
-    if (Pj.scroll) {
-      Pj.scroll.toY({
-        value: top,
-        duration: this.duration,
-        easing: this.easing,
-        complete: () => {
-          removeClass(this.classes.ANIMATING, this.element)
-        }
-      })
-    } else {
-      let easing = this.easing
-      if (!is.function($.easing[this.easing])) {
-        easing = 'swing'
+    Scroll.toY({
+      value: top,
+      duration: this.duration,
+      easing: this.easing,
+      complete: () => {
+        removeClass(this.classes.ANIMATING, this.element)
       }
-
-      $('html, body').animate(
-        { scrollTop: top },
-        {
-          duration: this.duration,
-          easing,
-          complete: () => {
-            removeClass(this.classes.ANIMATING, this.element)
-          }
-        }
-      )
-    }
+    })
 
     this.trigger(EVENTS.JUMP, top)
   }

@@ -3,7 +3,6 @@ import Hammer from 'hammerjs'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, queryAll, query } from '@pluginjs/dom'
-import Pj from '@pluginjs/factory'
 import {
   eventable,
   register,
@@ -31,11 +30,10 @@ const ANIMATION = {}
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(
   NAMESPACE,
   {
-    defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
   },
@@ -144,7 +142,8 @@ class SectionScroll extends Component {
 
       const offset =
         Math.abs(startY) >
-        (Pj.$window.height() / 100) * this.options.touchSensitivity
+        (window.document.documentElement.clientHeight / 100) *
+          this.options.touchSensitivity
       if (!offset) {
         return
       }

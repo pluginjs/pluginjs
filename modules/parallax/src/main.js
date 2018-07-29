@@ -12,9 +12,8 @@ import Maybe from './maybe'
 
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS
 })
 class Parallax extends Component {

@@ -2,18 +2,22 @@ import Emitter from '@pluginjs/emitter'
 import { throttle } from '@pluginjs/utils'
 
 if (!window.Pj) {
+  const plugins = {}
+
   window.Pj = {
     emitter: new Emitter(),
-    plugins: {},
-    instances: {},
+
+    register(name, plugin) {
+      plugins[name] = plugin
+    },
     get(name) {
       if (this.has(name)) {
-        return this.plugins[name]
+        return plugins[name]
       }
       return null
     },
     has(name) {
-      if (typeof this.plugins[name] !== 'undefined') {
+      if (typeof plugins[name] !== 'undefined') {
         return true
       }
       return false

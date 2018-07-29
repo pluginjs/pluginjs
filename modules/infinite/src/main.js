@@ -1,4 +1,4 @@
-import Pj from '@pluginjs/factory'
+import ScrollEnd from '@pluginjs/scroll-end'
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { append, query } from '@pluginjs/dom'
@@ -26,9 +26,8 @@ import LOADER from './loader'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -70,7 +69,7 @@ class Infinite extends Component {
       return
     }
 
-    Pj.scrollEnd.on(() => {
+    ScrollEnd.on(() => {
       this.stick = this.getContainerOfset()
       this.currentScrollOffset = this.getScrollDown()
 
@@ -83,7 +82,7 @@ class Infinite extends Component {
   }
 
   unbind() {
-    Pj.scrollEnd.off()
+    ScrollEnd.off()
 
     this.leave('bind')
   }

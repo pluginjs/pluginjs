@@ -126,6 +126,4 @@ const scrollEnd = (function() {
   }
 })()
 
-Pj.scrollEnd = scrollEnd
-
 export default scrollEnd

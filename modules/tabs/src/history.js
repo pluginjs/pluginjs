@@ -86,8 +86,6 @@ class History {
       },
       window
     )
-
-    // Pj.$window.on(this.instance.eventNameWithId('popstate'), )
   }
 
   update() {

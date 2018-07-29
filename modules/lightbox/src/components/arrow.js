@@ -1,5 +1,4 @@
 import templateEngine from '@pluginjs/template'
-import Pj from '@pluginjs/factory'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'

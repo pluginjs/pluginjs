@@ -1,4 +1,4 @@
-import PjEmitter from '@pluginjs/emitter'
+import Pj from '@pluginjs/factory'
 
 class ontop {
   constructor(api) {
@@ -8,7 +8,7 @@ class ontop {
       top: api.classes.TOP,
       notTop: api.classes.NOTTOP
     }
-    PjEmitter.on('scroll', this.update, this)
+    Pj.emitter.on('scroll', this.update, this)
     this.update()
   }
 
@@ -21,7 +21,7 @@ class ontop {
       }
     }
 
-    PjEmitter.off('scroll', this.update)
+    Pj.emitter.off('scroll', this.update)
   }
 
   update() {

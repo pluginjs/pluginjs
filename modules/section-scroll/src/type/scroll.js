@@ -1,4 +1,3 @@
-// import Pj from '@pluginjs/factory'
 import Base from './base'
 import { events as EVENTS } from '../constant'
 import ScrollSpy from '@pluginjs/scroll-spy'

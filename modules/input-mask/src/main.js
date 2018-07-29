@@ -29,9 +29,8 @@ import {
 @eventable(EVENTS)
 @styleable(CLASSES)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS
 })
 class InputMask extends Component {

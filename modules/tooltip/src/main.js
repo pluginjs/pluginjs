@@ -21,8 +21,7 @@ import {
   methods as METHODS,
   events as EVENTS,
   classes as CLASSES,
-  dependencies as DEPENDENCIES,
-  info as INFO
+  dependencies as DEPENDENCIES
 } from './constant'
 
 const HoverState = {
@@ -43,16 +42,11 @@ const Trigger = {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
-@register(
-  NAMESPACE,
-  {
-    defaults: DEFAULTS,
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  },
-  INFO
-)
+@optionable(DEFAULTS, true)
+@register(NAMESPACE, {
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Tooltip extends Component {
   constructor(element, options = {}, namespace, defaults, classes) {
     if (!is.string(namespace)) {
@@ -158,9 +152,9 @@ class Tooltip extends Component {
       let context = getObjData(this.plugin, target)
 
       if (!context) {
-        context = window.Pj.instances[this.plugin].find(
-          plugin => plugin.element === this.element
-        )
+        context = this.constructor
+          .getInstances()
+          .find(plugin => plugin.element === this.element)
         setObjData(this.plugin, context, target)
       }
 
@@ -442,9 +436,9 @@ class Tooltip extends Component {
     context = context || getObjData(this.plugin, event.currentTarget)
 
     if (!context) {
-      context = window.Pj.instances[this.plugin].find(
-        plugin => plugin.element === this.element
-      )
+      context = this.constructor
+        .getInstances()
+        .find(plugin => plugin.element === this.element)
 
       setObjData(this.plugin, context, event.currentTarget)
     }
@@ -483,9 +477,9 @@ class Tooltip extends Component {
     context = context || getObjData(this.plugin, event.currentTarget)
 
     if (!context) {
-      context = window.Pj.instances[this.plugin].find(
-        plugin => plugin.element === this.element
-      )
+      context = this.constructor
+        .getInstances()
+        .find(plugin => plugin.element === this.element)
 
       setObjData(this.plugin, context, event.currentTarget)
     }

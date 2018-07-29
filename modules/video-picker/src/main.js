@@ -14,15 +14,13 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   parseHTML,
   query,
-  // parent,
   parentWith,
   fadeIn,
   fadeOut,
   wrap
 } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
-import '@pluginjs/dropdown'
-// import EditPanel from '@pluginjs/edit-panel'
+import Dropdown from '@pluginjs/dropdown'
 import PopDialog from '@pluginjs/pop-dialog'
 import {
   eventable,
@@ -47,9 +45,8 @@ import {
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(true)
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: DEFAULTS,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -299,12 +296,8 @@ class VideoPicker extends Component {
     //   parentWith(el => el.matches('.pj-editPanel-component'), this.$localUrl)
     // )
 
-    this.changeSource = window.Pj.instances.dropdown.find(
-      plugin => plugin.element === this.$source
-    )
-    this.changeRatio = window.Pj.instances.dropdown.find(
-      plugin => plugin.element === this.$ratio
-    )
+    this.changeSource = Dropdown.findInstanceByElement(this.$source)
+    this.changeRatio = Dropdown.findInstanceByElement(this.$ratio)
 
     // this.$wrap = parent(this.element)
     // this.$data = this.$wrap.find('.pj-editPanel-data');
@@ -584,9 +577,7 @@ class VideoPicker extends Component {
   }
 
   changeVideo() {
-    if (
-      window.Pj.instances.video.find(plugin => plugin.element === this.$video)
-    ) {
+    if (Video.findInstanceByElement(this.$video)) {
       this.videoApi.switchVideo(this.data.url)
     }
   }

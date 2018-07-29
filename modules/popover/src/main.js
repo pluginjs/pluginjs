@@ -29,7 +29,6 @@ import Tooltip from '@pluginjs/tooltip'
 @register(
   NAMESPACE,
   {
-    defaults: DEFAULTS,
     methods: METHODS,
     dependencies: DEPENDENCIES
   },

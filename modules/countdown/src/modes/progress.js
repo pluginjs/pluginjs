@@ -7,7 +7,7 @@ import { deepMerge } from '@pluginjs/utils'
 
 class Progress {
   constructor(instance) {
-    this.options = deepMerge(instance.options.modes.progress)
+    this.options = deepMerge(Progress.defaults, instance.options.modes.progress)
     this.instance = instance
   }
 
@@ -147,6 +147,13 @@ const ProgressBarChange = (countDownTime, element, range) => {
   } else {
     element.setAttribute('stroke-dashoffset', '0%')
   }
+}
+
+Progress.defaults = {
+  size: 100, // progress circle size
+  barcolor: '#ccc', // progress circle base color
+  barsize: 4, // progress circle bar size
+  trackcolor: '#55a4f2' // progress circle bar color
 }
 
 Progress.classes = {
