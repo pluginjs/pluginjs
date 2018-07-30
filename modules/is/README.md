@@ -8,31 +8,356 @@
 
 ## API
 
-- arguments
-- array
-- boolean
-- char
-- date
-- domNode
-- error
-- function
-- json
-- nan
-- null
-- number
-- object
-- emptyObject
-- regexp
-- string
-- undefined
-- numeric
-- percentage
-- decimal
-- finite
-- infinite
-- integer
-- negative
-- positive
+### arguments
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isArguments | `Boolean` | |
+
+### array
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isArray | `Boolean` | |
+
+### boolean
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isBoolean | `Boolean` | |
+
+### char
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isChar | `Boolean` | |
+
+### date
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isDate | `Boolean` | |
+
+### domNode
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isDomNode | `Boolean` | |
+
+### error
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isError | `Boolean` | |
+
+### function
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isFunction | `Boolean` | |
+
+### json
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isJson | `Boolean` | |
+
+### nan
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isNaN | `Boolean` | |
+
+### null
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isNull | `Boolean` | |
+
+### number
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isNumber | `Boolean` | |
+
+### object
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isObject | `Boolean` | |
+
+### emptyObject
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isEmptyObject | `Boolean` | |
+
+### regexp
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isRegexp | `Boolean` | |
+
+### string
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isString | `Boolean` | |
+
+### undefined
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isUndefined | `Boolean` | |
+
+### numeric
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isNumeric | `Boolean` | |
+
+### percentage
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isPercentage | `Boolean` | |
+
+### decimal
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isDecimal | `Boolean` | |
+
+### finite
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isFinite | `Boolean` | |
+
+### infinite
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isInfinite | `Boolean` | |
+
+### integer
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isInteger | `Boolean` | |
+
+### negative
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isNegative | `Boolean` | |
+
+### positive
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isPositive | `Boolean` | |
+
 
 ## Browser support
 
