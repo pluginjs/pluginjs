@@ -8,19 +8,198 @@
 
 ## API
 
-- emit
-- on
-- once
-- off
-- addListener
-- addOneTimeListener
-- removeListener
-- removeAllListeners
-- ensureListener
-- hasListeners
-- getListeners
-- getSortedListeners
-- clearSortedListeners
+### emit
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+| args | Any[] | args for handler |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| Ok | `Boolean` | |
+
+### on
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+| listener | Function | handler |
+| context | Object | this |
+| priority | Number | priority level |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| this | `Object` | Instance |
+
+### once
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+| listener | Function | handler |
+| context | Object | this |
+| priority | Number | priority level |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| this | `Object` | Instance |
+
+### off
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+| listener | Function | handler |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| this | `Object` | Instance |
+
+### addListener
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+| listener | Function | handler |
+| context | Object | this |
+| priority | Number | priority level |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| this | `Object` | Instance |
+
+### addOneTimeListener
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+| listener | Function | handler |
+| context | Object | this |
+| priority | Number | priority level |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| this | `Object` | Instance |
+
+### removeListener
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+| listener | Function | handler |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| this | `Object` | Instance |
+
+### removeAllListeners
+
+Parameters
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| this | `Object` | Instance |
+
+### ensureListener
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| listener | Function | handler |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| this | `Object` | Instance |
+
+### hasListeners
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| this | `Object` | Instance |
+
+### getListeners
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| listeners | `Array` | |
+
+### getSortedListeners
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| listeners | `Array` | |
+
+### clearSortedListeners
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| event | String | event name |
 
 ## Browser support
 
