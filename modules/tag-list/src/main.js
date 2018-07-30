@@ -1,4 +1,5 @@
 import templateEngine from '@pluginjs/template'
+import Sortable from 'sortablejs'
 import is from '@pluginjs/is'
 import { query, parseHTML, setObjData, parent } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -39,12 +40,33 @@ class TagList extends List {
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.setupI18n()
-
+    this.data = []
+    this.sortable = null
     this.$wrapper = parent(this.element)
-
+    this.initList()
     this.init()
   }
+  initList() {
+    this.data.forEach(item => {
+      const $item = this.buildItem(item)
 
+      $item.append(this.buildActions())
+      this.$list.append($item)
+    })
+    this.sortable = Sortable.create(this.$list, {
+      animation: 150,
+      handle: `.${this.classes.HANDLE}`,
+      onUpdate: evt => {
+        this.sort(evt.oldIndex, evt.newIndex)
+      }
+    })
+
+    /* fixed when drag complete, Firefox broswer will open a new Tab and searching problem. */
+    document.body.ondrop = e => {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+  }
   init() {
     this.plugin = NAMESPACE
     this.initAddBtn()
