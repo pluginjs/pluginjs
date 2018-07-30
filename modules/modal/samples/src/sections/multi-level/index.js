@@ -20,16 +20,23 @@ const prompt = {
 const pop = {
   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   theme: 'sm',
+  contentAlignment: '',
   buttons: {
     active: {
       title: 'open modal',
       close: false,
       fn() {
-        Modal.alert('This is an alert')
+        Modal.open(alert)
       }
     }
   }
 }
+
+const alert = {
+  contentAlignment: '',
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+}
+
 query('.multi-level', root).addEventListener('click', () => {
   Modal.open(prompt)
 })

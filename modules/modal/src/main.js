@@ -369,7 +369,6 @@ class Modal extends GlobalComponent {
     })
     return html
   }
-
   getIconClass() {
     if (this.options.iconClass) {
       return this.options.iconColor
@@ -395,9 +394,15 @@ class Modal extends GlobalComponent {
             display: 'block',
             'font-size': '30px',
             'padding-top': '10px',
-            'padding-bottom': '5px'
+            'padding-bottom': '10px'
           },
           this.$icon
+        )
+        setStyle(
+          {
+            'padding-bottom': '4px'
+          },
+          this.$title
         )
       } else {
         setStyle(
@@ -499,18 +504,18 @@ class Modal extends GlobalComponent {
     const opt = deepMerge(DEFAULTS, {
       title: '',
       content: '',
-      contentAlignment: 'center',
+      contentAlignment: '',
       close: true,
       buttonAlignment: 'right',
       buttons: {
         cancel: {
           title: 'Cancel',
-          class: 'pj-btn pj-btn-danger',
+          class: 'pj-btn pj-btn-outline',
           fn: ''
         },
         active: {
           title: 'Yes',
-          class: 'pj-btn pj-btn-success',
+          class: 'pj-btn pj-btn-primary',
           fn: ''
         }
       }

@@ -9,10 +9,12 @@ const alignContent = {
   close: false,
   buttons: {
     btn1: {
-      title: 'cancel'
+      title: 'cancel',
+      class: 'pj-btn pj-btn-outline'
     },
     btn2: {
-      title: 'ok'
+      title: 'ok',
+      class: 'pj-btn pj-btn-primary'
     }
   }
 }
@@ -28,7 +30,7 @@ query('.content-align-right', root).addEventListener('click', () => {
       },
       btn2: {
         title: 'ok',
-        class: 'pj-btn pj-btn-success'
+        class: 'pj-btn pj-btn-primary'
       }
     }
   })

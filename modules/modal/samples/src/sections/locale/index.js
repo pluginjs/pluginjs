@@ -10,7 +10,8 @@ query('.locale', root).addEventListener('click', () => {
     theme: 'dialog',
     buttons: {
       btn1: {
-        title: 'Cancel'
+        title: 'Cancel',
+        class: 'pj-btn pj-btn-outline'
       },
       btn2: {
         title: 'Yes'

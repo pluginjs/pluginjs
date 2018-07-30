@@ -2,6 +2,7 @@ import { query } from '@pluginjs/dom'
 import Modal from '@pluginjs/modal'
 
 const root = query('#types')
+
 query('.basic-modal', root).addEventListener('click', () => {
   Modal.open({
     content: 'hello world'

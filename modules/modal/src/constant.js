@@ -48,7 +48,7 @@ export const defaults = {
   },
   templates: {
     close() {
-      return '<button type="button" class="{classes.CLOSE}" aria-label="Close"></button>'
+      return '<button type="button" class="icon-close-mini {classes.CLOSE}" aria-label="Close"></button>'
     },
     title() {
       return '<div class="{classes.TITLE}"></div>'
@@ -87,9 +87,9 @@ export const defaults = {
   defaultButtonClass: 'pj-btn pj-btn-primary',
   icon: '',
   icons: {
-    success: ['icon-check-circle', '#4be1ab'],
-    info: ['icon-exclamation-circle', '#4c93d9'],
-    error: ['icon-times-circle', '#f86b67']
+    success: ['icon-check-circle', '#215fdb'],
+    info: ['icon-exclamation-circle', '#f4b066'],
+    error: ['icon-times-circle', '#f96868']
   },
   iconColor: '',
   iconClass: ''

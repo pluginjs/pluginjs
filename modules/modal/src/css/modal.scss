@@ -3,7 +3,7 @@
 // Vars
 // =====================
 $modal: "pj-modal" !default;
-$modal-font-size: $font-size-base !default;
+$modal-font-size: $font-size-sm !default;
 $modal-title-font-size: 20px !default;
 $modal-width: 480px !default;
 $modal-sm-width: 450px !default;
@@ -15,19 +15,47 @@ $modal-spacer-y: 15px !default;
 $modal-title-spacer: 0 $modal-spacer-x 0 $modal-spacer-x !default;
 $modal-body-spacer: $modal-spacer-y $modal-spacer-x !default;
 $modal-body-color: #545454 !default;
+$modal-body-maxHeight: 50vh !default;
 $modal-body-fotsize: 18px !default;
 $modal-footer-spacer: 0 $modal-spacer-x $modal-spacer-y $modal-spacer-x !default;
 $modal-z-index: 10000 !default;
+
+//overlay
+$modal-overlay-bgColor: rgba(0, 0, 0, 0.4) !default;
+//close
 $modal-close-color: $gray-dark !default;
+$modal-close-padding: 1 * $modal-font-size !default;
+$modal-close-font-Size: 1.4 * $modal-font-size !default;
 $modal-duration: 0.3s !default;
 $modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15) !default;
 
+//container
+$modal-container-padding: 2 * $modal-font-size !default;
+$modal-container-boxShadow: $box-shadow-5 !default;
+$modules-confirm-buttons-margin: 2 * $modal-font-size !default;
+$modal-confirm-button-margin: 0.7 * $modal-font-size !default;
+$modal-container-titlle-margin-bottom: 10px !default;
+
 // btn
-$modal-btn-height: 30px !default;
+$modal-btn-height: 32px !default;
 $modal-btn-radius: $border-radius-base !default;
 $modal-btn-padding-horizontal: 15px !default;
 $modal-btn-padding-vertical: 4px !default;
 $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !default;
+
+$modal-btn-padding-y: 1 * $modal-font-size !default;
+$modal-btn-padding-x: 2.2 * $modal-font-size !default;
+
+//prompt
+$modal-prompt-title-bgColor: $color-primary !default;
+$modal-prompt-title-padding:  13px 20px 11px !default;
+$modal-prompt-body-padding: 25px 28px 26px !default;
+$modal-wideDialog-width: 675px !default;
+
+//verification
+$modal-vertification-bgColor: $color-white !default;
+$modal-vertification-color: $color-black !default;
+$modal-vertification-borderClor: $gray-border !default;
 
 // Core
 // =====================
@@ -55,7 +83,7 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
       bottom: 0;
       left: 0;
       display: block;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: $modal-overlay-bgColor;
     }
   }
 }
@@ -66,26 +94,29 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
   box-sizing: border-box;
   display: block;
   max-width: 100%;
-  padding: 20px;
+  padding: $modal-container-padding;
   overflow: hidden;
   font-size: $font-size-sm;
   text-align: left;
   background: $modal-bg;
-  border-radius: 5px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: $modal-border-radius;
+  box-shadow: $modal-container-boxShadow;
 
   .#{$modal}-title {
-    padding: 10px 20px 0;
+    padding-bottom: $modal-container-titlle-margin-bottom;
     margin: 0;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.5px;
+
+    &:only-child {
+      padding-bottom: 0;
+    }
   }
 
   .#{$modal}-body {
     position: relative;
-    max-height: 50vh;
-    padding: 15px 20px;
+    max-height: $modal-body-maxHeight;
     overflow-y: auto;
     font-size: $font-size-sm;
     color: $modal-body-color;
@@ -96,121 +127,68 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 10px 20px;
+    margin-top: $modules-confirm-buttons-margin;
 
     button {
-      height: 30px;
-      padding: 0 20px;
-      margin-left: 20px;
+      height: $modal-btn-height;
+      padding: $modal-btn-padding;
+      margin-left: $modal-confirm-button-margin;
       font-weight: 300;
       letter-spacing: 0.4px;
+
+      &:first-child {
+        margin-left: 0;
+      }
     }
 
     .pj-btn-lpd {
-      width: 190px;
-      padding: 0 75px;
+      width: 50%;
     }
   }
 }
 
-.#{$modal}-dialog {
-  padding: 0;
-
+.#{$modal}-dialog,
+.#{$modal}-prompt,
+.#{$modal}-verification,
+.#{$modal}-wideDialog {
+  padding: 0 0 28px;
+  
   .#{$modal}-title {
-    padding: 13px 20px 11px;
+    padding: $modal-prompt-title-padding;
     font-size: 18px;
     color: $color-white;
-    background: #55a4f2;
+    background: $modal-prompt-title-bgColor;
   }
-
+  
   .#{$modal}-body {
-    padding: 25px 20px;
+    padding: $modal-prompt-body-padding;
   }
+  
+  .#{$modal}-buttons {
+    padding-right: 28px;
+    margin: 0;
+  }
+}
 
+.#{$modal}-dialog,
+.#{$modal}-prompt,
+.#{$modal}-wideDialog {
   .#{$modal}-close {
-    padding: 15px;
+    padding: 16px;
     color: $color-white;
     opacity: 1;
-  }
-
-  .#{$modal}-buttons {
-    box-shadow: 0 -1px 20px #dfe4ed;
   }
 }
 
 .#{$modal}-verification {
-  padding: 0;
-
   .#{$modal}-title {
-    padding: 13px 20px 11px;
-    font-size: 18px;
-    border-bottom: solid 1px #eaebed;
-  }
-
-  .#{$modal}-body {
-    padding: 25px 20px;
-  }
-
-  .#{$modal}-close {
-    padding: 15px;
+    color: $modal-vertification-color;
+    background: $modal-vertification-bgColor;
+    border-bottom: 1px solid $modal-vertification-borderClor;
   }
 }
-
-.#{$modal}-prompt {
-  padding: 0;
-
-  .#{$modal}-title {
-    padding: 13px 20px 11px;
-    font-size: 18px;
-    color: $color-white;
-    background: #55a4f2;
-  }
-
-  .#{$modal}-body {
-    padding: 25px 20px;
-  }
-
-  .#{$modal}-close {
-    padding: 15px;
-    color: $color-white;
-    opacity: 1;
-  }
-}
-
 .#{$modal}-wideDialog {
-  width: 675px !important;
-  padding: 0;
-
-  .#{$modal}-title {
-    padding: 13px 20px 11px;
-    font-size: 18px;
-    color: $color-white;
-    background: #55a4f2;
-  }
-
-  .#{$modal}-body {
-    padding: 25px 20px;
-  }
-
-  .#{$modal}-close {
-    padding: 15px;
-    color: $color-white;
-    opacity: 1;
-  }
-
-  .#{$modal}-buttons {
-    box-shadow: 0 -1px 20px #dfe4ed;
-  }
-}
-
-.#{$modal}-buttons .#{$modal}-btn {
-  height: $modal-btn-height;
-  // line-height: $modal-btn-height - $modal-btn-padding-vertical * 2;
-  border-radius: $modal-btn-radius;
-
-  &:first-child {
-    margin-left: 0;
-  }
+  width: $modal-wideDialog-width !important;
 }
 
 .#{$modal}-open {
@@ -250,8 +228,8 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
   top: 0;
   right: 0;
   z-index: 1;
-  padding: 15px 20px;
-  font-size: 16px;
+  padding: $modal-close-padding;
+  font-size: $modal-close-font-Size;
   line-height: 1em;
   color: $modal-close-color;
   text-decoration: none;
@@ -276,12 +254,11 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
   &:not(:disabled):focus {
     background: initial;
   }
+}
 
-  &::before {
-    font-size: 1.5em;
-    font-weight: 600;
-    content: "\00d7";
-  }
+.btn {
+  padding: $modal-btn-padding-y $modal-btn-padding-x;
+  font-size: $modal-font-size;
 }
 
 @import "effects/fade";
