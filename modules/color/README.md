@@ -6,7 +6,43 @@
 
 ---
 
+## API
 
+### color
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+### matchString
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| string | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isString | `Boolean` | |
+
+### setDefaults
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `Options` | |
 
 ## Browser support
 
