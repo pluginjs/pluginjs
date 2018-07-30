@@ -8,20 +8,182 @@
 
 ## API
 
-- registerEvent
-- handler
-- Each
-- on
-- off
-- dispatch
-- parseKeys
-- processKey
-- processModifiers
-- distribute
-- getKeyName
-- getKeyCode
-- up
-- down
+### registerEvent
+
+mount `keydown` `keyup` event listener on `this.element`.
+
+### handler
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| e | `Event` | |
+
+### on
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| action | `String` | |
+| key | `String` | |
+| func | `Function` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| instance | `Object` | this |
+
+### off
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| action | `String` | |
+| key | `String` | |
+| func | `Function` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| instance | `Object` | this |
+
+### dispatch
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| toggle | `Boolean` | |
+| action | `String` | |
+| key | `String` | |
+| func | `Function` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| instance | `Object` | this |
+
+### parseKeys
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| keys | `String[]` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| newKeys | `String[]` | |
+
+### processKey
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| key | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| newKeys | `String[]` | |
+
+### processModifiers
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| key | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| modifiers | `Function[]` | |
+
+### distribute
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| action | `String` | |
+| key | `String` | |
+| func | `Function` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| instance | `Object` | this |
+
+### getKeyName
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| keyCode | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| keyName | `String` | |
+
+### getKeyCode
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| keyName | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| keyCode | `String` | |
+
+### up
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| key | `String` | |
+| func | `Function` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| instance | `Object` | this |
+
+### down
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| key | `String` | |
+| func | `Function` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| instance | `Object` | this |
 
 ## Browser support
 
