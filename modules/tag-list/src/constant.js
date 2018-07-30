@@ -2,7 +2,6 @@ import List from '@pluginjs/list'
 import { deepMerge } from '@pluginjs/utils'
 
 export const namespace = 'tagList'
-
 export const events = {
   UPDATE: 'update',
   READY: 'ready',

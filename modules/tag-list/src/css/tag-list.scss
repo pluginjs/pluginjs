@@ -28,7 +28,83 @@ $tagList-empty-color: $gray-lighter !default;
     width: 100%;
     height: $tagList-height;
   }
+  &-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    line-height: 30px;
+    list-style: none;
+    user-select: none;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+    &:hover {
+      border-color: $list-item-hover-border-color;
+    }
 
+    &:active {
+      border-color: $color-primary-dark;
+    }
+    .#{$tagList}-item-handle {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      font-size: 14px;
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #fff;
+
+      &:hover {
+        cursor: grab;
+      }
+
+      &:active {
+        cursor: grabbing;
+        // background-color: $gray-light;
+      }
+
+      > i {
+        pointer-events: none;
+      }
+    }
+    .#{$tagList}-item-label {
+       display: inline-block;
+       margin-right: 42px;
+       margin-left: 8px;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+    }
+
+    .#{$tagList}-item-actions {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      color: #b3b3b3;
+      transition: color 0.5s;
+      transform: translateY(-50%);
+
+      &:hover {
+        cursor: pointer;
+        transition: color 0.5s;
+      }
+    }
+
+    &.sortable-ghost {
+      background-color: $gray-lightest;
+      border-color: $gray-border;
+      border-style: dashed;
+
+      .#{$list}-item-handle,
+      .#{$list}-item-label,
+      .#{$list}-item-actions {
+        display: none;
+      }
+    }
+  }
   &-input[type="text"] {
     order: 0;
     width: 80%;
