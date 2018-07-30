@@ -240,7 +240,7 @@ class Responsive {
 
     const BASE_DURATION = 1
     const $pane = this.instance.$panes[index]
-    const magicNumber = 1
+    // const magicNumber = 1
     anime({
       targets: $pane,
       translateY: 0,
@@ -297,7 +297,7 @@ class Responsive {
       return
     }
 
-    if (this.$rely.width() > breakWidth) {
+    if (this.$rely.clientWidth > breakWidth) {
       this.toggle(false)
     } else {
       this.resetHeight(true)
