@@ -9,7 +9,8 @@ import {
   register,
   stateable,
   styleable,
-  themeable
+  themeable,
+  optionable
 } from '@pluginjs/decorator'
 import {
   classes as CLASSES,
@@ -25,6 +26,7 @@ import Popover from '@pluginjs/popover'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
   methods: METHODS,
   dependencies: DEPENDENCIES

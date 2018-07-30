@@ -5,6 +5,9 @@ const element = query('#buttons [data-toggle="default-button"]')
 popDialog.of(element, {
   /** options **/
   buttons: {
+    dismiss: {
+      label: 'Dismiss'
+    },
     ok: {
       label: 'OK!',
       color: 'primary',

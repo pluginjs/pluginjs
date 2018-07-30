@@ -8,7 +8,8 @@ import {
   register,
   stateable,
   styleable,
-  themeable
+  themeable,
+  optionable
 } from '@pluginjs/decorator'
 import {
   classes as CLASSES,
@@ -26,6 +27,7 @@ import Tooltip from '@pluginjs/tooltip'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(DEFAULTS, true)
 @register(
   NAMESPACE,
   {
