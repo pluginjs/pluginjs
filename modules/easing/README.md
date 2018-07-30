@@ -8,9 +8,42 @@
 
 ## API
 
-- get
-- bezier
-- register
+### get
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| name | `String` | easings name |
+
+### bezier
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| mX1 | Number | bezier |
+| mY1 | Number | bezier |
+| mX2 | Number | bezier |
+| mY2 | Number | bezier |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| BezierEasing | `String` | Bezier easing |
+
+### register
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| name | `String` | easings name |
+| mX1 | Number | bezier |
+| mY1 | Number | bezier |
+| mX2 | Number | bezier |
+| mY2 | Number | bezier |
 
 ## Browser support
 
