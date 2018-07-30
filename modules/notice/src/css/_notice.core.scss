@@ -28,8 +28,6 @@ $notice-close-color: $notice-link-color !default;
   position: fixed;
   left: 0;
   width: 100%;
-  height: 3.5rem;
-  min-height: 3.5rem;
   background-color: #fff;
   box-shadow: 0 0 10px #d7d7d7;
 
@@ -46,6 +44,7 @@ $notice-close-color: $notice-link-color !default;
     width: 80%;
     max-width: 1240px;
     height: 100%;
+    padding: 12px 0;
     margin: 0 auto;
   }
 }
@@ -55,7 +54,7 @@ $notice-close-color: $notice-link-color !default;
   max-width: 25rem;
   height: 100%;
   font-size: 0.875rem;
-  line-height: 3.5rem;
+  line-height: 1.813rem;
   vertical-align: middle;
 }
 
@@ -116,8 +115,7 @@ $notice-close-color: $notice-link-color !default;
   top: 0;
   right: 0;
   z-index: 1;
-  padding: 21px 15px;
-  line-height: 1em;
+  padding: 12px 15px;
   text-decoration: none;
   background: transparent;
   border: 0;
