@@ -1,4 +1,4 @@
-/* eslint-disAble */
+/* eslint-disable */
 /* Credit to http://is.js.org MIT */
 const toString = Object.prototype.toString
 
@@ -81,20 +81,20 @@ export const isObject = val => {
 }
 
 // is a given value plain object?
-export function isPlainObject(data) {
-  if (typeof data !== 'object') {
+export const isPlainObject = val => {
+  if (typeof val !== 'object') {
     return false
   }
 
-  if (data === null) {
+  if (val === null) {
     return false
   }
 
-  if (data instanceof Set || data instanceof Map) {
+  if (val instanceof Set || val instanceof Map) {
     return false
   }
 
-  if (Array.isArray(data)) {
+  if (isArray(val)) {
     return false
   }
 

@@ -8,7 +8,7 @@
 
 ## API
 
-### arguments
+### isArguments
 
 Parameters
 
@@ -22,7 +22,7 @@ Returns
 |------|------|-------------|
 | isArguments | `Boolean` | |
 
-### array
+### isArray
 
 Parameters
 
@@ -36,7 +36,7 @@ Returns
 |------|------|-------------|
 | isArray | `Boolean` | |
 
-### boolean
+### isBoolean
 
 Parameters
 
@@ -50,7 +50,7 @@ Returns
 |------|------|-------------|
 | isBoolean | `Boolean` | |
 
-### char
+### isChar
 
 Parameters
 
@@ -64,7 +64,7 @@ Returns
 |------|------|-------------|
 | isChar | `Boolean` | |
 
-### date
+### isDate
 
 Parameters
 
@@ -78,7 +78,7 @@ Returns
 |------|------|-------------|
 | isDate | `Boolean` | |
 
-### domNode
+### isDomNode
 
 Parameters
 
@@ -92,7 +92,7 @@ Returns
 |------|------|-------------|
 | isDomNode | `Boolean` | |
 
-### error
+### isError
 
 Parameters
 
@@ -106,7 +106,7 @@ Returns
 |------|------|-------------|
 | isError | `Boolean` | |
 
-### function
+### isFunction
 
 Parameters
 
@@ -120,7 +120,7 @@ Returns
 |------|------|-------------|
 | isFunction | `Boolean` | |
 
-### json
+### isJson
 
 Parameters
 
@@ -134,7 +134,7 @@ Returns
 |------|------|-------------|
 | isJson | `Boolean` | |
 
-### nan
+### isNaN
 
 Parameters
 
@@ -148,7 +148,7 @@ Returns
 |------|------|-------------|
 | isNaN | `Boolean` | |
 
-### null
+### isNull
 
 Parameters
 
@@ -162,7 +162,7 @@ Returns
 |------|------|-------------|
 | isNull | `Boolean` | |
 
-### number
+### isNumber
 
 Parameters
 
@@ -176,7 +176,7 @@ Returns
 |------|------|-------------|
 | isNumber | `Boolean` | |
 
-### object
+### isObject
 
 Parameters
 
@@ -190,7 +190,21 @@ Returns
 |------|------|-------------|
 | isObject | `Boolean` | |
 
-### emptyObject
+### isPlainObject
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| value | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isPlainObject | `Boolean` | |
+
+### isEmptyObject
 
 Parameters
 
@@ -204,7 +218,7 @@ Returns
 |------|------|-------------|
 | isEmptyObject | `Boolean` | |
 
-### regexp
+### isRegexp
 
 Parameters
 
@@ -218,7 +232,7 @@ Returns
 |------|------|-------------|
 | isRegexp | `Boolean` | |
 
-### string
+### isString
 
 Parameters
 
@@ -232,7 +246,7 @@ Returns
 |------|------|-------------|
 | isString | `Boolean` | |
 
-### undefined
+### isUndefined
 
 Parameters
 
@@ -246,7 +260,7 @@ Returns
 |------|------|-------------|
 | isUndefined | `Boolean` | |
 
-### numeric
+### isNumeric
 
 Parameters
 
@@ -260,7 +274,7 @@ Returns
 |------|------|-------------|
 | isNumeric | `Boolean` | |
 
-### percentage
+### isPercentage
 
 Parameters
 
@@ -274,7 +288,7 @@ Returns
 |------|------|-------------|
 | isPercentage | `Boolean` | |
 
-### decimal
+### isDecimal
 
 Parameters
 
@@ -288,7 +302,7 @@ Returns
 |------|------|-------------|
 | isDecimal | `Boolean` | |
 
-### finite
+### isFinite
 
 Parameters
 
@@ -302,7 +316,7 @@ Returns
 |------|------|-------------|
 | isFinite | `Boolean` | |
 
-### infinite
+### isInfinite
 
 Parameters
 
@@ -316,7 +330,7 @@ Returns
 |------|------|-------------|
 | isInfinite | `Boolean` | |
 
-### integer
+### isInteger
 
 Parameters
 
@@ -330,7 +344,7 @@ Returns
 |------|------|-------------|
 | isInteger | `Boolean` | |
 
-### negative
+### isNegative
 
 Parameters
 
@@ -344,7 +358,7 @@ Returns
 |------|------|-------------|
 | isNegative | `Boolean` | |
 
-### positive
+### isPositive
 
 Parameters
 
