@@ -8,11 +8,64 @@
 
 ## API
 
-- hasTranslation
-- addTranslation
-- getTranslation
-- instance
-- setTranslations
+### hasTranslation
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| locale | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isExistsInTranslations | `Boolean` | |
+
+### addTranslation
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| locale | `String` | |
+| translation | `{ locale: String : {} }` | |
+
+### getTranslation
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| locale | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| translations | `Object` | |
+
+### instance
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `Object` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| interfaces | `{ translate: (key, args, locale) => message, setLocale: (locale: String) => {}), getLocale: () => _locale: Object }` | |
+
+### setTranslations
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| translations | `{ locale: String: {} }` | |
 
 ## Browser support
 
