@@ -8,9 +8,49 @@
 
 ## API
 
-- render
-- compile
-- parse
+### render
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| string | `String` | |
+| args | `templateOptions[]` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| parsedResult | `String` | |
+
+### compile
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| str | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| compileFunction | `(args: templateOptions[]) => parsedResult` | |
+
+### parse
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| str | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| parsedResult | `String` | |
+
 
 ## Browser support
 

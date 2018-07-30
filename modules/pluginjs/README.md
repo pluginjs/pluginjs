@@ -6,11 +6,6 @@
 
 ---
 
-## API
-
-- get
-- has
-
 ## Browser support
 
 Tested on all major browsers.

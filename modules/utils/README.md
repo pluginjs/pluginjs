@@ -8,28 +8,331 @@
 
 ## API
 
-- deepClone
-- nub
-- deepMerge
-- curry
-- compose
-- getUID
-- range
-- reflow
-- arraysEqual
-- arrayDiff
-- arrayIntersect
-- convertPercentageToFloat
-- convertFloatToPercentage
-- convertMatrixToArray
-- getTime
-- camelize
-- getValueByPath
-- throttle
-- debounce
-- fromPairs
-- mergeWith
-- keyframes2Anime
+### deepClone
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| obj | `Object` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| obj | `Object` | |
+
+### nub
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| arr | `Array` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| arr | `Array` | |
+
+### isPlainObject
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| data | `Object` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isPlainObject | `Boolean` | |
+
+### deepMerge
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| x | `Object` | |
+| y | `Object` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| result | `Object` | |
+
+### curry
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| fn | `Function` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| fn | `Function` | |
+
+### compose
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| fn | `Function[]` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| callback | `Function` | |
+
+### getUID
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| prefix | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| uid | `String` | |
+
+### range
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| v | `Number` | length |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| result | `Array` | |
+
+### reflow
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| offsetHeight | `Number` | |
+
+### arraysEqual
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| a | `Array` | |
+| b | `Array` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isEqual | `Boolean` | |
+
+### arrayDiff
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| a | `Array` | |
+| b | `Array` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| diff | `Array` | |
+
+### arrayIntersect
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| a | `Array` | |
+| b | `Array` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| intersect | `Array` | |
+
+### convertPercentageToFloat
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| percentage | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| float | `Float` | |
+
+### convertFloatToPercentage
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| float | `Float` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| percentage | `String` | |
+
+### convertMatrixToArray
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| matrix | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| array | `Array` | |
+
+### getTime
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| dateNow | `Number` | |
+
+### camelize
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| word | `String` | |
+| first | `Boolean` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| word | `String` | |
+
+### getValueByPath
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| obj | `Object` | |
+| path | `String` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| obj | `Object` | |
+
+### throttle
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| func | `Function` | |
+| delay | `Number` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| handler | `Function` | |
+
+### debounce
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| func | `Function` | |
+| delay | `Number` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| handler | `Function` | |
+
+### fromPairs
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| arr | `Array` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| obj | `Object` | |
+
+### mergeWith
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| obj1 | `Object` | |
+| obj2 | `Object` | |
+| customizer | `Function` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| obj | `Object` | |
+
+### keyframes2Anime
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| keyframes | `Array` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| result | `Object` | |
 
 ## Browser support
 
