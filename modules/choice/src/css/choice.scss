@@ -115,7 +115,9 @@ $choice-dropdown-item-disabled-bg: transparent !default;
       border-bottom-left-radius: 0;
     }
 
-    &:not(:disabled):hover,
+    &:not(:disabled):hover {
+      border: 1px solid #e6e6e6;
+    }
     &:not(:disabled):focus {
       z-index: 98;
       background: $gray-border;
