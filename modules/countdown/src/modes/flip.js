@@ -8,8 +8,8 @@ class Flip {
   constructor(instance) {
     this.options = deepMerge(Flip.defaults, instance.options.modes.flip)
 
-    this.lastTime = []
     this.currenTime = []
+    this.lastTime = []
 
     this.instance = instance
   }
@@ -51,57 +51,37 @@ class Flip {
     }
   }
 
-  animate(countDownTime, type) {
+  animate(countDownlastTime, countDownTime, type) {
     // about flip time
     const name = LABELMAP[type]
 
     this.currenTime[type] = countDownTime.current
+    this.lastTime[type] = countDownlastTime.current
 
-    this.setFlipAnimation(`.${name}`)
+    this.setFlipAnimation(`.${name}`, type)
 
-    if (this.currenTime[type] === 0) {
-      this.lastTime[type] = this.currenTime[type]
-      updateDomValue(
-        `.${this.instance.classes.CURR}.${this.instance.classes.TOP}.${
-          this.instance.classes.NAMESPACE
-        }-${name}`,
-        this.instance.element,
-        this.lastTime[type]
-      )
+    updateDomValue(
+      `.${this.instance.classes.CURR}.${this.instance.classes.TOP}.${
+        this.instance.classes.NAMESPACE
+      }-${name}`,
+      this.instance.element,
+      this.currenTime[type]
+    )
 
-      updateDomValue(
-        `.${this.instance.classes.CURR}.${this.instance.classes.BOTTOM}.${
-          this.instance.classes.NAMESPACE
-        }-${name}`,
-        this.instance.element,
-        this.lastTime[type]
-      )
-    }
-
-    if (typeof this.lastTime[type] !== 'undefined') {
-      updateDomValue(
-        `.${this.instance.classes.CURR}.${this.instance.classes.TOP}.${
-          this.instance.classes.NAMESPACE
-        }-${name}`,
-        this.instance.element,
-        this.lastTime[type]
-      )
-
-      updateDomValue(
-        `.${this.instance.classes.CURR}.${this.instance.classes.BOTTOM}.${
-          this.instance.classes.NAMESPACE
-        }-${name}`,
-        this.instance.element,
-        this.lastTime[type]
-      )
-    }
+    updateDomValue(
+      `.${this.instance.classes.CURR}.${this.instance.classes.BOTTOM}.${
+        this.instance.classes.NAMESPACE
+      }-${name}`,
+      this.instance.element,
+      this.currenTime[type]
+    )
 
     updateDomValue(
       `.${this.instance.classes.NEXT}.${this.instance.classes.TOP}.${
         this.instance.classes.NAMESPACE
       }-${name}`,
       this.instance.element,
-      this.currenTime[type]
+      this.lastTime[type]
     )
 
     updateDomValue(
@@ -109,25 +89,21 @@ class Flip {
         this.instance.classes.NAMESPACE
       }-${name}`,
       this.instance.element,
-      this.currenTime[type]
+      this.lastTime[type]
     )
-
-    this.lastTime[type] = this.currenTime[type]
   }
 
   // flip animation
-  setFlipAnimation(className) {
+  setFlipAnimation(className, type) {
     const dom = query(className, this.instance.element)
 
     if (dom) {
-      for (const type in this.lastTime) {
-        if (this.lastTime[type] !== this.currenTime[type]) {
-          dom.classList.remove(`${this.instance.classes.FLIPANIMATION}`)
+      if (this.currenTime[type] !== this.lastTime[type]) {
+        dom.classList.remove(`${this.instance.classes.FLIPANIMATION}`)
 
-          setTimeout(() => {
-            dom.classList.add(`${this.instance.classes.FLIPANIMATION}`)
-          }, 50)
-        }
+        setTimeout(() => {
+          dom.classList.add(`${this.instance.classes.FLIPANIMATION}`)
+        }, 50)
       }
     }
   }

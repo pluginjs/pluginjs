@@ -5,9 +5,14 @@
 
 $countdowns: "pj-countdown" !default;
 $countdown: "countdown" !default;
-$countdown-progress-width: 10rem !default;
-$countdown-progress-height: 10rem !default;
-$countdown-progress-color: #333 !default;
+$countdown-progress-width: 11.25rem !default;
+$countdown-progress-height: 11.25rem !default;
+$countdown-progress-min-width: 7rem !default;
+$countdown-progress-font-weight: $font-weight-normal !default;
+$countdown-progress-color: $gray-darkest !default;
+$countdown-progress-font-size: 2.875rem !default;
+$countdown-progress-spacer: 0.6rem !default;
+$countdown-progress-label-font-size: 0.875rem !default;
 
 // progress
 // =====================
@@ -16,23 +21,29 @@ $countdown-progress-color: #333 !default;
   .#{$countdown}-time {
     position: relative;
     width: $countdown-progress-width;
+    min-width: $countdown-progress-min-width;
     height: $countdown-progress-height;
+    min-height: $countdown-progress-min-width;
+    margin: $countdown-progress-spacer;
 
     .#{$countdown}-number {
       position: absolute;
-      top: 50%;
+      top: 48%;
       left: 0;
       width: 100%;
+      font-size: $countdown-progress-font-size;
+      font-weight: $countdown-progress-font-weight;
       color: $countdown-progress-color;
       transform: translateY(-70%);
     }
 
     .#{$countdown}-label {
       position: absolute;
-      top: 50%;
+      top: 55%;
       left: 0;
       width: 100%;
-      color: $countdown-progress-color;
+      font-size: $countdown-progress-label-font-size;
+      text-transform: uppercase;
       transform: translateY(30%);
     }
 
@@ -44,13 +55,12 @@ $countdown-progress-color: #333 !default;
 
     .#{$countdown}-label.above {
       position: absolute;
-      top: auto;
+      top: 35%;
       transform: translateY(-80%);
     }
   }
 
   .#{$countdowns}-progress-ring {
-    //position: absolute;
     width: 100%;
   }
 
@@ -64,4 +74,22 @@ $countdown-progress-color: #333 !default;
   circle {
     transition: all 0.5s;
   }
+}
+
+@media only screen and (max-width: 896px) {
+  .#{$countdowns}-progress {
+    .#{$countdown}-time {
+      width: 148px;
+      height: 148px;
+      margin: 5px;
+
+      .#{$countdown}-number {
+        font-size: $font-size-lg;
+      }
+
+      .#{$countdown}-label {
+        font-size: $font-size-xs;
+      }
+    }
+  }  
 }

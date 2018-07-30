@@ -127,7 +127,7 @@ const ProgressBar = (size, color, strokeWidth, className) => {
     stroke: color,
     fill: 'none',
     'stroke-width': strokeWidth,
-    'stroke-linecap': 'round',
+    'stroke-linecap': 'butt',
     class: className
   }
   const cx = size / 2
@@ -151,9 +151,9 @@ const ProgressBarChange = (countDownTime, element, range) => {
 
 Progress.defaults = {
   size: 100, // progress circle size
-  barcolor: '#ccc', // progress circle base color
-  barsize: 4, // progress circle bar size
-  trackcolor: '#55a4f2' // progress circle bar color
+  barcolor: '#e4e4e4', // progress circle base color
+  barsize: 2, // progress circle bar size
+  trackcolor: '#215fdb' // progress circle bar color
 }
 
 Progress.classes = {

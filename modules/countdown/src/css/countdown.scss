@@ -7,10 +7,12 @@
 
 $countdown: "countdown" !default;
 $countdowns: "pj-countdown" !default;
-$countdown-color: #333 !default;
-$countdown-size: 2rem !default;
+$countdown-color: $color-black !default;
+$countdown-font-size: 4.5rem !default;
+$countdown-font-weight: $font-weight-normal !default;
 $countdown-label-size: 1rem !default;
-$countdown-space: 2rem !default;
+$countdown-label-color: $gray-darker !default;
+$countdown-spacer: 4rem !default;
 
 // progress
 // =====================
@@ -19,7 +21,7 @@ $countdown-space: 2rem !default;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: $countdown-space;
+  width: 100%;
   text-align: center;
 }
 .#{$countdown}-time {
@@ -27,16 +29,32 @@ $countdown-space: 2rem !default;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 0.5rem;
+  margin: $countdown-spacer;
 }
 .#{$countdown}-number {
   position: relative;
   margin: 0;
-  font-size: $countdown-size;
-  font-weight: 700;
+  font-size: $countdown-font-size;
+  font-weight: $countdown-font-weight;
   color: $countdown-color;
 }
 .#{$countdown}-label {
   font-size: $countdown-label-size;
-  color: $countdown-color;
+  color: $countdown-label-color;
+  text-transform: capitalize;
 }
+
+@media only screen and (max-width: 896px) {
+  .#{$countdown}-time {
+    margin: 5px;
+  }
+  
+  .#{$countdown}-number {
+    font-size: $font-size-lg;
+  }
+
+  .#{$countdown}-label {
+    font-size: $font-size-xs;
+  }
+}
+

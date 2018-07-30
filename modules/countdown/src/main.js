@@ -114,8 +114,16 @@ class CountDown extends Component {
 
     this.$counters.forEach(type => {
       const countDownTime = new TimeType(type, this.totalSecs)
-      if (typeof MODES[this.options.mode] !== 'undefined') {
+      const totalastSec = this.totalSecs === 0 ? 0 : this.totalSecs + 1
+      const countDownlastTime = new TimeType(type, totalastSec)
+
+      if (
+        typeof MODES[this.options.mode] !== 'undefined' &&
+        this.options.mode !== 'flip'
+      ) {
         this.modeInstance.animate(countDownTime, type)
+      } else if (this.options.mode === 'flip') {
+        this.modeInstance.animate(countDownTime, countDownlastTime, type)
       }
     })
 

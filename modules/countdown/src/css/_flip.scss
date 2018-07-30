@@ -5,12 +5,18 @@
 
 $countdowns: "pj-countdown" !default;
 $countdown: "countdown" !default;
-$countdown-width: 4rem !default;
-$countdown-height: 6rem !default;
-$countdown-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !default;
-$countdown-flip-color: #f8f8f8 !default;
-$countdown-background: #202020 !default;
-$countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
+$countdown-flip-width: 10.125rem !default;
+$countdown-flip-height: 10rem !default;
+$countdown-flip-min-width: 5rem !default;
+$countdown-flip-font-weight: $font-weight-normal !default;
+$countdown-flip-color: $color-primary !default;
+$countdown-flip-background: $color-white !default;
+$countdown-flip-border: $gray-light !default;
+$countdown-flip-radius: $border-radius-lg !default;
+$countdown-flip-shadow: 0 0 80px $gray-light !default;
+$countdown-flip-label-spacer: 5px !default;
+$countdown-flip-spacer: 1.875rem !default;
+$countdown-flip-letter-space: 6px !default;
 
 // flip
 // =====================
@@ -19,15 +25,16 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
   .#{$countdown}-time {
     position: relative;
     display: inline-block;
-    width: $countdown-width;
-    height: $countdown-height;
-    margin: auto;
+    width: $countdown-flip-width;
+    min-width: $countdown-flip-min-width;
+    height: $countdown-flip-height;
+    min-height: $countdown-flip-min-width;
+    margin: $countdown-flip-spacer;
     text-align: center;
-    border-radius: 5px;
-    box-shadow: $countdown-shadow;
+    border-radius: $countdown-flip-radius;
+    box-shadow: $countdown-flip-shadow;
     perspective: 479px;
     backface-visibility: hidden;
-    transform: translateZ(0);
     transform: translate3d(0, 0, 0);
   }
 
@@ -37,22 +44,31 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
     display: block;
     width: 100%;
     overflow: hidden;
-    font-size: 2em;
-    line-height: 95px;
+    font-weight: $countdown-flip-font-weight;
+    line-height: $countdown-flip-height;
     color: $countdown-flip-color;
     text-align: center;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-    background: $countdown-background;
+    letter-spacing: $countdown-flip-letter-space;
+    background: $countdown-flip-background;
     transform: translateZ(0);
     transform-style: flat;
   }
 
   .#{$countdown}-number.#{$countdowns}-top {
     height: 50%;
-    border-top: 1px solid $countdown-flip-border;
-    border-bottom: 1px solid $countdown-flip-border;
-    border-radius: 5px 5px 0 0;
+    border-radius: $countdown-flip-radius $countdown-flip-radius 0 0;
     transform-origin: 50% 100%;
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 2px;
+      content: "";
+      background-color: $countdown-flip-border;
+    }
   }
 
   .#{$countdown}-number.#{$countdowns}-curr.#{$countdowns}-top {
@@ -64,10 +80,7 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
     top: 50%;
     height: 50%;
     line-height: 0;
-    background-image: $countdown-flip-border transparent;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 $countdown-flip-radius $countdown-flip-radius;
     transform-origin: 50% 0;
   }
 
@@ -81,14 +94,15 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
     top: 100%;
     display: block;
     width: 100%;
-    margin-top: 5px;
+    margin-top: $countdown-flip-label-spacer;
+    text-transform: uppercase;
   }
 
   .#{$countdown}-label.above {
     top: auto;
     bottom: 100%;
     margin-top: 0;
-    margin-bottom: 5px;
+    margin-bottom: $countdown-flip-label-spacer;
   }
 
   .#{$countdowns}-flip-animation {
@@ -104,3 +118,15 @@ $countdown-flip-border: rgba(255, 255, 255, 0.2) !default;
   }
 }
 
+@media only screen and (max-width: 896px) {
+  .#{$countdowns}-flip {
+    .#{$countdown}-time {
+      width: $countdown-flip-min-width;
+      height: $countdown-flip-min-width;
+      margin: 1rem;
+    }
+    .#{$countdown}-number {
+      line-height: $countdown-flip-min-width;
+    }
+  }  
+}
