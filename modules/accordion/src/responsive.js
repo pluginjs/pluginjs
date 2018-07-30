@@ -296,7 +296,7 @@ class Responsive {
       return
     }
 
-    if (this.$rely.width() > breakWidth) {
+    if (this.$rely.clientWidth > breakWidth) {
       this.toggle(false)
     } else {
       this.resetHeight(true)

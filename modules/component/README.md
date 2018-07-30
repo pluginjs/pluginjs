@@ -32,14 +32,12 @@ Development:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/component/dist/component.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/component/dist/component.css">
 ```
 
 Production:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/component/dist/component.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/component/dist/component.min.css">
 ```
 
 ### Initialize
@@ -56,7 +54,6 @@ ECMAScript Module:
 
 ```javascript
 import Component from "@pluginjs/component"
-import "@pluginjs/component/dist/component.css"
 
 Component.of(document.querySelector('.element'), options)
 ```
@@ -64,7 +61,6 @@ Component.of(document.querySelector('.element'), options)
 CommonJS:
 
 ```javascript
-require("@pluginjs/component/dist/component.css")
 const Component = require("@pluginjs/component")
 
 Component.of(document.querySelector('.element'), options)
@@ -73,7 +69,6 @@ Component.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/component/dist/component.css">
 <script src="https://unpkg.com/@pluginjs/component/dist/component.js"></script>
 <script>
   Pj.component('.element', options)

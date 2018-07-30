@@ -178,7 +178,7 @@ export default {
     if (name in easings) {
       return bezier(...easings[name])
     }
-    return undefined
+    return null
   },
   bezier(mX1, mY1, mX2, mY2) {
     return bezier(mX1, mY1, mX2, mY2)

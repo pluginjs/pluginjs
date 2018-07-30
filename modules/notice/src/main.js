@@ -145,7 +145,9 @@ class Notice extends GlobalComponent {
           type: this.eventName('mouseleave'),
           handler: () => {
             settime = setTimeout(() => {
-              this.hide()
+              if (this.is('initialized')) {
+                this.hide()
+              }
             }, this.options.timeout)
           }
         },

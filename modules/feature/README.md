@@ -8,20 +8,113 @@
 
 ## API
 
-- prefixedProperty
-- transitionProperty
-- transformProperty
-- animationProperty
-- transitionEndEvent
-- animationEndEvent
-- transform3D
-- transform
-- transition
-- sticky
-- svg
-- touch
-- pointer
-- pointerEvent
+### prefixedProperty
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| property | String | CSS property |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| prefixResult | `String` | |
+
+### transitionProperty
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| prefixResult | `String` | |
+
+### transformProperty
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| prefixResult | `String` | |
+
+### animationProperty
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| prefixResult | `String` | |
+
+### transform3D
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| perspectiveTest | `Boolean` | |
+
+### transform
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| transformOriginTest | `Boolean` | |
+
+### transition
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| transitionTest | `Boolean` | |
+
+### sticky
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| canSticky | `Boolean` | |
+
+### svg
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isSupportedSVG | `Boolean` | |
+
+### touch
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isSupportedTouchEvent | `Boolean` | |
+
+### pointer
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isSupportedPointerEvent | `Boolean` | |
+
+### pointerEvent
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| pointerEvent | String | event name |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isSupportedPointerEvent | `Boolean` | |
 
 ## Browser support
 
