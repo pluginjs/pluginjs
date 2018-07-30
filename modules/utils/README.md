@@ -10,7 +10,6 @@
 
 - deepClone
 - nub
-- isPlainObject
 - deepMerge
 - curry
 - compose

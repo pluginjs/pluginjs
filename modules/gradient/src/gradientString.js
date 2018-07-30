@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 import * as util from './util'
 import keywordAngleMap from './keywordAngleMap'
 
@@ -53,7 +53,7 @@ export default {
       const value = this.parseParameters(matched[3])
 
       return {
-        prefix: is.undefined(matched[1]) ? null : matched[1],
+        prefix: typeof matched[1] === 'undefined' ? null : matched[1],
         type: matched[2],
         value
       }
@@ -66,7 +66,7 @@ export default {
     if ((matched = RegExpStrings.PARAMETERS.exec(string)) !== null) {
       const stops = this.parseStops(matched[2])
       return {
-        angle: is.undefined(matched[1]) ? 0 : matched[1],
+        angle: typeof matched[1] === 'undefined' ? 0 : matched[1],
         stops
       }
     }
@@ -97,7 +97,7 @@ export default {
 
     for (let i = 0; i < stops.length; i++) {
       stop = stops[i]
-      if (is.undefined(stop.position) || stop.position === null) {
+      if (typeof stop.position === 'undefined' || stop.position === null) {
         if (i === 0) {
           position = 0
         } else if (i === stops.length - 1) {
@@ -163,11 +163,11 @@ export default {
   },
 
   parsePosition(string) {
-    if (is.string(string) && string.substr(-1) === '%') {
+    if (isString(string) && string.substr(-1) === '%') {
       string = parseFloat(string.slice(0, -1) / 100)
     }
 
-    if (!is.undefined(string) && string !== null) {
+    if (typeof string !== 'undefined' && string !== null) {
       return parseFloat(string, 10)
     }
     return null
@@ -178,7 +178,7 @@ export default {
   },
 
   parseAngle(string, notStandard) {
-    if (is.string(string) && string.includes('deg')) {
+    if (isString(string) && string.includes('deg')) {
       string = string.replace('deg', '')
     }
     if (!isNaN(string)) {
@@ -186,7 +186,7 @@ export default {
         string = this.fixOldAngle(string)
       }
     }
-    if (is.string(string)) {
+    if (isString(string)) {
       const directions = string.split(' ')
 
       const filtered = []

@@ -1,5 +1,5 @@
 import { curry } from '@pluginjs/utils'
-import is from '@pluginjs/is'
+import { isObject } from '@pluginjs/is'
 import { sum } from './data.list'
 
 /**
@@ -96,7 +96,7 @@ export const css = (el, attr, value = null) => {
     mergedStyleObj[attr] = value
 
     return setStyle(mergedStyleObj, el)
-  } else if (is.object(attr)) {
+  } else if (isObject(attr)) {
     return setStyle(attr, el)
   }
   return getStyle(attr, el)

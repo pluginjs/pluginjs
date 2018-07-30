@@ -1,13 +1,13 @@
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 
 export default function themeable() {
   return function(plugin) {
     plugin.prototype.getThemeClass = function(themes, THEME) {
-      if (is.undefined(themes) && this.options.theme) {
+      if (typeof themes === 'undefined' && this.options.theme) {
         return this.getThemeClass(this.options.theme)
       }
-      if (is.string(themes)) {
-        if (is.undefined(THEME)) {
+      if (isString(themes)) {
+        if (typeof THEME === 'undefined') {
           THEME = this.classes.THEME
         }
         themes = themes.split(' ')

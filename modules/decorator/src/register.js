@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isFunction } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import Pj from '@pluginjs/factory'
 import { deepMerge } from '@pluginjs/utils'
@@ -34,7 +34,7 @@ export default function register(name, obj = {}) {
     plugin.findInstanceByElement = (namespace, el) =>
       instances.find(plugin => plugin.element === el)
 
-    if (plugin.prototype.resize && is.undefined(plugin.resize)) {
+    if (plugin.prototype.resize && typeof plugin.resize === 'undefined') {
       plugin.resize = function() {
         for (let i = 0; i < instances.length; i++) {
           instances[i].resize(
@@ -45,7 +45,7 @@ export default function register(name, obj = {}) {
       }
     }
 
-    if (is.function(plugin.resize)) {
+    if (isFunction(plugin.resize)) {
       Pj.emitter.on('resize', plugin.resize)
     }
 

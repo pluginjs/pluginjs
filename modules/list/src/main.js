@@ -17,7 +17,7 @@ import { deepMerge } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hasClass, addClass, removeClass } from '@pluginjs/classes'
 import PopDialog from '@pluginjs/pop-dialog'
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import Sortable from 'sortablejs'
 import {
@@ -315,11 +315,12 @@ class List extends Component {
   }
 
   insert(item) {
-    if (is.string(item)) {
+    if (isString(item)) {
       this.enter('simple')
     }
 
-    const index = !is.undefined(item.index) && item.index >= 0 ? item.index : -1
+    const index =
+      typeof item.index !== 'undefined' && item.index >= 0 ? item.index : -1
     const $items = this.getItems()
     const $item = this.buildItem(item)
 
@@ -367,7 +368,7 @@ class List extends Component {
       return false
     }
     this.data.forEach(item => {
-      if (is.string(item)) {
+      if (isString(item)) {
         this.enter('simple')
       }
     })
@@ -398,11 +399,11 @@ class List extends Component {
   }
 
   val(data) {
-    if (is.undefined(data)) {
+    if (typeof data === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 
-    if (is.string(data)) {
+    if (isString(data)) {
       data = this.options.parse.call(this, data)
       this.set(data)
     }
@@ -413,7 +414,7 @@ class List extends Component {
   edit(index, data) {
     const detail = this.data[index]
 
-    if (!is.undefined(detail)) {
+    if (typeof detail !== 'undefined') {
       const $item = this.$list.children()[index]
       this.data[index] = deepMerge(detail, data)
 

@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, query, insertAfter, children } from '@pluginjs/dom'
@@ -307,7 +306,7 @@ class Tabs extends Component {
       return
     }
 
-    if (!is.undefined(options)) {
+    if (typeof options !== 'undefined') {
       for (const m in options) {
         if (Object.prototype.hasOwnProperty.call(options, m)) {
           this.options[m] = options[m]

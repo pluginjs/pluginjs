@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 export const namespace = 'spinner'
 
 export const events = {
@@ -55,7 +54,7 @@ export const defaults = {
     }
   },
   process(value) {
-    if (value && !is.undefined(value)) {
+    if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)
     }
     return ''

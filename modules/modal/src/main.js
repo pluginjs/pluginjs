@@ -1,6 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import { deepMerge, compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
+import { isObject, isFunction } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -492,7 +492,7 @@ class Modal extends GlobalComponent {
 
   static close(id) {
     const instances = this.getInstances()
-    instancesf.forEach(instance => {
+    instances.forEach(instance => {
       if (instance.instanceId === id) {
         instance.close()
       }
@@ -527,12 +527,12 @@ class Modal extends GlobalComponent {
     for (let i = 0; i < length; i++) {
       if (typeof args[i] === 'string') {
         str.push(args[i])
-      } else if (is.object(args[i]) && !is.function(args[i])) {
+      } else if (isObject(args[i]) && !isFunction(args[i])) {
         opt.buttons.active.title = args[i].buttons.active.title
         opt.buttons.active.class = args[i].buttons.active.class
         opt.buttons.cancel.title = args[i].buttons.cancel.title
         opt.buttons.cancel.class = args[i].buttons.cancel.class
-      } else if (is.function(args[i])) {
+      } else if (isFunction(args[i])) {
         func.push(args[i])
       }
     }
@@ -590,7 +590,7 @@ class Modal extends GlobalComponent {
 
   static closeAll() {
     const instances = this.getInstances()
-    instancesf.forEach(instance => {
+    instances.forEach(instance => {
       instance.close()
     })
     return true

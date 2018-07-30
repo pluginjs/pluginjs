@@ -39,7 +39,7 @@ scripts:
 (function(){
   Pj.bgPicker('.example-format', {
     process(value) {
-      // if (value && !As.is.undefined(value.image) && value.image !== '') {
+      // if (value && !As.typeof value.image === 'undefined' && value.image !== '') {
       //   return JSON.stringify(value);
       // }
       return '';

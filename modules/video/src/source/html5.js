@@ -1,5 +1,5 @@
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
+import { isArray } from '@pluginjs/is'
 import { events as EVENTS } from '../constant'
 import { setStyle } from '@pluginjs/styled'
 import { append, parseHTML, query } from '@pluginjs/dom'
@@ -36,7 +36,7 @@ class Html5 {
   }
 
   setDefaultParameters() {
-    if (is.array(this.options.url)) {
+    if (isArray(this.options.url)) {
       for (let i = 0; i < this.options.url.length; i++) {
         const videoTypeArr = this.options.url[i].split('.')
         const videoType = videoTypeArr[videoTypeArr.length - 1]

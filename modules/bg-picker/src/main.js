@@ -5,7 +5,6 @@ import { hideElement, showElement, setStyle } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import PopDialog from '@pluginjs/pop-dialog'
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import {
   eventable,
@@ -302,7 +301,7 @@ class BgPicker extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.value)
     }
 
@@ -323,22 +322,22 @@ class BgPicker extends Component {
     this.setImage(value.image)
 
     if (update !== false) {
-      if (!is.undefined(value.repeat)) {
+      if (typeof value.repeat !== 'undefined') {
         this.REPEAT.set(value.repeat)
       } else {
         this.REPEAT.clear()
       }
-      if (!is.undefined(value.size)) {
+      if (typeof value.size !== 'undefined') {
         this.SIZE.set(value.size)
       } else {
         this.SIZE.clear()
       }
-      if (!is.undefined(value.position)) {
+      if (typeof value.position !== 'undefined') {
         this.POSITION.set(value.position)
       } else {
         this.POSITION.clear()
       }
-      if (!is.undefined(value.attachment)) {
+      if (typeof value.attachment !== 'undefined') {
         this.ATTACHMENT.set(value.attachment)
       } else {
         this.ATTACHMENT.clear()
@@ -367,7 +366,7 @@ class BgPicker extends Component {
     let thumbnailUrl
     this.setState(image)
     this.returnFill(image)
-    if (image === '' || is.undefined(image)) {
+    if (image === '' || typeof image === 'undefined') {
       showElement(this.$fillImageName)
       setStyle({ 'background-image': 'none' }, this.$image)
 

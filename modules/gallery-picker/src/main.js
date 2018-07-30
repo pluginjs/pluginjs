@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { deepMerge, compose, curry } from '@pluginjs/utils'
-import is from '@pluginjs/is'
+import { isString, isArray } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -489,7 +489,7 @@ class GalleryPicker extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process(this.value)
     }
 
@@ -505,9 +505,9 @@ class GalleryPicker extends Component {
   }
 
   set(value) {
-    if (is.array(value)) {
+    if (isArray(value)) {
       this.value = value
-    } else if (is.string(value)) {
+    } else if (isString(value)) {
       this.value = [value]
     } else {
       this.value = []

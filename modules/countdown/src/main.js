@@ -7,7 +7,6 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
-import is from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
   classes as CLASSES,
@@ -55,7 +54,7 @@ class CountDown extends Component {
   }
 
   initialize() {
-    if (!is.undefined(MODES[this.options.mode])) {
+    if (typeof MODES[this.options.mode] !== 'undefined') {
       this.modeInstance = new MODES[this.options.mode](this)
     }
 
@@ -71,7 +70,7 @@ class CountDown extends Component {
       this.getClass(this.classes.MODE, 'mode', this.options.mode)
     )
 
-    if (!is.undefined(MODES[this.options.mode])) {
+    if (typeof MODES[this.options.mode] !== 'undefined') {
       this.$counters.map((type, index) => {
         const getLabel = type => {
           return {
@@ -115,7 +114,7 @@ class CountDown extends Component {
 
     this.$counters.forEach(type => {
       const countDownTime = new TimeType(type, this.totalSecs)
-      if (!is.undefined(MODES[this.options.mode])) {
+      if (typeof MODES[this.options.mode] !== 'undefined') {
         this.modeInstance.animate(countDownTime, type)
       }
     })

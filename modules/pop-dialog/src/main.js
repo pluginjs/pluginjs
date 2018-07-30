@@ -1,5 +1,5 @@
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
+import { isFunction, isEmptyObject } from '@pluginjs/is'
 import { compose } from '@pluginjs/utils'
 import { bindEvent } from '@pluginjs/events'
 import { dataset, parentWith, query } from '@pluginjs/dom'
@@ -33,7 +33,7 @@ class PopDialog extends Popover {
   constructor(element, options = {}) {
     super(element, options, NAMESPACE, DEFAULTS, CLASSES)
 
-    if (is.emptyObject(this.options.buttons)) {
+    if (isEmptyObject(this.options.buttons)) {
       this.options.buttons = { dismiss: { label: 'Dismiss' } }
     }
     this.initClasses(CLASSES)
@@ -75,12 +75,12 @@ class PopDialog extends Popover {
   }
 
   do(action) {
-    if (!action || is.undefined(this.options.buttons[action])) {
+    if (!action || typeof this.options.buttons[action] === 'undefined') {
       return false
     }
     const button = this.options.buttons[action]
 
-    if (is.function(button.fn)) {
+    if (isFunction(button.fn)) {
       button.fn(this.hide.bind(this))
     } else {
       this.hide()

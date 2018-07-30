@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
+import { isString, isNull, isDomNode } from '@pluginjs/is'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -479,13 +479,13 @@ class Dropdown extends Component {
         if ($item.dataset[this.options.itemValueAttr] === value) {
           this.selectItem($item)
           this.value = value
-          if (!is.undefined($item.textContent)) {
+          if (typeof $item.textContent !== 'undefined') {
             this.text = $item.textContent
           }
         }
       })
 
-      if (is.null(this.active)) {
+      if (isNull(this.active)) {
         return
       }
 
@@ -530,9 +530,9 @@ class Dropdown extends Component {
     if (this.options.panel === '+') {
       return this.$triggerBox.nextElementSibling
     }
-    if (is.domNode(this.options.panel)) {
+    if (isDomNode(this.options.panel)) {
       return this.options.panel
-    } else if (is.string(this.options.panel)) {
+    } else if (isString(this.options.panel)) {
       return query(this.options.panel)
     }
   }
@@ -550,7 +550,7 @@ class Dropdown extends Component {
   }
 
   selectItem(item) {
-    if (!is.null(this.active)) {
+    if (!isNull(this.active)) {
       removeClass(this.classes.ACITVE, this.active)
     }
 

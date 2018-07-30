@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isArray, isObject } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { debounce, compose } from '@pluginjs/utils'
 import {
@@ -149,12 +149,12 @@ class AutoComplete extends Component {
       let label = v
       let value = v
 
-      if (is.object(v)) {
+      if (isObject(v)) {
         label = v.label
         value = v.value
       }
 
-      if (is.array(v)) {
+      if (isArray(v)) {
         label = v[0]
         value = v[1]
       }
@@ -568,7 +568,7 @@ class AutoComplete extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.get()
     }
 

@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isArray } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -329,7 +329,7 @@ export default class Tree extends Component {
     if (this.is('disabled')) {
       return null
     }
-    if (!is.array(position)) {
+    if (!isArray(position)) {
       position = []
     }
 
@@ -384,7 +384,7 @@ export default class Tree extends Component {
         break
       }
       case 'object': {
-        if (is.array(this.options.autoOpen)) {
+        if (isArray(this.options.autoOpen)) {
           this.get(this.options.autoOpen).open(true)
         }
         break

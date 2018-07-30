@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isString, isObject, isNumber, isFunction } from '@pluginjs/is'
 
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
@@ -61,12 +61,12 @@ class Tip {
             } else {
               value = instance.getPointerVal()
             }
-            if (is.function(instance.options.format)) {
-              if (instance.options.replaceFirst && !is.number(value)) {
-                if (is.string(instance.options.replaceFirst)) {
+            if (isFunction(instance.options.format)) {
+              if (instance.options.replaceFirst && !isNumber(value)) {
+                if (isString(instance.options.replaceFirst)) {
                   value = instance.options.replaceFirst
                 }
-                if (is.object(instance.options.replaceFirst)) {
+                if (isObject(instance.options.replaceFirst)) {
                   for (const key in instance.options.replaceFirst) {
                     if (
                       Object.prototype.hasOwnProperty.call(

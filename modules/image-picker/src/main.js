@@ -1,6 +1,5 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -257,7 +256,7 @@ class ImagePicker extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 

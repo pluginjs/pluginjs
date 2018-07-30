@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 /* eslint no-empty-function: "off" */
 export const namespace = 'bgPicker'
 
@@ -196,7 +195,7 @@ export const defaults = {
   },
 
   process(value) {
-    if (value && !is.undefined(value.image) && value.image !== '') {
+    if (value && typeof value.image !== 'undefined' && value.image !== '') {
       return JSON.stringify(value)
     }
     return ''

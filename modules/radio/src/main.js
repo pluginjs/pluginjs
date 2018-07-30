@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -204,7 +203,7 @@ class Radio extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.get()
     }
 

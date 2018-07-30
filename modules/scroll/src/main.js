@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isObject, isNumeric, isFunction, isDomNode } from '@pluginjs/is'
 import easing from '@pluginjs/easing'
 import Pj from '@pluginjs/factory'
 
@@ -80,7 +80,7 @@ const scroll = (function() {
     // return when end points have been reached
     if (currentX === context.x && currentY === context.y) {
       window.cancelAnimationFrame(context.frame)
-      if (is.function(context.complete)) {
+      if (isFunction(context.complete)) {
         context.complete.call(context.scrollable, context.x, context.y)
       }
       return
@@ -122,10 +122,10 @@ const scroll = (function() {
       method = scrollElement
     }
 
-    if (!is.numeric(x)) {
+    if (!isNumeric(x)) {
       x = startX
     }
-    if (!is.numeric(y)) {
+    if (!isNumeric(y)) {
       y = startY
     }
     // cancel frame when a scroll event's happening
@@ -150,17 +150,17 @@ const scroll = (function() {
   }
 
   function scrollTo(x, y, easing, duration, complete) {
-    if (is.object(x)) {
-      if (!is.undefined(x.y)) {
+    if (isObject(x)) {
+      if (typeof x.y !== 'undefined') {
         y = x.y
       }
-      if (!is.undefined(x.easing)) {
+      if (typeof x.easing !== 'undefined') {
         easing = x.easing
       }
-      if (!is.undefined(x.duration)) {
+      if (typeof x.duration !== 'undefined') {
         duration = x.duration
       }
-      if (!is.undefined(x.complete)) {
+      if (typeof x.complete !== 'undefined') {
         complete = x.complete
       }
       x = x.x
@@ -168,8 +168,8 @@ const scroll = (function() {
     smoothScroll.call(
       window,
       window.document.body,
-      is.numeric(x) ? parseInt(x, 10) : undefined,
-      is.numeric(y) ? parseInt(y, 10) : undefined,
+      isNumeric(x) ? parseInt(x, 10) : undefined,
+      isNumeric(y) ? parseInt(y, 10) : undefined,
       easing,
       duration,
       complete
@@ -177,14 +177,14 @@ const scroll = (function() {
   }
 
   function scrollToX(value, easing, duration, complete) {
-    if (is.object(value)) {
-      if (!is.undefined(value.easing)) {
+    if (isObject(value)) {
+      if (typeof value.easing !== 'undefined') {
         easing = value.easing
       }
-      if (!is.undefined(value.duration)) {
+      if (typeof value.duration !== 'undefined') {
         duration = value.duration
       }
-      if (!is.undefined(value.complete)) {
+      if (typeof value.complete !== 'undefined') {
         complete = value.complete
       }
       value = value.value
@@ -198,7 +198,7 @@ const scroll = (function() {
       duration,
       (x, y) => {
         /* eslint no-unused-vars: 'off' */
-        if (is.function(complete)) {
+        if (isFunction(complete)) {
           complete(x)
         }
       }
@@ -206,14 +206,14 @@ const scroll = (function() {
   }
 
   function scrollToY(value, easing, duration, complete) {
-    if (is.object(value)) {
-      if (!is.undefined(value.easing)) {
+    if (isObject(value)) {
+      if (typeof value.easing !== 'undefined') {
         easing = value.easing
       }
-      if (!is.undefined(value.duration)) {
+      if (typeof value.duration !== 'undefined') {
         duration = value.duration
       }
-      if (!is.undefined(value.complete)) {
+      if (typeof value.complete !== 'undefined') {
         complete = value.complete
       }
       value = value.value
@@ -227,7 +227,7 @@ const scroll = (function() {
       duration,
       (x, y) => {
         /* eslint no-unused-vars: 'off' */
-        if (is.function(complete)) {
+        if (isFunction(complete)) {
           complete(y)
         }
       }
@@ -235,17 +235,17 @@ const scroll = (function() {
   }
 
   function scrollBy(x, y, easing, duration, complete) {
-    if (is.object(x)) {
-      if (!is.undefined(x.y)) {
+    if (isObject(x)) {
+      if (typeof x.y !== 'undefined') {
         y = x.y
       }
-      if (!is.undefined(x.easing)) {
+      if (typeof x.easing !== 'undefined') {
         easing = x.easing
       }
-      if (!is.undefined(x.duration)) {
+      if (typeof x.duration !== 'undefined') {
         duration = x.duration
       }
-      if (!is.undefined(x.complete)) {
+      if (typeof x.complete !== 'undefined') {
         complete = x.complete
       }
       x = x.x
@@ -254,10 +254,10 @@ const scroll = (function() {
     smoothScroll.call(
       window,
       window.document.body,
-      is.numeric(x)
+      isNumeric(x)
         ? parseInt(x, 10) + (window.scrollX || window.pageXOffset)
         : undefined,
-      is.numeric(y)
+      isNumeric(y)
         ? parseInt(y, 10) + (window.scrollY || window.pageYOffset)
         : undefined,
       easing,
@@ -267,14 +267,14 @@ const scroll = (function() {
   }
 
   function scrollByX(value, easing, duration, complete) {
-    if (is.object(value)) {
-      if (!is.undefined(value.easing)) {
+    if (isObject(value)) {
+      if (typeof value.easing !== 'undefined') {
         easing = value.easing
       }
-      if (!is.undefined(value.duration)) {
+      if (typeof value.duration !== 'undefined') {
         duration = value.duration
       }
-      if (!is.undefined(value.complete)) {
+      if (typeof value.complete !== 'undefined') {
         complete = value.complete
       }
       value = value.value
@@ -288,7 +288,7 @@ const scroll = (function() {
       easing,
       duration,
       (x, y) => {
-        if (is.function(complete)) {
+        if (isFunction(complete)) {
           complete(x)
         }
       }
@@ -296,14 +296,14 @@ const scroll = (function() {
   }
 
   function scrollByY(value, easing, duration, complete) {
-    if (is.object(value)) {
-      if (!is.undefined(value.easing)) {
+    if (isObject(value)) {
+      if (typeof value.easing !== 'undefined') {
         easing = value.easing
       }
-      if (!is.undefined(value.duration)) {
+      if (typeof value.duration !== 'undefined') {
         duration = value.duration
       }
-      if (!is.undefined(value.complete)) {
+      if (typeof value.complete !== 'undefined') {
         complete = value.complete
       }
       value = value.value
@@ -316,7 +316,7 @@ const scroll = (function() {
       easing,
       duration,
       (x, y) => {
-        if (is.function(complete)) {
+        if (isFunction(complete)) {
           complete(y)
         }
       }
@@ -324,29 +324,29 @@ const scroll = (function() {
   }
 
   function scrollIntoView(element, easing, duration, offset, axis, complete) {
-    if (is.object(element) && is.domNode(element.element)) {
-      if (!is.undefined(element.easing)) {
+    if (isObject(element) && isDomNode(element.element)) {
+      if (typeof element.easing !== 'undefined') {
         easing = element.easing
       }
-      if (!is.undefined(element.duration)) {
+      if (typeof element.duration !== 'undefined') {
         duration = element.duration
       }
-      if (!is.undefined(element.complete)) {
+      if (typeof element.complete !== 'undefined') {
         complete = element.complete
       }
-      if (!is.undefined(element.offset)) {
+      if (typeof element.offset !== 'undefined') {
         offset = element.offset
       }
-      if (!is.undefined(element.axis)) {
+      if (typeof element.axis !== 'undefined') {
         axis = element.axis
       }
       element = element.element
     } else {
-      if (is.function(axis)) {
+      if (isFunction(axis)) {
         complete = axis
         axis = undefined
       }
-      if (is.function(offset)) {
+      if (isFunction(offset)) {
         complete = offset
         offset = undefined
       }
@@ -354,8 +354,8 @@ const scroll = (function() {
 
     offset = offset || {}
 
-    offset.left = is.numeric(offset.left) ? parseInt(offset.left, 10) : 0
-    offset.top = is.numeric(offset.top) ? parseInt(offset.top, 10) : 0
+    offset.left = isNumeric(offset.left) ? parseInt(offset.left, 10) : 0
+    offset.top = isNumeric(offset.top) ? parseInt(offset.top, 10) : 0
 
     axis = Object.assign(
       {
@@ -406,17 +406,17 @@ const scroll = (function() {
   }
 
   function scrollTop(element, easing, duration, offset, complete) {
-    if (is.object(element) && is.domNode(element.element)) {
-      if (!is.undefined(element.easing)) {
+    if (isObject(element) && isDomNode(element.element)) {
+      if (typeof element.easing !== 'undefined') {
         easing = element.easing
       }
-      if (!is.undefined(element.duration)) {
+      if (typeof element.duration !== 'undefined') {
         duration = element.duration
       }
-      if (!is.undefined(element.offset)) {
+      if (typeof element.offset !== 'undefined') {
         offset = element.offset
       }
-      if (!is.undefined(element.complete)) {
+      if (typeof element.complete !== 'undefined') {
         complete = element.complete
       }
       element = element.element
@@ -432,7 +432,7 @@ const scroll = (function() {
         y: true
       },
       (x, y) => {
-        if (is.function(complete)) {
+        if (isFunction(complete)) {
           complete(y)
         }
       }

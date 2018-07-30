@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { parseHTML, query, insertBefore, insertAfter } from '@pluginjs/dom'
@@ -123,7 +122,7 @@ class NavToSelect extends Component {
     items.forEach(item => {
       if (
         item.linkable === false &&
-        !is.undefined(item.items) &&
+        typeof item.items !== 'undefined' &&
         level === 1 &&
         this.options.useOptgroup
       ) {
@@ -131,7 +130,7 @@ class NavToSelect extends Component {
         options += this.buildOptions(item.items, level + 1)
         options += '</optgroup>'
       }
-      if (!is.undefined(item.items)) {
+      if (typeof item.items !== 'undefined') {
         options += this.buildOption(item, level)
         options += this.buildOptions(item.items, level + 1)
       } else {

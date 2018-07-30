@@ -1,5 +1,4 @@
-// import is from '@pluginjs/is'
-
+import { isArray } from '@pluginjs/is'
 export const namespace = 'select'
 
 export const events = {
@@ -115,8 +114,8 @@ export const defaults = {
     return this.options.multiple ? [] : ''
   },
   process(value) {
-    if (value && !is.undefined(value)) { /* eslint-disable-line */
-      return is.array(value) ? value.join(',') : value  /* eslint-disable-line */
+    if (value && typeof value !== 'undefined') {
+      return isArray(value) ? value.join(',') : value
     }
     return ''
   }

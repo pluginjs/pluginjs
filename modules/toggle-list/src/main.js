@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isNull } from '@pluginjs/is'
 import {
   query,
   queryAll,
@@ -147,7 +147,7 @@ class ToggleList extends List {
 
   set(data) {
     data.forEach(item => {
-      if (is.null(item.checked) || is.undefined(item.checked)) {
+      if (isNull(item.checked) || typeof item.checked === 'undefined') {
         item.checked = true
       }
     })

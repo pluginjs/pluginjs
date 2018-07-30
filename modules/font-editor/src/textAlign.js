@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { parseHTML, query, insertBefore, queryAll } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
@@ -35,9 +34,10 @@ export default class TextAlign {
       that.$items[key].dataset.textAlign = value
     })
 
-    const value = !is.undefined(this.instance.value.textAlign)
-      ? this.instance.value.textAlign
-      : this.defaultValue
+    const value =
+      typeof this.instance.value.textAlign !== 'undefined'
+        ? this.instance.value.textAlign
+        : this.defaultValue
     this.set(value)
 
     this.bind()

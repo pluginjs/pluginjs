@@ -1,6 +1,5 @@
 import { bindEvent } from '@pluginjs/events'
 import { childQuery } from '@pluginjs/dom'
-import is from '@pluginjs/is'
 
 class History {
   constructor(instance) {
@@ -60,7 +59,7 @@ class History {
 
     // window.onpopstate = event => {
     //   const state = window.history.state
-    //   if (state && !is.undefined(state[this.instance.historyId])) {
+    //   if (state && typeof state[this.instance.historyId] !== 'undefined') {
     //     if (state[this.instance.historyId].index) {
     //       this.instance.active(state[this.instance.historyId].index, false)
     //     }
@@ -74,7 +73,7 @@ class History {
         type: this.instance.eventName('popstate'),
         handler: event => {
           const state = event.state
-          if (state && !is.undefined(state[this.instance.historyId])) {
+          if (state && typeof state[this.instance.historyId] !== 'undefined') {
             if (state[this.instance.historyId].index) {
               this.instance.active(state[this.instance.historyId].index, false)
             }
@@ -91,7 +90,7 @@ class History {
   update() {
     if (
       this.instance.options.history === false ||
-      is.undefined(this.instance.historyId)
+      typeof this.instance.historyId === 'undefined'
     ) {
       return
     }

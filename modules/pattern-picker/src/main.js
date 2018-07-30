@@ -1,6 +1,5 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -18,7 +17,7 @@ import {
 } from '@pluginjs/dom'
 // import Scrollable from '@pluginjs/scrollable'
 import PopDialog from '@pluginjs/pop-dialog'
-import ColorPicker from'@pluginjs/color-picker'
+import ColorPicker from '@pluginjs/color-picker'
 import Range from '@pluginjs/range'
 import {
   eventable,
@@ -613,7 +612,7 @@ class PatternPicker extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
     const val = this.options.parse.call(this, value)

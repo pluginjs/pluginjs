@@ -4,7 +4,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, hideElement } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { prepend, parseHTML, queryAll, query, insertAfter } from '@pluginjs/dom'
-import is from '@pluginjs/is'
+import { isNumber } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -56,7 +56,7 @@ class Rate extends Component {
       this.setSvgStyle()
     }
 
-    if (is.number(this.options.value)) {
+    if (isNumber(this.options.value)) {
       this.updateStar(this.options.value)
     }
 

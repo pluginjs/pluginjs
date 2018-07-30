@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { transitionProperty } from '@pluginjs/feature'
-import is from '@pluginjs/is'
+import { isString, isNumber } from '@pluginjs/is'
 import { throttle } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getOffset } from '@pluginjs/styled'
@@ -55,9 +55,9 @@ class ScrollTop extends Component {
     this.build()
 
     if (this.options.target) {
-      if (is.number(this.options.target)) {
+      if (isNumber(this.options.target)) {
         this.target = this.options.target
-      } else if (is.string(this.options.target)) {
+      } else if (isString(this.options.target)) {
         this.target = Math.floor(getOffset(query(this.options.target)).top)
       }
     } else {

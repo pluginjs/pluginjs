@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
-import is from '@pluginjs/is'
+import { isObject } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -41,7 +41,7 @@ class Gmap extends Component {
     }
 
     this.initStates()
-    if (!(is.object(window.google) && window.google.maps)) {
+    if (!(isObject(window.google) && window.google.maps)) {
       this.loadScript()
     } else {
       this.initialize()

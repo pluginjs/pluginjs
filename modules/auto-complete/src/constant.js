@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 
 export const namespace = 'autoComplete'
 
@@ -99,13 +99,13 @@ export const defaults = {
   },
 
   process(value) {
-    if (value && !is.undefined(value)) {
+    if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)
     }
     return ''
   },
   parse(value) {
-    if (value && is.string(value)) {
+    if (value && isString(value)) {
       try {
         return JSON.parse(value)
       } catch (e) {

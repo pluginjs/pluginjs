@@ -1,5 +1,5 @@
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
+import { isNumber } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -126,7 +126,7 @@ class Notice extends GlobalComponent {
       )
     }
 
-    if (is.number(this.options.timeout)) {
+    if (isNumber(this.options.timeout)) {
       let settime = setTimeout(() => {
         this.hide()
       }, this.options.timeout)

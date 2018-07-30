@@ -1,6 +1,5 @@
 import templateEngine from '@pluginjs/template'
 import { query, append, prepend, parseHTML } from '@pluginjs/dom'
-import is from '@pluginjs/is'
 import { updateDomValue } from '../util'
 import { labelMap as LABELMAP } from '../constant'
 import { deepMerge } from '@pluginjs/utils'
@@ -79,7 +78,7 @@ class Flip {
       )
     }
 
-    if (!is.undefined(this.lastTime[type])) {
+    if (typeof this.lastTime[type] !== 'undefined') {
       updateDomValue(
         `.${this.instance.classes.CURR}.${this.instance.classes.TOP}.${
           this.instance.classes.NAMESPACE

@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
+import { isEmptyObject } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
@@ -120,7 +120,7 @@ class IconsPicker extends Component {
       addClass(this.getThemeClass(), this.$iconPicker)
     }
 
-    if (!this.data || is.emptyObject(this.data)) {
+    if (!this.data || isEmptyObject(this.data)) {
       this.initEmpty()
     } else {
       this.$dropdown = this.initDropdown()
@@ -857,7 +857,7 @@ class IconsPicker extends Component {
   }
 
   get() {
-    if (this.$icon && !is.undefined(this.$icon)) {
+    if (this.$icon && typeof this.$icon !== 'undefined') {
       const data = {
         package: getObjData('package', this.$icon),
         categories: getObjData('categories', this.$icon),
@@ -870,7 +870,7 @@ class IconsPicker extends Component {
   }
 
   set(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return
     }
     if (typeof this.$icons !== 'undefined') {
@@ -888,7 +888,7 @@ class IconsPicker extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 

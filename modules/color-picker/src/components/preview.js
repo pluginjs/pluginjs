@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 import { query } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
@@ -47,7 +47,7 @@ class Preview {
     ) {
       return false
     }
-    if (is.string(color)) {
+    if (isString(color)) {
       setStyle({ background: color }, this.$color)
     } else {
       setStyle({ background: color.toRGBA() }, this.$color)

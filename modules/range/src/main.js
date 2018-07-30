@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isString, isArray, isObject, isNumber, isFunction } from '@pluginjs/is'
 import Units from '@pluginjs/units'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { getStyle, getOffset } from '@pluginjs/styled'
@@ -70,7 +70,7 @@ class Range extends Component {
     )
     this.initClasses(CLASSES)
 
-    if (is.string(value) && value !== '') {
+    if (isString(value) && value !== '') {
       this.data = this.options.parse.call(this, value)
     }
 
@@ -85,10 +85,10 @@ class Range extends Component {
     }
 
     if (!this.options.isRange) {
-      if (is.array(this.data.value)) {
+      if (isArray(this.data.value)) {
         this.data.value = this.data.value[0]
       }
-    } else if (!is.array(this.data.value)) {
+    } else if (!isArray(this.data.value)) {
       this.data.value = [this.data.value, this.data.value]
     } else if (this.data.value.length === 1) {
       this.data.value[1] = this.data.value[0]
@@ -260,7 +260,7 @@ class Range extends Component {
       this.unitsApi.options.onChangeVal = val => {
         val = this.options.parse.call(this, val).value
 
-        if (is.array(val)) {
+        if (isArray(val)) {
           if (val[0] > val[1]) {
             val.sort()
           }
@@ -301,7 +301,7 @@ class Range extends Component {
       } else {
         this.data.value = this.min
       }
-    } else if (is.object(value)) {
+    } else if (isObject(value)) {
       this.data.value = value
     } else {
       this.data = Object.assign(
@@ -410,7 +410,7 @@ class Range extends Component {
     }
 
     Each(this.components, (key, value) => {
-      if (is.function(value.update)) {
+      if (isFunction(value.update)) {
         value.update(this)
       }
     })
@@ -441,7 +441,7 @@ class Range extends Component {
   }
 
   set(data) {
-    if (!data || is.undefined(data)) {
+    if (!data || typeof data === 'undefined') {
       return
     }
 
@@ -460,10 +460,10 @@ class Range extends Component {
     }
 
     if (this.options.isRange) {
-      if (is.number(value)) {
+      if (isNumber(value)) {
         value = [value]
       }
-      if (!is.array(value)) {
+      if (!isArray(value)) {
         return
       }
       this.pointer.forEach((p, i) => {
@@ -477,7 +477,7 @@ class Range extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       const val = this.options.process.call(this, this.get())
       return val
     }

@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isObject } from '@pluginjs/is'
 
 export const namespace = 'tree'
 
@@ -72,7 +72,7 @@ export const defaults = {
       return content
     },
     leafContent(node) {
-      if (is.object(node)) {
+      if (isObject(node)) {
         return node.name
       }
       return node

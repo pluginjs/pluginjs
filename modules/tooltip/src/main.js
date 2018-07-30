@@ -1,5 +1,5 @@
 import Popper from 'popper.js'
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 import Component from '@pluginjs/component'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
@@ -49,15 +49,15 @@ const Trigger = {
 })
 class Tooltip extends Component {
   constructor(element, options = {}, namespace, defaults, classes) {
-    if (!is.string(namespace)) {
+    if (!isString(namespace)) {
       namespace = NAMESPACE
     }
 
-    if (is.undefined(defaults)) {
+    if (typeof defaults === 'undefined') {
       defaults = DEFAULTS
     }
 
-    if (is.undefined(classes)) {
+    if (typeof classes === 'undefined') {
       classes = CLASSES
     }
 

@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 
 export function expandHex(hex) {
   if (hex.indexOf('#') === 0) {
@@ -33,7 +33,7 @@ export function parseIntFromHex(val) {
 }
 
 export function isPercentage(n) {
-  return is.string(n) && n.indexOf('%') === n.length - 1
+  return isString(n) && n.indexOf('%') === n.length - 1
 }
 
 export function conventPercentageToRgb(n) {

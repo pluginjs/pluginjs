@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isPercentage } from '@pluginjs/is'
 import { convertPercentageToFloat } from '@pluginjs/utils'
 import * as util from './util'
 import Converter from './converter'
@@ -15,13 +15,13 @@ const ColorStrings = {
     match: new RegExp(`^rgb${PERMISSIVE_MATCH3}$`, 'i'),
     parse(result) {
       return {
-        r: is.percentage(result[1])
+        r: isPercentage(result[1])
           ? util.conventPercentageToRgb(result[1])
           : parseInt(result[1], 10),
-        g: is.percentage(result[2])
+        g: isPercentage(result[2])
           ? util.conventPercentageToRgb(result[2])
           : parseInt(result[2], 10),
-        b: is.percentage(result[3])
+        b: isPercentage(result[3])
           ? util.conventPercentageToRgb(result[3])
           : parseInt(result[3], 10),
         a: 1
@@ -35,16 +35,16 @@ const ColorStrings = {
     match: new RegExp(`^rgba${PERMISSIVE_MATCH4}$`, 'i'),
     parse(result) {
       return {
-        r: is.percentage(result[1])
+        r: isPercentage(result[1])
           ? util.conventPercentageToRgb(result[1])
           : parseInt(result[1], 10),
-        g: is.percentage(result[2])
+        g: isPercentage(result[2])
           ? util.conventPercentageToRgb(result[2])
           : parseInt(result[2], 10),
-        b: is.percentage(result[3])
+        b: isPercentage(result[3])
           ? util.conventPercentageToRgb(result[3])
           : parseInt(result[3], 10),
-        a: is.percentage(result[4])
+        a: isPercentage(result[4])
           ? convertPercentageToFloat(result[4])
           : parseFloat(result[4], 10)
       }
@@ -58,10 +58,10 @@ const ColorStrings = {
     parse(result) {
       const hsl = {
         h: ((result[1] % 360) + 360) % 360,
-        s: is.percentage(result[2])
+        s: isPercentage(result[2])
           ? convertPercentageToFloat(result[2])
           : parseFloat(result[2], 10),
-        l: is.percentage(result[3])
+        l: isPercentage(result[3])
           ? convertPercentageToFloat(result[3])
           : parseFloat(result[3], 10),
         a: 1
@@ -81,13 +81,13 @@ const ColorStrings = {
     parse(result) {
       const hsla = {
         h: ((result[1] % 360) + 360) % 360,
-        s: is.percentage(result[2])
+        s: isPercentage(result[2])
           ? convertPercentageToFloat(result[2])
           : parseFloat(result[2], 10),
-        l: is.percentage(result[3])
+        l: isPercentage(result[3])
           ? convertPercentageToFloat(result[3])
           : parseFloat(result[3], 10),
-        a: is.percentage(result[4])
+        a: isPercentage(result[4])
           ? convertPercentageToFloat(result[4])
           : parseFloat(result[4], 10)
       }

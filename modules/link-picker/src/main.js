@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { deepMerge, compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
+import { isString, isEmptyObject } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import {
   wrap,
@@ -63,7 +63,7 @@ class LinkPicker extends Component {
     this.initStates()
     this.initClasses(CLASSES)
     this.setupI18n()
-    if (is.emptyObject(SOURCES)) {
+    if (isEmptyObject(SOURCES)) {
       this.element.setAttribute('placeholder', 'register sources first.')
       return false
     }
@@ -775,7 +775,7 @@ class LinkPicker extends Component {
     Object.entries(data).forEach(([itemName, value]) => {
       const item = this.getSourceItem(this.source, itemName)
       const data = item.data
-      if (is.string(data)) {
+      if (isString(data)) {
         item.data = value
         return
       }
@@ -834,7 +834,7 @@ class LinkPicker extends Component {
     Object.entries(globalData).forEach(([sourceName, details]) => {
       if (sourceName === this.source) {
         details.fields.forEach(item => {
-          const active = is.string(item.data) ? item.data : item.data.active
+          const active = isString(item.data) ? item.data : item.data.active
           this.input[item.name] = active
         })
       }
@@ -863,7 +863,7 @@ class LinkPicker extends Component {
         const itemData = item.data
         let value
 
-        if (is.string(itemData)) {
+        if (isString(itemData)) {
           value = itemData
         } else if (item.connect) {
           value = itemData.values(data[item.connect]).values[data[item.name]]

@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 /* eslint no-empty-function: "off" */
 export const namespace = 'fontEditor'
 
@@ -235,7 +234,7 @@ export const defaults = {
     )
   },
   process(value) {
-    if (value && !is.undefined(value)) {
+    if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)
     }
     return ''

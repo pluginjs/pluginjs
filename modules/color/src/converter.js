@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 /* eslint no-bitwise: "off" */
 import * as util from './util'
 import NAMES from './names'
@@ -22,7 +21,7 @@ export default {
       g: this.hueToRGB(m1, m2, h),
       b: this.hueToRGB(m1, m2, h - 1 / 3)
     }
-    if (!is.undefined(hsl.a)) {
+    if (typeof hsl.a !== 'undefined') {
       rgb.a = hsl.a
     }
     if (hsl.l === 0) {
@@ -178,7 +177,7 @@ export default {
       b: Math.round(b * 255)
     }
 
-    if (!is.undefined(hsv.a)) {
+    if (typeof hsv.a !== 'undefined') {
       rgb.a = hsv.a
     }
 

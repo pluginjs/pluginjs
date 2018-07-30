@@ -1,6 +1,5 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -297,7 +296,7 @@ class ImageSelector extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.get()
     }
 

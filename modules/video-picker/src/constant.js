@@ -1,5 +1,3 @@
-import is from '@pluginjs/is'
-
 export const namespace = 'videoPicker'
 
 export const events = {
@@ -110,7 +108,7 @@ export const defaults = {
     return 'http://vjs.zencdn.net/v/oceans.mp4'
   },
   process(value) {
-    if (value && !is.undefined(value)) {
+    if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)
     }
     return ''

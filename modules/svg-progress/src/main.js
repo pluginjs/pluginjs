@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { svg as isSupportedSvg } from '@pluginjs/feature'
 import easing from '@pluginjs/easing'
-import is from '@pluginjs/is'
+import { isPercentage } from '@pluginjs/is'
 import { getTime } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { append, parseHTML, query } from '@pluginjs/dom'
@@ -243,7 +243,7 @@ class SvgProgress extends Component {
       big = 1
     }
 
-    // This string holds the path details
+    // ThisString holds the path details
     const d = `M${x1},${y1} A${r},${r} 0 ${big} 1 ${x2},${y2}`
 
     this.bar.setAttribute('d', d)
@@ -279,7 +279,7 @@ class SvgProgress extends Component {
     const that = this
     this.clear()
 
-    if (is.percentage(goal)) {
+    if (isPercentage(goal)) {
       goal = parseInt(goal.replace('%', ''), 10)
       goal = Math.round(this.min + (goal / 100) * (this.max - this.min))
     }

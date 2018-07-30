@@ -12,7 +12,7 @@ import {
 } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent, trigger } from '@pluginjs/events'
-import is from '@pluginjs/is'
+import { isString, isFunction } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -198,7 +198,7 @@ class Wizard extends Component {
   }
 
   get(index) {
-    if (is.string(index) && index.substring(0, 1) === '#') {
+    if (isString(index) && index.substring(0, 1) === '#') {
       const id = index.substring(1)
       for (const i in this.steps) {
         if (attr('id', this.steps[i].pane) === id) {
@@ -258,7 +258,7 @@ class Wizard extends Component {
           }
         }
 
-        if (is.function(callback)) {
+        if (isFunction(callback)) {
           callback.call(that)
         }
 

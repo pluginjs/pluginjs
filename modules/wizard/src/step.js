@@ -1,5 +1,5 @@
 import { transition, transitionEndEvent } from '@pluginjs/feature'
-import is from '@pluginjs/is'
+import { isString, isArray, isObject, isFunction } from '@pluginjs/is'
 import { bindEventOnce, trigger } from '@pluginjs/events'
 import {
   dataset,
@@ -121,7 +121,7 @@ class Step {
       this.enter('active')
       this.trigger(EVENTS.AFTERSHOW)
 
-      if (is.function(callback)) {
+      if (isFunction(callback)) {
         callback.call(this)
       }
     }
@@ -166,7 +166,7 @@ class Step {
       this.leave('active')
       this.trigger(EVENTS.AFTERHIDE)
 
-      if (is.function(callback)) {
+      if (isFunction(callback)) {
         callback.call(this)
       }
     }
@@ -216,12 +216,12 @@ class Step {
     const that = this
     let loader = this.loader
 
-    if (is.function(loader)) {
+    if (isFunction(loader)) {
       loader = loader.call(this.wizard, this)
     }
 
     if (this.wizard.options.cacheContent && this.loaded) {
-      if (is.function(callback)) {
+      if (isFunction(callback)) {
         callback.call(this)
       }
       return
@@ -237,14 +237,14 @@ class Step {
       that.loaded = true
       that.trigger(EVENTS.AFTERLOAD)
 
-      if (is.function(callback)) {
+      if (isFunction(callback)) {
         callback.call(that)
       }
     }
 
-    if (is.string(loader)) {
+    if (isString(loader)) {
       setContent(loader)
-    } else if (is.object(loader) && {}.hasOwnProperty.call(loader, 'url')) {
+    } else if (isObject(loader) && {}.hasOwnProperty.call(loader, 'url')) {
       that.wizard.options.loading.show.call(that.wizard, that)
 
       axios(loader.url, loader.settings || {})
@@ -261,7 +261,7 @@ class Step {
   }
 
   trigger(event, ...args) {
-    if (is.array(this.events[event])) {
+    if (isArray(this.events[event])) {
       for (const i in this.events[event]) {
         if ({}.hasOwnProperty.call(this.events[event], i)) {
           this.events[event][i](...args)
@@ -294,7 +294,7 @@ class Step {
 
   setValidatorFromData() {
     const validator = dataset('validator', this.pane)
-    if (validator && is.function(window[validator])) {
+    if (validator && isFunction(window[validator])) {
       this.validator = window[validator]
     }
   }
@@ -304,7 +304,7 @@ class Step {
     // const loader = this.pane.data('loader')
 
     if (loader) {
-      if (is.function(window[loader])) {
+      if (isFunction(window[loader])) {
         this.loader = window[loader]
       }
     } else {
@@ -328,8 +328,8 @@ class Step {
   }
 
   on(event, handler) {
-    if (is.function(handler)) {
-      if (is.array(this.events[event])) {
+    if (isFunction(handler)) {
+      if (isArray(this.events[event])) {
         this.events[event].push(handler)
       } else {
         this.events[event] = [handler]
@@ -340,7 +340,7 @@ class Step {
   }
 
   off(event, handler) {
-    if (is.function(handler) && is.array(this.events[event])) {
+    if (isFunction(handler) && isArray(this.events[event])) {
       each(this.events[event], (i, f) => {
         /* eslint consistent-return: "off"*/
         if (f === handler) {
@@ -379,7 +379,7 @@ class Step {
   }
 
   setValidator(validator) {
-    if (is.function(validator)) {
+    if (isFunction(validator)) {
       this.validator = validator
     }
 

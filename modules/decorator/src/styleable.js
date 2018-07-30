@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isString, isObject } from '@pluginjs/is'
 import { deepMerge } from '@pluginjs/utils'
 
 export default function styleable(classes = {}) {
@@ -9,14 +9,18 @@ export default function styleable(classes = {}) {
     }
 
     plugin.prototype.getClass = function(classname, arg, value) {
-      if (!is.undefined(arg)) {
+      if (typeof arg !== 'undefined') {
         return this.getClass(classname.replace(`{${arg}}`, value))
       }
       return classname.replace('{namespace}', this.classes.NAMESPACE || '')
     }
 
     plugin.prototype.getClasses = function(value, classname, arg) {
-      if (is.string(value) && !is.undefined(classname) && !is.undefined(arg)) {
+      if (
+        isString(value) &&
+        typeof classname !== 'undefined' &&
+        typeof arg !== 'undefined'
+      ) {
         value = value.split(' ')
 
         for (let i = 0; i < value.length; i++) {
@@ -30,7 +34,7 @@ export default function styleable(classes = {}) {
     }
 
     plugin.prototype.initClasses = function(defaults, options) {
-      if (is.undefined(options) && is.object(this.options.classes)) {
+      if (typeof options === 'undefined' && isObject(this.options.classes)) {
         options = this.options.classes
       }
 
@@ -38,9 +42,9 @@ export default function styleable(classes = {}) {
         const upperObj = {}
         for (const name in obj) {
           if (Object.hasOwnProperty.call(obj, name)) {
-            if (is.string(obj[name])) {
+            if (isString(obj[name])) {
               upperObj[name.toUpperCase()] = obj[name]
-            } else if (is.object(obj[name])) {
+            } else if (isObject(obj[name])) {
               upperObj[name.toUpperCase()] = conventKeyToUpperCase(obj[name])
             }
           }
@@ -54,13 +58,13 @@ export default function styleable(classes = {}) {
         conventKeyToUpperCase(options || {})
       )
 
-      if (!is.undefined(this.classes.NAMESPACE)) {
+      if (typeof this.classes.NAMESPACE !== 'undefined') {
         const injectNamespace = obj => {
           for (const name in obj) {
             if (Object.hasOwnProperty.call(obj, name)) {
-              if (is.string(obj[name])) {
+              if (isString(obj[name])) {
                 obj[name] = this.getClass(obj[name])
-              } else if (is.object(obj[name])) {
+              } else if (isObject(obj[name])) {
                 obj[name] = injectNamespace(obj[name])
               }
             }

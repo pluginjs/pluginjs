@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { curry, compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
+import { isArray } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
@@ -128,7 +128,7 @@ class Checkbox extends Component {
     if (this.get().toString() !== value.toString()) {
       this.trigger(EVENTS.CHANGE, value)
     }
-    if (this.group && is.array(value)) {
+    if (this.group && isArray(value)) {
       this.$group.forEach(item => {
         const api = getObjData(NAMESPACE, item)
         if (!api) {
@@ -216,7 +216,7 @@ class Checkbox extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.get()
     }
 

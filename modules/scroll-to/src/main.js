@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isString, isDomNode } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -133,12 +133,12 @@ class ScrollTo extends Component {
 
   jump(href) {
     let $href
-    if (is.string(href)) {
+    if (isString(href)) {
       if (href.indexOf('#') !== 0) {
         href = `#${href}`
       }
       $href = query(href)
-    } else if (is.domNode(href)) {
+    } else if (isDomNode(href)) {
       $href = href
     }
 

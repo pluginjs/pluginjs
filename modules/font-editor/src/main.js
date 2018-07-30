@@ -1,6 +1,5 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { parseHTML, query, insertAfter } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -85,7 +84,7 @@ class FontEditor extends Component {
 
     if (
       this.value.fontFamily === 'inherit' ||
-      is.undefined(this.value.fontFamily)
+      typeof this.value.fontFamily === 'undefined'
     ) {
       compose(
         removeClass(this.classes.EXSIT),
@@ -328,7 +327,7 @@ class FontEditor extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.value)
     }
 
@@ -345,33 +344,33 @@ class FontEditor extends Component {
 
   set(value, update = true) {
     if (update !== false) {
-      if (!is.undefined(value.textAlign)) {
+      if (typeof value.textAlign !== 'undefined') {
         this.textAlign.set(value.textAlign)
       } else {
         this.textAlign.clear()
       }
 
-      if (!is.undefined(value.fontStyle)) {
+      if (typeof value.fontStyle !== 'undefined') {
         this.fontStyle.set(value.fontStyle)
       }
-      if (!is.undefined(value.textTransform)) {
+      if (typeof value.textTransform !== 'undefined') {
         this.textTransform.set(value.textTransform)
       }
 
-      if (!is.undefined(value.textDecoration)) {
+      if (typeof value.textDecoration !== 'undefined') {
         this.textDecoration.set(value.textDecoration)
       }
 
-      if (!is.undefined(value.fontWeight)) {
+      if (typeof value.fontWeight !== 'undefined') {
         this.fontWeight.set(value.fontWeight)
       }
-      if (!is.undefined(value.lineHeight)) {
+      if (typeof value.lineHeight !== 'undefined') {
         this.lineHeight.set(value.lineHeight)
       }
-      if (!is.undefined(value.fontSize)) {
+      if (typeof value.fontSize !== 'undefined') {
         this.fontSize.set(value.fontSize)
       }
-      if (!is.undefined(value.fontFamily)) {
+      if (typeof value.fontFamily !== 'undefined') {
         this.fontFamily.set(value.fontFamily)
       }
 

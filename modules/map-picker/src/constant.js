@@ -1,5 +1,3 @@
-import is from '@pluginjs/is'
-
 export const namespace = 'mapPicker'
 
 export const events = {
@@ -108,7 +106,7 @@ export const defaults = {
     return {}
   },
   process(data) {
-    if (data && !is.undefined(data)) {
+    if (data && typeof data !== 'undefined') {
       return JSON.stringify(data)
     }
     return ''

@@ -5,7 +5,7 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import { queryAll, parseHTML } from '@pluginjs/dom'
 import Popover from '@pluginjs/popover'
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
+import { isArray } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -199,7 +199,7 @@ class Hotspots extends Component {
   getHotspotStyles(item) {
     const styles = []
 
-    if (is.array(item.position)) {
+    if (isArray(item.position)) {
       if (item.position[0]) {
         styles.push(`left:${item.position[0]}`)
       }
@@ -207,7 +207,7 @@ class Hotspots extends Component {
         styles.push(`top:${item.position[1]}`)
       }
     }
-    if (!is.undefined(item.styles)) {
+    if (typeof item.styles !== 'undefined') {
       Object.entries(item.styles).forEach(([style, value]) => {
         styles.push(`${style}:${value}`)
       })

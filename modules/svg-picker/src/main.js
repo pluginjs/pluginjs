@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isArray, isObject } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import {
   parseHTML,
@@ -392,7 +392,7 @@ class SvgPicker extends Component {
   formatData() {
     this.icons = {}
     this.data.forEach(v => {
-      if (!is.array(this.icons[v.type])) {
+      if (!isArray(this.icons[v.type])) {
         this.icons[v.type] = []
       }
 
@@ -522,14 +522,14 @@ class SvgPicker extends Component {
   }
 
   set(data) {
-    if (!is.object(data)) {
+    if (!isObject(data)) {
       return
     }
     this.select(this.getItem(data.id))
   }
 
   val(value) { /* eslint-disable-line */
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 

@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
+import { isNull } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import InputMask from '@pluginjs/input-mask'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
@@ -286,7 +286,7 @@ class TimePicker extends Component {
   }
 
   val(time) {
-    if (is.null(time) || is.undefined(time)) {
+    if (isNull(time) || typeof time === 'undefined') {
       return this.get()
     }
 

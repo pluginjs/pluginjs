@@ -1,5 +1,5 @@
 import { curry, compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
+import { isString, isArray, isNull } from '@pluginjs/is'
 
 const objDataName = 'objData'
 
@@ -46,8 +46,8 @@ export const attrVerify = (attrName, value, el) => {
     data: element => {
       const [key, v] = value.split('=')
       if (
-        !is.null(element.dataset[key]) &&
-        !is.undefined(element.dataset[key])
+        !isNull(element.dataset[key]) &&
+        typeof element.dataset[key] !== 'undefined'
       ) {
         if (v) {
           return element.dataset[key] === v
@@ -62,8 +62,8 @@ export const attrVerify = (attrName, value, el) => {
     attr: element => {
       const [key, v] = value.split('=')
       if (
-        !is.null(element.getAttribute(key)) &&
-        !is.undefined(element.getAttribute(key))
+        !isNull(element.getAttribute(key)) &&
+        typeof element.getAttribute(key !== 'undefined')
       ) {
         if (v) {
           return element.getAttribute(key) === v
@@ -104,7 +104,7 @@ export const Each = (obj, callback) => {
   let i = 0
   let length
 
-  if (is.array(obj)) {
+  if (isArray(obj)) {
     length = obj.length
     for (; i < length; i++) {
       callback(obj[i], i)
@@ -204,7 +204,7 @@ export const text = curry((content, el) => {
 })
 
 export const append = curry((child, el) => {
-  if (is.string(child)) {
+  if (isString(child)) {
     el.insertAdjacentHTML('beforeend', child)
   } else {
     el.append(child)
@@ -213,7 +213,7 @@ export const append = curry((child, el) => {
 })
 
 export const prepend = curry((child, el) => {
-  if (is.string(child)) {
+  if (isString(child)) {
     el.insertAdjacentHTML('afterbegin', child)
   } else {
     el.prepend(child)
@@ -222,7 +222,7 @@ export const prepend = curry((child, el) => {
 })
 
 export const insertBefore = curry((newElement, el) => {
-  if (is.string(newElement)) {
+  if (isString(newElement)) {
     el.insertAdjacentHTML('beforebegin', newElement)
   } else {
     const parentElement = parent(el)
@@ -232,7 +232,7 @@ export const insertBefore = curry((newElement, el) => {
 })
 
 export const insertAfter = curry((newElement, el) => {
-  if (is.string(newElement)) {
+  if (isString(newElement)) {
     el.insertAdjacentHTML('afterend', newElement)
   } else {
     const parentElement = parent(el)
@@ -242,7 +242,7 @@ export const insertAfter = curry((newElement, el) => {
 })
 
 export const wrap = curry((wrapElement, el) => {
-  if (is.string(wrapElement)) {
+  if (isString(wrapElement)) {
     wrapElement = parseHTML(wrapElement)
   }
   // compose(append(wrapElement), clone, insertBefore(wrapElement))(el)
@@ -253,7 +253,7 @@ export const wrap = curry((wrapElement, el) => {
 })
 
 export const wrapInner = (newElement, wrap) => {
-  if (is.string(newElement)) {
+  if (isString(newElement)) {
     newElement = parseHTML(newElement)
   }
   newElement.innerHTML = wrap.innerHTML

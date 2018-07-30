@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isString, isObject } from '@pluginjs/is'
 import ColorStrings from './colorStrings'
 import Converter from './converter'
 import { defaults as DEFAULTS } from './constant'
@@ -6,11 +6,11 @@ import { deepMerge } from '@pluginjs/utils'
 
 class Color {
   constructor(string, options) {
-    if (is.object(string) && is.undefined(options)) {
+    if (isObject(string) && typeof options === 'undefined') {
       options = string
       string = undefined
     }
-    if (is.string(options)) {
+    if (isString(options)) {
       options = { format: options }
     }
     this.options = deepMerge(DEFAULTS, options)
@@ -41,7 +41,7 @@ class Color {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.toString()
     }
     this.fromString(value)
@@ -49,7 +49,7 @@ class Color {
   }
 
   alpha(value) {
-    if (is.undefined(value) || isNaN(value)) {
+    if (typeof value === 'undefined' || isNaN(value)) {
       return this.value.a
     }
 
@@ -69,7 +69,7 @@ class Color {
   }
 
   fromString(string, updateFormat) {
-    if (is.string(string)) {
+    if (isString(string)) {
       string = string.trim()
       let matched = null
       let rgb
@@ -91,7 +91,7 @@ class Color {
           }
         }
       }
-    } else if (is.object(string)) {
+    } else if (isObject(string)) {
       this.set(string)
     }
     return this
@@ -99,9 +99,9 @@ class Color {
 
   format(format) {
     if (
-      is.string(format) &&
+      isString(format) &&
       (format = format.toUpperCase()) &&
-      !is.undefined(ColorStrings[format])
+      typeof ColorStrings[format] !== 'undefined'
     ) {
       if (format !== 'TRANSPARENT') {
         this.privateFormat = format
@@ -143,9 +143,9 @@ class Color {
 
   to(format) {
     if (
-      is.string(format) &&
+      isString(format) &&
       (format = format.toUpperCase()) &&
-      !is.undefined(ColorStrings[format])
+      typeof ColorStrings[format] !== 'undefined'
     ) {
       return ColorStrings[format].to(this.value, this)
     }
@@ -157,7 +157,7 @@ class Color {
     if (!this.privateValid) {
       value = this.options.invalidValue
 
-      if (is.string(value)) {
+      if (isString(value)) {
         return value
       }
     }
@@ -192,10 +192,10 @@ class Color {
       format !== 'HSLA' &&
       this.options.alphaConvert
     ) {
-      if (is.string(this.options.alphaConvert)) {
+      if (isString(this.options.alphaConvert)) {
         format = this.options.alphaConvert
       }
-      if (!is.undefined(this.options.alphaConvert[format])) {
+      if (typeof this.options.alphaConvert[format] !== 'undefined') {
         format = this.options.alphaConvert[format]
       }
     }
@@ -248,7 +248,7 @@ class Color {
   }
 
   static matchString(string) {
-    if (is.string(string)) {
+    if (isString(string)) {
       string = string.trim()
       let matched = null
       let rgb

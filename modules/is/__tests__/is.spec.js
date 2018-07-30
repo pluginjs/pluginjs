@@ -1,4 +1,4 @@
-import is from '../src'
+import is from '../src/main.js'
 
 /* Credit to http://is.js.org */
 describe('is', () => {
@@ -131,13 +131,27 @@ describe('is', () => {
     })
 
     describe('is.object', () => {
-      test('should return true if passed parameter type is object', () => {
+      test('should return true if passed parameter type isObject', () => {
         expect(is.object({})).toBeTrue()
       })
 
       test('should return false if passed parameter type is not object', () => {
         const notObject = 'test'
         expect(is.object(notObject)).toBeFalse()
+      })
+    })
+
+    describe('is.plainObject', () => {
+      test('should return true if passed parameter type is plain object', () => {
+        expect(is.plainObject({})).toBeTrue()
+      })
+
+      test('should return false if passed parameter type is not plain object', () => {
+        expect(is.plainObject('test')).toBeFalse()
+
+        expect(is.plainObject(['foo', 'bar'])).toBeFalse()
+
+        expect(is.plainObject(() => {})).toBeFalse()
       })
     })
 

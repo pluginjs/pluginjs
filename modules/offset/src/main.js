@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import UNITS from '@pluginjs/units'
 import TOOLTIP from '@pluginjs/tooltip'
-import is from '@pluginjs/is'
+import { isObject, isNumber } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle, getOffset } from '@pluginjs/styled'
@@ -414,7 +414,7 @@ class Offset extends Component {
       // const unit = $this.asUnits('getUnit')
       const unit = getObjData('units', $this).getUnit()
       const val = {}
-      if (!is.number(parseInt(value, 2))) {
+      if (!isNumber(parseInt(value, 2))) {
         value = 0
       }
 
@@ -545,12 +545,12 @@ class Offset extends Component {
   }
 
   set(value, only) {
-    if (!value || is.undefined(value)) {
+    if (!value || typeof value === 'undefined') {
       return
     }
 
     Each(value, (i, v) => {
-      if (is.object(v)) {
+      if (isObject(v)) {
         value[i] = `${v.value}${v.unit}`
       }
     })
@@ -612,7 +612,7 @@ class Offset extends Component {
   }
 
   parse(value) {
-    if (is.object(value)) {
+    if (isObject(value)) {
       return value
     }
     const units = ['px', 'em', 'rem', '%']
@@ -650,7 +650,7 @@ class Offset extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 

@@ -16,7 +16,7 @@ import {
   transitionEndEvent,
   transitionProperty
 } from '@pluginjs/feature'
-import is from '@pluginjs/is'
+import { isNumeric, isNumber, isPercentage } from '@pluginjs/is'
 import { convertPercentageToFloat, getTime } from '@pluginjs/utils'
 import {
   eventable,
@@ -451,7 +451,7 @@ class Scrollbar extends Component {
   }
 
   setBarLength(length, update) {
-    if (!is.undefined(length)) {
+    if (typeof length !== 'undefined') {
       this.element.style[this.attributes.length] = `${length.toString()}px`
     }
     if (update !== false) {
@@ -460,7 +460,7 @@ class Scrollbar extends Component {
   }
 
   setHandleLength(length, update) {
-    if (!is.undefined(length)) {
+    if (typeof length !== 'undefined') {
       if (length < this.options.minHandleLength) {
         length = this.options.minHandleLength
       } else if (
@@ -479,12 +479,12 @@ class Scrollbar extends Component {
   }
 
   updateLength(length, barLength) {
-    if (!is.undefined(length)) {
+    if (typeof length !== 'undefined') {
       this.handleLength = length
     } else {
       this.handleLength = this.getHandleLenght()
     }
-    if (!is.undefined(barLength)) {
+    if (typeof barLength !== 'undefined') {
       this.barLength = barLength
     } else {
       this.barLength = this.getBarLength()
@@ -566,7 +566,7 @@ class Scrollbar extends Component {
     let type = typeof value
 
     if (type === 'string') {
-      if (is.percentage(value)) {
+      if (isPercentage(value)) {
         value =
           convertPercentageToFloat(value) * (this.barLength - this.handleLength)
       }
@@ -586,7 +586,7 @@ class Scrollbar extends Component {
     let type = typeof value
 
     if (type === 'string') {
-      if (is.percentage(value)) {
+      if (isPercentage(value)) {
         value =
           convertPercentageToFloat(value) * (this.barLength - this.handleLength)
       }
@@ -603,7 +603,7 @@ class Scrollbar extends Component {
   }
 
   move(value, trigger, sync) {
-    if (!is.number(value) || this.is('disabled')) {
+    if (!isNumber(value) || this.is('disabled')) {
       return
     }
     if (value < 0) {
@@ -730,7 +730,7 @@ class Scrollbar extends Component {
       temp.push(property)
     }
     if (duration) {
-      if (is.numeric(duration)) {
+      if (isNumeric(duration)) {
         duration = `${duration}ms`
       }
       temp.push(duration)

@@ -9,7 +9,7 @@ import {
   insertBefore,
   insertAfter
 } from '@pluginjs/dom'
-import is from '@pluginjs/is'
+import { isObject } from '@pluginjs/is'
 
 const FilterFromData = (dataAttr, value = true, elements) =>
   elements.filter(item => {
@@ -72,7 +72,7 @@ class List {
   getVisibleSize() {
     let size = 0
 
-    if (is.object(this.options.visibleSize)) {
+    if (isObject(this.options.visibleSize)) {
       const keys = Object.keys(this.options.visibleSize)
       for (const k of keys) {
         const value = this.options.visibleSize[k]

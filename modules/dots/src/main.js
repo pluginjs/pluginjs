@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
+import { isString, isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -178,11 +178,11 @@ class Dots extends Component {
   }
 
   getTypeClass(types, TYPE) {
-    if (is.undefined(types) && this.options.type) {
+    if (typeof types === 'undefined' && this.options.type) {
       return this.getTypeClass(this.options.type)
     }
-    if (is.string(types)) {
-      if (is.undefined(TYPE)) {
+    if (isString(types)) {
+      if (typeof TYPE === 'undefined') {
         TYPE = this.classes.TYPE
       }
       types = types.split(' ')
@@ -205,7 +205,7 @@ class Dots extends Component {
   getItemsHtml(items) {
     let html = ''
 
-    if (is.array(items)) {
+    if (isArray(items)) {
       const template = templateEngine.compile(
         this.options.template.item.call(this, this.classes.ITEM)
       )
@@ -261,7 +261,7 @@ class Dots extends Component {
       return item.textContent
     }
 
-    if (is.array(this.options.valueFrom)) {
+    if (isArray(this.options.valueFrom)) {
       return query(this.options.valueFrom[0], item).getAttribute(
         this.options.valueFrom[1]
       )

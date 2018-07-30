@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isArray } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { arraysEqual, deepMerge, compose } from '@pluginjs/utils'
 import {
@@ -79,7 +79,7 @@ class Choice extends Component {
         const value = $item.getAttribute('value')
         const data = $item.dataset
 
-        if (is.undefined(data.label)) {
+        if (typeof data.label === 'undefined') {
           data.label = $item.innerHTML
         }
 
@@ -398,7 +398,7 @@ class Choice extends Component {
   set(value) {
     if (
       this.value === value ||
-      (is.array(value) && arraysEqual(this.value, value))
+      (isArray(value) && arraysEqual(this.value, value))
     ) {
       return
     }
@@ -423,7 +423,7 @@ class Choice extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.get()
     }
     return this.set(value)

@@ -1,5 +1,4 @@
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
 import { query, parseHTML, setObjData, parent } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -87,7 +86,7 @@ class TagList extends List {
   }
 
   addItem(val) {
-    if (!val || is.undefined(val)) {
+    if (!val || typeof val === 'undefined') {
       return
     }
 

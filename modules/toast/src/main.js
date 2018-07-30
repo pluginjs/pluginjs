@@ -1,5 +1,5 @@
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
+import { isNumber } from '@pluginjs/is'
 import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
@@ -60,7 +60,7 @@ class Toast extends GlobalComponent {
   show() {
     this.addToDom()
     append(this.$element, this.$wrap)
-    if (this.options.stack && is.number(this.options.stack)) {
+    if (this.options.stack && isNumber(this.options.stack)) {
       const instances = queryAll(`.${this.classes.NAMESPACE}`, this.$wrap)
       const _prevToastCount = instances.length
       const _extToastCount = _prevToastCount - this.options.stack
@@ -82,7 +82,7 @@ class Toast extends GlobalComponent {
   }
 
   processLoader() {
-    if (!this.$loader || !is.number(this.options.duration)) {
+    if (!this.$loader || !isNumber(this.options.duration)) {
       return
     }
 
@@ -311,7 +311,7 @@ class Toast extends GlobalComponent {
       )
     }
 
-    if (is.number(this.options.duration) && this.$loader) {
+    if (isNumber(this.options.duration) && this.$loader) {
       bindEvent(
         {
           type: this.eventName('mouseenter'),
@@ -422,7 +422,7 @@ class Toast extends GlobalComponent {
       )
     }
 
-    if (is.number(this.options.duration) && this.options.loader) {
+    if (isNumber(this.options.duration) && this.options.loader) {
       loader = templateEngine.render(this.options.templates.loader.call(this), {
         classes: this.classes
       })

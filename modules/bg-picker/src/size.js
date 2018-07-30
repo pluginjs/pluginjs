@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
@@ -39,9 +38,10 @@ export default class Size {
       this.$items[key].dataset.size = value
     })
 
-    const value = !is.undefined(this.instance.value.size)
-      ? this.instance.value.size
-      : this.defaultValue
+    const value =
+      typeof this.instance.value.size !== 'undefined'
+        ? this.instance.value.size
+        : this.defaultValue
     this.set(value)
 
     this.bind()

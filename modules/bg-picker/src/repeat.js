@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import {
   parseHTML,
@@ -38,9 +37,10 @@ export default class Repeat {
       this.$items[key].dataset.repeat = value
     })
 
-    const value = !is.undefined(this.instance.value.repeat)
-      ? this.instance.value.repeat
-      : this.defaultValue
+    const value =
+      typeof this.instance.value.repeat !== 'undefined'
+        ? this.instance.value.repeat
+        : this.defaultValue
     this.set(value)
     this.bind()
   }

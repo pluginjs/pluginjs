@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { parseHTML, queryAll } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
@@ -32,9 +31,10 @@ export default class TextDecoration {
       }
     })
 
-    const value = !is.undefined(this.instance.value.textDecoration)
-      ? this.instance.value.textDecoration
-      : this.defaultValue
+    const value =
+      typeof this.instance.value.textDecoration !== 'undefined'
+        ? this.instance.value.textDecoration
+        : this.defaultValue
     this.set(value)
 
     this.bind()

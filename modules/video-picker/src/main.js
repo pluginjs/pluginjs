@@ -1,6 +1,5 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
@@ -699,7 +698,7 @@ class VideoPicker extends Component {
   }
 
   set(data) {
-    if (!data || is.undefined(data)) {
+    if (!data || typeof data === 'undefined') {
       return
     }
 
@@ -708,7 +707,7 @@ class VideoPicker extends Component {
   }
 
   get() {
-    if (!this.data.url || is.undefined(this.data.url)) {
+    if (!this.data.url || typeof this.data.url === 'undefined') {
       return null
     }
 
@@ -716,7 +715,7 @@ class VideoPicker extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       const val = this.options.process.call(this, this.get())
       return val
     }

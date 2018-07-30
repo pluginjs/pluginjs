@@ -1,5 +1,3 @@
-import is from '@pluginjs/is'
-
 export const namespace = 'offset'
 
 export const events = {
@@ -103,7 +101,7 @@ export const defaults = {
   max: 1000,
 
   process(value) {
-    if (value && !is.undefined(value)) {
+    if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)
     }
     return ''

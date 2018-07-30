@@ -1,5 +1,4 @@
 import template from '@pluginjs/template'
-import is from '@pluginjs/is'
 import {
   parseHTML,
   insertAfter,
@@ -77,9 +76,10 @@ export default class Attachment {
     )
 
     this.$items = queryAll('li', this.$attachment)
-    const value = !is.undefined(this.instance.value.attachment)
-      ? this.instance.value.attachment
-      : this.defaultValue
+    const value =
+      typeof this.instance.value.attachment !== 'undefined'
+        ? this.instance.value.attachment
+        : this.defaultValue
     this.set(value)
   }
 

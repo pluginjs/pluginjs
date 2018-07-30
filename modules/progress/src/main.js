@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import easing from '@pluginjs/easing'
-import is from '@pluginjs/is'
+import { isPercentage } from '@pluginjs/is'
 import { getTime } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { append, parseHTML, query } from '@pluginjs/dom'
@@ -101,7 +101,7 @@ class Progress extends Component {
       const that = this
       this.clear()
 
-      if (is.percentage(goal)) {
+      if (isPercentage(goal)) {
         goal = parseInt(goal.replace('%', ''), 10)
         goal = Math.round(this.min + (goal / 100) * (this.max - this.min))
       }

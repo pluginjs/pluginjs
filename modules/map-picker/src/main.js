@@ -11,7 +11,7 @@ import {
 } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import is from '@pluginjs/is'
+import { isString, isNumber, isEmptyObject } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import {
@@ -65,7 +65,7 @@ class MapPicker extends Component {
   initialize() {
     this.build()
 
-    if (!is.emptyObject(this.data)) {
+    if (!isEmptyObject(this.data)) {
       this.update()
 
       if (this.data.place && !this.hasLatlng()) {
@@ -525,11 +525,11 @@ class MapPicker extends Component {
   }
 
   hasLatlng() {
-    return is.number(this.data.lat) && is.number(this.data.lng)
+    return isNumber(this.data.lat) && isNumber(this.data.lng)
   }
 
   set(data) {
-    if (is.emptyObject(data)) {
+    if (isEmptyObject(data)) {
       return
     }
 
@@ -563,11 +563,11 @@ class MapPicker extends Component {
   }
 
   val(data) {
-    if (is.undefined(data)) {
+    if (typeof data === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 
-    if (is.string(data)) {
+    if (isString(data)) {
       data = this.options.parse.call(this, data)
       return this.set(data)
     }

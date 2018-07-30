@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import {
   parseHTML,
@@ -38,9 +37,10 @@ export default class Position {
       this.$items[key].dataset.position = value
     })
 
-    const value = !is.undefined(this.instance.value.position)
-      ? this.instance.value.position
-      : this.defaultValue
+    const value =
+      typeof this.instance.value.position !== 'undefined'
+        ? this.instance.value.position
+        : this.defaultValue
     this.set(value)
 
     this.bind()

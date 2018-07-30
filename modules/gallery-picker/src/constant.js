@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 
 export const namespace = 'galleryPicker'
 
@@ -105,14 +105,14 @@ export const defaults = {
   },
 
   process(value) {
-    if (value && !is.undefined(value)) {
+    if (value && typeof value !== 'undefined') {
       return value.join(',')
     }
     return ''
   },
 
   parse(value) {
-    if (is.string(value) && value.length !== 0) {
+    if (isString(value) && value.length !== 0) {
       let array = []
       array = value.split(',')
       return array

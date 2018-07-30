@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isObject, isNumeric, isNumber, isNull, isNan } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent, bindEventOnce } from '@pluginjs/events'
@@ -88,7 +88,7 @@ class Spinner extends Component {
 
     this.data = {}
 
-    if (!is.null(this.options.unit)) {
+    if (!isNull(this.options.unit)) {
       this.UNITS = this.unitsInit()
 
       const { value, unit } = this.UNITS.get()
@@ -111,7 +111,7 @@ class Spinner extends Component {
       this.set(this.data, false)
     }
 
-    // if (is.null(this.options.unit)) {
+    // if (isNull(this.options.unit)) {
     // } else {
     // }
 
@@ -130,13 +130,13 @@ class Spinner extends Component {
     if (val) {
       let value = parseFloat(val)
 
-      // if (is.number(this.element.value)) {
+      // if (isNumber(this.element.value)) {
       //   this.data.value = this.element.value;
       // } else {
-      //   this.data.value = is.number(this.min) ? this.min : 0;
+      //   this.data.value = isNumber(this.min) ? this.min : 0;
       // }
 
-      if (is.nan(value)) {
+      if (isNan(value)) {
         value = 0
       }
 
@@ -409,14 +409,14 @@ class Spinner extends Component {
   }
 
   set(data, trigger = true) {
-    if (!is.number(data) && !is.object(data)) {
+    if (!isNumber(data) && !isObject(data)) {
       return
     }
 
-    const value = is.number(data) ? data : data.value
+    const value = isNumber(data) ? data : data.value
 
     this.data.value = value
-    if (!is.undefined(data.unit)) {
+    if (typeof data.unit !== 'undefined') {
       this.data.unit = data.unit
     }
 
@@ -450,14 +450,14 @@ class Spinner extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
     this.set(this.options.parse.call(this, value))
   }
 
   spinDown() {
-    if (!is.numeric(this.data.value)) {
+    if (!isNumeric(this.data.value)) {
       this.data.value = 0
     }
     let value = this.data.value
@@ -477,7 +477,7 @@ class Spinner extends Component {
   }
 
   spinUp() {
-    if (!is.numeric(this.data.value)) {
+    if (!isNumeric(this.data.value)) {
       this.data.value = 0
     }
 

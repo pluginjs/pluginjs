@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { queryAll, parseHTML } from '@pluginjs/dom'
@@ -33,9 +32,10 @@ export default class TextTransform {
       }
     })
 
-    const value = !is.undefined(this.instance.value.textTransform)
-      ? this.instance.value.textTransform
-      : this.defaultValue
+    const value =
+      typeof this.instance.value.textTransform !== 'undefined'
+        ? this.instance.value.textTransform
+        : this.defaultValue
     this.set(value)
     this.bind()
   }

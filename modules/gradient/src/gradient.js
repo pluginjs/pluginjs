@@ -1,5 +1,5 @@
-import is from '@pluginjs/is'
-import { deepMerge, isPlainObject } from '@pluginjs/utils'
+import { isString, isObject, isPlainObject } from '@pluginjs/is'
+import { deepMerge } from '@pluginjs/utils'
 import * as util from './util'
 import ColorStop from './colorStop'
 import { defaults } from './constant'
@@ -10,7 +10,7 @@ let DEFAULTS = defaults
 
 class Gradient {
   constructor(string, options) {
-    if (is.object(string) && is.undefined(options)) {
+    if (isObject(string) && typeof options === 'undefined') {
       options = string
       string = null
     }
@@ -36,7 +36,7 @@ class Gradient {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.toString()
     }
     this.fromString(value)
@@ -44,7 +44,7 @@ class Gradient {
   }
 
   angle(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.value.angle
     }
     this.value.angle = GradientString.parseAngle(value)
@@ -64,7 +64,7 @@ class Gradient {
   }
 
   insert(color, position, index) {
-    if (is.undefined(index)) {
+    if (typeof index === 'undefined') {
       index = this.current
     }
 
@@ -122,7 +122,7 @@ class Gradient {
   }
 
   get(index) {
-    if (is.undefined(index)) {
+    if (typeof index === 'undefined') {
       index = this.current
     }
     if (index >= 0 && index < this.length) {
@@ -133,7 +133,7 @@ class Gradient {
   }
 
   remove(index) {
-    if (is.undefined(index)) {
+    if (typeof index === 'undefined') {
       index = this.current
     }
     if (index >= 0 && index < this.length) {
@@ -158,9 +158,9 @@ class Gradient {
 
   type(type) {
     if (
-      is.string(type) &&
+      isString(type) &&
       (type = type.toUpperCase()) &&
-      !is.undefined(GradientTypes[type])
+      typeof GradientTypes[type] !== 'undefined'
     ) {
       this.privateType = type
       return this

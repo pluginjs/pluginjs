@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isArray } from '@pluginjs/is'
 import { debounce, compose } from '@pluginjs/utils'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
@@ -605,7 +605,7 @@ class FontPicker extends Component {
         `<div class='${this.classes.SEARCHLIST}'><div><ul></ul></div></div>`
       )
 
-      if (is.array(source.fonts)) {
+      if (isArray(source.fonts)) {
         const $fontsWrap = parseHTML(
           `<div class='${this.classes.FONTWRAP}'><div><ul></ul></div></div>`
         )
@@ -1010,7 +1010,7 @@ class FontPicker extends Component {
   }
 
   set(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return
     }
 
@@ -1033,7 +1033,7 @@ class FontPicker extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.get()
     }
 

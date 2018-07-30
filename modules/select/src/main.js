@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isArray } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
@@ -648,7 +648,7 @@ class Select extends Component {
   }
 
   query(data, value, name = 'label', nest = true) {
-    if (value.length === 0 || value === null || is.undefined(value)) {
+    if (value.length === 0 || value === null || typeof value === 'undefined') {
       return data
     }
     const newData = []
@@ -707,7 +707,7 @@ class Select extends Component {
     }
 
     this.items.forEach((n, i) => {
-      if (is.array(value)) {
+      if (isArray(value)) {
         value.forEach(val => {
           handle(n, val, isAdd, trigger, type, i)
         })
@@ -724,7 +724,7 @@ class Select extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 

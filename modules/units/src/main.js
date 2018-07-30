@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import DROPDOWN from '@pluginjs/dropdown'
-import is from '@pluginjs/is'
+import { isNull, isNan } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -124,9 +124,9 @@ class Units extends Component {
     if (val) {
       let value = parseFloat(val)
       let unit = val.match(/\D+$/g)
-      unit = is.null(unit) ? this.options.data[0] : unit[0]
+      unit = isNull(unit) ? this.options.data[0] : unit[0]
 
-      if (is.nan(value)) {
+      if (isNan(value)) {
         value = ''
       }
       if (this.options.data.indexOf(unit) < 0) {
@@ -228,7 +228,9 @@ class Units extends Component {
 
   set(data, trigger = true) {
     const hasUnit =
-      !is.undefined(data.unit) && data.unit !== null && data.unit !== this.unit
+      typeof data.unit !== 'undefined' &&
+      data.unit !== null &&
+      data.unit !== this.unit
 
     this.unit = hasUnit ? data.unit : this.unit
     this.value = data.value
@@ -286,7 +288,7 @@ class Units extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 

@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isString, isBoolean } from '@pluginjs/is'
 import { wrap, parent, parseHTML, unwrap } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { contentWidth, setStyle } from '@pluginjs/styled'
@@ -211,11 +211,11 @@ class Toggle extends Component {
   }
 
   set(value, update = true) {
-    if (is.string(value)) {
+    if (isString(value)) {
       value = value === 'false' ? false : Boolean(value)
     }
 
-    if (is.boolean(value)) {
+    if (isBoolean(value)) {
       this.checked = value
     } else {
       this.checked = Boolean(value)

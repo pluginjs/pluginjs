@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 import List from '@pluginjs/list'
 import { deepMerge } from '@pluginjs/utils'
 
@@ -61,7 +60,7 @@ export const defaults = deepMerge(List.defaults, {
     return {}
   },
   process(data) {
-    if (data && !is.undefined(data)) {
+    if (data && typeof data !== 'undefined') {
       return JSON.stringify(data)
     }
     return ''

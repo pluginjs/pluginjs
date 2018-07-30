@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isEmptyObject } from '@pluginjs/is'
 import anime from 'animejs'
 import { setStyle } from '@pluginjs/styled'
 import { setObjData, getObjData } from '@pluginjs/dom'
@@ -304,7 +304,7 @@ class Animate {
   constructor(instanced) {
     this.api = instanced
     this.effects = deepMerge({}, EFFECTS, this.api.options.effects)
-    this.effectName = is.emptyObject(this.effects[this.api.options.animate])
+    this.effectName = isEmptyObject(this.effects[this.api.options.animate])
       ? 'fadeInUp'
       : this.api.options.animate
     this.config = deepMerge({}, this.effects[this.effectName].animeOpts)

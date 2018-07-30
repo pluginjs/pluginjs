@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 export const namespace = 'datePicker'
 
 export const events = {
@@ -150,8 +149,7 @@ export const defaults = {
   },
 
   process(value) {
-    // /* global As*/
-    if (value && !is.undefined()) {
+    if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)
     }
     return ''

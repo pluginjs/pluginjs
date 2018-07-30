@@ -1,5 +1,5 @@
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 import { query } from '@pluginjs/dom'
 import { removeClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
@@ -36,15 +36,15 @@ import Tooltip from '@pluginjs/tooltip'
 )
 class Popover extends Tooltip {
   constructor(element, options = {}, namespace, defaults, classes) {
-    if (!is.string(namespace)) {
+    if (!isString(namespace)) {
       namespace = NAMESPACE
     }
 
-    if (is.undefined(defaults)) {
+    if (typeof defaults === 'undefined') {
       defaults = DEFAULTS
     }
 
-    if (is.undefined(classes)) {
+    if (typeof classes === 'undefined') {
       classes = CLASSES
     }
 

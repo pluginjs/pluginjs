@@ -1,4 +1,4 @@
-import is from '@pluginjs/is'
+import { isNumber } from '@pluginjs/is'
 import Hammer from 'hammerjs'
 import anime from 'animejs'
 import { compose } from '@pluginjs/utils'
@@ -25,7 +25,7 @@ class Responsive {
   }
 
   initialize() {
-    this.index = is.number(this.instance.current[0])
+    this.index = isNumber(this.instance.current[0])
       ? this.instance.current[0]
       : 0
     this.duration = parseInt(this.instance.options.responsiveDuration, 10)
@@ -240,7 +240,6 @@ class Responsive {
 
     const BASE_DURATION = 1
     const $pane = this.instance.$panes[index]
-    const magicNumber = 1
     anime({
       targets: $pane,
       translateY: 0,

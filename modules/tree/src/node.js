@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
   append,
@@ -149,7 +148,7 @@ export default class Node {
   }
 
   isOpened() {
-    if (is.undefined(this.opened)) {
+    if (typeof this.opened === 'undefined') {
       return this.dom.classList.contains(this.classes.OPEN)
     }
     return this.opened

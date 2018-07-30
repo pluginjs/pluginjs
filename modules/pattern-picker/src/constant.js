@@ -1,4 +1,3 @@
-import is from '@pluginjs/is'
 import valueParse from './parser'
 
 export const namespace = 'patternPicker'
@@ -83,7 +82,7 @@ export const defaults = {
     }
   },
   process(value) {
-    if (value && !is.undefined(value)) {
+    if (value && typeof value !== 'undefined') {
       return JSON.stringify(value).replace(/("|\\")/g, '&quot;')
     }
     return ''

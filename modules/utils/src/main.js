@@ -1,4 +1,5 @@
 import keyframes2Anime from './anime-polyfill'
+import { isObject, isPlainObject } from '@pluginjs/is'
 
 export const deepClone = obj => {
   if (typeof obj === 'function') {
@@ -9,26 +10,6 @@ export const deepClone = obj => {
 
 export function nub(arr) {
   return Array.from(new Set(arr))
-}
-
-export function isPlainObject(data) {
-  if (typeof data !== 'object') {
-    return false
-  }
-
-  if (data === null) {
-    return false
-  }
-
-  if (data instanceof Set || data instanceof Map) {
-    return false
-  }
-
-  if (Array.isArray(data)) {
-    return false
-  }
-
-  return true
 }
 
 function deepMergeTwo(x, y) {
@@ -71,10 +52,6 @@ function deepMergeTwo(x, y) {
     return x
   }
   return y
-}
-
-function isObject(obj) {
-  return Object(obj) === obj
 }
 
 export function deepMerge(...args) {

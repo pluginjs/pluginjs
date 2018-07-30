@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { deepMerge, curry, compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
+import { isString, isObject, isNumber } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import Hammer from 'hammerjs'
 import Popper from 'popper.js'
@@ -1068,7 +1068,7 @@ class DatePicker extends Component {
   }
 
   setDate(obj, YTD, date) {
-    if (is.object(YTD)) {
+    if (isObject(YTD)) {
       for (const key in YTD) {
         if ({}.hasOwnProperty.call(YTD, key)) {
           switch (key) {
@@ -1133,7 +1133,7 @@ class DatePicker extends Component {
   parseHtmlString(option, value) {
     const array = []
     const options = DEFAULTS
-    if (is.object(options[option])) {
+    if (isObject(options[option])) {
       const parts = this.stringSeparate(value, ',')
       let subParts
       for (let i = 0; i < parts.length; i++) {
@@ -1222,9 +1222,9 @@ class DatePicker extends Component {
     const array = []
     let count = 0
     for (let i = 0; i < arr.length; i++) {
-      if (is.string(arr[i])) {
+      if (isString(arr[i])) {
         array[count++] = this.parseDate(arr[i], format)
-      } else if (is.object(arr[i])) {
+      } else if (isObject(arr[i])) {
         const obj = arr[i]
         let from
         let to
@@ -1255,11 +1255,11 @@ class DatePicker extends Component {
     const array = []
     let count = 0
     for (let i = 0; i < arr.length; i++) {
-      if (is.number(arr[i])) {
+      if (isNumber(arr[i])) {
         array[count++] = arr[i]
-      } else if (is.string(arr[i])) {
+      } else if (isString(arr[i])) {
         array[count++] = Number(arr[i])
-      } else if (is.object(arr[i])) {
+      } else if (isObject(arr[i])) {
         const obj = arr[i]
         let from
         let to
@@ -2164,7 +2164,7 @@ class DatePicker extends Component {
     if (this.is('disabled')) {
       return null
     }
-    if (!is.undefined(_options)) {
+    if (typeof _options !== 'undefined') {
       for (const m in _options) {
         if ({}.hasOwnProperty.call(_options, m)) {
           this.options[m] = _options[m]
@@ -2187,7 +2187,7 @@ class DatePicker extends Component {
         this.options[m] = this.defaultOptions[m]
       }
     }
-    if (!is.undefined(_options)) {
+    if (typeof _options !== 'undefined') {
       for (const n in _options) {
         if ({}.hasOwnProperty.call(_options, n)) {
           this.options[n] = _options[n]
@@ -2202,7 +2202,7 @@ class DatePicker extends Component {
   }
 
   set(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return
     }
 
@@ -2226,7 +2226,7 @@ class DatePicker extends Component {
   }
 
   val(value) {
-    if (is.undefined(value)) {
+    if (typeof value === 'undefined') {
       return this.get()
     }
 

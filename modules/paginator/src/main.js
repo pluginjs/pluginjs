@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isString, isFunction } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { deepMerge } from '@pluginjs/utils'
 import {
@@ -73,7 +73,7 @@ class Paginator extends Component {
     components.forEach(name => {
       name = name.trim()
 
-      if (!is.undefined(COMPONENTS[name])) {
+      if (typeof COMPONENTS[name] !== 'undefined') {
         component = new COMPONENTS[name](that)
         that.components.push(component)
       }
@@ -97,7 +97,7 @@ class Paginator extends Component {
 
   bind() {
     this.components.forEach(component => {
-      if (is.function(component.bind)) {
+      if (isFunction(component.bind)) {
         component.bind()
       }
     })
@@ -105,7 +105,7 @@ class Paginator extends Component {
 
   unbind() {
     this.components.forEach(component => {
-      if (is.function(component.unbind)) {
+      if (isFunction(component.unbind)) {
         component.unbind()
       }
     })
@@ -116,7 +116,7 @@ class Paginator extends Component {
     that.trigger(EVENTS.RESIZE)
 
     this.components.forEach(component => {
-      if (is.function(component.resize)) {
+      if (isFunction(component.resize)) {
         component.resize()
       }
     })
@@ -166,7 +166,7 @@ class Paginator extends Component {
   // update('totalPage', 10);
   update(data, value) {
     this.unbind()
-    const changes = is.string(data) ? [[data, value]] : Object.entries(data)
+    const changes = isString(data) ? [[data, value]] : Object.entries(data)
     const that = this
     changes.map(([k, v]) => (this[k] = v))
     this.totalPages = this.getTotalPages()

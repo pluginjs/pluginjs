@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import is from '@pluginjs/is'
+import { isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { outerWidth, outerWidthWithMargin, clientWidth } from '@pluginjs/styled'
@@ -119,7 +119,7 @@ class Filters extends Component {
   getItemsHtml(items) {
     let html = ''
 
-    if (is.array(items)) {
+    if (isArray(items)) {
       const template = templateEngine.compile(
         this.options.template.item.call(this, this.classes.ITEM)
       )
@@ -281,7 +281,7 @@ class Filters extends Component {
       return $item.textContent
     }
 
-    if (is.array(this.options.valueFrom)) {
+    if (isArray(this.options.valueFrom)) {
       return query(this.options.valueFrom[0], $item).getAttribute(
         this.options.valueFrom[1]
       )

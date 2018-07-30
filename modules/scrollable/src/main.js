@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import is from '@pluginjs/is'
+import { isString, isNumber, isPercentage, isDomNode } from '@pluginjs/is'
 import easing from '@pluginjs/easing'
 import SCROLLBAR from '@pluginjs/scrollbar'
 import {
@@ -366,7 +366,7 @@ class Scrollable extends Component {
           type: 'scrollbar:change',
           handler: e => {
             const [value] = e.detail.data
-            if (is.string(e.target.direction)) {
+            if (isString(e.target.direction)) {
               that.scrollTo(
                 e.target.direction,
                 convertFloatToPercentage(value),
@@ -511,7 +511,7 @@ class Scrollable extends Component {
     let type = typeof value
 
     if (type === 'string') {
-      if (is.percentage(value)) {
+      if (isPercentage(value)) {
         value =
           convertPercentageToFloat(value) * this.getScrollLength(direction)
       }
@@ -531,7 +531,7 @@ class Scrollable extends Component {
     let type = typeof value
 
     if (type === 'string') {
-      if (is.percentage(value)) {
+      if (isPercentage(value)) {
         value =
           convertPercentageToFloat(value) * this.getScrollLength(direction)
       }
@@ -548,7 +548,7 @@ class Scrollable extends Component {
   }
 
   move(direction, value, trigger, sync) {
-    if (this[direction] !== true || !is.number(value)) {
+    if (this[direction] !== true || !isNumber(value)) {
       return
     }
 
@@ -657,7 +657,7 @@ class Scrollable extends Component {
 
   showBar(direction) {
     const $bar = this.getBar(direction)
-    if (is.domNode($bar)) {
+    if (isDomNode($bar)) {
       removeClass(this.classes.BARHIDE, $bar)
     } else {
       $bar.map(bar => removeClass(this.classes.BARHIDE, bar))
@@ -666,7 +666,7 @@ class Scrollable extends Component {
 
   hideBar(direction) {
     const $bar = this.getBar(direction)
-    if (is.domNode($bar)) {
+    if (isDomNode($bar)) {
       addClass(this.classes.BARHIDE, $bar)
     } else {
       $bar.map(bar => addClass(this.classes.BARHIDE, bar))

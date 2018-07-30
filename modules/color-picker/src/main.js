@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import is from '@pluginjs/is'
+import { isString } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -872,9 +872,9 @@ class ColorPicker extends Component {
   //     val = this.info.gradient
   //   }
   //   const color = this.asColor.val(val)
-  //   if (is.string(val) && val.indexOf('#') > -1) {
+  //   if (isString(val) && val.indexOf('#') > -1) {
   //     this.setInput(color.toHEX())
-  //   } else if (is.string(val) && !val.match(/\d/g)) {
+  //   } else if (isString(val) && !val.match(/\d/g)) {
   //     this.setInput(color.toNAME())
   //   } else {
   //     this.setInput(color.toRGBA())
@@ -892,9 +892,9 @@ class ColorPicker extends Component {
     }
 
     const color = this.asColor.val(val)
-    if (is.string(val) && val.indexOf('#') > -1) {
+    if (isString(val) && val.indexOf('#') > -1) {
       this.setInput(color.toHEX())
-    } else if (is.string(val) && !val.match(/\d/g)) {
+    } else if (isString(val) && !val.match(/\d/g)) {
       this.setInput(color.toNAME())
     } else {
       this.setInput(color.toRGBA())

@@ -12,7 +12,7 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
-import is from '@pluginjs/is'
+import { isString, isArray } from '@pluginjs/is'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -174,11 +174,11 @@ class Arrows extends Component {
   }
 
   getTypeClass(types, TYPE) {
-    if (is.undefined(types) && this.options.type) {
+    if (typeof types === 'undefined' && this.options.type) {
       return this.getTypeClass(this.options.type)
     }
-    if (is.string(types)) {
-      if (is.undefined(TYPE)) {
+    if (isString(types)) {
+      if (typeof TYPE === 'undefined') {
         TYPE = this.classes.TYPE
       }
       types = types.split(' ')
@@ -203,7 +203,7 @@ class Arrows extends Component {
       return $arrow.textContent
     }
 
-    if (is.array(this.options.valueFrom)) {
+    if (isArray(this.options.valueFrom)) {
       return query(this.options.valueFrom[0], $arrow).getAttribute(
         this.options.valueFrom[1]
       )
