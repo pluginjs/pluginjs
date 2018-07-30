@@ -8,14 +8,45 @@
 
 ## API
 
-- request
-- exit
-- toggle
-- isFullscreen
-- enabled
-- exit
-- element
-- isFullscreen
+### request
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| args | Any[] | |
+
+### exit
+
+Exit full screen.
+
+### toggle
+
+Open full screen or exit full screen
+
+### isFullscreen
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isFullscreen | `Boolean` | |
+
+### enabled
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isEnabled | `Boolean` | |
+
+### element
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| fullscreenElement | `HTMLElement[]` | |
 
 ## Browser support
 
