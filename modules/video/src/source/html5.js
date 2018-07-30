@@ -13,10 +13,10 @@ class Html5 {
   }
 
   load() {
-    this.wrap = parseHTML(this.createHtml())
-    append(this.wrap, this.element)
+    this.$wrap = parseHTML(this.createHtml())
+    append(this.$wrap, this.element)
     if (this.options.poster) {
-      this.poster = query(`.${this.instance.classes.POSTER}`, this.wrap)
+      this.poster = query(`.${this.instance.classes.POSTER}`, this.$wrap)
       setStyle(
         { 'background-image': `url(${this.options.poster})` },
         this.poster
@@ -25,7 +25,7 @@ class Html5 {
 
     this.video = document.createElement('video')
     this.setDefaultParameters()
-    append(this.video, this.wrap)
+    append(this.video, this.$wrap)
 
     this.instance.trigger(EVENTS.LOAD)
     this.instance.trigger(EVENTS.LOADED)
@@ -93,7 +93,7 @@ class Html5 {
         width,
         height
       },
-      this.wrap
+      this.$wrap
     )
   }
 
@@ -185,11 +185,11 @@ class Html5 {
 
   destroy() {
     this.unbind()
-    const element = query('video', this.wrap)
+    const element = query('video', this.$wrap)
     if (element) {
       element.src = '//about:blank'
     }
-    this.wrap.remove()
+    this.$wrap.remove()
   }
 }
 

@@ -15,10 +15,10 @@ class Vimeo {
   }
 
   load() {
-    this.wrap = parseHTML(this.createHtml())
-    append(this.wrap, this.element)
+    this.$wrap = parseHTML(this.createHtml())
+    append(this.$wrap, this.element)
     if (this.options.poster) {
-      this.poster = query(`.${this.instance.classes.POSTER}`, this.wrap)
+      this.poster = query(`.${this.instance.classes.POSTER}`, this.$wrap)
       setStyle(
         { 'background-image': `url(${this.options.poster})` },
         this.poster
@@ -59,7 +59,7 @@ class Vimeo {
       autopause: false // Pause this video automatically when another one plays. Defaults to true.
     }
 
-    this.media = new window.Vimeo.Player(this.wrap, playerSettings)
+    this.media = new window.Vimeo.Player(this.$wrap, playerSettings)
     this.bind()
   }
 
@@ -130,7 +130,7 @@ class Vimeo {
         width,
         height
       },
-      this.wrap
+      this.$wrap
     )
   }
 
@@ -192,11 +192,11 @@ class Vimeo {
   }
 
   destroy() {
-    const element = query('iframe', this.wrap)
+    const element = query('iframe', this.$wrap)
     if (element) {
       element.src = '//about:blank'
     }
-    this.wrap.remove()
+    this.$wrap.remove()
   }
 }
 

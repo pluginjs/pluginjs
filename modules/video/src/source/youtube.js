@@ -15,10 +15,10 @@ class Youtube {
   }
 
   load() {
-    this.wrap = parseHTML(this.createHtml())
-    append(this.wrap, this.element)
+    this.$wrap = parseHTML(this.createHtml())
+    append(this.$wrap, this.element)
     if (this.options.poster) {
-      this.poster = query(`.${this.instance.classes.POSTER}`, this.wrap)
+      this.poster = query(`.${this.instance.classes.POSTER}`, this.$wrap)
       setStyle(
         { 'background-image': `url(${this.options.poster})` },
         this.poster
@@ -34,7 +34,7 @@ class Youtube {
 
   init() {
     this.iframe = document.createElement('div')
-    append(this.iframe, this.wrap)
+    append(this.iframe, this.$wrap)
 
     this.setdefault()
 
@@ -117,7 +117,7 @@ class Youtube {
         width,
         height
       },
-      this.wrap
+      this.$wrap
     )
   }
 
@@ -197,11 +197,11 @@ class Youtube {
   }
 
   destroy() {
-    const element = query('iframe', this.wrap)
+    const element = query('iframe', this.$wrap)
     if (element) {
       element.src = '//about:blank'
     }
-    this.wrap.remove()
+    this.$wrap.remove()
   }
 }
 
