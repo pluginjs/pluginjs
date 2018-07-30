@@ -44,8 +44,7 @@ export const methods = [
 export const defaults = deepMerge(Popover.defaults, {
   hideOutClick: true,
   placement: 'left',
-  constrainToWindow: false,
-  constrainToScrollParent: false,
+  trigger: 'click',
   template() {
     return (
       '<div class="{classes.POPOVER} {classes.POPDIALOG}" role="tooltip">' +

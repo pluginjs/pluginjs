@@ -101,10 +101,6 @@ Name | Description | Default
 `"html"` | Set is enable html or not | `false`
 `"selector"` | Set if a selector is provided, popover objects will be delegated to the specified targets | `false`
 `"placement"` | Set position of plugin | `top`
-`"offset"` | Set tether offset | `0 0`
-`"constrainToWindow"` | Set is enable constrain to window or not | `true`
-`"constrainToScrollParent"` | Set is enabled constrain to scroll parent or not | `false`
-`"constraints"` | Set constraints of tether | `[]`
 `"container"` | Set is enabled container | `false`
 
 ### Events

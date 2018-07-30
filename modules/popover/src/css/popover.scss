@@ -17,30 +17,6 @@ $popover-dark-arrow-outer-color: fade-in(
 ) !default;
 $popover-dark-title-color: $popover-dark-color !default;
 
-//base style
-.position-grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 $popover-position-grid-margin-x;
-}
-
-.position-cell {
-  flex: 1 33.33%;
-}
-
-.position-cell a {
-  display: inline-block;
-  margin-top: $popover-position-cell-a-margin-y;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}
-
 .#{$popover}--simple {
   .#{$popover}-content {
     padding: $popover-simple-content-spacer;

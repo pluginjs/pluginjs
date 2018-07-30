@@ -93,8 +93,6 @@ Name | Description | Default
 -----|--------------|-----
 `"hideOutClick"` | Set hideOutClick | `true`
 `"placement"` | Set placement | `left`
-`"constrainToWindow"` | Set constrainTowindow | `false`
-`"constrainToScrollParent"` | Set constrainToScrollParent | `false`
 `"template"` | Set default template | `function() {...}`
 `"templates"` | Set default templates | `{}`
 `"buttons"` | Set default button | `{}`

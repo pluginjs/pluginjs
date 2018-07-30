@@ -30,23 +30,6 @@ $popover-position-cell-a-padding-y: 0.9rem !default;
 $popover-position-cell-a-padding-x: 2rem !default;
 $popover-position-cell-a-margin-y: 20px !default;
 
-//base style
-.position-grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 $popover-position-grid-margin-x;
-}
-
-.position-cell {
-  flex: 1 33.33%;
-}
-
-.position-cell a {
-  display: inline-block;
-  padding: $popover-position-cell-a-padding-y $popover-position-cell-a-padding-x;
-  margin-top: $popover-position-cell-a-margin-y;
-}
-
 // Core
 // =====================
 .#{$popover}-dialog {

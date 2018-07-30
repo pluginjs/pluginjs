@@ -9,29 +9,6 @@ $tooltip-light-box-shadow: $box-shadow-base !default;
 $tooltip-position-grid-margin-x: 6.25 * $tooltip-font-size !default;
 $tooltip-position-cell-a-margin-y: 1.25 * $tooltip-font-size !default;
 
-//base style
-.position-grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 $tooltip-position-grid-margin-x;
-}
-
-.position-cell {
-  flex: 1 33.33%;
-}
-
-.position-cell a {
-  margin-top: $tooltip-position-cell-a-margin-y;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-center {
-  text-align: center;
-}
-
 // light
 // =====================
 .#{$tooltip}--light {

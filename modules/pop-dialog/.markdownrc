@@ -15,16 +15,6 @@
         "defaultValue": "left"
       },
       {
-        "name": "constrainToWindow",
-        "desc": "Set constrainTowindow",
-        "defaultValue": "false"
-      },
-      {
-        "name": "constrainToScrollParent",
-        "desc": "Set constrainToScrollParent",
-        "defaultValue": "false"
-      },
-      {
         "name": "template",
         "desc": "Set default template",
         "defaultValue": "function() {...}"
