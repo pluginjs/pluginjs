@@ -2,11 +2,9 @@
 
 [![npm package](https://img.shields.io/npm/v/@pluginjs/global-component.svg)](https://www.npmjs.com/package/@pluginjs/global-component)
 
-`global-plugin` is a utility JavaScript library for global pluginjs library.
+`global-component` is a utility JavaScript library for global pluginjs library.
 
 ---
-
-
 
 ## Browser support
 

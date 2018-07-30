@@ -32,14 +32,12 @@ Development:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/gradient/dist/gradient.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient/dist/gradient.css">
 ```
 
 Production:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/gradient/dist/gradient.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient/dist/gradient.min.css">
 ```
 
 ### Initialize
@@ -56,7 +54,6 @@ ECMAScript Module:
 
 ```javascript
 import Gradient from "@pluginjs/gradient"
-import "@pluginjs/gradient/dist/gradient.css"
 
 Gradient.of(document.querySelector('.element'), options)
 ```
@@ -64,7 +61,6 @@ Gradient.of(document.querySelector('.element'), options)
 CommonJS:
 
 ```javascript
-require("@pluginjs/gradient/dist/gradient.css")
 const Gradient = require("@pluginjs/gradient")
 
 Gradient.of(document.querySelector('.element'), options)
@@ -73,7 +69,6 @@ Gradient.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient/dist/gradient.css">
 <script src="https://unpkg.com/@pluginjs/gradient/dist/gradient.js"></script>
 <script>
   Pj.gradient('.element', options)
