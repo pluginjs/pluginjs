@@ -1,4 +1,4 @@
-$bordered-color: rgba(#fff, 0.3) !default;
+$bordered-color: $color-white !default;
 
 .#{$beforeAfter}-labels-bordered {
   .#{$beforeAfter}-label-before,

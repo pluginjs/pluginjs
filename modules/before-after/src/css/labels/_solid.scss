@@ -1,4 +1,4 @@
-$solid-bg: rgba(#000, 0.4) !default;
+$solid-bg: rgba($color-black, 0.3) !default;
 
 .#{$beforeAfter}-labels-solid {
   .#{$beforeAfter}-label-before,

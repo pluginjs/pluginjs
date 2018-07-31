@@ -1,19 +1,24 @@
-$rectangle-handle-width: 16px !default;
-$rectangle-handle-height: 36px !default;
+$rectangle-handle-width: 1rem !default;
+$rectangle-handle-height: 2.25rem !default;
 
 .#{$beforeAfter}--rectangle {
   .#{$beforeAfter}-handle {
-    &::before {
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    border: $beforeAfter-handle-border-size solid
+        $beforeAfter-handle-border-color;
+    box-shadow: $beforeAfter-handle-box-shadow;
+    transform: translate(-50%, -50%);
+
+    &::before,
+    &::after {
       position: absolute;
-      top: 50%;
-      left: 50%;
       z-index: 5;
       display: block;
       content: " ";
-      border: $beforeAfter-handle-border-size solid
-        $beforeAfter-handle-border-color;
+      background:  $beforeAfter-handle-line-color;
       box-shadow: $beforeAfter-handle-box-shadow;
-      transform: translate(-50%, -50%);
     }
 
     &:hover {
@@ -30,18 +35,48 @@ $rectangle-handle-height: 36px !default;
 
   &.#{$beforeAfter}-horizontal {
     .#{$beforeAfter}-handle {
+      width: $rectangle-handle-width;
+      height: $rectangle-handle-height;
+      &::before,
+      &::after {
+        left: 50%;
+        width: $beforeAfter-handle-border-size;
+        height: 624rem; // 9999px
+        transform: translateX(-50%);
+      }
+
       &::before {
-        width: $rectangle-handle-width;
-        height: $rectangle-handle-height;
+        bottom: 50%;
+        margin-bottom: $circle-handle-size / 2 + $beforeAfter-handle-border-size;
+      }
+  
+      &::after {
+        top: 50%;
+        margin-top: $circle-handle-size / 2 + $beforeAfter-handle-border-size;
       }
     }
   }
 
   &.#{$beforeAfter}-vertical {
     .#{$beforeAfter}-handle {
+      width: $rectangle-handle-height;
+      height: $rectangle-handle-width;
+      &::before,
+      &::after {
+        top: 50%;
+        width: 624rem; // 9999px
+        height: $beforeAfter-handle-border-size;
+        transform: translateY(-50%);
+      }
+
       &::before {
-        width: $rectangle-handle-height;
-        height: $rectangle-handle-width;
+        left: 50%;
+        margin-left: $circle-handle-size / 2 + $beforeAfter-handle-border-size;
+      }
+  
+      &::after {
+        right: 50%;
+        margin-right: $circle-handle-size / 2 + $beforeAfter-handle-border-size;
       }
     }
   }

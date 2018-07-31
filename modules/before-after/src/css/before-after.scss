@@ -4,22 +4,22 @@
 // =====================
 $beforeAfter: "pj-beforeAfter" !default;
 
-$beforeAfter-border-radius: $border-radius-lg !default;
-$beforeAfter-label-gap: 16px !default;
-$beforeAfter-label-font-size: $font-size-sm !default;
-$beforeAfter-label-color: #fff !default;
-$beforeAfter-label-spacer: 8px 14px !default;
-$beforeAfter-label-border-radius: $border-radius-base !default;
+$beforeAfter-label-gap: 1rem !default;
+$beforeAfter-label-font-size: $font-size-lg !default;
+$beforeAfter-label-color: $color-white !default;
+$beforeAfter-label-spacer: 0.05rem 0.625rem !default;
+$beforeAfter-label-border-radius: 3px !default;
 $beforeAfter-label-box-shadow: $box-shadow-base !default;
+$beforeAfter-label-text-shadow: 0.125rem 0.1875rem 0.5rem $color-black !default;
 
-$beforeAfter-handle-line-color: rgba(#fff, 0.6) !default;
-$beforeAfter-handle-border-size: 3px !default;
+$beforeAfter-handle-line-color: rgba($gray-light, 0.8) !default;
+$beforeAfter-handle-border-size: 0.125rem !default;
 $beforeAfter-handle-border-color: $beforeAfter-handle-line-color !default;
 $beforeAfter-handle-box-shadow: $box-shadow-base !default;
-$beforeAfter-handle-hover-line-color: #fff !default;
+$beforeAfter-handle-hover-line-color: $color-white !default;
 $beforeAfter-handle-hover-border-color: $beforeAfter-handle-hover-line-color !default;
 $beforeAfter-handle-arrow-color: $beforeAfter-handle-border-color !default;
-$beforeAfter-handle-arrow-size: 12px !default;
+$beforeAfter-handle-arrow-size: 1.25rem !default;
 $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !default;
 
 // Core
@@ -30,7 +30,6 @@ $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !d
   display: inline-block;
   overflow: hidden;
   user-select: none;
-  border-radius: $beforeAfter-border-radius;
 
   img {
     display: block;
@@ -60,6 +59,7 @@ $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !d
   z-index: 4;
   font-size: $beforeAfter-label-font-size;
   color: $beforeAfter-label-color;
+  text-shadow: $beforeAfter-label-text-shadow;
   pointer-events: none;
   border-radius: $beforeAfter-label-border-radius;
   box-shadow: $beforeAfter-label-box-shadow;
@@ -93,8 +93,6 @@ $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !d
 .#{$beforeAfter}-arrow-before,
 .#{$beforeAfter}-arrow-after {
   position: absolute;
-  width: 1em;
-  height: 1em;
   font-size: $beforeAfter-handle-arrow-size;
   color: $beforeAfter-handle-arrow-color;
   text-align: center;
@@ -130,11 +128,13 @@ $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !d
   }
 
   .#{$beforeAfter}-arrow-before {
-    left: -5px - $beforeAfter-handle-arrow-size;
+    left: -$beforeAfter-handle-arrow-size;
+    font-size: $beforeAfter-handle-arrow-size;
   }
 
   .#{$beforeAfter}-arrow-after {
-    right: -5px - $beforeAfter-handle-arrow-size;
+    right: -$beforeAfter-handle-arrow-size;
+    font-size: $beforeAfter-handle-arrow-size;
   }
 }
 
@@ -162,11 +162,13 @@ $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !d
   }
 
   .#{$beforeAfter}-arrow-before {
-    top: -5px - $beforeAfter-handle-arrow-size;
+    top:-$beforeAfter-handle-arrow-size - 0.5rem;
+    font-size: $beforeAfter-handle-arrow-size;
   }
 
   .#{$beforeAfter}-arrow-after {
-    bottom: -5px - $beforeAfter-handle-arrow-size;
+    bottom:-$beforeAfter-handle-arrow-size - 0.5rem;
+    font-size: $beforeAfter-handle-arrow-size;
   }
 
   .#{$beforeAfter}-arrow-before,
@@ -184,4 +186,5 @@ $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !d
 @import "labels/solid";
 @import "labels/overlay";
 @import "labels/start";
+@import "labels/bottom";
 @import "labels/end";

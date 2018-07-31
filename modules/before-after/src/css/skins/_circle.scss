@@ -1,5 +1,5 @@
-$circle-handle-size: 35px !default;
-$circle-handle-bg: rgba($color-primary, 0.8) !default;
+$circle-handle-size: 2.25rem !default;
+$circle-handle-bg: $color-primary !default;
 
 .#{$beforeAfter}--circle {
   .#{$beforeAfter}-handle {
@@ -39,7 +39,7 @@ $circle-handle-bg: rgba($color-primary, 0.8) !default;
       &::after {
         left: 50%;
         width: $beforeAfter-handle-border-size;
-        height: 9999px;
+        height: 624rem; // 9999px
         transform: translateX(-50%);
       }
 
@@ -73,7 +73,7 @@ $circle-handle-bg: rgba($color-primary, 0.8) !default;
       &::before,
       &::after {
         top: 50%;
-        width: 9999px;
+        width: 624rem; // 9999px
         height: $beforeAfter-handle-border-size;
         transform: translateY(-50%);
       }

@@ -107,6 +107,7 @@ $countdown-flip-letter-space: 6px !default;
 
   .#{$countdowns}-flip-animation {
     .#{$countdown}-number.#{$countdowns}-curr.#{$countdowns}-top {
+      // background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,$countdown-flip-border),color-stop(100%,rgba($countdown-flip-border,0.1)));
       transition: all 250ms ease-in-out;
       transform: rotateX(-90deg);
     }
