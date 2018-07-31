@@ -50,7 +50,11 @@ export const classes = {
   WARNING: '{namespace}-warning',
   DROPDOWN: '{namespace}-dropdown',
   TRIGGER: '{namespace}-trigger',
-  INPUT: '{namespace}-input'
+  INPUT: '{namespace}-input',
+  COMPONENT: '{namespace}-component',
+  COMTITLE: '{namespace}-component-title',
+  PREVIEW: '{namespace}-preview',
+  ACTION: '{namespace}-action'
 }
 
 export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']
@@ -84,7 +88,7 @@ export const defaults = {
       </div>`
     },
     infoAction() {
-      return `<div class='{class}'><i class='icon-pencil-square {classes.EDITOR}'></i><i class='icon-trash {classes.REMOVE}'></i>
+      return `<div class='{classes.ACTION}'><i class='icon-pencil-square {classes.EDITOR}'></i><i class='icon-trash {classes.REMOVE}'></i>
       </div>`
     },
     previewContent() {
@@ -92,7 +96,11 @@ export const defaults = {
       <i class='icon-chevron-circle-right {classes.VIDEOBTN}'></i>
       <div class='{classes.VIDEOPOSTER}'></div>
       <div class="{classes.VIDEOANIMATE} cp-spinner cp-round"></div></div>
-     <div class='{class} classes.VIDEO}'></div>`
+     `
+    },
+    videoPreview() {
+      return `<div class='{classes.VIDEO}'>
+      </div>`
     },
     panel() {
       return `<section class='{class} {classes.PANEL}'>
