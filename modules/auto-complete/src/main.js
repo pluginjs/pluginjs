@@ -457,7 +457,7 @@ class AutoComplete extends Component {
     }
     this.$selected = queryAll(`.${this.classes.SHOW}`, this.$panel)[0]
     this.$shows = queryAll(`.${this.classes.SHOW}`, this.$panel)
-
+    this.$groupshows = queryAll(`.${this.classes.GROUPSHOW}`, this.$panel)
     this.$shows.map(removeClass(this.classes.ACTIVE))
     addClass(this.classes.ACTIVE, this.$selected)
 
@@ -537,6 +537,9 @@ class AutoComplete extends Component {
   close() {
     removeClass(this.classes.OPEN, this.$element)
     removeClass(this.classes.OPEN, this.$panel)
+    if (this.$groupshows) {
+      this.$groupshows.map(removeClass(this.classes.GROUPSHOW))
+    }
     if (this.$items) {
       removeClass(this.classes.SHOW, this.$items)
     }
@@ -557,6 +560,9 @@ class AutoComplete extends Component {
   }
   clear() {
     this.$items.map(removeClass(this.classes.SHOW))
+    if (this.$groupshows) {
+      this.$groupshows.map(removeClass(this.classes.GROUPSHOW))
+    }
   }
 
   set(value) {
