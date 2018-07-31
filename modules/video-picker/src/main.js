@@ -121,7 +121,9 @@ class VideoPicker extends Component {
     )
     this.$empty = parseHTML(
       template.compile(this.options.templates.empty())({
-        classes: this.classes
+        classes: this.classes,
+        icon: 'icon-chevron-circle-up',
+        text: this.translate('inputPlaceholder')
       })
     )
     this.$dropdown = parseHTML(
@@ -146,7 +148,12 @@ class VideoPicker extends Component {
     const localeChangePoster = this.translate('changePoster')
 
     // create components
-    this.$source = parseHTML(`<div class='${this.classes.SOURCE}'></div>`)
+    this.$source = parseHTML(
+      `<div class='${
+        this.classes.SOURCE
+      }'><span class="pj-dropdown-trigger"></span></div>`
+    )
+    this.$sourceTrigger = query('.pj-dropdown-trigger', this.$source)
     this.$videoUrl = parseHTML(
       `<div class='${
         this.classes.VIDEOURL
@@ -172,6 +179,23 @@ class VideoPicker extends Component {
       }'>${localeDelete}</span></div>`
     )
 
+    // this.$dropdown.append(this.$source, this.$videoUrl, this.$localUrl, this.$ratio, this.$poster)
+
+    // init source dropdown
+    Dropdown.of(this.$sourceTrigger, {
+      data: sourceData,
+      width: 160,
+      imitateSelect: true,
+      icon: 'icon-char icon-chevron-down',
+      select: sourceData[0].label,
+      templates: {
+        panel() {
+          return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
+        }
+      },
+      constraintToScrollParent: false,
+      constraintToWindow: false
+    })
     // init eidtor panel
     // this.editPanel = EditPanel.of(this.element, {
     //   init: {

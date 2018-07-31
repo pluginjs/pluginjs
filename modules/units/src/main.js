@@ -151,6 +151,7 @@ class Units extends Component {
 
     const dropdowninstance = new DROPDOWN($unitsTrigger, {
       width: this.dropdownWidth,
+      exclusive: false,
       trigger: 'click',
       // keyboard: true,
       data,

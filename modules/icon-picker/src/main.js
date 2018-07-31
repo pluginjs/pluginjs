@@ -165,6 +165,7 @@ class IconsPicker extends Component {
         `.${this.classes.PACKAGEBODY} ul`,
         this.panel
       )
+      // console.log(Scrollable.findInstanceByElement( closest(`.${this.classes.PACKAGEBODY}`, this.$selectorList[0])))
       this.$scrollable = this.$selectorList.map(el =>
         Scrollable.findInstanceByElement(
           closest(`.${this.classes.PACKAGEBODY}`, el)
@@ -362,9 +363,11 @@ class IconsPicker extends Component {
         },
         handler: ({ target }) => {
           const _package = parent(target)
+          // console.log(1)
           if (getObjData('open', _package)) {
             that.close(_package)
           } else {
+            // console.log(_package)
             that.open(_package)
           }
         }
@@ -466,6 +469,7 @@ class IconsPicker extends Component {
     const data = Object.assign({}, this.data)
     const arr = []
 
+    // console.log()
     this.$packages.forEach(v => {
       const $this = v
       const title = $this.dataset.value
@@ -492,7 +496,7 @@ class IconsPicker extends Component {
       // this.showPackages.push($this);
       arr.push($this)
     })
-
+    console.log(arr)
     return arr
   }
 
@@ -503,6 +507,7 @@ class IconsPicker extends Component {
     packages.forEach(v => {
       const $package = v
       const icons = getObjData('icons', $package)
+      console.log(getObjData('group', $package))
       const categories = getObjData('group', $package)
         ? getObjData('categories', $package)
         : null
@@ -511,6 +516,7 @@ class IconsPicker extends Component {
       if (Array.isArray(icons)) {
         icons.forEach(icon => {
           const $icon = that.handleIcon($package, packageName, categories, icon)
+
           arr.push($icon)
         })
       } else {
@@ -552,7 +558,7 @@ class IconsPicker extends Component {
       })
     )
     let group = null
-
+    console.log(categories)
     if (categories) {
       for (const name in categories) {
         if (categories[name].indexOf(icon) >= 0) {
@@ -609,7 +615,9 @@ class IconsPicker extends Component {
     // let groups = [];
     this.packages.forEach(_package => {
       const group = {}
-
+      // console.log(this.packages)
+      // console.log(_package)
+      // console.log(getObjData('categories', _package))
       if (getObjData('classifiable', _package)) {
         for (const name in getObjData('categories', _package)) {
           if (
@@ -630,6 +638,7 @@ class IconsPicker extends Component {
           }
         }
         setObjData('group', group, _package)
+        console.log(getObjData('group', _package))
       }
     })
   }
@@ -673,9 +682,14 @@ class IconsPicker extends Component {
 
   fillIcons() {
     this.$icons.forEach(icon => {
+      console.log(this.$icons)
+      console.log(this.packages)
+      console.log(icon)
+      console.log(getObjData('categories', icon))
       if (getObjData('categories', icon)) {
         this.packages.forEach(_package => {
           const $categories = getObjData('group', _package)
+          console.log(Object.entries($categories))
 
           Object.entries($categories).forEach(([name, categorie]) => {
             if (getObjData('categories', icon) === name) {
@@ -689,6 +703,7 @@ class IconsPicker extends Component {
         })
       } else {
         this.packages.forEach(_package => {
+          console.log(1)
           if (getObjData('package', icon) === getObjData('name', _package)) {
             if (!getObjData('hasUl', _package)) {
               append(
@@ -811,12 +826,16 @@ class IconsPicker extends Component {
   }
 
   open(el) {
+    // console.log(this.element)
     this.$packages.forEach(v => {
+      // console.log(v)
       this.close(v)
     })
 
     addClass(this.classes.PACKAGEOPEN, el)
+    // console.log(1)
     setObjData('open', true, el)
+    // console.log(this.$scrollable)
     this.$scrollable.find(plugin => el.contains(plugin.element)).enable()
     this.$scrollable.find(plugin => el.contains(plugin.element)).update()
   }

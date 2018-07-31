@@ -6,6 +6,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import PopDialog from '@pluginjs/pop-dialog'
 import template from '@pluginjs/template'
+import Dropdown from '@pluginjs/dropdown'
 import {
   eventable,
   register,
@@ -82,8 +83,24 @@ class BgPicker extends Component {
       this.disable()
     }
 
+    this.initDropdown()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  initDropdown() {
+    Dropdown.of(this.$empty, {
+      // data: this.getTimeList().map(value => ({ label: value })),
+      // placeholder: this.options.placeholder,
+      theme: 'dafault',
+      placement: 'bottom-left',
+      imitateSelect: true,
+      // inputLabel: true,
+      hideOutClick: false,
+      hideOnSelect: false,
+      constraintToScrollParent: false,
+      templates: this.options.templates
+    })
   }
 
   bind() {
@@ -166,6 +183,12 @@ class BgPicker extends Component {
             this.classes.EXPAND,
             addClass(this.classes.EXIST, this.$wrap)
           )
+          removeClass('pj-dropdown-show', this.$empty)
+          // removeClass('pj-dropdown-show', this.$wrap)
+          removeClass(
+            'pj-dropdown-show',
+            query(`.${this.classes.DROPDOWN}`, this.$wrap).parentNode
+          )
           return false
         }
       },
@@ -184,6 +207,12 @@ class BgPicker extends Component {
           removeClass(
             this.classes.EXPAND,
             addClass(this.classes.EXIST, this.$wrap)
+          )
+          removeClass('pj-dropdown-show', this.$empty)
+          // removeClass('pj-dropdown-show', this.$wrap)
+          removeClass(
+            'pj-dropdown-show',
+            query(`.${this.classes.DROPDOWN}`, this.$wrap).parentNode
           )
           return false
         }

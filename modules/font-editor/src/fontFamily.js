@@ -38,6 +38,7 @@ export default class FontFamily {
     this.dropdownInstance = Dropdown.of(this.$dropFamily, {
       imitateSelect: true,
       itemValueAttr: 'fontFamily',
+      exclusive: false,
       select: value,
       width: this.$dropdown,
       icon: 'icon-char icon-chevron-down',

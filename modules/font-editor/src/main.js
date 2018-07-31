@@ -6,6 +6,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hideElement, showElement, setStyle } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
+import Dropdown from '@pluginjs/dropdown'
 import {
   eventable,
   register,
@@ -99,6 +100,7 @@ class FontEditor extends Component {
       this.$fillFontName.textContent = this.value.fontFamily
     }
 
+    this.initDropdown()
     this.bind()
 
     if (this.element.disabled || this.options.disabled) {
@@ -109,6 +111,19 @@ class FontEditor extends Component {
 
     this.enter('emptyized')
     this.trigger(EVENTS.READY)
+  }
+
+  initDropdown() {
+    Dropdown.of(this.$empty, {
+      theme: 'dafault',
+      placement: 'bottom-left',
+      imitateSelect: true,
+      exclusive: false,
+      hideOutClick: false,
+      hideOnSelect: false,
+      constraintToScrollParent: false,
+      templates: this.options.templates
+    })
   }
 
   bind() {

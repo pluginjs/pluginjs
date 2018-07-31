@@ -46,6 +46,7 @@ export default class FontWeight {
     this.dropdownInstance = Dropdown.of(this.$dropWeight, {
       imitateSelect: true,
       select: value,
+      exclusive: false,
       width: contentWidth(this.$dropdown),
       // itemValueAttr: 'fontWeight',
       data,

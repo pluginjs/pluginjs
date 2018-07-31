@@ -17,7 +17,8 @@ export const classes = {
   DISABLED: '{namespace}-disabled',
   SHOW: '{namespace}-show',
   BUTTON: '{namespace}-button',
-  INIT: '{namespace}-init',
+  EMPTY: '{namespace}-empty',
+  FILL: '{namespace}-fill',
   INFOPOSTER: '{namespace}-info-poster',
   EDITOR: '{namespace}-info-editor',
   REMOVE: '{namespace}-info-remove',
@@ -49,8 +50,7 @@ export const classes = {
   WARNING: '{namespace}-warning',
   DROPDOWN: '{namespace}-dropdown',
   TRIGGER: '{namespace}-trigger',
-  INPUT: '{namespace}-input',
-  EMPTY: '{namespace}-empty'
+  INPUT: '{namespace}-input'
 }
 
 export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']
@@ -75,12 +75,12 @@ export const defaults = {
       return `<div class='{classes.INPUT}'>
       </div>`
     },
-    fill() {
-      return `<div class='{classes.INIT }'><i class='{icon}'></i>{text}
+    empty() {
+      return `<div class='{classes.EMPTY }'><i class='{icon}'></i>{text}
       </div>`
     },
-    empty() {
-      return `<div class='{classes.EMPTY}'><image class='{classes.INFOPOSTER}' />
+    fill() {
+      return `<div class='{classes.FILL}'><image class='{classes.INFOPOSTER}' />
       </div>`
     },
     infoAction() {

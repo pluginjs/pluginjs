@@ -65,6 +65,12 @@ input.#{$bgPicker}-input {
   font-size: $bgPicker-font-size;
   color: $bgPicker-color;
 
+
+  &-trigger {
+    width: $bgPicker-width !important;
+    height: $bgPicker-height;
+  }
+
   &-empty,
   &-fill {
     position: relative;
@@ -233,7 +239,7 @@ input.#{$bgPicker}-input {
 
       &-item {
         box-sizing: border-box;
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
 
         &::before,
         &::after {
@@ -371,7 +377,7 @@ input.#{$bgPicker}-input {
   }
 
   &-active.pj-dropdown-item{
-    color: #b3b3b3 !important;
+    // color: #b3b3b3 !important;
   }
 }
 

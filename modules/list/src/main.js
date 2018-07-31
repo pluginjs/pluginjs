@@ -119,7 +119,7 @@ class List extends Component {
       }
       return action
     })
-
+    console.log(this.actions)
     this.initialize()
   }
 
@@ -225,7 +225,7 @@ class List extends Component {
       v.trigger.split(' ').forEach(v => {
         className += `.${v}`
       })
-
+      console.log(className)
       if (v.callback) {
         bindEvent(
           {

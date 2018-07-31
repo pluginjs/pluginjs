@@ -16,7 +16,7 @@ $fontEditor-border: $fontEditor-border-width $fontEditor-border-style
 $fontEditor-border-radius: $border-radius-base !default;
 $fontEditor-height: 5 * $fontEditor-sizer !default; //50px
 // fill
-$fontEditor-fill-width: 26 * $fontEditor-sizer !default; //260px
+$fontEditor-fill-width: 20 * $fontEditor-sizer !default; //260px
 $fontEditor-fill-font-size: $font-size-sm !default;
 $fontEditor-fill-change-bg: $color-opacity !default;
 $fontEditor-fill-change-opacity: 1 !default;
@@ -56,6 +56,10 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   display: inline-block;
   height: $fontEditor-height;
 
+  &-trigger {
+    height: $fontEditor-height;
+  }
+
   &-empty,
   &-fill {
     position: relative;
@@ -67,7 +71,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     padding: 0.6 * $fontEditor-sizer 2 * $fontEditor-sizer; //6px 20px
     line-height: $fontEditor-height;
     //line-height: 30px;
-    border: $fontEditor-border;
+    // border: $fontEditor-border;
     border-radius: $fontEditor-border-radius;
 
     > i {
