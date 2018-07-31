@@ -17,10 +17,6 @@ export const classes = {
   SHOW: '{namespace}-show',
   CLOSE: '{namespace}-close',
   WARNING: '{namespace}-warning',
-  // init
-  INFO: '{namespace}-info',
-  INFOIMG: '{namespace}-info-img',
-  // info
   EDITOR: '{namespace}-editor',
   REMOVE: '{namespace}-remove',
   HOVER: '{namespace}-hover',
@@ -39,7 +35,16 @@ export const classes = {
   TRIGGER: '{namespace}-trigger',
   INPUT: '{namespace}-input',
   EMPTY: '{namespace}-empty',
-  FILL: '{namespace}-fill'
+  FILL: '{namespace}-fill',
+  FILLIMG: '{namespace}-fill-img',
+  ACTION: '{namespace}-action',
+  PREVIEW: '{namespace}-preview',
+  COMPONENT: '{namespace}-component',
+  COMPONENTTITLE: '{namespace}-component-title',
+  CONTENT: '{namespace}-component-content',
+  BTNACTION: '{namespace}-btn-action',
+  CANCEL: '{namespace}-cancel',
+  SAVE: '{namespace}-save'
 }
 
 export const methods = [
@@ -71,11 +76,11 @@ export const defaults = {
       </div>`
     },
     fill() {
-      return `<div class='{classes.FILL }'><i class='{icon}'></i>{text}
+      return `<div class='{classes.FILL }'><div class='{classes.FILLIMG}'></div>
       </div>`
     },
     empty() {
-      return `<div class='{classes.EMPTY}'><image class='{classes.INFOPOSTER}' />
+      return `<div class='{classes.EMPTY}'><i class='{icon}'></i>{text}
       </div>`
     },
     colorType() {
@@ -83,6 +88,10 @@ export const defaults = {
         <div class='{preset}' data-type='preset'>{PresetTitle}</div>
         <div class='{custom}' data-type='custom'>{CustomTitle}</div>
       </div>`
+    },
+    infoAction() {
+      return `<div class='{classes.ACTION}'><i class='icon-pencil-square {classes.EDITOR
+      }'></i><i class='icon-trash {classes.REMOVE}'></i></div>`
     },
     item() {
       return `<li class='{class}'>

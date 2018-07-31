@@ -225,7 +225,7 @@ class VideoPicker extends Component {
     )
     this.$poster = query(`.${this.classes.POSTER}`, this.$posterContent)
     this.$videoAction = parseHTML(
-      `<div class="${this.classes.ACTION}">
+      `<div class="${this.classes.BTNACTION}">
       <button class="pj-btn pj-btn-transparent ${
         this.classes.CANCEL
       }">${this.translate('cancel')}</button>

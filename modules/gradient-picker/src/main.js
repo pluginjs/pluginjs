@@ -36,9 +36,10 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 import { Color } from '@pluginjs/color'
-import Scrollable from '@pluginjs/scrollable'
+// import Scrollable from '@pluginjs/scrollable'
 import Range from '@pluginjs/range'
 import ColorPicker from '@pluginjs/color-picker'
+import Dropdown from '@pluginjs/dropdown'
 
 let DATA = {}
 
@@ -106,10 +107,10 @@ class GradientPicker extends Component {
 
   create() {
     // const that = this
-    // this.handelComponent()
+    this.handelComponent()
 
-    // this.$infoImg = query(`.${this.classes.INFOIMG}`, this.$wrap)
-    // this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
+    this.$infoImg = query(`.${this.classes.INFOIMG}`, this.$wrap)
+    this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
     // this.$selectorList = query(
     //   `.${this.classes.SELECTORLIST} ul`,
     //   this.$editPanel.MODAL.$content
@@ -119,40 +120,10 @@ class GradientPicker extends Component {
     //   {
     //     contentSelector: '>',
     //     containerSelector: '>'
-    //   }
+    //   })
     // this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
     const that = this
-    const $wrap = parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`)
-    if (this.options.theme) {
-      addClass(this.classes.THEME, $wrap)
-    }
-    wrap($wrap, addClass(this.classes.INPUT, this.element))
-    this.$wrap = parentWith(
-      el => el.matches(`.${this.classes.NAMESPACE}`),
-      this.element
-    )
-    this.$trigger = parseHTML(
-      template.compile(this.options.templates.trigger())({
-        classes: this.classes
-      })
-    )
-    this.$fill = parseHTML(
-      template.compile(this.options.templates.fill())({
-        classes: this.classes
-      })
-    )
-    this.$empty = parseHTML(
-      template.compile(this.options.templates.empty())({
-        classes: this.classes
-      })
-    )
-    this.$dropdown = parseHTML(
-      template.compile(this.options.templates.dropdown())({
-        classes: this.classes
-      })
-    )
-    this.$wrap.append(this.$trigger, this.$dropdown)
-    this.$trigger.append(this.$empty, this.$fill)
+
     // init popDialog
     this.pop = PopDialog.of(
       query(`.${this.classes.REMOVE}`, this.$infoAction),
@@ -191,13 +162,120 @@ class GradientPicker extends Component {
 
   handelComponent() {
     // const that = this
-    this.$colorPicker = parseHTML(
-      `<input class='${this.classes.COLORPICKER}' />`
+    // this.$colorPicker = parseHTML(
+    //   `<input class='${this.classes.COLORPICKER}' />`
+    // )
+    // const $opacity = parseHTML(
+    //   `<input class='${this.classes.OPACITY}' type="text"/>`
+    // )
+
+    const $wrap = parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`)
+    if (this.options.theme) {
+      addClass(this.classes.THEME, $wrap)
+    }
+    wrap($wrap, addClass(this.classes.INPUT, this.element))
+    this.$wrap = parentWith(
+      el => el.matches(`.${this.classes.NAMESPACE}`),
+      this.element
     )
-    const $opacity = parseHTML(
-      `<input class='${this.classes.OPACITY}' type="text"/>`
+    this.$trigger = parseHTML(
+      template.compile(this.options.templates.trigger())({
+        classes: this.classes
+      })
+    )
+    this.$fill = parseHTML(
+      template.compile(this.options.templates.fill())({
+        classes: this.classes
+      })
+    )
+    this.$empty = parseHTML(
+      template.compile(this.options.templates.empty())({
+        classes: this.classes,
+        icon: 'icon-paint',
+        text: this.translate('chooseGradient')
+      })
+    )
+    this.$dropdown = parseHTML(
+      template.compile(this.options.templates.dropdown())({
+        classes: this.classes
+      })
+    )
+    this.$infoAction = parseHTML(
+      template.compile(this.options.templates.infoAction())({
+        classes: this.classes
+      })
+    )
+    this.$wrap.append(this.$trigger, this.$dropdown)
+    this.$trigger.append(this.$empty, this.$fill)
+    this.$fill.append(this.$infoAction)
+
+    this.$previewContent = parseHTML(
+      `<div class='${this.classes.PREVIEW}'><div class='${
+        this.classes.PREVIEWIMG
+      }'></div></div>`
+    )
+    this.$customColor = parseHTML(
+      `<div class='${this.classes.COMPONENT}'><span class='${
+        this.classes.COMPONENTTITLE
+      }'>${this.translate('customColor')}</span><div class='${
+        this.classes.CONTENT
+      }'><input class='${
+        this.classes.COLORPICKER
+      }' placeholder='choose color' /></div></div>`
+    )
+    this.$colorPicker = query(`.${this.classes.COLORPICKER}`, this.$customColor)
+    this.$opacity = parseHTML(
+      `<div class='${this.classes.COMPONENT}'><span class='${
+        this.classes.COMPONENTTITLE
+      }'>${this.translate('opacity')}</span><div class='${
+        this.classes.CONTENT
+      }'><input type='text' class='${this.classes.OPACITY}' /></div></div>`
+    )
+    const $opacity = query(`.${this.classes.OPACITY}`, this.$opacity)
+    this.$action = parseHTML(
+      `<div class='${this.classes.BTNACTION}'>
+      <button type='button' class='${
+        this.classes.CANCEL
+      } pj-btn pj-btn-transparent'></button>
+      <button type='button' class='${
+        this.classes.SAVE
+      } pj-btn pj-btn-primary'></button>
+      </div>`
+    )
+    this.$dropdown.append(
+      this.$previewContent,
+      this.$customColor,
+      this.$opacity,
+      this.$action
     )
 
+    Dropdown.of(this.$empty, {
+      exclusive: false,
+      templates: this.options.template,
+      constraintToScrollParent: false,
+      constraintToWindow: false,
+      hideOnClick: false,
+      hideOnSelect: false
+    })
+
+    ColorPicker.of(this.$colorPicker, {
+      theme: 'default',
+      module: ['gradient'],
+      locale: this.options.locale
+    })
+
+    Range.of($opacity, {
+      theme: 'default',
+      tip: false,
+      range: false,
+      units: {
+        '%': {
+          min: 0,
+          max: 100,
+          step: 1
+        }
+      }
+    })
     // this.$editPanel = EditPanel.of(this.element, {
     //   init: {
     //     icon: 'icon-paint',

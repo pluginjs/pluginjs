@@ -54,7 +54,10 @@ export const classes = {
   COMPONENT: '{namespace}-component',
   COMTITLE: '{namespace}-component-title',
   PREVIEW: '{namespace}-preview',
-  ACTION: '{namespace}-action'
+  ACTION: '{namespace}-action',
+  BTNACTION: '{namespace}-btn-action',
+  SAVE: '{namespace}-save',
+  CANCEL: '{namespace}-cancel'
 }
 
 export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']

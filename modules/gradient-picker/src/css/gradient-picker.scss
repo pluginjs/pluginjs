@@ -42,8 +42,8 @@ $editPanel-component-color: $color-red !default;
     }
   }
 
-  .#{$editPanel}-info {
-    .#{$editPanel}-action {
+  .#{$gradientPicker}-fill {
+    .#{$gradientPicker}-action {
       opacity: 0;
       transition: opacity 0.3s;
     }
@@ -158,11 +158,11 @@ $editPanel-component-color: $color-red !default;
   }
 
   &-show {
-    .#{$editPanel}-init {
+    .#{$gradientPicker}-empty {
       display: none;
     }
 
-    .#{$editPanel}-info {
+    .#{$gradientPicker}-fill {
       display: block;
     }
   }
