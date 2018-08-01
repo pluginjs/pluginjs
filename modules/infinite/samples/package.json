@@ -9,7 +9,9 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
-    "@pluginjs/infinite": "*"
+    "@pluginjs/infinite": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/styles": "*"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

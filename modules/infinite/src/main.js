@@ -107,7 +107,7 @@ class Infinite extends Component {
     this.trigger(EVENTS.EXCEPTEERROR)
   }
 
-  noMOreDate() {
+  noMoreDate() {
     this.hasMoreDate = false
     this.loader.appendEnd()
 

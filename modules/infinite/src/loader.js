@@ -48,10 +48,8 @@ class Loader {
 
   appendLoad() {
     const instance = this.IS
-
     this.resetHtml(this.$loading)
-
-    append(this.element, instance.container)
+    append(this.element, instance.$container)
   }
 
   appendEnd() {
@@ -59,7 +57,7 @@ class Loader {
 
     this.resetHtml(this.$noMoreData)
 
-    append(this.element, instance.container)
+    append(this.element, instance.$container)
   }
 
   appendErr() {
@@ -67,7 +65,7 @@ class Loader {
 
     this.resetHtml(this.$exception)
 
-    append(this.element, instance.container)
+    append(this.element, instance.$container)
   }
 
   hide() {

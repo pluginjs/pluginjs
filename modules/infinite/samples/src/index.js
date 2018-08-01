@@ -1,3 +1,1 @@
-import Infinite from '@pluginjs/infinite'
-
-console.log(Infinite)
+import './sections/events/index.js'
