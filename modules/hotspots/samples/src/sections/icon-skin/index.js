@@ -1,7 +1,7 @@
 import { queryAll } from '@pluginjs/dom'
 import Hotspots from '@pluginjs/hotspots'
 
-queryAll('#icon-themes .pj-hotspots').map(element =>
+queryAll('#icon-skin .pj-hotspots').map(element =>
   Hotspots.of(element, {
     icon: 'fa fa-plus',
     data: [
@@ -11,7 +11,7 @@ queryAll('#icon-themes .pj-hotspots').map(element =>
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         position: ['61%', '68%'],
-        skin: 'solid'
+        skin: 'dark shadow'
       },
       {
         placement: 'right',
@@ -19,7 +19,7 @@ queryAll('#icon-themes .pj-hotspots').map(element =>
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         position: ['35%', '45%'],
-        skin: 'bordered'
+        skin: 'dark solid'
       },
       {
         placement: 'right',
@@ -27,14 +27,15 @@ queryAll('#icon-themes .pj-hotspots').map(element =>
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         position: ['38%', '55%'],
-        skin: 'solid shadow'
+        skin: 'dark bordered'
       },
       {
         placement: 'right',
         title: 'Singleframe® grille',
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
-        position: ['27%', '60%']
+        position: ['27%', '60%'],
+        skin: 'dark'
       }
     ]
   })

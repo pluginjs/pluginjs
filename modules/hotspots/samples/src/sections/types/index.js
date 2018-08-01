@@ -5,7 +5,7 @@ import escapeHTML from '../escape-html'
 const section = query('#types')
 queryAll('.pj-hotspots', section).map(element =>
   Hotspots.of(element, {
-    icon: 'fa fa-map-marker',
+    icon: 'fa fa-plus',
     data: [
       {
         placement: 'top',
@@ -13,15 +13,17 @@ queryAll('.pj-hotspots', section).map(element =>
         text: 'Chair',
         title: 'Chair - 20$',
         content: escapeHTML`<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href=\'#\'>Buy</a>`,
-        position: ['33%', '65%']
+        position: ['33%', '65%'],
+        type: 'dot'
       },
       {
         placement: 'right',
         number: '2',
-        text: 'Lamp',
+        text: 'LAMP',
         title: 'Lamp - 15$',
         content: escapeHTML`<p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p><p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p><a href=\'#\'>Buy</a>`,
-        position: ['44.5%', '30%']
+        position: ['44.5%', '30%'],
+        type: 'text'
       },
       {
         placement: 'right',
@@ -29,7 +31,8 @@ queryAll('.pj-hotspots', section).map(element =>
         text: 'Cabinet',
         title: 'Cabinet - 50$',
         content: escapeHTML`<p>Nulla consequat massa quis enim. </p><a href=\'#\'>Buy</a>`,
-        position: ['54%', '63%']
+        position: ['54%', '63%'],
+        type: 'icon'
       },
       {
         placement: 'bottom',
@@ -37,7 +40,17 @@ queryAll('.pj-hotspots', section).map(element =>
         text: 'Frame',
         title: 'Frame - 10$',
         content: escapeHTML`<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p><a href=\'#\'>Buy</a>`,
-        position: ['56.6%', '30%']
+        position: ['56.6%', '30%'],
+        type: 'number'
+      },
+      {
+        placement: 'bottom',
+        number: '5',
+        text: 'Frame',
+        title: 'Frame - 10$',
+        content: escapeHTML`<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p><a href=\'#\'>Buy</a>`,
+        position: ['27%', '60%'],
+        type: 'hide'
       }
     ]
   })

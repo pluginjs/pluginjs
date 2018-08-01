@@ -1,187 +1,88 @@
 @import "@pluginjs/styles/variables.scss";
+@import "hotspots.core";
 
 // Vars
 // =====================
-$hotspot: "pj-hotspot" !default;
-$hotspot-icon-spacer: 0.5em !default;
-$hotspot-text-spacer: 0.2em 0.8em !default;
-$hotspot-color: #fff !default;
-$hotspot-border-color: rgba($border-color, 0.8) !default;
-$hotspot-solid-bg: $gray-darkest !default;
-$hotspot-text-border-radius: $border-radius-base !default;
-$hotspot-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05) !default;
-$hotspot-opacity: 0.8 !default;
-$hotspot-active-solid-bg: $color-primary !default;
-$hotspot-active-opacity: 1 !default;
-$hotspot-hide-size: 30px !default;
-$hotspot-dot-color: $color-primary !default;
-$hotspot-dot-size: 12px !default;
-$hotspot-icon-font-size: $font-size-base !default;
-$hotspot-text-font-size: $font-size-base !default;
-$hotspot-sm-dot-size: 10px !default;
-$hotspot-sm-icon-font-size: 10px !default;
-$hotspot-sm-icon-spacer: 0.5em !default;
-$hotspot-sm-text-font-size: 10px !default;
-$hotspot-sm-text-spacer: 0.2em 0.8em !default;
-$hotspot-sm-hide-size: 25px !default;
-$hotspot-md-dot-size: 14px !default;
-$hotspot-md-icon-font-size: $font-size-sm !default;
-$hotspot-md-icon-spacer: 0.5em !default;
-$hotspot-md-text-font-size: $font-size-sm !default;
-$hotspot-md-text-spacer: 0.2em 0.8em !default;
-$hotspot-md-hide-size: 35px !default;
-$hotspot-lg-dot-size: 16px !default;
-$hotspot-lg-icon-font-size: $font-size-base !default;
-$hotspot-lg-icon-spacer: 0.5em !default;
-$hotspot-lg-text-font-size: $font-size-base !default;
-$hotspot-lg-text-spacer: 0.2em 0.7em !default;
-$hotspot-lg-hide-size: 40px !default;
+$hotspots-dark-color: $gray-darkest !default;
+$hotspots-dark-bg-color: $gray-darkest !default;
+//dot
+$hotspots-dark-dot-bgcolor: $gray-darkest !default;
+//bordered
+$hotspots-dark-borderColor: rgba($hotspots-dark-color,0.2) !default;
+$hotspots-dark-bordered-hover-color: rgba($color-primary,0.2) !default;
+$hotspots-dark-hover-color: $color-primary !default;
+$hotspot-text-dark-bordered-color: $color-primary !default;
+//solid  
+$hotspots-dark-solid-color: $color-white !default;
+$hotspots-dark-solid-bg-color: $gray-darkest !default;
+//text
+$hotspots-dark-text-borderColor: $gray-darkest !default;
 
-// Core
-// =====================
-.#{$hotspot}s {
-  position: relative;
-
-  img {
-    z-index: 0;
-    width: 100%;
-  }
-}
-
-.#{$hotspot} {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  box-sizing: content-box;
-  color: $hotspot-color;
-  cursor: pointer;
-  opacity: $hotspot-opacity;
-  transition: all 0.2s;
-  transform: translate(-50%, -50%);
-
-  &:hover,
-  &.#{$hotspot}-active {
-    opacity: $hotspot-active-opacity;
-  }
-}
-
-/* types */
-.#{$hotspot}-dot {
-  width: $hotspot-dot-size;
-  height: $hotspot-dot-size;
-  padding: 0;
-  content: "";
-  background: $hotspot-dot-color;
-  border-radius: 100%;
-}
-
-.#{$hotspot}-icon,
-.#{$hotspot}-number {
-  width: 1em;
-  height: 1em;
-  padding: $hotspot-icon-spacer;
-  font-size: $hotspot-icon-font-size;
-  line-height: 1em;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 100%;
-}
-
-.#{$hotspot}-text {
-  padding: $hotspot-text-spacer;
-  font-size: $hotspot-text-font-size;
-  border-radius: $hotspot-text-border-radius;
-}
-
-.#{$hotspot}-hide {
-  width: $hotspot-hide-size;
-  height: $hotspot-hide-size;
-}
-
-/* skins */
-.#{$hotspot}-bordered {
-  border: 1px solid $hotspot-border-color;
-}
-
-.#{$hotspot}-solid {
-  background-color: $hotspot-solid-bg;
-
-  &.#{$hotspot}-active {
-    background-color: $hotspot-active-solid-bg;
-  }
-}
-
-.#{$hotspot}-shadow {
-  box-shadow: $hotspot-box-shadow;
-}
-
-/* sizes */
-.#{$hotspot}-sm {
-  &.#{$hotspot}-dot {
-    width: $hotspot-sm-dot-size;
-    height: $hotspot-sm-dot-size;
+//active hover
+$hotspots-dark-hover-color: $color-primary !default;
+$hotspot-dark-dot-bg-color: $color-primary !default;
+$hotspot-dark-bordered-hover-border-color: rgba($hotspots-dark-hover-color,0.2) !default;
+$hotspot-dark-solid-color: $color-white !default;
+$hotspot-dark-shadow-bg-active: $color-primary !default;
+$hotspot-dark-shadow-color: $color-white !default;
+//Skin dark
+.#{$hotspot}-dark {
+  &.#{$hotspot},
+  .#{$hotspot} {
+    color: $hotspots-dark-color;
   }
 
-  &.#{$hotspot}-icon,
-  &.#{$hotspot}-number {
-    padding: $hotspot-sm-icon-spacer;
-    font-size: $hotspot-sm-icon-font-size;
+  &.#{$hotspot}-dot,
+  .#{$hotspot}-dot {
+    background-color: $hotspots-dark-dot-bgcolor;
   }
 
-  &.#{$hotspot}-text {
-    padding: $hotspot-sm-text-spacer;
-    font-size: $hotspot-sm-text-font-size;
+  &.#{$hotspot}-number,
+  &.#{$hotspot}-text,
+  .#{$hotspot}-number,
+  .#{$hotspot}-text {
+    border-color: $hotspots-dark-text-borderColor;
+    border-width: 1px;
   }
 
-  &.#{$hotspot}-hide {
-    width: $hotspot-sm-hide-size;
-    height: $hotspot-sm-hide-size;
-  }
-}
-
-.#{$hotspot}-md {
-  &.#{$hotspot}-dot {
-    width: $hotspot-md-dot-size;
-    height: $hotspot-md-dot-size;
+  &.#{$hotspot}-bordered,
+  .#{$hotspot}-bordered {
+    border-color: $hotspots-dark-borderColor;
   }
 
-  &.#{$hotspot}-icon,
-  &.#{$hotspot}-number {
-    padding: $hotspot-md-icon-spacer;
-    font-size: $hotspot-md-icon-font-size;
+  &.#{$hotspot}-shadow,
+  .#{$hotspot}-shadow {
+    color: $hotspot-dark-shadow-color;
+    background-color: $hotspots-dark-bg-color;
   }
 
-  &.#{$hotspot}-text {
-    padding: $hotspot-md-text-spacer;
-    font-size: $hotspot-md-text-font-size;
+  &.#{$hotspot}-solid,
+  .#{$hotspot}-solid {
+    color: $hotspots-dark-solid-color;
+    background-color: $hotspots-dark-solid-bg-color;
   }
 
-  &.#{$hotspot}-hide {
-    width: $hotspot-md-hide-size;
-    height: $hotspot-md-hide-size;
-  }
-}
+  //Active colors
+  &.#{$hotspot}:hover,
+  &.#{$hotspot}.#{$hotspot}-active {
+    color: $hotspots-dark-hover-color;
 
-.#{$hotspot}-lg {
-  &.#{$hotspot}-dot {
-    width: $hotspot-lg-dot-size;
-    height: $hotspot-lg-dot-size;
-  }
+    &.#{$hotspot}-dot {
+      background-color: $hotspot-dark-dot-bg-color;
+    }
+    &.#{$hotspot}-text,
+    &.#{$hotspot}-number {
+      border-color: $hotspot-text-dark-bordered-color;
+    }
 
-  &.#{$hotspot}-icon,
-  &.#{$hotspot}-number {
-    padding: $hotspot-lg-icon-spacer;
-    font-size: $hotspot-lg-icon-font-size;
-  }
-
-  &.#{$hotspot}-text {
-    padding: $hotspot-lg-text-spacer;
-    font-size: $hotspot-lg-text-font-size;
-  }
-
-  &.#{$hotspot}-hide {
-    width: $hotspot-lg-hide-size;
-    height: $hotspot-lg-hide-size;
+    &.#{$hotspot}-bordered {
+      border-color: $hotspot-dark-bordered-hover-border-color;
+    }
+    
+    &.#{$hotspot}-solid,
+    &.#{$hotspot}-shadow {
+      color: $hotspot-dark-solid-color;
+      background-color: $hotspot-dark-shadow-bg-active;
+    }
   }
 }
