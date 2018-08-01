@@ -18,6 +18,7 @@ import {
 // import Scrollable from '@pluginjs/scrollable'
 import PopDialog from '@pluginjs/pop-dialog'
 import ColorPicker from '@pluginjs/color-picker'
+import Dropdown from '@pluginjs/dropdown'
 import Range from '@pluginjs/range'
 import {
   eventable,
@@ -103,7 +104,6 @@ class PatternPicker extends Component {
 
   create() {
     // const that = this
-    // this.handelComponent()
 
     // this.$infoImg = query(`.${this.classes.INFOIMG}`, this.$wrap)
     // this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
@@ -142,7 +142,9 @@ class PatternPicker extends Component {
     )
     this.$empty = parseHTML(
       template.compile(this.options.templates.empty())({
-        classes: this.classes
+        classes: this.classes,
+        icon: 'icon-picture',
+        text: this.translate('choosePattern')
       })
     )
     this.$dropdown = parseHTML(
@@ -150,8 +152,22 @@ class PatternPicker extends Component {
         classes: this.classes
       })
     )
+    this.$infoAction = parseHTML(
+      template.compile(this.options.templates.infoAction())({
+        classes: this.classes
+      })
+    )
+    this.$fill.append(this.$infoAction)
     this.$wrap.append(this.$trigger, this.$dropdown)
     this.$trigger.append(this.$empty, this.$fill)
+    this.handelComponent()
+    this.$dropdown.append(
+      this.$previewBox,
+      this.$forePickerBox,
+      this.$bgColorBox,
+      this.$opacityBox,
+      this.$action
+    )
     // init popDialog
     // init pop
     this.pop = PopDialog.of(
@@ -190,6 +206,92 @@ class PatternPicker extends Component {
       `<input class='${this.classes.OPACITY}' type="text"/>`
     )
 
+    this.$previewBox = parseHTML(
+      `<div class='${this.classes.PREVIEW}'><div class='${
+        this.classes.PREVIEWIMG
+      }'></div></div>`
+    )
+    this.$preview = query(`.${this.classes.PREVIEWIMG}`, this.$preview)
+    this.$forePickerBox = parseHTML(
+      `<div class='${this.classes.COMPONENT}'><span class='${
+        this.classes.TITLE
+      }'>${this.translate('foreColor')}</span><div class='${
+        this.classes.CONTENT
+      }'><input class='${
+        this.classes.FORECOLOR
+      } pj-input' type='text' placeholder='choose color' /></div></div>`
+    )
+    this.$forePicker = query(`.${this.classes.FORECOLOR}`, this.$forePickerBox)
+    this.$bgColorBox = parseHTML(
+      `<div class='${this.classes.COMPONENT}'><span class='${
+        this.classes.TITLE
+      }'>${this.translate('bgColor')}</span><div class='${
+        this.classes.CONTENT
+      }'><input class='${
+        this.classes.BGCOLOR
+      } pj-input' type='text' placeholder='choose color' /></div></div>`
+    )
+    this.$bgColor = query(`.${this.classes.BGCOLOR}`, this.$bgColorBox)
+    this.$opacityBox = parseHTML(
+      `<div class='${this.classes.COMPONENT}'><span class='${
+        this.classes.TITLE
+      }'>${this.translate('opacity')}</span><div class='${
+        this.classes.CONTENT
+      }'><input class='${this.classes.OPACITY}' type='text' /></div></div>`
+    )
+    this.$opacity = query(`.${this.classes.OPACITY}`, this.$opacityBox)
+    this.$action = parseHTML(
+      `<div class='${this.classes.BTNACTION}'>
+        <button type='button' class='${
+          this.classes.CANCEL
+        } pj-btn pj-btn-transparent'>Cancel</button>
+        <button type='button' class='${
+          this.classes.SAVE
+        } pj-btn pj-btn-transparent'>Save</button>
+      </div>`
+    )
+
+    Dropdown.of(this.$empty, {
+      exclusive: false,
+      templates: this.options.template,
+      constraintToScrollParent: false,
+      constraintToWindow: false,
+      hideOnClick: false,
+      hideOnSelect: false
+    })
+
+    ColorPicker.of(this.$forePicker, {
+      theme: 'default',
+      module: ['solid'],
+      solidMode: 'sample',
+      solidModule: {
+        alpha: false,
+        hex: false
+      }
+    })
+
+    ColorPicker.of(this.$bgColor, {
+      theme: 'default',
+      module: ['solid'],
+      solidMode: 'sample',
+      solidModule: {
+        alpha: false,
+        hex: false
+      }
+    })
+
+    Range.of(this.$opacity, {
+      theme: 'default',
+      tip: false,
+      range: false,
+      units: {
+        '%': {
+          min: 0,
+          max: 100,
+          step: 1
+        }
+      }
+    })
     // this.$editPanel = EditPanel.of(this.element, {
     //   init: { text: this.translate('choosePattern') },
     //   selector: {
@@ -296,9 +398,9 @@ class PatternPicker extends Component {
     this.$opacityPicker = Range.findInstanceByElement($opacityPicker)
 
     // set initial color
-    this.$forePicker.val('#000')
-    this.$bgPicker.val(this.bgColor)
-    this.$opacityPicker.val('100%')
+    // this.$forePicker.val('#000')
+    // this.$bgPicker.val(this.bgColor)
+    // this.$opacityPicker.val('100%')
   }
 
   render() {

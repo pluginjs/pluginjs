@@ -37,7 +37,16 @@ export const classes = {
   TRIGGER: '{namespace}-trigger',
   INPUT: '{namespace}-input',
   EMPTY: '{namespace}-empty',
-  FILL: '{namespace}-fill'
+  FILL: '{namespace}-fill',
+  FILLIMG: '{namespace}-fill-img',
+  ACTION: '{namespace}-action',
+  PREVIEW: '{namespace}-preview',
+  COMPONENT: '{namespace}-component',
+  TITLE: '{namespace}-component-title',
+  CONTENT: '{namespace}-component-content',
+  BTNACTION: '{namespace}-btn-action',
+  CANCEL: '{namespace}-cancel',
+  SAVE: '{namespace}-save'
 }
 
 export const methods = [
@@ -73,11 +82,15 @@ export const defaults = {
       </div>`
     },
     fill() {
-      return `<div class='{classes.FILL }'><i class='{icon}'></i>{text}
+      return `<div class='{classes.FILL }'><image class='{classes.FILLIMG}' />
       </div>`
     },
     empty() {
-      return `<div class='{classes.EMPTY}'><image class='{classes.INFOPOSTER}' />
+      return `<div class='{classes.EMPTY}'><i class='{icon}'></i>{text}
+      </div>`
+    },
+    infoAction() {
+      return `<div class='{classes.ACTION}'><i class='icon-pencil-square  {classes.EDITOR}'></i><i class='icon-trash {classes.REMOVE}'></i>
       </div>`
     }
   },

@@ -224,7 +224,7 @@ class VideoPicker extends Component {
       }'>${localeDelete}</span></div></div>`
     )
     this.$poster = query(`.${this.classes.POSTER}`, this.$posterContent)
-    this.$videoAction = parseHTML(
+    this.$btnAction = parseHTML(
       `<div class="${this.classes.BTNACTION}">
       <button class="pj-btn pj-btn-transparent ${
         this.classes.CANCEL
@@ -242,7 +242,7 @@ class VideoPicker extends Component {
       this.$localUrlContent,
       this.$ratioContent,
       this.$posterContent,
-      this.$videoAction
+      this.$btnAction
     )
     // init source dropdown
     this.$defaultDropdown = Dropdown.of(this.$empty, {
@@ -477,20 +477,27 @@ class VideoPicker extends Component {
         type: this.eventName('click'),
         identity: `.${this.classes.EDITOR}`,
         handler: () => {
-          this.editPanel.openPanel()
+          this.$defaultDropdown.show()
+        }
+      }),
+      bindEvent({
+        type: this.eventName('click'),
+        identity: `.${this.classes.REMOVE}`,
+        handler: () => {
+          this.$defaultDropdown.hide()
         }
       }),
       // info actions hover hold
       bindEvent({
         type: this.eventName('mouseover'),
-        identity: '.pj-videoPicker-info',
+        identity: '.pj-videoPicker-fill',
         handler: () => {
           addClass(this.classes.HOVER, this.$infoAction)
         }
       }),
       bindEvent({
         type: this.eventName('mouseout'),
-        identity: '.pj-videoPicker-info',
+        identity: '.pj-videoPicker-fill',
         handler: () => {
           if (this.is('holdHover')) {
             return
@@ -654,17 +661,35 @@ class VideoPicker extends Component {
         }
       })
     )(this.$wrap)
-    // panel update
-    // this.editPanel.options.onUpdate = () => {
-    //   this.$infoCover.setAttribute('src', this.data.poster)
 
-    //   if (this.videoApi) {
-    //     this.videoApi.stop()
-    //   }
-    //   this.element.value = this.val()
-    //   this.editPanel.closePanel()
-    //   addClass(this.classes.SHOW, this.$wrap)
-    // }
+    compose(
+      bindEvent({
+        type: this.eventName('click'),
+        identity: `.${this.classes.CANCEL}`,
+        handler: () => {
+          this.$defaultDropdown.hide()
+        }
+      }),
+      bindEvent({
+        type: this.eventName('click'),
+        identity: `.${this.classes.SAVE}`,
+        handler: () => {
+          this.$defaultDropdown.hide()
+          addClass(this.classes.SHOW, this.$wrap)
+        }
+      })
+    )(this.$btnAction)
+    // panel update
+    this.$defaultDropdown.options.onUpdate = () => {
+      this.$infoCover.setAttribute('src', this.data.poster)
+
+      if (this.videoApi) {
+        this.videoApi.stop()
+      }
+      this.element.value = this.val()
+      this.$defaultDropdown.hide()
+      addClass(this.classes.SHOW, this.$wrap)
+    }
   }
 
   addPoster(url) {
@@ -708,11 +733,9 @@ class VideoPicker extends Component {
     this.element.value = ''
     this.$urlInput.value = ''
     // this.$video.data('video', '')
-    this.videoApi = VideoPicker.of(this.$video)
+    // this.videoApi = VideoPicker.of(this.$video)
     this.videoApi.destroy()
-    console.log(this.$wrap)
-    console.log(query(`.${this.classes.VIDEO}`, this.$wrap))
-    query(`.${this.classes.VIDEO}`, this.$wrap).remove()
+    query('.pj-video', this.$wrap).remove()
     setStyle(
       {
         backgroundImage: `url(${this.data.poster})`

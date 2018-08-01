@@ -87,7 +87,7 @@ export const defaults = {
       </div>`
     },
     fill() {
-      return `<div class='{classes.FILL}'><image class='{classes.INFOPOSTER}' />
+      return `<div class='{classes.FILL}'><image src='https://picsum.photos/200/300?image=1020' class='{classes.INFOPOSTER}' />
       </div>`
     },
     infoAction() {
