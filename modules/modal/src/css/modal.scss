@@ -109,6 +109,27 @@ $modal-vertification-borderClor: $gray-border !default;
     font-weight: 400;
     letter-spacing: 0.5px;
 
+    .#{$modal}-icon {
+      bottom: -5px;
+      padding-right: 20px;
+      font-size: 30px;
+    }
+
+    &-center {
+      margin-bottom: 4px;
+      text-align: center;
+
+      .#{$modal}-icon {
+        display: block;
+        padding: 10px 0;
+        font-size: 30px;
+      }
+    }
+
+    &-right {
+      text-align: right;
+    }
+
     &:only-child {
       padding-bottom: 0;
     }
@@ -121,6 +142,14 @@ $modal-vertification-borderClor: $gray-border !default;
     font-size: $font-size-sm;
     color: $modal-body-color;
     letter-spacing: 0.6px;
+
+    &-center {
+      text-align: center;
+    }
+
+    &-right {
+      text-align: right;
+    }
   }
 
   .#{$modal}-buttons {
@@ -254,6 +283,10 @@ $modal-vertification-borderClor: $gray-border !default;
   &:not(:disabled):focus {
     background: initial;
   }
+}
+
+.#{$modal}.#{$modal}-active.#{$modal}-destory {
+  display: none;
 }
 
 .btn {

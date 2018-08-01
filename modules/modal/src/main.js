@@ -2,7 +2,6 @@ import templateEngine from '@pluginjs/template'
 import { deepMerge, compose } from '@pluginjs/utils'
 import { isObject, isFunction } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, query } from '@pluginjs/dom'
 import {
@@ -177,31 +176,19 @@ class Modal extends GlobalComponent {
     )
 
     const animationendCallback = () => {
+      // console.log(this.options)
       if (!this.options.autoDestroy) {
         compose(
           removeEvent('animationend'),
-          setStyle({ display: 'none' })
+          addClass('pj-modal-destory')
         )(this.$element)
-        this.enter('hide')
+        this.enter('show')
         this.removeOverflow()
       } else {
         this.destroy()
         this.removeOverflow()
       }
     }
-
-    // const animationendCallback = () => do {
-    //   if (!this.options.autoDestroy) {
-    //     this.$element
-    //       |> removeEvent('animationend', animationendCallback)
-    //       |> setStyle({ display: 'none' })
-    //     this.enter('hide')
-    //     this.removeOverflow()
-    //   } else {
-    //     this.destroy()
-    //     this.removeOverflow()
-    //   }
-    // }
 
     bindEvent(
       { type: 'animationend', handler: animationendCallback },
@@ -266,13 +253,16 @@ class Modal extends GlobalComponent {
       this.setTitleloction(this.options.titleAlignment)
     }
 
+    if (this.options.content !== '') {
+      this.setContent(this.options.content)
+      this.setContentloction(this.options.contentAlignment)
+    }
+
     if (this.options.buttons) {
       this.setButtons(this.options.buttons)
       this.setBtnLocation(this.options.buttonAlignment)
     }
 
-    this.setContent(this.options.content)
-    this.setContentloction(this.options.contentAlignment)
     // trigger ready
     this.firstAppend = true
     this.trigger(EVENTS.READY)
@@ -280,20 +270,28 @@ class Modal extends GlobalComponent {
   }
 
   setTitleloction(location) {
-    const loc = ['left', 'center']
-    if (!loc.includes(location)) {
-      setStyle({ 'text-align': 'left' }, this.$title)
-    } else {
-      setStyle({ 'text-align': location }, this.$title)
+    if (location) {
+      addClass(
+        this.getClass(
+          this.classes.TITLELOCATION,
+          'location',
+          this.options.titleAlignment
+        ),
+        this.$title
+      )
     }
   }
 
-  setContentloction(location) {
-    const loc = ['left', 'center', 'right']
-    if (!loc.includes(location)) {
-      setStyle({ 'text-align': 'left' }, this.$content)
-    } else {
-      setStyle({ 'text-align': location }, this.$content)
+  setContentloction(contentLocation) {
+    if (contentLocation) {
+      addClass(
+        this.getClass(
+          this.classes.CONTENTLOCATION,
+          'contentLocation',
+          this.options.contentAlignment
+        ),
+        this.$content
+      )
     }
   }
 
@@ -388,33 +386,6 @@ class Modal extends GlobalComponent {
     this.$title.innerHTML = ''
     if (this.options.icon) {
       append(this.$icon, this.$title)
-      if (this.options.titleAlignment === 'center') {
-        setStyle(
-          {
-            display: 'block',
-            'font-size': '30px',
-            'padding-top': '10px',
-            'padding-bottom': '10px'
-          },
-          this.$icon
-        )
-        setStyle(
-          {
-            'padding-bottom': '4px'
-          },
-          this.$title
-        )
-      } else {
-        setStyle(
-          {
-            'padding-right': '20px',
-            'font-size': '30px',
-            bottom: '-5px',
-            position: 'relative'
-          },
-          this.$icon
-        )
-      }
     }
 
     append(title, this.$title)
