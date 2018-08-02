@@ -58,8 +58,6 @@ class Notice extends GlobalComponent {
   }
 
   setStyles() {
-    setStyle({ 'text-align': this.options.contentAlignment }, this.$container)
-
     if (this.options.backgroundImage) {
       const url = `url(${this.options.backgroundImage})`
       setStyle(
@@ -79,13 +77,21 @@ class Notice extends GlobalComponent {
         this.$element
       )
     }
-    if (this.options.layout === 'bottom') {
-      setStyle({ bottom: '0px' }, this.$element)
-    } else {
-      setStyle({ top: '0px' }, this.$element)
+    if (this.options.layout) {
+      addClass(
+        this.getClass(this.classes.LOCATION, 'location', this.options.layout),
+        this.$element
+      )
     }
-    if (this.options.buttonAlign === 'right') {
-      setStyle({ float: this.options.buttonAlign }, this.$position)
+    if (this.options.buttonAlign) {
+      addClass(
+        this.getClass(
+          this.classes.BUTTONSLOCATION,
+          'location',
+          this.options.buttonAlign
+        ),
+        this.$position
+      )
     }
     if (this.options.closeBottonColor) {
       setStyle({ color: this.options.closeBottonColor }, this.$closeBtn)
@@ -187,6 +193,16 @@ class Notice extends GlobalComponent {
 
     if (this.options.fixedWidth) {
       addClass(`${this.classes.NAMESPACE}-fixed`, this.$element)
+    }
+    if (this.options.contentAlignment) {
+      addClass(
+        this.getClass(
+          this.classes.CONTENTLOCATION,
+          'location',
+          this.options.contentAlignment
+        ),
+        this.$element
+      )
     }
     this.enter('initialized')
     this.trigger(EVENTS.READY)

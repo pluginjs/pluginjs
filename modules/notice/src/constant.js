@@ -12,13 +12,16 @@ export const methods = ['destroy']
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
+  LOCATION: '{namespace}-{location}',
   CONTENT: '{namespace}-content',
+  CONTENTLOCATION: '{namespace}-content-{location}',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
   CLOSE: '{namespace}-close',
   CONTAINER: '{namespace}-container',
   BUTTON: '{namespace}-btn',
   BUTTONS: '{namespace}-buttons',
+  BUTTONSLOCATION: '{namespace}-buttons-{location}',
   POSITION: '{namespace}-position',
   BACKGROUND: '{namespace}-with-bg'
 }

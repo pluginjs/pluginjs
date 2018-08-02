@@ -26,6 +26,7 @@ $notice-close-color: $notice-link-color !default;
 
 .#{$notice} {
   position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
   background-color: #fff;
@@ -47,6 +48,11 @@ $notice-close-color: $notice-link-color !default;
     padding: 12px 0;
     margin: 0 auto;
   }
+
+  &-bottom {
+    top: unset;
+    bottom: 0;
+  }
 }
 
 .#{$notice}-content {
@@ -56,6 +62,14 @@ $notice-close-color: $notice-link-color !default;
   font-size: 0.875rem;
   line-height: 1.813rem;
   vertical-align: middle;
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
 }
 
 .#{$notice}-position {
@@ -69,6 +83,10 @@ $notice-close-color: $notice-link-color !default;
     justify-content: center;
     height: 100%;
   }
+}
+
+.#{$notice}-buttons-right {
+  float: right;
 }
 
 .#{$notice}-btn {
