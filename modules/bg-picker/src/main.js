@@ -62,7 +62,6 @@ class BgPicker extends Component {
     }
 
     this.value = this.options.parse(this.element.value.replace(/'/g, '"'))
-
     this.set(this.value, false)
 
     // init
@@ -89,12 +88,13 @@ class BgPicker extends Component {
   }
 
   initDropdown() {
-    Dropdown.of(this.$empty, {
+    this.$defaultDropdown = Dropdown.of(this.$empty, {
       // data: this.getTimeList().map(value => ({ label: value })),
       // placeholder: this.options.placeholder,
       theme: 'dafault',
       placement: 'bottom-left',
       imitateSelect: true,
+      exclusive: false,
       // inputLabel: true,
       hideOutClick: false,
       hideOnSelect: false,
@@ -112,7 +112,6 @@ class BgPicker extends Component {
           if (this.is('disabled')) {
             return
           }
-
           removeClass(
             this.classes.EXIST,
             addClass(this.classes.EXPAND, this.$wrap)
@@ -146,17 +145,14 @@ class BgPicker extends Component {
           this.leave('holdHover')
           return null
         }
-      })
-    )(this.$fill)
-
-    bindEvent(
-      {
+      }),
+      bindEvent({
         type: this.eventName('click'),
+        identity: `.${this.classes.EDIT}`,
         handler: () => {
           if (this.is('disabled')) {
             return null
           }
-
           this.oldValue = this.val()
           removeClass(
             this.classes.EXIST,
@@ -165,9 +161,18 @@ class BgPicker extends Component {
 
           return null
         }
-      },
-      this.$edit
-    )
+      }),
+      bindEvent({
+        type: this.eventName('click'),
+        identity: `.${this.classes.REMOVE}`,
+        handler: () => {
+          if (this.is('disabled')) {
+            return null
+          }
+          return null
+        }
+      })
+    )(this.$fill)
 
     bindEvent(
       {
@@ -183,12 +188,7 @@ class BgPicker extends Component {
             this.classes.EXPAND,
             addClass(this.classes.EXIST, this.$wrap)
           )
-          removeClass('pj-dropdown-show', this.$empty)
-          // removeClass('pj-dropdown-show', this.$wrap)
-          removeClass(
-            'pj-dropdown-show',
-            query(`.${this.classes.DROPDOWN}`, this.$wrap).parentNode
-          )
+          this.$defaultDropdown.hide()
           return false
         }
       },
@@ -208,12 +208,7 @@ class BgPicker extends Component {
             this.classes.EXPAND,
             addClass(this.classes.EXIST, this.$wrap)
           )
-          removeClass('pj-dropdown-show', this.$empty)
-          // removeClass('pj-dropdown-show', this.$wrap)
-          removeClass(
-            'pj-dropdown-show',
-            query(`.${this.classes.DROPDOWN}`, this.$wrap).parentNode
-          )
+          this.$defaultDropdown.hide()
           return false
         }
       },
@@ -272,6 +267,7 @@ class BgPicker extends Component {
     this.$fillImageName = hideElement(
       query(`.${this.classes.IMAGENAMEFILL}`, this.$fill)
     )
+    this.$trigger = query(`.${this.classes.TRIGGER}`, this.$wrap)
     this.$fillImage = query(`.${this.classes.FILLIMAGE}`, this.$fill)
     this.$remove = query(`.${this.classes.REMOVE}`, this.$fill)
     this.$edit = query(`.${this.classes.EDIT}`, this.$fill)
@@ -306,6 +302,7 @@ class BgPicker extends Component {
   }
 
   setState(image) {
+    console.log(image)
     if (!image || image === this.options.image) {
       addClass(this.classes.WRITE, this.$wrap)
     } else {
@@ -347,7 +344,7 @@ class BgPicker extends Component {
 
   set(value, update) {
     this.value = value
-
+    console.log(value)
     this.setImage(value.image)
 
     if (update !== false) {

@@ -51,6 +51,7 @@ export default class Attachment {
         data,
         width: this.$dropdown,
         icon: 'icon-char icon-chevron-down',
+        exclusive: false,
         classes: {
           panel: `pj-dropdown-panel ${
             this.instance.classes.NAMESPACE

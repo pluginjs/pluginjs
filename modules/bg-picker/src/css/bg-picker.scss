@@ -397,10 +397,11 @@ input.#{$bgPicker}-input {
     display: flex !important;
   }
 
-  .#{$bgPicker}-fill,
-  .#{$bgPicker}-expand-panel {
+  .#{$bgPicker}-fill{
+  // .#{$bgPicker}-expand-panel {
     display: none !important;
   }
+  // }
 }
 /* stylelint-disable */
 .#{$bgPicker}-expand {
@@ -408,9 +409,11 @@ input.#{$bgPicker}-input {
     display: block !important;
   }
 
-  .#{$bgPicker}-empty,
-  .#{$bgPicker}-fill {
+  .#{$bgPicker}-empty{
     display: none !important;
+  }
+  .#{$bgPicker}-fill{
+    display: block !important;
   }
 }
 

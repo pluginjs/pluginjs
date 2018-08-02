@@ -110,11 +110,12 @@ class FontEditor extends Component {
     this.set(this.value, true)
 
     this.enter('emptyized')
+
     this.trigger(EVENTS.READY)
   }
 
   initDropdown() {
-    Dropdown.of(this.$empty, {
+    this.$defaultDropdown = Dropdown.of(this.$empty, {
       theme: 'dafault',
       placement: 'bottom-left',
       imitateSelect: true,
@@ -122,6 +123,7 @@ class FontEditor extends Component {
       hideOutClick: false,
       hideOnSelect: false,
       constraintToScrollParent: false,
+      constraintToWindow: false,
       templates: this.options.templates
     })
   }
@@ -138,6 +140,7 @@ class FontEditor extends Component {
           }
 
           addClass(that.classes.EXPAND, that.$wrap)
+          console.log(this.$defaultDropdown.show())
           return
         }
       },
@@ -179,14 +182,33 @@ class FontEditor extends Component {
           if (that.is('disabled')) {
             return
           }
-
+          console.log(this.$defaultDropdown)
+          // console.log(this.$defaultDropdown.show())
+          // removeClass(this.classes.EXSIT, this.$wrap)
           addClass(that.classes.EXPAND, that.$wrap)
+          this.$defaultDropdown.show()
           return
         }
       },
       this.$editBtn
     )
 
+    bindEvent(
+      {
+        type: this.eventName('click'),
+        handler: () => {
+          if (that.is('disabled')) {
+            return
+          }
+          // addClass(that.classes.EXPAND, that.$wrap)
+          this.$defaultDropdown.hide()
+          // addClass(that.classes.EXPAND, that.$wrap)
+          console.log(this.$defaultDropdown.hide())
+          return
+        }
+      },
+      this.$fillRemove
+    )
     // this.$fillRemove.bindEvent({
     // type: this.eventName('click'),
     // handler: () => {
@@ -200,6 +222,8 @@ class FontEditor extends Component {
         type: this.eventName('click'),
         handler: () => {
           removeClass(this.classes.EXPAND, this.$wrap)
+          addClass(this.classes.EXSIT, this.$wrap)
+          this.$defaultDropdown.hide()
           return
         }
       },
@@ -213,7 +237,14 @@ class FontEditor extends Component {
           // if ($.isEmptyObject(that.value)) {
           //   addClass(that.classes.WRITE, removeClass(that.classes.EXSIT, that.$wrap));
           // }
+          addClass(this.classes.EXSIT, this.$wrap)
+          removeClass(this.classes.EXPAND, this.$wrap)
+          // hasClass(`${this.classes.WRITE}`, this.$wrap)
+          //   ? removeClass(this.classes.WRITE, this.$wrap)
+          //   : null
           this.update()
+          this.$defaultDropdown.hide()
+          console.log(this.$defaultDropdown.hide())
           return
         }
       },

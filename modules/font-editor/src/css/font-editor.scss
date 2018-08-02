@@ -318,13 +318,14 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
 /* stylelint-disable*/
 .#{$fontEditor}-expand {      
-  .#{$fontEditor}-empty,
-  .#{$fontEditor}-fill {
+  .#{$fontEditor}-empty{
     display: none !important;
   }
-
   .#{$fontEditor}-expand-panel {
     display: block !important;
+  }
+  .#{$fontEditor}-fill{
+    display: flex !important;
   }
 }
 
