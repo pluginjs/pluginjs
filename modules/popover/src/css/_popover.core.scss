@@ -29,7 +29,7 @@ $popover-simple-content-spacer: 0 $popover-simple-spacer-x
   $popover-simple-spacer-y !default;
 
 $popover-title-spacer: $popover-spacer-y $popover-spacer-x 0 $popover-spacer-x !default;
-$popover-title-margin-bottom: 0.7 * $popover-font-size !default;
+$popover-content-margin-top: 0.7 * $popover-font-size !default;
 $popover-title-color: $popover-color !default;
 $popover-title-font-size: $font-size-sm !default;
 $popover-title-line-height: 1.5em !default;
@@ -308,11 +308,22 @@ $popover-btn-padding-x: 2.3 * $popover-font-size !default;
 }
 
 // Offset the popover to account for the popover arrow
+.#{$popover}-content {
+  max-height: $popover-max-height;
+  padding: $popover-content-spacer;
+  margin-top: $popover-content-margin-top;
+  overflow: auto;
+}
+
 .#{$popover}-title {
   padding: $popover-title-spacer;
-  margin-bottom: $popover-title-margin-bottom;
+  margin-bottom: 0;
   font-size: $popover-title-font-size;
   line-height: $popover-title-line-height;
+
+  & + .#{$popover}-content:empty {
+    margin-top: 0;
+  }
 
   &:empty {
     display: none;
@@ -320,14 +331,10 @@ $popover-btn-padding-x: 2.3 * $popover-font-size !default;
 
   &:empty + .#{$popover}-content {
     padding-top: $popover-spacer-y;
+    margin-top: 0;
   }
 }
 
-.#{$popover}-content {
-  max-height: $popover-max-height;
-  padding: $popover-content-spacer;
-  overflow: auto;
-}
 
 .#{$popover}-button {
   font-size: $popover-font-size;

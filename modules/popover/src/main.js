@@ -8,8 +8,7 @@ import {
   register,
   stateable,
   styleable,
-  themeable,
-  optionable
+  themeable
 } from '@pluginjs/decorator'
 import {
   classes as CLASSES,
@@ -30,7 +29,6 @@ import Tooltip from '@pluginjs/tooltip'
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
-
 class Popover extends Tooltip {
   constructor(element, options = {}, namespace, defaults, classes) {
     if (!isString(namespace)) {
@@ -96,7 +94,6 @@ class Popover extends Tooltip {
     // we use append for html objects to maintain js events
     const title = this.getTitle()
     const content = this.getContent()
-
     this.setElementContent(query(`.${this.classes.TITLE}`, $tip), title)
     this.setElementContent(query(`.${this.classes.CONTENT}`, $tip), content)
 
