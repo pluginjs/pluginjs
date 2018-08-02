@@ -1,10 +1,10 @@
-import { query, finds, parent } from '@pluginjs/dom'
+import { query, queryAll, parent } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import sectionScroll from '@pluginjs/section-scroll'
 
 const element = query('#default .section-container')
 const $nav = query('#default #main-header')
-const $sections = finds('li', $nav)
+const $sections = queryAll('li', $nav)
 const API = sectionScroll.of(element, {
   /** options **/
   itemSelector: '.section',

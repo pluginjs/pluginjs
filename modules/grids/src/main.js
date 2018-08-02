@@ -1,10 +1,16 @@
 import Component from '@pluginjs/component'
-
 import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import Pj from '@pluginjs/factory'
-import { append, prepend, find, finds, parent, children } from '@pluginjs/dom'
+import {
+  append,
+  prepend,
+  find,
+  queryAll,
+  parent,
+  children
+} from '@pluginjs/dom'
 
 import {
   eventable,
@@ -84,7 +90,7 @@ class Grids extends Component {
     // handle image loading
     /* 如果有imgSelector属性的话，初始化image-loader插件，当img全部加载后loading */
     if (this.options.imgSelector) {
-      this.imgs = finds(this.options.imgSelector, this.$container)
+      this.imgs = queryAll(this.options.imgSelector, this.$container)
       if (this.imgs && this.imgs.length > 0) {
         addClass(this.classes.LOADERSHOW, this.$loader)
         const imageLoaderApi = ImageLoader.of(this.$container, {
@@ -119,7 +125,7 @@ class Grids extends Component {
 
     // get $items, if not set item selector, get element's children
     this.$items = this.options.itemSelector
-      ? finds(this.options.itemSelector, this.element)
+      ? queryAll(this.options.itemSelector, this.element)
       : children(this.element)
 
     const $itemsParent = parent(this.$items[0])

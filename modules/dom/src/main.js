@@ -11,7 +11,7 @@ export const queryAll = (selector, parent = document) =>
 
 export const find = curry((selector, parent) => parent.querySelector(selector))
 
-export const finds = curry((selector, parent) =>
+export const findAll = curry((selector, parent) =>
   Array.from(parent.querySelectorAll(selector))
 )
 
@@ -309,6 +309,9 @@ export const closest = curry((selector, el) => {
 
 export const nextElementWith = curry((fn, el) => {
   const nextElement = next(el)
+  if (!nextElement) {
+    return null
+  }
   if (fn(nextElement)) {
     return nextElement
   }

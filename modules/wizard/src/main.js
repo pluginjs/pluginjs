@@ -1,7 +1,6 @@
 import Component from '@pluginjs/component'
 import {
   find,
-  finds,
   attr,
   Each,
   dataset,
@@ -51,7 +50,7 @@ class Wizard extends Component {
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     setObjData(NAMESPACE, this, this.element)
-    this.$steps = finds(this.options.step, this.element)
+    this.$steps = queryAll(this.options.step, this.element)
 
     this.id = attr('id', this.element)
 
@@ -130,7 +129,7 @@ class Wizard extends Component {
 
     const id = `#${this.id}`
 
-    Each(finds('a', $buttons), a => {
+    Each(queryAll('a', $buttons), a => {
       attr({ href: id }, a)
     })
 
@@ -250,7 +249,7 @@ class Wizard extends Component {
         that.updateSteps()
 
         if (that.options.autoFocus) {
-          const $input = finds('input', this.pane)
+          const $input = queryAll('input', this.pane)
           if ($input.length > 0) {
             trigger('focus', $input[0])
           } else {

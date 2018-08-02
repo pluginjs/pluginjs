@@ -8,9 +8,9 @@ import {
   wrap,
   closest,
   find,
-  finds,
   parent,
-  parentWith
+  parentWith,
+  queryAll
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -200,9 +200,9 @@ class Swipe extends Component {
   }
 
   getItems() {
-    let $items = finds(`.${this.classes.ITEM}`, this.element)
+    let $items = queryAll(`.${this.classes.ITEM}`, this.element)
     if ($items.length === 0) {
-      $items = finds(this.options.itemSelector, this.element)
+      $items = queryAll(this.options.itemSelector, this.element)
       $items.forEach($item => {
         addClass(this.classes.ITEM, $item)
       })

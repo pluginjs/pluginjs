@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "dist/dom.umd.js",
   "module": "dist/dom.esm.js",
   "cjs": "dist/dom.cjs.js",
