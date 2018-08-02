@@ -1,4 +1,4 @@
-import * as util from '../src'
+import * as util from '../src/main'
 
 describe('util', () => {
   test('should have util', () => {
@@ -292,209 +292,158 @@ describe('util', () => {
     })
   })
 
-  describe('transition end support', () => {
-    let instance
-    let $element
+  describe('throttle and debounce', () => {
+    // this.retries(2)
 
-    test('should works with transitionEnd', function(done) {
-      this.timeout(1200)
-
-      const element = document.createElement('div')
-
-      $element = $(element)
-
-      let called = false
-
-      const callback = function() {
-        called = true
-      }
-
-      $element.one(util.asTransitionEnd, callback).asTransitionEnd(1000)
+    function test(method, duration, callback) {
+      const timer = setInterval(method, 10)
 
       setTimeout(() => {
-        expect(called).toEqual(true)
+        clearInterval(timer)
+        callback()
+      }, duration)
+    }
 
-        done()
-      }, 1100)
+    describe('throttle()', () => {
+      test('should call every delay', done => {
+        let count = 0
+        const throttle = util.throttle(() => {
+          count++
+        }, 100)
+
+        expect(count).toEqual(0)
+
+        test(throttle, 1.8 * 100, () => {
+          expect(count).toEqual(2)
+          setTimeout(() => {
+            expect(count).toEqual(2)
+            done()
+          }, 100)
+        })
+      })
+
+      test('should call every fps (1000/60) if no delay specified', done => {
+        let count = 0
+        const throttle = util.throttle(() => {
+          count++
+        })
+
+        expect(count).toEqual(0)
+
+        test(throttle, 1000, () => {
+          const end = count
+          expect(count).toBeWithin(50, 70)
+
+          setTimeout(() => {
+            expect(count).toBeWithin(end, end + 1)
+            done()
+          }, 100)
+        })
+      })
     })
 
-    test('should works without transition event support', function(done) {
-      this.timeout(1200)
+    describe('debounce()', () => {
+      test('should work properly with specify delay', done => {
+        let count = 0
+        const debounce = util.debounce(() => {
+          count++
+        }, 100)
 
-      const element = document.createElement('div')
-      const backup = $.event.special[util.asTransitionEnd]
+        expect(count).toEqual(0)
 
-      $element = $(element)
+        test(debounce, 1.8 * 100, () => {
+          expect(count).toEqual(0)
 
-      let called = false
+          setTimeout(() => {
+            expect(count).toEqual(1)
+            done()
+          }, 1.5 * 100)
+        })
+      })
 
-      const callback = function() {
-        called = true
+      test('should work with default delay', done => {
+        let count = 0
+        const debounce = util.debounce(() => {
+          count++
+        })
+
+        expect(count).toEqual(0)
+
+        test(debounce, 80, () => {
+          expect(count).toEqual(0)
+
+          setTimeout(() => {
+            expect(count).toEqual(1)
+            done()
+          }, 1.5 * 100)
+        })
+      })
+    })
+
+    describe('arguments', () => {
+      let count
+      let a
+      let b
+
+      function counter(x, y) {
+        a += x
+        b += y
+        count++
       }
-      $element.one(util.asTransitionEnd, callback).asTransitionEnd(1000)
 
-      setTimeout(() => {
-        expect(called).toEqual(true)
+      function test(method, duration, callback) {
+        count = 0
+        a = 0
+        b = 0
 
-        $.event.special[util.asTransitionEnd] = backup
-        done()
-      }, 1100)
+        const timer = setInterval(() => {
+          const rand = Math.random()
+          method(rand, rand * -1)
+        }, 10)
+
+        setTimeout(() => {
+          clearInterval(timer)
+          callback()
+        }, duration)
+      }
+
+      describe('throttle()', () => {
+        test('should handles arguments correctly with delay', done => {
+          const throttle = util.throttle(counter, 100)
+
+          test(throttle, 1.8 * 100, () => {
+            expect(count).toEqual(2)
+            expect(a + b).toEqual(0)
+            done()
+          })
+        })
+
+        test('should handles arguments correctly with requestAnimationFrame', done => {
+          const throttle = util.throttle(counter)
+
+          test(throttle, 1000, () => {
+            expect(count).toBeWithin(50, 70)
+            expect(a + b).toEqual(0)
+
+            done()
+          })
+        })
+      })
+
+      describe('debounce()', () => {
+        test('should handles arguments correctly', done => {
+          const debounce = util.debounce(counter, 100)
+
+          test(debounce, 80, () => {
+            expect(count).toEqual(0)
+
+            setTimeout(() => {
+              expect(count).toEqual(1)
+              done()
+            }, 1.5 * 100)
+          })
+        })
+      })
     })
   })
-
-  // describe('throttle and debounce', function() {
-  //   this.retries(2);
-
-  //   function test(method, duration, callback) {
-  //     let timer = setInterval(method, 10);
-
-  //     setTimeout(() => {
-  //       clearInterval(timer);
-  //       callback();
-  //     }, duration);
-  //   }
-
-  //   describe('throttle()', () => {
-  //     test('should call every delay', done => {
-  //       let count = 0;
-  //       const throttle = util.throttle(() => {
-  //         count++;
-  //       }, 100);
-
-  //       expect(count).toEqual(0);
-
-  //       test(throttle, 1.8 * 100, () => {
-  //         expect(count).toEqual(2);
-  //         setTimeout(() => {
-  //           expect(count).toEqual(2);
-  //           done();
-  //         }, 100);
-  //       });
-  //     });
-
-  //     test('should call every fps (1000/60) if no delay specified', done => {
-  //       let count = 0;
-  //       const throttle = util.throttle(() => {
-  //         count++;
-  //       });
-
-  //       expect(count).toEqual(0);
-
-  //       test(throttle, 1000, () => {
-  //         let end = count;
-  //         expect(count).to.be.within(50, 70);
-
-  //         setTimeout(() => {
-  //           expect(count).to.be.within(end, end + 1);
-  //           done();
-  //         }, 100);
-  //       });
-  //     });
-  //   });
-
-  //   describe('debounce()', () => {
-  //     test('should work properly with specify delay', done => {
-  //       let count = 0;
-  //       const debounce = util.debounce(() => {
-  //         count++;
-  //       }, 100);
-
-  //       expect(count).toEqual(0);
-
-  //       test(debounce, 1.8 * 100, () => {
-  //         expect(count).toEqual(0);
-
-  //         setTimeout(() => {
-  //           expect(count).toEqual(1);
-  //           done();
-  //         }, 1.5 * 100);
-  //       });
-  //     });
-
-  //     test('should work with default delay', done => {
-  //       let count = 0;
-  //       const debounce = util.debounce(() => {
-  //         count++;
-  //       });
-
-  //       expect(count).toEqual(0);
-
-  //       test(debounce, 80, () => {
-  //         expect(count).toEqual(0);
-
-  //         setTimeout(() => {
-  //           expect(count).toEqual(1);
-  //           done();
-  //         }, 1.5 * 100);
-  //       });
-  //     });
-  //   });
-
-  //   describe('arguments', () => {
-  //     let count;
-  //     let a;
-  //     let b;
-
-  //     function counter(x, y) {
-  //       a = a+x;
-  //       b = b+y;
-  //       count++;
-  //     }
-
-  //     function test(method, duration, callback) {
-  //       count = 0;
-  //       a = 0;
-  //       b = 0;
-
-  //       let timer = setInterval(() => {
-  //         var rand = Math.random();
-  //         method(rand, rand*-1);
-  //       }, 10);
-
-  //       setTimeout(() => {
-  //         clearInterval(timer);
-  //         callback();
-  //       }, duration);
-  //     }
-
-  //     describe('throttle()', () => {
-  //       test('should handles arguments correctly with delay', done => {
-  //         const throttle = util.throttle(counter, 100);
-
-  //         test(throttle, 1.8 * 100, () => {
-  //           expect(count).toEqual(2);
-  //           expect(a+b).toEqual(0);
-  //           done();
-  //         });
-  //       });
-
-  //       test('should handles arguments correctly with requestAnimationFrame', done => {
-  //         const throttle = util.throttle(counter);
-
-  //         test(throttle, 1000, () => {
-  //           let end = count;
-  //           expect(count).to.be.within(50, 70);
-  //           expect(a+b).toEqual(0);
-
-  //           done();
-  //         });
-  //       });
-  //     });
-
-  //     describe('debounce()', () => {
-  //       test('should handles arguments correctly', done => {
-  //         const debounce = util.debounce(counter, 100);
-
-  //         test(debounce,  80, () => {
-  //           expect(count).toEqual(0);
-
-  //           setTimeout(() => {
-  //             expect(count).toEqual(1);
-  //             done();
-  //           }, 1.5 * 100);
-  //         });
-  //       });
-  //     });
-  //   });
-  // });
 })

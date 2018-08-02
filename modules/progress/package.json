@@ -62,6 +62,7 @@
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
+    "testURL": "http://localhost",
     "testPathIgnorePatterns": [
       "fixtures"
     ]
