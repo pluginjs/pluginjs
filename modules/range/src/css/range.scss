@@ -24,7 +24,9 @@ $dropdown-item: "pj-dropdown-item" !default;
     height: $range-height;
     background-color: #215fdb;
   }
-
+  &-disabled {
+    background-color: #e6e6e6;
+  }
   &-pointer {
     top: 50%;
     box-sizing: border-box;
@@ -104,3 +106,4 @@ $dropdown-item: "pj-dropdown-item" !default;
     outline: none;
   }
 }
+

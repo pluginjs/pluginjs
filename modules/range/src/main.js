@@ -143,7 +143,9 @@ class Range extends Component {
     if (this.options.scale !== false) {
       this.components.Scale.init(this)
     }
-
+    if (this.element.disabled || this.options.disabled) {
+      this.disable()
+    }
     if (this.options.unit) {
       const unit = this.options.defaultUnit || this.options.unit[0]
       this.data.unit = unit
@@ -511,6 +513,7 @@ class Range extends Component {
       if (this.unitsApi) {
         this.unitsApi.disable()
       }
+      this.element.disabled = true
       this.enter('disabled')
     }
 

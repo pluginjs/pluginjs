@@ -1,4 +1,4 @@
-import template from '@pluginjs/template'
+import templateEngine from '@pluginjs/template'
 import { deepMerge, compose } from '@pluginjs/utils'
 import { parent, parseHTML, parentWith, children, dataset } from '@pluginjs/dom'
 import { removeClass, addClass, hasClass } from '@pluginjs/classes'
@@ -127,7 +127,7 @@ class ItemList extends List {
 
   initAddBtn() {
     this.$add = parseHTML(
-      template.compile(this.options.templates.add())({
+      templateEngine.compile(this.options.templates.add())({
         classes: this.classes
       })
     )
