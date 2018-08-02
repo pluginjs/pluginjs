@@ -10,6 +10,7 @@ $toast-border-color: $gray-darker !default;
 $toast-border-radius: $border-radius-base !default;
 $toast-spacer: $spacer !default;
 $toast-width: 280px !default;
+$toast-middle-width: 200px !default;
 $toast-primary-color: $color-primary !default;
 $toast-success-color: $color-success !default;
 $toast-info-color: $color-info !default;
@@ -20,6 +21,7 @@ $toast-link-color: transparentize($gray-lightest, 0.1) !default;
 $toast-close-color: #363636 !default;
 $toast-progress-height: 15px !default;
 
+$toast-primary-bgColor: $color-primary !default;
 // Core
 // =====================
 @mixin toast-variant($color) {
@@ -116,6 +118,10 @@ $toast-progress-height: 15px !default;
     margin-left: 10px;
     font-size: 14px;
     color: #000;
+
+    &-icon {
+      margin-left: 25px;
+    }
   }
 
   .#{$toast}-loader {
@@ -198,21 +204,10 @@ $toast-progress-height: 15px !default;
   }
 }
 
-@media only screen and (min-width: 800px) {
-  .#{$toast}-wrap {
-    width: $toast-width;
-  }
-}
-
-@media only screen and (max-width: 799px) {
-  .#{$toast}-wrap {
-    width: 200px;
-  }
-}
-
 .#{$toast}-wrap {
   position: fixed;
   display: block;
+  width: $toast-width;
   padding: 0;
   margin: 0;
   letter-spacing: normal;
@@ -235,6 +230,49 @@ $toast-progress-height: 15px !default;
   &.pj-toast-top-left {
     top: 20px;
     left: 20px;
+  }
+
+  &.pj-toast-bottom-center {
+    bottom: 20px;
+    left: calc(50% - #{$toast-width} / 2);
+  }
+
+  &.pj-toast-top-center {
+    top: 20px;
+    left: calc(50% - #{$toast-width} / 2);
+  }
+
+  &.pj-toast-mid-center {
+    top: 50%;
+    left: calc(50% - #{$toast-width} / 2);
+    transform: translateY(-50%);
+  }
+}
+@media only screen and (min-width: 800px) {
+  .#{$toast}-wrap {
+    width: $toast-width;
+  }
+}
+
+@media only screen and (max-width: 799px) {
+  .#{$toast}-wrap {
+    width: $toast-middle-width;
+
+    &.pj-toast-bottom-center {
+      bottom: 20px;
+      left: calc(50% - #{$toast-middle-width} / 2);
+    }
+  
+    &.pj-toast-top-center {
+      top: 20px;
+      left: calc(50% - #{$toast-middle-width} / 2);
+    }
+  
+    &.pj-toast-mid-center {
+      top: 50%;
+      left: calc(50% - #{$toast-middle-width} / 2);
+      transform: translateY(-50%);
+    }
   }
 }
 

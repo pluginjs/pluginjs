@@ -2,7 +2,7 @@ import templateEngine from '@pluginjs/template'
 import { isNumber } from '@pluginjs/is'
 import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getStyle } from '@pluginjs/styled'
+import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import {
   append,
@@ -169,68 +169,6 @@ class Toast extends GlobalComponent {
       typeof this.options.position === 'string' &&
       POSITIONS.includes(this.options.position)
     ) {
-      if (this.options.position === 'bottom-center') {
-        setStyle(
-          {
-            left:
-              window.outerWidth / 2 -
-              parseInt(
-                getStyle('width', this.$wrap).substring(
-                  0,
-                  getStyle('width', this.$wrap).length - 2
-                ),
-                10
-              ) /
-                2,
-            bottom: 20
-          },
-          this.$wrap
-        )
-      } else if (this.options.position === 'top-center') {
-        setStyle(
-          {
-            left:
-              window.outerWidth / 2 -
-              parseInt(
-                getStyle('width', this.$wrap).substring(
-                  0,
-                  getStyle('width', this.$wrap).length - 2
-                ),
-                10
-              ) /
-                2,
-            top: 20
-          },
-          this.$wrap
-        )
-      } else if (this.options.position === 'mid-center') {
-        setStyle(
-          {
-            left:
-              window.outerWidth / 2 -
-              parseInt(
-                getStyle('width', this.$wrap).substring(
-                  0,
-                  getStyle('width', this.$wrap).length - 2
-                ),
-                10
-              ) /
-                2,
-            top:
-              window.outerHeight / 2 -
-              parseInt(
-                getStyle('height', this.$wrap).substring(
-                  0,
-                  getStyle('height', this.$wrap).length - 2
-                ),
-                10
-              ) /
-                2
-          },
-          this.$wrap
-        )
-      }
-
       addClass(
         this.getClass(this.classes.POSITION, 'position', this.options.position),
         this.$wrap
@@ -526,12 +464,9 @@ class Toast extends GlobalComponent {
     const icon = query('i', this.$title)
     if (icon) {
       insertAfter(title, icon)
+      addClass('pj-toast-title-icon', this.$title)
     } else {
       this.$title.textContent = title
-    }
-
-    if (this.options.icon || this.options.iconClass) {
-      setStyle({ 'margin-left': '25px' }, this.$title)
     }
 
     if (this.options.titleColor) {
