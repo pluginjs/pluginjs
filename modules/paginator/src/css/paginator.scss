@@ -3,42 +3,51 @@
 // Vars
 // =====================
 $paginator: "pj-paginator";
-$paginator-padding-x: 8px !default;
+$paginator-spacer: 1.875rem !default;
+$paginator-height: 3.75rem !default;
+$paginator-padding-top: 1.25rem !default;
+$paginator-font-size: 0.75rem !default;
+$paginator-padding-x: 0.5rem !default;
 $paginator-padding-y: $spacer-y !default;
-$paginator-pre-color: #808c9e !default;
+$paginator-pre-color: $gray-darkest !default;
 $paginator-pre-size: 0.8125rem !default;
-$paginator-icon-margin: 10px !default;
+$paginator-link-padding: 0.375rem !default;
+$paginator-link-margin: 0.125rem !default;
+$paginator-icon-margin: 0.625rem !default;
 $paginator-color: $text-color !default;
-$paginator-bg: #fff !default;
+$paginator-bg: $color-white !default;
 $paginator-border-width: $border-width !default;
-$paginator-border-color: $border-color !default;
+$paginator-border-color: $gray-border !default;
 $paginator-hover-color: $link-hover-color !default;
 $paginator-hover-bg: $paginator-bg !default;
 $paginator-hover-border: $color-primary !default;
-$paginator-active-color: #fff !default;
+$paginator-hover-input-border: $gray-dark !default;
+$paginator-active-color: $color-white !default;
 $paginator-active-bg: $color-primary !default;
 $paginator-active-border: $color-primary !default;
-$paginator-disabled-color: $gray-lighter !default;
-$paginator-disabled-bg: #fff !default;
-$paginator-disabled-border: $gray-lighter !default;
+$paginator-disabled-color: $gray !default;
+$paginator-disabled-bg: $color-white !default;
+$paginator-disabled-border: $gray !default;
 
 // Core
 // =====================
 .#{$paginator} {
   // box-shadow: 0 0 10px #d7d7d7;
-  padding: 0 30px;
-  font-size: 0.75rem;
-  color: #808c9e;
+  padding: 0 $paginator-spacer;
+  font-size: $paginator-font-size;
+  // color: #808c9e;
   text-align: center;
   // display: inline-block;
   list-style: none;
   user-select: none;
 }
 
-.#{$paginator}-item {
+.#{$paginator}-item,
+.#{$paginator}-list-prev,
+.#{$paginator}-list-next {
   display: inline-block;
-  height: 60px;
-  padding-top: 20px;
+  height: $paginator-height;
+  padding-top: $paginator-padding-top;
 }
 
 .#{$paginator}-link {
@@ -47,9 +56,8 @@ $paginator-disabled-border: $gray-lighter !default;
   box-sizing: border-box;
   // border: $paginator-border-width solid $paginator-border-color;
   // margin-left: -$paginator-border-width;
-  padding: 0 3px;
-  margin: 0 5px;
-  font-size: 0.75rem;
+  padding: $paginator-link-padding;
+  margin: 0 $paginator-link-margin;
   color: $paginator-color;
   text-decoration: none;
 
@@ -69,22 +77,26 @@ $paginator-disabled-border: $gray-lighter !default;
     &:hover,
     &:focus {
       color: $paginator-active-bg;
-      border-bottom: 1px solid $paginator-active-border;
+      border-bottom: 2px solid $paginator-active-border;
     }
   }
 }
 
 .#{$paginator}-disabled {
-  .#{$paginator}-link {
-    pointer-events: none;
-    // height: 60px;
+  // disabled 
+  &.#{$paginator}-prev,
+  &.#{$paginator}-next {
     cursor: $cursor-disabled;
+    .#{$paginator}-link {
+      pointer-events: none;
+      // height: 60px;
 
-    &,
-    &:hover,
-    &:focus {
-      color: $paginator-disabled-color;
-      background-color: $paginator-disabled-bg;
+      &,
+      &:hover,
+      &:focus {
+        color: $paginator-disabled-color;
+        background-color: $paginator-disabled-bg;
+      }
     }
   }
 }
@@ -97,6 +109,7 @@ $paginator-disabled-border: $gray-lighter !default;
 
   i {
     margin-right: $paginator-icon-margin;
+    line-height: 1.42858;
     vertical-align: middle;
   }
 }
@@ -106,6 +119,7 @@ $paginator-disabled-border: $gray-lighter !default;
 
   i {
     margin-left: $paginator-icon-margin;
+    line-height: 1.42858;
     vertical-align: middle;
   }
 }
@@ -125,20 +139,34 @@ $paginator-disabled-border: $gray-lighter !default;
 
 .#{$paginator}-total,
 .#{$paginator}-jumper {
-  padding-right: 3px;
-  padding-left: 3px;
-  margin-right: 5px;
-  margin-left: 5px;
+  padding-right: 0.1875rem;
+  padding-left: 0.1875rem;
+  margin-right: 0.3125rem;
+  margin-left: 0.3125rem;
 }
 
 .#{$paginator}-jumper input {
-  padding: 5px 10px;
-  border: 1px solid #dfe4ed;
+  padding: 0.3125rem 10px;
+  border: 1px solid $paginator-border-color;
   border-radius: 4px;
 
   &:focus,
   &:hover {
-    border-color: #aab3bf;
+    border-color: $paginator-hover-input-border;
     outline: none;
   }
+}
+
+// clear both
+.#{$paginator}-prev::before,
+.#{$paginator}-prev::after,
+.#{$paginator}-next::before,
+.#{$paginator}-next::after {
+  display: table;
+  content: "";
+}
+
+.#{$paginator}-prev::after,
+.#{$paginator}-next::after {
+  clear: both;
 }

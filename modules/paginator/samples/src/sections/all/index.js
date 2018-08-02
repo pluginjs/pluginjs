@@ -10,7 +10,7 @@ Paginator.of(element, {
     visibleSize: {
       0: 3,
       960: 5,
-      1280: 7
+      1280: 10
     }
   },
   layout: 'total, prev, list, next, jumper',

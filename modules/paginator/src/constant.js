@@ -42,6 +42,14 @@ export const defaults = {
 
   theme: null,
 
+  list: {
+    visibleSize: {
+      0: 3,
+      960: 5,
+      1280: 10
+    }
+  },
+
   components: {
     first: {},
     prev: {},

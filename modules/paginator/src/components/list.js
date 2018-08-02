@@ -72,16 +72,16 @@ class List {
   getVisibleSize() {
     let size = 0
 
-    if (isObject(this.options.visibleSize)) {
-      const keys = Object.keys(this.options.visibleSize)
+    if (isObject(this.instance.options.list.visibleSize)) {
+      const keys = Object.keys(this.instance.options.list.visibleSize)
       for (const k of keys) {
-        const value = this.options.visibleSize[k]
-        if (window.document.documentElement.clientWidth > 1) {
+        const value = this.instance.options.list.visibleSize[k]
+        if (window.document.documentElement.clientWidth > k) {
           size = value
         }
       }
     } else {
-      size = this.options.visibleSize
+      size = this.instance.options.list.visibleSize
     }
 
     return size
@@ -119,14 +119,12 @@ class List {
     this.getItems()
     this.getNext()
     this.getPrev()
-
     bindEvent(
       {
         type: 'click',
         identity: `.${instance.classes.ITEM}`,
         handler: e => {
           const page = e.target.closest('li').dataset.page
-
           if (typeof page === 'undefined') {
             return false
           }
@@ -394,18 +392,18 @@ class List {
 }
 
 List.defaults = {
-  visibleSize: {
-    0: 3,
-    960: 5,
-    1280: 7
-  },
+  // visibleSize: {
+  //   0: 3,
+  //   960: 5,
+  //   1280: 7
+  // },
   itemAttr: 'data-page',
   templates: {
     next() {
-      return '<li class="{classes.ITEM} {classes.LISTNEXT}"><a class="{classes.LINK}" href="#" alt="{label}"><i class="{classes.LISTNEXTICON}" aria-hidden="true"></i></a></li>'
+      return '<li class="{classes.LISTNEXT}"><a class="{classes.LINK}" href="#" alt="{label}" title="{label}"><i class="{classes.LISTNEXTICON}" aria-hidden="true"></i></a></li>'
     },
     prev() {
-      return '<li class="{classes.ITEM} {classes.LISTPREV}"><a class="{classes.LINK}" href="#" alt="{label}"><i class="{classes.LISTPREVICON}" aria-hidden="true"></i></a></li>'
+      return '<li class="{classes.LISTPREV}"><a class="{classes.LINK}" href="#" alt="{label}" title="{label}"><i class="{classes.LISTPREVICON}" aria-hidden="true"></i></a></li>'
     },
     item() {
       return '<li class="{classes.ITEM}" data-page="{page}"><a class="{classes.LINK}" href="#">{page}</a></li>'
