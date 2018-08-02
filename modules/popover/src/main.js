@@ -16,7 +16,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -27,15 +26,11 @@ import Tooltip from '@pluginjs/tooltip'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
-@optionable(DEFAULTS, true)
-@register(
-  NAMESPACE,
-  {
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  },
-  INFO
-)
+@register(NAMESPACE, {
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
+
 class Popover extends Tooltip {
   constructor(element, options = {}, namespace, defaults, classes) {
     if (!isString(namespace)) {

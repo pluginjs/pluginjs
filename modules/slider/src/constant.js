@@ -18,8 +18,14 @@ const classes = {
   CARD: '{namespace}-card',
   LOADER: '{namespace}-loader',
   LOADED: '{namespace}-loaded',
+  CONTENT: '{namespace}-content',
   IMAGE: '{namespace}-image',
   VIDEO: '{namespace}-video',
+  VIDEOWRAP: '{namespace}-video-wrap',
+  IFRAME: '{namespace}-iframe',
+  MAP: '{namespace}-map',
+  INLINE: '{namespace}-inline',
+  LOADING: '{namespace}-loading',
   ACTIVE: '{namespace}-active',
   VERTICAL: '{namespace}-vertical',
   DISABLED: '{namespace}-disabled'
@@ -31,8 +37,9 @@ const defaults = {
   data: null,
   height: 50, // width 100% default, height percentage default
   arrows: true,
+  arrowType: 'solid',
   vertical: false,
-  current: 1,
+  current: 0,
   duration: 300,
   locale: 'en',
   templates: {
@@ -47,10 +54,24 @@ const defaults = {
       )
     },
     image() {
-      return '<img class="{classes.IMAGE} {classes.LOADED}" src="{data.src}">'
+      return '<img class="{classes.IMAGE} {classes.CONTENT}">'
     },
     video() {
-      return '<div class="{classes.VIDEO} {classes.LOADED}"></div>'
+      return (
+        '<div class="{classes.VIDEOWRAP} {classes.CONTENT}">' +
+        '<img class="{classes.IMAGE}">' +
+        '<div class="{classes.VIDEO}"></div>' +
+        '</div>'
+      )
+    },
+    iframe() {
+      return '<iframe class="{classes.IFRAME} {classes.CONTENT}" src="//about:blank" frameborder="0" allowfullscreen></iframe>'
+    },
+    map() {
+      return '<iframe class="{classes.MAP} {classes.CONTENT}" src="//about:blank" frameborder="0" allowfullscreen></iframe>'
+    },
+    inline() {
+      return '<div class="{classes.INLINE} {classes.CONTENT}"></div>'
     }
   }
 }

@@ -56,7 +56,8 @@ const data = [
   }
 ]
 
-const element = query('#default .slider')
+const element = query('#vertical .slider')
 Slider.of(element, {
+  vertical: true,
   data
 })

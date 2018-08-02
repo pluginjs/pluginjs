@@ -26,8 +26,8 @@ $arrow: "pj-arrow" !default;
     right: 0;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    // width: 100%;
+    // height: 100%;
   }
 
   &-card {
@@ -69,6 +69,48 @@ $arrow: "pj-arrow" !default;
       border-radius: 100%;
       transform: translateX(-50%);
     }
+
+    &.#{$slider}-loaded {
+      visibility: hidden;
+    }
+  }
+
+  &-content {
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+
+    &.#{$slider}-loaded {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .#{$slider}-image {
+      cursor: pointer;
+    }
+
+    &.#{$slider}-loading {
+      .#{$slider}-video {
+        visibility: visible;
+      }
+    }
+
+    &.#{$slider}-active {
+      .#{$slider}-image {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .#{$slider}-video {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    &.#{$slider}-iframe {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 
   &-image {
@@ -78,7 +120,76 @@ $arrow: "pj-arrow" !default;
     height: auto;
     max-height: 100%;
     margin: auto;
-    pointer-events: none;
+    cursor: move;
+  }
+
+  &-video-wrap {
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      margin: auto;
+      content: "";
+    }
+
+    &::before {
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      border-left: 16px solid #fff;
+      transform: translateX(20%);
+    }
+
+    &::after {
+      width: 60px;
+      height: 60px;
+      border: 4px solid #fff;
+      border-radius: 100%;
+    }
+
+    &.#{$slider}-active {
+      &::before,
+      &::after {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+
+    &.#{$slider}-loading {
+      &::after {
+        border-color: transparent transparent #fff;
+        animation: rotation 1s linear infinite;
+      }
+    }
+  }
+
+
+  &-video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    margin: auto;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &-iframe,
+  &-map,
+  &-inline {
+    width: calc(100% - 10rem);
+    height: 100%;
   }
 
   .#{$arrow} {
@@ -86,16 +197,15 @@ $arrow: "pj-arrow" !default;
     &-next {
       position: absolute;
       top: 50%;
-      color: #789;
       transform: translateY(-50%);
     }
 
     &-prev {
-      left: 0;
+      left: 1rem;
     }
 
     &-next {
-      right: 0;
+      right: 1rem;
     }
   }
 }

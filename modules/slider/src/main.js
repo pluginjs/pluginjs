@@ -25,7 +25,9 @@ import {
 
 import Arrows from '@pluginjs/arrows'
 import Swipeable from '@pluginjs/swipeable'
-import ImageLoader from '@pluginjs/image-loader'
+import Card from './card'
+// import Module from './module'
+// import ImageLoader from '@pluginjs/image-loader'
 
 @themeable()
 @styleable(CLASSES)
@@ -59,11 +61,12 @@ class Slider extends Component {
     }
 
     this.data = this.options.data
+    this.modules = []
     this.axis = this.options.vertical ? 'translateY' : 'translateX'
     this.generate()
     this.distance = this.getDistance(this.box, this.options.vertical)
     this.setPos()
-    this.initImageLoader()
+    // this.initImageLoader()
     this.initSwipeable()
 
     this.bind()
@@ -83,10 +86,10 @@ class Slider extends Component {
     this.cards = []
 
     for (let i = 0; i < 3; i++) {
-      const card = this.createElement('card')
+      const card = new Card(this)
 
+      card.appendTo(this.box)
       this.cards.push(card)
-      append(card, this.box)
     }
 
     this.element.innerHTML = ''
@@ -98,7 +101,12 @@ class Slider extends Component {
   }
 
   initArrows() {
-    this.arrows = Arrows.of(this.element, {})
+    this.arrows = Arrows.of(this.element, {
+      type: this.options.arrowType,
+      direction: this.options.vertical ? 'vertical' : 'horizontal'
+    })
+
+    console.log(this.options.vertical ? 'vertical' : 'horizontal')
   }
 
   initSwipeable() {
@@ -132,14 +140,6 @@ class Slider extends Component {
     })
   }
 
-  initImageLoader() {
-    this.imageLoader = ImageLoader.of(this.element)
-
-    this.imageLoader.onLoaded(img => {
-      img.dataset.loaded = true
-    })
-  }
-
   decay(distance) {
     if (distance > 0) {
       this.prev()
@@ -165,16 +165,12 @@ class Slider extends Component {
 
   setPos() {
     const length = this.data.length
-
-    const offset = parseInt(
-      anime.getValue(this.cards[this.page], this.axis),
-      10
-    )
+    const offset = this.cards[this.page].getOffset()
 
     for (let i = 0; i < 3; i++) {
       let index = null
       const opts = {
-        targets: this.cards[i],
+        targets: this.cards[i].element,
         easing: 'linear',
         duration: 0
       }
@@ -184,48 +180,45 @@ class Slider extends Component {
         case this.page - 2:
           index = this.current === length - 1 ? 0 : this.current + 1
           opts[this.axis] = `${offset + 100}%`
-          removeClass(this.classes.ACTIVE, this.cards[i])
+          this.cards[i].inactive()
           break
         case this.page - 1:
         case this.page + 2:
           index = this.current === 0 ? length - 1 : this.current - 1
           opts[this.axis] = `${offset - 100}%`
-          removeClass(this.classes.ACTIVE, this.cards[i])
+          this.cards[i].inactive()
           break
         default:
           index = this.current
           opts[this.axis] = `${offset}%`
-          addClass(this.classes.ACTIVE, this.cards[i])
+          this.cards[i].active()
           break
       }
 
-      const loaded = query(`.${this.classes.LOADED}`, this.cards[i])
-      const item = this.createItem(this.data[index])
+      const card = this.cards[i].element
+      const content = query(`.${this.classes.CONTENT}`, card)
 
-      item.dataset.index = index
+      if (content) {
+        const oldIndex = parseInt(content.dataset.index, 10)
 
-      if (loaded) {
-        if (index !== parseInt(loaded.dataset.index, 10)) {
-          loaded.parentNode.replaceChild(item, loaded)
+        if (index !== oldIndex) {
+          const module = this.modules[oldIndex]
+
+          if (module.type === 'video' && module.isload) {
+            this.modules[oldIndex].video.destroy()
+          }
+
+          this.cards[i].createModule(this.data[index], index)
+          this.cards[i].module.setData({ index }).replace(content)
         }
       } else {
-        append(item, this.cards[i])
+        this.cards[i].createModule(this.data[index], index)
+
+        this.cards[i].module.setData({ index }).appendTo(card)
       }
 
       anime(opts)
     }
-  }
-
-  createItem(data) {
-    const template = this.options.templates[data.type]
-    let html = ''
-
-    html = templateEngine.render(template.call(this), {
-      classes: this.classes,
-      data
-    })
-
-    return parseHTML(html)
   }
 
   go(index, change = true) {
@@ -272,6 +265,10 @@ class Slider extends Component {
     this.current = index
 
     if (change) {
+      if (this.is('video')) {
+        this.video.pause()
+        this.leave('video')
+      }
       this.trigger(EVENTS.CHANGE)
     }
   }
