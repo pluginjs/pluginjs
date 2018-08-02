@@ -200,6 +200,7 @@ $svgPicker-search-icon-color: $gray-dark !default;
     }
 
     &-wrap {
+      // width: 100%;
       flex-grow: 1;
       // height: $svgPicker-panel-height - $svgPicker-manage-height - $svgPicker-search-height;
       // overflow: auto;
@@ -210,7 +211,7 @@ $svgPicker-search-icon-color: $gray-dark !default;
       height: 18.8 * $svgPicker-sizer !important; //188px
 
       &-container {
-        // width: 100% !important;
+        width: 100% !important;
         height: 100%;
       }
 

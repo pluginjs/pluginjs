@@ -472,9 +472,7 @@ class SvgPicker extends Component {
     })
     addClass(this.classes.TYPEOPEN, el)
     el.dataset.open = true
-    const scrollableApi = Scrollable.findInstanceByElement(
-      query(`.${this.classes.ICONWRAP}`, el)
-    )
+    const scrollableApi = Scrollable.of(query(`.${this.classes.ICONWRAP}`, el))
     scrollableApi.update()
   }
   close(el) {
