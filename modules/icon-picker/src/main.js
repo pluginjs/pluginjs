@@ -129,13 +129,15 @@ class IconsPicker extends Component {
         el.matches(`.${this.classes.PACKAGE}`)
       )
       this.packages = this.compilePackages()
+
+      this.initCategories()
       this.$icons = this.compileIcons(this.packages)
       const packagesWrap = parseHTML(
         `<div class=${this.classes.PACKAGESWRAP}></div>`
       )
       this.$packages.forEach(append(packagesWrap))
       append(packagesWrap, this.$panel)
-      this.initCategories()
+
       this.fillIcons()
       this.initController()
       this.initScrollable()
@@ -167,9 +169,7 @@ class IconsPicker extends Component {
       )
       // console.log(Scrollable.findInstanceByElement( closest(`.${this.classes.PACKAGEBODY}`, this.$selectorList[0])))
       this.$scrollable = this.$selectorList.map(el =>
-        Scrollable.findInstanceByElement(
-          closest(`.${this.classes.PACKAGEBODY}`, el)
-        )
+        Scrollable.of(closest(`.${this.classes.PACKAGEBODY}`, el))
       )
 
       // init by element value
@@ -493,10 +493,12 @@ class IconsPicker extends Component {
       setObjData('open', false, $this)
       setObjData('show', true, $this)
       setObjData('searchedIconCount', 0, $this)
+      // if(getObjData('categories', $this)!= null){
+      //   setObjData('group', info.categories, $this)
+      // }
       // this.showPackages.push($this);
       arr.push($this)
     })
-    console.log(arr)
     return arr
   }
 
@@ -615,9 +617,6 @@ class IconsPicker extends Component {
     // let groups = [];
     this.packages.forEach(_package => {
       const group = {}
-      // console.log(this.packages)
-      // console.log(_package)
-      // console.log(getObjData('categories', _package))
       if (getObjData('classifiable', _package)) {
         for (const name in getObjData('categories', _package)) {
           if (
@@ -638,7 +637,6 @@ class IconsPicker extends Component {
           }
         }
         setObjData('group', group, _package)
-        console.log(getObjData('group', _package))
       }
     })
   }
@@ -682,28 +680,24 @@ class IconsPicker extends Component {
 
   fillIcons() {
     this.$icons.forEach(icon => {
-      console.log(this.$icons)
-      console.log(this.packages)
-      console.log(icon)
-      console.log(getObjData('categories', icon))
       if (getObjData('categories', icon)) {
         this.packages.forEach(_package => {
           const $categories = getObjData('group', _package)
-          console.log(Object.entries($categories))
 
-          Object.entries($categories).forEach(([name, categorie]) => {
-            if (getObjData('categories', icon) === name) {
-              if (!getObjData('hasUl', categorie)) {
-                categorie.append(parseHTML('<ul></ul>'))
-                setObjData('hasUl', true, categorie)
+          if ($categories !== undefined) {
+            Object.entries($categories).forEach(([name, categorie]) => {
+              if (getObjData('categories', icon) === name) {
+                if (!getObjData('hasUl', categorie)) {
+                  categorie.append(parseHTML('<ul></ul>'))
+                  setObjData('hasUl', true, categorie)
+                }
+                append(icon, query('ul', categorie))
               }
-              append(icon, query('ul', categorie))
-            }
-          })
+            })
+          }
         })
       } else {
         this.packages.forEach(_package => {
-          console.log(1)
           if (getObjData('package', icon) === getObjData('name', _package)) {
             if (!getObjData('hasUl', _package)) {
               append(
@@ -826,16 +820,12 @@ class IconsPicker extends Component {
   }
 
   open(el) {
-    // console.log(this.element)
     this.$packages.forEach(v => {
-      // console.log(v)
       this.close(v)
     })
 
     addClass(this.classes.PACKAGEOPEN, el)
-    // console.log(1)
     setObjData('open', true, el)
-    // console.log(this.$scrollable)
     this.$scrollable.find(plugin => el.contains(plugin.element)).enable()
     this.$scrollable.find(plugin => el.contains(plugin.element)).update()
   }
