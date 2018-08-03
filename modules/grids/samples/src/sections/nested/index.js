@@ -5,5 +5,6 @@ const element = query('#nested .grids')
 Grids.of(element, {
   itemSelector: '.grids-item',
   gutter: 20,
-  model: 'nested'
+  model: 'nested',
+  overlayColor: 'red'
 })

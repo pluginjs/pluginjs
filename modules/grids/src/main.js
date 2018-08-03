@@ -9,7 +9,8 @@ import {
   find,
   queryAll,
   parent,
-  children
+  children,
+  parseHTML
 } from '@pluginjs/dom'
 
 import {
@@ -107,7 +108,19 @@ class Grids extends Component {
     } else {
       this.loading(this.chunks)
     }
-
+    // set overlay
+    if (this.options.hoverOverlay) {
+      const $chunks = queryAll(`.${this.classes.CHUNK}`, this.element)
+      const template = templateEngine.compile(
+        this.options.templates.overlay.call(this)
+      )
+      $chunks.forEach(item => {
+        const overlay = parseHTML(template({ classes: this.classes }))
+        append(overlay, item)
+        const icon = query('.pj-grids-icon', item)
+        addClass(this.options.icon, icon)
+      })
+    }
     this.bind()
 
     this.enter('initialized')

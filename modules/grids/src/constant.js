@@ -26,6 +26,8 @@ export const classes = {
   LOADER: '{namespace}-loader',
   LOADERSHOW: '{namespace}-loader-show',
   LOADERINNER: '{namespace}-loader-inner',
+  HOVEROVERLAY: '{namespace}-overlay',
+  ICON: '{namespace}-icon',
   CONTAINER: '{namespace}-container',
   FILTERBAR: '{namespace}-filterbar',
   FILTERS: '{namespace}-filterbar-filters',
@@ -85,6 +87,8 @@ export const defaults = {
     sort: false,
     reverse: false
   },
+  hoverOverlay: true,
+  icon: 'icon-search',
   sortby: '',
   sortDirection: 'max', // min && max
   carousel: false,
@@ -109,10 +113,12 @@ export const defaults = {
   //   width: 100,
   //   height: 100
   // },
-
   templates: {
     loader() {
       return '<div class="{class.LOADERINNER}"></div>'
+    },
+    overlay() {
+      return '<div class="{classes.HOVEROVERLAY}"><i class="{classes.ICON} {iconClass}"></i></div>'
     }
   },
   sort(key, chunks) {
