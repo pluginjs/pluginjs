@@ -236,10 +236,10 @@ class GradientPicker extends Component {
       `<div class='${this.classes.BTNACTION}'>
       <button type='button' class='${
         this.classes.CANCEL
-      } pj-btn pj-btn-transparent'></button>
+      } pj-btn pj-btn-transparent'>Cancel</button>
       <button type='button' class='${
         this.classes.SAVE
-      } pj-btn pj-btn-primary'></button>
+      } pj-btn pj-btn-primary'>Save</button>
       </div>`
     )
     this.$dropdown.append(
