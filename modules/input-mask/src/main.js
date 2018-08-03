@@ -22,7 +22,7 @@ import {
   computeLens,
   dateLimit,
   lensLimit,
-  timeFormat,
+  // timeFormat,
   timeLimit
 } from './validator'
 
@@ -85,12 +85,12 @@ class InputMask extends Component {
     const formatMiddleware = options => {
       const { type } = options
       switch (type) {
-        case 'time': {
-          return compose(
-            timeFormat,
-            baseFormat(options)
-          )
-        }
+        // case 'time': {
+        //   return compose(
+        //     timeFormat,
+        //     baseFormat(options)
+        //   )
+        // }
         default: {
           return baseFormat(options)
         }
