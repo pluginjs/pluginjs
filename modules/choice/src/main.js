@@ -530,11 +530,15 @@ class Choice extends Component {
       return
     }
     const containerWidth = contentWidth(parent(this.$wrap))
+    console.log(containerWidth)
     const width = contentWidth(this.$wrap)
+    console.log(width)
     let totalWidth
     const $items = []
+    console.log(this.$wrap.scrollWidth)
 
     if (this.$wrap.scrollWidth > containerWidth) {
+      console.log(1)
       append(this.$toggle, this.$wrap)
 
       totalWidth = outerWidth(this.$toggle)
@@ -543,10 +547,12 @@ class Choice extends Component {
         $item.dataset.width = itemWidth
         totalWidth += itemWidth
         if (totalWidth > width) {
+          console.log(2)
           $items.push($item)
         }
       })
       $items.reverse().forEach($item => {
+        console.log(3)
         prepend($item, this.$dropdown)
       })
 
@@ -557,19 +563,27 @@ class Choice extends Component {
         addClass(this.classes.SELECTED, this.$toggle)
       }
     } else {
+      console.log(width < containerWidth)
       if (width < containerWidth) {
+        console.log(childrenMatchSelector('[data-value]', this.$dropdown))
         totalWidth = width
         childrenMatchSelector('[data-value]', this.$dropdown).forEach($item => {
           const itemWidth = $item.dataset.width
-          totalWidth += itemWidth
+          totalWidth += parseInt(itemWidth) /* eslint-disable-line */
+          console.log(totalWidth < containerWidth)
+          console.log(totalWidth)
+          console.log(containerWidth)
           if (totalWidth < containerWidth) {
             $items.push($item)
+            console.log($items)
           }
         })
-
+        console.log(this.$toggle)
         $items.forEach($item => {
-          insertBefore(this.$toggle, $item)
+          insertBefore($item, this.$toggle)
+          console.log($item)
         })
+        console.log($items)
 
         if (
           childrenMatchSelector(`.${this.classes.SELECTED}`, this.$dropdown)

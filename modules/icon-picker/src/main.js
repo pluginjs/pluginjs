@@ -484,7 +484,7 @@ class IconsPicker extends Component {
       setObjData('title', info.title, $this)
       setObjData('count', info.count, $this)
       setObjData('prefix', info.prefix, $this)
-      setObjData('base', info.base, $this)
+      setObjData('base', info.class, $this)
       setObjData('classifiable', info.classifiable, $this)
       setObjData('icons', info.icons, $this)
       setObjData('$icons', [], $this)
@@ -509,7 +509,7 @@ class IconsPicker extends Component {
     packages.forEach(v => {
       const $package = v
       const icons = getObjData('icons', $package)
-      console.log(getObjData('group', $package))
+      // console.log(getObjData('group', $package))
       const categories = getObjData('group', $package)
         ? getObjData('categories', $package)
         : null
@@ -560,7 +560,7 @@ class IconsPicker extends Component {
       })
     )
     let group = null
-    console.log(categories)
+    // console.log(categories)
     if (categories) {
       for (const name in categories) {
         if (categories[name].indexOf(icon) >= 0) {
