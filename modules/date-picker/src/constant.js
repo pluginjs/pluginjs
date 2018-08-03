@@ -16,6 +16,7 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   INPUT: '{namespace}-input',
+  DISABLED: '{namespace}-disabled',
   ICON: '{namespace}-icon',
   COVER: '{namespace}-cover',
   ISMOBILE: '{namespace}-isMobile',

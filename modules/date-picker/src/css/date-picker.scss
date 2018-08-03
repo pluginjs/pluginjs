@@ -165,6 +165,35 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     display: none;
   }
 }
+  &.#{$datePicker}-disabled{
+    cursor: not-allowed;
+    &:hover {
+        .#{$datePicker}-icon {
+          background-color: $color-white;
+          border-color:#e6e6e6;     
+        }
+        .#{$datePicker}-mobile-trigger {
+          border:1px solid #e6e6e6;      
+        }
+      }
+      &.#{$datePicker}-inputWrap {
+      &:hover {
+        .#{$datePicker}-icon {
+          background-color: $color-white;
+          border-color:#e6e6e6;     
+        }
+      }
+      &:active {
+        .#{$datePicker}-icon {
+          background-color: none;
+          border-color:#e6e6e6;     
+        }
+        .icon-calendar::before {
+          color: #b3b3b3;
+        }
+      }
+    }
+ }
 
 .#{$datePicker} {
   &-input,

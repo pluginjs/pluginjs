@@ -83,7 +83,6 @@ class DatePicker extends Component {
       ),
       addClass(this.classes.INPUT, this.$element)
     )
-    console.log(this.$inputWrap)
     addClass(this.classes.INPUTMODE, this.$element)
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$inputWrap)
@@ -216,7 +215,9 @@ class DatePicker extends Component {
     if (this.options.keyboard) {
       this.KEYBOARD = new Keyboard(this)
     }
-
+    if (this.element.disabled || this.options.disabled) {
+      this.disable()
+    }
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
@@ -2131,6 +2132,7 @@ class DatePicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
+      addClass(this.classes.DISABLED, this.$inputWrap)
       this.$element.disabled = true
       this.enter('disabled')
     }
