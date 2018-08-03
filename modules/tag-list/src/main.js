@@ -21,6 +21,7 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 import List from '@pluginjs/list'
+// import { addClass } from '@pluginjs/classes'
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -37,7 +38,7 @@ class TagList extends List {
     super(element, options)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses(this.classes)
     this.setupI18n()
     this.data = []
     this.sortable = null
@@ -69,8 +70,8 @@ class TagList extends List {
   init() {
     this.plugin = NAMESPACE
     this.initAddBtn()
-    this.$addBtn = query(`.${this.classes.ADDBTN}`, this.$add)
-    this.$addInput = query(`.${this.classes.ADDINPUT}`, this.$add)
+    this.$addBtn = query('.pj-tagList-btn', this.$add)
+    this.$addInput = query('.pj-tagList-input', this.$add)
 
     this.listener()
   }
@@ -78,7 +79,7 @@ class TagList extends List {
   initAddBtn() {
     this.$add = parseHTML(
       templateEngine.compile(this.options.templates.add())({
-        classes: this.classes,
+        // classes: this.classes,
         placeholder: this.translate('addPlaceholder'),
         BtnText: this.translate('add')
       })
@@ -123,28 +124,27 @@ class TagList extends List {
   }
 
   destroy() {
+    super.destroy()
     this.$add.remove()
     this.unbind()
     setObjData('tagList', null, this.element)
-    super.destroy()
   }
 
   enable() {
+    super.enable()
     if (this.is('disabled')) {
+      console.log(this.$addBtn)
       this.$addBtn.disabled = false
       this.$addInput.disabled = false
     }
-
-    super.enable()
   }
 
   disable() {
+    super.disable()
     if (!this.is('disabled')) {
       this.$addBtn.disabled = true
       this.$addInput.disabled = true
     }
-
-    super.disable()
   }
 }
 

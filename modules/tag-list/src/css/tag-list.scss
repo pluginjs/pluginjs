@@ -138,4 +138,9 @@ $tagList-empty-color: $gray-lighter !default;
       border-color: #77b6f5;
     }
   }
+  &-disabled {
+    &-hover {
+      cursor: not-allowed;
+    }
+  }
 }

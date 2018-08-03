@@ -128,7 +128,7 @@ class ItemList extends List {
   initAddBtn() {
     this.$add = parseHTML(
       templateEngine.compile(this.options.templates.add())({
-        classes: this.classes
+        // classes: this.classes
       })
     )
 
@@ -152,7 +152,7 @@ class ItemList extends List {
       }),
       bindEvent({
         type: this.eventName('click'),
-        identity: `.${this.classes.ADD}`,
+        identity: '.pj-itemList-add',
         handler: () => {
           if (this.is('disabled')) {
             return

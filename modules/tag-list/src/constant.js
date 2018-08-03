@@ -63,7 +63,7 @@ export const defaults = deepMerge(List.defaults, {
   ],
   templates: {
     add() {
-      return `<div class="{classes.ADD}"><input type="text" class="pj-input {classes.ADDINPUT}" placeholder={placeholder}><button type="button" class="{classes.ADDBTN}">{BtnText}</button>
+      return `<div class="pj-tagList-add"><input type="text" class="pj-input pj-tagList-input" placeholder={placeholder}><button type="button" class="pj-tagList-btn">{BtnText}</button>
       </div>`
     }
   }
