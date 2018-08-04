@@ -172,8 +172,9 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
           background-color: $color-white;
           border-color:#e6e6e6;     
         }
-        .#{$datePicker}-mobile-trigger {
-          border:1px solid #e6e6e6;      
+        .#{$datePicker}-input {
+          background-color: $color-white;
+          border:1px solid #e6e6e6;              
         }
       }
       &.#{$datePicker}-inputWrap {
@@ -189,9 +190,12 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
           border-color:#e6e6e6;     
         }
         .icon-calendar::before {
-          color: #b3b3b3;
+          color: #e6e6e6;
         }
       }
+    }
+    .#{$datePicker}-icon {
+      color: #e6e6e6;
     }
  }
 
