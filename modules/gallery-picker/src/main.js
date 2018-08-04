@@ -477,7 +477,7 @@ class GalleryPicker extends Component {
   }
 
   updateScrollbar() {
-    const scrollableApi = Scrollable.findInstanceByElement(this.$expandItems)
+    const scrollableApi = Scrollable.of(this.$expandItems)
     scrollableApi.update()
   }
 

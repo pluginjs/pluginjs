@@ -160,11 +160,6 @@ $galleryPicker-expand-control-btn-height: 32px !default;
       background-color: #fff;
       border: $galleryPicker-border;
       border-radius: $galleryPicker-border-radius;
-
-      .pj-scrollable {
-        flex-grow: 1;
-        margin-bottom: 20px;
-      }
     }
 
     &-add,
@@ -354,4 +349,16 @@ $galleryPicker-expand-control-btn-height: 32px !default;
     color: $disabled-color;
 
   }
+}
+ .#{$galleryPicker}-expand-control {
+  margin-top: 20px;
+}
+.pj-scrollable {
+  position: relative !important;
+  width: 260px !important;
+  height: 270px !important;
+}
+.pj-scrollable-container {
+  width: 270px !important;
+  height: 270px !important;
 }
