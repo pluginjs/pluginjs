@@ -183,7 +183,10 @@ class Swipeable extends Component {
     decayX = this.options.axis === 'y' ? 0 : decayX
     decayY = this.options.axis === 'x' ? 0 : decayY
 
-    if (this.options.axis === 'x' && Math.abs(decayX) < 1) {
+    if (
+      (this.options.axis === 'x' && Math.abs(decayX) < 1) ||
+      (this.options.axis === 'y' && Math.abs(decayY) < 1)
+    ) {
       this.trigger(EVENTS.SNAIL)
       return
     }
