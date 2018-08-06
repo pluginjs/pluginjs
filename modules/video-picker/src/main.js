@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
   setStyle,
   hideElement,
@@ -10,7 +10,15 @@ import {
   contentHeight
 } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { parseHTML, query, parentWith, fadeIn, fadeOut, wrap } from '@pluginjs/dom'
+import {
+  parseHTML,
+  query,
+  parentWith,
+  fadeIn,
+  fadeOut,
+  closest,
+  wrap
+} from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import Dropdown from '@pluginjs/dropdown'
 import PopDialog from '@pluginjs/pop-dialog'

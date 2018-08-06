@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
   fadeOut,
   fadeIn,

@@ -17,7 +17,7 @@ import {
   setObjData,
   getObjData
 } from '@pluginjs/dom'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { showElement, hideElement } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import PopDialog from '@pluginjs/pop-dialog'

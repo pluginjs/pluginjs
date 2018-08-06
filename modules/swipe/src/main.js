@@ -437,7 +437,10 @@ class Swipe extends Component {
           type: this.eventName('click'),
           identity: `.${this.classes.PAGINATIONITEM}`,
           handler: e => {
-            const $item = parentWith(hasClass(this.classes.PAGINATIONITEM), e.target)
+            const $item = parentWith(
+              hasClass(this.classes.PAGINATIONITEM),
+              e.target
+            )
             const index = this.$pagination.dots.indexOf($item)
             this.moveTo(index)
           }

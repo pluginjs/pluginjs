@@ -16,7 +16,6 @@ import {
   wrap,
   attr,
   append,
-  closest,
   unwrap,
   setObjData,
   queryAll,

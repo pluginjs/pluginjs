@@ -9,7 +9,7 @@ import {
   children,
   unwrap
 } from '@pluginjs/dom'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { isString, isNumber, isEmptyObject } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'

@@ -4,7 +4,7 @@ import { isString, isArray } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
   fadeIn,
   fadeOut,

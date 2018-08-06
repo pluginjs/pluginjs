@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import { isString } from '@pluginjs/is'
 import template from '@pluginjs/template'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle, hideElement, showElement } from '@pluginjs/styled'
 import {

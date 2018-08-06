@@ -1,6 +1,6 @@
 import { next, prev, query, parent, parentWith } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { removeClass } from '@pluginjs/classes'
+import { removeClass, hasClass } from '@pluginjs/classes'
 
 class Keyboard {
   constructor(instance) {

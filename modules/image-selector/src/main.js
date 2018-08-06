@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import Dropdown from '@pluginjs/dropdown'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
   query,
   queryAll,

@@ -9,6 +9,7 @@ import {
   children,
   queryAll,
   query,
+  closest,
   insertBefore,
   getObjData,
   unwrap

@@ -19,7 +19,8 @@ import {
   parentWith,
   wrap,
   wrapAll,
-  clone
+  clone,
+  closest
 } from '@pluginjs/dom'
 import {
   setStyle,
@@ -241,7 +242,10 @@ class FontPicker extends Component {
     this.$dropdown.options.onShow = () => {
       this.categoriesHeight = contentHeight(parent(this.$activated[0]))
       if (this.$font) {
-        const $selectedPackage = parentWith(hasClass(this.classes.PACKAGE), this.$font)
+        const $selectedPackage = parentWith(
+          hasClass(this.classes.PACKAGE),
+          this.$font
+        )
         if (!$selectedPackage) {
           return
         }

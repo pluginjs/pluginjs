@@ -53,41 +53,6 @@ export const siblings = (selector, el) => {
   return childrenArr
 }
 
-export const attrVerify = (attrName, value, el) => {
-  const Obj = {
-    data: element => {
-      const [key, v] = value.split('=')
-      if (
-        !isNull(element.dataset[key]) &&
-        typeof element.dataset[key] !== 'undefined'
-      ) {
-        if (v) {
-          return element.dataset[key] === v
-        }
-        return true
-      }
-      return false
-    },
-    tagName: element => element.nodeName.toLowerCase() === value,
-    class: element => element.classList.contains(value),
-    id: element => element.id === value,
-    attr: element => {
-      const [key, v] = value.split('=')
-      if (
-        !isNull(element.getAttribute(key)) &&
-        typeof element.getAttribute(key !== 'undefined')
-      ) {
-        if (v) {
-          return element.getAttribute(key) === v
-        }
-        return true
-      }
-      return false
-    }
-  }
-  return Obj[attrName] && Obj[attrName](el)
-}
-
 export const Each = (obj, callback) => {
   let i = 0
   let length
@@ -102,22 +67,6 @@ export const Each = (obj, callback) => {
   }
 
   return obj
-}
-
-export const parentQuery = ({ type, value, level = 3 }, el) => {
-  const res = []
-  const parentCompare = element => {
-    if (attrVerify(type, value, element.parentNode)) {
-      res.push(element.parentNode)
-    }
-    level--
-    if (level >= 0) {
-      parentCompare(element.parentNode)
-    }
-  }
-
-  parentCompare(el)
-  return res
 }
 
 export const parent = el => el.parentNode

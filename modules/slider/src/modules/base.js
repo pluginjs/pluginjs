@@ -1,4 +1,4 @@
-import { addClass } from '@pluginjs/classes'
+import { addClass, hasClass } from '@pluginjs/classes'
 import { append, query, parentWith } from '@pluginjs/dom'
 
 class Base {

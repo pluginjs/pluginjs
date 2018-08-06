@@ -1,4 +1,5 @@
 import { parentWith, nextElementWith, query, queryAll } from '@pluginjs/dom'
+import { hasClass } from '@pluginjs/classes'
 
 export const namespace = 'checkbox'
 

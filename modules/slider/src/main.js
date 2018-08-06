@@ -3,7 +3,7 @@ import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { compose } from '@pluginjs/utils'
 import { outerWidth, outerHeight } from '@pluginjs/styled'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML } from '@pluginjs/dom'
 import {

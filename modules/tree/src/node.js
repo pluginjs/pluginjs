@@ -7,7 +7,7 @@ import {
   insertBefore,
   insertAfter,
   children,
-  parentQuery,
+  parents,
   siblings
 } from '@pluginjs/dom'
 
@@ -53,15 +53,7 @@ export default class Node {
           this.subelements = []
         }
 
-        // this.$parent = this.dom.parents(`li.${this.classes.BRANCH}`).eq(0)
-        this.$parent = parentQuery(
-          {
-            type: 'tagName',
-            value: 'li',
-            level: 1
-          },
-          this.dom
-        )[0]
+        this.$parent = parents(`li.${this.classes.BRANCH}`, this.dom)[0]
 
         if (!this.$parent) {
           this.$parent = this.dom.parentNode

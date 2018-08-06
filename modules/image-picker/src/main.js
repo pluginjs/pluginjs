@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, parentWith, parseHTML, insertAfter } from '@pluginjs/dom'
 import PopDialog from '@pluginjs/pop-dialog'

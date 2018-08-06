@@ -15,6 +15,7 @@ import {
   setObjData,
   getObjData,
   insertAfter,
+  closest,
   Each
 } from '@pluginjs/dom'
 import {

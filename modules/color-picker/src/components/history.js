@@ -1,5 +1,5 @@
 import { bindEvent } from '@pluginjs/events'
-import { addClass } from '@pluginjs/classes'
+import { addClass, hasClass } from '@pluginjs/classes'
 import {
   parseHTML,
   queryAll,
