@@ -51,9 +51,6 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 let DATA = {}
-
-console.info(Color)
-
 @translateable(TRANSLATIONS)
 @themeable()
 @styleable(CLASSES)
@@ -637,14 +634,14 @@ class ColorPicker extends Component {
           if (this.is('disabled')) {
             return false
           }
-          this.oldColor = this.color
-          if (this.oldColor != null) {  /* eslint-disable-line */
-            if (this.oldColor.indexOf('linear-gradient') > -1) {
-              this.setGradient(this.oldColor)
-            } else {
-              this.setSolid(this.oldColor)
-            }
-          }
+          // this.oldColor = this.color
+          // if (this.oldColor != null) {  /* eslint-disable-line */
+          //   if (this.oldColor.indexOf('linear-gradient') > -1) {
+          //     this.setGradient(this.oldColor)
+          //   } else {
+          //     this.setSolid(this.oldColor)
+          //   }
+          // }
 
           this.closePanel()
           return null

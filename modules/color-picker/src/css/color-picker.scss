@@ -164,18 +164,23 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
     font-size: $colorPicker-font-size;
     //border: 1px solid $colorPicker-border-color;
     border-radius: $colorPicker-border-radius;
-    &.pj-colorPicker-disabled:hover .pj-input {
-      border-color: $disabled-border;
-    }
-    &:hover .pj-input {
-      border-color: $colorPicker-wrap-hover-border-color;
-    }
-    &:focus .pj-input {
-      border-color: $color-primary-dark;
-    }
+    // &.pj-colorPicker-disabled:hover .pj-input {
+    //   border-color: $disabled-border;
+    // }
+    // &:hover .pj-input {
+    //   border-color: $colorPicker-wrap-hover-border-color;
+    // }
+    // &:focus .pj-input {
+    //   border-color: $color-primary-dark;
+    // }
     //.tether-abutted-top.#{$colorPicker} {
     //  border-color: $color-primary-dark;
     //}
+    .pj-input[type="text"] {
+      &:focus {
+        border-color: $color-black;
+      }
+    }
   }
 
   &:hover .#{$colorPicker}-remove {
@@ -206,9 +211,9 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
     input[type="text"] {
       padding-right: $colorPicker-input-padding-right;
       //border: 0;
-      &:focus {
-        border-color: $color-primary-dark;
-      }
+      // &:focus {
+      //   border-color: $color-primary-dark;
+      // }
       &:active {
         border-color: $color-primary-dark;
       }
@@ -227,9 +232,9 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
   }
 
   &-open {
-    input {
-      border: 1px solid $color-primary-dark;
-    }
+    // input {
+    //   border: 1px solid $color-primary-dark;
+    // }
     &.#{$colorPicker}-panel-wrap {
       display: flex;
     }
@@ -502,7 +507,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
         cursor: pointer;
 
         &:hover {
-          color: $colorPicker-active-color;
+          color: $color-black;
         }
       }
     }
@@ -685,9 +690,9 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
         width: 182px;
         padding: 5px 12px 5px 12px;
       }
-      > .pj-dropdown:hover {
-        border-color: #f2f2f2;
-      }
+      // > .pj-dropdown:hover {
+      //   border-color: #f2f2f2;
+      // }
     }
 
     &-angle {
