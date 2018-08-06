@@ -1,5 +1,5 @@
 import { curry, compose } from '@pluginjs/utils'
-import { isString, isArray, isElement } from '@pluginjs/is'
+import { isString, isElement } from '@pluginjs/is'
 
 const objDataName = 'objData'
 
@@ -51,22 +51,6 @@ export const siblings = (selector, el) => {
     childrenArr.splice(index, 1)
   }
   return childrenArr
-}
-
-export const Each = (obj, callback) => {
-  let i = 0
-  let length
-
-  if (isArray(obj)) {
-    length = obj.length
-    for (; i < length; i++) {
-      callback(obj[i], i)
-    }
-  } else {
-    Object.entries(obj).map(([k, v]) => callback(k, v))
-  }
-
-  return obj
 }
 
 export const parent = el => el.parentNode

@@ -2,13 +2,13 @@ import Component from '@pluginjs/component'
 import {
   find,
   attr,
-  Each,
   dataset,
   queryAll,
   query,
   setObjData,
   getObjData
 } from '@pluginjs/dom'
+import { each } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent, trigger } from '@pluginjs/events'
 import { isString, isFunction } from '@pluginjs/is'
@@ -73,14 +73,14 @@ class Wizard extends Component {
     this.steps = []
     const that = this
 
-    Each(this.$steps, (element, index) => {
+    each(this.$steps, (element, index) => {
       that.steps.push(new Step(element, that, index))
     })
 
     this.present = 0
     this.transitioning = null
 
-    Each(this.steps, step => {
+    each(this.steps, step => {
       step.setup()
     })
 
@@ -129,7 +129,7 @@ class Wizard extends Component {
 
     const id = `#${this.id}`
 
-    Each(queryAll('a', $buttons), a => {
+    queryAll('a', $buttons).forEach(a => {
       attr({ href: id }, a)
     })
 
@@ -164,7 +164,7 @@ class Wizard extends Component {
   }
 
   updateSteps() {
-    Each(this.steps, (step, i) => {
+    each(this.steps, (step, i) => {
       if (i > this.present) {
         step.leave('error')
         step.leave('active')
@@ -365,7 +365,7 @@ class Wizard extends Component {
   }
 }
 
-Each(queryAll('[data-wizard]', window.document), ele => {
+queryAll('[data-wizard]', window.document).forEach(ele => {
   ele.addEventListener('click', e => {
     let href
     const target =

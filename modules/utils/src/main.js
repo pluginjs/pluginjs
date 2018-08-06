@@ -1,5 +1,19 @@
 import keyframes2Anime from './anime-polyfill'
-import { isObject, isPlainObject } from '@pluginjs/is'
+import { isArray, isObject, isPlainObject } from '@pluginjs/is'
+
+export const each = (obj, callback) => {
+  if (isArray(obj)) {
+    let index = 0
+    const length = obj.length
+    for (; index < length; index++) {
+      callback(obj[index], index)
+    }
+  } else {
+    Object.entries(obj).map(([key, value]) => callback(key, value))
+  }
+
+  return obj
+}
 
 export const deepClone = obj => {
   if (typeof obj === 'function') {

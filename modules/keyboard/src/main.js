@@ -1,5 +1,5 @@
 import Emitter from '@pluginjs/emitter'
-import { Each } from '@pluginjs/dom'
+import { each } from '@pluginjs/utils'
 
 /* eslint object-property-newline: 'off' */
 const MAP_BY_CODE = {
@@ -100,7 +100,7 @@ class Keyboard {
 
   initialize() {
     this.status = {}
-    Each(MODIFIERS, (keyCode, keyName) => {
+    each(MODIFIERS, (keyCode, keyName) => {
       this.status[keyName] = false
 
       this.emitter.on(`${keyCode}down`, () => {
@@ -145,7 +145,7 @@ class Keyboard {
       }
     }
 
-    Each(this.status, (keyName, status) => {
+    each(this.status, (keyName, status) => {
       if (status) {
         prefix += keyName
       }

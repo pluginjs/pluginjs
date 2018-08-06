@@ -4,8 +4,8 @@ import Units from '@pluginjs/units'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { getStyle, getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { deepMerge } from '@pluginjs/utils'
-import { append, parseHTML, insertAfter, Each } from '@pluginjs/dom'
+import { deepMerge, each } from '@pluginjs/utils'
+import { append, parseHTML, insertAfter } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -49,8 +49,7 @@ class Range extends Component {
 
     this.cacheValue = []
     this.$wrap = document.createElement('div')
-    const value = this.element.value
-    Each(['min', 'max', 'step'], key => {
+    const value = this.element.value[('min', 'max', 'step')].forEach(key => {
       const val = parseFloat(this.element.getAttribute(key), 10)
       if (!isNaN(val)) {
         metas[key] = val
@@ -320,7 +319,7 @@ class Range extends Component {
     this.enter('units')
 
     const data = []
-    Each(this.options.unit, i => {
+    each(this.options.unit, i => {
       data.push(i)
     })
 
@@ -397,12 +396,13 @@ class Range extends Component {
   }
 
   update(options) {
-    this.enter('updating')
-    Each(['max', 'min', 'step', 'limit', 'value'], value => {
-      if (options[value]) {
-        this[value] = options[value]
+    this.enter('updating')[('max', 'min', 'step', 'limit', 'value')].forEach(
+      value => {
+        if (options[value]) {
+          this[value] = options[value]
+        }
       }
-    })
+    )
     if (options.max || options.min) {
       this.setInterval(options.min, options.max)
     }
@@ -411,7 +411,7 @@ class Range extends Component {
       this.value = options.min
     }
 
-    Each(this.components, (key, value) => {
+    each(this.components, (key, value) => {
       if (isFunction(value.update)) {
         value.update(this)
       }

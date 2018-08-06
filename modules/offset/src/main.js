@@ -15,9 +15,9 @@ import {
   setObjData,
   getObjData,
   insertAfter,
-  closest,
-  Each
+  closest
 } from '@pluginjs/dom'
+import { each } from '@pluginjs/utils'
 import {
   eventable,
   register,
@@ -487,7 +487,7 @@ class Offset extends Component {
 
     const data = {}
 
-    Each(this.value, (i, v) => {
+    each(this.value, (i, v) => {
       if (v !== '') {
         data[i] = v
       }
@@ -510,14 +510,14 @@ class Offset extends Component {
       return
     }
 
-    Each(value, (i, v) => {
+    each(value, (i, v) => {
       if (isObject(v)) {
         value[i] = `${v.value}${v.unit}`
       }
     })
 
     if (only) {
-      Each(value, (i, v) => {
+      each(value, (i, v) => {
         this.value[i] = v
       })
 
@@ -526,20 +526,20 @@ class Offset extends Component {
         let name
         let val /* eslint-disable-line */
 
-        Each(value, (i, v) => { /* eslint-disable-line */
+        each(value, (i, v) => { /* eslint-disable-line */
           name = i
           key = i.split('-')[0]
           val = value[i]
         })
 
-        Each(this.value, (i, v) => { /* eslint-disable-line */
+        each(this.value, (i, v) => { /* eslint-disable-line */
           if (i.indexOf(key) > -1) {
             this.value[i] = value[name]
           }
         })
       }
     } else {
-      Each(value, (i, v) => { /* eslint-disable-line */
+      each(value, (i, v) => { /* eslint-disable-line */
         if (value[i]) {
           this.value[i] = value[i]
         } else {
@@ -548,7 +548,7 @@ class Offset extends Component {
       })
     }
 
-    Each(this.value, (i, v) => {
+    each(this.value, (i, v) => {
       const input = query(`[name="${i}"]`, this.$wrap)
 
       const $item = parentWith(hasClass(this.classes.ITEM), input)

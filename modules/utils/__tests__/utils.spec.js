@@ -5,6 +5,27 @@ describe('util', () => {
     expect(util).toBeObject()
   })
 
+  describe('each()', () => {
+    test('should walk array', () => {
+      const test = ['foo', 'bar']
+
+      util.each(test, (v, i) => {
+        expect(v).toEqual(test[i])
+      })
+    })
+
+    test('should walk object', () => {
+      const test = {
+        1: 'foo',
+        2: 'bar'
+      }
+
+      util.each(test, (k, v) => {
+        expect(v).toEqual(test[k])
+      })
+    })
+  })
+
   describe('arraysEqual()', () => {
     test('should return true when two arrays equals', () => {
       expect(util.arraysEqual([], [])).toBeTrue()
