@@ -52,6 +52,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
       border-right: $datePicker-border;
     }
     .#{$datePicker}-mobile-trigger {
+      background-color: $datePicker-hover-color;
       border-color: $gray-light;
       border-right: $datePicker-border;
     }
@@ -102,6 +103,22 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 }
 
 .#{$datePicker}-active {
+  /* stylelint-disable */
+  .#{$datePicker}-input {
+    &::-webkit-input-placeholder{
+      color: $color-white;
+    }
+    &:-moz-placeholder{
+      color: $color-white
+    }
+    &::-moz-placeholder{
+      color: $color-white
+    } 
+    &:-ms-input-placeholder{
+      color: $color-white
+    }
+  }
+  /* stylelint-enable */
   .#{$datePicker} {
     &-input,
     &-icon,
@@ -496,6 +513,20 @@ input[type="text"][disabled] {
     border: 1px solid $disabled-border;
     border-left: 0;
   }
+  /* stylelint-disable */
+  &::-webkit-input-placeholder{
+    color: $disabled-color;
+  }
+  &:-moz-placeholder{
+    color: $disabled-color;
+  }
+  &::-moz-placeholder{
+    color: $disabled-color;
+  } 
+  &:-ms-input-placeholder{
+    color: $disabled-color;
+  }
+  /* stylelint-enable */
 }
 /*stylelint-disable*/
 .#{$datePicker}-body {
