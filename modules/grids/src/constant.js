@@ -88,6 +88,7 @@ export const defaults = {
     reverse: false
   },
   hoverOverlay: true,
+  hoverPrimary: false,
   icon: 'icon-search',
   sortby: '',
   sortDirection: 'max', // min && max
