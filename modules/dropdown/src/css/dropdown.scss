@@ -1,4 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
+@import "dropdown.core";
 
 // Vars
 // =====================
@@ -6,86 +7,31 @@ $dropdown: "pj-dropdown" !default;
 $dropdown-sizer: $sizer !default;
 
 $dropdown-color: $text-color !default;
-$dropdown-bg: $color-white !default;
-$dropdown-font-size: $font-size-base !default;
-//$dropdown-disabled-bg: $gray-lighter !default;
-$dropdown-height: 3.4 * $dropdown-sizer !default; //34px
-$dropdown-line-height: 3.4 * $dropdown-sizer !default; //34px
+$dropdown-line-height: 3.2 * $dropdown-sizer !default; //34px
 $dropdown-icon-size: $font-size-lg !default;
 $dropdown-space-x: 1.2 * $dropdown-sizer !default; //27px
 $dropdown-space-x-right: 3 * $dropdown-sizer !default; //30px
-$dropdown-space-x-left: $dropdown-sizer !default; //10px
-$dropdown-space-y: 0.5 * $dropdown-sizer !default; //5px
+$dropdown-space-x-left: 1.2 * $dropdown-sizer !default; //10px
+$dropdown-space-y: 0.1 * $dropdown-sizer !default; //5px
+$dropdown-show-color: $color-primary !default;
+$dropdown-select-border-radius: $border-radius-base !default;
+$dropdown-trigger-focus-color: $color-primary !default;
+$dropdown-trigger-color: $gray-dark !default;
+$dropdown-trigger-hover-color: $gray-darkest !default;
 $dropdown-panel-space-x: 0.2 * $dropdown-sizer !default; //2px
 $dropdown-panel-space-y: 0.2 * $dropdown-sizer !default; //2px
 $dropdown-panel-min-width: 20 * $dropdown-sizer !default; //200px
-$dropdown-item-hover-bg: $gray-lightest !default;
-$dropdown-item-active-color: $color-primary-active !default;
+$dropdown-panel-border-color: $gray-light !default;
+$dropdown-placement-color: $gray-darkest !default;
+$dropdown-item-hover-bg: $gray-lighter !default;
 $dropdown-item-active-bg: $color-white !default;
 $dropdown-item-margin-bottom: 1px !default;
-$dropdown-box-shadow: $box-shadow-6 !default;
+$dropdown-box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.05) !default;
 $dropdown-border-color: $gray-border !default;
 $dropdown-border-radius: $border-radius-base !default;
 $dropdown-hover-border-color: $border-color-hover !default;
+$dropdown-focus-border-color: $border-color-active !default;
 $dropdown-active-border-color: $gray-border !default;
-// Core
-// =====================
-.#{$dropdown} {
-  box-sizing: border-box;
-  height: $dropdown-height;
-
-  &-trigger-active {
-    color: $gray-darker !important;
-  }
-
-  input.#{$dropdown}-trigger {
-    border-width: 0;
-  }
-
-  &-panel {
-    padding: 0;
-    font-size: $dropdown-font-size;
-    user-select: none;
-    background-color: $dropdown-bg;
-
-    &-wrap {
-      top: 4px !important;
-      z-index: $zindex-dropdown; // padding: 10px 0;
-      display: none;
-    }
-  }
-
-  &-item {
-    overflow: hidden;
-    line-height: 26px;
-    text-overflow: ellipsis;
-    word-break: keep-all;
-    white-space: nowrap;
-    list-style: none;
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &-show {
-    display: block;
-    border-color: $dropdown-item-active-color;
-  }
-
-  &-mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: $zindex-dropdown-backdrop;
-    width: 100%;
-    height: 100%;
-  }
-
-  &-active {
-    color: $color-primary;
-  }
-}
-
 // Theme
 // =====================
 /*stylelint-disable*/
@@ -111,14 +57,19 @@ $dropdown-active-border-color: $gray-border !default;
     overflow: hidden;
     font-family: "Helvetica Neue";
     font-size: $dropdown-font-size;
-    color: #b3b3b3;
+    color: $dropdown-trigger-color;
     text-overflow: ellipsis;
     word-break: keep-all;
     white-space: nowrap;
     border-width: 0;
 
     &:focus {
+      color: $dropdown-trigger-focus-color;
       outline: none;
+    }
+
+    &:hover {
+      color: $dropdown-trigger-hover-color;
     }
   }
 
@@ -139,6 +90,10 @@ $dropdown-active-border-color: $gray-border !default;
     .#{$dropdown}-icon.icon-chevron-down {
       transform: translateY(0) rotate(180deg);
     }
+
+    .#{$dropdown}-trigger {
+      color: $dropdown-show-color;
+    }
   }
 
   &-panel {
@@ -148,6 +103,7 @@ $dropdown-active-border-color: $gray-border !default;
     margin: 0;
     color: $dropdown-color; // list-style: none;
     background-color: $dropdown-bg;
+    border: 1px solid $dropdown-panel-border-color;
     border-radius: $dropdown-border-radius;
     box-shadow: $dropdown-box-shadow;
 
@@ -172,6 +128,10 @@ $dropdown-active-border-color: $gray-border !default;
       border-color: $dropdown-hover-border-color;
     }
 
+    input::-webkit-input-placeholder {
+      color: $dropdown-trigger-color;
+    }
+
     .#{$dropdown} {
       display: inline-flex;
       align-items: center;
@@ -179,31 +139,26 @@ $dropdown-active-border-color: $gray-border !default;
       width: $dropdown-panel-min-width;
       background-color: $dropdown-bg;
       border: 1px solid $dropdown-border-color;
+      border-radius: $dropdown-select-border-radius;
 
-      &:hover,
-      &-focus {
+      &:hover {
         border-color: $dropdown-hover-border-color;
       }
 
       &-trigger {
         padding: $dropdown-space-y $dropdown-space-x;
+        color: $dropdown-trigger-active-color;
       }
-
+      
       &-show {
         &.#{$dropdown} {
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-
-        .#{$dropdown}-panel {
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
+          border-color: $dropdown-focus-border-color;
         }
       }
-
+      
       &-panel {
         border: 1px solid $dropdown-border-color;
-        box-shadow: $dropdown-box-shadow;
+        border-radius: $dropdown-select-border-radius;
 
         &-wrap {
           z-index: 999999;
@@ -212,23 +167,7 @@ $dropdown-active-border-color: $gray-border !default;
 
         li.#{$dropdown}-active {
           font-family: "Helvetica Neue";
-          color: #215fdb;
-        }
-      }
-    }
-
-    &.#{$dropdown}-panel-on-top {
-      .#{$dropdown} {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: $dropdown-border-radius;
-        border-bottom-left-radius: $dropdown-border-radius;
-
-        &-panel {
-          border-top-left-radius: $dropdown-border-radius;
-          border-top-right-radius: $dropdown-border-radius;
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
+          color: $color-primary;
         }
       }
     }
@@ -258,29 +197,12 @@ $dropdown-active-border-color: $gray-border !default;
       &-panel {
         z-index: 1;
         border: 1px solid $dropdown-active-border-color;
-        box-shadow: $dropdown-box-shadow;
       }
     }
 
     .#{$dropdown}-show .#{$dropdown}-panel {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
-    }
-
-    &.#{$dropdown}-panel-on-top {
-      .#{$dropdown} {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: $dropdown-border-radius;
-        border-bottom-left-radius: $dropdown-border-radius;
-
-        &-panel {
-          border-top-left-radius: $dropdown-border-radius;
-          border-top-right-radius: $dropdown-border-radius;
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-      }
     }
   } //disabled style
 
@@ -337,9 +259,17 @@ $dropdown-active-border-color: $gray-border !default;
     i {
       cursor: not-allowed;
     }
-  } // box-shadow
+  }
 
-  &-shadow {
-    box-shadow: $dropdown-box-shadow;
+  &-placement {
+    .#{$dropdown}-trigger {
+      color: $dropdown-placement-color;
+    }
+
+    &.#{$dropdown}-show {
+      .#{$dropdown}-trigger {
+        color: $dropdown-show-color;
+      }
+    }
   }
 }

@@ -81,7 +81,7 @@ $units-disabled-opacity: 0.4 !default;
   &-disabled {
     .#{$units}-input {
       background-color: $units-disabled-color;
-      opacity: $units-disabled-opacity;
+      // opacity: $units-disabled-opacity;
     }
     &:hover .#{$units}-input {
       border-color: $units-disabled-color;

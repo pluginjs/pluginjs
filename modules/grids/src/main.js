@@ -8,6 +8,7 @@ import {
   prepend,
   find,
   queryAll,
+  query,
   parent,
   children,
   parseHTML
@@ -119,6 +120,10 @@ class Grids extends Component {
         append(overlay, item)
         const icon = query('.pj-grids-icon', item)
         addClass(this.options.icon, icon)
+
+        if (this.options.hoverPrimary) {
+          addClass('pj-grids-overlay-primary', overlay)
+        }
       })
     }
     this.bind()

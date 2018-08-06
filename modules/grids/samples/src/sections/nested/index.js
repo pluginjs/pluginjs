@@ -6,5 +6,5 @@ Grids.of(element, {
   itemSelector: '.grids-item',
   gutter: 20,
   model: 'nested',
-  overlayColor: 'red'
+  hoverPrimary: true
 })

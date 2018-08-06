@@ -5,6 +5,7 @@ $grids: "pj-grids" !default;
     &:hover {
       .#{$grids}-overlay {
         opacity: 1;
+        transition: opacity 0.5s;
       }
     }
   }
@@ -19,6 +20,10 @@ $grids: "pj-grids" !default;
     cursor: pointer;
     background-color: rgba(0,0,0,0.5);
     opacity: 0;
+
+    &-primary {
+      background-color: rgba(33,95,219,0.5);
+    }
   }
 
   &-icon {
