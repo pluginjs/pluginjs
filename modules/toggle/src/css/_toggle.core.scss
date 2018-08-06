@@ -27,7 +27,7 @@ $toggle-handle-bg: $color-red !default;
   border: $toggle-border-width solid $toggle-border-color;
 
   input {
-    display: none;
+    display: none !important;
   }
 
   &-inner {
