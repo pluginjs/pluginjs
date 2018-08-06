@@ -66,10 +66,10 @@ class Video extends Base {
       loop: false,
       controls: true,
       onReady: () => {
+        addClass(this.classes.LOADING, this.element)
         this.unbind()
       },
       onLoaded: () => {
-        addClass(this.classes.LOADING, this.element)
         this.isload = true
       },
       onPlay: () => {

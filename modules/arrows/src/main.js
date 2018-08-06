@@ -46,10 +46,8 @@ class Arrows extends Component {
   initialize() {
     addClass(this.classes.CONTAINER, this.element)
 
-    if (this.options.direction === 'vertical') {
+    if (this.options.vertical) {
       addClass(this.classes.VERTICAL, this.element)
-    } else {
-      addClass(this.classes.HORIZONTAL, this.element)
     }
 
     if (this.options.theme) {
@@ -232,10 +230,8 @@ class Arrows extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
-      if (this.options.direction === 'vertical') {
+      if (this.options.vertical) {
         removeClass(this.classes.VERTICAL, this.element)
-      } else {
-        removeClass(this.classes.HORIZONTAL, this.element)
       }
 
       if (this.options.theme) {

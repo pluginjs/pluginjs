@@ -42,6 +42,8 @@ const defaults = {
   current: 0,
   duration: 300,
   locale: 'en',
+  prevIcon: 'icon-chevron-left',
+  nextIcon: 'icon-chevron-right',
   templates: {
     box() {
       return '<div class="{classes.BOX}"></div>'

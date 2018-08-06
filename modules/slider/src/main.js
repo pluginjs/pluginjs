@@ -103,16 +103,21 @@ class Slider extends Component {
   initArrows() {
     this.arrows = Arrows.of(this.element, {
       type: this.options.arrowType,
-      direction: this.options.vertical ? 'vertical' : 'horizontal'
+      vertical: this.options.vertical,
+      prev: {
+        icon: this.options.prevIcon
+      },
+      next: {
+        icon: this.options.nextIcon
+      }
     })
-
-    console.log(this.options.vertical ? 'vertical' : 'horizontal')
   }
 
   initSwipeable() {
     const that = this
 
     this.swipeable = Swipeable.of(this.box, {
+      axis: that.options.vertical ? 'y' : 'x',
       onSnail() {
         if (that.is('disable')) {
           return
@@ -134,7 +139,7 @@ class Slider extends Component {
           return
         }
 
-        const offset = this.$info[this.options.vertical ? 'deltaY' : 'deltaX']
+        const offset = this.$info[that.options.vertical ? 'deltaY' : 'deltaX']
         that.decay(offset)
       }
     })

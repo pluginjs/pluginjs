@@ -42,21 +42,23 @@ export const defaults = {
   theme: null,
   type: null,
   prev: {
+    icon: 'icon-chevron-left',
     href: 'javascript:void(0);' /* eslint-disable-line no-script-url */,
     text: 'Previous'
   },
   next: {
+    icon: 'icon-chevron-right',
     href: 'javascript:void(0);' /* eslint-disable-line no-script-url */,
     text: 'Next'
   },
-  direction: 'horizontal', // vertical
+  vertical: false, // vertical
   valueFrom: 'href', // text, data-attr or ['a', 'href']
   templates: {
     prev() {
-      return '<a class="{classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} icon-chevron-left"></i></a>'
+      return '<a class="{classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} {icon}"></i></a>'
     },
     next() {
-      return '<a class="{classes.NEXT}" href="{href}" alt="{text}"><i class="{classes.ICON} icon-chevron-right"></i></a>'
+      return '<a class="{classes.NEXT}" href="{href}" alt="{text}"><i class="{classes.ICON} {icon}"></i></a>'
     }
   }
 }

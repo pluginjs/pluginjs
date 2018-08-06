@@ -4,6 +4,6 @@ import Arrows from '@pluginjs/arrows'
 const elementAttrAttr = queryAll('#vertical .example-vertical')
 elementAttrAttr.forEach(e =>
   Arrows.of(e, {
-    direction: 'vertical'
+    vertical: true
   })
 )
