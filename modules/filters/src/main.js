@@ -190,16 +190,17 @@ class Filters extends Component {
 
     if (!this.DROPDOWN) {
       this.element.append(
-        parseHTML(`<div class="${this.classes.DROPDOWN}">More</div>`)
+        parseHTML(`<div class="${this.classes.DROPDOWN}"></div>`)
       )
-      this.$dropdown = query(`.${this.classes.DROPDOWN}`, this.element)
+
+      this.$dropdown = query(`.${this.classes.NAMESPACE}`, this.element)
       this.DROPDOWN = Dropdown.of(this.$dropdown, {
         data,
         itemValueAttr: 'index',
         width: this.options.dropdownWidth,
         imitateSelect: false,
         onClick: el => {
-          const index = el.dataset.index
+          const index = el.element.dataset.id
           this.setActiveItem(this.$filters[index])
         }
       })
@@ -246,13 +247,15 @@ class Filters extends Component {
   }
 
   setDropdownActive() {
-    const $dropdownItems = this.DROPDOWN.items
-    $dropdownItems.map(removeClass(this.classes.ACTIVE))
-    $dropdownItems.forEach($el => {
-      if ($el.dataset.index === this.active) {
-        addClass(this.classes.ACTIVE, $el)
-      }
-    })
+    const $dropdownItems = this.DROPDOWN.$items
+    if ($dropdownItems) {
+      $dropdownItems.map(removeClass(this.classes.ACTIVE))
+      $dropdownItems.forEach($el => {
+        if ($el.dataset.index === this.active) {
+          addClass(this.classes.ACTIVE, $el)
+        }
+      })
+    }
   }
 
   setActiveItemByValue(value) {

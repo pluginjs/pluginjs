@@ -3,10 +3,11 @@
 // Vars
 // =====================
 $filter: "pj-filter" !default;
+$filter-color: $gray-darkest !default;
 $filter-font-size: $font-size-sm !default;
-$filter-font-weight: $font-weight-base !default;
+$filter-font-weight: $font-weight-bold !default;
 $filter-line-height: $line-height-base !default;
-$filter-padding: 3px 15px !default;
+$filter-padding: 0.1875rem 0.9375rem !default;
 $filter-border-width: $border-width !default;
 $filter-border-color: $border-color !default;
 $filter-border-radius: $border-radius-base !default;
@@ -28,7 +29,7 @@ $dropdown: "pj-dropdown" !default;
 
   .#{$dropdown}-item.#{$filter}-active {
     color: $color-white;
-    background-color: #55a4f2;
+    background-color: $color-primary;
   }
 
   .#{$filter} {
@@ -40,6 +41,7 @@ $dropdown: "pj-dropdown" !default;
     font-weight: $filter-font-weight;
     line-height: $filter-line-height;
     color: inherit;
+    // color: $filter-color;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -116,9 +118,16 @@ $filters-button-gap: 10px !default;
       margin-left: 0;
     }
 
-    &:not(:disabled):hover,
-    &:not(:disabled):focus {
+    &:not(:disabled):hover {
       border-color: $filter-border-color;
+    }
+
+    &:not(:disabled):focus {
+      border-color: $filter-active-color;
+    }
+
+    &.#{$filter}-active {
+      border-color: $filter-active-color
     }
   }
 }
