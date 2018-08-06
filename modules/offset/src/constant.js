@@ -95,7 +95,7 @@ export const defaults = {
             </div>
           </div>`
   },
-  defaultUnit: 'px',
+  defaultUnit: 'auto',
   data: null, // default data
   min: -1000,
   max: 1000,

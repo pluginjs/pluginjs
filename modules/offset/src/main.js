@@ -15,7 +15,6 @@ import {
   setObjData,
   getObjData,
   insertAfter,
-  childQuery,
   Each
 } from '@pluginjs/dom'
 import {
@@ -314,7 +313,7 @@ class Offset extends Component {
   }
 
   setUnits($el, name) {
-    let units = ['px', 'em', 'rem', '%', 'auto']
+    let units = ['px', 'em', 'rem', '%']
     if (name.split('-')[0] === 'padding') {
       units = ['px', 'em', 'rem', '%']
     }
@@ -332,16 +331,10 @@ class Offset extends Component {
           return
         }
 
-        const $trigger = $input.nextElementSibling
         const newData = {}
 
         newData[$input.getAttribute('name')] = this.get(unit)
 
-        if (unit === 'auto') {
-          addClass(`${this.classes.UNITAUTO}`, $trigger)
-        } else {
-          removeClass(`${this.classes.UNITAUTO}`, $trigger)
-        }
         that.set(newData, true)
       },
       onChangeVal(value) {
@@ -414,17 +407,11 @@ class Offset extends Component {
         value = 0
       }
 
-      if (unit === 'auto') {
-        val[key] = {
-          value: '',
-          unit: 'auto'
-        }
-      } else {
-        val[key] = {
-          value,
-          unit
-        }
+      val[key] = {
+        value,
+        unit
       }
+
       that.set(val, true)
       return false
     }
@@ -448,18 +435,7 @@ class Offset extends Component {
 
   move(id, position) {
     const $this = query(`#${id}`, this.$wrap)
-    const api = getObjData('units', $this)
-    if (api.getUnit() === 'auto') {
-      childQuery(
-        {
-          type: 'data',
-          value: `value=${id}`
-        },
-        this.$wrap
-      )[0].innerHTML =
-        'auto'
-      return
-    }
+
     const key = $this.getAttribute('name')
     const inputValue = this.data[key].value
     let value
@@ -476,13 +452,11 @@ class Offset extends Component {
     }
 
     $this.value = value
-    childQuery(
-      {
-        type: 'data',
-        value: `value=${id}`
-      },
-      this.$wrap
-    )[0].innerHTML = `${value}${getObjData('units', $this).getUnit()}`
+
+    query(`[data-value="${id}"]`, this.$wrap).innerHTML = `${value}${getObjData(
+      'units',
+      $this
+    ).getUnit()}`
   }
 
   setView() {
@@ -491,11 +465,6 @@ class Offset extends Component {
       const key = $input.getAttribute('name')
       const $view = query(`.${this.classes.VIEW}`, item)
       const info = getObjData('info', item)
-
-      if (info && info.unit === 'auto') {
-        $view.innerHTML = 'auto'
-        return /* eslint-disable-line */
-      }
 
       if (info && info.value.length < 1) {
         $view.innerHTML = '-'
@@ -520,9 +489,6 @@ class Offset extends Component {
     Each(this.value, (i, v) => {
       if (v !== '') {
         data[i] = v
-      }
-      if (v === 'auto') {
-        data[i] = 'auto'
       }
     })
 
@@ -582,13 +548,7 @@ class Offset extends Component {
     }
 
     Each(this.value, (i, v) => {
-      const input = childQuery(
-        {
-          type: 'attr',
-          value: `name=${i}`
-        },
-        this.$wrap
-      )[0]
+      const input = query(`[name="${i}"]`, this.$wrap)
 
       const $item = closest(`.${this.classes.ITEM}`, input)
       const api = getObjData('units', input)
@@ -610,12 +570,6 @@ class Offset extends Component {
       return value
     }
     const units = ['px', 'em', 'rem', '%']
-    if (value === 'auto') {
-      return {
-        value: '',
-        unit: 'auto'
-      }
-    }
 
     if (value === '') {
       return {

@@ -88,30 +88,6 @@ export const attrVerify = (attrName, value, el) => {
   return Obj[attrName] && Obj[attrName](el)
 }
 
-export const childQuery = ({ type, value, level = 3 }, el) => {
-  const res = []
-
-  const hasChild = element => Array.from(element.children).lenght !== 0
-
-  const childNodeCompare = (element, l) => {
-    if (hasChild(element)) {
-      Array.from(element.children).forEach(c => {
-        if (attrVerify(type, value, c)) {
-          res.push(c)
-        }
-
-        if (hasChild(c) && l > 0) {
-          childNodeCompare(c, l - 1)
-        }
-      })
-    }
-  }
-
-  childNodeCompare(el, level)
-
-  return res
-}
-
 export const Each = (obj, callback) => {
   let i = 0
   let length
@@ -145,6 +121,25 @@ export const parentQuery = ({ type, value, level = 3 }, el) => {
 }
 
 export const parent = el => el.parentNode
+
+export const parentWith = curry((fn, el) => {
+  const parentElement = parent(el)
+  if (!parentElement || parentElement === document) {
+    return false
+  }
+  if (fn(parentElement)) {
+    return parentElement
+  }
+  return parentWith(fn, parentElement)
+})
+
+export const closest = curry((selector, el) => {
+  if (el.matches(selector)) {
+    return el
+  }
+  return parentWith(el => el.matches(selector), el)
+})
+
 // 解析 HTML/SVG/XML 字符串
 export const parseHTML = (...args) => {
   const htmlString = Array.isArray(args[0])
@@ -294,30 +289,12 @@ export const clearChild = el => {
   return el
 }
 
-export const parentWith = curry((fn, el) => {
-  const parentElement = parent(el)
-  if (!parentElement || parentElement === document) {
-    return false
-  }
-  if (fn(parentElement)) {
-    return parentElement
-  }
-  return parentWith(fn, parentElement)
-})
-
 export const clearData = el => {
   Object.keys(el).map(name => el.removeAttribute(`data-${name}`))
   return el
 }
 
 export const contains = curry((el, parent) => parent.contains(el))
-
-export const closest = curry((selector, el) => {
-  if (el.matches(selector)) {
-    return el
-  }
-  return parentWith(el => el.matches(selector), el)
-})
 
 export const nextElementWith = curry((fn, el) => {
   const nextElement = next(el)
@@ -329,8 +306,6 @@ export const nextElementWith = curry((fn, el) => {
   }
   return nextElementWith(fn, nextElement)
 })
-
-// == animation == //
 
 export const fade = curry((type, { duration, callback }, element) => {
   const isIn = type === 'in'

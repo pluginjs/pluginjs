@@ -1,5 +1,5 @@
 import { bindEvent } from '@pluginjs/events'
-import { childQuery } from '@pluginjs/dom'
+import { query } from '@pluginjs/dom'
 
 class History {
   constructor(instance) {
@@ -42,11 +42,8 @@ class History {
 
     if (MATCH) {
       const slug = decodeURIComponent(MATCH[1].replace(/\+/g, ' '))
-      const $tab = childQuery(
-        {
-          type: this.instance.options.historyAttr,
-          value: slug
-        },
+      const $tab = query(
+        `${this.instance.options.historyAttr}="${slug}"`,
         this.instance.$nav
       )
 
