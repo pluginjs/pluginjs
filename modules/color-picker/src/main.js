@@ -175,10 +175,7 @@ class ColorPicker extends Component {
     const $wrap = this.createEl('wrap', { class: this.classes.WRAP })
     wrap($wrap, this.element)
     wrap(`<div class='${this.classes.TRIGGER}'></div>`, this.element)
-    this.$wrap = parentWith(
-      el => el.matches(`.${this.classes.WRAP}`),
-      this.element
-    )
+    this.$wrap = parentWith(hasClass(this.classes.WRAP), this.element)
 
     // init remove button
     this.initRemove()

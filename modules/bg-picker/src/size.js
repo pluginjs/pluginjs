@@ -1,12 +1,6 @@
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
-import {
-  query,
-  queryAll,
-  parseHTML,
-  parentWith,
-  insertAfter
-} from '@pluginjs/dom'
+import { query, queryAll, parseHTML, closest, insertAfter } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
 
@@ -74,10 +68,7 @@ export default class Size {
         type: 'click',
         identity: { type: 'tagName', value: 'li' },
         handler: ({ target }) => {
-          const el =
-            target.tagName === 'LI'
-              ? target
-              : parentWith(el => el.tagName === 'LI', target)
+          const el = target.tagName === 'LI' ? target : closest('LI', target)
           if (this.instance.disabled) {
             return null
           }

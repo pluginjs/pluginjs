@@ -14,7 +14,7 @@ class Keyboard {
     this._package = _package
     this.$list = el
     this.$wrap = this._package
-      ? parentWith(el => el.matches(`.${this.classes.PACKAGE}`), this.$list[0])
+      ? parentWith(hasClass(this.classes.PACKAGE), this.$list[0])
       : parent(this.$list[0])
     this.$input = query('input', this.instance.$search)
 

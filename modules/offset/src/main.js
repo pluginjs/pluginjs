@@ -7,7 +7,7 @@ import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle, getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
-  closest,
+  parentWith,
   children,
   parseHTML,
   queryAll,
@@ -142,7 +142,7 @@ class Offset extends Component {
           }
           const info = getObjData(
             'info',
-            closest(`.${this.classes.ITEM}`, target)
+            parentWith(hasClass(this.classes.ITEM), target)
           )
           const key = target.getAttribute('name')
           const newData = {}
@@ -207,7 +207,7 @@ class Offset extends Component {
           if (that.is('disabled')) {
             return
           }
-          const $this = closest(`.${this.classes.VIEW}`, e.target)
+          const $this = parentWith(hasClass(this.classes.VIEW), e.target)
           const $el = query(
             `.${that.classes.NAMESPACE}-${$this.dataset.value}`,
             this.$wrap
@@ -255,7 +255,7 @@ class Offset extends Component {
           if (that.is('disabled')) {
             return
           }
-          const $this = closest(`.${this.classes.CONNECT}`, e.target)
+          const $this = parentWith(hasClass(this.classes.CONNECT), e.target)
 
           if (that.is('connect')) {
             removeClass(that.classes.CONNECTACTIVE, $this)
@@ -341,7 +341,7 @@ class Offset extends Component {
         if (that.is('disabled')) {
           return
         }
-        const $item = closest(`.${that.classes.ITEM}`, $input)
+        const $item = parentWith(hasClass(that.classes.ITEM), $input)
         const info = getObjData('info', $item)
         const key = $input.getAttribute('name')
         const newData = {}
@@ -550,7 +550,7 @@ class Offset extends Component {
     Each(this.value, (i, v) => {
       const input = query(`[name="${i}"]`, this.$wrap)
 
-      const $item = closest(`.${this.classes.ITEM}`, input)
+      const $item = parentWith(hasClass(this.classes.ITEM), input)
       const api = getObjData('units', input)
 
       const info = this.parse(v)

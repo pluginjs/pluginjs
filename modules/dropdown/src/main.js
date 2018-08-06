@@ -14,7 +14,7 @@ import {
   // wrapInner,
   children,
   parent,
-  closest
+  parentWith
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -405,8 +405,8 @@ class Dropdown extends Component {
 
             const target = e.target
             if (
-              !closest(`.${this.classes.NAMESPACE}`, target) &&
-              !closest(`.${this.classes.PANEL}`, target)
+              !parentWith(hasClass(this.classes.NAMESPACE), target) &&
+              !parentWith(hasClass(this.classes.PANEL), target)
             ) {
               this.hide()
               return

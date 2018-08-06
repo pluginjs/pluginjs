@@ -11,7 +11,6 @@ import {
   parseHTML,
   getObjData,
   setObjData,
-  // closest,
   wrap,
   parentWith
 } from '@pluginjs/dom'
@@ -112,7 +111,7 @@ class PatternPicker extends Component {
     //   this.$editPanel.MODAL.$content
     // )
     // this.$scrollable = Scrollable.of(
-    //   closest(`.${this.classes.SELECTORLIST}`, this.$selectorList),
+    //   parentWith(hasClass(this.classes.SELECTORLIST), this.$selectorList),
     //   {
     //     contentSelector: '>',
     //     containerSelector: '>'
@@ -126,10 +125,7 @@ class PatternPicker extends Component {
       addClass(this.classes.THEME, $wrap)
     }
     wrap($wrap, addClass(this.classes.INPUT, this.element))
-    this.$wrap = parentWith(
-      el => el.matches(`.${this.classes.NAMESPACE}`),
-      this.element
-    )
+    this.$wrap = parentWith(hasClass(this.classes.NAMESPACE), this.element)
     this.$trigger = parseHTML(
       template.compile(this.options.templates.trigger())({
         classes: this.classes

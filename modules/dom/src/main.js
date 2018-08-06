@@ -122,6 +122,30 @@ export const parentQuery = ({ type, value, level = 3 }, el) => {
 
 export const parent = el => el.parentNode
 
+export const parents = (selector, el) => {
+  if (!isString(selector) && typeof el === 'undefined') {
+    el = selector
+    selector = null
+  }
+
+  const result = []
+  let last = el
+
+  while (
+    isElement(last) &&
+    last.parentNode &&
+    last !== document.body.parentNode
+  ) {
+    last = last.parentNode
+
+    if (!selector || (selector && last.matches(selector))) {
+      result.push(last)
+    }
+  }
+
+  return result
+}
+
 export const parentWith = curry((fn, el) => {
   const parentElement = parent(el)
   if (!parentElement || parentElement === document) {

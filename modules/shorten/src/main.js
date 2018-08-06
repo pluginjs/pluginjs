@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { removeClass, addClass, hasClass } from '@pluginjs/classes'
-import { parentWith, setObjData, query } from '@pluginjs/dom'
+import { closest, setObjData, query } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -139,7 +139,7 @@ class Shorten extends Component {
         handler: ({ target }) => {
           const item = hasClass(this.classes.TOGGLE, target)
             ? target
-            : parentWith(hasClass(this.classes.TOGGLE), target)
+            : closest(`${this.classes.TOGGLE}`, target)
           if (this.is('expand')) {
             this.trigger(EVENTS.COLLAPSE)
             item.innerHTML = this.options.more

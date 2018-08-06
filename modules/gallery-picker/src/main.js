@@ -200,7 +200,7 @@ class GalleryPicker extends Component {
             return children(parentElement).indexOf(el)
           }
           const index = getElementIndex(
-            parentWith(el => el.matches(`.${this.classes.ITEM}`), e.target)
+            parentWith(hasClass(this.classes.ITEM), e.target)
           )
           this.change(index, url)
           return null
@@ -233,10 +233,7 @@ class GalleryPicker extends Component {
           if (this.is('disabled')) {
             return false
           }
-          const target = parentWith(
-            el => el.matches(`.${this.classes.ITEM}`),
-            e.target
-          )
+          const target = parentWith(hasClass(this.classes.ITEM), e.target)
           addClass(this.classes.HOVER, target)
           return null
         }
@@ -255,10 +252,7 @@ class GalleryPicker extends Component {
           if (this.is('holdHover')) {
             return false
           }
-          const target = parentWith(
-            el => el.matches(`.${this.classes.ITEM}`),
-            e.target
-          )
+          const target = parentWith(hasClass(this.classes.ITEM), e.target)
           removeClass(this.classes.HOVER, target)
           this.leave('holdHover')
           return null

@@ -7,6 +7,7 @@ import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
   query,
   parent,
+  parentWith,
   parseHTML,
   getObjData,
   children,
@@ -167,9 +168,9 @@ class IconsPicker extends Component {
         `.${this.classes.PACKAGEBODY} ul`,
         this.panel
       )
-      // console.log(Scrollable.findInstanceByElement( closest(`.${this.classes.PACKAGEBODY}`, this.$selectorList[0])))
+      // console.log(Scrollable.findInstanceByElement( parentWith(hasClass(this.classes.PACKAGEBODY), this.$selectorList[0])))
       this.$scrollable = this.$selectorList.map(el =>
-        Scrollable.of(closest(`.${this.classes.PACKAGEBODY}`, el))
+        Scrollable.of(parentWith(hasClass(this.classes.PACKAGEBODY), el))
       )
 
       // init by element value
@@ -399,7 +400,7 @@ class IconsPicker extends Component {
           value: `.${this.classes.ICON}`
         },
         handler: ({ target }) => {
-          that.select(closest(`.${this.classes.ICON}`, target))
+          that.select(parentWith(hasClass(this.classes.ICON), target))
           that.$dropdown.hide()
         }
       })

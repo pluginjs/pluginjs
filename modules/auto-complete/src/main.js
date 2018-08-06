@@ -9,10 +9,11 @@ import {
   wrap,
   parseHTML,
   parent,
+  parentWith,
   children,
   getObjData,
   setObjData,
-  parentWith
+  closest
 } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle, setStyle, showElement, hideElement } from '@pluginjs/styled'
@@ -450,10 +451,7 @@ class AutoComplete extends Component {
     $item.innerHTML = content
     addClass(this.classes.SHOW, $item)
     if (this.options.group) {
-      addClass(
-        this.classes.GROUPSHOW,
-        parentWith(el => el.matches(`.${this.classes.GROUP}`), $item)
-      )
+      addClass(this.classes.GROUPSHOW, parentWith(hasClass(this.classes.GROUP), $item))
     }
     this.$selected = queryAll(`.${this.classes.SHOW}`, this.$panel)[0]
     this.$shows = queryAll(`.${this.classes.SHOW}`, this.$panel)

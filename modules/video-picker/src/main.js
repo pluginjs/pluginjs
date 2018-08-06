@@ -10,14 +10,7 @@ import {
   contentHeight
 } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  parseHTML,
-  query,
-  parentWith,
-  fadeIn,
-  fadeOut,
-  wrap
-} from '@pluginjs/dom'
+import { parseHTML, query, parentWith, fadeIn, fadeOut, wrap } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import Dropdown from '@pluginjs/dropdown'
 import PopDialog from '@pluginjs/pop-dialog'
@@ -95,10 +88,7 @@ class VideoPicker extends Component {
       addClass(this.classes.THEME, $wrap)
     }
     wrap($wrap, addClass(this.classes.INPUT, this.element))
-    this.$wrap = parentWith(
-      el => el.matches(`.${this.classes.NAMESPACE}`),
-      this.element
-    )
+    this.$wrap = parentWith(hasClass(this.classes.NAMESPACE), this.element)
     // creat trigger
     // this.$trigger = parseHTML(
     //   this.createEl('trigger', {
@@ -405,7 +395,7 @@ class VideoPicker extends Component {
     // })
 
     // hideElement(
-    //   parentWith(el => el.matches('.pj-editPanel-component'), this.$localUrl)
+    //   closest('.pj-editPanel-component', this.$localUrl)
     // )
 
     // this.changeSource = Dropdown.findInstanceByElement(query('.pj-dropdown-trigger', this.$source))
@@ -592,31 +582,11 @@ class VideoPicker extends Component {
       this.data.source = el.dataset.value
 
       if (this.data.source === 'Local File') {
-        showElement(
-          parentWith(
-            el => el.matches('.pj-videoPicker-component'),
-            this.$localUrl
-          )
-        )
-        hideElement(
-          parentWith(
-            el => el.matches('.pj-videoPicker-component'),
-            this.$videoUrl
-          )
-        )
+        showElement(closest('.pj-videoPicker-component', this.$localUrl))
+        hideElement(closest('.pj-videoPicker-component', this.$videoUrl))
       } else {
-        hideElement(
-          parentWith(
-            el => el.matches('.pj-videoPicker-component'),
-            this.$localUrl
-          )
-        )
-        showElement(
-          parentWith(
-            el => el.matches('.pj-videoPicker-component'),
-            this.$videoUrl
-          )
-        )
+        hideElement(closest('.pj-videoPicker-component', this.$localUrl))
+        showElement(closest('.pj-videoPicker-component', this.$videoUrl))
       }
       if (this.$videoPoster) {
         setStyle(

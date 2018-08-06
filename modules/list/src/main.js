@@ -235,7 +235,7 @@ class List extends Component {
               if (this.is('disabled')) {
                 return
               }
-              const $item = parentWith(hasClass(this.classes.ITEM), target)
+              const $item = closest(`${this.classes.ITEM}`, target)
               v.callback(
                 this,
                 $item,
@@ -258,7 +258,7 @@ class List extends Component {
           }
           const $item = hasClass(this.classes.ITEM)
             ? target
-            : parentWith(hasClass(this.classes.ITEM), target)
+            : closest(`${this.classes.ITEM}`, target)
           const index = children(parent($item)).indexOf($item)
 
           this.trigger(EVENTS.CLICKITEM, this.get(index), index)

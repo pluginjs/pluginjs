@@ -87,9 +87,50 @@ describe('Dom helper', () => {
     parent.append(children)
     expect(dom.parent(children)).toEqual(parent)
   })
+
+  test('parents', () => {
+    const ancestor = document.createElement('div')
+    const parent = document.createElement('div')
+    const children = document.createElement('div')
+    parent.append(children)
+    ancestor.append(parent)
+    expect(dom.parents(children)).toEqual([parent, ancestor])
+  })
+
+  test('parents with selector', () => {
+    const ancestor = document.createElement('div')
+    const parent = document.createElement('div')
+    const children = document.createElement('div')
+    ancestor.classList.add('foo')
+    ancestor.append(parent)
+    parent.append(children)
+    expect(dom.parents('.foo', children)).toEqual([ancestor])
+  })
+
+  test('parentWith', () => {
+    const parent = document.createElement('div')
+    const el = document.createElement('div')
+    const children = document.createElement('div')
+    dom.attr({ foo: 'bar' }, parent)
+    dom.append(children, parent)
+    dom.append(el, children)
+    expect(dom.parentWith(el => el.matches('[foo=bar]'), el)).toEqual(parent)
+  })
+
+  test('closest', () => {
+    const parent = document.createElement('div')
+    const el = document.createElement('div')
+    const children = document.createElement('div')
+    dom.attr({ foo: 'bar' }, parent)
+    dom.append(children, parent)
+    dom.append(el, children)
+    expect(dom.closest('[foo=bar]', el)).toEqual(parent)
+  })
+
   test('parseHTML', () => {
     expect(dom.parseHTML`<div></div>`).toEqual(document.createElement('div'))
   })
+
   test('setObjData/getObjData', () => {
     const el = document.createElement('div')
     dom.setObjData('foo', 'bar', el)
@@ -219,15 +260,7 @@ describe('Dom helper', () => {
     dom.clearChild(parent)
     expect(dom.children(parent)).toHaveLength(0)
   })
-  test('parentWith', () => {
-    const parent = document.createElement('div')
-    const el = document.createElement('div')
-    const children = document.createElement('div')
-    dom.attr({ foo: 'bar' }, parent)
-    dom.append(children, parent)
-    dom.append(el, children)
-    expect(dom.parentWith(el => el.matches('[foo=bar]'), el)).toEqual(parent)
-  })
+
   test('clearData', () => {
     const el = document.createElement('div')
     el.foo = 'bar'
@@ -241,15 +274,7 @@ describe('Dom helper', () => {
     dom.append(el, parent)
     expect(dom.contains(el, parent)).toBeTrue()
   })
-  test('closest', () => {
-    const parent = document.createElement('div')
-    const el = document.createElement('div')
-    const children = document.createElement('div')
-    dom.attr({ foo: 'bar' }, parent)
-    dom.append(children, parent)
-    dom.append(el, children)
-    expect(dom.closest('[foo=bar]', el)).toEqual(parent)
-  })
+
   test('nextElementWith', () => {
     const parent = document.createElement('div')
     const children = document.createElement('div')

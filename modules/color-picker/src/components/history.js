@@ -65,10 +65,7 @@ class History {
         handler: ({ target }) => { /* eslint-disable-line */
           const el = target.matches(`.${this.classes.HISTORYITEM}`)
             ? target
-            : parentWith(
-                el => el.matches(`.${this.classes.HISTORYITEM}`),
-                target
-              )
+            : parentWith(hasClass(this.classes.HISTORYITEM), target)
           if (getStyle('cursor', el) === 'not-allowed') {
             return false
           }

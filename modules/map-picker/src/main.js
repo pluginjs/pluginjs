@@ -107,10 +107,7 @@ class MapPicker extends Component {
       addClass(this.classes.THEME, $wrap)
     }
     wrap($wrap, addClass(this.classes.INPUT, this.element))
-    this.$wrap = parentWith(
-      el => el.matches(`.${this.classes.NAMESPACE}`),
-      this.element
-    )
+    this.$wrap = parentWith(hasClass(this.classes.NAMESPACE), this.element)
     // console.log(this.options.theme)
     // console.log(this.classes.THEME)
     console.log($wrap)

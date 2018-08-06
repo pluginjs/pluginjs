@@ -8,7 +8,7 @@ import {
   empty,
   append,
   parent,
-  parentWith,
+  closest,
   parseHTML,
   html,
   insertBefore,
@@ -192,13 +192,8 @@ class Responsive {
         return
       }
       const { target } = e
-      const matchTagName = tagName => el => el.tagName === tagName
-      const aTag =
-        target.tagName === 'A' ? target : parentWith(matchTagName('A'), target)
-      const liTag =
-        target.tagName === 'LI'
-          ? target
-          : parentWith(matchTagName('LI'), target)
+      const aTag = target.tagName === 'A' ? target : closest('A', target)
+      const liTag = target.tagName === 'LI' ? target : closest('LI', target)
       if (aTag) {
         this.switch()
       } else if (liTag) {

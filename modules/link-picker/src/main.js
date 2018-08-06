@@ -355,7 +355,7 @@ class LinkPicker extends Component {
     )
     const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
       ? parent
-      : parentWith(el => el.matches(`.${this.classes.ITEMBODY}`), parent)
+      : parentWith(hasClass(this.classes.ITEMBODY), parent)
     setObjData('api', $input, itemBody)
   }
 
@@ -423,7 +423,7 @@ class LinkPicker extends Component {
 
     const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
       ? parent
-      : parentWith(el => el.matches(`.${this.classes.ITEMBODY}`), parent)
+      : parentWith(hasClass(this.classes.ITEMBODY), parent)
     setObjData('api', api, itemBody)
   }
 
@@ -539,7 +539,7 @@ class LinkPicker extends Component {
 
     const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
       ? parent
-      : parentWith(el => el.matches(`.${this.classes.ITEMBODY}`), parent)
+      : parentWith(hasClass(this.classes.ITEMBODY), parent)
     setObjData('api', api, itemBody)
   }
 

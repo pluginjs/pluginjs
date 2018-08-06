@@ -7,7 +7,7 @@ import {
   queryAll,
   children,
   parent,
-  parentWith,
+  closest,
   parseHTML,
   append,
   prepend,
@@ -199,7 +199,7 @@ class Choice extends Component {
       }
       const $item = target.matches('[data-value]')
         ? target
-        : parentWith(el => el.matches('[data-value]'), target)
+        : closest('[data-value]', target)
       const value = $item.dataset.value
       const data = getObjData('item', $item)
       if (data.disabled) {

@@ -1,5 +1,5 @@
 import { addClass } from '@pluginjs/classes'
-import { append, query, closest } from '@pluginjs/dom'
+import { append, query, parentWith } from '@pluginjs/dom'
 
 class Base {
   constructor(instance, data) {
@@ -31,7 +31,7 @@ class Base {
   }
 
   loaded(target) {
-    const card = closest(`.${this.classes.CARD}`, target)
+    const card = parentWith(hasClass(this.classes.CARD), target)
     const content = query(`.${this.classes.CONTENT}`, card)
     const loader = query(`.${this.classes.LOADER}`, card)
 

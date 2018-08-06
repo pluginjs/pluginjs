@@ -1,11 +1,5 @@
 import template from '@pluginjs/template'
-import {
-  parseHTML,
-  insertAfter,
-  query,
-  queryAll,
-  parentWith
-} from '@pluginjs/dom'
+import { parseHTML, insertAfter, query, queryAll, closest } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
@@ -72,10 +66,7 @@ export default class Repeat {
         type: 'click',
         identity: { type: 'tagName', value: 'li' },
         handler: ({ target }) => {
-          const el =
-            target.tagName === 'LI'
-              ? target
-              : parentWith(el => el.tagName === 'LI', target)
+          const el = target.tagName === 'LI' ? target : closest('LI', target)
           if (this.instance.disabled) {
             return null
           }

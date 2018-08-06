@@ -4,7 +4,7 @@ import templateEngine from '@pluginjs/template'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, closest } from '@pluginjs/dom'
+import { append, parseHTML, parentWith } from '@pluginjs/dom'
 import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
@@ -77,7 +77,7 @@ class Thumbnails extends Component {
     const regex = new RegExp(/\((.+?)\)/)
 
     items.forEach(item => {
-      const thumb = closest(`.${this.classes.NAMESPACE}`, item)
+      const thumb = parentWith(hasClass(this.classes.NAMESPACE), item)
 
       let info = {
         src:
@@ -148,7 +148,7 @@ class Thumbnails extends Component {
     this.imageLoader = ImageLoader.of(this.inner)
 
     this.imageLoader.onLoaded(img => {
-      const thumb = closest(`.${that.classes.NAMESPACE}`, img)
+      const thumb = parentWith(hasClass(that.classes.NAMESPACE), img)
       const loader = thumb.querySelector(`.${that.classes.LOADER}`)
 
       addClass(that.classes.LOADED, thumb)
@@ -219,7 +219,7 @@ class Thumbnails extends Component {
             return false
           }
 
-          const target = closest(`.${this.classes.THUMB}`, event.target)
+          const target = parentWith(hasClass(this.classes.THUMB), event.target)
           if (!target) {
             return false
           }

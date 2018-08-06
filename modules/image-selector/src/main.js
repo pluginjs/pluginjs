@@ -150,8 +150,7 @@ class ImageSelector extends Component {
             const $this = e.target
 
             if (
-              parentWith(el => el.matches(`.${this.classes.WRAPPER}`), $this)
-                .length < 1 &&
+              parentWith(hasClass(this.classes.WRAPPER), $this).length < 1 &&
               this.is('open')
             ) {
               this.close()

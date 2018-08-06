@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, query, insertAfter, children } from '@pluginjs/dom'
+import { append, parseHTML, query, insertAfter, children, parentWith } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -202,7 +202,7 @@ class Tabs extends Component {
 
           if (
             !target.closest(`.${this.classes.NAMESPACE}`)
-            //* ***!$target.closest(`.${this.classes.NAMESPACE}`, this.$element).length
+            //* ***!$target.parentWith(hasClass(this.classes.NAMESPACE), this.$element).length
           ) {
             removeClass(this.classes.DROPOPEN, this.element)
           }

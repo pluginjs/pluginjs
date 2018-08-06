@@ -14,7 +14,6 @@ import {
 } from '@pluginjs/styled'
 import {
   append,
-  parentWith,
   parent,
   closest,
   insertAfter,
@@ -1445,7 +1444,7 @@ class DatePicker extends Component {
       const privateTarget = closest('div', $target)
       const privateTargetSpan = closest('span', $target)
       const queryParent = curry((selector, target) =>
-        parentWith(el => el.matches(selector), target)
+        closest(selector, target)
       )
       const queryContent = queryParent(`.${this.classes.CONTENT}`)
       const indexOfParentElement = targetParent =>

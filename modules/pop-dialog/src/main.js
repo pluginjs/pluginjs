@@ -2,7 +2,7 @@ import templateEngine from '@pluginjs/template'
 import { isFunction, isEmptyObject } from '@pluginjs/is'
 import { compose } from '@pluginjs/utils'
 import { bindEvent } from '@pluginjs/events'
-import { dataset, parentWith, query } from '@pluginjs/dom'
+import { dataset, closest, query } from '@pluginjs/dom'
 import { hasClass, removeClass } from '@pluginjs/classes'
 import {
   eventable,
@@ -67,7 +67,7 @@ class PopDialog extends Popover {
               ? dataset('action', target)
               : compose(
                   dataset('action'),
-                  parentWith(hasClass(this.classes.BUTTON))
+                  closest(`${this.classes.BUTTON}`)
                 )(target)
           )
       },

@@ -185,7 +185,7 @@ class Swipe extends Component {
   }
 
   buildWrapper() {
-    this.$wrapper = parentWith(hasClass(this.classes.WRAPPER), this.element)
+    this.$wrapper = closest(`${this.classes.WRAPPER}`, this.element)
     if (!this.$wrapper) {
       if (this.options.wrapperSelector) {
         addClass(
@@ -195,7 +195,7 @@ class Swipe extends Component {
       } else {
         wrap(`<div class="${this.classes.WRAPPER}"></div>`, this.element)
       }
-      this.$wrapper = closest(`.${this.classes.WRAPPER}`, this.element)
+      this.$wrapper = parentWith(hasClass(this.classes.WRAPPER), this.element)
     }
   }
 
@@ -437,7 +437,7 @@ class Swipe extends Component {
           type: this.eventName('click'),
           identity: `.${this.classes.PAGINATIONITEM}`,
           handler: e => {
-            const $item = closest(`.${this.classes.PAGINATIONITEM}`, e.target)
+            const $item = parentWith(hasClass(this.classes.PAGINATIONITEM), e.target)
             const index = this.$pagination.dots.indexOf($item)
             this.moveTo(index)
           }

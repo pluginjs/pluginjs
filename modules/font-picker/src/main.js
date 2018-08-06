@@ -241,16 +241,12 @@ class FontPicker extends Component {
     this.$dropdown.options.onShow = () => {
       this.categoriesHeight = contentHeight(parent(this.$activated[0]))
       if (this.$font) {
-        const $selectedPackage = parentWith(
-          el => el.matches(`.${this.classes.PACKAGE}`),
-          this.$font
-        )
+        const $selectedPackage = parentWith(hasClass(this.classes.PACKAGE), this.$font)
         if (!$selectedPackage) {
           return
         }
-        const $source = parentWith(
-          el =>
-            el.matches(`.${this.classes.SOURCES}-${this.$font.dataset.source}`),
+        const $source = closest(
+          `.${this.classes.SOURCES}-${this.$font.dataset.source}`,
           this.$font
         )
         this.$selectorPanel.set(this.$font.dataset.source)
@@ -356,10 +352,7 @@ class FontPicker extends Component {
             }
             return
           }
-          const $categorie = parentWith(
-            el => el.matches(`.${that.classes.PACKAGE}`),
-            $this
-          )
+          const $categorie = parentWith(hasClass(that.classes.PACKAGE), $this)
           const $source = parent($categorie)
 
           const sourceName = $source.dataset.source
@@ -1072,10 +1065,7 @@ class FontPicker extends Component {
 
       this.$dropdown.destroy()
       this.$selectorPanel.destroy()
-      parentWith(
-        el => el.matches(`.${this.classes.WRAP}`),
-        this.$fontPicker
-      ).remove()
+      parentWith(hasClass(this.classes.WRAP), this.$fontPicker).remove()
       this.$fontPicker.remove()
       this.element.value = ''
       this.leave('initialized')

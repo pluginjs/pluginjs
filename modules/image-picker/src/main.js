@@ -185,10 +185,7 @@ class ImagePicker extends Component {
           fn(resolve) {
             const $fill = that.$remove.matches(`.${that.classes.FILL}`)
               ? that.$remove
-              : parentWith(
-                  el => el.matches(`.${that.classes.FILL}`),
-                  that.$remove
-                )
+              : parentWith(hasClass(that.classes.FILL), that.$remove)
             addClass(`${that.classes.FADEOUT}`, $fill)
             window.setTimeout(() => {
               removeClass(`${that.classes.FADEOUT}`, $fill)

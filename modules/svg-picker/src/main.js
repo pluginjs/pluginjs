@@ -12,7 +12,7 @@ import {
   insertBefore,
   insertAfter,
   append,
-  closest
+  parentWith
 } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { showElement, hideElement } from '@pluginjs/styled'
@@ -143,7 +143,7 @@ class SvgPicker extends Component {
         identity: `.${this.classes.TYPETITLE}`,
         handler: event => {
           const $type = parent(
-            closest(`.${this.classes.TYPETITLE}`, event.target)
+            parentWith(hasClass(this.classes.TYPETITLE), event.target)
           )
 
           that.open($type)
@@ -160,7 +160,7 @@ class SvgPicker extends Component {
         type: this.eventName('click'),
         identity: `.${this.classes.ICON}`,
         handler: event => {
-          const $this = closest(`.${this.classes.ICON}`, event.target)
+          const $this = parentWith(hasClass(this.classes.ICON), event.target)
 
           that.select($this)
           that.$dropdown.hide()
