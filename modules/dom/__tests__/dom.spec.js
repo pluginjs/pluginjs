@@ -59,14 +59,28 @@ describe('Dom helper', () => {
     children[0].classList.add('foo')
     expect(dom.children('.foo', parent)).toEqual([children[0]])
   })
-  test('getSiblings', () => {
+  test('siblings', () => {
     const parent = document.createElement('div')
     const children = Array.from({ length: 2 }, () =>
       document.createElement('div')
     )
     parent.append(...children)
-    expect(dom.getSiblings(children[1])).toEqual([children[0]])
+    expect(dom.siblings(children[1])).toEqual([children[0]])
   })
+
+  test('siblings filtered by a selector', () => {
+    const parent = document.createElement('div')
+    const children = Array.from({ length: 3 }, () =>
+      document.createElement('div')
+    )
+    parent.append(...children)
+
+    children[0].classList.add('foo')
+
+    expect(dom.siblings(children[1])).toEqual([children[0], children[2]])
+    expect(dom.siblings('.foo', children[1])).toEqual([children[0]])
+  })
+
   test('parent', () => {
     const parent = document.createElement('div')
     const children = document.createElement('div')

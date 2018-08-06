@@ -8,7 +8,7 @@ import {
   insertAfter,
   children,
   parentQuery,
-  getSiblings
+  siblings
 } from '@pluginjs/dom'
 
 export default class Node {
@@ -125,18 +125,18 @@ export default class Node {
   }
 
   siblings() {
-    const siblings = []
-    const $siblings = getSiblings(this.dom)
+    const nodes = []
+    const $siblings = siblings(this.dom)
     let node
 
     for (let i = 0; i < $siblings.length; i++) {
       node = getObjData('node', $siblings[0])
       // node = $siblings.data('node')
       if (node) {
-        siblings.push(node)
+        nodes.push(node)
       }
     }
-    return siblings
+    return nodes
   }
 
   hasChildren() {

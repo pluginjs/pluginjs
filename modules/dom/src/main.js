@@ -36,8 +36,16 @@ export const children = (selector, el) => {
   return Array.from(el.children)
 }
 
-export const getSiblings = el => {
-  const childrenArr = children(el.parentNode)
+export const siblings = (selector, el) => {
+  if (!isString(selector) && typeof el === 'undefined') {
+    el = selector
+    selector = null
+  }
+  if (!isElement(el)) {
+    return null
+  }
+
+  const childrenArr = children(selector, el.parentNode)
   const index = childrenArr.indexOf(el)
   if (index > -1) {
     childrenArr.splice(index, 1)

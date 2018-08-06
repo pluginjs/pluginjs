@@ -88,7 +88,7 @@ Returns
 |------|------|-------------|
 | elements | `Array<HTMLElement>` | a Array which contains all of the child elements that matches the specified set of CSS selectors .  |
 
-### getSiblings
+### siblings
 
 Parameters
 
