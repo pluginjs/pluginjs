@@ -40,6 +40,7 @@ input{
   color: $input-color;
   border: $input-border-width $input-border-style $input-border-color;
   border-radius: $border-radius-base;
+  box-shadow: none !important;
 }
 
 .#{$input}[type="text"],
