@@ -103,7 +103,7 @@ $connect-active-bg: $gray-lightest !default;
 
   &-view {
     position: absolute;
-    font-size: $font-size-xs;
+    font-size: $font-size-base;
   }
 
   &-inner {
@@ -127,8 +127,9 @@ $connect-active-bg: $gray-lightest !default;
         padding-right: $input-trigger-width;
         font-size: $font-size-xs;
         line-height: $input-height;
-        color: $input-color;
+        // color: $input-color;
         text-align: left;
+        box-shadow: none !important;
       }
 
       label {
@@ -433,6 +434,11 @@ $connect-active-bg: $gray-lightest !default;
 
     .icon-unlink {
       display: block;
+    }
+
+    &-link,
+    &-unlink {
+      font-size: $font-size-lg;
     }
 
     &-active {

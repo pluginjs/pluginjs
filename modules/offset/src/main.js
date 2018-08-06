@@ -90,7 +90,6 @@ class Offset extends Component {
     // });
 
     this.data = {}
-
     this.set(this.value)
 
     setStyle({ display: 'none' }, this.element)
@@ -152,7 +151,6 @@ class Offset extends Component {
           info.value = val ? val : ''
 
           newData[key] = info
-
           this.set(newData, true)
           children(this.$inner)
             .filter(el => el.matches('div'))
@@ -344,7 +342,6 @@ class Offset extends Component {
         } else {
           removeClass(`${this.classes.UNITAUTO}`, $trigger)
         }
-
         that.set(newData, true)
       },
       onChangeVal(value) {
@@ -359,7 +356,6 @@ class Offset extends Component {
         info.value = value ? value : ''
 
         newData[key] = info
-
         that.set(newData, true)
         Array.from(that.$inner.children).map(c =>
           removeClass(that.classes.UNITSHOW, c)
@@ -429,7 +425,6 @@ class Offset extends Component {
           unit
         }
       }
-
       that.set(val, true)
       return false
     }
@@ -506,9 +501,8 @@ class Offset extends Component {
         $view.innerHTML = '-'
         return /* eslint-disable-line */
       }
-
       if (info && info.value === 0) {
-        $view.innerHTML = 0
+        // $view.innerHTML = 0
         return /* eslint-disable-line */
       }
 
@@ -653,8 +647,7 @@ class Offset extends Component {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
-
-    this.set(this.options.parse.call(this, value))
+    return this.set(this.options.parse.call(this, value))
   }
 
   disableTooltip() {
