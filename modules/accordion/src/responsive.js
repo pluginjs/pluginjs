@@ -12,7 +12,7 @@ import {
   parseHTML,
   html,
   insertBefore,
-  removeAttribute,
+  removeAttr,
   remove,
   children,
   query
@@ -169,10 +169,10 @@ class Responsive {
     }
 
     this.$dropdown.map(remove)
-    this.instance.$panes.map(removeAttribute('style'))
+    this.instance.$panes.map(removeAttr('style'))
     compose(
       removeClass(this.instance.classes.RESPONSIVE),
-      removeAttribute('style')
+      removeAttr('style')
     )(this.instance.element)
 
     this.unbind()

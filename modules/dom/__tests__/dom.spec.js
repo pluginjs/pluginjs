@@ -167,10 +167,10 @@ describe('Dom helper', () => {
     dom.attr({ foo: 'bar' }, el)
     expect(el.getAttribute('foo')).toBe('bar')
   })
-  test('removeAttribute', () => {
+  test('removeAttr', () => {
     const el = document.createElement('div')
     dom.attr({ foo: 'bar' }, el)
-    dom.removeAttribute('foo', el)
+    dom.removeAttr('foo', el)
     expect(el.getAttribute('foo')).toBeNull()
   })
   test('dataset', () => {

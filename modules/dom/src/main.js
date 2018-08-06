@@ -1,5 +1,5 @@
 import { curry, compose } from '@pluginjs/utils'
-import { isString, isArray, isNull, isElement } from '@pluginjs/is'
+import { isString, isArray, isElement } from '@pluginjs/is'
 
 const objDataName = 'objData'
 
@@ -163,7 +163,8 @@ export const attr = curry((args, el) => {
   Object.entries(args).forEach(([k, v]) => el.setAttribute(k, v))
   return el
 })
-export const removeAttribute = curry((name, el) => {
+
+export const removeAttr = curry((name, el) => {
   el.removeAttribute(name)
   return el
 })

@@ -237,7 +237,7 @@ Returns
 |------|------|-------------|
 | element | `HTMLElement` | |
 
-### removeAttribute
+### removeAttr
 
 Parameters
 
