@@ -10,6 +10,8 @@
 
 ### addClass
 
+Add specified class values. If these classes already exist in attribute of the element, then they are ignored.
+
 Parameters
 
 | Name | Type | Description |
@@ -24,6 +26,8 @@ Returns
 
 ### removeClass
 
+Remove specified class values.
+
 Parameters
 
 | Name | Type | Description |
@@ -37,6 +41,8 @@ Returns
 | element | `HTMLElement` | |
 
 ### indexOfClass
+
+Return class value by index in collection.
 
 Parameters
 
@@ -53,6 +59,8 @@ Returns
 
 ### hasClass
 
+Checks if specified class value exists in class attribute of the element.
+
 Parameters
 
 | Name | Type | Description |
@@ -67,6 +75,21 @@ Returns
 | hasClass | `Boolean` | |
 
 ### toggleClass
+
+Toggle class value; i.e., if class exists then remove it and return false, if not, then add it and return true.
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| className | `String` | |
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
 
 ## Browser support
 

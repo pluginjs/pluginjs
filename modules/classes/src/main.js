@@ -1,6 +1,5 @@
 import { curry } from '@pluginjs/utils'
-import { curryWith, isElement } from './curry-built-in'
-import { init, last } from './data.list'
+import { isElement } from '@pluginjs/is'
 
 export const hasClass = curry((className, element) =>
   element.classList.contains(className)
@@ -10,21 +9,27 @@ export const indexOfClass = curry((className, element) =>
   element.classList.item(className)
 )
 
-export const addClass = curryWith((...args) => {
-  const classes = init(args)
-  const element = last(args)
+export const addClass = (...args) => {
+  const classes = args.slice(0, -1)
+  const element = args.slice(-1)[0]
 
-  element.classList.add(...classes)
+  if (isElement(element)) {
+    element.classList.add(...classes)
+  }
+
   return element
-}, isElement)
+}
 
-export const removeClass = curryWith((...args) => {
-  const classes = init(args)
-  const element = last(args)
+export const removeClass = (...args) => {
+  const classes = args.slice(0, -1)
+  const element = args.slice(-1)[0]
 
-  element.classList.remove(...classes)
+  if (isElement(element)) {
+    element.classList.remove(...classes)
+  }
+
   return element
-}, isElement)
+}
 
 export const toggleClass = curry((className, element) => {
   element.classList.toggle(className)

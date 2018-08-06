@@ -43,6 +43,9 @@ export const isDomNode = object => {
   return isObject(object) && object.nodeType > 0
 }
 
+// is a given object a Element?
+export const isElement = el => el instanceof Element
+
 // is a given value Error object?
 export const isError = val => {
   return toString.call(val) === '[object Error]'
@@ -160,33 +163,4 @@ export const isNegative = n => {
 // is a given number positive?
 export const isPositive = n => {
   return isNumber(n) && n > 0
-}
-
-export default {
-  arguments: isArguments,
-  array: isArray,
-  boolean: isBoolean,
-  char: isChar,
-  date: isDate,
-  domNode: isDomNode,
-  error: isError,
-  function: isFunction,
-  json: isJson,
-  nan: isNan,
-  null: isNull,
-  number: isNumber,
-  object: isObject,
-  plainObject: isPlainObject,
-  emptyObject: isEmptyObject,
-  regexp: isRegexp,
-  string: isString,
-  undefined: isUndefined,
-  numeric: isNumeric,
-  percentage: isPercentage,
-  decimal: isDecimal,
-  finite: isFinite,
-  infinite: isInfinite,
-  integer: isInteger,
-  negative: isNegative,
-  positive: isPositive
 }
