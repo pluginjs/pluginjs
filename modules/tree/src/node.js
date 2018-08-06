@@ -6,7 +6,7 @@ import {
   getObjData,
   insertBefore,
   insertAfter,
-  childrenSelect,
+  children,
   parentQuery,
   getSiblings
 } from '@pluginjs/dom'
@@ -46,7 +46,7 @@ export default class Node {
       }
       case 'branch':
       case 'leaf': {
-        const childrenUl = childrenSelect('ul', this.dom)
+        const childrenUl = children('ul', this.dom)
         if (childrenUl.length > 0) {
           this.subelements = Array.from(childrenUl[0].children)
         } else {
@@ -140,9 +140,9 @@ export default class Node {
   }
 
   hasChildren() {
-    const ul = childrenSelect('ul', this.dom)
+    const ul = children('ul', this.dom)
     if (ul.length !== 0) {
-      return childrenSelect('li', ul[0]).length !== 0
+      return children('li', ul[0]).length !== 0
     }
     return false
   }
@@ -290,7 +290,7 @@ export default class Node {
     }
 
     const html = this.api.DATAPARSER.getNode(data)
-    const ul = childrenSelect('ul', this.dom)[0]
+    const ul = children('ul', this.dom)[0]
     const node = append(html, ul)
 
     if (this.type === 'leaf') {
@@ -308,7 +308,7 @@ export default class Node {
     }
 
     const html = this.api.DATAPARSER.getNode(data)
-    const ul = childrenSelect('ul', this.dom)[0]
+    const ul = children('ul', this.dom)[0]
     const node = append(parseHTML(html), ul)
 
     if (this.type === 'leaf') {

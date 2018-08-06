@@ -1,4 +1,5 @@
 export const namespace = 'navToSelect'
+import { children } from '@pluginjs/dom'
 
 export const events = {
   UPDATE: 'update',
@@ -44,10 +45,7 @@ export const defaults = {
     const that = this
     const privateItems = []
 
-    const childrenSelect = (el, selector) =>
-      Array.from(el.children).filter(c => c.nodeName.toLowerCase() === selector)
-
-    childrenSelect(list, 'li').forEach(li => {
+    children(list, 'li').forEach(li => {
       if (!that.options.itemFilter(li)) {
         return
       }
@@ -57,17 +55,17 @@ export const defaults = {
         linkable: that.isLinkable(li),
         actived: that.isActived(li)
       }
-      if (childrenSelect(li, 'ul').length) {
+      if (children(li, 'ul').length) {
         item.items = []
-        childrenSelect(li, 'ul').forEach(childLi => {
+        children(li, 'ul').forEach(childLi => {
           item.items = item.items.concat(
             that.options.getItemsFromList.call(that, childLi, level + 1)
           )
         })
       }
-      if (childrenSelect(li, 'ol').length) {
+      if (children(li, 'ol').length) {
         item.items = []
-        childrenSelect(li, 'ol').forEach(childLi => {
+        children(li, 'ol').forEach(childLi => {
           item.items = item.items.concat(
             that.options.getItemsFromList.call(that, childLi, level + 1)
           )

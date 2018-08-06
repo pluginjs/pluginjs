@@ -1,5 +1,5 @@
 import { addClass } from '@pluginjs/classes'
-import { query, insertAfter, childrenSelect } from '@pluginjs/dom'
+import { query, insertAfter, children } from '@pluginjs/dom'
 
 class HtmlParser {
   constructor(options, api) {
@@ -23,21 +23,21 @@ class HtmlParser {
   }
 
   renderTree(node, isRoot, api) {
-    let children
+    let nodes
 
     if (isRoot) {
-      children = node
+      nodes = node
       addClass(this.classes.TREE, node)
     } else {
-      children = childrenSelect('ul', node)[0]
+      nodes = children('ul', node)[0]
     }
 
-    if (children) {
+    if (nodes) {
       // has child
       addClass(this.classes.BRANCH, node)
 
       const privateIterate = tree => {
-        childrenSelect('li', tree).forEach(node => {
+        children('li', tree).forEach(node => {
           const data = this.getBranch(node)
           const branchHtml = this.api.getBranchHtml(data)
 
@@ -52,7 +52,7 @@ class HtmlParser {
           this.renderTree(node, false, api)
         })
       }
-      privateIterate(children)
+      privateIterate(nodes)
     }
   }
 }

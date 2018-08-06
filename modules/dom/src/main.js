@@ -1,5 +1,5 @@
 import { curry, compose } from '@pluginjs/utils'
-import { isString, isArray, isNull } from '@pluginjs/is'
+import { isString, isArray, isNull, isElement } from '@pluginjs/is'
 
 const objDataName = 'objData'
 
@@ -22,15 +22,19 @@ export const html = curry((content, el) => {
   return el
 })
 
-export const children = el => {
-  if (!el) {
+export const children = (selector, el) => {
+  if (!isString(selector) && typeof el === 'undefined') {
+    el = selector
+    selector = null
+  }
+  if (!isElement(el)) {
     return null
+  }
+  if (isString(selector)) {
+    return Array.from(el.children).filter(c => c.matches(selector))
   }
   return Array.from(el.children)
 }
-
-export const childrenSelect = (selector, el) =>
-  Array.from(el.children).filter(c => c.matches(selector))
 
 export const getSiblings = el => {
   const childrenArr = children(el.parentNode)

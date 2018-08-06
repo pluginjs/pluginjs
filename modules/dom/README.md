@@ -79,20 +79,6 @@ Parameters
 
 | Name | Type | Description |
 |------|------|-------------|
-| element | `HTMLElement` | container |
-
-Returns
-
-| Name | Type | Description |
-|------|------|-------------|
-| elements | `Array<HTMLElement>` | a live Array type HTMLCollection which contains all of the child elements of the node upon which it was called.  |
-
-### childrenSelect
-
-Parameters
-
-| Name | Type | Description |
-|------|------|-------------|
 | selector | `String` | CSS selectors |
 | parent | `HTMLElement` | |
 

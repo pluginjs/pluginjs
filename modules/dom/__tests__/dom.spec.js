@@ -50,14 +50,14 @@ describe('Dom helper', () => {
     parent.append(...children)
     expect(dom.children(parent)).toEqual(children)
   })
-  test('childrenSelect', () => {
+  test('children filtered by a selector', () => {
     const parent = document.createElement('div')
     const children = Array.from({ length: 2 }, () =>
       document.createElement('div')
     )
     parent.append(...children)
     children[0].classList.add('foo')
-    expect(dom.childrenSelect('.foo', parent)).toEqual([children[0]])
+    expect(dom.children('.foo', parent)).toEqual([children[0]])
   })
   test('getSiblings', () => {
     const parent = document.createElement('div')

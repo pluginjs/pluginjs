@@ -3,7 +3,7 @@ import { isArray } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { queryAll, setObjData, getObjData, childrenSelect } from '@pluginjs/dom'
+import { queryAll, setObjData, getObjData, children } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -258,7 +258,7 @@ export default class Tree extends Component {
       html = this.DATAPARSER.getTree(this.options.data, true)
     }
     this.element.innerHTML = html
-    this.attach(childrenSelect('ul', this.element)[0], true, this)
+    this.attach(children('ul', this.element)[0], true, this)
   }
 
   click(e) {
@@ -279,13 +279,13 @@ export default class Tree extends Component {
     if (isRoot) {
       children = node
     } else {
-      children = childrenSelect('ul', node)[0]
+      children = children('ul', node)[0]
     }
 
     if (children) {
       // has child
       const iterate = tree => {
-        childrenSelect('li', tree).forEach(node => {
+        children('li', tree).forEach(node => {
           this.attach(node, false, api)
         })
       }
