@@ -226,16 +226,30 @@ describe('Dom helper', () => {
 
   describe('Attributes helper', () => {
     test('attr', () => {
+      const el = dom.parseHTML('<div foo="bar"></div>')
+
+      expect(dom.attr('foo', el)).toBe('bar')
+    })
+
+    test('attr with value', () => {
+      const el = document.createElement('div')
+      dom.attr('foo', 'bar', el)
+
+      expect(dom.attr('foo', el)).toBe('bar')
+    })
+
+    test('attr with object value', () => {
       const el = document.createElement('div')
       dom.attr({ foo: 'bar' }, el)
-      expect(el.getAttribute('foo')).toBe('bar')
+      expect(dom.attr('foo', el)).toBe('bar')
     })
 
     test('removeAttr', () => {
-      const el = document.createElement('div')
-      dom.attr({ foo: 'bar' }, el)
+      const el = dom.parseHTML('<div foo="bar"></div>')
+      expect(dom.attr('foo', el)).toBe('bar')
+
       dom.removeAttr('foo', el)
-      expect(el.getAttribute('foo')).toBeNull()
+      expect(dom.attr('foo', el)).toBeNull()
     })
   })
 
@@ -288,6 +302,16 @@ describe('Dom helper', () => {
       const el = dom.parseHTML('<input type="checkbox" checked />')
 
       expect(dom.prop('checked', el)).toBeTrue()
+    })
+
+    test('prop with value', () => {
+      const el = dom.parseHTML('<input type="checkbox" checked />')
+
+      expect(dom.prop('checked', el)).toBeTrue()
+
+      dom.prop('checked', false, el)
+
+      expect(dom.prop('checked', el)).toBeFalse()
     })
 
     test('prop with object values', () => {

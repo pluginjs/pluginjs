@@ -185,13 +185,24 @@ export const clearData = el => {
 // -----------
 // attributes
 // -----------
-export const attr = curry((args, el) => {
-  if (typeof args === 'string') {
-    return el.getAttribute(args)
+export const attr = curryWith((args, value, el) => {
+  if (isElement(value) && typeof el === 'undefined') {
+    el = value
+    value = undefined
   }
-  Object.entries(args).forEach(([key, value]) => el.setAttribute(key, value))
+
+  if (typeof args === 'string') {
+    if (typeof value !== 'undefined') {
+      el.setAttribute(args, value)
+    } else {
+      return el.getAttribute(args)
+    }
+  } else {
+    Object.entries(args).forEach(([key, value]) => el.setAttribute(key, value))
+  }
+
   return el
-})
+}, isElement)
 
 export const removeAttr = curry((name, el) => {
   el.removeAttribute(name)
@@ -213,20 +224,32 @@ const propMap = {
   contenteditable: 'contentEditable'
 }
 
-export const prop = curry((props, el) => {
-  if (typeof props === 'string') {
-    return el[propMap[props] || props]
+export const prop = curryWith((props, value, el) => {
+  if (isElement(value) && typeof el === 'undefined') {
+    el = value
+    value = undefined
   }
-  Object.entries(props).forEach(([key, value]) => {
-    el[propMap[key] || key] = value
-  })
+
+  if (typeof props === 'string') {
+    if (typeof value !== 'undefined') {
+      el[propMap[props] || props] = value
+    } else {
+      return el[propMap[props] || props]
+    }
+  } else {
+    Object.entries(props).forEach(([key, value]) => {
+      el[propMap[key] || key] = value
+    })
+  }
 
   return el
-})
+}, isElement)
 
 export const removeProp = curry((name, el) => {
   name = propMap[name] || name
   delete el[name]
+
+  return el
 })
 
 // --------------
@@ -246,6 +269,7 @@ export const remove = curry(el => el.remove())
 
 export const empty = curry(el => {
   el.innerHTML = ''
+
   return el
 })
 
@@ -285,6 +309,7 @@ export const append = curry((child, el) => {
   } else {
     el.append(child)
   }
+
   return el
 })
 
@@ -294,6 +319,7 @@ export const prepend = curry((child, el) => {
   } else {
     el.prepend(child)
   }
+
   return el
 })
 
@@ -304,6 +330,7 @@ export const insertBefore = curry((newElement, el) => {
     const parentElement = parent(el)
     parentElement.insertBefore(newElement, el)
   }
+
   return el
 })
 
@@ -314,6 +341,7 @@ export const insertAfter = curry((newElement, el) => {
     const parentElement = parent(el)
     parentElement.insertBefore(newElement, el.nextElementSibling)
   }
+
   return el
 })
 
@@ -325,6 +353,7 @@ export const wrap = curry((wrapElement, el) => {
   insertBefore(wrapElement, el)
   remove(el)
   append(el, wrapElement)
+
   return wrapElement
 })
 
@@ -336,6 +365,7 @@ export const wrapInner = curry((newElement, el) => {
   newElement.innerHTML = el.innerHTML
   el.innerHTML = ''
   el.append(newElement)
+
   return el
 })
 
@@ -346,6 +376,7 @@ export const wrapAll = curry((wrapElement, elementList) => {
 
   insertBefore(wrapElement, elementList[0])
   wrapElement.append(...elementList)
+
   return wrapElement
 })
 
