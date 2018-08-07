@@ -1,3 +1,3 @@
-import Lazyload from '@pluginjs/lazyload'
-
-console.log(Lazyload)
+// import sections
+import './sections/vertical'
+import './sections/horizontal'

@@ -7,9 +7,7 @@
   <link rel="stylesheet" href="src/index.scss">
 </head>
 <body>
-  <section id="default">
-    <include src="src/sections/default/index.html"></include>
-  </section>
+{{htmlSections}}
   <script src="src/index.js"></script>
 </body>
 </html>

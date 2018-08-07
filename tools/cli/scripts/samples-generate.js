@@ -26,7 +26,9 @@ async function generator(ctx) {
       .join('\n'),
     htmlSections: sections
       .map(name => {
-        return `  <section id="${name}"></section>`
+        return `  <section id="${name}">
+    <include src="src/sections/${name}/index.html"></include>
+  </section>`
       })
       .join('\n'),
     moduleVersion: readPkg(modulePath).pkg.version

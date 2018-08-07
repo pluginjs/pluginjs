@@ -1,0 +1,31 @@
+// import lazyload css
+@import "@pluginjs/lazyload/src/css/lazyload.scss";
+
+.img-shell {
+  width: 400px;
+  height: 400px;
+}
+.vertical-box {
+  width: 400px;
+  height: 800px;
+  overflow: auto;
+
+  > img,
+  & > div {
+    padding-bottom: 15px;
+  }
+}
+
+.horizontal-box {
+  width: 800px;
+  height: auto;
+  overflow: auto;
+  white-space: nowrap;
+
+  > img,
+  > div,
+  > h3 {
+    display: inline-block;
+    padding-right: 15px;
+  }
+}
