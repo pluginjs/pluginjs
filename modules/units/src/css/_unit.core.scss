@@ -18,14 +18,13 @@ $units-disabled-opacity: 0.4 !default;
     width: $units-trigger-width;
     text-align: center;
   }
-  &:hover .#{$units}-input {
-    border-color: $gray-light;
-  }
+  // &:hover .#{$units}-input {
+  //   border-color: $gray-light;
+  // }
   & input {
     padding-right: 2.5 * $units-sizer; //25px;
   }
 }
-
 .#{$units} {
   display: none !important;
   &-active {
@@ -76,6 +75,7 @@ $units-disabled-opacity: 0.4 !default;
 
     > .pj-dropdown-trigger {
       padding: 5px 3px;
+      color: $gray-dark;
     }
   }
   &-disabled {

@@ -36,10 +36,9 @@ $units-trigger-font-size: $font-size-base !default;
       outline: none;
     }
 
-    .#{$units}-trigger {
+    .#{$units}-trigger {     
       font-size: $units-trigger-font-size;
       text-align: center;
-
       &:hover,
       &:focus {
         color: $units-active-color;
