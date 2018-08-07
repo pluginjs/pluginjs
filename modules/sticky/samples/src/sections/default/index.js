@@ -18,11 +18,11 @@ Sticky.of(elementA, {
   }
 })
 Sticky.of(elementB, {
-  spacing: 50
+  spacing: 24
 })
 Sticky.of(elementC, {
-  spacing: 100
+  spacing: 48
 })
 Sticky.of(elementD, {
-  spacing: 150
+  spacing: 72
 })

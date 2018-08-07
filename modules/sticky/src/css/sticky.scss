@@ -1,37 +1,29 @@
 @import "@pluginjs/styles/variables.scss";
+@import "sticky.core";
 
 // Vars
 // =====================
-$sticky: "pj-sticky" !default;
 
-// Core
+$sticky-heading-font-size: $font-size-xs !default;
+$sticky-heading-color: $gray-dark !default;
+$sticky-heading-bg: $gray-lighter !default;
+$sticky-heading-border-radius: $border-radius-base !default;
+$sticky-content-font-size: $font-size-sm !default;
+$sticky-content-color: $gray-darkest !default;
+$sticky-content-bg: $color-white !default;
+
+// Skin
 // =====================
-.#{$sticky}-parent {
-  position: relative;
-}
-
-.#{$sticky}-sticky {
-  position: fixed;
-}
-
-.#{$sticky}-stuck {
-  position: absolute;
-}
-
-.#{$sticky}-hidden {
-  visibility: hidden;
-}
 // stylelint-disable value-no-vendor-prefix
-.heading{
-  position: -webkit-sticky;
-  width: 400px;
-  height: 50px;
-  padding-left: 10px;
-  font-size: 30px;
-  line-height: 50px;
-  background: #ccc;
-}
-.page-content {
-  overflow: unset;
+.heading {
+  font-size: $sticky-heading-font-size;
+  color: $sticky-heading-color;
+  background: $sticky-heading-bg;
+  border-radius: $sticky-heading-border-radius;
 }
 // stylelint-enable value-no-vendor-prefix
+.content {
+  font-size: $sticky-content-font-size;
+  color: $sticky-content-color;
+  background: $sticky-content-bg;
+}

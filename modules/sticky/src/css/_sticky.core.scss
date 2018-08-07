@@ -1,0 +1,50 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$sticky: "pj-sticky" !default;
+$sticky-heading-width: 17.875rem !default;
+$sticky-heading-height: 1.5rem !default;
+$sticky-heading-padding-left: 1.25rem !default;
+$sticky-content-padding: 1.25rem !default;
+
+// Core
+// =====================
+.#{$sticky}-parent {
+  position: relative;
+}
+
+.#{$sticky}-wrap {
+  font-family: $font-family-base;
+}
+
+.#{$sticky}-sticky {
+  position: fixed;
+}
+
+.#{$sticky}-stuck {
+  position: absolute;
+}
+
+.#{$sticky}-hidden {
+  visibility: hidden;
+}
+
+// stylelint-disable value-no-vendor-prefix
+.heading {
+  position: -webkit-sticky;
+  box-sizing: border-box;
+  width: 100%;
+  height: $sticky-heading-height;
+  padding-left: $sticky-heading-padding-left;
+  line-height: $sticky-heading-height;
+}
+
+.content {
+  padding: $sticky-content-padding;
+}
+
+.page-content {
+  overflow: unset;
+}
+// stylelint-enable value-no-vendor-prefix
