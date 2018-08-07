@@ -36,25 +36,30 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 
 // default
 // ===========================
+&.#{$datePicker}-icon {
+  height: 34px !important;
+  background-color: #fff;
+}
+&.#{$datePicker}-mobile-trigger {
+  background-color: #fff;
+}
 &.#{$datePicker}-inputWrap {
   //display: table;
   display: inline-flex;
-
+  
   &:hover {
     .#{$datePicker}-icon {
-      background-color: $datePicker-hover-color;
-      border-color: $gray-light;
-      border-left: 0;
+      background-color: rgba(#000, 0.05);
+      border-color: rgba(#000, 0.05) !important;
     }
     .#{$datePicker}-input {
-      background-color: $datePicker-hover-color;
-      border-color: $gray-light;
-      border-right: $datePicker-border;
+      background-color: rgba(#000, 0.05);
+      border-color: rgba(#000, 0.05);
     }
     .#{$datePicker}-mobile-trigger {
-      background-color: $datePicker-hover-color;
-      border-color: $gray-light;
-      border-right: $datePicker-border;
+      background-color: rgba(#000, 0.05);
+      border-color: rgba(#000, 0.05);
+
     }
   }
   &:active {
@@ -96,10 +101,16 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 
   input {
     overflow: hidden;
+    
     text-overflow: ellipsis;
+    background-color: #fff;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    box-shadow: none !important;
+   
+    
   }
+  
 }
 
 .#{$datePicker}-active {
@@ -149,7 +160,6 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     &-icon {
       color: $color-white;
       background-color: $datePicker-active-color;
-
       &:hover {
         background-color: $datePicker-active-color;
       }
@@ -198,7 +208,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
       &:hover {
         .#{$datePicker}-icon {
           background-color: $color-white;
-          border-color:#e6e6e6;     
+          border-color:#e6e6e6 !important;     
         }
       }
       &:active {
@@ -213,6 +223,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     }
     .#{$datePicker}-icon {
       color: #e6e6e6;
+      background-color: #fff !important;
     }
  }
 
