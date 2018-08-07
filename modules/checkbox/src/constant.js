@@ -1,4 +1,4 @@
-import { parentWith, nextElementWith, query, queryAll } from '@pluginjs/dom'
+import { parentWith, nextWith, query, queryAll } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 
 export const namespace = 'checkbox'
@@ -41,7 +41,7 @@ export const defaults = {
     return parentWith(hasClass(this.classes.WRAP), this.element)
   },
   getLabel() {
-    const $label = nextElementWith(el => el.tagName === 'LABEL', this.element)
+    const $label = nextWith(el => el.tagName === 'LABEL', this.element)
     if ($label.length > 0) {
       return $label
     }

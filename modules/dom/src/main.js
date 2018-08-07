@@ -1,8 +1,24 @@
-import { curry, compose } from '@pluginjs/utils'
+import { curry, compose, curryWith } from '@pluginjs/utils'
 import { isString, isElement } from '@pluginjs/is'
 
-const objDataName = 'objData'
+// 解析 HTML/SVG/XML 字符串
+export const parseHTML = (...args) => {
+  const htmlString = Array.isArray(args[0])
+    ? args[0].reduce((result, str, index) => result + args[index] + str)
+    : args[0]
+  const childNodes = compose(
+    children,
+    html(htmlString)
+  )(document.createElement('div'))
+  if (childNodes.length === 1) {
+    return childNodes[0]
+  }
+  return childNodes
+}
 
+// ---------
+// traversal
+// ----------
 export const query = (selector, parent = document) =>
   parent.querySelector(selector)
 
@@ -15,17 +31,20 @@ export const findAll = curry((selector, parent) =>
   Array.from(parent.querySelectorAll(selector))
 )
 
-export const remove = el => el.remove()
+export const contains = curry((el, parent) => parent.contains(el))
 
-export const html = curry((content, el) => {
-  el.innerHTML = content
-  return el
-})
+export const contents = el => {
+  if (el.tagName === 'IFRAME') {
+    return [el.contentDocument]
+  }
+
+  return el.childNodes
+}
 
 export const children = (selector, el) => {
   if (!isString(selector) && typeof el === 'undefined') {
     el = selector
-    selector = null
+    selector = undefined
   }
   if (!isElement(el)) {
     return null
@@ -39,7 +58,7 @@ export const children = (selector, el) => {
 export const siblings = (selector, el) => {
   if (!isString(selector) && typeof el === 'undefined') {
     el = selector
-    selector = null
+    selector = undefined
   }
   if (!isElement(el)) {
     return null
@@ -53,12 +72,38 @@ export const siblings = (selector, el) => {
   return childrenArr
 }
 
+export const prev = el => el.previousElementSibling
+
+export const next = el => el.nextElementSibling
+
+export const prevWith = curry((fn, el) => {
+  const prevElement = prev(el)
+  if (!prevElement) {
+    return null
+  }
+  if (fn(prevElement)) {
+    return prevElement
+  }
+  return prevWith(fn, prevElement)
+})
+
+export const nextWith = curry((fn, el) => {
+  const nextElement = next(el)
+  if (!nextElement) {
+    return null
+  }
+  if (fn(nextElement)) {
+    return nextElement
+  }
+  return nextWith(fn, nextElement)
+})
+
 export const parent = el => el.parentNode
 
 export const parents = (selector, el) => {
   if (!isString(selector) && typeof el === 'undefined') {
     el = selector
-    selector = null
+    selector = undefined
   }
 
   const result = []
@@ -97,20 +142,10 @@ export const closest = curry((selector, el) => {
   return parentWith(el => el.matches(selector), el)
 })
 
-// 解析 HTML/SVG/XML 字符串
-export const parseHTML = (...args) => {
-  const htmlString = Array.isArray(args[0])
-    ? args[0].reduce((result, str, index) => result + args[index] + str)
-    : args[0]
-  const childNodes = compose(
-    children,
-    html(htmlString)
-  )(document.createElement('div'))
-  if (childNodes.length === 1) {
-    return childNodes[0]
-  }
-  return childNodes
-}
+// ---------
+// data
+// ----------
+const objDataName = 'objData'
 
 export const setObjData = (name, data, el) => {
   if (!el[objDataName]) {
@@ -129,17 +164,24 @@ export const getObjData = (name, el) => {
   return el[objDataName][name]
 }
 
-export const clone = el => el.cloneNode(true)
+export const dataset = curry((args, el) => {
+  if (typeof args === 'string') {
+    return el.dataset[args]
+  }
+  Object.entries(args).forEach(([k, v]) => {
+    el.dataset[k] = v
+  })
+  return el
+})
 
-export const empty = el => {
-  el.innerHTML = ''
+export const clearData = el => {
+  Object.keys(el).map(name => el.removeAttribute(`data-${name}`))
   return el
 }
 
-export const prev = el => el.previousElementSibling
-
-export const next = el => el.nextElementSibling
-
+// ----------
+// attributes
+// -----------
 export const attr = curry((args, el) => {
   if (typeof args === 'string') {
     return el.getAttribute(args)
@@ -153,20 +195,55 @@ export const removeAttr = curry((name, el) => {
   return el
 })
 
-export const dataset = curry((args, el) => {
-  if (typeof args === 'string') {
-    return el.dataset[args]
+// -------------
+// manipulation
+// --------------
+export const clone = curry(el => el.cloneNode(true))
+
+export const detach = curry(el => {
+  if (el.parentNode) {
+    el.parentNode.removeChild(el)
   }
-  Object.entries(args).forEach(([k, v]) => {
-    el.dataset[k] = v
-  })
+
   return el
 })
 
-export const text = curry((content, el) => {
-  el.textContent = content
+export const remove = curry(el => el.remove())
+
+export const empty = curry(el => {
+  el.innerHTML = ''
   return el
 })
+
+export const html = curryWith((content, el) => {
+  if (!isString(content) && typeof el === 'undefined') {
+    el = content
+    content = undefined
+  }
+
+  if (typeof content === 'undefined') {
+    return el.innerHTML
+  }
+
+  el.innerHTML = content
+
+  return el
+}, isElement)
+
+export const text = curryWith((content, el) => {
+  if (!isString(content) && typeof el === 'undefined') {
+    el = content
+    content = undefined
+  }
+
+  if (typeof content === 'undefined') {
+    return el.textContent
+  }
+
+  el.textContent = content
+
+  return el
+}, isElement)
 
 export const append = curry((child, el) => {
   if (isString(child)) {
@@ -210,65 +287,69 @@ export const wrap = curry((wrapElement, el) => {
   if (isString(wrapElement)) {
     wrapElement = parseHTML(wrapElement)
   }
-  // compose(append(wrapElement), clone, insertBefore(wrapElement))(el)
+
   insertBefore(wrapElement, el)
   remove(el)
   append(el, wrapElement)
   return wrapElement
 })
 
-export const wrapInner = (newElement, wrap) => {
+export const wrapInner = curry((newElement, el) => {
   if (isString(newElement)) {
     newElement = parseHTML(newElement)
   }
-  newElement.innerHTML = wrap.innerHTML
-  wrap.innerHTML = ''
-  wrap.append(newElement)
-  return wrap
-}
 
-export const wrapAll = (wrapElement, elementList) => {
+  newElement.innerHTML = el.innerHTML
+  el.innerHTML = ''
+  el.append(newElement)
+  return el
+})
+
+export const wrapAll = curry((wrapElement, elementList) => {
+  if (isString(wrapElement)) {
+    wrapElement = parseHTML(wrapElement)
+  }
+
   insertBefore(wrapElement, elementList[0])
   wrapElement.append(...elementList)
   return wrapElement
-}
+})
 
-export const unwrap = el => {
+export const unwrap = curryWith((selector, el) => {
+  if (!isString(selector) && typeof el === 'undefined') {
+    el = selector
+    selector = undefined
+  }
+
   const parentEl = parent(el)
-  children(parentEl).forEach(child => {
-    insertBefore(child, parentEl)
-  })
-  parentEl.remove()
-  return el
-}
 
-export const clearChild = el => {
-  children(el).map(remove)
-  return el
-}
+  if (!selector || parentEl.matches(selector)) {
+    children(parentEl).forEach(child => {
+      insertBefore(child, parentEl)
+    })
 
-export const clearData = el => {
-  Object.keys(el).map(name => el.removeAttribute(`data-${name}`))
-  return el
-}
-
-export const contains = curry((el, parent) => parent.contains(el))
-
-export const nextElementWith = curry((fn, el) => {
-  const nextElement = next(el)
-  if (!nextElement) {
-    return null
+    parentEl.remove()
   }
-  if (fn(nextElement)) {
-    return nextElement
+  return el
+}, isElement)
+
+export const replace = curry((newContent, el) => {
+  if (isString(newContent)) {
+    newContent = parseHTML(newContent)
   }
-  return nextElementWith(fn, nextElement)
+
+  const parent = el.parentNode
+
+  parent.replaceChild(newContent, el)
+  el.remove()
+
+  return newContent
 })
 
 export const fade = curry((type, { duration, callback }, element) => {
   const isIn = type === 'in'
   let opacity = isIn ? 0 : 1
-  let start = null
+  let start
 
   if (isIn) {
     if (element.style.display === 'none') {

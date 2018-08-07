@@ -399,19 +399,6 @@ Returns
 |------|------|-------------|
 | el | `HTMLElement` | |
 
-### clearChild
-
-Parameters
-
-| Name | Type | Description |
-|------|------|-------------|
-| el | `HTMLElement` | container |
-
-Returns
-
-| Name | Type | Description |
-|------|------|-------------|
-| el | `HTMLElement` | container |
 
 ### parentWith
 
@@ -472,7 +459,7 @@ Returns
 |------|------|-------------|
 | parentElement | `HTMLElement` | |
 
-### nextElementWith
+### nextWith
 
 Parameters
 

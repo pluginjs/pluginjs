@@ -13,7 +13,7 @@ import {
   prepend,
   insertAfter,
   insertBefore,
-  nextElementWith,
+  nextWith,
   getObjData,
   setObjData
 } from '@pluginjs/dom'
@@ -182,10 +182,7 @@ class Choice extends Component {
 
   setupPopper() {
     const toggle = query(`.${this.classes.TOGGLE}`, this.$wrap)
-    const dropdown = nextElementWith(
-      hasClass(this.classes.DROPDOWN),
-      this.$wrap
-    )
+    const dropdown = nextWith(hasClass(this.classes.DROPDOWN), this.$wrap)
 
     this.POPPER = new Popper(toggle, dropdown, { placement: 'bottom' })
 
