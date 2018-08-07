@@ -1,78 +1,28 @@
 @import "@pluginjs/styles/variables.scss";
+@import "rate.core";
 
 // Vars
 // =====================
-$rate: "pj-rate" !default;
-$rate-color: #e9e9e9 !default;
-$rate-size: 40px !default;
+$rate-star: #fa0 !default;
+$rate-color: $gray !default;
 
 // Core
 // =====================
 .#{$rate} {
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-  vertical-align: middle;
-  list-style: none;
-
   .#{$rate}-star {
-    position: relative;
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-    margin-right: 8px;
     color: $rate-color;
-    cursor: pointer;
-    transition: all 0.3s;
-
-    .#{$rate}-star-first {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      overflow: hidden;
-      opacity: 0;
-    }
   }
-
-  .#{$rate}-star-half {
-    .#{$rate}-star-first {
-      opacity: 1;
-    }
-  }
-}
-
-.#{$rate}-star-first,
-.#{$rate}-star-second {
-  user-select: none;
-  transition: all 0.3s;
-
-  img {
-    max-width: none;
-  }
-
-  embed {
-    max-width: none;
-  }
-}
-
-.#{$rate}-disabled .#{$rate}-star {
-  cursor: not-allowed;
 }
 
 .#{$rate}-clear-color {
-  color: #e9e9e9;
+  color: $rate-color;
 }
 
 .#{$rate}-default-color {
-  color: #f5a623;
+  color: $rate-star;
 }
 
 .#{$rate}-danger {
-  color: #f00;
+  color: $rate-star;;
 }
 
-.#{$rate}-destroy .#{$rate}-star {
-  cursor: default;
-}

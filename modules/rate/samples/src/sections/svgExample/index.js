@@ -9,6 +9,7 @@ setTimeout(() => {
     svg: {
       clearPath: clearStar,
       defaultPath: defaultStar
-    }
+    },
+    iconSize: '32px'
   })
 }, 0)

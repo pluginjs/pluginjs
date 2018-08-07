@@ -1,105 +1,13 @@
 @import "@pluginjs/styles/variables.scss";
+@import "paginator.core";
 
 // Vars
 // =====================
-$paginator: "pj-paginator";
-$paginator-spacer: 1.875rem !default;
-$paginator-height: 3.75rem !default;
-$paginator-padding-top: 1.25rem !default;
-$paginator-font-size: 0.75rem !default;
-$paginator-padding-x: 0.5rem !default;
-$paginator-padding-y: $spacer-y !default;
+$paginator-input-width: 3.5 * $paginator-font-size !default;
+$paginator-padding: 0.3125 * $paginator-font-size 0.625 * $paginator-font-size !default;
+$paginator-icon-margin: 0.625 * $paginator-font-size !default;
+$paginator-pre-size: 0.8125 * $paginator-font-size !default;
 $paginator-pre-color: $gray-darkest !default;
-$paginator-pre-size: 0.8125rem !default;
-$paginator-link-padding: 0.375rem !default;
-$paginator-link-margin: 0.125rem !default;
-$paginator-icon-margin: 0.625rem !default;
-$paginator-color: $text-color !default;
-$paginator-bg: $color-white !default;
-$paginator-border-width: $border-width !default;
-$paginator-border-color: $gray-border !default;
-$paginator-hover-color: $link-hover-color !default;
-$paginator-hover-bg: $paginator-bg !default;
-$paginator-hover-border: $color-primary !default;
-$paginator-hover-input-border: $gray-dark !default;
-$paginator-active-color: $color-white !default;
-$paginator-active-bg: $color-primary !default;
-$paginator-active-border: $color-primary !default;
-$paginator-disabled-color: $gray !default;
-$paginator-disabled-bg: $color-white !default;
-$paginator-disabled-border: $gray !default;
-
-// Core
-// =====================
-.#{$paginator} {
-  // box-shadow: 0 0 10px #d7d7d7;
-  padding: 0 $paginator-spacer;
-  font-size: $paginator-font-size;
-  // color: #808c9e;
-  text-align: center;
-  // display: inline-block;
-  list-style: none;
-  user-select: none;
-}
-
-.#{$paginator}-item,
-.#{$paginator}-list-prev,
-.#{$paginator}-list-next {
-  display: inline-block;
-  height: $paginator-height;
-  padding-top: $paginator-padding-top;
-}
-
-.#{$paginator}-link {
-  position: relative;
-  // float: left; // Collapse white-space
-  box-sizing: border-box;
-  // border: $paginator-border-width solid $paginator-border-color;
-  // margin-left: -$paginator-border-width;
-  padding: $paginator-link-padding;
-  margin: 0 $paginator-link-margin;
-  color: $paginator-color;
-  text-decoration: none;
-
-  &:hover,
-  &:focus {
-    color: $paginator-hover-color;
-    background-color: $paginator-hover-bg;
-    border-color: $paginator-hover-border;
-  }
-}
-
-.#{$paginator}-active {
-  z-index: 2;
-
-  .#{$paginator}-link {
-    &,
-    &:hover,
-    &:focus {
-      color: $paginator-active-bg;
-      border-bottom: 2px solid $paginator-active-border;
-    }
-  }
-}
-
-.#{$paginator}-disabled {
-  // disabled 
-  &.#{$paginator}-prev,
-  &.#{$paginator}-next {
-    cursor: $cursor-disabled;
-    .#{$paginator}-link {
-      pointer-events: none;
-      // height: 60px;
-
-      &,
-      &:hover,
-      &:focus {
-        color: $paginator-disabled-color;
-        background-color: $paginator-disabled-bg;
-      }
-    }
-  }
-}
 
 // Theme
 // =====================
@@ -137,16 +45,17 @@ $paginator-disabled-border: $gray !default;
   }
 }
 
-.#{$paginator}-total,
-.#{$paginator}-jumper {
-  padding-right: 0.1875rem;
-  padding-left: 0.1875rem;
-  margin-right: 0.3125rem;
-  margin-left: 0.3125rem;
-}
+// .#{$paginator}-total,
+// .#{$paginator}-jumper {
+//   padding-right: 0.1875rem;
+//   padding-left: 0.1875rem;
+//   margin-right: 0.3125rem;
+//   margin-left: 0.3125rem;
+// }
 
 .#{$paginator}-jumper input {
-  padding: 0.3125rem 10px;
+  width: $paginator-input-width;
+  padding: $paginator-padding;
   border: 1px solid $paginator-border-color;
   border-radius: 4px;
 

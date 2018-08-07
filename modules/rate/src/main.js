@@ -251,7 +251,7 @@ class Rate extends Component {
 
   removerColor(element) {
     removeClass(this.defaulColor, element)
-    addClass(this.CLEARCOLOR, element)
+    addClass(this.classes.CLEARCOLOR, element)
   }
 
   addColor(element) {
@@ -321,6 +321,7 @@ class Rate extends Component {
     const html = templateEngine.render(this.options.template.call(this), {
       classes: this.classes
     })
+
     const wrap = parseHTML(html)
     for (let i = 0; i < this.options.max; i++) {
       prepend(star, wrap)

@@ -1,0 +1,127 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$paginator: "pj-paginator";
+$paginator-font-size: 1rem !default;
+$paginator-font-size-xs: 0.75 * $paginator-font-size !default;
+$paginator-spacer: 1.875 * $paginator-font-size !default;
+$paginator-spacer-min: 0.875 * $paginator-font-size !default;
+$paginator-height: 1.875 * $paginator-font-size !default;
+$paginator-height-min: 1.75 * $paginator-font-size !default;
+$paginator-padding-top: 1.25 * $paginator-font-size !default;
+$paginator-padding-x: 0.5 * $paginator-font-size !default;
+$paginator-padding-y: $spacer-y !default;
+$paginator-link-padding: 0.375 * $paginator-font-size !default;
+$paginator-link-margin: 0.5 * $paginator-font-size !default;
+$paginator-link-margin-min: 0.1875 * $paginator-font-size !default;
+$paginator-color: $text-color !default;
+$paginator-bg: $color-white !default;
+$paginator-border-width: $border-width !default;
+$paginator-border-color: $gray-border !default;
+$paginator-hover-color: $link-hover-color !default;
+$paginator-hover-bg: $paginator-bg !default;
+$paginator-hover-border: $color-primary !default;
+$paginator-hover-input-border: $gray-dark !default;
+$paginator-active-color: $color-white !default;
+$paginator-active-bg: $color-primary !default;
+$paginator-active-border: $color-primary !default;
+$paginator-disabled-color: $gray !default;
+$paginator-disabled-bg: $color-white !default;
+$paginator-disabled-border: $gray !default;
+
+// Core
+// =====================
+.#{$paginator} {
+  // box-shadow: 0 0 10px #d7d7d7;
+  padding: 0 $paginator-spacer;
+  font-size: $paginator-font-size-xs;
+  // color: #808c9e;
+  text-align: center;
+  // display: inline-block;
+  list-style: none;
+  user-select: none;
+}
+
+.#{$paginator}-item,
+.#{$paginator}-list-prev,
+.#{$paginator}-list-next {
+  display: inline-block;
+  height: $paginator-height;
+  padding-top: $paginator-padding-top;
+}
+
+.#{$paginator}-total {
+  text-transform: capitalize;
+}
+
+.#{$paginator}-link {
+  position: relative;
+  // float: left; // Collapse white-space
+  box-sizing: border-box;
+  // border: $paginator-border-width solid $paginator-border-color;
+  // margin-left: -$paginator-border-width;
+  padding: $paginator-link-padding;
+  margin: 0 $paginator-link-margin;
+  color: $paginator-color;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    color: $paginator-hover-color;
+    background-color: $paginator-hover-bg;
+    border-color: $paginator-hover-border;
+  }
+}
+
+.#{$paginator}-active {
+  z-index: 2;
+
+  .#{$paginator}-link {
+    &,
+    &:hover,
+    &:focus {
+      color: $paginator-active-bg;
+      border-bottom: 2px solid $paginator-active-border;
+    }
+  }
+}
+
+.#{$paginator}-disabled {
+  // disabled 
+  &.#{$paginator}-prev,
+  &.#{$paginator}-next {
+    cursor: $cursor-disabled;
+    .#{$paginator}-link {
+      pointer-events: none;
+      // height: 60px;
+
+      &,
+      &:hover,
+      &:focus {
+        color: $paginator-disabled-color;
+        background-color: $paginator-disabled-bg;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 636px) {
+  .#{$paginator} {
+    padding: 0 $paginator-spacer-min;
+  }
+
+  .#{$paginator}-total {
+    display: none;
+  }
+
+  .#{$paginator}-item {
+    height: $paginator-height-min;
+  }
+
+  .#{$paginator}-link {
+    padding: $paginator-link-margin-min;
+  }
+}
+

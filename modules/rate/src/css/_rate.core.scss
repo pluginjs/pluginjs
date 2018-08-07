@@ -1,0 +1,71 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$rate: "pj-rate" !default;
+$rate-size: 2.5rem !default;
+$rate-time: 0.3s !default;
+$rate-spacer: 0.5rem !default;
+
+// Core
+// =====================
+.#{$rate} {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  list-style: none;
+
+  .#{$rate}-star {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    margin-right: $rate-spacer;
+    cursor: pointer;
+    transition: all $rate-time;
+
+    .#{$rate}-star-first {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      opacity: 0;
+    }
+  }
+
+  .#{$rate}-star-half {
+    .#{$rate}-star-first {
+      opacity: 1;
+    }
+  }
+}
+
+.#{$rate}-star-first,
+.#{$rate}-star-second {
+  user-select: none;
+  transition: all $rate-time;
+
+  img {
+    max-width: none;
+  }
+
+  embed {
+    max-width: none;
+  }
+}
+
+.#{$rate}-disabled .#{$rate}-star {
+  cursor: not-allowed;
+}
+
+.#{$rate}-destroy .#{$rate}-star {
+  cursor: default;
+}
+
+.score {
+  color: $gray-darker;
+  text-transform: capitalize;
+}
