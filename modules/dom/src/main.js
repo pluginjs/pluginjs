@@ -31,7 +31,12 @@ export const findAll = curry((selector, parent) =>
   Array.from(parent.querySelectorAll(selector))
 )
 
-export const contains = curry((el, parent) => parent.contains(el))
+export const has = (selector, parent) => {
+  if (isString(selector)) {
+    return Boolean(findAll(selector, parent).length)
+  }
+  return parent.contains(selector)
+}
 
 export const contents = el => {
   if (el.tagName === 'IFRAME') {
@@ -46,12 +51,15 @@ export const children = (selector, el) => {
     el = selector
     selector = undefined
   }
+
   if (!isElement(el)) {
-    return null
+    return []
   }
+
   if (isString(selector)) {
     return Array.from(el.children).filter(c => c.matches(selector))
   }
+
   return Array.from(el.children)
 }
 
@@ -60,16 +68,11 @@ export const siblings = (selector, el) => {
     el = selector
     selector = undefined
   }
-  if (!isElement(el)) {
-    return null
-  }
 
-  const childrenArr = children(selector, el.parentNode)
-  const index = childrenArr.indexOf(el)
-  if (index > -1) {
-    childrenArr.splice(index, 1)
+  if (!isElement(el)) {
+    return []
   }
-  return childrenArr
+  return children(selector, el.parentNode).filter(element => element !== el)
 }
 
 export const prev = el => el.previousElementSibling
@@ -135,12 +138,12 @@ export const parentWith = curry((fn, el) => {
   return parentWith(fn, parentElement)
 })
 
-export const closest = curry((selector, el) => {
+export const closest = (selector, el) => {
   if (el.matches(selector)) {
     return el
   }
   return parentWith(el => el.matches(selector), el)
-})
+}
 
 // ---------
 // data

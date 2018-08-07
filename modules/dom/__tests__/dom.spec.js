@@ -9,6 +9,14 @@ describe('Dom helper', () => {
       expect(dom.query('div', parent)).toBe(children)
     })
 
+    test('query with class', () => {
+      const parent = document.createElement('div')
+      const children = document.createElement('div')
+      children.classList.add('foo')
+      parent.append(children)
+      expect(dom.query('.foo', parent)).toBe(children)
+    })
+
     test('queryAll', () => {
       const parent = document.createElement('div')
       const children = Array.from({ length: 2 }, () =>
@@ -34,11 +42,18 @@ describe('Dom helper', () => {
       expect(dom.findAll('div', parent)).toEqual(children)
     })
 
-    test('contains', () => {
+    test('has with element', () => {
       const parent = document.createElement('div')
       const el = document.createElement('div')
       dom.append(el, parent)
-      expect(dom.contains(el, parent)).toBeTrue()
+      expect(dom.has(el, parent)).toBeTrue()
+    })
+
+    test('has with selector', () => {
+      const parent = document.createElement('div')
+      dom.append('<div class="foo"></div>', parent)
+      console.info(dom.html(parent))
+      expect(dom.has('div', parent)).toBeTrue()
     })
 
     test('contents', () => {
