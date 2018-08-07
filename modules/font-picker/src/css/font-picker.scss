@@ -37,7 +37,7 @@ $fontPicker-search-input-hover-color: $gray !default;
   height: $fontPicker-height;
   padding: 0;
   font-size: $fontPicker-font-size;
-
+  background-color: $color-white; 
   &.pj-dropdown {
     min-width: $fontPicker-width;
     border: 1px solid $fontPicker-border-color;
@@ -54,6 +54,9 @@ $fontPicker-search-input-hover-color: $gray !default;
     &:focus,
     &:hover {
       border-color: $disabled-border;
+      .pj-dropdown-trigger {
+        color: #b3b3b3
+      }
     }
   }
 
