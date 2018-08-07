@@ -81,6 +81,17 @@ export const curry = (fn, args = []) => (...subArgs) => {
   return curry(fn, collect)
 }
 
+export const curryWith = (fn, enSureFunction, args = []) => (...subArgs) => {
+  const index = subArgs.findIndex(enSureFunction)
+  if (index >= 0) {
+    const collect = args.concat(...subArgs.slice(0, index + 1))
+    return fn(...collect)
+  }
+
+  const collect = args.concat(...subArgs)
+  return curryWith(fn, enSureFunction, collect)
+}
+
 export const compose = (...fn) => {
   const callback = (...args) =>
     fn.reduceRight((r, i, index) => {

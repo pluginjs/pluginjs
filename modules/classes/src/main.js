@@ -1,4 +1,4 @@
-import { curry } from '@pluginjs/utils'
+import { curry, curryWith } from '@pluginjs/utils'
 import { isElement } from '@pluginjs/is'
 
 export const hasClass = curry((className, element) =>
@@ -9,7 +9,7 @@ export const indexOfClass = curry((className, element) =>
   element.classList.item(className)
 )
 
-export const addClass = (...args) => {
+export const addClass = curryWith((...args) => {
   const classes = args.slice(0, -1)
   const element = args.slice(-1)[0]
 
@@ -18,9 +18,9 @@ export const addClass = (...args) => {
   }
 
   return element
-}
+}, isElement)
 
-export const removeClass = (...args) => {
+export const removeClass = curryWith((...args) => {
   const classes = args.slice(0, -1)
   const element = args.slice(-1)[0]
 
@@ -29,7 +29,7 @@ export const removeClass = (...args) => {
   }
 
   return element
-}
+}, isElement)
 
 export const toggleClass = curry((className, element) => {
   element.classList.toggle(className)
