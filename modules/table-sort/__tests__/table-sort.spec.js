@@ -1,5 +1,5 @@
-import TableSort from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import TableSort from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 
 const testString = `<thead>
 <tr>
@@ -75,99 +75,80 @@ describe('TableSort', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('table')
-      element.innerHTML = testString
-      const $element = $(element)
-
-      expect($element.asTableSort()).toEqual($element)
-
-      const api = $element.data('tableSort')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
       const element = document.createElement('table')
       element.innerHTML = testString
-      const $element = $(element).asTableSort()
-      expect($element.asTableSort('bind')).toBeNil()
+      const tableSort = new TableSort(element)
+      expect(tableSort.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
       const element = document.createElement('table')
       element.innerHTML = testString
-      const $element = $(element).asTableSort()
-      expect($element.asTableSort('destroy')).toEqual($element)
-      expect($element).toEqual($element)
+      const tableSort = new TableSort(element)
+      expect(tableSort.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let $element
+    let element
+    let api
 
     beforeEach(() => {
-      const element = document.createElement('table')
+      element = document.createElement('table')
       element.innerHTML = testString
-      $element = $(element)
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('tableSort:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      element.addEventListener('tableSort:ready', () => {
         called++
       })
 
-      $element.asTableSort()
+      api = TableSort.of(element)
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      const element = document.createElement('table')
+      element = document.createElement('table')
       element.innerHTML = testString
-      $element = $(element).asTableSort()
-      api = $element.data('tableSort')
+      api = TableSort.of(element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('tableSort:destroy', (event, api) => {
+      element.addEventListener('tableSort:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asTableSort('destroy')
-
+      api.destroy()
       expect(called).toEqual(1)
     })
   })
 
   describe('enable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      const element = document.createElement('table')
+      element = document.createElement('table')
       element.innerHTML = testString
-      $element = $(element).asTableSort()
-      api = $element.data('tableSort')
+      api = TableSort.of(element)
     })
 
     test('should enable the plugin', () => {
-      $element.asTableSort('disable')
-      $element.asTableSort('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -175,42 +156,40 @@ describe('TableSort', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('tableSort:enable', (event, api) => {
+      element.addEventListener('tableSort:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      $element.asTableSort('enable')
+      api.enable()
       expect(called).toEqual(1)
     })
   })
 
   describe('disable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      const element = document.createElement('table')
+      element = document.createElement('table')
       element.innerHTML = testString
-      $element = $(element).asTableSort()
-      api = $element.data('tableSort')
+      api = TableSort.of(element)
     })
 
     test('should disable the plugin', () => {
-      $element.asTableSort('disable')
-
+      api.disable()
       expect(api.is('disabled')).toBeTrue()
     })
 
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('tableSort:disable', (event, api) => {
+      element.addEventListener('tableSort:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
 
-      $element.asTableSort('disable')
+      api.disable()
       expect(called).toEqual(1)
     })
   })
