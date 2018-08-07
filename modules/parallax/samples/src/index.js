@@ -1,3 +1,5 @@
-import Parallax from '@pluginjs/parallax'
-
-console.log(Parallax)
+// import sections
+import './sections/rotate'
+import './sections/offset'
+import './sections/translate'
+import './sections/scale'

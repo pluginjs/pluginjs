@@ -1,0 +1,47 @@
+// import parallax css
+@import "@pluginjs/parallax/src/css/parallax.scss";
+
+section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 930px;
+  height: 300px;
+  margin-bottom: 30px;
+}
+.background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent;
+}
+.card {
+  width: 200px;
+  height: 200px;
+  background-color: #555;
+}
+.inline {
+  display: flex;
+  & > div:not(:last-child) {
+    margin-right: 50px;
+  }
+}
+.element-conatiner {
+  min-height: 1000px;
+}
+.element-conatiner > div:not(:last-child) {
+  margin-bottom: 50px;
+}
+
+.background > img {
+  width: auto;
+  height: auto;
+}
