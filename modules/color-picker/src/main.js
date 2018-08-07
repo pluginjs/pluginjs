@@ -16,8 +16,8 @@ import {
   parentWith,
   wrap,
   unwrap,
-  setObjData,
-  getObjData,
+  setData,
+  getData,
   empty
 } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
@@ -443,7 +443,7 @@ class ColorPicker extends Component {
 
       // set BgColor and Data val
       setStyle({ background: v }, $item)
-      setObjData('info', { title: i, color: v }, $item)
+      setData('info', { title: i, color: v }, $item)
       // append to group list
       append($item, groupList)
     })
@@ -675,7 +675,7 @@ class ColorPicker extends Component {
           value: `.${this.classes.COLLECTIONITEM}`
         },
         handler: e => {
-          const info = getObjData('info', e.target)
+          const info = getData('info', e.target)
           this.selectCollection = info
           this.set({ module: 'collection', color: info.title })
           this.closePanel()

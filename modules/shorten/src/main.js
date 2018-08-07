@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { removeClass, addClass, hasClass } from '@pluginjs/classes'
-import { closest, setObjData, query } from '@pluginjs/dom'
+import { closest, setData, query, html } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -190,8 +190,8 @@ class Shorten extends Component {
         removeEvent('shorten:collapse'),
         removeEvent('shorten:expand'),
         removeEvent('shorten'),
-        setObjData('shorten', null),
-        innerHtml(this.text)
+        setData('shorten', null),
+        html(this.text)
       )(this.element)
 
       if (this.options.theme) {

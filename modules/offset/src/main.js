@@ -12,8 +12,8 @@ import {
   parseHTML,
   queryAll,
   query,
-  setObjData,
-  getObjData,
+  setData,
+  getData,
   insertAfter,
   closest
 } from '@pluginjs/dom'
@@ -141,7 +141,7 @@ class Offset extends Component {
           if (that.is('disabled')) {
             return
           }
-          const info = getObjData(
+          const info = getData(
             'info',
             parentWith(hasClass(this.classes.ITEM), target)
           )
@@ -216,7 +216,7 @@ class Offset extends Component {
           const $unit = query('input', $el)
           const unit = that.data[$unit.getAttribute('name')].unit
 
-          const api = getObjData('units', $unit)
+          const api = getData('units', $unit)
           api.toggleUnit(unit)
           api.setWidth(getStyle('width', $unit))
           Array.from(this.$inner.children).map(c =>
@@ -343,7 +343,7 @@ class Offset extends Component {
           return
         }
         const $item = parentWith(hasClass(that.classes.ITEM), $input)
-        const info = getObjData('info', $item)
+        const info = getData('info', $item)
         const key = $input.getAttribute('name')
         const newData = {}
 
@@ -356,7 +356,7 @@ class Offset extends Component {
         )
       }
     })
-    setObjData('units', apiDate, $input)
+    setData('units', apiDate, $input)
   }
 
   initTooltip() {
@@ -402,7 +402,7 @@ class Offset extends Component {
       let value = $this.value
       const key = $this.getAttribute('name')
       // const unit = $this.asUnits('getUnit')
-      const unit = getObjData('units', $this).getUnit()
+      const unit = getData('units', $this).getUnit()
       const val = {}
       if (!isNumber(parseInt(value, 2))) {
         value = 0
@@ -454,7 +454,7 @@ class Offset extends Component {
 
     $this.value = value
 
-    query(`[data-value="${id}"]`, this.$wrap).innerHTML = `${value}${getObjData(
+    query(`[data-value="${id}"]`, this.$wrap).innerHTML = `${value}${getData(
       'units',
       $this
     ).getUnit()}`
@@ -465,7 +465,7 @@ class Offset extends Component {
       const $input = query('input', item)
       const key = $input.getAttribute('name')
       const $view = query(`.${this.classes.VIEW}`, item)
-      const info = getObjData('info', item)
+      const info = getData('info', item)
 
       if (info && info.value.length < 1) {
         $view.innerHTML = '-'
@@ -552,11 +552,11 @@ class Offset extends Component {
       const input = query(`[name="${i}"]`, this.$wrap)
 
       const $item = parentWith(hasClass(this.classes.ITEM), input)
-      const api = getObjData('units', input)
+      const api = getData('units', input)
 
       const info = this.parse(v)
       this.data[i] = info
-      setObjData('info', info, $item)
+      setData('info', info, $item)
 
       api.set(info)
     })

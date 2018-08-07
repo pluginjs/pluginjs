@@ -3,7 +3,7 @@ import {
   append,
   parseHTML,
   queryAll,
-  getObjData,
+  getData,
   insertBefore,
   insertAfter,
   children,
@@ -59,7 +59,7 @@ export default class Node {
           this.$parent = this.dom.parentNode
         }
 
-        this.parent = getObjData('node', this.$parent)
+        this.parent = getData('node', this.$parent)
         // this.parent = this.$parent.data('node')
         this.level = this.parent.level + 1
         break
@@ -107,7 +107,7 @@ export default class Node {
     const children = []
     let node
     for (let i = 0; i < this.subelements.length; i++) {
-      node = getObjData('node', this.subelements[i])
+      node = getData('node', this.subelements[i])
       if (node) {
         children.push(node)
       }
@@ -122,7 +122,7 @@ export default class Node {
     let node
 
     for (let i = 0; i < $siblings.length; i++) {
-      node = getObjData('node', $siblings[0])
+      node = getData('node', $siblings[0])
       // node = $siblings.data('node')
       if (node) {
         nodes.push(node)

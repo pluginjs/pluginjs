@@ -132,7 +132,7 @@ Returns
 |------|------|-------------|
 | element | `HTMLElement` | |
 
-### setObjData
+### setData
 
 Parameters
 
@@ -148,7 +148,7 @@ Returns
 |------|------|-------------|
 | element | `HTMLElement` | |
 
-### getObjData
+### getData
 
 Parameters
 
@@ -251,7 +251,7 @@ Returns
 |------|------|-------------|
 | element | `HTMLElement` | |
 
-### dataset
+### data
 
 Parameters
 

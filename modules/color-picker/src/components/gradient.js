@@ -3,14 +3,7 @@ import Marker from './marker'
 import Wheel from './wheel'
 import { compose } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  query,
-  getObjData,
-  setObjData,
-  find,
-  parseHTML,
-  parent
-} from '@pluginjs/dom'
+import { query, getData, setData, find, parseHTML, parent } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 import { hasClass, removeClass, addClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
@@ -119,11 +112,11 @@ class Gradient {
     })
 
     this.markers.push(
-      getObjData('value', $leftMarker),
-      getObjData('value', $rightMarker)
+      getData('value', $leftMarker),
+      getData('value', $rightMarker)
     )
     this.selectMarker($rightMarker)
-    this.actionBarSize = getObjData('value', $leftMarker).maxLenght
+    this.actionBarSize = getData('value', $leftMarker).maxLenght
     // initial wheel
     this.WHEEL = new Wheel(this.instance, this.$wheel)
   }
@@ -187,7 +180,7 @@ class Gradient {
             return false
           }
           const $this = e.target
-          const marker = getObjData('value', $this)
+          const marker = getData('value', $this)
           this.selectMarker($this)
 
           const startX = e.pageX
@@ -293,7 +286,7 @@ class Gradient {
           }
 
           const $marker = this.instance.$marker
-          const index = getObjData('value', $marker).index
+          const index = getData('value', $marker).index
 
           $marker.remove()
           removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
@@ -318,7 +311,7 @@ class Gradient {
       }
 
       const $marker = this.instance.$marker
-      const index = getObjData('value', $marker).index
+      const index = getData('value', $marker).index
 
       $marker.remove()
       removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
@@ -356,7 +349,7 @@ class Gradient {
     const $marker = parseHTML(
       `<div class="${this.classes.MARKER}" tabindex="1"></div>`
     )
-    setObjData('value', new Marker(this.instance, $marker, options), $marker)
+    setData('value', new Marker(this.instance, $marker, options), $marker)
 
     return $marker
   }
@@ -420,7 +413,7 @@ class Gradient {
 
     const $marker = this.createMarker(value)
 
-    this.markers.push(getObjData('value', $marker))
+    this.markers.push(getData('value', $marker))
 
     this.sort()
 
@@ -449,7 +442,7 @@ class Gradient {
     )(this.element)
 
     if (this.instance.is('gradientModule')) {
-      this.instance.setSolid(getObjData('value', marker).color)
+      this.instance.setSolid(getData('value', marker).color)
     }
 
     this.instance.leave('noSelectedMarker')

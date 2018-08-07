@@ -1,7 +1,7 @@
 import { isEmptyObject } from '@pluginjs/is'
 import anime from 'animejs'
 import { setStyle } from '@pluginjs/styled'
-import { setObjData, getObjData } from '@pluginjs/dom'
+import { setData, getData } from '@pluginjs/dom'
 import { deepMerge } from '@pluginjs/utils'
 
 const EFFECTS = {
@@ -336,7 +336,7 @@ class Animate {
         }
       }
 
-      setObjData('animeApi', animation, el)
+      setData('animeApi', animation, el)
     })
     // run the animation
     anime(this.config)
@@ -351,12 +351,12 @@ class Animate {
 
     const animation = anime(config)
 
-    setObjData('animeApi', animation, $el)
+    setData('animeApi', animation, $el)
   }
 
   hide(chunk) {
     const $el = chunk.$el
-    const animation = getObjData('animeApi', $el)
+    const animation = getData('animeApi', $el)
 
     if (!animation) {
       return

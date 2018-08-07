@@ -5,13 +5,13 @@ import {
   wrap,
   parent,
   insertAfter,
-  dataset,
+  data,
   children,
   queryAll,
   query,
   closest,
   insertBefore,
-  getObjData,
+  getData,
   unwrap
 } from '@pluginjs/dom'
 import { deepMerge } from '@pluginjs/utils'
@@ -240,8 +240,8 @@ class List extends Component {
               v.callback(
                 this,
                 $item,
-                dataset('index', $item),
-                dataset('options', $item)
+                data('index', $item),
+                data('options', $item)
               )
             }
           },
@@ -431,7 +431,7 @@ class List extends Component {
       }
 
       queryAll(`.${this.classes.ACTIONS} i`, this.$list).forEach(v => {
-        const api = getObjData('popDialog', v)
+        const api = getData('popDialog', v)
         if (api) {
           api.enable()
         }
@@ -451,7 +451,7 @@ class List extends Component {
       }
 
       queryAll(`.${this.classes.ACTIONS} i`, this.$list).forEach(v => {
-        const api = getObjData('popDialog', v)
+        const api = getData('popDialog', v)
         if (api) {
           api.disable()
         }

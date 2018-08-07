@@ -6,8 +6,8 @@ import {
   parent,
   prepend,
   insertAfter,
-  getObjData,
-  setObjData
+  getData,
+  setData
 } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -67,7 +67,7 @@ class ToggleList extends List {
       }
     })
 
-    setObjData('toggle', $toggle, $item)
+    setData('toggle', $toggle, $item)
   }
 
   initStatus() {
@@ -75,7 +75,7 @@ class ToggleList extends List {
 
     this.getItems().forEach((item, index) => {
       if (!data[index].checked) {
-        getObjData('toggle', item).uncheck(false)
+        getData('toggle', item).uncheck(false)
         this.toggle(item, false, false)
       }
     })
@@ -167,14 +167,14 @@ class ToggleList extends List {
   enable() {
     super.enable()
     this.getItems().forEach(item => {
-      getObjData('toggle', item).enable()
+      getData('toggle', item).enable()
     })
   }
 
   disable() {
     super.disable()
     this.getItems().forEach(item => {
-      getObjData('toggle', item).disable()
+      getData('toggle', item).disable()
     })
   }
 }

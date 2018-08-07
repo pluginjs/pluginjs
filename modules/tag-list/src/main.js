@@ -1,6 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import Sortable from 'sortablejs'
-import { query, parseHTML, setObjData, parent } from '@pluginjs/dom'
+import { query, parseHTML, setData, parent } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   eventable,
@@ -127,7 +127,7 @@ class TagList extends List {
     super.destroy()
     this.$add.remove()
     this.unbind()
-    setObjData('tagList', null, this.element)
+    setData('tagList', null, this.element)
   }
 
   enable() {

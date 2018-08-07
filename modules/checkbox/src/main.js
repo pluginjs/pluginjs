@@ -10,7 +10,7 @@ import {
   parent,
   wrap,
   unwrap,
-  getObjData
+  getData
 } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -130,7 +130,7 @@ class Checkbox extends Component {
     }
     if (this.group && isArray(value)) {
       this.$group.forEach(item => {
-        const api = getObjData(NAMESPACE, item)
+        const api = getData(NAMESPACE, item)
         if (!api) {
           return
         }

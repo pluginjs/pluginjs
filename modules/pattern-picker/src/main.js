@@ -9,8 +9,8 @@ import {
   queryAll,
   parent,
   parseHTML,
-  getObjData,
-  setObjData,
+  getData,
+  setData,
   wrap,
   parentWith
 } from '@pluginjs/dom'
@@ -413,7 +413,7 @@ class PatternPicker extends Component {
         // make '#' to '%23', fixed svg data image not working on FireFox.
         'background-image': val.replace(/\#+/g, '%23')/* eslint-disable-line */
       }
-      setObjData('info', info, $img)
+      setData('info', info, $img)
       setStyle(
         {
           backgroundColor: this.bgColor,
@@ -491,7 +491,7 @@ class PatternPicker extends Component {
       if (!this.$selected) {
         return
       }
-      const info = getObjData('info', this.$selected)
+      const info = getData('info', this.$selected)
 
       // let color = info['background-image']
       //   .match(/fill='.*?'/g)
@@ -504,7 +504,7 @@ class PatternPicker extends Component {
       //   .toString()
       //   .match(/\d\.\d*|\d/g)[0]
       // );
-      setObjData('info', info, this.$previewImg)
+      setData('info', info, this.$previewImg)
 
       // if (color.length > 6) {
       //   color = `#${color.slice(2)}`;
@@ -601,13 +601,13 @@ class PatternPicker extends Component {
 
   update(data) {
     if (data) {
-      setObjData('info', data, this.$previewImg)
+      setData('info', data, this.$previewImg)
       this.setInfo(this.$previewImg)
     } else {
-      this.data = getObjData('info', this.$previewImg)
+      this.data = getData('info', this.$previewImg)
     }
 
-    setObjData('info', getObjData('info', this.$previewImg), this.$infoImg)
+    setData('info', getData('info', this.$previewImg), this.$infoImg)
     this.setInfo(this.$infoImg)
     this.element.value = this.val()
     this.$editPanel.closePanel()
@@ -633,12 +633,12 @@ class PatternPicker extends Component {
     )
     this.element.value = this.options.process.call(
       this,
-      getObjData('info', this.$previewImg)
+      getData('info', this.$previewImg)
     )
   }
 
   setInfo(img) {
-    const imgData = getObjData('info', img)
+    const imgData = getData('info', img)
     setStyle(
       {
         backgroundColor: imgData['background-color'],
@@ -650,7 +650,7 @@ class PatternPicker extends Component {
       img
     )
 
-    setObjData('info', imgData, img)
+    setData('info', imgData, img)
   }
 
   set(data) {
@@ -668,7 +668,7 @@ class PatternPicker extends Component {
 
     queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).forEach(
       $this => {
-        const info = getObjData('info', $this)
+        const info = getData('info', $this)
 
         removeClass(this.classes.ACTIVE, $this)
 
@@ -680,8 +680,8 @@ class PatternPicker extends Component {
           }
 
           addClass(this.classes.ACTIVE, $this)
-          getObjData('info', data, $this)
-          getObjData('info', data, this.$previewImg)
+          getData('info', data, $this)
+          getData('info', data, this.$previewImg)
 
           this.$selected = $this
 
@@ -719,7 +719,7 @@ class PatternPicker extends Component {
   }
 
   setAttr(key, el) {
-    const info = getObjData('info', el)
+    const info = getData('info', el)
     if (!info) {
       return
     }
@@ -734,13 +734,13 @@ class PatternPicker extends Component {
     } else {
       info['background-color'] = this.bgColor
     }
-    setObjData('info', info, el)
+    setData('info', info, el)
     this.setInfo(el)
   }
 
   clear() {
     const clearInfoAndStyle = compose(
-      setObjData('info', ''),
+      setData('info', ''),
       setStyle({
         backgroundColor: 'transparent',
         backgroundImage: 'none'

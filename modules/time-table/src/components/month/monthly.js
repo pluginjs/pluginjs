@@ -4,7 +4,7 @@ import monthEvent from './monthEvent'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, query, queryAll, getObjData } from '@pluginjs/dom'
+import { append, parseHTML, query, queryAll, getData } from '@pluginjs/dom'
 
 class Monthly {
   constructor(instance, element) {
@@ -95,7 +95,7 @@ class Monthly {
             return
           }
 
-          const api = getObjData('monthEvent', monthEvent)
+          const api = getData('monthEvent', monthEvent)
           if (typeof api === 'undefined' || api.open == false) {
             if (this.activeEvent) {
               this.activeEvent.hideList()
@@ -127,7 +127,7 @@ class Monthly {
   updateEvent() {
     this.currentMonthData.map(data => {
       const index = data.day + this.instance.monthFirstDay - 1
-      const api = getObjData('monthEvent', this.events[index])
+      const api = getData('monthEvent', this.events[index])
       if (!api) {
         const event = new monthEvent(this.events[index], this)
         this.instances.push(event)

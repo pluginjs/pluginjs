@@ -2,8 +2,8 @@
 import { bindEvent } from '@pluginjs/events'
 import {
   query,
-  // getObjData,
-  // setObjData,
+  // getData,
+  // setData,
   // find,
   parseHTML,
   parent

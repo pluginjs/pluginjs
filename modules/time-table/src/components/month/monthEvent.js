@@ -3,13 +3,7 @@ import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  append,
-  parseHTML,
-  query,
-  setObjData,
-  insertBefore
-} from '@pluginjs/dom'
+import { append, parseHTML, query, setData, insertBefore } from '@pluginjs/dom'
 
 class monthEvents {
   constructor(element, month) {
@@ -31,7 +25,7 @@ class monthEvents {
 
     this.events = []
 
-    setObjData('monthEvent', this, this.$element)
+    setData('monthEvent', this, this.$element)
     // this.$element.data('monthEvent', this)
 
     this.bind()
@@ -130,7 +124,7 @@ class monthEvents {
 
     this.more.remove()
 
-    setObjData('monthEvent', null, this.$element)
+    setData('monthEvent', null, this.$element)
   }
 }
 

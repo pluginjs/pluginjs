@@ -14,8 +14,8 @@ import {
   append,
   prepend,
   insertBefore,
-  setObjData,
-  getObjData
+  setData,
+  getData
 } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { showElement, hideElement } from '@pluginjs/styled'
@@ -345,7 +345,7 @@ class LinkPicker extends Component {
 
     parent.append($input)
     $input.value = data
-    setObjData(
+    setData(
       'input',
       {
         source,
@@ -356,7 +356,7 @@ class LinkPicker extends Component {
     const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
       ? parent
       : parentWith(hasClass(this.classes.ITEMBODY), parent)
-    setObjData('api', $input, itemBody)
+    setData('api', $input, itemBody)
   }
 
   handleRadioMode(details) {
@@ -424,7 +424,7 @@ class LinkPicker extends Component {
     const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
       ? parent
       : parentWith(hasClass(this.classes.ITEMBODY), parent)
-    setObjData('api', api, itemBody)
+    setData('api', api, itemBody)
   }
 
   handleDropdownMode(details) {
@@ -440,7 +440,7 @@ class LinkPicker extends Component {
       }'><span class="pj-dropdown-trigger"></span></div>`
     )
     console.log($dropdown)
-    setObjData(
+    setData(
       'input',
       {
         source,
@@ -466,7 +466,7 @@ class LinkPicker extends Component {
         {
           type: this.eventName(`linkPicker:${source}:${connect}:change`),
           handler: (e, instance, connectName) => {
-            const api = getObjData('input', $dropdown)
+            const api = getData('input', $dropdown)
             console.log($dropdown)
 
             const dropdownData = []
@@ -519,7 +519,7 @@ class LinkPicker extends Component {
       onChange(el) {
         const name = el.dataset.value
         // const connect = this.element.data('connect')
-        const { source, itemName } = getObjData('input', this.element)
+        const { source, itemName } = getData('input', this.element)
 
         that.getSourceItem(source, itemName).data.active = name
         that.trigger(`${source}:${itemName}:change`, name)
@@ -540,7 +540,7 @@ class LinkPicker extends Component {
     const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
       ? parent
       : parentWith(hasClass(this.classes.ITEMBODY), parent)
-    setObjData('api', api, itemBody)
+    setData('api', api, itemBody)
   }
 
   swtichType() {
@@ -618,7 +618,7 @@ class LinkPicker extends Component {
           if (window.getComputedStyle($input).display === 'none') {
             return
           }
-          const input = getObjData('input', $input)
+          const input = getData('input', $input)
           if (!input) {
             return
           }
@@ -801,7 +801,7 @@ class LinkPicker extends Component {
       const type = parent($this).dataset.value
 
       if (data[type]) {
-        const api = getObjData('api', $this)
+        const api = getData('api', $this)
         const apiType = Array.isArray(api) ? api[0].plugin : api
 
         if (!apiType) {

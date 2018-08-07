@@ -1,6 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import { deepMerge, compose } from '@pluginjs/utils'
-import { parent, parseHTML, parentWith, children, dataset } from '@pluginjs/dom'
+import { parent, parseHTML, parentWith, children, data } from '@pluginjs/dom'
 import { removeClass, addClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -191,7 +191,7 @@ class ItemList extends List {
     if (this.is('initialized')) {
       this.$add.remove()
       this.unbind()
-      dataset({ itemList: null }, this.element)
+      data({ itemList: null }, this.element)
     }
 
     super.destroy()

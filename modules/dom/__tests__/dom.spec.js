@@ -203,24 +203,67 @@ describe('Dom helper', () => {
   })
 
   describe('Data helper', () => {
-    test('setObjData/getObjData', () => {
+    test('setData/getData', () => {
       const el = document.createElement('div')
-      dom.setObjData('foo', 'bar', el)
-      expect(dom.getObjData('foo', el)).toBe('bar')
+
+      dom.setData('foo', 'bar', el)
+      expect(dom.getData('foo', el)).toBe('bar')
     })
 
-    test('dataset', () => {
+    test('hasData', () => {
       const el = document.createElement('div')
-      dom.dataset({ foo: 'bar' }, el)
+
+      expect(dom.hasData(el)).toBeFalse()
+
+      dom.setData('foo', 'bar', el)
+      expect(dom.hasData(el)).toBeTrue()
+    })
+
+    test('data with value', () => {
+      const parent = document.createElement('div')
+      const el = document.createElement('div')
+      dom.append(el, parent)
+      dom.data('foo', 'bar', el)
+
+      expect(dom.data('foo', el)).toBe('bar')
+    })
+
+    test('data with object value', () => {
+      const parent = document.createElement('div')
+      const el = document.createElement('div')
+      dom.append(el, parent)
+      dom.data({ foo: 'bar' }, el)
+
+      expect(dom.data('foo', el)).toBe('bar')
+    })
+
+    test('data with camelCase data-*', () => {
+      const el = dom.parseHTML('<div data-hello-world="true"></div>')
+
+      expect(dom.data('helloWorld', el)).toBe(true)
+      expect(dom.data('hello-world', el)).toBe(true)
+    })
+
+    test('data with data-*', () => {
+      const el = dom.parseHTML('<div data-foo="bar"></div>')
+
+      expect(dom.data('foo', el)).toBe('bar')
+    })
+
+    test('data with json data-*', () => {
+      const el = dom.parseHTML('<div data-json=\'{"foo":"bar"}\'></div>')
+
+      expect(dom.data('json', el)).toEqual({ foo: 'bar' })
+    })
+
+    test('override data with data-*', () => {
+      const el = dom.parseHTML('<div data-foo="bar"></div>')
+
+      dom.data({ foo: 'qux' }, el)
+
+      expect(dom.data('foo', el)).toBe('qux')
+      expect(dom.attr('data-foo', el)).toBe('bar')
       expect(el.dataset.foo).toBe('bar')
-    })
-
-    test('clearData', () => {
-      const el = document.createElement('div')
-      el.foo = 'bar'
-      dom.dataset({ foo: 'bar' }, el)
-      dom.clearData(el)
-      expect(el.dataset.foo).toBeNil()
     })
   })
 

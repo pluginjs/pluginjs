@@ -2,7 +2,7 @@ import templateEngine from '@pluginjs/template'
 import { isFunction, isEmptyObject } from '@pluginjs/is'
 import { compose } from '@pluginjs/utils'
 import { bindEvent } from '@pluginjs/events'
-import { dataset, closest, query } from '@pluginjs/dom'
+import { data, closest, query } from '@pluginjs/dom'
 import { hasClass, removeClass } from '@pluginjs/classes'
 import {
   eventable,
@@ -54,7 +54,7 @@ class PopDialog extends Popover {
 
   bindButtonEvents() {
     const $tip = this.getTip()
-    if (dataset('buttonEventsBinded', $tip)) {
+    if (data('buttonEventsBinded', $tip)) {
       return
     }
     bindEvent(
@@ -64,16 +64,16 @@ class PopDialog extends Popover {
         handler: ({ target }) =>
           this.do(
             hasClass(this.classes.BUTTON, target)
-              ? dataset('action', target)
+              ? data('action', target)
               : compose(
-                  dataset('action'),
+                  data('action'),
                   closest(`${this.classes.BUTTON}`)
                 )(target)
           )
       },
       $tip
     )
-    dataset({ buttonEventsBinded: true }, $tip)
+    data({ buttonEventsBinded: true }, $tip)
   }
 
   do(action) {

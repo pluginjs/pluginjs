@@ -9,8 +9,8 @@ import {
   queryAll,
   parent,
   parseHTML,
-  setObjData,
-  getObjData,
+  setData,
+  getData,
   // closest
   wrap,
   parentWith
@@ -386,7 +386,7 @@ class GradientPicker extends Component {
         background: val
       }
 
-      setObjData('info', info, $color)
+      setData('info', info, $color)
       setStyle({ background: val }, $color)
 
       this.$selectorList.append($color)
@@ -578,8 +578,8 @@ class GradientPicker extends Component {
 
       $items.forEach(el => {
         const $this = el
-        if (getObjData('info', $this).name === this.data.name) {
-          const bgColor = getObjData('info', $this).background
+        if (getData('info', $this).name === this.data.name) {
+          const bgColor = getData('info', $this).background
           addClass(this.classes.ACTIVE, $this)
 
           this.data.color = bgColor

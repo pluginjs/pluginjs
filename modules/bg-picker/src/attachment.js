@@ -4,8 +4,8 @@ import {
   insertAfter,
   query,
   queryAll,
-  setObjData,
-  getObjData
+  setData,
+  getData
 } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -44,7 +44,7 @@ export default class Attachment {
 
     const that = this
 
-    setObjData(
+    setData(
       'dropdown',
       Dropdown.of(this.$attachTrigger, {
         imitateSelect: true,
@@ -90,7 +90,7 @@ export default class Attachment {
     for (let i = 0; i < this.values.length; i++) {
       if (value === this.values[i]) {
         this.$items.map(addClass(this.instance.classes.ACTIVE))
-        getObjData('dropdown', this.$dropdown).set(value)
+        getData('dropdown', this.$dropdown).set(value)
         found = true
       }
     }

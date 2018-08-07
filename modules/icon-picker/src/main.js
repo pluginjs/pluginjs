@@ -9,7 +9,7 @@ import {
   parent,
   parentWith,
   parseHTML,
-  getObjData,
+  getData,
   children,
   insertBefore,
   insertAfter,
@@ -17,7 +17,7 @@ import {
   attr,
   append,
   unwrap,
-  setObjData,
+  setData,
   queryAll,
   prev,
   next
@@ -364,7 +364,7 @@ class IconsPicker extends Component {
         handler: ({ target }) => {
           const _package = parent(target)
           // console.log(1)
-          if (getObjData('open', _package)) {
+          if (getData('open', _package)) {
             that.close(_package)
           } else {
             // console.log(_package)
@@ -480,21 +480,21 @@ class IconsPicker extends Component {
           info.name = index
         }
       }
-      setObjData('name', info.name, $this)
-      setObjData('title', info.title, $this)
-      setObjData('count', info.count, $this)
-      setObjData('prefix', info.prefix, $this)
-      setObjData('base', info.class, $this)
-      setObjData('classifiable', info.classifiable, $this)
-      setObjData('icons', info.icons, $this)
-      setObjData('$icons', [], $this)
-      setObjData('categories', info.categories, $this)
-      setObjData('hasUl', false, $this)
-      setObjData('open', false, $this)
-      setObjData('show', true, $this)
-      setObjData('searchedIconCount', 0, $this)
-      // if(getObjData('categories', $this)!= null){
-      //   setObjData('group', info.categories, $this)
+      setData('name', info.name, $this)
+      setData('title', info.title, $this)
+      setData('count', info.count, $this)
+      setData('prefix', info.prefix, $this)
+      setData('base', info.class, $this)
+      setData('classifiable', info.classifiable, $this)
+      setData('icons', info.icons, $this)
+      setData('$icons', [], $this)
+      setData('categories', info.categories, $this)
+      setData('hasUl', false, $this)
+      setData('open', false, $this)
+      setData('show', true, $this)
+      setData('searchedIconCount', 0, $this)
+      // if(getData('categories', $this)!= null){
+      //   setData('group', info.categories, $this)
       // }
       // this.showPackages.push($this);
       arr.push($this)
@@ -508,12 +508,12 @@ class IconsPicker extends Component {
 
     packages.forEach(v => {
       const $package = v
-      const icons = getObjData('icons', $package)
-      // console.log(getObjData('group', $package))
-      const categories = getObjData('group', $package)
-        ? getObjData('categories', $package)
+      const icons = getData('icons', $package)
+      // console.log(getData('group', $package))
+      const categories = getData('group', $package)
+        ? getData('categories', $package)
         : null
-      const packageName = getObjData('name', $package)
+      const packageName = getData('name', $package)
 
       if (Array.isArray(icons)) {
         icons.forEach(icon => {
@@ -555,8 +555,8 @@ class IconsPicker extends Component {
     const $icon = parseHTML(
       template.compile(this.options.templates.icon())({
         classes: this.classes,
-        font: getObjData('base', _package),
-        iconName: `${getObjData('prefix', _package)}${icon}`
+        font: getData('base', _package),
+        iconName: `${getData('prefix', _package)}${icon}`
       })
     )
     let group = null
@@ -569,13 +569,13 @@ class IconsPicker extends Component {
       }
     }
 
-    getObjData('$icons', _package).push($icon)
-    setObjData('package', packageName, $icon)
-    setObjData('prefix', getObjData('prefix', _package), $icon)
-    setObjData('baseClass', getObjData('base', _package), $icon)
-    setObjData('categories', group, $icon)
-    setObjData('title', icon, $icon)
-    setObjData('tip', iconName ? iconName : icon, $icon)
+    getData('$icons', _package).push($icon)
+    setData('package', packageName, $icon)
+    setData('prefix', getData('prefix', _package), $icon)
+    setData('baseClass', getData('base', _package), $icon)
+    setData('categories', group, $icon)
+    setData('title', icon, $icon)
+    setData('tip', iconName ? iconName : icon, $icon)
 
     return $icon
   }
@@ -617,11 +617,9 @@ class IconsPicker extends Component {
     // let groups = [];
     this.packages.forEach(_package => {
       const group = {}
-      if (getObjData('classifiable', _package)) {
-        for (const name in getObjData('categories', _package)) {
-          if (
-            {}.hasOwnProperty.call(getObjData('categories', _package), name)
-          ) {
+      if (getData('classifiable', _package)) {
+        for (const name in getData('categories', _package)) {
+          if ({}.hasOwnProperty.call(getData('categories', _package), name)) {
             const $categories = parseHTML(
               template.compile(this.options.templates.categories())({
                 categoriesName: name,
@@ -630,13 +628,13 @@ class IconsPicker extends Component {
               })
             )
 
-            setObjData('title', name, $categories)
-            setObjData('hasUl', false, $categories)
+            setData('title', name, $categories)
+            setData('hasUl', false, $categories)
             group[name] = $categories
             append($categories, query(`.${this.classes.PACKAGEBODY}`, _package))
           }
         }
-        setObjData('group', group, _package)
+        setData('group', group, _package)
       }
     })
   }
@@ -651,7 +649,7 @@ class IconsPicker extends Component {
     )
 
     this.packages.forEach(v => {
-      data.push({ label: getObjData('title', v) })
+      data.push({ label: getData('title', v) })
     })
     data.push({ label: this.translate('allIcons') })
 
@@ -680,16 +678,16 @@ class IconsPicker extends Component {
 
   fillIcons() {
     this.$icons.forEach(icon => {
-      if (getObjData('categories', icon)) {
+      if (getData('categories', icon)) {
         this.packages.forEach(_package => {
-          const $categories = getObjData('group', _package)
+          const $categories = getData('group', _package)
 
           if ($categories !== undefined) {
             Object.entries($categories).forEach(([name, categorie]) => {
-              if (getObjData('categories', icon) === name) {
-                if (!getObjData('hasUl', categorie)) {
+              if (getData('categories', icon) === name) {
+                if (!getData('hasUl', categorie)) {
                   categorie.append(parseHTML('<ul></ul>'))
-                  setObjData('hasUl', true, categorie)
+                  setData('hasUl', true, categorie)
                 }
                 append(icon, query('ul', categorie))
               }
@@ -698,13 +696,13 @@ class IconsPicker extends Component {
         })
       } else {
         this.packages.forEach(_package => {
-          if (getObjData('package', icon) === getObjData('name', _package)) {
-            if (!getObjData('hasUl', _package)) {
+          if (getData('package', icon) === getData('name', _package)) {
+            if (!getData('hasUl', _package)) {
               append(
                 parseHTML('<ul></ul>'),
                 query(`.${this.classes.PACKAGEBODY}`, _package)
               )
-              setObjData('hasUl', true, _package)
+              setData('hasUl', true, _package)
             }
             append(icon, query('ul', _package))
           }
@@ -713,7 +711,7 @@ class IconsPicker extends Component {
 
       // handle tooltip
       Tooltip.of(icon, {
-        title: getObjData('tip', icon),
+        title: getData('tip', icon),
         placement: 'right'
       })
     })
@@ -732,7 +730,7 @@ class IconsPicker extends Component {
   searching(val) {
     const searchedIcons = []
     this.$icons.forEach($icon => {
-      if (getObjData('title', $icon).indexOf(val) >= 0) {
+      if (getData('title', $icon).indexOf(val) >= 0) {
         addClass(this.classes.SEARCHED, $icon)
         searchedIcons.push($icon)
       } else if (hasClass(this.classes.SEARCHED, $icon)) {
@@ -743,7 +741,7 @@ class IconsPicker extends Component {
     if (val.length <= 0) {
       query(`.${this.classes.PACKAGETIP}`, this.$panel).innerHTML = ''
       this.packages.forEach(_package => {
-        const group = getObjData('group', _package)
+        const group = getData('group', _package)
         if (group) {
           Object.values(group).forEach(showElement)
         }
@@ -753,10 +751,10 @@ class IconsPicker extends Component {
 
     // set searched icon's count
     this.packages.forEach(_package => {
-      setObjData('searchedIconCount', 0, _package)
+      setData('searchedIconCount', 0, _package)
       query(`.${this.classes.PACKAGETIP}`, _package).innerHTML = '(0 founded)'
-      if (getObjData('classifiable', _package)) {
-        Object.values(getObjData('group', _package)).forEach(categorie => {
+      if (getData('classifiable', _package)) {
+        Object.values(getData('group', _package)).forEach(categorie => {
           if (!query(`.${this.classes.SEARCHED}`, categorie)) {
             hideElement(categorie)
           } else {
@@ -769,19 +767,16 @@ class IconsPicker extends Component {
     const localeFounded = this.translate('founded')
 
     searchedIcons.forEach(v => {
-      const key = getObjData('package', v)
+      const key = getData('package', v)
 
       this.packages.forEach(_package => {
-        if (getObjData('name', _package) === key) {
-          let count = getObjData('searchedIconCount', _package)
+        if (getData('name', _package) === key) {
+          let count = getData('searchedIconCount', _package)
           count++
-          setObjData('searchedIconCount', count, _package)
+          setData('searchedIconCount', count, _package)
         }
 
-        query(
-          `.${this.classes.PACKAGETIP}`,
-          _package
-        ).innerHTML = `(${getObjData(
+        query(`.${this.classes.PACKAGETIP}`, _package).innerHTML = `(${getData(
           'searchedIconCount',
           _package
         )} ${localeFounded})`
@@ -789,7 +784,7 @@ class IconsPicker extends Component {
     })
 
     this.packages.forEach(_package => {
-      if (!getObjData('searchedIconCount', _package)) {
+      if (!getData('searchedIconCount', _package)) {
         hideElement(_package)
       } else {
         showElement(_package)
@@ -809,7 +804,7 @@ class IconsPicker extends Component {
     }
 
     this.packages.forEach(v => {
-      if (!(getObjData('title', v) === name)) {
+      if (!(getData('title', v) === name)) {
         addClass(this.classes.PACKAGEHIDE, v)
       } else {
         removeClass(this.classes.PACKAGEHIDE, v)
@@ -825,13 +820,13 @@ class IconsPicker extends Component {
     })
 
     addClass(this.classes.PACKAGEOPEN, el)
-    setObjData('open', true, el)
+    setData('open', true, el)
     this.$scrollable.find(plugin => el.contains(plugin.element)).enable()
     this.$scrollable.find(plugin => el.contains(plugin.element)).update()
   }
   close(el) {
     removeClass(this.classes.PACKAGEOPEN, el)
-    setObjData('open', false, el)
+    setData('open', false, el)
   }
 
   select($target) {
@@ -857,7 +852,7 @@ class IconsPicker extends Component {
 
     addClass(this.classes.ACTIVE, $target)
     this.element.setAttribute('value', this.options.process(info))
-    $selected.innerHTML = `<i class="${getObjData(
+    $selected.innerHTML = `<i class="${getData(
       'baseClass',
       $target
     )} ${value}"></i>${value}`
@@ -868,9 +863,9 @@ class IconsPicker extends Component {
   get() {
     if (this.$icon && typeof this.$icon !== 'undefined') {
       const data = {
-        package: getObjData('package', this.$icon),
-        categories: getObjData('categories', this.$icon),
-        title: getObjData('title', this.$icon)
+        package: getData('package', this.$icon),
+        categories: getData('categories', this.$icon),
+        title: getData('title', this.$icon)
       }
 
       return data

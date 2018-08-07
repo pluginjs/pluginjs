@@ -5,7 +5,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { parseHTML, query, setObjData, getObjData } from '@pluginjs/dom'
+import { parseHTML, query, setData, getData } from '@pluginjs/dom'
 import { getUID, reflow, deepMerge } from '@pluginjs/utils'
 import {
   register,
@@ -149,13 +149,13 @@ class Tooltip extends Component {
   toggle(event) {
     if (event) {
       const target = event.currentTarget
-      let context = getObjData(this.plugin, target)
+      let context = getData(this.plugin, target)
 
       if (!context) {
         context = this.constructor
           .getInstances()
           .find(plugin => plugin.element === this.element)
-        setObjData(this.plugin, context, target)
+        setData(this.plugin, context, target)
       }
 
       context._activeTrigger.click = !context._activeTrigger.click
@@ -213,7 +213,7 @@ class Tooltip extends Component {
         this.options.container === false
           ? document.body
           : this.options.container
-      setObjData(this.plugin, this, tip)
+      setData(this.plugin, this, tip)
       $container.append(tip)
       this.trigger(EVENTS.INSERTED)
 
@@ -433,14 +433,14 @@ class Tooltip extends Component {
   }
 
   _enter(event, context) {
-    context = context || getObjData(this.plugin, event.currentTarget)
+    context = context || getData(this.plugin, event.currentTarget)
 
     if (!context) {
       context = this.constructor
         .getInstances()
         .find(plugin => plugin.element === this.element)
 
-      setObjData(this.plugin, context, event.currentTarget)
+      setData(this.plugin, context, event.currentTarget)
     }
 
     if (event) {
@@ -474,14 +474,14 @@ class Tooltip extends Component {
   }
 
   _leave(event, context) {
-    context = context || getObjData(this.plugin, event.currentTarget)
+    context = context || getData(this.plugin, event.currentTarget)
 
     if (!context) {
       context = this.constructor
         .getInstances()
         .find(plugin => plugin.element === this.element)
 
-      setObjData(this.plugin, context, event.currentTarget)
+      setData(this.plugin, context, event.currentTarget)
     }
 
     if (event) {

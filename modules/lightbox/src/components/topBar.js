@@ -1,7 +1,7 @@
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, query, queryAll, getObjData } from '@pluginjs/dom'
+import { append, parseHTML, query, queryAll, getData } from '@pluginjs/dom'
 
 class TopBar {
   constructor(instance) {

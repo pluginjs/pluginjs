@@ -10,8 +10,8 @@ import {
   queryAll,
   insertBefore,
   insertAfter,
-  getObjData,
-  setObjData,
+  getData,
+  setData,
   append,
   prepend,
   children,
@@ -255,12 +255,12 @@ class FontPicker extends Component {
         )
         this.$selectorPanel.set(this.$font.dataset.source)
         this.toggleSources($source)
-        this.$selectorPanel.set(getObjData('title', $source))
+        this.$selectorPanel.set(getData('title', $source))
         this.open($selectedPackage)
 
         // count scrollTop number
         let scrollLength = 0  /* eslint-disable-line */
-        getObjData('$fonts', $source).forEach(v => {
+        getData('$fonts', $source).forEach(v => {
           if (v.dataset.categorie === this.$font.dataset.categorie) {
             if (v.dataset.value === this.$font.dataset.value) {
               // parent(this.$font).scrollT op(scrollLength)
@@ -276,7 +276,7 @@ class FontPicker extends Component {
     this.$selectorPanel.options.onChange = val => {
       const $source = val
       const sourceName = $source.dataset.source
-      // const sourceName = getObjData('source', $source)
+      // const sourceName = getData('source', $source)
       this.toggleSources($source)
       this.categoriesHeight = contentHeight(parent(this.$activated[0]))
       if (this.sources[sourceName]) {
@@ -360,7 +360,7 @@ class FontPicker extends Component {
           const $source = parent($categorie)
 
           const sourceName = $source.dataset.source
-          // const sourceName = getObjData('source', $source)
+          // const sourceName = getData('source', $source)
           const categorieName = $categorie.dataset.value
           let index = 0
 
@@ -548,7 +548,7 @@ class FontPicker extends Component {
       Object.entries(that.activated).forEach(([sourceName, fonts]) => {
         if (fonts.indexOf(fontName) > -1) {
           $this.dataset.source = sourceName
-          // getObjData('source', sourceName, $this)
+          // getData('source', sourceName, $this)
 
           const $sourceIcon = parseHTML(
             `<i class='${that.classes.SOURCEICON} ${that.getIconName(
@@ -560,7 +560,7 @@ class FontPicker extends Component {
         }
       })
 
-      const $searchFont = setObjData(
+      const $searchFont = setData(
         'mapping',
         $this,
         parseHTML(
@@ -575,8 +575,8 @@ class FontPicker extends Component {
       that.$fonts.push($searchFont)
     })
 
-    setObjData('$fonts', this.$fonts, this.$activatedPackage)
-    setObjData('$fonts', this.$fonts, $searchList)
+    setData('$fonts', this.$fonts, this.$activatedPackage)
+    setData('$fonts', this.$fonts, $searchList)
     this.$activatedPackage.append($searchList)
   }
 
@@ -622,9 +622,9 @@ class FontPicker extends Component {
         append($fontsWrap, $sourcePackage)
         hideElement($sourcePackage)
         append($sourcePackage, this.$packagesWrap)
-        setObjData('$fonts', fonts, $sourcePackage)
+        setData('$fonts', fonts, $sourcePackage)
         $sourcePackage.dataset.source = sourceName
-        // setObjData('source', sourceName, $sourcePackage)
+        // setData('source', sourceName, $sourcePackage)
         this.$sources[sourceName] = $sourcePackage
         return
       }
@@ -657,34 +657,34 @@ class FontPicker extends Component {
             })
           )
           $font.dataset.source = sourceName
-          setObjData('categorie', categorieName, $font)
+          setData('categorie', categorieName, $font)
 
           query('ul', $fontsWrap).append($font)
           append($fontsWrap, $categorie)
           fonts.push($font)
 
-          const $searchFont = setObjData('mapping', $font, clone($font))
+          const $searchFont = setData('mapping', $font, clone($font))
           query('ul', $searchList).append($searchFont)
         })
         $sourcePackage.append($categorie)
 
         $sourcePackage.dataset.source = sourceName
         $searchList.dataset.sourceName = sourceName
-        // setObjData('source', sourceName, $sourcePackage)
-        // setObjData('sourceName', sourceName, $searchList)
+        // setData('source', sourceName, $sourcePackage)
+        // setData('sourceName', sourceName, $searchList)
 
-        setObjData('$fonts', fonts, $sourcePackage)
-        setObjData('$fonts', fonts, $searchList)
+        setData('$fonts', fonts, $sourcePackage)
+        setData('$fonts', fonts, $searchList)
       })
 
-      setObjData('title', source.title, $sourcePackage)
+      setData('title', source.title, $sourcePackage)
       $sourcePackage.append($searchList)
       this.$packagesWrap.append(hideElement($sourcePackage))
       this.$sources[sourceName] = $sourcePackage
 
       this.setFontFamilies(
         $sourcePackage.dataset.source,
-        // getObjData('source', $sourcePackage),
+        // getData('source', $sourcePackage),
         0,
         query(`.${this.classes.FONT}`, $searchList)
       )
@@ -758,7 +758,7 @@ class FontPicker extends Component {
       Object.entries(this.sources).forEach(([sourceName, source]) => {
         if (el.dataset.value === source.title) {
           el.dataset.source = sourceName
-          // setObjData('source', sourceName, el)
+          // setData('source', sourceName, el)
           prepend(
             `<i class="${this.classes.SOURCEICON} ${this.getIconName(
               sourceName
@@ -821,7 +821,7 @@ class FontPicker extends Component {
     if (!this.$showFonts.length) {
       return
     }
-    const $sourceFont = getObjData('mapping', this.$showFonts[0])
+    const $sourceFont = getData('mapping', this.$showFonts[0])
     if (!$sourceFont) {
       return
     }
@@ -864,7 +864,7 @@ class FontPicker extends Component {
       showElement(this.$sources[name])
 
       this.$activated = children(this.$sources[name])
-      this.$fonts = getObjData('$fonts', this.$sources[name])
+      this.$fonts = getData('$fonts', this.$sources[name])
 
       this.$searchList = children(
         query('ul', this.$activated[this.$activated.length - 1])
@@ -879,7 +879,7 @@ class FontPicker extends Component {
     this.$searchList = children(
       query('ul', this.$activated[this.$activated.length - 1])
     )
-    this.$fonts = getObjData('$fonts', this.$activatedPackage)
+    this.$fonts = getData('$fonts', this.$activatedPackage)
     return
 
     // if (this.is('keyboard')) {
@@ -983,7 +983,7 @@ class FontPicker extends Component {
       removeClass(this.classes.ACTIVE, this.$font)
     }
 
-    this.$font = getObjData('mapping', val) ? getObjData('mapping', val) : val
+    this.$font = getData('mapping', val) ? getData('mapping', val) : val
     const fontFamily = this.$font.dataset.value
     const sourceName = this.$font.dataset.source
     const $preView = query('.pj-dropdown-trigger span', this.$fontPicker)
@@ -1017,7 +1017,7 @@ class FontPicker extends Component {
       return
     }
 
-    const $fonts = getObjData('$fonts', $source)
+    const $fonts = getData('$fonts', $source)
 
     $fonts.forEach(v => {
       if (v.dataset.value === valueObj.value) {

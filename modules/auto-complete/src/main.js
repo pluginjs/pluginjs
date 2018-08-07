@@ -11,8 +11,8 @@ import {
   parent,
   parentWith,
   children,
-  getObjData,
-  setObjData
+  getData,
+  setData
 } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle, setStyle, showElement, hideElement } from '@pluginjs/styled'
@@ -167,7 +167,7 @@ class AutoComplete extends Component {
 
       const data = { label, value }
 
-      setObjData('data', data, $item)
+      setData('data', data, $item)
       wrap.append($item)
     })
   }
@@ -298,7 +298,7 @@ class AutoComplete extends Component {
             : parentWith(hasItemClass, target)
           this.$selected = $item
           this.close()
-          this.trigger(EVENTS.CHANGE, getObjData('data', $item))
+          this.trigger(EVENTS.CHANGE, getData('data', $item))
         }
       })
     )(this.$panel)
@@ -336,7 +336,7 @@ class AutoComplete extends Component {
                     this.close()
                     this.trigger(
                       EVENTS.CHANGE,
-                      getObjData('data', this.$selected),
+                      getData('data', this.$selected),
                       this
                     )
                     e.preventDefault()
@@ -396,7 +396,7 @@ class AutoComplete extends Component {
     }
     this.$items.forEach($item => {
       removeClass(that.classes.SHOW, $item)
-      const val = getObjData('data', $item).label
+      const val = getData('data', $item).label
 
       if (that.compare(key, val)) {
         if (count >= that.options.maxItems) {
@@ -418,8 +418,8 @@ class AutoComplete extends Component {
 
   render(key, value, $item) {
     const data = {
-      label: getObjData('data', $item).label,
-      value: getObjData('data', $item).value
+      label: getData('data', $item).label,
+      value: getData('data', $item).value
     }
 
     let content = this.options.render(data, $item)

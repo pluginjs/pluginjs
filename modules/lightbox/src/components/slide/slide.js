@@ -7,7 +7,7 @@ import {
   parseHTML,
   query,
   queryAll,
-  getObjData,
+  getData,
   insertBefore
 } from '@pluginjs/dom'
 import ITEM from './itemContainer'

@@ -2,11 +2,11 @@ import Component from '@pluginjs/component'
 import {
   find,
   attr,
-  dataset,
+  data,
   queryAll,
   query,
-  setObjData,
-  getObjData
+  setData,
+  getData
 } from '@pluginjs/dom'
 import { each } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -49,7 +49,7 @@ class Wizard extends Component {
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
-    setObjData(NAMESPACE, this, this.element)
+    setData(NAMESPACE, this, this.element)
     this.$steps = queryAll(this.options.step, this.element)
 
     this.id = attr('id', this.element)
@@ -102,7 +102,7 @@ class Wizard extends Component {
         type: this.eventName('click'),
         identity: this.options.step,
         handler: e => {
-          const index = getObjData('wizard-index', e.target)
+          const index = getData('wizard-index', e.target)
 
           if (!that.get(index).is('disabled')) {
             that.goTo(index)
@@ -373,13 +373,13 @@ queryAll('[data-wizard]', window.document).forEach(ele => {
       query(
         (href = attr('href', e.target)) && href.replace(/.*(?=#[^\s]+$)/, '')
       )
-    const wizard = getObjData(NAMESPACE, target)
+    const wizard = getData(NAMESPACE, target)
 
     if (!wizard) {
       return
     }
 
-    const method = dataset(NAMESPACE, e.target)
+    const method = data(NAMESPACE, e.target)
 
     if (/^(back|next|first|finish|reset)$/.test(method)) {
       wizard[method]()

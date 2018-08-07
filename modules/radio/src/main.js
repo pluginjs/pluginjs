@@ -5,8 +5,8 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   append,
   parseHTML,
-  setObjData,
-  getObjData,
+  setData,
+  getData,
   unwrap,
   wrap,
   prepend
@@ -59,7 +59,7 @@ class Radio extends Component {
     }
 
     this.bind()
-    setObjData(NAMESPACE, this, this.$element)
+    setData(NAMESPACE, this, this.$element)
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -113,7 +113,7 @@ class Radio extends Component {
       this.check()
     } else {
       this.$group.map((item, i) => { /* eslint-disable-line */
-        const api = getObjData(NAMESPACE, this.$element)
+        const api = getData(NAMESPACE, this.$element)
         if (api && value === this.value) {
           api.check(true, true)
         }
@@ -142,7 +142,7 @@ class Radio extends Component {
         if (item === that.element) {
            return /* eslint-disable-line */
         }
-        const api = getObjData(NAMESPACE, item)
+        const api = getData(NAMESPACE, item)
         if (api) {
           api.uncheck(true, false)
         }
@@ -167,7 +167,7 @@ class Radio extends Component {
         if (item === that.element) {
          return /* eslint-disable-line */
         }
-        const api = getObjData(NAMESPACE, item)
+        const api = getData(NAMESPACE, item)
         if (api) {
           api.update()
         }

@@ -3,7 +3,7 @@ import { isArray } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { queryAll, setObjData, getObjData, children } from '@pluginjs/dom'
+import { queryAll, setData, getData, children } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -58,7 +58,7 @@ export default class Tree extends Component {
         ? this.element
         : queryAll('ul', this.element)[0]
 
-    this.root = getObjData('node', root)
+    this.root = getData('node', root)
 
     if (this.options.multiSelect) {
       this.selected = []
@@ -264,7 +264,7 @@ export default class Tree extends Component {
   click(e) {
     const target = e.target
     const nodeEl = target.closest('li')
-    const node = getObjData('node', nodeEl)
+    const node = getData('node', nodeEl)
 
     if (target.classList.contains(this.classes.TOGGLER)) {
       node.toggleOpen()
@@ -274,7 +274,7 @@ export default class Tree extends Component {
   }
 
   attach(node, isRoot, api) {
-    setObjData('node', new Node(node, isRoot, api), node)
+    setData('node', new Node(node, isRoot, api), node)
     let children
     if (isRoot) {
       children = node
@@ -334,8 +334,7 @@ export default class Tree extends Component {
     }
 
     try {
-      const iterate = (node, index) =>
-        getObjData('node', node.subelements[index])
+      const iterate = (node, index) => getData('node', node.subelements[index])
 
       let node = this.root
       for (let i = 0; i < position.length; i++) {
@@ -367,7 +366,7 @@ export default class Tree extends Component {
     switch (typeof this.options.autoOpen) {
       case 'boolean': {
         queryAll('li', root).forEach(item => {
-          const node = getObjData('node', item)
+          const node = getData('node', item)
           if (this.options.autoOpen === true && node.type === 'branch') {
             node.open()
           }
@@ -376,7 +375,7 @@ export default class Tree extends Component {
       }
       case 'number': {
         queryAll('li', root).forEach(item => {
-          const node = getObjData('node', item)
+          const node = getData('node', item)
           if (node.type === 'branch' && node.level <= this.options.autoOpen) {
             node.open()
           }

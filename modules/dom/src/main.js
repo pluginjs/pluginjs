@@ -1,7 +1,6 @@
-import { curry, compose, curryWith } from '@pluginjs/utils'
-import { isString, isElement } from '@pluginjs/is'
+import { curry, compose, curryWith, camelize } from '@pluginjs/utils'
+import { isString, isElement, isEmptyObject } from '@pluginjs/is'
 
-// 解析 HTML/SVG/XML 字符串
 export const parseHTML = (...args) => {
   const htmlString = Array.isArray(args[0])
     ? args[0].reduce((result, str, index) => result + args[index] + str)
@@ -148,39 +147,77 @@ export const closest = (selector, el) => {
 // ---------
 // data
 // ----------
-const objDataName = 'objData'
-
-export const setObjData = (name, data, el) => {
-  if (!el[objDataName]) {
-    el[objDataName] = {}
-  }
-
-  el[objDataName][name] = data
-  return el
+const dataStore = '__pluginjsData'
+const getCachedData = el => {
+  return (el[dataStore] = el[dataStore] || {})
 }
 
-export const getObjData = (name, el) => {
-  if (!el[objDataName]) {
-    return false
+export const getData = (key, el) => {
+  if (isElement(key) && typeof el === 'undefined') {
+    el = key
+    key = undefined
   }
 
-  return el[objDataName][name]
-}
+  const cache = getCachedData(el)
 
-export const dataset = curry((args, el) => {
-  if (typeof args === 'string') {
-    return el.dataset[args]
+  if (key) {
+    if (!(key in cache)) {
+      let value = el.dataset[key] || el.dataset[camelize(key, false)]
+
+      if (value !== undefined) {
+        try {
+          value = JSON.parse(value)
+        } catch (e) {} // eslint-disable-line
+
+        cache[key] = value
+      }
+    }
+
+    return cache[key]
   }
-  Object.entries(args).forEach(([k, v]) => {
-    el.dataset[k] = v
-  })
-  return el
-})
 
-export const clearData = el => {
-  Object.keys(el).map(name => el.removeAttribute(`data-${name}`))
-  return el
+  return cache
 }
+
+export const setData = (key, value, el) => {
+  getCachedData(el)[key] = value
+}
+
+export const removeData = (key, el) => {
+  if (isElement(key) && typeof el === 'undefined') {
+    el = key
+    key = undefined
+  }
+
+  if (typeof key === 'undefined') {
+    delete el[dataStore]
+  } else {
+    delete getCachedData(el)[key]
+  }
+}
+
+export const hasData = el => {
+  return dataStore in el ? !isEmptyObject(el[dataStore]) : false
+}
+
+export const data = curryWith((key, value, el) => {
+  if (isElement(value) && typeof el === 'undefined') {
+    el = value
+    value = undefined
+  }
+
+  if (typeof key === 'string') {
+    if (typeof value !== 'undefined') {
+      setData(key, value, el)
+    } else {
+      return getData(key, el)
+    }
+  } else {
+    Object.entries(key).forEach(([k, v]) => setData(k, v, el))
+  }
+
+  return el
+}, isElement)
 
 // -----------
 // attributes

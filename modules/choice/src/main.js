@@ -14,8 +14,8 @@ import {
   insertAfter,
   insertBefore,
   nextWith,
-  getObjData,
-  setObjData
+  getData,
+  setData
 } from '@pluginjs/dom'
 import {
   contentWidth,
@@ -152,7 +152,7 @@ class Choice extends Component {
         $item.setAttribute('disabled', 'disabled')
       }
 
-      setObjData('item', item, $item)
+      setData('item', item, $item)
 
       this.$wrap.append($item)
     })
@@ -198,7 +198,7 @@ class Choice extends Component {
         ? target
         : closest('[data-value]', target)
       const value = $item.dataset.value
-      const data = getObjData('item', $item)
+      const data = getData('item', $item)
       if (data.disabled) {
         return false
       }
@@ -472,7 +472,7 @@ class Choice extends Component {
     }
 
     if (trigger === true) {
-      this.trigger(EVENTS.SELECT, value, getObjData('item', $item))
+      this.trigger(EVENTS.SELECT, value, getData('item', $item))
     }
   }
 
@@ -514,7 +514,7 @@ class Choice extends Component {
     }
 
     if (trigger === true) {
-      this.trigger(EVENTS.UNSELECT, value, getObjData('item', $item))
+      this.trigger(EVENTS.UNSELECT, value, getData('item', $item))
     }
   }
 

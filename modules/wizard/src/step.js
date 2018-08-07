@@ -1,14 +1,7 @@
 import { transition, transitionEndEvent } from '@pluginjs/feature'
 import { isString, isArray, isObject, isFunction } from '@pluginjs/is'
 import { bindEventOnce, trigger } from '@pluginjs/events'
-import {
-  dataset,
-  attr,
-  html,
-  each,
-  setObjData,
-  getObjData
-} from '@pluginjs/dom'
+import { data, attr, html, each, setData, getData } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import axios from 'axios'
 
@@ -47,7 +40,7 @@ class Step {
     }
 
     this.index = index
-    setObjData('wizard-index', index, this.$element)
+    setData('wizard-index', index, this.$element)
 
     this.pane = this.getPaneFromTarget()
     if (!this.pane) {
@@ -64,7 +57,7 @@ class Step {
   }
 
   getPaneFromTarget() {
-    let selector = getObjData('target', this.$element)
+    let selector = getData('target', this.$element)
 
     if (!selector) {
       selector = attr('href', this.$element)
@@ -293,14 +286,14 @@ class Step {
   }
 
   setValidatorFromData() {
-    const validator = dataset('validator', this.pane)
+    const validator = data('validator', this.pane)
     if (validator && isFunction(window[validator])) {
       this.validator = window[validator]
     }
   }
 
   setLoaderFromData() {
-    const loader = getObjData('loader', this.pane)
+    const loader = getData('loader', this.pane)
     // const loader = this.pane.data('loader')
 
     if (loader) {
@@ -308,12 +301,12 @@ class Step {
         this.loader = window[loader]
       }
     } else {
-      const url = getObjData('loader-url', this.pane)
+      const url = getData('loader-url', this.pane)
       // const url = this.pane.data('loader-url')
       if (url) {
         this.loader = {
           url,
-          settings: dataset('settings', this.pane) || {}
+          settings: data('settings', this.pane) || {}
           // settings: this.pane.data('settings') || {}
         }
       }
