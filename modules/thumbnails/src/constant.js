@@ -50,4 +50,4 @@ const defaults = {
 
 const dependencies = ['anime']
 
-export { classes, defaults, events, methods, namespace, dependencies, info }
+export { classes, defaults, events, methods, namespace, dependencies }

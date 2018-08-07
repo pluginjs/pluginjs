@@ -38,10 +38,24 @@ const defaults = {
       )
     },
     image() {
-      return '<img class="{classes.IMAGE} {classes.LOADED}" src="{data.src}">'
+      return '<img class="{classes.IMAGE} {classes.CONTENT}">'
     },
     video() {
-      return '<div class="{classes.VIDEO} {classes.LOADED}"></div>'
+      return (
+        '<div class="{classes.VIDEOWRAP} {classes.CONTENT}">' +
+        '<img class="{classes.IMAGE}">' +
+        '<div class="{classes.VIDEO}"></div>' +
+        '</div>'
+      )
+    },
+    iframe() {
+      return '<iframe class="{classes.IFRAME} {classes.CONTENT}" src="//about:blank" frameborder="0" allowfullscreen></iframe>'
+    },
+    map() {
+      return '<iframe class="{classes.MAP} {classes.CONTENT}" src="//about:blank" frameborder="0" allowfullscreen></iframe>'
+    },
+    inline() {
+      return '<div class="{classes.INLINE} {classes.CONTENT}"></div>'
     },
     thumbs() {
       return '<div class="{classes.THUMBS}"></div>'
@@ -53,6 +67,7 @@ const defaults = {
       return (
         '<div class="{classes.THUMB}">' +
         '<div class="{classes.LOADED}">' +
+        '<img class="{classes.IMAGE}">' +
         '</div>' +
         '</div>'
       )
@@ -70,6 +85,4 @@ const defaults = {
 
 const dependencies = ['slider', 'thumbnails', 'arrows', 'anime', 'hammer']
 
-const info = { version: '0.0.1' }
-
-export { classes, defaults, events, methods, namespace, dependencies, info }
+export { classes, defaults, events, methods, namespace, dependencies }

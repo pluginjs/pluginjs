@@ -26,8 +26,6 @@ import {
 import Arrows from '@pluginjs/arrows'
 import Swipeable from '@pluginjs/swipeable'
 import Card from './card'
-// import Module from './module'
-// import ImageLoader from '@pluginjs/image-loader'
 
 @themeable()
 @styleable(CLASSES)
@@ -283,6 +281,10 @@ class Slider extends Component {
       return
     }
 
+    if (this.current === 0 && !this.options.loop) {
+      return
+    }
+
     const index = this.current === 0 ? this.data.length - 1 : this.current - 1
     this.go(index)
     this.trigger(EVENTS.PREV)
@@ -290,6 +292,10 @@ class Slider extends Component {
 
   next() {
     if (this.is('disable')) {
+      return
+    }
+
+    if (this.current === this.data.length - 1 && !this.options.loop) {
       return
     }
 

@@ -16,7 +16,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -29,14 +28,10 @@ import Thumbnails from '@pluginjs/thumbnails'
 @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, true)
-@register(
-  NAMESPACE,
-  {
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  },
-  INFO
-)
+@register(NAMESPACE, {
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Gallery extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
