@@ -200,7 +200,7 @@ class Gradient {
   }
 
   toStringWithAngle(angle, prefix) {
-    const value = deepMerge(this.value)
+    const value = Object.assign({}, this.value)
     value.angle = GradientString.parseAngle(angle)
 
     if (prefix === true) {
@@ -223,7 +223,7 @@ class Gradient {
   }
 
   static setDefaults(options) {
-    DEFAULTS = deepMerge(DEFAULTS, isPlainObject(options) && options)
+    DEFAULTS = deepMerge({}, DEFAULTS, isPlainObject(options) && options)
   }
 }
 

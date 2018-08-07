@@ -1,4 +1,4 @@
-import ColorStrings from '../../src/colorStrings'
+import ColorStrings from '../src/colorStrings'
 
 function parseString(string, match, parse) {
   const matched = match.exec(string)

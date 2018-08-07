@@ -1,4 +1,4 @@
-import Color from '../../src/main'
+import { Color } from '../src/main'
 
 describe('Color', () => {
   describe('Color()', () => {

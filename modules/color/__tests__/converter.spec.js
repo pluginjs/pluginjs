@@ -1,4 +1,4 @@
-import Converter from '../../src/converter'
+import Converter from '../src/converter'
 
 describe('Converter', () => {
   describe('HSLtoRGB()', () => {

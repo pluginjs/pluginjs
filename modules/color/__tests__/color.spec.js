@@ -1,4 +1,4 @@
-import Color from '../../src/color'
+import Color from '../src/color'
 
 describe('Color', () => {
   const colorForm = {
@@ -75,7 +75,7 @@ describe('Color', () => {
       expect(Color.matchString('HSL(0,100%,50%),')).toEqual(false)
     })
 
-    test('should match rgba', () => {
+    test('should match hsla', () => {
       expect(Color.matchString('H')).toEqual(false)
       expect(Color.matchString('HS')).toEqual(false)
       expect(Color.matchString('HSL')).toEqual(false)

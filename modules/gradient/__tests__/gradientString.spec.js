@@ -1,4 +1,4 @@
-import GradientString from '../../src/gradientString'
+import GradientString from '../src/gradientString'
 
 describe('GradientString', () => {
   describe('matchString()', () => {

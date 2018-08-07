@@ -9,7 +9,7 @@ export default function optionable(defaults = {}, enableDataOption = false) {
 
     if (enableDataOption) {
       plugin.prototype.initOptions = function(defaults = {}, options = {}) {
-        this.options = deepMerge(defaults, options, this.getDataOptions())
+        this.options = deepMerge({}, defaults, options, this.getDataOptions())
       }
 
       plugin.prototype.getDataOptions = function() {
@@ -38,7 +38,7 @@ export default function optionable(defaults = {}, enableDataOption = false) {
       }
     } else {
       plugin.prototype.initOptions = function(defaults = {}, options = {}) {
-        this.options = deepMerge(defaults, options)
+        this.options = deepMerge({}, defaults, options)
       }
     }
   }

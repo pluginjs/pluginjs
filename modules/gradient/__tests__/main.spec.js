@@ -1,5 +1,4 @@
-import Gradient from '../../src/main'
-import '@pluginjs/color'
+import { Gradient } from '../src/main'
 
 describe('Gradient', () => {
   describe('Gradient()', () => {
