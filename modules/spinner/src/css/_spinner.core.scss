@@ -46,6 +46,7 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
   //}
   &-focus.#{$spinner} {
     border-color: $color-primary-dark;
+    box-shadow: none;
   }
   &-focus.#{$spinner}:focus {
     border-color: $gray-lighter;
@@ -67,9 +68,8 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
     font-size: $spinner-font-size;
     color: $spinner-color;
     text-align: center;
-    //border-width: 0;
-    //border: none;
     border: $spinner-border-width solid $spinner-border-color;
+    box-shadow: none !important;
     &:hover {
       border-color: $spinner-focus-hover-border-color;
     }

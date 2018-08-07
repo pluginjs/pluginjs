@@ -31,9 +31,9 @@ $units-trigger-width: 2.2 * $spinner-sizer !default; //22px
   input {
     border-radius: 2px !important;
     &:focus {
-      border-color: $spinner-focus-border-color;
+      border-color: $spinner-focus-border-color !important;
       outline: none;
-      box-shadow: none;
+      box-shadow: none !important;
     }
 
     &.pj-units {
