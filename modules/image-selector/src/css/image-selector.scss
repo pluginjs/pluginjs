@@ -47,6 +47,7 @@ $imageSelector-item-bg-color: $gray-lightest !default;
   min-height: $imageSelector-height !important;
   font-size: $imageSelector-font-size;
   color: $imageSelector-color;
+  background-color: #fff;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAABaAgMAAAAObnp8AAAACVBMVEVHcEyZmZnl5eVsHKZCAAAAAXRSTlMAQObYZgAAADBJREFUSMdjWIUXMIxKj0pTTXoQg1AQYBAFkQ5cmC4flR6VHpUelR6VHpUelR5y0gD0WUbiAs3tSQAAAABJRU5ErkJggg==");
   background-repeat: no-repeat;
   background-position: center;
@@ -208,10 +209,17 @@ $imageSelector-item-bg-color: $gray-lightest !default;
   .#{$imageSelector} {
     &:hover {
       cursor: not-allowed;
-
       .#{$imageSelector}-change {
         opacity: 0;
       }
     }
+    &:active {
+      background-color:#fff
+     }
+  }
+  .pj-imageSelector-change {
+    &:active {
+      background-color:#fff
+     }
   }
 }
