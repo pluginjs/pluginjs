@@ -33,7 +33,7 @@ export const findAll = curry((selector, parent) =>
 
 export const has = (selector, parent) => {
   if (isString(selector)) {
-    return Boolean(findAll(selector, parent).length)
+    return Boolean(queryAll(selector, parent).length)
   }
   return parent.contains(selector)
 }
@@ -182,14 +182,14 @@ export const clearData = el => {
   return el
 }
 
-// ----------
+// -----------
 // attributes
 // -----------
 export const attr = curry((args, el) => {
   if (typeof args === 'string') {
     return el.getAttribute(args)
   }
-  Object.entries(args).forEach(([k, v]) => el.setAttribute(k, v))
+  Object.entries(args).forEach(([key, value]) => el.setAttribute(key, value))
   return el
 })
 
@@ -198,7 +198,38 @@ export const removeAttr = curry((name, el) => {
   return el
 })
 
-// -------------
+const propMap = {
+  tabindex: 'tabIndex',
+  readonly: 'readOnly',
+  for: 'htmlFor',
+  class: 'className',
+  maxlength: 'maxLength',
+  cellspacing: 'cellSpacing',
+  cellpadding: 'cellPadding',
+  rowspan: 'rowSpan',
+  colspan: 'colSpan',
+  usemap: 'useMap',
+  frameborder: 'frameBorder',
+  contenteditable: 'contentEditable'
+}
+
+export const prop = curry((props, el) => {
+  if (typeof props === 'string') {
+    return el[propMap[props] || props]
+  }
+  Object.entries(props).forEach(([key, value]) => {
+    el[propMap[key] || key] = value
+  })
+
+  return el
+})
+
+export const removeProp = curry((name, el) => {
+  name = propMap[name] || name
+  delete el[name]
+})
+
+// --------------
 // manipulation
 // --------------
 export const clone = curry(el => el.cloneNode(true))
@@ -349,6 +380,9 @@ export const replace = curry((newContent, el) => {
   return newContent
 })
 
+// -----------
+// animate
+// -----------
 export const fade = curry((type, { duration, callback }, element) => {
   const isIn = type === 'in'
   let opacity = isIn ? 0 : 1

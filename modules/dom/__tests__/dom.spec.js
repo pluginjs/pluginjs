@@ -52,7 +52,7 @@ describe('Dom helper', () => {
     test('has with selector', () => {
       const parent = document.createElement('div')
       dom.append('<div class="foo"></div>', parent)
-      console.info(dom.html(parent))
+
       expect(dom.has('div', parent)).toBeTrue()
     })
 
@@ -236,6 +236,77 @@ describe('Dom helper', () => {
       dom.attr({ foo: 'bar' }, el)
       dom.removeAttr('foo', el)
       expect(el.getAttribute('foo')).toBeNull()
+    })
+  })
+
+  describe('Prop helper', () => {
+    test('prop with id', () => {
+      const el = dom.parseHTML('<div id="foo"></div>')
+
+      expect(dom.prop('id', el)).toBe('foo')
+    })
+
+    test('prop with input props', () => {
+      const el = dom.parseHTML(
+        '<input type="text" tabindex="-1" maxlength="5" readonly class="propTest" />'
+      )
+
+      expect(dom.prop('tabindex', el)).toEqual(-1)
+      expect(dom.prop('maxlength', el)).toEqual(5)
+      expect(dom.prop('readonly', el)).toBeTrue()
+      expect(dom.prop('class', el)).toEqual('propTest')
+    })
+
+    test('prop with table props', () => {
+      const el = dom.parseHTML(`<table cellspacing="5" cellpadding="5">
+  <tr>
+    <td id="td" rowspan="2" colspan="2"></td>
+  </tr>
+</table>`)
+
+      expect(dom.prop('cellspacing', el)).toEqual('5')
+      expect(dom.prop('cellpadding', el)).toEqual('5')
+      const td = dom.find('#td', el)
+      expect(dom.prop('rowspan', td)).toEqual(2)
+      expect(dom.prop('colspan', td)).toEqual(2)
+    })
+
+    // test('prop with contenteditable', () => {
+    //   const el = dom.parseHTML('<div contenteditable="true"></div>')
+    //   expect(dom.prop('contenteditable', el)).toBeTrue()
+    // })
+
+    test('prop with usemap', () => {
+      const parent = dom.parseHTML(
+        '<div><img usemap="#map" /><map name="map"></map></div>'
+      )
+      const el = dom.find('img', parent)
+      expect(dom.prop('usemap', el)).toEqual('#map')
+    })
+
+    test('prop with checked', () => {
+      const el = dom.parseHTML('<input type="checkbox" checked />')
+
+      expect(dom.prop('checked', el)).toBeTrue()
+    })
+
+    test('prop with object values', () => {
+      const el = dom.parseHTML('<input type="checkbox" checked />')
+      dom.prop({ class: 'propTest', checked: false, disabled: true }, el)
+
+      expect(dom.prop('class', el)).toEqual('propTest')
+      expect(dom.prop('checked', el)).toBeFalse()
+      expect(dom.prop('disabled', el)).toBeTrue()
+    })
+
+    test('removeProp', () => {
+      const el = document.createElement('div')
+
+      dom.prop({ hello: 'world' }, el)
+      expect(dom.prop('hello', el)).toBe('world')
+
+      dom.removeProp('hello', el)
+      expect(dom.prop('hello', el)).toBeUndefined()
     })
   })
 
