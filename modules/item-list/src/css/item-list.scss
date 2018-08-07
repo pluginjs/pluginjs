@@ -52,6 +52,7 @@ $clone-margin-right: 0.4 * $itemList-sizer !default; //4px
   line-height: $itemList-height;
   color: #b3b3b3;
   text-align: center;
+  background-color: rgba(#000, 0.05);
   border: 1px dashed #e6e6e6;
   border-radius: $itemList-border-radius;
 
