@@ -14,7 +14,6 @@
   "devDependencies": {
     "babel-core": "*",
     "babel-preset-env": "*",
-    "parcel-bundler": "*",
     "parcel-bundler": "*"
   },
   "license": "GPL-3.0"
