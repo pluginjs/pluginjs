@@ -49,7 +49,8 @@ class Range extends Component {
 
     this.cacheValue = []
     this.$wrap = document.createElement('div')
-    const value = this.element.value[('min', 'max', 'step')].forEach(key => {
+    const value = this.element.value
+    each(['min', 'max', 'step'], key => {
       const val = parseFloat(this.element.getAttribute(key), 10)
       if (!isNaN(val)) {
         metas[key] = val
