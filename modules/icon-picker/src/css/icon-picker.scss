@@ -38,8 +38,8 @@ $iconPicker-controller-bg: $color-white;
   height: $iconPicker-height;
   padding: 0;
   font-size: $iconPicker-font-size;
+  background-color: #fff;
   border: 1px solid $iconPicker-border-color;
-
   .#{$iconPicker}-panel {
     border-radius: $border-radius-base;
   }
@@ -446,5 +446,10 @@ $iconPicker-controller-bg: $color-white;
       transition: all 0.3s;
       transform: translateY(-50%) rotate(180deg);
     }
+  }
+}
+.#{$iconPicker}-disabled {
+  .pj-dropdown-trigger:hover{
+     color: #b3b3b3
   }
 }
