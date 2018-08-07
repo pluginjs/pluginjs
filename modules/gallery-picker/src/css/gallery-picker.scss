@@ -59,8 +59,8 @@ $galleryPicker-expand-control-btn-height: 32px !default;
     justify-content: center;
     font-size: 14px;
     font-weight: 300;
+    background-color: #fff;
     border-style: $galleryPicker-border-style;
-
     &:hover {
       color: $gray-darkest;
       cursor: pointer;
