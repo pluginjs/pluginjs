@@ -4,12 +4,14 @@
 // Vars
 // =====================
 $collapse: "pj-collapse";
+$collapse-font-family: $font-family-base !default;
 $collapse-gutter-width: 1px !default;
 $collapse-padding: 1rem !default;
 
 // default
 // =====================
 .#{$collapse} {
+  font-family: $collapse-font-family;
   border-color: inherit;
   border-style: solid;
   border-width: $collapse-gutter-width;

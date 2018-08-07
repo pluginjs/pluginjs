@@ -5,6 +5,7 @@
 // =====================
 $dropdown: "pj-dropdown" !default;
 $dropdown-sizer: $sizer !default;
+$dropdown-font-family: $font-family-base !default;
 
 $dropdown-color: $text-color !default;
 $dropdown-line-height: 3.2 * $dropdown-sizer !default; //34px
@@ -39,6 +40,7 @@ $dropdown-active-border-color: $gray-border !default;
   position: relative;
   display: inline-block;
   overflow: hidden;
+  font-family: $dropdown-font-family;
   color: $text-color;
   cursor: pointer;
   border-radius: $dropdown-border-radius;

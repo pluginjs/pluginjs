@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $filter: "pj-filter" !default;
+$filter-font-family: $font-family-base !default;
 $filter-color: $gray-darkest !default;
 $filter-font-size: $font-size-sm !default;
 $filter-font-weight: $font-weight-bold !default;
@@ -21,6 +22,7 @@ $dropdown: "pj-dropdown" !default;
   @include clearfix();
 
   position: relative;
+  font-family: $filter-font-family;
   vertical-align: middle;
 
   > button {

@@ -3,10 +3,12 @@
 // Vars
 // =====================
 $headroom: "pj-headroom" !default;
+$headroom-font-family: $font-family-base !default;
 
 // Core
 // =====================
 .#{$headroom} {
+  font-family: $headroom-font-family;
   transition: transform 0.25s ease-in-out;
   will-change: transform;
 }

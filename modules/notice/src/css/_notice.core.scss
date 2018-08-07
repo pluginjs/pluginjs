@@ -4,6 +4,7 @@
 // =====================
 $notice: "pj-notice" !default;
 $notice-font-size: $font-size-sm !default;
+$notice-font-family: $font-family-base !default;
 $notice-color: #fff !default;
 $notice-bg: $gray-darkest !default;
 $notice-border-color: $gray-darker !default;
@@ -29,6 +30,7 @@ $notice-close-color: $notice-link-color !default;
   top: 0;
   left: 0;
   width: 100%;
+  font-family: $notice-font-family;
   background-color: #fff;
   box-shadow: 0 0 10px #d7d7d7;
 

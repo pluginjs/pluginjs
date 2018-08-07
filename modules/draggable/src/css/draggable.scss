@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $draggable: "pj-draggable" !default;
+$draggable-font-family: $font-family-base !default;
 $draggable-bg-color: #0af !default;
 $draggable-hover-bg-color: #fa0 !default;
 
@@ -18,6 +19,7 @@ $draggable-border-radius: 10px !default;
   display: inline-block;
   width: $draggable-width;
   height: $draggable-height;
+  font-family: $draggable-font-family;
   background-color: $draggable-bg-color;
   border-radius: $draggable-border-radius;
 

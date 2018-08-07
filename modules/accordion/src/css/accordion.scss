@@ -41,6 +41,8 @@ $accordion-dropdown-active-color: $color-white !default;
 // default
 // =====================
 .#{$accordion} {
+  font-family: $accordion-font-family;
+  
   &.#{$accordion} {
     // font-size: $accordion-font-size;
     // line-height: $accordion-line-height;
@@ -60,7 +62,6 @@ $accordion-dropdown-active-color: $color-white !default;
       position: relative;
       padding: $accordion-header-spacer-y $accordion-header-spacer-x;
       overflow: hidden;
-      font-family: $accordion-font-family;
       font-weight: $accordion-font-weight;
       line-height: 1;
       color: $accordion-header-color;

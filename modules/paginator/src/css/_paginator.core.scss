@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $paginator: "pj-paginator";
+$paginator-font-family: $font-family-base !default;
 $paginator-font-size: 1rem !default;
 $paginator-font-size-xs: 0.75 * $paginator-font-size !default;
 $paginator-spacer: 1.875 * $paginator-font-size !default;
@@ -35,6 +36,7 @@ $paginator-disabled-border: $gray !default;
 .#{$paginator} {
   // box-shadow: 0 0 10px #d7d7d7;
   padding: 0 $paginator-spacer;
+  font-family: $paginator-font-family;
   font-size: $paginator-font-size-xs;
   // color: #808c9e;
   text-align: center;

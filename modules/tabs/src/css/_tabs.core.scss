@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $tabs: "pj-tabs" !default;
+$tabs-font-family: $font-family-base !default;
 $tabs-dropdown-zindex: $zindex-dropdown !default;
 $tabs-active-color: $color-primary !default;
 $tabs-duration: 0.5s !default;
@@ -10,6 +11,7 @@ $tabs-duration: 0.5s !default;
 // Core
 // =====================
 .#{$tabs} {
+  font-family: $tabs-font-family;
   &-nav {
     position: relative;
     display: flex;

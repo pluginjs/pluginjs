@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $gmap: "pj-gmap" !default;
+$gmap-font-family: $font-family-base !default;
 $gmap-width: 31.25rem !default;
 $gmap-height: 25rem !default;
 
@@ -13,6 +14,7 @@ $gmap-height: 25rem !default;
   width: $gmap-width;
   height: $gmap-height;
   overflow: hidden;
+  font-family: $gmap-font-family;
 
   * {
     max-width: none;

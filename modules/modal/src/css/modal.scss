@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $modal: "pj-modal" !default;
+$modal-font-family: $font-family-base !default;
 $modal-font-size: $font-size-sm !default;
 $modal-title-font-size: 20px !default;
 $modal-width: 480px !default;
@@ -69,6 +70,7 @@ $modal-vertification-borderClor: $gray-border !default;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  font-family: $modal-font-family;
   opacity: 0;
 
   &.#{$modal}-active {

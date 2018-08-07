@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $dot: "pj-dot" !default;
+$dot-font-family: $font-family-base !default;
 $dot-width: 0.5rem !default; //16px !default;
 $dot-height: 0.5rem !default; //16px !default;
 $dot-line-width: 1.375rem !default;
@@ -22,6 +23,7 @@ $dot-disable-color: $gray-lighter !default;
   display: flex;
   padding: 0;
   margin: 0;
+  font-family: $dot-font-family;
   list-style: none;
 }
 

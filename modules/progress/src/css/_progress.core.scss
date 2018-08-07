@@ -4,6 +4,7 @@
 // =====================
 $progress: "pj-progress" !default;
 $progress-bg: $gray !default;
+$progress-font-family: $font-family-base !default;
 $progress-bar-bg: $color-danger-light !default;
 $progress-label-bottom: 0.25rem !default;
 $progress-margin-bottom: 2.5rem !default;
@@ -15,6 +16,7 @@ $progress-border-radius: 1px !default;
   position: relative;
   height: 0.25rem;
   margin-bottom: $progress-margin-bottom;
+  font-family: $progress-font-family;
   background-color: $progress-bg;
   border-radius: $progress-border-radius;
 

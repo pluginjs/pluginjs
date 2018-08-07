@@ -6,6 +6,7 @@ $arrow: "pj-arrow" !default;
 $arrow-space-x: 10px !default;
 $arrow-space-y: 10px !default;
 $arrow-font-size: 24px !default;
+$arrow-font-family: $font-family-base !default;
 
 $arrow-space-lg: 48px !default;
 $arrow-space-sm: 40px !default;
@@ -32,8 +33,9 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
 // =====================
 .#{$arrow}s {
   @include clearfix();
-
+  
   position: relative;
+  font-family: $arrow-font-family;
   opacity: 1;
 
   &.#{$arrow}-hidden {

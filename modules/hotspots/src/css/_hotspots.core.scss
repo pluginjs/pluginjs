@@ -4,6 +4,7 @@
 // =====================
 $hotspot: "pj-hotspot" !default;
 $hotspot-font-size-base: $font-size-lg !default;
+$hotspot-font-family: $font-family-base !default;
 $hotspot-padding: 0.5em !default;
 $hotspot-border-width: 2px !default;
 $hotspot-text-padding-x: 1.5em !default;
@@ -48,6 +49,7 @@ $hotspot-lg-hide-size: 40px !default;
 // =====================
 .#{$hotspot}s {
   position: relative;
+  font-family: $hotspot-font-family;
 
   img {
     z-index: 0;

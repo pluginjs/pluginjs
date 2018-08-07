@@ -3,11 +3,13 @@
 // Vars
 // =====================
 $navToSelect: "pj-navToSelect" !default;
+$navToSelect-font-family: $font-family-base !default;
 
 // Core
 // =====================
 .#{$navToSelect} {
   display: none;
+  font-family: $navToSelect-font-family;
 }
 
 /* Mobile device */

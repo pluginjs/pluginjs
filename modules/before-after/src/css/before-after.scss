@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $beforeAfter: "pj-beforeAfter" !default;
+$beforeAfter-font-family: $font-family-base !default;
 
 $beforeAfter-label-gap: 1rem !default;
 $beforeAfter-label-font-size: $font-size-lg !default;
@@ -29,6 +30,7 @@ $beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color !d
   z-index: 0;
   display: inline-block;
   overflow: hidden;
+  font-family: $beforeAfter-font-family;
   user-select: none;
 
   img {

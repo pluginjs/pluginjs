@@ -4,6 +4,7 @@
 // =====================
 $tooltip: "pj-tooltip" !default;
 $tooltip-zindex: $zindex-tooltip !default;
+$tooltip-font-family: $font-family-base !default;
 $tooltip-font-size: $font-size-sm !default;
 $tooltip-max-width: 14 * $tooltip-font-size !default;
 $tooltip-color: $color-white !default;
@@ -53,6 +54,7 @@ $tooltip-btn-padding-x: 1.94 * $tooltip-font-size !default;
   position: absolute;
   z-index: $tooltip-zindex;
   display: block;
+  font-family: $tooltip-font-family;
   font-size: $tooltip-font-size;
   // Allow breaking very long words so they don't overflow the tooltip's bounds
   word-wrap: break-word;

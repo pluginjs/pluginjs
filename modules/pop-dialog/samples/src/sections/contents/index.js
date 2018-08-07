@@ -11,10 +11,10 @@ const iframeElement = query('[data-toggle="pop-dialog-iframe"]', root)
 
 popDialog.of(tableElement, {
   content() {
-    return `<table class="table">
+    return `<table class="popover-table popover-table-bordered">
     <thead>
       <tr>
-        <th>#</th>
+        <th>Rank</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>User Name</th>

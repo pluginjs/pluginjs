@@ -6,6 +6,13 @@
 $popover-position-grid-margin-x: 100px !default;
 $popover-position-cell-a-margin-y: 20px !default;
 
+$popover-simple-spacer-x: 10px !default;
+$popover-simple-spacer-y: 10px !default;
+$popover-simple-title-spacer: $popover-simple-spacer-y $popover-simple-spacer-x
+0 $popover-simple-spacer-x !default;
+$popover-simple-content-spacer: 0 $popover-simple-spacer-x
+$popover-simple-spacer-y !default;
+
 $popover-dark-color: #fff !default;
 $popover-dark-bg: $gray-darker !default;
 $popover-dark-border-color: fade-in($popover-dark-bg, 0.1) !default;
@@ -16,6 +23,12 @@ $popover-dark-arrow-outer-color: fade-in(
   0.05
 ) !default;
 $popover-dark-title-color: $popover-dark-color !default;
+
+//table
+$popover-table-font-size: 9px !default;
+$popover-table-thead-bgcolor: $gray-lighter !default;
+$popover-table-padding-y: 0.4* $popover-font-size !default;
+$popover-table-padding-x: 0.6* $popover-font-size !default;
 
 .#{$popover}--simple {
   .#{$popover}-content {
@@ -75,6 +88,31 @@ $popover-dark-title-color: $popover-dark-color !default;
 
     &::after {
       border-left-color: $popover-dark-arrow-color;
+    }
+  }
+}
+
+//table
+.popover-table {
+  font-size: $popover-table-font-size;
+  border-spacing: unset;
+
+  thead {
+    background-color: $popover-table-thead-bgcolor;
+  }
+
+  &-bordered {
+    th {
+      border-bottom: 2px solid $gray-border;
+    }
+
+    td {
+      border-bottom: 1px solid $gray-border;
+    }
+
+    th,
+    td {
+      padding: $popover-table-padding-y $popover-table-padding-x;
     }
   }
 }
