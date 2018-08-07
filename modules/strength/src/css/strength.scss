@@ -11,6 +11,7 @@ $strength: "pj-strength" !default;
   &-input {
     width: 205px;
     padding: 4px 35px 4px 15px !important;
+    margin: 0;
     outline: none;
   }
   &-box {
@@ -55,6 +56,7 @@ $strength: "pj-strength" !default;
       line-height: 18px;
       color: transparent;
       text-align: center;
+      background-color: $color-white;
     }
     .#{$strength}-check::before {
       position: relative;
