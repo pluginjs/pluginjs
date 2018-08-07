@@ -2,7 +2,6 @@
 import '@pluginjs/icons/dist/plugin-icons.css'
 // import radio
 import 'font-awesome/css/font-awesome.min.css'
-
 // import sections
 import './sections/js-inline/index.js'
 import './sections/js-icon/index.js'
