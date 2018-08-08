@@ -21,9 +21,9 @@ $units-disabled-opacity: 0.4 !default;
   // &:hover .#{$units}-input {
   //   border-color: $gray-light;
   // }
-  & input {
-    padding-right: 2.5 * $units-sizer; //25px;
-  }
+  // & input {
+  //   padding-right: 2.5 * $units-sizer; //25px;
+  // }
 }
 .#{$units} {
   display: none !important;
@@ -51,8 +51,8 @@ $units-disabled-opacity: 0.4 !default;
     height: $units-height;
     padding: 0.6 * $units-sizer 0.8 * $units-sizer !important; //6px 8px
     padding-right: 30px !important;
-    margin: 0;
-    line-height: 1;
+    // margin: 0;
+    // line-height: 1;
     border-radius: $border-radius-base !important;
   }
   &-trigger {

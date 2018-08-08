@@ -170,7 +170,7 @@ $select-active-border-color: $border-color-active !default;
   }
   &-trigger {
     z-index: 1001;
-    width: $select-width;
+    // width: $select-width;
 
     .pj-dropdown-icon {
       position: absolute;

@@ -21,20 +21,20 @@ $units-trigger-font-size: $font-size-base !default;
 // =====================
 .#{$units} {
   &-input {
-    padding: 0;
-    padding-right: $units-trigger-width;
-    font-size: $units-font-size;
-    border-color: $units-border-color;
+    // padding: 0;
+    // padding-right: $units-trigger-width;
+    // font-size: $units-font-size;
+    // border-color: $units-border-color;
     // border-radius: $units-border-radius !important;
 
-    &:hover {
-      border-color: $units-hover-color;
-    }
+    // &:hover {
+    //   border-color: $units-hover-color;
+    // }
 
-    &:focus {
-      border-color: $units-active-color;
-      outline: none;
-    }
+    // &:focus {
+    //   border-color: $units-active-color;
+    //   outline: none;
+    // }
 
     .#{$units}-trigger {     
       font-size: $units-trigger-font-size;

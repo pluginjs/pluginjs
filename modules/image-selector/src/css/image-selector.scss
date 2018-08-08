@@ -5,14 +5,13 @@
 $imageSelector: "pj-imageSelector" !default;
 $dropdown: "pj-dropdown" !default;
 $imageSelector-sizer: $sizer !default;
-
 $imageSelector-width: 17 * $imageSelector-sizer !default; //170px
 $imageSelector-height: 11 * $imageSelector-sizer !default; //110px
 $imageSelector-border-width: 1px !default;
 $imageSelector-border-style: solid !default;
 $imageSelector-border-color: $gray-border !default;
 $imageSelector-border: $imageSelector-border-width $imageSelector-border-style
-  $imageSelector-border-color !default;
+$imageSelector-border-color !default;
 $imageSelector-border-radius: $border-radius-base !default;
 $imageSelector-color: $text-color !default;
 $imageSelector-active-color: $color-primary !default;
@@ -48,7 +47,7 @@ $imageSelector-item-bg-color: $gray-lightest !default;
   font-size: $imageSelector-font-size;
   color: $imageSelector-color;
   background-color: #fff;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAABaAgMAAAAObnp8AAAACVBMVEVHcEyZmZnl5eVsHKZCAAAAAXRSTlMAQObYZgAAADBJREFUSMdjWIUXMIxKj0pTTXoQg1AQYBAFkQ5cmC4flR6VHpUelR6VHpUelR5y0gD0WUbiAs3tSQAAAABJRU5ErkJggg==");
+  // background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAABaAgMAAAAObnp8AAAACVBMVEVHcEyZmZnl5eVsHKZCAAAAAXRSTlMAQObYZgAAADBJREFUSMdjWIUXMIxKj0pTTXoQg1AQYBAFkQ5cmC4flR6VHpUelR6VHpUelR5y0gD0WUbiAs3tSQAAAABJRU5ErkJggg==");
   background-repeat: no-repeat;
   background-position: center;
   border: 1px solid $imageSelector-border-color;
@@ -217,7 +216,7 @@ $imageSelector-item-bg-color: $gray-lightest !default;
       background-color:#fff
      }
   }
-  .pj-imageSelector-change {
+  .#{$imageSelector}-change {
     &:active {
       background-color:#fff
      }

@@ -83,9 +83,8 @@ $dropdown-item: "pj-dropdown-item" !default;
     }
   }
 }
-
 #tips-range {
-  .#{$range}-tip {
+    .#{$range}-tip {
     display: block;
   }
 }

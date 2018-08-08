@@ -33,9 +33,9 @@ $toggle-handle-bg: $color-red !default;
   &-inner {
     position: relative;
     display: table;
-    width: calc(200% - #{$toggle-handle-width});
+    // width: calc(200% - #{$toggle-handle-width});
     height: 100%;
-    margin-left: 0;
+    // margin-left: 0;
   }
 
   &-on,
@@ -53,10 +53,10 @@ $toggle-handle-bg: $color-red !default;
   &-handle {
     position: absolute;
     top: 0;
-    left: calc(50% - #{$toggle-handle-width} / 2);
-    width: $toggle-handle-width;
-    height: 100%;
-    background-color: $toggle-handle-bg;
+    // left: calc(50% - #{$toggle-handle-width} / 2);
+    // width: $toggle-handle-width;
+    // height: 100%;
+    // background-color: $toggle-handle-bg;
   }
 
   &-disabled {
