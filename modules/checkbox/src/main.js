@@ -35,12 +35,12 @@ const removeParentClass = curry((className, el) =>
     parent
   )(el)
 )
-const addParentClass = curry((className, el) =>
-  compose(
-    addClass(className),
-    parent
-  )(el)
-)
+// const addParentClass = curry((className, el) =>
+//   compose(
+//     addClass(className),
+//     parent
+//   )(el)
+// )
 
 @themeable()
 @styleable(CLASSES)
@@ -246,7 +246,7 @@ class Checkbox extends Component {
       //   addParentClass(this.classes.DISABLED, element)
       //   element.disabled = true
       // })
-      addParentClass(this.classes.DISABLED, this.$element)
+      addClass(this.classes.DISABLED, this.$element.parent)
       this.$element.disabled = true
       // addClass(this.classes.DISABLED, this.$wrap);
       // this.$element.prop('disabled', true);
