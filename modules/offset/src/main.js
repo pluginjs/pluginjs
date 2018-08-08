@@ -208,7 +208,7 @@ class Offset extends Component {
           if (that.is('disabled')) {
             return
           }
-          const $this = parentWith(hasClass(this.classes.VIEW), e.target)
+          const $this = closest(`.${this.classes.VIEW}`, e.target)
           const $el = query(
             `.${that.classes.NAMESPACE}-${$this.dataset.value}`,
             this.$wrap
@@ -256,7 +256,7 @@ class Offset extends Component {
           if (that.is('disabled')) {
             return
           }
-          const $this = parentWith(hasClass(this.classes.CONNECT), e.target)
+          const $this = closest(`.${this.classes.CONNECT}`, e.target)
 
           if (that.is('connect')) {
             removeClass(that.classes.CONNECTACTIVE, $this)
@@ -404,7 +404,8 @@ class Offset extends Component {
       // const unit = $this.asUnits('getUnit')
       const unit = getData('units', $this).getUnit()
       const val = {}
-      if (!isNumber(parseInt(value, 2))) {
+      // console.log(value)
+      if (isNumber(value)) {
         value = 0
       }
 
@@ -451,7 +452,6 @@ class Offset extends Component {
     } else {
       value = inputValue - position
     }
-
     $this.value = value
 
     query(`[data-value="${id}"]`, this.$wrap).innerHTML = `${value}${getData(
@@ -472,7 +472,7 @@ class Offset extends Component {
         return /* eslint-disable-line */
       }
       if (info && info.value === 0) {
-        // $view.innerHTML = 0
+        $view.innerHTML = 0
         return /* eslint-disable-line */
       }
 
