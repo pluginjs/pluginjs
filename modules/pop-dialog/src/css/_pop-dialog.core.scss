@@ -8,55 +8,43 @@ $popover-dialog-min-width: 14 * $popover-dialog-font-size !default;
 $popover-dialog-max-width: 20.42 * $popover-dialog-font-size !default;
 
 $popover-border-color: $border-color !default;
-$popover-dark-button-color: $gray-dark !default;
+$popover-buttons-margin-bottom: 1.6 * $popover-dialog-font-size !default;
 $popover-button-primary-color: $btn-color-primary !default;
 $popover-button-success-color: $color-success !default;
 $popover-button-info-color: $color-info !default;
 $popover-button-warning-color: $color-warning !default;
 $popover-button-danger-color: $color-danger !default;
-$popover-button-spacer: 5px 0 6px !default;
+$popover-button-spacer: 3px 15px !default;
 $popover-button-border-color: $border-color !default;
 $popover-border-radius: $border-radius-base !default;
 $popover-button-hover-bg: rgba(0, 0, 0, 0.02) !default;
 $popover-button-active-bg: rgba(0, 0, 0, 0.1) !default;
+$popover-button-margin-left: 1.3 * $popover-dialog-font-size !default;
 
 // Core
 // =====================
 .#{$popover}-dialog {
   min-width: $popover-dialog-min-width;
   max-width: $popover-dialog-max-width;
-
-  &.pj-tether-element-attached-bottom.pj-tether-target-attached-top {
-    &::before,
-    &::after {
-      border-top-color: transparent;
-    }
-  }
-
+  text-align: center;
 }
 
 .#{$popover}-buttons {
   display: flex;
-  width: 100%;
-  box-shadow: 0 -1px 0 $popover-button-border-color;
+  justify-content: center;
+  margin-bottom: $popover-buttons-margin-bottom;
 }
-
 // Button
 .#{$popover}-button {
   display: inline-block;
-  width: 100%;
+  // width: 100%;
   padding: $popover-button-spacer;
   margin: 0;
-  color: $popover-dark-button-color;
   text-align: center;
   text-decoration: none;
   user-select: none;
   background: #fff;
-  border: 0;
   outline: 0;
-  box-shadow: inset 1px 0 0 $popover-button-border-color;
-  appearance: none;
-  // -webkit-appearance: none;
   flex-shrink: 1;
 
   &[data-color="primary"] {
@@ -89,11 +77,16 @@ $popover-button-active-bg: rgba(0, 0, 0, 0.1) !default;
   }
 
   &:first-child {
-    border-radius: 0 0 0 $popover-border-radius;
+    // margin-right: 20px;
+    border-radius: $popover-border-radius;
     box-shadow: none;
+
+  }
+  & + button {
+    margin-left: $popover-button-margin-left;
   }
 
   &:last-child {
-    border-radius: 0 0 $popover-border-radius;
+    border-radius: $popover-border-radius;
   }
 }

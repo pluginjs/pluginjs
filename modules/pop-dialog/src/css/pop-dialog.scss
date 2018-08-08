@@ -3,27 +3,30 @@
 
 // Vars
 // =====================
-$popover-button-bg: rgba(0, 0, 0, 0.05) !default;
 $popover-dark-button-border-color: rgba(255, 255, 255, 0.04) !default;
 $popover-dark-button-bg: rgba(255, 255, 255, 0.05) !default;
 $popover-dark-button-hover-bg: rgba(255, 255, 255, 0.07) !default;
 $popover-dark-button-active-bg: rgba(255, 255, 255, 0.02) !default;
 
 //base style vars
-$popover-position-grid-margin-x: 100px !default;
 $popover-position-cell-a-padding-y: 0.9rem !default;
 $popover-position-cell-a-padding-x: 2rem !default;
-$popover-position-cell-a-margin-y: 20px !default;
 
-.#{$popover}--simple {
-  .#{$popover}-button {
-    color: $popover-dark-button-color;
-    background: $popover-button-bg;
+//base style
+.position-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 $popover-position-grid-margin-x;
+}
 
-    &:not(:disabled):hover {
-      background-color: $popover-button-hover-bg;
-    }
-  }
+.position-cell {
+  flex: 1 33.33%;
+}
+
+.position-cell a {
+  display: inline-block;
+  padding: $popover-position-cell-a-padding-y $popover-position-cell-a-padding-x;
+  margin-top: $popover-position-cell-a-margin-y;
 }
 
 // dark skin

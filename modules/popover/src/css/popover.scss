@@ -1,7 +1,6 @@
 @import "@pluginjs/styles/variables.scss";
 @import "popover.core";
 
-
 //base style vars
 $popover-position-grid-margin-x: 100px !default;
 $popover-position-cell-a-margin-y: 20px !default;
@@ -13,7 +12,7 @@ $popover-simple-title-spacer: $popover-simple-spacer-y $popover-simple-spacer-x
 $popover-simple-content-spacer: 0 $popover-simple-spacer-x
 $popover-simple-spacer-y !default;
 
-$popover-dark-color: #fff !default;
+$popover-dark-color: $color-white !default;
 $popover-dark-bg: $gray-darker !default;
 $popover-dark-border-color: fade-in($popover-dark-bg, 0.1) !default;
 $popover-dark-box-shadow: $box-shadow-base !default;
