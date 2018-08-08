@@ -1,8 +1,11 @@
-import Lazyload from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Lazyload from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import { parseHTML } from '@pluginjs/dom'
+import 'intersection-observer'
 
-const testStr =
+const html =
   '<img class="img-shell" lazyload data-src="http://oqcgupxln.bkt.clouddn.com/61295983_p0.png?imageView2/1/w/400/h/400" alt="" />'
+
 describe('Lazyload', () => {
   describe('Lazyload()', () => {
     test('should have Lazyload', () => {
@@ -30,97 +33,86 @@ describe('Lazyload', () => {
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
+      const element = parseHTML(html)
       const lazyload = new Lazyload(element)
 
       expect(lazyload.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const container = document.createElement('div')
-      container.innerHTML = testStr
-      const $element = $(container).find('[lazyload]')
-
-      expect($element.asLazyload()).toEqual($element)
-
-      const api = $element.data('lazyload')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asLazyload()
-      expect($element.asLazyload('bind')).toBeNil()
+      const element = parseHTML(html)
+      const lazyload = new Lazyload(element)
+
+      expect(lazyload.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asLazyload()
-      $element.asLazyload('destroy')
-      // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      const element = parseHTML(html)
+      const lazyload = new Lazyload(element)
+
+      expect(lazyload.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let $element
+    let element
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      element = parseHTML(html)
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('lazyload:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      element.addEventListener('lazyload:ready', () => {
         called++
       })
 
-      $element.asLazyload()
+      api = Lazyload.of(element)
+
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asLazyload()
-      api = $element.data('lazyload')
+      element = parseHTML(html)
+      api = Lazyload.of(element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('lazyload:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      element.addEventListener('lazyload:destroy', () => {
         called++
       })
 
-      $element.asLazyload('destroy')
+      api.destroy()
 
+      expect(api.is('initialized')).toBeFalse()
       expect(called).toEqual(1)
     })
   })
 
   describe('enable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asLazyload()
-      api = $element.data('lazyload')
+      element = parseHTML(html)
+      api = Lazyload.of(element)
     })
 
     test('should enable the plugin', () => {
-      $element.asLazyload('disable')
-      $element.asLazyload('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -128,27 +120,27 @@ describe('Lazyload', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('lazyload:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      element.addEventListener('lazyload:enable', () => {
         called++
       })
 
-      $element.asLazyload('enable')
+      api.enable()
+      expect(api.is('disabled')).toBeFalse()
       expect(called).toEqual(1)
     })
   })
 
   describe('disable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asLazyload()
-      api = $element.data('lazyload')
+      element = parseHTML(html)
+      api = Lazyload.of(element)
     })
 
     test('should disable the plugin', () => {
-      $element.asLazyload('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -156,12 +148,13 @@ describe('Lazyload', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('lazyload:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      element.addEventListener('lazyload:disable', () => {
         called++
       })
 
-      $element.asLazyload('disable')
+      api.disable()
+
+      expect(api.is('disabled')).toBeTrue()
       expect(called).toEqual(1)
     })
   })

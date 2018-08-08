@@ -35,14 +35,15 @@
   },
   "dependencies": {
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
     "babel-jest": "*",
+    "intersection-observer": "^0.5.0",
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",

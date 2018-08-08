@@ -56,9 +56,12 @@ class Lazyload extends Component {
       const setAttr = curry((type, src) => this.element.setAttribute(type, src))
       const src = isSrcset ? this.srcset : this.src
       const srcType = isSrcset ? 'srcset' : 'src'
-      const getMapper = curry(
-        (isImg, src) => (isImg ? setAttr(srcType, src) : setBackground(src))
-      )
+      const getMapper = curry((isImg, src) => {
+        if (isImg) {
+          return setAttr(srcType, src)
+        }
+        return setBackground(src)
+      })
       const mapper = getMapper(isImg)
       mapper(src)
     }

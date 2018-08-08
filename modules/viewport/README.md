@@ -19,6 +19,21 @@ new Viewport(el, options)
 - eventMapper
 - isVisible
 
+## Tip
+
+JSDom do not support Intersection Observer, please require the [polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill).
+
+Usage
+
+```sh
+yarn workspace xxx add intersection-observer -D
+```
+
+```javascript
+// in xxx.spec.js
+import 'intersection-observer'
+```
+
 ## Browser support
 
 Tested on all major browsers.
