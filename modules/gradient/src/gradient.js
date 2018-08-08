@@ -47,7 +47,7 @@ class Gradient {
     if (typeof value === 'undefined') {
       return this.value.angle
     }
-    this.value.angle = GradientString.parseAngle(value)
+    this.value.angle = parseInt(GradientString.parseAngle(value), 10)
     return this
   }
 
@@ -94,7 +94,7 @@ class Gradient {
       this.remove(index)
     }
   }
-
+  /* eslint-disable */
   getIndexById(id) {
     let index = 0
     for (const i in this.value.stops) {
@@ -105,7 +105,7 @@ class Gradient {
     }
     return false
   }
-
+  /* eslint-enable */
   getCurrent() {
     return this.value.stops[this.current]
   }
@@ -180,7 +180,7 @@ class Gradient {
           result.value.angle,
           this.privatePrefix !== null
         )
-
+        // console.log(this.value.angle)
         result.value.stops.forEach(stop => {
           this.append(stop.color, stop.position)
         })
@@ -202,7 +202,7 @@ class Gradient {
   toStringWithAngle(angle, prefix) {
     const value = Object.assign({}, this.value)
     value.angle = GradientString.parseAngle(angle)
-
+    // console.log(value.angle)
     if (prefix === true) {
       prefix = util.getPrefix()
     }

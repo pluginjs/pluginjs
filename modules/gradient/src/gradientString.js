@@ -103,7 +103,7 @@ export default {
         } else if (i === stops.length - 1) {
           position = 1
         } else {
-          position = null
+          position = (1 / (stops.length - 1)) * i
         }
       } else {
         position = stop.position
@@ -211,7 +211,6 @@ export default {
       value %= 360
     } else if (value < 0) {
       value %= -360
-
       if (value !== 0) {
         value += 360
       }
