@@ -2,7 +2,7 @@ import GradientString from '../src/gradientString'
 
 describe('GradientString', () => {
   describe('matchString()', () => {
-    test('should match gradient string', () => {
+    test('should match gradient linear string', () => {
       expect(
         GradientString.matchString(
           '-webkit-linear-gradient(50deg, #2F2727, #1a82f7)'
@@ -24,6 +24,28 @@ describe('GradientString', () => {
       )
       expect(
         GradientString.matchString('linear-gradient(50deg, #2F2727)')
+      ).toEqual(false)
+    })
+
+    test('should match gradient radial string', () => {
+      expect(
+        GradientString.matchString(
+          '-webkit-radial-gradient(circle, #2F2727, #1a82f7)'
+        )
+      ).toEqual(true)
+      expect(
+        GradientString.matchString(
+          '-moz-radial-gradient(circle, rgba(248,80,50,0.8) 1%, rgba(241,111,92,0.8) 50%, rgba(240,47,23,0.8) 71%, rgba(231,56,39,0.8) 99%)'
+        )
+      ).toEqual(true)
+      expect(GradientString.matchString('yellow')).toEqual(false)
+      expect(GradientString.matchString('#2F2727')).toEqual(false)
+      expect(GradientString.matchString('rgba(248,80,50,0.8)')).toEqual(false)
+      expect(GradientString.matchString('radial-gradient(circle)')).toEqual(
+        false
+      )
+      expect(
+        GradientString.matchString('radial-gradient(circle, #2F2727)')
       ).toEqual(false)
     })
   })
@@ -100,14 +122,104 @@ describe('GradientString', () => {
         }
       })
     })
+
+    test('should parse gradient radial string', () => {
+      expect(
+        GradientString.parseString(
+          '-webkit-radial-gradient(circle, #d4e4ef 0%, #86aecc 100%)'
+        )
+      ).toEqual({
+        prefix: '-webkit-',
+        type: 'radial',
+        value: {
+          shape: 'circle',
+          stops: [
+            {
+              color: '#d4e4ef',
+              position: 0
+            },
+            {
+              color: '#86aecc',
+              position: 1
+            }
+          ]
+        }
+      })
+
+      expect(
+        GradientString.parseString(
+          '-moz-radial-gradient(circle, #d4e4ef, #86aecc)'
+        )
+      ).toEqual({
+        prefix: '-moz-',
+        type: 'radial',
+        value: {
+          shape: 'circle',
+          stops: [
+            {
+              color: '#d4e4ef',
+              position: null
+            },
+            {
+              color: '#86aecc',
+              position: null
+            }
+          ]
+        }
+      })
+
+      expect(
+        GradientString.parseString(
+          'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)'
+        )
+      ).toEqual({
+        prefix: null,
+        type: 'radial',
+        value: {
+          shape: 'circle',
+          stops: [
+            {
+              color: 'rgba(255,255,255,1)',
+              position: 0
+            },
+            {
+              color: 'rgba(246,246,246,1)',
+              position: 0.47
+            },
+            {
+              color: 'rgba(237,237,237,1)',
+              position: 1
+            }
+          ]
+        }
+      })
+    })
   })
 
   describe('parseParameters()', () => {
-    test('should parse parameters', () => {
+    test('should parse linear parameters', () => {
       expect(
         GradientString.parseParameters('left, #d4e4ef 0%, #86aecc 100%')
       ).toEqual({
         angle: 'left',
+        stops: [
+          {
+            color: '#d4e4ef',
+            position: 0
+          },
+          {
+            color: '#86aecc',
+            position: 1
+          }
+        ]
+      })
+    })
+
+    test('should parse radial parameters', () => {
+      expect(
+        GradientString.parseParameters('circle, #d4e4ef 0%, #86aecc 100%')
+      ).toEqual({
+        shape: 'circle',
         stops: [
           {
             color: '#d4e4ef',
