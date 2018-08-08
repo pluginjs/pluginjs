@@ -304,22 +304,6 @@ Returns
 |------|------|-------------|
 | obj | `Object` | |
 
-### mergeWith
-
-Parameters
-
-| Name | Type | Description |
-|------|------|-------------|
-| obj1 | `Object` | |
-| obj2 | `Object` | |
-| customizer | `Function` | |
-
-Returns
-
-| Name | Type | Description |
-|------|------|-------------|
-| obj | `Object` | |
-
 ### keyframes2Anime
 
 Parameters

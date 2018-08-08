@@ -142,6 +142,13 @@ describe('util', () => {
     })
   })
 
+  describe('dasherize()', () => {
+    test('should dasherize the word', () => {
+      expect(util.dasherize('AbcEdc')).toEqual('abc-edc')
+      expect(util.dasherize('abcEdc')).toEqual('abc-edc')
+    })
+  })
+
   describe('getValueByPath()', () => {
     test('should get value by path', () => {
       const obj = {

@@ -1,6 +1,10 @@
 import keyframes2Anime from './anime-polyfill'
 import { isArray, isObject, isPlainObject } from '@pluginjs/is'
 
+export const nub = arr => {
+  return Array.from(new Set(arr))
+}
+
 export const each = (obj, callback) => {
   if (isArray(obj)) {
     let index = 0
@@ -22,8 +26,13 @@ export const deepClone = obj => {
   return JSON.parse(JSON.stringify(obj))
 }
 
-export function nub(arr) {
-  return Array.from(new Set(arr))
+export const merge = (target, ...sources) => {
+  sources.forEach(src => {
+    for (const prop in src) { // eslint-disable-line
+      target[prop] = src[prop]
+    }
+  })
+  return target
 }
 
 function deepMergeTwo(x, y) {
@@ -68,7 +77,7 @@ function deepMergeTwo(x, y) {
   return y
 }
 
-export function deepMerge(...args) {
+export const deepMerge = (...args) => {
   return args.filter(isObject).reduce(deepMergeTwo)
 }
 
@@ -106,7 +115,7 @@ export const compose = (...fn) => {
 
 const MAX_UID = 1000000
 
-export function getUID(prefix) {
+export const getUID = prefix => {
   do {
     // eslint-disable-next-line no-bitwise
     prefix += ~~(Math.random() * MAX_UID) // "~~" acts like a faster Math.floor() here
@@ -114,15 +123,11 @@ export function getUID(prefix) {
   return prefix
 }
 
-export function range(v) {
-  return Array.from({ length: v }, (v, i) => i)
-}
+export const range = v => Array.from({ length: v }, (v, i) => i)
 
-export function reflow(element) {
-  return element.offsetHeight
-}
+export const reflow = element => element.offsetHeight
 
-export function arraysEqual(a, b) {
+export const arraysEqual = (a, b) => {
   if (a === b) {
     return true
   }
@@ -141,17 +146,11 @@ export function arraysEqual(a, b) {
   return true
 }
 
-export function arrayDiff(a, b) {
-  // let t;
-  // if (a.length < b.length) {
-  //   t = b;
-  //   b = a;
-  //   a = t;
-  // }
+export const arrayDiff = (a, b) => {
   return a.filter(n => b.indexOf(n) < 0)
 }
 
-export function arrayIntersect(a, b) {
+export const arrayIntersect = (a, b) => {
   let t
   if (b.length > a.length) {
     t = b
@@ -161,11 +160,10 @@ export function arrayIntersect(a, b) {
   return a.filter(n => b.indexOf(n) !== -1)
 }
 
-export function convertPercentageToFloat(n) {
-  return parseFloat(n.slice(0, -1) / 100, 10)
-}
+export const convertPercentageToFloat = n =>
+  parseFloat(n.slice(0, -1) / 100, 10)
 
-export function convertFloatToPercentage(n) {
+export const convertFloatToPercentage = n => {
   if (n < 0) {
     n = 0
   } else if (n > 1) {
@@ -174,7 +172,7 @@ export function convertFloatToPercentage(n) {
   return `${parseFloat(n).toFixed(4) * 100}%`
 }
 
-export function convertMatrixToArray(value) {
+export const convertMatrixToArray = value => {
   if (value && value.substr(0, 6) === 'matrix') {
     return value
       .replace(/^.*\((.*)\)$/g, '$1')
@@ -184,14 +182,14 @@ export function convertMatrixToArray(value) {
   return false
 }
 
-export function getTime() {
+export const getTime = () => {
   if (typeof window.performance !== 'undefined' && window.performance.now) {
     return window.performance.now()
   }
   return Date.now()
 }
 
-export function camelize(word, first = true) {
+export const camelize = (word, first = true) => {
   word = word.replace(/[_.-\s](\w|$)/g, (_, x) => x.toUpperCase())
 
   if (first) {
@@ -200,8 +198,11 @@ export function camelize(word, first = true) {
   return word
 }
 
+export const dasherize = word =>
+  word.replace(/([a-z\d])([A-Z])/g, '$1-$2').toLowerCase()
+
 /* Credit to https://github.com/jonschlinkert/get-value MIT */
-export function getValueByPath(obj, path) {
+export const getValueByPath = (obj, path) => {
   if (Object(obj) !== obj || typeof path === 'undefined') {
     return obj
   }
@@ -286,16 +287,6 @@ export function fromPairs(arr) {
     (r, [k, v]) => ({
       ...r,
       [k]: v
-    }),
-    {}
-  )
-}
-
-export function mergeWith(obj1, obj2, customizer) {
-  return Object.entries(obj1).reduce(
-    (r, [k, v]) => ({
-      ...r,
-      [k]: customizer(v, obj2[k])
     }),
     {}
   )
