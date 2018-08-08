@@ -24,6 +24,7 @@ export const classes = {
   CLOSE: '{namespace}-close',
   SHOW: '{namespace}-show',
   FADE: '{namespace}-fade',
+  TRIANGLE: '{namespace}-triangle',
   DISABLED: '{namespace}-disabled'
 }
 
@@ -59,6 +60,7 @@ export const defaults = deepMerge(Tooltip.defaults, {
   },
   content: '',
   html: true,
+  triangle: true,
   close: false,
   trigger: 'click', // hover focus, click, manual
   hideOutClick: true, // When clicking outside of the popover, trigger hide event

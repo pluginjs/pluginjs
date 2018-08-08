@@ -1,7 +1,7 @@
 import templateEngine from '@pluginjs/template'
 import { isString } from '@pluginjs/is'
 import { query } from '@pluginjs/dom'
-import { removeClass } from '@pluginjs/classes'
+import { removeClass, addClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 import {
   eventable,
@@ -98,6 +98,10 @@ class Popover extends Tooltip {
     const content = this.getContent()
     this.setElementContent(query(`.${this.classes.TITLE}`, $tip), title)
     this.setElementContent(query(`.${this.classes.CONTENT}`, $tip), content)
+
+    if (this.options.triangle) {
+      addClass(this.classes.TRIANGLE, $tip)
+    }
 
     if (this.options.close) {
       bindEvent(
