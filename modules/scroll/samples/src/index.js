@@ -1,3 +1,3 @@
-import Scroll from '@pluginjs/scroll'
-
-console.log(Scroll)
+// import sections
+import './sections/default'
+import '@pluginjs/styles/buttons.scss'
