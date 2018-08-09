@@ -1,8 +1,8 @@
-import util from '../../util'  /*eslint-disable-line */
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'  /*eslint-disable-line */
+// import util from '../../util'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'  /*eslint-disable-line */
-import { append, parseHTML, query } from '@pluginjs/dom'  /*eslint-disable-line */
+import { bindEvent } from '@pluginjs/events'
+import { append, query } from '@pluginjs/dom'
 
 class weekEvent {
   constructor(data, week) {

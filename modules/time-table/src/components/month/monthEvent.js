@@ -1,8 +1,8 @@
-import util from '../../util'
+// import util from '../../util'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML, query, setData, insertBefore } from '@pluginjs/dom'
 
 class monthEvents {
@@ -49,7 +49,8 @@ class monthEvents {
     //
     this.month.activeEvent = this
     this.open = true
-    this.events.map(event => {
+    this.events.map(event => {  /* eslint-disable-line */
+
       if (hasClass(this.classes.HIDE, event)) {
         removeClass(this.classes.HIDE, event)
       }
@@ -93,7 +94,7 @@ class monthEvents {
   }
 
   update() {
-    if (this.length == 1) {
+    if (this.length === 1) {
       addClass(this.classes.MONTHSINGLEEVENT, this.wrap)
     } else {
       removeClass(this.classes.MONTHSINGLEEVENT, this.wrap)
@@ -118,7 +119,8 @@ class monthEvents {
   }
 
   destroy() {
-    this.events.map(item => {
+    this.events.map(item => { /* eslint-disable-line */
+
       item.remove()
     })
 

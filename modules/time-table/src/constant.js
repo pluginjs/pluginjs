@@ -17,7 +17,7 @@ export const classes = {
   DATA: '{namespace}-data',
   WEBVIEW: '{namespace}-webview',
   DATEPICKER: '{namespace}-datePicker',
-  WEEK: '{namespace}-week',
+  // WEEK: '{namespace}-week',
   BASELINE: '{namespace}-baseline',
   EVENTWRAP: '{namespace}-event-wrap',
   AFFAIR: '{namespace}-affair',
@@ -35,14 +35,12 @@ export const classes = {
   // view
   VIEW: '{namespace}-view',
   HIDE: '{namespace}-hide',
-  WEEK: '{namespace}-weekly',   /*eslint-disable-line */
+  // WEEK: '{namespace}-weekly',
   MONTH: '{namespace}-monthly',
   LIST: '{namespace}-listly',
   // weekly
   HEADER: '{namespace}-header',
-  BASELINE: '{namespace}-baseline',   /*eslint-disable-line */
   EDIT: '{namespace}-edit',
-  EVENTWRAP: '{namespace}-event-wrap', /* eslint-disable-line */
   EVENTSGROUP: '{namespace}-events-group',
   EVENTS: '{namespace}-events',
   WEEKEVENT: '{namespace}-weekEvent',
@@ -53,8 +51,6 @@ export const classes = {
   // monthly
   OVERLAY: '{namespace}-overlay',
   SMOVERLAY: '{namespace}-sm-overlay',
-  HEADER: '{namespace}-header',   /*eslint-disable-line */
-  EVENTSGROUP: '{namespace}-events-group',   /*eslint-disable-line */
   MONTHEVENT: '{namespace}-monthly-event',
   MONTHEVENTSWRAP: '{namespace}-monthEvents-wrap',
   MONTHEVENTWRAP: '{namespace}-month-eventwrap',
@@ -111,7 +107,7 @@ export const defaults = {
           </div>
         </div>`
     },
-    monthEvent(data) {  /*eslint-disable-line */
+    monthEvent() {
       return `<div class="{class.MONTHEVENTWRAP}">
           <span></span>
           <div class="{class.MONTHEVENTTIME}">{data.timeBucket}</div>
@@ -131,7 +127,7 @@ export const defaults = {
           <div class="{class.LISTEVENTHEAD}"></div>
         </div>`
     },
-    listEventItem(data) {  /*eslint-disable-line */
+    listEventItem() {
       return `<div class="{class.LISTEVENTITEM}">
           <div class="{class.LISTEVENTTIME}">{data.timeBucket}</div>
           <div class="{class.LISTEVENTITEMWRAP}">

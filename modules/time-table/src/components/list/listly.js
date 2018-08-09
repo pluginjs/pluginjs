@@ -1,8 +1,8 @@
-import util from '../../util'  /*eslint-disable-line */
+// import util from '../../util'
 import ListEvent from './listEvent'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { append, parseHTML, query } from '@pluginjs/dom'  /*eslint-disable-line */
+import { parseHTML } from '@pluginjs/dom'
 
 class Listly {
   constructor(instance, element) {

@@ -1,10 +1,10 @@
 import templateEngine from '@pluginjs/template'
-import util from '../../util'
+// import util from '../../util'
 import monthEvent from './monthEvent'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, query, queryAll, getData } from '@pluginjs/dom'
+// import { setStyle } from '@pluginjs/styled'
+import { bindEvent } from '@pluginjs/events'
+import { append, parseHTML, queryAll, getData } from '@pluginjs/dom'
 
 class Monthly {
   constructor(instance, element) {
@@ -21,7 +21,7 @@ class Monthly {
     this.header = parseHTML(`<div class="${this.classes.HEADER}"></div>`)
 
     const headerUl = parseHTML('<ul></ul>')
-    this.instance.weekday.map(item => {
+    this.instance.weekday.map(item => { /* eslint-disable-line */
       const li = `<li>${item}</li>`
       append(li, headerUl)
     })
@@ -37,7 +37,7 @@ class Monthly {
     this.baselineUl = parseHTML('<ul></ul>')
     for (let i = 0; i < 6; i++) {
       const li = liHtml(this.classes)
-      if (i == 5) {
+      if (i === 5) {
         this.lastLi = parseHTML(li)
         this.isAppendLi = true
         append(this.lastLi, this.baselineUl)
@@ -96,7 +96,7 @@ class Monthly {
           }
 
           const api = getData('monthEvent', monthEvent)
-          if (typeof api === 'undefined' || api.open == false) {
+          if (typeof api === 'undefined' || api.open === false) {
             if (this.activeEvent) {
               this.activeEvent.hideList()
             }
@@ -117,7 +117,7 @@ class Monthly {
   }
 
   clean() {
-    this.instances.map(item => {
+    this.instances.map(item => { /* eslint-disable-line */
       item.destroy()
     })
 
@@ -125,11 +125,11 @@ class Monthly {
   }
 
   updateEvent() {
-    this.currentMonthData.map(data => {
+    this.currentMonthData.map(data => { /* eslint-disable-line */
       const index = data.day + this.instance.monthFirstDay - 1
       const api = getData('monthEvent', this.events[index])
       if (!api) {
-        const event = new monthEvent(this.events[index], this)
+        const event = new monthEvent(this.events[index], this) /* eslint-disable-line */
         this.instances.push(event)
         event.addEvent(data)
       } else {
@@ -141,18 +141,18 @@ class Monthly {
   parseData(data) {
     this.currentMonthData = []
     const { currentDay } = this.instance
-    data.map(item => {
-      let [year, month, day] = item.start.split(' ')[0].split('-')
+    data.map(item => {  /* eslint-disable-line */
+      let [year, month, day] = item.start.split(' ')[0].split('-') /* eslint-disable-line */
       if (
-        parseInt(year) === currentDay.getFullYear() &&
-        parseInt(month - 1) === currentDay.getMonth()
+        parseInt(year) === currentDay.getFullYear() && /* eslint-disable-line */
+        parseInt(month - 1) === currentDay.getMonth() /* eslint-disable-line */
       ) {
-        const { start, end, id, title, color } = item
+        const { start, end, id, title, color } = item /* eslint-disable-line */
         const [localeDateString, startTime] = start.split(' ')
         const classType = item.class
         const endTime = end.split(' ')[1]
         const timeBucket = `${startTime}-${endTime}`
-        day = parseInt(day)
+        day = parseInt(day) /* eslint-disable-line */
         // const day = util.dateParse(localeDateString).getDay()
 
         const weekData = {
@@ -174,8 +174,8 @@ class Monthly {
     const { daysInMonth, monthFirstDay } = this.instance
     // special type
     if (
-      (monthFirstDay == 5 && daysInMonth == 31) ||
-      (monthFirstDay == 6 && daysInMonth >= 30)
+      (monthFirstDay === 5 && daysInMonth === 31) ||
+      (monthFirstDay === 6 && daysInMonth >= 30)
     ) {
       this.eventLis.map(el => addClass(this.classes.HIGHHEIGHT, el))
       if (!this.isAppendLi) {
@@ -250,4 +250,3 @@ function liHtml(classes) {
 }
 
 export default Monthly
-Monthly

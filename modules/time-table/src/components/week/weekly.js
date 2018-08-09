@@ -1,11 +1,11 @@
 import util from '../../util'
-import format from 'date-fns/format'
+// import format from 'date-fns/format'
 import templateEngine from '@pluginjs/template'
-import weekEvent from './weekEvent'
+import WeekEvent from './weekEvent'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, query } from '@pluginjs/dom'
+// import { bindEvent, removeEvent } from '@pluginjs/events'
+import { append, parseHTML } from '@pluginjs/dom'
 
 class Weekly {
   constructor(instance, element) {
@@ -25,7 +25,7 @@ class Weekly {
     this.$header = parseHTML(`<div class="${this.classes.HEADER}"></div>`)
 
     this.$weekHeader = parseHTML('<ul></ul>')
-    this.instance.fullWeek.map(item => {
+    this.instance.fullWeek.map(item => { /* eslint-disable-line */
       const li = `<li>${item}</li>`
       append(li, this.$weekHeader)
     })
@@ -40,8 +40,8 @@ class Weekly {
     const baselineUl = parseHTML('<ul></ul>')
     let [start, end] = this.options.weekly.timeBetween.split('-')
     this.tableBegin = start
-    start = parseInt(start.split(':')[0]) + 1
-    end = parseInt(end.split(':')[0])
+    start = parseInt(start.split(':')[0]) + 1 /* eslint-disable-line */
+    end = parseInt(end.split(':')[0]) /* eslint-disable-line */
     this.timeDruation = end - start + 2
     for (let i = start; i <= end; i++) {
       const time = String(i).length === 1 ? `0${i}:00` : `${i}:00`
@@ -94,15 +94,15 @@ class Weekly {
   }
 
   updateEvent() {
-    this.currentWeekData.map(data => {
-      this.group[data.day].event.push(new weekEvent(data, this))
+    this.currentWeekData.map(data => { /* eslint-disable-line */
+      this.group[data.day].event.push(new WeekEvent(data, this))
     })
   }
 
   clean() {
     // clean this.group.event
-    this.group.map(item => {
-      item.event.map(instance => {
+    this.group.map(item => { /* eslint-disable-line */
+      item.event.map(instance => { /* eslint-disable-line */
         instance.destroy()
       })
       item.event = []
@@ -119,10 +119,10 @@ class Weekly {
       endIndex
     ].getMonth() + 1}-${currentWeek[endIndex].getDate()}`
     // serious shit bug
-    data.map(item => {
+    data.map(item => { /* eslint-disable-line */
       const localeDateString = item.start.split(' ')[0]
       if (util.isDateBetween(localeDateString, weekStart, weekEnd)) {
-        const { start, end, id, title, color } = item
+        const { start, end, id, title, color } = item /* eslint-disable-line */
         const classType = item.class
         const endTime = end.split(' ')[1]
         const startTime = start.split(' ')[1]

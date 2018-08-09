@@ -24,22 +24,22 @@ import View from './components/view'
 import Classifier from './components/classifier'
 import Util from './util'
 // data-fns
-import getYear from 'date-fns/get_year'
-import getMonth from 'date-fns/get_month'
+// import getYear from 'date-fns/get_year'
+// import getMonth from 'date-fns/get_month'
 import getDaysInMonth from 'date-fns/get_days_in_month'
 import startOfMonth from 'date-fns/start_of_month'
-import startOfWeek from 'date-fns/start_of_week'
+// import startOfWeek from 'date-fns/start_of_week'
 import getDay from 'date-fns/get_day'
-import getDate from 'date-fns/get_date'
+// import getDate from 'date-fns/get_date'
 import subDays from 'date-fns/sub_days'
 import subWeeks from 'date-fns/sub_weeks'
 import subMonths from 'date-fns/sub_months'
 import addDays from 'date-fns/add_days'
 import addMonths from 'date-fns/add_months'
 import addWeeks from 'date-fns/add_weeks'
-import format from 'date-fns/format'
+// import format from 'date-fns/format'
 
-const COMPONENTS = {}
+// const COMPONENTS = {}
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -199,7 +199,7 @@ class TimeTable extends Component {
     if (currentClass === this.translate('all')) {
       this.data = this.options.data
     } else {
-      this.options.data.map(item => {
+      this.options.data.map(item => { /* eslint-disable-line */
         if (item.class === currentClass) {
           this.data.push(item)
         }
@@ -208,7 +208,7 @@ class TimeTable extends Component {
   }
 
   addEventColor() {
-    this.options.data.map(item => {
+    this.options.data.map(item => { /* eslint-disable-line */
       item.color = Util.randomColor()
     })
   }
