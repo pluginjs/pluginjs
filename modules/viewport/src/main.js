@@ -21,28 +21,25 @@ class Viewport {
 
   exitMiddleware = []
 
-  instance = null
-
-  on(eventName, func, instance) {
-    this.instance = instance
+  on(eventName, func) {
     const adder = curry((func, middleware) => middleware.concat(func))
-    this.eventMapper(eventName, adder(func.bind(this.instance)))
+    this.eventMapper(eventName, adder(func))
   }
 
   off(eventName, func) {
     const filter = curry((func, middleware) =>
-      middleware.filter(fn => fn === func)
+      middleware.filter(fn => fn !== func)
     )
-    this.eventMapper(eventName, filter(func.bind(this.instance)))
+    this.eventMapper(eventName, filter(func))
   }
 
-  eventMapper(eventName, func) {
+  eventMapper(eventName, updater) {
     if (eventName === 'enter') {
-      this.enterMiddleware = func(this.enterMiddleware)
+      this.enterMiddleware = updater(this.enterMiddleware)
     }
 
     if (eventName === 'exit') {
-      this.exitMiddleware = func(this.exitMiddleware)
+      this.exitMiddleware = updater(this.exitMiddleware)
     }
   }
 
@@ -56,7 +53,6 @@ class Viewport {
     this.isIntersecting = false
     this.enterMiddleware = []
     this.exitMiddleware = []
-    this.instance = null
   }
 
   static of(...args) {

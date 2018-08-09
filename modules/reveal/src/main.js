@@ -84,8 +84,8 @@ class Reveal extends Component {
   }
 
   bind() {
-    this.viewport.on('enter', this.enterHandle, this)
-    this.viewport.on('exit', this.exitHandle, this)
+    this.viewport.on('enter', this.enterHandle)
+    this.viewport.on('exit', this.exitHandle)
   }
 
   unbind() {
@@ -93,14 +93,14 @@ class Reveal extends Component {
     this.viewport.off('exit', this.exitHandle)
   }
 
-  enterHandle() {
+  enterHandle = () => {
     if (!this.is('disabled')) {
       this.addAnimation()
       this.trigger(EVENTS.ENTER)
     }
   }
 
-  exitHandle() {
+  exitHandle = () => {
     if (!this.is('disabled')) {
       this.removeAnimation()
       this.trigger(EVENTS.EXIT)

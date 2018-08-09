@@ -160,7 +160,7 @@ class Lazyload extends Component {
   }
 
   bind() {
-    this.observer.on('enter', this.handler, this)
+    this.observer.on('enter', this.handler)
   }
 
   unbind() {
