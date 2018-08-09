@@ -87,7 +87,6 @@ class Swipeable extends Component {
 
       switch (e.type) {
         case 'panstart':
-          this.enter('paning')
           this.panStart()
           break
         case 'panmove':
@@ -95,10 +94,6 @@ class Swipeable extends Component {
           break
         case 'panend':
           this.panEnd(e)
-
-          setTimeout(() => {
-            this.leave('paning')
-          }, 0)
           break
         default:
           break
@@ -123,6 +118,7 @@ class Swipeable extends Component {
       this.anime.pause()
     }
 
+    this.enter('paning')
     addClass('is-dragging', this.element)
 
     this.startPosition = this.getLocation(this.element)
@@ -166,6 +162,10 @@ class Swipeable extends Component {
     }
 
     removeClass('is-dragging', this.element)
+
+    setTimeout(() => {
+      this.leave('paning')
+    }, 0)
     this.trigger(EVENTS.END)
   }
 

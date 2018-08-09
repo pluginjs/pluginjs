@@ -224,6 +224,7 @@ class Thumbnails extends Component {
       {
         type: this.eventName('click'),
         handler: event => {
+          console.log(this.swipeable.is('paning'))
           if (this.is('disable') || this.swipeable.is('paning')) {
             return false
           }
@@ -338,14 +339,12 @@ class Thumbnails extends Component {
 
     this.dif = dif
 
-    const opts = {
-      targets: this.inner,
-      easing: 'linear',
-      duration: 0
-    }
-    opts[vertical ? 'translateY' : 'translateX'] = pos
-
-    anime(opts)
+    setStyle(
+      {
+        transform: `${vertical ? 'translateY' : 'translateX'}(${pos}px)`
+      },
+      this.inner
+    )
 
     this.pos = pos
   }

@@ -64,10 +64,14 @@ class Gallery extends Component {
       thumbs: this.getElement('thumbs')
     }
 
+    this.options.order.forEach(item => {
+      append(sections[item], this.element)
+    })
+
     this.slider = Slider.of(
       sections.slider,
       deepMerge(this.options, {
-        data: this.getData(this.data, 'orig'),
+        data: this.processData(this.data, 'orig'),
         onChange() {
           that.thumbs.go(this.current, false)
         }
@@ -77,16 +81,12 @@ class Gallery extends Component {
     this.thumbs = Thumbnails.of(
       sections.thumbs,
       deepMerge(this.options, {
-        data: this.getData(this.data, 'thumb'),
+        data: this.processData(this.data, 'thumb'),
         onChange() {
           that.slider.go(this.current, false)
         }
       })
     )
-
-    this.options.order.forEach(item => {
-      append(sections[item], this.element)
-    })
   }
 
   getElement(type) {
@@ -100,7 +100,7 @@ class Gallery extends Component {
     return parseHTML(html)
   }
 
-  getData(data, key) {
+  processData(data, key) {
     const _data = []
     data.forEach(item => {
       let info = {
@@ -146,9 +146,15 @@ class Gallery extends Component {
     return data
   }
 
-  // bind() {}
+  // bind() {
+  //   this.slider.bind()
+  //   this.thumbs.bind()
+  // }
 
-  // unbind() {}
+  // unbind() {
+  //   this.slider.unbind()
+  //   this.thumbs.unbind()
+  // }
 
   enable() {
     this.slider.enable()

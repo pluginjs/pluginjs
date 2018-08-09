@@ -1,8 +1,8 @@
-import anime from 'animejs'
+import Anime from 'animejs'
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { compose } from '@pluginjs/utils'
-import { outerWidth, outerHeight } from '@pluginjs/styled'
+import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML } from '@pluginjs/dom'
@@ -62,9 +62,9 @@ class Slider extends Component {
     this.modules = []
     this.axis = this.options.vertical ? 'translateY' : 'translateX'
     this.generate()
-    setTimeout(() => {
-      this.distance = this.getDistance(this.box, this.options.vertical)
-    }, 0)
+
+    this.distance = this.getDistance(this.box, this.options.vertical)
+
     this.setPos()
     this.initSwipeable()
 
@@ -173,28 +173,24 @@ class Slider extends Component {
 
     for (let i = 0; i < 3; i++) {
       let index = null
-      const opts = {
-        targets: this.cards[i].element,
-        easing: 'linear',
-        duration: 0
-      }
+      let pos = 0
 
       switch (i) {
         case this.page + 1:
         case this.page - 2:
           index = this.current === length - 1 ? 0 : this.current + 1
-          opts[this.axis] = `${offset + 100}%`
+          pos = `${offset + 100}%`
           this.cards[i].inactive()
           break
         case this.page - 1:
         case this.page + 2:
           index = this.current === 0 ? length - 1 : this.current - 1
-          opts[this.axis] = `${offset - 100}%`
+          pos = `${offset - 100}%`
           this.cards[i].inactive()
           break
         default:
           index = this.current
-          opts[this.axis] = `${offset}%`
+          pos = `${offset}%`
           this.cards[i].active()
           break
       }
@@ -221,7 +217,12 @@ class Slider extends Component {
         this.cards[i].module.setData({ index }).appendTo(card)
       }
 
-      anime(opts)
+      setStyle(
+        {
+          transform: `${this.axis}(${pos})`
+        },
+        this.cards[i].element
+      )
     }
   }
 
@@ -263,7 +264,7 @@ class Slider extends Component {
     }
 
     opts[this.axis] = `${this.stash * -this.distance}px`
-    anime(opts)
+    Anime(opts)
 
     this.current = index
 
@@ -338,14 +339,13 @@ class Slider extends Component {
 
   resize() {
     this.distance = this.getDistance(this.box, this.options.vertical)
-    const opts = {
-      targets: this.box,
-      easing: 'linear',
-      duration: 0
-    }
 
-    opts[this.axis] = `${this.stash * -this.distance}px`
-    anime(opts)
+    setStyle(
+      {
+        transform: `${this.axis}(${this.stash * -this.distance}px)`
+      },
+      this.box
+    )
 
     if (!this.is('disable')) {
       this.trigger(EVENTS.RESIZE)
