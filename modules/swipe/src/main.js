@@ -354,6 +354,7 @@ class Swipe extends Component {
       items,
       valueFrom: 'data-href',
       default: `${this.active}`,
+      type: `${this.options.dotType}`,
       template: {
         item(css) {
           return `<li class="${css} ${
@@ -367,6 +368,7 @@ class Swipe extends Component {
 
     config = Object.assign({}, config, this.options.dotConfig)
 
+    console.log(config)
     this.$pagination = Dots.of(
       find(`.${this.classes.PAGINATION}`, this.$wrapper),
       config

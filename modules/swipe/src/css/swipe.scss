@@ -1,62 +1,51 @@
 @import "@pluginjs/styles/variables.scss";
+@import "swipe.core";
 // Vars
 // =====================
-$swipe: "pj-swipe" !default;
-$arrow: "pj-arrow" !default;
-// Core
+$swipe-dots-bg: #ccc !default;
+$swipe-dots-active-bg: $gray-darkest !default;
+$swipe-arrow-color: $color-white !default;
+$swipe-arrow-bg: $color-black !default;
+$swipe-arrow-radius: $border-radius-base !default;
+// swipe
 // =====================
 .#{$swipe} {
   &-wrapper {
-    width: 100%;
-    overflow: hidden;
+    .pj-dots {
+      a {
+        background-color: $swipe-dots-bg;
+      }
+    }
+    
+    .pj-dot.pj-dot-active {
+      a {
+        background-color: $swipe-dots-active-bg;
+      }
+    }
   }
 
-  &-info {
-    display: none !important;
-  }
-  &-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-  }
   .#{$arrow} {
     &-prev,
     &-next {
-      position: absolute;
-      top: 50%;
-      z-index: 99;
-      transform: translateY(-50%);
-    }
-    &-prev {
-      left: 0;
-    }
-    &-next {
-      right: 0;
+      color: $swipe-arrow-color;
+      background-color: $swipe-arrow-bg;
+      border-radius: 2px;
+      opacity: 0.3;
+      &:link {
+        color: $swipe-arrow-color;
+      }
     }
   }
+}
 
-  &-item {
-    position: absolute;
-  }
-}
-.pj-swipe-pagination {
-  justify-content: center;
-  margin: 10px 0;
-}
-.swipe {
-  height: 300px;
-}
-.example-item{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.example-item {
   background: rgba(0,0,0,0.2);
 }
-.example-item:nth-of-type(2n){
+
+.example-item:nth-of-type(2n) {
   background: rgba(133, 83, 83, 0.2);
 }
-.item-active{
+
+.item-active {
   opacity: 0.5;
 }

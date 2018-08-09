@@ -152,7 +152,7 @@ class SvgProgress extends Component {
           const w = width - d
           const h = height - d
           return new SvgElement('path', {
-            d: `M${d} ${h} L${width / 2 - d} ${d} L${w} ${h} Z`,
+            d: `M${d} ${h} L${width / 2} ${d} L${w} ${h} Z`,
             style: 'stroke-linecap: round;stroke-linejoin: round;',
             ...attributes
           })

@@ -1,64 +1,24 @@
 @import "@pluginjs/styles/variables.scss";
+@import "swipeable.core";
 
 // Vars
 // =====================
-$swipeable: "pj-swipeable" !default;
 $swipeable-bg-color: rgba(133, 83, 83, 0.2) !default;
-
-$swipeable-width: 5625px !default;
-$swipeable-height: 150px !default;
-$swipeable-item-border-radius: 5px !default;
-$swipeable-item-margin-right: 15px !default;
-$swipeable-item-width: 361px !default;
+$swipeable-item-border-radius: $border-radius-sm !default;
 $swipeable-item-font-size: 20px !default;
 
 // swipeable
 // =====================
-.#{$swipeable}-container {
-  padding: 10px;
-  overflow: hidden;
-  border: 1px solid #333;
-
-  &.#{$swipeable}-vertical {
-    width: 150px;
-    height: 560px;
-
-    .#{$swipeable} {
-      flex-direction: column;
-      width: 150px;
-      height: 1710px;
-      margin: 0;
-    }
-
-    .#{$swipeable}-item {
-      flex: 0 0 100px;
-      margin: 0;
-      margin-bottom: 15px;
-      line-height: 100px;
-    }
-  }
-}
-
 .#{$swipeable} {
-  position: relative;
-  display: flex;
-  width: $swipeable-width;
-  height: $swipeable-height;
-  margin-right: $swipeable-item-margin-right;
-  cursor: pointer;
-
   &-item {
-    flex: 0 0 $swipeable-item-width;
-    margin-right: $swipeable-item-margin-right;
     font-size: $swipeable-item-font-size;
-    line-height: $swipeable-height;
     text-align: center;
     background-color: $swipeable-bg-color;
     border-radius: $swipeable-item-border-radius;
+
+    img {
+      border-radius: $swipeable-item-border-radius;
+    }
   }
 }
-.position-vertical {
-  .#{$swipeable} {
-    transform: translateY(230px);
-  }
-}
+

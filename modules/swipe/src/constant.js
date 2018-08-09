@@ -39,6 +39,7 @@ export const defaults = {
   arrowConfig: false,
   pagination: false,
   dotConfig: false,
+  dotType: 'square',
   drag: true,
   dragFree: false,
   power: 2,
