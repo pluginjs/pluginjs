@@ -2,9 +2,29 @@ import Gradient from '../src/gradient'
 
 describe('Gradient', () => {
   let gradient
+  let radialGradient
 
   beforeEach(() => {
     gradient = new Gradient({
+      forceStandard: true,
+      angleUseKeyword: true,
+      emptyString: '',
+      cleanPosition: true,
+      color: {
+        // format: 'rgba',
+        reduceAlpha: true,
+        shortenHex: true,
+        zeroAlphaAsTransparent: false,
+        invalidValue: {
+          r: 0,
+          g: 0,
+          b: 0,
+          a: 1
+        }
+      }
+    })
+
+    radialGradient = new Gradient({
       forceStandard: true,
       angleUseKeyword: true,
       emptyString: '',
@@ -26,6 +46,7 @@ describe('Gradient', () => {
 
   afterEach(() => {
     gradient.empty()
+    radialGradient.empty()
   })
 
   test('should init correctly', () => {
@@ -45,27 +66,53 @@ describe('Gradient', () => {
     expect(gradient).toHaveLength(1) // test length after remove
   })
 
-  test('should work with non-position gradient string', () => {
-    const gradient = new Gradient('linear-gradient(to bottom, yellow, blue)', {
-      cleanPosition: false
+  describe('String()', () => {
+    test('should work with non-position gradient linear string', () => {
+      const gradient = new Gradient(
+        'linear-gradient(to bottom, yellow, blue)',
+        {
+          cleanPosition: false
+        }
+      )
+      expect(gradient.toString()).toEqual(
+        'linear-gradient(to bottom, yellow 0%, blue 100%)'
+      ) // test position
+
+      gradient.fromString('linear-gradient(to bottom, yellow, red, blue)')
+      expect(gradient.toString()).toEqual(
+        'linear-gradient(to bottom, yellow 0%, red 50%, blue 100%)'
+      ) // test three color position
+
+      gradient.fromString(
+        'linear-gradient(to bottom, yellow, red, white, blue)'
+      )
+      expect(gradient.toString()).toEqual(
+        'linear-gradient(to bottom, yellow 0%, red 33%, white 66%, blue 100%)'
+      ) // test four color position
     })
-    expect(gradient.toString()).toEqual(
-      'linear-gradient(to bottom, yellow 0%, blue 100%)'
-    ) // test position
 
-    gradient.fromString('linear-gradient(to bottom, yellow, red, blue)')
-    expect(gradient.toString()).toEqual(
-      'linear-gradient(to bottom, yellow 0%, red 50%, blue 100%)'
-    ) // test three color position
+    test('should work with non-position gradient radial string', () => {
+      const gradient = new Gradient('radial-gradient(circle, yellow, blue)', {
+        cleanPosition: false
+      })
+      expect(gradient.toString()).toEqual(
+        'radial-gradient(circle, yellow 0%, blue 100%)'
+      ) // test position
 
-    gradient.fromString('linear-gradient(to bottom, yellow, red, white, blue)')
-    expect(gradient.toString()).toEqual(
-      'linear-gradient(to bottom, yellow 0%, red 33%, white 66%, blue 100%)'
-    ) // test four color position
+      gradient.fromString('radial-gradient(circle, yellow, red, blue)')
+      expect(gradient.toString()).toEqual(
+        'radial-gradient(circle, yellow 0%, red 50%, blue 100%)'
+      ) // test three color position
+
+      gradient.fromString('radial-gradient(circle, yellow, red, white, blue)')
+      expect(gradient.toString()).toEqual(
+        'radial-gradient(circle, yellow 0%, red 33%, white 66%, blue 100%)'
+      ) // test four color position
+    })
   })
 
   describe('setPosition()', () => {
-    test('should set position for color stop', () => {
+    test('should set position for linear color stop', () => {
       gradient.empty()
       gradient.append('#fff', 0)
       gradient.append('#333', '50%')
@@ -80,10 +127,26 @@ describe('Gradient', () => {
         'linear-gradient(to top, #fff, #000 40%, #333 50%)'
       ) // insert 3 color stops
     })
+
+    test('should set position for radial color stop', () => {
+      radialGradient.empty()
+      radialGradient.append('#fff', 0)
+      radialGradient.append('#333', '50%')
+      radialGradient.append('#000', 1)
+
+      expect(radialGradient.toString()).toEqual(
+        'radial-gradient(circle, #fff, #333 50%, #000)'
+      ) // insert 3 color stops
+
+      radialGradient.get(2).setPosition(0.4)
+      expect(radialGradient.toString()).toEqual(
+        'radial-gradient(circle, #fff, #000 40%, #333 50%)'
+      ) // insert 3 color stops
+    })
   })
 
   describe('reorder()', () => {
-    test('should reorder color stop', () => {
+    test('should reorder linear color stop', () => {
       gradient.empty()
       gradient.append('#fff', 0)
       gradient.append('#333', '50%')
@@ -109,6 +172,33 @@ describe('Gradient', () => {
         'linear-gradient(to top, #fff, #aaa 10%, #333 50%, #ddd 80%, #000)'
       ) // insert 5 color stops
     })
+
+    test('should reorder radial color stop', () => {
+      radialGradient.empty()
+      radialGradient.append('#fff', 0)
+      radialGradient.append('#333', '50%')
+      radialGradient.append('#000', 1)
+      radialGradient.reorder()
+
+      expect(radialGradient.toString()).toEqual(
+        'radial-gradient(circle, #fff, #333 50%, #000)'
+      ) // insert 3 color stops
+
+      radialGradient.append('#ddd', 0.8)
+      radialGradient.reorder()
+      expect(radialGradient.toString()).toEqual(
+        'radial-gradient(circle, #fff, #333 50%, #ddd 80%, #000)'
+      ) // insert 4 color stops
+      radialGradient.append('#aaa', 0.1)
+
+      expect(radialGradient.toString()).toEqual(
+        'radial-gradient(circle, #fff, #333 50%, #ddd 80%, #000 100%, #aaa 10%)'
+      ) // insert 5 color stops
+      radialGradient.reorder()
+      expect(radialGradient.toString()).toEqual(
+        'radial-gradient(circle, #fff, #aaa 10%, #333 50%, #ddd 80%, #000)'
+      ) // insert 5 color stops
+    })
   })
 
   describe('get()', () => {
@@ -130,7 +220,7 @@ describe('Gradient', () => {
   })
 
   describe('removeById()', () => {
-    test('should remove color stop by id', () => {
+    test('should remove color stop by linear id', () => {
       gradient.fromString(
         '-webkit-linear-gradient(top, #123456, #ffffff, #654321)'
       )
@@ -139,6 +229,18 @@ describe('Gradient', () => {
 
       expect(gradient.toString()).toEqual(
         'linear-gradient(to bottom, #123456, #654321)'
+      )
+    })
+
+    test('should remove color stop by radial id', () => {
+      radialGradient.fromString(
+        '-webkit-radial-gradient(circle, #123456, #ffffff, #654321)'
+      )
+
+      radialGradient.removeById(2)
+
+      expect(radialGradient.toString()).toEqual(
+        'radial-gradient(circle, #123456, #654321)'
       )
     })
   })
@@ -173,7 +275,7 @@ describe('Gradient', () => {
     })
   })
 
-  describe('toString()', () => {
+  describe('linear toString()', () => {
     test('should to string with standare format', () => {
       gradient.fromString('-webkit-linear-gradient(top, #2F2727, #1a82f7)')
       expect(gradient.toString()).toEqual(
@@ -222,8 +324,61 @@ describe('Gradient', () => {
     })
   })
 
+  describe('radial toString()', () => {
+    test('should to string with standare format', () => {
+      radialGradient.fromString(
+        '-webkit-radial-gradient(circle, #2F2727, #1a82f7)'
+      )
+      expect(radialGradient.toString()).toEqual(
+        'radial-gradient(circle, #2f2727, #1a82f7)'
+      ) // test toString standare
+
+      radialGradient.fromString(
+        '-moz-radial-gradient(circle, rgba(248,80,50,1) 0%, rgba(246,41,12,1) 51%, rgba(240,47,23,1) 71%, rgba(231,56,39,1) 100%)'
+      )
+      expect(radialGradient.toString()).toEqual(
+        'radial-gradient(circle, rgb(248, 80, 50), rgb(246, 41, 12) 51%, rgb(240, 47, 23) 71%, rgb(231, 56, 39))'
+      ) // test toString 2
+    })
+
+    test('should prefix the string', () => {
+      radialGradient.fromString(
+        '-webkit-radial-gradient(circle, #2F2727, #1a82f7)'
+      )
+      expect(radialGradient.toString('-webkit-')).toEqual(
+        '-webkit-radial-gradient(circle, #2f2727, #1a82f7)'
+      ) // test toString webkit
+      expect(radialGradient.toString('-moz-')).toEqual(
+        '-moz-radial-gradient(circle, #2f2727, #1a82f7)'
+      ) // test toString moz
+      expect(radialGradient.toString('-o-')).toEqual(
+        '-o-radial-gradient(circle, #2f2727, #1a82f7)'
+      ) // test toString o
+      expect(radialGradient.toString('-ms-')).toEqual(
+        '-ms-radial-gradient(circle, #2f2727, #1a82f7)'
+      ) // test toString ms
+      expect(radialGradient.toString('-undefined-')).toEqual(
+        'radial-gradient(circle, #2f2727, #1a82f7)'
+      ) // test toString undefined prefix
+    })
+
+    // test('should to string with angle', () => {
+    //   radialGradient.fromString('-webkit-radial-gradient(top, #2F2727, #1a82f7)')
+    //   expect(radialGradient.toStringWithAngle('to right', '-webkit-')).toEqual(
+    //     '-webkit-radial-gradient(left, #2f2727, #1a82f7)'
+    //   ) // test toStringWithAngle
+    //   expect(radialGradient.toStringWithAngle('to right')).toEqual(
+    //     'radial-gradient(to right, #2f2727, #1a82f7)'
+    //   ) // test toStringWithAngle standare
+
+    //   expect(radialGradient.toString()).toEqual(
+    //     'radial-gradient(to bottom, #2f2727, #1a82f7)'
+    //   ) // test toString standare
+    // })
+  })
+
   describe('getPrefixedStrings()', () => {
-    test('should get prefixed strings correctly', () => {
+    test('should get linear prefixed strings correctly', () => {
       const gradient = new Gradient(
         'linear-gradient(to right, #d4e4ef 0%, #86aecc 100%)',
         {
@@ -237,6 +392,23 @@ describe('Gradient', () => {
         '-webkit-linear-gradient(left, #d4e4ef 0%, #86aecc 100%)',
         '-o-linear-gradient(left, #d4e4ef 0%, #86aecc 100%)',
         '-ms-linear-gradient(left, #d4e4ef 0%, #86aecc 100%)'
+      ])
+    })
+
+    test('should get radial prefixed strings correctly', () => {
+      const gradient = new Gradient(
+        'radial-gradient(circle, #d4e4ef 0%, #86aecc 100%)',
+        {
+          prefixes: ['-moz-', '-webkit-', '-o-', '-ms-'],
+          cleanPosition: false
+        }
+      )
+
+      expect(gradient.getPrefixedStrings()).toEqual([
+        '-moz-radial-gradient(circle, #d4e4ef 0%, #86aecc 100%)',
+        '-webkit-radial-gradient(circle, #d4e4ef 0%, #86aecc 100%)',
+        '-o-radial-gradient(circle, #d4e4ef 0%, #86aecc 100%)',
+        '-ms-radial-gradient(circle, #d4e4ef 0%, #86aecc 100%)'
       ])
     })
   })
@@ -665,6 +837,28 @@ describe('Gradient', () => {
       )
       expect(gradient.toString()).toEqual(
         'linear-gradient(to right, #fff 0%, #f6f6f6 47%, #ededed 100%)'
+      ) // test forceColorFormat true
+
+      gradient = new Gradient(
+        'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
+        {
+          color: { format: false },
+          cleanPosition: false
+        }
+      )
+      expect(gradient.toString()).toEqual(
+        'radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(246, 246, 246) 47%, rgb(237, 237, 237) 100%)'
+      ) // test forceColorFormat false
+
+      gradient = new Gradient(
+        'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
+        {
+          color: { format: 'hex' },
+          cleanPosition: false
+        }
+      )
+      expect(gradient.toString()).toEqual(
+        'radial-gradient(circle, #fff 0%, #f6f6f6 47%, #ededed 100%)'
       ) // test forceColorFormat true
     })
 
