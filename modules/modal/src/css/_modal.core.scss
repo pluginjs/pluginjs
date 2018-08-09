@@ -1,0 +1,153 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$modal: "pj-modal" !default;
+$modal-font-family: $font-family-base !default;
+$modal-font-size: $font-size-sm !default;
+$modal-title-font-size: 20px !default;
+$modal-sm-width: 450px !default;
+$modal-bg: $color-white !default;
+$modal-border-radius: $border-radius-base !default;
+$modal-body-color: #545454 !default;
+$modal-body-maxHeight: 50vh !default;
+$modal-body-fotsize: 18px !default;
+$modal-z-index: 10000 !default;
+
+//overlay
+$modal-overlay-bgColor: rgba(0, 0, 0, 0.4) !default;
+//close
+$modal-duration: 0.3s !default;
+
+//container
+$modal-container-padding: 2 * $modal-font-size !default;
+$modal-container-boxShadow: $box-shadow-5 !default;
+$modules-confirm-buttons-margin: 2 * $modal-font-size !default;
+$modal-confirm-button-margin: 0.7 * $modal-font-size !default;
+$modal-container-titlle-margin-bottom: 10px !default;
+
+// btn
+$modal-btn-height: 32px !default;
+$modal-btn-padding-horizontal: 15px !default;
+$modal-btn-padding-vertical: 4px !default;
+$modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !default;
+
+// Core
+// =====================
+.#{$modal} {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: $modal-font-family;
+  opacity: 0;
+
+  &.#{$modal}-active {
+    z-index: $modal-z-index;
+    display: flex;
+    opacity: 1;
+
+    .#{$modal}-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      background-color: $modal-overlay-bgColor;
+    }
+  }
+}
+
+.#{$modal}-container {
+  position: relative;
+  z-index: $modal-z-index;
+  box-sizing: border-box;
+  display: block;
+  max-width: 100%;
+  padding: $modal-container-padding;
+  overflow: hidden;
+  font-size: $font-size-sm;
+  text-align: left;
+  background: $modal-bg;
+  border-radius: $modal-border-radius;
+  box-shadow: $modal-container-boxShadow;
+
+  .#{$modal}-title {
+    padding-bottom: $modal-container-titlle-margin-bottom;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+
+    .#{$modal}-icon {
+      bottom: -5px;
+      padding-right: 20px;
+      font-size: 30px;
+    }
+
+    &-center {
+      margin-bottom: 4px;
+      text-align: center;
+
+      .#{$modal}-icon {
+        display: block;
+        padding: 10px 0;
+        font-size: 30px;
+      }
+    }
+
+    &-right {
+      text-align: right;
+    }
+
+    &:only-child {
+      padding-bottom: 0;
+    }
+  }
+
+  .#{$modal}-body {
+    position: relative;
+    max-height: $modal-body-maxHeight;
+    overflow-y: auto;
+    font-size: $font-size-sm;
+    color: $modal-body-color;
+    letter-spacing: 0.6px;
+
+    &-center {
+      text-align: center;
+    }
+
+    &-right {
+      text-align: right;
+    }
+  }
+
+  .#{$modal}-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: $modules-confirm-buttons-margin;
+
+    button {
+      height: $modal-btn-height;
+      padding: $modal-btn-padding;
+      margin-left: $modal-confirm-button-margin;
+      font-weight: 300;
+      letter-spacing: 0.4px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    .pj-btn-lpd {
+      width: 50%;
+    }
+  }
+}

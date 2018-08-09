@@ -26,6 +26,7 @@ $popover-close-color: $gray-dark !default;
 $popover-close-line-height: 1em !default;
 $popover-title-spacer: $popover-spacer-y $popover-spacer-x 0 $popover-spacer-x !default;
 $popover-content-margin-top: 0.7 * $popover-font-size !default;
+$popover-content-link-color: $color-primary !default;
 $popover-title-font-size: $font-size-lg !default;
 $popover-title-line-height: 1.5em !default;
 $popover-content-spacer: 0 $popover-spacer-x !default;
@@ -296,6 +297,11 @@ $popover-btn-padding-x: 2.15 * $popover-font-size !default;
   padding: $popover-content-spacer;
   margin: $popover-content-margin-top 0 $popover-spacer-y;
   overflow: auto;
+
+  a {
+    color: $popover-content-link-color;
+    text-decoration: none;
+  }
 }
 
 .#{$popover}-title {

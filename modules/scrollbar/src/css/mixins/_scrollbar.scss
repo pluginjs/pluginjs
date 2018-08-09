@@ -4,12 +4,13 @@
   $scrollbar: "pj-scrollbar",
   $scrollbar-size: 4px,
   $scrollbar-dragging-size: 10px,
-  $scrollbar-dragging-bg: rgba($gray-lighter, 0.4),
-  $scrollbar-hovering-bg: rgba($gray-lighter, 0.4),
+  $scrollbar-dragging-bg: rgba(206,206,206,0.1),
+  $scrollbar-hovering-bg: rgba(206,206,206,0.1),
   $scrollbar-handle-offset: 5px,
-  $scrollbar-handle-color: rgba($gray-light, 0.4),
-  $scrollbar-handle-hovering-color: rgba($gray-light, 0.4),
-  $scrollbar-handle-dragging-color: rgba($gray, 0.4)
+  $scrollbar-handle-color: $gray,
+  $scrollbar-bgColor:rgba(206,206,206,0.1),
+  $scrollbar-handle-hovering-color: $gray,
+  $scrollbar-handle-dragging-color: #cecece
 ) {
   .#{$scrollbar} {
     position: absolute;
@@ -19,6 +20,7 @@
     overflow: hidden;
     line-height: 0;
     user-select: none;
+    background-color: $scrollbar-bgColor;
     border-radius: $scrollbar-size / 2;
     -webkit-touch-callout: none;
 
