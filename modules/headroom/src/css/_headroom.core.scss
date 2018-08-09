@@ -1,0 +1,38 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$headroom: "pj-headroom" !default;
+$headroom-font-family: $font-family-base !default;
+
+// Core
+// =====================
+.#{$headroom} {
+  font-family: $headroom-font-family;
+  transition: transform 0.25s ease-in-out;
+  will-change: transform;
+}
+
+.#{$headroom}-pinned {
+  transform: translateY(0);
+}
+
+.#{$headroom}-unpinned {
+  transform: translateY(-100%);
+}
+
+.#{$headroom}-top {
+  transform: translateY(0);
+}
+
+.#{$headroom}-notTop {
+  transform: translateY(-100%);
+}
+
+.#{$headroom}-stick {
+  transform: translateY(-100%);
+}
+
+.#{$headroom}-unstick {
+  transform: translateY(0);
+}

@@ -13,6 +13,7 @@ const API = sectionScroll.of(element, {
   duration: 1000,
   easing: '',
   onChange(val) {
+    // console.log(val)
     $sections.forEach(section => {
       removeClass('active', section)
     })
