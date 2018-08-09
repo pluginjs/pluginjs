@@ -3,7 +3,7 @@ import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { compose } from '@pluginjs/utils'
 import { outerWidth, outerHeight } from '@pluginjs/styled'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML } from '@pluginjs/dom'
 import {
@@ -62,9 +62,10 @@ class Slider extends Component {
     this.modules = []
     this.axis = this.options.vertical ? 'translateY' : 'translateX'
     this.generate()
-    this.distance = this.getDistance(this.box, this.options.vertical)
+    setTimeout(() => {
+      this.distance = this.getDistance(this.box, this.options.vertical)
+    }, 0)
     this.setPos()
-    // this.initImageLoader()
     this.initSwipeable()
 
     this.bind()
@@ -121,7 +122,7 @@ class Slider extends Component {
           return
         }
 
-        const offset = this.$info[that.options.vertical ? 'deltaY' : 'deltaX']
+        const offset = this.info[that.options.vertical ? 'deltaY' : 'deltaX']
         const distance = that.distance * 0.6
 
         if (offset > distance) {
@@ -137,7 +138,7 @@ class Slider extends Component {
           return
         }
 
-        const offset = this.$info[that.options.vertical ? 'deltaY' : 'deltaX']
+        const offset = this.info[that.options.vertical ? 'deltaY' : 'deltaX']
         that.decay(offset)
       }
     })
@@ -262,7 +263,6 @@ class Slider extends Component {
     }
 
     opts[this.axis] = `${this.stash * -this.distance}px`
-
     anime(opts)
 
     this.current = index

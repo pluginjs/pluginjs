@@ -35,10 +35,10 @@ const methods = ['enable', 'disable', 'destroy', 'prev', 'next']
 
 const defaults = {
   data: null,
-  height: 50, // width 100% default, height percentage default
+  height: 56.25, // width 100% default, height percentage default
   arrows: true,
   arrowType: 'solid',
-  loop: false,
+  loop: true,
   vertical: false,
   current: 0,
   duration: 300,

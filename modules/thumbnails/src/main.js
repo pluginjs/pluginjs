@@ -4,7 +4,7 @@ import templateEngine from '@pluginjs/template'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, parentWith } from '@pluginjs/dom'
+import { closest, append, parseHTML } from '@pluginjs/dom'
 import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
@@ -77,7 +77,7 @@ class Thumbnails extends Component {
     const regex = new RegExp(/\((.+?)\)/)
 
     items.forEach(item => {
-      const thumb = parentWith(hasClass(this.classes.NAMESPACE), item)
+      const thumb = closest(`.${this.classes.THUMB}`, item)
 
       let info = {
         src:
@@ -112,6 +112,7 @@ class Thumbnails extends Component {
 
       data.push(info)
     })
+
     return data
   }
 
@@ -148,7 +149,7 @@ class Thumbnails extends Component {
     this.imageLoader = ImageLoader.of(this.inner)
 
     this.imageLoader.onLoaded(img => {
-      const thumb = parentWith(hasClass(that.classes.NAMESPACE), img)
+      const thumb = closest(`.${this.classes.THUMB}`, img)
       const loader = thumb.querySelector(`.${that.classes.LOADER}`)
 
       addClass(that.classes.LOADED, thumb)
@@ -162,7 +163,9 @@ class Thumbnails extends Component {
   }
 
   initSwipeable() {
-    const that = this
+    const serPos = () => {
+      this.pos = this.swipeable.position[this.options.vetical ? 'y' : 'x']
+    }
 
     this.swipeable = Swipeable.of(this.inner, {
       rebound: true,
@@ -170,8 +173,14 @@ class Thumbnails extends Component {
       axis: this.options.vertical ? 'y' : 'x',
       reboundPos: this.options.mode === 'center' ? 50 : 100,
       offset: this.options.mode === 'center' ? this.distance / 2 : 0,
+      onDecayend() {
+        serPos()
+      },
+      onReboundend() {
+        serPos()
+      },
       onEnd() {
-        that.pos = this.position[that.options.vetical ? 'y' : 'x']
+        serPos()
       }
     })
   }
@@ -219,7 +228,7 @@ class Thumbnails extends Component {
             return false
           }
 
-          const target = parentWith(hasClass(this.classes.THUMB), event.target)
+          const target = closest(`.${this.classes.THUMB}`, event.target)
           if (!target) {
             return false
           }
@@ -257,6 +266,10 @@ class Thumbnails extends Component {
           const itemPos = this.getItemPos(index)
 
           pos = dif < itemPos ? itemPos : dif
+        } else if (this.current === this.length - 1 && index === 0) {
+          pos = 0
+        } else if (this.current === 0 && index === this.length - 1) {
+          pos = dif
         } else {
           const oldPos = this.pos
 

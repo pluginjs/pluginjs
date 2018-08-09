@@ -95,6 +95,7 @@ class Accordion extends Component {
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
+
     this.$panes.map(addClass(this.classes.PANE))
     this.$headers.map(addClass(this.classes.PANEHEADER))
     this.$contents.map(addClass(this.classes.PANECONTENT))

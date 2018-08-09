@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import Hammer from 'hammerjs'
 import Anime from 'animejs'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getStyle } from '@pluginjs/styled'
+import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import {
   eventable,
   register,
@@ -33,12 +33,8 @@ class Swipeable extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
-    this.element =
-      typeof element === 'string' ? document.querySelector(element) : element
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
-
-    addClass(this.classes.NAMESPACE, this.element)
 
     this.power = this.options.power
 
@@ -49,50 +45,55 @@ class Swipeable extends Component {
   initialize() {
     this.position = { x: 0, y: 0 }
     this.startPosition = { x: 0, y: 0 }
-    this.getLocation(this.element)
+
     this.container = this.getContainer()
+    addClass(this.classes.NAMESPACE, this.element)
     addClass(this.classes.CONTAINER, this.container)
+
     if (this.options.axis === 'y') {
       addClass(this.classes.VERTICAL, this.container)
     }
 
     this.getSize()
 
-    this.$drag = new Hammer(this.element)
-    if (this.options.axis === 'x') {
-      this.$drag.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL })
-    } else if (this.options.axis === 'y') {
-      this.$drag.get('pan').set({ direction: Hammer.DIRECTION_VERTICAL })
-    }
+    this.hammer = new Hammer(this.element)
+    this.hammer.get('pan').set({
+      direction:
+        this.options.axis === 'y'
+          ? Hammer.DIRECTION_VERTICAL
+          : Hammer.DIRECTION_HORIZONTAL
+    })
 
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  resize() {
-    this.getSize()
-    this.trigger(EVENTS.RESIZE)
+  getSize() {
+    this.containerWidth = parseInt(outerWidth(this.container), 10)
+    this.containerHeight = parseInt(outerHeight(this.container), 10)
+    this.width = parseInt(outerWidth(this.element), 10)
+    this.height = parseInt(outerHeight(this.element), 10)
+    this.distance = this.getDistance()
   }
 
   bind() {
-    this.$drag.on('panstart panmove panend', e => {
+    this.hammer.on('panstart panmove panend', e => {
       if (this.is('disabled')) {
         return
       }
 
+      this.setInfo(e)
+
       switch (e.type) {
         case 'panstart':
           this.enter('paning')
-          this.setInfo(e)
           this.panStart()
           break
         case 'panmove':
-          this.setInfo(e)
           this.panMove(e)
           break
         case 'panend':
-          this.setInfo(e)
           this.panEnd(e)
 
           setTimeout(() => {
@@ -107,169 +108,140 @@ class Swipeable extends Component {
     this.enter('bind')
   }
 
-  getSize() {
-    this.containerWidth = parseInt(getStyle('width', this.container), 10)
-    this.containerHeight = parseInt(getStyle('height', this.container), 10)
-    this.width = parseInt(getStyle('width', this.element), 10)
-    this.height = parseInt(getStyle('height', this.element), 10)
+  unbind() {
+    if (!this.is('bind')) {
+      return
+    }
+
+    this.hammer.off('panstart panmove panend')
+    this.leave('bind')
   }
 
   panStart() {
-    const $target = this.element
-    if (this.is('disabled')) {
-      return
-    }
-    if (this.isdecaying === true) {
-      this.isdecaying = false
+    if (this.is('decaying')) {
+      this.leave('decaying')
       this.anime.pause()
     }
 
     addClass('is-dragging', this.element)
-    this.startPosition.x = this.getLocation($target).translateX
-      ? this.getLocation($target).translateX
-      : 0
-    this.startPosition.y = this.getLocation($target).translateY
-      ? this.getLocation($target).translateY
-      : 0
+
+    this.startPosition = this.getLocation(this.element)
     this.trigger(EVENTS.START)
   }
 
   panMove(e) {
-    const $target = this.element
-    if (this.is('disabled')) {
-      return
-    }
-
-    let dragX = e.deltaX
-    let dragY = e.deltaY
-    dragX = this.options.axis === 'y' ? 0 : dragX
-    dragY = this.options.axis === 'x' ? 0 : dragY
-
-    this.position.x = this.startPosition.x + dragX
-    this.position.y = this.startPosition.y + dragY
+    const posX = this.options.axis === 'x' ? this.startPosition.x + e.deltaX : 0
+    const posY = this.options.axis === 'y' ? this.startPosition.y + e.deltaY : 0
 
     setStyle(
       {
-        transform: `
-          translateX(${this.position.x}px) translateY(${this.position.y}px)
-        `
+        transform: `translateX(${posX}px) translateY(${posY}px)`
       },
-      $target
+      this.element
     )
+
+    this.position = { x: posX, y: posY }
     this.trigger(EVENTS.MOVE)
   }
 
   panEnd(e) {
-    if (this.is('disabled')) {
-      return
-    }
-
-    const $target = this.element
-
-    this.triggerDecay(e, $target)
-
-    if (this.options.rebound) {
-      this.reboundMove($target)
-    }
-    removeClass('is-dragging', this.element)
-    this.trigger(EVENTS.END)
-  }
-
-  triggerDecay(e, $target) {
-    const that = this
-    let decayX = e.velocityX
-    let decayY = e.velocityY
-
-    decayX = this.options.axis === 'y' ? 0 : decayX
-    decayY = this.options.axis === 'x' ? 0 : decayY
+    const decayX = this.options.axis === 'y' ? 0 : e.velocityX
+    const decayY = this.options.axis === 'x' ? 0 : e.velocityY
 
     if (
       (this.options.axis === 'x' && Math.abs(decayX) < 1) ||
       (this.options.axis === 'y' && Math.abs(decayY) < 1)
     ) {
       this.trigger(EVENTS.SNAIL)
-      return
+    } else {
+      this.trigger(EVENTS.DECAY)
     }
-
-    this.trigger(EVENTS.DECAY)
 
     if (this.options.decay) {
-      const moveX = this.position.x + this.getMoveSize(decayX)
-      const moveY = this.position.y + this.getMoveSize(decayY)
+      this.decay(e, this.element)
+    }
 
-      const minDistance = this.getDistance().minDistance
-      const maxDistance = this.getDistance().maxDistance
-      const opts = {
-        targets: $target,
-        translateX: moveX,
-        translateY: moveY,
-        duration: this.options.duration,
-        easing: 'easeOutSine',
-        update() {
-          if (that.options.rebound) {
-            const distance =
-              that.options.axis === 'x'
-                ? that.getLocation($target).translateX
-                : that.getLocation($target).translateY
-            if (distance >= minDistance) {
-              that.anime.pause()
-              that.triggerAnime($target, minDistance)
-            } else if (distance < -maxDistance) {
-              that.anime.pause()
-              that.triggerAnime($target, -maxDistance)
-            }
-          }
-        },
-        complete() {
-          that.position.x = that.getLocation($target).translateX
-          that.position.y = that.getLocation($target).translateY
-          that.isdecaying = false
-          that.trigger(EVENTS.DECAYEND)
+    if (this.options.rebound && !this.is('decaying')) {
+      this.rebound(this.element)
+    }
+
+    removeClass('is-dragging', this.element)
+    this.trigger(EVENTS.END)
+  }
+
+  decay(e, target) {
+    const decayX = this.options.axis === 'y' ? 0 : e.velocityX
+    const decayY = this.options.axis === 'x' ? 0 : e.velocityY
+    const that = this
+
+    const opts = {
+      targets: target,
+      translateX: this.position.x + this.getMoveSize(decayX),
+      translateY: this.position.y + this.getMoveSize(decayY),
+      duration: this.options.duration,
+      easing: 'easeOutSine',
+      update() {
+        if (that.options.rebound) {
+          that.rebound(that.element, true)
+        }
+      },
+      complete() {
+        that.position = that.getLocation(target)
+        that.leave('decaying')
+        that.trigger(EVENTS.DECAYEND)
+      }
+    }
+
+    this.enter('decaying')
+    this.anime = Anime(opts)
+  }
+
+  rebound(target, pause = false) {
+    const minDistance = this.distance.minDistance
+    const maxDistance = this.distance.maxDistance
+    const distance = this.getLocation(target)[this.options.axis]
+    const callback = () => {
+      this.trigger(EVENTS.REBOUNDEND)
+    }
+
+    if ((distance >= minDistance || distance < -maxDistance) && pause) {
+      this.anime.pause()
+    }
+
+    if (distance >= minDistance) {
+      this.triggerAnime(target, minDistance, callback)
+    } else if (distance < -maxDistance) {
+      this.triggerAnime(target, -maxDistance, callback)
+    }
+
+    this.trigger(EVENTS.REBOUND)
+  }
+
+  triggerAnime(target, distance, callback) {
+    const that = this
+    const opts = {
+      targets: target,
+      duration: this.options.duration,
+      easing: 'easeOutExpo',
+      complete() {
+        that.position = that.getLocation(target)
+        if (callback) {
+          callback()
         }
       }
-      this.isdecaying = true
-      this.anime = Anime(opts)
     }
-  }
 
-  triggerAnime(target, distance) {
-    const that = this
-    if (this.options.axis === 'x') {
-      Anime({
-        targets: target,
-        translateX: distance,
-        duration: that.options.duration,
-        easing: 'easeOutExpo'
-      })
-    } else {
-      Anime({
-        targets: target,
-        translateY: distance,
-        duration: that.options.duration,
-        easing: 'easeOutExpo'
-      })
-    }
-  }
+    opts[this.options.axis === 'y' ? 'translateY' : 'translateX'] = distance
 
-  reboundMove(target) {
-    const minDistance = this.getDistance().minDistance
-    const maxDistance = this.getDistance().maxDistance
-    const distance =
-      this.options.axis === 'x'
-        ? this.getLocation(target).translateX
-        : this.getLocation(target).translateY
-    if (distance >= minDistance) {
-      this.triggerAnime(target, minDistance)
-    } else if (distance < -maxDistance) {
-      this.triggerAnime(target, -maxDistance)
-    }
+    Anime(opts)
   }
 
   getDistance() {
     let minDistance = 0
-    let maxDistance
-    let addDistance
+    let maxDistance = 0
+    let addDistance = 0
     const percent = this.options.reboundPos / 100
+
     if (this.options.axis === 'x') {
       maxDistance = this.width - this.containerWidth
       addDistance =
@@ -297,32 +269,30 @@ class Swipeable extends Component {
     return Math.round(size)
   }
 
-  getLocation(ele) {
-    const transform = getStyle('transform', ele)
-    if (transform === 'none') {
-      return 0
-    }
-    const matrixValues = transform.split(',')
-    const xIndex = transform.indexOf('matrix3d') === 0 ? 12 : 4
-    const translateX = parseInt(matrixValues[xIndex], 10)
-    const translateY = parseInt(matrixValues[xIndex + 1], 10)
-    return { translateX, translateY }
+  getLocation(target) {
+    const translateX = parseInt(Anime.getValue(target, 'translateX'), 10)
+    const translateY = parseInt(Anime.getValue(target, 'translateY'), 10)
+
+    return { x: translateX, y: translateY }
   }
 
   getContainer() {
-    const container = this.options.container
-    const isElement = container instanceof HTMLElement
-    if (isElement) {
-      return container
+    let container = this.options.container
+
+    if (container) {
+      container =
+        container instanceof HTMLElement
+          ? container
+          : document.querySelector(container)
+    } else {
+      container = this.element.parentNode
     }
-    if (typeof container === 'string') {
-      return document.querySelector(container)
-    }
-    return this.element.parentNode
+
+    return container
   }
 
   setInfo(e) {
-    this.$info = {
+    this.info = {
       pointer: e.center,
       deltaTime: e.deltaTime,
       deltaX: e.deltaX,
@@ -334,15 +304,12 @@ class Swipeable extends Component {
   }
 
   back() {
-    const target = this.element
-    const distance =
-      this.options.axis === 'x' ? this.startPosition.x : this.startPosition.y
-    this.triggerAnime(target, distance)
+    this.triggerAnime(this.element, this.startPosition[this.options.axis])
   }
 
-  unbind() {
-    this.$drag.off('panstart panmove panend')
-    this.leave('bind')
+  resize() {
+    this.getSize()
+    this.trigger(EVENTS.RESIZE)
   }
 
   enable() {

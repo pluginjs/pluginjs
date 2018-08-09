@@ -70,6 +70,7 @@ $arrow: "pj-arrow" !default;
 
   &-content {
     position: relative;
+    min-height: 100%;
     visibility: hidden;
     opacity: 0;
 

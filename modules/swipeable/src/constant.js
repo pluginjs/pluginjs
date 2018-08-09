@@ -11,7 +11,9 @@ const events = {
   RESIZE: 'resize',
   SNAIL: 'snail',
   DECAY: 'decay',
-  DECAYEND: 'decayend'
+  DECAYEND: 'decayend',
+  REBOUND: 'rebound',
+  REBOUNDEND: 'reboundend'
 }
 
 const classes = {
