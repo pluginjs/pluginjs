@@ -1,5 +1,6 @@
-import Reveal from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Reveal from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
+import 'intersection-observer'
 
 describe('Reveal', () => {
   describe('Reveal()', () => {
@@ -23,7 +24,7 @@ describe('Reveal', () => {
   describe('constructor()', () => {
     test('should work with element', () => {
       const element = document.createElement('div')
-      const reveal = new Reveal(element)
+      const reveal = Reveal.of(element)
 
       expect(reveal).toBeObject()
       expect(reveal.options).toEqual(DEFAULTS)
@@ -31,93 +32,81 @@ describe('Reveal', () => {
 
     test('should have options', () => {
       const element = document.createElement('div')
-      const reveal = new Reveal(element)
+      const reveal = Reveal.of(element)
 
       expect(reveal.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asReveal()).toEqual($element)
-
-      const api = $element.data('reveal')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asReveal()
-      expect($element.asReveal('bind')).toBeNil()
+      const element = document.createElement('div')
+      const api = Reveal.of(element)
+      expect(api.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asReveal()
-      expect($element.asReveal('destroy')).toEqual($element)
+      const element = document.createElement('div')
+      const api = Reveal.of(element)
+      expect(api.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let $element
+    let element
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      element = document.createElement('div')
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('reveal:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      element.addEventListener('reveal:ready', () => {
         called++
       })
 
-      $element.asReveal()
+      const api = Reveal.of(element)
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asReveal()
-      api = $element.data('reveal')
+      element = document.createElement('div')
+      api = Reveal.of(element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('reveal:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      element.addEventListener('reveal:destroy', () => {
         called++
       })
 
-      $element.asReveal('destroy')
+      api.destroy()
 
+      expect(api.is('initialized')).toBeFalse()
       expect(called).toEqual(1)
     })
   })
 
   describe('enable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asReveal()
-      api = $element.data('reveal')
+      element = document.createElement('div')
+      api = Reveal.of(element)
     })
 
     test('should enable the plugin', () => {
-      $element.asReveal('disable')
-      $element.asReveal('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -125,27 +114,28 @@ describe('Reveal', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('reveal:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      element.addEventListener('reveal:enable', () => {
         called++
       })
 
-      $element.asReveal('enable')
+      api.enable()
+
+      expect(api.is('disabled')).toBeFalse()
       expect(called).toEqual(1)
     })
   })
 
   describe('disable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asReveal()
-      api = $element.data('reveal')
+      element = document.createElement('div')
+      api = Reveal.of(element)
     })
 
     test('should disable the plugin', () => {
-      $element.asReveal('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -153,12 +143,12 @@ describe('Reveal', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('reveal:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      element.addEventListener('reveal:disable', () => {
         called++
       })
 
-      $element.asReveal('disable')
+      api.disable()
+      expect(api.is('disabled')).toBeTrue()
       expect(called).toEqual(1)
     })
   })

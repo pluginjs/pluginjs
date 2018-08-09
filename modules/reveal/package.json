@@ -36,16 +36,17 @@
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/viewport": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
     "babel-jest": "*",
+    "intersection-observer": "^0.5.0",
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
