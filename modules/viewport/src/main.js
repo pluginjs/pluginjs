@@ -1,11 +1,6 @@
 import { curry } from '@pluginjs/utils'
 
 class Viewport {
-  isIntersecting = false
-  enterMiddleware = []
-  exitMiddleware = []
-  instance = null
-
   constructor(el, options) {
     this.element = el
     this.options = options
@@ -19,6 +14,14 @@ class Viewport {
     })
     this.observer.observe(this.element)
   }
+
+  isIntersecting = false
+
+  enterMiddleware = []
+
+  exitMiddleware = []
+
+  instance = null
 
   on(eventName, func, instance) {
     this.instance = instance

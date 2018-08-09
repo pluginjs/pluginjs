@@ -9,15 +9,52 @@
 ## Usage
 
 ```Javascript
-new Viewport(el, options)
+import viewport from '@pluginjs/viewport'
+
+const observer = viewport(el, options)
+
+// eventName: String = enter | exit
+observer.on(eventName, handler, this)
+observer.off(eventName, handler)
 ```
 
 ## API
 
-- on
-- off
-- eventMapper
-- isVisible
+### on
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| eventName | `String` | |
+| func | `Function` | handler |
+| instance | `Object` | instance |
+
+### off
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| eventName | `String` | |
+| func | `Function` | handler |
+
+### eventMapper
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| eventName | `String` | |
+| func | `Function` | handler |
+
+### isVisible
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| isIntersecting | `Boolean` | |
 
 ## Tip
 
