@@ -36,7 +36,6 @@ let istablet = false
 class Reveal extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.animationClass = this.getAnimationClass()
@@ -79,7 +78,9 @@ class Reveal extends Component {
     const viewElement = this.options.anchor
       ? query(this.options.anchor)
       : this.element
-
+    if (!viewElement) {
+      throw new Error('Can not find anchor element')
+    }
     this.viewport = viewport(viewElement)
   }
 

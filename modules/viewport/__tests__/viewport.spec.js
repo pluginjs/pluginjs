@@ -17,9 +17,6 @@ describe('viewport', () => {
     observer.off('enter', handler)
     expect(observer.enterMiddleware.some(fn => fn === handler)).toBeFalse()
   })
-  test('isVisible', () => {
-    expect(observer.isVisible()).toBe(observer.isIntersecting)
-  })
   test('destroy', () => {
     observer.destroy()
     expect(observer.enterMiddleware).toHaveLength(0)

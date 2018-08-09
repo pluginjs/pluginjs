@@ -82,4 +82,10 @@ yargs
       desc: 'Lint JavaScript code by ESLint.'
     })
   )
+  .command(
+    alias('samples-generate', {
+      command: ['create-samples [moduleName]'],
+      desc: 'Make creating samples easily.'
+    })
+  )
   .parse()

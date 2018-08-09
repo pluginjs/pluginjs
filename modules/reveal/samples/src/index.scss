@@ -1,0 +1,68 @@
+// import reveal css
+@import "@pluginjs/reveal/src/css/reveal.scss";
+
+.space {
+  width: 100%;
+  height: 100px;
+}
+.allSection {
+  width: 300vw;
+  height: 550px;
+  font-size:0;
+  transition: 1s transform;
+}
+.reveal {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-left: 50px;
+  background: #F79709;
+}
+.example-api {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-left: 50px;
+  background: #F79709;
+}
+.box {
+  width: 100%;
+  text-align: center;
+}
+.section {
+  display: inline-block;
+  width: 100vw;
+  height: 100%;
+  text-align: center;
+}
+h2 {
+  text-align: center;
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background: #a3a3a3;
+  border-radius: 5px;
+  transform: translateY(-220px);
+}
+.icon {
+  padding-left: 6px;
+  font-size: 50px;
+  line-height: 58px;
+}
+
+.arrow-right {
+  right: 50px;
+}
+
+.ApiSection {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align:center;
+}

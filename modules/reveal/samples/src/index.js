@@ -1,3 +1,11 @@
-import Reveal from '@pluginjs/reveal'
-
-console.log(Reveal)
+// import sections
+import './sections/default'
+import './sections/animation'
+import './sections/delay'
+import './sections/mode'
+import './sections/anchor'
+import './sections/attention-seekers'
+import './sections/fading'
+import './sections/flippers'
+import './sections/sliding'
+import './sections/zoom'
