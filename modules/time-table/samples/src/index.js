@@ -1,3 +1,8 @@
-import TimeTable from '@pluginjs/time-table'
+// import TimeTable from '@pluginjs/time-table'
 
-console.log(TimeTable)
+// import icons
+import '@pluginjs/icons/dist/plugin-icons.css'
+import 'primary.css/css/primary.css'
+
+// import sections
+import './sections/default/index.js'

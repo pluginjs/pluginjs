@@ -35,14 +35,14 @@ export const classes = {
   // view
   VIEW: '{namespace}-view',
   HIDE: '{namespace}-hide',
-  WEEK: '{namespace}-weekly',
+  WEEK: '{namespace}-weekly',   /*eslint-disable-line */
   MONTH: '{namespace}-monthly',
   LIST: '{namespace}-listly',
   // weekly
   HEADER: '{namespace}-header',
-  BASELINE: '{namespace}-baseline',
+  BASELINE: '{namespace}-baseline',   /*eslint-disable-line */
   EDIT: '{namespace}-edit',
-  EVENTWRAP: '{namespace}-event-wrap',
+  EVENTWRAP: '{namespace}-event-wrap', /* eslint-disable-line */
   EVENTSGROUP: '{namespace}-events-group',
   EVENTS: '{namespace}-events',
   WEEKEVENT: '{namespace}-weekEvent',
@@ -53,8 +53,8 @@ export const classes = {
   // monthly
   OVERLAY: '{namespace}-overlay',
   SMOVERLAY: '{namespace}-sm-overlay',
-  HEADER: '{namespace}-header',
-  EVENTSGROUP: '{namespace}-events-group',
+  HEADER: '{namespace}-header',   /*eslint-disable-line */
+  EVENTSGROUP: '{namespace}-events-group',   /*eslint-disable-line */
   MONTHEVENT: '{namespace}-monthly-event',
   MONTHEVENTSWRAP: '{namespace}-monthEvents-wrap',
   MONTHEVENTWRAP: '{namespace}-month-eventwrap',
@@ -111,7 +111,7 @@ export const defaults = {
           </div>
         </div>`
     },
-    monthEvent(data) {
+    monthEvent(data) {  /*eslint-disable-line */
       return `<div class="{class.MONTHEVENTWRAP}">
           <span></span>
           <div class="{class.MONTHEVENTTIME}">{data.timeBucket}</div>
@@ -119,17 +119,19 @@ export const defaults = {
         </div>`
     },
     eventsWrap() {
-      return `<div class="{class.MONTHEVENTSWRAP}"></div>`
+      return `<div class="{class.MONTHEVENTSWRAP}">
+      </div>`
     },
     more() {
-      return `<div class="{class.MONTHEVENTMORE}"></div>`
+      return `<div class="{class.MONTHEVENTMORE}">
+      </div>`
     },
     listEvent() {
       return `<div class="{class.LISTEVENTWRAP}">
           <div class="{class.LISTEVENTHEAD}"></div>
         </div>`
     },
-    listEventItem(data) {
+    listEventItem(data) {  /*eslint-disable-line */
       return `<div class="{class.LISTEVENTITEM}">
           <div class="{class.LISTEVENTTIME}">{data.timeBucket}</div>
           <div class="{class.LISTEVENTITEMWRAP}">

@@ -22,7 +22,7 @@ function dateCompare(dateString, compareDateString) {
   const compareDateTime = dateParse(compareDateString).getTime()
   if (compareDateTime > dateTime) {
     return 1
-  } else if (compareDateTime == dateTime) {
+  } else if (compareDateTime == dateTime) { /* eslint-disable-line */
     return 0
   }
   return -1
@@ -44,10 +44,10 @@ function isDateBetween(dateString, startDateString, endDateString) {
   if (startFlag && endFlag) {
     flag = true
   }
-  return flag
+  return flag /* eslint-disable-line */
 }
 
-const currentColor = ''
+// const currentColor = ''
 let colorStyleIndex = 0
 function random(arr) {
   return Math.floor(Math.random() * arr.length + 1) - 1
@@ -55,7 +55,7 @@ function random(arr) {
 function randomColor() {
   const colorStyle = ['#0ecccc', '#35cc62', '#ffb54c', '#fa6557']
   colorStyleIndex++
-  if (colorStyleIndex == colorStyle.length) {
+  if (colorStyleIndex == colorStyle.length) {  /* eslint-disable-line */
     colorStyleIndex = 0
   }
   return colorStyle[colorStyleIndex]
@@ -92,7 +92,7 @@ function isDatesBetween(
   if (startFlag && endFlag) {
     flag = true
   }
-  return flag
+  return flag /* eslint-disable-line */
 }
 
 const util = {
@@ -100,7 +100,8 @@ const util = {
   dateCompare,
   isDateBetween,
   isDatesBetween,
-  randomColor
+  randomColor,
+  random
 }
 
 export default util

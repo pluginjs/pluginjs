@@ -10,7 +10,6 @@ class Classifier {
     this.$element = parseHTML(`<div class="${this.classes.CLASSIFY}"></div>`)
     // instance.$wrap.append(this.$element)
     append(this.$element, instance.wrap)
-
     this.init()
   }
 
@@ -40,12 +39,12 @@ class Classifier {
         if (!that.filterApi) {
           return
         }
-        const className = that.filterApi('get')
+        const className = that.filterApi.get()
         this.instance.switchClass(className)
       }
     })
 
-    this.filterApi('set', this.instance.currentClass)
+    this.filterApi.set(this.instance.currentClass)
 
     append($filter, this.$element)
   }
@@ -53,7 +52,8 @@ class Classifier {
   getClassType() {
     const classType = new Set([this.instance.currentClass])
 
-    this.options.data.map(item => {
+    this.options.data.map(item => { /*eslint-disable-line */
+
       classType.add(item.class)
     })
 

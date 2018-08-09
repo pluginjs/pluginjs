@@ -1,4 +1,4 @@
-import util from '../../util'
+// import util from '../../util'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { append, parseHTML, query } from '@pluginjs/dom'
@@ -9,8 +9,7 @@ class listEvent {
     this.list = list
     this.classes = list.classes
     this.$element = list.getElement('listEvent')
-    append(this.$element, list.element)
-
+    append(this.$element, list.$element)
     this.init()
   }
 
@@ -41,9 +40,9 @@ class listEvent {
   update() {
     let flag = 0
     const { currentClass } = this.list.instance
-    this.events.map((element, index) => {
+    this.events.map((element, index) => {  /*eslint-disable-line */
       if (
-        currentClass != this.list.instance.translate('all') &&
+        currentClass != this.list.instance.translate('all') &&  /*eslint-disable-line */
         this.data[index].classType !== currentClass
       ) {
         element.style.display = 'none'
@@ -73,4 +72,3 @@ class listEvent {
 }
 
 export default listEvent
-t

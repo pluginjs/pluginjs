@@ -1,8 +1,8 @@
-import util from '../../util'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import util from '../../util'  /*eslint-disable-line */
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'  /*eslint-disable-line */
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, query } from '@pluginjs/dom'
+import { bindEvent, removeEvent } from '@pluginjs/events'  /*eslint-disable-line */
+import { append, parseHTML, query } from '@pluginjs/dom'  /*eslint-disable-line */
 
 class weekEvent {
   constructor(data, week) {
@@ -30,7 +30,7 @@ class weekEvent {
     this.width = ''
     this.position = 'left'
     const eventInstances = this.group[this.data.day].event
-    eventInstances.map(instance => {
+    eventInstances.map(instance => {  /*eslint-disable-line */
       const isCoincide = instance.coincide(this.data)
       if (isCoincide) {
         this.width = '50%'
@@ -62,7 +62,7 @@ class weekEvent {
     bindEvent(
       {
         type: 'mouseenter',
-        handler: e => {
+        handler: e => {  /*eslint-disable-line */
           addClass(this.week.classes.ACTIVEWEEKEVENT, this.element)
         }
       },
@@ -72,7 +72,7 @@ class weekEvent {
     bindEvent(
       {
         type: 'mouseleave',
-        handler: e => {
+        handler: e => {  /*eslint-disable-line */
           removeClass(this.week.classes.ACTIVEWEEKEVENT, this.element)
         }
       },
@@ -114,15 +114,15 @@ class weekEvent {
 
   getMinute(time) {
     const [h, m] = time.split(':')
-    return parseInt(h) * 60 + parseInt(m)
+    return parseInt(h) * 60 + parseInt(m)  /*eslint-disable-line */
   }
 
   getBetweenTime(start, end) {
-    const h1 = parseInt(start.split(':')[0])
-    const h2 = parseInt(end.split(':')[0])
+    const h1 = parseInt(start.split(':')[0])  /*eslint-disable-line */
+    const h2 = parseInt(end.split(':')[0])  /*eslint-disable-line */
 
-    const m1 = parseInt(start.split(':')[1])
-    const m2 = parseInt(end.split(':')[1])
+    const m1 = parseInt(start.split(':')[1])  /*eslint-disable-line */
+    const m2 = parseInt(end.split(':')[1])  /*eslint-disable-line */
 
     const h = h2 - h1
     const m = m2 - m1
@@ -135,4 +135,3 @@ class weekEvent {
 }
 
 export default weekEvent
-ault weekEvent

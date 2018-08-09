@@ -9,7 +9,8 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
-    "@pluginjs/time-table": "*"
+    "@pluginjs/time-table": "*",
+    "font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

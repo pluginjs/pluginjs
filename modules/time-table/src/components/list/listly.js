@@ -1,8 +1,8 @@
-import util from '../../util'
-import listEvent from './listEvent'
+import util from '../../util'  /*eslint-disable-line */
+import ListEvent from './listEvent'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { append, parseHTML, query } from '@pluginjs/dom'
+import { append, parseHTML, query } from '@pluginjs/dom'  /*eslint-disable-line */
 
 class Listly {
   constructor(instance, element) {
@@ -26,7 +26,7 @@ class Listly {
     for (const key in this.items) {
       if (Object.prototype.hasOwnProperty.call(this.items, key)) {
         const data = this.items[key].data
-        const instance = new listEvent(data, this)
+        const instance = new ListEvent(data, this)
         this.items[key].instance = instance
       }
     }
@@ -49,17 +49,17 @@ class Listly {
       return x > y ? 1 : -1
     })
 
-    datas.map(data => {
-      const { start, end, id, title, content } = data
+    datas.map(data => {  /*eslint-disable-line */
+      const { start, end, id, title, content } = data  /*eslint-disable-line */
       const [localeDateString, startTime] = start.split(' ')
       const classType = data.class
       const endTime = end.split(' ')[1]
       const timeBucket = `${startTime} - ${endTime}`
-      let [year, month, day] = localeDateString.split('-')
+      let [year, month, day] = localeDateString.split('-')  /*eslint-disable-line */
       month = this.addZero(month)
       day = this.addZero(day)
       const localeDate = `${year}-${month}-${day}`
-      month = this.instance.month[parseInt(month)]
+      month = this.instance.month[parseInt(month)]  /*eslint-disable-line */
       let weekday = new Date(localeDate).getDay()
       weekday = weekday === 0 ? 7 : weekday
       weekday = this.instance.fullWeek[weekday - 1]
