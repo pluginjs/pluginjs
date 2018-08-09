@@ -116,9 +116,8 @@ class SvgProgress extends Component {
         return (width, height) => {
           const cx = width / 2
           const cy = height / 2
-          return new SvgElement('ellipse', {
-            rx: cx - d,
-            ry: cy - d,
+          return new SvgElement('circle', {
+            r: cx - d,
             cx,
             cy,
             ...attributes
@@ -130,7 +129,8 @@ class SvgProgress extends Component {
           const w = width - d
           const h = height - d
           return new SvgElement('path', {
-            d: `M ${d},${d} L ${w},${d} L ${w},${h} L ${d},${h} L ${d},${d}`,
+            d: `M${d} ${d} L${w} ${d} L${h} ${w} L${d} ${w} Z`,
+            style: 'stroke-linecap: round;stroke-linejoin: round;',
             ...attributes
           })
         }
@@ -152,30 +152,34 @@ class SvgProgress extends Component {
           const w = width - d
           const h = height - d
           return new SvgElement('path', {
-            d: `M ${d},${h} L ${width / 2},${d} L ${w},${h} L ${d},${h}`,
-            style: 'stroke-linecap: round;',
+            d: `M${d} ${h} L${width / 2 - d} ${d} L${w} ${h} Z`,
+            style: 'stroke-linecap: round;stroke-linejoin: round;',
             ...attributes
           })
         }
       }
       case 'pentagon': {
         return (width, height) => {
-          const x = width / 4
-          const y = height === false ? width / 4 : height / 4
+          const x = (width - d) / 4
+          const y = height === false ? (width - d) / 6 : (height - d) / 6
           return new SvgElement('path', {
-            d: `M0 ${y * 2} ${x * 2} 0L ${x * 2} 0 ${x * 4} ${y * 2}L ${x *
-              3} ${y * 4} ${x} ${y * 4} Z`,
+            d: `M${d} ${(4 * y * 3) / 5} L${x * 2} ${d} L${4 * x} ${(4 *
+              y *
+              3) /
+              5} L${(x * 4 * 4) / 5} ${6 * y} L${(x * 4) / 5} ${6 * y} Z`,
+            style: 'stroke-linecap: round;stroke-linejoin: round;',
             ...attributes
           })
         }
       }
       case 'hexagon': {
         return (width, height) => {
-          const x = width / 4
-          const y = height === false ? width / 4 : height / 4
+          const x = (width - d) / 4
+          const y = height === false ? (width + x - d) / 4 : (height - d) / 4
           return new SvgElement('path', {
-            d: `M0 ${y * 3} 0 ${y}L 0 ${y} ${x * 2} 0L ${x * 4} ${y}L ${x *
-              4} ${y * 3}L ${x * 4} ${y * 3} ${x * 2} ${y * 4} 0 ${y * 3} Z`,
+            d: `M${d} ${y * 3} L${d} ${y} L${2 * x} ${d} L${4 * x} ${y} L${4 *
+              x} ${3 * y} L${2 * x} ${4 * y} Z`,
+            style: 'stroke-linecap: round;stroke-linejoin: round;',
             ...attributes
           })
         }
@@ -189,8 +193,10 @@ class SvgProgress extends Component {
   buildBar() {
     const PATH = new SvgElement('path', {
       fill: 'none',
-      'stroke-width': 2, // this.options.barsize,
-      stroke: this.options.barcolor
+      'stroke-width': this.options.barsize,
+      stroke: this.options.barcolor,
+      'stroke-linejoin': 'round',
+      'stroke-linecap': 'round'
     })
     this.bar = PATH
     this.SVG.appendChild(PATH)
@@ -256,7 +262,7 @@ class SvgProgress extends Component {
 
     const offset = length * (1 - percenage / this.getPercentage(this.barGoal))
 
-    this.bar.style.strokeDasharray = `${length} ${length}`
+    this.bar.style.strokeDasharray = `${length} ${length - 1}`
     if (this.options.shape === 'circle') {
       this.bar.style.strokeDashoffset = offset
     }

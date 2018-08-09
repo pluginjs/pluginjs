@@ -44,9 +44,9 @@ export const defaults = {
   size: 80,
   speed: 15, // speed of 1/100
   shape: 'circle',
-  barcolor: '#55a4f2',
-  barsize: '4',
-  trackcolor: '#f7f9fc',
+  barcolor: '#215fdb',
+  barsize: '2',
+  trackcolor: '#b3b3b3',
   fillcolor: 'none',
   easing: 'ease',
   numberCallback(n) {
