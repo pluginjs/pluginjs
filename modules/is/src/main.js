@@ -46,6 +46,16 @@ export const isDomNode = object => {
 // is a given object a Element?
 export const isElement = el => el instanceof Element
 
+// is a given value window object
+export const isWindow = val => {
+  return val != null && typeof val === 'object' && 'setInterval' in val;
+}
+
+// is a given value document object
+export const isDocument = val => {
+  return typeof val === 'object' && val.nodeType === 9
+}
+
 // is a given value Error object?
 export const isError = val => {
   return toString.call(val) === '[object Error]'
@@ -164,3 +174,5 @@ export const isNegative = n => {
 export const isPositive = n => {
   return isNumber(n) && n > 0
 }
+
+

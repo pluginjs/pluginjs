@@ -1,5 +1,5 @@
 import { curryWith, camelize, dasherize } from '@pluginjs/utils'
-import { isObject, isElement, isNumeric, isString } from '@pluginjs/is'
+import { isObject, isElement, isNumeric, isString, isWindow } from '@pluginjs/is'
 
 const sum = arr => arr.reduce((a, b) => a + b)
 
@@ -43,20 +43,46 @@ export const css = curryWith((key, value, el) => {
   return setStyle(key, value, el)
 }, isElement)
 
-export const outerHeight = el => el.offsetHeight
 
-export const outerHeightWithMargin = el => {
-  const height = outerHeight(el)
-  const { marginTop, marginBottom } = window.getComputedStyle(el)
-  return sum([marginTop, marginBottom].map(i => parseInt(i, 10)).concat(height))
+// ----------
+// Dimensions
+// ----------
+export const outerHeight = (includeMargins, el) => {
+  if(isElement(includeMargins) && typeof el === 'undefined') {
+    el = includeMargins
+    includeMargins = false
+  }
+
+  if(isWindow(el)) {
+    return el.outerHeight
+  }
+
+  if(includeMargins) {
+    const { marginTop, marginBottom } = window.getComputedStyle(el)
+
+    return parseInt(marginTop, 10) + parseInt(marginBottom, 10) + el.offsetHeight
+  }
+
+  return el.offsetHeight
 }
 
-export const outerWidth = el => el.offsetWidth
+export const outerWidth = (includeMargins, el) => {
+  if(isElement(includeMargins) && typeof el === 'undefined') {
+    el = includeMargins
+    includeMargins = false
+  }
 
-export const outerWidthWithMargin = el => {
-  const width = outerWidth(el)
-  const { marginLeft, marginRight } = window.getComputedStyle(el)
-  return sum([marginLeft, marginRight].map(i => parseInt(i, 10)).concat(width))
+  if(isWindow(el)) {
+    return el.outerWidth
+  }
+
+  if(includeMargins) {
+    const { marginLeft, marginRight } = window.getComputedStyle(el)
+
+    return parseInt(marginLeft, 10) + parseInt(marginRight, 10) + el.offsetWidth
+  }
+
+  return el.offsetWidth
 }
 
 export const clientHeight = el => el.clientHeight

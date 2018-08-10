@@ -15,8 +15,8 @@ export const parseHTML = (...args) => {
   return childNodes
 }
 
-// ---------
-// traversal
+// ----------
+// Traversal
 // ----------
 export const query = (selector, parent = document) =>
   parent.querySelector(selector)
@@ -145,7 +145,7 @@ export const closest = (selector, el) => {
 }
 
 // ---------
-// data
+// Data
 // ----------
 const dataStore = '__pluginjsData'
 const getCachedData = el => {
@@ -220,7 +220,7 @@ export const data = curryWith((key, value, el) => {
 }, isElement)
 
 // -----------
-// attributes
+// Attributes
 // -----------
 export const attr = curryWith((args, value, el) => {
   if (isElement(value) && typeof el === 'undefined') {
@@ -290,7 +290,7 @@ export const removeProp = curry((name, el) => {
 })
 
 // --------------
-// manipulation
+// Manipulation
 // --------------
 export const clone = curry(el => el.cloneNode(true))
 
@@ -449,7 +449,7 @@ export const replace = curry((newContent, el) => {
 })
 
 // -----------
-// animate
+// Animate
 // -----------
 export const fade = curry((type, { duration, callback }, element) => {
   const isIn = type === 'in'

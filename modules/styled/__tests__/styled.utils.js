@@ -103,40 +103,46 @@ describe('styled', () => {
     })
   })
 
-  test('outerHeight', () => {
-    const el = document.createElement('div')
-    expect(el.offsetHeight).toBe(styled.outerHeight(el))
+  describe('outerHeight', () => {
+    test('outerHeight', () => {
+      const el = document.createElement('div')
+      expect(styled.outerHeight(el)).toBe(el.offsetHeight)
+    })
+
+    test('outerHeight with margin', () => {
+      const el = document.createElement('div')
+      const { marginTop, marginBottom } = window.getComputedStyle(el)
+      const marginHeight = parseInt(marginTop, 10) + parseInt(marginBottom, 10)
+
+      expect(styled.outerHeight(true, el)).toBe(
+        el.offsetHeight + marginHeight
+      )
+    })
   })
 
-  test('outerHeightWithMargin', () => {
-    const el = document.createElement('div')
-    const { marginTop, marginBottom } = window.getComputedStyle(el)
-    const marginHeight = parseInt(marginTop, 10) + parseInt(marginBottom, 10)
-    expect(el.offsetHeight + marginHeight).toBe(
-      styled.outerHeightWithMargin(el)
-    )
-  })
+  describe('outerWidth', () => {
+    test('outerWidth', () => {
+      const el = document.createElement('div')
+      expect(styled.outerWidth(el)).toBe(el.offsetWidth)
+    })
 
-  test('outerWidth', () => {
-    const el = document.createElement('div')
-    expect(el.offsetWidth).toBe(styled.outerWidth(el))
-  })
+    test('outerWidth with margin', () => {
+      const el = document.createElement('div')
+      const { marginLeft, marginRight } = window.getComputedStyle(el)
+      const marginWidth = parseInt(marginLeft, 10) + parseInt(marginRight, 10)
 
-  test('outerWidthWithMargin', () => {
-    const el = document.createElement('div')
-    const { marginLeft, marginRight } = window.getComputedStyle(el)
-    const marginWidth = parseInt(marginLeft, 10) + parseInt(marginRight, 10)
-    expect(el.offsetWidth + marginWidth).toBe(styled.outerWidthWithMargin(el))
+      expect(styled.outerWidth(true, el)).toBe(el.offsetWidth + marginWidth)
+    })
   })
 
   test('clientHeight', () => {
     const el = document.createElement('div')
-    expect(el.clientHeight).toBe(styled.clientHeight(el))
+    expect(styled.clientHeight(el)).toBe(el.clientHeight)
   })
 
   test('clientWidth', () => {
     const el = document.createElement('div')
-    expect(el.clientWidth).toBe(styled.clientWidth(el))
+    expect(styled.clientWidth(el)).toBe(el.clientWidth)
   })
 
   // * jsdom unsupported full feature getComputeStyle

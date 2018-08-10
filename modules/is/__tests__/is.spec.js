@@ -71,6 +71,24 @@ describe('is', () => {
       })
     })
 
+    describe('is.window', function() {
+      test('should return true if given object is window object', function() {
+        expect(is.isWindow(window)).toBe(!!window);
+      })
+      test('should return false if given object is not window object', function() {
+        expect(is.isWindow({})).toBeFalse();
+      })
+    });
+
+    describe('is.document', function() {
+      test('should return true if given object is document object', function() {
+        expect(is.isDocument(document)).toBe(!!document);
+      })
+      test('should return false if given object is not document object', function() {
+        expect(is.isDocument({})).toBeFalse();
+      })
+    });
+
     describe('is.element', () => {
       test('should return true if passed parameter type is element', () => {
         const element = document.createElement('div')

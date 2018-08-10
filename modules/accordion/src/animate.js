@@ -3,9 +3,7 @@ import {
   setStyle,
   contentWidth,
   outerHeight,
-  outerHeightWithMargin,
-  outerWidth,
-  outerWidthWithMargin
+  outerWidth
 } from '@pluginjs/styled'
 import { parentWith } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
@@ -45,13 +43,13 @@ class Animate {
 
   getPaneSpace() {
     this.paneSpace =
-      outerWidthWithMargin(this.instance.$panes[1]) -
+      outerWidth(true, this.instance.$panes[1]) -
       outerWidth(this.instance.$panes[1])
     return this.paneSpace
   }
 
   getHeaderDistance() {
-    this.headerDistance = outerHeightWithMargin(this.instance.$headers[0]) + 2
+    this.headerDistance = outerHeight(true, this.instance.$headers[0]) + 2
   }
 
   getContentDistance() {

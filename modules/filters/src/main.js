@@ -3,7 +3,7 @@ import templateEngine from '@pluginjs/template'
 import { isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { outerWidth, outerWidthWithMargin, clientWidth } from '@pluginjs/styled'
+import { outerWidth, clientWidth } from '@pluginjs/styled'
 import { parseHTML, children, query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 import {
@@ -105,7 +105,7 @@ class Filters extends Component {
     $filters.forEach(($item, index) => {
       itemArr.push({
         $el: $item,
-        width: outerWidthWithMargin($item),
+        width: outerWidth(true, $item),
         data: {
           label: $item.innerHTML,
           index
