@@ -90,6 +90,7 @@ export const defaults = {
   render() {
     return false
   },
+
   source(val) {
     /* eslint-disable */
     $.getJSON('/ajax', { q: val }, data => {

@@ -21,6 +21,9 @@ class Gradient {
     this.options = deepMerge(DEFAULTS, options)
 
     this.privateType = 'LINEAR'
+    if (this.options.type === 'RADIAL') {
+      this.privateType = this.options.type
+    }
     this.privatePrefix = null
     this.length = this.value.stops.length
     this.current = 0
@@ -59,7 +62,6 @@ class Gradient {
     if (this.length < 2) {
       return
     }
-
     this.value.stops = this.value.stops.sort((a, b) => a.position - b.position)
   }
 
@@ -67,11 +69,8 @@ class Gradient {
     if (typeof index === 'undefined') {
       index = this.current
     }
-
     const stop = new ColorStop(color, position, this)
-
     this.value.stops.splice(index, 0, stop)
-
     this.length = this.length + 1
     this.current = index
     return stop
@@ -176,11 +175,12 @@ class Gradient {
       this.privatePrefix = result.prefix
       this.type(result.type)
       if (result.value) {
-        this.value.angle = GradientString.parseAngle(
-          result.value.angle,
-          this.privatePrefix !== null
-        )
-        // console.log(this.value.angle)
+        if (this.privateType === 'LINEAR') {
+          this.value.angle = GradientString.parseAngle(
+            result.value.angle,
+            this.privatePrefix !== null
+          )
+        }
         result.value.stops.forEach(stop => {
           this.append(stop.color, stop.position)
         })

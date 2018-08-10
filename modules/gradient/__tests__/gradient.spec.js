@@ -25,6 +25,7 @@ describe('Gradient', () => {
     })
 
     radialGradient = new Gradient({
+      type: 'RADIAL',
       forceStandard: true,
       angleUseKeyword: true,
       emptyString: '',
@@ -361,20 +362,6 @@ describe('Gradient', () => {
         'radial-gradient(circle, #2f2727, #1a82f7)'
       ) // test toString undefined prefix
     })
-
-    // test('should to string with angle', () => {
-    //   radialGradient.fromString('-webkit-radial-gradient(top, #2F2727, #1a82f7)')
-    //   expect(radialGradient.toStringWithAngle('to right', '-webkit-')).toEqual(
-    //     '-webkit-radial-gradient(left, #2f2727, #1a82f7)'
-    //   ) // test toStringWithAngle
-    //   expect(radialGradient.toStringWithAngle('to right')).toEqual(
-    //     'radial-gradient(to right, #2f2727, #1a82f7)'
-    //   ) // test toStringWithAngle standare
-
-    //   expect(radialGradient.toString()).toEqual(
-    //     'radial-gradient(to bottom, #2f2727, #1a82f7)'
-    //   ) // test toString standare
-    // })
   })
 
   describe('getPrefixedStrings()', () => {
@@ -569,7 +556,7 @@ describe('Gradient', () => {
   })
 
   describe('fromString()', () => {
-    test('should parse from string', () => {
+    test('should parse from linear string', () => {
       gradient = new Gradient({ forceStandard: false })
       gradient.fromString('-webkit-linear-gradient(50deg, #2F2727, #1a82f7)')
       expect(gradient.privatePrefix).toEqual('-webkit-') // test webkit prefix
@@ -620,6 +607,57 @@ describe('Gradient', () => {
       expect(gradient).toHaveLength(3) // test color stop count
       expect(gradient.toString()).toEqual(
         'linear-gradient(to bottom, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 96%, 0.8) 47%, hsla(0, 0%, 93%, 0.8))'
+      ) // test toString()
+    })
+
+    test('should parse from radial string', () => {
+      gradient = new Gradient({ forceStandard: false })
+      gradient.fromString('-webkit-radial-gradient(circle, #2F2727, #1a82f7)')
+      expect(gradient.privatePrefix).toEqual('-webkit-') // test webkit prefix
+      expect(gradient.privateType).toEqual('RADIAL') // test radial type
+      expect(gradient.get(0).color.toString()).toEqual('#2f2727') // test first color stop
+      expect(gradient.get(1).color.toString()).toEqual('#1a82f7') // test second color stop
+      expect(gradient.get(0).position).toEqual(null) // test first color stop position
+      expect(gradient.get(1).position).toEqual(null) // test second color stop position
+      expect(gradient).toHaveLength(2) // test color stop count
+      expect(gradient.toString()).toEqual(
+        '-webkit-radial-gradient(circle, #2f2727, #1a82f7)'
+      ) // test toString()
+
+      gradient.fromString(
+        '-moz-radial-gradient(circle, rgba(248,80,50,0.8) 1%, rgba(241,111,92,0.8) 50%, rgba(240,47,23,0.8) 71%, rgba(231,56,39,0.8) 99%)'
+      )
+      expect(gradient.privatePrefix).toEqual('-moz-') // test moz prefix
+      expect(gradient.privateType).toEqual('RADIAL') // test radial type
+      expect(gradient.get(0).color.toString()).toEqual('rgba(248, 80, 50, 0.8)') // test first color stop
+      expect(gradient.get(1).color.toString()).toEqual(
+        'rgba(241, 111, 92, 0.8)'
+      ) // test second color stop
+      expect(gradient.get(2).color.toString()).toEqual('rgba(240, 47, 23, 0.8)') // test third color stop
+      expect(gradient.get(3).color.toString()).toEqual('rgba(231, 56, 39, 0.8)') // test fourth color stop
+      expect(gradient.get(0).position).toEqual(0.01) // test first color stop position
+      expect(gradient.get(1).position).toEqual(0.5) // test second color stop position
+      expect(gradient.get(2).position).toEqual(0.71) // test third color stop position
+      expect(gradient.get(3).position).toEqual(0.99) // test fourth color stop position
+      expect(gradient).toHaveLength(4) // test color stop count
+      expect(gradient.toString()).toEqual(
+        '-moz-radial-gradient(circle, rgba(248, 80, 50, 0.8) 1%, rgba(241, 111, 92, 0.8) 50%, rgba(240, 47, 23, 0.8) 71%, rgba(231, 56, 39, 0.8) 99%)'
+      ) // test toString()
+
+      gradient.fromString(
+        'radial-gradient(circle, hsla(0,0%, 100%,0.8), hsla( 0,0%,96%,0.8) 47%, hsla(0,0%,93%,0.8))'
+      )
+      expect(gradient.privatePrefix).toEqual(null) // test standare prefix
+      expect(gradient.privateType).toEqual('RADIAL') // test linear type
+      expect(gradient.get(0).color.toString()).toEqual('hsla(0, 0%, 100%, 0.8)') // test first color stop
+      expect(gradient.get(1).color.toString()).toEqual('hsla(0, 0%, 96%, 0.8)') // test second color stop
+      expect(gradient.get(2).color.toString()).toEqual('hsla(0, 0%, 93%, 0.8)') // test third color stop
+      expect(gradient.get(0).position).toEqual(null) // test first color stop position
+      expect(gradient.get(1).position).toEqual(0.47) // test second color stop position
+      expect(gradient.get(2).position).toEqual(null) // test third color stop position
+      expect(gradient).toHaveLength(3) // test color stop count
+      expect(gradient.toString()).toEqual(
+        'radial-gradient(circle, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 96%, 0.8) 47%, hsla(0, 0%, 93%, 0.8))'
       ) // test toString()
     })
 
@@ -781,6 +819,7 @@ describe('Gradient', () => {
     })
 
     test('forceStandard', () => {
+      // linear
       let gradient = new Gradient(
         '-webkit-linear-gradient(left, #2F2727, #1a82f7)',
         { forceStandard: false }
@@ -796,92 +835,123 @@ describe('Gradient', () => {
       expect(gradient.toString()).toEqual(
         'linear-gradient(to left, #2f2727, #1a82f7)'
       ) // test forceStandard true
-    })
 
-    test('cleanPosition', () => {
-      let gradient = new Gradient(
-        'linear-gradient(to bottom, yellow 0%, blue 100%)',
-        { cleanPosition: false }
+      // radial
+      gradient = new Gradient(
+        '-webkit-radial-gradient(circle, #2F2727, #1a82f7)',
+        { forceStandard: false }
       )
       expect(gradient.toString()).toEqual(
-        'linear-gradient(to bottom, yellow 0%, blue 100%)'
-      ) // test cleanPosition false
+        '-webkit-radial-gradient(circle, #2f2727, #1a82f7)'
+      ) // test forceStandard false
 
       gradient = new Gradient(
-        'linear-gradient(to bottom, yellow 0%, blue 100%)',
-        { cleanPosition: true }
+        '-webkit-radial-gradient(circle, #2F2727, #1a82f7)',
+        { forceStandard: true }
       )
       expect(gradient.toString()).toEqual(
-        'linear-gradient(to bottom, yellow, blue)'
-      ) // test cleanPosition true
+        'radial-gradient(circle, #2f2727, #1a82f7)'
+      ) // test forceStandard true
     })
+  })
 
-    test('forceColorFormat', () => {
-      let gradient = new Gradient(
-        'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
-        {
-          color: { format: false },
-          cleanPosition: false
-        }
-      )
-      expect(gradient.toString()).toEqual(
-        'linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(246, 246, 246) 47%, rgb(237, 237, 237) 100%)'
-      ) // test forceColorFormat false
+  test('cleanPosition', () => {
+    // linear
+    let gradient = new Gradient(
+      'linear-gradient(to bottom, yellow 0%, blue 100%)',
+      { cleanPosition: false }
+    )
+    expect(gradient.toString()).toEqual(
+      'linear-gradient(to bottom, yellow 0%, blue 100%)'
+    ) // test cleanPosition false
 
-      gradient = new Gradient(
-        'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
-        {
-          color: { format: 'hex' },
-          cleanPosition: false
-        }
-      )
-      expect(gradient.toString()).toEqual(
-        'linear-gradient(to right, #fff 0%, #f6f6f6 47%, #ededed 100%)'
-      ) // test forceColorFormat true
+    gradient = new Gradient(
+      'linear-gradient(to bottom, yellow 0%, blue 100%)',
+      { cleanPosition: true }
+    )
+    expect(gradient.toString()).toEqual(
+      'linear-gradient(to bottom, yellow, blue)'
+    ) // test cleanPosition true
 
-      gradient = new Gradient(
-        'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
-        {
-          color: { format: false },
-          cleanPosition: false
-        }
-      )
-      expect(gradient.toString()).toEqual(
-        'radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(246, 246, 246) 47%, rgb(237, 237, 237) 100%)'
-      ) // test forceColorFormat false
-
-      gradient = new Gradient(
-        'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
-        {
-          color: { format: 'hex' },
-          cleanPosition: false
-        }
-      )
-      expect(gradient.toString()).toEqual(
-        'radial-gradient(circle, #fff 0%, #f6f6f6 47%, #ededed 100%)'
-      ) // test forceColorFormat true
+    // radial
+    gradient = new Gradient('radial-gradient(circle, yellow 0%, blue 100%)', {
+      cleanPosition: false
     })
+    expect(gradient.toString()).toEqual(
+      'radial-gradient(circle, yellow 0%, blue 100%)'
+    ) // test cleanPosition false
 
-    test('degradationFormat', () => {
-      let gradient = new Gradient({ degradationFormat: 'rgb' })
-      gradient.append('#fff')
-      expect(gradient.toString()).toEqual('rgb(255, 255, 255)') // test degradationFormat rgb
-
-      gradient = new Gradient({ degradationFormat: 'hex' })
-      gradient.append('#fff')
-      expect(gradient.toString()).toEqual('#fff') // test degradationFormat hex
-
-      gradient = new Gradient({ degradationFormat: false })
-      gradient.append('#aa2312')
-      expect(gradient.toString()).toEqual('#aa2312') // test degradationFormat false
+    gradient = new Gradient('radial-gradient(circle, yellow 0%, blue 100%)', {
+      cleanPosition: true
     })
+    expect(gradient.toString()).toEqual('radial-gradient(circle, yellow, blue)') // test cleanPosition true
+  })
 
-    test('emptyString', () => {
-      let gradient = new Gradient({ emptyString: '' })
-      expect(gradient.toString()).toEqual('') // test emptyString
+  test('forceColorFormat', () => {
+    let gradient = new Gradient(
+      'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
+      {
+        color: { format: false },
+        cleanPosition: false
+      }
+    )
+    expect(gradient.toString()).toEqual(
+      'linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(246, 246, 246) 47%, rgb(237, 237, 237) 100%)'
+    ) // test forceColorFormat false
 
-      gradient = new Gradient({ emptyString: 'There is no gradient' })
-      expect(gradient.toString()).toEqual('There is no gradient') // test custom emptyString
-    })
+    gradient = new Gradient(
+      'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
+      {
+        color: { format: 'hex' },
+        cleanPosition: false
+      }
+    )
+    expect(gradient.toString()).toEqual(
+      'linear-gradient(to right, #fff 0%, #f6f6f6 47%, #ededed 100%)'
+    ) // test forceColorFormat true
+
+    gradient = new Gradient(
+      'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
+      {
+        color: { format: false },
+        cleanPosition: false
+      }
+    )
+    expect(gradient.toString()).toEqual(
+      'radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(246, 246, 246) 47%, rgb(237, 237, 237) 100%)'
+    ) // test forceColorFormat false
+
+    gradient = new Gradient(
+      'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)',
+      {
+        color: { format: 'hex' },
+        cleanPosition: false
+      }
+    )
+    expect(gradient.toString()).toEqual(
+      'radial-gradient(circle, #fff 0%, #f6f6f6 47%, #ededed 100%)'
+    ) // test forceColorFormat true
+  })
+
+  test('degradationFormat', () => {
+    let gradient = new Gradient({ degradationFormat: 'rgb' })
+    gradient.append('#fff')
+    expect(gradient.toString()).toEqual('rgb(255, 255, 255)') // test degradationFormat rgb
+
+    gradient = new Gradient({ degradationFormat: 'hex' })
+    gradient.append('#fff')
+    expect(gradient.toString()).toEqual('#fff') // test degradationFormat hex
+
+    gradient = new Gradient({ degradationFormat: false })
+    gradient.append('#aa2312')
+    expect(gradient.toString()).toEqual('#aa2312') // test degradationFormat false
+  })
+
+  test('emptyString', () => {
+    let gradient = new Gradient({ emptyString: '' })
+    expect(gradient.toString()).toEqual('') // test emptyString
+
+    gradient = new Gradient({ emptyString: 'There is no gradient' })
+    expect(gradient.toString()).toEqual('There is no gradient') // test custom emptyString
   })
 })

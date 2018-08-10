@@ -1,6 +1,7 @@
 export const namespace = 'gradient'
 
 export const defaults = {
+  type: 'LINEAR', // LINEAR, RADIAL
   prefixes: ['-webkit-', '-moz-', '-ms-', '-o-'],
   forceStandard: true,
   angleUseKeyword: true,

@@ -8,21 +8,33 @@ const RegExpStrings = (() => {
   const color = /(?:rgba|rgb|hsla|hsl)\s*\([\s\d.,%]+\)|#[a-z0-9]{3,6}|[a-z]+/i
   const position = /\d{1,3}%/i
   const angle = /(?:to ){0,1}(?:(?:top|left|right|bottom)\s*){1,2}|\d+deg/i
-  const stop = new RegExp(`(${color.source})\\s*(${position.source}){0,1}`, 'i')
-  const stops = new RegExp(stop.source, 'gi')
-  const parameters = new RegExp(
-    `(?:(${angle.source})){0,1}\\s*,{0,1}\\s*(.*?)\\s*`,
+  const shape = /circle/i
+  const shapeOrAngle = new RegExp(
+    `(?:${angle.source})|(?:${shape.source})`,
     'i'
   )
+
+  const stop = new RegExp(`(${color.source})\\s*(${position.source}){0,1}`, 'i')
+  // console.log(stop)
+  const stops = new RegExp(stop.source, 'gi')
+  // console.log(stops)
+  const parameters = new RegExp(
+    `(?:(${shapeOrAngle.source})){0,1}\\s*,{0,1}\\s*(.*?)\\s*`,
+    'i'
+  )
+
+  const type = /linear|radial/i
   const full = new RegExp(
-    `^(-webkit-|-moz-|-ms-|-o-){0,1}(linear|radial|repeating-linear)-gradient\\s*\\(\\s*(${
+    `^(-webkit-|-moz-|-ms-|-o-){0,1}(${type.source})-gradient\\s*\\(\\s*(${
       parameters.source
     })\\s*\\)$`,
     'i'
   )
 
   return {
+    TYPE: type,
     FULL: full,
+    SHAPE: shape,
     ANGLE: angle,
     COLOR: color,
     POSITION: position,
@@ -49,12 +61,26 @@ export default {
   parseString(string) {
     string = string.trim()
     let matched
+    // console.log(RegExpStrings.FULL.exec(string))
     if ((matched = RegExpStrings.FULL.exec(string)) !== null) {
       const value = this.parseParameters(matched[3])
+      // console.log(value)
+      const type = matched[2]
+
+      switch (type) {
+        case 'linear':
+          delete value.shape
+          break
+        case 'radial':
+          delete value.angle
+          break
+        default:
+          break
+      }
 
       return {
         prefix: typeof matched[1] === 'undefined' ? null : matched[1],
-        type: matched[2],
+        type,
         value
       }
     }
@@ -65,10 +91,30 @@ export default {
     let matched
     if ((matched = RegExpStrings.PARAMETERS.exec(string)) !== null) {
       const stops = this.parseStops(matched[2])
-      return {
-        angle: typeof matched[1] === 'undefined' ? 0 : matched[1],
-        stops
+      let shape = null
+      let angle = 0
+
+      if (typeof matched[1] !== 'undefined') {
+        if (RegExpStrings.ANGLE.exec(matched[1]) !== null) {
+          angle = matched[1]
+          return {
+            angle,
+            stops
+          }
+        } else if (RegExpStrings.SHAPE.exec(matched[1]) !== null) {
+          shape = matched[1]
+          return {
+            shape,
+            stops
+          }
+        }
       }
+
+      // return {
+      //   shape,
+      //   angle,
+      //   stops
+      // }
     }
     return false
   },
@@ -151,6 +197,8 @@ export default {
 
   parseStop(string) {
     let matched
+    // console.log(RegExpStrings.STOP.exec(string))
+    // console.log(RegExpStrings.STOPS.exec(string))
     if ((matched = RegExpStrings.STOP.exec(string)) !== null) {
       const position = this.parsePosition(matched[2])
 
