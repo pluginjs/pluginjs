@@ -33,7 +33,7 @@ export const setStyle = (key, value, el) => {
 }
 
 export const getStyle = (key, el) => {
-  const val = el.style[camelize(key, false)]
+  const val = el.style[camelize(key, false)] || getComputedStyle(el, '').getPropertyValue(key)
 
   return isNumeric(val) ? parseFloat(val) : val
 }
@@ -113,24 +113,28 @@ export const contentHeight = el => {
   )
 }
 
+// ----------
+// Offset
+// ----------
 export const offset = (coordinates, el) => {
   if (isElement(coordinates) && typeof el === 'undefined') {
     el = coordinates
     coordinates = undefined
   }
 
-  if(coordinates) {
-    let props = {}, parentOffset = offset(offsetParent(el))
+  if (coordinates) {
+    const props = {}
+    const parentOffset = offset(offsetParent(el))
 
-    if(coordinates.top != null) {
-      props.top = coordinates.top  - parentOffset.top
+    if (typeof coordinates.top !== 'undefined') {
+      props.top = coordinates.top - parentOffset.top
     }
-    if(coordinates.left != null) {
-      props.left = coords.left - parentOffset.left
+    if (typeof coordinates.left !== 'undefined') {
+      props.left = coordinates.left - parentOffset.left
     }
 
-    if (getStyle('position', el) == 'static') {
-      props['position'] = 'relative'
+    if (getStyle('position', el) === 'static') {
+      props.position = 'relative'
     }
 
     return setStyle(props, el)
@@ -149,46 +153,60 @@ export const position = el => {
   let parentOffset = { top: 0, left: 0 }
   let coords
 
-  if (getStyle('position', el) == 'fixed') {
+  if (getStyle('position', el) === 'fixed') {
     coords = el.getBoundingClientRect()
   } else {
     coords = offset(el)
-    let offsetParent = offsetParent(el)
-    if ( offsetParent && offsetParent !== el && offsetParent.nodeType === 1 ) {
+    const offsetParent = offsetParent(el)
+    if (offsetParent && offsetParent !== el && offsetParent.nodeType === 1) {
       parentOffset = offset(offsetParent)
-      parentOffset.top += parseFloat(offsetParent.style['borderTopWidth']) || 0
-      parentOffset.left += parseFloat(offsetParent.style['borderLeftWidth']) || 0
+      parentOffset.top += parseFloat(offsetParent.style.borderTopWidth) || 0
+      parentOffset.left += parseFloat(offsetParent.style.borderLeftWidth) || 0
     }
   }
 
-  coords.top  -= parseFloat(el.style['marginTop']) || 0
-  coords.left -= parseFloat(el.style['marginLeft']) || 0
+  coords.top -= parseFloat(el.style.marginTop) || 0
+  coords.left -= parseFloat(el.style.marginLeft) || 0
 
   return {
-    top:  coords.top  - parentOffset.top,
+    top: coords.top - parentOffset.top,
     left: coords.left - parentOffset.left
   }
 }
 
+// -------------
+// Show and Hide
+// -------------
+let defaultDisplayMap = {}
+const getDefaultDisplay = (nodeName) => {
+  let element, display
+  if (!defaultDisplayMap[nodeName]) {
+    element = document.createElement(nodeName)
+    document.body.appendChild(element)
+    display = getComputedStyle(element, '').getPropertyValue("display")
+    element.parentNode.removeChild(element)
+    display == "none" && (display = "block")
+    defaultDisplayMap[nodeName] = display
+  }
+  return defaultDisplayMap[nodeName]
+}
+
 export const hideElement = el => {
-  if (el.style.display === 'none') {
-    return el
+  if (el.style.display !== 'none') {
+    el.style.display = 'none'
   }
 
-  if (el.style.display) {
-    el.__originDisplay = el.style.display
-  }
-
-  el.style.display = 'none'
   return el
 }
 
 export const showElement = el => {
-  if (el.__originDisplay) {
-    el.style.display = el.__originDisplay
-    delete el.__originDisplay
-    return el
+  if(el.style.display === "none") {
+    el.style.display = ''
   }
-  el.style.display = ''
+
+  if (getComputedStyle(el, '').getPropertyValue("display") === "none") {// is hidden within tree
+    el.style.display = getDefaultDisplay(el.nodeName)
+  }
+
   return el
 }

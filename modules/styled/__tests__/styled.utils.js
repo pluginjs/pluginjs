@@ -1,5 +1,4 @@
 import * as styled from '../src/main'
-import * as dom from '@pluginjs/dom'
 
 describe('styled', () => {
   describe('setStyle', () => {
