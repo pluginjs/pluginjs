@@ -8,6 +8,7 @@ $swipe-height: 18.75 * $swipe-font-size !default;
 $swipe-margin-top: 1.875 * $swipe-font-size !default;
 $swipe-arrow-margin: 0 1.25 * $swipe-font-size !default;
 $swipe-pagination-margin: 0.625 * $swipe-font-size 0 !default;
+$swipe-dot-width: 1.875  * $swipe-font-size !default;
 
 // Core
 // =====================
@@ -18,6 +19,9 @@ $swipe-pagination-margin: 0.625 * $swipe-font-size 0 !default;
 
     .pj-dots {
       margin-top: $swipe-margin-top;
+      .pj-dot {
+        width: $swipe-dot-width;
+      }
     }
   }
 

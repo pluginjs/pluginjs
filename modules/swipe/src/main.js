@@ -133,7 +133,7 @@ class Swipe extends Component {
     const that = this
 
     this.$swipe = Swipeable.of(this.$container, {
-      container: that.container,
+      container: `.${that.classes.NAMESPACE}`,
       decay: that.options.dragFree,
       power: that.options.power,
       duration: that.options.duration,
@@ -145,14 +145,14 @@ class Swipe extends Component {
       },
       onEnd() {
         if (!this.isdecaying) {
-          const locationX = this.getLocation(this.element).translateX
+          const locationX = this.getLocation(this.element).x
           const index = that.getIndexByDistance(locationX)
           that.moveTo(index)
         }
         this.trigger(EVENTS.DRAGEND)
       },
       onDecayend() {
-        const locationX = this.getLocation(this.element).translateX
+        const locationX = this.getLocation(this.element).x
         const index = that.getIndexByDistance(locationX)
         if (that.$anime) {
           that.$anime.pause()
@@ -368,7 +368,6 @@ class Swipe extends Component {
 
     config = Object.assign({}, config, this.options.dotConfig)
 
-    console.log(config)
     this.$pagination = Dots.of(
       find(`.${this.classes.PAGINATION}`, this.$wrapper),
       config
@@ -532,7 +531,7 @@ class Swipe extends Component {
       distance = Math.max(
         0,
         Math.min(
-          this.sortedItems[index * this.itemNums].info.x,
+          this.sortedItems[index].info.x,
           this.containerWidth - this.width
         )
       )
@@ -626,7 +625,7 @@ class Swipe extends Component {
     if (this.options.group && !this.options.center) {
       let index = 0
       const tempWidth = this.width
-      const maybeIndex = Math.ceil(distance / this.width)
+      const maybeIndex = Math.round(distance / this.width)
 
       index =
         distance - (maybeIndex - 1) * tempWidth > tempWidth / 2

@@ -29,7 +29,7 @@ $swipe-arrow-radius: $border-radius-base !default;
     &-next {
       color: $swipe-arrow-color;
       background-color: $swipe-arrow-bg;
-      border-radius: 2px;
+      border-radius: $swipe-arrow-radius;
       opacity: 0.3;
       &:link {
         color: $swipe-arrow-color;

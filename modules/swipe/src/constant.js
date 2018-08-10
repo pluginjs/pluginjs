@@ -40,6 +40,7 @@ export const defaults = {
   pagination: false,
   dotConfig: false,
   dotType: 'square',
+  container: '.decay',
   drag: true,
   dragFree: false,
   power: 2,
