@@ -1,5 +1,4 @@
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, query } from '@pluginjs/dom'
 import Thumbnails from './thumbnails'

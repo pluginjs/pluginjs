@@ -24,7 +24,7 @@ class Thumbnails {
       const itemHtml = this.instance.getElement('thumb')
       const image = itemHtml.children[0]
       image.dataset.index = i
-      setStyle({ 'background-image': `url(${item.thumbHref})` }, image)
+      setStyle('background-image', `url(${item.thumbHref})`, image)
       append(itemHtml, this.inner)
       this.elements[i] = itemHtml
     }
@@ -78,7 +78,7 @@ class Thumbnails {
     const halfPosition = this.getHalfPosition()
     const baseSpace = 100 * (index - 1)
     const p = halfPosition - baseSpace
-    setStyle({ transform: `translate3d(${p}px, 0px, 0px)` }, this.inner)
+    setStyle('transform', `translate3d(${p}px, 0px, 0px)`, this.inner)
   }
 
   addActiveClass(index) {

@@ -84,7 +84,7 @@ class Alpha {
 
   move(size) {
     const position = Math.max(0, Math.min(size, this.maxLength))
-    setStyle({ top: position - this.size }, this.$pointer)
+    setStyle('top', position - this.size, this.$pointer)
 
     this.alpha = (position / this.maxLength).toFixed(2)
 
@@ -96,7 +96,7 @@ class Alpha {
     this.alpha = color.value.a
     const position = this.alpha * this.maxLength - this.size
 
-    setStyle({ top: position }, this.$pointer)
+    setStyle('top', position, this.$pointer)
   }
 
   update() {

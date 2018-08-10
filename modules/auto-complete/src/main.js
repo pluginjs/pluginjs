@@ -109,7 +109,7 @@ class AutoComplete extends Component {
     const panelWidth = this.options.panelWidth
       ? this.options.panelWidth
       : getStyle('width', this.$element)
-    setStyle({ width: panelWidth }, this.$panel)
+    setStyle('width', panelWidth, this.$panel)
 
     if (this.options.keyboard) {
       this.$element.setAttribute('tabindex', 1)

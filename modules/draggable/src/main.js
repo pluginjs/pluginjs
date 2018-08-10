@@ -257,11 +257,8 @@ class Draggable extends Component {
     this.dragPoint.y = dragY
 
     setStyle(
-      {
-        transform: `
-          translate3d(${this.dragPoint.x}px, ${this.dragPoint.y}px, 0)
-        `
-      },
+      'transform',
+      `translate3d(${this.dragPoint.x}px, ${this.dragPoint.y}px, 0)`,
       this.element
     )
 

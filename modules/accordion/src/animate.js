@@ -21,15 +21,15 @@ class Animate {
     this.horizontal = this.instance.options.horizontal
     this.property = this.horizontal ? 'width' : 'height'
     this.initDistance()
-    this.instance.$panes.map(
-      setStyle({ [this.property]: `${this.headerDistance}px` })
+    this.instance.$panes.map($pane =>
+      setStyle(this.property, `${this.headerDistance}px`, $pane)
     )
     if (this.horizontal) {
-      this.instance.$contentInners.map(
-        setStyle({ width: `${this.contentDistance[0]}px` })
+      this.instance.$contentInners.map($item =>
+        setStyle('width', `${this.contentDistance[0]}px`, $item)
       )
-      this.instance.$contentInners.map((item, index) =>
-        setStyle({ width: `${this.contentDistance[index]}px` }, item)
+      this.instance.$contentInners.map(($item, index) =>
+        setStyle('width', `${this.contentDistance[index]}px`, $item)
       )
     }
   }
@@ -84,8 +84,8 @@ class Animate {
     this.getContentDistance()
 
     if (this.horizontal) {
-      this.instance.$contentInners.map(
-        setStyle({ width: `${this.contentDistance[0]}px` })
+      this.instance.$contentInners.map($item =>
+        setStyle('width', `${this.contentDistance[0]}px`, $item)
       )
     }
 

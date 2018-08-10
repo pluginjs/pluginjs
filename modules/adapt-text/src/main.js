@@ -78,7 +78,7 @@ class AdaptText extends Component {
         const scrollSpeed =
           Math.sqrt(distance / this.width) * this.options.scrollSpeed
 
-        setStyle({ cursor: 'e-resize' }, this.element)
+        setStyle('cursor', 'e-resize', this.element)
         anime.remove(this.element)
         anime({
           targets: this.element,
@@ -104,13 +104,7 @@ class AdaptText extends Component {
         targets: this.element,
         textIndent: 0,
         duration: this.options.scrollResetSpeed,
-        complete: () =>
-          setStyle(
-            {
-              textOverflow: 'ellipsis'
-            },
-            this.element
-          )
+        complete: () => setStyle('textOverflow', 'ellipsis', this.element)
       })
     }
     compose(
@@ -141,17 +135,16 @@ class AdaptText extends Component {
     }
 
     setStyle(
-      {
-        fontSize: `${Math.floor(
-          Math.max(
-            Math.min(
-              this.width / this.options.ratio,
-              parseFloat(this.options.max)
-            ),
-            parseFloat(this.options.min)
-          )
-        )}px`
-      },
+      'fontSize',
+      `${Math.floor(
+        Math.max(
+          Math.min(
+            this.width / this.options.ratio,
+            parseFloat(this.options.max)
+          ),
+          parseFloat(this.options.min)
+        )
+      )}px`,
       this.element
     )
   }
@@ -174,7 +167,7 @@ class AdaptText extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      setStyle({ 'font-size': '', lineHeight: '' }, this.element)
+      setStyle(('font-size': ', lineHeight'), '', this.element)
 
       if (this.options.scrollable) {
         setStyle(

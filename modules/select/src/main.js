@@ -381,7 +381,7 @@ class Select extends Component {
             } else {
               this.label.setAttribute('placeholder', this.options.placeholder)
             }
-            setStyle({ width: '100%' }, this.label)
+            setStyle('width', '100%', this.label)
             // delete selected
             this.selected = []
             this.resetList(this.data)
@@ -636,14 +636,14 @@ class Select extends Component {
     }
 
     if (this.selected.length === 0 || this.selected === null) {
-      setStyle({ width: '100%' }, this.label)
+      setStyle('width', '100%', this.label)
     } else {
       const temporary = parseHTML(`<pre>${this.label.value}</pre>`)
-      setStyle({ display: 'none' }, temporary)
+      setStyle('display', 'none', temporary)
       append(temporary, document.body)
       const width = temporary.clientWidth + 20
       temporary.remove()
-      setStyle({ width }, this.label)
+      setStyle('width', width, this.label)
     }
   }
 

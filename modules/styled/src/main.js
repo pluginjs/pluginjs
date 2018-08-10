@@ -1,22 +1,47 @@
-import { curry } from '@pluginjs/utils'
-import { isObject } from '@pluginjs/is'
-import { sum } from './data.list'
+import { curryWith, camelize, dasherize } from '@pluginjs/utils'
+import { isObject, isElement, isNumeric, isString } from '@pluginjs/is'
 
-/**
- * setStyle({
- *  fontSize: '16px',
- *  display: 'flex'
- * }, element)
- */
-export const setStyle = curry((style, el) => {
-  Object.entries(style).forEach(([k, v]) => {
-    if (typeof v === 'number') {
-      v = `${v.toString()}px`
+const sum = arr => arr.reduce((a, b) => a + b)
+
+export const setStyle = (key, value, el) => {
+  if (isString(key) && isElement(el)) {
+    if (value || value === 0) {
+      el.style[camelize(key, false)] = value
+    } else {
+      el.style.removeProperty(dasherize(key))
     }
-    el.style[k] = v
-  })
+  } else if (isObject(key)) {
+    if (isElement(value) && typeof el === 'undefined') {
+      el = value
+      value = undefined
+    }
+    let prop
+
+    for (prop in key) {
+      setStyle(prop, key[prop], el)
+    }
+  }
+
   return el
-})
+}
+
+export const getStyle = (key, el) => {
+  const val = el.style[camelize(key, false)]
+
+  return isNumeric(val) ? parseFloat(val) : val
+}
+
+export const css = curryWith((key, value, el) => {
+  if (isElement(value) && typeof el === 'undefined') {
+    el = value
+    value = undefined
+  }
+
+  if (typeof key === 'string' && typeof value === 'undefined') {
+    return getStyle(key, el)
+  }
+  return setStyle(key, value, el)
+}, isElement)
 
 export const outerHeight = el => el.offsetHeight
 
@@ -33,24 +58,6 @@ export const outerWidthWithMargin = el => {
   const { marginLeft, marginRight } = window.getComputedStyle(el)
   return sum([marginLeft, marginRight].map(i => parseInt(i, 10)).concat(width))
 }
-
-export const getStyle = curry(
-  (attr, el) =>
-    // let value = ''
-    // const style = el.style
-
-    // if (style) {
-    //   value = style[attr]
-
-    //   if (value === '') {
-    //     // fix value is 'auto'
-    //     const win = el.ownerDocument.defaultView
-    //     value = win.getComputedStyle(el, null)[attr]
-    //   }
-    // }
-
-    window.getComputedStyle(el)[attr]
-)
 
 export const clientHeight = el => el.clientHeight
 
@@ -88,18 +95,6 @@ export const getOffset = el => {
     top: box.top + window.pageYOffset - document.documentElement.clientTop,
     left: box.left + window.pageXOffset - document.documentElement.clientLeft
   }
-}
-
-export const css = (el, attr, value = null) => {
-  if (value) {
-    const mergedStyleObj = {}
-    mergedStyleObj[attr] = value
-
-    return setStyle(mergedStyleObj, el)
-  } else if (isObject(attr)) {
-    return setStyle(attr, el)
-  }
-  return getStyle(attr, el)
 }
 
 export const hideElement = el => {

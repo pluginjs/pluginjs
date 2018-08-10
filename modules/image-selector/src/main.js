@@ -254,7 +254,7 @@ class ImageSelector extends Component {
   setImg() {
     const url = this.getUrl(this.data.selected)
 
-    setStyle({ backgroundImage: `url("${url}")` }, this.$init)
+    setStyle('background-image', `url("${url}")`, this.$init)
 
     this.element.value = this.data.selected
   }

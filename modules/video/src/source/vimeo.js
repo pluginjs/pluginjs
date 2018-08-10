@@ -19,10 +19,7 @@ class Vimeo {
     append(this.$wrap, this.element)
     if (this.options.poster) {
       this.poster = query(`.${this.instance.classes.POSTER}`, this.$wrap)
-      setStyle(
-        { 'background-image': `url(${this.options.poster})` },
-        this.poster
-      )
+      setStyle('background-image', `url(${this.options.poster})`, this.poster)
     }
 
     if (window.AsVimeoAPIReady) {

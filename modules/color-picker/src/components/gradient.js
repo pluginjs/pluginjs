@@ -96,7 +96,7 @@ class Gradient {
 
   initialVals() {
     // set initial val
-    setStyle({ background: this.gradient }, this.$view)
+    setStyle('background', this.gradient, this.$view)
 
     // create initial markers
     const $leftMarker = this.createMarker({
@@ -334,7 +334,7 @@ class Gradient {
 
   move(el, size) {
     const position = Math.max(0, Math.min(size, this.actionBarSize))
-    setStyle({ left: position }, el)
+    setStyle('left', position, el)
   }
 
   sort() {
@@ -376,7 +376,7 @@ class Gradient {
       this.gradient = `radial-gradient(circle${gradient})`
     }
 
-    setStyle({ background: `linear-gradient(to right${gradient})` }, this.$view)
+    setStyle('background', `linear-gradient(to right${gradient})`, this.$view)
 
     this.instance.gradient = {
       mode: this.mode,

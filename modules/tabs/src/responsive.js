@@ -162,7 +162,7 @@ class Responsive {
         })
       }
     } else {
-      setStyle({ transform: 'none' }, this.instance.$nav)
+      setStyle('transform', 'none', this.instance.$nav)
       this.navWrap.destroy()
     }
   }

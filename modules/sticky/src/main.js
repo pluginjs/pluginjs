@@ -78,9 +78,9 @@ class Sticky extends Component {
   }
 
   setSticky() {
-    setStyle({ position: 'sticky' }, this.element)
+    setStyle('position', 'sticky', this.element)
     const { spacing } = this.options
-    setStyle({ top: `${parseInt(spacing, 10)}px` }, this.element)
+    setStyle('top', `${parseInt(spacing, 10)}px`, this.element)
   }
 
   canSticky() {

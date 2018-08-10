@@ -19,7 +19,7 @@ class Stack extends Base {
       )
     })
     queryAll('html, body').forEach(ele => {
-      setStyle({ overflow: 'hidden' }, ele)
+      setStyle('overflow', 'hidden', ele)
     })
 
     this.get3DPosition()
@@ -36,12 +36,12 @@ class Stack extends Base {
         const translate3d = `translate3d(${that.position[0].x}, ${
           that.position[0].y
         }, 0px)`
-        setStyle({ transform: translate3d }, section)
+        setStyle('transform', translate3d, section)
       } else {
         const translate3d = `translate3d(${that.position[1].x}, ${
           that.position[1].y
         }, 0px)`
-        setStyle({ transform: translate3d }, section)
+        setStyle('transform', translate3d, section)
       }
       i++
     })
@@ -58,12 +58,7 @@ class Stack extends Base {
     const that = this
     this.$sections.forEach(section => {
       const index = Math.abs(i - that.$sections.length)
-      setStyle(
-        {
-          position: 'absolute'
-        },
-        section
-      )
+      setStyle('position', 'absolute', section)
       section.style.zIndex = index
       i++
     })

@@ -99,7 +99,7 @@ class ScrollTop extends Component {
       this.options.mobile.animationDuration === this.options.animationDuration
     ) {
       const key = `${transitionProperty()}-duration`
-      setStyle({ key: `${this.options.animationDuration}ms` }, this.$trigger)
+      setStyle('key', `${this.options.animationDuration}ms`, this.$trigger)
     }
   }
 
@@ -169,9 +169,9 @@ class ScrollTop extends Component {
       if (
         this.options.mobile.animationDuration !== this.options.animationDuration
       ) {
-        const key = `${transitionProperty()}-duration`
         setStyle(
-          { key: `${this.options.mobile.animationDuration}ms` },
+          `${transitionProperty()}-duration`,
+          `${this.options.mobile.animationDuration}ms`,
           this.$trigger
         )
       }
@@ -205,8 +205,11 @@ class ScrollTop extends Component {
       if (
         this.options.mobile.animationDuration !== this.options.animationDuration
       ) {
-        const key = `${transitionProperty()}-duration`
-        setStyle({ key: `${this.options.animationDuration}ms` }, this.$trigger)
+        setStyle(
+          `${transitionProperty()}-duration`,
+          `${this.options.animationDuration}ms`,
+          this.$trigger
+        )
       }
 
       this.mobile = false

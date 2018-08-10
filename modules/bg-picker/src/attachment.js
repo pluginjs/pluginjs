@@ -64,11 +64,13 @@ export default class Attachment {
 
           that.instance.value.attachment = value.dataset.value
           setStyle(
-            { 'background-attachment': that.instance.value.attachment },
+            'background-attachment',
+            that.instance.value.attachment,
             that.instance.$image
           )
           setStyle(
-            { 'background-attachment': that.instance.value.attachment },
+            'background-attachment',
+            that.instance.value.attachment,
             that.instance.$fillImage
           )
         }

@@ -50,14 +50,14 @@ class Scale {
       }
 
       // position scale
-      setStyle({ left: `${perOfGrid * i}%` }, list)
+      setStyle('left', `${perOfGrid * i}%`, list)
       append(list, this.lines)
     }
 
     for (let v = 0; v < len; v++) {
       // position value
       const li = parseHTML(`<li><span>${scale.values[v]}</span></li>`)
-      setStyle({ left: `${perOfValue * v}%` }, li)
+      setStyle('left', `${perOfValue * v}%`, li)
       append(li, this.values)
     }
 

@@ -18,7 +18,7 @@ import {
   insertAfter,
   insertBefore
 } from '@pluginjs/dom'
-import { setStyle, showElement, hideElement } from '@pluginjs/styled'
+import { setStyle, css, showElement, hideElement } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
 import Scrollable from '@pluginjs/scrollable'
 import {
@@ -68,7 +68,7 @@ class GalleryPicker extends Component {
   initialize() {
     this.createHtml()
 
-    setStyle({ height: this.options.viewportSize }, this.$expandPanel)
+    setStyle('height', this.options.viewportSize, this.$expandPanel)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
@@ -380,12 +380,13 @@ class GalleryPicker extends Component {
     if (this.count > 0) {
       // const $removeBtn = this.$fillExpand.find(`.${this.classes.FILLREMOVE}`);
       setStyle(
-        { backgroundImage: `url(${this.getImageByIndex(this.count - 1)})` },
+        'background-image',
+        `url(${this.getImageByIndex(this.count - 1)})`,
         this.$fillImage
       )
       removeClass(this.classes.WRITE, this.$wrap)
     } else {
-      setStyle({ backgroundImage: 'none' }, this.$fillImage)
+      setStyle('background-image', 'none', this.$fillImage)
       addClass(this.classes.WRITE, this.$wrap)
     }
   }
@@ -530,7 +531,7 @@ class GalleryPicker extends Component {
     this.value[index] = value
     const eq = curry((index, arr) => arr[index])
     compose(
-      setStyle({
+      css({
         backgroundImage: `url(${this.options.getImage(value)})`
       }),
       find(`.${this.classes.ITEMIMAGE}`),

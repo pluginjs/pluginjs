@@ -115,7 +115,7 @@ class Scrollable extends Component {
       this.wrap = this.element
 
       if (position === 'static') {
-        setStyle({ position: 'relative' }, this.wrap)
+        setStyle('position', 'relative', this.wrap)
       }
     } else {
       wrap('<div></div>', this.element)
@@ -129,7 +129,7 @@ class Scrollable extends Component {
       if (position !== 'static') {
         setStyle({ position }, this.wrap)
       } else {
-        setStyle({ position: 'relative' }, this.wrap)
+        setStyle('position', 'relative', this.wrap)
       }
     }
 
@@ -423,7 +423,7 @@ class Scrollable extends Component {
 
   initLayout(direction) {
     if (direction === 'vertical') {
-      setStyle({ height: contentHeight(this.wrap) }, this.$container)
+      setStyle('height', contentHeight(this.wrap), this.$container)
     }
     const attributes = this.attributes[direction]
     const container = this.$container
@@ -432,14 +432,15 @@ class Scrollable extends Component {
     const parentLength = container.parentNode[attributes.crossClientLength]
     const scrollbarWidth = this.getBrowserScrollbarWidth(direction)
 
-    setStyle({ [attributes.crossLength]: `${parentLength}px` }, this.$content)
+    setStyle(attributes.crossLength, `${parentLength}px`, this.$content)
     setStyle(
-      { [attributes.crossLength]: `${scrollbarWidth + parentLength}px` },
+      attributes.crossLength,
+      `${scrollbarWidth + parentLength}px`,
       this.$container
     )
 
     if (scrollbarWidth === 0 && util.isFFLionScrollbar) {
-      setStyle({ [attributes.ffPadding]: 16 }, this.$container)
+      setStyle(attributes.ffPadding, 16, this.$container)
     }
   }
 
@@ -750,7 +751,7 @@ class Scrollable extends Component {
         },
         this.$container
       )
-      setStyle({ height: '' }, this.$content)
+      setStyle('height', '', this.$content)
     }
     if (this.vertical) {
       setStyle(
@@ -761,10 +762,10 @@ class Scrollable extends Component {
         },
         this.$container
       )
-      setStyle({ width: '' }, this.$content)
+      setStyle('width', '', this.$content)
     }
     if (!this.options.containerSelector) {
-      setStyle({ height: '' }, this.wrap)
+      setStyle('height', '', this.wrap)
     }
   }
 

@@ -193,11 +193,11 @@ class Window extends Base {
   overlayShow() {
     this.addClass(this.overlay, 'show')
     reflow(this.overlay)
-    setStyle({ opacity: this.configuration.overlayOpacity }, this.overlay)
+    setStyle('opacity', this.configuration.overlayOpacity, this.overlay)
   }
 
   overlayHide() {
-    setStyle({ opacity: '0' }, this.overlay)
+    setStyle('opacity', '0', this.overlay)
   }
 
   lensShow() {
@@ -279,10 +279,7 @@ class Window extends Base {
 
     if (transform) {
       const backgroundPosition = `${this.lensImaLeft}px, ${this.lensImgTop}px`
-      setStyle(
-        { transform: `translate(${backgroundPosition})` },
-        this.lensImage
-      )
+      setStyle('transform', `translate(${backgroundPosition})`, this.lensImage)
     } else {
       setStyle(
         {
@@ -309,7 +306,7 @@ class Window extends Base {
       const backgroundPosition = `${this.windowOffsetLeft}px, ${
         this.windowOffsetTop
       }px`
-      setStyle({ transform: `translate(${backgroundPosition})` }, this.window)
+      setStyle('transform', `translate(${backgroundPosition})`, this.window)
     } else {
       setStyle(
         {
@@ -346,7 +343,8 @@ class Window extends Base {
         this.windowTopPos
       }px`
       setStyle(
-        { transform: `translate(${backgroundPosition})` },
+        'transform',
+        `translate(${backgroundPosition})`,
         this.windowImage
       )
     } else {
@@ -381,7 +379,7 @@ class Window extends Base {
     }
     if (transform) {
       const backgroundPosition = `${this.lensLeftPos}px, ${this.lensTopPos}px`
-      setStyle({ transform: `translate(${backgroundPosition})` }, this.lens)
+      setStyle('transform', `translate(${backgroundPosition})`, this.lens)
     } else {
       setStyle(
         {

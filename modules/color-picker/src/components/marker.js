@@ -27,8 +27,8 @@ class Marker {
 
   init() {
     const offset = this.getOffset()
-    setStyle({ background: this.color, left: `${offset}px` }, this.$el)
-    // setStyle({ background: this.color }, query('i', this.$el))
+    setStyle('background: this.color, left', `${offset}px`, this.$el)
+    // setStyle('background', this.color, query('i', this.$el))
 
     this.bind()
   }
@@ -69,7 +69,7 @@ class Marker {
       return false
     }
     this.color = color.toRGBA()
-    setStyle({ background: this.color }, this.instance.$marker)
+    setStyle('background', this.color, this.instance.$marker)
     return null
   }
 

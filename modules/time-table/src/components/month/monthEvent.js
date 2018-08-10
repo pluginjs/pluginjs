@@ -74,7 +74,7 @@ class monthEvents {
     this.length++
     const e = this.createHtml(data)
     const point = query('span', e)
-    setStyle({ 'background-color': data.color }, point)
+    setStyle('background-color', data.color, point)
     this.events.push(e)
 
     insertBefore(e, this.more)

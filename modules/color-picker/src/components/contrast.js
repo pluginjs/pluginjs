@@ -56,7 +56,7 @@ class Contrast {
             return false
           }
 
-          setStyle({ 'background-color': color }, this.$prev)
+          setStyle('background-color', color, this.$prev)
           return null
         }
       },
@@ -77,7 +77,7 @@ class Contrast {
   }
 
   update() {
-    setStyle({ 'background-color': this.now }, this.$now)
+    setStyle('background-color', this.now, this.$now)
   }
 }
 

@@ -179,7 +179,7 @@ class Toggle extends Component {
       //     duration: 1
       //   }
       // );
-      setStyle({ marginLeft: `${pos}px` }, this.$inner)
+      setStyle('marginLeft', `${pos}px`, this.$inner)
     }
   }
 

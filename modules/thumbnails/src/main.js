@@ -153,12 +153,7 @@ class Thumbnails extends Component {
       const loader = thumb.querySelector(`.${that.classes.LOADER}`)
 
       addClass(that.classes.LOADED, thumb)
-      setStyle(
-        {
-          visibility: 'hidden'
-        },
-        loader
-      )
+      setStyle('visibility', 'hidden', loader)
     })
   }
 

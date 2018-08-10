@@ -86,7 +86,7 @@ class History {
         this.colors.shift()
       }
       this.$items.forEach((v, i) => {
-        setStyle({ background: this.colors[this.colors.length - 1 - i] }, v)
+        setStyle('background', this.colors[this.colors.length - 1 - i], v)
         if (i < this.count) {
           addClass(this.classes.HISTORYITEMEMPTY, v)
         }

@@ -88,18 +88,24 @@ class Responsive {
 
   initDistance() {
     const direction = this.instance.options.horizontal ? 'width' : 'height'
-    this.instance.$panes.map(
-      setStyle({
-        transform: 'translateY(-50%)',
-        opacity: '0',
-        [direction]: 'auto'
-      })
+    this.instance.$panes.map($pane =>
+      setStyle(
+        {
+          transform: 'translateY(-50%)',
+          opacity: '0',
+          [direction]: 'auto'
+        },
+        $pane
+      )
     )
 
-    this.instance.$contentInners.map(setStyle({ [direction]: 'auto' }))
+    this.instance.$contentInners.map($item =>
+      setStyle(direction, 'auto', $item)
+    )
 
     setStyle(
-      { height: `${outerHeight(this.instance.$contentInners[this.index])}px` },
+      'height',
+      `${outerHeight(this.instance.$contentInners[this.index])}px`,
       this.instance.element
     )
   }
@@ -258,11 +264,10 @@ class Responsive {
       opacity: 0,
       duration: trigger ? this.duration : BASE_DURATION,
       easing: this.effects.out,
-      complete: () =>
-        compose(
-          setStyle({ transform: 'translateY(-50%)' }),
-          removeClass(this.instance.classes.ACTIVE)
-        )(pane)
+      complete: () => {
+        setStyle('transform', 'translateY(-50%)', pane)
+        removeClass(this.instance.classes.ACTIVE, pane)
+      }
     })
   }
 
@@ -273,7 +278,7 @@ class Responsive {
 
     const innerHeight = outerHeight(this.instance.$contentInners[this.index])
     if (immediately) {
-      setStyle({ height: `${innerHeight}px` }, this.instance.element)
+      setStyle('height', `${innerHeight}px`, this.instance.element)
     } else {
       anime({
         targets: this.instance.element,

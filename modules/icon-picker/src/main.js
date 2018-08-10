@@ -114,7 +114,7 @@ class IconsPicker extends Component {
     insertAfter(this.$iconPicker, this.element)
     wrap(`<div class="${this.classes.WRAP}"></div>`, this.$iconPicker)
 
-    setStyle({ display: 'none' }, this.element)
+    setStyle('display', 'none', this.element)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$iconPicker)

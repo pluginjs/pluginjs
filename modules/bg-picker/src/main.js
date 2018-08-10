@@ -394,22 +394,20 @@ class BgPicker extends Component {
     this.returnFill(image)
     if (image === '' || typeof image === 'undefined') {
       showElement(this.$fillImageName)
-      setStyle({ 'background-image': 'none' }, this.$image)
+      setStyle('background-image', 'none', this.$image)
 
-      setStyle({ 'background-image': 'none' }, this.$fillImage)
+      setStyle('background-image', 'none', this.$fillImage)
     } else if (image || image !== this.options.image) {
       thumbnailUrl = this.options.thumbnail ? this.options.thumbnail : image
       const IMG = new Image()
       IMG.onload = () => {
         this.value.image = thumbnailUrl
         this.returnFill(this.value.image)
-        setStyle(
-          { 'background-image': `url('${this.value.image}')` },
-          this.$image
-        )
+        setStyle('background-image', `url('${this.value.image}')`, this.$image)
 
         setStyle(
-          { 'background-image': `url('${this.value.image}')` },
+          'background-image',
+          `url('${this.value.image}')`,
           this.$fillImage
         )
       }
@@ -417,8 +415,8 @@ class BgPicker extends Component {
         this.value.image = image
         this.returnFill(image)
         this.update()
-        setStyle({ 'background-image': 'none' }, this.$image)
-        setStyle({ 'background-image': 'none' }, this.$fillImage)
+        setStyle('background-image', 'none', this.$image)
+        setStyle('background-image', 'none', this.$fillImage)
       }
       IMG.src = thumbnailUrl
     }

@@ -49,9 +49,9 @@ class weekEvent {
     )
 
     if (this.position === 'left') {
-      setStyle({ left: '0px' }, this.element)
+      setStyle('left', '0px', this.element)
     } else {
-      setStyle({ right: '0px' }, this.element)
+      setStyle('right', '0px', this.element)
     }
 
     this.setContent()
@@ -107,7 +107,7 @@ class weekEvent {
     }
     this.width = '50%'
 
-    setStyle({ width: this.width }, this.element)
+    setStyle('width', this.width, this.element)
 
     return true
   }

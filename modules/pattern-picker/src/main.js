@@ -739,15 +739,23 @@ class PatternPicker extends Component {
   }
 
   clear() {
-    const clearInfoAndStyle = compose(
-      setData('info', ''),
-      setStyle({
-        backgroundColor: 'transparent',
-        backgroundImage: 'none'
-      })
-    )
-    clearInfoAndStyle(this.$previewImg)
-    clearInfoAndStyle(this.$infoImg)
+    setData('info', '', this.$previewImg),
+      setStyle(
+        {
+          backgroundColor: 'transparent',
+          backgroundImage: 'none'
+        },
+        this.$previewImg
+      )
+
+    setData('info', '', this.$infoImg),
+      setStyle(
+        {
+          backgroundColor: 'transparent',
+          backgroundImage: 'none'
+        },
+        this.$infoImg
+      )
 
     this.$selected = null
     this.$selecting = null

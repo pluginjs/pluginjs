@@ -1,5 +1,4 @@
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, query, prepend } from '@pluginjs/dom'
 import Base from './base'

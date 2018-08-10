@@ -81,7 +81,8 @@ class inner extends Base {
         this.windowTopPos
       }px`
       setStyle(
-        { transform: `translate(${backgroundPosition})` },
+        'transform',
+        `translate(${backgroundPosition})`,
         this.windowImage
       )
     } else {

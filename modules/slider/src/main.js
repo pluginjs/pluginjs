@@ -82,12 +82,7 @@ class Slider extends Component {
     }
 
     if (this.options.height) {
-      setStyle(
-        {
-          paddingBottom: `${this.options.height}%`
-        },
-        this.element
-      )
+      setStyle('paddingBottom', `${this.options.height}%`, this.element)
     }
 
     this.box = this.createElement('box')

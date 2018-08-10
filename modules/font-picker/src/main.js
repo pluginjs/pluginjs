@@ -917,11 +917,12 @@ class FontPicker extends Component {
     }
     const $fontsList = query(`.${this.classes.FONTWRAP}`, $el)
     setStyle(
-      { height: `${this.wrapHeight - this.categoriesHeight}px` },
+      'height',
+      `${this.wrapHeight - this.categoriesHeight}px`,
       $fontsList
     )
     const container = query('.pj-scrollable-container', $fontsList)
-    setStyle({ height: `${contentHeight($fontsList)}px` }, container)
+    setStyle('height', `${contentHeight($fontsList)}px`, container)
 
     $fontsList.style.display = 'block'
     // $fontsList.slideDown(this.options.delay)

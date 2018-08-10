@@ -442,7 +442,7 @@ class ColorPicker extends Component {
       })
 
       // set BgColor and Data val
-      setStyle({ background: v }, $item)
+      setStyle('background', v, $item)
       setData('info', { title: i, color: v }, $item)
       // append to group list
       append($item, groupList)

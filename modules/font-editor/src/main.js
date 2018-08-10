@@ -350,7 +350,7 @@ class FontEditor extends Component {
       }
       if (i === 'textAlign') {
         i = 'align-self'
-        setStyle({ alignSelf: v }, this.$fillFontSub)
+        setStyle('alignSelf', v, this.$fillFontSub)
       }
 
       i = i.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)

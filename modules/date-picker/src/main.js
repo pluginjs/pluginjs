@@ -171,7 +171,7 @@ class DatePicker extends Component {
 
       addClass(this.classes.ISMOBILE, append($title, this.$picker))
 
-      setStyle({ fontSize: `${Math.round(min * 0.04)}px` }, this.$picker)
+      setStyle('font-size', `${Math.round(min * 0.04)}px`, this.$picker)
 
       this.picker = new Hammer(this.$picker)
       this.mobileTrigger = new Hammer(this.$mobileTrigger)
@@ -1971,7 +1971,7 @@ class DatePicker extends Component {
           removeClass(this.classes.SHOW, this.$calendars[1])
         }
 
-        setStyle({ overflow: 'hidden' }, append(this.$cover, query('body')))
+        setStyle('overflow', 'hidden', append(this.$cover, query('body')))
         // Prevent horizontal scroll for ios
         // $doc.on(this.eventNameWithId('scrollstart'), (e) => {
         //   e.preventDefault()
@@ -2062,7 +2062,7 @@ class DatePicker extends Component {
       removeEvent(this.eventNameWithId('click'), $doc)
       removeEvent(this.eventNameWithId('resize'), window)
       if (this.isMobile) {
-        setStyle({ overflow: 'auto' }, query('body'))
+        setStyle('overflow', 'auto', query('body'))
         this.$cover.remove()
         this.picker.off('tap')
         removeEvent(this.eventNameWithId('click scrollstart swipe'), $doc)

@@ -48,9 +48,9 @@ class Preview {
       return false
     }
     if (isString(color)) {
-      setStyle({ background: color }, this.$color)
+      setStyle('background', color, this.$color)
     } else {
-      setStyle({ background: color.toRGBA() }, this.$color)
+      setStyle('background', color.toRGBA(), this.$color)
     }
     return null
   }

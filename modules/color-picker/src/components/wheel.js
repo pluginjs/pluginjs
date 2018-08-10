@@ -104,7 +104,7 @@ class Wheel {
   }
 
   set(deg) {
-    setStyle({ transform: `translate(-50%) rotate(${deg}deg)` }, this.$handle)
+    setStyle('transform', `translate(-50%) rotate(${deg}deg)`, this.$handle)
   }
 }
 

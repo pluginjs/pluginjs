@@ -387,7 +387,7 @@ class GradientPicker extends Component {
       }
 
       setData('info', info, $color)
-      setStyle({ background: val }, $color)
+      setStyle('background', val, $color)
 
       this.$selectorList.append($color)
     })
@@ -533,7 +533,7 @@ class GradientPicker extends Component {
     if (color === '') {
       color = 'transparent'
     }
-    setStyle({ background: color }, this.$infoImg)
+    setStyle('background', color, this.$infoImg)
 
     this.element.value = this.options.process(this.data)
   }
@@ -618,7 +618,7 @@ class GradientPicker extends Component {
   }
 
   setPreview(color) {
-    setStyle({ background: `${color}` }, this.$previewImg)
+    setStyle('background', `${color}`, this.$previewImg)
   }
 
   clear() {
@@ -629,8 +629,8 @@ class GradientPicker extends Component {
       opacityColor: ''
     }
 
-    setStyle({ background: 'none' }, this.$previewImg)
-    setStyle({ background: 'none' }, this.$infoImg)
+    setStyle('background', 'none', this.$previewImg)
+    setStyle('background', 'none', this.$infoImg)
 
     this.colorPicker.clear()
     this.opacity.val(100)

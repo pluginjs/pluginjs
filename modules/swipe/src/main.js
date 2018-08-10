@@ -569,7 +569,7 @@ class Swipe extends Component {
   }
 
   setWidth(width) {
-    setStyle({ width }, this.$container)
+    setStyle('width', width, this.$container)
 
     this.containerWidth = width
   }

@@ -48,7 +48,7 @@ class Slide {
 
   resetPosition() {
     this.translate = 0
-    setStyle({ transform: 'translate3d(0px, 0px, 0px)' }, this.slide)
+    setStyle('transform', 'translate3d(0px, 0px, 0px)', this.slide)
 
     if (!hasClass(this.classes.SLIDETRANSITION, this.slide)) {
       addClass(this.classes.SLIDETRANSITION, this.slide)
@@ -135,7 +135,7 @@ class Slide {
       addClass(this.classes.SLIDETRANSITION, this.slide)
     }
     const p = size * -1 * window.document.documentElement.clientWidth
-    setStyle({ transform: `translate3d(${p}px, 0px, 0px)` }, this.slide)
+    setStyle('transform', `translate3d(${p}px, 0px, 0px)`, this.slide)
   }
 
   closeVideo() {
@@ -196,7 +196,7 @@ class Slide {
       const p =
         this.translate * -1 * window.document.documentElement.clientWidth +
         drapDistance
-      setStyle({ transform: `translate3d(${p}px, 0px, 0px)` }, this.slide)
+      setStyle('transform', `translate3d(${p}px, 0px, 0px)`, this.slide)
     })
     this.hammer.on('panend', event => {
       const drapDistance = event.deltaX
@@ -206,7 +206,7 @@ class Slide {
         }
         const p =
           this.translate * -1 * window.document.documentElement.clientWidth
-        setStyle({ transform: `translate3d(${p}px, 0px, 0px)` }, this.slide)
+        setStyle('transform', `translate3d(${p}px, 0px, 0px)`, this.slide)
       } else {
         const direction = drapDistance > 0 ? 'pre' : 'next'
         if (direction === 'pre') {
@@ -233,7 +233,7 @@ class Slide {
       removeClass(this.classes.SLIDETRANSITION, this.slide)
     }
     const p = this.translate * -1 * window.document.documentElement.clientWidth
-    setStyle({ transform: `translate3d(${p}px, 0px, 0px)` }, this.slide)
+    setStyle('transform', `translate3d(${p}px, 0px, 0px)`, this.slide)
   }
 
   getCurrentImage() {

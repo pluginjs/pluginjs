@@ -78,8 +78,11 @@ class ItemContainer {
   }
 
   left(size) {
-    const left = size * window.document.documentElement.clientWidth
-    setStyle({ left }, this.item)
+    setStyle(
+      'left',
+      size * window.document.documentElement.clientWidth,
+      this.item
+    )
   }
 
   getImage() {

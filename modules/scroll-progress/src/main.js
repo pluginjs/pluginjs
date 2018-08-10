@@ -131,9 +131,9 @@ class ScrollProgress extends Component {
 
   setBarSize(size) {
     if (this.direction === 'vertical') {
-      setStyle({ height: `${size}%` }, this.$bar)
+      setStyle('height', `${size}%`, this.$bar)
     } else {
-      setStyle({ width: `${size}%` }, this.$bar)
+      setStyle('width', `${size}%`, this.$bar)
     }
   }
 

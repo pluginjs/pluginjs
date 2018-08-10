@@ -92,7 +92,7 @@ class Offset extends Component {
     this.data = {}
     this.set(this.value)
 
-    setStyle({ display: 'none' }, this.element)
+    setStyle('display', 'none', this.element)
 
     this.bind()
     if (this.element.disabled || this.options.disabled) {

@@ -72,7 +72,7 @@ class Toast extends GlobalComponent {
     }
     // toast bg
     if (this.options.bgColor) {
-      setStyle({ background: this.options.bgColor }, this.$element)
+      setStyle('background', this.options.bgColor, this.$element)
     }
 
     this.processLoader()
@@ -89,7 +89,7 @@ class Toast extends GlobalComponent {
     if (!this.options.loaderBgColor) {
       addClass(this.classes.STRIPED, this.$loader)
     } else {
-      setStyle({ 'background-color': this.options.loaderBgColor }, this.$loader)
+      setStyle('background-color', this.options.loaderBgColor, this.$loader)
     }
 
     this.pauseTime = 0
@@ -427,17 +427,17 @@ class Toast extends GlobalComponent {
     this.setTitle(this.options.title)
     // set icon
     if (this.options.iconClass === '' && this.options.icon !== '') {
-      setStyle({ color: this.options.icons[this.options.icon][1] }, this.$icon)
+      setStyle('color', this.options.icons[this.options.icon][1], this.$icon)
       if (this.options.iconColor !== '') {
-        setStyle({ color: this.options.iconColor }, this.$icon)
+        setStyle('color', this.options.iconColor, this.$icon)
       }
     } else if (this.$icon) {
-      setStyle({ color: this.options.iconColor }, this.$icon)
+      setStyle('color', this.options.iconColor, this.$icon)
     }
 
     // set X btn
     if (this.options.closeBtnColor) {
-      setStyle({ color: this.options.closeBtnColor }, this.$close)
+      setStyle('color', this.options.closeBtnColor, this.$close)
     }
 
     this.enter('initialized')
@@ -452,11 +452,11 @@ class Toast extends GlobalComponent {
     }
 
     if (this.options.icon) {
-      setStyle({ 'margin-left': '25px' }, this.$content)
+      setStyle('margin-left', '25px', this.$content)
     }
 
     if (this.options.contentColor) {
-      setStyle({ color: this.options.contentColor }, this.$content)
+      setStyle('color', this.options.contentColor, this.$content)
     }
   }
 
@@ -470,7 +470,7 @@ class Toast extends GlobalComponent {
     }
 
     if (this.options.titleColor) {
-      setStyle({ color: this.options.titleColor }, this.$title)
+      setStyle('color', this.options.titleColor, this.$title)
     }
   }
 

@@ -524,12 +524,7 @@ class VideoPicker extends Component {
             this.videoApi.pause()
             this.leave('playing')
             if (this.is('loaded') && this.$videoPoster) {
-              setStyle(
-                {
-                  backgroundImage: ''
-                },
-                this.$videoPoster
-              )
+              setStyle('backgroundImage', '', this.$videoPoster)
             }
           }
         }
@@ -597,12 +592,7 @@ class VideoPicker extends Component {
         showElement(closest('.pj-videoPicker-component', this.$videoUrl))
       }
       if (this.$videoPoster) {
-        setStyle(
-          {
-            backgroundImage: ''
-          },
-          this.$videoPoster
-        )
+        setStyle('backgroundImage', '', this.$videoPoster)
       }
       removeClass(this.classes.POSTERSELECTED, this.$poster)
       if (this.videoApi) {
@@ -686,12 +676,7 @@ class VideoPicker extends Component {
   deletePoster() {
     this.data.poster = ''
     removeClass(this.classes.POSTERSELECTED, this.$poster)
-    setStyle(
-      {
-        backgroundImage: 'none'
-      },
-      this.$videoPoster
-    )
+    setStyle('backgroundImage', 'none', this.$videoPoster)
   }
 
   unbind() {

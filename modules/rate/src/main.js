@@ -76,9 +76,9 @@ class Rate extends Component {
 
   setIconStyle() {
     if (this.options.iconSize) {
-      setStyle({ fontSize: this.options.iconSize }, this.range)
+      setStyle('font-size', this.options.iconSize, this.range)
     } else {
-      setStyle({ fontSize: '40px' }, this.range)
+      setStyle('font-size', '40px', this.range)
     }
 
     this.defaulColor = this.options.iconColorClass

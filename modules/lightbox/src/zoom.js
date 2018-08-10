@@ -60,12 +60,7 @@ class zoomEngine {
     }
 
     const largeImg = this.instance.slide.getCurrentImage()
-    setStyle(
-      {
-        visibility: 'hidden'
-      },
-      largeImg
-    )
+    setStyle('visibility', 'hidden', largeImg)
 
     const img = this.getElToAnimate(largeImg)
     setStyle(this.getOffset(this.options.opener(this.currentItem.element)), img)
@@ -74,12 +69,7 @@ class zoomEngine {
     setTimeout(() => {
       setStyle(this.getOffset(largeImg), img)
       setTimeout(() => {
-        setStyle(
-          {
-            visibility: 'visible'
-          },
-          largeImg
-        )
+        setStyle('visibility', 'visible', largeImg)
         img.remove()
       }, this.options.duration)
     }, 16)
@@ -96,12 +86,7 @@ class zoomEngine {
     const img = this.getElToAnimate(largeImg)
     setStyle(this.getOffset(largeImg), img)
     append(img, this.instance.wrap)
-    setStyle(
-      {
-        visibility: 'hidden'
-      },
-      largeImg
-    )
+    setStyle('visibility', 'hidden', largeImg)
 
     setTimeout(() => {
       setStyle(
@@ -109,12 +94,7 @@ class zoomEngine {
         img
       )
       setTimeout(() => {
-        setStyle(
-          {
-            visibility: 'visible'
-          },
-          largeImg
-        )
+        setStyle('visibility', 'visible', largeImg)
         img.remove()
       }, this.options.duration)
     }, 16)

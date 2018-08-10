@@ -1,6 +1,5 @@
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, query, parseHTML } from '@pluginjs/dom'
 

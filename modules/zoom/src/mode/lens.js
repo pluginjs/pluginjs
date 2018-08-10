@@ -67,13 +67,13 @@ class Lens extends Base {
   setLensPosition() {
     if (transform) {
       setStyle(
-        { transform: `translate(${this.lensLeftPos}px, ${this.lensTopPos}px)` },
+        'transform',
+        `translate(${this.lensLeftPos}px, ${this.lensTopPos}px)`,
         this.lens
       )
       setStyle(
-        {
-          transform: `translate(${this.positionLeft}px, ${this.positionTop}px)`
-        },
+        'transform',
+        `translate(${this.positionLeft}px, ${this.positionTop}px)`,
         this.lensImage
       )
     } else {
@@ -117,18 +117,16 @@ class Lens extends Base {
       this.lensImage
     )
 
-    setStyle({ overflow: 'hidden' }, this.container)
+    setStyle('overflow', 'hidden', this.container)
 
     if (!this.configuration.flexWidth) {
-      setStyle({ width: this.element.clientWidth }, this.container)
+      setStyle('width', this.element.clientWidth, this.container)
     }
 
     if (this.configuration.lensShape === 'round') {
       setStyle(
-        {
-          'border-radius': `${this.configuration.size +
-            this.configuration.size}px`
-        },
+        'border-radius',
+        `${this.configuration.size + this.configuration.size}px`,
         this.lens
       )
     }

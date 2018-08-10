@@ -27,7 +27,7 @@ class Tip {
 
       addClass(that.classes.tip, tip)
       if (that.opts.active === 'onMove') {
-        setStyle({ display: 'none' }, tip)
+        setStyle('display', 'none', tip)
         bindEvent(
           {
             type: `${instance.plugin}:moveEnd`,
@@ -93,12 +93,12 @@ class Tip {
 
   show(tip) {
     addClass(this.classes.show, tip)
-    setStyle({ display: 'block' }, tip)
+    setStyle('display', 'block', tip)
   }
 
   hide(tip) {
     removeClass(this.classes.show, tip)
-    setStyle({ display: 'none' }, tip)
+    setStyle('display', 'none', tip)
   }
 
   static init(instance) {

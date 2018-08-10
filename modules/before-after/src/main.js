@@ -149,17 +149,17 @@ class BeforeAfter extends Component {
     const clipHeight = position * height
 
     if (this.options.direction === 'vertical') {
-      setStyle({ clip: `rect(0,${width}px,${clipHeight}px,0)` }, this.$before)
+      setStyle('clip', `rect(0,${width}px,${clipHeight}px,0)`, this.$before)
     } else {
-      setStyle({ clip: `rect(0,${clipWidth}px,${height}px,0)` }, this.$before)
+      setStyle('clip', `rect(0,${clipWidth}px,${height}px,0)`, this.$before)
     }
   }
 
   adjustHandle(position) {
     if (this.options.direction === 'vertical') {
-      setStyle({ top: `${position * this.height}px` }, this.$handle)
+      setStyle('top', `${position * this.height}px`, this.$handle)
     } else {
-      setStyle({ left: `${position * this.width}px` }, this.$handle)
+      setStyle('left', `${position * this.width}px`, this.$handle)
     }
   }
 

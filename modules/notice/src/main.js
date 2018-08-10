@@ -94,7 +94,7 @@ class Notice extends GlobalComponent {
       )
     }
     if (this.options.closeBottonColor) {
-      setStyle({ color: this.options.closeBottonColor }, this.$closeBtn)
+      setStyle('color', this.options.closeBottonColor, this.$closeBtn)
     }
   }
 

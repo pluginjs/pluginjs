@@ -46,8 +46,8 @@ export default class Repeat {
       if (value === this.values[i]) {
         this.instance.value.repeat = value
         addClass(this.instance.classes.ACTIVE, this.$items[i])
-        setStyle({ 'background-repeat': value }, this.instance.$image)
-        setStyle({ 'background-repeat': value }, this.instance.$fillImage)
+        setStyle('background-repeat', value, this.instance.$image)
+        setStyle('background-repeat', value, this.instance.$fillImage)
         found = true
       }
     }
