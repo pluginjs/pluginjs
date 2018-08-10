@@ -164,7 +164,7 @@ class Thumbnails extends Component {
 
   initSwipeable() {
     const serPos = () => {
-      this.pos = this.swipeable.position[this.options.vetical ? 'y' : 'x']
+      this.pos = this.swipeable.position[this.options.vertical ? 'y' : 'x']
     }
 
     this.swipeable = Swipeable.of(this.inner, {
@@ -224,7 +224,6 @@ class Thumbnails extends Component {
       {
         type: this.eventName('click'),
         handler: event => {
-          console.log(this.swipeable.is('paning'))
           if (this.is('disable') || this.swipeable.is('paning')) {
             return false
           }

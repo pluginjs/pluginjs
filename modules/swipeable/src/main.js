@@ -174,6 +174,13 @@ class Swipeable extends Component {
     const decayY = this.options.axis === 'x' ? 0 : e.velocityY
     const that = this
 
+    if (
+      (this.options.axis === 'x' && Math.abs(decayX) < 1) ||
+      (this.options.axis === 'y' && Math.abs(decayY) < 1)
+    ) {
+      return
+    }
+
     const opts = {
       targets: target,
       translateX: this.position.x + this.getMoveSize(decayX),

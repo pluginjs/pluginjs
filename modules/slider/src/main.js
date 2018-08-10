@@ -81,6 +81,15 @@ class Slider extends Component {
       addClass(this.classes.VERTICAL, this.element)
     }
 
+    if (this.options.height) {
+      setStyle(
+        {
+          paddingBottom: `${this.options.height}%`
+        },
+        this.element
+      )
+    }
+
     this.box = this.createElement('box')
     this.cards = []
 

@@ -102,5 +102,7 @@ const data = [
 const element = query('#vertical .gallery')
 Gallery.of(element, {
   vertical: true,
+  prevIcon: 'icon-chevron-up',
+  nextIcon: 'icon-chevron-down',
   data
 })

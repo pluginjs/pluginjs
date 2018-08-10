@@ -59,6 +59,11 @@ class Gallery extends Component {
     const that = this
 
     addClass(this.classes.CONTAINER, this.element)
+
+    if (this.options.vertical) {
+      addClass(this.classes.VERTICAL, this.element)
+    }
+
     const sections = {
       slider: this.getElement('slider'),
       thumbs: this.getElement('thumbs')

@@ -2,11 +2,52 @@
 
 
 $gallery: "pj-gallery" !default;
-$thumb: "pj-thumb" !default;
 $slider: "pj-slider" !default;
+$slider-bg: #000 !default;
+
+$thumb: "pj-thumb" !default;
+
 
 .#{$gallery} {
+  position: relative;
+
+  .#{$slider} {
+    background-color: $slider-bg;
+  }
+
+  .#{$slider} + .#{$thumb}s,
+  .#{$thumb}s + .#{$slider} {
+    margin-top: 5px;
+  }
+}
+
+.#{$gallery}-vertical {
+  .#{$slider} {
+    width: calc(100% - 105px);
+
+    &-content {
+      min-height: auto;
+    }
+  }
+
   .#{$thumb}s {
-    margin: 5px 0;
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+  }
+
+  .#{$slider} + .#{$thumb}s {
+    right: 0;
+  }
+
+  .#{$thumb}s + .#{$slider} {
+    left: 100px;
+  }
+
+  .#{$slider} + .#{$thumb}s,
+  .#{$thumb}s + .#{$slider} {
+    margin-top: 0;
+    margin-left: 5px;
   }
 }
