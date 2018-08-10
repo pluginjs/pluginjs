@@ -1,3 +1,2 @@
-import ScrollTo from '@pluginjs/scroll-to'
-
-console.log(ScrollTo)
+// import sections
+import './sections/default'

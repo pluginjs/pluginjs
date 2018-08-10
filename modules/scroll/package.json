@@ -27,7 +27,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/styles": "^0.5.3"
+    "@pluginjs/styles": "^0.5.3",
+    "@pluginjs/easing": "*",
+    "@pluginjs/is": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

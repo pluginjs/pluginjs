@@ -1,5 +1,5 @@
-import ScrollTo from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import ScrollTo from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 
 describe('ScrollTo', () => {
   describe('ScrollTo()', () => {
@@ -41,87 +41,76 @@ describe('ScrollTo', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asScrollTo()).toEqual($element)
-
-      const api = $element.data('scrollTo')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asScrollTo()
-      expect($element.asScrollTo('bind')).toBeNil()
+      const element = document.createElement('div')
+      const instance = ScrollTo.of(element)
+      expect(instance.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asScrollTo()
-      expect($element.asScrollTo('destroy')).toEqual($element)
+      const element = document.createElement('div')
+      const instance = ScrollTo.of(element)
+      expect(instance.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let $element
+    let element
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      element = document.createElement('div')
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('scrollTo:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      element.addEventListener('scrollTo:ready', () => {
         called++
       })
 
-      $element.asScrollTo()
+      api = ScrollTo.of(element)
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asScrollTo()
-      api = $element.data('scrollTo')
+      element = document.createElement('div')
+      api = ScrollTo.of(element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('scrollTo:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      element.addEventListener('scrollTo:destroy', () => {
         called++
       })
 
-      $element.asScrollTo('destroy')
+      api.destroy()
+      expect(api.is('initialized')).toBeFalse()
 
       expect(called).toEqual(1)
     })
   })
 
   describe('enable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asScrollTo()
-      api = $element.data('scrollTo')
+      element = document.createElement('div')
+      api = ScrollTo.of(element)
     })
 
     test('should enable the plugin', () => {
-      $element.asScrollTo('disable')
-      $element.asScrollTo('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -129,27 +118,27 @@ describe('ScrollTo', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('scrollTo:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      element.addEventListener('scrollTo:enable', () => {
         called++
       })
 
-      $element.asScrollTo('enable')
+      api.enable()
+      expect(api.is('disabled')).toBeFalse()
       expect(called).toEqual(1)
     })
   })
 
   describe('disable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asScrollTo()
-      api = $element.data('scrollTo')
+      element = document.createElement('div')
+      api = ScrollTo.of(element)
     })
 
     test('should disable the plugin', () => {
-      $element.asScrollTo('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -157,12 +146,12 @@ describe('ScrollTo', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('scrollTo:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      element.addEventListener('scrollTo:disable', () => {
         called++
       })
 
-      $element.asScrollTo('disable')
+      api.disable()
+      expect(api.is('disabled')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
