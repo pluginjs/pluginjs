@@ -1,3 +1,3 @@
-import ScrollDir from '@pluginjs/scroll-dir'
-
-console.log(ScrollDir)
+// import sections
+import './sections/default'
+import '@pluginjs/styles/buttons.scss'
