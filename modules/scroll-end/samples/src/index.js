@@ -1,3 +1,3 @@
-import ScrollEnd from '@pluginjs/scroll-end'
-
-console.log(ScrollEnd)
+// import sections
+import './sections/default'
+import '@pluginjs/styles/buttons.scss'

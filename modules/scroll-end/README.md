@@ -42,58 +42,25 @@ Production:
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-end/dist/scroll-end.min.css">
 ```
 
-### Initialize
-
-HTML:
-
-```html
-<body>
-  <div class="element"></div>
-</body>
-```
-
-ECMAScript Module:
-
-```javascript
-import ScrollEnd from "@pluginjs/scroll-end"
-import "@pluginjs/scroll-end/dist/scroll-end.css"
-
-ScrollEnd.of(document.querySelector('.element'), options)
-```
-
-CommonJS:
-
-```javascript
-require("@pluginjs/scroll-end/dist/scroll-end.css")
-const ScrollEnd = require("@pluginjs/scroll-end")
-
-ScrollEnd.of(document.querySelector('.element'), options)
-```
-
-Browser:
-
-```html
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-end/dist/scroll-end.css">
-<script src="https://unpkg.com/@pluginjs/scroll-end/dist/scroll-end.js"></script>
-<script>
-  Pj.scrollEnd('.element', options)
-</script>
-```
-
----
-
 ## API
 
-### Options
+### on
 
-Options are called on scrollEnd instances through the scrollEnd options itself.
-You can also save the instances to variable for further use.
+Parameters
 
-Name | Description | Default
------|--------------|-----
-`"offset"` | Set offset | `{"top":0,"right":0,"bottom":0,"left":0}`
-`"threshold"` | Set threshold | `0`
----
+| Name | Type | Description |
+|------|------|-------------|
+| listener | `Function` | handler |
+| context | `Object` | |
+| priority | `Number` | |
+
+### off
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| listener | `Function` | handler |
 
 ## Browser support
 
