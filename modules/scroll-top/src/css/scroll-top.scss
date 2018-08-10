@@ -16,7 +16,17 @@ html {
   position: fixed;
   right: $scrollTop-trigger-right;
   bottom: $scrollTop-trigger-bottom;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #000;
+  text-decoration: none;
+  text-indent: 100%;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: no-repeat center center transparent;
   outline: none;
   opacity: 0;
 
@@ -28,34 +38,6 @@ html {
   &-animating * {
     pointer-events: none !important;
   }
-}
-
-.#{$scrollTop}-fade {
-  transition-property: opacity;
-}
-
-.#{$scrollTop}-slide {
-  bottom: -100px;
-  transition-property: bottom, opacity;
-
-  &.#{$scrollTop}-show {
-    bottom: $scrollTop-trigger-bottom;
-  }
-}
-
-/* themes */
-.#{$scrollTop} {
-  width: 50px;
-  height: 50px;
-  font-family: sans-serif;
-  font-size: 12px;
-  color: #000;
-  text-decoration: none;
-  text-indent: 100%;
-  text-transform: uppercase;
-  white-space: nowrap;
-  background: no-repeat center center transparent;
-  outline: none;
 
   &--default {
     display: block;
@@ -105,5 +87,18 @@ html {
     &:hover {
       background-image: url("../images/triangle-hover.png");
     }
+  }
+}
+
+.#{$scrollTop}-fade {
+  transition-property: opacity;
+}
+
+.#{$scrollTop}-slide {
+  bottom: -100px;
+  transition-property: bottom, opacity;
+
+  &.#{$scrollTop}-show {
+    bottom: $scrollTop-trigger-bottom;
   }
 }
