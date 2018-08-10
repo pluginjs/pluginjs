@@ -32,14 +32,12 @@ Development:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.css">
 ```
 
 Production:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-spy/dist/scroll-spy.min.css">
 ```
 
 ### Initialize
@@ -56,7 +54,6 @@ ECMAScript Module:
 
 ```javascript
 import ScrollSpy from "@pluginjs/scroll-spy"
-import "@pluginjs/scroll-spy/dist/scroll-spy.css"
 
 ScrollSpy.of(document.querySelector('.element'), options)
 ```

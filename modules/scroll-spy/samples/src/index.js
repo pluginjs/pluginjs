@@ -1,3 +1,2 @@
-import ScrollSpy from '@pluginjs/scroll-spy'
-
-console.log(ScrollSpy)
+// import sections
+import './sections/default'
