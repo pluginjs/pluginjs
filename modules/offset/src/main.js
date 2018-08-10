@@ -4,7 +4,7 @@ import TOOLTIP from '@pluginjs/tooltip'
 import { isObject, isNumber } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle, getStyle, getOffset } from '@pluginjs/styled'
+import { setStyle, getStyle, offset as getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   parentWith,

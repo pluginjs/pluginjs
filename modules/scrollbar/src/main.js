@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import easing from '@pluginjs/easing'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getOffset } from '@pluginjs/styled'
+import { setStyle, offset as getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, query } from '@pluginjs/dom'
 import {

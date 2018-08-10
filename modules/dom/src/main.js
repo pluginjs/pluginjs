@@ -144,6 +144,16 @@ export const closest = (selector, el) => {
   return parentWith(el => el.matches(selector), el)
 }
 
+export const offsetParent = (el) => {
+  let offsetParent = el.offsetParent;
+
+  while ( offsetParent && offsetParent.style.position === "static" ) {
+    offsetParent = offsetParent.offsetParent
+  }
+
+  return offsetParent || document.documentElement;
+}
+
 // ---------
 // Data
 // ----------

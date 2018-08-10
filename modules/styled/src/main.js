@@ -1,5 +1,12 @@
 import { curryWith, camelize, dasherize } from '@pluginjs/utils'
-import { isObject, isElement, isNumeric, isString, isWindow } from '@pluginjs/is'
+import {
+  isObject,
+  isElement,
+  isNumeric,
+  isString,
+  isWindow
+} from '@pluginjs/is'
+import { offsetParent } from '@pluginjs/dom'
 
 const sum = arr => arr.reduce((a, b) => a + b)
 
@@ -43,40 +50,41 @@ export const css = curryWith((key, value, el) => {
   return setStyle(key, value, el)
 }, isElement)
 
-
 // ----------
 // Dimensions
 // ----------
 export const outerHeight = (includeMargins, el) => {
-  if(isElement(includeMargins) && typeof el === 'undefined') {
+  if (isElement(includeMargins) && typeof el === 'undefined') {
     el = includeMargins
     includeMargins = false
   }
 
-  if(isWindow(el)) {
+  if (isWindow(el)) {
     return el.outerHeight
   }
 
-  if(includeMargins) {
+  if (includeMargins) {
     const { marginTop, marginBottom } = window.getComputedStyle(el)
 
-    return parseInt(marginTop, 10) + parseInt(marginBottom, 10) + el.offsetHeight
+    return (
+      parseInt(marginTop, 10) + parseInt(marginBottom, 10) + el.offsetHeight
+    )
   }
 
   return el.offsetHeight
 }
 
 export const outerWidth = (includeMargins, el) => {
-  if(isElement(includeMargins) && typeof el === 'undefined') {
+  if (isElement(includeMargins) && typeof el === 'undefined') {
     el = includeMargins
     includeMargins = false
   }
 
-  if(isWindow(el)) {
+  if (isWindow(el)) {
     return el.outerWidth
   }
 
-  if(includeMargins) {
+  if (includeMargins) {
     const { marginLeft, marginRight } = window.getComputedStyle(el)
 
     return parseInt(marginLeft, 10) + parseInt(marginRight, 10) + el.offsetWidth
@@ -105,21 +113,60 @@ export const contentHeight = el => {
   )
 }
 
-export const offset = el => {
+export const offset = (coordinates, el) => {
+  if (isElement(coordinates) && typeof el === 'undefined') {
+    el = coordinates
+    coordinates = undefined
+  }
+
+  if(coordinates) {
+    let props = {}, parentOffset = offset(offsetParent(el))
+
+    if(coordinates.top != null) {
+      props.top = coordinates.top  - parentOffset.top
+    }
+    if(coordinates.left != null) {
+      props.left = coords.left - parentOffset.left
+    }
+
+    if (getStyle('position', el) == 'static') {
+      props['position'] = 'relative'
+    }
+
+    return setStyle(props, el)
+  }
+
   const box = el.getBoundingClientRect()
+  const win = el.ownerDocument.defaultView
 
   return {
-    top: box.top + window.pageYOffset - document.documentElement.clientTop,
-    left: box.left + window.pageXOffset - document.documentElement.clientLeft
+    top: box.top + win.pageYOffset,
+    left: box.left + win.pageXOffset
   }
 }
 
-export const getOffset = el => {
-  const box = el.getBoundingClientRect()
+export const position = el => {
+  let parentOffset = { top: 0, left: 0 }
+  let coords
+
+  if (getStyle('position', el) == 'fixed') {
+    coords = el.getBoundingClientRect()
+  } else {
+    coords = offset(el)
+    let offsetParent = offsetParent(el)
+    if ( offsetParent && offsetParent !== el && offsetParent.nodeType === 1 ) {
+      parentOffset = offset(offsetParent)
+      parentOffset.top += parseFloat(offsetParent.style['borderTopWidth']) || 0
+      parentOffset.left += parseFloat(offsetParent.style['borderLeftWidth']) || 0
+    }
+  }
+
+  coords.top  -= parseFloat(el.style['marginTop']) || 0
+  coords.left -= parseFloat(el.style['marginLeft']) || 0
 
   return {
-    top: box.top + window.pageYOffset - document.documentElement.clientTop,
-    left: box.left + window.pageXOffset - document.documentElement.clientLeft
+    top:  coords.top  - parentOffset.top,
+    left: coords.left - parentOffset.left
   }
 }
 

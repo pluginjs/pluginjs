@@ -1,5 +1,5 @@
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getOffset } from '@pluginjs/styled'
+import { setStyle, offset as getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent, trigger } from '@pluginjs/events'
 
 class Pointer {

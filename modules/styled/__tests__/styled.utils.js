@@ -1,4 +1,5 @@
 import * as styled from '../src/main'
+import * as dom from '@pluginjs/dom'
 
 describe('styled', () => {
   describe('setStyle', () => {
@@ -114,9 +115,7 @@ describe('styled', () => {
       const { marginTop, marginBottom } = window.getComputedStyle(el)
       const marginHeight = parseInt(marginTop, 10) + parseInt(marginBottom, 10)
 
-      expect(styled.outerHeight(true, el)).toBe(
-        el.offsetHeight + marginHeight
-      )
+      expect(styled.outerHeight(true, el)).toBe(el.offsetHeight + marginHeight)
     })
   })
 
@@ -159,14 +158,29 @@ describe('styled', () => {
   //   const paddingHeight = parseInt(paddingTop, 10) + parseInt(paddingBottom, 10)
   //   expect(height + paddingHeight).toBe(styled.contentHeight(el))
   // })
-  test('offset', () => {
-    const el = document.createElement('div')
-    const { top, left } = el.getBoundingClientRect()
-    expect(styled.offset(el)).toEqual({
-      top: top + window.pageYOffset - document.documentElement.clientTop,
-      left: left + window.pageXOffset - document.documentElement.clientLeft
-    })
-  })
+
+  // it didn't working due to getBoundingClientRect not working on jsdom
+  // describe('offset', () => {
+  //   test('offset', () => {
+  //     const parent = document.createElement('div')
+  //     const el = document.createElement('div')
+  //     dom.append(el, parent)
+  //     dom.append(parent, document.documentElement)
+
+  //     styled.setStyle({
+  //       position: 'absolute',
+  //       top: '50px',
+  //       left: '100px',
+  //       width: '100px',
+  //       height: '100px'
+  //     }, el)
+
+  //     expect(styled.offset(el)).toEqual({
+  //       top: 50,
+  //       left: 100
+  //     })
+  //   })
+  // })
 
   test('hideElement', () => {
     const el = document.createElement('div')

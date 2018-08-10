@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { isString, isDomNode } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { getOffset } from '@pluginjs/styled'
+import { offset as getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { queryAll, query } from '@pluginjs/dom'
 import Pj from '@pluginjs/factory'
