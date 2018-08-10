@@ -1,5 +1,5 @@
-import ScrollProgress from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import ScrollProgress from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 
 describe('ScrollProgress', () => {
   describe('ScrollProgress()', () => {
@@ -37,87 +37,76 @@ describe('ScrollProgress', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asScrollProgress()).toEqual($element)
-
-      const api = $element.data('scrollProgress')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asScrollProgress()
-      expect($element.asScrollProgress('bind')).toBeNil()
+      const element = document.createElement('div')
+      const instance = ScrollProgress.of(element)
+      expect(instance.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asScrollProgress()
-      expect($element.asScrollProgress('destroy')).toEqual($element)
+      const element = document.createElement('div')
+      const instance = ScrollProgress.of(element)
+      expect(instance.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let $element
+    let element
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
+      element = document.createElement('div')
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('scrollProgress:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      element.addEventListener('scrollProgress:ready', () => {
         called++
       })
 
-      $element.asScrollProgress()
+      api = ScrollProgress.of(element)
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asScrollProgress()
-      api = $element.data('scrollProgress')
+      element = document.createElement('div')
+      api = ScrollProgress.of(element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('scrollProgress:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      element.addEventListener('scrollProgress:destroy', () => {
         called++
       })
 
-      $element.asScrollProgress('destroy')
+      api.destroy()
+      expect(api.is('initialized')).toBeFalse()
 
       expect(called).toEqual(1)
     })
   })
 
   describe('enable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asScrollProgress()
-      api = $element.data('scrollProgress')
+      element = document.createElement('div')
+      api = ScrollProgress.of(element)
     })
 
     test('should enable the plugin', () => {
-      $element.asScrollProgress('disable')
-      $element.asScrollProgress('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -125,27 +114,27 @@ describe('ScrollProgress', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('scrollProgress:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      element.addEventListener('scrollProgress:enable', () => {
         called++
       })
 
-      $element.asScrollProgress('enable')
+      api.enable()
+      expect(api.is('disabled')).toBeFalse()
       expect(called).toEqual(1)
     })
   })
 
   describe('disable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asScrollProgress()
-      api = $element.data('scrollProgress')
+      element = document.createElement('div')
+      api = ScrollProgress.of(element)
     })
 
     test('should disable the plugin', () => {
-      $element.asScrollProgress('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -153,12 +142,12 @@ describe('ScrollProgress', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('scrollProgress:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      element.addEventListener('scrollProgress:disable', () => {
         called++
       })
 
-      $element.asScrollProgress('disable')
+      api.disable()
+      expect(api.is('disabled')).toBeTrue()
       expect(called).toEqual(1)
     })
   })

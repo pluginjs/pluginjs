@@ -1,0 +1,45 @@
+// import scroll-progress css
+@import "@pluginjs/scroll-progress/src/css/scroll-progress.scss";
+
+.content {
+  display: inline-block;
+  max-width: 250px;
+  height: 800px;
+  max-height: 200px;
+  padding: 4px 8px;
+  overflow: auto;
+  font-size:17px;
+  color:#595959;
+  text-align: left;
+  border: 1px solid #b1b1b1;
+  border-radius: 4px;
+}
+.apiExample {
+  display: block;
+  max-width: 525px;
+  height: 2000px;
+  max-height: 200px;
+  padding: 4px 8px;
+  overflow: auto;
+  font-size:17px;
+  color:#595959;
+  text-align: left;
+  border: 1px solid #b1b1b1;
+  border-radius: 4px;
+}
+.content h3 {
+  margin-bottom: 10px;
+  font-size: 25px;
+  text-align: center;
+}
+.content3 {
+  display: block !important;
+  max-width: 525px !important;
+  height: 2000px !important;
+}
+.content4 {
+  display: block !important;
+  max-width: 525px !important;
+  height: 2000px !important;
+  margin-top: 7px;
+}
