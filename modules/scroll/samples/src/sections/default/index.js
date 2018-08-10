@@ -3,11 +3,11 @@ import scrollHelper from '@pluginjs/scroll'
 
 class SelectHelper {
   constructor(element) {
-    this.element = element
+    this.select = element
   }
 
   get value() {
-    return this.element.value
+    return this.select.options[this.select.selectedIndex].value
   }
 }
 

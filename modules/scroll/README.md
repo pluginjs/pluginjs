@@ -8,14 +8,116 @@
 
 ## API
 
-- to
-- toX
-- toY
-- by
-- byX
-- byY
-- intoView
-- top
+### to
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `ScrollToOptions` | |
+
+ScrollToOptions
+
+| Name | Type | Description |
+| x | `Number` | |
+| y | `Number` | |
+| easing | `String` | |
+| duration | `Number` | |
+| complete | `Function` | Callback |
+
+### toX
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| x | `Number` | |
+| easing | `String` | |
+| duration | `Number` | |
+| complete | `Function` | Callback |
+
+### toY
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| y | `Number` | |
+| easing | `String` | |
+| duration | `Number` | |
+| complete | `Function` | Callback |
+
+### by
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `ScrollByOptions` | |
+
+ScrollToOptions
+
+| Name | Type | Description |
+| x | `Number` | |
+| y | `Number` | |
+| easing | `String` | |
+| duration | `Number` | |
+| complete | `Function` | Callback |
+
+### byX
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| x | `Number` | |
+| easing | `String` | |
+| duration | `Number` | |
+| complete | `Function` | Callback |
+
+### byY
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| y | `Number` | |
+| easing | `String` | |
+| duration | `Number` | |
+| complete | `Function` | Callback |
+
+### intoView
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `ScrollIntoViewOptions` | |
+
+ScrollIntoViewOptions
+
+| Name | Type | Description |
+| element | `HTMLElement` | |
+| easing | `String` | |
+| duration | `Number` | |
+| complete | `Function` | Callback |
+
+### top
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| options | `ScrollTopOptions` | |
+
+ScrollTopOptions
+
+| Name | Type | Description |
+| element | `HTMLElement` | |
+| offset | `Number` | |
+| easing | `String` | |
+| duration | `Number` | |
+| complete | `Function` | Callback |
 
 ## Browser support
 
