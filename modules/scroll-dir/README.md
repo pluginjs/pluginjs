@@ -32,68 +32,33 @@ Development:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.css">
 ```
 
 Production:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.min.css">
 ```
-
-### Initialize
-
-HTML:
-
-```html
-<body>
-  <div class="element"></div>
-</body>
-```
-
-ECMAScript Module:
-
-```javascript
-import Scrolldir from "@pluginjs/scroll-dir"
-import "@pluginjs/scroll-dir/dist/scroll-dir.css"
-
-Scrolldir.of(document.querySelector('.element'), options)
-```
-
-CommonJS:
-
-```javascript
-require("@pluginjs/scroll-dir/dist/scroll-dir.css")
-const Scrolldir = require("@pluginjs/scroll-dir")
-
-Scrolldir.of(document.querySelector('.element'), options)
-```
-
-Browser:
-
-```html
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.css">
-<script src="https://unpkg.com/@pluginjs/scroll-dir/dist/scroll-dir.js"></script>
-<script>
-  Pj.scrolldir('.element', options)
-</script>
-```
-
----
 
 ## API
 
-### Options
+### on
 
-Options are called on scrolldir instances through the scrolldir options itself.
-You can also save the instances to variable for further use.
+Parameters
 
-Name | Description | Default
------|--------------|-----
-`"offset"` | Set offset | `{"top":0,"right":0,"bottom":0,"left":0}`
-`"threshold"` | Ser threshold | `0`
----
+| Name | Type | Description |
+|------|------|-------------|
+| listener | `Function` | handler |
+| context | `Object` | |
+| priority | `Number` | |
+
+### off
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| listener | `Function` | handler |
 
 ## Browser support
 
