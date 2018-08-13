@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Select from '@pluginjs/select'
 
-const data = [
+const source = [
   {
     group: 'true',
     label: 'group-one',
@@ -37,4 +37,4 @@ const data = [
 ]
 
 const element = query('#data .example-data')
-Select.of(element, { data })
+Select.of(element, { source })

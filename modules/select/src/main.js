@@ -64,10 +64,10 @@ class Select extends Component {
         this.element.selectedIndex = -1
       }
     }
-    this.data = this.options.data
-      ? this.parseJson(this.options.data)
+    this.source = this.options.source
+      ? this.parseJson(this.options.source)
       : this.parseHtml(children(this.element))
-
+    console.log(this.source)
     this.selected = Array.from(this.element.selectedOptions).map(el => el.value)
     this.markIndex = 0
     this.build()
@@ -97,7 +97,7 @@ class Select extends Component {
     if (this.selected.length > 0) {
       this.set(this.selected, true, true)
     } else {
-      this.resetList(this.data)
+      this.resetList(this.source)
       this.checkIcon()
     }
 
@@ -197,10 +197,9 @@ class Select extends Component {
         this.triggerElement
       )
     }
-    console.log(this.triggerElement)
     this.triggerEl = query('.pj-dropdown-trigger', this.triggerElement)
     this.$dropdown = this.buildFromTemplate('dropdown', { that: this })
-    this.list = this.buildList(this.data)
+    this.list = this.buildList(this.source)
     append(this.list, this.$dropdown)
     append(this.triggerElement, this.wrap)
     append(this.$dropdown, this.wrap)
@@ -323,7 +322,7 @@ class Select extends Component {
             this.SEARCH.value = ''
           } else {
             const label = this.query(
-              this.data,
+              this.source,
               this.selected[0],
               'value',
               false
@@ -334,7 +333,7 @@ class Select extends Component {
             }
           }
 
-          this.resetList(this.data)
+          this.resetList(this.source)
           this.resetLabelWidth()
         }
       },
@@ -353,7 +352,6 @@ class Select extends Component {
         this.dropdown.itemUsable = false
       }
     })
-    console.log(this.dropdown)
     this.label = this.dropdown.element
     if (!this.options.filterable && this.options.multiple) {
       this.label.style.display = 'none'
@@ -384,7 +382,7 @@ class Select extends Component {
             setStyle('width', '100%', this.label)
             // delete selected
             this.selected = []
-            this.resetList(this.data)
+            this.resetList(this.source)
             // hide close icon
             this.checkIcon()
           }
@@ -602,7 +600,7 @@ class Select extends Component {
         } else {
           this.label.setAttribute('placeholder', '')
         }
-        this.resetList(this.data)
+        this.resetList(this.source)
         this.resetLabelWidth()
       } else if (this.selected === null || this.selected.length === 0) {
         this.label.innerHTML = this.options.placeholder
@@ -685,7 +683,7 @@ class Select extends Component {
 
   getItemData(item) {
     const value = item.dataset.value
-    const data = this.query(this.data, value, 'value', false)[0]
+    const data = this.query(this.source, value, 'value', false)[0]
 
     return data
   }
