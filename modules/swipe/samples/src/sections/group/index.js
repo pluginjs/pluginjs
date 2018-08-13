@@ -6,5 +6,6 @@ Swipe.of(element, {
   itemNums: 3,
   gutter: 20,
   group: true,
+  groupNumber: 3,
   pagination: true
 })

@@ -45,6 +45,7 @@ export const defaults = {
   dragFree: false,
   power: 2,
   group: false,
+  groupNumber: 1,
   loop: false,
   multiple: false,
   center: false, // center model

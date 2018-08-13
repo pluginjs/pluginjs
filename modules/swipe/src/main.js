@@ -528,13 +528,14 @@ class Swipe extends Component {
     this.active = index
 
     if (this.options.group) {
-      distance = Math.max(
-        0,
-        Math.min(
-          this.sortedItems[index].info.x,
-          this.containerWidth - this.width
-        )
-      )
+      distance =
+        Math.max(
+          0,
+          Math.min(
+            this.sortedItems[index].info.x,
+            this.containerWidth - this.width
+          )
+        ) * this.options.groupNumber
     } else {
       distance = this.sortedItems[index].info.x
     }
@@ -563,7 +564,7 @@ class Swipe extends Component {
 
     this.move(distance, {
       trigger: true,
-      ease: this.options.dragFree ? 'easeOutExpo' : 'linear',
+      ease: this.options.dragFree ? 'easeInQuad' : 'linear',
       callback
     })
   }
@@ -625,10 +626,10 @@ class Swipe extends Component {
     if (this.options.group && !this.options.center) {
       let index = 0
       const tempWidth = this.width
-      const maybeIndex = Math.round(distance / this.width)
+      let maybeIndex = Math.ceil(distance / this.width)
 
       index =
-        distance - (maybeIndex - 1) * tempWidth > tempWidth / 2
+        distance - (maybeIndex++ - 1) * tempWidth > tempWidth / 2
           ? maybeIndex
           : maybeIndex - 1
       return Math.max(0, Math.min(index, this.maxActiveCount))

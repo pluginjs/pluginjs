@@ -11,21 +11,21 @@ $accordion-border-width: $border-width !default;
 $accordion-border-color: $border-color !default;
 $accordion-border-radius: $border-radius-base !default;
 $accordion-header-color: $text-title-color !default;
-$accordion-pane-interval: 1.538 * $accordion-font-size !default;  // 20px
-$accordion-header-spacer-x: 2 * $accordion-font-size !default; // 26px
-$accordion-header-icon-sapce-x: 1.1538 * $accordion-font-size !default; // 15px
-$accordion-header-flag-sapcer-x: 1.462 * $accordion-font-size !default; // 19px
+$accordion-pane-interval: 1.25 * $accordion-font-size !default;  // 20px
+$accordion-header-spacer-x: 1.625 * $accordion-font-size !default; // 26px
+$accordion-header-icon-sapce-x: 0.9375 * $accordion-font-size !default; // 15px
+$accordion-header-flag-sapcer-x: 1.1875 * $accordion-font-size !default; // 19px
 $accordion-content-spacer-x: $accordion-header-spacer-x !default;
-$accordion-content-spacer-y: 1.538 * $accordion-font-size !default; // 20px
-$accordion-horizontal-header-spacer-x: 1.23 * $accordion-font-size !default; // 16px
+$accordion-content-spacer-y: 1.25 * $accordion-font-size !default; // 20px
+$accordion-horizontal-header-spacer-x: 1 * $accordion-font-size !default; // 16px
 $accordion-horizontal-header-spacer-y: 1.375 * $accordion-font-size !default; // 22px
-$accordion-horizontal-content-spacer-x: 1.846 * $accordion-font-size !default; // 24px
+$accordion-horizontal-content-spacer-x: 1.5 * $accordion-font-size !default; // 24px
 $accordion-horizontal-content-spacer-y: $accordion-horizontal-header-spacer-y !default;
-$accordion-responsive-space: 7.692 * $accordion-font-size !default; // 100px
-$accordion-dropdown-header-icon-sapce-x: 0.923 * $accordion-font-size !default; // 12px
-$accordion-dropdown-header-flag-sapcer-x: 1.154 * $accordion-font-size !default; // 15px
-$accordion-dropdown-header-spacer-x: 1.385 * $accordion-font-size !default; // 18px
-$accordion-dropdown-header-spacer-y: 1.692 * $accordion-font-size !default; // 22px
+$accordion-responsive-space: 6.25 * $accordion-font-size !default; // 100px
+$accordion-dropdown-header-icon-sapce-x: 0.75 * $accordion-font-size !default; // 12px
+$accordion-dropdown-header-flag-sapcer-x: 0.9375 * $accordion-font-size !default; // 15px
+$accordion-dropdown-header-spacer-x: 1.125 * $accordion-font-size !default; // 18px
+$accordion-dropdown-header-spacer-y: 1.375 * $accordion-font-size !default; // 22px
 $accordion-dropdown-header-width: $accordion-horizontal-height;
 $accordion-dropdown-header-after: $color-white !default;
 
