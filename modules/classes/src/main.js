@@ -10,10 +10,13 @@ export const indexOfClass = curry((className, element) =>
 )
 
 export const addClass = curryWith((...args) => {
-  const classes = args.slice(0, -1)
+  let classes = args.slice(0, -1)
   const element = args.slice(-1)[0]
 
   if (isElement(element)) {
+    if (classes.length === 1) {
+      classes = classes[0].split(' ')
+    }
     element.classList.add(...classes)
   }
 
@@ -21,10 +24,13 @@ export const addClass = curryWith((...args) => {
 }, isElement)
 
 export const removeClass = curryWith((...args) => {
-  const classes = args.slice(0, -1)
+  let classes = args.slice(0, -1)
   const element = args.slice(-1)[0]
 
   if (isElement(element)) {
+    if (classes.length === 1) {
+      classes = classes[0].split(' ')
+    }
     element.classList.remove(...classes)
   }
 
