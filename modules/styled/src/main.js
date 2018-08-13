@@ -281,30 +281,7 @@ export const height = (value, el) => {
 // ----------
 // Offset
 // ----------
-export const offset = (coordinates, el) => {
-  if (isElement(coordinates) && typeof el === 'undefined') {
-    el = coordinates
-    coordinates = undefined
-  }
-
-  if (coordinates) {
-    const props = {}
-    const parentOffset = offset(offsetParent(el))
-
-    if (typeof coordinates.top !== 'undefined') {
-      props.top = coordinates.top - parentOffset.top
-    }
-    if (typeof coordinates.left !== 'undefined') {
-      props.left = coordinates.left - parentOffset.left
-    }
-
-    if (getStyle('position', el) === 'static') {
-      props.position = 'relative'
-    }
-
-    return setStyle(props, el)
-  }
-
+export const getOffset = el => {
   const box = el.getBoundingClientRect()
   const win = getDefaultView(el)
 
@@ -312,6 +289,37 @@ export const offset = (coordinates, el) => {
     top: box.top + win.pageYOffset,
     left: box.left + win.pageXOffset
   }
+}
+
+export const setOffset = (coordinates, el) => {
+  const props = {}
+  const parentOffset = offset(offsetParent(el))
+
+  if (typeof coordinates.top !== 'undefined') {
+    props.top = coordinates.top - parentOffset.top
+  }
+  if (typeof coordinates.left !== 'undefined') {
+    props.left = coordinates.left - parentOffset.left
+  }
+
+  if (getStyle('position', el) === 'static') {
+    props.position = 'relative'
+  }
+
+  return setStyle(props, el)
+}
+
+export const offset = (coordinates, el) => {
+  if (isElement(coordinates) && typeof el === 'undefined') {
+    el = coordinates
+    coordinates = undefined
+  }
+
+  if (coordinates) {
+    return setOffset(coordinates, el)
+  }
+
+  return getOffset(el)
 }
 
 export const position = el => {
