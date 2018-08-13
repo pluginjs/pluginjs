@@ -4,11 +4,21 @@ import {
   isElement,
   isNumeric,
   isString,
-  isWindow
+  isWindow,
+  isArray,
+  isDocument
 } from '@pluginjs/is'
 import { offsetParent } from '@pluginjs/dom'
 
-const sum = arr => arr.reduce((a, b) => a + b)
+export const getDefaultView = el => {
+  let view = el.ownerDocument.defaultView
+
+  if (!view || !view.opener) {
+    view = window
+  }
+
+  return view
+}
 
 export const setStyle = (key, value, el) => {
   if (isString(key) && isElement(el)) {
@@ -33,9 +43,22 @@ export const setStyle = (key, value, el) => {
 }
 
 export const getStyle = (key, el) => {
-  const val = el.style[camelize(key, false)] || getComputedStyle(el, '').getPropertyValue(key)
+  let value
 
-  return isNumeric(val) ? parseFloat(val) : val
+  if (isArray(key)) {
+    value = {}
+
+    key.forEach(k => {
+      value[k] = getStyle(k, el)
+    })
+
+    return value
+  }
+
+  value = getDefaultView(el)
+    .getComputedStyle(el, '')
+    .getPropertyValue(dasherize(key))
+  return isNumeric(value) ? parseFloat(value) : value
 }
 
 export const css = curryWith((key, value, el) => {
@@ -64,7 +87,10 @@ export const outerHeight = (includeMargins, el) => {
   }
 
   if (includeMargins) {
-    const { marginTop, marginBottom } = window.getComputedStyle(el)
+    const { marginTop, marginBottom } = getStyle(
+      ['marginTop', 'marginBottom'],
+      el
+    )
 
     return (
       parseInt(marginTop, 10) + parseInt(marginBottom, 10) + el.offsetHeight
@@ -85,7 +111,10 @@ export const outerWidth = (includeMargins, el) => {
   }
 
   if (includeMargins) {
-    const { marginLeft, marginRight } = window.getComputedStyle(el)
+    const { marginLeft, marginRight } = getStyle(
+      ['marginLeft', 'marginRight'],
+      el
+    )
 
     return parseInt(marginLeft, 10) + parseInt(marginRight, 10) + el.offsetWidth
   }
@@ -93,24 +122,160 @@ export const outerWidth = (includeMargins, el) => {
   return el.offsetWidth
 }
 
-export const clientHeight = el => el.clientHeight
+export const innerWidth = el => {
+  if (isWindow(el)) {
+    return el.innerWidth
+  }
 
-export const clientWidth = el => el.clientWidth
-
-export const contentWidth = el => {
-  const { paddingLeft, paddingRight, width } = window.getComputedStyle(el)
-  return (
-    parseInt(width, 10) -
-    sum([paddingLeft, paddingRight].map(i => parseInt(i, 10)))
-  )
+  return el.clientWidth
 }
 
-export const contentHeight = el => {
-  const { paddingTop, paddingBottom, height } = window.getComputedStyle(el)
-  return (
-    parseInt(height, 10) -
-    sum([paddingTop, paddingBottom].map(i => parseInt(i, 10)))
+export const innerHeight = el => {
+  if (isWindow(el)) {
+    return el.innerHeight
+  }
+
+  return el.clientHeight
+}
+
+export const getWidth = el => {
+  if (isWindow(el)) {
+    return el.innerWidth
+  }
+
+  if (isDocument(el)) {
+    const doc = el.documentElement
+
+    return Math.max(
+      el.body.scrollWidth,
+      doc.scrollWidth,
+      el.body.offsetWidth,
+      doc.offsetWidth,
+      doc.clientWidth
+    )
+  }
+
+  let { width } = el.getBoundingClientRect()
+  const { paddingLeft, paddingRight } = getStyle(
+    ['paddingLeft', 'paddingRight'],
+    el
   )
+
+  width = width - parseInt(paddingLeft, 10) - parseInt(paddingRight, 10)
+
+  if (getStyle('boxSizing', el) === 'border-box') {
+    const { borderLeftWidth, borderRightWidth } = getStyle(
+      ['borderLeftWidth', 'borderRightWidth'],
+      el
+    )
+    width =
+      width - parseInt(borderLeftWidth, 10) - parseInt(borderRightWidth, 10)
+  }
+
+  return width
+}
+
+export const setWidth = (value, el) => {
+  if (el.nodeType !== 1) {
+    return el
+  }
+
+  if (getStyle('boxSizing', el) === 'border-box') {
+    const {
+      paddingLeft,
+      paddingRight,
+      borderLeftWidth,
+      borderRightWidth
+    } = getStyle(
+      ['paddingLeft', 'paddingRight', 'borderLeftWidth', 'borderRightWidth'],
+      el
+    )
+    value += paddingLeft + paddingRight + borderLeftWidth + borderRightWidth
+  }
+
+  return setStyle('width', value, el)
+}
+
+export const width = (value, el) => {
+  if (isElement(value) && typeof el === 'undefined') {
+    el = value
+    value = undefined
+  }
+
+  if (typeof value === 'undefined') {
+    return getWidth(el)
+  }
+  return setWidth(value, el)
+}
+
+export const getHeight = el => {
+  if (isWindow(el)) {
+    return el.innerHeight
+  }
+
+  if (isDocument(el)) {
+    const doc = el.documentElement
+
+    return Math.max(
+      el.body.scrollHeight,
+      doc.scrollHeight,
+      el.body.offsetHeight,
+      doc.offsetHeight,
+      doc.clientHeight
+    )
+  }
+
+  let { height } = el.getBoundingClientRect()
+  const { paddingTop, paddingBottom } = getStyle(
+    ['paddingTop', 'paddingBottom'],
+    el
+  )
+
+  height = height - parseInt(paddingTop, 10) - parseInt(paddingBottom, 10)
+
+  if (getStyle('boxSizing', el) === 'border-box') {
+    const { borderTopHeight, borderBottomHeight } = getStyle(
+      ['borderTopHeight', 'borderBottomHeight'],
+      el
+    )
+    height =
+      height - parseInt(borderTopHeight, 10) - parseInt(borderBottomHeight, 10)
+  }
+
+  return height
+}
+
+export const setHeight = (value, el) => {
+  if (el.nodeType !== 1) {
+    return el
+  }
+
+  if (getStyle('boxSizing', el) === 'border-box') {
+    const {
+      paddingTop,
+      paddingBottom,
+      borderTopHeight,
+      borderBottomHeight
+    } = getStyle(
+      ['paddingTop', 'paddingBottom', 'borderTopHeight', 'borderBottomHeight'],
+      el
+    )
+    value += paddingTop + paddingBottom + borderTopHeight + borderBottomHeight
+  }
+
+  return setStyle('height', value, el)
+}
+
+export const height = (value, el) => {
+  if (isElement(value) && typeof el === 'undefined') {
+    el = value
+    value = undefined
+  }
+
+  if (typeof value === 'undefined') {
+    return getHeight(el)
+  }
+  return setHeight(value, el)
 }
 
 // ----------
@@ -141,7 +306,7 @@ export const offset = (coordinates, el) => {
   }
 
   const box = el.getBoundingClientRect()
-  const win = el.ownerDocument.defaultView
+  const win = getDefaultView(el)
 
   return {
     top: box.top + win.pageYOffset,
@@ -177,15 +342,18 @@ export const position = el => {
 // -------------
 // Show and Hide
 // -------------
-let defaultDisplayMap = {}
-const getDefaultDisplay = (nodeName) => {
-  let element, display
+const defaultDisplayMap = {}
+const getDefaultDisplay = nodeName => {
+  let display
+  let element
   if (!defaultDisplayMap[nodeName]) {
     element = document.createElement(nodeName)
     document.body.appendChild(element)
-    display = getComputedStyle(element, '').getPropertyValue("display")
+    display = getComputedStyle(element, '').getPropertyValue('display')
     element.parentNode.removeChild(element)
-    display == "none" && (display = "block")
+    if (display === 'none') {
+      display = 'block'
+    }
     defaultDisplayMap[nodeName] = display
   }
   return defaultDisplayMap[nodeName]
@@ -200,11 +368,12 @@ export const hideElement = el => {
 }
 
 export const showElement = el => {
-  if(el.style.display === "none") {
+  if (el.style.display === 'none') {
     el.style.display = ''
   }
 
-  if (getComputedStyle(el, '').getPropertyValue("display") === "none") {// is hidden within tree
+  if (getComputedStyle(el, '').getPropertyValue('display') === 'none') {
+    // is hidden within tree
     el.style.display = getDefaultDisplay(el.nodeName)
   }
 

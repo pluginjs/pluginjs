@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { isString, isBoolean } from '@pluginjs/is'
 import { wrap, parent, parseHTML, unwrap } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { contentWidth, setStyle } from '@pluginjs/styled'
+import { getWidth, setStyle } from '@pluginjs/styled'
 import {
   eventable,
   register,
@@ -80,7 +80,7 @@ class Toggle extends Component {
       )
     }
     // get components width
-    this.distance = this.$wrap.clientWidth - contentWidth(this.$handle)
+    this.distance = this.$wrap.clientWidth - getWidth(this.$handle)
     this.bind()
     this.set(this.checked, false)
     if (this.element.disabled || this.options.disabled) {

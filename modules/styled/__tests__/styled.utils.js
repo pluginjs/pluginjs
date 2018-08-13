@@ -72,6 +72,18 @@ describe('styled', () => {
 
       expect(actual).toBe(expected)
     })
+
+    test('should get styles from array', () => {
+      const el = document.createElement('div')
+
+      styled.setStyle('padding-left', '20px', el)
+      styled.setStyle('padding-right', '10px', el)
+
+      expect(styled.getStyle(['padding-left', 'padding-right'], el)).toEqual({
+        'padding-left': '20px',
+        'padding-right': '10px'
+      })
+    })
   })
 
   describe('css', () => {
@@ -133,30 +145,15 @@ describe('styled', () => {
     })
   })
 
-  test('clientHeight', () => {
+  test('innerHeight', () => {
     const el = document.createElement('div')
-    expect(styled.clientHeight(el)).toBe(el.clientHeight)
+    expect(styled.innerHeight(el)).toBe(el.clientHeight)
   })
 
-  test('clientWidth', () => {
+  test('innerWidth', () => {
     const el = document.createElement('div')
-    expect(styled.clientWidth(el)).toBe(el.clientWidth)
+    expect(styled.innerWidth(el)).toBe(el.clientWidth)
   })
-
-  // * jsdom unsupported full feature getComputeStyle
-  //
-  // test('contentWidth', () => {
-  //   const el = document.createElement('div')
-  //   const { paddingLeft, paddingRight, width } = window.getComputedStyle(el)
-  //   const paddingWidth = parseInt(paddingLeft, 10) + parseInt(paddingRight, 10)
-  //   expect(width + paddingWidth).toBe(styled.contentWidth(el))
-  // })
-  // test('contentHeight', () => {
-  //   const el = document.createElement('div')
-  //   const { paddingTop, paddingBottom, height } = window.getComputedStyle(el)
-  //   const paddingHeight = parseInt(paddingTop, 10) + parseInt(paddingBottom, 10)
-  //   expect(height + paddingHeight).toBe(styled.contentHeight(el))
-  // })
 
   // it didn't working due to getBoundingClientRect not working on jsdom
   // describe('offset', () => {

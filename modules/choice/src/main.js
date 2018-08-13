@@ -18,7 +18,7 @@ import {
   setData
 } from '@pluginjs/dom'
 import {
-  contentWidth,
+  getWidth,
   hideElement,
   showElement,
   outerWidth
@@ -526,9 +526,9 @@ class Choice extends Component {
     if (this.options.overflow === false) {
       return
     }
-    const containerWidth = contentWidth(parent(this.$wrap))
+    const containerWidth = getWidth(parent(this.$wrap))
     console.log(containerWidth)
-    const width = contentWidth(this.$wrap)
+    const width = getWidth(this.$wrap)
     console.log(width)
     let totalWidth
     const $items = []

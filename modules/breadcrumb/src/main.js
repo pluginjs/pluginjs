@@ -10,7 +10,7 @@ import {
   append,
   prepend
 } from '@pluginjs/dom'
-import { getStyle, outerWidth, contentWidth } from '@pluginjs/styled'
+import { getStyle, outerWidth, getWidth } from '@pluginjs/styled'
 import {
   eventable,
   register,
@@ -218,7 +218,7 @@ class Breadcrumb extends Component {
         width += this.gap
       }
     })
-    return contentWidth(this.element) - width
+    return getWidth(this.element) - width
   }
 
   showDropdownItem(i) {

@@ -1,7 +1,7 @@
 import template from '@pluginjs/template'
 import Dropdown from '@pluginjs/dropdown'
 import { query, parseHTML, insertBefore } from '@pluginjs/dom'
-import { contentWidth } from '@pluginjs/styled'
+import { getWidth } from '@pluginjs/styled'
 
 export default class FontWeight {
   constructor(instance) {
@@ -47,7 +47,7 @@ export default class FontWeight {
       imitateSelect: true,
       select: value,
       exclusive: false,
-      width: contentWidth(this.$dropdown),
+      width: getWidth(this.$dropdown),
       // itemValueAttr: 'fontWeight',
       data,
       onChange(value) {

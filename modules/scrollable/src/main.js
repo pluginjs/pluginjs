@@ -9,7 +9,7 @@ import {
   compose
 } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getStyle, contentHeight } from '@pluginjs/styled'
+import { setStyle, getStyle, getHeight } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { children, append, query, wrap, unwrap, parent } from '@pluginjs/dom'
 import {
@@ -122,9 +122,7 @@ class Scrollable extends Component {
       this.$container = this.element
       this.wrap = parent(this.$container)
       this.wrap.style.height =
-        contentHeight(this.element) >= 0
-          ? `${contentHeight(this.element)}px`
-          : '0px'
+        getHeight(this.element) >= 0 ? `${getHeight(this.element)}px` : '0px'
 
       if (position !== 'static') {
         setStyle({ position }, this.wrap)
@@ -423,7 +421,7 @@ class Scrollable extends Component {
 
   initLayout(direction) {
     if (direction === 'vertical') {
-      setStyle('height', contentHeight(this.wrap), this.$container)
+      setStyle('height', getHeight(this.wrap), this.$container)
     }
     const attributes = this.attributes[direction]
     const container = this.$container

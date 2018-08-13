@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import { setStyle, getStyle, contentWidth } from '@pluginjs/styled'
+import { setStyle, getStyle, getWidth } from '@pluginjs/styled'
 import { parent } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
@@ -59,11 +59,11 @@ class AdaptText extends Component {
   getWidth() {
     if (this.inline) {
       return compose(
-        contentWidth,
+        getWidth,
         parent
       )(this.element)
     }
-    return contentWidth(this.element)
+    return getWidth(this.element)
   }
 
   scrollOnHover() {

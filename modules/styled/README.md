@@ -94,7 +94,7 @@ Returns
 |------|------|-------------|
 | style | `String` | |
 
-### clientHeight
+### innerHeight
 
 Parameters
 
@@ -106,23 +106,9 @@ Returns
 
 | Name | Type | Description |
 |------|------|-------------|
-| clientHeight | `Number` | |
+| innerHeight | `Number` | |
 
-### clientWidth
-
-Parameters
-
-| Name | Type | Description |
-|------|------|-------------|
-| element | `HTMLElement` | |
-
-Returns
-
-| Name | Type | Description |
-|------|------|-------------|
-| clientWidth | `Number` | |
-
-### contentWidth
+### innerWidth
 
 Parameters
 
@@ -134,9 +120,9 @@ Returns
 
 | Name | Type | Description |
 |------|------|-------------|
-| contentWidth | `Number` | |
+| innerWidth | `Number` | |
 
-### contentHeight
+### getWidth
 
 Parameters
 
@@ -148,7 +134,21 @@ Returns
 
 | Name | Type | Description |
 |------|------|-------------|
-| contentWidth | `Number` | |
+| getWidth | `Number` | |
+
+### getHeight
+
+Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| element | `HTMLElement` | |
+
+Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| getWidth | `Number` | |
 
 ### offset
 

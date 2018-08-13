@@ -6,8 +6,8 @@ import {
   setStyle,
   hideElement,
   showElement,
-  contentWidth,
-  contentHeight
+  getWidth,
+  getHeight
 } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -759,7 +759,7 @@ class VideoPicker extends Component {
     }
 
     this.videoApi.load()
-    this.videoApi.setSize(contentWidth(this.$video), contentHeight(this.$video))
+    this.videoApi.setSize(getWidth(this.$video), getHeight(this.$video))
 
     this.enter('loaded')
     this.enter('playing')

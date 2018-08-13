@@ -3,7 +3,7 @@ import templateEngine from '@pluginjs/template'
 import { isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { outerWidth, clientWidth } from '@pluginjs/styled'
+import { outerWidth, innerWidth } from '@pluginjs/styled'
 import { parseHTML, children, query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 import {
@@ -224,7 +224,7 @@ class Filters extends Component {
   }
 
   getWidth() {
-    return clientWidth(this.element)
+    return innerWidth(this.element)
   }
 
   unbind() {

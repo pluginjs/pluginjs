@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { pointer, pointerEvent, touch } from '@pluginjs/feature'
 import { getTime, compose } from '@pluginjs/utils'
-import { contentWidth, contentHeight, setStyle } from '@pluginjs/styled'
+import { getWidth, getHeight, setStyle } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { query, find, append, parseHTML } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -46,8 +46,8 @@ class BeforeAfter extends Component {
 
     this._position = null // position cache for the drag operation.
     this.position = 0
-    this.width = contentWidth(this.element)
-    this.height = contentHeight(this.element)
+    this.width = getWidth(this.element)
+    this.height = getHeight(this.element)
     this.easing = easing.get(this.options.easing) || easing.get('ease')
 
     this.initStates()
@@ -593,8 +593,8 @@ class BeforeAfter extends Component {
 
   resize() {
     if (!this.is('disabled')) {
-      this.width = contentWidth(this.element)
-      this.height = contentHeight(this.element)
+      this.width = getWidth(this.element)
+      this.height = getHeight(this.element)
 
       this.adjust(this.position)
     }

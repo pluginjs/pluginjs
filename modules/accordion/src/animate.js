@@ -1,10 +1,5 @@
 import anime from 'animejs'
-import {
-  setStyle,
-  contentWidth,
-  outerHeight,
-  outerWidth
-} from '@pluginjs/styled'
+import { setStyle, getWidth, outerHeight, outerWidth } from '@pluginjs/styled'
 import { parentWith } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 import { compose } from '@pluginjs/utils'
@@ -53,7 +48,7 @@ class Animate {
   }
 
   getContentDistance() {
-    const innerWidth = contentWidth(this.instance.element)
+    const innerWidth = getWidth(this.instance.element)
     const size = this.instance.size
     this.contentDistance = this.instance.$contentInners.map(element => {
       if (this.horizontal) {

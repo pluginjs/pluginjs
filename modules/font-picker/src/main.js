@@ -27,7 +27,7 @@ import {
   getStyle,
   hideElement,
   showElement,
-  contentHeight
+  getHeight
 } from '@pluginjs/styled'
 import {
   eventable,
@@ -240,7 +240,7 @@ class FontPicker extends Component {
     }
 
     this.$dropdown.options.onShow = () => {
-      this.categoriesHeight = contentHeight(parent(this.$activated[0]))
+      this.categoriesHeight = getHeight(parent(this.$activated[0]))
       if (this.$font) {
         const $selectedPackage = parentWith(
           hasClass(this.classes.PACKAGE),
@@ -278,7 +278,7 @@ class FontPicker extends Component {
       const sourceName = $source.dataset.source
       // const sourceName = getData('source', $source)
       this.toggleSources($source)
-      this.categoriesHeight = contentHeight(parent(this.$activated[0]))
+      this.categoriesHeight = getHeight(parent(this.$activated[0]))
       if (this.sources[sourceName]) {
         prepend(
           parseHTML(
@@ -922,7 +922,7 @@ class FontPicker extends Component {
       $fontsList
     )
     const container = query('.pj-scrollable-container', $fontsList)
-    setStyle('height', `${contentHeight($fontsList)}px`, container)
+    setStyle('height', `${getHeight($fontsList)}px`, container)
 
     $fontsList.style.display = 'block'
     // $fontsList.slideDown(this.options.delay)
