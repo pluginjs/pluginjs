@@ -24,8 +24,9 @@ export const classes = {
   CLOSE: '{namespace}-close',
   SHOW: '{namespace}-show',
   FADE: '{namespace}-fade',
-  TRIANGLE: '{namespace}-triangle',
-  DISABLED: '{namespace}-disabled'
+  ARROW: '{namespace}-arrow',
+  DISABLED: '{namespace}-disabled',
+  PLACEMENT: '{namespace}-{placement}'
 }
 
 export const methods = [
@@ -40,7 +41,7 @@ export const methods = [
 export const defaults = deepMerge(Tooltip.defaults, {
   template() {
     return (
-      '<div class="{classes.POPOVER} {custom}" role="tooltip">' +
+      '<div class="{classes.POPOVER}" role="tooltip">' +
       '{close}' +
       '{title}' +
       '{content}' +
@@ -60,7 +61,7 @@ export const defaults = deepMerge(Tooltip.defaults, {
   },
   content: '',
   html: true,
-  triangle: true,
+  arrow: true,
   close: false,
   trigger: 'click', // hover focus, click, manual
   hideOutClick: true, // When clicking outside of the popover, trigger hide event

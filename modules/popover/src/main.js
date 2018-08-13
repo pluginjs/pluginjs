@@ -70,7 +70,6 @@ class Popover extends Tooltip {
 
     return templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
-      custom: this.options.custom.call(this),
       close,
       title,
       content
@@ -96,11 +95,12 @@ class Popover extends Tooltip {
     // we use append for html objects to maintain js events
     const title = this.getTitle()
     const content = this.getContent()
+
     this.setElementContent(query(`.${this.classes.TITLE}`, $tip), title)
     this.setElementContent(query(`.${this.classes.CONTENT}`, $tip), content)
 
-    if (this.options.triangle) {
-      addClass(this.classes.TRIANGLE, $tip)
+    if (this.options.arrow) {
+      addClass(this.classes.ARROW, $tip)
     }
 
     if (this.options.close) {
@@ -117,7 +117,7 @@ class Popover extends Tooltip {
     removeClass(this.classes.SHOW, $tip)
     removeClass(this.classes.FADE, $tip)
 
-    this.cleanupPopper()
+    this.destroyPopper()
   }
 }
 

@@ -15,7 +15,7 @@ export const addClass = curryWith((...args) => {
 
   if (isElement(element)) {
     if (classes.length === 1) {
-      classes = classes[0].split(' ')
+      classes = classes[0].split(/\s+/g).filter(v => v !== '')
     }
     element.classList.add(...classes)
   }
@@ -29,7 +29,7 @@ export const removeClass = curryWith((...args) => {
 
   if (isElement(element)) {
     if (classes.length === 1) {
-      classes = classes[0].split(' ')
+      classes = classes[0].split(/\s+/g).filter(v => v !== '')
     }
     element.classList.remove(...classes)
   }

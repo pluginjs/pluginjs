@@ -28,7 +28,9 @@ export const classes = {
   BUTTON: '{namespace}-button',
   BUTTONCOLOR: '{namespace}-button-{color}',
   BUTTONS: '{namespace}-buttons',
-  DISABLED: '{namespace}-disabled'
+  DISABLED: '{namespace}-disabled',
+  ARROW: '{namespace}-arrow',
+  PLACEMENT: '{namespace}-{placement}'
 }
 
 export const methods = [

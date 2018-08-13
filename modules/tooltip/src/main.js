@@ -5,8 +5,8 @@ import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { parseHTML, query, setData, getData } from '@pluginjs/dom'
-import { getUID, reflow, deepMerge } from '@pluginjs/utils'
+import { parseHTML, query, setData, getData, append } from '@pluginjs/dom'
+import { getUID, deepMerge } from '@pluginjs/utils'
 import {
   register,
   styleable,
@@ -196,34 +196,68 @@ class Tooltip extends Component {
         return
       }
 
-      const tip = this.getTip()
+      const $tip = this.getTip()
       const tipId = getUID(this.plugin)
       this.instanceId = tipId
 
-      tip.setAttribute('id', tipId)
+      $tip.setAttribute('id', tipId)
       this.element.setAttribute('aria-describedby', tipId)
 
       this.setContent()
 
-      if (this.options.animation) {
-        addClass(this.classes.FADE, tip)
+      if (this.options.theme) {
+        addClass(this.getThemeClass(), $tip)
       }
+
+      if (this.options.animation) {
+        addClass(this.classes.FADE, $tip)
+      }
+
+      const placement =
+        typeof this.options.placement === 'function'
+          ? this.options.placement.call(this, $tip, this.element)
+          : this.options.placement
+
+      this.addPlacementClass(placement)
 
       const $container =
         this.options.container === false
           ? document.body
-          : this.options.container
-      setData(this.plugin, this, tip)
-      $container.append(tip)
+          : query(this.options.container)
+      setData(this.plugin, this, $tip)
+
+      if (!this.element.ownerDocument.documentElement.contains(this.$tip)) {
+        append($tip, $container)
+      }
       this.trigger(EVENTS.INSERTED)
 
-      this.setupPopper(this.element, tip)
+      this.POPPER = new Popper(this.element, $tip, {
+        placement,
+        modifiers: {
+          offset: {
+            offset: this.options.offset
+          },
+          flip: {
+            behavior: this.options.fallbackPlacement
+          },
+          arrow: {
+            element: `.${this.classes.ARROW}`
+          },
+          preventOverflow: {
+            boundariesElement: this.options.boundary
+          }
+        },
+        onCreate: data => {
+          if (data.originalPlacement !== data.placement) {
+            this.handlePopperPlacementChange(data)
+          }
+        },
+        onUpdate: data => {
+          this.handlePopperPlacementChange(data)
+        }
+      })
 
-      this.POPPER.scheduleUpdate()
-
-      reflow(tip)
-
-      addClass(this.classes.SHOW, tip)
+      addClass(this.classes.SHOW, $tip)
 
       const complete = () => {
         const prevHoverState = this._hoverState
@@ -274,42 +308,6 @@ class Tooltip extends Component {
     }
   }
 
-  setupPopper(el, tip) {
-    const config = {
-      placement: this.options.placement,
-      modifiers: {
-        preventOverflow: {
-          boundariesElement: 'viewport'
-        }
-      }
-    }
-
-    if (
-      !this.options.constraintToScrollParent &&
-      this.options.constraintToWindow
-    ) {
-      config.modifiers.preventOverflow.boundariesElement = 'window'
-    }
-
-    if (
-      this.options.constraintToScrollParent &&
-      !this.options.constraintToWindow
-    ) {
-      config.modifiers.preventOverflow.boundariesElement = 'scrollParent'
-    }
-
-    this.POPPER = new Popper(el, tip, config)
-    this.enter('popper')
-  }
-
-  sortAttachment(str) {
-    let [first, second] = str.split(' ')
-    if (['left', 'right'].indexOf(first) >= 0) {
-      ;[first, second] = [second, first]
-    }
-    return [first, second].join(' ')
-  }
-
   hide(callback) {
     const tip = this.getTip()
     const hideEvent = new CustomEvent(this.selfEventName(EVENTS.HIDE), {
@@ -326,7 +324,7 @@ class Tooltip extends Component {
       this.element.removeAttribute('aria-describedby')
       this.trigger(EVENTS.HIDDEN)
       this.leave('shown')
-      this.cleanupPopper()
+      this.destroyPopper()
 
       if (callback) {
         callback()
@@ -354,17 +352,26 @@ class Tooltip extends Component {
     }
   }
 
+  update() {
+    if (this.POPPER !== null) {
+      this.POPPER.scheduleUpdate()
+    }
+  }
+
   isWithContent() {
     return Boolean(this.getTitle())
+  }
+
+  addPlacementClass(placement) {
+    addClass(
+      this.getClass(this.classes.PLACEMENT, 'placement', placement),
+      this.getTip()
+    )
   }
 
   getTip() {
     if (!this.$tip) {
       this.$tip = parseHTML(this.createTip())
-
-      if (this.options.theme) {
-        addClass(this.getThemeClass(), this.$tip)
-      }
     }
 
     return this.$tip
@@ -372,8 +379,7 @@ class Tooltip extends Component {
 
   createTip() {
     return template.render(this.options.template.call(this), {
-      classes: this.classes,
-      custom: this.options.custom.call(this)
+      classes: this.classes
     })
   }
 
@@ -387,7 +393,7 @@ class Tooltip extends Component {
 
     removeClass(this.classes.FADE, this.classes.SHOW, $tip)
 
-    this.cleanupPopper()
+    this.destroyPopper()
   }
 
   setElementContent($element, content) {
@@ -534,6 +540,25 @@ class Tooltip extends Component {
     return options
   }
 
+  handlePopperPlacementChange(popperData) {
+    const popperInstance = popperData.instance
+    this.$tip = popperInstance.popper
+    const lastPlacement = getData('lastPlacement', this.$tip)
+
+    if (lastPlacement !== popperData.placement) {
+      if (lastPlacement) {
+        removeClass(
+          this.getClass(this.classes.ATTACHMENT, 'placement', lastPlacement),
+          this.$tip
+        )
+      }
+
+      this.addPlacementClass(popperData.placement)
+    }
+
+    setData('lastPlacement', popperData.placement, this.$tip)
+  }
+
   enable() {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.element)
@@ -551,8 +576,8 @@ class Tooltip extends Component {
     this.trigger(EVENTS.DISABLE)
   }
 
-  cleanupPopper() {
-    if (this.POPPER) {
+  destroyPopper() {
+    if (this.POPPER !== null) {
       this.POPPER.destroy()
     }
   }
@@ -560,7 +585,7 @@ class Tooltip extends Component {
   destroy() {
     if (this.is('initialized')) {
       clearTimeout(this._timeout)
-      this.cleanupPopper()
+      this.destroyPopper()
 
       this.unbind()
 
