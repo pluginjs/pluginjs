@@ -1,4 +1,4 @@
-import { query } from '@pluginjs/dom'
+import { query, data } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 
 const root = query('#html5')
@@ -73,5 +73,5 @@ query('.api', root).addEventListener('click', event => {
     return
   }
 
-  instances[el.dataset.api]()
+  instances[data('api', el)]()
 })

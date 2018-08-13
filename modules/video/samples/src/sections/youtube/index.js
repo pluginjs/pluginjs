@@ -1,4 +1,4 @@
-import { query } from '@pluginjs/dom'
+import { query, data } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 
 const root = query('#youtube')
@@ -68,5 +68,5 @@ query('.api', root).addEventListener('click', event => {
   if (!el.matches('[data-api]')) {
     return
   }
-  instances[el.dataset.api]()
+  instances[data('api', el)]()
 })
