@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
-const data = [
+const source = [
   'JAVA',
   'Java Script',
   'Go',
@@ -14,4 +14,4 @@ const data = [
 ]
 
 const element = query('#input .input')
-AutoComplete.of(element, { data })
+AutoComplete.of(element, { source })

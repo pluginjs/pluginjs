@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
-const data = [
+const source = [
   'JAVA',
   'Java Script',
   'Go',
@@ -16,5 +16,5 @@ const data = [
 const element = query('#highlight .auto-complete-highlight')
 AutoComplete.of(element, {
   highlight: true,
-  data
+  source
 })

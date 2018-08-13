@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
-const dataGroup = [
+const source = [
   {
     id: 'programming languages',
     list: ['Swift', 'JAVA', 'C++', 'Go', 'Python', 'Java Script']
@@ -17,8 +17,8 @@ AutoComplete.of(element, {
   ajax: true,
   group: true,
   source() {
-    const _data = dataGroup
-    this.handleEl(_data)
+    const _data = source
+    this.resolveData(_data)
   },
   render(data) {
     return `<span class="test">${data.label}</span>`

@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
-const data = [
+const source = [
   'JAVA',
   'Java Script',
   'Go',
@@ -15,6 +15,6 @@ const data = [
 
 const element = query('#disabled .input')
 AutoComplete.of(element, {
-  data,
+  source,
   disabled: true
 })

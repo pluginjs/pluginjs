@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
 
-const dataGroup = [
+const source = [
   {
     id: 'programming languages',
     list: ['Swift', 'JAVA', 'C++', 'Go', 'Python', 'Java Script']
@@ -14,7 +14,7 @@ const dataGroup = [
 
 const element = query('#group .auto-complete-group')
 AutoComplete.of(element, {
-  data: dataGroup,
+  source,
   highlight: true,
   group: true
 })

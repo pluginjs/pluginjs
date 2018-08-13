@@ -91,14 +91,20 @@ export const defaults = {
     return false
   },
 
-  source(val) {
+  // source(val) {
+  //   /* eslint-disable */
+  //   $.getJSON('/ajax', { q: val }, data => {
+  //     this.handleEl.bind(this, data)
+  //   })
+  //   /* eslint-enable */
+  // },
+  source() {
     /* eslint-disable */
     $.getJSON('/ajax', { q: val }, data => {
-      this.handleEl.bind(this, data)
+      this.resolveData(data)
     })
     /* eslint-enable */
   },
-
   process(value) {
     if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)

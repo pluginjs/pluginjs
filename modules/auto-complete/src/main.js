@@ -58,7 +58,9 @@ class AutoComplete extends Component {
 
     this.$wrapper = parent(this.$element)
 
-    this.data = this.options.data
+    // this.data = this.options.data
+    this.source = this.options.source
+    console.log(this.source)
     this.$panel = null
     this.$selected = null
 
@@ -115,7 +117,7 @@ class AutoComplete extends Component {
       this.$element.setAttribute('tabindex', 1)
     }
     if (!this.options.ajax) {
-      this.handleEl(this.data)
+      this.resolveData(this.source)
     }
   }
 
@@ -188,7 +190,7 @@ class AutoComplete extends Component {
     })
   }
 
-  handleEl(data) {
+  resolveData(data) {
     if (this.options.group) {
       this.buildGroup(data, this.$panel)
     } else {
