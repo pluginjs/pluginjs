@@ -3,40 +3,31 @@
 
 // Vars
 // =====================
-$accordion: "pj-accordion" !default;
-$accordion-font-size: $font-size-base !default;
 $accordion-font-family: $font-family-base !default;
 $accordion-font-weight: $font-weight-normal !default;
-$accordion-line-height: $line-height-sm !default;
 $accordion-box-shadow: $box-shadow-base !default;
 $accordion-active-hover-color: $btn-color-primary !default;
 $accordion-border-width: $border-width !default;
 $accordion-border-color: $border-color !default;
 $accordion-border-radius: $border-radius-base !default;
 $accordion-header-color: $text-title-color !default;
-$accordion-pane-interval: 20px !default;
-$accordion-header-spacer-x: 26px !default;
-$accordion-header-spacer-y: 16px !default;
-$accordion-header-icon-sapce-x: 15px !default;
-$accordion-header-flag-sapcer-x: 19px !default;
+$accordion-pane-interval: 1.538 * $accordion-font-size !default;  // 20px
+$accordion-header-spacer-x: 2 * $accordion-font-size !default; // 26px
+$accordion-header-icon-sapce-x: 1.1538 * $accordion-font-size !default; // 15px
+$accordion-header-flag-sapcer-x: 1.462 * $accordion-font-size !default; // 19px
 $accordion-content-spacer-x: $accordion-header-spacer-x !default;
-$accordion-content-spacer-y: 20px !default;
-$accordion-horizontal-height: 234px !default;
-$accordion-horizontal-header-spacer-x: 16px !default;
-$accordion-horizontal-header-spacer-y: 22px !default;
-$accordion-horizontal-content-spacer-x: 24px !default;
+$accordion-content-spacer-y: 1.538 * $accordion-font-size !default; // 20px
+$accordion-horizontal-header-spacer-x: 1.23 * $accordion-font-size !default; // 16px
+$accordion-horizontal-header-spacer-y: 1.375 * $accordion-font-size !default; // 22px
+$accordion-horizontal-content-spacer-x: 1.846 * $accordion-font-size !default; // 24px
 $accordion-horizontal-content-spacer-y: $accordion-horizontal-header-spacer-y !default;
-$accordion-horizontal-header-width: ceil(
-  $accordion-font-size * $accordion-line-height + $accordion-header-spacer-y * 2
-) !default;
-$accordion-responsive-space: 100px !default;
-$accordion-dropdown-header-icon-sapce-x: 12px !default;
-$accordion-dropdown-header-flag-sapcer-x: 15px !default;
-$accordion-dropdown-header-spacer-x: 18px !default;
-$accordion-dropdown-header-spacer-y: 22px !default;
+$accordion-responsive-space: 7.692 * $accordion-font-size !default; // 100px
+$accordion-dropdown-header-icon-sapce-x: 0.923 * $accordion-font-size !default; // 12px
+$accordion-dropdown-header-flag-sapcer-x: 1.154 * $accordion-font-size !default; // 15px
+$accordion-dropdown-header-spacer-x: 1.385 * $accordion-font-size !default; // 18px
+$accordion-dropdown-header-spacer-y: 1.692 * $accordion-font-size !default; // 22px
 $accordion-dropdown-header-width: $accordion-horizontal-height;
 $accordion-dropdown-header-after: $color-white !default;
-$accordion-dropdown-active-color: $color-white !default;
 
 // default
 // =====================
@@ -85,20 +76,16 @@ $accordion-dropdown-active-color: $color-white !default;
 
     &-pane-content-inner {
       padding: $accordion-content-spacer-y $accordion-content-spacer-x;
-      border-top: $border-width solid $accordion-border-color;
     }
 
     &-active {
+      border: $border-width solid $accordion-border-color;
       .#{$accordion}-pane-header {
         color: $accordion-active-hover-color;
       }
 
       .#{$accordion}-rotate-90 {
         transform: translateY(-50%) rotate(90deg);
-      }
-
-      .#{$accordion}-pane-content-inner {
-        border-top: 0;
       }
     }
   }

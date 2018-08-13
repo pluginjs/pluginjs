@@ -3,10 +3,10 @@
 // Vars
 // =====================
 $accordion: "pj-accordion" !default;
-$accordion-font-size: $font-size-base !default;
+$accordion-font-size: $font-size-base !default; // 13px
 $accordion-line-height: $line-height-sm !default;
-$accordion-header-spacer-y: 16px !default;
-$accordion-horizontal-height: 234px !default;
+$accordion-header-spacer-y: 1.23 * $accordion-font-size !default;
+$accordion-horizontal-height: 14.625 * $accordion-font-size !default;
 $accordion-horizontal-header-width: ceil(
   $accordion-font-size * $accordion-line-height + $accordion-header-spacer-y * 2
 ) !default;
