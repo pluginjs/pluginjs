@@ -1,5 +1,5 @@
 export const namespace = 'navToSelect'
-import { children } from '@pluginjs/dom'
+import { children, parent, query } from '@pluginjs/dom'
 
 export const events = {
   UPDATE: 'update',
@@ -12,7 +12,8 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   SELECT: '{namespace}',
-  THEME: '{namespace}--{theme}'
+  THEME: '{namespace}--{theme}',
+  INPUT: '{namespace}-input'
 }
 
 export const methods = [
@@ -31,7 +32,7 @@ export const defaults = {
   prependTo: null,
   activeClass: 'active',
   linkSelector: 'a',
-  indentString: '&ndash;',
+  indentString: '&nbsp &nbsp',
   indentSpace: true,
   placeholder: 'Navigate to...',
   useOptgroup: true,
@@ -44,8 +45,7 @@ export const defaults = {
   getItemsFromList(list, level) {
     const that = this
     const privateItems = []
-
-    children(list, 'li').forEach(li => {
+    children('li', list).forEach(li => {
       if (!that.options.itemFilter(li)) {
         return
       }
@@ -55,23 +55,22 @@ export const defaults = {
         linkable: that.isLinkable(li),
         actived: that.isActived(li)
       }
-      if (children(li, 'ul').length) {
+      if (children('ul', li).length) {
         item.items = []
-        children(li, 'ul').forEach(childLi => {
+        children('ul', li).forEach(childLi => {
           item.items = item.items.concat(
             that.options.getItemsFromList.call(that, childLi, level + 1)
           )
         })
       }
-      if (children(li, 'ol').length) {
+      if (children('ol', li).length) {
         item.items = []
-        children(li, 'ol').forEach(childLi => {
+        children('ol', li).forEach(childLi => {
           item.items = item.items.concat(
             that.options.getItemsFromList.call(that, childLi, level + 1)
           )
         })
       }
-
       privateItems.push(item)
     })
     return privateItems
@@ -80,6 +79,10 @@ export const defaults = {
     if (this.dataset.linkable !== false) {
       // document.location.href = this.value
     }
+    const selectin = this.selectedIndex
+    const selectText = this[selectin].text.replace(/\s|–/g, '')
+    const selectInput = query('input', parent(this))
+    selectInput.value = selectText
   }
 }
 

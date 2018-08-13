@@ -4,16 +4,63 @@
 // =====================
 $navToSelect: "pj-navToSelect" !default;
 $navToSelect-font-family: $font-family-base !default;
+$navToSelect-width: 200px !default;
+$navToSelect-input-width: 160px !default;
+$navToSelect-height:34px !default;
+$navToSelect-input-height: 32px;
+$navToSelect-input-top: 29px;
+$navToSelect-padding-left: 6px !default;
+$navToSelect-font-size: $font-size-sm !default;
+$navToSelect-input-outline: $color-primary !default;
+$navToSelect-input-radius: $border-radius-base !default;
 
 // Core
 // =====================
 .#{$navToSelect} {
   display: none;
+  width: $navToSelect-width;
+  height: $navToSelect-height;
+  padding-left: $navToSelect-padding-left;
   font-family: $navToSelect-font-family;
+  font-size: $navToSelect-font-size;
+  border: 1px solid $gray-border;
+  outline: none;
+
+  &:focus {
+    border-color: $navToSelect-input-outline;
+  }
+
+  &-input {
+    position: relative;
+    display: inline-block;
+  }
+
+}
+
+input {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  width: $navToSelect-input-width;
+  height: $navToSelect-input-height;
+  padding: 0 30px 0 10px;
+  margin-left: 1px;
+  font-size: $navToSelect-font-size;
+  line-height: $navToSelect-height;
+  border: none;
+  border-radius: $navToSelect-input-radius;
+  outline: none;
+
+  &:focus {
+    & + select {
+      border-color: $navToSelect-input-outline;
+    } 
+  }
 }
 
 /* Mobile device */
-
 @media only screen and (max-width: 767px) {
   nav ul {
     display: none;
@@ -21,5 +68,10 @@ $navToSelect-font-family: $font-family-base !default;
 
   .#{$navToSelect} {
     display: block;
+    // opacity: 0;
   }
+
+  // input {
+  //   display: block;
+  // }
 }

@@ -1,7 +1,13 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { parseHTML, query, insertBefore, insertAfter } from '@pluginjs/dom'
+import {
+  parseHTML,
+  query,
+  insertBefore,
+  insertAfter,
+  wrap
+} from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -52,7 +58,6 @@ class NavToSelect extends Component {
     this.build(items)
 
     this.bind()
-
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
@@ -79,18 +84,24 @@ class NavToSelect extends Component {
       document.body
     )
   }
-
   unbind() {
     removeEvent(this.eventName(), this.select)
     removeEvent(this.eventName(), document.body)
   }
-
   build(items) {
+    this.selectInput = parseHTML(
+      `<div contenteditable="true" class=${this.classes.INPUT} />`
+    )
     this.select = parseHTML(`<select class=${this.classes.SELECT} />`)
     this.select.innerHTML = this.buildOptions(items, 1)
-
+    const selectin = this.select.selectedIndex
+    const selectText = this.select[selectin].text
+    const text = selectText.replace(/\s|–/g, '')
+    this.input = parseHTML(`<input type="text" value="${text}"/>`)
     if (this.options.prependTo === null) {
       insertAfter(this.select, this.element)
+      wrap(this.selectInput, this.select)
+      insertBefore(this.input, this.select)
     } else {
       const prependTo =
         typeof this.options.prependTo === 'string'
@@ -98,7 +109,6 @@ class NavToSelect extends Component {
           : query(this.options.prependTo)
       insertBefore(this.select, prependTo)
     }
-
     this.enter('builded')
   }
 
@@ -107,29 +117,19 @@ class NavToSelect extends Component {
     if (level !== 1 && this.options.indentSpace) {
       INDENT += '&nbsp;'
     }
+    console.log(INDENT)
     return `<option value="${item.value}"${
       item.linkable === false ? ' data-linkable="false"' : ''
-    }${item.actived === true ? ' selected="selected"' : ''}>${INDENT}${
-      item.label
-    }</option>`
+    }${item.actived === true ? ' selected="selected"' : ''} ${
+      item.hidden === true ? 'hidden' : ''
+    }>${INDENT}${item.label}</option>`
   }
-
   buildOptions(items, level) {
     if (level > this.options.maxLevel) {
       return ''
     }
     let options = ''
     items.forEach(item => {
-      if (
-        item.linkable === false &&
-        typeof item.items !== 'undefined' &&
-        level === 1 &&
-        this.options.useOptgroup
-      ) {
-        options += `<optgroup label="${item.label}">`
-        options += this.buildOptions(item.items, level + 1)
-        options += '</optgroup>'
-      }
       if (typeof item.items !== 'undefined') {
         options += this.buildOption(item, level)
         options += this.buildOptions(item.items, level + 1)
@@ -137,7 +137,6 @@ class NavToSelect extends Component {
         options += this.buildOption(item, level)
       }
     })
-
     return options
   }
 
@@ -147,7 +146,8 @@ class NavToSelect extends Component {
       items = items.concat({
         value: '#',
         label: this.options.placeholder,
-        linkable: false
+        linkable: false,
+        hidden: true
       })
     }
 
