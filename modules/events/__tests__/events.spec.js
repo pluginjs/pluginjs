@@ -646,6 +646,77 @@ describe('Events', () => {
     })
   })
 
+  describe('return false', () => {
+    test('should prevent default', () => {
+      const element = document.querySelector('#event-test ul')
+
+      let isDefaultPrevented = null
+      const callbackA = () => {
+        return false
+      }
+      const callbackB = e => {
+        isDefaultPrevented = e.defaultPrevented
+      }
+
+      on('click', callbackA, element)
+      on('click', callbackB, element)
+
+      trigger('click', element)
+      expect(isDefaultPrevented).toBeTrue()
+    })
+
+    test('should stop propagation', () => {
+      const parent = document.querySelector('#event-test ul')
+      const children = document.querySelector('li.red')
+
+      on(
+        'click',
+        () => {
+          return false
+        },
+        children
+      )
+
+      let called = false
+      on(
+        'click',
+        () => {
+          called = true
+        },
+        parent
+      )
+
+      trigger('click', children)
+      expect(called).toBeFalse()
+    })
+
+    test('return others shouldnt prevent default', () => {
+      const element = document.querySelector('#event-test ul')
+
+      let isDefaultPrevented = null
+      const callbackA = () => {
+        return undefined
+      }
+      const callbackB = () => {
+        return
+      }
+      const callbackC = () => {
+        return null
+      }
+      const callbackD = e => {
+        isDefaultPrevented = e.defaultPrevented
+      }
+
+      on('click', callbackA, element)
+      on('click', callbackB, element)
+      on('click', callbackC, element)
+      on('click', callbackD, element)
+
+      trigger('click', element)
+      expect(isDefaultPrevented).toBeFalse()
+    })
+  })
+
   describe('detail', () => {
     test('should emit event with arg correctly', () => {
       const el = document.querySelector('#event-test ul')

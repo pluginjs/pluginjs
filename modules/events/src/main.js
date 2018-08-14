@@ -34,16 +34,22 @@ const getDelegator = (event, selector, callback) => {
     let target = e.target
     const currentTarget = e.currentTarget
     const applyArgs = args ? [e].concat(args) : [e]
+    let result
 
     if (isString(selector)) {
       while (target !== currentTarget) {
         if (target.matches(selector)) {
-          callback.apply(e, applyArgs)
+          result = callback.apply(e, applyArgs)
         }
         target = target.parentNode
       }
     } else {
-      callback.apply(e, applyArgs)
+      result = callback.apply(e, applyArgs)
+    }
+
+    if (result === false) {
+      e.preventDefault()
+      e.stopPropagation()
     }
   }
 }
@@ -53,13 +59,11 @@ const dispatch = e => {
     typeof e.namespace === 'undefined' ? e.type : `${e.type}.${e.namespace}`
 
   const emitter = EventEmitter.getEventEmitter(e.currentTarget)
-  const result = e.detail
-    ? emitter.emit(eventName, e, e.detail)
-    : emitter.emit(eventName, e)
 
-  if (result === false) {
-    e.preventDefault()
-    e.stopPropagation()
+  if (e.detail) {
+    emitter.emit(eventName, e, e.detail)
+  } else {
+    emitter.emit(eventName, e)
   }
 }
 
