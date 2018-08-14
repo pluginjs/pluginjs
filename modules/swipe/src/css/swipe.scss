@@ -14,12 +14,14 @@ $swipe-arrow-radius: $border-radius-base !default;
     .pj-dots {
       a {
         background-color: $swipe-dots-bg;
+        border-radius: 0;
       }
     }
     
     .pj-dot.pj-dot-active {
       a {
         background-color: $swipe-dots-active-bg;
+        border-radius: 0;
       }
     }
   }

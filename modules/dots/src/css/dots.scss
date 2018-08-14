@@ -1,47 +1,19 @@
 @import "@pluginjs/styles/variables.scss";
+@import "dots.core";
 
 // Vars
 // =====================
 $dot: "pj-dot" !default;
-$dot-font-family: $font-family-base !default;
-$dot-width: 0.5rem !default; //16px !default;
-$dot-height: 0.5rem !default; //16px !default;
-$dot-line-width: 1.375rem !default;
-$dot-line-height: 0.125rem !default;
-$dot-radius: 50% !default;
-$dot-margin: 0.3125rem !default;
-$dot-vertical-space: 1rem !default;
-$dot-color: $gray-dark !default; //#d5d5d5
+$dot-color: #d5d5d5 !default; //#d5d5d5
 $dot-stroke-color: $color-white !default;
 $dot-active-color: $color-primary !default;
 $dot-hover-color: rgba($color-black, 0.5) !default;
 $dot-disable-color: $gray-lighter !default;
 
-// Core
+// Dots
 // =====================
-.#{$dot}s {
-  display: flex;
-  padding: 0;
-  margin: 0;
-  font-family: $dot-font-family;
-  list-style: none;
-}
-
 .#{$dot} {
-  position: relative;
-  width: $dot-width;
-  height: $dot-height;
-  margin: $dot-margin;
-
   a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    text-indent: 100%;
-    cursor: pointer;
     background-color: $dot-color;
     border-radius: $dot-radius;
 
@@ -72,15 +44,6 @@ $dot-disable-color: $gray-lighter !default;
 }
 
 .#{$dot}s-vertical {
-  flex-direction: column;
-  .#{$dot} {
-    width: $dot-line-width;
-    height: $dot-line-height;
-    + .#{$dot} {
-      margin-top: $dot-vertical-space;
-    }
-  }
-
   .#{$dot}-active {
     a {
       transform: scaleX(1.5);
@@ -90,8 +53,6 @@ $dot-disable-color: $gray-lighter !default;
 
   a {
     border-radius: 0;
-    transition: transform 0.3s;
-    transform-origin: right;
   }
 }
 
@@ -114,11 +75,6 @@ $dot-disable-color: $gray-lighter !default;
 }
 
 .#{$dot}s-square {
-  .#{$dot} {
-    width: $dot-line-width;
-    height: $dot-line-height;
-  }
-
   a {
     border-radius: 0;
     transition: background-color 0.3s ease;

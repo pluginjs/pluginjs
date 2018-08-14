@@ -21,6 +21,7 @@ $swipe-dot-width: 1.875  * $swipe-font-size !default;
       margin-top: $swipe-margin-top;
       .pj-dot {
         width: $swipe-dot-width;
+        height: 2px;
       }
     }
   }

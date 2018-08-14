@@ -36,16 +36,14 @@ export const defaults = {
   itemSelector: 'div',
   // data: null, // [Array] item => {'title':'','el':[HTML element]}
   arrows: false,
-  arrowConfig: false,
+  arrowType: null,
   pagination: false,
   dotConfig: false,
-  dotType: 'square',
   container: '.decay',
   drag: true,
   dragFree: false,
   power: 2,
   group: false,
-  groupNumber: 1,
   loop: false,
   multiple: false,
   center: false, // center model

@@ -5,5 +5,4 @@ const element = query('#arrows .swipe')
 Swipe.of(element, {
   arrows: true,
   loop: true
-  // dragFree: true
 })

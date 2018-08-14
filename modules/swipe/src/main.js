@@ -144,8 +144,9 @@ class Swipe extends Component {
         that.trigger(EVENTS.DRAGSTART)
       },
       onEnd() {
-        if (!this.isdecaying) {
-          const locationX = this.getLocation(this.element).x
+        if (!this.is('decaying')) {
+          let locationX = ''
+          locationX = this.getLocation(this.element).x
           const index = that.getIndexByDistance(locationX)
           that.moveTo(index)
         }
@@ -233,7 +234,7 @@ class Swipe extends Component {
 
   getMaxActiveCount() {
     if (this.options.group) {
-      return Math.ceil(this.containerWidth / this.width)
+      return Math.ceil(this.sortedItems.length / this.options.itemNums)
     }
 
     if (this.options.center) {
@@ -330,7 +331,7 @@ class Swipe extends Component {
 
   buildArrows() {
     let opts = {
-      type: this.options.arrowConfig.type || 'square',
+      type: this.options.arrowType || 'square',
       templates: this.options.templates.arrow
     }
 
@@ -354,7 +355,6 @@ class Swipe extends Component {
       items,
       valueFrom: 'data-href',
       default: `${this.active}`,
-      type: `${this.options.dotType}`,
       template: {
         item(css) {
           return `<li class="${css} ${
@@ -508,6 +508,17 @@ class Swipe extends Component {
       duration: _duration
     })
 
+    if (this.options.dragFree) {
+      setStyle(
+        {
+          transform: `translate3d(${-distance}px, 0, 0)`,
+          transition: `transform ${duration / 2}ms`,
+          'transition-timing-function': ease
+        },
+        this.$container
+      )
+    }
+
     setTimeout(() => {
       if (callback) {
         callback()
@@ -535,7 +546,7 @@ class Swipe extends Component {
             this.sortedItems[index].info.x,
             this.containerWidth - this.width
           )
-        ) * this.options.groupNumber
+        ) * this.options.itemNums
     } else {
       distance = this.sortedItems[index].info.x
     }
@@ -564,7 +575,7 @@ class Swipe extends Component {
 
     this.move(distance, {
       trigger: true,
-      ease: this.options.dragFree ? 'easeInQuad' : 'linear',
+      ease: this.options.dragFree ? 'easeOutExpo' : 'linear',
       callback
     })
   }
@@ -626,10 +637,10 @@ class Swipe extends Component {
     if (this.options.group && !this.options.center) {
       let index = 0
       const tempWidth = this.width
-      let maybeIndex = Math.ceil(distance / this.width)
+      const maybeIndex = Math.ceil(distance / this.width)
 
       index =
-        distance - (maybeIndex++ - 1) * tempWidth > tempWidth / 2
+        distance - (maybeIndex - 1) * tempWidth > tempWidth / 2
           ? maybeIndex
           : maybeIndex - 1
       return Math.max(0, Math.min(index, this.maxActiveCount))

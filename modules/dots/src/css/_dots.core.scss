@@ -1,0 +1,73 @@
+// Vars
+// =====================
+$dot: "pj-dot" !default;
+$dot-font-family: $font-family-base !default;
+$dot-font-size: $font-size-lg default;
+$dot-width: 0.5 * $font-size-lg !default;
+$dot-height: 0.5 * $font-size-lg !default;
+$dot-line-width: 1.375 * $font-size-lg !default;
+$dot-line-height: 0.125 * $font-size-lg !default;
+$dot-radius: 50% !default;
+$dot-margin: 0.3125 * $font-size-lg !default;
+$dot-vertical-space: 1 * $font-size-lg !default;
+$dot-color: #d5d5d5 !default; //#d5d5d5
+$dot-stroke-color: $color-white !default;
+$dot-active-color: $color-primary !default;
+$dot-hover-color: rgba($color-black, 0.5) !default;
+$dot-disable-color: $gray-lighter !default;
+
+// Core
+// =====================
+.#{$dot}s {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font-family: $dot-font-family;
+  list-style: none;
+}
+
+.#{$dot} {
+  position: relative;
+  width: $dot-width;
+  height: $dot-height;
+  margin: $dot-margin;
+
+  a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-indent: 100%;
+    cursor: pointer;
+  }
+}
+
+.#{$dot}s-vertical {
+  flex-direction: column;
+  .#{$dot} {
+    width: $dot-line-width;
+    height: $dot-line-height;
+    
+    + .#{$dot} {
+      margin-top: $dot-vertical-space;
+    }
+  }
+
+  a {
+    transition: transform 0.3s;
+    transform-origin: right;
+  }
+}
+
+.#{$dot}s-square {
+  .#{$dot} {
+    width: $dot-line-width;
+    height: $dot-line-height;
+  }
+}
+
+.#{$dot}-hidden {
+  visibility: hidden;
+}
