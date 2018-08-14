@@ -1,11 +1,15 @@
 /* eslint-disable no-undefined, no-undef */
-import { isString, isFunction, isElement } from '@pluginjs/is'
+import { isString, isFunction } from '@pluginjs/is'
 import { curryWith } from '@pluginjs/utils'
 import EventEmitter from './eventEmitter'
 
+const supportEventListener = element => {
+  return typeof element === 'object' && 'addEventListener' in element
+}
+
 export const trigger = (event, ...args) => {
   const element = args[args.length - 1]
-  if (!isElement(element)) {
+  if (!supportEventListener(element)) {
     return
   }
 
@@ -24,25 +28,6 @@ export const trigger = (event, ...args) => {
   }
   element.dispatchEvent(cusEvent)
 }
-
-export const bindEvent = curryWith((events, selector, callback, element) => {
-  const eventArr = events.split(' ')
-  if (eventArr.length > 1) {
-    eventArr.forEach(e => {
-      bindEvent(e, selector, callback, element)
-    })
-  } else {
-    if (!isString(selector) && !isFunction(callback)) {
-      element = callback
-      callback = selector
-      selector = undefined
-    }
-
-    bind(events, selector, callback, element)
-  }
-
-  return element
-}, isElement)
 
 const getDelegator = (event, selector, callback) => {
   return (e, args) => {
@@ -118,23 +103,40 @@ export const removeEvent = curryWith((events, selector, callback, element) => {
     const emitter = EventEmitter.getEventEmitter(element)
     const { eventName } = EventEmitter.parseEvent(event)
 
-    if (!emitter.hasListeners(event)) {
-      return
-    }
+    if (emitter.hasListeners(event)) {
+      if (emitter.getListeners(event).length === 0) {
+        element.removeEventListener(eventName, dispatch)
+      }
 
-    if (emitter.getListeners(event).length === 0) {
-      element.removeEventListener(eventName, dispatch)
-    }
-
-    if (typeof callback === 'undefined') {
-      emitter.off(event)
-    } else {
-      emitter.off(event, callback._delegator)
+      if (typeof callback === 'undefined') {
+        emitter.off(event)
+      } else {
+        emitter.off(event, callback._delegator)
+      }
     }
   }
 
   return element
-}, isElement)
+}, supportEventListener)
+
+export const bindEvent = curryWith((events, selector, callback, element) => {
+  const eventArr = events.split(' ')
+  if (eventArr.length > 1) {
+    eventArr.forEach(e => {
+      bindEvent(e, selector, callback, element)
+    })
+  } else {
+    if (!isString(selector) && !isFunction(callback)) {
+      element = callback
+      callback = selector
+      selector = undefined
+    }
+
+    bind(events, selector, callback, element)
+  }
+
+  return element
+}, supportEventListener)
 
 export const bindEventOnce = curryWith(
   (events, selector, callback, element) => {
@@ -160,7 +162,7 @@ export const bindEventOnce = curryWith(
 
     return element
   },
-  isElement
+  supportEventListener
 )
 
 export const on = bindEvent

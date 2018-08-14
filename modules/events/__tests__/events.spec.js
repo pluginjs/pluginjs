@@ -43,6 +43,30 @@ describe('Events', () => {
   })
 
   describe('on()', () => {
+    test('should work with document', () => {
+      let result = 0
+      const callback = () => {
+        result++
+      }
+
+      on('test', callback, document)
+
+      trigger('test', document)
+      expect(result).toEqual(1)
+    })
+
+    test('should work with window', () => {
+      let result = 0
+      const callback = () => {
+        result++
+      }
+
+      on('test', callback, window)
+
+      trigger('test', window)
+      expect(result).toEqual(1)
+    })
+
     test('on should invoke callback when event trigger', () => {
       const el = document.querySelector('#event-test ul')
       let result = 0
