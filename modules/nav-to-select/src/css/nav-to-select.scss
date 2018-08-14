@@ -13,6 +13,7 @@ $navToSelect-padding-left: 6px !default;
 $navToSelect-font-size: $font-size-sm !default;
 $navToSelect-input-outline: $color-primary !default;
 $navToSelect-input-radius: $border-radius-base !default;
+$navToSelect-input-font-family: "font-awesome" !default;
 
 // Core
 // =====================
@@ -23,8 +24,12 @@ $navToSelect-input-radius: $border-radius-base !default;
   padding-left: $navToSelect-padding-left;
   font-family: $navToSelect-font-family;
   font-size: $navToSelect-font-size;
+  background: none;
   border: 1px solid $gray-border;
   outline: none;
+  -moz-appearance:none;
+  appearance:none; /* stylelint-disable-line */
+  -webkit-appearance:none; /* stylelint-disable-line */
 
   &:focus {
     border-color: $navToSelect-input-outline;
@@ -32,32 +37,23 @@ $navToSelect-input-radius: $border-radius-base !default;
 
   &-input {
     position: relative;
-    display: inline-block;
+    display: none;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      z-index: -1;
+      font-family: $navToSelect-input-font-family;
+      text-decoration: none;
+      text-transform: none;
+      content: "\f0d7";
+      transform: translateY(-50%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
   }
 
-}
-
-input {
-  position: absolute;
-  top: 1px;
-  left: 0;
-  box-sizing: border-box;
-  display: inline-block;
-  width: $navToSelect-input-width;
-  height: $navToSelect-input-height;
-  padding: 0 30px 0 10px;
-  margin-left: 1px;
-  font-size: $navToSelect-font-size;
-  line-height: $navToSelect-height;
-  border: none;
-  border-radius: $navToSelect-input-radius;
-  outline: none;
-
-  &:focus {
-    & + select {
-      border-color: $navToSelect-input-outline;
-    } 
-  }
 }
 
 /* Mobile device */
@@ -68,10 +64,9 @@ input {
 
   .#{$navToSelect} {
     display: block;
-    // opacity: 0;
-  }
 
-  // input {
-  //   display: block;
-  // }
+    &-input {
+      display: inline-block;
+    }
+  }
 }

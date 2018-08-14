@@ -1,5 +1,5 @@
 export const namespace = 'navToSelect'
-import { children, parent, query } from '@pluginjs/dom'
+import { children } from '@pluginjs/dom'
 
 export const events = {
   UPDATE: 'update',
@@ -32,7 +32,7 @@ export const defaults = {
   prependTo: null,
   activeClass: 'active',
   linkSelector: 'a',
-  indentString: '&nbsp &nbsp',
+  indentString: '&nbsp&nbsp',
   indentSpace: true,
   placeholder: 'Navigate to...',
   useOptgroup: true,
@@ -81,8 +81,7 @@ export const defaults = {
     }
     const selectin = this.selectedIndex
     const selectText = this[selectin].text.replace(/\s|–/g, '')
-    const selectInput = query('input', parent(this))
-    selectInput.value = selectText
+    this[selectin].text = selectText
   }
 }
 

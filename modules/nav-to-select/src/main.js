@@ -89,19 +89,13 @@ class NavToSelect extends Component {
     removeEvent(this.eventName(), document.body)
   }
   build(items) {
-    this.selectInput = parseHTML(
-      `<div contenteditable="true" class=${this.classes.INPUT} />`
-    )
+    this.selectInput = parseHTML(`<div class=${this.classes.INPUT} />`)
     this.select = parseHTML(`<select class=${this.classes.SELECT} />`)
     this.select.innerHTML = this.buildOptions(items, 1)
-    const selectin = this.select.selectedIndex
-    const selectText = this.select[selectin].text
-    const text = selectText.replace(/\s|–/g, '')
-    this.input = parseHTML(`<input type="text" value="${text}"/>`)
+    this.selectin = this.select.selectedIndex
     if (this.options.prependTo === null) {
       insertAfter(this.select, this.element)
       wrap(this.selectInput, this.select)
-      insertBefore(this.input, this.select)
     } else {
       const prependTo =
         typeof this.options.prependTo === 'string'
@@ -115,9 +109,8 @@ class NavToSelect extends Component {
   buildOption(item, level) {
     let INDENT = new Array(level).join(this.options.indentString)
     if (level !== 1 && this.options.indentSpace) {
-      INDENT += '&nbsp;'
+      INDENT += '&nbsp '
     }
-    console.log(INDENT)
     return `<option value="${item.value}"${
       item.linkable === false ? ' data-linkable="false"' : ''
     }${item.actived === true ? ' selected="selected"' : ''} ${
