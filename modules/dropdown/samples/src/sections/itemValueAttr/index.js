@@ -1,9 +1,8 @@
 import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const element = query('#input .pj-dropdown-trigger')
+const element = query('#itemValueAttr .dropdown-example')
 Dropdown.of(element, {
   imitateSelect: true,
-  // inputLabel: true,
-  hideOutClick: true
+  itemValueAttr: 'data-category'
 })

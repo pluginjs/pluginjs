@@ -8,31 +8,23 @@ export const events = {
   HIDE: 'hide',
   SHOW: 'show',
   CHANGE: 'change',
-  CLICK: 'click',
+  SELECT: 'select',
   TRIGGER: 'trigger'
 }
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
-  INPUTMODE: '{namespace}-input',
-  SELECTMODE: '{namespace}-select',
-  ELEMENT: '{namespace}',
   TRIGGRER: '{namespace}-trigger',
-  ICON: '{namespace}-icon',
+  REFERENCE: '{namespace}-reference',
+  DROPDOWN: '{namespace}',
+  INPUT: 'pj-input {namespace}-input',
   ITEM: '{namespace}-item',
   SHOW: '{namespace}-show',
-  MASK: '{namespace}-mask',
-  WRAP: '{namespace}-wrap',
-  PANEL: '{namespace}-panel',
-  PANELWRAP: '{namespace}-panel-wrap',
-  PANELONTOP: '{namespace}-panel-on-top',
+  PLACEMENT: '{namespace}-on-{placement}',
   DISABLED: '{namespace}-disabled',
   FOCUS: '{namespace}-focus',
-  ACITVE: '{namespace}-active',
-  HOVER: '{namespace}-hover',
-  INPUT: 'pj-input',
-  TRIGGERACTIVE: '{namespace}-trigger-active'
+  ACITVE: '{namespace}-active'
 }
 
 export const methods = [
@@ -41,49 +33,32 @@ export const methods = [
   'destroy',
   'show',
   'hide',
-  'get',
-  'set',
   'toggle',
-  'update',
-  'replaceByData',
-  'appendByData',
-  'setWidth'
+  'update'
 ]
 
 export const defaults = {
   theme: null,
-  panel: '+', // jquery selector to find content in the page, or '+' means adjacent siblings
+  reference: null,
+  target: '+', // dom selector to find content in the page, or '+' means adjacent siblings
   trigger: 'click', // focus, hover
-  exclusive: true, // show exclusive true or false
   hideOnSelect: true,
   hideOutClick: true, // When clicking outside of the dropdown, trigger hide event
   keyboard: false,
   placement: 'bottom-start', // ['auto','bottom', 'top', 'right', 'left'] and ['start', 'end'] can be combination, like 'bottom-start', 'left-end'. when use a single value, like 'bottom', means 'bottom-center'.
+  offset: '0,5px',
+  flip: true,
+  boundary: 'scrollParent', // viewport
+
   imitateSelect: false, // Behave like select
-  // inputLabel: false, // input with select
-  placeholder: 'Please select',
-  icon: false, // false or icon class, when imitateSelect is true
-  select: null, // set initial select value, when imitateSelect is true
-  itemValueAttr: 'value', // item tag name
+  value: null, // set initial select value, when imitateSelect is true
+  itemValueAttr: 'data-value', // item tag name
+
   data: null, // json [{label: [string]}, ....]
   width: null, // number| string | object, when object, dropdown-panel = object.css('width')
-  constraintToScrollParent: true,
-  constraintToWindow: true,
   templates: {
-    // inputLabel() {
-    //   return '<input class="{classes.LABEL}" placeholder="{that.options.placeholder}" />'
-    // },
-    // label() {
-    //   return '<span class="{classes.LABEL}"></span>'
-    // },
-    icon() {
-      return '<i class="{classes.ICON} {icon}"></i>'
-    },
-    panel() {
-      return '<ul></ul>'
-    },
     item() {
-      return '<li class="{classes.ITEM}" data-{itemValueAttr}="{tag}">{item.label}</li>'
+      return '<div class="{classes.ITEM}" {itemValueAttr}="{item.value}">{item.label}</div>'
     }
   }
 }

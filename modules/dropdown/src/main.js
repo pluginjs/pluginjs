@@ -1,21 +1,9 @@
 import Component from '@pluginjs/component'
-import templateEngine from '@pluginjs/template'
-import { isString, isNull, isDomNode } from '@pluginjs/is'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle, getStyle } from '@pluginjs/styled'
+import template from '@pluginjs/template'
+import { isString, isNull, isDomNode, isObject, isArray } from '@pluginjs/is'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  append,
-  parseHTML,
-  query,
-  queryAll,
-  unwrap,
-  wrap,
-  // wrapInner,
-  children,
-  parent,
-  parentWith
-} from '@pluginjs/dom'
+import { append, has, query, children } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -24,7 +12,7 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
-import Keyboard from './keyboard'
+// import Keyboard from './keyboard'
 import Popper from 'popper.js'
 import {
   classes as CLASSES,
@@ -47,287 +35,187 @@ import {
 class Dropdown extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
-    this.parent = this.element.parentNode.parentNode
-    this.$triggerBox = this.element.parentNode
-    // options
+
+    this.$trigger = this.element
+
     this.initOptions(DEFAULTS, options)
-    this.firstClassName = this.$triggerBox.className
+
+    this.$reference = this.getReference()
 
     this.initClasses(CLASSES)
 
-    // theme
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$triggerBox)
-    }
+    this.$dropdown = this.getDropdown()
 
-    // content
-    if (this.options.data) {
-      let items = ''
-
-      const $panel = parseHTML(this.options.templates.panel())
-      this.options.data.forEach(v => {
-        const tag = v[this.options.itemValueAttr] || v.label
-        items += templateEngine.render(this.options.templates.item(), {
-          classes: this.classes,
-          itemValueAttr: this.options.itemValueAttr,
-          item: v,
-          tag
-        })
-      })
-
-      const $itemsEl = parseHTML(items)
-      if (!$itemsEl.length) {
-        append($itemsEl, $panel)
-      } else {
-        $itemsEl.map($item => append($item, $panel))
-      }
-      append($panel, this.parent)
-    }
-    this.$panel = this.getPanel()
-    wrap(`<div class='${this.classes.PANELWRAP}'></div>`, this.$panel)
-    this.$panelWrap = this.$panel.parentNode
-
-    this.$items = queryAll('li', this.$panel)
-    this.$items.map(i => addClass(this.classes.ITEM, i))
-    // init
     this.initStates()
     this.initialize()
   }
 
+  getReference() {
+    if (isDomNode(this.options.reference)) {
+      return this.options.reference
+    } else if (isString(this.options.reference)) {
+      return query(this.options.reference)
+    }
+    return this.$trigger
+  }
+
+  getDropdown() {
+    if (this.options.target === '+') {
+      return this.$trigger.nextElementSibling
+    }
+    if (isString(this.options.target)) {
+      return query(this.options.target)
+    }
+
+    return this.options.target
+  }
+
   initialize() {
-    let parentClass = this.classes.WRAP
-
-    this.active = null
-    this.$markIndex = 0
-
-    if (this.options.imitateSelect) {
-      parentClass += ` ${this.classes.SELECTMODE}`
-    }
-    if (this.options.imitateSelect && this.options.inputLabel) {
-      parentClass += ` ${this.classes.INPUTMODE}`
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.$reference)
+      addClass(this.getThemeClass(), this.$dropdown)
     }
 
-    if (this.options.inputSelect || this.options.imitateSelect) {
-      if (this.options.icon) {
-        this.$icon = parseHTML(
-          templateEngine.render(this.options.templates.icon(), {
-            classes: this.classes,
-            icon: this.options.icon ? this.options.icon : ''
-          })
-        )
-        append(this.$icon, this.$triggerBox)
-      }
+    addClass(this.classes.TRIGGRER, this.$trigger)
+    addClass(this.classes.REFERENCE, this.$reference)
+    addClass(this.classes.DROPDOWN, this.$dropdown)
+
+    if (this.$trigger.tagName === 'INPUT') {
+      addClass(this.classes.INPUT, this.$trigger)
     }
-    parentClass.split(' ').map(c => addClass(c, this.parent))
-    addClass(this.classes.ELEMENT, this.$triggerBox)
-    this.classes.PANEL.split(' ').map(className =>
-      addClass(className, this.$panel)
-    )
+
+    if (!isNull(this.options.data)) {
+      this.appendItems(this.options.data)
+    }
+
+    if (!isNull(this.options.value)) {
+      this.selectByValue(this.options.value)
+    }
+
     this.bind()
-
-    if (this.options.select !== null) {
-      this.set(this.options.select)
-    }
-
-    this.setupPopper()
-
-    this.handlePanelWidth()
-
-    if (this.options.keyboard) {
-      this.KEYBOARD = new Keyboard(this)
-    }
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
   bind() {
-    const that = this
-
-    if (this.options.trigger === 'hover') {
+    if (this.$trigger.tagName === 'INPUT') {
       bindEvent(
-        'mouseenter',
+        this.eventName('focus'),
         () => {
-          if (this.is('disabled')) {
-            return
-          }
           this.show()
-          return
+          return false
         },
-        this.parent
+        this.$trigger
       )
-
+    } else if (this.options.trigger === 'hover') {
       bindEvent(
-        'mouseleave',
+        this.eventName('mouseenter'),
         () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.hide()
-          return
+          this.show()
+          return false
         },
-        this.parent
+        this.$trigger
       )
     } else {
       bindEvent(
-        this.options.trigger,
+        this.eventName(this.options.trigger),
         e => {
-          if (this.is('disabled')) {
-            return
-          }
-
-          this.triggerUsable = true
-          this.trigger(EVENTS.TRIGGER, this, e)
-          if (!this.triggerUsable) {
-            return
-          }
-
-          if (this.options.inputLabel) {
-            this.element.focus()
-          }
-          if (this.is('focus')) {
-            return
-          }
-
           this.toggle()
-          return
+          e.preventDefault()
         },
-        this.$triggerBox
+        this.$trigger
       )
+    }
 
-      if (this.element.className === 'input') {
-        bindEvent(
-          'focus.input',
-          () => {
-            if (this.is('disabled')) {
-              return
-            }
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.ITEM}`,
+      e => {
+        const item = e.target
+        if (item.parentNode !== this.$dropdown) {
+          return
+        }
+        this.selectItem(item)
 
-            this.enter('focus')
-            this.show()
+        if (this.options.hideOnSelect) {
+          this.hide()
+        }
+      },
+      this.$dropdown
+    )
+  }
 
-            bindEvent(
-              'keydown.tab',
-              e => {
-                if (e.keyCode === 9) {
-                  this.hide()
-                  removeClass(this.classes.FOCUS, this.parent)
-                }
-              },
-              this.element
-            )
-            return
-          },
-          this.element
-        )
-        bindEvent(
-          'blur.input',
-          () => {
-            removeEvent('keydown.tab', this.element)
-            this.leave('focus')
-          },
-          this.element
-        )
+  appendItems(data) {
+    let items = []
+
+    if (isArray(data)) {
+      items = data
+    } else if (isObject(data)) {
+      for (const key in data) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+          items.push({
+            value: key,
+            label: data[key]
+          })
+        }
       }
     }
-  }
 
-  unbind() {
-    removeEvent(this.eventName(), this.$triggerBox)
-    removeEvent(this.eventName(), this.$panel)
-    removeEvent(this.eventName(), this.parent)
-  }
-
-  handlePanelWidth() {
-    if (this.options.width) {
-      const width = this.options.width
-      if (typeof width === 'string' || typeof width === 'number') {
-        setStyle(
-          {
-            width,
-            minWidth: 'inherit'
-          },
-          this.$panel
-        )
-      }
-
-      if (typeof width === 'object') {
-        const elementWidth = getStyle('width', width)
-        setStyle(
-          {
-            width: elementWidth,
-            minWidth: 'inherit'
-          },
-          this.$panel
-        )
-      }
-    }
-  }
-
-  setWidth(width) {
-    this.options.width = width
-    this.handlePanelWidth()
-  }
-
-  replaceByData(data) {
-    this.$items.map(i => i.remove())
-    this.appendByData(data)
-  }
-
-  appendByData(data) {
-    if (data) {
-      let items = ''
-
-      data.forEach(v => {
-        const tag = v[this.options.itemValueAttr] || v.label
-        items += templateEngine.render(this.options.templates.item(), {
+    if (items.length > 0) {
+      let content = ''
+      items.forEach(item => {
+        content += template.render(this.options.templates.item(), {
           classes: this.classes,
           itemValueAttr: this.options.itemValueAttr,
-          item: v,
-          tag
+          item
         })
       })
 
-      const itemsEl = parseHTML(items)
-      itemsEl.map($item => append($item, this.$panel))
+      append(content, this.$dropdown)
     }
-    this.$items = queryAll('li', this.$panel)
-    this.$items.map(i => addClass(this.classes.ITEM, i))
   }
 
-  setupPopper() {
-    const config = {
-      placement: this.options.placement,
-      modifiers: { preventOverflow: { boundariesElement: 'viewport' } },
-      onUpdate: data => {
-        const placement = data.placement
-        if (placement.indexOf('top') >= 0) {
-          addClass(this.classes.PANELONTOP, this.parent)
-        }
+  getActiveItem() {
+    return children(`.${this.classes.ACITVE}`, this.$dropdown)
+  }
 
-        if (placement.indexOf('bottom') >= 0) {
-          removeClass(this.classes.PANELONTOP, this.parent)
-        }
+  selectByValue(value, trigger) {
+    const selected = children(`.${this.classes.ITEM}`, this.$dropdown).filter(
+      item => {
+        return this.getItemValue(item) === value
+      }
+    )
+
+    if (selected.length > 0) {
+      this.selectItem(selected[0], trigger)
+    }
+  }
+
+  getItemValue(item) {
+    return item.getAttribute(this.options.itemValueAttr)
+  }
+
+  selectItem(item, trigger) {
+    if (!isNull(this.active)) {
+      removeClass(this.classes.ACITVE, this.active)
+    }
+
+    const value = this.getItemValue(item)
+    if (this.$trigger.tagName === 'INPUT' && this.options.imitateSelect) {
+      this.$trigger.value = value
+    }
+
+    if (trigger) {
+      this.trigger(EVENTS.SELECT, item)
+
+      if (this.active !== item) {
+        this.trigger(EVENTS.CHANGE, value)
       }
     }
 
-    if (
-      !this.options.constraintToScrollParent &&
-      this.options.constraintToWindow
-    ) {
-      config.modifiers.preventOverflow.boundariesElement = 'window'
-    }
-
-    if (
-      this.options.constraintToScrollParent &&
-      !this.options.constraintToWindow
-    ) {
-      config.modifiers.preventOverflow.boundariesElement = 'scrollParent'
-    }
-
-    this.POPPER = new Popper(this.$triggerBox, this.$panelWrap, config)
-
-    this.enter('popper')
+    this.active = item
+    addClass(this.classes.ACITVE, this.active)
   }
 
   toggle() {
@@ -339,191 +227,98 @@ class Dropdown extends Component {
   }
 
   show() {
-    if (this.is('show')) {
-      return false
-    }
-
-    if (this.options.hideOutClick) {
-      bindEvent(
-        'click',
-        e => {
-          if (!this.is('show')) {
-            return
-          }
-
-          const target = e.target
-          if (
-            !parentWith(hasClass(this.classes.NAMESPACE), target) &&
-            !parentWith(hasClass(this.classes.PANEL), target)
-          ) {
-            this.hide()
-            return
-          }
-          // this.hide()
-          return
-        },
-        window.document
-      )
-    }
-    if (this.options.exclusive) {
-      this.constructor.getInstances().map(dropdown => {
-        if (dropdown.is('show')) {
-          dropdown.hide()
-        }
-      })
-    }
-
-    if (this.options.keyboard) {
-      if (this.active !== null) {
-        this.$markIndex = children(parent(this.active)).indexOf(this.active)
-      }
-      this.markItem(null, true)
-    }
-
-    this.enter('show')
-    addClass(this.classes.SHOW, this.$triggerBox)
-    addClass(this.classes.SHOW, this.$panelWrap)
-
-    if (this.is('popper')) {
-      this.POPPER.enableEventListeners()
-      this.POPPER.scheduleUpdate()
-    }
-    this.trigger(EVENTS.SHOW)
-    return undefined
-  }
-
-  hide() {
-    if (!this.is('show')) {
-      return false
-    }
-
-    this.leave('show')
-
-    if (this.options.hideOutClick) {
-      removeEvent('click', window.document)
-    }
-
-    if (this.is('popper')) {
-      this.POPPER.disableEventListeners()
-    }
-    removeClass(this.classes.SHOW, this.$triggerBox)
-    removeClass(this.classes.SHOW, this.$panelWrap)
-
-    this.trigger(EVENTS.HIDE)
-
-    return undefined
-  }
-
-  set(value) {
-    if (typeof value === 'undefined') {
+    if (this.is('disabled')) {
       return
     }
 
-    if (this.options.imitateSelect) {
-      this.text = null
+    if (!this.is('show')) {
+      this.setupPopper()
+      addClass(this.classes.SHOW, this.$dropdown)
+      this.$trigger.setAttribute('aria-expanded', 'true')
 
-      this.$items.map(($item, index) => {
-        if ($item.dataset[this.options.itemValueAttr] === value) {
-          this.selectItem($item)
-          this.value = value
-          if (typeof $item.textContent !== 'undefined') {
-            this.text = $item.textContent
+      if (this.options.hideOutClick) {
+        bindEvent(
+          this.eventNameWithId('click'),
+          e => {
+            if (
+              e.target === this.$dropdown ||
+              has(e.target, this.$dropdown) ||
+              e.target === this.$trigger ||
+              has(e.target, this.$trigger)
+            ) {
+              return
+            }
+
+            this.hide()
+          },
+          document
+        )
+      }
+
+      this.enter('show')
+    }
+
+    this.trigger(EVENTS.SHOW)
+  }
+
+  hide() {
+    if (this.is('show')) {
+      removeClass(this.classes.SHOW, this.$dropdown)
+      this.$trigger.setAttribute('aria-expanded', 'false')
+
+      if (this.options.hideOutClick) {
+        removeEvent(this.eventNameWithId('click'), document)
+      }
+
+      this.leave('show')
+    }
+
+    this.trigger(EVENTS.HIDE)
+  }
+
+  setupPopper() {
+    if (!this.is('popper')) {
+      let placementClass
+
+      this.POPPER = new Popper(this.$reference, this.$dropdown, {
+        placement: this.options.placement,
+
+        modifiers: {
+          flip: {
+            enabled: this.options.flip
+          },
+
+          preventOverflow: {
+            enabled: true,
+            boundariesElement: this.options.boundary
+          },
+
+          offset: {
+            offset: this.options.offset
           }
+        },
+        onUpdate: data => {
+          const newPlacementClass = this.getClass(
+            this.classes.PLACEMENT,
+            'placement',
+            data.placement
+          )
+
+          if (placementClass !== newPlacementClass) {
+            removeClass(placementClass, this.$reference)
+            addClass(placementClass, this.$reference)
+          }
+        },
+        onCreate: data => {
+          placementClass = this.getClass(
+            this.classes.PLACEMENT,
+            'placement',
+            data.placement
+          )
+          addClass(placementClass, this.$reference)
         }
       })
-
-      if (isNull(this.active)) {
-        return
-      }
-
-      if (this.element.tagName === 'INPUT') {
-        this.element.value = this.text
-      } else {
-        this.element.innerHTML = this.text
-      }
-
-      if (this.is('initialized')) {
-        this.trigger(EVENTS.CHANGE, this.active)
-      }
-    }
-  }
-
-  generateMask() {
-    this.$mask = document.createElement('div')
-    addClass(this.classes.MASK, this.$mark)
-    // .show()
-    append(this.$mark, document.body)
-    bindEvent(
-      'click',
-      () => {
-        this.hide()
-        return
-      },
-      this.$mark
-    )
-  }
-
-  clearMask() {
-    if (this.$mark) {
-      removeEvent('click', this.$mark)
-      this.$mark.remove()
-      this.$mark = null
-    }
-  }
-
-  getPanel() {
-    if (this.options.panel === '+') {
-      return this.$triggerBox.nextElementSibling
-    }
-    if (isDomNode(this.options.panel)) {
-      return this.options.panel
-    } else if (isString(this.options.panel)) {
-      return query(this.options.panel)
-    }
-  }
-
-  get() {
-    return this.value
-  }
-
-  getActiveItem() {
-    return query(`.${this.classes.ACITVE}`, this.$panel)
-  }
-
-  update(html) {
-    this.$panel.innerHTML = html
-  }
-
-  selectItem(item) {
-    if (!isNull(this.active)) {
-      removeClass(this.classes.ACITVE, this.active)
-    }
-
-    this.active = item
-    addClass(this.classes.ACITVE, this.active)
-  }
-
-  markItem(action, trigger = false) {
-    switch (action) {
-      case 'up':
-        if (this.$markIndex > 0) {
-          this.$markIndex--
-          trigger = true
-        }
-        break
-      case 'down':
-        if (this.$markIndex < this.$items.length - 1) {
-          this.$markIndex++
-          trigger = true
-        }
-        break
-      default:
-        break
-    }
-
-    if (trigger) {
-      this.$items.map($item => removeClass(this.classes.HOVER, $item))
-      addClass(this.classes.HOVER, this.$items[this.$markIndex])
+      this.enter('popper')
     }
   }
 
@@ -532,7 +327,8 @@ class Dropdown extends Component {
       this.element.disabled = false
       this.leave('disabled')
     }
-    removeClass(this.classes.DISABLED, this.parent)
+    removeClass(this.classes.DISABLED, this.$trigger)
+    removeClass(this.classes.DISABLED, this.$placement)
     this.trigger(EVENTS.ENABLE)
   }
 
@@ -541,47 +337,31 @@ class Dropdown extends Component {
       this.element.disabled = true
       this.enter('disabled')
     }
-    addClass(this.classes.DISABLED, this.parent)
+    addClass(this.classes.DISABLED, this.$trigger)
+    addClass(this.classes.DISABLED, this.$placement)
     this.trigger(EVENTS.DISABLE)
+  }
+
+  update() {
+    if (this.POPPER !== null) {
+      this.POPPER.scheduleUpdate()
+    }
   }
 
   destroy() {
     if (this.is('initialized')) {
-      this.hide()
-      this.unbind()
-      if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.$triggerBox)
-      }
+      removeEvent(this.eventName(), this.$trigger)
 
-      this.POPPER.destroy()
-      this.$triggerBox.innerHTML = ''
-      this.$triggerBox.className = this.firstClassName
-
-      if (this.options.data) {
-        unwrap(this.$panel)
-        this.$panel.remove()
-        this.$items.map($item => $item.remove())
-        removeClass(this.classes.WRAP, this.parent)
-      } else if (this.options.panel === '+') {
-        unwrap(this.$panel)
-        removeClass(this.classes.PANEL, this.$panel)
-        this.$items.map($item => removeClass(this.classes.ITEM, $item))
-        removeClass(this.classes.WRAP, this.parent)
-      } else {
-        this.$panelWrap.remove()
-        removeClass(this.classes.WRAP, this.parent)
-      }
       this.leave('initialized')
+    }
+
+    if (this.POPPER !== null) {
+      this.POPPER.destroy()
+      this.POPPER = null
     }
 
     this.trigger(EVENTS.DESTROY)
     super.destroy()
-  }
-
-  resize() {
-    if (!this.is('disabled')) {
-      this.handlePanelWidth()
-    }
   }
 }
 

@@ -1,277 +1,96 @@
 @import "@pluginjs/styles/variables.scss";
-@import "dropdown.core";
 
 // Vars
 // =====================
 $dropdown: "pj-dropdown" !default;
 $dropdown-sizer: $sizer !default;
-$dropdown-font-family: $font-family-base !default;
 
 $dropdown-color: $text-color !default;
-$dropdown-line-height: 3.2 * $dropdown-sizer !default; //34px
+$dropdown-bg: $color-white !default;
+$dropdown-font-size: $font-size-base !default;
+
+// $dropdown-trigger-color: $gray-dark !default;
+// $dropdown-trigger-hover-color: $gray-darkest !default;
+
+$dropdown-min-width: 20 * $dropdown-sizer !default;
+$dropdown-height: 3.4 * $dropdown-sizer !default; //34px
+$dropdown-line-height: 3.4 * $dropdown-sizer !default; //34px
 $dropdown-icon-size: $font-size-lg !default;
-$dropdown-space-x: 1.2 * $dropdown-sizer !default; //27px
-$dropdown-space-x-right: 3 * $dropdown-sizer !default; //30px
-$dropdown-space-x-left: 1.2 * $dropdown-sizer !default; //10px
-$dropdown-space-y: 0.1 * $dropdown-sizer !default; //5px
-$dropdown-show-color: $color-primary !default;
-$dropdown-select-border-radius: $border-radius-base !default;
-$dropdown-trigger-focus-color: $color-primary !default;
-$dropdown-trigger-color: $gray-dark !default;
-$dropdown-trigger-hover-color: $gray-darkest !default;
-$dropdown-panel-space-x: 0.2 * $dropdown-sizer !default; //2px
-$dropdown-panel-space-y: 0.2 * $dropdown-sizer !default; //2px
-$dropdown-panel-min-width: 20 * $dropdown-sizer !default; //200px
-$dropdown-panel-border-color: $gray-light !default;
-$dropdown-placement-color: $gray-darkest !default;
-$dropdown-item-hover-bg: $gray-lighter !default;
+
+$dropdown-space-x: 1.2 * $dropdown-sizer !default; //12px
+$dropdown-space-y: 0.6 * $dropdown-sizer !default; //6px
+$dropdown-min-width: 20 * $dropdown-sizer !default; //200px
+
+$dropdown-item-hover-bg: $gray-lightest !default;
+$dropdown-item-active-color: $color-primary-active !default;
 $dropdown-item-active-bg: $color-white !default;
 $dropdown-item-margin-bottom: 1px !default;
-$dropdown-box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.05) !default;
+
+$dropdown-box-shadow: $box-shadow-6 !default;
 $dropdown-border-color: $gray-border !default;
 $dropdown-border-radius: $border-radius-base !default;
 $dropdown-hover-border-color: $border-color-hover !default;
-$dropdown-focus-border-color: $border-color-active !default;
 $dropdown-active-border-color: $gray-border !default;
-// Theme
+
+// Core
 // =====================
-/*stylelint-disable*/
-.#{$dropdown} {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  font-family: $dropdown-font-family;
-  color: $text-color;
+.#{$dropdown}-trigger {
   cursor: pointer;
-  border-radius: $dropdown-border-radius;
-  outline: none !important;
-  &-trigger {
-    position: relative;
-    box-sizing: border-box;
-    //display: block;
-    display: flex;
-    //justify-content: center;
-    align-items: center;
-    width: 100%;
-    //width: 2*$dropdown-sizer;
-    height: 100%;
-    padding: $dropdown-space-y 0;
+}
+
+.#{$dropdown} {
+  position: absolute;
+  display: none;
+  text-align: left;
+
+  &-show {
+    display: block;
+  }
+
+  &-item {
     overflow: hidden;
-    font-family: "Helvetica Neue";
-    font-size: $dropdown-font-size;
-    color: $dropdown-trigger-color;
     text-overflow: ellipsis;
     word-break: keep-all;
     white-space: nowrap;
-    border-width: 0;
 
     &:focus {
-      color: $dropdown-trigger-focus-color;
       outline: none;
     }
+  }
+
+  &-item.#{$dropdown}-active {
+    color: $dropdown-item-active-color;
+  }
+}
+
+ul.#{$dropdown} {
+  padding: 0;
+  margin: 0;
+}
+
+li.#{$dropdown}-item {
+  margin: 0;
+
+  list-style: none;
+}
+
+
+// Theme
+// =====================
+.#{$dropdown} {
+  min-width: $dropdown-min-width;
+  font-size: $dropdown-font-size;
+  color: $dropdown-color;
+  background-color: $dropdown-bg;
+  border-radius: $dropdown-border-radius;
+  box-shadow: $dropdown-box-shadow;
+
+  &-item {
+    padding: $dropdown-space-y $dropdown-space-x;
 
     &:hover {
-      color: $dropdown-trigger-hover-color;
-    }
-  }
-
-  &-icon {
-    //position: absolute;
-    //top:  0.6*$dropdown-sizer; //6px
-    //right: 0.6*$dropdown-sizer; //6px
-    display: inline-block;
-    height: $dropdown-icon-size;
-    padding: 0 0.5 * $dropdown-sizer;
-    font-size: $dropdown-icon-size;
-    line-height: $dropdown-icon-size;
-    transition: transform 0.3s;
-    transform: translateY(0);
-  }
-
-  &-show {
-    .#{$dropdown}-icon.icon-chevron-down {
-      transform: translateY(0) rotate(180deg);
-    }
-
-    .#{$dropdown}-trigger {
-      color: $dropdown-show-color;
-    }
-  }
-
-  &-panel {
-    box-sizing: border-box;
-    min-width: $dropdown-panel-min-width;
-    // padding: $dropdown-panel-space-y $dropdown-panel-space-x;
-    margin: 0;
-    color: $dropdown-color; // list-style: none;
-    background-color: $dropdown-bg;
-    border: 1px solid $dropdown-panel-border-color;
-    border-radius: $dropdown-border-radius;
-    box-shadow: $dropdown-box-shadow;
-
-    li {
-      padding: $dropdown-space-y $dropdown-space-x-left;
-      margin-bottom: $dropdown-item-margin-bottom;
-      // border-radius: $dropdown-border-radius; // list-style: none;
-      &:hover {
-        cursor: pointer;
-        background-color: $dropdown-item-hover-bg;
-      }
-    }
-  }
-
-  &-active,
-  &-hover {
-    color: inherit;
-  }
-
-  &-select {
-    &.#{$dropdown}-focus .#{$dropdown} {
-      border-color: $dropdown-hover-border-color;
-    }
-
-    input::-webkit-input-placeholder {
-      color: $dropdown-trigger-color;
-    }
-
-    .#{$dropdown} {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: $dropdown-panel-min-width;
-      background-color: $dropdown-bg;
-      border: 1px solid $dropdown-border-color;
-      border-radius: $dropdown-select-border-radius;
-
-      &:hover {
-        border-color: $dropdown-hover-border-color;
-      }
-
-      &-trigger {
-        padding: $dropdown-space-y $dropdown-space-x;
-        color: $dropdown-trigger-active-color;
-      }
-      
-      &-show {
-        &.#{$dropdown} {
-          border-color: $dropdown-focus-border-color;
-        }
-      }
-      
-      &-panel {
-        border: 1px solid $dropdown-border-color;
-        border-radius: $dropdown-select-border-radius;
-
-        &-wrap {
-          z-index: 999999;
-          box-sizing: border-box; // padding: 0 2px;
-        }
-
-        li.#{$dropdown}-active {
-          font-family: "Helvetica Neue";
-          color: $color-primary;
-        }
-      }
-    }
-  } //Input style
-
-  &-input {
-    .#{$dropdown} {
-      width: $dropdown-panel-min-width;
-      cursor: text;
-      border: 1px solid $dropdown-border-color;
-
-      &:hover {
-        border-color: $dropdown-hover-border-color;
-      }
-
-      &-trigger {
-        padding: $dropdown-space-y $dropdown-space-x-right $dropdown-space-y
-          $dropdown-space-x-left; // line-height: $dropdown-line-height;
-      }
-
-      &.#{$dropdown}-show {
-        // border-color: $dropdown-active-border-color;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-
-      &-panel {
-        z-index: 1;
-        border: 1px solid $dropdown-active-border-color;
-      }
-    }
-
-    .#{$dropdown}-show .#{$dropdown}-panel {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-  } //disabled style
-
-  &-disabled {
-    .#{$dropdown} {
-      color: $disabled-color;
-      cursor: not-allowed;
-      background-color: $disabled-bg;
-      border-color: $disabled-border;
-      //background-color: $disabled-bg;
-      opacity: 0.4;
-      &:hover {
-        border-color: $disabled-border;
-      }
-
-      .#{$dropdown}-trigger[disabled] {
-        color: $disabled-color;
-        cursor: not-allowed;
-        background-color: $disabled-bg;
-        border-color: $disabled-border;
-        &:hover {
-          border-color: $disabled-border;
-        }
-      }
-
-      .#{$dropdown}-icon {
-        cursor: not-allowed;
-      }
-    }
-
-    &-badge {
-      color: $disabled-color;
-      cursor: not-allowed;
-      background-color: $disabled-bg;
-      border-color: $disabled-border;
-      &:hover {
-        color: $disabled-color;
-        background-color: $disabled-bg;
-        border-color: $disabled-border;
-      }
-    }
-
-    .pj-select-badge {
-      color: $disabled-color;
-      background-color: $disabled-bg;
-      border-color: $disabled-border;
-      &:hover {
-        color: $disabled-color;
-        background-color: $disabled-bg;
-        border-color: $disabled-border;
-      }
-    }
-
-    i {
-      cursor: not-allowed;
-    }
-  }
-
-  &-placement {
-    .#{$dropdown}-trigger {
-      color: $dropdown-placement-color;
-    }
-
-    &.#{$dropdown}-show {
-      .#{$dropdown}-trigger {
-        color: $dropdown-show-color;
-      }
+      cursor: pointer;
+      background-color: $dropdown-item-hover-bg;
     }
   }
 }

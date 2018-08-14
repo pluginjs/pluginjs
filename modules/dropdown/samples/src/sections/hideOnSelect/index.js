@@ -1,8 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 
-const element = query('#hideOnSelect .pj-dropdown-trigger')
+const element = query('#hideOnSelect .dropdown-example')
 Dropdown.of(element, {
-  hideOnSelect: true,
-  hideOutClick: false
+  hideOnSelect: true
 })

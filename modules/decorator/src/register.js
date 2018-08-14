@@ -1,7 +1,7 @@
 import { isFunction } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import Pj from '@pluginjs/factory'
-import { deepMerge } from '@pluginjs/utils'
+import { deepMerge, getUID } from '@pluginjs/utils'
 
 export default function register(name, obj = {}) {
   return function(plugin) {
@@ -24,6 +24,7 @@ export default function register(name, obj = {}) {
     }
 
     plugin.addInstance = instance => {
+      instance.instanceId = getUID(instance.plugin)
       instances.push(instance)
     }
 
