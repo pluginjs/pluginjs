@@ -1,7 +1,7 @@
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
-import { append, query } from '@pluginjs/dom'
+import { append, setData, getData } from '@pluginjs/dom'
 import Pj from '@pluginjs/factory'
 
 class Thumbnails {
@@ -23,7 +23,8 @@ class Thumbnails {
       const item = this.instance.items[i]
       const itemHtml = this.instance.getElement('thumb')
       const image = itemHtml.children[0]
-      image.dataset.index = i
+      // image.dataset.index = i
+      setData('index', i, image)
       setStyle('background-image', `url(${item.thumbHref})`, image)
       append(itemHtml, this.inner)
       this.elements[i] = itemHtml
@@ -41,7 +42,8 @@ class Thumbnails {
         handler: event => {
           const target = event.target
           if (target.classList.contains(this.classes.THUMBBG)) {
-            const data = parseInt(event.target.dataset.index)
+            // const data = parseInt(event.target.dataset.index)
+            const data = parseInt(getData('index', event.target), 10)
             this.instance.goTo(data)
           }
         }

@@ -3,7 +3,14 @@ import templateEngine from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, hideElement } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { prepend, parseHTML, queryAll, query, insertAfter } from '@pluginjs/dom'
+import {
+  prepend,
+  parseHTML,
+  queryAll,
+  query,
+  insertAfter,
+  getData
+} from '@pluginjs/dom'
 import { isNumber } from '@pluginjs/is'
 import {
   eventable,
@@ -104,16 +111,16 @@ class Rate extends Component {
 
   verification() {
     if (this.element.tagName.toLowerCase() === 'input') {
-      if (this.element.dataset.min || this.element.dataset.min === 0) {
-        const m = this.element.dataset.min
+      if (getData('min', this.element) || getData('min', this.element) === 0) {
+        const m = getData('min', this.element)
         const n = Number(m)
         if (n >= this.options.max) {
           this.options.min = 0
         }
       }
 
-      if (this.element.dataset.max || this.element.dataset.max === 0) {
-        const m = this.element.dataset.max
+      if (getData('max', this.element) || getData('max', this.element) === 0) {
+        const m = getData('max', this.element)
         const n = Number(m)
         if (n <= 0) {
           this.options.max = 2

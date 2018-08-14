@@ -1,11 +1,12 @@
-import { query } from '@pluginjs/dom'
+import { query, getData } from '@pluginjs/dom'
 import ScrollProgress from '@pluginjs/scroll-progress'
 
 let instance
 
 const apisHandler = ({ target }) => {
-  const { api } = target.dataset
-
+  // const { api } = target.dataset
+  const api = getData('api', target)
+  console.log(api)
   if (api === 'init') {
     instance = ScrollProgress.of('.apiExample', {
       onReady() {
@@ -43,4 +44,4 @@ const apisHandler = ({ target }) => {
   }
 }
 
-query('#apis scroll-progress-apis').addEventListener('click', apisHandler)
+query('#apis,scroll-progress-apis').addEventListener('click', apisHandler)

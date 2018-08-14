@@ -11,7 +11,8 @@ import {
   query,
   parent,
   children,
-  parseHTML
+  parseHTML,
+  getData
 } from '@pluginjs/dom'
 
 import {
@@ -250,8 +251,7 @@ class Grids extends Component {
   getTags() {
     let tags = []
     this.$items.forEach(el => {
-      const tag = this.options.parseTagsStr(el.dataset.tags)
-
+      const tag = this.options.parseTagsStr(getData('tags', el))
       if (tag) {
         tag.forEach((item, index) => {
           tag[index] = item.trim()
@@ -268,7 +268,7 @@ class Grids extends Component {
     const sortData = []
 
     this.$items.forEach(el => {
-      sortData.push(el.dataset.sort)
+      sortData.push(getData('sort', el))
     })
 
     return sortData

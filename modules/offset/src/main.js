@@ -210,7 +210,7 @@ class Offset extends Component {
           }
           const $this = closest(`.${this.classes.VIEW}`, e.target)
           const $el = query(
-            `.${that.classes.NAMESPACE}-${$this.dataset.value}`,
+            `.${that.classes.NAMESPACE}-${getData('value', $this)}`,
             this.$wrap
           )
           const $unit = query('input', $el)

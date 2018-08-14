@@ -10,7 +10,8 @@ import {
   wrap,
   parentWith,
   append,
-  children
+  children,
+  getData
 } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
 import Scrollable from '@pluginjs/scrollable'
@@ -135,7 +136,7 @@ class ImageSelector extends Component {
             )
           )
           addClass(this.classes.ACTIVE, $item)
-          this.data.selected = $item.dataset.label
+          this.data.selected = getData('label', $item)
           this.setImg()
           this.close()
         }
@@ -180,7 +181,7 @@ class ImageSelector extends Component {
         const $this = el
         const value = el.value
         const label = el.label
-        const img = $this.dataset.img
+        const img = getData('img', $this)
         const selected = Boolean(el.selected)
 
         this.data.items.push({

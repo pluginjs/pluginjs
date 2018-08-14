@@ -1,5 +1,5 @@
 import templateEngine from '@pluginjs/template'
-import { deepMerge, camelize, arraysEqual } from '@pluginjs/utils'
+import { deepMerge, arraysEqual } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -7,7 +7,8 @@ import {
   query,
   queryAll,
   insertBefore,
-  insertAfter
+  insertAfter,
+  getData
 } from '@pluginjs/dom'
 import { isObject } from '@pluginjs/is'
 
@@ -17,7 +18,8 @@ const FilterFromData = (dataAttr, value = true, elements) =>
     VerifiData.shift()
     VerifiData = VerifiData.join('-')
 
-    const attr = parseInt(item.dataset[camelize(VerifiData, false)], 10)
+    // const attr = parseInt(item.dataset[camelize(VerifiData, false)], 10)
+    const attr = parseInt(getData(VerifiData, item), 10)
     if (value === true) {
       if (attr) {
         return item
@@ -124,7 +126,8 @@ class List {
         type: 'click',
         identity: `.${instance.classes.ITEM}`,
         handler: e => {
-          const page = e.target.closest('li').dataset.page
+          // const page = e.target.closest('li').dataset.page
+          const page = getData('page', e.target.closest('li'))
           if (typeof page === 'undefined') {
             return false
           }

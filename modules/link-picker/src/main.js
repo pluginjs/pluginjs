@@ -202,8 +202,6 @@ class LinkPicker extends Component {
     )
     this.initDropdown()
 
-    console.log(this.$dropdown)
-
     // console.log($dropdown)
     // console.log(this.$empty)
   }
@@ -300,9 +298,11 @@ class LinkPicker extends Component {
         })
       )
 
-      $item.dataset.name = item.name
+      // $item.dataset.name = item.name
+      setData('name', item.name, $item)
       if (item.connect) {
-        $item.dataset.connect = item.connect
+        // $item.dataset.connect = item.connect
+        setData('connect', item.connect, $item)
       }
 
       $container.append($item)
@@ -439,7 +439,7 @@ class LinkPicker extends Component {
         this.classes.TYPESCOMPONENT
       }'><span class="pj-dropdown-trigger"></span></div>`
     )
-    console.log($dropdown)
+
     setData(
       'input',
       {
@@ -459,16 +459,14 @@ class LinkPicker extends Component {
       }
 
       values = data.values(connectActive).values
-      $dropdown.dataset.connect = connect
-
+      // $dropdown.dataset.connect = connect
+      setData('connect', connect, $dropdown)
       // === bind event ==== //
       bindEvent(
         {
           type: this.eventName(`linkPicker:${source}:${connect}:change`),
           handler: (e, instance, connectName) => {
             const api = getData('input', $dropdown)
-            console.log($dropdown)
-
             const dropdownData = []
             // let globalData = this.getData();
 
@@ -484,9 +482,6 @@ class LinkPicker extends Component {
                 name: key
               })
             })
-            console.log(api)
-            console.log(dropdownData)
-
             api.replaceByData(dropdownData)
             api.set(apiActive)
           }
@@ -517,7 +512,7 @@ class LinkPicker extends Component {
         }
       },
       onChange(el) {
-        const name = el.dataset.value
+        const name = getData('value', el)
         // const connect = this.element.data('connect')
         const { source, itemName } = getData('input', this.element)
 
@@ -593,8 +588,7 @@ class LinkPicker extends Component {
 
     // switch Types
     this.$typeDropdown.options.onChange = v => {
-      this.source = v.dataset.value
-
+      this.source = getData('value', v)
       this.swtichType()
     }
     // $.each(this.data, (sourceName, details) => {
@@ -723,8 +717,6 @@ class LinkPicker extends Component {
     // addClass('pj-dropdown-show', this.$wrap)
     // addClass('pj-dropdown-show', this.$dropdown.parentNode)
     addClass(this.classes.SHOW, this.$wrap)
-    console.log(this.$dropdown)
-    console.log(this.$wrap)
   }
 
   hide() {
@@ -798,8 +790,7 @@ class LinkPicker extends Component {
 
     queryAll(`.${this.classes.ITEMBODY}`, $source).forEach(el => {
       const $this = el
-      const type = parent($this).dataset.value
-
+      const type = getData('value', parent($this))
       if (data[type]) {
         const api = getData('api', $this)
         const apiType = Array.isArray(api) ? api[0].plugin : api

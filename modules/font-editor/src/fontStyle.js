@@ -1,5 +1,5 @@
 import template from '@pluginjs/template'
-import { parseHTML } from '@pluginjs/dom'
+import { parseHTML, setData } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 
@@ -19,8 +19,8 @@ export default class FontStyle {
     this.$FontStyle = parseHTML(html)
     this.instance.$typoDecorations.append(this.$FontStyle)
 
-    this.$FontStyle.dataset.fontStyle = this.value
-
+    // this.$FontStyle.dataset.fontStyle = this.value
+    setData('fontStyle', this.value, this.$FontStyle)
     this.set(this.value)
 
     this.bind()

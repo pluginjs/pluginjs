@@ -1,6 +1,6 @@
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { queryAll, parseHTML } from '@pluginjs/dom'
+import { queryAll, parseHTML, setData, getData } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 
 export default class TextTransform {
@@ -28,7 +28,8 @@ export default class TextTransform {
 
     this.values.forEach((value, key) => {
       if (that.$items[key]) {
-        that.$items[key].dataset.textTransform = value
+        // that.$items[key].dataset.textTransform = value
+        setData('textTransform', value, that.$items[key])
       }
     })
 
@@ -71,7 +72,8 @@ export default class TextTransform {
             return null
           }
 
-          const transform = target.dataset.textTransform
+          // const transform = target.dataset.textTransform
+          const transform = getData('textTransform', target)
           if (hasClass(that.instance.classes.ACTIVE, target)) {
             removeClass(that.instance.classes.ACTIVE, target)
             that.instance.value.textTransform =

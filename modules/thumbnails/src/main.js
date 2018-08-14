@@ -4,7 +4,7 @@ import templateEngine from '@pluginjs/template'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { closest, append, parseHTML } from '@pluginjs/dom'
+import { closest, append, parseHTML, getData, setData } from '@pluginjs/dom'
 import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
@@ -131,7 +131,8 @@ class Thumbnails extends Component {
         addClass(this.classes.VIDEO, thumb)
       }
 
-      thumb.dataset.index = index
+      // thumb.dataset.index = index
+      setData('index', index, thumb)
       thumb
         .querySelector(`.${this.classes.IMAGE}`)
         .setAttribute('src', item.src)
@@ -228,8 +229,8 @@ class Thumbnails extends Component {
             return false
           }
 
-          const index = Number(target.dataset.index)
-
+          const index = Number(getData('index', target))
+          console.log(index)
           return this.go(index)
         }
       },

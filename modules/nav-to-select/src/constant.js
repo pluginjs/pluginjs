@@ -1,5 +1,5 @@
 export const namespace = 'navToSelect'
-import { children } from '@pluginjs/dom'
+import { children, getData } from '@pluginjs/dom'
 
 export const events = {
   UPDATE: 'update',
@@ -76,7 +76,7 @@ export const defaults = {
     return privateItems
   },
   onChange() {
-    if (this.dataset.linkable !== false) {
+    if (getData('linkable', this) !== false) {
       // document.location.href = this.value
     }
     const selectin = this.selectedIndex

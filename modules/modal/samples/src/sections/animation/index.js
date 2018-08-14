@@ -1,4 +1,4 @@
-import { query } from '@pluginjs/dom'
+import { query, getData } from '@pluginjs/dom'
 import Modal from '@pluginjs/modal'
 
 const basicModal = {
@@ -31,7 +31,8 @@ const basicModal = {
 }
 const element = query('#animation .modal')
 element.addEventListener('click', () => {
-  const data = event.target.dataset.effect
+  // const data = event.target.dataset.effect
+  const data = getData('effect', event.target)
   basicModal.effect = data
   Modal.open(basicModal)
 })

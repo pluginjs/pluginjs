@@ -208,7 +208,7 @@ class IconsPicker extends Component {
     }
 
     this.$selectorPanel.options.onChange = val => {
-      this.togglePackage(val.dataset.value)
+      this.togglePackage(getData('value', val))
     }
 
     if (this.options.keyboard) {
@@ -309,7 +309,7 @@ class IconsPicker extends Component {
                 handler: e => {
                   if (e.keyCode === 13 && e.which === 13) {
                     if (that.is('selectorPanelOn')) {
-                      const val = $selectItem.dataset.value
+                      const val = getData('value', $selectItem)
                       that.$selectorPanel.set(val)
                       that.$selectorPanel.hide()
                       that.leave('selectorPanelOn')
@@ -472,7 +472,7 @@ class IconsPicker extends Component {
     // console.log()
     this.$packages.forEach(v => {
       const $this = v
-      const title = $this.dataset.value
+      const title = getData('value', $this)
       let info = null
       for (const index in data) {
         if (data[index].title === title) {
@@ -867,12 +867,10 @@ class IconsPicker extends Component {
         categories: getData('categories', this.$icon),
         title: getData('title', this.$icon)
       }
-
       return data
     }
     return null
   }
-
   set(value) {
     if (typeof value === 'undefined') {
       return

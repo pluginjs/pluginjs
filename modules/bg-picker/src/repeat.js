@@ -1,5 +1,13 @@
 import template from '@pluginjs/template'
-import { parseHTML, insertAfter, query, queryAll, closest } from '@pluginjs/dom'
+import {
+  parseHTML,
+  insertAfter,
+  query,
+  queryAll,
+  closest,
+  setData,
+  getData
+} from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
@@ -28,7 +36,8 @@ export default class Repeat {
     this.$items = queryAll('li', this.$repeat)
 
     this.values.forEach((value, key) => {
-      this.$items[key].dataset.repeat = value
+      // this.$items[key].dataset.repeat = value
+      setData('repeat', value, this.$items[key])
     })
 
     const value =
@@ -70,7 +79,7 @@ export default class Repeat {
           if (this.instance.disabled) {
             return null
           }
-          const value = el.dataset.repeat
+          const value = getData('repeat', el)
           this.set(value)
           // that.instance.update();
           return false

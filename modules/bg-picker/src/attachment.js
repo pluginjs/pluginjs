@@ -61,8 +61,7 @@ export default class Attachment {
           if (that.instance.disabled) {
             return
           }
-
-          that.instance.value.attachment = value.dataset.value
+          that.instance.value.attachment = getData('value', value)
           setStyle(
             'background-attachment',
             that.instance.value.attachment,

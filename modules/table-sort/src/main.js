@@ -8,7 +8,7 @@ import {
   optionable
 } from '@pluginjs/decorator'
 import { compose, curry } from '@pluginjs/utils'
-import { attr, append, children, query } from '@pluginjs/dom'
+import { attr, append, children, query, getData } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass } from '@pluginjs/classes'
 import {
@@ -91,7 +91,8 @@ class TableSort extends Component {
     // const keyNode = [...element.querySelector('thead > tr').children]
     const keys = keyNode.map(node => node.textContent)
     // const types = keyNode.map(data('type'))
-    const types = keyNode.map(node => node.dataset.type)
+    const types = keyNode.map(node => getData('type', node))
+
     hashMap.set('keys', keys)
     hashMap.set('keyNode', keyNode)
     hashMap.set('types', types)
@@ -111,7 +112,7 @@ class TableSort extends Component {
       // if (node.dataset.type) {
       //   return node.addEventListener('click', () => this.sort({ index }))
       // }
-      if (node.dataset.type) {
+      if (getData('type', node)) {
         return bindEvent(
           {
             type: 'click',
@@ -197,7 +198,7 @@ class TableSort extends Component {
       }
     }
     const columnNameList = this.hashMap.get('keyNode')
-    const isDesc = node => node.dataset.direction === 'desc'
+    const isDesc = node => getData('direction', node) === 'desc'
     if (typeof config === 'object') {
       const index = config.index
       const direction =

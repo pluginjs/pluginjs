@@ -3,7 +3,7 @@ import { isString, isDomNode } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { offset as getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { queryAll, query } from '@pluginjs/dom'
+import { queryAll, query, getData } from '@pluginjs/dom'
 import Pj from '@pluginjs/factory'
 import Scroll from '@pluginjs/scroll'
 import {
@@ -113,12 +113,12 @@ class ScrollTo extends Component {
 
   findAnchor(href) {
     return Array.from(this.element.children).filter(
-      c => c.dataset.scrollto === href
+      c => getData('scrollto', c) === href
     )[0]
   }
 
   roll() {
-    queryAll('[id]', window.document).map(item => {
+    queryAll('[id]', window.document).map(item => { /* eslint-disable-line */
       if (
         this.scrollTop() > getOffset(item).top - this.options.offsetTop &&
         this.scrollTop() < getOffset(item).top + item.clientHeight

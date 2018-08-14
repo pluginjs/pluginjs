@@ -3,7 +3,7 @@ import templateEngine from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
-import { append, parseHTML, query, queryAll } from '@pluginjs/dom'
+import { append, parseHTML, query, queryAll, data } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -57,8 +57,7 @@ class Lightbox extends Component {
       this.openClick(event)
     }
 
-    const eventName = this.getClass('click.{namespace}')
-
+    const eventName = this.getClass('click.{namespace}') /* eslint-disable-line */
     if (this.options.delegate) {
       this.elements = queryAll(this.options.delegate, this.element)
 
@@ -92,9 +91,9 @@ class Lightbox extends Component {
     this.trigger(EVENTS.READY)
   }
 
-  bind() {}
+  bind() {} /* eslint-disable-line */
 
-  unbind() {}
+  unbind() {} /* eslint-disable-line */
 
   openClick(event) {
     if (event.type) {
@@ -264,12 +263,12 @@ class Lightbox extends Component {
   parseItems() {
     const items = {}
     let count = 1
-    this.elements.forEach((el, index) => {
+    this.elements.forEach((el, index) => { /* eslint-disable-line */
       const item = {}
-      item.type = el.dataset.type || 'image'
+      item.type = data('type', el) || 'image'
       item.href = el.getAttribute('href')
-      item.poster = el.dataset.poster
-      item.sourse = el.dataset.sourse
+      item.poster = data('poster', el)
+      item.sourse = data('sourse', el)
       item.thumbHref = el.children[0].getAttribute('src')
       item.index = count
       item.element = el

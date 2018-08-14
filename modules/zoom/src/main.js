@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { camelize } from '@pluginjs/utils'
+// import { camelize } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
   eventable,
@@ -9,6 +9,7 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
+import { getData } from '@pluginjs/dom'
 import LOADING from './loading'
 import WINDOW from './mode/window'
 import INNER from './mode/inner'
@@ -47,10 +48,13 @@ class Zoom extends Component {
   }
 
   initialize() {
-    this.imageSrc = this.element.dataset[camelize('zoom-image', false)]
-      ? this.element.dataset[camelize('zoom-image', false)]
+    this.imageSrc = getData('zoom-image', this.element)
+      ? getData('zoom-image', this.element)
       : this.element.src
-
+    // this.imageSrc = this.element.dataset[camelize('zoom-image', false)]
+    //   ? this.element.dataset[camelize('zoom-image', false)]
+    //   : this.element.src
+    console.log(this.imageSrc)
     this.loading = new LOADING(this)
     // this.loaded = false
     this.refresh()
@@ -59,8 +63,7 @@ class Zoom extends Component {
     this.trigger(EVENTS.READY)
   }
 
-  bind() {}
-
+  bind() {} /* eslint-disable-line */
   refresh() {
     const newImg = document.createElement('img')
     // todo  loading show()

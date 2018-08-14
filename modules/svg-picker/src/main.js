@@ -12,7 +12,8 @@ import {
   insertBefore,
   insertAfter,
   append,
-  parentWith
+  parentWith,
+  getData
 } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { showElement, hideElement } from '@pluginjs/styled'
@@ -415,8 +416,7 @@ class SvgPicker extends Component {
 
     this.$icons.forEach(v => {
       const $this = v
-      const value = $this.dataset.value
-
+      const value = getData('value', $this)
       if (value.indexOf(val) >= 0) {
         addClass(this.classes.SEARCHED, $this)
 
@@ -441,7 +441,7 @@ class SvgPicker extends Component {
     this.$types.forEach(v => {
       const $this = v
       const $thisTip = query(`.${this.classes.TYPETIP}`, $this)
-      const name = $this.dataset.value
+      const name = getData('value', $this)
       Object.entries(this.icons).forEach(([i, v]) => {
         if (i === name) {
           let count = 0
@@ -512,7 +512,7 @@ class SvgPicker extends Component {
   getItem(value) {
     let $item
     this.$icons.forEach($this => {
-      if ($this.dataset.value === value) {
+      if (getData('value', $this) === value) {
         $item = $this
       }
     })

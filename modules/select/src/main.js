@@ -14,7 +14,8 @@ import {
   unwrap,
   wrap,
   children,
-  insertBefore
+  insertBefore,
+  getData
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -67,7 +68,6 @@ class Select extends Component {
     this.source = this.options.source
       ? this.parseJson(this.options.source)
       : this.parseHtml(children(this.element))
-    console.log(this.source)
     this.selected = Array.from(this.element.selectedOptions).map(el => el.value)
     this.markIndex = 0
     this.build()
@@ -344,7 +344,7 @@ class Select extends Component {
         }
 
         const badge = target.closest(`.${this.classes.BADGE}`)
-        this.set(badge.dataset.flag, false)
+        this.set(getData('flag', badge), false)
         this.dropdown.triggerUsable = false
       },
       onClick: (api, item) => {
@@ -465,7 +465,7 @@ class Select extends Component {
   }
 
   deleteTag(item) {
-    const value = item.dataset.value
+    const value = getData('value', item)
     const pos = this.selected.indexOf(value)
     this.badges[pos].remove()
     this.selectedProcess(value, false)
@@ -488,7 +488,7 @@ class Select extends Component {
       return false
     }
 
-    const value = item.dataset.value
+    const value = getData('value', item)
     if (!this.isMultiple && this.selected.length) {
       this.set(this.selected[0], false, false)
     }
@@ -525,7 +525,7 @@ class Select extends Component {
     if (!this.options.multiple) {
       this.selected = []
     }
-    const unselectedElement = el => el.value === item.dataset.value
+    const unselectedElement = el => el.value === getData('value', item)
     const unchecked = el => {
       el.selected = false
     }
@@ -682,7 +682,7 @@ class Select extends Component {
   }
 
   getItemData(item) {
-    const value = item.dataset.value
+    const value = getData('value', item)
     const data = this.query(this.source, value, 'value', false)[0]
 
     return data
@@ -690,7 +690,7 @@ class Select extends Component {
 
   set(value, isAdd = true, trigger = true, type = 'selected') {
     const handle = (item, value, isAdd, trigger, type, index) => {
-      if (item.dataset.value === value) {
+      if (getData('value', item) === value) {
         if (type === 'selected') {
           if (isAdd) {
             this.selectItem(item, trigger)

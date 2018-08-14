@@ -1,4 +1,4 @@
-import { query, queryAll, parent } from '@pluginjs/dom'
+import { query, queryAll, parent, getData } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import sectionScroll from '@pluginjs/section-scroll'
 
@@ -18,7 +18,8 @@ const API = sectionScroll.of(element, {
       removeClass('active', section)
     })
     $sections.forEach(section => {
-      const href = section.dataset.href
+      const href = getData('href', section)
+      console.log(href)
       if (href === val) {
         addClass('active', section)
       }
@@ -29,7 +30,7 @@ const API = sectionScroll.of(element, {
 $sections.forEach(section => {
   section.addEventListener('click', e => {
     const pa = parent(e.target)
-    const href = pa.dataset.href
+    const href = getData('href', pa)
     API.goTo(href)
     removeClass('active', section)
     addClass('active', pa)

@@ -1,6 +1,14 @@
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { query, queryAll, parseHTML, closest, insertAfter } from '@pluginjs/dom'
+import {
+  query,
+  queryAll,
+  parseHTML,
+  closest,
+  insertAfter,
+  setData,
+  getData
+} from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
 
@@ -29,7 +37,8 @@ export default class Size {
     this.$items = queryAll('li', this.$size)
 
     this.values.forEach((value, key) => {
-      this.$items[key].dataset.size = value
+      // this.$items[key].dataset.size = value
+      setData('size', value, this.$items[key])
     })
 
     const value =
@@ -72,7 +81,7 @@ export default class Size {
           if (this.instance.disabled) {
             return null
           }
-          const value = el.dataset.size
+          const value = getData('size', el)
           this.set(value)
           // that.instance.update();
           return false

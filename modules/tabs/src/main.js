@@ -7,7 +7,8 @@ import {
   query,
   insertAfter,
   children,
-  closest
+  closest,
+  getData
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -107,7 +108,7 @@ class Tabs extends Component {
     if (this.options.ajax === true) {
       this.ajax = []
       this.$tabs.forEach(n => {
-        this.ajax.push({ href: n.dataset.href })
+        this.ajax.push({ href: getData('href', n) })
       })
     }
   }

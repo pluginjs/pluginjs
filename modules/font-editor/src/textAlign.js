@@ -1,5 +1,12 @@
 import template from '@pluginjs/template'
-import { parseHTML, query, insertBefore, queryAll } from '@pluginjs/dom'
+import {
+  parseHTML,
+  query,
+  insertBefore,
+  queryAll,
+  setData,
+  getData
+} from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { hasClass, addClass, removeClass } from '@pluginjs/classes'
 
@@ -31,7 +38,8 @@ export default class TextAlign {
     )
 
     this.values.forEach((value, key) => {
-      that.$items[key].dataset.textAlign = value
+      // that.$items[key].dataset.textAlign = value
+      setData('textAlign', value, that.$items[key])
     })
 
     const value =
@@ -78,7 +86,8 @@ export default class TextAlign {
             return null
           }
 
-          const align = target.dataset.textAlign
+          // const align = target.dataset.textAlign
+          const align = getData('textAlign', target)
           if (hasClass(that.instance.classes.ACTIVE, target)) {
             removeClass(that.instance.classes.ACTIVE, target)
             that.instance.value.textAlign = this.defaultValue

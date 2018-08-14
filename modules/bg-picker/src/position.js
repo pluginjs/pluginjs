@@ -35,7 +35,8 @@ export default class Position {
     )
     this.$items = queryAll('li', this.$position)
     this.values.forEach((value, key) => {
-      this.$items[key].dataset.position = value
+      // this.$items[key].dataset.position = value
+      data('position', value, this.$items[key])
     })
 
     const value =

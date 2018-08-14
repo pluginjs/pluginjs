@@ -4,7 +4,7 @@ import { isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { outerWidth, innerWidth } from '@pluginjs/styled'
-import { parseHTML, children, query } from '@pluginjs/dom'
+import { parseHTML, children, query, getData } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 import {
   eventable,
@@ -200,7 +200,7 @@ class Filters extends Component {
         width: this.options.dropdownWidth,
         imitateSelect: false,
         onClick: el => {
-          const index = el.element.dataset.id
+          const index = getData('id', el.element)
           this.setActiveItem(this.$filters[index])
         }
       })
@@ -251,7 +251,7 @@ class Filters extends Component {
     if ($dropdownItems) {
       $dropdownItems.map(removeClass(this.classes.ACTIVE))
       $dropdownItems.forEach($el => {
-        if ($el.dataset.index === this.active) {
+        if (getData('index', $el) === this.active) {
           addClass(this.classes.ACTIVE, $el)
         }
       })
