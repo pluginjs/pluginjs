@@ -1,6 +1,6 @@
 import template from '@pluginjs/template'
 import Dropdown from '@pluginjs/dropdown'
-import { parseHTML, query, insertBefore } from '@pluginjs/dom'
+import { parseHTML, query, insertBefore, data } from '@pluginjs/dom'
 
 export default class FontFamily {
   constructor(instance) {
@@ -47,7 +47,7 @@ export default class FontFamily {
           return
         }
 
-        const fontFamily = value.dataset.fontFamily
+        const fontFamily = data('fontFamily', value)
 
         that.instance.value.fontFamily = fontFamily
 

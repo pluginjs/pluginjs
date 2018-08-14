@@ -17,7 +17,8 @@ import {
   fadeIn,
   fadeOut,
   closest,
-  wrap
+  wrap,
+  data
 } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import Dropdown from '@pluginjs/dropdown'
@@ -419,11 +420,11 @@ class VideoPicker extends Component {
     this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$wrap)
     this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$wrap)
     // this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
-    console.log(this.$wrap)
-    console.log(this.$infoCover)
-    console.log(this.$urlInput)
-    console.log(this.$videoPoster)
-    console.log(this.$infoAction)
+    // console.log(this.$wrap)
+    // console.log(this.$infoCover)
+    // console.log(this.$urlInput)
+    // console.log(this.$videoPoster)
+    // console.log(this.$infoAction)
     // init popDialog
     this.pop = PopDialog.of(
       query(`.${this.classes.REMOVE}`, this.$infoAction),
@@ -582,7 +583,7 @@ class VideoPicker extends Component {
 
     // change Video Source
     this.$sourceDropdown.options.onChange = el => {
-      this.data.source = el.dataset.value
+      this.data.source = data('value', el)
 
       if (this.data.source === 'Local File') {
         showElement(closest('.pj-videoPicker-component', this.$localUrl))
@@ -602,7 +603,7 @@ class VideoPicker extends Component {
 
     // change Ratio
     this.$ratioDropdown.options.onChange = el => {
-      this.data.ratio = el.dataset.value
+      this.data.ratio = data('value', el)
     }
 
     // change poster

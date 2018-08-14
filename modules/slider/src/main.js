@@ -5,7 +5,7 @@ import { compose } from '@pluginjs/utils'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { query, append, parseHTML } from '@pluginjs/dom'
+import { query, append, parseHTML, data } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -203,7 +203,7 @@ class Slider extends Component {
       const content = query(`.${this.classes.CONTENT}`, card)
 
       if (content) {
-        const oldIndex = parseInt(content.dataset.index, 10)
+        const oldIndex = parseInt(data('index', content), 10)
 
         if (index !== oldIndex) {
           const module = this.modules[oldIndex]

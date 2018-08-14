@@ -1,4 +1,4 @@
-import { query } from '@pluginjs/dom'
+import { query, getData } from '@pluginjs/dom'
 import Breadcrumb from '@pluginjs/breadcrumb'
 import Interactive from './Interactive'
 
@@ -14,5 +14,5 @@ query('.api', root).addEventListener('click', event => {
   if (!el.matches('[data-api]')) {
     return
   }
-  interactiveConsole[el.dataset.api]()
+  interactiveConsole[getData('api', el)]()
 })

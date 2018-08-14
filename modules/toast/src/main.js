@@ -10,7 +10,8 @@ import {
   queryAll,
   query,
   insertAfter,
-  remove
+  remove,
+  data
 } from '@pluginjs/dom'
 import GlobalComponent from '@pluginjs/global-component'
 import {
@@ -281,7 +282,7 @@ class Toast extends GlobalComponent {
               return
             }
 
-            const key = event.target.dataset.btntype
+            const key = data('btntype', event.target)
             if (this.options.buttons[key].fn) {
               this.options.buttons[key].fn()
             }

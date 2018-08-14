@@ -3,7 +3,7 @@ import { deepMerge, compose } from '@pluginjs/utils'
 import { isObject, isFunction } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, query } from '@pluginjs/dom'
+import { append, parseHTML, query, data } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -127,7 +127,7 @@ class Modal extends GlobalComponent {
               return
             }
 
-            const key = event.target.dataset.btntype
+            const key = data('btntype', event.target)
             if (this.options.buttons[key].fn) {
               this.options.buttons[key].fn()
             }

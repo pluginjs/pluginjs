@@ -1,5 +1,12 @@
 import template from '@pluginjs/template'
-import { parseHTML, insertAfter, query, queryAll, closest } from '@pluginjs/dom'
+import {
+  parseHTML,
+  insertAfter,
+  query,
+  queryAll,
+  closest,
+  data
+} from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
@@ -72,7 +79,7 @@ export default class Position {
           if (this.instance.disabled) {
             return null
           }
-          const value = el.dataset.position
+          const value = data('position', el)
           this.set(value)
           // that.instance.update();
           return false

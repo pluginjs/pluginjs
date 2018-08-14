@@ -302,7 +302,6 @@ class BgPicker extends Component {
   }
 
   setState(image) {
-    console.log(image)
     if (!image || image === this.options.image) {
       addClass(this.classes.WRITE, this.$wrap)
     } else {
@@ -344,7 +343,6 @@ class BgPicker extends Component {
 
   set(value, update) {
     this.value = value
-    console.log(value)
     this.setImage(value.image)
 
     if (update !== false) {

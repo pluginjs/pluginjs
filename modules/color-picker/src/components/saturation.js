@@ -67,7 +67,6 @@ class Saturation {
       },
       this.element
     )
-
     // global event
     bindEvent(
       {

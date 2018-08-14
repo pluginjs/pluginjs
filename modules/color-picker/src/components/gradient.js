@@ -256,7 +256,7 @@ class Gradient {
           value: `.${this.classes.PANELTRIGGER}>i`
         },
         handler: ({ target: $this }) => {
-          if ($this.dataset.type !== 'gradient') {
+          if (getData('type', $this) !== 'gradient') {
             this.markers.map((marker, i) => { /* eslint-disable-line */
               const $item = marker.$el
               if (hasClass(this.classes.MARKERACTIVE, $item)) {

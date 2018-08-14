@@ -228,7 +228,7 @@ class ColorPicker extends Component {
     children(this.$trigger)
       .filter(el => el.tagName === 'I')
       .forEach($this => {
-        const title = $this.dataset.type.replace(/^[a-zA-Z]?/g, v =>
+        const title = getData('type', $this).replace(/^[a-zA-Z]?/g, v =>
           v.toLocaleUpperCase()
         )
         Tooltip.of($this, {
@@ -476,9 +476,8 @@ class ColorPicker extends Component {
 
       removeClass(this.classes.SELECTED, $this)
       hideElement($content)
-      this.leave(`${$this.dataset.type}Module`)
-
-      if ($this.dataset.type === typeName) {
+      this.leave(`${getData('type', $this)}Module`)
+      if (getData('type', $this) === typeName) {
         addClass(this.classes.SELECTED, $this)
         $content.style.display = 'block'
         // showElement($content)
@@ -690,7 +689,7 @@ class ColorPicker extends Component {
         },
         handler: e => {
           const $this = e.target
-          this.switchModule($this.dataset.type)
+          this.switchModule(getData('type', $this))
         }
       })
     )(this.$panel)

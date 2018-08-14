@@ -5,7 +5,7 @@ import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
-import { append, parseHTML, query, remove } from '@pluginjs/dom'
+import { append, parseHTML, query, remove, data } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -121,7 +121,7 @@ class Notice extends GlobalComponent {
             if (!event.target.classList.contains(this.classes.BUTTON)) {
               return
             }
-            const key = event.target.dataset.btntype
+            const key = data('btntype', event.target)
             if (this.options.buttons[key].fn) {
               this.options.buttons[key].fn()
             }
