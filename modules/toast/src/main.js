@@ -87,15 +87,13 @@ class Toast extends GlobalComponent {
       return
     }
 
-    if (!this.options.loaderBgColor) {
-      addClass(this.classes.STRIPED, this.$loader)
-    } else {
+    if (this.options.loaderBgColor) {
       setStyle('background-color', this.options.loaderBgColor, this.$loader)
     }
 
     this.pauseTime = 0
 
-    reflow(this.$loader)
+    reflow(this.$loaderInner)
 
     this.startLoader()
   }
@@ -103,7 +101,7 @@ class Toast extends GlobalComponent {
   startLoader() {
     this.startTime = new Date().getTime()
     const time = this.options.duration - this.pauseTime
-    const target = this.$loader
+    const target = this.$loaderInner
     this.$anime = Anime({
       targets: target,
       width: '100%',
@@ -420,6 +418,7 @@ class Toast extends GlobalComponent {
     this.$title = query(`.${this.classes.TITLE}`, this.$element)
     this.$buttons = query(`.${this.classes.BUTTONS}`, this.$element)
     this.$loader = query(`.${this.classes.LOADER}`, this.$element)
+    this.$loaderInner = query(`.${this.classes.LOADERINNER}`, this.$element)
     this.$close = query(`.${this.classes.CLOSE}`, this.$element)
 
     if (this.options.content) {
@@ -450,10 +449,6 @@ class Toast extends GlobalComponent {
       this.$content.innerHTML = content
     } else {
       this.$content.textContent = content
-    }
-
-    if (this.options.icon) {
-      setStyle('margin-left', '25px', this.$content)
     }
 
     if (this.options.contentColor) {

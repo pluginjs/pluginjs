@@ -24,6 +24,7 @@ export const classes = {
   BUTTON: '{namespace}-btn',
   BUTTONS: '{namespace}-buttons',
   LOADER: '{namespace}-loader',
+  LOADERINNER: '{namespace}-loader-inner',
   STRIPED: '{namespace}-loader-striped'
 }
 
@@ -64,7 +65,7 @@ export const defaults = {
       return '<div class="{classes.BUTTON} {btnClass}" data-btntype={key}>{title}</div>'
     },
     loader() {
-      return '<div class="{classes.LOADER}"></div>'
+      return '<div class="{classes.LOADER}"><div class="{classes.LOADERINNER} {classes.STRIPED}"></div></div>'
     }
   },
   locale: 'en',
@@ -82,10 +83,10 @@ export const defaults = {
   position: 'bottom-right',
   icon: 'success',
   icons: {
-    success: ['icon-check-circle', '#4be1ab'],
-    info: ['icon-exclamation-circle', '#4c93d9'],
-    warning: ['icon-exclamation-triangle', '#dabd49'],
-    danger: ['icon-times-circle', '#f86b67']
+    success: ['icon-check-circle', '#215fdb'],
+    info: ['icon-exclamation-circle', '#0ecc37'],
+    warning: ['icon-exclamation-triangle', '#ffaa00'],
+    danger: ['icon-times-circle', '#f73e4d']
   },
   iconColor: '',
   iconClass: '',
