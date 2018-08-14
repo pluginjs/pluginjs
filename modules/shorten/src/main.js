@@ -52,19 +52,13 @@ class Shorten extends Component {
 
     // bind event
     compose(
-      bindEvent({
-        type: 'shorten:collapse',
-        handler: () => {
-          this.leave('expand')
-          removeClass(this.classes.EXPAND, this.element)
-        }
+      bindEvent('shorten:collapse', () => {
+        this.leave('expand')
+        removeClass(this.classes.EXPAND, this.element)
       }),
-      bindEvent({
-        type: 'shorten:expand',
-        handler: () => {
-          this.enter('expand')
-          addClass(this.classes.EXPAND, this.element)
-        }
+      bindEvent('shorten:expand', () => {
+        this.enter('expand')
+        addClass(this.classes.EXPAND, this.element)
       })
     )(this.element)
 
@@ -133,22 +127,20 @@ class Shorten extends Component {
   bind() {
     this.$toggle = query(`.${this.classes.TOGGLE}`, this.element)
     bindEvent(
-      {
-        type: 'click.shorten',
-        identity: `${this.classes.TOGGLE}`,
-        handler: ({ target }) => {
-          const item = hasClass(this.classes.TOGGLE, target)
-            ? target
-            : closest(`${this.classes.TOGGLE}`, target)
-          if (this.is('expand')) {
-            this.trigger(EVENTS.COLLAPSE)
-            item.innerHTML = this.options.more
-          } else {
-            this.trigger(EVENTS.EXPAND)
-            item.innerHTML = this.options.less
-          }
-          return false
+      'click.shorten',
+      `${this.classes.TOGGLE}`,
+      ({ target }) => {
+        const item = hasClass(this.classes.TOGGLE, target)
+          ? target
+          : closest(`${this.classes.TOGGLE}`, target)
+        if (this.is('expand')) {
+          this.trigger(EVENTS.COLLAPSE)
+          item.innerHTML = this.options.more
+        } else {
+          this.trigger(EVENTS.EXPAND)
+          item.innerHTML = this.options.less
         }
+        return false
       },
       this.element
     )

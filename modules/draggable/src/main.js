@@ -120,12 +120,10 @@ class Draggable extends Component {
 
   bind() {
     bindEvent(
-      {
-        type: this.eventName('mousedown'),
-        handler: e => {
-          this.setPointer(e.pageX, e.pageY)
-          this.trigger(EVENTS.POINTER)
-        }
+      this.eventName('mousedown'),
+      e => {
+        this.setPointer(e.pageX, e.pageY)
+        this.trigger(EVENTS.POINTER)
       },
       this.element
     )

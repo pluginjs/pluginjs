@@ -105,12 +105,10 @@ class ScrollTop extends Component {
 
   bind() {
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          this.jump()
-          return false
-        }
+      this.eventName('click'),
+      () => {
+        this.jump()
+        return false
       },
       this.$trigger
     )

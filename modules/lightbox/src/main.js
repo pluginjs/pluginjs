@@ -61,26 +61,10 @@ class Lightbox extends Component {
     if (this.options.delegate) {
       this.elements = queryAll(this.options.delegate, this.element)
 
-      bindEvent(
-        {
-          type: 'click',
-          identity: {
-            type: 'tagName',
-            value: this.options.delegate
-          },
-          handler: eventHandler
-        },
-        this.element
-      )
+      bindEvent('click', this.options.delegate, eventHandler, this.element)
     } else {
       this.elements = this.element
-      bindEvent(
-        {
-          type: 'click',
-          handler: eventHandler
-        },
-        this.element
-      )
+      bindEvent('click', eventHandler, this.element)
     }
 
     if (this.options.effect === 'zoom') {

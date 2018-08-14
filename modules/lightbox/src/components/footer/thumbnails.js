@@ -37,15 +37,12 @@ class Thumbnails {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        handler: event => {
-          const target = event.target
-          if (target.classList.contains(this.classes.THUMBBG)) {
-            // const data = parseInt(event.target.dataset.index)
-            const data = parseInt(getData('index', event.target), 10)
-            this.instance.goTo(data)
-          }
+      'click',
+      event => {
+        const target = event.target
+        if (target.classList.contains(this.classes.THUMBBG)) {
+          const data = parseInt(getData('index', event.target), 10)
+          this.instance.goTo(data)
         }
       },
       this.thumbs

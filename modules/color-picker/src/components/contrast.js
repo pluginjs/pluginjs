@@ -21,56 +21,50 @@ class Contrast {
 
   bind() {
     bindEvent(
-      {
-        type: 'colorPicker:change',
-        handler: ({
-          detail: {
-            data: [color]
-          }
-        }) => {
-          if (this.instance.is('gradientModule')) {
-            return false
-          }
-          this.now = color.toRGBA()
-          this.update()
-
-          return null
+      'colorPicker:change',
+      ({
+        detail: {
+          data: [color]
         }
+      }) => {
+        if (this.instance.is('gradientModule')) {
+          return false
+        }
+        this.now = color.toRGBA()
+        this.update()
+
+        return null
       },
       this.instance.element
     )
 
     bindEvent(
-      {
-        type: 'colorPicker:update',
-        handler: ({
-          detail: {
-            data: [color]
-          }
-        }) => {
-          if (this.instance.is('gradientModule')) {
-            return false
-          }
-
-          if (!color) {
-            return false
-          }
-
-          setStyle('background-color', color, this.$prev)
-          return null
+      'colorPicker:update',
+      ({
+        detail: {
+          data: [color]
         }
+      }) => {
+        if (this.instance.is('gradientModule')) {
+          return false
+        }
+
+        if (!color) {
+          return false
+        }
+
+        setStyle('background-color', color, this.$prev)
+        return null
       },
       this.instance.element
     )
 
     // go back prev
     bindEvent(
-      {
-        type: this.instance.eventName('click'),
-        handler: e => {
-          const color = getStyle('background-color', e.target)
-          this.instance.setSolid(color)
-        }
+      this.instance.eventName('click'),
+      e => {
+        const color = getStyle('background-color', e.target)
+        this.instance.setSolid(color)
       },
       this.$prev
     )

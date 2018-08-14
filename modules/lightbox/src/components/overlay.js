@@ -37,12 +37,10 @@ class overlay {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        handler: () => {
-          if (this.options.clickBgClose) {
-            this.close()
-          }
+      'click',
+      () => {
+        if (this.options.clickBgClose) {
+          this.close()
         }
       },
       this.overlay

@@ -39,27 +39,11 @@ export default function eventable(events = {}) {
     }
 
     plugin.prototype.trigger = function(eventType, ...params) {
-      if (eventType instanceof Event) {
-        trigger(eventType, this.element)
-        const type = camelize(eventType.type)
-        const onFunction = `on${type}`
-
-        if (typeof this.options[onFunction] === 'function') {
-          this.options[onFunction].apply(this, params)
-        }
-      } else {
-        trigger(
-          {
-            type: `${this.plugin}:${eventType}`,
-            data: { instance: this, data: params }
-          },
-          this.element
-        )
-        eventType = camelize(eventType)
-        const onFunction = `on${eventType}`
-        if (typeof this.options[onFunction] === 'function') {
-          this.options[onFunction].apply(this, [...params, this])
-        }
+      trigger(this.selfEventName(eventType), this, ...params, this.element)
+      eventType = camelize(eventType)
+      const onFunction = `on${eventType}`
+      if (typeof this.options[onFunction] === 'function') {
+        this.options[onFunction].apply(this, params)
       }
     }
 

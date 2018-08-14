@@ -138,16 +138,14 @@ class Accordion extends Component {
   bind() {
     this.$panes.map((pane, index) =>
       bindEvent(
-        {
-          type: this.eventName('click'),
-          identity: `.${this.classes.PANEHEADER}`,
-          handler: () => {
-            if (this.is('disabled')) {
-              return false
-            }
-            this.toggle(index)
+        this.eventName('click'),
+        `.${this.classes.PANEHEADER}`,
+        () => {
+          if (this.is('disabled')) {
             return false
           }
+          this.toggle(index)
+          return false
         },
         pane
       )

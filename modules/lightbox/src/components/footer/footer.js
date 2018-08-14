@@ -14,11 +14,8 @@ class footer {
   init() {
     this.footer = this.instance.getElement('footer')
     append(this.footer, this.instance.wrap)
-    bindEvent({
-      type: 'click',
-      handler: e => {
-        e.stopPropagation()
-      }
+    bindEvent('click', e => {
+      e.stopPropagation()
     })
 
     this.thumbs = new Thumbnails(this.instance)

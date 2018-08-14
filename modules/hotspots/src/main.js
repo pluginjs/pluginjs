@@ -61,45 +61,31 @@ class Hotspots extends Component {
 
   bind() {
     compose(
-      bindEvent({
-        type: this.eventName('mouseenter'),
-        handler: () => {
-          addClass(this.classes.HOVERING, this.element)
-          this.enter('hovering')
-          this.trigger(EVENTS.HOVER)
-        }
+      bindEvent(this.eventName('mouseenter'), () => {
+        addClass(this.classes.HOVERING, this.element)
+        this.enter('hovering')
+        this.trigger(EVENTS.HOVER)
       }),
-      bindEvent({
-        type: this.eventName('mouseleave'),
-        handler: () => {
-          removeClass(this.classes.HOVERING, this.element)
+      bindEvent(this.eventName('mouseleave'), () => {
+        removeClass(this.classes.HOVERING, this.element)
 
-          if (!this.is('hovering')) {
-            return
-          }
-          this.leave('hovering')
-          this.trigger(EVENTS.HOVERED)
+        if (!this.is('hovering')) {
+          return
         }
+        this.leave('hovering')
+        this.trigger(EVENTS.HOVERED)
       }),
-      bindEvent({
-        type: this.eventName('mouseenter'),
-        identity: { type: 'selector', value: `.${this.classes.HOTSPOT}` },
-        handler: e => {
-          const $hotspot = e.target
-          addClass(this.classes.HOTSPOTHOVERING, $hotspot)
+      bindEvent(this.eventName('mouseenter'), `.${this.classes.HOTSPOT}`, e => {
+        const $hotspot = e.target
+        addClass(this.classes.HOTSPOTHOVERING, $hotspot)
 
-          this.trigger(EVENTS.HOTSPOTHOVER, $hotspot)
-        }
+        this.trigger(EVENTS.HOTSPOTHOVER, $hotspot)
       }),
-      bindEvent({
-        type: this.eventName('mouseleave'),
-        identity: { type: 'selector', value: `.${this.classes.HOTSPOT}` },
-        handler: e => {
-          const $hotspot = e.target
-          removeClass(this.classes.HOTSPOTHOVERING, $hotspot)
+      bindEvent(this.eventName('mouseleave'), `.${this.classes.HOTSPOT}`, e => {
+        const $hotspot = e.target
+        removeClass(this.classes.HOTSPOTHOVERING, $hotspot)
 
-          this.trigger(EVENTS.HOTSPOTHOVERED, $hotspot)
-        }
+        this.trigger(EVENTS.HOTSPOTHOVERED, $hotspot)
       })
     )(this.element)
   }
@@ -222,37 +208,22 @@ class Hotspots extends Component {
     })
     this.$hotspots.map(
       compose(
-        bindEvent({
-          type: 'popover:show',
-          handler: ({ detail: { instance } }) => {
-            addClass(this.classes.HOTSPOTACTIVE, instance.element)
-            this.trigger(EVENTS.POPOVERSHOW, instance)
-          }
+        bindEvent('popover:show', ({ detail: { instance } }) => {
+          addClass(this.classes.HOTSPOTACTIVE, instance.element)
+          this.trigger(EVENTS.POPOVERSHOW, instance)
         }),
-        bindEvent({
-          type: 'popover:shown',
-          handler: ({ detail: { instance } }) => {
-            this.trigger(EVENTS.POPOVERSHOWN, instance)
-          }
+        bindEvent('popover:shown', ({ detail: { instance } }) => {
+          this.trigger(EVENTS.POPOVERSHOWN, instance)
         }),
-        bindEvent({
-          type: 'popover:inserted',
-          handler: ({ detail: { instance } }) => {
-            this.trigger(EVENTS.POPOVERINSERTED, instance)
-          }
+        bindEvent('popover:inserted', ({ detail: { instance } }) => {
+          this.trigger(EVENTS.POPOVERINSERTED, instance)
         }),
-        bindEvent({
-          type: 'popover:hide',
-          handler: ({ detail: { instance } }) => {
-            removeClass(this.classes.HOTSPOTACTIVE, instance.element)
-            this.trigger(EVENTS.POPOVERHIDE, instance)
-          }
+        bindEvent('popover:hide', ({ detail: { instance } }) => {
+          removeClass(this.classes.HOTSPOTACTIVE, instance.element)
+          this.trigger(EVENTS.POPOVERHIDE, instance)
         }),
-        bindEvent({
-          type: 'popover:hidden',
-          handler: ({ detail: { instance } }) => {
-            this.trigger(EVENTS.POPOVERHIDDEN, instance)
-          }
+        bindEvent('popover:hidden', ({ detail: { instance } }) => {
+          this.trigger(EVENTS.POPOVERHIDDEN, instance)
         })
       )
     )

@@ -216,160 +216,124 @@ class IconsPicker extends Component {
         tabindex: 1
       })
       compose(
-        bindEvent({
-          type: 'focus',
-          handler: () => {
-            bindEvent(
-              {
-                type: 'keydown',
-                handler: e => {
-                  if (e.keyCode === 13) {
-                    this.$dropdown.show()
-                  }
-                }
-              },
-              this.$iconPicker
-            )
-          }
+        bindEvent('focus', () => {
+          bindEvent(
+            'keydown',
+            e => {
+              if (e.keyCode === 13) {
+                this.$dropdown.show()
+              }
+            },
+            this.$iconPicker
+          )
         }),
-        bindEvent({
-          type: 'blur',
-          handler: () => {
-            removeEvent('keydown', this.$iconPicker)
-          }
+        bindEvent('blur', () => {
+          removeEvent('keydown', this.$iconPicker)
         })
       )(addTabindexToAttr(this.$iconPicker))
       addTabindexToAttr(query('input', this.$search))
       children(this.$controller).map(addTabindexToAttr)
       this.$packages.map(
         compose(
-          bindEvent({
-            type: 'focus',
-            handler: ({ target: $this }) =>
-              compose(
-                bindEvent({
-                  type: 'keydown',
-                  handler: e => {
-                    if (e.keyCode === 13 && e.which === 13) {
-                      that.KEYBOARD.init($this)
-                      that.open($this)
-                    }
-                    removeEvent('focus', $this)
-                  }
-                }),
-                bindEvent({
-                  type: 'blur',
-                  handler: () => {
-                    if (that.is('keyboard')) {
-                      that.KEYBOARD.unbind()
-                      that.close($this)
-                    }
-                    if (that.is('searching')) {
-                      return
-                    }
-                  }
-                })
-              )($this)
-          }),
+          bindEvent('focus', ({ target: $this }) =>
+            compose(
+              bindEvent('keydown', e => {
+                if (e.keyCode === 13 && e.which === 13) {
+                  that.KEYBOARD.init($this)
+                  that.open($this)
+                }
+                removeEvent('focus', $this)
+              }),
+              bindEvent('blur', () => {
+                if (that.is('keyboard')) {
+                  that.KEYBOARD.unbind()
+                  that.close($this)
+                }
+                if (that.is('searching')) {
+                  return
+                }
+              })
+            )($this)
+          ),
           addTabindexToAttr
         )
       )
       compose(
-        bindEvent({
-          type: 'focus',
-          handler: ({ target }) =>
-            bindEvent(
-              {
-                type: 'keydown',
-                handler: e => {
-                  if (e.keyCode === 13 && e.which === 13) {
-                    console.log('manage enter')
-                  }
-                }
-              },
-              target
-            )
-        }),
-        bindEvent({
-          type: 'blur',
-          handler: ({ target }) => removeEvent('keydown', target)
-        })
+        bindEvent('focus', ({ target }) =>
+          bindEvent(
+            'keydown',
+            e => {
+              if (e.keyCode === 13 && e.which === 13) {
+                console.log('manage enter')
+              }
+            },
+            target
+          )
+        ),
+        bindEvent('blur', ({ target }) => removeEvent('keydown', target))
       )(query(`.${this.classes.MANAGE}`))
 
       compose(
-        bindEvent({
-          type: 'focus',
-          handler: ({ target }) => {
-            let $selectItem = this.$selectorPanel.$items.find(el =>
-              el.matches('.pj-dropdown-active')
-            )
-            bindEvent(
-              {
-                type: 'keydown',
-                handler: e => {
-                  if (e.keyCode === 13 && e.which === 13) {
-                    if (that.is('selectorPanelOn')) {
-                      const val = getData('value', $selectItem)
-                      that.$selectorPanel.set(val)
-                      that.$selectorPanel.hide()
-                      that.leave('selectorPanelOn')
-                    } else {
-                      that.$selectorPanel.show()
-                      that.enter('selectorPanelOn')
-                    }
-                  }
-                  if (
-                    e.keyCode === 38 &&
-                    e.which === 38 &&
-                    prev($selectItem).length
-                  ) {
-                    $selectItem = compose(
-                      addClass('pj-dropdown-active'),
-                      prev,
-                      removeClass('pj-dropdown-active')
-                    )($selectItem)
-                  }
-                  if (e.keyCode === 40 && e.which === 40 && next($selectItem)) {
-                    $selectItem = compose(
-                      addClass('pj-dropdown-active'),
-                      next,
-                      removeClass('pj-dropdown-active')
-                    )($selectItem)
-                  }
-
-                  if (e.keyCode === 9 && e.which === 9) {
-                    return
-                  }
-                  e.preventDefault()
+        bindEvent('focus', ({ target }) => {
+          let $selectItem = this.$selectorPanel.$items.find(el =>
+            el.matches('.pj-dropdown-active')
+          )
+          bindEvent(
+            'keydown',
+            e => {
+              if (e.keyCode === 13 && e.which === 13) {
+                if (that.is('selectorPanelOn')) {
+                  const val = getData('value', $selectItem)
+                  that.$selectorPanel.set(val)
+                  that.$selectorPanel.hide()
+                  that.leave('selectorPanelOn')
+                } else {
+                  that.$selectorPanel.show()
+                  that.enter('selectorPanelOn')
                 }
-              },
-              target
-            )
-          }
+              }
+              if (
+                e.keyCode === 38 &&
+                e.which === 38 &&
+                prev($selectItem).length
+              ) {
+                $selectItem = compose(
+                  addClass('pj-dropdown-active'),
+                  prev,
+                  removeClass('pj-dropdown-active')
+                )($selectItem)
+              }
+              if (e.keyCode === 40 && e.which === 40 && next($selectItem)) {
+                $selectItem = compose(
+                  addClass('pj-dropdown-active'),
+                  next,
+                  removeClass('pj-dropdown-active')
+                )($selectItem)
+              }
+
+              if (e.keyCode === 9 && e.which === 9) {
+                return
+              }
+              e.preventDefault()
+            },
+            target
+          )
         }),
-        bindEvent({
-          type: 'blur',
-          handler: ({ target }) => removeEvent('keydown', target)
-        })
+        bindEvent('blur', ({ target }) => removeEvent('keydown', target))
       )(query(`.${this.classes.SELECTOR}`))
     }
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.PACKAGETITLE}`
-        },
-        handler: ({ target }) => {
-          const _package = parent(target)
-          // console.log(1)
-          if (getData('open', _package)) {
-            that.close(_package)
-          } else {
-            // console.log(_package)
-            that.open(_package)
-          }
+      this.eventName('click'),
+      `.${this.classes.PACKAGETITLE}`,
+      ({ target }) => {
+        const _package = parent(target)
+        // console.log(1)
+        if (getData('open', _package)) {
+          that.close(_package)
+        } else {
+          // console.log(_package)
+          that.open(_package)
         }
       },
       this.$panel
@@ -377,67 +341,52 @@ class IconsPicker extends Component {
 
     // clear search input
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.SEARCHCLOSE}`
-        },
-        handler: () => {
-          removeClass(this.classes.SEARCHOWNDATA, this.$search)
-          query('input', this.$panel).value = ''
-          this.searching('')
-        }
+      this.eventName('click'),
+      `.${this.classes.SEARCHCLOSE}`,
+      () => {
+        removeClass(this.classes.SEARCHOWNDATA, this.$search)
+        query('input', this.$panel).value = ''
+        this.searching('')
       },
       this.$panel
     )
     this.$packages.map(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.ICON}`
-        },
-        handler: ({ target }) => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.ICON}`,
+        ({ target }) => {
           that.select(parentWith(hasClass(this.classes.ICON), target))
           that.$dropdown.hide()
         }
-      })
+      )
     )
 
     bindEvent(
-      {
-        type: this.eventName('input'),
-        identity: {
-          type: 'selector',
-          value: 'input'
-        },
-        handler: ({ target }) => {
-          if (!this.is('searching')) {
-            // this.packages.forEach((v) => {
-            //   this.open(v)
-            // })
-            addClass(this.classes.SEARCHING, this.$panel)
-          }
-          this.enter('searching')
-
-          const val = target.value
-          if (val.length === 0) {
-            removeClass(this.classes.SEARCHOWNDATA, this.$search)
-          } else {
-            addClass(this.classes.SEARCHOWNDATA, this.$search)
-          }
-          this.searching(val)
+      this.eventName('input'),
+      'input',
+      ({ target }) => {
+        if (!this.is('searching')) {
+          // this.packages.forEach((v) => {
+          //   this.open(v)
+          // })
+          addClass(this.classes.SEARCHING, this.$panel)
         }
+        this.enter('searching')
+
+        const val = target.value
+        if (val.length === 0) {
+          removeClass(this.classes.SEARCHOWNDATA, this.$search)
+        } else {
+          addClass(this.classes.SEARCHOWNDATA, this.$search)
+        }
+        this.searching(val)
       },
       this.$search
     )
     bindEvent(
-      {
-        type: 'blur',
-        handler: () => {
-          this.leave('searching')
-        }
+      'blur',
+      () => {
+        this.leave('searching')
       },
       query('input', this.$search)
     )

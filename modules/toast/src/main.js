@@ -223,26 +223,21 @@ class Toast extends GlobalComponent {
     }
 
     bindEvent(
-      {
-        type: this.eventName('animationend'),
-        handler: () => {
-          remove(this.$element)
-          this.destroy()
-        }
+      this.eventName('animationend'),
+      () => {
+        remove(this.$element)
+        this.destroy()
       },
       this.$element
-      // this.$loader
     )
   }
 
   bind() {
     if (this.$close) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: () => {
-            this.hide()
-          }
+        this.eventName('click'),
+        () => {
+          this.hide()
         },
         this.$close
       )
@@ -250,21 +245,17 @@ class Toast extends GlobalComponent {
 
     if (isNumber(this.options.duration) && this.$loader) {
       bindEvent(
-        {
-          type: this.eventName('mouseenter'),
-          handler: () => {
-            this.pauseLoader()
-          }
+        this.eventName('mouseenter'),
+        () => {
+          this.pauseLoader()
         },
         this.$element
       )
       bindEvent(
-        {
-          type: this.eventName('mouseleave'),
-          handler: () => {
-            this.playLoader()
-            // this.startLoader()
-          }
+        this.eventName('mouseleave'),
+        () => {
+          this.playLoader()
+          // this.startLoader()
         },
         this.$element
       )
@@ -273,19 +264,17 @@ class Toast extends GlobalComponent {
     // band buttons
     if (this.options.buttons) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: event => {
-            if (!event.target.classList.contains(this.classes.BUTTON)) {
-              return
-            }
-
-            const key = data('btntype', event.target)
-            if (this.options.buttons[key].fn) {
-              this.options.buttons[key].fn()
-            }
-            this.hide()
+        this.eventName('click'),
+        event => {
+          if (!event.target.classList.contains(this.classes.BUTTON)) {
+            return
           }
+
+          const key = data('btntype', event.target)
+          if (this.options.buttons[key].fn) {
+            this.options.buttons[key].fn()
+          }
+          this.hide()
         },
         this.$buttons
       )

@@ -153,20 +153,14 @@ class Parallax extends Component {
   }
 
   bind() {
-    bindEvent(
-      { type: 'scroll', handler: this.parallaxHandle },
-      this.scrollParent
-    )
-    bindEvent(
-      { type: 'resize', handler: this.parallaxHandle },
-      this.scrollParent
-    )
+    bindEvent('scroll', this.parallaxHandle, this.scrollParent)
+    bindEvent('resize', this.parallaxHandle, this.scrollParent)
   }
 
   unbind() {
     compose(
-      removeEvent({ type: 'scroll' }),
-      removeEvent({ type: 'resize' })
+      removeEvent('scroll'),
+      removeEvent('resize')
     )(this.scrollParent)
   }
 

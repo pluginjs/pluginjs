@@ -66,31 +66,23 @@ class Pointer {
     }
 
     bindEvent(
-      {
-        type: this.instance.eventName('touchmove'),
-        handler: this.mousemove.bind(this)
-      },
+      this.instance.eventName('touchmove'),
+      this.mousemove.bind(this),
       document.body
     )
     bindEvent(
-      {
-        type: this.instance.eventName('mousemove'),
-        handler: this.mousemove.bind(this)
-      },
+      this.instance.eventName('mousemove'),
+      this.mousemove.bind(this),
       document.body
     )
     bindEvent(
-      {
-        type: this.instance.eventName('touchend'),
-        handler: this.mouseup.bind(this)
-      },
+      this.instance.eventName('touchend'),
+      this.mouseup.bind(this),
       document.body
     )
     bindEvent(
-      {
-        type: this.instance.eventName('mouseup'),
-        handler: this.mouseup.bind(this)
-      },
+      this.instance.eventName('mouseup'),
+      this.mouseup.bind(this),
       document.body
     )
     return false

@@ -95,11 +95,9 @@ class ToggleList extends List {
     //   }
     // );
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `${this.classes.ACTIONS}`,
-        handler: e => e.stopPropagation()
-      },
+      this.eventName('click'),
+      `${this.classes.ACTIONS}`,
+      e => e.stopPropagation(),
       this.$wrapper
     )
   }

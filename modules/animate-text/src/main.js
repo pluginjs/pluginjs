@@ -76,10 +76,7 @@ class AnimateText extends Component {
   }
 
   bind() {
-    bindEvent(
-      { type: this.eventName('click touch'), handler: () => false },
-      this.element
-    )
+    bindEvent(this.eventName('click touch'), () => false, this.element)
   }
 
   unbind() {

@@ -23,28 +23,15 @@ class Prev {
     if (!this.prev) {
       this.prev = query(`.${instance.classes.PREV}`, instance.element)
     }
-    bindEvent(
-      {
-        type: 'click',
-        handler: instance.prev.bind(instance)
-      },
-      this.prev
-    )
+    bindEvent('click', instance.prev.bind(instance), this.prev)
 
     bindEvent(
-      {
-        type: 'paginator:change',
-        handler: ({
-          detail: {
-            instance,
-            data: [page]
-          }
-        }) => {
-          if (page === 1) {
-            addClass(instance.classes.DISABLED, this.prev)
-          } else {
-            removeClass(instance.classes.DISABLED, this.prev)
-          }
+      'paginator:change',
+      (e, instance, page) => {
+        if (page === 1) {
+          addClass(instance.classes.DISABLED, this.prev)
+        } else {
+          removeClass(instance.classes.DISABLED, this.prev)
         }
       },
       instance.element

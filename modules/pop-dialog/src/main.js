@@ -44,10 +44,8 @@ class PopDialog extends Popover {
   bind() {
     super.bind()
     bindEvent(
-      {
-        type: this.selfEventName('show'),
-        handler: () => this.bindButtonEvents()
-      },
+      this.selfEventName('show'),
+      () => this.bindButtonEvents(),
       this.element
     )
   }
@@ -58,19 +56,17 @@ class PopDialog extends Popover {
       return
     }
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.BUTTON}`,
-        handler: ({ target }) =>
-          this.do(
-            hasClass(this.classes.BUTTON, target)
-              ? data('action', target)
-              : compose(
-                  data('action'),
-                  closest(`${this.classes.BUTTON}`)
-                )(target)
-          )
-      },
+      this.eventName('click'),
+      `.${this.classes.BUTTON}`,
+      ({ target }) =>
+        this.do(
+          hasClass(this.classes.BUTTON, target)
+            ? data('action', target)
+            : compose(
+                data('action'),
+                closest(`${this.classes.BUTTON}`)
+              )(target)
+        ),
       $tip
     )
     data({ buttonEventsBinded: true }, $tip)
@@ -169,10 +165,8 @@ class PopDialog extends Popover {
 
     if (this.options.close) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: () => this.hide()
-        },
+        this.eventName('click'),
+        () => this.hide(),
         query(`.${this.classes.CLOSE}`, $tip)
       )
     }

@@ -33,11 +33,9 @@ class monthEvents {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        handler: () => {
-          this.showList()
-        }
+      'click',
+      () => {
+        this.showList()
       },
       this.more
     )

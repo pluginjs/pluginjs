@@ -25,11 +25,9 @@ class Inline extends Base {
     this.htmlPop = query(data.href).cloneNode(true)
 
     bindEvent(
-      {
-        type: 'click',
-        handler: event => {
-          event.stopPropagation()
-        }
+      'click',
+      event => {
+        event.stopPropagation()
       },
       this.htmlPop
     )

@@ -98,19 +98,17 @@ class Wizard extends Component {
   bind() {
     const that = this
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: this.options.step,
-        handler: e => {
-          const index = getData('wizard-index', e.target)
+      this.eventName('click'),
+      this.options.step,
+      e => {
+        const index = getData('wizard-index', e.target)
 
-          if (!that.get(index).is('disabled')) {
-            that.goTo(index)
-          }
-
-          e.preventDefault()
-          e.stopPropagation()
+        if (!that.get(index).is('disabled')) {
+          that.goTo(index)
         }
+
+        e.preventDefault()
+        e.stopPropagation()
       },
       this.element
     )

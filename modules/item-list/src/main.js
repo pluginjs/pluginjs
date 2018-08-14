@@ -137,10 +137,10 @@ class ItemList extends List {
 
   listener() {
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.CLONE}`,
-        handler: ({ target }) => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.CLONE}`,
+        ({ target }) => {
           if (this.is('disabled')) {
             return
           }
@@ -149,16 +149,12 @@ class ItemList extends List {
 
           this.clone(index)
         }
-      }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: '.pj-itemList-add',
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.trigger(EVENTS.CLICKADDBTN)
+      ),
+      bindEvent(this.eventName('click'), '.pj-itemList-add', () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.trigger(EVENTS.CLICKADDBTN)
       })
     )(this.$wrapper)
   }

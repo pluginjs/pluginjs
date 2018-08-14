@@ -132,15 +132,13 @@ class Rate extends Component {
   bind() {
     // this.eventName('mousemove')
     bindEvent(
-      {
-        type: this.eventName('mousemove'),
-        handler: event => {
-          const score = this._getScore(event)
-          if (this.hoverscore !== score && typeof score !== "undefined") { /* eslint-disable-line */
-            this.updateStar(score)
-            if (score !== this.hoverscore && typeof score !== "undefined") { /* eslint-disable-line */
-              this.changeHoverScore(score)
-            }
+      this.eventName('mousemove'),
+      event => {
+        const score = this._getScore(event)
+        if (this.hoverscore !== score && typeof score !== 'undefined') {
+          this.updateStar(score)
+          if (score !== this.hoverscore && typeof score !== 'undefined') {
+            this.changeHoverScore(score)
           }
         }
       },
@@ -148,25 +146,21 @@ class Rate extends Component {
     )
 
     bindEvent(
-      {
-        type: this.eventName('mouseleave'),
-        handler: () => {
-          this.updateStar(this.score)
-          this.changeHoverScore(0)
-          this.trigger(EVENTS.MOUSELEAVE)
-        }
+      this.eventName('mouseleave'),
+      () => {
+        this.updateStar(this.score)
+        this.changeHoverScore(0)
+        this.trigger(EVENTS.MOUSELEAVE)
       },
       this.range
     )
 
     bindEvent(
-      {
-        type: this.eventName('mouseup'),
-        handler: event => {
-          const score = this._getScore(event)
-          this.changeScore(score)
-          this.trigger(EVENTS.CLICK, this.score)
-        }
+      this.eventName('mouseup'),
+      event => {
+        const score = this._getScore(event)
+        this.changeScore(score)
+        this.trigger(EVENTS.CLICK, this.score)
       },
       this.range
     )

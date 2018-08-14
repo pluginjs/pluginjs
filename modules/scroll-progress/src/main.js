@@ -143,10 +143,8 @@ class ScrollProgress extends Component {
       Pj.emitter.on('scroll', this.scrollHandle.bind(this))
     } else {
       bindEvent(
-        {
-          type: this.eventName('scroll'),
-          handler: this.scrollHandle.bind(this)
-        },
+        this.eventName('scroll'),
+        this.scrollHandle.bind(this),
         this.bindElement
       )
     }

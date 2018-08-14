@@ -127,8 +127,8 @@ class InputMask extends Component {
       this.lastValue = e.target.value
     }
     compose(
-      bindEvent({ type: 'keydown', handler: getLastValue }),
-      bindEvent({ type: 'input', handler: this.onChange })
+      bindEvent('keydown', getLastValue),
+      bindEvent('input', this.onChange)
     )(this.element)
     // this.element.addEventListener('keydown', getLastValue, false)
     // this.element.addEventListener('input', this.onChange, false)

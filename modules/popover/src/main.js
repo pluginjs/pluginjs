@@ -105,11 +105,9 @@ class Popover extends Tooltip {
 
     if (this.options.close) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: () => {
-            this.hide()
-          }
+        this.eventName('click'),
+        () => {
+          this.hide()
         },
         query(`.${this.classes.CLOSE}`, $tip)
       )

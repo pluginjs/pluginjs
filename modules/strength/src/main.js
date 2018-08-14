@@ -74,21 +74,17 @@ class Strength extends Component {
     if (this.$toggle) {
       if (this.$toggle.getAttribute('checkbox')) {
         bindEvent(
-          {
-            type: 'change',
-            handler: () => {
-              this.toggle()
-            }
+          'change',
+          () => {
+            this.toggle()
           },
           this.$toggle
         )
       } else {
         bindEvent(
-          {
-            type: 'click',
-            handler: () => {
-              this.toggle()
-            }
+          'click',
+          () => {
+            this.toggle()
           },
           this.$toggle
         )
@@ -96,81 +92,71 @@ class Strength extends Component {
     }
 
     bindEvent(
-      {
-        type: 'keydown',
-        handler: () => {
-          this.check()
-        }
+      'keydown',
+      () => {
+        this.check()
       },
       this.$input
     )
     bindEvent(
-      {
-        type: 'keyup',
-        handler: () => {
-          this.check()
-        }
+      'keyup',
+      () => {
+        this.check()
       },
       this.$input
     )
 
     bindEvent(
-      {
-        type: `${NAMESPACE}:check`,
-        handler: e => {
-          const [score, status] = e.detail.data
-          this.$scoreElement.innerHTML = this.translate(
-            this.options.scoreLables[status]
-          )
+      `${NAMESPACE}:check`,
+      e => {
+        const [score, status] = e.detail.data
+        this.$scoreElement.innerHTML = this.translate(
+          this.options.scoreLables[status]
+        )
 
-          if (status !== this.status) {
-            const newClass = this.options.scoreClasses[status]
-            const oldClass = this.options.scoreClasses[this.status]
-            if (oldClass) {
-              removeClass(oldClass, this.$scoreElement)
-            }
-            if (newClass) {
-              addClass(newClass, this.$scoreElement)
-            }
-
-            this.trigger(EVENTS.STATUSCHANGE, status, this.status)
+        if (status !== this.status) {
+          const newClass = this.options.scoreClasses[status]
+          const oldClass = this.options.scoreClasses[this.status]
+          if (oldClass) {
+            removeClass(oldClass, this.$scoreElement)
+          }
+          if (newClass) {
+            addClass(newClass, this.$scoreElement)
           }
 
-          this.status = status
-          this.score = score
+          this.trigger(EVENTS.STATUSCHANGE, status, this.status)
         }
+
+        this.status = status
+        this.score = score
       },
       this.element
     )
 
     bindEvent(
-      {
-        type: `${NAMESPACE}:statusChange`,
-        handler: e => {
-          const [current, old] = e.detail.data
-          if (old) {
-            removeClass(this.getStatusClass(old), this.$container)
-          }
-          if (current) {
-            addClass(this.getStatusClass(current), this.$container)
-          }
+      `${NAMESPACE}:statusChange`,
+      e => {
+        const [current, old] = e.detail.data
+        if (old) {
+          removeClass(this.getStatusClass(old), this.$container)
+        }
+        if (current) {
+          addClass(this.getStatusClass(current), this.$container)
         }
       },
       this.element
     )
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.ADDON}`,
-        handler: () => {
-          if (hasClass(this.classes.ACTIVE, this.$wrap)) {
-            removeClass(this.classes.ACTIVE, this.$wrap)
-            this.iconToggle()
-            return
-          }
-          addClass(this.classes.ACTIVE, this.$wrap)
+      this.eventName('click'),
+      `.${this.classes.ADDON}`,
+      () => {
+        if (hasClass(this.classes.ACTIVE, this.$wrap)) {
+          removeClass(this.classes.ACTIVE, this.$wrap)
           this.iconToggle()
+          return
         }
+        addClass(this.classes.ACTIVE, this.$wrap)
+        this.iconToggle()
       },
       this.$wrap
     )

@@ -13,11 +13,9 @@ class Image extends Base {
     this.element.src = this.data.src
 
     bindEvent(
-      {
-        type: this.instance.eventName('mousedown'),
-        handler: event => {
-          event.preventDefault()
-        }
+      this.instance.eventName('mousedown'),
+      event => {
+        event.preventDefault()
       },
       this.element
     )

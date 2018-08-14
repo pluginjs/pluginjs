@@ -133,13 +133,11 @@ class Filters extends Component {
 
   bind() {
     bindEvent(
-      {
-        type: this.eventName('click touch'),
-        identity: { type: 'selector', value: this.itemSelector },
-        handler: ({ target }) => {
-          if (!this.is('disabled')) {
-            this.setActiveItem(target)
-          }
+      this.eventName('click touch'),
+      this.itemSelector,
+      ({ target }) => {
+        if (!this.is('disabled')) {
+          this.setActiveItem(target)
         }
       },
       this.element

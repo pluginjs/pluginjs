@@ -21,25 +21,21 @@ class zoomEngine {
 
   init() {
     bindEvent(
-      {
-        type: `${this.instance.plugin}:show`,
-        handler: this.zoomIn.bind(this)
-      },
+      `${this.instance.plugin}:show`,
+      this.zoomIn.bind(this),
       this.instance.element
     )
 
     bindEvent(
-      {
-        type: `${this.instance.plugin}:close`,
-        handler: this.zoomOut.bind(this)
-      },
+      `${this.instance.plugin}:close`,
+      this.zoomOut.bind(this),
       this.instance.element
     )
 
-    // bindEvent({
-    //   type: `${this.instance.plugin}:loaded`,
-    //   handler: this.loaded.bind(this)
-    // }, this.instance.element)
+    // bindEvent(
+    //   `${this.instance.plugin}:loaded`,
+    //   this.loaded.bind(this)
+    // , this.instance.element)
   }
 
   loaded(event) {

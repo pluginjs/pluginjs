@@ -72,66 +72,28 @@ class Window extends Base {
       }
     }
 
-    bindEvent(
-      {
-        type: 'mousemove',
-        handler: mousemoveCallback
-      },
-      this.container
-    )
-    bindEvent(
-      {
-        type: 'mouseleave',
-        handler: mouseleaveCallback
-      },
-      this.container
-    )
-    bindEvent(
-      {
-        type: 'mouseenter',
-        handler: mouseenterCallback
-      },
-      this.container
-    )
-    bindEvent(
-      {
-        type: 'touchmove',
-        handler: mousemoveCallback
-      },
-      this.container
-    )
-    bindEvent(
-      {
-        type: 'touchend',
-        handler: mouseleaveCallback
-      },
-      this.container
-    )
-    bindEvent(
-      {
-        type: 'touchstart',
-        handler: mouseenterCallback
-      },
-      this.container
-    )
+    bindEvent('mousemove', mousemoveCallback, this.container)
+    bindEvent('mouseleave', mouseleaveCallback, this.container)
+    bindEvent('mouseenter', mouseenterCallback, this.container)
+    bindEvent('touchmove', mousemoveCallback, this.container)
+    bindEvent('touchend', mouseleaveCallback, this.container)
+    bindEvent('touchstart', mouseenterCallback, this.container)
     // super.bind()
     if (this.configuration.clickOpen) {
       this.openWindow = false
       bindEvent(
-        {
-          type: 'click',
-          handler: () => {
-            if (this.openWindow) {
-              // reflow(this.lens[0]);
-              this.addClass(this.lens, 'zoomIn')
-              this.windowtrigger('hide')
-            } else {
-              // reflow(this.lens[0]);
-              this.addClass(this.lens, 'zoomOut')
-              this.windowtrigger('show')
-            }
-            this.openWindow = !this.openWindow
+        'click',
+        () => {
+          if (this.openWindow) {
+            // reflow(this.lens[0]);
+            this.addClass(this.lens, 'zoomIn')
+            this.windowtrigger('hide')
+          } else {
+            // reflow(this.lens[0]);
+            this.addClass(this.lens, 'zoomOut')
+            this.windowtrigger('show')
           }
+          this.openWindow = !this.openWindow
         },
         this.lens
       )
@@ -183,10 +145,7 @@ class Window extends Base {
   windowHide() {
     this.addClass(this.window, 'out')
 
-    bindEvent({
-      type: 'animationend',
-      handler: this.callback.bind(this)
-    })
+    // bindEvent( 'animationend', this.callback.bind(this))
     // this.window.on('animationend', this.callback.bind(this))
   }
 

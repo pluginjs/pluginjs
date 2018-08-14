@@ -217,67 +217,55 @@ class AutoComplete extends Component {
   bind() {
     // input event
     bindEvent(
-      {
-        type: this.eventName('input'),
-        handler: ({ target }) => {
-          const val = target.value
-          if (val.length <= 0 || val.length < this.options.minChars) {
-            if (this.is('open')) {
-              this.close()
-            }
-            return
+      this.eventName('input'),
+      ({ target }) => {
+        const val = target.value
+        if (val.length <= 0 || val.length < this.options.minChars) {
+          if (this.is('open')) {
+            this.close()
           }
-          if (this.options.ajax) {
-            children(this.$panel).map(el => el.remove())
-
-            debounce(this.options.source.call(this, val), 200)
-          }
-
-          debounce(this.search(val), 200)
+          return
         }
+        if (this.options.ajax) {
+          children(this.$panel).map(el => el.remove())
+
+          debounce(this.options.source.call(this, val), 200)
+        }
+
+        debounce(this.search(val), 200)
       },
       this.$element
     )
 
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.CLOSE}`,
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.$element.value = ''
-          hideElement(this.$close)
+      bindEvent(this.eventName('click'), `.${this.classes.CLOSE}`, () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.$element.value = ''
+        hideElement(this.$close)
       }),
-      bindEvent({
-        type: this.eventName('mouseleave'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.leave('hover')
-          hideElement(this.$close)
+      bindEvent(this.eventName('mouseleave'), () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.leave('hover')
+        hideElement(this.$close)
       }),
-      bindEvent({
-        type: this.eventName('mouseenter'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.enter('hover')
-          this.isShowButton()
+      bindEvent(this.eventName('mouseenter'), () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.enter('hover')
+        this.isShowButton()
       })
     )(this.$wrapper)
 
     compose(
-      bindEvent({
-        type: this.eventName('mouseover'),
-        identity: `.${this.classes.ITEM}`,
-        handler: ({ target }) => {
+      bindEvent(
+        this.eventName('mouseover'),
+        `.${this.classes.ITEM}`,
+        ({ target }) => {
           const hasItemClass = hasClass(this.classes.ITEM)
           const $item = hasItemClass(target)
             ? target
@@ -289,11 +277,11 @@ class AutoComplete extends Component {
           )
           addClass(this.classes.ACTIVE, $item)
         }
-      }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.ITEM}`,
-        handler: ({ target }) => {
+      ),
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.ITEM}`,
+        ({ target }) => {
           const hasItemClass = hasClass(this.classes.ITEM)
           const $item = hasItemClass(target)
             ? target
@@ -302,69 +290,59 @@ class AutoComplete extends Component {
           this.close()
           this.trigger(EVENTS.CHANGE, getData('data', $item))
         }
-      })
+      )
     )(this.$panel)
 
     if (this.options.keyboard) {
       compose(
-        bindEvent({
-          type: this.eventName('blur'),
-          handler: () => {
-            this.leave('focus')
-            removeEvent('keydown', this.$element)
-          }
+        bindEvent(this.eventName('blur'), () => {
+          this.leave('focus')
+          removeEvent('keydown', this.$element)
         }),
-        bindEvent({
-          type: this.eventName('focus'),
-          handler: () => {
-            this.enter('focus')
-            bindEvent(
-              {
-                type: this.eventName('keydown'),
-                handler: e => {
-                  this.triggerCloseButten()
-                  if (e.keyCode === 40 && e.which === 40) {
-                    // down
-                    this.next()
-                    e.preventDefault()
-                  }
-                  if (e.keyCode === 38 && e.which === 38) {
-                    // up
-                    this.prev()
-                    e.preventDefault()
-                  }
-                  if (e.keyCode === 13 && e.which === 13) {
-                    // update
-                    this.close()
-                    this.trigger(
-                      EVENTS.CHANGE,
-                      getData('data', this.$selected),
-                      this
-                    )
-                    e.preventDefault()
-                  }
-                }
-              },
-              this.$element
-            )
-          }
+        bindEvent(this.eventName('focus'), () => {
+          this.enter('focus')
+          bindEvent(
+            this.eventName('keydown'),
+            e => {
+              this.triggerCloseButten()
+              if (e.keyCode === 40 && e.which === 40) {
+                // down
+                this.next()
+                e.preventDefault()
+              }
+              if (e.keyCode === 38 && e.which === 38) {
+                // up
+                this.prev()
+                e.preventDefault()
+              }
+              if (e.keyCode === 13 && e.which === 13) {
+                // update
+                this.close()
+                this.trigger(
+                  EVENTS.CHANGE,
+                  getData('data', this.$selected),
+                  this
+                )
+                e.preventDefault()
+              }
+            },
+            this.$element
+          )
         })
       )(this.$element)
     }
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: e => {
-          if (this.is('open')) {
-            if (!this.$panel.contains(e.target)) {
-              this.close()
-              return false
-            }
+      this.eventName('click'),
+      e => {
+        if (this.is('open')) {
+          if (!this.$panel.contains(e.target)) {
+            this.close()
+            return false
           }
-
-          return null
         }
+
+        return null
       },
       window.document
     )

@@ -145,13 +145,10 @@ class Weekly {
   }
 
   bind() {
-    // bindEvent({
-    //   type: 'mouseenter',
-    //   identity: {
-    //     type: 'class',
-    //     value: this.classes.WEEKEVENT
-    //   },
-    //   handler: e => {
+    // bindEvent(
+    //   'mouseenter',
+    //   `.${this.classes.WEEKEVENT}`,
+    //   e => {
     //     const target = e.target
     //     if (hasClass(this.classes.WEEKEVENT, target)) {
     //       addClass(this.classes.ACTIVEWEEKEVENT, target)
@@ -159,16 +156,11 @@ class Weekly {
     //       const weekEvent = target.closest(`.${this.classes.WEEKEVENT}`)
     //       addClass(this.classes.ACTIVEWEEKEVENT, weekEvent)
     //     }
-    //   }
-    // }, this.element)
-    //
-    // bindEvent({
-    //   type: 'mouseleave',
-    //   identity: {
-    //     type: 'class',
-    //     value: this.classes.WEEKEVENT
-    //   },
-    //   handler: e => {
+    //   }, this.element)
+    // bindEvent(
+    //   'mouseleave',
+    //   `.${this.classes.WEEKEVENT}`,
+    //   e => {
     //     const target = e.target
     //     if (hasClass(this.classes.WEEKEVENT, target)) {
     //       removeClass(this.classes.ACTIVEWEEKEVENT, target)
@@ -176,8 +168,7 @@ class Weekly {
     //       const weekEvent = target.closest(`.${this.classes.WEEKEVENT}`)
     //       removeClass(this.classes.ACTIVEWEEKEVENT, weekEvent)
     //     }
-    //   }
-    // }, this.element)
+    //   }, this.element)
   }
 
   getElement(type) {

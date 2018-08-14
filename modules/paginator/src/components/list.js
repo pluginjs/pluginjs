@@ -122,72 +122,61 @@ class List {
     this.getNext()
     this.getPrev()
     bindEvent(
-      {
-        type: 'click',
-        identity: `.${instance.classes.ITEM}`,
-        handler: e => {
-          // const page = e.target.closest('li').dataset.page
-          const page = getData('page', e.target.closest('li'))
-          if (typeof page === 'undefined') {
-            return false
-          }
-
-          if (page === '') {
-            return false
-          }
-
-          instance.goTo(page)
-          return undefined /* eslint-disable-line no-undefined */
+      'click',
+      `.${instance.classes.ITEM}`,
+      e => {
+        const page = getData('page', e.target.closest('li'))
+        if (typeof page === 'undefined') {
+          return false
         }
+
+        if (page === '') {
+          return false
+        }
+
+        instance.goTo(page)
+        return undefined /* eslint-disable-line no-undefined */
       },
       instance.element
     )
 
     bindEvent(
-      {
-        type: 'click',
-        identity: `.${instance.classes.LISTPREV}`,
-        handler: () => {
-          that.instance.goTo(that.currentPage - that.visibleSize)
-        }
+      'click',
+      `.${instance.classes.LISTPREV}`,
+      () => {
+        that.instance.goTo(that.currentPage - that.visibleSize)
       },
       instance.element
     )
 
     bindEvent(
-      {
-        type: 'click',
-        identity: `.${instance.classes.LISTNEXT}`,
-        handler: () => {
-          that.instance.goTo(that.currentPage + that.visibleSize)
-        }
+      'click',
+      `.${instance.classes.LISTNEXT}`,
+      () => {
+        that.instance.goTo(that.currentPage + that.visibleSize)
       },
       instance.element
     )
 
     bindEvent(
-      {
-        type: 'paginator:ready',
-        handler: () => {
-          const activeitem = FilterFromData(
-            that.options.itemAttr,
-            that.currentPage,
-            that.items
-          )
-          activeitem.map(item => {
-            return addClass(that.instance.classes.ACTIVE, item)
-          })
-        }
+      'paginator:ready',
+      () => {
+        const activeitem = FilterFromData(
+          that.options.itemAttr,
+          that.currentPage,
+          that.items
+        )
+        activeitem.map(item => {
+          return addClass(that.instance.classes.ACTIVE, item)
+        })
       },
       instance.element
     )
 
     bindEvent(
-      {
-        type: 'paginator:change',
-        handler: () => {
-          that.update()
-        }
+      'paginator:change',
+      () => {
+        that.update()
       },
       instance.element
     )

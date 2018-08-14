@@ -65,25 +65,21 @@ export default class TextTransform {
   bind() {
     const that = this
     this.$items.map(
-      bindEvent({
-        type: 'click',
-        handler: ({ target }) => {
-          if (that.instance.is('disabled')) {
-            return null
-          }
-
-          // const transform = target.dataset.textTransform
-          const transform = getData('textTransform', target)
-          if (hasClass(that.instance.classes.ACTIVE, target)) {
-            removeClass(that.instance.classes.ACTIVE, target)
-            that.instance.value.textTransform =
-              that.instance.options.textTransform.defaultValue
-          } else {
-            that.set(transform)
-          }
-
+      bindEvent('click', ({ target }) => {
+        if (that.instance.is('disabled')) {
           return null
         }
+
+        const transform = getData('textTransform', target)
+        if (hasClass(that.instance.classes.ACTIVE, target)) {
+          removeClass(that.instance.classes.ACTIVE, target)
+          that.instance.value.textTransform =
+            that.instance.options.textTransform.defaultValue
+        } else {
+          that.set(transform)
+        }
+
+        return null
       })
     )
   }

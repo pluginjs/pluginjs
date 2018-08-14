@@ -203,14 +203,12 @@ class Tabs extends Component {
     })
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: e => {
-          const target = e.target
+      this.eventName('click'),
+      e => {
+        const target = e.target
 
-          if (!closest(`.${this.classes.NAMESPACE}`, target)) {
-            removeClass(this.classes.DROPOPEN, this.element)
-          }
+        if (!closest(`.${this.classes.NAMESPACE}`, target)) {
+          removeClass(this.classes.DROPOPEN, this.element)
         }
       },
       window.document

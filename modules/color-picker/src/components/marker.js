@@ -35,30 +35,26 @@ class Marker {
 
   bind() {
     bindEvent(
-      {
-        type: this.instance.eventName('colorPicker:change'),
-        handler: ({
-          detail: {
-            data: [color]
-          }
-        }) => {
-          if (this.instance.is('noSelectedMarker')) {
-            return false
-          }
-          this.update(color)
-          return null
+      this.instance.eventName('colorPicker:change'),
+      ({
+        detail: {
+          data: [color]
         }
+      }) => {
+        if (this.instance.is('noSelectedMarker')) {
+          return false
+        }
+        this.update(color)
+        return null
       },
       this.instance.element
     )
 
     bindEvent(
-      {
-        type: this.instance.eventName('click'),
-        handler: e => {
-          const color = getStyle('backgroundColor', e.target)
-          this.instance.setSolid(color)
-        }
+      this.instance.eventName('click'),
+      e => {
+        const color = getStyle('backgroundColor', e.target)
+        this.instance.setSolid(color)
       },
       this.$el
     )

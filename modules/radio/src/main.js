@@ -185,14 +185,12 @@ class Radio extends Component {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.toggle()
+      'click',
+      () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.toggle()
       },
       this.$element
     )

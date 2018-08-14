@@ -26,58 +26,48 @@ class Saturation {
 
   bind() {
     bindEvent(
-      {
-        type: 'mousedown',
-        handler: e => {
-          if (e.which === 2 || e.which === 3) {
-            return false
-          }
-          if (!hasClass(this.instance.classes.POINTER, e.target)) {
-            this.move([e.offsetX, e.offsetY])
-          }
-          this.offsetY = e.pageY - this.size
-          this.offsetX = e.pageX - this.size
-          const pointerY = parseInt(getStyle('top', this.$pointer), 10)
-          const pointerX = parseInt(getStyle('left', this.$pointer), 10)
-
-          bindEvent(
-            {
-              type: 'mousemove',
-              // value: { type: 'dom', value: this.$pointer },
-              handler: e => {
-                const sizeY = e.pageY - this.offsetY + pointerY
-                const sizeX = e.pageX - this.offsetX + pointerX
-                this.move([sizeX, sizeY])
-              }
-            },
-            window.document
-          )
-          bindEvent(
-            {
-              type: 'mouseup',
-              handler: () => {
-                removeEvent('mousemove', window.document)
-                // removeEvent('mouseup', window.document)
-              }
-            },
-            window.document
-          )
-          return null
+      'mousedown',
+      e => {
+        if (e.which === 2 || e.which === 3) {
+          return false
         }
+        if (!hasClass(this.instance.classes.POINTER, e.target)) {
+          this.move([e.offsetX, e.offsetY])
+        }
+        this.offsetY = e.pageY - this.size
+        this.offsetX = e.pageX - this.size
+        const pointerY = parseInt(getStyle('top', this.$pointer), 10)
+        const pointerX = parseInt(getStyle('left', this.$pointer), 10)
+
+        bindEvent(
+          'mousemove',
+          e => {
+            const sizeY = e.pageY - this.offsetY + pointerY
+            const sizeX = e.pageX - this.offsetX + pointerX
+            this.move([sizeX, sizeY])
+          },
+          window.document
+        )
+        bindEvent(
+          'mouseup',
+          () => {
+            removeEvent('mousemove', window.document)
+          },
+          window.document
+        )
+        return null
       },
       this.element
     )
     // global event
     bindEvent(
-      {
-        type: this.instance.eventName('colorPicker:change'),
-        handler: ({
-          detail: {
-            data: [color]
-          }
-        }) => {
-          this.position(color)
+      this.instance.eventName('colorPicker:change'),
+      ({
+        detail: {
+          data: [color]
         }
+      }) => {
+        this.position(color)
       },
       this.instance.element
     )

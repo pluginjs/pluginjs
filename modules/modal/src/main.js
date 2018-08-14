@@ -108,11 +108,9 @@ class Modal extends GlobalComponent {
   bind() {
     if (this.options.close) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: () => {
-            this.close()
-          }
+        this.eventName('click'),
+        () => {
+          this.close()
         },
         this.$closeBtn
       )
@@ -120,23 +118,21 @@ class Modal extends GlobalComponent {
     // band buttons
     if (this.options.buttons) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: event => {
-            if (!event.target.classList.contains(this.classes.BUTTON)) {
-              return
-            }
-
-            const key = data('btntype', event.target)
-            if (this.options.buttons[key].fn) {
-              this.options.buttons[key].fn()
-            }
-
-            if (this.options.buttons[key].close === false) {
-              return
-            }
-            this.close()
+        this.eventName('click'),
+        event => {
+          if (!event.target.classList.contains(this.classes.BUTTON)) {
+            return
           }
+
+          const key = data('btntype', event.target)
+          if (this.options.buttons[key].fn) {
+            this.options.buttons[key].fn()
+          }
+
+          if (this.options.buttons[key].close === false) {
+            return
+          }
+          this.close()
         },
         this.$buttons
       )
@@ -145,11 +141,9 @@ class Modal extends GlobalComponent {
     // bind overlay
     if (this.options.overlayClosesOnClick && this.options.overlay) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: () => {
-            this.close()
-          }
+        this.eventName('click'),
+        () => {
+          this.close()
         },
         this.$overlay
       )
@@ -190,10 +184,7 @@ class Modal extends GlobalComponent {
       }
     }
 
-    bindEvent(
-      { type: 'animationend', handler: animationendCallback },
-      this.$element
-    )
+    bindEvent('animationend', animationendCallback, this.$element)
     // trigger close
     this.trigger(EVENTS.CLOSE)
     this.leave('opened')

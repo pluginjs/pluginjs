@@ -105,168 +105,132 @@ class Offset extends Component {
 
   bind() {
     const that = this
-    // bindEvent({
-    //   type: 'units:change',
-    //   handler: (e, instance, unit) => {
-    //     if (that.is('disabled')) {
-    //       return
-    //     }
-    //     const $this = $(e.target)
-    //     const $trigger = $this.next()
-    //     const newData = {}
-    //
-    //     newData[$this.attr('name')] = instance.get(unit)
-    //
-    //     if (unit === 'auto') {
-    //       addClass(`${this.classes.NAMESPACE}-unit-auto`, $trigger)
-    //     } else {
-    //       removeClass(`${this.classes.NAMESPACE}-unit-auto`, $trigger)
-    //     }
-    //
-    //     // newData = Object.assign({}, this.data, newData);
-    //
-    //     this.set(newData, true)
-    //   }
-    // }, this.$wrap)
 
     bindEvent(
-      {
-        type: 'units:changeVal',
-        handler: ({
-          target,
-          detail: {
-            data: [val]
-          }
-        }) => {
-          if (that.is('disabled')) {
-            return
-          }
-          const info = getData(
-            'info',
-            parentWith(hasClass(this.classes.ITEM), target)
-          )
-          const key = target.getAttribute('name')
-          const newData = {}
-
-          info.value = val ? val : ''
-
-          newData[key] = info
-          this.set(newData, true)
-          children(this.$inner)
-            .filter(el => el.matches('div'))
-            .map(removeClass(this.classes.UNITSHOW))
+      'units:changeVal',
+      ({
+        target,
+        detail: {
+          data: [val]
         }
-      },
-      this.$wrap
-    )
-
-    bindEvent(
-      {
-        type: this.eventName('mousedown'),
-        identity: {
-          type: 'tagName',
-          value: 'label'
-        },
-        handler: e => {
-          if (that.is('disabled')) {
-            return
-          }
-          const target = closest('label', e.target)
-          const id = target.getAttribute('for')
-          let direction
-          if (
-            id === 'marginLeft' ||
-            id === 'marginRight' ||
-            id === 'paddingLeft' ||
-            id === 'paddingRight'
-          ) {
-            direction = 'horizontal'
-          } else if (
-            id === 'marginTop' ||
-            id === 'marginBottom' ||
-            id === 'paddingTop' ||
-            id === 'paddingBottom'
-          ) {
-            direction = 'vertical'
-          }
-          const rightclick = e.which ? e.which === 3 : e.button === 2
-          if (rightclick) {
-            return
-          }
-          that.mousedown(target, direction, e)
+      }) => {
+        if (that.is('disabled')) {
           return
         }
+        const info = getData(
+          'info',
+          parentWith(hasClass(this.classes.ITEM), target)
+        )
+        const key = target.getAttribute('name')
+        const newData = {}
+
+        info.value = val ? val : ''
+
+        newData[key] = info
+        this.set(newData, true)
+        children(this.$inner)
+          .filter(el => el.matches('div'))
+          .map(removeClass(this.classes.UNITSHOW))
       },
       this.$wrap
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.VIEW}`,
-        handler: e => {
-          if (that.is('disabled')) {
-            return
-          }
-          const $this = closest(`.${this.classes.VIEW}`, e.target)
-          const $el = query(
-            `.${that.classes.NAMESPACE}-${getData('value', $this)}`,
-            this.$wrap
-          )
-          const $unit = query('input', $el)
-          const unit = that.data[$unit.getAttribute('name')].unit
-
-          const api = getData('units', $unit)
-          api.toggleUnit(unit)
-          api.setWidth(getStyle('width', $unit))
-          Array.from(this.$inner.children).map(c =>
-            removeClass(that.classes.UNITSHOW, c)
-          )
-          addClass(that.classes.UNITSHOW, $el)
-          query('input', $el).focus()
+      this.eventName('mousedown'),
+      'label',
+      e => {
+        if (that.is('disabled')) {
+          return
         }
+        const target = closest('label', e.target)
+        const id = target.getAttribute('for')
+        let direction
+        if (
+          id === 'marginLeft' ||
+          id === 'marginRight' ||
+          id === 'paddingLeft' ||
+          id === 'paddingRight'
+        ) {
+          direction = 'horizontal'
+        } else if (
+          id === 'marginTop' ||
+          id === 'marginBottom' ||
+          id === 'paddingTop' ||
+          id === 'paddingBottom'
+        ) {
+          direction = 'vertical'
+        }
+        const rightclick = e.which ? e.which === 3 : e.button === 2
+        if (rightclick) {
+          return
+        }
+        that.mousedown(target, direction, e)
+        return
       },
       this.$wrap
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: e => {
-          const target = e.target
-          if (
-            hasClass(this.classes.VIEW, target) ||
-            closest('.pj-units-wrap', target)
-          ) {
-            return
-          }
-          Array.from(this.$inner.children).map(c =>
-            removeClass(that.classes.UNITSHOW, c)
-          )
+      this.eventName('click'),
+      `.${this.classes.VIEW}`,
+      e => {
+        if (that.is('disabled')) {
+          return
         }
+        const $this = closest(`.${this.classes.VIEW}`, e.target)
+        const $el = query(
+          `.${that.classes.NAMESPACE}-${$this.dataset.value}`,
+          this.$wrap
+        )
+        const $unit = query('input', $el)
+        const unit = that.data[$unit.getAttribute('name')].unit
+
+        const api = getData('units', $unit)
+        api.toggleUnit(unit)
+        api.setWidth(getStyle('width', $unit))
+        Array.from(this.$inner.children).map(c =>
+          removeClass(that.classes.UNITSHOW, c)
+        )
+        addClass(that.classes.UNITSHOW, $el)
+        query('input', $el).focus()
+      },
+      this.$wrap
+    )
+
+    bindEvent(
+      this.eventName('click'),
+      e => {
+        const target = e.target
+        if (
+          hasClass(this.classes.VIEW, target) ||
+          closest('.pj-units-wrap', target)
+        ) {
+          return
+        }
+        Array.from(this.$inner.children).map(c =>
+          removeClass(that.classes.UNITSHOW, c)
+        )
       },
       this.$doc
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.CONNECT}`,
-        handler: e => {
-          if (that.is('disabled')) {
-            return
-          }
-          const $this = closest(`.${this.classes.CONNECT}`, e.target)
-
-          if (that.is('connect')) {
-            removeClass(that.classes.CONNECTACTIVE, $this)
-            that.leave('connect')
-            return
-          }
-
-          addClass(that.classes.CONNECTACTIVE, $this)
-          that.enter('connect')
+      this.eventName('click'),
+      `.${this.classes.CONNECT}`,
+      e => {
+        if (that.is('disabled')) {
+          return
         }
+        const $this = closest(`.${this.classes.CONNECT}`, e.target)
+
+        if (that.is('connect')) {
+          removeClass(that.classes.CONNECTACTIVE, $this)
+          that.leave('connect')
+          return
+        }
+
+        addClass(that.classes.CONNECTACTIVE, $this)
+        that.enter('connect')
       },
       this.$wrap
     )
@@ -418,20 +382,8 @@ class Offset extends Component {
       return false
     }
 
-    bindEvent(
-      {
-        type: 'mousemove',
-        handler: this.mousemove.bind(this)
-      },
-      this.$doc
-    )
-    bindEvent(
-      {
-        type: 'mouseup',
-        handler: this.mouseup.bind(this)
-      },
-      this.$doc
-    )
+    bindEvent('mousemove', this.mousemove.bind(this), this.$doc)
+    bindEvent('mouseup', this.mouseup.bind(this), this.$doc)
     return false
   }
 

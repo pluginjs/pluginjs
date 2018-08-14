@@ -592,165 +592,125 @@ class ColorPicker extends Component {
   bind() {
     compose(
       // input color
-      bindEvent({
-        type: this.eventName('change'),
-        handler: e => {
-          const val = e.target.value
-          this.set(this.options.parse.call(this, val))
-        }
+      bindEvent(this.eventName('change'), e => {
+        const val = e.target.value
+        this.set(this.options.parse.call(this, val))
       }),
       // switch panel
-      bindEvent({
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return false
-          }
-
-          this.openPanel()
-          return null
+      bindEvent(this.eventName('click'), () => {
+        if (this.is('disabled')) {
+          return false
         }
+
+        this.openPanel()
+        return null
       })
     )(this.element)
 
     compose(
       // manage event
-      bindEvent({
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.MANAGE}` },
-        handler: () => {
-          this.options.manage()
-        }
+      bindEvent(this.eventName('click'), `.${this.classes.MANAGE}`, () => {
+        this.options.manage()
       }),
       // action event
-      bindEvent({
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.OK}` },
-        handler: () => {
-          if (this.is('disabled')) {
-            return false
-          }
-          // this.oldColor = this.color
-          // if (this.oldColor != null) {  /* eslint-disable-line */
-          //   if (this.oldColor.indexOf('linear-gradient') > -1) {
-          //     this.setGradient(this.oldColor)
-          //   } else {
-          //     this.setSolid(this.oldColor)
-          //   }
-          // }
-
-          this.closePanel()
-          return null
+      bindEvent(this.eventName('click'), `.${this.classes.OK}`, () => {
+        if (this.is('disabled')) {
+          return false
         }
+        // this.oldColor = this.color
+        // if (this.oldColor != null) {
+        //   if (this.oldColor.indexOf('linear-gradient') > -1) {
+        //     this.setGradient(this.oldColor)
+        //   } else {
+        //     this.setSolid(this.oldColor)
+        //   }
+        // }
+
+        this.closePanel()
+        return null
       }),
       // action event
-      bindEvent({
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.CANCEL}` },
-        handler: () => {
-          if (this.is('disabled')) {
-            return false
-          }
-
-          if (this.hasModule('solid')) {
-            this.setSolid(this.HISTORY.colors[this.HISTORY.colors.length - 1])
-          }
-
-          // if (this.hasModule('gradient')) {
-
-          //   this.setGradient(
-          //     this.HISTORY.colors[this.HISTORY.colors.length - 1]
-          //   )
-          //             // }
-          this.closePanel()
-          return null
+      bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
+        if (this.is('disabled')) {
+          return false
         }
+
+        if (this.hasModule('solid')) {
+          this.setSolid(this.HISTORY.colors[this.HISTORY.colors.length - 1])
+        }
+
+        // if (this.hasModule('gradient')) {
+
+        //   this.setGradient(
+        //     this.HISTORY.colors[this.HISTORY.colors.length - 1]
+        //   )
+        //             // }
+        this.closePanel()
+        return null
       }),
       // Collection event
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.COLLECTIONITEM}`
-        },
-        handler: e => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.COLLECTIONITEM}`,
+        e => {
           const info = getData('info', e.target)
           this.selectCollection = info
           this.set({ module: 'collection', color: info.title })
           this.closePanel()
         }
-      }),
+      ),
       // switch mode
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.PANELTRIGGER}>i`
-        },
-        handler: e => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.PANELTRIGGER}>i`,
+        e => {
           const $this = e.target
           this.switchModule(getData('type', $this))
         }
-      })
+      )
     )(this.$panel)
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (!this.is('openPanel')) {
-            return false
-          }
-
-          this.closePanel()
-          return null
+      this.eventName('click'),
+      () => {
+        if (!this.is('openPanel')) {
+          return false
         }
+
+        this.closePanel()
+        return null
       },
       this.$mask
     )
     // input remove color
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.REMOVE}` },
-        handler: () => {
-          hideElement(this.$remove)
-          // this.$element.blur()
-          this.closePanel()
-          this.clear()
-        }
+      bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
+        hideElement(this.$remove)
+        // this.$element.blur()
+        this.closePanel()
+        this.clear()
       }),
-      bindEvent({
-        type: this.eventName('mouseout'),
-        identity: { type: 'selector', value: `.${this.classes.TRIGGER}` },
-        handler: () => {
-          hideElement(this.$remove)
-        }
+      bindEvent(this.eventName('mouseout'), `.${this.classes.TRIGGER}`, () => {
+        hideElement(this.$remove)
       }),
-      bindEvent({
-        type: this.eventName('mouseover'),
-        identity: { type: 'selector', value: `.${this.classes.TRIGGER}` },
-        handler: () => {
-          if (this.element.value.length > 0) {
-            if (!this.is('disabled')) {
-              this.$remove.style.display = 'inline'
-            }
+      bindEvent(this.eventName('mouseover'), `.${this.classes.TRIGGER}`, () => {
+        if (this.element.value.length > 0) {
+          if (!this.is('disabled')) {
+            this.$remove.style.display = 'inline'
           }
         }
       })
     )(this.$wrap)
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: ({ target }) => {  /* eslint-disable-line */
-          if (this.is('openPanel')) {
-            if (!this.$wrap.contains(target)) {
-              if (this.is('disabled')) {
-                return false
-              }
-              this.closePanel()
+      this.eventName('click'),
+      ({ target }) => {
+        if (this.is('openPanel')) {
+          if (!this.$wrap.contains(target)) {
+            if (this.is('disabled')) {
+              return false
             }
+            this.closePanel()
           }
         }
       },

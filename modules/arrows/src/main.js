@@ -74,45 +74,29 @@ class Arrows extends Component {
 
   bind() {
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.nextSelector}`,
-        handler: () => {
-          if (!this.is('disabled')) {
-            this.next()
-          }
-          return false
+      bindEvent(this.eventName('click'), `.${this.nextSelector}`, () => {
+        if (!this.is('disabled')) {
+          this.next()
         }
+        return false
       }),
-      bindEvent({
-        type: this.eventName('touch'),
-        identity: `.${this.nextSelector}`,
-        handler: () => {
-          if (!this.is('disabled')) {
-            this.next()
-          }
-          return false
+      bindEvent(this.eventName('touch'), `.${this.nextSelector}`, () => {
+        if (!this.is('disabled')) {
+          this.next()
         }
+        return false
       }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.prevSelector}`,
-        handler: () => {
-          if (!this.is('disabled')) {
-            this.prev()
-          }
-          return false
+      bindEvent(this.eventName('click'), `.${this.prevSelector}`, () => {
+        if (!this.is('disabled')) {
+          this.prev()
         }
+        return false
       }),
-      bindEvent({
-        type: this.eventName('touch'),
-        identity: `.${this.prevSelector}`,
-        handler: () => {
-          if (!this.is('disabled')) {
-            this.prev()
-          }
-          return false
+      bindEvent(this.eventName('touch'), `.${this.prevSelector}`, () => {
+        if (!this.is('disabled')) {
+          this.prev()
         }
+        return false
       })
     )(this.element)
     this.enter('bind')

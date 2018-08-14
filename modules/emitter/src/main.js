@@ -1,7 +1,7 @@
 export default class Emitter {
   constructor() {
     this.listeners = {}
-    this.sortedListeners = {}
+    this.namespaces = {}
   }
 
   emit(event, ...args) {
@@ -25,12 +25,12 @@ export default class Emitter {
     return true
   }
 
-  on(event, listener, context, priority) {
-    return this.addListener(event, listener, context, priority)
+  on(event, listener, context) {
+    return this.addListener(event, listener, context)
   }
 
-  once(event, listener, context, priority) {
-    return this.addOneTimeListener(event, listener, context, priority)
+  once(event, listener, context) {
+    return this.addListenerOnce(event, listener, context)
   }
 
   off(event, listener) {
@@ -41,29 +41,29 @@ export default class Emitter {
     return this.removeListener(event, listener)
   }
 
-  /* Lower numbers correspond with earlier execution,
-  /* and functions with the same priority are executed
-  /* in the order in which they were added to the action. */
-  addListener(event, listener, context = null, priority = 10) {
+  addListener(event, listener, context = null) {
     this.ensureListener(listener)
 
-    if (!this.listeners[event]) {
-      this.listeners[event] = {}
-    }
-    if (!this.listeners[event][priority]) {
-      this.listeners[event][priority] = []
+    const { eventName, namespace } = this.constructor.parseEvent(event)
+    if (!eventName) {
+      throw new Error('Event should not be null.')
     }
 
-    this.listeners[event][priority].push({
-      context,
-      listener
-    })
-    this.clearSortedListeners(event)
+    if (!this.listeners[eventName]) {
+      this.listeners[eventName] = {}
+    }
+
+    if (!namespace) {
+      this.addToEvent(eventName, context, listener)
+    } else {
+      this.addToEventWithNamespace(eventName, namespace, context, listener)
+      this.addToNamespace(eventName, namespace)
+    }
 
     return this
   }
 
-  addOneTimeListener(event, listener, context, priority = 10) {
+  addListenerOnce(event, listener, context) {
     const that = this
     function wrapper(...args) {
       that.removeListener(event, wrapper)
@@ -71,40 +71,232 @@ export default class Emitter {
       return listener(...args)
     }
 
-    this.addListener(event, wrapper, context, priority)
+    this.addListener(event, wrapper, context)
 
     return this
   }
 
   removeListener(event, listener) {
-    this.clearSortedListeners(event)
-    const listeners = this.hasListeners(event) ? this.listeners[event] : []
+    if (this.hasListeners(event)) {
+      const { eventName, namespace } = this.constructor.parseEvent(event)
 
-    for (const priority in listeners) {
-      if (Object.prototype.hasOwnProperty.call(listeners, priority)) {
-        listeners[priority] = listeners[priority].filter(
-          value => value.listener !== listener
-        )
+      switch (true) {
+        case Boolean(!namespace && eventName): {
+          this.filterListeners(eventName, '*', listener)
+          break
+        }
 
-        if (listeners[priority].length === 0) {
-          delete listeners[priority]
+        case Boolean(!eventName && namespace): {
+          const events = this.namespaces[namespace]
+          for (let i = 0; i < events.length; i++) {
+            this.filterListeners(events[i], namespace, listener)
+          }
+          for (let i = 0; i < events.length; i++) {
+            if (
+              !Object.prototype.hasOwnProperty.call(
+                this.listeners[events[i]],
+                namespace
+              )
+            ) {
+              this.removeEventInNamespaces(events[i], namespace)
+            }
+          }
+          break
+        }
+
+        case Boolean(eventName && namespace): {
+          const callback = this.removeEventInNamespaces(eventName, namespace)
+          this.filterListeners(eventName, namespace, listener, callback)
+          break
+        }
+
+        default: {
+          break
         }
       }
     }
-
-    this.listeners[event] = listeners
 
     return this
   }
 
   removeAllListeners(event) {
-    this.clearSortedListeners(event)
-
     if (this.hasListeners(event)) {
-      delete this.listeners[event]
+      const { eventName, namespace } = this.constructor.parseEvent(event)
+
+      switch (true) {
+        case Boolean(!namespace && eventName): {
+          const keys = Object.keys(this.listeners[eventName])
+          keys.forEach(key => {
+            if (Object.prototype.hasOwnProperty.call(this.namespaces, key)) {
+              this.removeEventInNamespaces(eventName, key)
+            }
+          })
+          delete this.listeners[eventName]
+          break
+        }
+
+        case Boolean(!eventName && namespace): {
+          const events = this.namespaces[namespace]
+          for (let i = 0; i < events.length; i++) {
+            delete this.listeners[events[i]][namespace]
+          }
+          delete this.namespaces[namespace]
+          break
+        }
+
+        case Boolean(eventName && namespace): {
+          this.removeEventInNamespaces(eventName, namespace)
+          delete this.listeners[eventName][namespace]
+          break
+        }
+
+        default:
+          break
+      }
     }
 
     return this
+  }
+
+  hasListeners(event) {
+    const { eventName, namespace } = this.constructor.parseEvent(event)
+    if (!namespace && eventName) {
+      if (
+        !this.listeners[eventName] ||
+        Object.keys(this.listeners[eventName]).length === 0
+      ) {
+        return false
+      }
+      return true
+    }
+
+    if (!eventName && namespace) {
+      if (
+        !this.namespaces[namespace] ||
+        Object.keys(this.namespaces[namespace]).length === 0
+      ) {
+        return false
+      }
+      return true
+    }
+
+    if (eventName && namespace) {
+      if (
+        !this.listeners[eventName] ||
+        !this.listeners[eventName][namespace] ||
+        this.listeners[eventName][namespace].length === 0
+      ) {
+        return false
+      }
+      return true
+    }
+
+    return false
+  }
+
+  getListeners(event) {
+    if (this.hasListeners(event)) {
+      const { eventName, namespace } = this.constructor.parseEvent(event)
+      let sortedListeners = []
+
+      switch (true) {
+        case Boolean(!namespace && eventName): {
+          const keys = Object.keys(this.listeners[eventName])
+          keys.forEach(key => {
+            for (let i = 0; i < this.listeners[eventName][key].length; i++) {
+              sortedListeners = sortedListeners.concat(
+                this.listeners[eventName][key][i]
+              )
+            }
+          })
+          return sortedListeners
+        }
+
+        case Boolean(!eventName && namespace): {
+          const events = this.namespaces[namespace]
+          for (let i = 0; i < events.length; i++) {
+            for (
+              let j = 0;
+              j < this.listeners[events[i]][namespace].length;
+              j++
+            ) {
+              sortedListeners = sortedListeners.concat(
+                this.listeners[events[i]][namespace][j]
+              )
+            }
+          }
+          return sortedListeners
+        }
+
+        case Boolean(eventName && namespace): {
+          const namespaces = this.listeners[eventName]
+          if (Object.prototype.hasOwnProperty.call(namespaces, namespace)) {
+            for (let i = 0; i < namespaces[namespace].length; i++) {
+              sortedListeners = sortedListeners.concat(namespaces[namespace][i])
+            }
+            return sortedListeners
+          }
+          return sortedListeners
+        }
+
+        default:
+          break
+      }
+    }
+    return []
+  }
+
+  filterListeners(eventName, namespace, listener, callback) {
+    const listeners = this.listeners[eventName]
+    listeners[namespace] = listeners[namespace].filter(
+      value => value.listener !== listener
+    )
+    if (listeners[namespace].length === 0) {
+      if (callback) {
+        callback()
+      }
+      delete listeners[namespace]
+    }
+    this.listeners[eventName] = listeners
+  }
+
+  removeEventInNamespaces(event, namespace) {
+    let i = this.namespaces[namespace].length
+    while (i--) {
+      if (this.namespaces[namespace][i] === event) {
+        this.namespaces[namespace].splice(i, 1)
+      }
+    }
+  }
+
+  addToEvent(eventName, context, listener) {
+    if (!this.listeners[eventName]['*']) {
+      this.listeners[eventName]['*'] = []
+    }
+    this.listeners[eventName]['*'].push({
+      context,
+      listener
+    })
+  }
+
+  addToEventWithNamespace(eventName, namespace, context, listener) {
+    if (!this.listeners[eventName][namespace]) {
+      this.listeners[eventName][namespace] = []
+    }
+
+    this.listeners[eventName][namespace].push({
+      context,
+      listener
+    })
+  }
+
+  addToNamespace(eventName, namespace) {
+    if (!this.namespaces[namespace]) {
+      this.namespaces[namespace] = []
+    }
+    if (!this.checkNamespace(eventName, namespace)) {
+      this.namespaces[namespace].push(eventName)
+    }
   }
 
   ensureListener(listener) {
@@ -117,44 +309,31 @@ export default class Emitter {
     )
   }
 
-  hasListeners(event) {
-    if (
-      !this.listeners[event] ||
-      Object.keys(this.listeners[event]).length === 0
-    ) {
-      return false
+  checkNamespace(eventName, namespace) {
+    for (let i = 0; i < this.namespaces[namespace].length; i++) {
+      if (this.namespaces[namespace][i] === eventName) {
+        return true
+      }
     }
-
-    return true
+    return false
   }
 
-  getListeners(event) {
-    if (!Object.prototype.hasOwnProperty.call(this.sortedListeners, event)) {
-      this.sortedListeners[event] = this.getSortedListeners(event)
+  static parseEvent(event) {
+    const delimiter = '.'
+
+    if (typeof event !== 'string') {
+      event = event.toString()
     }
 
-    return this.sortedListeners[event]
-  }
-
-  getSortedListeners(event) {
-    if (!this.hasListeners(event)) {
-      return []
+    if (event.indexOf(delimiter) === -1) {
+      const eventName = event.trim().length > 1 ? event : null
+      const namespace = null
+      return { eventName, namespace }
     }
 
-    const listeners = this.listeners[event]
-
-    const priorities = Object.keys(listeners)
-    priorities.sort((a, b) => a - b)
-
-    let sortedlisteners = []
-    for (let i = 0; i < priorities.length; i++) {
-      sortedlisteners = sortedlisteners.concat(listeners[priorities[i]])
-    }
-
-    return sortedlisteners
-  }
-
-  clearSortedListeners(event) {
-    delete this.sortedListeners[event]
+    const eventParts = event.split(delimiter)
+    const eventName = eventParts[0].trim().length === 0 ? null : eventParts[0]
+    const namespace = eventParts[1].trim().length === 0 ? null : eventParts[1]
+    return { eventName, namespace }
   }
 }

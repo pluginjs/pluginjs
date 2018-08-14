@@ -64,21 +64,17 @@ class NavToSelect extends Component {
 
   bind() {
     bindEvent(
-      {
-        type: this.eventName('change'),
-        handler: this.options.onChange.bind(this.select)
-      },
+      this.eventName('change'),
+      this.options.onChange.bind(this.select),
       this.select
     )
 
     /* fix orientation change issue */
     bindEvent(
-      {
-        type: this.eventName('orientationchange'),
-        handler: () => {
-          if (this.$select.is(':hidden') && this.$select.is(':focus')) {
-            this.select.blur()
-          }
+      this.eventName('orientationchange'),
+      () => {
+        if (this.$select.is(':hidden') && this.$select.is(':focus')) {
+          this.select.blur()
         }
       },
       document.body

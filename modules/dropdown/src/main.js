@@ -146,141 +146,90 @@ class Dropdown extends Component {
 
     if (this.options.trigger === 'hover') {
       bindEvent(
-        {
-          type: 'mouseenter',
-          handler: () => {
-            if (this.is('disabled')) {
-              return
-            }
-            this.show()
+        'mouseenter',
+        () => {
+          if (this.is('disabled')) {
             return
           }
+          this.show()
+          return
         },
         this.parent
       )
 
       bindEvent(
-        {
-          type: 'mouseleave',
-          handler: () => {
-            if (this.is('disabled')) {
-              return
-            }
-            this.hide()
+        'mouseleave',
+        () => {
+          if (this.is('disabled')) {
             return
           }
+          this.hide()
+          return
         },
         this.parent
       )
     } else {
       bindEvent(
-        {
-          type: this.options.trigger,
-          handler: e => {
-            if (this.is('disabled')) {
-              return
-            }
-
-            this.triggerUsable = true
-            this.trigger(EVENTS.TRIGGER, this, e)
-            if (!this.triggerUsable) {
-              return
-            }
-
-            if (this.options.inputLabel) {
-              this.element.focus()
-            }
-            if (this.is('focus')) {
-              return
-            }
-
-            this.toggle()
+        this.options.trigger,
+        e => {
+          if (this.is('disabled')) {
             return
           }
+
+          this.triggerUsable = true
+          this.trigger(EVENTS.TRIGGER, this, e)
+          if (!this.triggerUsable) {
+            return
+          }
+
+          if (this.options.inputLabel) {
+            this.element.focus()
+          }
+          if (this.is('focus')) {
+            return
+          }
+
+          this.toggle()
+          return
         },
         this.$triggerBox
       )
 
       if (this.element.className === 'input') {
         bindEvent(
-          {
-            type: 'focus.input',
-            handler: () => {
-              if (this.is('disabled')) {
-                return
-              }
-
-              this.enter('focus')
-              this.show()
-
-              bindEvent(
-                {
-                  type: 'keydown.tab',
-                  handler: e => {
-                    if (e.keyCode === 9) {
-                      this.hide()
-                      removeClass(this.classes.FOCUS, this.parent)
-                    }
-                  }
-                },
-                this.element
-              )
+          'focus.input',
+          () => {
+            if (this.is('disabled')) {
               return
             }
+
+            this.enter('focus')
+            this.show()
+
+            bindEvent(
+              'keydown.tab',
+              e => {
+                if (e.keyCode === 9) {
+                  this.hide()
+                  removeClass(this.classes.FOCUS, this.parent)
+                }
+              },
+              this.element
+            )
+            return
           },
           this.element
         )
         bindEvent(
-          {
-            type: 'blur.input',
-            handler: () => {
-              removeEvent('keydown.tab', this.element)
-              this.leave('focus')
-            }
+          'blur.input',
+          () => {
+            removeEvent('keydown.tab', this.element)
+            this.leave('focus')
           },
           this.element
         )
       }
     }
-    bindEvent(
-      {
-        type: 'click',
-        identity: {
-          type: 'func',
-          value: el => {
-            if (!el.matches('li')) {
-              return false
-            }
-            if (el.querySelectorAll('li').length) {
-              return false
-            }
-            return el
-          }
-        },
-        handler: e => {
-          if (that.is('disabled')) {
-            return
-          }
-          const $item = e.target
-          that.itemUsable = true
-          that.trigger(EVENTS.CLICK, this, $item)
-          if (hasClass(that.classes.SELECTMODE, that.parent)) {
-            addClass(that.classes.TRIGGERACTIVE, that.element)
-          }
-
-          if (!that.itemUsable) {
-            return
-          }
-
-          that.set($item.dataset[that.options.itemValueAttr])
-          if (that.options.hideOnSelect) {
-            that.hide()
-          }
-          return
-        }
-      },
-      this.$panel
-    )
   }
 
   unbind() {
@@ -396,24 +345,22 @@ class Dropdown extends Component {
 
     if (this.options.hideOutClick) {
       bindEvent(
-        {
-          type: 'click',
-          handler: e => {
-            if (!this.is('show')) {
-              return
-            }
-
-            const target = e.target
-            if (
-              !parentWith(hasClass(this.classes.NAMESPACE), target) &&
-              !parentWith(hasClass(this.classes.PANEL), target)
-            ) {
-              this.hide()
-              return
-            }
-            // this.hide()
+        'click',
+        e => {
+          if (!this.is('show')) {
             return
           }
+
+          const target = e.target
+          if (
+            !parentWith(hasClass(this.classes.NAMESPACE), target) &&
+            !parentWith(hasClass(this.classes.PANEL), target)
+          ) {
+            this.hide()
+            return
+          }
+          // this.hide()
+          return
         },
         window.document
       )
@@ -507,12 +454,10 @@ class Dropdown extends Component {
     // .show()
     append(this.$mark, document.body)
     bindEvent(
-      {
-        type: 'click',
-        handler: () => {
-          this.hide()
-          return
-        }
+      'click',
+      () => {
+        this.hide()
+        return
       },
       this.$mark
     )

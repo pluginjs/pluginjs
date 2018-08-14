@@ -45,15 +45,13 @@ class TopBar {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        handler: e => {
-          const id = e.target.id
-          const action = id.split('-').pop()
-          const keys = Object.keys(this.actions)
-          if (keys.indexOf(action) !== -1) {
-            this.actions[action].call(this)
-          }
+      'click',
+      e => {
+        const id = e.target.id
+        const action = id.split('-').pop()
+        const keys = Object.keys(this.actions)
+        if (keys.indexOf(action) !== -1) {
+          this.actions[action].call(this)
         }
       },
       this.topBar

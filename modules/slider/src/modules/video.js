@@ -21,11 +21,9 @@ class Video extends Base {
     this.load(this.imageEl)
 
     bindEvent(
-      {
-        type: this.instance.eventName('mousedown'),
-        handler: event => {
-          event.preventDefault()
-        }
+      this.instance.eventName('mousedown'),
+      event => {
+        event.preventDefault()
       },
       this.imageEl
     )
@@ -42,12 +40,10 @@ class Video extends Base {
 
   bind() {
     bindEvent(
-      {
-        type: this.instance.eventName('click'),
-        handler: () => {
-          if (!this.instance.swipeable.is('paning')) {
-            this.videoLoad()
-          }
+      this.instance.eventName('click'),
+      () => {
+        if (!this.instance.swipeable.is('paning')) {
+          this.videoLoad()
         }
       },
       this.element

@@ -167,65 +167,53 @@ class Carousel {
     }
 
     bindEvent(
-      {
-        type: this.api.eventName(
-          `${this.api.namespace}:${this.api.events.FILTER}`
-        ),
-        handler: e => {
-          const { showChunks, hideChunks, moveChunks } = e.detail.data[0]
+      this.api.eventName(`${this.api.namespace}:${this.api.events.FILTER}`),
+      e => {
+        const { showChunks, hideChunks, moveChunks } = e.detail.data[0]
 
-          this.swipe.itemInstances = this.getItemInstances(this.swipe)
-          this.computeItemLocation(this.swipe)
+        this.swipe.itemInstances = this.getItemInstances(this.swipe)
+        this.computeItemLocation(this.swipe)
 
-          if (hideChunks) {
-            hideChunks.forEach(chunk => {
-              chunk.hide()
-            })
-          }
-
-          if (showChunks) {
-            this.api.ANIMATE.loading(showChunks)
-          }
-
-          if (moveChunks) {
-            moveChunks.forEach(chunk => {
-              chunk.moveTo(chunk.movePosition)
-            })
-          }
-
-          this.updateSortedItems()
-          this.updatePagination()
-
-          this.swipe.moveTo(this.swipe.active)
+        if (hideChunks) {
+          hideChunks.forEach(chunk => {
+            chunk.hide()
+          })
         }
+
+        if (showChunks) {
+          this.api.ANIMATE.loading(showChunks)
+        }
+
+        if (moveChunks) {
+          moveChunks.forEach(chunk => {
+            chunk.moveTo(chunk.movePosition)
+          })
+        }
+
+        this.updateSortedItems()
+        this.updatePagination()
+
+        this.swipe.moveTo(this.swipe.active)
       },
       this.api.element
     )
 
     bindEvent(
-      {
-        type: this.api.eventName(
-          `${this.api.namespace}:${this.api.events.REVERSE}`
-        ),
-        handler: () => {
-          this.swipe.itemInstances = this.getItemInstances(this.swipe)
-          this.computeItemLocation(this.swipe)
-          this.update()
-        }
+      this.api.eventName(`${this.api.namespace}:${this.api.events.REVERSE}`),
+      () => {
+        this.swipe.itemInstances = this.getItemInstances(this.swipe)
+        this.computeItemLocation(this.swipe)
+        this.update()
       },
       this.api.element
     )
 
     bindEvent(
-      {
-        type: this.api.eventName(
-          `${this.api.namespace}:${this.api.events.SORT}`
-        ),
-        handler: () => {
-          this.swipe.itemInstances = this.api.chunks
-          this.updateSortedItems()
-          this.updatePagination()
-        }
+      this.api.eventName(`${this.api.namespace}:${this.api.events.SORT}`),
+      () => {
+        this.swipe.itemInstances = this.api.chunks
+        this.updateSortedItems()
+        this.updatePagination()
       },
       this.api.element
     )

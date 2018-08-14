@@ -15,19 +15,13 @@ class Keyboard {
       this.instance.element.setAttribute('tabindex', 0)
     }
     compose(
-      bindEvent({
-        type: this.instance.eventName('focus.keyboard'),
-        handler: () => {
-          addClass(this.instance.classes.FOCUS, this.instance.$parent)
-          this.bind()
-        }
+      bindEvent(this.instance.eventName('focus.keyboard'), () => {
+        addClass(this.instance.classes.FOCUS, this.instance.$parent)
+        this.bind()
       }),
-      bindEvent({
-        type: this.instance.eventName('blur.keyboard'),
-        handler: () => {
-          this.unbind()
-          removeClass(this.instance.classes.FOCUS, this.instance.$parent)
-        }
+      bindEvent(this.instance.eventName('blur.keyboard'), () => {
+        this.unbind()
+        removeClass(this.instance.classes.FOCUS, this.instance.$parent)
       })
     )(this.instance.element)
 

@@ -66,18 +66,16 @@ class History {
     //   }
     // }
     bindEvent(
-      {
-        type: this.instance.eventName('popstate'),
-        handler: event => {
-          const state = event.state
-          if (state && typeof state[this.instance.historyId] !== 'undefined') {
-            if (state[this.instance.historyId].index) {
-              this.instance.active(state[this.instance.historyId].index, false)
-            }
-            event.preventDefault()
-          } else {
-            this.instance.revert(false)
+      this.instance.eventName('popstate'),
+      event => {
+        const state = event.state
+        if (state && typeof state[this.instance.historyId] !== 'undefined') {
+          if (state[this.instance.historyId].index) {
+            this.instance.active(state[this.instance.historyId].index, false)
           }
+          event.preventDefault()
+        } else {
+          this.instance.revert(false)
         }
       },
       window

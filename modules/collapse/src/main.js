@@ -91,37 +91,28 @@ class Collapse extends Component {
 
   bind() {
     compose(
-      bindEvent({
-        type: this.eventName('keydown'),
-        handler: e => {
-          if (this.is('disabled')) {
-            return
-          }
-          if (e.which === 13 || e.which === 32) {
-            this.toggle()
-            e.preventDefault()
-          }
+      bindEvent(this.eventName('keydown'), e => {
+        if (this.is('disabled')) {
+          return
         }
-      }),
-      bindEvent({
-        type: this.eventName('click'),
-        handler: e => {
-          if (this.is('disabled')) {
-            return
-          }
+        if (e.which === 13 || e.which === 32) {
           this.toggle()
           e.preventDefault()
         }
       }),
-      bindEvent({
-        type: this.eventName('touch'),
-        handler: e => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.toggle()
-          e.preventDefault()
+      bindEvent(this.eventName('click'), e => {
+        if (this.is('disabled')) {
+          return
         }
+        this.toggle()
+        e.preventDefault()
+      }),
+      bindEvent(this.eventName('touch'), e => {
+        if (this.is('disabled')) {
+          return
+        }
+        this.toggle()
+        e.preventDefault()
       })
     )(this.$switch)
   }

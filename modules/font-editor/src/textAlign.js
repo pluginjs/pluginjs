@@ -79,37 +79,33 @@ export default class TextAlign {
   bind() {
     const that = this
     this.$items.map(
-      bindEvent({
-        type: 'click',
-        handler: ({ target }) => {
-          if (that.instance.is('disabled')) {
-            return null
-          }
-
-          // const align = target.dataset.textAlign
-          const align = getData('textAlign', target)
-          if (hasClass(that.instance.classes.ACTIVE, target)) {
-            removeClass(that.instance.classes.ACTIVE, target)
-            that.instance.value.textAlign = this.defaultValue
-          } else {
-            that.set(align)
-          }
-
-          switch (that.instance.value.textAlign) {
-            case 'left':
-              that.instance.value.textAlign = 'flex-start'
-              break
-            case 'center':
-              that.instance.value.textAlign = 'center'
-              break
-            case 'right':
-              that.instance.value.textAlign = 'flex-end'
-              break
-            default:
-              break
-          }
+      bindEvent('click', ({ target }) => {
+        if (that.instance.is('disabled')) {
           return null
         }
+
+        const align = getData('textAlign', target)
+        if (hasClass(that.instance.classes.ACTIVE, target)) {
+          removeClass(that.instance.classes.ACTIVE, target)
+          that.instance.value.textAlign = this.defaultValue
+        } else {
+          that.set(align)
+        }
+
+        switch (that.instance.value.textAlign) {
+          case 'left':
+            that.instance.value.textAlign = 'flex-start'
+            break
+          case 'center':
+            that.instance.value.textAlign = 'center'
+            break
+          case 'right':
+            that.instance.value.textAlign = 'flex-end'
+            break
+          default:
+            break
+        }
+        return null
       })
     )
   }

@@ -229,41 +229,37 @@ class List extends Component {
       console.log(className)
       if (v.callback) {
         bindEvent(
-          {
-            type: this.eventName(v.event),
-            identity: `${className}`,
-            handler: ({ target }) => {
-              if (this.is('disabled')) {
-                return
-              }
-              const $item = closest(`${this.classes.ITEM}`, target)
-              v.callback(
-                this,
-                $item,
-                data('index', $item),
-                data('options', $item)
-              )
+          this.eventName(v.event),
+          `${className}`,
+          ({ target }) => {
+            if (this.is('disabled')) {
+              return
             }
+            const $item = closest(`${this.classes.ITEM}`, target)
+            v.callback(
+              this,
+              $item,
+              data('index', $item),
+              data('options', $item)
+            )
           },
           this.$list
         )
       }
     })
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `${this.classes.ITEM}`,
-        handler: ({ target }) => {
-          if (this.is('disabled')) {
-            return
-          }
-          const $item = hasClass(this.classes.ITEM)
-            ? target
-            : closest(`${this.classes.ITEM}`, target)
-          const index = children(parent($item)).indexOf($item)
-
-          this.trigger(EVENTS.CLICKITEM, this.get(index), index)
+      this.eventName('click'),
+      `${this.classes.ITEM}`,
+      ({ target }) => {
+        if (this.is('disabled')) {
+          return
         }
+        const $item = hasClass(this.classes.ITEM)
+          ? target
+          : closest(`${this.classes.ITEM}`, target)
+        const index = children(parent($item)).indexOf($item)
+
+        this.trigger(EVENTS.CLICKITEM, this.get(index), index)
       },
       this.$list
     )

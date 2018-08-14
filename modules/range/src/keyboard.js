@@ -14,20 +14,16 @@ class Keyboard {
     this.instance.pointer.forEach(val => {
       val.element.setAttribute('tabindex', 0)
       bindEvent(
-        {
-          type: this.instance.eventName('focus'),
-          handler: () => {
-            this.bind(val)
-          }
+        this.instance.eventName('focus'),
+        () => {
+          this.bind(val)
         },
         val.element
       )
       bindEvent(
-        {
-          type: this.instance.eventName('blur'),
-          handler: () => {
-            this.unbind()
-          }
+        this.instance.eventName('blur'),
+        () => {
+          this.unbind()
         },
         val.element
       )

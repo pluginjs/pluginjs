@@ -23,59 +23,50 @@ class Hue {
 
   bind() {
     bindEvent(
-      {
-        type: 'mousedown',
-        handler: e => {
-          if (e.which === 2 || e.which === 3) {
-            return false
-          }
-          if (!hasClass(this.instance.classes.POINTER, e.target)) {
-            this.move(e.offsetY)
-          }
-
-          this.offset = e.pageY - this.size
-          const pointerY = parseInt(getStyle('top', this.$pointer), 10)
-
-          bindEvent(
-            {
-              type: 'mousemove',
-              // identity: { type: 'dom', value: this.$pointer },
-              handler: e => {
-                const size = e.pageY - this.offset + pointerY
-                this.move(size)
-              }
-            },
-            window.document
-          )
-
-          bindEvent(
-            {
-              type: 'mouseup',
-              handler: () => {
-                removeEvent('mousemove', window.document)
-                // removeEvent('mouseup', window.document)
-              }
-            },
-            window.document
-          )
-
-          return null
+      'mousedown',
+      e => {
+        if (e.which === 2 || e.which === 3) {
+          return false
         }
+        if (!hasClass(this.instance.classes.POINTER, e.target)) {
+          this.move(e.offsetY)
+        }
+
+        this.offset = e.pageY - this.size
+        const pointerY = parseInt(getStyle('top', this.$pointer), 10)
+
+        bindEvent(
+          'mousemove',
+          e => {
+            const size = e.pageY - this.offset + pointerY
+            this.move(size)
+          },
+          window.document
+        )
+
+        bindEvent(
+          'mouseup',
+          () => {
+            removeEvent('mousemove', window.document)
+            // removeEvent('mouseup', window.document)
+          },
+          window.document
+        )
+
+        return null
       },
       this.element
     )
 
     // global event
     bindEvent(
-      {
-        type: this.instance.eventName('colorPicker:change'),
-        handler: ({
-          detail: {
-            data: [color]
-          }
-        }) => {
-          this.position(color)
+      this.instance.eventName('colorPicker:change'),
+      ({
+        detail: {
+          data: [color]
         }
+      }) => {
+        this.position(color)
       },
       this.instance.element
     )

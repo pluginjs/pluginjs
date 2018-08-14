@@ -26,13 +26,7 @@ class Iframe extends Base {
   }
 
   bind() {
-    bindEvent(
-      {
-        type: 'load',
-        handler: this.loadHandler
-      },
-      this.iframe
-    )
+    bindEvent('load', this.loadHandler, this.iframe)
     // this.iframe.on('load', this.loadHandler)
   }
 

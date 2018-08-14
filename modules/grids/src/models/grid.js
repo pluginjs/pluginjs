@@ -92,45 +92,41 @@ class Grid {
 
   bind() {
     bindEvent(
-      {
-        type: `${this.api.namespace}:${this.api.events.RESIZED}`,
-        handler: e => {
-          if (e.detail.data[0] < this.api.minWidth) {
-            return
-          }
-
-          this.handleState()
-          this.render()
+      `${this.api.namespace}:${this.api.events.RESIZED}`,
+      e => {
+        if (e.detail.data[0] < this.api.minWidth) {
+          return
         }
+
+        this.handleState()
+        this.render()
       },
       this.api.element
     )
 
     bindEvent(
-      {
-        type: `${this.api.namespace}:${this.api.events.FILTER}`,
-        handler: e => {
-          const { showChunks, hideChunks, moveChunks } = e.detail.data[0]
+      `${this.api.namespace}:${this.api.events.FILTER}`,
+      e => {
+        const { showChunks, hideChunks, moveChunks } = e.detail.data[0]
 
-          this.handleState()
+        this.handleState()
 
-          if (hideChunks) {
-            hideChunks.forEach(chunk => {
-              chunk.hide()
-            })
-          }
+        if (hideChunks) {
+          hideChunks.forEach(chunk => {
+            chunk.hide()
+          })
+        }
 
-          if (showChunks) {
-            this.api.ANIMATE.loading(showChunks, () => {
-              this.api.setHeight(this.getHeight(this.chunksArr))
-            })
-          }
+        if (showChunks) {
+          this.api.ANIMATE.loading(showChunks, () => {
+            this.api.setHeight(this.getHeight(this.chunksArr))
+          })
+        }
 
-          if (moveChunks) {
-            moveChunks.forEach(chunk => {
-              chunk.moveTo(chunk.movePosition)
-            })
-          }
+        if (moveChunks) {
+          moveChunks.forEach(chunk => {
+            chunk.moveTo(chunk.movePosition)
+          })
         }
       },
       this.api.element

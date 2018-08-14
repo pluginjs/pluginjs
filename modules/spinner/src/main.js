@@ -206,166 +206,142 @@ class Spinner extends Component {
     this.enter('bind')
 
     bindEvent(
-      {
-        type: this.eventName('focus'),
-        handler: () => {
-          addClass(this.classes.FOCUS, this.$wrap)
-        }
+      this.eventName('focus'),
+      () => {
+        addClass(this.classes.FOCUS, this.$wrap)
       },
       this.$wrap
     )
     bindEvent(
-      {
-        type: this.eventName('blur'),
-        handler: () => {
-          removeClass(this.classes.FOCUS, this.$wrap)
-        }
+      this.eventName('blur'),
+      () => {
+        removeClass(this.classes.FOCUS, this.$wrap)
       },
       this.$wrap
     )
 
     bindEvent(
-      {
-        type: this.eventName('mousedown'),
-        handler: () => {
-          bindEventOnce(
-            {
-              type: this.eventName('mouseup'),
-              handler: () => {
-                clearTimeout(that.spinTimeout)
-              }
-            },
-            document
-          )
-          that.spin(that.spinDown)
-        }
+      this.eventName('mousedown'),
+      () => {
+        bindEventOnce(
+          {
+            type: this.eventName('mouseup'),
+            handler: () => {
+              clearTimeout(that.spinTimeout)
+            }
+          },
+          document
+        )
+        that.spin(that.spinDown)
       },
       this.$down
     )
     bindEvent(
-      {
-        type: this.eventName('mouseup'),
-        handler: () => {
-          clearTimeout(that.spinTimeout)
-          removeEvent(this.eventName('mouseup'), document)
-        }
+      this.eventName('mouseup'),
+      () => {
+        clearTimeout(that.spinTimeout)
+        removeEvent(this.eventName('mouseup'), document)
       },
       this.$down
     )
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          that.spinDown()
-        }
+      this.eventName('click'),
+      () => {
+        that.spinDown()
       },
       this.$down
     )
 
     bindEvent(
-      {
-        type: this.eventName('mousedown'),
-        handler: () => {
-          bindEventOnce(
-            {
-              type: this.eventName('mouseup'),
-              handler: () => {
-                clearTimeout(that.spinTimeout)
-              }
-            },
-            document
-          )
-          that.spin(that.spinUp)
-        }
+      this.eventName('mousedown'),
+      () => {
+        bindEventOnce(
+          {
+            type: this.eventName('mouseup'),
+            handler: () => {
+              clearTimeout(that.spinTimeout)
+            }
+          },
+          document
+        )
+        that.spin(that.spinUp)
       },
       this.$up
     )
     bindEvent(
-      {
-        type: this.eventName('mouseup'),
-        handler: () => {
-          clearTimeout(that.spinTimeout)
-          removeEvent(this.eventName('mouseup'), document)
-        }
+      this.eventName('mouseup'),
+      () => {
+        clearTimeout(that.spinTimeout)
+        removeEvent(this.eventName('mouseup'), document)
       },
       this.$up
     )
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          that.spinUp()
-        }
+      this.eventName('click'),
+      () => {
+        that.spinUp()
       },
       this.$up
     )
 
     bindEvent(
-      {
-        type: this.eventName('focus'),
-        handler: () => {
-          that.enter('focused')
-          addClass(that.classes.FOCUS, this.$wrap)
+      this.eventName('focus'),
+      () => {
+        that.enter('focused')
+        addClass(that.classes.FOCUS, this.$wrap)
 
-          // keyboard support
-          bindEvent(
-            {
-              type: this.eventName('keydown'),
-              handler: e => {
-                /* eslint consistent-return: "off"*/
-                const key = e.keyCode || e.which
-                if (key === 38) {
-                  that.applyValue()
-                  that.spinUp()
-                  return false
-                }
-                if (key === 40) {
-                  that.applyValue()
-                  that.spinDown()
-                  return false
-                }
-                if (key <= 57 && key >= 48) {
-                  setTimeout(() => {
-                    // that.set(parseFloat(it.value));
-                  }, 0)
-                }
-              }
-            },
-            this.element
-          )
-          // mousewheel support
-          bindEvent(
-            {
-              type: this.eventName('wheel'),
-              handler: () => {
-                const delta = event.deltaY
+        // keyboard support
+        bindEvent(
+          this.eventName('keydown'),
+          e => {
+            /* eslint consistent-return: "off"*/
+            const key = e.keyCode || e.which
+            if (key === 38) {
+              that.applyValue()
+              that.spinUp()
+              return false
+            }
+            if (key === 40) {
+              that.applyValue()
+              that.spinDown()
+              return false
+            }
+            if (key <= 57 && key >= 48) {
+              setTimeout(() => {
+                // that.set(parseFloat(it.value));
+              }, 0)
+            }
+          },
+          this.element
+        )
+        // mousewheel support
+        bindEvent(
+          this.eventName('wheel'),
+          () => {
+            const delta = event.deltaY
 
-                if (delta < 0) {
-                  that.spinUp()
-                } else if (delta > 0) {
-                  that.spinDown()
-                }
-              }
-            },
-            this.element
-          )
-        }
+            if (delta < 0) {
+              that.spinUp()
+            } else if (delta > 0) {
+              that.spinDown()
+            }
+          },
+          this.element
+        )
       },
       this.element
     )
 
     bindEvent(
-      {
-        type: this.eventName('blur'),
-        handler: () => {
-          that.leave('focused')
-          removeClass(that.classes.FOCUS, this.$wrap)
-          removeEvent(that.eventName('keydown'), this.element)
-          if (that.mousewheel === true) {
-            removeEvent(this.eventName('wheel'), this.element)
-          }
-          that.applyValue()
+      this.eventName('blur'),
+      () => {
+        that.leave('focused')
+        removeClass(that.classes.FOCUS, this.$wrap)
+        removeEvent(that.eventName('keydown'), this.element)
+        if (that.mousewheel === true) {
+          removeEvent(this.eventName('wheel'), this.element)
         }
+        that.applyValue()
       },
       this.element
     )

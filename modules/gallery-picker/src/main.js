@@ -105,34 +105,30 @@ class GalleryPicker extends Component {
   bind() {
     const that = this
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (that.is('disabled')) {
-            return false
-          }
-
-          const val = this.options.add.call(this)
-          this.set(val)
-          return null
+      this.eventName('click'),
+      () => {
+        if (that.is('disabled')) {
+          return false
         }
+
+        const val = this.options.add.call(this)
+        this.set(val)
+        return null
       },
       this.$empty
     )
     // add
     if (this.$fillAdd) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: () => {
-            if (that.is('disabled')) {
-              return false
-            }
-
-            const val = this.options.add.call(this)
-            this.add(val)
-            return null
+        this.eventName('click'),
+        () => {
+          if (that.is('disabled')) {
+            return false
           }
+
+          const val = this.options.add.call(this)
+          this.add(val)
+          return null
         },
         this.$fillAdd
       )
@@ -140,80 +136,62 @@ class GalleryPicker extends Component {
 
     // fill expand
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return false
-          }
-          this.open()
-          return null
+      this.eventName('click'),
+      () => {
+        if (this.is('disabled')) {
+          return false
         }
+        this.open()
+        return null
       },
       this.$fillEdit
     )
 
     // fill
     compose(
-      bindEvent({
-        type: this.eventName('mouseenter'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          addClass(this.classes.HOVER, this.$fill)
+      bindEvent(this.eventName('mouseenter'), () => {
+        if (this.is('disabled')) {
+          return
         }
+        addClass(this.classes.HOVER, this.$fill)
       }),
-      bindEvent({
-        type: this.eventName('mouseleave'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return false
-          }
-          if (this.is('holdHover')) {
-            return false
-          }
-
-          removeClass(this.classes.HOVER, this.$fill)
-          this.leave('holdHover')
-          return null
+      bindEvent(this.eventName('mouseleave'), () => {
+        if (this.is('disabled')) {
+          return false
         }
+        if (this.is('holdHover')) {
+          return false
+        }
+
+        removeClass(this.classes.HOVER, this.$fill)
+        this.leave('holdHover')
+        return null
       })
     )(this.$fill)
 
     compose(
       // change
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.ITEMRESELECT}`
-        },
-        handler: e => {
-          if (this.is('disabled')) {
-            return false
-          }
-
-          const url = this.options.change()
-          const getElementIndex = el => {
-            const parentElement = parent(el)
-            return children(parentElement).indexOf(el)
-          }
-          const index = getElementIndex(
-            parentWith(hasClass(this.classes.ITEM), e.target)
-          )
-          this.change(index, url)
-          return null
+      bindEvent(this.eventName('click'), `.${this.classes.ITEMRESELECT}`, e => {
+        if (this.is('disabled')) {
+          return false
         }
+
+        const url = this.options.change()
+        const getElementIndex = el => {
+          const parentElement = parent(el)
+          return children(parentElement).indexOf(el)
+        }
+        const index = getElementIndex(
+          parentWith(hasClass(this.classes.ITEM), e.target)
+        )
+        this.change(index, url)
+        return null
       }),
       // save
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.EXPANDSAVEBTN}`
-        },
-        handler: () => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.EXPANDSAVEBTN}`,
+        () => {
           if (this.is('disbaled')) {
             return false
           }
@@ -221,51 +199,34 @@ class GalleryPicker extends Component {
           this.close()
           return null
         }
-      }),
+      ),
       // item overlay
-      bindEvent({
-        type: this.eventName('mouseover'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.ITEM}`
-        },
-        handler: e => {
-          if (this.is('disabled')) {
-            return false
-          }
-          const target = parentWith(hasClass(this.classes.ITEM), e.target)
-          addClass(this.classes.HOVER, target)
-          return null
+      bindEvent(this.eventName('mouseover'), `.${this.classes.ITEM}`, e => {
+        if (this.is('disabled')) {
+          return false
         }
+        const target = parentWith(hasClass(this.classes.ITEM), e.target)
+        addClass(this.classes.HOVER, target)
+        return null
       }),
-      bindEvent({
-        type: this.eventName('mouseout'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.ITEM}`
-        },
-        handler: e => {
-          if (this.is('disabled')) {
-            return false
-          }
-
-          if (this.is('holdHover')) {
-            return false
-          }
-          const target = parentWith(hasClass(this.classes.ITEM), e.target)
-          removeClass(this.classes.HOVER, target)
-          this.leave('holdHover')
-          return null
+      bindEvent(this.eventName('mouseout'), `.${this.classes.ITEM}`, e => {
+        if (this.is('disabled')) {
+          return false
         }
+
+        if (this.is('holdHover')) {
+          return false
+        }
+        const target = parentWith(hasClass(this.classes.ITEM), e.target)
+        removeClass(this.classes.HOVER, target)
+        this.leave('holdHover')
+        return null
       }),
       // expand add
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.EXPANDADD}, .${this.classes.EXPANDADDBTN}`
-        },
-        handler: () => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.EXPANDADD}, .${this.classes.EXPANDADDBTN}`,
+        () => {
           if (this.is('disabled')) {
             return false
           }
@@ -273,15 +234,12 @@ class GalleryPicker extends Component {
           this.add(val)
           return null
         }
-      }),
+      ),
       // expand close
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.EXPANDCANCELBTN}`
-        },
-        handler: () => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.EXPANDCANCELBTN}`,
+        () => {
           if (this.is('disabled')) {
             return false
           }
@@ -290,7 +248,7 @@ class GalleryPicker extends Component {
           this.close()
           return null
         }
-      })
+      )
     )(this.$expandPanel)
 
     // pop event

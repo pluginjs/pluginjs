@@ -429,42 +429,30 @@ class PatternPicker extends Component {
   bind() {
     // editor
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.EDITOR}`,
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.$editPanel.openPanel()
+      bindEvent(this.eventName('click'), `.${this.classes.EDITOR}`, () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.$editPanel.openPanel()
       }),
 
       // info action hover
-      bindEvent({
-        type: 'mouseover',
-        identity: '.pj-editPanel-info',
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          addClass(this.classes.HOVER, this.$infoAction)
-        }
-      }),
-      bindEvent({
-        type: 'mouseout',
-        identity: '.pj-editPanel-info',
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          if (this.is('holdHover')) {
-            return
-          }
-          removeClass(this.classes.HOVER, this.$infoAction)
-          this.leave('holdHover')
+      bindEvent('mouseover', '.pj-editPanel-info', () => {
+        if (this.is('disabled')) {
           return
         }
+        addClass(this.classes.HOVER, this.$infoAction)
+      }),
+      bindEvent('mouseout', '.pj-editPanel-info', () => {
+        if (this.is('disabled')) {
+          return
+        }
+        if (this.is('holdHover')) {
+          return
+        }
+        removeClass(this.classes.HOVER, this.$infoAction)
+        this.leave('holdHover')
+        return
       })
     )(this.$wrap)
     // pop event
@@ -531,17 +519,15 @@ class PatternPicker extends Component {
 
     // select SVG img
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.SELECTORITEM}`,
-        handler: e => {
-          const $this = e.target
-          queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).map(
-            removeClass(this.classes.ACTIVE)
-          )
-          addClass(this.classes.ACTIVE, $this)
-          this.$selecting = $this
-        }
+      this.eventName('click'),
+      `.${this.classes.SELECTORITEM}`,
+      e => {
+        const $this = e.target
+        queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).map(
+          removeClass(this.classes.ACTIVE)
+        )
+        addClass(this.classes.ACTIVE, $this)
+        this.$selecting = $this
       },
       this.$selectorList
     )
@@ -739,23 +725,23 @@ class PatternPicker extends Component {
   }
 
   clear() {
-    setData('info', '', this.$previewImg),
-      setStyle(
-        {
-          backgroundColor: 'transparent',
-          backgroundImage: 'none'
-        },
-        this.$previewImg
-      )
+    setData('info', '', this.$previewImg)
+    setStyle(
+      {
+        backgroundColor: 'transparent',
+        backgroundImage: 'none'
+      },
+      this.$previewImg
+    )
 
-    setData('info', '', this.$infoImg),
-      setStyle(
-        {
-          backgroundColor: 'transparent',
-          backgroundImage: 'none'
-        },
-        this.$infoImg
-      )
+    setData('info', '', this.$infoImg)
+    setStyle(
+      {
+        backgroundColor: 'transparent',
+        backgroundImage: 'none'
+      },
+      this.$infoImg
+    )
 
     this.$selected = null
     this.$selecting = null

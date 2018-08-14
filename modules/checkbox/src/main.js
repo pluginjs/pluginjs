@@ -198,14 +198,12 @@ class Checkbox extends Component {
 
   bind() {
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.toggle()
+      this.eventName('click'),
+      () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.toggle()
       },
       this.$element
     )

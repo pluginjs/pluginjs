@@ -220,30 +220,26 @@ class Scrollable extends Component {
     const that = this
 
     bindEvent(
-      {
-        type: this.eventName('mouseenter'),
-        handler: () => {
-          addClass(this.classes.HOVERING, this.wrap)
-          that.enter('hovering')
-          that.trigger(EVENTS.HOVER)
-          // this.$element.trigger(EVENTS.HOVER)
-        }
+      this.eventName('mouseenter'),
+      () => {
+        addClass(this.classes.HOVERING, this.wrap)
+        that.enter('hovering')
+        that.trigger(EVENTS.HOVER)
+        // this.$element.trigger(EVENTS.HOVER)
       },
       this.wrap
     )
 
     bindEvent(
-      {
-        type: this.eventName('mouseleave'),
-        handler: () => {
-          removeClass(this.classes.HOVERING, this.wrap)
+      this.eventName('mouseleave'),
+      () => {
+        removeClass(this.classes.HOVERING, this.wrap)
 
-          if (!that.is('hovering')) {
-            return
-          }
-          that.leave('hovering')
-          that.trigger(EVENTS.HOVERED)
+        if (!that.is('hovering')) {
+          return
         }
+        that.leave('hovering')
+        that.trigger(EVENTS.HOVERED)
       },
       this.wrap
     )
@@ -252,94 +248,76 @@ class Scrollable extends Component {
       if (this.options.showOnBarHover) {
         this.$bar.forEach(bar => {
           bindEvent(
-            {
-              type: `${NAMESPACE}:hover`,
-              handler: () => {
-                if (that.horizontal) {
-                  that.showBar('horizontal')
-                }
-                if (that.vertical) {
-                  that.showBar('vertical')
-                }
+            `${NAMESPACE}:hover`,
+            () => {
+              if (that.horizontal) {
+                that.showBar('horizontal')
+              }
+              if (that.vertical) {
+                that.showBar('vertical')
               }
             },
             bar
           )
           bindEvent(
-            {
-              type: `${NAMESPACE}:hovered`,
-              handler: () => {
-                if (that.horizontal) {
-                  that.hideBar('horizontal')
-                }
-                if (that.vertical) {
-                  that.hideBar('vertical')
-                }
+            `${NAMESPACE}:hovered`,
+            () => {
+              if (that.horizontal) {
+                that.hideBar('horizontal')
+              }
+              if (that.vertical) {
+                that.hideBar('vertical')
               }
             },
             bar
           )
         })
       } else {
-        bindEvent(
-          {
-            type: `${NAMESPACE}:hover`,
-            handler: this.showBar.bind(this)
-          },
-          this.element
-        )
-        bindEvent(
-          {
-            type: `${NAMESPACE}:hovered`,
-            handler: this.hideBar.bind(this)
-          },
-          this.element
-        )
+        bindEvent(`${NAMESPACE}:hover`, this.showBar.bind(this), this.element)
+        bindEvent(`${NAMESPACE}:hovered`, this.hideBar.bind(this), this.element)
       }
     }
 
     bindEvent(
-      {
-        type: this.eventName('scroll'),
-        handler: () => {
-          if (that.horizontal) {
-            const oldLeft = that.offsetLeft
-            that.offsetLeft = that.getOffset('horizontal')
+      this.eventName('scroll'),
+      () => {
+        if (that.horizontal) {
+          const oldLeft = that.offsetLeft
+          that.offsetLeft = that.getOffset('horizontal')
 
-            if (oldLeft !== that.offsetLeft) {
-              that.trigger(
-                EVENTS.SCROLL,
-                that.getPercentOffset('horizontal'),
-                'horizontal'
-              )
+          if (oldLeft !== that.offsetLeft) {
+            that.trigger(
+              EVENTS.SCROLL,
+              that.getPercentOffset('horizontal'),
+              'horizontal'
+            )
 
-              if (that.offsetLeft === 0) {
-                that.trigger(EVENTS.SCROLLTOP, 'horizontal')
-              }
-              if (that.offsetLeft === that.getScrollLength('horizontal')) {
-                that.trigger(EVENTS.SCROLLEND, 'horizontal')
-              }
+            if (that.offsetLeft === 0) {
+              that.trigger(EVENTS.SCROLLTOP, 'horizontal')
+            }
+            if (that.offsetLeft === that.getScrollLength('horizontal')) {
+              that.trigger(EVENTS.SCROLLEND, 'horizontal')
             }
           }
+        }
 
-          if (that.vertical) {
-            const oldTop = that.offsetTop
+        if (that.vertical) {
+          const oldTop = that.offsetTop
 
-            that.offsetTop = that.getOffset('vertical')
+          that.offsetTop = that.getOffset('vertical')
 
-            if (oldTop !== that.offsetTop) {
-              that.trigger(
-                EVENTS.SCROLL,
-                that.getPercentOffset('vertical'),
-                'vertical'
-              )
+          if (oldTop !== that.offsetTop) {
+            that.trigger(
+              EVENTS.SCROLL,
+              that.getPercentOffset('vertical'),
+              'vertical'
+            )
 
-              if (that.offsetTop === 0) {
-                that.trigger(EVENTS.SCROLLTOP, 'vertical')
-              }
-              if (that.offsetTop === that.getScrollLength('vertical')) {
-                that.trigger(EVENTS.SCROLLEND, 'vertical')
-              }
+            if (that.offsetTop === 0) {
+              that.trigger(EVENTS.SCROLLTOP, 'vertical')
+            }
+            if (that.offsetTop === that.getScrollLength('vertical')) {
+              that.trigger(EVENTS.SCROLLEND, 'vertical')
             }
           }
         }
@@ -348,48 +326,40 @@ class Scrollable extends Component {
     )
 
     bindEvent(
-      {
-        type: `${NAMESPACE}:scroll`,
-        handler: e => {
-          const [value, direction] = e.detail.data
-          this.onScroll(value, direction)
-        }
+      `${NAMESPACE}:scroll`,
+      e => {
+        const [value, direction] = e.detail.data
+        this.onScroll(value, direction)
       },
       this.element
     )
 
     this.$bar.forEach(bar => {
       bindEvent(
-        {
-          type: 'scrollbar:change',
-          handler: e => {
-            const [value] = e.detail.data
-            if (isString(e.target.direction)) {
-              that.scrollTo(
-                e.target.direction,
-                convertFloatToPercentage(value),
-                false,
-                true
-              )
-            }
+        'scrollbar:change',
+        e => {
+          const [value] = e.detail.data
+          if (isString(e.target.direction)) {
+            that.scrollTo(
+              e.target.direction,
+              convertFloatToPercentage(value),
+              false,
+              true
+            )
           }
         },
         bar
       )
 
       bindEvent(
-        {
-          type: 'scrollbar:drag',
-          handler: () => addClass(this.classes.DRAGGING, that.wrap)
-        },
+        'scrollbar:drag',
+        () => addClass(this.classes.DRAGGING, that.wrap),
         bar
       )
 
       bindEvent(
-        {
-          type: 'scrollbar:dragged',
-          handler: () => removeClass(this.classes.DRAGGING, this.wrap)
-        },
+        'scrollbar:dragged',
+        () => removeClass(this.classes.DRAGGING, this.wrap),
         bar
       )
     })

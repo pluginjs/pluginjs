@@ -60,27 +60,23 @@ class Hex {
 
   bind() {
     bindEvent(
-      {
-        type: 'colorPicker:change',
-        handler: ({
-          detail: {
-            data: [color]
-          }
-        }) => {
-          query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
-          this.updateColor(this.dropdown.options.select)
+      'colorPicker:change',
+      ({
+        detail: {
+          data: [color]
         }
+      }) => {
+          query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
+        this.updateColor(this.dropdown.options.select)
       },
       this.instance.element
     )
 
     bindEvent(
-      {
-        type: this.instance.eventName('change'),
-        handler: ({ target }) => {
-          const color = target.value
-          this.update(color)
-        }
+      this.instance.eventName('change'),
+      ({ target }) => {
+        const color = target.value
+        this.update(color)
       },
       this.element
     )

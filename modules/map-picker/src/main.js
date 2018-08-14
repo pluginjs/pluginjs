@@ -377,86 +377,54 @@ class MapPicker extends Component {
   bind() {
     compose(
       // action button event
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.SAVE}`
-        },
-        handler: e => {
-          e.preventDefault()
-          this.close()
-          if (this.hasLatlng()) {
-            this.update()
-          }
+      bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, e => {
+        e.preventDefault()
+        this.close()
+        if (this.hasLatlng()) {
+          this.update()
         }
       }),
       // action button event
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.CANCEL}`
-        },
-        handler: () => this.close()
-      }),
+      bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () =>
+        this.close()
+      ),
       // fill action button event
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.FILLACTION} .${this.classes.EDIT}`
-        },
-        handler: () => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.FILLACTION} .${this.classes.EDIT}`,
+        () => {
           if (this.is('disabled')) {
             return
           }
           this.open()
         }
+      ),
+      // $fill event
+      bindEvent(this.eventName('mouseleave'), () => {
+        if (this.is('disabled')) {
+          return
+        }
+        if (this.is('holdHover')) {
+          return
+        }
+
+        removeClass(this.classes.HOVER, this.$fill)
+        this.leave('holdHover')
       }),
       // $fill event
-      bindEvent({
-        type: this.eventName('mouseleave'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          if (this.is('holdHover')) {
-            return
-          }
-
-          removeClass(this.classes.HOVER, this.$fill)
-          this.leave('holdHover')
+      bindEvent(this.eventName('mouseover'), `.${this.classes.FILL}`, () => {
+        if (this.is('disabled')) {
+          return
         }
-      }),
-      // $fill event
-      bindEvent({
-        type: this.eventName('mouseover'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.FILL}`
-        },
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
 
-          addClass(this.classes.HOVER, this.$fill)
-        }
+        addClass(this.classes.HOVER, this.$fill)
       }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.EMPTY}`
-        },
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          if (!this.is('open')) {
-            this.open()
-          }
+      bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
+        if (this.is('disabled')) {
+          return
+        }
+        if (!this.is('open')) {
+          this.open()
         }
       })
     )(this.$wrap)
@@ -471,26 +439,22 @@ class MapPicker extends Component {
     // change $lat&$lng input
     if (this.options.showLatlng) {
       bindEvent(
-        {
-          type: this.eventName('change'),
-          handler: () => {
-            const lat = this.$lat.value
-            const lng = this.$lng.value
-            this.setPosition({ lat, lng })
-          }
+        this.eventName('change'),
+        () => {
+          const lat = this.$lat.value
+          const lng = this.$lng.value
+          this.setPosition({ lat, lng })
         },
         query(`.${this.classes.LAT}`, this.$dropdown)
       )
 
       bindEvent(
-        {
-          type: this.eventName('change'),
-          handler: () => {
-            const lat = this.$lat.value
-            const lng = this.$lng.value
+        this.eventName('change'),
+        () => {
+          const lat = this.$lat.value
+          const lng = this.$lng.value
 
-            this.setPosition({ lat, lng })
-          }
+          this.setPosition({ lat, lng })
         },
         query(`.${this.classes.LNG}`, this.$dropdown)
       )

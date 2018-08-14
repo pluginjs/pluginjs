@@ -359,33 +359,31 @@ class Select extends Component {
     this.icon = this.dropdown.$icon
     if (this.options.multiple && this.options.closeAllButten) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: e => {
-            if (this.is('disabled')) {
-              return
-            }
-            e.stopPropagation()
-            // delete tag
-            this.items.forEach(item => {
-              if (item.classList.contains(this.classes.SELECTED)) {
-                this.deleteTag(item)
-              }
-            })
-            // show $label placeholder
-            removeClass(this.classes.HASBADGE, this.wrap)
-            if (!this.options.filterable) {
-              this.label.innerHTML = this.options.placeholder
-            } else {
-              this.label.setAttribute('placeholder', this.options.placeholder)
-            }
-            setStyle('width', '100%', this.label)
-            // delete selected
-            this.selected = []
-            this.resetList(this.source)
-            // hide close icon
-            this.checkIcon()
+        this.eventName('click'),
+        e => {
+          if (this.is('disabled')) {
+            return
           }
+          e.stopPropagation()
+          // delete tag
+          this.items.forEach(item => {
+            if (item.classList.contains(this.classes.SELECTED)) {
+              this.deleteTag(item)
+            }
+          })
+          // show $label placeholder
+          removeClass(this.classes.HASBADGE, this.wrap)
+          if (!this.options.filterable) {
+            this.label.innerHTML = this.options.placeholder
+          } else {
+            this.label.setAttribute('placeholder', this.options.placeholder)
+          }
+          setStyle('width', '100%', this.label)
+          // delete selected
+          this.selected = []
+          this.resetList(this.source)
+          // hide close icon
+          this.checkIcon()
         },
         this.icon
       )

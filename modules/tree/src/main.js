@@ -82,13 +82,7 @@ export default class Tree extends Component {
   }
 
   bind() {
-    bindEvent(
-      {
-        type: 'click',
-        handler: this.click.bind(this)
-      },
-      this.element
-    )
+    bindEvent('click', this.click.bind(this), this.element)
     // this.$element.on({ click: $.proxy(this.click, this) })
 
     if (this.options.keyboard) {
@@ -197,18 +191,16 @@ export default class Tree extends Component {
       }
 
       bindEvent(
-        {
-          type: 'keydown',
-          handler: e => {
-            if (this.options.multiSelect) {
-              return
-            }
-            const dir = keyCodeDir[e.keyCode]
-            if (dir) {
-              keydownCallback[dir].call(this)
-            } else {
-              return
-            }
+        'keydown',
+        e => {
+          if (this.options.multiSelect) {
+            return
+          }
+          const dir = keyCodeDir[e.keyCode]
+          if (dir) {
+            keydownCallback[dir].call(this)
+          } else {
+            return
           }
         },
         this.element

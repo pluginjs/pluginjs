@@ -213,129 +213,107 @@ class Choice extends Component {
       return false
     }
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: '[data-value]' },
-        handler: onItemClick.bind(this)
-      }),
-      bindEvent({
-        type: this.eventName('touchstart'),
-        identity: { type: 'selector', value: '[data-value]' },
-        handler: onItemClick.bind(this)
-      })
+      bindEvent(
+        this.eventName('click'),
+        '[data-value]',
+        onItemClick.bind(this)
+      ),
+      bindEvent(
+        this.eventName('touchstart'),
+        '[data-value]',
+        onItemClick.bind(this)
+      )
     )(this.$wrap)
 
     if (this.options.overflow === true) {
       compose(
-        bindEvent({
-          type: this.eventName('click'),
-          identity: { type: 'selector', value: '[data-value]' },
-          handler: onItemClick.bind(this)
-        }),
-        bindEvent({
-          type: this.eventName('touchstart'),
-          identity: { type: 'selector', value: '[data-value]' },
-          handler: onItemClick.bind(this)
-        })
+        bindEvent(
+          this.eventName('click'),
+          '[data-value]',
+          onItemClick.bind(this)
+        ),
+        bindEvent(
+          this.eventName('touchstart'),
+          '[data-value]',
+          onItemClick.bind(this)
+        )
       )(this.$dropdown)
 
       if (this.options.toggleTrigger === 'hover') {
         compose(
-          bindEvent({
-            type: this.eventName('mouseenter'),
-            handler: () => {
-              this.showDropdown()
-            }
+          bindEvent(this.eventName('mouseenter'), () => {
+            this.showDropdown()
           }),
-          bindEvent({
-            type: this.eventName('mouseleave'),
-            handler: () => {
-              setTimeout(() => {
-                if (!this.is('enterDropdown')) {
-                  this.hideDropdown()
-                }
-              }, 200)
-            }
+          bindEvent(this.eventName('mouseleave'), () => {
+            setTimeout(() => {
+              if (!this.is('enterDropdown')) {
+                this.hideDropdown()
+              }
+            }, 200)
           })
         )(this.$toggle)
         compose(
-          bindEvent({
-            type: this.eventName('mouseenter'),
-            handler: () => {
-              this.enter('enterDropdown')
-            }
+          bindEvent(this.eventName('mouseenter'), () => {
+            this.enter('enterDropdown')
           }),
-          bindEvent({
-            type: this.eventName('mouseleave'),
-            handler: () => {
-              this.leave('enterDropdown')
-              this.hideDropdown()
-            }
+          bindEvent(this.eventName('mouseleave'), () => {
+            this.leave('enterDropdown')
+            this.hideDropdown()
           })
         )(this.$dropdown)
       } else {
         compose(
-          bindEvent({
-            type: this.eventName('touchstart'),
-            handler: () => {
-              if (this.is('shown')) {
-                this.hideDropdown()
-              } else {
-                this.showDropdown()
-              }
-
-              return false
+          bindEvent(this.eventName('touchstart'), () => {
+            if (this.is('shown')) {
+              this.hideDropdown()
+            } else {
+              this.showDropdown()
             }
+
+            return false
           }),
-          bindEvent({
-            type: this.eventName('click'),
-            handler: () => {
-              if (this.is('shown')) {
-                this.hideDropdown()
-              } else {
-                this.showDropdown()
-              }
-
-              return false
+          bindEvent(this.eventName('click'), () => {
+            if (this.is('shown')) {
+              this.hideDropdown()
+            } else {
+              this.showDropdown()
             }
+
+            return false
           })
         )(this.$toggle)
       }
 
       bindEvent(
-        {
-          type: this.eventNameWithId('click'),
-          handler: event => {
-            if (event && event.which === 3) {
-              return
-            }
-
-            if (!this.is('shown')) {
-              return
-            }
-
-            if (
-              this.$dropdown === event.target ||
-              this.$wrap === event.target ||
-              this.$dropdown.contains(event.target) ||
-              this.$wrap.contains(event.target)
-            ) {
-              return
-            }
-
-            this.hideDropdown()
+        this.eventNameWithId('click'),
+        event => {
+          if (event && event.which === 3) {
+            return
           }
+
+          if (!this.is('shown')) {
+            return
+          }
+
+          if (
+            this.$dropdown === event.target ||
+            this.$wrap === event.target ||
+            this.$dropdown.contains(event.target) ||
+            this.$wrap.contains(event.target)
+          ) {
+            return
+          }
+
+          this.hideDropdown()
         },
         $doc
       )
     }
 
     bindEvent(
-      {
-        type: this.eventName('change'),
-        handler: () => {
-          this.set(this.$element.value)
-        }
+      this.eventName('change'),
+      () => {
+        this.set(this.$element.value)
       },
       this.$element
     )

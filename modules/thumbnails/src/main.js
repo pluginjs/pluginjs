@@ -217,22 +217,20 @@ class Thumbnails extends Component {
 
   bind() {
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: event => {
-          if (this.is('disable') || this.swipeable.is('paning')) {
-            return false
-          }
-
-          const target = closest(`.${this.classes.THUMB}`, event.target)
-          if (!target) {
-            return false
-          }
-
-          const index = Number(getData('index', target))
-          console.log(index)
-          return this.go(index)
+      this.eventName('click'),
+      event => {
+        if (this.is('disable') || this.swipeable.is('paning')) {
+          return false
         }
+
+        const target = closest(`.${this.classes.THUMB}`, event.target)
+        if (!target) {
+          return false
+        }
+
+        const index = Number(getData('index', target))
+
+        return this.go(index)
       },
       this.element
     )

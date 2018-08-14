@@ -90,15 +90,13 @@ class TagList extends List {
 
   listener() {
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          const val = this.$addInput.value
-          this.addItem(val)
+      this.eventName('click'),
+      () => {
+        if (this.is('disabled')) {
+          return
         }
+        const val = this.$addInput.value
+        this.addItem(val)
       },
       this.$addBtn
     )

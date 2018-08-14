@@ -472,70 +472,50 @@ class VideoPicker extends Component {
     compose(
       // const that = this;
       // info actions
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.EDITOR}`,
-        handler: () => {
-          this.$defaultDropdown.show()
-        }
+      bindEvent(this.eventName('click'), `.${this.classes.EDITOR}`, () => {
+        this.$defaultDropdown.show()
       }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.REMOVE}`,
-        handler: () => {
-          this.$defaultDropdown.hide()
-        }
+      bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
+        this.$defaultDropdown.hide()
       }),
       // info actions hover hold
-      bindEvent({
-        type: this.eventName('mouseover'),
-        identity: '.pj-videoPicker-fill',
-        handler: () => {
-          addClass(this.classes.HOVER, this.$infoAction)
-        }
+      bindEvent(this.eventName('mouseover'), '.pj-videoPicker-fill', () => {
+        addClass(this.classes.HOVER, this.$infoAction)
       }),
-      bindEvent({
-        type: this.eventName('mouseout'),
-        identity: '.pj-videoPicker-fill',
-        handler: () => {
-          if (this.is('holdHover')) {
-            return
-          }
-          removeClass(this.classes.HOVER, this.$infoAction)
+      bindEvent(this.eventName('mouseout'), '.pj-videoPicker-fill', () => {
+        if (this.is('holdHover')) {
           return
         }
+        removeClass(this.classes.HOVER, this.$infoAction)
+        return
       }),
 
       // play video
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.VIDEOACTION}`,
-        handler: () => {
-          if (!this.is('loaded')) {
-            this.loadVideo()
-            return
-          }
+      bindEvent(this.eventName('click'), `.${this.classes.VIDEOACTION}`, () => {
+        if (!this.is('loaded')) {
+          this.loadVideo()
+          return
+        }
 
-          if (!this.is('playing')) {
-            addClass(this.classes.VIDEOPLAYING, this.$videoAction)
-            this.videoApi.play()
-            this.enter('playing')
-          } else {
-            removeClass(this.classes.VIDEOPLAYING, this.$videoAction)
-            this.videoApi.pause()
-            this.leave('playing')
-            if (this.is('loaded') && this.$videoPoster) {
-              setStyle('backgroundImage', '', this.$videoPoster)
-            }
+        if (!this.is('playing')) {
+          addClass(this.classes.VIDEOPLAYING, this.$videoAction)
+          this.videoApi.play()
+          this.enter('playing')
+        } else {
+          removeClass(this.classes.VIDEOPLAYING, this.$videoAction)
+          this.videoApi.pause()
+          this.leave('playing')
+          if (this.is('loaded') && this.$videoPoster) {
+            setStyle('backgroundImage', '', this.$videoPoster)
           }
         }
       }),
 
       // input video url
-      bindEvent({
-        type: this.eventName('change'),
-        identity: `.${this.classes.VIDEOURL} input`,
-        handler: () => {
+      bindEvent(
+        this.eventName('change'),
+        `.${this.classes.VIDEOURL} input`,
+        () => {
           removeClass(this.classes.WARNING, this.$urlInput).setAttribute(
             'placeholder',
             ''
@@ -545,40 +525,32 @@ class VideoPicker extends Component {
           this.changeVideo()
           return false
         }
-      }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.VIDEOURL} i`,
-        handler: () => {
-          this.removeVideo()
-        }
+      ),
+      bindEvent(this.eventName('click'), `.${this.classes.VIDEOURL} i`, () => {
+        this.removeVideo()
       }),
 
       // local video
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.LOCALURLADD}`,
-        handler: () => {
-          this.data.url = this.options.selectLocalVideo.call(this)
-          addClass(this.classes.LOCALURLSELECTED, this.$localUrl)
-        }
+      bindEvent(this.eventName('click'), `.${this.classes.LOCALURLADD}`, () => {
+        this.data.url = this.options.selectLocalVideo.call(this)
+        addClass(this.classes.LOCALURLSELECTED, this.$localUrl)
       }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.LOCALURLDELETE}`,
-        handler: () => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.LOCALURLDELETE}`,
+        () => {
           removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
           this.removeVideo()
         }
-      }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.LOCALURLCHANGE}`,
-        handler: () => {
+      ),
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.LOCALURLCHANGE}`,
+        () => {
           this.data.url = this.options.selectLocalVideo.call(this)
           this.changeVideo()
         }
-      })
+      )
     )(this.$wrap)
 
     // change Video Source
@@ -608,44 +580,32 @@ class VideoPicker extends Component {
 
     // change poster
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.POSTERADD}`,
-        handler: () => {
+      bindEvent(this.eventName('click'), `.${this.classes.POSTERADD}`, () => {
+        this.addPoster(this.options.selectCover.call(this))
+      }),
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.POSTERCHANGE}`,
+        () => {
           this.addPoster(this.options.selectCover.call(this))
         }
-      }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.POSTERCHANGE}`,
-        handler: () => {
-          this.addPoster(this.options.selectCover.call(this))
-        }
-      }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.POSTERDELETE}`,
-        handler: () => {
+      ),
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.POSTERDELETE}`,
+        () => {
           this.deletePoster()
         }
-      })
+      )
     )(this.$wrap)
 
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.CANCEL}`,
-        handler: () => {
-          this.$defaultDropdown.hide()
-        }
+      bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
+        this.$defaultDropdown.hide()
       }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.SAVE}`,
-        handler: () => {
-          this.$defaultDropdown.hide()
-          addClass(this.classes.SHOW, this.$wrap)
-        }
+      bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
+        this.$defaultDropdown.hide()
+        addClass(this.classes.SHOW, this.$wrap)
       })
     )(this.$btnAction)
     // panel update

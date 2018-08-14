@@ -76,67 +76,57 @@ class ImagePicker extends Component {
   bind() {
     // this.$empty.on(this.eventName('click'), (e) => {
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return null
-          }
-          const $fill = this.$empty.nextElementSibling
-          const val = this.options.select.call(this)
-          if (!val) {
-            return false
-          }
-
-          addClass(`${this.classes.FADEIN}`, $fill)
-          window.setTimeout(() => {
-            removeClass(`${this.classes.FADEIN}`, $fill)
-          }, 300)
+      this.eventName('click'),
+      () => {
+        if (this.is('disabled')) {
+          return null
+        }
+        const $fill = this.$empty.nextElementSibling
+        const val = this.options.select.call(this)
+        if (!val) {
           return false
         }
+
+        addClass(`${this.classes.FADEIN}`, $fill)
+        window.setTimeout(() => {
+          removeClass(`${this.classes.FADEIN}`, $fill)
+        }, 300)
+        return false
       },
       this.$empty
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return null
-          }
-          this.options.select.call(this)
-          return false
+      this.eventName('click'),
+      () => {
+        if (this.is('disabled')) {
+          return null
         }
+        this.options.select.call(this)
+        return false
       },
       this.$reselect
     )
 
     compose(
-      bindEvent({
-        type: this.eventName('mouseenter'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return null
-          }
+      bindEvent(this.eventName('mouseenter'), () => {
+        if (this.is('disabled')) {
+          return null
+        }
 
-          addClass(this.classes.HOVER, this.$wrap)
-          return null
-        }
+        addClass(this.classes.HOVER, this.$wrap)
+        return null
       }),
-      bindEvent({
-        type: this.eventName('mouseleave'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return null
-          }
-          if (this.is('holdHover')) {
-            return false
-          }
-          removeClass(this.classes.HOVER, this.$wrap)
-          this.leave('holdHover')
+      bindEvent(this.eventName('mouseleave'), () => {
+        if (this.is('disabled')) {
           return null
         }
+        if (this.is('holdHover')) {
+          return false
+        }
+        removeClass(this.classes.HOVER, this.$wrap)
+        this.leave('holdHover')
+        return null
       })
     )(this.$wrap)
 

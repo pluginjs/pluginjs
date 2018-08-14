@@ -15,31 +15,27 @@ class Search {
 
   bind() {
     bindEvent(
-      {
-        type: this.instance.eventName('keyup.width'),
-        handler: () => {
-          this.instance.resetLabelWidth()
-          this.instance.dropdown.POPPER.scheduleUpdate()
-        }
+      this.instance.eventName('keyup.width'),
+      () => {
+        this.instance.resetLabelWidth()
+        this.instance.dropdown.POPPER.scheduleUpdate()
       },
       this.instance.label
     )
     bindEvent(
-      {
-        type: this.instance.eventName('keyup'),
-        handler: debounce(e => {
-          const $target =
-            e.target === this.instance.label
-              ? e.target
-              : parentWith(el => el === this.instance.label, e.target)
-          const value = $target.value
-          if (value === this.value) {
-            return
-          }
+      this.instance.eventName('keyup'),
+      debounce(e => {
+        const $target =
+          e.target === this.instance.label
+            ? e.target
+            : parentWith(el => el === this.instance.label, e.target)
+        const value = $target.value
+        if (value === this.value) {
+          return
+        }
 
-          this.filter(this.instance.data, $target.value)
-        }, 300)
-      },
+        this.filter(this.instance.data, $target.value)
+      }, 300),
       this.instance.label
     )
   }

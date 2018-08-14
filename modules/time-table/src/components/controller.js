@@ -80,19 +80,14 @@ class Controller {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        identity: {
-          type: 'class',
-          value: this.classes.ARROW
-        },
-        handler: e => {
-          const isNext = e.target.classList.contains(this.classes.NEXT)
-          if (isNext) {
-            this.instance.next()
-          } else {
-            this.instance.previous()
-          }
+      'click',
+      `.${this.classes.ARROW}`,
+      e => {
+        const isNext = e.target.classList.contains(this.classes.NEXT)
+        if (isNext) {
+          this.instance.next()
+        } else {
+          this.instance.previous()
         }
       },
       this.$element

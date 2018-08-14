@@ -61,25 +61,20 @@ class ScrollTo extends Component {
 
   bind() {
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: {
-          type: 'tagName',
-          value: 'li'
-        },
-        handler: event => {
-          if (this.is('disable')) {
-            return
-          }
+      this.eventName('click'),
+      'li',
+      event => {
+        if (this.is('disable')) {
+          return
+        }
 
-          const target = event.target
-          this.active(target)
+        const target = event.target
+        this.active(target)
 
-          const href = target.getAttribute(this.options.href)
+        const href = target.getAttribute(this.options.href)
 
-          if (href) {
-            this.jump(href)
-          }
+        if (href) {
+          this.jump(href)
         }
       },
       this.element

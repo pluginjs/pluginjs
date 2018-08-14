@@ -194,32 +194,26 @@ class Range extends Component {
       return
     }
     bindEvent(
-      {
-        type: this.eventName('mousedown'),
-        handler: mousedownCallback.bind(this)
-      },
+      this.eventName('mousedown'),
+      mousedownCallback.bind(this),
       this.$control
     )
     bindEvent(
-      {
-        type: this.eventName('touchstart'),
-        handler: mousedownCallback.bind(this)
-      },
+      this.eventName('touchstart'),
+      mousedownCallback.bind(this),
       this.$control
     )
 
     if (this.element.tagName.toLowerCase() === 'input') {
       bindEvent(
-        {
-          type: `${NAMESPACE}:change`,
-          handler: () => {
-            let value = this.getPointerVal()
-            if (this.options.unit) {
-              const data = this.unitsApi.get()
-              value = `${data.value}${data.unit}`
-            }
-            this.element.value = value
+        `${NAMESPACE}:change`,
+        () => {
+          let value = this.getPointerVal()
+          if (this.options.unit) {
+            const data = this.unitsApi.get()
+            value = `${data.value}${data.unit}`
           }
+          this.element.value = value
         },
         this.element
       )
@@ -227,24 +221,22 @@ class Range extends Component {
 
     this.pointer.map(p => {
       return bindEvent(
-        {
-          type: `${NAMESPACE}:move`,
-          handler: () => {
-            if (!this.is('initialized') || this.is('updating')) {
-              return false
-            }
-            if (this.data.value !== this.getPointerVal()) {
-              this.data.value = this.getPointerVal()
-
-              this.set(this.data)
-
-              if (this.cacheValue.toString() !== this.data.value.toString()) {
-                this.trigger(EVENTS.CHANGE, this.data)
-                this.cacheValue = this.data.value
-              }
-            }
+        `${NAMESPACE}:move`,
+        () => {
+          if (!this.is('initialized') || this.is('updating')) {
             return false
           }
+          if (this.data.value !== this.getPointerVal()) {
+            this.data.value = this.getPointerVal()
+
+            this.set(this.data)
+
+            if (this.cacheValue.toString() !== this.data.value.toString()) {
+              this.trigger(EVENTS.CHANGE, this.data)
+              this.cacheValue = this.data.value
+            }
+          }
+          return false
         },
         p.element
       )

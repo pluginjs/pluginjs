@@ -35,21 +35,17 @@ class Arrow {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        handler: () => {
-          this.instance.pre()
-        }
+      'click',
+      () => {
+        this.instance.pre()
       },
       this.$arrowLeft
     )
 
     bindEvent(
-      {
-        type: 'click',
-        handler: () => {
-          this.instance.next()
-        }
+      'click',
+      () => {
+        this.instance.next()
       },
       this.$arrowRight
     )

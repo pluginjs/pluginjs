@@ -106,124 +106,102 @@ class BgPicker extends Component {
   bind() {
     const that = this
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          removeClass(
-            this.classes.EXIST,
-            addClass(this.classes.EXPAND, this.$wrap)
-          )
+      this.eventName('click'),
+      () => {
+        if (this.is('disabled')) {
+          return
         }
+        removeClass(
+          this.classes.EXIST,
+          addClass(this.classes.EXPAND, this.$wrap)
+        )
       },
       this.$empty
     )
 
     compose(
-      bindEvent({
-        type: this.eventName('mouseenter'),
-        handler: ({ target }) => {
-          if (this.is('disabled')) {
-            return
-          }
+      bindEvent(this.eventName('mouseenter'), ({ target }) => {
+        if (this.is('disabled')) {
+          return
+        }
 
-          addClass(that.classes.HOVER, target)
-        }
+        addClass(that.classes.HOVER, target)
       }),
-      bindEvent({
-        type: this.eventName('mouseleave'),
-        handler: ({ target }) => {
-          if (this.is('disabled')) {
-            return null
-          }
-          if (this.is('holdHover')) {
-            return false
-          }
-          removeClass(this.classes.HOVER, target)
-          this.leave('holdHover')
+      bindEvent(this.eventName('mouseleave'), ({ target }) => {
+        if (this.is('disabled')) {
           return null
         }
+        if (this.is('holdHover')) {
+          return false
+        }
+        removeClass(this.classes.HOVER, target)
+        this.leave('holdHover')
+        return null
       }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.EDIT}`,
-        handler: () => {
-          if (this.is('disabled')) {
-            return null
-          }
-          this.oldValue = this.val()
-          removeClass(
-            this.classes.EXIST,
-            addClass(this.classes.EXPAND, this.$wrap)
-          )
+      bindEvent(this.eventName('click'), `.${this.classes.EDIT}`, () => {
+        if (this.is('disabled')) {
+          return null
+        }
+        this.oldValue = this.val()
+        removeClass(
+          this.classes.EXIST,
+          addClass(this.classes.EXPAND, this.$wrap)
+        )
 
-          return null
-        }
+        return null
       }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: `.${this.classes.REMOVE}`,
-        handler: () => {
-          if (this.is('disabled')) {
-            return null
-          }
+      bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
+        if (this.is('disabled')) {
           return null
         }
+        return null
       })
     )(this.$fill)
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return null
-          }
-
-          this.val(this.oldValue)
-          this.update()
-          removeClass(
-            this.classes.EXPAND,
-            addClass(this.classes.EXIST, this.$wrap)
-          )
-          this.$defaultDropdown.hide()
-          return false
+      this.eventName('click'),
+      () => {
+        if (this.is('disabled')) {
+          return null
         }
+
+        this.val(this.oldValue)
+        this.update()
+        removeClass(
+          this.classes.EXPAND,
+          addClass(this.classes.EXIST, this.$wrap)
+        )
+        this.$defaultDropdown.hide()
+        return false
       },
       this.$cancel
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disbaled')) {
-            return null
-          }
-
-          this.update()
-          removeClass(
-            this.classes.EXPAND,
-            addClass(this.classes.EXIST, this.$wrap)
-          )
-          this.$defaultDropdown.hide()
-          return false
+      this.eventName('click'),
+      () => {
+        if (this.is('disbaled')) {
+          return null
         }
+
+        this.update()
+        removeClass(
+          this.classes.EXPAND,
+          addClass(this.classes.EXIST, this.$wrap)
+        )
+        this.$defaultDropdown.hide()
+        return false
       },
       this.$save
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.options.select.apply(this)
+      this.eventName('click'),
+      () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.options.select.apply(this)
       },
       this.$image
     )

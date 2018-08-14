@@ -82,77 +82,71 @@ class Keyboard {
     }
 
     bindEvent(
-      {
-        type: 'keydown',
-        handler: e => {
-          const code = e.keyCode
-          const which = e.which
+      'keydown',
+      e => {
+        const code = e.keyCode
+        const which = e.which
 
-          if (this.instance.$showFonts) {
-            this.$list = this.instance.$showFonts
-          }
+        if (this.instance.$showFonts) {
+          this.$list = this.instance.$showFonts
+        }
 
-          if (code === 38 && which === 38) {
-            this.up()
-            e.preventDefault()
-          }
-          if (code === 40 && which === 40) {
-            this.down()
-            e.preventDefault()
-          }
+        if (code === 38 && which === 38) {
+          this.up()
+          e.preventDefault()
+        }
+        if (code === 40 && which === 40) {
+          this.down()
+          e.preventDefault()
         }
       },
       this.instance.$panel
     )
 
     bindEvent(
-      {
-        type: 'keydown',
-        handler: e => {
-          const code = e.keyCode
-          const which = e.which
-          if (code === 27 && which === 27) {
-            if (!this._package) {
-              this.$input.focus()
-            } else {
-              this.instance.close(this.$wrap)
-              this.unbind()
-            }
-            e.preventDefault()
+      'keydown',
+      e => {
+        const code = e.keyCode
+        const which = e.which
+        if (code === 27 && which === 27) {
+          if (!this._package) {
+            this.$input.focus()
+          } else {
+            this.instance.close(this.$wrap)
+            this.unbind()
           }
+          e.preventDefault()
         }
       },
       this.$wrap
     )
 
     bindEvent(
-      {
-        type: 'keydown',
-        handler: e => {
-          const code = e.keyCode
-          const which = e.which
+      'keydown',
+      e => {
+        const code = e.keyCode
+        const which = e.which
 
-          if (code === 27 && which === 27) {
-            removeClass(this.classes.SEARCHREADY, this.instance.$panel)
-            this.instance.leave('searchReady')
-            this.$input.blur()
-          }
-
-          if (code === 9 && which === 9) {
-            removeClass(this.classes.SEARCHREADY, this.instance.$panel)
-            this.instance.leave('searchReady')
-            this.unbind()
-            e.preventDefault()
-          }
-
-          if (code === 40 && which === 40) {
-            this.down()
-            e.preventDefault()
-          }
-
-          e.stopPropagation()
-          return false
+        if (code === 27 && which === 27) {
+          removeClass(this.classes.SEARCHREADY, this.instance.$panel)
+          this.instance.leave('searchReady')
+          this.$input.blur()
         }
+
+        if (code === 9 && which === 9) {
+          removeClass(this.classes.SEARCHREADY, this.instance.$panel)
+          this.instance.leave('searchReady')
+          this.unbind()
+          e.preventDefault()
+        }
+
+        if (code === 40 && which === 40) {
+          this.down()
+          e.preventDefault()
+        }
+
+        e.stopPropagation()
+        return false
       },
       this.$input
     )

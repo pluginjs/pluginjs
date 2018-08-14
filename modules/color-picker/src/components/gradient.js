@@ -122,39 +122,9 @@ class Gradient {
   }
   bind() {
     bindEvent(
-      {
-        type: this.instance.eventName('colorPicker:switchModule'),
-        handler: () => {
-          if (this.instance.is('gradientModule')) {
-            this.update()
-          }
-        }
-      },
-      this.instance.element
-    )
-
-    bindEvent(
-      {
-        type: 'colorPicker:change',
-        handler: () => {
-          if (this.instance.is('gradientModule')) {
-            this.update()
-          }
-        }
-      },
-      this.instance.element
-    )
-
-    bindEvent(
-      {
-        type: 'colorPicker:wheelChange',
-        handler: ({
-          detail: {
-            data: [angle]
-          }
-        }) => {
-          this.angle = Math.round(angle)
-          this.$angle.value = `${this.angle}°`
+      this.instance.eventName('colorPicker:switchModule'),
+      () => {
+        if (this.instance.is('gradientModule')) {
           this.update()
         }
       },
@@ -162,77 +132,91 @@ class Gradient {
     )
 
     bindEvent(
-      {
-        type: this.instance.eventName('mousedown'),
-        handler: e => {
-          this.addMarker(e.offsetX)
+      'colorPicker:change',
+      () => {
+        if (this.instance.is('gradientModule')) {
+          this.update()
         }
+      },
+      this.instance.element
+    )
+
+    bindEvent(
+      'colorPicker:wheelChange',
+      ({
+        detail: {
+          data: [angle]
+        }
+      }) => {
+        this.angle = Math.round(angle)
+        this.$angle.value = `${this.angle}°`
+        this.update()
+      },
+      this.instance.element
+    )
+
+    bindEvent(
+      this.instance.eventName('mousedown'),
+      e => {
+        this.addMarker(e.offsetX)
       },
       this.$actionBar
     )
 
     bindEvent(
-      {
-        type: this.instance.eventName('mousedown'),
-        identity: { type: 'selector', value: `.${this.classes.MARKER}` },
-        handler: e => {
-          if (e.which === 2 || e.which === 3) {
-            return false
-          }
-          const $this = e.target
-          const marker = getData('value', $this)
-          this.selectMarker($this)
-
-          const startX = e.pageX
-          const markerX = parseFloat(getStyle('left', $this))
-          bindEvent(
-            {
-              type: 'mousemove',
-              // identity: { type: 'dom', value: $this },
-              handler: e => {
-                const position = e.pageX - startX + markerX
-                this.move($this, position)
-
-                const percent = this.getMarkerPercent(position)
-                marker.position(percent)
-                this.sort()
-                this.update()
-                this.instance.trigger('gradientChange')
-              }
-            },
-            window.document
-          )
-          // e.preventDefault()
+      this.instance.eventName('mousedown'),
+      `.${this.classes.MARKER}`,
+      e => {
+        if (e.which === 2 || e.which === 3) {
           return false
         }
+        const $this = e.target
+        const marker = getData('value', $this)
+        this.selectMarker($this)
+
+        const startX = e.pageX
+        const markerX = parseFloat(getStyle('left', $this))
+        bindEvent(
+          'mousemove',
+          // identity: $this,
+          e => {
+            const position = e.pageX - startX + markerX
+            this.move($this, position)
+
+            const percent = this.getMarkerPercent(position)
+            marker.position(percent)
+            this.sort()
+            this.update()
+            this.instance.trigger('gradientChange')
+          },
+          window.document
+        )
+        // e.preventDefault()
+        return false
       },
       this.$actionBar
     )
 
     bindEvent(
-      {
-        type: 'mouseup',
-        handler: () => {
-          removeEvent('mousemove', window.document)
-          // removeEvent('mouseup', window.document)
-        }
+      'mouseup',
+      () => {
+        removeEvent('mousemove', window.document)
+        // removeEvent('mouseup', window.document)
       },
       window.document
     )
 
     bindEvent(
-      {
-        type: this.instance.eventName('input'),
-        handler: () => {
-          let val = parseInt(this.$angle.value, 10)
-          if (!val) {
-            val = 90
-          }
-
-          this.angle = val
-          this.WHEEL.set(this.angle)
-          this.update()
+      this.instance.eventName('input'),
+      () => {
+        let val = parseInt(this.$angle.value, 10)
+        if (!val) {
+          val = 90
         }
+
+        this.angle = val
+        this.WHEEL.set(this.angle)
+        this.update()
       },
       this.$angle
     )
@@ -249,21 +233,16 @@ class Gradient {
     //   }
     // });
     bindEvent(
-      {
-        type: this.instance.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.PANELTRIGGER}>i`
-        },
-        handler: ({ target: $this }) => {
-          if (getData('type', $this) !== 'gradient') {
-            this.markers.map((marker, i) => { /* eslint-disable-line */
-              const $item = marker.$el
-              if (hasClass(this.classes.MARKERACTIVE, $item)) {
-                this.lastActiveMarkerIndex = i
-              }
-            })
-          }
+      this.instance.eventName('click'),
+      `.${this.classes.PANELTRIGGER}>i`,
+      ({ target: $this }) => {
+        if (getData('type', $this) !== 'gradient') {
+          this.markers.map((marker, i) => {
+            const $item = marker.$el
+            if (hasClass(this.classes.MARKERACTIVE, $item)) {
+              this.lastActiveMarkerIndex = i
+            }
+          })
         }
       },
       this.instance.$panel
@@ -271,30 +250,25 @@ class Gradient {
 
     // remove marker
     bindEvent(
-      {
-        type: this.instance.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.GRADIENTREMOVE}`
-        },
-        handler: ({ target: $this }) => {
-          if (
-            this.markers.length <= 2 ||
-            !hasClass(this.classes.GRADIENTREMOVEACTIVE, $this)
-          ) {
-            return false
-          }
-
-          const $marker = this.instance.$marker
-          const index = getData('value', $marker).index
-
-          $marker.remove()
-          removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
-          this.markers.splice(index, 1)
-          this.sort()
-          this.update()
-          return null
+      this.instance.eventName('click'),
+      `.${this.classes.GRADIENTREMOVE}`,
+      ({ target: $this }) => {
+        if (
+          this.markers.length <= 2 ||
+          !hasClass(this.classes.GRADIENTREMOVEACTIVE, $this)
+        ) {
+          return false
         }
+
+        const $marker = this.instance.$marker
+        const index = getData('value', $marker).index
+
+        $marker.remove()
+        removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
+        this.markers.splice(index, 1)
+        this.sort()
+        this.update()
+        return null
       },
       this.element
     )

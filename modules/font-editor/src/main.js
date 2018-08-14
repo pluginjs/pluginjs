@@ -132,121 +132,98 @@ class FontEditor extends Component {
     const that = this
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (that.is('disabled')) {
-            return
-          }
-
-          addClass(that.classes.EXPAND, that.$wrap)
-          console.log(this.$defaultDropdown.show())
+      this.eventName('click'),
+      () => {
+        if (that.is('disabled')) {
           return
         }
+
+        addClass(that.classes.EXPAND, that.$wrap)
+        console.log(this.$defaultDropdown.show())
+        return
       },
       this.$empty
     )
 
     compose(
-      bindEvent({
-        type: this.eventName('mouseenter'),
-        handler: ({ target }) => {
-          if (that.is('disabled')) {
-            return false
-          }
+      bindEvent(this.eventName('mouseenter'), ({ target }) => {
+        if (that.is('disabled')) {
+          return false
+        }
 
-          addClass(that.classes.HOVER, target)
-          return false
-        }
+        addClass(that.classes.HOVER, target)
+        return false
       }),
-      bindEvent({
-        type: this.eventName('mouseleave'),
-        handler: ({ target }) => {
-          if (that.is('disabled')) {
-            return false
-          }
-          if (that.is('holdHover')) {
-            return false
-          }
-          removeClass(that.classes.HOVER, target)
-          that.leave('holdHover')
+      bindEvent(this.eventName('mouseleave'), ({ target }) => {
+        if (that.is('disabled')) {
           return false
         }
+        if (that.is('holdHover')) {
+          return false
+        }
+        removeClass(that.classes.HOVER, target)
+        that.leave('holdHover')
+        return false
       })
     )(this.$fill)
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (that.is('disabled')) {
-            return
-          }
-          console.log(this.$defaultDropdown)
-          // console.log(this.$defaultDropdown.show())
-          // removeClass(this.classes.EXSIT, this.$wrap)
-          addClass(that.classes.EXPAND, that.$wrap)
-          this.$defaultDropdown.show()
+      this.eventName('click'),
+      () => {
+        if (that.is('disabled')) {
           return
         }
+        console.log(this.$defaultDropdown)
+        // console.log(this.$defaultDropdown.show())
+        // removeClass(this.classes.EXSIT, this.$wrap)
+        addClass(that.classes.EXPAND, that.$wrap)
+        this.$defaultDropdown.show()
+        return
       },
       this.$editBtn
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          if (that.is('disabled')) {
-            return
-          }
-          // addClass(that.classes.EXPAND, that.$wrap)
-          this.$defaultDropdown.hide()
-          // addClass(that.classes.EXPAND, that.$wrap)
-          console.log(this.$defaultDropdown.hide())
+      this.eventName('click'),
+      () => {
+        if (that.is('disabled')) {
           return
         }
+        // addClass(that.classes.EXPAND, that.$wrap)
+        this.$defaultDropdown.hide()
+        // addClass(that.classes.EXPAND, that.$wrap)
+        console.log(this.$defaultDropdown.hide())
+        return
       },
       this.$fillRemove
     )
-    // this.$fillRemove.bindEvent({
-    // type: this.eventName('click'),
-    // handler: () => {
-    //   that.clear(true);
-    //   addClass(that.classes.WRITE, removeClass(that.classes.EXSIT, that.$wrap));
-    //   return false;
-    // });
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          removeClass(this.classes.EXPAND, this.$wrap)
-          addClass(this.classes.EXSIT, this.$wrap)
-          this.$defaultDropdown.hide()
-          return
-        }
+      this.eventName('click'),
+      () => {
+        removeClass(this.classes.EXPAND, this.$wrap)
+        addClass(this.classes.EXSIT, this.$wrap)
+        this.$defaultDropdown.hide()
+        return
       },
       this.$expandCancel
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          // if ($.isEmptyObject(that.value)) {
-          //   addClass(that.classes.WRITE, removeClass(that.classes.EXSIT, that.$wrap));
-          // }
-          addClass(this.classes.EXSIT, this.$wrap)
-          removeClass(this.classes.EXPAND, this.$wrap)
-          // hasClass(`${this.classes.WRITE}`, this.$wrap)
-          //   ? removeClass(this.classes.WRITE, this.$wrap)
-          //   : null
-          this.update()
-          this.$defaultDropdown.hide()
-          console.log(this.$defaultDropdown.hide())
-          return
-        }
+      this.eventName('click'),
+      () => {
+        // if ($.isEmptyObject(that.value)) {
+        //   addClass(that.classes.WRITE, removeClass(that.classes.EXSIT, that.$wrap));
+        // }
+        addClass(this.classes.EXSIT, this.$wrap)
+        removeClass(this.classes.EXPAND, this.$wrap)
+        // hasClass(`${this.classes.WRITE}`, this.$wrap)
+        //   ? removeClass(this.classes.WRITE, this.$wrap)
+        //   : null
+        this.update()
+        this.$defaultDropdown.hide()
+        console.log(this.$defaultDropdown.hide())
+        return
       },
       this.$expandSave
     )

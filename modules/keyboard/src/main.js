@@ -122,8 +122,6 @@ class Keyboard {
     const handler = e => this.handler(e)
     this.element.addEventListener('keydown', handler)
     this.element.addEventListener('keyup', handler)
-    // bindEvent({ type: 'keyup', handler }, this.element)
-    // bindEvent({ type: 'keydown', handler }, this.element)
   }
 
   handler(e) {

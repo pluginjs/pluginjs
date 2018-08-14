@@ -29,62 +29,56 @@ class Tip {
       if (that.opts.active === 'onMove') {
         setStyle('display', 'none', tip)
         bindEvent(
-          {
-            type: `${instance.plugin}:moveEnd`,
-            handler: () => {
-              that.hide(tip)
-              return false
-            }
+          `${instance.plugin}:moveEnd`,
+          () => {
+            that.hide(tip)
+            return false
           },
           p.element
         )
         bindEvent(
-          {
-            type: `${instance.plugin}:moveStart`,
-            handler: () => {
-              // const pointer = e.detail
-              that.show(tip)
-              return false
-            }
+          `${instance.plugin}:moveStart`,
+          () => {
+            // const pointer = e.detail
+            that.show(tip)
+            return false
           },
           p.element
         )
       }
 
       bindEvent(
-        {
-          type: `${instance.plugin}:move`,
-          handler: () => {
-            let value
-            if (instance.options.isRange) {
-              value = instance.getPointerVal()[i]
-            } else {
-              value = instance.getPointerVal()
-            }
-            if (isFunction(instance.options.format)) {
-              if (instance.options.replaceFirst && !isNumber(value)) {
-                if (isString(instance.options.replaceFirst)) {
-                  value = instance.options.replaceFirst
-                }
-                if (isObject(instance.options.replaceFirst)) {
-                  for (const key in instance.options.replaceFirst) {
-                    if (
-                      Object.prototype.hasOwnProperty.call(
-                        instance.options.replaceFirst,
-                        key
-                      )
-                    ) {
-                      value = instance.options.replaceFirst[key]
-                    }
+        `${instance.plugin}:move`,
+        () => {
+          let value
+          if (instance.options.isRange) {
+            value = instance.getPointerVal()[i]
+          } else {
+            value = instance.getPointerVal()
+          }
+          if (isFunction(instance.options.format)) {
+            if (instance.options.replaceFirst && !isNumber(value)) {
+              if (isString(instance.options.replaceFirst)) {
+                value = instance.options.replaceFirst
+              }
+              if (isObject(instance.options.replaceFirst)) {
+                for (const key in instance.options.replaceFirst) {
+                  if (
+                    Object.prototype.hasOwnProperty.call(
+                      instance.options.replaceFirst,
+                      key
+                    )
+                  ) {
+                    value = instance.options.replaceFirst[key]
                   }
                 }
-              } else if (!instance.is('units') && !instance.options.isRange) {
-                value = instance.options.format(value)
               }
+            } else if (!instance.is('units') && !instance.options.isRange) {
+              value = instance.options.format(value)
             }
-            tip.textContent = value
-            // return false
           }
+          tip.textContent = value
+          // return false
         },
         p.element
       )

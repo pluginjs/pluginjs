@@ -88,12 +88,9 @@ class Tooltip extends Component {
         this.clickTrigger = true
 
         bindEvent(
-          {
-            type: this.eventName('click'),
-            // identity: this.options.selector,
-            handler: event => {
-              this.toggle(event)
-            }
+          this.eventName('click'),
+          event => {
+            this.toggle(event)
           },
           this.element
         )
@@ -110,21 +107,17 @@ class Tooltip extends Component {
         }
 
         bindEvent(
-          {
-            type: eventIn,
-            handler: event => {
-              this._enter(event)
-            }
+          eventIn,
+          event => {
+            this._enter(event)
           },
           this.element
         )
 
         bindEvent(
-          {
-            type: eventOut,
-            handler: event => {
-              this._leave(event)
-            }
+          eventOut,
+          event => {
+            this._leave(event)
           },
           this.element
         )
@@ -274,33 +267,31 @@ class Tooltip extends Component {
 
       if (this.options.hideOutClick && this.is('shown') && this.clickTrigger) {
         bindEvent(
-          {
-            type: this.eventNameWithId('click'),
-            handler: event => {
-              if (!this.is('shown')) {
-                return
-              }
-
-              if (this._hoverState === HoverState.OUT) {
-                return
-              }
-
-              if (
-                event.target === this.$tip ||
-                this.$tip.contains(event.target)
-              ) {
-                return
-              }
-
-              if (
-                event.target === this.element ||
-                this.element.contains(event.target)
-              ) {
-                return
-              }
-
-              this.hide()
+          this.eventNameWithId('click'),
+          event => {
+            if (!this.is('shown')) {
+              return
             }
+
+            if (this._hoverState === HoverState.OUT) {
+              return
+            }
+
+            if (
+              event.target === this.$tip ||
+              this.$tip.contains(event.target)
+            ) {
+              return
+            }
+
+            if (
+              event.target === this.element ||
+              this.element.contains(event.target)
+            ) {
+              return
+            }
+
+            this.hide()
           },
           window.document
         )

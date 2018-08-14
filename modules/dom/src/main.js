@@ -1,14 +1,11 @@
-import { curry, compose, curryWith, camelize } from '@pluginjs/utils'
+import { curry, curryWith, camelize } from '@pluginjs/utils'
 import { isString, isElement, isEmptyObject } from '@pluginjs/is'
 
 export const parseHTML = (...args) => {
   const htmlString = Array.isArray(args[0])
     ? args[0].reduce((result, str, index) => result + args[index] + str)
     : args[0]
-  const childNodes = compose(
-    children,
-    html(htmlString)
-  )(document.createElement('div'))
+  const childNodes = children(html(htmlString, document.createElement('div')))
   if (childNodes.length === 1) {
     return childNodes[0]
   }

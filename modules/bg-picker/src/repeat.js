@@ -71,19 +71,17 @@ export default class Repeat {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        identity: { type: 'tagName', value: 'li' },
-        handler: ({ target }) => {
-          const el = target.tagName === 'LI' ? target : closest('LI', target)
-          if (this.instance.disabled) {
-            return null
-          }
-          const value = getData('repeat', el)
-          this.set(value)
-          // that.instance.update();
-          return false
+      'click',
+      'li',
+      ({ target }) => {
+        const el = target.tagName === 'LI' ? target : closest('LI', target)
+        if (this.instance.disabled) {
+          return null
         }
+        const value = getData('repeat', el)
+        this.set(value)
+        // that.instance.update();
+        return false
       },
       this.$repeat
     )

@@ -100,33 +100,29 @@ class Notice extends GlobalComponent {
 
   bind() {
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: event => {
-          if (!event.target.classList.contains(this.classes.CLOSE)) {
-            return
-          }
-
-          this.hide()
+      this.eventName('click'),
+      event => {
+        if (!event.target.classList.contains(this.classes.CLOSE)) {
+          return
         }
+
+        this.hide()
       },
       this.$element
     )
 
     if (this.options.buttons) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: event => {
-            if (!event.target.classList.contains(this.classes.BUTTON)) {
-              return
-            }
-            const key = data('btntype', event.target)
-            if (this.options.buttons[key].fn) {
-              this.options.buttons[key].fn()
-            }
-            this.hide()
+        this.eventName('click'),
+        event => {
+          if (!event.target.classList.contains(this.classes.BUTTON)) {
+            return
           }
+          const key = data('btntype', event.target)
+          if (this.options.buttons[key].fn) {
+            this.options.buttons[key].fn()
+          }
+          this.hide()
         },
         this.$buttons
       )
@@ -138,24 +134,20 @@ class Notice extends GlobalComponent {
       }, this.options.timeout)
 
       bindEvent(
-        {
-          type: this.eventName('mouseenter'),
-          handler: () => {
-            clearInterval(settime)
-          }
+        this.eventName('mouseenter'),
+        () => {
+          clearInterval(settime)
         },
         this.$element
       )
       bindEvent(
-        {
-          type: this.eventName('mouseleave'),
-          handler: () => {
-            settime = setTimeout(() => {
-              if (this.is('initialized')) {
-                this.hide()
-              }
-            }, this.options.timeout)
-          }
+        this.eventName('mouseleave'),
+        () => {
+          settime = setTimeout(() => {
+            if (this.is('initialized')) {
+              this.hide()
+            }
+          }, this.options.timeout)
         },
         this.$element
       )
@@ -172,11 +164,9 @@ class Notice extends GlobalComponent {
       addClass(`${this.classes.NAMESPACE}-Outbottom`, this.$element)
     }
     bindEvent(
-      {
-        type: 'animationend',
-        handler: () => {
-          this.destroy()
-        }
+      'animationend',
+      () => {
+        this.destroy()
       },
       this.$element
     )

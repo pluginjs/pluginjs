@@ -21,18 +21,16 @@ class Wheel {
   bind() {
     // reset origin
     bindEvent(
-      {
-        type: this.instance.eventName('colorPicker:switchModule'),
-        handler: ({
-          detail: {
-            data: [module]
-          }
-        }) => {
-          if (module === 'gradient') {
-            this.origin = {
-              x: offset(this.$el).left + this.r,
-              y: offset(this.$el).top + this.r
-            }
+      this.instance.eventName('colorPicker:switchModule'),
+      ({
+        detail: {
+          data: [module]
+        }
+      }) => {
+        if (module === 'gradient') {
+          this.origin = {
+            x: offset(this.$el).left + this.r,
+            y: offset(this.$el).top + this.r
           }
         }
       },
@@ -40,35 +38,25 @@ class Wheel {
     )
 
     bindEvent(
-      {
-        type: this.instance.eventName('mousedown'),
-        handler: e => {
-          this.update(e)
+      this.instance.eventName('mousedown'),
+      e => {
+        this.update(e)
 
-          bindEvent(
-            {
-              type: this.instance.eventName('mousemove'),
-              // identity: { type: 'dom', value: this.$el },
-              handler: e => {
-                this.update(e)
-              }
-            },
-            window.document
-          )
-          bindEvent(
-            {
-              type: this.instance.eventName('mouseup'),
-              handler: () => {
-                removeEvent(
-                  this.instance.eventName('mousemove'),
-                  window.document
-                )
-                // removeEvent(this.instance.eventName('mouseup'), window.document)
-              }
-            },
-            window.document
-          )
-        }
+        bindEvent(
+          this.instance.eventName('mousemove'),
+          e => {
+            this.update(e)
+          },
+          window.document
+        )
+        bindEvent(
+          this.instance.eventName('mouseup'),
+          () => {
+            removeEvent(this.instance.eventName('mousemove'), window.document)
+            // removeEvent(this.instance.eventName('mouseup'), window.document)
+          },
+          window.document
+        )
       },
       this.$el
     )

@@ -319,17 +319,11 @@ class Slider extends Component {
     }
 
     compose(
-      bindEvent({
-        type: 'arrows:next',
-        handler: () => {
-          this.next()
-        }
+      bindEvent('arrows:next', () => {
+        this.next()
       }),
-      bindEvent({
-        type: 'arrows:prev',
-        handler: () => {
-          this.prev()
-        }
+      bindEvent('arrows:prev', () => {
+        this.prev()
       })
     )(this.arrows.element)
   }

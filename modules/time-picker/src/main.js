@@ -127,40 +127,26 @@ class TimePicker extends Component {
     )
     insertAfter(this.$remove, this.dropdown.element)
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.REMOVE}` },
-        handler: () => {
-          hideElement(this.$remove)
-          this.dropdown.set('')
-          this.time = ''
-          return false
-        }
+      bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
+        hideElement(this.$remove)
+        this.dropdown.set('')
+        this.time = ''
+        return false
       }),
-      bindEvent({
-        type: this.eventName('mouseout'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.DROPDOWN}`
-        },
-        handler: () => {
-          hideElement(this.$remove)
-        }
+      bindEvent(this.eventName('mouseout'), `.${this.classes.DROPDOWN}`, () => {
+        hideElement(this.$remove)
       }),
-      bindEvent({
-        type: this.eventName('mouseover'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.DROPDOWN}`
-        },
-        handler: () => {
+      bindEvent(
+        this.eventName('mouseover'),
+        `.${this.classes.DROPDOWN}`,
+        () => {
           if (hasClass('pj-dropdown-trigger-active', this.$timeTrigger)) {
             if (!this.is('disabled')) {
               this.$remove.style.display = 'block'
             }
           }
         }
-      })
+      )
     )(this.$wrap)
     // this.dropdown = this.$dropdownEl.asDropdown(dropdownConf).data('dropdown')
   }
@@ -300,47 +286,39 @@ class TimePicker extends Component {
 
   bind() {
     bindEvent(
-      {
-        type: 'dropdown:change',
-        handler: () => {
-          this.trigger(EVENTS.CHANGE, this.dropdown.get())
-        }
+      'dropdown:change',
+      () => {
+        this.trigger(EVENTS.CHANGE, this.dropdown.get())
       },
       this.$dropdownEl
     )
     bindEvent(
-      {
-        type: 'dropdown:show',
-        handler: () => {
-          this.correctionScrollTop()
-        }
+      'dropdown:show',
+      () => {
+        this.correctionScrollTop()
       },
       this.$dropdownEl
     )
     bindEvent(
-      {
-        type: this.eventName('change'),
-        handler: () => { /* eslint-disable-line */
-          const time = this.$inputEl.value.trim()
-          const timeList = this.getTimeList()
-          if (timeList.indexOf(time) < 0) {
-            this.dropdown.set(this.time)
-            return false
-          }
-          this.dropdown.set(time)
+      this.eventName('change'),
+      () => {
+        const time = this.$inputEl.value.trim()
+        const timeList = this.getTimeList()
+        if (timeList.indexOf(time) < 0) {
+          this.dropdown.set(this.time)
+          return false
         }
+        this.dropdown.set(time)
       },
       this.$inputEl
     )
 
     bindEvent(
-      {
-        type: `${NAMESPACE}:change`,
-        handler: e => {
-          const [value] = e.detail.data
-          this.markIndex = this.itemValues.indexOf(value)
-          this.update(value)
-        }
+      `${NAMESPACE}:change`,
+      e => {
+        const [value] = e.detail.data
+        this.markIndex = this.itemValues.indexOf(value)
+        this.update(value)
       },
       this.element
     )

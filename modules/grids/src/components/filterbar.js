@@ -104,11 +104,9 @@ class Filterbar {
     }
 
     bindEvent(
-      {
-        type: this.api.eventName('click'),
-        handler: () => {
-          this.api.reverse()
-        }
+      this.api.eventName('click'),
+      () => {
+        this.api.reverse()
       },
       this.$reverse
     )

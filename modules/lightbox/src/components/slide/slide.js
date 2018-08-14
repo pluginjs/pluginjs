@@ -147,19 +147,17 @@ class Slide {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        handler: event => {
-          if (!this.instance.drap) {
-            const target = event.target
-            if (hasClass(this.classes.IMAGE, target)) {
-              if (this.options.clickImageClose) {
-                this.instance.close()
-              }
-            } else if (hasClass(this.classes.ITEMINNER, target)) {
-              if (this.options.clickBgClose) {
-                this.instance.close()
-              }
+      'click',
+      event => {
+        if (!this.instance.drap) {
+          const target = event.target
+          if (hasClass(this.classes.IMAGE, target)) {
+            if (this.options.clickImageClose) {
+              this.instance.close()
+            }
+          } else if (hasClass(this.classes.ITEMINNER, target)) {
+            if (this.options.clickBgClose) {
+              this.instance.close()
             }
           }
         }

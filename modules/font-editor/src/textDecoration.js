@@ -61,24 +61,21 @@ export default class TextDecoration {
   bind() {
     const that = this
     this.$items.map(
-      bindEvent({
-        type: 'click',
-        handler: ({ target }) => {
-          if (that.instance.is('disabled')) {
-            return null
-          }
-
-          const decoration = target.dataset.textDecoration
-          if (hasClass(that.instance.classes.ACTIVE, target)) {
-            removeClass(that.instance.classes.ACTIVE, target)
-            that.instance.value.textDecoration =
-              that.instance.options.textDecoration.defaultValue
-          } else {
-            that.set(decoration)
-          }
-
+      bindEvent('click', ({ target }) => {
+        if (that.instance.is('disabled')) {
           return null
         }
+
+        const decoration = target.dataset.textDecoration
+        if (hasClass(that.instance.classes.ACTIVE, target)) {
+          removeClass(that.instance.classes.ACTIVE, target)
+          that.instance.value.textDecoration =
+            that.instance.options.textDecoration.defaultValue
+        } else {
+          that.set(decoration)
+        }
+
+        return null
       })
     )
   }

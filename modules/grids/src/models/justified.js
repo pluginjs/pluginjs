@@ -98,62 +98,50 @@ class Justified {
 
   bind() {
     bindEvent(
-      {
-        type: this.api.eventName(
-          `${this.api.namespace}:${this.api.events.RESIZED}`
-        ),
-        handler: e => {
-          if (e.detail.data[0] < this.api.minWidth) {
-            return
-          }
-          this.handleState()
-          this.render()
+      this.api.eventName(`${this.api.namespace}:${this.api.events.RESIZED}`),
+      e => {
+        if (e.detail.data[0] < this.api.minWidth) {
+          return
+        }
+        this.handleState()
+        this.render()
+      },
+      this.api.element
+    )
+
+    bindEvent(
+      this.api.eventName(`${this.api.namespace}:${this.api.events.FILTER}`),
+      e => {
+        const { showChunks, hideChunks, moveChunks } = e.detail.data[0]
+
+        this.handleState()
+        this.api.setHeight(this.getHeight())
+
+        if (hideChunks) {
+          hideChunks.forEach(chunk => {
+            chunk.hide()
+          })
+        }
+
+        if (showChunks) {
+          showChunks.forEach(chunk => {
+            chunk.show()
+          })
+        }
+
+        if (moveChunks) {
+          moveChunks.forEach(chunk => {
+            chunk.moveTo(chunk.movePosition)
+          })
         }
       },
       this.api.element
     )
 
     bindEvent(
-      {
-        type: this.api.eventName(
-          `${this.api.namespace}:${this.api.events.FILTER}`
-        ),
-        handler: e => {
-          const { showChunks, hideChunks, moveChunks } = e.detail.data[0]
-
-          this.handleState()
-          this.api.setHeight(this.getHeight())
-
-          if (hideChunks) {
-            hideChunks.forEach(chunk => {
-              chunk.hide()
-            })
-          }
-
-          if (showChunks) {
-            showChunks.forEach(chunk => {
-              chunk.show()
-            })
-          }
-
-          if (moveChunks) {
-            moveChunks.forEach(chunk => {
-              chunk.moveTo(chunk.movePosition)
-            })
-          }
-        }
-      },
-      this.api.element
-    )
-
-    bindEvent(
-      {
-        type: this.api.eventName(
-          `${this.api.namespace}:${this.api.events.SORT}`
-        ),
-        handler: () => {
-          this.api.setHeight(this.getHeight())
-        }
+      this.api.eventName(`${this.api.namespace}:${this.api.events.SORT}`),
+      () => {
+        this.api.setHeight(this.getHeight())
       },
       this.api.element
     )

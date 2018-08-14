@@ -397,12 +397,10 @@ class GradientPicker extends Component {
   bind() {
     // editor
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.EDITOR}` },
-        handler: () => {
-          this.$editPanel.openPanel()
-        }
+      this.eventName('click'),
+      `.${this.classes.EDITOR}`,
+      () => {
+        this.$editPanel.openPanel()
       },
       this.$wrap
     )
@@ -417,27 +415,23 @@ class GradientPicker extends Component {
     }
     // info hover
     bindEvent(
-      {
-        type: this.eventName('mouseover'),
-        identity: { type: 'selector', value: '.pj-editPanel-info' },
-        handler: () => {
-          addClass(this.classes.HOVER, this.$infoAction)
-        }
+      this.eventName('mouseover'),
+      '.pj-editPanel-info',
+      () => {
+        addClass(this.classes.HOVER, this.$infoAction)
       },
       this.$wrap
     )
     bindEvent(
-      {
-        type: this.eventName('mouseout'),
-        identity: { type: 'selector', value: '.pj-editPanel-info' },
-        handler: () => {
-          if (this.is('holdHover')) {
-            return false
-          }
-          removeClass(this.classes.HOVER, this.$infoAction)
-          this.leave('holdHover')
-          return null
+      this.eventName('mouseout'),
+      '.pj-editPanel-info',
+      () => {
+        if (this.is('holdHover')) {
+          return false
         }
+        removeClass(this.classes.HOVER, this.$infoAction)
+        this.leave('holdHover')
+        return null
       },
       this.$wrap
     )
@@ -452,18 +446,16 @@ class GradientPicker extends Component {
 
     // select background color
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.SELECTORITEM}` },
-        handler: e => {
-          const $this = e.target
-          queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).map(
-            removeClass(this.classes.ACTIVE)
-          )
-          addClass(this.classes.ACTIVE, $this)
-          this.$selected = $this
-          this.data.name = name
-        }
+      this.eventName('click'),
+      `.${this.classes.SELECTORITEM}`,
+      e => {
+        const $this = e.target
+        queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).map(
+          removeClass(this.classes.ACTIVE)
+        )
+        addClass(this.classes.ACTIVE, $this)
+        this.$selected = $this
+        this.data.name = name
       },
       this.$selectorList
     )

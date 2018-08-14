@@ -90,19 +90,17 @@ class SectionScroll extends Component {
 
   onMousewheel() {
     bindEvent(
-      {
-        type: this.eventName('mousewheel'),
-        handler: e => {
-          e.preventDefault()
+      this.eventName('mousewheel'),
+      e => {
+        e.preventDefault()
 
-          const value = event.wheelDelta || -event.detail
-          const delta = Math.max(-1, Math.min(1, value))
+        const value = event.wheelDelta || -event.detail
+        const delta = Math.max(-1, Math.min(1, value))
 
-          if (delta > 0) {
-            this.previous()
-          } else if (delta < 0) {
-            this.next()
-          }
+        if (delta > 0) {
+          this.previous()
+        } else if (delta < 0) {
+          this.next()
         }
       },
       document.body
@@ -115,14 +113,12 @@ class SectionScroll extends Component {
 
   bindKeydown() {
     bindEvent(
-      {
-        type: this.eventName('keydown'),
-        handler: event => {
-          if (event.keyCode === 38) {
-            this.previous()
-          } else if (event.keyCode === 40) {
-            this.next()
-          }
+      this.eventName('keydown'),
+      event => {
+        if (event.keyCode === 38) {
+          this.previous()
+        } else if (event.keyCode === 40) {
+          this.next()
         }
       },
       document.body

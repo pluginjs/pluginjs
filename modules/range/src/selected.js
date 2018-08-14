@@ -10,18 +10,16 @@ class Selected {
     addClass(instance.classes.SELECTED, this.$arrow)
     if (instance.options.isRange === false) {
       bindEvent(
-        {
-          type: `${instance.plugin}:move`,
-          handler: e => {
-            const pointer = e.detail
-            setStyle(
-              {
-                left: 0,
-                width: `${pointer.getPercent()}%`
-              },
-              this.$arrow
-            )
-          }
+        `${instance.plugin}:move`,
+        e => {
+          const pointer = e.detail
+          setStyle(
+            {
+              left: 0,
+              width: `${pointer.getPercent()}%`
+            },
+            this.$arrow
+          )
         },
         instance.p1.element
       )
@@ -47,20 +45,8 @@ class Selected {
         )
       }
 
-      bindEvent(
-        {
-          type: `${instance.plugin}:move`,
-          handler: onUpdate
-        },
-        instance.p1.element
-      )
-      bindEvent(
-        {
-          type: `${instance.plugin}:move`,
-          handler: onUpdate
-        },
-        instance.p2.element
-      )
+      bindEvent(`${instance.plugin}:move`, onUpdate, instance.p1.element)
+      bindEvent(`${instance.plugin}:move`, onUpdate, instance.p2.element)
     }
   }
 

@@ -108,14 +108,8 @@ class AdaptText extends Component {
       })
     }
     compose(
-      bindEvent({
-        type: this.eventName('mouseleave'),
-        handler: mouseleaveHandle
-      }),
-      bindEvent({
-        type: this.eventName('mouseenter'),
-        handler: mouseenterHandle
-      }),
+      bindEvent(this.eventName('mouseleave'), mouseleaveHandle),
+      bindEvent(this.eventName('mouseenter'), mouseenterHandle),
       setStyle({
         overflow: 'hidden',
         textOverflow: 'ellipsis',

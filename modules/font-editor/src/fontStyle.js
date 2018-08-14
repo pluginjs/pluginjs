@@ -43,22 +43,20 @@ export default class FontStyle {
   bind() {
     const that = this
     bindEvent(
-      {
-        type: 'click',
-        handler: () => {
-          if (that.instance.is('disabled')) {
-            return this
-          }
-          const $this = $(this) /* eslint-disable-line */
-          if (that.instance.value.fontStyle === 'normal') {
-            that.instance.value.fontStyle = 'italic'
-            addClass(that.instance.classes.ACTIVE, $this)
-          } else {
-            that.instance.value.fontStyle = 'normal'
-            removeClass(that.instance.classes.ACTIVE, $this)
-          }
-          return null
+      'click',
+      () => {
+        if (that.instance.is('disabled')) {
+          return this
         }
+          const $this = $(this) /* eslint-disable-line */
+        if (that.instance.value.fontStyle === 'normal') {
+          that.instance.value.fontStyle = 'italic'
+          addClass(that.instance.classes.ACTIVE, $this)
+        } else {
+          that.instance.value.fontStyle = 'normal'
+          removeClass(that.instance.classes.ACTIVE, $this)
+        }
+        return null
       },
       this.$FontStyle
     )

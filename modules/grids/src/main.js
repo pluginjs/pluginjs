@@ -416,12 +416,8 @@ class Grids extends Component {
       this.trigger(this.events.RESIZED, this.width)
     })
 
-    bindEvent({
-      type: this.eventName('click'),
-      identity: `.${this.classes.CHUNK}`,
-      handler: e => {
-        this.trigger(EVENTS.CHUNKCLICK, e.currentTarget)
-      }
+    bindEvent(this.eventName('click'), `.${this.classes.CHUNK}`, e => {
+      this.trigger(EVENTS.CHUNKCLICK, e.currentTarget)
     })
   }
 

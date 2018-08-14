@@ -166,122 +166,97 @@ class BeforeAfter extends Component {
   bind() {
     if (this.options.mouseDrag) {
       bindEvent(
-        {
-          type: this.eventName('mousedown'),
-          handler: this.onDragStart.bind(this)
-        },
+        this.eventName('mousedown'),
+        this.onDragStart.bind(this),
         this.$handle
       )
       bindEvent(
-        {
-          type: this.eventName('dragstart selectstart'),
-          handler: () => false
-        },
+        this.eventName('dragstart selectstart'),
+        () => false,
         this.$handle
       )
     }
 
     if (this.options.touchDrag && touch) {
       bindEvent(
-        {
-          type: this.eventName('touchstart'),
-          handler: this.onDragStart.bind(this)
-        },
+        this.eventName('touchstart'),
+        this.onDragStart.bind(this),
         this.$handle
       )
       bindEvent(
-        {
-          type: this.eventName('touchcancel'),
-          handler: this.onDragEnd.bind(this)
-        },
+        this.eventName('touchcancel'),
+        this.onDragEnd.bind(this),
         this.$handle
       )
     }
 
     if (this.options.pointerDrag && pointer) {
       bindEvent(
-        {
-          type: this.eventName(pointerEvent('pointerdown')),
-          handler: this.onDragStart.bind(this)
-        },
+        this.eventName(pointerEvent('pointerdown')),
+        this.onDragStart.bind(this),
         this.$handle
       )
       bindEvent(
-        {
-          type: this.eventName(pointerEvent('pointercancel')),
-          handler: this.onDragEnd.bind(this)
-        },
+        this.eventName(pointerEvent('pointercancel')),
+        this.onDragEnd.bind(this),
         this.$handle
       )
     }
 
     if (this.options.clickMove) {
       bindEvent(
-        {
-          type: this.eventName('mousedown'),
-          handler: this.onClick.bind(this)
-        },
+        this.eventName('mousedown'),
+        this.onClick.bind(this),
         this.element
       )
     }
 
     bindEvent(
-      {
-        type: this.eventName('mouseenter'),
-        handler: () => {
-          addClass(this.classes.HOVERING, this.element)
-          this.enter('hovering')
-          this.trigger(EVENTS.HOVER)
-        }
+      this.eventName('mouseenter'),
+      () => {
+        addClass(this.classes.HOVERING, this.element)
+        this.enter('hovering')
+        this.trigger(EVENTS.HOVER)
       },
       this.element
     )
 
     bindEvent(
-      {
-        type: this.eventName('mouseleave'),
-        handler: () => {
-          removeClass(this.classes.HOVERING, this.element)
+      this.eventName('mouseleave'),
+      () => {
+        removeClass(this.classes.HOVERING, this.element)
 
-          if (!this.is('hovering')) {
-            return
-          }
-          this.leave('hovering')
-          this.trigger(EVENTS.HOVERED)
+        if (!this.is('hovering')) {
+          return
         }
+        this.leave('hovering')
+        this.trigger(EVENTS.HOVERED)
       },
       this.element
     )
 
     if (this.options.labels) {
       bindEvent(
-        {
-          type: 'beforeAfter:change',
-          handler: ({
-            detail: {
-              instance,
-              data: [position]
+        'beforeAfter:change',
+        (e, instance, position) => {
+          if (position < 0.25) {
+            if (!instance.is('labelBeforeHide')) {
+              addClass(instance.classes.LABELHIDE, instance.$labelBefore)
+              instance.enter('labelBeforeHide')
             }
-          }) => {
-            if (position < 0.25) {
-              if (!instance.is('labelBeforeHide')) {
-                addClass(instance.classes.LABELHIDE, instance.$labelBefore)
-                instance.enter('labelBeforeHide')
-              }
-            } else if (instance.is('labelBeforeHide')) {
-              removeClass(instance.classes.LABELHIDE, instance.$labelBefore)
-              instance.leave('labelBeforeHide')
-            }
+          } else if (instance.is('labelBeforeHide')) {
+            removeClass(instance.classes.LABELHIDE, instance.$labelBefore)
+            instance.leave('labelBeforeHide')
+          }
 
-            if (position > 0.75) {
-              if (!instance.is('labelAfterHide')) {
-                addClass(instance.classes.LABELHIDE, instance.$labelAfter)
-                instance.enter('labelAfterHide')
-              }
-            } else if (instance.is('labelAfterHide')) {
-              removeClass(instance.classes.LABELHIDE, instance.$labelAfter)
-              instance.leave('labelAfterHide')
+          if (position > 0.75) {
+            if (!instance.is('labelAfterHide')) {
+              addClass(instance.classes.LABELHIDE, instance.$labelAfter)
+              instance.enter('labelAfterHide')
             }
+          } else if (instance.is('labelAfterHide')) {
+            removeClass(instance.classes.LABELHIDE, instance.$labelAfter)
+            instance.leave('labelAfterHide')
           }
         },
         this.element
@@ -342,75 +317,52 @@ class BeforeAfter extends Component {
 
     if (this.options.mouseDrag) {
       compose(
-        bindEvent({
-          type: this.eventName('mousemove'),
-          handler: () => {
-            bindEvent(
-              {
-                type: this.eventName('mousemove'),
-                handler: this.onDragMove.bind(this)
-              },
-              window.document
-            )
-            callback()
-          }
+        bindEvent(this.eventName('mousemove'), () => {
+          bindEvent(
+            this.eventName('mousemove'),
+            this.onDragMove.bind(this),
+            window.document
+          )
+          callback()
         }),
-        bindEvent({
-          type: this.eventName('mouseup'),
-          handler: this.onDragEnd.bind(this)
-        })
+        bindEvent(this.eventName('mouseup'), this.onDragEnd.bind(this))
       )(window.document)
     }
 
     if (this.options.touchDrag && touch) {
       compose(
-        bindEvent({
-          type: this.eventName('touchmove'),
-          handler: () => {
-            bindEvent(
-              {
-                type: this.eventName('touchmove'),
-                handler: this.onDragMove.bind(this)
-              },
-              window.document
-            )
-            callback()
-          }
+        bindEvent(this.eventName('touchmove'), () => {
+          bindEvent(
+            this.eventName('touchmove'),
+            this.onDragMove.bind(this),
+            window.document
+          )
+          callback()
         }),
-        bindEvent({
-          type: this.eventName('touchend'),
-          handler: this.onDragEnd.bind(this)
-        })
+        bindEvent(this.eventName('touchend'), this.onDragEnd.bind(this))
       )(window.document)
     }
 
     if (this.options.pointerDrag && pointer) {
       compose(
-        bindEvent({
-          type: this.eventName(pointerEvent('pointermove')),
-          handler: () => {
-            bindEvent(
-              {
-                type: this.eventName(pointerEvent('pointermove')),
-                handler: this.onDragMove.bind(this)
-              },
-              window.document
-            )
-            callback()
-          }
+        bindEvent(this.eventName(pointerEvent('pointermove')), () => {
+          bindEvent(
+            this.eventName(pointerEvent('pointermove')),
+            this.onDragMove.bind(this),
+            window.document
+          )
+          callback()
         }),
-        bindEvent({
-          type: this.eventName(pointerEvent('pointerup')),
-          handler: this.onDragEnd.bind(this)
-        })
+        bindEvent(
+          this.eventName(pointerEvent('pointerup')),
+          this.onDragEnd.bind(this)
+        )
       )(window.document)
     }
 
     bindEvent(
-      {
-        type: this.eventName('blur'),
-        handler: this.onDragEnd.bind(this)
-      },
+      this.eventName('blur'),
+      this.onDragEnd.bind(this),
       window.document
     )
   }

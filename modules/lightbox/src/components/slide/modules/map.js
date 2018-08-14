@@ -24,13 +24,7 @@ class Map extends Base {
   }
 
   bind() {
-    bindEvent(
-      {
-        type: 'load',
-        handler: this.loadHandler
-      },
-      this.map
-    )
+    bindEvent('load', this.loadHandler, this.map)
     // this.map.on('load', this.loadHandler)
   }
 

@@ -175,20 +175,18 @@ class Units extends Component {
 
     /* when event change, if this.$input wrap has form, trigger form submit. */
     bindEvent(
-      {
-        type: this.eventName('change'),
-        handler: () => {
-          const value = this.$input.value
-          // if (value !== '' && !parseFloat(value, 10)) {
-          //   return false;
-          // }
+      this.eventName('change'),
+      () => {
+        const value = this.$input.value
+        // if (value !== '' && !parseFloat(value, 10)) {
+        //   return false;
+        // }
 
-          this.value = parseFloat(value, 10)
-          this.value = value
-          this.cacheValue(this.getUnit(), this.value)
-          this.update(this.getUnit())
-          this.trigger(EVENTS.CHANGEVAL, this.value)
-        }
+        this.value = parseFloat(value, 10)
+        this.value = value
+        this.cacheValue(this.getUnit(), this.value)
+        this.update(this.getUnit())
+        this.trigger(EVENTS.CHANGEVAL, this.value)
       },
       this.$input
     )

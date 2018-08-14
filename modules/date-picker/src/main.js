@@ -228,14 +228,8 @@ class DatePicker extends Component {
       addClass(this.classes.SHOW, this.$pickerWrap)
 
       compose(
-        bindEvent({
-          type: 'focus',
-          handler: this.focus.bind(this)
-        }),
-        bindEvent({
-          type: 'blur',
-          handler: this.blur.bind(this)
-        })
+        bindEvent('focus', this.focus.bind(this)),
+        bindEvent('blur', this.blur.bind(this))
       )(this.$picker)
     } else if (displayMode === 'dropdown') {
       if (this.isMobile) {
@@ -244,24 +238,12 @@ class DatePicker extends Component {
         })
       } else {
         compose(
-          bindEvent({
-            type: 'focus',
-            handler: this.focus.bind(this)
-          }),
-          bindEvent({
-            type: 'blur',
-            handler: this.blur.bind(this)
-          })
+          bindEvent('focus', this.focus.bind(this)),
+          bindEvent('blur', this.blur.bind(this))
         )(this.$element)
       }
       // this.$element.on('blur', $.proxy(this.toggle, this));
-      bindEvent(
-        {
-          type: 'click.inputIcon',
-          handler: this.toggle.bind(this)
-        },
-        this.$inputIcon
-      )
+      bindEvent('click.inputIcon', this.toggle.bind(this), this.$inputIcon)
 
       // addClass(this.namespace + '_absolute', this.$picker);
     }
@@ -1946,17 +1928,11 @@ class DatePicker extends Component {
     if (this.options.displayMode === 'inline') {
       this.trigger(EVENTS.BEFORESHOW)
       compose(
-        bindEvent({
-          type: this.eventNameWithId('mouseDown'),
-          handler: e => {
-            this.prevent(e)
-          }
+        bindEvent(this.eventNameWithId('mouseDown'), e => {
+          this.prevent(e)
         }),
-        bindEvent({
-          type: this.eventNameWithId('click'),
-          handler: e => {
-            this.click(e)
-          }
+        bindEvent(this.eventNameWithId('click'), e => {
+          this.click(e)
         })
       )(this.$picker)
     } else if (!this.is('showed')) {
@@ -2000,11 +1976,9 @@ class DatePicker extends Component {
         this.picker.on('swipe', handle)
       } else {
         bindEvent(
-          {
-            type: this.eventNameWithId('click'),
-            handler: e => {
-              this.click(e)
-            }
+          this.eventNameWithId('click'),
+          e => {
+            this.click(e)
           },
           $doc
         )
@@ -2020,26 +1994,22 @@ class DatePicker extends Component {
       // this.position();
       this.enter('showed')
       bindEvent(
-        {
-          type: this.eventNameWithId('resize'),
-          handler: () => {
-            // self.position();
-            if (this.is('popper')) {
-              this.POPPER.enableEventListeners()
-            } else {
-              this.mobilePosition()
-            }
+        this.eventNameWithId('resize'),
+        () => {
+          // self.position();
+          if (this.is('popper')) {
+            this.POPPER.enableEventListeners()
+          } else {
+            this.mobilePosition()
           }
         },
         window
       )
       // this.$element.focus();
       bindEvent(
-        {
-          type: this.eventNameWithId('mousedown'),
-          handler: e => {
-            this.prevent(e)
-          }
+        this.eventNameWithId('mousedown'),
+        e => {
+          this.prevent(e)
         },
         this.$picker
       )

@@ -19,15 +19,13 @@ class Video extends Base {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        handler: e => {
-          if (!this.instance.drap) {
-            e.stopPropagation()
-            addClass(this.classes.LOADING, this.videoContainer)
-            if (!this.instance.video) {
-              this.createVideo()
-            }
+      'click',
+      e => {
+        if (!this.instance.drap) {
+          e.stopPropagation()
+          addClass(this.classes.LOADING, this.videoContainer)
+          if (!this.instance.video) {
+            this.createVideo()
           }
         }
       },

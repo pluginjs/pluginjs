@@ -27,15 +27,13 @@ class Jumper {
     this.input = query('input', this.jumper)
 
     bindEvent(
-      {
-        type: 'keydown',
-        handler: e => {
-          if (e.which === 13) {
-            let page = parseInt(e.target.value, 10)
-            page = page > 0 ? page : instance.currentPage
-            instance.goTo(page)
-            e.preventDefault()
-          }
+      'keydown',
+      e => {
+        if (e.which === 13) {
+          let page = parseInt(e.target.value, 10)
+          page = page > 0 ? page : instance.currentPage
+          instance.goTo(page)
+          e.preventDefault()
         }
       },
       this.input

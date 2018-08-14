@@ -60,21 +60,17 @@ class weekEvent {
 
   bind() {
     bindEvent(
-      {
-        type: 'mouseenter',
-        handler: e => {  /*eslint-disable-line */
-          addClass(this.week.classes.ACTIVEWEEKEVENT, this.element)
-        }
+      'mouseenter',
+      e => {
+        addClass(this.week.classes.ACTIVEWEEKEVENT, this.element)
       },
       this.element
     )
 
     bindEvent(
-      {
-        type: 'mouseleave',
-        handler: e => {  /*eslint-disable-line */
-          removeClass(this.week.classes.ACTIVEWEEKEVENT, this.element)
-        }
+      'mouseleave',
+      e => {
+        removeClass(this.week.classes.ACTIVEWEEKEVENT, this.element)
       },
       this.element
     )

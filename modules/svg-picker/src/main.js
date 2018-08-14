@@ -139,82 +139,72 @@ class SvgPicker extends Component {
     }
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.TYPETITLE}`,
-        handler: event => {
-          const $type = parent(
-            parentWith(hasClass(this.classes.TYPETITLE), event.target)
-          )
+      this.eventName('click'),
+      `.${this.classes.TYPETITLE}`,
+      event => {
+        const $type = parent(
+          parentWith(hasClass(this.classes.TYPETITLE), event.target)
+        )
 
-          that.open($type)
-          if ($type.dataset.open && $type.dataset.open === 'true') {
-            // that.close($type)
-          }
+        that.open($type)
+        if ($type.dataset.open && $type.dataset.open === 'true') {
+          // that.close($type)
         }
       },
       this.$panel
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.ICON}`,
-        handler: event => {
-          const $this = parentWith(hasClass(this.classes.ICON), event.target)
+      this.eventName('click'),
+      `.${this.classes.ICON}`,
+      event => {
+        const $this = parentWith(hasClass(this.classes.ICON), event.target)
 
-          that.select($this)
-          that.$dropdown.hide()
-        }
+        that.select($this)
+        that.$dropdown.hide()
       },
       this.$panel
     )
 
     bindEvent(
-      {
-        type: this.eventName('input'),
-        identity: 'input',
-        handler: ({ target: $this }) => {
-          if (!that.is('searching')) {
-            // that.$types.each(function () {
-            //   that.open($(this))
-            // })
-            addClass(that.classes.SEARCHING, that.$panel)
-          }
-          that.enter('searching')
-
-          const val = $this.value
-          if (val.length === 0) {
-            removeClass(that.classes.SEARCHOWNDATA, that.$search)
-          } else {
-            addClass(that.classes.SEARCHOWNDATA, that.$search)
-          }
-          that.searching(val)
+      this.eventName('input'),
+      'input',
+      ({ target: $this }) => {
+        if (!that.is('searching')) {
+          // that.$types.each(function () {
+          //   that.open($(this))
+          // })
+          addClass(that.classes.SEARCHING, that.$panel)
         }
+        that.enter('searching')
+
+        const val = $this.value
+        if (val.length === 0) {
+          removeClass(that.classes.SEARCHOWNDATA, that.$search)
+        } else {
+          addClass(that.classes.SEARCHOWNDATA, that.$search)
+        }
+        that.searching(val)
       },
       this.$search
     )
 
     bindEvent(
-      {
-        type: 'blur',
-        identity: 'input',
-        handler: () => {
-          this.leave('searching')
-        }
+      'blur',
+      'input',
+      () => {
+        this.leave('searching')
       },
       this.$search
     )
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.SEARCHCLOSE}`,
-        handler: () => {
-          removeClass(this.classes.SEARCHOWNDATA, this.$search)
-          query('input', this.$search).value = ''
-          this.searching('')
-        }
+      this.eventName('click'),
+      `.${this.classes.SEARCHCLOSE}`,
+      () => {
+        removeClass(this.classes.SEARCHOWNDATA, this.$search)
+        query('input', this.$search).value = ''
+        this.searching('')
       },
       this.$search
     )
@@ -222,30 +212,24 @@ class SvgPicker extends Component {
     if (this.options.keyboard) {
       this.$svgPicker.setAttribute('tabindex', 1)
       bindEvent(
-        {
-          type: 'focus',
-          handler: () => {
-            bindEvent(
-              {
-                type: 'keydown',
-                handler: e => {
-                  if (e.keyCode === 13) {
-                    this.$dropdown.show()
-                  }
-                }
-              },
-              this.$svgPicker
-            )
-          }
+        'focus',
+        () => {
+          bindEvent(
+            'keydown',
+            e => {
+              if (e.keyCode === 13) {
+                this.$dropdown.show()
+              }
+            },
+            this.$svgPicker
+          )
         },
         this.$svgPicker
       )
       bindEvent(
-        {
-          type: 'blur',
-          handler: () => {
-            removeEvent('keydown', this.$svgPicker)
-          }
+        'blur',
+        () => {
+          removeEvent('keydown', this.$svgPicker)
         },
         this.$svgPicker
       )
@@ -257,25 +241,23 @@ class SvgPicker extends Component {
         this.$type = v
       })
       bindEvent(
-        {
-          type: 'focus',
-          handler: ({ target: $this }) => {
-            $this.one('keydown', e => {
-              if (e.keyCode === 13 && e.which === 13) {
-                that.KEYBOARD.init($this)
-                that.open($this)
-              }
-            })
-            $this.on('blur', () => {
-              if (that.is('keyboard')) {
-                that.KEYBOARD.unbind()
-                that.close($this)
-              }
-              if (that.is('searching')) {
-                return
-              }
-            })
-          }
+        'focus',
+        ({ target: $this }) => {
+          $this.one('keydown', e => {
+            if (e.keyCode === 13 && e.which === 13) {
+              that.KEYBOARD.init($this)
+              that.open($this)
+            }
+          })
+          $this.on('blur', () => {
+            if (that.is('keyboard')) {
+              that.KEYBOARD.unbind()
+              that.close($this)
+            }
+            if (that.is('searching')) {
+              return
+            }
+          })
         },
         this.$type
       )

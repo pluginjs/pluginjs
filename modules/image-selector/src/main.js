@@ -114,48 +114,38 @@ class ImageSelector extends Component {
   bind() {
     // $init
     compose(
-      bindEvent({
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.INIT}` },
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.open()
+      bindEvent(this.eventName('click'), `.${this.classes.INIT}`, () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.open()
       }),
-      bindEvent({
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.ITEM}` },
-        handler: el => {
-          const $item = el.target
-          removeClass(
-            this.classes.ACTIVE,
-            queryAll(`.${this.classes.ITEM}`, this.$wrapper).find(el =>
-              el.matches(`.${this.classes.ACTIVE}`)
-            )
+      bindEvent(this.eventName('click'), `.${this.classes.ITEM}`, el => {
+        const $item = el.target
+        removeClass(
+          this.classes.ACTIVE,
+          queryAll(`.${this.classes.ITEM}`, this.$wrapper).find(el =>
+            el.matches(`.${this.classes.ACTIVE}`)
           )
-          addClass(this.classes.ACTIVE, $item)
-          this.data.selected = getData('label', $item)
-          this.setImg()
-          this.close()
-        }
+        )
+        addClass(this.classes.ACTIVE, $item)
+        this.data.selected = getData('label', $item)
+        this.setImg()
+        this.close()
       })
     )(this.$wrapper)
 
     if (this.options.hideOutClick) {
       bindEvent(
-        {
-          type: this.eventName('click'),
-          handler: e => {
-            const $this = e.target
+        this.eventName('click'),
+        e => {
+          const $this = e.target
 
-            if (
-              parentWith(hasClass(this.classes.WRAPPER), $this).length < 1 &&
-              this.is('open')
-            ) {
-              this.close()
-            }
+          if (
+            parentWith(hasClass(this.classes.WRAPPER), $this).length < 1 &&
+            this.is('open')
+          ) {
+            this.close()
           }
         },
         window.document

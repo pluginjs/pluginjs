@@ -28,12 +28,10 @@ class Vimeo {
     } else {
       this.loadApi()
       bindEvent(
-        {
-          type: 'AsVideoVimeoAPIReady',
-          handler: () => {
-            this.init()
-            this.instance.trigger(EVENTS.LOAD)
-          }
+        'AsVideoVimeoAPIReady',
+        () => {
+          this.init()
+          this.instance.trigger(EVENTS.LOAD)
         },
         this.element
       )

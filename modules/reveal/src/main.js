@@ -129,23 +129,15 @@ class Reveal extends Component {
 
       if (this.options.delay) {
         bindEvent(
-          {
-            type: this.eventName('animationstart'),
-            handler: effectStartCallback
-          },
+          this.eventName('animationstart'),
+          effectStartCallback,
           this.element
         )
       } else {
         this.show()
       }
 
-      bindEvent(
-        {
-          type: this.eventName('animationend'),
-          handler: effectEndCallback
-        },
-        this.element
-      )
+      bindEvent(this.eventName('animationend'), effectEndCallback, this.element)
     }
   }
 

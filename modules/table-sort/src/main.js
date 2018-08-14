@@ -113,13 +113,7 @@ class TableSort extends Component {
       //   return node.addEventListener('click', () => this.sort({ index }))
       // }
       if (getData('type', node)) {
-        return bindEvent(
-          {
-            type: 'click',
-            handler: () => this.sort({ index })
-          },
-          node
-        )
+        return bindEvent('click', () => this.sort({ index }), node)
       }
       return false
     })
@@ -257,13 +251,7 @@ class TableSort extends Component {
   }
 
   bind() {
-    bindEvent(
-      {
-        type: this.eventName('click touch'),
-        handler: () => false
-      },
-      this.element
-    )
+    bindEvent(this.eventName('click touch'), () => false, this.element)
   }
 
   unbind() {

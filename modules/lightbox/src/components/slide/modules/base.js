@@ -13,11 +13,9 @@ class Base {
     if (this.options.title) {
       this.title = instance.getElement('title')
       bindEvent(
-        {
-          type: 'click',
-          handler: event => {
-            event.stopPropagation()
-          }
+        'click',
+        event => {
+          event.stopPropagation()
         },
         this.title
       )

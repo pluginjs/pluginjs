@@ -387,13 +387,11 @@ class LinkPicker extends Component {
 
         // radio input event
         bindEvent(
-          {
-            type: this.eventName('change'),
-            handler: e => {
-              const inputVal = parseHTML(e.target).val()
-              // set this.data val
-              this.getSourceItem(source, name).data.active = inputVal
-            }
+          this.eventName('change'),
+          e => {
+            const inputVal = parseHTML(e.target).val()
+            // set this.data val
+            this.getSourceItem(source, name).data.active = inputVal
           },
           query(`[id='${source}-${name}-${itemName}-input']`, parent)
         )
@@ -463,28 +461,31 @@ class LinkPicker extends Component {
       setData('connect', connect, $dropdown)
       // === bind event ==== //
       bindEvent(
-        {
-          type: this.eventName(`linkPicker:${source}:${connect}:change`),
-          handler: (e, instance, connectName) => {
-            const api = getData('input', $dropdown)
-            const dropdownData = []
-            // let globalData = this.getData();
+        this.eventName(`linkPicker:${source}:${connect}:change`),
+        (e, instance, connectName) => {
+          const api = getData('input', $dropdown)
+          console.log($dropdown)
 
-            const apiData = this.getSourceItem(source, name).data
-            const callBackData = data.values(connectName)
-            const apiActive = callBackData.active
+          const dropdownData = []
+          // let globalData = this.getData();
 
-            apiData.active = apiActive
+          const apiData = this.getSourceItem(source, name).data
+          const callBackData = data.values(connectName)
+          const apiActive = callBackData.active
 
-            Object.entries(callBackData.values).forEach(([key, value]) => {
-              dropdownData.push({
-                label: value,
-                name: key
-              })
+          apiData.active = apiActive
+
+          Object.entries(callBackData.values).forEach(([key, value]) => {
+            dropdownData.push({
+              label: value,
+              name: key
             })
-            api.replaceByData(dropdownData)
-            api.set(apiActive)
-          }
+          })
+          console.log(api)
+          console.log(dropdownData)
+
+          api.replaceByData(dropdownData)
+          api.set(apiActive)
         },
         this.element
       )
@@ -556,32 +557,28 @@ class LinkPicker extends Component {
   bind() {
     // open dropdown
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.EMPTY}` },
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.show()
+      this.eventName('click'),
+      `.${this.classes.EMPTY}`,
+      () => {
+        if (this.is('disabled')) {
+          return
         }
+        this.show()
       },
       this.$wrap
     )
 
     //
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: { type: 'selector', value: `.${this.classes.ITEMBODY}` },
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          addClass('pj-dropdown-show', this.$trigger)
-          addClass('pj-dropdown-show', this.$wrap)
-          addClass('pj-dropdown-show', this.$dropdown.parentNode)
+      this.eventName('click'),
+      `.${this.classes.ITEMBODY}`,
+      () => {
+        if (this.is('disabled')) {
+          return
         }
+        addClass('pj-dropdown-show', this.$trigger)
+        addClass('pj-dropdown-show', this.$wrap)
+        addClass('pj-dropdown-show', this.$dropdown.parentNode)
       },
       this.$wrap
     )
@@ -605,91 +602,64 @@ class LinkPicker extends Component {
 
     // input change
     bindEvent(
-      {
-        type: this.eventName('change'),
-        identity: 'input[type="text"]',
-        handler: ({ target: $input }) => {
-          if (window.getComputedStyle($input).display === 'none') {
-            return
-          }
-          const input = getData('input', $input)
-          if (!input) {
-            return
-          }
-          const { source, itemName } = input
-          const inputVal = $input.value
-          this.getSourceItem(source, itemName).data = inputVal
+      this.eventName('change'),
+      'input[type="text"]',
+      ({ target: $input }) => {
+        if (window.getComputedStyle($input).display === 'none') {
+          return
         }
+        const input = getData('input', $input)
+        if (!input) {
+          return
+        }
+        const { source, itemName } = input
+        const inputVal = $input.value
+        this.getSourceItem(source, itemName).data = inputVal
       },
       this.$dropdown
     )
 
     // hold hover
     compose(
-      bindEvent({
-        type: 'mouseover',
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.FILL}`
-        },
-        handler: () => {
-          if (this.is('disabled')) {
-            return
-          }
-          addClass(this.classes.HOVER, this.$action)
+      bindEvent('mouseover', `.${this.classes.FILL}`, () => {
+        if (this.is('disabled')) {
+          return
         }
+        addClass(this.classes.HOVER, this.$action)
       }),
-      bindEvent({
-        type: 'mouseout',
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.FILL}`
-        },
-        handler: () => {
-          if (this.is('disabled')) {
-            return false
-          }
-          if (this.is('holdHover')) {
-            return false
-          }
-
-          removeClass(this.classes.HOVER, this.$action)
-          return null
+      bindEvent('mouseout', `.${this.classes.FILL}`, () => {
+        if (this.is('disabled')) {
+          return false
         }
+        if (this.is('holdHover')) {
+          return false
+        }
+
+        removeClass(this.classes.HOVER, this.$action)
+        return null
       }),
 
       // editor link
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.ACTIONEDIT}`
-        },
-        handler: () => this.show()
-      }),
+      bindEvent(this.eventName('click'), `.${this.classes.ACTIONEDIT}`, () =>
+        this.show()
+      ),
 
       // cancel
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.DROPDOWNCANCEL}`
-        },
-        handler: () => this.hide()
-      }),
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.DROPDOWNCANCEL}`,
+        () => this.hide()
+      ),
 
       // save
-      bindEvent({
-        type: this.eventName('click'),
-        identity: {
-          type: 'selector',
-          value: `.${this.classes.DROPDOWNSAVE}`
-        },
-        handler: () => {
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.DROPDOWNSAVE}`,
+        () => {
           this.update()
           this.hide()
         }
-      })
+      )
     )(this.$wrap)
 
     // pop event

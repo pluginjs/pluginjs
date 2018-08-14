@@ -15,30 +15,26 @@ class Keyboard {
     }
 
     bindEvent(
-      {
-        type: this.instance.eventName('focus'),
-        handler: () => {
-          if (this.instance.is('focus') || this.instance.is('disabled')) {
-            return
-          }
-          addClass(this.instance.classes.FOCUS, this.instance.wrap)
-          this.bind()
-          this.instance.enter('focus')
+      this.instance.eventName('focus'),
+      () => {
+        if (this.instance.is('focus') || this.instance.is('disabled')) {
+          return
         }
+        addClass(this.instance.classes.FOCUS, this.instance.wrap)
+        this.bind()
+        this.instance.enter('focus')
       },
       this.instance.label
     )
     bindEvent(
-      {
-        type: this.instance.eventName('blur'),
-        handler: () => {
-          if (!this.instance.is('focus') || this.instance.is('disabled')) {
-            return
-          }
-          this.unbind()
-          removeClass(this.instance.classes.FOCUS, this.instance.wrap)
-          this.instance.leave('focus')
+      this.instance.eventName('blur'),
+      () => {
+        if (!this.instance.is('focus') || this.instance.is('disabled')) {
+          return
         }
+        this.unbind()
+        removeClass(this.instance.classes.FOCUS, this.instance.wrap)
+        this.instance.leave('focus')
       },
       this.instance.label
     )

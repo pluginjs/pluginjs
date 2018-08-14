@@ -212,13 +212,11 @@ class FontPicker extends Component {
 
     // selected activated font
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.ACTIVATED} .${this.classes.FONT}`,
-        handler: e => {
-          const $el = e.target
-          this.setValue($el)
-        }
+      this.eventName('click'),
+      `.${this.classes.ACTIVATED} .${this.classes.FONT}`,
+      e => {
+        const $el = e.target
+        this.setValue($el)
       },
       this.$panel
     )
@@ -295,18 +293,16 @@ class FontPicker extends Component {
       toggle package listener
     */
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.PACKAGETITLE}`,
-        handler: ({ target }) => {
-          const $package = parent(target)
-          if ($package.dataset.open === 'true') {
-            this.close($package)
-            removeEvent(this.eventName(), this.$packagesWrap)
-          } else {
-            this.open($package)
-            // that.scrollLength = query('ul', $package).scrollTop()
-          }
+      this.eventName('click'),
+      `.${this.classes.PACKAGETITLE}`,
+      ({ target }) => {
+        const $package = parent(target)
+        if ($package.dataset.open === 'true') {
+          this.close($package)
+          removeEvent(this.eventName(), this.$packagesWrap)
+        } else {
+          this.open($package)
+          // that.scrollLength = query('ul', $package).scrollTop()
         }
       },
       this.$panel
@@ -316,22 +312,20 @@ class FontPicker extends Component {
       set font listener
     */
     bindEvent(
-      {
-        type: this.eventName('click'),
-        identity: `.${this.classes.FONT}`,
-        handler: ({ target: $this }) => {
-          if (that.$font) {
-            removeClass(that.classes.ACTIVE, that.$font)
-          }
-
-          if (that.is('searching')) {
-            removeClass(that.classes.SEARCHING, that.$panel)
-            that.leave('searching')
-          }
-
-          that.setValue($this)
-          that.$dropdown.hide()
+      this.eventName('click'),
+      `.${this.classes.FONT}`,
+      ({ target: $this }) => {
+        if (that.$font) {
+          removeClass(that.classes.ACTIVE, that.$font)
         }
+
+        if (that.is('searching')) {
+          removeClass(that.classes.SEARCHING, that.$panel)
+          that.leave('searching')
+        }
+
+        that.setValue($this)
+        that.$dropdown.hide()
       },
       this.$panel
     )
@@ -340,44 +334,41 @@ class FontPicker extends Component {
       lazy loading listener
     */
     queryAll('.pj-scrollable-container', this.$packagesWrap).map(
-      bindEvent({
-        type: this.eventName('scroll'),
-        handler: ({ target: $this }) => {
-          if (hasClass(that.classes.SEARCHLIST, parent($this))) {
-            const $searchList = that.$activated[that.$activated.length - 1]
-
-            // that.scrollLength = $this.scrollTop()
-            if (!that.is('listenScrollStop')) {
-              let fontList = query(`.${that.classes.FONT}`, $searchList)
-              if (that.is('searchReady') && that.is('searching')) {
-                fontList = query(`.${that.classes.SEARCHED}`, $searchList)
-              }
-              that.isStopScroll($searchList.dataset.sourceName, 0, fontList)
-            }
-            return
-          }
-          const $categorie = parentWith(hasClass(that.classes.PACKAGE), $this)
-          const $source = parent($categorie)
-
-          const sourceName = $source.dataset.source
-          // const sourceName = getData('source', $source)
-          const categorieName = $categorie.dataset.value
-          let index = 0
-
-          Object.entries(that.sources[sourceName].fonts).forEach(([i, v]) => {
-            if (i === categorieName) {
-              return
-            }
-            index += v.length
-            return
-          })
+      bindEvent(this.eventName('scroll'), ({ target: $this }) => {
+        if (hasClass(that.classes.SEARCHLIST, parent($this))) {
+          const $searchList = that.$activated[that.$activated.length - 1]
 
           // that.scrollLength = $this.scrollTop()
           if (!that.is('listenScrollStop')) {
-            that.isStopScroll(sourceName, index)
+            let fontList = query(`.${that.classes.FONT}`, $searchList)
+            if (that.is('searchReady') && that.is('searching')) {
+              fontList = query(`.${that.classes.SEARCHED}`, $searchList)
+            }
+            that.isStopScroll($searchList.dataset.sourceName, 0, fontList)
           }
           return
         }
+        const $categorie = parentWith(hasClass(that.classes.PACKAGE), $this)
+        const $source = parent($categorie)
+
+        const sourceName = $source.dataset.source
+        // const sourceName = getData('source', $source)
+        const categorieName = $categorie.dataset.value
+        let index = 0
+
+        Object.entries(that.sources[sourceName].fonts).forEach(([i, v]) => {
+          if (i === categorieName) {
+            return
+          }
+          index += v.length
+          return
+        })
+
+        // that.scrollLength = $this.scrollTop()
+        if (!that.is('listenScrollStop')) {
+          that.isStopScroll(sourceName, index)
+        }
+        return
       })
     )
 
@@ -386,87 +377,75 @@ class FontPicker extends Component {
     */
     if (this.options.keyboard) {
       bindEvent(
-        {
-          type: this.eventName('keydown'),
-          handler: e => {
-            if (e.keyCode === 13 && e.which === 13) {
-              this.$dropdown.show()
-            }
+        this.eventName('keydown'),
+        e => {
+          if (e.keyCode === 13 && e.which === 13) {
+            this.$dropdown.show()
+          }
 
-            if (e.keyCode === 27 && e.which === 27) {
-              this.$dropdown.hide()
-            }
+          if (e.keyCode === 27 && e.which === 27) {
+            this.$dropdown.hide()
           }
         },
         this.$fontPicker
       )
 
       bindEvent(
-        {
-          type: this.eventName('focus'),
-          handler: () => {
-            if (that.is('keyboard')) {
-              return
-            }
-            // let $this = $(this);
-            that.KEYBOARD.init(that.$searchList)
+        this.eventName('focus'),
+        () => {
+          if (that.is('keyboard')) {
+            return
           }
+          // let $this = $(this);
+          that.KEYBOARD.init(that.$searchList)
         },
         query('input', this.$search)
       )
 
       compose(
-        bindEvent({
-          type: this.eventName('keydown'),
-          handler: e => {
-            const code = e.keyCode
-            const which = e.which
-            const $this = parent(e.target)
+        bindEvent(this.eventName('keydown'), e => {
+          const code = e.keyCode
+          const which = e.which
+          const $this = parent(e.target)
 
-            if (code === 13 && which === 13) {
-              if (!$this.dataset.open && $this.dataset.open === 'false') {
-                that.open($this)
-                that.KEYBOARD.init(query(`.${that.classes.FONT}`, $this), true)
-              } else {
-                that.close($this)
-                that.KEYBOARD.unbind()
-              }
-
-              e.stopPropagation()
-              return false
-            }
-            return true
-          }
-        }),
-        bindEvent({
-          type: this.eventName('focus'),
-          handler: e => {
-            const $this = parent(e.target)
-
-            if ($this.dataset.open === 'true' && !that.is('keyboard')) {
+          if (code === 13 && which === 13) {
+            if (!$this.dataset.open && $this.dataset.open === 'false') {
+              that.open($this)
               that.KEYBOARD.init(query(`.${that.classes.FONT}`, $this), true)
+            } else {
+              that.close($this)
+              that.KEYBOARD.unbind()
             }
+
+            e.stopPropagation()
+            return false
+          }
+          return true
+        }),
+        bindEvent(this.eventName('focus'), e => {
+          const $this = parent(e.target)
+
+          if ($this.dataset.open === 'true' && !that.is('keyboard')) {
+            that.KEYBOARD.init(query(`.${that.classes.FONT}`, $this), true)
           }
         })
       )(query(`.${this.classes.PACKAGETITLE}`, this.$panel))
       bindEvent(
-        {
-          type: this.eventName('keydown'),
-          identity: `.${this.classes.FONT}`,
-          handler: e => {
-            const $this = e.target
-            const code = e.keyCode
-            const which = e.which
+        this.eventName('keydown'),
+        `.${this.classes.FONT}`,
+        e => {
+          const $this = e.target
+          const code = e.keyCode
+          const which = e.which
 
-            if (code === 13 && which === 13) {
-              that.setValue($this)
-              that.$dropdown.hide()
-              that.KEYBOARD.unbind()
-              e.stopPropagation()
-              return false
-            }
-            return true
+          if (code === 13 && which === 13) {
+            that.setValue($this)
+            that.$dropdown.hide()
+            that.KEYBOARD.unbind()
+            e.stopPropagation()
+            return false
           }
+          return true
         },
         this.$packagesWrap
       )
@@ -476,35 +455,27 @@ class FontPicker extends Component {
       search listener
     */
     compose(
-      bindEvent({
-        type: this.eventName('input'),
-        handler: e => {
-          if (!that.is('searching')) {
-            addClass(that.classes.SEARCHING, that.$panel)
-          }
-          that.enter('searching')
+      bindEvent(this.eventName('input'), e => {
+        if (!that.is('searching')) {
+          addClass(that.classes.SEARCHING, that.$panel)
+        }
+        that.enter('searching')
 
-          const val = e.target.value
-          debounce(that.searching(val), 1000)
-        }
+        const val = e.target.value
+        debounce(that.searching(val), 1000)
       }),
-      bindEvent({
-        type: this.eventName('focus'),
-        handler: () => {
-          addClass(that.classes.SEARCHREADY, that.$panel)
-          that.enter('searchReady')
-        }
+      bindEvent(this.eventName('focus'), () => {
+        addClass(that.classes.SEARCHREADY, that.$panel)
+        that.enter('searchReady')
       })
     )(query('input', this.$search))
 
     bindEvent(
-      {
-        type: this.eventName('click'),
-        handler: () => {
-          query('input', this.$search).value = ''
-          removeClass(this.classes.SEARCHREADY, this.$panel)
-          this.leave('searchReady')
-        }
+      this.eventName('click'),
+      () => {
+        query('input', this.$search).value = ''
+        removeClass(this.classes.SEARCHREADY, this.$panel)
+        this.leave('searchReady')
       },
       query(`.${this.classes.SEARCH}-close`, this.$search)
     )

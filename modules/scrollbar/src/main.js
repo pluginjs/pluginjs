@@ -138,122 +138,92 @@ class Scrollbar extends Component {
   bind() {
     if (this.options.mouseDrag) {
       bindEvent(
-        {
-          type: this.eventName('mousedown'),
-          handler: this.onDragStart.bind(this)
-        },
+        this.eventName('mousedown'),
+        this.onDragStart.bind(this),
         this.$handle
       )
-      bindEvent(
-        {
-          type: this.eventName('dragstart'),
-          handler: () => false
-        },
-        this.$handle
-      )
-      bindEvent(
-        {
-          type: this.eventName('selectstart'),
-          handler: () => false
-        },
-        this.$handle
-      )
+      bindEvent(this.eventName('dragstart'), () => false, this.$handle)
+      bindEvent(this.eventName('selectstart'), () => false, this.$handle)
     }
 
     if (this.options.touchDrag && touch) {
       bindEvent(
-        {
-          type: this.eventName('touchstart'),
-          handler: this.onDragStart.bind(this)
-        },
+        this.eventName('touchstart'),
+        this.onDragStart.bind(this),
         this.$handle
       )
       bindEvent(
-        {
-          type: this.eventName('touchcancel'),
-          handler: this.onDragEnd.bind(this)
-        },
+        this.eventName('touchcancel'),
+        this.onDragEnd.bind(this),
         this.$handle
       )
     }
 
     if (this.options.pointerDrag && pointer) {
       bindEvent(
-        {
-          type: this.eventName(pointerEvent('pointerdown')),
-          handler: this.onDragStart.bind(this)
-        },
+        this.eventName(pointerEvent('pointerdown')),
+        this.onDragStart.bind(this),
         this.$handle
       )
       bindEvent(
-        {
-          type: this.eventName(pointerEvent('pointercancel')),
-          handler: this.onDragEnd.bind(this)
-        },
+        this.eventName(pointerEvent('pointercancel')),
+        this.onDragEnd.bind(this),
         this.$handle
       )
     }
 
     if (this.options.clickMove) {
       bindEvent(
-        {
-          type: this.eventName('mousedown'),
-          handler: this.onClick.bind(this)
-        },
+        this.eventName('mousedown'),
+        this.onClick.bind(this),
         this.element
       )
     }
 
     if (this.options.mousewheel) {
       bindEvent(
-        {
-          type: this.eventName('mousewheel'),
-          handler: e => {
-            let delta
-            if (this.options.direction === 'vertical') {
-              delta = e.deltaFactor * e.deltaY
-            } else if (this.options.direction === 'horizontal') {
-              delta = -1 * e.deltaFactor * e.deltaX
-            }
-            let offset = this.getHandlePosition()
-            if (offset <= 0 && delta > 0) {
-              return true
-            } else if (offset >= this.barLength && delta < 0) {
-              return true
-            }
-            offset -= this.options.mousewheelSpeed * delta
-            this.move(offset, true)
-            return false
+        this.eventName('mousewheel'),
+        e => {
+          let delta
+          if (this.options.direction === 'vertical') {
+            delta = e.deltaFactor * e.deltaY
+          } else if (this.options.direction === 'horizontal') {
+            delta = -1 * e.deltaFactor * e.deltaX
           }
+          let offset = this.getHandlePosition()
+          if (offset <= 0 && delta > 0) {
+            return true
+          } else if (offset >= this.barLength && delta < 0) {
+            return true
+          }
+          offset -= this.options.mousewheelSpeed * delta
+          this.move(offset, true)
+          return false
         },
         this.element
       )
     }
 
     bindEvent(
-      {
-        type: this.eventName('mouseenter'),
-        handler: () => {
-          addClass(this.classes.HOVERING, this.element)
-          this.enter('hovering')
-          this.trigger(EVENTS.HOVER)
-        }
+      this.eventName('mouseenter'),
+      () => {
+        addClass(this.classes.HOVERING, this.element)
+        this.enter('hovering')
+        this.trigger(EVENTS.HOVER)
       },
       this.element
     )
 
     bindEvent(
-      {
-        type: this.eventName('mouseleave'),
-        handler: () => {
-          removeClass(this.classes.HOVERING, this.element)
+      this.eventName('mouseleave'),
+      () => {
+        removeClass(this.classes.HOVERING, this.element)
 
-          if (!this.is('hovering')) {
-            return
-          }
-          this.leave('hovering')
-          this.trigger(EVENTS.HOVERED)
+        if (!this.is('hovering')) {
+          return
         }
+        this.leave('hovering')
+        this.trigger(EVENTS.HOVERED)
       },
       this.element
     )
@@ -311,66 +281,40 @@ class Scrollbar extends Component {
     this.MovingInit = false
 
     if (this.options.mouseDrag) {
-      bindEvent(
-        {
-          type: this.eventName('mouseup'),
-          handler: this.onDragEnd.bind(this)
-        },
-        document
-      )
+      bindEvent(this.eventName('mouseup'), this.onDragEnd.bind(this), document)
 
       bindEvent(
-        {
-          type: this.eventName('mousemove'),
-          handler: this.onDragMove.bind(this)
-        },
+        this.eventName('mousemove'),
+        this.onDragMove.bind(this),
         document
       )
     }
 
     if (this.options.touchDrag && touch) {
-      bindEvent(
-        {
-          type: this.eventName('touchend'),
-          handler: this.onDragEnd.bind(this)
-        },
-        document
-      )
+      bindEvent(this.eventName('touchend'), this.onDragEnd.bind(this), document)
 
       bindEvent(
-        {
-          type: this.eventName('touchmove'),
-          handler: this.onDragMove.bind(this)
-        },
+        this.eventName('touchmove'),
+        this.onDragMove.bind(this),
         document
       )
     }
 
     if (this.options.pointerDrag && pointer) {
       bindEvent(
-        {
-          type: this.eventName(pointerEvent('pointerup')),
-          handler: this.onDragEnd.bind(this)
-        },
+        this.eventName(pointerEvent('pointerup')),
+        this.onDragEnd.bind(this),
         document
       )
 
       bindEvent(
-        {
-          type: this.eventName(pointerEvent('pointermove')),
-          handler: this.onDragMove.bind(this)
-        },
+        this.eventName(pointerEvent('pointermove')),
+        this.onDragMove.bind(this),
         document
       )
     }
 
-    bindEvent(
-      {
-        type: this.eventName('blur'),
-        handler: this.onDragMove.bind(this)
-      },
-      document
-    )
+    bindEvent(this.eventName('blur'), this.onDragMove.bind(this), document)
   }
 
   // Handles the `touchmove` and `mousemove` events.
@@ -642,13 +586,7 @@ class Scrollbar extends Component {
     }
 
     if (!this.oneEventArr[element].hasBind) {
-      bindEvent(
-        {
-          type: eventName,
-          handler: this.oneBindcallback.bind(this)
-        },
-        element
-      )
+      bindEvent(eventName, this.oneBindcallback.bind(this), element)
       this.oneEventArr[element].hasBind = true
     }
   }

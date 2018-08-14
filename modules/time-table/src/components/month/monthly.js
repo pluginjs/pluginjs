@@ -80,26 +80,24 @@ class Monthly {
 
   bind() {
     bindEvent(
-      {
-        type: 'click',
-        handler: e => {
-          const target = e.target
-          let monthEvent = {}
-          if (hasClass(this.classes.MONTHEVENT, target)) {
-            monthEvent = target
-          } else {
-            monthEvent = target.closest(`.${this.classes.MONTHEVENT}`)
-          }
+      'click',
+      e => {
+        const target = e.target
+        let monthEvent = {}
+        if (hasClass(this.classes.MONTHEVENT, target)) {
+          monthEvent = target
+        } else {
+          monthEvent = target.closest(`.${this.classes.MONTHEVENT}`)
+        }
 
-          if (!monthEvent) {
-            return
-          }
+        if (!monthEvent) {
+          return
+        }
 
-          const api = getData('monthEvent', monthEvent)
-          if (typeof api === 'undefined' || api.open === false) {
-            if (this.activeEvent) {
-              this.activeEvent.hideList()
-            }
+        const api = getData('monthEvent', monthEvent)
+        if (typeof api === 'undefined' || api.open === false) {
+          if (this.activeEvent) {
+            this.activeEvent.hideList()
           }
         }
       },

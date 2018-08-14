@@ -1,8 +1,4 @@
-import Emitter from '../../src'
-
-function getObjectSize(obj) {
-  return Object.getOwnPropertyNames(obj).length
-}
+import Emitter from '../src/main.js'
 
 describe('Emitter', () => {
   test('should have Emitter', () => {
@@ -14,11 +10,11 @@ describe('Emitter', () => {
   let preFooInvoked = false
   let postFooInvoked = false
 
-  const preFoo = function() {
+  const preFoo = () => {
     preFooInvoked = true
   }
 
-  const postFoo = function() {
+  const postFoo = () => {
     postFooInvoked = true
 
     return false
@@ -31,9 +27,9 @@ describe('Emitter', () => {
   })
 
   describe('once()', () => {
-    test('should works as addOneTimeListener()', () => {
+    test('should works as addListenerOnce()', () => {
       let result = 0
-      const callback = function() {
+      const callback = () => {
         result++
       }
 
@@ -54,14 +50,13 @@ describe('Emitter', () => {
   describe('on()', () => {
     test('should works as addListener()', () => {
       let result = 0
-      const callback = function() {
+      const callback = () => {
         result++
       }
 
       dispatcher.on('event', callback)
       expect(dispatcher.hasListeners('event')).toBeTrue()
       expect(dispatcher.getListeners('event')).toHaveLength(1)
-
       dispatcher.emit('event')
       dispatcher.emit('event')
 
@@ -71,9 +66,8 @@ describe('Emitter', () => {
 
   describe('off()', () => {
     test('should works as removeListener() if second arg is filled', () => {
-      let result = 0
-      const callback = function() {
-        result++
+      const callback = () => {
+        return
       }
 
       dispatcher.on('event', callback)
@@ -86,9 +80,8 @@ describe('Emitter', () => {
     })
 
     test('should works as removeAllListeners() if second arg is undefined', () => {
-      let result = 0
-      const callback = function() {
-        result++
+      const callback = () => {
+        return
       }
 
       dispatcher.on('event', callback)
@@ -109,9 +102,11 @@ describe('Emitter', () => {
 
       expect(dispatcher.hasListeners('pre.foo')).toBeTrue()
       expect(dispatcher.hasListeners('post.foo')).toBeTrue()
+      expect(dispatcher.hasListeners('.foo')).toBeTrue()
 
       expect(dispatcher.getListeners('pre.foo')).toHaveLength(1)
       expect(dispatcher.getListeners('post.foo')).toHaveLength(1)
+      expect(dispatcher.getListeners('.foo')).toHaveLength(2)
     })
 
     test('should throw an exception when registering an invalid listener', () => {
@@ -123,14 +118,14 @@ describe('Emitter', () => {
     })
   })
 
-  describe('addOneTimeListener()', () => {
+  describe('addListenerOnce()', () => {
     test('should emit once', () => {
       let result = 0
-      const callback = function() {
+      const callback = () => {
         result++
       }
 
-      dispatcher.addOneTimeListener('event', callback)
+      dispatcher.addListenerOnce('event', callback)
       expect(dispatcher.hasListeners('event')).toBeTrue()
       expect(dispatcher.getListeners('event')).toHaveLength(1)
 
@@ -156,8 +151,12 @@ describe('Emitter', () => {
     })
 
     test('should all you to remove listeners', () => {
-      const callback = function() {}
-      const callback2 = function() {}
+      const callback = () => {
+        return
+      }
+      const callback2 = () => {
+        return
+      }
       dispatcher.addListener('event', callback)
       dispatcher.addListener('event', callback2)
 
@@ -170,12 +169,16 @@ describe('Emitter', () => {
 
   describe('removeAllListeners()', () => {
     test('should remove multiple listeners at once', () => {
-      const callback = function() {}
+      const callback = () => {
+        return
+      }
       dispatcher.addListener('event', callback)
       dispatcher.addListener('event', callback)
 
+      expect(dispatcher.getListeners('event')).toHaveLength(2)
       dispatcher.removeAllListeners('event')
       expect(dispatcher.hasListeners('event')).toBeFalse()
+      expect(dispatcher.getListeners('event')).toHaveLength(0)
     })
   })
 
@@ -185,7 +188,9 @@ describe('Emitter', () => {
     })
 
     test('should accept custom listeners', () => {
-      const callback = function() {}
+      const callback = () => {
+        return
+      }
       dispatcher.addListener('event', callback)
 
       expect(dispatcher.getListeners('event')).toEqual([
@@ -196,16 +201,16 @@ describe('Emitter', () => {
       ])
     })
 
-    test('should prioritize listeners', () => {
-      const first = function() {
+    test('should accept two custom listeners', () => {
+      const first = () => {
         return 1
       }
-      const second = function() {
+      const second = () => {
         return 2
       }
 
-      dispatcher.addListener('event', first, null, 0)
-      dispatcher.addListener('event', second, null, 50)
+      dispatcher.addListener('event', first, null)
+      dispatcher.addListener('event', second, null)
 
       expect(dispatcher.getListeners('event')).toEqual([
         {
@@ -214,29 +219,6 @@ describe('Emitter', () => {
         },
         {
           listener: second,
-          context: null
-        }
-      ])
-    })
-
-    test('should prioritize listeners 2', () => {
-      const first = function() {
-        return 1
-      }
-      const second = function() {
-        return 2
-      }
-
-      dispatcher.addListener('event', first, null, 50)
-      dispatcher.addListener('event', second, null, 0)
-
-      expect(dispatcher.getListeners('event')).toEqual([
-        {
-          listener: second,
-          context: null
-        },
-        {
-          listener: first,
           context: null
         }
       ])
@@ -253,7 +235,7 @@ describe('Emitter', () => {
       expect(postFooInvoked).toBeFalse()
     })
 
-    test('should emit closure correctly', () => {
+    test('should emit closure correctly ', () => {
       let invoked = 0
 
       dispatcher.addListener('pre.foo', () => {
@@ -270,8 +252,8 @@ describe('Emitter', () => {
     test('should call listener with context', () => {
       dispatcher.addListener(
         'foo',
-        function() {
-          expect(this).toEqual(context)
+        () => {
+          expect(this).toEqual('context')
         },
         'context'
       )
@@ -379,69 +361,71 @@ describe('Emitter', () => {
 
       expect(invoked).toEqual(111)
     })
+  })
 
-    test('should works correctly with priority', () => {
-      let argResult = 0
-
-      dispatcher.addListener('foo', arg => {
-        argResult = 1
-
-        return false
+  describe('parseEvent()', () => {
+    test('should return eventName and namespace', () => {
+      expect(Emitter.parseEvent('pre.foo')).toEqual({
+        eventName: 'pre',
+        namespace: 'foo'
       })
-
-      dispatcher.addListener(
-        'foo',
-        arg => {
-          argResult = 2
-
-          return false
-        },
-        null,
-        1
-      )
-
-      expect(dispatcher.emit('foo', 'bar')).toBeFalse()
-
-      expect(argResult).toEqual(2)
     })
 
-    test('should works correctly with priority 2', () => {
-      const argResult = []
-
-      dispatcher.addListener(
-        'foo',
-        () => {
-          argResult.push('a')
-        },
-        null,
-        20
-      )
-
-      dispatcher.addListener(
-        'foo',
-        () => {
-          argResult.push('b')
-        },
-        null,
-        5
-      )
-
-      dispatcher.addListener(
-        'foo',
-        () => {
-          argResult.push('c')
-        },
-        null,
-        30
-      )
-
-      dispatcher.addListener('foo', () => {
-        argResult.push('d')
+    test('should return eventName when namespace is null', () => {
+      expect(Emitter.parseEvent('pre')).toEqual({
+        eventName: 'pre',
+        namespace: null
       })
+    })
 
-      dispatcher.emit('foo')
+    test('should return namespace when eventName is null', () => {
+      expect(Emitter.parseEvent('.foo')).toEqual({
+        eventName: null,
+        namespace: 'foo'
+      })
+    })
 
-      expect(argResult).toEqual(['b', 'd', 'a', 'c'])
+    test('should return null when eventName and namespace are undefined', () => {
+      expect(Emitter.parseEvent(' ')).toEqual({
+        eventName: null,
+        namespace: null
+      })
+    })
+  })
+
+  describe('namespace', () => {
+    test('should throw an exception when eventName is undefined', () => {
+      try {
+        const callback = () => {
+          return
+        }
+        dispatcher.addListener('.foo', callback)
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error)
+      }
+    })
+
+    test('should accept event with namespace', () => {
+      const callback = () => {
+        return
+      }
+      dispatcher.addListener('pre.foo', callback)
+      expect(dispatcher.hasListeners('.foo')).toBeTrue()
+      expect(dispatcher.getListeners('pre.foo')).toHaveLength(1)
+      expect(dispatcher.getListeners('.foo')).toHaveLength(1)
+    })
+
+    test('should off all event with namespace', () => {
+      const callback = () => {
+        return
+      }
+      dispatcher.addListener('pre.foo', callback)
+      dispatcher.addListener('post.foo', callback)
+      expect(dispatcher.getListeners('.foo')).toHaveLength(2)
+
+      dispatcher.off('.foo')
+      expect(dispatcher.hasListeners('.foo')).toBeFalse()
+      expect(dispatcher.getListeners('.foo')).toHaveLength(0)
     })
   })
 })

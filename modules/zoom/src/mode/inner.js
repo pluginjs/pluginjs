@@ -105,13 +105,7 @@ class inner extends Base {
         this.addClass(this.window, 'in')
       } else {
         this.addClass(this.window, 'out')
-        bindEvent(
-          {
-            type: 'animationend',
-            handler: this.callback.bind(this)
-          },
-          this.window
-        )
+        bindEvent('animationend', this.callback.bind(this), this.window)
         // this.window.on('animationend', this.callback.bind(this))
       }
 

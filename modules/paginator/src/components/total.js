@@ -30,11 +30,9 @@ class Total {
     }
 
     bindEvent(
-      {
-        type: 'paginator:change',
-        handler: () => {
-          this.total.textContent = this.getLabel()
-        }
+      'paginator:change',
+      () => {
+        this.total.textContent = this.getLabel()
       },
       this.instance.element
     )

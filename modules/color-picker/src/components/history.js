@@ -35,43 +35,39 @@ class History {
     const that = this
 
     bindEvent(
-      {
-        type: this.instance.eventName('colorPicker:update'),
-        handler: ({
-          detail: {
-            data: [color]
-          }
-        }) => {
-          if (!color) {
-            return false
-          }
-
-          if (this.prevColor === this.instance.asColor) {
-            return false
-          }
-          this.prevColor = this.instance.asColor.toRGBA()
-          this.update(this.prevColor)
-
-          return null
+      this.instance.eventName('colorPicker:update'),
+      ({
+        detail: {
+          data: [color]
         }
+      }) => {
+        if (!color) {
+          return false
+        }
+
+        if (this.prevColor === this.instance.asColor) {
+          return false
+        }
+        this.prevColor = this.instance.asColor.toRGBA()
+        this.update(this.prevColor)
+
+        return null
       },
       this.instance.element
     )
 
     bindEvent(
-      {
-        type: 'click',
-        identity: { type: 'selector', value: `.${this.classes.HISTORYITEM}` },
-        handler: ({ target }) => { /* eslint-disable-line */
-          const el = target.matches(`.${this.classes.HISTORYITEM}`)
-            ? target
-            : parentWith(hasClass(this.classes.HISTORYITEM), target)
-          if (getStyle('cursor', el) === 'not-allowed') {
-            return false
-          }
-          const color = getStyle('background-color', el)
-          that.instance.setSolid(color)
+      'click',
+      `.${this.classes.HISTORYITEM}`,
+      ({ target }) => {
+        const el = target.matches(`.${this.classes.HISTORYITEM}`)
+          ? target
+          : parentWith(hasClass(this.classes.HISTORYITEM), target)
+        if (getStyle('cursor', el) === 'not-allowed') {
+          return false
         }
+        const color = getStyle('background-color', el)
+        that.instance.setSolid(color)
       },
       this.element
     )
