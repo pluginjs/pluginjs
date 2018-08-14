@@ -191,6 +191,8 @@ export const getData = (key, el) => {
 
 export const setData = (key, value, el) => {
   getCachedData(el)[key] = value
+
+  return el
 }
 
 export const removeData = (key, el) => {
@@ -204,6 +206,8 @@ export const removeData = (key, el) => {
   } else {
     delete getCachedData(el)[key]
   }
+
+  return el
 }
 
 export const hasData = el => {
