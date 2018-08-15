@@ -177,6 +177,20 @@ describe('Events', () => {
       trigger('click', children)
       expect(result).toEqual('12')
     })
+
+    test('this should be element', () => {
+      const element = document.querySelector('#event-test ul')
+
+      on(
+        'click',
+        function() {
+          expect(this).toEqual(element)
+        },
+        element
+      )
+
+      trigger('click', element)
+    })
   })
 
   describe('once()', () => {
@@ -277,6 +291,24 @@ describe('Events', () => {
 
       trigger('click', 'foo', 'bar', el)
       expect(count).toBe(3)
+    })
+
+    test('should trigger customEvent', () => {
+      const el = document.querySelector('#event-test ul')
+      const customEvent = new CustomEvent('foo', {
+        bubbles: false,
+        detail: { bar: 'bar' }
+      })
+      on(
+        'foo',
+        (e, arg) => {
+          expect(e.bubbles).toBeFalse()
+          expect(arg.bar).toEqual('bar')
+        },
+        el
+      )
+
+      trigger(customEvent, el)
     })
   })
 
@@ -551,15 +583,10 @@ describe('Events', () => {
 
       parent.append(element)
       element.append(child)
-      function testFn(arg1, arg2) {
-        console.log('this', this, arg1, arg2)
-      }
-      testFn.apply({}, ['foo', 'bar'])
 
       on(
         'click',
         e => {
-          console.log(this)
           e.preventDefault()
         },
         child
@@ -648,6 +675,23 @@ describe('Events', () => {
       trigger('click', child)
 
       expect(result).toBe('12')
+    })
+
+    test('this should be selector', () => {
+      const element = document.createElement('div')
+      const child = document.createElement('span')
+      element.append(child)
+
+      on(
+        'click',
+        'span',
+        function() {
+          expect(this).toEqual(child)
+        },
+        element
+      )
+
+      trigger('click', child)
     })
   })
 
