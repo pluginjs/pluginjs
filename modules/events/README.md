@@ -14,13 +14,8 @@ Parameters
 
 | Name | Type | Description |
 |------|------|-------------|
-| options | `TriggerOption` | |
-| element | `HTMLElement` | |
-
-Returns
-
-| Name | Type | Description |
-|------|------|-------------|
+| event | `String or CustomEvent` | evnetName or customEvent |
+| [ extraParams ] | `String or PlainObject` | one or more or null |
 | element | `HTMLElement` | |
 
 ### bindEvent
@@ -29,7 +24,9 @@ Parameters
 
 | Name | Type | Description |
 |------|------|-------------|
-| options | `Option` | |
+| events | `String` | One or more space-separated event types and optional namespaces |
+| [ selector ] | `String` | |
+| callback | `Function` | |
 | element | `HTMLElement` | |
 
 Returns
@@ -44,7 +41,9 @@ Parameters
 
 | Name | Type | Description |
 |------|------|-------------|
-| options | `Option` | |
+| events | `String` | One or more space-separated event types and optional namespaces |
+| [ selector ] | `String` | |
+| callback | `Function` | |
 | element | `HTMLElement` | |
 
 Returns
@@ -59,7 +58,9 @@ Parameters
 
 | Name | Type | Description |
 |------|------|-------------|
-| options | `Option` | |
+| events | `String` | One or more space-separated event types and optional namespaces |
+| [ selector ] | `String` | |
+| callback | `Function` | |
 | element | `HTMLElement` | |
 
 Returns
@@ -68,7 +69,7 @@ Returns
 |------|------|-------------|
 | element | `HTMLElement` | |
 
-### getEventStorage
+### getEventEmitter
 
 Parameters
 
@@ -80,7 +81,7 @@ Returns
 
 | Name | Type | Description |
 |------|------|-------------|
-| eventStorgae | `EventStorgae` | |
+| eventEmitter | `EventEmitter` | |
 
 ## Browser support
 
