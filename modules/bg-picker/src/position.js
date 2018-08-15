@@ -72,8 +72,8 @@ export default class Position {
 
   bind() {
     bindEvent(
-      'click',
-      'li',
+      this.eventName('click'),
+      this.eventName('li'),
       ({ target }) => {
         const el = target.tagName === 'LI' ? target : closest('li', target)
         if (this.instance.disabled) {

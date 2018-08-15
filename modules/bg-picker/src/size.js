@@ -73,8 +73,8 @@ export default class Size {
 
   bind() {
     bindEvent(
-      'click',
-      'li',
+      this.eventName('click'),
+      this.eventName('li'),
       ({ target }) => {
         const el = target.tagName === 'LI' ? target : closest('LI', target)
         if (this.instance.disabled) {

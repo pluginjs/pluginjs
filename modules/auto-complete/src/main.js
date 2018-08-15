@@ -60,7 +60,6 @@ class AutoComplete extends Component {
 
     // this.data = this.options.data
     this.source = this.options.source
-    console.log(this.source)
     this.$panel = null
     this.$selected = null
 
@@ -297,7 +296,7 @@ class AutoComplete extends Component {
       compose(
         bindEvent(this.eventName('blur'), () => {
           this.leave('focus')
-          removeEvent('keydown', this.$element)
+          removeEvent(this.eventName('keydown'), this.$element)
         }),
         bindEvent(this.eventName('focus'), () => {
           this.enter('focus')

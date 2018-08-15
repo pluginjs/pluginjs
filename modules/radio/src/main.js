@@ -185,7 +185,7 @@ class Radio extends Component {
 
   bind() {
     bindEvent(
-      'click',
+      this.eventName('click'),
       () => {
         if (this.is('disabled')) {
           return
@@ -197,7 +197,7 @@ class Radio extends Component {
   }
 
   unbind() {
-    removeEvent('click', this.$element)
+    removeEvent(this.eventName('click'), this.$element)
   }
 
   val(value) {
