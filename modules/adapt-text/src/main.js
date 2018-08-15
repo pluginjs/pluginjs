@@ -84,6 +84,7 @@ class AdaptText extends Component {
           targets: this.element,
           textIndent: -distance,
           duration: scrollSpeed,
+          easing: 'linear',
           complete: () =>
             setStyle(
               {
@@ -104,18 +105,22 @@ class AdaptText extends Component {
         targets: this.element,
         textIndent: 0,
         duration: this.options.scrollResetSpeed,
+        easing: 'linear',
         complete: () => setStyle('textOverflow', 'ellipsis', this.element)
       })
     }
     compose(
       bindEvent(this.eventName('mouseleave'), mouseleaveHandle),
-      bindEvent(this.eventName('mouseenter'), mouseenterHandle),
-      setStyle({
+      bindEvent(this.eventName('mouseenter'), mouseenterHandle)
+    )(this.element)
+    setStyle(
+      {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap'
-      })
-    )(this.element)
+      },
+      this.element
+    )
   }
 
   resize() {
@@ -161,7 +166,13 @@ class AdaptText extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      setStyle(('font-size': ', lineHeight'), '', this.element)
+      setStyle(
+        {
+          fontSize: '',
+          lineHeight: ''
+        },
+        this.element
+      )
 
       if (this.options.scrollable) {
         setStyle(

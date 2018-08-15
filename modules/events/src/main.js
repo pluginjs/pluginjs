@@ -29,22 +29,22 @@ export const trigger = (event, ...args) => {
   element.dispatchEvent(cusEvent)
 }
 
-const getDelegator = (event, selector, callback) => {
+const getDelegator = (event, selector, callback, element) => {
   return (e, args) => {
     let target = e.target
-    const currentTarget = e.currentTarget
+    const currentTarget = e.currentTarget || element
     const applyArgs = args ? [e].concat(args) : [e]
     let result
 
     if (isString(selector)) {
       while (target !== currentTarget) {
         if (target.matches(selector)) {
-          result = callback.apply(e, applyArgs)
+          result = callback.apply(target, applyArgs)
         }
         target = target.parentNode
       }
     } else {
-      result = callback.apply(e, applyArgs)
+      result = callback.apply(currentTarget, applyArgs)
     }
 
     if (result === false) {
@@ -75,7 +75,7 @@ const bind = (event, selector, callback, element, once) => {
     element.addEventListener(eventName, dispatch, false)
   }
 
-  const delegator = getDelegator(event, selector, callback)
+  const delegator = getDelegator(event, selector, callback, element)
   callback._delegator = delegator
 
   if (once) {

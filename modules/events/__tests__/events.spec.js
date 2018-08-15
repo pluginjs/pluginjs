@@ -551,10 +551,15 @@ describe('Events', () => {
 
       parent.append(element)
       element.append(child)
+      function testFn(arg1, arg2) {
+        console.log('this', this, arg1, arg2)
+      }
+      testFn.apply({}, ['foo', 'bar'])
 
       on(
         'click',
         e => {
+          console.log(this)
           e.preventDefault()
         },
         child
