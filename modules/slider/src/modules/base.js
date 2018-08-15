@@ -1,5 +1,6 @@
 import { addClass, hasClass } from '@pluginjs/classes'
 import { append, query, parentWith } from '@pluginjs/dom'
+import { events as EVENTS } from '../constant'
 
 class Base {
   constructor(instance, data) {
@@ -22,10 +23,16 @@ class Base {
     return _load
       .then(target => {
         this.loadHandler(target)
+        // this.instance.itemsInfo[this.instance.current] = {
+        //   width: target.naturalWidth,
+        //   height: target.naturalHeight
+        // }
+        this.instance.trigger(EVENTS.LOADED, target)
         return target
       })
       .catch(target => {
         this.errorHandler(target)
+        this.instance.trigger(EVENTS.ERROR, target)
         return target
       })
   }

@@ -2,6 +2,8 @@ const namespace = 'slider'
 
 const events = {
   READY: 'ready',
+  LOADED: 'loaded',
+  ERROR: 'error',
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
@@ -35,7 +37,7 @@ const methods = ['enable', 'disable', 'destroy', 'prev', 'next']
 
 const defaults = {
   data: null,
-  height: 56.25, // width 100% default, height percentage default
+  height: null, // width 100% default, height percentage default
   arrows: true,
   arrowType: 'solid',
   loop: true,

@@ -249,19 +249,15 @@ class Swipeable extends Component {
     let addDistance = 0
     const percent = this.options.reboundPos / 100
 
-    if (this.options.axis === 'x') {
-      maxDistance = this.width - this.containerWidth
-      addDistance =
-        this.containerWidth -
-        this.containerWidth * percent -
-        this.options.offset
-    } else {
-      maxDistance = this.height - this.containerHeight
-      addDistance =
-        this.containerHeight -
-        this.containerHeight * percent -
-        this.options.offset
-    }
+    const distance = this.options.axis === 'x' ? this.width : this.height
+    const conatinerDistance =
+      this.options.axis === 'x' ? this.containerWidth : this.containerHeight
+    const min = Math.min(distance, conatinerDistance)
+
+    maxDistance = distance - conatinerDistance
+    addDistance = min - min * percent - this.options.offset
+
+    maxDistance = maxDistance < 0 ? 0 : maxDistance
 
     minDistance += addDistance
     maxDistance += addDistance

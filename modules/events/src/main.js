@@ -140,7 +140,6 @@ export const bindEvent = curryWith((events, selector, callback, element) => {
       callback = selector
       selector = undefined
     }
-
     bind(events, selector, callback, element)
   }
 

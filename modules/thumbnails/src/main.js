@@ -62,7 +62,7 @@ class Thumbnails extends Component {
     this.items = this.inner.querySelectorAll(`.${this.classes.THUMB}`)
     this.setDistance(this.options.vertical)
     this.setItemDistance(this.options.vertical)
-    this.go(this.options.current || 0, false)
+    this.go(this.options.current || 0, false, false)
     this.initImageLoader()
     this.initSwipeable()
     this.bind()
@@ -248,7 +248,7 @@ class Thumbnails extends Component {
     )
   }
 
-  setPos(index, vertical = false) {
+  setPos(index, vertical = false, animation = true) {
     const mode = this.options.mode
     let pos = 0
 
@@ -279,18 +279,29 @@ class Thumbnails extends Component {
         }
       }
     } else if (mode === 'center') {
-      pos = this.wrapDistance / 2 + this.getItemPos(index, true)
+      pos =
+        Math.min(this.wrapDistance, this.innerDistance) / 2 +
+        this.getItemPos(index, true)
     }
 
-    const opts = {
-      targets: this.inner,
-      easing: 'linear',
-      duration: 300
+    if (animation) {
+      const opts = {
+        targets: this.inner,
+        easing: 'linear',
+        duration: 300
+      }
+
+      opts[vertical ? 'translateY' : 'translateX'] = pos
+      anime(opts)
+    } else {
+      setStyle(
+        {
+          transform: `${vertical ? 'translateY' : 'translateX'}(${pos}px)`
+        },
+        this.inner
+      )
     }
 
-    opts[vertical ? 'translateY' : 'translateX'] = pos
-
-    anime(opts)
     this.pos = pos
   }
 
@@ -303,10 +314,6 @@ class Thumbnails extends Component {
     }
     this.setItemDistance(this.options.vertical)
 
-    if (this.innerDistance < this.wrapDistance) {
-      return
-    }
-
     const oldPos = this.pos
     const dif = this.wrapDistance - this.innerDistance
     let pos = 0
@@ -316,7 +323,9 @@ class Thumbnails extends Component {
     }
 
     if (this.options.mode === 'center') {
-      pos = this.wrapDistance / 2 + this.getItemPos(this.current, true)
+      pos =
+        Math.min(this.wrapDistance, this.innerDistance) / 2 +
+        this.getItemPos(this.current, true)
     } else {
       pos =
         this.current === this.length - 1 ? oldPos + (dif - this.dif) : oldPos
@@ -342,7 +351,7 @@ class Thumbnails extends Component {
     this.pos = pos
   }
 
-  go(index, change = true) {
+  go(index, change = true, animation = true) {
     if (this.is('disable')) {
       return
     }
@@ -350,7 +359,7 @@ class Thumbnails extends Component {
       return
     }
 
-    this.setPos(index, this.options.vertical)
+    this.setPos(index, this.options.vertical, animation)
 
     removeClass(this.classes.ACTIVE, this.items[this.current])
     addClass(this.classes.ACTIVE, this.items[index])

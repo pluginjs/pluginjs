@@ -32,7 +32,7 @@ import Thumbnails from '@pluginjs/thumbnails'
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
-class Gallery extends Component {
+class Lightbox extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
@@ -151,15 +151,15 @@ class Gallery extends Component {
     return data
   }
 
-  // bind() {
-  //   this.slider.bind()
-  //   this.thumbs.bind()
-  // }
+  bind() {
+    this.slider.bind()
+    this.thumbs.bind()
+  }
 
-  // unbind() {
-  //   this.slider.unbind()
-  //   this.thumbs.unbind()
-  // }
+  unbind() {
+    this.slider.unbind()
+    this.thumbs.unbind()
+  }
 
   enable() {
     this.slider.enable()
@@ -177,4 +177,4 @@ class Gallery extends Component {
   }
 }
 
-export default Gallery
+export default Lightbox

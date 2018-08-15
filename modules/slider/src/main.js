@@ -63,7 +63,10 @@ class Slider extends Component {
     this.axis = this.options.vertical ? 'translateY' : 'translateX'
     this.generate()
 
+    this.width = outerWidth(this.box)
+    this.height = outerHeight(this.box)
     this.distance = this.getDistance(this.box, this.options.vertical)
+    // this.itemsInfo = []
 
     this.setPos()
     this.initSwipeable()
@@ -171,9 +174,9 @@ class Slider extends Component {
     return vertical ? outerHeight(target) : outerWidth(target)
   }
 
-  setPos() {
+  setPos(reset = false) {
     const length = this.data.length
-    const offset = this.cards[this.page].getOffset()
+    const offset = reset ? 0 : this.cards[this.page].getOffset()
 
     for (let i = 0; i < 3; i++) {
       let index = null
@@ -217,7 +220,6 @@ class Slider extends Component {
         }
       } else {
         this.cards[i].createModule(this.data[index], index)
-
         this.cards[i].module.setData({ index }).appendTo(card)
       }
 
@@ -335,7 +337,22 @@ class Slider extends Component {
     removeEvent('arrows:prev', this.arrows.element)
   }
 
+  reset(index) {
+    this.current = index
+    this.stash = 0
+    this.setPos(true)
+
+    setStyle(
+      {
+        transform: `${this.axis}(${this.stash * -this.distance}px)`
+      },
+      this.box
+    )
+  }
+
   resize() {
+    this.width = outerWidth(this.box)
+    this.height = outerHeight(this.box)
     this.distance = this.getDistance(this.box, this.options.vertical)
 
     setStyle(

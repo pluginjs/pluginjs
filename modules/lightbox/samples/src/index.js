@@ -1,3 +1,5 @@
-import Lightbox from '@pluginjs/lightbox'
+// import icons
+import '@pluginjs/icons/dist/plugin-icons.css'
 
-console.log(Lightbox)
+// import sections
+import './sections/default/index.js'

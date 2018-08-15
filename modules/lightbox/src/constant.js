@@ -1,185 +1,135 @@
-export const namespace = 'lightbox'
+const namespace = 'lightbox'
 
-export const events = {
-  UPDATE: 'update',
+const events = {
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
-  DESTROY: 'destroy'
+  DESTROY: 'destroy',
+  CHANGE: 'change',
+  PREV: 'prev',
+  NEXT: 'next'
 }
 
-export const classes = {
-  // element  class
+const classes = {
   NAMESPACE: `pj-${namespace}`,
-  THEME: '{namespace}--{theme}',
-  ACTIVE: '{namespace}-active',
-  DISABLED: '{namespace}-disabled',
+  CONTAINER: '{namespace}',
   OVERLAY: '{namespace}-overlay',
-  WRAP: '{namespace}-wrap',
-  // footer el
+  TOPBAR: '{namespace}-topbar',
+  COUNTER: '{namespace}-counter',
+  PLAY: '{namespace}-play',
+  FULLSCREEN: '{namespace}-fullscreen',
+  DOWNLOAD: '{namespace}-download',
+  CLOSE: '{namespace}-close',
   FOOTER: '{namespace}-footer',
   CAPTION: '{namespace}-caption',
   TITLE: '{namespace}-title',
-  THUMBNAILS: '{namespace}-thumbnails',
-  INNER: '{namespace}-thumbnails-inner',
-  THUMB: '{namespace}-thumb',
-  THUMBBG: '{namespace}-thumb-bg',
-
-  // slide el
-  SLIDE: '{namespace}-slide',
-  ITEM: '{namespace}-item',
-  ITEMINNER: '{namespace}-item-inner',
-  LOADER: '{namespace}-loader',
-  CONTENT: '{namespace}-content',
-  IMAGE: '{namespace}-image',
-  VIDEO: '{namespace}-video',
-  PLAY: '{namespace}-play',
-  LOADING: '{namespace}-loading',
-  MAP: '{namespace}-map',
-  IFRAME: '{namespace}-iframe',
-  INLINE: '{namespace}-inline',
-  AJAX: '{namespace}-ajax',
-  // arrows
-  ARROW: '{namespace}-arrow',
-
-  // effect  class
-  READY: '{namespace}-ready',
-
-  // style  class
-  OVERFLOWHIDE: '{namespace}-overflow-hide',
-  SLIDEBOTTOM: '{namespace}-slide-bottom',
-  SLIDELEFT: '{namespace}-slide-left',
-  SLIDERIGHT: '{namespace}-slide-right',
-  SLIDETOP: '{namespace}-slide-top',
-  THUMBACTIVE: '{namespace}-thumb-active',
-  THUMBSTRANSITION: '{namespace}-thumbs-transition',
-  SLIDETRANSITION: '{namespace}-slide-transition',
-  VERTICALCENTER: '{namespace}-vertical-center',
-  LOADED: '{namespace}-loaded',
-  HIDE: '{namespace}-hide',
-
-  // topBar
-  TOPBAR: '{namespace}-topBar',
-  COUNTER: '{namespace}-counter',
-  SHARE: '{namespace}-share',
-  DOWNLOAD: '{namespace}-download',
-  FULLSCREEN: '{namespace}-fullScreen',
-  CLOSE: '{namespace}-close',
-
-  // theme
-  WHITE: '{namespace}-theme-white',
-  BLACK: '{namespace}-theme-black'
+  SLIDER: '{namespace}-slider',
+  THUMBS: '{namespace}-thumbs',
+  VERTICAL: '{namespace}-vertical',
+  SHOW: '{namespace}-show',
+  ACTIVE: '{namespace}-active',
+  DISABLED: '{namespace}-disabled'
 }
 
-export const methods = ['enable', 'disable', 'destroy']
+const methods = ['enable', 'disable', 'destroy', 'next', 'prev', 'go']
 
-export const defaults = {
-  theme: null,
-  delegate: null,
-  clickBgClose: true,
-  clickImageClose: true,
-  effect: 'zoom',
-  thumbs: true,
-  title: true,
+const defaults = {
   templates: {
-    close() {
-      return '<button type="button" class="{classes.CLOSE}" aria-label="Close"></button>'
+    container() {
+      return '<div class="{classes.CONTAINER}"></div>'
     },
     overlay() {
       return '<div class="{classes.OVERLAY}"></div>'
     },
-    wrap() {
-      return '<div class="{classes.WRAP}"></div>'
+    topbar() {
+      return '<div class="{classes.TOPBAR}"></div>'
     },
-    // // footer
+    counter() {
+      return '<div class="{classes.COUNTER}"></div>'
+    },
+    play() {
+      return '<span class="{classes.PLAY}"><i class="icon-caret-right"></i></span>'
+    },
+    fullScreen() {
+      return '<span class="{classes.FULLSCREEN}"><i class="icon-full-screen"></i></span>'
+    },
+    download() {
+      return '<span class="{classes.DOWNLOAD}"><i class="icon-download"></i></span>'
+    },
+    close() {
+      return '<span class="{classes.CLOSE}"><i class="icon-close"></i></span>'
+    },
     footer() {
       return '<div class="{classes.FOOTER}"></div>'
     },
-    thumbnails() {
+    caption() {
+      return '<div class="{classes.CAPTION}"></div>'
+    },
+    title() {
+      return '<div class="{classes.TITLE}">{title}</div>'
+    },
+    slider() {
+      return '<div class="{classes.SLIDER}"></div>'
+    },
+    box() {
+      return '<div class="{classes.BOX}"></div>'
+    },
+    card() {
       return (
-        '<div class="{classes.THUMBNAILS}">' +
-        '<div class="{classes.INNER}">' +
-        '</div>' +
+        '<div class="{classes.CARD}">' +
+        '<div class="{classes.LOADER}"></div>' +
         '</div>'
       )
+    },
+    image() {
+      return '<img class="{classes.IMAGE} {classes.CONTENT}">'
+    },
+    video() {
+      return (
+        '<div class="{classes.VIDEOWRAP} {classes.CONTENT}">' +
+        '<img class="{classes.IMAGE}">' +
+        '<div class="{classes.VIDEO}"></div>' +
+        '</div>'
+      )
+    },
+    iframe() {
+      return '<iframe class="{classes.IFRAME} {classes.CONTENT}" src="//about:blank" frameborder="0" allowfullscreen></iframe>'
+    },
+    map() {
+      return '<iframe class="{classes.MAP} {classes.CONTENT}" src="//about:blank" frameborder="0" allowfullscreen></iframe>'
+    },
+    inline() {
+      return '<div class="{classes.INLINE} {classes.CONTENT}"></div>'
+    },
+    thumbs() {
+      return '<div class="{classes.THUMBS}"></div>'
+    },
+    inner() {
+      return '<div class="{classes.INNER}"></div>'
     },
     thumb() {
       return (
         '<div class="{classes.THUMB}">' +
-        '<div class="{classes.THUMBBG} pj-lightbox-loaded">' +
+        '<div class="{classes.LOADED}">' +
+        '<img class="{classes.IMAGE}">' +
         '</div>' +
-        '</div>'
-      )
-    },
-    // // slide
-    slide() {
-      return '<div class="{classes.SLIDE}"></div>'
-    },
-    item() {
-      return (
-        '<div class="{classes.ITEM}">' +
-        '<div class="{classes.ITEMINNER}">' +
-        '<div class="{classes.LOADER}"></div>' +
-        '</div>' +
-        '</div>'
-      )
-    },
-    title() {
-      return '<div class="{classes.TITLE}"></div>'
-    },
-    content() {
-      return '<div class="{classes.CONTENT} {classes.VERTICALCENTER}"></div>'
-    },
-    image() {
-      return '<img class="{classes.IMAGE} {classes.VERTICALCENTER}">'
-    },
-    video() {
-      return '<div class="{classes.VIDEO} {classes.VERTICALCENTER}">'
-    },
-    map() {
-      return '<iframe class="{classes.MAP} {classes.VERTICALCENTER}" src="//about:blank" frameborder="0" allowfullscreen></iframe>'
-    },
-    iframe() {
-      return '<iframe class="{classes.IFRAME} {classes.VERTICALCENTER}" src="//about:blank" frameborder="0" allowfullscreen></iframe>'
-    },
-    inline() {
-      return '<div class="{classes.INLINE} {classes.VERTICALCENTER}">'
-    },
-    // arrow
-    arrow() {
-      return (
-        '<div title="{title}" class="{classes.ARROW} {classes.NAMESPACE}-arrow-{dir}">' +
-        '<i class="icon-chevron-{dir}" aria-hidden="true"></i>' +
-        '</div>'
-      )
-    },
-    // topBar
-    topBar() {
-      return (
-        '<div class="{classes.TOPBAR}">' +
-        '<div id="{classes.COUNTER}"></div>' +
-        '<span id="{classes.CLOSE}" class="icon-close"></span>' +
-        '<span id="{classes.SHARE}" class="icon-share"></span>' +
-        '<span id="{classes.DOWNLOAD}" class="icon-download"></span>' +
-        '<span id="{classes.FULLSCREEN}" class="icon-full-screen"></span>' +
-        '<span id="{classes.PLAY}" class="icon-play-circle"></span>' +
         '</div>'
       )
     }
-  }
-}
-
-export const translations = {
-  en: {
-    hello: 'Hello world',
-    greeting: 'Hello {name}!',
-    plurals: ['{count} product', '{count} products', 'no product']
   },
-  zh: {
-    hello: '世界你好',
-    greeting: '{name} 你好!',
-    plurals: '{count} 个产品'
-  }
+  data: 'html', // html or DATA
+  delegate: 'a',
+  actions: ['play', 'fullScreen', 'download', 'close'], // ['play', 'fullScreen', 'download', 'share', 'close']
+  overlayClose: true,
+  arrows: true,
+  swipe: true,
+  caption: true,
+  thumbs: true,
+  vertical: false,
+  keyboard: false,
+  duration: 300
 }
 
-export const dependencies = ['video']
+const dependencies = ['slider', 'thumbnails', 'arrows', 'anime', 'hammer']
+
+export { classes, defaults, events, methods, namespace, dependencies }

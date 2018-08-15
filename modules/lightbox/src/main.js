@@ -1,36 +1,32 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle } from '@pluginjs/styled'
+import { append, parseHTML } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
-import { append, parseHTML, query, queryAll, data } from '@pluginjs/dom'
+import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
   register,
   stateable,
   styleable,
   themeable,
-  translateable,
   optionable
 } from '@pluginjs/decorator'
-import ZOOM from './zoom'
-import OVERLAY from './components/overlay'
-import UTILS from './utils'
-import FOOTER from './components/footer/footer'
-import SLIDE from './components/slide/slide'
-import ARROWS from './components/arrow'
-import TOPBAR from './components/topBar'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
   methods as METHODS,
-  namespace as NAMESPACE,
-  translations as TRANSLATIONS
+  namespace as NAMESPACE
 } from './constant'
 
-@translateable(TRANSLATIONS)
+import Overlay from './sections/overlay'
+import Topbar from './sections/topbar'
+import Caption from './sections/caption'
+import Slider from './sections/slider'
+import Thumbs from './sections/thumbs'
+
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -40,301 +36,181 @@ import {
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
-class Lightbox extends Component {
+class Gallery extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
-    this.setupI18n()
-
     this.initStates()
     this.initialize()
   }
 
   initialize() {
-    const eventHandler = event => {
-      this.openClick(event)
+    if (!this.options.data || this.options.data.length < 0) {
+      return
     }
 
-    const eventName = this.getClass('click.{namespace}') /* eslint-disable-line */
-    if (this.options.delegate) {
-      this.elements = queryAll(this.options.delegate, this.element)
+    this.data =
+      this.options.data === 'html' ? this.parseHtml() : this.options.data
 
-      bindEvent('click', this.options.delegate, eventHandler, this.element)
-    } else {
-      this.elements = this.element
-      bindEvent('click', eventHandler, this.element)
-    }
+    this.length = this.data.length
 
-    if (this.options.effect === 'zoom') {
-      ZOOM.init(this)
-    }
+    this.bind()
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  bind() {} /* eslint-disable-line */
+  bind() {
+    const that = this
 
-  unbind() {} /* eslint-disable-line */
-
-  openClick(event) {
-    if (event.type) {
-      event.preventDefault()
-    }
-
-    if (this.options.delegate) {
-      for (let i = 0; i < this.elements.length; i++) {
-        const target = event.target
-        const img = this.elements[i].querySelector('img')
-        if (target === img) {
-          this.activeIndex = i + 1
-          break
-        }
-      }
-    } else {
-      this.activeIndex = 1
-    }
-
-    if (!this.activeIndex) {
-      return
-    }
-    this.openIndex = this.activeIndex
-
-    this.open()
+    bindEvent(
+      this.eventName('click'),
+      this.options.delegate,
+      function(event) {
+        event.preventDefault()
+        that.active = Number(this.dataset.index)
+        that.open()
+      },
+      this.element
+    )
   }
 
   open() {
-    if (this.is('init')) {
-      this.show()
-      return
-    }
-
-    this.items = this.parseItems()
-    this.wrap = this.getElement('wrap')
-    this.wrap.setAttribute('tabindex', -1)
-    if (this.options.theme === null || this.options.theme === 'white') {
-      addClass(this.classes.WHITE, this.wrap)
-    } else {
-      addClass(this.classes.BLACK, this.wrap)
-    }
-    this.direction = 'next'
-    this.overlay = new OVERLAY(this)
-    if (this.options.thumbs) {
-      this.footer = new FOOTER(this)
-    }
-    this.topBar = new TOPBAR(this)
-    this.slide = new SLIDE(this)
-    if (this.length > 1) {
-      this.arrow = new ARROWS(this)
-    }
-
-    append(this.wrap, document.body)
+    this.build()
     this.show()
-    this.enter('init')
   }
 
   show() {
-    if (this.is('show')) {
-      return
-    }
-
-    this.hideScrollbar()
-    this.wrap.style.display = ''
-
-    this.overlay.show()
-    if (this.options.thumbs) {
-      this.footer.in()
-    }
-    this.topBar.in()
-    if (this.length > 1) {
-      this.arrow.in()
-    }
-    this.slide.show()
-
-    this.trigger('show')
+    addClass(this.classes.SHOW, this.container)
     this.enter('show')
   }
 
-  close() {
-    if (!this.is('show')) {
-      return
-    }
-
-    this.overlay.fadeOut()
-    this.slide.fadeOut()
-    if (this.options.thumbs) {
-      this.footer.out()
-    }
-    this.topBar.out()
-    if (this.length > 1) {
-      this.arrow.out()
-    }
-    setTimeout(() => {
-      this.overlay.hide()
-      this.wrap.style.display = 'none'
-      this.slide.hide()
-      this.reserveScrollbar()
-    }, 300)
-
-    this.trigger('close')
+  hide() {
+    removeClass(this.classes.SHOW, this.container)
     this.leave('show')
   }
 
-  next() {
-    if (!this.is('enable')) {
+  build() {
+    if (this.is('build')) {
+      this.slider.plugin.reset(this.active)
+
+      this.topbar.setCounter(this.active)
+
+      if (this.options.caption) {
+        this.caption.setInfo(this.data[this.active])
+      }
+
+      if (this.options.thumbs) {
+        this.thumbs.plugin.go(this.active, false, false)
+      }
       return
     }
 
-    this.activeIndex++
-    this.direction = 'next'
-    if (this.activeIndex > this.length) {
-      this.activeIndex = 1
-    }
-    // this.slide.goTo(this.activeIndex)
-    this.topBar.updateCount()
-    this.slide.next()
-    if (this.options.thumbs) {
-      this.footer.goTo(this.activeIndex)
-    }
+    this.container = this.getElement('container')
+    this.footer = this.getElement('footer')
+
+    this.overlay = new Overlay(this)
+    this.topbar = new Topbar(this)
+    this.slider = new Slider(this)
+    append(this.footer, this.container)
+    this.caption = new Caption(this)
+    this.thumbs = new Thumbs(this)
+    append(this.container, document.body)
+
+    this.enter('build')
   }
 
-  pre() {
-    if (!this.is('enable')) {
-      return
-    }
-
-    this.activeIndex--
-    this.direction = 'pre'
-    if (this.activeIndex < 1) {
-      this.activeIndex = this.length
-    }
-
-    this.topBar.updateCount()
-    this.slide.pre()
-    if (this.options.thumbs) {
-      this.footer.goTo(this.activeIndex)
-    }
-  }
-
-  goTo(index) {
-    if (index > this.activeIndex) {
-      if (!this.is('enable')) {
-        return
-      }
-      this.activeIndex = index
-
-      this.topBar.updateCount()
-      this.slide.next()
-      if (this.options.thumbs) {
-        this.footer.goTo(this.activeIndex)
-      }
-    } else if (index < this.activeIndex) {
-      if (!this.is('enable')) {
-        return
-      }
-      this.activeIndex = index
-
-      this.topBar.updateCount()
-      this.slide.pre()
-      if (this.options.thumbs) {
-        this.footer.goTo(this.activeIndex)
-      }
-    }
-  }
-
-  parseItems() {
-    const items = {}
-    let count = 1
-    this.elements.forEach((el, index) => { /* eslint-disable-line */
-      const item = {}
-      item.type = data('type', el) || 'image'
-      item.href = el.getAttribute('href')
-      item.poster = data('poster', el)
-      item.sourse = data('sourse', el)
-      item.thumbHref = el.children[0].getAttribute('src')
-      item.index = count
-      item.element = el
-      item.title = el.getAttribute('title') || ''
-      item.content = el.getAttribute('content') || ''
-      item.loaded = false
-      item.loadError = false
-      item.hasBind = false
-
-      items[count] = item
-      count++
-    })
-    this.length = count - 1
-    return items
-  }
-
-  hideScrollbar() {
-    const windowStyles = {}
-
-    if (UTILS.hasScrollBar(window.document.documentElement.clientHeight)) {
-      const s = UTILS.getScrollbarSize()
-      if (s) {
-        windowStyles.marginRight += s
-      }
-    }
-
-    setStyle(windowStyles, query('html'))
-    addClass(this.classes.OVERFLOWHIDE, query('html'))
-  }
-
-  reserveScrollbar() {
-    const windowStyles = {}
-    if (UTILS.hasScrollBar(window.document.documentElement.clientHeight)) {
-      const s = UTILS.getScrollbarSize()
-      if (s) {
-        windowStyles.marginRight -= s
-      }
-    }
-    setStyle(windowStyles, query('html'))
-    removeClass(this.classes.OVERFLOWHIDE, query('html'))
-  }
-
-  getElement(type) {
+  getElement(type, ...args) {
     const template = this.options.templates[type]
     let html = ''
-    if (template) {
-      html = templateEngine.render(template.call(this), {
-        classes: this.classes
-      })
-    }
+
+    html = templateEngine.render(
+      template.call(this),
+      deepMerge(
+        {
+          classes: this.classes
+        },
+        ...args
+      )
+    )
+
     return parseHTML(html)
   }
 
+  processData(data, key) {
+    const _data = []
+    data.forEach(item => {
+      let info = {
+        src: item[key]
+      }
+      info = deepMerge(info, item)
+      _data.push(info)
+    })
+
+    return _data
+  }
+
+  parseHtml() {
+    const data = []
+    const items = this.element.querySelectorAll(this.options.delegate)
+
+    items.forEach((item, index) => {
+      item.dataset.index = index
+
+      let info = {
+        orig: item.getAttribute('href'),
+        thumb: item.children[0].getAttribute('src')
+      }
+
+      const _data = Object.entries(item.dataset).reduce((result, [k, v]) => {
+        try {
+          const content = JSON.parse(`{"data": ${v.replace(/'/g, '"')}}`).data
+          return {
+            ...result,
+            [k]: content
+          }
+        } catch (err) {
+          return {
+            ...result,
+            [k]: v
+          }
+        }
+      }, {})
+
+      info = deepMerge(info, _data)
+
+      data.push(info)
+    })
+
+    return data
+  }
+
+  // bind() {
+  //   this.slider.bind()
+  //   this.thumbs.bind()
+  // }
+
+  // unbind() {
+  //   this.slider.unbind()
+  //   this.thumbs.unbind()
+  // }
+
   enable() {
-    if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.element)
-      this.leave('disabled')
-    }
-    this.trigger(EVENTS.ENABLE)
+    this.slider.enable()
+    this.thumbs.enable()
   }
 
   disable() {
-    if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.element)
-      this.enter('disabled')
-    }
-
-    this.trigger(EVENTS.DISABLE)
+    this.slider.disable()
+    this.thumbs.disable()
   }
 
   destroy() {
-    if (this.is('initialized')) {
-      this.unbind()
-
-      if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.element)
-      }
-      this.leave('initialized')
-    }
-    this.trigger(EVENTS.DESTROY)
-    super.destroy()
+    this.slider.destroy()
+    this.thumbs.destroy()
   }
 }
 
-export default Lightbox
+export default Gallery

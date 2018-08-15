@@ -1,80 +1,114 @@
 @import "@pluginjs/styles/variables.scss";
-@import "footer.scss";
-@import "overlay.scss";
-@import "topBar.scss";
-@import "arrows.scss";
-@import "wrap.scss";
 
 // Vars
 // =====================
 $lightbox: "pj-lightbox" !default;
-//theme
-.#{$lightbox}-theme-white {
-  .#{$lightbox}-arrow {
-    color: #fff;
-    background: #999;
+$slider: "pj-slider" !default;
+
+.#{$lightbox} {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+
+  &-show {
+    z-index: 99999;
+    visibility: visible;
+    opacity: 1;
   }
 
-  .#{$lightbox}-topBar {
-    span {
-      color: #666;
-    }
-
-    ##{$lightbox}-counter {
-      color: #666;
-    }
+  &-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
   }
 
-  .#{$lightbox}-loader {
-    color: #666;
+  &-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
   }
 
-  .#{$lightbox}-title {
-    font-weight: 400;
-    color: #404040;
+  &-topbar {
+    width: 100%;
+    font-size: 16px;
+    text-align: right;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  &-counter {
+    float: left;
+    padding: 10px;
+  }
+
+  &-play,
+  &-fullscreen,
+  &-download,
+  &-close {
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  &-slider {
+    flex-basis: 100%;
+    height: auto;
+    padding-bottom: 0;
+  }
+
+  .#{$slider}-content {
+    min-height: auto;
+  }
+
+
+  &-footer {
+    position: relative;
+  }
+
+  &-caption {
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  &-thumbs {
+    margin: 10px 0;
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }
 
-.#{$lightbox}-theme-black {
-  .#{$lightbox}-arrow {
-    color: #000;
-    background: #7d7d7d;
-  }
 
-  .#{$lightbox}-topBar {
-    span {
-      color: #a8a8a8;
-    }
-
-    ##{$lightbox}-counter {
-      color: #a8a8a8;
+@media screen and (max-width: 768px) {
+  .#{$lightbox} {
+    &-caption {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transform: translateY(-100%)
     }
   }
+}
 
-  .#{$lightbox}-loader {
-    color: #a8a8a8;
+@media screen and (max-width: 480px) {
+  .#{$lightbox} {
+    &-thumbs {
+      display: none;
+    }
   }
-
-  .#{$lightbox}-title {
-    font-weight: 300;
-    color: #fff;
-  }
-}
-
-.#{$lightbox}-hide {
-  display: none;
-}
-
-.#{$lightbox}-overflow-hide {
-  overflow: hidden;
-}
-
-//example
-#small-dialog {
-  position: relative;
-  max-width: 400px;
-  padding: 20px 30px;
-  margin: 40px auto;
-  text-align: left;
-  background: #fff;
 }
