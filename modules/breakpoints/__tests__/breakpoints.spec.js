@@ -19,7 +19,7 @@ describe('Breakpoints', () => {
 
   describe('Breakpoints.all()', () => {
     it('should return all names', () => {
-      expect(Breakpoints.all()).toEqual(['xs', 'sm', 'md', 'lg'])
+      expect(Breakpoints.all()).toEqual(['xs', 'sm', 'md', 'lg', 'xl'])
     })
   })
 
