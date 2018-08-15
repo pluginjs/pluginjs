@@ -1,5 +1,5 @@
 /* eslint-disable */
-import * as is from '../src/main.js'
+import * as is from '../src/main'
 
 /* Credit to http://is.js.org */
 describe('is', () => {

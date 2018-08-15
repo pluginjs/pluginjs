@@ -1,5 +1,5 @@
-import Shorten from '../../src/main.js'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Shorten from '../src/main.js'
+
 describe('Shorten', () => {
   describe('Shorten()', () => {
     test('should have Shorten', () => {
@@ -41,73 +41,57 @@ describe('Shorten', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asShorten()).toEqual($element)
-
-      const api = $element.data('shorten')
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asShorten()
-      expect($element.asShorten('destroy')).toEqual($element)
+      const element = document.createElement('div')
+      const instance = Shorten.of(element)
+      expect(instance.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let $element
+    let element
+    let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
-      $element.html(
+      element = document.createElement('div')
+      element.textContent =
         'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam'
-      )
     })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.on('shorten:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      element.addEventListener('shorten:ready', () => {
         called++
       })
 
-      $element.asShorten()
+      api = Shorten.of(element)
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div'))
-        .html(
-          'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos At vero eos At vero eos At vero eos At vero eos'
-        )
-        .asShorten()
-      api = $element.data('shorten')
+      element = document.createElement('div')
+      element.textContent =
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos At vero eos At vero eos At vero eos At vero eos'
+      api = Shorten.of(element)
     })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.on('shorten:destroy', (event, api) => {
-        expect(api.is('initialized')).toBeFalse()
+      element.addEventListener('shorten:destroy', () => {
         called++
       })
 
-      $element.asShorten('destroy')
-
+      api.destroy()
+      expect(api.is('initialized')).toBeFalse()
       expect(called).toEqual(1)
     })
   })

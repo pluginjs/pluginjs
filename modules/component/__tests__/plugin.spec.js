@@ -1,15 +1,16 @@
-import Plugin from '../../src'
-import Pj from '@pluginjs/factory'
+import Component from '../src/main'
+import { register } from '@pluginjs/decorator'
 
-describe('Plugin', () => {
-  describe('Plugin()', () => {
-    test('should have Plugin', () => {
-      expect(Plugin).toBeFunction()
+describe('Component', () => {
+  describe('Component()', () => {
+    test('should have Component', () => {
+      expect(Component).toBeFunction()
     })
 
     test('should construct with element', () => {
       const element = document.createElement('div')
-      const instance = new Plugin('plugin', element)
+      const registerComponent = register('plugin')(Component)
+      const instance = registerComponent.of('plugin', element)
 
       expect(instance.element).toEqual(element)
       expect(instance.plugin).toEqual('plugin')
@@ -19,13 +20,12 @@ describe('Plugin', () => {
   describe('destroy()', () => {
     test('should call destroy', () => {
       const element = document.createElement('div')
-      const instance = new Plugin('plugin', element)
+      const registerComponent = register('plugin')(Component)
+      const instance = registerComponent.of('plugin', element)
 
-      if (Pj.instances.plugin) {
-        instance.destroy()
-        expect($(element).data('plugin')).toEqual(null)
-        expect(Pj.instance[instance.plugin]).toHaveLength(0)
-      }
+      instance.destroy()
+      expect(instance.element).toBeNull()
+      expect(instance.plugin).toBeNull()
     })
   })
 })

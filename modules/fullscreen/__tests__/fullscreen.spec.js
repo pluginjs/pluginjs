@@ -1,4 +1,4 @@
-import Fullscreen from '../../src/main'
+import Fullscreen from '../src/main'
 
 describe('Fullscreen', () => {
   test('should have Fullscreen', () => {

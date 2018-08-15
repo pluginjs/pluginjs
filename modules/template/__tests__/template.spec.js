@@ -1,4 +1,4 @@
-import template from '../src'
+import template from '../src/main'
 
 describe('template', () => {
   test('should have template', () => {
@@ -141,26 +141,6 @@ describe('template', () => {
     const result = template.render('Please respond by {0}', '01/01/2015')
 
     expect(result).toEqual('Please respond by 01/01/2015')
-  })
-
-  test('should replace multiple listed arguments', () => {
-    const result = template.render(
-      'Hello {0}, you have {1} new messages',
-      'Anna',
-      5
-    )
-
-    expect(result).toEqual('Hello Anna, you have 5 new messages')
-  })
-
-  test('should replace missing listed arguments with empty string', () => {
-    const result = template.render('Hello{1}, how are you?', 'no')
-    expect(result).toEqual('Hello, how are you?')
-  })
-
-  test('should escape listed arguments', () => {
-    const result = template.render('Hello {{0}}, how are you?', 'Mark')
-    expect(result).toEqual('Hello {0}, how are you?')
   })
 
   test('should replace multiple listed arguments', () => {

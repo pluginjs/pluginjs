@@ -179,7 +179,7 @@ class Shorten extends Component {
   destroy() {
     if (this.is('initialized')) {
       compose(
-        removeEvent('shorten:collapse'),
+        // removeEvent('shorten:collapse'),
         removeEvent('shorten:expand'),
         removeEvent('shorten'),
         setData('shorten', null),

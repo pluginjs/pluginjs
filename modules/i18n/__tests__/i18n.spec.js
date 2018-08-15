@@ -1,4 +1,4 @@
-import I18N from '../../src'
+import I18N from '../src/main'
 import translations from './fixtures/translations'
 
 describe('I18N', () => {
@@ -232,9 +232,6 @@ describe('Translate', () => {
 })
 
 describe('Interpolation', () => {
-  let actual
-  let expected
-
   let i18n
   let instance
 
@@ -258,31 +255,31 @@ describe('Interpolation', () => {
   })
 
   describe('Pluralization', () => {
-    let translation_key
+    let translationKey
 
     describe('when count is passed in', () => {
       describe('and translation key does contain pluralization', () => {
         beforeEach(() => {
-          translation_key = 'inbox'
+          translationKey = 'inbox'
         })
 
         test('return translated and pluralized string', () => {
           expect(
-            instance.translate(translation_key, {
+            instance.translate(translationKey, {
               count: 0,
               _number: 'count'
             })
           ).toEqual('You have no messages')
 
           expect(
-            instance.translate(translation_key, {
+            instance.translate(translationKey, {
               count: 1,
               _number: 'count'
             })
           ).toEqual('You have 1 message')
 
           expect(
-            instance.translate(translation_key, {
+            instance.translate(translationKey, {
               count: 5,
               _number: 'count'
             })
@@ -292,26 +289,26 @@ describe('Interpolation', () => {
 
       describe('and translation key does NOT contain pluralization', () => {
         beforeEach(() => {
-          translation_key = 'hello'
+          translationKey = 'hello'
         })
 
         test('should return translated string ONLY', () => {
           expect(
-            instance.translate(translation_key, {
+            instance.translate(translationKey, {
               count: 0,
               _number: 'count'
             })
           ).toEqual('Hello World!')
 
           expect(
-            instance.translate(translation_key, {
+            instance.translate(translationKey, {
               count: 1,
               _number: 'count'
             })
           ).toEqual('Hello World!')
 
           expect(
-            instance.translate(translation_key, {
+            instance.translate(translationKey, {
               count: 5,
               _number: 'count'
             })
@@ -321,26 +318,26 @@ describe('Interpolation', () => {
 
       describe('and translation key does contain pluralization with null content', () => {
         beforeEach(() => {
-          translation_key = 'sent'
+          translationKey = 'sent'
         })
 
         test('should return empty string', () => {
           expect(
-            instance.translate(translation_key, {
+            instance.translate(translationKey, {
               count: 0,
               _number: 'count'
             })
           ).toEqual('[missing "en.sent" translation]')
 
           expect(
-            instance.translate(translation_key, {
+            instance.translate(translationKey, {
               count: 1,
               _number: 'count'
             })
           ).toEqual('[missing "en.sent" translation]')
 
           expect(
-            instance.translate(translation_key, {
+            instance.translate(translationKey, {
               count: 5,
               _number: 'count'
             })
@@ -352,10 +349,10 @@ describe('Interpolation', () => {
     describe('when count is NOT passed in', () => {
       describe('and translation key does contain pluralization', () => {
         beforeEach(() => {
-          translation_key = 'inbox'
+          translationKey = 'inbox'
         })
 
-        const expected_translation_object = [
+        const expectedTranslationObject = [
           'You have {count} message',
           'You have {count} messages',
           'You have no messages'
@@ -363,51 +360,51 @@ describe('Interpolation', () => {
 
         test('return translated and pluralized string', () => {
           expect(
-            instance.translate(translation_key, {
-              not_count: 0,
+            instance.translate(translationKey, {
+              notCount: 0,
               _number: 'count'
             })
-          ).toEqual(expected_translation_object)
+          ).toEqual(expectedTranslationObject)
 
           expect(
-            instance.translate(translation_key, {
-              not_count: 1,
+            instance.translate(translationKey, {
+              notCount: 1,
               _number: 'count'
             })
-          ).toEqual(expected_translation_object)
+          ).toEqual(expectedTranslationObject)
 
           expect(
-            instance.translate(translation_key, {
-              not_count: 5,
+            instance.translate(translationKey, {
+              notCount: 5,
               _number: 'count'
             })
-          ).toEqual(expected_translation_object)
+          ).toEqual(expectedTranslationObject)
         })
       })
 
       describe('and translation key does NOT contain pluralization', () => {
         beforeEach(() => {
-          translation_key = 'hello'
+          translationKey = 'hello'
         })
 
         test('return translated string ONLY', () => {
           expect(
-            instance.translate(translation_key, {
-              not_count: 0,
+            instance.translate(translationKey, {
+              notCount: 0,
               _number: 'count'
             })
           ).toEqual('Hello World!')
 
           expect(
-            instance.translate(translation_key, {
-              not_count: 1,
+            instance.translate(translationKey, {
+              notCount: 1,
               _number: 'count'
             })
           ).toEqual('Hello World!')
 
           expect(
-            instance.translate(translation_key, {
-              not_count: 5,
+            instance.translate(translationKey, {
+              notCount: 5,
               _number: 'count'
             })
           ).toEqual('Hello World!')

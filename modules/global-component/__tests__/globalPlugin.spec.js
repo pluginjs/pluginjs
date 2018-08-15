@@ -1,5 +1,5 @@
-import GlobalComponent from '../../src'
-import Pj from '@pluginjs/factory'
+import GlobalComponent from '../src/main'
+import { register } from '@pluginjs/decorator'
 
 describe('GlobalComponent', () => {
   describe('GlobalComponent()', () => {
@@ -8,20 +8,11 @@ describe('GlobalComponent', () => {
     })
 
     test('should construct correctly', () => {
-      const instance = new GlobalComponent('plugin')
+      const registerComponent = register('plugin')(GlobalComponent)
+      const instance = registerComponent.of('plugin')
 
       expect(instance).not.toBeNil()
       expect(instance.plugin).toEqual('plugin')
-    })
-  })
-
-  describe('destroy()', () => {
-    test('should call destroy', () => {
-      if (Pj.instances.plugin) {
-        const instance = new GlobalComponent('plugin')
-        instance.destroy()
-        expect(Pj.instance[instance.plugin]).toHaveLength(0)
-      }
     })
   })
 })

@@ -1,4 +1,4 @@
-import Easing from '../src'
+import Easing from '../src/main'
 
 describe('Easing', () => {
   test('should have Easing.bezier', () => {

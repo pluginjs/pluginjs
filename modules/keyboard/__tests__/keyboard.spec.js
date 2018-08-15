@@ -1,8 +1,8 @@
-import keyboard from '../src'
+import keyboard from '../src/main'
 
 describe('keyboard', () => {
   test('should have keyboard', () => {
-    expect(keyboard).toBeObject()
+    expect(keyboard).toBeFunction()
   })
 
   test('can construc with element', () => {
@@ -35,33 +35,27 @@ describe('keyboard', () => {
     })
 
     test('should have MODIFIERS event', () => {
-      expect(clavier.emitter.hasListeners('16' + 'down')).toBeTrue()
-      expect(clavier.emitter.hasListeners('16' + 'up')).toBeTrue()
-      expect(clavier.emitter.hasListeners('17' + 'down')).toBeTrue()
-      expect(clavier.emitter.hasListeners('17' + 'up')).toBeTrue()
-      expect(clavier.emitter.hasListeners('18' + 'down')).toBeTrue()
-      expect(clavier.emitter.hasListeners('18' + 'up')).toBeTrue()
-      expect(clavier.emitter.hasListeners('91' + 'down')).toBeTrue()
-      expect(clavier.emitter.hasListeners('91' + 'up')).toBeTrue()
+      expect(clavier.emitter.hasListeners('16down')).toBeTrue()
+      expect(clavier.emitter.hasListeners('16up')).toBeTrue()
+      expect(clavier.emitter.hasListeners('17down')).toBeTrue()
+      expect(clavier.emitter.hasListeners('17up')).toBeTrue()
+      expect(clavier.emitter.hasListeners('18down')).toBeTrue()
+      expect(clavier.emitter.hasListeners('18up')).toBeTrue()
+      expect(clavier.emitter.hasListeners('91down')).toBeTrue()
+      expect(clavier.emitter.hasListeners('91up')).toBeTrue()
     })
   })
 
   describe('on()', () => {
     test('should add down listener', () => {
-      let result = 0
-      const callback = () => {
-        result = 1
-      }
+      const callback = () => console.log('callback')
       clavier.on('down', 'a', callback)
       expect(clavier.emitter.hasListeners('65down')).toBeTrue()
       expect(clavier.emitter.getListeners('65down')).toHaveLength(1)
     })
 
     test('should add up listener', () => {
-      let result = 0
-      const callback = () => {
-        result = 1
-      }
+      const callback = () => console.log('callback')
       clavier.on('up', 'a', callback)
       expect(clavier.emitter.hasListeners('65up')).toBeTrue()
       expect(clavier.emitter.getListeners('65up')).toHaveLength(1)
@@ -70,10 +64,7 @@ describe('keyboard', () => {
 
   describe('off()', () => {
     test('should remove down listener', () => {
-      let result = 0
-      const callback = () => {
-        result = 1
-      }
+      const callback = () => console.log('callback')
       clavier.on('down', 'a', callback)
       expect(clavier.emitter.hasListeners('65down')).toBeTrue()
       clavier.off('down', 'a')
@@ -81,10 +72,7 @@ describe('keyboard', () => {
     })
 
     test('should remove up listener', () => {
-      let result = 0
-      const callback = () => {
-        result = 1
-      }
+      const callback = () => console.log('callback')
       clavier.on('up', 'a', callback)
       expect(clavier.emitter.hasListeners('65up')).toBeTrue()
       clavier.off('up', 'a')
@@ -94,20 +82,14 @@ describe('keyboard', () => {
 
   describe('down()', () => {
     test('should add down listener', () => {
-      let result = 0
-      const callback = () => {
-        result = 1
-      }
+      const callback = () => console.log('callback')
       clavier.down('a', callback)
       expect(clavier.emitter.hasListeners('65down')).toBeTrue()
       expect(clavier.emitter.getListeners('65down')).toHaveLength(1)
     })
 
     test('should remove down listener', () => {
-      let result = 0
-      const callback = () => {
-        result = 1
-      }
+      const callback = () => console.log('callback')
       clavier.down('a', callback)
       expect(clavier.emitter.hasListeners('65down')).toBeTrue()
       clavier.down('a')
@@ -117,20 +99,14 @@ describe('keyboard', () => {
 
   describe('up()', () => {
     test('should add up listener', () => {
-      let result = 0
-      const callback = () => {
-        result = 1
-      }
+      const callback = () => console.log('callback')
       clavier.up('a', callback)
       expect(clavier.emitter.hasListeners('65up')).toBeTrue()
       expect(clavier.emitter.getListeners('65up')).toHaveLength(1)
     })
 
     test('should remove up listener', () => {
-      let result = 0
-      const callback = () => {
-        result = 1
-      }
+      const callback = () => console.log('callback')
       clavier.up('a', callback)
       expect(clavier.emitter.hasListeners('65up')).toBeTrue()
       clavier.up('a')
