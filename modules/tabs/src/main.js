@@ -31,8 +31,8 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import axios from 'axios'
-
+// import axios from 'axios'
+// import fetch from 'fetch'
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -96,7 +96,6 @@ class Tabs extends Component {
     this.panes = this.$content ? children(this.$content) : null
 
     this.size = this.$tabs.length
-
     this.$loading = parseHTML(`<span class=${this.classes.LOADING}"></span>`)
   }
 
@@ -276,15 +275,35 @@ class Tabs extends Component {
     }
   }
 
+  // ajaxLoad(index) {
+  //   this.showLoading()
+
+  //   if (!(this.options.cached === true && this.ajax[index].cached === true)) {
+  //     axios(this.ajax[index].href)
+  //       .then(response => {
+  //         this.ajax[index].cached = true
+  //         this.hideLoading()
+  //         this.panes[index].html(response.data)
+  //       })
+  //       .catch(() => {
+  //         this.hideLoading()
+  //         this.panes[index].html('Not Found')
+  //       })
+  //       .then(() => {
+  //         this.trigger(EVENTS.LOADED, index)
+  //       })
+  //   }
+  // }
   ajaxLoad(index) {
     this.showLoading()
 
     if (!(this.options.cached === true && this.ajax[index].cached === true)) {
-      axios(this.ajax[index].href)
+      fetch(this.ajax[index].href)
         .then(response => {
           this.ajax[index].cached = true
           this.hideLoading()
-          this.panes[index].html(response.data)
+          // this.panes[index].html(response.json())
+          response.json().then(data => this.panes[index].html(data))
         })
         .catch(() => {
           this.hideLoading()

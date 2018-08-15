@@ -3,8 +3,8 @@ import { isString, isArray, isObject, isFunction } from '@pluginjs/is'
 import { bindEventOnce, trigger } from '@pluginjs/events'
 import { data, attr, html, each, setData, getData } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
-import axios from 'axios'
-
+// import axios from 'axios'
+// import fetch from 'fetch'
 const EVENTS = {
   BEFORESHOW: 'beforeShow',
   BEFOREHIDE: 'beforeHide',
@@ -208,7 +208,6 @@ class Step {
   load(callback) {
     const that = this
     let loader = this.loader
-
     if (isFunction(loader)) {
       loader = loader.call(this.wizard, this)
     }
@@ -234,15 +233,23 @@ class Step {
         callback.call(that)
       }
     }
-
     if (isString(loader)) {
       setContent(loader)
     } else if (isObject(loader) && {}.hasOwnProperty.call(loader, 'url')) {
       that.wizard.options.loading.show.call(that.wizard, that)
 
-      axios(loader.url, loader.settings || {})
+      // axios(loader.url, loader.settings || {})
+      //   .then(response => {
+      //     setContent(response)
+      //     that.wizard.options.loading.hide.call(that.wizard, that)
+      //   })
+      //   .catch(() => {
+      //     that.wizard.options.loading.fail.call(that.wizard, that)
+      //   })
+      fetch(loader.url, loader.settings || {})
         .then(response => {
-          setContent(response)
+          // setContent(response.json())
+          response.json().then(data => setContent(data))
           that.wizard.options.loading.hide.call(that.wizard, that)
         })
         .catch(() => {
