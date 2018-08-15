@@ -1,5 +1,9 @@
 /* Credit to http://is.js.org MIT */
-const userAgent = ((window.navigator && window.navigator.userAgent) || '').toLowerCase() // eslint-disable-line
+export let userAgent
+export const setUserAgent = ua => {
+  userAgent = ua.toLowerCase()
+}
+setUserAgent((window.navigator && window.navigator.userAgent) || '')
 
 // is current device supports touch?
 export const isTouchDevice = () => {
@@ -57,7 +61,7 @@ export const isLandscape = () => {
 // ----------
 // is current device android?
 export const isAndroid = () => {
-  return /android/.test(userAgent)
+  return !isWindows() && /android/.test(userAgent)
 }
 
 // is current device android phone?
@@ -72,7 +76,11 @@ export const isAndroidTablet = () => {
 
 // is current device blackberry?
 export const isBlackberry = () => {
-  return /blackberry/.test(userAgent) || /bb10/.test(userAgent)
+  return (
+    /blackberry/.test(userAgent) ||
+    /bb10/.test(userAgent) ||
+    /rim/.test(userAgent)
+  )
 }
 
 // is current device blackberry phone?
@@ -96,9 +104,8 @@ export const isIpad = () => {
 }
 
 // is current device iphone?
-// parameter is optional
 export const isIphone = () => {
-  return /iphone/.test(userAgent)
+  return !isWindows() && /iphone/.test(userAgent)
 }
 
 // is current device ipod?
