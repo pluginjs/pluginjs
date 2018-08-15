@@ -6,8 +6,10 @@ $collapse: "pj-collapse";
 
 // Core
 // =====================
-.#{$collapse} [role="button"] {
-  cursor: pointer;
+.#{$collapse}  {
+  & [role="button"] {
+    cursor: pointer;
+  }
 }
 
 .#{$collapse}-content {

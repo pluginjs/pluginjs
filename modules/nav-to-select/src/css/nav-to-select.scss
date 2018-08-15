@@ -27,9 +27,9 @@ $navToSelect-input-font-family: "font-awesome" !default;
   background: none;
   border: 1px solid $gray-border;
   outline: none;
-  -moz-appearance:none;
-  -webkit-appearance:none;
-  appearance:none; /* stylelint-disable-line *//* stylelint-disable-line */
+  -moz-appearance:none;/* stylelint-disable-line */
+  -webkit-appearance:none; /* stylelint-disable-line */
+  appearance:none;
 
   &:focus {
     border-color: $navToSelect-input-outline;

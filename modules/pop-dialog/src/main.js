@@ -58,7 +58,7 @@ class PopDialog extends Popover {
     bindEvent(
       this.eventName('click'),
       `.${this.classes.BUTTON}`,
-      ({ target }) =>
+      ({ target }) => {
         this.do(
           hasClass(this.classes.BUTTON, target)
             ? data('action', target)
@@ -66,7 +66,8 @@ class PopDialog extends Popover {
                 data('action'),
                 closest(`${this.classes.BUTTON}`)
               )(target)
-        ),
+        )
+      },
       $tip
     )
     data({ buttonEventsBinded: true }, $tip)

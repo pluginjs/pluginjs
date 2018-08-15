@@ -5,31 +5,46 @@
 // =====================
 $collapse: "pj-collapse";
 $collapse-font-family: $font-family-base !default;
+$collapse-font-size: $font-size-sm !default;
+$collapse-border-color: $gray-border !default;
 $collapse-gutter-width: 1px !default;
-$collapse-padding: 1rem !default;
+$collapse-padding: 12px 23px !default;
+$collapse-content-padding: 0 23px !default;
+$collapse-expanded-padding: 20px 23px 24px !default;
+$collapse-header-icon-margin-right: 11px !default;
+$collapse-content-inner-margin: 0 22px !default;
 
 // default
 // =====================
 .#{$collapse} {
   font-family: $collapse-font-family;
-  border-color: inherit;
+  font-size: $collapse-font-size;
+  border-color: $collapse-border-color;
   border-style: solid;
   border-width: $collapse-gutter-width;
+
+  &-expanded {
+    .#{$collapse}-header {
+      padding: $collapse-expanded-padding;
+    }
+  }
 }
 
 .#{$collapse}-header {
+  display: flex;
+  align-items: center;
   padding: $collapse-padding;
+  outline: none;
+
+  .icon {
+    margin-right: $collapse-header-icon-margin-right;
+  }
 }
 
 .#{$collapse}-content-inner {
-  padding: $collapse-padding;
-  border-color: inherit;
-  border-style: solid;
-  border-width: 0 0 $collapse-gutter-width;
-}
+  padding: $collapse-content-padding;
 
-.#{$collapse}-header + .#{$collapse}-content .#{$collapse}-content-inner {
-  border-color: inherit;
-  border-style: solid;
-  border-width: $collapse-gutter-width 0 0;
+  p {
+    margin: 0;
+  }
 }

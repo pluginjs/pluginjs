@@ -173,10 +173,7 @@ class Tooltip extends Component {
     }
 
     const showEvent = new CustomEvent(this.selfEventName(EVENTS.SHOW), {
-      detail: {
-        instance: this,
-        foo: 'bar'
-      }
+      detail: [this, 'bar']
     })
     if (this.isWithContent() && !this.is('disabled')) {
       this.trigger(showEvent)
@@ -302,9 +299,7 @@ class Tooltip extends Component {
   hide(callback) {
     const tip = this.getTip()
     const hideEvent = new CustomEvent(this.selfEventName(EVENTS.HIDE), {
-      detail: {
-        instance: this
-      }
+      detail: [this]
     })
 
     const complete = () => {
