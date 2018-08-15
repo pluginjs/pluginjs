@@ -13,6 +13,11 @@ export const trigger = (event, ...args) => {
     return
   }
 
+  if (event instanceof window.Event) {
+    element.dispatchEvent(event)
+    return
+  }
+
   const data = args.length > 1 ? args.slice(0, args.length - 1) : null
 
   const { eventName, namespace } = EventEmitter.parseEvent(event)
