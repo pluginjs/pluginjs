@@ -1,171 +1,42 @@
-ul.pj-tree {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+@import "@pluginjs/styles/variables.scss";
+@import "tree.core";
 
-  li {
-    text-indent: 20px;
+// Vars
+// =====================
+$tree-input-font-family: "font-awesome" !default;
+$tree-line-left: 1.5 * $tree-sizer !default;
+$tree-line-bg: #b3b3b3 !default;
 
-    .pj-tree-element {
-      text-indent: 0;
-    }
 
-    .pj-tree-element > * {
-      text-indent: 0;
+// arrow
+// =======================
+
+.#{$tree}-arrows {
+  .#{$tree}-toggler {
+    position: relative;
+    &::before {
+      position: absolute;
+      top: 50%;
+      z-index: -1;
+      font-family: $tree-input-font-family;
+      font-style: normal;
+      text-decoration: none;
+      text-transform: none;
+      content: "\f0da";
+      transform: translateY(-50%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
   }
 
-  ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    // stylelint-disable
-    li {
-      text-indent: 30px;
-
-      .pj-tree-element {
-        text-indent: 10px;
-      }
-    }
-
-    ul {
-      li {
-        text-indent: 40px;
-
-        .pj-tree-element {
-          text-indent: 20px;
+// stylelint-disable
+  .#{$tree}-branch.#{$tree}-open {
+    > .#{$tree}-element {
+      .#{$tree}-toggler {
+        &::before {
+          content: "\f0d7";
         }
       }
-
-      ul {
-        li {
-          text-indent: 50px;
-
-          .pj-tree-element {
-            text-indent: 30px;
-          }
-        }
-
-        ul {
-          li {
-            text-indent: 60px;
-
-            .pj-tree-element {
-              text-indent: 40px;
-            }
-          }
-
-          ul {
-            li {
-              text-indent: 70px;
-
-              .pj-tree-element {
-                text-indent: 50px;
-              }
-            }
-
-            ul {
-              li {
-                text-indent: 80px;
-
-                .pj-tree-element {
-                  text-indent: 60px;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .pj-tree-toggler {
-    display: inline-block;
-    *display: inline;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    *zoom: 1;
-    background-image: url("./images/arrow-right.png");
-    background-repeat: no-repeat;
-    background-position: 8px 6px;
-    transition: transform 0.25s ease-in-out;
-
-    &.pj-tree-open {
-      transform: rotate(90deg);
-      // background-image: url("../images/arrow-down.png");
-      // background-position: 5px 8px;
-    }
-  }
-
-  li {
-    cursor: pointer;
-    border-top: 1px dashed transparent;
-    border-bottom: 1px dashed transparent;
-
-    &:hover,
-    .pj-tree-element:hover {
-      background-color: rgb(227, 244, 250);
-      border-top: 1px solid rgb(222, 238, 244);
-      border-bottom: 1px solid rgb(222, 238, 244);
-    }
-
-    &.pj-tree-selected,
-    &.pj-tree-branch.pj-tree-selected > .pj-tree-element,
-    &.pj-tree-branch.pj-tree-childrenSelected > .pj-tree-element {
-      color: white;
-      background-color: rgb(50, 184, 227);
-      border-top: 1px solid rgb(47, 175, 215);
-      border-bottom: 1px solid rgb(47, 175, 215);
-    }
-
-    &.pj-tree-branch {
-      &:hover,
-      &.pj-tree-selected {
-        color: inherit;
-        background-color: inherit;
-        border-top: 1px dashed transparent;
-        border-bottom: 1px dashed transparent;
-      }
-    }
-
-    .pj-tree-element {
-      border-top: 1px dashed transparent;
-      border-bottom: 1px dashed transparent;
-    }
-  }
-
-  .pj-tree-branch {
-    > ul {
-      display: none;
-
-      &.pj-tree-expand {
-        display: block;
-      }
-    }
-
-    &.pj-tree-open {
-      > ul {
-        display: block;
-      }
-
-      > .pj-tree-element > .pj-tree-toggler {
-        transform: rotate(90deg);
-        // background-image: url("../images/arrow-down.png");
-        // background-position: 5px 8px;
-      }
-    }
-  }
-
-  .pj-tree-element {
-    font-size: 0;
-    letter-spacing: -8px;
-
-    > * {
-      display: inline-block;
-      font-size: 14px;
-      letter-spacing: 0;
-      vertical-align: middle;
     }
   }
 }

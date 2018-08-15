@@ -267,21 +267,21 @@ export default class Tree extends Component {
 
   attach(node, isRoot, api) {
     setData('node', new Node(node, isRoot, api), node)
-    let children
+    let childrenEl
     if (isRoot) {
-      children = node
+      childrenEl = node
     } else {
-      children = children('ul', node)[0]
+      childrenEl = children('ul', node)[0]
     }
 
-    if (children) {
+    if (childrenEl) {
       // has child
       const iterate = tree => {
         children('li', tree).forEach(node => {
           this.attach(node, false, api)
         })
       }
-      iterate(children)
+      iterate(childrenEl)
     }
   }
 

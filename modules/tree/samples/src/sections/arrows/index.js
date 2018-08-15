@@ -1,40 +1,40 @@
 import { query } from '@pluginjs/dom'
 import Tree from '@pluginjs/tree'
 
-const element = query('#tree .files')
+const element = query('#arrows .files')
 
 const data = [
   {
-    name: 'node',
+    name: 'Home',
     children: [
       {
-        name: 'child1.png'
+        name: 'Work'
       },
       {
-        name: 'child2.jpg'
+        name: 'Pages'
       }
     ]
   },
   {
-    name: 'node2',
+    name: 'Blog',
     children: [
       {
-        name: 'node3',
+        name: 'About',
         children: [
           {
-            name: 'child3.txt'
+            name: 'Grid'
           },
           {
-            name: 'child4.js'
+            name: 'Nest'
           },
           {
-            name: 'node4',
+            name: 'Gallery',
             children: [
               {
-                name: 'child5.png'
+                name: 'child.png'
               },
               {
-                name: 'child6.jpg'
+                name: 'child2.jpg'
               }
             ]
           }
@@ -43,7 +43,7 @@ const data = [
     ]
   },
   {
-    name: 'child5.php'
+    name: 'Contact'
   }
 ]
 
