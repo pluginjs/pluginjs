@@ -173,7 +173,7 @@ class PopDialog extends Popover {
 
     removeClass(this.classes.FADE, this.classes.SHOW, $tip)
 
-    this.cleanupPopper()
+    this.destroyPopper()
   }
 }
 

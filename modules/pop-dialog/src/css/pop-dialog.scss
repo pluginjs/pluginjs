@@ -31,10 +31,6 @@ $popover-position-cell-a-padding-x: 2rem !default;
 
 // dark skin
 .#{$popover}--dark {
-  .#{$popover}-buttons {
-    box-shadow: 0 -1px 0 $popover-dark-button-border-color;
-  }
-
   .#{$popover}-button {
     color: #fff;
     background: $popover-dark-button-bg;
