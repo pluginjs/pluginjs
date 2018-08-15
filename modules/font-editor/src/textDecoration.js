@@ -1,6 +1,12 @@
 import template from '@pluginjs/template'
 import { parseHTML, queryAll } from '@pluginjs/dom'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import {
+  addClass,
+  removeClass,
+  hasClass,
+  getData,
+  setData
+} from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 
 export default class TextDecoration {
@@ -27,7 +33,8 @@ export default class TextDecoration {
 
     this.values.forEach((value, key) => {
       if (that.$items[key]) {
-        that.$items[key].dataset.textDecoration = value
+        // that.$items[key].dataset.textDecoration = value
+        setData('textDecoration', value, that.$items[key])
       }
     })
 
@@ -66,7 +73,7 @@ export default class TextDecoration {
           return null
         }
 
-        const decoration = target.dataset.textDecoration
+        const decoration = getData('textDecoration', target)
         if (hasClass(that.instance.classes.ACTIVE, target)) {
           removeClass(that.instance.classes.ACTIVE, target)
           that.instance.value.textDecoration =

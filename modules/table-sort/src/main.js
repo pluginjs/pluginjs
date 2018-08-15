@@ -8,7 +8,7 @@ import {
   optionable
 } from '@pluginjs/decorator'
 import { compose, curry } from '@pluginjs/utils'
-import { attr, append, children, query, getData } from '@pluginjs/dom'
+import { attr, append, children, query, getData, setData } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass } from '@pluginjs/classes'
 import {
@@ -179,7 +179,8 @@ class TableSort extends Component {
       map(direction, key) {
         const eles = this.childrens
         const node = eles[key]
-        node.dataset.direction = direction
+        // node.dataset.direction = direction
+        setData('direction', direction, node)
         return Dataset.of(eles)
       }
 
