@@ -82,7 +82,7 @@ export default class Tree extends Component {
   }
 
   bind() {
-    bindEvent('click', this.click.bind(this), this.element)
+    bindEvent(this.eventName('click'), this.click.bind(this), this.element)
     // this.$element.on({ click: $.proxy(this.click, this) })
 
     if (this.options.keyboard) {
@@ -191,7 +191,7 @@ export default class Tree extends Component {
       }
 
       bindEvent(
-        'keydown',
+        this.eventName('keydown'),
         e => {
           if (this.options.multiSelect) {
             return
@@ -209,10 +209,10 @@ export default class Tree extends Component {
   }
 
   unbind() {
-    removeEvent('click', this.element)
+    removeEvent(this.eventName('click'), this.element)
 
     if (this.options.keyboard) {
-      removeEvent('keydown', this.element)
+      removeEvent(this.eventName('keydown'), this.element)
     }
   }
 
@@ -256,6 +256,9 @@ export default class Tree extends Component {
   click(e) {
     const target = e.target
     const nodeEl = target.closest('li')
+    if (!nodeEl) {
+      return
+    }
     const node = getData('node', nodeEl)
 
     if (target.classList.contains(this.classes.TOGGLER)) {
