@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose, curry, debounce, throttle } from '@pluginjs/utils'
-import { bindEvent, removeEvent } from '@pluginjs/events'
 import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
+import Pj from '@pluginjs/factory'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
@@ -153,15 +153,13 @@ class Parallax extends Component {
   }
 
   bind() {
-    bindEvent('scroll', this.parallaxHandle, this.scrollParent)
-    bindEvent('resize', this.parallaxHandle, this.scrollParent)
+    Pj.emitter.on(this.eventNameWithId('scroll'), this.parallaxHandle)
+    Pj.emitter.on(this.eventNameWithId('resize'), this.parallaxHandle)
   }
 
   unbind() {
-    compose(
-      removeEvent('scroll'),
-      removeEvent('resize')
-    )(this.scrollParent)
+    Pj.emitter.off(this.eventNameWithId('scroll'))
+    Pj.emitter.off(this.eventNameWithId('resize'))
   }
 
   setDelay(type) {

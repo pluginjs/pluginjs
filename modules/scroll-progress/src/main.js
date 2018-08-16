@@ -140,7 +140,10 @@ class ScrollProgress extends Component {
   bind() {
     this.bindElement = this.options.custom ? this.element : document.body
     if (!this.options.custom || this.bindElement === document.body) {
-      Pj.emitter.on('scroll', this.scrollHandle.bind(this))
+      Pj.emitter.on(
+        this.eventNameWithId('scroll'),
+        this.scrollHandle.bind(this)
+      )
     } else {
       bindEvent(
         this.eventName('scroll'),
@@ -153,7 +156,7 @@ class ScrollProgress extends Component {
   unbind() {
     this.setBarSize(0)
     if (!this.options.custom || this.bindElement === document.body) {
-      Pj.emitter.off('scroll')
+      Pj.emitter.off(this.eventNameWithId('scroll'))
     } else {
       removeEvent(this.eventName(), this.bindElement)
     }

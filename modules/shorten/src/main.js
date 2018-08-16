@@ -52,11 +52,11 @@ class Shorten extends Component {
 
     // bind event
     compose(
-      bindEvent('shorten:collapse', () => {
+      bindEvent(this.selfEventName(EVENTS.COLLAPSE), () => {
         this.leave('expand')
         removeClass(this.classes.EXPAND, this.element)
       }),
-      bindEvent('shorten:expand', () => {
+      bindEvent(this.selfEventName(EVENTS.EXPAND), () => {
         this.enter('expand')
         addClass(this.classes.EXPAND, this.element)
       })
@@ -127,7 +127,7 @@ class Shorten extends Component {
   bind() {
     this.$toggle = query(`.${this.classes.TOGGLE}`, this.element)
     bindEvent(
-      'click.shorten',
+      this.eventName('click'),
       `${this.classes.TOGGLE}`,
       ({ target }) => {
         const item = hasClass(this.classes.TOGGLE, target)
@@ -179,9 +179,9 @@ class Shorten extends Component {
   destroy() {
     if (this.is('initialized')) {
       compose(
-        // removeEvent('shorten:collapse'),
-        removeEvent('shorten:expand'),
-        removeEvent('shorten'),
+        removeEvent(this.selfEventName(EVENTS.COLLAPSE)),
+        removeEvent(this.selfEventName(EVENTS.EXPAND)),
+        removeEvent(this.eventName()),
         setData('shorten', null),
         html(this.text)
       )(this.element)

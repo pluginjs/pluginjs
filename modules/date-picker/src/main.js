@@ -1,4 +1,5 @@
 import Component from '@pluginjs/component'
+import Pj from '@pluginjs/factory'
 import { deepMerge, curry, compose } from '@pluginjs/utils'
 import { isString, isObject, isNumber } from '@pluginjs/is'
 import template from '@pluginjs/template'
@@ -228,8 +229,8 @@ class DatePicker extends Component {
       addClass(this.classes.SHOW, this.$pickerWrap)
 
       compose(
-        bindEvent('focus', this.focus.bind(this)),
-        bindEvent('blur', this.blur.bind(this))
+        bindEvent(this.eventName('focus'), this.focus.bind(this)),
+        bindEvent(this.eventName('blur'), this.blur.bind(this))
       )(this.$picker)
     } else if (displayMode === 'dropdown') {
       if (this.isMobile) {
@@ -238,12 +239,16 @@ class DatePicker extends Component {
         })
       } else {
         compose(
-          bindEvent('focus', this.focus.bind(this)),
-          bindEvent('blur', this.blur.bind(this))
+          bindEvent(this.eventName('focus'), this.focus.bind(this)),
+          bindEvent(this.eventName('blur'), this.blur.bind(this))
         )(this.$element)
       }
       // this.$element.on('blur', $.proxy(this.toggle, this));
-      bindEvent('click.inputIcon', this.toggle.bind(this), this.$inputIcon)
+      bindEvent(
+        this.eventName('click.inputIcon'),
+        this.toggle.bind(this),
+        this.$inputIcon
+      )
 
       // addClass(this.namespace + '_absolute', this.$picker);
     }
@@ -1642,13 +1647,13 @@ class DatePicker extends Component {
 
   unbind() {
     if (this.options.displayMode === 'inline') {
-      removeEvent('click.picke', this.$picker)
+      removeEvent(this.eventName('click.picke'), this.$picker)
     } else {
       removeEvent(this.eventNameWithId('click'), $doc)
     }
 
-    removeEvent('focus', this.$element)
-    removeEvent('blur', this.$element)
+    removeEvent(this.eventName('focus'), this.$element)
+    removeEvent(this.eventName('blur'), this.$element)
   }
 
   prev(i, isTurning) {
@@ -1928,10 +1933,10 @@ class DatePicker extends Component {
     if (this.options.displayMode === 'inline') {
       this.trigger(EVENTS.BEFORESHOW)
       compose(
-        bindEvent(this.eventNameWithId('mouseDown'), e => {
+        bindEvent(this.eventName('mouseDown'), e => {
           this.prevent(e)
         }),
-        bindEvent(this.eventNameWithId('click'), e => {
+        bindEvent(this.eventName('click'), e => {
           this.click(e)
         })
       )(this.$picker)
@@ -1993,21 +1998,17 @@ class DatePicker extends Component {
 
       // this.position();
       this.enter('showed')
-      bindEvent(
-        this.eventNameWithId('resize'),
-        () => {
-          // self.position();
-          if (this.is('popper')) {
-            this.POPPER.enableEventListeners()
-          } else {
-            this.mobilePosition()
-          }
-        },
-        window
-      )
+      Pj.emitter.on(this.eventNameWithId('resize'), () => {
+        // self.position();
+        if (this.is('popper')) {
+          this.POPPER.enableEventListeners()
+        } else {
+          this.mobilePosition()
+        }
+      })
       // this.$element.focus();
       bindEvent(
-        this.eventNameWithId('mousedown'),
+        this.eventName('mousedown'),
         e => {
           this.prevent(e)
         },
@@ -2028,9 +2029,9 @@ class DatePicker extends Component {
       removeClass(this.classes.ACTIVE, this.$inputWrap)
       removeClass(this.classes.SHOW, this.$pickerWrap)
       this.leave('showed')
-      removeEvent(this.eventNameWithId('mousedown'), this.$picker)
+      removeEvent(this.eventName('mousedown'), this.$picker)
       removeEvent(this.eventNameWithId('click'), $doc)
-      removeEvent(this.eventNameWithId('resize'), window)
+      Pj.emitter.off(this.eventNameWithId('resize'))
       if (this.isMobile) {
         setStyle('overflow', 'auto', query('body'))
         this.$cover.remove()
