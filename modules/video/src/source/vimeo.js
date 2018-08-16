@@ -28,7 +28,7 @@ class Vimeo {
     } else {
       this.loadApi()
       bindEvent(
-        'AsVideoVimeoAPIReady',
+        this.instance.eventName('AsVideoVimeoAPIReady'),
         () => {
           this.init()
           this.instance.trigger(EVENTS.LOAD)
@@ -99,7 +99,7 @@ class Vimeo {
         return
       }
       window.AsVimeoAPIReady = true
-      trigger('AsVideoVimeoAPIReady', this.element)
+      trigger(this.instance.eventName('AsVideoVimeoAPIReady'), this.element)
       clearInterval(vimeoApiReady)
     }, 350)
   }
