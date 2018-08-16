@@ -33,7 +33,7 @@ class monthEvents {
 
   bind() {
     bindEvent(
-      'click',
+      this.month.instance.eventName('click'),
       () => {
         this.showList()
       },

@@ -60,16 +60,16 @@ class weekEvent {
 
   bind() {
     bindEvent(
-      'mouseenter',
-      e => {
+      this.week.instance.eventName('mouseenter'),
+      () => {
         addClass(this.week.classes.ACTIVEWEEKEVENT, this.element)
       },
       this.element
     )
 
     bindEvent(
-      'mouseleave',
-      e => {
+      this.week.instance.eventName('mouseleave'),
+      () => {
         removeClass(this.week.classes.ACTIVEWEEKEVENT, this.element)
       },
       this.element

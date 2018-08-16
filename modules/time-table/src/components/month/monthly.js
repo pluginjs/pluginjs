@@ -80,7 +80,7 @@ class Monthly {
 
   bind() {
     bindEvent(
-      'click',
+      this.instance.eventName('click'),
       e => {
         const target = e.target
         let monthEvent = {}

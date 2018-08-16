@@ -80,7 +80,7 @@ class Controller {
 
   bind() {
     bindEvent(
-      'click',
+      this.instance.eventName('click'),
       `.${this.classes.ARROW}`,
       e => {
         const isNext = e.target.classList.contains(this.classes.NEXT)
