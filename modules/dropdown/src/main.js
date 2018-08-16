@@ -3,7 +3,7 @@ import template from '@pluginjs/template'
 import { isString, isNull, isDomNode, isObject, isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, has, query, children } from '@pluginjs/dom'
+import { append, has, query, children, html } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -22,6 +22,8 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
+
+const isInput = el => el.tagName === 'INPUT'
 
 @themeable()
 @styleable(CLASSES)
@@ -80,7 +82,7 @@ class Dropdown extends Component {
     addClass(this.classes.REFERENCE, this.$reference)
     addClass(this.classes.DROPDOWN, this.$dropdown)
 
-    if (this.$trigger.tagName === 'INPUT') {
+    if (isInput(this.$trigger) || this.options.imitateSelect) {
       addClass(this.classes.INPUT, this.$trigger)
     }
 
@@ -90,6 +92,12 @@ class Dropdown extends Component {
 
     if (!isNull(this.options.value)) {
       this.selectByValue(this.options.value)
+    } else if (
+      this.options.imitateSelect &&
+      this.options.placeholder &&
+      !isInput(this.$trigger)
+    ) {
+      html(this.options.placeholder, this.$trigger)
     }
 
     this.bind()
@@ -202,8 +210,12 @@ class Dropdown extends Component {
     }
 
     const value = this.getItemValue(item)
-    if (this.$trigger.tagName === 'INPUT' && this.options.imitateSelect) {
-      this.$trigger.value = value
+    if (this.options.imitateSelect) {
+      if (isInput(this.$trigger)) {
+        this.$trigger.value = value
+      } else {
+        html(value, this.$trigger)
+      }
     }
 
     if (trigger) {

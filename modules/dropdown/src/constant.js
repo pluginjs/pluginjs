@@ -53,6 +53,7 @@ export const defaults = {
   imitateSelect: false, // Behave like select
   value: null, // set initial select value, when imitateSelect is true
   itemValueAttr: 'data-value', // item tag name
+  placeholder: 'please select',
 
   data: null, // json [{label: [string]}, ....]
   width: null, // number| string | object, when object, dropdown-panel = object.css('width')
