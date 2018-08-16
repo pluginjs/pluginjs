@@ -2,7 +2,7 @@ import ChangeEvent from '../src/changeEvent'
 
 describe('ChangeEvent', () => {
   describe('ChangeEvent.on()', () => {
-    it('should bind fn to the list', () => {
+    test('should bind fn to the list', () => {
       ChangeEvent.off()
 
       const fn = function() {
@@ -14,7 +14,7 @@ describe('ChangeEvent', () => {
       expect(ChangeEvent.callbacks.list[0].fn).toEqual(fn)
     })
 
-    it('should trigger multi times', () => {
+    test('should trigger multi times', () => {
       ChangeEvent.off()
 
       let count = 0
@@ -29,7 +29,7 @@ describe('ChangeEvent', () => {
       expect(count).toEqual(2)
     })
 
-    it('should pass data to trigger', () => {
+    test('should pass data to trigger', () => {
       ChangeEvent.off()
 
       const data = {
@@ -44,7 +44,7 @@ describe('ChangeEvent', () => {
   })
 
   describe('ChangeEvent.one()', () => {
-    it('should bind fn to the list', () => {
+    test('should bind fn to the list', () => {
       ChangeEvent.off()
 
       const fn = function() {
@@ -56,7 +56,7 @@ describe('ChangeEvent', () => {
       expect(ChangeEvent.callbacks.list[0].fn).toEqual(fn)
     })
 
-    it('should trigger once', () => {
+    test('should trigger once', () => {
       ChangeEvent.off()
 
       let count = 0
@@ -73,7 +73,7 @@ describe('ChangeEvent', () => {
   })
 
   describe('ChangeEvent.trigger()', () => {
-    it('should trigger the fn', () => {
+    test('should trigger the fn', () => {
       ChangeEvent.off()
       const current = 'md'
       ChangeEvent.current = current
@@ -90,7 +90,7 @@ describe('ChangeEvent', () => {
   })
 
   describe('ChangeEvent.off()', () => {
-    it('should empty the callbacks list', () => {
+    test('should empty the callbacks list', () => {
       ChangeEvent.on(() => {
         return false
       })

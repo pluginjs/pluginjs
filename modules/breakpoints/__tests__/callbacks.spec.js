@@ -3,12 +3,12 @@ import Callbacks from '../src/callbacks'
 describe('Callbacks', () => {
   const callbacks = new Callbacks()
 
-  it('should exists', () => {
+  test('should exists', () => {
     expect(callbacks).toBeDefined()
     expect(Object.keys(callbacks.list)).toHaveLength(0)
   })
 
-  it('should be able to add the callback to the list', () => {
+  test('should be able to add the callback to the list', () => {
     callbacks.add(() => {
       return false
     })
@@ -16,7 +16,7 @@ describe('Callbacks', () => {
   })
 
   describe('Callbacks.add()', () => {
-    it('should receive data as second argument', () => {
+    test('should receive data as second argument', () => {
       const data = { foo: 'bar' }
       callbacks.add(() => {
         return false
@@ -24,7 +24,7 @@ describe('Callbacks', () => {
       expect(callbacks.list[callbacks.list.length - 1].data).toEqual(data)
     })
 
-    it('should receive one as third argument', () => {
+    test('should receive one as third argument', () => {
       callbacks.add(
         () => {
           return false
@@ -36,7 +36,7 @@ describe('Callbacks', () => {
     })
   })
 
-  it('should be able to remove the specify callback', () => {
+  test('should be able to remove the specify callback', () => {
     const callbacks = new Callbacks()
 
     const callback = function() {
@@ -49,7 +49,7 @@ describe('Callbacks', () => {
     expect(Object.keys(callbacks.list)).toHaveLength(0)
   })
 
-  it('should be able to empty the list', () => {
+  test('should be able to empty the list', () => {
     callbacks.add(() => {
       return false
     })
@@ -58,7 +58,7 @@ describe('Callbacks', () => {
   })
 
   describe('Callbacks.fire()', () => {
-    it('should fire the callbacks in order', () => {
+    test('should fire the callbacks in order', () => {
       const callbacks = new Callbacks()
 
       let callback1Called = false
@@ -82,7 +82,7 @@ describe('Callbacks', () => {
       expect(last).toEqual(2)
     })
 
-    it('should call the callback with data arguments', () => {
+    test('should call the callback with data arguments', () => {
       const callbacks = new Callbacks()
       const data = { foo: 'bar' }
 
@@ -93,7 +93,7 @@ describe('Callbacks', () => {
       callbacks.fire()
     })
 
-    it('should fire again correctly', () => {
+    test('should fire again correctly', () => {
       const callbacks = new Callbacks()
       let count = 0
       const callback = function() {
@@ -111,7 +111,7 @@ describe('Callbacks', () => {
       expect(count).toEqual(3)
     })
 
-    it('should fire once if callback one is set to true', () => {
+    test('should fire once if callback one is set to true', () => {
       const callbacks = new Callbacks()
       let count = 0
       const callback = function() {
@@ -133,7 +133,7 @@ describe('Callbacks', () => {
       expect(count).toEqual(1)
     })
 
-    it('should pass the caller to the callback', () => {
+    test('should pass the caller to the callback', () => {
       const caller = {}
 
       const callbacks = new Callbacks()
@@ -145,7 +145,7 @@ describe('Callbacks', () => {
       callbacks.fire(caller)
     })
 
-    it('should be able to use fn to take over the default callback call', () => {
+    test('should be able to use fn to take over the default callback call', () => {
       const callbacks = new Callbacks()
 
       const theFn = function() {

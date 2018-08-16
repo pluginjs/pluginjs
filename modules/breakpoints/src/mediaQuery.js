@@ -2,8 +2,7 @@ import Callbacks from './callbacks'
 import { isFunction } from '@pluginjs/is'
 
 export default class MediaQuery {
-  constructor(name, media) {
-    this.name = name
+  constructor(media) {
     this.media = media
 
     this.initialize()

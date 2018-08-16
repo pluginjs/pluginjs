@@ -2,24 +2,22 @@ import MediaQuery from '../src/mediaQuery'
 
 describe('MediaQuery', () => {
   const media = '(max-width: 767px)'
-  const name = 'sm'
-  const mediaQuery = new MediaQuery(name, media)
+  const mediaQuery = new MediaQuery(media)
 
   describe('new MediaQuery()', () => {
-    it('should receive name and media argments', () => {
+    test('should receive media argments', () => {
       expect(mediaQuery).toBeDefined()
-      expect(mediaQuery.name).toEqual(name)
       expect(mediaQuery.media).toEqual(media)
     })
 
-    it('should initialized after constructor', () => {
+    test('should initialized after constructor', () => {
       expect(mediaQuery.callbacks).toBeDefined()
     })
   })
 
   describe('mediaQuery.on()', () => {
-    it('can receive object as first argment', () => {
-      const mediaQuery = new MediaQuery(name, media)
+    test('can receive object as first argment', () => {
+      const mediaQuery = new MediaQuery(media)
 
       mediaQuery.on({})
       expect(mediaQuery.callbacks.enter).toHaveLength(0)
@@ -51,8 +49,8 @@ describe('MediaQuery', () => {
       expect(mediaQuery.callbacks.leave).toHaveLength(2)
     })
 
-    it('can receive string as first argment', () => {
-      const mediaQuery = new MediaQuery(name, media)
+    test('can receive string as first argment', () => {
+      const mediaQuery = new MediaQuery(media)
 
       mediaQuery.on('enter', () => {
         return false
@@ -65,8 +63,8 @@ describe('MediaQuery', () => {
       expect(mediaQuery.callbacks.enter).toHaveLength(2)
     })
 
-    it('should receive data argment', () => {
-      const mediaQuery = new MediaQuery(name, media)
+    test('should receive data argment', () => {
+      const mediaQuery = new MediaQuery(media)
 
       const data = { foo: 'bar' }
       const data2 = { bar: 'foo' }
@@ -94,8 +92,8 @@ describe('MediaQuery', () => {
   })
 
   describe('mediaQuery.one()', () => {
-    it('should set callback only call once', () => {
-      const mediaQuery = new MediaQuery(name, media)
+    test('should set callback only call once', () => {
+      const mediaQuery = new MediaQuery(media)
 
       mediaQuery.one({
         leave() {
@@ -116,8 +114,8 @@ describe('MediaQuery', () => {
   })
 
   describe('mediaQuery.off()', () => {
-    it('should empty enter and leave callbacks if no argments received', () => {
-      const mediaQuery = new MediaQuery(name, media)
+    test('should empty enter and leave callbacks if no argments received', () => {
+      const mediaQuery = new MediaQuery(media)
 
       mediaQuery.on({
         enter() {
@@ -133,8 +131,8 @@ describe('MediaQuery', () => {
       expect(mediaQuery.callbacks.leave).toHaveLength(0)
     })
 
-    it('should empty the specify event', () => {
-      const mediaQuery = new MediaQuery(name, media)
+    test('should empty the specify event', () => {
+      const mediaQuery = new MediaQuery(media)
 
       mediaQuery.on({
         enter() {
@@ -153,8 +151,8 @@ describe('MediaQuery', () => {
       expect(mediaQuery.callbacks.leave).toHaveLength(0)
     })
 
-    it('should remove the specify event with specify fn', () => {
-      const mediaQuery = new MediaQuery(name, media)
+    test('should remove the specify event with specify fn', () => {
+      const mediaQuery = new MediaQuery(media)
 
       const foo = function() {
         return 'foo'
@@ -171,8 +169,8 @@ describe('MediaQuery', () => {
       expect(leftCallback.fn).toEqual(bar)
     })
 
-    it('can receive object as first argment', () => {
-      const mediaQuery = new MediaQuery(name, media)
+    test('can receive object as first argment', () => {
+      const mediaQuery = new MediaQuery(media)
 
       mediaQuery.on({
         enter() {
@@ -209,8 +207,8 @@ describe('MediaQuery', () => {
   })
 
   describe('mediaQuery.destroy()', () => {
-    it('should be act as off()', () => {
-      const mediaQuery = new MediaQuery(name, media)
+    test('should be act as off()', () => {
+      const mediaQuery = new MediaQuery(media)
 
       mediaQuery.on({
         enter() {

@@ -29,7 +29,8 @@
   "dependencies": {
     "@pluginjs/emitter": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

@@ -81,7 +81,10 @@ You can set up your own breakpoints when initialize it:
 Check if the current screen is a specific size.
 
 ```javascript
-Breakpoints.is('xs'); // return true or false
+Breakpoints.is('xs'); // is current screen is xs size
+Breakpoints.is('md+'); // is current screen is md size and larger
+Breakpoints.is('sm-'); // is current screen is sm size and smaller
+Breakpoints.is('sm-md'); // is current screen is between sm and md size
 ```
 
 ### get
@@ -163,19 +166,6 @@ Breakpoints.on('sm', 'leave', {
 });
 ```
 
-#### Unite sizes
-
-```javascript
-Breakpoints.on('md lg', {
-    enter: function() {
-        console.info('enter '+ this.name);
-    },
-    leave: function() {
-        console.info('leave '+ this.name);
-    }
-});
-```
-
 ### one
 The handler attached to the size will executed at most once.
 
@@ -227,6 +217,103 @@ Breakpoints.off('change', changeHandler);
 
 // remove all change handlers
 Breakpoints.off('change');
+```
+
+### At
+Attach an event handler function for the screen at a specific size
+
+```javascript
+Breakpoints.at('md', {
+    enter: function() {
+        console.info('enter '+ this.name);
+    },
+    leave: function() {
+        console.info('leave '+ this.name);
+    }
+});
+
+Breakpoints.at('md', 'enter', function(){
+    console.info('enter '+ this.name);
+});
+
+Breakpoints.on('md', 'enter', function(){
+    console.info('enter '+ this.name);
+});
+
+Breakpoints.off('md', 'enter');
+```
+
+### From
+Attach an event handler function for the screen width is inside a specific size or larger
+
+```javascript
+Breakpoints.from('md', {
+    enter: function() {
+        console.info('enter md+');
+    },
+    leave: function() {
+        console.info('leave md+');
+    }
+});
+
+Breakpoints.from('md', 'enter', function(){
+    console.info('enter md+');
+});
+
+Breakpoints.on('md+', 'enter', function(){
+    console.info('enter md+');
+});
+
+Breakpoints.off('md+', 'enter');
+```
+
+### To
+Attach an event handler function for the screen width is inside a specific size or smaller
+
+```javascript
+Breakpoints.to('md', {
+    enter: function() {
+        console.info('enter md-');
+    },
+    leave: function() {
+        console.info('leave md-');
+    }
+});
+
+Breakpoints.to('md', 'enter', function(){
+    console.info('enter md-');
+});
+
+Breakpoints.on('md-', 'enter', function(){
+    console.info('enter md-');
+});
+
+Breakpoints.off('md-', 'enter');
+```
+
+
+### Between
+Attach an event handler function for the screen width is inside two specific size
+
+```javascript
+Breakpoints.between('md', 'lg', {
+    enter: function() {
+        console.info('enter md-lg');
+    },
+    leave: function() {
+        console.info('leave md-lg');
+    }
+});
+
+Breakpoints.between('md', 'lg', 'enter', function(){
+    console.info('enter md-lg');
+});
+
+Breakpoints.on('md-lg', 'enter', function(){
+    console.info('enter md-');
+});
+
+Breakpoints.off('md-lg', 'enter');
 ```
 
 ## Browser support

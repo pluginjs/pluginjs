@@ -1,4 +1,4 @@
-import Size from '../src/size'
+import { Size } from '../src/viewport'
 
 describe('Size', () => {
   const name = 'sm'
@@ -8,14 +8,14 @@ describe('Size', () => {
   const size = new Size(name, min, max)
 
   describe('new Size()', () => {
-    it('should exists', () => {
+    test('should exists', () => {
       expect(size).toBeDefined()
       expect(size.name).toEqual(name)
       expect(size.min).toEqual(min)
       expect(size.max).toEqual(max)
     })
 
-    it('should initialized after constructor', () => {
+    test('should initialized after constructor', () => {
       expect(size.callbacks).toBeDefined()
     })
   })

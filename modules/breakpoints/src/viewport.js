@@ -1,20 +1,30 @@
+import ChangeEvent from './changeEvent'
 import MediaQuery from './mediaQuery'
 import MediaBuilder from './mediaBuilder'
-import ChangeEvent from './changeEvent'
 
-export default class Size extends MediaQuery {
+export class Viewport extends MediaQuery {
   constructor(name, min = 0, max = Infinity, unit = 'px') {
     const media = MediaBuilder.get(min, max, unit)
-    super(name, media)
+    super(media)
 
+    this.name = name
     this.min = min
     this.max = max
     this.unit = unit
+  }
 
-    const that = this
+  destroy() {
+    this.off()
+  }
+}
+
+export class Size extends Viewport {
+  constructor(name, min = 0, max = Infinity, unit = 'px') {
+    super(name, min, max, unit)
+
     this.changeListener = () => {
-      if (that.isMatched()) {
-        ChangeEvent.trigger(that)
+      if (this.isMatched()) {
+        ChangeEvent.trigger(this)
       }
     }
     if (this.isMatched()) {
@@ -25,7 +35,8 @@ export default class Size extends MediaQuery {
   }
 
   destroy() {
-    this.off()
     this.mql.removeListener(this.changeHander)
+
+    super.destroy()
   }
 }
