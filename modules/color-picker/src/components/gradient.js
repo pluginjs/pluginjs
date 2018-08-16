@@ -177,7 +177,7 @@ class Gradient {
         const startX = e.pageX
         const markerX = parseFloat(getStyle('left', $this))
         bindEvent(
-          this.eventNameWithId('mousemove'),
+          this.instance.eventNameWithId('mousemove'),
           // identity: $this,
           e => {
             const position = e.pageX - startX + markerX
@@ -200,7 +200,7 @@ class Gradient {
     bindEvent(
       this.instance.eventNameWithId('mouseup'),
       () => {
-        removeEvent(this.eventNameWithId('mousemove'), window.document)
+        removeEvent(this.instance.eventNameWithId('mousemove'), window.document)
         // removeEvent('mouseup', window.document)
       },
       window.document
