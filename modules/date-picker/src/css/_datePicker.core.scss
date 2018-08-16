@@ -220,10 +220,12 @@ $datePicker-mobile-height: 80% !default;
 
     &.#{$datePicker}-isMobile {
       position: fixed;
+      top: 100px;
       z-index: 99999;
       width: $datePicker-mobile-width;
       height: $datePicker-mobile-height;
       line-height: 1;
+      
 
       .#{$datePicker} {
         &-title {
