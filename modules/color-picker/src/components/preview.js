@@ -24,7 +24,7 @@ class Preview {
     )
 
     bindEvent(
-      'colorPicker:change',
+      this.instance.selfEventName('colorPicker:change'),
       ({
         detail: {
           data: [color]

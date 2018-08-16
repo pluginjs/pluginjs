@@ -21,7 +21,7 @@ class Contrast {
 
   bind() {
     bindEvent(
-      'colorPicker:change',
+      this.instance.selfEventName('colorPicker:change'),
       ({
         detail: {
           data: [color]
@@ -39,7 +39,7 @@ class Contrast {
     )
 
     bindEvent(
-      'colorPicker:update',
+      this.instance.selfEventName('colorPicker:update'),
       ({
         detail: {
           data: [color]

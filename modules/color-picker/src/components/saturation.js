@@ -26,7 +26,7 @@ class Saturation {
 
   bind() {
     bindEvent(
-      'mousedown',
+      this.instance.eventName('mousedown'),
       e => {
         if (e.which === 2 || e.which === 3) {
           return false
@@ -40,7 +40,7 @@ class Saturation {
         const pointerX = parseInt(getStyle('left', this.$pointer), 10)
 
         bindEvent(
-          'mousemove',
+          this.eventNameWithId('mousemove'),
           e => {
             const sizeY = e.pageY - this.offsetY + pointerY
             const sizeX = e.pageX - this.offsetX + pointerX
@@ -49,9 +49,9 @@ class Saturation {
           window.document
         )
         bindEvent(
-          'mouseup',
+          this.eventNameWithId('mouseup'),
           () => {
-            removeEvent('mousemove', window.document)
+            removeEvent(this.eventNameWithId('mousemove'), window.document)
           },
           window.document
         )
@@ -61,7 +61,7 @@ class Saturation {
     )
     // global event
     bindEvent(
-      this.instance.eventName('colorPicker:change'),
+      this.instance.selfEventName('colorPicker:change'),
       ({
         detail: {
           data: [color]

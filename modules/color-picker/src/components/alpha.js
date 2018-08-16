@@ -24,7 +24,7 @@ class Alpha {
 
   bind() {
     bindEvent(
-      'mousedown',
+      this.instance.eventName('mousedown'),
       e => {
         if (e.which === 2 || e.which === 3) {
           return false
@@ -37,7 +37,7 @@ class Alpha {
         const pointerY = parseInt(getStyle('top', this.$pointer), 10)
 
         bindEvent(
-          'mousemove',
+          this.eventNameWithId('mousemove'),
           // identity: this.$pointer,
           e => {
             const size = e.pageY - this.offset + pointerY
@@ -47,9 +47,12 @@ class Alpha {
         )
 
         bindEvent(
-          'mouseup',
+          this.eventNameWithId('mouseup'),
           () => {
-            removeEvent('mousemove', window.document)
+            removeEvent(
+              this.instance.eventNameWithId('mousemove'),
+              window.document
+            )
             // removeEvent('mouseup', window.document)
           },
           window.document
@@ -62,7 +65,7 @@ class Alpha {
 
     // global event
     bindEvent(
-      this.instance.eventName('colorPicker:change'),
+      this.instance.selfEventName('colorPicker:change'),
       ({
         detail: {
           data: [color]

@@ -21,7 +21,7 @@ class Wheel {
   bind() {
     // reset origin
     bindEvent(
-      this.instance.eventName('colorPicker:switchModule'),
+      this.instance.selfEventName('colorPicker:switchModule'),
       ({
         detail: {
           data: [module]
@@ -43,16 +43,19 @@ class Wheel {
         this.update(e)
 
         bindEvent(
-          this.instance.eventName('mousemove'),
+          this.instance.eventNameWithId('mousemove'),
           e => {
             this.update(e)
           },
           window.document
         )
         bindEvent(
-          this.instance.eventName('mouseup'),
+          this.instance.eventNameWithId('mouseup'),
           () => {
-            removeEvent(this.instance.eventName('mousemove'), window.document)
+            removeEvent(
+              this.instance.eventNameWithId('mousemove'),
+              window.document
+            )
             // removeEvent(this.instance.eventName('mouseup'), window.document)
           },
           window.document

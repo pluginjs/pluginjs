@@ -122,7 +122,7 @@ class Gradient {
   }
   bind() {
     bindEvent(
-      this.instance.eventName('colorPicker:switchModule'),
+      this.instance.selfEventName('colorPicker:switchModule'),
       () => {
         if (this.instance.is('gradientModule')) {
           this.update()
@@ -132,7 +132,7 @@ class Gradient {
     )
 
     bindEvent(
-      'colorPicker:change',
+      this.instance.selfEventName('colorPicker:change'),
       () => {
         if (this.instance.is('gradientModule')) {
           this.update()
@@ -142,7 +142,7 @@ class Gradient {
     )
 
     bindEvent(
-      'colorPicker:wheelChange',
+      this.instance.selfEventName('colorPicker:wheelChange'),
       ({
         detail: {
           data: [angle]
@@ -177,7 +177,7 @@ class Gradient {
         const startX = e.pageX
         const markerX = parseFloat(getStyle('left', $this))
         bindEvent(
-          'mousemove',
+          this.eventNameWithId('mousemove'),
           // identity: $this,
           e => {
             const position = e.pageX - startX + markerX
@@ -198,9 +198,9 @@ class Gradient {
     )
 
     bindEvent(
-      'mouseup',
+      this.instance.eventNameWithId('mouseup'),
       () => {
-        removeEvent('mousemove', window.document)
+        removeEvent(this.eventNameWithId('mousemove'), window.document)
         // removeEvent('mouseup', window.document)
       },
       window.document
@@ -237,7 +237,7 @@ class Gradient {
       `.${this.classes.PANELTRIGGER}>i`,
       ({ target: $this }) => {
         if (getData('type', $this) !== 'gradient') {
-          this.markers.map((marker, i) => {
+          this.markers.map((marker, i) => { /* eslint-disable-line */
             const $item = marker.$el
             if (hasClass(this.classes.MARKERACTIVE, $item)) {
               this.lastActiveMarkerIndex = i

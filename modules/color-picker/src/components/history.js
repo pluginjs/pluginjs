@@ -35,7 +35,7 @@ class History {
     const that = this
 
     bindEvent(
-      this.instance.eventName('colorPicker:update'),
+      this.instance.selfEventName('colorPicker:update'),
       ({
         detail: {
           data: [color]
@@ -57,9 +57,9 @@ class History {
     )
 
     bindEvent(
-      'click',
+      this.instance.eventName('click'),
       `.${this.classes.HISTORYITEM}`,
-      ({ target }) => {
+      ({ target }) => { /* eslint-disable-line */
         const el = target.matches(`.${this.classes.HISTORYITEM}`)
           ? target
           : parentWith(hasClass(this.classes.HISTORYITEM), target)

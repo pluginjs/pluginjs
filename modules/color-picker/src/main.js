@@ -703,8 +703,8 @@ class ColorPicker extends Component {
     )(this.$wrap)
 
     bindEvent(
-      this.eventName('click'),
-      ({ target }) => {
+      this.eventNameWithId('click'),
+      ({ target }) => {  /* eslint-disable-line */
         if (this.is('openPanel')) {
           if (!this.$wrap.contains(target)) {
             if (this.is('disabled')) {
