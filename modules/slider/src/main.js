@@ -81,7 +81,9 @@ class Slider extends Component {
 
     this.bind()
 
-    this.autoPlay()
+    if (this.options.autoPlay) {
+      this.autoPlay()
+    }
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
