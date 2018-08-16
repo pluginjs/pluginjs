@@ -38,13 +38,13 @@ class ScrollSpy extends Component {
   }
 
   bind() {
-    Pj.emitter.on('resize', this.resizeHandle.bind(this))
-    Pj.emitter.on('scroll', this.scrollHandle.bind(this))
+    Pj.emitter.on(this.eventNameWithId('resize'), this.resizeHandle.bind(this))
+    Pj.emitter.on(this.eventNameWithId('scroll'), this.scrollHandle.bind(this))
   }
 
   unbind() {
-    Pj.emitter.off('resize', this.resizeHandle)
-    Pj.emitter.off('scroll', this.scrollHandle)
+    Pj.emitter.off(this.eventNameWithId('resize'), this.resizeHandle)
+    Pj.emitter.off(this.eventNameWithId('scroll'), this.scrollHandle)
   }
 
   resizeHandle() {
