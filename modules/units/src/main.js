@@ -57,7 +57,7 @@ class Units extends Component {
     const $trigger = parseHTML(
       `<div class="${
         this.classes.TRIGGER
-      }" tabindex="1"><span class="pj-dropdown-trigger"></span></div>`
+      }" tabindex="1"><div><span class="pj-dropdown-trigger"></span><div></div></div></div>`
     )
     const name = this.options.name ? `name="${this.options.name}"` : ''
     const $input = parseHTML(
@@ -141,28 +141,26 @@ class Units extends Component {
 
   dropdownInit($unitsTrigger) {
     const data = []
-
     for (const i in this.data) {
       if ({}.hasOwnProperty.call(this.data, i)) {
-        data.push({ label: i })
+        data.push({ label: i, value: i })
       }
     }
     this.unit = this.options.defaultUnit || data[0].label
-
-    const dropdowninstance = new DROPDOWN($unitsTrigger, {
+    console.log(this.unit)
+    const dropdowninstance = DROPDOWN.of($unitsTrigger, {
       width: this.dropdownWidth,
-      exclusive: false,
       trigger: 'click',
-      // keyboard: true,
       data,
       imitateSelect: true,
-      select: this.unit,
+      value: this.unit,
       placement: this.options.placement
     })
     addClass(this.classes.PANEL, dropdowninstance.$panel)
     return dropdowninstance
   }
   cacheValue(unit, value = '') {
+    console.log(unit)
     if (value) {
       this.data[unit] = value
       return
@@ -187,11 +185,13 @@ class Units extends Component {
         this.cacheValue(this.getUnit(), this.value)
         this.update(this.getUnit())
         this.trigger(EVENTS.CHANGEVAL, this.value)
+        console.log(this.get())
       },
       this.$input
     )
-
+    console.log(this.TRIGGER.options)
     this.TRIGGER.options.onChange = () => {
+      console.log(this.unit)
       if (this.unit === this.getUnit()) {
         return
       }
@@ -271,7 +271,7 @@ class Units extends Component {
   }
 
   getUnit() {
-    return this.TRIGGER.get()
+    return this.TRIGGER.getActiveItem()[0].innerText
   }
 
   setWidth(width) {

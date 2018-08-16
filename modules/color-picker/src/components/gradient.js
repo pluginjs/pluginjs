@@ -67,9 +67,7 @@ class Gradient {
       `<i class='icon-delete ${this.classes.GRADIENTREMOVE}'></i>`
     )
     const $selector = parseHTML(
-      `<div class='${
-        this.classes.GRADIENTMODE
-      }'><div><span  class="pj-dropdown-trigger" ></span><div/></div>`
+      `<div class='${this.classes.GRADIENTMODE}'><div><span></span><div/></div>`
     )
 
     this.element.append(
@@ -87,10 +85,12 @@ class Gradient {
     )
     this.dropdown = Dropdown.of(this.$selector, {
       imitateSelect: true,
-      select: this.mode.replace(/^.?/g, match => match.toUpperCase()),
+      value: this.mode.replace(/^.?/g, match => match.toUpperCase()),
       width: parent(this.$selector),
-      icon: 'icon-char icon-chevron-down',
-      data: [{ label: 'Linear' }, { label: 'Radial' }]
+      data: [
+        { label: 'Linear', value: 'Linear' },
+        { label: 'Radial', value: 'Radial' }
+      ]
     })
   }
 
@@ -468,9 +468,9 @@ class Gradient {
     }
     this.gradient = ''
     this.update()
-    this.dropdown.set(
-      this.mode.replace(/^[a-zA-Z]?/g, match => match.toUpperCase())
-    )
+    // this.dropdown.set(
+    //   this.mode.replace(/^[a-zA-Z]?/g, match => match.toUpperCase())
+    // )
   }
 
   clearMarks() {

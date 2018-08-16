@@ -5,8 +5,8 @@ import {
   // getData,
   // setData,
   // find,
-  parseHTML,
-  parent
+  parseHTML
+  // parent
   // queryAll
 } from '@pluginjs/dom'
 // import { getStyle, setStyle } from '@pluginjs/styled'
@@ -23,7 +23,11 @@ class Hex {
     this.HSL = this.instance.asColor.toHSL().toUpperCase()
     this.HEX = this.instance.asColor.toHEX().toUpperCase()
     this.RGB = this.instance.asColor.toRGB().toUpperCase()
-    this.data = [{ label: this.HEX }, { label: this.HSL }, { label: this.RGB }]
+    this.data = [
+      { label: this.HEX, value: 'HEX' },
+      { label: this.HSL, value: 'HSL' },
+      { label: this.RGB, value: 'RGB' }
+    ]
     // this.bind()
     this.init()
   }
@@ -41,19 +45,17 @@ class Hex {
        </div>`
     )
     const $selector = parseHTML(
-      `<div class='${
-        this.classes.HEXMODE
-      }'><div><span class="pj-dropdown-trigger"></span><div/></div>`
+      `<div class='${this.classes.HEXMODE}'><div><div></div><div/></div>`
     )
     this.element.append($selector, this.$opac)
 
-    this.$el = query(`.${this.classes.HEXMODE}>div>span`, this.element)
+    this.$el = query(`.${this.classes.HEXMODE}>div>div`, this.element)
     this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
     this.dropdown = Dropdown.of(this.$el, {
       imitateSelect: true,
-      select: this.classify,
-      width: parent(this.$selector),
-      icon: 'icon-char icon-chevron-down',
+      value: this.classify,
+      // width: parent(this.$selector),
+      // icon: 'icon-char icon-chevron-down',
       data: this.data
     })
   }
@@ -103,7 +105,7 @@ class Hex {
       this.instance.asColor.toRGB().toUpperCase()
     ]
 
-    this.$selector.querySelector('span').innerText = this.mode
+    // this.$selector.querySelector('span').innerText = this.mode
     this.dropdown.options.select = val
     this.element
       .querySelectorAll('.pj-dropdown-item')
