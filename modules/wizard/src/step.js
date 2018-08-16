@@ -1,7 +1,7 @@
 import { transition, transitionEndEvent } from '@pluginjs/feature'
 import { isString, isArray, isObject, isFunction } from '@pluginjs/is'
 import { bindEventOnce, trigger } from '@pluginjs/events'
-import { data, attr, html, each, setData, getData } from '@pluginjs/dom'
+import { data, attr, html, each, setData, getData, query } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 // import axios from 'axios'
 // import fetch from 'fetch'
@@ -65,7 +65,7 @@ class Step {
     }
 
     if (selector) {
-      return selector
+      return query(selector, this.wizard.element)
     }
     return null
   }
@@ -125,11 +125,9 @@ class Step {
     }
 
     bindEventOnce(
-      {
-        type: transitionEndEvent(),
-        handler: () => {
-          complete.bind(this)()
-        }
+      this.wizard.eventName(transitionEndEvent()),
+      () => {
+        complete.bind(this)()
       },
       this.pane
     )
@@ -169,11 +167,9 @@ class Step {
       return
     }
     bindEventOnce(
-      {
-        type: transitionEndEvent(),
-        handler: () => {
-          complete.bind(this)()
-        }
+      this.wizard.eventName(transitionEndEvent()),
+      () => {
+        complete.bind(this)()
       },
       this.pane
     )
@@ -184,11 +180,9 @@ class Step {
     let called = false
 
     bindEventOnce(
-      {
-        type: transitionEndEvent(),
-        handler: () => {
-          called = true
-        }
+      this.wizard.eventName(transitionEndEvent()),
+      () => {
+        called = true
       },
       el
     )

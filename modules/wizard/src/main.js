@@ -249,9 +249,9 @@ class Wizard extends Component {
         if (that.options.autoFocus) {
           const $input = queryAll('input', this.pane)
           if ($input.length > 0) {
-            trigger('focus', $input[0])
+            trigger(that.eventName('focus'), $input[0])
           } else {
-            trigger('focus', this.pane)
+            trigger(that.eventName('focus'), this.pane)
           }
         }
 
