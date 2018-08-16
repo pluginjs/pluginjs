@@ -40,6 +40,15 @@ class Slider extends Component {
   page = 0
   stash = 0
   direction = true
+  _interval = {
+    createTimer: time =>
+      window.setInterval(() => {
+        this.next()
+      }, time),
+    removeTimer: () => {
+      window.clearInterval(this.timer())
+    }
+  }
 
   constructor(element, options = {}) {
     super(NAMESPACE, element)
@@ -66,12 +75,13 @@ class Slider extends Component {
     this.width = outerWidth(this.box)
     this.height = outerHeight(this.box)
     this.distance = this.getDistance(this.box, this.options.vertical)
-    // this.itemsInfo = []
 
     this.setPos()
     this.initSwipeable()
 
     this.bind()
+
+    this.autoPlay()
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -232,7 +242,7 @@ class Slider extends Component {
     }
   }
 
-  go(index, change = true) {
+  go(index, change = true, retime = true) {
     const length = this.data.length
     const current = this.current
     this.direction = true
@@ -281,6 +291,10 @@ class Slider extends Component {
       }
       this.trigger(EVENTS.CHANGE)
     }
+
+    if (retime && this.options.autoplay) {
+      this.autoPlay()
+    }
   }
 
   prev() {
@@ -294,6 +308,7 @@ class Slider extends Component {
 
     const index = this.current === 0 ? this.data.length - 1 : this.current - 1
     this.go(index)
+
     this.trigger(EVENTS.PREV)
   }
 
@@ -309,6 +324,31 @@ class Slider extends Component {
     const index = this.current === this.data.length - 1 ? 0 : this.current + 1
     this.go(index)
     this.trigger(EVENTS.NEXT)
+  }
+
+  autoPlay() {
+    this.intervalToggle(true)
+  }
+
+  timer() {
+    return this._interval.timer
+  }
+
+  setIntervalTime(time) {
+    if (this._interval.timer) {
+      this._interval.removeTimer()
+    }
+
+    const timer = this._interval.createTimer(time)
+    this._interval.timer = timer
+  }
+
+  intervalToggle(open) {
+    if (open) {
+      this.setIntervalTime(this.options.playCycle)
+    } else {
+      this._interval.removeTimer()
+    }
   }
 
   bind() {

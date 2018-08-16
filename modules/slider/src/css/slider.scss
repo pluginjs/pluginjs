@@ -30,9 +30,9 @@ $arrow: "pj-arrow" !default;
 
   &-card {
     position: absolute;
-    justify-content: center;
     width: 100%;
     height: 100%;
+    text-align: center;
 
     &::after {
       clear: both;
@@ -69,6 +69,7 @@ $arrow: "pj-arrow" !default;
 
   &-content {
     position: relative;
+    display: inline-block;
     min-height: 100%;
     visibility: hidden;
     opacity: 0;

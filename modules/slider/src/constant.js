@@ -44,7 +44,8 @@ const defaults = {
   vertical: false,
   current: 0,
   duration: 300,
-  locale: 'en',
+  autoplay: false,
+  playCycle: 4000,
   prevIcon: 'icon-chevron-left',
   nextIcon: 'icon-chevron-right',
   templates: {
