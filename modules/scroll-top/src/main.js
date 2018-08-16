@@ -99,7 +99,7 @@ class ScrollTop extends Component {
       this.options.mobile.animationDuration === this.options.animationDuration
     ) {
       const key = `${transitionProperty()}-duration`
-      setStyle('key', `${this.options.animationDuration}ms`, this.$trigger)
+      setStyle(key, `${this.options.animationDuration}ms`, this.$trigger)
     }
   }
 
@@ -121,13 +121,13 @@ class ScrollTop extends Component {
       this.toggleVisible()
     }, this.options.throttle)
 
-    Pj.emitter.on('scroll', this.scrollHandle.bind(this))
+    Pj.emitter.on(this.eventNameWithId('scroll'), this.scrollHandle.bind(this))
   }
 
   unbind() {
     removeEvent(this.eventName('click'), this.$trigger)
 
-    Pj.emitter.off('scroll', this.scrollHandle)
+    Pj.emitter.off(this.eventNameWithId('scroll'), this.scrollHandle)
   }
 
   resize() {
