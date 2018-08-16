@@ -72,17 +72,41 @@ class Window extends Base {
       }
     }
 
-    bindEvent('mousemove', mousemoveCallback, this.container)
-    bindEvent('mouseleave', mouseleaveCallback, this.container)
-    bindEvent('mouseenter', mouseenterCallback, this.container)
-    bindEvent('touchmove', mousemoveCallback, this.container)
-    bindEvent('touchend', mouseleaveCallback, this.container)
-    bindEvent('touchstart', mouseenterCallback, this.container)
+    bindEvent(
+      this.instance.eventName('mousemove'),
+      mousemoveCallback,
+      this.container
+    )
+    bindEvent(
+      this.instance.eventName('mouseleave'),
+      mouseleaveCallback,
+      this.container
+    )
+    bindEvent(
+      this.instance.eventName('mouseenter'),
+      mouseenterCallback,
+      this.container
+    )
+    bindEvent(
+      this.instance.eventName('touchmove'),
+      mousemoveCallback,
+      this.container
+    )
+    bindEvent(
+      this.instance.eventName('touchend'),
+      mouseleaveCallback,
+      this.container
+    )
+    bindEvent(
+      this.instance.eventName('touchstart'),
+      mouseenterCallback,
+      this.container
+    )
     // super.bind()
     if (this.configuration.clickOpen) {
       this.openWindow = false
       bindEvent(
-        'click',
+        this.instance.eventName('click'),
         () => {
           if (this.openWindow) {
             // reflow(this.lens[0]);
@@ -172,7 +196,7 @@ class Window extends Base {
     if (this.configuration.overlay) {
       this.addClass(this.overlay, 'hide')
     }
-    removeEvent('animationend', this.window)
+    removeEvent(this.instance.eventName('animationend'), this.window)
   }
 
   setPosition(e) {

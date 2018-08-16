@@ -105,7 +105,11 @@ class inner extends Base {
         this.addClass(this.window, 'in')
       } else {
         this.addClass(this.window, 'out')
-        bindEvent('animationend', this.callback.bind(this), this.window)
+        bindEvent(
+          this.instance.eventName('animationend'),
+          this.callback.bind(this),
+          this.window
+        )
         // this.window.on('animationend', this.callback.bind(this))
       }
 
@@ -115,7 +119,7 @@ class inner extends Base {
 
   callback() {
     this.addClass(this.window, 'hide')
-    removeEvent('animationend', this.window)
+    removeEvent(this.instance.eventName('animationend'), this.window)
   }
 
   setStyle() {

@@ -141,7 +141,11 @@ class Lens extends Base {
         this.addClass(this.lens, 'in')
       } else {
         this.addClass(this.lens, 'out')
-        bindEvent('animationend', this.callback.bind(this), this.lens)
+        bindEvent(
+          this.instance.eventName('animationend'),
+          this.callback.bind(this),
+          this.lens
+        )
       }
 
       this.status = status
@@ -150,7 +154,7 @@ class Lens extends Base {
 
   callback() {
     this.addClass(this.lens, 'hide')
-    removeEvent('animationend', this.lens)
+    removeEvent(this.instance.eventName('animationend'), this.lens)
   }
 }
 
