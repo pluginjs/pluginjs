@@ -11,7 +11,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query } from '@pluginjs/dom'
-import Detector from './Detector'
+import { isMobile, isTablet } from '@pluginjs/detector'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -21,9 +21,8 @@ import {
 } from './constant'
 import viewport from '@pluginjs/viewport'
 
-let initDevice = false
-let isMobile = false
-let istablet = false
+const matchMobile = isMobile()
+const matchTablet = isTablet()
 
 @themeable()
 @styleable(CLASSES)
@@ -147,16 +146,9 @@ class Reveal extends Component {
   }
 
   matchDevice() {
-    if (!initDevice) {
-      const detector = new Detector()
-      isMobile = detector.mobile()
-      istablet = detector.tablet()
-      initDevice = true
-    }
-
     if (
-      (!this.options.mobile && isMobile) ||
-      (!this.options.tablet && istablet)
+      (!this.options.mobile && matchMobile) ||
+      (!this.options.tablet && matchTablet)
     ) {
       return false
     }

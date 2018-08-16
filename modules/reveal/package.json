@@ -41,7 +41,8 @@
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/viewport": "*"
+    "@pluginjs/viewport": "*",
+    "@pluginjs/detector": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
