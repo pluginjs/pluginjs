@@ -54,7 +54,7 @@ class ScrollTo extends Component {
     this.enter('initialized')
     this.trigger(EVENTS.READY)
 
-    Pj.emitter.on('scroll', () => {
+    Pj.emitter.on(this.eventNameWithId('scroll'), () => {
       this.roll()
     })
   }
@@ -83,6 +83,7 @@ class ScrollTo extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.element)
+    Pj.emitter.off(this.eventNameWithId('scroll'))
   }
 
   isMobile() {
