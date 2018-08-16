@@ -12,8 +12,6 @@ import {
 } from './constant'
 import anime from 'animejs'
 
-let viewportWidth = window.document.documentElement.clientWidth
-
 @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, true)
@@ -194,12 +192,7 @@ class AdaptText extends Component {
     super.destroy()
   }
 
-  static resize(force = false) {
-    if (force !== true && window.clientWidth === viewportWidth) {
-      return
-    }
-    viewportWidth = window.clientWidth
-
+  static resize() {
     const instances = this.getInstances()
 
     instances.forEach(instance => {

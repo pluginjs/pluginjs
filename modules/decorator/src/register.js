@@ -47,7 +47,7 @@ export default function register(name, obj = {}) {
     }
 
     if (isFunction(plugin.resize)) {
-      Pj.emitter.on('resize', plugin.resize)
+      Pj.emitter.on('resize', plugin.resize.bind(plugin))
     }
 
     if (plugin.prototype instanceof GlobalComponent) {
