@@ -143,7 +143,8 @@ class Units extends Component {
     const data = []
     for (const i in this.data) {
       if ({}.hasOwnProperty.call(this.data, i)) {
-        data.push({ label: i, value: i })
+        data.push({ value: i, label: i })
+        console.log(data)
       }
     }
     this.unit = this.options.defaultUnit || data[0].label

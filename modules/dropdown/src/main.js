@@ -159,6 +159,7 @@ class Dropdown extends Component {
 
     if (isArray(data)) {
       items = data
+      console.log(items)
     } else if (isObject(data)) {
       for (const key in data) {
         if (Object.prototype.hasOwnProperty.call(data, key)) {

@@ -108,9 +108,8 @@ class FontPicker extends Component {
   initialize() {
     // const that = this;
     this.$dropdown = this.initDropdown()
-
-    this.$panel = this.$dropdown.$panel
-    this.$activated = queryAll(`.${this.classes.FONT}`, this.$panel)
+    this.$panel = this.$dropdown.$dropdown
+    this.$activated = queryAll('.pj-dropdown-item', this.$panel)
     this.$activatedPackage = wrapAll(
       parseHTML(`<div class=${this.classes.ACTIVATED}></div>`),
       this.$activated
@@ -251,7 +250,8 @@ class FontPicker extends Component {
           `.${this.classes.SOURCES}-${this.$font.dataset.source}`,
           this.$font
         )
-        this.$selectorPanel.set(this.$font.dataset.source)
+        console.log($source)
+        this.$selectorPanel.set(getData('source', this.$font))
         this.toggleSources($source)
         this.$selectorPanel.set(getData('title', $source))
         this.open($selectedPackage)
@@ -663,7 +663,6 @@ class FontPicker extends Component {
   }
 
   initDropdown() {
-    const that = this
     const data = []
     if (!Object.keys(this.activated).length) {
       data.push({ label: 'empty' })
@@ -674,25 +673,11 @@ class FontPicker extends Component {
         })
       })
     }
-
     return Dropdown.of(this.fontTrigger, {
       theme: 'default',
       data,
       hideOnSelect: false,
-      exclusive: false,
-      width: 260,
-      icon: 'icon-char icon-chevron-down',
-      // list整条选项
-      templates: {
-        panel() {
-          return `<div class=${that.classes.PANEL}></div>`
-        },
-        item() {
-          return `<div class="{that.classes.ITEM} ${
-            that.classes.FONT
-          }" data-{that.options.itemValueAttr}="{item.label}">{item.label}</div>`
-        }
-      }
+      width: 260
     })
   }
 
@@ -716,13 +701,9 @@ class FontPicker extends Component {
     this.$selectorPanel = Dropdown.of(this.selectTrigger, {
       placement: 'top-center',
       data,
-      exclusive: false,
       keyboard: true,
       imitateSelect: true,
-      select: data[data.length - 1].label,
-      width: this.$selector,
-      icon: 'icon-char icon-chevron-down',
-      classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` }
+      width: this.$selector
     })
     // 选中的dropdown activated上面那块
     queryAll('li', this.$selectorPanel.$panel).forEach(el => {
