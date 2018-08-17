@@ -39,7 +39,6 @@ class Window extends Base {
     this.initPositon()
     const offset = this.getElementOffset()
     this.lastOffset = JSON.stringify(offset)
-
     this.bind()
   }
 
@@ -167,6 +166,7 @@ class Window extends Base {
   }
 
   windowHide() {
+    removeClass(this.getClass('{namespace}-show'), this.window)
     this.addClass(this.window, 'out')
 
     // bindEvent( 'animationend', this.callback.bind(this))
@@ -303,10 +303,20 @@ class Window extends Base {
 
   setImagePosition() {
     this.windowLeftPos = String(
-      (this.mouseLeft * this.widthRatio - this.window.clientWidth / 2) * -1
+      (this.mouseLeft * this.widthRatio -
+        (this.window.clientWidth === 0
+          ? this.configuration.width
+          : this.window.clientWidth) /
+          2) *
+        -1
     )
     this.windowTopPos = String(
-      (this.mouseTop * this.heightRatio - this.window.clientHeight / 2) * -1
+      (this.mouseTop * this.heightRatio -
+        (this.window.clientHeight === 0
+          ? this.configuration.height
+          : this.window.clientHeight) /
+          2) *
+        -1
     )
     if (this.ontop) {
       this.windowTopPos = 0
@@ -447,13 +457,20 @@ class Window extends Base {
       },
       2: o => {
         this.windowOffsetTop =
-          (this.window.clientHeight / 2 - o.height / 2) * -1
+          ((this.window.clientHeight === 0
+            ? this.configuration.height
+            : this.window.clientHeight) /
+            2 -
+            o.height / 2) *
+          -1
         this.windowOffsetLeft = o.width
       },
       3: o => {
         this.windowOffsetTop =
           o.height -
-          this.window.clientHeight -
+          (this.window.clientHeight === 0
+            ? this.configuration.height
+            : this.window.clientHeight) -
           this.configuration.borderSize * 2
         this.windowOffsetLeft = o.width
       },
@@ -486,14 +503,21 @@ class Window extends Base {
       9: o => {
         this.windowOffsetTop =
           o.height -
-          this.window.clientHeight -
+          (this.window.clientHeight === 0
+            ? this.configuration.height
+            : this.window.clientHeight) -
           this.configuration.borderSize * 2
         this.windowOffsetLeft =
           (this.window.clientWidth + this.configuration.borderSize * 2) * -1
       },
       10: o => {
         this.windowOffsetTop =
-          (this.window.clientHeight / 2 - o.height / 2) * -1
+          ((this.window.clientHeight === 0
+            ? this.configuration.height
+            : this.window.clientHeight) /
+            2 -
+            o.height / 2) *
+          -1
         this.windowOffsetLeft =
           (this.window.clientWidth + this.configuration.borderSize * 2) * -1
       },
@@ -504,18 +528,30 @@ class Window extends Base {
       },
       12: () => {
         this.windowOffsetTop =
-          (this.window.clientHeight + this.configuration.borderSize * 2) * -1
+          ((this.window.clientHeight === 0
+            ? this.configuration.height
+            : this.window.clientHeight) +
+            this.configuration.borderSize * 2) *
+          -1
         this.windowOffsetLeft =
           (this.window.clientWidth + this.configuration.borderSize * 2) * -1
       },
       13: () => {
         this.windowOffsetTop =
-          (this.window.clientHeight + this.configuration.borderSize * 2) * -1
+          ((this.window.clientHeight === 0
+            ? this.configuration.height
+            : this.window.clientHeight) +
+            this.configuration.borderSize * 2) *
+          -1
         this.windowOffsetLeft = 0
       },
       14: o => {
         this.windowOffsetTop =
-          (this.window.clientHeight + this.configuration.borderSize * 2) * -1
+          ((this.window.clientHeight === 0
+            ? this.configuration.height
+            : this.window.clientHeight) +
+            this.configuration.borderSize * 2) *
+          -1
         this.windowOffsetLeft =
           (this.window.clientWidth / 2 -
             o.width / 2 +
@@ -524,13 +560,21 @@ class Window extends Base {
       },
       15: o => {
         this.windowOffsetTop =
-          (this.window.clientHeight + this.configuration.borderSize * 2) * -1
+          ((this.window.clientHeight === 0
+            ? this.configuration.height
+            : this.window.clientHeight) +
+            this.configuration.borderSize * 2) *
+          -1
         this.windowOffsetLeft =
           o.width - this.window.clientWidth - this.configuration.borderSize * 2
       },
       16: o => {
         this.windowOffsetTop =
-          (this.window.clientHeight + this.configuration.borderSize * 2) * -1
+          ((this.window.clientHeight === 0
+            ? this.configuration.height
+            : this.window.clientHeight) +
+            this.configuration.borderSize * 2) *
+          -1
         this.windowOffsetLeft = o.width
       }
     }

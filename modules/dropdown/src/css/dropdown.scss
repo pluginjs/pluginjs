@@ -1,80 +1,25 @@
 @import "@pluginjs/styles/variables.scss";
+@import "dropdown.core";
 
 // Vars
 // =====================
-$dropdown: "pj-dropdown" !default;
-$dropdown-sizer: $sizer !default;
-
 $dropdown-color: $text-color !default;
 $dropdown-bg: $color-white !default;
-$dropdown-font-size: $font-size-base !default;
-
-// $dropdown-trigger-color: $gray-dark !default;
-// $dropdown-trigger-hover-color: $gray-darkest !default;
-
-$dropdown-min-width: 20 * $dropdown-sizer !default;
-$dropdown-height: 3.4 * $dropdown-sizer !default; //34px
-$dropdown-line-height: 3.4 * $dropdown-sizer !default; //34px
-$dropdown-icon-size: $font-size-lg !default;
-
-$dropdown-space-x: 1.2 * $dropdown-sizer !default; //12px
-$dropdown-space-y: 0.6 * $dropdown-sizer !default; //6px
-$dropdown-min-width: 20 * $dropdown-sizer !default; //200px
-
-$dropdown-item-hover-bg: $gray-lightest !default;
-$dropdown-item-active-color: $color-primary-active !default;
-$dropdown-item-active-bg: $color-white !default;
-$dropdown-item-margin-bottom: 1px !default;
-
-$dropdown-box-shadow: $box-shadow-6 !default;
-$dropdown-border-color: $gray-border !default;
+$dropdown-box-shadow: 0 20px 30px 0
+rgba(0, 0, 0, 0.05) !default;
+$dropdown-border-color: $gray-light !default;
 $dropdown-border-radius: $border-radius-base !default;
-$dropdown-hover-border-color: $border-color-hover !default;
-$dropdown-active-border-color: $gray-border !default;
-
-// Core
-// =====================
-.#{$dropdown}-trigger {
-  cursor: pointer;
-}
-
-.#{$dropdown} {
-  position: absolute;
-  display: none;
-  text-align: left;
-
-  &-show {
-    display: block;
-  }
-
-  &-item {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: keep-all;
-    white-space: nowrap;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &-item.#{$dropdown}-active {
-    color: $dropdown-item-active-color;
-  }
-}
-
-ul.#{$dropdown} {
-  padding: 0;
-  margin: 0;
-}
-
-li.#{$dropdown}-item {
-  margin: 0;
-
-  list-style: none;
-}
-
-
+$dropdown-font-size: $font-size-base !default;
+$dropdown-item-hover-bg: $gray-lighter !default;
+$dropdown-space-x: 1.1 * $dropdown-sizer !default; //12px
+$dropdown-space-y: 0.6 * $dropdown-sizer !default; //6px
+//trigger
+$dropdown-trigger-hover-color: $gray-darkest !default;
+$dropdown-trigger-color: $gray-dark !default;
+$dropdown-trigger-focus-color: $color-primary !default;
+//input
+$dropdown-space-x-right: 3 * $dropdown-sizer !default; //30px
+$dropdown-space-x-left: $dropdown-space-x !default; //10px
 // Theme
 // =====================
 .#{$dropdown} {
@@ -82,12 +27,45 @@ li.#{$dropdown}-item {
   font-size: $dropdown-font-size;
   color: $dropdown-color;
   background-color: $dropdown-bg;
+  border: 1px solid $dropdown-border-color;
   border-radius: $dropdown-border-radius;
   box-shadow: $dropdown-box-shadow;
 
+  &-trigger {
+    font-family: $dropdown-font-family;
+    color: $dropdown-trigger-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $dropdown-trigger-hover-color;
+    }
+
+    &[aria-expanded="true"] {
+      color: $dropdown-trigger-focus-color;
+      outline: none;
+    }
+
+    &[data-placement] {
+      color: $dropdown-trigger-hover-color;
+
+    }
+  }
+
+  &-input {
+    padding: $dropdown-space-y $dropdown-space-x-right $dropdown-space-y $dropdown-space-x-left !important;
+
+    &[aria-expanded="true"] {
+      color: $dropdown-trigger-hover-color;
+
+      &:hover {
+        border-color: $color-primary;
+      }
+    }
+  }
+  
   &-item {
     padding: $dropdown-space-y $dropdown-space-x;
-
+    
     &:hover {
       cursor: pointer;
       background-color: $dropdown-item-hover-bg;

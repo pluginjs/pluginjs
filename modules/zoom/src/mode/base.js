@@ -19,7 +19,6 @@ class Base {
     wrap(html, this.element)
     addClass(this.getClass('{namespace}-image'), this.element)
     this.container = this.element.closest(`.${this.classes.CONTAINER}`)
-
     this.largeWidth = this.instance.largeWidth * this.options.level
     this.largeHeight = this.instance.largeHeight * this.options.level
 

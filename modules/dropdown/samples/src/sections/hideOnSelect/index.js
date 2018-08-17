@@ -3,5 +3,5 @@ import Dropdown from '@pluginjs/dropdown'
 
 const element = query('#hideOnSelect .dropdown-example')
 Dropdown.of(element, {
-  hideOnSelect: true
+  hideOutClick: false
 })

@@ -7,14 +7,18 @@ const api = Zoom.of(element, {
   position,
   mode: 'window',
   window: {
+    offetX: 20,
+    height: '270',
+    width: '270',
     overlay: true,
-    overlayColor: '#333',
-    overlayOpacity: '0.4'
+    overlayColor: '#000',
+    overlayOpacity: '0.7',
+    borderColor: '#fff',
+    lensBorderColor: '#fff'
   }
 })
 
 document.querySelector('.changePosition').addEventListener('click', () => {
   position = (position % 16) + 1
-  api.options.position = position
-  console.log('position: ', position)
+  api.options.window.position = position
 })

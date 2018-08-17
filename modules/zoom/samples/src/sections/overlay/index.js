@@ -5,9 +5,14 @@ const element = query('#overlay .zoom')
 Zoom.of(element, {
   mode: 'window',
   window: {
+    height: '200',
+    width: '200',
+    lensSize: 100,
     position: 2,
+    offetX: 20,
+    lensBorderColor: '#fff',
     overlay: true,
-    overlayColor: '#333',
-    overlayOpacity: '0.4'
+    overlayColor: '#000',
+    overlayOpacity: '0.7'
   }
 })

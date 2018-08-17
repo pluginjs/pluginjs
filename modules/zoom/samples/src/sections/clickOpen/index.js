@@ -6,9 +6,11 @@ Zoom.of(element, {
   mode: 'window',
   window: {
     clickOpen: true,
+    offetX: 20,
     position: 2,
-    lensColor: '#333',
-    lensOpacity: '0.4',
+    borderColor: '#fff',
+    lensColor: '#000',
+    lensOpacity: '0.5',
     lensBorderSize: 0
   }
 })

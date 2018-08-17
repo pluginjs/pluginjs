@@ -5,10 +5,13 @@ const element = query('#flexWidth .zoom_1')
 Zoom.of(element, {
   animation: true,
   window: {
+    offetX: 20,
     position: 2,
     overlay: true,
-    overlayColor: '#333',
-    overlayOpacity: '0.4'
+    borderColor: '#fff',
+    lensBorderColor: '#fff',
+    overlayColor: '#000',
+    overlayOpacity: '0.7'
   }
 })
 
@@ -21,9 +24,9 @@ const element3 = query('#flexWidth .zoom_3')
 Zoom.of(element3, {
   mode: 'lens',
   lens: {
-    borderSize: 5,
+    borderSize: 1,
     borderColor: '#fff',
-    sizi: 200,
+    size: 140,
     flexWidth: true
   }
 })

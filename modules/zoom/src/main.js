@@ -54,7 +54,6 @@ class Zoom extends Component {
     // this.imageSrc = this.element.dataset[camelize('zoom-image', false)]
     //   ? this.element.dataset[camelize('zoom-image', false)]
     //   : this.element.src
-    console.log(this.imageSrc)
     this.loading = new LOADING(this)
     // this.loaded = false
     this.refresh()

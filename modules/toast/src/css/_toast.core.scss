@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $toast: "pj-toast" !default;
+$toast-font-family: $font-family-base !default;
 $toast-font-size: $font-size-sm !default;
 $toast-color: $color-white !default;
 $toast-padding-left: 24px !default;
@@ -81,6 +82,7 @@ $toast-icon-margin-right: 0.5em !default;
   width: 100%;
   padding: $toast-padding-top $toast-padding-right $toast-padding-bottom $toast-padding-left;
   margin-top: $toast-loader-top;
+  font-family: $toast-font-family;
   font-size: $toast-font-size;
   background: #fff;
   border-radius: 0 0 $toast-border-radius $toast-border-radius;
