@@ -6,7 +6,6 @@ let instance
 const apisHandler = ({ target }) => {
   // const { api } = target.dataset
   const api = getData('api', target)
-  console.log(api)
   if (api === 'init') {
     instance = ScrollProgress.of('.apiExample', {
       onReady() {

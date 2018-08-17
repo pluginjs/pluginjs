@@ -1,19 +1,19 @@
 <div class="console" style="top: 130px">
-  <button class="btn api-init">init</button>
-  <button class="btn api-destroy">destroy</button>
-  <button class="btn api-enable">enable</button>
-  <button class="btn api-disable">disable</button>
+  <button class="btn btn-api" data-api="init">init</button>
+  <button class="btn btn-api" data-api="destroy">destroy</button>
+  <button class="btn btn-api" data-api="enable">enable</button>
+  <button class="btn btn-api" data-api="disable">disable</button>
 </div>
 
 <div class="console" style="top: 180px">
-  <select class="theme">
+  <select data-option="theme">
     <option value="default">default</option>
     <option value="cycle" selected="selected">cycle</option>
     <option value="square">square</option>
     <option value="text">text</option>
     <option value="triangle">triangle</option>
   </select>
-  <select class="easing">
+  <select data-option="easing">
     <option value="ease" selected="selected">ease</option>
     <option value="linear">linear</option>
     <option value="easeIn">easeIn</option>
@@ -44,7 +44,7 @@
     <option value="easeOutBack">easeOutBack</option>
     <option value="easeInOutBack">easeInOutBack</option>
   </select>
-  <select class="duration">
+  <select data-option="duration">
     <option value="200">200</option>
     <option value="400">400</option>
     <option value="600" selected="selected">600</option>
@@ -61,7 +61,7 @@
     <option value="2800">2800</option>
     <option value="3000">3000</option>
   </select>
-  <select class="animation">
+  <select data-option="animation">
     <option value="fade" selected="selected">fade</option>
     <option value="slide">slide</option>
     <option value="none">none</option>

@@ -1,4 +1,4 @@
-import Component from '@pluginjs/component'
+import GlobalComponent from '@pluginjs/global-component'
 import { transitionProperty } from '@pluginjs/feature'
 import { isString, isNumber } from '@pluginjs/is'
 import { throttle } from '@pluginjs/utils'
@@ -6,7 +6,6 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, offset as getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML } from '@pluginjs/dom'
-import Pj from '@pluginjs/factory'
 import Scroll from '@pluginjs/scroll'
 import {
   eventable,
@@ -38,10 +37,10 @@ import {
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
-class ScrollTop extends Component {
+class ScrollTop extends GlobalComponent {
   /* eslint consistent-return: "off" */
-  constructor(element, options = {}) {
-    super(NAMESPACE, element)
+  constructor(options = {}) {
+    super(NAMESPACE)
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
@@ -81,8 +80,9 @@ class ScrollTop extends Component {
           this.classes.TRIGGER
         } ${this.getThemeClass()}">${this.translate('label')}</a>`
       )
-      append(this.$trigger, document.body)
     }
+
+    append(this.$trigger, document.body)
 
     if (this.options.mobile.animation === this.options.animation) {
       addClass(
@@ -113,21 +113,22 @@ class ScrollTop extends Component {
       this.$trigger
     )
 
-    this.scrollHandle = throttle(() => {
-      if (this.is('disabled')) {
-        return
-      }
+    bindEvent(
+      this.eventName('scroll'),
+      throttle(() => {
+        if (this.is('disabled')) {
+          return
+        }
 
-      this.toggleVisible()
-    }, this.options.throttle)
-
-    Pj.emitter.on(this.eventNameWithId('scroll'), this.scrollHandle.bind(this))
+        this.toggleVisible()
+      }, this.options.throttle),
+      window
+    )
   }
 
   unbind() {
     removeEvent(this.eventName('click'), this.$trigger)
-
-    Pj.emitter.off(this.eventNameWithId('scroll'), this.scrollHandle)
+    removeEvent(this.eventName('scroll'), window)
   }
 
   resize() {
@@ -235,19 +236,21 @@ class ScrollTop extends Component {
 
   show() {
     if (!this.is('shown')) {
-      this.enter('shown')
       addClass(this.classes.SHOW, this.$trigger)
 
       this.trigger(EVENTS.SHOW)
+
+      this.enter('shown')
     }
   }
 
   hide() {
     if (this.is('shown')) {
-      this.leave('shown')
       removeClass(this.classes.SHOW, this.$trigger)
 
-      this.trigger(EVENTS.HIDE)
+      // this.trigger(EVENTS.HIDE)
+
+      this.leave('shown')
     }
   }
 
@@ -293,9 +296,8 @@ class ScrollTop extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
-      if (!this.options.trigger) {
-        this.$trigger.remove()
-      }
+      this.$trigger.remove()
+
       this.leave('initialized')
     }
 
