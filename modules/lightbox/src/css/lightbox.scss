@@ -6,17 +6,19 @@ $lightbox: "pj-lightbox" !default;
 $slider: "pj-slider" !default;
 
 .#{$lightbox} {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  visibility: hidden;
-  opacity: 0;
+  &-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+  }
 
   &-show {
     z-index: 99999;
@@ -65,6 +67,11 @@ $slider: "pj-slider" !default;
     cursor: pointer;
   }
 
+  &-stop,
+  &-mini {
+    display: none;
+  }
+
   &-slider {
     flex-basis: 100%;
     height: auto;
@@ -72,6 +79,11 @@ $slider: "pj-slider" !default;
   }
 
   .#{$slider}-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     min-height: auto;
   }
 
@@ -91,6 +103,31 @@ $slider: "pj-slider" !default;
     background-color: rgba(0, 0, 0, 0.4);
   }
 }
+
+.#{$lightbox}-autoplay {
+  .#{$lightbox} {
+    &-start {
+      display: none;
+    }
+
+    &-stop {
+      display: block;
+    }
+  }
+}
+
+.#{$lightbox}-isfull {
+  .#{$lightbox} {
+    &-full {
+      display: none;
+    }
+
+    &-mini {
+      display: block;
+    }
+  }
+}
+
 
 @media screen and (max-width: 768px) {
   .#{$lightbox} {

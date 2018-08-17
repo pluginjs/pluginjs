@@ -51,6 +51,12 @@ class Gallery extends Component {
       return
     }
 
+    addClass(this.classes.NAMESPACE, this.element)
+
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.element)
+    }
+
     this.data =
       this.options.data === 'html' ? this.parseHtml() : this.options.data
 
@@ -117,7 +123,22 @@ class Gallery extends Component {
     append(this.footer, this.container)
     this.caption = new Caption(this)
     this.thumbs = new Thumbs(this)
+
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.container)
+    }
+
     append(this.container, document.body)
+
+    bindEvent(
+      this.eventName('click'),
+      event => {
+        event.preventDefault()
+
+        console.log('click')
+      },
+      this.container
+    )
 
     this.enter('build')
   }

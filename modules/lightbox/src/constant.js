@@ -12,12 +12,17 @@ const events = {
 
 const classes = {
   NAMESPACE: `pj-${namespace}`,
-  CONTAINER: '{namespace}',
+  CONTAINER: '{namespace}-container',
   OVERLAY: '{namespace}-overlay',
   TOPBAR: '{namespace}-topbar',
   COUNTER: '{namespace}-counter',
   PLAY: '{namespace}-play',
+  START: '{namespace}-start',
+  STOP: '{namespace}-stop',
   FULLSCREEN: '{namespace}-fullscreen',
+  ISFULL: '{namespace}-isfull',
+  FULL: '{namespace}-full',
+  MINI: '{namespace}-mini',
   DOWNLOAD: '{namespace}-download',
   CLOSE: '{namespace}-close',
   FOOTER: '{namespace}-footer',
@@ -26,6 +31,7 @@ const classes = {
   SLIDER: '{namespace}-slider',
   THUMBS: '{namespace}-thumbs',
   VERTICAL: '{namespace}-vertical',
+  AUTOPLAY: '{namespace}-autoplay',
   SHOW: '{namespace}-show',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled'
@@ -48,10 +54,10 @@ const defaults = {
       return '<div class="{classes.COUNTER}"></div>'
     },
     play() {
-      return '<span class="{classes.PLAY}"><i class="icon-caret-right"></i></span>'
+      return '<span class="{classes.PLAY}"><i class="{classes.START} icon-caret-right"></i><i class="{classes.STOP} icon-ban"></i></span>'
     },
     fullScreen() {
-      return '<span class="{classes.FULLSCREEN}"><i class="icon-full-screen"></i></span>'
+      return '<span class="{classes.FULLSCREEN}"><i class="{classes.FULL} icon-full-screen"></i><i class="{classes.MINI} icon-compress"></i></span>'
     },
     download() {
       return '<span class="{classes.DOWNLOAD}"><i class="icon-download"></i></span>'
@@ -117,6 +123,7 @@ const defaults = {
       )
     }
   },
+  theme: null,
   data: 'html', // html or DATA
   delegate: 'a',
   actions: ['play', 'fullScreen', 'download', 'close'], // ['play', 'fullScreen', 'download', 'share', 'close']
@@ -127,7 +134,8 @@ const defaults = {
   thumbs: true,
   vertical: false,
   keyboard: false,
-  duration: 300
+  duration: 300,
+  playCycle: 4000
 }
 
 const dependencies = ['slider', 'thumbnails', 'arrows', 'anime', 'hammer']

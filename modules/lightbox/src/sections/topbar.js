@@ -1,6 +1,7 @@
 import { compose } from '@pluginjs/utils'
-import { append } from '@pluginjs/dom'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { append, closest } from '@pluginjs/dom'
+import { bindEvent, removeEvent, bindEventOnce } from '@pluginjs/events'
 import Fullscreen from '@pluginjs/fullscreen'
 
 class Topbar {
@@ -33,6 +34,8 @@ class Topbar {
         `.${this.classes.PLAY}`,
         event => {
           event.preventDefault()
+
+          this.autoPlay()
         }
       ),
       bindEvent(
@@ -42,6 +45,12 @@ class Topbar {
           event.preventDefault()
 
           this.fullscreen.toggle()
+
+          if (this.fullscreen.isFullscreen()) {
+            this.mini()
+          } else {
+            this.full()
+          }
         }
       ),
       bindEvent(
@@ -52,7 +61,6 @@ class Topbar {
 
           const url = this.instance.data[this.instance.slider.plugin.current]
             .orig
-
           const filename = url.substr(url.lastIndexOf('/') + 1)
 
           this.down(url, filename)
@@ -64,18 +72,62 @@ class Topbar {
         event => {
           event.preventDefault()
 
-          this.close()
+          this.off()
         }
       )
     )(this.element)
   }
 
-  close() {
+  autoPlay() {
+    if (this.instance.is('play')) {
+      this.stop()
+    } else {
+      this.start()
+
+      bindEventOnce(
+        this.instance.eventName('mousedown'),
+        event => {
+          if (closest(`.${this.classes.PLAY}`, event.target) === this.play) {
+            return
+          }
+
+          this.stop()
+        },
+        this.instance.container
+      )
+    }
+  }
+
+  start() {
+    this.instance.slider.plugin.intervalToggle(true)
+    addClass(this.classes.AUTOPLAY, this.instance.container)
+
+    this.instance.enter('play')
+  }
+
+  stop() {
+    this.instance.slider.plugin.intervalToggle(false)
+    removeClass(this.classes.AUTOPLAY, this.instance.container)
+
+    this.instance.leave('play')
+  }
+
+  off() {
     this.instance.hide()
 
-    if (this.isFullscreen()) {
-      this.fullscreen.exit()
+    if (this.fullscreen.isFullscreen()) {
+      this.mini()
     }
+  }
+
+  full() {
+    this.fullscreen.request()
+    addClass(this.classes.ISFULL, this.instance.container)
+  }
+
+  mini() {
+    this.fullscreen.exit()
+    removeClass(this.classes.ISFULL, this.instance.container)
   }
 
   getBlob(url) {

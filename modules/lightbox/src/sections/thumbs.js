@@ -33,6 +33,7 @@ class Thumbs {
         onChange() {
           instance.topbar.setCounter(this.current)
           instance.slider.plugin.go(this.current, false)
+
           if (instance.options.caption) {
             instance.caption.setInfo(instance.data[this.current])
           }

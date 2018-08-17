@@ -43,7 +43,7 @@ class Slider extends Component {
   _interval = {
     createTimer: time =>
       window.setInterval(() => {
-        this.next()
+        this.next(false)
       }, time),
     removeTimer: () => {
       window.clearInterval(this.timer())
@@ -91,6 +91,10 @@ class Slider extends Component {
 
   generate() {
     addClass(this.classes.CONTAINER, this.element)
+
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.element)
+    }
 
     if (this.options.vertical) {
       addClass(this.classes.VERTICAL, this.element)
@@ -294,12 +298,12 @@ class Slider extends Component {
       this.trigger(EVENTS.CHANGE)
     }
 
-    if (retime && this.options.autoplay) {
+    if (retime && this.is('play')) {
       this.autoPlay()
     }
   }
 
-  prev() {
+  prev(retime) {
     if (this.is('disable')) {
       return
     }
@@ -309,12 +313,12 @@ class Slider extends Component {
     }
 
     const index = this.current === 0 ? this.data.length - 1 : this.current - 1
-    this.go(index)
+    this.go(index, true, retime)
 
     this.trigger(EVENTS.PREV)
   }
 
-  next() {
+  next(retime) {
     if (this.is('disable')) {
       return
     }
@@ -324,7 +328,7 @@ class Slider extends Component {
     }
 
     const index = this.current === this.data.length - 1 ? 0 : this.current + 1
-    this.go(index)
+    this.go(index, true, retime)
     this.trigger(EVENTS.NEXT)
   }
 
@@ -348,8 +352,10 @@ class Slider extends Component {
   intervalToggle(open) {
     if (open) {
       this.setIntervalTime(this.options.playCycle)
+      this.enter('play')
     } else {
       this._interval.removeTimer()
+      this.leave('play')
     }
   }
 
