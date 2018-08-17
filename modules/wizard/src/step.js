@@ -125,7 +125,7 @@ class Step {
     }
 
     bindEventOnce(
-      this.wizard.eventName(transitionEndEvent()),
+      transitionEndEvent(),
       () => {
         complete.bind(this)()
       },
@@ -167,7 +167,7 @@ class Step {
       return
     }
     bindEventOnce(
-      this.wizard.eventName(transitionEndEvent()),
+      transitionEndEvent(),
       () => {
         complete.bind(this)()
       },
@@ -180,7 +180,7 @@ class Step {
     let called = false
 
     bindEventOnce(
-      this.wizard.eventName(transitionEndEvent()),
+      transitionEndEvent(),
       () => {
         called = true
       },

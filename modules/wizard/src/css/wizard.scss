@@ -1,91 +1,27 @@
 @import "@pluginjs/styles/variables.scss";
+@import "wizard.core";
 
 // Vars
 // =====================
-$wizard: "pj-wizard" !default;
-$wizard-transition-duration: 0.2s !default;
-
-// Core
-// =====================
-.#{$wizard}-hide {
-  display: none;
-}
-
-.#{$wizard}-pane {
-  position: absolute;
-  top: 0;
-  padding: 10px;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity $wizard-transition-duration ease;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 0;
-  }
-
-  &.#{$wizard}-active {
-    position: relative;
-    visibility: visible;
-    opacity: 1;
-  }
-
-  &.#{$wizard}-activing {
-    visibility: visible;
-    opacity: 0;
-  }
-
-  .#{$wizard}-formGroup {
-    margin-bottom: 15px;
-
-    input.error {
-      border-color: #f96868;
-    }
-
-    label.error {
-      color: #f96868;
-    }
-  }
-
-  label {
-    display: inline-block;
-    max-width: 100%;
-    margin-bottom: 5px;
-  }
-
-  .#{$wizard}-formControl {
-    box-sizing: border-box;
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  }
-
-  .#{$wizard}-formControl:focus {
-    border-color: #66afe9;
-    // box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
-  }
-}
-
-.#{$wizard}-content {
-  position: relative;
-  padding: 0;
-  border: 1px solid #aaa;
-  transition: height $wizard-transition-duration ease;
-}
+$wizard-color: $color-white !default;
+$wizard-icon-bg: $gray !default;
+$wizard-icon-active-bg: $color-primary !default;
+$wizard-title-color: $gray !default;
+$wizard-title-active-color: $color-primary !default;
+$wizard-button-hover: $color-primary !default;
+$wizard-button: $gray !default;
+$wizard-button-color: $gray-darker !default;
+$wizard-button-bg: $gray-lighter !default;
+$wizard-formControl-color: $gray-darkest !default;
+$wizard-formControl-border-color: $gray !default;
+$wizard-formControl-bg: $color-white !default;
+$wizard-formControl-border-radius: $border-radius-sm !default;
+$wizard-content-color: $gray-darker !default;
+$wizard-button-height: 3.2 * $wizard-sizer !default;
+$wizard-button-radius: $border-radius-sm !default;
+$wizard-button-margin: 1.5 * $wizard-sizer !default;
+$wizard-button-margin-left: 1 * $wizard-sizer !default;
+$wizard-button-padding: 0.5 * $wizard-sizer 1.6 * $wizard-sizer !default;
 
 // Styles
 // =====================
@@ -94,87 +30,240 @@ $wizard-transition-duration: 0.2s !default;
 }
 
 .#{$wizard}-done {
-  color: #008000 !important;
+  .#{$wizard}-steps-item-icon {
+    overflow: hidden;
+    font-size: 0;
+    background-color: $wizard-icon-active-bg;
+  }
+
+  .active-icon {
+    font-size: $step-icon-font-size;
+  }
+
+  > .#{$wizard}-steps-item-content {
+    > .#{$wizard}-steps-item-title {
+      color: $wizard-title-active-color;
+      &::after {
+        background: $wizard-icon-active-bg;
+        transition: background $wizard-transition-duration;
+      }
+    }
+ }
+}
+
+.#{$wizard}-done.#{$wizard}-current {
+  > .#{$wizard}-steps-item-content {
+    > .#{$wizard}-steps-item-title {
+      &::after {
+        background: $wizard-icon-bg;
+      }
+    }
+ }
+
+ .#{$wizard}-steps-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $step-icon-font-size;
+  background-color: $wizard-icon-active-bg;
+  transition: font-size $wizard-transition-duration;
+}
+
+.active-icon {
+  font-size: 0;
+  }
 }
 
 .#{$wizard}-error {
   color: #f00 !important;
 }
 
-.#{$wizard}-disabled {
-  cursor: not-allowed !important;
+// .#{$wizard}-disabled {
+//   cursor: not-allowed !important;
+// }
+
+.#{$wizard}-steps-item-icon {
+  color: $wizard-color;
+  background-color: $wizard-icon-bg;
+  transition: background-color $wizard-transition-duration, color $wizard-transition-duration;
 }
 
-.#{$wizard}-steps {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+.#{$wizard}-steps-item-title {
+  color: $wizard-title-color;
+  text-transform: capitalize;
 
-  > li {
-    display: inline-block;
-    padding: 5px 10px;
-    color: #666;
-    cursor: pointer;
+  &::after {
+    position: absolute;
+    top: -75%;
+    left: 100%;
+    display: block;
+    width: 9999px;
+    height: 2px;
+    margin-left: -4px;
+    content: "";
+    background: $wizard-icon-bg;
+  }
+}
 
-    &:hover {
-      color: #333;
+.#{$wizard}-content {
+  color: $wizard-content-color;
+  transition: height $wizard-transition-duration ease;
+}
+
+.#{$wizard}-steps .#{$wizard}-steps-item:last-child {
+  .#{$wizard}-steps-item-title {
+    // color: $wizard-title-color;
+  
+    &::after {
+      display: none;
     }
+  }
+}
+
+[aria-expanded="true"] {
+  .#{$wizard}-steps-item-icon {
+    background-color: $wizard-icon-active-bg;
+  }
+
+  .#{$wizard}-steps-item-title {
+    color: $wizard-title-active-color;
   }
 }
 
 .#{$wizard}-buttons {
-  margin-top: 10px;
+  box-sizing: border-box;
+  display: flex;
+  height: $wizard-button-height;
+  margin-top: $wizard-button-margin;
+
+  a + a {
+    margin-left: $wizard-button-margin-left;
+  }
 
   > a {
-    padding: 6px 15px;
-    font-size: 14px;
-    line-height: 1.57142857;
+    box-sizing: border-box;
+    height: $wizard-button-height;
+    padding: $wizard-button-padding;
+    font-size: $step-icon-font-size;
+    line-height: $step-content-title-line-height;
+    text-align: center;
     text-decoration: none;
+    vertical-align: middle;
     border: 1px solid;
-    border-radius: 3px;
-    transition: border 0.2s linear, color 0.2s linear, width 0.2s linear, background-color 0.2s linear;
+    border-radius: $wizard-button-radius;
+    transition: border $wizard-transition-duration, color$wizard-transition-duration, width $wizard-transition-duration, background-color$wizard-transition-duration;
 
-    &.#{$wizard}-default:hover {
-      color: #76838f;
-      background-color: rgba(118, 131, 143, 0.1);
-      border-color: #e4eaec;
+    &:active {
+      background-color: $wizard-button-bg;
+      outline: 0;
+      // box-shadow: 0 0 0 3px rgba($wizard-button-bg, 0.3);
+    }
+
+    &:focus {
+      color: $wizard-button-color;
+      background-color: $wizard-button-bg;
+      outline: 0;
     }
 
     &.#{$wizard}-default {
-      color: #76838f;
-      background-color: transparent;
-      border-color: #e4eaec;
+      color: $wizard-button-color;
+      background-color: $wizard-button-bg;
+      border-color: $wizard-button;
 
       &.#{$wizard}-disabled {
-        color: #76838f;
-        background-color: #f3f7f9;
-        border-color: #f3f7f9;
+        color: $wizard-button;
+        cursor: not-allowed !important;
+        &:hover {
+          color: $wizard-button;
+          background-color: $wizard-button-bg;
+          border-color: $wizard-button;
+        }
+        &:active {
+          color: $wizard-button;
+          background-color: $wizard-button-bg;
+          border-color: $wizard-button;
+          box-shadow: none;
+        }
+    
+        &:focus {
+          color: $wizard-button;
+          background-color: $wizard-button-bg;
+          outline: 0;
+        }
+      }
+
+      &:active {
+        background-color: $wizard-button-bg;
+        outline: 0;
+      }
+
+      &:focus {
+        color: $wizard-button-color;
+      }
+
+      &:hover {
+        color: $wizard-button-color;
+        background-color:$wizard-color;
+        border-color: $wizard-button;
       }
     }
 
     &.#{$wizard}-primary {
-      color: #62a8ea;
+      color: $wizard-button-hover;
       background-color: transparent;
     }
 
     &.#{$wizard}-primary:hover {
-      color: #fff;
-      background-color: #62a8ea;
-      border-color: #62a8ea;
+      color: $wizard-color;
+      background-color: $wizard-button-hover;
+      border-color: $wizard-button-hover;
     }
 
     &.#{$wizard}-success {
-      color: #46be8a;
-      background-color: transparent;
-    }
-
-    &.#{$wizard}-success:hover {
-      color: #fff;
-      background-color: #46be8a;
-      border-color: #46be8a;
+      color: $wizard-color;
+      background-color: $wizard-icon-active-bg;
+      border: 0;
     }
   }
 }
+
+.#{$wizard}-pane {
+  .#{$wizard}-formControl {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: $wizard-formControl-height;
+    padding: $wizard-formControl-padding;
+    font-size: $step-icon-font-size;
+    line-height: $step-content-title-line-height;
+    color: $wizard-formControl-color;
+    background-color: $wizard-formControl-bg;
+    border: 1px solid $wizard-formControl-border-color;
+    border-radius: $wizard-formControl-border-radius;
+    transition: border-color $wizard-transition-duration;
+  }
+
+  .#{$wizard}-formControl:focus {
+    border-color: $wizard-active;
+    outline: 0;
+  }
+}
+
+// stylelint-disable
+::-webkit-input-placeholder { /* WebKit browsers */ 
+  color: $wizard-formControl-border-color;
+} 
+::-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+  color: $wizard-formControl-border-color;
+} 
+::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+  color: $wizard-formControl-border-color;
+} 
+::-ms-input-placeholder { /* Internet Explorer 10+ */ 
+  color: $wizard-formControl-border-color;
+} 
+// stylelint-enable
+
 .page-content {
   overflow: hidden;
 }
