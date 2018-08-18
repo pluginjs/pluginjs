@@ -1,6 +1,6 @@
 import { curry } from '@pluginjs/utils'
 
-const toggleAnimation = curry((action, options, toggler) => {
+const toggleAnimation = (action, options, toggler) => {
   const { duration } = options
   const moveStart = parseFloat(window.getComputedStyle(toggler).marginLeft)
   const moveEnd = parseFloat(action.marginLeft)
@@ -17,6 +17,6 @@ const toggleAnimation = curry((action, options, toggler) => {
     return null
   })
   return window.requestAnimationFrame(step(null))
-})
+}
 
 export default toggleAnimation

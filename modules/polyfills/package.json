@@ -15,7 +15,7 @@
   "main": "dist/polyfills.umd.js",
   "module": "dist/polyfills.esm.js",
   "cjs": "dist/polyfills.cjs.js",
-  "source": "src/main.js",
+  "source": "index.js",
   "files": [
     "dist",
     "src"
@@ -32,6 +32,7 @@
     "@pluginjs/utils": "*"
   },
   "devDependencies": {
+    "fs-extra": "*",
     "@pluginjs/cli": "*",
     "babel-jest": "*",
     "jest": "*",

@@ -1,4 +1,5 @@
 import { curry } from '@pluginjs/utils'
+import '@pluginjs/polyfills/IntersectionObserver'
 
 class Viewport {
   constructor(el, options) {

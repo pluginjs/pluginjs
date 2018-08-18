@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-const fs = require('fs')
+const fs = require('fs-extra')
 const path = require('path')
-const features = require('../polyfills');
+const features = require('../polyfills')
 const logger = require('@pluginjs/helper/logger')('script/generate')
-
-const dest = 'src/main.js'
+const dest = './'
 const baseUrl = "https://unpkg.com/polyfill-service@3.25.1/polyfills"
 
 function conventFeatureToPath(feature) {
@@ -38,10 +37,13 @@ const getPolyfillCode = function(feature) {
       let detect = contents[0].replace(/\s*$/, '').trim() || null;
       let code = contents[1].trim();
 
-      resolve(`if(!(${detect})) {
+      resolve({
+        feature,
+        content: `/* eslint-disable-file */
+if(!(${detect})) {
 ${code}
 }
-`);
+`});
     })
   })
 }
@@ -49,14 +51,24 @@ ${code}
 Promise.all(features.map(function(feature) {
   return getPolyfillCode(feature)
 })).then(codes => {
-  let content = codes.join('');
-content = `/*eslint-disable */
-(function(){
-${content}
-}).call(window);
-`;
+  let indexContent = ''
 
-  fs.writeFile(dest, content, error => {
+  codes.forEach(code => {
+    indexContent += `import './${conventFeatureToPath(code.feature)}.js'
+`;
+    fs.ensureFileSync(path.join(dest, `${conventFeatureToPath(code.feature)}.js`))
+    fs.writeFileSync(path.join(dest, `${conventFeatureToPath(code.feature)}.js`), code.content, error => {
+      if (error) {
+        logger.error(error)
+      } else {
+        logger.success(
+          `Generated ${code.feature}.js`
+        )
+      }
+    })
+  })
+
+  fs.writeFile(path.join(dest, 'index.js'), indexContent, error => {
     if (error) {
       logger.error(error)
     } else {

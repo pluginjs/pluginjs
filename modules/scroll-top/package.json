@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@pluginjs/classes": "*",
-    "@pluginjs/component": "*",
+    "@pluginjs/global-component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/feature": "*",
@@ -44,7 +44,8 @@
     "@pluginjs/decorator": "*",
     "@pluginjs/scroll": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/utils": "*",
+    "@pluginjs/polyfills": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
