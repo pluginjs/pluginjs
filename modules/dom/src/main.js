@@ -361,6 +361,15 @@ export const append = curry((child, el) => {
   return el
 })
 
+export const appendTo = curry((child, el) => {
+  if (isString(child)) {
+    child = parseHTML(child)
+  }
+  el.append(child)
+
+  return child
+})
+
 export const prepend = curry((child, el) => {
   if (isString(child)) {
     el.insertAdjacentHTML('afterbegin', child)

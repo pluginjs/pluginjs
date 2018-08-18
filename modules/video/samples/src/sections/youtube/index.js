@@ -5,7 +5,8 @@ const root = query('#youtube')
 const element = query('#youtube .video')
 let instance = Video.of(element, {
   type: 'youtube',
-  id: 'YE7VzlLtp-4'
+  id: 'YE7VzlLtp-4',
+  poster: 'https://picsum.photos/600?blur'
 })
 let trigger = true
 const instances = {

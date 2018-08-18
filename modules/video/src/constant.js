@@ -8,14 +8,16 @@ export const events = {
   PLAY: 'play',
   PAUSE: 'pause',
   STOP: 'stop',
-  PLAYEND: 'playend',
-  PLAYERR: 'playerr'
+  ENDED: 'ended',
+  ERROR: 'error',
+  BUFFERING: 'buffering'
 }
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
-  POSTER: '{namespace}-poster'
+  POSTER: '{namespace}-poster',
+  POSTERHIDE: '{namespace}-poster-hide'
 }
 
 export const methods = [
@@ -37,14 +39,13 @@ export const methods = [
 ]
 
 export const defaults = {
-  template() {
-    return '<div class="{classes.NAMESPACE}">{poster}</div>'
-  },
   templates: {
     poster() {
       return '<div class="{classes.POSTER}"></div>'
     }
   },
+  width: '100%',
+  height: 400,
   url: '',
   id: '',
   type: '',

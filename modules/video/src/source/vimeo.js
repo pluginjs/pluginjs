@@ -1,60 +1,78 @@
-import templateEngine from '@pluginjs/template'
 import { events as EVENTS } from '../constant'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, trigger } from '@pluginjs/events'
-import { append, parseHTML, query } from '@pluginjs/dom'
+import { append, query } from '@pluginjs/dom'
+import Pj from '@pluginjs/factory'
 
-window.AsVimeoAPIReady = false
+window.PJVIMEOAPIREADY = false
 
 class Vimeo {
-  constructor(instance, element, options) {
+  constructor(instance, element) {
     this.element = element
-    this.options = options
+    this.options = Object.assign(
+      {
+        autopause: true,
+        autoplay: false,
+        background: !instance.options.controls,
+        byline: false,
+        color: '#00adef',
+        loop: true,
+        muted: false,
+        playsinline: true,
+        portrait: false,
+        speed: false,
+        title: false,
+        transparent: false
+      },
+      instance.options
+    )
     this.instance = instance
-    this.classes = instance.classes
+  }
+
+  init(done) {
+    this._duration = null
+    this._currentTime = null
+
+    this.$video = document.createElement('div')
+    setStyle(
+      {
+        width: this.options.width,
+        height: this.options.height
+      },
+      this.$video
+    )
+    append(this.$video, this.element)
+
+    if (!window.PJVIMEOAPIREADY) {
+      Pj.emitter.on('video:vimeo:ready', () => {
+        done()
+      })
+
+      this.constructor.prepare()
+    } else {
+      done()
+    }
   }
 
   load() {
-    this.$wrap = parseHTML(this.createHtml())
-    append(this.$wrap, this.element)
-    if (this.options.poster) {
-      this.poster = query(`.${this.instance.classes.POSTER}`, this.$wrap)
-      setStyle('background-image', `url(${this.options.poster})`, this.poster)
-    }
+    this.instance.trigger(EVENTS.LOAD)
 
-    if (window.AsVimeoAPIReady) {
-      this.init()
-      this.instance.trigger(EVENTS.LOAD)
-    } else {
-      this.loadApi()
-      bindEvent(
-        this.instance.eventName('AsVideoVimeoAPIReady'),
-        () => {
-          this.init()
-          this.instance.trigger(EVENTS.LOAD)
-        },
-        this.element
-      )
-    }
-  }
-
-  init() {
-    const playerSettings = {
+    const options = this.options
+    this.api = new window.Vimeo.Player(this.$video, {
       id: this.getId(),
-      loop: this.options.loop,
-      autoplay: this.options.autoplay,
-      // height:400,
-      // url:'https://player.vimeo.com/video/76979871',
-      title: false, // defaults to true
-      portrait: false, // Show the user’s portrait on the video. Defaults to true.
-      // maxwidth: '',
-      // maxheight '',
-      xhtml: false, // Make the embed code XHTML compliant. Defaults to false.
-      byline: false, // Show the byline on the video. Defaults to true.
-      autopause: false // Pause this video automatically when another one plays. Defaults to true.
-    }
+      autopause: options.autopause,
+      autoplay: options.autoplay,
+      background: options.background,
+      byline: options.byline,
+      color: options.color,
+      loop: options.loop,
+      muted: options.muted,
+      playsinline: options.playsinline,
+      portrait: options.portrait,
+      speed: options.speed,
+      title: options.title,
+      transparent: options.transparent
+    })
 
-    this.media = new window.Vimeo.Player(this.$wrap, playerSettings)
     this.bind()
   }
 
@@ -67,55 +85,56 @@ class Vimeo {
     return undefined /* eslint-disable-line */
   }
 
-  createHtml() {
-    let poster = ''
+  static prepare() {
+    if (!window.PJVIMEOAPIREADY) {
+      const script = document.createElement('script')
+      script.onload = () => {
+        window.PJVIMEOAPIREADY = true
 
-    if (this.options.poster !== '') {
-      poster = templateEngine.render(this.options.templates.poster.call(this), {
-        classes: this.classes
-      })
+        Pj.emitter.emit('video:vimeo:ready')
+      }
+
+      script.src = 'https://player.vimeo.com/api/player.js'
+      const firstScript = document.getElementsByTagName('script')[0]
+      firstScript.parentNode.insertBefore(script, firstScript)
     }
-
-    const html = templateEngine.render(this.options.template.call(this), {
-      classes: this.classes,
-      poster
-    })
-    return html
-  }
-
-  loadApi() {
-    const tag = document.createElement('script')
-    tag.src = 'https://player.vimeo.com/api/player.js'
-    document.querySelector('body').appendChild(tag)
-
-    let count = 1
-    const vimeoApiReady = setInterval(() => {
-      if (count > 50) {
-        clearInterval(vimeoApiReady)
-        this.instance.destroy()
-      }
-      count++
-      if (typeof window.Vimeo === 'undefined') {
-        return
-      }
-      window.AsVimeoAPIReady = true
-      trigger(this.instance.eventName('AsVideoVimeoAPIReady'), this.element)
-      clearInterval(vimeoApiReady)
-    }, 350)
   }
 
   bind() {
-    this.media.on('play', () => {
+    this.api.on('play', () => {
       this.instance.trigger(EVENTS.PLAY)
     })
-    this.media.on('pause', () => {
+    this.api.on('pause', () => {
       this.instance.trigger(EVENTS.PAUSE)
     })
-    this.media.on('loaded', () => {
+    this.api.on('ended', () => {
+      this.instance.trigger(EVENTS.ENDED)
+    })
+    this.api.on('loaded', () => {
       this.instance.trigger(EVENTS.LOADED)
-      if (this.options.poster) {
-        this.poster.style.display = 'none'
+      this.instance.hidePoster()
+
+      this.$iframe = query('iframe', this.$video)
+      this.$iframe.setAttribute('width', '100%')
+      this.$iframe.setAttribute('height', '100%')
+
+      if (this.options.background && !this.options.muted) {
+        this.volume(50)
       }
+
+      this.api.getDuration().then(duration => {
+        this._duration = duration
+      })
+    })
+
+    this.api.on('timeupdate', time => {
+      this._currentTime = time.seconds
+    })
+    this.api.on('error', error => {
+      this.instance.trigger(EVENTS.ERROR, error)
+    })
+    this.api.on('bufferstart', () => {
+      this.instance.trigger(EVENTS.BUFFERING)
     })
   }
 
@@ -125,73 +144,67 @@ class Vimeo {
         width,
         height
       },
-      this.$wrap
+      this.$video
     )
   }
 
   switchVideo(id) {
-    this.media.loadVideo(id)
-  }
-
-  _currentTime() {
-    this.media.getCurrentTime().then(seconds => {
-      this.options.currentTime = seconds
-    })
+    this.api.loadVideo(id)
   }
 
   currentTime() {
-    this._currentTime()
-    return this.options.currentTime
-  }
-
-  _duration() {
-    return this.media.getDuration().then(duration => {
-      this.options.duration = duration
-    })
+    return this._currentTime
   }
 
   duration() {
-    this._duration()
-    return this.options.duration
+    return this._duration
   }
 
   setCurrentTime(val) {
-    this.media.setCurrentTime(val)
+    this.api.setCurrentTime(val)
   }
 
   stop() {
-    this.media.setCurrentTime(0)
-    this.media.pause()
+    this.api.setCurrentTime(0)
+    this.api.pause()
     this.instance.trigger(EVENTS.STOP)
   }
 
   mute() {
+    this.api.getVolume().then(volume => {
+      this._preVolume = volume
+    })
     this.volume(0)
   }
 
   unMute() {
-    this.volume(50)
+    if (this._preVolume) {
+      this.api.setVolume(this._preVolume)
+    }
   }
 
   pause() {
-    this.media.pause()
+    this.api.pause()
     this.instance.trigger('pause')
   }
 
   volume(value) {
-    this.media.setVolume(value / 100)
+    if (typeof value === 'undefined') {
+      return this.api.getVolume()
+    }
+    return this.api.setVolume(value / 100)
   }
 
   play() {
-    this.media.play()
+    this.api.play()
   }
 
   destroy() {
-    const element = query('iframe', this.$wrap)
-    if (element) {
-      element.src = '//about:blank'
+    if (this.api) {
+      this.api.destroy()
     }
-    this.$wrap.remove()
+
+    this.$video.remove()
   }
 }
 

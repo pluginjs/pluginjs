@@ -5,7 +5,8 @@ const root = query('#vimeo')
 const element = query('.video', root)
 let instance = Video.of(element, {
   type: 'vimeo',
-  id: '119287310'
+  id: '119287310',
+  poster: 'https://picsum.photos/600?blur'
 })
 let trigger = true
 const instances = {

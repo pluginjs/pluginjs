@@ -6,6 +6,10 @@ import {
   styleable,
   optionable
 } from '@pluginjs/decorator'
+import template from '@pluginjs/template'
+import { setStyle } from '@pluginjs/styled'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { appendTo } from '@pluginjs/dom'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -13,9 +17,9 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import HTML5API from './source/html5'
-import VIMEOAPI from './source/vimeo'
-import YOUTUBEAPI from './source/youtube'
+import HTML5SOURCE from './source/html5'
+import VIMEOSOURCE from './source/vimeo'
+import YOUTUBESOURCE from './source/youtube'
 
 const sources = {}
 
@@ -37,17 +41,37 @@ class Video extends Component {
   }
 
   initialize() {
-    if (typeof sources[this.options.type] !== 'undefined') {
-      this.player = new sources[this.options.type](
-        this,
-        this.element,
-        this.options
-      )
+    addClass(this.classes.NAMESPACE, this.element)
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.element)
     }
-    this.load()
 
-    this.enter('initialized')
-    this.trigger(EVENTS.READY)
+    if (this.options.poster) {
+      this.$poster = appendTo(this.createPoster(), this.element)
+      setStyle('background-image', `url(${this.options.poster})`, this.$poster)
+    }
+
+    if (typeof sources[this.options.type] !== 'undefined') {
+      this.player = new sources[this.options.type](this, this.element)
+    }
+    this.player.init(() => {
+      this.load()
+
+      this.enter('initialized')
+      this.trigger(EVENTS.READY)
+    })
+  }
+
+  createPoster() {
+    return template.render(this.options.templates.poster.call(this), {
+      classes: this.classes
+    })
+  }
+
+  hidePoster() {
+    if (this.options.poster) {
+      addClass(this.classes.POSTERHIDE, this.$poster)
+    }
   }
 
   load() {
@@ -58,71 +82,113 @@ class Video extends Component {
   }
 
   switchVideo(id) {
-    this.player.switchVideo(id)
+    if (this.is('loaded')) {
+      this.player.switchVideo(id)
+    }
   }
 
   duration() {
-    return this.player.duration()
+    if (this.is('loaded')) {
+      return this.player.duration()
+    }
+
+    return undefined
   }
 
   currentTime() {
-    return this.player.currentTime()
+    if (this.is('loaded')) {
+      return this.player.currentTime()
+    }
+
+    return undefined
   }
 
   setCurrentTime(val) {
-    this.player.setCurrentTime(val)
+    if (this.is('loaded')) {
+      this.player.setCurrentTime(val)
+    }
   }
 
   setSize(width, height) {
-    this.player.setSize(width, height)
-    this.options.width = width
+    if (this.is('loaded')) {
+      this.player.setSize(width, height)
+      this.options.width = width
+      this.options.height = height
+    }
   }
 
   play() {
-    this.player.play()
+    if (this.is('loaded')) {
+      this.player.play()
+    }
   }
 
   stop() {
-    this.player.stop()
+    if (this.is('loaded')) {
+      this.player.stop()
+    }
   }
 
   volume(val) {
-    this.player.volume(val)
+    if (this.is('loaded')) {
+      this.player.volume(val)
+    }
   }
 
   pause() {
-    this.player.pause()
+    if (this.is('loaded')) {
+      this.player.pause()
+    }
   }
 
   mute() {
-    this.player.mute()
+    if (this.is('loaded')) {
+      this.player.mute()
+    }
   }
 
   unMute() {
-    this.player.unMute()
+    if (this.is('loaded')) {
+      this.player.unMute()
+    }
   }
 
   destroy() {
     if (this.is('initialized')) {
       this.leave('initialized')
-    }
-    if (this.is('loaded')) {
-      this.leave('loaded')
+
+      removeClass(this.classes.NAMESPACE, this.element)
+      if (this.options.theme) {
+        removeClass(this.getThemeClass(), this.element)
+      }
+      if (this.options.poster) {
+        this.$poster.remove()
+      }
+
       this.player.destroy()
     }
-    if (this.plugin) {
-      this.trigger(EVENTS.DESTROY)
+
+    if (this.is('loaded')) {
+      this.leave('loaded')
     }
+
+    this.trigger(EVENTS.DESTROY)
     super.destroy()
   }
 
   static registerSource(type, API) {
     sources[type] = API
   }
+
+  static prepare(type) {
+    if (typeof sources[type] !== 'undefined' && 'prepare' in sources[type]) {
+      sources[type].prepare()
+    }
+  }
 }
 
-Video.registerSource('youtube', YOUTUBEAPI)
-Video.registerSource('vimeo', VIMEOAPI)
-Video.registerSource('html5', HTML5API)
+Video.registerSource('youtube', YOUTUBESOURCE)
+Video.registerSource('vimeo', VIMEOSOURCE)
+Video.registerSource('html5', HTML5SOURCE)
 
 export default Video

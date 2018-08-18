@@ -39,7 +39,7 @@ const getPolyfillCode = function(feature) {
 
       resolve({
         feature,
-        content: `/* eslint-disable-file */
+        content: `/* eslint-disable */
 if(!(${detect})) {
 ${code}
 }
