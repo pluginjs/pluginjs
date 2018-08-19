@@ -14,10 +14,10 @@ const body = `## API
 
 export default {
   meta: {
-    moduleName: 'emitter',
-    namespace: 'emitter',
-    Namespace: 'Emitter',
-    desc: '`emitter` is a utility JavaScript library for event emitter.',
+    moduleName: 'simple-emitter',
+    namespace: 'simple-emitter',
+    Namespace: 'SimpleEmitter',
+    desc: '`simple-emitter` is a utility JavaScript library for event emitter.',
     body
   },
   output: './README.md',

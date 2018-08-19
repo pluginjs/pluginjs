@@ -1,44 +1,9 @@
-export default class Emitter {
+import SimpleEmitter from '@pluginjs/simple-emitter'
+
+export default class Emitter extends SimpleEmitter {
   constructor() {
-    this.listeners = {}
+    super()
     this.namespaces = {}
-  }
-
-  emit(event, ...args) {
-    const listeners = this.getListeners(event)
-    for (let i = 0; i < listeners.length; i++) {
-      let context = null
-
-      if (listeners[i].context !== null) {
-        context = listeners[i].context
-      } else {
-        context = { type: event }
-      }
-
-      const result = listeners[i].listener.apply(context, args)
-
-      if (result === false) {
-        return false
-      }
-    }
-
-    return true
-  }
-
-  on(event, listener, context) {
-    return this.addListener(event, listener, context)
-  }
-
-  once(event, listener, context) {
-    return this.addListenerOnce(event, listener, context)
-  }
-
-  off(event, listener) {
-    if (typeof listener === 'undefined') {
-      return this.removeAllListeners(event)
-    }
-
-    return this.removeListener(event, listener)
   }
 
   addListener(event, listener, context = null) {
@@ -59,19 +24,6 @@ export default class Emitter {
       this.addToEventWithNamespace(eventName, namespace, context, listener)
       this.addToNamespace(eventName, namespace)
     }
-
-    return this
-  }
-
-  addListenerOnce(event, listener, context) {
-    const that = this
-    function wrapper(...args) {
-      that.removeListener(event, wrapper)
-
-      return listener(...args)
-    }
-
-    this.addListener(event, wrapper, context)
 
     return this
   }
@@ -297,16 +249,6 @@ export default class Emitter {
     if (!this.checkNamespace(eventName, namespace)) {
       this.namespaces[namespace].push(eventName)
     }
-  }
-
-  ensureListener(listener) {
-    const type = typeof listener
-    if (type === 'function') {
-      return listener
-    }
-    throw new TypeError(
-      `Listeners should be function or closure. Received type: ${type}`
-    )
   }
 
   checkNamespace(eventName, namespace) {

@@ -1,5 +1,5 @@
 {
-  "name": "@pluginjs/emitter",
+  "name": "@pluginjs/simple-emitter",
   "description": "A workflow for modern frontend development.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
@@ -12,9 +12,9 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.19",
-  "main": "dist/emitter.umd.js",
-  "module": "dist/emitter.esm.js",
-  "cjs": "dist/emitter.cjs.js",
+  "main": "dist/simple-emitter.umd.js",
+  "module": "dist/simple-emitter.esm.js",
+  "cjs": "dist/simple-emitter.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",
@@ -26,9 +26,7 @@
     "build:md": "plugin script build-md",
     "test": "jest"
   },
-  "dependencies": {
-    "@pluginjs/simple-emitter": "*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@pluginjs/cli": "*",
     "babel-jest": "*",

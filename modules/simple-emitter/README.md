@@ -1,8 +1,8 @@
-# Emitter
+# SimpleEmitter
 
-[![npm package](https://img.shields.io/npm/v/@pluginjs/emitter.svg)](https://www.npmjs.com/package/@pluginjs/emitter)
+[![npm package](https://img.shields.io/npm/v/@pluginjs/simple-emitter.svg)](https://www.npmjs.com/package/@pluginjs/simple-emitter)
 
-`emitter` is a utility JavaScript library for event emitter.
+`simple-emitter` is a utility JavaScript library for event emitter.
 
 ---
 
@@ -189,9 +189,9 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/emitter is Licensed under [the GPL-v3 license](LICENSE).
+@pluginjs/simple-emitter is Licensed under [the GPL-v3 license](LICENSE).
 
-If you want to use @pluginjs/emitter project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+If you want to use @pluginjs/simple-emitter project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
 
 For purchase an Commercial License, contact us purchase@thecreation.co.
 

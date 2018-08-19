@@ -12,9 +12,9 @@ import {
   classes as CLASSES,
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
-  namespace as NAMESPACE
+  namespace as NAMESPACE,
+  dependencies as DEPENDENCIES
 } from './constant'
 
 import ONTOP from './mode/ontop'
@@ -28,13 +28,10 @@ const mode = {}
 @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, true)
-@register(
-  NAMESPACE,
-  {
-    methods: METHODS
-  },
-  INFO
-)
+@register(NAMESPACE, {
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class Headroom extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
