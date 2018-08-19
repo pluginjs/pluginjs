@@ -15,6 +15,7 @@ const events = {
 
 const classes = {
   NAMESPACE: `pj-${namespace}`,
+  THEME: '{namespace}--{theme}',
   CONTAINER: '{namespace}',
   BOX: '{namespace}-box',
   CARD: '{namespace}-card',

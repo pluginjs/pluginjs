@@ -118,6 +118,11 @@ class Thumbnails extends Component {
 
   generate() {
     addClass(this.classes.THUMBS, this.element)
+
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.element)
+    }
+
     if (this.options.vertical) {
       addClass(this.classes.VERTICAL, this.element)
     }
@@ -131,7 +136,6 @@ class Thumbnails extends Component {
         addClass(this.classes.VIDEO, thumb)
       }
 
-      // thumb.dataset.index = index
       setData('index', index, thumb)
       thumb
         .querySelector(`.${this.classes.IMAGE}`)
@@ -150,11 +154,7 @@ class Thumbnails extends Component {
     this.imageLoader = ImageLoader.of(this.inner)
 
     this.imageLoader.onLoaded(img => {
-      const thumb = closest(`.${this.classes.THUMB}`, img)
-      const loader = thumb.querySelector(`.${that.classes.LOADER}`)
-
-      addClass(that.classes.LOADED, thumb)
-      setStyle('visibility', 'hidden', loader)
+      addClass(that.classes.LOADED, closest(`.${this.classes.THUMB}`, img))
     })
   }
 

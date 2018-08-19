@@ -87,6 +87,10 @@ class Gallery extends Component {
     )
   }
 
+  unbind() {
+    removeEvent(this.eventName('click'), this.element)
+  }
+
   bindConatiner() {
     bindEvent(
       this.eventName('click'),
@@ -244,16 +248,6 @@ class Gallery extends Component {
 
     return data
   }
-
-  // bind() {
-  //   this.slider.bind()
-  //   this.thumbs.bind()
-  // }
-
-  // unbind() {
-  //   this.slider.unbind()
-  //   this.thumbs.unbind()
-  // }
 
   enable() {
     this.slider.enable()

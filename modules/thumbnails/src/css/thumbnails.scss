@@ -3,16 +3,21 @@
 // Vars
 // =====================
 $thumb: "pj-thumb" !default;
-$thumb-font-size: $font-size-base !default;
 
-$thumb-height: 6 * $thumb-font-size !default;
-$thumb-gutter: 5px !default;
-$thumb-width: 8 * $thumb-font-size !default;
+$thumb-height: 90px !default;
+$thumb-width: 160px !default;
+$thumb-gutter: 20px !default;
 
-$thumb-vertical-wrap-height: 30 * $thumb-font-size !default;
-$thumb-vertical-height: 6 * $thumb-font-size !default;
-$thumb-vertical-gutter: 5px !default;
-$thumb-vertical-width: 8 * $thumb-font-size !default;
+$thumb-loader-size: 30px !default;
+$thumb-loader-color: $color-black !default;
+
+$thumb-video-color: $color-white !default;
+
+$thumb-vertical-height: $thumb-height !default;
+$thumb-vertical-width: $thumb-width !default;
+$thumb-vertical-gutter: $thumb-gutter !default;
+
+$thumb-dark-loader-color: $color-white !default;
 
 @keyframes rotation {
   0% {
@@ -50,10 +55,10 @@ $thumb-vertical-width: 8 * $thumb-font-size !default;
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 30px;
-    height: 30px;
-    margin: -15px 0 0 -15px;
-    border: 1px #000 solid;
+    width: $thumb-loader-size;
+    height: $thumb-loader-size;
+    margin: (-$thumb-loader-size/2) 0 0 (-$thumb-loader-size/2);
+    border: 2px $thumb-loader-color solid;
     border-radius: 50%;
     animation: rotation 1s ease-in-out infinite;
 
@@ -64,7 +69,7 @@ $thumb-vertical-width: 8 * $thumb-font-size !default;
       width: 5px;
       height: 5px;
       content: "";
-      background-color: #000;
+      background-color: $thumb-loader-color;
       border-radius: 100%;
       transform: translateX(-50%);
     }
@@ -100,7 +105,7 @@ $thumb-vertical-width: 8 * $thumb-font-size !default;
     content: "";
     border-top: 12px solid transparent;
     border-bottom: 12px solid transparent;
-    border-left: 15px solid #fff;
+    border-left: 15px solid $thumb-video-color;
     opacity: 0;
   }
 
@@ -133,7 +138,7 @@ $thumb-vertical-width: 8 * $thumb-font-size !default;
 
 .#{$thumb}s-vertical {
   width: $thumb-vertical-width;
-  height: $thumb-vertical-wrap-height;
+  height: 100%;
 
   .#{$thumb}s-inner {
     width: 100%;
@@ -149,5 +154,16 @@ $thumb-vertical-width: 8 * $thumb-font-size !default;
       margin-top: $thumb-gutter;
       margin-left: 0;
     }
+  }
+}
+
+.#{$thumb}s--dark {
+  .#{$thumb}-loader {
+    border-color: $thumb-dark-loader-color;
+
+    &::after {
+      background-color: $thumb-dark-loader-color;
+    }
+
   }
 }
