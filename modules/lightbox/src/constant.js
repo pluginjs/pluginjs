@@ -128,12 +128,13 @@ const defaults = {
   delegate: 'a',
   actions: ['play', 'fullScreen', 'download', 'close'], // ['play', 'fullScreen', 'download', 'share', 'close']
   overlayClose: true,
+  counter: true,
   arrows: true,
   swipe: true,
   caption: true,
   thumbs: true,
   vertical: false,
-  keyboard: false,
+  keyboard: true,
   duration: 300,
   playCycle: 4000
 }

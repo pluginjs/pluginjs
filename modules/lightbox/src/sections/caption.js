@@ -17,6 +17,10 @@ class Caption {
   }
 
   setInfo(data) {
+    if (!this.instance.options.caption) {
+      return
+    }
+
     const test = this.instance.getElement('title', data)
     this.element.innerHTML = ''
     append(test, this.element)

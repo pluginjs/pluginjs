@@ -18,6 +18,15 @@ $slider: "pj-slider" !default;
     color: #fff;
     visibility: hidden;
     opacity: 0;
+
+    .#{$slider}-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      min-height: auto;
+    }
   }
 
   &-show {
@@ -77,16 +86,6 @@ $slider: "pj-slider" !default;
     height: auto;
     padding-bottom: 0;
   }
-
-  .#{$slider}-content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    min-height: auto;
-  }
-
 
   &-footer {
     position: relative;

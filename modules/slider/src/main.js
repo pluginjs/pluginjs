@@ -146,7 +146,7 @@ class Slider extends Component {
         }
 
         const offset = this.info[that.options.vertical ? 'deltaY' : 'deltaX']
-        const distance = that.distance * 0.6
+        const distance = that.distance * 0.5
 
         if (offset > distance) {
           that.prev()
@@ -192,7 +192,7 @@ class Slider extends Component {
 
   setPos(reset = false) {
     const length = this.data.length
-    const offset = reset ? 0 : this.cards[this.page].getOffset()
+    const offset = reset ? 0 : this.stash * 100
 
     for (let i = 0; i < 3; i++) {
       let index = null

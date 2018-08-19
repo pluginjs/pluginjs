@@ -12,7 +12,9 @@ class Topbar {
   }
 
   initialize() {
-    this.instance.options.actions.unshift('counter')
+    if (this.instance.options.counter) {
+      this.instance.options.actions.unshift('counter')
+    }
     this.element = this.instance.getElement('topbar')
 
     this.instance.options.actions.forEach(item => {
@@ -34,6 +36,7 @@ class Topbar {
         `.${this.classes.PLAY}`,
         event => {
           event.preventDefault()
+          event.stopPropagation()
 
           this.autoPlay()
         }
@@ -43,6 +46,7 @@ class Topbar {
         `.${this.classes.FULLSCREEN}`,
         event => {
           event.preventDefault()
+          event.stopPropagation()
 
           this.fullscreen.toggle()
 
@@ -58,6 +62,7 @@ class Topbar {
         `.${this.classes.DOWNLOAD}`,
         event => {
           event.preventDefault()
+          event.stopPropagation()
 
           const url = this.instance.data[this.instance.slider.plugin.current]
             .orig
@@ -71,6 +76,7 @@ class Topbar {
         `.${this.classes.CLOSE}`,
         event => {
           event.preventDefault()
+          event.stopPropagation()
 
           this.off()
         }
@@ -178,6 +184,10 @@ class Topbar {
   }
 
   setCounter(index) {
+    if (!this.instance.options.counter) {
+      return
+    }
+
     this.counter.innerHTML = `${index + 1} / ${this.instance.length}`
   }
 }

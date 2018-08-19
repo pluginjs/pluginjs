@@ -31,12 +31,9 @@ class Thumbs {
         current: instance.active,
         mode: 'center',
         onChange() {
-          instance.topbar.setCounter(this.current)
           instance.slider.plugin.go(this.current, false)
-
-          if (instance.options.caption) {
-            instance.caption.setInfo(instance.data[this.current])
-          }
+          instance.topbar.setCounter(this.current)
+          instance.caption.setInfo(instance.data[this.current])
         }
       })
     )

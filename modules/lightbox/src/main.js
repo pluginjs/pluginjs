@@ -1,8 +1,8 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { append, parseHTML } from '@pluginjs/dom'
-import { bindEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
@@ -26,6 +26,7 @@ import Topbar from './sections/topbar'
 import Caption from './sections/caption'
 import Slider from './sections/slider'
 import Thumbs from './sections/thumbs'
+import Keyboard from '@pluginjs/keyboard'
 
 @themeable()
 @styleable(CLASSES)
@@ -63,6 +64,9 @@ class Gallery extends Component {
     this.length = this.data.length
 
     this.bind()
+    if (this.options.keyboard) {
+      this.keyboard = Keyboard()
+    }
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -83,37 +87,80 @@ class Gallery extends Component {
     )
   }
 
+  bindConatiner() {
+    bindEvent(
+      this.eventName('click'),
+      event => {
+        event.preventDefault()
+        event.stopPropagation()
+
+        const target = event.target
+
+        if (
+          hasClass(this.slider.plugin.classes.CARD, target) ||
+          hasClass(this.classes.TOPBAR, target)
+        ) {
+          this.hide()
+        }
+      },
+      this.container
+    )
+
+    if (this.keyboard) {
+      this.keyboard.on('down', 'esc', () => {
+        this.hide()
+      })
+
+      this.keyboard.on('down', 'left', () => {
+        this.slider.plugin.prev()
+      })
+
+      this.keyboard.on('down', 'right', () => {
+        this.slider.plugin.next()
+      })
+    }
+  }
+
+  unbindConatiner() {
+    removeEvent(this.eventName('click'), this.container)
+    if (this.keyboard) {
+      this.keyboard.off('down', 'esc,left, right')
+    }
+  }
+
   open() {
-    this.build()
+    if (this.is('generate')) {
+      this.initShow(this.active)
+    } else {
+      this.generate()
+    }
+
     this.show()
   }
 
   show() {
     addClass(this.classes.SHOW, this.container)
+    this.bindConatiner()
     this.enter('show')
   }
 
   hide() {
     removeClass(this.classes.SHOW, this.container)
+    this.unbindConatiner()
     this.leave('show')
   }
 
-  build() {
-    if (this.is('build')) {
-      this.slider.plugin.reset(this.active)
+  initShow(index) {
+    this.slider.plugin.reset(index)
+    this.topbar.setCounter(index)
+    this.caption.setInfo(this.data[index])
 
-      this.topbar.setCounter(this.active)
-
-      if (this.options.caption) {
-        this.caption.setInfo(this.data[this.active])
-      }
-
-      if (this.options.thumbs) {
-        this.thumbs.plugin.go(this.active, false, false)
-      }
-      return
+    if (this.options.thumbs) {
+      this.thumbs.plugin.go(index, false, false)
     }
+  }
 
+  generate() {
     this.container = this.getElement('container')
     this.footer = this.getElement('footer')
 
@@ -130,17 +177,7 @@ class Gallery extends Component {
 
     append(this.container, document.body)
 
-    bindEvent(
-      this.eventName('click'),
-      event => {
-        event.preventDefault()
-
-        console.log('click')
-      },
-      this.container
-    )
-
-    this.enter('build')
+    this.enter('generate')
   }
 
   getElement(type, ...args) {

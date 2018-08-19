@@ -26,10 +26,7 @@ class Slider {
         current: instance.active,
         onChange() {
           instance.topbar.setCounter(this.current)
-
-          if (instance.options.caption) {
-            instance.caption.setInfo(instance.data[this.current])
-          }
+          instance.caption.setInfo(instance.data[this.current])
 
           if (instance.options.thumbs) {
             instance.thumbs.plugin.go(this.current, false)
