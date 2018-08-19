@@ -38,7 +38,6 @@ describe('SimpleEmitter', () => {
       expect(dispatcher.getListeners('event')).toHaveLength(1)
 
       dispatcher.emit('event')
-      dispatcher.emit('event')
 
       expect(dispatcher.hasListeners('event')).toBeFalse()
       expect(dispatcher.getListeners('event')).toHaveLength(0)
@@ -193,7 +192,8 @@ describe('SimpleEmitter', () => {
       expect(dispatcher.getListeners('event')).toEqual([
         {
           listener: callback,
-          context: null
+          context: null,
+          one: false
         }
       ])
     })

@@ -1,4 +1,4 @@
-import Callbacks from './callbacks'
+import Emitter from '@pluginjs/simple-emitter'
 import { isFunction } from '@pluginjs/is'
 
 export default class MediaQuery {
@@ -9,10 +9,7 @@ export default class MediaQuery {
   }
 
   initialize() {
-    this.callbacks = {
-      enter: new Callbacks(),
-      leave: new Callbacks()
-    }
+    this.emitter = new Emitter()
 
     this.mql = (window.matchMedia && window.matchMedia(this.media)) || {
       matches: false,
@@ -29,7 +26,7 @@ export default class MediaQuery {
     this.mqlListener = mql => {
       const type = (mql.matches && 'enter') || 'leave'
 
-      that.callbacks[type].fire(that)
+      this.emitter.emit(type, that)
     }
     this.mql.addListener(this.mqlListener)
   }
@@ -53,12 +50,10 @@ export default class MediaQuery {
       return this
     }
 
-    if (typeof this.callbacks[types] !== 'undefined') {
-      this.callbacks[types].add(fn, data, one)
-
-      if (types === 'enter' && this.isMatched()) {
-        this.callbacks[types].call(this)
-      }
+    if (one) {
+      this.emitter.once(types, fn, data)
+    } else {
+      this.emitter.on(types, fn, data)
     }
 
     return this
@@ -81,14 +76,10 @@ export default class MediaQuery {
     }
 
     if (typeof types === 'undefined') {
-      this.callbacks.enter.empty()
-      this.callbacks.leave.empty()
-    } else if (types in this.callbacks) {
-      if (fn) {
-        this.callbacks[types].remove(fn)
-      } else {
-        this.callbacks[types].empty()
-      }
+      this.emitter.off('enter')
+      this.emitter.off('leave')
+    } else {
+      this.emitter.off(types, fn)
     }
 
     return this
@@ -99,6 +90,7 @@ export default class MediaQuery {
   }
 
   destroy() {
-    this.off()
+    this.emitter.off('enter')
+    this.emitter.off('leave')
   }
 }

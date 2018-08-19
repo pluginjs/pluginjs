@@ -30,7 +30,8 @@
     "@pluginjs/emitter": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/utils": "*",
+    "@pluginjs/simple-emitter": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

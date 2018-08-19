@@ -79,12 +79,12 @@ describe('Breakpoints', () => {
       })
       const viewport = Breakpoints.get('md')
       expect(viewport).toBeDefined()
-      expect(viewport.callbacks.enter).toHaveLength(1)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(1)
 
       Breakpoints.at('md', 'leave', () => {
         return true
       })
-      expect(viewport.callbacks.enter).toHaveLength(1)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(1)
 
       Breakpoints.at('md', {
         enter() {
@@ -94,12 +94,12 @@ describe('Breakpoints', () => {
           console.info(`leave ${this.name}`)
         }
       })
-      expect(viewport.callbacks.enter).toHaveLength(2)
-      expect(viewport.callbacks.enter).toHaveLength(2)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(2)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(2)
 
       Breakpoints.off('md')
-      expect(viewport.callbacks.enter).toHaveLength(0)
-      expect(viewport.callbacks.enter).toHaveLength(0)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(0)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(0)
     })
   })
 
@@ -110,12 +110,12 @@ describe('Breakpoints', () => {
       })
       const viewport = Breakpoints.get('md+')
       expect(viewport).toBeDefined()
-      expect(viewport.callbacks.enter).toHaveLength(1)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(1)
 
       Breakpoints.from('md', 'leave', () => {
         return true
       })
-      expect(viewport.callbacks.enter).toHaveLength(1)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(1)
 
       Breakpoints.from('md', {
         enter() {
@@ -125,12 +125,12 @@ describe('Breakpoints', () => {
           console.info(`leave ${this.name}`)
         }
       })
-      expect(viewport.callbacks.enter).toHaveLength(2)
-      expect(viewport.callbacks.enter).toHaveLength(2)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(2)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(2)
 
       Breakpoints.off('md+')
-      expect(viewport.callbacks.enter).toHaveLength(0)
-      expect(viewport.callbacks.enter).toHaveLength(0)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(0)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(0)
     })
   })
 
@@ -141,12 +141,12 @@ describe('Breakpoints', () => {
       })
       const viewport = Breakpoints.get('md-')
       expect(viewport).toBeDefined()
-      expect(viewport.callbacks.enter).toHaveLength(1)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(1)
 
       Breakpoints.to('md', 'leave', () => {
         return true
       })
-      expect(viewport.callbacks.enter).toHaveLength(1)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(1)
 
       Breakpoints.to('md', {
         enter() {
@@ -156,12 +156,12 @@ describe('Breakpoints', () => {
           console.info(`leave ${this.name}`)
         }
       })
-      expect(viewport.callbacks.enter).toHaveLength(2)
-      expect(viewport.callbacks.enter).toHaveLength(2)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(2)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(2)
 
       Breakpoints.off('md-')
-      expect(viewport.callbacks.enter).toHaveLength(0)
-      expect(viewport.callbacks.enter).toHaveLength(0)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(0)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(0)
     })
   })
 
@@ -172,12 +172,12 @@ describe('Breakpoints', () => {
       })
       const viewport = Breakpoints.get('md-lg')
       expect(viewport).toBeDefined()
-      expect(viewport.callbacks.enter).toHaveLength(1)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(1)
 
       Breakpoints.between('md', 'lg', 'leave', () => {
         return true
       })
-      expect(viewport.callbacks.enter).toHaveLength(1)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(1)
 
       Breakpoints.between('md', 'lg', {
         enter() {
@@ -187,12 +187,12 @@ describe('Breakpoints', () => {
           console.info(`leave ${this.name}`)
         }
       })
-      expect(viewport.callbacks.enter).toHaveLength(2)
-      expect(viewport.callbacks.enter).toHaveLength(2)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(2)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(2)
 
       Breakpoints.off('md-lg')
-      expect(viewport.callbacks.enter).toHaveLength(0)
-      expect(viewport.callbacks.enter).toHaveLength(0)
+      expect(viewport.emitter.getListeners('enter')).toHaveLength(0)
+      expect(viewport.emitter.getListeners('leave')).toHaveLength(0)
     })
   })
 })

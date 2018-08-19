@@ -16,6 +16,10 @@ export default class SimpleEmitter {
 
       const result = listeners[i].listener.apply(context, args)
 
+      if (listeners[i].one) {
+        this.removeListener(event, listeners[i].listener)
+      }
+
       if (result === false) {
         return false
       }
@@ -40,7 +44,7 @@ export default class SimpleEmitter {
     return this.removeListener(event, listener)
   }
 
-  addListener(event, listener, context = null) {
+  addListener(event, listener, context = null, one = false) {
     this.ensureListener(listener)
 
     if (!this.hasListeners(event)) {
@@ -49,23 +53,15 @@ export default class SimpleEmitter {
 
     this.listeners[event].push({
       context,
-      listener
+      listener,
+      one
     })
 
     return this
   }
 
   addListenerOnce(event, listener, context) {
-    const that = this
-    function wrapper(...args) {
-      that.removeListener(event, wrapper)
-
-      return listener(...args)
-    }
-
-    this.addListener(event, wrapper, context)
-
-    return this
+    return this.addListener(event, listener, context, true)
   }
 
   removeListener(event, listener) {

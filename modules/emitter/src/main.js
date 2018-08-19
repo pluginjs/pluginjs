@@ -6,7 +6,7 @@ export default class Emitter extends SimpleEmitter {
     this.namespaces = {}
   }
 
-  addListener(event, listener, context = null) {
+  addListener(event, listener, context = null, one = false) {
     this.ensureListener(listener)
 
     const { eventName, namespace } = this.constructor.parseEvent(event)
@@ -19,9 +19,9 @@ export default class Emitter extends SimpleEmitter {
     }
 
     if (!namespace) {
-      this.addToEvent(eventName, context, listener)
+      this.addToEvent(eventName, context, listener, one)
     } else {
-      this.addToEventWithNamespace(eventName, namespace, context, listener)
+      this.addToEventWithNamespace(eventName, namespace, context, listener, one)
       this.addToNamespace(eventName, namespace)
     }
 
@@ -221,24 +221,32 @@ export default class Emitter extends SimpleEmitter {
     }
   }
 
-  addToEvent(eventName, context, listener) {
+  addToEvent(eventName, context, listener, one = false) {
     if (!this.listeners[eventName]['*']) {
       this.listeners[eventName]['*'] = []
     }
     this.listeners[eventName]['*'].push({
       context,
-      listener
+      listener,
+      one
     })
   }
 
-  addToEventWithNamespace(eventName, namespace, context, listener) {
+  addToEventWithNamespace(
+    eventName,
+    namespace,
+    context,
+    listener,
+    one = false
+  ) {
     if (!this.listeners[eventName][namespace]) {
       this.listeners[eventName][namespace] = []
     }
 
     this.listeners[eventName][namespace].push({
       context,
-      listener
+      listener,
+      one
     })
   }
 

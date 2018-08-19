@@ -38,7 +38,6 @@ describe('Emitter', () => {
       expect(dispatcher.getListeners('event')).toHaveLength(1)
 
       dispatcher.emit('event')
-      dispatcher.emit('event')
 
       expect(dispatcher.hasListeners('event')).toBeFalse()
       expect(dispatcher.getListeners('event')).toHaveLength(0)
@@ -184,7 +183,8 @@ describe('Emitter', () => {
       expect(dispatcher.getListeners('event')).toEqual([
         {
           listener: callback,
-          context: null
+          context: null,
+          one: false
         }
       ])
     })
@@ -203,11 +203,13 @@ describe('Emitter', () => {
       expect(dispatcher.getListeners('event')).toEqual([
         {
           listener: first,
-          context: null
+          context: null,
+          one: false
         },
         {
           listener: second,
-          context: null
+          context: null,
+          one: false
         }
       ])
     })

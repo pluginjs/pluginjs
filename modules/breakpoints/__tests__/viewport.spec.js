@@ -16,7 +16,7 @@ describe('Size', () => {
     })
 
     test('should initialized after constructor', () => {
-      expect(size.callbacks).toBeDefined()
+      expect(size.emitter).toBeDefined()
     })
   })
 })

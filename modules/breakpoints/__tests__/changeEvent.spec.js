@@ -2,16 +2,16 @@ import ChangeEvent from '../src/changeEvent'
 
 describe('ChangeEvent', () => {
   describe('ChangeEvent.on()', () => {
-    test('should bind fn to the list', () => {
+    test('should bind listener to the list', () => {
       ChangeEvent.off()
 
-      const fn = function() {
+      const listener = function() {
         return false
       }
-      ChangeEvent.on(fn)
+      ChangeEvent.on(listener)
 
-      expect(ChangeEvent.callbacks).toHaveLength(1)
-      expect(ChangeEvent.callbacks.list[0].fn).toEqual(fn)
+      expect(ChangeEvent.listeners).toHaveLength(1)
+      expect(ChangeEvent.listeners[0].listener).toEqual(listener)
     })
 
     test('should trigger multi times', () => {
@@ -44,16 +44,16 @@ describe('ChangeEvent', () => {
   })
 
   describe('ChangeEvent.one()', () => {
-    test('should bind fn to the list', () => {
+    test('should bind listener to the list', () => {
       ChangeEvent.off()
 
-      const fn = function() {
+      const listener = function() {
         return false
       }
-      ChangeEvent.one(fn)
+      ChangeEvent.one(listener)
 
-      expect(ChangeEvent.callbacks).toHaveLength(1)
-      expect(ChangeEvent.callbacks.list[0].fn).toEqual(fn)
+      expect(ChangeEvent.listeners).toHaveLength(1)
+      expect(ChangeEvent.listeners[0].listener).toEqual(listener)
     })
 
     test('should trigger once', () => {
@@ -73,7 +73,7 @@ describe('ChangeEvent', () => {
   })
 
   describe('ChangeEvent.trigger()', () => {
-    test('should trigger the fn', () => {
+    test('should trigger the listener', () => {
       ChangeEvent.off()
       const current = 'md'
       ChangeEvent.current = current
@@ -90,13 +90,13 @@ describe('ChangeEvent', () => {
   })
 
   describe('ChangeEvent.off()', () => {
-    test('should empty the callbacks list', () => {
+    test('should empty the listeners list', () => {
       ChangeEvent.on(() => {
         return false
       })
       ChangeEvent.off()
 
-      expect(ChangeEvent.callbacks).toHaveLength(0)
+      expect(ChangeEvent.listeners).toHaveLength(0)
     })
   })
 })
