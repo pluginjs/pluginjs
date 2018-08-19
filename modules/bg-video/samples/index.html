@@ -3,24 +3,24 @@
   <title>bgVideo</title>
   <meta charset="UTF-8" />
   <style>
-    .bg-video {
+    .section {
       position: relative;
       width: 100%;
       height: 500px;
-      pointer-events: none;
     }
     .api {
       margin: 20px 0;
     }
   </style>
+  <link rel="stylesheet" href="src/index.scss">
 </head>
 
 <body>
-  <section id="youtube">
-    <include src="src/sections/youtube/index.html"></include>
-  </section>
   <section id="html5">
     <include src="src/sections/html5/index.html"></include>
+  </section>
+  <section id="youtube">
+    <include src="src/sections/youtube/index.html"></include>
   </section>
   <section id="vimeo">
     <include src="src/sections/vimeo/index.html"></include>

@@ -40,7 +40,7 @@
     "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/template": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/video": "*"
   },
   "devDependencies": {

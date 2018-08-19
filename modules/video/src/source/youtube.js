@@ -13,6 +13,7 @@ class Youtube {
       {
         autoplay: true,
         controls: false,
+        muted: false,
         disablekb: false,
         fs: false,
         iv_load_policy: true,
@@ -28,8 +29,8 @@ class Youtube {
   }
 
   init(done) {
-    this.$iframe = document.createElement('div')
-    append(this.$iframe, this.element)
+    this.$player = document.createElement('div')
+    append(this.$player, this.element)
 
     if (!window.PJYTAPIREADY) {
       Pj.emitter.on('video:youtube:ready', () => {
@@ -46,7 +47,7 @@ class Youtube {
     this.instance.trigger(EVENTS.LOAD)
     const options = this.options
 
-    this.api = new window.YT.Player(this.$iframe, {
+    this.api = new window.YT.Player(this.$player, {
       videoId: this.getId(),
       width: options.width,
       height: options.height,
@@ -70,6 +71,10 @@ class Youtube {
         onReady: () => {
           this.instance.trigger(EVENTS.LOADED)
           this.instance.hidePoster()
+
+          if (options.muted) {
+            this.api.mute()
+          }
         },
         onStateChange: event => {
           if (event.data === 1) {
@@ -121,7 +126,7 @@ class Youtube {
     )
   }
 
-  switchVideo(id) {
+  swichVideo(id) {
     this.api.loadVideoById({ videoId: id })
   }
 
@@ -167,7 +172,7 @@ class Youtube {
       this.api.destroy()
     }
 
-    this.$iframe.remove()
+    this.$player.remove()
   }
 }
 

@@ -2,16 +2,11 @@ import { query, data } from '@pluginjs/dom'
 import BgVideo from '@pluginjs/bg-video'
 
 const root = query('#html5')
-const element = query('.bg-video', root)
+const element = query('.section', root)
 const instance = BgVideo.of(element, {
   type: 'html5',
-  video: {
-    url: 'http://vjs.zencdn.net/v/oceans.mp4',
-    id: '',
-    mute: true,
-    autoplay: true,
-    mobileImage: ''
-  }
+  url: 'http://vjs.zencdn.net/v/oceans.mp4',
+  overlay: 'rgba(255,0,0,20%)'
 })
 query('.api', root).addEventListener('click', event => {
   const el = event.target

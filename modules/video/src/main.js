@@ -6,10 +6,10 @@ import {
   styleable,
   optionable
 } from '@pluginjs/decorator'
-import template from '@pluginjs/template'
 import { setStyle } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { appendTo } from '@pluginjs/dom'
+import { append } from '@pluginjs/dom'
+import { isString } from '@pluginjs/is'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -31,29 +31,35 @@ const sources = {}
   methods: METHODS
 })
 class Video extends Component {
-  constructor(element, options = {}) {
-    super(NAMESPACE, element)
+  constructor(element, options = {}, namespace, defaults, classes) {
+    if (!isString(namespace)) {
+      namespace = NAMESPACE
+    }
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    if (typeof defaults === 'undefined') {
+      defaults = DEFAULTS
+    }
+
+    if (typeof classes === 'undefined') {
+      classes = CLASSES
+    }
+
+    super(namespace, element)
+
+    this.initOptions(defaults, options)
+    this.initClasses(classes)
     this.initStates()
     this.initialize()
   }
 
   initialize() {
-    addClass(this.classes.NAMESPACE, this.element)
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.element)
-    }
-
-    if (this.options.poster) {
-      this.$poster = appendTo(this.createPoster(), this.element)
-      setStyle('background-image', `url(${this.options.poster})`, this.$poster)
-    }
+    this.initVideo()
+    this.initPoster()
 
     if (typeof sources[this.options.type] !== 'undefined') {
-      this.player = new sources[this.options.type](this, this.element)
+      this.player = new sources[this.options.type](this, this.$video)
     }
+
     this.player.init(() => {
       this.load()
 
@@ -62,10 +68,22 @@ class Video extends Component {
     })
   }
 
-  createPoster() {
-    return template.render(this.options.templates.poster.call(this), {
-      classes: this.classes
-    })
+  initVideo() {
+    this.$video = this.element
+
+    addClass(this.classes.NAMESPACE, this.$video)
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.$video)
+    }
+  }
+
+  initPoster() {
+    if (this.options.poster) {
+      this.$poster = document.createElement('div')
+      addClass(this.classes.POSTER, this.$poster)
+      setStyle('background-image', `url(${this.options.poster})`, this.$poster)
+      append(this.$poster, this.$video)
+    }
   }
 
   hidePoster() {
@@ -81,9 +99,9 @@ class Video extends Component {
     }
   }
 
-  switchVideo(id) {
+  swichVideo(id) {
     if (this.is('loaded')) {
-      this.player.switchVideo(id)
+      this.player.swichVideo(id)
     }
   }
 
@@ -157,9 +175,9 @@ class Video extends Component {
     if (this.is('initialized')) {
       this.leave('initialized')
 
-      removeClass(this.classes.NAMESPACE, this.element)
+      removeClass(this.classes.NAMESPACE, this.$video)
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.element)
+        removeClass(this.getThemeClass(), this.$video)
       }
       if (this.options.poster) {
         this.$poster.remove()

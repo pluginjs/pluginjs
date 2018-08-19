@@ -30,7 +30,7 @@ export const methods = [
   'stop',
   'volume',
   'setSize',
-  'switchVideo',
+  'swichVideo',
   'duration',
   'currentTime',
   'mute',
@@ -39,13 +39,8 @@ export const methods = [
 ]
 
 export const defaults = {
-  templates: {
-    poster() {
-      return '<div class="{classes.POSTER}"></div>'
-    }
-  },
   width: '100%',
-  height: 400,
+  height: '100%',
   url: '',
   id: '',
   type: '',

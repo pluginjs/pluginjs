@@ -2,6 +2,7 @@ import { isArray } from '@pluginjs/is'
 import { events as EVENTS } from '../constant'
 import { setStyle } from '@pluginjs/styled'
 import { append } from '@pluginjs/dom'
+import { each } from '@pluginjs/utils'
 
 class Html5 {
   constructor(instance, element) {
@@ -19,14 +20,14 @@ class Html5 {
   }
 
   init(done) {
-    this.$video = document.createElement('video')
+    this.$player = document.createElement('video')
 
-    this.$video.autoplay = this.options.autoplay
-    this.$video.controls = this.options.controls
-    this.$video.loop = this.options.loop
-    this.$video.muted = this.options.muted
+    this.$player.autoplay = this.options.autoplay
+    this.$player.controls = this.options.controls
+    this.$player.loop = this.options.loop
+    this.$player.muted = this.options.muted
 
-    append(this.$video, this.element)
+    append(this.$player, this.element)
 
     done()
   }
@@ -40,24 +41,36 @@ class Html5 {
   }
 
   bind() {
-    this.$video.addEventListener('canplay', () => {
-      this.instance.trigger(EVENTS.LOADED)
-      this.instance.hidePoster()
+    this.listeners = {
+      canplay: () => {
+        this.instance.trigger(EVENTS.LOADED)
+        this.instance.hidePoster()
+      },
+      play: () => {
+        this.instance.trigger(EVENTS.PLAY)
+      },
+      pause: () => {
+        this.instance.trigger(EVENTS.PAUSE)
+      },
+      ended: () => {
+        this.instance.trigger(EVENTS.ENDED)
+      },
+      waiting: () => {
+        this.instance.trigger(EVENTS.BUFFERING)
+      },
+      error: error => {
+        this.instance.trigger(EVENTS.ERROR, error)
+      }
+    }
+
+    each(this.listeners, (event, listener) => {
+      this.$player.addEventListener(event, listener)
     })
-    this.$video.addEventListener('play', () => {
-      this.instance.trigger(EVENTS.PLAY)
-    })
-    this.$video.addEventListener('pause', () => {
-      this.instance.trigger(EVENTS.PAUSE)
-    })
-    this.$video.addEventListener('ended', () => {
-      this.instance.trigger(EVENTS.ENDED)
-    })
-    this.$video.addEventListener('waiting', () => {
-      this.instance.trigger(EVENTS.BUFFERING)
-    })
-    this.$video.addEventListener('error', error => {
-      this.instance.trigger(EVENTS.ERROR, error)
+  }
+
+  unbind() {
+    each(this.listeners, (event, listener) => {
+      this.$player.removeEventListener(event, listener)
     })
   }
 
@@ -78,7 +91,7 @@ class Html5 {
     source.src = url
     source.type = `video/${type}`
 
-    append(source, this.$video)
+    append(source, this.$player)
   }
 
   setSize(width, height) {
@@ -87,57 +100,58 @@ class Html5 {
         width,
         height
       },
-      this.$video
+      this.$player
     )
   }
 
-  switchVideo(src) {
+  swichVideo(src) {
     this.pause()
-    this.$video.innerHTML = ''
+    this.$player.innerHTML = ''
     this.setSources(src)
-    this.$video.load()
+    this.$player.load()
   }
 
   currentTime() {
-    return this.$video.currentTime
+    return this.$player.currentTime
   }
 
   duration() {
-    return this.$video.duration
+    return this.$player.duration
   }
 
   setCurrentTime(val) {
-    this.$video.currentTime = val
+    this.$player.currentTime = val
   }
 
   pause() {
-    this.$video.pause()
+    this.$player.pause()
   }
 
   play() {
-    this.$video.play()
+    this.$player.play()
   }
 
   mute() {
-    this.$video.muted = true
+    this.$player.muted = true
   }
 
   unMute() {
-    this.$video.muted = false
+    this.$player.muted = false
   }
 
   stop() {
-    this.$video.currentTime = 0
-    this.$video.pause()
+    this.$player.currentTime = 0
+    this.$player.pause()
     this.instance.trigger(EVENTS.STOP)
   }
 
   volume(value) {
-    this.$video.volume = value / 100
+    this.$player.volume = value / 100
   }
 
   destroy() {
-    this.$video.remove()
+    this.unbind()
+    this.$player.remove()
   }
 }
 

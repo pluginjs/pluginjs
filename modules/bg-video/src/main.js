@@ -1,11 +1,8 @@
-import Component from '@pluginjs/component'
-import templateEngine from '@pluginjs/template'
-import { addClass } from '@pluginjs/classes'
-import { setStyle, getStyle } from '@pluginjs/styled'
-import Pj from '@pluginjs/factory'
+import { addClass, removeClass } from '@pluginjs/classes'
 import Video from '@pluginjs/video'
-import { append, parseHTML, query } from '@pluginjs/dom'
-import { deepMerge } from '@pluginjs/utils'
+import { setStyle } from '@pluginjs/styled'
+import { append, parseHTML } from '@pluginjs/dom'
+import { isString } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -30,139 +27,47 @@ import {
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
-class BgVideo extends Component {
+class BgVideo extends Video {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
-
-    this.initStates()
-    this.initialize()
+    super(element, options, NAMESPACE, DEFAULTS, CLASSES)
   }
 
-  initialize() {
-    this.$video = parseHTML(this.createHtml())
+  initVideo() {
+    this.$video = parseHTML(`<div class="${this.classes.NAMESPACE}"></div>`)
 
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.$video)
+    }
+
+    addClass(this.classes.WRAP, this.element)
     append(this.$video, this.element)
 
-    this.appendVideo(this.options.video)
-
-    this.trigger(EVENTS.READY)
-    this.enter('initialized')
+    this.initOverlay()
   }
 
-  appendVideo(options) {
-    this.videoApi = Video.of(this.$video, {
-      type: this.options.type,
-      url: options.url,
-      id: options.id,
-      loop: options.repeat,
-      poster: options.mobileImage,
-      autoplay: options.autoplay,
-      onLoaded: () => {
-        if (options.mute) {
-          this.videoApi.mute()
-        }
-        this.setVideoSize()
+  initOverlay() {
+    if (this.options.overlay) {
+      this.$overlay = parseHTML(`<div class="${this.classes.OVERLAY}"></div>`)
+
+      if (isString(this.options.overlay)) {
+        setStyle('background', this.options.overlay, this.$overlay)
       }
-    })
-
-    this.videoApi.load()
-  }
-
-  setVideoSize() {
-    this.$player = query('iframe', this.$video)
-    if (!this.$player) {
-      this.$player = query('video', this.$video)
+      append(this.$overlay, this.$video)
     }
-    this.ratio =
-      parseInt(getStyle('width', this.$player), 10) /
-      parseInt(getStyle('height', this.$player), 10)
-
-    const { width, height } = this.getPlayerSize()
-
-    Pj.emitter.on('resize', this.resizeHandle, this)
-
-    addClass(this.classes.POINTEREVENTNONE, this.$player)
-    setStyle(
-      {
-        width,
-        height,
-        visibility: 'visible'
-      },
-      this.$player
-    )
-  }
-
-  getPlayerSize() {
-    const size = {}
-    const elementWidth = parseInt(getStyle('width', this.element), 10)
-    const elementHeight = parseInt(getStyle('height', this.element), 10)
-    const elementratio = elementWidth / elementHeight
-    if (this.ratio < elementratio) {
-      size.width = `${elementWidth.toString()}px`
-      size.height = `${Math.ceil(elementWidth / this.ratio).toString()}px`
-    } else {
-      size.width = `${Math.ceil(elementHeight * this.ratio).toString()}px`
-      size.height = `${elementHeight.toString()}px`
-    }
-
-    return size
-  }
-
-  resizeHandle() {
-    const { width, height } = this.getPlayerSize()
-    setStyle(
-      {
-        width,
-        height
-      },
-      this.$player
-    )
-  }
-
-  createHtml() {
-    const html = templateEngine.render(this.options.template.call(this), {
-      classes: this.classes
-    })
-    return html
-  }
-
-  play() {
-    this.videoApi.play()
-    this.trigger(EVENTS.PLAY)
-  }
-
-  pause() {
-    this.videoApi.pause()
-    this.trigger(EVENTS.PAUSE)
-  }
-
-  stop() {
-    this.videoApi.stop()
-    this.trigger(EVENTS.STOP)
-  }
-
-  setVolume(value) {
-    this.videoApi.volume(value)
-  }
-
-  change(options = {}) {
-    this.videoApi.destroy()
-    const o = deepMerge(DEFAULTS, options)
-    this.appendVideo(o)
   }
 
   destroy() {
     if (this.is('initialized')) {
-      this.leave('initialized')
+      if (this.options.overlay) {
+        this.$overlay.remove()
+      }
+
+      removeClass(this.classes.WRAP, this.element)
     }
 
-    this.videoApi.destroy()
-    this.$video.remove()
-
-    this.trigger(EVENTS.DESTROY)
     super.destroy()
+
+    this.$video.remove()
   }
 }
 

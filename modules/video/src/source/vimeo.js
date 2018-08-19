@@ -32,15 +32,15 @@ class Vimeo {
     this._duration = null
     this._currentTime = null
 
-    this.$video = document.createElement('div')
+    this.$player = document.createElement('div')
     setStyle(
       {
         width: this.options.width,
         height: this.options.height
       },
-      this.$video
+      this.$player
     )
-    append(this.$video, this.element)
+    append(this.$player, this.element)
 
     if (!window.PJVIMEOAPIREADY) {
       Pj.emitter.on('video:vimeo:ready', () => {
@@ -57,7 +57,7 @@ class Vimeo {
     this.instance.trigger(EVENTS.LOAD)
 
     const options = this.options
-    this.api = new window.Vimeo.Player(this.$video, {
+    this.api = new window.Vimeo.Player(this.$player, {
       id: this.getId(),
       autopause: options.autopause,
       autoplay: options.autoplay,
@@ -114,7 +114,7 @@ class Vimeo {
       this.instance.trigger(EVENTS.LOADED)
       this.instance.hidePoster()
 
-      this.$iframe = query('iframe', this.$video)
+      this.$iframe = query('iframe', this.$player)
       this.$iframe.setAttribute('width', '100%')
       this.$iframe.setAttribute('height', '100%')
 
@@ -144,11 +144,11 @@ class Vimeo {
         width,
         height
       },
-      this.$video
+      this.$player
     )
   }
 
-  switchVideo(id) {
+  swichVideo(id) {
     this.api.loadVideo(id)
   }
 
@@ -185,7 +185,6 @@ class Vimeo {
 
   pause() {
     this.api.pause()
-    this.instance.trigger('pause')
   }
 
   volume(value) {
@@ -204,7 +203,7 @@ class Vimeo {
       this.api.destroy()
     }
 
-    this.$video.remove()
+    this.$player.remove()
   }
 }
 
