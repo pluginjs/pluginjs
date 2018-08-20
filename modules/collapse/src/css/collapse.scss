@@ -6,32 +6,32 @@
 $collapse: "pj-collapse";
 $collapse-font-family: $font-family-base !default;
 $collapse-font-size: $font-size-sm !default;
-$collapse-hover-color: $color-primary !default;
-$collapse-hover-border-color: $color-primary !default;
-$collapse-border-color: $gray-border !default;
-$collapse-gutter-width: 1px !default;
-$collapse-padding: 12px 31px 12px 23px !default;
-$collapse-header-order-title-padding: 0 31px 15px 23px !default;
-$collapse-header-order-content-inner-padding: 17px 23px 0 23px !default;
-$collapse-content-padding: 4px 23px 23px !default;
-$collapse-expanded-padding: 20px 23px 23px !default;
-$collapse-header-icon-margin-right: 11px !default;
-$collapse-content-inner-margin: 0 22px !default;
+$collapse-hover-color: $color-primary;
+$collapse-hover-border-color: $color-primary;
+$collapse-border-color: $gray-border;
+$collapse-gutter-width: 1px;
+$collapse-padding: 12px 31px 12px 23px;
+$collapse-header-order-title-padding: 0 31px 15px 23px;
+$collapse-header-order-content-inner-padding: 17px 23px 0 23px;
+$collapse-content-padding: 4px 23px 23px;
+$collapse-expanded-padding: 20px 23px 23px;
+$collapse-header-icon-margin-right: 11px;
+$collapse-content-inner-margin: 0 22px;
 
-$collapse-title-button-padding: 4px 14px !default;
+$collapse-title-button-padding: 4px 14px;
 
 //arrow
-$collapse-arrow-right: 19px !default;
-$collapse-arrow-top: 15px !default;
-$collapse-arrow-color: $gray-dark !default;
-$collapse-toggle-margin-left: 19px !default;
+$collapse-arrow-right: 19px;
+$collapse-arrow-top: 15px;
+$collapse-arrow-color: $gray-dark;
+$collapse-toggle-margin-left: 19px;
 
 //content
-$collapse-content-inner-color: $gray-darker !default;
-$collapse-content-button-margin-top: 15px !default;
-$collapse-content-button-padding: 8px 30px !default;
-$collapse-content-button-border-color: $gray-border !default;
-$collapse-content-button-border-radius: $border-radius-base !default;
+$collapse-content-inner-color: $gray-darker;
+$collapse-content-button-margin-top: 15px;
+$collapse-content-button-padding: 8px 30px;
+$collapse-content-button-border-color: $gray-border;
+$collapse-content-button-border-radius: $border-radius-base;
 
 // default
 // =====================
@@ -67,7 +67,6 @@ $collapse-content-button-border-radius: $border-radius-base !default;
   }
 
   &-arrow {
-    position: absolute;
     top: $collapse-arrow-top;
     right: $collapse-arrow-right;
     display: flex;
@@ -92,9 +91,6 @@ $collapse-content-button-border-radius: $border-radius-base !default;
 }
 
 .#{$collapse}-header {
-  position: relative;
-  display: flex;
-  align-items: center;
   padding: $collapse-padding;
   outline: none;
 

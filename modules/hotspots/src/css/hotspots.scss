@@ -3,29 +3,52 @@
 
 // Vars
 // =====================
-$hotspots-dark-color: $gray-darkest !default;
-$hotspots-dark-bg-color: $gray-darkest !default;
+$hotspot-solid-color: $color-white;
+$hotspot-border-color: rgba($border-color, 0.8);
+$hotspot-solid-bg: $color-primary;
+$hotspot-active-solid-bg: $color-primary;
+$hotspots-dark-color: $gray-darkest;
+$hotspots-dark-bg-color: $gray-darkest;
 //dot
-$hotspots-dark-dot-bgcolor: $gray-darkest !default;
+$hotspots-dark-dot-bgcolor: $gray-darkest;
 //bordered
-$hotspots-dark-borderColor: rgba($hotspots-dark-color,0.2) !default;
-$hotspots-dark-bordered-hover-color: rgba($color-primary,0.2) !default;
-$hotspots-dark-hover-color: $color-primary !default;
-$hotspot-text-dark-bordered-color: $color-primary !default;
+$hotspots-dark-borderColor: rgba($hotspots-dark-color,0.2);
+$hotspots-dark-bordered-hover-color: rgba($color-primary,0.2);
+$hotspots-dark-hover-color: $color-primary;
+$hotspot-text-dark-bordered-color: $color-primary;
 //solid  
-$hotspots-dark-solid-color: $color-white !default;
-$hotspots-dark-solid-bg-color: $gray-darkest !default;
+$hotspots-dark-solid-color: $color-white;
+$hotspots-dark-solid-bg-color: $gray-darkest;
 //text
-$hotspots-dark-text-borderColor: $gray-darkest !default;
+$hotspots-dark-text-borderColor: $gray-darkest;
 
 //active hover
-$hotspots-dark-hover-color: $color-primary !default;
-$hotspot-dark-dot-bg-color: $color-primary !default;
-$hotspot-dark-bordered-hover-border-color: rgba($hotspots-dark-hover-color,0.2) !default;
-$hotspot-dark-solid-color: $color-white !default;
-$hotspot-dark-shadow-bg-active: $color-primary !default;
-$hotspot-dark-shadow-color: $color-white !default;
-//Skin dark
+$hotspots-dark-hover-color: $color-primary;
+$hotspot-dark-dot-bg-color: $color-primary;
+$hotspot-dark-bordered-hover-border-color: rgba($hotspots-dark-hover-color,0.2);
+$hotspot-dark-solid-color: $color-white;
+$hotspot-dark-shadow-bg-active: $color-primary;
+$hotspot-dark-shadow-color: $color-white;
+
+/* skins */
+.#{$hotspot}-bordered {
+  border: 1px solid $hotspot-border-color;
+}
+
+.#{$hotspot}-solid {
+  color: $hotspot-solid-color;
+  background-color: $hotspot-solid-bg;
+
+  &.#{$hotspot}-active {
+    background-color: $hotspot-active-solid-bg;
+  }
+}
+
+.#{$hotspot}-shadow {
+  box-shadow: $hotspot-box-shadow;
+}
+
+// dark
 .#{$hotspot}-dark {
   &.#{$hotspot},
   .#{$hotspot} {

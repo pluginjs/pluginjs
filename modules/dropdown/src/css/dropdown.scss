@@ -3,30 +3,30 @@
 
 // Vars
 // =====================
-$dropdown-color: $text-color !default;
-$dropdown-bg: $color-white !default;
+$dropdown-color: $text-color;
+$dropdown-bg: $color-white;
 $dropdown-box-shadow: 0 20px 30px 0
-rgba(0, 0, 0, 0.05) !default;
-$dropdown-border-color: $gray-light !default;
-$dropdown-border-radius: $border-radius-base !default;
-$dropdown-font-size: $font-size-sm !default;
-$dropdown-item-hover-bg: $gray-lighter !default;
-$dropdown-item-icon-margin-right: 10px !default;
-$dropdown-space-x: 11px !default;
-$dropdown-space-y: 6px !default;
+rgba(0, 0, 0, 0.05);
+$dropdown-border-color: $gray-light;
+$dropdown-border-radius: $border-radius-base;
+$dropdown-font-size: $font-size-sm;
+$dropdown-item-hover-bg: $gray-lighter;
+$dropdown-item-icon-margin-right: 10px;
+$dropdown-space-x: 11px;
+$dropdown-space-y: 6px;
 
 //trigger
-$dropdown-trigger-font-size: $font-size-sm !default;
-$dropdown-trigger-hover-color: $gray-darkest !default;
-$dropdown-trigger-color: $gray-dark !default;
-$dropdown-trigger-focus-color: $color-primary !default;
-$dropdown-trigger-lineHeight: 22px !default;
+$dropdown-trigger-font-size: $font-size-sm;
+$dropdown-trigger-hover-color: $gray-darkest;
+$dropdown-trigger-color: $gray-dark;
+$dropdown-trigger-focus-color: $color-primary;
+$dropdown-trigger-lineHeight: 22px;
 //input
-$dropdown-input-width: 200px !default;
-$dropdown-span-input-drop-color: $gray-darkest !default;
-$dropdown-span-input-color: $gray-dark !default;
-$dropdown-space-x-right: 30px !default;
-$dropdown-space-x-left: $dropdown-space-x !default;
+$dropdown-input-width: 200px;
+$dropdown-span-input-drop-color: $gray-darkest;
+$dropdown-span-input-color: $gray-dark;
+$dropdown-space-x-right: 30px;
+$dropdown-space-x-left: $dropdown-space-x;
 // Theme
 // =====================
 .#{$dropdown} {

@@ -10,6 +10,16 @@ $collapse: "pj-collapse";
   & [role="button"] {
     cursor: pointer;
   }
+
+  &-arrow {
+    position: absolute;
+  }
+
+  &-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .#{$collapse}-content {

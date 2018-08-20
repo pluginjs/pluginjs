@@ -10,12 +10,8 @@ $hotspot-border-width: 2px !default;
 $hotspot-text-padding-x: 1.5em !default;
 $hotspot-text-padding-y: calc(#{$hotspot-padding} - #{$hotspot-border-width}) !default;
 $hotspot-color: #fff !default;
-$hotspot-border-color: rgba($border-color, 0.8) !default;
-$hotspot-solid-color: $color-white !default;
-$hotspot-solid-bg: $color-primary !default;
 $hotspot-box-shadow: $box-shadow-5 !default;
 $hotspot-opacity: 0.8 !default;
-$hotspot-active-solid-bg: $color-primary !default;
 $hotspot-active-opacity: 1 !default;
 $hotspot-hide-size: 30px !default;
 $hotspot-dot-color: $color-primary !default;
@@ -138,24 +134,6 @@ $hotspot-lg-hide-size: 40px !default;
 .#{$hotspot}-hide {
   width: $hotspot-hide-size;
   height: $hotspot-hide-size;
-}
-
-/* skins */
-.#{$hotspot}-bordered {
-  border: 1px solid $hotspot-border-color;
-}
-
-.#{$hotspot}-solid {
-  color: $hotspot-solid-color;
-  background-color: $hotspot-solid-bg;
-
-  &.#{$hotspot}-active {
-    background-color: $hotspot-active-solid-bg;
-  }
-}
-
-.#{$hotspot}-shadow {
-  box-shadow: $hotspot-box-shadow;
 }
 
 /* sizes */
