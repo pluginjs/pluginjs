@@ -4,7 +4,7 @@
 // =====================
 $swipeable: "pj-swipeable" !default;
 $swipeable-font-size: $font-size-lg !default;
-$swipeable-width: 352 * $swipeable-font-size !default;
+$swipeable-width: 370 * $swipeable-font-size !default;
 $swipeable-height: 13.25 * $swipeable-font-size !default;
 $swipeable-container-spacer: 0.625 * $swipeable-font-size !default;
 $swipeable-item-border-radius: $border-radius-sm !default;
@@ -20,7 +20,7 @@ $swipeable-vertical-item-margin-bottom: 1.25 * $swipeable-font-size !default;
 // core
 // =====================
 .#{$swipeable}-container {
-  padding: $swipeable-container-spacer;
+  padding: $swipeable-container-spacer 0;
   overflow: hidden;
 
   &.#{$swipeable}-vertical {
