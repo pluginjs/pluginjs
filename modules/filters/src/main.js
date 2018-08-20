@@ -6,6 +6,7 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import { outerWidth, innerWidth } from '@pluginjs/styled'
 import { parseHTML, children, query, getData } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
+import Pj from '@pluginjs/factory'
 import {
   eventable,
   register,
@@ -144,13 +145,13 @@ class Filters extends Component {
     )
 
     if (this.options.responsive) {
-      window.onresize = () => {
+      Pj.emitter.on(this.eventNameWithId('resize'), () => {
         clearTimeout(this.goResponsive)
 
         this.goResponsive = setTimeout(() => {
           this.responsive()
         }, 100)
-      }
+      })
     }
   }
 
@@ -227,6 +228,7 @@ class Filters extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.element)
+    Pj.emitter.off(this.eventNameWithId('resize'))
   }
 
   setActiveItem($item) {
