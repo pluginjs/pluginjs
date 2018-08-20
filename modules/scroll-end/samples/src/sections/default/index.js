@@ -1,5 +1,5 @@
 import { query } from '@pluginjs/dom'
-import ScrollEnd from '@pluginjs/scroll-dir'
+import ScrollEnd from '@pluginjs/scroll-end'
 
 const handler = () => console.log('scrollend')
 
