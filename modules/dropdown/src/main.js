@@ -159,7 +159,6 @@ class Dropdown extends Component {
 
     if (isArray(data)) {
       items = data
-      console.log(items)
     } else if (isObject(data)) {
       for (const key in data) {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
@@ -364,6 +363,7 @@ class Dropdown extends Component {
   destroy() {
     if (this.is('initialized')) {
       removeEvent(this.eventName(), this.$trigger)
+      removeEvent(this.eventName(), this.$dropdown)
 
       this.leave('initialized')
     }
