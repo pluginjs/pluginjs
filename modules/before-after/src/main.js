@@ -237,7 +237,7 @@ class BeforeAfter extends Component {
 
     if (this.options.labels) {
       bindEvent(
-        'beforeAfter:change',
+        this.selfEventName(EVENTS.CHANGE),
         (e, instance, position) => {
           if (position < 0.25) {
             if (!instance.is('labelBeforeHide')) {
@@ -317,51 +317,51 @@ class BeforeAfter extends Component {
 
     if (this.options.mouseDrag) {
       compose(
-        bindEvent(this.eventName('mousemove'), () => {
+        bindEvent(this.eventNameWithId('mousemove'), () => {
           bindEvent(
-            this.eventName('mousemove'),
+            this.eventNameWithId('mousemove'),
             this.onDragMove.bind(this),
             window.document
           )
           callback()
         }),
-        bindEvent(this.eventName('mouseup'), this.onDragEnd.bind(this))
+        bindEvent(this.eventNameWithId('mouseup'), this.onDragEnd.bind(this))
       )(window.document)
     }
 
     if (this.options.touchDrag && touch) {
       compose(
-        bindEvent(this.eventName('touchmove'), () => {
+        bindEvent(this.eventNameWithId('touchmove'), () => {
           bindEvent(
-            this.eventName('touchmove'),
+            this.eventNameWithId('touchmove'),
             this.onDragMove.bind(this),
             window.document
           )
           callback()
         }),
-        bindEvent(this.eventName('touchend'), this.onDragEnd.bind(this))
+        bindEvent(this.eventNameWithId('touchend'), this.onDragEnd.bind(this))
       )(window.document)
     }
 
     if (this.options.pointerDrag && pointer) {
       compose(
-        bindEvent(this.eventName(pointerEvent('pointermove')), () => {
+        bindEvent(this.eventNameWithId(pointerEvent('pointermove')), () => {
           bindEvent(
-            this.eventName(pointerEvent('pointermove')),
+            this.eventNameWithId(pointerEvent('pointermove')),
             this.onDragMove.bind(this),
             window.document
           )
           callback()
         }),
         bindEvent(
-          this.eventName(pointerEvent('pointerup')),
+          this.eventNameWithId(pointerEvent('pointerup')),
           this.onDragEnd.bind(this)
         )
       )(window.document)
     }
 
     bindEvent(
-      this.eventName('blur'),
+      this.eventNameWithId('blur'),
       this.onDragEnd.bind(this),
       window.document
     )
@@ -385,7 +385,7 @@ class BeforeAfter extends Component {
     compose(
       ...'mousemove mouseup touchmove touchend pointermove pointerup MSPointerMove MSPointerUp blur'
         .split(' ')
-        .map(eventName => removeEvent(this.eventName(eventName)))
+        .map(eventName => removeEvent(this.eventNameWithId(eventName)))
     )(window.document)
 
     this.position = this._position
