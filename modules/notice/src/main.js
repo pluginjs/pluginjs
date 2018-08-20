@@ -164,7 +164,7 @@ class Notice extends GlobalComponent {
       addClass(`${this.classes.NAMESPACE}-Outbottom`, this.$element)
     }
     bindEvent(
-      'animationend',
+      this.eventName('animationend'),
       () => {
         this.destroy()
       },
