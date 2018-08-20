@@ -224,11 +224,9 @@ class Spinner extends Component {
       this.eventName('mousedown'),
       () => {
         bindEventOnce(
-          {
-            type: this.eventName('mouseup'),
-            handler: () => {
-              clearTimeout(that.spinTimeout)
-            }
+          this.eventNameWithId('mouseup'),
+          () => {
+            clearTimeout(that.spinTimeout)
           },
           document
         )
@@ -240,7 +238,7 @@ class Spinner extends Component {
       this.eventName('mouseup'),
       () => {
         clearTimeout(that.spinTimeout)
-        removeEvent(this.eventName('mouseup'), document)
+        removeEvent(this.eventNameWithId('mouseup'), document)
       },
       this.$down
     )
@@ -256,11 +254,9 @@ class Spinner extends Component {
       this.eventName('mousedown'),
       () => {
         bindEventOnce(
-          {
-            type: this.eventName('mouseup'),
-            handler: () => {
-              clearTimeout(that.spinTimeout)
-            }
+          this.eventNameWithId('mouseup'),
+          () => {
+            clearTimeout(that.spinTimeout)
           },
           document
         )
@@ -272,7 +268,7 @@ class Spinner extends Component {
       this.eventName('mouseup'),
       () => {
         clearTimeout(that.spinTimeout)
-        removeEvent(this.eventName('mouseup'), document)
+        removeEvent(this.eventNameWithId('mouseup'), document)
       },
       this.$up
     )
