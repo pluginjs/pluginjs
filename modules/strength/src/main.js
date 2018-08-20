@@ -109,7 +109,7 @@ class Strength extends Component {
 
     bindEvent(
       this.selfEventName(EVENTS.CHECK),
-      (e, score, status) => {
+      (e, el, score, status) => {
         this.$scoreElement.innerHTML = this.translate(
           this.options.scoreLables[status]
         )
@@ -136,7 +136,7 @@ class Strength extends Component {
 
     bindEvent(
       this.selfEventName(EVENTS.STATUSCHANGE),
-      (e, current, old) => {
+      (e, el, current, old) => {
         if (old) {
           removeClass(this.getStatusClass(old), this.$container)
         }
