@@ -5,7 +5,7 @@ const data = [
   {
     type: 'inline',
     html:
-      '<div style="background-image: url(https://picsum.photos/1600/1200?image=99); background-size: cover; width: 100%; height: 100%; text-align: center;"><h1>Hello World!</h1></div>'
+      '<div style="display: flex; justify-content: center; align-items: center; background-image: url(https://picsum.photos/1600/1200?image=99); background-size: cover; width: 100%; height: 100%;"><h1>INLINE!</h1></div>'
   },
   {
     type: 'map',

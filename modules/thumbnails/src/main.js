@@ -76,42 +76,44 @@ class Thumbnails extends Component {
     const items = this.element.querySelectorAll(this.options.delegate)
     const regex = new RegExp(/\((.+?)\)/)
 
-    items.forEach(item => {
-      const thumb = closest(`.${this.classes.THUMB}`, item)
+    if (items.length > 0) {
+      items.forEach(item => {
+        const thumb = closest(`.${this.classes.THUMB}`, item)
 
-      let info = {
-        src:
-          item.getAttribute('src') ||
-          window
-            .getComputedStyle(item)
-            ['background-image'].match(regex)[1]
-            .replace(/'/g, '')
-            .replace(/"/g, '')
-      }
-
-      if (thumb) {
-        info.type = hasClass(this.classes.VIDEO, thumb) ? 'video' : 'image'
-      }
-
-      const _data = Object.entries(item.dataset).reduce((result, [k, v]) => {
-        try {
-          const content = JSON.parse(`{"data": ${v.replace(/'/g, '"')}}`).data
-          return {
-            ...result,
-            [k]: content
-          }
-        } catch (err) {
-          return {
-            ...result,
-            [k]: v
-          }
+        let info = {
+          src:
+            item.getAttribute('src') ||
+            window
+              .getComputedStyle(item)
+              ['background-image'].match(regex)[1]
+              .replace(/'/g, '')
+              .replace(/"/g, '')
         }
-      }, {})
 
-      info = deepMerge(info, _data)
+        if (thumb) {
+          info.type = hasClass(this.classes.VIDEO, thumb) ? 'video' : 'image'
+        }
 
-      data.push(info)
-    })
+        const _data = Object.entries(item.dataset).reduce((result, [k, v]) => {
+          try {
+            const content = JSON.parse(`{"data": ${v.replace(/'/g, '"')}}`).data
+            return {
+              ...result,
+              [k]: content
+            }
+          } catch (err) {
+            return {
+              ...result,
+              [k]: v
+            }
+          }
+        }, {})
+
+        info = deepMerge(info, _data)
+
+        data.push(info)
+      })
+    }
 
     return data
   }
@@ -203,16 +205,23 @@ class Thumbnails extends Component {
 
   setItemDistance(vertical) {
     this.length = this.items.length
-    this.gutter = parseInt(
-      window.getComputedStyle(this.items[1])[
-        vertical ? 'margin-top' : 'margin-left'
-      ],
-      10
-    )
+    this.distance = 0
 
-    this.distance = vertical
-      ? outerHeight(this.items[0])
-      : outerWidth(this.items[0])
+    this.gutter =
+      this.length > 0
+        ? parseInt(
+            window.getComputedStyle(this.items[1])[
+              vertical ? 'margin-top' : 'margin-left'
+            ],
+            10
+          )
+        : 0
+
+    if (this.length > 0) {
+      this.distance = vertical
+        ? outerHeight(this.items[0])
+        : outerWidth(this.items[0])
+    }
   }
 
   bind() {

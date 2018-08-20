@@ -66,7 +66,6 @@ class Accordion extends Component {
       this.options.breakWidth === null
         ? false
         : window.document.documentElement.clientWidth <= this.options.breakWidth
-
     this.resetData()
   }
 

@@ -13,7 +13,6 @@ import {
   html,
   insertBefore,
   removeAttr,
-  remove,
   children,
   query
 } from '@pluginjs/dom'
@@ -37,7 +36,7 @@ class Responsive {
     }
 
     // init status
-    this.$rely = window
+    this.$rely = window.document.documentElement
     if (options.resizeReference === 'self') {
       this.$rely = this.instance.element
     } else if (
@@ -174,7 +173,7 @@ class Responsive {
       return
     }
 
-    this.$dropdown.map(remove)
+    this.$dropdown.remove()
     this.instance.$panes.map(removeAttr('style'))
     compose(
       removeClass(this.instance.classes.RESPONSIVE),

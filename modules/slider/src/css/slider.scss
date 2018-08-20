@@ -5,6 +5,16 @@
 $slider: "pj-slider" !default;
 $arrow: "pj-arrow" !default;
 
+$slider-arrow-position: 10px !default;
+
+$slider-loader-size: 30px !default;
+$slider-loader-color: $color-black !default;
+
+$slider-video-outer-size: 60px !default;
+$slider-video-inner-size: 16px !default;
+$slider-video-color: $color-white !default;
+
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -43,10 +53,10 @@ $arrow: "pj-arrow" !default;
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 30px;
-    height: 30px;
-    margin: -15px 0 0 -15px;
-    border: 1px #000 solid;
+    width: $slider-loader-size;
+    height: $slider-loader-size;
+    margin: $slider-loader-size/-2 0 0 $slider-loader-size/-2;
+    border: 2px $slider-loader-color solid;
     border-radius: 50%;
     animation: rotation 1s ease-in-out infinite;
 
@@ -57,7 +67,7 @@ $arrow: "pj-arrow" !default;
       width: 5px;
       height: 5px;
       content: "";
-      background-color: #000;
+      background-color: $slider-loader-color;
       border-radius: 100%;
       transform: translateX(-50%);
     }
@@ -134,16 +144,16 @@ $arrow: "pj-arrow" !default;
     }
 
     &::before {
-      border-top: 16px solid transparent;
-      border-bottom: 16px solid transparent;
-      border-left: 16px solid #fff;
+      border-top: $slider-video-inner-size solid transparent;
+      border-bottom: $slider-video-inner-size solid transparent;
+      border-left: $slider-video-inner-size solid $slider-video-color;
       transform: translateX(20%);
     }
 
     &::after {
-      width: 60px;
-      height: 60px;
-      border: 4px solid #fff;
+      width: $slider-video-outer-size;
+      height: $slider-video-outer-size;
+      border: 4px solid $slider-video-color;
       border-radius: 100%;
     }
 
@@ -157,7 +167,7 @@ $arrow: "pj-arrow" !default;
 
     &.#{$slider}-loading {
       &::after {
-        border-color: transparent transparent #fff;
+        border-color: transparent transparent $slider-video-color;
         animation: rotation 1s linear infinite;
       }
     }
@@ -182,7 +192,7 @@ $arrow: "pj-arrow" !default;
   &-iframe,
   &-map,
   &-inline {
-    width: calc(100% - 10rem);
+    width: 100%;
     height: 100%;
   }
 
@@ -195,11 +205,11 @@ $arrow: "pj-arrow" !default;
     }
 
     &-prev {
-      left: 1rem;
+      left: $slider-arrow-position;
     }
 
     &-next {
-      right: 1rem;
+      right: $slider-arrow-position;
     }
   }
 }
@@ -214,12 +224,12 @@ $arrow: "pj-arrow" !default;
     }
 
     &-prev {
-      top: 1rem;
+      top: $slider-arrow-position;
     }
 
     &-next {
       top: auto;
-      bottom: 1rem;
+      bottom: $slider-arrow-position;
     }
   }
 }

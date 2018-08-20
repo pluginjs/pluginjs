@@ -3,13 +3,10 @@
 // Vars
 // =====================
 $accordion: "pj-accordion" !default;
-$accordion-font-size: $font-size-lg !default; // 16px
-$accordion-line-height: $line-height-sm !default;
-$accordion-header-spacer-y: 1 * $accordion-font-size !default; // 16px
-$accordion-horizontal-height: 14.625 * $accordion-font-size !default; // 234px
-$accordion-horizontal-header-width: ceil(
-  $accordion-font-size * $accordion-line-height + $accordion-header-spacer-y * 2
-) !default;
+$accordion-font-size: $font-size-sm !default; // 14px
+$accordion-horizontal-height: 230px !default;
+$accordion-horizontal-header-width: $accordion-font-size !default;
+$accordion-dropdown-bg: $color-white !default;
 $accordion-dropdown-zindex: $zindex-dropdown !default;
 $accordion-dropdown-active-color: $color-primary !default;
 
@@ -36,23 +33,14 @@ $accordion-dropdown-active-color: $color-primary !default;
   }
 
   &-pane-header {
+    line-height: 1;
     text-overflow: ellipsis;
-    text-transform: uppercase;
-    letter-spacing: 1px;
     white-space: nowrap;
     cursor: pointer;
   }
 
-  &-pane-content {
-    // height: 0;
-  }
-
   &-active {
     z-index: 1;
-  }
-
-  &-active .#{$accordion}-pane-content {
-    // height: 100%;
   }
 
   &-horizontal {
@@ -67,7 +55,6 @@ $accordion-dropdown-active-color: $color-primary !default;
 
       &-pane-header {
         width: $accordion-horizontal-height;
-        height: $accordion-horizontal-header-width;
         text-align: right;
         transform: translateX(-100%) rotate(-90deg);
         transform-origin: right top 0;
@@ -99,8 +86,11 @@ $accordion-dropdown-active-color: $color-primary !default;
       box-sizing: border-box;
       display: block;
       width: 100%;
+      overflow: hidden;
       text-decoration: none;
-      background-color: $color-white;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      background-color: $accordion-dropdown-bg;
     }
   }
 
@@ -113,14 +103,21 @@ $accordion-dropdown-active-color: $color-primary !default;
     padding: 0;
     margin: 0;
     list-style: none;
-    background-color: $color-white;
+    background-color: $accordion-dropdown-bg;
 
     > li {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       cursor: pointer;
 
       &.#{$accordion}-active {
         color: $accordion-dropdown-active-color;
       }
+    }
+
+    .#{$accordion}-flag {
+      display: none;
     }
   }
 
@@ -143,23 +140,18 @@ $accordion-dropdown-active-color: $color-primary !default;
   overflow: hidden;
 
   .#{$accordion}-pane {
-    // display: none;
     position: absolute;
     width: 100%;
 
     &-header {
       display: none;
     }
-
-    &-content {
-      // height: auto;
-    }
   }
 
   &.#{$accordion}-horizontal {
     .#{$accordion}-pane {
       float: none;
-      width: auto !important;
+      width: 100% !important;
       height: auto;
     }
 

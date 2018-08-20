@@ -57,7 +57,7 @@ $thumb-dark-loader-color: $color-white !default;
     left: 50%;
     width: $thumb-loader-size;
     height: $thumb-loader-size;
-    margin: (-$thumb-loader-size/2) 0 0 (-$thumb-loader-size/2);
+    margin: $thumb-loader-size/-2 0 0 $thumb-loader-size/-2;
     border: 2px $thumb-loader-color solid;
     border-radius: 50%;
     animation: rotation 1s ease-in-out infinite;

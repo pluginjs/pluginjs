@@ -1,201 +1,146 @@
 @import "@pluginjs/styles/variables.scss";
-@import "accordion.core";
+@import "accordion.core.scss";
 
 // Vars
 // =====================
-$accordion-font-family: $font-family-base !default;
-$accordion-font-weight: $font-weight-normal !default;
-$accordion-box-shadow: $box-shadow-base !default;
-$accordion-active-hover-color: $btn-color-primary !default;
-$accordion-border-width: $border-width !default;
-$accordion-border-color: $border-color !default;
-$accordion-border-radius: $border-radius-base !default;
-$accordion-header-color: $text-title-color !default;
-$accordion-pane-interval: 1.25 * $accordion-font-size !default;  // 20px
-$accordion-header-spacer-x: 1.625 * $accordion-font-size !default; // 26px
-$accordion-header-icon-sapce-x: 0.9375 * $accordion-font-size !default; // 15px
-$accordion-header-flag-sapcer-x: 1.1875 * $accordion-font-size !default; // 19px
-$accordion-content-spacer-x: $accordion-header-spacer-x !default;
-$accordion-content-spacer-y: 1.25 * $accordion-font-size !default; // 20px
-$accordion-horizontal-header-spacer-x: 1 * $accordion-font-size !default; // 16px
-$accordion-horizontal-header-spacer-y: 1.375 * $accordion-font-size !default; // 22px
-$accordion-horizontal-content-spacer-x: 1.5 * $accordion-font-size !default; // 24px
-$accordion-horizontal-content-spacer-y: $accordion-horizontal-header-spacer-y !default;
-$accordion-responsive-space: 6.25 * $accordion-font-size !default; // 100px
-$accordion-dropdown-header-icon-sapce-x: 0.75 * $accordion-font-size !default; // 12px
-$accordion-dropdown-header-flag-sapcer-x: 0.9375 * $accordion-font-size !default; // 15px
-$accordion-dropdown-header-spacer-x: 1.125 * $accordion-font-size !default; // 18px
-$accordion-dropdown-header-spacer-y: 1.375 * $accordion-font-size !default; // 22px
-$accordion-dropdown-header-width: $accordion-horizontal-height;
-$accordion-dropdown-header-after: $color-white !default;
+$accordion: "pj-accordion";
+
+$accordion-font-family: $font-family-base;
+$accordion-font-size: $font-size-sm;
+$accordion-line-height: $line-height-sm;
+$accordion-pane-interval: 20px;
+
+$accordion-hover-color: $color-primary;
+$accordion-active-color: $color-primary;
+
+$accordion-border-width: $border-width;
+$accordion-border-color: $border-color;
+$accordion-border-radius: $border-radius-base;
+
+$accordion-header-spacer-x: 24px;
+$accordion-header-spacer-y: 16px;
+$accordion-header-icon-sapce-x: 10px;
+$accordion-header-flag-sapcer-x: 16px;
+$accordion-header-color: $text-title-color;
+
+$accordion-content-spacer: $accordion-header-spacer-x;
+$accordion-content-spacer-top: $accordion-content-spacer - $accordion-header-spacer-y;
+$accordion-content-color: $text-subtitle-color;
+
+$accordion-horizontal-height: 230px;
+$accordion-horizontal-header-spacer-x: 16px;
+$accordion-horizontal-header-spacer-y: 24px;
+$accordion-horizontal-header-width: $accordion-font-size + $accordion-horizontal-header-spacer-x * 2;
+$accordion-horizontal-content-spacer: $accordion-horizontal-header-spacer-y;
+$accordion-horizontal-content-spacer-left: $accordion-horizontal-content-spacer - $accordion-horizontal-header-spacer-x;
+
+$accordion-dropdown-bg: $color-white;
+$accordion-dropdown-hover-color: $color-primary !default;
+$accordion-dropdown-active-color: $color-primary !default;
+
 
 // default
 // =====================
 .#{$accordion} {
   font-family: $accordion-font-family;
-  
-  &.#{$accordion} {
-    // font-size: $accordion-font-size;
-    // line-height: $accordion-line-height;
+  font-size: $accordion-font-size;
+  color: $accordion-content-color;
+
+  &-pane {
+    border: $border-width solid $accordion-border-color;
+    border-radius: $accordion-border-radius;
   }
 
-  .#{$accordion} {
-    &-pane {
-      border: $border-width solid $accordion-border-color;
-      border-radius: $accordion-border-radius;
+  &-pane + .#{$accordion}-pane {
+    margin-top: $accordion-pane-interval;
+  }
+
+  &-pane-header {
+    position: relative;
+    padding: $accordion-header-spacer-y $accordion-header-spacer-x;
+    overflow: hidden;
+    line-height: 1;
+    color: $accordion-header-color;
+
+    &:hover {
+      color: $accordion-hover-color;
+    }
+  }
+
+  &-icon {
+    margin-right: $accordion-header-icon-sapce-x;
+  }
+
+  &-flag {
+    position: absolute;
+    top: 50%;
+    right: $accordion-header-flag-sapcer-x;
+    transition: transform 0.3s;
+    transform: translateY(-50%);
+  }
+
+  &-pane-content-inner {
+    padding: $accordion-content-spacer-top $accordion-content-spacer $accordion-content-spacer;
+  }
+
+  &-active {
+    .#{$accordion}-pane-header {
+      color: $accordion-active-color;
     }
 
+    .#{$accordion}-rotate-90 {
+      transform: translateY(-50%) rotate(90deg);
+    }
+  }
+}
+
+.#{$accordion}-horizontal {
+  height: $accordion-horizontal-height;
+
+  .#{$accordion} {
     &-pane + .#{$accordion}-pane {
-      margin-top: $accordion-pane-interval;
+      margin-top: 0;
+      margin-left: $accordion-pane-interval;
     }
 
     &-pane-header {
-      position: relative;
-      padding: $accordion-header-spacer-y $accordion-header-spacer-x;
-      overflow: hidden;
-      font-weight: $accordion-font-weight;
-      line-height: 1;
-      color: $accordion-header-color;
-
-      &:hover {
-        color: $accordion-active-hover-color;
-      }
+      width: $accordion-horizontal-height;
     }
 
-    &-icon {
-      margin-right: $accordion-header-icon-sapce-x;
-    }
-
-    &-flag {
-      position: absolute;
-      top: 50%;
-      right: $accordion-header-flag-sapcer-x;
-      transition: transform 0.3s;
-      transform: translateY(-50%);
+    &-pane-content {
+      margin-left: $accordion-horizontal-header-width;
+      border-left: $border-width solid $accordion-border-color;
     }
 
     &-pane-content-inner {
-      padding: $accordion-content-spacer-y $accordion-content-spacer-x;
-    }
-
-    &-active {
-      border: $border-width solid $accordion-border-color;
-      .#{$accordion}-pane-header {
-        color: $accordion-active-hover-color;
-      }
-
-      .#{$accordion}-rotate-90 {
-        transform: translateY(-50%) rotate(90deg);
-      }
+      padding: $accordion-horizontal-content-spacer;
     }
   }
+}
 
-  &.#{$accordion}-horizontal {
-    height: $accordion-horizontal-height;
+.#{$accordion}-dropdown {
+  position: relative;
+  width: 100%;
 
-    .#{$accordion} {
-      &-pane + .#{$accordion}-pane {
-        margin-top: 0;
-        margin-left: $accordion-pane-interval;
-      }
-
-      &-pane-header {
-        width: $accordion-horizontal-height;
-        height: $accordion-horizontal-header-width;
-        padding: $accordion-horizontal-header-spacer-x $accordion-horizontal-header-spacer-y;
-      }
-
-      &-pane-content {
-        border-top: 0;
-        border-left: $border-width solid $accordion-border-color;
-      }
-
-      &-pane-content-inner {
-        padding: $accordion-horizontal-content-spacer-y $accordion-horizontal-content-spacer-x;
-        border-top: 0;
-      }
-    }
-  }
-
-  &-dropdown {
-    position: relative;
-    width: $accordion-dropdown-header-width;
-    font-size: $accordion-font-size;
-    line-height: $accordion-line-height;
-
-    .#{$accordion}-flag  {
-      position: absolute;
-      top: 50%;
-      right: $accordion-dropdown-header-flag-sapcer-x;
-      transition: transform 0.3s;
-      transform: translateY(-50%);
-    }
-
-    .#{$accordion}-icon {
-      margin-right: $accordion-dropdown-header-icon-sapce-x;
-    }
-
-    .#{$accordion}-rotate-0 {
-      transform: translateY(-50%) rotate(0deg);
-    }
-
-
-    &.#{$accordion}-open {
-
-      .#{$accordion}-dropdown-label {
-        border-radius: $accordion-border-radius;
-      }
-
-      .#{$accordion}-icon {
-        margin-right: $accordion-dropdown-header-icon-sapce-x;
-      }
-
-      .#{$accordion}-rotate-90 {
-        transform: translateY(-50%) rotate(90deg);
-      }
-
-      + .#{$accordion}.#{$accordion}-responsive {
-        opacity: 0;
-        transition: transform 0.3s;
-      }
-    }
-  }
-
-  // &.#{$accordion}-dropdown + .#{$accordion}-responsive {
-  //   margin-top: $accordion-pane-interval;
-  // }
-
-  &-dropdown-label {
+  &-label {
     padding: $accordion-header-spacer-y $accordion-header-spacer-x;
     color: $accordion-header-color;
+    background-color: $accordion-dropdown-bg;
     border: $accordion-border-width solid $accordion-border-color;
     border-bottom: 0;
-
-    &::after {
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      content: "";
-      background: $accordion-dropdown-header-after;
-    }
+    border-radius: $accordion-border-radius $accordion-border-radius 0 0;
   }
 
-  &-dropdown-list {
+  &-list {
+    background-color: $accordion-dropdown-bg;
     border: $accordion-border-width solid $accordion-border-color;
-    border-radius: $accordion-border-radius;
+    border-radius: 0 0 $accordion-border-radius $accordion-border-radius;
 
     > li {
       padding: $accordion-header-spacer-y $accordion-header-spacer-x;
 
       + li {
         border-top: $accordion-border-width solid $accordion-border-color;
-      }
-
-      .#{$accordion}-flag {
-        opacity: 0;
-        transition: transform 0.3s;
       }
 
       &:hover {
@@ -208,31 +153,30 @@ $accordion-dropdown-header-after: $color-white !default;
     }
   }
 
-  &.#{$accordion}-responsive {
-    margin-bottom: $accordion-responsive-space;
-    border: $accordion-border-width solid $accordion-border-color;
-
-    .#{$accordion}-pane {
-      background: $accordion-dropdown-header-after;
-      border: 0;
-
-      + .#{$accordion}-pane {
-        margin-top: 0;
-      }
-    }
-
-    .#{$accordion}-pane-content {
-      border-left: 0;
-    }
-
-    .#{$accordion}-pane-content-inner {
-      border-top: 0;
-    }
-
-    &.#{$accordion}-horizontal {
-      .#{$accordion}-pane + .#{$accordion}-pane {
-        margin-left: 0;
-      }
-    }
+  .#{$accordion}-rotate-90 {
+    transform: translateY(-50%) rotate(90deg);
   }
 }
+
+.#{$accordion}-responsive {
+  border: $accordion-border-width solid $accordion-border-color;
+  border-top: 0;
+  border-radius: 0 0 $accordion-border-radius $accordion-border-radius;
+
+  .#{$accordion}-pane {
+    border: 0;
+
+    + .#{$accordion}-pane {
+      margin: 0;
+    }
+  }
+
+  .#{$accordion}-pane-content {
+    border: 0;
+  }
+
+  .#{$accordion}-pane-content-inner {
+    padding: $accordion-content-spacer-top $accordion-content-spacer $accordion-content-spacer;
+  }
+}
+

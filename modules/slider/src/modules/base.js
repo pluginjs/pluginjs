@@ -23,10 +23,6 @@ class Base {
     return _load
       .then(target => {
         this.loadHandler(target)
-        // this.instance.itemsInfo[this.instance.current] = {
-        //   width: target.naturalWidth,
-        //   height: target.naturalHeight
-        // }
         this.instance.trigger(EVENTS.LOADED, target)
         return target
       })
