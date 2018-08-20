@@ -1,6 +1,6 @@
-$overlay-bg: rgba($color-black, 0.5) !default;
-$overlay-label-color: $color-white !default;
-$overlay-label-solid-bg: rgba($color-white, 0.2) !default;
+$overlay-bg: rgba($color-black, 0.5);
+$overlay-label-color: $color-white;
+$overlay-label-solid-bg: rgba($color-white, 0.2);
 
 .#{$beforeAfter}-labels-overlay {
   position: absolute;

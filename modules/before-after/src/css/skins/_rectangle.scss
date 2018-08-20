@@ -1,6 +1,10 @@
-$rectangle-handle-width: 1rem !default;
-$rectangle-handle-height: 2.25rem !default;
+// Vars
+// =====================
+$rectangle-handle-width: 16px;
+$rectangle-handle-height: 36px;
 
+// Rectangle
+// =====================
 .#{$beforeAfter}--rectangle {
   .#{$beforeAfter}-handle {
     top: 50%;
@@ -22,8 +26,11 @@ $rectangle-handle-height: 2.25rem !default;
     }
 
     &:hover {
-      &::before {
-        border-color: $beforeAfter-handle-hover-border-color;
+      border-color: $beforeAfter-handle-hover-line-color;
+  
+      &::before,
+      &::after {
+        background: $beforeAfter-handle-hover-arrow-color;
       }
     }
 
@@ -41,7 +48,7 @@ $rectangle-handle-height: 2.25rem !default;
       &::after {
         left: 50%;
         width: $beforeAfter-handle-border-size;
-        height: 624rem; // 9999px
+        height: 9999px;
         transform: translateX(-50%);
       }
 
@@ -64,7 +71,7 @@ $rectangle-handle-height: 2.25rem !default;
       &::before,
       &::after {
         top: 50%;
-        width: 624rem; // 9999px
+        width: 9999px;
         height: $beforeAfter-handle-border-size;
         transform: translateY(-50%);
       }

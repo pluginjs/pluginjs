@@ -1,7 +1,22 @@
-$circle-handle-size: 2.25rem !default;
-$circle-handle-bg: $color-primary !default;
+// Vars
+// =====================
+$circle-handle-size: 36px;
+$circle-handle-bg: $color-primary;
+$beforeAfter-label-border-radius: $border-radius-base;
+$beforeAfter-label-box-shadow: $box-shadow-base;
 
+// Cicle
+// =====================
 .#{$beforeAfter}--circle {
+
+  .#{$beforeAfter}-labels {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      border-radius: $beforeAfter-label-border-radius;
+      box-shadow: $beforeAfter-label-box-shadow;
+    }
+  }
+
   .#{$beforeAfter}-handle {
     top: 50%;
     left: 50%;
@@ -39,7 +54,7 @@ $circle-handle-bg: $color-primary !default;
       &::after {
         left: 50%;
         width: $beforeAfter-handle-border-size;
-        height: 624rem; // 9999px
+        height: 9999px;
         transform: translateX(-50%);
       }
 
@@ -73,7 +88,7 @@ $circle-handle-bg: $color-primary !default;
       &::before,
       &::after {
         top: 50%;
-        width: 624rem; // 9999px
+        width: 9999px;
         height: $beforeAfter-handle-border-size;
         transform: translateY(-50%);
       }

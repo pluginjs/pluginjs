@@ -1,6 +1,22 @@
-$outline-handle-size: 2.25rem !default;
+// Vars
+// =====================
+$outline-handle-size: 36px;
+$beforeAfter-label-border-radius: $border-radius-base;
+$beforeAfter-label-box-shadow: $box-shadow-base;
+$beforeAfter-label-border-gatter: 15px;
 
+// Outline
+// =====================
 .#{$beforeAfter}--outline {
+
+  .#{$beforeAfter}-labels {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      border-radius: $beforeAfter-label-border-radius;
+      box-shadow: $beforeAfter-label-box-shadow;
+    }
+  }
+  
   .#{$beforeAfter}-handle {
     top: 50%;
     left: 50%;
@@ -33,6 +49,14 @@ $outline-handle-size: 2.25rem !default;
   }
 
   &.#{$beforeAfter}-horizontal {
+    .#{$beforeAfter}-label-before {
+      left: $beforeAfter-label-border-gatter;
+    }
+  
+    .#{$beforeAfter}-label-after {
+      right: $beforeAfter-label-border-gatter;
+    }
+
     .#{$beforeAfter}-handle {
       &::before,
       &::after {
@@ -69,6 +93,15 @@ $outline-handle-size: 2.25rem !default;
   }
 
   &.#{$beforeAfter}-vertical {
+
+    .#{$beforeAfter}-label-before {
+      top: $beforeAfter-label-border-gatter;
+    }
+  
+    .#{$beforeAfter}-label-after {
+      bottom: $beforeAfter-label-border-gatter;
+    }
+
     .#{$beforeAfter}-handle {
       &::before,
       &::after {

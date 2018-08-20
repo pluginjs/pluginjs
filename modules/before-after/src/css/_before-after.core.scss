@@ -1,0 +1,170 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$beforeAfter: "pj-beforeAfter" !default;
+$beforeAfter-font-family: $font-family-base !default;
+$beforeAfter-sizer: $sizer !default;
+
+$beforeAfter-label-gatter: 20px !default;
+$beforeAfter-label-font-size: $font-size-lg !default;
+$beforeAfter-label-spacer: 0 10px !default;
+$beforeAfter-label-height: 32px !default;
+// $beforeAfter-label-line-height: 24px !default;
+
+$beforeAfter-handle-border-size: 2px !default;
+$beforeAfter-handle-arrow-size: 20px !default;
+
+// Core
+// =====================
+.#{$beforeAfter} {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  overflow: hidden;
+  font-family: $beforeAfter-font-family;
+  user-select: none;
+
+  img {
+    display: block;
+    max-width: 100%;
+    pointer-events: none;
+  }
+
+  img:first-child,
+  .#{$beforeAfter}-before {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+  }
+
+  img:last-child,
+  .#{$beforeAfter}-after {
+    z-index: 1;
+  }
+}
+
+.#{$beforeAfter}-disabled {
+  pointer-events: none;
+}
+
+.#{$beforeAfter}-label-before,
+.#{$beforeAfter}-label-after {
+  position: absolute;
+  z-index: 4;
+  box-sizing: border-box;
+  height: $beforeAfter-label-height;
+  font-size: $beforeAfter-label-font-size;
+  line-height: $beforeAfter-label-height;
+  text-align: center;
+  vertical-align: middle;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.#{$beforeAfter}-label-hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.#{$beforeAfter}-handle {
+  position: absolute;
+  z-index: 6;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+
+.#{$beforeAfter}-arrow-before,
+.#{$beforeAfter}-arrow-after {
+  position: absolute;
+  font-size: $beforeAfter-handle-arrow-size;
+  text-align: center;
+}
+
+.#{$beforeAfter}-horizontal {
+  .#{$beforeAfter}-label-before,
+  .#{$beforeAfter}-label-after {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .#{$beforeAfter}-label-before {
+    left: $beforeAfter-label-gatter;
+  }
+
+  .#{$beforeAfter}-label-after {
+    right: $beforeAfter-label-gatter;
+  }
+
+  .#{$beforeAfter}-handle {
+    top: 0;
+    left: 50%;
+    width: $beforeAfter-handle-border-size;
+    height: 100%;
+    cursor: ew-resize;
+  }
+
+  .#{$beforeAfter}-arrow-before,
+  .#{$beforeAfter}-arrow-after {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .#{$beforeAfter}-arrow-before {
+    left: -$beforeAfter-handle-arrow-size;
+    font-size: $beforeAfter-handle-arrow-size;
+  }
+
+  .#{$beforeAfter}-arrow-after {
+    right: -$beforeAfter-handle-arrow-size;
+    font-size: $beforeAfter-handle-arrow-size;
+  }
+}
+
+.#{$beforeAfter}-vertical {
+  .#{$beforeAfter}-label-before,
+  .#{$beforeAfter}-label-after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .#{$beforeAfter}-handle {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: $beforeAfter-handle-border-size;
+    cursor: ns-resize;
+  }
+
+  .#{$beforeAfter}-label-before {
+    top: $beforeAfter-label-gatter - 8px;
+  }
+
+  .#{$beforeAfter}-label-after {
+    bottom: $beforeAfter-label-gatter;
+  }
+
+  .#{$beforeAfter}-arrow-before {
+    top:-$beforeAfter-handle-arrow-size - 8px;
+    font-size: $beforeAfter-handle-arrow-size;
+  }
+
+  .#{$beforeAfter}-arrow-after {
+    bottom:-$beforeAfter-handle-arrow-size - 8px;
+    font-size: $beforeAfter-handle-arrow-size;
+  }
+
+  .#{$beforeAfter}-arrow-before,
+  .#{$beforeAfter}-arrow-after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@import "labels/bordered";
+@import "labels/solid";
+@import "labels/overlay";
+@import "labels/start";
+@import "labels/bottom";
+@import "labels/end";

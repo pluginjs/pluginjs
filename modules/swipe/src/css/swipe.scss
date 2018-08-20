@@ -2,11 +2,11 @@
 @import "swipe.core";
 // Vars
 // =====================
-$swipe-dots-bg: #ccc !default;
-$swipe-dots-active-bg: $gray-darkest !default;
-$swipe-arrow-color: $color-white !default;
-$swipe-arrow-bg: $color-black !default;
-$swipe-arrow-radius: $border-radius-base !default;
+$swipe-dots-bg: #ccc;
+$swipe-dots-active-bg: $gray-darkest;
+$swipe-arrow-color: $color-white;
+$swipe-arrow-bg: $color-black;
+$swipe-arrow-radius: $border-radius-base;
 // swipe
 // =====================
 .#{$swipe} {

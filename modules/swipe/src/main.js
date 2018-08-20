@@ -292,12 +292,20 @@ class Swipe extends Component {
 
       setStyle(
         {
+          width: `${item.info.width}px`,
+          height: '100%',
           transform: `translate3d(${config.x}px, ${config.y}px, 0)`
         },
         $item
       )
 
       if (this.options.multiple) {
+        setStyle(
+          {
+            height: `${item.info.height}px`
+          },
+          $item
+        )
         if (!(index % 2)) {
           width += itemInstances[index - 1]
             ? itemInstances[index - 1].info.width + this.gutter
@@ -411,10 +419,10 @@ class Swipe extends Component {
   }
 
   resize() {
-    if (!this.options.computeWidthResize) {
+    if (!this.options.advanced.computeWidthResize) {
       this.computeWidthResize()
     } else {
-      this.options.computeWidthResize.bind(this)()
+      this.options.advanced.computeWidthResize.bind(this)()
     }
     this.trigger(EVENTS.RESIZE)
   }
@@ -479,7 +487,6 @@ class Swipe extends Component {
     ease: 'linear',
     duration: this.options.duration
   }
-
   */
   move(distance, details) {
     let { trigger, ease, duration } = details
