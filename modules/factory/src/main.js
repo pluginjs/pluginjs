@@ -21,6 +21,9 @@ if (!window.Pj) {
         return true
       }
       return false
+    },
+    reset() {
+      plugins = {}
     }
   }
 }

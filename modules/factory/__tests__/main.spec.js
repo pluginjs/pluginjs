@@ -1,10 +1,11 @@
 import Component from '@pluginjs/component'
-import { register, eventable, styleable } from '../../src/main'
+import Pj from '../../src/main'
+import { register, eventable, styleable } from '@pluginjs/decorator'
 import { deepMerge } from '@pluginjs/utils'
 
-describe('As', () => {
-  test('should have As', () => {
-    expect(As).toBeObject()
+describe('Pj', () => {
+  test('should have Pj', () => {
+    expect(Pj).toBeObject()
   })
 
   describe('register()', () => {
@@ -46,7 +47,7 @@ describe('As', () => {
     }
 
     beforeEach(() => {
-      Pj.plugins = {}
+      Pj.reset()
     })
 
     test('should register the plugin', () => {
@@ -63,14 +64,6 @@ describe('As', () => {
       const test = Pj.get('test')
 
       expect(test.defaults).toEqual(defaults)
-    })
-
-    test('should assign info to plugin', () => {
-      const info = { version: '0.0.1' }
-      Pj.register('test', Test, {}, info)
-      const test = Pj.get('test')
-
-      expect(test.version).toEqual(info.version)
     })
 
     describe('setDefaults()', () => {

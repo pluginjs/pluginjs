@@ -1,4 +1,5 @@
-// import As from '@pluginjs/pluginjs';
+import { addClass, removeClass } from '@pluginjs/classes'
+import { each } from '@pluginjs/utils'
 
 class Keyboard {
   constructor(instance) {
@@ -40,7 +41,7 @@ class Keyboard {
     const count = Math.round(100 / $icons[0].width())
     if (this.el.data('classifiable')) {
       const arr = []
-      $.each(this.el.data('categories'), i => {
+      each(this.el.data('categories'), i => {
         let items = []
         $icons.forEach($icon => {
           if ($icon.data('categories') === i) {
