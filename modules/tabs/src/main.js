@@ -202,7 +202,7 @@ class Tabs extends Component {
     })
 
     bindEvent(
-      this.eventName('click'),
+      this.eventNameWithId('click'),
       e => {
         const target = e.target
 
@@ -216,7 +216,7 @@ class Tabs extends Component {
 
   unbind() {
     this.navEvent.destroy()
-    removeEvent(this.eventName(), window.document)
+    removeEvent(this.eventNameWithId('click'), window.document)
   }
 
   resetHeight() {
