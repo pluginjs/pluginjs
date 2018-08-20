@@ -61,6 +61,7 @@ class Strength extends Component {
     this.$meter = query(`.${this.classes.METER}`, this.$container)
 
     this.$scoreElement = query(`.${this.classes.SCORE}`, this.$container)
+    console.log(this.$scoreElement)
     this.$input = query(`.${this.classes.INPUT}`, this.$container)
     this.$wrap = query(`.${this.classes.ADDON}`, this.$container)
 
@@ -74,7 +75,7 @@ class Strength extends Component {
     if (this.$toggle) {
       if (this.$toggle.getAttribute('checkbox')) {
         bindEvent(
-          'change',
+          this.eventName('change'),
           () => {
             this.toggle()
           },
@@ -82,7 +83,7 @@ class Strength extends Component {
         )
       } else {
         bindEvent(
-          'click',
+          this.eventName('click'),
           () => {
             this.toggle()
           },
@@ -92,14 +93,14 @@ class Strength extends Component {
     }
 
     bindEvent(
-      'keydown',
+      this.eventName('keydown'),
       () => {
         this.check()
       },
       this.$input
     )
     bindEvent(
-      'keyup',
+      this.eventName('keyup'),
       () => {
         this.check()
       },
@@ -107,13 +108,13 @@ class Strength extends Component {
     )
 
     bindEvent(
-      `${NAMESPACE}:check`,
-      e => {
-        const [score, status] = e.detail.data
+      this.selfEventName(EVENTS.CHECK),
+      (e, score, status) => {
         this.$scoreElement.innerHTML = this.translate(
           this.options.scoreLables[status]
         )
-
+        console.log(score)
+        console.log(status)
         if (status !== this.status) {
           const newClass = this.options.scoreClasses[status]
           const oldClass = this.options.scoreClasses[this.status]
@@ -134,9 +135,8 @@ class Strength extends Component {
     )
 
     bindEvent(
-      `${NAMESPACE}:statusChange`,
-      e => {
-        const [current, old] = e.detail.data
+      this.selfEventName(EVENTS.STATUSCHANGE),
+      (e, current, old) => {
         if (old) {
           removeClass(this.getStatusClass(old), this.$container)
         }
@@ -148,7 +148,7 @@ class Strength extends Component {
     )
     bindEvent(
       this.eventName('click'),
-      `.${this.classes.ADDON}`,
+      // `.${this.classes.ADDON}`,
       () => {
         if (hasClass(this.classes.ACTIVE, this.$wrap)) {
           removeClass(this.classes.ACTIVE, this.$wrap)
@@ -164,10 +164,7 @@ class Strength extends Component {
 
   unbind() {
     // this.$element.off(this.eventName())
-    removeEvent('click', this.$toggle)
-    removeEvent('change', this.$toggle)
-    removeEvent('keydown', this.$toggle)
-    removeEvent('keyup', this.$toggle)
+    removeEvent(this.eventName(), this.$toggle)
   }
 
   getStatusClass(status) {
