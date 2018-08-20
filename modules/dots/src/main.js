@@ -96,13 +96,12 @@ class Dots extends Component {
       this.trigger(EVENTS.CLICK, this.getItemValue(target))
     }
 
-    bindEvent('click', this.clickItemCallback, this.element)
-    bindEvent('touch', this.clickItemCallback, this.element)
+    bindEvent(this.eventName('click'), this.clickItemCallback, this.element)
+    bindEvent(this.eventName('touch'), this.clickItemCallback, this.element)
   }
 
   unbind() {
-    removeEvent('click', this.element)
-    removeEvent('touch', this.element)
+    removeEvent(this.eventName(), this.element)
   }
 
   getDots() {
