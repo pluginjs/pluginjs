@@ -187,16 +187,16 @@ class Scrollable extends Component {
 
     addClass(this.classes.ENABLED, this.wrap)
 
-    if (this.vertical) {
-      addClass(this.classes.VERTICAL, this.wrap)
-      this.initLayout('vertical')
-      this.createBar('vertical')
-    }
-
     if (this.horizontal) {
       addClass(this.classes.HORIZONTAL, this.wrap)
       this.initLayout('horizontal')
       this.createBar('horizontal')
+    }
+
+    if (this.vertical) {
+      addClass(this.classes.VERTICAL, this.wrap)
+      this.initLayout('vertical')
+      this.createBar('vertical')
     }
 
     this.bind()
@@ -248,7 +248,7 @@ class Scrollable extends Component {
       if (this.options.showOnBarHover) {
         this.$bar.forEach(bar => {
           bindEvent(
-            `${NAMESPACE}:hover`,
+            this.selfEventName(EVENTS.HOVER),
             () => {
               if (that.horizontal) {
                 that.showBar('horizontal')
@@ -260,7 +260,7 @@ class Scrollable extends Component {
             bar
           )
           bindEvent(
-            `${NAMESPACE}:hovered`,
+            this.selfEventName(EVENTS.HOVERED),
             () => {
               if (that.horizontal) {
                 that.hideBar('horizontal')
@@ -273,13 +273,21 @@ class Scrollable extends Component {
           )
         })
       } else {
-        bindEvent(`${NAMESPACE}:hover`, this.showBar.bind(this), this.element)
-        bindEvent(`${NAMESPACE}:hovered`, this.hideBar.bind(this), this.element)
+        bindEvent(
+          this.selfEventName(EVENTS.HOVER),
+          this.showBar.bind(this),
+          this.element
+        )
+        bindEvent(
+          this.selfEventName(EVENTS.HOVERED),
+          this.hideBar.bind(this),
+          this.element
+        )
       }
     }
 
     bindEvent(
-      this.eventName('scroll'),
+      this.eventName(EVENTS.SCROLL),
       () => {
         if (that.horizontal) {
           const oldLeft = that.offsetLeft
@@ -326,9 +334,8 @@ class Scrollable extends Component {
     )
 
     bindEvent(
-      `${NAMESPACE}:scroll`,
-      e => {
-        const [value, direction] = e.detail.data
+      this.selfEventName(EVENTS.SCROLL),
+      (e, instance, value, direction) => {
         this.onScroll(value, direction)
       },
       this.element
@@ -337,8 +344,8 @@ class Scrollable extends Component {
     this.$bar.forEach(bar => {
       bindEvent(
         'scrollbar:change',
-        e => {
-          const [value] = e.detail.data
+        (e, instance, data) => {
+          const value = data
           if (isString(e.target.direction)) {
             that.scrollTo(
               e.target.direction,
@@ -383,15 +390,15 @@ class Scrollable extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.wrap)
-    removeEvent(`${NAMESPACE}:scroll`, this.element)
-    removeEvent(`${NAMESPACE}:hover`, this.element)
-    removeEvent(`${NAMESPACE}:hovered`, this.element)
+    removeEvent(this.selfEventName(EVENTS.SCROLL), this.element)
+    removeEvent(this.selfEventName(EVENTS.HOVER), this.element)
+    removeEvent(this.selfEventName(EVENTS.HOVERED), this.element)
     removeEvent(this.eventName(), this.$container)
   }
 
   initLayout(direction) {
     if (direction === 'vertical') {
-      setStyle('height', getHeight(this.wrap), this.$container)
+      setStyle('height', `${getHeight(this.wrap)}px`, this.$container)
     }
     const attributes = this.attributes[direction]
     const container = this.$container
@@ -700,13 +707,13 @@ class Scrollable extends Component {
     ) {
       return
     }
-    if (this.vertical) {
-      this.initLayout('vertical')
-      this.updateBarHandle('vertical')
-    }
     if (this.horizontal) {
       this.initLayout('horizontal')
       this.updateBarHandle('horizontal')
+    }
+    if (this.vertical) {
+      this.initLayout('vertical')
+      this.updateBarHandle('vertical')
     }
   }
 
