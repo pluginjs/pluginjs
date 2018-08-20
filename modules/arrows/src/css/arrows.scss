@@ -1,131 +1,30 @@
 @import "@pluginjs/styles/variables.scss";
-
-// Vars
-// =====================
-$arrow: "pj-arrow" !default;
-$arrow-space-x: 10px !default;
-$arrow-space-y: 10px !default;
-$arrow-font-size: 24px !default;
-$arrow-font-family: $font-family-base !default;
-
-$arrow-space-lg: 48px !default;
-$arrow-space-sm: 40px !default;
-$arrow-space-xs: 32px !default;
-
-$arrow-font-size-lg: 38px !default;
-$arrow-font-size-sm: 24px !default;
-$arrow-font-size-xs: 16px !default;
-
-$arrow-color: $color-primary-black !default;
-$arrow-hover-color: $color-primary !default;
-$arrow-disable-color: $gray-dark !default;
+@import "arrows.core";
 
 /* theme vars */
 $arrow-theme-size: 40px !default;
-$arrow-outline-border: 1px solid rgba($color-black, 0.25) !default;
+$arrow-outline-border: 1px solid rgba($color-black, 0.2) !default;
 $arrow-circle-border-radius: 29px !default;
 $arrow-square-border-radius: $border-radius-base !default;
-$arrow-solid-bg-color: rgba($color-black, 0.4) !default;
+$arrow-solid-bg-color: rgba($color-black, 0.2) !default;
 $arrow-solid-color: $color-white !default;
+$arrow-shadow-bgcolor: $color-white !default;
 $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
 
-// Core
-// =====================
-.#{$arrow}s {
-  @include clearfix();
-  
-  position: relative;
-  font-family: $arrow-font-family;
-  opacity: 1;
-
-  &.#{$arrow}-hidden {
-    opacity: 0;
-  }
-
-  &.#{$arrow}-disabled {
-    .#{$arrow}-prev,
-    .#{$arrow}-next {
-      color: $arrow-disable-color;
-      cursor: not-allowed;
-      opacity: 0.5;
-    }
-  }
-
-  + .#{$arrow}s {
-    margin-top: $arrow-space-y;
-  }
-}
-
-.#{$arrow}-prev,
-.#{$arrow}-next {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  .#{$arrow}-icon {
-    font-size: $arrow-font-size;
-  }
-
-  &.#{$arrow}-lg {
-    width: $arrow-space-lg;
-    height: $arrow-space-lg;
-    line-height: $arrow-space-lg;
-    text-align: center;
-
-    .#{$arrow}-icon {
-      font-size: $arrow-font-size-lg;
-    }
-  }
-
-  &.#{$arrow}-sm {
-    width: $arrow-space-sm;
-    height: $arrow-space-sm;
-    line-height: $arrow-space-sm;
-    text-align: center;
-
-    .#{$arrow}-icon {
-      font-size: $arrow-font-size-sm;
-    }
-  }
-
-  &.#{$arrow}-xs {
-    width: $arrow-space-xs;
-    height: $arrow-space-xs;
-    line-height: $arrow-space-xs;
-    text-align: center;
-
-    .#{$arrow}-icon {
-      font-size: $arrow-font-size-xs;
-    }
-  }
-
-  &,
-  &:link,
-  &:active,
-  &:hover,
-  &:visited {
-    color: $arrow-color;
-    text-decoration: none;
-    outline: none;
-    text-decoration-style: none;
-  }
-
-  &:active,
-  &:hover {
-    color: $arrow-hover-color;
-  }
-
-  &:focus {
-    box-shadow: none;
-  }
-}
-
-.#{$arrow}s-vertical {
-  .#{$arrow}-prev,
-  .#{$arrow}-next {
-    display: block;
-  }
-}
-
+//light
+$arrow-light-color: $color-white !default;
+$arrow-light-hover-color: $color-primary !default;
+$arrow-light-active-color: #1d53bf !default;
+$arrow-light-outline-border-color: rgba($color-white, 0.2) !default;
+$arrow-light-outline-hover-border-color: $color-primary !default;
+$arrow-light-solid-bgcolor: rgba($color-white, 0.3) !default;
+$arrow-light-solid-color: $color-white !default;
+//disabled
+$arrow-solid-disabled-bg-color: rgba($color-black, 0.15) !default;
+$arrow-light-disabled-color: rgba($color-white, 0.4) !default;
+$arrow-light-disabled-outline-border-color: rgba($color-white, 0.1) !default;
+$arrow-light-shadow-bgcolor: #3d3d3d !default;
+// $arrow-light-disabled-shadow-bgcolor: 
 .#{$arrow}s-outline,
 .#{$arrow}s-circle,
 .#{$arrow}s-square,
@@ -145,7 +44,7 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
       text-align: center;
 
       .#{$arrow}-icon {
-        font-size: $arrow-font-size-lg;
+        font-size: $arrow-icon-font-size-lg;
       }
     }
 
@@ -156,7 +55,7 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
       text-align: center;
 
       .#{$arrow}-icon {
-        font-size: $arrow-font-size-sm;
+        font-size: $arrow-icon-font-size-sm;
       }
     }
 
@@ -167,7 +66,7 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
       text-align: center;
 
       .#{$arrow}-icon {
-        font-size: $arrow-font-size-xs;
+        font-size: $arrow-icon-font-size-xs;
       }
     }
   }
@@ -181,14 +80,13 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
     &:hover {
       border-color: $arrow-hover-color;
     }
-  }
 
-  &.#{$arrow}-disabled {
-    .#{$arrow}-prev,
-    .#{$arrow}-next {
-      cursor: not-allowed;
+    &:active {
+      border-color: $arrow-active-color;
+    }
+
+    &.#{$arrow}-disabled {
       border-color: $arrow-disable-color;
-      opacity: 0.5;
     }
   }
 }
@@ -212,19 +110,18 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
   .#{$arrow}-next {
     color: $arrow-solid-color;
     background-color: $arrow-solid-bg-color;
-    &:active,
+  
     &:hover {
       background-color: $arrow-hover-color;
     }
-  }
 
-  &.#{$arrow}-disabled {
-    .#{$arrow}-prev,
-    .#{$arrow}-next {
-      color: $arrow-solid-color;
-      cursor: not-allowed;
-      background-color: $arrow-disable-color;
-      opacity: 0.5;
+    &:active {
+      background-color: $arrow-active-color;
+    }
+
+    &.#{$arrow}-disabled {
+      color: $arrow-light-disabled-color;
+      background-color: $arrow-solid-disabled-bg-color;
     }
   }
 }
@@ -232,6 +129,73 @@ $arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
 .#{$arrow}s-shadow {
   .#{$arrow}-prev,
   .#{$arrow}-next {
+    background-color: $arrow-shadow-bgcolor;
     box-shadow: $arrow-shadow-box-shadow;
+  }
+}
+
+//light
+.#{$arrow}s-light {
+  .#{$arrow}-next,
+  .#{$arrow}-prev {
+    color: $arrow-light-color;
+
+    &:hover {
+      color: $arrow-light-hover-color;
+    }
+
+    &:active {
+      color: $arrow-light-active-color;
+    }
+
+    &.#{$arrow}-disabled {
+      color: $arrow-light-disabled-color;
+    }
+  }
+
+  &.#{$arrow}s-outline {
+    .#{$arrow}-next,
+    .#{$arrow}-prev {
+      border-color: $arrow-light-outline-border-color;
+
+      &:hover {
+        border-color: $arrow-light-outline-hover-border-color;
+      }
+
+      &:active {
+        border-color: $arrow-light-active-color;
+      }
+
+      &.#{$arrow}-disabled {
+        border-color: $arrow-light-disabled-outline-border-color;
+      }
+    }
+  }
+
+  &.#{$arrow}s-solid {
+    .#{$arrow}-next,
+    .#{$arrow}-prev {
+      color: $arrow-light-color;
+      background-color: $arrow-light-solid-bgcolor;
+
+      &:hover {
+        background-color: $arrow-light-outline-hover-border-color;
+      }
+
+      &:active {
+        background-color: $arrow-light-active-color;
+      }
+
+      &.#{$arrow}-disabled {
+        background-color: $arrow-light-disabled-outline-border-color;
+      }
+    }
+  }
+
+  &.#{$arrow}s-shadow {
+    .#{$arrow}-next,
+    .#{$arrow}-prev {
+      background-color: $arrow-light-shadow-bgcolor;
+    }
   }
 }

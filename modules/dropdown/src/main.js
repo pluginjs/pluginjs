@@ -215,6 +215,7 @@ class Dropdown extends Component {
         this.$trigger.value = value
       } else {
         html(value, this.$trigger)
+        addClass('pj-dropdown-checked', this.$trigger)
       }
     }
 

@@ -1,7 +1,15 @@
-import { query } from '@pluginjs/dom'
+import { queryAll } from '@pluginjs/dom'
 import Arrows from '@pluginjs/arrows'
 
-const element = query('#text .example-text')
-Arrows.of(element, {
-  valueFrom: 'text'
-})
+const element = queryAll('#text .example-text')
+const elementLight = queryAll('#text .example-text-light')
+element.forEach(e =>
+  Arrows.of(e, {
+    valueFrom: 'text'
+  })
+)
+elementLight.forEach(e =>
+  Arrows.of(e, {
+    type: 'light'
+  })
+)

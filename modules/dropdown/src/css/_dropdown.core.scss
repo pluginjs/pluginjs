@@ -9,11 +9,11 @@ $dropdown-font-family: $font-family-base !default;
 // $dropdown-trigger-color: $gray-dark !default;
 // $dropdown-trigger-hover-color: $gray-darkest !default;
 
-$dropdown-min-width: 20 * $dropdown-sizer !default;
-$dropdown-height: 3.4 * $dropdown-sizer !default; //34px
-$dropdown-line-height: 3.4 * $dropdown-sizer !default; //34px
+$dropdown-min-width: 200px !default;
+$dropdown-height: 34px !default;
+$dropdown-line-height: $dropdown-height !default;
 $dropdown-icon-size: $font-size-lg !default;
-$dropdown-min-width: 20 * $dropdown-sizer !default; //200px
+$dropdown-min-width: 200px !default;
 $dropdown-item-active-color: $color-primary-active !default;
 $dropdown-item-active-bg: $color-white !default;
 $dropdown-item-margin-bottom: 1px !default;
@@ -24,10 +24,6 @@ $dropdown-active-border-color: $gray-border !default;
 
 // Core
 // =====================
-.#{$dropdown}-trigger {
-  cursor: pointer;
-}
-
 .#{$dropdown} {
   position: absolute;
   box-sizing: border-box;

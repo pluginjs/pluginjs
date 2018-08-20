@@ -9,17 +9,24 @@ $dropdown-box-shadow: 0 20px 30px 0
 rgba(0, 0, 0, 0.05) !default;
 $dropdown-border-color: $gray-light !default;
 $dropdown-border-radius: $border-radius-base !default;
-$dropdown-font-size: $font-size-base !default;
+$dropdown-font-size: $font-size-sm !default;
 $dropdown-item-hover-bg: $gray-lighter !default;
-$dropdown-space-x: 1.1 * $dropdown-sizer !default; //12px
-$dropdown-space-y: 0.6 * $dropdown-sizer !default; //6px
+$dropdown-item-icon-margin-right: 10px !default;
+$dropdown-space-x: 11px !default;
+$dropdown-space-y: 6px !default;
+
 //trigger
+$dropdown-trigger-font-size: $font-size-sm !default;
 $dropdown-trigger-hover-color: $gray-darkest !default;
 $dropdown-trigger-color: $gray-dark !default;
 $dropdown-trigger-focus-color: $color-primary !default;
+$dropdown-trigger-lineHeight: 22px !default;
 //input
-$dropdown-space-x-right: 3 * $dropdown-sizer !default; //30px
-$dropdown-space-x-left: $dropdown-space-x !default; //10px
+$dropdown-input-width: 200px !default;
+$dropdown-span-input-drop-color: $gray-darkest !default;
+$dropdown-span-input-color: $gray-dark !default;
+$dropdown-space-x-right: 30px !default;
+$dropdown-space-x-left: $dropdown-space-x !default;
 // Theme
 // =====================
 .#{$dropdown} {
@@ -33,6 +40,8 @@ $dropdown-space-x-left: $dropdown-space-x !default; //10px
 
   &-trigger {
     font-family: $dropdown-font-family;
+    font-size: $dropdown-trigger-font-size;
+    line-height: $dropdown-trigger-lineHeight;
     color: $dropdown-trigger-color;
     text-decoration: none;
 
@@ -52,6 +61,7 @@ $dropdown-space-x-left: $dropdown-space-x !default; //10px
   }
 
   &-input {
+    width: $dropdown-input-width;
     padding: $dropdown-space-y $dropdown-space-x-right $dropdown-space-y $dropdown-space-x-left !important;
 
     &[aria-expanded="true"] {
@@ -61,11 +71,25 @@ $dropdown-space-x-left: $dropdown-space-x !default; //10px
         border-color: $color-primary;
       }
     }
+
+    &:not([placeholder]) {
+      display: block;
+      color: $dropdown-span-input-color;
+    }
+    
+    &.#{$dropdown}-checked {
+      color: $dropdown-span-input-drop-color;
+    }
   }
   
   &-item {
+    display: flex;
+    align-items: center;
     padding: $dropdown-space-y $dropdown-space-x;
     
+    .icon {
+      margin-right: $dropdown-item-icon-margin-right;
+    }
     &:hover {
       cursor: pointer;
       background-color: $dropdown-item-hover-bg;
