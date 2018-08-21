@@ -205,6 +205,7 @@ class Dropdown extends Component {
   }
 
   selectItem(item, trigger) {
+    console.log(item)
     if (!isNull(this.active)) {
       removeClass(this.classes.ACITVE, this.active)
     }

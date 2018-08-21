@@ -241,7 +241,7 @@ class Units extends Component {
     this.cacheValue(this.unit, this.value)
 
     if (hasUnit) {
-      this.TRIGGER.set(this.unit)
+      this.TRIGGER.selectItem(this.unit)
       this.trigger(EVENTS.SETUNIT, this.unit)
     }
 

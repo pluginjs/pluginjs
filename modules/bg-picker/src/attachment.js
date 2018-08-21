@@ -34,6 +34,7 @@ export default class Attachment {
       `.${this.instance.classes.ATTACHMENT}`,
       this.instance.$expandPanel
     )
+    // console.log(this.$attachment)
     this.$dropdown = query(
       `.${this.instance.options.attachment.namespace}`,
       this.instance.$expandPanel
@@ -77,7 +78,8 @@ export default class Attachment {
       this.$dropdown
     )
 
-    this.$items = queryAll('li', this.$attachment)
+    this.$items = queryAll('.pj-dropdown-item', this.$attachment)
+    console.log(this.$items)
     const value =
       typeof this.instance.value.attachment !== 'undefined'
         ? this.instance.value.attachment
@@ -90,8 +92,10 @@ export default class Attachment {
     this.$items.map(removeClass(this.instance.classes.ACTIVE))
     for (let i = 0; i < this.values.length; i++) {
       if (value === this.values[i]) {
-        this.$items.map(addClass(this.instance.classes.ACTIVE))
-        getData('dropdown', this.$dropdown).set(value)
+        const activeItem = this.$items.map( /* eslint-disable-line */
+          addClass(this.instance.classes.ACTIVE)
+        )
+        // getData('dropdown', this.$dropdown).selectItem(activeItem)
         found = true
       }
     }
