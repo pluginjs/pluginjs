@@ -127,8 +127,8 @@ class InputMask extends Component {
       this.lastValue = e.target.value
     }
     compose(
-      bindEvent('keydown', getLastValue),
-      bindEvent('input', this.onChange)
+      bindEvent(this.eventName('keydown'), getLastValue),
+      bindEvent(this.eventName('input'), this.onChange)
     )(this.element)
     // this.element.addEventListener('keydown', getLastValue, false)
     // this.element.addEventListener('input', this.onChange, false)
@@ -190,7 +190,7 @@ class InputMask extends Component {
           type: this.eventName('blur.keyboard'),
           handler: () => this.trigger(EVENTS.BLUR)
         }
-      ].map(options => bindEvent(options))
+      ].map(options => bindEvent(options.type, options.handler))
     )(this.element)
   }
 

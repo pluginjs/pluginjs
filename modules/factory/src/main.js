@@ -2,7 +2,7 @@ import Emitter from '@pluginjs/emitter'
 import { throttle } from '@pluginjs/utils'
 
 if (!window.Pj) {
-  const plugins = {}
+  let plugins = {}
 
   window.Pj = {
     emitter: new Emitter(),
