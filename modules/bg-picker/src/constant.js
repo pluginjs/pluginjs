@@ -161,7 +161,7 @@ export const defaults = {
         '<div class="{classes.ATTACHMENT}">' +
         '<span class="{classes.ATTACHMENTTITLE}">{bgAttach}</span>' +
         '<div class="{classes.ATTACHMENTCONTENT}">' +
-        '<div class="{attachNamespace} {classes.DROPDOWNTRIGGER}"><span class="pj-dropdown-trigger"></span><i class="asIcon-caret-down"></i></div>' +
+        '<div class="{attachNamespace} {classes.DROPDOWNTRIGGER}"></div><div></div>' +
         '</div>' +
         '</div>'
       )

@@ -93,12 +93,14 @@ class BgPicker extends Component {
       // placeholder: this.options.placeholder,
       theme: 'dafault',
       placement: 'bottom-left',
-      imitateSelect: true,
-      exclusive: false,
+      reference: this.$trigger,
+      target: this.$Panel,
+      // imitateSelect: true,
+      // exclusive: false,
       // inputLabel: true,
       hideOutClick: false,
       hideOnSelect: false,
-      constraintToScrollParent: false,
+      // constraintToScrollParent: false,
       templates: this.options.templates
     })
   }
@@ -142,6 +144,7 @@ class BgPicker extends Component {
         if (this.is('disabled')) {
           return null
         }
+        this.$defaultDropdown.show()
         this.oldValue = this.val()
         removeClass(
           this.classes.EXIST,
@@ -249,7 +252,7 @@ class BgPicker extends Component {
     this.$fillImage = query(`.${this.classes.FILLIMAGE}`, this.$fill)
     this.$remove = query(`.${this.classes.REMOVE}`, this.$fill)
     this.$edit = query(`.${this.classes.EDIT}`, this.$fill)
-
+    this.$Panel = query(`.${this.classes.DROPDOWN}`, this.$wrap)
     this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
     this.$control = query(`.${this.classes.CONTROL}`, this.$expandPanel)
     this.$cancel = query(`.${this.classes.CANCEL}`, this.$control)

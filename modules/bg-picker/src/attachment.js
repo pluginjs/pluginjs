@@ -29,7 +29,6 @@ export default class Attachment {
 
     this.$Attachment = parseHTML(html)
     insertAfter(this.$Attachment, this.instance.$imageWrap)
-
     this.$attachment = query(
       `.${this.instance.classes.ATTACHMENT}`,
       this.instance.$expandPanel
@@ -39,20 +38,19 @@ export default class Attachment {
       `.${this.instance.options.attachment.namespace}`,
       this.instance.$expandPanel
     )
-    this.$attachTrigger = query('.pj-dropdown-trigger', this.$dropdown)
+    // this.$attachTrigger = query('span', this.$dropdown)
     this.values = this.instance.options.attachment.values
-    const data = this.values.map(value => ({ label: value }))
-
+    console.log(this.values)
+    const data = this.values.map(value => ({ label: value, value }))
+    console.log(data)
     const that = this
 
     setData(
       'dropdown',
-      Dropdown.of(this.$attachTrigger, {
+      Dropdown.of(this.$dropdown, {
         imitateSelect: true,
         data,
         width: this.$dropdown,
-        icon: 'icon-char icon-chevron-down',
-        exclusive: false,
         classes: {
           panel: `pj-dropdown-panel ${
             this.instance.classes.NAMESPACE
@@ -79,7 +77,6 @@ export default class Attachment {
     )
 
     this.$items = queryAll('.pj-dropdown-item', this.$attachment)
-    console.log(this.$items)
     const value =
       typeof this.instance.value.attachment !== 'undefined'
         ? this.instance.value.attachment
@@ -90,12 +87,13 @@ export default class Attachment {
   set(value) {
     let found = false
     this.$items.map(removeClass(this.instance.classes.ACTIVE))
+    // console.log(getData('dropdown', this.$dropdown))
     for (let i = 0; i < this.values.length; i++) {
       if (value === this.values[i]) {
-        const activeItem = this.$items.map( /* eslint-disable-line */
+        const activeItem = this.$items.map(
           addClass(this.instance.classes.ACTIVE)
         )
-        // getData('dropdown', this.$dropdown).selectItem(activeItem)
+        getData('dropdown', this.$dropdown).set(activeItem)
         found = true
       }
     }

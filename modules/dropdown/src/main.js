@@ -289,7 +289,18 @@ class Dropdown extends Component {
 
     this.trigger(EVENTS.HIDE)
   }
+  set(value) {
+    return this.selectByValue(value, true)
+  }
 
+  get() {
+    const active = this.getActiveItem()
+
+    if (active) {
+      return this.getItemValue(active)
+    }
+    return null
+  }
   setupPopper() {
     if (!this.is('popper')) {
       let placementClass
