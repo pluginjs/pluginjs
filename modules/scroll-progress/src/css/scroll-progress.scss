@@ -6,9 +6,6 @@ $scrollProgress: "pj-scrollProgress" !default;
 
 // Core
 // =====================
-.#{$scrollProgress} {
-}
-
 .#{$scrollProgress}-bar {
   position: fixed;
   z-index: 999;

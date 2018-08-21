@@ -1,5 +1,5 @@
-import Infinite from '../../src/main'
-import { defaults as DEFAULTS } from '../../src/constant'
+import Infinite from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 import '@pluginjs/scroll-end'
 
 describe('Infinite', () => {
@@ -22,103 +22,85 @@ describe('Infinite', () => {
   })
 
   describe('constructor()', () => {
-    test('should work with element', () => {
-      const element = document.createElement('div')
-      const infinite = new Infinite(element)
+    let element
+    let api
 
-      expect(infinite).toBeObject()
-      expect(infinite.options).toEqual(DEFAULTS)
+    beforeEach(() => {
+      element = document.createElement('div')
+      api = Infinite.of(element)
+    })
+
+    test('should work with element', () => {
+      expect(api).toBeObject()
+      expect(api.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const infinite = new Infinite(element)
-
-      expect(infinite.options).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = document.createElement('div')
-      const $element = $(element)
-
-      expect($element.asInfinite()).toEqual($element)
-
-      const api = $element.data('infinite')
-
-      expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
+    let element
+    let api
+
+    beforeEach(() => {
+      element = document.createElement('div')
+      api = Infinite.of(element)
+    })
+
     test('should not call bind', () => {
-      const $element = $(document.createElement('div')).asInfinite()
-      expect($element.asInfinite('bind')).toBeNil()
+      expect(api.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = $(document.createElement('div')).asInfinite()
-
-      expect($element.asInfinite('destroy')).toEqual($element)
+      expect(api.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let $element
-
-    beforeEach(() => {
-      $element = $(document.createElement('div'))
-    })
-
     test('should trigger ready event', () => {
       let called = 0
+      const element = document.createElement('div')
 
-      $element.on('infinite:ready', (event, api) => {
-        expect(api.is('initialized')).toBeTrue()
+      element.addEventListener('infinite:ready', () => {
         called++
       })
 
-      $element.asInfinite()
+      const api = Infinite.of(element)
+      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = $(document.createElement('div')).asInfinite()
-      api = $element.data('infinite')
-    })
-
     test('should trigger destroy event', () => {
       let called = 0
-      $element.on('infinite:destroy', (event, api) => {
+      const element = document.createElement('div')
+      const api = Infinite.of(element)
+
+      element.addEventListener('infinite:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
 
-      $element.asInfinite('destroy')
-
+      api.destroy()
       expect(called).toEqual(1)
     })
   })
 
   describe('enable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asInfinite()
-      api = $element.data('infinite')
+      element = document.createElement('div')
+      api = Infinite.of(element)
     })
 
     test('should enable the plugin', () => {
-      $element.asInfinite('disable')
-      $element.asInfinite('enable')
+      api.disable()
+      api.enable()
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -126,27 +108,27 @@ describe('Infinite', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.on('infinite:enable', (event, api) => {
-        expect(api.is('disabled')).toBeFalse()
+      element.addEventListener('infinite:enable', () => {
         called++
       })
 
-      $element.asInfinite('enable')
+      api.enable()
+      expect(api.is('disabled')).toBeFalse()
       expect(called).toEqual(1)
     })
   })
 
   describe('disable()', () => {
-    let $element
+    let element
     let api
 
     beforeEach(() => {
-      $element = $(document.createElement('div')).asInfinite()
-      api = $element.data('infinite')
+      element = document.createElement('div')
+      api = Infinite.of(element)
     })
 
     test('should disable the plugin', () => {
-      $element.asInfinite('disable')
+      api.disable()
 
       expect(api.is('disabled')).toBeTrue()
     })
@@ -154,12 +136,12 @@ describe('Infinite', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.on('infinite:disable', (event, api) => {
-        expect(api.is('disabled')).toBeTrue()
+      element.addEventListener('infinite:disable', () => {
         called++
       })
 
-      $element.asInfinite('disable')
+      api.disable()
+      expect(api.is('disabled')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
