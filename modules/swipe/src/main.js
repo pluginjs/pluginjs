@@ -133,8 +133,8 @@ class Swipe extends Component {
     const that = this
 
     this.$swipe = Swipeable.of(this.$container, {
-      container: `.${that.classes.NAMESPACE}`,
-      decay: that.options.dragFree,
+      container: that.container,
+      decay: that.options.decay,
       power: that.options.power,
       duration: that.options.duration,
       onStart() {
@@ -145,8 +145,7 @@ class Swipe extends Component {
       },
       onEnd() {
         if (!this.is('decaying')) {
-          let locationX = ''
-          locationX = this.getLocation(this.element).x
+          const locationX = this.getLocation(this.element).x
           const index = that.getIndexByDistance(locationX)
           that.moveTo(index)
         }
@@ -338,12 +337,10 @@ class Swipe extends Component {
   }
 
   buildArrows() {
-    let opts = {
+    const opts = {
       type: this.options.arrowType || 'square',
       templates: this.options.templates.arrow
     }
-
-    opts = Object.assign({}, opts, this.options.arrowConfig)
 
     this.$arrows = Arrows.of(this.element, opts)
   }
@@ -513,17 +510,6 @@ class Swipe extends Component {
       duration: _duration
     })
 
-    if (this.options.dragFree) {
-      setStyle(
-        {
-          transform: `translate3d(${-distance}px, 0, 0)`,
-          transition: `transform ${duration / 2}ms`,
-          'transition-timing-function': ease
-        },
-        this.$container
-      )
-    }
-
     setTimeout(() => {
       if (callback) {
         callback()
@@ -580,7 +566,7 @@ class Swipe extends Component {
 
     this.move(distance, {
       trigger: true,
-      ease: this.options.dragFree ? 'easeOutExpo' : 'linear',
+      ease: this.options.decay ? 'easeOutExpo' : 'linear',
       callback
     })
   }

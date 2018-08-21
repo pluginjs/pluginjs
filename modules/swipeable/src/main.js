@@ -186,7 +186,7 @@ class Swipeable extends Component {
       translateX: this.position.x + this.getMoveSize(decayX),
       translateY: this.position.y + this.getMoveSize(decayY),
       duration: this.options.duration,
-      easing: 'easeOutSine',
+      easing: 'linear',
       update() {
         if (that.options.rebound) {
           that.rebound(that.element, true)

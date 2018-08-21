@@ -8,9 +8,4 @@ Swipe.of(element, {
   itemNums: 2,
   arrows: true,
   pagination: true
-  // dragFree: true
-  // defaultActive: 1,
-  // dotConfig: {
-  //   default: 1
-  // }
 })

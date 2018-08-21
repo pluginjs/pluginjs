@@ -7,6 +7,6 @@ Swipe.of(element, {
   gutter: 20,
   arrows: true,
   pagination: true,
-  dragFree: true,
+  decay: true,
   loop: true
 })

@@ -41,7 +41,7 @@ export const defaults = {
   dotConfig: false,
   container: '.decay',
   drag: true,
-  dragFree: false,
+  decay: false,
   power: 2,
   group: false,
   loop: false,
