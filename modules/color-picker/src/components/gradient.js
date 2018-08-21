@@ -144,11 +144,7 @@ class Gradient {
 
     bindEvent(
       this.instance.selfEventName('wheelChange'),
-      ({
-        detail: {
-          data: [angle]
-        }
-      }) => {
+      (e, el, angle) => {
         this.angle = Math.round(angle)
         this.$angle.value = `${this.angle}°`
         this.update()

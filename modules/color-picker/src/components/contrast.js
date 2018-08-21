@@ -22,11 +22,7 @@ class Contrast {
   bind() {
     bindEvent(
       this.instance.selfEventName('change'),
-      ({
-        detail: {
-          data: [color]
-        }
-      }) => {
+      (e, el, color) => {
         if (this.instance.is('gradientModule')) {
           return false
         }
@@ -40,11 +36,7 @@ class Contrast {
 
     bindEvent(
       this.instance.selfEventName('update'),
-      ({
-        detail: {
-          data: [color]
-        }
-      }) => {
+      (e, el, color) => {
         if (this.instance.is('gradientModule')) {
           return false
         }

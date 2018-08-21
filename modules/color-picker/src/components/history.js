@@ -36,11 +36,7 @@ class History {
 
     bindEvent(
       this.instance.selfEventName('update'),
-      ({
-        detail: {
-          data: [color]
-        }
-      }) => {
+      (e, el, color) => {
         if (!color) {
           return false
         }

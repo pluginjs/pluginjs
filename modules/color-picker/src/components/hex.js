@@ -66,11 +66,7 @@ class Hex {
   bind() {
     bindEvent(
       this.instance.selfEventName('change'),
-      ({
-        detail: {
-          data: [color]
-        }
-      }) => {
+      (e, el, color) => {
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
         this.updateColor(this.dropdown.options.select)
       },

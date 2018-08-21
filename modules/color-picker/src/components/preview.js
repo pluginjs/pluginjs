@@ -25,11 +25,7 @@ class Preview {
 
     bindEvent(
       this.instance.selfEventName('change'),
-      ({
-        detail: {
-          data: [color]
-        }
-      }) => {
+      (e, el, color) => {
         this.update(color)
       },
       this.instance.element

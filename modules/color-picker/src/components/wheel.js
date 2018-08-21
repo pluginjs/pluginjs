@@ -22,11 +22,7 @@ class Wheel {
     // reset origin
     bindEvent(
       this.instance.selfEventName('switchModule'),
-      ({
-        detail: {
-          data: [module]
-        }
-      }) => {
+      (e, el, module) => {
         if (module === 'gradient') {
           this.origin = {
             x: offset(this.$el).left + this.r,
