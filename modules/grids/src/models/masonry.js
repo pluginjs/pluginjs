@@ -93,9 +93,9 @@ class Masonry {
 
   bind() {
     bindEvent(
-      this.api.eventName(`${this.api.namespace}:${this.api.events.RESIZED}`),
-      e => {
-        if (e.detail.data[0] < this.api.minWidth) {
+      `${this.api.namespace}:${this.api.events.RESIZED}`,
+      (e, instance, data) => {
+        if (data < this.api.minWidth) {
           return
         }
         this.handleState()
@@ -105,9 +105,9 @@ class Masonry {
     )
 
     bindEvent(
-      this.api.eventName(`${this.api.namespace}:${this.api.events.FILTER}`),
-      e => {
-        const { showChunks, hideChunks, moveChunks } = e.detail.data[0]
+      `${this.api.namespace}:${this.api.events.FILTER}`,
+      (e, instance, data) => {
+        const { showChunks, hideChunks, moveChunks } = data
 
         this.handleState()
         this.api.setHeight(this.getHeight())
@@ -134,7 +134,7 @@ class Masonry {
     )
 
     bindEvent(
-      this.api.eventName(`${this.api.namespace}:${this.api.events.SORT}`),
+      `${this.api.namespace}:${this.api.events.SORT}`,
       () => {
         this.api.setHeight(this.getHeight())
       },

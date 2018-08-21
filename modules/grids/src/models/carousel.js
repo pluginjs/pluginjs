@@ -167,9 +167,9 @@ class Carousel {
     }
 
     bindEvent(
-      this.api.eventName(`${this.api.namespace}:${this.api.events.FILTER}`),
-      e => {
-        const { showChunks, hideChunks, moveChunks } = e.detail.data[0]
+      `${this.api.namespace}:${this.api.events.FILTER}`,
+      (e, instance, data) => {
+        const { showChunks, hideChunks, moveChunks } = data
 
         this.swipe.itemInstances = this.getItemInstances(this.swipe)
         this.computeItemLocation(this.swipe)
@@ -199,7 +199,7 @@ class Carousel {
     )
 
     bindEvent(
-      this.api.eventName(`${this.api.namespace}:${this.api.events.REVERSE}`),
+      `${this.api.namespace}:${this.api.events.REVERSE}`,
       () => {
         this.swipe.itemInstances = this.getItemInstances(this.swipe)
         this.computeItemLocation(this.swipe)
@@ -209,7 +209,7 @@ class Carousel {
     )
 
     bindEvent(
-      this.api.eventName(`${this.api.namespace}:${this.api.events.SORT}`),
+      `${this.api.namespace}:${this.api.events.SORT}`,
       () => {
         this.swipe.itemInstances = this.api.chunks
         this.updateSortedItems()

@@ -446,7 +446,7 @@ class Grids extends Component {
   setHeight(val) {
     setStyle(
       {
-        height: val,
+        height: `${val}px`,
         transition: `height ${parseFloat(this.options.duration, 10)}ms`
       },
       this.$container
@@ -456,7 +456,7 @@ class Grids extends Component {
   setContainerWidth(width) {
     setStyle(
       {
-        width
+        width: `${width}px`
       },
       this.$container
     )

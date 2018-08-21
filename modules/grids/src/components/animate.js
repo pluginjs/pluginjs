@@ -373,8 +373,8 @@ class Animate {
 
     setStyle(
       {
-        left: chunk.movePosition.x,
-        top: chunk.movePosition.y
+        left: `${chunk.movePosition.x}px`,
+        top: `${chunk.movePosition.y}px`
       },
       $el
     )
@@ -391,7 +391,6 @@ class Animate {
     chunks.forEach(chunk => {
       const $el = this.getEl(chunk)
       let elOpts = Object.assign({}, this.effects[effectName].elOpts)
-
       if (Object.keys(elOpts).length > 0) {
         elOpts = Object.assign({}, elOpts, { opacity: 0 })
 

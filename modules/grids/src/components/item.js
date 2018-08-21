@@ -85,8 +85,8 @@ class Item {
 
     setStyle(
       {
-        width,
-        height,
+        width: `${width}px`,
+        height: `${height}px`,
         transition: `width ${duration}ms, height ${duration}ms`
       },
       this.$el
@@ -102,7 +102,6 @@ class Item {
   moveTo(position) {
     const el = this.$el[0]
     const duration = this.getDuration()
-
     setStyle(
       {
         transform: `translate3d(${position.x -

@@ -93,8 +93,8 @@ class Grid {
   bind() {
     bindEvent(
       `${this.api.namespace}:${this.api.events.RESIZED}`,
-      e => {
-        if (e.detail.data[0] < this.api.minWidth) {
+      (e, instance, data) => {
+        if (data < this.api.minWidth) {
           return
         }
 
@@ -106,8 +106,8 @@ class Grid {
 
     bindEvent(
       `${this.api.namespace}:${this.api.events.FILTER}`,
-      e => {
-        const { showChunks, hideChunks, moveChunks } = e.detail.data[0]
+      (e, instance, data) => {
+        const { showChunks, hideChunks, moveChunks } = data
 
         this.handleState()
 

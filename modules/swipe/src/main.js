@@ -592,7 +592,7 @@ class Swipe extends Component {
   }
 
   setHeight(height, transition = false) {
-    const config = { height }
+    const config = { height: `${height}px` }
 
     if (transition) {
       config.transition = `height ${this.options.duration}ms`
