@@ -151,7 +151,7 @@ const ProgressBarChange = (countDownTime, element, range) => {
 
 Progress.defaults = {
   size: 100, // progress circle size
-  barcolor: '#e4e4e4', // progress circle base color
+  barcolor: 'rgba(0,0,0, 0.1)', // progress circle base color
   barsize: 2, // progress circle bar size
   trackcolor: '#215fdb' // progress circle bar color
 }

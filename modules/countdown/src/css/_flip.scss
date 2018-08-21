@@ -5,18 +5,19 @@
 
 $countdowns: "pj-countdown" !default;
 $countdown: "countdown" !default;
-$countdown-flip-width: 10.125rem !default;
-$countdown-flip-height: 10rem !default;
-$countdown-flip-min-width: 5rem !default;
+$countdown-flip-width: 162px !default;
+$countdown-flip-height: 160px !default;
+$countdown-flip-min-width: 80px !default;
+$countdown-flip-label-spacer: 16px !default;
+$countdown-flip-spacer: 30px !default;
+$countdown-flip-letter-space: 6px !default;
+
 $countdown-flip-font-weight: $font-weight-normal !default;
 $countdown-flip-color: $color-primary !default;
 $countdown-flip-background: $color-white !default;
-$countdown-flip-border: $gray-light !default;
-$countdown-flip-radius: $border-radius-lg !default;
-$countdown-flip-shadow: 0 0 80px $gray-light !default;
-$countdown-flip-label-spacer: 5px !default;
-$countdown-flip-spacer: 1.875rem !default;
-$countdown-flip-letter-space: 6px !default;
+$countdown-flip-border: rgba($color-black, 0.1) !default;
+$countdown-flip-radius: $border-radius-sm !default;
+$countdown-flip-shadow: 0 10px 35px 0 rgba($color-black, 0.1) !default;
 
 // flip
 // =====================
@@ -107,7 +108,6 @@ $countdown-flip-letter-space: 6px !default;
 
   .#{$countdowns}-flip-animation {
     .#{$countdown}-number.#{$countdowns}-curr.#{$countdowns}-top {
-      // background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,$countdown-flip-border),color-stop(100%,rgba($countdown-flip-border,0.1)));
       transition: all 250ms ease-in-out;
       transform: rotateX(-90deg);
     }
@@ -124,7 +124,7 @@ $countdown-flip-letter-space: 6px !default;
     .#{$countdown}-time {
       width: $countdown-flip-min-width;
       height: $countdown-flip-min-width;
-      margin: 1rem;
+      margin: 16px;
     }
     .#{$countdown}-number {
       line-height: $countdown-flip-min-width;

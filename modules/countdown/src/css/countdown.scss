@@ -1,62 +1,30 @@
 @import "@pluginjs/styles/variables.scss";
-@import "./_progress.scss";
-@import "./_flip.scss";
+@import "countdown.core.scss";
 
 // Vars
 // =====================
 
-$countdown: "countdown" !default;
-$countdowns: "pj-countdown" !default;
-$countdown-font-family:$font-family-base !default;
-$countdown-color: $color-black !default;
-$countdown-font-size: 4.5rem !default;
-$countdown-font-weight: $font-weight-normal !default;
-$countdown-label-size: 1rem !default;
-$countdown-label-color: $gray-darker !default;
-$countdown-spacer: 4rem !default;
+$countdown: "countdown";
+$countdowns: "pj-countdown";
+$countdown-font-size: 46px;
+$countdown-line-height: 38px;
+$countdown-label-size: 16px;
 
-// progress
+$countdown-color: $color-black;
+$countdown-font-weight: $font-weight-normal;
+$countdown-label-color: $gray-darker;
+
+// style
 // =====================
-
-.#{$countdown} {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  font-family: $countdown-font-family;
-  text-align: center;
-}
-.#{$countdown}-time {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: $countdown-spacer;
-}
 .#{$countdown}-number {
-  position: relative;
-  margin: 0;
   font-size: $countdown-font-size;
   font-weight: $countdown-font-weight;
+  line-height: $countdown-line-height;
   color: $countdown-color;
 }
+
 .#{$countdown}-label {
   font-size: $countdown-label-size;
   color: $countdown-label-color;
   text-transform: capitalize;
 }
-
-@media only screen and (max-width: 896px) {
-  .#{$countdown}-time {
-    margin: 5px;
-  }
-  
-  .#{$countdown}-number {
-    font-size: $font-size-lg;
-  }
-
-  .#{$countdown}-label {
-    font-size: $font-size-xs;
-  }
-}
-

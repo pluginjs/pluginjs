@@ -1,0 +1,51 @@
+@import "@pluginjs/styles/variables.scss";
+@import "_progress.scss";
+@import "_flip.scss";
+
+// Vars
+// =====================
+
+$countdown: "countdown" !default;
+$countdowns: "pj-countdown" !default;
+$countdown-font-family: $font-family-base !default;
+$countdown-spacer: 64px !default;
+$countdown-small-time-margin: 5px !default;
+
+// core
+// =====================
+
+.#{$countdown} {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-family: $countdown-font-family;
+  text-align: center;
+}
+
+.#{$countdown}-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: $countdown-spacer;
+}
+
+.#{$countdown}-number {
+  position: relative;
+  margin: 0;
+}
+
+@media only screen and (max-width: 896px) {
+  .#{$countdown}-time {
+    margin: $countdown-small-time-margin;
+  }
+  
+  .#{$countdown}-number {
+    font-size: $font-size-lg;
+  }
+
+  .#{$countdown}-label {
+    font-size: $font-size-xs;
+  }
+}

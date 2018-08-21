@@ -5,14 +5,18 @@
 
 $countdowns: "pj-countdown" !default;
 $countdown: "countdown" !default;
-$countdown-progress-width: 11.25rem !default;
-$countdown-progress-height: 11.25rem !default;
-$countdown-progress-min-width: 7rem !default;
+$countdown-progress-width: 180px !default;
+$countdown-progress-height: 180px !default;
+$countdown-progress-min-width: 112px !default;
+$countdown-progress-font-size: 46px !default;
+$countdown-progress-spacer: 10px !default;
+$countdown-progress-label-font-size: 14px !default;
+$countdown-progress-small-width: 148px !default;
+$countdown-progress-small-height: 148px !default;
+$countdown-progress-small-margin: 5px !default;
+
 $countdown-progress-font-weight: $font-weight-normal !default;
 $countdown-progress-color: $gray-darkest !default;
-$countdown-progress-font-size: 2.875rem !default;
-$countdown-progress-spacer: 0.6rem !default;
-$countdown-progress-label-font-size: 0.875rem !default;
 
 // progress
 // =====================
@@ -79,9 +83,9 @@ $countdown-progress-label-font-size: 0.875rem !default;
 @media only screen and (max-width: 896px) {
   .#{$countdowns}-progress {
     .#{$countdown}-time {
-      width: 148px;
-      height: 148px;
-      margin: 5px;
+      width: $countdown-progress-small-width;
+      height: $countdown-progress-small-height;
+      margin: $countdown-progress-small-margin;
 
       .#{$countdown}-number {
         font-size: $font-size-lg;
