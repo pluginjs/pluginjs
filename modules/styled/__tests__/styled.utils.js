@@ -19,6 +19,32 @@ describe('styled', () => {
       expect(actual).toBe(expected)
     })
 
+    test('should set css number style property', () => {
+      const el = document.createElement('div')
+
+      styled.setStyle('padding-right', 20, el)
+
+      const actual = getComputedStyle(el).paddingRight
+      expect(actual).toBe('20px')
+    })
+
+    test('should set number style property', () => {
+      const el = document.createElement('div')
+
+      styled.setStyle('opacity', 1, el)
+
+      const actual = getComputedStyle(el).opacity
+      expect(actual).toEqual('1')
+    })
+
+    // test('should set custom property', () => {
+    //   const el = document.createElement('div')
+
+    //   styled.setStyle('--my-var', 'hello-world', el)
+
+    //   expect(el.style.getPropertyValue("--my-var")).toBe('hello-world')
+    // })
+
     test('should set camelCased style property', () => {
       const el = document.createElement('div')
       const expected = '20px'
@@ -73,6 +99,15 @@ describe('styled', () => {
       expect(actual).toBe(expected)
     })
 
+    // test('should get custom property', () => {
+    //   const el = document.createElement('div')
+
+    //   styled.setStyle('--my-var', 'hello-world', el)
+
+    //   const actual = styled.getStyle('--my-var', el)
+    //   expect(actual).toBe('hello-world')
+    // })
+
     test('should get styles from array', () => {
       const el = document.createElement('div')
 
@@ -84,6 +119,11 @@ describe('styled', () => {
         'padding-right': '10px'
       })
     })
+  })
+
+  test('isCSSVariable', () => {
+    expect(styled.isCSSVariable('--color')).toBeTrue()
+    expect(styled.isCSSVariable('color')).toBeFalse()
   })
 
   describe('css', () => {

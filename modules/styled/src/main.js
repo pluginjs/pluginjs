@@ -20,10 +20,40 @@ export const getDefaultView = el => {
   return view
 }
 
+const isCssNumber = name => {
+  return ![
+    'animationIterationCount',
+    'columnCount',
+    'fillOpacity',
+    'flexGrow',
+    'flexShrink',
+    'fontWeight',
+    'lineHeight',
+    'opacity',
+    'order',
+    'orphans',
+    'widows',
+    'zIndex',
+    'zoom'
+  ].includes(name)
+}
+
+export const isCSSVariable = name => {
+  return /^--/.test(name)
+}
+
 export const setStyle = (key, value, el) => {
   if (isString(key) && isElement(el)) {
     if (value || value === 0) {
-      el.style[camelize(key, false)] = value
+      if (isCSSVariable(key)) {
+        el.style.setProperty(key, value)
+      } else {
+        key = camelize(key, false)
+        if (isNumeric(value) && isCssNumber(key)) {
+          value += 'px'
+        }
+        el.style[key] = value
+      }
     } else {
       el.style.removeProperty(dasherize(key))
     }
@@ -35,7 +65,9 @@ export const setStyle = (key, value, el) => {
     let prop
 
     for (prop in key) {
-      setStyle(prop, key[prop], el)
+      if (Object.prototype.hasOwnProperty.call(key, prop)) {
+        setStyle(prop, key[prop], el)
+      }
     }
   }
 
@@ -55,9 +87,13 @@ export const getStyle = (key, el) => {
     return value
   }
 
+  if (!isCSSVariable(key)) {
+    key = dasherize(key)
+  }
+
   value = getDefaultView(el)
     .getComputedStyle(el, '')
-    .getPropertyValue(dasherize(key))
+    .getPropertyValue(key)
   return isNumeric(value) ? parseFloat(value) : value
 }
 
