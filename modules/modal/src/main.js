@@ -3,7 +3,7 @@ import { deepMerge, compose } from '@pluginjs/utils'
 import { isObject, isFunction } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, parseHTML, query, data } from '@pluginjs/dom'
+import { append, parseHTML, query, data, remove } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -170,21 +170,25 @@ class Modal extends GlobalComponent {
     )
 
     const animationendCallback = () => {
-      // console.log(this.options)
       if (!this.options.autoDestroy) {
         compose(
-          removeEvent('animationend'),
+          removeEvent(this.eventName('animationend'), this.$element),
           addClass('pj-modal-destory')
         )(this.$element)
         this.enter('show')
         this.removeOverflow()
       } else {
-        this.destroy()
         this.removeOverflow()
+        this.destroy()
       }
     }
 
-    bindEvent('animationend', animationendCallback, this.$element)
+    bindEvent(
+      this.eventName('animationend'),
+      animationendCallback,
+      this.$element
+    )
+
     // trigger close
     this.trigger(EVENTS.CLOSE)
     this.leave('opened')
@@ -432,10 +436,10 @@ class Modal extends GlobalComponent {
   destroy() {
     if (this.is('initialized')) {
       this.leave('initialized')
-      this.$element.parentNode.removeChild(this.$element)
     }
-
     this.trigger(EVENTS.DESTROY)
+    remove(this.$element)
+
     super.destroy()
   }
 

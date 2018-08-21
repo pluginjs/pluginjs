@@ -30,7 +30,7 @@ const basicModal = {
   }
 }
 const element = query('#animation .modal')
-element.addEventListener('click', () => {
+element.addEventListener('click', event => {
   // const data = event.target.dataset.effect
   const data = getData('effect', event.target)
   basicModal.effect = data
