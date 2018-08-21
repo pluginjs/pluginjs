@@ -2,7 +2,7 @@ import templateEngine from '@pluginjs/template'
 import { deepMerge, compose } from '@pluginjs/utils'
 import { isObject, isFunction } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEvent, bindEventOnce, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, query, data, remove } from '@pluginjs/dom'
 import {
   eventable,
@@ -183,7 +183,7 @@ class Modal extends GlobalComponent {
       }
     }
 
-    bindEvent(
+    bindEventOnce(
       this.eventName('animationend'),
       animationendCallback,
       this.$element

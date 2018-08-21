@@ -222,7 +222,7 @@ class Toast extends GlobalComponent {
       addClass(`${this.classes.NAMESPACE}-contentOut`, this.$buttons)
     }
 
-    bindEvent(
+    bindEventOnce(
       this.eventName('animationend'),
       () => {
         remove(this.$element)

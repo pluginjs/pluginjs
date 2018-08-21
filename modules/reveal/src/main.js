@@ -136,7 +136,7 @@ class Reveal extends Component {
         this.show()
       }
 
-      bindEvent(this.eventName('animationend'), effectEndCallback, this.element)
+      bindEventOnce(this.eventName('animationend'), effectEndCallback, this.element)
     }
   }
 

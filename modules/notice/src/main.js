@@ -4,7 +4,7 @@ import GlobalComponent from '@pluginjs/global-component'
 import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent } from '@pluginjs/events'
+import { bindEvent, bindEventOnce } from '@pluginjs/events'
 import { append, parseHTML, query, remove, data } from '@pluginjs/dom'
 import {
   eventable,
@@ -163,7 +163,7 @@ class Notice extends GlobalComponent {
       removeClass(`${this.classes.NAMESPACE}-Inbottom`, this.$element)
       addClass(`${this.classes.NAMESPACE}-Outbottom`, this.$element)
     }
-    bindEvent(
+    bindEventOnce(
       this.eventName('animationend'),
       () => {
         this.destroy()

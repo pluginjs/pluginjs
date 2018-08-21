@@ -169,8 +169,7 @@ class Window extends Base {
     removeClass(this.getClass('{namespace}-show'), this.window)
     this.addClass(this.window, 'out')
 
-    // bindEvent( 'animationend', this.callback.bind(this))
-    // this.window.on('animationend', this.callback.bind(this))
+    // bindEventOnce( 'animationend', this.callback.bind(this))
   }
 
   overlayShow() {

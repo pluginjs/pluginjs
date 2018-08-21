@@ -141,7 +141,7 @@ class Lens extends Base {
         this.addClass(this.lens, 'in')
       } else {
         this.addClass(this.lens, 'out')
-        bindEvent(
+        bindEventOnce(
           this.instance.eventName('animationend'),
           this.callback.bind(this),
           this.lens
