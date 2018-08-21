@@ -208,21 +208,21 @@ class Hotspots extends Component {
     })
     this.$hotspots.map(
       compose(
-        bindEvent('popover:show', ({ detail: { instance } }) => {
+        bindEvent('popover:show', (e, instance) => {
           addClass(this.classes.HOTSPOTACTIVE, instance.element)
           this.trigger(EVENTS.POPOVERSHOW, instance)
         }),
-        bindEvent('popover:shown', ({ detail: { instance } }) => {
+        bindEvent('popover:shown', (e, instance) => {
           this.trigger(EVENTS.POPOVERSHOWN, instance)
         }),
-        bindEvent('popover:inserted', ({ detail: { instance } }) => {
+        bindEvent('popover:inserted', (e, instance) => {
           this.trigger(EVENTS.POPOVERINSERTED, instance)
         }),
-        bindEvent('popover:hide', ({ detail: { instance } }) => {
+        bindEvent('popover:hide', (e, instance) => {
           removeClass(this.classes.HOTSPOTACTIVE, instance.element)
           this.trigger(EVENTS.POPOVERHIDE, instance)
         }),
-        bindEvent('popover:hidden', ({ detail: { instance } }) => {
+        bindEvent('popover:hidden', (e, instance) => {
           this.trigger(EVENTS.POPOVERHIDDEN, instance)
         })
       )
