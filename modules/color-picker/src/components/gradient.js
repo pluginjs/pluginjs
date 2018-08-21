@@ -49,6 +49,7 @@ class Gradient {
     this.$angle.value = 90
     this.bind()
   }
+
   build() {
     this.$actionBar = parseHTML(
       `<div class="${this.classes.GRADIENTBAR}"><div class=${
@@ -122,7 +123,7 @@ class Gradient {
   }
   bind() {
     bindEvent(
-      this.instance.selfEventName('colorPicker:switchModule'),
+      this.instance.selfEventName('switchModule'),
       () => {
         if (this.instance.is('gradientModule')) {
           this.update()
@@ -132,7 +133,7 @@ class Gradient {
     )
 
     bindEvent(
-      this.instance.selfEventName('colorPicker:change'),
+      this.instance.selfEventName('change'),
       () => {
         if (this.instance.is('gradientModule')) {
           this.update()
@@ -142,7 +143,7 @@ class Gradient {
     )
 
     bindEvent(
-      this.instance.selfEventName('colorPicker:wheelChange'),
+      this.instance.selfEventName('wheelChange'),
       ({
         detail: {
           data: [angle]

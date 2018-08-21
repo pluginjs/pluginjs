@@ -18,6 +18,7 @@ class Hex {
     this.element = element
     this.classes = this.instance.classes
     this.opac = 100
+    console.log(this.instance.asColor)
     this.mode = this.instance.asColor.toHEX()
     this.classify = 'HEX'
     this.HSL = this.instance.asColor.toHSL().toUpperCase()
@@ -50,8 +51,10 @@ class Hex {
     this.element.append($selector, this.$opac)
 
     this.$el = query(`.${this.classes.HEXMODE}>div>div`, this.element)
-    this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
+    console.log(this.$el)
+    // this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
     this.dropdown = Dropdown.of(this.$el, {
+      target: '+',
       imitateSelect: true,
       value: this.classify,
       // width: parent(this.$selector),
@@ -62,7 +65,7 @@ class Hex {
 
   bind() {
     bindEvent(
-      this.instance.selfEventName('colorPicker:change'),
+      this.instance.selfEventName('change'),
       ({
         detail: {
           data: [color]
@@ -84,6 +87,7 @@ class Hex {
     )
 
     this.dropdown.options.onChange = res => {
+      console.log(1)
       this.updateColor(res.innerText)
 
       // this.update(this.instance.asColor)

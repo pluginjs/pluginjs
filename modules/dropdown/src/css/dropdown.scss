@@ -30,7 +30,8 @@ $dropdown-space-x-left: $dropdown-space-x;
 // Theme
 // =====================
 .#{$dropdown} {
-  min-width: $dropdown-min-width;
+  z-index: 1000;
+  max-width: $dropdown-min-width;
   font-size: $dropdown-font-size;
   color: $dropdown-color;
   background-color: $dropdown-bg;

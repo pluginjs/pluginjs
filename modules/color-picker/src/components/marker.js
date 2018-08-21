@@ -35,7 +35,7 @@ class Marker {
 
   bind() {
     bindEvent(
-      this.instance.selfEventName('colorPicker:change'),
+      this.instance.selfEventName('change'),
       ({
         detail: {
           data: [color]

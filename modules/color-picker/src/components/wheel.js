@@ -21,7 +21,7 @@ class Wheel {
   bind() {
     // reset origin
     bindEvent(
-      this.instance.selfEventName('colorPicker:switchModule'),
+      this.instance.selfEventName('switchModule'),
       ({
         detail: {
           data: [module]

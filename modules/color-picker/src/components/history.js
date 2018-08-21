@@ -35,7 +35,7 @@ class History {
     const that = this
 
     bindEvent(
-      this.instance.selfEventName('colorPicker:update'),
+      this.instance.selfEventName('update'),
       ({
         detail: {
           data: [color]

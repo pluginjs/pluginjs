@@ -16,15 +16,15 @@ class Preview {
     bindEvent(
       this.instance.eventName('click'),
       () => {
-        if (!this.instance.is('disabled')) {
-          this.instance.openPanel()
-        }
+        // if (!this.instance.is('disabled')) {
+        this.instance.openPanel()
+        // }
       },
       this.element
     )
 
     bindEvent(
-      this.instance.selfEventName('colorPicker:change'),
+      this.instance.selfEventName('change'),
       ({
         detail: {
           data: [color]

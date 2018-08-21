@@ -37,7 +37,7 @@ class Alpha {
         const pointerY = parseInt(getStyle('top', this.$pointer), 10)
 
         bindEvent(
-          this.eventNameWithId('mousemove'),
+          this.instance.eventNameWithId('mousemove'),
           // identity: this.$pointer,
           e => {
             const size = e.pageY - this.offset + pointerY
@@ -47,7 +47,7 @@ class Alpha {
         )
 
         bindEvent(
-          this.eventNameWithId('mouseup'),
+          this.instance.eventNameWithId('mouseup'),
           () => {
             removeEvent(
               this.instance.eventNameWithId('mousemove'),
@@ -62,16 +62,14 @@ class Alpha {
       },
       this.element
     )
-
+    console.log(this.instance.element)
     // global event
     bindEvent(
-      this.instance.selfEventName('colorPicker:change'),
-      ({
-        detail: {
-          data: [color]
-        }
-      }) => {
-        this.position(color)
+      this.instance.selfEventName('change'),
+      (e, el, data, D) => {
+        console.log(D)
+        console.log(1)
+        this.position(data)
       },
       this.instance.element
     )

@@ -36,7 +36,7 @@ class Hue {
         const pointerY = parseInt(getStyle('top', this.$pointer), 10)
 
         bindEvent(
-          this.eventNameWithId('mousemove'),
+          this.instance.eventNameWithId('mousemove'),
           e => {
             const size = e.pageY - this.offset + pointerY
             this.move(size)
@@ -45,9 +45,12 @@ class Hue {
         )
 
         bindEvent(
-          this.eventNameWithId('mouseup'),
+          this.instance.eventNameWithId('mouseup'),
           () => {
-            removeEvent(this.eventNameWithId('mousemove'), window.document)
+            removeEvent(
+              this.instance.eventNameWithId('mousemove'),
+              window.document
+            )
             // removeEvent('mouseup', window.document)
           },
           window.document
@@ -60,13 +63,9 @@ class Hue {
 
     // global event
     bindEvent(
-      this.instance.selfEventName('colorPicker:change'),
-      ({
-        detail: {
-          data: [color]
-        }
-      }) => {
-        this.position(color)
+      this.instance.selfEventName('change'),
+      (e, el, data) => {
+        this.position(data)
       },
       this.instance.element
     )

@@ -40,7 +40,7 @@ class Saturation {
         const pointerX = parseInt(getStyle('left', this.$pointer), 10)
 
         bindEvent(
-          this.eventNameWithId('mousemove'),
+          this.instance.eventNameWithId('mousemove'),
           e => {
             const sizeY = e.pageY - this.offsetY + pointerY
             const sizeX = e.pageX - this.offsetX + pointerX
@@ -49,9 +49,12 @@ class Saturation {
           window.document
         )
         bindEvent(
-          this.eventNameWithId('mouseup'),
+          this.instance.eventNameWithId('mouseup'),
           () => {
-            removeEvent(this.eventNameWithId('mousemove'), window.document)
+            removeEvent(
+              this.instance.eventNameWithId('mousemove'),
+              window.document
+            )
           },
           window.document
         )
@@ -61,13 +64,10 @@ class Saturation {
     )
     // global event
     bindEvent(
-      this.instance.selfEventName('colorPicker:change'),
-      ({
-        detail: {
-          data: [color]
-        }
-      }) => {
-        this.position(color)
+      this.instance.selfEventName('change'),
+      (e, el, data) => {
+        console.log(data)
+        this.position(data)
       },
       this.instance.element
     )
