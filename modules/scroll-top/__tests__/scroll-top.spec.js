@@ -25,15 +25,13 @@ describe('ScrollTop', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const scrollTop = new ScrollTop(element)
+      const scrollTop = new ScrollTop({})
       expect(scrollTop).toBeObject()
       expect(scrollTop.options.theme).toEqual('default')
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const scrollTop = new ScrollTop(element)
+      const scrollTop = new ScrollTop({})
 
       expect(scrollTop.options).toBeObject()
     })
@@ -41,53 +39,42 @@ describe('ScrollTop', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const element = document.createElement('div')
-      const instance = ScrollTop.of(element)
+      const instance = ScrollTop.of({})
       expect(instance.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const element = document.createElement('div')
-      const instance = ScrollTop.of(element)
+      const instance = ScrollTop.of({})
       expect(instance.destroy()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    let element
     let api
-
-    beforeEach(() => {
-      element = document.createElement('div')
-    })
 
     test('should trigger ready event', () => {
       let called = 0
 
-      element.addEventListener('scrollTop:ready', () => {
-        called++
+      api = ScrollTop.of({
+        onReady() {
+          called++
+        }
       })
-
-      api = ScrollTop.of(element)
       expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    let element
     let api
-
-    beforeEach(() => {
-      element = document.createElement('div')
-      api = ScrollTop.of(element)
-    })
 
     test('should trigger destroy event', () => {
       let called = 0
 
-      element.addEventListener('scrollTop:destroy', () => {
-        called++
+      api = ScrollTop.of({
+        onDestroy() {
+          called++
+        }
       })
 
       api.destroy()
@@ -98,15 +85,11 @@ describe('ScrollTop', () => {
   })
 
   describe('enable()', () => {
-    let element
     let api
 
-    beforeEach(() => {
-      element = document.createElement('div')
-      api = ScrollTop.of(element)
-    })
-
     test('should enable the plugin', () => {
+      api = ScrollTop.of()
+
       api.disable()
       api.enable()
 
@@ -116,8 +99,10 @@ describe('ScrollTop', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      element.addEventListener('scrollTop:enable', () => {
-        called++
+      api = ScrollTop.of({
+        onEnable() {
+          called++
+        }
       })
 
       api.enable()
@@ -127,15 +112,11 @@ describe('ScrollTop', () => {
   })
 
   describe('disable()', () => {
-    let element
     let api
 
-    beforeEach(() => {
-      element = document.createElement('div')
-      api = ScrollTop.of(element)
-    })
-
     test('should disable the plugin', () => {
+      api = ScrollTop.of({})
+
       api.disable()
 
       expect(api.is('disabled')).toBeTrue()
@@ -144,8 +125,10 @@ describe('ScrollTop', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      element.addEventListener('scrollTop:disable', () => {
-        called++
+      api = ScrollTop.of({
+        onDisable() {
+          called++
+        }
       })
 
       api.disable()

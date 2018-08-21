@@ -44,7 +44,7 @@ export const defaults = {
   theme: 'default',
   locale: 'en',
   localeFallbacks: true,
-  throttle: undefined
+  throttle: null
 }
 
 export const dependencies = ['scroll']
