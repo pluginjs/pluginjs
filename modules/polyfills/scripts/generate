@@ -34,7 +34,7 @@ const getPolyfillCode = function(feature) {
       getContent(`${featureUrl}/detect.js`),
       getContent(`${featureUrl}/polyfill.js`)
     ]).then(function(contents) {
-      let detect = contents[0].replace(/\s*$/, '').trim() || null;
+      let detect = contents[0].replace(/\s*$/, '').replace(/this/g, 'window').trim() || null;
       let code = contents[1].trim();
 
       resolve({

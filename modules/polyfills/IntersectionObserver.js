@@ -1,6 +1,6 @@
 /* eslint-disable */
-if(!('IntersectionObserver' in this &&
-'IntersectionObserverEntry' in this)) {
+if(!('IntersectionObserver' in window &&
+'IntersectionObserverEntry' in window)) {
 /**
  * Copyright 2016 Google Inc. All Rights Reserved.
  *

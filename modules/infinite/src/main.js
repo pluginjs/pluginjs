@@ -69,20 +69,21 @@ class Infinite extends Component {
       return
     }
 
-    ScrollEnd.on(() => {
+    this.scrollEndHandler = () => {
       this.stick = this.getContainerOfset()
       this.currentScrollOffset = this.getScrollDown()
 
       if (this.stick <= this.currentScrollOffset) {
         this.next()
       }
-    })
+    }
+    ScrollEnd.on(this.scrollEndHandler)
 
     this.enter('bind')
   }
 
   unbind() {
-    ScrollEnd.off()
+    ScrollEnd.off(this.scrollEndHandler)
 
     this.leave('bind')
   }
