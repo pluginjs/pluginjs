@@ -9,6 +9,7 @@ $dropdown-box-shadow: 0 20px 30px 0
 rgba(0, 0, 0, 0.05);
 $dropdown-border-color: $gray-light;
 $dropdown-border-radius: $border-radius-base;
+$dropdown-font-family: $font-family-base;
 $dropdown-font-size: $font-size-sm;
 $dropdown-item-hover-bg: $gray-lighter;
 $dropdown-item-icon-margin-right: 10px;
@@ -31,7 +32,8 @@ $dropdown-space-x-left: $dropdown-space-x;
 // =====================
 .#{$dropdown} {
   z-index: 1000;
-  max-width: $dropdown-min-width;
+  min-width: $dropdown-min-width;
+  font-family: $dropdown-font-family;
   font-size: $dropdown-font-size;
   color: $dropdown-color;
   background-color: $dropdown-bg;
@@ -84,8 +86,6 @@ $dropdown-space-x-left: $dropdown-space-x;
   }
   
   &-item {
-    display: flex;
-    align-items: center;
     padding: $dropdown-space-y $dropdown-space-x;
     
     .icon {

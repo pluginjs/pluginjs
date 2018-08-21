@@ -6,12 +6,12 @@ $tooltip: "pj-tooltip" !default;
 $tooltip-zindex: $zindex-tooltip !default;
 $tooltip-font-family: $font-family-base !default;
 $tooltip-font-size: $font-size-sm !default;
-$tooltip-max-width: 14 * $tooltip-font-size !default;
+$tooltip-max-width: 196px !default;
 $tooltip-color: $color-white !default;
 $tooltip-bg: $gray-darkest !default;
 $tooltip-opacity: 0.9 !default;
-$tooltip-padding-y: 0.7 * $tooltip-font-size !default;
-$tooltip-padding-x: 0.93 * $tooltip-font-size !default;
+$tooltip-padding-y: 9.8px !default;
+$tooltip-padding-x: 13px !default;
 $tooltip-margin: 3px !default;
 $tooltip-border-radius: $border-radius-base !default;
 $tooltip-arrow-width: 5px !default;
@@ -23,8 +23,8 @@ $tooltip-light-bg: $color-white !default;
 $tooltip-light-arrow-color: $tooltip-light-bg !default;
 $tooltip-shadow-box-shadow: $box-shadow-5 !default;
 
-$tooltip-btn-padding-y: 0.89 * $tooltip-font-size !default;
-$tooltip-btn-padding-x: 1.94 * $tooltip-font-size !default;
+$tooltip-btn-padding-y: 12.46px !default;
+$tooltip-btn-padding-x: 21.76px !default;
 
 @mixin reset-text {
   font-family: $font-family-base;

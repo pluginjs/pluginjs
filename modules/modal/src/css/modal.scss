@@ -2,44 +2,47 @@
 @import "modal.core";
 // Vars
 // =====================
-$modal-title-font-size: 20px !default;
-$modal-width: 480px !default;
-$modal-sm-width: 450px !default;
+$modal-width: 480px;
+$modal-sm-width: 450px;
 
 //overlay
-$modal-close-padding: 1 * $modal-font-size !default;
-$modal-close-font-Size: 1.4 * $modal-font-size !default;
-$modal-duration: 0.3s !default;
-$modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15) !default;
+$modal-close-padding: 14px;
+$modal-close-font-Size: 19.6px;
+$modal-duration: 0.3s;
+$modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
 
 //close
-$modal-close-color: $gray-dark !default;
-$modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15) !default;
+$modal-close-color: $gray-dark;
+$modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
 
 // btn
-$modal-btn-padding-y: 1 * $modal-font-size !default;
-$modal-btn-padding-x: 2.2 * $modal-font-size !default;
+$modal-btn-padding-y: 14px;
+$modal-btn-padding-x: 30.8px;
 
 //prompt
-$modal-prompt-title-bgColor: $color-primary !default;
-$modal-prompt-title-padding:  13px 20px 11px !default;
-$modal-prompt-body-padding: 25px 28px 26px !default;
-$modal-wideDialog-width: 675px !default;
+$modal-prompt-padding: 0 0 28px;
+$modal-prompt-title-font-size: 18px;
+$modal-prompt-title-bgColor: $color-primary;
+$modal-prompt-title-padding:  13px 20px 11px;
+$modal-prompt-buttons-padding-right: 28px;
+$modal-prompt-close-padding: 16px;
+$modal-prompt-body-padding: 25px 28px 26px;
+$modal-wideDialog-width: 675px;
 
 //verification
-$modal-vertification-bgColor: $color-white !default;
-$modal-vertification-color: $color-black !default;
-$modal-vertification-borderClor: $gray-border !default;
+$modal-vertification-bgColor: $color-white;
+$modal-vertification-color: $color-black;
+$modal-vertification-borderClor: $gray-border;
 
 .#{$modal}-dialog,
 .#{$modal}-prompt,
 .#{$modal}-verification,
 .#{$modal}-wideDialog {
-  padding: 0 0 28px;
+  padding: $modal-prompt-padding;
   
   .#{$modal}-title {
     padding: $modal-prompt-title-padding;
-    font-size: 18px;
+    font-size: $modal-prompt-title-font-size;
     color: $color-white;
     background: $modal-prompt-title-bgColor;
   }
@@ -49,7 +52,7 @@ $modal-vertification-borderClor: $gray-border !default;
   }
   
   .#{$modal}-buttons {
-    padding-right: 28px;
+    padding-right: $modal-prompt-buttons-padding-right;
     margin: 0;
   }
 }
@@ -58,7 +61,7 @@ $modal-vertification-borderClor: $gray-border !default;
 .#{$modal}-prompt,
 .#{$modal}-wideDialog {
   .#{$modal}-close {
-    padding: 16px;
+    padding: $modal-prompt-close-padding;
     color: $color-white;
     opacity: 1;
   }

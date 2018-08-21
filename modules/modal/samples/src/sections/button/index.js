@@ -42,11 +42,11 @@ query('.btn-location', root).addEventListener('click', () => {
     buttons: {
       btn1: {
         title: 'cancel',
-        class: 'pj-btn pj-btn-lpd pj-btn-outline'
+        class: 'pj-btn pj-modal-btn-alignment pj-btn-outline'
       },
       btn2: {
         title: 'delete',
-        class: 'pj-btn pj-btn-lpd pj-btn-danger'
+        class: 'pj-btn pj-modal-btn-alignment pj-btn-danger'
       }
     }
   })

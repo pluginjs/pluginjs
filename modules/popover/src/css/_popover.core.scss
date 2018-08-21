@@ -5,40 +5,40 @@
 $popover: "pj-popover" !default;
 $popover-font-family: $font-family-base !default;
 $popover-font-size: $font-size-sm !default;
-$popover-max-width: 20.42 * $popover-font-size !default;
+$popover-max-width: 286px !default;
 $popover-max-height: 50vh !default;
 $popover-color: $text-color !default;
 $popover-zindex: $zindex-popover !default;
-$popover-bg: #fff !default;
+$popover-bg: $color-white !default;
 $popover-border-width: 1px !default;
 $popover-opacity: 0.9 !default;
 $popover-border-color: $border-color !default;
 $popover-border-radius: $border-radius-base !default;
 $popover-box-shadow: 0 5px 20px 0
-rgba(0, 0, 0, 0.1) !default;
-$popover-margin-spacer: 1.42 * $popover-font-size !default;
-$popover-close-spacer-y: 0.71  * $popover-font-size !default;
-$popover-close-spacer-x: 0.71  * $popover-font-size !default;
-$popover-spacer-x: 1.714 * $popover-font-size !default;
-$popover-spacer-y: 1.33 * $popover-font-size !default;
+rgba($color-black, 0.1) !default;
+$popover-margin-spacer: 19.88px !default;
+$popover-close-spacer-y: 9.94px !default;
+$popover-close-spacer-x: 9.94px !default;
+$popover-spacer-x: 24px !default;
+$popover-spacer-y: 18.62px !default;
 $popover-close-font-size: $font-size-lg !default;
 $popover-close-color: $gray-dark !default;
 $popover-close-line-height: 1em !default;
 $popover-title-spacer: $popover-spacer-y $popover-spacer-x 0 $popover-spacer-x !default;
-$popover-content-margin-top: 0.7 * $popover-font-size !default;
+$popover-content-margin-top: 9.8px !default;
 $popover-content-link-color: $color-primary !default;
 $popover-title-font-size: $font-size-lg !default;
 $popover-title-line-height: 1.5em !default;
 $popover-content-spacer: 0 $popover-spacer-x !default;
-$popover-arrow-width: 0.71  * $popover-font-size !default;
+$popover-arrow-width: 9.94px !default;
 $popover-arrow-color: $popover-bg !default;
 $popover-arrow-outer-width: ($popover-arrow-width + 1px) !default;
 $popover-arrow-outer-color: $popover-bg !default;
-$popover-arrow-offset-x: 0.71  * $popover-font-size !default;
-$popover-arrow-offset-y: 0.71  * $popover-font-size !default;
+$popover-arrow-offset-x: 9.94px !default;
+$popover-arrow-offset-y: 9.94px !default;
 
-$popover-btn-padding-y: 0.893 * $popover-font-size !default;
-$popover-btn-padding-x: 2.15 * $popover-font-size !default;
+$popover-btn-padding-y: 12.5 !default;
+$popover-btn-padding-x: 30.1px !default;
 
 @mixin reset-text {
   font-family: $font-family-base;
@@ -170,6 +170,10 @@ $popover-btn-padding-x: 2.15 * $popover-font-size !default;
 
       &::before {
         left: $popover-arrow-offset-x;
+      }
+
+      &::after {
+        left: $popover-arrow-offset-x + 1;
       }
     }
 
@@ -352,10 +356,6 @@ $popover-btn-padding-x: 2.15 * $popover-font-size !default;
     opacity: 0.9;
   }
 
-  // &::before {
-  //   font-size: 1em;
-  //   content: "\00d7";
-  // }
   &:not(:disabled):hover {
     background: initial;
   }

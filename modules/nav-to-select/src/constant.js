@@ -79,9 +79,6 @@ export const defaults = {
     if (getData('linkable', this) !== false) {
       // document.location.href = this.value
     }
-    const selectin = this.selectedIndex
-    const selectText = this[selectin].text.replace(/\s|–/g, '')
-    this[selectin].text = selectText
   }
 }
 

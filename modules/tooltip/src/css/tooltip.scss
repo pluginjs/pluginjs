@@ -2,12 +2,12 @@
 @import "tooltip.core";
 // Vars
 // =====================
-$tooltip-font-size: $font-size-lg !default;
-$tooltip-light-box-shadow: $box-shadow-base !default;
+$tooltip-font-size: $font-size-lg;
+$tooltip-light-box-shadow: $box-shadow-base;
 
 //base style vars
-$tooltip-position-grid-margin-x: 6.25 * $tooltip-font-size !default;
-$tooltip-position-cell-a-margin-y: 1.25 * $tooltip-font-size !default;
+$tooltip-position-grid-margin-x: 87.5px;
+$tooltip-position-cell-a-margin-y: 17.5px;
 
 // light
 // =====================

@@ -47,6 +47,7 @@ $arrow-disable-color: rgba($color-black, 0.15) !default;
   box-sizing: border-box;
   display: inline-block;
   cursor: pointer;
+  
   .#{$arrow}-icon {
     font-size: $arrow-icon-font-size;
   }

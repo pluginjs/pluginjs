@@ -4,7 +4,6 @@
 // =====================
 $dropdown: "pj-dropdown" !default;
 $dropdown-sizer: $sizer !default;
-$dropdown-font-family: $font-family-base !default;
 
 // $dropdown-trigger-color: $gray-dark !default;
 // $dropdown-trigger-hover-color: $gray-darkest !default;
@@ -28,14 +27,18 @@ $dropdown-active-border-color: $gray-border !default;
   position: absolute;
   box-sizing: border-box;
   display: none;
-  font-family: $dropdown-font-family;
+  padding: 0;
+  margin: 0;
   text-align: left;
+  list-style: none;
 
   &-show {
     display: block;
   }
 
   &-item {
+    display: flex;
+    align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: keep-all;
@@ -49,15 +52,4 @@ $dropdown-active-border-color: $gray-border !default;
   &-item.#{$dropdown}-active {
     color: $dropdown-item-active-color;
   }
-}
-
-ul.#{$dropdown} {
-  padding: 0;
-  margin: 0;
-}
-
-li.#{$dropdown}-item {
-  margin: 0;
-
-  list-style: none;
 }

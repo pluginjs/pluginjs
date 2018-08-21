@@ -3,33 +3,33 @@
 
 // Vars
 // =====================
-$tabs: "pj-tabs" !default;
-$tabs-font-size-base: $font-size-base !default;
+$tabs: "pj-tabs";
+$tabs-font-size-base: $font-size-base;
 
-$tabs-bg-color: $color-white !default;
-$tabs-border-color: $border-color !default;
+$tabs-bg-color: $color-white;
+$tabs-border-color: $border-color;
 
-$tabs-gutter-width: -1px !default;
+$tabs-gutter-width: -1px;
 
-$tabs-label-padding-x: 1.85 * $tabs-font-size-base !default;
-$tabs-label-padding-y: 1.1 * $tabs-font-size-base !default;
+$tabs-label-padding-x: 24px;
+$tabs-label-padding-y: 14.3px;
 
-$tabs-label-color: $gray-darkest !default;
-$tabs-label-hover-color: $color-primary !default;
+$tabs-label-color: $gray-darkest;
+$tabs-label-hover-color: $color-primary;
 
-$tabs-nav-cover-height: $tabs-font-size-base !default;
-$tabs-nav-border-color: $gray-border !default;
-$tabs-nav-icon-margin-right: 0.76 * $tabs-font-size-base !default;
+$tabs-nav-cover-height: $tabs-font-size-base;
+$tabs-nav-border-color: $gray-border;
+$tabs-nav-icon-margin-right: 9.88px;
 
-$tabs-content-padding-x: 1.85 * $tabs-font-size-base !default;
-$tabs-content-padding-y: 1.85 * $tabs-font-size-base !default;
-$tabs-content-color: $gray-darker !default;
+$tabs-content-padding-x: 24px;
+$tabs-content-padding-y: 24px;
+$tabs-content-color: $gray-darker;
 
-$tabs-drop-nav-bg: $color-white !default;
-$tabs-drop-content-bg: transparent !default;
+$tabs-drop-nav-bg: $color-white;
+$tabs-drop-content-bg: transparent;
 
-$tabs-drop-nav-item-color: $gray-light !default;
-$tabs-drop-nav-item-active-color: $color-white !default;
+$tabs-drop-nav-item-color: $gray-light;
+$tabs-drop-nav-item-active-color: $color-white;
 
 // default
 // =====================

@@ -10,9 +10,10 @@ $collapse-hover-color: $color-primary;
 $collapse-hover-border-color: $color-primary;
 $collapse-border-color: $gray-border;
 $collapse-gutter-width: 1px;
-$collapse-padding: 12px 31px 12px 23px;
+$collapse-padding: 14px 31px 14px 23px;
 $collapse-header-order-title-padding: 0 31px 15px 23px;
 $collapse-header-order-content-inner-padding: 17px 23px 0 23px;
+$collapse-header-icon-font-size: $font-size-lg;
 $collapse-content-padding: 4px 23px 23px;
 $collapse-expanded-padding: 20px 23px 23px;
 $collapse-header-icon-margin-right: 11px;
@@ -21,8 +22,9 @@ $collapse-content-inner-margin: 0 22px;
 $collapse-title-button-padding: 4px 14px;
 
 //arrow
-$collapse-arrow-right: 19px;
-$collapse-arrow-top: 15px;
+$collapse-arrow-right: 14px;
+$collapse-arrow-top: 16px;
+$collapse-arrow-active-color: $color-primary;
 $collapse-arrow-color: $gray-dark;
 $collapse-toggle-margin-left: 19px;
 
@@ -42,6 +44,24 @@ $collapse-content-button-border-radius: $border-radius-base;
   border-style: solid;
   border-width: $collapse-gutter-width;
 
+  &-header {
+    padding: $collapse-padding;
+    outline: none;
+  
+    .icon {
+      margin-right: $collapse-header-icon-margin-right;
+      font-size: $collapse-header-icon-font-size;
+    }
+  
+    &:hover {
+      color: $collapse-hover-color;
+  
+      .#{$collapse}-arrow {
+        color: $collapse-arrow-color;
+      }
+    }
+  }
+
   &-expanded {
     .#{$collapse}-arrow {
       color: $collapse-hover-color;
@@ -54,6 +74,12 @@ $collapse-content-button-border-radius: $border-radius-base;
 
         .#{$collapse}-arrow {
           transform: rotate(-90deg);
+        }
+      }
+
+      &:hover {
+        .#{$collapse}-arrow {
+          color: $collapse-arrow-active-color;
         }
       }
     }
@@ -78,6 +104,7 @@ $collapse-content-button-border-radius: $border-radius-base;
     margin-top: 0;
     margin-left: $collapse-toggle-margin-left;
     color: inherit;
+    cursor: pointer;
     background-color: transparent;
     border: 1px solid $collapse-content-button-border-color;
     border-radius: $collapse-content-button-border-radius;
@@ -90,23 +117,6 @@ $collapse-content-button-border-radius: $border-radius-base;
   }
 }
 
-.#{$collapse}-header {
-  padding: $collapse-padding;
-  outline: none;
-
-  .icon {
-    margin-right: $collapse-header-icon-margin-right;
-  }
-
-  &:hover {
-    color: $collapse-hover-color;
-
-    .#{$collapse}-arrow {
-      color: $collapse-arrow-color;
-    }
-  }
-}
-
 .#{$collapse}-content-inner {
   padding: $collapse-content-padding;
   color: $collapse-content-inner-color;
@@ -115,6 +125,7 @@ $collapse-content-button-border-radius: $border-radius-base;
     padding: $collapse-content-button-padding;
     margin-top: $collapse-content-button-margin-top;
     color: inherit;
+    cursor: pointer;
     background-color: transparent;
     border: 1px solid $collapse-content-button-border-color;
     border-radius: $collapse-content-button-border-radius;

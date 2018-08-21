@@ -1,3 +1,25 @@
 @import "@pluginjs/styles/variables.scss";
-@import "@pluginjs/scrollbar/src/css/mixins/scrollbar";
 @import "scrollable.core";
+
+// var
+$scrollable-bar-size: 4px;
+$scrollable-bar-dragging-size: 10px;
+$scrollable-bar-dragging-bg: rgba(206,206,206,0.1);
+$scrollable-bar-hovering-bg: rgba(206,206,206,0.1);
+$scrollable-bar-handle-offset: 5px;
+$scrollable-bar-handle-color: $gray;
+$scrollable-bar-handle-dragging-color: #cecece;
+
+.#{$scrollable} {
+  @include scrollbar(
+    $scrollable-bar,
+    $scrollable-bar-size,
+    $scrollable-bar-dragging-size,
+    $scrollable-bar-dragging-bg,
+    $scrollable-bar-hovering-bg,
+    $scrollable-bar-handle-offset,
+    $scrollable-bar-handle-color,
+    $scrollable-bar-handle-hovering-color,
+    $scrollable-bar-handle-dragging-color
+  );
+}

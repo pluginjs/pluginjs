@@ -5,7 +5,6 @@
 $modal: "pj-modal" !default;
 $modal-font-family: $font-family-base !default;
 $modal-font-size: $font-size-sm !default;
-$modal-title-font-size: 20px !default;
 $modal-sm-width: 450px !default;
 $modal-bg: $color-white !default;
 $modal-border-radius: $border-radius-base !default;
@@ -14,16 +13,23 @@ $modal-body-maxHeight: 50vh !default;
 $modal-body-fotsize: 18px !default;
 $modal-z-index: 10000 !default;
 
+//title
+$modal-title-font-size: 16px !default;
+$modal-title-icon-margin-right: 20px !default;
+$modal-title-icon-font-size: 30px !default;
+$modal-title-icon-padding: 10px 0 !default;
 //overlay
-$modal-overlay-bgColor: rgba(0, 0, 0, 0.4) !default;
+$modal-overlay-bgColor: rgba($color-black, 0.4) !default;
 //close
 $modal-duration: 0.3s !default;
 
 //container
-$modal-container-padding: 2 * $modal-font-size !default;
+$modal-container-font-size: $font-size-sm !default;
+$modal-container-bg: $modal-bg !default;
+$modal-container-padding: 28px !default;
 $modal-container-boxShadow: $box-shadow-5 !default;
-$modules-confirm-buttons-margin: 2 * $modal-font-size !default;
-$modal-confirm-button-margin: 0.7 * $modal-font-size !default;
+$modal-confirm-buttons-margin: 28px !default;
+$modal-confirm-button-margin: 9.8px !default;
 $modal-container-titlle-margin-bottom: 10px !default;
 
 // btn
@@ -72,33 +78,33 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
   max-width: 100%;
   padding: $modal-container-padding;
   overflow: hidden;
-  font-size: $font-size-sm;
+  font-size: $modal-container-font-size;
   text-align: left;
-  background: $modal-bg;
+  background: $modal-container-bg;
   border-radius: $modal-border-radius;
   box-shadow: $modal-container-boxShadow;
 
   .#{$modal}-title {
+    display: flex;
+    align-content: center;
     padding-bottom: $modal-container-titlle-margin-bottom;
     margin: 0;
-    font-size: 16px;
-    font-weight: 400;
+    font-size: $modal-title-font-size;
     letter-spacing: 0.5px;
 
     .#{$modal}-icon {
-      bottom: -5px;
-      padding-right: 20px;
-      font-size: 30px;
+      margin-right: $modal-title-icon-margin-right;
+      font-size: $modal-title-icon-font-size;
     }
 
     &-center {
+      flex-direction: column;
       margin-bottom: 4px;
       text-align: center;
 
       .#{$modal}-icon {
-        display: block;
-        padding: 10px 0;
-        font-size: 30px;
+        padding: $modal-title-icon-padding;
+        margin-right: 0;
       }
     }
 
@@ -132,13 +138,12 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-top: $modules-confirm-buttons-margin;
+    margin-top: $modal-confirm-buttons-margin;
 
     button {
       height: $modal-btn-height;
       padding: $modal-btn-padding;
       margin-left: $modal-confirm-button-margin;
-      font-weight: 300;
       letter-spacing: 0.4px;
 
       &:first-child {
@@ -146,7 +151,7 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
       }
     }
 
-    .pj-btn-lpd {
+    .#{$modal}-btn-alignment {
       width: 50%;
     }
   }

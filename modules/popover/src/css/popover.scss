@@ -2,32 +2,32 @@
 @import "popover.core";
 
 //base style vars
-$popover-position-grid-margin-x: 100px !default;
-$popover-position-cell-a-margin-y: 20px !default;
+$popover-position-grid-margin-x: 100px;
+$popover-position-cell-a-margin-y: 20px;
 
-$popover-simple-spacer-x: 10px !default;
-$popover-simple-spacer-y: 10px !default;
+$popover-simple-spacer-x: 10px;
+$popover-simple-spacer-y: 10px;
 $popover-simple-title-spacer: $popover-simple-spacer-y $popover-simple-spacer-x
-0 $popover-simple-spacer-x !default;
+0 $popover-simple-spacer-x;
 $popover-simple-content-spacer: 0 $popover-simple-spacer-x
-$popover-simple-spacer-y !default;
+$popover-simple-spacer-y;
 
-$popover-dark-color: $color-white !default;
-$popover-dark-bg: $gray-darker !default;
-$popover-dark-border-color: fade-in($popover-dark-bg, 0.1) !default;
-$popover-dark-box-shadow: $box-shadow-base !default;
-$popover-dark-arrow-color: $popover-dark-bg !default;
+$popover-dark-color: $color-white;
+$popover-dark-bg: $gray-darker;
+$popover-dark-border-color: fade-in($popover-dark-bg, 0.1);
+$popover-dark-box-shadow: $box-shadow-base;
+$popover-dark-arrow-color: $popover-dark-bg;
 $popover-dark-arrow-outer-color: fade-in(
   $popover-dark-border-color,
   0.05
-) !default;
-$popover-dark-title-color: $popover-dark-color !default;
+);
+$popover-dark-title-color: $popover-dark-color;
 
 //table
-$popover-table-font-size: 9px !default;
-$popover-table-thead-bgcolor: $gray-lighter !default;
-$popover-table-padding-y: 0.4* $popover-font-size !default;
-$popover-table-padding-x: 0.6* $popover-font-size !default;
+$popover-table-font-size: 9px;
+$popover-table-thead-bgcolor: $gray-lighter;
+$popover-table-padding-y: 5.6px;
+$popover-table-padding-x: 8.4px;
 
 .#{$popover}--simple {
   .#{$popover}-content {

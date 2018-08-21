@@ -2,10 +2,10 @@
 @import "toast.core";
 // Vars
 // =====================
-$toast-btn-padding-x: 13.5px !default;
-$toast-btn-padding-y: 30px !default;
-$toast-btn-padding: $toast-btn-padding-x $toast-btn-padding-y !default;
-$toast-btn-font-size: $font-size-sm !default;
+$toast-btn-padding-x: 13.5px;
+$toast-btn-padding-y: 30px;
+$toast-btn-padding: $toast-btn-padding-x $toast-btn-padding-y;
+$toast-btn-font-size: $font-size-sm;
 
 .toast-btn {
   padding: $toast-btn-padding;

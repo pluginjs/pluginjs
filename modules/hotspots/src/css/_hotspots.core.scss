@@ -9,18 +9,19 @@ $hotspot-padding: 0.5em !default;
 $hotspot-border-width: 2px !default;
 $hotspot-text-padding-x: 1.5em !default;
 $hotspot-text-padding-y: calc(#{$hotspot-padding} - #{$hotspot-border-width}) !default;
-$hotspot-color: #fff !default;
+$hotspot-color: $color-white !default;
 $hotspot-box-shadow: $box-shadow-5 !default;
 $hotspot-opacity: 0.8 !default;
 $hotspot-active-opacity: 1 !default;
 $hotspot-hide-size: 30px !default;
 $hotspot-dot-color: $color-primary !default;
 $hotspot-dot-size: 14px !default;
-$hotspot-hover-border-color: rgba($color-primary-dark, 0.5) !default;
+$hotspot-hover-shadow: 0 0 0 12px rgba($color-primary-dark, 0.5) !default;
 $hotspot-icon-width: 32px !default;
 $hotspot-icon-height: $hotspot-icon-width !default;
 $hotspot-icon-font-size: 20px !default;
 $hotspot-icon-border-color: $gray-border !default;
+$hotspot-icon-icon-height: 18px !default;
 $hotspot-text-font-size: $font-size-base !default;
 $hotspot-sm-dot-size: 14px !default;
 $hotspot-sm-icon-font-size: 10px !default;
@@ -82,7 +83,7 @@ $hotspot-lg-hide-size: 40px !default;
 
   &:hover,
   &:active {
-    box-shadow: 0 0 0 12px $hotspot-hover-border-color;
+    box-shadow: $hotspot-hover-shadow;
   }
 }
 
@@ -99,14 +100,13 @@ $hotspot-lg-hide-size: 40px !default;
   border-radius: 100%;
 
   .icon {
-    height: 18px;
-    line-height: 20px;
+    height: $hotspot-icon-icon-height;
   }
 
   &.#{$hotspot}-solid {
     &:hover,
     &:active {
-      box-shadow: 0 0 0 12px $hotspot-hover-border-color;
+      box-shadow: $hotspot-hover-shadow;
     }
   }
 

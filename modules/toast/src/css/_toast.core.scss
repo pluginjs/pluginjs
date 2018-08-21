@@ -6,6 +6,7 @@ $toast: "pj-toast" !default;
 $toast-font-family: $font-family-base !default;
 $toast-font-size: $font-size-sm !default;
 $toast-color: $color-white !default;
+$toast-bgColor: $color-white !default;
 $toast-padding-left: 24px !default;
 $toast-padding-top: 24px !default;
 $toast-padding-right: 28px !default;
@@ -22,8 +23,11 @@ $toast-warning-color: $color-warning !default;
 $toast-danger-color: $color-danger !default;
 $toast-link-color: transparentize($gray-lightest, 0.1) !default;
 $toast-close-color: $gray-dark !default;
+$toast-close-right: 15px !default;
 $toast-close-top: 20px !default;
+$toast-close-before-font-size: 1.4em !default;
 $toast-progress-height: 15px !default;
+$toast-wrap-gutter: 20px !default;
 
 //loader
 $toast-loader-height: 4px !default;
@@ -32,6 +36,7 @@ $toast-loader-color: $gray-light !default;
 $toast-loader-inner-color: $color-primary !default;
 
 //title
+$toast-title-color: $color-black !default;
 $toast-title-margin-bottom: 6px !default;
 $toast-title-font-size: 16px !default;
 $toast-content-color: $gray-darker !default;
@@ -40,6 +45,7 @@ $toast-content-margin-top: 11px !default;
 //buttons
 $toast-buttons-border-radius: $border-radius-base !default;
 $toast-buttons-padding: 5px 16px !default;
+$toast-buttons-margin-top: 10px !default;
 $toast-buttons-margin-left: 12px !default;
 
 //icon
@@ -84,7 +90,7 @@ $toast-icon-margin-right: 0.5em !default;
   margin-top: $toast-loader-top;
   font-family: $toast-font-family;
   font-size: $toast-font-size;
-  background: #fff;
+  background: $toast-bgColor;
   border-radius: 0 0 $toast-border-radius $toast-border-radius;
   box-shadow: $toast-box-shadow;
 
@@ -136,7 +142,7 @@ $toast-icon-margin-right: 0.5em !default;
     margin-right: 0;
     margin-bottom: $toast-title-margin-bottom;
     font-size: $toast-title-font-size;
-    color: #000;
+    color: $toast-title-color;
   }
 
   .#{$toast}-loader {
@@ -169,7 +175,7 @@ $toast-icon-margin-right: 0.5em !default;
   }
 
   .#{$toast}-buttons {
-    margin-top: 10px;
+    margin-top: $toast-buttons-margin-top;
     text-align: right;
 
     .#{$toast}-btn {
@@ -188,7 +194,7 @@ $toast-icon-margin-right: 0.5em !default;
   .#{$toast}-close {
     position: absolute;
     top: $toast-close-top;
-    right: 15px;
+    right: $toast-close-right;
     padding: 0;
     color: $toast-close-color;
     text-decoration: none;
@@ -206,7 +212,7 @@ $toast-icon-margin-right: 0.5em !default;
     }
 
     &::before {
-      font-size: 1.4em;
+      font-size: $toast-close-before-font-size;
       content: "\00d7";
     }
   }
@@ -221,32 +227,32 @@ $toast-icon-margin-right: 0.5em !default;
   letter-spacing: normal;
 
   &.pj-toast-bottom-right {
-    right: 20px;
-    bottom: 20px;
+    right: $toast-wrap-gutter;
+    bottom: $toast-wrap-gutter;
   }
 
   &.pj-toast-bottom-left {
-    bottom: 20px;
-    left: 20px;
+    bottom: $toast-wrap-gutter;
+    left: $toast-wrap-gutter;
   }
 
   &.pj-toast-top-right {
-    top: 20px;
-    right: 20px;
+    top: $toast-wrap-gutter;
+    right: $toast-wrap-gutter;
   }
 
   &.pj-toast-top-left {
-    top: 20px;
-    left: 20px;
+    top: $toast-wrap-gutter;
+    left: $toast-wrap-gutter;
   }
 
   &.pj-toast-bottom-center {
-    bottom: 20px;
+    bottom: $toast-wrap-gutter;
     left: calc(50% - #{$toast-width} / 2);
   }
 
   &.pj-toast-top-center {
-    top: 20px;
+    top: $toast-wrap-gutter;
     left: calc(50% - #{$toast-width} / 2);
   }
 
@@ -267,12 +273,12 @@ $toast-icon-margin-right: 0.5em !default;
     width: $toast-middle-width;
 
     &.pj-toast-bottom-center {
-      bottom: 20px;
+      bottom: $toast-wrap-gutter;
       left: calc(50% - #{$toast-middle-width} / 2);
     }
   
     &.pj-toast-top-center {
-      top: 20px;
+      top: $toast-wrap-gutter;
       left: calc(50% - #{$toast-middle-width} / 2);
     }
   

@@ -7,6 +7,7 @@ $tabs-font-family: $font-family-base !default;
 $tabs-dropdown-zindex: $zindex-dropdown !default;
 $tabs-active-color: $color-primary !default;
 $tabs-duration: 0.5s !default;
+$tabs-nav-bgcolor: $color-white !default;
 
 // Core
 // =====================
@@ -110,7 +111,6 @@ $tabs-duration: 0.5s !default;
 
     .#{$tabs}-nav-label {
       display: block;
-      height: 1rem;
       line-height: 1;
       text-decoration: none;
 
@@ -121,14 +121,13 @@ $tabs-duration: 0.5s !default;
 
     .#{$tabs}-nav {
       position: absolute;
-      top: 1rem;
       right: auto;
       bottom: auto;
       left: 0;
       z-index: 1;
       display: none;
       width: 100%;
-      background-color: #fff;
+      background-color: $tabs-nav-bgcolor;
 
       li {
         display: block;

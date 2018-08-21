@@ -2,28 +2,28 @@
 @import "arrows.core";
 
 /* theme vars */
-$arrow-theme-size: 40px !default;
-$arrow-outline-border: 1px solid rgba($color-black, 0.2) !default;
-$arrow-circle-border-radius: 29px !default;
-$arrow-square-border-radius: $border-radius-base !default;
-$arrow-solid-bg-color: rgba($color-black, 0.2) !default;
-$arrow-solid-color: $color-white !default;
-$arrow-shadow-bgcolor: $color-white !default;
-$arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1) !default;
+$arrow-theme-size: 40px;
+$arrow-outline-border: 1px solid rgba($color-black, 0.2);
+$arrow-circle-border-radius: 29px;
+$arrow-square-border-radius: $border-radius-base;
+$arrow-solid-bg-color: rgba($color-black, 0.2);
+$arrow-solid-color: $color-white;
+$arrow-shadow-bgcolor: $color-white;
+$arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1);
 
 //light
-$arrow-light-color: $color-white !default;
-$arrow-light-hover-color: $color-primary !default;
-$arrow-light-active-color: #1d53bf !default;
-$arrow-light-outline-border-color: rgba($color-white, 0.2) !default;
-$arrow-light-outline-hover-border-color: $color-primary !default;
-$arrow-light-solid-bgcolor: rgba($color-white, 0.3) !default;
-$arrow-light-solid-color: $color-white !default;
+$arrow-light-color: $color-white;
+$arrow-light-hover-color: $color-primary;
+$arrow-light-active-color: #1d53bf;
+$arrow-light-outline-border-color: rgba($color-white, 0.2);
+$arrow-light-outline-hover-border-color: $color-primary;
+$arrow-light-solid-bgcolor: rgba($color-white, 0.3);
+$arrow-light-solid-color: $color-white;
 //disabled
-$arrow-solid-disabled-bg-color: rgba($color-black, 0.15) !default;
-$arrow-light-disabled-color: rgba($color-white, 0.4) !default;
-$arrow-light-disabled-outline-border-color: rgba($color-white, 0.1) !default;
-$arrow-light-shadow-bgcolor: #3d3d3d !default;
+$arrow-solid-disabled-bg-color: rgba($color-black, 0.15);
+$arrow-light-disabled-color: rgba($color-white, 0.4);
+$arrow-light-disabled-outline-border-color: rgba($color-white, 0.1);
+$arrow-light-shadow-disabled-bgcolor: #3d3d3d;
 
 .#{$arrow}s-outline,
 .#{$arrow}s-circle,
@@ -195,7 +195,7 @@ $arrow-light-shadow-bgcolor: #3d3d3d !default;
   &.#{$arrow}s-shadow {
     .#{$arrow}-next,
     .#{$arrow}-prev {
-      background-color: $arrow-light-shadow-bgcolor;
+      background-color: $arrow-light-shadow-disabled-bgcolor;
     }
   }
 }
