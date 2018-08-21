@@ -4,19 +4,20 @@
 // =====================
 $paginator: "pj-paginator";
 $paginator-font-family: $font-family-base !default;
-$paginator-font-size: 1rem !default;
-$paginator-font-size-xs: 0.75 * $paginator-font-size !default;
-$paginator-spacer: 1.875 * $paginator-font-size !default;
-$paginator-spacer-min: 0.875 * $paginator-font-size !default;
-$paginator-height: 1.875 * $paginator-font-size !default;
-$paginator-height-min: 1.75 * $paginator-font-size !default;
-$paginator-padding-top: 1.25 * $paginator-font-size !default;
-$paginator-padding-x: 0.5 * $paginator-font-size !default;
+$paginator-font-size: $font-size-sm !default;
+$paginator-line-height: 22px !default;
+$paginator-font-size-xs: 12px !default;
+$paginator-spacer: 30px !default;
+$paginator-spacer-min: 14px !default;
+$paginator-height: 30px !default;
+$paginator-height-min: 35px !default;
+$paginator-padding-top: 20px !default;
+$paginator-padding-x: 8px !default;
 $paginator-padding-y: $spacer-y !default;
-$paginator-link-padding: 0.375 * $paginator-font-size !default;
-$paginator-link-margin: 0.5 * $paginator-font-size !default;
-$paginator-link-margin-min: 0.1875 * $paginator-font-size !default;
-$paginator-color: $text-color !default;
+$paginator-link-padding: 6px !default;
+$paginator-link-margin: 8px !default;
+$paginator-link-margin-min: 3px !default;
+$paginator-color: $gray-darkest !default;
 $paginator-bg: $color-white !default;
 $paginator-border-width: $border-width !default;
 $paginator-border-color: $gray-border !default;
@@ -34,13 +35,12 @@ $paginator-disabled-border: $gray !default;
 // Core
 // =====================
 .#{$paginator} {
-  // box-shadow: 0 0 10px #d7d7d7;
   padding: 0 $paginator-spacer;
   font-family: $paginator-font-family;
-  font-size: $paginator-font-size-xs;
-  // color: #808c9e;
+  font-size: $paginator-font-size;
+  line-height: $paginator-line-height;
+  color: $paginator-color;
   text-align: center;
-  // display: inline-block;
   list-style: none;
   user-select: none;
 }
@@ -59,10 +59,7 @@ $paginator-disabled-border: $gray !default;
 
 .#{$paginator}-link {
   position: relative;
-  // float: left; // Collapse white-space
   box-sizing: border-box;
-  // border: $paginator-border-width solid $paginator-border-color;
-  // margin-left: -$paginator-border-width;
   padding: $paginator-link-padding;
   margin: 0 $paginator-link-margin;
   color: $paginator-color;
@@ -97,7 +94,6 @@ $paginator-disabled-border: $gray !default;
     cursor: $cursor-disabled;
     .#{$paginator}-link {
       pointer-events: none;
-      // height: 60px;
 
       &,
       &:hover,

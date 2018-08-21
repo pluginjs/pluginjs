@@ -8,3 +8,12 @@ Dots.of(element, {
     console.info(`select: ${val}`)
   }
 })
+
+const el = query('#vertical .example-vertical-light')
+Dots.of(el, {
+  type: 'light',
+  direction: 'vertical',
+  onChange(val) {
+    console.info(`select: ${val}`)
+  }
+})

@@ -3,12 +3,19 @@
 
 // Vars
 // =====================
-$dot: "pj-dot" !default;
-$dot-color: #d5d5d5 !default; //#d5d5d5
-$dot-stroke-color: $color-white !default;
-$dot-active-color: $color-primary !default;
-$dot-hover-color: rgba($color-black, 0.5) !default;
-$dot-disable-color: $gray-lighter !default;
+$dot: "pj-dot";
+$dot-color: rgba($color-black, 0.15);
+$dot-stroke-color: $color-white;
+$dot-active-color: $color-primary;
+$dot-hover-color: rgba($color-black, 0.3);
+
+// disabled
+$dot-disable-color: rgba($color-black, 0.05);
+$dot-light-disable-color: rgba($color-white, 0.05);
+
+// light
+$dot-light-color: rgba($color-white, 0.15);
+$dot-light-hover-color: $color-white;
 
 // Dots
 // =====================
@@ -26,22 +33,14 @@ $dot-disable-color: $gray-lighter !default;
     }
   }
 
-  &.#{$dot}-disabled {
-    cursor: not-allowed;
-
-    a {
-      cursor: not-allowed;
-      background-color: $dot-disable-color;
-      opacity: 0.5;
-    }
-  }
-
   &.#{$dot}-active {
     a {
       background-color: $dot-active-color;
     }
   }
 }
+
+// vertical
 
 .#{$dot}s-vertical {
   .#{$dot}-active {
@@ -55,6 +54,8 @@ $dot-disable-color: $gray-lighter !default;
     border-radius: 0;
   }
 }
+
+// stroke
 
 .#{$dot}s-stroke {
   .#{$dot}-active {
@@ -74,6 +75,8 @@ $dot-disable-color: $gray-lighter !default;
   }
 }
 
+// square
+
 .#{$dot}s-square {
   a {
     border-radius: 0;
@@ -87,6 +90,45 @@ $dot-disable-color: $gray-lighter !default;
   }
 }
 
-.#{$dot}-hidden {
-  visibility: hidden;
+// light
+.#{$dot}s-light {
+  .#{$dot} {
+    a {
+      background-color: $dot-light-color;
+  
+      &:hover {
+        background-color: $dot-light-hover-color;
+      }
+    }
+
+    &.#{$dot}-active {
+      a {
+        background-color: $dot-active-color;
+      }
+    }
+  }
+
+  &.#{$dot}s-disabled {
+    a {
+      background-color: $dot-light-disable-color;
+
+      &:hover {
+        background-color: $dot-light-disable-color;
+      }
+    }
+  }
+}
+
+// disabled
+.#{$dot}s-disabled {
+  cursor: not-allowed;
+
+  a {
+    cursor: not-allowed;
+    background-color: $dot-disable-color;
+
+    &:hover {
+      background-color: $dot-disable-color;
+    }
+  }
 }

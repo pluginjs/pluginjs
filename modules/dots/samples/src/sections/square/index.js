@@ -9,3 +9,12 @@ Dots.of(element, {
     console.info(`select: ${val}`)
   }
 })
+
+const el = query('#square .example-square-light')
+Dots.of(el, {
+  type: 'light square',
+  valueFrom: 'text',
+  onChange(val) {
+    console.info(`select: ${val}`)
+  }
+})

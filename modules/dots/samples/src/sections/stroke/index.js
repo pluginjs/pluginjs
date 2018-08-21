@@ -9,3 +9,12 @@ Dots.of(element, {
     console.info(`select: ${val}`)
   }
 })
+
+const el = query('#stroke .example-stroke-light')
+Dots.of(el, {
+  type: 'light stroke',
+  valueFrom: 'text',
+  onChange(val) {
+    console.info(`select: ${val}`)
+  }
+})

@@ -3,11 +3,14 @@
 
 // Vars
 // =====================
-$paginator-input-width: 3.5 * $paginator-font-size !default;
-$paginator-padding: 0.3125 * $paginator-font-size 0.625 * $paginator-font-size !default;
-$paginator-icon-margin: 0.625 * $paginator-font-size !default;
-$paginator-pre-size: 0.8125 * $paginator-font-size !default;
-$paginator-pre-color: $gray-darkest !default;
+$paginator-input-width: 56px;
+$paginator-input-height: 32px;
+$paginator-input-radius: $border-radius-sm;
+
+$paginator-padding: 5px 10px;
+$paginator-icon-margin: 10px;
+$paginator-pre-size: 13px;
+$paginator-pre-color: $gray-darkest;
 
 // Theme
 // =====================
@@ -45,19 +48,13 @@ $paginator-pre-color: $gray-darkest !default;
   }
 }
 
-// .#{$paginator}-total,
-// .#{$paginator}-jumper {
-//   padding-right: 0.1875rem;
-//   padding-left: 0.1875rem;
-//   margin-right: 0.3125rem;
-//   margin-left: 0.3125rem;
-// }
-
 .#{$paginator}-jumper input {
+  box-sizing: border-box;
   width: $paginator-input-width;
+  height: $paginator-input-height;
   padding: $paginator-padding;
   border: 1px solid $paginator-border-color;
-  border-radius: 4px;
+  border-radius: $paginator-input-radius;
 
   &:focus,
   &:hover {

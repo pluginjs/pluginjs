@@ -7,3 +7,27 @@ Dots.of(element, {
     console.info(`select: ${val}`)
   }
 })
+
+const el = query('#default .example-default-light')
+Dots.of(el, {
+  type: 'light',
+  onChange(val) {
+    console.info(`select: ${val}`)
+  }
+})
+
+// const elementDisabled = query('#default .example-default-disabled')
+// Dots.of(elementDisabled, {
+//   type: 'disabled',
+//   onChange(val) {
+//     console.info(`select: ${val}`)
+//   }
+// })
+
+// const elDisabled = query('#default .example-default-light-disabled')
+// Dots.of(elDisabled, {
+//   type: 'light disabled',
+//   onChange(val) {
+//     console.info(`select: ${val}`)
+//   }
+// })

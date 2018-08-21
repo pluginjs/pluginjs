@@ -1,20 +1,17 @@
+@import "@pluginjs/styles/variables.scss";
+
 // Vars
 // =====================
 $dot: "pj-dot" !default;
 $dot-font-family: $font-family-base !default;
 $dot-font-size: $font-size-lg default;
-$dot-width: 0.5 * $font-size-lg !default;
-$dot-height: 0.5 * $font-size-lg !default;
-$dot-line-width: 1.375 * $font-size-lg !default;
-$dot-line-height: 0.125 * $font-size-lg !default;
+$dot-width: 8px !default;
+$dot-height: 8px !default;
+$dot-line-width: 20px !default;
+$dot-line-height: 2px !default;
 $dot-radius: 50% !default;
-$dot-margin: 0.3125 * $font-size-lg !default;
-$dot-vertical-space: 1 * $font-size-lg !default;
-$dot-color: #d5d5d5 !default; //#d5d5d5
-$dot-stroke-color: $color-white !default;
-$dot-active-color: $color-primary !default;
-$dot-hover-color: rgba($color-black, 0.5) !default;
-$dot-disable-color: $gray-lighter !default;
+$dot-margin: 5px !default;
+$dot-vertical-space: 16px !default;
 
 // Core
 // =====================
@@ -28,6 +25,7 @@ $dot-disable-color: $gray-lighter !default;
 
 .#{$dot} {
   position: relative;
+  box-sizing: border-box;
   width: $dot-width;
   height: $dot-height;
   margin: $dot-margin;

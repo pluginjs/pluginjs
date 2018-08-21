@@ -142,7 +142,7 @@ $beforeAfter-handle-arrow-size: 20px !default;
   }
 
   .#{$beforeAfter}-label-after {
-    bottom: $beforeAfter-label-gatter;
+    bottom: $beforeAfter-label-gatter - 8px;
   }
 
   .#{$beforeAfter}-arrow-before {
