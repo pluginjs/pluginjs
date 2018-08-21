@@ -1,3 +1,4 @@
-import Shorten from '@pluginjs/shorten'
+import '@pluginjs/styles/inputs.scss'
 
-console.log(Shorten)
+import './sections/default/index.js'
+import './sections/line/index.js'

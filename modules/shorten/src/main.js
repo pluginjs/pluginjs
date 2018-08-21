@@ -128,7 +128,7 @@ class Shorten extends Component {
     this.$toggle = query(`.${this.classes.TOGGLE}`, this.element)
     bindEvent(
       this.eventName('click'),
-      `${this.classes.TOGGLE}`,
+      `.${this.classes.TOGGLE}`,
       ({ target }) => {
         const item = hasClass(this.classes.TOGGLE, target)
           ? target
