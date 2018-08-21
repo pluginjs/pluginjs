@@ -10,7 +10,7 @@
     .#{$beforeAfter}-label-before,
     .#{$beforeAfter}-label-after {
       top: auto;
-      bottom: $beforeAfter-label-gatter;
+      bottom: $beforeAfter-label-gatter - 8px;
     }
   }
 }
@@ -19,7 +19,7 @@
   .#{$beforeAfter}-labels-bottom {
     .#{$beforeAfter}-label-before,
     .#{$beforeAfter}-label-after {
-      left: $beforeAfter-label-gatter;
+      left: $beforeAfter-label-gatter - 8px;
     }
   }
 }

@@ -9,7 +9,7 @@ $beforeAfter-sizer: $sizer !default;
 $beforeAfter-label-gatter: 20px !default;
 $beforeAfter-label-font-size: $font-size-lg !default;
 $beforeAfter-label-spacer: 0 10px !default;
-$beforeAfter-label-height: 32px !default;
+$beforeAfter-label-height: 30px !default;
 // $beforeAfter-label-line-height: 24px !default;
 
 $beforeAfter-handle-border-size: 2px !default;
@@ -52,7 +52,6 @@ $beforeAfter-handle-arrow-size: 20px !default;
 .#{$beforeAfter}-label-after {
   position: absolute;
   z-index: 4;
-  box-sizing: border-box;
   height: $beforeAfter-label-height;
   font-size: $beforeAfter-label-font-size;
   line-height: $beforeAfter-label-height;

@@ -6,7 +6,6 @@ $paginator: "pj-paginator";
 $paginator-font-family: $font-family-base !default;
 $paginator-font-size: $font-size-sm !default;
 $paginator-line-height: 22px !default;
-$paginator-font-size-xs: 12px !default;
 $paginator-spacer: 30px !default;
 $paginator-spacer-min: 14px !default;
 $paginator-height: 30px !default;
@@ -17,20 +16,9 @@ $paginator-padding-y: $spacer-y !default;
 $paginator-link-padding: 6px !default;
 $paginator-link-margin: 8px !default;
 $paginator-link-margin-min: 3px !default;
+$paginator-text-margin: 30px - $paginator-link-margin - $paginator-link-padding !default;
+
 $paginator-color: $gray-darkest !default;
-$paginator-bg: $color-white !default;
-$paginator-border-width: $border-width !default;
-$paginator-border-color: $gray-border !default;
-$paginator-hover-color: $link-hover-color !default;
-$paginator-hover-bg: $paginator-bg !default;
-$paginator-hover-border: $color-primary !default;
-$paginator-hover-input-border: $gray-dark !default;
-$paginator-active-color: $color-white !default;
-$paginator-active-bg: $color-primary !default;
-$paginator-active-border: $color-primary !default;
-$paginator-disabled-color: $gray !default;
-$paginator-disabled-bg: $color-white !default;
-$paginator-disabled-border: $gray !default;
 
 // Core
 // =====================
@@ -54,55 +42,28 @@ $paginator-disabled-border: $gray !default;
 }
 
 .#{$paginator}-total {
+  margin-right: $paginator-text-margin;
   text-transform: capitalize;
+}
+
+.#{$paginator}-jumper {
+  margin-left: $paginator-text-margin;
 }
 
 .#{$paginator}-link {
   position: relative;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: $paginator-link-padding;
   margin: 0 $paginator-link-margin;
-  color: $paginator-color;
   text-decoration: none;
   text-transform: uppercase;
-
-  &:hover,
-  &:focus {
-    color: $paginator-hover-color;
-    background-color: $paginator-hover-bg;
-    border-color: $paginator-hover-border;
-  }
 }
 
 .#{$paginator}-active {
   z-index: 2;
-
-  .#{$paginator}-link {
-    &,
-    &:hover,
-    &:focus {
-      color: $paginator-active-bg;
-      border-bottom: 2px solid $paginator-active-border;
-    }
-  }
-}
-
-.#{$paginator}-disabled {
-  // disabled 
-  &.#{$paginator}-prev,
-  &.#{$paginator}-next {
-    cursor: $cursor-disabled;
-    .#{$paginator}-link {
-      pointer-events: none;
-
-      &,
-      &:hover,
-      &:focus {
-        color: $paginator-disabled-color;
-        background-color: $paginator-disabled-bg;
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 636px) {

@@ -3,7 +3,7 @@
 
 // Vars
 // =====================
-$paginator-input-width: 56px;
+$paginator-input-width: 74px;
 $paginator-input-height: 32px;
 $paginator-input-radius: $border-radius-sm;
 
@@ -11,6 +11,23 @@ $paginator-padding: 5px 10px;
 $paginator-icon-margin: 10px;
 $paginator-pre-size: 13px;
 $paginator-pre-color: $gray-darkest;
+
+$paginator-bg: $color-white !default;
+$paginator-border-width: $border-width !default;
+$paginator-border-color: $gray-border !default;
+$paginator-hover-color: $color-primary !default;
+$paginator-hover-bg: $paginator-bg !default;
+$paginator-hover-border: $color-primary !default;
+$paginator-hover-input-border: $gray-dark !default;
+$paginator-active-color: $color-white !default;
+$paginator-active-bg: $color-primary !default;
+$paginator-active-border: $color-primary !default;
+
+// disabled
+$paginator-disabled-color: $gray !default;
+$paginator-disabled-bg: $color-white !default;
+$paginator-disabled-border: $gray !default;
+
 
 // Theme
 // =====================
@@ -20,7 +37,7 @@ $paginator-pre-color: $gray-darkest;
 
   i {
     margin-right: $paginator-icon-margin;
-    line-height: 1.42858;
+    line-height: 1.5;
     vertical-align: middle;
   }
 }
@@ -30,7 +47,7 @@ $paginator-pre-color: $gray-darkest;
 
   i {
     margin-left: $paginator-icon-margin;
-    line-height: 1.42858;
+    line-height: 1.5;
     vertical-align: middle;
   }
 }
@@ -48,6 +65,30 @@ $paginator-pre-color: $gray-darkest;
   }
 }
 
+.#{$paginator}-link {
+  color: $paginator-color;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    color: $paginator-hover-color;
+    background-color: $paginator-hover-bg;
+    border-color: $paginator-hover-border;
+  }
+}
+
+.#{$paginator}-active {
+  .#{$paginator}-link {
+    &,
+    &:hover,
+    &:focus {
+      color: $paginator-active-bg;
+      border-bottom: 2px solid $paginator-active-border;
+    }
+  }
+}
+
 .#{$paginator}-jumper input {
   box-sizing: border-box;
   width: $paginator-input-width;
@@ -60,6 +101,24 @@ $paginator-pre-color: $gray-darkest;
   &:hover {
     border-color: $paginator-hover-input-border;
     outline: none;
+  }
+}
+
+.#{$paginator}-disabled {
+  // disabled 
+  &.#{$paginator}-prev,
+  &.#{$paginator}-next {
+    cursor: $cursor-disabled;
+    .#{$paginator}-link {
+      pointer-events: none;
+
+      &,
+      &:hover,
+      &:focus {
+        color: $paginator-disabled-color;
+        background-color: $paginator-disabled-bg;
+      }
+    }
   }
 }
 

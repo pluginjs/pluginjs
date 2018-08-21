@@ -4,7 +4,7 @@
 // Vars
 // =====================
 $beforeAfter-label-color: $color-white;
-$beforeAfter-label-text-shadow: 2px 3px 8px $color-black;
+$beforeAfter-label-text-shadow: 0 3px 7px rgba($color-black, 0.3);
 
 $beforeAfter-handle-line-color: rgba($gray-light, 0.8);
 $beforeAfter-handle-border-color: $beforeAfter-handle-line-color;
