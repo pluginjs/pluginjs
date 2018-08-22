@@ -56,7 +56,7 @@ const Engine = {
 
       if (tween[STARTED] && !tween[COMPLETED]) {
         if (!tween[PAUSED]) {
-          tween.update(delta, time - tween.startTime - tween.delayed)
+          tween.update(delta)
         }
 
         tween.prevTime = time
@@ -85,16 +85,18 @@ export default class Tween extends SimpleEmitter {
           from: null,
           to: null,
           duration: 1000,
-          easing: x => x
+          easing: x => x,
+          delay: 0
         },
         props
       ),
 
       elapsed: 0,
       delayed: 0,
+      paused: 0,
       prevTime: null,
       startTime: null,
-      pausedTime: null,
+      pauseTime: null,
 
       [COMPLETED]: false,
       [PAUSED]: false,
@@ -117,12 +119,12 @@ export default class Tween extends SimpleEmitter {
     if (!this[STARTED]) {
       this[STARTED] = true
       this.startTime = Date.now()
+      this.prevTime = this.startTime
+      this.delayed = 0
 
       if (this.elapsed) {
         this.startTime -= this.elapsed
       }
-      this.prevTime = Date.now()
-      this.delayed = 0
 
       Engine.add(this)
 
@@ -147,7 +149,7 @@ export default class Tween extends SimpleEmitter {
   pause() {
     if (!this[PAUSED]) {
       this[PAUSED] = true
-      this.pausedTime = Date.now()
+      this.pauseTime = Date.now()
 
       this.emit('pause', this.value, this)
     }
@@ -158,7 +160,7 @@ export default class Tween extends SimpleEmitter {
   resume() {
     if (this[PAUSED]) {
       this[PAUSED] = false
-      this.delayed += Date.now() - this.pausedTime
+      this.paused += Date.now() - this.pauseTime
 
       this.emit('resume', this.value, this)
     }
@@ -172,9 +174,10 @@ export default class Tween extends SimpleEmitter {
     Object.assign(this, {
       elapsed: 0,
       delayed: 0,
+      paused: 0,
       prevTime: Date.now(),
       startTime: Date.now(),
-      pausedTime: null,
+      pauseTime: null,
 
       [COMPLETED]: false,
       [PAUSED]: false,
@@ -205,6 +208,11 @@ export default class Tween extends SimpleEmitter {
     return this[COMPLETED]
   }
 
+  delay(delay) {
+    this.props.delay = delay
+    return this
+  }
+
   easing(easing) {
     this.props.easing = easing
     return this
@@ -215,22 +223,28 @@ export default class Tween extends SimpleEmitter {
     return this
   }
 
-  update(delta, time) {
+  seek(time) {
+    this._interpolate(
+      this.props.easing(this._progress(Math.min(1, time / this.props.duration)))
+    )
+
+    this.emit('update', this.value, this)
+  }
+
+  update(delta) {
     if (this[COMPLETED]) {
+      return
+    }
+
+    if (this.props.delay && this.delayed < this.props.delay) {
+      this.delayed += delta
+
       return
     }
 
     this.elapsed += delta
 
-    this._interpolate(
-      this.props.easing(
-        this._progress(
-          Math.min(1, (time || this.elapsed) / this.props.duration)
-        )
-      )
-    )
-
-    this.emit('update', this.value, this)
+    this.seek(this.elapsed)
 
     if (this.elapsed >= this.props.duration) {
       this._complete(() => {

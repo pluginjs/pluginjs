@@ -77,6 +77,35 @@ describe('Tween()', () => {
         })
         .start()
     })
+
+    test(
+      'delay',
+      done => {
+        expect.assertions(4)
+
+        const tween = new Tween({
+          from: 0,
+          to: 10,
+          duration: 1000,
+          delay: 1000
+        }).start()
+
+        setTimeout(() => {
+          expect(tween.value).toBe(0)
+          expect(tween.isStarted()).toBeTrue()
+        }, 800)
+
+        setTimeout(() => {
+          expect(tween.value).toBeLessThanOrEqual(6)
+        }, 1500)
+
+        setTimeout(() => {
+          expect(tween.value).toBe(10)
+          done()
+        }, 2100)
+      },
+      3000
+    )
   })
 
   describe('events', () => {
@@ -84,7 +113,7 @@ describe('Tween()', () => {
       expect.assertions(4)
 
       new Tween({
-        from: 1,
+        from: 0,
         to: 10
       })
         .once('update', value => {
@@ -108,7 +137,7 @@ describe('Tween()', () => {
         expect.assertions(4)
 
         const tween = new Tween({
-          from: 1,
+          from: 0,
           to: 10,
           duration: 1000
         })
@@ -132,7 +161,7 @@ describe('Tween()', () => {
       expect.assertions(5)
 
       const tween = new Tween({
-        from: 1,
+        from: 0,
         to: 10,
         duration: 1000
       })
@@ -159,7 +188,7 @@ describe('Tween()', () => {
         expect.assertions(9)
 
         const tween = new Tween({
-          from: 1,
+          from: 0,
           to: 10,
           duration: 1000
         })
@@ -194,12 +223,38 @@ describe('Tween()', () => {
     )
 
     test(
+      'seek()',
+      () => {
+        expect.assertions(6)
+
+        const tween = new Tween({
+          from: 0,
+          to: 10,
+          duration: 1000,
+          delay: 0
+        }).on('update', value => {
+          expect(value).not.toBe(0)
+        })
+
+        tween.seek(500)
+        expect(tween.value).toBe(5)
+
+        tween.seek(1000)
+        expect(tween.value).toBe(10)
+
+        tween.seek(300)
+        expect(tween.value).toBe(3)
+      },
+      1000
+    )
+
+    test(
       'stop()',
       done => {
         expect.assertions(4)
 
         const tween = new Tween({
-          from: 1,
+          from: 0,
           to: 10,
           duration: 1000
         })
@@ -228,7 +283,7 @@ describe('Tween()', () => {
         expect.assertions(6)
 
         const tween = new Tween({
-          from: 1,
+          from: 0,
           to: 10,
           duration: 1000
         }).start()
@@ -259,12 +314,12 @@ describe('Tween()', () => {
         expect.assertions(6)
 
         const tween = new Tween({
-          from: 1,
+          from: 0,
           to: 10,
           duration: 1000
         })
           .on('restart', (value, api) => {
-            expect(value).toBe(1)
+            expect(value).toBe(0)
             expect(api.isStarted()).toBeTrue()
           })
           .start()
