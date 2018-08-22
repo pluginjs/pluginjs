@@ -2,13 +2,13 @@
 
 // Vars
 // =====================
-
 $countdowns: "pj-countdown" !default;
 $countdown: "countdown" !default;
 $countdown-progress-width: 180px !default;
 $countdown-progress-height: 180px !default;
 $countdown-progress-min-width: 112px !default;
 $countdown-progress-font-size: 46px !default;
+$countdown-progress-line-height: 54px !default;
 $countdown-progress-spacer: 10px !default;
 $countdown-progress-label-font-size: 14px !default;
 $countdown-progress-small-width: 148px !default;
@@ -37,6 +37,7 @@ $countdown-progress-color: $gray-darkest !default;
       width: 100%;
       font-size: $countdown-progress-font-size;
       font-weight: $countdown-progress-font-weight;
+      line-height: $countdown-progress-line-height;
       color: $countdown-progress-color;
       transform: translateY(-70%);
     }

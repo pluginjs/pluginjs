@@ -37,15 +37,17 @@ $countdown-small-time-margin: 5px !default;
 }
 
 @media only screen and (max-width: 896px) {
-  .#{$countdown}-time {
-    margin: $countdown-small-time-margin;
-  }
+  .#{$countdown} {
+    .#{$countdown}-time {
+      margin: $countdown-small-time-margin;
+    }
+    
+    .#{$countdown}-number {
+      font-size: $font-size-lg;
+    }
   
-  .#{$countdown}-number {
-    font-size: $font-size-lg;
-  }
-
-  .#{$countdown}-label {
-    font-size: $font-size-xs;
+    .#{$countdown}-label {
+      font-size: $font-size-xs;
+    }
   }
 }

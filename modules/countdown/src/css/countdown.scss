@@ -3,12 +3,11 @@
 
 // Vars
 // =====================
-
 $countdown: "countdown";
 $countdowns: "pj-countdown";
-$countdown-font-size: 46px;
-$countdown-line-height: 38px;
+$countdown-font-size: 72px;
 $countdown-label-size: 16px;
+$countdown-label-line-height: 22px;
 
 $countdown-color: $color-black;
 $countdown-font-weight: $font-weight-normal;
@@ -19,12 +18,13 @@ $countdown-label-color: $gray-darker;
 .#{$countdown}-number {
   font-size: $countdown-font-size;
   font-weight: $countdown-font-weight;
-  line-height: $countdown-line-height;
+  line-height: 1.2;
   color: $countdown-color;
 }
 
 .#{$countdown}-label {
   font-size: $countdown-label-size;
+  line-height: $countdown-label-line-height;
   color: $countdown-label-color;
   text-transform: capitalize;
 }
