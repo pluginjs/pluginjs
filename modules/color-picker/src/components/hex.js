@@ -18,7 +18,6 @@ class Hex {
     this.element = element
     this.classes = this.instance.classes
     this.opac = 100
-    console.log(this.instance.asColor)
     this.mode = this.instance.asColor.toHEX()
     this.classify = 'HEX'
     this.HSL = this.instance.asColor.toHSL().toUpperCase()
@@ -51,7 +50,6 @@ class Hex {
     this.element.append($selector, this.$opac)
 
     this.$el = query(`.${this.classes.HEXMODE}>div>div`, this.element)
-    console.log(this.$el)
     // this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
     this.dropdown = Dropdown.of(this.$el, {
       target: '+',
@@ -59,7 +57,10 @@ class Hex {
       value: this.classify,
       // width: parent(this.$selector),
       // icon: 'icon-char icon-chevron-down',
-      data: this.data
+      data: this.data,
+      onChange: res => {
+        this.updateColor(res)
+      }
     })
   }
 
@@ -68,7 +69,7 @@ class Hex {
       this.instance.selfEventName('change'),
       (e, el, color) => {
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
-        this.updateColor(this.dropdown.options.select)
+        this.updateColor(this.dropdown.options.value)
       },
       this.instance.element
     )
@@ -82,12 +83,16 @@ class Hex {
       this.element
     )
 
-    this.dropdown.options.onChange = res => {
-      console.log(1)
-      this.updateColor(res.innerText)
+    // this.dropdown.options.onChange = res => {
+    //   console.log(res.innerText, 345)
+    //   this.updateColor(res.innerText)
 
-      // this.update(this.instance.asColor)
-    }
+    //   // this.update(this.instance.asColor)
+    // }
+    // // console.log(this.dropdown.element)
+    // this.dropdown.element.on('dropdown:change', (e, api, data) => {
+    //   console.log(data)
+    // })
   }
 
   updateColor(val) {

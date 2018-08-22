@@ -91,7 +91,7 @@ class Dropdown extends Component {
     }
 
     if (!isNull(this.options.value)) {
-      this.selectByValue(this.options.value)
+      this.selectByValue(this.options.value, false)
     } else if (
       this.options.imitateSelect &&
       this.options.placeholder &&
@@ -188,7 +188,7 @@ class Dropdown extends Component {
     return children(`.${this.classes.ACITVE}`, this.$dropdown)
   }
 
-  selectByValue(value, trigger) {
+  selectByValue(value, trigger = true) {
     const selected = children(`.${this.classes.ITEM}`, this.$dropdown).filter(
       item => {
         return this.getItemValue(item) === value
@@ -204,7 +204,7 @@ class Dropdown extends Component {
     return item.getAttribute(this.options.itemValueAttr)
   }
 
-  selectItem(item, trigger) {
+  selectItem(item, trigger = true) {
     console.log(item)
     if (!isNull(this.active)) {
       removeClass(this.classes.ACITVE, this.active)
