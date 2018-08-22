@@ -1,4 +1,3 @@
-import { curry } from '@pluginjs/utils'
 import '@pluginjs/polyfills/IntersectionObserver'
 
 class Viewport {
@@ -23,15 +22,13 @@ class Viewport {
   exitMiddleware = []
 
   on(eventName, func) {
-    const adder = curry((func, middleware) => middleware.concat(func))
-    this.eventMapper(eventName, adder(func))
+    const adder = middleware => middleware.concat(func)
+    this.eventMapper(eventName, adder)
   }
 
   off(eventName, func) {
-    const filter = curry((func, middleware) =>
-      middleware.filter(fn => fn !== func)
-    )
-    this.eventMapper(eventName, filter(func))
+    const filter = middleware => middleware.filter(fn => fn !== func)
+    this.eventMapper(eventName, filter)
   }
 
   eventMapper(eventName, updater) {
