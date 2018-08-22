@@ -42,15 +42,7 @@ export const classes = {
   GRIDMODEL: '{namespace}-grid-model',
   MASONRYMODEL: '{namespace}-masonry-model',
   JUSTIFIEDMODEL: '{namespace}-justified-model',
-  NESTEDMODEL: '{namespace}-nested-model',
-  CAROUSEL: '{namespace}-carousel',
-  CAROUSELCENTER: '{namespace}-carousel-center',
-  CAROUSELARROWS: '{namespace}-carousel-arrows',
-  CAROUSELPREV: '{namespace}-carousel-prev',
-  CAROUSELNEXT: '{namespace}-carousel-next',
-  CAROUSELDOTS: '{namespace}-carousel-dots',
-  CAROUSELDOTSITEM: '{namespace}-carousel-dots-item',
-  DRAG: '{namespace}-drag'
+  NESTEDMODEL: '{namespace}-nested-model'
 }
 
 export const methods = [

@@ -13,7 +13,7 @@ queryAll('.pj-hotspots', section).map(element =>
         text: 'Chair',
         title: 'Chair - 20$',
         content: escapeHTML`<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href=\'#\'>Buy</a>`,
-        position: ['33%', '65%'],
+        position: ['38%', '74%'],
         type: 'dot'
       },
       {
@@ -22,7 +22,7 @@ queryAll('.pj-hotspots', section).map(element =>
         text: 'LAMP',
         title: 'Lamp - 15$',
         content: escapeHTML`<p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p><p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p><a href=\'#\'>Buy</a>`,
-        position: ['44.5%', '30%'],
+        position: ['39.5%', '35%'],
         type: 'text'
       },
       {
@@ -31,7 +31,7 @@ queryAll('.pj-hotspots', section).map(element =>
         text: 'Cabinet',
         title: 'Cabinet - 50$',
         content: escapeHTML`<p>Nulla consequat massa quis enim. </p><a href=\'#\'>Buy</a>`,
-        position: ['54%', '63%'],
+        position: ['30%', '52%'],
         type: 'icon'
       },
       {
@@ -40,7 +40,7 @@ queryAll('.pj-hotspots', section).map(element =>
         text: 'Frame',
         title: 'Frame - 10$',
         content: escapeHTML`<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p><a href=\'#\'>Buy</a>`,
-        position: ['56.6%', '30%'],
+        position: ['51%', '35%'],
         type: 'number'
       },
       {

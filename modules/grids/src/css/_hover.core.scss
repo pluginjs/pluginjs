@@ -1,0 +1,41 @@
+@import "@pluginjs/styles/variables.scss";
+
+$grids: "pj-grids" !default;
+
+// Vars
+$grids-overlay-bgcolor: rgba($color-black, 0.6) !default;
+$grids-overlay-primary-bgcolor: rgba($color-primary, 0.75) !default;
+$grids-icon-font-size: 100px !default;
+$grids-icon-color: $color-white !default;
+
+.#{$grids} {
+  &-chunk {
+    &:hover {
+      .#{$grids}-overlay {
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
+    }
+  }
+  &-overlay {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: $grids-overlay-bgcolor;
+    opacity: 0;
+
+    &-primary {
+      background-color: $grids-overlay-primary-bgcolor;
+    }
+  }
+
+  &-icon {
+    font-size: $grids-icon-font-size;
+    color: $grids-icon-color;
+  }
+}

@@ -1,10 +1,17 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
 $grids: "pj-grids" !default;
+$grids-loader-height: 200px !default;
+$grids-loader-bgcolor: $color-white !default;
+$grids-loader-inner-margin-y: 72px !default;
+$grids-loader-inner-font-size: 30px !default;
 
 .#{$grids}-loader {
   display: none;
   width: 100%;
-  height: 200px;
-  background: #fff;
+  height: $grids-loader-height;
+  background: $grids-loader-bgcolor;
 
   &-show {
     display: block;
@@ -15,10 +22,9 @@ $grids: "pj-grids" !default;
   position: relative;
   width: 1em;
   height: 1em;
-  margin: 72px auto;
+  margin: $grids-loader-inner-margin-y auto;
   overflow: hidden;
-  // color: #ffffff;
-  font-size: 30px;
+  font-size: $grids-loader-inner-font-size;
   text-indent: -9999em;
   border-radius: 50%;
   -webkit-transform: translateZ(0); /* stylelint-disable-line */

@@ -11,7 +11,7 @@ queryAll('#icon-skin .pj-hotspots').map(element =>
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         position: ['61%', '68%'],
-        skin: 'dark shadow'
+        skin: 'light shadow solid'
       },
       {
         placement: 'right',
@@ -19,7 +19,7 @@ queryAll('#icon-skin .pj-hotspots').map(element =>
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         position: ['35%', '45%'],
-        skin: 'dark solid'
+        skin: 'light solid'
       },
       {
         placement: 'right',
@@ -27,7 +27,7 @@ queryAll('#icon-skin .pj-hotspots').map(element =>
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         position: ['38%', '55%'],
-        skin: 'dark bordered'
+        skin: 'light bordered'
       },
       {
         placement: 'right',
@@ -35,7 +35,7 @@ queryAll('#icon-skin .pj-hotspots').map(element =>
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         position: ['27%', '60%'],
-        skin: 'dark'
+        skin: 'light'
       }
     ]
   })

@@ -10,7 +10,7 @@ queryAll('#icon-themes .pj-hotspots').map(element =>
         title: '18" wheels',
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
-        position: ['61%', '68%'],
+        position: ['38%', '74%'],
         skin: 'solid'
       },
       {
@@ -18,7 +18,7 @@ queryAll('#icon-themes .pj-hotspots').map(element =>
         title: 'TFSI® engine',
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
-        position: ['35%', '45%'],
+        position: ['39.5%', '35%'],
         skin: 'bordered'
       },
       {
@@ -26,7 +26,7 @@ queryAll('#icon-themes .pj-hotspots').map(element =>
         title: 'LED Headlights',
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
-        position: ['38%', '55%'],
+        position: ['30%', '52%'],
         skin: 'solid shadow'
       },
       {
@@ -34,7 +34,7 @@ queryAll('#icon-themes .pj-hotspots').map(element =>
         title: 'Singleframe® grille',
         content:
           'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
-        position: ['27%', '60%']
+        position: ['51%', '35%']
       }
     ]
   })

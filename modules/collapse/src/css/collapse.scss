@@ -10,10 +10,11 @@ $collapse-hover-color: $color-primary;
 $collapse-hover-border-color: $color-primary;
 $collapse-border-color: $gray-border;
 $collapse-gutter-width: 1px;
-$collapse-padding: 14px 31px 14px 23px;
+$collapse-padding: 13px 31px 13px 23px;
 $collapse-header-order-title-padding: 0 31px 15px 23px;
 $collapse-header-order-content-inner-padding: 17px 23px 0 23px;
 $collapse-header-icon-font-size: $font-size-lg;
+$collapse-header-lineHeight: 22px !default;
 $collapse-content-padding: 4px 23px 23px;
 $collapse-expanded-padding: 20px 23px 23px;
 $collapse-header-icon-margin-right: 11px;
@@ -30,6 +31,7 @@ $collapse-toggle-margin-left: 19px;
 
 //content
 $collapse-content-inner-color: $gray-darker;
+$collapse-content-inner-lineHeight: 22px !default;
 $collapse-content-button-margin-top: 15px;
 $collapse-content-button-padding: 8px 30px;
 $collapse-content-button-border-color: $gray-border;
@@ -46,6 +48,7 @@ $collapse-content-button-border-radius: $border-radius-base;
 
   &-header {
     padding: $collapse-padding;
+    line-height: $collapse-header-lineHeight;
     outline: none;
   
     .icon {
@@ -139,6 +142,6 @@ $collapse-content-button-border-radius: $border-radius-base;
 
   p {
     margin: 0;
-    line-height: 22px;
+    line-height: $collapse-content-inner-lineHeight;
   }
 }

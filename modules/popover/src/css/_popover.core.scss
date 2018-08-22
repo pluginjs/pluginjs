@@ -8,6 +8,7 @@ $popover-font-size: $font-size-sm !default;
 $popover-max-width: 286px !default;
 $popover-max-height: 50vh !default;
 $popover-color: $text-color !default;
+$popover-lineHight: 22px !default;
 $popover-zindex: $zindex-popover !default;
 $popover-bg: $color-white !default;
 $popover-border-width: 1px !default;
@@ -26,7 +27,9 @@ $popover-close-color: $gray-dark !default;
 $popover-close-line-height: 1em !default;
 $popover-title-spacer: $popover-spacer-y $popover-spacer-x 0 $popover-spacer-x !default;
 $popover-content-margin-top: 9.8px !default;
+$popover-content-color: $gray-darker !default;
 $popover-content-link-color: $color-primary !default;
+$popover-content-font-size: $font-size-sm !default;
 $popover-title-font-size: $font-size-lg !default;
 $popover-title-line-height: 1.5em !default;
 $popover-content-spacer: 0 $popover-spacer-x !default;
@@ -71,6 +74,7 @@ $popover-btn-padding-x: 30.1px !default;
   margin-bottom: $popover-margin-spacer;
   font-family: $popover-font-family;
   font-size: $popover-font-size;
+  line-height: $popover-lineHight;
   color: $popover-color;
   // Allow breaking very long words so they don't overflow the popover's bounds
   word-wrap: break-word;
@@ -301,6 +305,12 @@ $popover-btn-padding-x: 30.1px !default;
   padding: $popover-content-spacer;
   margin: $popover-content-margin-top 0 $popover-spacer-y;
   overflow: auto;
+  font-size: $popover-content-font-size;
+  color: $popover-content-color;
+  
+  p {
+    margin-top: 0; 
+  }
 
   a {
     color: $popover-content-link-color;

@@ -1,17 +1,21 @@
 $filterbar: "pj-grids-filterbar" !default;
+$filterbar-margin-bottom: 30px !default;
+$filterbar-filters-margin-right: 10px !default;
+$filterbar-reverse-font-size: 18px !default;
+
 .#{$filterbar} {
   display: flex;
-  align-items: center; // color: #fff;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: $filterbar-margin-bottom;
   
   &-sort,
   &-filters {
-    margin-right: 10px;
+    margin-right: $filterbar-filters-margin-right;
   }
 
   &-reverse {
-    font-size: 18px;
+    font-size: $filterbar-reverse-font-size;
     transition: transform 500ms;
     &-min {
       transition: transform 500ms;

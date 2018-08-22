@@ -5,14 +5,19 @@
 // =====================
 $headroom-header-height: 80px;
 $headroom-header-font-size: $font-size-sm;
-$headroom-header-li-margin: 0 5px;
-$headroom-header-a-padding: 0 20px;
+$headroom-header-a-padding: 0 19px;
 $headroom-header-a-color: rgba($color-white,0.6);
 $headroom-header-active-color: $color-white;
+
+$headroom-header-divider-bottom: -10px;
+$headroom-header-divider-width: 16px;
+$headroom-header-divider-height: 2px;
+$headroom-header-divider-color: $color-white;
 
 $headroom-section-height: 1080px;
 $headroom-section-color: $color-white;
 $headroom-section-inner-max-width: 540px;
+
 
 ul,
 li {
@@ -35,13 +40,17 @@ li {
 .#{$headroom} li {
   display: inline-block;
   *display: inline;
-  margin: $headroom-header-li-margin;
   vertical-align: top;
   zoom: 1;
+
+  &:hover {
+    a {
+      color: $headroom-header-active-color;
+    }
+  }
 }
 
 .#{$headroom} a {
-  display: block;
   padding: $headroom-header-a-padding;
   line-height: $headroom-header-height;
   color: $headroom-header-a-color;
@@ -51,7 +60,19 @@ li {
 }
 
 .#{$headroom} .active a {
+  position: relative;
   color: $headroom-header-active-color;
+
+  &::before {
+    position: absolute;
+    bottom: $headroom-header-divider-bottom;
+    left: 50%;
+    width: $headroom-header-divider-width;
+    height: $headroom-header-divider-height;
+    content: "";
+    background: $headroom-header-divider-color;
+    transform: translateX(-50%);
+  }
 }
 
 body {

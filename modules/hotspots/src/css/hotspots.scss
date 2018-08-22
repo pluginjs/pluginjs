@@ -3,109 +3,271 @@
 
 // Vars
 // =====================
+$hotspot-font-family: $font-family-base;
+$hotspot-font-size: $font-size-sm;
+$hotspot-font-size-base: $font-size-lg;
+
+$hotspot-lineHeight: 22px;
+$hotspot-padding: 0.5em;
+$hotspot-border-width: 2px;
+
+$hotspot-color: $gray-darkest;
+$hotspot-hover-color: $color-primary;
+$hotspot-hover-border-color: rgba($hotspot-hover-color, 0.2);
+
+$hotspot-bgcolor: $gray-darkest;
+$hotspot-box-shadow: $box-shadow-5;
+$hotspot-hide-size: 30px;
+
+$hotspot-dot-size: 14px;
+$hotspot-dot-hover-bgcolor: $color-primary;
+
+$hotspot-icon-width: 32px;
+$hotspot-icon-height: $hotspot-icon-width;
+$hotspot-icon-font-size: $font-size-lg;
+
+$hotspot-border-color: rgba($hotspot-color, 0.2);
+
+$hotspot-text-font-size: $font-size-xs;
+$hotspot-text-padding-x: 1.5em;
+$hotspot-text-padding-y: calc(#{$hotspot-padding} - #{$hotspot-border-width});
+
 $hotspot-solid-color: $color-white;
-$hotspot-border-color: rgba($border-color, 0.8);
-$hotspot-solid-bg: $color-primary;
-$hotspot-active-solid-bg: $color-primary;
-$hotspots-dark-color: $gray-darkest;
-$hotspots-dark-bg-color: $gray-darkest;
-//dot
-$hotspots-dark-dot-bgcolor: $gray-darkest;
-//bordered
-$hotspots-dark-borderColor: rgba($hotspots-dark-color,0.2);
-$hotspots-dark-bordered-hover-color: rgba($color-primary,0.2);
-$hotspots-dark-hover-color: $color-primary;
-$hotspot-text-dark-bordered-color: $color-primary;
-//solid  
-$hotspots-dark-solid-color: $color-white;
-$hotspots-dark-solid-bg-color: $gray-darkest;
-//text
-$hotspots-dark-text-borderColor: $gray-darkest;
+$hotspot-solid-bgColor: $gray-darkest;
+$hotspot-solid-hover-bgcolor: $color-primary;
+
+// size
+$hotspot-sm-dot-size: 14px;
+$hotspot-sm-icon-font-size: 10px;
+$hotspot-sm-icon-spacer: 0.5em;
+$hotspot-sm-text-font-size: 10px;
+$hotspot-sm-text-spacer: 0.2em 0.8em;
+$hotspot-sm-hide-size: 25px;
+
+$hotspot-md-dot-size: 16px;
+$hotspot-md-icon-font-size: $font-size-sm;
+$hotspot-md-icon-spacer: 0.5em;
+$hotspot-md-text-font-size: $font-size-sm;
+$hotspot-md-text-spacer: 0.2em 0.8em;
+$hotspot-md-hide-size: 35px;
+
+$hotspot-lg-dot-size: 18px;
+$hotspot-lg-icon-font-size: $font-size-base;
+$hotspot-lg-icon-spacer: 0.5em;
+$hotspot-lg-text-font-size: $font-size-base;
+$hotspot-lg-text-spacer: 0.2em 0.7em;
+$hotspot-lg-hide-size: 40px;
+
+$hotspot-light-color: $color-white;
+
+$hotspot-light-dot-bgcolor: $gray-lightest;
+$hotspot-light-dot-hover-bgcolor: $color-primary;
+
+$hotspot-light-borderColor: rgba($hotspot-light-color,0.2);
+$hotspot-light-hover-color: $color-primary;
+
+$hotspot-light-solid-color: $gray-darkest;
+$hotspot-light-solid-bg-color: $gray-lightest;
+
+$hotspot-light-text-bordered-color: $color-primary;
 
 //active hover
-$hotspots-dark-hover-color: $color-primary;
-$hotspot-dark-dot-bg-color: $color-primary;
-$hotspot-dark-bordered-hover-border-color: rgba($hotspots-dark-hover-color,0.2);
-$hotspot-dark-solid-color: $color-white;
-$hotspot-dark-shadow-bg-active: $color-primary;
-$hotspot-dark-shadow-color: $color-white;
+$hotspot-light-bordered-hover-border-color: rgba($hotspot-light-hover-color,0.2);
+$hotspot-light-solid-hover-color: $color-white;
+$hotspot-light-shadow-bg-active: $color-primary;
 
-/* skins */
-.#{$hotspot}-bordered {
-  border: 1px solid $hotspot-border-color;
-}
+.#{$hotspot} {
+  box-sizing: border-box;
+  font-family: $hotspot-font-family;
+  font-size: $hotspot-font-size;
+  line-height: $hotspot-lineHeight;
+  color: $hotspot-color;
+  text-align: center;
+  transition: all 0.2s;
+  transform: translate(-50%, -50%);
 
-.#{$hotspot}-solid {
-  color: $hotspot-solid-color;
-  background-color: $hotspot-solid-bg;
+  &:hover,
+  &-active {
+    color: $hotspot-hover-color;
+  }
 
-  &.#{$hotspot}-active {
-    background-color: $hotspot-active-solid-bg;
+  &-dot {
+    width: $hotspot-dot-size;
+    height: $hotspot-dot-size;
+    background-color: $hotspot-bgcolor;
+    border-radius: 50%;
+
+    &:hover,
+    &-active {
+      background-color: $hotspot-dot-hover-bgcolor;
+    }
+  }
+
+  &-icon,
+  &-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $hotspot-icon-width;
+    height: $hotspot-icon-height;
+    font-size: $hotspot-icon-font-size;
+    border-radius: 100%;
+  }
+
+  &-number,
+  &-text,
+  &-icon {
+    &.#{$hotspot}-bordered{
+      border: 2px solid $hotspot-border-color;
+  
+      &:hover {
+        border-color: $hotspot-hover-border-color;
+      }
+    }
+
+    &.#{$hotspot}-solid {
+      color: $hotspot-solid-color;
+      background-color: $hotspot-solid-bgColor;
+
+      &:hover,
+      &:active {
+        background-color: $hotspot-solid-hover-bgcolor;
+      }
+    }
+
+    &.#{$hotspot}-shadow {
+      &:hover,
+      &:active {
+        box-shadow: $hotspot-box-shadow;
+      }
+    }
+  }
+
+  &-text {
+    padding: $hotspot-text-padding-y $hotspot-text-padding-x;
+    font-size: $hotspot-text-font-size;
+    border-radius: 1000px;
+  }
+
+  &-hide {
+    width: $hotspot-hide-size;
+    height: $hotspot-hide-size;
+  }
+
+  &-sm {
+    &.#{$hotspot}-dot {
+      width: $hotspot-sm-dot-size;
+      height: $hotspot-sm-dot-size;
+    }
+  
+    &.#{$hotspot}-icon,
+    &.#{$hotspot}-number {
+      padding: $hotspot-sm-icon-spacer;
+      font-size: $hotspot-sm-icon-font-size;
+    }
+  
+    &.#{$hotspot}-text {
+      padding: $hotspot-text-padding-y $hotspot-text-padding-x;
+      font-size: $hotspot-sm-text-font-size;
+      border-radius: 1000px;
+    }
+  
+    &.#{$hotspot}-hide {
+      width: $hotspot-sm-hide-size;
+      height: $hotspot-sm-hide-size;
+    }
+  }
+  
+  &-md {
+    &.#{$hotspot}-dot {
+      width: $hotspot-md-dot-size;
+      height: $hotspot-md-dot-size;
+    }
+  
+    &.#{$hotspot}-icon,
+    &.#{$hotspot}-number {
+      padding: $hotspot-md-icon-spacer;
+      font-size: $hotspot-md-icon-font-size;
+    }
+  
+    &.#{$hotspot}-text {
+      padding: $hotspot-md-text-spacer;
+      font-size: $hotspot-md-text-font-size;
+    }
+  
+    &.#{$hotspot}-hide {
+      width: $hotspot-md-hide-size;
+      height: $hotspot-md-hide-size;
+    }
+  }
+  
+  &-lg {
+    &.#{$hotspot}-dot {
+      width: $hotspot-lg-dot-size;
+      height: $hotspot-lg-dot-size;
+    }
+  
+    &.#{$hotspot}-icon,
+    &.#{$hotspot}-number {
+      padding: $hotspot-lg-icon-spacer;
+      font-size: $hotspot-lg-icon-font-size;
+    }
+  
+    &.#{$hotspot}-text {
+      padding: $hotspot-lg-text-spacer;
+      font-size: $hotspot-lg-text-font-size;
+    }
+  
+    &.#{$hotspot}-hide {
+      width: $hotspot-lg-hide-size;
+      height: $hotspot-lg-hide-size;
+    }
   }
 }
 
-.#{$hotspot}-shadow {
-  box-shadow: $hotspot-box-shadow;
-}
-
-// dark
-.#{$hotspot}-dark {
+// light
+.#{$hotspot}-light {
   &.#{$hotspot},
   .#{$hotspot} {
-    color: $hotspots-dark-color;
+    color: $hotspot-light-color;
   }
 
   &.#{$hotspot}-dot,
   .#{$hotspot}-dot {
-    background-color: $hotspots-dark-dot-bgcolor;
-  }
-
-  &.#{$hotspot}-number,
-  &.#{$hotspot}-text,
-  .#{$hotspot}-number,
-  .#{$hotspot}-text {
-    border-color: $hotspots-dark-text-borderColor;
-    border-width: 1px;
+    background-color: $hotspot-light-dot-bgcolor;
   }
 
   &.#{$hotspot}-bordered,
   .#{$hotspot}-bordered {
-    border-color: $hotspots-dark-borderColor;
-  }
-
-  &.#{$hotspot}-shadow,
-  .#{$hotspot}-shadow {
-    color: $hotspot-dark-shadow-color;
-    background-color: $hotspots-dark-bg-color;
+    border-color: $hotspot-light-borderColor;
   }
 
   &.#{$hotspot}-solid,
   .#{$hotspot}-solid {
-    color: $hotspots-dark-solid-color;
-    background-color: $hotspots-dark-solid-bg-color;
+    color: $hotspot-light-solid-color;
+    background-color: $hotspot-light-solid-bg-color;
   }
 
   //Active colors
   &.#{$hotspot}:hover,
   &.#{$hotspot}.#{$hotspot}-active {
-    color: $hotspots-dark-hover-color;
+    color: $hotspot-light-hover-color;
 
     &.#{$hotspot}-dot {
-      background-color: $hotspot-dark-dot-bg-color;
+      background-color: $hotspot-light-dot-hover-bgcolor;
     }
     &.#{$hotspot}-text,
     &.#{$hotspot}-number {
-      border-color: $hotspot-text-dark-bordered-color;
+      border-color: $hotspot-light-text-bordered-color;
     }
 
     &.#{$hotspot}-bordered {
-      border-color: $hotspot-dark-bordered-hover-border-color;
+      border-color: $hotspot-light-bordered-hover-border-color;
     }
     
-    &.#{$hotspot}-solid,
-    &.#{$hotspot}-shadow {
-      color: $hotspot-dark-solid-color;
-      background-color: $hotspot-dark-shadow-bg-active;
+    &.#{$hotspot}-solid {
+      color: $hotspot-light-solid-hover-color;
+      background-color: $hotspot-light-shadow-bg-active;
     }
   }
 }
