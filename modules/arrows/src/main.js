@@ -54,10 +54,6 @@ class Arrows extends Component {
       addClass(this.getThemeClass(), this.element)
     }
 
-    if (this.options.type) {
-      addClass(this.getTypeClass(), this.element)
-    }
-
     this.$prev = this.getPrev()
     this.$next = this.getNext()
     if (!this.$prev) {
@@ -67,6 +63,14 @@ class Arrows extends Component {
     if (!this.$next) {
       this.buildNext(this.options.next)
     }
+
+    if (this.options.type) {
+      const typeClasses = this.getTypeClass()
+
+      addClass(typeClasses, this.$prev)
+      addClass(typeClasses, this.$next)
+    }
+
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)

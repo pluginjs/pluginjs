@@ -1,81 +1,90 @@
 @import "@pluginjs/styles/variables.scss";
 @import "arrows.core";
 
-/* theme vars */
-$arrow-theme-size: 40px;
-$arrow-outline-border: 1px solid rgba($color-black, 0.2);
-$arrow-circle-border-radius: 29px;
-$arrow-square-border-radius: $border-radius-base;
-$arrow-solid-bg-color: rgba($color-black, 0.2);
+// Vars
+// =====================
+$arrow: "pj-arrow";
+$arrow-font-family: $font-family-base;
+
+$arrow-spacer-lg: 13px;
+$arrow-spacer: 11px;
+$arrow-spacer-sm: 9px;
+
+$arrow-font-size-lg: 20px;
+$arrow-font-size: 16px;
+$arrow-font-size-sm: 12px;
+
+$arrow-color: rgba($color-black, 0.8);
+$arrow-hover-color: $color-primary;
+$arrow-active-color: $color-primary-dark;
+
+$arrow-border-color: rgba($color-black, 0.2);
+$arrow-radius: $border-radius-base;
+
 $arrow-solid-color: $color-white;
-$arrow-shadow-bgcolor: $color-white;
-$arrow-shadow-box-shadow: 0 10px 20px 0 rgba($color-black, 0.1);
+$arrow-solid-bg: rgba($color-black, 0.3);
+
+$arrow-shadow-bg: $color-white;
+$arrow-shadow: $box-shadow-base;
+
+$arrow-disable-color: rgba($color-black, 0.15);
+$arrow-disable-border-color: rgba($color-black, 0.1);
+$arrow-disable-bg: rgba($color-black, 0.15);
 
 //light
-$arrow-light-color: $color-white;
+$arrow-light-color: rgba($color-white, 0.8);
 $arrow-light-hover-color: $color-primary;
-$arrow-light-active-color: #1d53bf;
-$arrow-light-outline-border-color: rgba($color-white, 0.2);
-$arrow-light-outline-hover-border-color: $color-primary;
-$arrow-light-solid-bgcolor: rgba($color-white, 0.3);
+$arrow-light-active-color: $color-primary-dark;
+
+$arrow-light-border-color: rgba($color-white, 0.2);
+
 $arrow-light-solid-color: $color-white;
-//disabled
-$arrow-solid-disabled-bg-color: rgba($color-black, 0.15);
-$arrow-light-disabled-color: rgba($color-white, 0.4);
-$arrow-light-disabled-outline-border-color: rgba($color-white, 0.1);
-$arrow-light-shadow-disabled-bgcolor: #3d3d3d;
+$arrow-light-solid-bg: rgba($color-white, 0.3);
 
-.#{$arrow}s-outline,
-.#{$arrow}s-circle,
-.#{$arrow}s-square,
-.#{$arrow}s-solid,
-.#{$arrow}s-shadow {
-  .#{$arrow}-prev,
-  .#{$arrow}-next {
-    width: $arrow-theme-size;
-    height: $arrow-theme-size;
-    line-height: $arrow-theme-size;
-    text-align: center;
+$arrow-light-shadow-bg: $gray-darkest;
+$arrow-light-shadow: $box-shadow-base;
 
-    &.#{$arrow}-lg {
-      width: $arrow-space-lg;
-      height: $arrow-space-lg;
-      line-height: $arrow-space-lg;
-      text-align: center;
+$arrow-light-disable-color: rgba($color-white, 0.4);
+$arrow-light-disable-border-color: rgba($color-white, 0.1);
+$arrow-light-disable-bg: rgba($color-white, 0.1);
 
-      .#{$arrow}-icon {
-        font-size: $arrow-icon-font-size-lg;
-      }
-    }
 
-    &.#{$arrow}-sm {
-      width: $arrow-space-sm;
-      height: $arrow-space-sm;
-      line-height: $arrow-space-sm;
-      text-align: center;
+.#{$arrow} {
+  padding: $arrow-spacer;
+  font-size: $arrow-font-size;
+  color: $arrow-color;
+  border: 1px solid transparent;
+  border-radius: $arrow-radius;
+  outline: none;
 
-      .#{$arrow}-icon {
-        font-size: $arrow-icon-font-size-sm;
-      }
-    }
-
-    &.#{$arrow}-xs {
-      width: $arrow-space-xs;
-      height: $arrow-space-xs;
-      line-height: $arrow-space-xs;
-      text-align: center;
-
-      .#{$arrow}-icon {
-        font-size: $arrow-icon-font-size-xs;
-      }
-    }
+  &-lg {
+    padding: $arrow-spacer-lg;
+    font-size: $arrow-font-size-lg;
   }
-}
 
-.#{$arrow}s-outline {
-  .#{$arrow}-prev,
-  .#{$arrow}-next {
-    border: $arrow-outline-border;
+  &-sm {
+    padding: $arrow-spacer-sm;
+    font-size: $arrow-font-size-sm;
+  }
+
+  &-circle {
+    border-radius: 50%;
+  }
+
+  &:hover {
+    color: $arrow-hover-color;
+  }
+
+  &:active {
+    color: $arrow-active-color;
+  }
+
+  &.#{$arrow}-disabled {
+    color: $arrow-disable-color;
+  }
+
+  &-outline {
+    border: 1px solid $arrow-border-color;
 
     &:hover {
       border-color: $arrow-hover-color;
@@ -86,58 +95,39 @@ $arrow-light-shadow-disabled-bgcolor: #3d3d3d;
     }
 
     &.#{$arrow}-disabled {
-      border-color: $arrow-disable-color;
+      color: $arrow-disable-color !important;
+      border-color: $arrow-disable-border-color !important;
     }
   }
-}
 
-.#{$arrow}s-circle {
-  .#{$arrow}-prev,
-  .#{$arrow}-next {
-    border-radius: $arrow-circle-border-radius;
-  }
-}
-
-.#{$arrow}s-square {
-  .#{$arrow}-prev,
-  .#{$arrow}-next {
-    border-radius: $arrow-square-border-radius;
-  }
-}
-
-.#{$arrow}s-solid {
-  .#{$arrow}-prev,
-  .#{$arrow}-next {
+  &-solid {
     color: $arrow-solid-color;
-    background-color: $arrow-solid-bg-color;
-  
+    background-color: $arrow-solid-bg;
+
     &:hover {
+      color: $arrow-solid-color;
       background-color: $arrow-hover-color;
     }
 
     &:active {
+      color: $arrow-solid-color;
       background-color: $arrow-active-color;
     }
 
     &.#{$arrow}-disabled {
-      color: $arrow-light-disabled-color;
-      background-color: $arrow-solid-disabled-bg-color;
+      color: $arrow-solid-color !important;
+      background-color: $arrow-disable-bg !important;
     }
   }
-}
 
-.#{$arrow}s-shadow {
-  .#{$arrow}-prev,
-  .#{$arrow}-next {
-    background-color: $arrow-shadow-bgcolor;
-    box-shadow: $arrow-shadow-box-shadow;
+  &-shadow {
+    background-color: $arrow-shadow-bg;
+    box-shadow: $arrow-shadow;
   }
 }
 
-//light
-.#{$arrow}s-light {
-  .#{$arrow}-next,
-  .#{$arrow}-prev {
+.#{$arrow}s--light {
+  .#{$arrow} {
     color: $arrow-light-color;
 
     &:hover {
@@ -149,17 +139,14 @@ $arrow-light-shadow-disabled-bgcolor: #3d3d3d;
     }
 
     &.#{$arrow}-disabled {
-      color: $arrow-light-disabled-color;
+      color: $arrow-light-disable-color;
     }
-  }
 
-  &.#{$arrow}s-outline {
-    .#{$arrow}-next,
-    .#{$arrow}-prev {
-      border-color: $arrow-light-outline-border-color;
+    &-outline {
+      border-color: $arrow-light-border-color;
 
       &:hover {
-        border-color: $arrow-light-outline-hover-border-color;
+        border-color: $arrow-light-hover-color;
       }
 
       &:active {
@@ -167,35 +154,35 @@ $arrow-light-shadow-disabled-bgcolor: #3d3d3d;
       }
 
       &.#{$arrow}-disabled {
-        border-color: $arrow-light-disabled-outline-border-color;
+        color: $arrow-light-disable-color !important;
+        border-color: $arrow-light-disable-border-color !important;
       }
     }
-  }
 
-  &.#{$arrow}s-solid {
-    .#{$arrow}-next,
-    .#{$arrow}-prev {
-      color: $arrow-light-color;
-      background-color: $arrow-light-solid-bgcolor;
+    &-solid {
+      color: $arrow-light-solid-color;
+      background-color: $arrow-light-solid-bg;
 
       &:hover {
-        background-color: $arrow-light-outline-hover-border-color;
+        color: $arrow-light-solid-color;
+        background-color: $arrow-light-hover-color;
       }
 
       &:active {
+        color: $arrow-light-solid-color;
         background-color: $arrow-light-active-color;
       }
 
       &.#{$arrow}-disabled {
-        background-color: $arrow-light-disabled-outline-border-color;
+        color: $arrow-light-solid-color !important;
+        background-color: $arrow-light-disable-bg !important;
       }
     }
-  }
 
-  &.#{$arrow}s-shadow {
-    .#{$arrow}-next,
-    .#{$arrow}-prev {
-      background-color: $arrow-light-shadow-disabled-bgcolor;
+    &-shadow {
+      background-color: $arrow-light-shadow-bg;
+      box-shadow: $arrow-light-shadow;
     }
   }
 }
+

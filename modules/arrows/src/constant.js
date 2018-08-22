@@ -15,7 +15,7 @@ export const classes = {
   NAMESPACE: 'pj-arrow',
   CONTAINER: '{namespace}s',
   THEME: '{namespace}s--{theme}',
-  TYPE: '{namespace}s-{type}',
+  TYPE: '{namespace}-{type}',
   PREV: '{namespace}-prev',
   NEXT: '{namespace}-next',
   VERTICAL: '{namespace}s-vertical',
@@ -55,10 +55,10 @@ export const defaults = {
   valueFrom: 'href', // text, data-attr or ['a', 'href']
   templates: {
     prev() {
-      return '<a class="{classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} {icon}"></i></a>'
+      return '<a class="{classes.NAMESPACE} {classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} {icon}"></i></a>'
     },
     next() {
-      return '<a class="{classes.NEXT}" href="{href}" alt="{text}"><i class="{classes.ICON} {icon}"></i></a>'
+      return '<a class="{classes.NAMESPACE} {classes.NEXT}" href="{href}" alt="{text}"><i class="{classes.ICON} {icon}"></i></a>'
     }
   }
 }

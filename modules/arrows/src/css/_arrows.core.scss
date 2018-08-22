@@ -3,113 +3,36 @@
 // Vars
 // =====================
 $arrow: "pj-arrow" !default;
-$arrow-space-x: 10px !default;
-$arrow-space-y: 10px !default;
-$arrow-icon-font-size: 24px !default;
-$arrow-font-size: $font-size-sm !default;
-$arrow-font-family: $font-family-base !default;
 
-$arrow-space-lg: 48px !default;
-$arrow-space-sm: 40px !default;
-$arrow-space-xs: 32px !default;
-
-$arrow-icon-font-size-lg: 38px !default;
-$arrow-icon-font-size-sm: 24px !default;
-$arrow-icon-font-size-xs: 16px !default;
-
-$arrow-color: $color-black !default;
-$arrow-active-color: #1d53bf !default;
-$arrow-hover-color: $color-primary !default;
-$arrow-disable-color: rgba($color-black, 0.15) !default;
-
-// Core
-// =====================
 .#{$arrow}s {
   @include clearfix();
-  
+
   position: relative;
-  font-family: $arrow-font-family;
-  font-size: $arrow-font-size;
   opacity: 1;
 
   &.#{$arrow}-hidden {
     opacity: 0;
   }
-
-  + .#{$arrow}s {
-    margin-top: $arrow-space-y;
-  }
 }
 
-.#{$arrow}-prev,
-.#{$arrow}-next {
+.#{$arrow} {
   position: relative;
-  box-sizing: border-box;
   display: inline-block;
+  height: 1em;
+  min-width: 1em;
+  line-height: 1;
+  box-sizing: content-box;
+  text-decoration: none;
   cursor: pointer;
-  
-  .#{$arrow}-icon {
-    font-size: $arrow-icon-font-size;
-  }
 
-  &.#{$arrow}-lg {
-    width: $arrow-space-lg;
-    height: $arrow-space-lg;
-    line-height: $arrow-space-lg;
+  &-icon {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
     text-align: center;
-
-    .#{$arrow}-icon {
-      font-size: $arrow-icon-font-size-lg;
-    }
   }
 
-  &.#{$arrow}-sm {
-    width: $arrow-space-sm;
-    height: $arrow-space-sm;
-    line-height: $arrow-space-sm;
-    text-align: center;
-
-    .#{$arrow}-icon {
-      font-size: $arrow-icon-font-size-sm;
-    }
-  }
-
-  &.#{$arrow}-xs {
-    width: $arrow-space-xs;
-    height: $arrow-space-xs;
-    line-height: $arrow-space-xs;
-    text-align: center;
-
-    .#{$arrow}-icon {
-      font-size: $arrow-icon-font-size-xs;
-    }
-  }
-
-  &,
-  &:link,
-  &:active,
-  &:hover,
-  &:visited {
-    color: $arrow-color;
-    text-decoration: none;
-    outline: none;
-    text-decoration-style: none;
-  }
-
-  &:hover {
-    color: $arrow-hover-color;
-  }
-
-  &:active {
-    color: $arrow-active-color;
-  }
-
-  &:focus {
-    box-shadow: none;
-  }
-
-  &.#{$arrow}-disabled  {
-    color: $arrow-disable-color;
+  &-disabled {
     cursor: not-allowed;
   }
 }
