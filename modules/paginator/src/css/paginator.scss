@@ -1,17 +1,17 @@
 @import "@pluginjs/styles/variables.scss";
-@import "paginator.core";
+@import "paginator.core.scss";
 
 // Vars
 // =====================
+// input var
 $paginator-input-width: 74px;
 $paginator-input-height: 32px;
+$paginator-input-margin: 5px;
 $paginator-input-radius: $border-radius-sm;
 
 $paginator-padding: 5px 10px;
 $paginator-icon-margin: 10px;
-$paginator-pre-size: 13px;
 $paginator-pre-color: $gray-darkest;
-
 $paginator-bg: $color-white !default;
 $paginator-border-width: $border-width !default;
 $paginator-border-color: $gray-border !default;
@@ -55,7 +55,6 @@ $paginator-disabled-border: $gray !default;
 .#{$paginator}-prev,
 .#{$paginator}-next {
   .#{$paginator}-link {
-    font-size: $paginator-pre-size;
     color: $paginator-pre-color;
 
     &:hover {
@@ -94,6 +93,7 @@ $paginator-disabled-border: $gray !default;
   width: $paginator-input-width;
   height: $paginator-input-height;
   padding: $paginator-padding;
+  margin-left: $paginator-input-margin;
   border: 1px solid $paginator-border-color;
   border-radius: $paginator-input-radius;
 

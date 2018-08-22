@@ -8,15 +8,15 @@ $paginator-font-size: $font-size-sm !default;
 $paginator-line-height: 22px !default;
 $paginator-spacer: 30px !default;
 $paginator-spacer-min: 14px !default;
-$paginator-height: 30px !default;
+$paginator-height: 32px !default;
 $paginator-height-min: 35px !default;
 $paginator-padding-top: 20px !default;
 $paginator-padding-x: 8px !default;
 $paginator-padding-y: $spacer-y !default;
-$paginator-link-padding: 6px !default;
-$paginator-link-margin: 8px !default;
+$paginator-link-width: 15px !default;
+$paginator-link-margin: 6px !default;
 $paginator-link-margin-min: 3px !default;
-$paginator-text-margin: 30px - $paginator-link-margin - $paginator-link-padding !default;
+$paginator-text-margin: 12px !default;
 
 $paginator-color: $gray-darkest !default;
 
@@ -42,7 +42,7 @@ $paginator-color: $gray-darkest !default;
 }
 
 .#{$paginator}-total {
-  margin-right: $paginator-text-margin;
+  margin-right: $paginator-text-margin - 3px;
   text-transform: capitalize;
 }
 
@@ -56,8 +56,9 @@ $paginator-color: $gray-darkest !default;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: $paginator-link-padding;
+  min-width: $paginator-link-width;
   margin: 0 $paginator-link-margin;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
 }

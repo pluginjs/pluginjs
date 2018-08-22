@@ -1,15 +1,13 @@
 @import "@pluginjs/styles/variables.scss";
-@import "progress.core";
+@import "progress.core.scss";
 
 // Vars
 // =====================
-$progress: pj-progress !default;
-// core vars
-$progress-bg-color: $gray-lightest !default;
-$progress-height: 0.3125rem !default;
-$progress-height-max: 0.5625rem !default;
+$progress: "pj-progress";
+$progress-bg-color: rgba($color-black, 0.12);
+$progress-border-radius: $border-radius-sm;
 // bar vars
-$progress-bar-bg-color: $color-primary !default;
+$progress-bar-bg-color: $color-primary;
 $progress-bar-bg-image: linear-gradient(
   135deg,
   rgba(255, 255, 255, 0.35) 25%,
@@ -19,30 +17,26 @@ $progress-bar-bg-image: linear-gradient(
   rgba(255, 255, 255, 0.35) 75%,
   transparent 75%,
   transparent
-) !default;
-$progress-bar-bg-size: 1.25rem 1.25rem !default;
+);
+$progress-bar-bg-size: 20px 20px;
 // value vars
-$progress-value-width: 2.75rem !default;
-$progress-value-height: 1.625rem !default;
-$progress-value-fontSize: $font-size-xs !default;
-$progress-value-color: $color-white !default;
-$progress-value-bg-color: $color-black !default;
-$progress-value-radius: $border-radius-base !default;
-$progress-value-box-shadow: $box-shadow-base !default;
-
-$progress-value-vertical-height: 18.75rem !default;
-$progress-value-vertical-width: $progress-height !default;
-$progress-value-vertical-width-max: $progress-height-max !default;
+$progress-value-fontSize: $font-size-xs;
+$progress-value-color: $color-white;
+$progress-value-bg-color: $gray-darkest;
+$progress-value-radius: $border-radius-base;
+$progress-value-box-shadow: $box-shadow-base;
+$progress-value-width: 44px;
+$progress-value-height: 26px;
+$progress-value-vertical-height: 300px;
+$progress-value-vertical-width: $progress-height;
+$progress-value-vertical-width-max: $progress-height-max;
+$progress-value-vertical-tri: 6px;
 
 // default
 // ======================================
 .#{$progress} {
-  height: $progress-height;
   background-color: $progress-bg-color;
-
-  &-standard-bar {
-    height: $progress-height-max;
-  }
+  border-radius: $progress-border-radius;
 
   .#{$progress} {
     &-bar {
@@ -59,10 +53,9 @@ $progress-value-vertical-width-max: $progress-height-max !default;
       color: $progress-value-color;
       background: $progress-value-bg-color;
       border-radius: $progress-value-radius;
-      // box-shadow: $progress-value-box-shadow;
 
       &::before {
-        border: 6px solid transparent;
+        border: $progress-value-vertical-tri solid transparent;
         border-bottom-color: $progress-value-bg-color;
       }
     }
@@ -79,7 +72,7 @@ $progress-value-vertical-width-max: $progress-height-max !default;
 
     .#{$progress}-value {
       &::before {
-        border: 6px solid transparent;
+        border: $progress-value-vertical-tri solid transparent;
         border-right-color: $progress-value-bg-color;
       }
     }

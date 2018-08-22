@@ -3,22 +3,22 @@
 // Vars
 // =====================
 $progress: "pj-progress" !default;
-$progress-bg: $gray !default;
+$progress-height: 4px !default;
+$progress-height-max: 8px !default;
 $progress-font-family: $font-family-base !default;
-$progress-bar-bg: $color-danger-light !default;
-$progress-label-bottom: 0.25rem !default;
-$progress-margin-bottom: 2.5rem !default;
-$progress-border-radius: 1px !default;
+$progress-margin-bottom: 40px !default;
 
-// Progress
+// Core
 // =====================
 .#{$progress} {
   position: relative;
-  height: 0.25rem;
+  height: $progress-height;
   margin-bottom: $progress-margin-bottom;
   font-family: $progress-font-family;
-  background-color: $progress-bg;
-  border-radius: $progress-border-radius;
+
+  &-standard-bar {
+    height: $progress-height-max;
+  }
 
   &.#{$progress}-vertical {
     display: flex;
@@ -27,7 +27,7 @@ $progress-border-radius: 1px !default;
     .#{$progress}-value {
       top: 0;
       bottom: auto;
-      left: -0.4375rem;
+      left: -5px;
       &::before {
         bottom: 50%;
         left: 0;
@@ -46,12 +46,11 @@ $progress-border-radius: 1px !default;
     position: relative;
     display: block;
     height: 100%;
-    background-color: $progress-bar-bg;
   }
 
   &-label {
     position: absolute;
-    bottom: $progress-label-bottom;
+    bottom: 4px;
     left: 0;
     display: inline-block;
     white-space: nowrap;
@@ -60,7 +59,7 @@ $progress-border-radius: 1px !default;
   &-value {
     position: absolute;
     right: 0;
-    bottom: -3.125rem;
+    bottom: -50px;
     z-index: 99;
     text-align: center;
     user-select: none;
