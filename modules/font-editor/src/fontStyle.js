@@ -18,7 +18,6 @@ export default class FontStyle {
     })
     this.$FontStyle = parseHTML(html)
     this.instance.$typoDecorations.append(this.$FontStyle)
-
     // this.$FontStyle.dataset.fontStyle = this.value
     setData('fontStyle', this.value, this.$FontStyle)
     this.set(this.value)
@@ -43,7 +42,7 @@ export default class FontStyle {
   bind() {
     const that = this
     bindEvent(
-      'click',
+      this.instance.eventName('click'),
       () => {
         if (that.instance.is('disabled')) {
           return this

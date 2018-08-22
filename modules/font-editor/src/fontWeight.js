@@ -38,9 +38,8 @@ export default class FontWeight {
     const that = this
     const data = []
     Object.entries(this.values).forEach(([i, v]) => {
-      data[i] = { label: v }
+      data[i] = { label: v, value: v }
     })
-
     const value = this.instance.value.fontWeight
 
     this.dropdownInstance = Dropdown.of(this.$dropWeight, {
@@ -50,6 +49,7 @@ export default class FontWeight {
       width: getWidth(this.$dropdown),
       // itemValueAttr: 'fontWeight',
       data,
+      value: 'inherit',
       onChange(value) {
         if (that.instance.is('disabled')) {
           return

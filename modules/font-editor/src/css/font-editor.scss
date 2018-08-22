@@ -62,7 +62,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
   &-empty,
   &-fill {
-    position: relative;
+    position: relative !important;
     box-sizing: border-box;
     display: block;
     min-width: $fontEditor-fill-width;
@@ -98,7 +98,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   &-fill {
     align-items: center;
     color: $fontEditor-color;
-
+    border: 1px solid #E6E6E6;
     &-font {
       display: flex;
       flex-direction: column;
@@ -211,6 +211,12 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
   &-fontFamily,
   &-fontWeight {
+    .pj-dropdown-input {
+      width: 23 * $fontEditor-sizer;
+    }
+    .pj-dropdown {
+      width: 23 * $fontEditor-sizer;
+    }
     &-dropdown {
       width: $fontEditor-content-width !important;
       height: $fontEditor-dropdown-height;
@@ -224,6 +230,12 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
   &-fontSize,
   &-lineHeight {
+    .pj-dropdown-input {
+      width: 8 * $fontEditor-sizer;
+    }
+    .pj-dropdown {
+      width: 8 * $fontEditor-sizer;
+    }
     &-range.pj-range-control {
       width: 11 * $fontEditor-sizer; //110px
     }
@@ -361,7 +373,9 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     background-color: $disabled-bg;
   }
 }
-
+.pj-dropdown-input {
+  width: none;
+}
 .pj-btn-primary {
   background-color: $btn-color-primary;
   border-color: $btn-color-primary;

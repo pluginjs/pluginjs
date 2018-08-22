@@ -186,13 +186,11 @@ class Units extends Component {
         this.cacheValue(this.getUnit(), this.value)
         this.update(this.getUnit())
         this.trigger(EVENTS.CHANGEVAL, this.value)
-        console.log(this.get())
       },
       this.$input
     )
-    console.log(this.TRIGGER.options)
+
     this.TRIGGER.options.onChange = () => {
-      console.log(this.unit)
       if (this.unit === this.getUnit()) {
         return
       }

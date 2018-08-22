@@ -1,6 +1,6 @@
 import template from '@pluginjs/template'
 import Dropdown from '@pluginjs/dropdown'
-import { parseHTML, query, insertBefore, data } from '@pluginjs/dom'
+import { parseHTML, query, insertBefore } from '@pluginjs/dom'
 
 export default class FontFamily {
   constructor(instance) {
@@ -33,23 +33,21 @@ export default class FontFamily {
     this.$list.append(...parseHTML(this.getListHtml()))
 
     const value = this.instance.value.fontFamily
-
     const that = this
     this.dropdownInstance = Dropdown.of(this.$dropFamily, {
       imitateSelect: true,
-      itemValueAttr: 'fontFamily',
-      exclusive: false,
-      select: value,
+      value,
+      itemValueAttr: 'data-font-family',
+      target: this.$list,
       width: this.$dropdown,
-      icon: 'icon-char icon-chevron-down',
       onChange(value) {
         if (that.instance.is('disabled')) {
           return
         }
 
-        const fontFamily = data('fontFamily', value)
-
-        that.instance.value.fontFamily = fontFamily
+        // const fontFamily = data('fontFamily', value)
+        // console.log(fontFamily)
+        that.instance.value.fontFamily = value
 
         // if (fontFamily !== 'inherit') {
         //   that.instance.$wrap
@@ -86,7 +84,9 @@ export default class FontFamily {
     let html = ''
     for (const key in this.values) {
       if ({}.hasOwnProperty.call(this.values, key)) {
-        html += `<li data-font-family='${key}'>${this.values[key]}</li>`
+        html += `<li class="pj-dropdown-item" data-font-family='${key}'>${
+          this.values[key]
+        }</li>`
       }
     }
     return html

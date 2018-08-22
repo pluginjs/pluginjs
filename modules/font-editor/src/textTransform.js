@@ -65,7 +65,7 @@ export default class TextTransform {
   bind() {
     const that = this
     this.$items.map(
-      bindEvent('click', ({ target }) => {
+      bindEvent(this.instance.eventName('click'), ({ target }) => {
         if (that.instance.is('disabled')) {
           return null
         }

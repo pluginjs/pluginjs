@@ -1,12 +1,6 @@
 import template from '@pluginjs/template'
 import { parseHTML, queryAll } from '@pluginjs/dom'
-import {
-  addClass,
-  removeClass,
-  hasClass,
-  getData,
-  setData
-} from '@pluginjs/classes'
+import { addClass, removeClass, hasClass, getData } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 
 export default class TextDecoration {
@@ -33,8 +27,8 @@ export default class TextDecoration {
 
     this.values.forEach((value, key) => {
       if (that.$items[key]) {
-        // that.$items[key].dataset.textDecoration = value
-        setData('textDecoration', value, that.$items[key])
+        that.$items[key].dataset.textDecoration = value
+        // setData('textDecoration', value, that.$items[key])
       }
     })
 
@@ -68,7 +62,7 @@ export default class TextDecoration {
   bind() {
     const that = this
     this.$items.map(
-      bindEvent('click', ({ target }) => {
+      bindEvent(this.instance.eventName('click'), ({ target }) => {
         if (that.instance.is('disabled')) {
           return null
         }

@@ -118,8 +118,10 @@ class FontEditor extends Component {
     this.$defaultDropdown = Dropdown.of(this.$empty, {
       theme: 'dafault',
       placement: 'bottom-left',
-      imitateSelect: true,
-      exclusive: false,
+      // imitateSelect: true,
+      // exclusive: false,
+      reference: this.$trigger,
+      target: this.$expandPanel,
       hideOutClick: false,
       hideOnSelect: false,
       constraintToScrollParent: false,
@@ -139,7 +141,6 @@ class FontEditor extends Component {
         }
 
         addClass(that.classes.EXPAND, that.$wrap)
-        console.log(this.$defaultDropdown.show())
         return
       },
       this.$empty
@@ -173,7 +174,6 @@ class FontEditor extends Component {
         if (that.is('disabled')) {
           return
         }
-        console.log(this.$defaultDropdown)
         // console.log(this.$defaultDropdown.show())
         // removeClass(this.classes.EXSIT, this.$wrap)
         addClass(that.classes.EXPAND, that.$wrap)
@@ -192,7 +192,6 @@ class FontEditor extends Component {
         // addClass(that.classes.EXPAND, that.$wrap)
         this.$defaultDropdown.hide()
         // addClass(that.classes.EXPAND, that.$wrap)
-        console.log(this.$defaultDropdown.hide())
         return
       },
       this.$fillRemove
@@ -222,7 +221,6 @@ class FontEditor extends Component {
         //   : null
         this.update()
         this.$defaultDropdown.hide()
-        console.log(this.$defaultDropdown.hide())
         return
       },
       this.$expandSave
@@ -264,7 +262,6 @@ class FontEditor extends Component {
     insertAfter(this.$wrap, this.element)
 
     this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
-
     this.$fill = query(`.${this.classes.FILL}`, this.$wrap)
     this.$fillFont = query(`.${this.classes.FILLFONT}`, this.$fill)
     this.$fillFontName = query(`.${this.classes.FILLFONTNAME}`, this.$fill)
@@ -272,7 +269,7 @@ class FontEditor extends Component {
     this.$fillChange = query(`.${this.classes.FILLCHANGE}`, this.$fill)
     this.$fillRemove = query(`.${this.classes.FILLREMOVE}`, this.$fill)
     this.$editBtn = query(`.${this.classes.FILLEDIT}`, this.$fill)
-
+    this.$trigger = query(`.${this.classes.TRIGGER}`, this.$wrap)
     this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
     this.$expandControl = query(
       `.${this.classes.EXPANDCONTROL}`,
@@ -313,9 +310,9 @@ class FontEditor extends Component {
   update() {
     const value = this.val()
     this.element.value = value
-
     // set attr
     Object.entries(this.value).forEach(([i, v]) => {
+      console.log(this.value)
       if (this.defaultVal[i] === v) {
         return
       }
@@ -334,6 +331,7 @@ class FontEditor extends Component {
 
       const attr = {}
       attr[i] = v
+      console.log(attr)
       setStyle(attr, this.$fillFontName)
     })
 
