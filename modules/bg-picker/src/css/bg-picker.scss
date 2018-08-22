@@ -385,7 +385,7 @@ input.#{$bgPicker}-input {
   }
 
   &-active {
-    color: $bgPicker-active-color !important;
+    // color: $bgPicker-active-color !important;
 
     &::after {
       display: block !important;

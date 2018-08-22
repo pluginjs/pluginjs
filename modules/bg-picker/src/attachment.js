@@ -40,15 +40,14 @@ export default class Attachment {
     )
     // this.$attachTrigger = query('span', this.$dropdown)
     this.values = this.instance.options.attachment.values
-    console.log(this.values)
     const data = this.values.map(value => ({ label: value, value }))
-    console.log(data)
     const that = this
 
     setData(
       'dropdown',
       Dropdown.of(this.$dropdown, {
         imitateSelect: true,
+        value: 'inherit',
         data,
         width: this.$dropdown,
         classes: {
@@ -61,6 +60,7 @@ export default class Attachment {
             return
           }
           that.instance.value.attachment = getData('value', value)
+          console.log(that.instance.value.attachment)
           setStyle(
             'background-attachment',
             that.instance.value.attachment,

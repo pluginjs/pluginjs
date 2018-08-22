@@ -301,18 +301,20 @@ class BgPicker extends Component {
   }
 
   update() {
+    console.log(1)
     const value = this.val()
+    console.log(value)
     this.element.value = value
     this.trigger(EVENTS.CHANGE, value)
   }
 
   val(value) {
+    console.log(2)
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.value)
     }
-
     const valueObj = this.options.parse.call(this, value)
-
+    console.log(valueObj)
     if (valueObj) {
       this.set(valueObj)
     } else {
