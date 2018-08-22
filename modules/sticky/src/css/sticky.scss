@@ -1,16 +1,16 @@
 @import "@pluginjs/styles/variables.scss";
-@import "sticky.core";
+@import "sticky.core.scss";
 
 // Vars
 // =====================
-
-$sticky-heading-font-size: $font-size-xs !default;
-$sticky-heading-color: $gray-dark !default;
-$sticky-heading-bg: $gray-lighter !default;
-$sticky-heading-border-radius: $border-radius-base !default;
-$sticky-content-font-size: $font-size-sm !default;
-$sticky-content-color: $gray-darkest !default;
-$sticky-content-bg: $color-white !default;
+$sticky-heading-font-size: $font-size-xs;
+$sticky-heading-color: $gray-dark;
+$sticky-heading-bg: $gray-lighter;
+$sticky-heading-border-radius: $border-radius-base;
+$sticky-content-font-size: $font-size-sm;
+$sticky-content-color: $gray-darkest;
+$sticky-content-bg: $color-white;
+$sticky-content-word-spacing: 10px;
 
 // Skin
 // =====================
@@ -25,5 +25,6 @@ $sticky-content-bg: $color-white !default;
 .content {
   font-size: $sticky-content-font-size;
   color: $sticky-content-color;
+  word-spacing: $sticky-content-word-spacing;
   background: $sticky-content-bg;
 }

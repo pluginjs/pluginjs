@@ -3,19 +3,18 @@
 // Vars
 // =====================
 $sticky: "pj-sticky" !default;
-$sticky-heading-width: 17.875rem !default;
-$sticky-heading-height: 1.5rem !default;
-$sticky-heading-padding-left: 1.25rem !default;
-$sticky-content-padding: 1.25rem !default;
+$sticky-font-family: $font-family-base !default;
+$sticky-heading-width: 286px !default;
+$sticky-heading-height: 24px !default;
+$sticky-heading-padding-left: 20px !default;
+$sticky-content-padding: 20px !default;
+
 
 // Core
 // =====================
 .#{$sticky}-parent {
   position: relative;
-}
-
-.#{$sticky}-wrap {
-  font-family: $font-family-base;
+  font-family: $sticky-font-family;
 }
 
 .#{$sticky}-sticky {
@@ -42,6 +41,7 @@ $sticky-content-padding: 1.25rem !default;
 
 .content {
   padding: $sticky-content-padding;
+  padding-top: $sticky-content-padding - 4px;
 }
 
 .page-content {
