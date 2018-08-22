@@ -27,11 +27,17 @@ $progress-margin-bottom: 40px !default;
     .#{$progress}-value {
       top: 0;
       bottom: auto;
-      left: -5px;
+      left: -7px;
       &::before {
         bottom: 50%;
         left: 0;
         transform: translate(-100%, 50%);
+      }
+    }
+
+    &.#{$progress}-standard-bar {
+      .#{$progress}-value {
+        left: -4px;
       }
     }
 

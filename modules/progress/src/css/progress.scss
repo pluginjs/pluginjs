@@ -4,17 +4,17 @@
 // Vars
 // =====================
 $progress: "pj-progress";
-$progress-bg-color: rgba($color-black, 0.12);
+$progress-bg-color: rgba($color-black, 0.05);
 $progress-border-radius: $border-radius-sm;
 // bar vars
 $progress-bar-bg-color: $color-primary;
 $progress-bar-bg-image: linear-gradient(
   135deg,
-  rgba(255, 255, 255, 0.35) 25%,
+  rgba($color-white, 0.12) 25%,
   transparent 25%,
   transparent 50%,
-  rgba(255, 255, 255, 0.35) 50%,
-  rgba(255, 255, 255, 0.35) 75%,
+  rgba($color-white, 0.12) 50%,
+  rgba($color-white, 0.12) 75%,
   transparent 75%,
   transparent
 );
@@ -43,6 +43,7 @@ $progress-value-vertical-tri: 6px;
       background: $progress-bar-bg-color;
       background-image: $progress-bar-bg-image;
       background-size: $progress-bar-bg-size;
+      border-radius: $progress-border-radius 0 0 $progress-border-radius;
     }
 
     &-value {
@@ -64,6 +65,10 @@ $progress-value-vertical-tri: 6px;
   &-vertical {
     width: $progress-value-vertical-width;
     height: $progress-value-vertical-height;
+
+    .#{$progress}-bar {
+      border-radius: 0  0 $progress-border-radius $progress-border-radius;
+    }
 
     &.#{$progress}-standard-bar {
       width: $progress-height-max;
