@@ -89,7 +89,7 @@ export default class Tween extends SimpleEmitter {
           easing: x => x,
           delay: 0,
           loop: false,
-          direction: 'normal',
+          direction: 'normal', // reverse, alternate
           autoplay: true
         },
         props
@@ -105,12 +105,11 @@ export default class Tween extends SimpleEmitter {
       [COMPLETED]: false,
       [PAUSED]: false,
       [STARTED]: false,
-      [REVERSED]: false,
+      [REVERSED]: props.direction === 'reverse',
 
       remaining: props.loop ? props.loop : false,
 
-      _complete: cb => cb(),
-      _progress: x => x
+      _complete: cb => cb()
     })
 
     const type = Object.values(TYPES).reduce((v, m) => {
@@ -191,7 +190,7 @@ export default class Tween extends SimpleEmitter {
       [COMPLETED]: false,
       [PAUSED]: false,
       [STARTED]: true,
-      [REVERSED]: false,
+      [REVERSED]: this.props.direction === 'reverse',
       remaining: this.props.loop ? this.props.loop : false
     })
 
@@ -219,6 +218,10 @@ export default class Tween extends SimpleEmitter {
     return this[COMPLETED]
   }
 
+  isReversed() {
+    return this[REVERSED]
+  }
+
   delay(delay) {
     this.props.delay = delay
     return this
@@ -239,26 +242,27 @@ export default class Tween extends SimpleEmitter {
     return this
   }
 
-  _adjustTime(time) {
+  _progress(x) {
     if (this[REVERSED]) {
-      time = this.props.duration - time
-      return time < 0 ? 0 : time
+      return 1 - x
     }
-    return time
+    return x
+  }
+
+  _toggleReverse() {
+    this[REVERSED] = !this[REVERSED]
   }
 
   reverse() {
-    this[REVERSED] = !this[REVERSED]
+    this._toggleReverse()
 
-    this.elapsed = this._adjustTime(this.elapsed)
+    this.elapsed = this.props.duration - this.elapsed
   }
 
   seek(time) {
     const { easing, duration } = this.props
 
-    this._interpolate(
-      easing(this._progress(Math.min(1, this._adjustTime(time) / duration)))
-    )
+    this._interpolate(easing(this._progress(Math.min(1, time / duration))))
 
     this.emit('update', this.value, this)
   }
@@ -290,6 +294,16 @@ export default class Tween extends SimpleEmitter {
     this.seek(this.elapsed)
 
     if (this.elapsed >= this.props.duration) {
+      if (this.props.direction === 'alternate') {
+        this._toggleReverse()
+
+        this.elapsed = 0
+
+        if (this[REVERSED] === true) {
+          return
+        }
+      }
+
       if (this.remaining && this.remaining !== true) {
         this.remaining--
       }

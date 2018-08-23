@@ -303,6 +303,138 @@ describe('Tween()', () => {
     )
   })
 
+  describe('direction', () => {
+    test(
+      'normal',
+      done => {
+        expect.assertions(2)
+
+        const tween = new Tween({
+          from: 0,
+          to: 10,
+          duration: 1000,
+          direction: 'normal'
+        })
+
+        setTimeout(() => {
+          expect(tween.value).toBeLessThanOrEqual(2)
+        }, 150)
+
+        setTimeout(() => {
+          expect(tween.value).toBe(10)
+
+          done()
+        }, 1100)
+      },
+      1300
+    )
+
+    test(
+      'reverse',
+      done => {
+        expect.assertions(2)
+
+        const tween = new Tween({
+          from: 0,
+          to: 10,
+          duration: 1000,
+          direction: 'reverse'
+        })
+
+        setTimeout(() => {
+          expect(tween.value).toBeGreaterThanOrEqual(8)
+        }, 150)
+
+        setTimeout(() => {
+          expect(tween.value).toBe(0)
+
+          done()
+        }, 1100)
+      },
+      1300
+    )
+
+    test(
+      'alternate',
+      done => {
+        expect.assertions(5)
+
+        const tween = new Tween({
+          from: 0,
+          to: 10,
+          duration: 1000,
+          direction: 'alternate'
+        })
+
+        setTimeout(() => {
+          expect(tween.value).toBeLessThanOrEqual(2)
+        }, 150)
+
+        setTimeout(() => {
+          expect(tween.value).toBeGreaterThanOrEqual(8)
+        }, 900)
+
+        setTimeout(() => {
+          expect(tween.value).toBeLessThanOrEqual(8)
+          expect(tween.value).toBeGreaterThanOrEqual(6)
+        }, 1300)
+
+        setTimeout(() => {
+          expect(tween.value).toBe(0)
+          done()
+        }, 2100)
+      },
+      2400
+    )
+
+    test(
+      'alternate with loop',
+      done => {
+        expect.assertions(9)
+
+        const tween = new Tween({
+          from: 0,
+          to: 10,
+          duration: 1000,
+          direction: 'alternate',
+          loop: 2
+        })
+
+        setTimeout(() => {
+          expect(tween.value).toBeLessThanOrEqual(2)
+        }, 150)
+
+        setTimeout(() => {
+          expect(tween.value).toBeGreaterThanOrEqual(8)
+        }, 900)
+
+        setTimeout(() => {
+          expect(tween.value).toBeLessThanOrEqual(8)
+          expect(tween.value).toBeGreaterThanOrEqual(6)
+        }, 1300)
+
+        setTimeout(() => {
+          expect(tween.value).toBeLessThanOrEqual(2)
+        }, 2150)
+
+        setTimeout(() => {
+          expect(tween.value).toBeGreaterThanOrEqual(8)
+        }, 2900)
+
+        setTimeout(() => {
+          expect(tween.value).toBeLessThanOrEqual(8)
+          expect(tween.value).toBeGreaterThanOrEqual(6)
+        }, 3300)
+
+        setTimeout(() => {
+          expect(tween.value).toBe(0)
+          done()
+        }, 4200)
+      },
+      4400
+    )
+  })
+
   describe('events', () => {
     test(
       'complete event',
