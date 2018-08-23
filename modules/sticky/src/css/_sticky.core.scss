@@ -3,18 +3,11 @@
 // Vars
 // =====================
 $sticky: "pj-sticky" !default;
-$sticky-font-family: $font-family-base !default;
-$sticky-heading-width: 286px !default;
-$sticky-heading-height: 24px !default;
-$sticky-heading-padding-left: 20px !default;
-$sticky-content-padding: 20px !default;
-
 
 // Core
 // =====================
 .#{$sticky}-parent {
   position: relative;
-  font-family: $sticky-font-family;
 }
 
 .#{$sticky}-sticky {
@@ -28,23 +21,3 @@ $sticky-content-padding: 20px !default;
 .#{$sticky}-hidden {
   visibility: hidden;
 }
-
-// stylelint-disable value-no-vendor-prefix
-.heading {
-  position: -webkit-sticky;
-  box-sizing: border-box;
-  width: 100%;
-  height: $sticky-heading-height;
-  padding-left: $sticky-heading-padding-left;
-  line-height: $sticky-heading-height;
-}
-
-.content {
-  padding: $sticky-content-padding;
-  padding-top: $sticky-content-padding - 4px;
-}
-
-.page-content {
-  overflow: unset;
-}
-// stylelint-enable value-no-vendor-prefix

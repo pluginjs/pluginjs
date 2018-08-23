@@ -6,13 +6,32 @@
 $rate-star: #fa0;
 $rate-color: $gray;
 $rate-font-family: $font-family-base;
+$rate-spacer: 8px;
+$rate-svg-spacer: 12px;
+$rate-icon-spacer: 10px;
+$rate-star-font-size: $font-size-sm;
+$rate-star-font-line-height: 22px;
+$rate-time: 0.3s !default;
 
 // Style
 // =====================
 .#{$rate} {
   .#{$rate}-star {
+    padding: 0;
+    margin: 0;
     color: $rate-color;
+    cursor: pointer;
+    transition: all $rate-time;
+
+    + .#{$rate}-star {
+      margin-left: $rate-spacer;
+    }
   }
+}
+
+.#{$rate}-start-first,
+.#{$rate}-start-second {
+  transition: all $rate-time;
 }
 
 .#{$rate}-clear-color {
@@ -27,3 +46,30 @@ $rate-font-family: $font-family-base;
   color: $rate-star;;
 }
 
+.score {
+  margin: -3px;  // for the time being
+  font-size: $rate-star-font-size;
+  line-height: $rate-star-font-line-height;
+  color: $gray-darker;
+  text-transform: capitalize;
+}
+
+.svgExample {
+  + .#{$rate} {
+    .#{$rate}-star {
+      + .#{$rate}-star {
+        margin-left: $rate-svg-spacer;
+      }
+    }
+  }
+}
+
+.iconClass {
+  + .#{$rate} {
+    .#{$rate}-star {
+      + .#{$rate}-star {
+        margin-left: $rate-icon-spacer;
+      }
+    }
+  }
+}

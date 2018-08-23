@@ -3,7 +3,6 @@
 // Vars
 // =====================
 $dot: "pj-dot" !default;
-$dot-font-family: $font-family-base !default;
 $dot-font-size: $font-size-lg default;
 $dot-width: 8px !default;
 $dot-height: 8px !default;
@@ -12,6 +11,8 @@ $dot-line-height: 2px !default;
 $dot-radius: 50% !default;
 $dot-margin: 5px !default;
 $dot-vertical-space: 16px !default;
+$dot-color: rgba($color-black, 0.15) !default;
+$dot-active-color: $color-primary !default;
 
 // Core
 // =====================
@@ -19,7 +20,6 @@ $dot-vertical-space: 16px !default;
   display: flex;
   padding: 0;
   margin: 0;
-  font-family: $dot-font-family;
   list-style: none;
 }
 
@@ -39,6 +39,13 @@ $dot-vertical-space: 16px !default;
     overflow: hidden;
     text-indent: 100%;
     cursor: pointer;
+    background-color: $dot-color;
+  }
+
+  &.#{$dot}-active {
+    a {
+      background-color: $dot-active-color;
+    }
   }
 }
 

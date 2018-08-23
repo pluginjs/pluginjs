@@ -3,17 +3,11 @@
 // Vars
 // =====================
 $rate: "pj-rate" !default;
-$rate-size: 40px !default;
-$rate-time: 0.3s !default;
-$rate-spacer: 8px !default;
-$rate-stor-font-size: $font-size-sm !default;
-$rate-svg-spacer: 15px !default;
-$rate-icon-spacer: 10px !default;
-$rate-stor-font-line-height: 22px !default;
 
 // Core
 // =====================
 .#{$rate} {
+  box-sizing: border-box;
   display: inline-block;
   padding: 0;
   margin: 0;
@@ -22,15 +16,8 @@ $rate-stor-font-line-height: 22px !default;
 
   .#{$rate}-star {
     position: relative;
+    box-sizing: border-box;
     display: inline-block;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    transition: all $rate-time;
-
-    + .#{$rate}-star {
-      margin-left: $rate-spacer;
-    }
 
     .#{$rate}-star-first {
       position: absolute;
@@ -53,7 +40,6 @@ $rate-stor-font-line-height: 22px !default;
 .#{$rate}-star-first,
 .#{$rate}-star-second {
   user-select: none;
-  transition: all $rate-time;
 
   img {
     max-width: none;
@@ -70,32 +56,4 @@ $rate-stor-font-line-height: 22px !default;
 
 .#{$rate}-destroy .#{$rate}-star {
   cursor: default;
-}
-
-.score {
-  // margin: -2px;
-  font-size: $rate-stor-font-size;
-  line-height: $rate-stor-font-line-height;
-  color: $gray-darker;
-  text-transform: capitalize;
-}
-
-.svgExample {
-  + .#{$rate} {
-    .#{$rate}-star {
-      + .#{$rate}-star {
-        margin-left: $rate-svg-spacer;
-      }
-    }
-  }
-}
-
-.iconClass {
-  + .#{$rate} {
-    .#{$rate}-star {
-      + .#{$rate}-star {
-        margin-left: $rate-icon-spacer;
-      }
-    }
-  }
 }

@@ -3,43 +3,23 @@
 // Vars
 // =====================
 $swipeable: "pj-swipeable" !default;
-$swipeable-font-size: $font-size-lg !default;
-$swipeable-width: 370 * $swipeable-font-size !default;
-$swipeable-height: 13.25 * $swipeable-font-size !default;
-$swipeable-container-spacer: 0.625 * $swipeable-font-size !default;
-$swipeable-item-border-radius: $border-radius-sm !default;
-$swipeable-item-margin-right: 1.25 * $swipeable-font-size !default;
-$swipeable-item-width: 23.5 * $swipeable-font-size !default;
-$swipeable-item-font-size: 1.25 * $swipeable-font-size !default;
-$swipeable-vertical-width: 23.5 * $swipeable-font-size !default;
-$swipeable-vertical-height: 268 * $swipeable-font-size !default;
-$swipeable-vertical-item-height: 58 * $swipeable-font-size !default;
-$swipeable-vertical-item-line-height: 6.25 * $swipeable-font-size !default;
-$swipeable-vertical-item-margin-bottom: 1.25 * $swipeable-font-size !default;
 
 // core
 // =====================
 .#{$swipeable}-container {
-  padding: $swipeable-container-spacer 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
   overflow: hidden;
 
   &.#{$swipeable}-vertical {
-    width: $swipeable-vertical-width;
-    height: $swipeable-vertical-item-height;
-
     .#{$swipeable} {
       flex-direction: column;
-      width: $swipeable-vertical-width;
-      height: $swipeable-vertical-height;
-      margin: 0;
     }
 
     .#{$swipeable}-item {
       box-sizing: border-box;
-      flex: 0 0 $swipeable-vertical-item-line-height;
-      margin: 0;
-      margin-bottom: $swipeable-vertical-item-margin-bottom;
-      line-height: $swipeable-vertical-item-line-height;
     }
   }
 }
@@ -47,26 +27,20 @@ $swipeable-vertical-item-margin-bottom: 1.25 * $swipeable-font-size !default;
 .#{$swipeable} {
   position: relative;
   display: flex;
-  width: $swipeable-width;
-  height: $swipeable-height;
-  margin-right: $swipeable-item-margin-right;
-  cursor: pointer;
+  width: 100%;
+  height: 100%;
 
   &-item {
-    flex: 0 0 $swipeable-item-width;
-    margin-right: $swipeable-item-margin-right;
-    line-height: $swipeable-height;
-
-
     img {
       width: 100%;
       height: 100%;
       pointer-events: none;
     }
   }
-}
-.position-vertical {
-  .#{$swipeable} {
-    transform: translateY(230px);
+
+  &-vertical {
+    position: relative;
+    display: flex;
+    justify-content: center;
   }
 }

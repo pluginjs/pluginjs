@@ -3,15 +3,61 @@
 
 // Vars
 // =====================
-$swipeable-bg-color: rgba(133, 83, 83, 0.2) !default;
-$swipeable-item-border-radius: $border-radius-sm !default;
-$swipeable-item-font-size: 20px !default;
+$swipeable: "pj-swipeable";
+$swipeable-font-family: $font-family-base;
+$swipeable-width: 5920px;
+$swipeable-height: 212px;
+$swipeable-container-spacer: 10px;
+$swipeable-bg-color: rgba(133, 83, 83, 0.2);
+$swipeable-item-border-radius: 0;
+$swipeable-item-margin-right: 20px;
+$swipeable-item-width: 376px;
+$swipeable-item-font-size: 20px;
+
+$swipeable-vertical-width: 376px;
+$swipeable-vertical-height: 4288px;
+$swipeable-vertical-item-height: 928px;
+$swipeable-vertical-item-line-height: 100px;
+$swipeable-vertical-item-margin-bottom: 20px;
+$swipeable-vertical-solid-width: 480px;
+$swipeable-vertical-solid-height: 1px;
+$swipeable-vertical-solid-bg: $gray-border;
 
 // swipeable
 // =====================
+.#{$swipeable}-container {
+  padding: $swipeable-container-spacer 0;
+  font-family: $swipeable-font-family;
+
+  &.#{$swipeable}-vertical {
+    height: $swipeable-vertical-item-height;
+
+    .#{$swipeable} {
+      width: $swipeable-vertical-width;
+      height: $swipeable-vertical-height;
+      margin: 0;
+    }
+
+    .#{$swipeable}-item {
+      flex: 0 0 $swipeable-vertical-item-line-height;
+      margin: 0;
+      margin-bottom: $swipeable-vertical-item-margin-bottom;
+      line-height: $swipeable-vertical-item-line-height;
+    }
+  }
+}
+
 .#{$swipeable} {
+  width: $swipeable-width;
+  height: $swipeable-height;
+  margin-right: $swipeable-item-margin-right;
+  cursor: pointer;
+
   &-item {
+    flex: 0 0 $swipeable-item-width;
+    margin-right: $swipeable-item-margin-right;
     font-size: $swipeable-item-font-size;
+    line-height: $swipeable-height;
     text-align: center;
     background-color: $swipeable-bg-color;
     border-radius: $swipeable-item-border-radius;
@@ -19,6 +65,36 @@ $swipeable-item-font-size: 20px !default;
     img {
       border-radius: $swipeable-item-border-radius;
     }
+  }
+
+  &-vertical {
+    width: $swipeable-vertical-solid-width;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: auto;
+      width: $swipeable-vertical-solid-width;
+      height: $swipeable-vertical-solid-height;
+      content: "";
+      background: $swipeable-vertical-solid-bg;
+    }
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: auto;
+      width: $swipeable-vertical-solid-width;
+      height: $swipeable-vertical-solid-height;
+      content: "";
+      background:  $swipeable-vertical-solid-bg;
+    }
+  }
+}
+
+.position-vertical {
+  .#{$swipeable} {
+    transform: translateY(230px);
   }
 }
 
