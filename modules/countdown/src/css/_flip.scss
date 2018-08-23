@@ -2,8 +2,7 @@
 
 // Vars
 // =====================
-$countdowns: "pj-countdown" !default;
-$countdown: "countdown" !default;
+$countdown: "pj-countdown" !default;
 $countdown-flip-width: 160px !default;
 $countdown-flip-height: 160px !default;
 $countdown-flip-min-width: 80px !default;
@@ -128,5 +127,5 @@ $countdown-flip-shadow: 0 10px 35px 0 rgba($color-black, 0.1) !default;
     .#{$countdown}-number {
       line-height: $countdown-flip-min-width;
     }
-  }  
+  }
 }

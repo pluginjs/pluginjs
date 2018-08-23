@@ -5,9 +5,9 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   DISABLED: '{namespace}-disabled',
   MODE: '{namespace}-{mode}',
-  TIME: `${namespace}-time`,
-  NUMBER: `${namespace}-number`,
-  LABEL: `${namespace}-label`
+  TIME: '{namespace}-time',
+  NUMBER: '{namespace}-number',
+  LABEL: '{namespace}-label'
 }
 
 export const events = {

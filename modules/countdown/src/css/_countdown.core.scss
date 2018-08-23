@@ -5,8 +5,7 @@
 // Vars
 // =====================
 
-$countdown: "countdown" !default;
-$countdowns: "pj-countdown" !default;
+$countdown: "pj-countdown" !default;
 $countdown-font-family: $font-family-base !default;
 $countdown-spacer: 64px !default;
 $countdown-small-time-margin: 5px !default;
@@ -41,11 +40,11 @@ $countdown-small-time-margin: 5px !default;
     .#{$countdown}-time {
       margin: $countdown-small-time-margin;
     }
-    
+
     .#{$countdown}-number {
       font-size: $font-size-lg;
     }
-  
+
     .#{$countdown}-label {
       font-size: $font-size-xs;
     }

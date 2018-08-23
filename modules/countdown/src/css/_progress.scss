@@ -2,8 +2,7 @@
 
 // Vars
 // =====================
-$countdowns: "pj-countdown" !default;
-$countdown: "countdown" !default;
+$countdown: "pj-countdown" !default;
 $countdown-progress-width: 180px !default;
 $countdown-progress-height: 180px !default;
 $countdown-progress-min-width: 112px !default;
@@ -96,5 +95,5 @@ $countdown-progress-color: $gray-darkest !default;
         font-size: $font-size-xs;
       }
     }
-  }  
+  }
 }
