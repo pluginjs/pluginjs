@@ -35,13 +35,13 @@ const Engine = {
     return !isNull(this.requestId)
   },
   run() {
-    const animate = (time = Date.now()) => {
-      this.requestId = window.requestAnimationFrame(animate)
+    const step = (time = Date.now()) => {
+      this.requestId = window.requestAnimationFrame(step)
 
       this.update(time)
     }
 
-    this.requestId = window.requestAnimationFrame(animate)
+    this.requestId = window.requestAnimationFrame(step)
   },
   stop() {
     window.cancelAnimationFrame(this.requestId)
@@ -52,14 +52,14 @@ const Engine = {
     const length = tweens.length
     for (let i = 0; i < length; i++) {
       const tween = tweens[i]
-      const delta = time - tween.prevTime
+      const delta = time - tween.lastTime
 
       if (tween[STARTED] && !tween[COMPLETED]) {
         if (!tween[PAUSED]) {
-          tween.update(delta)
+          tween.update(delta, time - tween.startTime - tween.paused)
         }
 
-        tween.prevTime = time
+        tween.lastTime = time
       }
     }
   }
@@ -86,7 +86,8 @@ export default class Tween extends SimpleEmitter {
           to: null,
           duration: 1000,
           easing: x => x,
-          delay: 0
+          delay: 0,
+          loop: false
         },
         props
       ),
@@ -94,13 +95,14 @@ export default class Tween extends SimpleEmitter {
       elapsed: 0,
       delayed: 0,
       paused: 0,
-      prevTime: null,
+      lastTime: null,
       startTime: null,
       pauseTime: null,
 
       [COMPLETED]: false,
       [PAUSED]: false,
       [STARTED]: false,
+      remaining: props.loop ? props.loop : false,
 
       _complete: cb => cb(),
       _progress: x => x
@@ -119,7 +121,7 @@ export default class Tween extends SimpleEmitter {
     if (!this[STARTED]) {
       this[STARTED] = true
       this.startTime = Date.now()
-      this.prevTime = this.startTime
+      this.lastTime = this.startTime
       this.delayed = 0
 
       if (this.elapsed) {
@@ -175,7 +177,7 @@ export default class Tween extends SimpleEmitter {
       elapsed: 0,
       delayed: 0,
       paused: 0,
-      prevTime: Date.now(),
+      lastTime: Date.now(),
       startTime: Date.now(),
       pauseTime: null,
 
@@ -184,7 +186,7 @@ export default class Tween extends SimpleEmitter {
       [STARTED]: true
     })
 
-    this.update(0)
+    this.seek(0)
     this.emit('restart', this.value, this)
 
     Engine.add(this)
@@ -213,6 +215,11 @@ export default class Tween extends SimpleEmitter {
     return this
   }
 
+  loop(loop) {
+    this.props.loop = loop
+    return this
+  }
+
   easing(easing) {
     this.props.easing = easing
     return this
@@ -237,7 +244,13 @@ export default class Tween extends SimpleEmitter {
     }
 
     if (this.props.delay && this.delayed < this.props.delay) {
-      this.delayed += delta
+      if (this.delayed === -1) {
+        this.seek(0)
+
+        this.delayed = delta
+      } else {
+        this.delayed += delta
+      }
 
       return
     }
@@ -247,12 +260,25 @@ export default class Tween extends SimpleEmitter {
     this.seek(this.elapsed)
 
     if (this.elapsed >= this.props.duration) {
-      this._complete(() => {
-        this[COMPLETED] = true
+      if (this.remaining && this.remaining !== true) {
+        this.remaining--
+      }
 
-        Engine.remove(this)
-        this.emit('complete', this.value, this)
-      })
+      if (this.remaining) {
+        this.startTime = Date.now()
+        this.paused = 0
+        this.elapsed = 0
+        if (this.props.delay) {
+          this.delayed = -1
+        }
+      } else {
+        this._complete(() => {
+          this[COMPLETED] = true
+
+          Engine.remove(this)
+          this.emit('complete', this.value, this)
+        })
+      }
     }
   }
 
