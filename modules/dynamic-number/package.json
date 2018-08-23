@@ -34,6 +34,7 @@
     "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
   },
   "dependencies": {
+    "@pluginjs/tween": "*",
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/factory": "*",

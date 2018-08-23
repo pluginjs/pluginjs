@@ -1,6 +1,13 @@
 import SimpleEmitter from '@pluginjs/simple-emitter'
 import Easing from '@pluginjs/easing'
-import { isPlainObject, isArray, isNumber, isNull } from '@pluginjs/is'
+import { getTime } from '@pluginjs/utils'
+import {
+  isPlainObject,
+  isArray,
+  isNumber,
+  isNull,
+  isString
+} from '@pluginjs/is'
 
 /* Credit to https://between.js.org/ MIT */
 
@@ -36,19 +43,20 @@ const Engine = {
     return !isNull(this.requestId)
   },
   run() {
-    const step = (time = Date.now()) => {
-      this.requestId = window.requestAnimationFrame(step)
+    const tick = time => {
+      time = getTime()
+      this.requestId = window.requestAnimationFrame(tick)
 
-      this.update(time)
+      this.tick(time)
     }
 
-    this.requestId = window.requestAnimationFrame(step)
+    this.requestId = window.requestAnimationFrame(tick)
   },
   stop() {
     window.cancelAnimationFrame(this.requestId)
     this.requestId = null
   },
-  update(time) {
+  tick(time) {
     const tweens = this.tweens
     const length = tweens.length
     for (let i = 0; i < length; i++) {
@@ -57,7 +65,7 @@ const Engine = {
 
       if (tween[STARTED] && !tween[COMPLETED]) {
         if (!tween[PAUSED]) {
-          tween.update(delta, time - tween.startTime - tween.paused)
+          tween.tick(delta, time - tween.startTime - tween.paused)
         }
 
         tween.lastTime = time
@@ -112,6 +120,10 @@ export default class Tween extends SimpleEmitter {
       _complete: cb => cb()
     })
 
+    if (isString(this.props.easing)) {
+      this.props.easing = Easing.get(this.props.easing)
+    }
+
     const type = Object.values(TYPES).reduce((v, m) => {
       return v || (m && m.test && m.test(this.props.from) && m)
     }, false)
@@ -128,7 +140,7 @@ export default class Tween extends SimpleEmitter {
   start() {
     if (!this[STARTED]) {
       this[STARTED] = true
-      this.startTime = Date.now()
+      this.startTime = getTime()
       this.lastTime = this.startTime
       this.delayed = null
 
@@ -157,7 +169,7 @@ export default class Tween extends SimpleEmitter {
   pause() {
     if (!this[PAUSED]) {
       this[PAUSED] = true
-      this.pauseTime = Date.now()
+      this.pauseTime = getTime()
 
       this.emit('pause', this.value, this)
     }
@@ -168,7 +180,7 @@ export default class Tween extends SimpleEmitter {
   resume() {
     if (this[PAUSED]) {
       this[PAUSED] = false
-      this.paused += Date.now() - this.pauseTime
+      this.paused += getTime() - this.pauseTime
 
       this.emit('resume', this.value, this)
     }
@@ -177,27 +189,44 @@ export default class Tween extends SimpleEmitter {
   }
 
   restart() {
+    this._reset()
+
+    this[STARTED] = true
+    this.startTime = getTime()
+    this.lastTime = this.startTime
+    this.delayed = null
+
+    this.emit('restart', this.value, this)
+
+    Engine.add(this)
+
+    return this
+  }
+
+  _reset() {
     Engine.remove(this)
 
     Object.assign(this, {
       elapsed: null,
       delayed: 0,
       paused: 0,
-      lastTime: Date.now(),
-      startTime: Date.now(),
+      lastTime: null,
+      startTime: null,
       pauseTime: null,
 
       [COMPLETED]: false,
       [PAUSED]: false,
-      [STARTED]: true,
+      [STARTED]: false,
       [REVERSED]: this.props.direction === 'reverse',
       remaining: this.props.loop ? this.props.loop : false
     })
 
     this.seek(0)
-    this.emit('restart', this.value, this)
+  }
 
-    Engine.add(this)
+  reset() {
+    this._reset()
+    this.emit('reset', this.value, this)
 
     return this
   }
@@ -220,6 +249,16 @@ export default class Tween extends SimpleEmitter {
 
   isReversed() {
     return this[REVERSED]
+  }
+
+  from(from) {
+    this.props.from = from
+    return this
+  }
+
+  to(to) {
+    this.props.to = to
+    return this
   }
 
   delay(delay) {
@@ -259,6 +298,14 @@ export default class Tween extends SimpleEmitter {
     this.elapsed = this.props.duration - this.elapsed
   }
 
+  finish() {
+    this[COMPLETED] = true
+
+    Engine.remove(this)
+    this.seek(this.duration)
+    this.emit('complete', this.value, this)
+  }
+
   seek(time) {
     const { easing, duration } = this.props
 
@@ -267,7 +314,12 @@ export default class Tween extends SimpleEmitter {
     this.emit('update', this.value, this)
   }
 
-  update(delta) {
+  clear() {
+    this.off()
+    Engine.remove(this)
+  }
+
+  tick(delta) {
     if (this[COMPLETED]) {
       return
     }
@@ -309,7 +361,7 @@ export default class Tween extends SimpleEmitter {
       }
 
       if (this.remaining) {
-        this.startTime = Date.now()
+        this.startTime = getTime()
         this.paused = 0
         this.elapsed = 0
         if (this.props.delay) {

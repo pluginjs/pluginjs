@@ -29,7 +29,8 @@
   "dependencies": {
     "@pluginjs/simple-emitter": "*",
     "@pluginjs/easing": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

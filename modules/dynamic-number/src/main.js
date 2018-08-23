@@ -1,168 +1,132 @@
 import Component from '@pluginjs/component'
-import { getTime } from '@pluginjs/utils'
+import Tween from '@pluginjs/tween'
 import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import formaters from './formaters'
 
 @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, true)
-@register(
-  NAMESPACE,
-  {
-    methods: METHODS
-  },
-  INFO
-)
+@register(NAMESPACE, {
+  methods: METHODS
+})
 class DynamicNumber extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)
 
     this.initOptions(DEFAULTS, options)
-    this.options.step = parseFloat(this.options.step, 10)
-
-    this.first = this.element.getAttribute('aria-valuenow')
-    this.first = this.first ? this.first : this.options.from
-    this.first = parseFloat(this.first, 10)
-
-    this.now = this.first
+    this.from = this.element.getAttribute('aria-value')
+    this.from = this.from ? this.from : parseFloat(this.options.from, 10)
     this.to = parseFloat(this.options.to, 10)
-
-    this.privateRequestId = null
+    this.value = null
     this.initStates()
     this.initialize()
   }
 
   initialize() {
+    this.tween = Tween.of({
+      from: this.from,
+      to: this.to,
+      easing: this.options.easing,
+      delay: this.options.delay,
+      loop: this.options.loop,
+      duration: this.options.duration,
+      autoplay: this.options.autoplay
+    })
+      .on('start', () => {
+        this.trigger(EVENTS.START, this.get())
+      })
+      .on('stop', () => {
+        this.trigger(EVENTS.STOP, this.get())
+      })
+      .on('complete', () => {
+        this.trigger(EVENTS.COMPLETE, this.get())
+      })
+      .on('pause', () => {
+        this.trigger(EVENTS.PAUSE, this.get())
+      })
+      .on('resume', () => {
+        this.trigger(EVENTS.RESUME, this.get())
+      })
+      .on('update', value => {
+        this.update(value)
+      })
+      .on('restart', () => {
+        this.trigger(EVENTS.RESTART, this.get())
+      })
+      .on('reset', () => {
+        this.trigger(EVENTS.RESET, this.get())
+      })
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  go(to) {
-    this.clear()
-
-    if (typeof to === 'undefined') {
-      to = this.to
-    } else {
-      to = parseFloat(to, 10)
+  update(value) {
+    if (typeof this.options.format === 'function') {
+      value = this.options.format.apply(this, [value, this.options])
+    } else if (typeof window[this.options.format] === 'function') {
+      value = window[this.options.format].apply(this, [value, this.options])
     }
 
-    const start = this.now
-    const startTime = getTime()
-
-    const animation = time => {
-      const distance = (time - startTime) / this.options.duration
-      let next = Math.abs(distance * (start - to))
-
-      if (to > start) {
-        next = start + next
-        if (next > to) {
-          next = to
-        }
-      } else {
-        next = start - next
-        if (next < to) {
-          next = to
-        }
-      }
-
-      this.update(next)
-
-      if (next === to) {
-        window.cancelAnimationFrame(this.privateRequestId)
-        this.privateRequestId = null
-        if (this.now === this.to) {
-          this.trigger(EVENTS.FINISH)
-        }
-      } else {
-        this.privateRequestId = window.requestAnimationFrame(animation)
-      }
+    if (this.value === value) {
+      return
     }
-
-    this.privateRequestId = window.requestAnimationFrame(animation)
-  }
-
-  update(n) {
-    this.now = n
-
-    this.element.setAttribute('aria-valuenow', this.now)
-    let formated = n
-
-    if (!isNaN(n)) {
-      if (typeof this.options.format === 'function') {
-        formated = this.options.format.apply(this, [n, this.options])
-      } else if (typeof this.options.format === 'string') {
-        if (typeof formaters[this.options.format] !== 'undefined') {
-          formated = formaters[this.options.format].apply(this, [
-            n,
-            this.options[this.options.format]
-          ])
-        } else if (typeof window[this.options.format] === 'function') {
-          formated = window[this.options.format].apply(this, [n, this.options])
-        }
-      }
-    }
-
-    this.element.innerHTML = formated
-    this.trigger('update', n)
+    this.value = value
+    this.element.setAttribute('aria-value', value)
+    this.element.innerHTML = value
+    this.trigger(EVENTS.UPDATE, value)
   }
 
   get() {
-    return this.now
+    return this.value
+  }
+
+  go(to) {
+    if (typeof to !== 'undefined') {
+      this.tween.to(parseFloat(to, 10))
+    }
+
+    this.tween.start()
   }
 
   start() {
-    if (!this.is('start')) {
-      this.enter('start')
-    }
-    this.clear()
-    this.trigger(EVENTS.START)
-    this.go(this.to)
-  }
-
-  clear() {
-    if (this.privateRequestId) {
-      window.cancelAnimationFrame(this.privateRequestId)
-      this.privateRequestId = null
-    }
-  }
-
-  reset() {
-    if (!this.is('reset')) {
-      this.enter('reset')
-    }
-    this.clear()
-    this.update(this.first)
-    this.trigger(EVENTS.RESET)
+    this.go()
   }
 
   stop() {
-    if (this.is('start')) {
-      this.leave('start')
-    }
-    this.clear()
-    this.trigger(EVENTS.STOP)
+    this.tween.stop()
+  }
+
+  pause() {
+    this.tween.pause()
+  }
+
+  resume() {
+    this.tween.resume()
+  }
+
+  restart() {
+    this.tween.restart()
+  }
+
+  reset() {
+    this.tween.reset()
   }
 
   finish() {
-    if (this.is('start')) {
-      this.leave('start')
-    }
-    this.clear()
-    this.update(this.to)
-    this.trigger(EVENTS.FINISH)
+    this.tween.finish()
   }
 
   destroy() {
     if (this.is('initialized')) {
       this.leave('initialized')
     }
+    this.tween.clear()
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }
