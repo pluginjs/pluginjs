@@ -1,15 +1,23 @@
 import Component from '@pluginjs/component'
-import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
+import {
+  eventable,
+  register,
+  stateable,
+  styleable,
+  optionable
+} from '@pluginjs/decorator'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
+  classes as CLASSES,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import animate from './animate'
+import { addClass } from '@pluginjs/classes'
 import { curry, debounce, throttle } from '@pluginjs/utils'
 import viewport from '@pluginjs/viewport'
 
+@styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, true)
@@ -25,24 +33,18 @@ class Lazyload extends Component {
 
   delayType = 'throttle'
 
-  animation = 'fade'
-
-  _animationDelay = false
-
   _isLoad = false
-
-  _delay = 0
 
   constructor(element, options = {}) {
     super(NAMESPACE, element)
     this.initOptions(DEFAULTS, options)
-    this.isHorizontal = Boolean(this.options.horizontal)
+    this.initClasses(CLASSES)
     this.initStates()
     this.initialize()
   }
 
   initialize() {
-    const config = ['src', 'retina', 'srcset', 'delay', 'animation']
+    const config = ['src', 'srcset', 'delay']
 
     config
       .filter(key => Boolean(this.options[key]))
@@ -66,8 +68,6 @@ class Lazyload extends Component {
       mapper(src)
     }
 
-    const { render, delay, delayType } = this
-
     const lifeCycle = render => () => {
       this.beforeLoadHook.map(fn => fn())
       try {
@@ -82,74 +82,33 @@ class Lazyload extends Component {
     }
 
     const handler = () => {
-      switch (delayType) {
+      switch (this.delayType) {
         case 'debounce':
-          return debounce(lifeCycle(render), delay || 100)
+          return debounce(lifeCycle(this.render), this.delay || 100)
         case 'throttle':
-          return throttle(lifeCycle(render), delay)
+          return throttle(lifeCycle(this.render), this.delay)
         default:
-          return lifeCycle(render)
+          return lifeCycle(this.render)
       }
     }
     this.handler = handler()
     this.observer = viewport(this.element)
     this.bind()
+    console.log(this)
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  get animation() {
-    return this._animation
-  }
-
-  set animation(v) {
-    if (typeof v === 'object') {
-      this._animation = v
-      this._animation.name = 'custom'
-    } else if (!v) {
-      this._animation = false
-    } else {
-      this._animation = animate[v]
-      this._animation.name = v
-    }
-  }
-
-  get animationDelay() {
-    return this._animationDelay
-  }
-
-  set animationDelay(v) {
-    this._animationDelay = parseInt(v, 10)
-  }
-
-  get delay() {
-    return this._delay
-  }
-
-  set delay(v) {
-    this._delay = parseInt(v, 10)
-  }
-
-  mapStyleObjectToNode(obj, node) {
-    const style = Object.entries(obj).reduce(
-      (state, [key, value]) => `${state}${key}:${value};`,
-      node.getAttribute('style') || ''
-    )
-    node.setAttribute('style', style)
-  }
-
   animationLifeCycle(v) {
-    if (!this.animation) {
-      return false
-    }
     const defaultDelay = 1000
     switch (v) {
       case 'start':
-        this.mapStyleObjectToNode(this.animation.start, this.element)
+        addClass(this.classes.NAMESPACE, this.element)
         break
       case 'finish':
         window.setTimeout(() => {
-          this.mapStyleObjectToNode(this.animation.finish, this.element)
+          addClass(this.classes.LOADED, this.element)
+          this.trigger(EVENTS.LOADED)
           this.destroy()
         }, this.animationDelay || defaultDelay)
         break
@@ -161,14 +120,11 @@ class Lazyload extends Component {
 
   bind() {
     this.observer.on('enter', this.handler)
+    this.trigger(EVENTS.ENTER)
   }
 
   unbind() {
     this.observer.off('enter', this.handler)
-  }
-
-  setAnimation(v) {
-    this.animation = v
   }
 
   setAnimationDelay(v) {

@@ -5,7 +5,13 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  ENTER: 'enter'
+  ENTER: 'enter',
+  LOADED: 'loaded'
+}
+
+export const classes = {
+  NAMESPACE: `pj-${namespace}`,
+  LOADED: '{namespace}-loaded'
 }
 
 export const methods = [
@@ -23,10 +29,7 @@ export const methods = [
 ]
 
 export const defaults = {
-  threshold: 0,
   src: null,
-  retina: false,
   srcset: null,
-  delay: null,
-  animation: null
+  delay: null
 }
