@@ -2,89 +2,255 @@
 @import "modal.core";
 // Vars
 // =====================
+$modal-font-family: $font-family-base;
 $modal-width: 480px;
 $modal-sm-width: 450px;
+$modal-font-size: $font-size-sm;
+$modal-bg: $color-white;
+$modal-lineHeight: 22px;
+$modal-border-radius: $border-radius-base;
+$modal-body-color: $gray-darker;
 
-//overlay
-$modal-close-padding: 14px;
+$modal-title-font-size: 16px;
+$modal-title-color: $gray-darkest;
+$modal-title-icon-margin-right: 14px;
+$modal-title-icon-font-size: 28px;
+$modal-title-icon-padding: 10px 0;
+$modal-icon-title-font-size: 20px;
+
+$modal-container-font-size: $font-size-sm;
+$modal-container-bg: $modal-bg;
+$modal-container-padding: 25px 28px 22px;
+$modal-container-boxShadow: 0 10px 35px 0
+rgba($color-black, 0.1);
+$modal-confirm-buttons-margin: 21px;
+$modal-confirm-button-margin: 9.8px;
+$modal-container-titlle-margin-bottom: 5px;
+
+$modal-btn-height: 32px;
+$modal-btn-padding-horizontal: 15px;
+$modal-btn-padding-vertical: 4px;
+$modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal;
+
+$modal-close-padding: 10px;
 $modal-close-font-Size: 19.6px;
+$modal-close-color: $gray-dark;
+
 $modal-duration: 0.3s;
 $modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
 
-//close
-$modal-close-color: $gray-dark;
-$modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
+$modal-trigger-btn-padding-y: 12px;
+$modal-trigger-btn-padding-x: 30.8px;
+$modal-trigger-hover-color: $color-primary;
+$modal-trigger-active-color: #1d53bf;
 
-// btn
-$modal-btn-padding-y: 14px;
-$modal-btn-padding-x: 30.8px;
-
-//prompt
 $modal-prompt-padding: 0 0 28px;
 $modal-prompt-title-font-size: 18px;
 $modal-prompt-title-bgColor: $color-primary;
-$modal-prompt-title-padding:  13px 20px 11px;
+$modal-prompt-title-padding:  12px 20px;
 $modal-prompt-buttons-padding-right: 28px;
 $modal-prompt-close-padding: 16px;
 $modal-prompt-body-padding: 25px 28px 26px;
 $modal-wideDialog-width: 675px;
 
-//verification
+$modal-overlay-bgColor: rgba($color-black, 0.4) !default;
+
 $modal-vertification-bgColor: $color-white;
 $modal-vertification-color: $color-black;
 $modal-vertification-borderClor: $gray-border;
 
-.#{$modal}-dialog,
-.#{$modal}-prompt,
-.#{$modal}-verification,
-.#{$modal}-wideDialog {
-  padding: $modal-prompt-padding;
-  
-  .#{$modal}-title {
-    padding: $modal-prompt-title-padding;
-    font-size: $modal-prompt-title-font-size;
-    color: $color-white;
-    background: $modal-prompt-title-bgColor;
+.#{$modal} {
+  font-family: $modal-font-family;
+  line-height: $modal-lineHeight;
+
+  &-container {
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: $modal-container-padding;
+    overflow: hidden;
+    font-size: $modal-container-font-size;
+    text-align: left;
+    background: $modal-container-bg;
+    border-radius: $modal-border-radius;
+    box-shadow: $modal-container-boxShadow;
   }
-  
-  .#{$modal}-body {
-    padding: $modal-prompt-body-padding;
-  }
-  
-  .#{$modal}-buttons {
-    padding-right: $modal-prompt-buttons-padding-right;
+
+  &-title {
+    display: flex;
+    align-items: center;
+    padding-bottom: $modal-container-titlle-margin-bottom;
     margin: 0;
+    font-size: $modal-title-font-size;
+    color: $modal-title-color;
+
+    &-icon {
+      font-size: $modal-icon-title-font-size;
+    }
+
+    .#{$modal}-icon {
+      margin-right: $modal-title-icon-margin-right;
+      font-size: $modal-title-icon-font-size;
+    }
+
+    &-center {
+      flex-direction: column;
+      margin-bottom: 4px;
+      text-align: center;
+
+      .#{$modal}-icon {
+        padding: $modal-title-icon-padding;
+        margin-right: 0;
+      }
+    }
+
+    &-right {
+      text-align: right;
+    }
+
+    &:only-child {
+      padding-bottom: 0;
+    }
+  }
+
+  &-close {
+    padding: $modal-close-padding;
+    font-size: $modal-close-font-Size;
+    line-height: 1em;
+    color: $modal-close-color;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    opacity: 0.5;
+    appearance: none;
+  
+    &:not(:disabled):hover {
+      cursor: pointer;
+      background: initial;
+      opacity: 0.9;
+    }
+  
+    &:not(:disabled):active {
+      background: initial;
+      border-color: initial;
+      box-shadow: none;
+    }
+  
+    &:not(:disabled):focus {
+      background: initial;
+    }
+  }
+
+  &-body {
+    max-height: $modal-body-maxHeight;
+    overflow-y: auto;
+    font-size: $font-size-sm;
+    color: $modal-body-color;
+
+    &-center {
+      text-align: center;
+    }
+
+    &-right {
+      text-align: right;
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: $modal-confirm-buttons-margin;
+
+    button {
+      height: $modal-btn-height;
+      padding: $modal-btn-padding;
+      margin-left: $modal-confirm-button-margin;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    .#{$modal}-btn-alignment {
+      width: 50%;
+    }
+  }
+
+  &-overlay {
+    background-color: $modal-overlay-bgColor;
+  }
+
+  &-dialog,
+  &-prompt,
+  &-verification,
+  &-wideDialog {
+    padding: $modal-prompt-padding;
+    
+    .#{$modal}-title {
+      padding: $modal-prompt-title-padding;
+      font-size: $modal-prompt-title-font-size;
+      color: $color-white;
+      background: $modal-prompt-title-bgColor;
+    }
+    
+    .#{$modal}-body {
+      padding: $modal-prompt-body-padding;
+    }
+    
+    .#{$modal}-buttons {
+      padding-right: $modal-prompt-buttons-padding-right;
+      margin: 0;
+    }
+  }
+
+  &-dialog,
+  &-prompt,
+  &-wideDialog {
+    .#{$modal}-close {
+      padding: $modal-prompt-close-padding;
+      color: $color-white;
+      opacity: 1;
+    }
+  }
+
+  &-verification {
+    .#{$modal}-title {
+      color: $modal-vertification-color;
+      background: $modal-vertification-bgColor;
+      border-bottom: 1px solid $modal-vertification-borderClor;
+    }
+  }
+
+  &-wideDialog {
+    width: $modal-wideDialog-width !important;
+  }
+  
+  &-open {
+    overflow: hidden;
+  }
+  
+  &--fadeIn {
+    animation: modal__fadeIn $modal-duration $modal-timing;
+  }
+
+  &-trigger {
+    padding: $modal-trigger-btn-padding-y $modal-trigger-btn-padding-x;
+    font-size: $modal-font-size;
+    line-height: $modal-lineHeight;
+
+    &:hover {
+      color: $modal-trigger-hover-color;
+    }
+
+    &:active,
+    &:focus {
+      color: $modal-trigger-active-color;
+      border-color: $modal-trigger-active-color;
+    }
   }
 }
 
-.#{$modal}-dialog,
-.#{$modal}-prompt,
-.#{$modal}-wideDialog {
-  .#{$modal}-close {
-    padding: $modal-prompt-close-padding;
-    color: $color-white;
-    opacity: 1;
-  }
-}
-
-.#{$modal}-verification {
-  .#{$modal}-title {
-    color: $modal-vertification-color;
-    background: $modal-vertification-bgColor;
-    border-bottom: 1px solid $modal-vertification-borderClor;
-  }
-}
-.#{$modal}-wideDialog {
-  width: $modal-wideDialog-width !important;
-}
-
-.#{$modal}-open {
-  overflow: hidden;
-}
-
-.#{$modal}--fadeIn {
-  animation: modal__fadeIn $modal-duration $modal-timing;
-}
 
 @keyframes modal__fadeIn {
   0% {
@@ -110,46 +276,8 @@ $modal-vertification-borderClor: $gray-border;
   }
 }
 
-.#{$modal}-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  padding: $modal-close-padding;
-  font-size: $modal-close-font-Size;
-  line-height: 1em;
-  color: $modal-close-color;
-  text-decoration: none;
-  background: transparent;
-  border: 0;
-  outline: 0;
-  opacity: 0.5;
-  appearance: none;
-
-  &:not(:disabled):hover {
-    cursor: pointer;
-    background: initial;
-    opacity: 0.9;
-  }
-
-  &:not(:disabled):active {
-    background: initial;
-    border-color: initial;
-    box-shadow: none;
-  }
-
-  &:not(:disabled):focus {
-    background: initial;
-  }
-}
-
 .#{$modal}.#{$modal}-active.#{$modal}-destory {
   display: none;
-}
-
-.btn {
-  padding: $modal-btn-padding-y $modal-btn-padding-x;
-  font-size: $modal-font-size;
 }
 
 @import "effects/fade";

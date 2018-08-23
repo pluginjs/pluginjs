@@ -1,0 +1,36 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$navToSelect: "pj-navToSelect" !default;
+
+// Core
+// =====================
+.#{$navToSelect} {
+  display: none;
+
+  &-input {
+    position: relative;
+    display: none;
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+    }
+  }
+}
+
+/* Mobile device */
+@media only screen and (max-width: 767px) {
+  nav ul {
+    display: none;
+  }
+
+  .#{$navToSelect} {
+    display: block;
+
+    &-input {
+      display: inline-block;
+    }
+  }
+}

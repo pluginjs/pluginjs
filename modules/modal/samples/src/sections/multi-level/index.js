@@ -9,7 +9,7 @@ const prompt = {
   title: 'Modal title',
   buttons: {
     active: {
-      title: 'open modal',
+      title: 'Open Modal',
       close: false,
       fn() {
         Modal.open(pop)
@@ -23,7 +23,7 @@ const pop = {
   contentAlignment: '',
   buttons: {
     active: {
-      title: 'open modal',
+      title: 'Open Modal',
       close: false,
       fn() {
         Modal.open(alert)

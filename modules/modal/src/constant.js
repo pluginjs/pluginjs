@@ -30,7 +30,8 @@ export const classes = {
   OPEN: '{namespace}-open',
   IN: '{namespace}-in',
   BUTTON: '{namespace}-btn',
-  ICON: '{namespace}-icon'
+  ICON: '{namespace}-icon',
+  ICONTITLE: '{namespace}-title-icon'
 }
 
 export const defaults = {
@@ -89,9 +90,9 @@ export const defaults = {
   defaultButtonClass: 'pj-btn pj-btn-primary',
   icon: '',
   icons: {
-    success: ['icon-check-circle', '#215fdb'],
-    info: ['icon-exclamation-circle', '#f4b066'],
-    error: ['icon-times-circle', '#f96868']
+    success: ['icon icon-check-circle', '#215fdb'],
+    info: ['icon icon-exclamation-circle', '#f4b066'],
+    error: ['icon icon-times-circle', '#f96868']
   },
   iconColor: '',
   iconClass: ''

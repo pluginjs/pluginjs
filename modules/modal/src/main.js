@@ -381,6 +381,7 @@ class Modal extends GlobalComponent {
     this.$title.innerHTML = ''
     if (this.options.icon) {
       append(this.$icon, this.$title)
+      addClass(this.getClass(this.classes.ICONTITLE), this.$title)
     }
 
     append(title, this.$title)

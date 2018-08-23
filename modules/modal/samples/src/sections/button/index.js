@@ -10,23 +10,23 @@ const btnColor = {
   title: 'this is title',
   buttons: {
     btn1: {
-      title: 'cancel',
+      title: 'Cancel',
       class: 'pj-btn pj-btn-outline'
     },
     btn2: {
-      title: 'success',
+      title: 'Success',
       class: 'pj-btn pj-btn-success'
     },
     btn3: {
-      title: 'info',
+      title: 'Info',
       class: 'pj-btn pj-btn-info'
     },
     btn4: {
-      title: 'danger',
+      title: 'Danger',
       class: 'pj-btn pj-btn-danger'
     },
     btn5: {
-      title: 'warning',
+      title: 'Warning',
       class: 'pj-btn pj-btn-warning'
     }
   }
@@ -41,11 +41,11 @@ query('.btn-location', root).addEventListener('click', () => {
     close: false,
     buttons: {
       btn1: {
-        title: 'cancel',
+        title: 'Cancel',
         class: 'pj-btn pj-modal-btn-alignment pj-btn-outline'
       },
       btn2: {
-        title: 'delete',
+        title: 'Delete',
         class: 'pj-btn pj-modal-btn-alignment pj-btn-danger'
       }
     }

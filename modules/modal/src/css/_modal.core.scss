@@ -3,40 +3,8 @@
 // Vars
 // =====================
 $modal: "pj-modal" !default;
-$modal-font-family: $font-family-base !default;
-$modal-font-size: $font-size-sm !default;
-$modal-sm-width: 450px !default;
-$modal-bg: $color-white !default;
-$modal-border-radius: $border-radius-base !default;
-$modal-body-color: #545454 !default;
-$modal-body-maxHeight: 50vh !default;
-$modal-body-fotsize: 18px !default;
 $modal-z-index: 10000 !default;
-
-//title
-$modal-title-font-size: 16px !default;
-$modal-title-icon-margin-right: 20px !default;
-$modal-title-icon-font-size: 30px !default;
-$modal-title-icon-padding: 10px 0 !default;
-//overlay
-$modal-overlay-bgColor: rgba($color-black, 0.4) !default;
-//close
-$modal-duration: 0.3s !default;
-
-//container
-$modal-container-font-size: $font-size-sm !default;
-$modal-container-bg: $modal-bg !default;
-$modal-container-padding: 28px !default;
-$modal-container-boxShadow: $box-shadow-5 !default;
-$modal-confirm-buttons-margin: 28px !default;
-$modal-confirm-button-margin: 9.8px !default;
-$modal-container-titlle-margin-bottom: 10px !default;
-
-// btn
-$modal-btn-height: 32px !default;
-$modal-btn-padding-horizontal: 15px !default;
-$modal-btn-padding-vertical: 4px !default;
-$modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !default;
+$modal-body-maxHeight: 50vh !default;
 
 // Core
 // =====================
@@ -47,15 +15,14 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
   bottom: 0;
   left: 0;
   display: none;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  font-family: $modal-font-family;
   opacity: 0;
 
   &.#{$modal}-active {
     z-index: $modal-z-index;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     opacity: 1;
 
     .#{$modal}-overlay {
@@ -64,95 +31,22 @@ $modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal !d
       right: 0;
       bottom: 0;
       left: 0;
-      display: block;
-      background-color: $modal-overlay-bgColor;
-    }
-  }
-}
-
-.#{$modal}-container {
-  position: relative;
-  z-index: $modal-z-index;
-  box-sizing: border-box;
-  display: block;
-  max-width: 100%;
-  padding: $modal-container-padding;
-  overflow: hidden;
-  font-size: $modal-container-font-size;
-  text-align: left;
-  background: $modal-container-bg;
-  border-radius: $modal-border-radius;
-  box-shadow: $modal-container-boxShadow;
-
-  .#{$modal}-title {
-    display: flex;
-    align-content: center;
-    padding-bottom: $modal-container-titlle-margin-bottom;
-    margin: 0;
-    font-size: $modal-title-font-size;
-    letter-spacing: 0.5px;
-
-    .#{$modal}-icon {
-      margin-right: $modal-title-icon-margin-right;
-      font-size: $modal-title-icon-font-size;
-    }
-
-    &-center {
-      flex-direction: column;
-      margin-bottom: 4px;
-      text-align: center;
-
-      .#{$modal}-icon {
-        padding: $modal-title-icon-padding;
-        margin-right: 0;
-      }
-    }
-
-    &-right {
-      text-align: right;
-    }
-
-    &:only-child {
-      padding-bottom: 0;
     }
   }
 
-  .#{$modal}-body {
+  &-container {
     position: relative;
-    max-height: $modal-body-maxHeight;
-    overflow-y: auto;
-    font-size: $font-size-sm;
-    color: $modal-body-color;
-    letter-spacing: 0.6px;
-
-    &-center {
-      text-align: center;
-    }
-
-    &-right {
-      text-align: right;
-    }
+    z-index: $modal-z-index;
   }
 
-  .#{$modal}-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: $modal-confirm-buttons-margin;
+  &-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
 
-    button {
-      height: $modal-btn-height;
-      padding: $modal-btn-padding;
-      margin-left: $modal-confirm-button-margin;
-      letter-spacing: 0.4px;
-
-      &:first-child {
-        margin-left: 0;
-      }
-    }
-
-    .#{$modal}-btn-alignment {
-      width: 50%;
-    }
+  &-body {
+    position: relative;
   }
 }

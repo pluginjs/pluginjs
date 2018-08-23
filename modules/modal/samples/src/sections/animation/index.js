@@ -17,7 +17,7 @@ const basicModal = {
   title: 'Modal title',
   buttons: {
     cancel: {
-      title: 'cancel',
+      title: 'Cancel',
       class: 'pj-btn pj-btn-outline'
     },
     active: {

@@ -1,29 +1,29 @@
 @import "@pluginjs/styles/variables.scss";
+@import "nav-to-select.core";
 
 // Vars
 // =====================
-$navToSelect: "pj-navToSelect" !default;
-$navToSelect-font-family: $font-family-base !default;
-$navToSelect-width: 200px !default;
-$navToSelect-input-width: 160px !default;
-$navToSelect-height:34px !default;
-$navToSelect-input-height: 32px;
-$navToSelect-input-top: 29px;
-$navToSelect-padding-left: 6px !default;
-$navToSelect-font-size: $font-size-sm !default;
-$navToSelect-input-outline: $color-primary !default;
-$navToSelect-input-radius: $border-radius-base !default;
-$navToSelect-input-font-family: "font-awesome" !default;
+$navToSelect-font-family: $font-family-base;
+$navToSelect-font-size: $font-size-sm;
 
-// Core
-// =====================
+$navToSelect-width: 200px;
+
+$navToSelect-color: $gray-darkest;
+
+$navToSelect-padding-left: 10px;
+
+$navToSelect-height:34px;
+
+$navToSelect-input-outline: $color-primary;
+$navToSelect-input-font-family: "font-awesome";
+
 .#{$navToSelect} {
-  display: none;
   width: $navToSelect-width;
   height: $navToSelect-height;
   padding-left: $navToSelect-padding-left;
   font-family: $navToSelect-font-family;
   font-size: $navToSelect-font-size;
+  color: $navToSelect-color;
   background: none;
   border: 1px solid $gray-border;
   outline: none;
@@ -36,14 +36,9 @@ $navToSelect-input-font-family: "font-awesome" !default;
   }
 
   &-input {
-    position: relative;
-    display: none;
-
     &::before {
-      position: absolute;
       top: 50%;
       right: 12px;
-      z-index: -1;
       font-family: $navToSelect-input-font-family;
       text-decoration: none;
       text-transform: none;
@@ -54,19 +49,4 @@ $navToSelect-input-font-family: "font-awesome" !default;
     }
   }
 
-}
-
-/* Mobile device */
-@media only screen and (max-width: 767px) {
-  nav ul {
-    display: none;
-  }
-
-  .#{$navToSelect} {
-    display: block;
-
-    &-input {
-      display: inline-block;
-    }
-  }
 }
