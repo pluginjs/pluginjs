@@ -7,6 +7,7 @@ import { isPlainObject, isArray, isNumber, isNull } from '@pluginjs/is'
 const COMPLETED = Symbol('completed')
 const STARTED = Symbol('started')
 const PAUSED = Symbol('paused')
+const REVERSED = Symbol('reversed')
 
 function lerp(from, to, t) {
   return from * (1 - t) + to * t
@@ -87,12 +88,14 @@ export default class Tween extends SimpleEmitter {
           duration: 1000,
           easing: x => x,
           delay: 0,
-          loop: false
+          loop: false,
+          direction: 'normal',
+          autoplay: true
         },
         props
       ),
 
-      elapsed: 0,
+      elapsed: null,
       delayed: 0,
       paused: 0,
       lastTime: null,
@@ -102,6 +105,8 @@ export default class Tween extends SimpleEmitter {
       [COMPLETED]: false,
       [PAUSED]: false,
       [STARTED]: false,
+      [REVERSED]: false,
+
       remaining: props.loop ? props.loop : false,
 
       _complete: cb => cb(),
@@ -115,6 +120,10 @@ export default class Tween extends SimpleEmitter {
     if (type) {
       type.initialize(this.props, this)
     }
+
+    if (this.props.autoplay) {
+      this.start()
+    }
   }
 
   start() {
@@ -122,15 +131,13 @@ export default class Tween extends SimpleEmitter {
       this[STARTED] = true
       this.startTime = Date.now()
       this.lastTime = this.startTime
-      this.delayed = 0
+      this.delayed = null
 
       if (this.elapsed) {
         this.startTime -= this.elapsed
       }
 
       Engine.add(this)
-
-      this.emit('start', this.value, this)
     }
 
     return this
@@ -174,7 +181,7 @@ export default class Tween extends SimpleEmitter {
     Engine.remove(this)
 
     Object.assign(this, {
-      elapsed: 0,
+      elapsed: null,
       delayed: 0,
       paused: 0,
       lastTime: Date.now(),
@@ -183,7 +190,9 @@ export default class Tween extends SimpleEmitter {
 
       [COMPLETED]: false,
       [PAUSED]: false,
-      [STARTED]: true
+      [STARTED]: true,
+      [REVERSED]: false,
+      remaining: this.props.loop ? this.props.loop : false
     })
 
     this.seek(0)
@@ -230,9 +239,25 @@ export default class Tween extends SimpleEmitter {
     return this
   }
 
+  _adjustTime(time) {
+    if (this[REVERSED]) {
+      time = this.props.duration - time
+      return time < 0 ? 0 : time
+    }
+    return time
+  }
+
+  reverse() {
+    this[REVERSED] = !this[REVERSED]
+
+    this.elapsed = this._adjustTime(this.elapsed)
+  }
+
   seek(time) {
+    const { easing, duration } = this.props
+
     this._interpolate(
-      this.props.easing(this._progress(Math.min(1, time / this.props.duration)))
+      easing(this._progress(Math.min(1, this._adjustTime(time) / duration)))
     )
 
     this.emit('update', this.value, this)
@@ -241,6 +266,11 @@ export default class Tween extends SimpleEmitter {
   update(delta) {
     if (this[COMPLETED]) {
       return
+    }
+
+    if (isNull(this.elapsed)) {
+      this.elapsed = 0
+      this.emit('start', this.value, this)
     }
 
     if (this.props.delay && this.delayed < this.props.delay) {

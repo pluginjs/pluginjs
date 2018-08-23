@@ -2,7 +2,7 @@ import Tween from '../src/main'
 import Easing from '@pluginjs/easing'
 
 global.requestAnimationFrame = func => {
-  setTimeout(func, 100)
+  setTimeout(func, 10)
 }
 
 describe('Tween()', () => {
@@ -14,13 +14,11 @@ describe('Tween()', () => {
         from: 1,
         to: 2,
         duration: 1000
-      })
-        .on('complete', value => {
-          expect(value).toBe(2)
+      }).on('complete', value => {
+        expect(value).toBe(2)
 
-          done()
-        })
-        .start()
+        done()
+      })
     })
 
     test('array', done => {
@@ -30,13 +28,11 @@ describe('Tween()', () => {
         from: [1, 2],
         to: [3, 4],
         duration: 1000
-      })
-        .on('complete', value => {
-          expect(value).toEqual([3, 4])
+      }).on('complete', value => {
+        expect(value).toEqual([3, 4])
 
-          done()
-        })
-        .start()
+        done()
+      })
     })
 
     test('object', done => {
@@ -46,16 +42,39 @@ describe('Tween()', () => {
         from: { a: 2 },
         to: { a: 10 },
         duration: 1000
+      }).on('complete', value => {
+        expect(value.a).toBe(10)
+        done()
       })
-        .on('complete', value => {
-          expect(value.a).toBe(10)
-          done()
-        })
-        .start()
     })
   })
 
   describe('props', () => {
+    test('autoplay=true', done => {
+      const tween = new Tween({
+        from: 0,
+        to: 10,
+        duration: 1000,
+        autoplay: true
+      })
+      expect(tween.isStarted()).toBe(true)
+
+      tween.stop()
+      done()
+    })
+    test('autoplay=false', done => {
+      const tween = new Tween({
+        from: 0,
+        to: 10,
+        duration: 1000,
+        autoplay: false
+      })
+      expect(tween.isStarted()).toBe(false)
+      tween.stop()
+
+      done()
+    })
+
     test('easing', done => {
       expect.hasAssertions()
       const easingFunc = Easing.get('easeIn')
@@ -75,7 +94,6 @@ describe('Tween()', () => {
           expect(value).toBe(10)
           done()
         })
-        .start()
     })
 
     test(
@@ -88,7 +106,7 @@ describe('Tween()', () => {
           to: 10,
           duration: 1000,
           delay: 1000
-        }).start()
+        })
 
         setTimeout(() => {
           expect(tween.value).toBe(0)
@@ -115,7 +133,7 @@ describe('Tween()', () => {
         to: 10,
         duration: 1000,
         loop: false
-      }).start()
+      })
 
       setTimeout(() => {
         expect(tween.value).toBe(10)
@@ -130,7 +148,7 @@ describe('Tween()', () => {
         to: 10,
         duration: 1000,
         loop: 0
-      }).start()
+      })
 
       setTimeout(() => {
         expect(tween.value).toBe(10)
@@ -145,7 +163,7 @@ describe('Tween()', () => {
         to: 10,
         duration: 1000,
         loop: 1
-      }).start()
+      })
 
       setTimeout(() => {
         expect(tween.value).toBe(10)
@@ -162,7 +180,7 @@ describe('Tween()', () => {
           to: 10,
           duration: 1000,
           loop: 2
-        }).start()
+        })
 
         setTimeout(() => {
           expect(tween.value).toBeGreaterThanOrEqual(8)
@@ -190,7 +208,7 @@ describe('Tween()', () => {
           to: 10,
           duration: 1000,
           loop: 3
-        }).start()
+        })
 
         setTimeout(() => {
           expect(tween.value).toBeGreaterThanOrEqual(8)
@@ -223,7 +241,7 @@ describe('Tween()', () => {
           to: 10,
           duration: 1000,
           loop: true
-        }).start()
+        })
 
         setTimeout(() => {
           expect(tween.value).toBeGreaterThanOrEqual(8)
@@ -259,7 +277,7 @@ describe('Tween()', () => {
           duration: 1000,
           delay: 1000,
           loop: 2
-        }).start()
+        })
 
         setTimeout(() => {
           expect(tween.value).toBe(0)
@@ -295,15 +313,13 @@ describe('Tween()', () => {
           from: 0,
           to: 10,
           duration: 1000
-        })
-          .on('complete', (value, api) => {
-            expect(value).toBe(10)
+        }).on('complete', (value, api) => {
+          expect(value).toBe(10)
 
-            expect(api.elapsed).toBeGreaterThanOrEqual(1000)
-            expect(api.isCompleted()).toBeTrue()
-            done()
-          })
-          .start()
+          expect(api.elapsed).toBeGreaterThanOrEqual(1000)
+          expect(api.isCompleted()).toBeTrue()
+          done()
+        })
       },
       1500
     )
@@ -318,7 +334,8 @@ describe('Tween()', () => {
         const tween = new Tween({
           from: 0,
           to: 10,
-          duration: 1000
+          duration: 1000,
+          autoplay: false
         })
           .on('start', (value, api) => {
             expect(api.isStarted()).toBeTrue()
@@ -336,30 +353,34 @@ describe('Tween()', () => {
       1200
     )
 
-    test('pause()', done => {
-      expect.assertions(5)
+    test(
+      'pause()',
+      done => {
+        expect.assertions(5)
 
-      const tween = new Tween({
-        from: 0,
-        to: 10,
-        duration: 1000
-      })
-        .on('start', (value, api) => {
-          expect(api.isPaused()).toBeFalse()
+        const tween = new Tween({
+          from: 0,
+          to: 10,
+          duration: 1000
         })
-        .on('pause', (value, api) => {
-          expect(value).toBeLessThanOrEqual(5)
-          expect(api.isPaused()).toBeTrue()
-          expect(api.isPlaying()).toBeFalse()
-        })
-        .start()
+          .on('start', (value, api) => {
+            expect(api.isPaused()).toBeFalse()
+          })
+          .on('pause', (value, api) => {
+            expect(value).toBeLessThanOrEqual(5)
+            expect(api.isPaused()).toBeTrue()
+            expect(api.isPlaying()).toBeFalse()
+          })
 
-      setTimeout(() => tween.pause(), 200)
-      setTimeout(() => {
-        expect(tween.isCompleted()).toBeFalse()
-        done()
-      }, 1200)
-    })
+        setTimeout(() => tween.pause(), 300)
+        setTimeout(() => {
+          expect(tween.isCompleted()).toBeFalse()
+
+          done()
+        }, 1200)
+      },
+      2000
+    )
 
     test(
       'resume()',
@@ -384,7 +405,6 @@ describe('Tween()', () => {
             expect(api.isPaused()).toBeFalse()
             expect(api.isPlaying()).toBeTrue()
           })
-          .start()
 
         setTimeout(() => tween.pause(), 500)
         setTimeout(() => tween.resume(), 700)
@@ -410,7 +430,8 @@ describe('Tween()', () => {
           from: 0,
           to: 10,
           duration: 1000,
-          delay: 0
+          delay: 0,
+          autoplay: false
         }).on('update', value => {
           expect(value).not.toBe(0)
         })
@@ -443,7 +464,6 @@ describe('Tween()', () => {
           .on('stop', (value, api) => {
             expect(api.isStarted()).toBeFalse()
           })
-          .start()
 
         setTimeout(() => tween.stop(), 500)
 
@@ -465,7 +485,7 @@ describe('Tween()', () => {
           from: 0,
           to: 10,
           duration: 1000
-        }).start()
+        })
 
         setTimeout(() => tween.stop(), 500)
 
@@ -496,12 +516,10 @@ describe('Tween()', () => {
           from: 0,
           to: 10,
           duration: 1000
+        }).on('restart', (value, api) => {
+          expect(value).toBe(0)
+          expect(api.isStarted()).toBeTrue()
         })
-          .on('restart', (value, api) => {
-            expect(value).toBe(0)
-            expect(api.isStarted()).toBeTrue()
-          })
-          .start()
 
         setTimeout(() => tween.restart(), 500)
 
@@ -517,5 +535,135 @@ describe('Tween()', () => {
       },
       3000
     )
+
+    describe('reverse()', () => {
+      test(
+        'at start',
+        done => {
+          expect.assertions(2)
+
+          const tween = new Tween({
+            from: 0,
+            to: 10,
+            duration: 1000
+          })
+
+          setTimeout(() => {
+            tween.reverse()
+          }, 200)
+
+          setTimeout(() => {
+            expect(tween.value).toBeLessThanOrEqual(2)
+          }, 300)
+
+          setTimeout(() => {
+            expect(tween.value).toBe(0)
+
+            done()
+          }, 500)
+        },
+        1000
+      )
+
+      test(
+        'at middle',
+        done => {
+          expect.assertions(2)
+
+          const tween = new Tween({
+            from: 0,
+            to: 10,
+            duration: 1000
+          })
+
+          setTimeout(() => {
+            tween.reverse()
+          }, 500)
+
+          setTimeout(() => {
+            expect(tween.value).toBeLessThanOrEqual(5)
+          }, 600)
+
+          setTimeout(() => {
+            expect(tween.value).toBe(0)
+
+            done()
+          }, 1100)
+        },
+        1300
+      )
+
+      test(
+        'at end',
+        done => {
+          expect.assertions(6)
+
+          const tween = new Tween({
+            from: 0,
+            to: 10,
+            duration: 1000
+          })
+
+          setTimeout(() => {
+            tween.reverse()
+          }, 800)
+
+          setTimeout(() => {
+            expect(tween.value).toBeLessThanOrEqual(8)
+          }, 850)
+
+          setTimeout(() => {
+            expect(tween.value).toBeGreaterThanOrEqual(5)
+            expect(tween.value).toBeLessThanOrEqual(7)
+          }, 1000)
+
+          setTimeout(() => {
+            expect(tween.value).toBeGreaterThanOrEqual(4)
+            expect(tween.value).toBeLessThanOrEqual(6)
+          }, 1100)
+
+          setTimeout(() => {
+            expect(tween.value).toBe(0)
+
+            done()
+          }, 1700)
+        },
+        2000
+      )
+
+      test(
+        'reverse again',
+        done => {
+          expect.assertions(3)
+
+          const tween = new Tween({
+            from: 0,
+            to: 10,
+            duration: 1000
+          })
+
+          setTimeout(() => {
+            tween.reverse()
+          }, 200)
+
+          setTimeout(() => {
+            expect(tween.value).toBeLessThanOrEqual(2) // 1
+
+            tween.reverse()
+          }, 300)
+
+          setTimeout(() => {
+            expect(tween.value).toBeGreaterThanOrEqual(2) // 3
+          }, 500)
+
+          setTimeout(() => {
+            expect(tween.value).toBe(10)
+
+            done()
+          }, 1300)
+        },
+        1500
+      )
+    })
   })
 })
