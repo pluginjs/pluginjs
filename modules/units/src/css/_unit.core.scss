@@ -69,6 +69,7 @@ $units-disabled-opacity: 0.4 !default;
     // &:focus,{
     //   border:0 !important;
     // }
+   
     &.pj-dropdown {
       background-color: transparent;
     }
@@ -107,4 +108,17 @@ $units-disabled-opacity: 0.4 !default;
       text-align: right;
     }
   }
+}
+.pj-dropdown-input {
+  width: 26px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  line-height: 30px !important;
+  
+  border: none !important;
+  
+}
+
+.pj-dropdown {
+  min-width: 0 !important;
 }

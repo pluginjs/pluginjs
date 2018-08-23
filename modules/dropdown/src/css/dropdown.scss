@@ -64,9 +64,8 @@ $dropdown-space-x-left: $dropdown-space-x;
   }
 
   &-input {
-    width: $dropdown-input-width;
-    padding: $dropdown-space-y $dropdown-space-x-right $dropdown-space-y $dropdown-space-x-left !important;
-
+      width: $dropdown-input-width;
+      padding: $dropdown-space-y $dropdown-space-x-right $dropdown-space-y $dropdown-space-x-left !important;
     &[aria-expanded="true"] {
       color: $dropdown-trigger-hover-color;
 

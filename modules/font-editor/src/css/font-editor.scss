@@ -216,6 +216,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     }
     .pj-dropdown {
       width: 23 * $fontEditor-sizer;
+      margin-top: -0.6 * $fontEditor-sizer;
     }
     &-dropdown {
       width: $fontEditor-content-width !important;

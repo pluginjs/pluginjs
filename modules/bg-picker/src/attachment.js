@@ -7,7 +7,7 @@ import {
   setData,
   getData
 } from '@pluginjs/dom'
-import { setStyle } from '@pluginjs/styled'
+import { setStyle } from '@pluginjs/styled'  /* eslint-disable-line */
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 
@@ -55,22 +55,21 @@ export default class Attachment {
             this.instance.classes.NAMESPACE
           }-dropdown-panel`
         },
-        onChange(value) {
+        onChange(value) {  /* eslint-disable-line */
           if (that.instance.disabled) {
             return
           }
-          that.instance.value.attachment = getData('value', value)
-          console.log(that.instance.value.attachment)
-          setStyle(
-            'background-attachment',
-            that.instance.value.attachment,
-            that.instance.$image
-          )
-          setStyle(
-            'background-attachment',
-            that.instance.value.attachment,
-            that.instance.$fillImage
-          )
+          // that.instance.value.attachment = getData('value', value)
+          // setStyle(
+          //   'background-attachment',
+          //   that.instance.value.attachment,
+          //   that.instance.$image
+          // )
+          // setStyle(
+          //   'background-attachment',
+          //   that.instance.value.attachment,
+          //   that.instance.$fillImage
+          // )
         }
       }),
       this.$dropdown

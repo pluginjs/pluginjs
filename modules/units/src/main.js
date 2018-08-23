@@ -72,7 +72,8 @@ class Units extends Component {
     append($input, this.$wrap)
     append($trigger, this.$wrap)
     this.$input = query(`.${this.classes.INPUT}`, this.$wrap)
-
+    this.$unitsT = query('.pj-units-trigger', this.$wrap)
+    console.log(this.$unitsT)
     this.options.data.forEach(v => {
       this.data[v] = ''
     })
@@ -144,14 +145,13 @@ class Units extends Component {
     for (const i in this.data) {
       if ({}.hasOwnProperty.call(this.data, i)) {
         data.push({ value: i, label: i })
-        console.log(data)
       }
     }
     this.unit = this.options.defaultUnit || data[0].label
-    console.log(this.unit)
     const dropdowninstance = DROPDOWN.of($unitsTrigger, {
       width: this.dropdownWidth,
       trigger: 'click',
+      reference: this.$unitsT,
       data,
       imitateSelect: true,
       value: this.unit,
@@ -161,9 +161,10 @@ class Units extends Component {
     return dropdowninstance
   }
   cacheValue(unit, value = '') {
-    console.log(unit)
+    console.log(this.value)
     if (value) {
       this.data[unit] = value
+      console.log(this.data[unit])
       return
     }
     this.data[unit] = this.value
@@ -183,22 +184,23 @@ class Units extends Component {
 
         this.value = parseFloat(value, 10)
         this.value = value
+        console.log(this.value)
+        console.log(this.getUnit())
         this.cacheValue(this.getUnit(), this.value)
         this.update(this.getUnit())
         this.trigger(EVENTS.CHANGEVAL, this.value)
       },
       this.$input
     )
-
     this.TRIGGER.options.onChange = () => {
-      if (this.unit === this.getUnit()) {
-        return
-      }
+      // if (this.unit === this.getUnit()) {
+      //   return
+      // }
       const unit = this.getUnit()
-
       this.cacheValue(this.unit)
-      this.update(unit)
+      this.update(this.unit)
       this.trigger(EVENTS.CHANGE, this.unit)
+      console.log(unit)
     }
 
     // Pj.emitter.on('scroll', this.checkDropdownDir.bind(this))
@@ -250,7 +252,6 @@ class Units extends Component {
 
   update(unit) {
     this.value = this.get(unit).value
-
     this.$input.value = this.value
     this.unit = unit
     this.trigger(EVENTS.UPDATE, this.unit)
@@ -270,7 +271,7 @@ class Units extends Component {
   }
 
   getUnit() {
-    return this.TRIGGER.getActiveItem()[0].innerText
+    return this.TRIGGER.active.dataset.value
   }
 
   setWidth(width) {
