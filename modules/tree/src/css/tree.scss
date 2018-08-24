@@ -6,25 +6,25 @@
 $tree-font-size: $font-size-sm;
 $tree-line-height: 22px;
 $tree-spacer: 4px;
+$tree-spacer-top: 7px;
+$tree-gatter: 6px;
 $tree-color: $gray-darkest;
 $tree-selected-color: $color-primary;
 $tree-input-font-family: "font-awesome";
-// $tree-line-left: 20px;
-// $tree-line-bg: #b3b3b3;
 
-
-// arrow
+// style
 // =======================
 .#{$tree} {
   font-family: $font-family-base;
   text-transform: capitalize;
 
   > li:first-child {
-    padding-top: 7px;
+    padding-top: $tree-spacer-top;
   }
 
   li {
     padding: $tree-spacer 0;
+    padding-bottom: 0;
     font-size: $tree-font-size;
     line-height: $tree-line-height;
     color: $tree-color;
@@ -58,18 +58,24 @@ $tree-input-font-family: "font-awesome";
       }
     }
   
-    li[tabindex="0"]:hover {
-      color: $tree-selected-color;
+    li[tabindex="0"] {
+      margin-left: $tree-gatter;
+      text-indent: 0;
+
+      &:hover {
+        color: $tree-selected-color;
+      }
     }
 }
 
 .#{$tree}-arrows {
   .#{$tree}-toggler {
-    position: relative;
+    margin-right: $tree-gatter;
+    line-height: $tree-toggler-height;
+    text-align: center;
+    vertical-align: middle;
 
     &::before {
-      position: absolute;
-      top: 50%;
       z-index: -1;
       font-family: $tree-input-font-family;
       font-style: normal;

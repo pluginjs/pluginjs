@@ -28,15 +28,7 @@ const data = [
             name: 'Nest'
           },
           {
-            name: 'Gallery',
-            children: [
-              {
-                name: 'child.png'
-              },
-              {
-                name: 'child2.jpg'
-              }
-            ]
+            name: 'Gallery'
           }
         ]
       }
@@ -74,9 +66,6 @@ const data = [
         name: 'list2'
       }
     ]
-  },
-  {
-    name: 'Contact'
   }
 ]
 
