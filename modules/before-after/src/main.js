@@ -390,11 +390,7 @@ class BeforeAfter extends Component {
 
   // Handles the `touchend` and `mouseup` events.
   onDragEnd() {
-    compose(
-      ...'mousemove mouseup touchmove touchend pointermove pointerup MSPointerMove MSPointerUp blur'
-        .split(' ')
-        .map(eventName => removeEvent(this.eventNameWithId(eventName)))
-    )(window.document)
+    removeEvent(this.eventNameWithId(), window.document)
 
     this.position = this._position
     removeClass(this.classes.DRAGGING, this.element)
