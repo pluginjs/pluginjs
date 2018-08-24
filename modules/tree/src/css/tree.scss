@@ -3,17 +3,70 @@
 
 // Vars
 // =====================
-$tree-input-font-family: "font-awesome" !default;
-$tree-line-left: 1.5 * $tree-sizer !default;
-$tree-line-bg: #b3b3b3 !default;
+$tree-font-size: $font-size-sm;
+$tree-line-height: 22px;
+$tree-spacer: 4px;
+$tree-color: $gray-darkest;
+$tree-selected-color: $color-primary;
+$tree-input-font-family: "font-awesome";
+// $tree-line-left: 20px;
+// $tree-line-bg: #b3b3b3;
 
 
 // arrow
 // =======================
+.#{$tree} {
+  font-family: $font-family-base;
+  text-transform: capitalize;
+
+  > li:first-child {
+    padding-top: 7px;
+  }
+
+  li {
+    padding: $tree-spacer 0;
+    font-size: $tree-font-size;
+    line-height: $tree-line-height;
+    color: $tree-color;
+    cursor: pointer;
+    user-select: none;
+
+    &.#{$tree}-selected {
+      color: $tree-selected-color;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    .#{$tree}-element {
+      text-indent: 0;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .#{$tree}-element > * {
+      text-indent: 0;
+    }
+  }
+  
+    &-element {
+
+      &:hover {
+        color: $tree-selected-color;
+      }
+    }
+  
+    li[tabindex="0"]:hover {
+      color: $tree-selected-color;
+    }
+}
 
 .#{$tree}-arrows {
   .#{$tree}-toggler {
     position: relative;
+
     &::before {
       position: absolute;
       top: 50%;
@@ -31,7 +84,9 @@ $tree-line-bg: #b3b3b3 !default;
 
 // stylelint-disable
   .#{$tree}-branch.#{$tree}-open {
+
     > .#{$tree}-element {
+      
       .#{$tree}-toggler {
         &::before {
           content: "\f0d7";

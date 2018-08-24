@@ -3,13 +3,8 @@
 // =====================
 
 $tree: "pj-tree" !default;
-$tree-sizer: $sizer !default;
-$tree-font-size: 1.4 * $tree-sizer !default;
-$tree-spacer: 1.8 * $tree-sizer !default;
-$tree-toggler-width: 2 * $tree-sizer !default;
-$tree-toggler-height: 2 * $tree-sizer !default;
-$tree-color: $gray-darkest !default;
-$tree-selected-color: $color-primary !default;
+$tree-toggler-width: 20px !default;
+$tree-toggler-height: 20px !default;
 
 // Core
 // ======================
@@ -19,94 +14,13 @@ $tree-selected-color: $color-primary !default;
   list-style: none;
 
   li {
-    margin: $tree-spacer 0;
-    font-size: $tree-font-size;
-    color: $tree-color;
     text-indent: $tree-toggler-width;
-    
-
-    &.#{$tree}-selected {
-      color: $tree-selected-color;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    .#{$tree}-element {
-      text-indent: 0;
-      &:focus {
-        outline: none;
-      }
-    }
-
-    .#{$tree}-element > * {
-      text-indent: 0;
-    }
   }
 
   ul {
-    padding: 0;
+    padding: 0 0 0 18px;
     margin: 0;
     list-style: none;
-     // stylelint-disable
-    li {
-      text-indent: 30px;
-
-      .#{$tree}-element {
-        text-indent: 10px;
-      }
-    }
-
-    ul {
-      li {
-        text-indent: 40px;
-
-        .#{$tree}-element {
-          text-indent: 20px;
-        }
-      }
-
-      ul {
-        li {
-          text-indent: 50px;
-
-          .#{$tree}-element {
-            text-indent: 30px;
-          }
-        }
-
-        ul {
-          li {
-            text-indent: 60px;
-
-            .#{$tree}-element {
-              text-indent: 40px;
-            }
-          }
-
-          ul {
-            li {
-              text-indent: 70px;
-
-              .#{$tree}-element {
-                text-indent: 50px;
-              }
-            }
-
-            ul {
-              li {
-                text-indent: 80px;
-
-                .#{$tree}-element {
-                  text-indent: 60px;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   }
 
   // icon
@@ -121,6 +35,7 @@ $tree-selected-color: $color-primary !default;
 
   // list
   &-branch {
+
     > ul {
       display: none;
 
@@ -130,6 +45,7 @@ $tree-selected-color: $color-primary !default;
     }
 
     &.#{$tree}-open {
+      
       > ul {
         display: block;
       }
@@ -137,19 +53,11 @@ $tree-selected-color: $color-primary !default;
   }
 
   &-element {
+
     > * {
       display: inline-block;
       letter-spacing: 0;
       vertical-align: middle;
     }
-
-    &:hover {
-      color: $tree-selected-color;
-    }
-  }
-
-  li[tabindex="0"]:hover {
-    color: $tree-selected-color;
   }
 }
-// stylelint-enable

@@ -43,6 +43,39 @@ const data = [
     ]
   },
   {
+    name: 'Work',
+    children: [
+      {
+        name: 'list'
+      },
+      {
+        name: 'list2'
+      }
+    ]
+  },
+  {
+    name: 'WorkPages',
+    children: [
+      {
+        name: 'list'
+      },
+      {
+        name: 'list2'
+      }
+    ]
+  },
+  {
+    name: 'Nested',
+    children: [
+      {
+        name: 'list'
+      },
+      {
+        name: 'list2'
+      }
+    ]
+  },
+  {
     name: 'Contact'
   }
 ]

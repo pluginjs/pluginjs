@@ -31,6 +31,7 @@ $swipeable-vertical-solid-bg: $gray-border;
 
   &.#{$swipeable}-vertical {
     height: $swipeable-vertical-item-height;
+    padding: 0;
 
     .#{$swipeable} {
       width: $swipeable-vertical-width;
