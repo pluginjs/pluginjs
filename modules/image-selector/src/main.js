@@ -103,8 +103,10 @@ class ImageSelector extends Component {
       // data: this.getTimeList().map(value => ({ label: value })),
       // placeholder: this.options.placeholder,
       placement: 'bottom-left',
-      imitateSelect: true,
+      // imitateSelect: true,
       // inputLabel: true,
+      target: this.$panel,
+      reference: this.$init,
       hideOutClick: false,
       constraintToScrollParent: false,
       templates: this.options.templates
@@ -114,30 +116,41 @@ class ImageSelector extends Component {
   bind() {
     // $init
     compose(
-      bindEvent(this.eventName('click'), `.${this.classes.INIT}`, () => {
-        if (this.is('disabled')) {
-          return
-        }
-        this.open()
-      }),
-      bindEvent(this.eventName('click'), `.${this.classes.ITEM}`, el => {
-        const $item = el.target
-        removeClass(
-          this.classes.ACTIVE,
-          queryAll(`.${this.classes.ITEM}`, this.$wrapper).find(el =>
-            el.matches(`.${this.classes.ACTIVE}`)
+      //   bindEvent(
+      //     this.eventName('click'),
+      //     `.${this.classes.INIT}`,
+      //     () => {
+      //       if (this.is('disabled')) {
+      //         return
+      //       }
+      //       this.open()
+      //     },
+      //     this.$change
+      //   ),
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.ITEM}`,
+        el => {
+          const $item = el.target
+          removeClass(
+            this.classes.ACTIVE,
+            queryAll(`.${this.classes.ITEM}`, this.$wrapper).find(el =>
+              el.matches(`.${this.classes.ACTIVE}`)
+            )
           )
-        )
-        addClass(this.classes.ACTIVE, $item)
-        this.data.selected = getData('label', $item)
-        this.setImg()
-        this.close()
-      })
-    )(this.$wrapper)
+          addClass(this.classes.ACTIVE, $item)
+          this.data.selected = getData('label', $item)
+          this.setImg()
+          this.close()
+          this.mapDropdown.hide()
+        },
+        this.$wrapper
+      )
+    )
 
     if (this.options.hideOutClick) {
       bindEvent(
-        this.eventName('click'),
+        this.eventNameWithId('click'),
         e => {
           const $this = e.target
 
@@ -210,7 +223,6 @@ class ImageSelector extends Component {
 
   initPanel() {
     this.$panel = parseHTML(`<div class="${this.classes.PANEL}"></div>`)
-
     append(this.$panel, this.$wrapper)
     append(parseHTML('<div><ul></ul></div>'), this.$panel)
 

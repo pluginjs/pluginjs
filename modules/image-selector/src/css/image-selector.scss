@@ -105,7 +105,6 @@ $imageSelector-item-bg-color: $gray-lightest !default;
     font-size: $imageSelector-font-size;
     border: $imageSelector-border !important;
     border-radius: $imageSelector-border-radius !important;
-
     .pj-scrollable-container {
       width: 100% !important;
       height: 100% !important;
@@ -221,4 +220,7 @@ $imageSelector-item-bg-color: $gray-lightest !default;
       background-color:#fff
      }
   }
+}
+.pj-dropdown-show {
+  display:block !important;
 }
