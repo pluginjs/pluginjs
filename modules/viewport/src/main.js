@@ -1,9 +1,23 @@
+import Component from '@pluginjs/component'
 import '@pluginjs/polyfills/IntersectionObserver'
+import { register, optionable } from '@pluginjs/decorator'
+import { isNumber } from '@pluginjs/is'
+import {
+  defaults as DEFAULTS,
+  methods as METHODS,
+  namespace as NAMESPACE
+} from './constant'
 
-class Viewport {
-  constructor(el, options) {
-    this.element = el
-    this.options = options
+@optionable(DEFAULTS, true)
+@register(NAMESPACE, {
+  methods: METHODS
+})
+class Viewport extends Component {
+  constructor(element, options = {}) {
+    super(NAMESPACE, element)
+    this.initOptions(DEFAULTS, options)
+    this.checkRootMargin()
+
     this.observer = new IntersectionObserver(event => {
       if (event[0].isIntersecting) {
         this.isIntersecting = true
@@ -11,7 +25,7 @@ class Viewport {
       }
       this.isIntersecting = false
       return this.exitMiddleware.map(fn => fn())
-    })
+    }, this.options)
     this.observer.observe(this.element)
   }
 
@@ -20,6 +34,13 @@ class Viewport {
   enterMiddleware = []
 
   exitMiddleware = []
+
+  checkRootMargin() {
+    if (isNumber(this.options.rootMargin)) {
+      console.log(1111)
+      this.options.rootMargin = `${this.options.rootMargin}px`
+    }
+  }
 
   on(eventName, func) {
     const adder = middleware => middleware.concat(func)
