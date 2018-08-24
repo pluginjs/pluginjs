@@ -1,3 +1,4 @@
+import viewport from '@pluginjs/viewport'
 import Component from '@pluginjs/component'
 import {
   eventable,
@@ -14,8 +15,7 @@ import {
   namespace as NAMESPACE
 } from './constant'
 import { addClass } from '@pluginjs/classes'
-import { curry, debounce, throttle } from '@pluginjs/utils'
-import viewport from '@pluginjs/viewport'
+import { curry } from '@pluginjs/utils'
 
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -30,8 +30,6 @@ class Lazyload extends Component {
   afterLoadHook = [() => this.animationLifeCycle('finish')]
 
   errorHook = []
-
-  delayType = 'throttle'
 
   _isLoad = false
 
@@ -81,20 +79,9 @@ class Lazyload extends Component {
       this._isLoad = true
     }
 
-    const handler = () => {
-      switch (this.delayType) {
-        case 'debounce':
-          return debounce(lifeCycle(this.render), this.delay || 100)
-        case 'throttle':
-          return throttle(lifeCycle(this.render), this.delay)
-        default:
-          return lifeCycle(this.render)
-      }
-    }
-    this.handler = handler()
+    this.handler = lifeCycle(this.render)
     this.observer = viewport(this.element)
     this.bind()
-    console.log(this)
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
@@ -129,14 +116,6 @@ class Lazyload extends Component {
 
   setAnimationDelay(v) {
     this.animationDelay = v
-  }
-
-  setDelay(type) {
-    if (type !== 'debounce' && type !== 'throttle') {
-      return false
-    }
-    this.delayType = type
-    return true
   }
 
   beforeLoad(fn) {

@@ -72,10 +72,6 @@ class Viewport extends Component {
     this.enterMiddleware = []
     this.exitMiddleware = []
   }
-
-  static of(...args) {
-    return new Viewport(...args)
-  }
 }
 
 const viewport = (...args) => Viewport.of(...args)
