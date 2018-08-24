@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>crop-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-384.000000, -144.000000)">
+        <g id="crop-solid" transform="translate(384.000000, 144.000000)" fill="#000000">
+            <path d="M2.5,0.75 L2.5,2.5 L0.75,2.5 C0.336,2.5 0,2.836 0,3.25 C0,3.664 0.336,4 0.75,4 L2.5,4 L2.5,12.75 C2.5,13.164 2.836,13.5 3.25,13.5 L12,13.5 L12,15.25 C12,15.664 12.336,16 12.75,16 C13.164,16 13.5,15.664 13.5,15.25 L13.5,13.5 L15.25,13.5 C15.664,13.5 16,13.164 16,12.75 C16,12.336 15.664,12 15.25,12 L4,12 L4,0.75 C4,0.336 3.664,0 3.25,0 C2.836,0 2.5,0.336 2.5,0.75 Z M5.75,2.5 C5.335,2.5 5,2.836 5,3.25 C5,3.664 5.335,4 5.75,4 L10.25,4 C11.216,4 12,4.784 12,5.75 L12,10.25 C12,10.664 12.336,11 12.75,11 C13.164,11 13.5,10.664 13.5,10.25 L13.5,5.75 C13.5,3.955 12.045,2.5 10.25,2.5 L5.75,2.5 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

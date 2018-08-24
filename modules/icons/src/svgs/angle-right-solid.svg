@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>angle-right-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-96.000000, -736.000000)">
+        <g id="angle-right-solid" transform="translate(96.000000, 736.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M6.31707778,8.00001813 L11.7592566,14.3492268 C12.1186788,14.7685526 12.0701172,15.3998526 11.6507914,15.7592747 C11.2314655,16.1186969 10.6001655,16.0701353 10.2407434,15.6508095 L4.2407434,8.6508095 C3.9197522,8.27631977 3.9197522,7.72371649 4.2407434,7.34922676 L10.2407434,0.349226756 C10.6001655,-0.0700990862 11.2314655,-0.118660623 11.6507914,0.240761528 C12.0701172,0.600183678 12.1186788,1.23148366 11.7592566,1.6508095 L6.31707778,8.00001813 Z" id="shape" transform="translate(8.000009, 8.000018) scale(-1, 1) translate(-8.000009, -8.000018) "></path>
+        </g>
+    </g>
+</svg>

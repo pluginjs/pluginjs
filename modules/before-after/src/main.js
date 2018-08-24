@@ -59,6 +59,9 @@ class BeforeAfter extends Component {
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
+    if (!this.options.showLabel) {
+      addClass(this.classes.HIDE, this.element)
+    }
 
     addClass(
       this.getClass(
@@ -118,20 +121,25 @@ class BeforeAfter extends Component {
   }
 
   createLabels() {
+    const themes = this.getThemeClass(
+      this.options.labelTheme,
+      this.classes.LABELTHEME
+    )
+
     this.$labels = query(`.${this.classes.LABELS}`, this.element)
+
     if (!this.$labels) {
       this.$labels = parseHTML(
         template.render(this.options.templates.labels.call(this), {
           classes: this.classes,
           labels: this.options.labels,
-          theme: this.getThemeClass(
-            this.options.labelTheme,
-            this.classes.LABELTHEME
-          )
+          theme: themes
         })
       )
       append(this.$labels, this.element)
     }
+
+    addClass(themes, this.$labels)
 
     this.$labelBefore = query(`.${this.classes.LABELBEFORE}`, this.$labels)
     this.$labelAfter = query(`.${this.classes.LABELAFTER}`, this.$labels)

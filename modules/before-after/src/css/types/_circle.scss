@@ -1,0 +1,65 @@
+$beforeAfter-circle-border-width: $beforeAfter-handle-line-size;
+$beforeAfter-circle-handle-size: 32px;
+$beforeAfter-circle-handle-arrow-size: 16px;
+$beforeAfter-circle-handle-arrow-pos: 1px;
+$beforeAfter-circle-handle-arrow-color: $color-white;
+$beforeAfter-circle-bg: $color-primary;
+
+// Cicle
+// =====================
+.#{$beforeAfter}--circle {
+  .#{$beforeAfter} {
+    &-handle {
+      width: $beforeAfter-circle-handle-size;
+      height: $beforeAfter-circle-handle-size;
+      font-size: $beforeAfter-circle-handle-arrow-size;
+      background-color: $beforeAfter-circle-bg;
+      border: $beforeAfter-circle-border-width solid currentColor;
+      border-radius: 50%;
+    }
+
+    &-arrow-before {
+      color: $beforeAfter-circle-handle-arrow-color;
+    }
+
+    &-arrow-after {
+      display: none;
+    }
+  }
+
+  &.#{$beforeAfter}-horizontal {
+    .#{$beforeAfter} {
+      &-handle {
+        &::before {
+          transform: translate(-50%, calc(-100% - #{$beforeAfter-circle-handle-size / 2}));
+        }
+
+        &::after {
+          transform: translate(-50%, #{$beforeAfter-circle-handle-size / 2} );
+        }
+      }
+
+      &-arrow-before {
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &.#{$beforeAfter}-vertical {
+    .#{$beforeAfter} {
+      &-handle {
+        &::before {
+          transform: translate(calc(-100% - #{$beforeAfter-circle-handle-size / 2}), -50%);
+        }
+
+        &::after {
+          transform: translate(#{$beforeAfter-circle-handle-size / 2}, -50%);
+        }
+      }
+
+      &-arrow-before {
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

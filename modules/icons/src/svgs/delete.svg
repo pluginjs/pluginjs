@@ -1,16 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
-    <title>31819323-A31F-4CE4-B688-410E06D6EC67</title>
-    <desc>Created with sketchtool.</desc>
-    <defs></defs>
-    <g id="UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="color-picker" transform="translate(-716.000000, -3069.000000)" fill="#333333">
-            <g id="gradient" transform="translate(468.000000, 3013.000000)">
-                <g id="icon" transform="translate(248.000000, 56.000000)">
-                    <path d="M2,5 L14,5 L13.0826786,15.0905357 C13.0358532,15.6056149 12.6039886,16 12.0867854,16 L3.91321464,16 C3.39601143,16 2.96414681,15.6056149 2.91732143,15.0905357 L2,5 Z M0.891119468,2 L4,2 L5,0 L11,0 L12,2 L15,2 L15,4 L0.891119468,4 L0.891119468,2 Z" id="Combined-Shape"></path>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M3,6 L13,6 L12.0988409,14.1104315 C12.0425706,14.6168642 11.6145064,15 11.1049572,15 L4.89504279,15 C4.38549358,15 3.95742936,14.6168642 3.90115906,14.1104315 L3,6 Z M2,3 L5,3 L6,1.5 L10,1.5 L11,3 L14,3 L14,5 L2,5 L2,3 Z"/>
 </svg>

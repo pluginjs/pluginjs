@@ -1,0 +1,60 @@
+$beforeAfter-outline-border-width: $beforeAfter-handle-line-size;
+$beforeAfter-outline-handle-size: 32px;
+$beforeAfter-outline-handle-arrow-pos: 1px;
+
+// Outline
+// =====================
+.#{$beforeAfter}--outline {
+  .#{$beforeAfter} {
+    &-handle {
+      width: $beforeAfter-outline-handle-size;
+      height: $beforeAfter-outline-handle-size;
+      border: $beforeAfter-outline-border-width solid currentColor;
+      border-radius: 50%;
+    }
+  }
+
+  &.#{$beforeAfter}-horizontal {
+    .#{$beforeAfter} {
+      &-handle {
+        &::before {
+          transform: translate(-50%, calc(-100% - #{$beforeAfter-outline-handle-size / 2}));
+        }
+
+        &::after {
+          transform: translate(-50%, #{$beforeAfter-outline-handle-size / 2} );
+        }
+      }
+
+      &-arrow-before {
+        transform: translate(calc(-100% - #{$beforeAfter-outline-handle-arrow-pos}), -50%) scale(0.8);
+      }
+
+      &-arrow-after {
+        transform: translate(#{$beforeAfter-outline-handle-arrow-pos}, -50%) scale(0.8);
+      }
+    }
+  }
+
+  &.#{$beforeAfter}-vertical {
+    .#{$beforeAfter} {
+      &-handle {
+        &::before {
+          transform: translate(calc(-100% - #{$beforeAfter-outline-handle-size / 2}), -50%);
+        }
+
+        &::after {
+          transform: translate(#{$beforeAfter-outline-handle-size / 2}, -50%);
+        }
+      }
+
+      &-arrow-before {
+        transform: translate(-50%, calc(-100% - #{$beforeAfter-outline-handle-arrow-pos})) scale(0.8);
+      }
+
+      &-arrow-after {
+        transform: translate(-50%, #{$beforeAfter-outline-handle-arrow-pos}) scale(0.8);
+      }
+    }
+  }
+}

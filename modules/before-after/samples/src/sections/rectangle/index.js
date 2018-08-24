@@ -1,14 +1,6 @@
-import { query } from '@pluginjs/dom'
+import { queryAll } from '@pluginjs/dom'
 import BeforeAfter from '@pluginjs/before-after'
 
-const horizontal = query('#rectangle .pj-beforeAfter-horizontal')
-BeforeAfter.of(horizontal, {
-  /** options **/
-  direction: 'horizontal'
-})
+const elements = queryAll('#rectangle .example')
 
-const vertical = query('#rectangle .pj-beforeAfter-vertical')
-BeforeAfter.of(vertical, {
-  /** options **/
-  direction: 'vertical'
-})
+elements.forEach(element => BeforeAfter.of(element, {}))

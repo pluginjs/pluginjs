@@ -1,47 +1,125 @@
 @import "@pluginjs/styles/variables.scss";
 @import "before-after.core.scss";
 
-// Vars
-// =====================
-$beforeAfter-label-color: $color-white;
-$beforeAfter-label-text-shadow: 0 3px 7px rgba($color-black, 0.3);
+$beforeAfter: "pj-beforeAfter";
+$beforeAfter-font-family: $font-family-base;
+$beforeAfter-font-size: $font-size-lg;
+$beforeAfter-color: $color-white;
 
-$beforeAfter-handle-line-color: rgba($gray-light, 0.8);
-$beforeAfter-handle-border-color: $beforeAfter-handle-line-color;
-$beforeAfter-handle-box-shadow: $box-shadow-base;
-$beforeAfter-handle-hover-line-color: $color-white;
-$beforeAfter-handle-hover-border-color: $beforeAfter-handle-hover-line-color;
-$beforeAfter-handle-arrow-color: $beforeAfter-handle-border-color;
-$beforeAfter-handle-hover-arrow-color: $beforeAfter-handle-hover-border-color;
+$beforeAfter-label-padding: 5px;
+$beforeAfter-label-margin: 15px;
+$beforeAfter-label-border-radius: $border-radius-base;
+
+$beforeAfter-label-outline-padding: 10px;
+$beforeAfter-label-outline-color: $color-white;
+
+$beforeAfter-label-solid-padding: 10px;
+$beforeAfter-label-solid-bg: rgba($color-white, 0.2);
+
+$beforeAfter-label-shadow: 0 3px 7px rgba($color-black, 0.3);
+
+$beforeAfter-handle-line-size: 2px;
+$beforeAfter-handle-color: rgba($color-white, 0.7);
+$beforeAfter-handle-hover-color: $color-white;
+
+$beforeAfter-handle-size: 32px;
+$beforeAfter-handle-arrow-size: 12px;
+$beforeAfter-handle-arrow-pos: 7px;
 
 // Style
 // =====================
-.#{$beforeAfter}-label-before,
-.#{$beforeAfter}-label-after {
-  color: $beforeAfter-label-color;
-  text-shadow: $beforeAfter-label-text-shadow;
-}
+.#{$beforeAfter} {
+  font-family: $beforeAfter-font-family;
+  font-size: $beforeAfter-font-size;
+  color: $beforeAfter-color;
 
-.#{$beforeAfter}-handle {
-  background: $beforeAfter-handle-line-color;
-  box-shadow: $beforeAfter-handle-box-shadow;
+  &-label-before,
+  &-label-after {
+    padding: $beforeAfter-label-padding;
+    margin: $beforeAfter-label-margin;
+    text-shadow: $beforeAfter-label-shadow;
+    border-radius: $beforeAfter-label-border-radius;
+  }
 
-  &:hover {
-    background: $beforeAfter-handle-hover-line-color;
+  &-handle {
+    width: $beforeAfter-handle-size;
+    height: $beforeAfter-handle-size;
+    font-size: $beforeAfter-handle-arrow-size;
+    color: $beforeAfter-handle-color;
 
-    .#{$beforeAfter}-arrow-before,
-    .#{$beforeAfter}-arrow-after {
-      color: $beforeAfter-handle-hover-arrow-color;
+    &:hover,
+    .#{$beforeAfter}-dragging {
+      color: $beforeAfter-handle-hover-color;
     }
   }
 }
 
-.#{$beforeAfter}-arrow-before,
-.#{$beforeAfter}-arrow-after {
-  color: $beforeAfter-handle-arrow-color;
+.#{$beforeAfter}-labels {
+  &-outline {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      padding: $beforeAfter-label-outline-padding;
+      border: 1px solid $beforeAfter-label-outline-color;
+    }
+  }
+
+  &-solid {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      padding: $beforeAfter-label-solid-padding;
+      background-color: $beforeAfter-label-solid-bg;
+    }
+  }
 }
 
-@import "skins/circle";
-@import "skins/outline";
-@import "skins/line";
-@import "skins/rectangle";
+.#{$beforeAfter}-horizontal {
+  .#{$beforeAfter} {
+    &-label-before,
+    &-label-after {
+      transform: translateY(calc(-50% - #{$beforeAfter-label-margin}));
+    }
+
+    &-handle {
+      &::before,
+      &::after {
+        width: $beforeAfter-handle-line-size;
+      }
+    }
+
+    &-arrow-before {
+      transform: translate(calc(-100% - #{$beforeAfter-handle-arrow-pos}), -50%);
+    }
+
+    &-arrow-after {
+      transform: translate(#{$beforeAfter-handle-arrow-pos}, -50%);
+    }
+  }
+}
+
+.#{$beforeAfter}-vertical {
+  .#{$beforeAfter} {
+    &-label-before,
+    &-label-after {
+      transform: translateX(calc(-50% - #{$beforeAfter-label-margin}));
+    }
+
+    &-handle {
+      &::before,
+      &::after {
+        height: $beforeAfter-handle-line-size;
+      }
+    }
+
+    &-arrow-before {
+      transform: translate(-50%, calc(-100% - #{$beforeAfter-handle-arrow-pos}));
+    }
+
+    &-arrow-after {
+      transform: translate(-50%, #{$beforeAfter-handle-arrow-pos});
+    }
+  }
+}
+
+@import "types/outline";
+@import "types/circle";
+@import "types/rectangle";

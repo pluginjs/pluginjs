@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>check-circle-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-288.000000, -898.000000)">
+        <g id="check-circle-solid" transform="translate(288.000000, 898.000000)" fill="#000000">
+            <path d="M8,15.5 C3.85786438,15.5 0.5,12.1421356 0.5,8 C0.5,3.85786438 3.85786438,0.5 8,0.5 C12.1421356,0.5 15.5,3.85786438 15.5,8 C15.5,12.1421356 12.1421356,15.5 8,15.5 Z M7.48801501,9.80702091 L5.84126587,8.26915485 C5.63944557,8.08067891 5.32304796,8.09149665 5.13457203,8.29331695 C4.94609609,8.49513725 4.95691383,8.81153486 5.15873413,9.0000108 L7.15166911,10.8611729 C7.50937298,11.0461261 7.50937298,11.0461261 7.86049032,10.8489552 L11.8536569,6.85344987 C12.0488619,6.65813056 12.0487692,6.34154809 11.8534499,6.14634312 C11.6581306,5.95113815 11.3415481,5.95123083 11.1463431,6.14655013 L7.48801501,9.80702091 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

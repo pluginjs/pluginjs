@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>search-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-192.000000, -384.000000)">
+        <g id="search-solid" transform="translate(192.000000, 384.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M10.8907479,9.47653436 L15.7071068,14.2928932 C16.0976311,14.6834175 16.0976311,15.3165825 15.7071068,15.7071068 C15.3165825,16.0976311 14.6834175,16.0976311 14.2928932,15.7071068 L9.47653436,10.8907479 C8.49571549,11.589209 7.29583043,12 6,12 C2.6862915,12 0,9.3137085 0,6 C0,2.6862915 2.6862915,0 6,0 C9.3137085,0 12,2.6862915 12,6 C12,7.29583043 11.589209,8.49571549 10.8907479,9.47653436 Z M6,11 C8.76142375,11 11,8.76142375 11,6 C11,3.23857625 8.76142375,1 6,1 C3.23857625,1 1,3.23857625 1,6 C1,8.76142375 3.23857625,11 6,11 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

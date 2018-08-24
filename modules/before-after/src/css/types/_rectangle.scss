@@ -1,0 +1,52 @@
+$beforeAfter-rectangle-size-max: 36px;
+$beforeAfter-rectangle-size-min: 16px;
+$beforeAfter-rectangle-border-width: $beforeAfter-handle-line-size;
+
+// Rectangle
+// =====================
+.#{$beforeAfter}--rectangle {
+  .#{$beforeAfter} {
+    &-handle {
+      border: $beforeAfter-outline-border-width solid currentColor;
+    }
+
+    &-arrow-before,
+    &-arrow-after {
+      display: none;
+    }
+  }
+
+  &.#{$beforeAfter}-horizontal {
+    .#{$beforeAfter} {
+      &-handle {
+        width: $beforeAfter-rectangle-size-min;
+        height: $beforeAfter-rectangle-size-max;
+
+        &::before {
+          transform: translate(-50%, calc(-100% - #{$beforeAfter-rectangle-size-max / 2}));
+        }
+
+        &::after {
+          transform: translate(-50%, #{$beforeAfter-rectangle-size-max / 2} );
+        }
+      }
+    }
+  }
+
+  &.#{$beforeAfter}-vertical {
+    .#{$beforeAfter} {
+      &-handle {
+        width: $beforeAfter-rectangle-size-max;
+        height: $beforeAfter-rectangle-size-min;
+
+        &::before {
+          transform: translate(calc(-100% - #{$beforeAfter-rectangle-size-max / 2}), -50%);
+        }
+
+        &::after {
+          transform: translate(#{$beforeAfter-rectangle-size-max / 2}, -50%);
+        }
+      }
+    }
+  }
+}

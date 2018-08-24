@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>chevron-right-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-48.000000, -784.000000)">
+        <g id="chevron-right-solid" transform="translate(48.000000, 784.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M7.85968758,8 L2.1095656,0.812347524 C1.84766026,0.484965851 2.0807469,0 2.5,0 L7.5,0 C7.65189186,0 7.79554831,0.0690448595 7.8904344,0.187652476 L13.8904344,7.68765248 C14.0365219,7.8702618 14.0365219,8.1297382 13.8904344,8.31234752 L7.8904344,15.8123475 C7.79554831,15.9309551 7.65189186,16 7.5,16 L2.5,16 C2.0807469,16 1.84766026,15.5150341 2.1095656,15.1876525 L7.85968758,8 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

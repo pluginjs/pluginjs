@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>printer-alt-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-336.000000, -144.000000)">
+        <g id="printer-alt-solid" transform="translate(336.000000, 144.000000)" fill="#000000">
+            <path d="M5.5,1 C4.672,1 4,1.672 4,2.5 L4,5.5 C4,5.777 4.223,6 4.5,6 L11.5,6 C11.776,6 12,5.777 12,5.5 L12,2.5 C12,1.672 11.329,1 10.5,1 L5.5,1 Z M2.5,7 C1.119,7 0,8.119 0,9.5 L0,11.5 C0,12.881 1.119,14 2.5,14 L3,14 C3,12.896 3.896,12 5,12 L11,12 C12.105,12 13,12.896 13,14 L13.5,14 C14.881,14 16,12.881 16,11.5 L16,9.5 C16,8.119 14.881,7 13.5,7 L2.5,7 Z M5,13 C4.447,13 4,13.447 4,14 C4,14.553 4.447,15 5,15 L11,15 C11.552,15 12,14.553 12,14 C12,13.447 11.552,13 11,13 L5,13 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

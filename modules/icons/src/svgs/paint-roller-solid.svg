@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>paint-roller-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-432.000000, -96.000000)">
+        <g id="paint-roller-solid" transform="translate(432.000000, 96.000000)" fill="#000000">
+            <path d="M10.5,8.9999 C10.776,8.9999 11,8.7759 11,8.4999 L11,4.9999 L13.5,4.9999 C14.881,4.9999 16,3.8809 16,2.4999 C16,1.1189 14.881,-0.0001 13.5,-0.0001 L2.5,-0.0001 C1.119,-0.0001 0,1.1189 0,2.4999 C0,3.8809 1.119,4.9999 2.5,4.9999 L10,4.9999 L10,7.9999 L7.5,7.9999 C7.224,7.9999 7,8.2239 7,8.4999 L7,10.0919 C6.419,10.2979 6,10.8479 6,11.4999 L6,14.4999 C6,15.3289 6.672,15.9999 7.5,15.9999 C8.328,15.9999 9,15.3289 9,14.4999 L9,11.4999 C9,10.8479 8.581,10.2979 8,10.0919 L8,8.9999 L10.5,8.9999 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

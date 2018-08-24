@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>chevron-circle-down-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-96.000000, -592.000000)">
+        <g id="chevron-circle-down-solid" transform="translate(96.000000, 592.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 Z M11.1746043,5.12133768 L8,7.84242709 L4.82539569,5.12133768 C4.50105903,4.84333482 4,5.07378937 4,5.50096598 L4,8.50096598 C4,8.64692842 4.06378136,8.78560318 4.17460431,8.88059428 L7.67460431,11.8805943 C7.86184918,12.0410899 8.13815082,12.0410899 8.32539569,11.8805943 L11.8253957,8.88059428 C11.9362186,8.78560318 12,8.64692842 12,8.50096598 L12,5.50096598 C12,5.07378937 11.498941,4.84333482 11.1746043,5.12133768 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

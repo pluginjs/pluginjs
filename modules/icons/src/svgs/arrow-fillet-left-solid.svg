@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow-fillet-left-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-336.000000, -688.000000)">
+        <g id="arrow-fillet-left-solid" transform="translate(336.000000, 688.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M6.70710678,10 L8.85355339,12.1464466 C9.60110029,12.8939935 9.60110029,14.1060065 8.85355339,14.8535534 C8.12472254,15.5823842 6.94305427,15.5823842 6.21422342,14.8535534 C6.19161025,14.8306789 6.19161025,14.8306789 6.16952864,14.8072908 L0.771302733,9.02347738 C0.233413269,8.44716724 0.233413269,7.55283276 0.771302733,6.97652262 L6.16952864,1.19270915 C6.87280939,0.43919406 8.05377576,0.398471082 8.80729085,1.10175183 C8.83067889,1.12383344 8.83067889,1.12383344 8.85355339,1.14644661 C9.60110029,1.89399351 9.60110029,3.10600649 8.85355339,3.85355339 L6.70710678,6 L14,6 C15.1045695,6 16,6.8954305 16,8 C16,9.1045695 15.1045695,10 14,10 L6.70710678,10 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

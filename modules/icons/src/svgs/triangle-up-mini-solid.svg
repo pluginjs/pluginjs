@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>triangle-up-mini-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-336.000000, -448.000000)">
+        <g id="triangle-up-mini-solid" transform="translate(336.000000, 448.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M4.12371165,9.1707477 L7.62371165,5.1707477 C7.8229173,4.9430841 8.1770827,4.9430841 8.37628835,5.1707477 L11.8762883,9.1707477 C12.1591684,9.49403914 11.9295794,10 11.5,10 L4.5,10 C4.0704206,10 3.84083164,9.49403914 4.12371165,9.1707477 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>angle-double-up-mini-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-192.000000, -448.000000)">
+        <g id="angle-double-up-mini-solid" transform="translate(192.000000, 448.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M8,9.25 L4.6,11.8 C4.1581722,12.1313708 3.53137085,12.0418278 3.2,11.6 C2.86862915,11.1581722 2.9581722,10.5313708 3.4,10.2 L7.4,7.2 C7.75555556,6.93333333 8.24444444,6.93333333 8.6,7.2 L12.6,10.2 C13.0418278,10.5313708 13.1313708,11.1581722 12.8,11.6 C12.4686292,12.0418278 11.8418278,12.1313708 11.4,11.8 L8,9.25 Z M8,5.25 L4.6,7.8 C4.1581722,8.13137085 3.53137085,8.0418278 3.2,7.6 C2.86862915,7.1581722 2.9581722,6.53137085 3.4,6.2 L7.4,3.2 C7.75555556,2.93333333 8.24444444,2.93333333 8.6,3.2 L12.6,6.2 C13.0418278,6.53137085 13.1313708,7.1581722 12.8,7.6 C12.4686292,8.0418278 11.8418278,8.13137085 11.4,7.8 L8,5.25 Z" id="Path-113"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>info-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-480.000000, -898.000000)">
+        <g id="info-solid" transform="translate(480.000000, 898.000000)" fill="#000000">
+            <path d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z M9,11 L9.5,11 C9.77614237,11 10,11.2238576 10,11.5 C10,11.7761424 9.77614237,12 9.5,12 L7.5,12 C7.22385763,12 7,11.7761424 7,11.5 C7,11.2238576 7.22385763,11 7.5,11 L8,11 L8,8 L7.5,8 C7.22385763,8 7,7.77614237 7,7.5 C7,7.22385763 7.22385763,7 7.5,7 L8.5,7 C8.77614237,7 9,7.22385763 9,7.5 L9,11 Z M8.25,6 C7.69771525,6 7.25,5.55228475 7.25,5 C7.25,4.44771525 7.69771525,4 8.25,4 C8.80228475,4 9.25,4.44771525 9.25,5 C9.25,5.55228475 8.80228475,6 8.25,6 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>chat-group-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-240.000000, -384.000000)">
+        <g id="chat-group-solid" transform="translate(240.000000, 384.000000)" fill="#000000">
+            <path d="M4.5,1 C3.119,1 2,2.12 2,3.501 L2,4.001 C2.22,4.001 2.38666667,4.001 2.5,4.001 L7.5,4.001 C9.433,4.001 11,5.568 11,7.501 L11,9.56439813 C11,9.84219355 11.1155551,10.1074704 11.3189731,10.2966566 L15.145,13.855 C15.46,14.169 16,13.946 16,13.501 L16,3.501 C16,2.12 14.881,1 13.5,1 L4.5,1 Z M2.5,5.001 C1.119,5.001 0,6.12 0,7.501 L0,14.5 C0,14.9 0.445,15.139 0.777,14.917 L3.526,13.085 C3.607,13.03 3.704,13.001 3.803,13.001 L7.5,13.001 C8.881,13.001 10,11.881 10,10.501 L10,7.501 C10,6.12 8.881,5.001 7.5,5.001 L2.5,5.001 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

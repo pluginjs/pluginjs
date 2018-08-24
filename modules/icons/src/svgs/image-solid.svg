@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>image-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-384.000000, -48.000000)">
+        <g id="image-solid" transform="translate(384.000000, 48.000000)" fill="#000000">
+            <path d="M13.5001,1 C14.3291,1 15.0001,1.671 15.0001,2.5 L15.0001,8.387 L11.3321,5.126 C11.1341,4.95 10.8331,4.959 10.6461,5.146 L4.30149243,11.4915585 C4.11675537,11.6763233 3.82090855,11.6877004 3.62252737,11.5176689 L1.0001,9.27 L1.0001,2.5 C1.0001,1.671 1.6711,1 2.5001,1 L13.5001,1 Z M13.5001,16 C14.8801,16 16.0001,14.881 16.0001,13.5 L16.0001,2.5 C16.0001,1.119 14.8801,0 13.5001,0 L2.5001,0 C1.1191,0 0.0001,1.119 0.0001,2.5 L0.0001,13.5 C0.0001,14.881 1.1191,16 2.5001,16 L13.5001,16 Z M7.0001,5 C7.0001,3.896 6.1041,3 5.0001,3 C3.8961,3 3.0001,3.896 3.0001,5 C3.0001,6.104 3.8961,7 5.0001,7 C6.1041,7 7.0001,6.104 7.0001,5 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

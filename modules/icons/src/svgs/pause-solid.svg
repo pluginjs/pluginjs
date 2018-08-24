@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>pause-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-144.000000, -946.000000)">
+        <g id="pause-solid" transform="translate(144.000000, 946.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M9.5,3 L11.5,3 C11.7761424,3 12,3.22385763 12,3.5 L12,12.5 C12,12.7761424 11.7761424,13 11.5,13 L9.5,13 C9.22385763,13 9,12.7761424 9,12.5 L9,3.5 C9,3.22385763 9.22385763,3 9.5,3 Z M4.5,3 L6.5,3 C6.77614237,3 7,3.22385763 7,3.5 L7,12.5 C7,12.7761424 6.77614237,13 6.5,13 L4.5,13 C4.22385763,13 4,12.7761424 4,12.5 L4,3.5 C4,3.22385763 4.22385763,3 4.5,3 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

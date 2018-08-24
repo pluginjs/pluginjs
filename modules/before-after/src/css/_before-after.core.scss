@@ -1,19 +1,10 @@
 @import "@pluginjs/styles/variables.scss";
 
-// Vars
-// =====================
 $beforeAfter: "pj-beforeAfter" !default;
-$beforeAfter-font-family: $font-family-base !default;
-$beforeAfter-sizer: $sizer !default;
+$beforeAfter-color: $color-white !default;
 
-$beforeAfter-label-gatter: 20px !default;
-$beforeAfter-label-font-size: $font-size-lg !default;
-$beforeAfter-label-spacer: 0 10px !default;
-$beforeAfter-label-height: 30px !default;
-// $beforeAfter-label-line-height: 24px !default;
-
-$beforeAfter-handle-border-size: 2px !default;
-$beforeAfter-handle-arrow-size: 20px !default;
+$beforeAfter-handle-line-size: 2px !default;
+$beforeAfter-handle-color: $color-white !default;
 
 // Core
 // =====================
@@ -22,7 +13,8 @@ $beforeAfter-handle-arrow-size: 20px !default;
   z-index: 0;
   display: inline-block;
   overflow: hidden;
-  font-family: $beforeAfter-font-family;
+  line-height: 1;
+  color: $beforeAfter-color;
   user-select: none;
 
   img {
@@ -42,128 +34,179 @@ $beforeAfter-handle-arrow-size: 20px !default;
   .#{$beforeAfter}-after {
     z-index: 1;
   }
+
+  &-disabled {
+    pointer-events: none;
+  }
+
+  &-label-before,
+  &-label-after {
+    position: absolute;
+    z-index: 3;
+    color: $color-white;
+    transition: opacity 0.2s;
+  }
+
+  &-label-hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &-hide {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+
+  &-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 4;
+    box-sizing: border-box;
+    width: 0;
+    height: 0;
+    line-height: 1;
+    color: $beforeAfter-handle-color;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      content: "";
+      background-color: currentColor;
+    }
+  }
+
+  &-arrow-before,
+  &-arrow-after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
-.#{$beforeAfter}-disabled {
-  pointer-events: none;
-}
-
-.#{$beforeAfter}-label-before,
-.#{$beforeAfter}-label-after {
-  position: absolute;
-  z-index: 4;
-  height: $beforeAfter-label-height;
-  font-size: $beforeAfter-label-font-size;
-  line-height: $beforeAfter-label-height;
-  text-align: center;
-  vertical-align: middle;
-  pointer-events: none;
-  transition: opacity 0.5s;
-}
-
-.#{$beforeAfter}-label-hide {
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.2s;
-}
-
-.#{$beforeAfter}-handle {
-  position: absolute;
-  z-index: 6;
-  box-sizing: content-box;
-  cursor: pointer;
-}
-
-.#{$beforeAfter}-arrow-before,
-.#{$beforeAfter}-arrow-after {
-  position: absolute;
-  font-size: $beforeAfter-handle-arrow-size;
-  text-align: center;
-}
-
-.#{$beforeAfter}-horizontal {
-  .#{$beforeAfter}-label-before,
-  .#{$beforeAfter}-label-after {
+.#{$beforeAfter}-horizontal .#{$beforeAfter} {
+  &-label-before,
+  &-label-after {
     top: 50%;
     transform: translateY(-50%);
   }
 
-  .#{$beforeAfter}-label-before {
-    left: $beforeAfter-label-gatter;
-  }
-
-  .#{$beforeAfter}-label-after {
-    right: $beforeAfter-label-gatter;
-  }
-
-  .#{$beforeAfter}-handle {
-    top: 0;
-    left: 50%;
-    width: $beforeAfter-handle-border-size;
-    height: 100%;
-    cursor: ew-resize;
-  }
-
-  .#{$beforeAfter}-arrow-before,
-  .#{$beforeAfter}-arrow-after {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .#{$beforeAfter}-arrow-before {
-    left: -$beforeAfter-handle-arrow-size;
-    font-size: $beforeAfter-handle-arrow-size;
-  }
-
-  .#{$beforeAfter}-arrow-after {
-    right: -$beforeAfter-handle-arrow-size;
-    font-size: $beforeAfter-handle-arrow-size;
-  }
-}
-
-.#{$beforeAfter}-vertical {
-  .#{$beforeAfter}-label-before,
-  .#{$beforeAfter}-label-after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .#{$beforeAfter}-handle {
-    top: 50%;
+  &-label-before {
     left: 0;
-    width: 100%;
-    height: $beforeAfter-handle-border-size;
-    cursor: ns-resize;
   }
 
-  .#{$beforeAfter}-label-before {
-    top: $beforeAfter-label-gatter - 8px;
+  &-label-after {
+    right: 0;
   }
 
-  .#{$beforeAfter}-label-after {
-    bottom: $beforeAfter-label-gatter - 8px;
+  &-handle {
+    cursor: ew-resize;
+
+    &::before,
+    &::after {
+      width: $beforeAfter-handle-line-size;
+      height: 9999px;
+    }
+
+    &::before {
+      transform: translate(-50%, -100%);
+    }
+
+    &::after {
+      transform: translate(-50%, 0);
+    }
   }
 
-  .#{$beforeAfter}-arrow-before {
-    top:-$beforeAfter-handle-arrow-size - 8px;
-    font-size: $beforeAfter-handle-arrow-size;
+  &-arrow-before {
+    transform: translate(-100%, -50%);
   }
 
-  .#{$beforeAfter}-arrow-after {
-    bottom:-$beforeAfter-handle-arrow-size - 8px;
-    font-size: $beforeAfter-handle-arrow-size;
+  &-arrow-after {
+    transform: translate(0, -50%);
   }
 
-  .#{$beforeAfter}-arrow-before,
-  .#{$beforeAfter}-arrow-after {
-    left: 50%;
-    transform: translateX(-50%);
+  &-labels-start {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      top: 0;
+      transform: translateY(0);
+    }
+  }
+
+  &-labels-end {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      top: auto;
+      bottom: 0;
+      transform: translateY(0);
+    }
   }
 }
 
-@import "labels/bordered";
-@import "labels/solid";
-@import "labels/overlay";
-@import "labels/start";
-@import "labels/bottom";
-@import "labels/end";
+.#{$beforeAfter}-vertical .#{$beforeAfter} {
+  &-label-before,
+  &-label-after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-label-before {
+    top: 0;
+  }
+
+  &-label-after {
+    bottom: 0;
+  }
+
+  &-handle {
+    cursor: ns-resize;
+
+    &::before,
+    &::after {
+      width: 9999px;
+      height: $beforeAfter-handle-line-size;
+    }
+
+    &::before {
+      transform: translate(-100%, -50%);
+    }
+
+    &::after {
+      transform: translate(0, -50%);
+    }
+  }
+
+  &-arrow-before {
+    transform: translate(-50%, -100%);
+  }
+
+  &-arrow-after {
+    transform: translate(-50%, 0);
+  }
+
+  &-labels-start {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      left: 0;
+      transform: translateX(0);
+    }
+  }
+
+  &-labels-end {
+    .#{$beforeAfter}-label-before,
+    .#{$beforeAfter}-label-after {
+      right: 0;
+      left: auto;
+      transform: translateX(0);
+    }
+  }
+}

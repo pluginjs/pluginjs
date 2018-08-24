@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>angle-circle-up-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-144.000000, -448.000000)">
+        <g id="angle-circle-up-solid" transform="translate(144.000000, 448.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 Z M4.85355339,9.85355339 L8,6.70710678 L11.1464466,9.85355339 C11.3417088,10.0488155 11.6582912,10.0488155 11.8535534,9.85355339 C12.0488155,9.65829124 12.0488155,9.34170876 11.8535534,9.14644661 L8.35355339,5.64644661 C8.15829124,5.45118446 7.84170876,5.45118446 7.64644661,5.64644661 L4.14644661,9.14644661 C3.95118446,9.34170876 3.95118446,9.65829124 4.14644661,9.85355339 C4.34170876,10.0488155 4.65829124,10.0488155 4.85355339,9.85355339 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

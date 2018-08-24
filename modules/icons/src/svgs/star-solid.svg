@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>star-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-288.000000, -192.000000)">
+        <g id="star-solid" transform="translate(288.000000, 192.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M5.1641304,5.53054284 L7.5448538,0.293068142 C7.72247482,-0.0976893807 8.27752518,-0.0976893807 8.4551462,0.293068142 L10.8358696,5.53054284 L15.5491375,6.00185912 C15.9844471,6.04538911 16.157853,6.58749881 15.8286152,6.87557548 L12.0643686,10.1692178 L13.4819358,15.366848 C13.6004866,15.8015249 13.1287204,16.1589025 12.7423662,15.9270951 L8,13.0817389 L3.25763382,15.9270951 C2.87127956,16.1589025 2.39951335,15.8015249 2.51806422,15.366848 L3.93563136,10.1692178 L0.171384803,6.87557548 C-0.157853014,6.58749881 0.0155528858,6.04538911 0.450862503,6.00185912 L5.1641304,5.53054284 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

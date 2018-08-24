@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>add-circle-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-96.000000, -898.000000)">
+        <g id="add-circle-solid" transform="translate(96.000000, 898.000000)" fill="#212224">
+            <path d="M8.5,7.5 L8.5,5.5 C8.5,5.22385763 8.27614237,5 8,5 C7.72385763,5 7.5,5.22385763 7.5,5.5 L7.5,7.5 L5.5,7.5 C5.22385763,7.5 5,7.72385763 5,8 C5,8.27614237 5.22385763,8.5 5.5,8.5 L7.5,8.5 L7.5,10.5 C7.5,10.7761424 7.72385763,11 8,11 C8.27614237,11 8.5,10.7761424 8.5,10.5 L8.5,8.5 L10.5,8.5 C10.7761424,8.5 11,8.27614237 11,8 C11,7.72385763 10.7761424,7.5 10.5,7.5 L8.5,7.5 Z M8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

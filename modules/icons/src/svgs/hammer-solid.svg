@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>hammer-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-288.000000, -240.000000)">
+        <g id="hammer-solid" transform="translate(288.000000, 240.000000)" fill="#000000">
+            <path d="M0.8534,15.8539 L7.5934,9.1139 L10.0394,11.5599 C10.6264,12.1469 11.5784,12.1469 12.1664,11.5599 L15.5594,8.1659 C16.1474,7.5789 16.1474,6.6269 15.5594,6.0399 L9.9604,0.4399 C9.3734,-0.1461 8.4214,-0.1461 7.8344,0.4399 L4.4404,3.8349 C3.8534,4.4209 3.8534,5.3739 4.4404,5.9599 L6.8864,8.4069 L0.1464,15.1469 C-0.0486,15.3419 -0.0486,15.6579 0.1464,15.8539 C0.3414,16.0489 0.6584,16.0489 0.8534,15.8539 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

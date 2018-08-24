@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>angle-down-mini-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-48.000000, -544.000000)">
+        <g id="angle-down-mini-solid" transform="translate(48.000000, 544.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M8,8.75005885 L11.4,6.20005885 C11.8418278,5.868688 12.4686292,5.95823105 12.8,6.40005885 C13.1313708,6.84188665 13.0418278,7.468688 12.6,7.80005885 L8.6,10.8000589 C8.24444444,11.0667255 7.75555556,11.0667255 7.4,10.8000589 L3.4,7.80005885 C2.9581722,7.468688 2.86862915,6.84188665 3.2,6.40005885 C3.53137085,5.95823105 4.1581722,5.868688 4.6,6.20005885 L8,8.75005885 Z" id="Path-113"></path>
+        </g>
+    </g>
+</svg>

@@ -27,6 +27,7 @@ export const classes = {
   LABELBEFORE: '{namespace}-label-before',
   LABELAFTER: '{namespace}-label-after',
   LABELHIDE: '{namespace}-label-hide',
+  HIDE: '{namespace}-hide',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
   DRAGGING: '{namespace}-dragging',
@@ -52,10 +53,10 @@ export const defaults = {
     after: 'After'
   },
   arrows: {
-    left: 'fa fa-caret-left',
-    right: 'fa fa-caret-right',
-    up: 'fa fa-caret-up',
-    down: 'fa fa-caret-down'
+    left: 'icon icon-triangle-thin-left-solid',
+    right: 'icon icon-triangle-thin-right-solid',
+    up: 'icon icon-triangle-thin-up-solid',
+    down: 'icon icon-triangle-thin-down-solid'
   },
   templates: {
     handle() {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>check-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-240.000000, -898.000000)">
+        <g id="check-solid" transform="translate(240.000000, 898.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M13.2928932,3.29289322 C13.6834175,2.90236893 14.3165825,2.90236893 14.7071068,3.29289322 C15.0976311,3.68341751 15.0976311,4.31658249 14.7071068,4.70710678 L6.71417785,12.7000357 C6,13.0944652 6,13.0944652 5.28582215,12.7000357 L1.79289322,9.20710678 C1.40236893,8.81658249 1.40236893,8.18341751 1.79289322,7.79289322 C2.18341751,7.40236893 2.81658249,7.40236893 3.20710678,7.79289322 L6,10.5857864 L13.2928932,3.29289322 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

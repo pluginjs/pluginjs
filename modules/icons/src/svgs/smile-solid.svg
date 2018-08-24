@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>smile-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="16px-solid" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-480.000000, -192.000000)">
+        <g id="smile-solid" transform="translate(480.000000, 192.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 Z M5,7 C5.55228475,7 6,6.55228475 6,6 C6,5.44771525 5.55228475,5 5,5 C4.44771525,5 4,5.44771525 4,6 C4,6.55228475 4.44771525,7 5,7 Z M11,7 C11.5522847,7 12,6.55228475 12,6 C12,5.44771525 11.5522847,5 11,5 C10.4477153,5 10,5.44771525 10,6 C10,6.55228475 10.4477153,7 11,7 Z M4,9.5 C4,11.2966566 5.88858485,13 8,13 C10.1114152,13 12,11.2966566 12,9.5 C12,9.22385763 11.7761424,9 11.5,9 C11.2238576,9 11,9.22385763 11,9.5 C11,10.7200319 9.58083319,12 8,12 C6.41916681,12 5,10.7200319 5,9.5 C5,9.22385763 4.77614237,9 4.5,9 C4.22385763,9 4,9.22385763 4,9.5 Z" id="shape"></path>
+        </g>
+    </g>
+</svg>

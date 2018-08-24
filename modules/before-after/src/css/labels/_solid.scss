@@ -1,9 +1,0 @@
-$solid-bg: rgba($color-black, 0.3);
-
-.#{$beforeAfter}-labels-solid {
-  .#{$beforeAfter}-label-before,
-  .#{$beforeAfter}-label-after {
-    padding: $beforeAfter-label-spacer;
-    background: $solid-bg;
-  }
-}
