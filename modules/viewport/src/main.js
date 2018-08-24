@@ -37,7 +37,6 @@ class Viewport extends Component {
 
   checkRootMargin() {
     if (isNumber(this.options.rootMargin)) {
-      console.log(1111)
       this.options.rootMargin = `${this.options.rootMargin}px`
     }
   }
