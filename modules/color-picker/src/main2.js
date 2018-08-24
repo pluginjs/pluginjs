@@ -847,6 +847,9 @@ class ColorPicker extends Component {
       val = this.info.solid
     }
 
+    console.log(val)
+    console.log(this.asColor)
+    console.log(this.asColor.val(val))
     const color = this.asColor.val(val)
     if (isString(val) && val.indexOf('#') > -1) {
       this.setInput(color.toHEX())

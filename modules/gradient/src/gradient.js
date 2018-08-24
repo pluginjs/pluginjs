@@ -63,6 +63,9 @@ class Gradient {
       return
     }
     this.value.stops = this.value.stops.sort((a, b) => a.position - b.position)
+    this.value.stops.forEach((v, i) => {
+      v.id = i
+    })
   }
 
   insert(color, position, index) {

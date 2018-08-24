@@ -1,4 +1,4 @@
-import { parseHTML } from '@pluginjs/dom'
+import { parseHTML, getData } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle, getStyle } from '@pluginjs/styled'
@@ -66,7 +66,6 @@ class Saturation {
     bindEvent(
       this.instance.selfEventName('change'),
       (e, el, data) => {
-        console.log(data)
         this.position(data)
       },
       this.instance.element
@@ -114,10 +113,23 @@ class Saturation {
   }
 
   update() {
-    this.instance.setSolid({
-      s: this.positionX / this.maxLengthX,
-      v: 1 - this.positionY / this.maxLengthY
-    })
+    console.log(this.instance.is('SelectedMarker'))
+    if (this.instance.is('gradientModule')) {
+      if (this.instance.is('SelectedMarker')) {
+        this.instance.GRADIENT.setGradientColor(
+          {
+            s: this.positionX / this.maxLengthX,
+            v: 1 - this.positionY / this.maxLengthY
+          },
+          getData('value', this.instance.$marker).index
+        )
+      }
+    } else {
+      this.instance.SOLID.setSolid({
+        s: this.positionX / this.maxLengthX,
+        v: 1 - this.positionY / this.maxLengthY
+      })
+    }
   }
 }
 

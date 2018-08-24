@@ -1,9 +1,8 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import { isString } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { bindEvent } from '@pluginjs/events' // , removeEvent
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hideElement, showElement } from '@pluginjs/styled' // setStyle
 import {
   append,
@@ -15,10 +14,10 @@ import {
   attr,
   parentWith,
   wrap,
-  // unwrap,
+  unwrap,
   // setData,
-  getData
-  // empty
+  getData,
+  empty
 } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 // import Scrollable from '@pluginjs/scrollable'
@@ -32,7 +31,7 @@ import {
   translateable,
   optionable
 } from '@pluginjs/decorator'
-import { Color } from '@pluginjs/color'
+// import { Color } from '@pluginjs/color'
 import Alpha from './components/alpha'
 import Preview from './components/preview'
 // import Contrast from './components/contrast'
@@ -98,14 +97,10 @@ class ColorPicker extends Component {
     }
     // init
     this.initStates()
-
-    console.log(this.data)
-    console.log(this.color)
     this.initialize()
   }
 
   initialize() {
-    this.asColor = Color.of(this.options.defaultColor, this.options.color)
     // init frame
     this.initFrame()
 
@@ -137,18 +132,18 @@ class ColorPicker extends Component {
   }
 
   initCollection() {
-    new Collection(this, query(`.${this.classes.PANELCOLLECTION}`, this.$panel))  /* eslint-disable-line */
+    this.COLLECTION = new Collection(this, query(`.${this.classes.PANELCOLLECTION}`, this.$panel))  /* eslint-disable-line */
   }
 
   initSolid() {
     this.$Solid = query(`.${this.classes.PANELSOLID}`, this.$panel)
-    new Solid(this, query(`.${this.classes.PANELSOLID}`, this.$panel))  /* eslint-disable-line */
+    this.SOLID = new Solid(this, query(`.${this.classes.PANELSOLID}`, this.$panel))  /* eslint-disable-line */
     this.registerComponent()
   }
 
   initGradient() {
     this.$gradient = query(`.${this.classes.PANELGRADIENT}`, this.$panel)
-    new Gradients(this, query(`.${this.classes.PANELGRADIENT}`, this.$panel)) /* eslint-disable-line */
+    this.GRADIENT = new Gradients(this, query(`.${this.classes.PANELGRADIENT}`, this.$panel)) /* eslint-disable-line */
     // this.registerComponent()
     this.initHistory(true)
     this.initDone(true)
@@ -180,7 +175,6 @@ class ColorPicker extends Component {
       classes: this.classes
     })
 
-    console.log(this.options.module)
     // set module
     this.options.module.forEach(v => {
       const triggerClassName = `${this.classes.PANELTRIGGER}-${v}`
@@ -226,7 +220,6 @@ class ColorPicker extends Component {
 
     // init Popper
     this.setupPopper()
-    console.log(query(`.${this.classes.PANELCOLLECTION}`, this.$panel))
   }
 
   initFrame() {
@@ -346,6 +339,66 @@ class ColorPicker extends Component {
 
   bind() {
     compose(
+      // input color
+      bindEvent(this.eventName('change'), e => {
+        const val = e.target.value
+        this.set(this.options.parse.call(this, val))
+      }),
+      // switch panel
+      bindEvent(this.eventName('click'), () => {
+        if (this.is('disabled')) {
+          return false
+        }
+
+        this.openPanel()
+        return null
+      })
+    )(this.element)
+
+    compose(
+      // manage event
+      bindEvent(this.eventName('click'), `.${this.classes.MANAGE}`, () => {
+        this.options.manage()
+      }),
+      // action event
+      bindEvent(this.eventName('click'), `.${this.classes.OK}`, () => {
+        if (this.is('disabled')) {
+          return false
+        }
+        // this.oldColor = this.color
+        // if (this.oldColor != null) {
+        //   if (this.oldColor.indexOf('linear-gradient') > -1) {
+        //     this.setGradient(this.oldColor)
+        //   } else {
+        //     this.setSolid(this.oldColor)
+        //   }
+        // }
+
+        this.closePanel()
+        return null
+      }),
+      // action event
+      bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
+        if (this.is('disabled')) {
+          return false
+        }
+
+        if (this.hasModule('solid')) {
+          this.SOLID.setSolid(
+            this.HISTORY.colors[this.HISTORY.colors.length - 1]
+          )
+        }
+
+        // if (this.hasModule('gradient')) {
+
+        //   this.setGradient(
+        //     this.HISTORY.colors[this.HISTORY.colors.length - 1]
+        //   )
+        //             // }
+        this.closePanel()
+        return null
+      }),
+      // switch mode
       bindEvent(
         this.eventName('click'),
         `.${this.classes.PANELTRIGGER}>i`,
@@ -354,6 +407,7 @@ class ColorPicker extends Component {
           this.switchModule(getData('type', $this))
         }
       ),
+      // Collection event
       bindEvent(
         this.eventName('click'),
         `.${this.classes.COLLECTIONITEM}`,
@@ -365,6 +419,39 @@ class ColorPicker extends Component {
         }
       )
     )(this.$panel)
+
+    bindEvent(
+      this.eventName('click'),
+      () => {
+        if (!this.is('openPanel')) {
+          return false
+        }
+
+        this.closePanel()
+        return null
+      },
+      this.$mask
+    )
+
+    // input remove color
+    compose(
+      bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
+        hideElement(this.$remove)
+        // this.$element.blur()
+        this.closePanel()
+        this.clear()
+      }),
+      bindEvent(this.eventName('mouseout'), `.${this.classes.TRIGGER}`, () => {
+        hideElement(this.$remove)
+      }),
+      bindEvent(this.eventName('mouseover'), `.${this.classes.TRIGGER}`, () => {
+        if (this.element.value.length > 0) {
+          if (!this.is('disabled')) {
+            this.$remove.style.display = 'inline'
+          }
+        }
+      })
+    )(this.$wrap)
 
     bindEvent(
       this.eventNameWithId('click'),
@@ -380,6 +467,10 @@ class ColorPicker extends Component {
       },
       window.document
     )
+  }
+
+  unbind() {
+    removeEvent(this.eventName(), this.element)
   }
 
   setupPopper() {
@@ -409,25 +500,25 @@ class ColorPicker extends Component {
     })
 
     if (typeName === 'collection' && this.scrollable) {
-      // this.scrollable.update()
+      this.scrollable.update()
     }
     // switch module state
     this.enter(`${typeName}Module`)
     this.module = typeName
 
-    // switch (this.module) {
-    //   case 'solid':
-    //     this.setSolid(this.info.solid)
-    //     break
-    //   case 'collection':
-    //     this.setCollection(this.info.collection)
-    //     break
-    //   case 'gradient':
-    //     this.setGradient(this.info.gradient)
-    //     break
-    //   default:
-    //     break
-    // }
+    switch (this.module) {
+      case 'solid':
+        this.SOLID.setSolid(this.info.solid)
+        break
+      case 'collection':
+        this.COLLECTION.setCollection(this.info.collection)
+        break
+      case 'gradient':
+        this.GRADIENT.setGradient(this.GRADIENT.gradientValue)
+        break
+      default:
+        break
+    }
     this.trigger(EVENTS.SWITCHMODULE, this.module)
   }
 
@@ -441,6 +532,17 @@ class ColorPicker extends Component {
     addClass(this.classes.OPENPANEL, this.$panelWrap)
     addClass(this.classes.OPENACTIVE, this.element)
     showElement(this.$mask)
+    // update scollable height
+    if (this.scrollable) {
+      this.scrollable.update()
+    }
+
+    this.POPPER.scheduleUpdate()
+    // this.element.openPanel = true
+    this.enter('openPanel')
+    this.trigger(EVENTS.OPENPANEL)
+
+    this.oldColor = this.color
   }
 
   closePanel() {
@@ -449,7 +551,7 @@ class ColorPicker extends Component {
     hideElement(this.$mask)
     // this.element.style.removeProperty('border-color')
 
-    // this.update()
+    this.update()
 
     // // this.element.openPanel = false;
     this.leave('openPanel')
@@ -459,68 +561,13 @@ class ColorPicker extends Component {
     return this.options.module.indexOf(name) > -1
   }
 
-  setCollection(colorName) {
-    Object.entries(this.data).forEach(([, v]) => {
-      Object.entries(v).forEach(([name, dataColor]) => {
-        if (colorName.toLowerCase() === name.toLowerCase()) {
-          if (
-            dataColor.indexOf('gradient') > -1 &&
-            this.hasModule('gradient')
-          ) {
-            this.info.gradient = dataColor
-            this.setGradient(dataColor)
-          } else if (this.hasModule('solid')) {
-            this.info.solid = dataColor
-            this.setSolid(dataColor)
-          }
-
-          this.setInput(name)
-          this.PREVIEW.update(dataColor)
-        }
-      })
-    })
-  }
-
-  setSolid(val) {
-    if (!val) {
-      val = this.info.solid
-    }
-
-    const color = this.asColor.val(val)
-    if (isString(val) && val.indexOf('#') > -1) {
-      this.setInput(color.toHEX())
-    } else if (isString(val) && !val.match(/\d/g)) {
-      this.setInput(color.toNAME())
-    } else {
-      this.setInput(color.toRGBA())
-    }
-
-    this.tempColor = color
-    this.PREVIEW.update(color)
-    console.log(EVENTS.CHANGE)
-    console.log(this.element)
-    this.trigger(EVENTS.CHANGE, color)
-  }
-
-  setGradient(color) {
-    if (!color) {
-      color = this.info.gradient
-    }
-    this.GRADIENT.set(color)
-  }
-
   setInput(val) {
-    // if (this.module === 'gradient' && this.is('noSelectedMarker')) {
-    //   return false
-    // }
+    if (this.module === 'gradient' && this.is('noSelectedMarker')) {
+      return false
+    }
     this.info[this.module] = val
     this.element.value = val
     return null
-  }
-
-  updateGradient(color) {
-    this.PREVIEW.update(color, true)
-    this.setInput(color)
   }
 
   registerComponent() {
@@ -559,6 +606,42 @@ class ColorPicker extends Component {
     }
   }
 
+  update() {
+    if (this.module === 'gradient' && this.is('noSelectedMarker')) {
+      return false
+    }
+    this.color = this.info[this.module]
+    if (this.color === '') {
+      this.color = 'transparent'
+    }
+    console.log(this.color)
+    this.element.value = this.color
+    this.trigger(EVENTS.UPDATE, this.color)
+    return null
+  }
+
+  val(color) {
+    if (!color) {
+      return this.options.process.call(this, this.get(), this.module)
+    }
+
+    const val = this.options.parse.call(this, color)
+
+    this.set(val)
+    // this.update();
+    return null
+  }
+
+  get() {
+    const data = {}
+    Object.entries(this.info).forEach(([i, v]) => {
+      if (this.hasModule(i)) {
+        data[i] = v
+      }
+    })
+    return data
+  }
+
   set(val) {
     const module = val.module
     const color = val.color
@@ -569,24 +652,79 @@ class ColorPicker extends Component {
 
       // collection
       if (module === 'collection') {
-        this.setCollection(color)
+        this.COLLECTION.setCollection(color)
         return false
       }
 
       // gradient
       if (module === 'gradient') {
         if (typeof color === 'string' && color.indexOf('gradient') > -1) {
-          this.setGradient(color)
+          this.GRADIENT.setGradient(color)
         }
         return false
       }
 
       // solid
       if (module === 'solid') {
-        this.setSolid(color)
+        this.SOLID.setSolid(color)
       }
     }
     return null
+  }
+
+  clear() {
+    this.info = {
+      collection: '',
+      solid: this.options.defaultColor || '#000',
+      gradient: 'linear-gradient(90deg, #fff 0%,#000 100%)'
+    }
+
+    Object.entries(this.info).forEach(([module, color]) =>
+      this.set({ module, color })
+    )
+
+    this.switchModule(this.options.module[0])
+    this.PREVIEW.update('transparent')
+    this.element.value = ''
+  }
+
+  enable() {
+    if (this.is('disabled')) {
+      this.element.disabled = false
+      this.leave('disabled')
+    }
+    removeClass(this.classes.DISABLED, this.$wrap)
+    this.trigger(EVENTS.ENABLE)
+  }
+
+  disable() {
+    if (!this.is('disabled')) {
+      this.element.disabled = true
+      this.enter('disabled')
+    }
+    addClass(this.classes.DISABLED, this.$wrap)
+    this.trigger(EVENTS.DISABLE)
+  }
+
+  destroy() {
+    if (this.is('initialized')) {
+      this.unbind()
+      this.POPPER.destroy()
+      empty(this.element)
+      this.element.className = this.firstClassName
+      this.element.setAttribute('placeholder', '')
+      unwrap(unwrap(this.element))
+      this.$remove.remove()
+      this.PREVIEW.remove()
+      this.$panelWrap.remove()
+      if (this.options.theme) {
+        removeClass(this.getThemeClass(), this.element)
+      }
+      this.leave('initialized')
+    }
+    this.clear()
+    this.trigger(EVENTS.DESTROY)
+    super.destroy()
   }
 
   static setCollectionData(data) {

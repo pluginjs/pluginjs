@@ -33,6 +33,7 @@ class Preview {
   }
 
   update(color) {
+    console.log(color)
     if (
       this.instance.module === 'gradient' &&
       this.instance.is('noSelectedMarker')

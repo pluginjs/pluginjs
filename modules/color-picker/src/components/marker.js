@@ -27,8 +27,8 @@ class Marker {
 
   init() {
     const offset = this.getOffset()
-    setStyle('background: this.color, left', `${offset}px`, this.$el)
-    // setStyle('background', this.color, query('i', this.$el))
+    setStyle('background', this.color, this.$el)
+    setStyle('left', `${offset}px`, this.$el)
 
     this.bind()
   }
@@ -50,7 +50,7 @@ class Marker {
       this.instance.eventName('click'),
       e => {
         const color = getStyle('backgroundColor', e.target)
-        this.instance.setSolid(color)
+        this.instance.GRADIENT.setGradientColor(color, this.index)
       },
       this.$el
     )

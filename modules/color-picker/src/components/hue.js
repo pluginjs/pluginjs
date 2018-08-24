@@ -1,6 +1,6 @@
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { getStyle, setStyle } from '@pluginjs/styled'
-import { parseHTML } from '@pluginjs/dom'
+import { parseHTML, getData } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 
 class Hue {
@@ -84,7 +84,16 @@ class Hue {
     setStyle('top', position, this.$pointer)
   }
   update() {
-    this.instance.setSolid({ h: this.hue })
+    if (this.instance.is('gradientModule')) {
+      if (this.instance.is('SelectedMarker')) {
+        this.instance.GRADIENT.setGradientColor(
+          { h: this.hue },
+          getData('value', this.instance.$marker).index
+        )
+      }
+    } else {
+      this.instance.SOLID.setSolid({ h: this.hue })
+    }
     return null
   }
 }

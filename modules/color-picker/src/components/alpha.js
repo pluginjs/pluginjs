@@ -1,6 +1,6 @@
 import { hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { parseHTML, append } from '@pluginjs/dom'
+import { parseHTML, append, getData } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 
 class Alpha {
@@ -66,9 +66,7 @@ class Alpha {
     // global event
     bindEvent(
       this.instance.selfEventName('change'),
-      (e, el, data, D) => {
-        console.log(D)
-        console.log(1)
+      (e, el, data) => {
         this.position(data)
       },
       this.instance.element
@@ -93,7 +91,16 @@ class Alpha {
   }
 
   update() {
-    this.instance.setSolid({ a: this.alpha })
+    if (this.instance.is('gradientModule')) {
+      if (this.instance.is('SelectedMarker')) {
+        this.instance.GRADIENT.setGradientColor(
+          { a: this.alpha },
+          getData('value', this.instance.$marker).index
+        )
+      }
+    } else {
+      this.instance.SOLID.setSolid({ a: this.alpha })
+    }
   }
 }
 

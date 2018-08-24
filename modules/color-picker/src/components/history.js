@@ -41,10 +41,10 @@ class History {
           return false
         }
 
-        if (this.prevColor === this.instance.asColor) {
+        if (this.prevColor === this.instance.SOLID.color) {
           return false
         }
-        this.prevColor = this.instance.asColor.toRGBA()
+        this.prevColor = this.instance.SOLID.color.toRGBA()
         this.update(this.prevColor)
 
         return null
@@ -63,7 +63,7 @@ class History {
           return false
         }
         const color = getStyle('background-color', el)
-        that.instance.setSolid(color)
+        that.instance.SOLID.setSolid(color)
       },
       this.element
     )

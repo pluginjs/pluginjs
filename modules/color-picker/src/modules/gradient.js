@@ -1,10 +1,10 @@
-// import { isString } from '@pluginjs/is'
+import keyboard from '@pluginjs/keyboard'
 import { query, getData, setData, find, parseHTML, parent } from '@pluginjs/dom'
-// import { bindEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { compose } from '@pluginjs/utils'
-import { setStyle } from '@pluginjs/styled' // getStyle
-import { removeClass, addClass } from '@pluginjs/classes' // hasClass
-// import { Gradient } from '@pluginjs/gradient'
+import { setStyle, getStyle } from '@pluginjs/styled'
+import { removeClass, addClass, hasClass } from '@pluginjs/classes'
+import { Gradient } from '@pluginjs/gradient'
 import Marker from '../components/marker'
 import Wheel from '../components/wheel'
 import Dropdown from '@pluginjs/dropdown'
@@ -12,24 +12,29 @@ import Dropdown from '@pluginjs/dropdown'
 class Gradients {
   constructor(instance, element) {
     this.instance = instance
-    this.element = element
     this.classes = this.instance.classes
+    this.element = element
     this.mode = this.instance.options.gradientMode
+    this.angle = 90
+    // this.first = true
     this.markers = []
-    this.gradient = `${this.mode}-gradient(${
+    this.actionBarSize = null
+
+    this.gradientValue = `${this.mode}-gradient(${
       this.mode === 'linear' ? 'to right' : 'circle'
     },#fff 0%,#000 100%)`
 
+    this.gradient = new Gradient(this.gradientValue)
     this.init()
   }
 
   init() {
     // init gradient
-    if (this.instance.hasModule('gradient')) {
-      this.initGradient()
-      this.build()
-      this.initialVals()
-    }
+    this.initGradient()
+    this.build()
+    this.initialVals()
+    this.$angle.value = this.gradient.value.angle
+    this.bind()
   }
 
   build() {
@@ -70,35 +75,243 @@ class Gradients {
       data: [
         { label: 'Linear', value: 'Linear' },
         { label: 'Radial', value: 'Radial' }
-      ]
+      ],
+      onChange: res => {
+        const modeName = res.replace(/^.?/g, match => match.toLowerCase())
+        this.mode = modeName
+
+        this.update()
+      }
     })
   }
 
   initialVals() {
     // set initial val
-    setStyle('background', this.gradient, this.$view)
+    setStyle('background', this.gradientValue, this.$view)
 
     // create initial markers
-    const $leftMarker = this.createMarker({
-      color: 'white',
-      percent: 0,
-      index: 0
-    })
+    // this.gradient.value.stops.forEach((v, i) => {
+    //   const $marker = this.createMarker({
+    //     color: this.gradient.get(i).color.toString(),
+    //     percent: v.position * 100,
+    //     index: i
+    //   })
 
-    const $rightMarker = this.createMarker({
-      color: 'black',
-      percent: 100,
-      index: 1
-    })
+    //   this.markers.push(getData('value', $marker))
+    //   this.actionBarSize = getData('value', $marker).maxLenght
 
-    this.markers.push(
-      getData('value', $leftMarker),
-      getData('value', $rightMarker)
-    )
-    this.selectMarker($rightMarker)
-    this.actionBarSize = getData('value', $leftMarker).maxLenght
+    //   if (i === 1) {
+    //     this.selectMarker($marker)
+    //   }
+    // })
     // initial wheel
     this.WHEEL = new Wheel(this.instance, this.$wheel)
+  }
+
+  bind() {
+    bindEvent(
+      this.instance.selfEventName('switchModule'),
+      () => {
+        if (this.instance.is('gradientModule')) {
+          this.update()
+        }
+      },
+      this.instance.element
+    )
+
+    bindEvent(
+      this.instance.selfEventName('change'),
+      () => {
+        if (this.instance.is('gradientModule')) {
+          this.update()
+        }
+      },
+      this.instance.element
+    )
+
+    bindEvent(
+      this.instance.selfEventName('wheelChange'),
+      (e, el, angle) => {
+        this.angle = Math.round(angle)
+        this.$angle.value = `${this.angle}°`
+        this.update()
+      },
+      this.instance.element
+    )
+
+    bindEvent(
+      this.instance.eventName('mousedown'),
+      `.${this.classes.MARKER}`,
+      e => {
+        this.instance.enter('DownSelectedMarker')
+        if (e.which === 2 || e.which === 3) {
+          return false
+        }
+        const $this = e.target
+        const marker = getData('value', $this)
+        this.selectMarker($this)
+
+        const startX = e.pageX
+        const markerX = parseFloat(getStyle('left', $this))
+        bindEvent(
+          this.instance.eventNameWithId('mousemove'),
+          // identity: $this,
+          e => {
+            const position = e.pageX - startX + markerX
+            this.move($this, position)
+
+            const percent = this.getMarkerPercent(position)
+            marker.position(percent)
+            this.sort()
+            this.gradient.get(marker.index).setPosition(percent / 100)
+            this.gradient.reorder()
+            this.update()
+            this.instance.trigger('gradientChange')
+          },
+          window.document
+        )
+        // e.preventDefault()
+        return false
+      },
+      this.$actionBar
+    )
+
+    bindEvent(
+      this.instance.eventName('mousedown'),
+      e => {
+        if (!this.instance.is('DownSelectedMarker')) {
+          this.gradient.append(
+            this.instance.tempColor,
+            this.getMarkerPercent(e.offsetX) / 100
+          )
+          this.gradient.reorder()
+          this.addMarker(e.offsetX)
+        }
+      },
+      this.$actionBar
+    )
+
+    bindEvent(
+      this.instance.eventNameWithId('mouseup'),
+      () => {
+        this.instance.leave('DownSelectedMarker')
+        removeEvent(this.instance.eventNameWithId('mousemove'), window.document)
+        // removeEvent('mouseup', window.document)
+      },
+      window.document
+    )
+
+    bindEvent(
+      this.instance.eventName('input'),
+      () => {
+        let val = parseInt(this.$angle.value, 10)
+        if (!val) {
+          val = 90
+        }
+
+        this.angle = val
+        this.WHEEL.set(this.angle)
+        this.update()
+      },
+      this.$angle
+    )
+
+    bindEvent(
+      this.instance.eventName('click'),
+      `.${this.classes.PANELTRIGGER}>i`,
+      ({ target: $this }) => {
+        if (getData('type', $this) !== 'gradient') {
+          this.markers.map((marker, i) => { /* eslint-disable-line */
+            const $item = marker.$el
+            if (hasClass(this.classes.MARKERACTIVE, $item)) {
+              this.lastActiveMarkerIndex = i
+            }
+          })
+        }
+      },
+      this.instance.$panel
+    )
+
+    // remove marker
+    bindEvent(
+      this.instance.eventName('click'),
+      `.${this.classes.GRADIENTREMOVE}`,
+      ({ target: $this }) => {
+        if (
+          this.markers.length <= 2 ||
+          !hasClass(this.classes.GRADIENTREMOVEACTIVE, $this)
+        ) {
+          return false
+        }
+
+        const $marker = this.instance.$marker
+        const index = getData('value', $marker).index
+        console.log(index)
+        $marker.remove()
+        removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
+        this.markers.splice(index, 1)
+        this.gradient.removeById(index)
+        this.sort()
+        this.gradient.reorder()
+        console.log(this.gradient)
+        this.update()
+        this.instance.leave('SelectedMarker')
+        return null
+      },
+      this.element
+    )
+    this.KEYBOARD = keyboard()
+
+    this.KEYBOARD.on('down', 'esc', () => {
+      if (
+        !this.instance.is('openPanel') ||
+        this.markers.length <= 2 ||
+        this.instance.module !== 'gradient' ||
+        !hasClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
+      ) {
+        return false
+      }
+
+      const $marker = this.instance.$marker
+      const index = getData('value', $marker).index
+
+      $marker.remove()
+      removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
+      this.markers.splice(index, 1)
+      this.gradient.removeById(index + 1)
+      this.sort()
+      this.gradient.reorder()
+      this.update()
+      this.instance.leave('SelectedMarker')
+      return null
+    })
+
+    // switch gradient mode
+    // this.dropdown.options.onChange = res => {
+    //   const modeName = res.replace(/^.?/g, match =>
+    //     match.toLowerCase()
+    //   )
+    //   this.mode = modeName
+
+    //   this.update()
+    // }
+  }
+
+  move(el, size) {
+    const position = Math.max(0, Math.min(size, this.actionBarSize))
+    setStyle('left', position, el)
+  }
+
+  sort() {
+    this.markers.sort((a, b) => a.percent - b.percent)
+
+    this.markers.forEach((v, i) => {
+      v.index = i
+    })
+  }
+
+  get(index) {
+    return this.markers[index]
   }
 
   createMarker(options) {
@@ -108,6 +321,39 @@ class Gradients {
     setData('value', new Marker(this.instance, $marker, options), $marker)
 
     return $marker
+  }
+
+  addMarker(position, options = null) {
+    let value = {}
+    if (!options) {
+      const percent = this.getMarkerPercent(position)
+
+      const color = this.instance.tempColor || '#000'
+      value = {
+        color,
+        percent,
+        index: this.markers.length
+      }
+    } else {
+      value = options
+    }
+
+    const $marker = this.createMarker(value)
+    this.actionBarSize = getData('value', $marker).maxLenght
+
+    this.markers.push(getData('value', $marker))
+
+    this.sort()
+    this.selectMarker($marker)
+    this.update()
+  }
+
+  getMarkerPercent(position) {
+    const minPosition = this.markers[0].elSize / 2
+    const maxPosition = this.markers[0].wrapSize - this.markers[0].elSize / 2
+
+    position = Math.min(maxPosition, Math.max(minPosition, position))
+    return ((position - minPosition) / this.actionBarSize) * 100
   }
 
   selectMarker(marker) {
@@ -132,10 +378,14 @@ class Gradients {
     )(this.element)
 
     if (this.instance.is('gradientModule')) {
-      this.instance.setSolid(getData('value', marker).color)
+      this.setGradientColor(
+        getData('value', marker).color,
+        getData('value', marker).index
+      )
     }
 
     this.instance.leave('noSelectedMarker')
+    this.instance.enter('SelectedMarker')
     this.update()
   }
 
@@ -144,20 +394,17 @@ class Gradients {
       return false
     }
     let deg = ''
-    let gradient = ''
-
-    this.markers.forEach(v => {
-      gradient += `, ${v.color} ${v.percent}%`
-    })
 
     if (this.mode === 'linear') {
+      this.gradient.privateType = 'LINEAR'
       deg = `${this.angle}deg`
-      this.gradient = `linear-gradient(${deg}${gradient})`
+      this.gradient.angle(this.angle)
     } else {
-      this.gradient = `radial-gradient(circle${gradient})`
+      this.gradient.privateType = 'RADIAL'
     }
-
-    setStyle('background', `linear-gradient(to right${gradient})`, this.$view)
+    console.log(this.gradient)
+    this.gradientValue = this.gradient.toString()
+    setStyle('background', this.gradientValue, this.$view)
 
     this.instance.gradient = {
       mode: this.mode,
@@ -165,7 +412,8 @@ class Gradients {
       markers: this.markers
     }
 
-    this.instance.updateGradient(this.gradient)
+    this.instance.PREVIEW.update(this.gradientValue, true)
+    this.instance.setInput(this.gradientValue)
     return null
   }
 
@@ -179,12 +427,69 @@ class Gradients {
     })
     //   this.element = query(`.${this.classes.PANELGRADIENT}`, this.$panel)
     this.element.append(...$gradient)
+  }
 
-    // init gradient handle
-    //   this.GRADIENT = new Gradient(
-    //     this,
-    //     query(`.${this.classes.GRADIENTHANDLE}`, this.$gradient)
-    //   )
+  clearMarks() {
+    this.markers.forEach(v => {
+      v.destroy()
+    })
+    this.markers = []
+  }
+
+  setGradientColor(color, index) {
+    console.log(this.gradient.get(index).color.val(color))
+    const colorData = this.gradient.get(index).color.val(color)
+
+    this.instance.trigger('change', colorData)
+  }
+
+  setGradient(color) {
+    if (!color) {
+      color = this.instance.info.gradient
+    }
+
+    console.log(color)
+    this.set(color)
+  }
+
+  set(val) {
+    console.log(val)
+    this.gradient = new Gradient(val)
+    console.log(this.gradient, 90)
+    if (val.indexOf('linear') > -1) {
+      this.mode = 'linear'
+      this.angle = this.gradient.value.angle
+
+      this.WHEEL.set(this.angle)
+      this.$angle.value = `${this.angle}°`
+    } else {
+      this.mode = 'radial'
+    }
+
+    this.clearMarks()
+    this.gradient.value.stops.forEach((v, i) => {
+      let percent = parseFloat(v.position * 100, 10)
+      if (i === this.gradient.length - 1) {
+        percent = 100
+      } else if (i === 0) {
+        percent = 0
+      }
+      const options = {
+        color: v.color,
+        index: i,
+        percent
+      }
+      // this.actionBarSize = getData('value', $marker).maxLenght
+      this.addMarker(0, options)
+    })
+    if (typeof this.lastActiveMarkerIndex === 'number') {
+      this.selectMarker(this.markers[this.lastActiveMarkerIndex].$el)
+    }
+    this.gradientValue = ''
+    this.update()
+    // this.dropdown.set(
+    //   this.mode.replace(/^[a-zA-Z]?/g, match => match.toUpperCase())
+    // )
   }
 }
 

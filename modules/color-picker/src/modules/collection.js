@@ -104,6 +104,28 @@ class Collection {
       append($item, groupList)
     })
   }
+
+  setCollection(colorName) {
+    Object.entries(this.instance.data).forEach(([, v]) => {
+      Object.entries(v).forEach(([name, dataColor]) => {
+        if (colorName.toLowerCase() === name.toLowerCase()) {
+          if (
+            dataColor.indexOf('gradient') > -1 &&
+            this.instance.hasModule('gradient')
+          ) {
+            this.instance.info.gradient = dataColor
+            this.instance.GRADIENT.setGradient(dataColor)
+          } else if (this.instance.hasModule('solid')) {
+            this.instance.info.solid = dataColor
+            this.instance.SOLID.setSolid(dataColor)
+          }
+
+          this.instance.setInput(name)
+          this.instance.PREVIEW.update(dataColor)
+        }
+      })
+    })
+  }
 }
 
 export default Collection

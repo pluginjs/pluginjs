@@ -18,11 +18,12 @@ class Hex {
     this.element = element
     this.classes = this.instance.classes
     this.opac = 100
-    this.mode = this.instance.asColor.toHEX()
+    this.mode = this.instance.SOLID.color.toHEX()
     this.classify = 'HEX'
-    this.HSL = this.instance.asColor.toHSL().toUpperCase()
-    this.HEX = this.instance.asColor.toHEX().toUpperCase()
-    this.RGB = this.instance.asColor.toRGB().toUpperCase()
+    this.color = null
+    this.HSL = this.instance.SOLID.color.toHSL().toUpperCase()
+    this.HEX = this.instance.SOLID.color.toHEX().toUpperCase()
+    this.RGB = this.instance.SOLID.color.toRGB().toUpperCase()
     this.data = [
       { label: this.HEX, value: 'HEX' },
       { label: this.HSL, value: 'HSL' },
@@ -55,11 +56,9 @@ class Hex {
       target: '+',
       imitateSelect: true,
       value: this.classify,
-      // width: parent(this.$selector),
-      // icon: 'icon-char icon-chevron-down',
       data: this.data,
       onChange: res => {
-        this.updateColor(res)
+        this.updateColor(res, this.color)
       }
     })
   }
@@ -68,8 +67,9 @@ class Hex {
     bindEvent(
       this.instance.selfEventName('change'),
       (e, el, color) => {
+        this.color = color
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
-        this.updateColor(this.dropdown.options.value)
+        this.updateColor(this.dropdown.options.value, color)
       },
       this.instance.element
     )
@@ -82,36 +82,26 @@ class Hex {
       },
       this.element
     )
-
-    // this.dropdown.options.onChange = res => {
-    //   console.log(res.innerText, 345)
-    //   this.updateColor(res.innerText)
-
-    //   // this.update(this.instance.asColor)
-    // }
-    // // console.log(this.dropdown.element)
-    // this.dropdown.element.on('dropdown:change', (e, api, data) => {
-    //   console.log(data)
-    // })
   }
 
-  updateColor(val) {
+  updateColor(val, color) {
     if (val.indexOf('HSL') > -1) {
-      this.mode = this.instance.asColor.toHSL().toUpperCase()
+      this.mode = color.toHSL().toUpperCase()
     } else if (val.indexOf('RGB') > -1) {
-      this.mode = this.instance.asColor.toRGB().toUpperCase()
+      this.mode = color.toRGB().toUpperCase()
     } else {
-      this.mode = this.instance.asColor.toHEX().toUpperCase()
+      this.mode = color.toHEX().toUpperCase()
     }
 
     this.data = [
-      this.instance.asColor.toHEX().toUpperCase(),
-      this.instance.asColor.toHSL().toUpperCase(),
-      this.instance.asColor.toRGB().toUpperCase()
+      this.color.toHEX().toUpperCase(),
+      this.color.toHSL().toUpperCase(),
+      this.color.toRGB().toUpperCase()
     ]
 
-    // this.$selector.querySelector('span').innerText = this.mode
-    this.dropdown.options.select = val
+    this.$el.innerText = this.mode
+    this.dropdown.options.value = this.mode
+
     this.element
       .querySelectorAll('.pj-dropdown-item')
       .forEach((value, index) => {
@@ -121,9 +111,9 @@ class Hex {
   }
 
   update(value) {
-    if (this.instance.asColor.isValid(value)) {
-      this.instance.setSolid(value)
-      this.updateColor(this.instance.asColor)
+    if (this.instance.SOLID.color.isValid(value)) {
+      this.instance.SOLID.setSolid(value)
+      this.updateColor(this.instance.SOLID.color)
     }
   }
 }
