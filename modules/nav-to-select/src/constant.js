@@ -83,5 +83,3 @@ export const defaults = {
 }
 
 export const dependencies = []
-
-export const info = { version: '0.5.1' }

@@ -16,7 +16,6 @@ import {
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
   events as EVENTS,
-  info as INFO,
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
@@ -31,14 +30,10 @@ const ANIMATION = {}
 @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, true)
-@register(
-  NAMESPACE,
-  {
-    methods: METHODS,
-    dependencies: DEPENDENCIES
-  },
-  INFO
-)
+@register(NAMESPACE, {
+  methods: METHODS,
+  dependencies: DEPENDENCIES
+})
 class SectionScroll extends Component {
   constructor(element, options = {}) {
     super(NAMESPACE, element)

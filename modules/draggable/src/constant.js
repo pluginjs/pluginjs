@@ -1,6 +1,6 @@
-const namespace = 'draggable'
+export const namespace = 'draggable'
 
-const events = {
+export const events = {
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
@@ -11,7 +11,7 @@ const events = {
   POINTER: 'pointer'
 }
 
-const classes = {
+export const classes = {
   NAMESPACE: `pj-${namespace}`,
   VERTICAL: '{namespace}-vertical',
   HORIZONTAL: '{namespace}-horizontal',
@@ -19,16 +19,12 @@ const classes = {
   DISABLED: '{namespace}-disabled'
 }
 
-const methods = ['setPosition', 'enable', 'disable', 'destroy']
+export const methods = ['setPosition', 'enable', 'disable', 'destroy']
 
-const defaults = {
+export const defaults = {
   container: null,
   grid: [0, 0],
   axis: null // 'x' or 'y'
 }
 
-const dependencies = ['Hammer']
-
-const info = { version: '0.0.1' }
-
-export { namespace, classes, defaults, events, methods, dependencies, info }
+export const dependencies = ['Hammer']

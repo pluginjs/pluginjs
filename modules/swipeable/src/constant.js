@@ -1,6 +1,6 @@
-const namespace = 'swipeable'
+export const namespace = 'swipeable'
 
-const events = {
+export const events = {
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
@@ -16,16 +16,16 @@ const events = {
   REBOUNDEND: 'reboundend'
 }
 
-const classes = {
+export const classes = {
   NAMESPACE: `pj-${namespace}`,
   CONTAINER: '{namespace}-container',
   VERTICAL: '{namespace}-vertical',
   DISABLED: '{namespace}-disabled'
 }
 
-const methods = ['enable', 'disable', 'destroy']
+export const methods = ['enable', 'disable', 'destroy']
 
-const defaults = {
+export const defaults = {
   container: null,
   rebound: false,
   reboundPos: 100, // 1%~100% (without %)
@@ -36,8 +36,4 @@ const defaults = {
   axis: 'x' // 'x' or 'y'
 }
 
-const dependencies = ['Hammer', 'anime']
-
-const info = { version: '0.0.1' }
-
-export { namespace, classes, defaults, events, methods, dependencies, info }
+export const dependencies = ['Hammer', 'anime']
