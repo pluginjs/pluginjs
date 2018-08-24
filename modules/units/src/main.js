@@ -57,7 +57,7 @@ class Units extends Component {
     const $trigger = parseHTML(
       `<div class="${
         this.classes.TRIGGER
-      }" tabindex="1"><div><span class="pj-dropdown-trigger"></span><div></div></div></div>`
+      }" tabindex="1"><span class="pj-dropdown-trigger"></span><div></div></div>`
     )
     const name = this.options.name ? `name="${this.options.name}"` : ''
     const $input = parseHTML(
@@ -151,7 +151,7 @@ class Units extends Component {
     const dropdowninstance = DROPDOWN.of($unitsTrigger, {
       width: this.dropdownWidth,
       trigger: 'click',
-      reference: this.$unitsT,
+      // reference: this.$unitsT,
       data,
       imitateSelect: true,
       value: this.unit,

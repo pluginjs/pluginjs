@@ -92,14 +92,16 @@ class GalleryPicker extends Component {
     const dropdownConf = {
       // data: this.getTimeList().map(value => ({ label: value })),
       // placeholder: this.options.placeholder,
+      reference: this.$fill,
+      target: this.$expandPanel,
       placement: 'bottom-left',
-      imitateSelect: true,
+      // imitateSelect: true,
       // inputLabel: true,
       hideOutClick: false,
       constraintToScrollParent: false,
       templates: this.options.templates
     }
-    this.mapDropdown = Dropdown.of(this.$empty, dropdownConf)
+    this.mapDropdown = Dropdown.of(this.$fillExpand, dropdownConf)
   }
 
   bind() {
@@ -289,6 +291,7 @@ class GalleryPicker extends Component {
     this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
 
     this.$fill = query(`.${this.classes.FILL}`, this.$wrap)
+    // this.$dropdown = query(`.${this.classes.DROPDOWN}`, this.$wrap)
     this.$fillCount = query(`.${this.classes.FILLCOUNT}`, this.$wrap)
     this.$fillExpand = query(`.${this.classes.FILLEXPAND}`, this.$wrap)
     this.$fillEdit = query(`.${this.classes.FILLEDIT}`, this.$fillExpand)

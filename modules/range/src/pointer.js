@@ -20,7 +20,7 @@ class Pointer {
 
     trigger(
       {
-        type: `${this.instance.plugin}:moveStart`,
+        type: this.instance.selfEventName(`${this.instance.plugin}:moveStart`),
         data: this
       },
       this.element
@@ -49,10 +49,10 @@ class Pointer {
     }
 
     this.mouseup = function() {
-      removeEvent(this.instance.eventName('mousemove'), document.body)
-      removeEvent(this.instance.eventName('mouseup'), document.body)
-      removeEvent(this.instance.eventName('touchmove'), document.body)
-      removeEvent(this.instance.eventName('touchend'), document.body)
+      removeEvent(this.instance.eventNameWithId('mousemove'), document.body)
+      removeEvent(this.instance.eventNameWithId('mouseup'), document.body)
+      removeEvent(this.instance.eventNameWithId('touchmove'), document.body)
+      removeEvent(this.instance.eventNameWithId('touchend'), document.body)
       trigger(
         {
           type: `${this.instance.plugin}:moveEnd`,
@@ -66,22 +66,22 @@ class Pointer {
     }
 
     bindEvent(
-      this.instance.eventName('touchmove'),
+      this.instance.eventNameWithId('touchmove'),
       this.mousemove.bind(this),
       document.body
     )
     bindEvent(
-      this.instance.eventName('mousemove'),
+      this.instance.eventNameWithId('mousemove'),
       this.mousemove.bind(this),
       document.body
     )
     bindEvent(
-      this.instance.eventName('touchend'),
+      this.instance.eventNameWithId('touchend'),
       this.mouseup.bind(this),
       document.body
     )
     bindEvent(
-      this.instance.eventName('mouseup'),
+      this.instance.eventNameWithId('mouseup'),
       this.mouseup.bind(this),
       document.body
     )
@@ -187,7 +187,7 @@ class Pointer {
 
   destroy() {
     removeEvent(this.instance.eventName(), this.element)
-    removeEvent(this.instance.eventName(), document.body)
+    removeEvent(this.instance.eventNameWithId(), document.body)
     this.element.remove()
   }
 }

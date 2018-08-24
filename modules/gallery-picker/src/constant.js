@@ -66,7 +66,6 @@ export const defaults = {
     main() {
       return (
         '<div class="{classes.NAMESPACE}">' +
-        '<div class="{classes.TRIGGER}">' +
         '<div class="{classes.EMPTY}">' +
         '<i class="icon-image-group"></i>{placeholder}' +
         '</div>' +
@@ -75,8 +74,6 @@ export const defaults = {
         '<span class="{classes.FILLCOUNT}">{count}</span>' +
         '<div class="{classes.FILLEXPAND}"><i class="{classes.FILLEDIT} icon-pencil-square"></i><i class="{classes.FILLREMOVE} icon-trash"></i></div>' +
         '</div>' +
-        '</div>' +
-        '<div class="{classes.DROPDOWN}">' +
         '<div class="{classes.EXPANDPANEL}">' +
         '<ul class="{classes.EXPANDITEM}">' +
         '<li class="{classes.EXPANDADD}">' +
@@ -87,7 +84,6 @@ export const defaults = {
         '<button class="{classes.EXPANDCANCELBTN} pj-btn pj-btn-transparent">{footerCancel}</button>' +
         // '<button class="{namespace}-expand-add-btn pj-btn pj-btn-outline-default">{footerAdd}</button>' +
         '<button class="{classes.EXPANDSAVEBTN} pj-btn pj-btn-primary">{footerSave}</button>' +
-        '</div>' +
         '</div>' +
         '</div>' +
         '</div>'

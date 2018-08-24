@@ -4,7 +4,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML } from '@pluginjs/dom'
-
+// import { events as EVENTS } from './constant'
 class Tip {
   constructor(instance) {
     this.defaults = { active: 'always' }
@@ -30,6 +30,7 @@ class Tip {
         setStyle('display', 'none', tip)
         bindEvent(
           `${instance.plugin}:moveEnd`,
+          // this.selfEventName(`${instance.plugin}:moveEnd`),
           () => {
             that.hide(tip)
             return false
@@ -38,6 +39,7 @@ class Tip {
         )
         bindEvent(
           `${instance.plugin}:moveStart`,
+          // this.selfEventName(`${instance.plugin}:moveStart`),
           () => {
             // const pointer = e.detail
             that.show(tip)
@@ -49,6 +51,7 @@ class Tip {
 
       bindEvent(
         `${instance.plugin}:move`,
+        // this.selfEventName(`${instance.plugin}:move`),
         () => {
           let value
           if (instance.options.isRange) {
