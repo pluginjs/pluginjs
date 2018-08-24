@@ -151,6 +151,7 @@ $galleryPicker-expand-control-btn-height: 32px !default;
   &-expand {
     &-panel {
       position: relative;
+      z-index: 100;
       box-sizing: border-box;
       flex-direction: column;
       width: $galleryPicker-expand-width;

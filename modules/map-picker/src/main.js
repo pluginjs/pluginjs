@@ -165,13 +165,14 @@ class MapPicker extends Component {
       // data: this.getTimeList().map(value => ({ label: value })),
       // placeholder: this.options.placeholder,
       placement: 'bottom-left',
-      imitateSelect: true,
+      // imitateSelect: true,
       // inputLabel: true,
+      target: this.$dropdown,
       hideOutClick: false,
       constraintToScrollParent: false,
       templates: this.options.templates
     }
-    this.mapDropdown = Dropdown.of(this.$empty, dropdownConf)
+    this.mapDropdown = Dropdown.of(this.$trigger, dropdownConf)
   }
 
   buildPop() {

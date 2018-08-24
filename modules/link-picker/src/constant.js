@@ -93,7 +93,7 @@ export const defaults = {
       </div>`
     },
     dropdownAction() {
-      return `<div class='{classes.DROPDOWNACTION}'><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {classes.DROPDOWNCANCEL}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {classes.DROPDOWNSAVE}'>{saveTitle}</button>
+      return `<div class='{classes.DROPDOWNACTION}'>><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {classes.DROPDOWNCANCEL}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {classes.DROPDOWNSAVE}'>{saveTitle}</button>
       </div>`
     }
   },
