@@ -3,7 +3,8 @@ import { addClass, hasClass } from '@pluginjs/classes'
 import {
   parseHTML,
   queryAll,
-  parentWith
+  parentWith,
+  getData
   // parent,
   // query,
   // children
@@ -41,10 +42,10 @@ class History {
           return false
         }
 
-        if (this.prevColor === this.instance.SOLID.color) {
+        if (this.prevColor === color) {
           return false
         }
-        this.prevColor = this.instance.SOLID.color.toRGBA()
+        this.prevColor = color
         this.update(this.prevColor)
 
         return null
@@ -63,7 +64,16 @@ class History {
           return false
         }
         const color = getStyle('background-color', el)
-        that.instance.SOLID.setSolid(color)
+        if (this.instance.is('gradientModule')) {
+          if (this.instance.is('SelectedMarker')) {
+            this.instance.GRADIENT.setGradientColor(
+              color,
+              getData('value', this.instance.$marker).index
+            )
+          }
+        } else {
+          that.instance.SOLID.setSolid(color)
+        }
       },
       this.element
     )

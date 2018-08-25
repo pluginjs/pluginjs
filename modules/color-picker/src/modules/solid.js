@@ -50,7 +50,6 @@ class Solid {
       this.instance.setInput(color.toRGBA())
     }
 
-    this.instance.tempColor = color
     this.instance.PREVIEW.update(color)
     this.instance.trigger('change', color)
   }

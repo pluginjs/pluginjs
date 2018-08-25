@@ -113,7 +113,7 @@ class Saturation {
   }
 
   update() {
-    console.log(this.instance.is('SelectedMarker'))
+    // console.log(this.instance.is('SelectedMarker'))
     if (this.instance.is('gradientModule')) {
       if (this.instance.is('SelectedMarker')) {
         this.instance.GRADIENT.setGradientColor(

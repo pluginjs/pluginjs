@@ -16,9 +16,9 @@ class Preview {
     bindEvent(
       this.instance.eventName('click'),
       () => {
-        // if (!this.instance.is('disabled')) {
-        this.instance.openPanel()
-        // }
+        if (!this.instance.is('disabled')) {
+          this.instance.openPanel()
+        }
       },
       this.element
     )
@@ -33,7 +33,6 @@ class Preview {
   }
 
   update(color) {
-    console.log(color)
     if (
       this.instance.module === 'gradient' &&
       this.instance.is('noSelectedMarker')
