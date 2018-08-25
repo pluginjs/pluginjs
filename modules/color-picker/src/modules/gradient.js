@@ -162,8 +162,8 @@ class Gradients {
 
             const percent = this.getMarkerPercent(position)
             marker.position(percent)
-            this.sort()
             this.gradient.get(marker.index).setPosition(percent / 100)
+            this.sort()
             this.gradient.reorder()
             this.update()
             this.instance.trigger('gradientChange')
@@ -246,14 +246,14 @@ class Gradients {
 
         const $marker = this.instance.$marker
         const index = getData('value', $marker).index
-        console.log(index)
+        // console.log(index)
         $marker.remove()
         removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
         this.markers.splice(index, 1)
         this.gradient.removeById(index)
         this.sort()
         this.gradient.reorder()
-        console.log(this.gradient)
+        // console.log(this.gradient)
         this.update()
         this.instance.leave('SelectedMarker')
         return null
@@ -328,7 +328,7 @@ class Gradients {
     if (!options) {
       const percent = this.getMarkerPercent(position)
 
-      const color = this.instance.tempColor || '#000'
+      const color = this.tempColor || '#000'
       value = {
         color,
         percent,
@@ -393,24 +393,23 @@ class Gradients {
     if (this.instance.is('noSelectedMarker')) {
       return false
     }
-    let deg = ''
 
     if (this.mode === 'linear') {
       this.gradient.privateType = 'LINEAR'
-      deg = `${this.angle}deg`
+      // const deg = `${this.angle}deg`
       this.gradient.angle(this.angle)
     } else {
       this.gradient.privateType = 'RADIAL'
     }
-    console.log(this.gradient)
+    // console.log(this.gradient)
     this.gradientValue = this.gradient.toString()
     setStyle('background', this.gradientValue, this.$view)
 
-    this.instance.gradient = {
-      mode: this.mode,
-      angle: deg,
-      markers: this.markers
-    }
+    // this.instance.gradient = {
+    //   mode: this.mode,
+    //   angle: deg,
+    //   markers: this.markers
+    // }
 
     this.instance.PREVIEW.update(this.gradientValue, true)
     this.instance.setInput(this.gradientValue)
@@ -437,9 +436,8 @@ class Gradients {
   }
 
   setGradientColor(color, index) {
-    console.log(this.gradient.get(index).color.val(color))
     const colorData = this.gradient.get(index).color.val(color)
-
+    this.tempColor = colorData.toRGBA()
     this.instance.trigger('change', colorData)
   }
 
@@ -448,14 +446,14 @@ class Gradients {
       color = this.instance.info.gradient
     }
 
-    console.log(color)
+    // console.log(color)
     this.set(color)
   }
 
   set(val) {
-    console.log(val)
+    // console.log(val)
     this.gradient = new Gradient(val)
-    console.log(this.gradient, 90)
+    // console.log(this.gradient, 90)
     if (val.indexOf('linear') > -1) {
       this.mode = 'linear'
       this.angle = this.gradient.value.angle

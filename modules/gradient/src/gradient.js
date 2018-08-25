@@ -92,7 +92,8 @@ class Gradient {
 
   removeById(id) {
     const index = this.getIndexById(id)
-    if (index) {
+    const rex = /^[0-9]+.?[0-9]*/
+    if (rex.test(index)) {
       this.remove(index)
     }
   }

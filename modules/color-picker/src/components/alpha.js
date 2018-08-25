@@ -62,7 +62,7 @@ class Alpha {
       },
       this.element
     )
-    console.log(this.instance.element)
+    // console.log(this.instance.element)
     // global event
     bindEvent(
       this.instance.selfEventName('change'),

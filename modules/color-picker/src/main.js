@@ -32,6 +32,7 @@ import {
   optionable
 } from '@pluginjs/decorator'
 // import { Color } from '@pluginjs/color'
+// import { Gradient } from '@pluginjs/gradient'
 import Alpha from './components/alpha'
 import Preview from './components/preview'
 // import Contrast from './components/contrast'
@@ -305,7 +306,7 @@ class ColorPicker extends Component {
 
     if (gradient) {
       append(hex, query(`.${this.classes.GRADIENTACTION}`, this.$gradient))
-      new Hex(this, query(`.${this.classes.HEX}`, this.$gradient))    /* eslint-disable-line */
+      this.HEX = new Hex(this, query(`.${this.classes.HEX}`, this.$gradient))    /* eslint-disable-line */
     } else {
       append(hex, query(`.${this.classes.SOLIDACTION}`, this.$solid))
       new Hex(this, query(`.${this.classes.HEX}`, this.$solid))  /* eslint-disable-line */
@@ -349,7 +350,6 @@ class ColorPicker extends Component {
         if (this.is('disabled')) {
           return false
         }
-
         this.openPanel()
         return null
       })
@@ -426,7 +426,7 @@ class ColorPicker extends Component {
         if (!this.is('openPanel')) {
           return false
         }
-
+        this.enter('Cancel')
         this.closePanel()
         return null
       },
@@ -514,7 +514,7 @@ class ColorPicker extends Component {
         this.COLLECTION.setCollection(this.info.collection)
         break
       case 'gradient':
-        this.GRADIENT.setGradient(this.GRADIENT.gradientValue)
+        this.GRADIENT.setGradient(this.info.gradient)
         break
       default:
         break
@@ -529,6 +529,14 @@ class ColorPicker extends Component {
   }
 
   openPanel() {
+    // console.log(this.info)
+    const colorArr = Object.entries(this.info)
+    this.oldColor = {
+      collection: colorArr[0][1],
+      solid: colorArr[1][1],
+      gradient: colorArr[2][1]
+    }
+    // console.log(this.oldColor)
     addClass(this.classes.OPENPANEL, this.$panelWrap)
     addClass(this.classes.OPENACTIVE, this.element)
     showElement(this.$mask)
@@ -541,8 +549,6 @@ class ColorPicker extends Component {
     // this.element.openPanel = true
     this.enter('openPanel')
     this.trigger(EVENTS.OPENPANEL)
-
-    this.oldColor = this.color
   }
 
   closePanel() {
@@ -554,6 +560,7 @@ class ColorPicker extends Component {
     this.update()
 
     // // this.element.openPanel = false;
+    this.leave('Cancel')
     this.leave('openPanel')
   }
 
@@ -610,13 +617,35 @@ class ColorPicker extends Component {
     if (this.module === 'gradient' && this.is('noSelectedMarker')) {
       return false
     }
-    this.color = this.info[this.module]
-    if (this.color === '') {
-      this.color = 'transparent'
+    if (this.is('Cancel')) {
+      this.color = this.oldColor[this.module]
+      if (this.color === '') {
+        this.color = 'transparent'
+      }
+      const colorArr = Object.entries(this.oldColor)
+      this.info = {
+        collection: colorArr[0][1],
+        solid: colorArr[1][1],
+        gradient: colorArr[2][1]
+      }
+      if (this.module === 'gradient') {
+        this.GRADIENT.set(this.oldColor.gradient)
+      }
+
+      this.element.value = this.color
+      this.PREVIEW.update(this.color)
+    } else {
+      this.color = this.info[this.module]
+      if (this.color === '') {
+        this.color = 'transparent'
+      }
+      this.element.value = this.color
+      if (this.module === 'gradient') {
+        this.color = this.HEX.color.toRGBA()
+      }
+      this.trigger(EVENTS.UPDATE, this.color)
     }
-    console.log(this.color)
-    this.element.value = this.color
-    this.trigger(EVENTS.UPDATE, this.color)
+
     return null
   }
 
