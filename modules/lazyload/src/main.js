@@ -52,30 +52,32 @@ class Lazyload extends Viewport {
   }
 
   load() {
-    addClass(this.classes.LOADING, this.element)
-    this.setAttr()
-    this.trigger(EVENTS.LOAD)
-    const img = new Image()
-    if (this.element.tagName !== 'IMG') {
-      img.src = this.src
-    }
-
-    const step = () => {
-      if (
-        (this.element.complete && this.element.naturalWidth > 1) ||
-        (img.complete && img.naturalWidth > 1)
-      ) {
-        this._isLoad = true
-        removeClass(this.classes.LOADING, this.element)
-        addClass(this.classes.LOADED, this.element)
-        this.trigger(EVENTS.LOADED)
-        this.destroy()
-      } else {
-        window.requestAnimationFrame(step)
+    if (this.plugin) {
+      addClass(this.classes.LOADING, this.element)
+      this.setAttr()
+      this.trigger(EVENTS.LOAD)
+      const img = new Image()
+      if (this.element.tagName !== 'IMG') {
+        img.src = this.src
       }
-    }
 
-    window.requestAnimationFrame(step)
+      const step = () => {
+        if (
+          (this.element.complete && this.element.naturalWidth > 1) ||
+          (img.complete && img.naturalWidth > 1)
+        ) {
+          this._isLoad = true
+          removeClass(this.classes.LOADING, this.element)
+          addClass(this.classes.LOADED, this.element)
+          this.trigger(EVENTS.LOADED)
+          // this.destroy()
+        } else {
+          window.requestAnimationFrame(step)
+        }
+      }
+
+      window.requestAnimationFrame(step)
+    }
   }
 
   setAttr() {
@@ -111,7 +113,7 @@ class Lazyload extends Viewport {
   }
 
   forceLoad() {
-    this.setAttr()
+    this.load()
   }
 
   isLoad() {
