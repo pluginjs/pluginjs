@@ -28,7 +28,10 @@
   },
   "dependencies": {
     "@pluginjs/utils": "*",
-    "@pluginjs/polyfills": "*"
+    "@pluginjs/polyfills": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/is": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

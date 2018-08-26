@@ -1,27 +1,48 @@
-import viewport from '../src/main'
+import Viewport from '../src/main'
 import 'intersection-observer'
 
 const element = document.createElement('div')
-const observer = viewport(element)
-const handler = () => console.log('handle')
+const observer = Viewport.of(element)
 
-describe('viewport', () => {
-  test('initialization', () => {
-    expect(observer.observer instanceof IntersectionObserver).toBeTrue()
+describe('Viewport', () => {
+  describe('Viewport()', () => {
+    test('should have Viewport', () => {
+      expect(Viewport).toBeFunction()
+    })
+
+    test('should have defaults', () => {
+      expect(Viewport.defaults).toBeObject()
+    })
+
+    test('should have events', () => {
+      expect(Viewport.events).toBeObject()
+    })
+
+    test('should have methods', () => {
+      expect(Viewport.methods).toBeArray()
+    })
   })
-  test('on', () => {
-    observer.on('enter', handler)
-    expect(observer.enterMiddleware.some(fn => fn === handler)).toBeTrue()
+
+  describe('Initialization', () => {
+    test('should instanceof IntersectionObserver', () => {
+      expect(observer.observer instanceof IntersectionObserver).toBeTrue()
+    })
   })
-  test('off', () => {
-    observer.off('enter', handler)
-    expect(observer.enterMiddleware.some(fn => fn === handler)).toBeFalse()
+
+  describe('GetOffset()', () => {
+    test('should getOffset', () => {
+      expect(observer.getOffset(0)).toEqual('0px')
+      expect(observer.getOffset('10px 10px 10px 10px')).toEqual(
+        '10px 10px 10px 10px'
+      )
+      expect(observer.getOffset('10')).toEqual('0px')
+    })
   })
-  test('destroy', () => {
-    observer.destroy()
-    expect(observer.enterMiddleware).toHaveLength(0)
-    expect(observer.isIntersecting).toBeFalse()
-    expect(observer.enterMiddleware).toHaveLength(0)
-    expect(observer.exitMiddleware).toHaveLength(0)
+
+  describe('Destroy()', () => {
+    test('should destroy', () => {
+      observer.destroy()
+      expect(observer.isIntersecting).toBeFalse()
+    })
   })
 })

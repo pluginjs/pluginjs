@@ -7,9 +7,16 @@ $lazyload: "pj-lazyload" !default;
 // Core
 // =====================
 .#{$lazyload} {
-	opacity: 0;
+	&,
+	&ing {
+		opacity: 0;
+	}
 
-	&-loaded {
+	&.show {
+		opacity: 0.5;
+	}
+
+	&.pj-lazyloaded {
     opacity: 1;
     transition: opacity 0.3s;
 	}

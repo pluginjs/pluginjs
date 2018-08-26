@@ -5,31 +5,19 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  ENTER: 'enter',
+  LOAD: 'load',
   LOADED: 'loaded'
 }
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
-  LOADED: '{namespace}-loaded'
+  LOADING: '{namespace}ing',
+  LOADED: '{namespace}ed'
 }
 
-export const methods = [
-  'value',
-  'enable',
-  'disable',
-  'destroy',
-  'setAnimation',
-  'setAnimationDelay',
-  'beforeLoad',
-  'afterLoad',
-  'load',
-  'isLoad',
-  'setDelay'
-]
+export const methods = ['enable', 'disable', 'destroy', 'forceLoad', 'isLoad']
 
 export const defaults = {
   src: null,
-  srcset: null,
-  delay: null
+  srcset: null
 }

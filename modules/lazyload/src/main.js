@@ -1,5 +1,4 @@
-import viewport from '@pluginjs/viewport'
-import Component from '@pluginjs/component'
+import Viewport from '@pluginjs/viewport'
 import {
   eventable,
   register,
@@ -14,8 +13,10 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import { addClass } from '@pluginjs/classes'
-import { curry } from '@pluginjs/utils'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { parent, queryAll, getData, attr } from '@pluginjs/dom'
+import { setStyle } from '@pluginjs/styled'
+import { on, off } from '@pluginjs/events'
 
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -24,17 +25,10 @@ import { curry } from '@pluginjs/utils'
 @register(NAMESPACE, {
   methods: METHODS
 })
-class Lazyload extends Component {
-  beforeLoadHook = [() => this.animationLifeCycle('start')]
-
-  afterLoadHook = [() => this.animationLifeCycle('finish')]
-
-  errorHook = []
-
-  _isLoad = false
-
+class Lazyload extends Viewport {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element, options)
+    this.plugin = NAMESPACE
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.initStates()
@@ -42,96 +36,82 @@ class Lazyload extends Component {
   }
 
   initialize() {
-    const config = ['src', 'srcset', 'delay']
+    addClass(this.classes.NAMESPACE, this.element)
+    this._isLoad = false
+
+    const config = ['src', 'srcset']
 
     config
       .filter(key => Boolean(this.options[key]))
       .map(key => (this[key] = this.options[key]))
 
-    this.render = () => {
-      const isSrcset = Boolean(this.srcset)
-      const isImg = Boolean(this.element.tagName === 'IMG')
-      const setBackground = src =>
-        (this.element.style.backgroundImage = `url(${src})`)
-      const setAttr = curry((type, src) => this.element.setAttribute(type, src))
-      const src = isSrcset ? this.srcset : this.src
-      const srcType = isSrcset ? 'srcset' : 'src'
-      const getMapper = curry((isImg, src) => {
-        if (isImg) {
-          return setAttr(srcType, src)
-        }
-        return setBackground(src)
-      })
-      const mapper = getMapper(isImg)
-      mapper(src)
-    }
-
-    const lifeCycle = render => () => {
-      this.beforeLoadHook.map(fn => fn())
-      try {
-        render()
-      } catch (error) {
-        if (this.errorHook.length) {
-          this.errorHook.map(fn => fn())
-        }
-      }
-      this.afterLoadHook.map(fn => fn())
-      this._isLoad = true
-    }
-
-    this.handler = lifeCycle(this.render)
-    this.observer = viewport(this.element)
+    this.viewport = Viewport.of(this.element)
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  animationLifeCycle(v) {
-    const defaultDelay = 1000
-    switch (v) {
-      case 'start':
-        addClass(this.classes.NAMESPACE, this.element)
-        break
-      case 'finish':
-        window.setTimeout(() => {
-          addClass(this.classes.LOADED, this.element)
-          this.trigger(EVENTS.LOADED)
-          this.destroy()
-        }, this.animationDelay || defaultDelay)
-        break
-      default:
-        return false
+  load() {
+    addClass(this.classes.LOADING, this.element)
+    this.setAttr()
+    this.trigger(EVENTS.LOAD)
+    const img = new Image()
+    if (this.element.tagName !== 'IMG') {
+      img.src = this.src
     }
-    return false
+
+    const step = () => {
+      if (
+        (this.element.complete && this.element.naturalWidth > 1) ||
+        (img.complete && img.naturalWidth > 1)
+      ) {
+        this._isLoad = true
+        removeClass(this.classes.LOADING, this.element)
+        addClass(this.classes.LOADED, this.element)
+        this.trigger(EVENTS.LOADED)
+        this.destroy()
+      } else {
+        window.requestAnimationFrame(step)
+      }
+    }
+
+    window.requestAnimationFrame(step)
+  }
+
+  setAttr() {
+    if (this.element.tagName === 'IMG') {
+      if (parent(this.element).tagName === 'PICTURE') {
+        queryAll('source', parent(this.element)).forEach(source => {
+          const src = getData('src', source)
+          const srcset = getData('srcset', source)
+          attr('src', src, source)
+          attr('srcset', srcset, source)
+        })
+      }
+
+      attr('src', this.src, this.element)
+      attr('srcset', this.srcset, this.element)
+    } else {
+      setStyle('backgroundImage', `url(${this.src})`, this.element)
+    }
   }
 
   bind() {
-    this.observer.on('enter', this.handler)
-    this.trigger(EVENTS.ENTER)
+    on(
+      'viewport:enter',
+      () => {
+        this.load()
+      },
+      this.element
+    )
   }
 
   unbind() {
-    this.observer.off('enter', this.handler)
+    off('viewport:enter', this.element)
   }
 
-  setAnimationDelay(v) {
-    this.animationDelay = v
-  }
-
-  beforeLoad(fn) {
-    this.beforeLoadHook.push(fn)
-  }
-
-  afterLoad(fn) {
-    this.afterLoadHook.push(fn)
-  }
-
-  error(fn) {
-    this.errorHook.push(fn)
-  }
-
-  load() {
-    this.render()
+  forceLoad() {
+    this.setAttr()
   }
 
   isLoad() {

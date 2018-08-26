@@ -34,11 +34,11 @@
     "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
   },
   "dependencies": {
-    "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/classes": "*",
+    "@pluginjs/viewport": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
