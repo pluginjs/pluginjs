@@ -12,7 +12,7 @@
 
   > img,
   & > div {
-    padding-bottom: 15px;
+    margin-bottom: 15px;
   }
 }
 
@@ -27,5 +27,17 @@
   > h3 {
     display: inline-block;
     padding-right: 15px;
+  }
+}
+
+.default-box {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1260px;
+
+  > img,
+  > div {
+    margin-right: 20px;
+    margin-bottom: 20px;
   }
 }
