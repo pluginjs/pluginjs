@@ -125,8 +125,9 @@ class DynamicNumber extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.leave('initialized')
+      this.tween.clear()
     }
-    this.tween.clear()
+
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }

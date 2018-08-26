@@ -1,8 +1,7 @@
 import Component from '@pluginjs/component'
-import templateEngine from '@pluginjs/template'
-import easing from '@pluginjs/easing'
+import template from '@pluginjs/template'
+import Tween from '@pluginjs/tween'
 import { isPercentage } from '@pluginjs/is'
-import { getTime } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { append, parseHTML, query } from '@pluginjs/dom'
 import {
@@ -37,9 +36,9 @@ class Progress extends Component {
     this.initClasses(CLASSES)
 
     if (this.options.bootstrap) {
-      this.target = query(`.${this.classes.BAR}`, this.element)
+      this.$target = query(`.${this.classes.BAR}`, this.element)
     } else {
-      this.target = this.element
+      this.$target = this.element
 
       addClass(this.classes.ELEMENT, this.element)
     }
@@ -54,53 +53,79 @@ class Progress extends Component {
       addClass(this.classes.VERTICAL, this.element)
     }
 
-    this.easing = easing.get(this.options.easing) || easing.get('ease')
-
-    this.min = this.target.getAttribute('aria-valuemin')
-    this.max = this.target.getAttribute('aria-valuemax')
+    this.min = this.$target.getAttribute('aria-valuemin')
+    this.max = this.$target.getAttribute('aria-valuemax')
     this.min = this.min ? parseInt(this.min, 10) : this.options.min
     this.max = this.max ? parseInt(this.max, 10) : this.options.max
-    this.first = this.target.getAttribute('aria-valuenow')
+    this.first = this.$target.getAttribute('aria-valuenow')
     this.first = this.first ? parseInt(this.first, 10) : this.min
 
     this.now = this.first
     this.goal = this.options.goal
-    this._frameId = null
+    this.$bar = query(`.${this.classes.BAR}`, this.element)
 
     this.initStates()
     this.initialize()
   }
 
   initialize() {
-    this.bar = query(`.${this.classes.BAR}`, this.element)
-    this.value = query(`.${this.classes.VALUE}`, this.element)
+    this.$label = query(`.${this.classes.LABEL}`, this.element)
 
-    if (this.options.label) {
-      this.label = parseHTML(
-        templateEngine.compile(this.options.templates.label())({
+    if (!this.$label && this.options.label) {
+      this.$label = parseHTML(
+        template.compile(this.options.templates.label())({
           classes: this.classes,
           content: this.options.label
         })
       )
 
-      append(this.label, this.bar)
+      append(this.$label, this.$bar)
     }
 
-    this.reset()
+    this.tween = Tween.of({
+      from: this.first,
+      to: this.goal,
+      easing: this.options.easing,
+      delay: this.options.delay,
+      loop: this.options.loop,
+      duration: this.options.duration,
+      autoplay: this.options.autoplay
+    })
+      .on('start', () => {
+        this.trigger(EVENTS.START, this.get())
+      })
+      .on('stop', () => {
+        this.trigger(EVENTS.STOP, this.get())
+      })
+      .on('complete', () => {
+        this.trigger(EVENTS.COMPLETE, this.get())
+      })
+      .on('pause', () => {
+        this.trigger(EVENTS.PAUSE, this.get())
+      })
+      .on('resume', () => {
+        this.trigger(EVENTS.RESUME, this.get())
+      })
+      .on('update', value => {
+        this.update(value)
+      })
+      .on('restart', () => {
+        this.trigger(EVENTS.RESTART, this.get())
+      })
+      .on('reset', () => {
+        this.trigger(EVENTS.RESET, this.get())
+      })
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
   getPercentage(n) {
-    return Math.round((100 * (n - this.min)) / (this.max - this.min))
+    return `${Math.round((100 * (n - this.min)) / (this.max - this.min))}%`
   }
 
   go(goal) {
     if (!this.is('disabled')) {
-      const that = this
-      this.clear()
-
       if (isPercentage(goal)) {
         goal = parseInt(goal.replace('%', ''), 10)
         goal = Math.round(this.min + (goal / 100) * (this.max - this.min))
@@ -115,60 +140,24 @@ class Progress extends Component {
         goal = this.min
       }
 
-      const start = this.now
-      const startTime = getTime()
-      const animation = time => {
-        const distance = (time - startTime) / this.options.speed
-        let next = Math.round(
-          this.easing(distance / 100) * (this.max - this.min)
-        )
+      this.tween.to(goal)
+    }
 
-        if (goal > start) {
-          next = start + next
-          if (next > goal) {
-            next = goal
-          }
-        } else {
-          next = start - next
-          if (next < goal) {
-            next = goal
-          }
-        }
+    this.tween.start()
+  }
 
-        that.update(next)
-        if (next === goal) {
-          window.cancelAnimationFrame(that._frameId)
-          that._frameId = null
-
-          if (that.now === that.goal) {
-            that.trigger('finish')
-          }
-        } else {
-          that._frameId = window.requestAnimationFrame(animation)
-        }
+  update(value) {
+    if (value !== this.now) {
+      this.now = value
+      this.$bar.style[this.cssProp] = this.getPercentage(this.now)
+      this.$target.setAttribute('aria-valuenow', this.now)
+      if (this.$label && typeof this.options.labelCallback === 'function') {
+        this.$label.innerHTML = this.options.labelCallback.call(this, [
+          this.now
+        ])
       }
 
-      that._frameId = window.requestAnimationFrame(animation)
-    }
-  }
-
-  update(n) {
-    this.now = n
-    const percenage = this.getPercentage(this.now)
-    const style = this.cssProp
-    this.bar.style[style] = `${percenage}%`
-    this.target.setAttribute('aria-valuenow', this.now)
-    if (this.value && typeof this.options.valueCallback === 'function') {
-      this.value.innerHTML = this.options.valueCallback.call(this, [this.now])
-    }
-
-    this.trigger(EVENTS.UPDATE, n)
-  }
-
-  clear() {
-    if (this._frameId) {
-      window.cancelAnimationFrame(this._frameId)
-      this._frameId = null
+      this.trigger(EVENTS.UPDATE, value)
     }
   }
 
@@ -177,32 +166,31 @@ class Progress extends Component {
   }
 
   start() {
-    if (!this.is('disabled')) {
-      this.clear()
-      this.trigger(EVENTS.START)
-      this.go(this.goal)
-    }
-  }
-
-  reset() {
-    if (!this.is('disabled')) {
-      this.clear()
-      this.update(this.first)
-      this.trigger(EVENTS.RESET)
-    }
+    this.go()
   }
 
   stop() {
-    this.clear()
-    this.trigger(EVENTS.STOP)
+    this.tween.stop()
+  }
+
+  pause() {
+    this.tween.pause()
+  }
+
+  resume() {
+    this.tween.resume()
+  }
+
+  restart() {
+    this.tween.restart()
+  }
+
+  reset() {
+    this.tween.reset()
   }
 
   finish() {
-    if (!this.is('disabled')) {
-      this.clear()
-      this.update(this.goal)
-      this.trigger(EVENTS.FINISH)
-    }
+    this.tween.finish()
   }
 
   enable() {
@@ -230,6 +218,7 @@ class Progress extends Component {
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }
+      this.tween.clear()
       this.leave('initialized')
     }
 

@@ -41,8 +41,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
-    "@pluginjs/template": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/template": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

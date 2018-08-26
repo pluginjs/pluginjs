@@ -24,7 +24,7 @@ $progress-margin-bottom: 40px !default;
     display: flex;
     flex-direction: column-reverse;
 
-    .#{$progress}-value {
+    .#{$progress}-label {
       top: 0;
       bottom: auto;
       left: -7px;
@@ -36,16 +36,16 @@ $progress-margin-bottom: 40px !default;
     }
 
     &.#{$progress}-standard-bar {
-      .#{$progress}-value {
+      .#{$progress}-label {
         left: -4px;
       }
     }
 
-    .#{$progress}-label {
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    // .#{$progress}-label {
+    //   bottom: -20px;
+    //   left: 50%;
+    //   transform: translateX(-50%);
+    // }
   }
 
   &-bar {
@@ -54,15 +54,15 @@ $progress-margin-bottom: 40px !default;
     height: 100%;
   }
 
-  &-label {
-    position: absolute;
-    bottom: 4px;
-    left: 0;
-    display: inline-block;
-    white-space: nowrap;
-  }
+  // &-label {
+  //   position: absolute;
+  //   bottom: 4px;
+  //   left: 0;
+  //   display: inline-block;
+  //   white-space: nowrap;
+  // }
 
-  &-value {
+  &-label {
     position: absolute;
     right: 0;
     bottom: -50px;
