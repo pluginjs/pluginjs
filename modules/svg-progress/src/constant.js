@@ -1,16 +1,17 @@
 export const namespace = 'svgProgress'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
-  DESTROY: 'destroy',
   START: 'start',
-  GO: 'go',
-  RESET: 'reset',
   STOP: 'stop',
-  FINISH: 'finish',
+  COMPLETE: 'complete',
+  RESET: 'reset',
+  RESUME: 'resume',
+  RESTART: 'restart',
+  UPDATE: 'update',
   ENABLE: 'enable',
-  DISABLE: 'disable'
+  DISABLE: 'disable',
+  DESTROY: 'destroy'
 }
 
 export const classes = {
@@ -30,6 +31,8 @@ export const methods = [
   'finish',
   'stop',
   'reset',
+  'restart',
+  'resume',
   'go',
   'disable',
   'enable',
@@ -43,15 +46,15 @@ export const defaults = {
   goal: 100,
   size: 80,
   speed: 15, // speed of 1/100
+  autoplay: false,
+  easing: x => x, // 'ease', 'linear', 'ease-in', 'ease-out'
   shape: 'circle',
   barcolor: '#215fdb',
   barsize: '2',
   trackcolor: '#b3b3b3',
   fillcolor: 'none',
-  easing: 'ease',
   numberCallback(n) {
-    const percentage = Math.round(this.getPercentage(n))
-    return `${percentage}%`
+    return `${Math.round(this.getPercentage(n))}%`
   },
   contentCallback: null
 }

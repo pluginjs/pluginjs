@@ -1,8 +1,7 @@
 import Component from '@pluginjs/component'
 import { svg as isSupportedSvg } from '@pluginjs/feature'
-import easing from '@pluginjs/easing'
+import Tween from '@pluginjs/tween'
 import { isPercentage } from '@pluginjs/is'
-import { getTime } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { append, parseHTML, query } from '@pluginjs/dom'
 import {
@@ -37,7 +36,6 @@ class SvgProgress extends Component {
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 
-    this.easing = easing.get(this.options.easing) || easing.get('ease')
     addClass(this.classes.ELEMENT, this.element)
 
     this.min = this.element.getAttribute('aria-valuemin')
@@ -49,8 +47,6 @@ class SvgProgress extends Component {
     this.first = this.first ? parseInt(this.first, 10) : optionsFirst
     this.now = this.first
     this.goal = this.options.goal
-
-    this._frameId = null
 
     if (!isSupportedSvg()) {
       return
@@ -71,6 +67,40 @@ class SvgProgress extends Component {
     this.height = this.size
 
     this.prepare()
+
+    this.tween = Tween.of({
+      from: this.first,
+      to: this.goal,
+      easing: this.options.easing,
+      delay: this.options.delay,
+      loop: this.options.loop,
+      duration: this.options.duration,
+      autoplay: this.options.autoplay
+    })
+      .on('start', () => {
+        this.trigger(EVENTS.START, this.get())
+      })
+      .on('stop', () => {
+        this.trigger(EVENTS.STOP, this.get())
+      })
+      .on('complete', () => {
+        this.trigger(EVENTS.COMPLETE, this.get())
+      })
+      .on('pause', () => {
+        this.trigger(EVENTS.PAUSE, this.get())
+      })
+      .on('resume', () => {
+        this.trigger(EVENTS.RESUME, this.get())
+      })
+      .on('update', value => {
+        this.update(value)
+      })
+      .on('restart', () => {
+        this.trigger(EVENTS.RESTART, this.get())
+      })
+      .on('reset', () => {
+        this.trigger(EVENTS.RESET, this.get())
+      })
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -263,13 +293,20 @@ class SvgProgress extends Component {
     const offset = length * (1 - percenage / this.getPercentage(this.barGoal))
 
     this.bar.style.strokeDasharray = `${length} ${length - 1}`
-    if (this.options.shape === 'circle') {
-      this.bar.style.strokeDashoffset = offset
-    }
+    // if (this.options.shape === 'circle') {
+    //   this.bar.style.strokeDashoffset = offset
+    // }
     if (this.options.shape === 'triangle') {
       this.bar.style.strokeLinecap = 'round'
     }
     this.bar.style.strokeDashoffset = isNaN(offset) ? length : offset
+  }
+
+  getDuration() {
+    return (
+      (Math.abs(this.first - this.goal) * 100 * this.options.speed) /
+      (this.max - this.min)
+    )
   }
 
   // Return the percentage based on the current step
@@ -278,98 +315,52 @@ class SvgProgress extends Component {
   }
 
   go(goal) {
-    if (this.is('disabled')) {
-      return
-    }
-
-    const that = this
-    this.clear()
-
-    if (isPercentage(goal)) {
-      goal = parseInt(goal.replace('%', ''), 10)
-      goal = Math.round(this.min + (goal / 100) * (this.max - this.min))
-    }
-    if (typeof goal === 'undefined') {
-      goal = this.goal
-    }
-
-    if (goal > this.max) {
-      goal = this.max
-    } else if (goal < this.min) {
-      goal = this.min
-    }
-
-    if (this.barGoal < goal) {
-      const drawBar = this.drawBar(this.options.shape)
-      drawBar(goal)
-    }
-    const start = that.now
-    const startTime = getTime()
-    const endTime =
-      startTime +
-      (Math.abs(start - goal) * 100 * that.options.speed) /
-        (that.max - that.min)
-
-    const animation = time => {
-      let next
-
-      if (time > endTime) {
-        next = goal
-      } else {
-        const distance = (time - startTime) / that.options.speed
-        next = Math.round(that.easing(distance / 100) * (that.max - that.min))
-
-        if (goal > start) {
-          next = start + next
-          if (next > goal) {
-            next = goal
-          }
-        } else {
-          next = start - next
-          if (next < goal) {
-            next = goal
-          }
-        }
+    if (!this.is('disabled')) {
+      if (isPercentage(goal)) {
+        goal = parseInt(goal.replace('%', ''), 10)
+        goal = Math.round(this.min + (goal / 100) * (this.max - this.min))
+      }
+      if (typeof goal === 'undefined') {
+        goal = this.goal
       }
 
-      that.update(next)
-
-      if (next === goal) {
-        window.cancelAnimationFrame(that._frameId)
-        that._frameId = null
-
-        if (that.now === that.goal) {
-          that.trigger(EVENTS.FINISH)
-        }
-      } else {
-        that._frameId = window.requestAnimationFrame(animation)
+      if (goal > this.max) {
+        goal = this.max
+      } else if (goal < this.min) {
+        goal = this.min
       }
+
+      if (this.barGoal < goal) {
+        const drawBar = this.drawBar(this.options.shape)
+        drawBar(goal)
+      }
+
+      this.tween.to(goal)
+      this.tween.duration(this.getDuration())
     }
-    that._frameId = window.requestAnimationFrame(animation)
+
+    this.tween.start()
   }
 
   update(n) {
-    this.now = n
+    if (n !== this.now) {
+      this.now = n
 
-    this.updateBar()
+      this.updateBar()
 
-    this.element.setAttribute('aria-valuenow', this.now)
-    if (this.number && typeof this.options.numberCallback === 'function') {
-      this.number.innerHTML = this.options.numberCallback.call(this, [this.now])
-    }
-    if (this.content && typeof this.options.contentCallback === 'function') {
-      this.content.innerHTML = this.options.contentCallback.call(this, [
-        this.now
-      ])
-    }
+      this.element.setAttribute('aria-valuenow', this.now)
+      if (this.number && typeof this.options.numberCallback === 'function') {
+        this.number.innerHTML = this.options.numberCallback.call(this, [
+          this.now
+        ])
+      }
+      if (this.content && typeof this.options.contentCallback === 'function') {
+        this.content.innerHTML = this.options.contentCallback.call(this, [
+          this.now
+        ])
+      }
 
-    this.trigger(EVENTS.UPDATE, n)
-  }
-
-  clear() {
-    if (this._frameId) {
-      window.cancelAnimationFrame(this._frameId)
-      this._frameId = null
+      this.trigger(EVENTS.UPDATE, n)
     }
   }
 
@@ -378,44 +369,31 @@ class SvgProgress extends Component {
   }
 
   start() {
-    if (this.is('disabled')) {
-      return
-    }
-
-    this.clear()
-    this.trigger(EVENTS.START)
-    this.go(this.goal)
-  }
-
-  reset() {
-    if (this.is('disabled')) {
-      return
-    }
-
-    this.clear()
-    const drawBar = this.drawBar(this.options.shape)
-    drawBar(this.first)
-    this.update(this.first)
-    this.trigger(EVENTS.RESET)
+    this.go()
   }
 
   stop() {
-    if (this.is('disabled')) {
-      return
-    }
+    this.tween.stop()
+  }
 
-    this.clear()
-    this.trigger(EVENTS.STOP)
+  pause() {
+    this.tween.pause()
+  }
+
+  resume() {
+    this.tween.resume()
+  }
+
+  restart() {
+    this.tween.restart()
+  }
+
+  reset() {
+    this.tween.reset()
   }
 
   finish() {
-    if (this.is('disabled')) {
-      return
-    }
-
-    this.clear()
-    this.update(this.goal)
-    this.trigger(EVENTS.FINISH)
+    this.tween.finish()
   }
 
   enable() {
@@ -441,6 +419,7 @@ class SvgProgress extends Component {
         removeClass(this.getThemeClass(), this.element)
       }
       this.svg.remove()
+      this.tween.clear()
       this.leave('initialized')
     }
 

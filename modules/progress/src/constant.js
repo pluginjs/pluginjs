@@ -30,6 +30,8 @@ export const methods = [
   'stop',
   'finish',
   'reset',
+  'restart',
+  'resume',
   'go',
   'disable',
   'enable',

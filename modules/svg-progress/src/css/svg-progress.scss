@@ -2,20 +2,15 @@
 
 // Vars
 // ======================
-$svgPicker: "pj-svgProgress" !default;
-$svgProgress-color: $gray-dark !default;
-
-$svgProgress-value-width: 10rem !default;
-$svgProgress-value-max-width: 18.75rem !default;
-// $svgProgress-value-space: 0.625rem !default;
+$svgProgress: "pj-svgProgress" !default;
+$svgProgress-width: 10rem !default;
 
 // Core
 // ======================
-.#{$svgPicker} {
+.#{$svgProgress} {
   position: relative;
-  width: $svgProgress-value-width;
-  // margin: $svgProgress-value-space auto;
-  color: $svgProgress-color;
+  width: $svgProgress-width;
+  max-width: 100%;
   text-align: center;
   transform-style: preserve-3d;
 
@@ -66,31 +61,11 @@ $svgProgress-value-max-width: 18.75rem !default;
     width: 100%;
     height: 100%;
 
-    .#{$svgPicker}-number,
-    .#{$svgPicker}-label,
-    .#{$svgPicker}-icon {
+    .#{$svgProgress}-number,
+    .#{$svgProgress}-label,
+    .#{$svgProgress}-icon {
       position: static;
       transform: none;
     }
-  }
-}
-
-// // styles
-// .#{$svgPicker} {
-//   color: $svgProgress-color;
-
-//   &-number {
-//     font-size: 16px;
-//   }
-
-//   &-label {
-//     font-size: 12px;
-//   }
-// }
-
-@media all and (max-width: 768px) {
-  .pj-svgProgress {
-    width: 80%;
-    max-width: $svgProgress-value-max-width;
   }
 }
