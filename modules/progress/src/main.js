@@ -87,8 +87,7 @@ class Progress extends Component {
       to: this.goal,
       easing: this.options.easing,
       delay: this.options.delay,
-      loop: this.options.loop,
-      duration: this.options.duration,
+      duration: this.getDuration(),
       autoplay: this.options.autoplay
     })
       .on('start', () => {
@@ -120,8 +119,15 @@ class Progress extends Component {
     this.trigger(EVENTS.READY)
   }
 
+  getDuration() {
+    return (
+      (Math.abs(this.first - this.goal) * 100 * this.options.speed) /
+      (this.max - this.min)
+    )
+  }
+
   getPercentage(n) {
-    return `${Math.round((100 * (n - this.min)) / (this.max - this.min))}%`
+    return Math.round((100 * (n - this.min)) / (this.max - this.min))
   }
 
   go(goal) {
@@ -141,6 +147,7 @@ class Progress extends Component {
       }
 
       this.tween.to(goal)
+      this.tween.duration(this.getDuration())
     }
 
     this.tween.start()
@@ -149,7 +156,7 @@ class Progress extends Component {
   update(value) {
     if (value !== this.now) {
       this.now = value
-      this.$bar.style[this.cssProp] = this.getPercentage(this.now)
+      this.$bar.style[this.cssProp] = `${this.getPercentage(this.now)}%`
       this.$target.setAttribute('aria-valuenow', this.now)
       if (this.$label && typeof this.options.labelCallback === 'function') {
         this.$label.innerHTML = this.options.labelCallback.call(this, [

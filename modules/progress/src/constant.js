@@ -42,9 +42,8 @@ export const defaults = {
   min: 0,
   max: 100,
   goal: 100,
-  duration: 1000,
-  loop: false,
   easing: x => x, // 'ease', 'linear', 'ease-in', 'ease-out'
+  speed: 15, // speed of 1/100
   autoplay: false,
   direction: 'horizontal', // horizontal, vertical
   label: false,
@@ -54,6 +53,6 @@ export const defaults = {
     }
   },
   labelCallback(n) {
-    return this.getPercentage(n)
+    return `${this.getPercentage(n)}%`
   }
 }
