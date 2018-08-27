@@ -2,8 +2,9 @@
 
 // Vars
 // =====================
-$collapse: "pj-collapse";
-
+$collapse: "pj-collapse" !default;
+$collapse-arrow-right: 14px !default;
+$collapse-arrow-top: 13px !default;
 // Core
 // =====================
 .#{$collapse}  {
@@ -13,6 +14,9 @@ $collapse: "pj-collapse";
 
   &-arrow {
     position: absolute;
+    top: $collapse-arrow-top;
+    right: $collapse-arrow-right;
+    display: flex;
   }
 
   &-header {
@@ -23,7 +27,6 @@ $collapse: "pj-collapse";
 }
 
 .#{$collapse}-content {
-  margin: 0;
   overflow: hidden;
   transition: height 0.3s ease;
 }

@@ -4,9 +4,9 @@
 // Vars
 // =====================
 $collapse: "pj-collapse";
-$collapse-font-family: $font-family-base !default;
-$collapse-font-size: $font-size-sm !default;
-$collapse-lineHeight: 22px !default;
+$collapse-font-family: $font-family-base;
+$collapse-font-size: $font-size-sm;
+$collapse-lineHeight: 22px;
 
 $collapse-hover-color: $color-primary;
 $collapse-hover-border-color: $color-primary;
@@ -14,6 +14,7 @@ $collapse-border-color: $gray-border;
 $collapse-gutter-width: 1px;
 $collapse-padding: 13px 31px 13px 23px;
 
+$collapse-header-color: $gray-darkest;
 $collapse-header-order-title-padding: 0 31px 15px 23px;
 $collapse-header-order-content-inner-padding: 17px 23px 0 23px;
 $collapse-header-icon-font-size: $font-size-lg;
@@ -23,8 +24,6 @@ $collapse-expanded-padding: 20px 23px 23px;
 
 $collapse-title-button-padding: 4px 14px;
 
-$collapse-arrow-right: 14px;
-$collapse-arrow-top: 16px;
 $collapse-arrow-active-color: $color-primary;
 $collapse-arrow-color: $gray-dark;
 
@@ -33,7 +32,7 @@ $collapse-toggle-margin-left: 19px;
 $collapse-content-padding: 4px 23px 23px;
 $collapse-content-inner-color: $gray-darker;
 $collapse-content-inner-margin: 0 22px;
-$collapse-content-inner-lineHeight: 22px !default;
+$collapse-content-inner-lineHeight: 22px;
 $collapse-content-button-margin-top: 15px;
 $collapse-content-button-padding: 8px 30px;
 $collapse-content-button-border-color: $gray-border;
@@ -50,9 +49,8 @@ $collapse-content-button-border-radius: $border-radius-base;
   border-width: $collapse-gutter-width;
 
   &-header {
-    display: flex;
-    align-items: center;
     padding: $collapse-padding;
+    color: $collapse-header-color;
     outline: none;
   
     .icon {
@@ -75,7 +73,10 @@ $collapse-content-button-border-radius: $border-radius-base;
       transition: transform 0.3s ease-in;
       transform: rotate(90deg);
     }
+
     .#{$collapse}-header {
+      color: $collapse-hover-color;
+
       &:last-child {
         padding-top: $collapse-header-order-title-padding;
 
@@ -90,7 +91,10 @@ $collapse-content-button-border-radius: $border-radius-base;
         }
       }
     }
+    
     .#{$collapse}-content {
+      margin: 0;
+
       &:first-child {
         .#{$collapse}-content-inner {
           padding: $collapse-header-order-content-inner-padding;
@@ -100,9 +104,6 @@ $collapse-content-button-border-radius: $border-radius-base;
   }
 
   &-arrow {
-    top: $collapse-arrow-top;
-    right: $collapse-arrow-right;
-    display: flex;
     color: $collapse-arrow-color;
   }
 
@@ -111,7 +112,6 @@ $collapse-content-button-border-radius: $border-radius-base;
     margin-top: 0;
     margin-left: $collapse-toggle-margin-left;
     color: inherit;
-    cursor: pointer;
     background-color: transparent;
     border: 1px solid $collapse-content-button-border-color;
     border-radius: $collapse-content-button-border-radius;
@@ -131,7 +131,6 @@ $collapse-content-button-border-radius: $border-radius-base;
       padding: $collapse-content-button-padding;
       margin-top: $collapse-content-button-margin-top;
       color: inherit;
-      cursor: pointer;
       background-color: transparent;
       border: 1px solid $collapse-content-button-border-color;
       border-radius: $collapse-content-button-border-radius;
@@ -145,6 +144,12 @@ $collapse-content-button-border-radius: $border-radius-base;
   
     p {
       margin: 0;
+    }
+  }
+
+  &[data-switch="toggle"] {
+    .#{$collapse}-content-inner {
+      padding-top: 0;
     }
   }
 }
