@@ -107,7 +107,7 @@ class Dropdown extends Component {
   }
 
   bind() {
-    if (this.$trigger.tagName === 'INPUT') {
+    if (isInput(this.$trigger)) {
       bindEvent(
         this.eventName('focus'),
         () => {
@@ -185,9 +185,12 @@ class Dropdown extends Component {
   }
 
   getActiveItem() {
-    console.log(11111)
-    console.log(children(`.${this.classes.ACITVE}`, this.$dropdown))
-    return children(`.${this.classes.ACITVE}`, this.$dropdown)
+    const $item = children(`.${this.classes.ACITVE}`, this.$dropdown)
+
+    if ($item.length > 0) {
+      return $item[0]
+    }
+    return null
   }
 
   selectByValue(value, trigger = true) {

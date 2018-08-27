@@ -10,14 +10,17 @@ $dropdown: "pj-dropdown" !default;
   position: absolute;
   z-index: 1000;
   box-sizing: border-box;
-  display: none;
   padding: 0;
   margin: 0;
   text-align: left;
   list-style: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
 
   &-show {
-    display: block;
+    visibility: visible;
+    opacity: 100;
   }
 
   &-input {
