@@ -8,6 +8,7 @@ $dropdown: "pj-dropdown" !default;
 // =====================
 .#{$dropdown} {
   position: absolute;
+  z-index: 1000;
   box-sizing: border-box;
   display: none;
   padding: 0;
@@ -20,15 +21,23 @@ $dropdown: "pj-dropdown" !default;
   }
 
   &-input {
-    &:not([placeholder]) {
+    &:not(input) {
       display: block;
     }
   }
 
   &-item {
+    display: flex;
+    align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: keep-all;
     white-space: nowrap;
+  }
+
+  &-trigger {
+    &:not(input) {
+      cursor: pointer;
+    }
   }
 }

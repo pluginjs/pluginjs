@@ -34,12 +34,12 @@ $dropdown-span-input-drop-color: $gray-darkest;
 $dropdown-span-input-color: $gray-dark;
 $dropdown-space-x-right: 30px;
 $dropdown-space-x-left: $dropdown-space-x;
+
 // Theme
 // =====================
 .#{$dropdown} {
-  z-index: 1000;
   min-width: $dropdown-min-width;
-  font-family: $headroom-font-family;
+  font-family: $dropdown-font-family;
   font-size: $dropdown-font-size;
   color: $dropdown-color;
   background-color: $dropdown-bg;
@@ -92,8 +92,6 @@ $dropdown-space-x-left: $dropdown-space-x;
   }
   
   &-item {
-    display: flex;
-    align-items: center;
     padding: $dropdown-space-y $dropdown-space-x;
     
     .icon {
