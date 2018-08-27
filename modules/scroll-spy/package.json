@@ -31,9 +31,8 @@
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/styled": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/polyfills": "*",
+    "@pluginjs/decorator": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

@@ -14,9 +14,7 @@ export const defaults = {
   itemSelector: 'a',
   activeClass: 'active',
   threshold: 0, //  to be considered upon calculation
-  hashTimeout: 600,
   hrefFrom: 'data-href',
-  changeHash: true,
   cloestActive: '',
   reference: 'top' // ["top"|"bottom"] Which side to use as base when calculation element position.
 }

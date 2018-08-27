@@ -1,7 +1,7 @@
+/* eslint-disable no-undefined */
 import Component from '@pluginjs/component'
-import { debounce } from '@pluginjs/utils'
+import '@pluginjs/polyfills/IntersectionObserver'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { offset } from '@pluginjs/styled'
 import { attr, queryAll, query } from '@pluginjs/dom'
 import Pj from '@pluginjs/factory'
 import { eventable, register, stateable, optionable } from '@pluginjs/decorator'
@@ -30,41 +30,26 @@ class ScrollSpy extends Component {
   initialize() {
     this.assignValues()
     this.cacheItems()
-    this.scrollFn()
-
+    this.observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.intersectionHandler(entry)
+          }
+        })
+      },
+      {
+        rootMargin: `-${this.menuHeight}px 0px -${this.scrollItems[0]
+          .offsetHeight - this.menuHeight}px 0px`
+      }
+    )
+    this.observe()
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  bind() {
-    Pj.emitter.on(this.eventNameWithId('resize'), this.resizeHandle.bind(this))
-    Pj.emitter.on(this.eventNameWithId('scroll'), this.scrollHandle.bind(this))
-  }
-
-  unbind() {
-    Pj.emitter.off(this.eventNameWithId('resize'), this.resizeHandle)
-    Pj.emitter.off(this.eventNameWithId('scroll'), this.scrollHandle)
-  }
-
-  resizeHandle() {
-    if (this.is('disable')) {
-      return
-    }
-    this.assignValues()
-    this.cacheItems()
-    this.scrollFn()
-  }
-
-  scrollHandle() {
-    if (this.is('disable')) {
-      return
-    }
-    this.scrollFn()
-  }
-
   assignValues() {
-    this.currScrollTop = 0
     this.lastId = ''
     if (this.options.reference !== 'top') {
       this.menuHeight = -this.options.threshold
@@ -79,11 +64,7 @@ class ScrollSpy extends Component {
       const selector = attr(this.options.hrefFrom, element)
       const item = query(selector)
       if (item) {
-        const _offset = offset(item).top
-        return {
-          item,
-          offset: _offset
-        }
+        return item
       }
       return undefined
     })
@@ -91,69 +72,44 @@ class ScrollSpy extends Component {
     this.scrollItems = this.scrollItems.filter(Boolean)
   }
 
-  scrollFn() {
-    const st = this.scrollTop()
-
-    if (this.currScrollTop !== st || !this.is('initialized')) {
-      this.currScrollTop = st
-      this.tick()
-    }
-  }
-
-  tick() {
-    const fromTop = this.currScrollTop + this.menuHeight
-    const inViewElements = this.scrollItems
-      .filter(item => item.offset < fromTop)
-      .map(item => item.item)
-
-    this.activateItem(inViewElements.pop())
-  }
-
-  activateItem(inViewElement) {
-    const id = inViewElement ? inViewElement.id : ''
+  intersectionHandler(entry) {
+    const id = entry.target.id
     const activeClass = this.options.activeClass
+    this.lastId = id
 
-    if (this.lastId !== id) {
-      this.lastId = id
-
-      this.menuItems.forEach(item => {
-        let activeElement
-        if (this.options.cloestActive) {
-          activeElement = item.closest(this.options.cloestActive)
-        } else {
-          activeElement = item.parentNode
-        }
-
-        removeClass(activeClass, activeElement)
-
-        if (attr(this.options.hrefFrom, item) === `#${id}`) {
-          if (activeClass) {
-            addClass(activeClass, activeElement)
-          }
-          this.trigger(EVENTS.CHANGE, `#${this.lastId}`)
-
-          if (this.options.changeHash) {
-            this.debouncedHashFn()()
-          }
-        }
-      })
-    }
-  }
-
-  debouncedHashFn() {
-    return debounce(() => {
-      if (history.replaceState) {
-        history.replaceState(null, null, `#${this.lastId}`)
+    this.menuItems.forEach(item => {
+      let activeElement
+      if (this.options.cloestActive) {
+        activeElement = item.closest(this.options.cloestActive)
       } else {
-        const st = this.scrollTop()
-        window.location.hash = this.lastId
-        window.scrollTo(0, st)
+        activeElement = item.parentNode
       }
-    }, this.options.hashTimeout)
+
+      removeClass(activeClass, activeElement)
+
+      if (attr(this.options.hrefFrom, item) === `#${id}`) {
+        addClass(activeClass, activeElement)
+        this.trigger(EVENTS.CHANGE, `#${id}`)
+      }
+    })
   }
 
-  scrollTop() {
-    return window.pageYOffset || document.documentElement.scrollTop
+  observe() {
+    this.scrollItems.forEach(scrollItem => {
+      this.observer.observe(scrollItem)
+    })
+  }
+
+  bind() {
+    Pj.emitter.on(this.eventNameWithId('resize'), () => {
+      this.observer.disconnect()
+      this.cacheItems()
+      this.observe()
+    })
+  }
+
+  unbind() {
+    Pj.emitter.off(this.eventNameWithId('resize'))
   }
 
   getCurrHref() {
@@ -177,6 +133,7 @@ class ScrollSpy extends Component {
 
   destroy() {
     if (this.is('initialized')) {
+      this.observer.disconnect()
       this.unbind()
       this.leave('initialized')
     }
