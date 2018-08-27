@@ -1,75 +1,20 @@
 @import "filterbar.core";
 @import "loader.core";
-@import "hover.core";
-
-/* namespace */
+@import "grids.core";
 
 $grids: "pj-grids";
 $arrow: "pj-arrow";
-$grids-font-family: $font-family-base;
-$grids-arrow-margin-x: 25px;
 
-/* core */
+$grids-arrow-margin-x: 15px;
+$grids-arrow-padding: 11px;
 
 .#{$grids} {
-  &-wrap {
-    position: relative;
-    width: 100%;
-    font-family: $grids-font-family;
-  }
   &-inner {
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    &-show {
-      visibility: visible;
-      opacity: 1;
-    }
-
     .#{$arrow}-next,
     .#{$arrow}-prev {
+      padding: $grids-arrow-padding;
       margin: 0 $grids-arrow-margin-x !important;
+      line-height: 1;
     }
-  }
-
-  &-container {
-    position: relative;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    outline: 0;
-  }
-  
-  &-chunk {
-    position: absolute;
-    display: flex;
-    height: auto;
-    transform-style: preserve-3d;
-    img {
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    &-inner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      height: 100%;
-    }
-  }
-
-  &-drag {
-    cursor: grab;
-  }
-
-  /*
-   * Mask
-   */
-  &-mask {
-    opacity: 0 !important;
   }
 }

@@ -26,8 +26,6 @@ export const classes = {
   LOADER: '{namespace}-loader',
   LOADERSHOW: '{namespace}-loader-show',
   LOADERINNER: '{namespace}-loader-inner',
-  HOVEROVERLAY: '{namespace}-overlay',
-  ICON: '{namespace}-icon',
   CONTAINER: '{namespace}-container',
   FILTERBAR: '{namespace}-filterbar',
   FILTERS: '{namespace}-filterbar-filters',
@@ -42,7 +40,8 @@ export const classes = {
   GRIDMODEL: '{namespace}-grid-model',
   MASONRYMODEL: '{namespace}-masonry-model',
   JUSTIFIEDMODEL: '{namespace}-justified-model',
-  NESTEDMODEL: '{namespace}-nested-model'
+  NESTEDMODEL: '{namespace}-nested-model',
+  DRAG: '{namespace}-drag'
 }
 
 export const methods = [
@@ -79,9 +78,6 @@ export const defaults = {
     sort: false,
     reverse: false
   },
-  hoverOverlay: true,
-  hoverPrimary: false,
-  icon: 'icon-search',
   sortby: '',
   sortDirection: 'max', // min && max
   carousel: false,
@@ -109,9 +105,6 @@ export const defaults = {
   templates: {
     loader() {
       return '<div class="{class.LOADERINNER}"></div>'
-    },
-    overlay() {
-      return '<div class="{classes.HOVEROVERLAY}"><i class="{classes.ICON} {iconClass}"></i></div>'
     }
   },
   sort(key, chunks) {

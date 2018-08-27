@@ -7,22 +7,22 @@ const data = [
   {
     value: 'cloud',
     label: 'Cloud',
-    icon: 'cloud'
+    icon: 'chat-group-solid'
   },
   {
     value: 'compass',
     label: 'Compass',
-    icon: 'compass'
+    icon: 'google-font'
   },
   {
     value: 'flag',
     label: 'Flag',
-    icon: 'flag'
+    icon: 'lock-solid'
   },
   {
     value: 'gallery',
     label: 'Gallery',
-    icon: 'gallery'
+    icon: 'single-solid'
   }
 ]
 

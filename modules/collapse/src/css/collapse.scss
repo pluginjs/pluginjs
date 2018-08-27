@@ -6,21 +6,19 @@
 $collapse: "pj-collapse";
 $collapse-font-family: $font-family-base;
 $collapse-font-size: $font-size-sm;
-$collapse-lineHeight: 22px;
 
 $collapse-hover-color: $color-primary;
 $collapse-hover-border-color: $color-primary;
 $collapse-border-color: $gray-border;
 $collapse-gutter-width: 1px;
-$collapse-padding: 13px 31px 13px 23px;
+$collapse-padding: 12px 31px 12px 23px;
 
 $collapse-header-color: $gray-darkest;
 $collapse-header-order-title-padding: 0 31px 15px 23px;
 $collapse-header-order-content-inner-padding: 17px 23px 0 23px;
-$collapse-header-icon-font-size: $font-size-lg;
 $collapse-header-icon-margin-right: 11px;
 
-$collapse-expanded-padding: 20px 23px 23px;
+$collapse-expanded-padding: 16px 23px 0 23px;
 
 $collapse-title-button-padding: 4px 14px;
 
@@ -28,6 +26,7 @@ $collapse-arrow-active-color: $color-primary;
 $collapse-arrow-color: $gray-dark;
 
 $collapse-toggle-margin-left: 19px;
+$collapse-toggle-header-padding: 11px 31px 11px 23px;
 
 $collapse-content-padding: 4px 23px 23px;
 $collapse-content-inner-color: $gray-darker;
@@ -43,62 +42,19 @@ $collapse-content-button-border-radius: $border-radius-base;
 .#{$collapse} {
   font-family: $collapse-font-family;
   font-size: $collapse-font-size;
-  line-height: $collapse-lineHeight;
-  border-color: $collapse-border-color;
-  border-style: solid;
-  border-width: $collapse-gutter-width;
+  border: $collapse-gutter-width solid $collapse-border-color;
 
   &-header {
+    position: relative;
     padding: $collapse-padding;
     color: $collapse-header-color;
     outline: none;
-
-    .icon {
-      margin-right: $collapse-header-icon-margin-right;
-      font-size: $collapse-header-icon-font-size;
-    }
 
     &:hover {
       color: $collapse-hover-color;
 
       .#{$collapse}-arrow {
-        color: $collapse-arrow-color;
-      }
-    }
-  }
-
-  &-expanded {
-    .#{$collapse}-arrow {
-      color: $collapse-hover-color;
-      transition: transform 0.3s ease-in;
-      transform: rotate(90deg);
-    }
-
-    .#{$collapse}-header {
-      color: $collapse-hover-color;
-
-      &:last-child {
-        padding-top: $collapse-header-order-title-padding;
-
-        .#{$collapse}-arrow {
-          transform: rotate(-90deg);
-        }
-      }
-
-      &:hover {
-        .#{$collapse}-arrow {
-          color: $collapse-arrow-active-color;
-        }
-      }
-    }
-
-    .#{$collapse}-content {
-      margin: 0;
-
-      &:first-child {
-        .#{$collapse}-content-inner {
-          padding: $collapse-header-order-content-inner-padding;
-        }
+        color: $collapse-hover-color;
       }
     }
   }
@@ -107,10 +63,11 @@ $collapse-content-button-border-radius: $border-radius-base;
     color: $collapse-arrow-color;
   }
 
-  &-toggle {
-    padding: $collapse-title-button-padding;
-    margin-top: 0;
-    margin-left: $collapse-toggle-margin-left;
+  &-icon {
+    margin-right: $collapse-header-icon-margin-right;
+  }
+
+  button {
     color: inherit;
     background-color: transparent;
     border: 1px solid $collapse-content-button-border-color;
@@ -130,26 +87,50 @@ $collapse-content-button-border-radius: $border-radius-base;
     button {
       padding: $collapse-content-button-padding;
       margin-top: $collapse-content-button-margin-top;
-      color: inherit;
-      background-color: transparent;
-      border: 1px solid $collapse-content-button-border-color;
-      border-radius: $collapse-content-button-border-radius;
-      outline: none;
+    }
+  }
 
-      &:hover {
-        color: $collapse-hover-color;
-        border: 1px solid $collapse-hover-border-color;
-      }
+  &-toggle {
+    padding: $collapse-title-button-padding;
+    margin-top: 0;
+    margin-left: $collapse-toggle-margin-left;
+  }
+
+  &-expanded {
+    .#{$collapse}-arrow {
+      color: $collapse-hover-color;
+      transition: transform 0.3s ease-in;
+      transform: rotate(90deg);
     }
 
-    p {
+    .#{$collapse}-header {
+      color: $collapse-hover-color;
+    }
+
+    .#{$collapse}-content {
       margin: 0;
     }
   }
 
   &[data-switch="toggle"] {
+    .#{$collapse}-header {
+      padding: $collapse-toggle-header-padding;
+    }
     .#{$collapse}-content-inner {
       padding-top: 0;
+    }
+  }
+}
+
+.#{$collapse}-inverse {
+  .#{$collapse}-content-inner {
+    padding: $collapse-expanded-padding;
+  }
+
+  &.#{$collapse}-expanded {
+    .#{$collapse}-arrow {
+      top: 0;
+      transform: rotate(-90deg);
     }
   }
 }
