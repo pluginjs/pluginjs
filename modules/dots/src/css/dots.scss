@@ -1,24 +1,25 @@
 @import "@pluginjs/styles/variables.scss";
 @import "dots.core";
 
-// Vars
-// =====================
 $dot: "pj-dot";
 $dot-font-family: $font-family-base;
 $dot-stroke-color: $color-white;
-$dot-hover-color: $color-primary; // rgba($color-black, 0.3);
+
+$dot-bg: rgba($color-black, 0.15);
+$dot-active-color: $color-primary;
+$dot-light-active-color: rgba($gray-darkest, 0.8);
+
+$dot-square-width: 20px;
+$dot-square-height: 2px;
+
+// theme dark
+$dot-dark-bg: rgba($color-white, 0.15);
+$dot-dark-active-color: $color-primary;
+$dot-dark-light-active-color: $color-white;
 
 // disabled
 $dot-disable-color: rgba($color-black, 0.05);
 $dot-light-disable-color: rgba($color-white, 0.05);
-
-// darkest
-$dot-darkest-color: rgba($gray-darkest, 0.8);
-
-// light
-$dot-light-color: rgba($color-white, 0.15);
-$dot-light-hover-color: $color-primary;
-$dot-light-darkest-color: $color-white;
 
 // Dots
 // =====================
@@ -27,188 +28,113 @@ $dot-light-darkest-color: $color-white;
 }
 
 .#{$dot} {
-  a {
-    border-radius: $dot-radius;
+  background-color: $dot-bg;
+  border-radius: 50%;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 
-    &:focus {
-      outline: none;
-    }
-
-    &:hover {
-      background-color: $dot-hover-color;
-    }
-  }
-}
-
-// vertical
-.#{$dot}s-vertical {
-  .#{$dot}-active {
-    a {
-      transform: scaleX(1.5);
-      transform-origin: right;
-    }
+  &:focus {
+    outline: none;
   }
 
-  a {
-    border-radius: 0;
+  &:hover,
+  &-active {
+    background-color: $dot-active-color;
   }
 }
 
 // stroke
 .#{$dot}s-stroke {
-  .#{$dot}-active {
-    a {
-      background-color: transparent;
-      box-shadow: inset 0 0 0 1px $dot-active-color;
-      
-      &:hover {
-        background-color: transparent;
-      }
-    }
-  }
+  .#{$dot} {
+    border: 1px solid transparent;
 
-  a {
-
-    &:hover {
-      background-color: transparent;
-      box-shadow: inset 0 0 0 1px $dot-active-color;
+    &:hover,
+    &-active {
+      background-color: transparent !important;
+      border: 1px solid $dot-active-color;
     }
   }
 }
 
 // square
 .#{$dot}s-square {
-  a {
+  .#{$dot} {
+    width: $dot-square-width;
+    height: $dot-square-height;
     border-radius: 0;
-    transition: background-color 0.3s ease;
-  }
-
-  .#{$dot}-active {
-    a {
-      background-color: $dot-active-color;
-    }
   }
 }
 
-// darkest
-.#{$dot}s-darkest {
+//vertical
+.#{$dot}s-vertical {
   .#{$dot} {
-    a {
+    width: $dot-square-width;
+    height: $dot-square-height;
+    border-radius: 0;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform-origin: left;
 
-      &:hover {
-        background-color: $dot-darkest-color;
-      }
-    }
-  
-    &.#{$dot}-active {
-      a {
-        background-color: $dot-darkest-color;
-      }
+    &-active {
+      transform: scaleX(1.5);
     }
   }
 
-  &.#{$dot}s-stroke {
-
-    .#{$dot}-active {
-
-      a {
-        background-color: transparent;
-        box-shadow: inset 0 0 0 1px $dot-darkest-color;
-
-        &:hover {
-          background-color: $dot-stroke-color;
-        }
-      }
-    }
-
-    a {
-      &:hover {
-        background-color: transparent;
-        box-shadow: inset 0 0 0 1px $dot-darkest-color;
-      }
+  &.#{$dot}s-vertical-right {
+    .#{$dot} {
+      transform-origin: right;
     }
   }
 }
 
 // light
 .#{$dot}s-light {
-
-  .#{$dot} {
-    a {
-      background-color: $dot-light-color;
-  
-      &:hover {
-        background-color: $dot-light-hover-color;
-      }
-    }
-
-    &.#{$dot}-active {
-      a {
-        background-color: $dot-active-color;
-      }
-    }
-  }
-
-  // darest
-  &.#{$dot}s-darkest {
-  
-    .#{$dot} {
-      a {
-        &:hover {
-          background-color: $dot-light-darkest-color;
-        }
-      }
-    
-      &.#{$dot}-active {
-        a {
-          background-color: $dot-light-darkest-color;
-        }
-      }
-    }
-
-    &.#{$dot}s-stroke {
-
-      .#{$dot}-active {
-        a {
-          background-color: transparent;
-          box-shadow: inset 0 0 0 1px $dot-stroke-color;
-        }
-      }
-      
-      a {
-        &:hover {
-          background-color: transparent;
-          box-shadow: inset 0 0 0 1px $dot-stroke-color;
-        }
-      }
-    }
-  }
-  
-
-// stroke
-&.#{$dot}s-stroke {
-
+  .#{$dot}:hover,
   .#{$dot}-active {
-    a {
-      background-color: transparent;
-      box-shadow: inset 0 0 0 1px $dot-active-color;
-    }
+    background-color: $dot-light-active-color;
   }
 
-  a {
-    &:hover {
+  &.#{$dot}s-stroke {
+    .#{$dot}:hover,
+    .#{$dot}-active {
       background-color: transparent;
-      box-shadow: inset 0 0 0 1px $dot-active-color;
+      border: 1px solid $dot-light-active-color;
     }
   }
 }
 
-  &.#{$dot}s-disabled {
-    a {
-      background-color: $dot-light-disable-color;
+// theme dark
+.#{$dot}s--dark {
+  .#{$dot} {
+    background-color: $dot-dark-bg;
 
-      &:hover {
-        background-color: $dot-light-disable-color;
+    &:hover,
+    &-active {
+      background-color: $dot-dark-active-color;
+    }
+  }
+
+  &.#{$dot}s-stroke {
+    .#{$dot} {
+      &:hover,
+      &-active {
+        border: 1px solid $dot-dark-active-color;
+      }
+    }
+  }
+
+  &.#{$dot}s-light {
+    .#{$dot} {
+      &:hover,
+      &-active {
+        background-color: $dot-dark-light-active-color;
+      }
+    }
+  }
+
+  &.#{$dot}s-light.#{$dot}s-stroke {
+    .#{$dot} {
+      &:hover,
+      &-active {
+        border: 1px solid $dot-dark-light-active-color;
       }
     }
   }
@@ -218,7 +144,7 @@ $dot-light-darkest-color: $color-white;
 .#{$dot}s-disabled {
   cursor: not-allowed;
 
-  a {
+  .#{$dot} {
     cursor: not-allowed;
     background-color: $dot-disable-color;
 

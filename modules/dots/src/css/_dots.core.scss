@@ -1,78 +1,49 @@
 @import "@pluginjs/styles/variables.scss";
 
-// Vars
-// =====================
 $dot: "pj-dot" !default;
-$dot-font-size: $font-size-lg default;
 $dot-width: 8px !default;
 $dot-height: 8px !default;
-$dot-line-width: 20px !default;
-$dot-line-height: 2px !default;
-$dot-radius: 50% !default;
 $dot-margin: 5px !default;
-$dot-vertical-space: 16px !default;
 $dot-color: rgba($color-black, 0.15) !default;
 $dot-active-color: $color-primary !default;
 
 // Core
 // =====================
-.#{$dot}s {
-  display: flex;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
 .#{$dot} {
+
   position: relative;
   box-sizing: border-box;
   width: $dot-width;
   height: $dot-height;
   margin: $dot-margin;
+  background-color: $dot-color;
+  &s {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
 
   a {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
     width: 100%;
     height: 100%;
     overflow: hidden;
     text-indent: 100%;
     cursor: pointer;
-    background-color: $dot-color;
+    background-color: transparent;
   }
 
   &.#{$dot}-active {
-    a {
-      background-color: $dot-active-color;
-    }
+    background-color: $dot-active-color;
+  }
+
+  &-hidden {
+    visibility: hidden;
+    opacity: 0;
   }
 }
 
 .#{$dot}s-vertical {
   flex-direction: column;
-  .#{$dot} {
-    width: $dot-line-width;
-    height: $dot-line-height;
-    
-    + .#{$dot} {
-      margin-top: $dot-vertical-space;
-    }
-  }
-
-  a {
-    transition: transform 0.3s;
-    transform-origin: right;
-  }
-}
-
-.#{$dot}s-square {
-  .#{$dot} {
-    width: $dot-line-width;
-    height: $dot-line-height;
-  }
-}
-
-.#{$dot}-hidden {
-  visibility: hidden;
 }
