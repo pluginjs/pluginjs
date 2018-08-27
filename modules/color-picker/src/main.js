@@ -102,6 +102,9 @@ class ColorPicker extends Component {
   }
 
   initialize() {
+    // take element defalut value
+    this.elementColor = this.element.value
+
     // init frame
     this.initFrame()
 
@@ -125,11 +128,28 @@ class ColorPicker extends Component {
       this.initGradient()
     }
 
+    // swtichover default mode
     this.switchModule()
 
+    // set default data
+    this.initData()
+
     this.bind()
+
+    if (this.element.disabled || this.options.disabled) {
+      this.disable()
+    }
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  initData() {
+    if (this.elementColor) {
+      this.val(this.elementColor)
+    } else {
+      this.clear()
+    }
   }
 
   initCollection() {
@@ -137,7 +157,7 @@ class ColorPicker extends Component {
   }
 
   initSolid() {
-    this.$Solid = query(`.${this.classes.PANELSOLID}`, this.$panel)
+    this.$solid = query(`.${this.classes.PANELSOLID}`, this.$panel)
     this.SOLID = new Solid(this, query(`.${this.classes.PANELSOLID}`, this.$panel))  /* eslint-disable-line */
     this.registerComponent()
   }
@@ -478,6 +498,14 @@ class ColorPicker extends Component {
       placement: 'bottom'
     })
     this.enter('popper')
+  }
+
+  saveMarker(typeName) {
+    if (typeName === 'gradient') {
+      if (this.$marker) {
+        this.lastActiveMarker = this.$marker
+      }
+    }
   }
 
   switchModule(typeName) {

@@ -1,5 +1,5 @@
 // import { isString } from '@pluginjs/is'
-import { query } from '@pluginjs/dom'
+// import { query } from '@pluginjs/dom'
 import { isString } from '@pluginjs/is'
 // import { bindEvent } from '@pluginjs/events'
 // import { setStyle } from '@pluginjs/styled'
@@ -32,7 +32,7 @@ class Solid {
       history: this.classes.SOLIDHISTORY,
       done: this.classes.SOLIDDONE
     })
-    this.element = query(`.${this.classes.PANELSOLID}`, this.$panel)
+    // this.element = query(`.${this.classes.PANELSOLID}`, this.$panel)
     this.element.append(...$solid)
     // this.registerComponent()
   }

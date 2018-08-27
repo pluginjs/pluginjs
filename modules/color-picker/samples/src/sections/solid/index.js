@@ -3,5 +3,5 @@ import ColorPicker from '@pluginjs/color-picker'
 
 const element = query('#solid .module-solid-gradient')
 ColorPicker.of(element, {
-  module: ['solid', 'gradient']
+  module: ['collection', 'solid']
 })
