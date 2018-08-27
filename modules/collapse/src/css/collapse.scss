@@ -52,15 +52,15 @@ $collapse-content-button-border-radius: $border-radius-base;
     padding: $collapse-padding;
     color: $collapse-header-color;
     outline: none;
-  
+
     .icon {
       margin-right: $collapse-header-icon-margin-right;
       font-size: $collapse-header-icon-font-size;
     }
-  
+
     &:hover {
       color: $collapse-hover-color;
-  
+
       .#{$collapse}-arrow {
         color: $collapse-arrow-color;
       }
@@ -91,7 +91,7 @@ $collapse-content-button-border-radius: $border-radius-base;
         }
       }
     }
-    
+
     .#{$collapse}-content {
       margin: 0;
 
@@ -116,7 +116,7 @@ $collapse-content-button-border-radius: $border-radius-base;
     border: 1px solid $collapse-content-button-border-color;
     border-radius: $collapse-content-button-border-radius;
     outline: none;
-    
+
     &:hover {
       color: $collapse-hover-color;
       border: 1px solid $collapse-hover-border-color;
@@ -126,7 +126,7 @@ $collapse-content-button-border-radius: $border-radius-base;
   &-content-inner {
     padding: $collapse-content-padding;
     color: $collapse-content-inner-color;
-  
+
     button {
       padding: $collapse-content-button-padding;
       margin-top: $collapse-content-button-margin-top;
@@ -135,13 +135,13 @@ $collapse-content-button-border-radius: $border-radius-base;
       border: 1px solid $collapse-content-button-border-color;
       border-radius: $collapse-content-button-border-radius;
       outline: none;
-      
+
       &:hover {
         color: $collapse-hover-color;
         border: 1px solid $collapse-hover-border-color;
       }
     }
-  
+
     p {
       margin: 0;
     }
