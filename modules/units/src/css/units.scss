@@ -94,24 +94,21 @@ $units-trigger-font-size: $font-size-base !default;
   input[type="text"].#{$units}-input:focus {
     border-color: $units-active-color;
   }
-  // .pj-dropdown-input {
-  //   width: 26px !important;
-  //   height: 32px !important;
-  //   padding: 0 !important;
-  //   line-height: 30px !important;
+  .pj-dropdown-input {
+    width: 26px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    line-height: 30px !important;
     
-  //   border: none !important;
+    border: none !important;
     
-  // }
-  // .pj-dropdown-trigger {
-  //   width: 27px !important;
-  //   height: 32px !important;
-  // }
-  // .pj-dropdown {
-  //   min-width: 0 !important;
-  // }
-  // .pj-dropdown {
-  //   min-width: 0 !important;
-  // }
+  }
+  .pj-dropdown-trigger {
+    width: 27px !important;
+    height: 32px !important;
+  }
+  .pj-dropdown {
+    min-width: 0 !important;
+  }
   
 }

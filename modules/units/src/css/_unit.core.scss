@@ -17,6 +17,7 @@ $units-disabled-opacity: 0.4 !default;
   .#{$units}-trigger {
     width: $units-trigger-width;
     text-align: center;
+    outline: none;
   }
   // &:hover .#{$units}-input {
   //   border-color: $gray-light;
@@ -57,14 +58,14 @@ $units-disabled-opacity: 0.4 !default;
   }
   &-trigger {
     position: absolute;
-    top: 50%;
+    top: 0;
     left: $units-width - $units-trigger-width;
     min-width: 0 !important;
     height: $units-height;
     padding: 0;
     line-height: $units-height;
     border: 0 !important;
-    transform: translateY(-50%);
+    // transform: translateY(-50%);
     // &:active,
     // &:focus,{
     //   border:0 !important;
