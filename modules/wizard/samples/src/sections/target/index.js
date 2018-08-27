@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Wizard from '@pluginjs/wizard'
 
-const element = query('#target .pj-wizard')
+const element = query('#target .example')
 let i = 1
 Wizard.of(element, {
   onFinish() {

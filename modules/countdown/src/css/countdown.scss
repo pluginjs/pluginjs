@@ -4,16 +4,29 @@
 // Vars
 // =====================
 $countdown: "pj-countdown";
-$countdown-font-size: 72px;
-$countdown-label-size: 16px;
-$countdown-label-line-height: 22px;
+$countdown-font-family: $font-family-base;
 
-$countdown-color: $color-black;
+$countdown-font-size: 72px;
 $countdown-font-weight: $font-weight-normal;
+$countdown-color: $color-black;
+
+$countdown-spacer: 64px !default;
+$countdown-small-spacer: 5px !default;
+
+$countdown-label-size: 16px;
+$countdown-label-line-height: 24px;
 $countdown-label-color: $gray-darker;
 
 // style
 // =====================
+.#{$countdown} {
+  font-family: $countdown-font-family;
+}
+
+.#{$countdown}-time {
+  margin: $countdown-spacer;
+}
+
 .#{$countdown}-number {
   font-size: $countdown-font-size;
   font-weight: $countdown-font-weight;
@@ -27,3 +40,24 @@ $countdown-label-color: $gray-darker;
   color: $countdown-label-color;
   text-transform: uppercase;
 }
+
+
+@media only screen and (max-width: 896px) {
+  .#{$countdown} {
+
+    .#{$countdown}-time {
+      margin: $countdown-small-spacer;
+    }
+
+    .#{$countdown}-number {
+      font-size: $font-size-lg;
+    }
+
+    .#{$countdown}-label {
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+@import "type/flip.scss";
+@import "type/progress.scss";

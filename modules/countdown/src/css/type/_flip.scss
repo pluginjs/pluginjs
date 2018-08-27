@@ -1,0 +1,72 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$countdown: "pj-countdown";
+$countdown-flip-spacer: 30px;
+$countdown-flip-label-spacer: 16px;
+$countdown-flip-letter-space: 6px;
+
+$countdown-flip-font-weight: $font-weight-normal;
+$countdown-flip-color: $color-primary;
+
+$countdown-flip-background: $color-white;
+$countdown-flip-shadow: 0 10px 35px 0 rgba($color-black, 0.1);
+
+$countdown-flip-border: rgba($color-black, 0.05);
+$countdown-flip-radius: $border-radius-sm;
+
+// flip
+// =====================
+
+.#{$countdown}-flip {
+  .#{$countdown}-time {
+    margin: $countdown-flip-spacer;
+    text-align: center;
+    border-radius: $countdown-flip-radius;
+    box-shadow: $countdown-flip-shadow;
+  }
+
+  .#{$countdown}-number {
+    font-weight: $countdown-flip-font-weight;
+    color: $countdown-flip-color;
+    text-align: center;
+    letter-spacing: $countdown-flip-letter-space;
+    background: $countdown-flip-background;
+  }
+
+  .#{$countdown}-number.#{$countdown}-top {
+    border-radius: $countdown-flip-radius $countdown-flip-radius 0 0;
+
+    &::after {
+      background-color: $countdown-flip-border;
+    }
+  }
+
+  .#{$countdown}-number.#{$countdown}-bottom {
+    border-radius: 0 0 $countdown-flip-radius $countdown-flip-radius;
+  }
+
+  .#{$countdown}-label {
+    margin-top: $countdown-flip-label-spacer;
+    text-transform: uppercase;
+  }
+
+  .#{$countdown}-label.above {
+    margin-top: 0;
+    margin-bottom: $countdown-flip-label-spacer;
+  }
+}
+
+@media only screen and (max-width: 896px) {
+  .#{$countdown}-flip {
+    .#{$countdown}-time {
+      width: $countdown-flip-min-width;
+      height: $countdown-flip-min-width;
+      margin: 16px;
+    }
+    .#{$countdown}-number {
+      line-height: $countdown-flip-min-width;
+    }
+  }
+}

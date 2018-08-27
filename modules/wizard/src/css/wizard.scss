@@ -25,25 +25,25 @@ $wizard-title-color: $gray;
 $wizard-title-solid: $gray-light;
 
 $wizard-content-width: 770px;
-$wizard-content-margin-top: 16px;
+$wizard-content-margin-top: 19px;
 $wizard-content-margin-bottom: 20px;
 $wizard-content-color: $gray-darker;
 
 $wizard-formControl-height: 30px;
 $wizard-formControl-padding: 9px 12px;
 $wizard-formControl-color: $gray-darkest;
-$wizard-formControl-border-color: $gray;
 $wizard-formControl-bg: $color-white;
-$wizard-formControl-border-radius: $border-radius-sm;
+$wizard-formControl-border-color: $gray;
+$wizard-formControl-radius: $border-radius-sm;
 
 $wizard-button-height: 32px;
-$wizard-button-margin: 15px;
+$wizard-button-margin: 16px;
 $wizard-button-margin-left: 10px;
 $wizard-button-padding: 4px 16px;
-$wizard-button-radius: $border-radius-sm;
 $wizard-button-color: $gray-darker;
 $wizard-button-color-light: $gray;
 $wizard-button-bg: $gray-lighter;
+$wizard-button-radius: $border-radius-sm;
 
 
 // Styles
@@ -71,7 +71,7 @@ $wizard-button-bg: $gray-lighter;
   text-align: center;
   background-color: $wizard-step-icon-bg;
   border-radius: $wizard-step-icon-width;
-  transition: background-color $wizard-transition-duration, color $wizard-transition-duration;
+  // transition: background-color $wizard-transition-duration, color $wizard-transition-duration;
 }
 
 .#{$wizard}-steps-item-title {
@@ -88,6 +88,7 @@ $wizard-button-bg: $gray-lighter;
     margin-left: -4px;
     content: "";
     background-color: $wizard-title-solid;
+    transition: background-color $wizard-transition-duration;
   }
 }
 
@@ -116,7 +117,6 @@ $wizard-button-bg: $gray-lighter;
 
       &::after {
         background-color: $wizard-active-color;
-        transition: background-color $wizard-transition-duration;
       }
     }
  }
@@ -140,7 +140,6 @@ $wizard-button-bg: $gray-lighter;
   justify-content: center;
   font-size: $wizard-font-size;
   background-color: $wizard-active-color;
-  transition: font-size $wizard-transition-duration;
 }
 
 .active-icon {
@@ -183,7 +182,7 @@ $wizard-button-bg: $gray-lighter;
     vertical-align: middle;
     border: 1px solid;
     border-radius: $wizard-button-radius;
-    transition: border $wizard-transition-duration, color $wizard-transition-duration, width $wizard-transition-duration, background-color $wizard-transition-duration;
+    transition: border $wizard-transition-duration, color $wizard-transition-duration, background-color $wizard-transition-duration;
 
     &:active {
       background-color: $wizard-button-bg;
@@ -268,7 +267,7 @@ $wizard-button-bg: $gray-lighter;
     color: $wizard-formControl-color;
     background-color: $wizard-formControl-bg;
     border: 1px solid $wizard-formControl-border-color;
-    border-radius: $wizard-formControl-border-radius;
+    border-radius: $wizard-formControl-radius;
     transition: border-color $wizard-transition-duration;
   }
 

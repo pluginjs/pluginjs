@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Wizard from '@pluginjs/wizard'
 
-const element = query('#state-change .pj-wizard')
+const element = query('#state-change .example')
 Wizard.of(element, {
   /* eslint-disable no-alert */
   onStateChange(step, enter, state) {
