@@ -40,7 +40,7 @@ import {
 class ScrollTop extends GlobalComponent {
   /* eslint consistent-return: "off" */
   constructor(options = {}) {
-    super(NAMESPACE)
+    super()
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)

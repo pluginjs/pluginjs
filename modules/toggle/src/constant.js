@@ -14,6 +14,7 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   SIZE: '{namespace}-{size}',
   WRAP: '{namespace}',
+  INNER: '{namespace}-inner',
   ON: '{namespace}-on',
   OFF: '{namespace}-off',
   ISOFF: '{namespace}-is-off',

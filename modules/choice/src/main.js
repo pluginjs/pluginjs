@@ -63,7 +63,7 @@ const childrenMatchSelector = (selector, el) =>
 })
 class Choice extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.$element = this.element
     this.$options = queryAll('option', this.$element)
     const override = {}

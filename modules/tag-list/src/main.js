@@ -68,7 +68,6 @@ class TagList extends List {
     }
   }
   init() {
-    this.plugin = NAMESPACE
     this.initAddBtn()
     this.$addBtn = query('.pj-tagList-btn', this.$add)
     this.$addInput = query('.pj-tagList-input', this.$add)

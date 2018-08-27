@@ -26,10 +26,10 @@ import {
 @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, false)
-@register(NAMESPACE, { defaults: DEFAULTS })
+@register(NAMESPACE)
 class Notice extends GlobalComponent {
   constructor(options = {}) {
-    super(NAMESPACE)
+    super()
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.$element = parseHTML(this.createHtml())

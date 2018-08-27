@@ -34,7 +34,7 @@ import Thumbnails from '@pluginjs/thumbnails'
 })
 class Lightbox extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)

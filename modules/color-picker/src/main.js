@@ -65,7 +65,7 @@ let DATA = {}
 })
 class ColorPicker extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     // options
     this.initOptions(DEFAULTS, options)
     if (options.module) {

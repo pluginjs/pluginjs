@@ -51,7 +51,7 @@ class Slider extends Component {
   }
 
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
 

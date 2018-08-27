@@ -20,7 +20,7 @@ import anime from 'animejs'
 })
 class AdaptText extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.initOptions(DEFAULTS, options)
 
     const display = getStyle('display', this.element)

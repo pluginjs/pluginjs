@@ -52,7 +52,7 @@ const removeParentClass = curry((className, el) =>
 })
 class Checkbox extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.$element = this.element
     this.initOptions(DEFAULTS, options)
     this.$group = this.options.getGroup.call(this)
@@ -129,8 +129,8 @@ class Checkbox extends Component {
       this.trigger(EVENTS.CHANGE, value)
     }
     if (this.group && isArray(value)) {
-      this.$group.forEach(item => {
-        const api = getData(NAMESPACE, item)
+      this.$group.forEach($item => {
+        const api = getData(this.plugin, $item)
         if (!api) {
           return
         }

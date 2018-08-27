@@ -54,7 +54,7 @@ let DATA = null
 })
 class SvgPicker extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.setupI18n()

@@ -2,6 +2,7 @@ import { isFunction } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import Pj from '@pluginjs/factory'
 import { deepMerge, getUID } from '@pluginjs/utils'
+import { setData, removeData } from '@pluginjs/dom'
 
 export default function register(name, obj = {}) {
   return function(plugin) {
@@ -19,20 +20,30 @@ export default function register(name, obj = {}) {
     )
 
     let instances = []
+
+    plugin.prototype.plugin = name
     plugin.getInstances = () => {
       return instances
     }
 
     plugin.addInstance = instance => {
+      if (!(plugin.prototype instanceof GlobalComponent)) {
+        setData(instance.plugin, instance, instance.element)
+      }
+
       instance.instanceId = getUID(instance.plugin)
       instances.push(instance)
     }
 
     plugin.removeInstance = instance => {
-      instances = instances.filter(i => i === instance)
+      if (!(plugin.prototype instanceof GlobalComponent)) {
+        removeData(instance.plugin, instance.element)
+      }
+
+      instances = instances.filter(i => i !== instance)
     }
 
-    plugin.findInstanceByElement = (namespace, el) =>
+    plugin.findInstanceByElement = el =>
       instances.find(plugin => plugin.element === el)
 
     if (plugin.prototype.resize && typeof plugin.resize === 'undefined') {
@@ -72,7 +83,7 @@ export default function register(name, obj = {}) {
       Pj[name] = (selector, options) => {
         const elements = elementParse(selector)
         if (!elements.length) {
-          throw new Error('element is not exists:')
+          throw new Error('element is not exists.')
         }
         const instances = elements.map(el => plugin.of(el, options))
         if (instances.length === 1) {

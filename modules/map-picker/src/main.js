@@ -47,7 +47,7 @@ import {
 })
 class MapPicker extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
 

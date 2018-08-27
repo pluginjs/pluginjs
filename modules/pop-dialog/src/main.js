@@ -33,7 +33,7 @@ import Popover from '@pluginjs/popover'
 })
 class PopDialog extends Popover {
   constructor(element, options = {}) {
-    super(element, options, NAMESPACE, DEFAULTS, CLASSES)
+    super(element, options, DEFAULTS, CLASSES)
 
     if (isEmptyObject(this.options.buttons)) {
       this.options.buttons = { dismiss: { label: 'Dismiss' } }

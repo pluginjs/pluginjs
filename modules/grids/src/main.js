@@ -59,7 +59,7 @@ import Carousel from './models/carousel'
 })
 class Grids extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.namespace = NAMESPACE
     this.events = EVENTS

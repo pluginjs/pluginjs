@@ -3,7 +3,7 @@ import { isNumber } from '@pluginjs/is'
 import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent } from '@pluginjs/events'
+import { bindEvent, bindEventOnce } from '@pluginjs/events'
 import {
   append,
   parseHTML,
@@ -45,10 +45,10 @@ const POSITIONS = [
 @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, false)
-@register(NAMESPACE, { defaults: DEFAULTS })
+@register(NAMESPACE)
 class Toast extends GlobalComponent {
   constructor(options = {}) {
-    super(NAMESPACE)
+    super()
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.$element = parseHTML(this.createHtml())

@@ -41,7 +41,7 @@ const components = {}
 })
 class Range extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.events = EVENTS
     const metas = {}
@@ -206,7 +206,7 @@ class Range extends Component {
 
     if (this.element.tagName.toLowerCase() === 'input') {
       bindEvent(
-        this.selfEventName(`${NAMESPACE}:change`),
+        this.selfEventName('change'),
         () => {
           let value = this.getPointerVal()
           if (this.options.unit) {
@@ -221,7 +221,7 @@ class Range extends Component {
 
     this.pointer.map(p => {
       return bindEvent(
-        this.selfEventName(`${NAMESPACE}:move`),
+        this.selfEventName('move'),
         () => {
           if (!this.is('initialized') || this.is('updating')) {
             return false

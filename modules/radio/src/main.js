@@ -37,7 +37,7 @@ import {
 })
 class Radio extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.$element = this.element
     this.initOptions(DEFAULTS, options)
     this.$group = this.options.getGroup.call(this)
@@ -59,7 +59,7 @@ class Radio extends Component {
     }
 
     this.bind()
-    setData(NAMESPACE, this, this.$element)
+    setData(this.plugin, this, this.$element)
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -113,7 +113,7 @@ class Radio extends Component {
       this.check()
     } else {
       this.$group.map((item, i) => { /* eslint-disable-line */
-        const api = getData(NAMESPACE, this.$element)
+        const api = getData(this.plugin, this.$element)
         if (api && value === this.value) {
           api.check(true, true)
         }
@@ -142,7 +142,7 @@ class Radio extends Component {
         if (item === that.element) {
            return /* eslint-disable-line */
         }
-        const api = getData(NAMESPACE, item)
+        const api = getData(this.plugin, item)
         if (api) {
           api.uncheck(true, false)
         }
@@ -167,7 +167,7 @@ class Radio extends Component {
         if (item === that.element) {
          return /* eslint-disable-line */
         }
-        const api = getData(NAMESPACE, item)
+        const api = getData(this.plugin, item)
         if (api) {
           api.update()
         }

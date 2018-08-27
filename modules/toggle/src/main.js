@@ -36,7 +36,7 @@ import toggleAnimation from './animate'
 })
 class Toggle extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     wrap('<div></div>', element)
     this.$wrap = parent(this.element)
 
@@ -59,9 +59,7 @@ class Toggle extends Component {
   initialize() {
     this.initContent()
 
-    this.$inner = parseHTML(
-      `<div class="${this.classes.NAMESPACE}-inner"></div>`
-    )
+    this.$inner = parseHTML(`<div class="${this.classes.INNER}"></div>`)
     this.$on = parseHTML(
       `<div class="${this.classes.ON}">${this.onContent}</div>`
     )

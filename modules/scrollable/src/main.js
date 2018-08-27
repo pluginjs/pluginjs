@@ -41,7 +41,7 @@ import * as util from './util'
 })
 class Scrollable extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)

@@ -52,7 +52,7 @@ let DATA = null
 })
 class PatternPicker extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
 

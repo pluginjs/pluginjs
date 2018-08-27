@@ -9,7 +9,6 @@ import {
 import { setStyle } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { append } from '@pluginjs/dom'
-import { isString } from '@pluginjs/is'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -31,11 +30,7 @@ const sources = {}
   methods: METHODS
 })
 class Video extends Component {
-  constructor(element, options = {}, namespace, defaults, classes) {
-    if (!isString(namespace)) {
-      namespace = NAMESPACE
-    }
-
+  constructor(element, options = {}, defaults, classes) {
     if (typeof defaults === 'undefined') {
       defaults = DEFAULTS
     }
@@ -44,7 +39,7 @@ class Video extends Component {
       classes = CLASSES
     }
 
-    super(namespace, element)
+    super(element)
 
     this.initOptions(defaults, options)
     this.initClasses(classes)

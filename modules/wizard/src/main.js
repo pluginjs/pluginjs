@@ -45,11 +45,11 @@ let counter = 0
 })
 class Wizard extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
-    setData(NAMESPACE, this, this.element)
+    setData(this.plugin, this, this.element)
     this.$steps = queryAll(this.options.step, this.element)
 
     this.id = attr('id', this.element)
@@ -371,7 +371,7 @@ queryAll('[data-wizard]', window.document).forEach(ele => {
       query(
         (href = attr('href', e.target)) && href.replace(/.*(?=#[^\s]+$)/, '')
       )
-    const wizard = getData(NAMESPACE, target)
+    const wizard = getData(this.plugin, target)
 
     if (!wizard) {
       return

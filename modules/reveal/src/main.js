@@ -9,7 +9,7 @@ import {
 } from '@pluginjs/decorator'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEvent, bindEventOnce, removeEvent } from '@pluginjs/events'
 import { query } from '@pluginjs/dom'
 import { isMobile, isTablet } from '@pluginjs/detector'
 import {
@@ -34,7 +34,7 @@ const matchTablet = isTablet()
 })
 class Reveal extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.animationClass = this.getAnimationClass()
@@ -136,7 +136,11 @@ class Reveal extends Component {
         this.show()
       }
 
-      bindEventOnce(this.eventName('animationend'), effectEndCallback, this.element)
+      bindEventOnce(
+        this.eventName('animationend'),
+        effectEndCallback,
+        this.element
+      )
     }
   }
 

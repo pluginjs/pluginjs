@@ -16,7 +16,7 @@ import {
 })
 class DynamicNumber extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
     this.from = this.element.getAttribute('aria-value')

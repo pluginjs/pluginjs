@@ -39,7 +39,7 @@ import Keyboard from '@pluginjs/keyboard'
 })
 class Gallery extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)

@@ -38,7 +38,7 @@ const COMPONENTS = {}
 })
 class Paginator extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.initOptions(DEFAULTS, options)
 
     this.currentPage = this.options.currentPage || 1

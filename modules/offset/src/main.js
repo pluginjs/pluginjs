@@ -60,7 +60,7 @@ const KEYS = {
 })
 class Offset extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.$doc = document.body
 

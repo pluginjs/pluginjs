@@ -44,7 +44,7 @@ import { formatTime, splitTime, time2Minute } from './lib'
 })
 class TimePicker extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
@@ -318,7 +318,7 @@ class TimePicker extends Component {
     )
 
     bindEvent(
-      `${NAMESPACE}:change`,
+      this.selfEventName('change'),
       e => {
         const [value] = e.detail.data
         this.markIndex = this.itemValues.indexOf(value)

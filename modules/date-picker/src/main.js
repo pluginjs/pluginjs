@@ -61,7 +61,7 @@ const $doc = window.document
 })
 class DatePicker extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.$element = this.element
     const data = this.getDataOptions()
 

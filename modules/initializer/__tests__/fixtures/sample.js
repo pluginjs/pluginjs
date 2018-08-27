@@ -11,7 +11,7 @@ const DEFAULTS = {
 })
 class Sample extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.options = {
       ...DEFAULTS,

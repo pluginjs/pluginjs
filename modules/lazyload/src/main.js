@@ -28,7 +28,7 @@ import { on, off } from '@pluginjs/events'
 class Lazyload extends Viewport {
   constructor(element, options = {}) {
     super(element, options)
-    this.plugin = NAMESPACE
+
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)
     this.initStates()

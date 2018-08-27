@@ -36,7 +36,7 @@ const isInput = el => el.tagName === 'INPUT'
 })
 class Dropdown extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.$trigger = this.element
 

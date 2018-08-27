@@ -33,7 +33,7 @@ import {
 })
 class Draggable extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.element =
       typeof element === 'string' ? document.querySelector(element) : element

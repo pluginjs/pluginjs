@@ -47,7 +47,6 @@ class ToggleList extends List {
   }
 
   initialize() {
-    this.plugin = NAMESPACE
     this.classes = Object.assign(this.classes, CLASSES)
     this.initClasses(this.classes)
     this.data = [].concat(this.options.data)

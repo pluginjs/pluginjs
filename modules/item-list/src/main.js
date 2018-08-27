@@ -77,7 +77,6 @@ const defaultActions = [
 @stateable()
 @optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  defaults: optionsExtendList,
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
@@ -85,7 +84,6 @@ class ItemList extends List {
   constructor(element, options = {}) {
     const defaultOptions = deepMerge(optionsExtendList, options)
     super(element, defaultOptions)
-    this.plugin = NAMESPACE
     this.options = deepMerge(
       defaultOptions,
       { actions: defaultActions },

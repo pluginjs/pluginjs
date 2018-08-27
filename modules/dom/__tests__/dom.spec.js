@@ -265,6 +265,16 @@ describe('Dom helper', () => {
       expect(dom.attr('data-foo', el)).toBe('bar')
       expect(el.dataset.foo).toBe('bar')
     })
+
+    test('removeData', () => {
+      const el = document.createElement('div')
+
+      dom.setData('foo', 'bar', el)
+      expect(dom.getData('foo', el)).toBe('bar')
+
+      dom.removeData('foo', el)
+      expect(dom.getData('foo', el)).toBeUndefined()
+    })
   })
 
   describe('Attributes helper', () => {

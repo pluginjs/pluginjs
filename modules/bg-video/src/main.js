@@ -29,7 +29,7 @@ import {
 })
 class BgVideo extends Video {
   constructor(element, options = {}) {
-    super(element, options, NAMESPACE, DEFAULTS, CLASSES)
+    super(element, options, DEFAULTS, CLASSES)
   }
 
   initVideo() {

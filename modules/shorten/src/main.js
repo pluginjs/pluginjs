@@ -29,7 +29,7 @@ import {
 })
 class Shorten extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.text = this.element.textContent
 

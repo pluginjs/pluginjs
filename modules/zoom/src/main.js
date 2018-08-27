@@ -34,7 +34,7 @@ const MODES = {}
 })
 class Zoom extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
     this.initClasses(CLASSES)

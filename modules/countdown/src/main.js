@@ -35,7 +35,7 @@ const MODES = {}
 })
 class CountDown extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
 
     this.initOptions(DEFAULTS, options)
 

@@ -18,7 +18,7 @@ import Maybe from './maybe'
 })
 class Parallax extends Component {
   constructor(element, options = {}) {
-    super(NAMESPACE, element)
+    super(element)
     this.initOptions(DEFAULTS, options)
     this.initStates()
     this.initialize()

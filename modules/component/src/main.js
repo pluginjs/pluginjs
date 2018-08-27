@@ -1,6 +1,5 @@
 export default class Component {
-  constructor(namespace, element = null) {
-    this.plugin = namespace
+  constructor(element = null) {
     this.element = element
 
     this.constructor.addInstance(this)
@@ -11,9 +10,8 @@ export default class Component {
   }
 
   destroy() {
-    this.plugin = null
-    this.element = null
-
     this.constructor.removeInstance(this)
+
+    this.element = null
   }
 }
