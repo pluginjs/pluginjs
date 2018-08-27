@@ -81,7 +81,7 @@ class TimePicker extends Component {
     insertAfter(
       `<div class="${
         this.classes.DROPDOWN
-      }"><input class="pj-dropdown-trigger" /></div>`,
+      }"><input class="pj-dropdown-trigger" /><div></div></div>`,
       this.element
     )
 
@@ -102,7 +102,7 @@ class TimePicker extends Component {
     }
 
     this.itemValues = []
-    this.dropdown.$items.forEach(item => {
+    this.dropdown.options.data.forEach(item => {
       const text = item.textContent
       this.itemValues.push(text)
     })
@@ -111,7 +111,7 @@ class TimePicker extends Component {
 
   initDropdown() {
     const dropdownConf = {
-      data: this.getTimeList().map(value => ({ label: value })),
+      data: this.getTimeList().map(value => ({ label: value, value })),
       placeholder: this.options.placeholder,
       placement: 'bottom-left',
       icon: 'icon-char icon-oclock',
@@ -123,9 +123,13 @@ class TimePicker extends Component {
     }
     this.dropdown = Dropdown.of(this.$timeTrigger, dropdownConf)
     this.$remove = parseHTML(
-      `<i class="${this.classes.REMOVE} icon-close" style="display: none;"></i>`
+      `<i class="${this.classes.REMOVE} icon-close" style="display:none;"></i>`
+    )
+    this.$icon = parseHTML(
+      '<i class="pj-dropdown-icon icon-char icon-oclock"></i>'
     )
     insertAfter(this.$remove, this.dropdown.element)
+    insertAfter(this.$icon, this.$remove)
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
         hideElement(this.$remove)
@@ -301,7 +305,7 @@ class TimePicker extends Component {
     )
     bindEvent(
       this.eventName('change'),
-      () => {
+      () => {  /* eslint-disable-line */
         const time = this.$inputEl.value.trim()
         const timeList = this.getTimeList()
         if (timeList.indexOf(time) < 0) {

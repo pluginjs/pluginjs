@@ -185,6 +185,8 @@ class Dropdown extends Component {
   }
 
   getActiveItem() {
+    console.log(11111)
+    console.log(children(`.${this.classes.ACITVE}`, this.$dropdown))
     return children(`.${this.classes.ACITVE}`, this.$dropdown)
   }
 
