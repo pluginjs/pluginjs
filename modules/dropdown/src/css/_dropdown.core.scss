@@ -3,23 +3,6 @@
 // Vars
 // =====================
 $dropdown: "pj-dropdown" !default;
-$dropdown-sizer: $sizer !default;
-
-// $dropdown-trigger-color: $gray-dark !default;
-// $dropdown-trigger-hover-color: $gray-darkest !default;
-
-$dropdown-min-width: 200px !default;
-$dropdown-height: 34px !default;
-$dropdown-line-height: $dropdown-height !default;
-$dropdown-icon-size: $font-size-lg !default;
-$dropdown-min-width: 200px !default;
-$dropdown-item-active-color: $color-primary-active !default;
-$dropdown-item-active-bg: $color-white !default;
-$dropdown-item-margin-bottom: 1px !default;
-
-$dropdown-border-color: $gray-border !default;
-$dropdown-hover-border-color: $border-color-hover !default;
-$dropdown-active-border-color: $gray-border !default;
 
 // Core
 // =====================
@@ -36,6 +19,12 @@ $dropdown-active-border-color: $gray-border !default;
     display: block;
   }
 
+  &-input {
+    &:not([placeholder]) {
+      display: block;
+    }
+  }
+
   &-item {
     display: flex;
     align-items: center;
@@ -43,13 +32,5 @@ $dropdown-active-border-color: $gray-border !default;
     text-overflow: ellipsis;
     word-break: keep-all;
     white-space: nowrap;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &-item.#{$dropdown}-active {
-    color: $dropdown-item-active-color;
   }
 }

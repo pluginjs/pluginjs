@@ -18,65 +18,57 @@ $headroom-section-height: 1080px;
 $headroom-section-color: $color-white;
 $headroom-section-inner-max-width: 540px;
 
-
-ul,
-li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
 .#{$headroom} {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: $headroom-header-height;
   font-size: $headroom-header-font-size;
   text-align: center;
   background: transparent;
-}
 
-.#{$headroom} li {
-  display: inline-block;
-  *display: inline;
-  vertical-align: top;
-  zoom: 1;
+  ul,
+  li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
 
-  &:hover {
-    a {
-      color: $headroom-header-active-color;
+  li {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+
+    &:hover {
+      a {
+        color: $headroom-header-active-color;
+      }
+    }
+
+    &.active {
+      a {
+        position: relative;
+        color: $headroom-header-active-color;
+  
+        &::before {
+          position: absolute;
+          bottom: $headroom-header-divider-bottom;
+          left: 50%;
+          width: $headroom-header-divider-width;
+          height: $headroom-header-divider-height;
+          content: "";
+          background: $headroom-header-divider-color;
+          transform: translateX(-50%);
+        }
+      }
     }
   }
-}
-
-.#{$headroom} a {
-  padding: $headroom-header-a-padding;
-  line-height: $headroom-header-height;
-  color: $headroom-header-a-color;
-  text-decoration: none;
-  -webkit-transition: 0.2s; /* stylelint-disable-line */
-  transition: 0.2s;
-}
-
-.#{$headroom} .active a {
-  position: relative;
-  color: $headroom-header-active-color;
-
-  &::before {
-    position: absolute;
-    bottom: $headroom-header-divider-bottom;
-    left: 50%;
-    width: $headroom-header-divider-width;
-    height: $headroom-header-divider-height;
-    content: "";
-    background: $headroom-header-divider-color;
-    transform: translateX(-50%);
+  
+  a {
+    padding: $headroom-header-a-padding;
+    line-height: $headroom-header-height;
+    color: $headroom-header-a-color;
+    text-decoration: none;
+    -webkit-transition: 0.2s; /* stylelint-disable-line */
+    transition: 0.2s;
   }
-}
-
-body {
-  margin: 0;
 }
 
 section {
@@ -85,6 +77,7 @@ section {
     align-items: center;
     justify-content: center;
   }
+
   height: $headroom-section-height;
   color: $headroom-section-color;
   text-align: center;

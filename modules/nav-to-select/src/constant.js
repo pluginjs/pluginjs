@@ -32,7 +32,7 @@ export const defaults = {
   prependTo: null,
   activeClass: 'active',
   linkSelector: 'a',
-  indentString: '&nbsp&nbsp',
+  indentString: '&ndash;',
   indentSpace: true,
   placeholder: 'Navigate to...',
   useOptgroup: true,
