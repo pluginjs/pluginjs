@@ -59,17 +59,17 @@ export default class Attachment {
           if (that.instance.disabled) {
             return
           }
-          // that.instance.value.attachment = getData('value', value)
-          // setStyle(
-          //   'background-attachment',
-          //   that.instance.value.attachment,
-          //   that.instance.$image
-          // )
-          // setStyle(
-          //   'background-attachment',
-          //   that.instance.value.attachment,
-          //   that.instance.$fillImage
-          // )
+          that.instance.value.attachment = value
+          setStyle(
+            'background-attachment',
+            that.instance.value.attachment,
+            that.instance.$image
+          )
+          setStyle(
+            'background-attachment',
+            that.instance.value.attachment,
+            that.instance.$fillImage
+          )
         }
       }),
       this.$dropdown

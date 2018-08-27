@@ -68,6 +68,7 @@ input.#{$bgPicker}-input {
   &-dropdown {
     z-index: 111;
   }
+
   &-trigger {
     width: $bgPicker-width !important;
     height: $bgPicker-height;
@@ -199,6 +200,7 @@ input.#{$bgPicker}-input {
   }
 
   &-dropdown-trigger {
+    height: 32px;
     > .pj-dropdown-trigger {
       color: $gray-darker;
     }
@@ -234,7 +236,7 @@ input.#{$bgPicker}-input {
     &-content {
       float: right;
       width: $bgPicker-expand-content-width;
-      height: 30px;
+      height: 32px;
       padding: 0;
       margin: 0;
       font-size: $font-size-base; //20px
@@ -372,7 +374,7 @@ input.#{$bgPicker}-input {
 
     .pj-dropdown-show {
       z-index: 999;
-      margin-top: -7px
+      // margin-top: -7px
     }
   }
   &-attachment-content {
