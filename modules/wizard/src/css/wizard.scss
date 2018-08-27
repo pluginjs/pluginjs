@@ -1,90 +1,76 @@
 @import "@pluginjs/styles/variables.scss";
-@import "wizard.core";
+@import "wizard.core.scss";
 
 // Vars
-// =====================
-$wizard-color: $color-white !default;
-$wizard-icon-bg: $gray !default;
-$wizard-icon-active-bg: $color-primary !default;
-$wizard-title-color: $gray !default;
-$wizard-title-active-color: $color-primary !default;
-$wizard-button-hover: $color-primary !default;
-$wizard-button: $gray !default;
-$wizard-button-color: $gray-darker !default;
-$wizard-button-bg: $gray-lighter !default;
-$wizard-formControl-color: $gray-darkest !default;
-$wizard-formControl-border-color: $gray !default;
-$wizard-formControl-bg: $color-white !default;
-$wizard-formControl-border-radius: $border-radius-sm !default;
-$wizard-content-color: $gray-darker !default;
-$wizard-button-height: 3.2 * $wizard-sizer !default;
-$wizard-button-radius: $border-radius-sm !default;
-$wizard-button-margin: 1.5 * $wizard-sizer !default;
-$wizard-button-margin-left: 1 * $wizard-sizer !default;
-$wizard-button-padding: 0.5 * $wizard-sizer 1.6 * $wizard-sizer !default;
+// ==============================
+$wizard: "pj-wizard";
+$wizard-font-family: $font-family-base;
+$wizard-font-size: $font-size-sm;
+$wizard-line-height: 22px;
+
+$wizard-color: $color-white;
+$wizard-hover-color: $color-primary;
+$wizard-active-color: $color-primary;
+
+$wizard-step-width: 500px;
+
+$wizard-step-item-width: 124px;
+
+$wizard-step-icon-width: 24px;
+$wizard-step-icon-height: $wizard-step-icon-width;
+$wizard-step-icon-spacer-x: 4px;
+$wizard-step-icon-bg: $gray;
+
+$wizard-title-color: $gray;
+$wizard-title-solid: $gray-light;
+
+$wizard-content-width: 770px;
+$wizard-content-margin-top: 16px;
+$wizard-content-margin-bottom: 20px;
+$wizard-content-color: $gray-darker;
+
+$wizard-formControl-height: 30px;
+$wizard-formControl-padding: 9px 12px;
+$wizard-formControl-color: $gray-darkest;
+$wizard-formControl-border-color: $gray;
+$wizard-formControl-bg: $color-white;
+$wizard-formControl-border-radius: $border-radius-sm;
+
+$wizard-button-height: 32px;
+$wizard-button-margin: 15px;
+$wizard-button-margin-left: 10px;
+$wizard-button-padding: 4px 16px;
+$wizard-button-radius: $border-radius-sm;
+$wizard-button-color: $gray-darker;
+$wizard-button-color-light: $gray;
+$wizard-button-bg: $gray-lighter;
+
 
 // Styles
 // =====================
-.#{$wizard}-current {
-  color: #00f !important;
+.#{$wizard} {
+  font-family: $wizard-font-family;
+  font-size: $wizard-font-size;
+  line-height: $wizard-line-height;
+  color: $wizard-color;
 }
 
-.#{$wizard}-done {
-  .#{$wizard}-steps-item-icon {
-    overflow: hidden;
-    font-size: 0;
-    background-color: $wizard-icon-active-bg;
-  }
+.#{$wizard}-steps {
+  max-width: $wizard-step-width;
 
-  .active-icon {
-    font-size: $step-icon-font-size;
-  }
-
-  > .#{$wizard}-steps-item-content {
-    > .#{$wizard}-steps-item-title {
-      color: $wizard-title-active-color;
-      &::after {
-        background: $wizard-icon-active-bg;
-        transition: background $wizard-transition-duration;
-      }
-    }
- }
-}
-
-.#{$wizard}-done.#{$wizard}-current {
-  > .#{$wizard}-steps-item-content {
-    > .#{$wizard}-steps-item-title {
-      &::after {
-        background: $wizard-icon-bg;
-      }
-    }
- }
-
- .#{$wizard}-steps-item-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: $step-icon-font-size;
-  background-color: $wizard-icon-active-bg;
-  transition: font-size $wizard-transition-duration;
-}
-
-.active-icon {
-  font-size: 0;
+  > li {
+    max-width: $wizard-step-item-width;
   }
 }
-
-.#{$wizard}-error {
-  color: #f00 !important;
-}
-
-// .#{$wizard}-disabled {
-//   cursor: not-allowed !important;
-// }
 
 .#{$wizard}-steps-item-icon {
-  color: $wizard-color;
-  background-color: $wizard-icon-bg;
+  width: $wizard-step-icon-width;
+  height: $wizard-step-icon-height;
+  margin-left: $wizard-step-icon-spacer-x;
+  line-height: $wizard-step-icon-height;
+  text-align: center;
+  background-color: $wizard-step-icon-bg;
+  border-radius: $wizard-step-icon-width;
   transition: background-color $wizard-transition-duration, color $wizard-transition-duration;
 }
 
@@ -101,18 +87,69 @@ $wizard-button-padding: 0.5 * $wizard-sizer 1.6 * $wizard-sizer !default;
     height: 2px;
     margin-left: -4px;
     content: "";
-    background: $wizard-icon-bg;
+    background-color: $wizard-title-solid;
   }
 }
 
 .#{$wizard}-content {
+  max-width: $wizard-content-width;
+  margin-top: $wizard-content-margin-top;
   color: $wizard-content-color;
-  transition: height $wizard-transition-duration ease;
+}
+
+.#{$wizard}-done {
+
+  .#{$wizard}-steps-item-icon {
+    overflow: hidden;
+    font-size: 0;
+    background-color: $wizard-active-color;
+  }
+
+  .active-icon {
+    font-size: $wizard-font-size;
+  }
+
+  > .#{$wizard}-steps-item-content {
+  
+    > .#{$wizard}-steps-item-title {
+      color: $wizard-active-color;
+
+      &::after {
+        background-color: $wizard-active-color;
+        transition: background-color $wizard-transition-duration;
+      }
+    }
+ }
+}
+
+.#{$wizard}-done.#{$wizard}-current {
+
+  > .#{$wizard}-steps-item-content {
+
+    > .#{$wizard}-steps-item-title {
+      
+      &::after {
+        background-color: $wizard-title-solid;
+      }
+    }
+ }
+
+ .#{$wizard}-steps-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $wizard-font-size;
+  background-color: $wizard-active-color;
+  transition: font-size $wizard-transition-duration;
+}
+
+.active-icon {
+  font-size: 0;
+  }
 }
 
 .#{$wizard}-steps .#{$wizard}-steps-item:last-child {
   .#{$wizard}-steps-item-title {
-    // color: $wizard-title-color;
   
     &::after {
       display: none;
@@ -122,17 +159,15 @@ $wizard-button-padding: 0.5 * $wizard-sizer 1.6 * $wizard-sizer !default;
 
 [aria-expanded="true"] {
   .#{$wizard}-steps-item-icon {
-    background-color: $wizard-icon-active-bg;
+    background-color: $wizard-active-color;
   }
 
   .#{$wizard}-steps-item-title {
-    color: $wizard-title-active-color;
+    color: $wizard-active-color;
   }
 }
 
 .#{$wizard}-buttons {
-  box-sizing: border-box;
-  display: flex;
   height: $wizard-button-height;
   margin-top: $wizard-button-margin;
 
@@ -141,22 +176,18 @@ $wizard-button-padding: 0.5 * $wizard-sizer 1.6 * $wizard-sizer !default;
   }
 
   > a {
-    box-sizing: border-box;
     height: $wizard-button-height;
     padding: $wizard-button-padding;
-    font-size: $step-icon-font-size;
-    line-height: $step-content-title-line-height;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
     border: 1px solid;
     border-radius: $wizard-button-radius;
-    transition: border $wizard-transition-duration, color$wizard-transition-duration, width $wizard-transition-duration, background-color$wizard-transition-duration;
+    transition: border $wizard-transition-duration, color $wizard-transition-duration, width $wizard-transition-duration, background-color $wizard-transition-duration;
 
     &:active {
       background-color: $wizard-button-bg;
       outline: 0;
-      // box-shadow: 0 0 0 3px rgba($wizard-button-bg, 0.3);
     }
 
     &:focus {
@@ -168,25 +199,27 @@ $wizard-button-padding: 0.5 * $wizard-sizer 1.6 * $wizard-sizer !default;
     &.#{$wizard}-default {
       color: $wizard-button-color;
       background-color: $wizard-button-bg;
-      border-color: $wizard-button;
+      border-color: $wizard-button-color-light;
 
       &.#{$wizard}-disabled {
-        color: $wizard-button;
+        color: $wizard-button-color-light;
         cursor: not-allowed !important;
+
         &:hover {
-          color: $wizard-button;
+          color:$wizard-button-color-light;
           background-color: $wizard-button-bg;
-          border-color: $wizard-button;
+          border-color: $wizard-button-color-light;
         }
+
         &:active {
-          color: $wizard-button;
+          color: $wizard-button-color-light;
           background-color: $wizard-button-bg;
-          border-color: $wizard-button;
+          border-color: $wizard-button-color-light;
           box-shadow: none;
         }
     
         &:focus {
-          color: $wizard-button;
+          color: $wizard-button-color-light;
           background-color: $wizard-button-bg;
           outline: 0;
         }
@@ -204,38 +237,34 @@ $wizard-button-padding: 0.5 * $wizard-sizer 1.6 * $wizard-sizer !default;
       &:hover {
         color: $wizard-button-color;
         background-color:$wizard-color;
-        border-color: $wizard-button;
+        border-color: $wizard-button-color-light
       }
     }
 
     &.#{$wizard}-primary {
-      color: $wizard-button-hover;
+      color: $wizard-hover-color;
       background-color: transparent;
     }
 
     &.#{$wizard}-primary:hover {
       color: $wizard-color;
-      background-color: $wizard-button-hover;
-      border-color: $wizard-button-hover;
+      background-color: $wizard-hover-color;
+      border-color: $wizard-hover-color;
     }
 
     &.#{$wizard}-success {
       color: $wizard-color;
-      background-color: $wizard-icon-active-bg;
+      background-color: $wizard-active-color;
       border: 0;
     }
   }
 }
 
 .#{$wizard}-pane {
+
   .#{$wizard}-formControl {
-    box-sizing: border-box;
-    display: block;
-    width: 100%;
     height: $wizard-formControl-height;
     padding: $wizard-formControl-padding;
-    font-size: $step-icon-font-size;
-    line-height: $step-content-title-line-height;
     color: $wizard-formControl-color;
     background-color: $wizard-formControl-bg;
     border: 1px solid $wizard-formControl-border-color;
@@ -244,7 +273,7 @@ $wizard-button-padding: 0.5 * $wizard-sizer 1.6 * $wizard-sizer !default;
   }
 
   .#{$wizard}-formControl:focus {
-    border-color: $wizard-active;
+    border-color: $wizard-active-color;
     outline: 0;
   }
 }
@@ -263,7 +292,3 @@ $wizard-button-padding: 0.5 * $wizard-sizer 1.6 * $wizard-sizer !default;
   color: $wizard-formControl-border-color;
 } 
 // stylelint-enable
-
-.page-content {
-  overflow: hidden;
-}

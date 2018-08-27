@@ -3,22 +3,10 @@
 // Vars
 // =====================
 $wizard: "pj-wizard" !default;
-$wizard-sizer: $sizer !default;
+
 $wizard-font-family: $font-family-base !default;
-$wizard-content-margin-top: 1.6 * $wizard-sizer !default;
-$wizard-content-margin-bottom: 2 * $wizard-sizer !default;
-$step-icon-width: 2.4 * $wizard-sizer !default;
-$step-icon-height: $step-icon-width;
-$step-icon-spacer: 0.4 * $wizard-sizer !default;
-$step-icon-font-size: $font-size-sm !default;
-$step-content-title-line-height: 2.2 * $wizard-sizer !default;
-$wizard-step-width: 50 * $wizard-sizer !default;
-$wizard-step-item-width: 12.4 * $wizard-sizer !default;
-$wizard-content-width: 77 * $wizard-sizer !default;
+
 $wizard-transition-duration: 0.2s !default;
-$wizard-active: $color-primary !default;
-$wizard-formControl-height: 3 * $wizard-sizer !default;
-$wizard-formControl-padding: 0.9 * $wizard-sizer 1.2 * $wizard-sizer;
 
 // Core
 // =====================
@@ -26,15 +14,40 @@ $wizard-formControl-padding: 0.9 * $wizard-sizer 1.2 * $wizard-sizer;
   display: none;
 }
 
-.wizard {
-  font-family: $wizard-font-family;
+.#{$wizard}-steps {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  > li {
+    position: relative;
+    display: inline-block;
+    flex: 1;
+    overflow: hidden;
+  }
+}
+
+.#{$wizard}-steps-item-content {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.#{$wizard}-steps-item-title {
+  position: relative;
+  display: inline-block;
+}
+
+.#{$wizard}-content {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  transition: height $wizard-transition-duration ease;
 }
 
 .#{$wizard}-pane {
   position: absolute;
   top: 0;
-  font-size: $step-icon-font-size;
-  line-height: $step-content-title-line-height;
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.15s;
@@ -59,76 +72,18 @@ $wizard-formControl-padding: 0.9 * $wizard-sizer 1.2 * $wizard-sizer;
     opacity: 0;
   }
 
-  .#{$wizard}-formGroup {
-
-    input.error {
-      border-color: #f96868;
-    }
-
-    label.error {
-      color: #f96868;
-    }
-  }
-
-  // label {
-  //   display: inline-block;
-  //   max-width: 100%;
-  //   margin-bottom: 5px;
-  // }
-
   .#{$wizard}-formControl {
     box-sizing: border-box;
     display: block;
     width: 100%;
-    height: $wizard-formControl-height;
-    padding: $wizard-formControl-padding;
-    font-size: $step-icon-font-size;
-    line-height: $step-content-title-line-height;
   }
 }
 
-.#{$wizard}-steps {
+.#{$wizard}-buttons {
+  box-sizing: border-box;
   display: flex;
-  max-width: $wizard-step-width;
-  padding: 0;
-  margin: 0;
-  list-style: none;
 
-  > li {
-    position: relative;
-    display: inline-block;
-    flex: 1;
-    max-width: $wizard-step-item-width;
-    overflow: hidden;
+  > a {
+    box-sizing: border-box;
   }
-}
-
-.#{$wizard}-steps-item-icon {
-  width: $step-icon-width;
-  height: $step-icon-height;
-  margin-left: $step-icon-spacer;
-  font-size: $step-icon-font-size;
-  line-height: $step-icon-height;
-  text-align: center;
-  border-radius: $step-icon-width;
-}
-
-.#{$wizard}-steps-item-content {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.#{$wizard}-steps-item-title {
-  position: relative;
-  display: inline-block;
-  font-size: $step-icon-font-size;
-  line-height: $step-content-title-line-height;
-}
-
-.#{$wizard}-content {
-  position: relative;
-  width: 100%;
-  max-width: $wizard-content-width;
-  padding: 0;
-  margin-top: $wizard-content-margin-top;
 }

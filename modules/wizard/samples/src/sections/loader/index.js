@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Wizard from '@pluginjs/wizard'
 
-const element = query('#loader .wizard')
+const element = query('#loader .pj-wizard')
 const wizard = Wizard.of(element, {
   onFinish() {
     /* eslint-disable no-alert */

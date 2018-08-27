@@ -1,7 +1,7 @@
 import { query, find } from '@pluginjs/dom'
 import Wizard from '@pluginjs/wizard'
 
-const element = query('#setValidator .wizard')
+const element = query('#setValidator .pj-wizard')
 const wizard = Wizard.of(element, {
   onFinish() {
     /* eslint-disable no-alert */
