@@ -223,7 +223,6 @@ class Wizard extends Component {
       if (!current.validate()) {
         current.leave('done')
         current.enter('error')
-
         return -1
       }
       current.leave('error')
@@ -371,7 +370,8 @@ queryAll('[data-wizard]', window.document).forEach(ele => {
       query(
         (href = attr('href', e.target)) && href.replace(/.*(?=#[^\s]+$)/, '')
       )
-    const wizard = getData(this.plugin, target)
+
+    const wizard = getData(NAMESPACE, target)
 
     if (!wizard) {
       return

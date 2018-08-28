@@ -4,8 +4,6 @@
 // =====================
 $wizard: "pj-wizard" !default;
 
-$wizard-font-family: $font-family-base !default;
-
 $wizard-transition-duration: 0.2s !default;
 
 // Core
@@ -70,12 +68,6 @@ $wizard-transition-duration: 0.2s !default;
   &.#{$wizard}-activing {
     visibility: visible;
     opacity: 0;
-  }
-
-  .#{$wizard}-formControl {
-    box-sizing: border-box;
-    display: block;
-    width: 100%;
   }
 }
 

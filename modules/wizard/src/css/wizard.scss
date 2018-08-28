@@ -11,35 +11,36 @@ $wizard-line-height: 22px;
 $wizard-color: $color-white;
 $wizard-hover-color: $color-primary;
 $wizard-active-color: $color-primary;
+$wizard-error-color: #f73e4d;
 
 $wizard-step-width: 500px;
 
-$wizard-step-item-width: 124px;
+$wizard-step-item-width: 130px;
 
 $wizard-step-icon-width: 24px;
 $wizard-step-icon-height: $wizard-step-icon-width;
 $wizard-step-icon-spacer-x: 4px;
 $wizard-step-icon-bg: $gray;
 
+$wizard-title-margin-top: 2px;
 $wizard-title-color: $gray;
 $wizard-title-solid: $gray-light;
 
 $wizard-content-width: 770px;
-$wizard-content-margin-top: 19px;
+$wizard-content-margin-top: 18px;
 $wizard-content-margin-bottom: 20px;
 $wizard-content-color: $gray-darker;
 
-$wizard-formControl-height: 30px;
-$wizard-formControl-padding: 9px 12px;
-$wizard-formControl-color: $gray-darkest;
-$wizard-formControl-bg: $color-white;
+$wizard-formControl-height: 32px;
+$wizard-formControl-border-margin: 5px 0;
 $wizard-formControl-border-color: $gray;
-$wizard-formControl-radius: $border-radius-sm;
+$wizard-formControl-border-hover-color: $gray-darkest;
 
 $wizard-button-height: 32px;
-$wizard-button-margin: 16px;
+$wizard-button-line-height: $line-height-base;
+$wizard-button-margin-top: 13px;
 $wizard-button-margin-left: 10px;
-$wizard-button-padding: 4px 16px;
+$wizard-button-padding: 4px 15px;
 $wizard-button-color: $gray-darker;
 $wizard-button-color-light: $gray;
 $wizard-button-bg: $gray-lighter;
@@ -71,21 +72,21 @@ $wizard-button-radius: $border-radius-sm;
   text-align: center;
   background-color: $wizard-step-icon-bg;
   border-radius: $wizard-step-icon-width;
-  // transition: background-color $wizard-transition-duration, color $wizard-transition-duration;
 }
 
 .#{$wizard}-steps-item-title {
+  margin-top: $wizard-title-margin-top;
   color: $wizard-title-color;
   text-transform: capitalize;
 
   &::after {
     position: absolute;
-    top: -75%;
+    top: -15px;
     left: 100%;
     display: block;
     width: 9999px;
     height: 2px;
-    margin-left: -4px;
+    margin-left: -3px;
     content: "";
     background-color: $wizard-title-solid;
     transition: background-color $wizard-transition-duration;
@@ -167,8 +168,7 @@ $wizard-button-radius: $border-radius-sm;
 }
 
 .#{$wizard}-buttons {
-  height: $wizard-button-height;
-  margin-top: $wizard-button-margin;
+  margin-top: $wizard-button-margin-top;
 
   a + a {
     margin-left: $wizard-button-margin-left;
@@ -177,12 +177,13 @@ $wizard-button-radius: $border-radius-sm;
   > a {
     height: $wizard-button-height;
     padding: $wizard-button-padding;
+    line-height: $wizard-button-line-height;
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
     border: 1px solid;
     border-radius: $wizard-button-radius;
-    transition: border $wizard-transition-duration, color $wizard-transition-duration, background-color $wizard-transition-duration;
+    transition: all $wizard-transition-duration;
 
     &:active {
       background-color: $wizard-button-bg;
@@ -197,15 +198,16 @@ $wizard-button-radius: $border-radius-sm;
 
     &.#{$wizard}-default {
       color: $wizard-button-color;
-      background-color: $wizard-button-bg;
+      background-color: transparent;
       border-color: $wizard-button-color-light;
 
       &.#{$wizard}-disabled {
         color: $wizard-button-color-light;
-        cursor: not-allowed !important;
+        cursor: not-allowed;
+        background-color: $wizard-button-bg;
 
         &:hover {
-          color:$wizard-button-color-light;
+          color: $wizard-button-color-light;
           background-color: $wizard-button-bg;
           border-color: $wizard-button-color-light;
         }
@@ -224,6 +226,12 @@ $wizard-button-radius: $border-radius-sm;
         }
       }
 
+      &:hover {
+        color: $wizard-button-color;
+        background-color: $wizard-button-bg;
+        border-color: $wizard-button-color-light
+      }
+
       &:active {
         background-color: $wizard-button-bg;
         outline: 0;
@@ -231,12 +239,6 @@ $wizard-button-radius: $border-radius-sm;
 
       &:focus {
         color: $wizard-button-color;
-      }
-
-      &:hover {
-        color: $wizard-button-color;
-        background-color:$wizard-color;
-        border-color: $wizard-button-color-light
       }
     }
 
@@ -262,18 +264,32 @@ $wizard-button-radius: $border-radius-sm;
 .#{$wizard}-pane {
 
   .#{$wizard}-formControl {
+    width: 100%;
     height: $wizard-formControl-height;
-    padding: $wizard-formControl-padding;
-    color: $wizard-formControl-color;
-    background-color: $wizard-formControl-bg;
-    border: 1px solid $wizard-formControl-border-color;
-    border-radius: $wizard-formControl-radius;
-    transition: border-color $wizard-transition-duration;
+    margin: $wizard-formControl-border-margin;
+
+    &:hover {
+      border-color: $wizard-formControl-border-hover-color;
+    }
+
+    &:focus {
+      border-color: $wizard-active-color;
+      outline: 0;
+    }
   }
 
-  .#{$wizard}-formControl:focus {
-    border-color: $wizard-active-color;
-    outline: 0;
+  &.#{$wizard}-error {
+    .#{$wizard}-formControl {
+      border-color: $wizard-error-color;
+  
+      &:hover {
+        border-color: $wizard-error-color;
+      }
+  
+      &:focus {
+        border-color: $wizard-error-color;
+      }
+    }
   }
 }
 
@@ -283,7 +299,7 @@ $wizard-button-radius: $border-radius-sm;
 } 
 ::-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
   color: $wizard-formControl-border-color;
-} 
+}  
 ::-moz-placeholder { /* Mozilla Firefox 19+ */ 
   color: $wizard-formControl-border-color;
 } 

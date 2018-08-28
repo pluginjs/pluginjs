@@ -270,6 +270,7 @@ class Step {
     this.states[state] = true
 
     const classes = this.wizard.classes.STEP
+    addClass(classes[state.toUpperCase()], this.pane)
     addClass(classes[state.toUpperCase()], this.$element)
 
     this.trigger(EVENTS.STATECHANGE, true, state)
@@ -280,6 +281,7 @@ class Step {
       this.states[state] = false
 
       const classes = this.wizard.classes.STEP
+      removeClass(classes[state.toUpperCase()], this.pane)
       removeClass(classes[state.toUpperCase()], this.$element)
 
       this.trigger(EVENTS.STATECHANGE, false, state)

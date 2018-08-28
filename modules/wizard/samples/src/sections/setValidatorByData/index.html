@@ -4,7 +4,7 @@
     <li class="pj-wizard-steps-item active" role="tab">
       <div class="pj-wizard-steps-item-icon">
         <span class="pj-wizard-steps-icon">1</span>
-        <i class="active-icon icon-check"></i>
+        <i class="active-icon icon-check-solid"></i>
       </div>
       <div class="pj-wizard-steps-item-content">
         <div class="pj-wizard-steps-item-title">Step1</div>
@@ -13,7 +13,7 @@
     <li class="pj-wizard-steps-item" role="tab">
       <div class="pj-wizard-steps-item-icon">
         <span class="pj-wizard-steps-icon">2</span>
-        <i class="active-icon icon-check"></i>
+        <i class="active-icon icon-check-solid"></i>
       </div>
       <div class="pj-wizard-steps-item-content">
         <div class="pj-wizard-steps-item-title">Step2</div>
@@ -22,7 +22,7 @@
     <li class="pj-wizard-steps-item" role="tab">
       <div class="pj-wizard-steps-item-icon">
         <span class="pj-wizard-steps-icon">3</span>
-        <i class="active-icon icon-check"></i>
+        <i class="active-icon icon-check-solid"></i>
       </div>
       <div class="pj-wizard-steps-item-content">
         <div class="pj-wizard-steps-item-title">Step3</div>
@@ -32,17 +32,17 @@
   <div class="pj-wizard-content">
     <div class="pj-wizard-pane active" data-validator="validateCallbackA" role="tabpanel">
       <div class="pj-wizard-formGroup">
-        <input type="text" class="pj-wizard-formControl" placeholder="Please input 'a'" name="a" />
+        <input type="text" class="pj-wizard-formControl pj-input" placeholder="Please input 'a'" name="a" />
       </div>
     </div>
     <div class="pj-wizard-pane" data-validator="validateCallbackB" role="tabpanel">
       <div class="pj-wizard-formGroup">
-        <input type="text" class="pj-wizard-formControl" placeholder="Please input 'b'" name="b" />
+        <input type="text" class="pj-wizard-formControl pj-input" placeholder="Please input 'b'" name="b" />
       </div>
     </div>
     <div class="pj-wizard-pane" data-validator="validateCallbackC" role="tabpanel">
       <div class="pj-wizard-formGroup">
-        <input type="text" class="pj-wizard-formControl" placeholder="Please input 'c'" name="c" />
+        <input type="text" class="pj-wizard-formControl pj-input" placeholder="Please input 'c'" name="c" />
       </div>
     </div>
   </div>
@@ -56,16 +56,22 @@
   function validateCallbackA() {
     if (this.querySelector('[name="a"]').value === 'a') {
       return true
+    } else {
+      return false
     }
   }
   function validateCallbackB() {
     if (this.querySelector('[name="b"]').value === 'b') {
       return true
+    } else {
+      return false
     }
   }
   function validateCallbackC() {
     if (this.querySelector('[name="c"]').value === 'c') {
       return true
+    } else {
+      return false
     }
   }
 </script>
