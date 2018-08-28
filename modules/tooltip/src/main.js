@@ -47,14 +47,10 @@ const Trigger = {
   dependencies: DEPENDENCIES
 })
 class Tooltip extends Component {
-  constructor(element, options = {}, defaults) {
-    if (typeof defaults === 'undefined') {
-      defaults = DEFAULTS
-    }
-
+  constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(defaults, options)
+    this.setupOptions(options)
     this.setupClasses()
     this._timeout = 0
     this._activeTrigger = {}

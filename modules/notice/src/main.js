@@ -31,7 +31,7 @@ import {
 class Notice extends GlobalComponent {
   constructor(options = {}) {
     super()
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
     this.$element = parseHTML(this.createHtml())
 

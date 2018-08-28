@@ -47,7 +47,7 @@ import Dots from '@pluginjs/dots'
 class Swipe extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
 
     if (this.options.advanced.getItemInstances) {

@@ -64,7 +64,7 @@ class Offset extends Component {
 
     this.$doc = document.body
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
     this.setupI18n()
 

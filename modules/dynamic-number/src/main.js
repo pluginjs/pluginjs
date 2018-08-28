@@ -18,7 +18,7 @@ class DynamicNumber extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.from = this.element.getAttribute('aria-value')
     this.from = this.from ? this.from : parseFloat(this.options.from, 10)
     this.to = parseFloat(this.options.to, 10)

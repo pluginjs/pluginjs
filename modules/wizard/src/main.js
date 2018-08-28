@@ -47,7 +47,7 @@ class Wizard extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
     setData(this.plugin, this, this.element)
     this.$steps = queryAll(this.options.step, this.element)

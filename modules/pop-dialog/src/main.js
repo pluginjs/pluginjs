@@ -33,7 +33,7 @@ import Popover from '@pluginjs/popover'
 })
 class PopDialog extends Popover {
   constructor(element, options = {}) {
-    super(element, options, DEFAULTS)
+    super(element, options)
   }
 
   bind() {

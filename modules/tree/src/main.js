@@ -31,11 +31,11 @@ import {
 @register(NAMESPACE, {
   methods: METHODS
 })
-export default class Tree extends Component {
+class Tree extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
 
     this.DATAPARSER = new DataParser(this.options, this)
@@ -458,3 +458,5 @@ export default class Tree extends Component {
     super.destroy()
   }
 }
+
+export default Tree

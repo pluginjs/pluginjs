@@ -148,7 +148,7 @@ Name | Description | Default
 `"LABEL"` | Declare plugin label | `{namespace}-item-label`
 `"ACTIONS"` | Declare plugin actions | `{namespace}-item-actions`
 `"HANDLE"` | Declare plugin handle | `{namespace}-item-handle`
-`"SOTRE"` | Declare plugin store | `{namespace}-store`
+`"STORE"` | Declare plugin store | `{namespace}-store`
 `"POPVER"` | Declare plugin popver | `{namespace}-popver`
 `"CLONEANIMATE"` | Declare plugin cloneanimate | `{namespace}-item-clone-animate`
 

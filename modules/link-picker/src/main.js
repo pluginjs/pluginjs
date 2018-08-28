@@ -59,7 +59,7 @@ class LinkPicker extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupStates()
     this.setupClasses()
     this.setupI18n()

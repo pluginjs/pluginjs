@@ -36,7 +36,7 @@ class ScrollTo extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
 
     this.options.mobile.duration = parseInt(this.options.mobile.duration, 10)

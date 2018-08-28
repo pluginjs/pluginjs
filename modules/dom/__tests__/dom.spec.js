@@ -492,7 +492,7 @@ describe('Dom helper', () => {
       const el = document.createElement('div')
 
       dom.append(children, parent)
-      dom.insertBefore(el, children)
+      expect(dom.insertBefore(el, children)).toBe(el)
 
       expect(dom.next(el)).toEqual(children)
     })
@@ -507,13 +507,24 @@ describe('Dom helper', () => {
       expect(dom.prev(children).innerHTML).toEqual('foo')
     })
 
+    test('before', () => {
+      const parent = document.createElement('div')
+      const children = document.createElement('div')
+      const el = document.createElement('div')
+
+      dom.append(children, parent)
+      expect(dom.before(el, children)).toBe(children)
+
+      expect(dom.next(el)).toEqual(children)
+    })
+
     test('insertAfter', () => {
       const parent = document.createElement('div')
       const children = document.createElement('div')
       const el = document.createElement('div')
 
       dom.append(children, parent)
-      dom.insertAfter(el, children)
+      expect(dom.insertAfter(el, children)).toBe(el)
 
       expect(dom.prev(el)).toEqual(children)
     })
@@ -526,6 +537,17 @@ describe('Dom helper', () => {
       dom.insertAfter('<div>foo</div>', children)
 
       expect(dom.next(children).innerHTML).toEqual('foo')
+    })
+
+    test('after', () => {
+      const parent = document.createElement('div')
+      const children = document.createElement('div')
+      const el = document.createElement('div')
+
+      dom.append(children, parent)
+      expect(dom.after(el, children)).toBe(children)
+
+      expect(dom.prev(el)).toEqual(children)
     })
 
     test('wrap', () => {

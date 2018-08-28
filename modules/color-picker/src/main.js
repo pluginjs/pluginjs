@@ -66,7 +66,7 @@ class ColorPicker extends Component {
   constructor(element, options = {}) {
     super(element)
     // options
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     if (options.module) {
       this.options.module = options.module
     }

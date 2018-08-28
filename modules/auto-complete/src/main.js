@@ -47,7 +47,7 @@ class AutoComplete extends Component {
   constructor(element, options = {}) {
     super(element)
     this.$element = this.element
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
 
     this.$wrapper = wrap(

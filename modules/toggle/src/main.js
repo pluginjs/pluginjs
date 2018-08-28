@@ -40,7 +40,7 @@ class Toggle extends Component {
 
     this.$wrap = wrap('<div></div>', element)
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
     this.setupStates()
 

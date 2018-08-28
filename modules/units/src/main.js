@@ -3,10 +3,7 @@ import DROPDOWN from '@pluginjs/dropdown'
 import { isNull, isNan } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  query,
-  insertAfter
-} from '@pluginjs/dom'
+import { query, insertAfter } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -36,7 +33,7 @@ import {
 class Units extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
 
     this.value = ''

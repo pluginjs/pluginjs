@@ -47,7 +47,7 @@ class Scrollbar extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
     element.direction = this.options.direction
 

@@ -54,7 +54,7 @@ class Checkbox extends Component {
   constructor(element, options = {}) {
     super(element)
     this.$element = this.element
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.$group = this.options.getGroup.call(this)
     if (
       this.$group.length > 1 ||

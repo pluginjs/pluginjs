@@ -38,7 +38,7 @@ class Draggable extends Component {
     this.element =
       typeof element === 'string' ? document.querySelector(element) : element
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
 
     addClass(this.classes.NAMESPACE, this.element)

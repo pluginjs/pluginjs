@@ -40,7 +40,7 @@ class Dropdown extends Component {
 
     this.$trigger = this.element
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
 
     this.$reference = this.getReference()
 

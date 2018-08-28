@@ -36,15 +36,17 @@ import List from '@pluginjs/list'
 class TagList extends List {
   constructor(element, options = {}) {
     super(element, options)
-
-    this.setupOptions(DEFAULTS, options)
-    this.setupClasses()
-    this.setupI18n()
-    this.data = []
-    this.sortable = null
-    this.initList()
-    this.init()
   }
+
+  initialize() {
+    this.initList()
+    this.initAddBtn()
+    this.$addBtn = query('.pj-tagList-btn', this.$add)
+    this.$addInput = query('.pj-tagList-input', this.$add)
+
+    super.initialize()
+  }
+
   initList() {
     this.data.forEach(item => {
       const $item = this.buildItem(item)
@@ -60,13 +62,6 @@ class TagList extends List {
       }
     })
   }
-  init() {
-    this.initAddBtn()
-    this.$addBtn = query('.pj-tagList-btn', this.$add)
-    this.$addInput = query('.pj-tagList-input', this.$add)
-
-    this.listener()
-  }
 
   initAddBtn() {
     this.$add = parseHTML(
@@ -80,7 +75,7 @@ class TagList extends List {
     this.$wrapper.append(this.$add)
   }
 
-  listener() {
+  bind() {
     bindEvent(
       this.eventName('click'),
       () => {
@@ -92,10 +87,14 @@ class TagList extends List {
       },
       this.$addBtn
     )
+
+    super.bind()
   }
 
   unbind() {
     removeEvent(this.eventName(), this.$addBtn)
+
+    super.unbind()
   }
 
   addItem(val) {

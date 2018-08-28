@@ -29,7 +29,6 @@ class Lazyload extends Viewport {
   constructor(element, options = {}) {
     super(element, options)
 
-    this.setupOptions(DEFAULTS, options)
     this.setupClasses()
     this.setupStates()
     this.initialize()

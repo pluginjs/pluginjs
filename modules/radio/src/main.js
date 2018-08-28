@@ -39,7 +39,7 @@ class Radio extends Component {
   constructor(element, options = {}) {
     super(element)
     this.$element = this.element
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.$group = this.options.getGroup.call(this)
     this.setupClasses()
     this.setupStates()

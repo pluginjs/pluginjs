@@ -54,8 +54,7 @@ class List extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(DEFAULTS, options)
-
+    this.setupOptions(options)
     this.setupStates()
     this.setupClasses()
     this.setupI18n()
@@ -63,7 +62,7 @@ class List extends Component {
     this.data = []
     this.sortable = null
 
-    addClass(this.classes.SOTRE, this.element)
+    addClass(this.classes.STORE, this.element)
 
     this.$wrapper = wrap(
       `<div class="${this.classes.NAMESPACE}"></div>`,
@@ -484,7 +483,7 @@ class List extends Component {
         removeClass(this.getThemeClass(), this.$wrapper)
       }
       unwrap(this.element)
-      removeClass(this.classes.SOTRE, this.element)
+      removeClass(this.classes.STORE, this.element)
       this.$list.remove()
 
       this.clear()

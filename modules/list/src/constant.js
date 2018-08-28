@@ -21,7 +21,7 @@ export const classes = {
   LABEL: '{namespace}-item-label',
   ACTIONS: '{namespace}-item-actions',
   HANDLE: '{namespace}-item-handle',
-  SOTRE: '{namespace}-store',
+  STORE: '{namespace}-store',
   POPVER: '{namespace}-popver',
   CLONEANIMATE: '{namespace}-item-clone-animate'
 }

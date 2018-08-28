@@ -178,7 +178,7 @@
         "value": "{namespace}-item-handle"
       },
       {
-        "name": "SOTRE",
+        "name": "STORE",
         "desc": "Declare plugin store",
         "value": "{namespace}-store"
       },

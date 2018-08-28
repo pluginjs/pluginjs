@@ -11,12 +11,13 @@ import {
 } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { deepMerge } from '@pluginjs/utils'
+// import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
   register,
   stateable,
   styleable,
+  optionable,
   themeable
 } from '@pluginjs/decorator'
 import Toggle from '@pluginjs/toggle'
@@ -34,18 +35,14 @@ import List from '@pluginjs/list'
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()
+@optionable(DEFAULTS, true)
 @register(NAMESPACE, {
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
 class ToggleList extends List {
   constructor(element, options = {}) {
-    const defaultOptions = deepMerge(DEFAULTS, options)
-    super(element, defaultOptions)
-    this.setupClasses()
-
-    this.$wrapper = parent(this.element)
-    addClass(this.classes.NAMESPACE, this.$wrapper)
+    super(element, options)
   }
 
   initialize() {
@@ -81,8 +78,6 @@ class ToggleList extends List {
   }
 
   bind() {
-    super.bind()
-
     // this.$wrapper.on(
     //   this.eventName('click'),
     //   `.${this.classes.ITEM}`,
@@ -95,15 +90,18 @@ class ToggleList extends List {
     // );
     bindEvent(
       this.eventName('click'),
-      `${this.classes.ACTIONS}`,
+      `.${this.classes.ACTIONS}`,
       e => e.stopPropagation(),
       this.$wrapper
     )
+
+    super.bind()
   }
 
   unbind() {
-    // super.unbind()
     removeEvent(this.eventName(), this.$wrapper)
+
+    super.unbind()
   }
 
   toggle($item, check, trigger = true) {

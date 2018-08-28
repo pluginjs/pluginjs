@@ -24,51 +24,51 @@ import {
 } from './constant'
 import List from '@pluginjs/list'
 
-const optionsExtendList = deepMerge(List.defaults, DEFAULTS)
-const defaultActions = [
-  {
-    tagName: 'i',
-    trigger: 'icon-clone pj-itemList-item-clone',
-    event: 'click',
-    init: null
-  },
-  {
-    tagName: 'i',
-    trigger: 'icon-close pj-list-close',
-    event: 'click',
-    init(instance, $action, contentTitle, cancelTitle, deleteTitle) {
-      return new PopDialog($action, {
-        placement: 'bottom',
-        content: contentTitle,
-        buttons: {
-          cancel: { label: cancelTitle },
-          delete: {
-            label: deleteTitle,
-            color: 'danger',
-            fn(resolve) {
-              if (hasClass(instance.classes.ITEM, $action)) {
-                $action.remove()
-              } else {
-                parentWith(hasClass(instance.classes.ITEM), $action)
-              }
-              resolve()
-            }
-          }
-        },
-        template() {
-          return (
-            '<div class="{classes.POPOVER} {classes.POPDIALOG} pj-list-pop" role="tooltip">' +
-            '{close}' +
-            '{title}' +
-            '{content}' +
-            '{buttons}' +
-            '</div>'
-          )
-        }
-      })
-    }
-  }
-]
+// const optionsExtendList = deepMerge(List.defaults, DEFAULTS)
+// const defaultActions = [
+//   {
+//     tagName: 'i',
+//     trigger: 'icon-clone pj-itemList-item-clone',
+//     event: 'click',
+//     init: null
+//   },
+//   {
+//     tagName: 'i',
+//     trigger: 'icon-close pj-list-close',
+//     event: 'click',
+//     init(instance, $action, contentTitle, cancelTitle, deleteTitle) {
+//       return new PopDialog($action, {
+//         placement: 'bottom',
+//         content: contentTitle,
+//         buttons: {
+//           cancel: { label: cancelTitle },
+//           delete: {
+//             label: deleteTitle,
+//             color: 'danger',
+//             fn(resolve) {
+//               if (hasClass(instance.classes.ITEM, $action)) {
+//                 $action.remove()
+//               } else {
+//                 parentWith(hasClass(instance.classes.ITEM), $action)
+//               }
+//               resolve()
+//             }
+//           }
+//         },
+//         template() {
+//           return (
+//             '<div class="{classes.POPOVER} {classes.POPDIALOG} pj-list-pop" role="tooltip">' +
+//             '{close}' +
+//             '{title}' +
+//             '{content}' +
+//             '{buttons}' +
+//             '</div>'
+//           )
+//         }
+//       })
+//     }
+//   }
+// ]
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -82,22 +82,13 @@ const defaultActions = [
 })
 class ItemList extends List {
   constructor(element, options = {}) {
-    const defaultOptions = deepMerge(optionsExtendList, options)
-    super(element, defaultOptions)
-    this.options = deepMerge(
-      defaultOptions,
-      { actions: defaultActions },
-      this.getDataOptions()
-    )
-    this.setupI18n()
-    this.init()
+    super(element, options)
   }
 
-  init() {
+  initialize() {
     this.initAddBtn()
-    this.listener()
-    this.enter('initialized')
-    this.trigger(EVENTS.READY)
+
+    super.initialize()
   }
 
   enable() {
@@ -129,7 +120,7 @@ class ItemList extends List {
     this.$wrapper.append(this.$add)
   }
 
-  listener() {
+  bind() {
     compose(
       bindEvent(
         this.eventName('click'),
@@ -151,10 +142,14 @@ class ItemList extends List {
         this.trigger(EVENTS.CLICKADDBTN)
       })
     )(this.$wrapper)
+
+    super.bind()
   }
 
   unbind() {
     removeEvent(this.eventName(), this.$wrapper)
+
+    super.unbind()
   }
 
   clone(index) {

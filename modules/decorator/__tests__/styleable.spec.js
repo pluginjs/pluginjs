@@ -15,6 +15,8 @@ class Sample extends Component {
   constructor(element, options) {
     super(element)
     this.options = options
+
+    this.setupClasses()
   }
 }
 
@@ -23,7 +25,6 @@ describe('styleable()', () => {
     it('should return class name with namespace', () => {
       const el = document.createElement('div')
       const api = Sample.of(el)
-      api.setupClasses()
 
       expect(api.getClass('{namespace}-foo')).toBe('pj-sample-foo')
     })
@@ -31,7 +32,6 @@ describe('styleable()', () => {
     it('should return class name with specify arg and namespace', () => {
       const el = document.createElement('div')
       const api = Sample.of(el)
-      api.setupClasses()
 
       expect(api.getClass('{namespace}-{type}', 'type', 'foo')).toBe(
         'pj-sample-foo'
@@ -43,7 +43,6 @@ describe('styleable()', () => {
     it('should return multi class name', () => {
       const el = document.createElement('div')
       const api = Sample.of(el)
-      api.setupClasses()
 
       expect(api.getClasses('{namespace}-{type}', 'type', 'foo bar')).toBe(
         'pj-sample-foo pj-sample-bar'
@@ -51,13 +50,40 @@ describe('styleable()', () => {
     })
   })
 
+  describe('setClasses()', () => {
+    it('should override global classes', () => {
+      const CLASSES = {
+        NAMESPACE: 'pj-sample',
+        THEME: '{namespace}--{theme}',
+        TYPE: '{namespace}-{type}',
+        DISABLED: '{namespace}-disabled'
+      }
+
+      @styleable(CLASSES)
+      @register('sample')
+      class Sample extends Component {
+        constructor(element, options) {
+          super(element)
+          this.options = options
+
+          this.setupClasses()
+        }
+      }
+
+      Sample.setClasses({
+        NAMESPACE: 'sample'
+      })
+
+      const api = Sample.of(document.createElement('div'))
+
+      expect(api.classes.NAMESPACE).toBe('sample')
+    })
+  })
+
   describe('setupClasses()', () => {
-    it('should add classes to this after setupClasses', () => {
+    it('should add classes to this', () => {
       const el = document.createElement('div')
       const api = Sample.of(el)
-      expect(api.classes).toBeUndefined()
-
-      api.setupClasses()
 
       expect(api.classes).toBeObject()
 
@@ -76,7 +102,6 @@ describe('styleable()', () => {
           NAMESPACE: 'sample'
         }
       })
-      api.setupClasses()
 
       expect(api.classes).toEqual({
         NAMESPACE: 'sample',

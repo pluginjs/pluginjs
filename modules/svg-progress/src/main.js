@@ -33,7 +33,7 @@ class SvgProgress extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
     this.setupClasses()
 
     addClass(this.classes.ELEMENT, this.element)

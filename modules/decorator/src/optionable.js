@@ -8,8 +8,12 @@ export default function optionable(defaults = {}, enableDataOption = false) {
     }
 
     if (enableDataOption) {
-      plugin.prototype.setupOptions = function(defaults = {}, options = {}) {
-        this.options = deepMerge({}, defaults, options, this.getDataOptions())
+      plugin.prototype.setupOptions = function(options = {}) {
+        this.options = deepMerge(
+          plugin.defaults,
+          options,
+          this.getDataOptions()
+        )
       }
 
       plugin.prototype.getDataOptions = function() {
@@ -37,8 +41,8 @@ export default function optionable(defaults = {}, enableDataOption = false) {
         return options
       }
     } else {
-      plugin.prototype.setupOptions = function(defaults = {}, options = {}) {
-        this.options = deepMerge({}, defaults, options)
+      plugin.prototype.setupOptions = function(options = {}) {
+        this.options = deepMerge(plugin.defaults, options)
       }
     }
   }

@@ -21,7 +21,7 @@ import anime from 'animejs'
 class AdaptText extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
 
     const display = getStyle('display', this.element)
     this.inline = display === 'inline' || Boolean(display === 'inline-block')

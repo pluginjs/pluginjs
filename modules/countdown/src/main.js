@@ -37,7 +37,7 @@ class CountDown extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.setupOptions(DEFAULTS, options)
+    this.setupOptions(options)
 
     this.$counters = this.options.format.split(/,|，|\s+/)
 
