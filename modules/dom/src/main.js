@@ -380,7 +380,7 @@ export const prepend = curry((child, el) => {
   return el
 })
 
-export const insertBefore = curry((newElement, el) => {
+export const before = curry((newElement, el) => {
   if (isString(newElement)) {
     el.insertAdjacentHTML('beforebegin', newElement)
   } else {
@@ -391,7 +391,17 @@ export const insertBefore = curry((newElement, el) => {
   return el
 })
 
-export const insertAfter = curry((newElement, el) => {
+export const insertBefore = curry((newElement, el) => {
+  if (isString(newElement)) {
+    newElement = parseHTML(newElement)
+  }
+  const parentElement = parent(el)
+  parentElement.insertBefore(newElement, el)
+
+  return newElement
+})
+
+export const after = curry((newElement, el) => {
   if (isString(newElement)) {
     el.insertAdjacentHTML('afterend', newElement)
   } else {
@@ -400,6 +410,17 @@ export const insertAfter = curry((newElement, el) => {
   }
 
   return el
+})
+
+export const insertAfter = curry((newElement, el) => {
+  if (isString(newElement)) {
+    newElement = parseHTML(newElement)
+  }
+
+  const parentElement = parent(el)
+  parentElement.insertBefore(newElement, el.nextElementSibling)
+
+  return newElement
 })
 
 export const wrap = curry((wrapElement, el) => {

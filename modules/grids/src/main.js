@@ -430,11 +430,7 @@ class Grids extends Component {
   }
 
   setContainerWidth(width) {
-    setStyle(
-      'width',
-      width,
-      this.$container
-    )
+    setStyle('width', width, this.$container)
 
     this.containerWidth = parseFloat(getStyle('width', this.$container), 10)
   }

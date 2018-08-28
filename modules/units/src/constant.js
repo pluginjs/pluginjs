@@ -17,14 +17,13 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   WRAP: '{namespace}-wrap',
   TRIGGER: '{namespace}-trigger',
-  PANEL: '{namespace}-panel',
+  DROPDOWN: '{namespace}-dropdown',
   DISABLED: '{namespace}-disabled',
   ACTIVE: '{namespace}-active',
   ONLY: '{namespace}-only',
-  INPUT: '{namespace}-input',
+  INPUT: '{namespace}-input pj-input',
   TOP: '{namespace}-top',
-  BOTTOM: '{namespace}-bottom',
-  INPT: 'pj-input'
+  BOTTOM: '{namespace}-bottom'
 }
 
 export const methods = [
@@ -43,7 +42,7 @@ export const methods = [
 export const defaults = {
   theme: null,
   disabled: false,
-  width: null, // number|string|object
+  width: '80px', // number|string|object
   data: null, // array
   placement: 'bottom-end',
   defaultUnit: null,

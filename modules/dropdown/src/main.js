@@ -82,9 +82,9 @@ class Dropdown extends Component {
     addClass(this.classes.REFERENCE, this.$reference)
     addClass(this.classes.DROPDOWN, this.$dropdown)
 
-    if (isInput(this.$trigger) || this.options.imitateSelect) {
-      addClass(this.classes.INPUT, this.$trigger)
-    }
+    // if (isInput(this.$trigger) || this.options.imitateSelect) {
+    //   addClass(this.classes.INPUT, this.$trigger)
+    // }
 
     if (!isNull(this.options.data)) {
       this.appendItems(this.options.data)

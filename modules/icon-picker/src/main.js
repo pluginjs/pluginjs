@@ -264,7 +264,6 @@ class IconsPicker extends Component {
             'keydown',
             e => {
               if (e.keyCode === 13 && e.which === 13) {
-
               }
             },
             target
