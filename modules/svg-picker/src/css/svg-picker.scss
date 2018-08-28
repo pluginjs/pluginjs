@@ -55,6 +55,9 @@ $svgPicker-search-icon-color: $gray-dark !default;
   }
 
   .pj-dropdown-trigger {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 158px;
     padding: 0 $svgPicker-sizer; //0 10px
     line-height: $svgPicker-height;
 

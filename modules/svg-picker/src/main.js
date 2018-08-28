@@ -13,7 +13,8 @@ import {
   insertAfter,
   append,
   parentWith,
-  getData
+  getData,
+  next
 } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { showElement, hideElement } from '@pluginjs/styled'
@@ -69,8 +70,9 @@ class SvgPicker extends Component {
     )
     this.$svgTrigger = query('.pj-dropdown-trigger', this.$svgPicker)
     insertAfter(this.$svgPicker, this.element)
+    console.log(this.$svgPicker)
     wrap(`<div class="${this.classes.WRAP}"></div>`, this.$svgPicker)
-
+    insertAfter('<div></div>', this.$svgPicker)
     hideElement(this.element)
 
     if (this.options.theme) {
@@ -79,7 +81,8 @@ class SvgPicker extends Component {
 
     this.data = DATA
     this.$dropdown = this.initDropdown()
-    this.$panel = this.$dropdown.$panel
+    console.log(this.$dropdown)
+    this.$panel = this.$dropdown.$dropdown
 
     this.icon = null
     this.$icons = null
@@ -287,9 +290,11 @@ class SvgPicker extends Component {
     }
     return Dropdown.of(this.$svgTrigger, {
       data,
+      rereference: this.$svgPicker,
       hideOnSelect: false,
+      target: next(this.$svgPicker),
       width: 260,
-      select: data[0].label,
+      value: data[0].label,
       templates: {
         panel() {
           return `<div class=${that.classes.PANEL}></div>`
@@ -306,6 +311,7 @@ class SvgPicker extends Component {
         manageText: this.translate('manage')
       })
     )
+    console.log(this.$manage)
     this.$panel.append(this.$manage)
   }
 
@@ -328,7 +334,6 @@ class SvgPicker extends Component {
   handleTypes() {
     let types = ''
     const typeArr = []
-
     this.data.forEach(v => {
       if (typeArr.indexOf(v.type) < 0) {
         typeArr.push(v.type)
@@ -342,7 +347,7 @@ class SvgPicker extends Component {
       }
     })
 
-    this.$dropdown.update(types)
+    this.$dropdown.$dropdown.innerHTML = types
     this.$typeWrap = parseHTML(`<div class=${this.classes.TYPEWRAP}></div>`)
     this.$types = queryAll(`.${this.classes.TYPE}`, this.$panel)
     insertBefore(this.$typeWrap, this.$types[0])

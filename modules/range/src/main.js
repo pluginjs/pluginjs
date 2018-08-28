@@ -247,7 +247,7 @@ class Range extends Component {
         const data = this.unitsApi.get(unit)
         this.setUnitsAttr(data)
         this.set(this.data)
-
+        console.log(unit)
         this.trigger(EVENTS.CHANGEUNIT, unit)
       }
 
@@ -269,7 +269,9 @@ class Range extends Component {
           value: val,
           unit: this.data.unit
         }
+        console.log(data)
         this.unitsApi.set(data)
+        console.log(46)
         this.trigger(EVENTS.CHANGE, data)
         this.set(data)
       }

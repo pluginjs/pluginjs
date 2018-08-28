@@ -19,13 +19,10 @@ class Pointer {
     const offset = getOffset(this.instance.$control)
 
     trigger(
-      {
-        type: this.instance.selfEventName(`${this.instance.plugin}:moveStart`),
-        data: this
-      },
+      this.instance.selfEventName(`${this.instance.plugin}:moveStart`),
+      this,
       this.element
     )
-
     // this.element.trigger(`${this.instance.plugin}:moveStart`, this)
 
     this.data = {}
@@ -53,13 +50,7 @@ class Pointer {
       removeEvent(this.instance.eventNameWithId('mouseup'), document.body)
       removeEvent(this.instance.eventNameWithId('touchmove'), document.body)
       removeEvent(this.instance.eventNameWithId('touchend'), document.body)
-      trigger(
-        {
-          type: `${this.instance.plugin}:moveEnd`,
-          data: this
-        },
-        this.element
-      )
+      trigger(`${this.instance.plugin}:moveEnd`, this, this.element)
       // this.element.trigger(`${this.instance.plugin}:moveEnd`, this)
       this.element.blur()
       return false
@@ -118,13 +109,7 @@ class Pointer {
     this.updatePosition()
     this.element.focus()
     // this.instance.trigger('move', value)
-    trigger(
-      {
-        type: `${this.instance.plugin}:move`,
-        data: this
-      },
-      this.element
-    )
+    trigger(`${this.instance.plugin}:move`, this, this.element)
     // this.element.trigger(`${this.instance.plugin}:move`, this)
   }
 

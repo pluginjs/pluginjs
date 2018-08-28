@@ -148,6 +148,7 @@ class Units extends Component {
       }
     }
     this.unit = this.options.defaultUnit || data[0].label
+    console.log(this.unit, 897)
     const dropdowninstance = DROPDOWN.of($unitsTrigger, {
       width: this.dropdownWidth,
       trigger: 'click',
@@ -185,22 +186,23 @@ class Units extends Component {
         this.value = parseFloat(value, 10)
         this.value = value
         console.log(this.value)
-        console.log(this.getUnit())
-        this.cacheValue(this.getUnit(), this.value)
-        this.update(this.getUnit())
+        console.log(this.getUnit()[0].dataset.value, 9897)
+        this.cacheValue(this.getUnit()[0].dataset.value, this.value)
+        this.update(this.getUnit()[0].dataset.value)
         this.trigger(EVENTS.CHANGEVAL, this.value)
       },
       this.$input
     )
     this.TRIGGER.options.onChange = () => {
-      // if (this.unit === this.getUnit()) {
+      console.log(1)
+      console.log(this.getUnit())
+      // if (this.unit === this.getUnit()[0].dataset.value) {
       //   return
       // }
-      const unit = this.getUnit()
-      this.cacheValue(this.unit)
-      this.update(this.unit)
-      this.trigger(EVENTS.CHANGE, this.unit)
-      console.log(unit)
+      // const unit = this.getUnit()[0].dataset.value
+      // this.cacheValue(this.unit)
+      // this.update(unit)
+      // this.trigger(EVENTS.CHANGE, this.unit)
     }
 
     // Pj.emitter.on('scroll', this.checkDropdownDir.bind(this))
@@ -227,6 +229,7 @@ class Units extends Component {
   }
 
   set(data, trigger = true) {
+    console.log(data, 9865)
     const hasUnit =
       typeof data.unit !== 'undefined' &&
       data.unit !== null &&
@@ -241,6 +244,7 @@ class Units extends Component {
     this.cacheValue(this.unit, this.value)
 
     if (hasUnit) {
+      console.log(this.unit, 123)
       this.TRIGGER.selectItem(this.unit)
       this.trigger(EVENTS.SETUNIT, this.unit)
     }
@@ -271,7 +275,7 @@ class Units extends Component {
   }
 
   getUnit() {
-    return this.TRIGGER.active.dataset.value
+    return this.TRIGGER.getActiveItem()
   }
 
   setWidth(width) {

@@ -17,7 +17,7 @@ class Selected {
           setStyle(
             {
               left: 0,
-              width: `${pointer.getPercent()}%`
+              width: `${pointer[0].getPercent()}%`
             },
             this.$arrow
           )
