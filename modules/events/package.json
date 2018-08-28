@@ -28,7 +28,9 @@
   },
   "dependencies": {
     "@pluginjs/dom": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/utils": "*",
+    "@pluginjs/emitter": "*",
+    "@pluginjs/is": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
