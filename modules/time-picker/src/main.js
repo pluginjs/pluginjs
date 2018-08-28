@@ -290,14 +290,15 @@ class TimePicker extends Component {
 
   bind() {
     bindEvent(
-      'dropdown:change',
+      this.eventName('dropdown:change'),
       () => {
+        console.log(1111)
         this.trigger(EVENTS.CHANGE, this.dropdown.get())
       },
       this.$dropdownEl
     )
     bindEvent(
-      'dropdown:show',
+      this.eventName('dropdown:show'),
       () => {
         this.correctionScrollTop()
       },

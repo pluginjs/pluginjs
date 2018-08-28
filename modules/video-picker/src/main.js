@@ -153,9 +153,13 @@ class VideoPicker extends Component {
     // set Aspect Ratio
     const sourceData = []
     this.options.sources.forEach((v, i) => {
-      sourceData[i] = { label: v }
+      sourceData[i] = { label: v, value: v }
     })
-    const ratioData = [{ label: 'auto' }, { label: '4:3' }, { label: '16:9' }]
+    const ratioData = [
+      { label: 'auto', value: 'auto' },
+      { label: '4:3', value: '4:3' },
+      { label: '16:9', value: '16:9' }
+    ]
     const localeCancel = this.translate('cancel')
     const localeDelete = this.translate('delete')
     // const localeSave = this.translate('save');
@@ -173,7 +177,7 @@ class VideoPicker extends Component {
         this.classes.COMTITLE
       }'>${this.translate('videoSource')}</span><div class='${
         this.classes.SOURCE
-      }'><span class="pj-dropdown-trigger"></span></div></div>`
+      }'><span class="pj-dropdown-trigger"></span><div></div></div></div>`
     )
     this.$sourceTrigger = query('.pj-dropdown-trigger', this.$source)
     this.$videoUrlContent = parseHTML(
@@ -205,7 +209,7 @@ class VideoPicker extends Component {
         this.classes.COMTITLE
       }'>${this.translate('aspectRatio')}</span><div class="${
         this.classes.RATIO
-      }"><span class="pj-dropdown-trigger"></span></div></div>`
+      }"><span class="pj-dropdown-trigger"></span><div></div></div></div>`
     )
     this.$ratio = query(`.${this.classes.RATIO}`, this.$ratioContent)
     this.$ratioTrigger = query('.pj-dropdown-trigger', this.$ratio)
@@ -246,6 +250,7 @@ class VideoPicker extends Component {
     // init source dropdown
     this.$defaultDropdown = Dropdown.of(this.$empty, {
       exclusive: false,
+      target: this.$dropdown,
       templates: this.options.template,
       constraintToScrollParent: false,
       constraintToWindow: false,
@@ -259,7 +264,7 @@ class VideoPicker extends Component {
       exclusive: false,
       imitateSelect: true,
       icon: 'icon-char icon-chevron-down',
-      select: sourceData[0].label,
+      value: sourceData[0].label,
       templates: {
         panel() {
           return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
@@ -275,7 +280,7 @@ class VideoPicker extends Component {
       exclusive: false,
       imitateSelect: true,
       icon: 'icon-char icon-chevron-down',
-      select: ratioData[0].label,
+      value: ratioData[0].label,
       templates: {
         panel() {
           return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
@@ -416,6 +421,7 @@ class VideoPicker extends Component {
     // this.$data = this.$wrap.find('.pj-editPanel-data');
     this.$infoCover = query(`.${this.classes.INFOPOSTER}`, this.$wrap)
     this.$video = query(`.${this.classes.VIDEO}`, this.$wrap)
+    this.$icon = query(`.${this.classes.EDITOR}`, this.$wrap)
     this.$urlInput = query('input', this.$videoUrl)
     this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$wrap)
     this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$wrap)
@@ -459,6 +465,14 @@ class VideoPicker extends Component {
   }
 
   bind() {
+    bindEvent(
+      this.eventName('click'),
+      () => {
+        console.log(1111)
+        this.$defaultDropdown.show()
+      },
+      this.$icon
+    )
     // pop event
     this.pop.options.onShow = () => {
       addClass(this.classes.SHOW, this.$wrap)
