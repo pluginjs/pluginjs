@@ -89,7 +89,7 @@ export const defaults = {
       </div>`
     },
     controller() {
-      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}><span class="pj-dropdown-trigger"></span></div>
+      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}><span class="pj-dropdown-trigger"></span></div><div></div>
       </div>`
     },
     search() {

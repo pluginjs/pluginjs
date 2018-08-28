@@ -38,7 +38,7 @@ $dropdown-space-x-left: $dropdown-space-x;
 // Theme
 // =====================
 .#{$dropdown} {
-  min-width: $dropdown-min-width;
+  width: $dropdown-min-width;
   font-family: $dropdown-font-family;
   font-size: $dropdown-font-size;
   color: $dropdown-color;

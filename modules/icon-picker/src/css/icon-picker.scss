@@ -50,6 +50,10 @@ $iconPicker-controller-bg: $color-white;
   }
 
   .pj-dropdown-trigger {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 100%;
     padding: 0 $iconPicker-sizer; //0 10px
     line-height: $iconPicker-height;
   }
@@ -77,6 +81,7 @@ $iconPicker-controller-bg: $color-white;
   display: flex;
   flex-direction: column;
   // height: $iconPicker-panel-height;
+  width: 260px;
   min-height: $iconPicker-panel-height;
   padding: 0 0 $iconPicker-controller-height 0;
 
@@ -282,12 +287,14 @@ $iconPicker-controller-bg: $color-white;
     outline: none;
   }
 
-  > .pj-dropdown-panel-wrap {
-    top: 0 !important;
+  > .pj-dropdown {
+    left: -11px !important;
+    width: 130px;
   }
 }
 
 .#{$iconPicker}-selector {
+  width: 130px;
   padding: 0;
   line-height: 2.6 * $iconPicker-sizer; //26px
 
@@ -323,6 +330,7 @@ $iconPicker-controller-bg: $color-white;
     padding: 0;
     color: #343434;
     vertical-align: middle;
+    border: none;
   }
 
   .pj-dropdown-icon {

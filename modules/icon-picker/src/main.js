@@ -83,9 +83,10 @@ class IconsPicker extends Component {
         linkTitle: this.translate('emptyLinkTitle')
       })
     )
-
+    console.log(this.$iconPicker)
     this.$dropdown = Dropdown.of(this.$iconTrigger, {
       data,
+      target: next(this.$iconPicker),
       hideOnSelect: false,
       width: 260,
       // select: data[0].label,
@@ -95,10 +96,10 @@ class IconsPicker extends Component {
         }
       }
     })
-    children(this.$dropdown.$panel)
+    children(this.$dropdown.$dropdown)
       .map(el => el.remove())
       .map(el => el.remove())
-    this.$dropdown.$panel.append(this.$empty)
+    this.$dropdown.$dropdown.append(this.$empty)
   }
 
   initialize() {
@@ -113,7 +114,7 @@ class IconsPicker extends Component {
     this.$iconTrigger = query('.pj-dropdown-trigger', this.$iconPicker)
     insertAfter(this.$iconPicker, this.element)
     wrap(`<div class="${this.classes.WRAP}"></div>`, this.$iconPicker)
-
+    insertAfter(`<div class=${this.classes.PANEL}></div>`, this.$iconPicker)
     setStyle('display', 'none', this.element)
 
     if (this.options.theme) {
@@ -124,7 +125,7 @@ class IconsPicker extends Component {
       this.initEmpty()
     } else {
       this.$dropdown = this.initDropdown()
-      this.$panel = this.$dropdown.$panel
+      this.$panel = this.$dropdown.$dropdown
       this.$packages = children(this.$panel).filter(el =>
         el.matches(`.${this.classes.PACKAGE}`)
       )
@@ -208,7 +209,7 @@ class IconsPicker extends Component {
     }
 
     this.$selectorPanel.options.onChange = val => {
-      this.togglePackage(getData('value', val))
+      this.togglePackage(val)
     }
 
     if (this.options.keyboard) {
@@ -275,7 +276,8 @@ class IconsPicker extends Component {
 
       compose(
         bindEvent('focus', ({ target }) => {
-          let $selectItem = this.$selectorPanel.$items.find(el =>
+          console.log(children(this.$selectorPanel.$dropdown))
+          let $selectItem = children(this.$selectorPanel.$dropdown).find(el =>
             el.matches('.pj-dropdown-active')
           )
           bindEvent(
@@ -540,9 +542,10 @@ class IconsPicker extends Component {
 
     return Dropdown.of(this.$iconTrigger, {
       data,
+      target: next(this.$iconPicker),
       hideOnSelect: false,
       width: 260,
-      select: data[0].label,
+      value: data[0].label,
       templates: {
         panel() {
           return `<div class=${that.classes.PANEL}></div>`
@@ -598,22 +601,26 @@ class IconsPicker extends Component {
     )
 
     this.packages.forEach(v => {
-      data.push({ label: getData('title', v) })
+      data.push({ label: getData('title', v), value: getData('title', v) })
     })
-    data.push({ label: this.translate('allIcons') })
 
+    data.push({
+      label: this.translate('allIcons'),
+      value: this.translate('allIcons')
+    })
     this.$panel.append(this.$controller)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
     this.$selectorTrigger = query('.pj-dropdown-trigger', this.$selector)
     this.$selectorPanel = Dropdown.of(this.$selectorTrigger, {
+      reference: this.$selector,
       placement: 'top-center',
       data,
+      target: next(this.$selector),
       // keyboard: true,
       imitateSelect: true,
-      offset: '8px 0',
-      select: data[data.length - 1].label,
-      width: this.$selector,
-      exclusive: false,
+      hideOnSelect: true,
+      offset: '12px,2px',
+      value: data[data.length - 1].value,
       icon: 'icon-char icon-chevron-down',
       classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` }
     })
@@ -757,6 +764,7 @@ class IconsPicker extends Component {
         addClass(this.classes.PACKAGEHIDE, v)
       } else {
         removeClass(this.classes.PACKAGEHIDE, v)
+        console.log(v)
         this.open(v)
       }
     })
@@ -770,6 +778,7 @@ class IconsPicker extends Component {
 
     addClass(this.classes.PACKAGEOPEN, el)
     setData('open', true, el)
+    console.log(this.$scrollable)
     this.$scrollable.find(plugin => el.contains(plugin.element)).enable()
     this.$scrollable.find(plugin => el.contains(plugin.element)).update()
   }
@@ -784,7 +793,7 @@ class IconsPicker extends Component {
     this.$icons.forEach(icon => {
       removeClass(this.classes.ACTIVE, icon)
     })
-    const targetData = $target.objData
+    const targetData = $target.__pluginjsData
     const value = `${targetData.prefix}${targetData.title}`
     const { prefix, categories, title, baseClass } = targetData
 
@@ -826,7 +835,7 @@ class IconsPicker extends Component {
     }
     if (typeof this.$icons !== 'undefined') {
       this.$icons.forEach($icon => {
-        const data = $icon.objData
+        const data = $icon.__pluginjsData
         if (data.package === value.package && data.title === value.title) {
           this.select($icon)
         }
