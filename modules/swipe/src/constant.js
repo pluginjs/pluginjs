@@ -69,10 +69,10 @@ export const defaults = {
     },
     arrow: {
       prev() {
-        return '<a class="{classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} icon-chevron-left"></i></a>'
+        return '<a class="{classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} icon-angle-left-mini-solid"></i></a>'
       },
       next() {
-        return '<a class="{classes.NEXT}" href="{href}" alt="{text}"><i class="{classes.ICON} icon-chevron-right"></i></a>'
+        return '<a class="{classes.NEXT}" href="{href}" alt="{text}"><i class="{classes.ICON} icon-angle-right-mini-solid"></i></a>'
       }
     }
   }

@@ -29,6 +29,7 @@ const data = [
 Dropdown.of(element, {
   data,
   imitateSelect: true,
+  offset: '0,2px',
   templates: {
     item() {
       return '<div class="{classes.ITEM}" {itemValueAttr}="{item.value}"><i class="icon icon-{item.icon}"></i> {item.label}</div>'

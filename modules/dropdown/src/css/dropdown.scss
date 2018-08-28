@@ -16,7 +16,7 @@ $dropdown-border-color: $gray-light;
 $dropdown-border-radius: $border-radius-base;
 
 $dropdown-space-x: 11px;
-$dropdown-space-y: 6px;
+$dropdown-space-y: 7px;
 
 $dropdown-item-hover-bg: $gray-lighter;
 $dropdown-item-icon-margin-right: 10px;
@@ -26,10 +26,11 @@ $dropdown-trigger-font-size: $font-size-sm;
 $dropdown-trigger-hover-color: $gray-darkest;
 $dropdown-trigger-color: $gray-dark;
 $dropdown-trigger-focus-color: $color-primary;
-$dropdown-trigger-lineHeight: 22px;
 
 $dropdown-input-width: 200px;
+$dropdown-input-lineHeigh: 22px;
 
+$dropdown-span-hover-color: $color-primary;
 $dropdown-span-input-drop-color: $gray-darkest;
 $dropdown-span-input-color: $gray-dark;
 $dropdown-space-x-right: 30px;
@@ -51,7 +52,6 @@ $dropdown-space-x-left: $dropdown-space-x;
   &-trigger {
     font-family: $dropdown-font-family;
     font-size: $dropdown-trigger-font-size;
-    line-height: $dropdown-trigger-lineHeight;
     color: $dropdown-trigger-color;
     text-decoration: none;
 
@@ -63,16 +63,12 @@ $dropdown-space-x-left: $dropdown-space-x;
       color: $dropdown-trigger-focus-color;
       outline: none;
     }
-
-    &[data-placement] {
-      color: $dropdown-trigger-hover-color;
-
-    }
   }
 
   &-input {
-      width: $dropdown-input-width;
-      padding: $dropdown-space-y $dropdown-space-x-right $dropdown-space-y $dropdown-space-x-left !important;
+    width: $dropdown-input-width;
+    line-height: $dropdown-input-lineHeigh;
+
     &[aria-expanded="true"] {
       color: $dropdown-trigger-hover-color;
 
@@ -108,6 +104,15 @@ $dropdown-space-x-left: $dropdown-space-x;
 
     &.#{$dropdown}-active {
       color: $dropdown-item-active-color;
+    }
+  }
+
+  &-span {
+    color: $dropdown-trigger-hover-color;
+
+    &:hover,
+    &:active {
+      color: $dropdown-span-hover-color;
     }
   }
 }

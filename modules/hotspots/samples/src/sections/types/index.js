@@ -5,7 +5,7 @@ import escapeHTML from '../escape-html'
 const section = query('#types')
 queryAll('.pj-hotspots', section).map(element =>
   Hotspots.of(element, {
-    icon: 'fa fa-plus',
+    icon: 'icon icon-add',
     data: [
       {
         placement: 'top',

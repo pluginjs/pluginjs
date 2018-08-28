@@ -6,7 +6,7 @@ const element = query('#custom .pj-hotspots')
 
 Hotspots.of(element, {
   type: 'icon',
-  icon: 'icon fa fa-plus',
+  icon: 'icon icon-add',
   skin: 'solid',
   data: [
     {

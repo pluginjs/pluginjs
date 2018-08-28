@@ -3,11 +3,11 @@
 // Vars
 // =====================
 $hotspot: "pj-hotspot" !default;
-
 // Core
 // =====================
 .#{$hotspot}s {
   position: relative;
+  line-height: 1;
 
   img {
     z-index: 0;
@@ -18,5 +18,7 @@ $hotspot: "pj-hotspot" !default;
 .#{$hotspot} {
   position: absolute;
   z-index: 1;
+  box-sizing: border-box;
   cursor: pointer;
+  transform: translate(-50%, -50%);
 }

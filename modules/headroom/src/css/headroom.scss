@@ -5,21 +5,11 @@
 // =====================
 $headroom-header-height: 80px;
 $headroom-header-font-size: $font-size-sm;
-$headroom-header-a-padding: 0 19px;
+$headroom-header-a-padding: 0 18px;
 $headroom-header-a-color: rgba($color-white,0.6);
 $headroom-header-active-color: $color-white;
 
-$headroom-header-divider-bottom: -10px;
-$headroom-header-divider-width: 16px;
-$headroom-header-divider-height: 2px;
-$headroom-header-divider-color: $color-white;
-
-$headroom-section-height: 1080px;
-$headroom-section-color: $color-white;
-$headroom-section-inner-max-width: 540px;
-
 .#{$headroom} {
-  height: $headroom-header-height;
   font-size: $headroom-header-font-size;
   text-align: center;
   background: transparent;
@@ -41,53 +31,16 @@ $headroom-section-inner-max-width: 540px;
         color: $headroom-header-active-color;
       }
     }
-
-    &.active {
-      a {
-        position: relative;
-        color: $headroom-header-active-color;
-  
-        &::before {
-          position: absolute;
-          bottom: $headroom-header-divider-bottom;
-          left: 50%;
-          width: $headroom-header-divider-width;
-          height: $headroom-header-divider-height;
-          content: "";
-          background: $headroom-header-divider-color;
-          transform: translateX(-50%);
-        }
-      }
-    }
   }
   
   a {
+    display: flex;
+    align-items: center;
+    height: $headroom-header-height;
     padding: $headroom-header-a-padding;
-    line-height: $headroom-header-height;
     color: $headroom-header-a-color;
     text-decoration: none;
     -webkit-transition: 0.2s; /* stylelint-disable-line */
     transition: 0.2s;
   }
-}
-
-section {
-  @at-root #default & {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  height: $headroom-section-height;
-  color: $headroom-section-color;
-  text-align: center;
-}
-
-section .inner {
-  display: inline-block;
-  *display: inline;
-  max-width: $headroom-section-inner-max-width;
-  margin: auto;
-  vertical-align: middle;
-  zoom: 1;
 }

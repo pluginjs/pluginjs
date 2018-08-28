@@ -3,7 +3,7 @@ import Hotspots from '@pluginjs/hotspots'
 
 queryAll('#icon-skin .pj-hotspots').map(element =>
   Hotspots.of(element, {
-    icon: 'fa fa-plus',
+    icon: 'icon icon-add',
     data: [
       {
         placement: 'top',

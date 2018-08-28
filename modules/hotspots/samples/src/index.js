@@ -1,6 +1,6 @@
 // import css
 import '@pluginjs/popover/src/css/popover.scss'
-import 'font-awesome/css/font-awesome.css'
+import '@pluginjs/icons/dist/plugin-icons.css'
 
 // import sections
 import './sections/custom/index.js'

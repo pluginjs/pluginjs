@@ -31,7 +31,7 @@ class pinned {
     ScrollDir.off(this.update)
   }
 
-  update(direction, currentScrollY, delta) {
+  update(direction, delta, currentScrollY) {
     const horizontalDirection = direction.horizontal
     const toleranceExceeded =
       Math.abs(delta.horizontal) >= this.tolerance[horizontalDirection]

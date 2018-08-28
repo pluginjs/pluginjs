@@ -3,5 +3,6 @@ import Dropdown from '@pluginjs/dropdown'
 
 const element = query('#imitateSelect .dropdown-example')
 Dropdown.of(element, {
-  imitateSelect: true
+  imitateSelect: true,
+  offset: '0,2px'
 })
