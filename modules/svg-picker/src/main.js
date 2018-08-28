@@ -72,7 +72,7 @@ class SvgPicker extends Component {
     insertAfter(this.$svgPicker, this.element)
     console.log(this.$svgPicker)
     wrap(`<div class="${this.classes.WRAP}"></div>`, this.$svgPicker)
-    insertAfter('<div></div>', this.$svgPicker)
+    insertAfter(`<div class=${this.classes.PANEL}></div>`, this.$svgPicker)
     hideElement(this.element)
 
     if (this.options.theme) {
@@ -145,9 +145,7 @@ class SvgPicker extends Component {
       this.eventName('click'),
       `.${this.classes.TYPETITLE}`,
       event => {
-        const $type = parent(
-          parentWith(hasClass(this.classes.TYPETITLE), event.target)
-        )
+        const $type = parent(event.target)
 
         that.open($type)
         if ($type.dataset.open && $type.dataset.open === 'true') {

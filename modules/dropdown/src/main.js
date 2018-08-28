@@ -186,7 +186,7 @@ class Dropdown extends Component {
 
   getActiveItem() {
     const $item = children(`.${this.classes.ACITVE}`, this.$dropdown)
-
+    console.log($item)
     if ($item.length > 0) {
       return $item[0]
     }

@@ -73,7 +73,6 @@ class Units extends Component {
     append($trigger, this.$wrap)
     this.$input = query(`.${this.classes.INPUT}`, this.$wrap)
     this.$unitsT = query('.pj-units-trigger', this.$wrap)
-    console.log(this.$unitsT)
     this.options.data.forEach(v => {
       this.data[v] = ''
     })
@@ -186,9 +185,9 @@ class Units extends Component {
         this.value = parseFloat(value, 10)
         this.value = value
         console.log(this.value)
-        console.log(this.getUnit()[0].dataset.value, 9897)
-        this.cacheValue(this.getUnit()[0].dataset.value, this.value)
-        this.update(this.getUnit()[0].dataset.value)
+        console.log(this.getUnit().dataset.value, 9897)
+        this.cacheValue(this.getUnit().dataset.value, this.value)
+        this.update(this.getUnit().dataset.value)
         this.trigger(EVENTS.CHANGEVAL, this.value)
       },
       this.$input
@@ -196,13 +195,13 @@ class Units extends Component {
     this.TRIGGER.options.onChange = () => {
       console.log(1)
       console.log(this.getUnit())
-      // if (this.unit === this.getUnit()[0].dataset.value) {
-      //   return
-      // }
-      // const unit = this.getUnit()[0].dataset.value
-      // this.cacheValue(this.unit)
-      // this.update(unit)
-      // this.trigger(EVENTS.CHANGE, this.unit)
+      if (this.unit === this.getUnit().dataset.value) {
+        return
+      }
+      const unit = this.getUnit().dataset.value
+      this.cacheValue(this.unit)
+      this.update(unit)
+      this.trigger(EVENTS.CHANGE, this.unit)
     }
 
     // Pj.emitter.on('scroll', this.checkDropdownDir.bind(this))
