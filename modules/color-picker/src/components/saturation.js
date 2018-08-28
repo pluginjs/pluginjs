@@ -78,8 +78,8 @@ class Saturation {
 
     setStyle(
       {
-        top: this.positionY - this.size,
-        left: this.positionX - this.size
+        top: `${this.positionY - this.size}px`,
+        left: `${this.positionX - this.size}px`
       },
       this.$pointer
     )
@@ -98,7 +98,13 @@ class Saturation {
 
     this.hue = color.value.h
 
-    setStyle({ top, left }, this.$pointer)
+    setStyle(
+      {
+        top: `${top}px`,
+        left: `${left}px`
+      },
+      this.$pointer
+    )
 
     setStyle(
       {

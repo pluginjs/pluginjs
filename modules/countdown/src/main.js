@@ -37,18 +37,18 @@ class CountDown extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
+    this.setupOptions(DEFAULTS, options)
 
     this.$counters = this.options.format.split(/,|，|\s+/)
 
-    this.initClasses()
+    this.setupClasses()
 
     // theme
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
     this.trigger(EVENTS.READY)
   }
@@ -66,8 +66,9 @@ class CountDown extends Component {
   }
 
   createHtml() {
-    this.element.classList.add(
-      this.getClass(this.classes.MODE, 'mode', this.options.mode)
+    addClass(
+      this.getClass(this.classes.MODE, 'mode', this.options.mode),
+      this.element
     )
 
     if (typeof MODES[this.options.mode] !== 'undefined') {

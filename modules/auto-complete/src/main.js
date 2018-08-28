@@ -8,7 +8,6 @@ import {
   unwrap,
   wrap,
   parseHTML,
-  parent,
   parentWith,
   children,
   getData,
@@ -48,22 +47,19 @@ class AutoComplete extends Component {
   constructor(element, options = {}) {
     super(element)
     this.$element = this.element
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
-    wrap(
+    this.$wrapper = wrap(
       parseHTML(`<div class="${this.classes.NAMESPACE}"></div>`),
       this.$element
     )
 
-    this.$wrapper = parent(this.$element)
-
-    // this.data = this.options.data
     this.source = this.options.source
     this.$panel = null
     this.$selected = null
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

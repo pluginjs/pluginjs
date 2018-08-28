@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import {
   fadeOut,
   fadeIn,
@@ -12,8 +12,7 @@ import {
   setData,
   getData,
   // closest
-  wrap,
-  parentWith
+  wrap
 } from '@pluginjs/dom'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
@@ -56,8 +55,8 @@ let DATA = {}
 class GradientPicker extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.setupI18n()
 
     addClass(this.classes.NAMESPACE, this.element)
@@ -71,7 +70,7 @@ class GradientPicker extends Component {
       opacityColor: ''
     }
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -161,20 +160,15 @@ class GradientPicker extends Component {
   }
 
   handelComponent() {
-    // const that = this
-    // this.$colorPicker = parseHTML(
-    //   `<input class='${this.classes.COLORPICKER}' />`
-    // )
-    // const $opacity = parseHTML(
-    //   `<input class='${this.classes.OPACITY}' type="text"/>`
-    // )
+    addClass(this.classes.INPUT, this.element)
 
-    const $wrap = parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`)
+    this.$wrap = wrap(
+      `<div class='${this.classes.NAMESPACE}'></div>`,
+      this.element
+    )
     if (this.options.theme) {
-      addClass(this.classes.THEME, $wrap)
+      addClass(this.classes.THEME, this.$wrap)
     }
-    wrap($wrap, addClass(this.classes.INPUT, this.element))
-    this.$wrap = parentWith(hasClass(this.classes.NAMESPACE), this.element)
     this.$trigger = parseHTML(
       template.compile(this.options.templates.trigger())({
         classes: this.classes
@@ -610,7 +604,7 @@ class GradientPicker extends Component {
   }
 
   setPreview(color) {
-    setStyle('background', `${color}`, this.$previewImg)
+    setStyle('background', color, this.$previewImg)
   }
 
   clear() {

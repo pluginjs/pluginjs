@@ -1,4 +1,5 @@
 import Pj from '@pluginjs/factory'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 
 class ontop {
   constructor(api) {
@@ -17,7 +18,7 @@ class ontop {
 
     for (const key in classes) {
       if ({}.hasOwnProperty.call(classes, key)) {
-        this.instance.element.classList.remove(classes[key])
+        removeClass(classes[key], this.instance.element)
       }
     }
 
@@ -40,23 +41,21 @@ class ontop {
   }
 
   top() {
-    const classList = this.instance.element.classList
     const classes = this.classes
 
-    if (!classList.contains(classes.top)) {
-      classList.add(classes.top)
-      classList.remove(classes.notTop)
+    if (!hasClass(classes.top, this.instance.element)) {
+      addClass(classes.top, this.instance.element)
+      removeClass(classes.notTop, this.instance.element)
       this.instance.trigger('top')
     }
   }
 
   notTop() {
-    const classList = this.instance.element.classList
     const classes = this.classes
 
-    if (!classList.contains(classes.notTop)) {
-      classList.add(classes.notTop)
-      classList.remove(classes.top)
+    if (!hasClass(classes.notTop, this.instance.element)) {
+      addClass(classes.notTop, this.instance.element)
+      removeClass(classes.top, this.instance.element)
       this.instance.trigger('untop')
     }
   }

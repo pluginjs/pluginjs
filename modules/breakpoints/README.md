@@ -117,10 +117,8 @@ sm.isMatched(); // true or false
 // you can do in a chain
 Breakpoints.get('sm').on({
     enter: function(){
-
     },
     leave: function(){
-
     }
 });
 ```
@@ -290,7 +288,6 @@ Breakpoints.on('md-', 'enter', function(){
 
 Breakpoints.off('md-', 'enter');
 ```
-
 
 ### Between
 Attach an event handler function for the screen width is inside two specific size

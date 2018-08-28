@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import {
   setStyle,
   hideElement,
@@ -13,7 +13,6 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   parseHTML,
   query,
-  parentWith,
   fadeIn,
   fadeOut,
   closest,
@@ -54,8 +53,8 @@ import {
 class VideoPicker extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.setupI18n()
     addClass(this.classes.NAMESPACE, this.element)
     this.data = {}
@@ -64,7 +63,7 @@ class VideoPicker extends Component {
     this.data.poster = ''
     this.data.ratio = 'auto'
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -90,26 +89,16 @@ class VideoPicker extends Component {
   }
   build() {
     const that = this
-    const $wrap = parseHTML(
-      `<div class='${this.classes.NAMESPACE} ${this.classes.WRAP}'></div>`
+
+    addClass(this.classes.INPUT, this.element)
+    this.$wrap = wrap(
+      `<div class='${this.classes.NAMESPACE} ${this.classes.WRAP}'></div>`,
+      this.element
     )
+
     if (this.options.theme) {
-      addClass(this.classes.THEME, $wrap)
+      addClass(this.classes.THEME, this.$wrap)
     }
-    wrap($wrap, addClass(this.classes.INPUT, this.element))
-    this.$wrap = parentWith(hasClass(this.classes.NAMESPACE), this.element)
-    // creat trigger
-    // this.$trigger = parseHTML(
-    //   this.createEl('trigger', {
-    //     classes: this.classes
-    //   })
-    // )
-    // create dropdown
-    // this.$dropdown = parseHTML(
-    //   this.createEl('dropdown', {
-    //     classes: this.classes
-    //   })
-    // )
     this.$trigger = parseHTML(
       template.compile(this.options.templates.trigger())({
         classes: this.classes
@@ -289,149 +278,14 @@ class VideoPicker extends Component {
       constraintToScrollParent: false,
       constraintToWindow: false
     })
-    // init eidtor panel
-    // this.editPanel = EditPanel.of(this.element, {
-    //   init: {
-    //     icon: 'icon-chevron-circle-up',
-    //     text: this.translate('inputPlaceholder')
-    //   },
-    //   hasSelector: false,
-    //   components: [
-    //     {
-    //       title: this.translate('videoSource'),
-    //       element: this.$source,
-    //       type: 'dropdown',
-    //       options: {
-    //         data: sourceData,
-    //         width: 160,
-    //         imitateSelect: true,
-    //         icon: 'icon-char icon-chevron-down',
-    //         select: sourceData[0].label,
-    //         templates: {
-    //           panel() {
-    //             return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
-    //           }
-    //         },
-    //         constraintToScrollParent: false,
-    //         constraintToWindow: false
-    //       }
-    //     },
-    //     {
-    //       title: this.translate('videoURL'),
-    //       element: this.$videoUrl
-    //     },
-    //     {
-    //       title: this.translate('chooseVideo'),
-    //       element: this.$localUrl
-    //     },
-    //     {
-    //       title: this.translate('aspectRatio'),
-    //       element: this.$ratio,
-    //       type: 'dropdown',
-    //       options: {
-    //         data: ratioData,
-    //         width: 160,
-    //         imitateSelect: true,
-    //         icon: 'icon-char icon-chevron-down',
-    //         select: ratioData[0].label,
-    //         templates: {
-    //           panel() {
-    //             return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
-    //           }
-    //         },
-    //         constraintToScrollParent: false,
-    //         constraintToWindow: false
-    //       }
-    //     },
-    //     {
-    //       title: this.translate('poster'),
-    //       element: this.$poster
-    //     }
-    //   ],
-    //   action: {
-    //     panel: {
-    //       cancel: {
-    //         title: this.translate('cancel'),
-    //         class: ''
-    //       },
-    //       save: {
-    //         title: this.translate('save'),
-    //         class: ''
-    //       }
-    //     },
-    //     selector: {
-    //       cancel: {
-    //         title: this.translate('cancel'),
-    //         class: ''
-    //       },
-    //       save: {
-    //         title: this.translate('useIt'),
-    //         class: ''
-    //       }
-    //     }
-    //   },
-    //   templates: {
-    //     wrap() {
-    //       return `<div class='${that.classes.WRAP} {class}'></div>`
-    //     },
-    //     init() {
-    //       return `<div class='{class} ${
-    //         that.classes.INIT
-    //       }'><i class='{icon}'></i>{text}</div>`
-    //     },
-    //     info() {
-    //       return `<div class='{class}'><image class='{content} ${
-    //         that.classes.INFOPOSTER
-    //       }' /></div>`
-    //     },
-    //     infoAction() {
-    //       return `<div class='{class}'><i class='icon-pencil-square ${
-    //         that.classes.EDITOR
-    //       }'></i><i class='icon-trash ${that.classes.REMOVE}'></i></div>`
-    //     },
-    //     previewContent() {
-    //       return `<div class='${that.classes.VIDEOACTION}'>
-    //           <i class='icon-chevron-circle-right ${that.classes.VIDEOBTN}'></i>
-    //           <div class='${that.classes.VIDEOPOSTER}'></div>
-    //           <div class="${
-    //             that.classes.VIDEOANIMATE
-    //           } cp-spinner cp-round"></div>
-    //         </div>
-    //         <div class='{class} ${that.classes.VIDEO}'></div>`
-    //     },
-    //     panel() {
-    //       return `<section class='{class} ${that.classes.PANEL}'>
-    //     <div class='{preview}'>
-    //     </div>
-    //   </section>`
-    //     }
-    //   }
-    // })
 
-    // hideElement(
-    //   closest('.pj-editPanel-component', this.$localUrl)
-    // )
-
-    // this.changeSource = Dropdown.findInstanceByElement(query('.pj-dropdown-trigger', this.$source))
-    // console.log(this.$sourceDropdown)
-    // this.changeRatio = Dropdown.findInstanceByElement(this.$ratio)
-    // console.log(Dropdown.findInstanceByElement(this.$ratio))
-
-    // this.$wrap = parent()
-    // this.$data = this.$wrap.find('.pj-editPanel-data');
     this.$infoCover = query(`.${this.classes.INFOPOSTER}`, this.$wrap)
     this.$video = query(`.${this.classes.VIDEO}`, this.$wrap)
     this.$icon = query(`.${this.classes.EDITOR}`, this.$wrap)
     this.$urlInput = query('input', this.$videoUrl)
     this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$wrap)
     this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$wrap)
-    // this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
-    // console.log(this.$wrap)
-    // console.log(this.$infoCover)
-    // console.log(this.$urlInput)
-    // console.log(this.$videoPoster)
-    // console.log(this.$infoAction)
-    // init popDialog
+
     this.pop = PopDialog.of(
       query(`.${this.classes.REMOVE}`, this.$infoAction),
       {
@@ -468,7 +322,6 @@ class VideoPicker extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
-        console.log(1111)
         this.$defaultDropdown.show()
       },
       this.$icon
@@ -520,7 +373,7 @@ class VideoPicker extends Component {
           this.videoApi.pause()
           this.leave('playing')
           if (this.is('loaded') && this.$videoPoster) {
-            setStyle('backgroundImage', '', this.$videoPoster)
+            setStyle('backgroundImage', null, this.$videoPoster)
           }
         }
       }),
@@ -579,7 +432,7 @@ class VideoPicker extends Component {
         showElement(closest('.pj-videoPicker-component', this.$videoUrl))
       }
       if (this.$videoPoster) {
-        setStyle('backgroundImage', '', this.$videoPoster)
+        setStyle('backgroundImage', null, this.$videoPoster)
       }
       removeClass(this.classes.POSTERSELECTED, this.$poster)
       if (this.videoApi) {
@@ -670,8 +523,6 @@ class VideoPicker extends Component {
 
     this.element.value = ''
     this.$urlInput.value = ''
-    // this.$video.data('video', '')
-    // this.videoApi = VideoPicker.of(this.$video)
     this.videoApi.destroy()
     query('.pj-video', this.$wrap).remove()
     setStyle(
@@ -819,7 +670,6 @@ class VideoPicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      // this.element.disable()
       this.element.disabled = true
       this.enter('disabled')
       addClass(this.classes.DISABLED, this.$wrap)
@@ -830,7 +680,6 @@ class VideoPicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      // this.element.destroy()
       removeClass(this.classes.NAMESPACE, this.element)
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)

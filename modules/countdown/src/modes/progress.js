@@ -1,5 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import { append, parseHTML, prepend, queryAll } from '@pluginjs/dom'
+import { addClass } from '@pluginjs/classes'
 import { labelMap as LABELMAP } from '../constant'
 import { updateDomValue } from '../util'
 import SvgElement from '../svgElement'
@@ -50,8 +51,8 @@ class Progress {
         append($number, $wrap)
 
         if (this.instance.options.labelPosition === 'above') {
-          $label.classList.add(this.instance.getClass('above'))
-          $number.classList.add(this.instance.getClass('above'))
+          addClass(this.instance.getClass('above'), $label)
+          addClass(this.instance.getClass('above'), $number)
           prepend($label, $wrap)
         } else {
           append($label, $wrap)

@@ -39,7 +39,7 @@ const COMPONENTS = {}
 class Paginator extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
+    this.setupOptions(DEFAULTS, options)
 
     this.currentPage = this.options.currentPage || 1
     this.itemsPerPage = this.options.itemsPerPage
@@ -50,7 +50,7 @@ class Paginator extends Component {
       this.currentPage = this.totalPages
     }
 
-    this.initClasses()
+    this.setupClasses()
 
     addClass(this.classes.ELEMENT, this.element)
 
@@ -59,7 +59,7 @@ class Paginator extends Component {
     }
 
     this.setupI18n()
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

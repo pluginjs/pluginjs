@@ -35,11 +35,11 @@ const matchTablet = isTablet()
 class Reveal extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.animationClass = this.getAnimationClass()
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -123,7 +123,7 @@ class Reveal extends Component {
       const effectEndCallback = () => {
         removeEvent(this.eventName(), this.element)
 
-        this.trigger(EVENTS.ANIMATIONEND)
+        this.trigger(EVENTS.END)
       }
 
       if (this.options.delay) {

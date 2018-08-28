@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { isString, isBoolean } from '@pluginjs/is'
-import { wrap, parent, parseHTML, unwrap } from '@pluginjs/dom'
+import { wrap, parseHTML, unwrap } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { getWidth, setStyle } from '@pluginjs/styled'
 import {
@@ -37,12 +37,12 @@ import toggleAnimation from './animate'
 class Toggle extends Component {
   constructor(element, options = {}) {
     super(element)
-    wrap('<div></div>', element)
-    this.$wrap = parent(this.element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
-    this.initStates()
+    this.$wrap = wrap('<div></div>', element)
+
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
+    this.setupStates()
 
     addClass(this.classes.WRAP, this.$wrap)
 
@@ -168,15 +168,6 @@ class Toggle extends Component {
       this.dragStart = false
     }
     if (pos !== -this.distance && pos !== 0) {
-      // marginLeft: [this.$inner.css('margin-left'), `${pos}px`]
-      // this.$inner.animate(
-      //   {
-      //     marginLeft: `${pos}px`
-      //   },
-      //   {
-      //     duration: 1
-      //   }
-      // );
       setStyle('marginLeft', `${pos}px`, this.$inner)
     }
   }

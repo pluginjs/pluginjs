@@ -47,8 +47,8 @@ import Dots from '@pluginjs/dots'
 class Swipe extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     if (this.options.advanced.getItemInstances) {
       this.getItemInstances = this.options.advanced.getItemInstances.bind(this)
@@ -80,7 +80,7 @@ class Swipe extends Component {
     this.frictionFactor =
       this.options.frictionFactor < 1 ? 1 : this.options.frictionFactor
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

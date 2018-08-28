@@ -34,9 +34,9 @@ class Shorten extends Component {
     this.text = this.element.textContent
 
     // options
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
-    this.initStates()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
+    this.setupStates()
 
     if (this.needShorten()) {
       this.initialize()

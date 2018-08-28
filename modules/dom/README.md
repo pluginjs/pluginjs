@@ -399,7 +399,6 @@ Returns
 |------|------|-------------|
 | el | `HTMLElement` | |
 
-
 ### parentWith
 
 Parameters

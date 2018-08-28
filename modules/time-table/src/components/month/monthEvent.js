@@ -1,4 +1,3 @@
-// import util from '../../util'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
@@ -17,11 +16,11 @@ class monthEvents {
   init() {
     this.length = 0
     this.open = false
-    this.more = this.month.getElement('more')
-    this.wrap = this.month.getElement('eventsWrap')
+    this.$more = this.month.getElement('more')
+    this.$wrap = this.month.getElement('eventsWrap')
     this.hideMore()
-    append(this.more, this.wrap)
-    append(this.wrap, this.$element)
+    append(this.$more, this.$wrap)
+    append(this.$wrap, this.$element)
 
     this.events = []
 
@@ -37,13 +36,13 @@ class monthEvents {
       () => {
         this.showList()
       },
-      this.more
+      this.$more
     )
   }
 
   showList() {
     // change wrap height and width
-    addClass(this.classes.MONTHSHOWLIST, this.wrap)
+    addClass(this.classes.MONTHSHOWLIST, this.$wrap)
     //
     this.month.activeEvent = this
     this.open = true
@@ -57,7 +56,7 @@ class monthEvents {
   }
 
   hideList() {
-    removeClass(this.classes.MONTHSHOWLIST, this.wrap)
+    removeClass(this.classes.MONTHSHOWLIST, this.$wrap)
     //
     for (let i = 1; i < this.events.length; i++) {
       if (!hasClass(this.classes.HIDE, this.events[i])) {
@@ -75,7 +74,7 @@ class monthEvents {
     setStyle('background-color', data.color, point)
     this.events.push(e)
 
-    insertBefore(e, this.more)
+    insertBefore(e, this.$more)
     this.update()
 
     // this.updateMore()
@@ -93,9 +92,9 @@ class monthEvents {
 
   update() {
     if (this.length === 1) {
-      addClass(this.classes.MONTHSINGLEEVENT, this.wrap)
+      addClass(this.classes.MONTHSINGLEEVENT, this.$wrap)
     } else {
-      removeClass(this.classes.MONTHSINGLEEVENT, this.wrap)
+      removeClass(this.classes.MONTHSINGLEEVENT, this.$wrap)
     }
     if (this.length > 2) {
       this.hideList()
@@ -104,15 +103,15 @@ class monthEvents {
 
   showMore() {
     const t = `+${this.length - 1} more`
-    this.more.innerHTML = t
-    if (hasClass(this.classes.HIDE, this.more)) {
-      removeClass(this.classes.HIDE, this.more)
+    this.$more.innerHTML = t
+    if (hasClass(this.classes.HIDE, this.$more)) {
+      removeClass(this.classes.HIDE, this.$more)
     }
   }
 
   hideMore() {
-    if (!hasClass(this.classes.HIDE, this.more)) {
-      addClass(this.classes.HIDE, this.more)
+    if (!hasClass(this.classes.HIDE, this.$more)) {
+      addClass(this.classes.HIDE, this.$more)
     }
   }
 
@@ -122,7 +121,7 @@ class monthEvents {
       item.remove()
     })
 
-    this.more.remove()
+    this.$more.remove()
 
     setData('monthEvent', null, this.$element)
   }

@@ -68,7 +68,7 @@ class Range extends Component {
       this.getDataOptions(),
       metas
     )
-    this.initClasses()
+    this.setupClasses()
 
     if (isString(value) && value !== '') {
       this.data = this.options.parse.call(this, value)
@@ -94,7 +94,7 @@ class Range extends Component {
       this.data.value[1] = this.data.value[0]
     }
 
-    this.initClasses()
+    this.setupClasses()
 
     this.min = this.options.min
     this.max = this.options.max
@@ -124,7 +124,7 @@ class Range extends Component {
       throw new Error('error options about max min step')
     }
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -247,7 +247,6 @@ class Range extends Component {
         const data = this.unitsApi.get(unit)
         this.setUnitsAttr(data)
         this.set(this.data)
-        console.log(unit)
         this.trigger(EVENTS.CHANGEUNIT, unit)
       }
 
@@ -269,9 +268,7 @@ class Range extends Component {
           value: val,
           unit: this.data.unit
         }
-        console.log(data)
         this.unitsApi.set(data)
-        console.log(46)
         this.trigger(EVENTS.CHANGE, data)
         this.set(data)
       }

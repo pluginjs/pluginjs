@@ -2,7 +2,7 @@ import Pj from '@pluginjs/factory'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { wrap, append } from '@pluginjs/dom'
+import { parent, wrap, append } from '@pluginjs/dom'
 
 class Base {
   constructor(instance) {
@@ -16,19 +16,19 @@ class Base {
   }
 
   initBase() {
-    this.parent = this.element.parentNode
-    const wrapHtml = template.render(this.options.templates.wrap.call(this), {
-      classes: this.classes
-    })
+    this.$parent = parent(this.element)
 
-    wrap(wrapHtml, this.element)
-
-    this.wrap = this.element.parentNode
+    this.$wrap = wrap(
+      template.render(this.options.templates.wrap.call(this), {
+        classes: this.classes
+      }),
+      this.element
+    )
 
     this.clone = document.createElement('div')
 
     this.resetCloneStyle()
-    append(this.clone, this.wrap)
+    append(this.clone, this.$wrap)
 
     this.setStyle()
 
@@ -109,7 +109,7 @@ class Base {
 
   // todo  if not relative
   setStyle() {
-    addClass(this.classes.PARENT, this.parent)
+    addClass(this.classes.PARENT, this.$parent)
 
     addClass(this.getClass('{namespace}-hidden'), this.clone)
     this.hideClone()

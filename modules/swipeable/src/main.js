@@ -33,12 +33,12 @@ class Swipeable extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     this.power = this.options.power
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

@@ -44,8 +44,7 @@ class Collection {
       favoritesText: this.instance.translate('colorInScheme'),
       schemeText: this.instance.translate('myColors')
     })
-    // this.$collection = query(`.${this.classes.PANELCOLLECTION}`, this.instance.$panel)
-    console.log(this.element)
+
     this.element.append(...$collection)
     // create favorite item
     Object.keys(this.instance.data).forEach(groupName => {

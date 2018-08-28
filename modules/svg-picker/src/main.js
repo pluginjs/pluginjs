@@ -56,8 +56,8 @@ let DATA = null
 class SvgPicker extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.setupI18n()
 
     this.$svgPicker = addClass(
@@ -70,7 +70,6 @@ class SvgPicker extends Component {
     )
     this.$svgTrigger = query('.pj-dropdown-trigger', this.$svgPicker)
     insertAfter(this.$svgPicker, this.element)
-    console.log(this.$svgPicker)
     wrap(`<div class="${this.classes.WRAP}"></div>`, this.$svgPicker)
     insertAfter(`<div class=${this.classes.PANEL}></div>`, this.$svgPicker)
     hideElement(this.element)
@@ -81,7 +80,6 @@ class SvgPicker extends Component {
 
     this.data = DATA
     this.$dropdown = this.initDropdown()
-    console.log(this.$dropdown)
     this.$panel = this.$dropdown.$dropdown
 
     this.icon = null
@@ -91,7 +89,7 @@ class SvgPicker extends Component {
     this.$typeWrap = null
     this.icons = null
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -309,7 +307,6 @@ class SvgPicker extends Component {
         manageText: this.translate('manage')
       })
     )
-    console.log(this.$manage)
     this.$panel.append(this.$manage)
   }
 

@@ -41,9 +41,9 @@ class stickyTop extends Base {
 
   scrollHandle() {
     this.scroll = this.scrollTop()
-    const parentBotton = offset(this.parent).top + this.parent.clientHeight
-    this.isSticky = offset(this.wrap).top - this.options.spacing
-    this.isStuck = parentBotton - this.wrap.clientHeight - this.options.spacing
+    const parentBotton = offset(this.$parent).top + this.$parent.clientHeight
+    this.isSticky = offset(this.$wrap).top - this.options.spacing
+    this.isStuck = parentBotton - this.$wrap.clientHeight - this.options.spacing
     if (this.scroll > this.isSticky && this.scroll < this.isStuck) {
       this.stickyEle()
     } else if (this.scroll > this.isStuck && this.scroll < parentBotton) {

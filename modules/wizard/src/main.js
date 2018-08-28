@@ -47,8 +47,8 @@ class Wizard extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     setData(this.plugin, this, this.element)
     this.$steps = queryAll(this.options.step, this.element)
 
@@ -61,7 +61,7 @@ class Wizard extends Component {
 
     this.setupI18n()
     this.trigger(EVENTS.INIT)
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

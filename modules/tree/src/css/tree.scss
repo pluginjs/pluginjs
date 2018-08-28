@@ -50,14 +50,13 @@ $tree-input-font-family: "font-awesome";
       text-indent: 0;
     }
   }
-  
-    &-element {
 
+    &-element {
       &:hover {
         color: $tree-selected-color;
       }
     }
-  
+
     li[tabindex="0"] {
       margin-left: $tree-gatter;
       text-indent: 0;
@@ -90,9 +89,8 @@ $tree-input-font-family: "font-awesome";
 
 // stylelint-disable
   .#{$tree}-branch.#{$tree}-open {
-
     > .#{$tree}-element {
-      
+
       .#{$tree}-toggler {
         &::before {
           content: "\f0d7";

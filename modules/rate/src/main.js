@@ -39,14 +39,14 @@ import {
 class Rate extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     if (this.options.theme) {
       addClass(this.getThemeClass, this.element)
     }
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -84,8 +84,6 @@ class Rate extends Component {
   setIconStyle() {
     if (this.options.iconSize) {
       setStyle('font-size', this.options.iconSize, this.range)
-    } else {
-      setStyle('font-size', '40px', this.range)
     }
 
     this.defaulColor = this.options.iconColorClass

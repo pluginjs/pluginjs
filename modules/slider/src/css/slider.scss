@@ -14,7 +14,6 @@ $slider-video-outer-size: 60px !default;
 $slider-video-inner-size: 16px !default;
 $slider-video-color: $color-white !default;
 
-
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -172,7 +171,6 @@ $slider-video-color: $color-white !default;
       }
     }
   }
-
 
   &-video {
     position: absolute;

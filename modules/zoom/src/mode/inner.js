@@ -88,8 +88,8 @@ class inner extends Base {
     } else {
       setStyle(
         {
-          top: `${this.windowTopPos}px`,
-          left: `${this.windowLeftPos}px`
+          top: this.windowTopPos,
+          left: this.windowLeftPos
         },
         this.windowImage
       )

@@ -33,7 +33,7 @@ export default function styleable(classes = {}) {
       return ''
     }
 
-    plugin.prototype.initClasses = function(overrides) {
+    plugin.prototype.setupClasses = function(overrides) {
       let classes = {}
       if (
         typeof this.options !== 'undefined' &&

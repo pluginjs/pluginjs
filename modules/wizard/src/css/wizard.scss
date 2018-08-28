@@ -46,7 +46,6 @@ $wizard-button-color-light: $gray;
 $wizard-button-bg: $gray-lighter;
 $wizard-button-radius: $border-radius-sm;
 
-
 // Styles
 // =====================
 .#{$wizard} {
@@ -100,7 +99,6 @@ $wizard-button-radius: $border-radius-sm;
 }
 
 .#{$wizard}-done {
-
   .#{$wizard}-steps-item-icon {
     overflow: hidden;
     font-size: 0;
@@ -112,7 +110,6 @@ $wizard-button-radius: $border-radius-sm;
   }
 
   > .#{$wizard}-steps-item-content {
-  
     > .#{$wizard}-steps-item-title {
       color: $wizard-active-color;
 
@@ -124,11 +121,8 @@ $wizard-button-radius: $border-radius-sm;
 }
 
 .#{$wizard}-done.#{$wizard}-current {
-
   > .#{$wizard}-steps-item-content {
-
     > .#{$wizard}-steps-item-title {
-      
       &::after {
         background-color: $wizard-title-solid;
       }
@@ -150,7 +144,6 @@ $wizard-button-radius: $border-radius-sm;
 
 .#{$wizard}-steps .#{$wizard}-steps-item:last-child {
   .#{$wizard}-steps-item-title {
-  
     &::after {
       display: none;
     }
@@ -218,7 +211,7 @@ $wizard-button-radius: $border-radius-sm;
           border-color: $wizard-button-color-light;
           box-shadow: none;
         }
-    
+
         &:focus {
           color: $wizard-button-color-light;
           background-color: $wizard-button-bg;
@@ -262,7 +255,6 @@ $wizard-button-radius: $border-radius-sm;
 }
 
 .#{$wizard}-pane {
-
   .#{$wizard}-formControl {
     width: 100%;
     height: $wizard-formControl-height;
@@ -281,11 +273,11 @@ $wizard-button-radius: $border-radius-sm;
   &.#{$wizard}-error {
     .#{$wizard}-formControl {
       border-color: $wizard-error-color;
-  
+
       &:hover {
         border-color: $wizard-error-color;
       }
-  
+
       &:focus {
         border-color: $wizard-error-color;
       }
@@ -294,16 +286,16 @@ $wizard-button-radius: $border-radius-sm;
 }
 
 // stylelint-disable
-::-webkit-input-placeholder { /* WebKit browsers */ 
+::-webkit-input-placeholder { /* WebKit browsers */
   color: $wizard-formControl-border-color;
-} 
-::-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+}
+::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
   color: $wizard-formControl-border-color;
-}  
-::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
   color: $wizard-formControl-border-color;
-} 
-::-ms-input-placeholder { /* Internet Explorer 10+ */ 
+}
+::-ms-input-placeholder { /* Internet Explorer 10+ */
   color: $wizard-formControl-border-color;
-} 
+}
 // stylelint-enable

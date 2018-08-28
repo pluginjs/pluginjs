@@ -48,14 +48,14 @@ class FontEditor extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     hideElement(addClass(`${this.classes.NAMESPACE}-input`, this.element))
 
     this.setupI18n()
 
-    this.initStates()
+    this.setupStates()
     this.emptyize()
   }
 
@@ -312,7 +312,6 @@ class FontEditor extends Component {
     this.element.value = value
     // set attr
     Object.entries(this.value).forEach(([i, v]) => {
-      console.log(this.value)
       if (this.defaultVal[i] === v) {
         return
       }
@@ -331,7 +330,6 @@ class FontEditor extends Component {
 
       const attr = {}
       attr[i] = v
-      console.log(attr)
       setStyle(attr, this.$fillFontName)
     })
 

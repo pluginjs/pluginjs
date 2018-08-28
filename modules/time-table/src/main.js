@@ -54,8 +54,8 @@ import addWeeks from 'date-fns/add_weeks'
 class TimeTable extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     wrap(`<div class="${this.classes.NAMESPACE}"></div>`, this.element)
     this.wrap = this.element.parentNode

@@ -28,7 +28,7 @@ class Marker {
   init() {
     const offset = this.getOffset()
     setStyle('background', this.color, this.$el)
-    setStyle('left', `${offset}px`, this.$el)
+    setStyle('left', offset, this.$el)
 
     this.bind()
   }

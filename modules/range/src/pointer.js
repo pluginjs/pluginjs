@@ -18,12 +18,7 @@ class Pointer {
     const position = this.instance.direction.position
     const offset = getOffset(this.instance.$control)
 
-    trigger(
-      this.instance.selfEventName(`${this.instance.plugin}:moveStart`),
-      this,
-      this.element
-    )
-    // this.element.trigger(`${this.instance.plugin}:moveStart`, this)
+    trigger(this.instance.selfEventName('moveStart'), this, this.element)
 
     this.data = {}
     this.data.start = event[axis]
@@ -114,10 +109,11 @@ class Pointer {
   }
 
   updatePosition() {
-    const position = {}
-
-    position[this.instance.direction.position] = `${this.getPercent()}%`
-    setStyle(position, this.element)
+    setStyle(
+      this.instance.direction.position,
+      `${this.getPercent()}%`,
+      this.element
+    )
   }
 
   getPercent() {

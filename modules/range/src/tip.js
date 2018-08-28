@@ -1,10 +1,9 @@
 import { isString, isObject, isNumber, isFunction } from '@pluginjs/is'
-
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { append, parseHTML } from '@pluginjs/dom'
-// import { events as EVENTS } from './constant'
+
 class Tip {
   constructor(instance) {
     this.defaults = { active: 'always' }
@@ -12,7 +11,6 @@ class Tip {
   }
 
   init(instance) {
-    const that = this
     const opts = Object.assign({}, this.defaults, instance.options.tip)
 
     this.opts = opts
@@ -21,28 +19,25 @@ class Tip {
       show: instance.classes.SHOW
     }
 
-    instance.pointer.map((p, i) => { /* eslint-disable-line */
+    instance.pointer.forEach((p, i) => {
       const tip = parseHTML('<span></span>')
       append(tip, instance.pointer[i].element)
 
-      addClass(that.classes.tip, tip)
-      if (that.opts.active === 'onMove') {
+      addClass(this.classes.tip, tip)
+      if (this.opts.active === 'onMove') {
         setStyle('display', 'none', tip)
         bindEvent(
-          `${instance.plugin}:moveEnd`,
-          // this.selfEventName(`${instance.plugin}:moveEnd`),
+          instance.selfEventName('moveEnd'),
           () => {
-            that.hide(tip)
+            this.hide(tip)
             return false
           },
           p.element
         )
         bindEvent(
-          `${instance.plugin}:moveStart`,
-          // this.selfEventName(`${instance.plugin}:moveStart`),
+          instance.selfEventName('moveStart'),
           () => {
-            // const pointer = e.detail
-            that.show(tip)
+            this.show(tip)
             return false
           },
           p.element
@@ -50,8 +45,7 @@ class Tip {
       }
 
       bindEvent(
-        `${instance.plugin}:move`,
-        // this.selfEventName(`${instance.plugin}:move`),
+        instance.selfEventName('move'),
         () => {
           let value
           if (instance.options.isRange) {

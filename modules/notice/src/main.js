@@ -31,11 +31,11 @@ import {
 class Notice extends GlobalComponent {
   constructor(options = {}) {
     super()
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.$element = parseHTML(this.createHtml())
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
     this.show()
   }

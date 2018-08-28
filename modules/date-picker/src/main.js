@@ -68,7 +68,7 @@ class DatePicker extends Component {
     this.defaultOptions = deepMerge(DEFAULTS, options, data)
     this.options = deepMerge(DEFAULTS, options, data)
     this.firstClassName = this.$element.className
-    this.initClasses()
+    this.setupClasses()
 
     Object.entries(data).forEach(([value, option]) => {
       this.options[option] = this.parseHtmlString(option, value)
@@ -97,7 +97,7 @@ class DatePicker extends Component {
     append(this.$inputIcon, this.$inputWrap)
 
     this.setupI18n()
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -1378,7 +1378,13 @@ class DatePicker extends Component {
     const left = (winWidth - calendarWidth) / 2
     const top = (winHeight - calendarHeight) / 2
 
-    setStyle({ left, top }, this.$picker)
+    setStyle(
+      {
+        left: `${left}px`,
+        top: `${top}px`
+      },
+      this.$picker
+    )
   }
 
   toggle() {
@@ -2145,7 +2151,7 @@ class DatePicker extends Component {
     }
     this.unbind()
     this.$picker.remove()
-    this.initStates()
+    this.setupStates()
     this.initialize()
     return undefined    /* eslint-disable-line */
   }
@@ -2168,7 +2174,7 @@ class DatePicker extends Component {
     }
     this.unbind()
     this.$picker.remove()
-    this.initStates()
+    this.setupStates()
     this.initialize()
     return undefined  /* eslint-disable-line */
   }

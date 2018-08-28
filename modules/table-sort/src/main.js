@@ -53,10 +53,10 @@ class TableSort extends Component {
 
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     addClass(this.classes.NAMESPACE, this.element)
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

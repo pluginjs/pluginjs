@@ -7,7 +7,7 @@ export const events = {
   EXIT: 'exit',
   DISABLE: 'disable',
   ENABLE: 'enable',
-  ANIMATIONEND: 'animationEnd'
+  END: 'end'
 }
 
 export const classes = {

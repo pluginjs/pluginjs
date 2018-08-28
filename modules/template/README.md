@@ -51,7 +51,6 @@ Returns
 |------|------|-------------|
 | parsedResult | `String` | |
 
-
 ## Browser support
 
 Tested on all major browsers.

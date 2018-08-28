@@ -35,8 +35,8 @@ class BeforeAfter extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     // Current state information for the drag operation.
     this._drag = {
@@ -50,7 +50,7 @@ class BeforeAfter extends Component {
     this.height = getHeight(this.element)
     this.easing = easing.get(this.options.easing) || easing.get('ease')
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

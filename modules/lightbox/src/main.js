@@ -41,9 +41,9 @@ class Gallery extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
-    this.initStates()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
+    this.setupStates()
     this.initialize()
   }
 

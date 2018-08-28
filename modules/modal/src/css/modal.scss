@@ -122,19 +122,19 @@ $modal-vertification-borderClor: $gray-border;
     outline: 0;
     opacity: 0.5;
     appearance: none;
-  
+
     &:not(:disabled):hover {
       cursor: pointer;
       background: initial;
       opacity: 0.9;
     }
-  
+
     &:not(:disabled):active {
       background: initial;
       border-color: initial;
       box-shadow: none;
     }
-  
+
     &:not(:disabled):focus {
       background: initial;
     }
@@ -185,18 +185,18 @@ $modal-vertification-borderClor: $gray-border;
   &-verification,
   &-wideDialog {
     padding: $modal-prompt-padding;
-    
+
     .#{$modal}-title {
       padding: $modal-prompt-title-padding;
       font-size: $modal-prompt-title-font-size;
       color: $color-white;
       background: $modal-prompt-title-bgColor;
     }
-    
+
     .#{$modal}-body {
       padding: $modal-prompt-body-padding;
     }
-    
+
     .#{$modal}-buttons {
       padding-right: $modal-prompt-buttons-padding-right;
       margin: 0;
@@ -224,11 +224,11 @@ $modal-vertification-borderClor: $gray-border;
   &-wideDialog {
     width: $modal-wideDialog-width !important;
   }
-  
+
   &-open {
     overflow: hidden;
   }
-  
+
   &--fadeIn {
     animation: modal__fadeIn $modal-duration $modal-timing;
   }
@@ -249,7 +249,6 @@ $modal-vertification-borderClor: $gray-border;
     }
   }
 }
-
 
 @keyframes modal__fadeIn {
   0% {

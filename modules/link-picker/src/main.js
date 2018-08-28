@@ -59,9 +59,9 @@ class LinkPicker extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initStates()
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupStates()
+    this.setupClasses()
     this.setupI18n()
     if (isEmptyObject(SOURCES)) {
       this.element.setAttribute('placeholder', 'register sources first.')
@@ -201,9 +201,6 @@ class LinkPicker extends Component {
       }
     )
     this.initDropdown()
-
-    // console.log($dropdown)
-    // console.log(this.$empty)
   }
 
   initDropdown() {
@@ -464,7 +461,6 @@ class LinkPicker extends Component {
         this.eventName(`linkPicker:${source}:${connect}:change`),
         (e, instance, connectName) => {
           const api = getData('input', $dropdown)
-          console.log($dropdown)
 
           const dropdownData = []
           // let globalData = this.getData();
@@ -481,8 +477,6 @@ class LinkPicker extends Component {
               name: key
             })
           })
-          console.log(api)
-          console.log(dropdownData)
 
           api.replaceByData(dropdownData)
           api.set(apiActive)
@@ -594,7 +588,6 @@ class LinkPicker extends Component {
 
     //     if (connect) {
     //       this.element.on(this.eventName(`linkPicker:${sourceName}:${connect}:change`), (e, instance, name) => {
-
     //       })
     //     }
     //   })

@@ -33,12 +33,12 @@ class Modal extends GlobalComponent {
   constructor(options = {}) {
     super()
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.$element = parseHTML(this.createHtml())
     this.$container = query(`.${this.classes.CONTAINER}`, this.$element)
 
-    this.initStates()
+    this.setupStates()
     this.setupI18n()
 
     this.initialize()

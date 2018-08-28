@@ -53,12 +53,12 @@ class Slider extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
+    this.setupOptions(DEFAULTS, options)
 
     this.current = this.options.current || 0
 
-    this.initClasses()
-    this.initStates()
+    this.setupClasses()
+    this.setupStates()
     this.initialize()
   }
 

@@ -37,9 +37,9 @@ class Video extends Component {
 
     super(element)
 
-    this.initOptions(defaults, options)
-    this.initClasses()
-    this.initStates()
+    this.setupOptions(defaults, options)
+    this.setupClasses()
+    this.setupStates()
     this.initialize()
   }
 

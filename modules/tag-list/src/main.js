@@ -37,8 +37,8 @@ class TagList extends List {
   constructor(element, options = {}) {
     super(element, options)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.setupI18n()
     this.data = []
     this.sortable = null

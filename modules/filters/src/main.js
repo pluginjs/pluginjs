@@ -37,12 +37,12 @@ class Filters extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.itemSelector = `.${this.classes.ITEM}`
     this.$activeItem = null
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

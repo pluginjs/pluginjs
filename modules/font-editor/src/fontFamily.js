@@ -46,7 +46,6 @@ export default class FontFamily {
         }
 
         // const fontFamily = data('fontFamily', value)
-        // console.log(fontFamily)
         that.instance.value.fontFamily = value
 
         // if (fontFamily !== 'inherit') {

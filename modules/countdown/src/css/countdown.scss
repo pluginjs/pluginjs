@@ -41,10 +41,8 @@ $countdown-label-color: $gray-darker;
   text-transform: uppercase;
 }
 
-
 @media only screen and (max-width: 896px) {
   .#{$countdown} {
-
     .#{$countdown}-time {
       margin: $countdown-small-spacer;
     }

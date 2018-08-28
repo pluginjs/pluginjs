@@ -1,4 +1,3 @@
-// import util from '../../util'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
@@ -49,9 +48,9 @@ class weekEvent {
     )
 
     if (this.position === 'left') {
-      setStyle('left', '0px', this.element)
+      setStyle('left', 0, this.element)
     } else {
-      setStyle('right', '0px', this.element)
+      setStyle('right', 0, this.element)
     }
 
     this.setContent()

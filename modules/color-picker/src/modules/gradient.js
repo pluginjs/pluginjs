@@ -246,14 +246,12 @@ class Gradients {
 
         const $marker = this.instance.$marker
         const index = getData('value', $marker).index
-        // console.log(index)
         $marker.remove()
         removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
         this.markers.splice(index, 1)
         this.gradient.removeById(index)
         this.sort()
         this.gradient.reorder()
-        // console.log(this.gradient)
         this.update()
         this.instance.leave('SelectedMarker')
         return null
@@ -299,7 +297,7 @@ class Gradients {
 
   move(el, size) {
     const position = Math.max(0, Math.min(size, this.actionBarSize))
-    setStyle('left', position, el)
+    setStyle('left', `${position}px`, el)
   }
 
   sort() {
@@ -401,7 +399,6 @@ class Gradients {
     } else {
       this.gradient.privateType = 'RADIAL'
     }
-    // console.log(this.gradient)
     this.gradientValue = this.gradient.toString()
     setStyle('background', this.gradientValue, this.$view)
 
@@ -446,14 +443,11 @@ class Gradients {
       color = this.instance.info.gradient
     }
 
-    // console.log(color)
     this.set(color)
   }
 
   set(val) {
-    // console.log(val)
     this.gradient = new Gradient(val)
-    // console.log(this.gradient, 90)
     if (val.indexOf('linear') > -1) {
       this.mode = 'linear'
       this.angle = this.gradient.value.angle

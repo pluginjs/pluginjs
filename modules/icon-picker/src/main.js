@@ -61,14 +61,14 @@ let DATA = null
 class IconsPicker extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.setupI18n()
 
     this.data = DATA
     this.$icon = null
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -83,7 +83,6 @@ class IconsPicker extends Component {
         linkTitle: this.translate('emptyLinkTitle')
       })
     )
-    console.log(this.$iconPicker)
     this.$dropdown = Dropdown.of(this.$iconTrigger, {
       data,
       target: next(this.$iconPicker),
@@ -168,7 +167,7 @@ class IconsPicker extends Component {
         `.${this.classes.PACKAGEBODY} ul`,
         this.panel
       )
-      // console.log(Scrollable.findInstanceByElement( parentWith(hasClass(this.classes.PACKAGEBODY), this.$selectorList[0])))
+
       this.$scrollable = this.$selectorList.map(el =>
         Scrollable.of(parentWith(hasClass(this.classes.PACKAGEBODY), el))
       )
@@ -265,7 +264,7 @@ class IconsPicker extends Component {
             'keydown',
             e => {
               if (e.keyCode === 13 && e.which === 13) {
-                console.log('manage enter')
+
               }
             },
             target
@@ -330,11 +329,9 @@ class IconsPicker extends Component {
       `.${this.classes.PACKAGETITLE}`,
       ({ target }) => {
         const _package = parent(target)
-        // console.log(1)
         if (getData('open', _package)) {
           that.close(_package)
         } else {
-          // console.log(_package)
           that.open(_package)
         }
       },
@@ -511,7 +508,6 @@ class IconsPicker extends Component {
       })
     )
     let group = null
-    // console.log(categories)
     if (categories) {
       for (const name in categories) {
         if (categories[name].indexOf(icon) >= 0) {
@@ -764,7 +760,6 @@ class IconsPicker extends Component {
         addClass(this.classes.PACKAGEHIDE, v)
       } else {
         removeClass(this.classes.PACKAGEHIDE, v)
-        console.log(v)
         this.open(v)
       }
     })
@@ -778,7 +773,6 @@ class IconsPicker extends Component {
 
     addClass(this.classes.PACKAGEOPEN, el)
     setData('open', true, el)
-    console.log(this.$scrollable)
     this.$scrollable.find(plugin => el.contains(plugin.element)).enable()
     this.$scrollable.find(plugin => el.contains(plugin.element)).update()
   }

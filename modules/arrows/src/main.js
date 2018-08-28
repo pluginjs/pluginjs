@@ -33,13 +33,13 @@ class Arrows extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     this.prevSelector = this.classes.PREV
     this.nextSelector = this.classes.NEXT
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

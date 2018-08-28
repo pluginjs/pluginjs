@@ -58,7 +58,7 @@ describe('styled', () => {
       const el = document.createElement('div')
 
       el.style.marginBottom = '10px'
-      styled.setStyle('marginBottom', '', el)
+      styled.setStyle('marginBottom', null, el)
 
       expect(el.style.marginBottom).toBe('')
     })

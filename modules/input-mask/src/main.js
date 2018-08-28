@@ -36,12 +36,12 @@ import {
 class InputMask extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     addClass(this.classes.INPUT, this.element)
     addClass(this.classes.INPUTMODE, this.element)
     this.data = ''
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

@@ -33,7 +33,6 @@ export default class Attachment {
       `.${this.instance.classes.ATTACHMENT}`,
       this.instance.$expandPanel
     )
-    // console.log(this.$attachment)
     this.$dropdown = query(
       `.${this.instance.options.attachment.namespace}`,
       this.instance.$expandPanel

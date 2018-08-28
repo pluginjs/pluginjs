@@ -20,7 +20,6 @@ if(!('IntersectionObserver' in window &&
 (function(window, document) {
 'use strict';
 
-
 // Exits early if all IntersectionObserver and IntersectionObserverEntry
 // features are natively supported.
 if ('IntersectionObserver' in window &&
@@ -29,7 +28,6 @@ if ('IntersectionObserver' in window &&
   return;
 }
 
-
 /**
  * An IntersectionObserver registry. This registry exists to hold a strong
  * reference to IntersectionObserver instances currently observering a target
@@ -37,7 +35,6 @@ if ('IntersectionObserver' in window &&
  * garbage collected.
  */
 var registry = [];
-
 
 /**
  * Creates the global IntersectionObserverEntry constructor.
@@ -71,7 +68,6 @@ function IntersectionObserverEntry(entry) {
     this.intersectionRatio = this.isIntersecting ? 1 : 0;
   }
 }
-
 
 /**
  * Creates the global IntersectionObserver constructor.
@@ -112,13 +108,11 @@ function IntersectionObserver(callback, opt_options) {
   }).join(' ');
 }
 
-
 /**
  * The minimum interval within which the document will be checked for
  * intersection changes.
  */
 IntersectionObserver.prototype.THROTTLE_TIMEOUT = 100;
-
 
 /**
  * The frequency in which the polyfill polls for intersection changes.
@@ -126,7 +120,6 @@ IntersectionObserver.prototype.THROTTLE_TIMEOUT = 100;
  * calling `observe` on the first target.
  */
 IntersectionObserver.prototype.POLL_INTERVAL = null;
-
 
 /**
  * Starts observing a target element for intersection changes based on
@@ -150,7 +143,6 @@ IntersectionObserver.prototype.observe = function(target) {
   this._monitorIntersections();
 };
 
-
 /**
  * Stops observing a target element for intersection changes.
  * @param {Element} target The DOM element to observe.
@@ -167,7 +159,6 @@ IntersectionObserver.prototype.unobserve = function(target) {
   }
 };
 
-
 /**
  * Stops observing all target elements for intersection changes.
  */
@@ -176,7 +167,6 @@ IntersectionObserver.prototype.disconnect = function() {
   this._unmonitorIntersections();
   this._unregisterInstance();
 };
-
 
 /**
  * Returns any queue entries that have not yet been reported to the
@@ -189,7 +179,6 @@ IntersectionObserver.prototype.takeRecords = function() {
   this._queuedEntries = [];
   return records;
 };
-
 
 /**
  * Accepts the threshold value from the user configuration object and
@@ -211,7 +200,6 @@ IntersectionObserver.prototype._initThresholds = function(opt_threshold) {
     return t !== a[i - 1];
   });
 };
-
 
 /**
  * Accepts the rootMargin value from the user configuration object
@@ -241,7 +229,6 @@ IntersectionObserver.prototype._parseRootMargin = function(opt_rootMargin) {
 
   return margins;
 };
-
 
 /**
  * Starts polling for intersection changes if the polling is not already
@@ -277,7 +264,6 @@ IntersectionObserver.prototype._monitorIntersections = function() {
   }
 };
 
-
 /**
  * Stops polling for intersection changes.
  * @private
@@ -298,7 +284,6 @@ IntersectionObserver.prototype._unmonitorIntersections = function() {
     }
   }
 };
-
 
 /**
  * Scans each observation target for intersection changes and adds them
@@ -348,7 +333,6 @@ IntersectionObserver.prototype._checkForIntersections = function() {
     this._callback(this.takeRecords(), this);
   }
 };
-
 
 /**
  * Accepts a target and root rect computes the intersection between then
@@ -408,7 +392,6 @@ IntersectionObserver.prototype._computeTargetAndRootIntersection =
   return intersectionRect;
 };
 
-
 /**
  * Returns the root rect after being expanded by the rootMargin value.
  * @return {Object} The expanded root rect.
@@ -434,7 +417,6 @@ IntersectionObserver.prototype._getRootRect = function() {
   return this._expandRectByRootMargin(rootRect);
 };
 
-
 /**
  * Accepts a rect and expands it by the rootMargin value.
  * @param {Object} rect The rect object to expand.
@@ -457,7 +439,6 @@ IntersectionObserver.prototype._expandRectByRootMargin = function(rect) {
 
   return newRect;
 };
-
 
 /**
  * Accepts an old and new entry and returns true if at least one of the
@@ -494,7 +475,6 @@ IntersectionObserver.prototype._hasCrossedThreshold =
   }
 };
 
-
 /**
  * Returns whether or not the root element is an element and is in the DOM.
  * @return {boolean} True if the root element is an element and is in the DOM.
@@ -503,7 +483,6 @@ IntersectionObserver.prototype._hasCrossedThreshold =
 IntersectionObserver.prototype._rootIsInDom = function() {
   return !this.root || containsDeep(document, this.root);
 };
-
 
 /**
  * Returns whether or not the target element is a child of root.
@@ -514,7 +493,6 @@ IntersectionObserver.prototype._rootIsInDom = function() {
 IntersectionObserver.prototype._rootContainsTarget = function(target) {
   return containsDeep(this.root || document, target);
 };
-
 
 /**
  * Adds the instance to the global IntersectionObserver registry if it isn't
@@ -527,7 +505,6 @@ IntersectionObserver.prototype._registerInstance = function() {
   }
 };
 
-
 /**
  * Removes the instance from the global IntersectionObserver registry.
  * @private
@@ -537,7 +514,6 @@ IntersectionObserver.prototype._unregisterInstance = function() {
   if (index != -1) registry.splice(index, 1);
 };
 
-
 /**
  * Returns the result of the performance.now() method or null in browsers
  * that don't support the API.
@@ -546,7 +522,6 @@ IntersectionObserver.prototype._unregisterInstance = function() {
 function now() {
   return window.performance && performance.now && performance.now();
 }
-
 
 /**
  * Throttles a function and delays its executiong, so it's only called at most
@@ -568,7 +543,6 @@ function throttle(fn, timeout) {
   };
 }
 
-
 /**
  * Adds an event handler to a DOM node ensuring cross-browser compatibility.
  * @param {Node} node The DOM node to add the event handler to.
@@ -586,7 +560,6 @@ function addEvent(node, event, fn, opt_useCapture) {
   }
 }
 
-
 /**
  * Removes a previously added event handler from a DOM node.
  * @param {Node} node The DOM node to remove the event handler from.
@@ -603,7 +576,6 @@ function removeEvent(node, event, fn, opt_useCapture) {
     node.detatchEvent('on' + event, fn);
   }
 }
-
 
 /**
  * Returns the intersection between two rect objects.
@@ -629,7 +601,6 @@ function computeRectIntersection(rect1, rect2) {
     height: height
   };
 }
-
 
 /**
  * Shims the native getBoundingClientRect for compatibility with older IE.
@@ -661,7 +632,6 @@ function getBoundingClientRect(el) {
   }
   return rect;
 }
-
 
 /**
  * Returns an empty rect object. An empty rect is returned when an element
@@ -696,7 +666,6 @@ function containsDeep(parent, child) {
   return false;
 }
 
-
 /**
  * Gets the parent node of an element or its host element if the parent node
  * is a shadow root.
@@ -712,7 +681,6 @@ function getParentNode(node) {
   }
   return parent;
 }
-
 
 // Exposes the constructors globally.
 window.IntersectionObserver = IntersectionObserver;

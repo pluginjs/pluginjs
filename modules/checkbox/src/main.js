@@ -54,7 +54,7 @@ class Checkbox extends Component {
   constructor(element, options = {}) {
     super(element)
     this.$element = this.element
-    this.initOptions(DEFAULTS, options)
+    this.setupOptions(DEFAULTS, options)
     this.$group = this.options.getGroup.call(this)
     if (
       this.$group.length > 1 ||
@@ -65,8 +65,8 @@ class Checkbox extends Component {
     } else {
       this.group = false
     }
-    this.initClasses()
-    this.initStates()
+    this.setupClasses()
+    this.setupStates()
     this.initialize()
   }
 
@@ -90,14 +90,12 @@ class Checkbox extends Component {
     this.$wrap = this.options.getWrap.call(this)
 
     if (!this.$wrap) {
-      const html = parseHTML(
+      this.$wrap = wrap(
         template.render(this.options.templates.wrap.call(this), {
           classes: this.classes
-        })
+        }),
+        this.$element
       )
-
-      wrap(html, this.$element)
-      this.$wrap = this.options.getWrap.call(this)
       append(this.$label, this.$wrap)
       this.enter('wrapped')
     }

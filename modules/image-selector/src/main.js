@@ -48,8 +48,8 @@ class ImageSelector extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.setupI18n()
 
     this.$wrapper = wrap(
@@ -64,7 +64,7 @@ class ImageSelector extends Component {
 
     this.parseHtml()
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -246,7 +246,8 @@ class ImageSelector extends Component {
 
   createItem(data) {
     return setStyle(
-      { 'background-image': `url("${data.img}")` },
+      'background-image',
+      `url("${data.img}")`,
       parseHTML(`<li class="${this.classes.ITEM} icon-check" data-label="${
         data.value
       }">

@@ -10,8 +10,7 @@ class Selected {
     addClass(instance.classes.SELECTED, this.$arrow)
     if (instance.options.isRange === false) {
       bindEvent(
-        // `${instance.plugin}:move`,
-        `${instance.plugin}:move`,
+        instance.selfEventName('move'),
         e => {
           const pointer = e.detail
           setStyle(

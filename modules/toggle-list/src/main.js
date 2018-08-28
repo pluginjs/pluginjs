@@ -42,7 +42,7 @@ class ToggleList extends List {
   constructor(element, options = {}) {
     const defaultOptions = deepMerge(DEFAULTS, options)
     super(element, defaultOptions)
-    this.initClasses()
+    this.setupClasses()
 
     this.$wrapper = parent(this.element)
     addClass(this.classes.NAMESPACE, this.$wrapper)

@@ -36,7 +36,6 @@ $tree-ul-margin: 28px !default;
 
   // list
   &-branch {
-
     > ul {
       display: none;
 
@@ -46,7 +45,7 @@ $tree-ul-margin: 28px !default;
     }
 
     &.#{$tree}-open {
-      
+
       > ul {
         display: block;
       }
@@ -54,7 +53,6 @@ $tree-ul-margin: 28px !default;
   }
 
   &-element {
-
     > * {
       display: inline-block;
       letter-spacing: 0;

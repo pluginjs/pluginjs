@@ -15,9 +15,7 @@ const RegExpStrings = (() => {
   )
 
   const stop = new RegExp(`(${color.source})\\s*(${position.source}){0,1}`, 'i')
-  // console.log(stop)
   const stops = new RegExp(stop.source, 'gi')
-  // console.log(stops)
   const parameters = new RegExp(
     `(?:(${shapeOrAngle.source})){0,1}\\s*,{0,1}\\s*(.*?)\\s*`,
     'i'
@@ -64,7 +62,6 @@ export default {
     // console.log(RegExpStrings.FULL.exec(string))
     if ((matched = RegExpStrings.FULL.exec(string)) !== null) {
       const value = this.parseParameters(matched[3])
-      // console.log(value)
       const type = matched[2]
 
       switch (type) {

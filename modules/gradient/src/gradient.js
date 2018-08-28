@@ -206,7 +206,6 @@ class Gradient {
   toStringWithAngle(angle, prefix) {
     const value = Object.assign({}, this.value)
     value.angle = GradientString.parseAngle(angle)
-    // console.log(value.angle)
     if (prefix === true) {
       prefix = util.getPrefix()
     }

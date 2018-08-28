@@ -47,8 +47,8 @@ class Scrollbar extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     element.direction = this.options.direction
 
     if (this.options.direction === 'vertical') {
@@ -81,7 +81,7 @@ class Scrollbar extends Component {
 
     this.easing = easing.get(this.options.easing) || easing.get('ease')
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

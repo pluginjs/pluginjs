@@ -31,8 +31,8 @@ class Gmap extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     this.markers = []
     addClass(this.classes.ELEMENT, this.element)
@@ -40,7 +40,7 @@ class Gmap extends Component {
       addClass(this.getThemeClass(), this.element)
     }
 
-    this.initStates()
+    this.setupStates()
     if (!(isObject(window.google) && window.google.maps)) {
       this.loadScript()
     } else {

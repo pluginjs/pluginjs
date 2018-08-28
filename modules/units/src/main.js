@@ -40,14 +40,14 @@ import {
 class Units extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     this.$wrap = parseHTML('<div></div>')
     this.value = ''
     this.data = {}
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -147,7 +147,6 @@ class Units extends Component {
       }
     }
     this.unit = this.options.defaultUnit || data[0].label
-    console.log(this.unit, 897)
     const dropdowninstance = DROPDOWN.of($unitsTrigger, {
       width: this.dropdownWidth,
       trigger: 'click',
@@ -161,10 +160,8 @@ class Units extends Component {
     return dropdowninstance
   }
   cacheValue(unit, value = '') {
-    console.log(this.value)
     if (value) {
       this.data[unit] = value
-      console.log(this.data[unit])
       return
     }
     this.data[unit] = this.value
@@ -184,8 +181,6 @@ class Units extends Component {
 
         this.value = parseFloat(value, 10)
         this.value = value
-        console.log(this.value)
-        console.log(this.getUnit().dataset.value, 9897)
         this.cacheValue(this.getUnit().dataset.value, this.value)
         this.update(this.getUnit().dataset.value)
         this.trigger(EVENTS.CHANGEVAL, this.value)
@@ -193,8 +188,6 @@ class Units extends Component {
       this.$input
     )
     this.TRIGGER.options.onChange = () => {
-      console.log(1)
-      console.log(this.getUnit())
       if (this.unit === this.getUnit().dataset.value) {
         return
       }
@@ -228,7 +221,6 @@ class Units extends Component {
   }
 
   set(data, trigger = true) {
-    console.log(data, 9865)
     const hasUnit =
       typeof data.unit !== 'undefined' &&
       data.unit !== null &&
@@ -239,11 +231,9 @@ class Units extends Component {
 
     this.$input.value = this.value
     this.element.value = `${this.value}${this.unit}`
-    // this.$element.val(`${this.value}${this.unit}`)
     this.cacheValue(this.unit, this.value)
 
     if (hasUnit) {
-      console.log(this.unit, 123)
       this.TRIGGER.selectItem(this.unit)
       this.trigger(EVENTS.SETUNIT, this.unit)
     }
@@ -330,7 +320,6 @@ class Units extends Component {
       this.unbind()
       this.TRIGGER.element.remove()
       this.TRIGGER.destroy()
-      // this.$element.unwrap()
       removeClass(this.classes.NAMESPACE, this.element)
       removeClass(this.getThemeClass(), this.$wrap)
       this.element.value = ''

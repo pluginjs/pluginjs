@@ -23,7 +23,7 @@ describe('styleable()', () => {
     it('should return class name with namespace', () => {
       const el = document.createElement('div')
       const api = Sample.of(el)
-      api.initClasses()
+      api.setupClasses()
 
       expect(api.getClass('{namespace}-foo')).toBe('pj-sample-foo')
     })
@@ -31,7 +31,7 @@ describe('styleable()', () => {
     it('should return class name with specify arg and namespace', () => {
       const el = document.createElement('div')
       const api = Sample.of(el)
-      api.initClasses()
+      api.setupClasses()
 
       expect(api.getClass('{namespace}-{type}', 'type', 'foo')).toBe(
         'pj-sample-foo'
@@ -43,7 +43,7 @@ describe('styleable()', () => {
     it('should return multi class name', () => {
       const el = document.createElement('div')
       const api = Sample.of(el)
-      api.initClasses()
+      api.setupClasses()
 
       expect(api.getClasses('{namespace}-{type}', 'type', 'foo bar')).toBe(
         'pj-sample-foo pj-sample-bar'
@@ -51,13 +51,13 @@ describe('styleable()', () => {
     })
   })
 
-  describe('initClasses()', () => {
-    it('should add classes to this after initClasses', () => {
+  describe('setupClasses()', () => {
+    it('should add classes to this after setupClasses', () => {
       const el = document.createElement('div')
       const api = Sample.of(el)
       expect(api.classes).toBeUndefined()
 
-      api.initClasses()
+      api.setupClasses()
 
       expect(api.classes).toBeObject()
 
@@ -76,7 +76,7 @@ describe('styleable()', () => {
           NAMESPACE: 'sample'
         }
       })
-      api.initClasses()
+      api.setupClasses()
 
       expect(api.classes).toEqual({
         NAMESPACE: 'sample',

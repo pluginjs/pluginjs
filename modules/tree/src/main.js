@@ -35,14 +35,14 @@ export default class Tree extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     this.DATAPARSER = new DataParser(this.options, this)
     this.HTMLPARSER = new HtmlParser(this.options, this)
     this.EVENTS = EVENTS
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

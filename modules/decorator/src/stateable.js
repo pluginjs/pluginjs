@@ -1,6 +1,6 @@
 export default function stateable() {
   return function(plugin) {
-    plugin.prototype.initStates = function(states = {}) {
+    plugin.prototype.setupStates = function(states = {}) {
       this._states = states
     }
 

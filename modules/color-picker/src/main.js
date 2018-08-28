@@ -3,11 +3,10 @@ import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { hideElement, showElement } from '@pluginjs/styled' // setStyle
+import { hideElement, showElement } from '@pluginjs/styled'
 import {
   append,
   parseHTML,
-  parent,
   children,
   // prepend,
   query,
@@ -67,14 +66,14 @@ class ColorPicker extends Component {
   constructor(element, options = {}) {
     super(element)
     // options
-    this.initOptions(DEFAULTS, options)
+    this.setupOptions(DEFAULTS, options)
     if (options.module) {
       this.options.module = options.module
     }
     this.firstClassName = this.element.className
     this.setupI18n()
     // class
-    this.initClasses()
+    this.setupClasses()
     compose(
       attr({ placeholder: this.options.placeholder }),
       addClass(this.classes.NAMESPACE, 'pj-input')
@@ -97,7 +96,7 @@ class ColorPicker extends Component {
       gradient: 'linear-gradient(90deg, #fff 0%,#000 100%)'
     }
     // init
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -210,11 +209,10 @@ class ColorPicker extends Component {
     })
 
     append(this.$panel, this.$wrap)
-    wrap(
-      parseHTML(`<div class='${this.classes.PANELWRAP}'></div>`),
+    this.$panelWrap = wrap(
+      `<div class='${this.classes.PANELWRAP}'></div>`,
       this.$panel
     )
-    this.$panelWrap = parent(this.$panel)
 
     // init element
     this.$trigger = query(`.${this.classes.PANELTRIGGER}`, this.$panel)
@@ -410,7 +408,6 @@ class ColorPicker extends Component {
         }
 
         // if (this.hasModule('gradient')) {
-
         //   this.setGradient(
         //     this.HISTORY.colors[this.HISTORY.colors.length - 1]
         //   )
@@ -557,14 +554,12 @@ class ColorPicker extends Component {
   }
 
   openPanel() {
-    // console.log(this.info)
     const colorArr = Object.entries(this.info)
     this.oldColor = {
       collection: colorArr[0][1],
       solid: colorArr[1][1],
       gradient: colorArr[2][1]
     }
-    // console.log(this.oldColor)
     addClass(this.classes.OPENPANEL, this.$panelWrap)
     addClass(this.classes.OPENACTIVE, this.element)
     showElement(this.$mask)

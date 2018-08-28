@@ -43,15 +43,15 @@ class stickyBottom extends Base {
     this.scroll = this.scrollTop() + document.body.clientHeight
     // let Botton = this.$wrap.offset().top + this.$wrap.height()
     this.isSticky =
-      offset(this.wrap).top + this.wrap.clientHeight + this.options.spacing
+      offset(this.$wrap).top + this.$wrap.clientHeight + this.options.spacing
     this.isStuck =
-      offset(this.parent).top + this.wrap.clientHeight + this.options.spacing
+      offset(this.$parent).top + this.$wrap.clientHeight + this.options.spacing
 
     if (this.scroll <= this.isSticky && this.scroll > this.isStuck) {
       this.stickyEle()
     } else if (
       this.scroll <= this.isStuck &&
-      this.scroll > offset(this.parent).top
+      this.scroll > offset(this.$parent).top
     ) {
       this.stuckEle()
     } else {

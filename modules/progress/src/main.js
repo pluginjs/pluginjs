@@ -32,8 +32,8 @@ class Progress extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     if (this.options.bootstrap) {
       this.$target = query(`.${this.classes.BAR}`, this.element)
@@ -64,7 +64,7 @@ class Progress extends Component {
     this.goal = this.options.goal
     this.$bar = query(`.${this.classes.BAR}`, this.element)
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

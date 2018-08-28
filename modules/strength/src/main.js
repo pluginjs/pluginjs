@@ -35,8 +35,8 @@ class Strength extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     if (this.options.usernameField) {
       this.$username = query(this.options.usernameField)
@@ -48,7 +48,7 @@ class Strength extends Component {
     this.shown = false
 
     this.setupI18n()
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -61,7 +61,6 @@ class Strength extends Component {
     this.$meter = query(`.${this.classes.METER}`, this.$container)
 
     this.$scoreElement = query(`.${this.classes.SCORE}`, this.$container)
-    console.log(this.$scoreElement)
     this.$input = query(`.${this.classes.INPUT}`, this.$container)
     this.$wrap = query(`.${this.classes.ADDON}`, this.$container)
 
@@ -113,8 +112,6 @@ class Strength extends Component {
         this.$scoreElement.innerHTML = this.translate(
           this.options.scoreLables[status]
         )
-        console.log(score)
-        console.log(status)
         if (status !== this.status) {
           const newClass = this.options.scoreClasses[status]
           const oldClass = this.options.scoreClasses[this.status]

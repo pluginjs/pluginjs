@@ -305,7 +305,7 @@ class Gradient {
 
   move(el, size) {
     const position = Math.max(0, Math.min(size, this.actionBarSize))
-    setStyle('left', position, el)
+    setStyle('left', `${position}px`, el)
   }
 
   sort() {

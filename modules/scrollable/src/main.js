@@ -43,8 +43,8 @@ class Scrollable extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     this.attributes = {
       vertical: {
@@ -100,7 +100,7 @@ class Scrollable extends Component {
 
     this.easing = easing.get(this.options.easing) || easing.get('ease')
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
   /* eslint-disable complexity */
@@ -112,22 +112,22 @@ class Scrollable extends Component {
       } else {
         this.$container = query(this.options.containerSelector, this.element)
       }
-      this.wrap = this.element
+      this.$wrap = this.element
 
       if (position === 'static') {
-        setStyle('position', 'relative', this.wrap)
+        setStyle('position', 'relative', this.$wrap)
       }
     } else {
       wrap('<div></div>', this.element)
       this.$container = this.element
-      this.wrap = parent(this.$container)
-      this.wrap.style.height =
+      this.$wrap = parent(this.$container)
+      this.$wrap.style.height =
         getHeight(this.element) >= 0 ? `${getHeight(this.element)}px` : '0px'
 
       if (position !== 'static') {
-        setStyle({ position }, this.wrap)
+        setStyle('position', position, this.$wrap)
       } else {
-        setStyle('position', 'relative', this.wrap)
+        setStyle('position', 'relative', this.$wrap)
       }
     }
 
@@ -177,24 +177,24 @@ class Scrollable extends Component {
     if (!this.vertical && !this.horizontal) {
       return
     }
-    addClass(this.classes.WARP, this.wrap)
+    addClass(this.classes.WARP, this.$wrap)
     addClass(this.classes.CONTAINER, this.$container)
     addClass(this.classes.CONTENT, this.$content)
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.wrap)
+      addClass(this.getThemeClass(), this.$wrap)
     }
 
-    addClass(this.classes.ENABLED, this.wrap)
+    addClass(this.classes.ENABLED, this.$wrap)
 
     if (this.horizontal) {
-      addClass(this.classes.HORIZONTAL, this.wrap)
+      addClass(this.classes.HORIZONTAL, this.$wrap)
       this.initLayout('horizontal')
       this.createBar('horizontal')
     }
 
     if (this.vertical) {
-      addClass(this.classes.VERTICAL, this.wrap)
+      addClass(this.classes.VERTICAL, this.$wrap)
       this.initLayout('vertical')
       this.createBar('vertical')
     }
@@ -222,18 +222,18 @@ class Scrollable extends Component {
     bindEvent(
       this.eventName('mouseenter'),
       () => {
-        addClass(this.classes.HOVERING, this.wrap)
+        addClass(this.classes.HOVERING, this.$wrap)
         that.enter('hovering')
         that.trigger(EVENTS.HOVER)
         // this.$element.trigger(EVENTS.HOVER)
       },
-      this.wrap
+      this.$wrap
     )
 
     bindEvent(
       this.eventName('mouseleave'),
       () => {
-        removeClass(this.classes.HOVERING, this.wrap)
+        removeClass(this.classes.HOVERING, this.$wrap)
 
         if (!that.is('hovering')) {
           return
@@ -241,7 +241,7 @@ class Scrollable extends Component {
         that.leave('hovering')
         that.trigger(EVENTS.HOVERED)
       },
-      this.wrap
+      this.$wrap
     )
 
     if (this.options.showOnHover) {
@@ -366,7 +366,7 @@ class Scrollable extends Component {
 
       bindEvent(
         'scrollbar:dragged',
-        () => removeClass(this.classes.DRAGGING, this.wrap),
+        () => removeClass(this.classes.DRAGGING, this.$wrap),
         bar
       )
     })
@@ -375,7 +375,7 @@ class Scrollable extends Component {
   onScroll(value, direction) {
     if (!this.is('scrolling')) {
       this.enter('scrolling')
-      addClass(this.classes.SCROLLING, this.wrap)
+      addClass(this.classes.SCROLLING, this.$wrap)
     }
 
     const bar = this.getBarApi(direction)
@@ -383,13 +383,13 @@ class Scrollable extends Component {
 
     clearTimeout(this.privateTimeoutId)
     this.privateTimeoutId = setTimeout(() => {
-      removeClass(this.classes.SCROLLING, this.wrap)
+      removeClass(this.classes.SCROLLING, this.$wrap)
       this.leave('scrolling')
     }, 200)
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.wrap)
+    removeEvent(this.eventName(), this.$wrap)
     removeEvent(this.selfEventName(EVENTS.SCROLL), this.element)
     removeEvent(this.selfEventName(EVENTS.HOVER), this.element)
     removeEvent(this.selfEventName(EVENTS.HOVERED), this.element)
@@ -398,7 +398,7 @@ class Scrollable extends Component {
 
   initLayout(direction) {
     if (direction === 'vertical') {
-      setStyle('height', `${getHeight(this.wrap)}px`, this.$container)
+      setStyle('height', getHeight(this.$wrap), this.$container)
     }
     const attributes = this.attributes[direction]
     const container = this.$container
@@ -407,10 +407,10 @@ class Scrollable extends Component {
     const parentLength = container.parentNode[attributes.crossClientLength]
     const scrollbarWidth = this.getBrowserScrollbarWidth(direction)
 
-    setStyle(attributes.crossLength, `${parentLength}px`, this.$content)
+    setStyle(attributes.crossLength, parentLength, this.$content)
     setStyle(
       attributes.crossLength,
-      `${scrollbarWidth + parentLength}px`,
+      scrollbarWidth + parentLength,
       this.$container
     )
 
@@ -434,7 +434,7 @@ class Scrollable extends Component {
       addClass(this.classes.BARHIDE, $bar)
     }
 
-    append($bar, this.wrap)
+    append($bar, this.$wrap)
 
     this[`$${direction}`] = $bar
     this[`$${direction}`].api = api
@@ -674,8 +674,8 @@ class Scrollable extends Component {
   disable() {
     if (!this.is('disabled')) {
       this.enter('disabled')
-      addClass(this.classes.DISABLED, this.wrap)
-      removeClass(this.classes.ENABLED, this.wrap)
+      addClass(this.classes.DISABLED, this.$wrap)
+      removeClass(this.classes.ENABLED, this.$wrap)
 
       this.unbind()
       this.unStyle()
@@ -687,8 +687,8 @@ class Scrollable extends Component {
   enable() {
     if (this.is('disabled')) {
       this.leave('disabled')
-      addClass(this.classes.ENABLED, this.wrap)
-      removeClass(this.classes.DISABLED, this.wrap)
+      addClass(this.classes.ENABLED, this.$wrap)
+      removeClass(this.classes.DISABLED, this.$wrap)
 
       this.bind()
       this.update()
@@ -721,26 +721,26 @@ class Scrollable extends Component {
     if (this.horizontal) {
       setStyle(
         {
-          height: '',
-          paddingBottom: ''
+          height: null,
+          paddingBottom: null
         },
         this.$container
       )
-      setStyle('height', '', this.$content)
+      setStyle('height', null, this.$content)
     }
     if (this.vertical) {
       setStyle(
         {
-          height: '',
-          width: '',
-          paddingRight: ''
+          height: null,
+          width: null,
+          paddingRight: null
         },
         this.$container
       )
-      setStyle('width', '', this.$content)
+      setStyle('width', null, this.$content)
     }
     if (!this.options.containerSelector) {
-      setStyle('height', '', this.wrap)
+      setStyle('height', null, this.$wrap)
     }
   }
 
@@ -751,10 +751,10 @@ class Scrollable extends Component {
         removeClass(this.classes.WARP),
         removeClass(this.classes.ENABLED),
         removeClass(this.classes.DISABLED)
-      )(this.wrap)
+      )(this.$wrap)
 
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.wrap)
+        removeClass(this.getThemeClass(), this.$wrap)
       }
       this.unStyle()
 

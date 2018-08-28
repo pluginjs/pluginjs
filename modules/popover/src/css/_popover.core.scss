@@ -15,8 +15,7 @@ $popover-border-width: 1px !default;
 $popover-opacity: 0.9 !default;
 $popover-border-color: $border-color !default;
 $popover-border-radius: $border-radius-base !default;
-$popover-box-shadow: 0 5px 20px 0
-rgba($color-black, 0.1) !default;
+$popover-box-shadow: 0 5px 20px 0 rgba($color-black, 0.1) !default;
 $popover-margin-spacer: 19.88px !default;
 $popover-close-spacer-y: 9.94px !default;
 $popover-close-spacer-x: 9.94px !default;
@@ -120,7 +119,6 @@ $popover-btn-padding-x: 30.1px !default;
 
     // placement^="top"
     &[x-placement^="top"] {
-
       &::before,
       &::after {
         border-bottom-width: 0;
@@ -199,7 +197,6 @@ $popover-btn-padding-x: 30.1px !default;
       }
     }
     &[x-placement^="right"] {
-
       &::before,
       &::after {
         left: 0;
@@ -220,7 +217,6 @@ $popover-btn-padding-x: 30.1px !default;
 
     // placement^="left"
     &[x-placement^="left"] {
-
       &::before,
       &::after {
         right: 0;
@@ -307,9 +303,9 @@ $popover-btn-padding-x: 30.1px !default;
   overflow: auto;
   font-size: $popover-content-font-size;
   color: $popover-content-color;
-  
+
   p {
-    margin-top: 0; 
+    margin-top: 0;
   }
 
   a {
@@ -337,7 +333,6 @@ $popover-btn-padding-x: 30.1px !default;
     margin-top: 0;
   }
 }
-
 
 .#{$popover}-button {
   font-size: $popover-font-size;

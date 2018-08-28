@@ -17,7 +17,7 @@ import {
 class Viewport extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
+    this.setupOptions(DEFAULTS, options)
     this.observer = new IntersectionObserver(
       event => {
         if (event[0].isIntersecting) {

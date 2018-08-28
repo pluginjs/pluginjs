@@ -5,11 +5,10 @@ import {
   query,
   clearData,
   wrap,
-  parentWith,
   children,
   unwrap
 } from '@pluginjs/dom'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { isString, isNumber, isEmptyObject } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
@@ -49,10 +48,10 @@ class MapPicker extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
+    this.setupOptions(DEFAULTS, options)
 
-    this.initStates()
-    this.initClasses()
+    this.setupStates()
+    this.setupClasses()
     this.setupI18n()
 
     this.data = {}
@@ -102,16 +101,14 @@ class MapPicker extends Component {
   }
 
   build() {
-    const $wrap = parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`)
+    addClass(this.classes.INPUT, this.element)
+    this.$wrap = wrap(
+      `<div class='${this.classes.NAMESPACE}'></div>`,
+      this.element
+    )
     if (this.options.theme) {
-      addClass(this.classes.THEME, $wrap)
+      addClass(this.classes.THEME, this.$wrap)
     }
-    wrap($wrap, addClass(this.classes.INPUT, this.element))
-    this.$wrap = parentWith(hasClass(this.classes.NAMESPACE), this.element)
-    // console.log(this.options.theme)
-    // console.log(this.classes.THEME)
-    console.log($wrap)
-    console.log(this.$wrap)
     // create mapPicker dropdown
 
     // create trigger

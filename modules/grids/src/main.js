@@ -63,11 +63,11 @@ class Grids extends Component {
 
     this.namespace = NAMESPACE
     this.events = EVENTS
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     // Init
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -389,7 +389,7 @@ class Grids extends Component {
     /* lazy resize */
     Pj.emitter.on('resize', () => {
       this.width = this.getWidth()
-      this.trigger(this.events.RESIZED, this.width)
+      this.trigger(EVENTS.RESIZED, this.width)
     })
 
     bindEvent(this.eventName('click'), `.${this.classes.CHUNK}`, e => {
@@ -419,10 +419,10 @@ class Grids extends Component {
     this.model.render(this.chunks, this.chunksArr)
   }
 
-  setHeight(val) {
+  setHeight(height) {
     setStyle(
       {
-        height: `${val}px`,
+        height,
         transition: `height ${parseFloat(this.options.duration, 10)}ms`
       },
       this.$container
@@ -431,9 +431,8 @@ class Grids extends Component {
 
   setContainerWidth(width) {
     setStyle(
-      {
-        width: `${width}px`
-      },
+      'width',
+      width,
       this.$container
     )
 

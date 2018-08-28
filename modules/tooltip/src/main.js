@@ -54,14 +54,14 @@ class Tooltip extends Component {
 
     super(element)
 
-    this.initOptions(defaults, options)
-    this.initClasses()
+    this.setupOptions(defaults, options)
+    this.setupClasses()
     this._timeout = 0
     this._activeTrigger = {}
     this.POPPER = null
     this.$tip = null
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

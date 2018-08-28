@@ -3,7 +3,7 @@ import Base from './base'
 
 import { addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEventOnce, removeEvent } from '@pluginjs/events'
 import { append, parseHTML } from '@pluginjs/dom'
 
 class Lens extends Base {
@@ -79,15 +79,15 @@ class Lens extends Base {
     } else {
       setStyle(
         {
-          left: `${this.lensLeftPos}px`,
-          top: `${this.lensTopPos}px`
+          left: this.lensLeftPos,
+          top: this.lensTopPos
         },
         this.lens
       )
       setStyle(
         {
-          left: `${this.positionLeft}px`,
-          top: `${this.positionTop}px`
+          left: this.positionLeft,
+          top: this.positionTop
         },
         this.lensImage
       )
@@ -102,8 +102,8 @@ class Lens extends Base {
         border: `${this.configuration.borderSize}px solid ${
           this.configuration.borderColor
         }`,
-        width: `${this.configuration.size}px`,
-        height: `${this.configuration.size}px`
+        width: this.configuration.size,
+        height: this.configuration.size
       },
       this.lens
     )

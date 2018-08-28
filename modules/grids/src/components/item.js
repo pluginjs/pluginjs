@@ -85,8 +85,8 @@ class Item {
 
     setStyle(
       {
-        width: `${width}px`,
-        height: `${height}px`,
+        width,
+        height,
         transition: `width ${duration}ms, height ${duration}ms`
       },
       this.$el

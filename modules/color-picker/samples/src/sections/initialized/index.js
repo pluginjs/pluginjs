@@ -21,5 +21,4 @@ const data = {
 ColorPicker.setCollectionData(data)
 
 const element = query('#initialized .input')
-// console.log(ColorPicker)
 ColorPicker.of(element, {})

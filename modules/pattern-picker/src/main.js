@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
 import {
@@ -11,8 +11,7 @@ import {
   parseHTML,
   getData,
   setData,
-  wrap,
-  parentWith
+  wrap
 } from '@pluginjs/dom'
 // import Scrollable from '@pluginjs/scrollable'
 import PopDialog from '@pluginjs/pop-dialog'
@@ -53,8 +52,8 @@ let DATA = null
 class PatternPicker extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     addClass(this.classes.NAMESPACE, this.element)
 
@@ -72,7 +71,7 @@ class PatternPicker extends Component {
 
     this.$content = null
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -120,12 +119,16 @@ class PatternPicker extends Component {
 
     // this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
     const that = this
-    const $wrap = parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`)
+
+    addClass(this.classes.INPUT, this.element)
+    this.$wrap = wrap(
+      `<div class='${this.classes.NAMESPACE}'></div>`,
+      this.element
+    )
     if (this.options.theme) {
-      addClass(this.classes.THEME, $wrap)
+      addClass(this.classes.THEME, this.$wrap)
     }
-    wrap($wrap, addClass(this.classes.INPUT, this.element))
-    this.$wrap = parentWith(hasClass(this.classes.NAMESPACE), this.element)
+
     this.$trigger = parseHTML(
       template.compile(this.options.templates.trigger())({
         classes: this.classes

@@ -369,7 +369,6 @@ class Animate {
 
   getEl(chunk) {
     const $el = chunk.$el
-    // const el = $el[0]
 
     setStyle(
       {

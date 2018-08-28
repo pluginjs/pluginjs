@@ -1,4 +1,5 @@
 import Pj from '@pluginjs/factory'
+import { removeClass } from '@pluginjs/classes'
 
 class stick {
   constructor(api) {
@@ -30,7 +31,7 @@ class stick {
 
     for (const key in classes) {
       if ({}.hasOwnProperty.call(classes, key)) {
-        this.api.element.classList.remove(classes[key])
+        removeClass(classes[key], this.api.element)
       }
     }
 

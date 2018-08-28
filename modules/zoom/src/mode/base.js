@@ -1,4 +1,4 @@
-import templateEngine from '@pluginjs/template'
+import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -15,10 +15,8 @@ class Base {
   }
 
   initBase() {
-    const html = this.creatHTML('container')
-    wrap(html, this.element)
+    this.container = wrap(this.creatHTML('container'), this.element)
     addClass(this.getClass('{namespace}-image'), this.element)
-    this.container = this.element.closest(`.${this.classes.CONTAINER}`)
     this.largeWidth = this.instance.largeWidth * this.options.level
     this.largeHeight = this.instance.largeHeight * this.options.level
 
@@ -157,10 +155,9 @@ class Base {
   }
 
   creatHTML(name) {
-    const html = templateEngine.render(
-      this.options.templates[name].call(this),
-      { classes: this.classes }
-    )
+    const html = template.render(this.options.templates[name].call(this), {
+      classes: this.classes
+    })
 
     return html
   }

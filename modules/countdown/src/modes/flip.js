@@ -1,5 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import { query, append, prepend, parseHTML } from '@pluginjs/dom'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { updateDomValue } from '../util'
 import { labelMap as LABELMAP } from '../constant'
 import { deepMerge } from '@pluginjs/utils'
@@ -40,7 +41,7 @@ class Flip {
         $label = parseHTML(label[type])
 
         if (this.instance.options.labelPosition === 'above') {
-          $label.classList.add(this.instance.getClass('above'))
+          addClass(this.instance.getClass('above'), $label)
           prepend($label, $flip)
         } else {
           append($label, $flip)
@@ -99,10 +100,10 @@ class Flip {
 
     if (dom) {
       if (this.currenTime[type] !== this.lastTime[type]) {
-        dom.classList.remove(`${this.instance.classes.FLIPANIMATION}`)
+        removeClass(`${this.instance.classes.FLIPANIMATION}`, dom)
 
         setTimeout(() => {
-          dom.classList.add(`${this.instance.classes.FLIPANIMATION}`)
+          addClass(`${this.instance.classes.FLIPANIMATION}`, dom)
         }, 50)
       }
     }

@@ -1,12 +1,10 @@
 @import "@pluginjs/styles/variables.scss";
 
-
 $gallery: "pj-gallery" !default;
 $slider: "pj-slider" !default;
 $slider-bg: #000 !default;
 
 $thumb: "pj-thumb" !default;
-
 
 .#{$gallery} {
   position: relative;

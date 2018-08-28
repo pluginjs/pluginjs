@@ -76,6 +76,6 @@ export const defaults = {
   readonly: false,
   halfStar: true,
   step: 0.5,
-  iconSize: '',
+  iconSize: null,
   svg: ''
 }

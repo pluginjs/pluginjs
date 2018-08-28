@@ -104,7 +104,7 @@ class Responsive {
 
     setStyle(
       'height',
-      `${outerHeight(this.instance.$contentInners[this.index])}px`,
+      outerHeight(this.instance.$contentInners[this.index]),
       this.instance.element
     )
   }
@@ -277,7 +277,7 @@ class Responsive {
 
     const innerHeight = outerHeight(this.instance.$contentInners[this.index])
     if (immediately) {
-      setStyle('height', `${innerHeight}px`, this.instance.element)
+      setStyle('height', innerHeight, this.instance.element)
     } else {
       anime({
         targets: this.instance.element,

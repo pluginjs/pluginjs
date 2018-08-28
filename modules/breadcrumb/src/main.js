@@ -39,10 +39,10 @@ class Breadcrumb extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
-    this.element.classList.add(this.classes.ELEMENT)
+    addClass(this.classes.ELEMENT, this.element)
 
     this.$children = this.options.getItems(this.element)
     this.$firstChild = this.$children[0]
@@ -53,7 +53,7 @@ class Breadcrumb extends Component {
     this.gap = 6
     this.items = []
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

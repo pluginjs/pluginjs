@@ -70,7 +70,11 @@ class Weekly {
       append(li, eventsUl)
     }
 
-    setStyle('height', this.timeDruation * this.stepHeight, this.$eventPanel)
+    setStyle(
+      'height',
+      `${this.timeDruation * this.stepHeight}px`,
+      this.$eventPanel
+    )
 
     append(this.$eventPanel, this.element)
   }

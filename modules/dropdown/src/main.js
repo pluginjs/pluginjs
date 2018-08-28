@@ -40,15 +40,15 @@ class Dropdown extends Component {
 
     this.$trigger = this.element
 
-    this.initOptions(DEFAULTS, options)
+    this.setupOptions(DEFAULTS, options)
 
     this.$reference = this.getReference()
 
-    this.initClasses()
+    this.setupClasses()
 
     this.$dropdown = this.getDropdown()
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -186,7 +186,6 @@ class Dropdown extends Component {
 
   getActiveItem() {
     const $item = children(`.${this.classes.ACITVE}`, this.$dropdown)
-    console.log($item)
     if ($item.length > 0) {
       return $item[0]
     }

@@ -1,4 +1,5 @@
 import ScrollDir from '@pluginjs/scroll-dir'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 
 class pinned {
   constructor(instance) {
@@ -24,7 +25,7 @@ class pinned {
 
     for (const key in classes) {
       if ({}.hasOwnProperty.call(classes, key)) {
-        this.instance.element.classList.remove(classes[key])
+        removeClass(classes[key], this.instance.element)
       }
     }
 
@@ -48,26 +49,24 @@ class pinned {
   }
 
   unpin() {
-    const classList = this.instance.element.classList
     const classes = this.classes
 
     if (
-      classList.contains(classes.pinned) ||
-      !classList.contains(classes.unpinned)
+      hasClass(classes.pinned, this.instance.element) ||
+      !hasClass(classes.unpinned, this.instance.element)
     ) {
-      classList.add(classes.unpinned)
-      classList.remove(classes.pinned)
+      addClass(classes.unpinned, this.instance.element)
+      removeClass(classes.pinned, this.instance.element)
       this.instance.trigger('unpinned')
     }
   }
 
   pin() {
-    const classList = this.instance.element.classList
     const classes = this.classes
 
-    if (classList.contains(classes.unpinned)) {
-      classList.remove(classes.unpinned)
-      classList.add(classes.pinned)
+    if (hasClass(classes.unpinned, this.instance.element)) {
+      removeClass(classes.unpinned, this.instance.element)
+      addClass(classes.pinned, this.instance.element)
       this.instance.trigger('pinned')
     }
   }

@@ -73,7 +73,7 @@ class Hue {
 
   move(size) {
     const position = Math.max(0, Math.min(size, this.maxLength))
-    setStyle('top', position - this.size, this.$pointer)
+    setStyle('top', `${position - this.size}px`, this.$pointer)
     this.hue = (1 - position / this.maxLength) * 360
     this.instance.trigger('hueMove', position - this.size)
     this.update()
@@ -81,7 +81,7 @@ class Hue {
   position(color) {
     this.hue = color.value.h
     const position = (1 - this.hue / 360) * this.maxLength - this.size
-    setStyle('top', position, this.$pointer)
+    setStyle('top', `${position}px`, this.$pointer)
   }
   update() {
     if (this.instance.is('gradientModule')) {

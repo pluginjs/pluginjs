@@ -35,8 +35,8 @@ class Spinner extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     if (this.options.rule) {
       const that = this
@@ -57,7 +57,7 @@ class Spinner extends Component {
 
     this.classes.THEME = this.getThemeClass()
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

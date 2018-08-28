@@ -64,11 +64,11 @@ class Offset extends Component {
 
     this.$doc = document.body
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.setupI18n()
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -368,7 +368,6 @@ class Offset extends Component {
       // const unit = $this.asUnits('getUnit')
       const unit = getData('units', $this).getUnit()
       const val = {}
-      // console.log(value)
       if (isNumber(value)) {
         value = 0
       }

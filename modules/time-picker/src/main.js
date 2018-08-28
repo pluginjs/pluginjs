@@ -46,12 +46,12 @@ class TimePicker extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
 
     this.time = ''
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -292,7 +292,6 @@ class TimePicker extends Component {
     bindEvent(
       this.eventName('dropdown:change'),
       () => {
-        console.log(1111)
         this.trigger(EVENTS.CHANGE, this.dropdown.get())
       },
       this.$dropdownEl

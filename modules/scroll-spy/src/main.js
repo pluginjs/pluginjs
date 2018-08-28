@@ -21,9 +21,9 @@ import {
 class ScrollSpy extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
+    this.setupOptions(DEFAULTS, options)
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 

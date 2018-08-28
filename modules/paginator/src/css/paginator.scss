@@ -28,7 +28,6 @@ $paginator-disabled-color: $gray !default;
 $paginator-disabled-bg: $color-white !default;
 $paginator-disabled-border: $gray !default;
 
-
 // Theme
 // =====================
 
@@ -105,7 +104,7 @@ $paginator-disabled-border: $gray !default;
 }
 
 .#{$paginator}-disabled {
-  // disabled 
+  // disabled
   &.#{$paginator}-prev,
   &.#{$paginator}-next {
     cursor: $cursor-disabled;

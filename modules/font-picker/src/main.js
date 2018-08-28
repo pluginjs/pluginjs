@@ -68,8 +68,8 @@ let ACTIVATED = {}
 class FontPicker extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
     this.setupI18n()
 
     this.$fontPicker = addClass(
@@ -101,7 +101,7 @@ class FontPicker extends Component {
 
     // this.setupI18n();
 
-    this.initStates()
+    this.setupStates()
     this.initialize()
   }
 
@@ -250,7 +250,6 @@ class FontPicker extends Component {
           `.${this.classes.SOURCES}-${this.$font.dataset.source}`,
           this.$font
         )
-        console.log($source)
         this.$selectorPanel.set(getData('source', this.$font))
         this.toggleSources($source)
         this.$selectorPanel.set(getData('title', $source))
@@ -874,7 +873,7 @@ class FontPicker extends Component {
       $fontsList
     )
     const container = query('.pj-scrollable-container', $fontsList)
-    setStyle('height', `${getHeight($fontsList)}px`, container)
+    setStyle('height', getHeight($fontsList), container)
 
     $fontsList.style.display = 'block'
     // $fontsList.slideDown(this.options.delay)

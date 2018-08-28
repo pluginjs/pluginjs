@@ -91,13 +91,6 @@ export const defaults = {
     return false
   },
 
-  // source(val) {
-  //   /* eslint-disable */
-  //   $.getJSON('/ajax', { q: val }, data => {
-  //     this.handleEl.bind(this, data)
-  //   })
-  //   /* eslint-enable */
-  // },
   source() {
     /* eslint-disable */
     $.getJSON('/ajax', { q: val }, data => {

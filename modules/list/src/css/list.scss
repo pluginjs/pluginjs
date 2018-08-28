@@ -186,7 +186,7 @@ $pop-buttons-danger-color: $color-danger !default;
     .#{$list}-item {
       // background-color: $gray-lightest !important;
       color: $disabled-color;
-      
+
       &:hover,
       &:active {
         cursor: not-allowed;
@@ -202,7 +202,6 @@ $pop-buttons-danger-color: $color-danger !default;
       &:hover {
         cursor: not-allowed;
       }
-
 
       > i {
         color: $disabled-color !important;

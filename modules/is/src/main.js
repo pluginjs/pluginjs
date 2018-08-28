@@ -175,4 +175,3 @@ export const isPositive = n => {
   return isNumber(n) && n > 0
 }
 
-

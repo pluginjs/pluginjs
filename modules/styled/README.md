@@ -207,7 +207,6 @@ Returns
 |------|------|-------------|
 | element | `HTMLElement` | |
 
-
 ## Browser support
 
 Tested on all major browsers.

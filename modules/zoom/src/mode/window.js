@@ -265,8 +265,8 @@ class Window extends Base {
     } else {
       setStyle(
         {
-          top: `${this.lensImgTop}px`,
-          left: `${this.lensImaLeft}px`
+          top: this.lensImgTop,
+          left: this.lensImaLeft
         },
         this.lensImage
       )
@@ -292,8 +292,8 @@ class Window extends Base {
     } else {
       setStyle(
         {
-          top: `${this.windowOffsetTop}px`,
-          left: `${this.windowOffsetLeft}px`
+          top: this.windowOffsetTop,
+          left: this.windowOffsetLeft
         },
         this.window
       )
@@ -342,8 +342,8 @@ class Window extends Base {
     } else {
       setStyle(
         {
-          top: `${this.windowTopPos}px`,
-          left: `${this.windowLeftPos}px`
+          top: this.windowTopPos,
+          left: this.windowLeftPos
         },
         this.windowImage
       )
@@ -375,8 +375,8 @@ class Window extends Base {
     } else {
       setStyle(
         {
-          top: `${this.lensTopPos}px`,
-          left: `${this.lensLeftPos}px`
+          top: this.lensTopPos,
+          left: this.lensLeftPos
         },
         this.lens
       )
@@ -387,8 +387,8 @@ class Window extends Base {
     this.setRatio()
     setStyle(
       {
-        width: `${this.configuration.width}px`,
-        height: `${this.configuration.height}px`,
+        width: this.configuration.width,
+        height: this.configuration.height,
         border: `${this.configuration.borderSize}px solid ${
           this.configuration.borderColor
         }`

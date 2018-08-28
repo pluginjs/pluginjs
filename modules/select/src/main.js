@@ -48,9 +48,9 @@ class Select extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.initOptions(DEFAULTS, options)
-    this.initClasses()
-    this.initStates()
+    this.setupOptions(DEFAULTS, options)
+    this.setupClasses()
+    this.setupStates()
     this.initialize()
   }
   get selectOptions() {
@@ -73,13 +73,13 @@ class Select extends Component {
     this.build()
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.wrap)
+      addClass(this.getThemeClass(), this.$wrap)
     }
 
     this.bind()
 
     if (this.options.multiple) {
-      addClass(this.classes.MULTIPLE, this.wrap)
+      addClass(this.classes.MULTIPLE, this.$wrap)
       this.initialTag()
     }
 
@@ -90,7 +90,7 @@ class Select extends Component {
     }
 
     if (this.options.filterable) {
-      addClass(this.classes.FILTERABLE, this.wrap)
+      addClass(this.classes.FILTERABLE, this.$wrap)
       this.SEARCH = new Search(this)
     }
 
@@ -182,7 +182,7 @@ class Select extends Component {
     wrap(wrapEl, this.element)
     this.element.style.display = 'none'
 
-    this.wrap = this.element.parentNode
+    this.$wrap = this.element.parentNode
     this.triggerElement = this.buildFromTemplate('trigger', { that: this })
     if (this.options.filterable) {
       append(
@@ -201,8 +201,8 @@ class Select extends Component {
     this.$dropdown = this.buildFromTemplate('dropdown', { that: this })
     this.list = this.buildList(this.source)
     append(this.list, this.$dropdown)
-    append(this.triggerElement, this.wrap)
-    append(this.$dropdown, this.wrap)
+    append(this.triggerElement, this.$wrap)
+    append(this.$dropdown, this.$wrap)
     this.items = queryAll(`.${this.classes.ITEM}`, this.$dropdown)
   }
 
@@ -372,7 +372,7 @@ class Select extends Component {
             }
           })
           // show $label placeholder
-          removeClass(this.classes.HASBADGE, this.wrap)
+          removeClass(this.classes.HASBADGE, this.$wrap)
           if (!this.options.filterable) {
             this.label.innerHTML = this.options.placeholder
           } else {
@@ -455,10 +455,10 @@ class Select extends Component {
     insertBefore($badge, this.label)
     this.badges = queryAll(`.${this.classes.BADGE}`, this.triggerElement)
 
-    if (hasClass(this.classes.HASBADGE, this.wrap)) {
+    if (hasClass(this.classes.HASBADGE, this.$wrap)) {
       this.dropdown.POPPER.scheduleUpdate()
     } else {
-      addClass(this.classes.HASBADGE, this.wrap)
+      addClass(this.classes.HASBADGE, this.$wrap)
     }
   }
 
@@ -471,7 +471,7 @@ class Select extends Component {
     this.badges = queryAll(`.${this.classes.BADGE}`, this.triggerElement)
     this.dropdown.POPPER.scheduleUpdate()
     if (this.selected.length === 0) {
-      removeClass(this.classes.HASBADGE, this.wrap)
+      removeClass(this.classes.HASBADGE, this.$wrap)
     }
   }
 
@@ -639,7 +639,7 @@ class Select extends Component {
       append(temporary, document.body)
       const width = temporary.clientWidth + 20
       temporary.remove()
-      setStyle('width', width, this.label)
+      setStyle('width', `${width}px`, this.label)
     }
   }
 
@@ -740,7 +740,7 @@ class Select extends Component {
     if (this.is('disabled')) {
       this.element.disabled = false
       this.dropdown.enable()
-      removeClass(this.classes.DISABLED, this.wrap)
+      removeClass(this.classes.DISABLED, this.$wrap)
       this.leave('disabled')
     }
 
@@ -751,7 +751,7 @@ class Select extends Component {
     if (!this.is('disabled')) {
       this.element.disabled = true
       this.dropdown.disable()
-      addClass(this.classes.DISABLED, this.wrap)
+      addClass(this.classes.DISABLED, this.$wrap)
       this.enter('disabled')
     }
 
