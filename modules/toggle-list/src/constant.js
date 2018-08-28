@@ -10,13 +10,13 @@ export const events = {
   DESTROY: 'destroy'
 }
 
-export const classes = {
+export const classes = deepMerge(List.classes, {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   SWITCH: '{namespace}-toggle',
   UNCHECKED: '{namespace}-unchecked',
   CHECKED: '{namespace}-checked'
-}
+})
 
 export const methods = [
   'set',

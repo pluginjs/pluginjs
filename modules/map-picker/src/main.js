@@ -52,7 +52,7 @@ class MapPicker extends Component {
     this.initOptions(DEFAULTS, options)
 
     this.initStates()
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.setupI18n()
 
     this.data = {}

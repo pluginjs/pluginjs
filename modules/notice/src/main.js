@@ -32,7 +32,7 @@ class Notice extends GlobalComponent {
   constructor(options = {}) {
     super()
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.$element = parseHTML(this.createHtml())
 
     this.initStates()

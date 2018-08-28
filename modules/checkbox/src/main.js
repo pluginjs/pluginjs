@@ -65,7 +65,7 @@ class Checkbox extends Component {
     } else {
       this.group = false
     }
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.initStates()
     this.initialize()
   }

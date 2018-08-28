@@ -64,7 +64,7 @@ class Grids extends Component {
     this.namespace = NAMESPACE
     this.events = EVENTS
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     // Init
     this.initStates()

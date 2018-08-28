@@ -41,7 +41,7 @@ class Radio extends Component {
     this.$element = this.element
     this.initOptions(DEFAULTS, options)
     this.$group = this.options.getGroup.call(this)
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.initStates()
     this.initialize()
   }

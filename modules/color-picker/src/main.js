@@ -74,7 +74,7 @@ class ColorPicker extends Component {
     this.firstClassName = this.element.className
     this.setupI18n()
     // class
-    this.initClasses(CLASSES)
+    this.initClasses()
     compose(
       attr({ placeholder: this.options.placeholder }),
       addClass(this.classes.NAMESPACE, 'pj-input')

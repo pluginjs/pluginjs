@@ -49,7 +49,7 @@ class FontEditor extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     hideElement(addClass(`${this.classes.NAMESPACE}-input`, this.element))
 

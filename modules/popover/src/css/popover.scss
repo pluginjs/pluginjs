@@ -25,7 +25,7 @@ $popover-dark-title-color: $popover-dark-color;
 
 //table
 $popover-table-font-size: 9px;
-$popover-table-thead-bgcolor: $gray-lighter;
+$popover-table-thead-bg: $gray-lighter;
 $popover-table-padding-y: 5.6px;
 $popover-table-padding-x: 8.4px;
 
@@ -97,7 +97,7 @@ $popover-table-padding-x: 8.4px;
   border-spacing: unset;
 
   thead {
-    background-color: $popover-table-thead-bgcolor;
+    background-color: $popover-table-thead-bg;
   }
 
   &-bordered {

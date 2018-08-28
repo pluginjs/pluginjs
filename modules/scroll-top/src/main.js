@@ -43,7 +43,7 @@ class ScrollTop extends GlobalComponent {
     super()
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.setupI18n()
     this.initStates()

@@ -35,7 +35,7 @@ class Accordion extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.initStates()
     this.initialize()
   }

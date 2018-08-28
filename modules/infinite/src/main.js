@@ -36,7 +36,7 @@ class Infinite extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.setupI18n()
     this.$container = this.element
 

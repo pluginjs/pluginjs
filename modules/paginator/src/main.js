@@ -50,7 +50,7 @@ class Paginator extends Component {
       this.currentPage = this.totalPages
     }
 
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     addClass(this.classes.ELEMENT, this.element)
 

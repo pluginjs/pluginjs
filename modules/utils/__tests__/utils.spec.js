@@ -5,6 +5,92 @@ describe('util', () => {
     expect(util).toBeObject()
   })
 
+  describe('deepMerge()', () => {
+    it('should deep merge objects', () => {
+      expect(
+        util.deepMerge(
+          {
+            foo: false,
+            qux: true
+          },
+          {
+            foo: true,
+            bar: true
+          }
+        )
+      ).toEqual({
+        foo: true,
+        bar: true,
+        qux: true
+      })
+    })
+
+    it('should deep merge objects with multi levels', () => {
+      expect(
+        util.deepMerge(
+          {
+            a: 'a',
+            b: {
+              b1: {
+                b11: false,
+                b12: true
+              }
+            }
+          },
+          {
+            b: {
+              b1: {
+                b11: true
+              }
+            },
+            c: 'c'
+          }
+        )
+      ).toEqual({
+        a: 'a',
+        b: {
+          b1: {
+            b11: true,
+            b12: true
+          }
+        },
+        c: 'c'
+      })
+    })
+
+    it('should not override target', () => {
+      const target = {
+        foo: false,
+        bar: true
+      }
+      const clone = util.deepClone(target)
+
+      expect(
+        util.deepMerge(target, {
+          foo: true,
+          qux: true
+        })
+      ).toEqual({
+        foo: true,
+        bar: true,
+        qux: true
+      })
+
+      expect(
+        util.deepMerge(target, {
+          foo: true,
+          qux: true
+        })
+      ).toEqual({
+        foo: true,
+        bar: true,
+        qux: true
+      })
+
+      expect(target).toEqual(clone)
+    })
+  })
+
   describe('each()', () => {
     test('should walk array', () => {
       const test = ['foo', 'bar']

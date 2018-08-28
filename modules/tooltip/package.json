@@ -39,7 +39,6 @@
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/feature": "*",
-    "@pluginjs/is": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",

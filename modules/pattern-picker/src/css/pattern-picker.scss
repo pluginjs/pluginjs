@@ -63,7 +63,7 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
   }
 
   &-forecolor,
-  &-bgcolor {
+  &-bg {
     &.pj-colorPicker-input {
       width: $component-content-width;
     }

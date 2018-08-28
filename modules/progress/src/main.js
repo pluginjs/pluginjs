@@ -33,7 +33,7 @@ class Progress extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     if (this.options.bootstrap) {
       this.$target = query(`.${this.classes.BAR}`, this.element)

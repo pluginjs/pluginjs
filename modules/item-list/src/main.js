@@ -89,11 +89,7 @@ class ItemList extends List {
       { actions: defaultActions },
       this.getDataOptions()
     )
-    this.$wrapper = parent(this.element)
-
-    this.initClasses(this.classes)
     this.setupI18n()
-
     this.init()
   }
 

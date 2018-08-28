@@ -35,7 +35,7 @@ class Shorten extends Component {
 
     // options
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.initStates()
 
     if (this.needShorten()) {

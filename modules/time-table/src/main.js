@@ -55,7 +55,7 @@ class TimeTable extends Component {
   constructor(element, options = {}) {
     super(element)
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     wrap(`<div class="${this.classes.NAMESPACE}"></div>`, this.element)
     this.wrap = this.element.parentNode

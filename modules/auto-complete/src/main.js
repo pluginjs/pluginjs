@@ -49,7 +49,7 @@ class AutoComplete extends Component {
     super(element)
     this.$element = this.element
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     wrap(
       parseHTML(`<div class="${this.classes.NAMESPACE}"></div>`),

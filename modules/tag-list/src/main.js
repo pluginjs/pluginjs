@@ -1,6 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import Sortable from 'sortablejs'
-import { query, parseHTML, setData, parent } from '@pluginjs/dom'
+import { query, parseHTML, setData } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   eventable,
@@ -38,11 +38,10 @@ class TagList extends List {
     super(element, options)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(this.classes)
+    this.initClasses()
     this.setupI18n()
     this.data = []
     this.sortable = null
-    this.$wrapper = parent(this.element)
     this.initList()
     this.init()
   }
@@ -60,12 +59,6 @@ class TagList extends List {
         this.sort(evt.oldIndex, evt.newIndex)
       }
     })
-
-    /* fixed when drag complete, Firefox broswer will open a new Tab and searching problem. */
-    document.body.ondrop = e => {
-      e.preventDefault()
-      e.stopPropagation()
-    }
   }
   init() {
     this.initAddBtn()
@@ -130,7 +123,6 @@ class TagList extends List {
   enable() {
     super.enable()
     if (this.is('disabled')) {
-      console.log(this.$addBtn)
       this.$addBtn.disabled = false
       this.$addInput.disabled = false
     }

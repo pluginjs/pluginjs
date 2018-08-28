@@ -20,7 +20,7 @@ $progress-bar-bg-image: linear-gradient(
 );
 $progress-bar-bg-size: 20px 20px;
 // label vars
-$progress-label-fontSize: $font-size-xs;
+$progress-label-font-size: $font-size-xs;
 $progress-label-color: $color-white;
 $progress-label-bg-color: $gray-darkest;
 $progress-label-radius: $border-radius-base;
@@ -49,7 +49,7 @@ $progress-label-vertical-tri: 6px;
     &-label {
       width: $progress-label-width;
       height: $progress-label-height;
-      font-size: $progress-label-fontSize;
+      font-size: $progress-label-font-size;
       line-height: $progress-label-height;
       color: $progress-label-color;
       background: $progress-label-bg-color;

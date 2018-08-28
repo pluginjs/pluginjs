@@ -15,7 +15,7 @@ export default function styleable(classes = {}) {
       return classname.replace('{namespace}', this.classes.NAMESPACE || '')
     }
 
-    plugin.prototype.getClasses = function(value, classname, arg) {
+    plugin.prototype.getClasses = function(classname, arg, value) {
       if (
         isString(value) &&
         typeof classname !== 'undefined' &&
@@ -33,9 +33,13 @@ export default function styleable(classes = {}) {
       return ''
     }
 
-    plugin.prototype.initClasses = function(defaults, options) {
-      if (typeof options === 'undefined' && isObject(this.options.classes)) {
-        options = this.options.classes
+    plugin.prototype.initClasses = function(overrides) {
+      let classes = {}
+      if (
+        typeof this.options !== 'undefined' &&
+        isObject(this.options.classes)
+      ) {
+        classes = this.options.classes
       }
 
       function conventKeyToUpperCase(obj) {
@@ -54,8 +58,9 @@ export default function styleable(classes = {}) {
 
       this.classes = deepMerge(
         {},
-        defaults,
-        conventKeyToUpperCase(options || {})
+        plugin.classes,
+        overrides,
+        conventKeyToUpperCase(classes)
       )
 
       if (typeof this.classes.NAMESPACE !== 'undefined') {

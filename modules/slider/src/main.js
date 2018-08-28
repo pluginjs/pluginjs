@@ -57,7 +57,7 @@ class Slider extends Component {
 
     this.current = this.options.current || 0
 
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.initStates()
     this.initialize()
   }

@@ -36,7 +36,7 @@ class Spinner extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     if (this.options.rule) {
       const that = this

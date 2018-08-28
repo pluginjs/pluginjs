@@ -36,7 +36,7 @@ class Strength extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     if (this.options.usernameField) {
       this.$username = query(this.options.usernameField)

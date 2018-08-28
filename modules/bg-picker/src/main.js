@@ -45,7 +45,7 @@ class BgPicker extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     addClass(this.classes.INPUT, this.element)
 

@@ -38,7 +38,7 @@ class SectionScroll extends Component {
   constructor(element, options = {}) {
     super(element)
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.initStates()
     this.initialize()

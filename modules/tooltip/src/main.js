@@ -47,19 +47,15 @@ const Trigger = {
   dependencies: DEPENDENCIES
 })
 class Tooltip extends Component {
-  constructor(element, options = {}, defaults, classes) {
+  constructor(element, options = {}, defaults) {
     if (typeof defaults === 'undefined') {
       defaults = DEFAULTS
-    }
-
-    if (typeof classes === 'undefined') {
-      classes = CLASSES
     }
 
     super(element)
 
     this.initOptions(defaults, options)
-    this.initClasses(classes)
+    this.initClasses()
     this._timeout = 0
     this._activeTrigger = {}
     this.POPPER = null
@@ -529,7 +525,7 @@ class Tooltip extends Component {
     if (lastPlacement !== popperData.placement) {
       if (lastPlacement) {
         removeClass(
-          this.getClass(this.classes.ATTACHMENT, 'placement', lastPlacement),
+          this.getClass(this.classes.PLACEMENT, 'placement', lastPlacement),
           this.$tip
         )
       }

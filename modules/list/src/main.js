@@ -57,7 +57,7 @@ class List extends Component {
     this.initOptions(DEFAULTS, options)
 
     this.initStates()
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.setupI18n()
 
     this.data = []
@@ -65,11 +65,10 @@ class List extends Component {
 
     addClass(this.classes.SOTRE, this.element)
 
-    const $wrapper = parseHTML(`<div class="${this.classes.NAMESPACE}"></div>`)
-
-    wrap($wrapper, this.element)
-
-    this.$wrapper = parent(this.element)
+    this.$wrapper = wrap(
+      `<div class="${this.classes.NAMESPACE}"></div>`,
+      this.element
+    )
 
     this.$list = parseHTML(
       template.compile(this.options.templates.container())({
@@ -120,7 +119,6 @@ class List extends Component {
       }
       return action
     })
-    console.log(this.actions)
     this.initialize()
   }
 
@@ -226,7 +224,7 @@ class List extends Component {
       v.trigger.split(' ').forEach(v => {
         className += `.${v}`
       })
-      console.log(className)
+
       if (v.callback) {
         bindEvent(
           this.eventName(v.event),
@@ -268,7 +266,6 @@ class List extends Component {
   }
 
   unbind() {
-    // unbind
     removeEvent(this.eventName(), this.$list)
   }
 

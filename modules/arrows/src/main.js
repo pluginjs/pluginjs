@@ -34,7 +34,7 @@ class Arrows extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.prevSelector = this.classes.PREV
     this.nextSelector = this.classes.NEXT

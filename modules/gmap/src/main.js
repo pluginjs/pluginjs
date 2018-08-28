@@ -32,7 +32,7 @@ class Gmap extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.markers = []
     addClass(this.classes.ELEMENT, this.element)

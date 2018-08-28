@@ -55,7 +55,7 @@ class GalleryPicker extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.components = deepMerge({}, this.components)
     addClass(`${this.classes.NAMESPACE}-input`, this.element)

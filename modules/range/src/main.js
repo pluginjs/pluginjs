@@ -68,7 +68,7 @@ class Range extends Component {
       this.getDataOptions(),
       metas
     )
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     if (isString(value) && value !== '') {
       this.data = this.options.parse.call(this, value)
@@ -94,7 +94,7 @@ class Range extends Component {
       this.data.value[1] = this.data.value[0]
     }
 
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.min = this.options.min
     this.max = this.options.max

@@ -37,7 +37,7 @@ class Zoom extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)

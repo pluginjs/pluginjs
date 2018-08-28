@@ -36,7 +36,7 @@ export default class Tree extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.DATAPARSER = new DataParser(this.options, this)
     this.HTMLPARSER = new HtmlParser(this.options, this)

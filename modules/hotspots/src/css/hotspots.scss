@@ -14,12 +14,12 @@ $hotspot-color: $gray-darkest;
 $hotspot-hover-color: $color-primary;
 $hotspot-hover-border-color: rgba($hotspot-hover-color, 0.2);
 
-$hotspot-bgcolor: rgba($color-black, 0.8);
+$hotspot-bg: rgba($color-black, 0.8);
 $hotspot-box-shadow: $box-shadow-5;
 $hotspot-hide-size: 30px;
 
 $hotspot-dot-size: 14px;
-$hotspot-dot-hover-bgcolor: $color-primary;
+$hotspot-dot-hover-bg: $color-primary;
 
 $hotspot-icon-spacer: 6px;
 
@@ -34,7 +34,7 @@ $hotspot-border-color: rgba($hotspot-color, 0.2);
 $hotspot-solid-color: $color-white;
 $hotspot-solid-hover-color: $hotspot-solid-color;
 $hotspot-solid-bgColor: rgba($color-black, 0.8);
-$hotspot-solid-hover-bgcolor: $color-primary;
+$hotspot-solid-hover-bg: $color-primary;
 
 // size
 $hotspot-sm-dot-size: 14px;
@@ -51,8 +51,8 @@ $hotspot-lg-size: 32px;
 
 $hotspot-light-color: $color-white;
 
-$hotspot-light-dot-bgcolor: $gray-lightest;
-$hotspot-light-dot-hover-bgcolor: $color-primary;
+$hotspot-light-dot-bg: $gray-lightest;
+$hotspot-light-dot-hover-bg: $color-primary;
 
 $hotspot-light-borderColor: rgba($hotspot-light-color,0.2);
 $hotspot-light-hover-color: $color-primary;
@@ -83,12 +83,12 @@ $hotspot-light-shadow-bg-active: $color-primary;
   &-dot {
     width: $hotspot-dot-size;
     height: $hotspot-dot-size;
-    background-color: $hotspot-bgcolor;
+    background-color: $hotspot-bg;
     border-radius: 50%;
 
     &:hover,
     &-active {
-      background-color: $hotspot-dot-hover-bgcolor;
+      background-color: $hotspot-dot-hover-bg;
     }
   }
 
@@ -129,7 +129,7 @@ $hotspot-light-shadow-bg-active: $color-primary;
     &:hover,
     &-active {
       color: $hotspot-solid-hover-color;
-      background-color: $hotspot-solid-hover-bgcolor;
+      background-color: $hotspot-solid-hover-bg;
     }
   }
 
@@ -144,14 +144,14 @@ $hotspot-light-shadow-bg-active: $color-primary;
       width: $hotspot-sm-dot-size;
       height: $hotspot-sm-dot-size;
     }
-  
+
     &.#{$hotspot}-hide,
     &.#{$hotspot}-number {
       width: $hotspot-sm-size;
       height: $hotspot-sm-size;
     }
   }
-  
+
   &-md {
     font-size: $hotspot-md-font-size;
 
@@ -159,14 +159,14 @@ $hotspot-light-shadow-bg-active: $color-primary;
       width: $hotspot-md-dot-size;
       height: $hotspot-md-dot-size;
     }
-  
+
     &.#{$hotspot}-hide,
     &.#{$hotspot}-number {
       width: $hotspot-md-size;
       height: $hotspot-md-size;
     }
   }
-  
+
   &-lg {
     font-size: $hotspot-lg-font-size;
 
@@ -174,7 +174,7 @@ $hotspot-light-shadow-bg-active: $color-primary;
       width: $hotspot-lg-dot-size;
       height: $hotspot-lg-dot-size;
     }
-  
+
     &.#{$hotspot}-hide,
     &.#{$hotspot}-number {
       width: $hotspot-lg-size;
@@ -194,11 +194,11 @@ $hotspot-light-shadow-bg-active: $color-primary;
     }
 
     &-dot {
-      background-color: $hotspot-light-dot-bgcolor;
+      background-color: $hotspot-light-dot-bg;
 
       &:hover,
       &-active {
-        background-color: $hotspot-light-dot-hover-bgcolor;
+        background-color: $hotspot-light-dot-hover-bg;
       }
     }
 
@@ -208,7 +208,7 @@ $hotspot-light-shadow-bg-active: $color-primary;
       &:hover,
       &-active {
         border-color: $hotspot-light-bordered-hover-border-color;
-      }      
+      }
     }
 
     &-solid {
@@ -219,7 +219,7 @@ $hotspot-light-shadow-bg-active: $color-primary;
       &-active {
         color: $hotspot-light-solid-hover-color;
         background-color: $hotspot-light-shadow-bg-active;
-      } 
+      }
     }
   }
 }

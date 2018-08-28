@@ -15,7 +15,7 @@ export const events = {
   INSERTED: 'inserted'
 }
 
-export const classes = {
+export const classes = deepMerge(Tooltip.classes, {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   POPOVER: '{namespace}',
@@ -27,7 +27,7 @@ export const classes = {
   ARROW: '{namespace}-arrow',
   DISABLED: '{namespace}-disabled',
   PLACEMENT: '{namespace}-{placement}'
-}
+})
 
 export const methods = [
   'show',

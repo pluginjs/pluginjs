@@ -68,7 +68,7 @@ class DatePicker extends Component {
     this.defaultOptions = deepMerge(DEFAULTS, options, data)
     this.options = deepMerge(DEFAULTS, options, data)
     this.firstClassName = this.$element.className
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     Object.entries(data).forEach(([value, option]) => {
       this.options[option] = this.parseHtmlString(option, value)

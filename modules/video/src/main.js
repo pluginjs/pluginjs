@@ -30,19 +30,15 @@ const sources = {}
   methods: METHODS
 })
 class Video extends Component {
-  constructor(element, options = {}, defaults, classes) {
+  constructor(element, options = {}, defaults) {
     if (typeof defaults === 'undefined') {
       defaults = DEFAULTS
-    }
-
-    if (typeof classes === 'undefined') {
-      classes = CLASSES
     }
 
     super(element)
 
     this.initOptions(defaults, options)
-    this.initClasses(classes)
+    this.initClasses()
     this.initStates()
     this.initialize()
   }

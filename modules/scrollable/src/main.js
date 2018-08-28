@@ -44,7 +44,7 @@ class Scrollable extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.attributes = {
       vertical: {

@@ -41,7 +41,7 @@ class Toggle extends Component {
     this.$wrap = parent(this.element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.initStates()
 
     addClass(this.classes.WRAP, this.$wrap)

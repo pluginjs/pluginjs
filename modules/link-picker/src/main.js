@@ -61,7 +61,7 @@ class LinkPicker extends Component {
 
     this.initOptions(DEFAULTS, options)
     this.initStates()
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.setupI18n()
     if (isEmptyObject(SOURCES)) {
       this.element.setAttribute('placeholder', 'register sources first.')

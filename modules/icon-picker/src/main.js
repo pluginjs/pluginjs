@@ -62,7 +62,7 @@ class IconsPicker extends Component {
   constructor(element, options = {}) {
     super(element)
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.setupI18n()
 
     this.data = DATA

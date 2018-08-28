@@ -7,7 +7,7 @@ $tabs-font-family: $font-family-base !default;
 $tabs-dropdown-zindex: $zindex-dropdown !default;
 $tabs-active-color: $color-primary !default;
 $tabs-duration: 0.5s !default;
-$tabs-nav-bgcolor: $color-white !default;
+$tabs-nav-bg: $color-white !default;
 
 // Core
 // =====================
@@ -127,7 +127,7 @@ $tabs-nav-bgcolor: $color-white !default;
       z-index: 1;
       display: none;
       width: 100%;
-      background-color: $tabs-nav-bgcolor;
+      background-color: $tabs-nav-bg;
 
       li {
         display: block;

@@ -31,18 +31,12 @@ import Tooltip from '@pluginjs/tooltip'
   dependencies: DEPENDENCIES
 })
 class Popover extends Tooltip {
-  constructor(element, options = {}, defaults, classes) {
+  constructor(element, options = {}, defaults) {
     if (typeof defaults === 'undefined') {
       defaults = DEFAULTS
     }
 
-    if (typeof classes === 'undefined') {
-      classes = CLASSES
-    }
-
-    super(element, options, defaults, classes)
-
-    this.initClasses(CLASSES)
+    super(element, options, defaults)
   }
 
   createTip() {

@@ -35,7 +35,7 @@ class Collapse extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     if (this.element.matches(`.${this.classes.COLLAPSED}`)) {
       this.options.collapsed = true

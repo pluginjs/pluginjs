@@ -25,7 +25,7 @@ class ImageLoader extends Component {
   constructor(element, options = {}) {
     super(element)
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
     this.history = []
     this.imgLoadAll = []
     this.selector = this.options.selector || 'img'

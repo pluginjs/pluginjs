@@ -41,7 +41,7 @@ class CountDown extends Component {
 
     this.$counters = this.options.format.split(/,|，|\s+/)
 
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     // theme
     if (this.options.theme) {

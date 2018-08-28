@@ -44,7 +44,7 @@ class Dropdown extends Component {
 
     this.$reference = this.getReference()
 
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.$dropdown = this.getDropdown()
 

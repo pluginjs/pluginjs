@@ -3,7 +3,7 @@
 // Vars
 $grids: "pj-grids" !default;
 $grids-loader-height: 200px !default;
-$grids-loader-bgcolor: $color-white !default;
+$grids-loader-bg: $color-white !default;
 $grids-loader-inner-margin-y: 72px !default;
 $grids-loader-inner-font-size: 30px !default;
 
@@ -11,7 +11,7 @@ $grids-loader-inner-font-size: 30px !default;
   display: none;
   width: 100%;
   height: $grids-loader-height;
-  background: $grids-loader-bgcolor;
+  background: $grids-loader-bg;
 
   &-show {
     display: block;

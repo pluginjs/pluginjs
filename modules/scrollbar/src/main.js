@@ -48,7 +48,7 @@ class Scrollbar extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
     element.direction = this.options.direction
 
     if (this.options.direction === 'vertical') {

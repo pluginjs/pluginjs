@@ -36,7 +36,7 @@ class BeforeAfter extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     // Current state information for the drag operation.
     this._drag = {

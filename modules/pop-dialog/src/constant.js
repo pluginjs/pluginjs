@@ -15,7 +15,7 @@ export const events = {
   INSERTED: 'inserted'
 }
 
-export const classes = {
+export const classes = deepMerge(Popover.classes, {
   NAMESPACE: 'pj-popover',
   THEME: '{namespace}--{theme}',
   POPDIALOG: '{namespace}-dialog',
@@ -31,7 +31,7 @@ export const classes = {
   DISABLED: '{namespace}-disabled',
   ARROW: '{namespace}-arrow',
   PLACEMENT: '{namespace}-{placement}'
-}
+})
 
 export const methods = [
   'do',
@@ -73,7 +73,9 @@ export const defaults = deepMerge(Popover.defaults, {
       return '<div class="{classes.BUTTONS}">{buttons}</div>'
     }
   },
-  buttons: {}
+  buttons: {
+    dismiss: { label: 'Dismiss' }
+  }
 })
 
 export const dependencies = ['popover', 'tooltip']

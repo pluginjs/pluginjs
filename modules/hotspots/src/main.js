@@ -37,7 +37,7 @@ class Hotspots extends Component {
     super(element)
 
     this.initOptions(DEFAULTS, options)
-    this.initClasses(CLASSES)
+    this.initClasses()
 
     this.initStates()
     this.initialize()
@@ -151,9 +151,9 @@ class Hotspots extends Component {
         title: item.title,
         content: item.content,
         skin: this.getClasses(
-          item.skin ? item.skin : this.options.skin,
           this.classes.SKIN,
-          'skin'
+          'skin',
+          item.skin ? item.skin : this.options.skin
         ),
         type: this.getClass(this.classes.TYPE, 'type', type),
         styles: this.getHotspotStyles(item),
