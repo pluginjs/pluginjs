@@ -316,6 +316,41 @@ class TimePicker extends Component {
       },
       this.$inputEl
     )
+    bindEvent(
+      this.eventName('focusin'),
+      () => {
+        addClass(this.classes.BORDER, this.$icon)
+      },
+      this.$timeTrigger
+    )
+    bindEvent(
+      this.eventName('focusout'),
+      () => {
+        removeClass(this.classes.BORDER, this.$icon)
+      },
+      this.$timeTrigger
+    )
+    // bindEvent(
+    //   this.eventName('mouseover'),
+    //   () => {
+    //     addClass(this.classes.BORDER, this.$timeTrigger)
+    //   },
+    //   this.$icon
+    // )
+    // bindEvent(
+    //   this.eventName('mouseout'),
+    //   () => {
+    //     removeClass(this.classes.BORDER, this.$timeTrigger)
+    //   },
+    //   this.$icon
+    // )
+    bindEvent(
+      this.eventName('click'),
+      () => {
+        this.dropdown.show()
+      },
+      this.$icon
+    )
 
     bindEvent(
       this.selfEventName('change'),

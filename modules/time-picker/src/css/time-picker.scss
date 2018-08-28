@@ -27,24 +27,26 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
       border-color: $color-primary-active !important;
     }
   }
+  &-border {
+    color : #215FDB !important;
+  }
   .#{$dropdown}  {
     height: 300px;
     overflow-y: scroll;
     border: none;
     border-color:$gray;
   }
-
+  
   .#{$dropdown}-trigger {
     width: 200px;
     height: 32px;
-    border: 1px solid #E6E6E6 !important;
     border-radius: 2px;
     &:focus {
       border: 1px solid #215FDB !important;
     }
-    &:hover {
-      border: 1px solid $color-black !important;
-    }
+    // &:hover {
+    //   border: 1px solid $color-black !important;
+    // }
   }
 
   .#{$dropdown}-icon {
@@ -60,7 +62,7 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
     transition: all 0.1s;
 
     &:hover {
-      color: $color-primary-black;
+      // color: $color-primary-black;
       .#{$dropdown}-remove {
         display: none;
       }
@@ -93,7 +95,6 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
 
 .#{$timePicker}-wrap .#{$dropdown}-trigger {
   color: $gray-darker;
-  border: none;
 }
 /* stylelint-disable */
 .#{$timePicker}-wrap
@@ -140,4 +141,20 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
   display: none;
   color: $timepicker-icon-color;
   transform: translateY(-50%);
+}
+#disabled {
+  input {
+    background-color: $color-white
+  }
+  .#{$timePicker}-dropdown {
+    cursor: not-allowed
+  }
+  .pj-dropdown-trigger {
+    
+    pointer-events: none;
+  }
+  .pj-dropdown-icon {
+    color: #E6E6E6;
+    pointer-events: none;
+  }
 }

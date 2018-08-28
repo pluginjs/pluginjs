@@ -14,7 +14,8 @@ export const classes = {
   WRAP: '{namespace}-wrap',
   INFO: '{namespace}-info',
   DROPDOWN: '{namespace}-dropdown',
-  REMOVE: '{namespace}-remove'
+  REMOVE: '{namespace}-remove',
+  BORDER: '{namespace}-border'
 }
 
 export const methods = [
