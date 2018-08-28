@@ -11,6 +11,7 @@ buttons.addEventListener('click', () => {
         title: 'CANCEL',
         class: 'pj-btn pj-btn-primary'
       }
-    }
+    },
+    timeout: 500000
   })
 })

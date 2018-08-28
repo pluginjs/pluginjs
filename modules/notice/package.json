@@ -43,7 +43,8 @@
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/utils": "*",
+    "@pluginjs/breakpoints": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

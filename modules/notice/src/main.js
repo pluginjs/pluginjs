@@ -6,6 +6,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, bindEventOnce } from '@pluginjs/events'
 import { append, parseHTML, query, remove, data } from '@pluginjs/dom'
+import Breakpoints from '@pluginjs/breakpoints'
 import {
   eventable,
   register,
@@ -40,7 +41,6 @@ class Notice extends GlobalComponent {
   }
 
   show() {
-    // Notice.hideAll()
     this.setStyles()
     this.bind()
     this.animate()
@@ -194,8 +194,35 @@ class Notice extends GlobalComponent {
         this.$element
       )
     }
+
+    this.initBreakpoints()
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  initBreakpoints() {
+    Breakpoints()
+    const size = Breakpoints.current().name
+    addClass(this.classes[size.toUpperCase()], this.$element)
+
+    this.breakpointsHandler('xl')
+    this.breakpointsHandler('lg')
+    this.breakpointsHandler('md')
+    this.breakpointsHandler('sm')
+    this.breakpointsHandler('xs')
+  }
+
+  breakpointsHandler(size) {
+    const that = this
+    Breakpoints.on(size, {
+      enter() {
+        addClass(that.classes[size.toUpperCase()], that.$element)
+      },
+      leave() {
+        removeClass(that.classes[size.toUpperCase()], that.$element)
+      }
+    })
   }
 
   setContent(content) {
@@ -243,6 +270,7 @@ class Notice extends GlobalComponent {
         }
       )
     }
+
     const html = templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
       close,

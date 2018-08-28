@@ -23,7 +23,12 @@ export const classes = {
   BUTTONS: '{namespace}-buttons',
   BUTTONSLOCATION: '{namespace}-buttons-{location}',
   POSITION: '{namespace}-position',
-  BACKGROUND: '{namespace}-with-bg'
+  BACKGROUND: '{namespace}-with-bg',
+  XS: '{namespace}-xs',
+  SM: '{namespace}-sm',
+  MD: '{namespace}-md',
+  LG: '{namespace}-lg',
+  XL: '{namespace}-xl'
 }
 
 export const defaults = {
@@ -52,7 +57,7 @@ export const defaults = {
       return '<div class="{classes.BUTTONS}">{buttons}</div>'
     },
     button() {
-      return '<div class="{classes.BUTTON} {btnClass}" data-btntype={key}>{title}</div>'
+      return '<div class="{classes.BUTTON} {btnClass}" data-btnType={key}>{title}</div>'
     }
   },
   locale: 'en',
