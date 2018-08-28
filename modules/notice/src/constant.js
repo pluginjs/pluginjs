@@ -79,5 +79,6 @@ export const defaults = {
   buttonAlign: 'center',
   timeout: 5000,
   fixedWidth: false,
-  layout: 'top' // 'bottom'
+  layout: 'top', // 'bottom'
+  breakpoint: 'md'
 }

@@ -1,5 +1,5 @@
 import templateEngine from '@pluginjs/template'
-import { isNumber } from '@pluginjs/is'
+import { isNumber, isString } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -195,7 +195,9 @@ class Notice extends GlobalComponent {
       )
     }
 
-    this.initBreakpoints()
+    if (this.options.breakpoint) {
+      this.initBreakpoints()
+    }
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -204,25 +206,23 @@ class Notice extends GlobalComponent {
   initBreakpoints() {
     Breakpoints()
     const size = Breakpoints.current().name
-    addClass(this.classes[size.toUpperCase()], this.$element)
 
-    this.breakpointsHandler('xl')
-    this.breakpointsHandler('lg')
-    this.breakpointsHandler('md')
-    this.breakpointsHandler('sm')
-    this.breakpointsHandler('xs')
-  }
-
-  breakpointsHandler(size) {
-    const that = this
-    Breakpoints.on(size, {
-      enter() {
-        addClass(that.classes[size.toUpperCase()], that.$element)
-      },
-      leave() {
-        removeClass(that.classes[size.toUpperCase()], that.$element)
+    if (isString(this.options.breakpoint)) {
+      const breakpoint = this.options.breakpoint
+      const that = this
+      if (breakpoint === size) {
+        addClass(this.classes[breakpoint.toUpperCase()], this.$element)
       }
-    })
+
+      Breakpoints.from(breakpoint, {
+        enter() {
+          addClass(that.classes[breakpoint.toUpperCase()], that.$element)
+        },
+        leave() {
+          removeClass(that.classes[breakpoint.toUpperCase()], that.$element)
+        }
+      })
+    }
   }
 
   setContent(content) {
