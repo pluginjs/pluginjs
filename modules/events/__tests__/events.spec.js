@@ -526,7 +526,7 @@ describe('Events', () => {
         result += 1
       }
 
-      on('test', '.red .green', callback, el)
+      on('test', '.red, .green', callback, el)
       trigger('test', document.querySelector('.red'))
       expect(result).toEqual(1)
       trigger('test', document.querySelector('.green'))

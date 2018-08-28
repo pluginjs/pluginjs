@@ -130,7 +130,7 @@ export const removeEvent = curryWith((events, selector, callback, element) => {
 
 export const bindEvent = curryWith((events, selector, callback, element) => {
   const eventArr = events.split(' ')
-  const selectorArr = isString(selector) ? selector.split(' ') : null
+  const selectorArr = isString(selector) ? selector.split(',') : null
 
   switch (true) {
     case Boolean(eventArr.length > 1): {
@@ -142,7 +142,7 @@ export const bindEvent = curryWith((events, selector, callback, element) => {
 
     case Boolean(selectorArr && selectorArr.length > 1): {
       selectorArr.forEach(s => {
-        bindEvent(events, s, callback, element)
+        bindEvent(events, s.trim(), callback, element)
       })
       break
     }
@@ -164,7 +164,7 @@ export const bindEvent = curryWith((events, selector, callback, element) => {
 export const bindEventOnce = curryWith(
   (events, selector, callback, element) => {
     const eventArr = events.split(' ')
-    const selectorArr = isString(selector) ? selector.split(' ') : null
+    const selectorArr = isString(selector) ? selector.split(',') : null
 
     switch (true) {
       case Boolean(eventArr.length > 1): {
@@ -176,7 +176,7 @@ export const bindEventOnce = curryWith(
 
       case Boolean(selectorArr && selectorArr.length > 1): {
         selectorArr.forEach(s => {
-          bindEventOnce(events, s, callback, element)
+          bindEventOnce(events, s.trim(), callback, element)
         })
         break
       }
