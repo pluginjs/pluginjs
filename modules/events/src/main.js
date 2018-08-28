@@ -130,17 +130,32 @@ export const removeEvent = curryWith((events, selector, callback, element) => {
 
 export const bindEvent = curryWith((events, selector, callback, element) => {
   const eventArr = events.split(' ')
-  if (eventArr.length > 1) {
-    eventArr.forEach(e => {
-      bindEvent(e, selector, callback, element)
-    })
-  } else {
-    if (!isString(selector) && !isFunction(callback)) {
-      element = callback
-      callback = selector
-      selector = undefined
+  const selectorArr = isString(selector) ? selector.split(' ') : null
+
+  switch (true) {
+    case Boolean(eventArr.length > 1): {
+      eventArr.forEach(e => {
+        bindEvent(e, selector, callback, element)
+      })
+      break
     }
-    bind(events, selector, callback, element)
+
+    case Boolean(selectorArr && selectorArr.length > 1): {
+      selectorArr.forEach(s => {
+        bindEvent(events, s, callback, element)
+      })
+      break
+    }
+
+    default: {
+      if (!isString(selector) && !isFunction(callback)) {
+        element = callback
+        callback = selector
+        selector = undefined
+      }
+      bind(events, selector, callback, element)
+      break
+    }
   }
 
   return element
@@ -149,23 +164,38 @@ export const bindEvent = curryWith((events, selector, callback, element) => {
 export const bindEventOnce = curryWith(
   (events, selector, callback, element) => {
     const eventArr = events.split(' ')
-    if (eventArr.length > 1) {
-      eventArr.forEach(e => {
-        bindEventOnce(e, selector, callback, element)
-      })
-    } else {
-      if (!isString(selector) && !isFunction(callback)) {
-        element = callback
-        callback = selector
-        selector = undefined
+    const selectorArr = isString(selector) ? selector.split(' ') : null
+
+    switch (true) {
+      case Boolean(eventArr.length > 1): {
+        eventArr.forEach(e => {
+          bindEventOnce(e, selector, callback, element)
+        })
+        break
       }
 
-      const recursiveFunction = e => {
-        removeEvent(eventArr[0], selector, recursiveFunction, element)
-        return callback(e)
+      case Boolean(selectorArr && selectorArr.length > 1): {
+        selectorArr.forEach(s => {
+          bindEventOnce(events, s, callback, element)
+        })
+        break
       }
 
-      bind(eventArr[0], selector, recursiveFunction, element, true)
+      default: {
+        if (!isString(selector) && !isFunction(callback)) {
+          element = callback
+          callback = selector
+          selector = undefined
+        }
+
+        const recursiveFunction = e => {
+          removeEvent(eventArr[0], selector, recursiveFunction, element)
+          return callback(e)
+        }
+
+        bind(eventArr[0], selector, recursiveFunction, element, true)
+        break
+      }
     }
 
     return element

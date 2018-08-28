@@ -23,7 +23,8 @@ describe('Events', () => {
       <ul>
         <li class='green'>hello</li>
         <li class='green'>world</li>
-        <li class='red'>again</li>
+        <li class='red'>hello</li>
+        <li class='blue'>world</li>
       </ul>
     </div>
     `
@@ -516,6 +517,22 @@ describe('Events', () => {
 
       trigger('test', document.querySelector('li.red'))
       expect(result).toEqual('red')
+    })
+
+    test('should delegate more selector', () => {
+      const el = document.querySelector('#event-test ul')
+      let result = 0
+      const callback = () => {
+        result += 1
+      }
+
+      on('test', '.red .green', callback, el)
+      trigger('test', document.querySelector('.red'))
+      expect(result).toEqual(1)
+      trigger('test', document.querySelector('.green'))
+      expect(result).toEqual(2)
+      trigger('test', document.querySelector('.blue'))
+      expect(result).toEqual(2)
     })
 
     test('should undelegate event when trigger target is el', () => {
