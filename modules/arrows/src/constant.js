@@ -42,12 +42,12 @@ export const defaults = {
   theme: null,
   type: null,
   prev: {
-    icon: 'icon-chevron-left',
+    icon: 'icon-angle-left-solid',
     href: 'javascript:void(0);' /* eslint-disable-line no-script-url */,
     text: 'Previous'
   },
   next: {
-    icon: 'icon-chevron-right',
+    icon: 'icon-angle-right-solid',
     href: 'javascript:void(0);' /* eslint-disable-line no-script-url */,
     text: 'Next'
   },

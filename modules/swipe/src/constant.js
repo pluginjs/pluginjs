@@ -36,7 +36,7 @@ export const defaults = {
   itemSelector: 'div',
   // data: null, // [Array] item => {'title':'','el':[HTML element]}
   arrows: false,
-  arrowType: null,
+  arrowConfig: false,
   pagination: false,
   dotConfig: false,
   container: '.decay',

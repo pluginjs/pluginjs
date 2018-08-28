@@ -337,11 +337,11 @@ class Swipe extends Component {
   }
 
   buildArrows() {
-    const opts = {
-      type: this.options.arrowType || 'square',
-      templates: this.options.templates.arrow
+    let opts = {
+      type: this.options.arrowConfig.type || 'square'
     }
 
+    opts = Object.assign({}, opts, this.options.arrowConfig)
     this.$arrows = Arrows.of(this.element, opts)
   }
 
