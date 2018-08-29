@@ -287,12 +287,12 @@ class Select extends Component {
       iconClassName = 'icon-char icon-close-mini'
     }
     this.dropdown = Dropdown.of(this.triggerEl, {
-      panel: this.$dropdown,
+      target: this.$dropdown,
       trigger: this.options.trigger,
       hideOnSelect: !this.options.multiple,
       itemValueAttr: 'value',
       imitateSelect: true,
-      inputLabel: this.options.filterable,
+      // inputLabel: this.options.filterable,
       placeholder: this.options.placeholder,
       icon: iconClassName,
       templates: {
@@ -300,6 +300,7 @@ class Select extends Component {
         // label: () => this.options.templates.label()
       },
       onShow: () => {
+        console.log(1)
         this.trigger(EVENTS.OPEN)
         if (this.options.filterable) {
           this.label.select()
@@ -313,6 +314,7 @@ class Select extends Component {
         }
       },
       onHide: () => {
+        console.log(1)
         this.trigger(EVENTS.HIDE)
         if (this.options.filterable) {
           if (this.options.multiple) {
@@ -338,6 +340,7 @@ class Select extends Component {
         }
       },
       onTrigger: (item, e) => {
+        console.log(1)
         const target = e.target
         if (!target.closest(`.${this.classes.BADGEDELETE}`)) {
           return
@@ -347,7 +350,8 @@ class Select extends Component {
         this.set(getData('flag', badge), false)
         this.dropdown.triggerUsable = false
       },
-      onClick: (api, item) => {
+      onSelect: item => {
+        console.log(item, 111)
         this.click(item)
         this.dropdown.itemUsable = false
       }
@@ -413,6 +417,7 @@ class Select extends Component {
   }
 
   click(item) {
+    console.log(1)
     if (hasClass(this.classes.DISABLED, item)) {
       return
     }
@@ -431,6 +436,7 @@ class Select extends Component {
       if (!this.options.multiple) {
         this.dropdown.hide()
       }
+      console.log(1)
     }
 
     this.checkIcon()
@@ -505,6 +511,7 @@ class Select extends Component {
       const cancelSelect = el => {
         el.selected = false
       }
+      console.log(this.selectOptions)
       this.selectOptions.forEach(cancelSelect)
     }
     if (trigger) {

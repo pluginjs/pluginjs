@@ -140,10 +140,11 @@ class Dropdown extends Component {
       this.eventName('click'),
       `.${this.classes.ITEM}`,
       e => {
+        console.log(12)
         const item = e.target
-        if (item.parentNode !== this.$dropdown) {
-          return
-        }
+        // if (item.parentNode !== this.$dropdown) {
+        //   return
+        // }
         this.selectItem(item)
 
         if (this.options.hideOnSelect) {
@@ -222,7 +223,6 @@ class Dropdown extends Component {
         addClass('pj-dropdown-checked', this.$trigger)
       }
     }
-
     if (trigger) {
       this.trigger(EVENTS.SELECT, item)
 
@@ -247,10 +247,13 @@ class Dropdown extends Component {
     if (this.is('disabled')) {
       return
     }
+    console.log(0)
 
     if (!this.is('show')) {
+      console.log(this.setupPopper())
       this.setupPopper()
       addClass(this.classes.SHOW, this.$dropdown)
+      console.log(this.$trigger)
       this.$trigger.setAttribute('aria-expanded', 'true')
 
       if (this.options.hideOutClick) {
@@ -267,6 +270,7 @@ class Dropdown extends Component {
             }
 
             this.hide()
+            console.log(5)
           },
           document
         )

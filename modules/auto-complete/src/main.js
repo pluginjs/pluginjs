@@ -283,7 +283,7 @@ class AutoComplete extends Component {
             : parentWith(hasItemClass, target)
           this.$selected = $item
           this.close()
-          this.trigger(EVENTS.CHANGE, getData('data', $item))
+          this.trigger(EVENTS.CHANGE, getData('data', $item), this)
         }
       )
     )(this.$panel)

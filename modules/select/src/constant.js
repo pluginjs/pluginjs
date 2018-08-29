@@ -22,7 +22,7 @@ export const classes = {
   WRAP: '{namespace}-wrap',
   MULTIPLE: '{namespace}-multiple',
   FILTERABLE: '{namespace}-filterable',
-  DROPDOWNLIST: '{namespace}-dropdown',
+  DROPDOWN: '{namespace}-dropdown',
   TRIGGER: '{namespace}-trigger',
   HASBADGE: '{namespace}-hpj-badge',
   BADGE: '{namespace}-badge',
@@ -101,7 +101,7 @@ export const defaults = {
       return '<li class="{that.classes.GROUP}"><span class="{that.classes.GROUPLABEL}">{group.label}</span></li>'
     },
     item() {
-      return '<li class="{that.classes.ITEM}" data-value="{item.value}">{item.label}</li>'
+      return '<li class="{that.classes.ITEM} pj-dropdown-item" data-value="{item.value}">{item.label}</li>'
     },
     notFound() {
       return '<div class="{that.classes.NOTFOUND}">{that.options.notFoundText}</div>'
