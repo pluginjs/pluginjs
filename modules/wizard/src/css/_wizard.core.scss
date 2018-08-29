@@ -9,7 +9,7 @@ $wizard-transition-duration: 0.2s !default;
 // Core
 // =====================
 .#{$wizard}-hide {
-  display: none;
+  display: none !important;
 }
 
 .#{$wizard}-steps {

@@ -4,7 +4,7 @@ import Swipe from '@pluginjs/swipe'
 const element = query('#group .swipe')
 Swipe.of(element, {
   itemNums: 3,
-  gutter: 16,
+  gutter: 20,
   group: true,
   pagination: true,
   dotConfig: {

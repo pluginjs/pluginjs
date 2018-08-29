@@ -3,6 +3,8 @@ import '@pluginjs/icons/dist/plugin-icons.css'
 // import 'font-awesome/css/font-awesome.css'
 // import input
 import '@pluginjs/styles/inputs.scss'
+// import button
+import '@pluginjs/styles/buttons.scss'
 // import sections
 import './sections/default/index.js'
 // import './sections/target/index.js'

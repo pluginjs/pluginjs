@@ -36,15 +36,11 @@ $wizard-formControl-border-margin: 5px 0;
 $wizard-formControl-border-color: $gray;
 $wizard-formControl-border-hover-color: $gray-darkest;
 
-$wizard-button-height: 32px;
-$wizard-button-line-height: $line-height-base;
 $wizard-button-margin-top: 13px;
 $wizard-button-margin-left: 10px;
-$wizard-button-padding: 4px 15px;
 $wizard-button-color: $gray-darker;
-$wizard-button-color-light: $gray;
+$wizard-button-color-disabled: $gray;
 $wizard-button-bg: $gray-lighter;
-$wizard-button-radius: $border-radius-sm;
 
 // Styles
 // =====================
@@ -168,16 +164,6 @@ $wizard-button-radius: $border-radius-sm;
   }
 
   > a {
-    height: $wizard-button-height;
-    padding: $wizard-button-padding;
-    line-height: $wizard-button-line-height;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
-    border: 1px solid;
-    border-radius: $wizard-button-radius;
-    transition: all $wizard-transition-duration;
-
     &:active {
       background-color: $wizard-button-bg;
       outline: 0;
@@ -192,46 +178,31 @@ $wizard-button-radius: $border-radius-sm;
     &.#{$wizard}-default {
       color: $wizard-button-color;
       background-color: transparent;
-      border-color: $wizard-button-color-light;
+      border-color: $wizard-button-color-disabled;
 
       &.#{$wizard}-disabled {
-        color: $wizard-button-color-light;
+        color: $wizard-button-color-disabled;
         cursor: not-allowed;
         background-color: $wizard-button-bg;
 
         &:hover {
-          color: $wizard-button-color-light;
+          color: $wizard-button-color-disabled;
           background-color: $wizard-button-bg;
-          border-color: $wizard-button-color-light;
+          border-color: $wizard-button-color-disabled;
         }
 
         &:active {
-          color: $wizard-button-color-light;
+          color: $wizard-button-color-disabled;
           background-color: $wizard-button-bg;
-          border-color: $wizard-button-color-light;
+          border-color: $wizard-button-color-disabled;
           box-shadow: none;
         }
 
         &:focus {
-          color: $wizard-button-color-light;
+          color: $wizard-button-color-disabled;
           background-color: $wizard-button-bg;
           outline: 0;
         }
-      }
-
-      &:hover {
-        color: $wizard-button-color;
-        background-color: $wizard-button-bg;
-        border-color: $wizard-button-color-light
-      }
-
-      &:active {
-        background-color: $wizard-button-bg;
-        outline: 0;
-      }
-
-      &:focus {
-        color: $wizard-button-color;
       }
     }
 
@@ -250,6 +221,18 @@ $wizard-button-radius: $border-radius-sm;
       color: $wizard-color;
       background-color: $wizard-active-color;
       border: 0;
+
+      &:hover {
+        color: $wizard-color;
+        background-color: $wizard-active-color;
+        border: 0;
+      }
+
+      &:active {
+        color: $wizard-color;
+        background-color: $wizard-active-color;
+        border: 0;
+      }
     }
   }
 }
