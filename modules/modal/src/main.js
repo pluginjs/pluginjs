@@ -152,6 +152,8 @@ class Modal extends GlobalComponent {
     if (!this.is('opened')) {
       return false
     }
+    removeClass(`${this.classes.OPEN}`, query('body'))
+
     // close animation
     if (this.options.overlay) {
       addClass(`${this.classes.NAMESPACE}-fadeOut`, this.$overlay)

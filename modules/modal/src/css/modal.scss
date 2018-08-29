@@ -9,9 +9,12 @@ $modal-font-size: $font-size-sm;
 $modal-bg: $color-white;
 $modal-lineHeight: 22px;
 $modal-border-radius: $border-radius-base;
-$modal-body-color: $gray-darker;
 
-$modal-title-font-size: 16px;
+$modal-body-margin-bottom: 3px;
+$modal-body-color: $gray-darker;
+$modal-body-maxHeight: 50vh;
+
+$modal-title-font-size: $font-size-lg;
 $modal-title-color: $gray-darkest;
 $modal-title-icon-margin-right: 14px;
 $modal-title-icon-font-size: 28px;
@@ -20,11 +23,11 @@ $modal-icon-title-font-size: 20px;
 
 $modal-container-font-size: $font-size-sm;
 $modal-container-bg: $modal-bg;
-$modal-container-padding: 25px 28px 22px;
+$modal-container-padding: 28px 30px 24px;
 $modal-container-boxShadow: 0 10px 35px 0 rgba($color-black, 0.1);
 $modal-confirm-buttons-margin: 21px;
 $modal-confirm-button-margin: 9.8px;
-$modal-container-titlle-margin-bottom: 5px;
+$modal-title-margin-bottom: 5px;
 
 $modal-btn-height: 32px;
 $modal-btn-padding-horizontal: 15px;
@@ -77,18 +80,12 @@ $modal-vertification-borderClor: $gray-border;
   &-title {
     display: flex;
     align-items: center;
-    padding-bottom: $modal-container-titlle-margin-bottom;
-    margin: 0;
+    margin-bottom: $modal-title-margin-bottom;
     font-size: $modal-title-font-size;
     color: $modal-title-color;
 
     &-icon {
       font-size: $modal-icon-title-font-size;
-    }
-
-    .#{$modal}-icon {
-      margin-right: $modal-title-icon-margin-right;
-      font-size: $modal-title-icon-font-size;
     }
 
     &-center {
@@ -105,10 +102,11 @@ $modal-vertification-borderClor: $gray-border;
     &-right {
       text-align: right;
     }
+  }
 
-    &:only-child {
-      padding-bottom: 0;
-    }
+  &-icon {
+    margin-right: $modal-title-icon-margin-right;
+    font-size: $modal-title-icon-font-size;
   }
 
   &-close {
@@ -142,6 +140,7 @@ $modal-vertification-borderClor: $gray-border;
 
   &-body {
     max-height: $modal-body-maxHeight;
+    margin-bottom: $modal-body-margin-bottom;
     overflow-y: auto;
     font-size: $font-size-sm;
     color: $modal-body-color;
