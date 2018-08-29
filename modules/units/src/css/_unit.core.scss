@@ -12,41 +12,26 @@ $units-disabled-color: $gray-lighter !default;
 $units-disabled-opacity: 0.4 !default;
 // Core
 // =====================
-.#{$units}-wrap {
-  position: relative;
-  width: $units-width;
-  height: $units-height;
-
-  .#{$units}-trigger {
-    width: $units-trigger-width;
-    text-align: center;
-    outline: none;
-  }
-}
 .#{$units} {
   display: none !important;
 
-  &-active {
-    .#{$units}-input {
-      box-sizing: border-box;
-      border-color: $color-primary;
-    }
-
-    &:hover .#{$units}-input {
-      border-color: $color-primary;
-    }
+  &-wrap {
+    position: relative;
+    width: $units-width;
+    height: $units-height;
   }
 
-  &-active.pj-dropdown-focus {
-    box-sizing: border-box;
-    border-color: $color-primary;
-
-    &-trigger {
-      color: $color-primary;
+  &-active {
+    &,
+    &:hover {
+      .#{$units}-input {
+        border-color: $color-primary;
+      }
     }
   }
 
   &-input {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     padding: 0.6 * $units-sizer 0.8 * $units-sizer !important; //6px 8px
@@ -58,23 +43,29 @@ $units-disabled-opacity: 0.4 !default;
     position: absolute;
     top: 0;
     right: 0;
+    width: $units-trigger-width;
     height: 100%;
     padding: 0;
     line-height: 100%;
     color: $gray-dark;
-    border: 0 !important;
+    text-align: center;
+    border: 0;
+    outline: none;
   }
 
   &-disabled {
+    cursor: not-allowed;
+
     .#{$units}-input {
       background-color: $units-disabled-color;
     }
-    &:hover .#{$units}-input {
+
+    .#{$units}-input:hover {
       border-color: $units-disabled-color;
     }
-    .#{$units}-input:hover {
-      cursor: not-allowed;
-      border-color: $units-disabled-color;
+
+    .#{$units}-trigger {
+      pointer-events: none
     }
   }
 }

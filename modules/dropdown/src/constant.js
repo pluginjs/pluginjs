@@ -23,8 +23,8 @@ export const classes = {
   SHOW: '{namespace}-show',
   PLACEMENT: '{namespace}-on-{placement}',
   DISABLED: '{namespace}-disabled',
-  FOCUS: '{namespace}-focus',
-  ACITVE: '{namespace}-active'
+  ACITVE: '{namespace}-active',
+  SELECTED: '{namespace}-selected'
 }
 
 export const methods = [

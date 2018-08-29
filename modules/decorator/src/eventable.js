@@ -59,8 +59,14 @@ export default function eventable(events = {}) {
       }
     }
 
-    plugin.prototype.selfEventName = function(eventType) {
-      return `${this.plugin}:${eventType}`
+    plugin.prototype.selfEventName = function(events) {
+      events = events.split(' ')
+
+      const length = events.length
+      for (let i = 0; i < length; i++) {
+        events[i] = `${this.plugin}:${events[i]}`
+      }
+      return events.join(' ')
     }
   }
 }

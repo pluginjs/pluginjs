@@ -25,6 +25,21 @@ describe('util', () => {
       })
     })
 
+    it('should deep merge arrays', () => {
+      expect(
+        util.deepMerge(
+          {
+            foo: [1, 2, 3]
+          },
+          {
+            foo: [4]
+          }
+        )
+      ).toEqual({
+        foo: [4]
+      })
+    })
+
     it('should deep merge objects with multi levels', () => {
       expect(
         util.deepMerge(

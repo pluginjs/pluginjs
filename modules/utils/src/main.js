@@ -65,10 +65,7 @@ function deepMergeTwo(x, y) {
   }
 
   if (Array.isArray(y) && Array.isArray(x)) {
-    // return x.concat(y)
-    return nub(Object.keys(y).concat(Object.keys(x))).map(index =>
-      deepMergeTwo(x[index], y[index])
-    )
+    return deepClone(y)
   }
 
   if (typeof y === 'undefined') {

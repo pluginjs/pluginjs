@@ -78,11 +78,20 @@ describe('eventable()', () => {
   })
 
   describe('selfEventName()', () => {
-    it('should with with options callback', () => {
+    it('should return event name that used in self trigger', () => {
       const el = document.createElement('div')
       const api = Sample.of(el)
 
       expect(api.selfEventName('ready')).toBe('sample:ready')
+    })
+
+    it('should return multiply event name', () => {
+      const el = document.createElement('div')
+      const api = Sample.of(el)
+
+      expect(api.selfEventName('change update')).toBe(
+        'sample:change sample:update'
+      )
     })
   })
 

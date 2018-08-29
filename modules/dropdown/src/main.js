@@ -47,7 +47,7 @@ class Dropdown extends Component {
     this.setupClasses()
 
     this.$dropdown = this.getDropdown()
-
+    this.POPPER = null
     this.setupStates()
     this.initialize()
   }
@@ -140,7 +140,6 @@ class Dropdown extends Component {
       this.eventName('click'),
       `.${this.classes.ITEM}`,
       e => {
-        console.log(12)
         const item = e.target
         // if (item.parentNode !== this.$dropdown) {
         //   return
@@ -220,7 +219,7 @@ class Dropdown extends Component {
         this.$trigger.value = value
       } else {
         html(value, this.$trigger)
-        addClass('pj-dropdown-checked', this.$trigger)
+        addClass(this.classes.SELECTED, this.$trigger)
       }
     }
     if (trigger) {
@@ -247,13 +246,10 @@ class Dropdown extends Component {
     if (this.is('disabled')) {
       return
     }
-    console.log(0)
 
     if (!this.is('show')) {
-      console.log(this.setupPopper())
       this.setupPopper()
       addClass(this.classes.SHOW, this.$dropdown)
-      console.log(this.$trigger)
       this.$trigger.setAttribute('aria-expanded', 'true')
 
       if (this.options.hideOutClick) {
@@ -270,7 +266,6 @@ class Dropdown extends Component {
             }
 
             this.hide()
-            console.log(5)
           },
           document
         )
@@ -356,21 +351,28 @@ class Dropdown extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      this.element.disabled = false
+      if (isInput(this.$trigger)) {
+        this.$trigger.disabled = false
+      }
+
       this.leave('disabled')
     }
     removeClass(this.classes.DISABLED, this.$trigger)
-    removeClass(this.classes.DISABLED, this.$placement)
+    removeClass(this.classes.DISABLED, this.$reference)
     this.trigger(EVENTS.ENABLE)
   }
 
   disable() {
     if (!this.is('disabled')) {
-      this.element.disabled = true
+      if (isInput(this.$trigger)) {
+        this.$trigger.disabled = true
+      }
+
       this.enter('disabled')
     }
     addClass(this.classes.DISABLED, this.$trigger)
-    addClass(this.classes.DISABLED, this.$placement)
+    addClass(this.classes.DISABLED, this.$reference)
+
     this.trigger(EVENTS.DISABLE)
   }
 
@@ -380,10 +382,14 @@ class Dropdown extends Component {
     }
   }
 
+  unbind() {
+    removeEvent(this.eventName(), this.$trigger)
+    removeEvent(this.eventName(), this.$dropdown)
+  }
+
   destroy() {
     if (this.is('initialized')) {
-      removeEvent(this.eventName(), this.$trigger)
-      removeEvent(this.eventName(), this.$dropdown)
+      this.unbind()
 
       this.leave('initialized')
     }

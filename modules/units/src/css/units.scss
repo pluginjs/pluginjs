@@ -27,6 +27,7 @@ $units-trigger-font-size: $font-size-base !default;
       &:hover,
       &:focus {
         color: $units-active-color;
+        border-color: $units-active-color;
       }
     }
 
@@ -41,26 +42,20 @@ $units-trigger-font-size: $font-size-base !default;
     }
   }
 
-  &-wrap.#{$units}-active {
-    .#{$units}-input {
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    .#{$units}-trigger {
-      color: $units-active-color;
-    }
-  }
-
-  &.#{$units}-dropdown {
+  &-dropdown {
     font-size: $font-size-xs;
     border: 1px solid $units-border-color;
     box-shadow: none;
   }
 }
 
-.#{$units}-wrap {
-  input[type="text"].#{$units}-input:focus {
-    border-color: $units-active-color;
+#{$units}-active {
+  .#{$units}-input {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .#{$units}-trigger {
+    color: $units-active-color;
   }
 }

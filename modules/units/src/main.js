@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import DROPDOWN from '@pluginjs/dropdown'
-import { isNull, isNan } from '@pluginjs/is'
+import { isNull, isUndefined } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, insertAfter } from '@pluginjs/dom'
@@ -36,9 +36,10 @@ class Units extends Component {
     this.setupOptions(options)
     this.setupClasses()
 
-    this.value = ''
-    this.data = {}
-
+    this.input = null
+    this.unit = null
+    this.cached = {}
+    this.only = this.options.units.length < 2
     this.setupStates()
     this.initialize()
   }
@@ -58,15 +59,10 @@ class Units extends Component {
 
     this.$input = query('input', this.$wrap)
 
-    this.options.data.forEach(v => {
-      this.data[v] = ''
-    })
-
-    this.DROPDOWN = this.initDropdown(this.$trigger)
-
-    if (this.options.data.length < 2) {
+    if (this.only) {
       addClass(this.classes.ONLY, this.$trigger)
-      this.DROPDOWN.disable()
+    } else {
+      this.DROPDOWN = this.initDropdown()
     }
 
     if (this.options.theme) {
@@ -77,51 +73,26 @@ class Units extends Component {
       this.disable()
     }
 
-    this.initData()
+    this.set(this.options.parse.call(this, this.element.value), false)
     this.bind()
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  initData() {
-    const val = this.element.value
-    if (val) {
-      let value = parseFloat(val)
-      let unit = val.match(/\D+$/g)
-      unit = isNull(unit) ? this.options.data[0] : unit[0]
+  initDropdown() {
+    this.unit = this.options.defaultUnit
 
-      if (isNan(value)) {
-        value = ''
-      }
-      if (this.options.data.indexOf(unit) < 0) {
-        unit = this.options.data[0]
-      }
-      this.set({
-        unit,
-        value
-      })
-    }
-  }
-
-  initDropdown($trigger) {
-    const data = []
-    for (const i in this.data) {
-      if ({}.hasOwnProperty.call(this.data, i)) {
-        data.push({ value: i, label: i })
-      }
-    }
-
-    this.unit = this.options.defaultUnit || data[0].label
-
-    return DROPDOWN.of($trigger, {
+    return DROPDOWN.of(this.$trigger, {
       classes: {
         DROPDOWN: `{namespace} ${this.classes.DROPDOWN}`
       },
       width: this.options.width,
       trigger: 'click',
       reference: this.$input,
-      data,
+      data: this.options.units.map(i => {
+        return { value: i, label: i }
+      }),
       imitateSelect: true,
       value: this.unit,
       placement: this.options.placement,
@@ -129,10 +100,7 @@ class Units extends Component {
         if (this.unit === value) {
           return
         }
-
-        this.cacheValue(this.unit)
-        this.update(value)
-        this.trigger(EVENTS.CHANGE, this.unit)
+        this.setUnit(value)
       },
 
       onShow: () => {
@@ -147,100 +115,92 @@ class Units extends Component {
     })
   }
 
-  cacheValue(unit, value = '') {
-    if (value) {
-      this.data[unit] = value
-      return
-    }
-    this.data[unit] = this.value
-  }
-
   bind() {
-    this.enter('bind')
+    bindEvent(
+      this.selfEventName(`${EVENTS.CHANGEUNIT} ${EVENTS.CHANGEINPUT}`),
+      () => {
+        this.element.value = this.val()
+        this.trigger(EVENTS.CHANGE, this.element.value)
+      },
+      this.element
+    )
 
-    /* when event change, if this.$input wrap has form, trigger form submit. */
     bindEvent(
       this.eventName('change'),
       () => {
-        const value = this.$input.value
-        // if (value !== '' && !parseFloat(value, 10)) {
-        //   return false;
-        // }
-
-        this.value = parseFloat(value, 10)
-        this.value = value
-        this.cacheValue(this.getUnit(), this.value)
-        this.update(this.getUnit())
-        this.trigger(EVENTS.CHANGEVAL, this.value)
+        this.setInput(this.$input.value)
       },
       this.$input
     )
   }
 
   unbind() {
-    this.leave('bind')
-
     removeEvent(this.eventName(), this.$input)
-    this.DROPDOWN.disable()
-  }
-
-  set(data, trigger = true) {
-    const hasUnit =
-      typeof data.unit !== 'undefined' &&
-      data.unit !== null &&
-      data.unit !== this.unit
-
-    this.unit = hasUnit ? data.unit : this.unit
-    this.value = data.value
-
-    this.$input.value = this.value
-    this.element.value = `${this.value}${this.unit}`
-    this.cacheValue(this.unit, this.value)
-
-    if (hasUnit) {
-      this.DROPDOWN.selectByValue(this.unit)
-      this.trigger(EVENTS.SETUNIT, this.unit)
-    }
-
-    if (trigger) {
-      this.trigger(EVENTS.SUBMIT, this.value)
+    if (!this.only) {
+      this.DROPDOWN.unbind()
     }
   }
 
-  update(unit) {
-    this.value = this.get(unit).value
-    this.$input.value = this.value
-    this.unit = unit
-    this.trigger(EVENTS.UPDATE, this.unit)
+  set(value, trigger = true) {
+    const { input, unit } = value
+
+    this.setUnit(unit, trigger)
+    this.setInput(input, trigger)
   }
 
-  get(unit) {
-    if (unit) {
-      return {
-        unit,
-        value: this.data[unit]
-      }
-    }
+  get() {
     return {
-      unit: this.unit,
-      value: this.value
+      unit: this.getUnit(),
+      input: this.getInput()
     }
   }
 
   getUnit() {
-    return this.DROPDOWN.get()
-  }
-
-  setWidth(width) {
-    this.DROPDOWN.setWidth(width)
-  }
-
-  toggleUnit(unit) {
-    this.DROPDOWN.set(unit)
+    return this.unit ? this.unit : this.options.defaultUnit
   }
 
   getInput() {
-    return this.get()
+    return this.input ? this.input : null
+  }
+
+  setUnit(unit, trigger = true) {
+    if (this.unit === unit) {
+      return false
+    }
+
+    this.unit = unit
+    if (!this.only) {
+      this.DROPDOWN.set(unit)
+    } else {
+      this.$trigger.innerHTML = this.getUnit()
+    }
+
+    if (!isUndefined(this.cached[unit])) {
+      this.setInput(this.cached[unit], false)
+    }
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGEUNIT, unit)
+    }
+    return true
+  }
+
+  setInput(input, trigger = true) {
+    if (this.input === input) {
+      return false
+    }
+
+    this.input = input
+    this.$input.value = input
+
+    if (!isNull(input)) {
+      this.cached[this.getUnit()] = input
+    }
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGEINPUT, input)
+    }
+    return true
   }
 
   val(value) {
@@ -257,7 +217,10 @@ class Units extends Component {
       this.leave('disabled')
       this.element.disabled = false
       this.$input.disabled = false
-      this.DROPDOWN.enable()
+      if (!this.only) {
+        this.DROPDOWN.enable()
+      }
+
       removeClass(this.classes.DISABLED, this.$wrap)
     }
 
@@ -272,7 +235,10 @@ class Units extends Component {
       this.element.disabled = true
       this.$input.disabled = true
       addClass(this.classes.DISABLED, this.$wrap)
-      this.DROPDOWN.disable()
+
+      if (!this.only) {
+        this.DROPDOWN.disable()
+      }
     }
     this.trigger(EVENTS.DISABLE)
 
@@ -282,8 +248,11 @@ class Units extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      this.DROPDOWN.element.remove()
-      this.DROPDOWN.destroy()
+
+      if (!this.only) {
+        this.DROPDOWN.destroy()
+      }
+
       removeClass(this.classes.NAMESPACE, this.element)
       removeClass(this.getThemeClass(), this.$wrap)
       this.element.value = ''

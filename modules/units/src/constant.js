@@ -1,15 +1,15 @@
+import { isNull } from '@pluginjs/is'
+
 export const namespace = 'units'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
   CHANGE: 'change',
-  SUBMIT: 'submit',
-  SETUNIT: 'setunit',
-  CHANGEVAL: 'changeVal'
+  CHANGEINPUT: 'changeInput',
+  CHANGEUNIT: 'changeUnit'
 }
 
 export const classes = {
@@ -21,46 +21,53 @@ export const classes = {
   DISABLED: '{namespace}-disabled',
   ACTIVE: '{namespace}-active',
   ONLY: '{namespace}-only',
-  INPUT: '{namespace}-input pj-input',
-  TOP: '{namespace}-top',
-  BOTTOM: '{namespace}-bottom'
+  INPUT: '{namespace}-input pj-input'
 }
 
 export const methods = [
   'enable',
   'disable',
   'destroy',
-  'get',
-  'getUnit',
-  'getInput',
   'val',
+  'get',
   'set',
-  'toggleUnit',
-  'setWidth'
+  'setUnit',
+  'setInput',
+  'getUnit',
+  'getInput'
 ]
 
 export const defaults = {
   theme: null,
   disabled: false,
-  width: '80px', // number|string|object
-  data: null, // array
+  width: '80px',
+  units: ['px', '%'], // array
   placement: 'bottom-end',
-  defaultUnit: null,
+  defaultUnit: 'px',
   process(value) {
-    if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value)
+    const { input, unit } = value
+    if (!isNull(input) && !isNull(unit)) {
+      return `${value.input}${value.unit}`
     }
     return ''
   },
   parse(value) {
+    let input = ''
+    let unit = ''
     if (value) {
-      try {
-        return JSON.parse(value)
-      } catch (e) {
-        return null
+      input = parseFloat(value)
+      unit = value.match(/\D+$/g)
+      if (isNull(unit)) {
+        unit = this.options.defaultUnit
+      } else {
+        unit = unit[0]
       }
     }
-    return null
+
+    return {
+      input,
+      unit
+    }
   },
   onChange() {
     return
