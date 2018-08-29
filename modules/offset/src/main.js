@@ -4,7 +4,7 @@ import TOOLTIP from '@pluginjs/tooltip'
 import { isObject, isNumber } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle, getStyle, offset as getOffset } from '@pluginjs/styled'
+import { setStyle, offset as getOffset } from '@pluginjs/styled' // getStyle
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   parentWith,
@@ -187,7 +187,7 @@ class Offset extends Component {
 
         const api = getData('units', $unit)
         api.toggleUnit(unit)
-        api.setWidth(getStyle('width', $unit))
+        // api.setWidth(getStyle('width', $unit))
         Array.from(this.$inner.children).map(c =>
           removeClass(that.classes.UNITSHOW, c)
         )

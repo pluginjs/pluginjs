@@ -86,7 +86,7 @@ export const defaults = {
       return '<input placeholder="{that.options.placeholder}" class="{that.classes.LABEL}" />'
     },
     badge() {
-      return '<div class="{that.classes.BADGE}" data-flag="{flag}"><span class="{that.classes.BADGECONTENT}">{label}</span><i class="{that.classes.BADGEDELETE} icon-close"></i></div>'
+      return '<div class="{that.classes.BADGE}" data-flag="{flag}"><span class="{that.classes.BADGECONTENT}">{label}</span><i class="{that.classes.BADGEDELETE} icon-close-solid"></i></div>'
     },
     dropdown() {
       return '<div class="{that.classes.DROPDOWN}"></div>'

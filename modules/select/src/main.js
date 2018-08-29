@@ -15,7 +15,8 @@ import {
   wrap,
   children,
   insertBefore,
-  getData
+  getData,
+  insertAfter
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -284,9 +285,14 @@ class Select extends Component {
   bind() {
     let iconClassName = this.options.icon
     if (this.options.multiple && this.options.closeAllButten) {
-      iconClassName = 'icon-char icon-close-mini'
+      iconClassName = 'icon-char icon-remove-small'
+      insertAfter(
+        '<i class="icon-char icon-remove-small"></i>',
+        query('.pj-dropdown-trigger', this.$wrap)
+      )
     }
     this.dropdown = Dropdown.of(this.triggerEl, {
+      reference: this.triggerElement,
       target: this.$dropdown,
       trigger: this.options.trigger,
       hideOnSelect: !this.options.multiple,
@@ -314,7 +320,6 @@ class Select extends Component {
         }
       },
       onHide: () => {
-        console.log(1)
         this.trigger(EVENTS.HIDE)
         if (this.options.filterable) {
           if (this.options.multiple) {
@@ -339,19 +344,17 @@ class Select extends Component {
           this.resetLabelWidth()
         }
       },
-      onTrigger: (item, e) => {
-        console.log(1)
-        const target = e.target
-        if (!target.closest(`.${this.classes.BADGEDELETE}`)) {
-          return
-        }
+      // onTrigger: (item, e) => {
+      //   const target = e.target
+      //   if (!target.closest(`.${this.classes.BADGEDELETE}`)) {
+      //     return
+      //   }
 
-        const badge = target.closest(`.${this.classes.BADGE}`)
-        this.set(getData('flag', badge), false)
-        this.dropdown.triggerUsable = false
-      },
+      //   const badge = target.closest(`.${this.classes.BADGE}`)
+      //   this.set(getData('flag', badge), false)
+      //   this.dropdown.triggerUsable = false
+      // },
       onSelect: item => {
-        console.log(item, 111)
         this.click(item)
         this.dropdown.itemUsable = false
       }
@@ -360,7 +363,7 @@ class Select extends Component {
     if (!this.options.filterable && this.options.multiple) {
       this.label.style.display = 'none'
     }
-    this.icon = this.dropdown.$icon
+    this.icon = query('.icon-char', this.triggerElement)
     if (this.options.multiple && this.options.closeAllButten) {
       bindEvent(
         this.eventName('click'),
@@ -392,6 +395,30 @@ class Select extends Component {
         this.icon
       )
     }
+
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.BADGEDELETE}`,
+      e => {
+        const target = e.target
+        if (!target.closest(`.${this.classes.BADGEDELETE}`)) {
+          return
+        }
+        const badge = target.closest(`.${this.classes.BADGE}`)
+        this.set(getData('flag', badge), false)
+        // this.dropdown.triggerUsable = false
+      },
+      this.triggerElement
+    )
+
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.BADGE}`,
+      () => {
+        this.dropdown.toggle()
+      },
+      this.triggerElement
+    )
   }
 
   checkIcon() {
@@ -417,7 +444,6 @@ class Select extends Component {
   }
 
   click(item) {
-    console.log(1)
     if (hasClass(this.classes.DISABLED, item)) {
       return
     }
@@ -436,7 +462,6 @@ class Select extends Component {
       if (!this.options.multiple) {
         this.dropdown.hide()
       }
-      console.log(1)
     }
 
     this.checkIcon()
@@ -511,7 +536,6 @@ class Select extends Component {
       const cancelSelect = el => {
         el.selected = false
       }
-      console.log(this.selectOptions)
       this.selectOptions.forEach(cancelSelect)
     }
     if (trigger) {
