@@ -6,131 +6,79 @@
 $collapse: "pj-collapse";
 $collapse-font-family: $font-family-base;
 $collapse-font-size: $font-size-sm;
-
-$collapse-hover-color: $color-primary;
-$collapse-hover-border-color: $color-primary;
+$collapse-color: $gray-darker;
 $collapse-border-color: $gray-border;
-$collapse-gutter-width: 1px;
-$collapse-padding: 12px 31px 12px 23px;
 
+$collapse-header-line-height: 1;
+$collapse-header-padding-x: 24px;
+$collapse-header-padding-y: 16px;
 $collapse-header-color: $gray-darkest;
-$collapse-header-order-title-padding: 0 31px 15px 23px;
-$collapse-header-order-content-inner-padding: 17px 23px 0 23px;
-$collapse-header-icon-margin-right: 11px;
+$collapse-header-active-color: $color-primary;
 
-$collapse-expanded-padding: 16px 23px 0 23px;
-
-$collapse-title-button-padding: 4px 14px;
-
-$collapse-arrow-active-color: $color-primary;
+$collapse-icon-gutter: 10px;
 $collapse-arrow-color: $gray-dark;
 
-$collapse-toggle-margin-left: 19px;
-$collapse-toggle-header-padding: 11px 31px 11px 23px;
+$collapse-content-padding: $collapse-header-padding-x;
+$collapse-content-padding-top: $collapse-header-padding-x - $collapse-header-padding-y;
 
-$collapse-content-padding: 4px 23px 23px;
-$collapse-content-inner-color: $gray-darker;
-$collapse-content-inner-margin: 0 22px;
-$collapse-content-inner-lineHeight: 22px;
-$collapse-content-button-margin-top: 15px;
-$collapse-content-button-padding: 8px 30px;
-$collapse-content-button-border-color: $gray-border;
-$collapse-content-button-border-radius: $border-radius-base;
-
-// default
+// Skin
 // =====================
 .#{$collapse} {
   font-family: $collapse-font-family;
   font-size: $collapse-font-size;
-  border: $collapse-gutter-width solid $collapse-border-color;
+  color: $collapse-color;
+  border: 1px solid $collapse-border-color;
 
   &-header {
-    position: relative;
-    padding: $collapse-padding;
+    padding: $collapse-header-padding-y $collapse-header-padding-x;
+    line-height: $collapse-header-line-height;
     color: $collapse-header-color;
-    outline: none;
-
-    &:hover {
-      color: $collapse-hover-color;
-
-      .#{$collapse}-arrow {
-        color: $collapse-hover-color;
-      }
-    }
-  }
-
-  &-arrow {
-    color: $collapse-arrow-color;
+    transition: color 0.3s ease, transform 0.3s ease;
   }
 
   &-icon {
-    margin-right: $collapse-header-icon-margin-right;
+    margin-right: $collapse-icon-gutter;
   }
 
-  button {
-    color: inherit;
-    background-color: transparent;
-    border: 1px solid $collapse-content-button-border-color;
-    border-radius: $collapse-content-button-border-radius;
-    outline: none;
-
-    &:hover {
-      color: $collapse-hover-color;
-      border: 1px solid $collapse-hover-border-color;
-    }
+  &-arrow {
+    right: $collapse-header-padding-x;
+    color: $collapse-arrow-color;
+    transform: translate(100%, -50%);
   }
 
   &-content-inner {
-    padding: $collapse-content-padding;
-    color: $collapse-content-inner-color;
-
-    button {
-      padding: $collapse-content-button-padding;
-      margin-top: $collapse-content-button-margin-top;
-    }
+    padding: $collapse-content-padding-top $collapse-content-padding $collapse-content-padding;
   }
 
-  &-toggle {
-    padding: $collapse-title-button-padding;
-    margin-top: 0;
-    margin-left: $collapse-toggle-margin-left;
-  }
-
-  &-expanded {
-    .#{$collapse}-arrow {
-      color: $collapse-hover-color;
-      transition: transform 0.3s ease-in;
-      transform: rotate(90deg);
-    }
-
-    .#{$collapse}-header {
-      color: $collapse-hover-color;
-    }
-
-    .#{$collapse}-content {
-      margin: 0;
-    }
-  }
-
-  &[data-switch="toggle"] {
-    .#{$collapse}-header {
-      padding: $collapse-toggle-header-padding;
-    }
+  &-inverse {
     .#{$collapse}-content-inner {
-      padding-top: 0;
+      padding-top: $collapse-content-padding;
+      padding-bottom: $collapse-content-padding-top;
     }
   }
 }
 
-.#{$collapse}-inverse {
-  .#{$collapse}-content-inner {
-    padding: $collapse-expanded-padding;
+.#{$collapse}:hover,
+.#{$collapse}-expanded {
+  .#{$collapse} {
+    &-header {
+      color: $collapse-header-active-color;
+    }
+
+    &-arrow {
+      color: inherit;
+    }
+  }
+}
+
+.#{$collapse}-expanded {
+  .#{$collapse}-arrow {
+    transform: translate(100%, -50%) rotate(90deg);
   }
 
-  &.#{$collapse}-expanded {
+  &.#{$collapse}-inverse {
     .#{$collapse}-arrow {
-      top: 0;
-      transform: rotate(-90deg);
+      transform: translate(100%, -50%) rotate(-90deg);
     }
   }
 }

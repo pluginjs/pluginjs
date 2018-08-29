@@ -3,30 +3,26 @@
 // Vars
 // =====================
 $collapse: "pj-collapse" !default;
-$collapse-arrow-right: 11px !default;
-$collapse-arrow-top: 13px !default;
 
-$collapse-lineHeight: 22px !default;
 // Core
 // =====================
 .#{$collapse}  {
-  line-height: $collapse-lineHeight;
-
   & [role="button"] {
     cursor: pointer;
   }
-  
+
   &-header {
-    display: flex;
-    align-items: center;
+    position: relative;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   &-arrow {
     position: absolute;
-    top: $collapse-arrow-top;
-    right: $collapse-arrow-right;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
   }
 
   &-content {
@@ -34,7 +30,13 @@ $collapse-lineHeight: 22px !default;
     transition: height 0.3s ease;
 
     p {
-      margin: 0;
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-top: 0;
+      }
     }
   }
 

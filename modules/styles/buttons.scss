@@ -104,7 +104,7 @@ button {
   }
 
   &:not(:disabled):hover {
-    // color: $btn-hover-text-color;
+    color: $btn-hover-text-color;
     background-color: $btn-hover-bg-color;
     border-color: $btn-hover-border-color;
   }
