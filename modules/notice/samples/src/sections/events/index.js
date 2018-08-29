@@ -5,6 +5,7 @@ const element = query('#events .example-event')
 element.addEventListener('click', () => {
   Notice.show({
     content: 'Check Out And Download Premui Psd Template',
-    closeBottonColor: '#b3b3b3'
+    closeBottonColor: '#b3b3b3',
+    timeout: 500000
   })
 })
