@@ -16,7 +16,7 @@ import {
 import { addClass, removeClass } from '@pluginjs/classes'
 import { parent, queryAll, getData, attr } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
-import { on, off } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -89,7 +89,7 @@ class Lazyload extends Viewport {
   }
 
   bind() {
-    on(
+    bindEvent(
       'viewport:enter',
       () => {
         this.load()
@@ -99,7 +99,7 @@ class Lazyload extends Viewport {
   }
 
   unbind() {
-    off('viewport:enter', this.element)
+    removeEvent('viewport:enter', this.element)
   }
 
   forceLoad() {

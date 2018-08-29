@@ -24,12 +24,10 @@
   },
   "dependencies": {
     "@pluginjs/classes": "*",
+    "@pluginjs/dom": "*",
     "@pluginjs/component": "*",
-    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/styles": "*",
-    "@pluginjs/utils": "*",
     "animejs": "^2.2.0",
     "hammerjs": "*"
   },

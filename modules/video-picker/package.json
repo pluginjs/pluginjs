@@ -34,17 +34,17 @@
     "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
   },
   "dependencies": {
-    "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
-    "@pluginjs/dom": "*",
-    "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/pop-dialog": "*",
+    "@pluginjs/utils": "*",
+    "@pluginjs/template": "*",
+    "@pluginjs/classes": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/tooltip": "*",
-    "@pluginjs/video": "*"
+    "@pluginjs/events": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/video": "*",
+    "@pluginjs/dropdown": "*",
+    "@pluginjs/pop-dialog": "*",
+    "@pluginjs/decorator": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

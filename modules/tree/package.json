@@ -38,10 +38,9 @@
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
+    "@pluginjs/template": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/styled": "*"
+    "@pluginjs/decorator": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

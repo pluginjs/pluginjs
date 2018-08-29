@@ -41,11 +41,10 @@
     "@pluginjs/classes": "*",
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
-    "@pluginjs/factory": "*",
+    "@pluginjs/utils": "*",
     "@pluginjs/decorator": "*",
     "axios": "^0.18.0",
-    "fetch":"^1.1.0",
-    "jquery-validation": "*"
+    "fetch":"^1.1.0"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

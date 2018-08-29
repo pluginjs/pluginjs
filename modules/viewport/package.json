@@ -27,7 +27,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/utils": "*",
     "@pluginjs/polyfills": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/component": "*",

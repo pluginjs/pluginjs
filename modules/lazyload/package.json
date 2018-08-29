@@ -36,7 +36,8 @@
   "dependencies": {
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
-    "@pluginjs/factory": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/events": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/viewport": "*"
   },

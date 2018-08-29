@@ -37,10 +37,11 @@
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
-    "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
-    "@pluginjs/styled": "*"
+    "@pluginjs/styled": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

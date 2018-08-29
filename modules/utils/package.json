@@ -27,8 +27,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/is": "*",
-    "@pluginjs/feature": "*"
+    "@pluginjs/is": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

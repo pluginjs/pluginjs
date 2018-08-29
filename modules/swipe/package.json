@@ -34,18 +34,16 @@
     "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
   },
   "dependencies": {
-    "@pluginjs/arrows": "*",
-    "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
-    "@pluginjs/dots": "*",
-    "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
+    "@pluginjs/classes": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/swipeable": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/template": "*",
-    "hammerjs": "*",
+    "@pluginjs/swipeable": "*",
+    "@pluginjs/arrows": "*",
+    "@pluginjs/dots": "*",
     "animejs": "^2.2.0"
   },
   "devDependencies": {

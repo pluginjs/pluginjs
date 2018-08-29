@@ -27,7 +27,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/dom": "*",
     "@pluginjs/utils": "*",
     "@pluginjs/emitter": "*",
     "@pluginjs/is": "*"

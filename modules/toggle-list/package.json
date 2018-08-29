@@ -35,12 +35,11 @@
   },
   "dependencies": {
     "@pluginjs/classes": "*",
-    "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
     "@pluginjs/list": "*",
-    "@pluginjs/factory": "*",
+    "@pluginjs/utils": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/toggle": "*"
   },

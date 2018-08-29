@@ -26,11 +26,8 @@
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/styles": "*",
-    "@pluginjs/utils": "*",
     "hammerjs": "*"
   },
   "devDependencies": {

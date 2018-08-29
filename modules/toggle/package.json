@@ -38,7 +38,7 @@
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/factory": "*",
+    "@pluginjs/utils": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "hammerjs": "*"

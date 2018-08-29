@@ -38,8 +38,6 @@
     "@pluginjs/component": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/feature": "*",
-    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
