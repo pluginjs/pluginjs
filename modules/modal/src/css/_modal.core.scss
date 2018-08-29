@@ -36,6 +36,22 @@ $modal-z-index: 10000 !default;
   &-container {
     position: relative;
     z-index: $modal-z-index;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  &-title {
+    display: flex;
+    align-items: center;
+
+    &-center {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    &-right {
+      text-align: right;
+    }
   }
 
   &-close {
@@ -47,5 +63,24 @@ $modal-z-index: 10000 !default;
 
   &-body {
     position: relative;
+    overflow-y: auto;
+
+    &-center {
+      text-align: center;
+    }
+
+    &-right {
+      text-align: right;
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &.#{$modal}-active.#{$modal}-destory {
+    display: none;
   }
 }

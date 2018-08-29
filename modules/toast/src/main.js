@@ -9,7 +9,7 @@ import {
   parseHTML,
   queryAll,
   query,
-  insertAfter,
+  after,
   remove,
   data
 } from '@pluginjs/dom'
@@ -448,7 +448,7 @@ class Toast extends GlobalComponent {
   setTitle(title) {
     const icon = query('i', this.$title)
     if (icon) {
-      insertAfter(title, icon)
+      after(title, icon)
       addClass('pj-toast-title-icon', this.$title)
     } else {
       this.$title.textContent = title

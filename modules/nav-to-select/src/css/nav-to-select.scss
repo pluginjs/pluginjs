@@ -3,6 +3,7 @@
 
 // Vars
 // =====================
+$navToSelect: "pj-navToSelect";
 $navToSelect-font-family: $font-family-base;
 $navToSelect-font-size: $font-size-sm;
 
@@ -15,7 +16,7 @@ $navToSelect-padding-left: 10px;
 $navToSelect-height:34px;
 
 $navToSelect-input-outline: $color-primary;
-$navToSelect-input-font-family: "font-awesome";
+$navToSelect-input-font-family: plugin-icons;
 
 .#{$navToSelect} {
   width: $navToSelect-width;
@@ -40,12 +41,10 @@ $navToSelect-input-font-family: "font-awesome";
       top: 50%;
       right: 12px;
       font-family: $navToSelect-input-font-family;
-      text-decoration: none;
-      text-transform: none;
-      content: "\f0d7";
+      font-style: normal;
+      vertical-align: top;
+      content: "\eae1";
       transform: translateY(-50%);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
   }
 

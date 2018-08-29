@@ -15,8 +15,6 @@ query('.autoDestroy_init', root).addEventListener('click', () => {
     }
   })
 })
-
-console.log(root)
 // show
 query('.autoDestroy_open', root).addEventListener('click', () => {
   if (!instance) {
@@ -33,7 +31,6 @@ query('.autoDestroy_open', root).addEventListener('click', () => {
   }
   instance.open()
 })
-console.log(instance)
 // hide
 query('.autoDestroy_close', root).addEventListener('click', () => {
   if (!instance) {

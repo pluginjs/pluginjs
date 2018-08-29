@@ -51,7 +51,7 @@ export const defaults = {
   },
   templates: {
     close() {
-      return '<button type="button" class="icon-remove-small {classes.CLOSE}" aria-label="Close"></button>'
+      return '<button type="button" class="icon icon-close-solid {classes.CLOSE}" aria-label="Close"></button>'
     },
     title() {
       return '<div class="{classes.TITLE}"></div>'
