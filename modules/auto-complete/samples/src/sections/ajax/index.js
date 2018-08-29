@@ -16,9 +16,9 @@ const element = query('#ajax .auto-complete-ajax')
 AutoComplete.of(element, {
   ajax: true,
   group: true,
-  source() {
-    const _data = source
-    this.resolveData(_data)
+  source(resolveData) {
+    console.log(this)
+    resolveData(source)
   },
   render(data) {
     return `<span class="test">${data.label}</span>`

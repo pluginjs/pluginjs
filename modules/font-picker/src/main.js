@@ -150,7 +150,7 @@ class FontPicker extends Component {
         parseHTML(
           `<div class=${
             this.classes.MANAGE
-          }><i class='icon-cog'></i>${text}</div>`
+          }><i class='icon-performance-solid'></i>${text}</div>`
         )
       )
     }
@@ -272,8 +272,9 @@ class FontPicker extends Component {
 
     this.$selectorPanel.options.onChange = val => {
       const $source = val
-      const sourceName = $source.dataset.source
-      // const sourceName = getData('source', $source)
+      console.log($source)
+      // const sourceName = $source.dataset.source
+      const sourceName = getData('source', $source)
       this.toggleSources($source)
       this.categoriesHeight = getHeight(parent(this.$activated[0]))
       if (this.sources[sourceName]) {

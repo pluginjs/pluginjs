@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { isArray, isObject } from '@pluginjs/is'
+import { isArray, isObject, isFunction } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { debounce, compose } from '@pluginjs/utils'
 import {
@@ -49,18 +49,21 @@ class AutoComplete extends Component {
     this.$element = this.element
     this.setupOptions(options)
     this.setupClasses()
-
+    // console.log(this.options)
     this.$wrapper = wrap(
       parseHTML(`<div class="${this.classes.NAMESPACE}"></div>`),
       this.$element
     )
 
     this.source = this.options.source
+
     this.$panel = null
     this.$selected = null
 
     this.setupStates()
+    // console.log(this.options)
     this.initialize()
+    // console.log(this.options)
   }
 
   initialize() {
@@ -113,6 +116,11 @@ class AutoComplete extends Component {
     }
     if (!this.options.ajax) {
       this.resolveData(this.source)
+    }
+    console.log(this.options)
+    if (isFunction(this.options.source)) {
+      console.log('this', this)
+      this.options.source.call(this, this.resolveData)
     }
   }
 
@@ -186,6 +194,7 @@ class AutoComplete extends Component {
   }
 
   resolveData(data) {
+    console.log(this.options)
     if (this.options.group) {
       this.buildGroup(data, this.$panel)
     } else {

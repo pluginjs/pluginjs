@@ -91,13 +91,17 @@ export const defaults = {
     return false
   },
 
-  source() {
-    /* eslint-disable */
-    $.getJSON('/ajax', { q: val }, data => {
-      this.resolveData(data)
-    })
-    /* eslint-enable */
-  },
+  // source(resolveData) {
+  //   console.log(111)
+  //   if(source.length) return this.resolveData(source)
+  //   console.log(this.resolveData(source))
+  //   /* eslint-disable */
+  //   $.getJSON('/ajax', { q: val }, data => {
+  //     this.resolveData(data)
+  //   })
+  //   /* eslint-enable */
+  // },
+
   process(value) {
     if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)
