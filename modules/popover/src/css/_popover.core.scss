@@ -8,7 +8,7 @@ $popover-font-size: $font-size-sm !default;
 $popover-max-width: 286px !default;
 $popover-max-height: 50vh !default;
 $popover-color: $text-color !default;
-$popover-lineHight: 22px !default;
+$popover-line-height: 22px !default;
 $popover-zindex: $zindex-popover !default;
 $popover-bg: $color-white !default;
 $popover-border-width: 1px !default;
@@ -73,7 +73,7 @@ $popover-btn-padding-x: 30.1px !default;
   margin-bottom: $popover-margin-spacer;
   font-family: $popover-font-family;
   font-size: $popover-font-size;
-  line-height: $popover-lineHight;
+  line-height: $popover-line-height;
   color: $popover-color;
   // Allow breaking very long words so they don't overflow the popover's bounds
   word-wrap: break-word;

@@ -17,6 +17,7 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
+  SHAPE: '{namespace}-{shape}',
   SVG: '{namespace}-svg',
   ELEMENT: '{namespace}',
   NUMBER: '{namespace}-number',

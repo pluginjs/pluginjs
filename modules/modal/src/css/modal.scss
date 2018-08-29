@@ -7,7 +7,7 @@ $modal-width: 480px;
 $modal-sm-width: 450px;
 $modal-font-size: $font-size-sm;
 $modal-bg: $color-white;
-$modal-lineHeight: 22px;
+$modal-line-height: 22px;
 $modal-border-radius: $border-radius-base;
 
 $modal-body-margin-bottom: 3px;
@@ -20,7 +20,7 @@ $modal-title-icon-margin-right: 14px;
 $modal-title-icon-font-size: 24px;
 $modal-title-icon-padding: 10px;
 $modal-title-margin-bottom: 3px;
-$modal-title-lineHeight: 24px;
+$modal-title-line-height: 24px;
 
 $modal-icon-title-font-size: 20px;
 $modal-icon-title-margin-bottom: 10px;
@@ -67,7 +67,7 @@ $modal-vertification-borderClor: $gray-border;
 .#{$modal} {
   font-family: $modal-font-family;
   font-size: $modal-font-size;
-  line-height: $modal-lineHeight;
+  line-height: $modal-line-height;
 
   &-container {
     max-width: 100%;
@@ -80,7 +80,7 @@ $modal-vertification-borderClor: $gray-border;
   &-title {
     margin-bottom: $modal-title-margin-bottom;
     font-size: $modal-title-font-size;
-    line-height: $modal-title-lineHeight;
+    line-height: $modal-title-line-height;
     color: $modal-title-color;
 
     &-icon {
@@ -162,7 +162,7 @@ $modal-vertification-borderClor: $gray-border;
   &-trigger {
     padding: $modal-trigger-btn-padding-y $modal-trigger-btn-padding-x;
     font-size: $modal-font-size;
-    line-height: $modal-lineHeight;
+    line-height: $modal-line-height;
 
     &:hover {
       color: $modal-trigger-hover-color;

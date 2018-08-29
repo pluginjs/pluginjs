@@ -191,7 +191,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
   &-fontFamily,
   &-fontSize,
-  &-lineHeight,
+  &-line-height,
   &-fontWeight {
     align-items: center;
     justify-content: space-between;
@@ -230,7 +230,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   }
 
   &-fontSize,
-  &-lineHeight {
+  &-line-height {
     .pj-dropdown-input {
       width: 8 * $fontEditor-sizer;
     }
@@ -330,7 +330,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 }
 
 /* stylelint-disable*/
-.#{$fontEditor}-expand {      
+.#{$fontEditor}-expand {
   .#{$fontEditor}-empty{
     display: none !important;
   }

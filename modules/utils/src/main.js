@@ -289,4 +289,21 @@ export function fromPairs(arr) {
   )
 }
 
+export const SvgElement = (tag, attrs) => {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag)
+
+  if (!attrs) {
+    return el
+  }
+
+  for (const key in attrs) {
+    if (!Object.hasOwnProperty.call(attrs, key)) {
+      continue
+    }
+
+    el.setAttribute(key, attrs[key])
+  }
+  return el
+}
+
 export { keyframes2Anime }
