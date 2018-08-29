@@ -1,0 +1,68 @@
+@import "@pluginjs/styles/variables.scss";
+@import "loader.core";
+
+// Vars
+// =====================
+$loader: "pj-loader";
+
+$loader-color: #fff;
+$loader-duration: 0.8s;
+
+.#{$loader} {
+  color: $loader-color;
+}
+
+.#{$loader}--snake {
+  border: 6px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: pj-loader-spin $loader-duration infinite linear;
+}
+
+.#{$loader}--circle {
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top-color: currentColor;
+  border-radius: 100%;
+  animation: pj-loader-spin $loader-duration infinite linear;
+}
+
+.#{$loader}--bubble {
+  &::after,
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    margin: auto;
+    content: "";
+    border-radius: 100%;
+    box-shadow: 0 0 0 2px;
+    opacity: 0;
+    animation: pj-loader-bubble 1.2s linear 0s infinite;
+  }
+
+  &::before {
+    animation: pj-loader-bubble 1.2s linear 2s infinite;
+  }
+}
+
+@keyframes pj-loader-bubble {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+  }
+}
+
+@keyframes pj-loader-spin {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}

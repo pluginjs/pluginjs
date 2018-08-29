@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "moduleName": "loader",
+    "namespace": "loader",
+    "Namespace": "Loader",
+    "options": [
+      {
+        "name": "theme",
+        "desc": "Add plugin theme option",
+        "defaultValue": "null"
+      },
+      {
+        "name": "prev",
+        "desc": "Add value of prev button",
+        "defaultValue": "{\"href\":\"#\",\"text\":\"Previous\"}"
+      },
+      {
+        "name": "next",
+        "desc": "Add value of next button",
+        "defaultValue": "{\"href\":\"#\",\"text\":\"Next\"}"
+      },
+      {
+        "name": "direction",
+        "desc": "Set plugin initial direction",
+        "defaultValue": "horizontal"
+      },
+      {
+        "name": "valueFrom",
+        "desc": "Set where is value from",
+        "defaultValue": "href"
+      },
+      {
+        "name": "templates",
+        "desc": "Loader default templates",
+        "defaultValue": "{}"
+      }
+    ],
+    "option": "theme",
+    "events": [
+      {
+        "name": "ready",
+        "desc": "Gets fired when plugin is ready"
+      },
+      {
+        "name": "enable",
+        "desc": "Gets fired when plugin is enabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Gets fired when plugin is disabled"
+      },
+      {
+        "name": "destroy",
+        "desc": "Gets fired when plugin is destroy"
+      },
+      {
+        "name": "next",
+        "desc": "Gets fired when next button has be click"
+      },
+      {
+        "name": "prev",
+        "desc": "Gets fired when prev button has be click"
+      },
+      {
+        "name": "show",
+        "desc": "Gets fired when plugin is show"
+      },
+      {
+        "name": "hide",
+        "desc": "Gets fired when plugin is hide"
+      }
+    ],
+    "event": "ready",
+    "Event": "Ready",
+    "methods": [
+      {
+        "name": "enable",
+        "desc": "Enabled plugin if plugin is disabled"
+      },
+      {
+        "name": "disable",
+        "desc": "Disable plugin"
+      },
+      {
+        "name": "destroy",
+        "desc": "Destroy plugin"
+      },
+      {
+        "name": "build",
+        "desc": "Build loader element"
+      },
+      {
+        "name": "load",
+        "desc": "Load loader element"
+      },
+      {
+        "name": "next",
+        "desc": "Active next event"
+      },
+      {
+        "name": "prev",
+        "desc": "Active prev event"
+      },
+      {
+        "name": "show",
+        "desc": "Show plugin if it is hiden"
+      },
+      {
+        "name": "hide",
+        "desc": "Hide plugin"
+      }
+    ],
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-loader"
+      },
+      {
+        "name": "CONTAINER",
+        "desc": "Declare plugin range",
+        "value": "{namespace}s"
+      },
+      {
+        "name": "THEME",
+        "desc": "Declare plugin theme",
+        "value": "{namespace}s--{theme}"
+      },
+      {
+        "name": "PREV",
+        "desc": "Declare prev element",
+        "value": "{namespace}-prev"
+      },
+      {
+        "name": "NEXT",
+        "desc": "Declare next element",
+        "value": "{namespace}-next"
+      },
+      {
+        "name": "VERTICAL",
+        "desc": "Declare plugin direction is vertical",
+        "value": "{namespace}s-vertical"
+      },
+      {
+        "name": "HORIZONTAL",
+        "desc": "Declare plugin direction is horizontal",
+        "value": "{namespace}s-horizontal"
+      },
+      {
+        "name": "ACTIVE",
+        "desc": "Announce plugin is actived",
+        "value": "{namespace}-active"
+      },
+      {
+        "name": "DISABLED",
+        "desc": "Announce plugin is disabled",
+        "value": "{namespace}-disabled"
+      },
+      {
+        "name": "HIDDEN",
+        "desc": "Announce plugin is hidden",
+        "value": "{namespace}-hidden"
+      }
+    ]
+  },
+  "output": "./README.md",
+  "template": "README"
+}
