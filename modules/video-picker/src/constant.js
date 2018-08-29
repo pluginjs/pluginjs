@@ -91,12 +91,12 @@ export const defaults = {
       </div>`
     },
     infoAction() {
-      return `<div class='{classes.ACTION}'><i class='icon-pencil-square {classes.EDITOR}'></i><i class='icon-trash {classes.REMOVE}'></i>
+      return `<div class='{classes.ACTION}'><i class='icon-pencil-write-solid {classes.EDITOR}'></i><i class='icon-delete {classes.REMOVE}'></i>
       </div>`
     },
     previewContent() {
       return `<div class='{classes.VIDEOACTION}'>
-      <i class='icon-chevron-circle-right {classes.VIDEOBTN}'></i>
+      <i class='icon-play-circle-solid {classes.VIDEOBTN}'></i>
       <div class='{classes.VIDEOPOSTER}'></div>
       <div class="{classes.VIDEOANIMATE} cp-spinner cp-round"></div></div>
      `

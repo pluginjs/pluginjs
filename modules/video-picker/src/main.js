@@ -176,6 +176,7 @@ class VideoPicker extends Component {
         this.classes.VIDEOURL
       }'><input type='text' class='pj-input' /><i class='icon-close-mini'></i></div></div>`
     )
+    this.$vidosource = query(`.${this.classes.SOURCE}`, this.$source)
     this.$videoUrl = query(`.${this.classes.VIDEOURL}`, this.$videoUrlContent)
     this.$localUrlContent = parseHTML(
       `<div class='${
@@ -184,7 +185,7 @@ class VideoPicker extends Component {
         this.classes.COMTITLE
       }'>${this.translate('chooseVideo')}</span><div class='${
         this.classes.LOCALURL
-      }'><span class='${
+      } ${this.classes.POSTER}'><span class='${
         this.classes.LOCALURLADD
       }'>${localeAddVideo}</span><span class='${
         this.classes.LOCALURLCHANGE
@@ -240,15 +241,17 @@ class VideoPicker extends Component {
     this.$defaultDropdown = Dropdown.of(this.$empty, {
       exclusive: false,
       target: this.$dropdown,
+      reference: this.$trigger,
       templates: this.options.template,
       constraintToScrollParent: false,
       constraintToWindow: false,
-      hideOnClick: false,
+      hideOutClick: false,
       hideOnSelect: false
     })
 
     this.$sourceDropdown = Dropdown.of(this.$sourceTrigger, {
       data: sourceData,
+      reference: this.$vidosource,
       width: 160,
       exclusive: false,
       imitateSelect: true,
@@ -265,6 +268,7 @@ class VideoPicker extends Component {
 
     this.$ratioDropdown = Dropdown.of(this.$ratioTrigger, {
       data: ratioData,
+      reference: this.$ratio,
       width: 160,
       exclusive: false,
       imitateSelect: true,
@@ -422,9 +426,8 @@ class VideoPicker extends Component {
 
     // change Video Source
     this.$sourceDropdown.options.onChange = el => {
-      this.data.source = data('value', el)
-
-      if (this.data.source === 'Local File') {
+      // this.data.source = data('value', el)
+      if (el === 'Local File') {
         showElement(closest('.pj-videoPicker-component', this.$localUrl))
         hideElement(closest('.pj-videoPicker-component', this.$videoUrl))
       } else {

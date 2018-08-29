@@ -23,6 +23,14 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
 
 // Core
 // =====================
+.#{$dropdown} {
+    width: 16.2 * $videoPicker-sizer;
+    
+  &-trigger {
+    margin-left: 1.0 * $videoPicker-sizer; //12px 
+  }
+}
+
 .#{$videoPicker} {
   &-component {
     display: flex;
@@ -37,6 +45,7 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     align-items: center;
     width: 160px;
     height: 30px;
+    border: 1px solid $gray-border;
   }
   &-poster {
     display: flex;
@@ -316,7 +325,7 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
   &-local-url,
   &-poster {
     > span {
-      margin-right: 1.2 * $videoPicker-sizer; //12px
+      margin-right: 1.1 * $videoPicker-sizer; //12px
       color: $videoPicker-active-color;
       border-bottom: $videoPicker-border;
       border-bottom-color: transparent;
