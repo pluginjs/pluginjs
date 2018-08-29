@@ -2,52 +2,47 @@
 @import "swipe.core";
 // Vars
 // =====================
-$swipe-dots-bg: #ccc;
-$swipe-dots-active-bg: $gray-darkest;
+$swipe-font-family: $font-family-base;
+
+$dot: "pj-dot";
+$swipe-dots-width: 30px;
+$swipe-dots-margin-top: 30px;
+
+$arrow: "pj-arrow";
+$swipe-arrow-margin: 0 20px;
 $swipe-arrow-color: $color-white;
 $swipe-arrow-bg: $color-black;
 $swipe-arrow-radius: $border-radius-base;
+
 // swipe
 // =====================
 .#{$swipe} {
   &-wrapper {
-    .pj-dots {
-      a {
-        background-color: $swipe-dots-bg;
-        border-radius: 0;
+    font-family: $swipe-font-family;
+
+    // because arrows
+    .#{$swipe} {
+      background-color: transparent;
+
+      &:hover,
+      &:active {
+        background-color: transparent;
       }
     }
-    
-    .pj-dot.pj-dot-active {
-      a {
-        background-color: $swipe-dots-active-bg;
-        border-radius: 0;
+
+    .#{$dot}s {
+      margin-top: $swipe-dots-margin-top;
+
+      .#{$dot} {
+        width: $swipe-dots-width;
+      }
+    }
+
+    .#{$arrow} {
+      &-prev,
+      &-next {
+        margin: $swipe-arrow-margin;
       }
     }
   }
-
-  .#{$arrow} {
-    &-prev,
-    &-next {
-      color: $swipe-arrow-color;
-      background-color: $swipe-arrow-bg;
-      border-radius: $swipe-arrow-radius;
-      opacity: 0.3;
-      &:link {
-        color: $swipe-arrow-color;
-      }
-    }
-  }
-}
-
-.example-item {
-  background: rgba(0,0,0,0.2);
-}
-
-.example-item:nth-of-type(2n) {
-  background: rgba(133, 83, 83, 0.2);
-}
-
-.item-active {
-  opacity: 0.5;
 }

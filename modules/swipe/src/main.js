@@ -343,6 +343,7 @@ class Swipe extends Component {
 
     opts = Object.assign({}, opts, this.options.arrowConfig)
     this.$arrows = Arrows.of(this.element, opts)
+    Arrows.of(this.element, opts)
   }
 
   buildPagination() {

@@ -5,5 +5,7 @@ const element = query('#arrows .swipe')
 Swipe.of(element, {
   arrows: true,
   loop: true,
-  arrowConfig: true
+  arrowConfig: {
+    type: 'solid'
+  }
 })

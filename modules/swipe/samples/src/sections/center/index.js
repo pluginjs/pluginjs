@@ -4,8 +4,11 @@ import Swipe from '@pluginjs/swipe'
 const element = query('#center .swipe')
 Swipe.of(element, {
   center: true,
-  gutter: 10,
+  gutter: 62,
   itemNums: 2,
   arrows: true,
-  pagination: true
+  pagination: true,
+  dotConfig: {
+    type: 'square light'
+  }
 })

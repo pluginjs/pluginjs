@@ -3,5 +3,8 @@ import Swipe from '@pluginjs/swipe'
 
 const element = query('#pagination .swipe')
 Swipe.of(element, {
-  pagination: true
+  pagination: true,
+  dotConfig: {
+    type: 'square light'
+  }
 })
