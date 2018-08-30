@@ -1,0 +1,38 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$filter: "pj-filter" !default;
+// Core
+// =====================
+.#{$filter}s {
+  @include clearfix();
+
+  position: relative;
+  vertical-align: middle;
+
+  .#{$filter} {
+    position: relative;
+    display: inline-block;
+    float: left;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+
+    &-hide {
+      display: none;
+    }
+  }
+}
+
+/* group */
+.#{$filter}s--group {
+  // Bring the "active" button to the front
+  &:focus,
+  &:hover,
+  &:active,
+  &.#{$filter}-active {
+    z-index: 2;
+  }
+}

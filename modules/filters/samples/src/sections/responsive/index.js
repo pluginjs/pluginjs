@@ -3,7 +3,6 @@ import Filter from '@pluginjs/filters'
 
 const element = query('#responsive .pj-filters')
 Filter.of(element, {
-  theme: 'line',
   responsive: true,
   items: [
     {

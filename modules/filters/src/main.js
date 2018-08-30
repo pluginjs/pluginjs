@@ -191,7 +191,6 @@ class Filters extends Component {
       this.element.append(
         parseHTML(`<div class="${this.classes.DROPDOWN}"></div>`)
       )
-
       this.$dropdown = query(`.${this.classes.NAMESPACE}`, this.element)
       this.DROPDOWN = Dropdown.of(this.$dropdown, {
         data,
