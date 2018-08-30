@@ -7,7 +7,6 @@ $filter: "pj-filter";
 
 $filter-font-family: $font-family-base;
 $filter-font-size: $font-size-sm;
-$filter-font-weight: $font-weight-bold;
 $filter-line-height: $line-height-base;
 
 $filter-color: $gray-darkest;
@@ -43,9 +42,8 @@ $filters-button-margin: 10px;
   .#{$filter} {
     padding: $filter-padding;
     font-size: $filter-font-size;
-    font-weight: $filter-font-weight;
     line-height: $filter-line-height;
-    color: inherit;
+    color: $filter-color;
     text-align: center;
     background-color: transparent;
     border: $filter-border-width solid transparent;
@@ -53,6 +51,7 @@ $filters-button-margin: 10px;
     &:not(:disabled):hover,
     &:not(:disabled):active,
     &:not(:disabled):focus {
+      color: $filter-active-color;
       background: inherit;
       border-color: transparent;
       box-shadow: none;
@@ -119,7 +118,7 @@ $filters-button-margin: 10px;
     }
 
     &:not(:disabled):hover {
-      border-color: $filter-border-color;
+      border-color: $filter-active-color;
     }
 
     &:not(:disabled):focus {
@@ -162,6 +161,8 @@ $filters-button-margin: 10px;
 .#{$filter}s--line {
 
   .#{$filter} {
+    
+    &:hover,
     &:active,
     &.#{$filter}-active {
 

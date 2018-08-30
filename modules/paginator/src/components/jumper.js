@@ -52,7 +52,7 @@ Jumper.defaults = {
 }
 
 Jumper.translations = {
-  en: { jump: 'Goto {input}' },
+  en: { jump: 'Go {input}' },
   zh: { jump: '前往 {input} 页' }
 }
 
