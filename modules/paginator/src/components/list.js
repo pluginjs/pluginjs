@@ -392,10 +392,10 @@ List.defaults = {
   itemAttr: 'data-page',
   templates: {
     next() {
-      return '<li class="{classes.LISTNEXT}"><a class="{classes.LINK}" href="#" alt="{label}" title="{label}"><i class="{classes.LISTNEXTICON}" aria-hidden="true"></i></a></li>'
+      return '<li class="{classes.LISTNEXT}"><a class="{classes.LINK}" href="#" alt="{label}" title="{label}"><i class="{classes.LISTNEXTICON}" aria-hidden="true">...</i></a></li>'
     },
     prev() {
-      return '<li class="{classes.LISTPREV}"><a class="{classes.LINK}" href="#" alt="{label}" title="{label}"><i class="{classes.LISTPREVICON}" aria-hidden="true"></i></a></li>'
+      return '<li class="{classes.LISTPREV}"><a class="{classes.LINK}" href="#" alt="{label}" title="{label}"><i class="{classes.LISTPREVICON}" aria-hidden="true">...</i></a></li>'
     },
     item() {
       return '<li class="{classes.ITEM}" data-page="{page}"><a class="{classes.LINK}" href="#">{page}</a></li>'

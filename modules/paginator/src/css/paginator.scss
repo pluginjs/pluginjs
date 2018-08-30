@@ -4,75 +4,109 @@
 // Vars
 // =====================
 // input var
+$paginator: "pj-paginator";
+$paginator-font-family: $font-family-base;
+$paginator-font-size: $font-size-sm;
+$paginator-line-height: 22px;
+
+$paginator-color: $gray-darkest;
+$paginator-active-color: $color-primary;
+$paginator-hover-color: $color-primary;
+
+$paginator-spacer: 30px;
+$paginator-spacer-min: 14px;
+$paginator-height: 32px;
+$paginator-height-min: 35px;
+$paginator-link-width: 15px;
+$paginator-link-margin: 6px;
+$paginator-link-padding: 2px;
+$paginator-link-margin-min: 3px;
+$paginator-text-margin: 12px;
+$paginator-total-margin: 8px;
+$paginator-icon-margin: 10px;
+
 $paginator-input-width: 74px;
 $paginator-input-height: 32px;
 $paginator-input-margin: 5px;
+$paginator-input-padding: 5px 10px;
 $paginator-input-radius: $border-radius-sm;
+$paginator-hover-input-border: $gray-dark;
 
-$paginator-padding: 5px 10px;
-$paginator-icon-margin: 10px;
-$paginator-pre-color: $gray-darkest;
-$paginator-bg: $color-white !default;
-$paginator-border-width: $border-width !default;
-$paginator-border-color: $gray-border !default;
-$paginator-hover-color: $color-primary !default;
-$paginator-hover-bg: $paginator-bg !default;
-$paginator-hover-border: $color-primary !default;
-$paginator-hover-input-border: $gray-dark !default;
-$paginator-active-color: $color-white !default;
-$paginator-active-bg: $color-primary !default;
-$paginator-active-border: $color-primary !default;
+$paginator-border-width: $border-width;
+$paginator-border-color: $gray-border;
 
 // disabled
-$paginator-disabled-color: $gray !default;
-$paginator-disabled-bg: $color-white !default;
-$paginator-disabled-border: $gray !default;
+$paginator-disabled-color: $gray;
+$paginator-disabled-bg: $color-white;
+$paginator-disabled-border: $gray;
 
 // Theme
 // =====================
+.#{$paginator} {
+  padding: 0 $paginator-spacer;
+  font-family: $paginator-font-family;
+  font-size: $paginator-font-size;
+  line-height: $paginator-line-height;
+  color: $paginator-color;
+  text-align: center;
+}
+
+.#{$paginator}-item,
+.#{$paginator}-list-prev,
+.#{$paginator}-list-next {
+  height: $paginator-height;
+  line-height: $paginator-height;
+}
+
+.#{$paginator}-total {
+  margin-right: $paginator-total-margin;
+  text-transform: capitalize;
+}
+
+.#{$paginator}-jumper {
+  margin-left: $paginator-text-margin;
+}
+
 
 .#{$paginator}-prev {
-  float: left;
-
-  i {
+  .icon {
     margin-right: $paginator-icon-margin;
-    line-height: 1.5;
-    vertical-align: middle;
   }
 }
 
 .#{$paginator}-next {
-  float: right;
-
-  i {
+  .icon {
     margin-left: $paginator-icon-margin;
-    line-height: 1.5;
-    vertical-align: middle;
   }
 }
 
 .#{$paginator}-prev,
 .#{$paginator}-next {
   .#{$paginator}-link {
-    color: $paginator-pre-color;
+    color: $paginator-color;
 
     &:hover {
-      color: $paginator-active-bg;
+      color: $paginator-active-color;
       cursor: pointer;
     }
   }
 }
 
 .#{$paginator}-link {
+  min-width: $paginator-link-width;
+  padding: $paginator-link-padding;
+  margin: 0 $paginator-link-margin;
+  line-height: $paginator-line-height;
   color: $paginator-color;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  vertical-align: middle;
 
   &:hover,
   &:focus {
     color: $paginator-hover-color;
-    background-color: $paginator-hover-bg;
-    border-color: $paginator-hover-border;
+    border-color: $paginator-hover-color;
   }
 }
 
@@ -81,8 +115,8 @@ $paginator-disabled-border: $gray !default;
     &,
     &:hover,
     &:focus {
-      color: $paginator-active-bg;
-      border-bottom: 2px solid $paginator-active-border;
+      color: $paginator-active-color;
+      border-bottom: 2px solid $paginator-active-color;
     }
   }
 }
@@ -91,7 +125,7 @@ $paginator-disabled-border: $gray !default;
   box-sizing: border-box;
   width: $paginator-input-width;
   height: $paginator-input-height;
-  padding: $paginator-padding;
+  padding: $paginator-input-padding;
   margin-left: $paginator-input-margin;
   border: 1px solid $paginator-border-color;
   border-radius: $paginator-input-radius;
@@ -133,4 +167,22 @@ $paginator-disabled-border: $gray !default;
 .#{$paginator}-prev::after,
 .#{$paginator}-next::after {
   clear: both;
+}
+
+@media screen and (max-width: 636px) {
+  .#{$paginator} {
+    padding: 0 $paginator-spacer-min;
+  }
+
+  .#{$paginator}-total {
+    display: none;
+  }
+
+  .#{$paginator}-item {
+    height: $paginator-height-min;
+  }
+
+  .#{$paginator}-link {
+    padding: $paginator-link-margin-min;
+  }
 }

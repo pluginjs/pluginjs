@@ -2,33 +2,11 @@
 
 // Vars
 // =====================
-$paginator: "pj-paginator";
-$paginator-font-family: $font-family-base !default;
-$paginator-font-size: $font-size-sm !default;
-$paginator-line-height: 22px !default;
-$paginator-spacer: 30px !default;
-$paginator-spacer-min: 14px !default;
-$paginator-height: 32px !default;
-$paginator-height-min: 35px !default;
-$paginator-padding-top: 20px !default;
-$paginator-padding-x: 8px !default;
-$paginator-padding-y: $spacer-y !default;
-$paginator-link-width: 15px !default;
-$paginator-link-margin: 6px !default;
-$paginator-link-margin-min: 3px !default;
-$paginator-text-margin: 12px !default;
-
-$paginator-color: $gray-darkest !default;
+$paginator: "pj-paginator" !default;
 
 // Core
 // =====================
 .#{$paginator} {
-  padding: 0 $paginator-spacer;
-  font-family: $paginator-font-family;
-  font-size: $paginator-font-size;
-  line-height: $paginator-line-height;
-  color: $paginator-color;
-  text-align: center;
   list-style: none;
   user-select: none;
 }
@@ -37,17 +15,14 @@ $paginator-color: $gray-darkest !default;
 .#{$paginator}-list-prev,
 .#{$paginator}-list-next {
   display: inline-block;
-  height: $paginator-height;
-  padding-top: $paginator-padding-top;
 }
 
-.#{$paginator}-total {
-  margin-right: $paginator-text-margin - 3px;
-  text-transform: capitalize;
+.#{$paginator}-prev {
+  float: left;
 }
 
-.#{$paginator}-jumper {
-  margin-left: $paginator-text-margin;
+.#{$paginator}-next {
+  float: right;
 }
 
 .#{$paginator}-link {
@@ -56,32 +31,8 @@ $paginator-color: $gray-darkest !default;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: $paginator-link-width;
-  margin: 0 $paginator-link-margin;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
 }
 
 .#{$paginator}-active {
   z-index: 2;
 }
-
-@media screen and (max-width: 636px) {
-  .#{$paginator} {
-    padding: 0 $paginator-spacer-min;
-  }
-
-  .#{$paginator}-total {
-    display: none;
-  }
-
-  .#{$paginator}-item {
-    height: $paginator-height-min;
-  }
-
-  .#{$paginator}-link {
-    padding: $paginator-link-margin-min;
-  }
-}
-
