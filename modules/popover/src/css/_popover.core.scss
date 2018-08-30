@@ -35,11 +35,6 @@ $popover-arrow-offset-y: 10px !default;
     top: 0;
     right: 0;
     z-index: 1;
-    background: transparent;
-    
-    &:not(:disabled):hover {
-      background: initial;
-    }
   }
 
   .#{$popover}-content {

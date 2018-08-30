@@ -3,8 +3,116 @@
 
 // Vars
 // =====================
-$notice: "pj-notice" !default;
+$notice: "pj-notice";
+$notice-font-size: $font-size-sm;
+$notice-font-family: $font-family-base;
 
+$notice-bg: $color-white;
+$notice-box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.05);
+
+$notice-container-max-width: 1240px;
+$notice-container-padding: 12px 0;
+
+$notice-close-padding: 21px;
+
+$notice-responsive-close-padding: 21px 16px;
+$notice-responsive-btn-padding: 7px 18px;
+$notice-responsive-btn-margin-left: 14px;
+
+$notice-button-padding: 8px 30px;
+$notice-button-margin-left: 20px;
+$notice-button-color: $gray-darkest;
+
+$notice-position-buttons-margin-left: 30px;
+
+$notice-fixed-container-max-width: 960px;
+
+.#{$notice} {
+  width: 100%;
+  font-family: $notice-font-family;
+  background-color: $notice-bg;
+  box-shadow: $notice-box-shadow;
+
+  &-container {
+    width: 80%;
+    max-width: $notice-container-max-width;
+    height: 100%;
+    padding: $notice-container-padding;
+    margin: 0 auto;
+  }
+
+  &-content {
+    height: 100%;
+    font-size: $notice-font-size;
+  }
+
+  &-close {
+    padding: $notice-close-padding;
+    background: transparent;
+    border: 0;
+  }
+
+  &-btn {
+    margin-left: $notice-button-margin-left;
+  
+    &.#{$btn} {
+      padding: $notice-button-padding;
+      font-size: $notice-font-size;
+      line-height: 1;
+    }
+  
+    &.btn-ok {
+      color: $notice-button-color;
+    }
+  }
+
+  &-position {
+    height: 100%;
+  
+    .#{$notice}-buttons {
+      height: 100%;
+      margin-left: $notice-position-buttons-margin-left;
+    }
+  }
+
+  &-responsive {
+    .#{$notice}-close {
+      padding: $notice-responsive-close-padding;
+    }
+
+    .#{$notice}-buttons {
+      margin-left: 0;
+    }
+
+    .#{$notice}-btn {
+      padding: $notice-responsive-btn-padding;
+      margin-left: $notice-responsive-btn-margin-left;
+    }
+  }
+
+  &-with-bg {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    .pj-btn:not(:disabled):active,
+    .pj-btn:not(:disabled):hover {
+      border-color: $color-white;
+    }
+
+    .#{$notice}-close:hover {
+      i {
+        color: $notice-button-color;
+      }
+    }
+  }
+}
+
+.#{$notice}-fixed {
+  .#{$notice}-container {
+    max-width: $notice-fixed-container-max-width;
+  }
+}
 .#{$notice}-Intop {
   animation: #{$notice}-inTop 0.3s forwards;
 }

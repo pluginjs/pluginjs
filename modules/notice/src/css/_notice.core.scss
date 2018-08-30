@@ -4,15 +4,7 @@
 // =====================
 $notice: "pj-notice" !default;
 $btn: "pj-btn" !default;
-$notice-font-size: $font-size-sm !default;
-$notice-font-family: $font-family-base !default;
-$notice-line-height: 22px !default;
-$notice-color: #fff !default;
-$notice-bg: $color-white !default;
-$notice-box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.05) !default;
-$notice-border-color: $gray-darker !default;
-$notice-border-radius: $border-radius-base !default;
-$notice-spacer: $spacer !default;
+$notice-line-height: 22px !default;;
 
 // Core
 // =====================
@@ -20,26 +12,45 @@ $notice-spacer: $spacer !default;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  font-family: $notice-font-family;
-  background-color: $notice-bg;
-  box-shadow: $notice-box-shadow;
 
-  &.#{$notice}-fixed {
-    .#{$notice}-container {
-      position: relative;
-      max-width: 960px;
-      margin: 0 auto;
+  &-container {
+    position: relative;
+  }
+
+  .#{$notice}-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  &-content {
+    display: inline-block;
+    line-height: $notice-line-height;
+    vertical-align: middle;
+  
+    &-center {
+      text-align: center;
+    }
+  
+    &-right {
+      text-align: right;
     }
   }
 
-  .#{$notice}-container {
-    position: relative;
-    width: 80%;
-    max-width: 1240px;
-    height: 100%;
-    padding: 12px 0;
-    margin: 0 auto;
+  &-position {
+    display: inline-block;
+    vertical-align: middle;
+  
+    .#{$notice}-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &-buttons-right {
+    float: right;
   }
 
   &-bottom {
@@ -51,7 +62,7 @@ $notice-spacer: $spacer !default;
     display: none;
   }
 
-  &.#{$notice}-responsive {
+  &-responsive {
     .#{$notice}-desktop {
       display: none;
     }
@@ -59,102 +70,5 @@ $notice-spacer: $spacer !default;
     .#{$notice}-mobile {
       display: block;
     }
-
-    .#{$notice}-close {
-      padding: 21px 16px;
-    }
-
-    .#{$notice}-buttons {
-      margin-left: 0;
-    }
-
-    .#{$notice}-btn {
-      padding: 7px 18px;
-      margin-left: 14px;
-    }
-  }
-
-  &-with-bg {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
-    .pj-btn:not(:disabled):active,
-    .pj-btn:not(:disabled):hover {
-      border-color: $color-white;
-    }
-
-    .#{$notice}-close:hover {
-      i {
-        color: #333
-      }
-    }
-  }
-}
-
-.#{$notice}-content {
-  display: inline-block;
-  height: 100%;
-  font-size: $notice-font-size;
-  line-height: $notice-line-height;
-  vertical-align: middle;
-
-  &-center {
-    text-align: center;
-  }
-
-  &-right {
-    text-align: right;
-  }
-}
-
-.#{$notice}-position {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-
-  .#{$notice}-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    margin-left: 30px;
-  }
-}
-
-.#{$notice}-buttons-right {
-  float: right;
-}
-
-.#{$notice}-btn {
-  display: inline-block;
-  margin-left: 20px;
-  cursor: pointer;
-  border-radius: 2px;
-
-  &.#{$btn} {
-    padding: 8px 30px;
-    font-size: $notice-font-size;
-    line-height: 1;
-  }
-
-  &.btn-ok {
-    color: #333;
-  }
-}
-
-.#{$notice}-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  padding: 21px;
-  line-height: 1;
-  text-decoration: none;
-  background: transparent;
-  border: 0;
-
-  &:hover {
-    cursor: pointer;
   }
 }
