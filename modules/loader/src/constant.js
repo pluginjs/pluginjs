@@ -10,11 +10,22 @@ export const events = {
 export const classes = {
   NAMESPACE: 'pj-loader',
   THEME: '{namespace}--{theme}',
-  HIDDEN: '{namespace}-hidden'
+  HIDDEN: '{namespace}-hidden',
+  TEXT: '{namespace}-text',
+  MASK: '{namespace}-mask'
 }
 
-export const methods = ['enable', 'disable', 'destroy', 'show', 'hide']
+export const methods = [
+  'enable',
+  'disable',
+  'destroy',
+  'show',
+  'hide',
+  'toggle'
+]
 
 export const defaults = {
-  theme: null
+  theme: 'circle',
+  text: null,
+  background: null
 }

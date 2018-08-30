@@ -1,5 +1,7 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
+import { append, appendTo } from '@pluginjs/dom'
+import { setStyle } from '@pluginjs/styled'
 import {
   eventable,
   register,
@@ -35,10 +37,25 @@ class Loader extends Component {
   }
 
   initialize() {
-    addClass(this.classes.NAMESPACE, this.element)
+    addClass(this.classes.MASK, this.element)
+
+    this.$spinner = appendTo(
+      `<div class="${this.classes.NAMESPACE}"></div>`,
+      this.element
+    )
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.element)
+      addClass(this.getThemeClass(), this.$spinner)
+    }
+
+    if (this.options.background) {
+      setStyle('background', this.options.background, this.element)
+    }
+    if (this.options.text) {
+      this.$text = append(
+        `<div class="${this.classes.TEXT}">${this.options.text}</div>`,
+        this.element
+      )
     }
 
     this.enter('initialized')
@@ -49,8 +66,14 @@ class Loader extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
+      if (this.options.text) {
+        this.$text.remove()
+      }
+
+      this.$spinner.remove()
+
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.element)
+        removeClass(this.getThemeClass(), this.$spinner)
       }
 
       if (this.is('hidden')) {
@@ -62,6 +85,14 @@ class Loader extends Component {
 
     this.trigger(EVENTS.DESTROY)
     super.destroy()
+  }
+
+  toggle() {
+    if (this.is('hidden')) {
+      this.show()
+    } else {
+      this.hide()
+    }
   }
 
   show() {

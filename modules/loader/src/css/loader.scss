@@ -7,9 +7,19 @@ $loader: "pj-loader";
 
 $loader-color: #fff;
 $loader-duration: 0.8s;
+$loader-text-spacer: 0.5em;
 
 .#{$loader} {
   color: $loader-color;
+
+  &-mask {
+    transition: opacity 0.3s;
+  }
+
+  &-text {
+    margin-top: $loader-text-spacer;
+    color: $loader-color;
+  }
 }
 
 .#{$loader}--snake {

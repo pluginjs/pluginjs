@@ -1,7 +1,7 @@
 import { queryAll } from '@pluginjs/dom'
 import Loader from '@pluginjs/loader'
 
-const elements = queryAll('#default .pj-loader')
+const elements = queryAll('#default .loader')
 
 const apis = elements.map(element => Loader.of(element, {}))
 

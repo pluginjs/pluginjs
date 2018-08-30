@@ -57,8 +57,10 @@ class TimeTable extends Component {
     this.setupOptions(options)
     this.setupClasses()
 
-    wrap(`<div class="${this.classes.NAMESPACE}"></div>`, this.element)
-    this.wrap = this.element.parentNode
+    this.wrap = wrap(
+      `<div class="${this.classes.NAMESPACE}"></div>`,
+      this.element
+    )
 
     this.setupI18n()
 

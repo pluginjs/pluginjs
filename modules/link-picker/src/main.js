@@ -111,7 +111,7 @@ class LinkPicker extends Component {
 
   initialize() {
     wrap(
-      parseHTML(`<div class='${this.classes.NAMESPACE}'></div>`),
+      `<div class='${this.classes.NAMESPACE}'></div>`,
       addClass(this.classes.INPUT, this.element)
     )
 

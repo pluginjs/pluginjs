@@ -73,9 +73,8 @@ class Radio extends Component {
         classes: this.classes
       })
 
-      wrap(html, this.$element)
+      this.$wrap = wrap(html, this.$element)
 
-      this.$wrap = this.options.getWrap.call(this)
       append(this.$label, this.$wrap)
       this.enter('wrapped')
     }

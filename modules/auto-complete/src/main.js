@@ -49,9 +49,8 @@ class AutoComplete extends Component {
     this.$element = this.element
     this.setupOptions(options)
     this.setupClasses()
-    // console.log(this.options)
     this.$wrapper = wrap(
-      parseHTML(`<div class="${this.classes.NAMESPACE}"></div>`),
+      `<div class="${this.classes.NAMESPACE}"></div>`,
       this.$element
     )
 
@@ -61,9 +60,7 @@ class AutoComplete extends Component {
     this.$selected = null
 
     this.setupStates()
-    // console.log(this.options)
     this.initialize()
-    // console.log(this.options)
   }
 
   initialize() {

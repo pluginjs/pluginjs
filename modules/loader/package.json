@@ -42,6 +42,7 @@
     "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/styles": "*",
+    "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
     "@pluginjs/utils": "*"
   },

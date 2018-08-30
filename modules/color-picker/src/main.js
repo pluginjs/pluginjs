@@ -1,20 +1,17 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hideElement, showElement } from '@pluginjs/styled'
 import {
   append,
   parseHTML,
   children,
-  // prepend,
   query,
   attr,
-  parentWith,
   wrap,
   unwrap,
-  // setData,
   getData,
   empty
 } from '@pluginjs/dom'
@@ -244,9 +241,8 @@ class ColorPicker extends Component {
   initFrame() {
     // create wrap
     const $wrap = this.createEl('wrap', { class: this.classes.WRAP })
-    wrap($wrap, this.element)
+    this.$wrap = wrap($wrap, this.element)
     wrap(`<div class='${this.classes.TRIGGER}'></div>`, this.element)
-    this.$wrap = parentWith(hasClass(this.classes.WRAP), this.element)
 
     // init remove button
     this.initRemove()

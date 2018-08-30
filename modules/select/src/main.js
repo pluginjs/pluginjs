@@ -180,10 +180,9 @@ class Select extends Component {
 
   build() {
     const wrapEl = this.buildFromTemplate('wrap', { that: this })
-    wrap(wrapEl, this.element)
+    this.$wrap = wrap(wrapEl, this.element)
     this.element.style.display = 'none'
 
-    this.$wrap = this.element.parentNode
     this.triggerElement = this.buildFromTemplate('trigger', { that: this })
     if (this.options.filterable) {
       append(

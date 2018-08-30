@@ -69,8 +69,10 @@ class Spinner extends Component {
     )
     this.$down = query(`.${this.classes.DOWN}`, this.$control)
     this.$up = query(`.${this.classes.UP}`, this.$control)
-    wrap(`<div tabindex="0" class="${this.classes.WRAP}"></div>`, this.element)
-    this.$wrap = this.element.parentNode
+    this.$wrap = wrap(
+      `<div tabindex="0" class="${this.classes.WRAP}"></div>`,
+      this.element
+    )
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)

@@ -115,7 +115,7 @@ class FontPicker extends Component {
       this.$activated
     )
     this.$packagesWrap = wrap(
-      parseHTML(`<div class=${this.classes.PACKAGESWRAP}></div>`),
+      `<div class=${this.classes.PACKAGESWRAP}></div>`,
       this.$activatedPackage
     )
 

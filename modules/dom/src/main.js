@@ -429,7 +429,6 @@ export const wrap = curry((wrapElement, el) => {
   }
 
   insertBefore(wrapElement, el)
-  remove(el)
   append(el, wrapElement)
 
   return wrapElement

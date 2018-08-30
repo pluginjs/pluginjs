@@ -53,7 +53,7 @@ class ImageSelector extends Component {
     this.setupI18n()
 
     this.$wrapper = wrap(
-      parseHTML(`<div class="${this.classes.WRAPPER}"></div>`),
+      `<div class="${this.classes.WRAPPER}"></div>`,
       addClass(this.classes.DATA, this.element)
     )
 

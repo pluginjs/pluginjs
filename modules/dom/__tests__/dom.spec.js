@@ -556,7 +556,7 @@ describe('Dom helper', () => {
       const wrapElement = document.createElement('div')
 
       dom.append(el, parent)
-      dom.wrap(wrapElement, el)
+      expect(dom.wrap(wrapElement, el)).toEqual(wrapElement)
 
       expect(dom.parent(el)).toEqual(wrapElement)
       expect(dom.parent(dom.parent(el))).toEqual(parent)

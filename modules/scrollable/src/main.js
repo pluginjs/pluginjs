@@ -118,9 +118,8 @@ class Scrollable extends Component {
         setStyle('position', 'relative', this.$wrap)
       }
     } else {
-      wrap('<div></div>', this.element)
+      this.$wrap = wrap('<div></div>', this.element)
       this.$container = this.element
-      this.$wrap = parent(this.$container)
       this.$wrap.style.height =
         getHeight(this.element) >= 0 ? `${getHeight(this.element)}px` : '0px'
 
