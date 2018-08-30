@@ -59,6 +59,10 @@ class Loader extends Component {
       setStyle('background', this.options.background, this.element)
     }
 
+    if (this.options.color) {
+      setStyle('color', this.options.color, this.$spinner)
+    }
+
     if (this.options.text) {
       this.$text = append(
         `<div class="${this.classes.TEXT}">${this.options.text}</div>`,

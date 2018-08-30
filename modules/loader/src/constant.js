@@ -29,5 +29,6 @@ export const defaults = {
   theme: 'circle',
   size: null, // sm, lg
   text: null,
-  background: null
+  background: null,
+  color: null
 }

@@ -5,7 +5,7 @@
 $loader: "pj-loader" !default;
 $loader-size: 24px !default;
 $loader-lg-size: 36px !default;
-$loader-sm-size: 12px !default;
+$loader-sm-size: 16px !default;
 
 .#{$loader} {
   box-sizing: border-box;
@@ -46,3 +46,7 @@ $loader-sm-size: 12px !default;
   }
 }
 
+@keyframes pj-loader-spin {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
