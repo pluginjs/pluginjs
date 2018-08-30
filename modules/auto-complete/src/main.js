@@ -114,11 +114,11 @@ class AutoComplete extends Component {
     if (this.options.keyboard) {
       this.$element.setAttribute('tabindex', 1)
     }
-    if (!this.options.ajax) {
-      this.resolveData(this.source)
-    }
+
     if (isFunction(this.options.source)) {
-      this.options.source.call(this, this.resolveData)
+      this.options.source.call(this, this.resolveData.bind(this))
+    } else {
+      this.resolveData(this.source)
     }
   }
 
@@ -192,7 +192,7 @@ class AutoComplete extends Component {
   }
 
   resolveData(data) {
-    console.log(this.options)
+    console.log(this)
     if (this.options.group) {
       this.buildGroup(data, this.$panel)
     } else {

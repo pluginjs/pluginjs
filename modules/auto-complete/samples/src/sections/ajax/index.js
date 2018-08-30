@@ -17,9 +17,9 @@ AutoComplete.of(element, {
   ajax: true,
   group: true,
   source(resolveData) {
-    console.log(this)
-    console.log(resolveData)
-    this.resolveData(source)
+    setTimeout(() => {
+      resolveData(source)
+    }, 300)
   },
   render(data) {
     return `<span class="test">${data.label}</span>`

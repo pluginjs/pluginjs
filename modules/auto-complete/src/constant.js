@@ -50,7 +50,6 @@ export const defaults = {
   data: null,
   keyboard: true,
 
-  ajax: false,
   minChars: 1,
   maxItems: 5,
   disabled: false,
@@ -91,16 +90,7 @@ export const defaults = {
     return false
   },
 
-  // source(resolveData) {
-  //   console.log(111)
-  //   if(source.length) return this.resolveData(source)
-  //   console.log(this.resolveData(source))
-  //   /* eslint-disable */
-  //   $.getJSON('/ajax', { q: val }, data => {
-  //     this.resolveData(data)
-  //   })
-  //   /* eslint-enable */
-  // },
+  source: [],
 
   process(value) {
     if (value && typeof value !== 'undefined') {
