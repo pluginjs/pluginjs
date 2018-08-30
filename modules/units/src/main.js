@@ -56,7 +56,6 @@ class Units extends Component {
     )
 
     this.$trigger = query(`.${this.classes.TRIGGER}`, this.$wrap)
-
     this.$input = query('input', this.$wrap)
 
     if (this.only) {
@@ -89,13 +88,12 @@ class Units extends Component {
       },
       width: this.options.width,
       trigger: 'click',
-      reference: this.$input,
+      reference: this.$trigger,
       data: this.options.units.map(i => {
         return { value: i, label: i }
       }),
       imitateSelect: true,
       value: this.unit,
-      placement: this.options.placement,
       onChange: value => {
         if (this.unit === value) {
           return

@@ -18,7 +18,8 @@ AutoComplete.of(element, {
   group: true,
   source(resolveData) {
     console.log(this)
-    resolveData(source)
+    console.log(resolveData)
+    this.resolveData(source)
   },
   render(data) {
     return `<span class="test">${data.label}</span>`

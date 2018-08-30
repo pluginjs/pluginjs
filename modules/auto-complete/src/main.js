@@ -117,9 +117,7 @@ class AutoComplete extends Component {
     if (!this.options.ajax) {
       this.resolveData(this.source)
     }
-    console.log(this.options)
     if (isFunction(this.options.source)) {
-      console.log('this', this)
       this.options.source.call(this, this.resolveData)
     }
   }

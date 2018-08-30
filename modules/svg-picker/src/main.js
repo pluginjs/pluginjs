@@ -189,7 +189,7 @@ class SvgPicker extends Component {
     )
 
     bindEvent(
-      'blur',
+      this.eventName('blur'),
       'input',
       () => {
         this.leave('searching')
@@ -211,10 +211,10 @@ class SvgPicker extends Component {
     if (this.options.keyboard) {
       this.$svgPicker.setAttribute('tabindex', 1)
       bindEvent(
-        'focus',
+        this.eventName('focus'),
         () => {
           bindEvent(
-            'keydown',
+            this.eventName('keydown'),
             e => {
               if (e.keyCode === 13) {
                 this.$dropdown.show()
@@ -226,9 +226,9 @@ class SvgPicker extends Component {
         this.$svgPicker
       )
       bindEvent(
-        'blur',
+        this.eventName('blur'),
         () => {
-          removeEvent('keydown', this.$svgPicker)
+          removeEvent(this.eventName('keydown'), this.$svgPicker)
         },
         this.$svgPicker
       )
@@ -240,7 +240,7 @@ class SvgPicker extends Component {
         this.$type = v
       })
       bindEvent(
-        'focus',
+        this.eventName('focus'),
         ({ target: $this }) => {
           $this.one('keydown', e => {
             if (e.keyCode === 13 && e.which === 13) {
@@ -248,7 +248,7 @@ class SvgPicker extends Component {
               that.open($this)
             }
           })
-          $this.on('blur', () => {
+          $this.on(this.eventName('blur'), () => {
             if (that.is('keyboard')) {
               that.KEYBOARD.unbind()
               that.close($this)

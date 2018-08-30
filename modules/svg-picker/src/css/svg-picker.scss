@@ -330,6 +330,17 @@ $svgPicker-search-icon-color: $gray-dark !default;
       }
     }
   }
+
+   &-disabled {
+    cursor: not-allowed;
+
+    &:hover {border: 1px solid #e6e6e6;}
+
+    .pj-dropdown-trigger {
+      pointer-events: none
+    }
+   }
+
 }
 
 .#{$svgPicker}-searching .#{$svgPicker}-type {
@@ -341,3 +352,4 @@ $svgPicker-search-icon-color: $gray-dark !default;
     display: inline-flex;
   }
 }
+
