@@ -186,7 +186,7 @@ class Offset extends Component {
         const unit = that.data[$unit.getAttribute('name')].unit
 
         const api = getData('units', $unit)
-        api.toggleUnit(unit)
+        api.setUnit(unit)
         // api.setWidth(getStyle('width', $unit))
         Array.from(this.$inner.children).map(c =>
           removeClass(that.classes.UNITSHOW, c)
@@ -291,19 +291,20 @@ class Offset extends Component {
       theme: 'default',
       data: units,
       defaultUnit: this.options.defaultUnit,
-      onChange(unit) {
+      onChangeUnit(unit) {
         if (that.is('disabled')) {
           return
         }
-        console.log(unit)
 
         const newData = {}
-
-        newData[$input.getAttribute('name')] = this.get(unit)
-
+        let val = this.get(unit).value
+        if (val === null) {
+          val = ''
+        }
+        newData[$input.getAttribute('name')] = val + this.get(unit).unit
         that.set(newData, true)
       },
-      onChangeVal(value) {
+      onChangeInput(value) {
         if (that.is('disabled')) {
           return
         }
