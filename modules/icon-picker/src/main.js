@@ -216,9 +216,9 @@ class IconsPicker extends Component {
         tabindex: 1
       })
       compose(
-        bindEvent('focus', () => {
+        bindEvent(this.eventName('focus'), () => {
           bindEvent(
-            'keydown',
+            this.eventName('keydown'),
             e => {
               if (e.keyCode === 13) {
                 this.$dropdown.show()
@@ -227,24 +227,24 @@ class IconsPicker extends Component {
             this.$iconPicker
           )
         }),
-        bindEvent('blur', () => {
-          removeEvent('keydown', this.$iconPicker)
+        bindEvent(this.eventName('blur'), () => {
+          removeEvent(this.eventName('keydown'), this.$iconPicker)
         })
       )(addTabindexToAttr(this.$iconPicker))
       addTabindexToAttr(query('input', this.$search))
       children(this.$controller).map(addTabindexToAttr)
       this.$packages.map(
         compose(
-          bindEvent('focus', ({ target: $this }) =>
+          bindEvent(this.eventName('focus'), ({ target: $this }) =>
             compose(
-              bindEvent('keydown', e => {
+              bindEvent(this.eventName('keydown'), e => {
                 if (e.keyCode === 13 && e.which === 13) {
                   that.KEYBOARD.init($this)
                   that.open($this)
                 }
-                removeEvent('focus', $this)
+                removeEvent(this.eventName('focus'), $this)
               }),
-              bindEvent('blur', () => {
+              bindEvent(this.eventName('blur'), () => {
                 if (that.is('keyboard')) {
                   that.KEYBOARD.unbind()
                   that.close($this)
@@ -259,27 +259,28 @@ class IconsPicker extends Component {
         )
       )
       compose(
-        bindEvent('focus', ({ target }) =>
+        bindEvent(this.eventName('focus'), ({ target }) =>
           bindEvent(
-            'keydown',
-            e => {
-              if (e.keyCode === 13 && e.which === 13) {
-              }
+            this.eventName('keydown'),
+            e => { if (e.keyCode === 13 && e.which === 13) { /* eslint-disable-line */
+              } /* eslint-disable-line */
             },
             target
           )
         ),
-        bindEvent('blur', ({ target }) => removeEvent('keydown', target))
+        bindEvent(this.eventName('blur'), ({ target }) =>
+          removeEvent(this.eventName('keydown'), target)
+        )
       )(query(`.${this.classes.MANAGE}`))
 
       compose(
-        bindEvent('focus', ({ target }) => {
+        bindEvent(this.eventName('focus'), ({ target }) => {
           console.log(children(this.$selectorPanel.$dropdown))
           let $selectItem = children(this.$selectorPanel.$dropdown).find(el =>
             el.matches('.pj-dropdown-active')
           )
           bindEvent(
-            'keydown',
+            this.eventName('keydown'),
             e => {
               if (e.keyCode === 13 && e.which === 13) {
                 if (that.is('selectorPanelOn')) {
@@ -319,7 +320,9 @@ class IconsPicker extends Component {
             target
           )
         }),
-        bindEvent('blur', ({ target }) => removeEvent('keydown', target))
+        bindEvent(this.eventName('blur'), ({ target }) =>
+          removeEvent(this.eventName('keydown'), target)
+        )
       )(query(`.${this.classes.SELECTOR}`))
     }
 
@@ -382,7 +385,7 @@ class IconsPicker extends Component {
       this.$search
     )
     bindEvent(
-      'blur',
+      this.eventName('blur'),
       () => {
         this.leave('searching')
       },

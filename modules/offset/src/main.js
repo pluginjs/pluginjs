@@ -107,7 +107,7 @@ class Offset extends Component {
     const that = this
 
     bindEvent(
-      'units:changeVal',
+      this.eventName('units:changeVal'),
       ({
         target,
         detail: {
@@ -198,7 +198,7 @@ class Offset extends Component {
     )
 
     bindEvent(
-      this.eventName('click'),
+      this.eventNameWithId('click'),
       e => {
         const target = e.target
         if (
@@ -238,7 +238,7 @@ class Offset extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.$wrap)
-    removeEvent(this.eventName(), this.$doc)
+    removeEvent(this.eventNameWithId(), this.$doc)
   }
 
   create() {
@@ -360,8 +360,8 @@ class Offset extends Component {
     this.mouseup = function() {
       this.enableTooltip()
       //
-      removeEvent('mousemove', this.$doc)
-      removeEvent('mouseup', this.$doc)
+      removeEvent(this.eventNameWithId('mousemove'), this.$doc)
+      removeEvent(this.eventNameWithId('mouseup'), this.$doc)
       const $this = query(`#${id}`, this.$wrap)
       let value = $this.value
       const key = $this.getAttribute('name')
@@ -381,8 +381,16 @@ class Offset extends Component {
       return false
     }
 
-    bindEvent('mousemove', this.mousemove.bind(this), this.$doc)
-    bindEvent('mouseup', this.mouseup.bind(this), this.$doc)
+    bindEvent(
+      this.eventNameWithId('mousemove'),
+      this.mousemove.bind(this),
+      this.$doc
+    )
+    bindEvent(
+      this.eventNameWithId('mouseup'),
+      this.mouseup.bind(this),
+      this.$doc
+    )
     return false
   }
 
