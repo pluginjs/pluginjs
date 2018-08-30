@@ -2,27 +2,3 @@
 @import "@pluginjs/styles/buttons.scss";
 // @import "@pluginjs/icons/dist/plugin-icons.css";
 @import "@pluginjs/popover/src/css/popover.scss";
-
-//base style
-.position-grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 $popover-position-grid-margin-x;
-}
-
-.position-cell {
-  flex: 1 33.33%;
-}
-
-.position-cell a {
-  display: inline-block;
-  margin-top: $popover-position-cell-a-margin-y;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}

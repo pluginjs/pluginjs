@@ -141,12 +141,6 @@ $modal-vertification-borderClor: $gray-border;
     }
   }
 
-  .pj-btn-outline {
-    &:hover {
-      color: $modal-btn-hover-color;
-    }
-  }
-
   &-overlay {
     background-color: $modal-overlay-bgColor;
   }
@@ -163,10 +157,6 @@ $modal-vertification-borderClor: $gray-border;
     padding: $modal-trigger-btn-padding-y $modal-trigger-btn-padding-x;
     font-size: $modal-font-size;
     line-height: $modal-line-height;
-
-    &:hover {
-      color: $modal-trigger-hover-color;
-    }
 
     &:active,
     &:focus {

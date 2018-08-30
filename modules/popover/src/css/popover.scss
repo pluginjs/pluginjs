@@ -2,40 +2,101 @@
 @import "popover.core";
 
 //base style vars
-$popover-position-grid-margin-x: 100px;
-$popover-position-cell-a-margin-y: 20px;
+$popover-bg: $color-white;
+$popover-width: 392px;
+$popover-font-family: $font-family-base;
+$popover-font-size: $font-size-sm;
+$popover-color: $gray-darker;
+$popover-border-radius: $border-radius-base;
+$popover-box-shadow: 0 5px 20px 0 rgba($color-black, 0.1);
 
-$popover-simple-spacer-x: 10px;
-$popover-simple-spacer-y: 10px;
-$popover-simple-title-spacer: $popover-simple-spacer-y $popover-simple-spacer-x
-0 $popover-simple-spacer-x;
-$popover-simple-content-spacer: 0 $popover-simple-spacer-x
-$popover-simple-spacer-y;
+$popover-padding: 26px 32px;
+
+$popover-title-font-size: $font-size-lg;
+$popover-title-color: $gray-darkest;
+$popover-title-empty-padding-y: 16px;
+
+$popover-content-margin-top: 8px;
+$popover-content-color: $gray-darker;
+$popover-content-link-color: $color-primary;
+
+$popover-btn-padding-y: 12.5;
+$popover-btn-padding-x: 30.1px;
+
+$popover-close-font-size: $font-size-lg;
+$popover-close-color: $gray-dark;
+$popover-close-spacer-y: 13px;
+$popover-close-spacer-x: 13px;
 
 $popover-dark-color: $color-white;
-$popover-dark-bg: $gray-darker;
-$popover-dark-border-color: fade-in($popover-dark-bg, 0.1);
+$popover-dark-bg: $gray-darkest;
 $popover-dark-box-shadow: $box-shadow-base;
 $popover-dark-arrow-color: $popover-dark-bg;
-$popover-dark-arrow-outer-color: fade-in(
-  $popover-dark-border-color,
-  0.05
-);
 $popover-dark-title-color: $popover-dark-color;
 
 //table
 $popover-table-font-size: 9px;
+$popover-table-border-color: #f4f4f4;
 $popover-table-thead-bg: $gray-lighter;
-$popover-table-padding-y: 5.6px;
-$popover-table-padding-x: 8.4px;
+$popover-table-padding-y: 8px;
+$popover-table-padding-x: 12px;
 
-.#{$popover}--simple {
-  .#{$popover}-content {
-    padding: $popover-simple-content-spacer;
+.#{$popover} {
+  max-width: $popover-width;
+  padding: $popover-padding;
+  font-family: $popover-font-family;
+  font-size: $popover-font-size;
+  color: $popover-color;
+  background-color: $popover-bg;
+  background-clip: padding-box;
+  border-radius: $popover-border-radius;
+  box-shadow: $popover-box-shadow;
+
+  &-title {
+    margin: 0;
+    font-size: $popover-title-font-size;
+    font-weight: normal; /* stylelint-disable-line */
+    color: $popover-title-color;
+
+    &:empty {
+      // padding-top: $popover-title-empty-padding-y;
+      display: none;
+    }
+
+    // & + .#{$popover}-content:empty {
+    //   margin-top: 0;
+    // }
   }
 
-  .#{$popover}-title {
-    padding: $popover-simple-title-spacer;
+  &-close {
+    padding: $popover-close-spacer-y $popover-close-spacer-x;
+    font-size: $popover-close-font-size;
+    color: $popover-close-color;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    opacity: 0.5;
+    
+    &:not(:disabled):hover {
+      background: initial;
+    }
+  }
+
+  &-content {
+    margin-top: $popover-content-margin-top;
+
+    a {
+      color: $popover-content-link-color;
+      text-decoration: none;
+    }
+    &:empty {
+      display: none;
+    }
+  }
+
+  &-btn {
+    padding: $popover-btn-padding-y $popover-btn-padding-x;
+    font-size: $popover-font-size;
   }
 }
 
@@ -43,7 +104,6 @@ $popover-table-padding-x: 8.4px;
 .#{$popover}--dark {
   color: $popover-dark-color;
   background-color: $popover-dark-bg;
-  border-color: $popover-dark-border-color;
   box-shadow: $popover-dark-box-shadow;
 
   .#{$popover}-title {
@@ -52,40 +112,24 @@ $popover-table-padding-x: 8.4px;
 
   &[x-placement="top"] {
     &::before {
-      border-top-color: $popover-dark-arrow-outer-color;
-    }
-
-    &::after {
       border-top-color: $popover-dark-arrow-color;
     }
   }
 
   &[x-placement="bottom"] {
     &::before {
-      border-bottom-color: $popover-dark-arrow-outer-color;
-    }
-
-    &::after {
       border-bottom-color: $popover-dark-arrow-color;
     }
   }
 
   &[x-placement="right"] {
     &::before {
-      border-right-color: $popover-dark-arrow-outer-color;
-    }
-
-    &::after {
       border-right-color: $popover-dark-arrow-color;
     }
   }
 
   &[x-placement="left"] {
     &::before {
-      border-left-color: $popover-dark-arrow-outer-color;
-    }
-
-    &::after {
       border-left-color: $popover-dark-arrow-color;
     }
   }
@@ -93,20 +137,22 @@ $popover-table-padding-x: 8.4px;
 
 //table
 .popover-table {
+  width: 100%;
   font-size: $popover-table-font-size;
-  border-spacing: unset;
+  border-spacing: inherit;
 
   thead {
+    text-align: left;
     background-color: $popover-table-thead-bg;
   }
 
   &-bordered {
     th {
-      border-bottom: 2px solid $gray-border;
+      border-bottom: 2px solid $popover-table-border-color;
     }
 
     td {
-      border-bottom: 1px solid $gray-border;
+      border-bottom: 1px solid $popover-table-border-color;
     }
 
     th,

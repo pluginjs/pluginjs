@@ -9,7 +9,7 @@ popDialog.of(element, {
       label: 'Dismiss'
     },
     ok: {
-      label: 'OK!',
+      label: 'OK',
       color: 'primary',
       fn: resolve => {
         console.info('clicked OK!')

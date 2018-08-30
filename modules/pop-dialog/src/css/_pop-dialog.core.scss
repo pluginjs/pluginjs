@@ -3,23 +3,8 @@
 // Vars
 // =====================
 $popover: "pj-popover" !default;
-$popover-dialog-font-size: $font-size-sm !default;
-$popover-dialog-min-width: 14 * $popover-dialog-font-size !default;
-$popover-dialog-max-width: 20.42 * $popover-dialog-font-size !default;
-
-$popover-border-color: $border-color !default;
-$popover-buttons-margin-bottom: 1.6 * $popover-dialog-font-size !default;
-$popover-button-primary-color: $btn-color-primary !default;
-$popover-button-success-color: $color-success !default;
-$popover-button-info-color: $color-info !default;
-$popover-button-warning-color: $color-warning !default;
-$popover-button-danger-color: $color-danger !default;
-$popover-button-spacer: 3px 15px !default;
-$popover-button-border-color: $border-color !default;
-$popover-border-radius: $border-radius-base !default;
-$popover-button-hover-bg: rgba(0, 0, 0, 0.02) !default;
-$popover-button-active-bg: rgba(0, 0, 0, 0.1) !default;
-$popover-button-margin-left: 1.3 * $popover-dialog-font-size !default;
+$popover-dialog-min-width: 196px !default;
+$popover-dialog-max-width: 286px !default;
 
 // Core
 // =====================
@@ -32,61 +17,5 @@ $popover-button-margin-left: 1.3 * $popover-dialog-font-size !default;
 .#{$popover}-buttons {
   display: flex;
   justify-content: center;
-  margin-bottom: $popover-buttons-margin-bottom;
 }
-// Button
-.#{$popover}-button {
-  display: inline-block;
-  // width: 100%;
-  padding: $popover-button-spacer;
-  margin: 0;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  background: #fff;
-  outline: 0;
-  flex-shrink: 1;
 
-  &[data-color="primary"] {
-    color: $popover-button-primary-color;
-  }
-
-  &[data-color="success"] {
-    color: $popover-button-success-color;
-  }
-
-  &[data-color="info"] {
-    color: $popover-button-info-color;
-  }
-
-  &[data-color="warning"] {
-    color: $popover-button-warning-color;
-  }
-
-  &[data-color="danger"] {
-    color: $popover-button-danger-color;
-  }
-
-  &:not(:disabled):hover {
-    cursor: pointer;
-    background-color: $popover-button-hover-bg;
-  }
-
-  &:not(:disabled):active {
-    background-color: $popover-button-active-bg;
-  }
-
-  &:first-child {
-    // margin-right: 20px;
-    border-radius: $popover-border-radius;
-    box-shadow: none;
-
-  }
-  & + button {
-    margin-left: $popover-button-margin-left;
-  }
-
-  &:last-child {
-    border-radius: $popover-border-radius;
-  }
-}
