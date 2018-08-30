@@ -3,13 +3,26 @@
 // Vars
 // =====================
 $loader: "pj-loader" !default;
-$loader-size: 48px !default;
+$loader-size: 24px !default;
+$loader-lg-size: 36px !default;
+$loader-sm-size: 12px !default;
 
 .#{$loader} {
-
   box-sizing: border-box;
+
   width: $loader-size;
   height: $loader-size;
+
+  &-lg {
+    width: $loader-lg-size;
+    height: $loader-lg-size;
+  }
+
+  &-sm {
+    width: $loader-sm-size;
+    height: $loader-sm-size;
+  }
+
   &-mask {
     position: absolute;
     top: 0;

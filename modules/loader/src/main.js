@@ -44,6 +44,13 @@ class Loader extends Component {
       this.element
     )
 
+    if (this.options.size) {
+      addClass(
+        this.getClass(this.classes.SIZE, 'size', this.options.size),
+        this.$spinner
+      )
+    }
+
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$spinner)
     }
@@ -51,6 +58,7 @@ class Loader extends Component {
     if (this.options.background) {
       setStyle('background', this.options.background, this.element)
     }
+
     if (this.options.text) {
       this.$text = append(
         `<div class="${this.classes.TEXT}">${this.options.text}</div>`,

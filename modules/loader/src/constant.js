@@ -11,6 +11,7 @@ export const classes = {
   NAMESPACE: 'pj-loader',
   THEME: '{namespace}--{theme}',
   HIDDEN: '{namespace}-hidden',
+  SIZE: '{namespace}-{size}',
   TEXT: '{namespace}-text',
   MASK: '{namespace}-mask'
 }
@@ -26,6 +27,7 @@ export const methods = [
 
 export const defaults = {
   theme: 'circle',
+  size: null, // sm, lg
   text: null,
   background: null
 }
