@@ -36,7 +36,7 @@ class Units extends Component {
     this.setupOptions(options)
     this.setupClasses()
 
-    this.input = null
+    this.value = null
     this.unit = null
     this.cached = {}
     this.only = this.options.units.length < 2
@@ -119,6 +119,7 @@ class Units extends Component {
       () => {
         this.element.value = this.val()
         this.trigger(EVENTS.CHANGE, this.element.value)
+        console.log(this.get())
       },
       this.element
     )
@@ -126,7 +127,9 @@ class Units extends Component {
     bindEvent(
       this.eventName('change'),
       () => {
+        console.log(8)
         this.setInput(this.$input.value)
+        console.log(this.get())
       },
       this.$input
     )
@@ -139,17 +142,16 @@ class Units extends Component {
     }
   }
 
-  set(value, trigger = true) {
-    const { input, unit } = value
-
+  set(data, trigger = true) {
+    const { unit, value } = data
     this.setUnit(unit, trigger)
-    this.setInput(input, trigger)
+    this.setInput(value, trigger)
   }
 
   get() {
     return {
       unit: this.getUnit(),
-      input: this.getInput()
+      value: this.getInput()
     }
   }
 
@@ -158,7 +160,7 @@ class Units extends Component {
   }
 
   getInput() {
-    return this.input ? this.input : null
+    return this.value ? this.value : null
   }
 
   setUnit(unit, trigger = true) {
@@ -183,20 +185,23 @@ class Units extends Component {
     return true
   }
 
-  setInput(input, trigger = true) {
-    if (this.input === input) {
+  setInput(value, trigger = true) {
+    if (this.value === value) {
       return false
     }
+    this.value = value
+    if (value === undefined) {
+      this.$input.value = ''
+    } else {
+      this.$input.value = value
+    }
 
-    this.input = input
-    this.$input.value = input
-
-    if (!isNull(input)) {
-      this.cached[this.getUnit()] = input
+    if (!isNull(value)) {
+      this.cached[this.getUnit()] = value
     }
 
     if (trigger) {
-      this.trigger(EVENTS.CHANGEINPUT, input)
+      this.trigger(EVENTS.CHANGEINPUT, value)
     }
     return true
   }

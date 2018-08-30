@@ -100,7 +100,6 @@ class Pointer {
       }
     }
     this.value = value
-
     this.updatePosition()
     this.element.focus()
     // this.instance.trigger('move', value)

@@ -205,6 +205,7 @@ class LinkPicker extends Component {
 
   initDropdown() {
     const dropdownConf = {
+      target: this.$dropdown,
       theme: 'dafault',
       placement: 'bottom-left',
       imitateSelect: true,
@@ -218,13 +219,16 @@ class LinkPicker extends Component {
   buildTypes() {
     const that = this
     const typeData = []
+    console.log(1)
+    console.log(1)
     // parse data
     Object.entries(this.data).forEach(([type, details]) => {
+      console.log(1)
       typeData.push({
         label: details.label,
         name: type
       })
-
+      console.log(typeData)
       // build item to types
       this.buildTypeItem({
         type,
@@ -232,6 +236,8 @@ class LinkPicker extends Component {
       })
     })
 
+    console.log(typeData)
+    console.log(1)
     // create type dropdown
     const $types = parseHTML(
       this.parseTemp('item', {
@@ -242,16 +248,12 @@ class LinkPicker extends Component {
       })
     )
     append(
-      parseHTML(
-        `<div class='${
-          this.classes.TYPESWITCH
-        }'><span class="pj-dropdown-trigger"></span></div>`
-      ),
+      parseHTML(`<div class='${this.classes.TYPESWITCH}'></div>`),
       query(`.${this.classes.ITEMBODY}`, $types)
     )
     prepend($types, this.$dropdown)
     this.$typeDropdown = Dropdown.of(
-      query('.pj-dropdown-trigger', this.$dropdown),
+      query(`.${this.classes.TYPESWITCH}`, this.$dropdown),
       {
         // theme: 'default',
         imitateSelect: true,
@@ -294,7 +296,6 @@ class LinkPicker extends Component {
           name: item.name
         })
       )
-
       // $item.dataset.name = item.name
       setData('name', item.name, $item)
       if (item.connect) {
@@ -432,7 +433,7 @@ class LinkPicker extends Component {
     const $dropdown = parseHTML(
       `<div class='${
         this.classes.TYPESCOMPONENT
-      }'><span class="pj-dropdown-trigger"></span></div>`
+      }'><span class="pj-dropdown-trigger"></span><div></div></div><div></div>`
     )
 
     setData(
@@ -474,7 +475,8 @@ class LinkPicker extends Component {
           Object.entries(callBackData.values).forEach(([key, value]) => {
             dropdownData.push({
               label: value,
-              name: key
+              name: key,
+              value
             })
           })
 
@@ -484,22 +486,23 @@ class LinkPicker extends Component {
         this.element
       )
     }
-
     Object.entries(values).forEach(([key, value]) => {
       dropdownData.push({
         label: value,
-        name: key
+        name: key,
+        value
       })
     })
 
     // set dropdown default options
     const dropdownDefault = {
       // theme: 'default',
-      imitateSelect: true,
+      // imitateSelect: true,
       width: 160,
       data: dropdownData,
-      // select: data.active,
-      constraintToScrollParent: false,
+      // itemValueAttr: 'data-connect',
+      // value: data.active,
+      // constraintToScrollParent: false,
       icon: 'icon-char icon-chevron-down',
       templates: {
         item() {
@@ -517,8 +520,10 @@ class LinkPicker extends Component {
     }
 
     const dropdownOptions = deepMerge(dropdownDefault, options)
-
+    console.log($dropdown)
     parent.append($dropdown)
+    console.log(parent)
+    console.log(dropdownOptions)
     const api = Dropdown.of($dropdown, dropdownOptions)
 
     // set dropdown default value

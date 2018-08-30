@@ -245,6 +245,9 @@ class Range extends Component {
     if (this.is('units')) {
       this.unitsApi.options.onChange = unit => {
         const data = this.unitsApi.get(unit)
+        if (isString(data.value)) {
+          data.value = data.value.split(',')
+        }
         this.setUnitsAttr(data)
         this.set(this.data)
         this.trigger(EVENTS.CHANGEUNIT, unit)
@@ -303,7 +306,6 @@ class Range extends Component {
         this.options.parse.call(this, value)
       )
     }
-
     this.data.unit = unit
   }
 
@@ -322,7 +324,7 @@ class Range extends Component {
     return Units.of($input, {
       theme: 'default',
       width: parseInt(getStyle('width', $input), 10),
-      data,
+      units: data,
       defaultUnit: this.data.unit
     })
   }
