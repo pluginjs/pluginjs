@@ -1,3 +1,5 @@
+// import icons
+import '@pluginjs/icons/dist/plugin-icons.css'
 // import sections
 import './sections/events/index.js'
 import './sections/allow-close/index.js'

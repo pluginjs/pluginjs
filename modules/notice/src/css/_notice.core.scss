@@ -13,17 +13,9 @@ $notice-box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.05) !default;
 $notice-border-color: $gray-darker !default;
 $notice-border-radius: $border-radius-base !default;
 $notice-spacer: $spacer !default;
-$notice-primary-color: $color-primary !default;
-$notice-success-color: $color-success !default;
-$notice-info-color: $color-info !default;
-$notice-warning-color: $color-warning !default;
-$notice-danger-color: $color-danger !default;
-$notice-link-color: transparentize($gray-lightest, 0.1) !default;
-$notice-close-color: $notice-link-color !default;
 
 // Core
 // =====================
-
 .#{$notice} {
   position: fixed;
   top: 0;
@@ -54,11 +46,54 @@ $notice-close-color: $notice-link-color !default;
     top: unset;
     bottom: 0;
   }
+
+  &-mobile {
+    display: none;
+  }
+
+  &.#{$notice}-responsive {
+    .#{$notice}-desktop {
+      display: none;
+    }
+
+    .#{$notice}-mobile {
+      display: block;
+    }
+
+    .#{$notice}-close {
+      padding: 21px 16px;
+    }
+
+    .#{$notice}-buttons {
+      margin-left: 0;
+    }
+
+    .#{$notice}-btn {
+      padding: 7px 18px;
+      margin-left: 14px;
+    }
+  }
+
+  &-with-bg {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    .pj-btn:not(:disabled):active,
+    .pj-btn:not(:disabled):hover {
+      border-color: $color-white;
+    }
+
+    .#{$notice}-close:hover {
+      i {
+        color: #333
+      }
+    }
+  }
 }
 
 .#{$notice}-content {
   display: inline-block;
-  max-width: 25rem;
   height: 100%;
   font-size: $notice-font-size;
   line-height: $notice-line-height;
@@ -83,6 +118,7 @@ $notice-close-color: $notice-link-color !default;
     align-items: center;
     justify-content: center;
     height: 100%;
+    margin-left: 30px;
   }
 }
 
@@ -92,8 +128,7 @@ $notice-close-color: $notice-link-color !default;
 
 .#{$notice}-btn {
   display: inline-block;
-  margin-left: 50px;
-  line-height: 23px;
+  margin-left: 20px;
   cursor: pointer;
   border-radius: 2px;
 
@@ -103,36 +138,9 @@ $notice-close-color: $notice-link-color !default;
     line-height: 1;
   }
 
-  &.btn-cancel {
-    padding: 0 10px;
-    text-align: right;
-    text-decoration: underline;
-    border: 0;
+  &.btn-ok {
+    color: #333;
   }
-
-  &.btn-success {
-    padding: 5px 20px;
-    color: #fff;
-    background: #3cc662;
-  }
-
-  &.btn-square {
-    padding: 5px 20px;
-    color: #fff;
-    background: #3cc662;
-    border-radius: 0;
-  }
-
-  &.btn-overLine {
-    padding: 5px 20px;
-    border: solid 0.5px;
-  }
-}
-
-.#{$notice}-with-bg {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 .#{$notice}-close {
@@ -140,19 +148,13 @@ $notice-close-color: $notice-link-color !default;
   top: 0;
   right: 0;
   z-index: 1;
-  padding: 12px 15px;
+  padding: 21px;
+  line-height: 1;
   text-decoration: none;
   background: transparent;
   border: 0;
-  outline: 0;
-  appearance: none;
 
   &:hover {
     cursor: pointer;
-  }
-
-  &::before {
-    font-size: 1.5em;
-    content: "\00d7";
   }
 }

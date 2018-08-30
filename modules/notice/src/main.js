@@ -67,7 +67,6 @@ class Notice extends GlobalComponent {
         },
         this.$element
       )
-      addClass(this.classes.BACKGROUND, this.$element)
     } else {
       setStyle(
         {
@@ -99,17 +98,15 @@ class Notice extends GlobalComponent {
   }
 
   bind() {
-    bindEvent(
-      this.eventName('click'),
-      event => {
-        if (!event.target.classList.contains(this.classes.CLOSE)) {
-          return
-        }
-
-        this.hide()
-      },
-      this.$element
-    )
+    if (this.options.allowClose) {
+      bindEvent(
+        this.eventName('click'),
+        () => {
+          this.hide()
+        },
+        this.$closeBtn
+      )
+    }
 
     if (this.options.buttons) {
       bindEvent(
@@ -184,6 +181,11 @@ class Notice extends GlobalComponent {
     if (this.options.fixedWidth) {
       addClass(`${this.classes.NAMESPACE}-fixed`, this.$element)
     }
+
+    if (this.options.backgroundColor || this.options.backgroundImage) {
+      addClass(this.classes.BACKGROUND, this.$element)
+    }
+
     if (this.options.contentAlignment) {
       addClass(
         this.getClass(
@@ -204,22 +206,19 @@ class Notice extends GlobalComponent {
   }
 
   initBreakpoints() {
-    Breakpoints()
-    const size = Breakpoints.current().name
-
     if (isString(this.options.breakpoint)) {
+      Breakpoints()
       const breakpoint = this.options.breakpoint
       const that = this
-      if (breakpoint === size) {
-        addClass(this.classes[breakpoint.toUpperCase()], this.$element)
+      if (Breakpoints.is(`${breakpoint}-`)) {
+        addClass(this.classes.RESPONSIVE, this.$element)
       }
-
-      Breakpoints.from(breakpoint, {
+      Breakpoints.to(breakpoint, {
         enter() {
-          addClass(that.classes[breakpoint.toUpperCase()], that.$element)
+          addClass(that.classes.RESPONSIVE, that.$element)
         },
         leave() {
-          removeClass(that.classes[breakpoint.toUpperCase()], that.$element)
+          removeClass(that.classes.RESPONSIVE, that.$element)
         }
       })
     }

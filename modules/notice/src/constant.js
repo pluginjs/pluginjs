@@ -24,11 +24,7 @@ export const classes = {
   BUTTONSLOCATION: '{namespace}-buttons-{location}',
   POSITION: '{namespace}-position',
   BACKGROUND: '{namespace}-with-bg',
-  XS: '{namespace}-xs',
-  SM: '{namespace}-sm',
-  MD: '{namespace}-md',
-  LG: '{namespace}-lg',
-  XL: '{namespace}-xl'
+  RESPONSIVE: '{namespace}-responsive'
 }
 
 export const defaults = {
@@ -48,7 +44,7 @@ export const defaults = {
   },
   templates: {
     close() {
-      return '<button class="{classes.CLOSE}" aria-label="Close"></button>'
+      return '<button class="{classes.CLOSE}" aria-label="Close"><i class="icon icon-remove"></i></button>'
     },
     content() {
       return '<div class="{classes.CONTENT}"></div>'
@@ -77,8 +73,8 @@ export const defaults = {
     }
   },
   buttonAlign: 'center',
-  timeout: 5000,
+  timeout: 1000,
   fixedWidth: false,
   layout: 'top', // 'bottom'
-  breakpoint: 'md'
+  breakpoint: 'lg' // 'xs'[0, 575], 'sm'[0, 767], 'md'[0, 991], 'lg'[0, 1199], 'xl'[0, Infinity]
 }
