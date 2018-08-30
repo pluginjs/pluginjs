@@ -5,4 +5,4 @@ const el = query('#text .loader')
 
 Loader.of(el, {
   text: 'Loading...'
-})
+}).show()

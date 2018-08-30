@@ -3,4 +3,4 @@ import Loader from '@pluginjs/loader'
 
 const elements = queryAll('#color .loader')
 
-elements.map(element => Loader.of(element))
+elements.map(element => Loader.of(element).show())

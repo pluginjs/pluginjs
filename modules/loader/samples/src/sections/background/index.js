@@ -6,4 +6,4 @@ const el = query('#background .loader')
 Loader.of(el, {
   text: 'Loading...',
   background: 'rgba(0,0,0,0.1)'
-})
+}).show()

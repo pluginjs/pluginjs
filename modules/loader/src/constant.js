@@ -9,8 +9,9 @@ export const events = {
 
 export const classes = {
   NAMESPACE: 'pj-loader',
+  LOADER: '{namespace}',
   THEME: '{namespace}--{theme}',
-  HIDDEN: '{namespace}-hidden',
+  SHOW: '{namespace}-show',
   SIZE: '{namespace}-{size}',
   TEXT: '{namespace}-text',
   MASK: '{namespace}-mask'

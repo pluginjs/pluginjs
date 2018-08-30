@@ -39,20 +39,20 @@ class Loader extends Component {
   initialize() {
     addClass(this.classes.MASK, this.element)
 
-    this.$spinner = appendTo(
-      `<div class="${this.classes.NAMESPACE}"></div>`,
+    this.$loader = appendTo(
+      `<div class="${this.classes.LOADER}"></div>`,
       this.element
     )
 
     if (this.options.size) {
       addClass(
         this.getClass(this.classes.SIZE, 'size', this.options.size),
-        this.$spinner
+        this.$loader
       )
     }
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$spinner)
+      addClass(this.getThemeClass(), this.$loader)
     }
 
     if (this.options.background) {
@@ -60,7 +60,7 @@ class Loader extends Component {
     }
 
     if (this.options.color) {
-      setStyle('color', this.options.color, this.$spinner)
+      setStyle('color', this.options.color, this.$loader)
     }
 
     if (this.options.text) {
@@ -82,14 +82,14 @@ class Loader extends Component {
         this.$text.remove()
       }
 
-      this.$spinner.remove()
+      this.$loader.remove()
 
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.$spinner)
+        removeClass(this.getThemeClass(), this.$loader)
       }
 
-      if (this.is('hidden')) {
-        removeClass(this.classes.HIDDEN, this.element)
+      if (this.is('shown')) {
+        removeClass(this.classes.SHOW, this.element)
       }
 
       this.leave('initialized')
@@ -100,25 +100,25 @@ class Loader extends Component {
   }
 
   toggle() {
-    if (this.is('hidden')) {
-      this.show()
-    } else {
+    if (this.is('shown')) {
       this.hide()
+    } else {
+      this.show()
     }
   }
 
   show() {
-    if (this.is('hidden')) {
-      removeClass(this.classes.HIDDEN, this.element)
-      this.leave('hidden')
+    if (!this.is('shown')) {
+      addClass(this.classes.SHOW, this.element)
+      this.enter('shown')
     }
     this.trigger(EVENTS.SHOW)
   }
 
   hide() {
-    if (!this.is('hidden')) {
-      addClass(this.classes.HIDDEN, this.element)
-      this.enter('hidden')
+    if (this.is('shown')) {
+      removeClass(this.classes.SHOW, this.element)
+      this.leave('shown')
     }
     this.trigger(EVENTS.HIDE)
   }

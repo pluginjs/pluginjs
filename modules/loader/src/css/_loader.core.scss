@@ -24,6 +24,7 @@ $loader-sm-size: 16px !default;
   }
 
   &-mask {
+
     position: absolute;
     top: 0;
     right: 0;
@@ -34,11 +35,13 @@ $loader-sm-size: 16px !default;
     flex-direction: column;
     align-items: center;
     justify-content:center;
-  }
-
-  &-hidden {
     visibility: hidden;
     opacity: 0;
+  }
+
+  &-show {
+    visibility: visible;
+    opacity: 100;
   }
 
   &-text {
