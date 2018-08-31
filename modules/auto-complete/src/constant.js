@@ -90,14 +90,13 @@ export const defaults = {
     return false
   },
 
-  source: [],
-
   process(value) {
     if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)
     }
     return ''
   },
+
   parse(value) {
     if (value && isString(value)) {
       try {

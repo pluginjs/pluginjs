@@ -37,4 +37,6 @@ const source = [
 ]
 
 const element = query('#data .example-data')
-Select.of(element, { source })
+Select.of(element, {
+  source
+})

@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { isArray } from '@pluginjs/is'
+import { isArray, isFunction } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
@@ -98,7 +98,10 @@ class Select extends Component {
     if (this.selected.length > 0) {
       this.set(this.selected, true, true)
     } else {
-      this.resetList(this.source)
+      isFunction(this.souce)    /* eslint-disable-line */
+        ? this.source.call(this, this.buildList.bind(this))  /* eslint-disable-line */
+        : this.resetList(this.source)
+      // this.resetList(this.source)
       this.checkIcon()
     }
 
@@ -173,6 +176,8 @@ class Select extends Component {
       data = json
     } else if (typeof json === 'string') {
       data = JSON.parse(json)
+    } else {
+      data = json
     }
 
     return data
@@ -199,7 +204,11 @@ class Select extends Component {
     }
     this.triggerEl = query('.pj-dropdown-trigger', this.triggerElement)
     this.$dropdown = this.buildFromTemplate('dropdown', { that: this })
-    this.list = this.buildList(this.source)
+
+    this.list = isFunction(this.source)
+      ? this.source.call(this, this.buildList.bind(this))  /* eslint-disable-line */
+      : this.buildList(this.source)
+
     append(this.list, this.$dropdown)
     append(this.triggerElement, this.$wrap)
     append(this.$dropdown, this.$wrap)
@@ -214,7 +223,6 @@ class Select extends Component {
 
   buildList(data) {
     let $content = null
-
     if (data.length === 0) {
       $content = this.buildFromTemplate('notFound', { that: this })
     } else {

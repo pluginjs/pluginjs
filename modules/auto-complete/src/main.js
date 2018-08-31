@@ -9,7 +9,6 @@ import {
   wrap,
   parseHTML,
   parentWith,
-  children,
   getData,
   setData
 } from '@pluginjs/dom'
@@ -93,7 +92,6 @@ class AutoComplete extends Component {
         classes: this.classes
       })
     )
-
     // close button
     this.$close = parseHTML(
       template.compile(this.options.templates.icon())({
@@ -189,7 +187,6 @@ class AutoComplete extends Component {
   }
 
   resolveData(data) {
-    console.log(this)
     if (this.options.group) {
       this.buildGroup(data, this.$panel)
     } else {
@@ -225,12 +222,6 @@ class AutoComplete extends Component {
           }
           return
         }
-        if (this.options.ajax) {
-          children(this.$panel).map(el => el.remove())
-
-          debounce(this.options.source.call(this, val), 200)
-        }
-
         debounce(this.search(val), 200)
       },
       this.$element
