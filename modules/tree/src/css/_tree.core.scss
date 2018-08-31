@@ -3,9 +3,8 @@
 // =====================
 
 $tree: "pj-tree" !default;
-$tree-toggler-width: 20px !default;
-$tree-toggler-height: 20px !default;
-$tree-ul-margin: 28px !default;
+$tree-toggler-width: 10px !default;
+$tree-toggler-height: 10px !default;
 
 // Core
 // ======================
@@ -15,11 +14,10 @@ $tree-ul-margin: 28px !default;
   list-style: none;
 
   li {
-    text-indent: $tree-toggler-width;
+    box-sizing: border-box;
   }
 
   ul {
-    padding: 0 0 0 $tree-ul-margin;
     margin: 0;
     list-style: none;
   }

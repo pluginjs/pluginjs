@@ -31,6 +31,9 @@ const data = [
             name: 'Gallery'
           }
         ]
+      },
+      {
+        name: 'list'
       }
     ]
   },

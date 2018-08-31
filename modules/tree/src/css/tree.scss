@@ -3,36 +3,42 @@
 
 // Vars
 // =====================
+$tree-font-family: $font-family-base;
 $tree-font-size: $font-size-sm;
 $tree-line-height: 22px;
-$tree-spacer: 4px;
-$tree-spacer-top: 7px;
-$tree-gatter: 6px;
+
+$tree-spacer: 5px;
+$tree-spacer-left: 22px;
+$tree-gatter: 8px;
+$tree-ul-margin: 17px;
+
 $tree-color: $gray-darkest;
+// $tree-color-dark: $gray-dark;
 $tree-selected-color: $color-primary;
+
 $tree-input-font-family: "font-awesome";
 
 // style
 // =======================
 .#{$tree} {
-  font-family: $font-family-base;
+  font-family: $tree-font-family;
+  font-size: $tree-font-size;
+  line-height: $tree-line-height;
+  color: $tree-color;
   text-transform: capitalize;
-
-  > li:first-child {
-    padding-top: $tree-spacer-top;
-  }
+  vertical-align: middle;
 
   li {
-    padding: $tree-spacer 0;
-    padding-bottom: 0;
-    font-size: $tree-font-size;
-    line-height: $tree-line-height;
-    color: $tree-color;
+    margin-left: $tree-spacer;
     cursor: pointer;
     user-select: none;
 
     &.#{$tree}-selected {
       color: $tree-selected-color;
+
+      ul {
+        color: $tree-color;
+      }
     }
 
     &:focus {
@@ -40,14 +46,10 @@ $tree-input-font-family: "font-awesome";
     }
 
     .#{$tree}-element {
-      text-indent: 0;
+
       &:focus {
         outline: none;
       }
-    }
-
-    .#{$tree}-element > * {
-      text-indent: 0;
     }
   }
 
@@ -59,12 +61,34 @@ $tree-input-font-family: "font-awesome";
 
     li[tabindex="0"] {
       margin-left: $tree-gatter;
-      text-indent: 0;
 
       &:hover {
         color: $tree-selected-color;
       }
     }
+
+  ul {
+    padding: 0 0 0 $tree-ul-margin;
+    
+    li + li[tabindex="0"] {
+      margin-left: $tree-spacer-left;
+    }
+
+    li[tabindex="0"] + li[tabindex="0"] {
+       margin-left: $tree-gatter;
+    }
+
+    // ul {
+
+    //   li[tabindex="0"] {
+    //     color: $tree-color-dark;
+
+    //     &.#{$tree}-selected {
+    //       color: $tree-selected-color;
+    //     }
+    //   }
+    // }
+  }
 }
 
 .#{$tree}-arrows {
