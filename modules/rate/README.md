@@ -93,7 +93,7 @@ Name | Description | Default
 -----|--------------|-----
 `"template"` | Set plugin default template | `function() {...}`
 `"templates"` | Set plugin default template | `{}`
-`"iconClass"` | Set icon class | `icon-star`
+`"iconClass"` | Set icon class | `pj-icon pj-icon-star`
 `"iconColorClass"` | Set icon color class | ``
 `"min"` | Set min value | `2`
 `"max"` | Set max value | `5`

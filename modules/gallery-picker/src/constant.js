@@ -67,17 +67,17 @@ export const defaults = {
       return (
         '<div class="{classes.NAMESPACE}">' +
         '<div class="{classes.EMPTY}">' +
-        '<i class="icon-image-group"></i>{placeholder}' +
+        '<i class="pj-icon pj-icon-image-group"></i>{placeholder}' +
         '</div>' +
         '<div class="{classes.FILL}">' +
         '<div class="{classes.FILLIMAGE}" style=""></div>' +
         '<span class="{classes.FILLCOUNT}">{count}</span>' +
-        '<div class="{classes.FILLEXPAND}"><i class="{classes.FILLEDIT} icon-pencil-square"></i><i class="{classes.FILLREMOVE} icon-trash"></i></div>' +
+        '<div class="{classes.FILLEXPAND}"><i class="{classes.FILLEDIT} pj-icon pj-icon-edit"></i><i class="{classes.FILLREMOVE} pj-icon pj-icon-delete"></i></div>' +
         '</div>' +
         '<div class="{classes.EXPANDPANEL}">' +
         '<ul class="{classes.EXPANDITEM}">' +
         '<li class="{classes.EXPANDADD}">' +
-        '<i class="icon-picture"></i>{add}' +
+        '<i class="pj-icon pj-icon-picture"></i>{add}' +
         '</li>' +
         '</ul>' +
         '<div class="{classes.EXPANDCONTROL}">' +
@@ -93,8 +93,8 @@ export const defaults = {
       return `<li class='{classes.ITEM}'>
         <div class="{classes.ITEMIMAGE}" style="background-image:url({imgSrc})" />
         <div class='{changeClass}'>
-          <i class='{reselectClass} icon-repeat'></i>
-          <i class='{removeClass} icon-trash'></i>
+          <i class='{reselectClass} pj-icon pj-icon-repeat'></i>
+          <i class='{removeClass} pj-icon pj-icon-delete'></i>
         </div>
       </li>`
     }

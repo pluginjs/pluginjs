@@ -4,7 +4,7 @@ import Radio from '@pluginjs/radio'
 queryAll('#js-icon input').forEach(element => {
   Radio.of(element, {
     classes: {
-      icon: 'icon-check-mini'
+      icon: 'pj-icon pj-icon-check-solid'
     }
   })
 })

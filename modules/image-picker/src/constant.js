@@ -47,13 +47,13 @@ export const defaults = {
     return (
       '<div class="{classes.NAMESPACE}">' +
       '<div class="{classes.EMPTY}">' +
-      '<i class="icon-picture"></i>{placeholder}' +
+      '<i class="pj-icon pj-icon-image"></i>{placeholder}' +
       '</div>' +
       '<div class="{classes.FILL}">' +
       '<img class="{classes.FILLIMAGE}" src="">' +
       '<div class="{classes.FILLCHANGE}">' +
-      '<i class="{classes.FILLRESELECT} icon-repeat"></i>' +
-      '<i class="{classes.FILLREMOVE} icon-trash"></i>' +
+      '<i class="{classes.FILLRESELECT} pj-icon pj-icon-repeat"></i>' +
+      '<i class="{classes.FILLREMOVE} pj-icon pj-icon-delete"></i>' +
       '</div>' +
       '</div>' +
       '</div>'

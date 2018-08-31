@@ -37,7 +37,7 @@
       {
         "name": "actions",
         "desc": "Set actions option",
-        "defaultValue": "[{\"tagName\":\"i\",\"trigger\":\"icon-close pj-list-close\",\"event\":\"click\"}]"
+        "defaultValue": "[{\"tagName\":\"i\",\"trigger\":\"pj-icon pj-icon-remove pj-list-close\",\"event\":\"click\"}]"
       },
       {
         "name": "templates",

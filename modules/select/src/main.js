@@ -294,9 +294,9 @@ class Select extends Component {
   bind() {
     let iconClassName = this.options.icon
     if (this.options.multiple && this.options.closeAllButten) {
-      iconClassName = 'icon-char icon-remove-small'
+      iconClassName = 'pj-icon pj-icon-char pj-icon-remove-small'
       insertAfter(
-        '<i class="icon-char icon-remove-small"></i>',
+        '<i class="pj-icon pj-icon-char pj-icon-remove-small"></i>',
         query('.pj-dropdown-trigger', this.$wrap)
       )
     }
@@ -315,7 +315,6 @@ class Select extends Component {
         // label: () => this.options.templates.label()
       },
       onShow: () => {
-        console.log(1)
         this.trigger(EVENTS.OPEN)
         if (this.options.filterable) {
           this.label.select()
@@ -372,7 +371,7 @@ class Select extends Component {
     if (!this.options.filterable && this.options.multiple) {
       this.label.style.display = 'none'
     }
-    this.icon = query('.icon-char', this.triggerElement)
+    this.icon = query('.pj-icon-char', this.triggerElement)
     if (this.options.multiple && this.options.closeAllButten) {
       bindEvent(
         this.eventName('click'),

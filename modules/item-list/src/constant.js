@@ -34,7 +34,7 @@ export const defaults = {
   actions: [],
   templates: {
     add() {
-      return `<div class="pj-itemList-add icon-plus">
+      return `<div class="pj-itemList-add pj-icon pj-icon-plus">
       </div>`
     }
   }

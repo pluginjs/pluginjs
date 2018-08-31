@@ -22,7 +22,7 @@
       {
         "name": "icon",
         "desc": "Set default icon",
-        "defaultValue": "icon-char icon-chevron-down"
+        "defaultValue": "pj-icon pj-icon-char pj-icon-chevron-down"
       },
       {
         "name": "multiple",

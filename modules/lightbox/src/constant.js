@@ -54,16 +54,16 @@ const defaults = {
       return '<div class="{classes.COUNTER}"></div>'
     },
     play() {
-      return '<span class="{classes.PLAY}"><i class="{classes.START} icon-caret-right"></i><i class="{classes.STOP} icon-ban"></i></span>'
+      return '<span class="{classes.PLAY}"><i class="{classes.START} pj-icon pj-icon-caret-right"></i><i class="{classes.STOP} pj-icon pj-icon-ban"></i></span>'
     },
     fullScreen() {
-      return '<span class="{classes.FULLSCREEN}"><i class="{classes.FULL} icon-full-screen"></i><i class="{classes.MINI} icon-compress"></i></span>'
+      return '<span class="{classes.FULLSCREEN}"><i class="{classes.FULL} pj-icon pj-icon-full-screen"></i><i class="{classes.MINI} pj-icon pj-icon-compress"></i></span>'
     },
     download() {
-      return '<span class="{classes.DOWNLOAD}"><i class="icon-download"></i></span>'
+      return '<span class="{classes.DOWNLOAD}"><i class="pj-icon pj-icon-download"></i></span>'
     },
     close() {
-      return '<span class="{classes.CLOSE}"><i class="icon-close"></i></span>'
+      return '<span class="{classes.CLOSE}"><i class="pj-icon pj-icon-remove"></i></span>'
     },
     footer() {
       return '<div class="{classes.FOOTER}"></div>'

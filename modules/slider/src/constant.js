@@ -48,8 +48,8 @@ const defaults = {
   duration: 300,
   autoplay: false,
   playCycle: 4000,
-  prevIcon: 'icon-chevron-left',
-  nextIcon: 'icon-chevron-right',
+  prevIcon: 'pj-icon pj-icon-chevron-left',
+  nextIcon: 'pj-icon pj-icon-chevron-right',
   templates: {
     box() {
       return '<div class="{classes.BOX}"></div>'

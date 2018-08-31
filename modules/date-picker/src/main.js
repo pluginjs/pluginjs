@@ -1453,10 +1453,10 @@ class DatePicker extends Component {
             this.changeView('caption', i)
             this.manageViews(i)
             break
-          case `${this.classes.PREV} icon-chevron-left`:
+          case `${this.classes.PREV} pj-icon pj-icon-chevron-left`:
             this.prev(i)
             break
-          case `${this.classes.NEXT} icon-chevron-right`:
+          case `${this.classes.NEXT} pj-icon pj-icon-chevron-right`:
             this.next(i)
             break
           default:

@@ -231,7 +231,6 @@ class LinkPicker extends Component {
         details
       })
     })
-
     // create type dropdown
     const $types = parseHTML(
       this.parseTemp('item', {
@@ -257,7 +256,7 @@ class LinkPicker extends Component {
         // theme: 'default',
         imitateSelect: true,
         // constraintToScrollParent: false,
-        icon: 'icon-char icon-chevron-down',
+        icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
         hideOutClick: true,
         data: typeData,
         value: this.source,
@@ -399,7 +398,7 @@ class LinkPicker extends Component {
     })
 
     const radioDefaults = {
-      classes: { icon: 'icon-check-mini' },
+      classes: { icon: 'pj-icon pj-icon-check-mini' },
       getGroup() {
         return queryAll(`input[name='${source}-${name}']`, parent)
       },
@@ -501,7 +500,7 @@ class LinkPicker extends Component {
       // itemValueAttr: 'data-connect',
       // value: data.active,
       // constraintToScrollParent: false,
-      icon: 'icon-char icon-chevron-down',
+      icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
       templates: {
         item() {
           return `<div class="${
@@ -522,6 +521,7 @@ class LinkPicker extends Component {
     const dropdownOptions = deepMerge(dropdownDefault, options)
     parent.append($dropdown)
     insertAfter('<div></div>', $dropdown)
+
     const api = Dropdown.of($dropdown, dropdownOptions)
     // set dropdown default value
     if (!data.active || data.active.length < 1) {

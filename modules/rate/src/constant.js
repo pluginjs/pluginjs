@@ -68,7 +68,7 @@ export const defaults = {
       return '<img src="{path}" width="{width}">'
     }
   },
-  iconClass: 'icon-star',
+  iconClass: 'pj-icon pj-icon-star',
   iconColorClass: '',
   min: 2,
   max: 5,

@@ -91,7 +91,7 @@ You can also save the instances to variable for further use.
 
 Name | Description | Default
 -----|--------------|-----
-`"icons"` | Set table icon | `{"sort":"icon-sort","asc":"icon-sort-ascending","desc":"icon-sort-descending"}`
+`"icons"` | Set table icon | `{"sort":"pj-icon pj-icon-sort","asc":"pj-icon pj-icon-sort-ascending","desc":"pj-icon pj-icon-sort-descending"}`
 
 ### Events
 

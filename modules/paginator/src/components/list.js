@@ -416,9 +416,9 @@ List.translations = {
 
 List.classes = {
   LISTNEXT: '{namespace}-list-next',
-  LISTNEXTICON: 'icon-ellipsis-circle-h',
+  LISTNEXTICON: 'pj-icon pj-icon-ellipsis-circle-h',
   LISTPREV: '{namespace}-list-prev',
-  LISTPREVICON: 'icon-ellipsis-circle-h'
+  LISTPREVICON: 'pj-icon pj-icon-ellipsis-circle-h'
 }
 
 export default List

@@ -121,7 +121,7 @@ export const defaults = {
       return '<div class="{classes.INPUTWRAP}"></div>'
     },
     inputIcon() {
-      return '<i class="{classes.ICON} icon-calendar"></i>'
+      return '<i class="{classes.ICON} pj-icon pj-icon-calendar"></i>'
     },
     wrap() {
       return '<div class="{classes.WRAP}"></div>'
@@ -131,8 +131,8 @@ export const defaults = {
         '<div class="{classes.CONTENT}">' +
         '<div class="{classes.HEADER}">' +
         '<div class="{classes.CAPTION}"></div>' +
-        '<div class="{classes.PREV} icon-chevron-left"></div>' +
-        '<div class="{classes.NEXT} icon-chevron-right"></div>' +
+        '<div class="{classes.PREV} pj-icon pj-icon-chevron-left"></div>' +
+        '<div class="{classes.NEXT} pj-icon pj-icon-chevron-right"></div>' +
         '</div>' +
         '<div class="{classes.DATS}"></div>' +
         '<div class="{classes.MONTHS}"></div>' +

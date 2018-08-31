@@ -49,48 +49,48 @@ export const defaults = {
     return `<div class="{classes.WRAP}">
             <div class="{classes.INNER}">
               <div class="{classes.ITEM} {classes.MARGINTOP}">
-                <label for="marginTop"><i class="icon-padding-up"></i></label>
+                <label for="marginTop"><i class="pj-icon pj-icon-padding-up"></i></label>
                 <input id="marginTop" type="text" value="0">
                 <span class="{classes.VIEW}" data-value="marginTop"></span>
               </div>
               <div class="{classes.ITEM} {classes.MARGINRIGHT}"">
-                <label for="marginRight"><i class="icon-padding-right"></i></label>
+                <label for="marginRight"><i class="pj-icon pj-icon-padding-right"></i></label>
                 <input id="marginRight" type="text" value="0">
                 <span class="{classes.VIEW}" data-value="marginRight"></span>
               </div>
               <div class="{classes.ITEM} {classes.MARGINBOTTOM}">
-                <label for="marginBottom"><i class="icon-padding-bottom"></i></label>
+                <label for="marginBottom"><i class="pj-icon pj-icon-padding-bottom"></i></label>
                 <input id="marginBottom" type="text" value="0">
                 <span class="{classes.VIEW}" data-value="marginBottom"></span>
               </div>
               <div class="{classes.ITEM} {classes.MARGINLEFT}">
-                <label for="marginLeft"><i class="icon-padding-left"></i></label>
+                <label for="marginLeft"><i class="pj-icon pj-icon-padding-left"></i></label>
                 <input id="marginLeft" type="text" value="0">
                 <span class="{classes.VIEW}" data-value="marginLeft"></span>
               </div>
               <div class="{classes.ITEM} {classes.PADDINGTOP}">
-                <label for="paddingTop"><i class="icon-padding-up"></i></label>
+                <label for="paddingTop"><i class="pj-icon pj-icon-padding-up"></i></label>
                 <input id="paddingTop" type="text" value="0">
                 <span class="{classes.VIEW}" data-value="paddingTop"></span>
               </div>
               <div class="{classes.ITEM} {classes.PADDINGRIGHT}">
-                <label for="paddingRight"><i class="icon-padding-right"></i></label>
+                <label for="paddingRight"><i class="pj-icon pj-icon-padding-right"></i></label>
                 <input id="paddingRight" type="text" value="0">
                 <span class="{classes.VIEW}" data-value="paddingRight"></span>
               </div>
               <div class="{classes.ITEM} {classes.PADDINGBOTTOM}">
-                <label for="paddingBottom"><i class="icon-padding-bottom"></i></label>
+                <label for="paddingBottom"><i class="pj-icon pj-icon-padding-bottom"></i></label>
                 <input id="paddingBottom" type="text" value="0">
                 <span class="{classes.VIEW}" data-value="paddingBottom"></span>
               </div>
               <div class="{classes.ITEM} {classes.PADDINGLEFT}">
-                <label for="paddingLeft"><i class="icon-padding-left"></i></label>
+                <label for="paddingLeft"><i class="pj-icon pj-icon-padding-left"></i></label>
                 <input id="paddingLeft" type="text" value="0">
                 <span class="{classes.VIEW}" data-value="paddingLeft"></span>
               </div>
               <div class="{classes.CONNECT}">
-                <i class='{classes.CONNECTLINK} icon-link'></i>
-                <i class="{classes.CONNECTUNLINK} icon-unlink"></i>
+                <i class='{classes.CONNECTLINK} pj-icon pj-icon-link'></i>
+                <i class="{classes.CONNECTUNLINK} pj-icon pj-icon-unlink"></i>
               </div>
             </div>
           </div>`

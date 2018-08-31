@@ -77,7 +77,7 @@ export const defaults = {
       </div>`
     },
     trigger() {
-      return `<div class={trigger}><span class="pj-dropdown-trigger"></span><i class='{trigger}-switch icon-chevron-down'></i>
+      return `<div class={trigger}><span class="pj-dropdown-trigger"></span><i class='{trigger}-switch pj-icon pj-icon-chevron-down'></i>
       </div>`
     },
     icon() {
@@ -93,7 +93,7 @@ export const defaults = {
       </div>`
     },
     search() {
-      return `<form class={classes.SEARCH} action="#"><i class='icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='icon-close {classes.SEARCHCLOSE}'></i>
+      return `<form class={classes.SEARCH} action="#"><i class='pj-icon pj-icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='pj-icon pj-icon-remove {classes.SEARCHCLOSE}'></i>
       </form>`
     }
   },

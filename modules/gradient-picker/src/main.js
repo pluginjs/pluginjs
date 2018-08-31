@@ -182,7 +182,7 @@ class GradientPicker extends Component {
     this.$empty = parseHTML(
       template.compile(this.options.templates.empty())({
         classes: this.classes,
-        icon: 'icon-paint',
+        icon: 'pj-icon pj-icon-paint',
         text: this.translate('chooseGradient')
       })
     )
@@ -283,7 +283,7 @@ class GradientPicker extends Component {
     })
     // this.$editPanel = EditPanel.of(this.element, {
     //   init: {
-    //     icon: 'icon-paint',
+    //     icon: 'pj-icon pj-icon-paint',
     //     text: this.translate('chooseGradient')
     //   },
     //   selector: {
@@ -352,9 +352,9 @@ class GradientPicker extends Component {
     //     },
 
     //     infoAction() {
-    //       return `<div class='{class}'><i class='icon-pencil-square  ${
+    //       return `<div class='{class}'><i class='pj-icon pj-icon-edit ${
     //         that.classes.EDITOR
-    //       }'></i><i class='icon-trash ${that.classes.REMOVE}'></i></div>`
+    //       }'></i><i class='pj-icon pj-icon-delete ${that.classes.REMOVE}'></i></div>`
     //     },
     //     previewContent() {
     //       return `<div class='{class} ${that.classes.PREVIEWIMG}'></div>`

@@ -12,7 +12,7 @@ import {
   translateable,
   optionable
 } from '@pluginjs/decorator'
-import PopDialog from '@pluginjs/pop-dialog'
+// import PopDialog from '@pluginjs/pop-dialog'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -28,13 +28,13 @@ import List from '@pluginjs/list'
 // const defaultActions = [
 //   {
 //     tagName: 'i',
-//     trigger: 'icon-clone pj-itemList-item-clone',
+//     trigger: 'pj-icon pj-icon-clone pj-itemList-item-clone',
 //     event: 'click',
 //     init: null
 //   },
 //   {
 //     tagName: 'i',
-//     trigger: 'icon-close pj-list-close',
+//     trigger: 'pj-icon pj-icon-close pj-list-close',
 //     event: 'click',
 //     init(instance, $action, contentTitle, cancelTitle, deleteTitle) {
 //       return new PopDialog($action, {

@@ -152,7 +152,7 @@ class IconsPicker extends Component {
           parseHTML(
             `<div class=${
               this.classes.MANAGE
-            }><i class='icon-cog'></i>${text}</div>`
+            }><i class='pj-icon pj-icon-cog'></i>${text}</div>`
           )
         )
       }
@@ -275,7 +275,6 @@ class IconsPicker extends Component {
 
       compose(
         bindEvent(this.eventName('focus'), ({ target }) => {
-          console.log(children(this.$selectorPanel.$dropdown))
           let $selectItem = children(this.$selectorPanel.$dropdown).find(el =>
             el.matches('.pj-dropdown-active')
           )
@@ -555,7 +554,7 @@ class IconsPicker extends Component {
             that.classes.PACKAGETITLE
           }>{item.label} <span class='${
             that.classes.PACKAGETIP
-          }'></span> <i class='icon-chevron-down'></i></div><div class='${
+          }'></span> <i class='pj-icon pj-icon-chevron-down'></i></div><div class='${
             that.classes.PACKAGEBODY
           }'></div></div>`
         }
@@ -619,7 +618,7 @@ class IconsPicker extends Component {
       hideOnSelect: true,
       offset: '12px,2px',
       value: data[data.length - 1].value,
-      icon: 'icon-char icon-chevron-down',
+      icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
       classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` }
     })
   }
@@ -635,7 +634,7 @@ class IconsPicker extends Component {
       if (getData('categories', icon)) {
         this.packages.forEach(_package => {
           const $categories = getData('group', _package)
-
+          /* eslint-disable no-undefined */
           if ($categories !== undefined) {
             Object.entries($categories).forEach(([name, categorie]) => {
               if (getData('categories', icon) === name) {

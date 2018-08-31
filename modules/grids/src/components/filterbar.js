@@ -95,7 +95,7 @@ class Filterbar {
 
   handleReverse() {
     this.$reverse = parseHTML(
-      `<i class="${this.classes.REVERSE} icon-chevron-down"></i>`
+      `<i class="${this.classes.REVERSE} pj-icon pj-icon-chevron-down"></i>`
     )
 
     append(this.$reverse, this.$filterbar)

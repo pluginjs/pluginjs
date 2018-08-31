@@ -16,8 +16,8 @@ const files = expand(
 webfont({
   files,
   fontName: 'plugin-icons',
-  classPrefix: 'icon-',
-  baseSelector: '.icon',
+  classPrefix: 'pj-icon-',
+  baseSelector: '.pj-icon',
   fontHeight: 128,
   normalize: true,
   formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'],

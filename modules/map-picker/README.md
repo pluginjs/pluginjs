@@ -94,7 +94,7 @@ Name | Description | Default
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set the plugin is localeFallbacks or not | `true`
-`"icon"` | Set default icon | `icon-pin-map`
+`"icon"` | Set default icon | `pj-icon pj-icon-pin-map`
 `"disabled"` | Disabled plugin | `false`
 `"place"` | Set place | `null`
 `"latlng"` | Set latlng | `{}`

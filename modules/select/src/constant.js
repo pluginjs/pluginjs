@@ -61,7 +61,7 @@ export const defaults = {
   theme: null,
   trigger: 'click', // 'hover' or 'click'
   offset: [0, 0], // set panel offset to trigger element
-  icon: 'icon-char icon-chevron-down',
+  icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
   multiple: false,
   clearable: false,
   filterable: false,
@@ -86,7 +86,7 @@ export const defaults = {
       return '<input placeholder="{that.options.placeholder}" class="{that.classes.LABEL}" />'
     },
     badge() {
-      return '<div class="{that.classes.BADGE}" data-flag="{flag}"><span class="{that.classes.BADGECONTENT}">{label}</span><i class="{that.classes.BADGEDELETE} icon-close-solid"></i></div>'
+      return '<div class="{that.classes.BADGE}" data-flag="{flag}"><span class="{that.classes.BADGECONTENT}">{label}</span><i class="{that.classes.BADGEDELETE} pj-icon pj-icon-close-solid"></i></div>'
     },
     dropdown() {
       return '<div class="{that.classes.DROPDOWN}"></div>'

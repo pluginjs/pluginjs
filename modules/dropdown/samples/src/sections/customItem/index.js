@@ -32,7 +32,7 @@ Dropdown.of(element, {
   offset: '0,2px',
   templates: {
     item() {
-      return '<div class="{classes.ITEM}" {itemValueAttr}="{item.value}"><i class="icon icon-{item.icon}"></i> {item.label}</div>'
+      return '<div class="{classes.ITEM}" {itemValueAttr}="{item.value}"><i class="pj-icon pj-icon-{item.icon}"></i> {item.label}</div>'
     }
   }
 })

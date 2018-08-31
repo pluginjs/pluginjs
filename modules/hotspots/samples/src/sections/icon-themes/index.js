@@ -3,7 +3,7 @@ import Hotspots from '@pluginjs/hotspots'
 
 queryAll('#icon-themes .pj-hotspots').map(element =>
   Hotspots.of(element, {
-    icon: 'icon icon-add',
+    icon: 'pj-icon pj-icon-add',
     data: [
       {
         placement: 'top',

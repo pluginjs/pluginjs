@@ -92,7 +92,7 @@
       {
         "name": "icons",
         "desc": "Set icons options",
-        "defaultValue": "{\"success\":[\"icon-check-circle\",\"#4be1ab\"],\"info\":[\"icon-exclamation-circle\",\"#4c93d9\"],\"warning\":[\"icon-exclamation-triangle\",\"#dabd49\"],\"danger\":[\"icon-times-circle\",\"#f86b67\"]}"
+        "defaultValue": "{\"success\":[\"pj-icon pj-icon-check-circle\",\"#4be1ab\"],\"info\":[\"pj-icon pj-icon-exclamation-circle\",\"#4c93d9\"],\"warning\":[\"pj-icon pj-icon-exclamation-triangle\",\"#dabd49\"],\"danger\":[\"pj-icon pj-icon-times-circle\",\"#f86b67\"]}"
       },
       {
         "name": "iconColor",

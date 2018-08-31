@@ -73,7 +73,7 @@ export const defaults = {
   disabled: false,
   templates: {
     trigger() {
-      return `<div class={classes.ELEMENT}><span class="pj-dropdown-trigger"></span><i class='{classes.ELEMENT}-switch icon-chevron-down'></i>
+      return `<div class={classes.ELEMENT}><span class="pj-dropdown-trigger"></span><i class='{classes.ELEMENT}-switch pj-icon pj-icon-chevron-down'></i>
       </div>`
     },
     icon() {
@@ -81,15 +81,15 @@ export const defaults = {
       </li>`
     },
     type() {
-      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="icon-chevron-down">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
+      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="pj-icon pj-icon-chevron-down">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
       </div>`
     },
     manage() {
-      return `<div class={classes.MANAGE}><i class="{classes.MANAGEICON} icon-cog"></i> {manageText}
+      return `<div class={classes.MANAGE}><i class="{classes.MANAGEICON} pj-icon pj-icon-cog"></i> {manageText}
       </div>`
     },
     search() {
-      return `<form class={classes.SEARCH} action="#"><i class='icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='{classes.SEARCHCLOSE} icon-close'></i>
+      return `<form class={classes.SEARCH} action="#"><i class='pj-icon pj-icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='{classes.SEARCHCLOSE} pj-icon pj-icon-close'></i>
       </form>`
     },
     empty() {

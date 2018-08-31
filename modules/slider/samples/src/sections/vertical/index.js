@@ -59,7 +59,7 @@ const data = [
 const element = query('#vertical .slider')
 Slider.of(element, {
   vertical: true,
-  prevIcon: 'icon-chevron-up',
-  nextIcon: 'icon-chevron-down',
+  prevIcon: 'pj-icon pj-icon-chevron-up',
+  nextIcon: 'pj-icon pj-icon-chevron-down',
   data
 })

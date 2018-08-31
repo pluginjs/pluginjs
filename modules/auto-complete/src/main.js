@@ -96,7 +96,7 @@ class AutoComplete extends Component {
     this.$close = parseHTML(
       template.compile(this.options.templates.icon())({
         classes: this.classes,
-        icon: 'icon-char icon-close-mini'
+        icon: 'pj-icon pj-icon-char pj-icon-remove-small'
       })
     )
 

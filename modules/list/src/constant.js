@@ -55,7 +55,7 @@ export const defaults = {
   actions: [
     {
       tagName: 'i',
-      trigger: 'icon-close pj-list-close',
+      trigger: 'pj-icon pj-icon-remove pj-list-close',
       event: 'click'
     }
   ],
@@ -66,7 +66,7 @@ export const defaults = {
     },
     item() {
       return `<li class='{classes.ITEM}'>
-      <span class='{classes.HANDLE}'><i class='icon-drag-bar'></i></span><div class='{classes.LABEL}'>{label}</div></li>`
+      <span class='{classes.HANDLE}'><i class='pj-icon pj-icon-drag-bar'></i></span><div class='{classes.LABEL}'>{label}</div></li>`
     },
     actions() {
       return `<div class='{classes.ACTIONS}'>

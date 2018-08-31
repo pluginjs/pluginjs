@@ -112,7 +112,7 @@ class VideoPicker extends Component {
     this.$empty = parseHTML(
       template.compile(this.options.templates.empty())({
         classes: this.classes,
-        icon: 'icon-chevron-circle-up',
+        icon: 'pj-icon pj-icon-chevron-circle-up',
         text: this.translate('inputPlaceholder')
       })
     )
@@ -174,7 +174,7 @@ class VideoPicker extends Component {
         this.classes.COMTITLE
       }'>${this.translate('videoURL')}</span><div class='${
         this.classes.VIDEOURL
-      }'><input type='text' class='pj-input' /><i class='icon-close-mini'></i></div></div>`
+      }'><input type='text' class='pj-input' /><i class='pj-icon pj-icon-close-mini'></i></div></div>`
     )
     this.$vidosource = query(`.${this.classes.SOURCE}`, this.$source)
     this.$videoUrl = query(`.${this.classes.VIDEOURL}`, this.$videoUrlContent)
@@ -255,7 +255,7 @@ class VideoPicker extends Component {
       width: 160,
       exclusive: false,
       imitateSelect: true,
-      icon: 'icon-char icon-chevron-down',
+      icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
       value: sourceData[0].label,
       templates: {
         panel() {
@@ -272,7 +272,7 @@ class VideoPicker extends Component {
       width: 160,
       exclusive: false,
       imitateSelect: true,
-      icon: 'icon-char icon-chevron-down',
+      icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
       value: ratioData[0].label,
       templates: {
         panel() {

@@ -90,8 +90,8 @@ export const defaults = {
       </div>`
     },
     infoAction() {
-      return `<div class='{classes.ACTION}'><i class='icon-pencil-square {classes.EDITOR
-      }'></i><i class='icon-trash {classes.REMOVE}'></i></div>`
+      return `<div class='{classes.ACTION}'><i class='pj-icon pj-icon-edit {classes.EDITOR
+      }'></i><i class='pj-icon pj-icon-delete {classes.REMOVE}'></i></div>`
     },
     item() {
       return `<li class='{class}'>

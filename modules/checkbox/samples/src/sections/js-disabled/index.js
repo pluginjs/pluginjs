@@ -4,7 +4,7 @@ import Checkbox from '@pluginjs/checkbox'
 queryAll('#disabled input[type="checkbox"]').forEach(element => {
   Checkbox.of(element, {
     classes: {
-      icon: 'icon-check-mini'
+      icon: 'pj-icon pj-icon-check-solid'
     },
     disabled: true
   })

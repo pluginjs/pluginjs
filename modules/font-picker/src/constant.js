@@ -91,7 +91,7 @@ export const defaults = {
       </li>`
     },
     categories() {
-      return `<div class='pj-dropdown-item {classes.PACKAGE}' data-value='{categoriesName}'><div class={classes.PACKAGETITLE}>{title}<i class='icon-chevron-down'></i></div>
+      return `<div class='pj-dropdown-item {classes.PACKAGE}' data-value='{categoriesName}'><div class={classes.PACKAGETITLE}>{title}<i class='pj-icon pj-icon-chevron-down'></i></div>
       </div>`
     },
     controller() {
@@ -99,7 +99,7 @@ export const defaults = {
       </div>`
     },
     search() {
-      return `<form class={classes.SEARCH} action="#"><i class='{classes.SEARCH}-icon icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class="{classes.SEARCH}-close icon-close"></i>
+      return `<form class={classes.SEARCH} action="#"><i class='{classes.SEARCH}-icon pj-icon pj-icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class="{classes.SEARCH}-close pj-icon pj-icon-remove"></i>
       </form>`
     }
   },

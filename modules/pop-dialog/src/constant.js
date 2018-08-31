@@ -59,7 +59,7 @@ export const defaults = deepMerge(Popover.defaults, {
   },
   templates: {
     close() {
-      return '<button type="button" class="icon icon-close-solid {classes.CLOSE}"></button>'
+      return '<button type="button" class="pj-icon pj-icon-close-solid {classes.CLOSE}"></button>'
     },
     title() {
       return '<h3 class="{classes.TITLE}"></h3>'

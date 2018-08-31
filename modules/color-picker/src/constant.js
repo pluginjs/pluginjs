@@ -1,3 +1,5 @@
+/* eslint-disable no-empty-function */
+/* eslint-disable no-undefined */
 export const namespace = 'colorPicker'
 
 export const events = {
@@ -205,7 +207,7 @@ export const defaults = {
             </div>`
     },
     remove() {
-      return '<i class="{classes.REMOVE} icon-close"></i>'
+      return '<i class="{classes.REMOVE} pj-icon pj-icon-remove"></i>'
     },
     panel() {
       return `<div class='{classes.PANEL}'>
@@ -214,13 +216,13 @@ export const defaults = {
     </div>`
     },
     collectionTrigger() {
-      return '<i class="{class} icon-star" data-type="collection"></i>'
+      return '<i class="{class} pj-icon pj-icon-star-solid" data-type="collection"></i>'
     },
     solidTrigger() {
-      return '<i class="{class} icon-solid" data-type="solid"></i>'
+      return '<i class="{class} pj-icon pj-icon-solid" data-type="solid"></i>'
     },
     gradientTrigger() {
-      return '<i class="{class} icon-gradient" data-type="gradient"></i>'
+      return '<i class="{class} pj-icon pj-icon-gradient" data-type="gradient"></i>'
     },
     moduleWrap() {
       return '<div class="{class}"></div>'
@@ -228,7 +230,7 @@ export const defaults = {
     collection() {
       return `<div class='{classes.SCHEME}'><div class='{classes.GROUPTITLE}'>{favoritesText}</div><ul class='{classes.GROUPLIST}'></ul></div>
         <div class='{classes.FAVORITES}'><div class='{classes.GROUPTITLE}'>{schemeText}</div><ul class='{classes.GROUPLIST}'></ul></div>
-        <div class='{classes.MANAGE}'><i class='icon-cog'></i>{manageText}</div>`
+        <div class='{classes.MANAGE}'><i class='pj-icon pj-icon-cog'></i>{manageText}</div>`
     },
     collectionItem() {
       return '<li class="{classes.COLLECTIONITEM}"></li>'

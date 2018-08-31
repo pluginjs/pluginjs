@@ -150,7 +150,7 @@ class FontPicker extends Component {
         parseHTML(
           `<div class=${
             this.classes.MANAGE
-          }><i class='icon-performance-solid'></i>${text}</div>`
+          }><i class='pj-icon pj-icon-performance-solid'></i>${text}</div>`
         )
       )
     }
@@ -514,7 +514,7 @@ class FontPicker extends Component {
 
     this.$activated.forEach($this => {
       const fontName = $this.dataset.value
-      // let $sourceIcon = $(`<i class='${that.classes.SOURCEICON} icon-close'></i>`)
+      // let $sourceIcon = $(`<i class='${that.classes.SOURCEICON} pj-icon pj-icon-remove'></i>`)
 
       Object.entries(that.activated).forEach(([sourceName, fonts]) => {
         if (fonts.indexOf(fontName) > -1) {

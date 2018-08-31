@@ -38,7 +38,7 @@ export const defaults = {
 
   templates: {
     toggle:
-      '<span class="{classes.ADDON}"><input type="checkbox" class="{classes.TOGGLE}" title="{label}" checked /><i class="{classes.CHECK} icon-check-mini"></i></span>',
+      '<span class="{classes.ADDON}"><input type="checkbox" class="{classes.TOGGLE}" title="{label}" checked /><i class="{classes.CHECK} pj-icon pj-icon-check-mini"></i></span>',
     meter: '<div class="{classes.METER}">{score}</div>',
     score: '<span class="label {classes.SCORE}"></span>',
     main:

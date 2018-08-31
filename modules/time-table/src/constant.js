@@ -94,9 +94,9 @@ export const defaults = {
     },
     controller() {
       return `<div class="{class}">
-                <div class="{arrowClass} {previewClass} pj-arrow-icon icon-chevron-left"></div>
+                <div class="{arrowClass} {previewClass} pj-arrow-icon pj-icon pj-icon-chevron-left"></div>
                 <span class="{textClass}"></span>
-                <div class="{arrowClass} {nextClass} pj-arrow-icon icon-chevron-right"></div>
+                <div class="{arrowClass} {nextClass} pj-arrow-icon pj-icon pj-icon-chevron-right"></div>
               </div>`
     },
     weekEvent() {

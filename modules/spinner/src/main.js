@@ -80,10 +80,10 @@ class Spinner extends Component {
 
     if (this.options.layout === 'right') {
       addClass(this.classes.CONTROLRIGHT, this.$wrap)
-      removeClass('icon-plus', this.$up)
-      addClass('icon-plus-mini', this.$up)
-      removeClass('icon-minus', this.$down)
-      addClass('icon-minus-mini', this.$down)
+      removeClass('pj-icon-plus', this.$up)
+      addClass('pj-icon-plus-mini', this.$up)
+      removeClass('pj-icon-minus', this.$down)
+      addClass('pj-icon-minus-mini', this.$down)
     }
 
     append(this.$control, this.$wrap)

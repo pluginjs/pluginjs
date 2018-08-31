@@ -47,7 +47,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   localeFallbacks: true,
-  icon: 'icon-pin-map',
+  icon: 'pj-icon pj-icon-pin-map',
   disabled: false,
   place: null, // set place, priority the coord
   latlng: {}, // {lat: xxx, lng: xxx}
@@ -67,15 +67,15 @@ export const defaults = {
       </div>`
     },
     empty() {
-      return `<div class="{classes.EMPTY}"><i class="{classes.ICON} icon-pin-map"></i>{addPlace}
+      return `<div class="{classes.EMPTY}"><i class="{classes.ICON} pj-icon pj-icon-pin-map"></i>{addPlace}
       </div>`
     },
     fill() {
-      return `<div class="{classes.FILL}"><i class="{classes.ICON} icon-pin-map"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
+      return `<div class="{classes.FILL}"><i class="{classes.ICON} pj-icon pj-icon-pin-map"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
       </div>`
     },
     fillAction() {
-      return `<div class="{classes.FILLACTION}"><i class="{classes.EDIT} icon-pencil-square"></i><i class="{classes.REMOVE} icon-trash"></i>
+      return `<div class="{classes.FILLACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i>
       </div>`
     },
     dropdown() {

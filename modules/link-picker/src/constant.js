@@ -66,18 +66,18 @@ export const defaults = {
     },
     empty() {
       return `<div class='{classes.EMPTY}'>
-        <i class='icon-chain'></i>
+        <i class='pj-icon pj-icon-chain'></i>
         {title}
       </div>`
     },
     action() {
       return `<div class='{classes.ACTION}'>
-          <i class='icon-edit {classes.ACTIONEDIT}'></i>
-          <i class='icon-delete {classes.ACTIONREMOVE}'></i>
+          <i class='pj-icon pj-icon-edit {classes.ACTIONEDIT}'></i>
+          <i class='pj-icon pj-icon-remove {classes.ACTIONREMOVE}'></i>
         </div>`
     },
     fill() {
-      return `<div class='{classes.FILL}'><i class='icon-chain'></i><div class='{classes.LINK}'></div>
+      return `<div class='{classes.FILL}'><i class='pj-icon pj-icon-chain'></i><div class='{classes.LINK}'></div>
       </div>`
     },
     dropdown() {

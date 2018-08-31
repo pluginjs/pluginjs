@@ -177,9 +177,9 @@ export const defaults = {
     template() {
       return (
         '<ul class="{classes.DECORATIONS}">' +
-        '<li class="{classes.TEXTALIGN} icon-align-left"></li>' +
-        '<li class="{classes.TEXTALIGN} icon-align-center"></li>' +
-        '<li class="{classes.TEXTALIGN} icon-align-right"></li>' +
+        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-left"></li>' +
+        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-center"></li>' +
+        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-right"></li>' +
         '</ul>'
       )
     }
@@ -188,7 +188,7 @@ export const defaults = {
     value: 'normal',
     values: ['italic', 'normal'],
     template() {
-      return '<li class="{FONTSTYLE}-fontStyle icon-imitation-italics"></li>'
+      return '<li class="{FONTSTYLE}-fontStyle pj-icon pj-icon-imitation-italics"></li>'
     }
   },
   textTransform: {
@@ -196,9 +196,9 @@ export const defaults = {
     values: ['uppercase', 'lowercase', 'capitalize'],
     template() {
       return (
-        '<li class="{classes.TEXTTRANSFORM} icon-all-caps"></li>' +
-        '<li class="{classes.TEXTTRANSFORM} icon-all-lowercase"></li>' +
-        '<li class="{classes.TEXTTRANSFORM} icon-small-caps"></li>'
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-all-caps"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-all-lowercase"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-small-caps"></li>'
       )
     }
   },
@@ -207,8 +207,8 @@ export const defaults = {
     values: ['underline', 'line-through'],
     template() {
       return (
-        '<li class="{classes.TEXTDECORATION} icon-underline"></li>' +
-        '<li class="{classes.TEXTDECORATION} icon-line-through"></li>'
+        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-underline"></li>' +
+        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-line-through"></li>'
       )
     }
   },
@@ -222,7 +222,7 @@ export const defaults = {
       '<div class="{classes.FILL}">' +
       '<i>T</i>' +
       '<div class="{classes.FILLFONT}"><span class="{classes.FILLFONTNAME}">{fontFamily}</span><span class="{classes.FILLFONTSUB}"></span></div>' +
-      '<div class="{classes.FILLCHANGE}"><i class="{classes.FILLEDIT} icon icon-edit"></i><i class="{classes.FILLREMOVE} icon-trash"></i></div>' +
+      '<div class="{classes.FILLCHANGE}"><i class="{classes.FILLEDIT} pj-icon pj-icon-edit"></i><i class="{classes.FILLREMOVE} pj-icon pj-icon-delete"></i></div>' +
       '</div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +

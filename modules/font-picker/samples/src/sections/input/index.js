@@ -9,7 +9,7 @@ const activated = {
 const data = {
   system: {
     title: 'System',
-    icon: 'icon-desktop',
+    icon: 'pj-icon pj-icon-desktop',
     fonts: {
       'Sans Serif': [
         'Arial',
@@ -73,7 +73,7 @@ const data = {
   },
   google: {
     title: 'Google',
-    icon: 'icon-google',
+    icon: 'pj-icon pj-icon-google',
     fonts: {
       'sans-serif': [
         'ABeeZee',
@@ -915,9 +915,10 @@ const data = {
   },
   custom: {
     title: 'Custom',
-    icon: 'icon-upload',
+    icon: 'pj-icon pj-icon-upload',
     fonts: ['hello', 'world'],
     load() {
+      /* eslint-disable no-console */
       console.log('custom load')
     }
   }

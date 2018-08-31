@@ -97,7 +97,7 @@ Name | Description | Default
 `"data"` | Set data option | `null`
 `"disabled"` | Disabled option | `false`
 `"label"` | Set label | `function() {...}`
-`"actions"` | Set actions option | `[{"tagName":"i","trigger":"icon-close pj-list-close","event":"click"}]`
+`"actions"` | Set actions option | `[{"tagName":"i","trigger":"pj-icon pj-icon-remove pj-list-close","event":"click"}]`
 `"templates"` | Set default templates | `{}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
 `"process"` | The type of object change the type of JSON | `function() {...}`

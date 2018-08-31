@@ -1,3 +1,4 @@
+/* eslint-disable no-undefined */
 import valueParse from './parser'
 
 export const namespace = 'patternPicker'
@@ -90,7 +91,7 @@ export const defaults = {
       </div>`
     },
     infoAction() {
-      return `<div class='{classes.ACTION}'><i class='icon-pencil-square  {classes.EDITOR}'></i><i class='icon-trash {classes.REMOVE}'></i>
+      return `<div class='{classes.ACTION}'><i class='pj-icon pj-icon-edit  {classes.EDITOR}'></i><i class='pj-icon pj-icon-remove {classes.REMOVE}'></i>
       </div>`
     }
   },

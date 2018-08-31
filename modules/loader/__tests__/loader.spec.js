@@ -5,10 +5,10 @@ import { parseHTML } from '@pluginjs/dom'
 const getInitialElement = () => parseHTML`
 <div class="pj-loader">
   <a class="pj-loader pj-loader-prev" href="javascript:void(0);" alt="Previous">
-    <i class="pj-loader-icon icon-chevron-left"></i>
+    <i class="pj-loader-icon pj-icon pj-icon-chevron-left"></i>
   </a>
   <a class="pj-loader pj-loader-next" href="javascript:void(0);" alt="Next">
-    <i class="pj-loader-icon icon-chevron-right"></i>
+    <i class="pj-loader-icon pj-icon pj-icon-chevron-right"></i>
   </a>
 </div>
 `

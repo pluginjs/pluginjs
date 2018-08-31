@@ -94,7 +94,7 @@ Name | Description | Default
 `"theme"` | Set plugin theme option | `null`
 `"trigger"` | Set trigger | `click`
 `"offset"` | Set offset | `[0,0]`
-`"icon"` | Set default icon | `icon-char icon-chevron-down`
+`"icon"` | Set default icon | `pj-icon pj-icon-char pj-icon-chevron-down`
 `"multiple"` | Set multiple | `false`
 `"clearable"` | Set clearable | `false`
 `"filterable"` | Set filterable | `false`

@@ -22,8 +22,8 @@ export const methods = [
 
 export const defaults = {
   icons: {
-    sort: 'icon-sort',
-    asc: 'icon-sort-ascending',
-    desc: 'icon-sort-descending'
+    sort: 'pj-icon pj-icon-sort',
+    asc: 'pj-icon pj-icon-sort-ascending',
+    desc: 'pj-icon pj-icon-sort-descending'
   }
 }
