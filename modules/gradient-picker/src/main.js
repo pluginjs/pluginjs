@@ -7,14 +7,14 @@ import {
   fadeIn,
   query,
   queryAll,
-  parent,
+  // parent,
   parseHTML,
   setData,
   getData,
   // closest
   wrap
 } from '@pluginjs/dom'
-import { setStyle, getStyle } from '@pluginjs/styled'
+import { setStyle } from '@pluginjs/styled' // , getStyle
 import PopDialog from '@pluginjs/pop-dialog'
 import {
   eventable,
@@ -240,22 +240,32 @@ class GradientPicker extends Component {
       this.$action
     )
 
-    Dropdown.of(this.$empty, {
-      exclusive: false,
+    this.DROPDOWN = Dropdown.of(this.$empty, {
+      target: this.$dropdown,
       templates: this.options.template,
-      constraintToScrollParent: false,
-      constraintToWindow: false,
-      hideOnClick: false,
+      hideoutClick: false,
       hideOnSelect: false
     })
 
-    ColorPicker.of(this.$colorPicker, {
+    this.COLORPICKER = ColorPicker.of(this.$colorPicker, {
       theme: 'default',
       module: ['gradient'],
-      locale: this.options.locale
+      locale: this.options.locale,
+      onUpdate: val => {
+        this.data.name = ''
+        this.data.color = val
+        // this.setPreview(val);
+        this.setOpacity()
+
+        this.leave('preset')
+        this.enter('custom')
+      },
+      onOpenPanel: () => {
+        this.colorPicker.POPPER.scheduleUpdate()
+      }
     })
 
-    Range.of($opacity, {
+    this.OPACITY = Range.of($opacity, {
       theme: 'default',
       tip: false,
       range: false,
@@ -265,6 +275,10 @@ class GradientPicker extends Component {
           max: 100,
           step: 1
         }
+      },
+      onChange: val => {
+        this.data.opacity = val.value / 100
+        this.setOpacity()
       }
     })
     // this.$editPanel = EditPanel.of(this.element, {
@@ -353,14 +367,14 @@ class GradientPicker extends Component {
     //   }
     // })
 
-    this.$wrap = parent(this.element)
+    // this.$wrap = parent(this.element)
     // set initialization color
-    this.colorPicker = ColorPicker.of(this.$colorPicker)
-    this.colorPicker.clear()
+    // this.colorPicker = ColorPicker.of(this.$colorPicker)
+    // this.colorPicker.clear()
 
-    this.opacity = Range.of($opacity)
+    // this.opacity = Range.of($opacity)
 
-    this.opacity.val(100)
+    // this.opacity.val(100)
   }
 
   render() {
@@ -383,7 +397,7 @@ class GradientPicker extends Component {
       setData('info', info, $color)
       setStyle('background', val, $color)
 
-      this.$selectorList.append($color)
+      // this.$selectorList.append($color)
     })
     return null
   }
@@ -399,14 +413,14 @@ class GradientPicker extends Component {
       this.$wrap
     )
 
-    this.$editPanel.options.onOpenSelector = () => {
-      if (!this.$scrollable) {
-        return false
-      }
-      this.$scrollable.enable()
-      this.$scrollable.update()
-      return true
-    }
+    // this.$editPanel.options.onOpenSelector = () => {
+    //   if (!this.$scrollable) {
+    //     return false
+    //   }
+    //   this.$scrollable.enable()
+    //   this.$scrollable.update()
+    //   return true
+    // }
     // info hover
     bindEvent(
       this.eventName('mouseover'),
@@ -455,54 +469,32 @@ class GradientPicker extends Component {
     )
 
     // change
-    this.$editPanel.options.onChange = () => {
-      if (!this.$selected) {
-        return false
-      }
+    // this.$editPanel.options.onChange = () => {
+    //   if (!this.$selected) {
+    //     return false
+    //   }
 
-      this.data.color = getStyle('background-image', this.$selected)
-      this.colorPicker.val(this.data.color)
-      this.setOpacity()
-      this.$editPanel.closeSelector()
+    //   this.data.color = getStyle('background-image', this.$selected)
+    //   this.colorPicker.val(this.data.color)
+    //   this.setOpacity()
+    //   this.$editPanel.closeSelector()
 
-      this.leave('custom')
-      this.enter('preset')
-      return null
-    }
+    //   this.leave('custom')
+    //   this.enter('preset')
+    //   return null
+    // }
 
     // update
-    this.$editPanel.options.onUpdate = () => {
-      if (!this.data.name && !this.data.color) {
-        return false
-      }
+    // this.$editPanel.options.onUpdate = () => {
+    //   if (!this.data.name && !this.data.color) {
+    //     return false
+    //   }
 
-      this.update()
-      this.$editPanel.closePanel()
-      addClass(this.classes.SHOW, this.$wrap)
-      return null
-    }
-
-    // colorPicker update
-    this.colorPicker.options.onUpdate = val => {
-      this.data.name = ''
-      this.data.color = val
-      // this.setPreview(val);
-      this.setOpacity()
-
-      this.leave('preset')
-      this.enter('custom')
-    }
-
-    // fixed tetherjs position problem
-    this.colorPicker.options.onOpenPanel = () => {
-      this.colorPicker.POPPER.scheduleUpdate()
-    }
-
-    // opacity change
-    this.opacity.options.onChange = val => {
-      this.data.opacity = val.value / 100
-      this.setOpacity()
-    }
+    //   this.update()
+    //   this.$editPanel.closePanel()
+    //   addClass(this.classes.SHOW, this.$wrap)
+    //   return null
+    // }
   }
 
   unbind() {
@@ -577,7 +569,7 @@ class GradientPicker extends Component {
       this.colorPicker.val(this.data.color)
     }
 
-    this.opacity.val(this.data.opacity * 100 || '100')
+    this.OPACITY.val(this.data.opacity * 100 || '100')
     this.setOpacity()
     this.setPreview(this.data.opacityColor)
     this.update()
@@ -631,7 +623,7 @@ class GradientPicker extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      this.$editPanel.enable()
+      this.DROPDOWN.enable()
       this.element.disabled = false
       this.leave('disabled')
       removeClass(this.classes.DISABLED, this.$wrap)
@@ -641,7 +633,7 @@ class GradientPicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      this.$editPanel.disable()
+      this.DROPDOWN.disable()
       this.element.disabled = true
       this.enter('disabled')
       addClass(this.classes.DISABLED, this.$wrap)
@@ -654,7 +646,7 @@ class GradientPicker extends Component {
       this.unbind()
       this.clear()
       removeClass(this.classes.NAMESPACE, this.element)
-      this.$editPanel.destroy()
+      this.DROPDOWN.destroy()
       this.leave('initialized')
     }
 

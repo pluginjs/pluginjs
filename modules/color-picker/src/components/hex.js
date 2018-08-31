@@ -9,8 +9,7 @@ import {
   // parent
   // queryAll
 } from '@pluginjs/dom'
-// import { getStyle, setStyle } from '@pluginjs/styled'
-// import { hasClass, removeClass, addClass } from '@pluginjs/classes'
+import { Color } from '@pluginjs/color'
 import Dropdown from '@pluginjs/dropdown'
 class Hex {
   constructor(instance, element) {
@@ -18,18 +17,21 @@ class Hex {
     this.element = element
     this.classes = this.instance.classes
     this.opac = 100
-    this.mode = this.instance.SOLID.color.toHEX()
     this.classify = 'HEX'
     this.color = null
-    this.HSL = this.instance.SOLID.color.toHSL().toUpperCase()
-    this.HEX = this.instance.SOLID.color.toHEX().toUpperCase()
-    this.RGB = this.instance.SOLID.color.toRGB().toUpperCase()
+
+    this.COLOR = new Color()
+    this.mode = this.COLOR.toHEX()
+    this.HSL = this.COLOR.toHSL().toUpperCase()
+    this.HEX = this.COLOR.toHEX().toUpperCase()
+    this.RGB = this.COLOR.toRGB().toUpperCase()
     this.data = [
       { label: this.HEX, value: 'HEX' },
       { label: this.HSL, value: 'HSL' },
       { label: this.RGB, value: 'RGB' }
     ]
     // this.bind()
+
     this.init()
   }
 
@@ -111,6 +113,7 @@ class Hex {
   }
 
   update(value) {
+    console.log(this.instance.SOLID.color)
     if (this.instance.SOLID.color.isValid(value)) {
       this.instance.SOLID.setSolid(value)
       this.updateColor(this.instance.SOLID.color)

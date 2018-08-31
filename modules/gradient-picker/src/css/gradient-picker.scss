@@ -43,6 +43,10 @@ $editPanel-component-color: $color-red !default;
     }
   }
 
+  &.#{$gradientPicker}-input {
+    display: none;
+  }
+
   .#{$gradientPicker}-fill {
     .#{$gradientPicker}-action {
       opacity: 0;

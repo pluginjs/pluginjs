@@ -222,7 +222,7 @@ export const defaults = {
       '<div class="{classes.FILL}">' +
       '<i>T</i>' +
       '<div class="{classes.FILLFONT}"><span class="{classes.FILLFONTNAME}">{fontFamily}</span><span class="{classes.FILLFONTSUB}"></span></div>' +
-      '<div class="{classes.FILLCHANGE}"><i class="{classes.FILLEDIT} icon-pencil-square"></i><i class="{classes.FILLREMOVE} icon-trash"></i></div>' +
+      '<div class="{classes.FILLCHANGE}"><i class="{classes.FILLEDIT} icon icon-edit"></i><i class="{classes.FILLREMOVE} icon-trash"></i></div>' +
       '</div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +
