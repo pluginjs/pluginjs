@@ -183,10 +183,6 @@ $linkPicker-disabled-bg: $disabled-bg;
     font-size: $linkPicker-font-size;
   }
 
-  .#{$dropdown} {
-    width: $item-body-width !important;
-  }
-
   // utils
   &-active {
     display: block !important;

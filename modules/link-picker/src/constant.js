@@ -72,8 +72,8 @@ export const defaults = {
     },
     action() {
       return `<div class='{classes.ACTION}'>
-          <i class='icon-pencil-square {classes.ACTIONEDIT}'></i>
-          <i class='icon-trash {classes.ACTIONREMOVE}'></i>
+          <i class='icon-edit {classes.ACTIONEDIT}'></i>
+          <i class='icon-delete {classes.ACTIONREMOVE}'></i>
         </div>`
     },
     fill() {
@@ -89,11 +89,11 @@ export const defaults = {
       </div>`
     },
     item() {
-      return `<div class='{class}' data-value='{name}'><div class='{titleClass}'>{title}: </div><div class='{body} data-connect="{parent}"'></div>
+      return `<div class='{class}' data-value='{name}'><div class='{titleClass}'>{title}: </div><div class='{body}' data-connect="{parent}"></div>
       </div>`
     },
     dropdownAction() {
-      return `<div class='{classes.DROPDOWNACTION}'>><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {classes.DROPDOWNCANCEL}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {classes.DROPDOWNSAVE}'>{saveTitle}</button>
+      return `<div class='{classes.DROPDOWNACTION}'><button type='button' class='pj-btn pj-btn-transparent pj-btn-xs {classes.DROPDOWNCANCEL}'>{cancelTitle}</button><button type='button' class='pj-btn pj-btn-primary pj-btn-xs {classes.DROPDOWNSAVE}'>{saveTitle}</button>
       </div>`
     }
   },

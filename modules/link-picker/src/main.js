@@ -15,7 +15,8 @@ import {
   prepend,
   insertBefore,
   setData,
-  getData
+  getData,
+  children
 } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { showElement, hideElement } from '@pluginjs/styled'
@@ -73,7 +74,6 @@ class LinkPicker extends Component {
     Object.entries(this.data).forEach(([typeName]) => {
       this.sources.push(typeName)
     })
-
     this.source = this.sources[0]
     this.input = {}
     this.initialize()
@@ -208,9 +208,9 @@ class LinkPicker extends Component {
       target: this.$dropdown,
       theme: 'dafault',
       placement: 'bottom-left',
-      imitateSelect: true,
+      // imitateSelect: true,
       hideOutClick: false,
-      constraintToScrollParent: false,
+      hideOnSelect: false,
       templates: this.options.templates
     }
     Dropdown.of(this.$empty, dropdownConf)
@@ -219,16 +219,12 @@ class LinkPicker extends Component {
   buildTypes() {
     const that = this
     const typeData = []
-    console.log(1)
-    console.log(1)
     // parse data
     Object.entries(this.data).forEach(([type, details]) => {
-      console.log(1)
       typeData.push({
         label: details.label,
         name: type
       })
-      console.log(typeData)
       // build item to types
       this.buildTypeItem({
         type,
@@ -236,19 +232,22 @@ class LinkPicker extends Component {
       })
     })
 
-    console.log(typeData)
-    console.log(1)
     // create type dropdown
     const $types = parseHTML(
       this.parseTemp('item', {
         class: this.classes.ITEM,
         titleClass: this.classes.ITEMTITLE,
         title: this.source,
-        body: this.classes.ITEMBODY
+        body: this.classes.ITEMBODY,
+        switch: this.classes.TYPESWITCH
       })
     )
     append(
       parseHTML(`<div class='${this.classes.TYPESWITCH}'></div>`),
+      query(`.${this.classes.ITEMBODY}`, $types)
+    )
+    append(
+      `<div class='${this.classes.TYPESPANEL}'></div>`,
       query(`.${this.classes.ITEMBODY}`, $types)
     )
     prepend($types, this.$dropdown)
@@ -257,18 +256,21 @@ class LinkPicker extends Component {
       {
         // theme: 'default',
         imitateSelect: true,
-        constraintToScrollParent: false,
+        // constraintToScrollParent: false,
         icon: 'icon-char icon-chevron-down',
+        hideOutClick: true,
         data: typeData,
-        width: query(`.${this.classes.TYPESWITCH}`, this.$dropdown),
-        select: this.source,
+        value: this.source,
         templates: {
-          dropdown() {
-            return `<ul class='${that.classes.TYPESPANEL}'></ul>`
-          },
           item() {
-            return '<li class="{that.classes.ITEM}" data-value="{item.name}">{item.label}</li>'
+            return `<div class="${
+              that.classes.ITEM
+            } {classes.ITEM}" data-value="{item.name}">{item.label}</div>`
           }
+        },
+        onChange: v => {
+          this.source = v
+          this.swtichType()
         }
       }
     )
@@ -428,12 +430,9 @@ class LinkPicker extends Component {
     const { source, item, parent } = details
     const { data, options, connect, name } = item
     const dropdownData = []
-
     let values = data.values
     const $dropdown = parseHTML(
-      `<div class='${
-        this.classes.TYPESCOMPONENT
-      }'><span class="pj-dropdown-trigger"></span><div></div></div><div></div>`
+      `<div class='${this.classes.TYPESCOMPONENT}'></div>`
     )
 
     setData(
@@ -461,7 +460,7 @@ class LinkPicker extends Component {
       bindEvent(
         this.eventName(`linkPicker:${source}:${connect}:change`),
         (e, instance, connectName) => {
-          const api = getData('input', $dropdown)
+          const api = getData('dropdown', $dropdown)
 
           const dropdownData = []
           // let globalData = this.getData();
@@ -475,12 +474,12 @@ class LinkPicker extends Component {
           Object.entries(callBackData.values).forEach(([key, value]) => {
             dropdownData.push({
               label: value,
-              name: key,
-              value
+              name: key
             })
           })
 
-          api.replaceByData(dropdownData)
+          children(api.$dropdown).map(i => i.remove())
+          api.appendItems(dropdownData)
           api.set(apiActive)
         },
         this.element
@@ -489,15 +488,14 @@ class LinkPicker extends Component {
     Object.entries(values).forEach(([key, value]) => {
       dropdownData.push({
         label: value,
-        name: key,
-        value
+        name: key
       })
     })
 
     // set dropdown default options
     const dropdownDefault = {
       // theme: 'default',
-      // imitateSelect: true,
+      imitateSelect: true,
       width: 160,
       data: dropdownData,
       // itemValueAttr: 'data-connect',
@@ -506,32 +504,31 @@ class LinkPicker extends Component {
       icon: 'icon-char icon-chevron-down',
       templates: {
         item() {
-          return '<li class="{that.classes.ITEM}" data-value="{item.name}">{item.label}</li>'
+          return `<div class="${
+            that.classes.ITEM
+          } {classes.ITEM}" {itemValueAttr}="{item.name}">{item.label}</div>`
         }
       },
       onChange(el) {
-        const name = getData('value', el)
+        const value = el
         // const connect = this.element.data('connect')
         const { source, itemName } = getData('input', this.element)
 
-        that.getSourceItem(source, itemName).data.active = name
-        that.trigger(`${source}:${itemName}:change`, name)
+        that.getSourceItem(source, itemName).data.active = value
+        that.trigger(`${source}:${itemName}:change`, value)
       }
     }
 
     const dropdownOptions = deepMerge(dropdownDefault, options)
-    console.log($dropdown)
     parent.append($dropdown)
-    console.log(parent)
-    console.log(dropdownOptions)
+    insertAfter('<div></div>', $dropdown)
     const api = Dropdown.of($dropdown, dropdownOptions)
-
     // set dropdown default value
     if (!data.active || data.active.length < 1) {
-      data.active = dropdownData[0].name
+      data.active = dropdownData[0].value
     }
-    api.set(data.active)
 
+    api.set(data.active)
     const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
       ? parent
       : parentWith(hasClass(this.classes.ITEMBODY), parent)
@@ -581,22 +578,6 @@ class LinkPicker extends Component {
       },
       this.$wrap
     )
-
-    // switch Types
-    this.$typeDropdown.options.onChange = v => {
-      this.source = getData('value', v)
-      this.swtichType()
-    }
-    // $.each(this.data, (sourceName, details) => {
-    //   $.each(details.fields, (index, item) => {
-    //     let connect = item.connect;
-
-    //     if (connect) {
-    //       this.element.on(this.eventName(`linkPicker:${sourceName}:${connect}:change`), (e, instance, name) => {
-    //       })
-    //     }
-    //   })
-    // });
 
     // input change
     bindEvent(
