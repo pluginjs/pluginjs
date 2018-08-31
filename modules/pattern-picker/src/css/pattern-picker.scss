@@ -7,7 +7,10 @@ $editPanel: "pj-editPanel" !default;
 $scrollable: "pj-scrollable" !default;
 
 $patternPicker-spacer: $spacer !default;
+$patternPicker-border: 1px solid $gray-border !default;
 
+// preview
+$preview-width:  26 * $patternPicker-spacer !default; //260px
 // global
 $global-border: 1px solid $gray-lighter !default;
 $global-active-color: $color-primary !default;
@@ -22,6 +25,36 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
 // Core
 // =====================
 .#{$patternPicker} {
+  &.#{$patternPicker}-input {
+    display: none;
+  }
+  &-dropdown {
+    box-sizing: border-box;
+    width: 300px;
+    padding: 20px;
+    background-color: $color-white;
+    border: $patternPicker-border;
+    border-radius: 2px;
+  }
+
+  &-component {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &-preview {
+    position: relative;
+    box-sizing: border-box;
+    width: 260px;
+    height: 160px;
+    padding: 14px;
+    margin-bottom: 20px;
+    background: url(./images/bg-canvas.png) no-repeat center; /* stylelint-disable-line */
+    border: $patternPicker-border;
+    border-radius: 2px;
+  }
   &-selector-list {
     height: 100%;
 

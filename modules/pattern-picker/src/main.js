@@ -7,7 +7,7 @@ import { setStyle } from '@pluginjs/styled'
 import {
   query,
   queryAll,
-  parent,
+  // parent,
   parseHTML,
   getData,
   setData,
@@ -70,7 +70,7 @@ class PatternPicker extends Component {
     this.$selected = null
 
     this.$content = null
-
+    console.log(this.imgs)
     this.setupStates()
     this.initialize()
   }
@@ -195,15 +195,15 @@ class PatternPicker extends Component {
 
   handelComponent() {
     // const that = this
-    const $forePicker = parseHTML(
-      `<input class='${this.classes.FORECOLOR}' type="text"/>`
-    )
-    const $bgPicker = parseHTML(
-      `<input class='${this.classes.BGCOLOR}' type="text"/>`
-    )
-    const $opacityPicker = parseHTML(
-      `<input class='${this.classes.OPACITY}' type="text"/>`
-    )
+    // const $forePicker = parseHTML(
+    //   `<input class='${this.classes.FORECOLOR}' type="text"/>`
+    // )
+    // const $bgPicker = parseHTML(
+    //   `<input class='${this.classes.BGCOLOR}' type="text"/>`
+    // )
+    // const $opacityPicker = parseHTML(
+    //   `<input class='${this.classes.OPACITY}' type="text"/>`
+    // )
 
     this.$previewBox = parseHTML(
       `<div class='${this.classes.PREVIEW}'><div class='${
@@ -250,36 +250,59 @@ class PatternPicker extends Component {
       </div>`
     )
 
-    Dropdown.of(this.$empty, {
-      exclusive: false,
+    this.DROPDOWN = Dropdown.of(this.$empty, {
+      target: this.$dropdown,
       templates: this.options.template,
-      constraintToScrollParent: false,
-      constraintToWindow: false,
-      hideOnClick: false,
+      hideoutClick: false,
       hideOnSelect: false
     })
 
-    ColorPicker.of(this.$forePicker, {
+    this.FOREPICKER = ColorPicker.of(this.$forePicker, {
       theme: 'default',
       module: ['solid'],
       solidMode: 'sample',
       solidModule: {
         alpha: false,
         hex: false
+      },
+      onChange: val => {
+        if (!this.$selected) {
+          return
+        }
+        this.foreColor = val
+
+        this.enter('foreChange')
+        this.leave('bgChange')
+        this.leave('opacityChange')
+        this.updateComponent()
+
+        return
       }
     })
 
-    ColorPicker.of(this.$bgColor, {
+    this.BGCOLOR = ColorPicker.of(this.$bgColor, {
       theme: 'default',
-      module: ['solid'],
-      solidMode: 'sample',
-      solidModule: {
-        alpha: false,
-        hex: false
+      // module: ['solid'],
+      // solidMode: 'sample',
+      // solidModule: {
+      //   alpha: false,
+      //   hex: false
+      // },
+      onChange: val => {
+        // console.log(val)
+        if (!this.$selected) {
+          return
+        }
+        this.bgColor = val.toHEX()
+        this.leave('foreChange')
+        this.enter('bgChange')
+        this.leave('opacityChange')
+        this.updateComponent()
+        return
       }
     })
 
-    Range.of(this.$opacity, {
+    this.OPACITY = Range.of(this.$opacity, {
       theme: 'default',
       tip: false,
       range: false,
@@ -289,8 +312,28 @@ class PatternPicker extends Component {
           max: 100,
           step: 1
         }
+      },
+      onChange: data => {
+        if (!this.$selected) {
+          return
+        }
+
+        this.opacity = data.value / 100
+
+        this.leave('foreChange')
+        this.leave('bgChange')
+        this.enter('opacityChange')
+        this.updateComponent()
+
+        return
       }
     })
+
+    // set initial color
+    this.FOREPICKER.val('#000')
+    this.BGCOLOR.val(this.bgColor)
+    this.OPACITY.val('100%')
+
     // this.$editPanel = EditPanel.of(this.element, {
     //   init: { text: this.translate('choosePattern') },
     //   selector: {
@@ -390,16 +433,6 @@ class PatternPicker extends Component {
     //     }
     //   }
     // })
-
-    this.$wrap = parent(this.element)
-    this.$forePicker = ColorPicker.findInstanceByElement($forePicker)
-    this.$bgPicker = ColorPicker.findInstanceByElement($bgPicker)
-    this.$opacityPicker = Range.findInstanceByElement($opacityPicker)
-
-    // set initial color
-    // this.$forePicker.val('#000')
-    // this.$bgPicker.val(this.bgColor)
-    // this.$opacityPicker.val('100%')
   }
 
   render() {
@@ -425,7 +458,7 @@ class PatternPicker extends Component {
         $img
       )
 
-      this.$selectorList.append($img)
+      // this.$selectorList.append($img)
     })
   }
 
@@ -436,7 +469,7 @@ class PatternPicker extends Component {
         if (this.is('disabled')) {
           return
         }
-        this.$editPanel.openPanel()
+        this.DROPDOWN.show()
       }),
 
       // info action hover
@@ -467,58 +500,58 @@ class PatternPicker extends Component {
       this.leave('holdHover')
     }
     // update
-    this.$editPanel.options.onUpdate = () => {
-      if (!this.$selected) {
-        return
-      }
+    // this.$editPanel.options.onUpdate = () => {
+    //   if (!this.$selected) {
+    //     return
+    //   }
 
-      this.update()
-      return
-    }
+    //   this.update()
+    //   return
+    // }
 
     // change
-    this.$editPanel.options.onChange = () => {
-      this.$selected = this.$selecting
-      if (!this.$selected) {
-        return
-      }
-      const info = getData('info', this.$selected)
+    // this.$editPanel.options.onChange = () => {
+    //   this.$selected = this.$selecting
+    //   if (!this.$selected) {
+    //     return
+    //   }
+    //   const info = getData('info', this.$selected)
 
-      // let color = info['background-image']
-      //   .match(/fill='.*?'/g)
-      //   .toString()
-      //   .match(/(\w){6,8}/g)
-      //   .toString();
-      // const opacity = parseFloat(
-      //   info['background-image']
-      //   .match(/fill-opacity='(.*?)'/g)
-      //   .toString()
-      //   .match(/\d\.\d*|\d/g)[0]
-      // );
-      setData('info', info, this.$previewImg)
+    // let color = info['background-image']
+    //   .match(/fill='.*?'/g)
+    //   .toString()
+    //   .match(/(\w){6,8}/g)
+    //   .toString();
+    // const opacity = parseFloat(
+    //   info['background-image']
+    //   .match(/fill-opacity='(.*?)'/g)
+    //   .toString()
+    //   .match(/\d\.\d*|\d/g)[0]
+    // );
+    // setData('info', info, this.$previewImg)
 
-      // if (color.length > 6) {
-      //   color = `#${color.slice(2)}`;
-      // } else {
-      //   color = `#${color}`;
-      // }
-      // set foreColor bgPicker Opacity
-      this.$bgPicker.val(this.options.format(info, 'background-color'))
-      this.$forePicker.val(this.options.format(info, 'color'))
-      this.$opacityPicker.val(`${this.options.format(info, 'opacity')}%`)
+    // if (color.length > 6) {
+    //   color = `#${color.slice(2)}`;
+    // } else {
+    //   color = `#${color}`;
+    // }
+    // set foreColor bgPicker Opacity
+    // this.BGPICKER.val(this.options.format(info, 'background-color'))
+    // this.FOREPICKER.val(this.options.format(info, 'color'))
+    // this.OPACITYPICKER.val(`${this.options.format(info, 'opacity')}%`)
 
-      // set preview
-      this.setInfo(this.$previewImg)
-      this.$editPanel.closeSelector()
+    // set preview
+    // this.setInfo(this.$previewImg)
+    // this.$editPanel.closeSelector()
 
-      return
-    }
+    // return
+    // }
 
     // update scorllable
-    this.$editPanel.options.onOpenSelector = () => {
-      this.$scrollable.enable()
-      this.$scrollable.update()
-    }
+    // this.$editPanel.options.onOpenSelector = () => {
+    //   this.$scrollable.enable()
+    //   this.$scrollable.update()
+    // }
 
     // select SVG img
     bindEvent(
@@ -534,49 +567,6 @@ class PatternPicker extends Component {
       },
       this.$selectorList
     )
-
-    // components change
-    this.$forePicker.options.onChange = val => {
-      if (!this.$selected) {
-        return
-      }
-      this.foreColor = val
-
-      this.enter('foreChange')
-      this.leave('bgChange')
-      this.leave('opacityChange')
-      this.updateComponent()
-
-      return
-    }
-    this.$bgPicker.options.onChange = val => {
-      if (!this.$selected) {
-        return
-      }
-
-      this.bgColor = val.toHEX()
-
-      this.leave('foreChange')
-      this.enter('bgChange')
-      this.leave('opacityChange')
-      this.updateComponent()
-
-      return
-    }
-    this.$opacityPicker.options.onChange = data => {
-      if (!this.$selected) {
-        return
-      }
-
-      this.opacity = data.value / 100
-
-      this.leave('foreChange')
-      this.leave('bgChange')
-      this.enter('opacityChange')
-      this.updateComponent()
-
-      return
-    }
   }
 
   unbind() {
@@ -589,6 +579,7 @@ class PatternPicker extends Component {
   }
 
   update(data) {
+    console.log(this.$previewImg)
     if (data) {
       setData('info', data, this.$previewImg)
       this.setInfo(this.$previewImg)
@@ -627,6 +618,8 @@ class PatternPicker extends Component {
   }
 
   setInfo(img) {
+    console.log(img)
+    console.log(getData('info', img))
     const imgData = getData('info', img)
     setStyle(
       {
@@ -760,7 +753,7 @@ class PatternPicker extends Component {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
       this.pop.enable()
-      this.$editPanel.enable()
+      this.DROPDOWN.enable()
       this.element.disabled = false
       this.leave('disabled')
     }
@@ -771,7 +764,7 @@ class PatternPicker extends Component {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrap)
       this.pop.disable()
-      this.$editPanel.disable()
+      this.DROPDOWN.disable()
       this.element.disabled = true
       this.enter('disabled')
     }
@@ -783,7 +776,7 @@ class PatternPicker extends Component {
       removeClass(this.classes.NAMESPACE, this.element)
       this.unbind()
       this.clear()
-      this.$editPanel.destroy()
+      this.DROPDOWN.destroy()
       this.leave('initialized')
     }
 

@@ -355,10 +355,10 @@ class GradientPicker extends Component {
 
     this.$wrap = parent(this.element)
     // set initialization color
-    this.colorPicker = ColorPicker.findInstanceByElement(this.$colorPicker)
+    this.colorPicker = ColorPicker.of(this.$colorPicker)
     this.colorPicker.clear()
 
-    this.opacity = Range.findInstanceByElement($opacity)
+    this.opacity = Range.of($opacity)
 
     this.opacity.val(100)
   }
