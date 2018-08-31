@@ -9,7 +9,7 @@
     {% if formats.indexOf('svg')>-1 %}url('{{ fontPath }}{{ fontName }}.svg#{{ fontName }}') format('svg');{% endif %}
 }
 
-{{baseSelector}}, [class*="{{ classPrefix }}"]  {
+{{baseSelector}} {
   font-family: {{fontName}} !important;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -17,7 +17,6 @@
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
-  line-height: 1;
   font-weight: normal;
 }
 {% for glyph in glyphs%}
