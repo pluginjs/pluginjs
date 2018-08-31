@@ -4,38 +4,38 @@
 // Vars
 // =====================
 $popover: "pj-popover";
-$popover-buttons-margin-top: 16px;
-$popover-button-spacer: 3px 15px;
-$popover-button-margin-left: 15px;
-$popover-button-primary-bgcolor: $color-primary;
-$popover-button-primary-bdcolor: $popover-button-primary-bgcolor;
-$popover-dark-button-color: $color-white;
+$popover-btns-margin-top: 16px;
+$popover-btn-spacer: 3px 15px;
+$popover-btn-margin-left: 15px;
+$popover-btn-primary-bgcolor: $color-primary;
+$popover-btn-primary-bdcolor: $popover-btn-primary-bgcolor;
+$popover-dark-btn-color: $color-white;
 
 .#{$popover} {
   &-dialog {
     padding: 22px 24px;
   }
 
-  &-buttons {
-    margin-top: $popover-buttons-margin-top;
+  &-btns {
+    margin-top: $popover-btns-margin-top;
   }
 
-  &-button {
-    padding: $popover-button-spacer;
+  &-btn {
+    padding: $popover-btn-spacer;
 
     & + & {
-      margin-left: $popover-button-margin-left;
+      margin-left: $popover-btn-margin-left;
       color: #fff;
-      background-color: $popover-button-primary-bgcolor;
-      border-color: $popover-button-primary-bdcolor;
+      background-color: $popover-btn-primary-bgcolor;
+      border-color: $popover-btn-primary-bdcolor;
     }
   }
 }
 
 // dark skin
 .#{$popover}--dark {
-  .#{$popover}-button {
-    color: $popover-dark-button-color;
+  .#{$popover}-btn {
+    color: $popover-dark-btn-color;
     background: inherit;
 
     &:not(:disabled):active,
