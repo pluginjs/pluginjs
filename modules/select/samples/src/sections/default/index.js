@@ -7,13 +7,13 @@ const sources = [
     options: [
       {
         value: 'a',
-        label: 'haha',
-        slug: 'haha'
+        label: 'beijing',
+        slug: 'beijing'
       },
       {
         value: 'b',
-        label: 'xixi',
-        slug: 'xiix'
+        label: 'nanjing',
+        slug: 'nanjing'
       }
     ]
   },

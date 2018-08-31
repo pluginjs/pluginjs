@@ -69,6 +69,7 @@ class Select extends Component {
     this.source = this.options.source
       ? this.parseJson(this.options.source)
       : this.parseHtml(children(this.element))
+    console.log(this.source)
     this.selected = Array.from(this.element.selectedOptions).map(el => el.value)
     this.markIndex = 0
     this.build()
@@ -98,9 +99,7 @@ class Select extends Component {
     if (this.selected.length > 0) {
       this.set(this.selected, true, true)
     } else {
-      isFunction(this.souce)    /* eslint-disable-line */
-        ? this.source.call(this, this.buildList.bind(this))  /* eslint-disable-line */
-        : this.resetList(this.source)
+      this.resetList(this.source)
       // this.resetList(this.source)
       this.checkIcon()
     }
@@ -208,7 +207,7 @@ class Select extends Component {
     this.list = isFunction(this.source)
       ? this.source.call(this, this.buildList.bind(this))  /* eslint-disable-line */
       : this.buildList(this.source)
-
+    console.log(this.source)
     append(this.list, this.$dropdown)
     append(this.triggerElement, this.$wrap)
     append(this.$dropdown, this.$wrap)
@@ -222,6 +221,9 @@ class Select extends Component {
   }
 
   buildList(data) {
+    if (isFunction(this.source)) {
+      this.source = data
+    }
     let $content = null
     if (data.length === 0) {
       $content = this.buildFromTemplate('notFound', { that: this })
@@ -687,7 +689,7 @@ class Select extends Component {
     }
     const newData = []
     const search = new RegExp(value)
-
+    console.log(data)
     data.forEach(n => {
       if (n.group) {
         let addGroup = false
