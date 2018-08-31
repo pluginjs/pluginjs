@@ -9,12 +9,16 @@
     {% if formats.indexOf('svg')>-1 %}url('{{ fontPath }}{{ fontName }}.svg#{{ fontName }}') format('svg');{% endif %}
 }
 
-{{baseSelector}} {
-  line-height: 1;
+{{baseSelector}}, [class*="{{ classPrefix }}"]  {
   font-family: {{fontName}} !important;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
   font-style: normal;
-  font-weight: normal !important;
-  vertical-align: top;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-weight: normal;
 }
 {% for glyph in glyphs%}
 .{{ classPrefix }}{{ glyph.name }}::before {

@@ -119,11 +119,9 @@ $pop-buttons-danger-color: $color-danger !default;
 
     .#{$list}-item-actions {
       position: absolute;
-      top: 50%;
       right: 0.8 * $list-sizer; //8px
       color: $list-item-actions-color;
       transition: color 0.5s;
-      transform: translateY(-50%);
 
       &:hover {
         cursor: pointer;
