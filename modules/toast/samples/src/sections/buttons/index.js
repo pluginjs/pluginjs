@@ -23,7 +23,7 @@ btn2.addEventListener('click', () => {
       },
       btn2: {
         title: 'Confirm',
-        class: 'pj-btn-primary'
+        class: 'pj-btn pj-btn-primary'
       }
     }
   })

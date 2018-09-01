@@ -5,9 +5,46 @@
 $tooltip-font-size: $font-size-lg;
 $tooltip-light-box-shadow: $box-shadow-base;
 
+$tooltip-font-family: $font-family-base;
+$tooltip-font-size: $font-size-sm;
+$tooltip-max-width: 196px;
+$tooltip-color: $color-white;
+$tooltip-padding-y: 9.8px;
+$tooltip-padding-x: 13px;
+$tooltip-border-radius: $border-radius-base;
+$tooltip-arrow-offset-x: 10px;
+$tooltip-arrow-offset-y: 5px;
+$tooltip-light-color: $text-color;
+$tooltip-light-bg: $color-white;
+$tooltip-light-arrow-color: $tooltip-light-bg;
+$tooltip-shadow-box-shadow: $box-shadow-5;
+
+$tooltip-btn-padding-y: 15px;
+$tooltip-btn-padding-x: 21.76px;
+
 //base style vars
 $tooltip-position-grid-margin-x: 87.5px;
 $tooltip-position-cell-a-margin-y: 17.5px;
+
+.#{$tooltip} {
+  font-size: $tooltip-font-size;
+
+  &-inner {
+    max-width: $tooltip-max-width;
+    padding: $tooltip-padding-y $tooltip-padding-x;
+    color: $tooltip-color;
+    text-align: center;
+    background-color: $tooltip-bg;
+    border-radius: $tooltip-border-radius;
+  }
+  
+  &-btn {
+    padding: $tooltip-btn-padding-y $tooltip-btn-padding-x;
+    font-family: $tooltip-font-family;
+    font-size: $tooltip-font-size;
+    line-height: 1;
+  }
+}
 
 // light
 // =====================

@@ -4,7 +4,6 @@
 //base style vars
 $popover-bg: $color-white;
 $popover-width: 392px;
-$popover-font-family: $font-family-base;
 $popover-font-size: $font-size-sm;
 $popover-color: $gray-darker;
 $popover-border-radius: $border-radius-base;
@@ -44,7 +43,6 @@ $popover-table-padding-x: 12px;
 .#{$popover} {
   max-width: $popover-width;
   padding: $popover-padding;
-  font-family: $popover-font-family;
   font-size: $popover-font-size;
   color: $popover-color;
   background-color: $popover-bg;
@@ -110,26 +108,18 @@ $popover-table-padding-x: 12px;
     color: $popover-dark-title-color;
   }
 
-  &[x-placement="top"] {
-    &::before {
-      border-top-color: $popover-dark-arrow-color;
-    }
-  }
-
+  &[x-placement="top"],
   &[x-placement="bottom"] {
     &::before {
+      border-top-color: $popover-dark-arrow-color;
       border-bottom-color: $popover-dark-arrow-color;
     }
   }
 
-  &[x-placement="right"] {
-    &::before {
-      border-right-color: $popover-dark-arrow-color;
-    }
-  }
-
+  &[x-placement="right"],
   &[x-placement="left"] {
     &::before {
+      border-right-color: $popover-dark-arrow-color;
       border-left-color: $popover-dark-arrow-color;
     }
   }

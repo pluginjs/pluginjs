@@ -5,11 +5,10 @@ const btn = query('#setcolor .setColor')
 btn.addEventListener('click', () => {
   Toast.open({
     icon: 'success',
-    iconColor: 'red',
     title: 'Inconceivable!',
-    titleColor: 'blue',
+    titleColor: '#215fdb',
     content: 'I do not think that word means what you think it means.',
-    contentColor: 'red',
-    closeBtnColor: 'green'
+    contentColor: '#b3b3b3',
+    closeBtnColor: '#e6e6e6'
   })
 })

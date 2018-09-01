@@ -44,7 +44,7 @@ export const defaults = {
   },
   templates: {
     close() {
-      return '<button class="{classes.CLOSE}" aria-label="Close"></button>'
+      return '<button class="icon icon-close-solid {classes.CLOSE}" aria-label="Close"></button>'
     },
     title() {
       return '<div class="{classes.TITLE}">{icon}</div>'
@@ -78,7 +78,7 @@ export const defaults = {
   closeBtnColor: '',
   effect: 'fade',
   allowClose: true,
-  duration: 3000,
+  duration: 300000,
   stack: 6,
   position: 'bottom-right',
   icon: 'success',

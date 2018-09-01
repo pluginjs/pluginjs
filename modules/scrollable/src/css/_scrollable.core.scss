@@ -41,7 +41,6 @@ $scrollable-bar-handle-hovering-color: $gray;
     .#{$scrollable}.#{$scrollable}-enabled & {
       @include clearfix();
 
-      position: relative !important;
       overflow: visible !important;
     }
   }

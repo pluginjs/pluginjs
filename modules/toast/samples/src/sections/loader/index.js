@@ -8,6 +8,6 @@ btn1.addEventListener('click', () => {
 })
 btn2.addEventListener('click', () => {
   Toast.open({
-    loaderBgColor: '#EC3C3C'
+    loaderBgColor: '#e6e6e6'
   })
 })

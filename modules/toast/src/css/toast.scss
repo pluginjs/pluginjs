@@ -2,12 +2,122 @@
 @import "toast.core";
 // Vars
 // =====================
+$toast: "pj-toast";
+$toast-font-family: $font-family-base;
+$toast-font-size: $font-size-sm;
+$toast-padding-left: 24px;
+$toast-padding-right: 28px;
+$toast-padding-bottom: 21px;
+
+$toast-bgColor: $color-white;
+$toast-border-radius: $border-radius-base;
+$toast-box-shadow: 0 10px 30px 0
+rgba(0, 0, 0, 0.1);
+
+$toast-close-color: $gray-dark;
+
+$toast-space: 20px;
+
+$toast-title-color: $gray-darkest;
+$toast-title-margin-bottom: 6px;
+$toast-title-font-size: 16px;
+
+$toast-content-color: $gray-darker;
+$toast-content-margin-top: 9px;
+
+$toast-icon-font-size: 1.24em;
+$toast-icon-margin-right: 0.5em;
+
+$toast-loader-color: $gray-light;
+$toast-loader-inner-color: $color-primary;
+
+$toast-buttons-padding: 8px 16px;
+$toast-buttons-margin-top: 18px;
+$toast-buttons-margin-left: 12px;
+
 $toast-btn-padding-x: 13.5px;
 $toast-btn-padding-y: 30px;
 $toast-btn-padding: $toast-btn-padding-x $toast-btn-padding-y;
 $toast-btn-font-size: $font-size-sm;
 
-.toast-btn {
-  padding: $toast-btn-padding;
-  font-size: $toast-btn-font-size;
+.#{$toast} {
+  width: 100%;
+  padding: $toast-padding-top $toast-padding-right $toast-padding-bottom $toast-padding-left;
+  margin-top: $toast-loader-height;
+  font-family: $toast-font-family;
+  font-size: $toast-font-size;
+  background: $toast-bgColor;
+  border-radius: 0 0 $toast-border-radius $toast-border-radius;
+  box-shadow: $toast-box-shadow;
+
+  &+& {
+    margin-top: $toast-space;
+  }
+
+  &-close {
+    padding: 0;
+    color: $toast-close-color;
+    background: transparent;
+    border: 0;
+    outline: 0;
+
+    &:not(:disabled):hover {
+      background: initial;
+      opacity: 0.9;
+    }
+  }
+
+  &-title {
+    // margin-bottom: $toast-title-margin-bottom;
+    font-size: $toast-title-font-size;
+    color: $toast-title-color;
+  }
+
+  &-icon {
+    margin-right: $toast-icon-margin-right;
+    font-size: $toast-icon-font-size;
+  }
+
+  &-content {
+    margin-top: $toast-content-margin-top;
+    color: $toast-content-color;
+  }
+
+  &-loader {
+    width: 100%;
+    height: $toast-loader-height;
+    background-color: $toast-loader-color;
+    border-radius: $toast-border-radius $toast-border-radius 0 0;
+
+    &-inner {
+      width: 0%;
+      height: 100%;
+      background-color: $toast-loader-inner-color;
+    }
+  }
+
+  &-loader-striped {
+    @include gradient-striped();
+
+    background-size: $toast-progress-height $toast-progress-height;
+    animation: progress-bar-stripes 0.4s linear infinite;
+  }
+
+  &-buttons {
+    margin-top: $toast-buttons-margin-top;
+    text-align: right;
+  }
+
+  &-btn {
+    padding: $toast-buttons-padding;
+    font-size: $toast-font-size;
+
+    & + .#{$toast}-btn {
+      margin-left: $toast-buttons-margin-left;
+    }
+  }
 }
+
+@import "effects/slide";
+@import "effects/fade";
+@import "effects/effect";
