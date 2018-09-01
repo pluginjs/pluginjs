@@ -135,7 +135,7 @@ Returns
 |------|------|-------------|
 | offsetHeight | `Number` | |
 
-### arraysEqual
+### arrayEqual
 
 Parameters
 

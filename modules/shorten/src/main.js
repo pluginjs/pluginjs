@@ -132,7 +132,7 @@ class Shorten extends Component {
       ({ target }) => {
         const item = hasClass(this.classes.TOGGLE, target)
           ? target
-          : closest(`${this.classes.TOGGLE}`, target)
+          : closest(`.${this.classes.TOGGLE}`, target)
         if (this.is('expand')) {
           this.trigger(EVENTS.COLLAPSE)
           item.innerHTML = this.options.more

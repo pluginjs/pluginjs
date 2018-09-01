@@ -127,23 +127,23 @@ describe('util', () => {
     })
   })
 
-  describe('arraysEqual()', () => {
+  describe('arrayEqual()', () => {
     test('should return true when two arrays equals', () => {
-      expect(util.arraysEqual([], [])).toBeTrue()
-      expect(util.arraysEqual(['a'], ['a'])).toBeTrue()
-      expect(util.arraysEqual(['a', 'b'], ['a', 'b'])).toBeTrue()
-      expect(util.arraysEqual([1], [1])).toBeTrue()
-      expect(util.arraysEqual([1, 2], [1, 2])).toBeTrue()
-      expect(util.arraysEqual([1, 2, 3], [1, 2, 3])).toBeTrue()
+      expect(util.arrayEqual([], [])).toBeTrue()
+      expect(util.arrayEqual(['a'], ['a'])).toBeTrue()
+      expect(util.arrayEqual(['a', 'b'], ['a', 'b'])).toBeTrue()
+      expect(util.arrayEqual([1], [1])).toBeTrue()
+      expect(util.arrayEqual([1, 2], [1, 2])).toBeTrue()
+      expect(util.arrayEqual([1, 2, 3], [1, 2, 3])).toBeTrue()
     })
 
     test('should return false when two arrays not equals', () => {
-      expect(util.arraysEqual([], ['a'])).toBeFalse()
-      expect(util.arraysEqual(['a'], ['a', 'b'])).toBeFalse()
-      expect(util.arraysEqual(['a', 'b'], ['a'])).toBeFalse()
-      expect(util.arraysEqual([1], [1, 2])).toBeFalse()
-      expect(util.arraysEqual([1, 2, 3], [1, 2])).toBeFalse()
-      expect(util.arraysEqual([1, 3], [1, 2, 3])).toBeFalse()
+      expect(util.arrayEqual([], ['a'])).toBeFalse()
+      expect(util.arrayEqual(['a'], ['a', 'b'])).toBeFalse()
+      expect(util.arrayEqual(['a', 'b'], ['a'])).toBeFalse()
+      expect(util.arrayEqual([1], [1, 2])).toBeFalse()
+      expect(util.arrayEqual([1, 2, 3], [1, 2])).toBeFalse()
+      expect(util.arrayEqual([1, 3], [1, 2, 3])).toBeFalse()
     })
   })
 

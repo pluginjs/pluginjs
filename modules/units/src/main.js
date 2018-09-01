@@ -115,7 +115,7 @@ class Units extends Component {
 
   bind() {
     bindEvent(
-      this.selfEventName(`${EVENTS.CHANGEUNIT} ${EVENTS.CHANGEINPUT}`),
+      this.selfEventName([EVENTS.CHANGEUNIT, EVENTS.CHANGEINPUT]),
       () => {
         this.element.value = this.val()
         this.trigger(EVENTS.CHANGE, this.element.value)

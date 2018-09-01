@@ -25,7 +25,7 @@ export const classes = deepMerge(Popover.classes, {
   CLOSE: '{namespace}-close',
   SHOW: '{namespace}-show',
   FADE: '{namespace}-fade',
-  BUTTON: 'pj-btn {namespace}-btn',
+  BUTTON: '{namespace}-btn',
   BUTTONCOLOR: '{namespace}-btn-{color}',
   BUTTONS: '{namespace}-btns',
   DISABLED: '{namespace}-disabled',
@@ -68,7 +68,7 @@ export const defaults = deepMerge(Popover.defaults, {
       return '<div class="{classes.CONTENT}"></div>'
     },
     button() {
-      return '<button type="button" class="{classes.BUTTON}" data-color="{color}" data-action="{action}">{label}</button>'
+      return '<button type="button" class="pj-btn {classes.BUTTON}" data-color="{color}" data-action="{action}">{label}</button>'
     },
     buttons() {
       return '<div class="{classes.BUTTONS}">{buttons}</div>'

@@ -2,8 +2,8 @@ import templateEngine from '@pluginjs/template'
 import { isFunction } from '@pluginjs/is'
 import { compose } from '@pluginjs/utils'
 import { bindEvent } from '@pluginjs/events'
-import { data, closest, query } from '@pluginjs/dom'
-import { hasClass, removeClass } from '@pluginjs/classes'
+import { data, closest } from '@pluginjs/dom'
+import { hasClass } from '@pluginjs/classes'
 import {
   eventable,
   register,
@@ -39,7 +39,7 @@ class PopDialog extends Popover {
   bind() {
     super.bind()
     bindEvent(
-      this.selfEventName('show'),
+      this.selfEventName(EVENTS.SHOW),
       () => this.bindButtonEvents(),
       this.element
     )
@@ -50,6 +50,7 @@ class PopDialog extends Popover {
     if (data('buttonEventsBinded', $tip)) {
       return
     }
+
     bindEvent(
       this.eventName('click'),
       `.${this.classes.BUTTON}`,
@@ -59,7 +60,7 @@ class PopDialog extends Popover {
             ? data('action', target)
             : compose(
                 data('action'),
-                closest(`${this.classes.BUTTON}`)
+                closest(`.${this.classes.BUTTON}`)
               )(target)
         )
       },
@@ -134,42 +135,6 @@ class PopDialog extends Popover {
     )
 
     return buttons
-  }
-
-  isWithContent() {
-    return this.getTitle() || this.getContent()
-  }
-
-  getContent() {
-    return (
-      this.element.getAttribute('data-content') ||
-      (typeof this.options.content === 'function'
-        ? this.options.content.call(this.element)
-        : this.options.content)
-    )
-  }
-
-  setContent() {
-    const $tip = this.getTip()
-
-    // we use append for html objects to maintain js events
-    const title = this.getTitle()
-    const content = this.getContent()
-
-    this.setElementContent(query(`.${this.classes.TITLE}`, $tip), title)
-    this.setElementContent(query(`.${this.classes.CONTENT}`, $tip), content)
-
-    if (this.options.close) {
-      bindEvent(
-        this.eventName('click'),
-        () => this.hide(),
-        query(`.${this.classes.CLOSE}`, $tip)
-      )
-    }
-
-    removeClass(this.classes.FADE, this.classes.SHOW, $tip)
-
-    this.destroyPopper()
   }
 }
 

@@ -206,7 +206,7 @@ class Range extends Component {
 
     if (this.element.tagName.toLowerCase() === 'input') {
       bindEvent(
-        this.selfEventName('change'),
+        this.selfEventName(EVENTS.CHANGE),
         () => {
           let value = this.getPointerVal()
           if (this.options.unit) {
@@ -221,7 +221,7 @@ class Range extends Component {
 
     this.pointer.map(p => {
       return bindEvent(
-        this.selfEventName('move'),
+        this.selfEventName(EVENTS.MOVE),
         () => {
           if (!this.is('initialized') || this.is('updating')) {
             return false

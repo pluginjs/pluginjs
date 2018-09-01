@@ -1,6 +1,6 @@
 import { deepMerge, camelize } from '@pluginjs/utils'
 import { trigger } from '@pluginjs/events'
-import { isFunction, isUndefined } from '@pluginjs/is'
+import { isFunction, isUndefined, isArray } from '@pluginjs/is'
 
 export default function eventable(events = {}) {
   return function(plugin) {
@@ -11,10 +11,12 @@ export default function eventable(events = {}) {
     }
 
     plugin.prototype.eventName = function(events) {
-      if (typeof events !== 'string' || events === '') {
+      if (isUndefined(events)) {
         return `.${this.plugin}`
       }
-      events = events.split(' ')
+      if (!isArray(events)) {
+        events = events.split(' ')
+      }
 
       const length = events.length
       for (let i = 0; i < length; i++) {
@@ -26,11 +28,13 @@ export default function eventable(events = {}) {
     plugin.prototype.eventNameWithId = function(events, instanceId) {
       instanceId = instanceId ? instanceId : this.instanceId
 
-      if (typeof events !== 'string' || events === '') {
+      if (isUndefined(events)) {
         return `.${this.plugin}-${instanceId}`
       }
 
-      events = events.split(' ')
+      if (!isArray(events)) {
+        events = events.split(' ')
+      }
 
       const length = events.length
       for (let i = 0; i < length; i++) {
@@ -60,12 +64,15 @@ export default function eventable(events = {}) {
     }
 
     plugin.prototype.selfEventName = function(events) {
-      events = events.split(' ')
+      if (!isArray(events)) {
+        events = events.split(' ')
+      }
 
       const length = events.length
       for (let i = 0; i < length; i++) {
         events[i] = `${this.plugin}:${events[i]}`
       }
+
       return events.join(' ')
     }
   }

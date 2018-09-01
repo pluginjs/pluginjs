@@ -24,6 +24,7 @@ $popover-btn-padding-x: 30.1px;
 
 $popover-close-font-size: $font-size-lg;
 $popover-close-color: $gray-dark;
+$popover-close-hover-color: $gray-darker;
 $popover-close-spacer-y: 13px;
 $popover-close-spacer-x: 13px;
 
@@ -74,8 +75,9 @@ $popover-table-padding-x: 12px;
     border: 0;
     outline: 0;
     opacity: 0.5;
-    
+
     &:not(:disabled):hover {
+      color: $popover-close-hover-color;
       background: initial;
     }
   }
@@ -126,7 +128,7 @@ $popover-table-padding-x: 12px;
 }
 
 //table
-.popover-table {
+.#{$popover}-table {
   width: 100%;
   font-size: $popover-table-font-size;
   border-spacing: inherit;

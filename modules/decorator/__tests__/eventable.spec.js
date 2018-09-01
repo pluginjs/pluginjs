@@ -47,6 +47,9 @@ describe('eventable()', () => {
       const api = Sample.of(el)
 
       expect(api.eventName('click touch')).toBe('click.sample touch.sample')
+      expect(api.eventName(['click', 'touch'])).toBe(
+        'click.sample touch.sample'
+      )
     })
   })
 
@@ -74,6 +77,10 @@ describe('eventable()', () => {
       expect(api.eventNameWithId('click touch')).toBe(
         `click.sample-${api.instanceId} touch.sample-${api.instanceId}`
       )
+
+      expect(api.eventNameWithId(['click', 'touch'])).toBe(
+        `click.sample-${api.instanceId} touch.sample-${api.instanceId}`
+      )
     })
   })
 
@@ -90,6 +97,9 @@ describe('eventable()', () => {
       const api = Sample.of(el)
 
       expect(api.selfEventName('change update')).toBe(
+        'sample:change sample:update'
+      )
+      expect(api.selfEventName(['change', 'update'])).toBe(
         'sample:change sample:update'
       )
     })

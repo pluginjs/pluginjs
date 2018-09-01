@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { isArray } from '@pluginjs/is'
 import template from '@pluginjs/template'
-import { arraysEqual, deepMerge, compose } from '@pluginjs/utils'
+import { arrayEqual, deepMerge, compose } from '@pluginjs/utils'
 import {
   query,
   queryAll,
@@ -371,7 +371,7 @@ class Choice extends Component {
   set(value) {
     if (
       this.value === value ||
-      (isArray(value) && arraysEqual(this.value, value))
+      (isArray(value) && arrayEqual(this.value, value))
     ) {
       return
     }

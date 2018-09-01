@@ -1,5 +1,5 @@
 import templateEngine from '@pluginjs/template'
-import { deepMerge, arraysEqual } from '@pluginjs/utils'
+import { deepMerge, arrayEqual } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -197,7 +197,7 @@ class List {
       items.map(item => removeClass(this.instance.classes.ACTIVE, item))
     }
 
-    if (!arraysEqual(oldPages, newPages)) {
+    if (!arrayEqual(oldPages, newPages)) {
       const itemTemplate = templateEngine.compile(
         this.options.templates.item.call(this)
       )

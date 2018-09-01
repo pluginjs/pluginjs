@@ -114,12 +114,17 @@ class TimePicker extends Component {
       data: this.getTimeList().map(value => ({ label: value, value })),
       placeholder: this.options.placeholder,
       placement: 'bottom-left',
-      icon: 'icon-char icon-oclock',
       imitateSelect: true,
       inputLabel: true,
       hideOutClick: true,
       constraintToScrollParent: false,
-      templates: this.options.templates
+      templates: this.options.templates,
+      onChange: () => {
+        this.trigger(EVENTS.CHANGE, this.dropdown.get())
+      },
+      onShow: () => {
+        this.correctionScrollTop()
+      }
     }
     this.dropdown = Dropdown.of(this.$timeTrigger, dropdownConf)
     this.$remove = parseHTML(
@@ -290,20 +295,6 @@ class TimePicker extends Component {
 
   bind() {
     bindEvent(
-      this.eventName('dropdown:change'),
-      () => {
-        this.trigger(EVENTS.CHANGE, this.dropdown.get())
-      },
-      this.$dropdownEl
-    )
-    bindEvent(
-      this.eventName('dropdown:show'),
-      () => {
-        this.correctionScrollTop()
-      },
-      this.$dropdownEl
-    )
-    bindEvent(
       this.eventName('change'),
       () => {  /* eslint-disable-line */
         const time = this.$inputEl.value.trim()
@@ -353,7 +344,7 @@ class TimePicker extends Component {
     )
 
     bindEvent(
-      this.selfEventName('change'),
+      this.selfEventName(EVENTS.CHANGE),
       e => {
         const [value] = e.detail.data
         this.markIndex = this.itemValues.indexOf(value)

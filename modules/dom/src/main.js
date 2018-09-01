@@ -151,6 +151,10 @@ export const offsetParent = el => {
   return offsetParent || document.documentElement
 }
 
+export const index = el => {
+  return [...el.parentElement.children].indexOf(el)
+}
+
 // ---------
 // Data
 // ----------
@@ -316,8 +320,9 @@ export const detach = curry(el => {
 export const remove = curry(el => el.remove())
 
 export const empty = curry(el => {
-  el.innerHTML = ''
-
+  while (el.lastChild) {
+    el.removeChild(el.lastChild)
+  }
   return el
 })
 

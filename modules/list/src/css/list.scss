@@ -25,31 +25,15 @@ $list-item-handle-bg: $list-border-color !default;
 $list-active-color: $color-primary-black !default;
 $list-adduser-height: 3 * $list-sizer !default; //30px
 $list-adduser-btn-bg: $color-primary !default; //#66adf3 !default;
-//clone
-$list-clone-bg: rgba($color-warning, 0.2) !default; //#f3d351
-// actions
+
+$list-clone-bg: rgba($color-warning, 0.1) !default; //#f3d351
+
 $list-item-actions-color: $gray-dark !default;
-// pop
-$pop-item-label-padding-top: 2 * $list-sizer !default; //20px
-$pop-item-label-padding: $pop-item-label-padding-top 3 * $list-sizer !default; //30px
-$pop-buttons-bg-color: $color-white !default;
-$pop-buttons-color: $gray !default;
-$pop-buttons-danger-color: $color-danger !default;
 
 // Core
 // =====================
 .#{$list} {
-  @keyframes clone {
-    0% {
-      background-color: $list-clone-bg;
-    }
-
-    100% {
-      background-color: transparent;
-    }
-  }
   box-sizing: border-box;
-
   width: $list-width;
   padding: $list-padding;
   font-size: $list-font-size;
@@ -74,6 +58,7 @@ $pop-buttons-danger-color: $color-danger !default;
     background-color: $color-white;
     border: $list-border;
     border-radius: $list-border-radius;
+    transition: background 300ms;
 
     &:hover {
       border-color: $list-item-hover-border-color;
@@ -83,16 +68,14 @@ $pop-buttons-danger-color: $color-danger !default;
       border-color: $color-primary-dark;
     }
 
-    .#{$list}-item-handle {
+    &-handle {
       display: inline-block;
       width: 3 * $list-sizer; //12px
       height: $list-item-height;
       font-size: $font-size-sm;
       line-height: $list-item-height;
-      // color: $color-white;
       text-align: center;
       cursor: pointer;
-      background-color: $color-white;
 
       &:hover {
         cursor: grab;
@@ -108,7 +91,7 @@ $pop-buttons-danger-color: $color-danger !default;
       }
     }
 
-    .#{$list}-item-label {
+    &-label {
       display: inline-block;
       margin-right: 4.2 * $list-sizer; //42px
       margin-left: 0.8 * $list-sizer; //8px
@@ -117,7 +100,7 @@ $pop-buttons-danger-color: $color-danger !default;
       white-space: nowrap;
     }
 
-    .#{$list}-item-actions {
+    &-actions {
       position: absolute;
       right: 0.8 * $list-sizer; //8px
       color: $list-item-actions-color;
@@ -141,69 +124,31 @@ $pop-buttons-danger-color: $color-danger !default;
       }
     }
   }
-  // &-pop {
-  //   .#{$pop}-title:empty+.#{$pop}-item-label {
-  //     padding-top: $pop-item-label-padding-top;
-  //   }
-  //   .#{$pop}-item-label {
-  //     padding: $pop-item-label-padding;
-  //   }
-  //   .#{$pop}-buttons button {
-  //     background-color: $pop-buttons-bg-color;
-  //     color: $pop-buttons-color;
-  //     &:hover{
-  //       background-color: rgba(0, 0, 0, .02);
-  //     }
-  //   }
-  //   .#{$pop}-buttons button[data-color="danger"] {
-  //     color: $pop-buttons-danger-color;
-  //   }
-  // }
+
   &-close:hover {
     color: $list-active-color;
   }
 
-  .#{$list}-store {
-    display: none;
+  .#{$list}-input {
+    //display: none;
   }
 
-  &-item-clone-animate {
-    animation: clone 1000ms;
+  &-new {
+    background: $list-clone-bg;
   }
 
   &-disabled {
-    .#{$list}-item-handle {
-      &:hover,
-      &:active {
-        cursor: not-allowed;
-        background-color: $disabled-bg;
-        border-color: $disabled-border;
-      }
-    }
+    pointer-events: none;
+    cursor: not-allowed;
 
     .#{$list}-item {
-      // background-color: $gray-lightest !important;
       color: $disabled-color;
-
-      &:hover,
-      &:active {
-        cursor: not-allowed;
-        border-color: $list-border-color;
-      }
-      &-handle:hover {
-        background-color: $disabled-bg;
-      }
+      border-color: $list-border-color;
     }
 
     .#{$list}-item-actions {
-      pointer-events: none;
-      &:hover {
-        cursor: not-allowed;
-      }
-
       > i {
         color: $disabled-color !important;
-        cursor: not-allowed;
       }
     }
   }

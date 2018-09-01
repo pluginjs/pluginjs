@@ -124,7 +124,7 @@ export const range = v => Array.from({ length: v }, (v, i) => i)
 
 export const reflow = element => element.offsetHeight
 
-export const arraysEqual = (a, b) => {
+export const arrayEqual = (a, b) => {
   if (a === b) {
     return true
   }

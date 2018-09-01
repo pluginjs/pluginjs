@@ -3,7 +3,7 @@ import Component from '@pluginjs/component'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEvent, bindEventOnce, removeEvent } from '@pluginjs/events'
 import { parseHTML, query, setData, getData, append } from '@pluginjs/dom'
 import { getUID, deepMerge } from '@pluginjs/utils'
 import {
@@ -160,7 +160,7 @@ class Tooltip extends Component {
     }
 
     const showEvent = new CustomEvent(this.selfEventName(EVENTS.SHOW), {
-      detail: [this, 'bar']
+      detail: [this]
     })
     if (this.isWithContent() && !this.is('disabled')) {
       this.trigger(showEvent)
@@ -247,9 +247,13 @@ class Tooltip extends Component {
         }
       }
 
-      complete()
+      if (hasClass(this.classes.FADE, $tip)) {
+        bindEventOnce(this.eventName('transitionend'), complete, $tip)
+      } else {
+        complete()
+      }
 
-      if (this.options.hideOutClick && this.is('shown') && this.clickTrigger) {
+      if (this.options.hideOutClick && this.clickTrigger) {
         bindEvent(
           this.eventNameWithId('click'),
           event => {
@@ -284,14 +288,14 @@ class Tooltip extends Component {
   }
 
   hide(callback) {
-    const tip = this.getTip()
+    const $tip = this.getTip()
     const hideEvent = new CustomEvent(this.selfEventName(EVENTS.HIDE), {
       detail: [this]
     })
 
     const complete = () => {
-      if (this._hoverState !== HoverState.SHOW && tip.parentNode) {
-        tip.parentNode.removeChild(tip)
+      if (this._hoverState !== HoverState.SHOW && $tip.parentNode) {
+        $tip.parentNode.removeChild($tip)
       }
 
       this.element.removeAttribute('aria-describedby')
@@ -310,17 +314,21 @@ class Tooltip extends Component {
       return
     }
 
-    removeClass(this.classes.SHOW, tip)
+    removeClass(this.classes.SHOW, $tip)
 
     this._activeTrigger[Trigger.CLICK] = false
     this._activeTrigger[Trigger.FOCUS] = false
     this._activeTrigger[Trigger.HOVER] = false
 
-    complete()
+    if (hasClass(this.classes.FADE, $tip)) {
+      bindEventOnce(this.eventName('transitionend'), complete, $tip)
+    } else {
+      complete()
+    }
 
     this._hoverState = ''
 
-    if (this.options.hideOutClick && this.clickTrigger && !this.is('shown')) {
+    if (this.options.hideOutClick && this.clickTrigger) {
       removeEvent(this.eventNameWithId('click'), window.document)
     }
   }
@@ -366,13 +374,12 @@ class Tooltip extends Component {
 
     removeClass(this.classes.FADE, this.classes.SHOW, $tip)
 
-    this.destroyPopper()
+    // this.destroyPopper()
   }
 
   setElementContent($element, content) {
     const html = this.options.html
     if (typeof content === 'object' && content.nodeType) {
-      // content is a DOM node or a jQuery
       if (html) {
         if (!parent(content) === $element) {
           $element.innerHTML = ''

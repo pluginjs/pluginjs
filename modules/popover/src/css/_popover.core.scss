@@ -38,7 +38,7 @@ $popover-arrow-offset-y: 10px !default;
 // =====================
 .#{$popover} {
   @include reset-text();
-  
+
   position: absolute;
   left: 0;
   z-index: $popover-zindex;
@@ -55,6 +55,7 @@ $popover-arrow-offset-y: 10px !default;
     top: 0;
     right: 0;
     z-index: 1;
+    cursor: pointer;
   }
 
   .#{$popover}-content {
@@ -163,7 +164,7 @@ $popover-arrow-offset-y: 10px !default;
   &-fade {
     opacity: 0;
     transition: opacity 0.15s linear;
-  
+
     &.#{$popover}-show {
       opacity: 1;
     }

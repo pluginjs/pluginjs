@@ -15,7 +15,7 @@ export const events = {
   INSERTED: 'inserted'
 }
 
-export const classes = deepMerge(Tooltip.classes, {
+export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   POPOVER: '{namespace}',
@@ -27,7 +27,7 @@ export const classes = deepMerge(Tooltip.classes, {
   ARROW: '{namespace}-arrow',
   DISABLED: '{namespace}-disabled',
   PLACEMENT: '{namespace}-{placement}'
-})
+}
 
 export const methods = [
   'show',
@@ -42,6 +42,7 @@ export const defaults = deepMerge(Tooltip.defaults, {
   template() {
     return (
       '<div class="{classes.POPOVER}" role="tooltip">' +
+      '{arrow}' +
       '{close}' +
       '{title}' +
       '{content}' +
@@ -50,13 +51,16 @@ export const defaults = deepMerge(Tooltip.defaults, {
   },
   templates: {
     close() {
-      return '<button type="button" class="pj-icon pj-icon-close-solid {classes.CLOSE}"></button>'
+      return '<i class="pj-icon pj-icon-close {classes.CLOSE}"></i>'
     },
     title() {
       return '<h3 class="{classes.TITLE}"></h3>'
     },
     content() {
       return '<div class="{classes.CONTENT}"></div>'
+    },
+    arrow() {
+      return '<div class="{classes.ARROW}"></div>'
     }
   },
   content: '',

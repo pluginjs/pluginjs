@@ -185,7 +185,7 @@ class Swipe extends Component {
   }
 
   buildWrapper() {
-    this.$wrapper = closest(`${this.classes.WRAPPER}`, this.element)
+    this.$wrapper = closest(`.${this.classes.WRAPPER}`, this.element)
     if (!this.$wrapper) {
       if (this.options.wrapperSelector) {
         addClass(

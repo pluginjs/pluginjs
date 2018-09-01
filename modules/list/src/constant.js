@@ -1,3 +1,6 @@
+import { isString } from '@pluginjs/is'
+import PopDialog from '@pluginjs/pop-dialog'
+
 export const namespace = 'list'
 
 export const events = {
@@ -6,9 +9,12 @@ export const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   ADD: 'add',
-  CLICKITEM: 'clickItem',
-  CLEAR: 'clear',
-  EDITED: 'edited'
+  EDIT: 'edit',
+  REMOVE: 'remove',
+  CHANGE: 'change',
+  CLICK: 'click',
+  SORT: 'sort',
+  CLEAR: 'clear'
 }
 
 export const classes = {
@@ -20,8 +26,10 @@ export const classes = {
   ITEM: '{namespace}-item',
   LABEL: '{namespace}-item-label',
   ACTIONS: '{namespace}-item-actions',
+  ACTION: '{namespace}-item-action',
   HANDLE: '{namespace}-item-handle',
-  STORE: '{namespace}-store',
+  INPUT: '{namespace}-input',
+  NEW: '{namespace}-new',
   POPVER: '{namespace}-popver',
   CLONEANIMATE: '{namespace}-item-clone-animate'
 }
@@ -34,7 +42,9 @@ export const methods = [
   'disable',
   'destroy',
   'init',
-  'insert',
+  'add',
+  'remove',
+  'edit',
   'clear'
 ]
 
@@ -45,8 +55,8 @@ export const defaults = {
   data: null,
   disabled: false,
   label(item) {
-    if (typeof item === 'object' && Object.hasOwnProperty.call(item, 'title')) {
-      return item.title
+    if (typeof item === 'object' && Object.hasOwnProperty.call(item, 'label')) {
+      return item.label
     } else if (typeof item === 'string') {
       return item
     }
@@ -54,37 +64,59 @@ export const defaults = {
   },
   actions: [
     {
-      tagName: 'i',
-      trigger: 'pj-icon pj-icon-remove pj-list-close',
-      event: 'click'
+      title: 'Delete',
+      name: 'delete',
+      class: 'pj-icon pj-icon-remove',
+      init(instance, $item) {
+        PopDialog.of(this, {
+          classes: {
+            POPOVER: `{namespace} ${instance.classes.POPOVER}`
+          },
+          placement: 'bottom',
+          content: instance.translate('deleteAction'),
+          buttons: {
+            dismiss: { label: instance.translate('cancel') },
+            delete: {
+              label: instance.translate('delete'),
+              color: 'danger',
+              fn(resolve) {
+                const index = instance.getIndex($item)
+                instance.remove(index)
+                resolve()
+              }
+            }
+          }
+        })
+      }
     }
   ],
   templates: {
     container() {
-      return `<ul class='{classes.CONTAINER}'>
-      </ul>`
+      return '<ul class="{classes.CONTAINER}"></ul>'
     },
     item() {
       return `<li class='{classes.ITEM}'>
-      <span class='{classes.HANDLE}'><i class='pj-icon pj-icon-drag-bar'></i></span><div class='{classes.LABEL}'>{label}</div></li>`
+  <span class='{classes.HANDLE}'><i class='pj-icon pj-icon-list'></i></span>
+  <div class='{classes.LABEL}'>{label}</div>
+  <div class='{classes.ACTIONS}'>{actions}</div>
+</li>`
     },
-    actions() {
-      return `<div class='{classes.ACTIONS}'>
-      </div>`
+    action() {
+      return '<i class="{classes.ACTION} {action.class}" data-action="{action.name}" title="{action.title}"></i>'
     }
   },
   parse(data) {
-    if (data) {
+    if (isString(data)) {
       try {
         return JSON.parse(data)
       } catch (e) {
-        return {}
+        return []
       }
     }
-    return {}
+    return []
   },
   process(data) {
-    if (data && typeof data !== 'undefined') {
+    if (data && typeof data !== 'undefined' && data.length !== 0) {
       return JSON.stringify(data)
     }
     return ''
@@ -96,12 +128,12 @@ export const dependencies = ['pop-dialog', 'sortable']
 export const translations = {
   en: {
     cancel: 'Cancel',
-    deleteTitle: 'Are you sure you want to delete?',
+    deleteAction: 'Are you sure you want to delete?',
     delete: 'Delete'
   },
   zh: {
     cancel: '取消',
-    deleteTitle: '你确定要删除？',
+    deleteAction: '你确定要删除？',
     delete: '删除'
   }
 }
