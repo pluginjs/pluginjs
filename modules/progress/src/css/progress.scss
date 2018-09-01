@@ -4,6 +4,9 @@
 // Vars
 // =====================
 $progress: "pj-progress";
+$progress-font-family: $font-family-base;
+$progress-margin-bottom: 40px;
+
 $progress-bg-color: rgba($color-black, 0.05);
 $progress-border-radius: $border-radius-sm;
 // bar vars
@@ -20,13 +23,13 @@ $progress-bar-bg-image: linear-gradient(
 );
 $progress-bar-bg-size: 20px 20px;
 // label vars
+$progress-label-width: 44px;
+$progress-label-height: 26px;
 $progress-label-font-size: $font-size-xs;
 $progress-label-color: $color-white;
 $progress-label-bg-color: $gray-darkest;
 $progress-label-radius: $border-radius-base;
 $progress-label-box-shadow: $box-shadow-base;
-$progress-label-width: 44px;
-$progress-label-height: 26px;
 $progress-label-vertical-height: 300px;
 $progress-label-vertical-width: $progress-height;
 $progress-label-vertical-width-max: $progress-height-max;
@@ -35,6 +38,8 @@ $progress-label-vertical-tri: 6px;
 // default
 // ======================================
 .#{$progress} {
+  margin-bottom: $progress-margin-bottom;
+  font-family: $progress-font-family;
   background-color: $progress-bg-color;
   border-radius: $progress-border-radius;
 

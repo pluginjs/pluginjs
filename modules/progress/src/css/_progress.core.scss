@@ -5,7 +5,6 @@
 $progress: "pj-progress" !default;
 $progress-height: 4px !default;
 $progress-height-max: 8px !default;
-$progress-font-family: $font-family-base !default;
 $progress-margin-bottom: 40px !default;
 
 // Core
@@ -14,7 +13,6 @@ $progress-margin-bottom: 40px !default;
   position: relative;
   height: $progress-height;
   margin-bottom: $progress-margin-bottom;
-  font-family: $progress-font-family;
 
   &-standard-bar {
     height: $progress-height-max;
