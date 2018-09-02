@@ -1,6 +1,5 @@
-import templateEngine from '@pluginjs/template'
-import Sortable from 'sortablejs'
-import { query, parseHTML, setData } from '@pluginjs/dom'
+import template from '@pluginjs/template'
+import { query, parseHTML } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   eventable,
@@ -21,7 +20,6 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 import List from '@pluginjs/list'
-// import { addClass } from '@pluginjs/classes'
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -38,39 +36,22 @@ class TagList extends List {
     super(element, options)
   }
 
-  initialize() {
-    this.initList()
-    this.initAddBtn()
-    this.$addBtn = query('.pj-tagList-btn', this.$add)
-    this.$addInput = query('.pj-tagList-input', this.$add)
-
-    super.initialize()
+  build() {
+    super.build()
+    this.buildAddBtn()
   }
 
-  initList() {
-    this.data.forEach(item => {
-      const $item = this.buildItem(item)
-
-      $item.append(this.buildActions())
-      this.$list.append($item)
-    })
-    this.sortable = Sortable.create(this.$list, {
-      animation: 150,
-      handle: `.${this.classes.HANDLE}`,
-      onUpdate: evt => {
-        this.sort(evt.oldIndex, evt.newIndex)
-      }
-    })
-  }
-
-  initAddBtn() {
+  buildAddBtn() {
     this.$add = parseHTML(
-      templateEngine.compile(this.options.templates.add())({
-        // classes: this.classes,
+      template.compile(this.options.templates.add())({
+        classes: this.classes,
         placeholder: this.translate('addPlaceholder'),
-        BtnText: this.translate('add')
+        btnText: this.translate('add')
       })
     )
+
+    this.$input = query(`.${this.classes.ADDINPUT}`, this.$add)
+    this.$btn = query(`.${this.classes.ADDBTN}`, this.$add)
 
     this.$wrapper.append(this.$add)
   }
@@ -82,57 +63,43 @@ class TagList extends List {
         if (this.is('disabled')) {
           return
         }
-        const val = this.$addInput.value
-        this.addItem(val)
+
+        if (this.$input.value !== '') {
+          this.add(this.$input.value)
+          this.$input.value = ''
+        }
       },
-      this.$addBtn
+      this.$btn
     )
 
     super.bind()
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.$addBtn)
+    removeEvent(this.eventName(), this.$btn)
 
     super.unbind()
   }
 
-  addItem(val) {
-    if (!val || typeof val === 'undefined') {
-      return
-    }
-
-    const data = { title: val }
-
-    this.insert(data)
-    this.$addInput.value = ''
-  }
-
-  removeListener() {
-    removeEvent(this.eventName())
-  }
-
   destroy() {
-    super.destroy()
     this.$add.remove()
-    this.unbind()
-    setData('tagList', null, this.element)
+    super.destroy()
   }
 
   enable() {
-    super.enable()
     if (this.is('disabled')) {
-      this.$addBtn.disabled = false
-      this.$addInput.disabled = false
+      this.$btn.disabled = false
+      this.$input.disabled = false
     }
+    super.enable()
   }
 
   disable() {
-    super.disable()
     if (!this.is('disabled')) {
-      this.$addBtn.disabled = true
-      this.$addInput.disabled = true
+      this.$btn.disabled = true
+      this.$input.disabled = true
     }
+    super.disable()
   }
 }
 

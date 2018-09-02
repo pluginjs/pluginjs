@@ -2,8 +2,8 @@ import { query } from '@pluginjs/dom'
 import TagList from '@pluginjs/tag-list'
 
 const element = query('#disabled .example-default')
-const datas = ['hello', 'world']
+const data = ['hello', 'world']
 TagList.of(element, {
-  data: datas,
+  data,
   disabled: true
 })

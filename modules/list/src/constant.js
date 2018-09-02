@@ -28,7 +28,7 @@ export const classes = {
   ACTIONS: '{namespace}-item-actions',
   ACTION: '{namespace}-item-action',
   HANDLE: '{namespace}-item-handle',
-  INPUT: '{namespace}-input',
+  ELEMENT: '{namespace}-origin',
   NEW: '{namespace}-new',
   POPVER: '{namespace}-popver',
   CLONEANIMATE: '{namespace}-item-clone-animate'

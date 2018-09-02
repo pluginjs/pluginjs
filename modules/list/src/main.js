@@ -77,7 +77,20 @@ class List extends Component {
   initialize() {
     this.element.value = this.val()
 
-    addClass(this.classes.INPUT, this.element)
+    this.build()
+    this.setupSortable()
+    this.bind()
+
+    if (this.element.disabled || this.options.disabled) {
+      this.disable()
+    }
+
+    this.enter('initialized')
+    this.trigger(EVENTS.READY)
+  }
+
+  build() {
+    addClass(this.classes.ELEMENT, this.element)
 
     this.$wrapper = wrap(
       `<div class="${this.classes.NAMESPACE}"></div>`,
@@ -96,15 +109,6 @@ class List extends Component {
     )
 
     this.buildItems()
-    this.setupSortable()
-    this.bind()
-
-    if (this.element.disabled || this.options.disabled) {
-      this.disable()
-    }
-
-    this.enter('initialized')
-    this.trigger(EVENTS.READY)
   }
 
   bind() {

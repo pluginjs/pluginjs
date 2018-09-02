@@ -3,144 +3,40 @@
 // Vars
 // =====================
 $list: "pj-list" !default;
-$tagList: "pj-tagList" !default;
-$tagList-height: 30px !default;
-$tagList-border-style: solid !default;
-$tagList-border-size: 1px !default;
-$tagList-active-color: $color-primary !default;
-$tagList-border-radius: $border-radius-base !default;
-$tagList-input-font-size: $font-size-base !default;
-$tagList-input-border-color: $gray-lighter !default;
-$tagList-input-border: $tagList-border-size $tagList-border-style
-  $tagList-input-border-color !default;
-$tagList-btn-bg: $color-primary !default;
-$tagList-btn-border-color: $tagList-btn-bg !default;
-$tagList-btn-border: $tagList-border-size $tagList-border-style
-  $tagList-btn-border-color !default;
-$tagList-empty-color: $gray-lighter !default;
+$tagList-add-height: 30px !default;
 
 // Core
 // =====================
-.#{$tagList} {
+.#{$list} {
   &-add {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: $tagList-height;
-  }
-  &-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 30px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    line-height: 30px;
-    list-style: none;
-    user-select: none;
-    border: 1px solid #e6e6e6;
-    border-radius: 2px;
-    &:hover {
-      border-color: $list-item-hover-border-color;
+    height: $tagList-add-height;
+
+    .#{$list}-input {
+      order: 0;
+      width: 80%;
+      height: 100%;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+
+      &:hover,
+      &:focus {
+        z-index: 2;
+      }
     }
 
-    &:active {
-      border-color: $color-primary-dark;
-    }
-    .#{$tagList}-item-handle {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      font-size: 14px;
-      line-height: 30px;
+    .#{$list}-btn {
+      order: 1;
+      width: 20%;
+      height: 100%;
+      padding: 0;
+      margin-left: -1px;
+      line-height: 100%;
       text-align: center;
-      cursor: pointer;
-      background-color: #fff;
-
-      &:hover {
-        cursor: grab;
-      }
-
-      &:active {
-        cursor: grabbing;
-        // background-color: $gray-light;
-      }
-
-      > i {
-        pointer-events: none;
-      }
-    }
-    .#{$tagList}-item-label {
-       display: inline-block;
-       margin-right: 42px;
-       margin-left: 8px;
-       overflow: hidden;
-       text-overflow: ellipsis;
-       white-space: nowrap;
-    }
-
-    .#{$tagList}-item-actions {
-      position: absolute;
-      top: 50%;
-      right: 8px;
-      color: #b3b3b3;
-      transition: color 0.5s;
-      transform: translateY(-50%);
-
-      &:hover {
-        cursor: pointer;
-        transition: color 0.5s;
-      }
-    }
-
-    &.sortable-ghost {
-      background-color: $gray-lightest;
-      border-color: $gray-border;
-      border-style: dashed;
-
-      .#{$list}-item-handle,
-      .#{$list}-item-label,
-      .#{$list}-item-actions {
-        display: none;
-      }
-    }
-  }
-  &-input[type="text"] {
-    order: 0;
-    width: 80%;
-    margin: 0;
-    border-right: none !important;
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-
-    &:disabled:hover {
-      border-color: transparent;
-    }
-  }
-
-  &-btn {
-    box-sizing: content-box;
-    order: 1;
-    width: 20%;
-    height: 100%;
-    padding: 0;
-    font-size: $tagList-input-font-size;
-    color: #fff;
-    cursor: pointer;
-    background-color: $tagList-btn-bg;
-    border: $tagList-btn-border;
-    border-radius: 0;
-    border-top-right-radius: $tagList-border-radius;
-    border-bottom-right-radius: $tagList-border-radius;
-
-    &:not(:disabled):hover {
-      background-color: #77b6f5;
-      border-color: #77b6f5;
-    }
-  }
-  &-disabled {
-    &-hover {
-      cursor: not-allowed;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 }
