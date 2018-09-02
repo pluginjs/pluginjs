@@ -7,6 +7,7 @@ export const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   CHANGE: 'change',
+  MOVE: 'move',
   CHANGEUNIT: 'changeUnit'
 }
 

@@ -3,7 +3,7 @@ import Component from '@pluginjs/component'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle } from '@pluginjs/styled'
-import { bindEvent, bindEventOnce, removeEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { parseHTML, query, setData, getData, append } from '@pluginjs/dom'
 import { getUID, deepMerge } from '@pluginjs/utils'
 import {
@@ -247,11 +247,11 @@ class Tooltip extends Component {
         }
       }
 
-      if (hasClass(this.classes.FADE, $tip)) {
-        bindEventOnce(this.eventName('transitionend'), complete, $tip)
-      } else {
-        complete()
-      }
+      // if (hasClass(this.classes.FADE, $tip)) {
+      //   bindEventOnce(this.eventName('transitionend'), complete, $tip)
+      // } else {
+      complete()
+      // }
 
       if (this.options.hideOutClick && this.clickTrigger) {
         bindEvent(
@@ -320,11 +320,11 @@ class Tooltip extends Component {
     this._activeTrigger[Trigger.FOCUS] = false
     this._activeTrigger[Trigger.HOVER] = false
 
-    if (hasClass(this.classes.FADE, $tip)) {
-      bindEventOnce(this.eventName('transitionend'), complete, $tip)
-    } else {
-      complete()
-    }
+    // if (hasClass(this.classes.FADE, $tip)) {
+    //  bindEventOnce(this.eventName('transitionend'), complete, $tip)
+    // } else {
+    complete()
+    // }
 
     this._hoverState = ''
 
