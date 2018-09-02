@@ -65,7 +65,7 @@ function deepMergeTwo(x, y) {
   }
 
   if (Array.isArray(y) && Array.isArray(x)) {
-    return deepClone(y)
+    return Array.from(y)
   }
 
   if (typeof y === 'undefined') {

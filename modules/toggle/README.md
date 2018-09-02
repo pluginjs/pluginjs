@@ -98,8 +98,8 @@ Name | Description | Default
 `"size"` | Set plugin size option | `null`
 `"showText"` | Set plugin is showText or not | `false`
 `"locale"` | Set locale environment | `en`
-`"onContent"` | Set plugin onContent option | `null`
-`"offContent"` | Set plugin offContent option | `null`
+`"onText"` | Set plugin onText option | `null`
+`"offText"` | Set plugin offText option | `null`
 `"checked"` | Set plugin checked option | `null`
 `"duration"` | Set duretion | `200`
 

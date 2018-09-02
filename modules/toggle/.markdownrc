@@ -40,13 +40,13 @@
         "defaultValue": "en"
       },
       {
-        "name": "onContent",
-        "desc": "Set plugin onContent option",
+        "name": "onText",
+        "desc": "Set plugin onText option",
         "defaultValue": "null"
       },
       {
-        "name": "offContent",
-        "desc": "Set plugin offContent option",
+        "name": "offText",
+        "desc": "Set plugin offText option",
         "defaultValue": "null"
       },
       {

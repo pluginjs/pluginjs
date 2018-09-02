@@ -1,69 +1,59 @@
 import List from '@pluginjs/list'
 import { deepMerge } from '@pluginjs/utils'
+import Toggle from '@pluginjs/toggle'
+import { setData } from '@pluginjs/dom'
 
 export const namespace = 'toggleList'
 
-export const events = {
-  READY: 'ready',
+export const events = deepMerge(List.events, {
   CHECK: 'check',
-  UNCHECK: 'uncheck',
-  DESTROY: 'destroy'
-}
+  UNCHECK: 'uncheck'
+})
 
 export const classes = deepMerge(List.classes, {
-  NAMESPACE: `pj-${namespace}`,
+  NAMESPACE: 'pj-list',
   THEME: '{namespace}--{theme}',
-  SWITCH: '{namespace}-toggle',
+  TOGGLE: '{namespace}-toggle',
   UNCHECKED: '{namespace}-unchecked',
   CHECKED: '{namespace}-checked'
 })
 
-export const methods = [
-  'set',
-  'get',
-  'val',
-  'toggle',
-  'enable',
-  'disable',
-  'destroy'
-]
+export const methods = deepMerge(List.methods, ['toggle'])
 
 export const defaults = deepMerge(List.defaults, {
-  theme: null,
-  locale: 'en',
-  localeFallbacks: true,
   actions: [
     {
-      tagName: 'input',
-      trigger: 'pj-toggleList-toggle',
-      attrs: 'checked="checked"',
-      event: 'click',
-      init: null
+      name: 'toggle',
+      init(instance, item, $item) {
+        const api = Toggle.of(this, {
+          classes: {
+            WRAP: `{namespace} ${instance.classes.TOGGLE}`
+          },
+          size: 'small',
+          checked: item.checked,
+          clickable: true,
+          dragable: false,
+          onChange(checked) {
+            const index = instance.getIndex($item)
+            if (checked) {
+              instance.check(index)
+            } else {
+              instance.uncheck(index)
+            }
+          }
+        })
+
+        setData('toggle', api, $item)
+      }
     }
   ],
-  format(data) {
-    return JSON.stringify(data, (key, val) => {
-      if (key === 'toggle') {
-        return undefined
+  templates: {
+    action() {
+      if (this.name === 'toggle') {
+        return '<input type="checkbox" data-action="{action.name}">'
       }
-      return val
-    })
-  },
-  parse(data) {
-    if (data) {
-      try {
-        return JSON.parse(data)
-      } catch (e) {
-        return {}
-      }
+      return '<i class="{classes.ACTION} {action.class}" data-action="{action.name}" title="{action.title}"></i>'
     }
-    return {}
-  },
-  process(data) {
-    if (data && typeof data !== 'undefined') {
-      return JSON.stringify(data)
-    }
-    return ''
   }
 })
 

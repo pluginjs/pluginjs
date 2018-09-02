@@ -10,7 +10,9 @@ import {
   appendTo,
   unwrap,
   replace,
-  empty
+  empty,
+  insertAfter,
+  insertBefore
 } from '@pluginjs/dom'
 import { arrayEqual, each } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -56,6 +58,11 @@ class List extends Component {
     this.setupClasses()
     this.setupI18n()
 
+    this.initData()
+    this.initialize()
+  }
+
+  initData() {
     if (this.element.value) {
       this.data = this.options.parse.call(this, this.element.value)
     } else if (this.options.data) {
@@ -63,12 +70,13 @@ class List extends Component {
     } else {
       this.data = []
     }
-    this.element.value = this.val()
 
-    this.initialize()
+    this.data = this.processData(this.data)
   }
 
   initialize() {
+    this.element.value = this.val()
+
     addClass(this.classes.INPUT, this.element)
 
     this.$wrapper = wrap(
@@ -141,14 +149,30 @@ class List extends Component {
       animation: 150,
       handle: `.${this.classes.HANDLE}`,
       onUpdate: e => {
-        this.sort(e.oldIndex, e.newIndex)
+        this.sort(e.oldIndex, e.newIndex, false)
       }
     })
   }
 
-  sort(oldIndex, newIndex = -1) {
-    const item = this.data[oldIndex]
-    if (newIndex > -1) {
+  sort(oldIndex, newIndex = -1, dom = true) {
+    if (oldIndex !== newIndex) {
+      const item = this.data[oldIndex]
+
+      if (newIndex <= -1) {
+        newIndex = this.data.length - 1
+      }
+
+      if (dom) {
+        const $item = this.getItem(oldIndex)
+        const $new = this.getItem(newIndex)
+
+        if (oldIndex > newIndex) {
+          insertBefore($item, $new)
+        } else {
+          insertAfter($item, $new)
+        }
+      }
+
       if (oldIndex > newIndex) {
         this.data.splice(newIndex, 0, item)
         this.data.splice(oldIndex + 1, 1)
@@ -156,10 +180,9 @@ class List extends Component {
         this.data.splice(newIndex + 1, 0, item)
         this.data.splice(oldIndex, 1)
       }
-    } else {
-      newIndex = this.data.length - 1
+
+      this.trigger(EVENTS.SORT, oldIndex, newIndex, item)
     }
-    this.trigger(EVENTS.SORT, oldIndex, newIndex, item)
   }
 
   buildItems() {
@@ -169,6 +192,8 @@ class List extends Component {
       const $item = this.buildItem(item)
 
       this.$list.append($item)
+
+      this.initActions(item, $item)
     })
   }
 
@@ -181,22 +206,21 @@ class List extends Component {
       })
     )
 
-    this.initActions($item)
     return $item
   }
 
-  initActions($item) {
+  initActions(item, $item) {
     each(this.options.actions, action => {
       const $action = query(`[data-action="${action.name}"]`, $item)
 
-      action.init.call($action, this, $item)
+      action.init.apply($action, [this, item, $item])
     })
   }
 
   buildActions(item) {
     let actions = ''
     this.options.actions.forEach(action => {
-      actions += template.compile(this.options.templates.action())({
+      actions += template.compile(this.options.templates.action.call(action))({
         action,
         item,
         classes: this.classes
@@ -206,9 +230,13 @@ class List extends Component {
     return actions
   }
 
+  processData(data) {
+    return data
+  }
+
   set(data) {
     if (isArray(data) && !arrayEqual(data, this.data)) {
-      this.data = data
+      this.data = this.processData(data)
       this.buildItems()
 
       this.element.value = this.val()
@@ -268,6 +296,7 @@ class List extends Component {
     const $item = this.buildItem(item)
     addClass(this.classes.NEW, $item)
     this.$list.append($item)
+    this.initActions(item, $item)
 
     setTimeout(() => {
       removeClass(this.classes.NEW, $item)
@@ -283,6 +312,7 @@ class List extends Component {
       this.data[index] = item
 
       replace(this.buildItem(item), $item)
+      this.initActions(item, $item)
       this.trigger(EVENTS.EDIT, index, item)
     }
   }

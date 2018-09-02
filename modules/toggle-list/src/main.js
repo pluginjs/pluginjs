@@ -1,17 +1,5 @@
-import { isNull } from '@pluginjs/is'
-import {
-  query,
-  queryAll,
-  children,
-  parent,
-  prepend,
-  insertAfter,
-  getData,
-  setData
-} from '@pluginjs/dom'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { queryAll, getData } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
-// import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
   register,
@@ -20,7 +8,6 @@ import {
   optionable,
   themeable
 } from '@pluginjs/decorator'
-import Toggle from '@pluginjs/toggle'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -45,118 +32,80 @@ class ToggleList extends List {
     super(element, options)
   }
 
-  initialize() {
-    this.data = [].concat(this.options.data)
-
-    super.initialize()
+  processData(data) {
+    return data.sort((a, b) => {
+      if (a.checked === b.checked) {
+        return 0
+      } else if (a.checked && !b.checked) {
+        return -1
+      }
+      return 1
+    })
   }
 
-  initToggle($item) {
+  setupSortable() {
+    super.setupSortable()
+
     this.sortable.options.draggable = `.${this.classes.ITEM}.${
       this.classes.CHECKED
     }`
-    const $toggle = new Toggle(query(`.${this.classes.SWITCH}`, $item), {
-      theme: this.options.theme,
-      size: 'small',
-      onChange: checked => {
-        this.toggle($item, checked)
-      }
-    })
-
-    setData('toggle', $toggle, $item)
   }
 
-  initStatus() {
-    const data = [].concat(this.data)
+  toggle(index, checked) {
+    if (typeof checked === 'undefined') {
+      checked = !this.data[index].checked
+    }
 
-    this.getItems().forEach((item, index) => {
-      if (!data[index].checked) {
-        getData('toggle', item).uncheck(false)
-        this.toggle(item, false, false)
-      }
-    })
+    if (checked) {
+      this.check(index)
+    } else {
+      this.uncheck(index)
+    }
   }
 
-  bind() {
-    // this.$wrapper.on(
-    //   this.eventName('click'),
-    //   `.${this.classes.ITEM}`,
-    //   function () {
-    //     if ($(this).data('disabled')) {
-    //       return false;
-    //     }
-    //     return undefined;
-    //   }
-    // );
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.ACTIONS}`,
-      e => e.stopPropagation(),
-      this.$wrapper
-    )
+  check(index) {
+    if (this.data[index].checked !== true) {
+      const $checkeds = this.getCheckeds()
 
-    super.bind()
-  }
-
-  unbind() {
-    removeEvent(this.eventName(), this.$wrapper)
-
-    super.unbind()
-  }
-
-  toggle($item, check, trigger = true) {
-    const index = children(parent($item)).indexOf($item)
-    let endIndex = 0
-    const $checkeds = this.getCheckeds()
-    const checkedsLength = $checkeds.length
-
-    if (check) {
+      const $item = this.getItem(index)
+      removeClass(this.classes.UNCHECKED, $item)
       addClass(this.classes.CHECKED, $item)
-    } else {
+
+      this.data[index].checked = true
+
+      this.trigger(EVENTS.CHECK, index, this.data[index])
+      this.sort(index, $checkeds.length, true)
+    }
+  }
+
+  uncheck(index) {
+    if (this.data[index].checked === true) {
+      const $checkeds = this.getCheckeds()
+
+      const $item = this.getItem(index)
+
       removeClass(this.classes.CHECKED, $item)
-    }
+      addClass(this.classes.UNCHECKED, $item)
 
-    if (checkedsLength === 0) {
-      prepend($item, this.$list)
-      endIndex = 0
-    } else {
-      insertAfter($item, $checkeds[checkedsLength - 1])
-      endIndex = check ? checkedsLength : checkedsLength - 1
-    }
+      this.data[index].checked = false
 
-    this.updateData(index, 'checked', check)
-    this.sort(index, endIndex)
-
-    if (trigger) {
-      this.trigger(check ? EVENTS.CHECK : EVENTS.UNCHECK, index)
+      this.trigger(EVENTS.UNCHECK, index, this.data[index])
+      this.sort(index, $checkeds.length - 1, true)
     }
   }
 
   getCheckeds() {
-    return queryAll(`.${this.classes.CHECKED}`, this.$wrapper)
+    return queryAll(`.${this.classes.CHECKED}`, this.$list)
   }
 
-  updateData(index, label, value) {
-    this.data[index][label] = value
-  }
-
-  set(data) {
-    data.forEach(item => {
-      if (isNull(item.checked) || typeof item.checked === 'undefined') {
-        item.checked = true
-      }
-    })
-
-    super.set(data)
-
-    const that = this
-
-    queryAll(`.${this.classes.ITEM}`, this.$wrapper).forEach(el => {
-      addClass(that.classes.CHECKED, el)
-      that.initToggle(el)
-    })
-
-    this.initStatus()
+  buildItem(item) {
+    const $item = super.buildItem(item)
+    if (item.checked) {
+      addClass(this.classes.CHECKED, $item)
+    } else {
+      addClass(this.classes.UNCHECKED, $item)
+    }
+    return $item
   }
 
   enable() {

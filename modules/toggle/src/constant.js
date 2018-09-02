@@ -44,8 +44,8 @@ export const defaults = {
   showText: false,
   locale: 'en',
 
-  onContent: null,
-  offContent: null,
+  onText: null,
+  offText: null,
 
   checked: null,
   duration: 200

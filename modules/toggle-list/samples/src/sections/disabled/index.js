@@ -4,23 +4,23 @@ import ToggleList from '@pluginjs/toggle-list'
 const element = query('#disabled .example-default')
 const data = [
   {
-    title: 'Interfaces',
+    label: 'Interfaces',
     checked: true
   },
   {
-    title: 'UI Design',
+    label: 'UI Design',
     checked: false
   },
   {
-    title: 'Web Design',
+    label: 'Web Design',
     checked: false
   },
   {
-    title: 'Typography',
+    label: 'Typography',
     checked: true
   },
   {
-    title: 'Landing',
+    label: 'Landing',
     checked: false
   }
 ]

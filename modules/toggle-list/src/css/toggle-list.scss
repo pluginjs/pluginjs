@@ -2,99 +2,76 @@
 
 // Vars
 // =====================
-$toggleList: "pj-toggleList" !default;
 
-$toggleList-sizer: $sizer !default;
-$parent: "pj-list" !default;
-$toggle: "pj-toggle" !default;
+$list: "pj-list" !default;
 $toggleList-border-color: $gray-border !default;
 $toggleList-hover-color: $gray-darkest !default;
 $toggleList-unchecked-bg: $gray-lightest !default;
 
 // Core
 // =====================
-.#{$toggleList} {
-  .#{$parent} {
-    &-item {
-      // background-color: $toggleList-unchecked-bg;
-      animation: todark 0.5s;
-      animation-fill-mode: forwards;
 
-      &:hover {
-        border-color: $toggleList-border-color;
-      }
+.#{$list}-item.#{$list}-unchecked {
+  background: $toggleList-unchecked-bg;
+  .#{$list}-item-handle:hover {
+    cursor: not-allowed;
+  }
 
-      &-handle:hover {
-        cursor: not-allowed;
-      }
-
-      &.#{$toggleList}-checked {
-        // background-color: #fff;
-        // transition: background-color 1s;
-        animation: tolight 0.5s;
-        animation-fill-mode: forwards;
-
-        &:hover {
-          border-color: $toggleList-hover-color;
-        }
-        &:active {
-          border-color: $color-primary-dark;
-        }
-
-        .pj-list-item-handle:hover {
-          cursor: pointer;
-        }
-      }
-      &.sortable-ghost.sortable-chosen {
-        border-color: $toggleList-border-color;
-      }
-    }
-
-    // &-item-handle:hover {
-    //   background-color: $toggleList-hover-color;
-    // }
-
-    &-item-actions {
-      top: 19px !important;
-      &:hover {
-        cursor: default;
-      }
-
-      // .#{$toggle}:hover {
-      //   cursor: pointer;
-      // }
-    }
+  &:hover {
+    border-color: $toggleList-border-color;
   }
 }
 
-.#{$parent}-disabled {
-  .#{$toggleList}-checked:active {
-    border-color: $gray-border !important;
-  }
-  .#{$toggleList}-checked:hover {
-    border-color: $gray-border !important;
-  }
-  .#{$parent}-item-handle:hover {
-    cursor: not-allowed !important;
-  }
-}
+// .#{$toggleList} {
+//   .#{$parent} {
+//     &-item {
+//       // background-color: $toggleList-unchecked-bg;
+//       animation: todark 0.5s;
+//       animation-fill-mode: forwards;
 
-@keyframes todark {
-  0% {
-    background-color: $color-white;
-  }
+//       &:hover {
+//         border-color: $toggleList-border-color;
+//       }
 
-  100% {
-    background-color: $toggleList-unchecked-bg;
-  }
-}
+//       &-handle:hover {
+//         cursor: not-allowed;
+//       }
 
-@keyframes tolight {
-  0% {
-    background-color: $toggleList-unchecked-bg;
-  }
+//       &.#{$toggleList}-checked {
+//         // background-color: #fff;
+//         // transition: background-color 1s;
+//         animation: tolight 0.5s;
+//         animation-fill-mode: forwards;
 
-  100% {
-    background-color: $color-white;
-  }
-}
+//         &:hover {
+//           border-color: $toggleList-hover-color;
+//         }
+//         &:active {
+//           border-color: $color-primary-dark;
+//         }
+
+//         .pj-list-item-handle:hover {
+//           cursor: pointer;
+//         }
+//       }
+//       &.sortable-ghost.sortable-chosen {
+//         border-color: $toggleList-border-color;
+//       }
+//     }
+
+//     // &-item-handle:hover {
+//     //   background-color: $toggleList-hover-color;
+//     // }
+
+//     &-item-actions {
+//       top: 19px !important;
+//       &:hover {
+//         cursor: default;
+//       }
+
+//       // .#{$toggle}:hover {
+//       //   cursor: pointer;
+//       // }
+//     }
+//   }
+// }

@@ -103,6 +103,7 @@ $list-item-actions-color: $gray-dark !default;
     &-actions {
       position: absolute;
       right: 0.8 * $list-sizer; //8px
+      line-height: 100%;
       color: $list-item-actions-color;
       transition: color 0.5s;
 

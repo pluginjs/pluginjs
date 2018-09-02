@@ -3,23 +3,23 @@ import List from '@pluginjs/list'
 
 const data = [
   {
-    title: 'Interfaces',
+    label: 'Interfaces',
     value: 'interface'
   },
   {
-    title: 'UI Design',
+    label: 'UI Design',
     value: 'ui-design'
   },
   {
-    title: 'Web Design',
+    label: 'Web Design',
     value: 'web-design'
   },
   {
-    title: 'Typography',
+    label: 'Typography',
     value: 'typography'
   },
   {
-    title: 'Landing',
+    label: 'Landing',
     value: 'landing'
   }
 ]

@@ -116,7 +116,6 @@ export const defaults = {
       return value
     }
     if (type === 'color') {
-      window.value = value
       let color = value['background-image']
         .match(/fill=('|").*?('|")/g)
         .toString()

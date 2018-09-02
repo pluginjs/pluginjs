@@ -38,17 +38,10 @@ class Toggle extends Component {
   constructor(element, options = {}) {
     super(element)
 
-    this.$wrap = wrap('<div></div>', element)
-
     this.setupOptions(options)
     this.setupClasses()
     this.setupStates()
 
-    addClass(this.classes.WRAP, this.$wrap)
-
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$wrap)
-    }
     this.checked =
       this.options.checked === null ? element.checked : this.options.checked
 
@@ -59,12 +52,16 @@ class Toggle extends Component {
   initialize() {
     this.initContent()
 
+    this.$wrap = wrap(`<div class="${this.classes.WRAP}"></div>`, this.element)
+
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.$wrap)
+    }
+
     this.$inner = parseHTML(`<div class="${this.classes.INNER}"></div>`)
-    this.$on = parseHTML(
-      `<div class="${this.classes.ON}">${this.onContent}</div>`
-    )
+    this.$on = parseHTML(`<div class="${this.classes.ON}">${this.onText}</div>`)
     this.$off = parseHTML(
-      `<div class="${this.classes.OFF}">${this.offContent}</div>`
+      `<div class="${this.classes.OFF}">${this.offText}</div>`
     )
     this.$handle = parseHTML(`<div class="${this.classes.HANDLE}"></div>`)
 
@@ -92,21 +89,21 @@ class Toggle extends Component {
   initContent() {
     const isShow = this.options.showText
     if (isShow) {
-      if (this.options.onContent === null) {
-        this.onContent = this.translate('on')
+      if (this.options.onText === null) {
+        this.onText = this.translate('on')
       } else {
-        this.onContent = this.options.onContent
+        this.onText = this.options.onText
       }
 
-      if (this.options.offContent === null) {
-        this.offContent = this.translate('off')
+      if (this.options.offText === null) {
+        this.offText = this.translate('off')
       } else {
-        this.offContent = this.options.offContent
+        this.offText = this.options.offText
       }
     } else {
-      this.onContent = ''
+      this.onText = ''
 
-      this.offContent = ''
+      this.offText = ''
     }
   }
   bind() {
