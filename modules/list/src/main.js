@@ -93,7 +93,7 @@ class List extends Component {
     addClass(this.classes.ELEMENT, this.element)
 
     this.$wrapper = wrap(
-      `<div class="${this.classes.NAMESPACE}"></div>`,
+      `<div class="${this.classes.WRAPPER}"></div>`,
       this.element
     )
 
@@ -116,12 +116,15 @@ class List extends Component {
       this.eventName('click'),
       `.${this.classes.ITEM}`,
       ({ target }) => {
+        if (hasClass(this.classes.ACTION, target)) {
+          return
+        }
         const $item = hasClass(this.classes.ITEM, target)
           ? target
           : closest(`.${this.classes.ITEM}`, target)
         const index = this.getIndex($item)
 
-        this.trigger(EVENTS.CLICK, this.data[index], index)
+        this.trigger(EVENTS.CLICKITEM, index, this.data[index])
       },
       this.$list
     )
@@ -295,16 +298,31 @@ class List extends Component {
     }
   }
 
-  add(item) {
-    this.data.push(item)
+  add(item, index) {
+    if (typeof index === 'undefined') {
+      index = this.data.length
+    }
+    if (index < 0) {
+      index = 0
+    }
+
     const $item = this.buildItem(item)
     addClass(this.classes.NEW, $item)
-    this.$list.append($item)
+
+    if (index === this.data.length || this.data.length === 0) {
+      this.data.push(item)
+      this.$list.append($item)
+    } else {
+      this.data.splice(index, 0, item)
+      const $currentItem = this.getItem(index)
+      insertBefore($item, $currentItem)
+    }
+
     this.initActions(item, $item)
 
     setTimeout(() => {
       removeClass(this.classes.NEW, $item)
-    }, 1000)
+    }, 300)
 
     this.trigger(EVENTS.ADD, item)
   }

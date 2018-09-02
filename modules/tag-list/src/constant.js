@@ -6,6 +6,7 @@ export const events = deepMerge(List.events, {})
 
 export const classes = deepMerge(List.classes, {
   NAMESPACE: 'pj-list',
+  WRAPPER: '{namespace} pj-tag-list',
   ADD: '{namespace}-add',
   ADDINPUT: '{namespace}-input',
   ADDBTN: '{namespace}-btn'

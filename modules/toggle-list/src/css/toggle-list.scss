@@ -4,19 +4,22 @@
 // =====================
 
 $list: "pj-list" !default;
+$toggleList: "pj-tag-list" !default;
 $toggleList-border-color: $gray-border !default;
 $toggleList-unchecked-bg: $gray-lightest !default;
 
 // Core
 // =====================
 
-.#{$list}-item.#{$list}-unchecked {
-  background: $toggleList-unchecked-bg;
-  .#{$list}-item-handle:hover {
-    cursor: not-allowed;
-  }
+.#{$toggleList} {
+  .#{$list}-unchecked {
+    background: $toggleList-unchecked-bg;
+    .#{$list}-item-handle:hover {
+      cursor: not-allowed;
+    }
 
-  &:hover {
-    border-color: $toggleList-border-color;
+    &:hover {
+      border-color: $toggleList-border-color;
+    }
   }
 }

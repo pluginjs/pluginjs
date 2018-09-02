@@ -12,6 +12,7 @@ export const events = deepMerge(List.events, {
 
 export const classes = deepMerge(List.classes, {
   NAMESPACE: 'pj-list',
+  WRAPPER: '{namespace} pj-toggle-list',
   THEME: '{namespace}--{theme}',
   TOGGLE: '{namespace}-toggle',
   UNCHECKED: '{namespace}-unchecked',

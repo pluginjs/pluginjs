@@ -42,7 +42,7 @@ const getDelegator = (event, selector, callback, element) => {
     let result
 
     if (isString(selector)) {
-      while (target !== currentTarget) {
+      while (target && target !== currentTarget) {
         if (target.matches(selector)) {
           result = callback.apply(target, applyArgs)
         }

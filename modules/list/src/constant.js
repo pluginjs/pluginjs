@@ -12,13 +12,14 @@ export const events = {
   EDIT: 'edit',
   REMOVE: 'remove',
   CHANGE: 'change',
-  CLICK: 'click',
+  CLICKITEM: 'clickItem',
   SORT: 'sort',
   CLEAR: 'clear'
 }
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
+  WRAPPER: '{namespace}',
   THEME: '{namespace}--{theme}',
   CONTAINER: '{namespace}-container',
   ACTIVE: '{namespace}-active',
@@ -66,7 +67,7 @@ export const defaults = {
     {
       title: 'Delete',
       name: 'delete',
-      class: 'pj-icon pj-icon-remove',
+      class: 'pj-icon pj-icon-delete',
       init(instance, item, $item) {
         PopDialog.of(this, {
           classes: {

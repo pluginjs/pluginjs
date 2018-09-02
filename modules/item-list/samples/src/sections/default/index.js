@@ -3,23 +3,23 @@ import ItemList from '@pluginjs/item-list'
 
 const data = [
   {
-    title: 'Interfaces',
+    label: 'Interfaces',
     value: 'interface'
   },
   {
-    title: 'UI Design',
+    label: 'UI Design',
     value: 'ui-design'
   },
   {
-    title: 'Web Design',
+    label: 'Web Design',
     value: 'web-design'
   },
   {
-    title: 'Typography',
+    label: 'Typography',
     value: 'typography'
   },
   {
-    title: 'Landing',
+    label: 'Landing',
     value: 'landing'
   }
 ]
@@ -27,14 +27,14 @@ const data = [
 const element = query('#default .example-default')
 ItemList.of(element, {
   data,
-  onClickAddBtn() {
-    this.insert({
-      title: 'Test',
+  onClickAdd() {
+    this.add({
+      label: 'Test',
       value: 'test'
     })
   },
-  onClickItem(item, i) {
-    item.title += ' edited'
-    this.edit(item, i)
+  onClickItem(i, item) {
+    item.label += ' edited'
+    this.edit(i, item)
   }
 })

@@ -3,18 +3,23 @@
 // Vars
 // =====================
 $list: "pj-list" !default;
+$tagList: "pj-tag-list" !default;
 $tagList-add-height: 30px !default;
 
 // Core
 // =====================
-.#{$list} {
-  &-add {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: $tagList-add-height;
+.#{$tagList} {
+  .#{$list} {
+    &-add {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: $tagList-add-height;
 
-    .#{$list}-input {
+
+    }
+
+    &-input {
       order: 0;
       width: 80%;
       height: 100%;
@@ -27,7 +32,7 @@ $tagList-add-height: 30px !default;
       }
     }
 
-    .#{$list}-btn {
+    &-btn {
       order: 1;
       width: 20%;
       height: 100%;

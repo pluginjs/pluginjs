@@ -2,148 +2,45 @@
 
 // Vars
 // =====================
-$itemList: "pj-itemList" !default;
+$itemList: "pj-item-list" !default;
 $list: "pj-list" !default;
-$itemList-sizer: $sizer !default;
 
-$itemList-height: 3 * $itemList-sizer !default; //30px
-$itemList-color: $gray-lighter !default;
-$itemList-border-size: 1px !default;
-$itemList-border-style: dashed !default;
-$itemList-border-color: $gray-lighter !default;
-$itemList-border: $itemList-border-size $itemList-border-style
-  $itemList-border-color !default;
-$itemList-border-radius: $border-radius-base !default;
-$itemList-hover-color: $color-primary !default;
-$itemList-hover-bg: $gray-lightest !default;
+$itemList-add-height: 3 * $sizer !default; //30px
+$itemList-add-color: $gray-dark !default;
+$itemList-add-bg: transparent !default;
+$itemList-add-border-color: $gray-border !default;
+$itemList-add-border-radius: $border-radius-base !default;
+
+$itemList-add-hover-color: $gray-darkest !default;
+
+
+$itemList-add-active-border-color: $color-primary !default;
+$itemList-add-active-bg: $gray-lighter !default;
 // clone
-$clone-margin-right: 0.4 * $itemList-sizer !default; //4px
-// // modal
-// $modal-width: 560px !default;
-// $modal-padding: 0 !default;
-// $modal-title-height: 53px !default;
-// $modal-title-padding: 0 20px !default;
-// $modal-title-bg-color: $color-primary !default;
-// $modal-title-font-size: 18px !default;
-// $modal-input-height: 30px !default;
-// $modal-input-padding: 6px 10px !default;
-// $modal-input-margin-bottom: 10px !default;
-// $modal-editor-height: 170px !default;
-// $modal-editor-border: $itemList-border-size solid $gray-lighter !default;
-// $modal-editor-contral-height: 30px !default;
-// $modal-editor-contral-bg-color: $gray-lightest !default;
-// $modal-editor-input-padding: $modal-editor-contral-height + 10px 10px 10px 10px !default;
-// $modal-editor-action-margin-bottom: 20px !default;
+$clone-margin-right: 0.4 * $sizer !default; //4px
 
-// Core
-// =====================
-.#{$itemList}-item-clone {
-  margin-right: $clone-margin-right;
+.#{$itemList} {
+  .#{$list}-add {
+    width: 100%;
+    height: $itemList-add-height;
+    line-height: $itemList-add-height;
+    color: $itemList-add-color;
+    text-align: center;
+    background-color: $itemList-add-bg;
+    border: 1px dashed $itemList-add-border-color;
+    border-radius: $itemList-add-border-radius;
+    outline: none;
 
-  &:hover {
-    color: $itemList-hover-color;
+    .pj-icon {
+      line-height: 100%;
+    }
+
+    &:not(:disabled):hover {
+      color: $itemList-add-hover-color;
+    }
+
+    &:not(:disabled):active {
+      background-color: $itemList-add-active-bg;
+    }
   }
 }
-
-.#{$itemList}-add {
-  width: 100%;
-  height: $itemList-height;
-  font-size: $font-size-sm;
-  line-height: $itemList-height;
-  color: #b3b3b3;
-  text-align: center;
-  background-color: rgba(#000, 0.05);
-  border: 1px dashed #e6e6e6;
-  border-radius: $itemList-border-radius;
-
-  &:hover {
-    color: $color-primary-black;
-    cursor: pointer;
-    // background-color: $itemList-hover-bg;
-  }
-}
-
-.#{$list}-disabled {
-  .#{$itemList}-add {
-    cursor: not-allowed;
-    background-color: inherit;
-  }
-  .icon-plus::before {
-    color: #e6e6e6;
-  }
-}
-
-// .#{$itemList}-modal {
-//   width: $modal-width;
-//   padding: $modal-padding;
-
-//   &-title {
-//     width: 100%;
-//     height: $modal-title-height;
-//     padding: $modal-title-padding !important;
-//     font-size: $modal-title-font-size;
-//     line-height: $modal-title-height;
-//     color: #fff;
-//     background-color: $modal-title-bg-color;
-//   }
-
-//   &-close {
-//     color: #fff;
-//   }
-
-//   &-input {
-//     width: 100%;
-//     height: $modal-input-height;
-//     padding: $modal-input-padding;
-//     margin-bottom: $modal-input-margin-bottom;
-//     border: $modal-editor-border;
-//     border-radius: $itemList-border-radius;
-
-//     &:hover,
-//     &:focus {
-//       border-color: $itemList-hover-color;
-//     }
-//   }
-
-//   &-editor {
-//     position: relative;
-//     width: 100%;
-//     height: $modal-editor-height;
-//     overflow: hidden;
-
-//     &-contral {
-//       position: absolute;
-//       top: 1px;
-//       left: 1px;
-//       width: calc(100% - 2px);
-//       height: $modal-editor-contral-height;
-//       background-color: $modal-editor-contral-bg-color;
-//       border-bottom: $modal-editor-border;
-//       border-top-left-radius: $itemList-border-radius;
-//       border-top-right-radius: $itemList-border-radius;
-//     }
-
-//     &-input {
-//       width: 100%;
-//       height: 100%;
-//       padding: $modal-editor-input-padding;
-//       resize: none;
-//       border: $modal-editor-border;
-//       border-radius: $itemList-border-radius;
-
-//       &:hover,
-//       &:focus {
-//         border-color: $itemList-hover-color;
-//       }
-//     }
-//   }
-
-//   &-action.pj-modal-buttons {
-//     height: auto;
-//     margin-bottom: $modal-editor-action-margin-bottom;
-
-//     button {
-//       height: 36px;
-//     }
-//   }
-// }

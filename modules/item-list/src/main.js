@@ -1,7 +1,5 @@
-import templateEngine from '@pluginjs/template'
-import { deepMerge, compose } from '@pluginjs/utils'
-import { parent, parseHTML, parentWith, children, data } from '@pluginjs/dom'
-import { removeClass, addClass, hasClass } from '@pluginjs/classes'
+import template from '@pluginjs/template'
+import { parseHTML } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   eventable,
@@ -12,7 +10,6 @@ import {
   translateable,
   optionable
 } from '@pluginjs/decorator'
-// import PopDialog from '@pluginjs/pop-dialog'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -23,52 +20,6 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 import List from '@pluginjs/list'
-
-// const optionsExtendList = deepMerge(List.defaults, DEFAULTS)
-// const defaultActions = [
-//   {
-//     tagName: 'i',
-//     trigger: 'pj-icon pj-icon-clone pj-itemList-item-clone',
-//     event: 'click',
-//     init: null
-//   },
-//   {
-//     tagName: 'i',
-//     trigger: 'pj-icon pj-icon-close pj-list-close',
-//     event: 'click',
-//     init(instance, $action, contentTitle, cancelTitle, deleteTitle) {
-//       return new PopDialog($action, {
-//         placement: 'bottom',
-//         content: contentTitle,
-//         buttons: {
-//           cancel: { label: cancelTitle },
-//           delete: {
-//             label: deleteTitle,
-//             color: 'danger',
-//             fn(resolve) {
-//               if (hasClass(instance.classes.ITEM, $action)) {
-//                 $action.remove()
-//               } else {
-//                 parentWith(hasClass(instance.classes.ITEM), $action)
-//               }
-//               resolve()
-//             }
-//           }
-//         },
-//         template() {
-//           return (
-//             '<div class="{classes.POPOVER} {classes.POPDIALOG} pj-list-pop" role="tooltip">' +
-//             '{close}' +
-//             '{title}' +
-//             '{content}' +
-//             '{buttons}' +
-//             '</div>'
-//           )
-//         }
-//       })
-//     }
-//   }
-// ]
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -85,102 +36,69 @@ class ItemList extends List {
     super(element, options)
   }
 
-  initialize() {
-    this.initAddBtn()
-
-    super.initialize()
+  build() {
+    super.build()
+    this.buildAddBtn()
   }
 
-  enable() {
-    if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.$wrapper)
-      this.element.disabled = false
-      this.leave('disabled')
-    }
-    this.trigger(EVENTS.ENABLE)
-  }
-
-  disable() {
-    if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.$wrapper)
-      this.element.disabled = true
-      this.enter('disabled')
-    }
-
-    this.trigger(EVENTS.DISABLE)
-  }
-
-  initAddBtn() {
+  buildAddBtn() {
     this.$add = parseHTML(
-      templateEngine.compile(this.options.templates.add())({
-        // classes: this.classes
+      template.compile(this.options.templates.add())({
+        classes: this.classes,
+        addText: this.translate('add')
       })
     )
 
     this.$wrapper.append(this.$add)
   }
 
-  bind() {
-    compose(
-      bindEvent(
-        this.eventName('click'),
-        `.${this.classes.CLONE}`,
-        ({ target }) => {
-          if (this.is('disabled')) {
-            return
-          }
-          const $item = parentWith(hasClass(this.classes.ITEM), target)
-          const index = children(parent($item)).indexOf($item)
+  clone(index) {
+    const item = this.data[index]
 
-          this.clone(index)
-        }
-      ),
-      bindEvent(this.eventName('click'), '.pj-itemList-add', () => {
+    this.add(item, index + 1)
+
+    this.trigger(EVENTS.CLONE, index, item)
+  }
+
+  bind() {
+    bindEvent(
+      this.eventName('click'),
+      () => {
         if (this.is('disabled')) {
           return
         }
-        this.trigger(EVENTS.CLICKADDBTN)
-      })
-    )(this.$wrapper)
+
+        this.trigger(EVENTS.CLICKADD)
+      },
+      this.$add
+    )
 
     super.bind()
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.$wrapper)
+    removeEvent(this.eventName(), this.$add)
 
     super.unbind()
   }
 
-  clone(index) {
-    let data
-
-    if (typeof this.data[index] === 'string') {
-      data = {
-        title: this.data[index],
-        index: index++
-      }
-    } else {
-      data = deepMerge(this.data[index], { index: index + 1 })
-    }
-
-    this.insert(data)
-    this.trigger(EVENTS.CLONE, data, index)
-  }
-
-  removeListener() {
-    removeEvent(this.eventName(), this.$add)
-  }
-
   destroy() {
-    if (this.is('initialized')) {
-      this.$add.remove()
-      this.unbind()
-      data({ itemList: null }, this.element)
-    }
-
+    this.$add.remove()
     super.destroy()
-    this.trigger(EVENTS.DESTROY)
+  }
+
+  enable() {
+    if (this.is('disabled')) {
+      this.$add.disabled = false
+    }
+    super.enable()
+  }
+
+  disable() {
+    if (!this.is('disabled')) {
+      this.$add.disabled = true
+    }
+    super.disable()
   }
 }
 
