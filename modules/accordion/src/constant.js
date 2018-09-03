@@ -40,7 +40,7 @@ export const defaults = {
   ajax: false,
 
   // Responsive
-  breakWidth: null,
+  breakpoint: null,
   resizeReference: 'window',
   responsiveEffect: 'easeInQuad',
   dropdownLabelTpl: '<a href="javascript:void(0)"></a>',

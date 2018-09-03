@@ -2,6 +2,7 @@ import Component from '@pluginjs/component'
 import { children, find } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
+import Breakpoints from '@pluginjs/breakpoints'
 import {
   eventable,
   register,
@@ -49,6 +50,7 @@ class Accordion extends Component {
 
     this.bind()
     this.open(this.current, false)
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
@@ -62,10 +64,12 @@ class Accordion extends Component {
     )
 
     this.size = this.$panes.length
+    Breakpoints()
     this.isResponsive =
-      this.options.breakWidth === null
+      this.options.breakpoint === null
         ? false
-        : window.document.documentElement.clientWidth <= this.options.breakWidth
+        : window.document.documentElement.clientWidth <=
+          Breakpoints.get(this.options.breakpoint).max
     this.resetData()
   }
 
@@ -217,7 +221,6 @@ class Accordion extends Component {
 
   resize() {
     this.ANIMATE.resetWidth(true)
-    this.RESPONSIVE.resize()
     this.trigger(EVENTS.RESIZE)
   }
 }

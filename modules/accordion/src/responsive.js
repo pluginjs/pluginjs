@@ -4,6 +4,7 @@ import anime from 'animejs'
 import { compose } from '@pluginjs/utils'
 import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
 import { setStyle, outerHeight } from '@pluginjs/styled'
+import Breakpoints from '@pluginjs/breakpoints'
 import {
   empty,
   append,
@@ -31,9 +32,11 @@ class Responsive {
 
     const options = this.instance.options
 
-    if (options.breakWidth === false || options.breakWidth === null) {
+    if (options.breakpoint === false || options.breakpoint === null) {
       return
     }
+
+    this.initBreakpoints()
 
     // init status
     this.$rely = window.document.documentElement
@@ -52,9 +55,25 @@ class Responsive {
       out: this.revertClass(options.responsiveEffect)
     }
 
-    if (!(this.$rely.clientWidth > options.breakWidth)) {
+    if (!(this.$rely.clientWidth > this.breakWidth)) {
       this.toggle(true)
     }
+  }
+
+  initBreakpoints() {
+    Breakpoints()
+    this.breakpoint = this.instance.options.breakpoint
+    this.breakWidth = Breakpoints.get(this.breakpoint).max
+    const that = this
+    Breakpoints.to(that.breakpoint, {
+      enter() {
+        that.resetHeight(true)
+        that.toggle(true)
+      },
+      leave() {
+        that.toggle(false)
+      }
+    })
   }
 
   revertClass(str) {
@@ -120,6 +139,10 @@ class Responsive {
   build() {
     if (this.instance.is('built')) {
       return
+    }
+
+    if (this.instance.current.length === 0) {
+      this.instance.current = [0]
     }
 
     this.initDistance()
@@ -285,21 +308,6 @@ class Responsive {
         duration: this.duration,
         easing: 'linear'
       })
-    }
-  }
-
-  resize() {
-    const breakWidth = this.instance.options.breakWidth
-
-    if (breakWidth === false || breakWidth === null) {
-      return
-    }
-
-    if (this.$rely.clientWidth > breakWidth) {
-      this.toggle(false)
-    } else {
-      this.resetHeight(true)
-      this.toggle(true)
     }
   }
 }
