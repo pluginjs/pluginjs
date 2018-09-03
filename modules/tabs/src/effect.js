@@ -71,7 +71,7 @@ class Effect {
     const config = {
       targets: $previous,
       ...keyframes,
-      duration: duration / 2,
+      duration,
       easing: 'easeOutExpo',
       complete: () => {
         removeClass(this.instance.classes.ACTIVE, $previous)

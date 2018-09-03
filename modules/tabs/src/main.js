@@ -241,6 +241,7 @@ class Tabs extends Component {
     }
 
     this.previous = this.current
+
     this.current = index
 
     removeClass(this.classes.ACTIVE, this.$tabs[this.previous])
@@ -275,25 +276,6 @@ class Tabs extends Component {
     }
   }
 
-  // ajaxLoad(index) {
-  //   this.showLoading()
-
-  //   if (!(this.options.cached === true && this.ajax[index].cached === true)) {
-  //     axios(this.ajax[index].href)
-  //       .then(response => {
-  //         this.ajax[index].cached = true
-  //         this.hideLoading()
-  //         this.panes[index].html(response.data)
-  //       })
-  //       .catch(() => {
-  //         this.hideLoading()
-  //         this.panes[index].html('Not Found')
-  //       })
-  //       .then(() => {
-  //         this.trigger(EVENTS.LOADED, index)
-  //       })
-  //   }
-  // }
   ajaxLoad(index) {
     this.showLoading()
 

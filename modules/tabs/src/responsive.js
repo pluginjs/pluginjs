@@ -2,6 +2,7 @@ import Hammer from 'hammerjs'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { parseHTML, query, insertBefore, wrap, unwrap } from '@pluginjs/dom'
+import Breakpoints from '@pluginjs/breakpoints'
 
 class Responsive {
   constructor(instance) {
@@ -12,9 +13,11 @@ class Responsive {
   initialize() {
     const options = this.instance.options
 
-    if (options.breakWidth === false || options.breakWidth === null) {
+    if (options.breakpoint === false || options.breakpoint === null) {
       return
     }
+
+    this.initBreakpoints()
 
     // init status
     this.mode = this.instance.options.responsiveMode
@@ -35,10 +38,35 @@ class Responsive {
       this.rely = query(options.resizeReference)
     }
 
-    if (
-      !((this.rely.innerWidth || this.rely.offsetWidth) > options.breakWidth)
-    ) {
+    if (!((this.rely.innerWidth || this.rely.offsetWidth) > this.breakWidth)) {
       this.toggle(true)
+    }
+  }
+
+  initBreakpoints() {
+    Breakpoints()
+    this.breakpoint = this.instance.options.breakpoint
+    this.breakWidth = Breakpoints.get(this.breakpoint).max
+    const that = this
+    Breakpoints.to(that.breakpoint, {
+      enter() {
+        that.instance.enter('breakpoint')
+        that.toggle(true)
+      },
+      leave() {
+        that.instance.leave('breakpoint')
+        that.toggle(false)
+      }
+    })
+  }
+
+  resize() {
+    if (
+      this.instance.is('breakpoint') &&
+      this.instance.is('built') &&
+      this.instance.options.responsiveMode === 'scroll'
+    ) {
+      this.scrollInit()
     }
   }
 
@@ -229,28 +257,6 @@ class Responsive {
       { transform: `translate(${deltaX}px, ${deltaY}px)` },
       this.instance.$nav
     )
-  }
-
-  resize() {
-    if (
-      this.instance.options.breakWidth === false ||
-      this.instance.options.breakWidth === null
-    ) {
-      return
-    }
-
-    if (
-      (this.rely.innerWidth || this.rely.offsetWidth) >
-      this.instance.options.breakWidth
-    ) {
-      this.toggle(false)
-    } else if (this.instance.is('built')) {
-      if (this.instance.options.responsiveMode === 'scroll') {
-        this.scrollInit()
-      }
-    } else {
-      this.toggle(true)
-    }
   }
 }
 export default Responsive

@@ -60,7 +60,7 @@ export const defaults = {
   position: 'topleft', // nav position: ['left','right','topleft','topright','topcenter','topjustify','bottomleft','bottomright','bottomcenter','bottomjustify']
 
   // Responsive
-  breakWidth: null,
+  breakpoint: null,
   navLabelSelector: null,
   navWrapSelector: null,
   navLabelTpl:
