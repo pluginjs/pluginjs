@@ -36,7 +36,7 @@ class Units extends Component {
     this.setupOptions(options)
     this.setupClasses()
 
-    this.value = null
+    this.input = null
     this.unit = null
     this.cached = {}
     this.only = this.options.units.length < 2
@@ -88,7 +88,7 @@ class Units extends Component {
       },
       width: this.options.width,
       trigger: 'click',
-      reference: this.$trigger,
+      reference: this.$input,
       data: this.options.units.map(i => {
         return { value: i, label: i }
       }),
@@ -124,7 +124,7 @@ class Units extends Component {
     )
 
     bindEvent(
-      this.eventName('change'),
+      this.eventName('input'),
       () => {
         this.setInput(this.$input.value)
       },
@@ -139,16 +139,17 @@ class Units extends Component {
     }
   }
 
-  set(data, trigger = true) {
-    const { unit, value } = data
+  set(value, trigger = true) {
+    const { input, unit } = value
+
     this.setUnit(unit, trigger)
-    this.setInput(value, trigger)
+    this.setInput(input, trigger)
   }
 
   get() {
     return {
       unit: this.getUnit(),
-      value: this.getInput()
+      input: this.getInput()
     }
   }
 
@@ -157,7 +158,7 @@ class Units extends Component {
   }
 
   getInput() {
-    return this.value ? this.value : null
+    return this.input ? this.input : null
   }
 
   setUnit(unit, trigger = true) {
@@ -182,23 +183,20 @@ class Units extends Component {
     return true
   }
 
-  setInput(value, trigger = true) {
-    if (this.value === value) {
+  setInput(input, trigger = true) {
+    if (this.input === input) {
       return false
     }
-    this.value = value
-    if (value === undefined) {
-      this.$input.value = ''
-    } else {
-      this.$input.value = value
-    }
 
-    if (!isNull(value)) {
-      this.cached[this.getUnit()] = value
+    this.input = input
+    this.$input.value = input
+
+    if (!isNull(input)) {
+      this.cached[this.getUnit()] = input
     }
 
     if (trigger) {
-      this.trigger(EVENTS.CHANGEINPUT, value)
+      this.trigger(EVENTS.CHANGEINPUT, input)
     }
     return true
   }

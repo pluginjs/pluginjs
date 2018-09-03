@@ -88,7 +88,7 @@ class BgPicker extends Component {
   }
 
   initDropdown() {
-    this.$defaultDropdown = Dropdown.of(this.$empty, {
+    this.DROPDOWN = Dropdown.of(this.$empty, {
       // data: this.getTimeList().map(value => ({ label: value })),
       // placeholder: this.options.placeholder,
       theme: 'dafault',
@@ -98,7 +98,7 @@ class BgPicker extends Component {
       // imitateSelect: true,
       // exclusive: false,
       // inputLabel: true,
-      hideOutClick: false,
+      hideOutClick: true,
       hideOnSelect: false,
       // constraintToScrollParent: false,
       templates: this.options.templates
@@ -144,14 +144,14 @@ class BgPicker extends Component {
         if (this.is('disabled')) {
           return null
         }
-        this.$defaultDropdown.show()
+        this.DROPDOWN.show()
         this.oldValue = this.val()
         removeClass(
           this.classes.EXIST,
           addClass(this.classes.EXPAND, this.$wrap)
         )
 
-        return null
+        return false
       }),
       bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
         if (this.is('disabled')) {
@@ -174,7 +174,7 @@ class BgPicker extends Component {
           this.classes.EXPAND,
           addClass(this.classes.EXIST, this.$wrap)
         )
-        this.$defaultDropdown.hide()
+        this.DROPDOWN.hide()
         return false
       },
       this.$cancel
@@ -192,7 +192,7 @@ class BgPicker extends Component {
           this.classes.EXPAND,
           addClass(this.classes.EXIST, this.$wrap)
         )
-        this.$defaultDropdown.hide()
+        this.DROPDOWN.hide()
         return false
       },
       this.$save
