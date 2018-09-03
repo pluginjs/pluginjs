@@ -55,7 +55,7 @@ class Responsive {
       out: this.revertClass(options.responsiveEffect)
     }
 
-    if (!(this.$rely.clientWidth > this.breakWidth)) {
+    if (Breakpoints.is(`${this.breakpoint}-`)) {
       this.toggle(true)
     }
   }
@@ -63,7 +63,6 @@ class Responsive {
   initBreakpoints() {
     Breakpoints()
     this.breakpoint = this.instance.options.breakpoint
-    this.breakWidth = Breakpoints.get(this.breakpoint).max
     const that = this
     Breakpoints.to(that.breakpoint, {
       enter() {

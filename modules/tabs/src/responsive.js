@@ -38,7 +38,7 @@ class Responsive {
       this.rely = query(options.resizeReference)
     }
 
-    if (!((this.rely.innerWidth || this.rely.offsetWidth) > this.breakWidth)) {
+    if (Breakpoints.is(`${this.breakpoint}-`)) {
       this.toggle(true)
     }
   }
@@ -46,26 +46,29 @@ class Responsive {
   initBreakpoints() {
     Breakpoints()
     this.breakpoint = this.instance.options.breakpoint
-    this.breakWidth = Breakpoints.get(this.breakpoint).max
     const that = this
     Breakpoints.to(that.breakpoint, {
       enter() {
-        that.instance.enter('breakpoint')
+        that.instance.enter('responsive')
         that.toggle(true)
       },
       leave() {
-        that.instance.leave('breakpoint')
+        that.instance.leave('responsive')
         that.toggle(false)
       }
     })
   }
 
   resize() {
-    if (
-      this.instance.is('breakpoint') &&
-      this.instance.is('built') &&
-      this.instance.options.responsiveMode === 'scroll'
-    ) {
+    if (!this.instance.is('built')) {
+      return
+    }
+
+    if (this.instance.options.responsiveMode !== 'scroll') {
+      return
+    }
+
+    if (this.instance.is('responsive')) {
       this.scrollInit()
     }
   }
