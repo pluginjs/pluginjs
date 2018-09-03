@@ -189,23 +189,25 @@ class Filters extends Component {
 
     if (!this.DROPDOWN) {
       this.element.append(
-        parseHTML(`<div class="${this.classes.DROPDOWN}"></div>`)
+        parseHTML(`<div class="${this.classes.DROPDOWN}">More</div>`)
       )
-      this.$dropdown = query(`.${this.classes.NAMESPACE}`, this.element)
+      this.$dropdown = query(`.${this.classes.DROPDOWN}`, this.element)
       this.DROPDOWN = Dropdown.of(this.$dropdown, {
         data,
         itemValueAttr: 'index',
         width: this.options.dropdownWidth,
         imitateSelect: false,
         onClick: el => {
-          const index = getData('id', el.element)
+          const index = getData('index', el.element)
           this.setActiveItem(this.$filters[index])
         }
       })
 
+      this.DROPDOWN.show()
       this.DROPDOWN.POPPER.options.removeOnDestroy = true
     } else {
-      this.DROPDOWN.replaceByData(data)
+      children(this.DROPDOWN.$dropdown).map(item => item.remove())
+      this.DROPDOWN.appendItems(data)
     }
 
     this.setDropdownActive()
@@ -246,15 +248,22 @@ class Filters extends Component {
   }
 
   setDropdownActive() {
-    const $dropdownItems = this.DROPDOWN.$items
-    if ($dropdownItems) {
-      $dropdownItems.map(removeClass(this.classes.ACTIVE))
-      $dropdownItems.forEach($el => {
-        if (getData('index', $el) === this.active) {
-          addClass(this.classes.ACTIVE, $el)
-        }
-      })
-    }
+    // const $dropdownItems = this.DROPDOWN.$dropdown
+    // if ($dropdownItems) {
+    //   children($dropdownItems).map(removeClass(this.classes.ACTIVE))
+    //   children($dropdownItems).forEach($el => {
+    //     if (getData('id', $dropdownItems) === this.active) {
+    //       addClass(this.classes.ACTIVE, $el)
+    //     }
+    //   })
+    // }
+    const $dropdownItems = this.DROPDOWN.$dropdown
+    children($dropdownItems).map(removeClass(this.classes.ACTIVE))
+    children($dropdownItems).forEach($el => {
+      if (getData('id', $dropdownItems) === this.active) {
+        addClass(this.classes.ACTIVE, $el)
+      }
+    })
   }
 
   setActiveItemByValue(value) {
