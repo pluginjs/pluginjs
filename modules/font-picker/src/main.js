@@ -81,7 +81,6 @@ class FontPicker extends Component {
       )
     )
     this.fontTrigger = query('.pj-dropdown-trigger', this.$fontPicker)
-    console.log(this.$fontPicker)
     insertAfter(this.$fontPicker, this.element)
     wrap(`<div class='${this.classes.WRAP}'></div>`, this.$fontPicker)
     insertBefore(this.element, this.$fontPicker)
@@ -92,7 +91,6 @@ class FontPicker extends Component {
 
     this.activated = ACTIVATED
     this.sources = DATA
-
     this.scrollLength = 0
     this.$font = null
     this.$fonts = []
@@ -169,7 +167,6 @@ class FontPicker extends Component {
         'tabindex',
         0
       )
-
       this.KEYBOARD = new Keyboard(this)
     }
 
@@ -273,16 +270,16 @@ class FontPicker extends Component {
     }
 
     this.$selectorPanel.options.onChange = val => {
-      const $source = val
+      // const $source = val
       // const sourceName = $source.dataset.source
-      const sourceName = getData('source', $source)
-      this.toggleSources($source)
+      // const sourceName = getData('source', $source)
+      this.toggleSources(val)
       this.categoriesHeight = getHeight(parent(this.$activated[0]))
-      if (this.sources[sourceName]) {
+      if (this.sources[val]) {
         prepend(
           parseHTML(
             `<i class="${this.classes.SOURCEICON} ${this.getIconName(
-              sourceName
+              val
             )}"></i>`
           ),
           query('.pj-dropdown-trigger', this.$selector)
@@ -398,6 +395,7 @@ class FontPicker extends Component {
             return
           }
           // let $this = $(this);
+          console.log(that.$searchList)
           that.KEYBOARD.init(that.$searchList)
         },
         query('input', this.$search)
@@ -700,9 +698,7 @@ class FontPicker extends Component {
     })
 
     data.push({ label: localeText, value: localeText })
-    console.log(data)
     this.$panel.append(this.$controller)
-    console.log(this.$panel)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
     this.selectTrigger = query('.pj-dropdown-trigger', this.$selector)
     this.$selectorPanel = Dropdown.of(this.selectTrigger, {
@@ -714,7 +710,7 @@ class FontPicker extends Component {
       width: this.$selector
     })
     // 选中的dropdown activated上面那块
-    queryAll('li', this.$selectorPanel.$panel).forEach(el => {
+    queryAll('div', this.$selectorPanel.$dropdown).forEach(el => {
       Object.entries(this.sources).forEach(([sourceName, source]) => {
         if (el.dataset.value === source.title) {
           // el.dataset.source = sourceName
@@ -773,6 +769,7 @@ class FontPicker extends Component {
     this.$searchList.forEach($font => {
       if ($font.dataset.value.toLowerCase().indexOf(val) >= 0) {
         addClass(this.classes.SEARCHED, $font)
+        addClass(this.classes.FONT, $font)
         this.$showFonts.push($font)
       } else if (hasClass(this.classes.SEARCHED, $font)) {
         removeClass(this.classes.SEARCHED, $font)
@@ -816,16 +813,15 @@ class FontPicker extends Component {
   }
 
   toggleSources(val) {
-    const name = val.dataset.source
-
+    const value = val.toLowerCase()
+    // const name = val.dataset.source
     // const localeText = this.translate('activatedFonts')
-    if (this.$sources[name]) {
+    if (this.$sources[value]) {
       children(this.$packagesWrap).forEach(hideElement)
-      showElement(this.$sources[name])
+      showElement(this.$sources[value])
 
-      this.$activated = children(this.$sources[name])
-      this.$fonts = getData('$fonts', this.$sources[name])
-
+      this.$activated = children(this.$sources[value])
+      this.$fonts = getData('$fonts', this.$sources[value])
       this.$searchList = children(
         query('ul', this.$activated[this.$activated.length - 1])
       )

@@ -147,6 +147,9 @@ $fontPicker-search-input-hover-color: $gray !default;
     .pj-scrollable-content {
       padding: 0 2px;
     }
+    .pj-scrollable-container {
+     width: 260px !important;
+    }
   }
 
   &-title {
@@ -349,7 +352,6 @@ $fontPicker-search-input-hover-color: $gray !default;
 .#{$fontPicker}-search {
   display: flex;
   align-items: center;
-  height: 40px;
   padding: 4px 20px 4px 10px;
   margin-bottom: 0;
   font-size: 13px;
@@ -364,7 +366,7 @@ $fontPicker-search-input-hover-color: $gray !default;
     flex-grow: 1;
     order: 1;
     min-width: 100px;
-    padding: 0.4 * $fontPicker-sizer 1.5 * $fontPicker-sizer 0.4 * $fontPicker-sizer 0.9 * $fontPicker-sizer;
+    padding: 0.4 * $fontPicker-sizer 1.5 * $fontPicker-sizer 0.4 * $fontPicker-sizer 0.9 * $fontPicker-sizer !important;
     //min-width: 10*$fontPicker-sizer;  //100px;
     margin: 0;
     font-size: $fontPicker-font-size;
@@ -426,6 +428,22 @@ $fontPicker-search-input-hover-color: $gray !default;
     }
   }
 }
+.#{$fontPicker}-search-list {
+
+  .pj-scrollable-container {
+    height: 320 * $fontPicker-sizer !important; 
+  }
+
+  .pj-scrollable-content {
+    li {
+      display: none;
+    }
+  }
+
+  .#{$fontPicker}-searched {
+    display: block !important;
+  }
+}
 
 .#{$fontPicker}-searching {
   .#{$fontPicker}-search-list li {
@@ -462,6 +480,10 @@ $fontPicker-search-input-hover-color: $gray !default;
 
 .icon-search {
   color: $gray-dark;
+}
+
+.#{$dropdown}-item {
+  display: block
 }
 
 .#{$dropdown}-item:last-child {

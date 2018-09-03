@@ -82,7 +82,7 @@ class Keyboard {
     }
 
     bindEvent(
-      'keydown',
+      this.instance.eventName('keydown'),
       e => {
         const code = e.keyCode
         const which = e.which
@@ -104,7 +104,7 @@ class Keyboard {
     )
 
     bindEvent(
-      'keydown',
+      this.instance.eventName('keydown'),
       e => {
         const code = e.keyCode
         const which = e.which
@@ -122,7 +122,7 @@ class Keyboard {
     )
 
     bindEvent(
-      'keydown',
+      this.instance.eventName('keydown'),
       e => {
         const code = e.keyCode
         const which = e.which
@@ -146,15 +146,15 @@ class Keyboard {
         }
 
         e.stopPropagation()
-        return false
+        // return false
       },
       this.$input
     )
   }
 
   unbind() {
-    removeEvent('keydown', this.instance.$panel)
-    removeEvent('keydown', this.$input)
+    removeEvent(this.instance.eventName('keydown'), this.instance.$panel)
+    removeEvent(this.instance.eventName('keydown'), this.$input)
     this.instance.leave('keyboard')
   }
 }
