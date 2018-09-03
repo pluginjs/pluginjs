@@ -81,6 +81,7 @@ class FontPicker extends Component {
       )
     )
     this.fontTrigger = query('.pj-dropdown-trigger', this.$fontPicker)
+    console.log(this.$fontPicker)
     insertAfter(this.$fontPicker, this.element)
     wrap(`<div class='${this.classes.WRAP}'></div>`, this.$fontPicker)
     insertBefore(this.element, this.$fontPicker)
@@ -109,6 +110,7 @@ class FontPicker extends Component {
     // const that = this;
     this.$dropdown = this.initDropdown()
     this.$panel = this.$dropdown.$dropdown
+    insertAfter(this.$panel, this.$fontPicker)
     this.$activated = queryAll('.pj-dropdown-item', this.$panel)
     this.$activatedPackage = wrapAll(
       parseHTML(`<div class=${this.classes.ACTIVATED}></div>`),
@@ -150,7 +152,7 @@ class FontPicker extends Component {
         parseHTML(
           `<div class=${
             this.classes.MANAGE
-          }><i class='pj-icon pj-icon-performance-solid'></i>${text}</div>`
+          }><i class='icon-performance-solid'></i>${text}</div>`
         )
       )
     }
@@ -272,7 +274,6 @@ class FontPicker extends Component {
 
     this.$selectorPanel.options.onChange = val => {
       const $source = val
-      console.log($source)
       // const sourceName = $source.dataset.source
       const sourceName = getData('source', $source)
       this.toggleSources($source)
@@ -514,7 +515,7 @@ class FontPicker extends Component {
 
     this.$activated.forEach($this => {
       const fontName = $this.dataset.value
-      // let $sourceIcon = $(`<i class='${that.classes.SOURCEICON} pj-icon pj-icon-remove'></i>`)
+      // let $sourceIcon = $(`<i class='${that.classes.SOURCEICON} icon-close'></i>`)
 
       Object.entries(that.activated).forEach(([sourceName, fonts]) => {
         if (fonts.indexOf(fontName) > -1) {
@@ -663,21 +664,25 @@ class FontPicker extends Component {
   }
 
   initDropdown() {
+    const that = this /* eslint-disable-line */
     const data = []
     if (!Object.keys(this.activated).length) {
-      data.push({ label: 'empty' })
+      data.push({ label: 'empty', value: 'empty' })
     } else {
       Object.entries(this.activated).forEach(([, fonts]) => {
         fonts.forEach(font => {
-          data.push({ label: font })
+          data.push({ label: font, value: font })
         })
       })
     }
     return Dropdown.of(this.fontTrigger, {
       theme: 'default',
       data,
+      reference: this.$fontPicker,
       hideOnSelect: false,
-      width: 260
+      classes: {
+        ITEM: `{namespace}-item ${this.classes.FONT}`
+      }
     })
   }
 
@@ -691,16 +696,19 @@ class FontPicker extends Component {
     )
 
     Object.entries(this.sources).forEach(([, source]) => {
-      data.push({ label: source.title })
+      data.push({ label: source.title, value: source.title })
     })
 
-    data.push({ label: localeText })
+    data.push({ label: localeText, value: localeText })
+    console.log(data)
     this.$panel.append(this.$controller)
+    console.log(this.$panel)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
     this.selectTrigger = query('.pj-dropdown-trigger', this.$selector)
     this.$selectorPanel = Dropdown.of(this.selectTrigger, {
       placement: 'top-center',
       data,
+      value: 'activated',
       keyboard: true,
       imitateSelect: true,
       width: this.$selector
@@ -709,8 +717,8 @@ class FontPicker extends Component {
     queryAll('li', this.$selectorPanel.$panel).forEach(el => {
       Object.entries(this.sources).forEach(([sourceName, source]) => {
         if (el.dataset.value === source.title) {
-          el.dataset.source = sourceName
-          // setData('source', sourceName, el)
+          // el.dataset.source = sourceName
+          setData('source', sourceName, el)
           prepend(
             `<i class="${this.classes.SOURCEICON} ${this.getIconName(
               sourceName
@@ -863,7 +871,7 @@ class FontPicker extends Component {
   }
 
   open($el) {
-    const that = this
+    const that = this  /* eslint-disable-line */
     if (!$el.dataset.open && $el.dataset.open === 'false') {
       this.close(query(`.${this.classes.PACKAGEOPEN}`, this.$packagesWrap))
     }
