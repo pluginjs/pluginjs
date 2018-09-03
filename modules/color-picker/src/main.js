@@ -320,9 +320,7 @@ class ColorPicker extends Component {
 
     if (gradient) {
       append(hex, query(`.${this.classes.GRADIENTACTION}`, this.$gradient))
-      console.log(3)
       this.HEX = new Hex(this, query(`.${this.classes.HEX}`, this.$gradient))    /* eslint-disable-line */
-      console.log(3)
     } else {
       append(hex, query(`.${this.classes.SOLIDACTION}`, this.$solid))
       new Hex(this, query(`.${this.classes.HEX}`, this.$solid))  /* eslint-disable-line */

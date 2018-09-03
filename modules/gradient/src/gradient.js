@@ -62,6 +62,9 @@ class Gradient {
     if (this.length < 2) {
       return
     }
+    if (this.value.stops[this.value.stops.length - 2].position === null) {
+      this.value.stops[this.value.stops.length - 1].position = 1
+    }
     this.value.stops = this.value.stops.sort((a, b) => a.position - b.position)
     this.value.stops.forEach((v, i) => {
       v.id = i

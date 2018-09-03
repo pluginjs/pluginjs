@@ -69,7 +69,6 @@ class Select extends Component {
     this.source = this.options.source
       ? this.parseJson(this.options.source)
       : this.parseHtml(children(this.element))
-    console.log(this.source)
     this.selected = Array.from(this.element.selectedOptions).map(el => el.value)
     this.markIndex = 0
     this.build()
@@ -203,11 +202,9 @@ class Select extends Component {
     }
     this.triggerEl = query('.pj-dropdown-trigger', this.triggerElement)
     this.$dropdown = this.buildFromTemplate('dropdown', { that: this })
-
     this.list = isFunction(this.source)
       ? this.source.call(this, this.buildList.bind(this))  /* eslint-disable-line */
       : this.buildList(this.source)
-    console.log(this.source)
     append(this.list, this.$dropdown)
     append(this.triggerElement, this.$wrap)
     append(this.$dropdown, this.$wrap)

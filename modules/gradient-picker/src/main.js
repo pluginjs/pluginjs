@@ -156,7 +156,7 @@ class GradientPicker extends Component {
         }
       }
     )
-    this.render()
+    // this.render()
   }
 
   handelComponent() {
@@ -251,17 +251,16 @@ class GradientPicker extends Component {
       theme: 'default',
       module: ['gradient'],
       locale: this.options.locale,
-      onUpdate: val => {
+      onUpdate: () => {
         this.data.name = ''
-        this.data.color = val
+        this.data.color = this.COLORPICKER.GRADIENT.gradientValue
         // this.setPreview(val);
         this.setOpacity()
-
         this.leave('preset')
         this.enter('custom')
       },
       onOpenPanel: () => {
-        this.colorPicker.POPPER.scheduleUpdate()
+        this.COLORPICKER.POPPER.scheduleUpdate()
       }
     })
 
@@ -281,6 +280,8 @@ class GradientPicker extends Component {
         this.setOpacity()
       }
     })
+
+    this.OPACITY.val(100)
     // this.$editPanel = EditPanel.of(this.element, {
     //   init: {
     //     icon: 'pj-icon pj-icon-paint',
@@ -397,7 +398,7 @@ class GradientPicker extends Component {
       setData('info', info, $color)
       setStyle('background', val, $color)
 
-      // this.$selectorList.append($color)
+      this.$selectorList.append($color)
     })
     return null
   }
@@ -408,7 +409,7 @@ class GradientPicker extends Component {
       this.eventName('click'),
       `.${this.classes.EDITOR}`,
       () => {
-        this.$editPanel.openPanel()
+        this.DROPDOWN.show()
       },
       this.$wrap
     )
@@ -424,15 +425,13 @@ class GradientPicker extends Component {
     // info hover
     bindEvent(
       this.eventName('mouseover'),
-      '.pj-editPanel-info',
       () => {
         addClass(this.classes.HOVER, this.$infoAction)
       },
-      this.$wrap
+      this.$fill
     )
     bindEvent(
       this.eventName('mouseout'),
-      '.pj-editPanel-info',
       () => {
         if (this.is('holdHover')) {
           return false
@@ -441,7 +440,7 @@ class GradientPicker extends Component {
         this.leave('holdHover')
         return null
       },
-      this.$wrap
+      this.$fill
     )
     // pop events
     this.pop.options.onShow = () => {
@@ -466,6 +465,24 @@ class GradientPicker extends Component {
         this.data.name = name
       },
       this.$selectorList
+    )
+
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.SAVE}`,
+      () => {
+        if (this.data.opacityColor === '') {
+          return
+        }
+        this.DROPDOWN.hide()
+        addClass(this.classes.SHOW, this.$wrap)
+        setStyle(
+          'background',
+          this.data.opacityColor,
+          query(`.${this.classes.FILLIMG}`, this.$fill)
+        )
+      },
+      this.$action
     )
 
     // change
@@ -499,7 +516,7 @@ class GradientPicker extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.$wrap)
-    this.$editPanel.unbind()
+    this.DROPDOWN.unbind()
   }
 
   update() {
@@ -592,7 +609,7 @@ class GradientPicker extends Component {
   setPreset(data) {
     this.colors = data
 
-    this.render()
+    // this.render()
   }
 
   setPreview(color) {
