@@ -9,6 +9,10 @@ $scrollable: "pj-scrollable" !default;
 $patternPicker-spacer: $spacer !default;
 $patternPicker-border: 1px solid $gray-border !default;
 
+$patternPicker-width: 16 * $patternPicker-spacer !default; //160px
+$patternPicker-height: 9 * $patternPicker-spacer !default; //30px
+$patternPicker-border: 1px solid $gray-border;
+
 // preview
 $preview-width:  26 * $patternPicker-spacer !default; //260px
 // global
@@ -28,6 +32,47 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
   &.#{$patternPicker}-input {
     display: none;
   }
+
+  &-trigger {    
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: $patternPicker-width;
+    height: $patternPicker-height;
+    padding: 1px;
+    border: $patternPicker-border;
+    border-style: dashed;
+
+    .#{$patternPicker}-fill {
+      position: relative;
+      display: none;
+      padding: 1px;
+      border: $patternPicker-border;
+  
+      .#{$patternPicker}-action {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        color: $color-white;
+        background-color: $color-opacity;
+        border-radius: 2px;
+        opacity: 0;
+      }
+  
+      &-img {
+        width: $patternPicker-width;
+        height: $patternPicker-height;
+      }
+    }
+  }
+  
   &-dropdown {
     box-sizing: border-box;
     width: 300px;
@@ -54,6 +99,10 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
     background: url(./images/bg-canvas.png) no-repeat center; /* stylelint-disable-line */
     border: $patternPicker-border;
     border-radius: 2px;
+
+    &-img {
+      height: 100%;
+    }
   }
   &-selector-list {
     height: 100%;

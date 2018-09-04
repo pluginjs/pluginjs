@@ -108,19 +108,8 @@ class GradientPicker extends Component {
     // const that = this
     this.handelComponent()
 
-    this.$infoImg = query(`.${this.classes.INFOIMG}`, this.$wrap)
     this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
-    // this.$selectorList = query(
-    //   `.${this.classes.SELECTORLIST} ul`,
-    //   this.$editPanel.MODAL.$content
-    // )
-    // this.$scrollable = Scrollable.of(
-    //   parentWith(hasClass(this.classes.SELECTORLIST), this.$selectorList),
-    //   {
-    //     contentSelector: '>',
-    //     containerSelector: '>'
-    //   })
-    // this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
+
     const that = this
 
     // init popDialog
@@ -156,7 +145,8 @@ class GradientPicker extends Component {
         }
       }
     )
-    // this.render()
+    this.render()
+    console.log(this.data)
   }
 
   handelComponent() {
@@ -179,6 +169,7 @@ class GradientPicker extends Component {
         classes: this.classes
       })
     )
+    this.$fillImg = query(`.${this.classes.FILLIMG}`, this.$fill)
     this.$empty = parseHTML(
       template.compile(this.options.templates.empty())({
         classes: this.classes,
@@ -242,6 +233,7 @@ class GradientPicker extends Component {
 
     this.DROPDOWN = Dropdown.of(this.$empty, {
       target: this.$dropdown,
+      reference: this.$trigger,
       templates: this.options.template,
       hideoutClick: false,
       hideOnSelect: false
@@ -282,100 +274,6 @@ class GradientPicker extends Component {
     })
 
     this.OPACITY.val(100)
-    // this.$editPanel = EditPanel.of(this.element, {
-    //   init: {
-    //     icon: 'pj-icon pj-icon-paint',
-    //     text: this.translate('chooseGradient')
-    //   },
-    //   selector: {
-    //     title: this.translate('selectTitle'),
-    //     contentTitle: this.translate('selectContentTitle')
-    //   },
-    //   components: [
-    //     {
-    //       title: this.translate('customColor'),
-    //       element: this.$colorPicker,
-    //       type: 'colorPicker',
-    //       options: {
-    //         theme: 'default',
-    //         module: ['gradient'],
-    //         locale: this.options.locale
-    //       }
-    //     },
-    //     {
-    //       title: this.translate('opacity'),
-    //       element: $opacity,
-    //       type: 'range',
-    //       options: {
-    //         theme: 'default',
-    //         tip: false,
-    //         range: false,
-    //         units: {
-    //           '%': {
-    //             min: 0,
-    //             max: 100,
-    //             step: 1
-    //           }
-    //         }
-    //       }
-    //     }
-    //   ],
-    //   action: {
-    //     panel: {
-    //       cancel: {
-    //         title: this.translate('cancel'),
-    //         class: ''
-    //       },
-    //       save: {
-    //         title: this.translate('save'),
-    //         class: ''
-    //       }
-    //     },
-    //     selector: {
-    //       cancel: {
-    //         title: this.translate('selectCancel'),
-    //         class: ''
-    //       },
-    //       save: {
-    //         title: this.translate('useIt'),
-    //         class: ''
-    //       }
-    //     }
-    //   },
-    //   templates: {
-    //     wrap() {
-    //       return `<div class='${that.classes.WRAP} {class}'></div>`
-    //     },
-    //     info() {
-    //       return `<div class='{class}'><div class='{content} ${
-    //         that.classes.INFOIMG
-    //       }'></div></div>`
-    //     },
-
-    //     infoAction() {
-    //       return `<div class='{class}'><i class='pj-icon pj-icon-edit ${
-    //         that.classes.EDITOR
-    //       }'></i><i class='pj-icon pj-icon-delete ${that.classes.REMOVE}'></i></div>`
-    //     },
-    //     previewContent() {
-    //       return `<div class='{class} ${that.classes.PREVIEWIMG}'></div>`
-    //     },
-    //     selectorList() {
-    //       return `<div class='${
-    //         that.classes.SELECTORLIST
-    //       }'><div><ul class='{class}'></ul></div></div>`
-    //     }
-    //   }
-    // })
-
-    // this.$wrap = parent(this.element)
-    // set initialization color
-    // this.colorPicker = ColorPicker.of(this.$colorPicker)
-    // this.colorPicker.clear()
-
-    // this.opacity = Range.of($opacity)
-
-    // this.opacity.val(100)
   }
 
   render() {
@@ -383,23 +281,15 @@ class GradientPicker extends Component {
       return false
     }
 
-    Object.entries(this.colors).forEach(([key, val]) => {
-      const $color = parseHTML(
-        template.compile(this.options.templates.item())({
-          class: this.classes.SELECTORITEM
-        })
-      )
+    const color = Object.entries(this.colors)
 
-      const info = {
-        name: key,
-        background: val
-      }
+    const info = {
+      name: color[0][0],
+      background: color[0][1]
+    }
 
-      setData('info', info, $color)
-      setStyle('background', val, $color)
-
-      this.$selectorList.append($color)
-    })
+    setData('info', info, this.$previewImg)
+    setStyle('background', color[0][1], this.$previewImg)
     return null
   }
 
@@ -410,18 +300,11 @@ class GradientPicker extends Component {
       `.${this.classes.EDITOR}`,
       () => {
         this.DROPDOWN.show()
+        return false
       },
       this.$wrap
     )
 
-    // this.$editPanel.options.onOpenSelector = () => {
-    //   if (!this.$scrollable) {
-    //     return false
-    //   }
-    //   this.$scrollable.enable()
-    //   this.$scrollable.update()
-    //   return true
-    // }
     // info hover
     bindEvent(
       this.eventName('mouseover'),
@@ -481,37 +364,23 @@ class GradientPicker extends Component {
           this.data.opacityColor,
           query(`.${this.classes.FILLIMG}`, this.$fill)
         )
+        this.update()
+        this.enter('state')
       },
       this.$action
     )
 
-    // change
-    // this.$editPanel.options.onChange = () => {
-    //   if (!this.$selected) {
-    //     return false
-    //   }
-
-    //   this.data.color = getStyle('background-image', this.$selected)
-    //   this.colorPicker.val(this.data.color)
-    //   this.setOpacity()
-    //   this.$editPanel.closeSelector()
-
-    //   this.leave('custom')
-    //   this.enter('preset')
-    //   return null
-    // }
-
-    // update
-    // this.$editPanel.options.onUpdate = () => {
-    //   if (!this.data.name && !this.data.color) {
-    //     return false
-    //   }
-
-    //   this.update()
-    //   this.$editPanel.closePanel()
-    //   addClass(this.classes.SHOW, this.$wrap)
-    //   return null
-    // }
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.CANCEL}`,
+      () => {
+        this.DROPDOWN.hide()
+        if (!this.is('state')) {
+          removeClass(this.classes.SHOW, this.$wrap)
+        }
+      },
+      this.$action
+    )
   }
 
   unbind() {
@@ -528,8 +397,9 @@ class GradientPicker extends Component {
     if (color === '') {
       color = 'transparent'
     }
-    setStyle('background', color, this.$infoImg)
+    setStyle('background', color, this.$fillImg)
 
+    console.log(this.data)
     this.element.value = this.options.process(this.data)
   }
 
@@ -565,23 +435,12 @@ class GradientPicker extends Component {
     this.data = Object.assign({}, this.data, data)
 
     if (this.data.name !== '') {
-      const $items = queryAll(
-        `.${this.classes.SELECTORITEM}`,
-        this.$selectorList
-      )
-      $items.map(removeClass(this.classes.ACTIVE))
+      if (getData('info', this.$previewImg).name === this.data.name) {
+        const bgColor = getData('info', this.$previewImg).background
 
-      $items.forEach(el => {
-        const $this = el
-        if (getData('info', $this).name === this.data.name) {
-          const bgColor = getData('info', $this).background
-          addClass(this.classes.ACTIVE, $this)
-
-          this.data.color = bgColor
-          this.$selected = $this
-          this.colorPicker.val(bgColor)
-        }
-      })
+        this.data.color = bgColor
+        this.colorPicker.val(bgColor)
+      }
     } else {
       this.colorPicker.val(this.data.color)
     }
@@ -625,17 +484,17 @@ class GradientPicker extends Component {
     }
 
     setStyle('background', 'none', this.$previewImg)
-    setStyle('background', 'none', this.$infoImg)
+    setStyle('background', 'none', this.$fillImg)
 
-    this.colorPicker.clear()
-    this.opacity.val(100)
+    this.COLORPICKER.clear()
+    this.OPACITY.val(100)
 
-    removeClass(
-      this.classes.ACTIVE,
-      query(`.${this.classes.SELECTORITEM}`, this.$selectorList)
-    )
-    this.$selected = null
+    // removeClass(
+    //   this.classes.ACTIVE,
+    //   query(`.${this.classes.SELECTORITEM}`, this.$selectorList)
+    // )
     removeClass(this.classes.SHOW, this.$wrap)
+    this.leave('state')
   }
 
   enable() {

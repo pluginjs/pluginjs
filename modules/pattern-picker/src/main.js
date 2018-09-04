@@ -70,7 +70,6 @@ class PatternPicker extends Component {
     this.$selected = null
 
     this.$content = null
-    console.log(this.imgs)
     this.setupStates()
     this.initialize()
   }
@@ -102,9 +101,6 @@ class PatternPicker extends Component {
 
   create() {
     // const that = this
-
-    // this.$infoImg = query(`.${this.classes.INFOIMG}`, this.$wrap)
-    // this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
     // this.$selectorList = query(
     //   `.${this.classes.SELECTORLIST} ul`,
     //   this.$editPanel.MODAL.$content
@@ -167,6 +163,7 @@ class PatternPicker extends Component {
       this.$opacityBox,
       this.$action
     )
+
     // init popDialog
     // init pop
     this.pop = PopDialog.of(
@@ -187,30 +184,30 @@ class PatternPicker extends Component {
               resolve()
             }
           }
+        },
+        onShow: () => {
+          this.enter('holdHover')
+        },
+        onHide: () => {
+          removeClass(this.classes.HOVER, this.$infoAction)
+          this.leave('holdHover')
         }
       }
     )
+
+    this.pluginCreate()
     this.render()
   }
 
   handelComponent() {
-    // const that = this
-    // const $forePicker = parseHTML(
-    //   `<input class='${this.classes.FORECOLOR}' type="text"/>`
-    // )
-    // const $bgPicker = parseHTML(
-    //   `<input class='${this.classes.BGCOLOR}' type="text"/>`
-    // )
-    // const $opacityPicker = parseHTML(
-    //   `<input class='${this.classes.OPACITY}' type="text"/>`
-    // )
+    this.$fillImg = query(`.${this.classes.FILLIMG}`, this.$fill)
 
     this.$previewBox = parseHTML(
       `<div class='${this.classes.PREVIEW}'><div class='${
         this.classes.PREVIEWIMG
       }'></div></div>`
     )
-    this.$preview = query(`.${this.classes.PREVIEWIMG}`, this.$preview)
+    this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$previewBox)
     this.$forePickerBox = parseHTML(
       `<div class='${this.classes.COMPONENT}'><span class='${
         this.classes.TITLE
@@ -249,90 +246,6 @@ class PatternPicker extends Component {
         } pj-btn pj-btn-transparent'>Save</button>
       </div>`
     )
-
-    this.DROPDOWN = Dropdown.of(this.$empty, {
-      target: this.$dropdown,
-      templates: this.options.template,
-      hideoutClick: false,
-      hideOnSelect: false
-    })
-
-    this.FOREPICKER = ColorPicker.of(this.$forePicker, {
-      theme: 'default',
-      module: ['solid'],
-      solidMode: 'sample',
-      solidModule: {
-        alpha: false,
-        hex: false
-      },
-      onChange: val => {
-        if (!this.$selected) {
-          return
-        }
-        this.foreColor = val
-
-        this.enter('foreChange')
-        this.leave('bgChange')
-        this.leave('opacityChange')
-        this.updateComponent()
-
-        return
-      }
-    })
-
-    this.BGCOLOR = ColorPicker.of(this.$bgColor, {
-      theme: 'default',
-      // module: ['solid'],
-      // solidMode: 'sample',
-      // solidModule: {
-      //   alpha: false,
-      //   hex: false
-      // },
-      onChange: val => {
-        // console.log(val)
-        if (!this.$selected) {
-          return
-        }
-        this.bgColor = val.toHEX()
-        this.leave('foreChange')
-        this.enter('bgChange')
-        this.leave('opacityChange')
-        this.updateComponent()
-        return
-      }
-    })
-
-    this.OPACITY = Range.of(this.$opacity, {
-      theme: 'default',
-      tip: false,
-      range: false,
-      units: {
-        '%': {
-          min: 0,
-          max: 100,
-          step: 1
-        }
-      },
-      onChange: data => {
-        if (!this.$selected) {
-          return
-        }
-
-        this.opacity = data.value / 100
-
-        this.leave('foreChange')
-        this.leave('bgChange')
-        this.enter('opacityChange')
-        this.updateComponent()
-
-        return
-      }
-    })
-
-    // set initial color
-    this.FOREPICKER.val('#000')
-    this.BGCOLOR.val(this.bgColor)
-    this.OPACITY.val('100%')
 
     // this.$editPanel = EditPanel.of(this.element, {
     //   init: { text: this.translate('choosePattern') },
@@ -435,31 +348,100 @@ class PatternPicker extends Component {
     // })
   }
 
-  render() {
-    Object.entries(this.imgs).forEach(([key, val]) => {
-      const $img = parseHTML(
-        template.compile(this.options.templates.item())({
-          class: this.classes.SELECTORITEM
-        })
-      )
-
-      const info = {
-        name: key,
-        'background-color': this.bgColor,
-        // make '#' to '%23', fixed svg data image not working on FireFox.
-        'background-image': val.replace(/\#+/g, '%23')/* eslint-disable-line */
-      }
-      setData('info', info, $img)
-      setStyle(
-        {
-          backgroundColor: this.bgColor,
-          backgroundImage: val.replace(/\#+/g, '%23') /* eslint-disable-line */
-        },
-        $img
-      )
-
-      // this.$selectorList.append($img)
+  pluginCreate() {
+    this.DROPDOWN = Dropdown.of(this.$empty, {
+      target: this.$dropdown,
+      templates: this.options.template,
+      hideoutClick: false,
+      hideOnSelect: false
     })
+
+    this.FOREPICKER = ColorPicker.of(this.$forePicker, {
+      theme: 'default',
+      module: ['solid'],
+      solidMode: 'sample',
+      solidModule: {
+        alpha: false,
+        hex: false
+      },
+      onChange: val => {
+        this.foreColor = val
+
+        this.enter('foreChange')
+        this.leave('bgChange')
+        this.leave('opacityChange')
+        this.updateComponent()
+
+        return
+      }
+    })
+
+    this.BGCOLOR = ColorPicker.of(this.$bgColor, {
+      theme: 'default',
+      module: ['solid'],
+      solidMode: 'sample',
+      solidModule: {
+        alpha: false,
+        hex: false
+      },
+      onChange: val => {
+        // if (!this.$selected) {
+        //   return
+        // }
+        val = val.toHEX()
+        this.bgColor = val
+        this.leave('foreChange')
+        this.enter('bgChange')
+        this.leave('opacityChange')
+        this.updateComponent()
+        return
+      }
+    })
+
+    this.OPACITY = Range.of(this.$opacity, {
+      theme: 'default',
+      tip: false,
+      range: false,
+      units: {
+        '%': {
+          min: 0,
+          max: 100,
+          step: 1
+        }
+      },
+      onChange: data => {
+        this.opacity = data.value / 100
+
+        this.leave('foreChange')
+        this.leave('bgChange')
+        this.enter('opacityChange')
+        this.updateComponent()
+
+        return
+      }
+    })
+
+    // set initial color
+    this.FOREPICKER.val('#000')
+    this.BGCOLOR.val(this.bgColor)
+    this.OPACITY.val('100%')
+  }
+
+  render() {
+    const img = Object.entries(this.imgs)[0]
+    const info = {
+      name: img[0],
+      'background-color': this.bgColor,
+      // make '#' to '%23', fixed svg data image not working on FireFox.
+        'background-image': img[1].replace(/\#+/g, '%23')/* eslint-disable-line */
+    }
+    setData('info', info, this.$previewImg)
+
+    this.setInfo(this.$previewImg)
+
+    this.BGCOLOR.val(this.options.format(info, 'background-color'))
+    this.FOREPICKER.val(this.options.format(info, 'color'))
+    this.OPACITY.val(`${this.options.format(info, 'opacity')}%`)
   }
 
   bind() {
@@ -491,14 +473,7 @@ class PatternPicker extends Component {
         return
       })
     )(this.$wrap)
-    // pop event
-    this.pop.options.onShow = () => {
-      this.enter('holdHover')
-    }
-    this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$infoAction)
-      this.leave('holdHover')
-    }
+
     // update
     // this.$editPanel.options.onUpdate = () => {
     //   if (!this.$selected) {
@@ -508,7 +483,6 @@ class PatternPicker extends Component {
     //   this.update()
     //   return
     // }
-
     // change
     // this.$editPanel.options.onChange = () => {
     //   this.$selected = this.$selecting
@@ -517,24 +491,8 @@ class PatternPicker extends Component {
     //   }
     //   const info = getData('info', this.$selected)
 
-    // let color = info['background-image']
-    //   .match(/fill='.*?'/g)
-    //   .toString()
-    //   .match(/(\w){6,8}/g)
-    //   .toString();
-    // const opacity = parseFloat(
-    //   info['background-image']
-    //   .match(/fill-opacity='(.*?)'/g)
-    //   .toString()
-    //   .match(/\d\.\d*|\d/g)[0]
-    // );
     // setData('info', info, this.$previewImg)
 
-    // if (color.length > 6) {
-    //   color = `#${color.slice(2)}`;
-    // } else {
-    //   color = `#${color}`;
-    // }
     // set foreColor bgPicker Opacity
     // this.BGPICKER.val(this.options.format(info, 'background-color'))
     // this.FOREPICKER.val(this.options.format(info, 'color'))
@@ -567,6 +525,16 @@ class PatternPicker extends Component {
       },
       this.$selectorList
     )
+
+    // action save
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.SAVE}`,
+      () => {
+        this.update()
+      },
+      this.$action
+    )
   }
 
   unbind() {
@@ -579,7 +547,6 @@ class PatternPicker extends Component {
   }
 
   update(data) {
-    console.log(this.$previewImg)
     if (data) {
       setData('info', data, this.$previewImg)
       this.setInfo(this.$previewImg)
@@ -587,10 +554,11 @@ class PatternPicker extends Component {
       this.data = getData('info', this.$previewImg)
     }
 
-    setData('info', getData('info', this.$previewImg), this.$infoImg)
-    this.setInfo(this.$infoImg)
+    console.log(this.$fillImg)
+    setData('info', getData('info', this.$previewImg), this.$fillImg)
+    this.setInfo(this.$fillImg)
     this.element.value = this.val()
-    this.$editPanel.closePanel()
+    this.DROPDOWN.hide()
     addClass(this.classes.SHOW, this.$wrap)
   }
 
@@ -606,11 +574,6 @@ class PatternPicker extends Component {
     }
 
     this.setAttr(key, this.$previewImg)
-    queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).forEach(
-      $this => {
-        this.setAttr(key, $this)
-      }
-    )
     this.element.value = this.options.process.call(
       this,
       getData('info', this.$previewImg)
@@ -618,8 +581,6 @@ class PatternPicker extends Component {
   }
 
   setInfo(img) {
-    console.log(img)
-    console.log(getData('info', img))
     const imgData = getData('info', img)
     setStyle(
       {
@@ -648,44 +609,34 @@ class PatternPicker extends Component {
 
     this.data = data
 
-    queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).forEach(
-      $this => {
-        const info = getData('info', $this)
+    const info = getData('info', this.$previewImg)
 
-        removeClass(this.classes.ACTIVE, $this)
-
-        if (info.name === name) {
-          if (data['background-color']) {
-            this.bgColor = data['background-color']
-          } else {
-            data['background-color'] = this.bgColor
-          }
-
-          addClass(this.classes.ACTIVE, $this)
-          getData('info', data, $this)
-          getData('info', data, this.$previewImg)
-
-          this.$selected = $this
-
-          this.$bgPicker.val(this.options.format(data, 'background-color'))
-          this.$forePicker.val(this.options.format(data, 'color'))
-          this.$opacityPicker.val(`${this.options.format(data, 'opacity')}%`)
-
-          this.update(data)
-        }
+    if (info.name === name) {
+      if (data['background-color']) {
+        this.bgColor = data['background-color']
+      } else {
+        data['background-color'] = this.bgColor
       }
-    )
+
+      getData('info', data, this.$previewImg)
+
+      this.$bgPicker.val(this.options.format(data, 'background-color'))
+      this.$forePicker.val(this.options.format(data, 'color'))
+      this.$opacityPicker.val(`${this.options.format(data, 'opacity')}%`)
+
+      this.update(data)
+    }
 
     return
   }
 
-  setPreset(data) {
-    queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).map(el =>
-      el.remove()
-    )
-    this.imgs = data
-    this.render()
-  }
+  // setPreset(data) {
+  //   queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).map(el =>
+  //     el.remove()
+  //   )
+  //   this.imgs = data
+  //   this.render()
+  // }
 
   get() {
     return this.data
@@ -730,13 +681,13 @@ class PatternPicker extends Component {
       this.$previewImg
     )
 
-    setData('info', '', this.$infoImg)
+    setData('info', '', this.$fillImg)
     setStyle(
       {
         backgroundColor: 'transparent',
         backgroundImage: 'none'
       },
-      this.$infoImg
+      this.$fillImg
     )
 
     this.$selected = null
