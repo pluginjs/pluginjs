@@ -234,7 +234,7 @@ class GradientPicker extends Component {
       target: this.$dropdown,
       reference: this.$trigger,
       templates: this.options.template,
-      hideoutClick: false,
+      hideOutClick: false,
       hideOnSelect: false
     })
 

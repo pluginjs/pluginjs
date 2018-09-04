@@ -86,7 +86,7 @@ export const defaults = {
       return '<input placeholder="{that.options.placeholder}" class="{that.classes.LABEL}" />'
     },
     badge() {
-      return '<div class="{that.classes.BADGE}" data-flag="{flag}"><span class="{that.classes.BADGECONTENT}">{label}</span><i class="{that.classes.BADGEDELETE} pj-icon pj-icon-close-solid"></i></div>'
+      return '<div class="{that.classes.BADGE}" data-flag="{flag}"><span class="{that.classes.BADGECONTENT}">{label}</span><i class="{that.classes.BADGEDELETE} pj-icon pj-icon-remove"></i></div>'
     },
     dropdown() {
       return '<div class="{that.classes.DROPDOWN}"></div>'
@@ -101,7 +101,7 @@ export const defaults = {
       return '<li class="{that.classes.GROUP}"><span class="{that.classes.GROUPLABEL}">{group.label}</span></li>'
     },
     item() {
-      return '<li class="{that.classes.ITEM} pj-dropdown-item" data-value="{item.value}">{item.label}</li>'
+      return '<li class="{that.classes.ITEM}" data-value="{item.value}">{item.label}</li>'
     },
     notFound() {
       return '<div class="{that.classes.NOTFOUND}">{that.options.notFoundText}</div>'

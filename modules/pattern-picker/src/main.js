@@ -8,8 +8,6 @@ import {
   query,
   // queryAll,
   // parent,
-  fadeOut,
-  fadeIn,
   parseHTML,
   getData,
   setData,
@@ -163,21 +161,7 @@ class PatternPicker extends Component {
             label: this.translate('delete'),
             color: 'danger',
             fn(resolve) {
-              fadeOut(
-                {
-                  duration: 100,
-                  callback: () => {
-                    that.clear()
-                    fadeIn(
-                      {
-                        duration: 100
-                      },
-                      that.$infoAction
-                    )
-                  }
-                },
-                that.$infoAction
-              )
+              that.clear()
               resolve()
             }
           }
@@ -248,8 +232,9 @@ class PatternPicker extends Component {
   pluginCreate() {
     this.DROPDOWN = Dropdown.of(this.$empty, {
       target: this.$dropdown,
+      reference: this.$trigger,
       templates: this.options.template,
-      hideoutClick: false,
+      hideOutClick: false,
       hideOnSelect: false
     })
 

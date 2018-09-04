@@ -348,20 +348,6 @@ class Select extends Component {
           this.resetList(this.source)
           this.resetLabelWidth()
         }
-      },
-      // onTrigger: (item, e) => {
-      //   const target = e.target
-      //   if (!target.closest(`.${this.classes.BADGEDELETE}`)) {
-      //     return
-      //   }
-
-      //   const badge = target.closest(`.${this.classes.BADGE}`)
-      //   this.set(getData('flag', badge), false)
-      //   this.dropdown.triggerUsable = false
-      // },
-      onSelect: item => {
-        this.click(item)
-        this.dropdown.itemUsable = false
       }
     })
     this.label = this.dropdown.element
@@ -411,7 +397,7 @@ class Select extends Component {
         }
         const badge = target.closest(`.${this.classes.BADGE}`)
         this.set(getData('flag', badge), false)
-        // this.dropdown.triggerUsable = false
+        return false  /* eslint-disable-line */
       },
       this.triggerElement
     )
@@ -419,10 +405,23 @@ class Select extends Component {
     bindEvent(
       this.eventName('click'),
       `.${this.classes.BADGE}`,
-      () => {
+      e => {
+        if (e.target.tagName === 'I') {
+          return
+        }
         this.dropdown.toggle()
+        return false  /* eslint-disable-line */
       },
       this.triggerElement
+    )
+
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.ITEM}`,
+      e => {
+        this.click(e.target)
+      },
+      this.$dropdown
     )
   }
 
@@ -520,6 +519,10 @@ class Select extends Component {
     const isDisabled = hasClass(this.classes.DISABLED, item)
     if (isSelected || isDisabled) {
       return false
+    }
+
+    if (hasClass(this.classes.MARK, item)) {
+      removeClass(this.classes.MARK, item)
     }
 
     const value = getData('value', item)

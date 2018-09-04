@@ -155,17 +155,6 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
       width: $component-content-width;
     }
   }
-
-  .#{$editPanel} {
-    &-component-content {
-      width: $component-content-width;
-    }
-
-    &-info .#{$editPanel}-action {
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-  }
   // === untils === //
   &-hover {
     opacity: 0.9 !important;
@@ -183,10 +172,6 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
 
     .#{$patternPicker}-fill {
       display: block;
-
-      &-content {
-        display: block;
-      }
     }
   }
 }
