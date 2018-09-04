@@ -4,23 +4,25 @@
 // =====================
 $dropdown: "pj-dropdown" !default;
 
+$dropdown-index: $zindex-dropdown !default;
+
 // Core
 // =====================
 .#{$dropdown} {
   position: absolute;
-  z-index: 1000;
+  z-index: $dropdown-index;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  text-align: left;
   list-style: none;
   visibility: hidden;
+  background-color: #fff;
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
 
   &-show {
     visibility: visible;
-    opacity: 100;
+    opacity: 1;
   }
 
   &-input {
@@ -30,11 +32,8 @@ $dropdown: "pj-dropdown" !default;
   }
 
   &-item {
-    display: flex;
-    align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
-    word-break: keep-all;
     white-space: nowrap;
   }
 

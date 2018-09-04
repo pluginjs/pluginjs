@@ -7,39 +7,34 @@ $dropdown: "pj-dropdown";
 $dropdown-font-family: $font-family-base;
 $dropdown-font-size: $font-size-sm;
 
-$dropdown-min-width: 200px;
+$dropdown-width: 200px;
 $dropdown-color: $text-color;
 $dropdown-bg: $color-white;
 
-$dropdown-box-shadow: 0 20px 30px 0 rgba($color-black, 0.05);
 $dropdown-border-color: $gray-light;
 $dropdown-border-radius: $border-radius-base;
+$dropdown-box-shadow: 0 20px 30px 0 rgba($color-black, 0.05);
 
-$dropdown-space-x: 11px;
-$dropdown-space-y: 7px;
-
-$dropdown-item-hover-bg: $gray-lighter;
-$dropdown-item-icon-margin-right: 10px;
-$dropdown-item-active-color: $color-primary-active;
-
-$dropdown-trigger-font-size: $font-size-sm;
 $dropdown-trigger-hover-color: $gray-darkest;
-$dropdown-trigger-color: $gray-dark;
 $dropdown-trigger-focus-color: $color-primary;
 
-$dropdown-input-width: 200px;
+$dropdown-input-width: $dropdown-width;
 $dropdown-input-lineHeigh: 22px;
+$dropdown-input-color: $gray-dark;
+$dropdown-input-hover-color: $gray-darkest;
+$dropdown-input-focus-color: $dropdown-input-hover-color;
 
-$dropdown-span-hover-color: $color-primary;
-$dropdown-span-input-drop-color: $gray-darkest;
-$dropdown-span-input-color: $gray-dark;
-$dropdown-space-x-right: 30px;
-$dropdown-space-x-left: $dropdown-space-x;
+$dropdown-item-space-x: 11px;
+$dropdown-item-space-y: 7px;
 
-// Theme
+$dropdown-item-icon-gutter: 10px;
+$dropdown-item-hover-bg: $gray-lighter;
+$dropdown-item-active-color: $color-primary-active;
+
+// Skin
 // =====================
 .#{$dropdown} {
-  width: $dropdown-min-width;
+  width: $dropdown-width;
   font-family: $dropdown-font-family;
   font-size: $dropdown-font-size;
   color: $dropdown-color;
@@ -51,8 +46,8 @@ $dropdown-space-x-left: $dropdown-space-x;
 
   &-trigger {
     font-family: $dropdown-font-family;
-    font-size: $dropdown-trigger-font-size;
-    color: $dropdown-trigger-color;
+    font-size: $dropdown-font-size;
+    color: $dropdown-color;
     text-decoration: none;
 
     &:hover {
@@ -68,29 +63,22 @@ $dropdown-space-x-left: $dropdown-space-x;
   &-input {
     width: $dropdown-input-width;
     line-height: $dropdown-input-lineHeigh;
+    color: $dropdown-input-color;
+
+    &:hover {
+      color: $dropdown-input-hover-color;
+    }
 
     &[aria-expanded="true"] {
-      color: $dropdown-trigger-hover-color;
-
-      &:hover {
-        border-color: $color-primary;
-      }
-    }
-
-    &:not([placeholder]) {
-      color: $dropdown-span-input-color;
-    }
-
-    &.#{$dropdown}-checked {
-      color: $dropdown-span-input-drop-color;
+      color: $dropdown-input-focus-color;
     }
   }
 
   &-item {
-    padding: $dropdown-space-y $dropdown-space-x;
+    padding: $dropdown-item-space-y $dropdown-item-space-x;
 
-    .icon {
-      margin-right: $dropdown-item-icon-margin-right;
+    .pj-icon {
+      margin-right: $dropdown-item-icon-gutter;
     }
 
     &:hover {
@@ -98,21 +86,8 @@ $dropdown-space-x-left: $dropdown-space-x;
       background-color: $dropdown-item-hover-bg;
     }
 
-    &:focus {
-      outline: none;
-    }
-
     &.#{$dropdown}-active {
       color: $dropdown-item-active-color;
-    }
-  }
-
-  &-span {
-    color: $dropdown-trigger-hover-color;
-
-    &:hover,
-    &:active {
-      color: $dropdown-span-hover-color;
     }
   }
 }

@@ -77,6 +77,7 @@ class Dropdown extends Component {
       addClass(this.getThemeClass(), this.$dropdown)
     }
 
+    this.$trigger.tabIndex = 0
     addClass(this.classes.TRIGGRER, this.$trigger)
     addClass(this.classes.REFERENCE, this.$reference)
     addClass(this.classes.DROPDOWN, this.$dropdown)

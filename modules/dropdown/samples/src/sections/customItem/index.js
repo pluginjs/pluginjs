@@ -5,24 +5,24 @@ const element = query('#customItem .dropdown-example')
 
 const data = [
   {
-    value: 'cloud',
-    label: 'Cloud',
-    icon: 'cloud'
+    value: 'book',
+    label: 'Book',
+    icon: 'book-solid'
   },
   {
-    value: 'compass',
-    label: 'Compass',
-    icon: 'compass'
+    value: 'calendar',
+    label: 'Calendar',
+    icon: 'calendar'
   },
   {
-    value: 'flag',
-    label: 'Flag',
-    icon: 'flag'
+    value: 'image',
+    label: 'Image',
+    icon: 'image'
   },
   {
-    value: 'gallery',
-    label: 'Gallery',
-    icon: 'gallery'
+    value: 'home',
+    label: 'Home',
+    icon: 'home-solid'
   }
 ]
 
