@@ -1,2 +1,5 @@
 // import sections
-import './sections/defaults'
+import './sections/default'
+import './sections/background'
+import './sections/srcset'
+import './sections/picture'

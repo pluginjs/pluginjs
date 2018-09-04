@@ -37,6 +37,7 @@
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/styled": "*",
+    "@pluginjs/image-loader": "*",
     "@pluginjs/events": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/viewport": "*"

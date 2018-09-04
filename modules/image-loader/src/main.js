@@ -1,165 +1,127 @@
-import Component from '@pluginjs/component'
-import {
-  eventable,
-  register,
-  stateable,
-  styleable,
-  optionable
-} from '@pluginjs/decorator'
-import {
-  classes as CLASSES,
-  defaults as DEFAULTS,
-  events as EVENTS,
-  methods as METHODS,
-  namespace as NAMESPACE
-} from './constant'
+import { isString } from '@pluginjs/is'
+import SimpleEmitter from '@pluginjs/simple-emitter'
 
-@styleable(CLASSES)
-@eventable(EVENTS)
-@stateable()
-@optionable(DEFAULTS, true)
-@register(NAMESPACE, {
-  methods: METHODS
-})
-class ImageLoader extends Component {
-  constructor(element, options = {}) {
-    super(element)
-    this.setupOptions(options)
-    this.setupClasses()
-    this.history = []
-    this.imgLoadAll = []
-    this.selector = this.options.selector || 'img'
-    this.setupStates()
-    this.initialize()
+export default class ImageLoader extends SimpleEmitter {
+  constructor(element, autoload = true) {
+    super()
+
+    this.element = element
+    this.img = new Image()
+
+    if (!isString(this.element) && this.element.nodeName === 'PICTURE') {
+      this.picture = this.element.querySelector('img')
+    }
+
+    if (autoload) {
+      this.load()
+    }
   }
 
-  initialize() {
-    this.$imgs = Array.from(this.getImgs())
-    this.loading()
+  static of(...args) {
+    return new this(...args)
+  }
+
+  isLoaded() {
+    if (!isString(this.element)) {
+      if (this.element.nodeName === 'IMG') {
+        return this.element.complete && this.element.naturalWidth
+      } else if (this.element.nodeName === 'PICTURE') {
+        return this.picture.complete && this.picture.naturalWidth
+      }
+    }
+    return this.img.complete && this.img.naturalWidth
+  }
+
+  getBackgroundSrc() {
+    const style = getComputedStyle(this.element)
+
+    if (style) {
+      const reURL = /url\((['"])?(.*?)\1\)/gi
+      const matches = reURL.exec(style.backgroundImage)
+      if (matches) {
+        return matches[2]
+      }
+    }
+
+    return ''
+  }
+
+  load() {
+    if (this.isLoaded()) {
+      this.trigger('loaded')
+      this.trigger('always', true)
+      return
+    }
+
     this.bind()
-    this.enter('initialized')
-    this.trigger(EVENTS.READY)
+  }
+
+  handleEvent(event) {
+    const method = `on${event.type}`
+    if (this[method]) {
+      this[method](event)
+    }
   }
 
   bind() {
-    this.observer = new MutationObserver(mutationsList => {
-      const observer = mutationsList.find(
-        mutation => mutation.attributeName === 'src'
-      )
-      if (observer) {
-        this.imageLoadHandler(observer.target)
-          .then(imgs => {
-            this.onCompleteHandler(imgs)
-            return imgs
-          })
-          .finally(this.onFinallyHandler)
-      }
-    })
-    const observeImageChange = config => element => {
-      this.observer.observe(element, config)
-    }
-    this.$imgs.map(observeImageChange({ attributes: true }))
-  }
-  unbind() {
-    this.observer.disconnect()
-  }
-  /*
-   * When an img loading success.
-   */
-  onLoaded(onLoadHandler) {
-    this.onLoadHandler = onLoadHandler
-    return this
-  }
+    this.img.addEventListener('load', this)
+    this.img.addEventListener('error', this)
 
-  onError(onErrorHandler) {
-    this.onErrorHandler = onErrorHandler
-    return this
-  }
-  /*
-   * When all of imgs loading success.
-   */
-  onComplete(onCompleteHandler) {
-    this.onCompleteHandler = onCompleteHandler
-    return this
-  }
+    if (!isString(this.element)) {
+      if (this.element.nodeName === 'IMG') {
+        this.element.addEventListener('load', this)
+        this.element.addEventListener('error', this)
 
-  finally(onFinallyHandler) {
-    this.onFinallyHandler = onFinallyHandler
-    return this
-  }
+        this.img.src = this.element.src
+        this.img.srcset = this.element.srcset
+        this.img.sizes = this.img.sizes
+      } else if (this.element.nodeName === 'PICTURE') {
+        this.picture.addEventListener('load', this)
+        this.picture.addEventListener('error', this)
 
-  getImgs() {
-    return this.element.querySelectorAll(this.selector)
-  }
+        this.img.src = this.picture.src
+        this.img.srcset = this.picture.srcset
+        this.img.sizes = this.picture.sizes
+      } else {
+        const src = this.getBackgroundSrc()
 
-  imageLoadHandler($img) {
-    const imgLoad = new Promise((resolve, reject) => {
-      if ($img.complete) {
-        this.done += 1
-        resolve($img)
-      }
-
-      $img.addEventListener('load', () => {
-        this.done += 1
-        resolve($img)
-      })
-
-      $img.addEventListener('error', () => {
-        this.fail += 1
-        reject($img)
-      })
-    })
-    return imgLoad
-      .then(img => {
-        this.onLoadHandler(img)
-        return img
-      })
-      .catch(img => {
-        if (this.onErrorHandler) {
-          this.onErrorHandler(img)
+        if (src) {
+          this.img.src = src
         }
-        return img
-      })
-  }
-
-  loading() {
-    this.history = [].concat([this.history, this.$imgs])
-    this.imgLoadAll = this.imgLoadAll.concat(
-      this.$imgs.map(this.imageLoadHandler.bind(this))
-    )
-    Promise.all(this.imgLoadAll)
-      .then(imgs => {
-        if (this.onCompleteHandler) {
-          this.onCompleteHandler(imgs)
-        }
-        return imgs
-      })
-      .finally(this.onFinallyHandler)
-  }
-
-  enable() {
-    if (this.is('disabled')) {
-      this.leave('disabled')
+      }
+    } else {
+      this.img.src = this.element
     }
-    this.trigger(EVENTS.ENABLE)
   }
 
-  disable() {
-    if (!this.is('disabled')) {
-      this.enter('disabled')
-    }
-
-    this.trigger(EVENTS.DISABLE)
-  }
-
-  destroy() {
-    if (this.is('initialized')) {
-      this.leave('initialized')
-    }
+  onerror() {
+    this.trigger('error')
+    this.trigger('always', false)
     this.unbind()
-    this.trigger(EVENTS.DESTROY)
-    super.destroy()
+  }
+
+  onload() {
+    this.trigger('loaded')
+    this.trigger('always', true)
+    this.unbind()
+  }
+
+  trigger(event, ...args) {
+    this.emit(event, this.element, ...args)
+  }
+
+  unbind() {
+    if (!isString(this.element)) {
+      if (this.element.nodeName === 'IMG') {
+        this.element.removeEventListener('load', this)
+        this.element.removeEventListener('error', this)
+      } else if (this.element.nodeName === 'PICTURE') {
+        this.picture.removeEventListener('load', this)
+        this.picture.removeEventListener('error', this)
+      }
+    }
+
+    this.img.removeEventListener('load', this)
+    this.img.removeEventListener('error', this)
   }
 }
-
-export default ImageLoader

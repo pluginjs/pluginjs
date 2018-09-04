@@ -1,4 +1,5 @@
 import Viewport from '@pluginjs/viewport'
+import ImageLoader from '@pluginjs/image-loader'
 import {
   eventable,
   register,
@@ -14,7 +15,7 @@ import {
   namespace as NAMESPACE
 } from './constant'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { parent, queryAll, getData, attr } from '@pluginjs/dom'
+import { parent, query, queryAll, getData, attr } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 
@@ -36,7 +37,6 @@ class Lazyload extends Viewport {
 
   initialize() {
     addClass(this.classes.NAMESPACE, this.element)
-    this._isLoad = false
 
     const config = ['src', 'srcset']
 
@@ -52,7 +52,14 @@ class Lazyload extends Viewport {
 
   load() {
     addClass(this.classes.LOADING, this.element)
-    const img = new Image()
+    const loader = ImageLoader.of(this.element, false).on('loaded', () => {
+      this.enter('load')
+      removeClass(this.classes.LOADING, this.element)
+      addClass(this.classes.LOADED, this.element)
+      this.trigger(EVENTS.LOADED)
+      this.destroy()
+    })
+
     if (this.element.tagName === 'IMG') {
       if (parent(this.element).tagName === 'PICTURE') {
         queryAll('source', parent(this.element)).forEach(source => {
@@ -65,27 +72,25 @@ class Lazyload extends Viewport {
 
       attr('src', this.src, this.element)
       attr('srcset', this.srcset, this.element)
+    } else if (this.element.tagName === 'PICTURE') {
+      queryAll('source', this.element).forEach(source => {
+        const src = getData('src', source)
+        const srcset = getData('srcset', source)
+        attr('src', src, source)
+        attr('srcset', srcset, source)
+      })
+      const img = query('img', this.element)
+      const src = getData('src', img)
+      const srcset = getData('srcset', img)
+
+      attr('src', src, img)
+      attr('srcset', srcset, img)
     } else {
       setStyle('backgroundImage', `url(${this.src})`, this.element)
-      img.src = this.src
     }
-    this.trigger(EVENTS.LOAD)
 
-    const step = () => {
-      if (
-        (this.element.complete && this.element.naturalWidth > 1) ||
-        (img.complete && img.naturalWidth > 1)
-      ) {
-        this._isLoad = true
-        removeClass(this.classes.LOADING, this.element)
-        addClass(this.classes.LOADED, this.element)
-        this.trigger(EVENTS.LOADED)
-        this.destroy()
-      } else {
-        requestAnimationFrame(step)
-      }
-    }
-    requestAnimationFrame(step)
+    this.trigger(EVENTS.LOAD)
+    loader.load()
   }
 
   bind() {
@@ -107,7 +112,7 @@ class Lazyload extends Viewport {
   }
 
   isLoad() {
-    return this._isLoad
+    return this.is('load')
   }
 
   enable() {
