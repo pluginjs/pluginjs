@@ -1,0 +1,13 @@
+const body = `## API`
+
+export default {
+  meta: {
+    moduleName: "images-loader",
+    namespace: "imagesLoader",
+    Namespace: "ImagesLoader",
+    desc: 'A flexible modern images-loader js plugin.',
+    body
+  },
+  output: './README.md',
+  template: 'README.utils'
+}

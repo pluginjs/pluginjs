@@ -32,12 +32,14 @@ Development:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.css">
 ```
 
 Production:
 
 ```html
 <script src="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.min.css">
 ```
 
 ### Initialize
@@ -77,6 +79,59 @@ Browser:
   Pj.imageLoader('.element', options)
 </script>
 ```
+
+---
+
+## API
+
+### Options
+
+Options are called on imageLoader instances through the imageLoader options itself.
+You can also save the instances to variable for further use.
+
+Name | Description | Default
+-----|--------------|-----
+`"theme"` | Set plugin theme option | `null`
+`"locale"` | Set locale environment | `en`
+`"localeFallbacks"` | Set the plugin is localeFallbacks or not | `true`
+`"selector"` | Img selector | `img`
+
+### Events
+
+Events are called on imageLoader instances through the imageLoader events itself.
+You can also save the instances to variable for further use.
+
+Name | Description
+-----|-----
+`"ready"` | Gets fired when plugin has ready
+`"enable"` | Gets fired when plugin has enabled
+`"disable"` | Gets fired when plugin has disabled
+`"destroy"` | Gets fired when plugin has destroy
+
+### Methods
+
+Methods are called on imageLoader instances through the imageLoader method itself.
+You can also save the instances to variable for further use.
+
+Name | Description
+-----|-----
+`"load"` | Load image file
+`"onComplete"` | Get whether image was loaded
+`"finally"` | Get is finally
+`"onLoaded"` | Set onLoaded callback
+`"onError"` | Set error callback
+`"add"` | Add image
+`"enable"` | Enabled plugin if plugin is disabled
+`"disable"` | Disable plugin
+`"destroy"` | Destroy plugin
+
+### Classes
+
+Name | Description | Default
+-----|------|------
+`"NAMESPACE"` | Declare plugin namespace | `pj-imageLoader`
+`"THEME"` | Declare plugin theme | `{namespace}--{theme}`
+---
 
 ## Browser support
 

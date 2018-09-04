@@ -13,7 +13,9 @@ export default class ImageLoader extends SimpleEmitter {
     }
 
     if (autoload) {
-      this.load()
+      setTimeout(() => {
+        this.load()
+      })
     }
   }
 
