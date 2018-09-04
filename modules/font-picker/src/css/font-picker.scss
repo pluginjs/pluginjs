@@ -30,7 +30,6 @@ $fontPicker-search-input-hover-color: $gray !default;
 
 // Core
 // =====================
-/* stylelint-disable */
 .#{$fontPicker} {
   box-sizing: border-box;
   width: $fontPicker-width;
@@ -39,23 +38,13 @@ $fontPicker-search-input-hover-color: $gray !default;
   font-size: $fontPicker-font-size;
   background-color: $color-white;
   border: 1px solid #E6E6E6;
+  outline: none;
     &:hover {
       border-color: $color-primary-black;
       span {
       color: $color-primary-black;
     }
   } 
-
-  &.#{$fontPicker}-disabled {
-    &:focus,
-    &:hover {
-      border-color: $disabled-border;
-      .#{$dropdown}-trigger {
-        color: #b3b3b3
-      }
-    }
-  }
-
   .#{$dropdown}-trigger {
     padding: 0 $fontPicker-sizer; //0 10px
     line-height: $fontPicker-height - 2px;
@@ -64,15 +53,6 @@ $fontPicker-search-input-hover-color: $gray !default;
       font-size: $fontPicker-icon-size;
     }
   }
-
-  // i {
-  //   position: absolute;
-  //   top: 50%;
-  //   right: 0.6 * $fontPicker-sizer; //6px
-  //   color: $gray-darkest;
-  //   transition: all 0.3s;
-  //   transform: translateY(-50%);
-  // }
 }
 
 .#{$fontPicker}-panel {
@@ -89,6 +69,9 @@ $fontPicker-search-input-hover-color: $gray !default;
 }
 
 .#{$fontPicker}-package-wrap {
+  height: $fontPicker-panel-height - $fontPicker-controller-height - $fontPicker-search-height;
+  overflow: auto;
+  
   .#{$fontPicker}-activated {
     .#{$fontPicker}-source-icon {
       position: absolute;
@@ -159,7 +142,6 @@ $fontPicker-search-input-hover-color: $gray !default;
     font-size: $fontPicker-font-size;
     line-height: $fontPicker-package-height;
     cursor: pointer;
-    // background-color: $fontPicker-package-bg-color;
 
     &:hover {
       color: $fontPicker-active-color;
@@ -196,10 +178,7 @@ $fontPicker-search-input-hover-color: $gray !default;
   &-hide {
     display: none;
   }
-  &-wrap {
-    height: $fontPicker-panel-height - $fontPicker-controller-height - $fontPicker-search-height;
-    overflow: auto;
-  }
+
 }
 .#{$fontPicker}-active {
   color: $fontPicker-font-active-color;
@@ -212,7 +191,6 @@ $fontPicker-search-input-hover-color: $gray !default;
   display: flex;
   width: 100%;
   height: $fontPicker-controller-height;
-  font-family: "Helvetica Neue";
   font-size: $fontPicker-font-size;
   line-height: 2.6 * $fontPicker-sizer; //26px
   text-transform: capitalize;
@@ -245,7 +223,7 @@ $fontPicker-search-input-hover-color: $gray !default;
   }
 
   .#{$dropdown} {
-    width: 129px !important;
+    width: 12.9 * $fontPicker-sizer !important; //129px 
     border: 0;
     div:last-child {
       border-top: 1px solid $fontPicker-border-color;
@@ -267,11 +245,26 @@ $fontPicker-search-input-hover-color: $gray !default;
     }
   }
 
+  .#{$fontPicker}-source-icon {
+    margin-right: 8px;
+  }
+
   .#{$dropdown}-trigger {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
     width: auto;
     height: auto;
     padding: 0;
-    color: $color-primary-black;
+    overflow: hidden;
+    font-size: 13px;
+    color: #333;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    white-space: nowrap;
+    border-width: 0;
+
     .#{$fontPicker}-source-icon {
       display: inline-block;
       margin-right: 9px;
@@ -367,7 +360,6 @@ $fontPicker-search-input-hover-color: $gray !default;
     order: 1;
     min-width: 100px;
     padding: 0.4 * $fontPicker-sizer 1.5 * $fontPicker-sizer 0.4 * $fontPicker-sizer 0.9 * $fontPicker-sizer !important;
-    //min-width: 10*$fontPicker-sizer;  //100px;
     margin: 0;
     font-size: $fontPicker-font-size;
     border: 0;
@@ -399,10 +391,18 @@ $fontPicker-search-input-hover-color: $gray !default;
 
     .pj-scrollable-container {
       width: 100% !important;
+      height: 320 * $fontPicker-sizer !important; 
+    }
+
+    .#{$fontPicker}-searched {
+      display: block !important;
     }
 
     .pj-scrollable-content {
       width: 100% !important;
+      li {
+        display: none;
+      }
     }
   }
 
@@ -426,22 +426,6 @@ $fontPicker-search-input-hover-color: $gray !default;
     .#{$fontPicker}-search-list {
       display: block;
     }
-  }
-}
-.#{$fontPicker}-search-list {
-
-  .pj-scrollable-container {
-    height: 320 * $fontPicker-sizer !important; 
-  }
-
-  .pj-scrollable-content {
-    li {
-      display: none;
-    }
-  }
-
-  .#{$fontPicker}-searched {
-    display: block !important;
   }
 }
 
@@ -489,12 +473,36 @@ $fontPicker-search-input-hover-color: $gray !default;
 .#{$dropdown}-item:last-child {
   padding-left: 3 * $fontPicker-sizer; //30px;
 }
+
 .#{$dropdown} {
   width: 260px;
 }
+
 .#{$dropdown}-select {
   .#{$dropdown} {
     justify-content: center;
-    // padding-left: 3*$fontPicker-sizer;//30px
+  }
+}
+
+//disabled style
+#disabled {
+  .#{$fontPicker} {
+    cursor: not-allowed !important;
+    &.#{$fontPicker}-disabled {
+      &:focus,
+      &:hover {
+        border-color: $disabled-border;
+        .#{$dropdown}-trigger {
+          color: #b3b3b3
+        }
+        span {
+          color: #b3b3b3
+        }
+      }
+    }
+  }
+
+  .#{$dropdown}-trigger {
+    pointer-events: none;
   }
 }

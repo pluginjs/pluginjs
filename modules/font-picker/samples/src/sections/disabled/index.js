@@ -9,7 +9,7 @@ const activated = {
 const data = {
   system: {
     title: 'System',
-    icon: 'pj-icon pj-icon-desktop',
+    icon: 'pj-icon pj-icon-system',
     fonts: {
       'Sans Serif': [
         'Arial',
@@ -73,7 +73,7 @@ const data = {
   },
   google: {
     title: 'Google',
-    icon: 'pj-icon pj-icon-google',
+    icon: 'pj-icon pj-icon-google-font',
     fonts: {
       'sans-serif': [
         'ABeeZee',
