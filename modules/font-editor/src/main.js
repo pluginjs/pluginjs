@@ -75,9 +75,9 @@ class FontEditor extends Component {
 
     // init
     this.fontFamily = new FontFamily(this)
+    this.fontWeight = new FontWeight(this)
     this.fontSize = new FontSize(this)
     this.lineHeight = new LineHeight(this)
-    this.fontWeight = new FontWeight(this)
     this.textAlign = new TextAlign(this)
     this.fontStyle = new FontStyle(this)
     this.textTransform = new TextTransform(this)

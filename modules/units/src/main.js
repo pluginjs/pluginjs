@@ -88,7 +88,7 @@ class Units extends Component {
       },
       width: this.options.width,
       trigger: 'click',
-      reference: this.$input,
+      reference: this.$trigger,
       data: this.options.units.map(i => {
         return { value: i, label: i }
       }),

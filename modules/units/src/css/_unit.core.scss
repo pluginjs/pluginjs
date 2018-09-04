@@ -45,11 +45,12 @@ $units-disabled-opacity: 0.4 !default;
     right: 0;
     width: $units-trigger-width;
     height: 100%;
-    padding: 0;
-    line-height: 3.2 * $units-sizer; //80px
+    padding: 0 !important;
+    font-size: 1.3 * $units-sizer; //13px
+    line-height: 2.8 * $units-sizer !important;
     color: $gray-dark;
     text-align: center;
-    border: 0;
+    border: none !important;
     outline: none;
   }
 

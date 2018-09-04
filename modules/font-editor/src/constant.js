@@ -196,7 +196,7 @@ export const defaults = {
     values: ['uppercase', 'lowercase', 'capitalize'],
     template() {
       return (
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-all-caps"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-alluppercase"></li>' +
         '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-lowercase"></li>' +
         '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-uppercase"></li>'
       )
@@ -208,7 +208,7 @@ export const defaults = {
     template() {
       return (
         '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-underline"></li>' +
-        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-line-through"></li>'
+        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-font-delete"></li>'
       )
     }
   },

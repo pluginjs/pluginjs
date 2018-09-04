@@ -1,6 +1,6 @@
 import template from '@pluginjs/template'
 import { parseHTML, queryAll } from '@pluginjs/dom'
-import { addClass, removeClass, hasClass, getData } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 
 export default class TextDecoration {
@@ -24,7 +24,8 @@ export default class TextDecoration {
       `.${this.instance.classes.TEXTDECORATION}`,
       this.instance.$expandPanel
     )
-
+    console.log(this.$items)
+    console.log(this.values)
     this.values.forEach((value, key) => {
       if (that.$items[key]) {
         that.$items[key].dataset.textDecoration = value
@@ -66,8 +67,7 @@ export default class TextDecoration {
         if (that.instance.is('disabled')) {
           return null
         }
-
-        const decoration = getData('textDecoration', target)
+        const decoration = target.dataset.textDecoration
         if (hasClass(that.instance.classes.ACTIVE, target)) {
           removeClass(that.instance.classes.ACTIVE, target)
           that.instance.value.textDecoration =

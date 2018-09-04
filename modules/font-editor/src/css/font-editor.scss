@@ -191,13 +191,11 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
   &-fontFamily,
   &-fontSize,
-  &-line-height,
+  &-lineHeight,
   &-fontWeight {
     align-items: center;
     justify-content: space-between;
-    // padding: 5px 0;
-    margin-bottom: 2 * $fontEditor-sizer; //30px
-
+    
     &-title {
       order: 0;
       font-size: $font-size-base;
@@ -211,6 +209,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
   &-fontFamily,
   &-fontWeight {
+    margin-bottom: 1.0 * $fontEditor-sizer;
     .pj-dropdown-input {
       width: 23 * $fontEditor-sizer;
     }
@@ -241,7 +240,9 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
       width: 11 * $fontEditor-sizer; //110px
     }
   }
-
+  &-lineHeight {
+    margin-bottom: 1.1 * $fontEditor-sizer; //110px
+  }
   &-decorations {
     box-sizing: border-box;
     display: flex;
