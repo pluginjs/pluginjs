@@ -2,7 +2,6 @@ import template from '@pluginjs/template'
 import Dropdown from '@pluginjs/dropdown'
 import { query, parseHTML, insertBefore } from '@pluginjs/dom'
 import { getWidth } from '@pluginjs/styled'
-
 export default class FontWeight {
   constructor(instance) {
     this.instance = instance
@@ -54,12 +53,9 @@ export default class FontWeight {
         if (that.instance.is('disabled')) {
           return
         }
-
-        that.instance.value.fontWeight = value.innerHTML
-        // that.instance.update();
-        // that.instance.$fillFontName.css({
-        //   'font-weight': value.innerHTML
-        // });
+        console.log(value)
+        that.instance.update()
+        that.instance.$fillFontName.style.fontWeight = value
       }
     })
   }

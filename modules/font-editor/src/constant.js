@@ -188,7 +188,7 @@ export const defaults = {
     value: 'normal',
     values: ['italic', 'normal'],
     template() {
-      return '<li class="{FONTSTYLE}-fontStyle pj-icon pj-icon-imitation-italics"></li>'
+      return '<li class="{FONTSTYLE}-fontStyle pj-icon pj-icon-font"></li>'
     }
   },
   textTransform: {
@@ -197,8 +197,8 @@ export const defaults = {
     template() {
       return (
         '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-all-caps"></li>' +
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-all-lowercase"></li>' +
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-small-caps"></li>'
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-lowercase"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-uppercase"></li>'
       )
     }
   },
