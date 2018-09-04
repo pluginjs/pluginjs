@@ -7,7 +7,7 @@ $filter: "pj-filter";
 
 $filter-font-family: $font-family-base;
 $filter-font-size: $font-size-sm;
-$filter-line-height: $line-height-base;
+$filter-line-height: 22px;
 
 $filter-color: $gray-darkest;
 $filter-active-color: $color-primary;
@@ -35,8 +35,7 @@ $filters-button-margin: 10px;
   }
 
   .#{$dropdown}-item.#{$filter}-active {
-    color: $color-white;
-    background-color: $filter-active-color;
+    color: $filter-active-color;
   }
 
   .#{$filter} {
@@ -95,6 +94,12 @@ $filters-button-margin: 10px;
     &-hide {
       display: none;
     }
+  }
+
+  .#{$filter}-dropdown {
+    padding: $filter-padding;
+    font-size: $filter-font-size;
+    line-height: $filter-line-height;
   }
 }
 

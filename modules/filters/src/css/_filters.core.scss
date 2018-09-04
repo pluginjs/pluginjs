@@ -24,6 +24,11 @@ $filter: "pj-filter" !default;
       display: none;
     }
   }
+
+  .#{$filter}-dropdown {
+    display: flex;
+    align-items: center;
+  }
 }
 
 /* group */
