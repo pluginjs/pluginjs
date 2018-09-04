@@ -5,8 +5,8 @@ const element = query('#overlay .zoom')
 Zoom.of(element, {
   mode: 'window',
   window: {
-    height: '200',
-    width: '200',
+    height: '270',
+    width: '270',
     lensSize: 100,
     position: 2,
     offetX: 20,

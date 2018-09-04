@@ -41,7 +41,7 @@ export const defaults = {
     clickOpen: false,
     height: '400',
     width: '400',
-    borderSize: '1',
+    borderSize: 1,
     borderColor: 'black',
     position: 1,
     offetY: 0,
@@ -59,7 +59,7 @@ export const defaults = {
     color: '',
     opacity: '',
     size: 200,
-    borderSize: '5',
+    borderSize: 5,
     borderColor: '#fff',
     lensShape: 'round',
     flexWidth: false

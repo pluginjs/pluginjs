@@ -7,99 +7,68 @@ $zoom-duration: 0.3s !default;
 
 // Core
 // =====================
-// .#{$zoom} {
-// }
-
-.#{$zoom}-modeInner {
-  .#{$zoom}-window {
-    position: absolute;
-    z-index: 999;
-    display: none;
-    overflow: hidden;
-    cursor: "Crosshair";
-
-    .#{$zoom}-windowImage {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-    }
+.#{$zoom} {
+  &-container {
+    position: relative;
   }
-}
 
-.#{$zoom}-modeLens {
-  .#{$zoom}-lens {
+  &-image {
+    max-width: 100%;
+    vertical-align: middle;
+  }
+
+  &-lens {
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 999;
+    box-sizing: border-box;
     display: none;
     overflow: hidden;
     cursor: default;
-    opacity: 1;
-
-    .#{$zoom}-lensImage {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-    }
   }
-}
 
-.#{$zoom}-modeWindow {
-  .#{$zoom}-lens {
+  &-window {
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 999;
     display: none;
     overflow: hidden;
-    // opacity: 1;
-    cursor: default;
-    border: 1px solid rgb(0, 0, 0);
-
-    &.#{$zoom}-zoomIn {
-      cursor: zoom-in;
-    }
-
-    &.#{$zoom}-zoomOut {
-      cursor: zoom-out;
-    }
-
-    .#{$zoom}-lensImage {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      // max-width: none;
-    }
   }
 
-  .#{$zoom}-window {
+  &-lensImage,
+  &-windowImage {
     position: absolute;
-    z-index: 999;
-    display: none;
-    overflow: hidden;
-
-    .#{$zoom}-windowImage {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-    }
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 
-  .#{$zoom}-overlay {
+  &-overlay {
     position: absolute;
+    top: 0;
+    left: 0;
     display: none;
-    // z-index: 999;
-    // overflow: hidden;
     opacity: 0;
     transition: opacity $zoom-duration;
+  }
+
+  &-zoomIn {
+    cursor: zoom-in;
+  }
+
+  &.#{$zoom}-zoomOut {
+    cursor: zoom-out;
+  }
+
+  &-show {
+    display: block;
+  }
+
+  &-hide {
+    display: none;
   }
 }

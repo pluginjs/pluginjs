@@ -4,39 +4,6 @@
 // Vars
 // =====================
 
-.#{$zoom}-container {
-  position: relative;
-
-  .#{$zoom}-image {
-    max-width: 100%;
-    vertical-align: middle;
-  }
-
-  .#{$zoom}-lens {
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-  }
-
-  .#{$zoom}-window {
-    top: 0;
-    left: 0;
-  }
-
-  .#{$zoom}-overlay {
-    top: 0;
-    left: 0;
-  }
-
-  .#{$zoom}-show {
-    display: block;
-  }
-
-  .#{$zoom}-hide {
-    display: none;
-  }
-}
-
 /* fade: Fade in */
 .#{$zoom}-fadeIn {
   animation: zoom-fadeIn $zoom-duration;

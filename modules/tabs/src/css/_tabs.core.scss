@@ -3,16 +3,18 @@
 // Vars
 // =====================
 $tabs: "pj-tabs" !default;
-$tabs-font-family: $font-family-base !default;
-$tabs-dropdown-zindex: $zindex-dropdown !default;
+$tabs-font-size: $font-size-sm;
+$tabs-label-padding-y: 16px !default;
+$tabs-drop-nav-label-font-family: plugin-icons !default;
+$tabs-bg-color: $color-white;
+$tabs-nav-cover-height: 3px !default;
+$tabs-content-line-height: 22px !default;
 $tabs-active-color: $color-primary !default;
 $tabs-duration: 0.5s !default;
-$tabs-nav-bg: $color-white !default;
 
 // Core
 // =====================
 .#{$tabs} {
-  font-family: $tabs-font-family;
   &-nav {
     position: relative;
     display: flex;
@@ -21,7 +23,20 @@ $tabs-nav-bg: $color-white !default;
     list-style: none;
 
     li {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
       cursor: pointer;
+
+      &::after {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        content: " ";
+      }
     }
 
     .#{$tabs}-active {
@@ -33,7 +48,9 @@ $tabs-nav-bg: $color-white !default;
   &-content {
     position: relative;
     z-index: 0;
+    box-sizing: border-box;
     overflow: hidden;
+    line-height: $tabs-content-line-height;
     transition: all $tabs-duration ease-in-out;
 
     > div {
@@ -48,6 +65,13 @@ $tabs-nav-bg: $color-white !default;
   &[class*="-bottom"] {
     display: flex;
     flex-direction: column-reverse;
+
+    .#{$tabs}-nav {
+      li::after {
+        top: auto;
+        bottom: 100%;
+      }
+    }
   }
 
   &-topright,
@@ -61,7 +85,6 @@ $tabs-nav-bg: $color-white !default;
   &-bottomjustify {
     .#{$tabs}-nav li {
       flex: 1;
-      text-align: center;
     }
   }
 
@@ -79,19 +102,25 @@ $tabs-nav-bg: $color-white !default;
     .#{$tabs}-nav {
       flex-direction: column;
     }
-
-    .#{$tabs}-content {
-      flex: 3;
-    }
   }
 
   &-right {
     flex-direction: row-reverse;
-  }
-}
 
-//responsive
-.#{$tabs}.#{$tabs} {
+    li::after {
+      top: 0;
+      right: 100%;
+      left: auto;
+    }
+  }
+
+  &-left {
+    li::after {
+      top: 0;
+      left: 100%;
+    }
+  }
+
   &-scroll {
     .#{$tabs} {
       &-nav {
@@ -110,24 +139,39 @@ $tabs-nav-bg: $color-white !default;
     flex-direction: column;
 
     .#{$tabs}-nav-label {
-      display: block;
+      display: flex;
       line-height: 1;
       text-decoration: none;
 
       .icon {
         font-size: inherit;
       }
+
+      &::before {
+        position: absolute;
+        right: 10px;
+        display: inline-block;
+        font-family: $tabs-drop-nav-label-font-family;
+        font-style: normal;
+        font-weight: normal; /*stylelint-disable-line*/
+        font-variant: normal;
+        content: "\ea23";
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: auto;
+      }
     }
 
     .#{$tabs}-nav {
       position: absolute;
-      right: auto;
-      bottom: auto;
+      top: $tabs-label-padding-y * 2 + $tabs-font-size + 1px;
       left: 0;
       z-index: 1;
+      box-sizing: border-box;
       display: none;
       width: 100%;
-      background-color: $tabs-nav-bg;
+      padding: 0;
+      margin: 0;
 
       li {
         display: block;
@@ -145,6 +189,13 @@ $tabs-nav-bg: $color-white !default;
     &-open {
       .#{$tabs}-nav {
         display: block;
+
+        &-label {
+          &::before {
+            transition: all $tabs-duration ease-in;
+            transform: rotate(90deg);
+          }
+        }
       }
     }
   }

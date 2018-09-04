@@ -5,11 +5,10 @@
 $tooltip: "pj-tooltip" !default;
 $tooltip-zindex: $zindex-tooltip !default;
 $tooltip-opacity: 0.9 !default;
-$tooltip-margin: 3px !default;
 $tooltip-bg: $gray-darkest !default;
 $tooltip-arrow-width: 5px !default;
 $tooltip-arrow-color: $tooltip-bg !default;
-$tooltip-arrow-offset-x: 10px !default;
+$tooltip-arrow-offset-x: $tooltip-arrow-width * 2 !default;
 
 @mixin reset-text {
   font-family: $font-family-base;
@@ -55,7 +54,6 @@ $tooltip-arrow-offset-x: 10px !default;
 
   &[x-placement^="top"] {
     padding-bottom: $tooltip-arrow-width;
-    margin-bottom: $tooltip-margin;
 
     .#{$tooltip}-inner::before {
       bottom: 0;
@@ -66,7 +64,6 @@ $tooltip-arrow-offset-x: 10px !default;
 
   &[x-placement^="bottom"] {
     padding-top: $tooltip-arrow-width;
-    margin-top: $tooltip-margin;
 
     .#{$tooltip}-inner::before {
       top: 0;
@@ -79,7 +76,7 @@ $tooltip-arrow-offset-x: 10px !default;
   &[x-placement="bottom"] {
     .#{$tooltip}-inner::before {
       left: 50%;
-      margin-left: -$tooltip-arrow-width;
+      transform: translateX(-50%);
     }
   }
 
@@ -87,13 +84,11 @@ $tooltip-arrow-offset-x: 10px !default;
   &[x-placement="bottom-end"] {
     .#{$tooltip}-inner::before {
       right: $tooltip-arrow-offset-x;
-      margin-left: 0;
     }
   }
 
   &[x-placement^="right"] {
     padding-left: $tooltip-arrow-width;
-    margin-left: $tooltip-margin;
 
     .#{$tooltip}-inner::before {
       left: 0;
@@ -104,7 +99,6 @@ $tooltip-arrow-offset-x: 10px !default;
 
   &[x-placement^="left"] {
     padding-right: $tooltip-arrow-width;
-    margin-left: -$tooltip-margin;
 
     .#{$tooltip}-inner::before {
       right: 0;
@@ -117,15 +111,14 @@ $tooltip-arrow-offset-x: 10px !default;
   &[x-placement="right"] {
     .#{$tooltip}-inner::before {
       top: 50%;
-      margin-top: -$tooltip-arrow-width;
+      transform: translateY(-50%);
     }
   }
 
   &[x-placement="left-end"],
   &[x-placement="right-end"] {
     .#{$tooltip}-inner::before {
-      top: $tooltip-arrow-offset-x;
-      margin-top: $tooltip-arrow-width;
+      bottom: $tooltip-arrow-offset-x;
     }
   }
 

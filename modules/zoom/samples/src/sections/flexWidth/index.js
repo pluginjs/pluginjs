@@ -26,7 +26,7 @@ Zoom.of(element3, {
   lens: {
     borderSize: 1,
     borderColor: '#fff',
-    size: 140,
+    size: 90,
     flexWidth: true
   }
 })

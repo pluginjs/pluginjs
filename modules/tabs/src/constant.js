@@ -64,7 +64,7 @@ export const defaults = {
   navLabelSelector: null,
   navWrapSelector: null,
   navLabelTpl:
-    '<a href="javascript:void(0)"><i class=\'icon-char icon-chevron-down\'></i>tab1</a>',
+    '<a href="javascript:void(0)"><i class=\'icon-char pj-icon pj-icon-chevron-down\'></i>tabsss1</a>',
   navWrapTpl: '<div></div>',
   resizeReference: 'window', // 'self', 'window', class name, id name
   responsiveMode: 'drop', // drop, scroll

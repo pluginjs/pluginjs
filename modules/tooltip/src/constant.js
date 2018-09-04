@@ -43,14 +43,14 @@ export const defaults = {
       '</div>'
     )
   },
-  trigger: 'hover focus', // hover focus, click, manual
+  trigger: 'click', // hover focus, click, manual
   hideOutClick: true, // When clicking outside of the tooltip, trigger hide event
   title: '', // Default title value if title attribute isn't present.
   delay: 0, // { "show": 500, "hide": 100 }
   html: false,
   selector: false, // If a selector is provided, popover objects will be delegated to the specified targets.
   placement: 'top', // ['auto','bottom', 'top', 'right', 'left'] and ['start', 'end'] can be combination, like 'bottom-start', 'left-end'. when use a single value, like 'bottom', means 'bottom-center'.
-  offset: 0,
+  offset: '0,10',
   container: false,
   fallbackPlacement: 'flip',
   boundary: 'scrollParent'
