@@ -1,133 +1,90 @@
-import templateEngine from '@pluginjs/template'
-import { query, append, prepend, parseHTML } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { updateDomValue } from '../util'
-import { labelMap as LABELMAP } from '../constant'
-import { deepMerge } from '@pluginjs/utils'
+import { append, query, queryAll } from '@pluginjs/dom'
+import { bindEvent } from '@pluginjs/events'
 
 class Flip {
   constructor(instance) {
-    this.options = deepMerge(Flip.defaults, instance.options.modes.flip)
-
-    this.currenTime = []
-    this.lastTime = []
-
     this.instance = instance
+    this.options = instance.options
+    this.element = instance.element
+    this.classes = instance.classes
+    this.types = instance.types
+    this.labels = instance.labels
+    this.times = instance.times
+    this.places = instance.places
+    this.maximums = instance.maximums
+
+    this.generate()
+    this.bind()
   }
 
-  html(type, getLabel) {
-    const flip = []
-    const label = []
+  generate() {
+    addClass(this.classes.FLIP, this.element)
+    this.samples = {}
 
-    let $flip
-    let $label
+    this.types.forEach((type, index) => {
+      this.samples[type] = {}
 
-    flip[type] = templateEngine.render(this.options.template.call(this), {
-      classes: this.instance.classes,
-      labelType: getLabel.labelMap
+      const number = this.instance.getHtml('number', {
+        number: this.instance.processTime(this.times[type], this.places[index])
+      })
+
+      const label = this.instance.getHtml('label', {
+        label: this.labels[index]
+      })
+
+      this.samples[type].element = this.instance.getElement('flip', {
+        type: this.types[index],
+        number,
+        label
+      })
+
+      this.samples[type].number = queryAll(
+        `.${this.classes.NUMBER}`,
+        this.samples[type].element
+      )
+      this.samples[type].label = query(
+        `.${this.classes.LABEL}`,
+        this.samples[type].element
+      )
+
+      append(this.samples[type].element, this.element)
+    })
+  }
+
+  bind() {
+    bindEvent(
+      this.instance.selfEventName('update'),
+      (e, target, type, value) => {
+        this.update(value, type)
+      },
+      this.element
+    )
+  }
+
+  update(value, type) {
+    const index = this.types.indexOf(type)
+    const maximum = this.maximums[index]
+    value = Number(value)
+
+    this.samples[type].number.forEach((item, itemIndex) => {
+      let newValue
+
+      if (itemIndex < 2) {
+        newValue = value > maximum - 2 ? 0 : value + 1
+      } else {
+        newValue = value
+      }
+
+      item.innerHTML = this.instance.processTime(newValue, this.places[index])
     })
 
-    label[type] = templateEngine.render(
-      this.instance.options.templates.label(),
-      {
-        classes: this.instance.classes,
-        text: getLabel.labelName
-      }
-    )
+    removeClass(this.classes.TURN, this.samples[type].element)
 
-    for (type in flip) {
-      if (Object.prototype.hasOwnProperty.call(flip, type)) {
-        $flip = parseHTML(flip[type])
-        $label = parseHTML(label[type])
-
-        if (this.instance.options.labelPosition === 'above') {
-          addClass(this.instance.getClass('above'), $label)
-          prepend($label, $flip)
-        } else {
-          append($label, $flip)
-        }
-
-        append($flip, this.instance.element)
-      }
-    }
+    setTimeout(() => {
+      addClass(this.classes.TURN, this.samples[type].element)
+    }, 50)
   }
-
-  animate(countDownlastTime, countDownTime, type) {
-    // about flip time
-    const name = LABELMAP[type]
-
-    this.currenTime[type] = countDownTime.current
-    this.lastTime[type] = countDownlastTime.current
-
-    this.setFlipAnimation(`.${name}`, type)
-
-    updateDomValue(
-      `.${this.instance.classes.CURR}.${this.instance.classes.TOP}.${
-        this.instance.classes.NAMESPACE
-      }-${name}`,
-      this.instance.element,
-      this.currenTime[type]
-    )
-
-    updateDomValue(
-      `.${this.instance.classes.CURR}.${this.instance.classes.BOTTOM}.${
-        this.instance.classes.NAMESPACE
-      }-${name}`,
-      this.instance.element,
-      this.currenTime[type]
-    )
-
-    updateDomValue(
-      `.${this.instance.classes.NEXT}.${this.instance.classes.TOP}.${
-        this.instance.classes.NAMESPACE
-      }-${name}`,
-      this.instance.element,
-      this.lastTime[type]
-    )
-
-    updateDomValue(
-      `.${this.instance.classes.NEXT}.${this.instance.classes.BOTTOM}.${
-        this.instance.classes.NAMESPACE
-      }-${name}`,
-      this.instance.element,
-      this.lastTime[type]
-    )
-  }
-
-  // flip animation
-  setFlipAnimation(className, type) {
-    const dom = query(className, this.instance.element)
-
-    if (dom) {
-      if (this.currenTime[type] !== this.lastTime[type]) {
-        removeClass(`${this.instance.classes.FLIPANIMATION}`, dom)
-
-        setTimeout(() => {
-          addClass(`${this.instance.classes.FLIPANIMATION}`, dom)
-        }, 50)
-      }
-    }
-  }
-}
-
-Flip.defaults = {
-  template() {
-    return `<div class="{classes.TIME} {labelType}">
-                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {classes.FLIPANIMATION} {classes.CURR} {classes.TOP}"></span>
-                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {classes.FLIPANIMATION} {classes.NEXT} {classes.TOP}"></span>
-                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {classes.FLIPANIMATION} {classes.NEXT} {classes.BOTTOM}"></span>
-                    <span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType} {classes.FLIPANIMATION} {classes.CURR} {classes.BOTTOM}"></span>
-                  </div>`
-  }
-}
-
-Flip.classes = {
-  FLIP: '{namespace}-flip',
-  CURR: '{namespace}-curr',
-  NEXT: '{namespace}-next',
-  TOP: '{namespace}-top',
-  BOTTOM: '{namespace}-bottom',
-  FLIPANIMATION: '{namespace}-flip-animation'
 }
 
 export default Flip

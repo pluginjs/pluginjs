@@ -4,169 +4,116 @@
 // =====================
 $countdown: "pj-countdown" !default;
 
-$countdown-flip-width: 160px !default;
-$countdown-flip-height: 160px !default;
-$countdown-flip-min-width: 80px !default;
+$countdown-progress-width: 100px !default;
 
-$countdown-progress-width: 180px !default;
-$countdown-progress-height: 180px !default;
-$countdown-progress-min-width: 112px !default;
+$countdown-flip-width: 60px !default;
+$countdown-flip-height: 90px !default;
+$countdown-flip-bg: $gray !default;
 
 // core
 // =====================
-// simple
 .#{$countdown} {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  text-align: center;
+  justify-content: space-around;
+
+  &-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
-.#{$countdown}-time {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+.#{$countdown}-progress {
+  .#{$countdown} {
+    &-time {
+      position: relative;
+      width: $countdown-progress-width;
+      min-width: $countdown-progress-width;
+      overflow: hidden;
+    }
 
-.#{$countdown}-number {
-  position: relative;
-  margin: 0;
+    &-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-ring {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+      overflow: hidden;
+      vertical-align: middle;
+    }
+  }
+
+  path {
+    transition: stroke-dashoffset 0.1s ease;
+  }
 }
 
 // flip
 .#{$countdown}-flip {
-  .#{$countdown}-time {
-    position: relative;
-    display: inline-block;
-    width: $countdown-flip-width;
-    min-width: $countdown-flip-min-width;
-    height: $countdown-flip-height;
-    min-height: $countdown-flip-min-width;
-    perspective: 479px;
-    backface-visibility: hidden;
-    transform: translate3d(0, 0, 0);
-  }
+  .#{$countdown} {
+    &-content {
+      position: relative;
+      width: $countdown-flip-width;
+      height: $countdown-flip-height;
+      perspective: 500px;
+    }
 
-  .#{$countdown}-number {
-    position: absolute;
-    top: 0;
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    line-height: $countdown-flip-height;
-    transform: translateZ(0);
-    transform-style: flat;
-  }
-
-  .#{$countdown}-number.#{$countdown}-top {
-    height: 50%;
-    transform-origin: 50% 100%;
-
-    &::after {
+    &-number {
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
-      z-index: -1;
       width: 100%;
-      height: 2px;
-      content: "";
-    }
-  }
+      height: 50%;
+      overflow: hidden;
+      line-height: $countdown-flip-height;
+      background-color: $countdown-flip-bg;
+      transform-origin: 50% 100%;
 
-  .#{$countdown}-number.#{$countdown}-curr.#{$countdown}-top {
-    z-index: 3;
-    transform: rotateX(0deg);
-  }
+      &:nth-child(even) {
+        top: 50%;
+        line-height: 0;
+        transform-origin: 50% 0;
+      }
 
-  .#{$countdown}-number.#{$countdown}-bottom {
-    top: 50%;
-    height: 50%;
-    line-height: 0;
-    transform-origin: 50% 0;
-  }
+      &:first-child {
+        z-index: 1;
+        transform: rotateX(0deg);
+      }
 
-  .#{$countdown}-number.#{$countdown}-next.#{$countdown}-bottom {
-    z-index: 2;
-    transform: rotateX(90deg);
-  }
+      &:last-child {
+        transform: rotateX(90deg);
+      }
 
-  .#{$countdown}-label {
-    position: absolute;
-    top: 100%;
-    display: block;
-    width: 100%;
-  }
-
-  .#{$countdown}-label.above {
-    top: auto;
-    bottom: 100%;
-  }
-
-  .#{$countdown}-flip-animation {
-    .#{$countdown}-number.#{$countdown}-curr.#{$countdown}-top {
-      transition: all 250ms ease-in-out;
-      transform: rotateX(-90deg);
     }
 
-    .#{$countdown}-number.#{$countdown}-next.#{$countdown}-bottom {
-      transition: all 250ms ease-in-out 250ms;
-      transform: rotateX(0deg);
+    &-turn .#{$countdown}-number{
+      &:first-child {
+        z-index: 3;
+        transition: all 0.25s ease-in-out;
+        transform: rotateX(-90deg);
+      }
+
+      &:last-child {
+        z-index: 2;
+        transition: all 0.25s ease-in-out 0.25s;
+        transform: rotateX(0deg);
+      }
     }
   }
 }
 
- // progress 
- .#{$countdown}-progress {
-  .#{$countdown}-time {
-    position: relative;
-    width: $countdown-progress-width;
-    min-width: $countdown-progress-min-width;
-    height: $countdown-progress-height;
-    min-height: $countdown-progress-min-width;
 
-    .#{$countdown}-number {
-      position: absolute;
-      top: 48%;
-      left: 0;
-      width: 100%;
-      transform: translateY(-70%);
-    }
-
-    .#{$countdown}-label {
-      position: absolute;
-      top: 55%;
-      left: 0;
-      width: 100%;
-      transform: translateY(30%);
-    }
-
-    .#{$countdown}-number.above {
-      position: absolute;
-      top: auto;
-      transform: translateY(20%);
-    }
-
-    .#{$countdown}-label.above {
-      position: absolute;
-      top: 35%;
-      transform: translateY(-80%);
-    }
-  }
-
-  .#{$countdown}-progress-ring {
-    width: 100%;
-  }
-
-  svg {
-    transform: rotate(-90deg);
-    stroke-dasharray: 255%;
-    stroke-dashoffset: 0%;
-    fill: none;
-  }
-
-  circle {
-    transition: all 0.5s;
-  }
-}

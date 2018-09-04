@@ -1,78 +1,68 @@
-import templateEngine from '@pluginjs/template'
-import { append, parseHTML, prepend } from '@pluginjs/dom'
-import { labelMap as LABELMAP } from '../constant'
-import { updateDomValue } from '../util'
-import { deepMerge } from '@pluginjs/utils'
+import { append, query } from '@pluginjs/dom'
+import { bindEvent } from '@pluginjs/events'
 
 class Simple {
   constructor(instance) {
-    this.options = deepMerge(Simple.defaults, instance.options.modes.simple)
     this.instance = instance
+    this.element = instance.element
+    this.classes = instance.classes
+    this.types = instance.types
+    this.labels = instance.labels
+    this.times = instance.times
+
+    this.generate()
+    this.bind()
   }
 
-  html(type, getLabel) {
-    const wrap = []
-    const label = []
-    const number = []
+  generate() {
+    this.samples = {}
 
-    let $wrap
-    let $number
-    let $label
+    this.types.forEach((type, index) => {
+      this.samples[type] = {}
 
-    wrap[type] = templateEngine.render(this.instance.options.templates.wrap(), {
-      classes: this.instance.classes,
-      labelType: getLabel.labelMap
+      const number = this.instance.getHtml('number', {
+        number: this.instance.processTime(
+          this.times[type],
+          this.instance.places[index]
+        )
+      })
+
+      const label = this.instance.getHtml('label', {
+        label: this.labels[index]
+      })
+
+      this.samples[type].element = this.instance.getElement('simple', {
+        type: this.types[index],
+        number,
+        label
+      })
+
+      this.samples[type].number = query(
+        `.${this.classes.NUMBER}`,
+        this.samples[type].element
+      )
+      this.samples[type].label = query(
+        `.${this.classes.LABEL}`,
+        this.samples[type].element
+      )
+
+      append(this.samples[type].element, this.element)
     })
-
-    label[type] = templateEngine.render(
-      this.instance.options.templates.label(),
-      {
-        classes: this.instance.classes,
-        text: getLabel.labelName
-      }
-    )
-
-    number[type] = templateEngine.render(
-      this.instance.options.templates.time(),
-      {
-        classes: this.instance.classes,
-        labelType: getLabel.labelMap
-      }
-    )
-
-    for (type in wrap) {
-      if (Object.prototype.hasOwnProperty.call(wrap, type)) {
-        $wrap = parseHTML(wrap[type])
-        $number = parseHTML(number[type])
-        $label = parseHTML(label[type])
-
-        append($number, $wrap)
-
-        if (this.instance.options.labelPosition === 'above') {
-          prepend($label, $wrap)
-        } else {
-          append($label, $wrap)
-        }
-
-        append($wrap, this.instance.element)
-      }
-    }
   }
 
-  animate(countDownTime, type) {
-    const name = LABELMAP[type]
-
-    updateDomValue(
-      `.${this.instance.classes.NAMESPACE}-${name}`,
-      this.instance.element,
-      countDownTime.current
+  bind() {
+    bindEvent(
+      this.instance.selfEventName('update'),
+      (e, target, type, value) => {
+        this.update(value, type)
+      },
+      this.element
     )
   }
-}
 
-Simple.defaults = {}
-Simple.classes = {
-  simple: '{namespace}-simple'
+  update(value, type) {
+    this.samples[type].number.innerHTML = value
+  }
 }
 
 export default Simple

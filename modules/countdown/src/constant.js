@@ -7,57 +7,93 @@ export const classes = {
   MODE: '{namespace}-{mode}',
   TIME: '{namespace}-time',
   NUMBER: '{namespace}-number',
-  LABEL: '{namespace}-label'
+  LABEL: '{namespace}-label',
+  PROGRESS: '{namespace}-progress',
+  CONTENT: '{namespace}-content',
+  RING: '{namespace}-ring',
+  FLIP: '{namespace}-flip',
+  TURN: '{namespace}-turn'
 }
 
 export const events = {
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
-  DESTROY: 'destroy'
+  DESTROY: 'destroy',
+  START: 'start',
+  STOP: 'stop',
+  UPDATE: 'update'
 }
 
 export const methods = ['init', 'enable', 'disable', 'destroy', 'start', 'stop']
 
-export const labelMap = {
+export const KEY_MAP = {
+  TD: 'totalDays',
+  TH: 'totalHours',
+  TM: 'totalMinutes',
+  TS: 'totalSeconds',
   Y: 'years',
-  YM: 'month', // yearToMonths
-  M: 'months',
+  MM: 'months',
+  WM: 'weeksToMonth',
   W: 'weeks',
-  WM: 'weeks', // weekToMonths
-  DM: 'days', // dayToMonths
-  DW: 'days', // dayToWeeks
-  TS: 'seconds', // totalMinutes
-  TM: 'minutes', // totalMinutes
-  TH: 'hours', // totalMinutes
-  d: 'days',
-  h: 'hours',
-  m: 'minutes',
-  s: 'seconds'
+  DM: 'daysToMonth',
+  DW: 'daysToWeek',
+  D: 'days',
+  H: 'hours',
+  M: 'minutes',
+  S: 'seconds'
 }
 
 export const defaults = {
   theme: null,
   mode: 'simple', // 'simple','flip','progress
-  modes: {
-    simple: {},
-    flip: {},
-    progress: {}
-  },
-  format: 'd,h,m,s',
-  label: true, // "天,时，分，秒"
-  labelPosition: 'bottom', // bottome | above
-  due: `${new Date().getFullYear() + 1}-1-1`, // scheduled time
-  now: new Date(), // now time
+  format: 'TD,H,M,S', // which key to show
+  places: '3,2,2,2', // key places
+  overall: false, // event trigger Modularity
+  label: 'default', // 'default' or custom labels like 'day,hour,month,second'
+  labelInverse: false, // bottome | above
+  due: '2019-9-9', // scheduled time
+  interval: 1000, // refresh interval
+  maximums: '999,24,60,60', // progress module maximums
+  svgSize: 100, // progress size
+  svgBarsize: 2, // progress bar size
+  svgTrackcolor: 'rgba(0,0,0, 0.1)', // progress track color
+  svgFillcolor: '#215fdb', // progress fill color
   templates: {
-    wrap() {
-      return '<div class="{classes.TIME} {labelType}"></div>'
+    simple() {
+      return `<div class="{classes.TIME} {classes.NAMESPACE}-{type}">
+                {number}
+                {label}
+              </div>`
+    },
+    progress() {
+      return `<div class="{classes.TIME} {classes.NAMESPACE}-{type}">
+                <div class="{classes.CONTENT}">
+                  {number}
+                  {label}
+                </div>
+                {ring}
+              </div>`
+    },
+    flip() {
+      return `<div class="{classes.TIME} {classes.NAMESPACE}-{type}">
+                {label}
+                 <div class="{classes.CONTENT}">
+                  {number}
+                  {number}
+                  {number}
+                  {number}
+                 </div>
+              </div>`
+    },
+    number() {
+      return '<span class="{classes.NUMBER}">{number}</span>'
     },
     label() {
-      return '<span class="{classes.LABEL}">{text}</span>'
+      return '<span class="{classes.LABEL}">{label}</span>'
     },
-    time() {
-      return '<span class="{classes.NUMBER} {classes.NAMESPACE}-{labelType}"></span>'
+    ring() {
+      return '<div class={classes.RING}></div>'
     }
   }
 }

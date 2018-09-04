@@ -3,54 +3,24 @@
 // Vars
 // =====================
 $countdown: "pj-countdown";
-$countdown-progress-font-size: 46px;
-$countdown-progress-line-height: 54px;
-$countdown-progress-font-weight: $font-weight-normal;
-$countdown-progress-color: $gray-darkest;
+$countdown-progress-font-size: $font-size-sm;
+$countdown-progress-number-size: 46px;
 
-$countdown-progress-label-font-size: 14px;
-
-$countdown-progress-spacer: 10px;
-
-$countdown-progress-small-width: 148px;
-$countdown-progress-small-height: 148px;
-$countdown-progress-small-margin: 5px;
+$countdown-progress-width: 160px;
 
 // progress
 // =====================
+
 .#{$countdown}-progress {
-  .#{$countdown}-time {
-    margin: $countdown-progress-spacer;
+  .#{$countdown} {
+    font-size: $countdown-progress-font-size;
 
-    .#{$countdown}-number {
-      font-size: $countdown-progress-font-size;
-      font-weight: $countdown-progress-font-weight;
-      line-height: $countdown-progress-line-height;
-      color: $countdown-progress-color;
+    &-time {
+      width: $countdown-progress-width;
     }
 
-    .#{$countdown}-label {
-      font-size: $countdown-progress-label-font-size;
-      text-transform: uppercase;
-  
-    }
-  }
-}
-
-@media only screen and (max-width: 896px) {
-  .#{$countdown}-progress {
-    .#{$countdown}-time {
-      width: $countdown-progress-small-width;
-      height: $countdown-progress-small-height;
-      margin: $countdown-progress-small-margin;
-
-      .#{$countdown}-number {
-        font-size: $font-size-lg;
-      }
-
-      .#{$countdown}-label {
-        font-size: $font-size-xs;
-      }
+    &-number {
+      font-size: $countdown-progress-number-size;
     }
   }
 }
