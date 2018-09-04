@@ -146,7 +146,6 @@ class GradientPicker extends Component {
       }
     )
     this.render()
-    console.log(this.data)
   }
 
   handelComponent() {
@@ -399,7 +398,6 @@ class GradientPicker extends Component {
     }
     setStyle('background', color, this.$fillImg)
 
-    console.log(this.data)
     this.element.value = this.options.process(this.data)
   }
 

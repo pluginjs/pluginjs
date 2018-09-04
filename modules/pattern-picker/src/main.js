@@ -3,11 +3,13 @@ import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { setStyle } from '@pluginjs/styled'
+import { setStyle } from '@pluginjs/styled' // , getStyle
 import {
   query,
-  queryAll,
+  // queryAll,
   // parent,
+  fadeOut,
+  fadeIn,
   parseHTML,
   getData,
   setData,
@@ -66,9 +68,6 @@ class PatternPicker extends Component {
     this.bgColor = this.options.bgcolor
     this.opacity = 1
 
-    this.$selecting = null
-    this.$selected = null
-
     this.$content = null
     this.setupStates()
     this.initialize()
@@ -94,26 +93,13 @@ class PatternPicker extends Component {
 
   initData() {
     const data = this.element.value
+    console.log(this.element.value)
     if (data) {
       this.val(data)
     }
   }
 
   create() {
-    // const that = this
-    // this.$selectorList = query(
-    //   `.${this.classes.SELECTORLIST} ul`,
-    //   this.$editPanel.MODAL.$content
-    // )
-    // this.$scrollable = Scrollable.of(
-    //   parentWith(hasClass(this.classes.SELECTORLIST), this.$selectorList),
-    //   {
-    //     contentSelector: '>',
-    //     containerSelector: '>'
-    //   }
-    // )
-
-    // this.$infoAction = parent(query(`.${this.classes.REMOVE}`, this.$wrap))
     const that = this
 
     addClass(this.classes.INPUT, this.element)
@@ -177,10 +163,21 @@ class PatternPicker extends Component {
             label: this.translate('delete'),
             color: 'danger',
             fn(resolve) {
-              that.$infoAction.fadeOut(100, () => {
-                that.clear()
-                that.$infoAction.fadeIn()
-              })
+              fadeOut(
+                {
+                  duration: 100,
+                  callback: () => {
+                    that.clear()
+                    fadeIn(
+                      {
+                        duration: 100
+                      },
+                      that.$infoAction
+                    )
+                  }
+                },
+                that.$infoAction
+              )
               resolve()
             }
           }
@@ -246,106 +243,6 @@ class PatternPicker extends Component {
         } pj-btn pj-btn-transparent'>Save</button>
       </div>`
     )
-
-    // this.$editPanel = EditPanel.of(this.element, {
-    //   init: { text: this.translate('choosePattern') },
-    //   selector: {
-    //     title: this.translate('selectorTitle'),
-    //     contentTitle: this.translate('selectorContent')
-    //   },
-    //   components: [
-    //     {
-    //       title: this.translate('foreColor'),
-    //       element: $forePicker,
-    //       type: 'colorPicker',
-    //       options: {
-    //         theme: 'default',
-    //         module: ['solid'],
-    //         solidMode: 'sample',
-    //         solidModule: {
-    //           alpha: false,
-    //           hex: false
-    //         }
-    //       }
-    //     },
-    //     {
-    //       title: this.translate('bgColor'),
-    //       element: $bgPicker,
-    //       type: 'colorPicker',
-    //       options: {
-    //         theme: 'default',
-    //         module: ['solid'],
-    //         solidMode: 'sample',
-    //         solidModule: {
-    //           alpha: false,
-    //           hex: false
-    //         }
-    //       }
-    //     },
-    //     {
-    //       title: this.translate('opacity'),
-    //       element: $opacityPicker,
-    //       type: 'range',
-    //       options: {
-    //         theme: 'default',
-    //         tip: false,
-    //         range: false,
-    //         units: {
-    //           '%': {
-    //             min: 0,
-    //             max: 100,
-    //             step: 1
-    //           }
-    //         }
-    //       }
-    //     }
-    //   ],
-    //   action: {
-    //     panel: {
-    //       cancel: {
-    //         title: this.translate('cancel'),
-    //         class: ''
-    //       },
-    //       save: {
-    //         title: this.translate('save'),
-    //         class: ''
-    //       }
-    //     },
-    //     selector: {
-    //       cancel: {
-    //         title: this.translate('cancel'),
-    //         class: ''
-    //       },
-    //       save: {
-    //         title: this.translate('useIt'),
-    //         class: ''
-    //       }
-    //     }
-    //   },
-    //   templates: {
-    //     wrap() {
-    //       return `<div class='${that.classes.WRAP} {class}'></div>`
-    //     },
-    //     info() {
-    //       return `<div class='{class}'><image class='{content} ${
-    //         that.classes.INFOIMG
-    //       }' /></div>`
-    //     },
-    //     infoAction() {
-    //       return `<div class='{class}'><i class='pj-icon pj-icon-edit  ${
-    //         that.classes.EDITOR
-    //       }'></i><i class='pj-icon pj-icon-delete ${that.classes.REMOVE}'></i></div>`
-    //     },
-    //     previewContent() {
-    //       return `<div class='{class} ${that.classes.PREVIEWIMG}'></div>`
-    //     },
-    //     selectorList() {
-    //       return `<div class='${
-    //         that.classes.SELECTORLIST
-    //       }'><div><ul class='{class}'></ul></div></div>`
-    //     }
-    //   }
-    // })
   }
 
   pluginCreate() {
@@ -452,16 +349,19 @@ class PatternPicker extends Component {
           return
         }
         this.DROPDOWN.show()
+        return false // eslint-disable-line
       }),
-
+      bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
+        this.render()
+      }),
       // info action hover
-      bindEvent('mouseover', '.pj-editPanel-info', () => {
+      bindEvent('mouseover', `.${this.classes.FILL}`, () => {
         if (this.is('disabled')) {
           return
         }
         addClass(this.classes.HOVER, this.$infoAction)
       }),
-      bindEvent('mouseout', '.pj-editPanel-info', () => {
+      bindEvent('mouseout', `.${this.classes.FILL}`, () => {
         if (this.is('disabled')) {
           return
         }
@@ -474,76 +374,24 @@ class PatternPicker extends Component {
       })
     )(this.$wrap)
 
-    // update
-    // this.$editPanel.options.onUpdate = () => {
-    //   if (!this.$selected) {
-    //     return
-    //   }
-
-    //   this.update()
-    //   return
-    // }
-    // change
-    // this.$editPanel.options.onChange = () => {
-    //   this.$selected = this.$selecting
-    //   if (!this.$selected) {
-    //     return
-    //   }
-    //   const info = getData('info', this.$selected)
-
-    // setData('info', info, this.$previewImg)
-
-    // set foreColor bgPicker Opacity
-    // this.BGPICKER.val(this.options.format(info, 'background-color'))
-    // this.FOREPICKER.val(this.options.format(info, 'color'))
-    // this.OPACITYPICKER.val(`${this.options.format(info, 'opacity')}%`)
-
-    // set preview
-    // this.setInfo(this.$previewImg)
-    // this.$editPanel.closeSelector()
-
-    // return
-    // }
-
-    // update scorllable
-    // this.$editPanel.options.onOpenSelector = () => {
-    //   this.$scrollable.enable()
-    //   this.$scrollable.update()
-    // }
-
-    // select SVG img
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.SELECTORITEM}`,
-      e => {
-        const $this = e.target
-        queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).map(
-          removeClass(this.classes.ACTIVE)
-        )
-        addClass(this.classes.ACTIVE, $this)
-        this.$selecting = $this
-      },
-      this.$selectorList
-    )
-
     // action save
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.SAVE}`,
-      () => {
+    compose(
+      bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
         this.update()
-      },
-      this.$action
-    )
+        this.enter('state')
+      }),
+      bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
+        // this.update()
+        this.DROPDOWN.hide()
+        if (!this.is('state')) {
+          removeClass(this.classes.SHOW, this.$wrap)
+        }
+      })
+    )(this.$action)
   }
 
   unbind() {
     removeEvent(this.eventName(), this.$wrap)
-    // this.$selectPanel.off(this.eventName());
-    //
-    // this.$forePicker.unbind();
-    // this.$bgPicker.unbind();
-    // this.$opacityConent.unbind();
   }
 
   update(data) {
@@ -554,7 +402,6 @@ class PatternPicker extends Component {
       this.data = getData('info', this.$previewImg)
     }
 
-    console.log(this.$fillImg)
     setData('info', getData('info', this.$previewImg), this.$fillImg)
     this.setInfo(this.$fillImg)
     this.element.value = this.val()
@@ -574,10 +421,10 @@ class PatternPicker extends Component {
     }
 
     this.setAttr(key, this.$previewImg)
-    this.element.value = this.options.process.call(
-      this,
-      getData('info', this.$previewImg)
-    )
+    // this.element.value = this.options.process.call(
+    //   this,
+    //   getData('info', this.$previewImg)
+    // )
   }
 
   setInfo(img) {
@@ -620,9 +467,9 @@ class PatternPicker extends Component {
 
       getData('info', data, this.$previewImg)
 
-      this.$bgPicker.val(this.options.format(data, 'background-color'))
-      this.$forePicker.val(this.options.format(data, 'color'))
-      this.$opacityPicker.val(`${this.options.format(data, 'opacity')}%`)
+      this.BGCOLOR.val(this.options.format(data, 'background-color'))
+      this.FOREPICKER.val(this.options.format(data, 'color'))
+      this.OPACITY.val(`${this.options.format(data, 'opacity')}%`)
 
       this.update(data)
     }
@@ -690,14 +537,12 @@ class PatternPicker extends Component {
       this.$fillImg
     )
 
-    this.$selected = null
-    this.$selecting = null
-
-    this.$opacityPicker.val('100%')
-    this.$forePicker.clear()
-    this.$bgPicker.clear()
+    this.OPACITY.val('100%')
+    this.FOREPICKER.clear()
+    this.BGCOLOR.clear()
 
     removeClass(this.classes.SHOW, this.$wrap)
+    this.leave('state')
   }
 
   enable() {

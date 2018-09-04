@@ -31,9 +31,6 @@ export const classes = {
   FORECOLOR: '{namespace}-forecolor',
   BGCOLOR: '{namespace}-bgcolor',
   OPACITY: '{namespace}-opacity',
-  // select panel
-  SELECTORLIST: '{namespace}-selector-list',
-  SELECTORITEM: '{namespace}-selector-item',
 
   DROPDOWN: '{namespace}-dropdown',
   TRIGGER: '{namespace}-trigger',

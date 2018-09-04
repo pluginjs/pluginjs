@@ -10,7 +10,7 @@ $patternPicker-spacer: $spacer !default;
 $patternPicker-border: 1px solid $gray-border !default;
 
 $patternPicker-width: 16 * $patternPicker-spacer !default; //160px
-$patternPicker-height: 9 * $patternPicker-spacer !default; //30px
+$patternPicker-height: 9 * $patternPicker-spacer !default; //108px
 $patternPicker-border: 1px solid $gray-border;
 
 // preview
@@ -33,7 +33,7 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
     display: none;
   }
 
-  &-trigger {    
+  &-trigger {   
     position: relative;
     display: flex;
     flex-direction: column;
@@ -48,6 +48,7 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
     .#{$patternPicker}-fill {
       position: relative;
       display: none;
+      height: $patternPicker-height;
       padding: 1px;
       border: $patternPicker-border;
   
@@ -64,6 +65,10 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
         background-color: $color-opacity;
         border-radius: 2px;
         opacity: 0;
+
+        .#{$patternPicker}-editor {
+          margin-right: 28px;
+        }
       }
   
       &-img {
@@ -164,7 +169,7 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
   // === untils === //
   &-hover {
     opacity: 0.9 !important;
-    transition: opacity 0.3s;
+    transition: opacity 0.5s;
   }
 
   &-active {
@@ -172,11 +177,11 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
   }
 
   &-show {
-    .#{$editPanel}-init {
+    .#{$patternPicker}-empty {
       display: none;
     }
 
-    .#{$editPanel}-info {
+    .#{$patternPicker}-fill {
       display: block;
 
       &-content {
@@ -187,7 +192,7 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
 }
 
 .#{$patternPicker}-disabled {
-  .#{$editPanel}-info {
+  .#{$patternPicker}-action {
     .#{$patternPicker}-remove,
     .#{$patternPicker}-edit {
       cursor: not-allowed !important;
