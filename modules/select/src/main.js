@@ -312,6 +312,7 @@ class Select extends Component {
         // label: () => this.options.templates.label()
       },
       onShow: () => {
+        addClass(this.classes.BORDER, this.triggerElement)
         this.trigger(EVENTS.OPEN)
         if (this.options.filterable) {
           this.label.select()
@@ -325,6 +326,7 @@ class Select extends Component {
         }
       },
       onHide: () => {
+        removeClass(this.classes.BORDER, this.triggerElement)
         this.trigger(EVENTS.HIDE)
         if (this.options.filterable) {
           if (this.options.multiple) {

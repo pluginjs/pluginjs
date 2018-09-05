@@ -28,7 +28,7 @@ $select-badge-border-radius: $border-radius-base !default;
 $select-badge-space: 0.4 * $select-sizer !default; //4px
 $select-badge-space-x: $select-space-x - $select-badge-space - 1px !default;
 $select-badge-space-y: $select-space-y - $select-badge-space - 1px !default;
-$select-badge-delete-color: $gray-light !default;
+$select-badge-delete-color: $gray !default;
 $select-badge-delete-color-hover: $select-color !default;
 $select-item-hover-bg: $gray-lightest !default;
 $select-item-selected-color: $color-white !default;
@@ -70,25 +70,25 @@ $select-active-border-color: $border-color-active !default;
       z-index: 999999;
     }
   }
-
+  &-border {
+    border-color: #215fdb !important;
+  }
   &-label {
     // min-height: $select-label-min-height;
+    color: $gray-dark !important;
     vertical-align: middle;
   }
-
+  &-dropdown {
+    z-index: 99999;
+  }
   &-badge {
     display: block;
-    //float: left;
     height: 2.2 * $select-sizer; //22px
     padding: 0 $select-sizer; //0 10px
-    // border: 1px solid transparent;
-    // padding: $select-badge-space-y $select-badge-space-x;
-    // margin: $select-badge-space 0 $select-badge-space $select-badge-space;
-    // vertical-align: middle;
     margin: 0.3 * $select-sizer; //3px
     line-height: 2.1 * $select-sizer; //21px
     cursor: default;
-    background-color: $select-badge-bg;
+    background-color: $gray-light;
     border-radius: $select-badge-border-radius;
     &:hover {
       background-color: $select-badge-border-color;
@@ -113,19 +113,21 @@ $select-active-border-color: $border-color-active !default;
     display: block;
     padding: $select-space-y $select-label-space-x;
     font-size: $font-size-xs;
-    color: $select-group-label-color;
+    color: $gray-dark;
     cursor: default;
 
   }
 
   &-item {
+    padding: 4px 15px;
+    overflow: hidden;
+    line-height: 26px;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    white-space: nowrap;
+    list-style: none;
     cursor: pointer;
-    &.#{$select}-disabled {
-      color: inherit;
-      cursor: not-allowed !important;
-      background-color: $select-disabled-bg !important;
-      opacity: 0.4;
-    }
+
     &.#{$select}-mark {
       color: inherit;
       background-color: $select-item-hover-bg;
@@ -138,14 +140,27 @@ $select-active-border-color: $border-color-active !default;
       min-width: 2 * $select-sizer; //20px
       max-width: 100%;
     }
+    
+    &.#{$select}-label {
+      display: none
+    }
 
+    .pj-input {
+      border: none !important;
+    }
     .#{$select}-trigger {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: flex-start;
+      width: 20 * $select-sizer;
       height: auto;
-      min-height: 3 * $select-sizer; //30px
+      background-color: #FFF;
+      border: 1px solid #F2F2F2;
+      &:hover {
+        border-color: $color-black; 
+      }
     }
 
     &.#{$select}-hpj-badge {
@@ -170,7 +185,6 @@ $select-active-border-color: $border-color-active !default;
   }
   &-trigger {
     z-index: 1001;
-    // width: $select-width;
 
     .pj-dropdown-icon {
       position: absolute;
@@ -209,19 +223,40 @@ $select-active-border-color: $border-color-active !default;
 }
 
 .#{$select}-disabled {
-  .pj-dropdown-icon {
-    cursor: not-allowed !important;
+  width: 20 * $select-sizer; //200px;
+
+  color: inherit;
+  cursor: not-allowed !important;
+  opacity: 0.4;
+
+  .pj-select-label {
+    pointer-events: none !important;
   }
+  // .pj-dropdown-icon {
+  //   cursor: not-allowed !important;
+  // }
 
-  .#{$select}-badge {
-    cursor: not-allowed !important;
+  // .#{$select}-badge {
+  //   cursor: not-allowed !important;
 
-    &:hover {
-      background-color: inherit;
-    }
+  //   &:hover {
+  //     background-color: inherit;
+  //   }
 
-    .#{$select}-badge-delete {
-      cursor: not-allowed !important;
-    }
-  }
+  //   .#{$select}-badge-delete {
+  //     cursor: not-allowed !important;
+  //   }
+  // }
+}
+.pj-icon-remove-small {
+    position: absolute;
+    right: 6px;
+  display: inline-block;
+    height: 16px;
+    padding: 0 5px;
+    font-size: 16px;
+    line-height: 16px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    transform: translateY(0);
 }

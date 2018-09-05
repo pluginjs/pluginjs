@@ -42,7 +42,8 @@ export const classes = {
   FOCUS: '{namespace}-focus',
   LOADING: '{namespace}-loading',
   ERROR: '{namespace}-error',
-  HIDEICON: '{namespace}-hideIcon'
+  HIDEICON: '{namespace}-hideIcon',
+  BORDER: '{namespace}-border'
 }
 
 export const methods = [
