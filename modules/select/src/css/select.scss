@@ -44,7 +44,7 @@ $select-active-border-color: $border-color-active !default;
 .#{$select} {
   &-wrap {
     font-size: $select-font-size;
-    // line-height: $select-line-height;
+    
     .#{$dropdown}.#{$dropdown}-show {
       border-color: $select-border-color;
     }
@@ -251,7 +251,7 @@ $select-active-border-color: $border-color-active !default;
 .pj-icon-remove-small {
     position: absolute;
     right: 6px;
-  display: inline-block;
+    display: inline-block;
     height: 16px;
     padding: 0 5px;
     font-size: 16px;

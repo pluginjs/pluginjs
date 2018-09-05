@@ -382,8 +382,14 @@ input.#{$bgPicker}-input {
     }
   }
   &-attachment-content {
+    border: 1px solid #e6e6e6;
     .pj-dropdown {
       width: $asDropdown-trigger-width;
+    }
+    .pj-dropdown-trigger {
+      padding-left: 10px;
+      line-height: 30px !important;
+      outline: none;
     }
     .pj-dropdown-panel-wrap {
       margin-top: 0;

@@ -219,7 +219,7 @@ export const defaults = {
       return '<i class="{class} pj-icon pj-icon-star-solid" data-type="collection"></i>'
     },
     solidTrigger() {
-      return '<i class="{class} pj-icon pj-icon-solid" data-type="solid"></i>'
+      return '<i class="{class} pj-icon pj-icon-gradient-solid" data-type="solid"></i>'
     },
     gradientTrigger() {
       return '<i class="{class} pj-icon pj-icon-gradient" data-type="gradient"></i>'
@@ -230,7 +230,7 @@ export const defaults = {
     collection() {
       return `<div class='{classes.SCHEME}'><div class='{classes.GROUPTITLE}'>{favoritesText}</div><ul class='{classes.GROUPLIST}'></ul></div>
         <div class='{classes.FAVORITES}'><div class='{classes.GROUPTITLE}'>{schemeText}</div><ul class='{classes.GROUPLIST}'></ul></div>
-        <div class='{classes.MANAGE}'><i class='pj-icon pj-icon-cog'></i>{manageText}</div>`
+        <div class='{classes.MANAGE}'><i class='pj-icon pj-icon-setting-1'></i>{manageText}</div>`
     },
     collectionItem() {
       return '<li class="{classes.COLLECTIONITEM}"></li>'

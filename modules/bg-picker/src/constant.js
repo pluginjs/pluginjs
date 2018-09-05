@@ -99,10 +99,10 @@ export const defaults = {
         '<div class="{classes.REPEAT}">' +
         '<span class="{classes.REPEATTITLE}">{bgRepeat}</span>' +
         '<ul class="{classes.REPEATCONTENT}">' +
-        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-ellipsis-square"></li>' +
-        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-th"></li>' +
-        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-ellipsis-h"></li>' +
-        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-ellipsis-v"></li>' +
+        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-no-repeat"></li>' +
+        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-repeat"></li>' +
+        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-repeat-horizontal"></li>' +
+        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-repeat-vertical"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -127,15 +127,15 @@ export const defaults = {
         '<div class="{classes.POSITION}">' +
         '<span class="{classes.POSITIONTITLE}">{bgPosition}</span>' +
         '<ul class="{classes.POSITIONCONTENT}">' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-arrow-left-up"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-arrow-up"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-arrow-right-up"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-arrow-left"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-center-center"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-arrow-right"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-arrow-left-down"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-arrow-down"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-arrow-right-down"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-top-left"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-top-center"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-top-right"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-center-left"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-center"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-center-right"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-bottom-left"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-bottom-center"></li>' +
+        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-bottom-right"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -186,7 +186,7 @@ export const defaults = {
       '<div class="{classes.FILLIMAGE}">' +
       '<div class="{classes.IMAGENAMEFILL}">{placeholder}</div>' +
       '</div>' +
-      '<div class="{classes.CHANGE}"><i class="{classes.EDIT} pj-icon pj-icon-pencil-write-solid"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i></div>' +
+      '<div class="{classes.CHANGE}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i></div>' +
       '</div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +

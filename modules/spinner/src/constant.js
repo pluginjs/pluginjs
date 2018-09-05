@@ -49,7 +49,7 @@ export const defaults = {
   mousewheel: false, // support mouse wheel
   templates: {
     control() {
-      return `<div class="{classes.CONTROL}"><span class="{classes.UP} pj-icon pj-icon-plus"></span><span class="{classes.DOWN} pj-icon pj-icon-minus"></span>
+      return `<div class="{classes.CONTROL}"><span class="{classes.UP} pj-icon pj-icon-add-solid"></span><span class="{classes.DOWN} pj-icon pj-icon-minus-solid"></span>
       </div>`
     }
   },

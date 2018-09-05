@@ -77,7 +77,7 @@ export const defaults = {
       </div>`
     },
     trigger() {
-      return `<div class={trigger}><span class="pj-dropdown-trigger"></span><i class='{trigger}-switch pj-icon pj-icon-chevron-down'></i>
+      return `<div class={trigger}><span class="pj-dropdown-trigger"></span>
       </div>`
     },
     icon() {

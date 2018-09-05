@@ -72,7 +72,7 @@ class ImageSelector extends Component {
     this.$init = parseHTML(
       `<div class="${this.classes.NAMESPACE} ${
         this.classes.INIT
-      } pj-icon pj-icon-caret-left"></div>`
+      } pj-icon pj-icon-triangle-left-mini-solid"></div>`
     )
     this.$change = parseHTML(
       `<div class="${this.classes.CHANGE}">${this.translate('change')}</div>`
@@ -250,7 +250,7 @@ class ImageSelector extends Component {
       `url("${data.img}")`,
       parseHTML(`<li class="${
         this.classes.ITEM
-      } pj-icon pj-icon-check" data-label="${data.value}">
+      } pj-icon pj-icon-done-small" data-label="${data.value}">
       <span class="${this.classes.ITEMLABEL}">${data.label}</span></li>`)
     )
   }

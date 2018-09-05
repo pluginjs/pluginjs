@@ -152,7 +152,7 @@ class IconsPicker extends Component {
           parseHTML(
             `<div class=${
               this.classes.MANAGE
-            }><i class='pj-icon pj-icon-cog'></i>${text}</div>`
+            }><i class='pj-icon pj-icon-setting-1'></i>${text}</div>`
           )
         )
       }

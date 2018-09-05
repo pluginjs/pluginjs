@@ -383,7 +383,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
         line-height: $colorPicker-collection-manage-height - 2px;
         color: $color-primary-black;
         text-align: center;
-        border: $colorPicker-border;
+        border: 1px solid #e6e6e6 !important;
 
         i {
           margin-right: $colorPicker-collection-manage-icon-margin-right;
@@ -414,7 +414,9 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
       .pj-scrollable-content {
         width: 100% !important;
         height: 100% !important;
+      
       }
+      
     }
 
     &-item {
@@ -828,4 +830,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
       }
     }
   }
+}
+.pj-scrollable-vertical.pj-scrollable-enabled .pj-scrollable-container {
+  overflow-y: auto !important;
 }

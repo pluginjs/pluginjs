@@ -31,7 +31,7 @@ export const defaults = deepMerge(List.defaults, {
 defaults.actions.unshift({
   title: 'Clone',
   name: 'clone',
-  class: 'pj-icon pj-icon-wrench-solid',
+  class: 'pj-icon pj-icon-setting-1',
   init(instance, item, $item) {
     bindEvent(
       instance.eventName('click'),
