@@ -37,11 +37,14 @@ class Loader extends Component {
   }
 
   initialize() {
-    addClass(this.classes.MASK, this.element)
+    this.$mask = appendTo(
+      `<div class="${this.classes.MASK}"></div>`,
+      this.element
+    )
 
     this.$loader = appendTo(
       `<div class="${this.classes.LOADER}"></div>`,
-      this.element
+      this.$mask
     )
 
     if (this.options.size) {
@@ -56,7 +59,7 @@ class Loader extends Component {
     }
 
     if (this.options.background) {
-      setStyle('background', this.options.background, this.element)
+      setStyle('background', this.options.background, this.$mask)
     }
 
     if (this.options.color) {
@@ -66,7 +69,7 @@ class Loader extends Component {
     if (this.options.text) {
       this.$text = append(
         `<div class="${this.classes.TEXT}">${this.options.text}</div>`,
-        this.element
+        this.$mask
       )
     }
 
@@ -84,13 +87,15 @@ class Loader extends Component {
 
       this.$loader.remove()
 
-      if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.$loader)
-      }
+      // if (this.options.theme) {
+      //   removeClass(this.getThemeClass(), this.$loader)
+      // }
 
-      if (this.is('shown')) {
-        removeClass(this.classes.SHOW, this.element)
-      }
+      // if (this.is('shown')) {
+      //   removeClass(this.classes.SHOW, this.$mask)
+      // }
+
+      this.$mask.remove()
 
       this.leave('initialized')
     }
@@ -109,7 +114,7 @@ class Loader extends Component {
 
   show() {
     if (!this.is('shown')) {
-      addClass(this.classes.SHOW, this.element)
+      addClass(this.classes.SHOW, this.$mask)
       this.enter('shown')
     }
     this.trigger(EVENTS.SHOW)
@@ -117,7 +122,7 @@ class Loader extends Component {
 
   hide() {
     if (this.is('shown')) {
-      removeClass(this.classes.SHOW, this.element)
+      removeClass(this.classes.SHOW, this.$mask)
       this.leave('shown')
     }
     this.trigger(EVENTS.HIDE)

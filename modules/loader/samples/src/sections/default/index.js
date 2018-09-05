@@ -3,7 +3,8 @@ import Loader from '@pluginjs/loader'
 
 const elements = queryAll('#default .loader')
 
-const apis = elements.map(element => Loader.of(element, {}).show())
+const apis = elements.map(element => Loader.of(element, {}))
+apis.forEach(api => api.show())
 
 document.querySelector('.api-show').addEventListener('click', () => {
   apis.forEach(api => api.show())
