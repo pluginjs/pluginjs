@@ -284,7 +284,6 @@ class Range extends Component {
   }
 
   setUnitsAttr(data) {
-    console.log(data)
     const { input, unit } = data
 
     this.min = this.options.unit[unit].min
@@ -441,7 +440,6 @@ class Range extends Component {
     if (!data || typeof data === 'undefined') {
       return
     }
-    console.log(data, 19191)
     let { input } = data
     const { unit } = data
 
@@ -478,7 +476,6 @@ class Range extends Component {
       const val = this.options.process.call(this, this.get())
       return val
     }
-    console.log(value)
     this.set(this.options.parse.call(this, value))
     return true
   }

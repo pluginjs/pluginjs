@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { compose } from '@pluginjs/utils'
+import { compose, deepMerge } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { parseHTML, query, insertAfter } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -67,11 +67,12 @@ class FontEditor extends Component {
     }
 
     this.defaultVal = this.initVal()
-    this.value = Object.assign(
+    this.value = deepMerge(
       {},
       this.defaultVal,
       this.options.parse(this.element.value.replace(/'/g, '"'))
     )
+    // console.log(this.value)
 
     // init
     this.fontFamily = new FontFamily(this)
@@ -106,7 +107,7 @@ class FontEditor extends Component {
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
-
+    console.log(this.value)
     this.set(this.value, true)
 
     this.enter('emptyized')
@@ -353,6 +354,7 @@ class FontEditor extends Component {
     const valueObj = this.options.parse.call(this, value)
 
     if (valueObj) {
+      console.log(valueObj)
       this.set(valueObj)
     } else {
       this.clear()
@@ -387,6 +389,8 @@ class FontEditor extends Component {
         this.lineHeight.set(value.lineHeight)
       }
       if (typeof value.fontSize !== 'undefined') {
+        console.log(value, 3198716876)
+        console.log(value.fontSize)
         this.fontSize.set(value.fontSize)
       }
       if (typeof value.fontFamily !== 'undefined') {

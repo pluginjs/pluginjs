@@ -21,7 +21,6 @@ export default class FontSize {
     const that = this
     const unit = {}
     const value = this.value
-    console.log(this.value, 107819726315)
     // create $fontSize
     const html = template.compile(this.instance.options.fontSize.template())({
       classes: this.instance.classes,
@@ -66,7 +65,7 @@ export default class FontSize {
     })
 
     this.$range.set({
-      value: this.value,
+      input: this.value,
       unit: this.unit
     })
     this.update()
@@ -80,6 +79,7 @@ export default class FontSize {
     let inlineVal
 
     if (val === 'inherit') {
+      this.value = 0
       this.unit = 'inherit'
       return
     }

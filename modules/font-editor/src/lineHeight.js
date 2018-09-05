@@ -67,7 +67,7 @@ export default class LineHeight {
     })
 
     this.$range.set({
-      value: this.value,
+      input: this.value,
       unit: this.unit
     })
     this.update()
