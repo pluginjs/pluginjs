@@ -3,22 +3,33 @@
 // Vars
 // =====================
 $hotspot: "pj-hotspot" !default;
+$hotspot-bg: rgba($color-black, 0.8);
+
+$hotspot-dot-size: 14px;
+$hotspot-dot-hover-bg: $color-primary;
 // Core
 // =====================
-.#{$hotspot}s {
-  position: relative;
-  line-height: 1;
-
-  img {
-    z-index: 0;
-    width: 100%;
-  }
-}
-
 .#{$hotspot} {
   position: absolute;
   z-index: 1;
   box-sizing: border-box;
   cursor: pointer;
   transform: translate(-50%, -50%);
+
+  &s {
+    position: relative;
+    line-height: 1;
+
+    img {
+      z-index: 0;
+      width: 100%;
+    }
+  }
+
+  &-dot {
+    width: $hotspot-dot-size;
+    height: $hotspot-dot-size;
+    background-color: $hotspot-bg;
+    border-radius: 50%;
+  }
 }

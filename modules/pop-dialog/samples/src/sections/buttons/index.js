@@ -10,6 +10,7 @@ popDialog.of(element, {
     },
     ok: {
       label: 'OK',
+      types: 'pj-btn-primary',
       color: 'primary',
       fn: resolve => {
         console.info('clicked OK!')

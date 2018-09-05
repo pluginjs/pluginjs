@@ -25,7 +25,7 @@ $dropdown-input-hover-color: $gray-darkest;
 $dropdown-input-focus-color: $dropdown-input-hover-color;
 
 $dropdown-item-space-x: 11px;
-$dropdown-item-space-y: 7px;
+$dropdown-item-space-y: 8px;
 
 $dropdown-item-icon-gutter: 10px;
 $dropdown-item-hover-bg: $gray-lighter;
@@ -50,10 +50,6 @@ $dropdown-item-active-color: $color-primary-active;
     // color: $dropdown-color;
     text-decoration: none;
 
-    &:hover {
-      color: $dropdown-trigger-hover-color;
-    }
-
     &[aria-expanded="true"] {
       color: $dropdown-trigger-focus-color;
       outline: none;
@@ -65,8 +61,24 @@ $dropdown-item-active-color: $color-primary-active;
     line-height: $dropdown-input-lineHeigh;
     color: $dropdown-input-color;
 
-    &:hover {
-      color: $dropdown-input-hover-color;
+    &:focus {
+      /* stylelint-disable*/
+      &::-webkit-input-placeholder {
+        color: $dropdown-input-hover-color;
+      }
+
+      &:-moz-placeholder {
+        color: $dropdown-input-hover-color;
+      }
+
+      &::-moz-placeholder { 
+        color: $dropdown-input-hover-color;
+      }
+        
+      &:-ms-input-placeholder {
+        color: $dropdown-input-hover-color;
+      }
+      /* stylelint-enable */
     }
 
     &[aria-expanded="true"] {

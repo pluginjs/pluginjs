@@ -47,6 +47,7 @@ export const defaults = deepMerge(Popover.defaults, {
   hideOutClick: true,
   offset: '0,20',
   placement: 'left',
+  arrow: false,
   template() {
     return (
       '<div class="{classes.POPOVER} {classes.POPDIALOG}" role="tooltip">' +

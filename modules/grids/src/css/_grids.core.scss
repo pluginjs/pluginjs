@@ -24,16 +24,10 @@ $grids: "pj-grids";
 
   &-container {
     position: relative;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    outline: 0;
   }
   
   &-chunk {
     position: absolute;
-    display: flex;
-    height: auto;
     transform-style: preserve-3d;
 
     img {
@@ -46,9 +40,7 @@ $grids: "pj-grids";
       position: absolute;
       top: 0;
       left: 0;
-      display: block;
       width: 100%;
-      max-width: 100%;
       height: 100%;
     }
   }
@@ -57,9 +49,6 @@ $grids: "pj-grids";
     cursor: grab;
   }
 
-  /*
-   * Mask
-   */
   &-mask {
     opacity: 0 !important;
   }

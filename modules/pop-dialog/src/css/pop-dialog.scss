@@ -4,6 +4,7 @@
 // Vars
 // =====================
 $popover: "pj-popover";
+$popover-dialog-padding: 22px 24px;
 $popover-btns-margin-top: 16px;
 $popover-btn-spacer: 3px 15px;
 $popover-btn-margin-left: 15px;
@@ -13,7 +14,7 @@ $popover-dark-btn-color: $color-white;
 
 .#{$popover} {
   &-dialog {
-    padding: 22px 24px;
+    padding: $popover-dialog-padding;
   }
 
   &-btns {
@@ -22,12 +23,15 @@ $popover-dark-btn-color: $color-white;
 
   &-btn {
     padding: $popover-btn-spacer;
-
-    & + & {
-      margin-left: $popover-btn-margin-left;
+    
+    &[data-color="primary"] {
       color: #fff;
       background-color: $popover-btn-primary-bgcolor;
       border-color: $popover-btn-primary-bdcolor;
+    }
+
+    & + & {
+      margin-left: $popover-btn-margin-left;
     }
   }
 }

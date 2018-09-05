@@ -14,12 +14,8 @@ $hotspot-color: $gray-darkest;
 $hotspot-hover-color: $color-primary;
 $hotspot-hover-border-color: rgba($hotspot-hover-color, 0.2);
 
-$hotspot-bg: rgba($color-black, 0.8);
 $hotspot-box-shadow: $box-shadow-5;
 $hotspot-hide-size: 30px;
-
-$hotspot-dot-size: 14px;
-$hotspot-dot-hover-bg: $color-primary;
 
 $hotspot-icon-spacer: 6px;
 
@@ -71,7 +67,6 @@ $hotspot-light-shadow-bg-active: $color-primary;
   font-family: $hotspot-font-family;
   font-size: $hotspot-font-size;
   color: $hotspot-color;
-  text-align: center;
   border: 2px solid transparent;
   transition: all 0.2s;
 
@@ -81,11 +76,6 @@ $hotspot-light-shadow-bg-active: $color-primary;
   }
 
   &-dot {
-    width: $hotspot-dot-size;
-    height: $hotspot-dot-size;
-    background-color: $hotspot-bg;
-    border-radius: 50%;
-
     &:hover,
     &-active {
       background-color: $hotspot-dot-hover-bg;
@@ -94,11 +84,9 @@ $hotspot-light-shadow-bg-active: $color-primary;
 
   &-icon,
   &-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
     padding: $hotspot-icon-spacer;
-    border-radius: 100%;
+    border-radius: 50%;
   }
 
   &-hide,
@@ -113,7 +101,7 @@ $hotspot-light-shadow-bg-active: $color-primary;
     border-radius: 1000px;
   }
 
-  &-bordered{
+  &-bordered {
     border: 2px solid $hotspot-border-color;
 
     &:hover,

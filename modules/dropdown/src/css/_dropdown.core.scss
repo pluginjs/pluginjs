@@ -33,6 +33,7 @@ $dropdown-index: $zindex-dropdown !default;
 
   &-item {
     overflow: hidden;
+    line-height: 1;
     text-overflow: ellipsis;
     white-space: nowrap;
   }

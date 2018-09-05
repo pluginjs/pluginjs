@@ -19,7 +19,6 @@ $toast-close-color: $gray-dark;
 $toast-space: 20px;
 
 $toast-title-color: $gray-darkest;
-$toast-title-margin-bottom: 6px;
 $toast-title-font-size: 16px;
 
 $toast-content-color: $gray-darker;
@@ -50,7 +49,7 @@ $toast-btn-font-size: $font-size-sm;
   border-radius: 0 0 $toast-border-radius $toast-border-radius;
   box-shadow: $toast-box-shadow;
 
-  &+& {
+  & + & {
     margin-top: $toast-space;
   }
 
@@ -68,7 +67,6 @@ $toast-btn-font-size: $font-size-sm;
   }
 
   &-title {
-    // margin-bottom: $toast-title-margin-bottom;
     font-size: $toast-title-font-size;
     color: $toast-title-color;
   }

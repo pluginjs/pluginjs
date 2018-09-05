@@ -59,6 +59,8 @@ $modal-z-index: 10000 !default;
     top: 0;
     right: 0;
     z-index: 1;
+    border: 0;
+    outline: none;
   }
 
   &-body {

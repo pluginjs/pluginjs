@@ -78,15 +78,15 @@ export const defaults = {
   closeBtnColor: '',
   effect: 'fade',
   allowClose: true,
-  duration: 300000,
+  duration: 3000,
   stack: 6,
   position: 'bottom-right',
   icon: 'success',
   icons: {
-    success: ['pj-icon pj-icon-check-circle', '#215fdb'],
-    info: ['pj-icon pj-icon-exclamation-circle', '#0ecc37'],
-    warning: ['pj-icon pj-icon-exclamation-triangle', '#ffaa00'],
-    danger: ['pj-icon pj-icon-times-circle', '#f73e4d']
+    success: ['pj-icon pj-icon-check-circle-solid', '#215fdb'],
+    info: ['pj-icon pj-icon-info-solid', '#0ecc37'],
+    warning: ['pj-icon pj-icon-info-solid', '#ffaa00'],
+    danger: ['pj-icon pj-icon-close-circle-solid', '#f73e4d']
   },
   iconColor: '',
   iconClass: '',

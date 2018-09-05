@@ -17,11 +17,11 @@ $arrow: "pj-arrow" !default;
 
 .#{$arrow} {
   position: relative;
-  display: inline-block;
-  height: 1em;
-  min-width: 1em;
-  line-height: 1;
   box-sizing: content-box;
+  display: inline-block;
+  min-width: 1em;
+  height: 1em;
+  line-height: 1;
   text-decoration: none;
   cursor: pointer;
 
