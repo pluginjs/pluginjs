@@ -12,8 +12,8 @@ class Item {
 
     if (width || height) {
       this.setSize({
-        width: `${width}px`,
-        height: `${height}px`
+        width,
+        height
       })
     }
   }

@@ -4,7 +4,7 @@ import Swipe from '@pluginjs/swipe'
 const element = query('#default .swipe')
 Swipe.of(element, {
   pagination: true,
-  itemNums: 5,
+  itemNums: 2,
   gutter: 20,
   loop: true,
   dotConfig: {

@@ -77,8 +77,6 @@ class Swipe extends Component {
     this.itemNums = this.options.itemNums
     this.gutter = this.options.gutter
     this.active = 0
-    this.frictionFactor =
-      this.options.frictionFactor < 1 ? 1 : this.options.frictionFactor
 
     this.setupStates()
     this.initialize()
@@ -111,13 +109,17 @@ class Swipe extends Component {
 
   build() {
     this.buildWrapper()
-    this.$items = this.getItems()
-    this.itemInstances = this.getItemInstances(this.$items)
+
+    this.items = this.getItems()
 
     this.buildContainer()
+
+    this.itemInstances = this.getItemInstances(this.items)
+
     this.computeItemLocation(this.itemInstances)
 
     this.sortedItems = this.getItemsBySort()
+
     this.maxActiveCount = this.getMaxActiveCount()
 
     if (this.options.arrows) {
@@ -129,64 +131,9 @@ class Swipe extends Component {
     }
   }
 
-  initSwipeable() {
-    const that = this
-
-    this.$swipe = Swipeable.of(this.$container, {
-      container: that.container,
-      decay: that.options.decay,
-      power: that.options.power,
-      duration: that.options.duration,
-      onStart() {
-        if (that.$anime) {
-          that.$anime.pause()
-        }
-        that.trigger(EVENTS.DRAGSTART)
-      },
-      onEnd() {
-        if (!this.is('decaying')) {
-          const locationX = this.getLocation(this.element).x
-          const index = that.getIndexByDistance(locationX)
-          that.moveTo(index)
-        }
-        this.trigger(EVENTS.DRAGEND)
-      },
-      onDecayend() {
-        const locationX = this.getLocation(this.element).x
-        const index = that.getIndexByDistance(locationX)
-        if (that.$anime) {
-          that.$anime.pause()
-        }
-        that.moveTo(index)
-      }
-    })
-  }
-
-  buildContainer() {
-    this.$container = find(`.${this.classes.CONTAINER}`, this.element)
-
-    if (!this.$container) {
-      if (this.options.containerSelector) {
-        this.$container = find(this.options.containerSelector, this.element)
-        addClass(this.classes.CONTAINER, this.$container)
-      } else {
-        const $itemsParent = parent(this.$items[0])
-        const $container = this.createEl('container', {
-          classes: this.classes
-        })
-        append($container, $itemsParent)
-        this.$container = find(`.${this.classes.CONTAINER}`, this.element)
-
-        this.$items.forEach($item => {
-          append($item, this.$container)
-        })
-      }
-    }
-  }
-
   buildWrapper() {
-    this.$wrapper = closest(`.${this.classes.WRAPPER}`, this.element)
-    if (!this.$wrapper) {
+    this.wrapper = closest(`.${this.classes.WRAPPER}`, this.element)
+    if (!this.wrapper) {
       if (this.options.wrapperSelector) {
         addClass(
           this.classes.WRAPPER,
@@ -195,20 +142,41 @@ class Swipe extends Component {
       } else {
         wrap(`<div class="${this.classes.WRAPPER}"></div>`, this.element)
       }
-      this.$wrapper = parentWith(hasClass(this.classes.WRAPPER), this.element)
+      this.wrapper = parentWith(hasClass(this.classes.WRAPPER), this.element)
     }
   }
 
   getItems() {
-    let $items = queryAll(`.${this.classes.ITEM}`, this.element)
-    if ($items.length === 0) {
-      $items = queryAll(this.options.itemSelector, this.element)
-      $items.forEach($item => {
-        addClass(this.classes.ITEM, $item)
+    let items = queryAll(`.${this.classes.ITEM}`, this.element)
+    if (items.length === 0) {
+      items = queryAll(this.options.itemSelector, this.element)
+      items.forEach(item => {
+        addClass(this.classes.ITEM, item)
       })
     }
 
-    return $items
+    return items
+  }
+
+  buildContainer() {
+    this.container = find(`.${this.classes.CONTAINER}`, this.element)
+
+    if (!this.container) {
+      if (this.options.containerSelector) {
+        this.container = find(this.options.containerSelector, this.element)
+        addClass(this.classes.CONTAINER, this.$container)
+      } else {
+        const itemsParent = parent(this.items[0])
+        const container = this.createEl('container', {
+          classes: this.classes
+        })
+        append(container, itemsParent)
+        this.container = find(`.${this.classes.CONTAINER}`, this.element)
+        this.items.forEach(item => {
+          append(item, this.container)
+        })
+      }
+    }
   }
 
   getItemInstances(items) {
@@ -231,38 +199,12 @@ class Swipe extends Component {
     return itemInstances
   }
 
-  getMaxActiveCount() {
-    if (this.options.group) {
-      return Math.ceil(this.sortedItems.length / this.options.itemNums)
-    }
-
-    if (this.options.center) {
-      return this.sortedItems.length
-    }
-
-    const maxWidth = this.containerWidth - this.width
-
-    if (maxWidth <= 0) {
-      return 1
-    }
-
-    let dotNum = 0
-    let targetItem = this.sortedItems[0]
-
-    for (const item of this.sortedItems) {
-      if (item.info.x >= maxWidth) {
-        break
-      }
-
-      dotNum++
-      targetItem = item
-    }
-
-    if (Math.floor(targetItem.info.x) < Math.floor(maxWidth)) {
-      dotNum += 1
-    }
-
-    return Math.max(1, dotNum)
+  getItemWidth() {
+    return (
+      (parseFloat(getStyle('width', this.element)) -
+        this.gutter * (this.itemNums - 1)) /
+      this.itemNums
+    )
   }
 
   computeItemLocation(itemInstances) {
@@ -279,8 +221,8 @@ class Swipe extends Component {
 
       if (this.options.multiple) {
         config.height =
-          (parseFloat(getStyle('height', this.$container), 10) - this.gutter) /
-          2
+          (parseFloat(getStyle('height', this.container), 10) - this.gutter) / 2
+
         if (index % 2) {
           config.x = itemInstances[index - 1].info.x
           config.y = config.height + this.gutter
@@ -320,35 +262,65 @@ class Swipe extends Component {
     this.setWidth(width)
   }
 
-  computeWidthResize() {
-    this.itemInstances.forEach(item => {
-      const itemWidth = this.getItemWidth()
+  setWidth(width) {
+    setStyle('width', width, this.container)
 
-      item.setInfo({ width: itemWidth })
-    })
-
-    this.computeItemLocation(this.itemInstances)
-
-    this.width = parseFloat(getStyle('width', this.element), 10)
-
-    setTimeout(() => {
-      this.moveTo(this.active)
-    }, 50)
+    this.containerWidth = width
   }
 
-  buildArrows() {
-    let opts = {
-      type: this.options.arrowConfig.type || 'square'
+  getItemsBySort() {
+    const itemInstancesClone = [].concat(this.itemInstances)
+    const tempArr = []
+    let offsetX
+
+    itemInstancesClone.sort((prev, next) => prev.info.x - next.info.x)
+    itemInstancesClone.forEach(item => {
+      if (Math.floor(item.info.x) !== offsetX) {
+        tempArr.push(item)
+        offsetX = Math.floor(item.info.x)
+      }
+    })
+
+    return tempArr
+  }
+
+  getMaxActiveCount() {
+    if (this.options.group) {
+      return Math.ceil(this.sortedItems.length / this.options.itemNums)
     }
 
-    opts = Object.assign({}, opts, this.options.arrowConfig)
-    this.$arrows = Arrows.of(this.element, opts)
-    Arrows.of(this.element, opts)
+    if (this.options.center) {
+      return this.sortedItems.length
+    }
+
+    const maxWidth = this.containerWidth - this.width
+
+    if (maxWidth <= 0) {
+      return 1
+    }
+
+    let dotNum = 0
+    let targetItem = this.sortedItems[0]
+
+    for (const item of this.sortedItems) {
+      if (item.info.x >= maxWidth) {
+        break
+      }
+
+      dotNum++
+      targetItem = item
+    }
+
+    if (Math.floor(targetItem.info.x) < Math.floor(maxWidth)) {
+      dotNum += 1
+    }
+
+    return Math.max(1, dotNum)
   }
 
   buildPagination() {
     const that = this
-    const $pagination = this.createEl('pagination', {
+    const pagination = this.createEl('pagination', {
       classes: this.classes
     })
     const items = []
@@ -370,50 +342,129 @@ class Swipe extends Component {
       }
     }
 
-    append($pagination, this.$wrapper)
+    append(pagination, this.wrapper)
 
     config = Object.assign({}, config, this.options.dotConfig)
 
-    this.$pagination = Dots.of(
-      find(`.${this.classes.PAGINATION}`, this.$wrapper),
+    this.pagination = Dots.of(
+      find(`.${this.classes.PAGINATION}`, this.wrapper),
       config
     )
   }
 
-  getDots() {
-    if (this.options.group) {
-      return this.maxActiveCount
+  decay(distance) {
+    if (distance > 0) {
+      this.prev()
+    } else {
+      this.next()
     }
-
-    let dotNum = 0
-    const maxWidth = this.containerWidth - this.width
-
-    for (const item of this.sortedItems) {
-      if (item.info.x >= maxWidth) {
-        break
-      }
-
-      dotNum++
-    }
-
-    return dotNum
   }
 
-  getItemsBySort() {
-    const itemInstancesClone = [].concat(this.itemInstances)
-    const tempArr = []
-    let offsetX
+  initSwipeable() {
+    const that = this
 
-    itemInstancesClone.sort((prev, next) => prev.info.x - next.info.x)
+    const setIndex = index => {
+      if (this.swipeable.info.deltaX > 0) {
+        index -= 1
+        if (index < 0) {
+          index = that.options.loop ? that.maxActiveCount : 0
+        }
+      } else {
+        index += 1
+        if (index > that.maxActiveCount - 1) {
+          index = that.options.loop ? 0 : that.maxActiveCount
+        }
+      }
+      that.moveTo(index)
+    }
 
-    itemInstancesClone.forEach(item => {
-      if (Math.floor(item.info.x) !== offsetX) {
-        tempArr.push(item)
-        offsetX = Math.floor(item.info.x)
+    this.swipeable = Swipeable.of(this.container, {
+      container: that.element,
+      decay: that.options.decay,
+      power: that.options.power,
+      duration: that.options.duration,
+      onStart() {
+        if (that.anime) {
+          that.anime.pause()
+        }
+        that.trigger(EVENTS.DRAGSTART)
+      },
+      onMove() {
+        let posX = this.startPosition.x + this.info.deltaX
+        const scrollMax = this.containerWidth - this.width
+
+        if (posX > 0) {
+          posX = Math.round(posX / 5)
+        } else if (posX < this.containerWidth - this.width) {
+          posX = Math.round(scrollMax + (posX - scrollMax) / 5)
+        }
+
+        setStyle(
+          {
+            transform: `translateX(${posX}px)`
+          },
+          this.element
+        )
+        this.position = { x: posX, y: 0 }
+      },
+      onEnd() {
+        if (that.is('disable')) {
+          return
+        }
+
+        if (this.is('decaying')) {
+          return
+        }
+
+        const decayX = this.info.velocityX
+        const locationX = this.getLocation(this.element).x
+        const index = that.getIndexByDistance(locationX)
+
+        if (Math.abs(decayX) < 1) {
+          that.moveTo(index)
+        } else if (Math.abs(this.info.deltaX) < 200) {
+          const offset = this.info.deltaX
+          that.decay(offset)
+        } else {
+          setIndex(index)
+        }
+        this.trigger(EVENTS.DRAGEND)
+      },
+      onDecayend() {
+        const locationX = this.getLocation(this.element).x
+        const index = that.getIndexByDistance(locationX)
+        if (that.$anime) {
+          that.$anime.pause()
+        }
+        setIndex(index)
       }
     })
+  }
 
-    return tempArr
+  computeWidthResize() {
+    this.itemInstances.forEach(item => {
+      const itemWidth = this.getItemWidth()
+
+      item.setInfo({ width: itemWidth })
+    })
+
+    this.computeItemLocation(this.itemInstances)
+
+    this.width = parseFloat(getStyle('width', this.element), 10)
+
+    setTimeout(() => {
+      this.moveTo(this.active)
+    }, 0)
+  }
+
+  buildArrows() {
+    let opts = {
+      type: this.options.arrowConfig.type || 'square'
+    }
+
+    opts = Object.assign({}, opts, this.options.arrowConfig)
+    this.arrows = Arrows.of(this.element, opts)
+    Arrows.of(this.element, opts)
   }
 
   resize() {
@@ -426,18 +477,16 @@ class Swipe extends Component {
   }
 
   bind() {
-    /* arrows events */
     if (this.options.arrows) {
-      this.$arrows.options.onNext = () => {
+      this.arrows.options.onNext = () => {
         this.next()
       }
 
-      this.$arrows.options.onPrev = () => {
+      this.arrows.options.onPrev = () => {
         this.prev()
       }
     }
 
-    /* pagination events */
     if (this.options.pagination) {
       bindEvent(
         this.eventName('click'),
@@ -447,16 +496,16 @@ class Swipe extends Component {
             hasClass(this.classes.PAGINATIONITEM),
             e.target
           )
-          const index = this.$pagination.dots.indexOf($item)
+          const index = this.pagination.dots.indexOf($item)
           this.moveTo(index)
         },
-        this.$wrapper
+        this.wrapper
       )
     }
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.$wrapper)
+    removeEvent(this.eventName(), this.wrapper)
   }
 
   next() {
@@ -478,22 +527,15 @@ class Swipe extends Component {
     this.moveTo(active, () => this.trigger(EVENTS.PREV))
   }
 
-  /*
-    details = {
-    trigger: true,
-    callback: null,
-    ease: 'linear',
-    duration: this.options.duration
-  }
-  */
   move(distance, details) {
-    let { trigger, ease, duration } = details
+    let { trigger, ease } = details
     const { callback } = details
 
     trigger = trigger || false
     ease = ease || 'linear'
-    duration = duration || this.options.duration
-    const _duration = duration
+    const duration = this.options.decay
+      ? this.options.duration + 100
+      : this.options.duration
 
     if (
       this.options.center &&
@@ -504,11 +546,11 @@ class Swipe extends Component {
       distance -= (this.width - activeItemWidth) / 2
     }
 
-    this.$anime = anime({
-      targets: this.$container,
+    this.anime = anime({
+      targets: this.container,
       translateX: -distance,
       easing: ease,
-      duration: _duration
+      duration
     })
 
     setTimeout(() => {
@@ -552,7 +594,7 @@ class Swipe extends Component {
     }
 
     if (this.options.pagination) {
-      this.$pagination.set(`${this.active}`)
+      this.pagination.set(`${this.active}`)
     }
 
     if (!this.options.group) {
@@ -567,42 +609,9 @@ class Swipe extends Component {
 
     this.move(distance, {
       trigger: true,
-      ease: this.options.decay ? 'easeOutExpo' : 'linear',
+      ease: this.options.decay ? 'easeOutQuad' : 'linear',
       callback
     })
-  }
-
-  setWidth(width) {
-    setStyle('width', width, this.$container)
-
-    this.containerWidth = width
-  }
-
-  setHeight(height, transition = false) {
-    const config = { height: `${height}px` }
-
-    if (transition) {
-      config.transition = `height ${this.options.duration}ms`
-    }
-
-    setStyle(config, this.$container)
-  }
-
-  getItemWidth() {
-    return (
-      (parseFloat(getStyle('width', this.element)) -
-        this.gutter * (this.itemNums - 1)) /
-      this.itemNums
-    )
-  }
-
-  getLocationX(el) {
-    const transform = getStyle('transform', el)
-    if (transform === 'none') {
-      return 0
-    }
-
-    return parseInt(transform.split(',')[4], 10)
   }
 
   getIndexByDistance(distance) {
@@ -660,26 +669,64 @@ class Swipe extends Component {
     return index
   }
 
+  createEl(name, opts) {
+    return templateEngine.compile(this.options.templates[name]())(opts)
+  }
+
   setPagination(num, active = this.active) {
     const items = []
-    this.$pagination.empty()
+    this.pagination.empty()
 
     for (let index = 0; index < num; index++) {
       items.push({ index })
     }
 
-    this.$pagination.load(items, true)
+    this.pagination.load(items, true)
 
     if (active >= items.length) {
       active = items.length - 1
     }
 
-    this.$pagination.set(`${active}`)
+    this.pagination.set(`${active}`)
     this.moveTo(active)
   }
 
-  createEl(name, opts) {
-    return templateEngine.compile(this.options.templates[name]())(opts)
+  setHeight(height, transition = false) {
+    const config = { height: `${height}px` }
+
+    if (transition) {
+      config.transition = `height ${this.options.duration}ms`
+    }
+
+    setStyle(config, this.container)
+  }
+
+  getLocationX(el) {
+    const transform = getStyle('transform', el)
+    if (transform === 'none') {
+      return 0
+    }
+
+    return parseInt(transform.split(',')[4], 10)
+  }
+
+  getDots() {
+    if (this.options.group) {
+      return this.maxActiveCount
+    }
+
+    let dotNum = 0
+    const maxWidth = this.containerWidth - this.width
+
+    for (const item of this.sortedItems) {
+      if (item.info.x >= maxWidth) {
+        break
+      }
+
+      dotNum++
+    }
+
+    return dotNum
   }
 
   enable() {

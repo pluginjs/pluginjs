@@ -8,7 +8,6 @@ Swipe.of(element, {
   arrows: true,
   pagination: true,
   decay: true,
-  loop: true,
   dotConfig: {
     type: 'square light'
   }
