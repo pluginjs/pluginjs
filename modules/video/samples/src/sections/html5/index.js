@@ -33,8 +33,8 @@ const instances = {
     console.log('volume:', val)
     instance.volume(val)
   },
-  change() {
-    instance.change(
+  swichVideo() {
+    instance.swichVideo(
       'http://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4'
     )
   },

@@ -32,8 +32,8 @@ const instances = {
     console.log('volume:', val)
     instance.volume(val)
   },
-  change() {
-    instance.change('V55ZtRHAXRM')
+  swichVideo() {
+    instance.swichVideo('V55ZtRHAXRM')
   },
   currentTime() {
     console.log('currentTime:', instance.currentTime())
