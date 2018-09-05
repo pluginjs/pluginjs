@@ -428,11 +428,11 @@ $connect-active-bg: $gray-lightest !default;
       color: $offset-active-color;
     }
 
-    .icon-link {
-      display: none;
+    &-link {
+      display: none !important;
     }
 
-    .icon-unlink {
+    &-unlink {
       display: block;
     }
 
@@ -444,11 +444,11 @@ $connect-active-bg: $gray-lightest !default;
     &-active {
       // background-color: $connect-active-bg;
       // color: $offset-active-color;
-      .icon-link {
-        display: block;
+      .#{$offset}-connect-link {
+        display: block !important;
       }
 
-      .icon-unlink {
+      .#{$offset}-connect-unlink {
         display: none;
       }
     }

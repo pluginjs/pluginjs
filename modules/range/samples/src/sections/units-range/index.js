@@ -13,7 +13,7 @@ Range.of(element, {
     },
     '%': {
       min: 1,
-      max: 10,
+      max: 100,
       step: 1
     }
   }

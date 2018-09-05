@@ -84,7 +84,7 @@ class Offset extends Component {
     if (attrData) {
       this.value = Object.assign({}, KEYS, attrData)
     }
-
+    console.log(this.value)
     // $.each(this.value, (i, v) => {
     //   this.value[i] = this.parse(v);
     // });
@@ -127,6 +127,7 @@ class Offset extends Component {
         info.value = val ? val : ''
 
         newData[key] = info
+        console.log(newData)
         this.set(newData, true)
         children(this.$inner)
           .filter(el => el.matches('div'))
@@ -297,7 +298,7 @@ class Offset extends Component {
         }
 
         const newData = {}
-        let val = this.get(unit).value
+        let val = this.get(unit).input
         if (val === null) {
           val = ''
         }
@@ -313,7 +314,7 @@ class Offset extends Component {
         const key = $input.getAttribute('name')
         const newData = {}
 
-        info.value = value ? value : ''
+        info.input = value ? value : ''
 
         newData[key] = info
         that.set(newData, true)
@@ -375,10 +376,10 @@ class Offset extends Component {
       }
 
       val[key] = {
-        value,
+        input: value,
         unit
       }
-
+      console.log(val)
       that.set(val, true)
       return false
     }
@@ -400,7 +401,8 @@ class Offset extends Component {
     const $this = query(`#${id}`, this.$wrap)
 
     const key = $this.getAttribute('name')
-    const inputValue = this.data[key].value
+    console.log(this.data[key])
+    const inputValue = this.data[key].input
     let value
 
     if (
@@ -427,17 +429,17 @@ class Offset extends Component {
       const key = $input.getAttribute('name')
       const $view = query(`.${this.classes.VIEW}`, item)
       const info = getData('info', item)
-
-      if (info && info.value.length < 1) {
+      console.log(info)
+      if (info && info.input.length < 1) {
         $view.innerHTML = '-'
         return /* eslint-disable-line */
       }
-      if (info && info.value === 0) {
+      if (info && info.input === 0) {
         $view.innerHTML = 0
         return /* eslint-disable-line */
       }
 
-      $view.innerHTML = `${this.data[key].value}${this.data[key].unit}`
+      $view.innerHTML = `${this.data[key].input}${this.data[key].unit}`
     })
   }
 
@@ -462,18 +464,20 @@ class Offset extends Component {
   clear(update = true) {
     this.value = KEYS
     if (update !== false) {
+      console.log(this.value)
       this.set(this.value)
     }
   }
 
   set(value, only) {
+    // console.log(value)
     if (!value || typeof value === 'undefined') {
       return
     }
 
     each(value, (i, v) => {
       if (isObject(v)) {
-        value[i] = `${v.value}${v.unit}`
+        value[i] = `${v.input}${v.unit}`
       }
     })
 
@@ -508,7 +512,7 @@ class Offset extends Component {
         }
       })
     }
-
+    // console.log(this.value)
     each(this.value, (i, v) => {
       const input = query(`[name="${i}"]`, this.$wrap)
 
@@ -535,14 +539,14 @@ class Offset extends Component {
 
     if (value === '') {
       return {
-        value: '',
+        input: '',
         unit: 'px'
       }
     }
 
     if (units.indexOf(value) > -1) {
       return {
-        value: '',
+        input: '',
         unit: value
       }
     }
@@ -550,7 +554,7 @@ class Offset extends Component {
     const val = parseFloat(value, 10)
     const unit = value.split(val)[1]
     return {
-      value: val,
+      input: val,
       unit
     }
   }
@@ -563,6 +567,7 @@ class Offset extends Component {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
+    console.log(value)
     return this.set(this.options.parse.call(this, value))
   }
 

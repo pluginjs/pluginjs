@@ -55,31 +55,32 @@ export const defaults = {
   keyboard: false,
   tip: true,
   scale: true,
-  parse(value) {
+  parse(input) {
+    console.log(input)
     let unit = null
     const val = []
     let data = {}
 
-    if (value) {
-      if (typeof value === 'number') {
-        return { value }
+    if (input) {
+      if (typeof input === 'number') {
+        return { input }
       }
 
-      if (value.match(/([a-zA-Z]+|%)+/gi)) {
-        unit = value.match(/([a-zA-Z]+|%)+/gi)[0]
-        value = value.split(unit)[0]
+      if (input.match(/([a-zA-Z]+|%)+/gi)) {
+        unit = input.match(/([a-zA-Z]+|%)+/gi)[0]
+        input = input.split(unit)[0]
       }
 
-      const args = value.split(',')
+      const args = input.split(',')
 
       args.forEach(v => {
         val.push(parseFloat(v, 10))
       })
 
-      data = { value: val }
+      data = { input: val }
 
-      if (data.value.length === 1) {
-        data.value = data.value[0]
+      if (data.input.length === 1) {
+        data.input = data.input[0]
       }
 
       if (unit) {
@@ -91,7 +92,7 @@ export const defaults = {
     return this.options.range ? [] : ''
   },
   process(data) {
-    const val = data.value
+    const val = data.input
     const unit = data.unit
 
     if (data) {

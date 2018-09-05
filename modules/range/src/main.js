@@ -49,7 +49,7 @@ class Range extends Component {
 
     this.cacheValue = []
     this.$wrap = document.createElement('div')
-    const value = this.element.value
+    const input = this.element.value
     each(['min', 'max', 'step'], key => {
       const val = parseFloat(this.element.getAttribute(key), 10)
       if (!isNaN(val)) {
@@ -70,8 +70,8 @@ class Range extends Component {
     )
     this.setupClasses()
 
-    if (isString(value) && value !== '') {
-      this.data = this.options.parse.call(this, value)
+    if (isString(input) && input !== '') {
+      this.data = this.options.parse.call(this, input)
     }
 
     this.components = deepMerge({}, components)
@@ -80,18 +80,18 @@ class Range extends Component {
       this.options.replaceFirst = false
     }
 
-    if (!this.data.value) {
-      this.data.value = this.options.min
+    if (!this.data.input) {
+      this.data.input = this.options.min
     }
 
     if (!this.options.isRange) {
-      if (isArray(this.data.value)) {
-        this.data.value = this.data.value[0]
+      if (isArray(this.data.input)) {
+        this.data.input = this.data.input[0]
       }
-    } else if (!isArray(this.data.value)) {
-      this.data.value = [this.data.value, this.data.value]
-    } else if (this.data.value.length === 1) {
-      this.data.value[1] = this.data.value[0]
+    } else if (!isArray(this.data.input)) {
+      this.data.input = [this.data.input, this.data.input]
+    } else if (this.data.input.length === 1) {
+      this.data.input[1] = this.data.input[0]
     }
 
     this.setupClasses()
@@ -208,12 +208,12 @@ class Range extends Component {
       bindEvent(
         this.selfEventName(EVENTS.CHANGE),
         () => {
-          let value = this.getPointerVal()
+          let input = this.getPointerVal()
           if (this.options.unit) {
             const data = this.unitsApi.get()
-            value = `${data.value}${data.unit}`
+            input = `${data.input}${data.unit}`
           }
-          this.element.value = value
+          this.element.input = input
         },
         this.element
       )
@@ -226,14 +226,14 @@ class Range extends Component {
           if (!this.is('initialized') || this.is('updating')) {
             return false
           }
-          if (this.data.value !== this.getPointerVal()) {
-            this.data.value = this.getPointerVal()
+          if (this.data.input !== this.getPointerVal()) {
+            this.data.input = this.getPointerVal()
 
             this.set(this.data)
 
-            if (this.cacheValue.toString() !== this.data.value.toString()) {
+            if (this.cacheValue.toString() !== this.data.input.toString()) {
               this.trigger(EVENTS.CHANGE, this.data)
-              this.cacheValue = this.data.value
+              this.cacheValue = this.data.input
             }
           }
           return false
@@ -245,8 +245,8 @@ class Range extends Component {
     if (this.is('units')) {
       this.unitsApi.options.onChange = unit => {
         const data = this.unitsApi.get(unit)
-        if (isString(data.value)) {
-          data.value = data.value.split(',')
+        if (isString(data.input)) {
+          data.input = data.input.split(',')
         }
         this.setUnitsAttr(data)
         this.set(this.data)
@@ -254,7 +254,7 @@ class Range extends Component {
       }
 
       this.unitsApi.options.onChangeVal = val => {
-        val = this.options.parse.call(this, val).value
+        val = this.options.parse.call(this, val).input
 
         if (isArray(val)) {
           if (val[0] > val[1]) {
@@ -268,7 +268,7 @@ class Range extends Component {
         }
 
         const data = {
-          value: val,
+          input: val,
           unit: this.data.unit
         }
         this.unitsApi.set(data)
@@ -284,26 +284,27 @@ class Range extends Component {
   }
 
   setUnitsAttr(data) {
-    const { value, unit } = data
+    console.log(data)
+    const { input, unit } = data
 
     this.min = this.options.unit[unit].min
     this.max = this.options.unit[unit].max
     this.step = this.options.unit[unit].step
     this.interval = this.max - this.min
 
-    if (!value) {
+    if (!input) {
       if (this.options.isRange) {
-        this.data.value = [this.min, this.min]
+        this.data.input = [this.min, this.min]
       } else {
-        this.data.value = this.min
+        this.data.input = this.min
       }
-    } else if (isObject(value)) {
-      this.data.value = value
+    } else if (isObject(input)) {
+      this.data.input = input
     } else {
       this.data = Object.assign(
         {},
         this.data,
-        this.options.parse.call(this, value)
+        this.options.parse.call(this, input)
       )
     }
     this.data.unit = unit
@@ -440,8 +441,8 @@ class Range extends Component {
     if (!data || typeof data === 'undefined') {
       return
     }
-
-    let { value } = data
+    console.log(data, 19191)
+    let { input } = data
     const { unit } = data
 
     if (this.is('units')) {
@@ -450,26 +451,26 @@ class Range extends Component {
       }
 
       this.unitsApi.set({
-        value,
+        input,
         unit
       })
     }
 
     if (this.options.isRange) {
-      if (isNumber(value)) {
-        value = [value]
+      if (isNumber(input)) {
+        input = [input]
       }
-      if (!isArray(value)) {
+      if (!isArray(input)) {
         return
       }
       this.pointer.forEach((p, i) => {
-        p.set(value[i])
+        p.set(input[i])
       })
     } else {
-      this.p1.set(value)
+      this.p1.set(input)
     }
 
-    this.data.value = value
+    this.data.input = input
   }
 
   val(value) {
@@ -477,7 +478,7 @@ class Range extends Component {
       const val = this.options.process.call(this, this.get())
       return val
     }
-
+    console.log(value)
     this.set(this.options.parse.call(this, value))
     return true
   }

@@ -141,9 +141,9 @@ class Dropdown extends Component {
       `.${this.classes.ITEM}`,
       e => {
         const item = e.target
-        // if (item.parentNode !== this.$dropdown) {
-        //   return
-        // }
+        if (item.parentNode !== this.$dropdown) {
+          return
+        }
         this.selectItem(item)
 
         if (this.options.hideOnSelect) {
