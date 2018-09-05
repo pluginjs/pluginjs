@@ -35,25 +35,25 @@ export const classes = {
   FONTFAMILY: '{namespace}-fontFamily',
   FONTFAMILYTITLE: '{namespace}-fontFamily-title',
   FONTFAMILYCONTENT: '{namespace}-fontFamily-content',
-  FONTFAMILYNAMESPACE: '{fontFamilyNamespace}',
+  // FONTFAMILYNAMESPACE: '{fontFamilyNamespace}',
   FONTFAMILYDROPDOWN: '{namespace}-fontFamily-dropdown',
   // fontweight
   FONTWEIGHT: '{namespace}-fontWeight',
   FONTWEIGHTTITLE: '"{namespace}-fontWeight-title',
   FONTWEIGHTCONTENT: '{namespace}-fontWeight-content',
-  FONTWEIGHTNAMESPACE: '{fontWeightNamespace}',
+  // FONTWEIGHTNAMESPACE: '{fontWeightNamespace}',
   FONTWEIGHTDROPDOWN: '{namespace}-fontWeight-dropdown',
   // fontsize
   FONTSIZE: '{namespace}-fontSize',
   FONTSIZETITLE: '{namespace}-fontSize-title',
   FONTSIZECONTENT: '{namespace}-fontSize-content',
-  FONTSIZENAMESPACE: '{fontSizeNamespace}',
+  // FONTSIZENAMESPACE: '{fontSizeNamespace}',
   FONTSIZERANGE: '{namespace}-fontSize-range',
   // lineHeight
   LINEHEIGHT: '{namespace}-lineHeight',
   LINEHEIGHTTITLE: '{namespace}-lineHeight-title',
   LINEHEIGHTCONTENT: '{namespace}-lineHeight-content',
-  LINEHEIGHTNAMESPACE: '{lineHeightNamespace}',
+  // LINEHEIGHTNAMESPACE: '{lineHeightNamespace}',
   LINEHEIGHTRANGE: '{namespace}-lineHeight-range',
   // textalign
   DECORATIONS: '{namespace}-decorations',
@@ -103,7 +103,7 @@ export const defaults = {
         '<div class="{classes.FONTFAMILY}">' +
         '<span class="{classes.FONTFAMILYTITLE}">{typeface}</span>' +
         '<div class="{classes.FONTFAMILYCONTENT}">' +
-        '<div class="{classes.FONTFAMILYNAMESPACE} {classes.FONTFAMILYDROPDOWN}"><span class="pj-dropdown-trigger"></span><i class="asIcon-caret-down"></i></div>' +
+        '<div class="{classes.FONTFAMILYDROPDOWN}"><span class="pj-dropdown-trigger"></span><i class="asIcon-caret-down"></i></div>' +
         '<ul>' +
         '</ul>' +
         '</div>' +
@@ -119,7 +119,7 @@ export const defaults = {
         '<div class="{classes.FONTWEIGHT}">' +
         '<span class="{classes.FONTWEIGHTTITLE}">{weight}</span>' +
         '<div class="{classes.FONTWEIGHTCONTENT}">' +
-        '<div class="{classes.FONTWEIGHTNAMESPACE} {classes.FONTWEIGHTDROPDOWN}"><span class="pj-dropdown-trigger"></span><i class="asIcon-caret-down"></i></div>' +
+        '<div class="{classes.FONTWEIGHTDROPDOWN}"><span class="pj-dropdown-trigger"></span><i class="asIcon-caret-down"></i></div>' +
         // '<ul>' +
         // '<li>inherit</li>' +
         // '<li>bold</li>' +
@@ -146,7 +146,7 @@ export const defaults = {
         '<div class="{classes.FONTSIZE}">' +
         '<span class="{classes.FONTSIZETITLE}">{fontSize}</span>' +
         '<div class="{classes.FONTSIZECONTENT}">' +
-        '<div class="{classes.FONTSIZENAMESPACE} {classes.FONTSIZERANGE}"></div>' +
+        '<div class="{classes.FONTSIZERANGE}"></div>' +
         '</div>' +
         '</div>'
       )
@@ -164,7 +164,7 @@ export const defaults = {
         '<div class="{classes.LINEHEIGHT}">' +
         '<span class="{classes.LINEHEIGHTTITLE}">{lineHeight}</span>' +
         '<div class="{classes. LINEHEIGHTCONTENT}">' +
-        '<div class="{classes.LINEHEIGHTNAMESPACE} {classes.LINEHEIGHTRANGE}"></div>' +
+        '<div class="{classes.LINEHEIGHTRANGE}"></div>' +
         // '<div class="{namespace}-lineHeight-value">1</div>' +
         '</div>' +
         '</div>'

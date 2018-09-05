@@ -15,37 +15,6 @@ export default class LineHeight {
     this.parse(this.instance.value.lineHeight)
 
     this.initRange()
-    // if (!this.instance.value.lineHeight) {
-    //   this.lineHeightValue =
-    //     this.instance.options.lineHeight.value === 'inherit' ?
-    //     this.instance.options.lineHeight.min :
-    //     this.instance.options.lineHeight.value;
-    //   this.lineHeightUnit = this.instance.options.lineHeight.unit;
-    // } else if (this.instance.value.lineHeight === 'inherit') {
-    //   this.lineHeightValue = this.instance.options.lineHeight.min;
-    //   if (this.instance.options.lineHeight.unit === 'inherit') {
-    //     this.lineHeightUnit = '';
-    //   } else {
-    //     this.lineHeightUnit = this.instance.options.lineHeight.unit;
-    //   }
-    // } else {
-    //   this.lineHeightValue = this.instance.getUnitNumber(
-    //     this.instance.value.lineHeight
-    //   ).number;
-    //   this.lineHeightUnit = this.instance.options.lineHeight.unit;
-
-    //   // this.lineHeightUnit = this.instance.getUnitNumber(
-    //   //   this.instance.value.lineHeight
-    //   // ).unit;
-    // }
-
-    // this.$lineHeightValue = this.instance.$expandPanel.find(`.${this.instance.classes.NAMESPACE}-lineHeight-value`);
-
-    // if (this.lineHeightValue === this.instance.options.lineHeight.min || this.lineHeightValue === 'inherit') {
-    //   $(this.$lineHeightValue).text('inherit');
-    // } else {
-    //   $(this.$lineHeightValue).text(this.lineHeightValue + this.lineHeightUnit);
-    // }
   }
 
   initRange() {

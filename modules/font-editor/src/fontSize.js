@@ -15,28 +15,13 @@ export default class FontSize {
     this.parse(this.instance.value.fontSize)
 
     this.initRange()
-
-    // if (!this.instance.value.fontSize) {
-    //   this.fontSizeValue = this.instance.options.fontSize.value === 'inherit' ? this.instance.options.fontSize.min : this.instance.options.fontSize.value;
-    // } else if (this.instance.value.fontSize === 'inherit') {
-    //   this.fontSizeValue = this.instance.options.fontSize.min;
-    //   // this.fontSizeUnit = this.instance.options.fontSize.unit;
-    // } else {
-    //   this.fontSizeValue = this.instance.getUnitNumber(
-    //     this.instance.value.fontSize
-    //   ).number;
-    //   // this.fontSizeUnit = this.instance.getUnitNumber(
-    //   //   this.instance.value.fontSize
-    //   // ).unit;
-    // }
-
-    // this.fontSizeUnit = this.instance.options.fontSize.unit;
   }
 
   initRange() {
     const that = this
     const unit = {}
     const value = this.value
+    console.log(this.value, 107819726315)
     // create $fontSize
     const html = template.compile(this.instance.options.fontSize.template())({
       classes: this.instance.classes,
@@ -95,7 +80,6 @@ export default class FontSize {
     let inlineVal
 
     if (val === 'inherit') {
-      this.value = 0
       this.unit = 'inherit'
       return
     }

@@ -22,7 +22,6 @@ export default class Attachment {
 
   initialize() {
     const html = template.compile(this.instance.options.attachment.template())({
-      attachNamespace: this.instance.options.attachment.namespace,
       classes: this.instance.classes,
       bgAttach: this.instance.translate('bgAttach')
     })
@@ -34,7 +33,7 @@ export default class Attachment {
       this.instance.$expandPanel
     )
     this.$dropdown = query(
-      `.${this.instance.options.attachment.namespace}`,
+      `.${this.instance.classes.DROPDOWNTRIGGER}`,
       this.instance.$expandPanel
     )
     // this.$attachTrigger = query('span', this.$dropdown)
@@ -48,7 +47,6 @@ export default class Attachment {
         imitateSelect: true,
         value: 'inherit',
         data,
-        width: this.$dropdown,
         classes: {
           panel: `pj-dropdown-panel ${
             this.instance.classes.NAMESPACE

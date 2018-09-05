@@ -83,6 +83,14 @@ export const defaults = {
   locale: 'en',
   localeFallbacks: true,
   disabled: false,
+  value: {
+    repeat: 'repeat-x',
+    position: 'center center',
+    attachment: 'inherit',
+    size: 'auto',
+    image: 'https://picsum.photos/200/300?image=1068',
+    thumbnail: 'http://via.placeholder.com/350x150'
+  },
   repeat: {
     defaultValue: 'repeat',
     values: ['no-repeat', 'repeat', 'repeat-x', 'repeat-y'],
@@ -153,7 +161,6 @@ export const defaults = {
   },
 
   attachment: {
-    namespace: 'pj-dropdown',
     defaultValue: 'scroll',
     values: ['scroll', 'fixed', 'inherit'],
     template() {
@@ -161,7 +168,7 @@ export const defaults = {
         '<div class="{classes.ATTACHMENT}">' +
         '<span class="{classes.ATTACHMENTTITLE}">{bgAttach}</span>' +
         '<div class="{classes.ATTACHMENTCONTENT}">' +
-        '<div class="{attachNamespace} {classes.DROPDOWNTRIGGER}"></div><div></div>' +
+        '<div class="{classes.DROPDOWNTRIGGER}"></div><div></div>' +
         '</div>' +
         '</div>'
       )

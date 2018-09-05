@@ -252,35 +252,47 @@ class VideoPicker extends Component {
     this.$sourceDropdown = Dropdown.of(this.$sourceTrigger, {
       data: sourceData,
       reference: this.$vidosource,
-      width: 160,
-      exclusive: false,
       imitateSelect: true,
       icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
-      value: sourceData[0].label,
+      select: sourceData[0].label,
       templates: {
         panel() {
           return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
         }
       },
-      constraintToScrollParent: false,
-      constraintToWindow: false
+      onChange: el => {
+        // this.data.source = data('value', el)
+        if (el === 'Local File') {
+          showElement(closest('.pj-videoPicker-component', this.$localUrl))
+          hideElement(closest('.pj-videoPicker-component', this.$videoUrl))
+        } else {
+          hideElement(closest('.pj-videoPicker-component', this.$localUrl))
+          showElement(closest('.pj-videoPicker-component', this.$videoUrl))
+        }
+        if (this.$videoPoster) {
+          setStyle('backgroundImage', null, this.$videoPoster)
+        }
+        removeClass(this.classes.POSTERSELECTED, this.$poster)
+        if (this.videoApi) {
+          this.removeVideo()
+        }
+      }
     })
 
     this.$ratioDropdown = Dropdown.of(this.$ratioTrigger, {
       data: ratioData,
       reference: this.$ratio,
-      width: 160,
-      exclusive: false,
       imitateSelect: true,
       icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
-      value: ratioData[0].label,
+      select: ratioData[0].label,
       templates: {
         panel() {
           return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
         }
       },
-      constraintToScrollParent: false,
-      constraintToWindow: false
+      onChange: el => {
+        this.data.ratio = data('value', el)
+      }
     })
 
     this.$infoCover = query(`.${this.classes.INFOPOSTER}`, this.$wrap)
@@ -317,6 +329,10 @@ class VideoPicker extends Component {
               resolve()
             }
           }
+        },
+        onShow: () => {
+          addClass(this.classes.SHOW, this.$wrap)
+          this.enter('holdHover')
         }
       }
     )
@@ -330,11 +346,6 @@ class VideoPicker extends Component {
       },
       this.$icon
     )
-    // pop event
-    this.pop.options.onShow = () => {
-      addClass(this.classes.SHOW, this.$wrap)
-      this.enter('holdHover')
-    }
     this.pop.options.onHide = () => {
       removeClass(this.classes.SHOW, this.$wrap)
       removeClass(this.classes.HOVER, this.$infoAction)
@@ -423,30 +434,6 @@ class VideoPicker extends Component {
         }
       )
     )(this.$wrap)
-
-    // change Video Source
-    this.$sourceDropdown.options.onChange = el => {
-      // this.data.source = data('value', el)
-      if (el === 'Local File') {
-        showElement(closest('.pj-videoPicker-component', this.$localUrl))
-        hideElement(closest('.pj-videoPicker-component', this.$videoUrl))
-      } else {
-        hideElement(closest('.pj-videoPicker-component', this.$localUrl))
-        showElement(closest('.pj-videoPicker-component', this.$videoUrl))
-      }
-      if (this.$videoPoster) {
-        setStyle('backgroundImage', null, this.$videoPoster)
-      }
-      removeClass(this.classes.POSTERSELECTED, this.$poster)
-      if (this.videoApi) {
-        this.removeVideo()
-      }
-    }
-
-    // change Ratio
-    this.$ratioDropdown.options.onChange = el => {
-      this.data.ratio = data('value', el)
-    }
 
     // change poster
     compose(
@@ -577,7 +564,6 @@ class VideoPicker extends Component {
       videoConfig.url = `${url}`
     }
     this.videoApi = Video.of(this.$video, videoConfig)
-
     this.videoApi.options.onLoad = () => {
       addClass(this.classes.VIDEOLOADING, this.$videoAction)
     }

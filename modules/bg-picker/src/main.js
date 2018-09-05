@@ -61,7 +61,8 @@ class BgPicker extends Component {
       addClass(this.getThemeClass(), this.$wrap)
     }
 
-    this.value = this.options.parse(this.element.value.replace(/'/g, '"'))
+    // this.value = this.options.parse(this.element.value.replace(/'/g, '"'))
+    this.value = this.options.value
     this.set(this.value, false)
 
     // init
@@ -95,12 +96,8 @@ class BgPicker extends Component {
       placement: 'bottom-left',
       reference: this.$trigger,
       target: this.$Panel,
-      // imitateSelect: true,
-      // exclusive: false,
-      // inputLabel: true,
-      hideOutClick: true,
+      hideOutClick: false,
       hideOnSelect: false,
-      // constraintToScrollParent: false,
       templates: this.options.templates
     })
   }
@@ -113,6 +110,8 @@ class BgPicker extends Component {
         if (this.is('disabled')) {
           return
         }
+        // console.log(this.element.value.image)
+        this.setImage(this.options.value.image)
         removeClass(
           this.classes.EXIST,
           addClass(this.classes.EXPAND, this.$wrap)
@@ -208,15 +207,6 @@ class BgPicker extends Component {
       },
       this.$image
     )
-
-    // pop event
-    this.pop.options.onShow = () => {
-      this.enter('holdHover')
-    }
-    this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$fill)
-      this.leave('holdHover')
-    }
   }
 
   unbind() {
@@ -270,14 +260,17 @@ class BgPicker extends Component {
           label: 'Delete',
           color: 'danger',
           fn: resolve => {
-            // this.$remove.closest(`.${this.classes.FILL}`).fadeOut(100, () => {
-            //   this.clear()
-            //   this.$remove.fadeIn()
-            // })
-
+            this.clear()
             resolve()
           }
         }
+      },
+      onShow: () => {
+        this.enter('holdHover')
+      },
+      onHide: () => {
+        removeClass(this.classes.HOVER, this.$fill)
+        this.leave('holdHover')
       }
     })
   }

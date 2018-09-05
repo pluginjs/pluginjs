@@ -257,7 +257,7 @@ class MapPicker extends Component {
   initMap(set = false) {
     const that = this
     const $map = query(`.${this.classes.MAP}`, this.$dropdown)
-
+    console.log($map)
     const options = deepMerge(this.options.gmapOptions, {
       onReady() {
         // init autoComplete
@@ -282,6 +282,7 @@ class MapPicker extends Component {
 
     setTimeout(() => {
       this.$map = Gmap.of($map, options)
+
       if (set) {
         this.set(this.data)
       }
@@ -500,13 +501,14 @@ class MapPicker extends Component {
       }
     }
 
+    console.log(this.$map)
     if (this.$map && this.$map.is('initialized')) {
       this.clear()
 
+      console.log(this.$map)
       if (data.place) {
         query(`.${this.classes.PLACE}`, this.$place).value = data.place
       }
-
       this.createMarker(data)
       this.$map.MAP.setCenter(data)
     } else {
