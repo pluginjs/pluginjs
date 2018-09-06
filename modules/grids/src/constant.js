@@ -87,7 +87,7 @@ export const defaults = {
       pagination: false,
       drag: true,
       center: false,
-      dragFree: false,
+      decay: false,
       power: 2,
       group: false,
       multiple: false,

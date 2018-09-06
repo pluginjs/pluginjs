@@ -363,21 +363,6 @@ class Swipe extends Component {
   initSwipeable() {
     const that = this
 
-    const setIndex = index => {
-      if (this.swipeable.info.deltaX > 0) {
-        index -= 1
-        if (index < 0) {
-          index = that.options.loop ? that.maxActiveCount : 0
-        }
-      } else {
-        index += 1
-        if (index > that.maxActiveCount - 1) {
-          index = that.options.loop ? 0 : that.maxActiveCount
-        }
-      }
-      that.moveTo(index)
-    }
-
     this.swipeable = Swipeable.of(this.container, {
       container: that.element,
       decay: that.options.decay,
@@ -422,21 +407,21 @@ class Swipe extends Component {
 
         if (Math.abs(decayX) < 1) {
           that.moveTo(index)
-        } else if (Math.abs(this.info.deltaX) < 200) {
+        } else if (Math.abs(this.info.deltaX) < 400) {
           const offset = this.info.deltaX
           that.decay(offset)
         } else {
-          setIndex(index)
+          that.moveTo(index)
         }
         this.trigger(EVENTS.DRAGEND)
       },
       onDecayend() {
-        const locationX = this.getLocation(this.element).x
-        const index = that.getIndexByDistance(locationX)
         if (that.$anime) {
           that.$anime.pause()
         }
-        setIndex(index)
+        const locationX = this.getLocation(this.element).x
+        const index = that.getIndexByDistance(locationX)
+        that.moveTo(index)
       }
     })
   }
