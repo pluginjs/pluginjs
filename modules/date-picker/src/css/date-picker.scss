@@ -40,7 +40,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 &.#{$datePicker}-inputWrap {
   //display: table;
   display: inline-flex;
-  
+
   &:hover {
     .#{$datePicker}-icon {
       background-color: rgba(#000, 0.05);
@@ -100,7 +100,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     border-bottom-right-radius: 0;
     box-shadow: none !important;
   }
-  
+
 }
 
 .#{$datePicker}-active {
@@ -114,7 +114,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     }
     &::-moz-placeholder{
       color: $color-white
-    } 
+    }
     &:-ms-input-placeholder{
       color: $color-white
     }
@@ -187,24 +187,24 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     &:hover {
         .#{$datePicker}-icon {
           background-color: $color-white;
-          border-color:#e6e6e6;     
+          border-color:#e6e6e6;
         }
         .#{$datePicker}-input {
           background-color: $color-white;
-          border:1px solid #e6e6e6;              
+          border:1px solid #e6e6e6;
         }
       }
       &.#{$datePicker}-inputWrap {
       &:hover {
         .#{$datePicker}-icon {
           background-color: $color-white;
-          border-color:#e6e6e6 !important;     
+          border-color:#e6e6e6 !important;
         }
       }
       &:active {
         .#{$datePicker}-icon {
           background-color: none;
-          border-color:#e6e6e6;     
+          border-color:#e6e6e6;
         }
         .icon-calendar::before {
           color: #e6e6e6;
@@ -284,7 +284,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     height: 3.4 * $datePicker-sizer;
     padding: 0 1 * $datePicker-sizer; //0 7px
     font-size: $font-size-sm;
-    line-height: 3.4 * $datePicker-sizer; //30px  
+    line-height: 3.4 * $datePicker-sizer; //30px
     color: $datePicker-icon-color;
     text-align: center;
     background-color: #fff;
@@ -294,9 +294,6 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
   }
 
   &-content {
-    /*stylelint-disable*/
-    font-family: "Helvetica Neue";
-    /*stylelint-enable*/
     color: $datePicker-color;
     box-shadow: $datePicker-box-shadow;
 
@@ -526,7 +523,7 @@ input[type="text"][disabled] {
   }
   &::-moz-placeholder{
     color: $disabled-color;
-  } 
+  }
   &:-ms-input-placeholder{
     color: $disabled-color;
   }

@@ -360,7 +360,6 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
         &-title {
           display: inline-block;
           margin-bottom: $colorPicker-collection-group-title-margin-bottom;
-          // font-family: "Helvetica Neue";
           font-size: $colorPicker-collection-group-title-font-size;
           color: $colorPicker-collection-group-title-color;
           letter-spacing: 1px;
@@ -414,9 +413,9 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
       .pj-scrollable-content {
         width: 100% !important;
         height: 100% !important;
-      
+
       }
-      
+
     }
 
     &-item {
