@@ -42,7 +42,6 @@
     "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/template": "*",
-    "@pluginjs/units": "*",
     "jquery-mousewheel": "*"
   },
   "devDependencies": {

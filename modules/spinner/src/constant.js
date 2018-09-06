@@ -18,7 +18,7 @@ export const classes = {
   DOWN: '{namespace}-down',
   UP: '{namespace}-up',
   WRAP: '{namespace}',
-  CONTROLRIGHT: '{namespace}-control-right'
+  LAYOUT: '{namespace}-layout-{layout}'
 }
 
 export const methods = [
@@ -42,33 +42,35 @@ export const defaults = {
   name: null,
   precision: 0,
   rule: null, // string, shortcut define max min step precision
-  unit: null, // null | object ==> { 'unitName' : {min:[number],max:[number],step:[number]}, ...}
   layout: 'both', // both | right
 
   looping: true, // if cycling the value when it is outofbound
   mousewheel: false, // support mouse wheel
   templates: {
     control() {
-      return `<div class="{classes.CONTROL}"><span class="{classes.UP} pj-icon pj-icon-add-solid"></span><span class="{classes.DOWN} pj-icon pj-icon-minus-solid"></span>
-      </div>`
+      if (this.options.layout === 'right') {
+        return `<div class="{classes.CONTROL}">
+  <span class="{classes.UP} pj-icon pj-icon-add-small"></span>
+  <span class="{classes.DOWN} pj-icon pj-icon-minus-small"></span>
+</div>`
+      }
+      return `<div class="{classes.CONTROL}">
+  <span class="{classes.UP} pj-icon pj-icon-add-solid"></span>
+  <span class="{classes.DOWN} pj-icon pj-icon-minus-solid"></span>
+</div>`
     }
   },
   process(value) {
-    if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value)
-    }
-    return ''
+    return value.toString()
   },
   parse(value) {
     if (value) {
-      try {
-        return JSON.parse(value)
-      } catch (e) {
-        return null
-      }
+      value = parseFloat(value, 10)
+
+      return Math.min(Math.max(this.min, value), this.max)
     }
-    return null
+    return parseFloat(this.min)
   }
 }
 
-export const dependencies = ['units', 'mousewheel']
+export const dependencies = ['mousewheel']

@@ -4,7 +4,6 @@
 // Vars
 // ======================
 $spinner: "pj-spinner" !default;
-$units: "pj-units" !default;
 $spinner-sizer: $sizer;
 
 $spinner-color: $gray-dark !default;
@@ -20,10 +19,9 @@ $spinner-control-width: $spinner-height !default;
 $spinner-control-color: $gray-dark !default;
 $spinner-control-font-size: $font-size-sm !default;
 $spinner-control-active-color: $color-primary-black !default;
-$right-style-width: 8 * $spinner-sizer !default; //80px
-$right-style-control-width: 2 * $spinner-sizer !default; //20px
-$right-style-trigger-right: 2 * $spinner-sizer !default; //20px
-$units-trigger-width: 2.2 * $spinner-sizer !default; //22px
+$spinner-layout-right-width: 8 * $spinner-sizer !default; //80px
+$spinner-layout-right-control-width: 2 * $spinner-sizer !default; //20px
+$spinner-layout-right-trigger-right: 2 * $spinner-sizer !default; //20px
 
 // Skin
 // ================
@@ -34,10 +32,6 @@ $units-trigger-width: 2.2 * $spinner-sizer !default; //22px
       border-color: $spinner-focus-border-color !important;
       outline: none;
       box-shadow: none !important;
-    }
-
-    &.pj-units {
-      padding: 0 $spinner-control-width + $units-trigger-width 0 $spinner-control-width + 2px;
     }
   }
 
@@ -103,28 +97,17 @@ $units-trigger-width: 2.2 * $spinner-sizer !default; //22px
     }
   }
 
-  .#{$units}-trigger {
-    right: 32px;
-    left: auto;
-    width: $units-trigger-width !important;
-    font-size: $spinner-font-size;
-  }
-
   // control right
-  &.#{$spinner}-control-right {
+  &.#{$spinner}-layout-right {
     input {
-      width: $right-style-width;
-      padding-right: $right-style-control-width + $right-style-trigger-right -2px;
+      width: $spinner-layout-right-width;
+      padding-right: $spinner-layout-right-control-width + $spinner-layout-right-trigger-right -2px;
       padding-left: 0.4 * $spinner-sizer; //4px
-    }
-
-    .#{$units}-trigger {
-      right: $right-style-trigger-right;
     }
 
     .#{$spinner}-control {
       right: $spinner-border-width;
-      width: $right-style-control-width;
+      width: $spinner-layout-right-control-width;
       height: $spinner-height - $spinner-border-width * 2; //30-2*1
       border-left: $spinner-border-width solid $spinner-border-color;
 
@@ -138,8 +121,4 @@ $units-trigger-width: 2.2 * $spinner-sizer !default; //22px
       }
     }
   }
-}
-
-.#{$units}-panel {
-  font-size: $spinner-font-size;
 }

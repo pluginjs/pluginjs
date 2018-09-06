@@ -3,7 +3,6 @@
 // Vars
 // ======================
 $spinner: "pj-spinner" !default;
-$units: "pj-units" !default;
 //$global-disabled-bg-color: $disabled-color !default;
 //$global-disabled-opacity: .4 !default;
 $spinner-sizer: $sizer;
@@ -38,6 +37,7 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
       border-color: $spinner-focus-hover-border-color;
     }
   }
+
   //&:active {
   //  border-color: $color-primary-dark;
   //}
@@ -51,14 +51,7 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
   &-focus.#{$spinner}:focus {
     border-color: $gray-lighter;
   }
-  .pj-units-wrap input {
-    padding-right: 6 * $spinner-sizer; //60px
-    padding-left: 3.5 * $spinner-sizer; //35px
-    border-radius: 4px;
-  }
-  .pj-dropdown-select .pj-dropdown-trigger {
-    padding: 0;
-  }
+
   input {
     box-sizing: border-box;
     width: $spinner-width;
@@ -104,18 +97,12 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
     box-sizing: border-box;
   }
 
-  .#{$units}-trigger {
-    right: 2 * $spinner-sizer; //20px
-    left: auto;
-    text-align: center;
-  }
-
   &-disabled {
     position: relative;
     cursor: not-allowed;
     background-color: $disabled-bg;
-
     border-color: $disabled-border !important;
+
     input {
       color: $disabled-color !important;
       background-color: $disabled-bg !important;
@@ -146,7 +133,7 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
   }
 }
 
-.#{$spinner}-control-right {
+.#{$spinner}-layout-right {
   .#{$spinner}-control {
     position: absolute;
     top: 50%;
@@ -170,9 +157,5 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
         transform: translate(-50%, -50%);
       }
     }
-  }
-
-  .#{$units}-trigger {
-    right: 2 * $spinner-sizer; //20px
   }
 }
