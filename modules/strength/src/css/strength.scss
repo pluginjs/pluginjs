@@ -36,10 +36,10 @@ $strength: "pj-strength" !default;
     margin-left: 10px;
     color: $gray-dark;
     cursor: pointer;
-    .icon-show {
+    .#{$strength}-show {
       display: block;
     }
-    .icon-hide {
+    .#{$strength}-hide {
       display: none;
     }
     .#{$strength}-check {
@@ -82,10 +82,10 @@ $strength: "pj-strength" !default;
     }
   }
   &-active {
-    .icon-show {
+    .#{$strength}-show {
       display: none;
     }
-    .icon-hide {
+    .#{$strength}-hide {
       display: block;
     }
     .#{$strength}-check {

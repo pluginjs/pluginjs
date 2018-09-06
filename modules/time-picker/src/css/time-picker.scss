@@ -22,10 +22,16 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
       min-width: 16.7 * $timePicker-sizer; //167px;
       margin-bottom: 0;
     }
-
-    &:active {
-      border-color: $color-primary-active !important;
+     
+    &:hover {
+      // color: $color-primary-black;
+      .#{$timePicker}-remove {
+        display: block !important;
+      }
     }
+    // &:active {
+    //   border-color: $color-primary-active !important;
+    // }
   }
   &-border {
     color : #215FDB !important;
@@ -44,9 +50,9 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
     &:focus {
       border: 1px solid #215FDB !important;
     }
-    // &:hover {
-    //   border: 1px solid $color-black !important;
-    // }
+    &:hover {
+      border: 1px solid $color-black;
+    }
   }
 
   .#{$dropdown}-icon {
@@ -61,12 +67,7 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
     border-left: 1px solid $timepicker-icon-border;
     transition: all 0.1s;
 
-    &:hover {
-      // color: $color-primary-black;
-      .#{$dropdown}-remove {
-        display: none;
-      }
-    }
+
   }
 
   .#{$dropdown}-show {

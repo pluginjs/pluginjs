@@ -96,7 +96,8 @@ class TimePicker extends Component {
 
     this.initDropdown()
     this.initInputMask()
-
+    this.$panel = query('.pj-dropdown', this.$wrap)
+    insertAfter(this.$panel, this.$dropdownEl)
     if (this.options.keyboard) {
       this.keyboard = new Keyboard(this)
     }
@@ -112,6 +113,7 @@ class TimePicker extends Component {
   initDropdown() {
     const dropdownConf = {
       data: this.getTimeList().map(value => ({ label: value, value })),
+      target: this.$panel,
       placeholder: this.options.placeholder,
       placement: 'bottom-left',
       imitateSelect: true,
@@ -119,19 +121,22 @@ class TimePicker extends Component {
       hideOutClick: true,
       constraintToScrollParent: false,
       templates: this.options.templates,
-      onChange: () => {
-        this.trigger(EVENTS.CHANGE, this.dropdown.get())
+      onChange: value => {
+        this.trigger(EVENTS.CHANGE, value)
       },
       onShow: () => {
         this.correctionScrollTop()
       }
     }
     this.dropdown = Dropdown.of(this.$timeTrigger, dropdownConf)
+
     this.$remove = parseHTML(
-      `<i class="${this.classes.REMOVE} icon-close" style="display:none;"></i>`
+      `<i class="${
+        this.classes.REMOVE
+      } pj-icon  pj-icon-close" style="display:none;"></i>`
     )
     this.$icon = parseHTML(
-      '<i class="pj-dropdown-icon icon-char icon-oclock"></i>'
+      '<i class="pj-dropdown-icon icon-char pj-icon  pj-icon-clock-solid"></i>'
     )
     insertAfter(this.$remove, this.dropdown.element)
     insertAfter(this.$icon, this.$remove)
@@ -140,7 +145,7 @@ class TimePicker extends Component {
         hideElement(this.$remove)
         this.dropdown.set('')
         this.time = ''
-        return false
+        // return false
       }),
       bindEvent(this.eventName('mouseout'), `.${this.classes.DROPDOWN}`, () => {
         hideElement(this.$remove)
@@ -296,7 +301,7 @@ class TimePicker extends Component {
   bind() {
     bindEvent(
       this.eventName('change'),
-      () => {  /* eslint-disable-line */
+      () => {   /* eslint-disable-line */
         const time = this.$inputEl.value.trim()
         const timeList = this.getTimeList()
         if (timeList.indexOf(time) < 0) {
@@ -345,10 +350,10 @@ class TimePicker extends Component {
 
     bindEvent(
       this.selfEventName(EVENTS.CHANGE),
-      e => {
-        const [value] = e.detail.data
+      (e, api, data) => {
+        const [value] = data
         this.markIndex = this.itemValues.indexOf(value)
-        this.update(value)
+        this.update(data)
       },
       this.element
     )
@@ -361,6 +366,7 @@ class TimePicker extends Component {
   }
 
   update(time) {
+    console.log(time)
     this.time = time
     this.element.value = this.time
   }

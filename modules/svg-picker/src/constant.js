@@ -85,7 +85,7 @@ export const defaults = {
       </div>`
     },
     manage() {
-      return `<div class={classes.MANAGE}><i class="{classes.MANAGEICON} pj-icon pj-icon-cog"></i> {manageText}
+      return `<div class={classes.MANAGE}><i class="{classes.MANAGEICON} pj-icon pj-icon-setting-1"></i> {manageText}
       </div>`
     },
     search() {
