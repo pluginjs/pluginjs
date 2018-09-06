@@ -136,7 +136,7 @@ class SvgProgress extends Component {
     append(this.SHAPE.$svg, this.$svg)
     append(this.$svg, this.element)
 
-    this.drawBar(this.first)
+    this.drawBar(this.max)
     this.updateBar()
   }
 
