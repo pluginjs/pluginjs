@@ -210,7 +210,7 @@ class Filters extends Component {
         }
       })
 
-      this.DROPDOWN.show()
+      // this.DROPDOWN.show()
       this.DROPDOWN.POPPER.options.removeOnDestroy = true
     } else {
       children(this.DROPDOWN.$dropdown).map(item => item.remove())

@@ -3,13 +3,13 @@
 // Vars
 // =====================
 $filter: "pj-filter" !default;
+
 // Core
 // =====================
 .#{$filter}s {
   @include clearfix();
 
   position: relative;
-  vertical-align: middle;
 
   .#{$filter} {
     position: relative;
@@ -20,24 +20,17 @@ $filter: "pj-filter" !default;
     cursor: pointer;
     user-select: none;
 
+    &-active {
+      z-index: 1;
+    }
+
     &-hide {
       display: none;
     }
-  }
 
-  .#{$filter}-dropdown {
-    display: flex;
-    align-items: center;
-  }
-}
-
-/* group */
-.#{$filter}s--group {
-  // Bring the "active" button to the front
-  &:focus,
-  &:hover,
-  &:active,
-  &.#{$filter}-active {
-    z-index: 2;
+    &-dropdown {
+      display: flex;
+      align-items: center;
+    }
   }
 }
