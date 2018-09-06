@@ -304,20 +304,6 @@ Returns
 |------|------|-------------|
 | obj | `Object` | |
 
-### keyframes2Anime
-
-Parameters
-
-| Name | Type | Description |
-|------|------|-------------|
-| keyframes | `Array` | |
-
-Returns
-
-| Name | Type | Description |
-|------|------|-------------|
-| result | `Object` | |
-
 ## Browser support
 
 Tested on all major browsers.

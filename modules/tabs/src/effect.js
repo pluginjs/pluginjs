@@ -1,7 +1,7 @@
 import { addClass, removeClass } from '@pluginjs/classes'
 import anime from 'animejs'
 import KEYFRAMES from '@pluginjs/keyframes'
-import { keyframes2Anime } from '@pluginjs/utils'
+import keyframes2Anime from './keyframes2Anime'
 
 class Effect {
   constructor(instance) {

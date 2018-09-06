@@ -1,4 +1,3 @@
-import keyframes2Anime from './anime-polyfill'
 import { isArray, isObject, isPlainObject } from '@pluginjs/is'
 
 export const nub = arr => {
@@ -305,5 +304,3 @@ export const SvgElement = (tag, attrs) => {
   }
   return el
 }
-
-export { keyframes2Anime }
