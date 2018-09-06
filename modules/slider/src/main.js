@@ -156,7 +156,7 @@ class Slider extends Component {
           this.back()
         }
       },
-      onDecay() {
+      onThrow() {
         if (that.is('disable')) {
           return
         }

@@ -141,16 +141,16 @@ class Swipeable extends Component {
   }
 
   panEnd(e) {
-    const decayX = this.options.axis === 'y' ? 0 : e.velocityX
-    const decayY = this.options.axis === 'x' ? 0 : e.velocityY
+    const velocityX = this.options.axis === 'y' ? 0 : e.velocityX
+    const velocityY = this.options.axis === 'x' ? 0 : e.velocityY
 
     if (
-      (this.options.axis === 'x' && Math.abs(decayX) < 1) ||
-      (this.options.axis === 'y' && Math.abs(decayY) < 1)
+      (this.options.axis === 'x' && Math.abs(velocityX) < 1) ||
+      (this.options.axis === 'y' && Math.abs(velocityY) < 1)
     ) {
       this.trigger(EVENTS.SNAIL)
     } else {
-      this.trigger(EVENTS.DECAY)
+      this.trigger(EVENTS.THROW)
     }
 
     if (this.options.decay) {

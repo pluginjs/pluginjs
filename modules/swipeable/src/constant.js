@@ -10,7 +10,7 @@ export const events = {
   END: 'end',
   RESIZE: 'resize',
   SNAIL: 'snail',
-  DECAY: 'decay',
+  THROW: 'throw',
   DECAYEND: 'decayend',
   REBOUND: 'rebound',
   REBOUNDEND: 'reboundend'
