@@ -50,16 +50,6 @@ describe('Units', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = Units.of($element, { data })
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('classes', () => {
     test('should use classes options', () => {
       const element = generateHTMLSample()
@@ -200,17 +190,87 @@ describe('Units', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample('10px')
+      api = Units.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Units.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('10px')
+        }
+      })
+
+      api.val('10px')
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Units.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('10px')
+        }
+      })
+
+      api.set({
+        input: 10,
+        unit: 'px'
+      })
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
 
-    beforeEach(() => {
+    it('should get the value', () => {
       $element = generateHTMLSample()
-      api = Units.of($element, { data })
+      api = Units.of($element)
+
+      expect(api.get()).toBeObject()
     })
 
-    test('should get the value', () => {
-      expect(api.get()).toBeObject()
+    it('should get the value with units', () => {
+      $element = generateHTMLSample('10em')
+      api = Units.of($element)
+
+      expect(api.get()).toEqual({
+        input: 10,
+        unit: 'em'
+      })
+    })
+
+    it('should get the value with number', () => {
+      $element = generateHTMLSample('10')
+      api = Units.of($element)
+
+      expect(api.get()).toEqual({
+        input: 10,
+        unit: 'px'
+      })
     })
   })
 
@@ -220,37 +280,32 @@ describe('Units', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Units.of($element, { data })
+      api = Units.of($element)
     })
 
-    test('should set the value', () => {
+    it('should set the value without unit', () => {
       expect(api.get()).toBeObject()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
+      api.set({
+        input: 10
+      })
+      expect(api.get()).toBeObject({
+        input: 10,
+        unit: 'px'
+      })
     })
 
-    test('should set the value with string', () => {
+    it('should set the value with unit', () => {
       expect(api.get()).toBeObject()
 
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set({
+        input: 10,
+        unit: 'px'
+      })
+      expect(api.get()).toBeObject({
+        input: 10,
+        unit: 'px'
+      })
     })
   })
 
@@ -260,31 +315,34 @@ describe('Units', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = Units.of($element, { data })
+      api = Units.of($element)
     })
 
-    test('should get the value', () => {
-      expect(api.val()).toBeString()
+    it('should get the value', () => {
+      $element = generateHTMLSample('10px')
+      api = Units.of($element)
+
+      expect(api.val()).toBeString('10px')
     })
 
-    test('should set the value', () => {
-      // api.val(false)
+    it('should set the value with string', () => {
+      api.val('10px')
 
-      // expect(api.get()).toBeObject()
-
-      // api.val(true)
-
-      expect(api.get()).toBeObject()
+      expect(api.val()).toBe('10px')
+      expect(api.get()).toEqual({
+        input: 10,
+        unit: 'px'
+      })
     })
 
-    test('should set the value with string', () => {
-      api.val('false')
+    it('should set the value with number', () => {
+      api.val(10)
 
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
+      expect(api.val()).toBe('10px')
+      expect(api.get()).toEqual({
+        input: 10,
+        unit: 'px'
+      })
     })
   })
 

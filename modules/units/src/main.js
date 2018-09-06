@@ -117,8 +117,9 @@ class Units extends Component {
     bindEvent(
       this.selfEventName([EVENTS.CHANGEUNIT, EVENTS.CHANGEINPUT]),
       () => {
-        this.element.value = this.val()
-        this.trigger(EVENTS.CHANGE, this.element.value)
+        const value = this.val()
+        this.element.value = value
+        this.trigger(EVENTS.CHANGE, value)
       },
       this.element
     )
@@ -142,8 +143,12 @@ class Units extends Component {
   set(value, trigger = true) {
     const { input, unit } = value
 
-    this.setUnit(unit, trigger)
-    this.setInput(input, trigger)
+    this.setUnit(unit, false)
+    this.setInput(input, false)
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, this.val())
+    }
   }
 
   get() {

@@ -1,4 +1,4 @@
-import { isNull } from '@pluginjs/is'
+import { isNull, isString } from '@pluginjs/is'
 
 export const namespace = 'units'
 
@@ -55,6 +55,9 @@ export const defaults = {
     let input = ''
     let unit = ''
     if (value) {
+      if (!isString(value)) {
+        value = value.toString()
+      }
       input = parseFloat(value)
       unit = value.match(/\D+$/g)
       if (isNull(unit)) {
