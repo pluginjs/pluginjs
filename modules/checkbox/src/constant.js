@@ -42,7 +42,7 @@ export const defaults = {
   },
   getLabel() {
     const $label = nextWith(el => el.tagName === 'LABEL', this.element)
-    if ($label.length > 0) {
+    if ($label) {
       return $label
     }
 
@@ -51,6 +51,7 @@ export const defaults = {
     return query(`label[for="${id}"]`)
   },
   getIcon() {
+    console.log(this.$label)
     return query('i:first-child', this.$label)
   },
   getGroup() {

@@ -67,12 +67,20 @@ class FontEditor extends Component {
     }
 
     this.defaultVal = this.initVal()
+    console.log(this.defaultVal)
+    console.log(
+      deepMerge(
+        {},
+        this.defaultVal,
+        this.options.parse(this.element.value.replace(/'/g, '"'))
+      )
+    )
     this.value = deepMerge(
       {},
       this.defaultVal,
       this.options.parse(this.element.value.replace(/'/g, '"'))
     )
-    // console.log(this.value)
+    console.log(this.value)
 
     // init
     this.fontFamily = new FontFamily(this)
@@ -107,7 +115,7 @@ class FontEditor extends Component {
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
-    console.log(this.value)
+    console.log(this.value, 101010)
     this.set(this.value, true)
 
     this.enter('emptyized')
@@ -309,6 +317,7 @@ class FontEditor extends Component {
   }
 
   update() {
+    console.log(Object.entries(this.value), 966745564)
     const value = this.val()
     this.element.value = value
     // set attr
@@ -354,7 +363,7 @@ class FontEditor extends Component {
     const valueObj = this.options.parse.call(this, value)
 
     if (valueObj) {
-      console.log(valueObj)
+      console.log(valueObj, 107875765)
       this.set(valueObj)
     } else {
       this.clear()
@@ -364,6 +373,7 @@ class FontEditor extends Component {
   }
 
   set(value, update = true) {
+    console.log(value)
     if (update !== false) {
       if (typeof value.textAlign !== 'undefined') {
         this.textAlign.set(value.textAlign)
@@ -389,14 +399,14 @@ class FontEditor extends Component {
         this.lineHeight.set(value.lineHeight)
       }
       if (typeof value.fontSize !== 'undefined') {
-        console.log(value, 3198716876)
-        console.log(value.fontSize)
+        console.log(value.fontSize, 3198716876)
+        console.log(this.fontSize.value)
         this.fontSize.set(value.fontSize)
       }
       if (typeof value.fontFamily !== 'undefined') {
         this.fontFamily.set(value.fontFamily)
       }
-
+      console.log(1296875)
       this.update()
     }
   }

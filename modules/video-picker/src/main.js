@@ -9,16 +9,8 @@ import {
   getWidth,
   getHeight
 } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  parseHTML,
-  query,
-  fadeIn,
-  fadeOut,
-  closest,
-  wrap,
-  data
-} from '@pluginjs/dom'
+import { bindEvent, removeEvent } from '@pluginjs/events' // , bindEventOnce
+import { parseHTML, query, fadeIn, fadeOut, closest, wrap } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import Dropdown from '@pluginjs/dropdown'
 import PopDialog from '@pluginjs/pop-dialog'
@@ -239,30 +231,21 @@ class VideoPicker extends Component {
     )
     // init source dropdown
     this.$defaultDropdown = Dropdown.of(this.$empty, {
-      exclusive: false,
       target: this.$dropdown,
       reference: this.$trigger,
       templates: this.options.template,
-      constraintToScrollParent: false,
-      constraintToWindow: false,
       hideOutClick: false,
       hideOnSelect: false
     })
-
     this.$sourceDropdown = Dropdown.of(this.$sourceTrigger, {
       data: sourceData,
       reference: this.$vidosource,
       imitateSelect: true,
       icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
-      select: sourceData[0].label,
-      templates: {
-        panel() {
-          return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
-        }
-      },
-      onChange: el => {
-        // this.data.source = data('value', el)
-        if (el === 'Local File') {
+      value: sourceData[0].label,
+      onChange: value => {
+        this.data.source = value
+        if (value === 'Local File') {
           showElement(closest('.pj-videoPicker-component', this.$localUrl))
           hideElement(closest('.pj-videoPicker-component', this.$videoUrl))
         } else {
@@ -274,7 +257,9 @@ class VideoPicker extends Component {
         }
         removeClass(this.classes.POSTERSELECTED, this.$poster)
         if (this.videoApi) {
-          this.removeVideo()
+          if (query('.pj-video', this.$wrap)) {
+            this.removeVideo()
+          }
         }
       }
     })
@@ -284,14 +269,9 @@ class VideoPicker extends Component {
       reference: this.$ratio,
       imitateSelect: true,
       icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
-      select: ratioData[0].label,
-      templates: {
-        panel() {
-          return `<ul class='${that.classes.DROPDOWNPANEL}'></ul>`
-        }
-      },
-      onChange: el => {
-        this.data.ratio = data('value', el)
+      value: ratioData[0].label,
+      onChange: value => {
+        this.data.ratio = value
       }
     })
 
@@ -421,7 +401,6 @@ class VideoPicker extends Component {
         this.eventName('click'),
         `.${this.classes.LOCALURLDELETE}`,
         () => {
-          removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
           this.removeVideo()
         }
       ),
@@ -508,12 +487,16 @@ class VideoPicker extends Component {
   }
 
   removeVideo() {
+    console.log(query('.pj-video', this.$wrap))
     this.data.poster = ''
     this.data.url = ''
 
     this.element.value = ''
     this.$urlInput.value = ''
+    console.log(this.videoApi)
     this.videoApi.destroy()
+    console.log(this.videoApi)
+
     query('.pj-video', this.$wrap).remove()
     setStyle(
       {
@@ -521,7 +504,7 @@ class VideoPicker extends Component {
       },
       this.$videoPoster
     )
-
+    removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
     removeClass(this.classes.POSTERSELECTED, this.$poster)
     removeClass(this.classes.VIDEOPLAYING, this.$videoAction)
     removeClass(this.classes.VIDEOLOADING, this.$videoAction)
@@ -541,7 +524,6 @@ class VideoPicker extends Component {
       return false
     }
     const videoConfig = { source: 'youtube' }
-
     switch (this.data.source) {
       case 'YouTube':
         videoConfig.type = 'youtube'
@@ -573,7 +555,8 @@ class VideoPicker extends Component {
       addClass(this.classes.VIDEOPLAYING, this.$videoAction)
     }
 
-    this.videoApi.load()
+    // this.videoApi.load()
+
     this.videoApi.setSize(getWidth(this.$video), getHeight(this.$video))
 
     this.enter('loaded')

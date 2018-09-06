@@ -3,6 +3,7 @@ import { compose, deepMerge } from '@pluginjs/utils'
 import {
   parseHTML,
   query,
+  queryAll,
   clearData,
   wrap,
   children,
@@ -159,17 +160,13 @@ class MapPicker extends Component {
 
   initDropdown() {
     const dropdownConf = {
-      // data: this.getTimeList().map(value => ({ label: value })),
-      // placeholder: this.options.placeholder,
+      reference: this.$trigger,
       placement: 'bottom-left',
-      // imitateSelect: true,
-      // inputLabel: true,
       target: this.$dropdown,
       hideOutClick: false,
-      constraintToScrollParent: false,
       templates: this.options.templates
     }
-    this.mapDropdown = Dropdown.of(this.$trigger, dropdownConf)
+    this.mapDropdown = Dropdown.of(this.$empty, dropdownConf)
   }
 
   buildPop() {
@@ -194,6 +191,11 @@ class MapPicker extends Component {
               resolve()
             }
           }
+        },
+        onShow: () => this.enter('holdHover'),
+        onHide: () => {
+          removeClass(this.classes.HOVER, this.$fill)
+          this.leave('holdHover')
         }
       }
     )
@@ -257,7 +259,6 @@ class MapPicker extends Component {
   initMap(set = false) {
     const that = this
     const $map = query(`.${this.classes.MAP}`, this.$dropdown)
-    console.log($map)
     const options = deepMerge(this.options.gmapOptions, {
       onReady() {
         // init autoComplete
@@ -428,13 +429,6 @@ class MapPicker extends Component {
       })
     )(this.$wrap)
 
-    // pop event
-    this.pop.options.onShow = () => this.enter('holdHover')
-    this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$fill)
-      this.leave('holdHover')
-    }
-
     // change $lat&$lng input
     if (this.options.showLatlng) {
       bindEvent(
@@ -469,18 +463,14 @@ class MapPicker extends Component {
       this.initMap()
     }
 
-    addClass('pj-dropdown-show', this.$trigger)
-    addClass('pj-dropdown-show', this.$wrap)
-    addClass('pj-dropdown-show', this.$dropdown.parentNode)
+    this.mapDropdown.show()
     addClass(this.classes.SHOW, this.$wrap)
     this.enter('open')
   }
 
   close() {
-    removeClass('pj-dropdown-show', this.$trigger)
-    removeClass('pj-dropdown-show', this.$wrap)
-    removeClass('pj-dropdown-show', this.$dropdown.parentNode)
     removeClass(this.classes.SHOW, this.$wrap)
+    this.mapDropdown.hide()
     this.leave('open')
   }
 
@@ -501,11 +491,9 @@ class MapPicker extends Component {
       }
     }
 
-    console.log(this.$map)
     if (this.$map && this.$map.is('initialized')) {
       this.clear()
 
-      console.log(this.$map)
       if (data.place) {
         query(`.${this.classes.PLACE}`, this.$place).value = data.place
       }
@@ -552,11 +540,14 @@ class MapPicker extends Component {
 
   clear() {
     this.data = {}
+    this.element.value = ''
     removeClass(this.classes.WRITE, this.$wrap)
     children(query(`.${this.classes.FILLCONTENT}`, this.$fill)).forEach(el => {
       el.textContent = ''
     })
-    query(`.${this.classes.ITEM} input`, this.$dropdown).value = ''
+    queryAll(`.${this.classes.ITEM} input`, this.$dropdown).forEach(el => {
+      el.value = ''
+    })
 
     if (this.$map) {
       this.$map.clearMarkers()

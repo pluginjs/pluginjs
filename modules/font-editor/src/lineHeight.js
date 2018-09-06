@@ -66,15 +66,15 @@ export default class LineHeight {
       }
     })
 
-    this.$range.set({
-      input: this.value,
-      unit: this.unit
-    })
-    this.update()
+    // this.$range.set({
+    //   input: this.value,
+    //   unit: this.unit
+    // })
+    // this.update()
 
-    if (this.unit === 'inherit') {
-      this.update(true)
-    }
+    // if (this.unit === 'inherit') {
+    //   this.update(true)
+    // }
   }
 
   parse(val) {

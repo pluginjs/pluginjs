@@ -3,7 +3,7 @@ import AutoComplete from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-const data = [
+const source = [
   'JAVA',
   'java',
   'java Script',
@@ -37,17 +37,17 @@ describe('AutoComplete', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const autoComplete = AutoComplete.of(generateHTMLSample(), { data })
+      const autoComplete = AutoComplete.of(generateHTMLSample(), { source })
 
       expect(autoComplete).toBeObject()
       expect(autoComplete.options).toEqual({
         ...DEFAULTS,
-        data
+        source
       })
     })
 
     test('should have options', () => {
-      const autoComplete = AutoComplete.of(generateHTMLSample(), { data })
+      const autoComplete = AutoComplete.of(generateHTMLSample(), { source })
 
       expect(autoComplete.options).toBeObject()
     })
@@ -56,7 +56,7 @@ describe('AutoComplete', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
-      const api = AutoComplete.of($element, { data })
+      const api = AutoComplete.of($element, { source })
       // expect(api).toEqual($element)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
@@ -65,12 +65,12 @@ describe('AutoComplete', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = AutoComplete.of(generateHTMLSample(), { data })
+      const $element = AutoComplete.of(generateHTMLSample(), { source })
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = AutoComplete.of(generateHTMLSample(), { data })
+      const $element = AutoComplete.of(generateHTMLSample(), { source })
       $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -91,7 +91,7 @@ describe('AutoComplete', () => {
         called++
       })
 
-      const api = AutoComplete.of($element, { data })
+      const api = AutoComplete.of($element, { source })
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -103,7 +103,7 @@ describe('AutoComplete', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = AutoComplete.of($element, { data })
+      api = AutoComplete.of($element, { source })
     })
 
     test('should trigger destroy event', () => {
@@ -126,7 +126,7 @@ describe('AutoComplete', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = AutoComplete.of($element, { data })
+      api = AutoComplete.of($element, { source })
     })
 
     test('should get the value', () => {
@@ -140,7 +140,7 @@ describe('AutoComplete', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = AutoComplete.of($element, { data })
+      api = AutoComplete.of($element, { source })
     })
 
     test('should set the value', () => {
@@ -180,7 +180,7 @@ describe('AutoComplete', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = AutoComplete.of($element, { data })
+      api = AutoComplete.of($element, { source })
     })
 
     test('should get the value', () => {
@@ -224,7 +224,7 @@ describe('AutoComplete', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = AutoComplete.of($element, { data })
+      api = AutoComplete.of($element, { source })
     })
 
     test('should enable the plugin', () => {
@@ -253,7 +253,7 @@ describe('AutoComplete', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = AutoComplete.of($element, { data })
+      api = AutoComplete.of($element, { source })
     })
 
     test('should disable the plugin', () => {

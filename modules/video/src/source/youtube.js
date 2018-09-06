@@ -26,6 +26,7 @@ class Youtube {
       instance.options
     )
     this.instance = instance
+    console.log(this.options)
   }
 
   init(done) {
@@ -98,6 +99,7 @@ class Youtube {
     if (this.options.id) {
       return this.options.id
     } else if (this.options.url) {
+      console.log(this.options.url.split('/')[3].split('?v=')[1])
       return this.options.url.split('/')[3].split('?v=')[1]
     }
     return undefined /* eslint-disable-line */

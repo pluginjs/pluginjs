@@ -103,6 +103,8 @@ class Checkbox extends Component {
     if (this.options.theme) {
       addClass(...this.getThemeClass().split(' '), this.$wrap)
     }
+
+    console.log(this.$wrap)
   }
 
   createLabel() {

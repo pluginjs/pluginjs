@@ -285,7 +285,6 @@ class Range extends Component {
 
   setUnitsAttr(data) {
     const { input, unit } = data
-
     this.min = this.options.unit[unit].min
     this.max = this.options.unit[unit].max
     this.step = this.options.unit[unit].step

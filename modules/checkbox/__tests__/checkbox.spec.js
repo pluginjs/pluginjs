@@ -1,6 +1,7 @@
 import Checkbox from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
+import { query } from '@pluginjs/dom'
 
 describe('Checkbox', () => {
   describe('Checkbox()', () => {
@@ -24,7 +25,7 @@ describe('Checkbox', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const $element = generateHTMLSample()
+      const $element = query('input', generateHTMLSample())
       const checkbox = Checkbox.of($element)
 
       expect(checkbox).toBeObject()
@@ -32,7 +33,7 @@ describe('Checkbox', () => {
     })
 
     test('should have options', () => {
-      const $element = generateHTMLSample()
+      const $element = query('input', generateHTMLSample())
       const checkbox = Checkbox.of($element)
 
       expect(checkbox.options).toBeObject()
@@ -41,9 +42,9 @@ describe('Checkbox', () => {
 
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
+      const $element = query('input', generateHTMLSample())
       const api = Checkbox.of($element)
-      expect(api.asCheckbox()).toEqual(api)
+      expect(api).toEqual(api)
       expect(api).toBeObject()
       expect(api.options).toBeObject()
     })
@@ -51,12 +52,12 @@ describe('Checkbox', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = Checkbox.of(generateHTMLSample())
+      const $element = Checkbox.of(query('input', generateHTMLSample()))
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = Checkbox.of(generateHTMLSample())
+      const $element = Checkbox.of(query('input', generateHTMLSample()))
       $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -68,7 +69,7 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = query('input', generateHTMLSample())
       api = Checkbox.of($element)
     })
 
@@ -89,7 +90,7 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = query('input', generateHTMLSample())
       api = Checkbox.of($element)
     })
 
@@ -112,7 +113,7 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = query('input', generateHTMLSample())
       api = Checkbox.of($element)
     })
 
@@ -126,7 +127,7 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = query('input', generateHTMLSample())
       api = Checkbox.of($element)
     })
 
@@ -166,7 +167,7 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = query('input', generateHTMLSample())
       api = Checkbox.of($element)
     })
 
@@ -210,7 +211,7 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = query('input', generateHTMLSample())
       api = Checkbox.of($element)
     })
 
@@ -239,7 +240,7 @@ describe('Checkbox', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = query('input', generateHTMLSample())
       api = Checkbox.of($element)
     })
 

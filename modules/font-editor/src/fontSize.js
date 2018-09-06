@@ -13,7 +13,7 @@ export default class FontSize {
 
   emptyize() {
     this.parse(this.instance.value.fontSize)
-
+    console.log(this.instance.value.fontSize, 5476)
     this.initRange()
   }
 
@@ -64,14 +64,15 @@ export default class FontSize {
       }
     })
 
-    this.$range.set({
-      input: this.value,
-      unit: this.unit
-    })
-    this.update()
-    if (this.unit === 'inherit') {
-      this.update(true)
-    }
+    console.log(this.unit, 98675645674)
+    // this.$range.set({
+    //   input: this.value,
+    //   unit: this.unit
+    // })
+    // this.update()
+    // if (this.unit === 'inherit') {
+    //   this.update(true)
+    // }
   }
 
   parse(val) {
@@ -91,6 +92,8 @@ export default class FontSize {
     }
     this.value = inlineVal || this.instance.options.fontSize.value
     this.unit = inlineUnit || this.instance.options.fontSize.unit
+
+    console.log(this.unit, 56798)
     return
   }
 
@@ -114,6 +117,7 @@ export default class FontSize {
       this.$range.set(0, 'inherit')
       this.update(true)
     } else {
+      console.log(value, 309723)
       this.$range.val(value)
       this.update()
     }

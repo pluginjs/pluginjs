@@ -143,6 +143,7 @@ class AutoComplete extends Component {
   }
 
   build(data, wrap) {
+    console.log(data)
     data.forEach(v => {
       let label = v
       let value = v

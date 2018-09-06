@@ -197,6 +197,11 @@ class LinkPicker extends Component {
               resolve()
             }
           }
+        },
+        onShow: () => this.enter('holdHover'),
+        onHide: () => {
+          removeClass(this.classes.HOVER, this.$action)
+          this.leave('holdHover')
         }
       }
     )
@@ -205,6 +210,7 @@ class LinkPicker extends Component {
 
   initDropdown() {
     const dropdownConf = {
+      reference: this.$trigger,
       target: this.$dropdown,
       theme: 'dafault',
       placement: 'bottom-left',
@@ -213,7 +219,7 @@ class LinkPicker extends Component {
       hideOnSelect: false,
       templates: this.options.templates
     }
-    Dropdown.of(this.$empty, dropdownConf)
+    this.DROPDOWN = Dropdown.of(this.$empty, dropdownConf)
   }
 
   buildTypes() {
@@ -495,11 +501,7 @@ class LinkPicker extends Component {
     const dropdownDefault = {
       // theme: 'default',
       imitateSelect: true,
-      width: 160,
       data: dropdownData,
-      // itemValueAttr: 'data-connect',
-      // value: data.active,
-      // constraintToScrollParent: false,
       icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
       templates: {
         item() {
@@ -525,7 +527,7 @@ class LinkPicker extends Component {
     const api = Dropdown.of($dropdown, dropdownOptions)
     // set dropdown default value
     if (!data.active || data.active.length < 1) {
-      data.active = dropdownData[0].value
+      data.active = dropdownData[0].name
     }
 
     api.set(data.active)
@@ -560,21 +562,6 @@ class LinkPicker extends Component {
           return
         }
         this.show()
-      },
-      this.$wrap
-    )
-
-    //
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.ITEMBODY}`,
-      () => {
-        if (this.is('disabled')) {
-          return
-        }
-        addClass('pj-dropdown-show', this.$trigger)
-        addClass('pj-dropdown-show', this.$wrap)
-        addClass('pj-dropdown-show', this.$dropdown.parentNode)
       },
       this.$wrap
     )
@@ -640,13 +627,6 @@ class LinkPicker extends Component {
         }
       )
     )(this.$wrap)
-
-    // pop event
-    this.pop.options.onShow = () => this.enter('holdHover')
-    this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$action)
-      this.leave('holdHover')
-    }
   }
 
   unbind() {
@@ -662,16 +642,12 @@ class LinkPicker extends Component {
   }
 
   show() {
-    // addClass('pj-dropdown-show', this.$trigger)
-    // addClass('pj-dropdown-show', this.$wrap)
-    // addClass('pj-dropdown-show', this.$dropdown.parentNode)
+    this.DROPDOWN.show()
     addClass(this.classes.SHOW, this.$wrap)
   }
 
   hide() {
-    // removeClass('pj-dropdown-show', this.$trigger)
-    // removeClass('pj-dropdown-show', this.$wrap)
-    // removeClass('pj-dropdown-show', this.$dropdown.parentNode)
+    this.DROPDOWN.hide()
     removeClass(this.classes.SHOW, this.$wrap)
   }
 
