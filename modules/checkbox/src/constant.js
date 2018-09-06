@@ -35,7 +35,6 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  classes: { button: '{namespace}-default' },
   disabled: false,
   getWrap() {
     return parentWith(hasClass(this.classes.WRAP), this.element)
@@ -51,7 +50,6 @@ export const defaults = {
     return query(`label[for="${id}"]`)
   },
   getIcon() {
-    console.log(this.$label)
     return query('i:first-child', this.$label)
   },
   getGroup() {

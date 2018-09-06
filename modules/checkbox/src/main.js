@@ -1,5 +1,4 @@
 import Component from '@pluginjs/component'
-import { curry, compose } from '@pluginjs/utils'
 import { isArray } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -29,19 +28,6 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
-const removeParentClass = curry((className, el) =>
-  compose(
-    removeClass(className),
-    parent
-  )(el)
-)
-// const addParentClass = curry((className, el) =>
-//   compose(
-//     addClass(className),
-//     parent
-//   )(el)
-// )
-
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -53,13 +39,12 @@ const removeParentClass = curry((className, el) =>
 class Checkbox extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.$element = this.element
     this.setupOptions(options)
     this.$group = this.options.getGroup.call(this)
     if (
       this.$group.length > 1 ||
-      (this.$element.name &&
-        this.$element.name.indexOf('[]') === this.$element.name.length - 2)
+      (this.element.name &&
+        this.element.name.indexOf('[]') === this.element.name.length - 2)
     ) {
       this.group = true
     } else {
@@ -77,7 +62,7 @@ class Checkbox extends Component {
 
     // update checked state based on checked prop
     this.update(false)
-    if (this.$element.disabled || this.options.disabled) {
+    if (this.element.disabled || this.options.disabled) {
       this.disable(false)
     }
 
@@ -94,7 +79,7 @@ class Checkbox extends Component {
         template.render(this.options.templates.wrap.call(this), {
           classes: this.classes
         }),
-        this.$element
+        this.element
       )
       append(this.$label, this.$wrap)
       this.enter('wrapped')
@@ -103,8 +88,6 @@ class Checkbox extends Component {
     if (this.options.theme) {
       addClass(...this.getThemeClass().split(' '), this.$wrap)
     }
-
-    console.log(this.$wrap)
   }
 
   createLabel() {
@@ -140,7 +123,7 @@ class Checkbox extends Component {
           // api.uncheck(true, false)
         }
       })
-    } else if (this.$element.value === value) {
+    } else if (this.element.value === value) {
       this.check(true, false)
     } else {
       this.uncheck(true, false)
@@ -153,8 +136,8 @@ class Checkbox extends Component {
         .filter(el => el.matches(':checked'))
         .map(item => item.value)
     }
-    if (this.$element.checked) {
-      return this.$element.value
+    if (this.element.checked) {
+      return this.element.value
     }
     return ''
   }
@@ -164,8 +147,8 @@ class Checkbox extends Component {
       this.enter('checked')
       addClass(this.classes.CHECKED, this.$wrap)
       if (trigger) {
-        this.$element.checked = true
-        this.trigger(EVENTS.CHECK, this.$element.value)
+        this.element.checked = true
+        this.trigger(EVENTS.CHECK, this.element.value)
         if (update) {
           this.trigger(EVENTS.CHANGE, this.get())
         }
@@ -179,8 +162,8 @@ class Checkbox extends Component {
 
       removeClass(this.classes.CHECKED, this.$wrap)
       if (trigger) {
-        this.$element.checked = false
-        this.trigger(EVENTS.UNCHECK, this.$element.value)
+        this.element.checked = false
+        this.trigger(EVENTS.UNCHECK, this.element.value)
         if (update) {
           this.trigger(EVENTS.CHANGE, this.get())
         }
@@ -205,12 +188,12 @@ class Checkbox extends Component {
         }
         this.toggle()
       },
-      this.$element
+      this.element
     )
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.$element)
+    removeEvent(this.eventName(), this.element)
   }
 
   val(value) {
@@ -224,12 +207,12 @@ class Checkbox extends Component {
   enable(trigger = true) {
     if (this.is('disabled')) {
       this.$group.forEach(element => {
-        compose(removeParentClass(this.classes.DISABLED))(element)
+        removeClass(this.classes.DISABLED, parent(this.element))
         element.disabled = false
       })
       // removeClass(this.classes.CHECKED, this.$wrap);
       // removeClass(this.classes.DISABLED, this.$wrap);
-      // this.$element.prop('disabled', null);
+      // this.element.prop('disabled', null);
       this.leave('disabled')
     }
 
@@ -240,14 +223,10 @@ class Checkbox extends Component {
 
   disable(trigger = true) {
     if (!this.is('disabled')) {
-      // this.$group.forEach(element => {
-      //   addParentClass(this.classes.DISABLED, element)
-      //   element.disabled = true
-      // })
-      addClass(this.classes.DISABLED, this.$element.parent)
-      this.$element.disabled = true
+      addClass(this.classes.DISABLED, this.element.parent)
+      this.element.disabled = true
       // addClass(this.classes.DISABLED, this.$wrap);
-      // this.$element.prop('disabled', true);
+      // this.element.prop('disabled', true);
       this.enter('disabled')
     }
 
@@ -258,7 +237,7 @@ class Checkbox extends Component {
 
   // update self status based on checked prop
   update(trigger = true) {
-    const checked = this.$element.checked
+    const checked = this.element.checked
     if (checked !== this.is('checked')) {
       if (checked) {
         this.check(trigger)
@@ -276,7 +255,7 @@ class Checkbox extends Component {
       removeClass(this.classes.DISABLED, this.$wrap)
       removeClass(this.classes.CHECKED, this.$wrap)
       if (this.is('wrapped')) {
-        unwrap(this.$element)
+        unwrap(this.element)
         this.$icon.remove()
       }
       this.unbind()

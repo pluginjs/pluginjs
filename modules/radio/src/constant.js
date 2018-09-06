@@ -1,3 +1,6 @@
+import { parentWith, nextWith, query, queryAll } from '@pluginjs/dom'
+import { hasClass } from '@pluginjs/classes'
+
 export const namespace = 'radio'
 
 export const events = {
@@ -32,36 +35,25 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  classes: { button: '{namespace}-default' },
   disabled: false,
   getWrap() {
-    const parent = this.element.parentNode
-    if (parent.classList.contains(this.classes.WRAP)) {
-      return parent
-    }
-    return undefined
+    return parentWith(hasClass(this.classes.WRAP), this.element)
   },
   getLabel() {
-    const label = this.element.nextElementSibling
-    if (label) {
-      return label
+    const $label = nextWith(el => el.tagName === 'LABEL', this.element)
+    if ($label) {
+      return $label
     }
 
-    const id = this.element.id
+    const id = this.element.getAttribute('id')
 
-    return Array.from(document.querySelectorAll('label')).filter(
-      l => l.getAttribute('for') === id
-    )[0]
+    return query(`label[for="${id}"]`)
   },
   getIcon() {
-    return this.$label.querySelector('i')
+    return query('i:first-child', this.$label)
   },
-
   getGroup() {
-    const name = this.element.getAttribute('name')
-    return Array.from(document.querySelectorAll('input')).filter(
-      el => el.name === name
-    )
+    return queryAll(`input[name="${this.element.getAttribute('name')}"]`)
   },
   templates: {
     wrap() {

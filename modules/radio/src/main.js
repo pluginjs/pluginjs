@@ -38,7 +38,6 @@ import {
 class Radio extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.$element = this.element
     this.setupOptions(options)
     this.$group = this.options.getGroup.call(this)
     this.setupClasses()
@@ -54,12 +53,12 @@ class Radio extends Component {
     // update checked state based on checked prop
     this.update(false)
 
-    if (this.$element.disabled || this.options.disabled) {
+    if (this.element.disabled || this.options.disabled) {
       this.disable(false)
     }
 
     this.bind()
-    setData(this.plugin, this, this.$element)
+    setData(this.plugin, this, this.element)
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -73,7 +72,7 @@ class Radio extends Component {
         classes: this.classes
       })
 
-      this.$wrap = wrap(html, this.$element)
+      this.$wrap = wrap(html, this.element)
 
       append(this.$label, this.$wrap)
       this.enter('wrapped')
@@ -108,11 +107,11 @@ class Radio extends Component {
   }
 
   set(value) {
-    if (this.$element.value === value) {
+    if (this.element.value === value) {
       this.check()
     } else {
       this.$group.map((item, i) => { /* eslint-disable-line */
-        const api = getData(this.plugin, this.$element)
+        const api = getData(this.plugin, this.element)
         if (api && value === this.value) {
           api.check(true, true)
         }
@@ -129,15 +128,15 @@ class Radio extends Component {
       this.enter('checked')
       addClass(this.classes.CHECKED, this.$wrap)
       if (trigger) {
-        this.$element.setAttribute('checked', true)
-        this.trigger(EVENTS.CHECK, this.$element.value)
-        this.trigger(EVENTS.CHANGE, this.$element.value)
+        this.element.setAttribute('checked', true)
+        this.trigger(EVENTS.CHECK, this.element.value)
+        this.trigger(EVENTS.CHANGE, this.element.value)
       }
     }
 
     if (update) {
       const that = this
-      this.$group.map((item, i) => { /* eslint-disable-line */
+      this.$group.forEach((item, i) => { /* eslint-disable-line */
         if (item === that.element) {
            return /* eslint-disable-line */
         }
@@ -155,14 +154,14 @@ class Radio extends Component {
 
       removeClass(this.classes.CHECKED, this.$wrap)
       if (trigger) {
-        this.$element.setAttribute('checked', false)
-        this.trigger(EVENTS.UNCHECK, this.$element.value)
+        this.element.setAttribute('checked', false)
+        this.trigger(EVENTS.UNCHECK, this.element.value)
       }
     }
 
     if (update) {
       const that = this
-      this.$group.map((item, i) => { /* eslint-disable-line */
+      this.$group.forEach((item, i) => { /* eslint-disable-line */
         if (item === that.element) {
          return /* eslint-disable-line */
         }
@@ -191,12 +190,12 @@ class Radio extends Component {
         }
         this.toggle()
       },
-      this.$element
+      this.element
     )
   }
 
   unbind() {
-    removeEvent(this.eventName('click'), this.$element)
+    removeEvent(this.eventName('click'), this.element)
   }
 
   val(value) {
@@ -209,7 +208,7 @@ class Radio extends Component {
 
   enable(trigger = true) {
     if (this.is('disabled')) {
-      this.$element.disabled = false
+      this.element.disabled = false
       removeClass(this.classes.DISABLED, this.$wrap)
       this.leave('disabled')
     }
@@ -221,10 +220,10 @@ class Radio extends Component {
 
   disable(trigger = true) {
     if (!this.is('disabled')) {
-      this.$element.disabled = true
+      this.element.disabled = true
       addClass(this.classes.DISABLED, this.$wrap)
       // addClass(this.classes.DISABLED, this.wrap);
-      // this.$element.prop('disabled', true);
+      // this.element.prop('disabled', true);
       this.enter('disabled')
     }
 
@@ -238,7 +237,7 @@ class Radio extends Component {
     // if (this.element.getAttribute('checked') === 'false') {
     //   this.element.checked = false
     // }
-    const checked = this.$element.checked
+    const checked = this.element.checked
     if (checked !== this.is('checked')) {
       if (checked) {
         this.check(trigger, false)
@@ -256,7 +255,7 @@ class Radio extends Component {
       removeClass(this.classes.DISABLED, this.$wrap)
       removeClass(this.classes.CHECKED, this.$wrap)
       if (this.is('wrapped')) {
-        unwrap(this.$element)
+        unwrap(this.element)
         this.$icon.remove()
       }
       this.unbind()
