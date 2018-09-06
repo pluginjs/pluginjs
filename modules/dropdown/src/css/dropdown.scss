@@ -47,8 +47,9 @@ $dropdown-item-active-color: $color-primary-active;
   &-trigger {
     font-family: $dropdown-font-family;
     font-size: $dropdown-font-size;
-    // color: $dropdown-color;
+    color: $dropdown-color;
     text-decoration: none;
+    outline: none;
 
     &[aria-expanded="true"] {
       color: $dropdown-trigger-focus-color;

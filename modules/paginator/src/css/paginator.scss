@@ -69,13 +69,13 @@ $paginator-disabled-border: $gray;
 
 
 .#{$paginator}-prev {
-  .icon {
+  .pj-icon {
     margin-right: $paginator-icon-margin;
   }
 }
 
 .#{$paginator}-next {
-  .icon {
+  .pj-icon {
     margin-left: $paginator-icon-margin;
   }
 }

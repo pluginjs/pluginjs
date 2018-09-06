@@ -58,13 +58,8 @@ $popover-table-padding-x: 12px;
     color: $popover-title-color;
 
     &:empty {
-      // padding-top: $popover-title-empty-padding-y;
       display: none;
     }
-
-    // & + .#{$popover}-content:empty {
-    //   margin-top: 0;
-    // }
   }
 
   &-close {
@@ -111,7 +106,11 @@ $popover-table-padding-x: 12px;
   }
 
   &[x-placement="top"],
-  &[x-placement="bottom"] {
+  &[x-placement="top-start"],
+  &[x-placement="top-end"],
+  &[x-placement="bottom"],
+  &[x-placement="bottom-start"],
+  &[x-placement="bottom-end"] {
     &::before {
       border-top-color: $popover-dark-arrow-color;
       border-bottom-color: $popover-dark-arrow-color;
@@ -119,7 +118,11 @@ $popover-table-padding-x: 12px;
   }
 
   &[x-placement="right"],
-  &[x-placement="left"] {
+  &[x-placement="right-start"],
+  &[x-placement="right-end"],
+  &[x-placement="left"],
+  &[x-placement="left-start"],
+  &[x-placement="left-end"] {
     &::before {
       border-right-color: $popover-dark-arrow-color;
       border-left-color: $popover-dark-arrow-color;

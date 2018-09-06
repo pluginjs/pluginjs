@@ -5,7 +5,6 @@
 // =====================
 $hotspot-font-family: $font-family-base;
 $hotspot-font-size: $font-size-sm;
-$hotspot-font-size-base: $font-size-lg;
 
 $hotspot-padding: 9px;
 $hotspot-border-width: 2px;
@@ -55,8 +54,6 @@ $hotspot-light-hover-color: $color-primary;
 
 $hotspot-light-solid-color: $gray-darkest;
 $hotspot-light-solid-bg-color: $gray-lightest;
-
-$hotspot-light-text-bordered-color: $color-primary;
 
 //active hover
 $hotspot-light-bordered-hover-border-color: rgba($hotspot-light-hover-color,0.2);

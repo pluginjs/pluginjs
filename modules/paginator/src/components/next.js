@@ -57,7 +57,7 @@ Next.translations = {
 
 Next.classes = {
   NEXT: '{namespace}-next',
-  NEXTICON: 'pj-icon pj-icon-angle-right-solid'
+  NEXTICON: 'pj-icon pj-icon-arrow-long-right-solid'
 }
 
 export default Next

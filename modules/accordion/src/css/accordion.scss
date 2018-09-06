@@ -58,7 +58,6 @@ $accordion-dropdown-active-color: $color-primary !default;
     position: relative;
     padding: $accordion-header-spacer-y $accordion-header-spacer-x;
     overflow: hidden;
-    line-height: 1;
     color: $accordion-header-color;
 
     &:hover {

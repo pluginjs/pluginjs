@@ -57,7 +57,7 @@ Prev.translations = {
 
 Prev.classes = {
   PREV: '{namespace}-prev',
-  PREVICON: 'pj-icon pj-icon-angle-left-solid'
+  PREVICON: 'pj-icon pj-icon-arrow-long-left-solid'
 }
 
 export default Prev
