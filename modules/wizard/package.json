@@ -43,8 +43,7 @@
     "@pluginjs/keyboard": "*",
     "@pluginjs/utils": "*",
     "@pluginjs/decorator": "*",
-    "axios": "^0.18.0",
-    "fetch":"^1.1.0"
+    "fetch":"*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -52,7 +51,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.2",
+    "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },

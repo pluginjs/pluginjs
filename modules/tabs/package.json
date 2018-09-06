@@ -46,8 +46,7 @@
     "@pluginjs/styled": "*",
     "@pluginjs/utils": "*",
     "animejs": "*",
-    "axios": "^0.18.0",
-    "fetch":"^1.1.0",
+    "fetch":"*",
     "hammerjs": "*"
   },
   "devDependencies": {
@@ -56,7 +55,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.2",
+    "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },

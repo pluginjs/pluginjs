@@ -58,7 +58,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.2",
+    "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
