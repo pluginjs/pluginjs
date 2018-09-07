@@ -41,7 +41,6 @@ $tabs-duration: 0.5s !default;
 
     .#{$tabs}-active {
       z-index: 1;
-      color: $tabs-active-color;
     }
   }
 
@@ -143,10 +142,6 @@ $tabs-duration: 0.5s !default;
       line-height: 1;
       text-decoration: none;
 
-      .icon {
-        font-size: inherit;
-      }
-
       &::before {
         position: absolute;
         right: 10px;
@@ -175,10 +170,6 @@ $tabs-duration: 0.5s !default;
 
       li {
         display: block;
-
-        .icon {
-          font-size: inherit;
-        }
       }
     }
 

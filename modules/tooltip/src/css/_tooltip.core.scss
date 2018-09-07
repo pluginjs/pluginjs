@@ -10,6 +10,8 @@ $tooltip-arrow-width: 5px !default;
 $tooltip-arrow-color: $tooltip-bg !default;
 $tooltip-arrow-offset-x: $tooltip-arrow-width * 2 !default;
 
+// mixins
+
 @mixin reset-text {
   font-family: $font-family-base;
   font-style: normal;

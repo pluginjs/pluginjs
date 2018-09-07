@@ -70,37 +70,37 @@ $toast-wrap-gutter: 20px !default;
   &-wrap {
     position: fixed;
 
-    &.pj-toast-bottom-right {
+    &.#{$toast}-bottom-right {
       right: $toast-wrap-gutter;
       bottom: $toast-wrap-gutter;
     }
   
-    &.pj-toast-bottom-left {
+    &.#{$toast}-bottom-left {
       bottom: $toast-wrap-gutter;
       left: $toast-wrap-gutter;
     }
   
-    &.pj-toast-top-right {
+    &.#{$toast}-top-right {
       top: $toast-wrap-gutter;
       right: $toast-wrap-gutter;
     }
   
-    &.pj-toast-top-left {
+    &.#{$toast}-top-left {
       top: $toast-wrap-gutter;
       left: $toast-wrap-gutter;
     }
   
-    &.pj-toast-bottom-center {
+    &.#{$toast}-bottom-center {
       bottom: $toast-wrap-gutter;
       left: calc(50% - #{$toast-width} / 2);
     }
   
-    &.pj-toast-top-center {
+    &.#{$toast}-top-center {
       top: $toast-wrap-gutter;
       left: calc(50% - #{$toast-width} / 2);
     }
   
-    &.pj-toast-mid-center {
+    &.#{$toast}-mid-center {
       top: 50%;
       left: calc(50% - #{$toast-width} / 2);
       transform: translateY(-50%);
@@ -118,17 +118,17 @@ $toast-wrap-gutter: 20px !default;
   .#{$toast}-wrap {
     width: $toast-middle-width;
 
-    &.pj-toast-bottom-center {
+    &.#{$toast}-bottom-center {
       bottom: $toast-wrap-gutter;
       left: calc(50% - #{$toast-middle-width} / 2);
     }
   
-    &.pj-toast-top-center {
+    &.#{$toast}-top-center {
       top: $toast-wrap-gutter;
       left: calc(50% - #{$toast-middle-width} / 2);
     }
   
-    &.pj-toast-mid-center {
+    &.#{$toast}-mid-center {
       top: 50%;
       left: calc(50% - #{$toast-middle-width} / 2);
       transform: translateY(-50%);

@@ -9,9 +9,7 @@ $tabs-color: $gray-darker;
 
 $tabs-border-color: $border-color;
 
-
 $tabs-label-padding-x: 24px;
-
 $tabs-label-color: $gray-darkest;
 $tabs-label-hover-color: $color-primary;
 
@@ -48,7 +46,7 @@ $tabs-drop-content-bg: transparent;
         background: $tabs-bg-color;
       }
 
-      & + li {
+      + li {
         margin-left: -1px;
       }
     }
@@ -74,14 +72,16 @@ $tabs-drop-content-bg: transparent;
 
   &-vertical {
     .#{$tabs}-nav {
-      li::after {
-        width: $tabs-nav-cover-height;
-        height: 100%;
-      }
+      li {
+        &::after {
+          width: $tabs-nav-cover-height;
+          height: 100%;
+        }
 
-      li + li {
-        margin-top: -1px;
-        margin-left: 0;
+        + li {
+          margin-top: -1px;
+          margin-left: 0;
+        }
       }
     }
   }
@@ -94,6 +94,10 @@ $tabs-drop-content-bg: transparent;
     color: inherit;
     background-color: $tabs-drop-nav-bg;
     border: 1px solid $tabs-border-color;
+
+    .pj-icon {
+      font-size: inherit;
+    }
 
     &:hover {
       color: $tabs-label-hover-color;
@@ -119,6 +123,10 @@ $tabs-drop-content-bg: transparent;
       + li {
         border-top: 1px solid $tabs-border-color;
       }
+
+      .pj-icon {
+        font-size: inherit;
+      }
     }
   }
 
@@ -133,11 +141,5 @@ $tabs-drop-content-bg: transparent;
       border: none;
       box-shadow: none;
     }
-  }
-}
-
-#keyboard {
-  .pj-tabs {
-    outline: none;
   }
 }
