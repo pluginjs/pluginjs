@@ -35,7 +35,8 @@ class stick {
       }
     }
 
-    this.api.$element.data('sticky').destroy()
+    Pj.emitter.off('resize', this.setScrollOffset)
+    Pj.emitter.off('scroll', this.update)
   }
 }
 

@@ -20,15 +20,14 @@ export const classes = {
 export const methods = ['destroy', 'disable', 'enable']
 
 export const defaults = {
-  type: 'pinned',
-  // offsetSide: 'top',
+  type: 'pinned', // ontop, pinned, stick,
   pinned: {
     tolerance: {
       down: 10,
-      up: 20
+      up: 10
     },
-    offsetSide: 'top',
-    offset: 1000
+    offsetSide: 'top', // the side of element offset from
+    offset: 300
   },
   sticky: { spacing: 20 }
 }
