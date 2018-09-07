@@ -4,27 +4,33 @@ import generateHTMLSample from './fixtures/sample'
 
 const data = [
   {
-    title: 'Interfaces',
+    label: 'Interfaces',
     value: 'interface'
   },
   {
-    title: 'UI Design',
+    label: 'UI Design',
     value: 'ui-design'
   },
   {
-    title: 'Web Design',
+    label: 'Web Design',
     value: 'web-design'
   },
   {
-    title: 'Typography',
+    label: 'Typography',
     value: 'typography'
   },
   {
-    title: 'Landing',
+    label: 'Landing',
     value: 'landing'
   }
 ]
 
+const string =
+  '[{"label":"Interfaces","value":"interface"},{"label":"Typography","value":"typography"}]'
+const array = [
+  { label: 'Interfaces', value: 'interface' },
+  { label: 'Typography', value: 'typography' }
+]
 describe('List', () => {
   describe('List()', () => {
     test('should have List', () => {
@@ -47,41 +53,145 @@ describe('List', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const list = List.of(generateHTMLSample())
+      const list = List.of(generateHTMLSample(), { data })
 
       expect(list).toBeObject()
-      expect(list.options).toEqual(DEFAULTS)
+      expect(list.options).toEqual({
+        ...DEFAULTS,
+        data
+      })
     })
 
     test('should have options', () => {
-      const list = List.of(generateHTMLSample())
+      const list = List.of(generateHTMLSample(), { data })
 
       expect(list.options).toBeObject()
     })
+
+    test('should have classes', () => {
+      const list = List.of(generateHTMLSample(), { data })
+
+      expect(list.classes).toBeObject()
+    })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = List.of($element)
+  describe('classes', () => {
+    test('should use classes options', () => {
+      const element = generateHTMLSample()
+      const list = List.of(element, {
+        data,
+        classes: {
+          container: '{namespace}-wrap',
+          active: '{namespace}-active'
+        } // ,
+        // data
+      })
 
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
+      expect(list.classes.CONTAINER).toEqual('pj-list-wrap')
+      expect(list.classes.ACTIVE).toEqual('pj-list-active')
+    })
+
+    test('should override class namespace', () => {
+      const element = generateHTMLSample()
+      const list = List.of(element, {
+        data,
+        classes: {
+          namespace: 'list',
+          container: '{namespace}-wrap'
+        } // ,
+        // data
+      })
+
+      expect(list.classes.NAMESPACE).toEqual('list')
+      expect(list.classes.CONTAINER).toEqual('list-wrap')
+    })
+
+    describe('getClass()', () => {
+      test('should get class with namespace', () => {
+        const element = generateHTMLSample()
+        const list = List.of(element, {
+          data,
+          classes: { namespace: 'hello' }
+        })
+
+        expect(list.getClass('foo')).toEqual('foo')
+        expect(list.getClass('{namespace}-foo')).toEqual('hello-foo')
+      })
+
+      test('should get class with arg', () => {
+        const element = generateHTMLSample()
+        const list = List.of(element, {
+          data,
+          classes: { namespace: 'hello' }
+        })
+
+        expect(list.getClass('foo', 'arg', 'value')).toEqual('foo')
+        expect(list.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
+          'hello-value'
+        )
+      })
+    })
+  })
+
+  describe('theme', () => {
+    describe('getThemeClass()', () => {
+      test('should get theme classes with default namespace', () => {
+        const element = generateHTMLSample()
+        const list = List.of(element, {
+          data,
+          theme: null,
+          classes: { theme: '{namespace}--{theme}' }
+        })
+
+        expect(list.getThemeClass()).toEqual('')
+        expect(list.getThemeClass('bar')).toEqual('pj-list--bar')
+        expect(list.getThemeClass('foo bar')).toEqual(
+          'pj-list--foo pj-list--bar'
+        )
+      })
+
+      test('should get theme classes with namespace override', () => {
+        const element = generateHTMLSample()
+        const list = List.of(element, {
+          data,
+          theme: null,
+          classes: {
+            namespace: 'hello',
+            theme: '{namespace}--{theme}'
+          } // ,
+          // data
+        })
+
+        expect(list.getThemeClass()).toEqual('')
+        expect(list.getThemeClass('bar')).toEqual('hello--bar')
+        expect(list.getThemeClass('foo bar')).toEqual('hello--foo hello--bar')
+      })
+
+      test('should get theme classes correctly when no classes.THEME defined', () => {
+        const element = generateHTMLSample()
+        const list = List.of(element, {
+          data,
+          theme: '{namespace}--foo'
+        })
+
+        // set to null for test
+        list.classes.THEME = null
+
+        expect(list.getThemeClass()).toEqual('pj-list--foo')
+        expect(list.getThemeClass('bar')).toEqual('bar')
+        expect(list.getThemeClass('{namespace}--bar')).toEqual('pj-list--bar')
+        expect(list.getThemeClass('foo bar')).toEqual('foo bar')
+        expect(list.getThemeClass('{namespace}--foo {namespace}--bar')).toEqual(
+          'pj-list--foo pj-list--bar'
+        )
+      })
     })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = List.of(generateHTMLSample())
-      expect($element.bind()).toBeFalse()
-    })
-
-    test('should call destroy', () => {
-      const $element = List.of(generateHTMLSample())
-      $element.destroy()
-      // expect().toEqual($element);
-      expect($element).toEqual($element)
+      const $element = List.of(generateHTMLSample(), { data })
+      expect($element.bind()).toBeNil()
     })
   })
 
@@ -99,7 +209,7 @@ describe('List', () => {
         called++
       })
 
-      const api = List.of($element)
+      const api = List.of($element, { data })
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -111,7 +221,7 @@ describe('List', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = List.of($element)
+      api = List.of($element, { data })
     })
 
     test('should trigger destroy event', () => {
@@ -128,17 +238,71 @@ describe('List', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(string)
+      api = List.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = List.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(string)
+        }
+      })
+
+      api.val(string)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = List.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(string)
+        }
+      })
+
+      api.set(array)
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
 
-    beforeEach(() => {
+    it('should get the value', () => {
       $element = generateHTMLSample()
       api = List.of($element)
+
+      expect(api.get()).toBeArray()
     })
 
-    test('should get the value', () => {
-      expect(api.get()).toBeObject()
+    it('should get the value with string', () => {
+      $element = generateHTMLSample(string)
+      api = List.of($element)
+
+      expect(api.get()).toEqual(array)
     })
   })
 
@@ -151,11 +315,11 @@ describe('List', () => {
       api = List.of($element)
     })
 
-    test('should set the value', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(data)
+    it('should set the value', () => {
       expect(api.get()).toBeArray()
+
+      api.set(array)
+      expect(api.get()).toEqual(array)
     })
   })
 
@@ -165,41 +329,21 @@ describe('List', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = List.of($element)
+      api = List.of($element, { data })
     })
 
     test('should get the value', () => {
-      expect(api.val()).toBeString()
-    })
+      $element = generateHTMLSample(string)
+      api = List.of($element)
 
-    test('should set the value', () => {
-      api.val(false)
-
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
+      expect(api.val()).toEqual(string)
     })
 
     test('should set the value with string', () => {
-      api.val('false')
+      api.val(string)
 
-      expect(api.get()).toBeFalse()
-
-      api.val(true)
-
-      expect(api.get()).toBeFalse()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.val()).toBe(string)
+      expect(api.get()).toEqual(array)
     })
   })
 
@@ -209,7 +353,7 @@ describe('List', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = List.of($element)
+      api = List.of($element, { data })
     })
 
     test('should enable the plugin', () => {
@@ -238,7 +382,7 @@ describe('List', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = List.of($element)
+      api = List.of($element, { data })
     })
 
     test('should disable the plugin', () => {

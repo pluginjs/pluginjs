@@ -1,27 +1,28 @@
-// // import List from '@pluginjs/list'
+import List from '@pluginjs/list'
 import ItemList from '../src/main'
-// import { defaults as DEFAULTS } from '../src/constant'
+import { deepMerge } from '@pluginjs/utils'
+import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
 const data = [
   {
-    title: 'Interfaces',
+    label: 'Interfaces',
     value: 'interface'
   },
   {
-    title: 'UI Design',
+    label: 'UI Design',
     value: 'ui-design'
   },
   {
-    title: 'Web Design',
+    label: 'Web Design',
     value: 'web-design'
   },
   {
-    title: 'Typography',
+    label: 'Typography',
     value: 'typography'
   },
   {
-    title: 'Landing',
+    label: 'Landing',
     value: 'landing'
   }
 ]
@@ -48,9 +49,9 @@ describe('ItemList', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const itemList = ItemList.of(generateHTMLSample())
+      const itemList = ItemList.of(generateHTMLSample(), data)
       expect(itemList).toBeObject()
-      // expect(itemList.options).toEqual(DEFAULTS)
+      expect(itemList.options).toEqual(deepMerge(DEFAULTS, List.defaults, data))
     })
 
     test('should have options', () => {

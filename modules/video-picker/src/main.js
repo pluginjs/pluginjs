@@ -403,7 +403,6 @@ class VideoPicker extends Component {
         this.eventName('click'),
         `.${this.classes.LOCALURLDELETE}`,
         () => {
-          console.log(this.is('loaded'))
           if (this.is('loaded')) {
             this.removeVideo()
           }
@@ -521,9 +520,7 @@ class VideoPicker extends Component {
 
     this.element.value = ''
     this.$urlInput.value = ''
-    console.log(this.videoApi)
     this.videoApi.destroy()
-    console.log(this.videoApi)
 
     setStyle(
       {
@@ -572,7 +569,6 @@ class VideoPicker extends Component {
     if (videoConfig.type === 'html5') {
       videoConfig.url = `${url}`
     }
-    console.log(videoConfig)
     this.videoApi = Video.of(this.$video, videoConfig)
     this.videoApi.options.onLoad = () => {
       addClass(this.classes.VIDEOLOADING, this.$videoAction)
@@ -584,7 +580,6 @@ class VideoPicker extends Component {
     }
 
     // this.videoApi.load()
-    console.log(getWidth(this.$video), getHeight(this.$video))
     this.videoApi.setSize(getWidth(this.$video), getHeight(this.$video))
 
     this.enter('loaded')

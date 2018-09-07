@@ -247,6 +247,8 @@ class List extends Component {
       this.buildItems()
 
       this.element.value = this.val()
+
+      this.trigger(EVENTS.CHANGE, this.val())
     }
   }
 
@@ -375,7 +377,7 @@ class List extends Component {
         removeClass(this.getThemeClass(), this.$wrapper)
       }
       unwrap(this.element)
-      removeClass(this.classes.INPUT, this.element)
+      // removeClass(this.classes.INPUT, this.element)
 
       this.leave('initialized')
     }
