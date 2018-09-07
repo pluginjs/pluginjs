@@ -49,124 +49,116 @@ $paginator-disabled-border: $gray;
   line-height: $paginator-line-height;
   color: $paginator-color;
   text-align: center;
-}
 
-.#{$paginator}-item,
-.#{$paginator}-list-prev,
-.#{$paginator}-list-next {
-  height: $paginator-height;
-  line-height: $paginator-height;
-}
-
-.#{$paginator}-total {
-  margin-right: $paginator-total-margin;
-  text-transform: capitalize;
-}
-
-.#{$paginator}-jumper {
-  margin-left: $paginator-text-margin;
-}
-
-
-.#{$paginator}-prev {
-  .pj-icon {
-    margin-right: $paginator-icon-margin;
+  &-item,
+  &-list-prev,
+  &-list-next {
+    height: $paginator-height;
+    line-height: $paginator-height;
   }
-}
 
-.#{$paginator}-next {
-  .pj-icon {
-    margin-left: $paginator-icon-margin;
-  }
-}
-
-.#{$paginator}-prev,
-.#{$paginator}-next {
-  .#{$paginator}-link {
-    color: $paginator-color;
-
-    &:hover {
-      color: $paginator-active-color;
-      cursor: pointer;
+  &-prev {
+    .pj-icon {
+      margin-right: $paginator-icon-margin;
     }
   }
-}
-
-.#{$paginator}-link {
-  min-width: $paginator-link-width;
-  padding: $paginator-link-padding;
-  margin: 0 $paginator-link-margin;
-  line-height: $paginator-line-height;
-  color: $paginator-color;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  vertical-align: middle;
-
-  &:hover,
-  &:focus {
-    color: $paginator-hover-color;
-    border-color: $paginator-hover-color;
+  
+  &-next {
+    .pj-icon {
+      margin-left: $paginator-icon-margin;
+    }
   }
-}
 
-.#{$paginator}-active {
-  .#{$paginator}-link {
-    &,
+  &-prev,
+  &-next {
+    .#{$paginator}-link {
+      color: $paginator-color;
+
+      &:hover {
+        color: $paginator-active-color;
+        cursor: pointer;
+      }
+    }
+
+    &.#{$paginator}-disabled {
+      cursor: $cursor-disabled;
+      .#{$paginator}-link {
+        pointer-events: none;
+
+        &,
+        &:hover,
+        &:focus {
+          color: $paginator-disabled-color;
+          background-color: $paginator-disabled-bg;
+        }
+      }
+    }
+
+    &::before,
+    &::after {
+      display: table;
+      content: "";
+    }
+
+    &::after {
+      clear: both;
+    }
+  }
+
+  &-link {
+    min-width: $paginator-link-width;
+    padding: $paginator-link-padding;
+    margin: 0 $paginator-link-margin;
+    line-height: $paginator-line-height;
+    color: $paginator-color;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: middle;
+  
     &:hover,
     &:focus {
-      color: $paginator-active-color;
-      border-bottom: 2px solid $paginator-active-color;
+      color: $paginator-hover-color;
+      border-color: $paginator-hover-color;
     }
   }
-}
 
-.#{$paginator}-jumper input {
-  box-sizing: border-box;
-  width: $paginator-input-width;
-  height: $paginator-input-height;
-  padding: $paginator-input-padding;
-  margin-left: $paginator-input-margin;
-  border: 1px solid $paginator-border-color;
-  border-radius: $paginator-input-radius;
-
-  &:focus,
-  &:hover {
-    border-color: $paginator-hover-input-border;
-    outline: none;
-  }
-}
-
-.#{$paginator}-disabled {
-  // disabled
-  &.#{$paginator}-prev,
-  &.#{$paginator}-next {
-    cursor: $cursor-disabled;
+  &-active {
     .#{$paginator}-link {
-      pointer-events: none;
-
       &,
       &:hover,
       &:focus {
-        color: $paginator-disabled-color;
-        background-color: $paginator-disabled-bg;
+        color: $paginator-active-color;
+        border-bottom: 2px solid $paginator-active-color;
       }
     }
   }
-}
 
-// clear both
-.#{$paginator}-prev::before,
-.#{$paginator}-prev::after,
-.#{$paginator}-next::before,
-.#{$paginator}-next::after {
-  display: table;
-  content: "";
-}
+  &-total {
+    margin-right: $paginator-total-margin;
+    text-transform: capitalize;
+  }
 
-.#{$paginator}-prev::after,
-.#{$paginator}-next::after {
-  clear: both;
+
+  &-jumper {
+    margin-left: $paginator-text-margin;
+
+    input {
+      box-sizing: border-box;
+      width: $paginator-input-width;
+      height: $paginator-input-height;
+      padding: $paginator-input-padding;
+      margin-left: $paginator-input-margin;
+      border: 1px solid $paginator-border-color;
+      border-radius: $paginator-input-radius;
+
+      &:focus,
+      &:hover {
+        border-color: $paginator-hover-input-border;
+        outline: none;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 636px) {

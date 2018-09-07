@@ -5,6 +5,9 @@
 $progress: "pj-progress" !default;
 $progress-height: 4px !default;
 $progress-height-max: 8px !default;
+$progress-label-arrow-size: 6px;
+$progress-label-bottom: -2 * $progress-label-arrow-size !default;
+$progress-vertical-label-left: $progress-label-bottom !default;
 
 // Core
 // =====================
@@ -12,70 +15,44 @@ $progress-height-max: 8px !default;
   position: relative;
   height: $progress-height;
 
-  &-standard-bar {
-    height: $progress-height-max;
-  }
-
-  &.#{$progress}-vertical {
-    display: flex;
-    flex-direction: column-reverse;
-
-    .#{$progress}-label {
-      top: 0;
-      bottom: auto;
-      left: -7px;
-      &::before {
-        bottom: 50%;
-        left: 0;
-        transform: translate(-100%, 50%);
-      }
-    }
-
-    &.#{$progress}-standard-bar {
-      .#{$progress}-label {
-        left: -4px;
-      }
-    }
-
-    // .#{$progress}-label {
-    //   bottom: -20px;
-    //   left: 50%;
-    //   transform: translateX(-50%);
-    // }
-  }
-
   &-bar {
     position: relative;
     display: block;
     height: 100%;
   }
 
-  // &-label {
-  //   position: absolute;
-  //   bottom: 4px;
-  //   left: 0;
-  //   display: inline-block;
-  //   white-space: nowrap;
-  // }
-
   &-label {
     position: absolute;
     right: 0;
-    bottom: -50px;
+    bottom: $progress-label-bottom;
     z-index: 99;
     text-align: center;
     user-select: none;
-    transform: translate(50%, -50%);
+    transform: translate(50%, 100%);
 
     &::before {
       position: absolute;
-      bottom: auto;
       left: 50%;
-      display: block;
-      width: 0;
-      height: 0;
       content: "";
       transform: translate(-50%, -100%);
+    }
+  }
+
+  &-vertical {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .#{$progress}-label {
+      top: 0;
+      right: $progress-vertical-label-left;
+      bottom: auto;
+      transform: translate(100%, -50%);
+
+      &::before {
+        bottom: 50%;
+        left: 0;
+        transform: translate(-100%, 50%);
+      }
     }
   }
 }

@@ -33,37 +33,37 @@ $progress-label-box-shadow: $box-shadow-base;
 $progress-label-vertical-height: 300px;
 $progress-label-vertical-width: $progress-height;
 $progress-label-vertical-width-max: $progress-height-max;
-$progress-label-vertical-tri: 6px;
 
 // default
 // ======================================
 .#{$progress} {
-  margin-bottom: $progress-margin-bottom;
   font-family: $progress-font-family;
   background-color: $progress-bg-color;
   border-radius: $progress-border-radius;
 
-  .#{$progress} {
-    &-bar {
-      background: $progress-bar-bg-color;
-      background-image: $progress-bar-bg-image;
-      background-size: $progress-bar-bg-size;
-      border-radius: $progress-border-radius 0 0 $progress-border-radius;
-    }
+  &-bar {
+    background: $progress-bar-bg-color;
+    background-image: $progress-bar-bg-image;
+    background-size: $progress-bar-bg-size;
+    border-radius: $progress-border-radius 0 0 $progress-border-radius;
+  }
 
-    &-label {
-      width: $progress-label-width;
-      height: $progress-label-height;
-      font-size: $progress-label-font-size;
-      line-height: $progress-label-height;
-      color: $progress-label-color;
-      background: $progress-label-bg-color;
-      border-radius: $progress-label-radius;
+  &-standard-bar {
+    height: $progress-height-max;
+  }
 
-      &::before {
-        border: $progress-label-vertical-tri solid transparent;
-        border-bottom-color: $progress-label-bg-color;
-      }
+  &-label {
+    width: $progress-label-width;
+    height: $progress-label-height;
+    font-size: $progress-label-font-size;
+    line-height: $progress-label-height;
+    color: $progress-label-color;
+    background: $progress-label-bg-color;
+    border-radius: $progress-label-radius;
+
+    &::before {
+      border: $progress-label-arrow-size solid transparent;
+      border-bottom-color: $progress-label-bg-color;
     }
   }
 
@@ -81,7 +81,7 @@ $progress-label-vertical-tri: 6px;
 
     .#{$progress}-label {
       &::before {
-        border: $progress-label-vertical-tri solid transparent;
+        border: $progress-label-arrow-size solid transparent;
         border-right-color: $progress-label-bg-color;
       }
     }

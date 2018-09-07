@@ -9,30 +9,30 @@ $paginator: "pj-paginator" !default;
 .#{$paginator} {
   list-style: none;
   user-select: none;
-}
 
-.#{$paginator}-item,
-.#{$paginator}-list-prev,
-.#{$paginator}-list-next {
-  display: inline-block;
-}
+  &-item,
+  &-list-prev,
+  &-list-next {
+    display: inline-block;
+  }
 
-.#{$paginator}-prev {
-  float: left;
-}
-
-.#{$paginator}-next {
-  float: right;
-}
-
-.#{$paginator}-link {
-  position: relative;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.#{$paginator}-active {
-  z-index: 2;
+  &-prev {
+    float: left;
+  }
+  
+  &-next {
+    float: right;
+  }
+  
+  &-link {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &-active {
+    z-index: 2;
+  }
 }
