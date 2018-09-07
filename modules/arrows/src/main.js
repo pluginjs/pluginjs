@@ -3,7 +3,7 @@ import templateEngine from '@pluginjs/template'
 import { compose } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { query, append, parseHTML, empty } from '@pluginjs/dom'
+import { query, appendTo, parseHTML, empty } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -123,7 +123,7 @@ class Arrows extends Component {
     const template = templateEngine.compile(
       this.options.templates.prev.call(this)
     )
-    this.$prev = append(
+    this.$prev = appendTo(
       parseHTML(template({ classes: this.classes, ...prev })),
       this.element
     )
@@ -133,7 +133,7 @@ class Arrows extends Component {
     const template = templateEngine.compile(
       this.options.templates.next.call(this)
     )
-    this.$next = append(
+    this.$next = appendTo(
       parseHTML(template({ classes: this.classes, ...next })),
       this.element
     )

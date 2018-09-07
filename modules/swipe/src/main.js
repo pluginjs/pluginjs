@@ -67,8 +67,13 @@ class Swipe extends Component {
     }
 
     addClass(this.classes.NAMESPACE, this.element)
+
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
+    }
+
+    if (this.options.height) {
+      this.setHeight(this.options.height)
     }
 
     // wrap width
@@ -84,9 +89,7 @@ class Swipe extends Component {
 
   initialize() {
     this.build()
-    if (this.options.drag) {
-      this.initSwipeable()
-    }
+    this.initSwipeable()
     this.bind()
 
     this.active =
@@ -264,7 +267,6 @@ class Swipe extends Component {
 
   setWidth(width) {
     setStyle('width', width, this.container)
-
     this.containerWidth = width
   }
 
@@ -352,21 +354,12 @@ class Swipe extends Component {
     )
   }
 
-  decay(distance) {
-    if (distance > 0) {
-      this.prev()
-    } else {
-      this.next()
-    }
-  }
-
   initSwipeable() {
     const that = this
 
     this.swipeable = Swipeable.of(this.container, {
       container: that.element,
-      decay: that.options.decay,
-      power: that.options.power,
+      power: 1,
       duration: that.options.duration,
       onStart() {
         if (that.anime) {
@@ -376,11 +369,20 @@ class Swipe extends Component {
       },
       onMove() {
         let posX = this.startPosition.x + this.info.deltaX
-        const scrollMax = this.containerWidth - this.width
+        const scrollMax = that.width - that.containerWidth
+        const distance =
+          (that.width - that.sortedItems[that.active].info.width) / 2
+        const scrollMaxCenter = that.width - that.containerWidth - distance
 
-        if (posX > 0) {
+        if (that.options.center) {
+          if (posX > distance) {
+            posX = Math.round(distance + (posX - distance) / 5)
+          } else if (posX < scrollMaxCenter) {
+            posX = Math.round(scrollMaxCenter + (posX - scrollMaxCenter) / 5)
+          }
+        } else if (posX > 0) {
           posX = Math.round(posX / 5)
-        } else if (posX < this.containerWidth - this.width) {
+        } else if (posX < scrollMax) {
           posX = Math.round(scrollMax + (posX - scrollMax) / 5)
         }
 
@@ -392,36 +394,35 @@ class Swipe extends Component {
         )
         this.position = { x: posX, y: 0 }
       },
-      onEnd() {
-        if (that.is('disable')) {
-          return
-        }
-
-        if (this.is('decaying')) {
-          return
-        }
-
-        const decayX = this.info.velocityX
-        const locationX = this.getLocation(this.element).x
-        const index = that.getIndexByDistance(locationX)
-
-        if (Math.abs(decayX) < 1) {
-          that.moveTo(index)
-        } else if (Math.abs(this.info.deltaX) < 400) {
-          const offset = this.info.deltaX
-          that.decay(offset)
-        } else {
-          that.moveTo(index)
-        }
-        this.trigger(EVENTS.DRAGEND)
-      },
-      onDecayend() {
-        if (that.$anime) {
-          that.$anime.pause()
-        }
+      onSnail() {
         const locationX = this.getLocation(this.element).x
         const index = that.getIndexByDistance(locationX)
         that.moveTo(index)
+        that.trigger(EVENTS.DRAGSNAIL)
+      },
+      onThrow() {
+        const locationX = this.getLocation(this.element).x
+        const throwDistance = this.getMoveSize(this.info.velocityX)
+        const distance = that.options.decay
+          ? locationX + throwDistance
+          : locationX
+        let index = that.getIndexByDistance(distance)
+
+        if (throwDistance < 0) {
+          if (that.active !== that.maxActiveCount && index <= that.active) {
+            index += 1
+          }
+        } else if (that.active !== 0 && index >= that.active) {
+          index -= 1
+        }
+
+        that.moveTo(index)
+
+        if (that.options.decay) {
+          that.trigger(EVENTS.DRAGDECAY)
+        } else {
+          that.trigger(EVENTS.DRAGTHROW)
+        }
       }
     })
   }
@@ -443,13 +444,8 @@ class Swipe extends Component {
   }
 
   buildArrows() {
-    let opts = {
-      type: this.options.arrowConfig.type || 'square'
-    }
-
-    opts = Object.assign({}, opts, this.options.arrowConfig)
+    const opts = Object.assign({}, this.options.arrowConfig)
     this.arrows = Arrows.of(this.element, opts)
-    Arrows.of(this.element, opts)
   }
 
   resize() {
@@ -518,9 +514,7 @@ class Swipe extends Component {
 
     trigger = trigger || false
     ease = ease || 'linear'
-    const duration = this.options.decay
-      ? this.options.duration + 100
-      : this.options.duration
+    const duration = this.options.duration
 
     if (
       this.options.center &&
@@ -594,7 +588,7 @@ class Swipe extends Component {
 
     this.move(distance, {
       trigger: true,
-      ease: this.options.decay ? 'easeOutQuad' : 'linear',
+      ease: 'linear',
       callback
     })
   }
@@ -676,14 +670,8 @@ class Swipe extends Component {
     this.moveTo(active)
   }
 
-  setHeight(height, transition = false) {
-    const config = { height: `${height}px` }
-
-    if (transition) {
-      config.transition = `height ${this.options.duration}ms`
-    }
-
-    setStyle(config, this.container)
+  setHeight(height) {
+    setStyle('paddingBottom', `${height}%`, this.element)
   }
 
   getLocationX(el) {

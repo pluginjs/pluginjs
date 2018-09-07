@@ -9,9 +9,11 @@ export const events = {
   CHANGE: 'change',
   NEXT: 'next',
   PREV: 'prev',
-  DRAGSTART: 'dragStart',
-  DRAGEND: 'dragEnd',
-  MOVEEND: 'moveEnd',
+  DRAGSTART: 'dragstart',
+  DRAGSNAIL: 'dragsnail',
+  DRAGDECAY: 'dragdecay',
+  DRAGTHROW: 'dragthrow',
+  MOVEEND: 'moveend',
   RESIZE: 'resize'
 }
 
@@ -35,19 +37,18 @@ export const defaults = {
   containerSelector: null,
   itemSelector: 'div',
   arrows: false,
-  arrowConfig: false,
+  arrowConfig: {
+    type: 'solid'
+  },
   pagination: false,
   dotConfig: false,
-  drag: true,
-  decay: false,
-  power: 1,
   group: false,
-  loop: false,
   multiple: false,
+  decay: false,
   center: false, // center model
   itemNums: 1, // Number of swipe per column
   gutter: 0, // [number|string]  '10px 10px' => 'top&bottom left&right', 10 => top&bottom&left&right
-  height: '100%', // set swipe height
+  height: null, // set swipe height
   advanced: {
     getItemInstances: null, // [function] handle items array. => this.itemInstances
     computeItemLocation: null, // [function] compute items position.
@@ -56,9 +57,6 @@ export const defaults = {
   defaultActive: 0, // default active item
   duration: 300,
   templates: {
-    // wrapper() {
-    //   return '<div class="{class}"></div>'
-    // },
     container() {
       return '<div class="{classes.CONTAINER}"></div>'
     },
