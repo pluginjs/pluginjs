@@ -8,10 +8,10 @@ export default function optionable(defaults = {}, enableDataOption = false) {
     }
 
     if (enableDataOption) {
-      plugin.prototype.setupOptions = function(options = {}) {
+      plugin.prototype.setupOptions = function(...options) {
         this.options = deepMerge(
           plugin.defaults,
-          options,
+          ...options,
           this.getDataOptions()
         )
       }
