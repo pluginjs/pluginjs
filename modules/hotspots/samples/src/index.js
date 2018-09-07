@@ -1,5 +1,4 @@
 // import css
-import '@pluginjs/popover/src/css/popover.scss'
 import '@pluginjs/icons/dist/plugin-icons.css'
 
 // import sections

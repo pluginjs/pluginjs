@@ -1,6 +1,5 @@
 import { queryAll, query } from '@pluginjs/dom'
 import Hotspots from '@pluginjs/hotspots'
-import escapeHTML from '../escape-html'
 
 const section = query('#types')
 queryAll('.pj-hotspots', section).map(element =>
@@ -8,47 +7,41 @@ queryAll('.pj-hotspots', section).map(element =>
     icon: 'pj-icon pj-icon-add',
     data: [
       {
-        placement: 'top',
-        number: '1',
-        text: 'Chair',
-        title: 'Chair - 20$',
-        content: escapeHTML`<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p><a href=\'#\'>Buy</a>`,
-        position: ['38%', '74%'],
+        title: 'Lorem ipsum',
+        content:
+          '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>',
+        position: ['19%', '78%'],
         type: 'dot'
       },
       {
-        placement: 'right',
-        number: '2',
-        text: 'LAMP',
-        title: 'Lamp - 15$',
-        content: escapeHTML`<p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p><p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p><a href=\'#\'>Buy</a>`,
-        position: ['39.5%', '35%'],
+        text: 'Book',
+        title: 'Lorem ipsum',
+        content:
+          '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>',
+        position: ['62.5%', '57%'],
         type: 'text'
       },
       {
-        placement: 'right',
-        number: '3',
-        text: 'Cabinet',
-        title: 'Cabinet - 50$',
-        content: escapeHTML`<p>Nulla consequat massa quis enim. </p><a href=\'#\'>Buy</a>`,
-        position: ['30%', '52%'],
+        icon: 'pj-icon pj-icon-add',
+        title: 'Lorem ipsum',
+        content:
+          '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>',
+        position: ['38%', '32%'],
         type: 'icon'
       },
       {
-        placement: 'bottom',
-        number: '5',
-        text: 'Frame',
-        title: 'Frame - 10$',
-        content: escapeHTML`<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p><a href=\'#\'>Buy</a>`,
-        position: ['51%', '35%'],
+        number: '6',
+        title: 'Lorem ipsum',
+        content:
+          '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>',
+        position: ['59%', '10%'],
         type: 'number'
       },
       {
-        placement: 'bottom',
-        number: '5',
-        text: 'Frame',
-        title: 'Frame - 10$',
-        content: escapeHTML`<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p><a href=\'#\'>Buy</a>`,
+        text: 'Lorem',
+        title: 'Lorem ipsum',
+        content:
+          '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>',
         position: ['27%', '60%'],
         type: 'hide'
       }
