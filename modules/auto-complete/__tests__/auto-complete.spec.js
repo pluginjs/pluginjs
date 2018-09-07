@@ -124,13 +124,18 @@ describe('AutoComplete', () => {
     let $element
     let api
 
-    beforeEach(() => {
+    test('should get the value', () => {
       $element = generateHTMLSample()
       api = AutoComplete.of($element, { source })
+
+      expect(api.get()).toBeString()
     })
 
-    test('should get the value', () => {
-      expect(api.get()).toBeString()
+    test('should get the value with source', () => {
+      $element = generateHTMLSample('java')
+      api = AutoComplete.of($element, { source })
+
+      expect(api.get()).toEqual('java')
     })
   })
 
@@ -158,9 +163,6 @@ describe('AutoComplete', () => {
 
       api.set('false')
       expect(api.get()).toBeString()
-
-      api.set('true')
-      expect(api.get()).toBeString()
     })
 
     test('should set the value with number', () => {
@@ -184,37 +186,34 @@ describe('AutoComplete', () => {
     })
 
     test('should get the value', () => {
-      expect(api.val()).toBeString()
+      $element = generateHTMLSample('java')
+      api = AutoComplete.of($element, { source })
+
+      expect(api.val()).toBeString('java')
     })
 
-    test('should set the value', () => {
+    test('should set the value with boolean', () => {
       api.val(false)
-
-      expect(api.get()).toBeString()
+      expect(api.val()).toBe('false')
+      expect(api.get()).toBeString('false')
 
       api.val(true)
-
-      expect(api.get()).toBeString()
+      expect(api.val()).toBe('true')
+      expect(api.get()).toBeString('true')
     })
 
     test('should set the value with string', () => {
       api.val('false')
-
-      expect(api.get()).toBeString()
-
-      api.val('true')
-
-      expect(api.get()).toBeString()
+      expect(api.val()).toBe('false')
+      expect(api.get()).toBeString('false')
     })
 
     test('should set the value with number', () => {
       expect(api.get()).toBeString()
 
-      api.val(0)
-      expect(api.get()).toBeString()
-
-      api.val(1)
-      expect(api.get()).toBeString()
+      api.val(12)
+      expect(api.val()).toBe('12')
+      expect(api.get()).toBeString('12')
     })
   })
 
