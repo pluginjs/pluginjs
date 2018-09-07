@@ -7,7 +7,6 @@ const api = Zoom.of(element, {
   position,
   mode: 'window',
   window: {
-    offetX: 20,
     height: '270',
     width: '270',
     overlay: true,
