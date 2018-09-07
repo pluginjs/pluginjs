@@ -3,23 +3,20 @@
 // Vars
 // =====================
 $rate: "pj-rate" !default;
+$rate-time: 0.3s !default;
 
 // Core
 // =====================
 .#{$rate} {
-  box-sizing: border-box;
-  display: inline-block;
   padding: 0;
   margin: 0;
-  vertical-align: middle;
   list-style: none;
 
-  .#{$rate}-star {
+  &-star {
     position: relative;
-    box-sizing: border-box;
     display: inline-block;
 
-    .#{$rate}-star-first {
+    &-first {
       position: absolute;
       top: 0;
       left: 0;
@@ -28,25 +25,26 @@ $rate: "pj-rate" !default;
       overflow: hidden;
       opacity: 0;
     }
-  }
 
-  .#{$rate}-star-half {
-    .#{$rate}-star-first {
-      opacity: 1;
+    &-first,
+    &-second {
+      user-select: none;
+
+      img {
+        max-width: none;
+      }
+
+      embed {
+        max-width: none;
+      }
     }
-  }
-}
 
-.#{$rate}-star-first,
-.#{$rate}-star-second {
-  user-select: none;
-
-  img {
-    max-width: none;
-  }
-
-  embed {
-    max-width: none;
+    &-half {
+      .#{$rate}-star-first {
+        opacity: 1;
+        transition: all $rate-time;
+      }
+    }
   }
 }
 
