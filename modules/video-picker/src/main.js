@@ -274,6 +274,8 @@ class VideoPicker extends Component {
       onChange: value => {
         this.data.ratio = value
         this.changeRatio(value)
+        this.$ratioDropdown.update()
+        this.$sourceDropdown.update()
       }
     })
 

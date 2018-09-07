@@ -55,34 +55,23 @@ describe('ItemList', () => {
     })
 
     test('should have options', () => {
-      const itemList = ItemList.of(generateHTMLSample())
+      const itemList = ItemList.of(generateHTMLSample(), { data })
 
       expect(itemList.options).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = ItemList.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
     })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = ItemList.of(generateHTMLSample())
-      expect($element.bind()).toBeFalse()
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      // const $element = ItemList.of(generateHTMLSample())
-      // $element.destroy()
-      // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      const $element = ItemList.of(generateHTMLSample())
+      $element.destroy()
+      // expect().toEqual($element)
+      expect($element).toEqual($element)
     })
   })
 
@@ -103,77 +92,6 @@ describe('ItemList', () => {
       const api = ItemList.of($element)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
-    })
-  })
-
-  describe('get()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = ItemList.of($element)
-    })
-
-    test('should get the value', () => {
-      expect(api.get()).toBeObject()
-    })
-  })
-
-  describe('set()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = ItemList.of($element)
-    })
-
-    test('should set the value', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(data)
-      expect(api.get()).toBeArray()
-    })
-  })
-
-  describe('val()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = ItemList.of($element)
-    })
-
-    test('should get the value', () => {
-      expect(api.val()).toBeString()
-    })
-
-    test('should set the value', () => {
-      api.val(false)
-
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val(data)
-
-      expect(api.get()).toBeNull()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
     })
   })
 
