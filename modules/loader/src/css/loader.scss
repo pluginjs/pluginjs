@@ -99,17 +99,18 @@ $loader-text-spacer: 0.5em;
   display: block;
   background-color: currentColor;
   border-radius: 50%;
+  animation-fill-mode: both;
   animation: pj-loader-dot $loader-duration 0s ease-in-out infinite;
 }
 
 @keyframes pj-loader-dot {
   0% {
-    transform: scale(0);
+    transform: scale(0.0);
   }
 
-  99% {
+  100% {
     opacity: 0;
-    transform: scale(1);
+    transform: scale(1.0);
   }
 }
 
