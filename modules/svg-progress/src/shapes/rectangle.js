@@ -8,7 +8,8 @@ export default class Rectangle extends Shape {
     const h = height - d
 
     return new SvgElement('path', {
-      d: `M${d} ${d} L${w} ${d} L${h} ${w} L${d} ${w} Z`,
+      d: `M${w / 2} ${d} L${w} ${d} L${w} ${h} L${d} ${h} L${d} ${d} L${w /
+        2} ${d} Z`,
       style: 'stroke-linecap: round;stroke-linejoin: round;',
       ...attributes
     })

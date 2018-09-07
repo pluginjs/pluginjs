@@ -8,7 +8,11 @@ export default class Triangle extends Shape {
     const h = height - d
 
     return new SvgElement('path', {
-      d: `M${d} ${h} L${width / 2} ${d} L${w} ${h} Z`,
+      d: `M${w / 2} ${(w - (w / 2) * Math.sqrt(3)) / 2} L${w} ${h -
+        (w - (w / 2) * Math.sqrt(3)) / 2} L${d} ${h -
+        (w - (w / 2) * Math.sqrt(3)) / 2} L${w / 2} ${(w -
+        (w / 2) * Math.sqrt(3)) /
+        2} Z`,
       style: 'stroke-linecap: round;stroke-linejoin: round;',
       ...attributes
     })

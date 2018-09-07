@@ -52,7 +52,7 @@ export const defaults = {
   shape: 'circle',
   barcolor: '#215fdb',
   barsize: '2',
-  trackcolor: '#b3b3b3',
+  trackcolor: 'rgba(0, 0, 0, 0.1)',
   fillcolor: 'none',
   numberCallback(n) {
     return `${Math.round(this.getPercentage(n))}%`
