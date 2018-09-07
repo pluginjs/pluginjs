@@ -166,13 +166,10 @@ class Video extends Component {
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$video)
       }
-      console.log(32155)
       if (this.options.poster) {
         this.$poster.remove()
       }
-      console.log(32155)
       this.player.destroy()
-      console.log(32155)
     }
 
     if (this.is('loaded')) {

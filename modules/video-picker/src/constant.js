@@ -57,7 +57,10 @@ export const classes = {
   ACTION: '{namespace}-action',
   BTNACTION: '{namespace}-btn-action',
   SAVE: '{namespace}-save',
-  CANCEL: '{namespace}-cancel'
+  CANCEL: '{namespace}-cancel',
+  BIGSIZE: '{namespace}-preview-16-9',
+  MEDIUMSIZE: '{namespace}-preview-4-3',
+  SMALLSIZE: '{namespace}-preview-3-2'
 }
 
 export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']

@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
   setStyle,
   hideElement,
@@ -138,6 +138,7 @@ class VideoPicker extends Component {
     })
     const ratioData = [
       { label: 'auto', value: 'auto' },
+      { label: '3:2', value: '3:2' },
       { label: '4:3', value: '4:3' },
       { label: '16:9', value: '16:9' }
     ]
@@ -272,6 +273,7 @@ class VideoPicker extends Component {
       value: ratioData[0].label,
       onChange: value => {
         this.data.ratio = value
+        this.changeRatio(value)
       }
     })
 
@@ -401,7 +403,10 @@ class VideoPicker extends Component {
         this.eventName('click'),
         `.${this.classes.LOCALURLDELETE}`,
         () => {
-          this.removeVideo()
+          console.log(this.is('loaded'))
+          if (this.is('loaded')) {
+            this.removeVideo()
+          }
         }
       ),
       bindEvent(
@@ -476,6 +481,30 @@ class VideoPicker extends Component {
     setStyle('backgroundImage', 'none', this.$videoPoster)
   }
 
+  changeRatio(value) {
+    if (hasClass(this.classes.SMALLSIZE, this.$preview)) {
+      removeClass(this.classes.SMALLSIZE, this.$preview)
+    }
+    if (hasClass(this.classes.MEDIUMSIZE, this.$preview)) {
+      removeClass(this.classes.MEDIUMSIZE, this.$preview)
+    }
+    if (hasClass(this.classes.BIGSIZE, this.$preview)) {
+      removeClass(this.classes.BIGSIZE, this.$preview)
+    }
+    if (value === 'auto') {
+      console.log(value)
+    } else if (value === '3:2') {
+      addClass(this.classes.SMALLSIZE, this.$preview)
+    } else if (value === '4:3') {
+      addClass(this.classes.MEDIUMSIZE, this.$preview)
+    } else if (value === '16:9') {
+      addClass(this.classes.BIGSIZE, this.$preview)
+    }
+    if (this.is('loaded')) {
+      this.videoApi.setSize(getWidth(this.$video), getHeight(this.$video))
+    }
+  }
+
   unbind() {
     removeEvent(this.eventName(), this.$wrap)
   }
@@ -487,7 +516,6 @@ class VideoPicker extends Component {
   }
 
   removeVideo() {
-    console.log(query('.pj-video', this.$wrap))
     this.data.poster = ''
     this.data.url = ''
 
@@ -497,7 +525,6 @@ class VideoPicker extends Component {
     this.videoApi.destroy()
     console.log(this.videoApi)
 
-    query('.pj-video', this.$wrap).remove()
     setStyle(
       {
         backgroundImage: `url(${this.data.poster})`
@@ -545,6 +572,7 @@ class VideoPicker extends Component {
     if (videoConfig.type === 'html5') {
       videoConfig.url = `${url}`
     }
+    console.log(videoConfig)
     this.videoApi = Video.of(this.$video, videoConfig)
     this.videoApi.options.onLoad = () => {
       addClass(this.classes.VIDEOLOADING, this.$videoAction)
@@ -556,7 +584,7 @@ class VideoPicker extends Component {
     }
 
     // this.videoApi.load()
-
+    console.log(getWidth(this.$video), getHeight(this.$video))
     this.videoApi.setSize(getWidth(this.$video), getHeight(this.$video))
 
     this.enter('loaded')
