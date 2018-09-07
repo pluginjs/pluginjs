@@ -43,17 +43,6 @@ describe('BgPicker', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = BgPicker.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = BgPicker.of(generateHTMLSample())
@@ -111,18 +100,91 @@ describe('BgPicker', () => {
       expect(api.is('initialized')).toBeFalse()
     })
   })
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = BgPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = BgPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(
+            '{"repeat":"repeat-x","position":"center center","attachment":"inherit","size":"auto","image":"https://picsum.photos/200/300?image=1068","thumbnail":"http://via.placeholder.com/350x150"}'
+          )
+        }
+      })
+
+      api.val(
+        '{"repeat":"repeat-x","position":"center center","attachment":"inherit","size":"auto","image":"https://picsum.photos/200/300?image=1068","thumbnail":"http://via.placeholder.com/350x150"}'
+      )
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = BgPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(
+            '{"repeat":"repeat-x","position":"center center","attachment":"inherit","size":"auto","image":"https://picsum.photos/200/300?image=1068","thumbnail":"http://via.placeholder.com/350x150"}'
+          )
+        }
+      })
+
+      api.set({
+        repeat: 'repeat-x',
+        position: 'center center',
+        attachment: 'inherit',
+        size: 'auto',
+        image: 'https://picsum.photos/200/300?image=1068',
+        thumbnail: 'http://via.placeholder.com/350x150'
+      })
+
+      expect(called).toBeTrue()
+    })
+  })
 
   describe('get()', () => {
     let $element
     let api
 
-    beforeEach(() => {
+    test('should get the value', () => {
       $element = generateHTMLSample()
       api = BgPicker.of($element)
-    })
-
-    test('should get the value', () => {
       expect(api.get()).toBeObject()
+    })
+    test('should get the value with all', () => {
+      $element = generateHTMLSample(
+        '{"repeat":"repeat-x","position":"center center","attachment":"inherit","size":"auto","image":"https://picsum.photos/200/300?image=1068","thumbnail":"http://via.placeholder.com/350x150"}'
+      )
+      api = BgPicker.of($element)
+
+      expect(api.get()).toEqual({
+        repeat: 'repeat-x',
+        position: 'center center',
+        attachment: 'inherit',
+        size: 'auto',
+        image: 'https://picsum.photos/200/300?image=1068',
+        thumbnail: 'http://via.placeholder.com/350x150'
+      })
     })
   })
 
@@ -138,31 +200,22 @@ describe('BgPicker', () => {
     test('should set the value', () => {
       expect(api.get()).toBeObject()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set({
+        repeat: 'repeat-x',
+        position: 'center center',
+        attachment: 'inherit',
+        size: 'auto',
+        image: 'https://picsum.photos/200/300?image=1068',
+        thumbnail: 'http://via.placeholder.com/350x150'
+      })
+      expect(api.get()).toBeObject({
+        repeat: 'repeat-x',
+        position: 'center center',
+        attachment: 'inherit',
+        size: 'auto',
+        image: 'https://picsum.photos/200/300?image=1068',
+        thumbnail: 'http://via.placeholder.com/350x150'
+      })
     })
   })
 
@@ -175,38 +228,33 @@ describe('BgPicker', () => {
       api = BgPicker.of($element)
     })
 
-    test('should get the value', () => {
-      expect(api.val()).toBeObject()
+    it('should get the value', () => {
+      $element = generateHTMLSample(
+        '{"repeat":"repeat-x","position":"center center","attachment":"inherit","size":"auto","image":"https://picsum.photos/200/300?image=1068","thumbnail":"http://via.placeholder.com/350x150"}'
+      )
+      api = BgPicker.of($element)
+
+      expect(api.val()).toBeString(
+        '{"repeat":"repeat-x","position":"center center","attachment":"inherit","size":"auto","image":"https://picsum.photos/200/300?image=1068","thumbnail":"http://via.placeholder.com/350x150"}'
+      )
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val(
+        '{"repeat":"repeat-x","position":"center center","attachment":"inherit","size":"auto","image":"https://picsum.photos/200/300?image=1068","thumbnail":"http://via.placeholder.com/350x150"}'
+      )
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.val()).toBe(
+        '{"repeat":"repeat-x","position":"center center","attachment":"inherit","size":"auto","image":"https://picsum.photos/200/300?image=1068","thumbnail":"http://via.placeholder.com/350x150"}'
+      )
+      expect(api.get()).toEqual({
+        repeat: 'repeat-x',
+        position: 'center center',
+        attachment: 'inherit',
+        size: 'auto',
+        image: 'https://picsum.photos/200/300?image=1068',
+        thumbnail: 'http://via.placeholder.com/350x150'
+      })
     })
   })
 

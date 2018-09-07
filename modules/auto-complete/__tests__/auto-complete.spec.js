@@ -148,31 +148,11 @@ describe('AutoComplete', () => {
       api = AutoComplete.of($element, { source })
     })
 
-    test('should set the value', () => {
-      expect(api.get()).toBeString()
-
-      api.set(false)
-      expect(api.get()).toBeString()
-
-      api.set(true)
-      expect(api.get()).toBeString()
-    })
-
     test('should set the value with string', () => {
       expect(api.get()).toBeString()
 
-      api.set('false')
-      expect(api.get()).toBeString()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeString()
-
-      api.set(0)
-      expect(api.get()).toBeString()
-
-      api.set(1)
-      expect(api.get()).toBeString()
+      api.set('java')
+      expect(api.get()).toBeString('java')
     })
   })
 
@@ -192,28 +172,10 @@ describe('AutoComplete', () => {
       expect(api.val()).toBeString('java')
     })
 
-    test('should set the value with boolean', () => {
-      api.val(false)
-      expect(api.val()).toBe('false')
-      expect(api.get()).toBeString('false')
-
-      api.val(true)
-      expect(api.val()).toBe('true')
-      expect(api.get()).toBeString('true')
-    })
-
     test('should set the value with string', () => {
-      api.val('false')
-      expect(api.val()).toBe('false')
-      expect(api.get()).toBeString('false')
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeString()
-
-      api.val(12)
-      expect(api.val()).toBe('12')
-      expect(api.get()).toBeString('12')
+      api.val('java')
+      expect(api.val()).toBe('java')
+      expect(api.get()).toBeString('java')
     })
   })
 

@@ -201,7 +201,6 @@ class Dropdown extends Component {
     if (selected.length > 0) {
       this.selectItem(selected[0], trigger)
     } else {
-      console.log(560)
       removeClass(this.classes.ACITVE, this.active)
       if (isInput(this.$trigger)) {
         this.$trigger.value = value

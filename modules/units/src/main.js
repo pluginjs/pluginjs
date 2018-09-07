@@ -207,6 +207,7 @@ class Units extends Component {
   }
 
   val(value) {
+    console.log(value)
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
