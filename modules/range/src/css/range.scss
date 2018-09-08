@@ -1,43 +1,99 @@
 @import "@pluginjs/styles/variables.scss";
-@import "range.core";
 
 // Vars
-// ======================
+// =====================
 $range: "pj-range" !default;
+
 $range-sizer: $sizer;
 
-$range-active-color: $color-primary !default;
-$range-selected-bg-color: #215fdb !default;
+$range-width: 14.3 * $range-sizer !default; //143px
+$range-height: 0.2 * $range-sizer !default; //2px
+
+$range-pointer-width: 14px !default; //10px
+$range-pointer-height: 14px !default; //10px
 $range-pointer-border-width: 2px !default;
-$range-pointer-bg-color: $color-white !default;
+$range-pointer-border-color: #e6e6e6 !default;
+$range-pointer-bg: $color-white !default;
 $range-pointer-border-color: $color-primary !default;
-$range-tip-bg-color: $color-white !default;
+$range-pointer-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+
+$range-input-width: 50px !default;
+$range-input-gap: 8px !default;
+
+$range-tip-color: $color-white;
+$range-tip-bg: $gray-darkest !default;
 $range-tip-box-shadow: 0 5px 20px 0 rgba($gray-darkest, 0.1) !default;
-$pj-units-width: 6.3 * $range-sizer !default; //63px
-$pj-units-trigger-width: 2.4 * $range-sizer !default; //24px
-$pj-units-trigger-left: $pj-units-width - $pj-units-trigger-width !default;
-$dropdown-item: "pj-dropdown-item" !default;
-// Core
-// ======================
+$range-tip-border-color: $gray !default; //#5d5c58 !default;
+$range-tip-arrow-size: 5px !default;
+$range-tip-padding: 5px !default;
+$range-tip-font-size: $font-size-xs !default;
+$range-tip-line-height: 1.6 !default;
+$range-tip-min-width: 2*$range-sizer !default;
+$range-track-bg: $color-primary !default;
+$range-rail-bg: #e6e6e6 !default;
+
+$range-disabled-track-bg: rgba($range-track-bg, 0.5) !default;
+
 .#{$range} {
-  &-selected {
+  display: flex;
+  align-items: center;
+
+  &-control {
+    position: relative;
+    width: $range-width;
     height: $range-height;
-    background-color: #215fdb;
+    padding-top: $range-pointer-width/2;
+    padding-bottom: $range-pointer-width/2;
+    cursor: pointer;
   }
-  &-disabled {
-    background-color: #e6e6e6;
+
+  input {
+    display: none;
   }
+
+  .#{$range}-input {
+    display: block;
+    width: $range-input-width;
+    padding-right: 4px;
+    padding-left: 4px;
+    margin-left: $range-input-gap;
+    text-align: center;
+  }
+
+  &-rail,
+  &-track {
+    position: absolute;
+    top: $range-pointer-width/2;
+    width: $range-width;
+    height: $range-height;
+  }
+
+  &-rail {
+    order: 0;
+    background-color: $range-rail-bg;
+  }
+
+  &-track {
+    z-index: 1;
+    background-color: $range-track-bg;
+  }
+
   &-pointer {
+    position: absolute;
     top: 50%;
+    z-index: 2;
     box-sizing: border-box;
-    width: 16px;
-    height: 16px;
+    width: $range-pointer-width;
+    height: $range-pointer-height;
+    margin-left: -$range-pointer-width/2;
     cursor: ew-resize;
-    background-color: #fff;
-    border: 2px solid #e6e6e6;
+    background-color: $range-pointer-bg;
+    border: $range-pointer-border-width solid $range-pointer-border-color;
     border-radius: 50%;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+    outline: none;
+    box-shadow: $range-pointer-box-shadow;
     transform: translateY(-50%);
+
     &::after {
       position: absolute;
       top: 0;
@@ -45,10 +101,15 @@ $dropdown-item: "pj-dropdown-item" !default;
       bottom: 0;
       left: 0;
       content: "";
-      background: $range-pointer-bg-color;
+      background: $range-pointer-bg;
       border-radius: inherit;
     }
 
+    &-active {
+      border-color: $color-primary;
+    }
+
+    &-active,
     &:hover,
     &:focus {
       z-index: 1000;
@@ -58,51 +119,100 @@ $dropdown-item: "pj-dropdown-item" !default;
   }
 
   &-tip {
-    display: none;
-    /*stylelint-disable*/
-    font-family: "Helvetica Neue";
-    /*stylelint-enable*/
-    font-size: $font-size-xs;
-    color: $color-white;
+    position: absolute;
+    bottom: 20px;
+    left: $range-pointer-width/2 - $range-pointer-border-width;
+    min-width: 30px;
+    padding: 0 $range-tip-padding;
+    font-size: $range-tip-font-size;
+    line-height: $range-tip-line-height;
+    color: $range-tip-color;
+    text-align: center;
     cursor: ew-resize;
-    background-color: $gray-darkest;
+    visibility: hidden;
+    background-color: $range-tip-bg;
+    border: 0;
     border-radius: 2px;
     box-shadow: $range-tip-box-shadow;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out 0s;
 
-    &::after{
+    transform: translateX(-50%);
+
+    &::after {
       position: absolute;
-      top: 23px;
-      left: 15px;
+      bottom: -$range-tip-arrow-size + 1px;
+      left: 50%;
       display: block;
       width: 0;
       height: 0;
-      content: " ";
-      border-top: 6px solid $gray-darkest;
-      border-right: 6px solid transparent;
-      border-left: 6px solid transparent;
+      margin-left: -$range-tip-arrow-size;
+      content: "";
+      border-top: $range-tip-arrow-size solid $range-tip-bg;
+      border-right: $range-tip-arrow-size solid transparent;
+      border-left: $range-tip-arrow-size solid transparent;
+    }
+
+    &-show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .#{$range}-pointer:hover & {
+      visibility: visible;
+      opacity: 1;
     }
   }
+
 }
-#tips-range {
-    .#{$range}-tip {
-    display: block;
+
+.#{$range}-vertical {
+  flex-direction: column;
+
+  .#{$range}-input {
+    margin-top: $range-input-gap !important;
+    margin-left: 0 !important;
+  }
+
+  .#{$range}-control {
+    width: $range-height;
+    height: $range-width;
+    padding-right: $range-pointer-width/2;
+    padding-left: $range-pointer-width/2;
+  }
+
+  .#{$range}-rail,
+  .#{$range}-track {
+    position: absolute;
+    left: $range-pointer-width/2;
+    width: $range-height;
+    height: $range-width;
+  }
+
+  .#{$range}-pointer {
+    top: 0;
+    left: 50%;
+    margin-top: -$range-pointer-width/2;
+    margin-left: 0;
+    cursor: ns-resize;
+    transform: translateX(-50%);
   }
 }
 
-.#{$range}-unit {
-  width: $pj-units-width;
-}
+.#{$range}-disabled {
+  cursor: not-allowed;
 
-.pj-units {
-  // width: $pj-units-width;
+  .#{$range}-rail {
+    background-color: $disabled-color;
+  }
 
-  &-trigger {
-    width: $pj-units-trigger-width;
-    /*stylelint-disable*/
-    font-family: "Helvetica Neue";
-    /*stylelint-enable*/
-    color: #b3b3b3;
-    outline: none;
+  .#{$range}-track {
+    cursor: not-allowed;
+    background-color: $range-disabled-track-bg;
+  }
+
+  .#{$range}-pointer {
+    cursor: not-allowed;
+    border-color: $disabled-border;
   }
 }
-

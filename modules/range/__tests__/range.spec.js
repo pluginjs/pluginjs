@@ -37,28 +37,10 @@ describe('Range', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = Range.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = Range.of(generateHTMLSample())
       expect($element.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      // const $element = Range.of(generateHTMLSample())
-      // $element.destroy()
-      // expect().toEqual($element);
-      // expect($element).toEqual($element);
     })
   })
 
@@ -82,17 +64,71 @@ describe('Range', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample('10')
+      api = Range.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Range.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('10')
+        }
+      })
+
+      api.val('10')
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Range.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('10')
+        }
+      })
+
+      api.set(10)
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
 
-    beforeEach(() => {
-      $element = generateHTMLSample()
+    test('should get the value', () => {
+      $element = generateHTMLSample('20')
       api = Range.of($element)
+      expect(api.get()).toBe(20)
     })
 
-    test('should get the value', () => {
-      expect(api.get()).toBeObject()
+    test('should get the value with range', () => {
+      $element = generateHTMLSample('20-30')
+      api = Range.of($element, {
+        range: true
+      })
+      expect(api.get()).toEqual([20, 30])
     })
   })
 
@@ -100,39 +136,26 @@ describe('Range', () => {
     let $element
     let api
 
-    beforeEach(() => {
+    test('should set the value', () => {
       $element = generateHTMLSample()
       api = Range.of($element)
+
+      expect(api.get()).toBe(0)
+
+      api.set(10)
+      expect(api.get()).toBe(10)
     })
 
-    test('should set the value', () => {
-      expect(api.get()).toBeObject()
+    test('should set the value with range', () => {
+      $element = generateHTMLSample()
+      api = Range.of($element, {
+        range: true
+      })
 
-      api.set(false)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toEqual([0, 0])
 
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set([10, 20])
+      expect(api.get()).toEqual([10, 20])
     })
   })
 
@@ -140,43 +163,34 @@ describe('Range', () => {
     let $element
     let api
 
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Range.of($element)
-    })
-
     test('should get the value', () => {
-      expect(api.val()).toBeString()
+      $element = generateHTMLSample('30')
+      api = Range.of($element)
+
+      expect(api.val()).toBe('30')
     })
 
     test('should set the value', () => {
-      api.val(false)
+      $element = generateHTMLSample()
+      api = Range.of($element)
 
-      expect(api.get()).toBeObject()
+      api.val('100')
 
-      api.val(true)
-
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBe(100)
+      expect(api.val()).toBe('100')
     })
 
-    test('should set the value with string', () => {
-      api.val('false')
+    test('should set the value with range', () => {
+      $element = generateHTMLSample('20-30')
+      api = Range.of($element, {
+        range: true
+      })
+      expect(api.val()).toBe('20-30')
 
-      expect(api.get()).toBeObject()
+      api.val('30-100')
 
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toEqual([30, 100])
+      expect(api.val()).toBe('30-100')
     })
   })
 

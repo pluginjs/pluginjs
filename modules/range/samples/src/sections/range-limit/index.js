@@ -1,9 +1,9 @@
 import { query } from '@pluginjs/dom'
 import Range from '@pluginjs/range'
 
-const element = query('#keyboard .example-keyboard')
+const element = query('#range-limit .example-range')
 
 Range.of(element, {
-  keyboard: true,
-  range: true
+  range: true,
+  limit: false
 })

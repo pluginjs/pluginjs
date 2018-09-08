@@ -1,24 +1,30 @@
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, offset as getOffset } from '@pluginjs/styled'
-import { bindEvent, removeEvent, trigger } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
+import { appendTo } from '@pluginjs/dom'
+import { events as EVENTS } from './constant'
 
 class Pointer {
-  constructor(element, id, instance) {
-    this.element = element
-    this.uid = id
+  constructor(id, instance, value) {
+    this.element = appendTo(
+      `<div class="${instance.classes.POINTER} ${
+        instance.classes.POINTER
+      }-${id}"></div>`,
+      instance.$control
+    )
+
+    this.id = id
     this.instance = instance
-    this.options = this.instance.options
-    this.direction = this.options.direction
-    this.value = null
-    this.classes = { active: this.instance.classes.POINTERACTIVE }
+    this.set(value, false)
+
+    this.updatePosition()
   }
 
   mousedown(event) {
-    const axis = this.instance.direction.axis
-    const position = this.instance.direction.position
+    const { axis, position } = this.instance.direction
     const offset = getOffset(this.instance.$control)
 
-    trigger(this.instance.selfEventName('moveStart'), this, this.element)
+    this.instance.trigger(EVENTS.POINTERMOVESTART, this)
 
     this.data = {}
     this.data.start = event[axis]
@@ -27,84 +33,45 @@ class Pointer {
     const value = this.instance.getValueFromPosition(this.data.position)
     this.set(value)
 
-    this.instance.pointer.map(p => p.deactive())
+    this.instance.pointers.forEach(pointer => {
+      if (pointer !== this) {
+        pointer.deactive()
+      } else {
+        pointer.active()
+      }
+    })
 
-    this.active()
-
-    this.mousemove = function(event) {
+    this.mousemove = event => {
       const value = this.instance.getValueFromPosition(
         this.data.position + (event[axis] || this.data.start) - this.data.start
       )
       this.set(value)
-      event.preventDefault()
       return false
     }
 
-    this.mouseup = function() {
-      removeEvent(this.instance.eventNameWithId('mousemove'), document.body)
-      removeEvent(this.instance.eventNameWithId('mouseup'), document.body)
-      removeEvent(this.instance.eventNameWithId('touchmove'), document.body)
-      removeEvent(this.instance.eventNameWithId('touchend'), document.body)
-      trigger(`${this.instance.plugin}:moveEnd`, this, this.element)
-      // this.element.trigger(`${this.instance.plugin}:moveEnd`, this)
-      this.element.blur()
+    this.mouseup = () => {
+      removeEvent(this.instance.eventNameWithId('mousemove'), window)
+      removeEvent(this.instance.eventNameWithId('mouseup'), window)
+      removeEvent(this.instance.eventNameWithId('touchmove'), window)
+      removeEvent(this.instance.eventNameWithId('touchend'), window)
+      this.instance.trigger(EVENTS.POINTERMOVEEND, this)
+
+      this.deactive()
       return false
     }
 
     bindEvent(
       this.instance.eventNameWithId('touchmove'),
-      this.mousemove.bind(this),
-      document.body
+      this.mousemove,
+      window
     )
     bindEvent(
       this.instance.eventNameWithId('mousemove'),
-      this.mousemove.bind(this),
-      document.body
+      this.mousemove,
+      window
     )
-    bindEvent(
-      this.instance.eventNameWithId('touchend'),
-      this.mouseup.bind(this),
-      document.body
-    )
-    bindEvent(
-      this.instance.eventNameWithId('mouseup'),
-      this.mouseup.bind(this),
-      document.body
-    )
-    return false
-  }
-
-  active() {
-    addClass(this.classes.active, this.element)
-  }
-
-  deactive() {
-    removeClass(this.classes.active, this.element)
-  }
-
-  set(value) {
-    if (this.value === value) {
-      return
-    }
-    if (this.instance.step) {
-      value = this.matchStep(value)
-    }
-    if (this.options.limit === true) {
-      value = this.matchLimit(value)
-    } else {
-      if (value <= this.instance.min) {
-        value = this.instance.min
-      }
-      if (value >= this.instance.max) {
-        value = this.instance.max
-      }
-    }
-    this.value = value
-    this.updatePosition()
-    this.element.focus()
-    // this.instance.trigger('move', value)
-    trigger(`${this.instance.plugin}:move`, this, this.element)
-    // this.element.trigger(`${this.instance.plugin}:move`, this)
+    bindEvent(this.instance.eventNameWithId('touchend'), this.mouseup, window)
+    bindEvent(this.instance.eventNameWithId('mouseup'), this.mouseup, window)
   }
 
   updatePosition() {
@@ -113,14 +80,6 @@ class Pointer {
       `${this.getPercent()}%`,
       this.element
     )
-  }
-
-  getPercent() {
-    return ((this.value - this.instance.min) / this.instance.interval) * 100
-  }
-
-  get() {
-    return this.value
   }
 
   matchStep(value) {
@@ -133,29 +92,22 @@ class Pointer {
       value = value.toFixed(decimal.length)
     }
 
-    return parseFloat(value)
+    return parseFloat(value, 10)
   }
 
   matchLimit(value) {
     let left
     let right
-    const pointer = this.instance.pointer
+    const instance = this.instance
 
-    if (this.uid === 1) {
-      left = this.instance.min
+    if (this.id === 1) {
+      left = instance.min
+      right = instance.p2.value
     } else {
-      left = pointer[this.uid - 2].value
+      left = instance.p1.value
+      right = instance.max
     }
 
-    if (
-      pointer[this.uid] &&
-      pointer[this.uid].value !== null &&
-      !this.instance.is('units')
-    ) {
-      right = pointer[this.uid].value
-    } else {
-      right = this.instance.max
-    }
     if (value <= left) {
       value = left
     }
@@ -165,9 +117,50 @@ class Pointer {
     return value
   }
 
+  getPercent() {
+    return ((this.value - this.instance.min) / this.instance.interval) * 100
+  }
+
+  set(value, trigger = true) {
+    const { min, max, step, options } = this.instance
+
+    if (value > max) {
+      value = max
+    } else if (value < min) {
+      value = min
+    }
+
+    if (step) {
+      value = this.matchStep(value)
+    }
+
+    if (options.range && options.limit && this.instance.p2) {
+      value = this.matchLimit(value)
+    }
+
+    this.value = value
+
+    this.updatePosition()
+
+    if (trigger) {
+      this.instance.trigger(EVENTS.POINTERUPDATE, this, value)
+    }
+  }
+
+  get() {
+    return this.value
+  }
+
+  active() {
+    addClass(this.instance.classes.POINTERACTIVE, this.element)
+  }
+
+  deactive() {
+    removeClass(this.instance.classes.POINTERACTIVE, this.element)
+  }
+
   destroy() {
-    removeEvent(this.instance.eventName(), this.element)
-    removeEvent(this.instance.eventNameWithId(), document.body)
+    removeEvent(this.instance.eventNameWithId(), window)
     this.element.remove()
   }
 }

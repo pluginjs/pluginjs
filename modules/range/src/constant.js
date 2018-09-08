@@ -1,3 +1,5 @@
+import { isArray } from '@pluginjs/is'
+
 export const namespace = 'range'
 
 export const events = {
@@ -8,7 +10,10 @@ export const events = {
   DESTROY: 'destroy',
   CHANGE: 'change',
   MOVE: 'move',
-  CHANGEUNIT: 'changeUnit'
+  POINTERUPDATE: 'pointerUpdate',
+  POINTERMOVE: 'pointerMove',
+  POINTERMOVESTART: 'pointerMoveStart',
+  POINTERMOVEEND: 'pointerMoveEnd'
 }
 
 export const classes = {
@@ -17,7 +22,7 @@ export const classes = {
   WRAP: '{namespace}',
   CONTROL: '{namespace}-control',
   DISABLED: '{namespace}-disabled',
-  BAR: '{namespace}-bar',
+  RAIL: '{namespace}-rail',
   POINTER: '{namespace}-pointer',
   POINTERACTIVE: '{namespace}-pointer-active',
   SCALE: '{namespace}-scale',
@@ -25,97 +30,54 @@ export const classes = {
   GRID: '{namespace}-scale-grid',
   INLINEGRID: '{namespace}-scale-inlineGrid',
   VALUES: '{namespace}-scale-values',
-  SELECTED: '{namespace}-selected',
+  TRACK: '{namespace}-track',
   TIP: '{namespace}-tip',
-  SHOW: '{namespace}-tip-s',
-  UNIT: '{namespace}-unit'
+  TIPSHOW: '{namespace}-tip-show',
+  VERTICAL: '{namespace}-vertical',
+  INPUT: 'pj-input {namespace}-input'
 }
 
-export const methods = [
-  'val',
-  'get',
-  'set',
-  'setInterval',
-  'enable',
-  'disable',
-  'destroy'
-]
+export const methods = ['val', 'get', 'set', 'enable', 'disable', 'destroy']
 
 export const defaults = {
   theme: null,
   max: 100,
   min: 0,
-  value: null,
   step: 1,
-  unit: null,
-  defaultUnit: null,
+  value: null,
   limit: true,
-  isRange: false,
-  direction: 'h', // 'v' or 'h'
+  range: false,
+  input: true,
+  vertical: false,
   keyboard: false,
-  tip: true,
-  scale: true,
-  parse(input) {
-    console.log(input)
-    let unit = null
-    const val = []
-    let data = {}
-
-    if (input) {
-      if (typeof input === 'number') {
-        return { input }
+  tip: 'hover', // hover, always
+  replaceFirst: false,
+  parse(value) {
+    if (this.options.range) {
+      const array = value.split('-').map(v => parseFloat(v, 10))
+      if (array.length === 1) {
+        array[1] = array[0]
+      } else if (array[0] > array[1]) {
+        const temp = array[1]
+        array[1] = array[0]
+        array[0] = temp
       }
-
-      if (input.match(/([a-zA-Z]+|%)+/gi)) {
-        unit = input.match(/([a-zA-Z]+|%)+/gi)[0]
-        input = input.split(unit)[0]
-      }
-
-      const args = input.split(',')
-
-      args.forEach(v => {
-        val.push(parseFloat(v, 10))
-      })
-
-      data = { input: val }
-
-      if (data.input.length === 1) {
-        data.input = data.input[0]
-      }
-
-      if (unit) {
-        data.unit = unit
-      }
-
-      return data
+      return array
     }
-    return this.options.range ? [] : ''
+    if (this.options.replaceFirst && value === this.options.replaceFirst) {
+      return this.min
+    }
+    return parseFloat(value, 10)
   },
-  process(data) {
-    const val = data.input
-    const unit = data.unit
-
-    if (data) {
-      if (typeof val === 'string') {
-        if (unit) {
-          return `${val}${unit}`
-        }
-
-        return val
-      }
-
-      if (Array.isArray(val)) {
-        if (unit) {
-          val.forEach((v, i) => {
-            val[i] = `${v}${unit}`
-          })
-        }
-        return val.join(',')
-      }
+  process(value) {
+    if (this.options.range && isArray(value)) {
+      return value.join('-')
     }
-
-    return ''
+    if (this.options.replaceFirst && value === this.min) {
+      return this.options.replaceFirst
+    }
+    return value.toString()
   }
 }
 
-export const dependencies = ['units']
+export const dependencies = []

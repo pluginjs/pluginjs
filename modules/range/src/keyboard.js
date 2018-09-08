@@ -10,69 +10,56 @@ class Keyboard {
   initialize() {
     this.KEYBOARD = keyboard(this.instance.$control)
 
-    // make ul div etc. get focus
-    this.instance.pointer.forEach(val => {
-      val.element.setAttribute('tabindex', 0)
+    this.instance.pointers.forEach(pointer => {
+      pointer.element.setAttribute('tabindex', 0)
       bindEvent(
         this.instance.eventName('focus'),
         () => {
-          this.bind(val)
+          pointer.active()
+          this.bind(pointer)
         },
-        val.element
+        pointer.element
       )
       bindEvent(
         this.instance.eventName('blur'),
         () => {
+          pointer.deactive()
           this.unbind()
         },
-        val.element
+        pointer.element
       )
     })
   }
 
-  change(key, el) {
-    let step
-    let val
-
-    if (this.instance.options.step && !this.instance.options.units) {
-      step = this.instance.options.step
-    } else if (this.instance.options.units) {
-      step = this.instance.step
-    } else {
-      step = 1
-    }
-
-    if (key === 'right') {
-      val = el.value
-      el.set(val + step)
-    }
-
-    if (key === 'left') {
-      val = el.value
-      el.set(val - step)
-    }
-  }
-
-  bind(el) {
-    if (this.instance.is('keyboardBind')) {
-      return
-    }
-
-    this.instance.enter('keyboardBind')
-
+  bind(pointer) {
     this.KEYBOARD.down('left', () => {
-      this.change('left', el)
+      this.change('left', pointer)
     })
 
     this.KEYBOARD.down('right', () => {
-      this.change('right', el)
+      this.change('right', pointer)
     })
   }
 
   unbind() {
-    this.instance.leave('keyboardBind')
     this.KEYBOARD.down('left')
     this.KEYBOARD.down('right')
+  }
+
+  change(key, pointer) {
+    let step = 1
+
+    if (this.instance.options.step) {
+      step = this.instance.options.step
+    }
+
+    if (key === 'right') {
+      pointer.set(pointer.value + step)
+    }
+
+    if (key === 'left') {
+      pointer.set(pointer.value - step)
+    }
   }
 }
 export default Keyboard
