@@ -157,6 +157,46 @@ describe('util', () => {
     })
   })
 
+  describe('objectEqual()', () => {
+    test('should return true when two object equals', () => {
+      expect(util.objectEqual({}, {})).toBeTrue()
+      expect(util.objectEqual({ a: 'A' }, { a: 'A' })).toBeTrue()
+      expect(
+        util.objectEqual({ a: 'a', b: 'b' }, { a: 'a', b: 'b' })
+      ).toBeTrue()
+      expect(util.objectEqual({ a: 1 }, { a: 1 })).toBeTrue()
+      expect(util.objectEqual({ a: 1, b: 2 }, { a: 1, b: 2 })).toBeTrue()
+      expect(
+        util.objectEqual({ a: 1, b: 2, c: 3 }, { a: 1, b: 2, c: 3 })
+      ).toBeTrue()
+      expect(
+        util.objectEqual(
+          { a: [1, 2], b: { foo: 'foo', bar: 'bar' } },
+          { a: [1, 2], b: { foo: 'foo', bar: 'bar' } }
+        )
+      ).toBeTrue()
+    })
+    test('should return false when two object not equals', () => {
+      expect(util.objectEqual({}, [])).toBeFalse()
+      expect(util.objectEqual({ a: 'A' }, { a: 'B' })).toBeFalse()
+      expect(
+        util.objectEqual({ a: 'a', b: 'b' }, { a: 'A', b: 'B' })
+      ).toBeFalse()
+      expect(util.objectEqual({ a: 1 }, { b: 1 })).toBeFalse()
+      expect(util.objectEqual({ a: 1, b: 2 }, { a: 1, b: 2, c: 3 })).toBeFalse()
+      expect(
+        util.objectEqual({ a: 1, b: 2, c: 3 }, { a: 2, b: 3, c: 4 })
+      ).toBeFalse()
+      expect(util.objectEqual({ a: [1, 2] }, { a: [1, 2, 3] })).toBeFalse()
+      expect(
+        util.objectEqual(
+          { a: [1, 2], b: {} },
+          { a: [1, 2], b: { foo: 'foo', bar: 'bar' } }
+        )
+      ).toBeFalse()
+    })
+  })
+
   describe('arrayEqual()', () => {
     test('should return true when two arrays equals', () => {
       expect(util.arrayEqual([], [])).toBeTrue()

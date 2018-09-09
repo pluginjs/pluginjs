@@ -1,8 +1,9 @@
 import { query } from '@pluginjs/dom'
-import Units from '@pluginjs/units'
+import UnitsRange from '@pluginjs/units-range'
 
 const element = query('#default .example-default')
-let instance = Units.of(element, {
+
+let instance = UnitsRange.of(element, {
   onChange(val) {
     console.info(val)
   }
@@ -11,7 +12,7 @@ let instance = Units.of(element, {
 const instances = {
   init() {
     if (!instance.plugin) {
-      instance = Units.of(element, {})
+      instance = UnitsRange.of(element, {})
     }
   },
   get() {
@@ -20,17 +21,14 @@ const instances = {
   set() {
     instance.set({
       input: 50,
-      unit: 'px'
+      unit: '%'
     })
-  },
-  setStatic() {
-    instance.set('inherit')
   },
   val() {
     console.info(instance.val())
   },
   valSet() {
-    instance.val('100%')
+    instance.val(100)
   },
   destroy() {
     instance.destroy()

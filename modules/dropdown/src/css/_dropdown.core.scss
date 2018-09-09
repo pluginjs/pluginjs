@@ -38,9 +38,11 @@ $dropdown-index: $zindex-dropdown !default;
     white-space: nowrap;
   }
 
-  &-trigger {
-    &:not(input) {
-      cursor: pointer;
-    }
+  &-trigger:not(input) {
+    cursor: pointer;
+  }
+
+  &-disabled.#{$dropdown}-trigger:not(input) {
+    cursor: not-allowed;
   }
 }

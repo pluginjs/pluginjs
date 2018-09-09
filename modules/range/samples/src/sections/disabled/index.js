@@ -3,4 +3,4 @@ import Range from '@pluginjs/range'
 
 const element = query('#disabled .example-default')
 
-Range.of(element, { disabled: true })
+Range.of(element, { disabled: true, input: true })

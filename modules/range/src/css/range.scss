@@ -47,10 +47,6 @@ $range-disabled-track-bg: rgba($range-track-bg, 0.5) !default;
     cursor: pointer;
   }
 
-  input {
-    display: none;
-  }
-
   .#{$range}-input {
     display: block;
     width: $range-input-width;
@@ -135,8 +131,7 @@ $range-disabled-track-bg: rgba($range-track-bg, 0.5) !default;
     border-radius: 2px;
     box-shadow: $range-tip-box-shadow;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out 0s;
-
+    transition: opacity 0.5s ease-in-out 0s;
     transform: translateX(-50%);
 
     &::after {

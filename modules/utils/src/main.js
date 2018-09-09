@@ -142,6 +142,33 @@ export const arrayEqual = (a, b) => {
   return true
 }
 
+export const objectEqual = (a, b) => {
+  const aProps = Object.getOwnPropertyNames(a)
+  const bProps = Object.getOwnPropertyNames(b)
+
+  if (aProps.length !== bProps.length) {
+    return false
+  }
+
+  for (let i = 0; i < aProps.length; i++) {
+    const prop = aProps[i]
+
+    if (isArray(a[prop]) && isArray(b[prop])) {
+      if (!arrayEqual(a[prop], b[prop])) {
+        return false
+      }
+    } else if (isObject(a[prop]) && isObject(b[prop])) {
+      if (!objectEqual(a[prop], b[prop])) {
+        return false
+      }
+    } else if (a[prop] !== b[prop]) {
+      return false
+    }
+  }
+
+  return true
+}
+
 export const arrayDiff = (a, b) => {
   return a.filter(n => b.indexOf(n) < 0)
 }

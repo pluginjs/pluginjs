@@ -42,7 +42,8 @@
     "@pluginjs/keyboard": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
-    "@pluginjs/styled": "*"
+    "@pluginjs/styled": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

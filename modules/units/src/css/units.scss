@@ -43,10 +43,14 @@ $units-trigger-font-size: $font-size-base !default;
   }
 
   &-dropdown {
-    width: 3.5 * $units-sizer; //35px ;
+    width: 100%; //35px ;
     font-size: $font-size-xs;
     border: 1px solid $units-border-color;
     box-shadow: none;
+
+    .pj-dropdown-item {
+      text-align: right;
+    }
   }
 }
 

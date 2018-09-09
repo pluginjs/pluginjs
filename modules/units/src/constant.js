@@ -9,19 +9,21 @@ export const events = {
   DESTROY: 'destroy',
   CHANGE: 'change',
   CHANGEINPUT: 'changeInput',
-  CHANGEUNIT: 'changeUnit'
+  CHANGEUNIT: 'changeUnit',
+  CHANGESTATIC: 'changeStatic'
 }
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
-  WRAP: '{namespace}-wrap',
+  WRAP: '{namespace}',
   TRIGGER: '{namespace}-trigger',
   DROPDOWN: '{namespace}-dropdown',
   DISABLED: '{namespace}-disabled',
   ACTIVE: '{namespace}-active',
   ONLY: '{namespace}-only',
-  INPUT: '{namespace}-input pj-input'
+  INPUT: '{namespace}-input pj-input',
+  STATIC: '{namespace}-static'
 }
 
 export const methods = [
@@ -41,10 +43,17 @@ export const defaults = {
   theme: null,
   disabled: false,
   width: '80px',
-  units: ['px', '%'], // array
+  units: {
+    inherit: false,
+    px: true,
+    '%': true
+  },
   placement: 'bottom-end',
   defaultUnit: 'px',
   process(value) {
+    if (this.isStatic(value)) {
+      return value
+    }
     const { input, unit } = value
     if (!isNull(input) && !isNull(unit)) {
       return `${value.input}${value.unit}`
@@ -58,6 +67,10 @@ export const defaults = {
       if (!isString(value)) {
         value = value.toString()
       }
+      if (this.isStatic(value)) {
+        return value
+      }
+
       input = parseFloat(value)
       unit = value.match(/\D+$/g)
       if (isNull(unit)) {
@@ -71,12 +84,6 @@ export const defaults = {
       input,
       unit
     }
-  },
-  onChange() {
-    return
-  },
-  onSubmit() {
-    return
   }
 }
 

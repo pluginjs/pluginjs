@@ -1,9 +1,10 @@
 import Component from '@pluginjs/component'
 import DROPDOWN from '@pluginjs/dropdown'
-import { isNull, isUndefined } from '@pluginjs/is'
+import { isNull, isString, isUndefined, isArray, isObject } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { query, insertAfter } from '@pluginjs/dom'
+import { setStyle } from '@pluginjs/styled'
+import { wrap, unwrap, query } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -36,20 +37,38 @@ class Units extends Component {
     this.setupOptions(options)
     this.setupClasses()
 
-    this.input = null
-    this.unit = null
     this.cached = {}
     this.only = this.options.units.length < 2
+    this.value = {}
     this.setupStates()
     this.initialize()
   }
 
-  initialize() {
-    addClass(this.classes.NAMESPACE, this.element)
+  getDefaultUnit() {
+    const { units, defaultUnit } = this.options
 
-    this.$wrap = insertAfter(
+    if (isArray(units) && !units.includes(defaultUnit)) {
+      return units[0]
+    } else if (isObject(units) && !(defaultUnit in units)) {
+      return Object.keys(units)[0]
+    }
+    return defaultUnit
+  }
+
+  initialize() {
+    this.set(this.options.parse.call(this, this.element.value), false)
+    this.build()
+    this.bind()
+
+    this.enter('initialized')
+    this.trigger(EVENTS.READY)
+  }
+
+  build() {
+    setStyle('display', 'none', this.element)
+    this.$wrap = wrap(
       `<div class="${this.classes.WRAP}">
-  <input type="text" class="${this.classes.INPUT}">
+  <input type="text" class="${this.classes.INPUT}" value="${this.value.input}">
   <span class="${this.classes.TRIGGER}"></span><div></div>
 </div>`,
       this.element
@@ -60,6 +79,7 @@ class Units extends Component {
 
     if (this.only) {
       addClass(this.classes.ONLY, this.$trigger)
+      this.$trigger.innerHTML = this.getUnit()
     } else {
       this.DROPDOWN = this.initDropdown()
     }
@@ -71,17 +91,19 @@ class Units extends Component {
     if (this.element.getAttribute('disabled') || this.options.disabled) {
       this.disable()
     }
+  }
 
-    this.set(this.options.parse.call(this, this.element.value), false)
-    this.bind()
+  getUnits() {
+    if (isArray(this.options.units)) {
+      return this.options.units
+    } else if (isObject(this.options.units)) {
+      return Object.keys(this.options.units)
+    }
 
-    this.enter('initialized')
-    this.trigger(EVENTS.READY)
+    return []
   }
 
   initDropdown() {
-    this.unit = this.options.defaultUnit
-
     return DROPDOWN.of(this.$trigger, {
       classes: {
         DROPDOWN: `{namespace} ${this.classes.DROPDOWN}`
@@ -89,16 +111,21 @@ class Units extends Component {
       width: this.options.width,
       trigger: 'click',
       reference: this.$trigger,
-      data: this.options.units.map(i => {
+      placement: 'bottom-end',
+      data: this.getUnits().map(i => {
         return { value: i, label: i }
       }),
       imitateSelect: true,
-      value: this.unit,
+      value: this.value.unit,
       onChange: value => {
-        if (this.unit === value) {
+        if (this.value.unit === value) {
           return
         }
-        this.setUnit(value)
+        if (this.isStatic(value)) {
+          this.setStatic(value)
+        } else {
+          this.setUnit(value)
+        }
       },
 
       onShow: () => {
@@ -115,11 +142,42 @@ class Units extends Component {
 
   bind() {
     bindEvent(
-      this.selfEventName([EVENTS.CHANGEUNIT, EVENTS.CHANGEINPUT]),
-      () => {
-        const value = this.val()
-        this.element.value = value
-        this.trigger(EVENTS.CHANGE, value)
+      this.selfEventName(EVENTS.CHANGEUNIT),
+      (e, instance, unit) => {
+        if (!this.only) {
+          this.DROPDOWN.set(unit)
+        } else {
+          this.$trigger.innerHTML = unit
+        }
+      },
+      this.element
+    )
+
+    bindEvent(
+      this.selfEventName(EVENTS.CHANGEINPUT),
+      (e, instance, input) => {
+        this.$input.value = input
+      },
+      this.element
+    )
+
+    bindEvent(
+      this.selfEventName(EVENTS.CHANGESTATIC),
+      (e, instance, value) => {
+        this.$input.value = ''
+        this.DROPDOWN.set(value)
+      },
+      this.element
+    )
+
+    bindEvent(
+      this.selfEventName(EVENTS.CHANGE),
+      (e, instance, value) => {
+        if (this.isStatic(value)) {
+          addClass(this.classes.STATIC, this.$wrap)
+        } else {
+          removeClass(this.classes.STATIC, this.$wrap)
+        }
       },
       this.element
     )
@@ -140,80 +198,99 @@ class Units extends Component {
     }
   }
 
+  isStatic(value) {
+    return value in this.options.units && this.options.units[value] === false
+  }
+
+  setStatic(value, trigger = true) {
+    this.set(value, trigger)
+  }
+
+  setUnit(unit, trigger = true) {
+    const value = {
+      unit
+    }
+
+    const cached = this.getInputByUnit(unit)
+    if (!isNull(cached)) {
+      value.input = cached
+    }
+
+    this.set(value, trigger)
+  }
+
+  setInput(input, trigger = true) {
+    this.set(
+      {
+        input
+      },
+      trigger
+    )
+  }
+
   set(value, trigger = true) {
-    const { input, unit } = value
+    let changed = false
 
-    this.setUnit(unit, false)
-    this.setInput(input, false)
+    if (this.isStatic(value)) {
+      if (value !== this.value) {
+        this.value = value
+        this.trigger(EVENTS.CHANGESTATIC, this.value)
+        changed = true
+      }
+    } else if (isObject(value)) {
+      if (isString(this.value)) {
+        this.value = { unit: '', input: '' }
+      }
+      if (!isUndefined(value.unit) && value.unit !== this.value.unit) {
+        this.value.unit = value.unit ? value.unit : this.getDefaultUnit()
+        this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
 
-    if (trigger) {
-      this.trigger(EVENTS.CHANGE, this.val())
+        changed = true
+      }
+
+      if (!isUndefined(value.input) && value.input !== this.value.input) {
+        this.value.input = value.input
+        if (!isNull(value.input)) {
+          this.cached[this.getUnit()] = value.input
+        }
+        this.trigger(EVENTS.CHANGEINPUT, this.value.input)
+
+        changed = true
+      }
+    }
+
+    if (changed && trigger) {
+      this.element.value = this.val()
+      this.trigger(EVENTS.CHANGE, this.element.value)
     }
   }
 
   get() {
-    return {
-      unit: this.getUnit(),
-      input: this.getInput()
-    }
+    return this.value
   }
 
   getUnit() {
-    return this.unit ? this.unit : this.options.defaultUnit
+    return this.value.unit ? this.value.unit : this.getDefaultUnit()
   }
 
   getInput() {
-    return this.input ? this.input : null
+    return this.value.input ? this.value.input : null
   }
 
-  setUnit(unit, trigger = true) {
-    if (this.unit === unit) {
-      return false
-    }
-
-    this.unit = unit
-    if (!this.only) {
-      this.DROPDOWN.set(unit)
-    } else {
-      this.$trigger.innerHTML = this.getUnit()
-    }
-
+  getInputByUnit(unit) {
     if (!isUndefined(this.cached[unit])) {
-      this.setInput(this.cached[unit], false)
+      return this.cached[unit]
     }
 
-    if (trigger) {
-      this.trigger(EVENTS.CHANGEUNIT, unit)
-    }
-    return true
-  }
-
-  setInput(input, trigger = true) {
-    if (this.input === input) {
-      return false
-    }
-
-    this.input = input
-    this.$input.value = input
-
-    if (!isNull(input)) {
-      this.cached[this.getUnit()] = input
-    }
-
-    if (trigger) {
-      this.trigger(EVENTS.CHANGEINPUT, input)
-    }
-    return true
+    return null
   }
 
   val(value) {
-    console.log(value)
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 
-    this.set(this.options.parse.call(this, value))
-    return true
+    return this.set(this.options.parse.call(this, value))
   }
 
   enable() {
@@ -229,8 +306,6 @@ class Units extends Component {
     }
 
     this.trigger(EVENTS.ENABLE)
-
-    return this
   }
 
   disable() {
@@ -245,8 +320,6 @@ class Units extends Component {
       }
     }
     this.trigger(EVENTS.DISABLE)
-
-    return this
   }
 
   destroy() {
@@ -257,16 +330,15 @@ class Units extends Component {
         this.DROPDOWN.destroy()
       }
 
-      removeClass(this.classes.NAMESPACE, this.element)
+      setStyle('display', null, this.element)
       removeClass(this.getThemeClass(), this.$wrap)
-      this.element.value = ''
       this.$input.remove()
+      unwrap(this.element)
       this.leave('initialized')
     }
 
     this.trigger(EVENTS.DESTROY)
     super.destroy()
-    return this
   }
 }
 

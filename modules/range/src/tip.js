@@ -13,7 +13,10 @@ class Tip {
       removeClass(instance.classes.TIPSHOW, pointer.$tip)
     }
     const setContent = pointer => {
-      pointer.$tip.innerHTML = pointer.value
+      pointer.$tip.innerHTML = instance.options.tipContent.call(
+        instance,
+        pointer
+      )
     }
 
     instance.pointers.forEach(pointer => {
@@ -21,6 +24,7 @@ class Tip {
         `<span class="${instance.classes.TIP}"></span>`,
         pointer.element
       )
+
       setContent(pointer)
 
       if (instance.options.tip === true || instance.options.tip === 'always') {
@@ -30,7 +34,7 @@ class Tip {
 
     if (instance.options.tip === 'move') {
       bindEvent(
-        instance.selfEventName(EVENTS.POINTERMOVESTART),
+        instance.selfEventName(EVENTS.POINTERACTIVE),
         (e, instance, pointer) => {
           showTip(pointer)
           return false
@@ -39,7 +43,7 @@ class Tip {
       )
 
       bindEvent(
-        instance.selfEventName(EVENTS.POINTERMOVEEND),
+        instance.selfEventName(EVENTS.POINTERDEACTIVE),
         (e, instance, pointer) => {
           hideTip(pointer)
           return false

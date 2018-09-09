@@ -32,6 +32,7 @@ class Pointer {
 
     const value = this.instance.getValueFromPosition(this.data.position)
     this.set(value)
+    this.instance.trigger(EVENTS.POINTERMOVE, this, value)
 
     this.instance.pointers.forEach(pointer => {
       if (pointer !== this) {
@@ -46,6 +47,7 @@ class Pointer {
         this.data.position + (event[axis] || this.data.start) - this.data.start
       )
       this.set(value)
+      this.instance.trigger(EVENTS.POINTERMOVE, this, value)
       return false
     }
 
@@ -121,7 +123,7 @@ class Pointer {
     return ((this.value - this.instance.min) / this.instance.interval) * 100
   }
 
-  set(value, trigger = true) {
+  set(value, update = true) {
     const { min, max, step, options } = this.instance
 
     if (value > max) {
@@ -142,7 +144,7 @@ class Pointer {
 
     this.updatePosition()
 
-    if (trigger) {
+    if (update) {
       this.instance.trigger(EVENTS.POINTERUPDATE, this, value)
     }
   }
@@ -153,10 +155,12 @@ class Pointer {
 
   active() {
     addClass(this.instance.classes.POINTERACTIVE, this.element)
+    this.instance.trigger(EVENTS.POINTERACTIVE, this)
   }
 
   deactive() {
     removeClass(this.instance.classes.POINTERACTIVE, this.element)
+    this.instance.trigger(EVENTS.POINTERDEACTIVE, this)
   }
 
   destroy() {

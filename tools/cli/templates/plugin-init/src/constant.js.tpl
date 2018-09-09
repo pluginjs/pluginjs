@@ -1,11 +1,9 @@
-const events = {}
+export const events = {}
 
-const classes = {}
+export const classes = {}
 
-const methods = []
+export const methods = []
 
-const defaults = {}
+export const defaults = {}
 
-const namespace = '{{namespace}}'
-
-export { classes, defaults, events, methods, namespace }
+export const namespace = '{{namespace}}'

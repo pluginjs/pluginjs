@@ -13,7 +13,7 @@ class Track {
     this.update()
 
     bindEvent(
-      instance.selfEventName(EVENTS.CHANGE),
+      instance.selfEventName(EVENTS.POINTERUPDATE),
       () => {
         this.update()
       },

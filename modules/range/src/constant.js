@@ -13,7 +13,9 @@ export const events = {
   POINTERUPDATE: 'pointerUpdate',
   POINTERMOVE: 'pointerMove',
   POINTERMOVESTART: 'pointerMoveStart',
-  POINTERMOVEEND: 'pointerMoveEnd'
+  POINTERMOVEEND: 'pointerMoveEnd',
+  POINTERACTIVE: 'pointerActive',
+  POINTERDEACTIVE: 'pointerDeactive'
 }
 
 export const classes = {
@@ -47,10 +49,17 @@ export const defaults = {
   value: null,
   limit: true,
   range: false,
-  input: true,
+  input: false,
   vertical: false,
   keyboard: false,
-  tip: 'hover', // hover, always
+  tip: 'move', // move, always
+  tipContent(pointer) {
+    const value = pointer.value
+    if (this.options.replaceFirst && value === this.min) {
+      return this.options.replaceFirst
+    }
+    return value
+  },
   replaceFirst: false,
   parse(value) {
     if (this.options.range) {

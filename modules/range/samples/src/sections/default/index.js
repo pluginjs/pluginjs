@@ -23,6 +23,14 @@ const instances = {
   valSet() {
     instance.val(100)
   },
+  update() {
+    instance.update({
+      min: 100,
+      max: 1000,
+      step: 10,
+      value: 500
+    })
+  },
   destroy() {
     instance.destroy()
   },

@@ -1,0 +1,18 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$unitsRange: "pj-unitsRange" !default;
+$units: "pj-units" !default;
+$unitsRange-gap: 8px;
+$unitsRange-units-width: 60px;
+
+.#{$unitsRange} {
+  display: flex;
+  align-items: center;
+
+  .#{$units} {
+    width: $unitsRange-units-width;
+    margin-left: $unitsRange-gap;
+  }
+}

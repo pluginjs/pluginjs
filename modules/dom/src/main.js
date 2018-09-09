@@ -385,6 +385,15 @@ export const prepend = curry((child, el) => {
   return el
 })
 
+export const prependTo = curry((child, el) => {
+  if (isString(child)) {
+    child = parseHTML(child)
+  }
+  el.prepend(child)
+
+  return child
+})
+
 export const before = curry((newElement, el) => {
   if (isString(newElement)) {
     el.insertAdjacentHTML('beforebegin', newElement)

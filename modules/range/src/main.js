@@ -1,9 +1,9 @@
 import Component from '@pluginjs/component'
-import { isString } from '@pluginjs/is'
+import { isString, isNumeric } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { offset as getOffset } from '@pluginjs/styled'
+import { offset as getOffset, setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { each } from '@pluginjs/utils'
+import { each, deepMerge } from '@pluginjs/utils'
 import { wrap, unwrap, prepend, append } from '@pluginjs/dom'
 import {
   eventable,
@@ -95,6 +95,8 @@ class Range extends Component {
 
     if (this.options.input) {
       addClass(this.classes.INPUT, this.element)
+    } else {
+      setStyle('display', 'none', this.element)
     }
 
     addClass(this.classes.WRAP, this.$wrap)
@@ -137,12 +139,25 @@ class Range extends Component {
 
   bind() {
     bindEvent(
-      this.selfEventName(EVENTS.POINTERUPDATE),
+      this.selfEventName(EVENTS.POINTERMOVE),
       () => {
         if (this.options.range) {
-          this.set([this.p1.value, this.p2.value])
+          this.set([this.p1.value, this.p2.value], false)
         } else {
-          this.set(this.p1.value)
+          this.set(this.p1.value, false)
+        }
+      },
+      this.element
+    )
+
+    bindEvent(
+      this.selfEventName(EVENTS.UPDATE),
+      (e, instance, value) => {
+        if (this.options.range) {
+          this.p1.set(value[0])
+          this.p2.set(value[1])
+        } else {
+          this.p1.set(value)
         }
       },
       this.element
@@ -232,23 +247,35 @@ class Range extends Component {
     return this.value
   }
 
-  set(value) {
-    if (this.value !== value) {
-      this.value = value
+  getMatchedValue(value) {
+    if (!isNumeric(value)) {
+      return this.min
+    }
+    if (value > this.max) {
+      return this.max
+    } else if (value < this.min) {
+      return this.min
+    }
+    return value
+  }
 
+  set(value, update = true, trigger = true, force = false) {
+    if (this.value !== value || force) {
       if (this.options.range) {
-        if (value[0] !== this.p1.value) {
-          this.p1.set(value[0], false)
-        }
-        if (value[1] !== this.p2.value) {
-          this.p2.set(value[1], false)
-        }
-      } else if (value !== this.p1.value) {
-        this.p1.set(value, false)
+        this.value = value.map(v => this.getMatchedValue(v))
+      } else {
+        this.value = this.getMatchedValue(value)
       }
 
       this.element.value = this.val()
-      this.trigger(EVENTS.CHANGE, this.element.value)
+
+      if (update) {
+        this.trigger(EVENTS.UPDATE, this.value)
+      }
+
+      if (trigger) {
+        this.trigger(EVENTS.CHANGE, this.element.value)
+      }
     }
   }
 
@@ -257,6 +284,27 @@ class Range extends Component {
       return this.options.process.call(this, this.get())
     }
     return this.set(this.options.parse.call(this, value))
+  }
+
+  update(options) {
+    let value
+
+    if (options.value) {
+      value = options.value
+      delete options.value
+    } else {
+      value = this.value
+    }
+
+    this.options = deepMerge(this.options, options)
+
+    each(['min', 'max', 'step'], key => {
+      this[key] = this.options[key]
+    })
+
+    this.interval = this.max - this.min
+
+    this.set(value, true, true, true)
   }
 
   enable() {
@@ -287,6 +335,8 @@ class Range extends Component {
       this.$control.remove()
       if (this.options.input) {
         removeClass(this.classes.INPUT, this.element)
+      } else {
+        setStyle('display', null, this.element)
       }
       unwrap(this.element)
       this.leave('initialized')

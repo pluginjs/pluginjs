@@ -6,20 +6,19 @@ $units-sizer: $sizer !default;
 $units-width: 8 * $units-sizer !default; //80px
 $units-height: 3.2 * $units-sizer !default; //32px
 $units-color: $text-color !default;
+
 $units-trigger-width: 2.6 * $units-sizer !default; //22px
 $units-trigger-height: $units-height !default;
-$units-disabled-color: $gray-lighter !default;
+$units-trigger-color: $units-color !default;
+
+$units-disabled-color: $disabled-color !default;
 $units-disabled-opacity: 0.4 !default;
 // Core
 // =====================
 .#{$units} {
-  display: none !important;
-
-  &-wrap {
-    position: relative;
-    width: $units-width;
-    height: $units-height;
-  }
+  position: relative;
+  width: $units-width;
+  height: $units-height;
 
   &-active {
     &,
@@ -35,7 +34,7 @@ $units-disabled-opacity: 0.4 !default;
     width: 100%;
     height: 100%;
     padding: 0.6 * $units-sizer 0.8 * $units-sizer !important; //6px 8px
-    padding-right: 30px !important;
+    padding-right: 20px !important;
     border-radius: $border-radius-base !important;
   }
 
@@ -45,20 +44,30 @@ $units-disabled-opacity: 0.4 !default;
     right: 0;
     width: $units-trigger-width;
     height: 100%;
-    padding: 0 !important;
-    font-size: 1.3 * $units-sizer; //13px
-    line-height: 2.8 * $units-sizer !important;
-    color: $gray-dark;
-    text-align: center;
+    padding: 0 5px !important;
+    line-height: $units-trigger-height !important;
+    color: $units-trigger-color;
+    text-align: right;
     border: none !important;
     outline: none;
+  }
+
+  &-static {
+    .#{$units}-input {
+      pointer-events: none;
+    }
+
+    .#{$units}-trigger {
+      width: 100%;
+      text-align: center
+    }
   }
 
   &-disabled {
     cursor: not-allowed;
 
     .#{$units}-input {
-      background-color: $units-disabled-color;
+      border-color: $units-disabled-color;
     }
 
     .#{$units}-input:hover {
@@ -66,7 +75,7 @@ $units-disabled-opacity: 0.4 !default;
     }
 
     .#{$units}-trigger {
-      pointer-events: none
+      color: $units-disabled-color;
     }
   }
 }
