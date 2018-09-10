@@ -75,7 +75,7 @@ class GalleryPicker extends Component {
     }
 
     const value = this.options.parse(this.element.value)
-    this.set(value)
+    this.set(value, false)
 
     addClass(this.classes.EXIST, this.$wrap)
     this.bind()
@@ -264,11 +264,7 @@ class GalleryPicker extends Component {
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.$expandPanel)
-    removeEvent(this.eventName(), this.$fill)
-    removeEvent(this.eventName(), this.$fillExpand)
-    removeEvent(this.eventName(), this.$empty)
-    removeEvent(this.eventName(), this.$fillAdd)
+    removeEvent(this.eventName())
   }
 
   createHtml() {
@@ -330,9 +326,12 @@ class GalleryPicker extends Component {
     hideElement(this.element)
   }
 
-  update() {
+  update(trigger = true) {
     this.element.value = this.val()
-    this.trigger(EVENTS.CHANGE, [this.value])
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, [this.value])
+    }
   }
 
   setState() {
@@ -460,7 +459,7 @@ class GalleryPicker extends Component {
     return null
   }
 
-  set(value) {
+  set(value, trigger = true) {
     if (isArray(value)) {
       this.value = value
     } else if (isString(value)) {
@@ -473,7 +472,7 @@ class GalleryPicker extends Component {
     this.count = this.value.length
     this.setState()
     this.updateList()
-    this.update()
+    this.update(trigger)
   }
 
   add(item) {

@@ -2,6 +2,13 @@ import GalleryPicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const value =
+  'https://picsum.photos/200/300?image=980,https://picsum.photos/200/300?image=961,https://picsum.photos/200/300?image=943'
+const arrVal = [
+  'https://picsum.photos/200/300?image=980',
+  'https://picsum.photos/200/300?image=961',
+  'https://picsum.photos/200/300?image=943'
+]
 describe('GalleryPicker', () => {
   describe('GalleryPicker()', () => {
     test('should have GalleryPicker', () => {
@@ -82,28 +89,77 @@ describe('GalleryPicker', () => {
     })
   })
 
-  // describe('destroy()', () => {
-  //   let $element
-  //   let api
+  describe('destroy()', () => {
+    let $element
+    let api
 
-  //   beforeEach(() => {
-  //     $element = generateHTMLSample()
-  //     api = GalleryPicker.of($element)
-  //   })
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = GalleryPicker.of($element)
+    })
 
-  //   test('should trigger destroy event', () => {
-  //     let called = 0
+    test('should trigger destroy event', () => {
+      let called = 0
 
-  //     $element.addEventListener('galleryPicker:destroy', () => {
-  //       called++
-  //     })
+      $element.addEventListener('galleryPicker:destroy', () => {
+        called++
+      })
 
-  //     api.destroy()
+      api.destroy()
 
-  //     expect(called).toEqual(1)
-  //     expect(api.is('initialized')).toBeFalse()
-  //   })
-  // })
+      expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
+    })
+  })
+
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = GalleryPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = GalleryPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeArray(value)
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = GalleryPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeArray(arrVal)
+        }
+      })
+
+      api.set(arrVal)
+
+      expect(called).toBeTrue()
+    })
+  })
 
   describe('get()', () => {
     let $element
@@ -115,7 +171,14 @@ describe('GalleryPicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
+    })
+
+    test('should get the value with units', () => {
+      $element = generateHTMLSample(value)
+      api = GalleryPicker.of($element)
+
+      expect(api.get()).toEqual(arrVal)
     })
   })
 
@@ -129,33 +192,10 @@ describe('GalleryPicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set(arrVal)
+      expect(api.get()).toBeArray(arrVal)
     })
   })
 
@@ -173,33 +213,9 @@ describe('GalleryPicker', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val(value)
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray(arrVal)
     })
   })
 
