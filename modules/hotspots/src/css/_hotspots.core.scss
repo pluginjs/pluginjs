@@ -3,33 +3,61 @@
 // Vars
 // =====================
 $hotspot: "pj-hotspot" !default;
-$hotspot-bg: rgba($color-black, 0.8);
 
-$hotspot-dot-size: 14px;
-$hotspot-dot-hover-bg: $color-primary;
+$hotspot-border-width: 1px !default;
+$hotspot-opacity: 0.8 !default;
+$hotspot-active-opacity: 1 !default;
+
+$hotspot-dot-size: 14px !default;
+$hotspot-dot-bg: rgba($color-black, 0.8) !default;
+
+$hotspot-icon-spacer: 0.5em !default;
+$hotspot-text-spacer: 0.2em 0.8em !default;
+
 // Core
 // =====================
+.#{$hotspot}s {
+  position: relative;
+
+  img {
+    z-index: 0;
+    width: 100%;
+  }
+}
+
 .#{$hotspot} {
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 1;
   box-sizing: border-box;
+  line-height: 1em;
+  text-align: center;
   cursor: pointer;
+  border: $hotspot-border-width solid transparent;
   transform: translate(-50%, -50%);
-
-  &s {
-    position: relative;
-    line-height: 1;
-
-    img {
-      z-index: 0;
-      width: 100%;
-    }
-  }
 
   &-dot {
     width: $hotspot-dot-size;
     height: $hotspot-dot-size;
-    background-color: $hotspot-bg;
+    background-color: $hotspot-dot-bg;
+    border-radius: 100%;
+  }
+
+  &-icon,
+  &-number {
+    padding: $hotspot-icon-spacer;
+    text-align: center;
+    vertical-align: middle;
     border-radius: 50%;
+
+    > * {
+      display: block;
+    }
+  }
+
+  &-text {
+    padding: $hotspot-text-spacer;
+    border-radius: 1000px;
   }
 }

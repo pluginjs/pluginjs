@@ -3,62 +3,46 @@
 
 // Vars
 // =====================
+$hotspot: "pj-hotspot";
+$icon: "pj-icon";
+
 $hotspot-font-family: $font-family-base;
-$hotspot-font-size: $font-size-sm;
+$hotspot-font-size: $font-size-xs;
 
-$hotspot-padding: 9px;
-$hotspot-border-width: 2px;
-
-$hotspot-color: $gray-darkest;
+// $hotspot-padding: 9px;
+$hotspot-color: rgba($color-black, 0.8);
 $hotspot-hover-color: $color-primary;
-$hotspot-hover-border-color: rgba($hotspot-hover-color, 0.2);
 
-$hotspot-box-shadow: $box-shadow-5;
-$hotspot-hide-size: 30px;
-
-$hotspot-icon-spacer: 6px;
-
-$hotspot-size: 30px;
-
-$hotspot-text-font-size: $font-size-xs;
-$hotspot-text-padding-x: 24px;
-$hotspot-text-padding-y: calc(#{$hotspot-padding} - #{$hotspot-border-width});
-
-$hotspot-border-color: rgba($hotspot-color, 0.2);
+$hotspot-border-width: 2px;
+$hotspot-border-color: rgba($color-black, 0.2);
+$hotspot-active-border-color: rgba($color-primary, 0.2);
 
 $hotspot-solid-color: $color-white;
-$hotspot-solid-hover-color: $hotspot-solid-color;
-$hotspot-solid-bgColor: rgba($color-black, 0.8);
-$hotspot-solid-hover-bg: $color-primary;
+$hotspot-solid-bg: $hotspot-color;
+$hotspot-active-solid-bg: $hotspot-hover-color;
 
-// size
-$hotspot-sm-dot-size: 14px;
-$hotspot-sm-font-size: 10px;
-$hotspot-sm-size: 28px;
+$hotspot-dot-bg: $hotspot-color;
+$hotspot-dot-hover-bg: $hotspot-hover-color;
 
-$hotspot-md-dot-size: 16px;
-$hotspot-md-font-size: $font-size-sm;
-$hotspot-md-size: 30px;
+$hotspot-dot-size: 14px;
+$hotspot-dot-md-size: 16px;
+$hotspot-dot-lg-size: 18px;
 
-$hotspot-lg-dot-size: 18px;
-$hotspot-lg-font-size: $font-size-lg;
-$hotspot-lg-size: 32px;
+$hotspot-text-padding: 7px 23px;
+$hotspot-text-font-size: 12px;
+$hotspot-text-md-font-size: 14px;
+$hotspot-text-lg-font-size: 16px;
 
-$hotspot-light-color: $color-white;
+$hotspot-icon-padding: 7px;
+$hotspot-icon-size: 14px;
+$hotspot-icon-md-size: 16px;
+$hotspot-icon-lg-size: 18px;
 
-$hotspot-light-dot-bg: $gray-lightest;
-$hotspot-light-dot-hover-bg: $color-primary;
+$hotspot-number-line-height: 32px;
+$hotspot-number-size: 20px;
+$hotspot-number-md-size: 22px;
+$hotspot-number-lg-size: 24px;
 
-$hotspot-light-borderColor: rgba($hotspot-light-color,0.2);
-$hotspot-light-hover-color: $color-primary;
-
-$hotspot-light-solid-color: $gray-darkest;
-$hotspot-light-solid-bg-color: $gray-lightest;
-
-//active hover
-$hotspot-light-bordered-hover-border-color: rgba($hotspot-light-hover-color,0.2);
-$hotspot-light-solid-hover-color: $color-white;
-$hotspot-light-shadow-bg-active: $color-primary;
 
 .#{$hotspot} {
   font-family: $hotspot-font-family;
@@ -71,139 +55,104 @@ $hotspot-light-shadow-bg-active: $color-primary;
   &-active {
     color: $hotspot-hover-color;
   }
+}
 
-  &-dot {
-    &:hover,
-    &-active {
-      background-color: $hotspot-dot-hover-bg;
-    }
+.#{$hotspot}-dot {
+  background-color: $hotspot-dot-bg;
+
+  &:hover,
+  &.#{$hotspot}-active {
+    background-color: $hotspot-dot-hover-bg;
   }
 
-  &-icon,
-  &-number {
-    // display: flex;
-    padding: $hotspot-icon-spacer;
-    border-radius: 50%;
-  }
-
-  &-hide,
-  &-number {
-    width: $hotspot-size;
-    height: $hotspot-size;
-  }
-
-  &-text {
-    padding: $hotspot-text-padding-y $hotspot-text-padding-x;
-    font-size: $hotspot-text-font-size;
-    border-radius: 1000px;
-  }
-
-  &-bordered {
-    border: 2px solid $hotspot-border-color;
-
-    &:hover,
-    &-active {
-      border-color: $hotspot-hover-border-color;
-    }
-  }
-
-  &-solid {
-    color: $hotspot-solid-color;
-    background-color: $hotspot-solid-bgColor;
-
-    &:hover,
-    &-active {
-      color: $hotspot-solid-hover-color;
-      background-color: $hotspot-solid-hover-bg;
-    }
-  }
-
-  &-shadow {
-    box-shadow: $hotspot-box-shadow;
-  }
-
-  &-sm {
-    font-size: $hotspot-sm-font-size;
-
-    &.#{$hotspot}-dot {
-      width: $hotspot-sm-dot-size;
-      height: $hotspot-sm-dot-size;
+  &.#{$hotspot} {
+    &-md {
+      width: $hotspot-dot-md-size;
+      height: $hotspot-dot-md-size;
     }
 
-    &.#{$hotspot}-hide,
-    &.#{$hotspot}-number {
-      width: $hotspot-sm-size;
-      height: $hotspot-sm-size;
-    }
-  }
-
-  &-md {
-    font-size: $hotspot-md-font-size;
-
-    &.#{$hotspot}-dot {
-      width: $hotspot-md-dot-size;
-      height: $hotspot-md-dot-size;
-    }
-
-    &.#{$hotspot}-hide,
-    &.#{$hotspot}-number {
-      width: $hotspot-md-size;
-      height: $hotspot-md-size;
-    }
-  }
-
-  &-lg {
-    font-size: $hotspot-lg-font-size;
-
-    &.#{$hotspot}-dot {
-      width: $hotspot-lg-dot-size;
-      height: $hotspot-lg-dot-size;
-    }
-
-    &.#{$hotspot}-hide,
-    &.#{$hotspot}-number {
-      width: $hotspot-lg-size;
-      height: $hotspot-lg-size;
+    &-lg {
+      width: $hotspot-dot-lg-size;
+      height: $hotspot-dot-lg-size;
     }
   }
 }
 
-// light
-.#{$hotspot}-light {
+.#{$hotspot}-text {
+  padding: $hotspot-text-padding;
+  font-size: $hotspot-text-font-size;
+
   &.#{$hotspot} {
-    color: $hotspot-light-color;
-
-    &:hover,
-    &-active {
-      color: $hotspot-light-hover-color;
+    &-md {
+      font-size: $hotspot-text-md-font-size;
     }
 
-    &-dot {
-      background-color: $hotspot-light-dot-bg;
+    &-lg {
+      font-size: $hotspot-text-lg-font-size;
+    }
+  }
+}
 
-      &:hover,
-      &-active {
-        background-color: $hotspot-light-dot-hover-bg;
-      }
+.#{$hotspot}-icon {
+  padding: $hotspot-icon-padding;
+  font-size: $hotspot-icon-size;
+
+  .#{$icon} {
+    display: block;
+  }
+
+  &.#{$hotspot} {
+    &-md {
+      font-size: $hotspot-icon-md-size;
     }
 
-    &-bordered {
-      border-color: $hotspot-light-borderColor;
+    &-lg {
+      font-size: $hotspot-icon-lg-size;
+    }
+  }
+}
+
+.#{$hotspot}-number {
+  padding: 4px;
+  font-size: $hotspot-number-size;
+
+  &-inner {
+    display: block;
+    min-width: 1em;
+    line-height: 1em;
+  }
+
+  &.#{$hotspot} {
+    &-md {
+      font-size: $hotspot-number-md-size;
+    }
+
+    &-lg {
+      font-size: $hotspot-number-lg-size;
+    }
+  }
+}
+
+.#{$hotspot}-text,
+.#{$hotspot}-icon,
+.#{$hotspot}-number {
+  &.#{$hotspot} {
+    &-outline {
+      border-color: $hotspot-border-color;
 
       &:hover,
-      &-active {
-        border-color: $hotspot-light-bordered-hover-border-color;
+      &.#{$hotspot}-active {
+        border-color: $hotspot-active-border-color;
       }
     }
 
     &-solid {
-      color: $hotspot-light-solid-color;
-      background-color: $hotspot-light-solid-bg-color;
+      color: $hotspot-solid-color;
+      background-color: $hotspot-solid-bg;
 
       &:hover,
-      &-active {
-        color: $hotspot-light-solid-hover-color;
-        background-color: $hotspot-light-shadow-bg-active;
+      &.#{$hotspot}-active {
+        background-color: $hotspot-active-solid-bg;
       }
     }
   }

@@ -28,6 +28,7 @@ export const classes = {
   DOT: '{namespace}-dot',
   ICON: '{namespace}-icon',
   TEXT: '{namespace}-text',
+  NUMBERINNER: '{namespace}-number-inner',
   HOTSPOTHOVERING: '{namespace}-hovering',
   HOTSPOTACTIVE: '{namespace}-active'
 }
@@ -58,7 +59,7 @@ export const defaults = {
       return '{text}'
     },
     number() {
-      return '{number}'
+      return '<span class="{classes.NUMBERINNER}">{number}</span>'
     },
     dot() {
       return ''
