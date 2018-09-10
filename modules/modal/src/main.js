@@ -172,7 +172,7 @@ class Modal extends GlobalComponent {
     const animationendCallback = () => {
       if (!this.options.autoDestroy) {
         compose(
-          removeEvent(this.eventName('animationend'), this.$element),
+          removeEvent(this.eventName('animationend')),
           addClass('pj-modal-destory')
         )(this.$element)
         this.enter('show')

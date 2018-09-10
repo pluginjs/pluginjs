@@ -59,6 +59,9 @@ class Toast extends GlobalComponent {
   }
 
   show() {
+    if (this.is('show')) {
+      return
+    }
     this.addToDom()
     append(this.$element, this.$wrap)
     if (this.options.stack && isNumber(this.options.stack)) {
@@ -79,6 +82,7 @@ class Toast extends GlobalComponent {
     this.processLoader()
     this.animate()
     this.bind()
+    this.enter('show')
     this.trigger(EVENTS.SHOW)
   }
 
@@ -197,6 +201,10 @@ class Toast extends GlobalComponent {
   }
 
   hide() {
+    if (!this.is('show')) {
+      return
+    }
+
     if (this.$icon) {
       remove(this.$icon)
     }
@@ -225,11 +233,12 @@ class Toast extends GlobalComponent {
     bindEventOnce(
       this.eventName('animationend'),
       () => {
-        remove(this.$element)
         this.destroy()
       },
       this.$element
     )
+
+    this.leave('show')
   }
 
   bind() {
@@ -465,7 +474,7 @@ class Toast extends GlobalComponent {
     }
 
     this.trigger(EVENTS.DESTROY)
-
+    remove(this.$element)
     super.destroy()
   }
 
@@ -476,6 +485,7 @@ class Toast extends GlobalComponent {
 
   static reset() {
     const instances = this.getInstances()
+
     instances.forEach(instance => instance.hide())
     return true
   }

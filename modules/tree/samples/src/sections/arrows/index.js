@@ -74,6 +74,6 @@ const data = [
 
 Tree.of(element, {
   data,
-  multiSelect: false,
+  multiSelect: true,
   canUnselect: false
 })

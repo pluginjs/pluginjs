@@ -3,8 +3,8 @@
 // Vars
 // =====================
 $modal-font-family: $font-family-base;
-$modal-width: 480px;
-$modal-sm-width: 450px;
+$modal-width: 392px;
+$modal-sm-width: 286px;
 $modal-font-size: $font-size-sm;
 $modal-bg: $color-white;
 $modal-line-height: 22px;
@@ -47,7 +47,6 @@ $modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
 $modal-trigger-btn-padding-y: 12px;
 $modal-trigger-btn-padding-x: 30.8px;
 $modal-trigger-hover-color: $color-primary;
-$modal-trigger-active-color: #1d53bf;
 
 $modal-prompt-padding: 0 0 24px;
 $modal-prompt-title-font-size: $font-size-lg;
@@ -144,24 +143,16 @@ $modal-vertification-borderClor: $gray-border;
     background-color: $modal-overlay-bgColor;
   }
 
+  &-sm {
+    width: $modal-sm-width;
+  }
+
   &-open {
     overflow: hidden;
   }
 
   &--fadeIn {
     animation: modal__fadeIn $modal-duration $modal-timing;
-  }
-
-  &-trigger {
-    padding: $modal-trigger-btn-padding-y $modal-trigger-btn-padding-x;
-    font-size: $modal-font-size;
-    line-height: $modal-line-height;
-
-    &:active,
-    &:focus {
-      color: $modal-trigger-active-color;
-      border-color: $modal-trigger-active-color;
-    }
   }
 }
 

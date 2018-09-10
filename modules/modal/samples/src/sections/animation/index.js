@@ -2,7 +2,6 @@ import { query, getData } from '@pluginjs/dom'
 import Modal from '@pluginjs/modal'
 
 const basicModal = {
-  effect: '',
   content: `<p>This is the content inside the exam.</p>
          <h4>Lorem ipsum</h4>
          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent risus leo, dictum in vehicula sit amet, feugiat tempus tellus. Duis quis sodales risus. Etiam euismod ornare consequat.</p>
@@ -13,7 +12,6 @@ const basicModal = {
          <h4>Candy ipsum</h4>
          <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar.</p>
          <p>Caerphilly swiss fromage frais. Brie cheese and wine fromage frais chalk and cheese danish fontina smelly cheese who moved my cheese cow.</p>`,
-  theme: 'sm',
   title: 'Modal title',
   buttons: {
     cancel: {

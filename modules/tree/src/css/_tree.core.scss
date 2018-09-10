@@ -13,10 +13,6 @@ $tree-toggler-height: 10px !default;
   margin: 0;
   list-style: none;
 
-  li {
-    box-sizing: border-box;
-  }
-
   ul {
     margin: 0;
     list-style: none;
@@ -25,11 +21,7 @@ $tree-toggler-height: 10px !default;
   // icon
   &-toggler {
     display: inline-block;
-    *display: inline;
-    width: $tree-toggler-width;
-    height: $tree-toggler-height;
     cursor: pointer;
-    *zoom: 1;
   }
 
   // list

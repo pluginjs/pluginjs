@@ -53,6 +53,11 @@ $tree-input-font-family: "font-awesome";
     }
   }
 
+  &-toggle {
+    width: $tree-toggler-width;
+    height: $tree-toggler-height;
+  }
+
     &-element {
       &:hover {
         color: $tree-selected-color;

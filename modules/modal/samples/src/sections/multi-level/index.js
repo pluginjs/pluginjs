@@ -5,7 +5,6 @@ const root = query('#multi-level')
 const prompt = {
   content:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  theme: 'sm',
   title: 'Modal title',
   buttons: {
     active: {
@@ -19,7 +18,6 @@ const prompt = {
 }
 const pop = {
   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  theme: 'sm',
   contentAlignment: '',
   buttons: {
     active: {
