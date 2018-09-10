@@ -1,3 +1,76 @@
-@import "mixins/scrollbar";
+@import "@pluginjs/styles/variables.scss";
+@import "./scrollbar.core";
 
-@include scrollbar();
+$scrollbar: "pj-scrollbar";
+$scrollbar-size: 4px;
+
+$scrollbar-dragging-size: 10px;
+$scrollbar-dragging-bg: rgba(206,206,206,0.1);
+
+$scrollbar-bg:rgba(206,206,206,0.1);
+$scrollbar-hovering-bg: rgba(206,206,206,0.1);
+
+$scrollbar-handle-offset: 5px;
+$scrollbar-handle-color: $gray;
+$scrollbar-handle-hovering-color: $gray;
+$scrollbar-handle-dragging-color: #cecece;
+
+.#{$scrollbar} {
+  background-color: $scrollbar-bg;
+  border-radius: $scrollbar-size / 2;
+
+  &-handle {
+    background: $scrollbar-handle-color;
+    border-radius: $scrollbar-size / 2;
+  }
+
+  &.#{$scrollbar}-dragging,
+  &.#{$scrollbar}-hovering {
+    border-radius: $scrollbar-dragging-size / 2;
+
+    .#{$scrollbar}-handle {
+      border-radius: $scrollbar-dragging-size / 2;
+    }
+  }
+
+  &.#{$scrollbar}-hovering {
+    background: $scrollbar-hovering-bg;
+  }
+
+  &.#{$scrollbar}-hovering .#{$scrollbar}-handle {
+    background: $scrollbar-handle-hovering-color !important;
+  }
+
+  &.#{$scrollbar}-dragging {
+    background: $scrollbar-dragging-bg !important;
+    opacity: 1;
+  }
+
+  &.#{$scrollbar}-dragging .#{$scrollbar}-handle {
+    background: $scrollbar-handle-dragging-color !important;
+  }
+
+  &.#{$scrollbar}-disabled {
+    display: none;
+  }
+
+  &-vertical {
+    margin: $scrollbar-handle-offset
+      ($scrollbar-dragging-size - $scrollbar-size) / 2;
+
+    &.#{$scrollbar}-dragging,
+    &.#{$scrollbar}-hovering {
+      margin: $scrollbar-handle-offset 1px;
+    }
+  }
+
+  &-horizontal {
+    margin: ($scrollbar-dragging-size - $scrollbar-size) / 2
+      $scrollbar-handle-offset;
+
+    &.#{$scrollbar}-dragging,
+    &.#{$scrollbar}-hovering {
+      margin: 1px $scrollbar-handle-offset;
+    }
+  }
+}

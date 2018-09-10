@@ -1,14 +1,9 @@
-import { query } from '@pluginjs/dom'
+import { queryAll } from '@pluginjs/dom'
 import Toast from '@pluginjs/toast'
 
-const btn1 = query('#allow-close .example-closetrue')
-const btn2 = query('#allow-close .example-closenull')
-btn1.addEventListener('click', () => {
-  Toast.open()
-})
-btn2.addEventListener('click', () => {
-  Toast.open({
-    allowClose: false,
-    content: 'this is Chaoxi<a href="#">Hello</a>'
+const element = queryAll('#allow-close .example')
+element.map(e => {
+  return e.addEventListener('click', e => {
+    Toast.open(e.target.dataset)
   })
 })

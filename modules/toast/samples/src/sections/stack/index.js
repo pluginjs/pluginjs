@@ -1,13 +1,9 @@
-import { query } from '@pluginjs/dom'
+import { queryAll } from '@pluginjs/dom'
 import Toast from '@pluginjs/toast'
 
-const btn1 = query('#stack .example-stack1')
-const btn2 = query('#stack .example-stack6')
-btn1.addEventListener('click', () => {
-  Toast.open({
-    stack: 1
+const element = queryAll('#stack .example')
+element.map(e => {
+  return e.addEventListener('click', e => {
+    Toast.open(e.target.dataset)
   })
-})
-btn2.addEventListener('click', () => {
-  Toast.open()
 })

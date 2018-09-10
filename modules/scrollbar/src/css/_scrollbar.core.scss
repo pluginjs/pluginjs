@@ -1,0 +1,58 @@
+@import "@pluginjs/styles/variables.scss";
+
+$scrollbar: "pj-scrollbar" !default;
+$scrollbar-size: 4px !default;
+$scrollbar-dragging-size: 10px !default;
+$scrollbar-handle-offset: 5px !default;
+
+.#{$scrollbar} {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 0;
+  user-select: none;
+  -webkit-touch-callout: none;
+
+  &-handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 0;
+    cursor: pointer;
+    transition: width, height 0.5s;
+  }
+
+  &.#{$scrollbar}-disabled {
+    display: none;
+  }
+
+  &-vertical {
+    width: $scrollbar-size;
+    height: #{calc(100% - 2 * #{$scrollbar-handle-offset})};
+
+    &.#{$scrollbar}-dragging,
+    &.#{$scrollbar}-hovering {
+      width: $scrollbar-dragging-size;
+    }
+  }
+
+  &-vertical .#{$scrollbar}-handle {
+    width: 100%;
+  }
+
+  &-horizontal {
+    width: #{calc(100% - 2 * #{$scrollbar-handle-offset})};
+    height: $scrollbar-size;
+
+    &.#{$scrollbar}-dragging,
+    &.#{$scrollbar}-hovering {
+      height: $scrollbar-dragging-size;
+    }
+  }
+  
+  &-horizontal .#{$scrollbar}-handle {
+    height: 100%;
+  }
+}

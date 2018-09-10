@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Toast from '@pluginjs/toast'
 
-const btn = query('#setcolor .example-setColor')
+const btn = query('#setcolor .example')
 btn.addEventListener('click', () => {
   Toast.open({
     icon: 'success',
