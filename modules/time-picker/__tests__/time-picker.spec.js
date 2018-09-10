@@ -46,17 +46,6 @@ describe('TimePicker', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = TimePicker.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('classes', () => {
     test('should use classes options', () => {
       const element = generateHTMLSample()
@@ -167,11 +156,6 @@ describe('TimePicker', () => {
       const $element = TimePicker.of(generateHTMLSample())
       expect($element.bind()).toBeNil()
     })
-
-    test('should call destroy', () => {
-      const $element = TimePicker.of(generateHTMLSample())
-      $element.destroy()
-    })
   })
 
   describe('initialize()', () => {
@@ -201,6 +185,13 @@ describe('TimePicker', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = TimePicker.of($element)
+    })
+
+    it('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {

@@ -402,4 +402,33 @@ describe('Units', () => {
       expect(api.is('disabled')).toBeTrue()
     })
   })
+
+  describe('destroy()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = Units.of($element, { data })
+    })
+
+    it('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+      expect(api.is('initialized')).toBeFalse()
+    })
+
+    it('should trigger destroy event', () => {
+      let called = 0
+
+      $element.addEventListener('units:destroy', () => {
+        called++
+      })
+
+      api.destroy()
+      expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
+    })
+  })
 })
