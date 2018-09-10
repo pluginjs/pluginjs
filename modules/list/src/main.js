@@ -247,8 +247,6 @@ class List extends Component {
       this.buildItems()
 
       this.element.value = this.val()
-
-      this.trigger(EVENTS.CHANGE, this.val())
     }
   }
 

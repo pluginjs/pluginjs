@@ -81,7 +81,6 @@ class ImageSelector extends Component {
     append(append(this.$change, this.$init), this.$wrapper)
 
     this.element.value = this.data.selected
-
     this.initPanel()
     this.setImg()
 
@@ -309,8 +308,9 @@ class ImageSelector extends Component {
 
   set(value) {
     this.data.selected = value
-
     this.setImg()
+
+    this.trigger(EVENTS.CHANGE, value)
   }
 
   get() {

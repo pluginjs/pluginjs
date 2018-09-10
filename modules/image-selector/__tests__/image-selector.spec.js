@@ -2,40 +2,48 @@ import ImageSelector from '../src/main'
 // import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-const datas = {
-  data: [
-    {
-      value: 'without',
-      label: 'Without',
-      img: '../../plugins/image-selector/images/without.png'
-    },
-    {
-      value: 'left',
-      label: 'Left',
-      img: '../../plugins/image-selector/images/left.png'
-    },
-    {
-      value: 'double-left',
-      label: 'Double Left',
-      img: '../../plugins/image-selector/images/double-left.png'
-    },
-    {
-      value: 'right',
-      label: 'Right',
-      img: '../../plugins/image-selector/images/right.png'
-    },
-    {
-      value: 'double-right',
-      label: 'Double Right',
-      img: '../../plugins/image-selector/images/double-right.png'
-    },
-    {
-      value: 'both-sider',
-      label: 'Both Sider',
-      img: '../../plugins/image-selector/images/both-sider.png'
-    }
-  ]
-}
+const data = [
+  {
+    value: 'without',
+    label: 'Without',
+    img: '../../plugins/image-selector/images/without.png'
+  },
+  {
+    value: 'left',
+    label: 'Left',
+    img: '../../plugins/image-selector/images/left.png'
+  },
+  {
+    value: 'double-left',
+    label: 'Double Left',
+    img: '../../plugins/image-selector/images/double-left.png'
+  },
+  {
+    value: 'right',
+    label: 'Right',
+    img: '../../plugins/image-selector/images/right.png'
+  },
+  {
+    value: 'double-right',
+    label: 'Double Right',
+    img: '../../plugins/image-selector/images/double-right.png'
+  },
+  {
+    value: 'both-sider',
+    label: 'Both Sider',
+    img: '../../plugins/image-selector/images/both-sider.png'
+  }
+]
+
+const string =
+  '[ {"value": "without","label": "Without","img": "../../plugins/image-selector/images/without.png"}]'
+const array = [
+  {
+    value: 'without',
+    label: 'Without',
+    img: '../../plugins/image-selector/images/without.png'
+  }
+]
 
 describe('ImageSelector', () => {
   describe('ImageSelector()', () => {
@@ -59,38 +67,147 @@ describe('ImageSelector', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const imageSelector = ImageSelector.of(generateHTMLSample(), datas)
+      const imageSelector = ImageSelector.of(generateHTMLSample(), { data })
 
       expect(imageSelector).toBeObject()
       // expect(imageSelector.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const imageSelector = ImageSelector.of(generateHTMLSample(), datas)
+      const imageSelector = ImageSelector.of(generateHTMLSample(), { data })
 
       expect(imageSelector.options).toBeObject()
     })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = ImageSelector.of($element, datas)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
+    test('should have classes', () => {
+      const imageSelector = ImageSelector.of(generateHTMLSample(), { data })
+      expect(imageSelector.classes).toBeObject()
     })
   })
 
+  describe('classes', () => {
+    test('should use classes options', () => {
+      const element = generateHTMLSample()
+      const imageSelector = ImageSelector.of(element, {
+        data,
+        classes: {
+          active: '{namespace}-active'
+        } // ,
+        // data
+      })
+
+      expect(imageSelector.classes.ACTIVE).toEqual('pj-imageSelector-active')
+    })
+
+    test('should override class namespace', () => {
+      const element = generateHTMLSample()
+      const imageSelector = ImageSelector.of(element, {
+        data,
+        classes: {
+          namespace: 'imageSelector',
+          container: '{namespace}-wrap'
+        } // ,
+        // data
+      })
+
+      expect(imageSelector.classes.NAMESPACE).toEqual('imageSelector')
+      expect(imageSelector.classes.CONTAINER).toEqual('imageSelector-wrap')
+    })
+
+    describe('getClass()', () => {
+      test('should get class with namespace', () => {
+        const element = generateHTMLSample()
+        const imageSelector = ImageSelector.of(element, {
+          data,
+          classes: { namespace: 'hello' }
+        })
+
+        expect(imageSelector.getClass('foo')).toEqual('foo')
+        expect(imageSelector.getClass('{namespace}-foo')).toEqual('hello-foo')
+      })
+
+      test('should get class with arg', () => {
+        const element = generateHTMLSample()
+        const imageSelector = ImageSelector.of(element, {
+          data,
+          classes: { namespace: 'hello' }
+        })
+
+        expect(imageSelector.getClass('foo', 'arg', 'value')).toEqual('foo')
+        expect(
+          imageSelector.getClass('{namespace}-{arg}', 'arg', 'value')
+        ).toEqual('hello-value')
+      })
+    })
+  })
+
+  describe('theme', () => {
+    describe('getThemeClass()', () => {
+      test('should get theme classes with default namespace', () => {
+        const element = generateHTMLSample()
+        const imageSelector = ImageSelector.of(element, {
+          data,
+          theme: null,
+          classes: { theme: '{namespace}--{theme}' }
+        })
+
+        expect(imageSelector.getThemeClass()).toEqual('')
+        expect(imageSelector.getThemeClass('bar')).toEqual(
+          'pj-imageSelector--bar'
+        )
+        expect(imageSelector.getThemeClass('foo bar')).toEqual(
+          'pj-imageSelector--foo pj-imageSelector--bar'
+        )
+      })
+
+      test('should get theme classes with namespace override', () => {
+        const element = generateHTMLSample()
+        const imageSelector = ImageSelector.of(element, {
+          data,
+          theme: null,
+          classes: {
+            namespace: 'hello',
+            theme: '{namespace}--{theme}'
+          } // ,
+          // data
+        })
+
+        expect(imageSelector.getThemeClass()).toEqual('')
+        expect(imageSelector.getThemeClass('bar')).toEqual('hello--bar')
+        expect(imageSelector.getThemeClass('foo bar')).toEqual(
+          'hello--foo hello--bar'
+        )
+      })
+
+      test('should get theme classes correctly when no classes.THEME defined', () => {
+        const element = generateHTMLSample()
+        const imageSelector = ImageSelector.of(element, {
+          data,
+          theme: '{namespace}--foo'
+        })
+
+        // set to null for test
+        imageSelector.classes.THEME = null
+
+        expect(imageSelector.getThemeClass()).toEqual('pj-imageSelector--foo')
+        expect(imageSelector.getThemeClass('bar')).toEqual('bar')
+        expect(imageSelector.getThemeClass('{namespace}--bar')).toEqual(
+          'pj-imageSelector--bar'
+        )
+        expect(imageSelector.getThemeClass('foo bar')).toEqual('foo bar')
+        expect(
+          imageSelector.getThemeClass('{namespace}--foo {namespace}--bar')
+        ).toEqual('pj-imageSelector--foo pj-imageSelector--bar')
+      })
+    })
+  })
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = ImageSelector.of(generateHTMLSample(), datas)
+      const $element = ImageSelector.of(generateHTMLSample(), { data })
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = ImageSelector.of(generateHTMLSample(), datas)
+      const $element = ImageSelector.of(generateHTMLSample(), { data })
       $element.destroy()
       // expect().toEqual($element);
       // expect($element).toEqual($element);
@@ -111,7 +228,7 @@ describe('ImageSelector', () => {
         called++
       })
 
-      const api = ImageSelector.of($element, datas)
+      const api = ImageSelector.of($element, { data })
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -123,7 +240,7 @@ describe('ImageSelector', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImageSelector.of($element, datas)
+      api = ImageSelector.of($element, { data })
     })
 
     test('should trigger destroy event', () => {
@@ -140,13 +257,64 @@ describe('ImageSelector', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(string)
+      api = ImageSelector.of($element, {
+        data,
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = ImageSelector.of($element, {
+        data,
+        onChange(value) {
+          called = true
+          expect(value).toBe(string)
+        }
+      })
+
+      api.val(string)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = ImageSelector.of($element, {
+        data,
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(array)
+        }
+      })
+
+      api.set(array)
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImageSelector.of($element, datas)
+      api = ImageSelector.of($element, { data })
     })
 
     test('should get the value', () => {
@@ -160,37 +328,14 @@ describe('ImageSelector', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImageSelector.of($element, datas)
+      api = ImageSelector.of($element, { data })
     })
 
     test('should set the value', () => {
       expect(api.get()).toBeString()
 
-      api.set(false)
-      expect(api.get()).toBeBoolean()
-
-      api.set(true)
-      expect(api.get()).toBeBoolean()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeString()
-
-      api.set('false')
-      expect(api.get()).toBeString()
-
-      api.set('true')
-      expect(api.get()).toBeString()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeString()
-
-      api.set(0)
-      expect(api.get()).toBeNumber()
-
-      api.set(1)
-      expect(api.get()).toBeNumber()
+      api.set(string)
+      expect(api.get()).toBeString(string)
     })
   })
 
@@ -200,7 +345,7 @@ describe('ImageSelector', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImageSelector.of($element, datas)
+      api = ImageSelector.of($element, { data })
     })
 
     test('should get the value', () => {
@@ -208,33 +353,10 @@ describe('ImageSelector', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val(string)
 
-      expect(api.get()).toBeFalse()
-
-      api.val(true)
-
-      expect(api.get()).toBeTrue()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeString()
-
-      api.val('true')
-
-      expect(api.get()).toBeString()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeString()
-
-      api.val(0)
-      expect(api.get()).toBeNumber()
-
-      api.val(1)
-      expect(api.get()).toBeNumber()
+      expect(api.val()).toBe(string)
+      expect(api.get()).toEqual(string)
     })
   })
 
@@ -244,7 +366,7 @@ describe('ImageSelector', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImageSelector.of($element, datas)
+      api = ImageSelector.of($element, { data })
     })
 
     test('should enable the plugin', () => {
@@ -273,7 +395,7 @@ describe('ImageSelector', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImageSelector.of($element, datas)
+      api = ImageSelector.of($element, { data })
     })
 
     test('should disable the plugin', () => {
