@@ -54,13 +54,8 @@ describe('Select', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      // const $element = Select.of(generateHTMLSample())
-      // expect($element.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
       const $element = Select.of(generateHTMLSample())
-      $element.destroy()
+      expect($element.bind()).toBeNil()
     })
   })
 
@@ -84,26 +79,52 @@ describe('Select', () => {
     })
   })
 
-  describe('destroy()', () => {
+  describe('change', () => {
     let $element
     let api
 
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Select.of($element)
-    })
-
-    test('should trigger destroy event', () => {
-      let called = 0
-
-      $element.addEventListener('select:destroy', () => {
-        called++
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample('a')
+      api = Select.of($element, {
+        onChange() {
+          called = true
+        }
       })
 
-      api.destroy()
+      expect(called).toBeFalse()
+    })
 
-      expect(called).toEqual(1)
-      expect(api.is('initialized')).toBeFalse()
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Select.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeArray(['c'])
+        }
+      })
+
+      api.val('c')
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Select.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeArray(['c'])
+        }
+      })
+
+      api.set('c')
+
+      expect(called).toBeTrue()
     })
   })
 
@@ -117,7 +138,7 @@ describe('Select', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
     })
   })
 
@@ -131,33 +152,17 @@ describe('Select', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
+      api.set('a')
+      expect(api.get()).toBeArray(['a'])
     })
 
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
+    test('should set the value with array', () => {
+      expect(api.get()).toBeArray()
 
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set(['a', 'b'])
+      expect(api.get()).toBeArray(['a', 'b'])
     })
   })
 
@@ -175,33 +180,15 @@ describe('Select', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val('a')
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray(['a'])
     })
 
-    test('should set the value with string', () => {
-      api.val('false')
+    test('should set the value with array', () => {
+      api.val(['a', 'b'])
 
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray(['a', 'b'])
     })
   })
 

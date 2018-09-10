@@ -58,8 +58,9 @@ describe('Spinner', () => {
     })
 
     test('should call destroy', () => {
-      // const $element = Spinner.of(generateHTMLSample())
-      // expect($element.destroy()).toEqual($element)
+      const $element = Spinner.of(generateHTMLSample())
+      $element.destroy()
+      expect($element).toEqual($element)
     })
   })
 

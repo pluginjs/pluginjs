@@ -294,7 +294,6 @@ class Dropdown extends Component {
 
       this.leave('show')
     }
-
     this.trigger(EVENTS.HIDE)
   }
   set(value) {
@@ -401,6 +400,7 @@ class Dropdown extends Component {
     }
 
     if (this.POPPER !== null) {
+      console.log(this.POPPER)
       this.POPPER.destroy()
       this.POPPER = null
     }

@@ -70,6 +70,7 @@ class Select extends Component {
       ? this.parseJson(this.options.source)
       : this.parseHtml(children(this.element))
     this.selected = Array.from(this.element.selectedOptions).map(el => el.value)
+
     this.markIndex = 0
     this.build()
 
