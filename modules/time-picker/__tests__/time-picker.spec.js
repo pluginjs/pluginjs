@@ -217,6 +217,57 @@ describe('TimePicker', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample('00:00')
+      api = TimePicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('00:00')
+        }
+      })
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = TimePicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('00:00')
+        }
+      })
+
+      api.val('00:00')
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = TimePicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('00:00')
+        }
+      })
+
+      api.set('00:00')
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
@@ -243,31 +294,8 @@ describe('TimePicker', () => {
     test('should set the value', () => {
       expect(api.get()).toBeString()
 
-      api.set(false)
-      expect(api.get()).toBeString()
-
-      api.set(true)
-      expect(api.get()).toBeString()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeString()
-
-      api.set('false')
-      expect(api.get()).toBeString()
-
-      api.set('true')
-      expect(api.get()).toBeString()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeString()
-
-      api.set(0)
-      expect(api.get()).toBeString()
-
-      api.set(1)
-      expect(api.get()).toBeString()
+      api.set('00:00')
+      expect(api.get()).toBeString('00:00')
     })
   })
 
@@ -285,33 +313,9 @@ describe('TimePicker', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val('00:30')
 
-      expect(api.get()).toBeString()
-
-      api.val(true)
-
-      expect(api.get()).toBeString()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeString()
-
-      api.val('true')
-
-      expect(api.get()).toBeString()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeString()
-
-      api.val(0)
-      expect(api.get()).toBeString()
-
-      api.val(1)
-      expect(api.get()).toBeString()
+      expect(api.get()).toBeString('00:30')
     })
   })
 
