@@ -23,7 +23,8 @@ export const classes = {
   SHOWN: '{namespace}-shown',
   ACTIVE: '{namespace}-active',
   ADDON: '{namespace}-addon',
-  CHECK: '{namespace}-check'
+  CHECK: '{namespace}-check',
+  DISABLE: '{namespace}-disabled'
 }
 
 export const methods = ['getScore', 'getStatus', 'enable', 'disable', 'destroy']

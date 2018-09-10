@@ -99,10 +99,59 @@ describe('Spinner', () => {
         called++
       })
 
-      api.enable()
+      api.destroy()
 
-      expect(called).toEqual(0)
-      expect(api.is('initialized')).toBeTrue()
+      expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
+    })
+  })
+
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample('10')
+      api = Spinner.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Spinner.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeString('10')
+        }
+      })
+
+      api.val(10)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Spinner.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeString('10')
+        }
+      })
+
+      api.set(10)
+
+      expect(called).toBeTrue()
     })
   })
 
@@ -116,7 +165,7 @@ describe('Spinner', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toEqual(0)
     })
   })
 
@@ -130,33 +179,10 @@ describe('Spinner', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toEqual(0)
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set(10)
+      expect(api.get()).toEqual(10)
     })
   })
 
@@ -170,37 +196,16 @@ describe('Spinner', () => {
     })
 
     test('should get the value', () => {
-      expect(api.val()).toBeString()
+      $element = generateHTMLSample('10')
+      api = Spinner.of($element)
+
+      expect(api.val()).toBeString('10')
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val('10')
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBe(10)
     })
   })
 

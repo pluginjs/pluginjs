@@ -1,6 +1,7 @@
 import ToggleList from '../src/main'
-// import { defaults as DEFAULTS } from '../src/constant'
-// import { deepMerge } from '@pluginjs/utils'
+import List from '@pluginjs/list'
+import { defaults as DEFAULTS } from '../src/constant'
+import { deepMerge } from '@pluginjs/utils'
 import generateHTMLSample from './fixtures/sample'
 
 const data = [
@@ -49,7 +50,7 @@ describe('ToggleList', () => {
     test('should work with element', () => {
       const toggleList = ToggleList.of(generateHTMLSample())
       expect(toggleList).toBeObject()
-      // expect(others).toEqual(deepMerge(List.defaults, DEFAULTS))
+      expect(toggleList.options).toEqual(deepMerge(List.defaults, DEFAULTS))
     })
 
     test('should have options', () => {
@@ -137,7 +138,7 @@ describe('ToggleList', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
     })
   })
 
@@ -151,7 +152,7 @@ describe('ToggleList', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
 
       api.set(data)
       expect(api.get()).toBeArray()
@@ -172,29 +173,9 @@ describe('ToggleList', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val(data.toString())
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val(data)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray(data)
     })
   })
 

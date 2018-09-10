@@ -315,6 +315,7 @@ class Strength extends Component {
 
   disable() {
     if (!this.is('disabled')) {
+      console.log(this.element)
       addClass(this.classes.DISABLED, this.element)
       this.enter('disabled')
     }
