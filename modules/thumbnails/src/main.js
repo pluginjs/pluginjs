@@ -153,10 +153,13 @@ class Thumbnails extends Component {
   initImageLoader() {
     const that = this
 
-    this.imageLoader = ImageLoader.of(this.inner)
-
-    this.imageLoader.onLoaded(img => {
-      addClass(that.classes.LOADED, closest(`.${this.classes.THUMB}`, img))
+    this.items.forEach(item => {
+      ImageLoader.of(item.querySelector(`.${this.classes.IMAGE}`)).on(
+        'loaded',
+        img => {
+          addClass(that.classes.LOADED, closest(`.${this.classes.THUMB}`, img))
+        }
+      )
     })
   }
 
