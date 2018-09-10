@@ -73,7 +73,7 @@ describe('AutoComplete', () => {
       const $element = AutoComplete.of(generateHTMLSample(), { source })
       $element.destroy()
       // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      expect($element).toEqual($element)
     })
   })
 

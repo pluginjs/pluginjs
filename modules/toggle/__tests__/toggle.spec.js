@@ -60,6 +60,7 @@ describe('Toggle', () => {
     test('should call destroy', () => {
       const $element = Toggle.of(generateHTMLSample())
       $element.destroy()
+      expect($element).toEqual($element)
     })
   })
 
@@ -103,6 +104,55 @@ describe('Toggle', () => {
 
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeFalse()
+    })
+  })
+
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample('true')
+      api = Toggle.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Toggle.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(true)
+        }
+      })
+
+      api.val(true)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = Toggle.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(true)
+        }
+      })
+
+      api.set(true)
+
+      expect(called).toBeTrue()
     })
   })
 
