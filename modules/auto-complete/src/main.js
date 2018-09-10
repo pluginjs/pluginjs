@@ -138,7 +138,7 @@ class AutoComplete extends Component {
   initData() {
     const val = this.$element.value
     if (val) {
-      this.set(val)
+      this.set(val, false)
     }
   }
 
@@ -278,7 +278,7 @@ class AutoComplete extends Component {
             : parentWith(hasItemClass, target)
           this.$selected = $item
           this.close()
-          this.trigger(EVENTS.CHANGE, getData('data', $item), this)
+          this.set(getData('data', $item).value)
         }
       )
     )(this.$panel)
@@ -308,11 +308,7 @@ class AutoComplete extends Component {
               if (e.keyCode === 13 && e.which === 13) {
                 // update
                 this.close()
-                this.trigger(
-                  EVENTS.CHANGE,
-                  getData('data', this.$selected),
-                  this
-                )
+                this.set(getData('data', this.$selected).value)
                 e.preventDefault()
               }
             },
@@ -535,8 +531,12 @@ class AutoComplete extends Component {
     }
   }
 
-  set(value) {
+  set(value, trigger = true) {
     this.$element.value = value
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, value, this)
+    }
   }
 
   get() {

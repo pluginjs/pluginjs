@@ -106,11 +106,6 @@ export const defaults = {
       }
     }
     return null
-  },
-  onChange(...args) {
-    const [data, instance] = args
-    instance.set(data.value)
-    return false
   }
 }
 

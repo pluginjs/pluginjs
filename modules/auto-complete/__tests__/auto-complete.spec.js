@@ -120,6 +120,58 @@ describe('AutoComplete', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample('java')
+      api = AutoComplete.of($element, {
+        source,
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element, {
+        source,
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('java')
+        }
+      })
+
+      api.val('java')
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = AutoComplete.of($element, {
+        source,
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('java')
+        }
+      })
+
+      api.set('java')
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
