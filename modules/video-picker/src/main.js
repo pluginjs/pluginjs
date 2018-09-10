@@ -406,6 +406,7 @@ class VideoPicker extends Component {
         `.${this.classes.LOCALURLDELETE}`,
         () => {
           if (this.is('loaded')) {
+            removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
             this.removeVideo()
           }
         }
@@ -447,6 +448,10 @@ class VideoPicker extends Component {
       }),
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
         this.$defaultDropdown.hide()
+        if (this.videoApi) {
+          this.videoApi.stop()
+        }
+        this.element.value = this.val()
         addClass(this.classes.SHOW, this.$wrap)
       })
     )(this.$btnAction)
@@ -651,8 +656,7 @@ class VideoPicker extends Component {
       return val
     }
 
-    this.set(this.options.parse.call(this, value))
-    return null
+    return this.set(this.options.parse.call(this, value))
   }
 
   enable() {

@@ -2,6 +2,14 @@ import VideoPicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const data = {
+  source: 'YouTube',
+  url: 'YE7VzlLtp-4',
+  poster: 'https://picsum.photos/200/300?image=1020',
+  ratio: 'auto'
+}
+const string =
+  '{"source":"YouTube","url":"YE7VzlLtp-4", "poster":"https://picsum.photos/200/300?image=1020", "ratio": "auto"}'
 describe('VideoPicker', () => {
   describe('VideoPicker()', () => {
     test('should have VideoPicker', () => {
@@ -58,7 +66,7 @@ describe('VideoPicker', () => {
       const $element = VideoPicker.of(generateHTMLSample())
       $element.destroy()
       // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      expect($element).toEqual($element)
     })
   })
 
@@ -115,7 +123,7 @@ describe('VideoPicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeNil()
     })
   })
 
@@ -129,33 +137,10 @@ describe('VideoPicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeNil()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set(data)
+      expect(api.get()).toBeObject(data)
     })
   })
 
@@ -173,33 +158,9 @@ describe('VideoPicker', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val(string)
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeObject(data)
     })
   })
 
