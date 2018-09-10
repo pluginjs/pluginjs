@@ -2,6 +2,7 @@ import SvgPicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const value = '{"type":"line", "id":"bell"}'
 const data = [
   {
     type: 'line',
@@ -158,6 +159,55 @@ describe('SvgPicker', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = SvgPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = SvgPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(value)
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = SvgPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeObject(data[1])
+        }
+      })
+
+      api.set(data[1])
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
@@ -168,6 +218,13 @@ describe('SvgPicker', () => {
     })
 
     test('should get the value', () => {
+      expect(api.get()).toBeNil()
+    })
+
+    it('should get the value with units', () => {
+      $element = generateHTMLSample(value)
+      api = SvgPicker.of($element)
+
       expect(api.get()).toBeObject()
     })
   })
@@ -182,33 +239,10 @@ describe('SvgPicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeNil()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set(data[1])
+      expect(api.get()).toBeObject(data[1])
     })
   })
 
@@ -226,33 +260,38 @@ describe('SvgPicker', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
-
-      expect(api.get()).toBeObject()
-
-      api.val(true)
+      api.val(value)
 
       expect(api.get()).toBeObject()
     })
+  })
 
-    test('should set the value with string', () => {
-      api.val('false')
+  describe('destroy()', () => {
+    let $element
+    let api
 
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = SvgPicker.of($element)
     })
 
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
+    it('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
 
-      api.val(0)
-      expect(api.get()).toBeObject()
+      api.destroy()
+      expect(api.is('initialized')).toBeFalse()
+    })
 
-      api.val(1)
-      expect(api.get()).toBeObject()
+    it('should trigger destroy event', () => {
+      let called = 0
+
+      $element.addEventListener('svgPicker:destroy', () => {
+        called++
+      })
+
+      api.destroy()
+      expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 

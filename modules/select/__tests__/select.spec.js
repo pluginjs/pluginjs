@@ -41,17 +41,6 @@ describe('Select', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = Select.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = Select.of(generateHTMLSample())
@@ -76,6 +65,29 @@ describe('Select', () => {
       const api = Select.of($element)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
+    })
+  })
+
+  describe('destroy()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = Select.of($element)
+    })
+
+    test('should trigger destroy event', () => {
+      let called = 0
+
+      $element.addEventListener('select:destroy', () => {
+        called++
+      })
+
+      api.destroy()
+
+      expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeFalse()
     })
   })
 

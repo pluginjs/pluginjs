@@ -112,7 +112,7 @@ class SvgPicker extends Component {
     )
 
     if (this.element.value.trim() !== '' && this.data && this.data.length) {
-      this.val(this.element.value)
+      this.val(this.element.value, false)
     }
 
     if (this.element.disabled || this.options.disabled) {
@@ -466,7 +466,7 @@ class SvgPicker extends Component {
     return this.$icon ? this.getIconInfo(this.$icon.dataset.value) : null
   }
 
-  select(item) {
+  select(item, trigger = true) {
     // if (!this.$icon) {
     //   this.$svgPicker.find('.pj-dropdown-trigger').append('<span></span>')
     // }
@@ -488,7 +488,9 @@ class SvgPicker extends Component {
       })
     )
     $selected.innerHTML = `${value} ${id}`
-    this.trigger(EVENTS.CHANGE, this.$icon)
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, this.$icon)
+    }
   }
 
   getItem(value) {
@@ -501,19 +503,19 @@ class SvgPicker extends Component {
     return $item
   }
 
-  set(data) {
+  set(data, trigger = true) {
     if (!isObject(data)) {
       return
     }
-    this.select(this.getItem(data.id))
+    this.select(this.getItem(data.id), trigger)
   }
 
-  val(value) { /* eslint-disable-line */
+  val(value, trigger = true) { /* eslint-disable-line */
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 
-    this.set(this.options.parse.call(this, value))
+    this.set(this.options.parse.call(this, value), trigger)
   }
 
   getIconInfo(id) {
