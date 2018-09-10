@@ -95,10 +95,6 @@ $tabs-drop-content-bg: transparent;
     background-color: $tabs-drop-nav-bg;
     border: 1px solid $tabs-border-color;
 
-    .pj-icon {
-      font-size: inherit;
-    }
-
     &:hover {
       color: $tabs-label-hover-color;
     }
@@ -122,10 +118,6 @@ $tabs-drop-content-bg: transparent;
 
       + li {
         border-top: 1px solid $tabs-border-color;
-      }
-
-      .pj-icon {
-        font-size: inherit;
       }
     }
   }

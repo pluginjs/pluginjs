@@ -1,8 +1,8 @@
 import { query } from '@pluginjs/dom'
 import Toast from '@pluginjs/toast'
 
-const btn1 = query('#buttons .buttons1')
-const btn2 = query('#buttons .buttons2')
+const btn1 = query('#buttons .example-buttons1')
+const btn2 = query('#buttons .example-buttons2')
 btn1.addEventListener('click', () => {
   Toast.open({
     buttons: {

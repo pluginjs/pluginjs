@@ -1,8 +1,8 @@
 import { query } from '@pluginjs/dom'
 import Toast from '@pluginjs/toast'
 
-const btn1 = query('#allow-close .closetrue')
-const btn2 = query('#allow-close .closenull')
+const btn1 = query('#allow-close .example-closetrue')
+const btn2 = query('#allow-close .example-closenull')
 btn1.addEventListener('click', () => {
   Toast.open()
 })

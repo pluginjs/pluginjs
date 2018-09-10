@@ -1,8 +1,8 @@
 import { query } from '@pluginjs/dom'
 import Toast from '@pluginjs/toast'
 
-const btn1 = query('#effect .fadeUp')
-const btn2 = query('#effect .bounceInLeft')
+const btn1 = query('#effect .example-fadeUp')
+const btn2 = query('#effect .example-bounceInLeft')
 btn1.addEventListener('click', () => {
   Toast.open({
     effect: 'fade',

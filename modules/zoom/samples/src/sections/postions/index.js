@@ -2,7 +2,7 @@ import { query } from '@pluginjs/dom'
 import Zoom from '@pluginjs/zoom'
 
 let position = 1
-const element = query('#postions .zoom')
+const element = query('#postions .example-zoom')
 const api = Zoom.of(element, {
   position,
   mode: 'window',

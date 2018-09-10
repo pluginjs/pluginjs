@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Zoom from '@pluginjs/zoom'
 
-const element = query('#level .zoom')
+const element = query('#level .example-zoom')
 Zoom.of(element, {
   level: 0.7,
   window: {

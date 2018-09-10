@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Zoom from '@pluginjs/zoom'
 
-const element = query('#overlay .zoom')
+const element = query('#overlay .example-zoom')
 Zoom.of(element, {
   mode: 'window',
   window: {

@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Zoom from '@pluginjs/zoom'
 
-const element = query('#clickOpen .zoom')
+const element = query('#clickOpen .example-zoom')
 Zoom.of(element, {
   mode: 'window',
   window: {

@@ -1,8 +1,8 @@
 import { query } from '@pluginjs/dom'
 import Toast from '@pluginjs/toast'
 
-const btn1 = query('#bgcolor .background1')
-const btn2 = query('#bgcolor .background2')
+const btn1 = query('#bgcolor .example-dark')
+const btn2 = query('#bgcolor .example-light')
 btn1.addEventListener('click', () => {
   Toast.open({
     bgColor: '#333',

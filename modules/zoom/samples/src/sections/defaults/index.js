@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Zoom from '@pluginjs/zoom'
 
-const element = query('#defaults .zoom')
+const element = query('#defaults .example-zoom')
 Zoom.of(element, {
   window: {
     offetX: 20,

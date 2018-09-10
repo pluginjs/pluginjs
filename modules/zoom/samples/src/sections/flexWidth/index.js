@@ -1,8 +1,8 @@
 import { query } from '@pluginjs/dom'
 import Zoom from '@pluginjs/zoom'
 
-const element = query('#flexWidth .zoom_1')
-Zoom.of(element, {
+const element1 = query('#flexWidth .example-zoom1')
+Zoom.of(element1, {
   animation: true,
   window: {
     offetX: 20,
@@ -15,12 +15,12 @@ Zoom.of(element, {
   }
 })
 
-const element2 = query('#flexWidth .zoom_2')
+const element2 = query('#flexWidth .example-zoom2')
 Zoom.of(element2, {
   mode: 'inner'
 })
 
-const element3 = query('#flexWidth .zoom_3')
+const element3 = query('#flexWidth .example-zoom3')
 Zoom.of(element3, {
   mode: 'lens',
   lens: {

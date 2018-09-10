@@ -1,10 +1,10 @@
 import { query } from '@pluginjs/dom'
 import Toast from '@pluginjs/toast'
 
-const reset = query('#static-function .funcreset')
-const warning = query('#static-function .funcwarning')
-const success = query('#static-function .funcsuccess')
-const error = query('#static-function .funcerror')
+const reset = query('#static-function .example-funcreset')
+const warning = query('#static-function .example-funcwarning')
+const success = query('#static-function .example-funcsuccess')
+const error = query('#static-function .example-funcerror')
 reset.addEventListener('click', () => {
   Toast.reset()
 })

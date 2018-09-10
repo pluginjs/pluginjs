@@ -1,10 +1,10 @@
 import { query } from '@pluginjs/dom'
 import Toast from '@pluginjs/toast'
 
-const success = query('#icon .success')
-const info = query('#icon .info')
-const warning = query('#icon .warning')
-const danger = query('#icon .danger')
+const success = query('#icon .example-success')
+const info = query('#icon .example-info')
+const warning = query('#icon .example-warning')
+const danger = query('#icon .example-danger')
 success.addEventListener('click', () => {
   Toast.open({
     icon: 'success'
