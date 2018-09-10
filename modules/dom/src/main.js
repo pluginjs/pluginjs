@@ -151,7 +151,7 @@ export const offsetParent = el => {
   return offsetParent || document.documentElement
 }
 
-export const index = el => {
+export const indexOf = el => {
   return [...el.parentElement.children].indexOf(el)
 }
 

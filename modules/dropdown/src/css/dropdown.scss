@@ -20,7 +20,7 @@ $dropdown-trigger-focus-color: $color-primary;
 
 $dropdown-input-width: $dropdown-width;
 $dropdown-input-lineHeigh: 22px;
-$dropdown-input-color: $gray-dark;
+$dropdown-input-placeholder-color: $gray-dark;
 $dropdown-input-hover-color: $gray-darkest;
 $dropdown-input-focus-color: $dropdown-input-hover-color;
 
@@ -30,7 +30,8 @@ $dropdown-item-space-y: 8px;
 $dropdown-item-icon-gutter: 10px;
 $dropdown-item-hover-bg: $gray-lighter;
 $dropdown-item-active-color: $color-primary-active;
-
+$dropdown-item-highlighted-color: $color-primary-active;
+$dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
 // Skin
 // =====================
 .#{$dropdown} {
@@ -55,12 +56,19 @@ $dropdown-item-active-color: $color-primary-active;
       color: $dropdown-trigger-focus-color;
       outline: none;
     }
+
+    &.#{$dropdown}-focus {
+      outline: $dropdown-trigger-focus-color;
+    }
   }
 
   &-input {
     width: $dropdown-input-width;
     line-height: $dropdown-input-lineHeigh;
-    color: $dropdown-input-color;
+
+    &:not(.#{$dropdown}-selected) {
+      color: $dropdown-input-placeholder-color;
+    }
 
     &:focus {
       /* stylelint-disable*/
@@ -72,10 +80,10 @@ $dropdown-item-active-color: $color-primary-active;
         color: $dropdown-input-hover-color;
       }
 
-      &::-moz-placeholder { 
+      &::-moz-placeholder {
         color: $dropdown-input-hover-color;
       }
-        
+
       &:-ms-input-placeholder {
         color: $dropdown-input-hover-color;
       }
@@ -101,6 +109,11 @@ $dropdown-item-active-color: $color-primary-active;
 
     &.#{$dropdown}-active {
       color: $dropdown-item-active-color;
+    }
+
+    &.#{$dropdown}-highlighted {
+      color: $dropdown-item-highlighted-color;
+      background-color: $dropdown-item-highlighted-bg;
     }
   }
 }

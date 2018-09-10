@@ -1,4 +1,4 @@
-import Emitter from '@pluginjs/emitter'
+import SimpleEmitter from '@pluginjs/simple-emitter'
 import { each } from '@pluginjs/utils'
 
 /* eslint object-property-newline: 'off' */
@@ -92,7 +92,7 @@ const MODIFIERS = {
 class Keyboard {
   constructor(element) {
     this.element = element || window.document
-    this.emitter = new Emitter()
+    this.emitter = new SimpleEmitter()
 
     this.initialize()
     this.registerEvent()

@@ -12,7 +12,7 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
-// import Keyboard from './keyboard'
+import Keyboard from './keyboard'
 import Popper from 'popper.js'
 import {
   classes as CLASSES,
@@ -100,6 +100,10 @@ class Dropdown extends Component {
       html(this.options.placeholder, this.$trigger)
     }
 
+    if (this.options.keyboard) {
+      this.KEYBOARD = new Keyboard(this)
+    }
+
     this.bind()
 
     this.enter('initialized')
@@ -112,7 +116,13 @@ class Dropdown extends Component {
         this.eventName('focus'),
         () => {
           this.show()
-          return false
+        },
+        this.$trigger
+      )
+      bindEvent(
+        this.eventName('blur'),
+        () => {
+          this.hide()
         },
         this.$trigger
       )
@@ -184,6 +194,10 @@ class Dropdown extends Component {
     }
   }
 
+  getItems() {
+    return children(`.${this.classes.ITEM}`, this.$dropdown)
+  }
+
   getActiveItem() {
     const $item = children(`.${this.classes.ACITVE}`, this.$dropdown)
     if ($item.length > 0) {
@@ -192,12 +206,19 @@ class Dropdown extends Component {
     return null
   }
 
+  getItemByIndex(index) {
+    const $item = this.getItems()
+    if (index >= 0 && index <= $item.length) {
+      return $item[index]
+    }
+
+    return null
+  }
+
   selectByValue(value, trigger = true) {
-    const selected = children(`.${this.classes.ITEM}`, this.$dropdown).filter(
-      item => {
-        return this.getItemValue(item) === value
-      }
-    )
+    const selected = this.getItems().filter(item => {
+      return this.getItemValue(item) === value
+    })
     if (selected.length > 0) {
       this.selectItem(selected[0], trigger)
     } else {
@@ -238,6 +259,25 @@ class Dropdown extends Component {
 
     this.active = item
     addClass(this.classes.ACITVE, this.active)
+  }
+
+  getHighlightedItem() {
+    const highlighted = children(`.${this.classes.HIGHLIGHTED}`, this.$dropdown)
+    if (highlighted.length === 0) {
+      return null
+    }
+    return highlighted[0]
+  }
+
+  highlightItem(index) {
+    const $highlighted = this.getHighlightedItem()
+    if ($highlighted) {
+      removeClass(this.classes.HIGHLIGHTED, $highlighted)
+    }
+    const $item = this.getItemByIndex(index)
+    if ($item) {
+      addClass(this.classes.HIGHLIGHTED, $item)
+    }
   }
 
   toggle() {

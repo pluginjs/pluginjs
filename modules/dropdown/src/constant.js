@@ -22,8 +22,10 @@ export const classes = {
   ITEM: '{namespace}-item',
   SHOW: '{namespace}-show',
   PLACEMENT: '{namespace}-on-{placement}',
+  FOCUS: '{namespace}-focus',
   DISABLED: '{namespace}-disabled',
   ACITVE: '{namespace}-active',
+  HIGHLIGHTED: '{namespace}-highlighted',
   SELECTED: '{namespace}-selected'
 }
 
