@@ -56,11 +56,6 @@ describe('Arrows', () => {
       const arrows = Arrows.of(getInitialElement())
       expect(arrows.bind()).toBeNil()
     })
-
-    test('should call destroy', () => {
-      const arrows = Arrows.of(getInitialElement())
-      arrows.destroy()
-    })
   })
 
   describe('initialize()', () => {
@@ -89,6 +84,14 @@ describe('Arrows', () => {
     beforeEach(() => {
       $element = getInitialElement()
       api = Arrows.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {

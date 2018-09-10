@@ -45,11 +45,6 @@ describe('Dots', () => {
       const dots = Dots.of(generateHTMLSample())
       expect(dots.bind()).toBeNil()
     })
-
-    test('should call destroy', () => {
-      const dots = Dots.of(generateHTMLSample())
-      dots.destroy()
-    })
   })
 
   describe('initialize()', () => {
@@ -78,6 +73,14 @@ describe('Dots', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = Dots.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {
