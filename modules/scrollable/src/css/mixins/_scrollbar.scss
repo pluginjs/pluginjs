@@ -1,0 +1,100 @@
+@import "@pluginjs/styles/variables.scss";
+
+@mixin scrollbar(
+  $scrollbar: "pj-scrollbar",
+  $scrollbar-size: 4px,
+  $scrollbar-dragging-size: 10px,
+  $scrollbar-dragging-bg: rgba($gray-lighter, 0.4),
+  $scrollbar-hovering-bg: rgba($gray-lighter, 0.4),
+  $scrollbar-handle-offset: 5px,
+  $scrollbar-handle-color: rgba($gray-light, 0.4),
+  $scrollbar-handle-hovering-color: rgba($gray-light, 0.4),
+  $scrollbar-handle-dragging-color: rgba($gray, 0.4)
+) {
+  .#{$scrollbar} {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    line-height: 0;
+    user-select: none;
+    border-radius: $scrollbar-size / 2;
+    -webkit-touch-callout: none;
+
+    &-handle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      line-height: 0;
+      cursor: pointer;
+      background: $scrollbar-handle-color;
+      border-radius: $scrollbar-size / 2;
+      transition: width, height 0.5s;
+    }
+
+    &.#{$scrollbar}-dragging,
+    &.#{$scrollbar}-hovering {
+      border-radius: $scrollbar-dragging-size / 2;
+
+      .#{$scrollbar}-handle {
+        border-radius: $scrollbar-dragging-size / 2;
+      }
+    }
+
+    &.#{$scrollbar}-hovering {
+      background: $scrollbar-hovering-bg;
+    }
+
+    &.#{$scrollbar}-hovering .#{$scrollbar}-handle {
+      background: $scrollbar-handle-hovering-color !important;
+    }
+
+    &.#{$scrollbar}-dragging {
+      background: $scrollbar-dragging-bg !important;
+      opacity: 1;
+    }
+
+    &.#{$scrollbar}-dragging .#{$scrollbar}-handle {
+      background: $scrollbar-handle-dragging-color !important;
+    }
+
+    &.#{$scrollbar}-disabled {
+      display: none;
+    }
+
+    &-vertical {
+      width: $scrollbar-size;
+      height: #{calc(100% - 2 * #{$scrollbar-handle-offset})};
+      margin: $scrollbar-handle-offset
+        ($scrollbar-dragging-size - $scrollbar-size) / 2;
+
+      &.#{$scrollbar}-dragging,
+      &.#{$scrollbar}-hovering {
+        width: $scrollbar-dragging-size;
+        margin: $scrollbar-handle-offset 1px;
+      }
+    }
+
+    &-vertical .#{$scrollbar}-handle {
+      width: 100%;
+    }
+
+    &-horizontal {
+      width: #{calc(100% - 2 * #{$scrollbar-handle-offset})};
+      height: $scrollbar-size;
+      margin: ($scrollbar-dragging-size - $scrollbar-size) / 2
+        $scrollbar-handle-offset;
+
+      &.#{$scrollbar}-dragging,
+      &.#{$scrollbar}-hovering {
+        height: $scrollbar-dragging-size;
+        margin: 1px $scrollbar-handle-offset;
+      }
+    }
+
+    &-horizontal .#{$scrollbar}-handle {
+      height: 100%;
+    }
+  }
+}
