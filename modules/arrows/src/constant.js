@@ -3,7 +3,11 @@ export const namespace = 'arrows'
 export const events = {
   READY: 'ready',
   ENABLE: 'enable',
+  PREVENABLE: 'prevEnable',
+  NEXTENABLE: 'nextEnable',
   DISABLE: 'disable',
+  PREVDISABLE: 'prevDisable',
+  NEXTDISABLE: 'nextDisable',
   DESTROY: 'destroy',
   NEXT: 'next',
   PREV: 'prev',

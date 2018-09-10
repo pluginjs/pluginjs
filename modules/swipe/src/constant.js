@@ -49,11 +49,6 @@ export const defaults = {
   itemNums: 1, // Number of swipe per column
   gutter: 0, // [number|string]  '10px 10px' => 'top&bottom left&right', 10 => top&bottom&left&right
   height: null, // set swipe height
-  advanced: {
-    getItemInstances: null, // [function] handle items array. => this.itemInstances
-    computeItemLocation: null, // [function] compute items position.
-    computeWidthResize: null // [function] compute when window resize
-  },
   defaultActive: 0, // default active item
   duration: 300,
   templates: {

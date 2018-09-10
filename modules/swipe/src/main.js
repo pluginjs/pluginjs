@@ -50,22 +50,6 @@ class Swipe extends Component {
     this.setupOptions(options)
     this.setupClasses()
 
-    if (this.options.advanced.getItemInstances) {
-      this.getItemInstances = this.options.advanced.getItemInstances.bind(this)
-    }
-
-    if (this.options.advanced.computeItemLocation) {
-      this.computeItemLocation = this.options.advanced.computeItemLocation.bind(
-        this
-      )
-    }
-
-    if (this.options.advanced.computeWidthResize) {
-      this.computeWidthResize = this.options.advanced.computeWidthResize.bind(
-        this
-      )
-    }
-
     addClass(this.classes.NAMESPACE, this.element)
 
     if (this.options.theme) {
@@ -438,9 +422,43 @@ class Swipe extends Component {
 
     this.width = parseFloat(getStyle('width', this.element), 10)
 
-    setTimeout(() => {
-      this.moveTo(this.active)
-    }, 0)
+    let distance = 0
+    if (this.options.group) {
+      distance =
+        Math.max(
+          0,
+          Math.min(
+            this.sortedItems[this.active].info.x,
+            this.containerWidth - this.width
+          )
+        ) * this.options.itemNums
+    } else {
+      distance = this.sortedItems[this.active].info.x
+    }
+
+    if (
+      this.active === this.maxActiveCount - 1 &&
+      this.active !== 0 &&
+      !this.options.center
+    ) {
+      distance = this.containerWidth - this.width
+    }
+
+    if (
+      this.options.center &&
+      !this.options.group &&
+      this.options.itemNums > 1
+    ) {
+      const activeItemWidth = this.sortedItems[this.active].info.width
+      distance -= (this.width - activeItemWidth) / 2
+    }
+
+    setStyle(
+      {
+        transform: `translateX(-${distance}px)`
+      },
+      this.container
+    )
   }
 
   buildArrows() {
@@ -449,11 +467,8 @@ class Swipe extends Component {
   }
 
   resize() {
-    if (!this.options.advanced.computeWidthResize) {
-      this.computeWidthResize()
-    } else {
-      this.options.advanced.computeWidthResize.bind(this)()
-    }
+    this.computeWidthResize()
+
     this.trigger(EVENTS.RESIZE)
   }
 
@@ -533,6 +548,18 @@ class Swipe extends Component {
     })
 
     setTimeout(() => {
+      if (this.arrows) {
+        if (this.active === 0) {
+          this.arrows.disable('prev')
+          this.arrows.enable('next')
+        } else if (this.active === this.maxActiveCount - 1) {
+          this.arrows.disable('next')
+          this.arrows.enable('prev')
+        } else {
+          this.arrows.enable()
+        }
+      }
+
       if (callback) {
         callback()
       }

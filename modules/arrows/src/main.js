@@ -1,3 +1,4 @@
+/* eslint-disable no-undefined */
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { compose } from '@pluginjs/utils'
@@ -79,25 +80,25 @@ class Arrows extends Component {
   bind() {
     compose(
       bindEvent(this.eventName('click'), `.${this.nextSelector}`, () => {
-        if (!this.is('disabled')) {
+        if (!this.is('nextDisabled')) {
           this.next()
         }
         return false
       }),
       bindEvent(this.eventName('touch'), `.${this.nextSelector}`, () => {
-        if (!this.is('disabled')) {
+        if (!this.is('nextDisabled')) {
           this.next()
         }
         return false
       }),
       bindEvent(this.eventName('click'), `.${this.prevSelector}`, () => {
-        if (!this.is('disabled')) {
+        if (!this.is('prevDisabled')) {
           this.prev()
         }
         return false
       }),
       bindEvent(this.eventName('touch'), `.${this.prevSelector}`, () => {
-        if (!this.is('disabled')) {
+        if (!this.is('prevDisabled')) {
           this.prev()
         }
         return false
@@ -198,20 +199,76 @@ class Arrows extends Component {
     return $arrow.getAttribute(this.options.valueFrom)
   }
 
-  enable() {
-    if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.element)
-      this.leave('disabled')
+  enable(arg) {
+    switch (arg) {
+      case undefined: {
+        if (this.is('prevDisabled') || this.is('nextDisabled')) {
+          removeClass(this.classes.DISABLED, this.$prev)
+          removeClass(this.classes.DISABLED, this.$next)
+          this.leave('prevDisabled')
+          this.leave('nextDisabled')
+        }
+        this.trigger(EVENTS.ENABLE)
+        break
+      }
+
+      case 'prev': {
+        if (this.is('prevDisabled')) {
+          removeClass(this.classes.DISABLED, this.$prev)
+          this.leave('prevDisabled')
+        }
+        this.trigger(EVENTS.PREVENABLE)
+        break
+      }
+
+      case 'next': {
+        if (this.is('nextDisabled')) {
+          removeClass(this.classes.DISABLED, this.$next)
+          this.leave('nextDisabled')
+        }
+        this.trigger(EVENTS.NEXTENABLE)
+        break
+      }
+
+      default:
+        break
     }
-    this.trigger(EVENTS.ENABLE)
   }
 
-  disable() {
-    if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.element)
-      this.enter('disabled')
+  disable(arg) {
+    switch (arg) {
+      case undefined: {
+        if (!this.is('prevDisabled') || !this.is('nextDisabled')) {
+          addClass(this.classes.DISABLED, this.$prev)
+          addClass(this.classes.DISABLED, this.$next)
+          this.enter('prevDisabled')
+          this.enter('nextDisabled')
+        }
+        this.trigger(EVENTS.DISABLE)
+        break
+      }
+
+      case 'prev': {
+        if (!this.is('prevDisabled')) {
+          addClass(this.classes.DISABLED, this.$prev)
+          this.enter('prevDisabled')
+        }
+        this.trigger(EVENTS.PREVDISABLE)
+        break
+      }
+
+      case 'next': {
+        if (!this.is('nextDisabled')) {
+          addClass(this.classes.DISABLED, this.$next)
+          this.enter('nextDisabled')
+        }
+        this.trigger(EVENTS.NEXTDISABLE)
+        break
+      }
+
+      default:
+        break
     }
-    this.trigger(EVENTS.DISABLE)
   }
 
   destroy() {
@@ -230,8 +287,12 @@ class Arrows extends Component {
         removeClass(this.classes.HIDDEN, this.element)
       }
 
-      if (this.is('disabled')) {
-        removeClass(this.classes.DISABLED, this.element)
+      if (this.is('prevDisabled')) {
+        removeClass(this.classes.DISABLED, this.$prev)
+      }
+
+      if (this.is('nextDisabled')) {
+        removeClass(this.classes.DISABLED, this.$next)
       }
 
       this.leave('initialized')
