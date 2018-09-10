@@ -30,7 +30,8 @@ import {
   register,
   stateable,
   styleable,
-  themeable
+  themeable,
+  optionable
 } from '@pluginjs/decorator'
 import Popper from 'popper.js'
 import {
@@ -54,6 +55,7 @@ const childrenMatchSelector = (selector, el) =>
     children
   )(el)
 @themeable()
+@optionable(DEFAULTS, true)
 @styleable(CLASSES)
 @eventable(EVENTS)
 @stateable()

@@ -23,7 +23,6 @@ import {
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
-
 @translateable(TRANSLATIONS)
 @themeable()
 @styleable(CLASSES)
@@ -233,7 +232,6 @@ class ImagePicker extends Component {
       return
     }
     this.value = value
-
     this.$image.setAttribute('src', value.image)
     this.setState('exist')
 
@@ -244,6 +242,7 @@ class ImagePicker extends Component {
 
   val(value) {
     if (typeof value === 'undefined') {
+      console.log(this.options.process.call(this, this.get()))
       return this.options.process.call(this, this.get())
     }
 

@@ -2183,13 +2183,10 @@ class DatePicker extends Component {
     if (typeof value === 'undefined') {
       return
     }
-
     const selectedDate = this.parseDate(value, this.format)
-
     this.privateDate.focusDate = [new Date(selectedDate)]
     this.privateDate.currentDate = [new Date(selectedDate)]
     this.privateDate.selectedDate = [new Date(selectedDate)]
-
     this.updateDate(0)
     this.setValue()
 
@@ -2207,7 +2204,6 @@ class DatePicker extends Component {
     if (typeof value === 'undefined') {
       return this.get()
     }
-
     return this.set(value)
   }
 }
