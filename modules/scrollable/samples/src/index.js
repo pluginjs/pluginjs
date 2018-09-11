@@ -1,3 +1,5 @@
+import '@pluginjs/scrollbar/src/css/scrollbar.scss'
+
 // import sections
 import './sections/vertical/index.js'
 import './sections/horizontal/index.js'

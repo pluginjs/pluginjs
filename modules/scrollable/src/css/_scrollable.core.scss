@@ -1,12 +1,9 @@
 @import "@pluginjs/styles/variables.scss";
-@import "./mixins/scrollbar";
 
 // Vars
 // =====================
 $scrollable: "pj-scrollable" !default;
 $scrollable-bar: "pj-scrollbar" !default;
-$scrollable-bar-bgColor:rgba(206,206,206,0.1);
-$scrollable-bar-handle-hovering-color: $gray;
 
 // Core
 // =====================
@@ -60,15 +57,6 @@ $scrollable-bar-handle-hovering-color: $gray;
     .#{$scrollable-bar}-bar {
       opacity: 1;
       transition: opacity 0;
-    }
-  }
-
-  &.#{$scrollable}-hovering {
-    .#{$scrollable-bar} {
-      background: $scrollable-bar-bgColor;
-      &-handle {
-        background: $scrollable-bar-handle-hovering-color;
-      }
     }
   }
 
