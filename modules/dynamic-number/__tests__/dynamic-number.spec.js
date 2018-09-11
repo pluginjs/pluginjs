@@ -44,26 +44,10 @@ describe('dynamicNumber', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const element = generateHTMLSample()
-      const api = DynamicNumber.of(element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should call start', () => {
       const $element = DynamicNumber.of(generateHTMLSample())
       $element.start()
-    })
-
-    test('should call destroy', () => {
-      const $element = DynamicNumber.of(generateHTMLSample())
-      $element.destroy()
     })
   })
 
@@ -96,6 +80,14 @@ describe('dynamicNumber', () => {
       api = DynamicNumber.of($element)
     })
 
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
+    })
+
     test('should trigger destroy event', () => {
       let called = 0
 
@@ -110,7 +102,7 @@ describe('dynamicNumber', () => {
     })
   })
 
-  describe('start()', () => {
+  describe('enable()', () => {
     let $element
     let api
 
@@ -119,17 +111,60 @@ describe('dynamicNumber', () => {
       api = DynamicNumber.of($element)
     })
 
-    test('should trigger start event', () => {
+    test('should enable the plugin', () => {
+      setTimeout(() => {
+        api.disable()
+        api.enable()
+      }, 1000)
+
+      expect(api.is('disabled')).toBeFalse()
+    })
+
+    test('should trigger enable event', () => {
       let called = 0
 
-      $element.addEventListener('dynamicNumber:start', () => {
-        expect(api.is('start')).toBeTrue()
+      $element.addEventListener('dynamicNumber:enable', () => {
+        expect(api.is('disabled')).toBeFalse()
         called++
       })
 
-      api.start()
+      setTimeout(() => {
+        api.enable()
+      }, 1000)
+      setTimeout(() => {
+        expect(called).toEqual(1)
+      }, 1000)
+    })
+  })
 
-      expect(called).toEqual(1)
+  describe('disable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = DynamicNumber.of($element)
+    })
+
+    test('should disable the plugin', () => {
+      setTimeout(() => {
+        api.disable()
+        expect(api.is('disabled')).toBeTrue()
+      }, 1000)
+    })
+
+    test('should trigger disable event', () => {
+      let called = 0
+
+      $element.addEventListener('dynamicNumber:disable', () => {
+        expect(api.is('disabled')).toBeTrue()
+        called++
+      })
+
+      setTimeout(() => {
+        api.disable()
+        expect(called).toEqual(1)
+      }, 1000)
     })
   })
 })

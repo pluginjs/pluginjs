@@ -79,7 +79,7 @@ describe('Collapse', () => {
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.addEventListener('beforeAfter:destroy', () => {
+      $element.addEventListener('collapse:destroy', () => {
         expect(api.is('initialized')).toBeFalse()
         called++
       })
@@ -111,7 +111,7 @@ describe('Collapse', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.addEventListener('beforeAfter:enable', () => {
+      $element.addEventListener('collapse:enable', () => {
         expect(api.is('disabled')).toBeFalse()
         called++
       })
@@ -142,7 +142,7 @@ describe('Collapse', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.addEventListener('beforeAfter:disable', () => {
+      $element.addEventListener('collapse:disable', () => {
         expect(api.is('disabled')).toBeTrue()
         called++
       })
