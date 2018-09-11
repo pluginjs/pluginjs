@@ -1,33 +1,37 @@
 {
-  "name": "@pluginjs/image-loader",
-  "description": "A flexible modern image-loader js plugin.",
+  "name": "@pluginjs/magnify",
+  "description": "A flexible modern magnify js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "repository": {
-    "url": "git@github.com:pluginjs/plugin.js.git",
-    "type": "git"
-  },
-  "bugs": {
-    "url": "https://github.com/pluginjs/plugin.js/issues"
-  },
-  "version": "0.2.19",
-  "main": "dist/image-loader.umd.js",
-  "module": "dist/image-loader.esm.js",
-  "cjs": "dist/image-loader.cjs.js",
+  "version": "0.0.1",
+  "main": "dist/magnify.umd.js",
+  "module": "dist/magnify.esm.js",
+  "cjs": "dist/magnify.cjs.js",
   "source": "src/main.js",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "css": {
+    "source": "src/css/main.scss",
+    "main": "dist/magnify.css",
+    "min": "dist/magnify.min.css"
+  },
   "scripts": {
     "build": "plugin build",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/is": "*"
+    "@pluginjs/classes": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/image-loader": "*",
+    "@pluginjs/loader": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -39,20 +43,13 @@
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
-  "engines": {
-    "node": ">= 8",
-    "npm": ">= 5"
-  },
-  "category": "media",
+  "category": "ui",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
     "testURL": "http://localhost",
     "testPathIgnorePatterns": [
       "fixtures"
-    ],
-    "testEnvironmentOptions": {
-      "resources": "usable"
-    }
+    ]
   }
 }

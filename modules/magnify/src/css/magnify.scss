@@ -1,0 +1,17 @@
+@import "@pluginjs/styles/variables.scss";
+
+@import "magnify.core";
+
+$magnify-error-color: $color-white;
+$magnify-error-bg: $gray-darkest;
+$magnify-error-padding: 0.5*$spacer $spacer;
+$magnify-error-border-radius: $border-radius-md;
+
+.#{$magnify} {
+  &-error {
+    padding: $magnify-error-padding;
+    color: $magnify-error-color;
+    background: $magnify-error-bg;
+    border-radius: $magnify-error-border-radius;
+  }
+}
