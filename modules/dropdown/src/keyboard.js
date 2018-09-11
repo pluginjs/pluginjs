@@ -57,7 +57,7 @@ class Keyboard {
 
         if (this.instance.is('keyboard')) {
           this.unbind()
-
+          this.instance.$trigger.blur()
           this.instance.leave('keyboard')
         }
       },
@@ -74,7 +74,6 @@ class Keyboard {
       }
 
       instance.hide()
-
       return null
     })
 
@@ -83,9 +82,9 @@ class Keyboard {
         const $highlighted = instance.getHighlightedItem()
         if ($highlighted) {
           instance.selectItem($highlighted)
+          instance.hide()
         }
       }
-
       return null
     })
 

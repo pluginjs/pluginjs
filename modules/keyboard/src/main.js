@@ -126,6 +126,9 @@ class Keyboard {
 
   handler(e) {
     /* eslint consistent-return: "off" */
+    e.preventDefault()
+    e.stopPropagation()
+
     let keyCode = e.keyCode
     const action = e.type === 'keydown' ? 'down' : 'up'
     let prefix = ''
@@ -168,6 +171,7 @@ class Keyboard {
 
   dispatch(toggle, action, key, func) {
     const keys = this.parseKeys(this.processKey(key))
+
     keys.forEach(key => {
       const modifiers = key.modifiers
       const keyCode = key.keyCode
