@@ -44,13 +44,14 @@ describe('DatePicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      // const $element = DatePicker.of(generateHTMLSample())
-      // expect($element.bind()).toBeNil()
+      const $element = DatePicker.of(generateHTMLSample())
+      expect($element.initStatus()).toBeNil()
     })
 
     test('should call destroy', () => {
       const $element = DatePicker.of(generateHTMLSample())
       $element.destroy()
+      expect($element).toEqual($element)
     })
   })
 
@@ -159,6 +160,12 @@ describe('DatePicker', () => {
     test('should get the value', () => {
       expect(api.get()).toBeArray()
     })
+
+    test('should get the value with string', () => {
+      $element = generateHTMLSample('2017/12/01')
+      api = DatePicker.of($element)
+      expect(api.get()).toEqual([new Date('2017/12/01')])
+    })
   })
 
   describe('set()', () => {
@@ -171,33 +178,10 @@ describe('DatePicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set('2017-12-01')
+      expect(api.get()).toBeArray()
     })
   })
 
@@ -211,37 +195,13 @@ describe('DatePicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.val()).toBeObject()
+      expect(api.val()).toBeArray()
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val('2017-12-01')
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
     })
   })
 

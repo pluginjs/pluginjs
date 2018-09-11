@@ -789,6 +789,7 @@ class IconsPicker extends Component {
       removeClass(this.classes.ACTIVE, icon)
     })
     const targetData = $target.__pluginjsData
+    console.log($target)
     const value = `${targetData.prefix}${targetData.title}`
     const { prefix, categories, title, baseClass } = targetData
 
