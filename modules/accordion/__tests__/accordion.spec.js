@@ -40,7 +40,14 @@ describe('Accordion', () => {
     })
   })
 
-  describe('initialized()', () => {
+  describe('api call', () => {
+    test('should not call bind', () => {
+      const dots = Accordion.of(generateHTMLSample())
+      expect(dots.bind()).toBeNil()
+    })
+  })
+
+  describe('initialize()', () => {
     let $element
 
     beforeEach(() => {

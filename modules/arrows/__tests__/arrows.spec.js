@@ -1,17 +1,6 @@
 import Arrows from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
-import { parseHTML } from '@pluginjs/dom'
-
-const getInitialElement = () => parseHTML`
-<div class="pj-arrows">
-  <a class="pj-arrow pj-arrow-prev" href="javascript:void(0);" alt="Previous">
-    <i class="pj-arrow-icon icon-chevron-left"></i>
-  </a>
-  <a class="pj-arrow pj-arrow-next" href="javascript:void(0);" alt="Next">
-    <i class="pj-arrow-icon icon-chevron-right"></i>
-  </a>
-</div>
-`
+import generateHTMLSample from './fixtures/sample'
 
 describe('Arrows', () => {
   describe('Arrows()', () => {
@@ -38,14 +27,14 @@ describe('Arrows', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const arrows = Arrows.of(getInitialElement())
+      const arrows = Arrows.of(generateHTMLSample())
 
       expect(arrows).toBeObject()
       expect(arrows.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const arrows = Arrows.of(getInitialElement())
+      const arrows = Arrows.of(generateHTMLSample())
 
       expect(arrows.options).toBeObject()
     })
@@ -53,7 +42,7 @@ describe('Arrows', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const arrows = Arrows.of(getInitialElement())
+      const arrows = Arrows.of(generateHTMLSample())
       expect(arrows.bind()).toBeNil()
     })
   })
@@ -62,7 +51,7 @@ describe('Arrows', () => {
     let $element
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -82,7 +71,7 @@ describe('Arrows', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
       api = Arrows.of($element)
     })
 
@@ -113,7 +102,7 @@ describe('Arrows', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
       api = Arrows.of($element)
     })
 
@@ -132,8 +121,10 @@ describe('Arrows', () => {
         called++
       })
 
-      api.enable()
-      expect(called).toEqual(1)
+      setTimeout(() => {
+        api.enable()
+        expect(called).toEqual(1)
+      }, 0)
     })
   })
 
@@ -142,14 +133,15 @@ describe('Arrows', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
       api = Arrows.of($element)
     })
 
     test('should disable the plugin', () => {
-      api.disable()
-
-      expect(api.is('disabled')).toBeTrue()
+      setTimeout(() => {
+        api.disable()
+        expect(api.is('disabled')).toBeTrue()
+      })
     })
 
     test('should trigger disable event', () => {
@@ -160,8 +152,10 @@ describe('Arrows', () => {
         called++
       })
 
-      api.disable()
-      expect(called).toEqual(1)
+      setTimeout(() => {
+        api.disable()
+        expect(called).toEqual(1)
+      }, 0)
     })
   })
 })
