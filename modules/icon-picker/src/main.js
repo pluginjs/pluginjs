@@ -93,11 +93,17 @@ class IconsPicker extends Component {
         panel() {
           return `<div class=${that.classes.PANEL}></div>`
         }
+      },
+      onClick: () => {
+        return
+      },
+      onHide: () => {
+        removeClass(this.classes.SEARCHOWNDATA, this.$search)
+        query('input', this.$panel).value = ''
+        this.searching('')
       }
     })
-    children(this.$dropdown.$dropdown)
-      .map(el => el.remove())
-      .map(el => el.remove())
+    children(this.$dropdown.$dropdown).map(el => el.remove())
     this.$dropdown.$dropdown.append(this.$empty)
   }
 
@@ -188,7 +194,7 @@ class IconsPicker extends Component {
   initData() {
     const inputVal = this.element.value.trim()
     if (inputVal !== '') {
-      this.val(inputVal)
+      this.val(inputVal, false)
     }
   }
 
@@ -197,19 +203,6 @@ class IconsPicker extends Component {
       return
     }
     const that = this
-
-    this.$dropdown.options.onClick = () => {
-      return
-    }
-    this.$dropdown.options.onHide = () => {
-      removeClass(this.classes.SEARCHOWNDATA, this.$search)
-      query('input', this.$panel).value = ''
-      this.searching('')
-    }
-
-    this.$selectorPanel.options.onChange = val => {
-      this.togglePackage(val)
-    }
 
     if (this.options.keyboard) {
       const addTabindexToAttr = attr({
@@ -258,20 +251,22 @@ class IconsPicker extends Component {
           addTabindexToAttr
         )
       )
-      compose(
-        bindEvent(this.eventName('focus'), ({ target }) =>
-          bindEvent(
-            this.eventName('keydown'),
-            e => { if (e.keyCode === 13 && e.which === 13) { /* eslint-disable-line */
-              } /* eslint-disable-line */
-            },
-            target
+      if (this.options.manage) {
+        compose(
+          bindEvent(this.eventName('focus'), ({ target }) =>
+            bindEvent(
+              this.eventName('keydown'),
+              e => { if (e.keyCode === 13 && e.which === 13) { /* eslint-disable-line */
+                } /* eslint-disable-line */
+              },
+              target
+            )
+          ),
+          bindEvent(this.eventName('blur'), ({ target }) =>
+            removeEvent(this.eventName('keydown'), target)
           )
-        ),
-        bindEvent(this.eventName('blur'), ({ target }) =>
-          removeEvent(this.eventName('keydown'), target)
-        )
-      )(query(`.${this.classes.MANAGE}`))
+        )(query(`.${this.classes.MANAGE}`, this.$controller))
+      }
 
       compose(
         bindEvent(this.eventName('focus'), ({ target }) => {
@@ -322,7 +317,7 @@ class IconsPicker extends Component {
         bindEvent(this.eventName('blur'), ({ target }) =>
           removeEvent(this.eventName('keydown'), target)
         )
-      )(query(`.${this.classes.SELECTOR}`))
+      )(this.$selector)
     }
 
     bindEvent(
@@ -429,6 +424,7 @@ class IconsPicker extends Component {
           info.name = index
         }
       }
+
       setData('name', info.name, $this)
       setData('title', info.title, $this)
       setData('count', info.count, $this)
@@ -619,7 +615,10 @@ class IconsPicker extends Component {
       offset: '12px,2px',
       value: data[data.length - 1].value,
       icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
-      classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` }
+      classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` },
+      onChange: val => {
+        this.togglePackage(val)
+      }
     })
   }
 
@@ -782,14 +781,13 @@ class IconsPicker extends Component {
     setData('open', false, el)
   }
 
-  select($target) {
+  select($target, trigger = true) {
     this.$icon = $target
 
     this.$icons.forEach(icon => {
       removeClass(this.classes.ACTIVE, icon)
     })
     const targetData = $target.__pluginjsData
-    console.log($target)
     const value = `${targetData.prefix}${targetData.title}`
     const { prefix, categories, title, baseClass } = targetData
 
@@ -811,7 +809,9 @@ class IconsPicker extends Component {
       $target
     )} ${value}"></i>${value}`
 
-    this.trigger(EVENTS.CHANGE, this.$icon)
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, this.val())
+    }
   }
 
   get() {
@@ -825,7 +825,7 @@ class IconsPicker extends Component {
     }
     return null
   }
-  set(value) {
+  set(value, trigger = true) {
     if (typeof value === 'undefined') {
       return
     }
@@ -833,7 +833,7 @@ class IconsPicker extends Component {
       this.$icons.forEach($icon => {
         const data = $icon.__pluginjsData
         if (data.package === value.package && data.title === value.title) {
-          this.select($icon)
+          this.select($icon, trigger)
         }
       })
     }
@@ -843,12 +843,12 @@ class IconsPicker extends Component {
     this.data = data
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 
-    this.set(this.options.parse.call(this, value))
+    this.set(this.options.parse.call(this, value), trigger)
     return null
   }
 

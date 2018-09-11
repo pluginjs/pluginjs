@@ -1,6 +1,20 @@
 import IconPicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
+import dashicons from '@icon/dashicons/manifest.json'
+import entypo from '@icon/entypo/manifest.json'
+import feather from '@icon/feather/manifest.json'
+
+const data = {
+  dashicons,
+  entypo,
+  feather
+}
+
+IconPicker.setData(data)
+
+const value = '{"package":"feather", "title":"anchor"}'
+const OBJ = { package: 'feather', title: 'anchor' }
 
 describe('IconPicker', () => {
   describe('IconPicker()', () => {
@@ -34,16 +48,6 @@ describe('IconPicker', () => {
       const iconPicker = IconPicker.of(generateHTMLSample())
 
       expect(iconPicker.options).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = IconPicker.of($element)
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
     })
   })
 
@@ -104,6 +108,55 @@ describe('IconPicker', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = IconPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = IconPicker.of($element, {
+        onChange(val) {
+          called = true
+
+          expect(val).toBeString()
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = IconPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeString()
+        }
+      })
+
+      api.set(OBJ)
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
@@ -114,6 +167,13 @@ describe('IconPicker', () => {
     })
 
     test('should get the value', () => {
+      expect(api.get()).toBeNil()
+    })
+
+    test('should get the value with string', () => {
+      $element = generateHTMLSample(value)
+      api = IconPicker.of($element)
+
       expect(api.get()).toBeObject()
     })
   })
@@ -128,32 +188,9 @@ describe('IconPicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeNil()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
+      api.set(OBJ)
       expect(api.get()).toBeObject()
     })
   })
@@ -172,32 +209,8 @@ describe('IconPicker', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val(value)
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
       expect(api.get()).toBeObject()
     })
   })
