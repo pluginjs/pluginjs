@@ -547,19 +547,19 @@ class Swipe extends Component {
       duration
     })
 
-    setTimeout(() => {
-      if (this.arrows) {
-        if (this.active === 0) {
-          this.arrows.disable('prev')
-          this.arrows.enable('next')
-        } else if (this.active === this.maxActiveCount - 1) {
-          this.arrows.disable('next')
-          this.arrows.enable('prev')
-        } else {
-          this.arrows.enable()
-        }
+    if (this.arrows) {
+      if (this.active === 0) {
+        this.arrows.disable('prev')
+        this.arrows.enable('next')
+      } else if (this.active === this.maxActiveCount - 1) {
+        this.arrows.disable('next')
+        this.arrows.enable('prev')
+      } else {
+        this.arrows.enable()
       }
+    }
 
+    setTimeout(() => {
       if (callback) {
         callback()
       }

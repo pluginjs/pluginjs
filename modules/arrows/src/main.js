@@ -200,74 +200,44 @@ class Arrows extends Component {
   }
 
   enable(arg) {
-    switch (arg) {
-      case undefined: {
-        if (this.is('prevDisabled') || this.is('nextDisabled')) {
-          removeClass(this.classes.DISABLED, this.$prev)
-          removeClass(this.classes.DISABLED, this.$next)
-          this.leave('prevDisabled')
-          this.leave('nextDisabled')
-        }
-        this.trigger(EVENTS.ENABLE)
-        break
-      }
+    const prev = this.is('prevDisabled') ? arg !== 'next' : false
+    const next = this.is('nextDisabled') ? arg !== 'prev' : false
 
-      case 'prev': {
-        if (this.is('prevDisabled')) {
-          removeClass(this.classes.DISABLED, this.$prev)
-          this.leave('prevDisabled')
-        }
-        this.trigger(EVENTS.PREVENABLE)
-        break
-      }
+    if (prev) {
+      removeClass(this.classes.DISABLED, this.$prev)
+      this.leave('prevDisabled')
+      this.trigger(EVENTS.PREVENABLE)
+    }
 
-      case 'next': {
-        if (this.is('nextDisabled')) {
-          removeClass(this.classes.DISABLED, this.$next)
-          this.leave('nextDisabled')
-        }
-        this.trigger(EVENTS.NEXTENABLE)
-        break
-      }
+    if (next) {
+      removeClass(this.classes.DISABLED, this.$next)
+      this.leave('nextDisabled')
+      this.trigger(EVENTS.NEXTENABLE)
+    }
 
-      default:
-        break
+    if (prev && next) {
+      this.trigger(EVENTS.ENABLE)
     }
   }
 
   disable(arg) {
-    switch (arg) {
-      case undefined: {
-        if (!this.is('prevDisabled') || !this.is('nextDisabled')) {
-          addClass(this.classes.DISABLED, this.$prev)
-          addClass(this.classes.DISABLED, this.$next)
-          this.enter('prevDisabled')
-          this.enter('nextDisabled')
-        }
-        this.trigger(EVENTS.DISABLE)
-        break
-      }
+    const prev = !this.is('prevDisabled') ? arg !== 'next' : false
+    const next = !this.is('nextDisabled') ? arg !== 'prev' : false
 
-      case 'prev': {
-        if (!this.is('prevDisabled')) {
-          addClass(this.classes.DISABLED, this.$prev)
-          this.enter('prevDisabled')
-        }
-        this.trigger(EVENTS.PREVDISABLE)
-        break
-      }
+    if (prev) {
+      addClass(this.classes.DISABLED, this.$prev)
+      this.enter('prevDisabled')
+      this.trigger(EVENTS.PREVDISABLE)
+    }
 
-      case 'next': {
-        if (!this.is('nextDisabled')) {
-          addClass(this.classes.DISABLED, this.$next)
-          this.enter('nextDisabled')
-        }
-        this.trigger(EVENTS.NEXTDISABLE)
-        break
-      }
+    if (next) {
+      addClass(this.classes.DISABLED, this.$next)
+      this.enter('nextDisabled')
+      this.trigger(EVENTS.NEXTDISABLE)
+    }
 
-      default:
-        break
+    if (prev && next) {
+      this.trigger(EVENTS.DISABLE)
     }
   }
 
