@@ -4,7 +4,7 @@ import {
   parseHTML,
   query,
   queryAll,
-  clearData,
+  // clearData,
   wrap,
   children,
   unwrap
@@ -66,10 +66,10 @@ class MapPicker extends Component {
     this.build()
 
     if (!isEmptyObject(this.data)) {
-      this.update()
+      this.update(false)
 
       if (this.data.place && !this.hasLatlng()) {
-        this.set(this.data)
+        this.set(this.data, false)
       }
     }
 
@@ -478,7 +478,7 @@ class MapPicker extends Component {
     return isNumber(this.data.lat) && isNumber(this.data.lng)
   }
 
-  set(data) {
+  set(data, trigger = true) {
     if (isEmptyObject(data)) {
       return
     }
@@ -504,7 +504,7 @@ class MapPicker extends Component {
     }
 
     this.data = data
-    this.update()
+    this.update(trigger)
   }
 
   get() {
@@ -523,7 +523,7 @@ class MapPicker extends Component {
     return false
   }
 
-  update() {
+  update(trigger = true) {
     this.$fillName.textContent = this.data.place
     if (this.hasLatlng()) {
       const latitude = `${this.translate('latitude')}:${this.data.lat.toFixed(
@@ -536,6 +536,10 @@ class MapPicker extends Component {
     }
     this.element.value = this.val()
     addClass(this.classes.WRITE, this.$wrap)
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, this.val())
+    }
   }
 
   clear() {
@@ -584,7 +588,7 @@ class MapPicker extends Component {
       }
       compose(
         unwrap,
-        clearData,
+        // clearData,
         removeClass(this.classes.INPUT)
       )(this.element)
       this.$empty.remove()

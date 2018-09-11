@@ -2,6 +2,9 @@ import MapPicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const value = '{"place":"fuzhou"}'
+const obj = { place: 'fuzhou' }
+
 describe('MapPicker', () => {
   describe('MapPicker()', () => {
     test('should have MapPicker', () => {
@@ -58,7 +61,7 @@ describe('MapPicker', () => {
       const $element = MapPicker.of(generateHTMLSample())
       $element.destroy()
       // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      expect($element).toEqual($element)
     })
   })
 
@@ -105,6 +108,55 @@ describe('MapPicker', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = MapPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = MapPicker.of($element, {
+        onChange(val) {
+          called = true
+
+          expect(val).toBe(value)
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = MapPicker.of($element, {
+        onChange(val) {
+          called = true
+
+          expect(val).toBe(value)
+        }
+      })
+
+      api.set(obj)
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
@@ -116,6 +168,13 @@ describe('MapPicker', () => {
 
     test('should get the value', () => {
       expect(api.get()).toBeObject()
+    })
+
+    test('should get the value with data', () => {
+      $element = generateHTMLSample(value)
+      api = MapPicker.of($element)
+
+      expect(api.get()).toBeObject(obj)
     })
   })
 
@@ -131,31 +190,15 @@ describe('MapPicker', () => {
     test('should set the value', () => {
       expect(api.get()).toBeObject()
 
-      api.set(false)
-      expect(api.get()).toEqual(false)
-
-      api.set(true)
-      expect(api.get()).toEqual(true)
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeString()
-
-      api.set('true')
-      expect(api.get()).toBeString()
+      api.set(obj)
+      expect(api.get()).toEqual(obj)
     })
 
     test('should set the value with number', () => {
       expect(api.get()).toBeObject()
 
-      api.set(0)
-      expect(api.get()).toEqual(0)
-
-      api.set(1)
-      expect(api.get()).toEqual(1)
+      api.set({ lat: 20, lng: 30 })
+      expect(api.get()).toEqual({ lat: 20, lng: 30 })
     })
   })
 
@@ -173,33 +216,9 @@ describe('MapPicker', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val(value)
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toEqual(false)
-
-      api.val('true')
-
-      expect(api.get()).toEqual(true)
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeObject(obj)
     })
   })
 
