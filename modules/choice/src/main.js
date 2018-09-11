@@ -163,6 +163,7 @@ class Choice extends Component {
   }
 
   createToggle() {
+    console.log(this.$wrap)
     this.$toggle = parseHTML(
       template.render(this.options.templates.toggle.call(this), {
         classes: this.classes,
@@ -614,8 +615,7 @@ class Choice extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-
-      this.$wrap.map(el => el.remove)
+      this.$wrap.remove()
       showElement(this.$element)
       this.leave('initialized')
     }
