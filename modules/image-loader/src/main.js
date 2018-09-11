@@ -1,4 +1,4 @@
-import { isString } from '@pluginjs/is'
+import { isString, isPlainObject, isElement } from '@pluginjs/is'
 import SimpleEmitter from '@pluginjs/simple-emitter'
 
 export default class ImageLoader extends SimpleEmitter {
@@ -8,7 +8,7 @@ export default class ImageLoader extends SimpleEmitter {
     this.element = element
     this.img = new Image()
 
-    if (!isString(this.element) && this.element.nodeName === 'PICTURE') {
+    if (isElement(this.element) && this.element.nodeName === 'PICTURE') {
       this.picture = this.element.querySelector('img')
     }
 
@@ -24,7 +24,7 @@ export default class ImageLoader extends SimpleEmitter {
   }
 
   isLoaded() {
-    if (!isString(this.element)) {
+    if (isElement(this.element)) {
       if (this.element.nodeName === 'IMG') {
         return this.element.complete && this.element.naturalWidth
       } else if (this.element.nodeName === 'PICTURE') {
@@ -69,7 +69,7 @@ export default class ImageLoader extends SimpleEmitter {
     this.img.addEventListener('load', this)
     this.img.addEventListener('error', this)
 
-    if (!isString(this.element)) {
+    if (isElement(this.element)) {
       if (this.element.nodeName === 'IMG') {
         this.element.addEventListener('load', this)
         this.element.addEventListener('error', this)
@@ -91,8 +91,14 @@ export default class ImageLoader extends SimpleEmitter {
           this.img.src = src
         }
       }
-    } else {
+    } else if (isString(this.element)) {
       this.img.src = this.element
+    } else if (isPlainObject(this.element)) {
+      for (const prop in this.element) {
+        if (Object.prototype.hasOwnProperty.call(this.element, prop)) {
+          this.img[prop] = this.element[prop]
+        }
+      }
     }
   }
 
@@ -113,7 +119,7 @@ export default class ImageLoader extends SimpleEmitter {
   }
 
   unbind() {
-    if (!isString(this.element)) {
+    if (isElement(this.element)) {
       if (this.element.nodeName === 'IMG') {
         this.element.removeEventListener('load', this)
         this.element.removeEventListener('error', this)

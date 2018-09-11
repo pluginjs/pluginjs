@@ -37,7 +37,8 @@
     "rollup": "*",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "canvas-prebuild": "*"
   },
   "engines": {
     "node": ">= 8",
