@@ -1,5 +1,5 @@
 import TagList from '../src/main'
-// import { defaults as DEFAULTS } from '../src/constant'
+import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
 const data = ['hello', 'world']
@@ -26,10 +26,10 @@ describe('TagList', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const tagList = TagList.of(generateHTMLSample())
+      const tagList = TagList.of(generateHTMLSample(), { data })
 
       expect(tagList).toBeObject()
-      expect(tagList.options).toBeObject()
+      expect(tagList.options).toBeObject({ ...DEFAULTS, data })
     })
 
     test('should have options', () => {
@@ -39,21 +39,10 @@ describe('TagList', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = TagList.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = TagList.of(generateHTMLSample())
-      expect($element.bind()).toBeFalse()
+      expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
@@ -79,7 +68,7 @@ describe('TagList', () => {
       })
 
       const api = TagList.of($element)
-      expect(called).toEqual(0)
+      expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
   })
@@ -107,6 +96,55 @@ describe('TagList', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample('["foo", "bar"]')
+      api = TagList.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = TagList.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('["foo","bar"]')
+        }
+      })
+
+      api.val('["foo", "bar"]')
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = TagList.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe('["foo","bar"]')
+        }
+      })
+
+      api.set(['foo', 'bar'])
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
@@ -117,7 +155,13 @@ describe('TagList', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
+    })
+
+    test('should get the value width string', () => {
+      $element = generateHTMLSample('["foo", "bar"]')
+      api = TagList.of($element)
+      expect(api.get()).toBeArray(['foo', 'bar'])
     })
   })
 
@@ -131,7 +175,7 @@ describe('TagList', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
 
       api.set(data)
       expect(api.get()).toBeArray()
@@ -152,29 +196,9 @@ describe('TagList', () => {
     })
 
     test('should set the value', () => {
-      api.val(false)
+      api.val('["foo", "bar"]')
 
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val(data)
-
-      expect(api.get()).toBeNull()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray(['foo', 'bar'])
     })
   })
 
@@ -183,7 +207,7 @@ describe('TagList', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample(0)
+      $element = generateHTMLSample()
       api = TagList.of($element)
     })
 
@@ -212,7 +236,7 @@ describe('TagList', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample(0)
+      $element = generateHTMLSample()
       api = TagList.of($element)
     })
 
