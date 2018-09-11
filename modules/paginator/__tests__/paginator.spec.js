@@ -1,13 +1,9 @@
 import Paginator from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
-import { parseHTML } from '@pluginjs/dom'
+import generateHTMLSample from './fixtures/sample'
 
-const getInitialElement = () => parseHTML`
-  <div class="example">
-    <ul class="paginator-less"></ul>
-  </div>
-`
-const getNewPaginator = () => Paginator.of(getInitialElement())
+const getNewPaginator = () => Paginator.of(generateHTMLSample())
+
 describe('Paginator', () => {
   describe('Paginator()', () => {
     test('should have Paginator', () => {
@@ -40,7 +36,7 @@ describe('Paginator', () => {
     })
 
     test('should have options', () => {
-      const $element = getInitialElement()
+      const $element = generateHTMLSample()
       const paginator = Paginator.of($element)
 
       expect(paginator.options).toBeObject()
@@ -63,7 +59,7 @@ describe('Paginator', () => {
     let $element
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -84,8 +80,16 @@ describe('Paginator', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
       api = Paginator.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {
@@ -107,7 +111,7 @@ describe('Paginator', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
       api = Paginator.of($element)
     })
 
@@ -136,7 +140,7 @@ describe('Paginator', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
       api = Paginator.of($element)
     })
 

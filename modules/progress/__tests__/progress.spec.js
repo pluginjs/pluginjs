@@ -43,17 +43,6 @@ describe('Progress', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = Progress.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call start', () => {
       const $element = Progress.of(generateHTMLSample())
@@ -128,7 +117,9 @@ describe('Progress', () => {
 
       api.start()
 
-      expect(called).toEqual(1)
+      setTimeout(() => {
+        expect(called).toEqual(1)
+      }, 0)
     })
   })
 
