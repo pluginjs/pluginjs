@@ -194,7 +194,6 @@ class DatePicker extends Component {
     this.initSections()
     // init default Date
     this.initDate()
-
     for (let j = 0; j < this.calendarsNum; j++) {
       this.manageViews(j)
       if (this.isMobile) {

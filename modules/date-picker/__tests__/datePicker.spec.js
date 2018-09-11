@@ -2,6 +2,8 @@ import DatePicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const arrVal = ['2018-09-11']
+
 describe('DatePicker', () => {
   describe('DatePicker()', () => {
     test('should have DatePicker', () => {
@@ -37,17 +39,6 @@ describe('DatePicker', () => {
       const datePicker = DatePicker.of(generateHTMLSample())
 
       expect(datePicker.options).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = DatePicker.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
     })
   })
 
@@ -107,6 +98,55 @@ describe('DatePicker', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = DatePicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = DatePicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeArray()
+        }
+      })
+
+      api.val(arrVal)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = DatePicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeArray()
+        }
+      })
+
+      api.set(arrVal)
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
@@ -117,7 +157,7 @@ describe('DatePicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeArray()
     })
   })
 
