@@ -26,77 +26,16 @@ describe('Popover', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const popover = new Popover(element)
+      const popover = Popover.of(generateHTMLSample())
 
       expect(popover).toBeObject()
       expect(popover.options).toBeObject()
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const popover = new Popover(element)
+      const popover = Popover.of(generateHTMLSample())
 
       expect(popover.options).toBeObject()
-    })
-
-    test('should have classes', () => {
-      const element = document.createElement('div')
-      const popover = new Popover(element)
-
-      expect(popover.classes).toBeObject()
-    })
-  })
-
-  describe('classes', () => {
-    test('should use classes options', () => {
-      const element = document.createElement('div')
-      const popover = new Popover(element, {
-        classes: {
-          container: '{namespace}-wrap',
-          active: '{namespace}-active'
-        }
-      })
-
-      expect(popover.classes.CONTAINER).toEqual('pj-popover-wrap')
-      expect(popover.classes.ACTIVE).toEqual('pj-popover-active')
-    })
-
-    test('should override class namespace', () => {
-      const element = document.createElement('div')
-      const popover = new Popover(element, {
-        classes: {
-          namespace: 'popover',
-          container: '{namespace}-wrap'
-        }
-      })
-
-      expect(popover.classes.NAMESPACE).toEqual('popover')
-      expect(popover.classes.CONTAINER).toEqual('popover-wrap')
-    })
-
-    describe('getClass()', () => {
-      test('should get class with namespace', () => {
-        const element = document.createElement('div')
-        const popover = new Popover(element, {
-          classes: { namespace: 'hello' }
-        })
-
-        expect(popover.getClass('foo')).toEqual('foo')
-        expect(popover.getClass('{namespace}-foo')).toEqual('hello-foo')
-      })
-
-      test('should get class with arg', () => {
-        const element = document.createElement('div')
-        const popover = new Popover(element, {
-          classes: { namespace: 'hello' }
-        })
-
-        expect(popover.getClass('foo', 'arg', 'value')).toEqual('foo')
-        expect(popover.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
-          'hello-value'
-        )
-      })
     })
   })
 
@@ -104,11 +43,6 @@ describe('Popover', () => {
     test('should not call bind', () => {
       const popover = Popover.of(generateHTMLSample())
       expect(popover.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const popover = Popover.of(generateHTMLSample())
-      popover.destroy()
     })
   })
 
@@ -138,6 +72,14 @@ describe('Popover', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = Popover.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {

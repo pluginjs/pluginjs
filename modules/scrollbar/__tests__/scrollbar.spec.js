@@ -45,11 +45,6 @@ describe('Scrollbar', () => {
       const scrollbar = Scrollbar.of(generateHTMLSample())
       expect(scrollbar.bind()).toBeNil()
     })
-
-    test('should call destroy', () => {
-      const scrollbar = Scrollbar.of(generateHTMLSample())
-      scrollbar.destroy()
-    })
   })
 
   describe('initialize()', () => {
@@ -78,6 +73,14 @@ describe('Scrollbar', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = Scrollbar.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {

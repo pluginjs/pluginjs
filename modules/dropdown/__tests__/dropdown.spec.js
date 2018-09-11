@@ -1,4 +1,5 @@
 import Dropdown from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
 describe('Dropdown', () => {
@@ -26,49 +27,34 @@ describe('Dropdown', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const html = generateHTMLSample()
-      const dropdown = Dropdown.of(html.querySelector('.dropdown-example'))
+      const dropdown = Dropdown.of(
+        generateHTMLSample().querySelector('.dropdown-example')
+      )
 
       expect(dropdown).toBeObject()
+      expect(dropdown.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const html = generateHTMLSample()
-      const dropdown = Dropdown.of(html.querySelector('.dropdown-example'))
+      const dropdown = Dropdown.of(
+        generateHTMLSample().querySelector('.dropdown-example')
+      )
 
       expect(dropdown.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const html = generateHTMLSample()
-      const api = Dropdown.of(html.querySelector('.dropdown-example'))
-
-      expect(api).toEqual(api)
-
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const html = generateHTMLSample()
-      const api = Dropdown.of(html.querySelector('.dropdown-example'))
+      const api = Dropdown.of(
+        generateHTMLSample().querySelector('.dropdown-example')
+      )
       expect(api.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const html = generateHTMLSample()
-      const api = Dropdown.of(html.querySelector('.dropdown-example'))
-      api.destroy()
     })
   })
 
   describe('initialize()', () => {
     let $element
-    let api
 
     beforeEach(() => {
       $element = generateHTMLSample().querySelector('.dropdown-example')
@@ -81,9 +67,9 @@ describe('Dropdown', () => {
         called++
       })
 
-      api = Dropdown.of($element)
+      const instance = Dropdown.of($element)
       expect(called).toEqual(1)
-      expect(api.is('initialized')).toBeTrue()
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -96,16 +82,24 @@ describe('Dropdown', () => {
       api = Dropdown.of($element)
     })
 
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
+    })
+
     test('should trigger destroy event', () => {
       let called = 0
 
       $element.addEventListener('dropdown:destroy', () => {
+        expect(api.is('initialized')).toBeFalse()
         called++
       })
 
       api.destroy()
       expect(called).toEqual(1)
-      expect(api.is('initialized')).toBeFalse()
     })
   })
 
@@ -134,7 +128,6 @@ describe('Dropdown', () => {
 
       api.enable()
       expect(called).toEqual(1)
-      expect(api.is('disabled')).toBeFalse()
     })
   })
 
@@ -156,12 +149,12 @@ describe('Dropdown', () => {
       let called = 0
 
       $element.addEventListener('dropdown:disable', () => {
+        expect(api.is('disabled')).toBeTrue()
         called++
       })
 
       api.disable()
       expect(called).toEqual(1)
-      expect(api.is('disabled')).toBeTrue()
     })
   })
 })

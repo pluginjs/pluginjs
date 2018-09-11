@@ -31,11 +31,7 @@ describe('Scrollable', () => {
       const scrollable = Scrollable.of(generateHTMLSample())
 
       expect(scrollable).toBeObject()
-      expect(scrollable.options).toEqual({
-        ...DEFAULTS,
-        containerSelector: '.scrollable > div',
-        contentSelector: 'div > div'
-      })
+      expect(scrollable.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
@@ -49,11 +45,6 @@ describe('Scrollable', () => {
     test('should not call bind', () => {
       const scrollable = Scrollable.of(generateHTMLSample())
       expect(scrollable.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const scrollable = Scrollable.of(generateHTMLSample())
-      scrollable.destroy()
     })
   })
 
@@ -83,6 +74,14 @@ describe('Scrollable', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = Scrollable.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {

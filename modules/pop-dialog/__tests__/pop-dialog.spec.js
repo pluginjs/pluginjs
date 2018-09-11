@@ -26,91 +26,23 @@ describe('PopDialog', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const popDialog = new PopDialog(element)
+      const popDialog = PopDialog.of(generateHTMLSample())
 
       expect(popDialog).toBeObject()
       expect(popDialog.options).toBeObject()
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const popDialog = new PopDialog(element)
+      const popDialog = PopDialog.of(generateHTMLSample())
 
       expect(popDialog.options).toBeObject()
     })
-
-    test('should have classes', () => {
-      const element = document.createElement('div')
-      const popDialog = new PopDialog(element)
-
-      expect(popDialog.classes).toBeObject()
-    })
   })
-
-  // describe('classes', () => {
-  //   test('should use classes options', () => {
-  //     let element = document.createElement('div');
-  //     let popDialog = new PopDialog(element, {
-  //       classes: {
-  //         container: '{namespace}-wrap',
-  //         active: '{namespace}-active'
-  //       }
-  //     });
-
-  //     expect(popDialog.classes.CONTAINER).toEqual('pj-popDialog-wrap');
-  //     expect(popDialog.classes.ACTIVE).toEqual('pj-popDialog-active');
-  //   });
-
-  //   test('should override class namespace', () => {
-  //     let element = document.createElement('div');
-  //     let popDialog = new PopDialog(element, {
-  //       classes: {
-  //         namespace: 'popDialog',
-  //         container: '{namespace}-wrap'
-  //       }
-  //     });
-
-  //     expect(popDialog.classes.NAMESPACE).toEqual('popDialog');
-  //     expect(popDialog.classes.CONTAINER).toEqual('popDialog-wrap');
-  //   });
-
-  //   describe('getClass()', () => {
-  //     test('should get class with namespace', () => {
-  //       let element = document.createElement('div');
-  //       let popDialog = new PopDialog(element, {
-  //         classes: {
-  //           namespace: 'hello'
-  //         }
-  //       });
-
-  //       expect(popDialog.getClass('foo')).toEqual('foo');
-  //       expect(popDialog.getClass('{namespace}-foo')).toEqual('hello-foo');
-  //     });
-
-  //     test('should get class with arg', () => {
-  //       let element = document.createElement('div');
-  //       let popDialog = new PopDialog(element, {
-  //         classes: {
-  //           namespace: 'hello'
-  //         }
-  //       });
-
-  //       expect(popDialog.getClass('foo', 'arg', 'value')).toEqual('foo');
-  //       expect(popDialog.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual('hello-value');
-  //     });
-  //   });
-  // });
 
   describe('api call', () => {
     test('should not call bind', () => {
       const popDialog = PopDialog.of(generateHTMLSample())
       expect(popDialog.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const popDialog = PopDialog.of(generateHTMLSample())
-      popDialog.destroy()
     })
   })
 

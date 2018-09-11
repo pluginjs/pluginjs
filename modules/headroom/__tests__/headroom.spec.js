@@ -16,6 +16,10 @@ describe('Headroom', () => {
       expect(Headroom.events).toBeObject()
     })
 
+    test('should have classes', () => {
+      expect(Headroom.classes).toBeObject()
+    })
+
     test('should have methods', () => {
       expect(Headroom.methods).toBeArray()
     })
@@ -42,13 +46,6 @@ describe('Headroom', () => {
       setTimeout(() => {
         expect(headroom.bind()).toBeNil()
       }, 0)
-    })
-
-    test('should call destroy', () => {
-      const headroom = Headroom.of(generateHTMLSample(), {
-        type: 'pinned'
-      })
-      headroom.destroy()
     })
   })
 

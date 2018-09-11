@@ -45,11 +45,6 @@ describe('NavToSelect', () => {
       const navToSelect = NavToSelect.of(generateHTMLSample())
       expect(navToSelect.bind()).toBeNil()
     })
-
-    test('should call destroy', () => {
-      const navToSelect = NavToSelect.of(generateHTMLSample())
-      navToSelect.destroy()
-    })
   })
 
   describe('initialize()', () => {
@@ -79,6 +74,14 @@ describe('NavToSelect', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = NavToSelect.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {

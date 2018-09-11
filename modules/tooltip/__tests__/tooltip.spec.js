@@ -1,4 +1,5 @@
 import Tooltip from '../src/main'
+import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
 describe('Tooltip', () => {
@@ -26,77 +27,16 @@ describe('Tooltip', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const element = document.createElement('div')
-      const tooltip = new Tooltip(element)
+      const tooltip = Tooltip.of(generateHTMLSample())
 
       expect(tooltip).toBeObject()
-      expect(tooltip.options).toBeObject()
+      expect(tooltip.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const element = document.createElement('div')
-      const tooltip = new Tooltip(element)
+      const tooltip = Tooltip.of(generateHTMLSample())
 
       expect(tooltip.options).toBeObject()
-    })
-
-    test('should have classes', () => {
-      const element = document.createElement('div')
-      const tooltip = new Tooltip(element)
-
-      expect(tooltip.classes).toBeObject()
-    })
-  })
-
-  describe('classes', () => {
-    test('should use classes options', () => {
-      const element = document.createElement('div')
-      const tooltip = new Tooltip(element, {
-        classes: {
-          container: '{namespace}-wrap',
-          active: '{namespace}-active'
-        }
-      })
-
-      expect(tooltip.classes.CONTAINER).toEqual('pj-tooltip-wrap')
-      expect(tooltip.classes.ACTIVE).toEqual('pj-tooltip-active')
-    })
-
-    test('should override class namespace', () => {
-      const element = document.createElement('div')
-      const tooltip = new Tooltip(element, {
-        classes: {
-          namespace: 'tooltip',
-          container: '{namespace}-wrap'
-        }
-      })
-
-      expect(tooltip.classes.NAMESPACE).toEqual('tooltip')
-      expect(tooltip.classes.CONTAINER).toEqual('tooltip-wrap')
-    })
-
-    describe('getClass()', () => {
-      test('should get class with namespace', () => {
-        const element = document.createElement('div')
-        const tooltip = new Tooltip(element, {
-          classes: { namespace: 'hello' }
-        })
-
-        expect(tooltip.getClass('foo')).toEqual('foo')
-        expect(tooltip.getClass('{namespace}-foo')).toEqual('hello-foo')
-      })
-
-      test('should get class with arg', () => {
-        const element = document.createElement('div')
-        const tooltip = new Tooltip(element, {
-          classes: { namespace: 'hello' }
-        })
-
-        expect(tooltip.getClass('foo', 'arg', 'value')).toEqual('foo')
-        expect(tooltip.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
-          'hello-value'
-        )
-      })
     })
   })
 
@@ -104,11 +44,6 @@ describe('Tooltip', () => {
     test('should not call bind', () => {
       const tooltip = Tooltip.of(generateHTMLSample())
       expect(tooltip.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const tooltip = Tooltip.of(generateHTMLSample())
-      tooltip.destroy()
     })
   })
 
@@ -138,6 +73,14 @@ describe('Tooltip', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = Tooltip.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {

@@ -40,6 +40,13 @@ describe('Tabs', () => {
     })
   })
 
+  describe('api call', () => {
+    test('should not call bind', () => {
+      const tabs = Tabs.of(generateHTMLSample())
+      expect(tabs.bind()).toBeNil()
+    })
+  })
+
   describe('initialize()', () => {
     let element
 
@@ -53,9 +60,7 @@ describe('Tabs', () => {
       element.addEventListener('tabs:ready', () => {
         called++
       })
-
       const tabs = Tabs.of(element)
-
       expect(called).toEqual(1)
       expect(tabs.is('initialized')).toBeTrue()
     })
@@ -126,6 +131,7 @@ describe('Tabs', () => {
 
     test('should disable the plugin', () => {
       tabs.disabled()
+
       expect(tabs.is('disabled')).toBeTrue()
     })
 
@@ -138,7 +144,6 @@ describe('Tabs', () => {
       })
 
       tabs.disabled()
-
       expect(called).toEqual(1)
     })
   })

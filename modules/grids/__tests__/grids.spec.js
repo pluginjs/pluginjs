@@ -11,12 +11,15 @@ describe('Grids', () => {
     test('should have defaults', () => {
       expect(Grids.defaults).toBeObject()
     })
+
     test('should have events', () => {
       expect(Grids.events).toBeObject()
     })
+
     test('should have classes', () => {
       expect(Grids.classes).toBeObject()
     })
+
     test('should have methods', () => {
       expect(Grids.methods).toBeArray()
     })
@@ -41,11 +44,6 @@ describe('Grids', () => {
     test('should not call bind', () => {
       const grids = Grids.of(generateHTMLSample())
       expect(grids.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const grids = Grids.of(generateHTMLSample())
-      grids.destroy()
     })
   })
 
@@ -76,6 +74,14 @@ describe('Grids', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = Grids.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {

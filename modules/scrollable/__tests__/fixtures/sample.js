@@ -1,7 +1,7 @@
 import { parseHTML } from '@pluginjs/dom'
 
 export default () => parseHTML`
-<div class="scrollable" data-direction="vertical" data-content-selector="div > div" data-container-selector=".scrollable > div">
+<div class="scrollable" data-direction="vertical">
   <div>
     <div>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada at metus eget sodales. Aenean tincidunt mi sed orci sollicitudin placerat. Nullam tempus nisl augue, sed pulvinar eros lacinia vitae. Mauris vehicula velit a nibh dapibus vehicula. Fusce dui tellus, tincidunt sit amet porttitor efficitur, aliquam ac arcu. Cras non tempor dui. Nunc a dolor sit amet dolor bibendum auctor a eu ipsum.</p>

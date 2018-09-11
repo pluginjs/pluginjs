@@ -40,168 +40,12 @@ describe('Hotspots', () => {
 
       expect(hotspots.options).toBeObject()
     })
-
-    test('should have classes', () => {
-      const hotspots = Hotspots.of(generateHTMLSample())
-
-      expect(hotspots.classes).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = Hotspots.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
-  describe('classes', () => {
-    test('should use classes options', () => {
-      const hotspots = Hotspots.of(generateHTMLSample(), {
-        classes: {
-          container: '{namespace}-wrap',
-          active: '{namespace}-active'
-        }
-      })
-
-      expect(hotspots.classes.CONTAINER).toEqual('pj-hotspot-wrap')
-      expect(hotspots.classes.ACTIVE).toEqual('pj-hotspot-active')
-    })
-
-    test('should override class namespace', () => {
-      const hotspots = Hotspots.of(generateHTMLSample(), {
-        classes: {
-          namespace: 'hotspots',
-          container: '{namespace}-wrap'
-        }
-      })
-
-      expect(hotspots.classes.NAMESPACE).toEqual('hotspots')
-      expect(hotspots.classes.CONTAINER).toEqual('hotspots-wrap')
-    })
-
-    describe('getClass()', () => {
-      test('should get class with namespace', () => {
-        const hotspots = Hotspots.of(generateHTMLSample(), {
-          classes: { namespace: 'hello' }
-        })
-
-        expect(hotspots.getClass('foo')).toEqual('foo')
-        expect(hotspots.getClass('{namespace}-foo')).toEqual('hello-foo')
-      })
-
-      test('should get class with arg', () => {
-        const hotspots = Hotspots.of(generateHTMLSample(), {
-          classes: { namespace: 'hello' }
-        })
-
-        expect(hotspots.getClass('foo', 'arg', 'value')).toEqual('foo')
-        expect(hotspots.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
-          'hello-value'
-        )
-      })
-    })
-  })
-
-  describe('theme', () => {
-    describe('getThemeClass()', () => {
-      test('should get theme classes with default namespace', () => {
-        const hotspots = Hotspots.of(generateHTMLSample(), {
-          theme: null,
-          classes: { theme: '{namespace}--{theme}' }
-        })
-
-        expect(hotspots.getThemeClass()).toEqual('')
-        expect(hotspots.getThemeClass('bar')).toEqual('pj-hotspot--bar')
-        expect(hotspots.getThemeClass('foo bar')).toEqual(
-          'pj-hotspot--foo pj-hotspot--bar'
-        )
-      })
-
-      test('should get theme classes with namespace override', () => {
-        const hotspots = Hotspots.of(generateHTMLSample(), {
-          theme: null,
-          classes: {
-            namespace: 'hello',
-            theme: '{namespace}--{theme}'
-          }
-        })
-
-        expect(hotspots.getThemeClass()).toEqual('')
-        expect(hotspots.getThemeClass('bar')).toEqual('hello--bar')
-        expect(hotspots.getThemeClass('foo bar')).toEqual(
-          'hello--foo hello--bar'
-        )
-      })
-
-      test('should get theme classes correctly when no classes.THEME defined', () => {
-        const hotspots = Hotspots.of(generateHTMLSample(), {
-          theme: '{namespace}--foo'
-        })
-
-        // set to null for test
-        hotspots.classes.THEME = null
-
-        expect(hotspots.getThemeClass()).toEqual('pj-hotspot--foo')
-        expect(hotspots.getThemeClass('bar')).toEqual('bar')
-        expect(hotspots.getThemeClass('{namespace}--bar')).toEqual(
-          'pj-hotspot--bar'
-        )
-        expect(hotspots.getThemeClass('foo bar')).toEqual('foo bar')
-        expect(
-          hotspots.getThemeClass('{namespace}--foo {namespace}--bar')
-        ).toEqual('pj-hotspot--foo pj-hotspot--bar')
-      })
-    })
-
-    test('should add theme class after initialize and remove after destroy', () => {
-      const hotspots = Hotspots.of(generateHTMLSample(), {
-        theme: 'foo',
-        classes: { theme: '{namespace}--{theme}' },
-        data: ['hello world']
-      })
-      expect(hotspots.getClass('pj-hotspot--foo')).toEqual('pj-hotspot--foo')
-      hotspots.destroy()
-      expect(hotspots.getClass('pj-hotspot--foo')).toEqual('pj-hotspot--foo')
-    })
-
-    // test('should works with more than one theme', () => {
-    //   const hotspots = Hotspots.of(generateHTMLSample(), {
-    //     theme: 'far bar',
-    //     classes: { theme: '{namespace}--{theme}' },
-    //     data: ['hello world']
-    //   })
-
-    // expect(
-    //   $element.find('.pj-hotspot').hasClass('pj-hotspot--foo')
-    // ).toBeTrue()
-    // expect(
-    //   $element.find('.pj-hotspot').hasClass('pj-hotspot--bar')
-    // ).toBeTrue()
-
-    // hotspots.destroy()
-    // expect(
-    //   $element.find('.pj-hotspot').hasClass('pj-hotspot--foo')
-    // ).toBeFalse()
-    // expect(
-    //   $element.find('.pj-hotspot').hasClass('pj-hotspot--bar')
-    // ).toBeFalse()
-    // })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = Hotspots.of(generateHTMLSample())
       expect($element.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const $element = Hotspots.of(generateHTMLSample())
-      $element.destroy()
     })
   })
 
@@ -232,6 +76,14 @@ describe('Hotspots', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = Hotspots.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
     })
 
     test('should trigger destroy event', () => {
