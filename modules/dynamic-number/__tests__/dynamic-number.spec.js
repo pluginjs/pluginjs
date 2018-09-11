@@ -115,7 +115,7 @@ describe('dynamicNumber', () => {
       setTimeout(() => {
         api.disable()
         api.enable()
-      }, 1000)
+      }, 0)
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -130,10 +130,10 @@ describe('dynamicNumber', () => {
 
       setTimeout(() => {
         api.enable()
-      }, 1000)
+      }, 0)
       setTimeout(() => {
         expect(called).toEqual(1)
-      }, 1000)
+      }, 0)
     })
   })
 
@@ -150,7 +150,7 @@ describe('dynamicNumber', () => {
       setTimeout(() => {
         api.disable()
         expect(api.is('disabled')).toBeTrue()
-      }, 1000)
+      }, 0)
     })
 
     test('should trigger disable event', () => {
@@ -164,7 +164,7 @@ describe('dynamicNumber', () => {
       setTimeout(() => {
         api.disable()
         expect(called).toEqual(1)
-      }, 1000)
+      }, 0)
     })
   })
 })

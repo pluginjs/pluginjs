@@ -100,7 +100,7 @@ describe('Countdown', () => {
 
       setTimeout(() => {
         expect(called).toEqual(1)
-      }, 1000)
+      }, 0)
     })
   })
 
@@ -117,7 +117,7 @@ describe('Countdown', () => {
       setTimeout(() => {
         api.disable()
         api.enable()
-      }, 1000)
+      }, 0)
 
       expect(api.is('disabled')).toBeFalse()
     })
@@ -133,7 +133,7 @@ describe('Countdown', () => {
       api.enable()
       setTimeout(() => {
         expect(called).toEqual(1)
-      }, 1000)
+      }, 0)
     })
   })
 
@@ -163,7 +163,7 @@ describe('Countdown', () => {
       api.disable()
       setTimeout(() => {
         expect(called).toEqual(1)
-      }, 1000)
+      }, 0)
     })
   })
 })

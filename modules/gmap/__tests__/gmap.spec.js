@@ -1,11 +1,8 @@
 import Gmap from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
-import { parseHTML } from '@pluginjs/dom'
+import generateHTMLSample from './fixtures/sample'
 
-const getInitialElement = () => parseHTML`
-  <div class="gmap"></div>
-`
-const getNewGmap = () => Gmap.of(getInitialElement())
+const getNewGmap = () => Gmap.of(generateHTMLSample())
 describe('Gmap', () => {
   describe('Gmap()', () => {
     test('should have Gmap', () => {
@@ -38,7 +35,7 @@ describe('Gmap', () => {
     })
 
     test('should have options', () => {
-      const gmap = Gmap.of(getInitialElement(), {
+      const gmap = Gmap.of(generateHTMLSample(), {
         address: 'china',
         content: 'Fu zhou'
       })
@@ -77,7 +74,7 @@ describe('Gmap', () => {
     let $element
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -100,8 +97,18 @@ describe('Gmap', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
-      api = getNewGmap()
+      $element = generateHTMLSample()
+      api = Gmap.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      setTimeout(() => {
+        expect(api.is('initialized')).toBeTrue()
+
+        api.destroy()
+
+        expect(api.is('initialized')).toBeFalse()
+      }, 0)
     })
 
     test('should trigger destroy event', () => {
@@ -125,8 +132,8 @@ describe('Gmap', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
-      api = getNewGmap()
+      $element = generateHTMLSample()
+      api = Gmap.of($element)
     })
 
     test('should enable the plugin', () => {
@@ -158,8 +165,8 @@ describe('Gmap', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
-      api = getNewGmap()
+      $element = generateHTMLSample()
+      api = Gmap.of($element)
     })
 
     test('should disable the plugin', () => {
