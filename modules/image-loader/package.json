@@ -30,7 +30,6 @@
     "@pluginjs/is": "*"
   },
   "devDependencies": {
-    "canvas-prebuilt": "^1.6.5-prerelease.1",
     "@pluginjs/cli": "*",
     "babel-jest": "*",
     "jest": "*",
