@@ -28,6 +28,7 @@ describe('Collapse', () => {
   describe('constructor()', () => {
     test('should work with element', () => {
       const collapse = Collapse.of(generateHTMLSample())
+
       expect(collapse).toBeObject()
       expect(collapse.options).toEqual(DEFAULTS)
     })
@@ -37,145 +38,12 @@ describe('Collapse', () => {
 
       expect(collapse.options).toBeObject()
     })
-
-    test('should have classes', () => {
-      const collapse = Collapse.of(generateHTMLSample())
-
-      expect(collapse.classes).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = Collapse.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
-  describe('classes', () => {
-    test('should use classes options', () => {
-      const collapse = Collapse.of(generateHTMLSample(), {
-        classes: {
-          container: '{namespace}-wrap',
-          active: '{namespace}-active'
-        }
-      })
-
-      expect(collapse.classes.CONTAINER).toEqual('pj-collapse-wrap')
-      expect(collapse.classes.ACTIVE).toEqual('pj-collapse-active')
-    })
-
-    test('should override class namespace', () => {
-      const collapse = Collapse.of(generateHTMLSample(), {
-        classes: {
-          namespace: 'collapse',
-          container: '{namespace}-wrap'
-        }
-      })
-
-      expect(collapse.classes.NAMESPACE).toEqual('collapse')
-      expect(collapse.classes.CONTAINER).toEqual('collapse-wrap')
-    })
-
-    describe('getClass()', () => {
-      test('should get class with namespace', () => {
-        const collapse = Collapse.of(generateHTMLSample(), {
-          classes: { namespace: 'hello' }
-        })
-
-        expect(collapse.getClass('foo')).toEqual('foo')
-        expect(collapse.getClass('{namespace}-foo')).toEqual('hello-foo')
-      })
-
-      test('should get class with arg', () => {
-        const collapse = Collapse.of(generateHTMLSample(), {
-          classes: { namespace: 'hello' }
-        })
-
-        expect(collapse.getClass('foo', 'arg', 'value')).toEqual('foo')
-        expect(collapse.getClass('{namespace}-{arg}', 'arg', 'value')).toEqual(
-          'hello-value'
-        )
-      })
-    })
-  })
-
-  describe('theme', () => {
-    describe('getThemeClass()', () => {
-      test('should get theme classes with default namespace', () => {
-        const collapse = Collapse.of(generateHTMLSample(), {
-          theme: null,
-          classes: { theme: '{namespace}--{theme}' }
-        })
-
-        expect(collapse.getThemeClass()).toEqual('')
-        expect(collapse.getThemeClass('bar')).toEqual('pj-collapse--bar')
-        expect(collapse.getThemeClass('foo bar')).toEqual(
-          'pj-collapse--foo pj-collapse--bar'
-        )
-      })
-
-      test('should get theme classes with namespace override', () => {
-        const collapse = Collapse.of(generateHTMLSample(), {
-          theme: null,
-          classes: {
-            namespace: 'hello',
-            theme: '{namespace}--{theme}'
-          }
-        })
-
-        expect(collapse.getThemeClass()).toEqual('')
-        expect(collapse.getThemeClass('bar')).toEqual('hello--bar')
-        expect(collapse.getThemeClass('foo bar')).toEqual(
-          'hello--foo hello--bar'
-        )
-      })
-
-      test('should get theme classes correctly when no classes.THEME defined', () => {
-        const collapse = Collapse.of(generateHTMLSample(), {
-          theme: '{namespace}--foo'
-        })
-
-        // set to null for test
-        collapse.classes.THEME = null
-
-        expect(collapse.getThemeClass()).toEqual('pj-collapse--foo')
-        expect(collapse.getThemeClass('bar')).toEqual('bar')
-        expect(collapse.getThemeClass('{namespace}--bar')).toEqual(
-          'pj-collapse--bar'
-        )
-        expect(collapse.getThemeClass('foo bar')).toEqual('foo bar')
-        expect(
-          collapse.getThemeClass('{namespace}--foo {namespace}--bar')
-        ).toEqual('pj-collapse--foo pj-collapse--bar')
-      })
-    })
-
-    test('should add theme class after initialize and remove after destroy', () => {
-      const collapse = Collapse.of(generateHTMLSample(), {
-        theme: 'foo',
-        classes: { theme: '{namespace}--{theme}' }
-      })
-
-      expect(collapse.getThemeClass()).toEqual('pj-collapse--foo')
-      collapse.destroy()
-      expect(collapse.getThemeClass()).toEqual('pj-collapse--foo')
-    })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = Collapse.of(generateHTMLSample())
       expect($element.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const $element = Collapse.of(generateHTMLSample())
-      $element.destroy()
     })
   })
 
@@ -196,6 +64,94 @@ describe('Collapse', () => {
       const instance = Collapse.of($element)
       expect(called).toEqual(1)
       expect(instance.is('initialized')).toBeTrue()
+    })
+  })
+
+  describe('destroy()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = Collapse.of($element)
+    })
+
+    test('should trigger destroy event', () => {
+      let called = 0
+
+      $element.addEventListener('beforeAfter:destroy', () => {
+        expect(api.is('initialized')).toBeFalse()
+        called++
+      })
+
+      api.destroy()
+
+      setTimeout(() => {
+        expect(called).toEqual(1)
+      }, 1000)
+    })
+  })
+
+  describe('enable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = Collapse.of($element)
+    })
+
+    test('should enable the plugin', () => {
+      api.disable()
+      api.enable()
+
+      expect(api.is('disabled')).toBeFalse()
+    })
+
+    test('should trigger enable event', () => {
+      let called = 0
+
+      $element.addEventListener('beforeAfter:enable', () => {
+        expect(api.is('disabled')).toBeFalse()
+        called++
+      })
+
+      api.enable()
+
+      setTimeout(() => {
+        expect(called).toEqual(1)
+      }, 1000)
+    })
+  })
+
+  describe('disable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = Collapse.of($element)
+    })
+
+    test('should disable the plugin', () => {
+      api.disable()
+
+      expect(api.is('disabled')).toBeTrue()
+    })
+
+    test('should trigger disable event', () => {
+      let called = 0
+
+      $element.addEventListener('beforeAfter:disable', () => {
+        expect(api.is('disabled')).toBeTrue()
+        called++
+      })
+
+      api.disable()
+
+      setTimeout(() => {
+        expect(called).toEqual(1)
+      }, 1000)
     })
   })
 })
