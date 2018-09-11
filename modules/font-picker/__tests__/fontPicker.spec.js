@@ -28,7 +28,7 @@ describe('FontPicker', () => {
   describe('constructor()', () => {
     test('should work with element', () => {
       const fontPicker = FontPicker.of(generateHTMLSample())
-
+      console.log(fontPicker)
       expect(fontPicker).toBeObject()
       expect(fontPicker.options).toEqual(DEFAULTS)
     })

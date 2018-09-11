@@ -158,11 +158,14 @@ class FontPicker extends Component {
     if (this.options.keyboard) {
       this.$fontPicker.setAttribute('tabindex', 0)
       query('input', this.$search).setAttribute('tabindex', 0)
-      query(`.${this.classes.PACKAGETITLE}`, this.$panel).setAttribute(
-        'tabindex',
-        0
+      queryAll(`.${this.classes.PACKAGETITLE}`, this.$packagesWrap).forEach(
+        el => {
+          el.setAttribute('tabindex', 0)
+        }
       )
-      query(`.${this.classes.FONT}`).setAttribute('tabindex', 0)
+      queryAll(`.${this.classes.FONT}`).forEach(el => {
+        el.setAttribute('tabindex', 0)
+      })
       query(`.${this.classes.MANAGE}`, this.$controller).setAttribute(
         'tabindex',
         0
@@ -395,7 +398,6 @@ class FontPicker extends Component {
             return
           }
           // let $this = $(this);
-          console.log(that.$searchList)
           that.KEYBOARD.init(that.$searchList)
         },
         query('input', this.$search)

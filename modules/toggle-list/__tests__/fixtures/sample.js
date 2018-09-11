@@ -1,5 +1,8 @@
 import { parseHTML } from '@pluginjs/dom'
 
-export default () => parseHTML`
-    <input class="example-input" type="text" value='[{"title": "Interfaces","checked":false},{"title":"UI Design", "checked": true}]'>
-`
+export default value => {
+  if (typeof value !== 'undefined') {
+    return parseHTML`<input class="example-input" type="text" value='${value}'>`
+  }
+  return parseHTML`<input class="example-input" type="text">`
+}

@@ -4,28 +4,9 @@ import { defaults as DEFAULTS } from '../src/constant'
 import { deepMerge } from '@pluginjs/utils'
 import generateHTMLSample from './fixtures/sample'
 
-const data = [
-  {
-    title: 'Interfaces',
-    checked: true
-  },
-  {
-    title: 'UI Design',
-    checked: false
-  },
-  {
-    title: 'Web Design',
-    checked: false
-  },
-  {
-    title: 'Typography',
-    checked: true
-  },
-  {
-    title: 'Landing',
-    checked: false
-  }
-]
+const value = '[{"label":"Interfaces","value":"interface","checked":true}]'
+const arrVal = [{ label: 'Interfaces', value: 'interface', checked: true }]
+
 describe('ToggleList', () => {
   describe('ToggleList()', () => {
     test('should have ToggleList', () => {
@@ -128,6 +109,54 @@ describe('ToggleList', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = ToggleList.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = ToggleList.of($element, {
+        onChange(value) {
+          called = true
+          expect(value).toBeArray(value)
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = ToggleList.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeArray(arrVal)
+        }
+      })
+
+      api.set(arrVal)
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
@@ -138,7 +167,10 @@ describe('ToggleList', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeArray()
+      $element = generateHTMLSample(value)
+      api = ToggleList.of($element)
+
+      expect(api.get()).toEqual(arrVal)
     })
   })
 
@@ -154,8 +186,8 @@ describe('ToggleList', () => {
     test('should set the value', () => {
       expect(api.get()).toBeArray()
 
-      api.set(data)
-      expect(api.get()).toBeArray()
+      api.set(arrVal)
+      expect(api.get()).toBeArray(arrVal)
     })
   })
 
@@ -173,9 +205,9 @@ describe('ToggleList', () => {
     })
 
     test('should set the value', () => {
-      api.val(data.toString())
+      api.val(value)
 
-      expect(api.get()).toBeArray(data)
+      expect(api.get()).toBeArray(arrVal)
     })
   })
 

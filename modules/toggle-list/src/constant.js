@@ -7,7 +7,8 @@ export const namespace = 'toggleList'
 
 export const events = deepMerge(List.events, {
   CHECK: 'check',
-  UNCHECK: 'uncheck'
+  UNCHECK: 'uncheck',
+  CHANGE: 'change'
 })
 
 export const classes = deepMerge(List.classes, {

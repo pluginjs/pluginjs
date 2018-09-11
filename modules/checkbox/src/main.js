@@ -200,7 +200,6 @@ class Checkbox extends Component {
     if (typeof value === 'undefined') {
       return this.get()
     }
-
     return this.set(value)
   }
 
