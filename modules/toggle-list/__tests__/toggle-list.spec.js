@@ -129,9 +129,9 @@ describe('ToggleList', () => {
       let called = false
       $element = generateHTMLSample()
       api = ToggleList.of($element, {
-        onChange(value) {
+        onChange(val) {
           called = true
-          expect(value).toBeArray(value)
+          expect(val).toBeString(value)
         }
       })
 
@@ -144,10 +144,10 @@ describe('ToggleList', () => {
       let called = false
       $element = generateHTMLSample()
       api = ToggleList.of($element, {
-        onChange(value) {
+        onChange(val) {
           called = true
 
-          expect(value).toBeArray(arrVal)
+          expect(val).toBeString(value)
         }
       })
 

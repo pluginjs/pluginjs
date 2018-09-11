@@ -26,6 +26,12 @@ const data = [
     value: 'landing'
   }
 ]
+const value =
+  '[{"label":"Interfaces","value":"interface"},{"label":"Typography","value":"typography"}]'
+const arrVal = [
+  { label: 'Interfaces', value: 'interface' },
+  { label: 'Typography', value: 'typography' }
+]
 
 describe('ItemList', () => {
   describe('ItemList()', () => {
@@ -92,6 +98,108 @@ describe('ItemList', () => {
       const api = ItemList.of($element)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
+    })
+  })
+
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = ItemList.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = ItemList.of($element, {
+        onChange(val) {
+          called = true
+          expect(val).toBeString(value)
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = ItemList.of($element, {
+        onChange(val) {
+          called = true
+
+          expect(val).toBeString(value)
+        }
+      })
+
+      api.set(arrVal)
+
+      expect(called).toBeTrue()
+    })
+  })
+
+  describe('get()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = ItemList.of($element)
+    })
+
+    test('should get the value', () => {
+      $element = generateHTMLSample(value)
+      api = ItemList.of($element)
+
+      expect(api.get()).toEqual(arrVal)
+    })
+  })
+
+  describe('set()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = ItemList.of($element)
+    })
+
+    test('should set the value', () => {
+      expect(api.get()).toBeArray()
+
+      api.set(arrVal)
+      expect(api.get()).toBeArray(arrVal)
+    })
+  })
+
+  describe('val()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = ItemList.of($element)
+    })
+
+    test('should get the value', () => {
+      expect(api.val()).toBeString()
+    })
+
+    test('should set the value', () => {
+      api.val(value)
+
+      expect(api.get()).toBeArray(arrVal)
     })
   })
 
