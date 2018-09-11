@@ -6,46 +6,48 @@
 $navToSelect: "pj-navToSelect";
 $navToSelect-font-family: $font-family-base;
 $navToSelect-font-size: $font-size-sm;
+$navToSelect-icon-font-family: plugin-icons;
 
 $navToSelect-width: 200px;
-
-$navToSelect-color: $gray-darkest;
+$navToSelect-height: 32px;
 
 $navToSelect-padding-left: 10px;
+$navToSelect-padding-right: 30px;
 
-$navToSelect-height:34px;
+$navToSelect-color: $gray-darkest;
+$navToSelect-border-color: $gray-border;
+$navToSelect-border-radius: $border-radius-base;
 
-$navToSelect-input-outline: $color-primary;
-$navToSelect-input-font-family: plugin-icons;
+$navToSelect-focus-border-color: $color-primary;
 
 .#{$navToSelect} {
-  width: $navToSelect-width;
-  height: $navToSelect-height;
+  padding-right: $navToSelect-padding-right;
   padding-left: $navToSelect-padding-left;
   font-family: $navToSelect-font-family;
   font-size: $navToSelect-font-size;
-  color: $navToSelect-color;
-  background: none;
-  border: 1px solid $gray-border;
+  border: 1px solid $navToSelect-border-color;
+  border-radius: $navToSelect-border-radius;
   outline: none;
-  -moz-appearance:none;/* stylelint-disable-line */
-  -webkit-appearance:none; /* stylelint-disable-line */
-  appearance:none;
+  -webkit-appearance: none; /* stylelint-disable-line */
+  appearance:none;/* stylelint-disable-line */
 
   &:focus {
-    border-color: $navToSelect-input-outline;
+    border-color: $navToSelect-focus-border-color;
   }
 
-  &-input {
+  &-wrap {
+    position: relative;
+    width: $navToSelect-width;
+    height: $navToSelect-height;
+
     &::before {
+      position: absolute;
       top: 50%;
-      right: 12px;
-      font-family: $navToSelect-input-font-family;
+      right: $navToSelect-padding-left;
+      font-family: $navToSelect-icon-font-family;
       font-style: normal;
-      vertical-align: top;
-      content: "\eae1";
+      content: "\ea2c";
       transform: translateY(-50%);
     }
   }
-
 }

@@ -11,9 +11,10 @@ export const events = {
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
+  ORIGINAL: '{namespace}-original',
   SELECT: '{namespace}',
   THEME: '{namespace}--{theme}',
-  INPUT: '{namespace}-input'
+  WRAP: '{namespace}-wrap'
 }
 
 export const methods = [
@@ -35,7 +36,8 @@ export const defaults = {
   indentString: '&ndash;',
   indentSpace: true,
   placeholder: 'Navigate to...',
-  useOptgroup: true,
+  useOptgroup: true, // use under max level 2
+  multiple: false,
   itemFilter() {
     return true
   },

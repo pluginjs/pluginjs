@@ -1,4 +1,5 @@
 import Component from '@pluginjs/component'
+import { isUndefined } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
@@ -47,9 +48,11 @@ class NavToSelect extends Component {
   initialize() {
     const items = this.getItems()
 
+    addClass(this.classes.ORIGINAL, this.element)
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
+
     this.build(items)
 
     this.bind()
@@ -75,50 +78,65 @@ class NavToSelect extends Component {
       document.body
     )
   }
+
   unbind() {
     removeEvent(this.eventName(), this.select)
     removeEvent(this.eventName(), document.body)
   }
+
   build(items) {
-    this.selectInput = parseHTML(`<div class=${this.classes.INPUT} />`)
-    this.select = parseHTML(`<select class=${this.classes.SELECT} />`)
+    this.wrap = parseHTML(`<div class=${this.classes.WRAP} />`)
+    this.select = parseHTML(
+      `<select class=${this.classes.SELECT} ${
+        this.options.multiple ? 'multiple' : ''
+      }/>`
+    )
     this.select.innerHTML = this.buildOptions(items, 1)
-    this.selectin = this.select.selectedIndex
+
+    wrap(this.wrap, this.select)
+
     if (this.options.prependTo === null) {
-      insertAfter(this.select, this.element)
-      wrap(this.selectInput, this.select)
+      insertAfter(this.wrap, this.element)
     } else {
       const prependTo =
         typeof this.options.prependTo === 'string'
           ? this.options.prependTo
           : query(this.options.prependTo)
-      insertBefore(this.select, prependTo)
+
+      insertBefore(this.wrap, prependTo)
     }
     this.enter('builded')
   }
 
   buildOption(item, level) {
-    let INDENT = new Array(level).join(this.options.indentString)
+    let indent = new Array(level).join(this.options.indentString)
+
     if (level !== 1 && this.options.indentSpace) {
-      INDENT += '&nbsp '
+      indent += '&nbsp '
     }
-    return `<option value="${item.value}"${
-      item.linkable === false ? ' data-linkable="false"' : ''
-    }${item.actived === true ? ' selected="selected"' : ''} ${
-      item.hidden === true ? 'hidden' : ''
-    }>${INDENT}${item.label}</option>`
+
+    return `<option value="${item.value}" ${
+      item.items && !item.linkable ? 'disabled' : ''
+    } ${!item.linkable ? 'data-linkable="false"' : ''} ${
+      item.actived ? 'selected="selected"' : ''
+    } ${item.hidden ? 'hidden' : ''}>${indent}${item.label}</option>`
   }
+
   buildOptions(items, level) {
     if (level > this.options.maxLevel) {
       return ''
     }
     let options = ''
     items.forEach(item => {
-      if (typeof item.items !== 'undefined') {
+      if (isUndefined(item.items)) {
         options += this.buildOption(item, level)
+      } else if (this.options.useOptgroup && level === 1) {
+        options += `<optgroup label="${item.label}">`
         options += this.buildOptions(item.items, level + 1)
+        options += '</optgroup>'
       } else {
         options += this.buildOption(item, level)
+        options += this.buildOptions(item.items, level + 1)
       }
     })
     return options
@@ -149,7 +167,9 @@ class NavToSelect extends Component {
 
   // Check if a item can link
   isLinkable(li) {
-    return this.getItemValue(li) !== '#'
+    const value = this.getItemValue(li)
+
+    return value !== '#' && value.indexOf('void(0)') === -1
   }
 
   // Check if a item is actived
