@@ -1,67 +1,77 @@
 @import "@pluginjs/styles/variables.scss";
 @import "tooltip.core";
+
 // Vars
 // =====================
-$tooltip-light-box-shadow: $box-shadow-base;
+$tooltip: "pj-tooltip";
 
 $tooltip-font-family: $font-family-base;
 $tooltip-font-size: $font-size-sm;
-$tooltip-max-width: 196px;
+$tooltip-line-height: 1.1;
+
+$tooltip-max-width: 280px;
+$tooltip-padding: 12px 16px;
+
 $tooltip-color: $color-white;
-$tooltip-padding-y: 9.8px;
-$tooltip-padding-x: 13px;
+$tooltip-bg: $gray-darkest;
 $tooltip-border-radius: $border-radius-base;
 
-$tooltip-light-color: $text-color;
+$tooltip-arrow-size: 10px;
+$tooltip-arrow-spacer: 0;
+
+$tooltip-light-color: $gray-darkest;
 $tooltip-light-bg: $color-white;
-$tooltip-light-arrow-color: $tooltip-light-bg;
+$tooltip-light-box-shadow: $box-shadow-base;
 
-$tooltip-btn-padding-y: 16px;
-$tooltip-btn-padding-x: 21.76px;
-
-//skin
+// Skin
+// =====================
 .#{$tooltip} {
+  max-width: $tooltip-max-width;
+  font-family: $tooltip-font-family;
   font-size: $tooltip-font-size;
+  line-height: $tooltip-line-height;
+  color: $tooltip-color;
 
   &-inner {
-    max-width: $tooltip-max-width;
-    padding: $tooltip-padding-y $tooltip-padding-x;
+    width: 100%;
+    padding: $tooltip-padding;
     color: $tooltip-color;
-    text-align: center;
     background-color: $tooltip-bg;
     border-radius: $tooltip-border-radius;
+
+    &::before {
+      width: $tooltip-arrow-size;
+      height: $tooltip-arrow-size;
+    }
   }
-  
-  &-btn {
-    padding: $tooltip-btn-padding-y $tooltip-btn-padding-x;
-    font-family: $tooltip-font-family;
-    font-size: $tooltip-font-size;
-    line-height: 1;
+
+  &[x-placement^="top"] {
+    margin-bottom: $tooltip-arrow-spacer;
+  }
+
+  &[x-placement^="right"] {
+   margin-left: $tooltip-arrow-spacer;
+  }
+
+  &[x-placement^="bottom"] {
+    margin-top: $tooltip-arrow-spacer;
+  }
+
+  &[x-placement^="left"] {
+    margin-right: $tooltip-arrow-spacer;
   }
 }
 
 // light
-// =====================
 .#{$tooltip}--light {
+  box-shadow: $tooltip-light-box-shadow;
+
   .#{$tooltip}-inner {
     color: $tooltip-light-color;
     background-color: $tooltip-light-bg;
-    box-shadow: $tooltip-light-box-shadow;
-  }
 
-  &[x-placement^="top"],
-  &[x-placement^="bottom"] {
-    .#{$tooltip}-inner::before {
-      border-top-color: $tooltip-light-arrow-color;
-      border-bottom-color: $tooltip-light-arrow-color;
-    }
-  }
-
-  &[x-placement^="left"],
-  &[x-placement^="right"] {
-    .#{$tooltip}-inner::before {
-      border-right-color: $tooltip-light-arrow-color;
-      border-left-color: $tooltip-light-arrow-color;
+    &::before {
+      box-shadow: $tooltip-light-box-shadow;
     }
   }
 }

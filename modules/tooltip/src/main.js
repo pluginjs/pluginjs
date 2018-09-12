@@ -73,10 +73,10 @@ class Tooltip extends Component {
     triggers.forEach(trigger => {
       if (trigger === 'click') {
         this.clickTrigger = true
-
         bindEvent(
           this.eventName('click'),
           event => {
+            console.log(this.element)
             this.toggle(event)
           },
           this.element
