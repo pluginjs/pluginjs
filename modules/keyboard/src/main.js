@@ -126,9 +126,6 @@ class Keyboard {
 
   handler(e) {
     /* eslint consistent-return: "off" */
-    e.preventDefault()
-    e.stopPropagation()
-
     let keyCode = e.keyCode
     const action = e.type === 'keydown' ? 'down' : 'up'
     let prefix = ''
@@ -158,7 +155,14 @@ class Keyboard {
       return
     }
 
-    return this.emitter.emit(eventName)
+    const result = this.emitter.emit(eventName)
+
+    if (result === false) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    return
   }
 
   on(action, key, func) {
