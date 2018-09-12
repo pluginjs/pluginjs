@@ -32,7 +32,8 @@
     "@pluginjs/image-loader": "*",
     "@pluginjs/is": "*",
     "@pluginjs/loader": "*",
-    "@pluginjs/styled": "*"
+    "@pluginjs/styled": "*",
+    "hammerjs": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",

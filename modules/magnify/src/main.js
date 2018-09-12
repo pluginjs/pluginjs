@@ -1,5 +1,6 @@
 import Component from '@pluginjs/component'
 import template from '@pluginjs/template'
+// import Hammer from 'hammerjs'
 import {
   eventable,
   register,
@@ -10,7 +11,7 @@ import {
 } from '@pluginjs/decorator'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { query, wrap, unwrap, appendTo, empty, append } from '@pluginjs/dom'
-import { getWidth, getHeight } from '@pluginjs/styled'
+import { getWidth, getHeight, setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { isElement, isPlainObject, isString } from '@pluginjs/is'
 import Loader from '@pluginjs/loader'
@@ -53,11 +54,12 @@ class Magnify extends Component {
       this.$wrap = wrap(`<div class="${this.classes.WRAP}"></div>`, this.$img)
     }
 
-    this.width = getWidth(this.$img)
-    this.height = getHeight(this.$img)
-    this.ratio = this.width / this.height
     this.loaded = false
     this.large = this.options.image
+    this.zoom = this.options.zoom
+    this.width = getWidth(this.$wrap)
+    this.height = getHeight(this.$wrap)
+    this.ratio = this.width / this.height
 
     addClass(this.classes.IMAGE, this.$img)
 
@@ -71,10 +73,20 @@ class Magnify extends Component {
     if (this.options.loader) {
       this.LOADER = Loader.of(this.$wrap, this.options.loader)
     }
+
+    this.getDimension()
     this.bind()
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  getDimension() {
+    ImageLoader.of(this.$img).on('loaded', () => {
+      this.width = this.$img.width
+      this.height = this.$img.height
+      this.ratio = this.width / this.height
+    })
   }
 
   bind() {
@@ -135,10 +147,13 @@ class Magnify extends Component {
     } else if (isString(small)) {
       this.$img.src = this.small
     }
+
+    this.getDimension()
     this.large = large
     this.$enlared.remove()
     this.$enlared = null
     this.loaded = false
+
     if (this.is('loading')) {
       this.leave('loading')
     }
@@ -234,6 +249,14 @@ class Magnify extends Component {
           Object.assign($img, this.large)
         }
       }
+
+      setStyle(
+        {
+          width: `${this.width * this.zoom}px`,
+          height: `${this.height * this.zoom}px`
+        },
+        $img
+      )
 
       empty(this.$enlared)
       append($img, this.$enlared)

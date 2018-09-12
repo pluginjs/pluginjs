@@ -60,4 +60,4 @@ export const defaults = {
   }
 }
 
-export const dependencies = ['Hammer', 'mousewheel', 'dots']
+export const dependencies = ['Hammer', 'dots']

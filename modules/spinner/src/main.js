@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return */
-
 import Component from '@pluginjs/component'
 import { isNumeric } from '@pluginjs/is'
 import template from '@pluginjs/template'
@@ -211,20 +210,22 @@ class Spinner extends Component {
           this.element
         )
 
-        // mousewheel support
-        bindEvent(
-          this.eventName('wheel'),
-          () => {
-            const delta = event.deltaY
+        if (this.options.mousewheel) {
+          // mousewheel support
+          bindEvent(
+            this.eventName('wheel'),
+            e => {
+              e.preventDefault()
 
-            if (delta < 0) {
-              this.spinUp()
-            } else if (delta > 0) {
-              this.spinDown()
-            }
-          },
-          this.element
-        )
+              if (e.deltaY < 0) {
+                this.spinUp()
+              } else if (e.deltaY > 0) {
+                this.spinDown()
+              }
+            },
+            this.element
+          )
+        }
       },
       this.element
     )

@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import easing from '@pluginjs/easing'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, offset as getOffset } from '@pluginjs/styled'
+import { setStyle, getStyle, offset as getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, query } from '@pluginjs/dom'
 import {
@@ -17,7 +17,11 @@ import {
   transitionProperty
 } from '@pluginjs/feature'
 import { isNumeric, isNumber, isPercentage } from '@pluginjs/is'
-import { convertPercentageToFloat, getTime } from '@pluginjs/utils'
+import {
+  convertPercentageToFloat,
+  getTime,
+  convertMatrixToArray
+} from '@pluginjs/utils'
 import {
   eventable,
   register,
@@ -182,22 +186,27 @@ class Scrollbar extends Component {
 
     if (this.options.mousewheel) {
       bindEvent(
-        this.eventName('mousewheel'),
+        this.eventName('wheel'),
         e => {
-          let delta
+          let delta = 0
+
           if (this.options.direction === 'vertical') {
-            delta = e.deltaFactor * e.deltaY
+            delta = e.deltaY
           } else if (this.options.direction === 'horizontal') {
-            delta = -1 * e.deltaFactor * e.deltaX
+            delta = e.deltaX
           }
+
           let offset = this.getHandlePosition()
-          if (offset <= 0 && delta > 0) {
-            return true
-          } else if (offset >= this.barLength && delta < 0) {
+
+          if (
+            (offset <= 0 && delta < 0) ||
+            (offset >= this.barLength && delta > 0)
+          ) {
             return true
           }
-          offset -= this.options.mousewheelSpeed * delta
+          offset += this.options.mousewheelSpeed * delta
           this.move(offset, true)
+
           return false
         },
         this.element
@@ -272,7 +281,6 @@ class Scrollbar extends Component {
       return
     }
 
-    // this.$element.toggleClass(this.options.draggingClass, event.type === 'mousedown');
     addClass(this.classes.DRAGGING, this.element)
 
     this._drag.time = new Date().getTime()
@@ -446,24 +454,19 @@ class Scrollbar extends Component {
   getHandlePosition() {
     let value
     if (this.options.useCssTransforms && transform) {
-      const transform = this.$handle.style[transformProperty()]
-      const reg = /[^\(\)]+(?=\))/g /* eslint-disable-line */
-      value = transform
-        .match(reg)[0]
-        .split(',')
-        .map(s => s.replace('px', '').replace(' ', ''))
-
+      const transform = getStyle(transformProperty(), this.$handle)
+      value = convertMatrixToArray(transform)
       if (!value) {
         return 0
       }
 
       if (this.attributes.axis === 'X') {
-        value = value[0]
+        value = value[12] || value[4]
       } else {
-        value = value[1]
+        value = value[13] || value[5]
       }
     } else {
-      value = this.$handle.style[this.attributes.position]
+      value = getStyle(this.attributes.position, this.$handle)
     }
 
     return parseFloat(value.replace('px', ''))
@@ -610,7 +613,7 @@ class Scrollbar extends Component {
 
       this.oneBind(transitionEndEvent(), this.$handle, () => {
         transitionProperty()
-        this.$handle.style[transitionProperty()] = ''
+        setStyle(transitionProperty(), null, this.$handle)
         if (trigger) {
           this.trigger(
             EVENTS.CHANGE,
@@ -681,7 +684,8 @@ class Scrollbar extends Component {
     if (delay) {
       temp.push(delay)
     }
-    this.$handle.style[transitionProperty()] = temp.join(' ')
+
+    setStyle(transitionProperty(), temp.join(' '), this.$handle)
   }
 
   enable() {

@@ -35,6 +35,7 @@ export const defaults = {
   trigger: 'hover', // click, toggle
   error: 'The image load failed',
   errorDuration: 3000,
+  zoom: 2,
   templates: {
     error() {
       return '<span class="{classes.ERROR}">{text}</span>'
@@ -44,3 +45,5 @@ export const defaults = {
     }
   }
 }
+
+export const dependencies = ['Hammer']

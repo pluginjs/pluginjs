@@ -85,16 +85,13 @@ class SectionScroll extends Component {
 
   onMousewheel() {
     bindEvent(
-      this.eventName('mousewheel'),
+      this.eventName('wheel'),
       e => {
         e.preventDefault()
 
-        const value = event.wheelDelta || -event.detail
-        const delta = Math.max(-1, Math.min(1, value))
-
-        if (delta > 0) {
+        if (e.deltaY > 0) {
           this.previous()
-        } else if (delta < 0) {
+        } else if (e.deltaY < 0) {
           this.next()
         }
       },

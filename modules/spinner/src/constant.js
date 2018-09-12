@@ -45,7 +45,7 @@ export const defaults = {
   layout: 'both', // both | right
 
   looping: true, // if cycling the value when it is outofbound
-  mousewheel: false, // support mouse wheel
+  mousewheel: true, // support mouse wheel
   templates: {
     control() {
       if (this.options.layout === 'right') {
@@ -73,4 +73,4 @@ export const defaults = {
   }
 }
 
-export const dependencies = ['mousewheel']
+export const dependencies = []

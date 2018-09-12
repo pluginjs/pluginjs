@@ -42,8 +42,7 @@
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/template": "*",
-    "jquery-mousewheel": "*"
+    "@pluginjs/template": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
