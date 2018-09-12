@@ -53,14 +53,8 @@ class Popover extends Tooltip {
       { classes: this.classes }
     )
 
-    // const arrow = templateEngine.render(
-    //   this.options.templates.arrow.call(this),
-    //   { classes: this.classes }
-    // )
-
     return templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
-      // arrow,
       close,
       title,
       content
@@ -87,16 +81,26 @@ class Popover extends Tooltip {
     const title = this.getTitle()
     const content = this.getContent()
 
-    this.setElementContent(query(`.${this.classes.TITLE}`, $tip), title)
-    this.setElementContent(query(`.${this.classes.CONTENT}`, $tip), content)
+    const $title = query(`.${this.classes.TITLE}`, $tip)
+    const $content = query(`.${this.classes.CONTENT}`, $tip)
+
+    if (title) {
+      this.setElementContent($title, title)
+    } else if ($title) {
+      $title.remove()
+    }
+
+    if (content) {
+      this.setElementContent($content, content)
+    } else if ($content) {
+      $content.remove()
+    }
 
     if (this.options.arrow) {
       addClass(this.classes.ARROW, $tip)
     }
 
     removeClass(`${this.classes.SHOW} ${this.classes.FADE}`, $tip)
-
-    // this.destroyPopper()
   }
 
   show() {

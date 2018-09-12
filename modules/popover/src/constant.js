@@ -19,6 +19,7 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   POPOVER: '{namespace}',
+  INNER: '{namespace}-inner',
   CONTENT: '{namespace}-content',
   TITLE: '{namespace}-title',
   CLOSE: '{namespace}-close',
@@ -40,14 +41,13 @@ export const methods = [
 
 export const defaults = deepMerge(Tooltip.defaults, {
   template() {
-    return (
-      '<div class="{classes.POPOVER}" role="tooltip">' +
-      '{arrow}' +
-      '{close}' +
-      '{title}' +
-      '{content}' +
-      '</div>'
-    )
+    return `<div class="{classes.POPOVER}" role="tooltip">
+        <div class="{classes.INNER}">
+          {title}
+          {content}
+        </div>
+        {close}
+      </div>`
   },
   templates: {
     close() {
@@ -58,10 +58,11 @@ export const defaults = deepMerge(Tooltip.defaults, {
     },
     content() {
       return '<div class="{classes.CONTENT}"></div>'
-    },
-    arrow() {
-      return '<div class="{classes.ARROW}"></div>'
     }
+    // ,
+    // arrow() {
+    //   return '<div class="{classes.ARROW}"></div>'
+    // }
   },
   content: '',
   html: true,

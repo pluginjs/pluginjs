@@ -4,50 +4,50 @@
 // =====================
 $popover: "pj-popover" !default;
 $popover-zindex: $zindex-popover !default;
-
 $popover-max-height: 50vh !default;
-$popover-line-hight: 22px !default;
 
-$popover-title-line-height: 1.5em !default;
+$popover-bg: $color-white !default;
 
-$popover-arrow-width: 10px !default;
-$popover-arrow-spacer: $popover-arrow-width + 1 !default;
-$popover-arrow-color: $color-white !default;
-$popover-arrow-offset-x: 10px !default;
-$popover-arrow-offset-y: 10px !default;
+$popover-arrow-size: 10px !default;
+$popover-arrow-spacer: $popover-arrow-size * 0.75 !default;
+$popover-arrow-pos: 20px !default;
+$popover-arrow-pos-vertical: 10px !default;
+// $popover-line-hight: 22px !default;
 
-@mixin reset-text {
-  font-family: $font-family-base;
-  // We deliberately do NOT reset font-size or word-wrap.
-  font-style: normal;
-  font-weight: $font-weight-normal;
-  line-height: $line-height-base;
-  // text-align: left; // Fallback for where `start` is not supported
-  text-align: start;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  letter-spacing: normal;
-  word-break: normal;
-  word-spacing: normal;
-  white-space: normal;
-  line-break: auto;
-}
+// $popover-title-line-height: 1.5em !default;
+
+// $popover-arrow-width: 10px !default;
+// $popover-arrow-spacer: $popover-arrow-width + 1 !default;
+// $popover-arrow-color: $color-white !default;
+// $popover-arrow-offset-x: 10px !default;
+// $popover-arrow-offset-y: 10px !default;
 
 // Core
 // =====================
 .#{$popover} {
-  @include reset-text();
-
   position: absolute;
+  top: 0;
   left: 0;
   z-index: $popover-zindex;
+  box-sizing: border-box;
   display: block;
-  line-height: $popover-line-hight;
-  opacity: 0;
+  background-color: $popover-bg;
 
-  &-title {
-    line-height: $popover-title-line-height;
+  &-inner {
+    box-sizing: border-box;
+    width: 100%;
+    max-height: $popover-max-height;
+    overflow: auto;
+
+    > * {
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &-close {
@@ -59,104 +59,13 @@ $popover-arrow-offset-y: 10px !default;
   }
 
   .#{$popover}-content {
-    max-height: $popover-max-height;
-    overflow: auto;
-  }
-
-  &-arrow {
-    &::before {
-      position: absolute;
-      pointer-events: none;
-      content: "";
-      border-color: transparent;
-      border-style: solid;
-      border-width: $popover-arrow-width;
-    }
-
-    &[x-placement^="top"] {
-      margin-bottom: $popover-arrow-spacer;
-
-      &::before {
-        bottom: -$popover-arrow-width;
-        border-top-color: $popover-arrow-color;
-        border-bottom-width: 0;
+    > * {
+      &:first-child {
+        margin-top: 0;
       }
-    }
 
-    &[x-placement^="bottom"] {
-      margin-top: $popover-arrow-spacer;
-
-      &::before {
-        top: -$popover-arrow-width;
-        border-top-width: 0;
-        border-bottom-color: $popover-arrow-color;
-      }
-    }
-
-    &[x-placement="top"],
-    &[x-placement="bottom"] {
-      &::before {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-
-    &[x-placement^="top-start"],
-    &[x-placement^="bottom-start"]{
-      &::before {
-        left: $popover-arrow-offset-x;
-      }
-    }
-
-    &[x-placement^="top-end"],
-    &[x-placement^="bottom-end"] {
-      &::before {
-        right: $popover-arrow-offset-x;
-        left: auto;
-      }
-    }
-
-    &[x-placement^="right"] {
-      margin-left: $popover-arrow-spacer;
-
-      &::before {
-        left: -$popover-arrow-width;
-        border-right-color: $popover-arrow-color;
-        border-left-width: 0;
-      }
-    }
-
-    &[x-placement^="left"] {
-      margin-right: $popover-arrow-spacer;
-
-      &::before {
-        right: -$popover-arrow-width;
-        border-right-width: 0;
-        border-left-color: $popover-arrow-color;
-      }
-    }
-
-    &[x-placement^="right"],
-    &[x-placement^="left"] {
-      &::before {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-
-    &[x-placement="left-start"],
-    &[x-placement="right-start"] {
-      &::before {
-        top: $popover-arrow-offset-y;
-        transform: none;
-      }
-    }
-
-    &[x-placement="left-end"],
-    &[x-placement="right-end"] {
-      &::before {
-        top: auto;
-        bottom: $popover-arrow-offset-y;
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }
@@ -164,9 +73,116 @@ $popover-arrow-offset-y: 10px !default;
   &-fade {
     opacity: 0;
     transition: opacity 0.15s linear;
+  }
 
-    &.#{$popover}-show {
-      opacity: 1;
+  &-show {
+    opacity: 1;
+  }
+}
+
+.#{$popover}-arrow {
+  &::before {
+    position: absolute;
+    width: $popover-arrow-size;
+    height: $popover-arrow-size;
+    content: "";
+    background-color: $popover-bg;
+  }
+
+  &[x-placement^="top"],
+  &[x-placement^="bottom"] {
+    &::before {
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  &[x-placement^="right"],
+  &[x-placement^="left"] {
+    &::before {
+      transform: translateX(-50%) rotate(45deg);
+    }
+  }
+
+  &[x-placement="top"],
+  &[x-placement="right"],
+  &[x-placement="bottom"],
+  &[x-placement="left"] {
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+
+  &[x-placement^="top"] {
+    margin-bottom: $popover-arrow-spacer;
+
+    &::before {
+      top: 100%;
+    }
+  }
+
+  &[x-placement^="right"] {
+   margin-left: $popover-arrow-spacer;
+
+    &::before {
+      left: 0;
+    }
+  }
+
+  &[x-placement^="bottom"] {
+    margin-top: $popover-arrow-spacer;
+
+    &::before {
+      top: 0;
+    }
+  }
+
+  &[x-placement^="left"] {
+    margin-right: $popover-arrow-spacer;
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &[x-placement="top"],
+  &[x-placement="bottom"] {
+    &::before {
+      left: 50%;
+    }
+  }
+
+  &[x-placement="top-start"],
+  &[x-placement="bottom-start"] {
+    &::before {
+      left: $popover-arrow-pos;
+    }
+  }
+
+  &[x-placement="top-end"],
+  &[x-placement="bottom-end"] {
+    &::before {
+      right: #{$popover-arrow-pos};
+    }
+  }
+
+  &[x-placement="left"],
+  &[x-placement="right"] {
+    &::before {
+      top: 50%;
+    }
+  }
+
+  &[x-placement="left-start"],
+  &[x-placement="right-start"] {
+    &::before {
+      top: $popover-arrow-pos-vertical;
+    }
+  }
+
+  &[x-placement="left-end"],
+  &[x-placement="right-end"] {
+    &::before {
+      bottom: #{$popover-arrow-pos-vertical};
     }
   }
 }

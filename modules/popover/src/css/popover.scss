@@ -1,158 +1,95 @@
 @import "@pluginjs/styles/variables.scss";
 @import "popover.core";
 
-//base style vars
-$popover-bg: $color-white;
-$popover-width: 392px;
+// Vars
+// =====================
+$popover: "pj-popover";
+
+$popover-font-family: $font-family-base;
 $popover-font-size: $font-size-sm;
+$popover-line-height: $line-height-sm;
+
+$popover-width: 400px;
+$popover-padding: 32px;
+
 $popover-color: $gray-darker;
+$popover-bg: $color-white;
+$popover-box-shadow: $box-shadow-base;
 $popover-border-radius: $border-radius-base;
-$popover-box-shadow: 0 5px 20px 0 rgba($color-black, 0.1);
 
-$popover-padding: 26px 32px;
+$popover-close-size: 14px;
+$popover-close-padding: 16px;
 
-$popover-title-font-size: $font-size-lg;
-$popover-title-color: $gray-darkest;
-$popover-title-empty-padding-y: 16px;
-
-$popover-content-margin-top: 8px;
-$popover-content-color: $gray-darker;
-$popover-content-link-color: $color-primary;
-
-$popover-btn-padding-y: 12.5;
-$popover-btn-padding-x: 30.1px;
-
-$popover-close-font-size: $font-size-lg;
-$popover-close-color: $gray-dark;
-$popover-close-hover-color: $gray-darker;
-$popover-close-spacer-y: 13px;
-$popover-close-spacer-x: 13px;
+$popover-arrow-size: 10px;
+$popover-arrow-spacer: $popover-arrow-size * 0.75;
+$popover-arrow-pos: 20px;
+$popover-arrow-pos-vertical: 10px;
+$popover-arrow-bottom-box-shadow: -3px -3px 10px 0 rgba(0, 0, 0, 0.03);
 
 $popover-dark-color: $color-white;
 $popover-dark-bg: $gray-darkest;
 $popover-dark-box-shadow: $box-shadow-base;
-$popover-dark-arrow-color: $popover-dark-bg;
-$popover-dark-title-color: $popover-dark-color;
 
-//table
-$popover-table-font-size: 9px;
-$popover-table-border-color: #f4f4f4;
-$popover-table-thead-bg: $gray-lighter;
-$popover-table-padding-y: 8px;
-$popover-table-padding-x: 12px;
+// Skins
+// =====================
+.#{$popover}-arrow {
+  &::before {
+    width: $popover-arrow-size;
+    height: $popover-arrow-size;
+    background-color: $popover-bg;
+  }
 
-.#{$popover} {
-  max-width: $popover-width;
-  padding: $popover-padding;
-  font-size: $popover-font-size;
-  color: $popover-color;
-  background-color: $popover-bg;
-  background-clip: padding-box;
-  border-radius: $popover-border-radius;
-  box-shadow: $popover-box-shadow;
+  &[x-placement^="top"] {
+    margin-bottom: $popover-arrow-spacer;
+  }
 
-  &-title {
-    margin: 0;
-    font-size: $popover-title-font-size;
-    font-weight: normal; /* stylelint-disable-line */
-    color: $popover-title-color;
+  &[x-placement^="right"] {
+   margin-left: $popover-arrow-spacer;
+  }
 
-    &:empty {
-      display: none;
+  &[x-placement^="bottom"] {
+    margin-top: $popover-arrow-spacer;
+
+    &::before {
+      box-shadow: $popover-arrow-bottom-box-shadow;
     }
   }
 
-  &-close {
-    padding: $popover-close-spacer-y $popover-close-spacer-x;
-    font-size: $popover-close-font-size;
-    color: $popover-close-color;
-    background: transparent;
-    border: 0;
-    outline: 0;
-    opacity: 0.5;
-
-    &:not(:disabled):hover {
-      color: $popover-close-hover-color;
-      background: initial;
-    }
-  }
-
-  &-content {
-    margin-top: $popover-content-margin-top;
-
-    a {
-      color: $popover-content-link-color;
-      text-decoration: none;
-    }
-    &:empty {
-      display: none;
-    }
-  }
-
-  &-toggle {
-    padding: $popover-btn-padding-y $popover-btn-padding-x;
-    font-size: $popover-font-size;
+  &[x-placement^="left"] {
+    margin-right: $popover-arrow-spacer;
   }
 }
 
-// Dark Skin
+.#{$popover} {
+  width: $popover-width;
+  font-family: $popover-font-family;
+  font-size: $popover-font-size;
+  color: $popover-color;
+  background-color: $popover-bg;
+  border-radius: $popover-border-radius;
+  box-shadow: $popover-box-shadow;
+
+  &-inner {
+    padding: $popover-padding;
+  }
+
+  &-close {
+    padding: $popover-close-padding;
+    font-size: $popover-close-size;
+    opacity: 0.5;
+
+    &:not(:disabled):hover {
+      opacity: 1;
+    }
+  }
+}
+
 .#{$popover}--dark {
   color: $popover-dark-color;
   background-color: $popover-dark-bg;
   box-shadow: $popover-dark-box-shadow;
 
-  .#{$popover}-title {
-    color: $popover-dark-title-color;
-  }
-
-  &[x-placement="top"],
-  &[x-placement="top-start"],
-  &[x-placement="top-end"],
-  &[x-placement="bottom"],
-  &[x-placement="bottom-start"],
-  &[x-placement="bottom-end"] {
-    &::before {
-      border-top-color: $popover-dark-arrow-color;
-      border-bottom-color: $popover-dark-arrow-color;
-    }
-  }
-
-  &[x-placement="right"],
-  &[x-placement="right-start"],
-  &[x-placement="right-end"],
-  &[x-placement="left"],
-  &[x-placement="left-start"],
-  &[x-placement="left-end"] {
-    &::before {
-      border-right-color: $popover-dark-arrow-color;
-      border-left-color: $popover-dark-arrow-color;
-    }
-  }
-}
-
-//table
-.#{$popover}-table {
-  width: 100%;
-  font-size: $popover-table-font-size;
-  border-spacing: inherit;
-
-  thead {
-    text-align: left;
-    background-color: $popover-table-thead-bg;
-  }
-
-  &-bordered {
-    th {
-      border-bottom: 2px solid $popover-table-border-color;
-    }
-
-    td {
-      border-bottom: 1px solid $popover-table-border-color;
-    }
-
-    th,
-    td {
-      padding: $popover-table-padding-y $popover-table-padding-x;
-    }
+  &.#{$popover}-arrow::before {
+    background-color: $popover-dark-bg;
   }
 }
