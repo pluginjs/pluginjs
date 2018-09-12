@@ -113,53 +113,6 @@ describe('ColorPicker', () => {
       expect(api.is('initialized')).toBeFalse()
     })
   })
-  describe('change', () => {
-    let $element
-    let api
-
-    it('should not fired when initialize', () => {
-      let called = false
-      $element = generateHTMLSample('red')
-      api = ColorPicker.of($element, {
-        onChange() {
-          called = true
-        }
-      })
-
-      expect(called).toBeFalse()
-    })
-
-    it('should fired when change the value', () => {
-      let called = false
-      $element = generateHTMLSample('red')
-      api = ColorPicker.of($element, {
-        onChange(val) {
-          called = true
-
-          expect(val).toBe(value)
-        }
-      })
-
-      api.val(value)
-
-      expect(called).toBeTrue()
-    })
-
-    it('should fired when set the value', () => {
-      let called = false
-      $element = generateHTMLSample('red')
-      api = ColorPicker.of($element, {
-        onChange(val) {
-          called = true
-
-          expect(val).toBe(value)
-        }
-      })
-      api.set(obj)
-
-      expect(called).toBeTrue()
-    })
-  })
 
   describe('get()', () => {
     let $element

@@ -40,16 +40,6 @@ describe('Checkbox', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = query('input', generateHTMLSample())
-      const api = Checkbox.of($element)
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = Checkbox.of(query('input', generateHTMLSample()))
@@ -108,6 +98,54 @@ describe('Checkbox', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = query('input', generateHTMLSample())
+      api = Checkbox.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = query('input', generateHTMLSample())
+      api = Checkbox.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toEqual(['foo'])
+        }
+      })
+
+      api.val(['foo'])
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = query('input', generateHTMLSample())
+      api = Checkbox.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toEqual(['foo'])
+        }
+      })
+
+      api.set(['foo'])
+
+      expect(called).toBeTrue()
+    })
+  })
   describe('get()', () => {
     let $element
     let api
@@ -118,7 +156,9 @@ describe('Checkbox', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toEqual(true)
+      $element = query('input', generateHTMLSample())
+      api = Checkbox.of($element)
+      expect(api.get()).toEqual(['foo'])
     })
   })
 
@@ -132,33 +172,10 @@ describe('Checkbox', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toEqual(true)
+      expect(api.get()).toBeArray()
 
-      api.set(false)
-      expect(api.get()).toEqual(false)
-
-      api.set(true)
-      expect(api.get()).toEqual(true)
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toEqual(true)
-
-      api.set('false')
-      expect(api.get()).toEqual(false)
-
-      api.set('true')
-      expect(api.get()).toEqual(true)
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toEqual(true)
-
-      api.set(0)
-      expect(api.get()).toEqual(false)
-
-      api.set(1)
-      expect(api.get()).toEqual(true)
+      api.set(['foo'])
+      expect(api.get()).toEqual(['foo'])
     })
   })
 
@@ -172,37 +189,13 @@ describe('Checkbox', () => {
     })
 
     test('should get the value', () => {
-      expect(api.val()).toEqual(true)
+      expect(api.val()).toEqual(['foo'])
     })
 
     test('should set the value', () => {
-      api.val(false)
-
-      expect(api.get()).toEqual(false)
-
-      api.val(true)
-
-      expect(api.get()).toEqual(true)
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toEqual(false)
-
-      api.val('true')
-
-      expect(api.get()).toEqual(true)
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toEqual(true)
-
-      api.val(0)
-      expect(api.get()).toEqual(false)
-
-      api.val(1)
-      expect(api.get()).toEqual(true)
+      api.val('foo')
+      expect(api.val()).toEqual(['foo'])
+      expect(api.get()).toEqual(['foo'])
     })
   })
 

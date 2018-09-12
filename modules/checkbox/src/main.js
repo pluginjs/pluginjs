@@ -107,7 +107,7 @@ class Checkbox extends Component {
     }
   }
 
-  set(value) {
+  set(value, trigger = true) {
     if (this.get().toString() !== value.toString()) {
       this.trigger(EVENTS.CHANGE, value)
     }
@@ -127,6 +127,9 @@ class Checkbox extends Component {
       this.check(true, false)
     } else {
       this.uncheck(true, false)
+    }
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, value, this)
     }
   }
 
