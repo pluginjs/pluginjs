@@ -1,4 +1,14 @@
-import { isArray, isObject, isPlainObject } from '@pluginjs/is'
+import {
+  isDate,
+  isMap,
+  isSet,
+  isSymbol,
+  isRegexp,
+  isError,
+  isArray,
+  isObject,
+  isPlainObject
+} from '@pluginjs/is'
 
 export const nub = arr => {
   return Array.from(new Set(arr))
@@ -18,11 +28,58 @@ export const each = (obj, callback) => {
   return obj
 }
 
-export const deepClone = obj => {
-  if (typeof obj === 'function') {
-    return obj
+export const clone = val => {
+  if (isArray(val)) {
+    return val.slice()
+  } else if (isDate(val)) {
+    return new val.constructor(Number(val))
+  } else if (isMap(val)) {
+    return new Map(val)
+  } else if (isSet(val)) {
+    return new Set(val)
+  } else if (isSymbol(val)) {
+    return Symbol.prototype.valueOf
+      ? Object(Symbol.prototype.valueOf.call(val))
+      : {}
+  } else if (isRegexp(val)) {
+    const re = new val.constructor(val.source, /\w+$/.exec(val))
+    re.lastIndex = val.lastIndex
+    return re
+  } else if (isError(val)) {
+    return Object.create(val)
+  } else if (isObject(val)) {
+    return Object.assign({}, val)
   }
-  return JSON.parse(JSON.stringify(obj))
+  return val
+}
+
+/** Credit to https://github.com/jonschlinkert/clone-deep MIT */
+export const deepClone = val => {
+  if (isObject(val)) {
+    return deepCloneObject(val)
+  } else if (isArray(val)) {
+    return deepCloneArray(val)
+  }
+  return clone(val)
+}
+
+export const deepCloneObject = obj => {
+  if (isObject(obj)) {
+    const res = new obj.constructor()
+    for (const key in obj) { // eslint-disable-line
+      res[key] = deepClone(obj[key])
+    }
+    return res
+  }
+  return obj
+}
+
+export const deepCloneArray = arr => {
+  const res = new arr.constructor(arr.length)
+  for (let i = 0; i < arr.length; i++) {
+    res[i] = deepClone(arr[i])
+  }
+  return res
 }
 
 export const merge = (target, ...sources) => {
@@ -64,7 +121,7 @@ function deepMergeTwo(x, y) {
   }
 
   if (Array.isArray(y) && Array.isArray(x)) {
-    return Array.from(y)
+    return deepCloneArray(y)
   }
 
   if (typeof y === 'undefined') {

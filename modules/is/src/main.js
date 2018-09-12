@@ -134,6 +134,28 @@ export const isUndefined = val => {
   return val === void 0
 }
 
+// is a given value Map?
+export const isMap = val => {
+  return val.constructor ?val.constructor.name === 'Map' :false
+}
+
+// is a given value Set?
+export const isSet = val => {
+  return val.constructor ?val.constructor.name === 'Set' :false
+}
+
+// is a given value Promise?
+export const isPromise = val => {
+  return val.constructor ?val.constructor.name === 'Promise' :false
+}
+
+// is a given value Symbol?
+export const isSymbol = val => {
+  return val.constructor ?val.constructor.name === 'Symbol' :false
+}
+
+
+
 // Arithmetic checks
 /* -------------------------------------------------------------------------- */
 // is a given value numeric?
