@@ -1,5 +1,3 @@
 import { parseHTML } from '@pluginjs/dom'
 
-export default () => parseHTML`
-<div class="video"></div>
-`
+export default () => parseHTML`<div></div>`

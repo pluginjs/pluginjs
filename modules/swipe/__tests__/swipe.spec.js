@@ -77,6 +77,14 @@ describe('Swipe', () => {
       api = Swipe.of($element)
     })
 
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
+    })
+
     test('should trigger destroy event', () => {
       let called = 0
 

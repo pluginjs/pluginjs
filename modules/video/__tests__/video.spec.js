@@ -69,8 +69,8 @@ describe('Video', () => {
       const api = Video.of(element, {
         type: 'html5'
       })
-      expect(api.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
+      expect(api.is('initialized')).toBeTrue()
     })
   })
 
