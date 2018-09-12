@@ -102,6 +102,7 @@ class FontPicker extends Component {
 
     this.setupStates()
     this.initialize()
+    // this.get()
   }
 
   initialize() {
@@ -959,6 +960,7 @@ class FontPicker extends Component {
   }
 
   get() {
+    console.log(this.$font)
     return this.options.process({
       ...this.$font.dataset,
       ...this.$font.objData

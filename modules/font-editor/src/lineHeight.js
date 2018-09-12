@@ -1,7 +1,7 @@
 import template from '@pluginjs/template'
-import Range from '@pluginjs/range'
-import { query, insertBefore, parseHTML, parent } from '@pluginjs/dom'
-import { removeClass, addClass } from '@pluginjs/classes'
+import { parseHTML, insertBefore, query } from '@pluginjs/dom'
+import UnitsRange from '@pluginjs/units-range'
+// import { addClass, removeClass } from '@pluginjs/classes'
 
 export default class LineHeight {
   constructor(instance) {
@@ -13,7 +13,6 @@ export default class LineHeight {
 
   emptyize() {
     this.parse(this.instance.value.lineHeight)
-
     this.initRange()
   }
 
@@ -21,13 +20,11 @@ export default class LineHeight {
     const that = this
     const unit = {}
     const value = this.value
-
-    // create lineHeight
+    // create $lineHeight
     const html = template.compile(this.instance.options.lineHeight.template())({
       classes: this.instance.classes,
       lineHeight: this.instance.translate('lineHeight')
     })
-
     insertBefore(parseHTML(html), this.instance.$expandControl)
 
     this.$lineHeight = query(
@@ -45,36 +42,22 @@ export default class LineHeight {
     })
 
     // init range plugin
-    this.$range = Range.of(this.$lineHeight, {
+    this.$range = UnitsRange.of(this.$lineHeight, {
       theme: 'default',
       tip: false,
       // replaceFirst: 'inherit',
       value,
       unit,
       defaultUnit: this.unit,
-      onChange() {
-        that.update()
+      // defaultUnit: 'inherit',
+      onChange(val) {
+        console.log(val)
+        that.update(val)
       },
       onChangeUnit(unit) {
-        if (unit === 'inherit') {
-          that.update(true)
-        } else {
-          that.update()
-        }
-
         that.unit = unit
       }
     })
-
-    // this.$range.set({
-    //   input: this.value,
-    //   unit: this.unit
-    // })
-    // this.update()
-
-    // if (this.unit === 'inherit') {
-    //   this.update(true)
-    // }
   }
 
   parse(val) {
@@ -84,9 +67,10 @@ export default class LineHeight {
     if (val === 'inherit') {
       this.value = 0
       this.unit = 'inherit'
-      return null
+      return
     }
-    if (this.instance.value.lineHeight) {
+
+    if (val) {
       inlineVal = val.split(/[a-zA-Z]/g)[0]
       inlineUnit = val.split(/\d/g)
       inlineUnit = inlineUnit[inlineUnit.length - 1]
@@ -94,32 +78,18 @@ export default class LineHeight {
     this.value = inlineVal || this.instance.options.lineHeight.value
     this.unit = inlineUnit || this.instance.options.lineHeight.unit
 
-    return null
+    return
   }
 
   clear() {
     this.set(this.defaultValue)
   }
 
-  update(inherit) {
-    if (inherit) {
-      addClass(this.instance.classes.INHERIT, parent(this.$lineHeight))
-      this.instance.value.lineHeight = 'inherit'
-    } else {
-      removeClass(this.instance.classes.INHERIT, parent(this.$lineHeight))
-      this.instance.value.lineHeight = `${this.$range.get().value}${
-        this.$range.get().unit
-      }`
-    }
+  update(val) {
+    this.instance.value.lineHeight = val
   }
-
   set(value) {
-    this.parse(value)
-
-    if (!value || value === 'inherit') {
-      this.update(true)
-    } else {
-      this.update()
-    }
+    this.$range.val(value)
+    this.update(value)
   }
 }

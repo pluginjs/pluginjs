@@ -163,7 +163,7 @@ export const defaults = {
       return (
         '<div class="{classes.LINEHEIGHT}">' +
         '<span class="{classes.LINEHEIGHTTITLE}">{lineHeight}</span>' +
-        '<div class="{classes. LINEHEIGHTCONTENT}">' +
+        '<div class="{classes.LINEHEIGHTCONTENT}">' +
         '<div class="{classes.LINEHEIGHTRANGE}"></div>' +
         // '<div class="{namespace}-lineHeight-value">1</div>' +
         '</div>' +

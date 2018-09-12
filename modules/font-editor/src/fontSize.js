@@ -1,7 +1,7 @@
 import template from '@pluginjs/template'
-import { parseHTML, parent, insertBefore, query } from '@pluginjs/dom'
-import Range from '@pluginjs/range'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { parseHTML, insertBefore, query } from '@pluginjs/dom'
+import UnitsRange from '@pluginjs/units-range'
+// import { addClass, removeClass } from '@pluginjs/classes'
 
 export default class FontSize {
   constructor(instance) {
@@ -13,7 +13,6 @@ export default class FontSize {
 
   emptyize() {
     this.parse(this.instance.value.fontSize)
-    console.log(this.instance.value.fontSize, 5476)
     this.initRange()
   }
 
@@ -43,36 +42,22 @@ export default class FontSize {
     })
 
     // init range plugin
-    this.$range = Range.of(this.$fontSize, {
+    this.$range = UnitsRange.of(this.$fontSize, {
       theme: 'default',
       tip: false,
       // replaceFirst: 'inherit',
       value,
       unit,
       defaultUnit: this.unit,
-      onChange() {
-        that.update()
+      // defaultUnit: 'inherit',
+      onChange(val) {
+        console.log(val)
+        that.update(val)
       },
       onChangeUnit(unit) {
-        if (unit === 'inherit') {
-          that.update(true)
-        } else {
-          that.update()
-        }
-
         that.unit = unit
       }
     })
-
-    console.log(this.unit, 98675645674)
-    // this.$range.set({
-    //   input: this.value,
-    //   unit: this.unit
-    // })
-    // this.update()
-    // if (this.unit === 'inherit') {
-    //   this.update(true)
-    // }
   }
 
   parse(val) {
@@ -93,7 +78,6 @@ export default class FontSize {
     this.value = inlineVal || this.instance.options.fontSize.value
     this.unit = inlineUnit || this.instance.options.fontSize.unit
 
-    console.log(this.unit, 56798)
     return
   }
 
@@ -101,25 +85,11 @@ export default class FontSize {
     this.set(this.defaultValue)
   }
 
-  update(inherit) {
-    if (inherit) {
-      addClass(this.instance.classes.INHERIT, parent(this.$fontSize))
-      this.instance.value.fontSize = 'inherit'
-    } else {
-      removeClass(this.instance.classes.INHERIT, parent(this.$fontSize))
-      this.instance.value.fontSize = `${this.$range.get().value}${
-        this.$range.get().unit
-      }`
-    }
+  update(val) {
+    this.instance.value.fontSize = val
   }
   set(value) {
-    if (!value || value === 'inherit') {
-      this.$range.set(0, 'inherit')
-      this.update(true)
-    } else {
-      console.log(value, 309723)
-      this.$range.val(value)
-      this.update()
-    }
+    this.$range.val(value)
+    this.update(value)
   }
 }

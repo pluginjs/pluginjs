@@ -44,26 +44,9 @@ export default class FontFamily {
         if (that.instance.is('disabled')) {
           return
         }
-
-        // const fontFamily = data('fontFamily', value)
         that.instance.value.fontFamily = value
-
-        // if (fontFamily !== 'inherit') {
-        //   that.instance.$wrap
-        //     .addClass(that.instance.classes.EXSIT)
-        //     .removeClass(that.instance.classes.WRITE);
-        // }
-        // that.instance.$fillFontName.text(fontFamily);
-        // that.instance.update();
-        // that.instance.$fillFontName.css({
-        //   'font-family': fontFamily
-        // });
       }
     })
-
-    // this.updateList();
-
-    // this.set(value);
   }
 
   set(value) {

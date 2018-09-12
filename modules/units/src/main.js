@@ -118,6 +118,7 @@ class Units extends Component {
       imitateSelect: true,
       value: this.value.unit,
       onChange: value => {
+        console.log(100)
         if (this.value.unit === value) {
           return
         }
@@ -173,6 +174,7 @@ class Units extends Component {
     bindEvent(
       this.selfEventName(EVENTS.CHANGE),
       (e, instance, value) => {
+        console.log(11)
         if (this.isStatic(value)) {
           addClass(this.classes.STATIC, this.$wrap)
         } else {
@@ -199,10 +201,12 @@ class Units extends Component {
   }
 
   isStatic(value) {
+    console.log(12315)
     return value in this.options.units && this.options.units[value] === false
   }
 
   setStatic(value, trigger = true) {
+    console.log(12315)
     this.set(value, trigger)
   }
 
@@ -229,6 +233,7 @@ class Units extends Component {
   }
 
   set(value, trigger = true) {
+    console.log(111111)
     let changed = false
 
     if (this.isStatic(value)) {

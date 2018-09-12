@@ -53,8 +53,7 @@ export default class FontWeight {
         if (that.instance.is('disabled')) {
           return
         }
-        console.log(value)
-        that.instance.update()
+        // that.instance.update()
         that.instance.$fillFontName.style.fontWeight = value
       }
     })
