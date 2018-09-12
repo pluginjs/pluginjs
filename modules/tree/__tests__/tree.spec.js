@@ -53,14 +53,6 @@ describe('Tree', () => {
         expect(tree.bind()).toBeNil()
       }, 0)
     })
-
-    test('should call destroy', () => {
-      setTimeout(() => {
-        const $element = generateHTMLSample()
-        const tree = Tree.of($element)
-        tree.destroy()
-      }, 0)
-    })
   })
 
   describe('initialize()', () => {

@@ -43,17 +43,6 @@ describe('SvgProgress', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = SvgProgress.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should call start', () => {
       const $element = SvgProgress.of(generateHTMLSample())
@@ -70,7 +59,7 @@ describe('SvgProgress', () => {
     })
   })
 
-  describe('initialized()', () => {
+  describe('initialize()', () => {
     let $element
 
     beforeEach(() => {
@@ -99,6 +88,14 @@ describe('SvgProgress', () => {
     beforeEach(() => {
       $element = generateHTMLSample()
       api = SvgProgress.of($element)
+    })
+
+    test('should destroy the plugin', () => {
+      setTimeout(() => {
+        expect(api.is('initialized')).toBeTrue()
+        api.destroy()
+        expect(api.is('initialized')).toBeFalse()
+      }, 0)
     })
 
     test('should trigger destroy event', () => {
@@ -131,6 +128,7 @@ describe('SvgProgress', () => {
       setTimeout(() => {
         api.disable()
         api.enable()
+
         expect(api.is('disabled')).toBeFalse()
       }, 0)
     })

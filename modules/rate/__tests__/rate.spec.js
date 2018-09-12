@@ -1,12 +1,8 @@
 import Rate from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
-import { parseHTML } from '@pluginjs/dom'
+import generateHTMLSample from './fixtures/sample'
 
-const getInitalElement = () => parseHTML`
-<div class="iconSize"></div>
-`
-
-const getNewRate = () => Rate.of(getInitalElement())
+const getNewRate = () => Rate.of(generateHTMLSample())
 
 describe('Rate', () => {
   describe('Rate()', () => {
@@ -53,7 +49,7 @@ describe('Rate', () => {
     })
 
     test('should call destroy', () => {
-      const rateInstance = Rate.of(getInitalElement())
+      const rateInstance = Rate.of(generateHTMLSample())
 
       setTimeout(() => {
         rateInstance.destroy()
@@ -65,7 +61,7 @@ describe('Rate', () => {
     let $element
 
     beforeEach(() => {
-      $element = getInitalElement()
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -86,7 +82,7 @@ describe('Rate', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitalElement()
+      $element = generateHTMLSample()
       api = Rate.of($element)
     })
 
