@@ -40,15 +40,6 @@ describe('Headroom', () => {
     })
   })
 
-  describe('api call', () => {
-    test('should not call bind', () => {
-      const headroom = Headroom.of(generateHTMLSample())
-      setTimeout(() => {
-        expect(headroom.bind()).toBeNil()
-      }, 0)
-    })
-  })
-
   describe('initialize()', () => {
     let $element
 

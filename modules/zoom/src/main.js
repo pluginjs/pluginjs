@@ -98,7 +98,7 @@ class Zoom extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.element)
+      removeClass(this.classes.DISABLE, this.element)
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -106,7 +106,7 @@ class Zoom extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.element)
+      addClass(this.classes.DISABLE, this.element)
       this.enter('disabled')
     }
 

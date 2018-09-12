@@ -162,7 +162,7 @@ class Toast extends GlobalComponent {
     } else if (this.options.effect === 'fade') {
       effect = 'fadeIn'
     }
-    this.options.effect = effect
+    this.$effect = effect
 
     addClass(`${this.classes.NAMESPACE}-${effect}`, this.$element)
   }
@@ -219,10 +219,7 @@ class Toast extends GlobalComponent {
       addClass(`${this.classes.NAMESPACE}-contentOut`, this.$title)
     }
 
-    removeClass(
-      `${this.classes.NAMESPACE}-${this.options.effect}`,
-      this.$element
-    )
+    removeClass(`${this.classes.NAMESPACE}-${this.$effect}`, this.$element)
     addClass(`${this.classes.NAMESPACE}-Out`, this.$element)
 
     if (this.$buttons) {

@@ -1,12 +1,6 @@
 import Zoom from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
-import { parseHTML } from '@pluginjs/dom'
-
-const getInitialElement = () => parseHTML`
-  <img class="zoom" src="https://picsum.photos/420/280?image=0"/>
-`
-
-const getNewZoom = () => Zoom.of(getInitialElement())
+import generateHTMLSample from './fixtures/sample'
 
 describe('Zoom', () => {
   describe('Zoom()', () => {
@@ -17,12 +11,15 @@ describe('Zoom', () => {
     test('should have defaults', () => {
       expect(Zoom.defaults).toBeObject()
     })
+
     test('should have events', () => {
       expect(Zoom.events).toBeObject()
     })
+
     test('should have classes', () => {
       expect(Zoom.classes).toBeObject()
     })
+
     test('should have methods', () => {
       expect(Zoom.methods).toBeArray()
     })
@@ -30,40 +27,23 @@ describe('Zoom', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const api = getNewZoom()
+      const api = Zoom.of(generateHTMLSample())
 
       expect(api).toBeObject()
-      expect(api.options).toEqual({
-        ...DEFAULTS
-      })
+      expect(api.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const zoom = getNewZoom()
+      const zoom = Zoom.of(generateHTMLSample())
 
       expect(zoom.options).toBeObject()
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const api = getNewZoom()
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
-      const api = getNewZoom()
+      const api = Zoom.of(generateHTMLSample())
       expect(api.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const api = getNewZoom()
-      api.destroy()
     })
   })
 
@@ -71,7 +51,7 @@ describe('Zoom', () => {
     let $element
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
     })
 
     test('should trigger ready event', () => {
@@ -92,7 +72,7 @@ describe('Zoom', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
       api = Zoom.of($element)
     })
 
@@ -115,7 +95,7 @@ describe('Zoom', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
       api = Zoom.of($element)
     })
 
@@ -144,12 +124,13 @@ describe('Zoom', () => {
     let api
 
     beforeEach(() => {
-      $element = getInitialElement()
+      $element = generateHTMLSample()
       api = Zoom.of($element)
     })
 
     test('should disable the plugin', () => {
       api.disable()
+      console.log(22)
 
       expect(api.is('disabled')).toBeTrue()
     })

@@ -215,9 +215,7 @@ class Arrows extends Component {
       this.trigger(EVENTS.NEXTENABLE)
     }
 
-    if (prev && next) {
-      this.trigger(EVENTS.ENABLE)
-    }
+    this.trigger(EVENTS.ENABLE)
   }
 
   disable(arg) {

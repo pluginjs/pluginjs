@@ -26,65 +26,76 @@ describe('Modal', () => {
 
   describe('constructor()', () => {
     test('should work correctly', () => {
-      const modal = new Modal({
-        content: 'hello world'
-      })
+      const modal = new Modal()
 
       expect(modal).toBeObject()
-      expect(modal.options).toEqual({
-        ...DEFAULTS,
-        content: 'hello world'
-      })
+      expect(modal.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const modal = new Modal({
-        content: 'hello world'
-      })
+      const modal = new Modal()
 
       expect(modal.options).toBeObject()
     })
+  })
 
-    test('should have classes', () => {
-      const modal = new Modal({
-        content: 'hello world'
-      })
-
-      expect(modal.classes).toBeObject()
+  describe('api call', () => {
+    test('should not call bind', () => {
+      const modal = new Modal()
+      expect(modal.bind()).toBeNil()
     })
   })
 
   describe('initialize()', () => {
-    const $doc = window.document.documentElement
+    let $element
+
+    beforeEach(() => {
+      $element = window.document.documentElement
+    })
 
     test('should trigger ready event', () => {
       let called = 0
-      $doc.addEventListener('modal:ready', function handler() {
+
+      $element.addEventListener('modal:ready', () => {
         called++
-        $doc.removeEventListener('modal:ready', handler)
       })
-      const api = new Modal({
+      const instance = new Modal({
         content: 'hello world'
       })
-      expect(api.is('initialized')).toBeTrue()
+      expect(instance.is('initialized')).toBeTrue()
       expect(called).toEqual(1)
     })
   })
 
   describe('destroy()', () => {
-    const api = new Modal({
-      content: 'hello world'
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = window.document.documentElement
+      api = new Modal({
+        content: 'hello word'
+      })
     })
-    const $doc = window.document.documentElement
+
+    test('should destroy the plugin', () => {
+      expect(api.is('initialized')).toBeTrue()
+
+      api.destroy()
+
+      expect(api.is('initialized')).toBeFalse()
+    })
 
     test('should trigger destroy event', () => {
       let called = 0
-      $doc.addEventListener('modal:destroy', function handler() {
+
+      $element.addEventListener('modal:destroy', () => {
+        expect(api.is('initialized')).toBeFalse()
         called++
-        $doc.removeEventListener('modal:ready', handler)
       })
 
       api.destroy()
+
       expect(called).toEqual(1)
     })
   })

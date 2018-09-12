@@ -37,10 +37,12 @@ const MODES = {}
 })
 class CountDown extends Component {
   _interval = {
-    createTimer: time =>
-      window.setInterval(() => {
+    createTimer: time => {
+      this.timer = () => {
         this.update()
-      }, time),
+      }
+      return window.setInterval(this.timer, time)
+    },
     removeTimer: () => {
       window.clearInterval(this.timer())
     }
@@ -211,6 +213,7 @@ class CountDown extends Component {
       this.start()
       this.leave('disabled')
     }
+    this.trigger(EVENTS.ENABLE)
   }
 
   disable() {
@@ -219,6 +222,7 @@ class CountDown extends Component {
       this.stop()
       this.enter('disabled')
     }
+    this.trigger(EVENTS.DISABLE)
   }
 
   destroy() {
@@ -228,8 +232,10 @@ class CountDown extends Component {
       this.stop()
       this.element.innerHTML = ''
       this.leave('initialized')
-      super.destroy()
     }
+
+    this.trigger(EVENTS.DESTROY)
+    super.destroy()
   }
 
   static registerMode(name, defination) {

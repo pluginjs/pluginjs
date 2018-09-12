@@ -176,7 +176,10 @@ class Notice extends GlobalComponent {
     this.$position = query(`.${this.classes.POSITION}`, this.$element)
     this.$closeBtn = query(`.${this.classes.CLOSE}`, this.$element)
 
-    this.setContent(this.options.content)
+    if (this.options.content !== '') {
+      this.setContent(this.options.content)
+      this.setContentloction(this.options.contentAlignment)
+    }
 
     if (this.options.fixedWidth) {
       addClass(`${this.classes.NAMESPACE}-fixed`, this.$element)
@@ -184,17 +187,6 @@ class Notice extends GlobalComponent {
 
     if (this.options.backgroundColor || this.options.backgroundImage) {
       addClass(this.classes.BACKGROUND, this.$element)
-    }
-
-    if (this.options.contentAlignment) {
-      addClass(
-        this.getClass(
-          this.classes.CONTENTLOCATION,
-          'location',
-          this.options.contentAlignment
-        ),
-        this.$element
-      )
     }
 
     if (this.options.breakpoint) {
@@ -229,6 +221,19 @@ class Notice extends GlobalComponent {
       this.$content.innerHTML = content
     } else {
       this.$content.textContent = content
+    }
+  }
+
+  setContentloction(contentLocation) {
+    if (contentLocation) {
+      addClass(
+        this.getClass(
+          this.classes.CONTENTLOCATION,
+          'location',
+          this.options.contentAlignment
+        ),
+        this.$element
+      )
     }
   }
 

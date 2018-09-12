@@ -3,5 +3,8 @@ import Gmap from '@pluginjs/gmap'
 
 const element = query('#marker .gmap')
 Gmap.of(element, {
-  apiKey: 'AIzaSyDSx-q31rWQKqLwUahg6TrZ3R_5NT0LhFE'
+  apiKey: 'AIzaSyDSx-q31rWQKqLwUahg6TrZ3R_5NT0LhFE',
+  onReady() {
+    console.log('ready')
+  }
 })

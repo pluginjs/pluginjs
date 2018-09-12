@@ -46,30 +46,6 @@ describe('Gmap', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const gmap = getNewGmap()
-
-      expect(gmap).toEqual(gmap)
-      expect(gmap).toBeObject()
-      expect(gmap.options).toBeObject()
-    })
-  })
-
-  describe('api call', () => {
-    test('should not call bind', () => {
-      setTimeout(() => {
-        const api = getNewGmap()
-        expect(api.bind()).toBeNil()
-      }, 0)
-    })
-
-    test('should call destroy', () => {
-      const api = getNewGmap()
-      api.destroy()
-    })
-  })
-
   describe('initialize()', () => {
     let $element
 
@@ -84,11 +60,10 @@ describe('Gmap', () => {
         called++
       })
 
-      setTimeout(() => {
-        const instance = Gmap.of($element)
-        expect(called).toEqual(1)
-        expect(instance.is('initialized')).toBeTrue()
-      }, 0)
+      const instance = Gmap.of($element)
+
+      expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
