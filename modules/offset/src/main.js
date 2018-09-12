@@ -107,7 +107,7 @@ class Offset extends Component {
     const that = this
 
     bindEvent(
-      this.eventName('units:changeVal'),
+      this.eventName('units:changeInput'),
       ({
         target,
         detail: {
@@ -127,7 +127,6 @@ class Offset extends Component {
         info.value = val ? val : ''
 
         newData[key] = info
-        console.log(newData)
         this.set(newData, true)
         children(this.$inner)
           .filter(el => el.matches('div'))
@@ -183,7 +182,8 @@ class Offset extends Component {
           `.${that.classes.NAMESPACE}-${$this.dataset.value}`,
           this.$wrap
         )
-        const $unit = query('input', $el)
+        const $unit = queryAll('input', $el)[1]
+        console.log($unit)
         const unit = that.data[$unit.getAttribute('name')].unit
 
         const api = getData('units', $unit)
@@ -193,7 +193,7 @@ class Offset extends Component {
           removeClass(that.classes.UNITSHOW, c)
         )
         addClass(that.classes.UNITSHOW, $el)
-        query('input', $el).focus()
+        queryAll('input', $el)[0].focus()
       },
       this.$wrap
     )
@@ -204,7 +204,7 @@ class Offset extends Component {
         const target = e.target
         if (
           hasClass(this.classes.VIEW, target) ||
-          closest('.pj-units-wrap', target)
+          closest('.pj-units', target)
         ) {
           return
         }
@@ -279,18 +279,19 @@ class Offset extends Component {
   }
 
   setUnits($el, name) {
-    let units = ['px', 'em', 'rem', '%']
+    let units = { px: true, em: true, rem: true, '%': true }
     if (name.split('-')[0] === 'padding') {
-      units = ['px', 'em', 'rem', '%']
+      units = { px: true, em: true, rem: true, '%': true }
     }
 
     const that = this
 
     const $input = query('input', $el)
+
     $input.setAttribute('name', name)
     const apiDate = new UNITS($input, {
       theme: 'default',
-      data: units,
+      units,
       defaultUnit: this.options.defaultUnit,
       onChangeUnit(unit) {
         if (that.is('disabled')) {
@@ -379,7 +380,6 @@ class Offset extends Component {
         input: value,
         unit
       }
-      console.log(val)
       that.set(val, true)
       return false
     }
@@ -401,7 +401,6 @@ class Offset extends Component {
     const $this = query(`#${id}`, this.$wrap)
 
     const key = $this.getAttribute('name')
-    console.log(this.data[key])
     const inputValue = this.data[key].input
     let value
 
@@ -425,12 +424,11 @@ class Offset extends Component {
 
   setView() {
     this.$items.map((item, i) => { /* eslint-disable-line */
-      const $input = query('input', item)
+      const $input = queryAll('input', item)[1]
       const key = $input.getAttribute('name')
       const $view = query(`.${this.classes.VIEW}`, item)
       const info = getData('info', item)
-      console.log(info)
-      if (info && info.input.length < 1) {
+      if (info && info.input === '') {
         $view.innerHTML = '-'
         return /* eslint-disable-line */
       }
@@ -438,7 +436,6 @@ class Offset extends Component {
         $view.innerHTML = 0
         return /* eslint-disable-line */
       }
-
       $view.innerHTML = `${this.data[key].input}${this.data[key].unit}`
     })
   }
@@ -464,13 +461,12 @@ class Offset extends Component {
   clear(update = true) {
     this.value = KEYS
     if (update !== false) {
-      console.log(this.value)
       this.set(this.value)
     }
   }
 
   set(value, only) {
-    // console.log(value)
+    console.log(value)
     if (!value || typeof value === 'undefined') {
       return
     }
@@ -512,7 +508,7 @@ class Offset extends Component {
         }
       })
     }
-    // console.log(this.value)
+
     each(this.value, (i, v) => {
       const input = query(`[name="${i}"]`, this.$wrap)
 
@@ -567,7 +563,7 @@ class Offset extends Component {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
-    console.log(value)
+
     return this.set(this.options.parse.call(this, value))
   }
 

@@ -243,7 +243,9 @@ class Units extends Component {
       }
       if (!isUndefined(value.unit) && value.unit !== this.value.unit) {
         this.value.unit = value.unit ? value.unit : this.getDefaultUnit()
-        this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
+        if (trigger) {
+          this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
+        }
 
         changed = true
       }
@@ -253,7 +255,9 @@ class Units extends Component {
         if (!isNull(value.input)) {
           this.cached[this.getUnit()] = value.input
         }
-        this.trigger(EVENTS.CHANGEINPUT, this.value.input)
+        if (trigger) {
+          this.trigger(EVENTS.CHANGEINPUT, this.value.input)
+        }
 
         changed = true
       }
