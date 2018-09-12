@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.28",
+  "category": "media",
   "main": "dist/grids.umd.js",
   "module": "dist/grids.esm.js",
   "cjs": "dist/grids.cjs.js",
@@ -30,22 +31,22 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@pluginjs/arrows": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/dots": "*",
     "@pluginjs/events": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/feature": "*",
     "@pluginjs/filters": "*",
     "@pluginjs/image-loader": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/swipe": "*",
     "@pluginjs/template": "*",
@@ -58,18 +59,13 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
-  },
-  "category": "media",
-  "globals": {
-    "animejs": "anime",
-    "hammerjs": "Hammer"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -78,5 +74,9 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
+  },
+  "globals": {
+    "animejs": "anime",
+    "hammerjs": "Hammer"
   }
 }

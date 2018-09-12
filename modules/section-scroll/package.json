@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.18",
+  "category": "scroll",
   "main": "dist/section-scroll.umd.js",
   "module": "dist/section-scroll.esm.js",
   "cjs": "dist/section-scroll.cjs.js",
@@ -30,17 +31,17 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/dots": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
     "@pluginjs/template": "*",
     "hammerjs": "*"
   },
@@ -50,17 +51,13 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
-  },
-  "category": "scroll",
-  "globals": {
-    "hammerjs": "Hammer"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -69,5 +66,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
+  },
+  "globals": {
+    "hammerjs": "Hammer"
   }
 }

@@ -11,13 +11,13 @@
   "dependencies": {
     "@pluginjs/dom": "*",
     "@pluginjs/font-editor": "*",
-    "@pluginjs/icons": "^0.5.1",
+    "@pluginjs/icons": "*",
     "@pluginjs/styles": "*"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
+    "babel-core": "*",
+    "babel-preset-env": "*",
     "parcel-bundler": "*",
-    "posthtml-include": "^1.2.0"
+    "posthtml-include": "*"
   }
 }

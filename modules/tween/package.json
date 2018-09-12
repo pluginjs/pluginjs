@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.19",
+  "category": "core",
   "main": "dist/tween.umd.js",
   "module": "dist/tween.esm.js",
   "cjs": "dist/tween.cjs.js",
@@ -27,9 +28,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/simple-emitter": "*",
     "@pluginjs/easing": "*",
     "@pluginjs/is": "*",
+    "@pluginjs/simple-emitter": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {
@@ -38,7 +39,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -46,7 +47,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "core",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.21",
+  "category": "form",
   "main": "dist/bg-picker.umd.js",
   "module": "dist/bg-picker.esm.js",
   "cjs": "dist/bg-picker.cjs.js",
@@ -21,7 +22,6 @@
     "main": "dist/bg-picker.css",
     "min": "dist/bg-picker.min.css"
   },
-  "style": "src/css/bg-picker.scss",
   "files": [
     "dist",
     "src"
@@ -31,21 +31,21 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/template": "*",
-    "@pluginjs/styles": "*"
+    "@pluginjs/styles": "*",
+    "@pluginjs/template": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -53,7 +53,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -61,7 +61,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "form",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
@@ -69,5 +68,6 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "style": "src/css/bg-picker.scss"
 }

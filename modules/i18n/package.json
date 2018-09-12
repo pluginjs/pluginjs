@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.19",
+  "category": "core",
   "main": "dist/i18n.umd.js",
   "module": "dist/i18n.esm.js",
   "cjs": "dist/i18n.cjs.js",
@@ -36,7 +37,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -44,7 +45,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "core",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

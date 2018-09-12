@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.18",
+  "category": "scroll",
   "main": "dist/parallax.umd.js",
   "module": "dist/parallax.esm.js",
   "cjs": "dist/parallax.cjs.js",
@@ -30,15 +31,15 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {
@@ -47,7 +48,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -55,7 +56,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "scroll",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

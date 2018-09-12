@@ -9,14 +9,14 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
-    "@pluginjs/infinite": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/infinite": "*",
     "@pluginjs/styles": "*"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "posthtml-include": "^1.2.0",
-    "parcel-bundler": "*"
+    "babel-core": "*",
+    "babel-preset-env": "*",
+    "parcel-bundler": "*",
+    "posthtml-include": "*"
   }
 }

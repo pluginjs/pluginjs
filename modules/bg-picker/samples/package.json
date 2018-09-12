@@ -12,15 +12,12 @@
     "@pluginjs/bg-picker": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/icons": "*",
-    "@pluginjs/styles": "*",
-    "poper": "^0.1.1"
+    "@pluginjs/styles": "*"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
+    "babel-core": "*",
+    "babel-preset-env": "*",
     "parcel-bundler": "*",
-    "postcss": "^7.0.0",
-    "postcss-import": "^11.1.0",
-    "posthtml-include": "^1.2.0"
+    "posthtml-include": "*"
   }
 }

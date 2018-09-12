@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.23",
+  "category": "ui",
   "main": "dist/loader.umd.js",
   "module": "dist/loader.esm.js",
   "cjs": "dist/loader.cjs.js",
@@ -30,19 +31,19 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/styles": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/styled": "*",
+    "@pluginjs/styles": "*",
     "@pluginjs/template": "*",
     "@pluginjs/utils": "*"
   },
@@ -52,7 +53,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -60,7 +61,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "ui",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

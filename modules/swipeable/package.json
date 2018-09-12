@@ -5,6 +5,7 @@
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
   "version": "0.0.4",
+  "category": "ui",
   "main": "dist/swipeable.umd.js",
   "module": "dist/swipeable.esm.js",
   "cjs": "dist/swipeable.cjs.js",
@@ -24,11 +25,11 @@
   },
   "dependencies": {
     "@pluginjs/classes": "*",
-    "@pluginjs/dom": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
     "@pluginjs/styled": "*",
-    "animejs": "^2.2.0",
+    "animejs": "*",
     "hammerjs": "*"
   },
   "devDependencies": {
@@ -37,11 +38,10 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
-  "category": "ui",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
@@ -49,5 +49,9 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
+  },
+  "globals": {
+    "animejs": "anime",
+    "hammerjs": "Hammer"
   }
 }

@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.18",
+  "category": "utils",
   "main": "dist/color.umd.js",
   "module": "dist/color.esm.js",
   "cjs": "dist/color.cjs.js",
@@ -25,12 +26,12 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/is": "*",
     "@pluginjs/factory": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {
@@ -39,7 +40,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -47,7 +48,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "utils",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.18",
+  "category": "scroll",
   "main": "dist/scroll-dir.umd.js",
   "module": "dist/scroll-dir.esm.js",
   "cjs": "dist/scroll-dir.cjs.js",
@@ -28,10 +29,10 @@
   },
   "dependencies": {
     "@pluginjs/component": "*",
-    "@pluginjs/dom": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/factory": "*",
     "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/factory": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/scroll": "*"
   },
   "devDependencies": {
@@ -40,7 +41,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -48,7 +49,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "scroll",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

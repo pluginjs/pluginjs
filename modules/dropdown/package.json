@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.22",
+  "category": "ui",
   "main": "dist/dropdown.umd.js",
   "module": "dist/dropdown.esm.js",
   "cjs": "dist/dropdown.cjs.js",
@@ -30,21 +31,21 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
-    "popper.js": "1.14.3"
+    "popper.js": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -52,7 +53,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -60,8 +61,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "ui",
-  "globals": {},
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
@@ -69,5 +68,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
+  },
+  "globals": {
+    "popper.js": "Popper"
   }
 }

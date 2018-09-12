@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.18",
+  "category": "utils",
   "main": "dist/gradient.umd.js",
   "module": "dist/gradient.esm.js",
   "cjs": "dist/gradient.cjs.js",
@@ -27,8 +28,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/is": "*",
-    "@pluginjs/factory": "*"
+    "@pluginjs/factory": "*",
+    "@pluginjs/is": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -36,7 +37,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -44,7 +45,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "utils",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

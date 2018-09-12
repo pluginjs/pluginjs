@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.19",
+  "category": "scroll",
   "main": "dist/scroll.umd.js",
   "module": "dist/scroll.esm.js",
   "cjs": "dist/scroll.cjs.js",
@@ -27,9 +28,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/styles": "^0.5.3",
     "@pluginjs/easing": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/styles": "^0.5.3"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -37,7 +38,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -45,7 +46,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "scroll",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

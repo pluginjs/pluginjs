@@ -14,7 +14,8 @@
   "devDependencies": {
     "babel-core": "*",
     "babel-preset-env": "*",
-    "parcel-bundler": "*"
+    "parcel-bundler": "*",
+    "posthtml-include": "*"
   },
   "license": "GPL-3.0"
 }

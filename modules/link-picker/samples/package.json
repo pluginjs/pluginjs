@@ -13,13 +13,12 @@
     "@pluginjs/icons": "*",
     "@pluginjs/link-picker": "*",
     "@pluginjs/styles": "*",
-    "font-awesome": "^4.7.0",
-    "popper": "^1.0.1"
+    "font-awesome": "*"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "posthtml-include": "^1.2.0",
-    "parcel-bundler": "*"
+    "babel-core": "*",
+    "babel-preset-env": "*",
+    "parcel-bundler": "*",
+    "posthtml-include": "*"
   }
 }

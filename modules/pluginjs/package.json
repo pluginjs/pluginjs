@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.5.0",
+  "category": "core",
   "main": "dist/pluginjs.umd.js",
   "module": "dist/pluginjs.esm.js",
   "cjs": "dist/pluginjs.cjs.js",
@@ -27,26 +28,24 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/polyfills": "*",
-    "@pluginjs/emitter": "*",
-    "@pluginjs/utils": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/utils": "*",
+    "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/easing": "*",
+    "@pluginjs/emitter": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/factory": "*",
+    "@pluginjs/feature": "*",
     "@pluginjs/global-component": "*",
     "@pluginjs/i18n": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/easing": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/feature": "*",
-    "@pluginjs/template": "*",
     "@pluginjs/keyboard": "*",
-    "@pluginjs/viewport": "*",
-    "@pluginjs/classes": "*",
+    "@pluginjs/polyfills": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
     "@pluginjs/utils": "*",
-    "@pluginjs/dom": "*",
-    "@pluginjs/events": "*",
-    "@pluginjs/styled": "*"
+    "@pluginjs/viewport": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -54,7 +53,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -62,7 +61,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "core",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

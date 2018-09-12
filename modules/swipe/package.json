@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.31",
+  "category": "form",
   "main": "dist/swipe.umd.js",
   "module": "dist/swipe.esm.js",
   "cjs": "dist/swipe.cjs.js",
@@ -30,23 +31,23 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/component": "*",
+    "@pluginjs/arrows": "*",
     "@pluginjs/classes": "*",
-    "@pluginjs/styled": "*",
-    "@pluginjs/events": "*",
-    "@pluginjs/dom": "*",
+    "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
-    "@pluginjs/template": "*",
-    "@pluginjs/swipeable": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/dots": "*",
+    "@pluginjs/events": "*",
     "@pluginjs/image-loader": "*",
     "@pluginjs/loader": "*",
-    "@pluginjs/arrows": "*",
-    "@pluginjs/dots": "*",
-    "animejs": "^2.2.0"
+    "@pluginjs/styled": "*",
+    "@pluginjs/swipeable": "*",
+    "@pluginjs/template": "*",
+    "animejs": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -54,17 +55,13 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
-  },
-  "category": "form",
-  "globals": {
-    "hammerjs": "Hammer"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -73,5 +70,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
+  },
+  "globals": {
+    "animejs": "anime"
   }
 }

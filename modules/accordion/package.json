@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.5.2",
+  "category": "ui",
   "main": "dist/accordion.umd.js",
   "module": "dist/accordion.esm.js",
   "cjs": "dist/accordion.cjs.js",
@@ -36,15 +37,15 @@
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
     "@pluginjs/utils": "*",
-    "animejs": "^2.2.0",
+    "animejs": "*",
     "hammerjs": "*"
   },
   "devDependencies": {
@@ -53,18 +54,13 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
-  },
-  "category": "ui",
-  "globals": {
-    "animejs": "anime",
-    "hammerjs": "Hammer"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -73,6 +69,10 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
+  },
+  "globals": {
+    "animejs": "anime",
+    "hammerjs": "Hammer"
   },
   "sassrc": ".sassrc.js"
 }

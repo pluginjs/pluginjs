@@ -5,6 +5,7 @@
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
   "version": "0.0.1",
+  "category": "ui",
   "main": "dist/magnify.umd.js",
   "module": "dist/magnify.esm.js",
   "cjs": "dist/magnify.cjs.js",
@@ -25,13 +26,13 @@
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/styled": "*",
     "@pluginjs/image-loader": "*",
-    "@pluginjs/loader": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/loader": "*",
+    "@pluginjs/styled": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -39,11 +40,10 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
-  "category": "ui",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

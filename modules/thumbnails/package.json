@@ -5,6 +5,7 @@
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
   "version": "0.0.2",
+  "category": "",
   "main": "dist/thumbnails.umd.js",
   "module": "dist/thumbnails.esm.js",
   "cjs": "dist/thumbnails.cjs.js",
@@ -25,15 +26,15 @@
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
     "@pluginjs/template": "*",
     "@pluginjs/utils": "*",
-    "animejs": "^2.2.0"
+    "animejs": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -41,11 +42,10 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
-  "category": "",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
@@ -53,5 +53,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
+  },
+  "globals": {
+    "animejs": "anime"
   }
 }

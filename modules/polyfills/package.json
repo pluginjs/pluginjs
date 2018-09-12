@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.0.15",
+  "category": "core",
   "main": "dist/polyfills.umd.js",
   "module": "dist/polyfills.esm.js",
   "cjs": "dist/polyfills.cjs.js",
@@ -21,10 +22,10 @@
     "src"
   ],
   "scripts": {
-    "generate": "./scripts/generate",
     "build": "plugin build",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
+    "generate": "./scripts/generate",
     "test": "jest"
   },
   "dependencies": {
@@ -32,13 +33,13 @@
     "@pluginjs/utils": "*"
   },
   "devDependencies": {
-    "fs-extra": "*",
     "@pluginjs/cli": "*",
     "babel-jest": "*",
+    "fs-extra": "*",
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -46,7 +47,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "core",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

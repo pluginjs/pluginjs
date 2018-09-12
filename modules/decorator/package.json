@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.5.0",
+  "category": "core",
   "main": "dist/decorator.umd.js",
   "module": "dist/decorator.esm.js",
   "cjs": "dist/decorator.cjs.js",
@@ -27,14 +28,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/is": "*",
-    "@pluginjs/utils": "*",
+    "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/i18n": "*",
-    "@pluginjs/global-component": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/dom": "*"
+    "@pluginjs/global-component": "*",
+    "@pluginjs/i18n": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -42,7 +42,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -50,7 +50,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "core",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

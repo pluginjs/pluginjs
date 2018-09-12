@@ -5,6 +5,7 @@
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
   "version": "0.0.1",
+  "category": "form",
   "main": "dist/units-range.umd.js",
   "module": "dist/units-range.esm.js",
   "cjs": "dist/units-range.cjs.js",
@@ -24,12 +25,12 @@
   },
   "dependencies": {
     "@pluginjs/classes": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/units": "*",
     "@pluginjs/range": "*",
-    "@pluginjs/decorator": "*"
+    "@pluginjs/units": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -37,11 +38,10 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
-  "category": "form",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

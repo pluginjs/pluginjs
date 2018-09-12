@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.18",
+  "category": "ui",
   "main": "dist/countdown.umd.js",
   "module": "dist/countdown.esm.js",
   "cjs": "dist/countdown.cjs.js",
@@ -32,11 +33,11 @@
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/decorator": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
     "@pluginjs/template": "*",
@@ -48,11 +49,10 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
-  "category": "ui",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

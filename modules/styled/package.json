@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.5.0",
+  "category": "utils",
   "main": "dist/styled.umd.js",
   "module": "dist/styled.esm.js",
   "cjs": "dist/styled.cjs.js",
@@ -27,9 +28,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/dom": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/utils": "*",
-    "@pluginjs/dom": "*"
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -37,7 +38,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -45,7 +46,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "utils",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

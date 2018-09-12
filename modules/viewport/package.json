@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.19",
+  "category": "utils",
   "main": "dist/viewport.umd.js",
   "module": "dist/viewport.esm.js",
   "cjs": "dist/viewport.cjs.js",
@@ -27,10 +28,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/polyfills": "*",
-    "@pluginjs/decorator": "*",
     "@pluginjs/component": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/decorator": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/polyfills": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -39,7 +40,7 @@
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -47,7 +48,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "utils",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

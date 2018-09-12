@@ -12,6 +12,7 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.2.18",
+  "category": "media",
   "main": "dist/lazyload.umd.js",
   "module": "dist/lazyload.esm.js",
   "cjs": "dist/lazyload.cjs.js",
@@ -30,26 +31,25 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "test": "jest",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix"
+    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/classes": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
-    "@pluginjs/styled": "*",
-    "@pluginjs/image-loader": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/classes": "*",
+    "@pluginjs/image-loader": "*",
+    "@pluginjs/styled": "*",
     "@pluginjs/viewport": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
     "babel-jest": "*",
-    "intersection-observer": "^0.5.0",
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
@@ -57,7 +57,6 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "category": "media",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,

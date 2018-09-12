@@ -9,10 +9,10 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
-    "@icon/dashicons": "^0.9.0-3",
-    "@icon/entypo": "^1.0.0-3",
-    "@icon/feather": "^1.1.0-2",
-    "@icon/font-awesome": "^4.7.0-2",
+    "@icon/dashicons": "*",
+    "@icon/entypo": "*",
+    "@icon/feather": "*",
+    "@icon/font-awesome": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/icon-picker": "*",
     "@pluginjs/icons": "*",
@@ -20,9 +20,9 @@
     "font-awesome": "^4.7.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
+    "babel-core": "*",
+    "babel-preset-env": "*",
     "parcel-bundler": "*",
-    "posthtml-include": "^1.2.0"
+    "posthtml-include": "*"
   }
 }

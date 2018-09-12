@@ -12,8 +12,7 @@
     "@pluginjs/dom": "*",
     "@pluginjs/icons": "*",
     "@pluginjs/styles": "*",
-    "@pluginjs/time-picker": "*",
-    "primary.css": "^1.0.0"
+    "@pluginjs/time-picker": "*"
   },
   "devDependencies": {
     "babel-plugin-transform-html-import-to-string": "*",

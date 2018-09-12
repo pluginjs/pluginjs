@@ -12,13 +12,12 @@
     "@pluginjs/dom": "*",
     "@pluginjs/dropdown": "*",
     "@pluginjs/icons": "*",
-    "@pluginjs/styles": "*",
-    "popper": "^1.0.1"
+    "@pluginjs/styles": "*"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "posthtml-include": "^1.2.0",
-    "parcel-bundler": "*"
+    "babel-core": "*",
+    "babel-preset-env": "*",
+    "parcel-bundler": "*",
+    "posthtml-include": "*"
   }
 }
