@@ -51,11 +51,18 @@ $dot: "pj-dot" !default;
   &-item {
     position: absolute;
 
-    img {
+    .#{$swipe}-img {
       width: 100%;
       height: 100%;
       vertical-align: middle;
       pointer-events: none;
+      opacity: 0;
+    }
+  }
+
+  &-loaded {
+    .#{$swipe}-img {
+      opacity: 1;
     }
   }
 }

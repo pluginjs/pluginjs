@@ -31,6 +31,8 @@ import {
 } from './constant'
 
 import Item from './item'
+import ImageLoader from '@pluginjs/image-loader'
+import Loader from '@pluginjs/loader'
 import Swipeable from '@pluginjs/swipeable'
 import Arrows from '@pluginjs/arrows'
 import Dots from '@pluginjs/dots'
@@ -139,6 +141,27 @@ class Swipe extends Component {
       items = queryAll(this.options.itemSelector, this.element)
       items.forEach(item => {
         addClass(this.classes.ITEM, item)
+      })
+    }
+
+    const images = queryAll(
+      `.${this.classes.ITEM} ${this.options.imgSelector}`,
+      this.element
+    )
+
+    if (images.length > 0) {
+      images.forEach(image => {
+        addClass(this.classes.IMG, image)
+        const loader = Loader.of(closest(this.options.imgContainer, image), {
+          theme: 'circle',
+          color: '#000000',
+          size: 'lg'
+        })
+        loader.show()
+        ImageLoader.of(image).on('loaded', img => {
+          loader.hide()
+          addClass(this.classes.LOADED, closest(`.${this.classes.ITEM}`, img))
+        })
       })
     }
 

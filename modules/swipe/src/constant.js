@@ -25,6 +25,8 @@ export const classes = {
   ITEM: '{namespace}-item',
   PAGINATION: '{namespace}-pagination',
   PAGINATIONITEM: '{namespace}-pagination-item',
+  IMG: '{namespace}-img',
+  LOADED: '{namespace}-loaded',
   ACTIVE: '{namespace}-active'
 }
 
@@ -36,6 +38,8 @@ export const defaults = {
   wrapperSelector: null,
   containerSelector: null,
   itemSelector: 'div',
+  imgSelector: 'img',
+  imgContainer: 'div',
   arrows: false,
   arrowConfig: {
     type: 'solid'

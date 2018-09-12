@@ -46,28 +46,3 @@ $swipe-arrow-radius: $border-radius-base;
     }
   }
 }
-
-// .#{$swipe} {
-//   font-family: $swipe-font-family;
-//   background-color: transparent;
-
-//   &:hover,
-//   &:active {
-//     background-color: transparent;
-//   }
-
-//   .#{$dot}s {
-//     margin-top: $swipe-dots-margin-top;
-
-//     .#{$dot} {
-//       width: $swipe-dots-width;
-//     }
-//   }
-
-//   .#{$arrow} {
-//     &-prev,
-//     &-next {
-//       margin: $swipe-arrow-margin;
-//     }
-//   }
-// }

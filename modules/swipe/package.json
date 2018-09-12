@@ -42,6 +42,8 @@
     "@pluginjs/decorator": "*",
     "@pluginjs/template": "*",
     "@pluginjs/swipeable": "*",
+    "@pluginjs/image-loader": "*",
+    "@pluginjs/loader": "*",
     "@pluginjs/arrows": "*",
     "@pluginjs/dots": "*",
     "animejs": "^2.2.0"
