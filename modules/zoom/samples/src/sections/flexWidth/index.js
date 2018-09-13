@@ -5,6 +5,8 @@ const element1 = query('#flexWidth .example-zoom1')
 Zoom.of(element1, {
   animation: true,
   window: {
+    width: '270',
+    height: '270',
     offetX: 20,
     position: 2,
     overlay: true,
