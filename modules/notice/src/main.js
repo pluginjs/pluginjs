@@ -199,7 +199,7 @@ class Notice extends GlobalComponent {
 
   initBreakpoints() {
     if (isString(this.options.breakpoint)) {
-      Breakpoints()
+      Breakpoints.init()
       const breakpoint = this.options.breakpoint
       const that = this
       if (Breakpoints.is(`${breakpoint}-`)) {

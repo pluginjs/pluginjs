@@ -61,7 +61,7 @@ class Responsive {
   }
 
   initBreakpoints() {
-    Breakpoints()
+    Breakpoints.init()
     this.breakpoint = this.instance.options.breakpoint
     const that = this
     Breakpoints.to(that.breakpoint, {

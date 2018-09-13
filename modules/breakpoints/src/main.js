@@ -16,7 +16,16 @@ Breakpoints.defaults = DEFAULTS
 
 Breakpoints = merge(Breakpoints, {
   defined: false,
+  init(...args) {
+    if (!this.defined) {
+      this.define(...args)
+    }
+  },
+
   define(values, options = {}) {
+    // if(typeof values === 'undefined' && this.defined) {
+    //   return
+    // }
     if (this.defined) {
       this.destroy()
     }

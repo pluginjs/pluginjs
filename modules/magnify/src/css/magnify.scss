@@ -2,16 +2,79 @@
 
 @import "magnify.core";
 
+$magnify-border-width: $border-width;
+$magnify-border-color: $border-color;
+$magnify-border-radius: $border-radius-base;
+
+$magnify-show-hover-color: $border-color-hover;
+$magnify-show-border-color: $border-color-active;
+
 $magnify-error-color: $color-white;
 $magnify-error-bg: $gray-darkest;
 $magnify-error-padding: 0.5*$spacer $spacer;
 $magnify-error-border-radius: $border-radius-md;
 
+$magnify-outside-border-width: 2px;
+$magnify-outside-border-color: $border-color;
+$magnify-outside-gutter: 10px;
+$magnify-outside-border-radius: $magnify-border-radius;
+
+$magnify-enlarge-bg: $gray-darkest;
+
 .#{$magnify} {
+  border: $magnify-border-width solid $magnify-border-color;
+
+  &,
+  &-image {
+    border-radius: $magnify-border-radius;
+  }
+
+  &:hover {
+    border-color: $magnify-show-hover-color;
+  }
+
+  &-show,
+  &-show:hover {
+    border-color: $magnify-show-border-color;
+  }
+
   &-error {
     padding: $magnify-error-padding;
     color: $magnify-error-color;
     background: $magnify-error-bg;
     border-radius: $magnify-error-border-radius;
+  }
+
+  &-target {
+    background-color: $magnify-enlarge-bg;
+  }
+
+  &-outside &-target {
+    border: $magnify-outside-border-width solid $magnify-outside-border-color;
+
+    &,
+    & img {
+      border-radius: $magnify-outside-border-radius;
+    }
+  }
+
+  &-outside-left &-target {
+    margin-top: -$magnify-outside-border-width;
+    margin-left: $magnify-outside-gutter;
+  }
+
+  &-outside-right &-target {
+    margin-top: -$magnify-outside-border-width;
+    margin-right: $magnify-outside-gutter;
+  }
+
+  &-outside-top &-target {
+    margin-bottom: $magnify-outside-gutter;
+    margin-left: -$magnify-outside-border-width;
+  }
+
+  &-outside-bottom &-target {
+    margin-top: $magnify-outside-gutter;
+    margin-left: -$magnify-outside-border-width;
   }
 }

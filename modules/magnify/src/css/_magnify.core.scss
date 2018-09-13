@@ -1,17 +1,16 @@
 @import "@pluginjs/styles/variables.scss";
 
 $magnify: "pj-magnify" !default;
+$magnify-target: 1000 !default;
 
 .#{$magnify} {
   position: relative;
+  box-sizing: content-box;
+
   &-image {
     width: 100%;
     height: 100%;
   }
-
-  // &-show {
-
-  // }
 
   &-error {
     position: absolute;
@@ -27,8 +26,12 @@ $magnify: "pj-magnify" !default;
       opacity: 1;
     }
   }
-  &-enlarged {
+  &-target {
     position: absolute;
+    z-index: $magnify-target;
+    box-sizing: content-box;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
@@ -43,16 +46,34 @@ $magnify: "pj-magnify" !default;
     }
   }
 
-  &-inside &-enlarged {
+  &-inside &-target {
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
   }
 
-  // &-outside &-enlarged {
+  &-outside-left &-target {
+    top: 0;
+    left: 100%;
+  }
 
-  // }
+  &-outside-right &-target {
+    top: 0;
+    right: 100%;
+  }
+
+  &-outside-top &-target {
+    bottom: 100%;
+    left: 0;
+  }
+
+  &-outside-bottom &-target {
+    top: 100%;
+    left: 0;
+  }
+
+  .pj-loader-mask {
+    pointer-events: none; // need for move event
+  }
 }

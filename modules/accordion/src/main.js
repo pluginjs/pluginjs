@@ -64,7 +64,7 @@ class Accordion extends Component {
     )
 
     this.size = this.$panes.length
-    Breakpoints()
+    Breakpoints.init()
     this.isResponsive =
       this.options.breakpoint === null
         ? false

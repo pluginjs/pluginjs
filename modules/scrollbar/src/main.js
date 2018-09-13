@@ -39,6 +39,8 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
+const TRANSFORM = transformProperty()
+
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -278,8 +280,7 @@ class Scrollbar extends Component {
 
   // Handles `touchstart` and `mousedown` events.
   onDragStart(event) {
-    const num = 3
-    if (event.which === num) {
+    if (event.which === 3) {
       return
     }
 
@@ -291,7 +292,7 @@ class Scrollbar extends Component {
     this.MovingInit = false
 
     if (this.options.mouseDrag) {
-      bindEvent(this.eventName('mouseup'), this.onDragEnd.bind(this), document)
+      bindEvent(this.eventName('mouseup'), this.onDragEnd.bind(this), window)
 
       bindEvent(
         this.eventName('mousemove'),
@@ -301,7 +302,7 @@ class Scrollbar extends Component {
     }
 
     if (this.options.touchDrag && touch) {
-      bindEvent(this.eventName('touchend'), this.onDragEnd.bind(this), document)
+      bindEvent(this.eventName('touchend'), this.onDragEnd.bind(this), window)
 
       bindEvent(
         this.eventName('touchmove'),
@@ -314,7 +315,7 @@ class Scrollbar extends Component {
       bindEvent(
         this.eventName(pointerEvent('pointerup')),
         this.onDragEnd.bind(this),
-        document
+        window
       )
 
       bindEvent(
@@ -348,6 +349,7 @@ class Scrollbar extends Component {
   // Handles the `touchend` and `mouseup` events.
   onDragEnd() {
     removeEvent(this.eventName(), document)
+    removeEvent(this.eventName(), window)
     removeClass(this.classes.DRAGGING, this.element)
     this.handlePosition = this.getHandlePosition()
 
@@ -358,8 +360,9 @@ class Scrollbar extends Component {
     this.leave('dragging')
     this.trigger(EVENTS.DRAGGED)
   }
+
   /**
-   * [Gets unified pointer coordinates from event.]
+   * Gets unified pointer coordinates from event.
    * @param  {[type]} event [description]
    * @returns {Object} - Contains `x` and `y` coordinates of current pointer position.
    */
@@ -371,19 +374,11 @@ class Scrollbar extends Component {
 
     event = event.originalEvent || event || window.event
 
-    // event =
-    //   event.touches && event.touches.length
-    //     ? event.touches[0]
-    //     : event.changedTouches && event.changedTouches.length
-    //       ? event.changedTouches[0]
-    //       : event;
-
-    event =
-      event.changedTouches && event.changedTouches.length
-        ? event.changedTouches[0]
-        : event
-
-    event = event.touches && event.touches.length ? event.touches[0] : event
+    if (event.touches && event.touches.length) {
+      event = event.touches[0]
+    } else if (event.changedTouches && event.changedTouches.length) {
+      event = event.changedTouches[0]
+    }
 
     if (event.pageX) {
       result.x = event.pageX
@@ -463,7 +458,7 @@ class Scrollbar extends Component {
   getHandlePosition() {
     let value
     if (this.options.useCssTransforms && transform) {
-      const transform = getStyle(transformProperty(), this.$handle)
+      const transform = getStyle(TRANSFORM, this.$handle)
       value = convertMatrixToArray(transform)
       if (!value) {
         return 0
@@ -493,7 +488,7 @@ class Scrollbar extends Component {
         y = `${value}px`
       }
 
-      property = transformProperty()
+      property = TRANSFORM
 
       if (this.options.useCssTransforms3D && transform3D) {
         value = `translate3d(${x},${y},0)`
