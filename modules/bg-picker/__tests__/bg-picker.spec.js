@@ -208,7 +208,7 @@ describe('BgPicker', () => {
         image: 'https://picsum.photos/200/300?image=1068',
         thumbnail: 'http://via.placeholder.com/350x150'
       })
-      expect(api.get()).toBeObject({
+      expect(api.get()).toEqual({
         repeat: 'repeat-x',
         position: 'center center',
         attachment: 'inherit',
@@ -234,9 +234,7 @@ describe('BgPicker', () => {
       )
       api = BgPicker.of($element)
 
-      expect(api.val()).toBeString(
-        '{"repeat":"repeat-x","position":"center center","attachment":"inherit","size":"auto","image":"https://picsum.photos/200/300?image=1068","thumbnail":"http://via.placeholder.com/350x150"}'
-      )
+      expect(api.val()).toBeString()
     })
 
     test('should set the value', () => {

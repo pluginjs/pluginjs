@@ -1,4 +1,8 @@
 import { parseHTML } from '@pluginjs/dom'
 
-export default () =>
-  parseHTML`<input type="text" class="font-picker-input" value='{"source":"google", "value":"Alfa Slab One"}'/>`
+export default value => {
+  if (typeof value !== 'undefined') {
+    return parseHTML`<input type="text" class="font-picker-input" value='${value}'>`
+  }
+  return parseHTML`<input type="text" class="font-picker-input"">`
+}

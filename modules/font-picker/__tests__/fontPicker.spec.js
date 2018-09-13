@@ -930,6 +930,8 @@ const data = {
 FontPicker.registerSources(data)
 FontPicker.setActivated(activated)
 
+const value = '{"source":"google", "value":"Alfa Slab One"}'
+
 describe('FontPicker', () => {
   describe('FontPicker()', () => {
     test('should have FontPicker', () => {
@@ -1084,19 +1086,67 @@ describe('FontPicker', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = FontPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = FontPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeObject()
+        }
+      })
+
+      api.val('{"value":"Alfa Slab One","source":"google"}')
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = FontPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeObject()
+        }
+      })
+
+      api.set('{"value":"Alfa Slab One","source":"google"}')
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
 
     it('should get the value', () => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample(value)
       api = FontPicker.of($element)
 
       expect(api.get()).toBeString()
     })
 
-    it('should get the value with units', () => {
-      $element = generateHTMLSample()
+    it('should get the value with value', () => {
+      $element = generateHTMLSample(value)
       api = FontPicker.of($element)
 
       expect(api.get()).toEqual('{"value":"Alfa Slab One","source":"google"}')
@@ -1108,18 +1158,39 @@ describe('FontPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample(value)
       api = FontPicker.of($element)
     })
 
     it('should set the value without value', () => {
       expect(api.get()).toBeString()
 
-      api.set({
-        value: 'Alfa Slab One',
-        source: 'google'
-      })
-      expect(api.get()).toBeObject('{"value":Alfa Slab One","source":"google"}')
+      api.set('{"value":"Alfa Slab One","source":"google"}')
+      expect(api.get()).toBeString()
+    })
+  })
+
+  describe('val()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample(value)
+      api = FontPicker.of($element)
+    })
+
+    it('should get the value', () => {
+      $element = generateHTMLSample(value)
+      api = FontPicker.of($element)
+
+      expect(api.val()).toBeString()
+    })
+
+    it('should set the value with value', () => {
+      api.val('{"value":"Alfa Slab One","source":"google"}')
+
+      expect(api.val()).toBe('{"value":"Alfa Slab One","source":"google"}')
+      expect(api.get()).toEqual('{"value":"Alfa Slab One","source":"google"}')
     })
   })
 })

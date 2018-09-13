@@ -175,7 +175,7 @@ class FontPicker extends Component {
     }
 
     if (this.element.value) {
-      this.val(this.element.value)
+      this.val(this.element.value, false)
     } else {
       query('.pj-dropdown-trigger', this.$fontPicker).append(
         parseHTML(`<span>${this.options.placeholder}</span>`)
@@ -934,7 +934,7 @@ class FontPicker extends Component {
     return icon ? icon : ''
   }
 
-  setValue(val) {
+  setValue(val, trigger = true) {
     if (!this.$font) {
       if (this.element.value) {
         append('<span></span>', query('.pj-dropdown-trigger', this.$fontPicker))
@@ -956,18 +956,19 @@ class FontPicker extends Component {
     if (this.is('keyboard')) {
       this.KEYBOARD.unbind()
     }
-    this.trigger(EVENTS.CHANGE, this.$font)
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, this.$font)
+    }
   }
 
   get() {
-    console.log(this.$font)
     return this.options.process({
       ...this.$font.dataset,
       ...this.$font.objData
     })
   }
 
-  set(value) {
+  set(value, trigger = true) {
     if (typeof value === 'undefined') {
       return
     }
@@ -982,7 +983,7 @@ class FontPicker extends Component {
 
     $fonts.forEach(v => {
       if (v.dataset.value === valueObj.value) {
-        this.setValue(v)
+        this.setValue(v, trigger)
       } else {
         return
       }
@@ -990,12 +991,12 @@ class FontPicker extends Component {
     })
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.get()
     }
 
-    this.set(value)
+    this.set(value, trigger)
     return false
   }
 
