@@ -48,10 +48,7 @@ export default class FontSize {
       // replaceFirst: 'inherit',
       value,
       unit,
-      defaultUnit: this.unit,
-      // defaultUnit: 'inherit',
       onChange(val) {
-        console.log(val)
         that.update(val)
       },
       onChangeUnit(unit) {

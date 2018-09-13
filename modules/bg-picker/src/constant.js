@@ -50,7 +50,8 @@ export const classes = {
   SIZE: '{namespace}-size',
   SIZETITLE: '{namespace}-size-title',
   SIZECONTENT: '{namespace}-size-content',
-  SIZECONTENTITEM: '{namespace}-size-content-item',
+  SIZETRIGGER: '{namespace}-size-trigger',
+  SIZEPANEL: '{namespace}-size-panel',
   // attachment
   ATTACHMENT: '{namespace}-attachment',
   ATTACHMENTTITLE: '{namespace}-attachment-title',
@@ -149,12 +150,10 @@ export const defaults = {
       return (
         '<div class="{classes.SIZE}">' +
         '<span class="{classes.SIZETITLE}">{bgSize}</span>' +
-        '<ul class="{classes.SIZECONTENT}">' +
-        '<li class="{classes.SIZECONTENTITEM} pj-icon pj-icon-full-height"></li>' +
-        '<li class="{classes.SIZECONTENTITEM} pj-icon pj-icon-full-width"></li>' +
-        '<li class="{classes.SIZECONTENTITEM} pj-icon pj-icon-full-screen"></li>' +
-        '<li class="{classes.SIZECONTENTITEM} pj-icon pj-icon-auto-fit"></li>' +
-        '</ul>' +
+        '<div class="{classes.SIZECONTENT}">' +
+        '<span class={classes.SIZETRIGGER}></span>' +
+        '<div class={classes.SIZEPANEL}></div>' +
+        '</div>' +
         '</div>'
       )
     }
@@ -190,12 +189,10 @@ export const defaults = {
       '</div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +
-      '<div class="{classes.EXPANDPANEL}">' +
       '<div class="{classes.IMAGEWRAP}">' +
       '<div class="{classes.IMAGE}"></div>' +
       '</div>' +
       '<div class="{classes.CONTROL}" href="#"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">{save}</button></div>' +
-      '</div>' +
       '</div>' +
       '</div>'
     )

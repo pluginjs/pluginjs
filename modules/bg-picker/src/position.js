@@ -5,7 +5,8 @@ import {
   query,
   queryAll,
   closest,
-  data
+  setData,
+  getData
 } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
@@ -31,12 +32,12 @@ export default class Position {
 
     this.$position = query(
       `.${this.instance.classes.POSITION}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
     this.$items = queryAll('li', this.$position)
     this.values.forEach((value, key) => {
       // this.$items[key].dataset.position = value
-      data('position', value, this.$items[key])
+      setData('position', value, this.$items[key])
     })
 
     const value =
@@ -79,7 +80,7 @@ export default class Position {
         if (this.instance.disabled) {
           return null
         }
-        const value = data('position', el)
+        const value = getData('position', el)
         this.set(value)
         // that.instance.update();
         return false

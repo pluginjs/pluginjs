@@ -31,7 +31,7 @@ export default class Repeat {
 
     this.$repeat = query(
       `.${this.instance.classes.REPEAT}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
     this.$items = queryAll('li', this.$repeat)
 

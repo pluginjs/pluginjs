@@ -31,7 +31,7 @@ $bgPicker-fill-change-font-size: $font-size-lg !default;
 $bgPicker-fill-change-line-height: 5.6 * $bgPicker-sizer !default; //56px
 
 $bgPicker-fill-remove-margin: 0 $bgPicker-sizer !default; //0 10px
-// expand
+// DROPDOWN
 $bgPicker-expand-width: 30 * $bgPicker-sizer !default; //300px
 $bgPicker-expand-image-width: 26 * $bgPicker-sizer !default; //260px
 $bgPicker-expand-image-height: 16 * $bgPicker-sizer !default; //160px
@@ -64,10 +64,6 @@ input.#{$bgPicker}-input {
   display: inline-block;
   font-size: $bgPicker-font-size;
   color: $bgPicker-color;
-
-  &-dropdown {
-    z-index: 111;
-  }
 
   &-trigger {
     width: $bgPicker-width !important;
@@ -147,25 +143,24 @@ input.#{$bgPicker}-input {
     }
   }
   //================================
-  &-expand {
-    &-panel {
-      position: relative;
-      box-sizing: border-box;
-      width: $bgPicker-expand-width;
-      padding: $bgPicker-expand-panel-padding;
-      background-color: $color-white;
-      border: $bgPicker-border;
-      border-radius: $bgPicker-border-radius;
+  &-dropdown {
+    z-index: 111;
+    box-sizing: border-box;
+    width: $bgPicker-expand-width;
+    padding: $bgPicker-expand-panel-padding;
+    background-color: $color-white;
+    border: $bgPicker-border;
+    border-radius: $bgPicker-border-radius;
 
-      > div {
-        margin-bottom: 2 * $bgPicker-sizer; //20px
+    > div {
+      margin-bottom: 2 * $bgPicker-sizer; //20px
 
-        &:last-child {
-          margin-bottom: 0;
-        }
+      &:last-child {
+        margin-bottom: 0;
       }
     }
-
+  }
+  &-expand {
     &-image-wrap {
       display: block;
       width: $bgPicker-expand-image-width;
@@ -381,7 +376,8 @@ input.#{$bgPicker}-input {
       // margin-top: -7px
     }
   }
-  &-attachment-content {
+  &-attachment-content,
+  &-size-content {
     border: 1px solid #e6e6e6;
     .pj-dropdown {
       width: $asDropdown-trigger-width;

@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import { parseHTML, insertAfter, query } from '@pluginjs/dom'
-import { hideElement, showElement, setStyle } from '@pluginjs/styled'
+import { hideElement } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import PopDialog from '@pluginjs/pop-dialog'
@@ -20,6 +20,7 @@ import Attachment from './attachment'
 import Position from './position'
 import Repeat from './repeat'
 import Size from './size'
+import Preview from './preview'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -48,7 +49,6 @@ class BgPicker extends Component {
     this.setupClasses()
 
     addClass(this.classes.INPUT, this.element)
-
     this.setupI18n()
     this.setupStates()
     this.initialize()
@@ -74,6 +74,7 @@ class BgPicker extends Component {
     this.ATTACHMENT = new Attachment(this)
     this.POSITION = new Position(this)
     this.REPEAT = new Repeat(this)
+    this.PREVIEW = new Preview(this)
 
     addClass(this.classes.EXIST, this.$wrap)
 
@@ -111,7 +112,7 @@ class BgPicker extends Component {
           return
         }
         // console.log(this.element.value.image)
-        this.setImage(this.options.value.image)
+        this.preview.set(this.options.value.image)
         removeClass(
           this.classes.EXIST,
           addClass(this.classes.EXPAND, this.$wrap)
@@ -243,12 +244,11 @@ class BgPicker extends Component {
     this.$remove = query(`.${this.classes.REMOVE}`, this.$fill)
     this.$edit = query(`.${this.classes.EDIT}`, this.$fill)
     this.$Panel = query(`.${this.classes.DROPDOWN}`, this.$wrap)
-    this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
-    this.$control = query(`.${this.classes.CONTROL}`, this.$expandPanel)
+    this.$control = query(`.${this.classes.CONTROL}`, this.$Panel)
     this.$cancel = query(`.${this.classes.CANCEL}`, this.$control)
     this.$save = query(`.${this.classes.SAVE}`, this.$control)
-    this.$imageWrap = query(`.${this.classes.IMAGEWRAP}`, this.$expandPanel)
-    this.$image = query(`.${this.classes.IMAGE}`, this.$expandPanel)
+    this.$imageWrap = query(`.${this.classes.IMAGEWRAP}`, this.$Panel)
+    this.$image = query(`.${this.classes.IMAGE}`, this.$Panel)
 
     // init pop
     this.pop = new PopDialog(this.$remove, {
@@ -275,24 +275,6 @@ class BgPicker extends Component {
     })
   }
 
-  setState(image) {
-    if (!image || image === this.options.image) {
-      addClass(this.classes.WRITE, this.$wrap)
-    } else {
-      removeClass(this.classes.WRITE, this.$wrap)
-    }
-  }
-
-  returnFill(image) {
-    let imgName
-    if (!image || image === this.options.image) {
-      this.$fillImageName.textContent = this.translate('placeholder')
-    } else {
-      imgName = image.match(/([\S]+[/])([\S]+\w+$)/i)[2]
-      this.$fillImageName.textContent = imgName
-    }
-  }
-
   update() {
     const value = this.val()
     this.element.value = value
@@ -315,9 +297,13 @@ class BgPicker extends Component {
 
   set(value, update) {
     this.value = value
-    this.setImage(value.image)
 
     if (update !== false) {
+      if (typeof value.image !== 'undefined') {
+        this.PREVIEW.set(value.image)
+      } else {
+        this.PREVIEW.clear()
+      }
       if (typeof value.repeat !== 'undefined') {
         this.REPEAT.set(value.repeat)
       } else {
@@ -348,7 +334,7 @@ class BgPicker extends Component {
 
     if (update !== false) {
       const image = ''
-      this.setImage(image)
+      this.PREVIEW.set(image)
 
       this.REPEAT.clear()
       this.SIZE.clear()
@@ -358,39 +344,39 @@ class BgPicker extends Component {
     }
   }
 
-  setImage(image) {
-    let thumbnailUrl
-    this.setState(image)
-    this.returnFill(image)
-    if (image === '' || typeof image === 'undefined') {
-      showElement(this.$fillImageName)
-      setStyle('background-image', 'none', this.$image)
+  // setImage(image) {
+  //   let thumbnailUrl
+  //   this.setState(image)
+  //   this.returnFill(image)
+  //   if (image === '' || typeof image === 'undefined') {
+  //     showElement(this.$fillImageName)
+  //     setStyle('background-image', 'none', this.$image)
 
-      setStyle('background-image', 'none', this.$fillImage)
-    } else if (image || image !== this.options.image) {
-      thumbnailUrl = this.options.thumbnail ? this.options.thumbnail : image
-      const IMG = new Image()
-      IMG.onload = () => {
-        this.value.image = thumbnailUrl
-        this.returnFill(this.value.image)
-        setStyle('background-image', `url('${this.value.image}')`, this.$image)
+  //     setStyle('background-image', 'none', this.$fillImage)
+  //   } else if (image || image !== this.options.image) {
+  //     thumbnailUrl = this.options.thumbnail ? this.options.thumbnail : image
+  //     const IMG = new Image()
+  //     IMG.onload = () => {
+  //       this.value.image = thumbnailUrl
+  //       this.returnFill(this.value.image)
+  //       setStyle('background-image', `url('${this.value.image}')`, this.$image)
 
-        setStyle(
-          'background-image',
-          `url('${this.value.image}')`,
-          this.$fillImage
-        )
-      }
-      IMG.onerror = () => {
-        this.value.image = image
-        this.returnFill(image)
-        this.update()
-        setStyle('background-image', 'none', this.$image)
-        setStyle('background-image', 'none', this.$fillImage)
-      }
-      IMG.src = thumbnailUrl
-    }
-  }
+  //       setStyle(
+  //         'background-image',
+  //         `url('${this.value.image}')`,
+  //         this.$fillImage
+  //       )
+  //     }
+  //     IMG.onerror = () => {
+  //       this.value.image = image
+  //       this.returnFill(image)
+  //       this.update()
+  //       setStyle('background-image', 'none', this.$image)
+  //       setStyle('background-image', 'none', this.$fillImage)
+  //     }
+  //     IMG.src = thumbnailUrl
+  //   }
+  // }
 
   setRepeat(repeat) {
     this.REPEAT.set(repeat)

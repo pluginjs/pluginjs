@@ -3,12 +3,12 @@ import {
   parseHTML,
   insertAfter,
   query,
-  queryAll,
+  // queryAll,
   setData,
   getData
 } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'  /* eslint-disable-line */
-import { addClass, removeClass } from '@pluginjs/classes'
+// import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 
 export default class Attachment {
@@ -30,17 +30,17 @@ export default class Attachment {
     insertAfter(this.$Attachment, this.instance.$imageWrap)
     this.$attachment = query(
       `.${this.instance.classes.ATTACHMENT}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
     this.$dropdown = query(
       `.${this.instance.classes.DROPDOWNTRIGGER}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
     // this.$attachTrigger = query('span', this.$dropdown)
     this.values = this.instance.options.attachment.values
-    const data = this.values.map(value => ({ label: value, value }))
-    const that = this
 
+    const data = this.values.map(val => ({ label: val, value: val }))
+    const that = this
     setData(
       'dropdown',
       Dropdown.of(this.$dropdown, {
@@ -72,34 +72,34 @@ export default class Attachment {
       this.$dropdown
     )
 
-    this.$items = queryAll('.pj-dropdown-item', this.$attachment)
-    const value =
-      typeof this.instance.value.attachment !== 'undefined'
-        ? this.instance.value.attachment
-        : this.defaultValue
-    this.set(value)
+    // this.$items = queryAll('.pj-dropdown-item', this.$attachment)
+    // const value =
+    //   typeof this.instance.value.attachment !== 'undefined'
+    //     ? this.instance.value.attachment
+    //     : this.defaultValue
+    // this.set(value)
   }
 
-  set(value) {
-    let found = false
-    this.$items.map(removeClass(this.instance.classes.ACTIVE))
-    // console.log(getData('dropdown', this.$dropdown))
-    for (let i = 0; i < this.values.length; i++) {
-      if (value === this.values[i]) {
-        const activeItem = this.$items.map(
-          addClass(this.instance.classes.ACTIVE)
-        )
-        getData('dropdown', this.$dropdown).set(activeItem)
-        found = true
-      }
-    }
+  // set(value) {
+  //   let found = false
+  //   this.$items.map(removeClass(this.instance.classes.ACTIVE))
+  //   // console.log(getData('dropdown', this.$dropdown))
+  //   for (let i = 0; i < this.values.length; i++) {
+  //     if (value === this.values[i]) {
+  //       const activeItem = this.$items.map(
+  //         addClass(this.instance.classes.ACTIVE)
+  //       )
+  //       getData('dropdown', this.$dropdown).set(activeItem)
+  //       found = true
+  //     }
+  //   }
 
-    if (!found) {
-      this.set(this.defaultValue)
-    }
-  }
+  //   if (!found) {
+  //     this.set(this.defaultValue)
+  //   }
+  // }
 
   clear() {
-    this.set(this.defaultValue)
+    getData('dropdown', this.$dropdown).set(this.defaultValue)
   }
 }

@@ -108,20 +108,15 @@ class Offset extends Component {
 
     bindEvent(
       this.eventName('units:changeInput'),
-      ({
-        target,
-        detail: {
-          data: [val]
-        }
-      }) => {
+      (e, api, val) => {
         if (that.is('disabled')) {
           return
         }
         const info = getData(
           'info',
-          parentWith(hasClass(this.classes.ITEM), target)
+          parentWith(hasClass(this.classes.ITEM), e.target)
         )
-        const key = target.getAttribute('name')
+        const key = e.target.getAttribute('name')
         const newData = {}
 
         info.value = val ? val : ''
@@ -183,7 +178,6 @@ class Offset extends Component {
           this.$wrap
         )
         const $unit = queryAll('input', $el)[1]
-        console.log($unit)
         const unit = that.data[$unit.getAttribute('name')].unit
 
         const api = getData('units', $unit)
@@ -466,7 +460,6 @@ class Offset extends Component {
   }
 
   set(value, only) {
-    console.log(value)
     if (!value || typeof value === 'undefined') {
       return
     }
