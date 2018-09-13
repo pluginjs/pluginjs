@@ -429,7 +429,7 @@ class GradientPicker extends Component {
     this.setPreview(newColor)
   }
 
-  set(data) {
+  set(data, trigger = true) {
     this.data = Object.assign({}, this.data, data)
 
     if (this.data.name !== '') {
@@ -442,7 +442,9 @@ class GradientPicker extends Component {
     } else {
       this.colorPicker.val(this.data.color)
     }
-
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, data)
+    }
     this.OPACITY.val(this.data.opacity * 100 || '100')
     this.setOpacity()
     this.setPreview(this.data.opacityColor)

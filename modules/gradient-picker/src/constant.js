@@ -4,8 +4,8 @@ export const events = {
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
-  DESTROY: 'destroy'
-  // CHANGE: 'change'
+  DESTROY: 'destroy',
+  CHANGE: 'change'
 }
 
 export const classes = {

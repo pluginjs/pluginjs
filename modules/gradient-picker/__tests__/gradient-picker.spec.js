@@ -16,6 +16,10 @@ const data = {
   'rainy-ashville': 'linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)'
 }
 GradientPicker.setData(data)
+
+const value =
+  '{"name":"sunny-morning","color":"linear-gradient(120deg, #f6d365 0%, #fda085 100%)","opacity":0.5}'
+
 describe('GradientPicker', () => {
   describe('GradientPicker()', () => {
     test('should have GradientPicker', () => {
@@ -119,6 +123,60 @@ describe('GradientPicker', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = GradientPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = GradientPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeObject()
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = GradientPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeObject()
+        }
+      })
+
+      api.set({
+        name: 'sunny-morning',
+        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
+        opacity: NaN,
+        opacityColor:
+          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
+      })
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
@@ -129,7 +187,22 @@ describe('GradientPicker', () => {
     })
 
     test('should get the value', () => {
+      $element = generateHTMLSample()
+      api = GradientPicker.of($element)
+
       expect(api.get()).toBeObject()
+    })
+    test('should get the value with value', () => {
+      $element = generateHTMLSample(value)
+      api = GradientPicker.of($element)
+
+      expect(api.get()).toEqual({
+        name: 'sunny-morning',
+        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
+        opacity: NaN,
+        opacityColor:
+          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
+      })
     })
   })
 
@@ -138,38 +211,28 @@ describe('GradientPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample(value)
       api = GradientPicker.of($element)
     })
 
-    test('should set the value', () => {
+    it('should set the value ', () => {
       expect(api.get()).toBeObject()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
+      api.set({
+        name: 'sunny-morning',
+        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
+        opacity: NaN,
+        opacityColor:
+          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
+      })
 
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toEqual({
+        name: 'sunny-morning',
+        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
+        opacity: NaN,
+        opacityColor:
+          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
+      })
     })
   })
 
@@ -178,42 +241,34 @@ describe('GradientPicker', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample(value)
       api = GradientPicker.of($element)
     })
 
     test('should get the value', () => {
+      $element = generateHTMLSample(value)
+      api = GradientPicker.of($element)
       expect(api.val()).toBeString()
     })
 
     test('should set the value', () => {
-      api.val(false)
-
       expect(api.get()).toBeObject()
 
-      api.val(true)
+      api.set({
+        name: 'sunny-morning',
+        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
+        opacity: NaN,
+        opacityColor:
+          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
+      })
 
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      expect(api.get()).toEqual({
+        name: 'sunny-morning',
+        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
+        opacity: NaN,
+        opacityColor:
+          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
+      })
     })
   })
 

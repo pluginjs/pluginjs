@@ -69,7 +69,7 @@ describe('Checkbox', () => {
       $element.addEventListener('checkbox:ready', () => {
         called++
       })
-
+      api = Checkbox.of($element)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
