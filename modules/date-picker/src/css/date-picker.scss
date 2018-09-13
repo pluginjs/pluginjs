@@ -38,10 +38,10 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 // ===========================
 
 &.#{$datePicker}-inputWrap {
-  //display: table;
   display: inline-flex;
 
   &:hover {
+
     .#{$datePicker}-icon {
       background-color: rgba(#000, 0.05);
       border-color: rgba(#000, 0.05) !important;
@@ -189,11 +189,13 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
           background-color: $color-white;
           border-color:#e6e6e6;
         }
+
         .#{$datePicker}-input {
           background-color: $color-white;
           border:1px solid #e6e6e6;
         }
       }
+
       &.#{$datePicker}-inputWrap {
       &:hover {
         .#{$datePicker}-icon {
@@ -201,19 +203,26 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
           border-color:#e6e6e6 !important;
         }
       }
+
       &:active {
         .#{$datePicker}-icon {
           background-color: none;
           border-color:#e6e6e6;
         }
+
         .icon-calendar::before {
           color: #e6e6e6;
         }
       }
     }
+
     .#{$datePicker}-icon {
       color: #e6e6e6;
       background-color: #fff !important;
+    }
+    
+    .#{$datePicker}-input {
+      pointer-events: none;
     }
  }
 

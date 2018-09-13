@@ -362,7 +362,6 @@ class PatternPicker extends Component {
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
         this.update()
-        this.enter('state')
       }),
       bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
         // this.update()
@@ -391,6 +390,8 @@ class PatternPicker extends Component {
     this.element.value = this.val()
     this.DROPDOWN.hide()
     addClass(this.classes.SHOW, this.$wrap)
+
+    this.enter('state')
   }
 
   updateComponent() {
@@ -431,7 +432,6 @@ class PatternPicker extends Component {
     if (!this.imgs || !data) {
       return
     }
-
     const name = data.name
 
     if (!this.imgs[name]) {
@@ -442,14 +442,12 @@ class PatternPicker extends Component {
 
     const info = getData('info', this.$previewImg)
 
-    if (info.name === name) {
+    if (info.name !== name) {
       if (data['background-color']) {
         this.bgColor = data['background-color']
       } else {
         data['background-color'] = this.bgColor
       }
-
-      getData('info', data, this.$previewImg)
 
       this.BGCOLOR.val(this.options.format(data, 'background-color'))
       this.FOREPICKER.val(this.options.format(data, 'color'))
@@ -474,7 +472,6 @@ class PatternPicker extends Component {
   }
 
   val(value) {
-    console.log(value)
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
