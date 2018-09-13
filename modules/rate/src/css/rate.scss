@@ -3,66 +3,30 @@
 
 // Vars
 // =====================
-$rate-star: #fa0;
-$rate-color: $gray;
+$rate: "pj-rate";
 $rate-font-family: $font-family-base;
-$rate-spacer: 8px;
-$rate-svg-spacer: 12px;
-$rate-icon-spacer: 10px;
-$rate-star-font-size: $font-size-sm;
-$rate-star-font-line-height: 22px;
+$rate-font-size: $font-size-sm;
 
-// Style
+$rate-spacer: 10px;
+
+$rate-color: #fa0;
+$rate-clear-color: $gray;
+
+
+// Skin
 // =====================
 .#{$rate} {
-  &-star {
-    padding: 0;
-    margin: 0;
-    color: $rate-color;
-    cursor: pointer;
+  font-family: $rate-font-family;
+  font-size: $rate-font-size;
+  color: $rate-color;
 
-    + .#{$rate}-star {
+  &-clear {
+    color: $rate-clear-color;
+  }
+
+  &-unit {
+    & + & {
       margin-left: $rate-spacer;
-    }
-  }
-
-  &-clear-color {
-    color: $rate-color;
-  }
-  
-  &-default-color {
-    color: $rate-star;
-    transition: all $rate-time;
-  }
-  
-  &-danger {
-    color: $rate-star;
-  }
-
-  &-score {
-    font-size: $rate-star-font-size;
-    line-height: $rate-star-font-line-height;
-    color: $gray-darker;
-    text-transform: capitalize;
-  }
-}
-
-.svgExample {
-  + .#{$rate} {
-    .#{$rate}-star {
-      + .#{$rate}-star {
-        margin-left: $rate-svg-spacer;
-      }
-    }
-  }
-}
-
-.iconClass {
-  + .#{$rate} {
-    .#{$rate}-star {
-      + .#{$rate}-star {
-        margin-left: $rate-icon-spacer;
-      }
     }
   }
 }

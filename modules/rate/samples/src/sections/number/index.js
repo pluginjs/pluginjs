@@ -5,6 +5,7 @@ const element = query('#number .number')
 const api = Rate.of(element, {
   max: 7,
   iconSize: '26px',
+  value: 3.5,
   onChangeHoverScore: () => {
     const hoverScore = api.getHoverScore()
     const t = `score: ${hoverScore}`

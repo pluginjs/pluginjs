@@ -12,13 +12,12 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
-  STAR: '{namespace}-star',
-  HALFSTAR: '{namespace}-star-first',
-  FULlSTAR: '{namespace}-star-second',
-  HALFSTARACTIVE: '{namespace}-star-half',
+  UNIT: '{namespace}-unit',
+  HALF: '{namespace}-half',
+  FULL: '{namespace}-full',
+  HALFACTIVE: '{namespace}-half-active',
   DISABLED: '{namespace}-disabled',
-  CLEARCOLOR: '{namespace}-clear-color',
-  DEFAULTCOLOR: '{namespace}-default-color'
+  CLEAR: '{namespace}-clear'
 }
 
 export const methods = [
@@ -37,25 +36,25 @@ export const defaults = {
     return '<ul class="{classes.NAMESPACE}"></ul>'
   },
   templates: {
-    star() {
+    unit() {
       return (
-        '<li class="{classes.STAR}">' +
-        '<div class="{classes.HALFSTAR}">' +
+        '<li class="{classes.UNIT}">' +
+        '<div class="{classes.HALF}">' +
         '{icon}' +
         '</div>' +
-        '<div class="{classes.FULlSTAR}">' +
+        '<div class="{classes.FULL}">' +
         '{icon}' +
         '</div>' +
         '</li>'
       )
     },
-    stars() {
+    units() {
       return (
-        '<li class="{classes.STAR}">' +
-        '<div class="{classes.HALFSTAR}">' +
+        '<li class="{classes.UNIT}">' +
+        '<div class="{classes.HALF}">' +
         '{svg}' +
         '</div>' +
-        '<div class="{classes.FULlSTAR}">' +
+        '<div class="{classes.FULL}">' +
         '{svg}' +
         '</div>' +
         '</li>'
@@ -74,7 +73,7 @@ export const defaults = {
   max: 5,
   value: 0,
   readonly: false,
-  halfStar: true,
+  half: true,
   step: 0.5,
   iconSize: null,
   svg: ''

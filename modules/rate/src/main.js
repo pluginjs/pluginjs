@@ -56,7 +56,7 @@ class Rate extends Component {
     this.score = this.options.value
     this.hoverscore = 0
     this.range = this.createHtml()
-    this.stars = queryAll(`.${this.classes.STAR}`, this.range)
+    this.units = queryAll(`.${this.classes.UNIT}`, this.range)
     if (!this.svgIcon) {
       this.setIconStyle()
     } else {
@@ -64,7 +64,7 @@ class Rate extends Component {
     }
 
     if (isNumber(this.options.value)) {
-      this.updateStar(this.options.value)
+      this.updateUnit(this.options.value)
     }
 
     if (!this.options.readonly) {
@@ -88,7 +88,7 @@ class Rate extends Component {
 
     this.defaulColor = this.options.iconColorClass
       ? this.options.iconColorClass
-      : this.classes.DEFAULTCOLOR
+      : ''
   }
 
   setSvgStyle() {
@@ -134,7 +134,7 @@ class Rate extends Component {
       event => {
         const score = this._getScore(event)
         if (this.hoverscore !== score && typeof score !== 'undefined') {
-          this.updateStar(score)
+          this.updateUnit(score)
           if (score !== this.hoverscore && typeof score !== 'undefined') {
             this.changeHoverScore(score)
           }
@@ -146,7 +146,7 @@ class Rate extends Component {
     bindEvent(
       this.eventName('mouseleave'),
       () => {
-        this.updateStar(this.score)
+        this.updateUnit(this.score)
         this.changeHoverScore(0)
         this.trigger(EVENTS.MOUSELEAVE)
       },
@@ -173,22 +173,22 @@ class Rate extends Component {
   }
 
   _getScore(event) {
-    const typestar = event.target.parentNode
+    const typeunit = event.target.parentNode
     let index
 
-    if (typestar.classList.contains(this.classes.FULlSTAR)) {
-      const element = typestar.parentNode
-      for (let i = 0; i < this.stars.length; i++) {
-        if (this.stars[i] === element) {
+    if (typeunit.classList.contains(this.classes.FULL)) {
+      const element = typeunit.parentNode
+      for (let i = 0; i < this.units.length; i++) {
+        if (this.units[i] === element) {
           index = i
           break
         }
       }
       return index + 1
-    } else if (typestar.classList.contains(this.classes.HALFSTAR)) {
-      const element = typestar.parentNode
-      for (let i = 0; i < this.stars.length; i++) {
-        if (this.stars[i] === element) {
+    } else if (typeunit.classList.contains(this.classes.HALF)) {
+      const element = typeunit.parentNode
+      for (let i = 0; i < this.units.length; i++) {
+        if (this.units[i] === element) {
           index = i
           break
         }
@@ -199,34 +199,33 @@ class Rate extends Component {
     return undefined /* eslint-disable-line */
   }
 
-  updateStar(score) {
+  updateUnit(score) {
     if (typeof score === 'undefined') {
       return
     }
 
     if (!this.svgIcon) {
-      const starNub = this.correctScore(Number(score))
-      const fullStar = Math.floor(starNub)
+      const unitNub = this.correctScore(Number(score))
+      const fullUnit = Math.floor(unitNub)
 
       this.clearIconColor()
 
-      this.resetStar(fullStar)
+      this.resetUnit(fullUnit)
 
-      if (starNub > fullStar) {
-        this.resetHalfStar(fullStar)
+      if (unitNub > fullUnit) {
+        this.resetHalfUnit(fullUnit)
       }
     } else {
-      const starNub = this.correctScore(Number(score))
-      const fullStar = Math.floor(starNub)
-      this.removeClassAll(this.classes.HALFSTARACTIVE)
-      if (starNub > fullStar) {
-        // addClass(this.classes.HALFSTARACTIVE, $(this.$stars[fullStar]))
-        addClass(this.classes.HALFSTARACTIVE, this.stars[fullStar])
+      const unitNub = this.correctScore(Number(score))
+      const fullUnit = Math.floor(unitNub)
+      this.removeClassAll(this.classes.HALFACTIVE)
+      if (unitNub > fullUnit) {
+        addClass(this.classes.HALFACTIVE, this.units[fullUnit])
       }
 
       const length = this.svgs.length
       for (let i = 0; i < length; i++) {
-        if (i < starNub * 2) {
+        if (i < unitNub * 2) {
           this.svgs[i].src = this.options.svg.defaultPath
         } else {
           this.svgs[i].src = this.options.svg.clearPath
@@ -235,39 +234,39 @@ class Rate extends Component {
     }
   }
 
-  resetHalfStar(fullStar) {
-    addClass(this.classes.HALFSTARACTIVE, this.stars[fullStar])
-    const element = query(`.${this.classes.HALFSTAR}`, this.stars[fullStar])
+  resetHalfUnit(fullUnit) {
+    addClass(this.classes.HALFACTIVE, this.units[fullUnit])
+    const element = query(`.${this.classes.HALF}`, this.units[fullUnit])
     this.addColor(element)
   }
 
-  resetStar(fullStar) {
-    for (let i = 0; i < fullStar; i++) {
-      const element = query(`.${this.classes.FULlSTAR}`, this.stars[i])
+  resetUnit(fullUnit) {
+    for (let i = 0; i < fullUnit; i++) {
+      const element = query(`.${this.classes.FULL}`, this.units[i])
       this.addColor(element)
     }
   }
 
   removerColor(element) {
     removeClass(this.defaulColor, element)
-    addClass(this.classes.CLEARCOLOR, element)
+    addClass(this.classes.CLEAR, element)
   }
 
   addColor(element) {
-    removeClass(this.classes.CLEARCOLOR, element)
+    removeClass(this.classes.CLEAR, element)
     addClass(this.defaulColor, element)
   }
 
   clearIconColor() {
-    this.removeClassAll(this.classes.HALFSTARACTIVE)
+    this.removeClassAll(this.classes.HALFACTIVE)
 
-    const fullstars = queryAll(`.${this.classes.FULlSTAR}`, this.range)
-    const halfstars = queryAll(`.${this.classes.HALFSTAR}`, this.range)
+    const fullunits = queryAll(`.${this.classes.FULL}`, this.range)
+    const halfunits = queryAll(`.${this.classes.HALF}`, this.range)
 
-    fullstars.forEach(f => {
+    fullunits.forEach(f => {
       this.removerColor(f)
     })
-    halfstars.forEach(h => {
+    halfunits.forEach(h => {
       this.removerColor(h)
     })
   }
@@ -292,7 +291,7 @@ class Rate extends Component {
 
   createHtml() {
     let icon = ''
-    let star = ''
+    let unit = ''
     let svg = ''
 
     if (this.svgIcon) {
@@ -302,7 +301,7 @@ class Rate extends Component {
         width
       })
 
-      star = templateEngine.render(this.options.templates.stars.call(this), {
+      unit = templateEngine.render(this.options.templates.units.call(this), {
         classes: this.classes,
         svg
       })
@@ -311,7 +310,7 @@ class Rate extends Component {
         iconClass: this.options.iconClass
       })
 
-      star = templateEngine.render(this.options.templates.star.call(this), {
+      unit = templateEngine.render(this.options.templates.unit.call(this), {
         classes: this.classes,
         icon
       })
@@ -323,7 +322,7 @@ class Rate extends Component {
 
     const wrap = parseHTML(html)
     for (let i = 0; i < this.options.max; i++) {
-      prepend(star, wrap)
+      prepend(unit, wrap)
     }
 
     return wrap
@@ -349,12 +348,12 @@ class Rate extends Component {
     this.clearIconColor()
     this.defaulColor = className
     const score = this.hoverscore || this.score
-    this.updateStar(score)
+    this.updateUnit(score)
   }
 
   setScore(score) {
     this.changeScore(score)
-    this.updateStar(this.score)
+    this.updateUnit(this.score)
   }
 
   changeScore(score) {
@@ -369,7 +368,7 @@ class Rate extends Component {
 
   clear() {
     this.changeScore(0)
-    this.updateStar(this.score)
+    this.updateUnit(this.score)
   }
 
   resetIcon(iconClass) {

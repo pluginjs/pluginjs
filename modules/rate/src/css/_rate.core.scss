@@ -3,55 +3,55 @@
 // Vars
 // =====================
 $rate: "pj-rate" !default;
-$rate-time: 0.3s !default;
+
+$rate-color: $color-primary !default;
+$rate-clear-color: $gray !default;
+
+$rate-duration: 0.3s !default;
 
 // Core
 // =====================
 .#{$rate} {
   padding: 0;
   margin: 0;
+  color: $rate-color;
   list-style: none;
 
-  &-star {
+  &-clear {
+    color: $rate-clear-color;
+  }
+
+  &-unit {
     position: relative;
     display: inline-block;
+    cursor: pointer;
 
-    &-first {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      overflow: hidden;
-      opacity: 0;
+    .#{$rate}-disabled & {
+      cursor: not-allowed;
     }
 
-    &-first,
-    &-second {
-      user-select: none;
-
-      img {
-        max-width: none;
-      }
-
-      embed {
-        max-width: none;
-      }
-    }
-
-    &-half {
-      .#{$rate}-star-first {
-        opacity: 1;
-        transition: all $rate-time;
-      }
+    .#{$rate}-destroy & {
+      cursor: default;
     }
   }
-}
 
-.#{$rate}-disabled .#{$rate}-star {
-  cursor: not-allowed;
-}
+  &-half {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0;
 
-.#{$rate}-destroy .#{$rate}-star {
-  cursor: default;
+    .#{$rate}-half-active & {
+      opacity: 1;
+      transition: all $rate-duration;
+    }
+  }
+
+  &-half,
+  &-full {
+    user-select: none;
+  }
 }
