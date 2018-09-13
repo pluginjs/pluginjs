@@ -84,11 +84,10 @@ class Offset extends Component {
     if (attrData) {
       this.value = Object.assign({}, KEYS, attrData)
     }
-    console.log(this.value)
     // $.each(this.value, (i, v) => {
     //   this.value[i] = this.parse(v);
     // });
-
+    this.initiaState = false
     this.data = {}
     this.set(this.value)
 
@@ -446,10 +445,14 @@ class Offset extends Component {
         data[i] = v
       }
     })
-
+    console.log(this.value)
     this.element.value = this.options.process.call(this, data)
-
-    this.trigger(EVENTS.CHANGE, data)
+    console.log(this.initiaState)
+    if (this.initiaState) {
+      console.log(this.$font)
+      this.trigger(EVENTS.CHANGE, this.value)
+    }
+    this.initiaState = true
   }
 
   clear(update = true) {
