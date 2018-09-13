@@ -44,7 +44,7 @@ export const defaults = {
   min: 0,
   max: 100,
   goal: 100,
-  easing: x => x, // 'ease', 'linear', 'ease-in', 'ease-out'
+  easing: 'ease', // 'ease', 'linear', 'ease-in', 'ease-out'
   speed: 15, // speed of 1/100
   autoplay: false,
   direction: 'horizontal', // horizontal, vertical

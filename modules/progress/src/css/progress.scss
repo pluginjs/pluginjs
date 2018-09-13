@@ -5,85 +5,75 @@
 // =====================
 $progress: "pj-progress";
 $progress-font-family: $font-family-base;
-$progress-margin-bottom: 40px;
+$progress-font-size: $font-size-sm;
 
-$progress-bg-color: rgba($color-black, 0.05);
+$progress-size: 4px;
+$progress-standard-size: 8px;
+
+$progress-bg: rgba($color-black, 0.05);
 $progress-border-radius: $border-radius-sm;
-// bar vars
-$progress-bar-bg-color: $color-primary;
-$progress-bar-bg-image: linear-gradient(
-  135deg,
-  rgba($color-white, 0.12) 25%,
-  transparent 25%,
-  transparent 50%,
-  rgba($color-white, 0.12) 50%,
-  rgba($color-white, 0.12) 75%,
-  transparent 75%,
-  transparent
-);
-$progress-bar-bg-size: 20px 20px;
-// label vars
-$progress-label-width: 44px;
-$progress-label-height: 26px;
-$progress-label-font-size: $font-size-xs;
-$progress-label-color: $color-white;
-$progress-label-bg-color: $gray-darkest;
-$progress-label-radius: $border-radius-base;
-$progress-label-box-shadow: $box-shadow-base;
-$progress-label-vertical-height: 300px;
-$progress-label-vertical-width: $progress-height;
-$progress-label-vertical-width-max: $progress-height-max;
 
-// default
+$progress-bar-color: $color-primary;
+
+$progress-label-padding: 5px 6px;
+$progress-label-color: $color-white;
+$progress-label-bg: $gray-darkest;
+$progress-label-radius: $border-radius-base;
+
+$progress-label-arrow-size: 3px;
+$progress-label-arrow-gutter: $progress-label-arrow-size + 5px;
+
+// Skin
 // ======================================
 .#{$progress} {
+  height: $progress-size;
   font-family: $progress-font-family;
-  background-color: $progress-bg-color;
+  font-size: $progress-font-size;
+  background-color: $progress-bg;
   border-radius: $progress-border-radius;
 
   &-bar {
-    background: $progress-bar-bg-color;
-    background-image: $progress-bar-bg-image;
-    background-size: $progress-bar-bg-size;
-    border-radius: $progress-border-radius 0 0 $progress-border-radius;
-  }
-
-  &-standard-bar {
-    height: $progress-height-max;
+    background-color: $progress-bar-color;
+    border-radius: inherit;
   }
 
   &-label {
-    width: $progress-label-width;
-    height: $progress-label-height;
-    font-size: $progress-label-font-size;
-    line-height: $progress-label-height;
+    padding: $progress-label-padding;
+    margin-top: $progress-label-arrow-gutter;
     color: $progress-label-color;
-    background: $progress-label-bg-color;
+    background-color: $progress-label-bg;
     border-radius: $progress-label-radius;
 
     &::before {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      content: "";
       border: $progress-label-arrow-size solid transparent;
-      border-bottom-color: $progress-label-bg-color;
+      border-bottom-color: $progress-label-bg;
+      transform: translate(-50%, -100%);
     }
   }
 
   &-vertical {
-    width: $progress-label-vertical-width;
-    height: $progress-label-vertical-height;
-
-    .#{$progress}-bar {
-      border-radius: 0  0 $progress-border-radius $progress-border-radius;
-    }
-
-    &.#{$progress}-standard-bar {
-      width: $progress-height-max;
-    }
+    width: $progress-size;
 
     .#{$progress}-label {
+      margin-top: 0;
+      margin-left: $progress-label-arrow-gutter;
       &::before {
-        border: $progress-label-arrow-size solid transparent;
-        border-right-color: $progress-label-bg-color;
+        top: 50%;
+        left: 0;
+        transform: translate(-100%, -50%) rotate(-90deg);
       }
     }
+  }
+}
+
+.#{$progress}--standard {
+  height: $progress-standard-size;
+
+  &.#{$progress}-vertical {
+    width: $progress-standard-size;
   }
 }

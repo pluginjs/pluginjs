@@ -3,56 +3,50 @@
 // Vars
 // =====================
 $progress: "pj-progress" !default;
-$progress-height: 4px !default;
-$progress-height-max: 8px !default;
-$progress-label-arrow-size: 6px;
-$progress-label-bottom: -2 * $progress-label-arrow-size !default;
-$progress-vertical-label-left: $progress-label-bottom !default;
+$progress-size: 4px !default;
+
+$progress-bg: $gray-light !default;
+$progress-bar-color: $color-primary !default;
 
 // Core
 // =====================
 .#{$progress} {
   position: relative;
-  height: $progress-height;
+  height: $progress-size;
+  background-color: $progress-bg;
 
   &-bar {
     position: relative;
     display: block;
     height: 100%;
+    background-color: $progress-bar-color;
   }
 
   &-label {
     position: absolute;
+    top: 100%;
     right: 0;
-    bottom: $progress-label-bottom;
-    z-index: 99;
+    z-index: 1;
+    line-height: 1em;
     text-align: center;
     user-select: none;
-    transform: translate(50%, 100%);
-
-    &::before {
-      position: absolute;
-      left: 50%;
-      content: "";
-      transform: translate(-50%, -100%);
-    }
+    transform: translateX(50%);
   }
 
   &-vertical {
     display: flex;
     flex-direction: column-reverse;
+    width: $progress-size;
+
+    .#{$progress}-bar {
+      width: 100%;
+    }
 
     .#{$progress}-label {
       top: 0;
-      right: $progress-vertical-label-left;
-      bottom: auto;
-      transform: translate(100%, -50%);
-
-      &::before {
-        bottom: 50%;
-        left: 0;
-        transform: translate(-100%, 50%);
-      }
+      right: auto;
+      left: 100%;
+      transform: translateY(-50%);
     }
   }
 }
