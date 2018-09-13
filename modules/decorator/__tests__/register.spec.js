@@ -1,7 +1,7 @@
 import register from '../src/register'
 import Component from '@pluginjs/component'
 import Pj from '@pluginjs/factory'
-import { getData } from '@pluginjs/dom'
+import { getData, parseHTML, queryAll } from '@pluginjs/dom'
 
 const plugin = 'sample'
 @register(plugin, {
@@ -16,6 +16,10 @@ class Sample extends Component {
 
   get() {
     return this.value
+  }
+
+  private() {
+    return 'it shouldnt access'
   }
 
   set(value) {
@@ -75,20 +79,57 @@ describe('register()', () => {
     })
   })
 
-  describe('api', () => {
-    it('should get api from element', () => {
+  describe('instance', () => {
+    it('should get instance from element', () => {
       const el = document.createElement('div')
-      const api = Sample.of(el)
+      const instance = Sample.of(el)
 
-      expect(getData(plugin, el)).toBe(api)
+      expect(getData(plugin, el)).toBe(instance)
     })
 
-    it('should remove api when destroy', () => {
+    it('should remove instance when destroy', () => {
       const el = document.createElement('div')
-      const api = Sample.of(el)
-      api.destroy()
+      const instance = Sample.of(el)
+      instance.destroy()
 
       expect(getData(plugin, el)).toBeUndefined()
+    })
+  })
+
+  describe('instance method', () => {
+    it('should access instance method with factory', () => {
+      const el = document.createElement('div')
+      Sample.of(el)
+
+      Pj.sample(el, 'set', 'hello world')
+      expect(Pj.sample(el, 'get')).toBe('hello world')
+    })
+
+    it('should not access instance method with factory', () => {
+      const el = document.createElement('div')
+      Sample.of(el)
+
+      function accessPrivate() {
+        Pj.sample(el, 'private')
+      }
+
+      expect(accessPrivate).toThrowError(
+        'Method "private" is not exists on "sample".'
+      )
+    })
+
+    it('should return array when excute instance method on elements', () => {
+      const $parent = parseHTML(
+        '<div><div class="element"></div><div class="element"></div></div>'
+      )
+
+      const elements = queryAll('.element', $parent)
+      Pj.sample(elements)
+
+      expect(Pj.sample(elements, 'get')).toEqual([null, null])
+      Pj.sample(elements, 'set', 'hello world')
+
+      expect(Pj.sample(elements, 'get')).toEqual(['hello world', 'hello world'])
     })
   })
 })

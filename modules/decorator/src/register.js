@@ -1,8 +1,8 @@
-import { isFunction } from '@pluginjs/is'
+import { isFunction, isString, isArray } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import Pj from '@pluginjs/factory'
 import { deepMerge, getUID } from '@pluginjs/utils'
-import { setData, removeData } from '@pluginjs/dom'
+import { getData, setData, removeData } from '@pluginjs/dom'
 
 export default function register(name, obj = {}) {
   return function(plugin) {
@@ -28,7 +28,7 @@ export default function register(name, obj = {}) {
 
     plugin.addInstance = instance => {
       if (!(plugin.prototype instanceof GlobalComponent)) {
-        setData(instance.plugin, instance, instance.element)
+        setData(name, instance, instance.element)
       }
 
       instance.instanceId = getUID(instance.plugin)
@@ -37,7 +37,7 @@ export default function register(name, obj = {}) {
 
     plugin.removeInstance = instance => {
       if (!(plugin.prototype instanceof GlobalComponent)) {
-        removeData(instance.plugin, instance.element)
+        removeData(name, instance.element)
       }
 
       instances = instances.filter(i => i !== instance)
@@ -77,19 +77,37 @@ export default function register(name, obj = {}) {
         if (selector instanceof Node) {
           return Array.of(selector)
         }
+        if (isArray(selector)) {
+          return selector
+        }
         return []
       }
 
-      Pj[name] = (selector, options) => {
+      Pj[name] = (selector, options, ...args) => {
         const elements = elementParse(selector)
         if (!elements.length) {
-          throw new Error('element is not exists.')
+          throw new Error('Element is not exists.')
         }
-        const instances = elements.map(el => plugin.of(el, options))
-        if (instances.length === 1) {
-          return instances[0]
+        let results = []
+        if (isString(options)) {
+          if (!plugin.methods.includes(options)) {
+            throw new Error(`Method "${options}" is not exists on "${name}".`)
+          }
+          results = elements.map(el => {
+            const instance = getData(name, el)
+            if (instance instanceof plugin) {
+              return instance[options](...args)
+            }
+            return null
+          })
+        } else {
+          results = elements.map(el => plugin.of(el, options))
         }
-        return instances
+
+        if (results.length === 1) {
+          return results[0]
+        }
+        return results
       }
       Object.setPrototypeOf(Pj[name], plugin)
     }
