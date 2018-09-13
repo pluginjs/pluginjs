@@ -91,7 +91,6 @@ class PatternPicker extends Component {
 
   initData() {
     const data = this.element.value
-    console.log(this.element.value)
     if (data) {
       this.val(data)
     }
@@ -475,6 +474,7 @@ class PatternPicker extends Component {
   }
 
   val(value) {
+    console.log(value)
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }

@@ -47,6 +47,8 @@ const data = {
 
 PatternPicker.setData(data)
 
+const value =
+  '{&quot;name&quot;:&quot;graph-paper&quot;,&quot;background-color&quot;:&quot;#eeeeee&quot;,&quot;background-image&quot;:&quot;url(&quot;data:image/svg+xml,%3Csvg xmln&quot;}'
 describe('PatternPicker', () => {
   describe('PatternPicker()', () => {
     test('should have PatternPicker', () => {
@@ -139,6 +141,16 @@ describe('PatternPicker', () => {
     test('should get the value', () => {
       expect(api.get()).toBeObject()
     })
+
+    test('should get the value with value', () => {
+      $element = generateHTMLSample(value)
+      api = PatternPicker.of($element)
+      expect(api.get()).toEqual({
+        'background-color': '#eeeeee',
+        'background-image': 'url("data:image/svg+xml,%3Csvg xmln',
+        name: 'graph-paper'
+      })
+    })
   })
 
   describe('set()', () => {
@@ -153,31 +165,16 @@ describe('PatternPicker', () => {
     test('should set the value', () => {
       expect(api.get()).toBeObject()
 
-      api.set(false)
-      expect(api.get()).toBeObject()
-
-      api.set(true)
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toBeObject()
-
-      api.set(1)
-      expect(api.get()).toBeObject()
+      api.set({
+        'background-color': '#eeeeee',
+        'background-image': 'url("data:image/svg+xml,%3Csvg xmln',
+        name: 'graph-paper'
+      })
+      expect(api.get()).toEqual({
+        'background-color': '#eeeeee',
+        'background-image': 'url("data:image/svg+xml,%3Csvg xmln',
+        name: 'graph-paper'
+      })
     })
   })
 
@@ -191,37 +188,22 @@ describe('PatternPicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.val()).toBeString()
+      $element = generateHTMLSample(value)
+      api = PatternPicker.of($element)
+
+      expect(api.val()).toBe(value)
     })
 
     test('should set the value', () => {
-      api.val(false)
-
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeObject()
-
-      api.val('true')
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      $element = generateHTMLSample()
+      api = PatternPicker.of($element)
+      // api.val(value)
+      expect(api.val()).toBe(value)
+      expect(api.get()).toBe({
+        'background-color': '#eeeeee',
+        'background-image': 'url("data:image/svg+xml,%3Csvg xmln',
+        name: 'graph-paper'
+      })
     })
   })
 
