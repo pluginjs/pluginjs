@@ -4,61 +4,12 @@
 // Vars
 // =====================
 $sticky: "pj-sticky";
-$sticky-font-family: $font-family-base;
-$sticky-heading-width: 286px !default;
-$sticky-heading-height: 24px !default;
-$sticky-heading-font-size: $font-size-xs;
-$sticky-heading-color: $gray-dark;
+
 $sticky-heading-bg: $gray-lighter;
-$sticky-heading-border-radius: $border-radius-base;
-$sticky-heading-padding-left: 16px !default;
-
-$sticky-content-font-size: $font-size-sm;
-$sticky-content-line-height: 22px;
-$sticky-content-color: $gray-darkest;
-$sticky-content-bg: $color-white;
-$sticky-content-padding: 20px;
-
-$sticky-text-spacer: 3px;
 
 // Skin
 // =====================
-.#{$sticky}-parent {
-  font-family: $sticky-font-family;
+.#{$sticky}-heading {
+  width: 100%;
+  background-color: $sticky-heading-bg;
 }
-// stylelint-disable value-no-vendor-prefix
-.heading {
-  position: -webkit-sticky;
-  box-sizing: border-box;
-  width: $sticky-heading-width;
-  height: $sticky-heading-height;
-  padding-left: $sticky-heading-padding-left;
-  font-size: $sticky-heading-font-size;
-  line-height: $sticky-heading-height;
-  color: $sticky-heading-color;
-  background: $sticky-heading-bg;
-  border-radius: $sticky-heading-border-radius;
-}
-
-.page-content {
-  overflow: unset;
-}
-
-// stylelint-enable value-no-vendor-prefix
-.content {
-  padding: $sticky-content-padding;
-  padding-top: $sticky-content-padding - 5px;
-  padding-bottom: $sticky-content-padding - 5px;
-  padding-left: $sticky-heading-padding-left;
-  font-size: $sticky-content-font-size;
-  line-height: $sticky-content-line-height;
-  color: $sticky-content-color;
-  background: $sticky-content-bg;
-}
-
-.text {
-  + .text {
-    margin-top: $sticky-text-spacer;
-  }
-}
-

@@ -49,23 +49,8 @@ class Sticky extends Component {
   initialize() {
     this.seppuku()
 
-    // if (this.canSticky()) {
-    //   this.setSticky()
-    // } else {
-    //   this.seppuku()
-    // }
     this.enter('initialized')
     this.trigger(EVENTS.READY)
-  }
-
-  bind() {
-    // Pj.emitter.on('scroll', () => {
-    //   const offset = this.offset(this.element)
-    //       // })
-  }
-
-  unbind() {
-    //
   }
 
   offset(el) {
@@ -110,7 +95,6 @@ class Sticky extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      this.unbind()
       this.leave('initialized')
     }
 
