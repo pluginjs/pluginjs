@@ -15,8 +15,6 @@ export default class Preview {
   initialize() {
     this.$image = query(`.${this.classes.IMAGE}`, this.instance.$Panel)
     this.set(this.value.image)
-    console.log(this.instance.options.value.image)
-    // this.bind()
   }
 
   set(image) {

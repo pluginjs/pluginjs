@@ -36,6 +36,7 @@ export const classes = {
   WRITE: '{namespace}-write',
   EXIST: '{namespace}-exist',
   EXPAND: '{namespace}-expand',
+  OPENDISABLE: '{namespace}-open-disabled',
   // repeat
   REPEAT: '{namespace}-repeat',
   REPEATTITLE: '{namespace}-repeat-title',

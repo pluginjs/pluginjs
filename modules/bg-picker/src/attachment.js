@@ -98,6 +98,9 @@ export default class Attachment {
   //     this.set(this.defaultValue)
   //   }
   // }
+  set(val) {
+    getData('dropdown', this.$dropdown).set(val)
+  }
 
   clear() {
     getData('dropdown', this.$dropdown).set(this.defaultValue)

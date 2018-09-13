@@ -7,6 +7,7 @@ $offset-sizer: $sizer !default;
 
 $offset-width: 38.4 * $offset-sizer !default; //264px
 $offset-height: 22.4 * $offset-sizer !default; //174px
+$offset-units-width: 6.6 * $offset-sizer !default; //66px
 $global-color: $text-color !default;
 $offset-label-bg: $gray-border !default;
 $offset-active-color: $btn-color-primary !default;
@@ -48,7 +49,9 @@ $connect-active-bg: $gray-lightest !default;
     color: $global-color;
 
     .pj-units {
+      position: absolute;
       display: none;
+      width: $offset-units-width;
       border-color: $offset-active-color;
 
       &-wrap {
@@ -65,8 +68,8 @@ $connect-active-bg: $gray-lightest !default;
         //width: $input-trigger-width;
         width: auto;
         height: $input-height;
-        padding-right: 0.5 * $offset-sizer; //5px
-        line-height: $input-height;
+        padding-right: 0.5 * $offset-sizer !important; //5px
+        line-height: $input-height !important;
 
         span {
           padding: 0;

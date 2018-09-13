@@ -111,12 +111,13 @@ class BgPicker extends Component {
         if (this.is('disabled')) {
           return
         }
-        // console.log(this.element.value.image)
-        this.preview.set(this.options.value.image)
+        this.oldValue = this.val()
+        this.PREVIEW.set(this.options.value.image)
         removeClass(
           this.classes.EXIST,
           addClass(this.classes.EXPAND, this.$wrap)
         )
+        addClass(this.classes.OPENDISABLE, this.$trigger)
       },
       this.$empty
     )
@@ -145,12 +146,12 @@ class BgPicker extends Component {
           return null
         }
         this.DROPDOWN.show()
+        addClass(this.classes.OPENDISABLE, this.$trigger)
         this.oldValue = this.val()
         removeClass(
           this.classes.EXIST,
           addClass(this.classes.EXPAND, this.$wrap)
         )
-
         return false
       }),
       bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
@@ -167,14 +168,12 @@ class BgPicker extends Component {
         if (this.is('disabled')) {
           return null
         }
-
         this.val(this.oldValue)
         this.update()
-        removeClass(
-          this.classes.EXPAND,
-          addClass(this.classes.EXIST, this.$wrap)
-        )
+        removeClass(this.classes.EXPAND, this.$wrap)
+
         this.DROPDOWN.hide()
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
         return false
       },
       this.$cancel
@@ -193,6 +192,7 @@ class BgPicker extends Component {
           addClass(this.classes.EXIST, this.$wrap)
         )
         this.DROPDOWN.hide()
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
         return false
       },
       this.$save
@@ -331,6 +331,8 @@ class BgPicker extends Component {
 
   clear(update) {
     this.value = {}
+
+    removeClass(this.classes.EXIST, this.$wrap)
 
     if (update !== false) {
       const image = ''

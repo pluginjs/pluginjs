@@ -51,6 +51,10 @@ export default class Size {
     })
   }
 
+  set(val) {
+    this.$sizeDropdown.set(val)
+  }
+
   clear() {
     this.$sizeDropdown.set(this.defaultValue)
   }
