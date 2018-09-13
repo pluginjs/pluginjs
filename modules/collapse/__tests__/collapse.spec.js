@@ -86,9 +86,7 @@ describe('Collapse', () => {
 
       api.destroy()
 
-      setTimeout(() => {
-        expect(called).toEqual(1)
-      }, 1000)
+      expect(called).toEqual(1)
     })
   })
 
@@ -118,9 +116,7 @@ describe('Collapse', () => {
 
       api.enable()
 
-      setTimeout(() => {
-        expect(called).toEqual(1)
-      }, 1000)
+      expect(called).toEqual(1)
     })
   })
 
@@ -149,9 +145,7 @@ describe('Collapse', () => {
 
       api.disable()
 
-      setTimeout(() => {
-        expect(called).toEqual(1)
-      }, 1000)
+      expect(called).toEqual(1)
     })
   })
 })

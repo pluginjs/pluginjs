@@ -98,31 +98,6 @@ describe('Progress', () => {
     })
   })
 
-  describe('start()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Progress.of($element)
-    })
-
-    test('should trigger start event', () => {
-      let called = 0
-
-      $element.addEventListener('progress:start', () => {
-        expect(!api.is('disabled')).toBeTrue()
-        called++
-      })
-
-      api.start()
-
-      setTimeout(() => {
-        expect(called).toEqual(1)
-      }, 0)
-    })
-  })
-
   describe('enable()', () => {
     let $element
     let api

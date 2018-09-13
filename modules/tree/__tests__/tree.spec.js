@@ -2,6 +2,42 @@ import Tree from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const data = [
+  {
+    name: 'Blog',
+    children: [
+      {
+        name: 'About',
+        children: [
+          {
+            name: 'Grid'
+          },
+          {
+            name: 'Nest'
+          },
+          {
+            name: 'Gallery'
+          }
+        ]
+      },
+      {
+        name: 'list'
+      }
+    ]
+  },
+  {
+    name: 'Work',
+    children: [
+      {
+        name: 'list'
+      },
+      {
+        name: 'list2'
+      }
+    ]
+  }
+]
+
 describe('Tree', () => {
   describe('Tree()', () => {
     test('should have Tree', () => {
@@ -27,31 +63,25 @@ describe('Tree', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      setTimeout(() => {
-        const element = generateHTMLSample()
-        const tree = Tree.of(element)
+      const element = generateHTMLSample()
+      const tree = Tree.of(element, { data })
 
-        expect(tree).toBeObject()
-        expect(tree.options).toEqual(DEFAULTS)
-      }, 0)
+      expect(tree).toBeObject()
+      expect(tree.options).toEqual({ ...DEFAULTS, data })
     })
 
     test('should have options', () => {
-      setTimeout(() => {
-        const tree = Tree.of(generateHTMLSample())
+      const tree = Tree.of(generateHTMLSample(), { data })
 
-        expect(tree.options).toBeObject()
-      }, 0)
+      expect(tree.options).toBeObject()
     })
   })
 
   describe('api call', () => {
     test('should not call bind', () => {
-      setTimeout(() => {
-        const $element = generateHTMLSample()
-        const tree = Tree.of($element)
-        expect(tree.bind()).toBeNil()
-      }, 0)
+      const $element = generateHTMLSample()
+      const tree = Tree.of($element, { data })
+      expect(tree.bind()).toBeNil()
     })
   })
 
@@ -69,11 +99,9 @@ describe('Tree', () => {
         called++
       })
 
-      setTimeout(() => {
-        const instance = Tree.of($element)
-        expect(called).toEqual(1)
-        expect(instance.is('initialized')).toBeTrue()
-      }, 0)
+      const instance = Tree.of($element, { data })
+      expect(called).toEqual(1)
+      expect(instance.is('initialized')).toBeTrue()
     })
   })
 
@@ -82,24 +110,20 @@ describe('Tree', () => {
     let api
 
     beforeEach(() => {
-      setTimeout(() => {
-        $element = generateHTMLSample()
-        api = Tree.of($element)
-      }, 0)
+      $element = generateHTMLSample()
+      api = Tree.of($element, { data })
     })
 
     test('should trigger destroy event', () => {
-      setTimeout(() => {
-        let called = 0
+      let called = 0
 
-        $element.addEventListener('tree:destroy', () => {
-          expect(api.is('initialized')).toBeFalse()
-          called++
-        })
-        api.destroy()
+      $element.addEventListener('tree:destroy', () => {
+        expect(api.is('initialized')).toBeFalse()
+        called++
+      })
+      api.destroy()
 
-        expect(called).toEqual(1)
-      }, 0)
+      expect(called).toEqual(1)
     })
   })
 
@@ -108,33 +132,27 @@ describe('Tree', () => {
     let api
 
     beforeEach(() => {
-      setTimeout(() => {
-        $element = generateHTMLSample()
-        api = Tree.of($element)
-      }, 0)
+      $element = generateHTMLSample()
+      api = Tree.of($element, { data })
     })
 
     test('should enable the plugin', () => {
-      setTimeout(() => {
-        api.destroy()
-        api.enable()
+      api.disable()
+      api.enable()
 
-        expect(api.is('disabled')).toBeFalse()
-      }, 0)
+      expect(api.is('disabled')).toBeFalse()
     })
 
     test('should trigger enable event', () => {
-      setTimeout(() => {
-        let called = 0
+      let called = 0
 
-        $element.addEventListener('tree:enable', () => {
-          expect(api.is('disabled')).toBeFalse()
-          called++
-        })
+      $element.addEventListener('tree:enable', () => {
+        expect(api.is('disabled')).toBeFalse()
+        called++
+      })
 
-        api.enable()
-        expect(called).toEqual(1)
-      }, 0)
+      api.enable()
+      expect(called).toEqual(1)
     })
   })
 
@@ -143,32 +161,26 @@ describe('Tree', () => {
     let api
 
     beforeEach(() => {
-      setTimeout(() => {
-        $element = generateHTMLSample()
-        api = Tree.of($element)
-      }, 0)
+      $element = generateHTMLSample()
+      api = Tree.of($element, { data })
     })
 
     test('should disable the plugin', () => {
-      setTimeout(() => {
-        api.disabled()
+      api.disable()
 
-        expect(api.is('disabled')).toBeTrue()
-      }, 0)
+      expect(api.is('disabled')).toBeTrue()
     })
 
     test('should trigger disable event', () => {
-      setTimeout(() => {
-        let called = 0
+      let called = 0
 
-        $element.addEventListener('tree:disable', () => {
-          expect(api.is('disabled')).toBeTrue()
-          called++
-        })
+      $element.addEventListener('tree:disable', () => {
+        expect(api.is('disabled')).toBeTrue()
+        called++
+      })
 
-        api.disable()
-        expect(called).toEqual(1)
-      }, 0)
+      api.disable()
+      expect(called).toEqual(1)
     })
   })
 })

@@ -115,8 +115,7 @@ describe('Countdown', () => {
       api.disable()
       api.enable()
 
-      // expect(api.is('disabled')).toBeFalse()
-      // expect(api.is('disabled')).toBeTrue()
+      expect(api.is('disabled')).toBeFalse()
     })
 
     test('should trigger enable event', () => {
