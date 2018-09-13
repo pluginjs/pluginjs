@@ -106,13 +106,12 @@ describe('Arrows', () => {
       api = Arrows.of($element)
     })
 
-    // test('should enable the plugin', () => {
-    //   api = Arrows.of($element)
-    //   api.disable()
-    //   api.enable()
+    test('should enable the plugin', () => {
+      api.disable()
+      api.enable()
 
-    //   expect(api.is('disabled')).toBeFalse()
-    // })
+      expect(api.is('disabled')).toBeFalse()
+    })
 
     test('should trigger enable event', () => {
       let called = 0
@@ -122,6 +121,30 @@ describe('Arrows', () => {
       })
 
       api.enable()
+      expect(called).toEqual(1)
+    })
+
+    test('should trigger prev enable event', () => {
+      let called = 0
+
+      $element.addEventListener('arrows:prevEnable', () => {
+        called++
+      })
+
+      api.disable('prev')
+      api.enable('prev')
+      expect(called).toEqual(1)
+    })
+
+    test('should trigger next enable event', () => {
+      let called = 0
+
+      $element.addEventListener('arrows:nextEnable', () => {
+        called++
+      })
+
+      api.disable('next')
+      api.enable('next')
       expect(called).toEqual(1)
     })
   })
@@ -136,10 +159,9 @@ describe('Arrows', () => {
     })
 
     test('should disable the plugin', () => {
-      setTimeout(() => {
-        api.disable()
-        expect(api.is('disabled')).toBeTrue()
-      })
+      api.disable()
+
+      expect(api.is('disabled')).toBeTrue()
     })
 
     test('should trigger disable event', () => {
@@ -150,10 +172,32 @@ describe('Arrows', () => {
         called++
       })
 
-      setTimeout(() => {
-        api.disable()
-        expect(called).toEqual(1)
-      }, 0)
+      api.disable()
+      expect(called).toEqual(1)
+    })
+
+    test('should trigger prev disable event', () => {
+      let called = 0
+
+      $element.addEventListener('arrows:prevDisable', () => {
+        expect(api.is('prevDisabled')).toBeTrue()
+        called++
+      })
+
+      api.disable('prev')
+      expect(called).toEqual(1)
+    })
+
+    test('should trigger next disable event', () => {
+      let called = 0
+
+      $element.addEventListener('arrows:nextDisable', () => {
+        expect(api.is('nextDisabled')).toBeTrue()
+        called++
+      })
+
+      api.disable('next')
+      expect(called).toEqual(1)
     })
   })
 })
