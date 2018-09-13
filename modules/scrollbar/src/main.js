@@ -105,6 +105,8 @@ class Scrollbar extends Component {
       addClass(this.classes.HANDLE, this.$handle)
     }
 
+    this.setHandlePosition(0)
+
     addClass(this.classes.CONTAINER, this.element).setAttribute(
       'draggable',
       false
@@ -443,6 +445,13 @@ class Scrollbar extends Component {
     }
   }
 
+  resize() {
+    const ratio = this.getHandlePosition() / this.barLength
+    this.setHandlePosition(ratio * this.getBarLength())
+    this.handleLength = this.getHandleLenght()
+    this.barLength = this.getBarLength()
+  }
+
   getBarLength() {
     return this.element[this.attributes.clientLength]
   }
@@ -629,7 +638,9 @@ class Scrollbar extends Component {
       this.enter('animating')
 
       const startTime = getTime()
+
       const start = this.getHandlePosition()
+
       const end = value
 
       const run = time => {

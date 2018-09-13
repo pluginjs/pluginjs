@@ -10,7 +10,6 @@ import Scrollbar from '@pluginjs/scrollbar'
 queryAll('.example-scrollbar-horizontal').map(element =>
   Scrollbar.of(element, {
     direction: 'horizontal',
-    minHandleLength: 200,
     handleLength: 100,
     keyboard: true
   })

@@ -9,7 +9,7 @@ import {
   compose
 } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getStyle, getHeight } from '@pluginjs/styled'
+import { setStyle, getStyle, getHeight, getWidth } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { children, append, query, wrap, unwrap, parent } from '@pluginjs/dom'
 import {
@@ -224,7 +224,6 @@ class Scrollable extends Component {
         addClass(this.classes.HOVERING, this.$wrap)
         that.enter('hovering')
         that.trigger(EVENTS.HOVER)
-        // this.$element.trigger(EVENTS.HOVER)
       },
       this.$wrap
     )
@@ -398,11 +397,13 @@ class Scrollable extends Component {
   initLayout(direction) {
     if (direction === 'vertical') {
       setStyle('height', getHeight(this.$wrap), this.$container)
+    } else {
+      setStyle('width', getWidth(this.$wrap), this.$container)
     }
+
     const attributes = this.attributes[direction]
     const container = this.$container
 
-    // this.$container.css(attributes.overflow, 'scroll');
     const parentLength = container.parentNode[attributes.crossClientLength]
     const scrollbarWidth = this.getBrowserScrollbarWidth(direction)
 
@@ -422,11 +423,11 @@ class Scrollable extends Component {
     const options = Object.assign(this.options.scrollbar, {
       direction,
       useCssTransitions: false,
-      keyboard: false
+      keyboard: false,
+      clickMoveStep: 1
     })
     const $bar = document.createElement('div')
 
-    // $bar.asScrollbar(options)
     const api = new SCROLLBAR($bar, options)
 
     if (this.options.showOnHover) {
@@ -439,7 +440,6 @@ class Scrollable extends Component {
     this[`$${direction}`].api = api
 
     this.$bar.push($bar)
-
     this.updateBarHandle(direction)
   }
 
@@ -650,12 +650,14 @@ class Scrollable extends Component {
 
   updateBarHandle(direction) {
     const api = this.getBarApi(direction)
+
     if (!api) {
       return
     }
 
     const containerLength = this.getContainerLength(direction)
     const scrollLength = this.getScrollLength(direction)
+
     if (scrollLength > 0) {
       if (api.is('disabled')) {
         api.enable()
