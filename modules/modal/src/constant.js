@@ -37,17 +37,15 @@ export const classes = {
 export const defaults = {
   theme: null,
   template() {
-    return (
-      '<div class="{classes.NAMESPACE} {classes.ACTIVE}">' +
-      '{overlay}' +
-      '<div class="{classes.CONTAINER}" role="document">' +
-      '{close}' +
-      '{title}' +
-      '{content}' +
-      '{buttons}' +
-      '</div>' +
-      '</div>'
-    )
+    return `<div class="{classes.NAMESPACE} {classes.ACTIVE}">
+        {overlay}
+        <div class="{classes.CONTAINER}" role="document">
+          {close}
+          {title}
+          {content}
+          {buttons}
+        </div>
+      </div>`
   },
   templates: {
     close() {

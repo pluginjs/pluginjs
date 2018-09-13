@@ -47,14 +47,6 @@ describe('Rate', () => {
       const rate = getNewRate()
       expect(rate.bind()).toBeNil()
     })
-
-    test('should call destroy', () => {
-      const rateInstance = Rate.of(generateHTMLSample())
-
-      setTimeout(() => {
-        rateInstance.destroy()
-      }, 0)
-    })
   })
 
   describe('initialize()', () => {
@@ -94,11 +86,9 @@ describe('Rate', () => {
         called++
       })
 
-      setTimeout(() => {
-        api.destroy()
+      api.destroy()
 
-        expect(called).toEqual(1)
-      }, 0)
+      expect(called).toEqual(1)
     })
   })
 })
