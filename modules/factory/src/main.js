@@ -24,6 +24,9 @@ if (!window.Pj) {
     },
     reset() {
       plugins = {}
+    },
+    ready(func) {
+      Pj.emitter.on('ready', func)
     }
   }
 }
@@ -38,6 +41,11 @@ function globalScrollHanle() {
   Pj.emitter.emit('scroll')
 }
 
+function globalReadyHanle() {
+  Pj.emitter.emit('ready')
+}
+
+window.addEventListener('DOMContentLoaded', globalReadyHanle)
 window.addEventListener('orientationchange', globalResizeHandle)
 window.addEventListener('resize', throttle(globalResizeHandle))
 window.addEventListener('scroll', throttle(globalScrollHanle))
