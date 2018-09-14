@@ -33,6 +33,10 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
     display: none;
   }
 
+  &-open-disabled {
+    pointer-events: none;
+  }
+
   &-trigger {   
     position: relative;
     display: flex;

@@ -17,6 +17,7 @@ export const classes = {
   WRAP: '{namespace}-wrap',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
+  OPENDISABLE: '{namespace}-open-disabled',
   SHOW: '{namespace}-show',
   CLOSE: '{namespace}-close',
   // init

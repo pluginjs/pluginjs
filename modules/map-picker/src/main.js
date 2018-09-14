@@ -376,6 +376,13 @@ class MapPicker extends Component {
 
   bind() {
     compose(
+      // empty
+      bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
+        if (this.is('disabled')) {
+          return
+        }
+        addClass(this.classes.OPENDISABLE, this.$trigger)
+      }),
       // action button event
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, e => {
         e.preventDefault()
@@ -464,11 +471,13 @@ class MapPicker extends Component {
     }
 
     this.mapDropdown.show()
+    addClass(this.classes.OPENDISABLE, this.$trigger)
     addClass(this.classes.SHOW, this.$wrap)
     this.enter('open')
   }
 
   close() {
+    removeClass(this.classes.OPENDISABLE, this.$trigger)
     removeClass(this.classes.SHOW, this.$wrap)
     this.mapDropdown.hide()
     this.leave('open')

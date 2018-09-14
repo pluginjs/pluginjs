@@ -15,6 +15,7 @@ export const classes = {
   ACTIVE: '{namespace}-active',
   WRAP: '{namespace}-wrap',
   DISABLED: '{namespace}-disabled',
+  OPENDISABLE: '{namespace}-open-disabled',
   SHOW: '{namespace}-show',
   BUTTON: '{namespace}-button',
   EMPTY: '{namespace}-empty',

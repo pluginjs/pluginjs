@@ -32,6 +32,10 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
 }
 
 .#{$videoPicker} {
+  &-open-disabled {
+    pointer-events: none;
+  }
+
   &-component {
     display: flex;
     align-items: center;

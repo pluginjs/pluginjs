@@ -291,7 +291,7 @@ class PatternPicker extends Component {
         }
       },
       onChange: data => {
-        this.opacity = data.value / 100
+        this.opacity = data / 100
 
         this.leave('foreChange')
         this.leave('bgChange')
@@ -332,10 +332,12 @@ class PatternPicker extends Component {
         if (this.is('disabled')) {
           return
         }
+        addClass(this.classes.OPENDISABLE, this.$trigger)
         this.DROPDOWN.show()
         return false // eslint-disable-line
       }),
       bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
+        addClass(this.classes.OPENDISABLE, this.$trigger)
         this.render()
       }),
       // info action hover
@@ -366,6 +368,7 @@ class PatternPicker extends Component {
       bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
         // this.update()
         this.DROPDOWN.hide()
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
         if (!this.is('state')) {
           removeClass(this.classes.SHOW, this.$wrap)
         }
@@ -389,6 +392,7 @@ class PatternPicker extends Component {
     this.setInfo(this.$fillImg)
     this.element.value = this.val()
     this.DROPDOWN.hide()
+    removeClass(this.classes.OPENDISABLE, this.$trigger)
     addClass(this.classes.SHOW, this.$wrap)
 
     this.enter('state')

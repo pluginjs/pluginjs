@@ -39,7 +39,8 @@ export const classes = {
   SHOW: '{namespace}-show',
   LOADING: '{namespace}-loading',
   LOADINGWRAP: '{namespace}-loading-wrap',
-  DISABLED: '{namespace}-disabled'
+  DISABLED: '{namespace}-disabled',
+  OPENDISABLE: '{namespace}-open-disabled'
 }
 
 export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']

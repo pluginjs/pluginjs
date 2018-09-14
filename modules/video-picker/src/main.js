@@ -236,7 +236,18 @@ class VideoPicker extends Component {
       reference: this.$trigger,
       templates: this.options.template,
       hideOutClick: false,
-      hideOnSelect: false
+      hideOnSelect: false,
+      onUpdate: () => {
+        this.$infoCover.setAttribute('src', this.data.poster)
+
+        if (this.videoApi) {
+          this.videoApi.stop()
+        }
+        this.element.value = this.val()
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        this.$defaultDropdown.hide()
+        addClass(this.classes.SHOW, this.$wrap)
+      }
     })
     this.$sourceDropdown = Dropdown.of(this.$sourceTrigger, {
       data: sourceData,
@@ -317,6 +328,11 @@ class VideoPicker extends Component {
         onShow: () => {
           addClass(this.classes.SHOW, this.$wrap)
           this.enter('holdHover')
+        },
+        onHide: () => {
+          removeClass(this.classes.SHOW, this.$wrap)
+          removeClass(this.classes.HOVER, this.$infoAction)
+          this.leave('holdHover')
         }
       }
     )
@@ -326,22 +342,24 @@ class VideoPicker extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
+        addClass(this.classes.OPENDISABLE, this.$trigger)
         this.$defaultDropdown.show()
       },
       this.$icon
     )
-    this.pop.options.onHide = () => {
-      removeClass(this.classes.SHOW, this.$wrap)
-      removeClass(this.classes.HOVER, this.$infoAction)
-      this.leave('holdHover')
-    }
     compose(
       // const that = this;
+      // empty
+      bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
+        addClass(this.classes.OPENDISABLE, this.$trigger)
+      }),
       // info actions
       bindEvent(this.eventName('click'), `.${this.classes.EDITOR}`, () => {
+        addClass(this.classes.OPENDISABLE, this.$trigger)
         this.$defaultDropdown.show()
       }),
       bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
         this.$defaultDropdown.hide()
       }),
       // info actions hover hold
@@ -444,9 +462,11 @@ class VideoPicker extends Component {
 
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
         this.$defaultDropdown.hide()
       }),
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
         this.$defaultDropdown.hide()
         if (this.videoApi) {
           this.videoApi.stop()
@@ -455,17 +475,6 @@ class VideoPicker extends Component {
         addClass(this.classes.SHOW, this.$wrap)
       })
     )(this.$btnAction)
-    // panel update
-    this.$defaultDropdown.options.onUpdate = () => {
-      this.$infoCover.setAttribute('src', this.data.poster)
-
-      if (this.videoApi) {
-        this.videoApi.stop()
-      }
-      this.element.value = this.val()
-      this.$defaultDropdown.hide()
-      addClass(this.classes.SHOW, this.$wrap)
-    }
   }
 
   addPoster(url) {

@@ -48,9 +48,15 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     height: $mapPicker-height;
     border: none !important;
   }
+
+  &-open-disabled {
+    pointer-events: none;
+  }
+
   &-input {
     display: none !important;
   }
+
   &-empty,
   &-fill,
   &-dropdown {
@@ -60,6 +66,7 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     border: $mapPicker-border-width $mapPicker-border-style $mapPicker-border-color;
     border-radius: $mapPicker-border-radius;
   }
+
   &-empty,
   &-fill {
     align-items: center;
@@ -67,12 +74,14 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     height: $mapPicker-height;
     padding: $mapPicker-empty-padding;
     color: $mapPicker-prompt-color;
+
     .#{$mapPicker}-icon {
       margin-right: $mapPicker-icon-margin-right;
       font-size: $mapPicker-icon-font-size;
       color: $mapPicker-icon-color;
     }
   }
+
   &-empty {
     display: flex;
     font-size: $mapPicker-empty-font-size;
@@ -90,18 +99,22 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
       }
     }
   }
+
   &-fill {
     position: relative;
     display: none;
+    
     &-content {
       display: flex;
       flex-direction: column;
       width: $mapPicker-fill-content-width;
     }
+
     &-coord {
       overflow-x: hidden;
       white-space: nowrap;
     }
+
     &-action {
       position: absolute;
       top: 0;
@@ -118,6 +131,7 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
       .#{$mapPicker}-edit,
       .#{$mapPicker}-remove {
         color: $color-white;
+
         &:hover {
           // color: $mapPicker-active-color;
           cursor: pointer;
@@ -129,35 +143,41 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
       }
     }
   }
+
   &-dropdown {
     position: relative;
     display: none;
     width: $mapPicker-dropdown-width;
     padding: $mapPicker-dropdown-padding;
+
     .#{$mapPicker}-canel,
     .#{$mapPicker}-save {
       width: $mapPicker-save-width;
       height: $mapPicker-save-height;
     }
   }
+
   &-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: $mapPicker-item-margin-bottom;
   }
+
   &-map {
     width: 100%;
     height: $mapPicker-map-height;
     margin-bottom: $mapPicker-map-margin-bottom;
     border-radius: $mapPicker-border-radius;
   }
+
   &-place,
   &-lat,
   &-lng {
     padding: 0;
     margin: 0;
   }
+
   &-action {
     text-align: right;
   }
@@ -167,30 +187,31 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
   &-remove-animate {
     animation: fade-out 0.5s;
     animation-fill-mode: forwards;
+
     .#{$mapPicker}-fill-action {
       animation: fade-out 0.5s;
       animation-fill-mode: forwards;
     }
   }
+
   &-fill-hover {
     .#{$mapPicker}-fill-action {
       opacity: 1;
       transition: opacity 0.3s;
     }
   }
+
   &-write {
     .#{$mapPicker}-empty {
       display: none;
     }
+
     .#{$mapPicker}-fill {
       display: flex;
     }
   }
+
   &-show {
-    // .#{$mapPicker}-empty,
-    // .#{$mapPicker}-fill {
-    //   display: none !important;
-    // }
     .#{$mapPicker}-dropdown {
       display: block !important;
     }
@@ -218,10 +239,12 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
       cursor: not-allowed;
     }
   }
+
   .#{$mapPicker}-empty {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
+    
     > i {
       color: $disabled-color;
       cursor: not-allowed;
