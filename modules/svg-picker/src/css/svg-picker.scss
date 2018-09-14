@@ -34,9 +34,9 @@ $svgPicker-type-bg-color: $gray-lightest !default;
 $svgPicker-manage-height: 3 * $svgPicker-sizer !default; //30px
 $svgPicker-manage-icon-margin-right: $svgPicker-sizer !default; //10px
 $svgPicker-manage-icon-font-size: $font-size-sm !default;
-$svgPicker-search-height: 4 * $svgPicker-sizer !default; //40px
+$svgPicker-search-height: 3 * $svgPicker-sizer !default; //40px
 // search
-$svgPicker-search-border: 1px solid $gray-lighter !default;
+$svgPicker-search-border: 1px solid $gray !default;
 $svgPicker-search-margin-bottom: 1px !default;
 $svgPicker-search-icon-color: $gray-dark !default;
 
@@ -57,7 +57,7 @@ $svgPicker-search-icon-color: $gray-dark !default;
   .pj-dropdown-trigger {
     box-sizing: border-box;
     display: inline-block;
-    width: 158px;
+    width: 15.8 * $svgPicker-sizer; //158px;
     padding: 0 $svgPicker-sizer; //0 10px
     line-height: $svgPicker-height;
 
@@ -81,12 +81,17 @@ $svgPicker-search-icon-color: $gray-dark !default;
     justify-content: center;
     height: 100%;
     padding: $svgPicker-empty-padding;
+    overflow: hidden;
     font-size: $svgPicker-font-size;
+    line-height: 2.6 * $svgPicker-sizer; //26px
     text-align: center;
+    text-overflow: ellipsis;
+    word-break: keep-all;
     white-space: initial;
+    list-style: none;
 
     .#{$svgPicker}-add {
-      color: $svgPicker-add-color;
+    color: $svgPicker-add-color;
       text-decoration: none;
       &:hover {
         opacity: $svgPicker-add-opacity;
@@ -109,7 +114,8 @@ $svgPicker-search-icon-color: $gray-dark !default;
     // height: $svgPicker-panel-height;
     display: flex;
     flex-direction: column;
-    width: 260px;
+    width: 26 * $svgPicker-sizer !important; //26px
+    height: 36 * $svgPicker-sizer !important; //36px;
     min-height: $svgPicker-panel-height;
     padding: 0 0 $svgPicker-manage-height 0;
 
@@ -219,7 +225,7 @@ $svgPicker-search-icon-color: $gray-dark !default;
       height: 18.8 * $svgPicker-sizer !important; //188px
 
       &-container {
-        width: 100% !important;
+        width: 274px !important;
         height: 188px !important;
       }
 

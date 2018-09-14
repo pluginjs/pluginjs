@@ -276,9 +276,7 @@ class SvgPicker extends Component {
       emptyText: this.translate('emptyText'),
       emptyHrefText: this.translate('emptyHrefText')
     })
-
     const data = [{ label: 'empty' }]
-
     function item() {
       return `<div class="{that.classes.ITEM} ${
         that.classes.EMPTY
@@ -290,7 +288,6 @@ class SvgPicker extends Component {
       hideOnSelect: false,
       target: next(this.$svgPicker),
       width: 260,
-      value: data[0].label,
       templates: {
         panel() {
           return `<div class=${that.classes.PANEL}></div>`
