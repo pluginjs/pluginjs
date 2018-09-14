@@ -119,6 +119,54 @@ describe('Radio', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample().querySelector('input')
+      api = Radio.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample().querySelector('input')
+      api = Radio.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeString()
+        }
+      })
+
+      api.val('foo')
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample().querySelector('input')
+      api = Radio.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeString()
+        }
+      })
+
+      api.set('foo')
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
