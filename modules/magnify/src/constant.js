@@ -32,7 +32,18 @@ export const classes = {
   MOVING: '{namespace}-moving'
 }
 
-export const methods = []
+export const methods = [
+  'zoomUp',
+  'zoomDown',
+  'zoomTo',
+  'zoomBy',
+  'show',
+  'hide',
+  'swap',
+  'disable',
+  'enable',
+  'destroy'
+]
 
 export const defaults = {
   mode: 'inside', // outside
@@ -44,6 +55,8 @@ export const defaults = {
   error: 'The image load failed',
   errorDuration: 3000,
   zoom: 3,
+  zoomable: true,
+  zoomStep: 0.1,
   templates: {
     error() {
       return '<span class="{classes.ERROR}">{text}</span>'

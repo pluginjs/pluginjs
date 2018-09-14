@@ -33,6 +33,18 @@ query('.api').addEventListener('click', event => {
       )
       break
     }
+    case 'show':
+      api.show()
+      break
+    case 'hide':
+      api.hide()
+      break
+    case 'zoomTo':
+      api.zoomTo(1.5)
+      break
+    case 'zoomBy':
+      api.zoomBy(el.dataset.value)
+      break
     case 'disable':
       api.disable()
       break

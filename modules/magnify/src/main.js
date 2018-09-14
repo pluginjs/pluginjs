@@ -243,6 +243,26 @@ class Magnify extends Component {
     )
     bindEvent(this.eventName('dragstart'), () => false, this.$zoom)
     bindEvent(this.eventName('selectstart'), () => false, this.$zoom)
+
+    if (this.options.zoomable) {
+      bindEvent(
+        this.eventName('wheel'),
+        e => {
+          e.preventDefault()
+
+          if (e.deltaY < 0) {
+            this.zoomUp(this.options.zoomStep)
+          } else if (e.deltaY > 0) {
+            this.zoomDown(this.options.zoomStep)
+          }
+        },
+        this.$zoom
+      )
+    }
+  }
+
+  unbind() {
+    removeEvent(this.eventName(), this.$zoom)
   }
 
   onEnter() {
@@ -319,10 +339,6 @@ class Magnify extends Component {
       x: (result.x - this.offset.left) / this.width,
       y: (result.y - this.offset.top) / this.height
     }
-  }
-
-  unbind() {
-    removeEvent(this.eventName(), this.$wrap)
   }
 
   swap(small, large) {
@@ -430,6 +446,7 @@ class Magnify extends Component {
         this.$wrap
       )
     }
+
     if (!this.$targetImage) {
       if (isElement(this.large)) {
         this.$targetImage = this.large
@@ -441,25 +458,50 @@ class Magnify extends Component {
           Object.assign(this.$targetImage, this.large)
         }
       }
+      this.initTargetDimension()
+      this.zoomTo(this.zoom)
+      append(this.$targetImage, this.$target)
+    }
+  }
+
+  zoomTo(zoom) {
+    if (zoom < this.targetWidth / this.width) {
+      zoom = this.targetWidth / this.width
+    }
+
+    this.zoom = zoom
+
+    if (this.$targetImage) {
       setStyle(
         {
-          width: `${this.width * this.zoom}px`,
-          height: `${this.height * this.zoom}px`
+          width: `${this.width * zoom}px`,
+          height: `${this.height * zoom}px`
         },
         this.$targetImage
       )
-      append(this.$targetImage, this.$target)
 
-      this.initTargetDimension()
       if (this.position) {
         this.positionTarget(this.position.x, this.position.y)
       }
     }
   }
 
+  zoomUp(val) {
+    this.zoomBy(val)
+  }
+
+  zoomDown(val) {
+    this.zoomBy(-1 * val)
+  }
+
+  zoomBy(val) {
+    this.zoomTo(this.zoom + parseFloat(val))
+  }
+
   positionTarget(x, y) {
     let left = parseInt(-x * this.zoom * this.width + this.targetWidth / 2, 10)
     let top = parseInt(-y * this.zoom * this.height + this.targetHeight / 2, 10)
+
     if (this.options.limit) {
       if (left > 0) {
         left = 0
@@ -472,12 +514,13 @@ class Magnify extends Component {
         top = this.targetHeight - this.zoom * this.height
       }
     }
-
-    setStyle(
-      'transform',
-      `translate3d(${left}px,${top}px,0)`,
-      this.$targetImage
-    )
+    let transform
+    if (this.zoom === 1) {
+      transform = `translate(${left}px,${top}px)`
+    } else {
+      transform = `translate3d(${left}px,${top}px,0)`
+    }
+    setStyle('transform', transform, this.$targetImage)
   }
 
   hide() {
