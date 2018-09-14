@@ -34,6 +34,7 @@ $grids: "pj-grids";
       width: 100%;
       height: 100%;
       pointer-events: none;
+      opacity: 0;
     }
 
     &-inner {
@@ -42,6 +43,12 @@ $grids: "pj-grids";
       left: 0;
       width: 100%;
       height: 100%;
+    }
+
+    &.#{$grids}-loaded {
+      img {
+        opacity: 1;
+      }
     }
   }
 

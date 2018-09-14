@@ -20,9 +20,7 @@ export const classes = {
   WRAP: '{namespace}-wrap',
   INNER: '{namespace}-inner',
   INNERSHOW: '{namespace}-inner-show',
-  LOADER: '{namespace}-loader',
-  LOADERSHOW: '{namespace}-loader-show',
-  LOADERINNER: '{namespace}-loader-inner',
+  LOADED: '{namespace}-loaded',
   CONTAINER: '{namespace}-container',
   FILTERBAR: '{namespace}-filterbar',
   FILTERS: '{namespace}-filterbar-filters',
@@ -57,7 +55,7 @@ export const defaults = {
   theme: null,
   wrapSelector: null,
   itemSelector: 'figure', // [selector / null] // select the grids item element. if not, select children of the wraper.
-  imgSelector: null, // [selector / null] If there is any image in item, the grid will select an IMG element marked by Imgselector
+  imgSelector: 'img', // [selector / null] If there is any image in item, the grid will select an IMG element marked by Imgselector
   model: 'grid', // select model
   maxColumn: 5, // [number] set the max column number.
   gutter: 0,
@@ -77,11 +75,6 @@ export const defaults = {
   sortDirection: 'max', // min && max
   animate: 'fadeInUp', // fadeInUp,fadeInDown, fadeInLeft, fadeInRight, zoomIn, zoomOut, bounce, bounceIn, flip, calendar, cards, fan
   effects: {}, // set custom effects.
-  templates: {
-    loader() {
-      return '<div class="{class.LOADERINNER}"></div>'
-    }
-  },
   sort(key, chunks) {
     if (!key) {
       return chunks

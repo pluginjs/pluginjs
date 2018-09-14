@@ -4,10 +4,10 @@ import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   append,
-  prepend,
   find,
   queryAll,
   parent,
+  closest,
   children,
   getData
 } from '@pluginjs/dom'
@@ -21,9 +21,8 @@ import {
   optionable
 } from '@pluginjs/decorator'
 
-import templateEngine from '@pluginjs/template'
 import ImageLoader from '@pluginjs/image-loader'
-// import Loader from '@pluginjs/loader'
+import Loader from '@pluginjs/loader'
 
 import {
   classes as CLASSES,
@@ -59,6 +58,7 @@ class Grids extends Component {
     super(element)
 
     this.events = EVENTS
+    this.namespace = NAMESPACE
     this.setupOptions(options)
     this.setupClasses()
     this.setupStates()
@@ -77,19 +77,24 @@ class Grids extends Component {
 
     this.initFilterbar()
 
-    /* 如果有imgSelector属性的话，初始化image-loader插件，当img全部加载后loading */
     if (this.options.imgSelector) {
       this.imgs = queryAll(this.options.imgSelector, this.$container)
+      this.loading(this.chunks)
       if (this.imgs && this.imgs.length > 0) {
-        addClass(this.classes.LOADERSHOW, this.$loader)
-        const imageLoaderApi = ImageLoader.of(this.$container, {
-          selector: this.options.imgSelector
-        })
-
-        imageLoaderApi.load()
-        imageLoaderApi.isDone(() => {
-          this.loading(this.chunks)
-          removeClass(this.classes.LOADERSHOW, this.$loader)
+        this.imgs.forEach(img => {
+          const loader = Loader.of(parent(img), {
+            theme: 'snake',
+            color: '#000000',
+            size: 'lg'
+          })
+          loader.show()
+          ImageLoader.of(img).on('loaded', img => {
+            loader.hide()
+            addClass(
+              this.classes.LOADED,
+              closest(`.${this.classes.CHUNK}`, img)
+            )
+          })
         })
       }
     } else {
@@ -115,20 +120,6 @@ class Grids extends Component {
 
     const $itemsParent = parent(this.$items[0])
 
-    /* 如果有imgSelector 插入loader元素 */
-    if (this.options.imgSelector) {
-      prepend(`<div class=${this.classes.LOADER}></div>`, this.element)
-      this.$loader = find(`.${this.classes.LOADER}`, this.element)
-      const $loaderInner = templateEngine.compile(
-        this.options.templates.loader()
-      )({
-        class: this.classes
-      })
-      append($loaderInner, this.$loader)
-    }
-
-    /* 如果html结构里，element子元素没有inner元素，生成新的inner并插入 */
-    /* 初始化html结构里加入inner元素，解决item有图片的情况下的闪屏 */
     if ($itemsParent.getAttribute('class').indexOf(this.classes.INNER) >= 0) {
       this.$inner = $itemsParent
     } else {
