@@ -2,7 +2,6 @@ import Component from '@pluginjs/component'
 import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import Pj from '@pluginjs/factory'
 import {
   append,
   prepend,
@@ -24,6 +23,7 @@ import {
 
 import templateEngine from '@pluginjs/template'
 import ImageLoader from '@pluginjs/image-loader'
+// import Loader from '@pluginjs/loader'
 
 import {
   classes as CLASSES,
@@ -45,9 +45,6 @@ import Masonry from './models/masonry'
 import Justified from './models/justified'
 import Nested from './models/nested'
 
-// import carsouel
-import Carousel from './models/carousel'
-
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -64,9 +61,8 @@ class Grids extends Component {
     this.events = EVENTS
     this.setupOptions(options)
     this.setupClasses()
-
-    // Init
     this.setupStates()
+
     this.initialize()
   }
 
@@ -77,12 +73,10 @@ class Grids extends Component {
       addClass(this.getThemeClass(), this.element)
     }
 
-    /* 初始化全局变量 */
     this.initGlobalArgs()
-    /* 初始化过滤器filter bar */
+
     this.initFilterbar()
 
-    // handle image loading
     /* 如果有imgSelector属性的话，初始化image-loader插件，当img全部加载后loading */
     if (this.options.imgSelector) {
       this.imgs = queryAll(this.options.imgSelector, this.$container)
@@ -95,7 +89,6 @@ class Grids extends Component {
         imageLoaderApi.load()
         imageLoaderApi.isDone(() => {
           this.loading(this.chunks)
-          // remove($loader)
           removeClass(this.classes.LOADERSHOW, this.$loader)
         })
       }
@@ -109,7 +102,6 @@ class Grids extends Component {
   }
 
   initGlobalArgs() {
-    // set $element
     if (this.options.wrapSelector) {
       this.element = find(this.options.wrapSelector, this.element)
     }
@@ -117,14 +109,12 @@ class Grids extends Component {
     this.minHeight = this.options.minHeight
     this.minWidth = this.options.minWidth
 
-    // get $items, if not set item selector, get element's children
     this.$items = this.options.itemSelector
       ? queryAll(this.options.itemSelector, this.element)
       : children(this.element)
 
     const $itemsParent = parent(this.$items[0])
 
-    // append loader element
     /* 如果有imgSelector 插入loader元素 */
     if (this.options.imgSelector) {
       prepend(`<div class=${this.classes.LOADER}></div>`, this.element)
@@ -153,33 +143,20 @@ class Grids extends Component {
       append($item, this.$container)
     })
 
-    // get gutter width
     this.gutter = this.options.gutter
-    // get wrap width
     this.width = this.getWidth()
-    // get tags, get filters
     this.tags = this.getTags()
-    // get filters
     this.filters = this.options.filters
-    // get sortby
     this.sortby = this.options.sortby
 
-    // defalut chunks
-    /* 通过new Item生成初始的chunk实例数组 */
     this.defaultChunks = this.createChunks(this.$items)
 
-    // handle chunks
     /* 处理chunks --> 根据filters过滤， 根据sortby重排 */
     this.handleChunks()
 
-    /* 如果设置了carousel 初始化carousel， 否则初始化正常的模块 */
-    if (this.options.carousel) {
-      this.initCarousel()
-    } else {
-      this.model = this.initModel(this.options.model)
-    }
+    /* 初始化正常的模块 */
+    this.model = this.initModel(this.options.model)
 
-    // init Animate
     /* 初始化animate，chunks发生filter，loading时使用 */
     this.ANIMATE = new Animate(this)
   }
@@ -191,14 +168,6 @@ class Grids extends Component {
     }
 
     this.FILTERBAR = new Filterbar(this, this.options.filterbar)
-  }
-
-  initCarousel() {
-    this.CAROUSEL = new Carousel(
-      this,
-      this.options.carousel,
-      this.options.model
-    )
   }
 
   createChunks(items) {
@@ -216,10 +185,8 @@ class Grids extends Component {
   }
 
   handleChunks(filters = this.filters, sortby = this.sortby) {
-    // filtered chunks
     this.filteredChunks = this._filter(filters, this.defaultChunks)
 
-    // sort and get final chunks
     this.chunks = this._sort(sortby, this.filteredChunks)
   }
 
@@ -258,11 +225,7 @@ class Grids extends Component {
   sort(sortby) {
     this.handleChunks(this.filters, sortby)
 
-    if (!this.options.carousel) {
-      this.model.handleState()
-    } else {
-      this.CAROUSEL.computeItemLocation(this.CAROUSEL.swipe)
-    }
+    this.model.handleState()
 
     this.chunks.forEach(chunk => {
       chunk.moveTo(chunk.movePosition)
@@ -307,17 +270,13 @@ class Grids extends Component {
     let moveChunks = []
     let showChunks = []
 
-    // take move chunks
     moveChunks = this.intersectArr(oldChunks, this.chunks)
 
     if (moveChunks.length <= 0) {
       hideChunks = oldChunks
       showChunks = this.chunks
     } else {
-      // take show chunks
       showChunks = this.disjoint(this.chunks, moveChunks)
-
-      // take remove chunks
       hideChunks = this.disjoint(oldChunks, moveChunks)
     }
 
@@ -384,13 +343,12 @@ class Grids extends Component {
     return null
   }
 
-  bind() {
-    /* lazy resize */
-    Pj.emitter.on('resize', () => {
-      this.width = this.getWidth()
-      this.trigger(EVENTS.RESIZED, this.width)
-    })
+  resize() {
+    this.width = this.getWidth()
+    this.trigger(EVENTS.RESIZE, this.width)
+  }
 
+  bind() {
     bindEvent(this.eventName('click'), `.${this.classes.CHUNK}`, e => {
       this.trigger(EVENTS.CHUNKCLICK, e.currentTarget)
     })
@@ -405,9 +363,7 @@ class Grids extends Component {
 
     this.ANIMATE.loading(chunks, () => {
       this.enter('loaded')
-      if (!this.options.carousel) {
-        this.setHeight(this.model.height)
-      }
+      this.setHeight(this.model.height)
     })
   }
 
@@ -440,9 +396,7 @@ class Grids extends Component {
 
   reverse() {
     this.chunks.reverse()
-    if (!this.options.carousel) {
-      this.model.handleState()
-    }
+    this.model.handleState()
 
     this.chunks.forEach(chunk => {
       chunk.moveTo(chunk.movePosition)
@@ -460,7 +414,7 @@ class Grids extends Component {
   }
 
   getModel() {
-    return this.options.carousel ? this.CAROUSEL : this.model
+    return this.model
   }
 
   getChunks() {

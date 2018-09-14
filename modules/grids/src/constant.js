@@ -6,14 +6,11 @@ export const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   CHANGED: 'changed',
-  RESIZED: 'resized',
+  RESIZE: 'resize',
   FILTER: 'filter',
   SORT: 'sort',
   REVERSE: 'reverse',
-  CHUNKCLICK: 'chunkClick',
-  DRAGSTART: 'dragStart',
-  DRAGEND: 'dragEnd',
-  MOVEEND: 'moveEnd'
+  CHUNKCLICK: 'chunkClick'
 }
 
 export const classes = {
@@ -40,8 +37,7 @@ export const classes = {
   GRIDMODEL: '{namespace}-grid-model',
   MASONRYMODEL: '{namespace}-masonry-model',
   JUSTIFIEDMODEL: '{namespace}-justified-model',
-  NESTEDMODEL: '{namespace}-nested-model',
-  DRAG: '{namespace}-drag'
+  NESTEDMODEL: '{namespace}-nested-model'
 }
 
 export const methods = [
@@ -70,7 +66,6 @@ export const defaults = {
   aspectRatio: null, // 'Width:Height' global items aspect ratio. item own aspect ratio can be replaced by it. item own aspect ratio > global aspect ratio > item own size
   delay: 60, // chunk animating delay for each of list. unit: ms.
   duration: 800, // The animation duration. unit: ms.
-  moveDuration: 800, // the carousel move duration. unit: ms
   direction: 'topLeft', // the chunks arrangement origin. ["topLeft", "topRight","bottomLeft","bottomRight"]
   filters: [],
   filterbar: {
@@ -80,28 +75,8 @@ export const defaults = {
   },
   sortby: '',
   sortDirection: 'max', // min && max
-  carousel: false,
-  /*
-    carousel opts: {
-      arrows: false,
-      pagination: false,
-      drag: true,
-      center: false,
-      decay: false,
-      power: 2,
-      group: false,
-      multiple: false,
-      defaultActive: 0,
-      justifiedResponsive: ['1920:300', '1240:260', '720:200', '480:150'] // [justified mode] => 'clientWidth:chunkHeight'
-    }
-  */
   animate: 'fadeInUp', // fadeInUp,fadeInDown, fadeInLeft, fadeInRight, zoomIn, zoomOut, bounce, bounceIn, flip, calendar, cards, fan
   effects: {}, // set custom effects.
-  // threshold: 0.3,
-  // nestedConfig: {
-  //   width: 100,
-  //   height: 100
-  // },
   templates: {
     loader() {
       return '<div class="{class.LOADERINNER}"></div>'
@@ -143,7 +118,7 @@ export const defaults = {
 
     return chunks
   },
-  // mode: 'grid' // grid display mode. grid && carousel && justified && masonry && nested
+  // mode: 'grid' // grid display mode. grid && justified && masonry && nested
   // advanced: {
   //   // enterOrigin: [100, 100], // The origin when the animation begins to move in the wrap.
   //   origin: 'topLeft', // the chunks arrangement origin.
@@ -161,15 +136,7 @@ export const defaults = {
   }
 }
 
-export const dependencies = [
-  'anime',
-  'dots',
-  'arrows',
-  'Hammer',
-  'filters',
-  'swipe',
-  'image-loader'
-]
+export const dependencies = ['anime', 'filters', 'image-loader', 'loader']
 
 /* chunks options */
 /*

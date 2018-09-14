@@ -35,23 +35,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/arrows": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
-    "@pluginjs/dots": "*",
+    "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/feature": "*",
     "@pluginjs/filters": "*",
     "@pluginjs/image-loader": "*",
     "@pluginjs/is": "*",
+    "@pluginjs/loader": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/swipe": "*",
     "@pluginjs/template": "*",
-    "animejs": "*",
-    "hammerjs": "*"
+    "animejs": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -76,7 +72,6 @@
     ]
   },
   "globals": {
-    "animejs": "anime",
-    "hammerjs": "Hammer"
+    "animejs": "anime"
   }
 }

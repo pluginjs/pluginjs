@@ -98,7 +98,7 @@ class Justified {
 
   bind() {
     bindEvent(
-      `${this.api.namespace}:${this.api.events.RESIZED}`,
+      `${this.api.namespace}:${this.api.events.RESIZE}`,
       (e, instance, data) => {
         if (data < this.api.minWidth) {
           return
