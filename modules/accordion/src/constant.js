@@ -4,7 +4,10 @@ export const events = {
   READY: 'ready',
   OPEN: 'open',
   CLOSE: 'close',
-  RESIZE: 'resize'
+  RESIZE: 'resize',
+  ENABLE: 'enable',
+  DISABLE: 'disable',
+  DESTROY: 'destroy'
 }
 
 export const classes = {

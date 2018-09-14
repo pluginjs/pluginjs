@@ -223,6 +223,31 @@ class Accordion extends Component {
     this.ANIMATE.resetWidth(true)
     this.trigger(EVENTS.RESIZE)
   }
+
+  enable() {
+    if (this.is('disabled')) {
+      removeClass(this.classes.DISABLED, this.element)
+      this.leave('disabled')
+    }
+    this.trigger(EVENTS.ENABLE)
+  }
+
+  disable() {
+    if (!this.is('disabled')) {
+      addClass(this.classes.DISABLED, this.element)
+      this.enter('disabled')
+    }
+    this.trigger(EVENTS.DISABLE)
+  }
+
+  destroy() {
+    if (this.is('initialized')) {
+      this.disable()
+      this.leave('initialized')
+    }
+    this.trigger(EVENTS.DESTROY)
+    super.destroy()
+  }
 }
 
 export default Accordion
