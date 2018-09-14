@@ -39,6 +39,7 @@ export default class FontFamily {
       value,
       itemValueAttr: 'data-font-family',
       target: this.$list,
+      keyboard: true,
       width: this.$dropdown,
       onChange(value) {
         if (that.instance.is('disabled')) {

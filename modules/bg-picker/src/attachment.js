@@ -47,6 +47,7 @@ export default class Attachment {
         imitateSelect: true,
         value: 'inherit',
         data,
+        keyboard: true,
         classes: {
           panel: `pj-dropdown-panel ${
             this.instance.classes.NAMESPACE

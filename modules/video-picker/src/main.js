@@ -253,7 +253,7 @@ class VideoPicker extends Component {
       data: sourceData,
       reference: this.$vidosource,
       imitateSelect: true,
-      icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
+      keyboard: true,
       value: sourceData[0].label,
       onChange: value => {
         this.data.source = value
@@ -280,7 +280,7 @@ class VideoPicker extends Component {
       data: ratioData,
       reference: this.$ratio,
       imitateSelect: true,
-      icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
+      keyboard: true,
       value: ratioData[0].label,
       onChange: value => {
         this.data.ratio = value

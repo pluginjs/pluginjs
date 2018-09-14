@@ -259,10 +259,8 @@ class LinkPicker extends Component {
     this.$typeDropdown = Dropdown.of(
       query(`.${this.classes.TYPESWITCH}`, this.$dropdown),
       {
-        // theme: 'default',
         imitateSelect: true,
-        // constraintToScrollParent: false,
-        icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
+        keyboard: true,
         hideOutClick: true,
         data: typeData,
         value: this.source,
@@ -499,10 +497,9 @@ class LinkPicker extends Component {
 
     // set dropdown default options
     const dropdownDefault = {
-      // theme: 'default',
+      keyboard: true,
       imitateSelect: true,
       data: dropdownData,
-      icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
       templates: {
         item() {
           return `<div class="${

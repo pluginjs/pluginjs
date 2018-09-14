@@ -47,6 +47,7 @@ export default class FontWeight {
       exclusive: false,
       width: getWidth(this.$dropdown),
       // itemValueAttr: 'fontWeight',
+      keyboard: true,
       data,
       value: 'inherit',
       onChange(value) {

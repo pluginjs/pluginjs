@@ -40,6 +40,7 @@ export default class Size {
       imitateSelect: true,
       data,
       value: this.defaultValue,
+      keyboard: true,
       onChange: val => {
         if (that.instance.disabled) {
           return
