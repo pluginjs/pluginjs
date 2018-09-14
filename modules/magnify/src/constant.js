@@ -35,7 +35,7 @@ export const classes = {
 export const methods = []
 
 export const defaults = {
-  mode: 'inside', // outside, target
+  mode: 'inside', // outside
   target: null,
   placement: 'left', // left, right, top, bottom
   limit: true,

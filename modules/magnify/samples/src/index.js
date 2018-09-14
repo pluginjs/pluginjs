@@ -2,6 +2,7 @@
 import './sections/default/index.js'
 import './sections/outside/index.js'
 import './sections/placement/index.js'
+import './sections/target/index.js'
 import './sections/responsive/index.js'
 import './sections/hover/index.js'
 import './sections/click/index.js'

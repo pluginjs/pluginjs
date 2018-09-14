@@ -69,17 +69,29 @@ class Magnify extends Component {
       this.$wrap
     )
 
-    if (this.options.mode === 'outside') {
-      this.initPlacement()
-
-      this.$zoom = this.$image
-    } else {
-      this.$zoom = this.$wrap
-    }
-
     if (this.options.theme) {
       addClass(this.getThemeClasss(), this.$wrap)
     }
+
+    if (this.options.target) {
+      if (isElement(this.options.target)) {
+        this.$target = this.options.target
+      } else {
+        this.$target = query(this.options.target)
+      }
+      addClass(this.classes.TARGET, this.$target)
+    }
+
+    if (this.options.mode === 'inside') {
+      this.$zoom = this.$wrap
+    } else {
+      if (!this.options.target) {
+        this.initPlacement()
+      }
+
+      this.$zoom = this.$image
+    }
+
     if (this.options.loader) {
       this.LOADER = Loader.of(this.$wrap, this.options.loader)
     }
