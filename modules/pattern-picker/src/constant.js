@@ -7,7 +7,8 @@ export const events = {
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
-  DESTROY: 'destroy'
+  DESTROY: 'destroy',
+  CHANGE: 'change'
 }
 
 export const classes = {

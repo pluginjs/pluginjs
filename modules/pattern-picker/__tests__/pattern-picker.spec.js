@@ -125,6 +125,55 @@ describe('PatternPicker', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = PatternPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = PatternPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeObject()
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = PatternPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(value)
+        }
+      })
+
+      api.set(obj)
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api

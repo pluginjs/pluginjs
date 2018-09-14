@@ -92,7 +92,7 @@ class PatternPicker extends Component {
   initData() {
     const data = this.element.value
     if (data) {
-      this.val(data)
+      this.val(data, false)
     }
   }
 
@@ -428,7 +428,7 @@ class PatternPicker extends Component {
     setData('info', imgData, img)
   }
 
-  set(data) {
+  set(data, trigger = true) {
     if (!this.imgs || !data) {
       return
     }
@@ -456,6 +456,10 @@ class PatternPicker extends Component {
       this.update(data)
     }
 
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, data)
+    }
+
     return
   }
 
@@ -471,12 +475,12 @@ class PatternPicker extends Component {
     return this.data
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
     const val = this.options.parse.call(this, value)
-    this.set(val)
+    this.set(val, trigger)
     return null
   }
 
