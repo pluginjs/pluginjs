@@ -16,6 +16,7 @@ export const classes = {
   THEME: '{namespace}-{theme}',
   CONTAINER: '{namespace}-container',
   STATUS: '{namespace}-{status}',
+  INPUTGROUP: '{namespace}-input-group',
   INPUT: '{namespace}-input',
   TOGGLE: '{namespace}-toggle',
   METER: '{namespace}-meter',
@@ -43,7 +44,7 @@ export const defaults = {
     meter: '<div class="{classes.METER}">{score}</div>',
     score: '<span class="label {classes.SCORE}"></span>',
     main:
-      '<div class="{classes.CONTAINER}"><div class="input-group">{input}{toggle}</div>{meter}</div>'
+      '<div class="{classes.CONTAINER}"><div class="{classes.INPUTGROUP}">{input}{toggle}</div>{meter}</div>'
   },
 
   scoreLables: {

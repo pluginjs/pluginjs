@@ -42,8 +42,10 @@ class Gmap extends Component {
 
     this.setupStates()
     if (!(isObject(window.google) && window.google.maps)) {
+      console.log(11)
       this.loadScript()
     } else {
+      console.log(22)
       this.initialize()
     }
   }
