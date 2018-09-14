@@ -364,7 +364,6 @@ class Magnify extends Component {
 
     this.large = large
     this.initDimension()
-    // this.initTargetDimension()
     this.zoom = this.options.zoom
     this.$targetImage.remove()
     this.$targetImage = null
@@ -456,6 +455,19 @@ class Magnify extends Component {
     }
   }
 
+  hide() {
+    if (this.is('shown')) {
+      removeClass(this.classes.SHOW, this.$wrap)
+      removeClass(this.classes.TARGETSHOW, this.$target)
+      this.trigger(EVENTS.HIDE)
+      this.leave('shown')
+    }
+
+    if (!this.is('hided')) {
+      this.enter('hided')
+    }
+  }
+
   prepareLens() {
     if (!this.$lens) {
       if (this.options.lensOverlay) {
@@ -488,21 +500,6 @@ class Magnify extends Component {
     }
   }
 
-  getTargetImage() {
-    let $image
-    if (isElement(this.large)) {
-      $image = this.large
-    } else {
-      $image = new Image()
-      if (isString(this.large)) {
-        $image.src = this.large
-      } else if (isPlainObject(this.large)) {
-        Object.assign($image, this.large)
-      }
-    }
-    return $image
-  }
-
   prepareTargetImage() {
     if (!this.$target) {
       this.$target = appendTo(
@@ -512,10 +509,77 @@ class Magnify extends Component {
     }
 
     if (!this.$targetImage) {
-      this.$targetImage = this.getTargetImage()
+      let $image
+      if (isElement(this.large)) {
+        $image = this.large
+      } else {
+        $image = new Image()
+        if (isString(this.large)) {
+          $image.src = this.large
+        } else if (isPlainObject(this.large)) {
+          Object.assign($image, this.large)
+        }
+      }
+
+      this.$targetImage = $image
       this.initTargetDimension()
       append(this.$targetImage, this.$target)
     }
+  }
+
+  positionLens(x, y) {
+    let left = parseInt(x * this.width - this.lensWidth / 2, 10)
+    let top = parseInt(y * this.height - this.lensHeight / 2, 10)
+
+    if (this.limit && this.mode === 'outside') {
+      if (left > this.width - this.lensWidth) {
+        left = this.width - this.lensWidth
+      } else if (left < 0) {
+        left = 0
+      }
+      if (top > this.height - this.lensHeight) {
+        top = this.height - this.lensHeight
+      } else if (top < 0) {
+        top = 0
+      }
+    }
+
+    const transform =
+      this.zoom === 1
+        ? `translate(${left}px,${top}px)`
+        : `translate3d(${left}px,${top}px,0)`
+    this.$lens.style.transform = transform
+
+    if (this.$lensImage) {
+      const imageTransform =
+        this.zoom === 1
+          ? `translate(${-1 * left}px,${-1 * top}px)`
+          : `translate3d(${-1 * left}px,${-1 * top}px,0)`
+      this.$lensImage.style.transform = imageTransform
+    }
+  }
+
+  positionTarget(x, y) {
+    let left = parseInt(-x * this.zoom * this.width + this.targetWidth / 2, 10)
+    let top = parseInt(-y * this.zoom * this.height + this.targetHeight / 2, 10)
+
+    if (this.limit) {
+      if (left > 0) {
+        left = 0
+      } else if (left < this.targetWidth - this.zoom * this.width) {
+        left = this.targetWidth - this.zoom * this.width
+      }
+      if (top > 0) {
+        top = 0
+      } else if (top < this.targetHeight - this.zoom * this.height) {
+        top = this.targetHeight - this.zoom * this.height
+      }
+    }
+    const transform =
+      this.zoom === 1
+        ? `translate(${left}px,${top}px)`
+        : `translate3d(${left}px,${top}px,0)`
+    this.$targetImage.style.transform = transform
   }
 
   zoomTo(zoom, trigger = true) {
@@ -588,76 +652,6 @@ class Magnify extends Component {
 
   zoomBy(val) {
     this.zoomTo(this.zoom + parseFloat(val))
-  }
-
-  positionLens(x, y) {
-    let left = parseInt(x * this.width - this.lensWidth / 2, 10)
-    let top = parseInt(y * this.height - this.lensHeight / 2, 10)
-
-    if (this.limit && this.mode === 'outside') {
-      if (left > this.width - this.lensWidth) {
-        left = this.width - this.lensWidth
-      } else if (left < 0) {
-        left = 0
-      }
-      if (top > this.height - this.lensHeight) {
-        top = this.height - this.lensHeight
-      } else if (top < 0) {
-        top = 0
-      }
-    }
-
-    const transform =
-      this.zoom === 1
-        ? `translate(${left}px,${top}px)`
-        : `translate3d(${left}px,${top}px,0)`
-    this.$lens.style.transform = transform
-
-    if (this.$lensImage) {
-      const imageTransform =
-        this.zoom === 1
-          ? `translate(${-1 * left}px,${-1 * top}px)`
-          : `translate3d(${-1 * left}px,${-1 * top}px,0)`
-      this.$lensImage.style.transform = imageTransform
-    }
-  }
-
-  positionTarget(x, y) {
-    let left = parseInt(-x * this.zoom * this.width + this.targetWidth / 2, 10)
-    let top = parseInt(-y * this.zoom * this.height + this.targetHeight / 2, 10)
-
-    if (this.limit) {
-      if (left > 0) {
-        left = 0
-      } else if (left < this.targetWidth - this.zoom * this.width) {
-        left = this.targetWidth - this.zoom * this.width
-      }
-      if (top > 0) {
-        top = 0
-      } else if (top < this.targetHeight - this.zoom * this.height) {
-        top = this.targetHeight - this.zoom * this.height
-      }
-    }
-    let transform
-    if (this.zoom === 1) {
-      transform = `translate(${left}px,${top}px)`
-    } else {
-      transform = `translate3d(${left}px,${top}px,0)`
-    }
-    this.$targetImage.style.transform = transform
-  }
-
-  hide() {
-    if (this.is('shown')) {
-      removeClass(this.classes.SHOW, this.$wrap)
-      removeClass(this.classes.TARGETSHOW, this.$target)
-      this.trigger(EVENTS.HIDE)
-      this.leave('shown')
-    }
-
-    if (!this.is('hided')) {
-      this.enter('hided')
-    }
   }
 
   enable() {
