@@ -267,6 +267,8 @@ const datas = {
 LinkPicker.registerSources(sources)
 LinkPicker.registerDatas(datas)
 
+const value = '{"source":"scroll","target":"#top", "title":"sdfsdf"}'
+
 describe('LinkPicker', () => {
   describe('LinkPicker()', () => {
     test('should have LinkPicker', () => {
@@ -359,17 +361,75 @@ describe('LinkPicker', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = LinkPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = LinkPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBeObject()
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = LinkPicker.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(value)
+        }
+      })
+
+      api.set({ source: 'scroll', target: '#top', title: 'sdfsdf' })
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
 
-    beforeEach(() => {
+    test('should get the value', () => {
       $element = generateHTMLSample()
       api = LinkPicker.of($element)
+
+      expect(api.get()).toBeObject()
     })
 
-    test('should get the value', () => {
-      expect(api.get()).toBeObject()
+    test('should get the value with value', () => {
+      $element = generateHTMLSample(value)
+      api = LinkPicker.of($element)
+
+      expect(api.get()).toEqual({
+        source: 'scroll',
+        target: '#top',
+        title: 'sdfsdf'
+      })
     })
   })
 
@@ -383,33 +443,15 @@ describe('LinkPicker', () => {
     })
 
     test('should set the value', () => {
+      $element = generateHTMLSample(value)
+      api = LinkPicker.of($element)
       expect(api.get()).toBeObject()
-
-      api.set(false)
-      expect(api.get()).toBeFalse()
-
-      api.set(true)
-      expect(api.get()).toBeTrue()
-    })
-
-    test('should set the value with string', () => {
-      expect(api.get()).toBeObject()
-
-      api.set('false')
-      expect(api.get()).toBeObject()
-
-      api.set('true')
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.set(0)
-      expect(api.get()).toEqual(0)
-
-      api.set(1)
-      expect(api.get()).toEqual(1)
+      api.set({ source: 'scroll', target: '#top', title: 'sdfsdf' })
+      expect(api.get()).toEqual({
+        source: 'scroll',
+        target: '#top',
+        title: 'sdfsdf'
+      })
     })
   })
 
@@ -423,37 +465,21 @@ describe('LinkPicker', () => {
     })
 
     test('should get the value', () => {
+      $element = generateHTMLSample(value)
+      api = LinkPicker.of($element)
+
       expect(api.val()).toBeString()
     })
-
     test('should set the value', () => {
-      api.val(false)
-
-      expect(api.get()).toBeObject()
-
-      api.val(true)
-
-      expect(api.get()).toBeObject()
-    })
-
-    test('should set the value with string', () => {
-      api.val('false')
-
-      expect(api.get()).toBeFalse()
-
-      api.val('true')
-
-      expect(api.get()).toBeTrue()
-    })
-
-    test('should set the value with number', () => {
-      expect(api.get()).toBeObject()
-
-      api.val(0)
-      expect(api.get()).toBeObject()
-
-      api.val(1)
-      expect(api.get()).toBeObject()
+      $element = generateHTMLSample()
+      api = LinkPicker.of($element)
+      api.val(value)
+      expect(api.val()).toBeString()
+      expect(api.get()).toEqual({
+        source: 'scroll',
+        target: '#top',
+        title: 'sdfsdf'
+      })
     })
   })
 

@@ -122,7 +122,7 @@ class LinkPicker extends Component {
 
     const val = this.element.value
     if (val) {
-      this.val(val)
+      this.val(val, false)
     }
 
     if (this.element.disabled || this.options.disabled) {
@@ -670,7 +670,7 @@ class LinkPicker extends Component {
     item.data = data
   }
 
-  set(data) {
+  set(data, trigger = true) {
     this.source = data.source
     this.$typeDropdown.set(this.source)
     this.swtichType()
@@ -685,6 +685,10 @@ class LinkPicker extends Component {
 
     // update
     this.update()
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, data)
+    }
   }
 
   updateData(data) {
@@ -802,13 +806,13 @@ class LinkPicker extends Component {
     return this.input
   }
 
-  val(data) {
+  val(data, trigger = true) {
     if (data) {
       if (isNaN(data)) {
         data = JSON.parse(data.replace(/\'/g, '"')) /* eslint-disable-line */
       }
 
-      this.set(data)
+      this.set(data, trigger)
     }
 
     return JSON.stringify(this.get())
