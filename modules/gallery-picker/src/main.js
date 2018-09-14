@@ -90,18 +90,14 @@ class GalleryPicker extends Component {
   // initDropdown
   initDropdown() {
     const dropdownConf = {
-      // data: this.getTimeList().map(value => ({ label: value })),
-      // placeholder: this.options.placeholder,
       reference: this.$fill,
       target: this.$expandPanel,
       placement: 'bottom-left',
-      // imitateSelect: true,
-      // inputLabel: true,
       hideOutClick: false,
       constraintToScrollParent: false,
       templates: this.options.templates
     }
-    this.mapDropdown = Dropdown.of(this.$fillExpand, dropdownConf)
+    Dropdown.of(this.$fillExpand, dropdownConf)
   }
 
   bind() {
@@ -252,15 +248,6 @@ class GalleryPicker extends Component {
         }
       )
     )(this.$expandPanel)
-
-    // pop event
-    this.pop.options.onShow = () => {
-      this.enter('holdHover')
-    }
-    this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$fill)
-      this.leave('holdHover')
-    }
   }
 
   unbind() {
@@ -321,6 +308,13 @@ class GalleryPicker extends Component {
             resolve()
           }
         }
+      },
+      onShow: () => {
+        this.enter('holdHover')
+      },
+      onHide: () => {
+        removeClass(this.classes.HOVER, this.$fill)
+        this.leave('holdHover')
       }
     })
     hideElement(this.element)
@@ -370,7 +364,7 @@ class GalleryPicker extends Component {
       for (let i = length; i <= this.count; i++) {
         const $item = this.addImage(this.value[i - 1])
         insertBefore($item, this.$expandAdd)
-        const popApi = PopDialog.of(
+        PopDialog.of(
           query(
             `.${this.classes.ITEM}-change .${this.classes.ITEMREMOVE}`,
             $item
@@ -390,18 +384,16 @@ class GalleryPicker extends Component {
                   resolve()
                 }
               }
+            },
+            onShow: () => {
+              this.enter('holdHover')
+            },
+            onHide: () => {
+              removeClass(this.classes.HOVER, $item)
+              this.leave('holdHover')
             }
           }
         )
-
-        popApi.options.onShow = () => {
-          this.enter('holdHover')
-        }
-
-        popApi.options.onHide = () => {
-          removeClass(this.classes.HOVER, $item)
-          this.leave('holdHover')
-        }
       }
     } else {
       this.delImage()
@@ -528,11 +520,13 @@ class GalleryPicker extends Component {
   }
 
   open() {
+    addClass(this.classes.OPENDISABLE, this.$fill)
     addClass(this.classes.EXPAND, removeClass(this.classes.EXIST, this.$wrap))
     this.updateScrollbar()
   }
 
   close() {
+    removeClass(this.classes.OPENDISABLE, this.$fill)
     addClass(this.classes.EXIST, removeClass(this.classes.EXPAND, this.$wrap))
   }
 

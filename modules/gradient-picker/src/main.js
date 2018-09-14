@@ -142,6 +142,13 @@ class GradientPicker extends Component {
               resolve()
             }
           }
+        },
+        onShow: () => {
+          this.enter('holdHover')
+        },
+        onHide: () => {
+          removeClass(this.classes.HOVER, this.$infoAction)
+          this.leave('holdHover')
         }
       }
     )
@@ -267,7 +274,7 @@ class GradientPicker extends Component {
         }
       },
       onChange: val => {
-        this.data.opacity = val.value / 100
+        this.data.opacity = val / 100
         this.setOpacity()
       }
     })
@@ -293,11 +300,23 @@ class GradientPicker extends Component {
   }
 
   bind() {
+    // empty
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.EMPTY}`,
+      () => {
+        addClass(this.classes.OPENDISABLE, this.$trigger)
+        return false
+      },
+      this.$wrap
+    )
+
     // editor
     bindEvent(
       this.eventName('click'),
       `.${this.classes.EDITOR}`,
       () => {
+        addClass(this.classes.OPENDISABLE, this.$trigger)
         this.DROPDOWN.show()
         return false
       },
@@ -324,14 +343,6 @@ class GradientPicker extends Component {
       },
       this.$fill
     )
-    // pop events
-    this.pop.options.onShow = () => {
-      this.enter('holdHover')
-    }
-    this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$infoAction)
-      this.leave('holdHover')
-    }
 
     // select background color
     bindEvent(
@@ -357,6 +368,7 @@ class GradientPicker extends Component {
           return
         }
         this.DROPDOWN.hide()
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
         addClass(this.classes.SHOW, this.$wrap)
         setStyle(
           'background',
@@ -374,6 +386,7 @@ class GradientPicker extends Component {
       `.${this.classes.CANCEL}`,
       () => {
         this.DROPDOWN.hide()
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
         if (!this.is('state')) {
           removeClass(this.classes.SHOW, this.$wrap)
         }
@@ -488,11 +501,6 @@ class GradientPicker extends Component {
 
     this.COLORPICKER.clear()
     this.OPACITY.val(100)
-
-    // removeClass(
-    //   this.classes.ACTIVE,
-    //   query(`.${this.classes.SELECTORITEM}`, this.$selectorList)
-    // )
     removeClass(this.classes.SHOW, this.$wrap)
     this.leave('state')
   }

@@ -710,11 +710,12 @@ class LinkPicker extends Component {
       const item = this.getSourceItem(this.source, itemName)
       dataTypes.push(item.type)
     })
+    // console.log(queryAll(`.${this.classes.ITEMBODY}`, $source))
     queryAll(`.${this.classes.ITEMBODY}`, $source).forEach(el => {
       const $this = el
-      console.log($this)
+      // console.log($this)
       const type = getData('value', parent($this))
-      console.log(type)
+      // console.log(type)
       if (data[type]) {
         const api = getData('api', $this)
         const apiType = Array.isArray(api) ? api[0].plugin : api

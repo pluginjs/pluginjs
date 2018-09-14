@@ -60,6 +60,10 @@ $editPanel-component-color: $color-red !default;
     border-style: dashed;
   }
 
+  &-open-disabled {
+    pointer-events: none;
+  }
+
   &.#{$gradientPicker}-input {
     display: none;
   }

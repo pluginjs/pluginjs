@@ -43,6 +43,11 @@ $galleryPicker-expand-control-btn-height: 32px !default;
   display: inline-block;
   font-size: $galleryPicker-font-size;
   color: $galleryPicker-color;
+
+  &-open-disabled {
+    pointer-events: none;
+  }
+  
   &-empty,
   &-fill {
     position: relative;

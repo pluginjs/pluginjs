@@ -20,6 +20,7 @@ export const classes = {
   EDITOR: '{namespace}-editor',
   REMOVE: '{namespace}-remove',
   HOVER: '{namespace}-hover',
+  OPENDISABLE: '{namespace}-open-disabled',
   // panel
   PREVIEWIMG: '{namespace}-preview-img',
   COLORPICKER: '{namespace}-colorpicker',

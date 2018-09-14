@@ -58,6 +58,10 @@ $imageSelector-item-bg-color: $gray-lightest !default;
     }
   }
 
+  &-open-disabled {
+    pointer-events: none;
+  }
+
   &-init {
     width: 22 * $imageSelector-sizer; //220px
   }

@@ -39,7 +39,8 @@ export const classes = {
   ITEMRESELECT: '{namespace}-item-reselect',
   EMPTY: '{namespace}-empty',
   DROPDOWN: '{namespace}-dropdown',
-  TRIGGER: '{namespace}-trigger'
+  TRIGGER: '{namespace}-trigger',
+  OPENDISABLE: '{namespace}-open-disabled'
 }
 
 export const methods = [

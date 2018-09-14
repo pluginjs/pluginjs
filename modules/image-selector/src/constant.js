@@ -16,6 +16,7 @@ export const classes = {
   ACTIVE: '{namespace}-active',
   THEME: '{namespace}--{theme}',
   DISABLED: '{namespace}-disabled',
+  OPENDISABLE: '{namespace}-open-disabled',
   DATA: '{namespace}-data',
   CHANGE: '{namespace}-change',
   PANEL: '{namespace}-panel',
