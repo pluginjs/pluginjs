@@ -489,14 +489,17 @@ $fontPicker-search-input-hover-color: $gray !default;
   .#{$fontPicker} {
     cursor: not-allowed !important;
     &.#{$fontPicker}-disabled {
+      span {
+        color: $gray-dark;
+      }
       &:focus,
       &:hover {
         border-color: $disabled-border;
         .#{$dropdown}-trigger {
-          color: #b3b3b3
+          color: $gray-dark;
         }
         span {
-          color: #b3b3b3
+          color: $gray-dark;
         }
       }
     }

@@ -64,8 +64,10 @@ export const classes = {
   TEXTTRANSFORM: '{namespace}-textTransform',
   // textDecoration
   TEXTDECORATION: '{namespace}-textDecoration',
+  // dropdown
   DROPDOWN: '{namespace}-dropdown',
-  TRIGGER: '{namespace}-trigger'
+  TRIGGER: '{namespace}-trigger',
+  OPENDISABLE: '{namespace}-open-disabled'
 }
 
 export const methods = [

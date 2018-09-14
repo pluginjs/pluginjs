@@ -60,6 +60,10 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     height: $fontEditor-height;
   }
 
+  &-open-disabled {
+    pointer-events: none;
+  }
+
   .pj-unitsRange {
     display: flex;
   }

@@ -73,7 +73,6 @@ class FontEditor extends Component {
       this.defaultVal,
       this.options.parse(this.element.value.replace(/'/g, '"'))
     )
-    console.log(this.value)
 
     // init
     this.fontFamily = new FontFamily(this)
@@ -140,7 +139,7 @@ class FontEditor extends Component {
         if (that.is('disabled')) {
           return
         }
-
+        addClass(that.classes.OPENDISABLE, that.$trigger)
         addClass(that.classes.EXPAND, that.$wrap)
         return
       },
@@ -177,6 +176,7 @@ class FontEditor extends Component {
         }
         // removeClass(this.classes.EXSIT, this.$wrap)
         addClass(that.classes.EXPAND, that.$wrap)
+        addClass(that.classes.OPENDISABLE, that.$trigger)
         this.$defaultDropdown.show()
         return
       },
@@ -190,8 +190,8 @@ class FontEditor extends Component {
           return
         }
         // addClass(that.classes.EXPAND, that.$wrap)
-        this.$defaultDropdown.hide()
-        // addClass(that.classes.EXPAND, that.$wrap)
+        removeClass(that.classes.OPENDISABLE, that.$trigger)
+        that.$defaultDropdown.hide()
         return
       },
       this.$fillRemove
@@ -200,9 +200,10 @@ class FontEditor extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
-        removeClass(this.classes.EXPAND, this.$wrap)
-        addClass(this.classes.EXSIT, this.$wrap)
-        this.$defaultDropdown.hide()
+        removeClass(that.classes.EXPAND, that.$wrap)
+        addClass(that.classes.EXSIT, that.$wrap)
+        removeClass(that.classes.OPENDISABLE, that.$trigger)
+        that.$defaultDropdown.hide()
         return
       },
       this.$expandCancel
@@ -211,29 +212,15 @@ class FontEditor extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
-        // if ($.isEmptyObject(that.value)) {
-        //   addClass(that.classes.WRITE, removeClass(that.classes.EXSIT, that.$wrap));
-        // }
-        addClass(this.classes.EXSIT, this.$wrap)
-        removeClass(this.classes.EXPAND, this.$wrap)
-        // hasClass(`${this.classes.WRITE}`, this.$wrap)
-        //   ? removeClass(this.classes.WRITE, this.$wrap)
-        //   : null
-        this.update()
-        this.$defaultDropdown.hide()
+        addClass(that.classes.EXSIT, that.$wrap)
+        removeClass(that.classes.EXPAND, that.$wrap)
+        removeClass(that.classes.OPENDISABLE, that.$trigger)
+        that.update()
+        that.$defaultDropdown.hide()
         return
       },
       this.$expandSave
     )
-
-    // pop event
-    this.pop.options.onShow = () => {
-      this.enter('holdHover')
-    }
-    this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$fill)
-      this.leave('holdHover')
-    }
   }
 
   initVal() {
@@ -299,6 +286,13 @@ class FontEditor extends Component {
             resolve()
           }
         }
+      },
+      onShow: () => {
+        this.enter('holdHover')
+      },
+      onHide: () => {
+        removeClass(this.classes.HOVER, this.$fill)
+        this.leave('holdHover')
       }
     })
   }

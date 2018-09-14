@@ -84,12 +84,9 @@ class Offset extends Component {
     if (attrData) {
       this.value = Object.assign({}, KEYS, attrData)
     }
-    // $.each(this.value, (i, v) => {
-    //   this.value[i] = this.parse(v);
-    // });
-    this.initiaState = false
+
     this.data = {}
-    this.set(this.value)
+    this.set(this.value, false, true)
 
     setStyle('display', 'none', this.element)
 
@@ -433,7 +430,7 @@ class Offset extends Component {
     })
   }
 
-  update() {
+  update(trigger = true) {
     if (this.value === null) {
       this.value = {}
     }
@@ -445,14 +442,10 @@ class Offset extends Component {
         data[i] = v
       }
     })
-    console.log(this.value)
     this.element.value = this.options.process.call(this, data)
-    console.log(this.initiaState)
-    if (this.initiaState) {
-      console.log(this.$font)
+    if (trigger) {
       this.trigger(EVENTS.CHANGE, this.value)
     }
-    this.initiaState = true
   }
 
   clear(update = true) {
@@ -462,7 +455,7 @@ class Offset extends Component {
     }
   }
 
-  set(value, only) {
+  set(value, only, trigger = true) {
     if (!value || typeof value === 'undefined') {
       return
     }
@@ -520,7 +513,7 @@ class Offset extends Component {
 
     this.setView()
 
-    this.update()
+    this.update(trigger)
   }
 
   parse(value) {
