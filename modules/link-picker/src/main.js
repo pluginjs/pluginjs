@@ -673,7 +673,6 @@ class LinkPicker extends Component {
   set(data) {
     this.source = data.source
     this.$typeDropdown.set(this.source)
-
     this.swtichType()
 
     delete data.source
@@ -706,22 +705,22 @@ class LinkPicker extends Component {
       `.${this.classes.TYPESCONTAINER}[data-type='${this.source}']`,
       this.$dropdown
     )
-
     const dataTypes = []
     Object.entries(data).forEach(([itemName]) => {
       const item = this.getSourceItem(this.source, itemName)
       dataTypes.push(item.type)
     })
-
     queryAll(`.${this.classes.ITEMBODY}`, $source).forEach(el => {
       const $this = el
+      console.log($this)
       const type = getData('value', parent($this))
+      console.log(type)
       if (data[type]) {
         const api = getData('api', $this)
         const apiType = Array.isArray(api) ? api[0].plugin : api
-
         if (!apiType) {
           api.value = data[type]
+
           return
         }
         if (apiType === 'dropdown') {
@@ -846,8 +845,7 @@ class LinkPicker extends Component {
       this.$typeDropdown.destroy()
       unwrap(this.element)
       removeClass(this.classes.INPUT, this.element)
-      this.$empty.remove()
-      this.$preview.remove()
+      this.$trigger.remove()
       this.$dropdown.remove()
       this.leave('initialized')
     }
