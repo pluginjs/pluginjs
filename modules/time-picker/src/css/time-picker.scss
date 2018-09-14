@@ -6,7 +6,7 @@ $timePicker: "pj-timePicker" !default;
 $dropdown: "pj-dropdown" !default;
 $timePicker-sizer: $sizer !default;
 
-$timePicker-width: 20 * $timePicker-sizer !default; //200px
+$timePicker-width: 20.4 * $timePicker-sizer !default; //200px
 $timepicker-icon-border: #E6E6E6 !default;
 $timepicker-icon-color: $gray-dark !default;
 $timepicker-icon-hover-bg: $gray-lightest !default;
@@ -46,6 +46,7 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
   .#{$dropdown}-trigger {
     width: 200px;
     height: 32px;
+    border: 1px solid #F2F2F2;
     border-radius: 2px;
     &:focus {
       border: 1px solid #215FDB !important;
@@ -58,10 +59,10 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
   .#{$dropdown}-icon {
     position: absolute;
     right: 0;
-    height: 3 * $timePicker-sizer; //30px
+    height: 3.6 * $timePicker-sizer; //30px
     // height: 30px;
     padding: 0 0.7 * $timePicker-sizer; //0 7px
-    line-height: 3 * $timePicker-sizer; //30px
+    line-height: 3.6 * $timePicker-sizer; //30px
     color: $timepicker-icon-color;
     cursor: pointer;
     border-left: 1px solid $timepicker-icon-border;

@@ -136,7 +136,7 @@ class TimePicker extends Component {
       } pj-icon  pj-icon-close" style="display:none;"></i>`
     )
     this.$icon = parseHTML(
-      '<i class="pj-dropdown-icon icon-char pj-icon  pj-icon-clock-solid"></i>'
+      '<i class="pj-dropdown-icon pj-icon  pj-icon-clock-solid"></i>'
     )
     insertAfter(this.$remove, this.dropdown.element)
     insertAfter(this.$icon, this.$remove)

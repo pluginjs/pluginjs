@@ -42,17 +42,6 @@ describe('Strength', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample().querySelector('input')
-      const api = Strength.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = Strength.of(generateHTMLSample().querySelector('input'))

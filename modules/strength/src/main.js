@@ -307,7 +307,6 @@ class Strength extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.element)
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -315,8 +314,6 @@ class Strength extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      console.log(this.element)
-      addClass(this.classes.DISABLED, this.element)
       this.enter('disabled')
     }
 
