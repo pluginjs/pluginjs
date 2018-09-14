@@ -2,7 +2,7 @@ import { query } from '@pluginjs/dom'
 import Magnify from '@pluginjs/magnify'
 
 const element = query('#default .example')
-let api = Magnify.of(element, {})
+let api = Magnify.of(element)
 
 function getRandomInt(min, max) {
   min = Math.ceil(min)

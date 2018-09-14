@@ -61,14 +61,21 @@ class Magnify extends Component {
     this.width = innerWidth(this.$wrap)
     this.height = innerHeight(this.$wrap)
     this.ratio = this.width / this.height
+    this.mode = this.options.mode
+    this.limit =
+      this.mode === 'inside' && this.options.lens ? false : this.options.limit
 
     addClass(this.classes.IMAGE, this.$image)
 
+    addClass(this.getClass(this.classes.MODE, 'mode', this.mode), this.$wrap)
     addClass(
-      this.getClass(this.classes.MODE, 'mode', this.options.mode),
+      this.getClass(this.classes.TRIGGER, 'trigger', this.options.trigger),
       this.$wrap
     )
 
+    if (this.options.lens) {
+      addClass(this.classes.HASLENS, this.$wrap)
+    }
     if (this.options.theme) {
       addClass(this.getThemeClasss(), this.$wrap)
     }
@@ -82,7 +89,7 @@ class Magnify extends Component {
       addClass(this.classes.TARGET, this.$target)
     }
 
-    if (this.options.mode === 'inside') {
+    if (this.mode === 'inside') {
       this.$zoom = this.$wrap
     } else {
       if (!this.options.target) {
@@ -91,6 +98,8 @@ class Magnify extends Component {
 
       this.$zoom = this.$image
     }
+
+    addClass(this.classes.ZOOM, this.$zoom)
 
     if (this.options.loader) {
       this.LOADER = Loader.of(this.$wrap, this.options.loader)
@@ -294,7 +303,10 @@ class Magnify extends Component {
     this.position = this.getPosition(event)
     if (this.is('shown')) {
       this.positionTarget(this.position.x, this.position.y)
-      this.trigger(EVENTS.MOVE)
+      if (this.options.lens) {
+        this.positionLens(this.position.x, this.position.y)
+      }
+      this.trigger(EVENTS.MOVE, this.position)
     }
   }
 
@@ -350,15 +362,16 @@ class Magnify extends Component {
       this.$image.src = this.small
     }
 
-    ;['sizes', 'srcset', 'src'].forEach(prop => {
-      this.$targetImage[prop] = ''
-    })
-
     this.large = large
     this.initDimension()
-    this.initTargetDimension()
+    // this.initTargetDimension()
+    this.zoom = this.options.zoom
     this.$targetImage.remove()
     this.$targetImage = null
+    if (this.$lensImage) {
+      this.$lensImage.remove()
+      this.$lensImage = null
+    }
     this.loaded = false
     this.position = null
 
@@ -422,8 +435,12 @@ class Magnify extends Component {
         if (this.is('hided')) {
           return
         }
-        this.prepareTargetImage()
 
+        this.prepareTargetImage()
+        if (this.options.lens) {
+          this.prepareLens()
+        }
+        this.zoomTo(this.zoom, false)
         addClass(this.classes.SHOW, this.$wrap)
         addClass(this.classes.TARGETSHOW, this.$target)
 
@@ -439,6 +456,53 @@ class Magnify extends Component {
     }
   }
 
+  prepareLens() {
+    if (!this.$lens) {
+      if (this.options.lensOverlay) {
+        const $overlay = appendTo(
+          `<div class="${this.classes.OVERLAY}"></div>`,
+          this.$wrap
+        )
+        if (isString(this.options.lensOverlay)) {
+          setStyle('background', this.options.lensOverlay, $overlay)
+        }
+      }
+      if (this.mode === 'outside') {
+        this.$lens = appendTo(
+          `<div class="${this.classes.LENS}"></div>`,
+          this.$wrap
+        )
+      } else {
+        this.$lens = this.$target
+        addClass(this.classes.LENS, this.$lens)
+      }
+    }
+
+    if (!this.$lensImage && this.mode === 'outside') {
+      this.$lensImage = new Image()
+      ;['sizes', 'srcset', 'src'].forEach(prop => {
+        this.$lensImage[prop] = this.$image[prop]
+      })
+
+      append(this.$lensImage, this.$lens)
+    }
+  }
+
+  getTargetImage() {
+    let $image
+    if (isElement(this.large)) {
+      $image = this.large
+    } else {
+      $image = new Image()
+      if (isString(this.large)) {
+        $image.src = this.large
+      } else if (isPlainObject(this.large)) {
+        Object.assign($image, this.large)
+      }
+    }
+    return $image
+  }
+
   prepareTargetImage() {
     if (!this.$target) {
       this.$target = appendTo(
@@ -448,25 +512,25 @@ class Magnify extends Component {
     }
 
     if (!this.$targetImage) {
-      if (isElement(this.large)) {
-        this.$targetImage = this.large
-      } else {
-        this.$targetImage = new Image()
-        if (isString(this.large)) {
-          this.$targetImage.src = this.large
-        } else if (isPlainObject(this.large)) {
-          Object.assign(this.$targetImage, this.large)
-        }
-      }
+      this.$targetImage = this.getTargetImage()
       this.initTargetDimension()
-      this.zoomTo(this.zoom)
       append(this.$targetImage, this.$target)
     }
   }
 
-  zoomTo(zoom) {
-    if (zoom < this.targetWidth / this.width) {
+  zoomTo(zoom, trigger = true) {
+    zoom = parseFloat(zoom)
+
+    if (this.options.lens && this.mode === 'inside' && zoom < 1) {
+      zoom = 1
+    } else if (zoom < this.targetWidth / this.width) {
       zoom = this.targetWidth / this.width
+    }
+
+    if (zoom < this.options.min) {
+      zoom = this.options.min
+    } else if (zoom > this.options.max) {
+      zoom = this.options.max
     }
 
     this.zoom = zoom
@@ -479,10 +543,38 @@ class Magnify extends Component {
         },
         this.$targetImage
       )
+    }
 
-      if (this.position) {
-        this.positionTarget(this.position.x, this.position.y)
+    if (this.options.lens && this.$lens) {
+      if (this.mode === 'outside') {
+        this.lensWidth = this.width / zoom
+        this.lensHeight = this.height / zoom
+
+        setStyle(
+          {
+            width: `${this.lensWidth}px`,
+            height: `${this.lensHeight}px`
+          },
+          this.$lens
+        )
+      } else {
+        this.lensWidth = innerWidth(this.$lens)
+        this.lensHeight = innerHeight(this.$lens)
+        this.targetWidth = this.lensWidth
+        this.targetHeight = this.lensHeight
       }
+    }
+
+    if (this.$targetImage && this.position) {
+      this.positionTarget(this.position.x, this.position.y)
+    }
+
+    if (this.$lens && this.position) {
+      this.positionLens(this.position.x, this.position.y)
+    }
+
+    if (trigger) {
+      this.trigger(EVENTS.ZOOM, zoom)
     }
   }
 
@@ -498,11 +590,43 @@ class Magnify extends Component {
     this.zoomTo(this.zoom + parseFloat(val))
   }
 
+  positionLens(x, y) {
+    let left = parseInt(x * this.width - this.lensWidth / 2, 10)
+    let top = parseInt(y * this.height - this.lensHeight / 2, 10)
+
+    if (this.limit && this.mode === 'outside') {
+      if (left > this.width - this.lensWidth) {
+        left = this.width - this.lensWidth
+      } else if (left < 0) {
+        left = 0
+      }
+      if (top > this.height - this.lensHeight) {
+        top = this.height - this.lensHeight
+      } else if (top < 0) {
+        top = 0
+      }
+    }
+
+    const transform =
+      this.zoom === 1
+        ? `translate(${left}px,${top}px)`
+        : `translate3d(${left}px,${top}px,0)`
+    this.$lens.style.transform = transform
+
+    if (this.$lensImage) {
+      const imageTransform =
+        this.zoom === 1
+          ? `translate(${-1 * left}px,${-1 * top}px)`
+          : `translate3d(${-1 * left}px,${-1 * top}px,0)`
+      this.$lensImage.style.transform = imageTransform
+    }
+  }
+
   positionTarget(x, y) {
     let left = parseInt(-x * this.zoom * this.width + this.targetWidth / 2, 10)
     let top = parseInt(-y * this.zoom * this.height + this.targetHeight / 2, 10)
 
-    if (this.options.limit) {
+    if (this.limit) {
       if (left > 0) {
         left = 0
       } else if (left < this.targetWidth - this.zoom * this.width) {
@@ -520,7 +644,7 @@ class Magnify extends Component {
     } else {
       transform = `translate3d(${left}px,${top}px,0)`
     }
-    setStyle('transform', transform, this.$targetImage)
+    this.$targetImage.style.transform = transform
   }
 
   hide() {
@@ -567,7 +691,11 @@ class Magnify extends Component {
         }
         removeClass(this.classes.WRAP, this.$wrap)
         removeClass(
-          this.getClass(this.classes.MODE, 'mode', this.options.mode),
+          this.getClass(this.classes.MODE, 'mode', this.mode),
+          this.$wrap
+        )
+        removeClass(
+          this.getClass(this.classes.TRIGGER, 'trigger', this.options.trigger),
           this.$wrap
         )
         removeClass(
@@ -578,6 +706,9 @@ class Magnify extends Component {
           ),
           this.$wrap
         )
+        if (this.$lens) {
+          this.$lens.remove()
+        }
       } else {
         unwrap(`.${this.classes.WRAP}`, this.$image)
       }

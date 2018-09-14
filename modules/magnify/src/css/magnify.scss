@@ -2,12 +2,14 @@
 
 @import "magnify.core";
 
+$magnify-cursor: crosshair;
+
 $magnify-border-width: $border-width;
 $magnify-border-color: $border-color;
 $magnify-border-radius: $border-radius-base;
 
 $magnify-show-hover-color: $border-color-hover;
-$magnify-show-border-color: $border-color-active;
+$magnify-show-border-color: $border-color-hover;
 
 $magnify-error-color: $color-white;
 $magnify-error-bg: $gray-darkest;
@@ -19,7 +21,14 @@ $magnify-outside-border-color: $border-color;
 $magnify-outside-gutter: 10px;
 $magnify-outside-border-radius: $magnify-border-radius;
 
-$magnify-enlarge-bg: $gray-darkest;
+$magnify-target-bg: $gray-darkest;
+
+$magnify-lens-border-width: 4px;
+$magnify-lens-border-color: $color-white;
+$magnify-lens-box-shadow: $box-shadow-1;
+$magnify-lens-bg: $magnify-target-bg;
+
+$magnify-outside-lens-border-radius: $magnify-border-radius;
 
 .#{$magnify} {
   border: $magnify-border-width solid $magnify-border-color;
@@ -38,6 +47,10 @@ $magnify-enlarge-bg: $gray-darkest;
     border-color: $magnify-show-border-color;
   }
 
+  &-zoom {
+    cursor: $magnify-cursor;
+  }
+
   &-error {
     padding: $magnify-error-padding;
     color: $magnify-error-color;
@@ -46,7 +59,19 @@ $magnify-enlarge-bg: $gray-darkest;
   }
 
   &-target {
-    background-color: $magnify-enlarge-bg;
+    background-color: $magnify-target-bg;
+  }
+
+  &-lens {
+    margin-top: -$magnify-lens-border-width;
+    margin-left: -$magnify-lens-border-width;
+    background-color: $magnify-lens-bg;
+    border: $magnify-lens-border-width solid $magnify-lens-border-color;
+    box-shadow: $magnify-lens-box-shadow;
+  }
+
+  &-outside &-lens {
+    border-radius: $magnify-outside-lens-border-radius;
   }
 
   &-outside &-target {
@@ -76,5 +101,17 @@ $magnify-enlarge-bg: $gray-darkest;
   &-outside-bottom &-target {
     margin-top: $magnify-outside-gutter;
     margin-left: -$magnify-outside-border-width;
+  }
+
+  &-click:not(.#{$magnify}-show).#{$magnify}-zoom,
+  &-click:not(.#{$magnify}-show) .#{$magnify}-zoom,
+  &-toggle:not(.#{$magnify}-show).#{$magnify}-zoom,
+  &-toggle:not(.#{$magnify}-show) .#{$magnify}-zoom {
+    cursor: zoom-in;
+  }
+
+  &-toggle:not(.#{$magnify}-has-lens).#{$magnify}-show.#{$magnify}-zoom,
+  &-toggle:not(.#{$magnify}-has-lens).#{$magnify}-show .#{$magnify}-zoom {
+    cursor: zoom-out;
   }
 }

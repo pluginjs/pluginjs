@@ -5,8 +5,7 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  // ENTER: 'enter',
-  // LEAVE: 'leave',
+  ZOOM: 'zoom',
   MOVE: 'move',
   ENTER: 'enter',
   LEAVE: 'leave',
@@ -20,6 +19,9 @@ export const classes = {
   WRAP: '{namespace}',
   ZOOM: '{namespace}-zoom',
   IMAGE: '{namespace}-image',
+  LENS: '{namespace}-lens',
+  HASLENS: '{namespace}-has-lens',
+  OVERLAY: '{namespace}-overlay',
   THEME: '{namespace}--{theme}',
   DISABLED: '{namespace}-disabled',
   SHOW: '{namespace}-show',
@@ -28,6 +30,7 @@ export const classes = {
   TARGET: '{namespace}-target',
   TARGETSHOW: '{namespace}-target-show',
   MODE: '{namespace}-{mode}',
+  TRIGGER: '{namespace}-{trigger}',
   OUTSIDEPLACEMENT: '{namespace}-outside-{placement}',
   MOVING: '{namespace}-moving'
 }
@@ -54,12 +57,19 @@ export const defaults = {
   trigger: 'hover', // click, toggle
   error: 'The image load failed',
   errorDuration: 3000,
-  zoom: 3,
+  min: 1.5,
+  max: 5,
+  zoom: 2,
   zoomable: true,
   zoomStep: 0.1,
+  lens: true,
+  lensOverlay: 'rgba(0,0,0,0.4)',
   templates: {
     error() {
       return '<span class="{classes.ERROR}">{text}</span>'
+    },
+    lens() {
+      return '<div class="{classes.lens}"></div>'
     }
   }
 }
