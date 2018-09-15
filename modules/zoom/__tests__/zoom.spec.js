@@ -26,11 +26,11 @@ describe('Zoom', () => {
   })
 
   describe('constructor()', () => {
-    test('should work with element', () => {
-      const api = Zoom.of(generateHTMLSample())
+    test('should work wtesth element', () => {
+      const zoom = Zoom.of(generateHTMLSample())
 
-      expect(api).toBeObject()
-      expect(api.options).toEqual(DEFAULTS)
+      expect(zoom).toBeObject()
+      expect(zoom.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
@@ -40,14 +40,7 @@ describe('Zoom', () => {
     })
   })
 
-  describe('api call', () => {
-    test('should not call bind', () => {
-      const api = Zoom.of(generateHTMLSample())
-      expect(api.bind()).toBeNil()
-    })
-  })
-
-  describe('initialize()', () => {
+  describe('initialized()', () => {
     let $element
 
     beforeEach(() => {
@@ -56,95 +49,12 @@ describe('Zoom', () => {
 
     test('should trigger ready event', () => {
       let called = 0
-
       $element.addEventListener('zoom:ready', () => {
         called++
       })
-
       const instance = Zoom.of($element)
       expect(called).toEqual(1)
       expect(instance.is('initialized')).toBeTrue()
-    })
-  })
-
-  describe('destroy()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Zoom.of($element)
-    })
-
-    test('should trigger destroy event', () => {
-      let called = 0
-
-      $element.addEventListener('zoom:destroy', () => {
-        expect(api.is('initialized')).toBeFalse()
-        called++
-      })
-
-      api.destroy()
-
-      expect(called).toEqual(1)
-    })
-  })
-
-  describe('enable()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Zoom.of($element)
-    })
-
-    test('should enable the plugin', () => {
-      api.disable()
-      api.enable()
-
-      expect(api.is('disabled')).toBeFalse()
-    })
-
-    test('should trigger enable event', () => {
-      let called = 0
-
-      $element.addEventListener('zoom:enable', () => {
-        expect(api.is('disabled')).toBeFalse()
-        called++
-      })
-
-      api.enable()
-      expect(called).toEqual(1)
-    })
-  })
-
-  describe('disable()', () => {
-    let $element
-    let api
-
-    beforeEach(() => {
-      $element = generateHTMLSample()
-      api = Zoom.of($element)
-    })
-
-    test('should disable the plugin', () => {
-      api.disable()
-      console.log(22)
-
-      expect(api.is('disabled')).toBeTrue()
-    })
-
-    test('should trigger disable event', () => {
-      let called = 0
-
-      $element.addEventListener('zoom:disable', () => {
-        expect(api.is('disabled')).toBeTrue()
-        called++
-      })
-
-      api.disable()
-      expect(called).toEqual(1)
     })
   })
 })

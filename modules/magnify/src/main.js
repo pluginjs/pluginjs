@@ -384,6 +384,7 @@ class Magnify extends Component {
     if (this.LOADER) {
       this.LOADER.show()
     }
+    this.trigger(EVENTS.LOADING)
 
     ImageLoader.of(this.large)
       .on('loaded', () => {
@@ -394,6 +395,7 @@ class Magnify extends Component {
           removeClass(this.classes.ERRORSHOW, this.$error)
           this.leave('error')
         }
+        this.trigger(EVENTS.LOADED)
       })
       .on('error', () => {
         if (!this.$error) {

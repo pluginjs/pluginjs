@@ -33,12 +33,29 @@ if (!window.Pj) {
 
 const Pj = window.Pj
 
-function globalResizeHandle() {
-  Pj.emitter.emit('resize')
+function globalResizeHandle(e) {
+  Pj.emitter.emit(
+    'resize',
+    e,
+    window.document.documentElement.clientWidth,
+    window.document.documentElement.clientHeight
+  )
 }
 
-function globalScrollHanle() {
-  Pj.emitter.emit('scroll')
+function globalScrollHanle(e) {
+  const scrollTop =
+    window.pageYOffset ||
+    document.documentElement.scrollTop ||
+    document.body.scrollTop ||
+    0
+
+  const scrollLeft =
+    window.pageXOffset ||
+    document.documentElement.scrollLeft ||
+    document.body.scrollLeft ||
+    0
+
+  Pj.emitter.emit('scroll', e, scrollTop, scrollLeft)
 }
 
 function globalReadyHanle() {

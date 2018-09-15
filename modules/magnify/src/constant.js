@@ -11,7 +11,9 @@ export const events = {
   LEAVE: 'leave',
   SHOW: 'show',
   HIDE: 'hide',
-  ERROR: 'error'
+  LOADING: 'loading',
+  ERROR: 'error',
+  LOADED: 'loaded'
 }
 
 export const classes = {

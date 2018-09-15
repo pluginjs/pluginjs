@@ -47,18 +47,17 @@ export default function register(name, obj = {}) {
       instances.find(plugin => plugin.element === el)
 
     if (plugin.prototype.resize && typeof plugin.resize === 'undefined') {
-      plugin.resize = function() {
+      plugin.resize = function(documentWidth, documentHeight) {
         for (let i = 0; i < instances.length; i++) {
-          instances[i].resize(
-            window.document.documentElement.clientWidth,
-            window.document.documentElement.clientHeight
-          )
+          instances[i].resize(documentWidth, documentHeight)
         }
       }
     }
 
     if (isFunction(plugin.resize)) {
-      Pj.emitter.on('resize', plugin.resize.bind(plugin))
+      Pj.emitter.on('resize', (e, documentWidth, documentHeight) => {
+        plugin.resize(documentWidth, documentHeight)
+      })
     }
 
     if (plugin.prototype instanceof GlobalComponent) {

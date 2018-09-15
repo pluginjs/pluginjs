@@ -4,28 +4,17 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "repository": {
-    "url": "git@github.com:pluginjs/plugin.js.git",
-    "mode": "git"
-  },
-  "bugs": {
-    "url": "https://github.com/pluginjs/plugin.js/issues"
-  },
-  "version": "0.2.18",
-  "category": "media",
+  "version": "0.0.1",
+  "category": "ui",
   "main": "dist/zoom.umd.js",
   "module": "dist/zoom.esm.js",
   "cjs": "dist/zoom.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/zoom.scss",
+    "source": "src/css/main.scss",
     "main": "dist/zoom.css",
     "min": "dist/zoom.min.css"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "scripts": {
     "build": "plugin build",
     "build:js": "plugin script build-js",
@@ -40,8 +29,9 @@
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/feature": "*",
+    "@pluginjs/image-loader": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/keyboard": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
     "@pluginjs/utils": "*"
@@ -55,10 +45,6 @@
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
-  },
-  "engines": {
-    "node": ">= 8",
-    "npm": ">= 5"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",

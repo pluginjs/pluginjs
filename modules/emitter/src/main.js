@@ -200,15 +200,19 @@ export default class Emitter extends SimpleEmitter {
 
   filterListeners(eventName, namespace, listener, callback) {
     const listeners = this.listeners[eventName]
-    listeners[namespace] = listeners[namespace].filter(
-      value => value.listener !== listener
-    )
-    if (listeners[namespace].length === 0) {
-      if (callback) {
-        callback()
+
+    if (typeof listeners[namespace] !== 'undefined') {
+      listeners[namespace] = listeners[namespace].filter(
+        value => value.listener !== listener
+      )
+      if (listeners[namespace].length === 0) {
+        if (callback) {
+          callback()
+        }
+        delete listeners[namespace]
       }
-      delete listeners[namespace]
     }
+
     this.listeners[eventName] = listeners
   }
 

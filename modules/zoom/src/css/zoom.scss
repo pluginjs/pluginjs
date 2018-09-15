@@ -1,34 +1,43 @@
 @import "@pluginjs/styles/variables.scss";
-@import "zoom.core";
 
-// Vars
-// =====================
+$zoom: "pj-zoom";
 
-/* fade: Fade in */
-.#{$zoom}-fadeIn {
-  animation: zoom-fadeIn $zoom-duration;
-}
+$zoom-z-index: 2001;
+$zoom-transition-duration: 400ms;
+$zoom-transition-timing: cubic-bezier(0.4, 0, 0, 1);
 
-.#{$zoom}-fadeOut {
-  animation: zoom-fadeOut $zoom-duration forwards;
-}
+$zoom-overlay-z-index: $zoom-z-index - 1;
+$zoom-overlay-transition-duration: $zoom-transition-duration;
+$zoom-overlay-transition-timing: $zoom-transition-timing;
+$zoom-overlay-opacity: 1;
 
-@keyframes zoom-fadeIn {
-  0% {
+$zoom-cursor-open: zoom-in;
+$zoom-cursor-close: zoom-out;
+
+.#{$zoom} {
+  cursor: $zoom-cursor-open;
+
+  &-opened {
+    position: relative;
+    z-index: $zoom-z-index;
+    max-width: 100%;
+    cursor: $zoom-cursor-close;
+    transition: transform $zoom-transition-duration $zoom-transition-timing;
+    will-change: transform;
+  }
+
+  &-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $zoom-overlay-z-index;
     opacity: 0;
-  }
+    transition: opacity $zoom-overlay-transition-duration $zoom-overlay-transition-timing;
 
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes zoom-fadeOut {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
+    &-show {
+      opacity: $zoom-overlay-opacity;
+    }
   }
 }
