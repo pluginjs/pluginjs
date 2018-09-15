@@ -11,11 +11,7 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`
 }
 
-export const methods = [
-  'enable',
-  'disable',
-  'destroy'
-]
+export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
   theme: null

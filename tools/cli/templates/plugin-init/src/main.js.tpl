@@ -37,7 +37,7 @@ class {{Namespace}} extends Component {
   }
 
   initialize() {
-    if(this.options.theme) {
+    if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
 
@@ -71,7 +71,7 @@ class {{Namespace}} extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
-      if(this.options.theme) {
+      if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }
       this.leave('initialized')

@@ -31,7 +31,9 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "lint": "stylelint ./src/**/*.scss --fix && eslint ./src/**/*.js --fix",
+    "lint": "npm run lint:js & npm run lint:scss",
+    "lint:js": "eslint ./src/**/*.js --fix",
+    "lint:scss": "stylelint ./src/**/*.scss --fix",
     "test": "jest"
   },
   "dependencies": {
