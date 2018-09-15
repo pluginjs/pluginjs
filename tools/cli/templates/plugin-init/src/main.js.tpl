@@ -35,17 +35,50 @@ class {{Namespace}} extends Component {
     this.initialize()
   }
 
-  initialize() {}
+  initialize() {
+    if(this.options.theme) {
+      addClass(this.getThemeClass(), this.element)
+    }
+
+    this.bind()
+    this.enter('initialized')
+    this.trigger(EVENTS.READY)
+  }
 
   bind() {}
 
-  unbind() {}
+  unbind() {
+    removeEvent(this.eventName(), this.element)
+  }
 
-  enable() {}
+  enable() {
+    if (this.is('disabled')) {
+      this.leave('disabled')
+    }
+    this.trigger(EVENTS.ENABLE)
+  }
 
-  disable() {}
+  disable() {
+    if (!this.is('disabled')) {
+      this.enter('disabled')
+    }
 
-  destroy() {}
+    this.trigger(EVENTS.DISABLE)
+  }
+
+  destroy() {
+    if (this.is('initialized')) {
+      this.unbind()
+
+      if(this.options.theme) {
+        remvoeClass(this.getThemeClass(), this.element)
+      }
+      this.leave('initialized')
+    }
+
+    this.trigger(EVENTS.DESTROY)
+    super.destroy()
+  }
 }
 
 export default {{Namespace}}
