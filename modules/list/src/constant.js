@@ -79,7 +79,7 @@ export const defaults = {
             cancel: { label: instance.translate('cancel') },
             delete: {
               label: instance.translate('delete'),
-              classes: 'pj-btn-danger',
+              color: 'danger',
               fn(resolve) {
                 const index = instance.getIndex($item)
                 instance.remove(index)

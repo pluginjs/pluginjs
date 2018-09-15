@@ -158,7 +158,7 @@ class PatternPicker extends Component {
           cancel: { label: this.translate('cancel') },
           delete: {
             label: this.translate('delete'),
-            classes: 'pj-btn-danger',
+            color: 'danger',
             fn(resolve) {
               that.clear()
               resolve()
