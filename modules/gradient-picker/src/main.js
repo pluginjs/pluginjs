@@ -122,7 +122,7 @@ class GradientPicker extends Component {
           cancel: { label: this.translate('cancel') },
           delete: {
             label: this.translate('delete'),
-            color: 'danger',
+            classes: 'pj-btn-danger',
             fn(resolve) {
               fadeOut(
                 {

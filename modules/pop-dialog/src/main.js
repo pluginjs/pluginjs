@@ -124,12 +124,12 @@ class PopDialog extends Popover {
 
     let buttons = ''
     Object.entries(this.options.buttons).forEach(
-      ([action, { label, color = 'default' }]) => {
+      ([action, { label, classes }]) => {
         buttons += buttonTemplate({
           action,
           label,
-          color,
-          classes: this.classes
+          classes: this.classes,
+          custom: classes
         })
       }
     )

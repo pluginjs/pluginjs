@@ -76,10 +76,10 @@ export const defaults = {
           placement: 'bottom',
           content: instance.translate('deleteAction'),
           buttons: {
-            dismiss: { label: instance.translate('cancel') },
+            cancel: { label: instance.translate('cancel') },
             delete: {
               label: instance.translate('delete'),
-              color: 'danger',
+              classes: 'pj-btn-danger',
               fn(resolve) {
                 const index = instance.getIndex($item)
                 instance.remove(index)

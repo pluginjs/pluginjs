@@ -170,7 +170,7 @@ class ImagePicker extends Component {
         cancel: { label: this.translate('cancel') },
         delete: {
           label: this.translate('delete'),
-          color: 'danger',
+          classes: 'pj-btn-danger',
           fn(resolve) {
             const $fill = that.$remove.matches(`.${that.classes.FILL}`)
               ? that.$remove

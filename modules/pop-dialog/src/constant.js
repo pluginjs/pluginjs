@@ -69,14 +69,14 @@ export const defaults = deepMerge(Popover.defaults, {
       return '<div class="{classes.CONTENT}"></div>'
     },
     button() {
-      return '<button type="button" class="pj-btn {classes.BUTTON}" data-color="{color}" data-action="{action}">{label}</button>'
+      return '<button type="button" class="pj-btn {classes.BUTTON} {custom}" data-action="{action}">{label}</button>'
     },
     buttons() {
       return '<div class="{classes.BUTTONS}">{buttons}</div>'
     }
   },
   buttons: {
-    dismiss: { label: 'Dismiss' }
+    cancel: { label: 'Dismiss' }
   }
 })
 
