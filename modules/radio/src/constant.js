@@ -19,7 +19,7 @@ export const classes = {
   THEME: '{namespace}-{theme}',
   ICON: '',
   CHECKED: '{namespace}-checked',
-  DISABLED: '{namespace}-disable'
+  DISABLED: '{namespace}-disabled'
 }
 
 export const methods = [

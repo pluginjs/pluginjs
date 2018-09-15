@@ -16,7 +16,7 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
-  DISABLE: '{namespace}-disable',
+  DISABLE: '{namespace}-disabled',
   CONTAINER: '{namespace}-container',
   ACTIVE: '{namespace}-active',
   LENS: '{namespace}-lens',
