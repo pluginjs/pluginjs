@@ -8,16 +8,16 @@ $magnify-border-width: $border-width;
 $magnify-border-color: $border-color;
 $magnify-border-radius: $border-radius-base;
 
-$magnify-show-hover-color: $border-color-hover;
-$magnify-show-border-color: $border-color-hover;
+$magnify-show-hover-color: $border-color;
+$magnify-show-border-color: $border-color;
 
 $magnify-error-color: $color-white;
 $magnify-error-bg: $gray-darkest;
 $magnify-error-padding: 0.5*$spacer $spacer;
 $magnify-error-border-radius: $border-radius-md;
 
-$magnify-outside-border-width: 2px;
-$magnify-outside-border-color: $border-color;
+$magnify-outside-border-width: 1px;
+$magnify-outside-border-color: $border-color-hover;
 $magnify-outside-gutter: 10px;
 $magnify-outside-border-radius: $magnify-border-radius;
 
