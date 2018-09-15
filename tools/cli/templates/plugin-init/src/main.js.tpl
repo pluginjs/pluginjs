@@ -15,7 +15,8 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-
+import { bindEvent, removeEvent } from '@pluginjs/events'
+import { addClass, removeClass } from '@pluginjs/classes'
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -71,7 +72,7 @@ class {{Namespace}} extends Component {
       this.unbind()
 
       if(this.options.theme) {
-        remvoeClass(this.getThemeClass(), this.element)
+        removeClass(this.getThemeClass(), this.element)
       }
       this.leave('initialized')
     }
