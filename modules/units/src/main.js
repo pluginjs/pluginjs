@@ -4,7 +4,7 @@ import { isNull, isString, isUndefined, isArray, isObject } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
-import { wrap, unwrap, query } from '@pluginjs/dom'
+import { wrap, unwrap, query, html } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -37,8 +37,29 @@ class Units extends Component {
     this.setupOptions(options)
     this.setupClasses()
 
+    if (
+      isObject(this.options.units) &&
+      Object.keys(this.options.units).length === 0
+    ) {
+      this.options.units = {
+        inherit: false,
+        px: true,
+        '%': true
+      }
+    }
+    if (
+      isObject(this.options.units) &&
+      Object.keys(this.options.units).length < 2
+    ) {
+      this.only = true
+    } else if (isArray(this.options.units) && this.options.units.length < 2) {
+      this.only = true
+    } else {
+      this.only = false
+    }
+
     this.cached = {}
-    this.only = this.options.units.length < 2
+
     this.value = {}
     this.setupStates()
     this.initialize()
@@ -68,7 +89,7 @@ class Units extends Component {
     setStyle('display', 'none', this.element)
     this.$wrap = wrap(
       `<div class="${this.classes.WRAP}">
-  <input type="text" class="${this.classes.INPUT}" value="${this.value.input}">
+  <input type="text" class="${this.classes.INPUT}">
   <span class="${this.classes.TRIGGER}"></span><div></div>
 </div>`,
       this.element
@@ -79,9 +100,16 @@ class Units extends Component {
 
     if (this.only) {
       addClass(this.classes.ONLY, this.$trigger)
-      this.$trigger.innerHTML = this.getUnit()
     } else {
       this.DROPDOWN = this.initDropdown()
+    }
+
+    if (this.isStatic(this.value)) {
+      html(this.value, this.$trigger)
+      addClass(this.classes.STATIC, this.$wrap)
+    } else {
+      this.$input.value = this.value.input
+      html(this.getUnit(), this.$trigger)
     }
 
     if (this.options.theme) {
@@ -108,15 +136,12 @@ class Units extends Component {
       classes: {
         DROPDOWN: `{namespace} ${this.classes.DROPDOWN}`
       },
-      width: this.options.width,
       trigger: 'click',
       reference: this.$trigger,
       placement: 'bottom-end',
       data: this.getUnits().map(i => {
         return { value: i, label: i }
       }),
-      imitateSelect: true,
-      value: this.value.unit,
       onChange: value => {
         if (this.value.unit === value) {
           return
@@ -128,12 +153,12 @@ class Units extends Component {
         }
       },
 
-      onShow: () => {
+      onShown: () => {
         addClass(this.classes.ACTIVE, this.$wrap)
         this.enter('open')
       },
 
-      onHide: () => {
+      onHided: () => {
         removeClass(this.classes.ACTIVE, this.$wrap)
         this.leave('open')
       }
@@ -234,6 +259,7 @@ class Units extends Component {
     if (this.isStatic(value)) {
       if (value !== this.value) {
         this.value = value
+        html(this.value, this.$trigger)
         this.trigger(EVENTS.CHANGESTATIC, this.value)
         changed = true
       }
@@ -243,6 +269,7 @@ class Units extends Component {
       }
       if (!isUndefined(value.unit) && value.unit !== this.value.unit) {
         this.value.unit = value.unit ? value.unit : this.getDefaultUnit()
+        html(this.value.unit, this.$trigger)
         if (trigger) {
           this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
         }

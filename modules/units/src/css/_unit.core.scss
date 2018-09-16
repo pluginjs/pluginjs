@@ -42,6 +42,7 @@ $units-disabled-opacity: 0.4 !default;
     position: absolute;
     top: 0;
     right: 0;
+    box-sizing: border-box;
     width: $units-trigger-width;
     height: 100%;
     padding: 0 5px !important;

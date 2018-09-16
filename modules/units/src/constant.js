@@ -43,11 +43,7 @@ export const defaults = {
   theme: null,
   disabled: false,
   width: '80px',
-  units: {
-    inherit: false,
-    px: true,
-    '%': true
-  },
+  units: {},
   placement: 'bottom-end',
   defaultUnit: 'px',
   process(value) {
