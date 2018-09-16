@@ -114,7 +114,7 @@ describe('Select', () => {
         onChange(value) {
           called = true
 
-          expect(value).toBeArray(['c'])
+          expect(value).toBe('c')
         }
       })
 
@@ -130,7 +130,7 @@ describe('Select', () => {
         onChange(value) {
           called = true
 
-          expect(value).toBeArray(['c'])
+          expect(value).toBe('c')
         }
       })
 
@@ -150,7 +150,7 @@ describe('Select', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeArray()
+      expect(api.get()).toBe('b')
     })
   })
 
@@ -164,17 +164,10 @@ describe('Select', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeArray()
+      expect(api.get()).toBe('b')
 
       api.set('a')
-      expect(api.get()).toBeArray(['a'])
-    })
-
-    test('should set the value with array', () => {
-      expect(api.get()).toBeArray()
-
-      api.set(['a', 'b'])
-      expect(api.get()).toBeArray(['a', 'b'])
+      expect(api.get()).toBe('a')
     })
   })
 
@@ -194,13 +187,7 @@ describe('Select', () => {
     test('should set the value', () => {
       api.val('a')
 
-      expect(api.get()).toBeArray(['a'])
-    })
-
-    test('should set the value with array', () => {
-      api.val(['a', 'b'])
-
-      expect(api.get()).toBeArray(['a', 'b'])
+      expect(api.get()).toBe('a')
     })
   })
 
@@ -251,7 +238,7 @@ describe('Select', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.addEventListener('select:disabled', () => {
+      $element.addEventListener('select:disable', () => {
         called++
       })
 

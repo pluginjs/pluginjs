@@ -1,0 +1,14 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$select: "pj-select";
+
+.#{$select} {
+  &-element {
+    display: none;
+  }
+  &-trigger {
+    cursor: pointer;
+  }
+}

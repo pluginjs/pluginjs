@@ -4,28 +4,17 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "repository": {
-    "url": "git@github.com:pluginjs/plugin.js.git",
-    "type": "git"
-  },
-  "bugs": {
-    "url": "https://github.com/pluginjs/plugin.js/issues"
-  },
-  "version": "0.2.23",
+  "version": "0.0.1",
   "category": "form",
   "main": "dist/select.umd.js",
   "module": "dist/select.esm.js",
   "cjs": "dist/select.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/select.scss",
+    "source": "src/css/main.scss",
     "main": "dist/select.css",
     "min": "dist/select.min.css"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "scripts": {
     "build": "plugin build",
     "build:js": "plugin script build-js",
@@ -43,12 +32,7 @@
     "@pluginjs/dom": "*",
     "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/keyboard": "*",
-    "@pluginjs/styled": "*",
-    "@pluginjs/template": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/is": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
@@ -59,10 +43,6 @@
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
-  },
-  "engines": {
-    "node": ">= 8",
-    "npm": ">= 5"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",

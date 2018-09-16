@@ -1,124 +1,55 @@
-import { isArray } from '@pluginjs/is'
 export const namespace = 'select'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
   ENABLE: 'enable',
-  DISABLED: 'disabled',
+  DISABLE: 'disable',
   DESTROY: 'destroy',
-  LOAD: 'load',
-  OPEN: 'open',
-  CLOSE: 'close',
-  CLICK: 'click',
+  SELECT: 'select',
   CHANGE: 'change',
-  SELECTED: 'select',
-  UNSELECTED: 'unselect',
-  HIDE: 'hide'
+  HIDE: 'hide',
+  HIDED: 'hided',
+  SHOW: 'show',
+  SHOWN: 'shown'
 }
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
+  ELEMENT: '{namespace}-element',
+  TRIGGER: '{namespace}-trigger pj-input',
   WRAP: '{namespace}-wrap',
-  MULTIPLE: '{namespace}-multiple',
-  FILTERABLE: '{namespace}-filterable',
   DROPDOWN: '{namespace}-dropdown',
-  TRIGGER: '{namespace}-trigger',
-  HASBADGE: '{namespace}-has-badge',
-  BADGE: '{namespace}-badge',
-  BADGECONTENT: '{namespace}-badge-content',
-  BADGEDELETE: '{namespace}-badge-delete',
-  LABEL: '{namespace}-label',
-  LIST: '{namespace}-list',
-  ITEM: '{namespace}-item',
   GROUP: '{namespace}-group',
-  GROUPLABEL: '{namespace}-group-label',
-  OPEN: '{namespace}-open',
-  NOTFOUND: '{namespace}-not-found',
-  DISABLED: '{namespace}-disabled',
-  MARK: '{namespace}-mark',
+  OPTION: '{namespace}-option pj-dropdown-item',
   SELECTED: '{namespace}-selected',
-  FOCUS: '{namespace}-focus',
-  LOADING: '{namespace}-loading',
-  ERROR: '{namespace}-error',
-  HIDEICON: '{namespace}-hideIcon',
-  BORDER: '{namespace}-border'
+  DISABLED: '{namespace}-disabled'
 }
 
-export const methods = [
-  'get',
-  'set',
-  'val',
-  'enable',
-  'disable',
-  'destroy',
-  'removeData',
-  'open',
-  'close'
-]
+export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
   theme: null,
-  trigger: 'click', // 'hover' or 'click'
-  offset: [0, 0], // set panel offset to trigger element
-  icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
-  multiple: false,
-  clearable: false,
-  filterable: false,
-  closeAllButten: true,
-  placeholder: 'Please select',
-  notFoundText: 'Badge not found',
-  selected: null, // item value, string or array
-  data: null, // object or url string, take precedence
+  source: null,
+  value: null,
+  placeholder: 'Please Select',
   keyboard: true,
-  disabled: false,
+  optionLabel(option) {
+    return option.label
+  },
   templates: {
-    wrap() {
-      return '<div class="{classes.WRAP}"></div>'
-    },
-    trigger() {
-      if (this.options.filterable) {
-        return '<input class="{classes.TRIGGER}" placeholder="{placeholder}" />'
-      }
-      return '<span class="{classes.TRIGGER}">{placeholder}</span>'
-    },
-    label() {
-      return '<div class="{classes.LABEL}">{options.placeholder}</div>'
-    },
-    filterLabel() {
-      return '<input placeholder="{options.placeholder}" class="{classes.LABEL}" />'
-    },
-    badge() {
-      return '<div class="{classes.BADGE}" data-flag="{flag}"><span class="{classes.BADGECONTENT}">{label}</span><i class="{classes.BADGEDELETE} pj-icon pj-icon-remove"></i></div>'
-    },
-    dropdown() {
-      return '<div class="{classes.DROPDOWN}"></div>'
-    },
-    list() {
-      return '<ul class="{classes.LIST}"></ul>'
-    },
     group() {
-      return '<li class="{classes.GROUP}"><span class="{classes.GROUPLABEL}">{group.label}</span></li>'
+      return '<div class="{classes.group}">{options}</div>'
     },
-    item() {
-      return '<li class="{classes.ITEM}" data-value="{item.value}">{item.label}</li>'
-    },
-    notFound() {
-      return '<div class="{classes.NOTFOUND}">{options.notFoundText}</div>'
+    option() {
+      return '<div class="{classes.OPTION}" data-value="{option.value}">{option.label}</div>'
     }
   },
   parse(value) {
-    if (value) {
-      return this.options.multiple ? value.split(',') : value
-    }
-    return this.options.multiple ? [] : ''
+    return value
   },
   process(value) {
-    if (value && typeof value !== 'undefined') {
-      return isArray(value) ? value.join(',') : value
-    }
-    return ''
+    return value
   }
 }
 
-export const dependencies = ['dropdown']
+export const dependencies = []

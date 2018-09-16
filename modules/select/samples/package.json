@@ -10,9 +10,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "*",
-    "@pluginjs/icons": "*",
-    "@pluginjs/select": "*",
-    "@pluginjs/styles": "*"
+    "@pluginjs/select": "*"
   },
   "devDependencies": {
     "babel-core": "*",

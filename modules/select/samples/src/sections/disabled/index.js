@@ -1,6 +1,7 @@
-import { query } from '@pluginjs/dom'
+import { queryAll } from '@pluginjs/dom'
 import Select from '@pluginjs/select'
 
-const element = query('#disabled .example-disabled')
-
-Select.of(element, {})
+const elements = queryAll('#disabled .example')
+elements.forEach(element => {
+  Select.of(element)
+})

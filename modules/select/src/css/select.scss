@@ -1,220 +1,57 @@
 @import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
+@import "select.core";
 
 // Vars
 // =====================
-$select: "pj-select" !default;
-$dropdown: "pj-dropdown" !default;
-$select-sizer: $sizer;
+$select: "pj-select";
+$select-width: 200px;
 
-$select-width: 20 * $select-sizer !default; //200px
-$select-color: $text-color !default;
-$select-font-size: $font-size-base !default;
-// $select-line-height              : $line-height-sm;
-$select-bg: $color-white !default;
-$select-disabled-bg: $gray-lighter !default;
-$select-space-x: 1.4 * $select-sizer !default; //14px
-$select-space-x-right: 3.6 * $select-sizer !default; //36px
-$select-space-y: 0.4 * $select-sizer !default; //4px
-$select-label-space-x: $select-sizer !default; //10px
-$select-panel-space-x: 0.2 * $select-sizer !default; //2px
-$select-panel-space-y: 0.4 * $select-sizer !default; //4px
-$select-panel-min-width: 22 * $select-sizer !default; //220px
+$select-trigger-width: $select-width;
+$select-trigger-lineHeigh: 22px;
+$select-trigger-placeholder-color: $gray-dark;
+// $select-trigger-hover-color: $gray-darkest;
+// $select-trigger-focus-color: $select-trigger-hover-color;
 
-// $select-label-min-height         : $select-font-size * $select-line-height + $select-space-y*2;
-$select-group-label-color: $gray-light !default;
-$select-badge-bg: $gray-lightest !default;
-$select-badge-border-color: $gray-lighter !default;
-$select-badge-border-radius: $border-radius-base !default;
-$select-badge-space: 0.4 * $select-sizer !default; //4px
-$select-badge-space-x: $select-space-x - $select-badge-space - 1px !default;
-$select-badge-space-y: $select-space-y - $select-badge-space - 1px !default;
-$select-badge-delete-color: $gray !default;
-$select-badge-delete-color-hover: $select-color !default;
-$select-item-hover-bg: $gray-lightest !default;
-$select-item-selected-color: $color-white !default;
-$select-item-selected-bg: $color-primary !default;
-$select-border-color: $color-primary !default;
-$select-box-shadow: $box-shadow-base !default;
-$select-border-radius: $border-radius-base !default;
-$select-hover-border-color: $border-color-hover !default;
-$select-active-border-color: $border-color-active !default;
+$select-trigger-disabled-bg: $color-white;
+$select-trigger-disabled-border: $gray-border;
+$select-trigger-disabled-color: $gray-border;
 
-// Core
-// =====================
+$select-trigger-arrow-icon: $pj-icon-angle-down-mini-solid;
+$select-trigger-arrow-font: $pj-icon-font-family;
+$select-trigger-arrow-right: 1.5 * $sizer;
+
 .#{$select} {
-  &-wrap {
-    font-size: $select-font-size;
-
-    .#{$dropdown}.#{$dropdown}-show {
-      border-color: $select-border-color;
-    }
-
-    .#{$dropdown}-panel {
-      border-color: $select-border-color;
-    }
-    li.#{$select}-group {
-      padding: 0;
-      &:hover {
-        background-color: transparent;
-      }
-    }
-    .#{$select}-selected {
-      color: $select-item-selected-color;
-      background-color: $select-item-selected-bg;
-      &:hover {
-        color: $select-item-selected-color;
-        background-color: $select-item-selected-bg;
-      }
-    }
-  }
-  &-border {
-    border-color: #215fdb !important;
-  }
-  &-label {
-    // min-height: $select-label-min-height;
-    color: $gray-dark !important;
-    vertical-align: middle;
-  }
-
-  &-badge {
-    display: block;
-    height: 2.2 * $select-sizer; //22px
-    padding: 0 $select-sizer; //0 10px
-    margin: 0.3 * $select-sizer; //3px
-    line-height: 2.1 * $select-sizer; //21px
-    cursor: default;
-    background-color: $gray-light;
-    border-radius: $select-badge-border-radius;
-    &:hover {
-      background-color: $select-badge-border-color;
-    }
-
-    &-content {
-      display: inline-block;
-      vertical-align: top;
-    }
-  }
-
-  &-badge-delete {
-    margin-left: $select-badge-space;
-    color: $select-badge-delete-color;
-    cursor: pointer;
-    &:hover {
-      color: $select-badge-delete-color-hover;
-    }
-  }
-
-  &-group-label {
-    display: block;
-    padding: $select-space-y $select-label-space-x;
-    font-size: $font-size-xs;
-    color: $gray-dark;
-    cursor: default;
-
-  }
-
-  &-item {
-    padding: 4px 15px;
-    overflow: hidden;
-    line-height: 26px;
-    text-overflow: ellipsis;
-    word-break: keep-all;
-    white-space: nowrap;
-    list-style: none;
-    cursor: pointer;
-
-    &.#{$select}-mark {
-      color: inherit;
-      background-color: $select-item-hover-bg;
-    }
-  }
-
-  &-multiple {
-    .#{$select}-label {
-      display: inline-block;
-      min-width: 2 * $select-sizer; //20px
-      max-width: 100%;
-    }
-
-    &.#{$select}-label {
-      display: none
-    }
-
-    .pj-input {
-      border: none !important;
-    }
-
-    .#{$select}-trigger {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: flex-start;
-      width: 20 * $select-sizer;
-      height: auto;
-      background-color: #FFF;
-      border: 1px solid #F2F2F2;
-      &:hover {
-        border-color: $color-black;
-      }
-    }
-
-    &.#{$select}-has-badge {
-      .#{$select}-label {
-        width: 0;
-      }
-    }
-  }
-
-  &-multiple.#{$select}-filterable {
-    input {
-      margin-bottom: 0;
-      border: none;
-    }
-
-    &.#{$select}-has-badge {
-      .#{$select}-label {
-        float: left;
-        padding-right: 0;
-      }
-    }
-  }
   &-trigger {
-    z-index: 1001;
-  }
+    position: relative;
+    width: $select-trigger-width;
+    line-height: $select-trigger-lineHeigh;
 
-  &-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-  &-item + .#{$select}-item {
-    margin-top: 1px;
-  }
+    &:not(.#{$select}-selected) {
+      color: $select-trigger-placeholder-color;
+    }
 
-  &-not-found {
-    padding: $select-space-y $select-space-x;
-    opacity: 0.4;
-  }
+    &::after {
+      @include icon();
+      position: absolute;
+      right: $select-trigger-arrow-right;
+      font-family: $select-trigger-arrow-font;
 
-  &-focus .#{$select}-trigger {
-    border-color: $select-hover-border-color;
-  }
-}
+      content: icon-content($select-trigger-arrow-icon);
+      transition: transform 0.3s;
+      will-change: transform;
+    }
 
-.#{$dropdown}-panel li {
-  padding: $select-panel-space-y $select-sizer * 1.5; //15px;
+    &.pj-dropdown-on-top-start[aria-expanded="true"]::after {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .#{$select}-disabled {
-  width: 20 * $select-sizer; //200px;
-
-  color: inherit;
-  cursor: not-allowed !important;
-  opacity: 0.4;
-
-  .pj-select-label {
-    pointer-events: none !important;
+  .#{$select}-trigger {
+    color: $select-trigger-disabled-color;
+    background-color: $select-trigger-disabled-bg;
+    border-color: $select-trigger-disabled-border;
   }
 }
-
