@@ -173,3 +173,17 @@ $disabled-color: $gray-border;
     content: "";
   }
 }
+
+@mixin icon {
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal; /* stylelint-disable-line */
+  font-variant: normal;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: auto;
+}
+
+@function icon-content($icon-var) {
+  @return unquote("\"#{ $icon-var }\"");
+}

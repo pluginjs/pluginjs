@@ -9,7 +9,7 @@
     {% if formats.indexOf('svg')>-1 %}url('{{ fontPath }}{{ fontName }}.svg#{{ fontName }}') format('svg');{% endif %}
 }
 
-{{baseSelector}} {
+.{{baseClass}} {
   font-family: {{fontName}} !important;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

@@ -13,23 +13,34 @@ const files = expand(
   'src/svgs/**/*.svg'
 )
 
-webfont({
+const config = {
   files,
   fontName: 'plugin-icons',
+  baseClass: 'pj-icon',
   classPrefix: 'pj-icon-',
-  baseSelector: '.pj-icon',
   fontHeight: 128,
   normalize: true,
   formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'],
   glyphTransformFn: obj => {
     return obj
-  },
+  }
+}
+
+webfont({
+  ...config,
   template: path.join('src/templates/css.hbs')
 }).then(result => {
   fs.ensureDir('dist', error => {
     if (error) {
       logger.error(error)
     } else {
+      webfont({
+        ...config,
+        template: path.join('src/templates/scss.hbs')
+      }).then(result => {
+        fs.writeFileSync(`variables.scss`, result.template)
+      })
+
       fs.writeFileSync(`dist/${result.config.fontName}.css`, result.template)
       fs.writeFileSync(`dist/${result.config.fontName}.svg`, result.svg)
       fs.writeFileSync(`dist/${result.config.fontName}.ttf`, new Buffer.from(result.ttf))

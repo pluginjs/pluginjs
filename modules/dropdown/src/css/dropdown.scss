@@ -1,4 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
 @import "dropdown.core";
 
 // Vars
@@ -23,6 +24,10 @@ $dropdown-input-lineHeigh: 22px;
 $dropdown-input-placeholder-color: $gray-dark;
 $dropdown-input-hover-color: $gray-darkest;
 $dropdown-input-focus-color: $dropdown-input-hover-color;
+
+$dropdown-input-arrow-icon: $pj-icon-angle-down-mini-solid;
+$dropdown-input-arrow-font: $pj-icon-font-family;
+$dropdown-input-arrow-right: 1.5 * $sizer;
 
 $dropdown-item-space-x: 11px;
 $dropdown-item-space-y: 8px;
@@ -63,11 +68,27 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
   }
 
   &-input {
+    position: relative;
     width: $dropdown-input-width;
     line-height: $dropdown-input-lineHeigh;
 
     &:not(.#{$dropdown}-selected) {
       color: $dropdown-input-placeholder-color;
+    }
+
+    &::after {
+      @include icon();
+      position: absolute;
+      right: $dropdown-input-arrow-right;
+      font-family: $dropdown-input-arrow-font;
+
+      content: icon-content($dropdown-input-arrow-icon);
+      transition: transform 0.3s;
+      will-change: transform;
+    }
+
+    &.#{$dropdown}-on-top-start[aria-expanded="true"]::after {
+      transform: rotate(180deg);
     }
 
     &:focus {

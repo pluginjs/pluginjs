@@ -378,7 +378,9 @@ class Dropdown extends Component {
 
           if (placementClass !== newPlacementClass) {
             removeClass(placementClass, this.$reference)
-            addClass(placementClass, this.$reference)
+            addClass(newPlacementClass, this.$reference)
+
+            placementClass = newPlacementClass
           }
         },
         onCreate: data => {
