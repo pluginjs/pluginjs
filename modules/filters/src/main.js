@@ -203,7 +203,6 @@ class Filters extends Component {
         data,
         itemValueAttr: 'data-index',
         placement: 'bottom-end',
-        imitateSelect: false,
         onClick: el => {
           const index = getData('index', el.dataset)
           this.setActiveItem(this.$filters[index])

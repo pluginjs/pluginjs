@@ -36,11 +36,11 @@ class Hex {
   }
 
   init() {
-    this.bulid()
+    this.build()
     this.bind()
   }
 
-  bulid() {
+  build() {
     this.$opac = parseHTML(
       `<div class='${this.classes.HEXBOX}'>
         <input class="pj-input ${this.classes.HEXANGLE}" type="text"/>
@@ -54,11 +54,9 @@ class Hex {
 
     this.$el = query(`.${this.classes.HEXMODE}>div>div`, this.element)
     // this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
-    this.dropdown = Dropdown.of(this.$el, {
-      target: '+',
-      imitateSelect: true,
+    this.SELECT = Dropdown.of(this.$el, {
       value: this.classify,
-      data: this.data,
+      source: this.data,
       onChange: res => {
         this.updateColor(res, this.color)
       }
@@ -71,7 +69,7 @@ class Hex {
       (e, el, color) => {
         this.color = color
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
-        this.updateColor(this.dropdown.options.value, color)
+        this.updateColor(this.SELECT.options.value, color)
       },
       this.instance.element
     )
@@ -102,7 +100,7 @@ class Hex {
     ]
 
     this.$el.innerText = this.mode
-    this.dropdown.options.value = this.mode
+    this.SELECT.options.value = this.mode
 
     this.element
       .querySelectorAll('.pj-dropdown-item')
@@ -113,7 +111,6 @@ class Hex {
   }
 
   update(value) {
-    console.log(this.instance.SOLID.color)
     if (this.instance.SOLID.color.isValid(value)) {
       this.instance.SOLID.setSolid(value)
       this.updateColor(this.instance.SOLID.color)

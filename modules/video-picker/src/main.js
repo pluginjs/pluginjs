@@ -13,6 +13,7 @@ import { bindEvent, removeEvent } from '@pluginjs/events' // , bindEventOnce
 import { parseHTML, query, fadeIn, fadeOut, closest, wrap } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 import PopDialog from '@pluginjs/pop-dialog'
 import {
   eventable,
@@ -249,10 +250,8 @@ class VideoPicker extends Component {
         addClass(this.classes.SHOW, this.$wrap)
       }
     })
-    this.$sourceDropdown = Dropdown.of(this.$sourceTrigger, {
-      data: sourceData,
-      reference: this.$vidosource,
-      imitateSelect: true,
+    this.$sourceSelect = Select.of(this.$sourceTrigger, {
+      source: sourceData,
       keyboard: true,
       value: sourceData[0].label,
       onChange: value => {
@@ -276,17 +275,15 @@ class VideoPicker extends Component {
       }
     })
 
-    this.$ratioDropdown = Dropdown.of(this.$ratioTrigger, {
-      data: ratioData,
-      reference: this.$ratio,
-      imitateSelect: true,
+    this.$ratioSelect = Select.of(this.$ratioTrigger, {
+      source: ratioData,
       keyboard: true,
       value: ratioData[0].label,
       onChange: value => {
         this.data.ratio = value
         this.changeRatio(value)
-        this.$ratioDropdown.update()
-        this.$sourceDropdown.update()
+        this.$ratioSelect.update()
+        this.$sourceSelect.update()
       }
     })
 
@@ -297,7 +294,7 @@ class VideoPicker extends Component {
     this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$wrap)
     this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$wrap)
 
-    this.POP = PopDialog.of(
+    this.DELETEPOP = PopDialog.of(
       query(`.${this.classes.REMOVE}`, this.$infoAction),
       {
         content: this.translate('deleteTitle'),
@@ -609,7 +606,7 @@ class VideoPicker extends Component {
         case 'source':
           this.options.sources.forEach(v => {
             if (v.toLowerCase() === value.toLowerCase()) {
-              this.$sourceDropdown.set(v)
+              this.$sourceSelect.set(v)
             }
           })
           break
@@ -621,7 +618,7 @@ class VideoPicker extends Component {
           this.$urlInput.value = value
           break
         case 'ratio':
-          this.$ratioDropdown.set(value)
+          this.$ratioSelect.set(value)
           break
         case 'poster':
           if (value) {

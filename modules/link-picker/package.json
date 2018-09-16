@@ -47,6 +47,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/pop-dialog": "*",
     "@pluginjs/radio": "*",
+    "@pluginjs/select": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*"
   },

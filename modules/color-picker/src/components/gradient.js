@@ -6,7 +6,7 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, getData, setData, find, parseHTML, parent } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 import { hasClass, removeClass, addClass } from '@pluginjs/classes'
-import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 
 class Gradient {
   constructor(instance, element) {
@@ -84,11 +84,10 @@ class Gradient {
       `.${this.classes.GRADIENTMODE}>div>span`,
       this.element
     )
-    this.dropdown = Dropdown.of(this.$selector, {
-      imitateSelect: true,
+    this.SELECT = Select.of(this.$selector, {
       value: this.mode.replace(/^.?/g, match => match.toUpperCase()),
       width: parent(this.$selector),
-      data: [
+      source: [
         { label: 'Linear', value: 'Linear' },
         { label: 'Radial', value: 'Radial' }
       ]
@@ -293,7 +292,7 @@ class Gradient {
     })
 
     // switch gradient mode
-    this.dropdown.options.onChange = res => {
+    this.SELECT.options.onChange = res => {
       const modeName = res.innerHTML.replace(/^.?/g, match =>
         match.toLowerCase()
       )
@@ -465,7 +464,7 @@ class Gradient {
     }
     this.gradient = ''
     this.update()
-    // this.dropdown.set(
+    // this.SELECT.set(
     //   this.mode.replace(/^[a-zA-Z]?/g, match => match.toUpperCase())
     // )
   }

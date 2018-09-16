@@ -96,8 +96,8 @@ class TimePicker extends Component {
 
     this.initDropdown()
     this.initInputMask()
-    this.$panel = query('.pj-dropdown', this.$wrap)
-    insertAfter(this.$panel, this.$dropdownEl)
+    this.$dropdown = query('.pj-dropdown', this.$wrap)
+    insertAfter(this.$dropdown, this.$dropdownEl)
     if (this.options.keyboard) {
       this.keyboard = new Keyboard(this)
     }
@@ -113,13 +113,10 @@ class TimePicker extends Component {
   initDropdown() {
     this.DROPDOWN = Dropdown.of(this.$timeTrigger, {
       data: this.getTimeList().map(value => ({ label: value, value })),
-      target: this.$panel,
+      target: this.$dropdown,
       placeholder: this.options.placeholder,
       placement: 'bottom-left',
-      imitateSelect: true,
-      inputLabel: true,
       hideOutClick: true,
-      constraintToScrollParent: false,
       templates: this.options.templates,
       onChange: value => {
         this.trigger(EVENTS.CHANGE, value)

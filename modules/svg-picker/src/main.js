@@ -287,11 +287,7 @@ class SvgPicker extends Component {
       rereference: this.$svgPicker,
       hideOnSelect: false,
       target: next(this.$svgPicker),
-      width: 260,
       templates: {
-        panel() {
-          return `<div class=${that.classes.PANEL}></div>`
-        },
         item
       }
     })

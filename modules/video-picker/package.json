@@ -44,6 +44,7 @@
     "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
     "@pluginjs/pop-dialog": "*",
+    "@pluginjs/select": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
     "@pluginjs/utils": "*",

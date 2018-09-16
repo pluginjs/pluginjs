@@ -159,20 +159,19 @@ class MapPicker extends Component {
   }
 
   initDropdown() {
-    const dropdownConf = {
+    this.DROPDOWN = Dropdown.of(this.$empty, {
       reference: this.$trigger,
       placement: 'bottom-left',
       target: this.$dropdown,
       hideOutClick: false,
       templates: this.options.templates
-    }
-    this.mapDropdown = Dropdown.of(this.$empty, dropdownConf)
+    })
   }
 
   buildPop() {
     const that = this
 
-    this.pop = PopDialog.of(
+    this.DELETEPOP = PopDialog.of(
       query(`.${this.classes.REMOVE}`, this.$fillAction),
       {
         placement: 'bottom',
@@ -470,7 +469,7 @@ class MapPicker extends Component {
       this.initMap()
     }
 
-    this.mapDropdown.show()
+    this.DROPDOWN.show()
     addClass(this.classes.OPENDISABLE, this.$trigger)
     addClass(this.classes.SHOW, this.$wrap)
     this.enter('open')
@@ -479,7 +478,7 @@ class MapPicker extends Component {
   close() {
     removeClass(this.classes.OPENDISABLE, this.$trigger)
     removeClass(this.classes.SHOW, this.$wrap)
-    this.mapDropdown.hide()
+    this.DROPDOWN.hide()
     this.leave('open')
   }
 
@@ -571,7 +570,7 @@ class MapPicker extends Component {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = false
-      this.pop.enable()
+      this.DELETEPOP.enable()
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -581,7 +580,7 @@ class MapPicker extends Component {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = true
-      this.pop.disable()
+      this.DELETEPOP.disable()
       this.enter('disabled')
     }
 

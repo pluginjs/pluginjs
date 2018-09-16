@@ -49,6 +49,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
     "@pluginjs/scrollable": "*",
+    "@pluginjs/select": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
     "@pluginjs/tooltip": "*",

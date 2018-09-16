@@ -11,7 +11,7 @@ import {
 } from '@pluginjs/dom'
 // import { bindEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
-import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 
 export default class Size {
   constructor(instance) {
@@ -36,9 +36,8 @@ export default class Size {
     this.$trigger = query(`.${this.instance.classes.SIZETRIGGER}`, this.$size)
     const data = this.values.map(val => ({ label: val, value: val }))
     const that = this
-    this.$sizeDropdown = Dropdown.of(this.$trigger, {
-      imitateSelect: true,
-      data,
+    this.$sizeSelect = Select.of(this.$trigger, {
+      source: data,
       value: this.defaultValue,
       keyboard: true,
       onChange: val => {
@@ -53,10 +52,10 @@ export default class Size {
   }
 
   set(val) {
-    this.$sizeDropdown.set(val)
+    this.$sizeSelect.set(val)
   }
 
   clear() {
-    this.$sizeDropdown.set(this.defaultValue)
+    this.$sizeSelect.set(this.defaultValue)
   }
 }

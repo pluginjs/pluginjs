@@ -1,5 +1,5 @@
 import keyboard from '@pluginjs/keyboard'
-import { query, getData, setData, find, parseHTML, parent } from '@pluginjs/dom'
+import { query, getData, setData, find, parseHTML } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { compose } from '@pluginjs/utils'
 import { setStyle, getStyle } from '@pluginjs/styled'
@@ -7,7 +7,7 @@ import { removeClass, addClass, hasClass } from '@pluginjs/classes'
 import { Gradient } from '@pluginjs/gradient'
 import Marker from '../components/marker'
 import Wheel from '../components/wheel'
-import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 
 class Gradients {
   constructor(instance, element) {
@@ -68,11 +68,9 @@ class Gradients {
 
     this.$view = query(`.${this.classes.GRADIENTBARVIEW}`, this.element)
     this.$selector = query(`.${this.classes.GRADIENTMODE}>span`, this.element)
-    this.dropdown = Dropdown.of(this.$selector, {
-      imitateSelect: true,
+    this.SELECT = Select.of(this.$selector, {
       value: this.mode.replace(/^.?/g, match => match.toUpperCase()),
-      width: parent(this.$selector),
-      data: [
+      source: [
         { label: 'Linear', value: 'Linear' },
         { label: 'Radial', value: 'Radial' }
       ],
@@ -285,7 +283,7 @@ class Gradients {
     })
 
     // switch gradient mode
-    // this.dropdown.options.onChange = res => {
+    // this.SELECT.options.onChange = res => {
     //   const modeName = res.replace(/^.?/g, match =>
     //     match.toLowerCase()
     //   )
@@ -479,7 +477,7 @@ class Gradients {
     }
     this.gradientValue = ''
     this.update()
-    // this.dropdown.set(
+    // this.SELECT.set(
     //   this.mode.replace(/^[a-zA-Z]?/g, match => match.toUpperCase())
     // )
   }

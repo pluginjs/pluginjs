@@ -118,8 +118,6 @@ class FontEditor extends Component {
     this.$defaultDropdown = Dropdown.of(this.$empty, {
       theme: 'dafault',
       placement: 'bottom-left',
-      // imitateSelect: true,
-      // exclusive: false,
       reference: this.$trigger,
       target: this.$expandPanel,
       hideOutClick: false,

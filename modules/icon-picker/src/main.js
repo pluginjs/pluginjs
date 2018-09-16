@@ -87,8 +87,6 @@ class IconsPicker extends Component {
       data,
       target: next(this.$iconPicker),
       hideOnSelect: false,
-      width: 260,
-      // select: data[0].label,
       templates: {
         panel() {
           return `<div class=${that.classes.PANEL}></div>`
@@ -610,7 +608,6 @@ class IconsPicker extends Component {
       data,
       target: next(this.$selector),
       // keyboard: true,
-      imitateSelect: true,
       hideOnSelect: true,
       offset: '12px,2px',
       value: data[data.length - 1].value,

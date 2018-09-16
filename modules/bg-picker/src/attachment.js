@@ -9,7 +9,7 @@ import {
 } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'  /* eslint-disable-line */
 // import { addClass, removeClass } from '@pluginjs/classes'
-import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 
 export default class Attachment {
   constructor(instance) {
@@ -32,26 +32,25 @@ export default class Attachment {
       `.${this.instance.classes.ATTACHMENT}`,
       this.instance.$Panel
     )
-    this.$dropdown = query(
+    this.$select = query(
       `.${this.instance.classes.DROPDOWNTRIGGER}`,
       this.instance.$Panel
     )
-    // this.$attachTrigger = query('span', this.$dropdown)
+    // this.$attachTrigger = query('span', this.$select)
     this.values = this.instance.options.attachment.values
 
     const data = this.values.map(val => ({ label: val, value: val }))
     const that = this
     setData(
-      'dropdown',
-      Dropdown.of(this.$dropdown, {
-        imitateSelect: true,
+      'select',
+      Select.of(this.$select, {
         value: 'inherit',
-        data,
+        source: data,
         keyboard: true,
         classes: {
-          panel: `pj-dropdown-panel ${
+          panel: `pj-select-panel ${
             this.instance.classes.NAMESPACE
-          }-dropdown-panel`
+          }-select-panel`
         },
         onChange(value) {  /* eslint-disable-line */
           if (that.instance.disabled) {
@@ -70,10 +69,10 @@ export default class Attachment {
           )
         }
       }),
-      this.$dropdown
+      this.$select
     )
 
-    // this.$items = queryAll('.pj-dropdown-item', this.$attachment)
+    // this.$items = queryAll('.pj-select-item', this.$attachment)
     // const value =
     //   typeof this.instance.value.attachment !== 'undefined'
     //     ? this.instance.value.attachment
@@ -84,13 +83,13 @@ export default class Attachment {
   // set(value) {
   //   let found = false
   //   this.$items.map(removeClass(this.instance.classes.ACTIVE))
-  //   // console.log(getData('dropdown', this.$dropdown))
+  //   // console.log(getData('select', this.$select))
   //   for (let i = 0; i < this.values.length; i++) {
   //     if (value === this.values[i]) {
   //       const activeItem = this.$items.map(
   //         addClass(this.instance.classes.ACTIVE)
   //       )
-  //       getData('dropdown', this.$dropdown).set(activeItem)
+  //       getData('select', this.$select).set(activeItem)
   //       found = true
   //     }
   //   }
@@ -100,10 +99,10 @@ export default class Attachment {
   //   }
   // }
   set(val) {
-    getData('dropdown', this.$dropdown).set(val)
+    getData('select', this.$select).set(val)
   }
 
   clear() {
-    getData('dropdown', this.$dropdown).set(this.defaultValue)
+    getData('select', this.$select).set(this.defaultValue)
   }
 }

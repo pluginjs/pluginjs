@@ -1,7 +1,6 @@
 import template from '@pluginjs/template'
-import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 import { query, parseHTML, insertBefore } from '@pluginjs/dom'
-import { getWidth } from '@pluginjs/styled'
 export default class FontWeight {
   constructor(instance) {
     this.instance = instance
@@ -24,48 +23,42 @@ export default class FontWeight {
       `.${this.instance.classes.FONTWEIGHTCONTENT}`,
       this.instance.$expandPanel
     )
-    this.$dropdown = query(
+    this.$select = query(
       `.${this.instance.classes.FONTWEIGHTDROPDOWN}`,
       this.instance.$expandPanel
     )
-    this.$dropWeight = query('.pj-dropdown-trigger', this.$dropdown)
+    this.$dropWeight = query('.pj-select-trigger', this.$select)
 
-    this.initDropdown()
+    this.initSelect()
   }
 
-  initDropdown() {
-    const that = this
-    const data = []
-    Object.entries(this.values).forEach(([i, v]) => {
-      data[i] = { label: v, value: v }
-    })
-    const value = this.instance.value.fontWeight
-
-    this.dropdownInstance = Dropdown.of(this.$dropWeight, {
-      imitateSelect: true,
-      select: value,
-      exclusive: false,
-      width: getWidth(this.$dropdown),
-      // itemValueAttr: 'fontWeight',
+  initSelect() {
+    this.SELECT = Select.of(this.$dropWeight, {
       keyboard: true,
-      data,
-      value: 'inherit',
-      onChange(value) {
-        if (that.instance.is('disabled')) {
+      source: resolve => {
+        const data = []
+        Object.entries(this.values).forEach(([i, v]) => {
+          data[i] = { label: v, value: v }
+        })
+        resolve(data)
+      },
+      value: this.instance.value.fontWeight,
+      onChange: value => {
+        if (this.instance.is('disabled')) {
           return
         }
         // that.instance.update()
-        that.instance.$fillFontName.style.fontWeight = value
+        this.instance.$fillFontName.style.fontWeight = value
       }
     })
   }
 
   set(value) {
     if (!value) {
-      this.dropdownInstance.set('inherit')
+      this.SELECT.select('inherit')
       this.instance.value.fontWeight = 'inherit'
     } else {
-      this.dropdownInstance.set(value)
+      this.SELECT.select(value)
       this.instance.value.fontWeight = value
     }
   }

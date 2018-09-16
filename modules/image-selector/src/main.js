@@ -99,15 +99,14 @@ class ImageSelector extends Component {
     this.trigger(EVENTS.READY)
   }
   initDropdown() {
-    const dropdownConf = {
+    this.DROPDOWN = Dropdown.of(this.$change, {
       placement: 'bottom-left',
       target: this.$panel,
       reference: this.$init,
       hideOutClick: false,
       constraintToScrollParent: false,
       templates: this.options.templates
-    }
-    this.Dropdown = Dropdown.of(this.$change, dropdownConf)
+    })
   }
   bind() {
     // $init
@@ -130,7 +129,7 @@ class ImageSelector extends Component {
         this.data.selected = getData('label', $item)
         this.setImg()
         this.close()
-        this.Dropdown.hide()
+        this.DROPDOWN.hide()
       })
     )(this.$wrapper)
 
@@ -295,7 +294,7 @@ class ImageSelector extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrapper)
-      this.Dropdown.disable()
+      this.DROPDOWN.disable()
       this.element.disabled = true
       this.enter('disabled')
     }

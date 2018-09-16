@@ -45,6 +45,7 @@
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
+    "@pluginjs/select": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
     "@pluginjs/template": "*"

@@ -23,6 +23,7 @@ import { showElement, hideElement } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import PopDialog from '@pluginjs/pop-dialog'
 import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 import Radio from '@pluginjs/radio'
 import {
   eventable,
@@ -209,17 +210,14 @@ class LinkPicker extends Component {
   }
 
   initDropdown() {
-    const dropdownConf = {
+    this.DROPDOWN = Dropdown.of(this.$empty, {
       reference: this.$trigger,
       target: this.$dropdown,
-      theme: 'dafault',
       placement: 'bottom-left',
-      // imitateSelect: true,
       hideOutClick: false,
       hideOnSelect: false,
       templates: this.options.templates
-    }
-    this.DROPDOWN = Dropdown.of(this.$empty, dropdownConf)
+    })
   }
 
   buildTypes() {
@@ -256,19 +254,17 @@ class LinkPicker extends Component {
       query(`.${this.classes.ITEMBODY}`, $types)
     )
     prepend($types, this.$dropdown)
-    this.$typeDropdown = Dropdown.of(
+    this.TYPESELECT = Select.of(
       query(`.${this.classes.TYPESWITCH}`, this.$dropdown),
       {
-        imitateSelect: true,
         keyboard: true,
-        hideOutClick: true,
-        data: typeData,
+        source: typeData,
         value: this.source,
         templates: {
-          item() {
+          option() {
             return `<div class="${
               that.classes.ITEM
-            } {classes.ITEM}" data-value="{item.name}">{item.label}</div>`
+            } {classes.ITEM}" data-value="{option.name}">{option.label}</div>`
           }
         },
         onChange: v => {
@@ -535,7 +531,7 @@ class LinkPicker extends Component {
   }
 
   swtichType() {
-    // this.$typeDropdown.set(this.source);
+    // this.TYPESELECT.set(this.source);
     queryAll(`.${this.classes.TYPESCONTAINER}`, this.$dropdown).map(
       removeClass(this.classes.ACTIVE)
     )
@@ -669,7 +665,7 @@ class LinkPicker extends Component {
 
   set(data, trigger = true) {
     this.source = data.source
-    this.$typeDropdown.set(this.source)
+    this.TYPESELECT.set(this.source)
     this.swtichType()
 
     delete data.source
@@ -844,7 +840,7 @@ class LinkPicker extends Component {
         removeClass(this.getThemeClass(), this.$wrap)
       }
 
-      this.$typeDropdown.destroy()
+      this.TYPESELECT.destroy()
       unwrap(this.element)
       removeClass(this.classes.INPUT, this.element)
       this.$trigger.remove()

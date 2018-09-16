@@ -87,17 +87,16 @@ class GalleryPicker extends Component {
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
-  // initDropdown
+
   initDropdown() {
-    const dropdownConf = {
+    Dropdown.of(this.$fillExpand, {
       reference: this.$fill,
       target: this.$expandPanel,
       placement: 'bottom-left',
       hideOutClick: false,
       constraintToScrollParent: false,
       templates: this.options.templates
-    }
-    Dropdown.of(this.$fillExpand, dropdownConf)
+    })
   }
 
   bind() {
@@ -285,7 +284,7 @@ class GalleryPicker extends Component {
     this.$expandAdd = query(`.${this.classes.EXPANDADD}`, this.$expandPanel)
     this.$expandItems = query(`.${this.classes.EXPANDITEM}`, this.$expandPanel)
     // init pop
-    this.pop = PopDialog.of(this.$fillRemove, {
+    this.DELETEPOP = PopDialog.of(this.$fillRemove, {
       placement: 'bottom',
       content: this.translate('deleteTitle'),
       buttons: {
@@ -533,7 +532,7 @@ class GalleryPicker extends Component {
   enable() {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
-      this.pop.enable()
+      this.DELETEPOP.enable()
       this.element.disabled = false
       this.leave('disabled')
     }
@@ -543,7 +542,7 @@ class GalleryPicker extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrap)
-      this.pop.disable()
+      this.DELETEPOP.disable()
       this.element.disabled = true
       this.enter('disabled')
     }

@@ -1,5 +1,5 @@
 import template from '@pluginjs/template'
-import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 import { parseHTML, query, insertBefore } from '@pluginjs/dom'
 
 export default class FontFamily {
@@ -24,28 +24,27 @@ export default class FontFamily {
       `.${this.instance.classes.FONTFAMILYCONTENT}`,
       this.instance.$expandPanel
     )
-    this.$dropdown = query(
+    this.$select = query(
       `.${this.instance.classes.FONTFAMILYDROPDOWN}`,
       this.instance.$expandPanel
     )
-    this.$dropFamily = query('.pj-dropdown-trigger', this.$dropdown)
-    this.$list = query('ul', this.$content)
-    this.$list.append(...parseHTML(this.getListHtml()))
+    this.$dropFamily = query('.pj-select-trigger', this.$select)
 
-    const value = this.instance.value.fontFamily
-    const that = this
-    this.dropdownInstance = Dropdown.of(this.$dropFamily, {
-      imitateSelect: true,
-      value,
-      itemValueAttr: 'data-font-family',
-      target: this.$list,
+    this.SELECT = Select.of(this.$dropFamily, {
+      value: this.instance.value.fontFamily,
+      source: resolve => {
+        const data = []
+        Object.entries(this.values).forEach(([i, v]) => {
+          data[i] = { label: v, value: v }
+        })
+        resolve(data)
+      },
       keyboard: true,
-      width: this.$dropdown,
-      onChange(value) {
-        if (that.instance.is('disabled')) {
+      onChange: value => {
+        if (this.instance.is('disabled')) {
           return
         }
-        that.instance.value.fontFamily = value
+        this.instance.value.fontFamily = value
       }
     })
   }
@@ -53,26 +52,9 @@ export default class FontFamily {
   set(value) {
     for (const key in this.values) {
       if (value === this.values[key]) {
-        this.dropdownInstance.set(value)
+        this.SELECT.select(value)
       }
     }
-  }
-
-  updateList() {
-    const html = this.getListHtml()
-    this.dropdownInstance.update(html)
-  }
-
-  getListHtml() {
-    let html = ''
-    for (const key in this.values) {
-      if ({}.hasOwnProperty.call(this.values, key)) {
-        html += `<li class="pj-dropdown-item" data-font-family='${key}'>${
-          this.values[key]
-        }</li>`
-      }
-    }
-    return html
   }
 
   clear() {
