@@ -119,13 +119,13 @@ class Dropdown extends Component {
         },
         this.$trigger
       )
-      bindEvent(
-        this.eventName('blur'),
-        () => {
-          this.hide()
-        },
-        this.$trigger
-      )
+      // bindEvent(
+      //   this.eventName('blur'),
+      //   () => {
+      //     this.hide()
+      //   },
+      //   this.$trigger
+      // )
     } else if (this.options.trigger === 'hover') {
       bindEvent(
         this.eventName('mouseenter'),
@@ -154,6 +154,7 @@ class Dropdown extends Component {
         if (item.parentNode !== this.$dropdown) {
           return
         }
+
         this.selectItem(item)
 
         if (this.options.hideOnSelect) {
@@ -206,10 +207,21 @@ class Dropdown extends Component {
     return null
   }
 
+  getItemByValue(value) {
+    const $items = this.getItems()
+    $items.forEach($item => {// eslint-disable-line
+      if ($item.getAttribute(this.options.itemValueAttr) === value) {
+        return $item
+      }
+    })
+
+    return null
+  }
+
   getItemByIndex(index) {
-    const $item = this.getItems()
-    if (index >= 0 && index <= $item.length) {
-      return $item[index]
+    const $items = this.getItems()
+    if (index >= 0 && index <= $items.length) {
+      return $items[index]
     }
 
     return null
@@ -226,13 +238,20 @@ class Dropdown extends Component {
       if (isInput(this.$trigger)) {
         this.$trigger.value = value
       } else {
-        html(value, this.$trigger)
+        const $item = this.getItemByValue(value)
+        if ($item) {
+          html(this.getItemLabel($item), this.$trigger)
+        }
       }
     }
   }
 
   getItemValue(item) {
     return item.getAttribute(this.options.itemValueAttr)
+  }
+
+  getItemLabel(item) {
+    return this.options.itemLabel.call(this, item)
   }
 
   selectItem(item, trigger = true) {
@@ -245,9 +264,9 @@ class Dropdown extends Component {
       if (isInput(this.$trigger)) {
         this.$trigger.value = value
       } else {
-        html(value, this.$trigger)
-        addClass(this.classes.SELECTED, this.$trigger)
+        html(this.getItemLabel(item), this.$trigger)
       }
+      addClass(this.classes.SELECTED, this.$trigger)
     }
     if (trigger) {
       this.trigger(EVENTS.SELECT, item)
@@ -337,6 +356,7 @@ class Dropdown extends Component {
       this.trigger(EVENTS.HIDED)
     }
   }
+
   set(value) {
     return this.selectByValue(value, true)
   }
@@ -349,6 +369,7 @@ class Dropdown extends Component {
     }
     return null
   }
+
   setupPopper() {
     if (!this.is('popper')) {
       let placementClass

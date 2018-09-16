@@ -69,7 +69,7 @@ class Keyboard {
     const instance = this.instance
 
     this.KEYBOARD.down('esc', () => {
-      if (!instance.is('show')) {
+      if (!instance.is('shown')) {
         return false
       }
 
@@ -78,7 +78,7 @@ class Keyboard {
     })
 
     this.KEYBOARD.down('enter', () => {
-      if (instance.is('show')) {
+      if (instance.is('shown')) {
         const $highlighted = instance.getHighlightedItem()
         if ($highlighted) {
           instance.selectItem($highlighted)

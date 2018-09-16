@@ -38,6 +38,7 @@ export const methods = [
   'show',
   'hide',
   'toggle',
+  'selectByValue',
   'update'
 ]
 
@@ -55,12 +56,15 @@ export const defaults = {
   boundary: 'scrollParent', // viewport
 
   imitateSelect: false, // Behave like select
+  itemLabel(item) {
+    // return this.getItemValue(item)
+    return item.innerHTML
+  },
   value: null, // set initial select value, when imitateSelect is true
   itemValueAttr: 'data-value', // item tag name
   placeholder: 'Please Select',
 
   data: null, // json [{label: [string]}, ....]
-  width: null, // number| string | object, when object, dropdown-panel = object.css('width')
   templates: {
     item() {
       return '<div class="{classes.ITEM}" {itemValueAttr}="{item.value}">{item.label}</div>'
