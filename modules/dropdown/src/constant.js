@@ -6,7 +6,9 @@ export const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   HIDE: 'hide',
+  HIDED: 'hided',
   SHOW: 'show',
+  SHOWN: 'shown',
   CHANGE: 'change',
   SELECT: 'select',
   TRIGGER: 'trigger'

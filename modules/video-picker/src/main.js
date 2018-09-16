@@ -297,7 +297,7 @@ class VideoPicker extends Component {
     this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$wrap)
     this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$wrap)
 
-    this.pop = PopDialog.of(
+    this.POP = PopDialog.of(
       query(`.${this.classes.REMOVE}`, this.$infoAction),
       {
         content: this.translate('deleteTitle'),

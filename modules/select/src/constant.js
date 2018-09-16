@@ -24,13 +24,12 @@ export const classes = {
   FILTERABLE: '{namespace}-filterable',
   DROPDOWN: '{namespace}-dropdown',
   TRIGGER: '{namespace}-trigger',
-  HASBADGE: '{namespace}-hpj-badge',
+  HASBADGE: '{namespace}-has-badge',
   BADGE: '{namespace}-badge',
   BADGECONTENT: '{namespace}-badge-content',
   BADGEDELETE: '{namespace}-badge-delete',
   LABEL: '{namespace}-label',
   LIST: '{namespace}-list',
-  SUBLIST: '{namespace}-sublist',
   ITEM: '{namespace}-item',
   GROUP: '{namespace}-group',
   GROUPLABEL: '{namespace}-group-label',
@@ -75,37 +74,37 @@ export const defaults = {
   disabled: false,
   templates: {
     wrap() {
-      return '<div class="{that.classes.WRAP}"></div>'
+      return '<div class="{classes.WRAP}"></div>'
     },
     trigger() {
-      return '<div class="{that.classes.TRIGGER}"></div>'
+      if (this.options.filterable) {
+        return '<input class="{classes.TRIGGER}" placeholder="{placeholder}" />'
+      }
+      return '<span class="{classes.TRIGGER}">{placeholder}</span>'
     },
     label() {
-      return '<div class="{that.classes.LABEL}">{that.options.placeholder}</div>'
+      return '<div class="{classes.LABEL}">{options.placeholder}</div>'
     },
     filterLabel() {
-      return '<input placeholder="{that.options.placeholder}" class="{that.classes.LABEL}" />'
+      return '<input placeholder="{options.placeholder}" class="{classes.LABEL}" />'
     },
     badge() {
-      return '<div class="{that.classes.BADGE}" data-flag="{flag}"><span class="{that.classes.BADGECONTENT}">{label}</span><i class="{that.classes.BADGEDELETE} pj-icon pj-icon-remove"></i></div>'
+      return '<div class="{classes.BADGE}" data-flag="{flag}"><span class="{classes.BADGECONTENT}">{label}</span><i class="{classes.BADGEDELETE} pj-icon pj-icon-remove"></i></div>'
     },
     dropdown() {
-      return '<div class="{that.classes.DROPDOWN}"></div>'
+      return '<div class="{classes.DROPDOWN}"></div>'
     },
     list() {
-      return '<ul class="{that.classes.LIST}"></ul>'
-    },
-    sublist() {
-      return '<ul class="{that.classes.SUBLIST}"></ul>'
+      return '<ul class="{classes.LIST}"></ul>'
     },
     group() {
-      return '<li class="{that.classes.GROUP}"><span class="{that.classes.GROUPLABEL}">{group.label}</span></li>'
+      return '<li class="{classes.GROUP}"><span class="{classes.GROUPLABEL}">{group.label}</span></li>'
     },
     item() {
-      return '<li class="{that.classes.ITEM}" data-value="{item.value}">{item.label}</li>'
+      return '<li class="{classes.ITEM}" data-value="{item.value}">{item.label}</li>'
     },
     notFound() {
-      return '<div class="{that.classes.NOTFOUND}">{that.options.notFoundText}</div>'
+      return '<div class="{classes.NOTFOUND}">{options.notFoundText}</div>'
     }
   },
   parse(value) {

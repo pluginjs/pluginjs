@@ -223,74 +223,6 @@ class FontPicker extends Component {
       this.$panel
     )
 
-    this.$dropdown.options.onHide = () => {
-      this.$activated.forEach(v => {
-        this.close(v)
-      })
-      this.$selectorPanel.hide()
-      if (this.is('searchReady')) {
-        removeClass(this.classes.SEARCHREADY, this.$panel)
-        query('input', this.$search).value = ''
-        this.leave('searchReady')
-      }
-
-      if (this.is('keyboard')) {
-        this.KEYBOARD.unbind()
-      }
-    }
-
-    this.$dropdown.options.onShow = () => {
-      this.categoriesHeight = getHeight(parent(this.$activated[0]))
-      if (this.$font) {
-        const $selectedPackage = parentWith(
-          hasClass(this.classes.PACKAGE),
-          this.$font
-        )
-        if (!$selectedPackage) {
-          return
-        }
-        const $source = closest(
-          `.${this.classes.SOURCES}-${this.$font.dataset.source}`,
-          this.$font
-        )
-        this.$selectorPanel.set(getData('source', this.$font))
-        this.toggleSources($source)
-        this.$selectorPanel.set(getData('title', $source))
-        this.open($selectedPackage)
-
-        // count scrollTop number
-        let scrollLength = 0  /* eslint-disable-line */
-        getData('$fonts', $source).forEach(v => {
-          if (v.dataset.categorie === this.$font.dataset.categorie) {
-            if (v.dataset.value === this.$font.dataset.value) {
-              // parent(this.$font).scrollT op(scrollLength)
-              return
-            }
-            scrollLength += this.itemHeight
-          }
-        })
-      }
-      return
-    }
-
-    this.$selectorPanel.options.onChange = val => {
-      // const $source = val
-      // const sourceName = $source.dataset.source
-      // const sourceName = getData('source', $source)
-      this.toggleSources(val)
-      this.categoriesHeight = getHeight(parent(this.$activated[0]))
-      if (this.sources[val]) {
-        prepend(
-          parseHTML(
-            `<i class="${this.classes.SOURCEICON} ${this.getIconName(
-              val
-            )}"></i>`
-          ),
-          query('.pj-dropdown-trigger', this.$selector)
-        )
-      }
-    }
-
     /*
       toggle package listener
     */
@@ -683,6 +615,54 @@ class FontPicker extends Component {
       hideOnSelect: false,
       classes: {
         ITEM: `{namespace}-item ${this.classes.FONT}`
+      },
+      onHided() {
+        this.$activated.forEach(v => {
+          this.close(v)
+        })
+        this.$selectorPanel.hide()
+        if (this.is('searchReady')) {
+          removeClass(this.classes.SEARCHREADY, this.$panel)
+          query('input', this.$search).value = ''
+          this.leave('searchReady')
+        }
+
+        if (this.is('keyboard')) {
+          this.KEYBOARD.unbind()
+        }
+      },
+      onShown() {
+        this.categoriesHeight = getHeight(parent(this.$activated[0]))
+        if (this.$font) {
+          const $selectedPackage = parentWith(
+            hasClass(this.classes.PACKAGE),
+            this.$font
+          )
+          if (!$selectedPackage) {
+            return
+          }
+          const $source = closest(
+            `.${this.classes.SOURCES}-${this.$font.dataset.source}`,
+            this.$font
+          )
+          this.$selectorPanel.set(getData('source', this.$font))
+          this.toggleSources($source)
+          this.$selectorPanel.set(getData('title', $source))
+          this.open($selectedPackage)
+
+          // count scrollTop number
+          let scrollLength = 0  /* eslint-disable-line */
+          getData('$fonts', $source).forEach(v => {
+            if (v.dataset.categorie === this.$font.dataset.categorie) {
+              if (v.dataset.value === this.$font.dataset.value) {
+                // parent(this.$font).scrollT op(scrollLength)
+                return
+              }
+              scrollLength += this.itemHeight
+            }
+          })
+        }
+        return
       }
     })
   }
@@ -710,7 +690,24 @@ class FontPicker extends Component {
       value: 'activated',
       keyboard: true,
       imitateSelect: true,
-      width: this.$selector
+      width: this.$selector,
+      onChange(val) {
+        // const $source = val
+        // const sourceName = $source.dataset.source
+        // const sourceName = getData('source', $source)
+        this.toggleSources(val)
+        this.categoriesHeight = getHeight(parent(this.$activated[0]))
+        if (this.sources[val]) {
+          prepend(
+            parseHTML(
+              `<i class="${this.classes.SOURCEICON} ${this.getIconName(
+                val
+              )}"></i>`
+            ),
+            query('.pj-dropdown-trigger', this.$selector)
+          )
+        }
+      }
     })
     // 选中的dropdown activated上面那块
     queryAll('div', this.$selectorPanel.$dropdown).forEach(el => {

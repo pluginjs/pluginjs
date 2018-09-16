@@ -103,7 +103,7 @@ class TimePicker extends Component {
     }
 
     this.itemValues = []
-    this.dropdown.options.data.forEach(item => {
+    this.DROPDOWN.options.data.forEach(item => {
       const text = item.textContent
       this.itemValues.push(text)
     })
@@ -111,7 +111,7 @@ class TimePicker extends Component {
   }
 
   initDropdown() {
-    const dropdownConf = {
+    this.DROPDOWN = Dropdown.of(this.$timeTrigger, {
       data: this.getTimeList().map(value => ({ label: value, value })),
       target: this.$panel,
       placeholder: this.options.placeholder,
@@ -123,12 +123,8 @@ class TimePicker extends Component {
       templates: this.options.templates,
       onChange: value => {
         this.trigger(EVENTS.CHANGE, value)
-      },
-      onShow: () => {
-        this.correctionScrollTop()
       }
-    }
-    this.dropdown = Dropdown.of(this.$timeTrigger, dropdownConf)
+    })
 
     this.$remove = parseHTML(
       `<i class="${
@@ -138,12 +134,12 @@ class TimePicker extends Component {
     this.$icon = parseHTML(
       '<i class="pj-dropdown-icon pj-icon  pj-icon-clock-solid"></i>'
     )
-    insertAfter(this.$remove, this.dropdown.element)
+    insertAfter(this.$remove, this.DROPDOWN.element)
     insertAfter(this.$icon, this.$remove)
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
         hideElement(this.$remove)
-        this.dropdown.set('')
+        this.DROPDOWN.set('')
         this.time = ''
         // return false
       }),
@@ -162,15 +158,14 @@ class TimePicker extends Component {
         }
       )
     )(this.$wrap)
-    // this.dropdown = this.$dropdownEl.asDropdown(dropdownConf).data('dropdown')
   }
 
   initInputMask() {
-    this.$inputEl = query('input', this.$dropdownEl)
-    this.$inputEl.setAttribute('name', this.options.name)
-    this.$inputEl.setAttribute('placeholder', 'Select Time')
+    this.$input = query('input', this.$dropdownEl)
+    this.$input.setAttribute('name', this.options.name)
+    this.$input.setAttribute('placeholder', 'Select Time')
 
-    this.mask = InputMask.of(this.$inputEl, {
+    this.MASK = InputMask.of(this.$input, {
       type: 'time',
       onFocus: () => {
         if (this.is('focus') || this.is('disabled')) {
@@ -207,28 +202,15 @@ class TimePicker extends Component {
     this.options.min = min
     this.options.max = max
     const data = this.getTimeList()
-    this.dropdown.replaceByData(data.map(value => ({ label: value })))
+    this.DROPDOWN.replaceByData(data.map(value => ({ label: value })))
   }
-
-  // observeOtherTimePicker (el) {
-  //   const $elDropdown = $(el).data(NAMESPACE).$dropdown
-  //
-  //   $elDropdown.on('dropdown:change', (e, i) => {
-  //       //     this.timeLimit({ minTime: i.value })
-  //   })
-  //
-  //   this.$dropdownEl.on('dropdown:change', (e, i) => {
-  //     el.asTimePicker('timeLimit', { maxTime: i.value })
-  //   })
-  // }
 
   get() {
     return this.time
   }
 
   set(time) {
-    this.dropdown.set(time)
-    this.correctionScrollTop()
+    this.DROPDOWN.set(time)
   }
 
   markItem(action) {
@@ -265,26 +247,6 @@ class TimePicker extends Component {
     )
   }
 
-  correctionScrollTop() {
-    const { active, panel } = this.dropdown
-    if (active && panel) {
-      const scrollTop = panel.scrollTop + this.getOffsetTop(panel)
-      const activeOffset = active.offsetTop
-      if (scrollTop > activeOffset) {
-        panel.scrollTop = activeOffset - this.getOffsetTop(panel)
-      } else if (
-        scrollTop + panel.clientHeight <
-        activeOffset + active.getBoundingClientRect().height
-      ) {
-        panel.scrollTop =
-          activeOffset +
-          active.getBoundingClientRect().height -
-          panel.clientHeight -
-          this.getOffsetTop(panel)
-      }
-    }
-  }
-
   val(time) {
     if (isNull(time) || typeof time === 'undefined') {
       return this.get()
@@ -302,15 +264,15 @@ class TimePicker extends Component {
     bindEvent(
       this.eventName('change'),
       () => {   /* eslint-disable-line */
-        const time = this.$inputEl.value.trim()
+        const time = this.$input.value.trim()
         const timeList = this.getTimeList()
         if (timeList.indexOf(time) < 0) {
-          this.dropdown.set(this.time)
+          this.DROPDOWN.set(this.time)
           return false
         }
-        this.dropdown.set(time)
+        this.DROPDOWN.set(time)
       },
-      this.$inputEl
+      this.$input
     )
     bindEvent(
       this.eventName('focusin'),
@@ -326,24 +288,11 @@ class TimePicker extends Component {
       },
       this.$timeTrigger
     )
-    // bindEvent(
-    //   this.eventName('mouseover'),
-    //   () => {
-    //     addClass(this.classes.BORDER, this.$timeTrigger)
-    //   },
-    //   this.$icon
-    // )
-    // bindEvent(
-    //   this.eventName('mouseout'),
-    //   () => {
-    //     removeClass(this.classes.BORDER, this.$timeTrigger)
-    //   },
-    //   this.$icon
-    // )
+
     bindEvent(
       this.eventName('click'),
       () => {
-        this.dropdown.show()
+        this.DROPDOWN.show()
       },
       this.$icon
     )
@@ -360,7 +309,7 @@ class TimePicker extends Component {
   }
 
   unbind() {
-    removeEvent(this.eventName('change'), this.$inputEl)
+    removeEvent(this.eventName('change'), this.$input)
     removeEvent(this.eventName(), this.$dropdownEl)
     removeEvent(this.eventName(), this.element)
   }
@@ -373,7 +322,7 @@ class TimePicker extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      this.dropdown.enable()
+      this.DROPDOWN.enable()
       this.element.disabled = false
       this.leave('disabled')
     }
@@ -382,7 +331,7 @@ class TimePicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      this.dropdown.disable()
+      this.DROPDOWN.disable()
       this.element.disabled = true
       this.enter('disabled')
     }
@@ -394,7 +343,7 @@ class TimePicker extends Component {
     if (this.is('initialized')) {
       this.unbind()
       removeClass(this.classes.WRAP, this.$wrap)
-      this.dropdown.destroy()
+      this.DROPDOWN.destroy()
       unwrap(this.element)
       removeClass(this.classes.INFO, this.element)
       this.$dropdownEl.remove()

@@ -44,7 +44,7 @@ $select-active-border-color: $border-color-active !default;
 .#{$select} {
   &-wrap {
     font-size: $select-font-size;
-    
+
     .#{$dropdown}.#{$dropdown}-show {
       border-color: $select-border-color;
     }
@@ -66,9 +66,6 @@ $select-active-border-color: $border-color-active !default;
         background-color: $select-item-selected-bg;
       }
     }
-    .pj-dropdown-panel-wrap {
-      z-index: 999999;
-    }
   }
   &-border {
     border-color: #215fdb !important;
@@ -78,9 +75,7 @@ $select-active-border-color: $border-color-active !default;
     color: $gray-dark !important;
     vertical-align: middle;
   }
-  &-dropdown {
-    z-index: 99999;
-  }
+
   &-badge {
     display: block;
     height: 2.2 * $select-sizer; //22px
@@ -140,7 +135,7 @@ $select-active-border-color: $border-color-active !default;
       min-width: 2 * $select-sizer; //20px
       max-width: 100%;
     }
-    
+
     &.#{$select}-label {
       display: none
     }
@@ -148,6 +143,7 @@ $select-active-border-color: $border-color-active !default;
     .pj-input {
       border: none !important;
     }
+
     .#{$select}-trigger {
       position: relative;
       display: flex;
@@ -159,11 +155,11 @@ $select-active-border-color: $border-color-active !default;
       background-color: #FFF;
       border: 1px solid #F2F2F2;
       &:hover {
-        border-color: $color-black; 
+        border-color: $color-black;
       }
     }
 
-    &.#{$select}-hpj-badge {
+    &.#{$select}-has-badge {
       .#{$select}-label {
         width: 0;
       }
@@ -176,7 +172,7 @@ $select-active-border-color: $border-color-active !default;
       border: none;
     }
 
-    &.#{$select}-hpj-badge {
+    &.#{$select}-has-badge {
       .#{$select}-label {
         float: left;
         padding-right: 0;
@@ -185,20 +181,9 @@ $select-active-border-color: $border-color-active !default;
   }
   &-trigger {
     z-index: 1001;
-
-    .pj-dropdown-icon {
-      position: absolute;
-      right: 0.6 * $select-sizer; //6px
-      cursor: pointer;
-    }
-
-    .#{$select}-hideIcon {
-      display: none;
-    }
   }
 
-  &-list,
-  &-sublist {
+  &-list {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -215,7 +200,6 @@ $select-active-border-color: $border-color-active !default;
   &-focus .#{$select}-trigger {
     border-color: $select-hover-border-color;
   }
-
 }
 
 .#{$dropdown}-panel li {
@@ -232,31 +216,5 @@ $select-active-border-color: $border-color-active !default;
   .pj-select-label {
     pointer-events: none !important;
   }
-  // .pj-dropdown-icon {
-  //   cursor: not-allowed !important;
-  // }
-
-  // .#{$select}-badge {
-  //   cursor: not-allowed !important;
-
-  //   &:hover {
-  //     background-color: inherit;
-  //   }
-
-  //   .#{$select}-badge-delete {
-  //     cursor: not-allowed !important;
-  //   }
-  // }
 }
-.pj-icon-remove-small {
-    position: absolute;
-    right: 6px;
-    display: inline-block;
-    height: 16px;
-    padding: 0 5px;
-    font-size: 16px;
-    line-height: 16px;
-    cursor: pointer;
-    transition: transform 0.3s;
-    transform: translateY(0);
-}
+

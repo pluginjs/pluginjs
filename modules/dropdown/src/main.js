@@ -281,7 +281,7 @@ class Dropdown extends Component {
   }
 
   toggle() {
-    if (this.is('show')) {
+    if (this.is('shown')) {
       this.hide()
     } else {
       this.show()
@@ -293,7 +293,8 @@ class Dropdown extends Component {
       return
     }
 
-    if (!this.is('show')) {
+    if (!this.is('shown')) {
+      this.trigger(EVENTS.SHOW)
       this.setupPopper()
       addClass(this.classes.SHOW, this.$dropdown)
       this.$trigger.setAttribute('aria-expanded', 'true')
@@ -317,14 +318,14 @@ class Dropdown extends Component {
         )
       }
 
-      this.enter('show')
+      this.enter('shown')
+      this.trigger(EVENTS.SHOWN)
     }
-
-    this.trigger(EVENTS.SHOW)
   }
 
   hide() {
-    if (this.is('show')) {
+    if (this.is('shown')) {
+      this.trigger(EVENTS.HIDE)
       removeClass(this.classes.SHOW, this.$dropdown)
       this.$trigger.setAttribute('aria-expanded', 'false')
 
@@ -332,9 +333,9 @@ class Dropdown extends Component {
         removeEvent(this.eventNameWithId('click'), document)
       }
 
-      this.leave('show')
+      this.leave('shown')
+      this.trigger(EVENTS.HIDED)
     }
-    this.trigger(EVENTS.HIDE)
   }
   set(value) {
     return this.selectByValue(value, true)

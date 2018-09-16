@@ -128,15 +128,6 @@ class ImagePicker extends Component {
         return null
       })
     )(this.$wrap)
-
-    // pop event
-    this.pop.options.onShow = () => {
-      this.enter('holdHover')
-    }
-    this.pop.options.onHide = () => {
-      removeClass(this.classes.HOVER, this.$wrap)
-      this.leave('holdHover')
-    }
   }
 
   unbind() {
@@ -188,6 +179,13 @@ class ImagePicker extends Component {
             resolve()
           }
         }
+      },
+      onShow() {
+        this.enter('holdHover')
+      },
+      onHide() {
+        removeClass(this.classes.HOVER, this.$wrap)
+        this.leave('holdHover')
       }
     })
   }

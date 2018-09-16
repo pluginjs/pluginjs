@@ -9,14 +9,12 @@ import { deepMerge } from '@pluginjs/utils'
 import {
   append,
   parseHTML,
-  query,
   queryAll,
   unwrap,
   wrap,
   children,
   insertBefore,
-  getData,
-  insertAfter
+  getData
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -62,7 +60,6 @@ class Select extends Component {
       this.element.multiple = true
       const hasSelectedAttribute = el => el.hasAttribute('selected')
       if (!this.selectOptions.find(hasSelectedAttribute)) {
-        // clear selectedOptions
         this.element.selectedIndex = -1
       }
     }
@@ -100,8 +97,6 @@ class Select extends Component {
       this.set(this.selected, true, true)
     } else {
       this.resetList(this.source)
-      // this.resetList(this.source)
-      this.checkIcon()
     }
 
     if (this.options.keyboard) {
@@ -183,36 +178,24 @@ class Select extends Component {
   }
 
   build() {
-    const wrapEl = this.buildFromTemplate('wrap', { that: this })
-    this.$wrap = wrap(wrapEl, this.element)
+    this.$wrap = wrap(this.buildFromTemplate('wrap'), this.element)
     this.element.style.display = 'none'
 
-    this.triggerElement = this.buildFromTemplate('trigger', { that: this })
-    if (this.options.filterable) {
-      append(
-        `<input placeholder="${
-          this.options.placeholder
-        }" class="pj-dropdown-trigger" />`,
-        this.triggerElement
-      )
-    } else {
-      append(
-        `<span class="pj-dropdown-trigger">${this.options.placeholder}</span>`,
-        this.triggerElement
-      )
-    }
-    this.triggerEl = query('.pj-dropdown-trigger', this.triggerElement)
-    this.$dropdown = this.buildFromTemplate('dropdown', { that: this })
-    this.list = isFunction(this.source)
+    this.$trigger = this.buildFromTemplate('trigger', {
+      placeholder: this.options.placeholder
+    })
+    this.$dropdown = this.buildFromTemplate('dropdown')
+    this.$list = isFunction(this.source)
       ? this.source.call(this, this.buildList.bind(this))  /* eslint-disable-line */
       : this.buildList(this.source)
-    append(this.list, this.$dropdown)
-    append(this.triggerElement, this.$wrap)
+    append(this.$list, this.$dropdown)
+    append(this.$trigger, this.$wrap)
     append(this.$dropdown, this.$wrap)
-    this.items = queryAll(`.${this.classes.ITEM}`, this.$dropdown)
+    this.$items = queryAll(`.${this.classes.ITEM}`, this.$dropdown)
   }
 
-  buildFromTemplate(name, args) {
+  buildFromTemplate(name, args = {}) {
+    args.classes = this.classes
     return parseHTML(
       template.render(this.options.templates[name].call(this), args)
     )
@@ -222,25 +205,21 @@ class Select extends Component {
     if (isFunction(this.source)) {
       this.source = data
     }
-    let $content = null
     if (data.length === 0) {
-      $content = this.buildFromTemplate('notFound', { that: this })
+      const $content = this.buildFromTemplate('notFound')
+      append($content, this.$dropdown)
     } else {
-      const $list = this.buildFromTemplate('list', { that: this })
-
-      data.forEach(n => {
-        if (n.group) {
-          n.label = n.label.toUpperCase()
+      data.forEach(item => {
+        if (item.group) {
+          item.label = item.label.toUpperCase()
 
           const $group = this.buildFromTemplate('group', {
-            that: this,
-            group: n
+            group: item
           })
-          const $sublist = this.buildFromTemplate('sublist', { that: this })
+          const $list = this.buildFromTemplate('list')
 
-          n.options.forEach(m => {
+          item.options.forEach(m => {
             const $subItem = this.buildFromTemplate('item', {
-              that: this,
               item: m
             })
 
@@ -253,53 +232,41 @@ class Select extends Component {
                 addClass(this.classes.SELECTED, $subItem)
               }
             }
-            append($subItem, $sublist)
+            append($subItem, $list)
           })
 
-          append($sublist, $group)
-          append($group, $list)
+          append($list, $group)
+          append($group, this.$dropdown)
         } else {
           const $item = this.buildFromTemplate('item', {
-            that: this,
-            item: n
+            item
           })
 
-          if (n.disabled === 'disabled' || n.disabled === true) {
+          if (item.disabled === 'disabled' || item.disabled === true) {
             addClass(this.classes.DISABLED, $item)
           }
 
           for (const i in this.selected) {
-            if (n.value === this.selected[i]) {
+            if (item.value === this.selected[i]) {
               addClass(this.classes.SELECTED, $item)
             }
           }
-          append($item, $list)
+
+          append($item, this.$dropdown)
         }
       })
-
-      $content = $list
     }
-
-    return $content
   }
 
   resetList(data) {
     this.$dropdown.innerHTML = ''
-    this.$dropdown.append(this.buildList(data))
-    this.items = queryAll(`.${this.classes.ITEM}`, this.$dropdown)
+    this.buildList(data)
+    this.$items = queryAll(`.${this.classes.ITEM}`, this.$dropdown)
   }
 
   bind() {
-    let iconClassName = this.options.icon
-    if (this.options.multiple && this.options.closeAllButten) {
-      iconClassName = 'pj-icon pj-icon-char pj-icon-remove-small'
-      insertAfter(
-        '<i class="pj-icon pj-icon-char pj-icon-remove-small"></i>',
-        query('.pj-dropdown-trigger', this.$wrap)
-      )
-    }
-    this.dropdown = Dropdown.of(this.triggerEl, {
-      reference: this.triggerElement,
+    this.DROPDOWN = Dropdown.of(this.$trigger, {
+      reference: this.$trigger,
       target: this.$dropdown,
       trigger: this.options.trigger,
       hideOnSelect: !this.options.multiple,
@@ -307,13 +274,11 @@ class Select extends Component {
       imitateSelect: true,
       // inputLabel: this.options.filterable,
       placeholder: this.options.placeholder,
-      icon: iconClassName,
       templates: {
         inputLabel: () => this.options.templates.filterLabel()
-        // label: () => this.options.templates.label()
       },
-      onShow: () => {
-        addClass(this.classes.BORDER, this.triggerElement)
+      onShown: () => {
+        addClass(this.classes.BORDER, this.$trigger)
         this.trigger(EVENTS.OPEN)
         if (this.options.filterable) {
           this.label.select()
@@ -326,8 +291,8 @@ class Select extends Component {
           this.markItem(null, true)
         }
       },
-      onHide: () => {
-        removeClass(this.classes.BORDER, this.triggerElement)
+      onHided: () => {
+        removeClass(this.classes.BORDER, this.$trigger)
         this.trigger(EVENTS.HIDE)
         if (this.options.filterable) {
           if (this.options.multiple) {
@@ -353,41 +318,9 @@ class Select extends Component {
         }
       }
     })
-    this.label = this.dropdown.element
+    this.label = this.DROPDOWN.element
     if (!this.options.filterable && this.options.multiple) {
       this.label.style.display = 'none'
-    }
-    this.icon = query('.pj-icon-char', this.triggerElement)
-    if (this.options.multiple && this.options.closeAllButten) {
-      bindEvent(
-        this.eventName('click'),
-        e => {
-          if (this.is('disabled')) {
-            return
-          }
-          e.stopPropagation()
-          // delete tag
-          this.items.forEach(item => {
-            if (item.classList.contains(this.classes.SELECTED)) {
-              this.deleteTag(item)
-            }
-          })
-          // show $label placeholder
-          removeClass(this.classes.HASBADGE, this.$wrap)
-          if (!this.options.filterable) {
-            this.label.innerHTML = this.options.placeholder
-          } else {
-            this.label.setAttribute('placeholder', this.options.placeholder)
-          }
-          setStyle('width', '100%', this.label)
-          // delete selected
-          this.selected = []
-          this.resetList(this.source)
-          // hide close icon
-          this.checkIcon()
-        },
-        this.icon
-      )
     }
 
     bindEvent(
@@ -402,7 +335,7 @@ class Select extends Component {
         this.set(getData('flag', badge), false)
         return false  /* eslint-disable-line */
       },
-      this.triggerElement
+      this.$trigger
     )
 
     bindEvent(
@@ -412,10 +345,10 @@ class Select extends Component {
         if (e.target.tagName === 'I') {
           return
         }
-        this.dropdown.toggle()
+        this.DROPDOWN.toggle()
         return false  /* eslint-disable-line */
       },
-      this.triggerElement
+      this.$trigger
     )
 
     bindEvent(
@@ -428,26 +361,8 @@ class Select extends Component {
     )
   }
 
-  checkIcon() {
-    if (!this.options.multiple || !this.options.closeAllButten) {
-      return
-    }
-
-    if (this.selected === null || this.selected.length === 0) {
-      addClass(this.classes.HIDEICON, this.icon)
-      if (!this.options.filterable) {
-        this.label.style.display = ''
-      }
-    } else {
-      removeClass(this.classes.HIDEICON, this.icon)
-      if (!this.options.filterable) {
-        this.label.style.display = 'none'
-      }
-    }
-  }
-
   unbind() {
-    this.dropdown.destroy()
+    this.DROPDOWN.destroy()
   }
 
   click(item) {
@@ -467,17 +382,17 @@ class Select extends Component {
       }
 
       if (!this.options.multiple) {
-        this.dropdown.hide()
+        this.DROPDOWN.hide()
       }
     }
-
-    this.checkIcon()
   }
+
   initialTag() {
-    this.items
+    this.$items
       .filter(hasClass(this.classes.SELECTED))
       .forEach(this.addTag.bind(this))
   }
+
   addTag(item) {
     let $badge = null
     const data = this.getItemData(item)
@@ -491,10 +406,10 @@ class Select extends Component {
     })
 
     insertBefore($badge, this.label)
-    this.badges = queryAll(`.${this.classes.BADGE}`, this.triggerElement)
+    this.badges = queryAll(`.${this.classes.BADGE}`, this.$trigger)
 
     if (hasClass(this.classes.HASBADGE, this.$wrap)) {
-      this.dropdown.POPPER.scheduleUpdate()
+      this.DROPDOWN.POPPER.scheduleUpdate()
     } else {
       addClass(this.classes.HASBADGE, this.$wrap)
     }
@@ -506,8 +421,8 @@ class Select extends Component {
     this.badges[pos].remove()
     this.selectedProcess(value, false)
 
-    this.badges = queryAll(`.${this.classes.BADGE}`, this.triggerElement)
-    this.dropdown.POPPER.scheduleUpdate()
+    this.badges = queryAll(`.${this.classes.BADGE}`, this.$trigger)
+    this.DROPDOWN.POPPER.scheduleUpdate()
     if (this.selected.length === 0) {
       removeClass(this.classes.HASBADGE, this.$wrap)
     }
@@ -584,7 +499,7 @@ class Select extends Component {
         }
         break
       case 'down':
-        if (this.markIndex < this.items.length - 1) {
+        if (this.markIndex < this.$items.length - 1) {
           this.markIndex++
           trigger = true
         }
@@ -601,8 +516,8 @@ class Select extends Component {
         ? this.classes.MARK
         : this.classes.SELECTED
 
-      this.items.map(item => removeClass(className, item))
-      addClass(className, this.items[this.markIndex])
+      this.$items.map(item => removeClass(className, item))
+      addClass(className, this.$items[this.markIndex])
     }
   }
 
@@ -630,7 +545,7 @@ class Select extends Component {
         this.deleteTag(item)
       }
       if (this.options.filterable) {
-        if (this.dropdown.is('show')) {
+        if (this.DROPDOWN.is('show')) {
           this.label.value = ''
           this.label.focus()
         }
@@ -744,7 +659,7 @@ class Select extends Component {
       }
     }
 
-    this.items.forEach((n, i) => {
+    this.$items.forEach((n, i) => {
       if (isArray(value)) {
         value.forEach(val => {
           handle(n, val, isAdd, trigger, type, i)
@@ -753,8 +668,6 @@ class Select extends Component {
         handle(n, value, isAdd, trigger, type, i)
       }
     })
-
-    this.checkIcon()
   }
 
   get() {
@@ -771,17 +684,17 @@ class Select extends Component {
   }
 
   open() {
-    this.dropdown.show()
+    this.DROPDOWN.show()
   }
 
   close() {
-    this.dropdown.hide()
+    this.DROPDOWN.hide()
   }
 
   enable() {
     if (this.is('disabled')) {
       this.element.disabled = false
-      this.dropdown.enable()
+      this.DROPDOWN.enable()
       removeClass(this.classes.DISABLED, this.$wrap)
       this.leave('disabled')
     }
@@ -792,7 +705,7 @@ class Select extends Component {
   disable() {
     if (!this.is('disabled')) {
       this.element.disabled = true
-      this.dropdown.disable()
+      this.DROPDOWN.disable()
       addClass(this.classes.DISABLED, this.$wrap)
       this.enter('disabled')
     }
