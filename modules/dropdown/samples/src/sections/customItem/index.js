@@ -28,7 +28,6 @@ const data = [
 
 Dropdown.of(element, {
   data,
-  imitateSelect: true,
   offset: '0,2px',
   templates: {
     item() {

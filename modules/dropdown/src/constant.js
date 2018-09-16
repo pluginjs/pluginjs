@@ -10,8 +10,7 @@ export const events = {
   SHOW: 'show',
   SHOWN: 'shown',
   CHANGE: 'change',
-  SELECT: 'select',
-  TRIGGER: 'trigger'
+  SELECT: 'select'
 }
 
 export const classes = {
@@ -20,15 +19,13 @@ export const classes = {
   TRIGGRER: '{namespace}-trigger',
   REFERENCE: '{namespace}-reference',
   DROPDOWN: '{namespace}',
-  INPUT: 'pj-input {namespace}-input',
   ITEM: '{namespace}-item',
   SHOW: '{namespace}-show',
   PLACEMENT: '{namespace}-on-{placement}',
   FOCUS: '{namespace}-focus',
   DISABLED: '{namespace}-disabled',
   ACITVE: '{namespace}-active',
-  HIGHLIGHTED: '{namespace}-highlighted',
-  SELECTED: '{namespace}-selected'
+  HIGHLIGHTED: '{namespace}-highlighted'
 }
 
 export const methods = [
@@ -54,16 +51,7 @@ export const defaults = {
   offset: '0,6px',
   flip: true,
   boundary: 'scrollParent', // viewport
-
-  imitateSelect: false, // Behave like select
-  itemLabel(item) {
-    // return this.getItemValue(item)
-    return item.innerHTML
-  },
-  value: null, // set initial select value, when imitateSelect is true
-  itemValueAttr: 'data-value', // item tag name
-  placeholder: 'Please Select',
-
+  itemValueAttr: 'data-value',
   data: null, // json [{label: [string]}, ....]
   templates: {
     item() {

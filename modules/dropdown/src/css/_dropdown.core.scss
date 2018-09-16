@@ -25,12 +25,6 @@ $dropdown-index: $zindex-dropdown !default;
     opacity: 1;
   }
 
-  &-input {
-    &:not(input) {
-      display: block;
-    }
-  }
-
   &-item {
     overflow: hidden;
     line-height: 1;
@@ -38,11 +32,7 @@ $dropdown-index: $zindex-dropdown !default;
     white-space: nowrap;
   }
 
-  &-trigger:not(input) {
-    cursor: pointer;
-  }
-
-  &-disabled.#{$dropdown}-trigger:not(input) {
+  &-disabled.#{$dropdown}-trigger {
     cursor: not-allowed;
   }
 }

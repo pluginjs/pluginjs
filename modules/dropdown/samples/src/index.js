@@ -2,8 +2,6 @@
 import '@pluginjs/icons/dist/plugin-icons.css'
 // import sections
 import './sections/default/index.js'
-import './sections/imitateSelect/index.js'
-import './sections/value/index.js'
 import './sections/hideOnSelect/index.js'
 import './sections/hideOutClick/index.js'
 import './sections/itemValueAttr/index.js'

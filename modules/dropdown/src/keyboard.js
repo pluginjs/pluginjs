@@ -13,6 +13,9 @@ class Keyboard {
     bindEvent(
       this.instance.eventName('focus'),
       () => {
+        if (instance.is('disabled')) {
+          return
+        }
         addClass(this.instance.classes.FOCUS, this.instance.$trigger)
       },
       this.instance.$trigger
@@ -21,6 +24,9 @@ class Keyboard {
     bindEvent(
       this.instance.eventName('blur'),
       () => {
+        if (instance.is('disabled')) {
+          return
+        }
         removeClass(this.instance.classes.FOCUS, this.instance.$trigger)
       },
       this.instance.$trigger

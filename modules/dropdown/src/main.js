@@ -3,7 +3,7 @@ import template from '@pluginjs/template'
 import { isString, isNull, isDomNode, isObject, isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, has, query, children, html } from '@pluginjs/dom'
+import { append, has, query, children } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -82,22 +82,8 @@ class Dropdown extends Component {
     addClass(this.classes.REFERENCE, this.$reference)
     addClass(this.classes.DROPDOWN, this.$dropdown)
 
-    if (isInput(this.$trigger) || this.options.imitateSelect) {
-      addClass(this.classes.INPUT, this.$trigger)
-    }
-
     if (!isNull(this.options.data)) {
       this.appendItems(this.options.data)
-    }
-
-    if (!isNull(this.options.value)) {
-      this.selectByValue(this.options.value, false)
-    } else if (
-      this.options.imitateSelect &&
-      this.options.placeholder &&
-      !isInput(this.$trigger)
-    ) {
-      html(this.options.placeholder, this.$trigger)
     }
 
     if (this.options.keyboard) {
@@ -207,17 +193,6 @@ class Dropdown extends Component {
     return null
   }
 
-  getItemByValue(value) {
-    const $items = this.getItems()
-    $items.forEach($item => {// eslint-disable-line
-      if ($item.getAttribute(this.options.itemValueAttr) === value) {
-        return $item
-      }
-    })
-
-    return null
-  }
-
   getItemByIndex(index) {
     const $items = this.getItems()
     if (index >= 0 && index <= $items.length) {
@@ -228,56 +203,34 @@ class Dropdown extends Component {
   }
 
   selectByValue(value, trigger = true) {
-    const selected = this.getItems().filter(item => {
-      return this.getItemValue(item) === value
+    const $selected = this.getItems().find($item => {
+      return this.getItemValue($item) === value
     })
-    if (selected.length > 0) {
-      this.selectItem(selected[0], trigger)
-    } else {
-      removeClass(this.classes.ACITVE, this.active)
-      if (isInput(this.$trigger)) {
-        this.$trigger.value = value
-      } else {
-        const $item = this.getItemByValue(value)
-        if ($item) {
-          html(this.getItemLabel($item), this.$trigger)
-        }
-      }
+    if ($selected) {
+      this.selectItem($selected, trigger)
     }
   }
 
-  getItemValue(item) {
-    return item.getAttribute(this.options.itemValueAttr)
+  getItemValue($item) {
+    return $item.getAttribute(this.options.itemValueAttr)
   }
 
-  getItemLabel(item) {
-    return this.options.itemLabel.call(this, item)
-  }
-
-  selectItem(item, trigger = true) {
-    if (!isNull(this.active)) {
-      removeClass(this.classes.ACITVE, this.active)
+  selectItem($item, trigger = true) {
+    if (!isNull(this.$active)) {
+      removeClass(this.classes.ACITVE, this.$active)
     }
 
-    const value = this.getItemValue(item)
-    if (this.options.imitateSelect) {
-      if (isInput(this.$trigger)) {
-        this.$trigger.value = value
-      } else {
-        html(this.getItemLabel(item), this.$trigger)
-      }
-      addClass(this.classes.SELECTED, this.$trigger)
-    }
+    const value = this.getItemValue($item)
     if (trigger) {
-      this.trigger(EVENTS.SELECT, item)
+      this.trigger(EVENTS.SELECT, $item)
 
-      if (this.active !== item) {
+      if (this.$active !== $item) {
         this.trigger(EVENTS.CHANGE, value)
       }
     }
 
-    this.active = item
-    addClass(this.classes.ACITVE, this.active)
+    this.$active = $item
+    addClass(this.classes.ACITVE, this.$active)
   }
 
   getHighlightedItem() {
