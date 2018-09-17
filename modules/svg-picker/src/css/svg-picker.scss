@@ -3,43 +3,67 @@
 
 // Vars
 // =====================
-$svgPicker: "pj-svgPicker" !default;
-$svgPicker-sizer: $sizer !default;
+$svgPicker: "pj-svgPicker";
+$dropdown: "pj-dropdown";
+$svgPicker-sizer: $sizer;
 
-$svgPicker-width: 16 * $svgPicker-sizer !default; //160px
-$svgPicker-height: 3 * $svgPicker-sizer !default; //30px
-$svgPicker-font-size: $font-size-base !default;
-$svgPicker-border-color: $gray-border !default;
-$svgPicker-active-color: $gray-darker !default;
-$svgPicker-hover-color: $gray-darkest !default;
+$svgPicker-width: 200px;
+$svgPicker-height: 32px;
+$svgPicker-font-size: $font-size-base;
+$svgPicker-font-family: $font-family-base;
+$svgPicker-border-radius: $border-radius-base;
+$svgPicker-border-color: $gray;
+
+$svgPicker-color: #999;
+$svgPicker-active-color: $gray-darker;
+$svgPicker-hover-color: $gray-darker;
+$svgPicker-select-color: $gray-darkest;
 // icon
-$svgPicker-icon-width: 4.8 * $svgPicker-sizer !default; //52px
-$svgPicker-icon-height: 4.8 * $svgPicker-sizer !default; //52px
-$svgPicker-icon-color: $gray-light !default;
-$svgPicker-icon-active-color: $color-primary !default;
-$svgPicker-icon-hover-color: $gray-light !default;
-$svgPicker-icon-border-width: 1px !default;
-$svgPicker-icon-border-style: solid !default;
-$svgPicker-icon-border: $svgPicker-icon-border-width
-  $svgPicker-icon-border-style transparent !default;
+$svgPicker-icon-width: 48px;
+$svgPicker-icon-height: 48px;
+$svgPicker-icon-margin: 6px;
+$svgPicker-icon-color: $gray-light;
+$svgPicker-icon-active-color: $color-primary;
+$svgPicker-icon-hover-color: $gray-light;
+$svgPicker-icon-border-radius: 8px;
+$svgPicker-icon-border-width: 1px;
+$svgPicker-icon-border-style: solid;
+$svgPicker-icon-border: $svgPicker-icon-border-width $svgPicker-icon-border-style transparent;
+$svgPicker-icon-svg-width: 24px;
+$svgPicker-icon-svg-height: 24px;
+// trigger
+$svgPicker-trigger-padding: 8px 12px;
+$svgPicker-trigger-height: 16px;
+// svg
+$svgPicker-svg-width: 12px;
+$svgPicker-svg-height: 12px;
+$svgPicker-svg-margin-right: 8px;
+
+$svgPicker-input-margin-left: 8px;
+
 // empty
-$svgPicker-empty-padding: 2 * $svgPicker-sizer !default; //20px
+$svgPicker-empty-padding: 20px;
 // add btn
-$svgPicker-add-color: $color-primary !default;
-$svgPicker-add-opacity: 0.8 !default;
-$svgPicker-trigger-icon-left: $svgPicker-width - 20px !default;
-$svgPicker-panel-height: 32 * $svgPicker-sizer !default; //320px
-$svgPicker-type-height: 3 * $svgPicker-sizer !default; //30px
-$svgPicker-type-bg-color: $gray-lightest !default;
+$svgPicker-add-color: $color-primary;
+$svgPicker-add-margin-right: 12px;
+$svgPicker-type-height: 32px;
+$svgPicker-type-bg-color: $gray-lightest;
+$svgPicker-type-spacer-x: 12px;
+// panel
+$svgPicker-panel-width: 272px;
+$svgPicker-panel-height: 400px;
 // manage
-$svgPicker-manage-height: 3 * $svgPicker-sizer !default; //30px
-$svgPicker-manage-icon-margin-right: $svgPicker-sizer !default; //10px
-$svgPicker-manage-icon-font-size: $font-size-sm !default;
-$svgPicker-search-height: 3 * $svgPicker-sizer !default; //40px
+$svgPicker-manage-icon-margin-right: 8px;
+$svgPicker-manage-icon-font-size: $font-size-sm;
+$svgPicker-manage-border-color: $gray-light;
+$svgPicker-manager-bg: $color-white;
+$svgPicker-manage-icon-color: $gray-darkest;
 // search
-$svgPicker-search-border: 1px solid $gray !default;
-$svgPicker-search-margin-bottom: 1px !default;
-$svgPicker-search-icon-color: $gray-dark !default;
+$svgPicker-search-height: 40px;
+$svgPicker-search-border: 1px solid $gray;
+$svgPicker-search-padding: 12px;
+$svgPicker-search-margin-bottom: 1px;
+$svgPicker-search-icon-color: $gray-dark;
 
 // Core
 // =====================
@@ -47,34 +71,47 @@ $svgPicker-search-icon-color: $gray-dark !default;
   width: $svgPicker-width;
   height: $svgPicker-height;
   padding: 0;
+  font-family: $svgPicker-font-family;
   font-size: $svgPicker-font-size;
   border: 1px solid $svgPicker-border-color;
+  border-radius: $svgPicker-border-radius;
 
   &:hover {
     border-color: $svgPicker-hover-color;
   }
 
-  .pj-dropdown-trigger {
-    width: 15.8 * $svgPicker-sizer; //158px;
-    padding: 0 $svgPicker-sizer; //0 10px
-    line-height: $svgPicker-height;
+  &:focus {
+    outline: none;
+  }
 
-    > span {
-      height: $svgPicker-height - 2px;
-    }
+  .#{$dropdown}-trigger {
+    padding: $svgPicker-trigger-padding;
+    font-size: $svgPicker-font-size;
+    line-height: $svgPicker-trigger-height;
+    color: $svgPicker-color;
+
 
     svg {
-      width: 1.6 * $svgPicker-sizer; //16px
-      height: 1.6 * $svgPicker-sizer; //16px
-      margin-right: 0.6 * $svgPicker-sizer; //6px
+      width: $svgPicker-svg-width;
+      height: $svgPicker-svg-height;
+      margin-right: $svgPicker-svg-margin-right;
     }
   }
 
+  .#{$dropdown}-trigger[aria-expanded="true"] {
+    color: $svgPicker-select-color;
+  } 
+
   &-empty {
+    padding: 0 24px;
     font-size: $svgPicker-font-size;
-    line-height: 2.6 * $svgPicker-sizer; //26px
+    line-height: 20px;
+    color: $svgPicker-color;
 
     .#{$svgPicker}-add {
+      margin-top: 12px;
+      font-weight: 500;
+      line-height: 16px;
       color: $svgPicker-add-color;
       text-decoration: none;
 
@@ -90,24 +127,23 @@ $svgPicker-search-icon-color: $gray-dark !default;
     color: $gray-darkest;
   }
 
-  &-panel {
-    width: 26 * $svgPicker-sizer !important; //26px
-    height: 36 * $svgPicker-sizer !important; //36px;
+  &-panel.#{$dropdown} {
+    width: $svgPicker-panel-width;
+    height: $svgPicker-panel-height;
     min-height: $svgPicker-panel-height;
-    padding: 0 0 $svgPicker-manage-height 0;
-
-    li:hover {
-      cursor: default;
-      background-color: inherit;
-    }
+    padding: 0 0 $svgPicker-height 0;
   }
 
   &-type {
-    padding: 0 !important;
     margin-bottom: 1px;
 
+    &.#{$dropdown}-item {
+      padding: 0;
+    }
+
     &:focus {
-      // color: blue;
+      outline: none;
+
       .#{$svgPicker}-type-title {
         color: $svgPicker-active-color;
       }
@@ -115,7 +151,7 @@ $svgPicker-search-icon-color: $gray-dark !default;
 
     &-title {
       height: $svgPicker-type-height;
-      padding: 0 1.5 * $svgPicker-sizer !important; //20px
+      padding: 0 $svgPicker-type-spacer-x;
       font-size: $svgPicker-font-size;
       line-height: $svgPicker-type-height;
 
@@ -126,7 +162,7 @@ $svgPicker-search-icon-color: $gray-dark !default;
     }
 
     ul {
-      padding: 0 10px;
+      padding: 0;
       margin: 0;
     }
 
@@ -134,22 +170,22 @@ $svgPicker-search-icon-color: $gray-dark !default;
       width: $svgPicker-icon-width;
       height: $svgPicker-icon-height;
       padding: 0;
-      margin: 0.5 * $svgPicker-sizer; //5px
+      margin: $svgPicker-icon-margin;
       font-size: $font-size-xs;
       color: $svgPicker-icon-color;
       text-align: center;
       list-style: none;
       border: $svgPicker-icon-border;
-      border-radius: 0.8 * $svgPicker-sizer; //8px
+      border-radius: $svgPicker-icon-border-radius;
 
       &-hover,
       &:hover {
-        background-color: $gray-light;
+        background-color: $svgPicker-icon-hover-color;
       }
 
       svg {
-        width: 2.4 * $svgPicker-sizer; //24px
-        height: 2.4 * $svgPicker-sizer; //24px
+        width: $svgPicker-icon-svg-width;
+        height: $svgPicker-icon-svg-height;
       }
     }
 
@@ -157,6 +193,7 @@ $svgPicker-search-icon-color: $gray-dark !default;
       &:hover {
         background-color: $color-white !important;
       }
+
       .pj-scrollable {
         display: block !important;
       }
@@ -171,7 +208,7 @@ $svgPicker-search-icon-color: $gray-dark !default;
     }
 
     .pj-scrollable {
-      height: 18.8 * $svgPicker-sizer !important; //188px
+      height: 188px !important;
 
       &-container {
         width: 274px !important;
@@ -189,15 +226,14 @@ $svgPicker-search-icon-color: $gray-dark !default;
   }
 
   &-manage {
-    min-height: $svgPicker-manage-height;
     font-size: $svgPicker-font-size;
-    line-height: $svgPicker-manage-height;
+    line-height: $svgPicker-height;
     text-align: center;
     cursor: pointer;
-    background-color: $color-white;
-    border-top: 1px solid $svgPicker-border-color;
-    border-bottom-right-radius: $border-radius-base;
-    border-bottom-left-radius: $border-radius-base;
+    background-color: $svgPicker-manager-bg;
+    border-top: 1px solid $svgPicker-manage-border-color;
+    border-bottom-right-radius: $svgPicker-border-radius;
+    border-bottom-left-radius: $svgPicker-border-radius;
 
     &:hover {
       color: $svgPicker-active-color;
@@ -205,14 +241,13 @@ $svgPicker-search-icon-color: $gray-dark !default;
 
     &-icon {
       margin-right: $svgPicker-manage-icon-margin-right;
-      font-size: $svgPicker-manage-icon-font-size;
-      color: $svgPicker-active-color;
+      color: $svgPicker-manage-icon-color;
     }
   }
 
   &-search {
     height: $svgPicker-search-height;
-    padding: 0.4 * $svgPicker-sizer $svgPicker-sizer 0.4 * $svgPicker-sizer 2 * $svgPicker-sizer; //4px 10px 4px 20px
+    padding: $svgPicker-search-padding;
     margin-bottom: $svgPicker-search-margin-bottom;
     font-size: $svgPicker-font-size;
     border-bottom: $svgPicker-search-border;
@@ -221,13 +256,13 @@ $svgPicker-search-icon-color: $gray-dark !default;
       min-width: 100px;
       height: 100%;
       margin-bottom: 0;
-      margin-left: $svgPicker-sizer; //10px
+      margin-left: $svgPicker-input-margin-left;
       font-size: $svgPicker-font-size;
     }
   }
 
   &-wrap {
-    .#{$svgPicker}.pj-dropdown-show {
+    .#{$svgPicker}.#{$dropdown}-show {
       border-color: $svgPicker-active-color;
     }
   }
@@ -235,9 +270,11 @@ $svgPicker-search-icon-color: $gray-dark !default;
    &-disabled {
     cursor: not-allowed;
 
-    &:hover {border: 1px solid #e6e6e6;}
+    &:hover {
+      border: 1px solid $svgPicker-border-color;
+    }
 
-    .pj-dropdown-trigger {
+    .#{$dropdown}-trigger {
       pointer-events: none
     }
    }

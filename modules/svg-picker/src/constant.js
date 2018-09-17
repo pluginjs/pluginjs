@@ -81,7 +81,7 @@ export const defaults = {
       </li>`
     },
     type() {
-      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="pj-icon pj-icon-triangle-down-mini-solid">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
+      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="pj-icon pj-icon-triangle-right-mini-solid">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
       </div>`
     },
     manage() {
@@ -119,8 +119,8 @@ export const dependencies = ['dropdown', 'scrollable']
 
 export const translations = {
   en: {
-    emptyText: 'Befor using SVG icons, you need add icons to "my collections"',
-    emptyHrefText: 'Go add now',
+    emptyText: 'Befor using SVG icons, you need to add to "my collections"',
+    emptyHrefText: 'Go Add Now',
     searchText: 'Search',
     manage: 'Manage My Collections',
     founded: 'founded'
