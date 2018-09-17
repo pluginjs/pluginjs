@@ -24,6 +24,7 @@ import {
 } from '@pluginjs/dom'
 import { setStyle, hideElement, showElement } from '@pluginjs/styled'
 import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 import Scrollable from '@pluginjs/scrollable'
 import Tooltip from '@pluginjs/tooltip'
 import {
@@ -601,18 +602,12 @@ class IconsPicker extends Component {
     })
     this.$panel.append(this.$controller)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
-    this.$selectorTrigger = query('.pj-dropdown-trigger', this.$selector)
-    this.$selectorPanel = Dropdown.of(this.$selectorTrigger, {
+    this.$elSelect = query(`.${this.classes.ELSELECTOR}`, this.$controller)
+    this.$selectorPanel = Select.of(this.$elSelect, {
       reference: this.$selector,
-      placement: 'top-center',
-      data,
-      target: next(this.$selector),
-      // keyboard: true,
-      hideOnSelect: true,
-      offset: '12px,2px',
+      placement: 'top-start',
+      source: data,
       value: data[data.length - 1].value,
-      icon: 'pj-icon pj-icon-char pj-icon-chevron-down',
-      classes: { panel: `${this.classes.SELECTORPANEL} pj-dropdown-panel` },
       onChange: val => {
         this.togglePackage(val)
       }

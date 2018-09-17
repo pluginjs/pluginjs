@@ -16,7 +16,13 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import { isArray, isFunction, isNull, isPlainObject } from '@pluginjs/is'
+import {
+  isArray,
+  isFunction,
+  isUndefined,
+  isNull,
+  isPlainObject
+} from '@pluginjs/is'
 // import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
@@ -46,12 +52,11 @@ class Select extends Component {
 
   initialize() {
     this.value = this.element.value
-    if (isNull(this.value)) {
+    if (isUndefined(this.value)) {
       this.value = this.options.value
     }
-
     this.placeholder = this.element.getAttribute('placeholder')
-    if (isNull(this.placeholder)) {
+    if (isUndefined(this.placeholder)) {
       this.placeholder = this.options.placeholder
     }
 
@@ -75,7 +80,7 @@ class Select extends Component {
       this.disable()
     }
 
-    this.bind()
+    // this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }

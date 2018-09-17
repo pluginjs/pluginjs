@@ -31,6 +31,7 @@ export const controllerClass = {
   CONTROLLER: '{namespace}-controller',
   SELECTOR: '{namespace}-selector',
   SELECTORPANEL: '{namespace}-selector-panel',
+  ELSELECTOR: '{namespace}-selector-element',
   MANAGE: '{namespace}-manage'
 }
 
@@ -89,7 +90,7 @@ export const defaults = {
       </div>`
     },
     controller() {
-      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}><span class="pj-dropdown-trigger"></span></div><div></div>
+      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}><div class={classes.ELSELECTOR}></div></div>
       </div>`
     },
     search() {
