@@ -3,12 +3,86 @@
 // Vars
 // =====================
 $select: "pj-select";
+$select-width: 200px;
+
+$select-trigger-arrow-icon: $pj-icon-angle-down-mini-solid;
+$select-trigger-arrow-font: $pj-icon-font-family;
+$select-trigger-arrow-right: 1.5 * $sizer;
+
+$select-clear-icon: $pj-icon-close;
+$select-clear-font: $pj-icon-font-family;
+$select-clear-right: 1.5 * $sizer;
 
 .#{$select} {
+  position: relative;
+  width: $select-width;
+
   &-element {
-    display: none;
+    //display: none;
   }
+
+  & &-trigger {
+    width: 100%;
+  }
+
+  & &-dropdown {
+    width: 100%;
+  }
+
   &-trigger {
     cursor: pointer;
+
+    &::after {
+      @include icon();
+      position: absolute;
+      right: $select-trigger-arrow-right;
+      font-family: $select-trigger-arrow-font;
+
+      content: icon-content($select-trigger-arrow-icon);
+      transition: transform 0.3s;
+      will-change: transform;
+    }
+
+    .#{$select}-clearable.#{$select}-selected &:hover::after {
+      display: none;
+    }
+
+    &.pj-dropdown-on-top[aria-expanded="true"]::after {
+      transform: rotate(180deg);
+    }
+  }
+
+  &-clear {
+    position: absolute;
+    top: 0;
+    right: $select-clear-right;
+    display: none;
+    height: 100%;
+    font-family: $select-clear-font;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($select-clear-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
+
+    .#{$select}-selected .#{$select}-trigger:hover & {
+      display: inline-block;
+    }
+  }
+
+  &-group {
+    overflow: hidden;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

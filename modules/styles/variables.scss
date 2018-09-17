@@ -14,11 +14,13 @@ $gray: #e6e6e6 !default;
 $gray-light: #f2f2f2 !default;
 $gray-lighter: #fafafa !default;
 $gray-lightest: #fcfcfc !default;
-$gray-border: #e6e6e6 !default;
+
+$gray-border: $gray !default;
 
 $btn-color-primary: #215fdb;
 $btn-color-hover: #2376eb;
 $btn-color-disable: #acc4e6;
+
 $color-primary: #215fdb;
 $color-primary-active: #215fdb !default;
 $color-primary-dark: #1d53bf;
@@ -162,7 +164,7 @@ $transition-duration: 150ms !default;
 // 9. disabled bg color
 $disabled-bg: $color-white;
 $disabled-border: $gray-border;
-$disabled-color: $gray-border;
+$disabled-color: $gray;
 
 // mixins
 

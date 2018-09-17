@@ -2,31 +2,32 @@
 // Vars
 // =====================
 $input: pj-input !default;
-// nomoral
-$inputGroup: pj-input-group !default;
+$input-group: pj-input-group !default;
+
 $input-sizer: $sizer !default;
 
 $input-font-size: $font-size-base;
 $input-color: $text-color !default;
+
 $input-border-color: $border-color !default;
 $input-border-width: $border-width !default;
 $input-border-style: solid !default;
 $input-border-radius: $border-radius-lg !default;
+$input-border-color-hover: $border-color-hover !default;
+$input-border-color-focus: $border-color-active !default;
+
 $input-height: 3*$input-sizer+2 !default; //32px
 $input-padding-top: 0.4*$input-sizer !default; //4px
 $input-padding-left: 1.5*$input-sizer !default; //15px
 $input-line-height: 1.6*$input-sizer !default; //16px
 $input-group-left: 16.7*$input-sizer !default; //167px
-// placeholder
+
 $input-placeholder-color: $gray-dark !default;
-// hover
-$input-border-color-hover: $border-color-hover !default;
-// focus
-$input-border-color-focus: $border-color-active !default;
 
 $disabled-bg: $color-white;
 $disabled-border: $gray-border;
 $disabled-color: $gray-border;
+
 // Core
 // =====================
 .#{$input} {
@@ -68,7 +69,7 @@ $disabled-color: $gray-border;
   }
 
 }
-.#{$inputGroup} {
+.#{$input-group} {
   position: relative;
   display: flex;
   flex-wrap: wrap; // For form validation feedback

@@ -17,15 +17,27 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   ELEMENT: '{namespace}-element',
   TRIGGER: '{namespace}-trigger pj-input',
-  WRAP: '{namespace}-wrap',
+  LABEL: '{namespace}-label',
+  WRAP: '{namespace}',
   DROPDOWN: '{namespace}-dropdown',
   GROUP: '{namespace}-group',
   OPTION: '{namespace}-option pj-dropdown-item',
+  OPTIONDISABLED: '{namespace}-option-disabled pj-dropdown-item-disabled',
   SELECTED: '{namespace}-selected',
-  DISABLED: '{namespace}-disabled'
+  DISABLED: '{namespace}-disabled',
+  CLEARABLE: '{namespace}-clearable',
+  CLEAR: '{namespace}-clear'
 }
 
-export const methods = ['enable', 'disable', 'destroy']
+export const methods = [
+  'set',
+  'get',
+  'val',
+  'clear',
+  'enable',
+  'disable',
+  'destroy'
+]
 
 export const defaults = {
   theme: null,
@@ -33,8 +45,9 @@ export const defaults = {
   value: null,
   placeholder: 'Please Select',
   keyboard: true,
+  clearable: false,
   dropdown: {
-    placement: 'bottom-start'
+    placement: 'bottom' // top
   },
   optionLabel(option) {
     return option.label
@@ -43,7 +56,10 @@ export const defaults = {
     group() {
       return '<div class="{classes.GROUP}">{group.label}</div>'
     },
-    option() {
+    option(option) {
+      if (option.disabled) {
+        return '<div class="{classes.OPTION} {classes.OPTIONDISABLED}" data-value="{option.value}">{option.label}</div>'
+      }
       return '<div class="{classes.OPTION}" data-value="{option.value}">{option.label}</div>'
     }
   },

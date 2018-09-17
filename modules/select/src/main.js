@@ -23,6 +23,7 @@ import {
   isNull,
   isPlainObject
 } from '@pluginjs/is'
+import Clearable from './clearable'
 // import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
@@ -51,12 +52,9 @@ class Select extends Component {
   }
 
   initialize() {
-    this.value = this.element.value
-    if (isUndefined(this.value)) {
-      this.value = this.options.value
-    }
+    this.value = null
     this.placeholder = this.element.getAttribute('placeholder')
-    if (isUndefined(this.placeholder)) {
+    if (!this.placeholder) {
       this.placeholder = this.options.placeholder
     }
 
@@ -68,13 +66,23 @@ class Select extends Component {
       `<div class="${this.classes.WRAP}"></div>`,
       this.element
     )
+
     this.$trigger = appendTo(
-      `<div class="${this.classes.TRIGGER}">${this.placeholder}</div>`,
+      `<div class="${this.classes.TRIGGER}"></div>`,
       this.$wrap
+    )
+
+    this.$label = appendTo(
+      `<span class="${this.classes.LABEL}">${this.placeholder}</span>`,
+      this.$trigger
     )
 
     this.initData()
     this.setupDropdown()
+
+    if (this.options.clearable) {
+      this.CLEARABLE = new Clearable(this)
+    }
 
     if (this.element.disabled || this.options.disabled) {
       this.disable()
@@ -152,32 +160,52 @@ class Select extends Component {
     }
 
     this.data = data
+    this.items = this.flatItems(data)
 
-    if (this.value) {
-      this.select(this.value, false)
+    let value = this.element.value
+    if (isUndefined(this.value)) {
+      value = this.options.value
+    }
+    if (value) {
+      this.select(value, false)
     }
   }
 
-  select(value, trigger = true) {
-    const option = this.getOptionByValue(value)
-
-    if (trigger) {
-      this.trigger(EVENTS.SELECT, option)
-
-      if (this.value !== value) {
-        this.trigger(EVENTS.CHANGE, value)
+  flatItems(data) {
+    let items = []
+    data.forEach(item => {
+      if (item.children) {
+        items = items.concat(item.children)
+      } else {
+        items.push(item)
       }
-    }
+    })
 
-    this.value = value
-    this.element.value = value
+    return items
+  }
 
-    if (!isNull(value) && option) {
-      this.setTriggerLabel(this.getOptionLabel(option))
-      addClass(this.classes.SELECTED, this.$trigger)
-    } else {
-      this.setTriggerLabel(this.placeholder)
-      removeClass(this.classes.SELECTED, this.$trigger)
+  select(value, trigger = true) {
+    if (value !== this.value) {
+      const option = this.getOptionByValue(value)
+
+      if (trigger) {
+        this.trigger(EVENTS.SELECT, option)
+
+        if (this.value !== value) {
+          this.trigger(EVENTS.CHANGE, value)
+        }
+      }
+
+      this.value = value
+      this.element.value = value
+
+      if (!isNull(value) && option) {
+        this.setLabel(this.getOptionLabel(option))
+        addClass(this.classes.SELECTED, this.$wrap)
+      } else {
+        this.setLabel(this.placeholder)
+        removeClass(this.classes.SELECTED, this.$wrap)
+      }
     }
   }
 
@@ -185,28 +213,27 @@ class Select extends Component {
     return this.options.optionLabel.call(this, option)
   }
 
-  setTriggerLabel(label) {
-    html(label, this.$trigger)
+  setLabel(label) {
+    html(label, this.$label)
   }
 
   getOptionByValue(value) {
-    return this.data.find(option => {
+    return this.items.find(option => {
       return option.value == value // eslint-disable-line
     })
   }
 
   getDataFromOptions() {
-    const getDataFromOption = (option) => {
+    const getDataFromOption = option => {
       return {
         ...option.dataset,
+        disabled: option.disabled,
         label: option.innerHTML,
         value: option.value
       }
     }
     return this.selectOptions.map(option => {
-      if(option.tagName === 'OPTION') {
-        return getDataFromOption(option)
-      } else if(option.tagName === 'OPTGROUP') {
+      if (option.tagName === 'OPTGROUP') {
         return {
           ...option.dataset,
           label: option.label,
@@ -215,6 +242,7 @@ class Select extends Component {
           })
         }
       }
+      return getDataFromOption(option)
     })
   }
 
@@ -229,7 +257,7 @@ class Select extends Component {
   buildOptions(options) {
     let content = ''
     options.forEach(option => {
-      if(option.children) {
+      if (option.children) {
         content += this.buildGroup(option)
       } else {
         content += this.buildOption(option)
@@ -253,7 +281,7 @@ class Select extends Component {
   }
 
   buildOption(option) {
-    return template.render(this.options.templates.option(), {
+    return template.render(this.options.templates.option(option), {
       classes: this.classes,
       option
     })
@@ -273,6 +301,10 @@ class Select extends Component {
 
   set(value) {
     return this.select(value)
+  }
+
+  clear() {
+    this.set(null)
   }
 
   enable() {
@@ -298,9 +330,13 @@ class Select extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
+      if (this.CLEARABLE) {
+        this.CLEARABLE.destroy()
+      }
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$wrap)
       }
+      this.$wrap.remove()
       removeClass(this.classes.ELEMENT, this.element)
       this.leave('initialized')
     }

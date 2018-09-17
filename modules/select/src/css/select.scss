@@ -5,49 +5,55 @@
 // Vars
 // =====================
 $select: "pj-select";
-$select-width: 200px;
 
+$select-color: $text-color;
 $select-trigger-width: $select-width;
-$select-trigger-lineHeigh: 22px;
 $select-trigger-placeholder-color: $gray-dark;
+
+$select-trigger-arrow-color: $gray-dark;
 // $select-trigger-hover-color: $gray-darkest;
 // $select-trigger-focus-color: $select-trigger-hover-color;
 
-$select-trigger-disabled-bg: $color-white;
-$select-trigger-disabled-border: $gray-border;
-$select-trigger-disabled-color: $gray-border;
+$select-trigger-disabled-bg: $disabled-bg;
+$select-trigger-disabled-border: $disabled-border;
+$select-trigger-disabled-color: $disabled-color;
 
-$select-trigger-arrow-icon: $pj-icon-angle-down-mini-solid;
-$select-trigger-arrow-font: $pj-icon-font-family;
-$select-trigger-arrow-right: 1.5 * $sizer;
+$select-clear-color: $gray-dark;
+$select-clear-hover-color: $text-color;
+
+$select-group-font-size: $font-size-xs;
+$select-group-color: $gray-dark;
+$select-group-space-x: 11px;
+$select-group-space-y: 8px;
 
 .#{$select} {
-  &-wrap {
-    outline: none;
-  }
+  outline: none;
+
   &-trigger {
     position: relative;
-    width: $select-trigger-width;
-    line-height: $select-trigger-lineHeigh;
+    color: $select-trigger-placeholder-color;
 
-    &:not(.#{$select}-selected) {
-      color: $select-trigger-placeholder-color;
+    .#{$select}-selected & {
+      color: $select-color;
     }
 
-    &::after {
-      @include icon();
-      position: absolute;
-      right: $select-trigger-arrow-right;
-      font-family: $select-trigger-arrow-font;
-
-      content: icon-content($select-trigger-arrow-icon);
-      transition: transform 0.3s;
-      will-change: transform;
+    &::after{
+      color: $select-trigger-arrow-color;
     }
+  }
 
-    &.pj-dropdown-on-top-start[aria-expanded="true"]::after {
-      transform: rotate(180deg);
+  &-clear {
+    color: $select-clear-color;
+
+    &:hover {
+      color: $select-clear-hover-color;
     }
+  }
+
+  &-group {
+    padding: $select-group-space-y $select-group-space-x;
+    font-size: $select-group-font-size;
+    color: $select-group-color;
   }
 }
 
