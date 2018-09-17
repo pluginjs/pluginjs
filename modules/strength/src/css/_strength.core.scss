@@ -5,7 +5,7 @@ $input: "pj-input" !default;
 
 $strength-input-width: 200px !default;
 $strength-input-height: 32px !default;
-
+$strength-addon-with: 32px !default;
 $strength-box-spacer-x: 12px !default;
 $strength-box-spacer-y: 10px !default;
 $strength-box-font-size: $font-size-xs !default;
@@ -26,6 +26,7 @@ $strength-check-border-radius: $border-radius-base !default;
   &-input-group {
     display: flex;
     flex-direction: column;
+    width: $strength-input-width !important;
   }
 
   &-input.#{$input} {
@@ -51,7 +52,9 @@ $strength-check-border-radius: $border-radius-base !default;
 
   &-addon {
     position: relative;
+    width: $strength-addon-with;
     cursor: pointer;
+    border: none !important;
 
     .#{$strength}-show {
       display: block;

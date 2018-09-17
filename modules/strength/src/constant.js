@@ -40,11 +40,11 @@ export const defaults = {
 
   templates: {
     toggle:
-      '<span class="{classes.ADDON} pj-input-group"><input type="checkbox" class="{classes.TOGGLE}" title="{label}" checked /><i class="{classes.CHECK} pj-icon pj-icon-done-small"></i></span>',
+      '<span class="{classes.ADDON} pj-input-group-addon"><input type="checkbox" class="{classes.TOGGLE}" title="{label}" checked /><i class="{classes.CHECK} pj-icon pj-icon-done-small"></i></span>',
     meter: '<div class="{classes.METER}">{score}</div>',
     score: '<span class="label {classes.SCORE}"></span>',
     main:
-      '<div class="{classes.CONTAINER}"><div class="{classes.INPUTGROUP}">{input}{toggle}</div>{meter}</div>'
+      '<div class="{classes.CONTAINER}"><div class="{classes.INPUTGROUP} pj-input-group">{input}{toggle}</div>{meter}</div>'
   },
 
   scoreLables: {

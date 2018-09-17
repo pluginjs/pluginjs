@@ -3,6 +3,7 @@
 // =====================
 $input: pj-input !default;
 // nomoral
+$inputGroup: pj-input-group !default;
 $input-sizer: $sizer !default;
 
 $input-font-size: $font-size-base;
@@ -66,12 +67,21 @@ $disabled-color: $gray-border;
     }
   }
 
-  &-group {
-    position: absolute !important;
-    left: $input-group-left;
-    width: $input-height;
+}
+.#{$inputGroup} {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap; // For form validation feedback
+  align-items: stretch;
+  width: 100%;
+
+  &-addon {
+    position: absolute;
+    right: 0;
+    box-sizing: border-box;
     height: $input-height;
     line-height: $input-height;
     text-align: center;
+    border: $input-border-width $input-border-style $input-border-color;
   }
 }
