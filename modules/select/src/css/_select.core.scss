@@ -18,7 +18,7 @@ $select-clear-right: 1.5 * $sizer;
   width: $select-width;
 
   &-element {
-    //display: none;
+    display: none;
   }
 
   & &-trigger {
@@ -39,16 +39,10 @@ $select-clear-right: 1.5 * $sizer;
       font-family: $select-trigger-arrow-font;
 
       content: icon-content($select-trigger-arrow-icon);
-      transition: transform 0.3s;
-      will-change: transform;
     }
 
     .#{$select}-clearable.#{$select}-selected &:hover::after {
       display: none;
-    }
-
-    &.pj-dropdown-on-top[aria-expanded="true"]::after {
-      transform: rotate(180deg);
     }
   }
 

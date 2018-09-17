@@ -51,7 +51,6 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
     outline: none;
 
     &[aria-expanded="true"] {
-      color: $dropdown-trigger-focus-color;
       outline: none;
     }
 

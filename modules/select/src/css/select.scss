@@ -37,8 +37,14 @@ $select-group-space-y: 8px;
       color: $select-color;
     }
 
-    &::after{
+    &::after {
       color: $select-trigger-arrow-color;
+      transition: transform 0.3s;
+      will-change: transform;
+    }
+
+    &.#{$select}-on-top[aria-expanded="true"]::after {
+      transform: rotate(180deg);
     }
   }
 

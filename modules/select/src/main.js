@@ -110,6 +110,9 @@ class Select extends Component {
       ...this.options.dropdown,
       target: this.$dropdown,
       keyboard: this.options.keyboard,
+      classes: {
+        PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
+      },
       onShow: () => {
         if (!this.is('builded')) {
           this.buildDropdown()
