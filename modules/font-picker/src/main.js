@@ -50,6 +50,7 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 import Scrollable from '@pluginjs/scrollable'
 
 let DATA = {}
@@ -211,6 +212,15 @@ class FontPicker extends Component {
       return
     }
     const that = this
+
+    bindEvent(
+      this.eventName('click'),
+      () => {
+        this.$dropdown.show()
+        return false
+      },
+      this.$fontPicker
+    )
 
     // selected activated font
     bindEvent(
@@ -608,6 +618,7 @@ class FontPicker extends Component {
         })
       })
     }
+
     return Dropdown.of(this.fontTrigger, {
       theme: 'default',
       data,
@@ -617,48 +628,48 @@ class FontPicker extends Component {
         ITEM: `{namespace}-item ${this.classes.FONT}`
       },
       onHided() {
-        this.$activated.forEach(v => {
-          this.close(v)
+        that.$activated.forEach(v => {
+          that.close(v)
         })
-        this.$selectorPanel.hide()
-        if (this.is('searchReady')) {
-          removeClass(this.classes.SEARCHREADY, this.$panel)
-          query('input', this.$search).value = ''
-          this.leave('searchReady')
+        // that.$selectorPanel.hide()
+        if (that.is('searchReady')) {
+          removeClass(that.classes.SEARCHREADY, that.$panel)
+          query('input', that.$search).value = ''
+          that.leave('searchReady')
         }
 
-        if (this.is('keyboard')) {
-          this.KEYBOARD.unbind()
+        if (that.is('keyboard')) {
+          that.KEYBOARD.unbind()
         }
       },
       onShown() {
-        this.categoriesHeight = getHeight(parent(this.$activated[0]))
-        if (this.$font) {
+        that.categoriesHeight = getHeight(parent(that.$activated[0]))
+        if (that.$font) {
           const $selectedPackage = parentWith(
-            hasClass(this.classes.PACKAGE),
-            this.$font
+            hasClass(that.classes.PACKAGE),
+            that.$font
           )
           if (!$selectedPackage) {
             return
           }
           const $source = closest(
-            `.${this.classes.SOURCES}-${this.$font.dataset.source}`,
-            this.$font
+            `.${that.classes.SOURCES}-${that.$font.dataset.source}`,
+            that.$font
           )
-          this.$selectorPanel.set(getData('source', this.$font))
-          this.toggleSources($source)
-          this.$selectorPanel.set(getData('title', $source))
-          this.open($selectedPackage)
+          that.$selectorPanel.set(getData('source', that.$font))
+          that.toggleSources(getData('source', $source))
+          that.$selectorPanel.set(getData('title', $source))
+          that.open($selectedPackage)
 
           // count scrollTop number
           let scrollLength = 0  /* eslint-disable-line */
           getData('$fonts', $source).forEach(v => {
-            if (v.dataset.categorie === this.$font.dataset.categorie) {
-              if (v.dataset.value === this.$font.dataset.value) {
+            if (v.dataset.categorie === that.$font.dataset.categorie) {
+              if (v.dataset.value === that.$font.dataset.value) {
                 // parent(this.$font).scrollT op(scrollLength)
                 return
               }
-              scrollLength += this.itemHeight
+              scrollLength += that.itemHeight
             }
           })
         }
@@ -679,14 +690,14 @@ class FontPicker extends Component {
     Object.entries(this.sources).forEach(([, source]) => {
       data.push({ label: source.title, value: source.title })
     })
-
     data.push({ label: localeText, value: localeText })
     this.$panel.append(this.$controller)
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
-    this.selectTrigger = query('.pj-dropdown-trigger', this.$selector)
-    this.$selectorPanel = Dropdown.of(this.selectTrigger, {
+    this.elSelect = query(`.${this.classes.ELSELECTOR}`, this.$selector)
+    const that = this
+    this.$selectorPanel = Select.of(this.elSelect, {
       placement: 'top-center',
-      data,
+      source: data,
       value: 'activated',
       keyboard: true,
       imitateSelect: true,
@@ -695,16 +706,16 @@ class FontPicker extends Component {
         // const $source = val
         // const sourceName = $source.dataset.source
         // const sourceName = getData('source', $source)
-        this.toggleSources(val)
-        this.categoriesHeight = getHeight(parent(this.$activated[0]))
-        if (this.sources[val]) {
+        that.toggleSources(val)
+        that.categoriesHeight = getHeight(parent(that.$activated[0]))
+        if (that.sources[val]) {
           prepend(
             parseHTML(
-              `<i class="${this.classes.SOURCEICON} ${this.getIconName(
+              `<i class="${that.classes.SOURCEICON} ${that.getIconName(
                 val
               )}"></i>`
             ),
-            query('.pj-dropdown-trigger', this.$selector)
+            query('.pj-dropdown-trigger', that.$selector)
           )
         }
       }

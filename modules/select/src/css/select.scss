@@ -22,6 +22,9 @@ $select-trigger-arrow-font: $pj-icon-font-family;
 $select-trigger-arrow-right: 1.5 * $sizer;
 
 .#{$select} {
+  &-wrap {
+    outline: none;
+  }
   &-trigger {
     position: relative;
     width: $select-trigger-width;
