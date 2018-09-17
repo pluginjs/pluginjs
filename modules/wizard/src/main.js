@@ -102,8 +102,7 @@ class Wizard extends Component {
       this.options.step,
       e => {
         const index = getData('wizard-index', e.target)
-
-        if (!that.get(index).is('disabled')) {
+        if (typeof index !== 'undefined' && !that.get(index).is('disabled')) {
           that.goTo(index)
         }
 

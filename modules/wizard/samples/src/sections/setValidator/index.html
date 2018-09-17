@@ -2,30 +2,48 @@
 <p>You can set validator for step respectively.</p>
 <div id="exampleSetValidator" class="pj-wizard example">
   <ul class="pj-wizard-steps" role="tablist">
-    <li data-target="#form1" class="active" role="tab">
-      Form 1
+    <li data-target="#form1" role="tab">
+      <div class="pj-wizard-steps-item-icon">
+        <span class="pj-wizard-steps-icon">1</span>
+        <i class="active-icon pj-icon pj-icon-check-solid"></i>
+      </div>
+      <div class="pj-wizard-steps-item-content">
+        <div class="pj-wizard-steps-item-title">Form1</div>
+      </div>
     </li>
     <li data-target="#form2" role="tab">
-      Form 2
+      <div class="pj-wizard-steps-item-icon">
+        <span class="pj-wizard-steps-icon">2</span>
+        <i class="active-icon pj-icon pj-icon-check-solid"></i>
+      </div>
+      <div class="pj-wizard-steps-item-content">
+        <div class="pj-wizard-steps-item-title">Form2</div>
+      </div>
     </li>
     <li data-target="#form3" role="tab">
-      Form 3
+      <div class="pj-wizard-steps-item-icon">
+        <span class="pj-wizard-steps-icon">3</span>
+        <i class="active-icon pj-icon pj-icon-check-solid"></i>
+      </div>
+      <div class="pj-wizard-steps-item-content">
+        <div class="pj-wizard-steps-item-title">Form3</div>
+      </div>
     </li>
   </ul>
   <div class="pj-wizard-content">
     <div class="pj-wizard-pane" id="form1" role="tabpanel">
       <div class="pj-wizard-formGroup">
-        <input type="text" class="pj-wizard-formControl" placeholder="Please input 'a'" name="a" />
+        <input type="text" class="pj-wizard-formControl pj-input" placeholder="Please input 'a'" name="a" />
       </div>
     </div>
     <div class="pj-wizard-pane" id="form2" role="tabpanel">
       <div class="pj-wizard-formGroup">
-        <input type="text" class="pj-wizard-formControl" placeholder="Please input 'b'" name="b" />
+        <input type="text" class="pj-wizard-formControl pj-input" placeholder="Please input 'b'" name="b" />
       </div>
     </div>
     <div class="pj-wizard-pane" id="form3" role="tabpanel">
       <div class="pj-wizard-formGroup">
-        <input type="text" class="pj-wizard-formControl" placeholder="Please input 'c'" name="c" />
+        <input type="text" class="pj-wizard-formControl pj-input" placeholder="Please input 'c'" name="c" />
       </div>
     </div>
   </div>
