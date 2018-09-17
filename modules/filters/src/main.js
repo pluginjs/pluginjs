@@ -146,11 +146,7 @@ class Filters extends Component {
 
     if (this.options.responsive) {
       Pj.emitter.on(this.eventNameWithId('resize'), () => {
-        clearTimeout(this.goResponsive)
-
-        this.goResponsive = setTimeout(() => {
-          this.responsive()
-        }, 100)
+        this.responsive()
       })
     }
   }
@@ -164,7 +160,6 @@ class Filters extends Component {
       const item = itemArr[index]
       removeClass(this.classes.HIDE, item.$el)
       tempWidth += item.width
-
       if (tempWidth > this.getWidth()) {
         nodeIndex = index - 1
         break
@@ -174,7 +169,8 @@ class Filters extends Component {
     if (!nodeIndex) {
       if (this.DROPDOWN) {
         this.$dropdown.remove()
-        this.DROPDOWN.POPPER.destroy()
+        this.DROPDOWN.destroy()
+        this.DROPDOWN.$dropdown.remove()
         this.DROPDOWN = null
       }
       return
@@ -189,28 +185,27 @@ class Filters extends Component {
 
     if (!this.DROPDOWN) {
       this.element.append(
-        parseHTML(
-          `<div class="${
-            this.classes.DROPDOWN
-          }"><span>More</span><i style="margin-left: 10px" class="icon icon-arrow-long-right-solid"></i></div>`
-        )
+        parseHTML(`<a class="${this.classes.DROPDOWN}">More</a>`)
       )
 
-      this.element.append(parseHTML('<div</div>'))
+      this.element.append(parseHTML('<div></div>'))
 
       this.$dropdown = query(`.${this.classes.DROPDOWN}`, this.element)
+
       this.DROPDOWN = Dropdown.of(this.$dropdown, {
         data,
         itemValueAttr: 'data-index',
         placement: 'bottom-end',
-        onClick: el => {
-          const index = getData('index', el.dataset)
+        templates: {
+          item() {
+            return '<div class="{classes.ITEM}" {itemValueAttr}="{item.index}">{item.label}</div>'
+          }
+        },
+        onSelect: el => {
+          const index = getData('index', el)
           this.setActiveItem(this.$filters[index])
         }
       })
-
-      // this.DROPDOWN.show()
-      this.DROPDOWN.POPPER.options.removeOnDestroy = true
     } else {
       children(this.DROPDOWN.$dropdown).map(item => item.remove())
       this.DROPDOWN.appendItems(data)
@@ -255,15 +250,14 @@ class Filters extends Component {
 
   setDropdownActive() {
     const $dropdownItems = children(this.DROPDOWN.$dropdown)
-    removeClass(this.classes.ACTIVE, $dropdownItems)
 
-    // const $dropdownItems = this.DROPDOWN.$dropdown
-    // children($dropdownItems).map(removeClass(this.classes.ACTIVE))
-    // children($dropdownItems).forEach($el => {
-    //   if (getData('index', $dropdownItems) === this.active) {
-    //     addClass(this.classes.ACTIVE, $el)
-    //   }
-    // })
+    $dropdownItems.forEach($el => {
+      removeClass(this.classes.ACTIVE, $el)
+      removeClass('pj-dropdown-active', $el)
+      if (getData('index', $el) === this.active) {
+        addClass(this.classes.ACTIVE, $el)
+      }
+    })
   }
 
   setActiveItemByValue(value) {

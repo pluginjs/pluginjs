@@ -10,6 +10,5 @@ const data = {
 }
 
 Dropdown.of(element, {
-  data,
-  imitateSelect: true
+  data
 })
