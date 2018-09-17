@@ -1,60 +1,58 @@
 @import "@pluginjs/styles/variables.scss";
+@import "list.core";
 
 // Vars
 // =====================
-$list: "pj-list" !default;
-$pop: "pj-popover" !default;
+$list: "pj-list";
+
+$list-width: 240px;
+
+$list-padding: 16px;
+
+$list-font-size: $font-size-base;
+$list-font-family: $font-family-base;
+
+$list-color: $text-color;
+
+$list-item-height: 40px; //30px
+$list-item-handle-width: $list-item-height;
+$list-item-label-margin-right: 42px;
 
 $list-sizer: $sizer;
+$list-item-actions-hover-color: #f73e4d;
 
-$list-width: 26 * $list-sizer !default; //260px
-$list-height: 4 * $list-sizer !default; //40px
-$list-padding: 1.6 * $list-sizer !default; //16px
-$list-color: $text-color !default;
-$list-item-height: 3 * $list-sizer !default; //30px
-$list-item-active-border-color: $color-primary !default;
-$list-item-hover-border-color: $gray-darkest !default;
-$list-font-size: $font-size-base !default;
-$list-ghost-bg: $gray-lightest !default;
-$list-border-color: $gray-border !default;
-$list-border-style: solid !default;
-$list-border-width: 1px !default;
-$list-border: $list-border-width $list-border-style $list-border-color !default;
-$list-border-radius: $border-radius-base !default;
-$list-item-handle-bg: $list-border-color !default;
-$list-active-color: $color-primary-black !default;
-$list-adduser-height: 3 * $list-sizer !default; //30px
-$list-adduser-btn-bg: $color-primary !default; //#66adf3 !default;
+$list-height: 40px; //40px
+$list-item-active-border-color: $color-primary;
+$list-item-hover-border-color: $gray-darkest;
+$list-ghost-bg: $gray-lightest;
+$list-border-color: $gray-border;
+$list-border-style: solid;
+$list-border-width: 1px;
+$list-border: $list-border-width $list-border-style $list-border-color;
+$list-border-radius: $border-radius-base;
+$list-item-handle-bg: $list-border-color;
+$list-active-color: $color-primary-black;
+$list-adduser-height: 30px; //30px
+$list-adduser-btn-bg: $color-primary; //#66adf3;
 
-$list-clone-bg: rgba($color-warning, 0.1) !default; //#f3d351
+$list-clone-bg: rgba($color-warning, 0.1); //#f3d351
 
-$list-item-actions-color: $gray-dark !default;
+$list-item-actions-color: $gray-dark;
 
-// Core
+// Skin
 // =====================
 .#{$list} {
-  box-sizing: border-box;
   width: $list-width;
   padding: $list-padding;
   margin-bottom: $list-padding;
+  font-family: $list-font-family;
   font-size: $list-font-size;
   color: $list-color;
 
-  &-container {
-    padding: 0;
-    margin: 0;
-  }
-
   &-item {
-    position: relative;
-    display: flex;
-    align-items: center;
     height: $list-item-height;
     margin-bottom: $list-sizer; //10px
-    overflow: hidden;
     line-height: $list-item-height;
-    list-style: none;
-    user-select: none;
     background-color: $color-white;
     border: $list-border;
     border-radius: $list-border-radius;
@@ -69,64 +67,34 @@ $list-item-actions-color: $gray-dark !default;
     }
 
     &-handle {
-      display: inline-block;
-      width: 3 * $list-sizer; //12px
+      width: $list-item-handle-width;
       height: $list-item-height;
       font-size: $font-size-sm;
-      line-height: $list-item-height;
-      text-align: center;
-      cursor: pointer;
-
-      &:hover {
-        cursor: grab;
-      }
-
-      &:active {
-        cursor: grabbing;
-        // background-color: $gray-light;
-      }
-
-      > i {
-        pointer-events: none;
-      }
     }
 
     &-label {
-      display: inline-block;
-      margin-right: 4.2 * $list-sizer; //42px
-      margin-left: 0.8 * $list-sizer; //8px
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      margin-right: $list-item-label-margin-right; //42px
     }
 
     &-actions {
-      position: absolute;
-      right: 0.8 * $list-sizer; //8px
-      line-height: 100%;
       color: $list-item-actions-color;
       transition: color 0.5s;
 
       &:hover {
+        color: $list-item-actions-hover-color;
         cursor: pointer;
         transition: color 0.5s;
       }
     }
 
     &-action + &-action {
-      margin-left: 0.4 * $list-sizer;
+      margin-left: 4px;
     }
 
     &.sortable-ghost {
       background-color: $list-ghost-bg;
       border-color: $list-border-color;
       border-style: dashed;
-
-      .#{$list}-item-handle,
-      .#{$list}-item-label,
-      .#{$list}-item-actions {
-        display: none;
-      }
     }
   }
 
@@ -144,16 +112,11 @@ $list-item-actions-color: $gray-dark !default;
 
   &-disabled {
     .#{$list}-item {
-
       color: $disabled-color;
-      pointer-events: none;
-      cursor: not-allowed;
       border-color: $list-border-color;
-    }
 
-    .#{$list}-item-actions {
-      > i {
-        color: $disabled-color !important;
+      &-action {
+        color: $disabled-color;
       }
     }
   }

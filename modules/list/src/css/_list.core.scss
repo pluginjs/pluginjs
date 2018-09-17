@@ -1,0 +1,76 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$list: "pj-list" !default;
+
+$list-actions-right: 15px !default;
+$list-action-action-margin-left: 4px !default;
+
+// Core
+// =====================
+.#{$list} {
+  box-sizing: border-box;
+
+  &-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    user-select: none;
+
+    &-handle {
+      text-align: center;
+      cursor: -webkit-grab;  /* stylelint-disable-line */
+
+      > i {
+        pointer-events: none;
+      }
+    }
+
+    &-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-actions {
+      position: absolute;
+      right: $list-actions-right;
+      line-height: 100%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-action + &-action {
+      margin-left: $list-action-action-margin-left;
+    }
+
+    &.sortable-ghost {
+      .#{$list}-item-handle,
+      .#{$list}-item-label,
+      .#{$list}-item-actions {
+        display: none;
+      }
+    }
+  }
+
+  .#{$list}-origin {
+    display: none;
+  }
+
+  &-disabled {
+    .#{$list}-item {
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,26 +1,24 @@
 @import "@pluginjs/styles/variables.scss";
+@import "core";
 
 // Vars
 // =====================
 $checkbox: "pj-checkbox" !default;
 // $checkbox-size: 16px !default;
 // $checkbox-border-radius: 2px !default;
-$checkbox-sizer: $sizer;
 
-$checkbox-border-color: $border-color !default;
-$checkbox-color: $btn-color-primary !default;
-$checkbox-primary-color: $color-primary !default;
-$checkbox-success-color: $color-success !default;
-$checkbox-info-color: $color-info !default;
-$checkbox-warning-color: $color-warning !default;
-$checkbox-danger-color: $color-danger !default;
+.#{$checkbox} {
+  & + * {
+    margin-right: 10px;
+  }
+}
 
-@import "core";
-@import "inline";
-@import "disabled";
-@import "border";
-@import "default";
-@import "icon";
-@import "solid";
-@import "plain";
+@import "type/color"
+// @import "inline";
+// @import "disabled";
+// @import "border";
+// @import "default";
+// @import "icon";
+// @import "solid";
+// @import "plain";
 // @import "colors";
