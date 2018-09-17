@@ -3,22 +3,91 @@
 
 // Vars
 // =====================
-$checkbox: "pj-checkbox" !default;
-// $checkbox-size: 16px !default;
-// $checkbox-border-radius: 2px !default;
+$checkbox: "pj-checkbox";
+
+$checkbox-font-size: $font-size-base;
+$checkbox-font-family: $font-family-base;
+
+$checkbox-icon-font-size: 12px;
+$checkbox-checkbox-space: 10px;
+$checkbox-icon-border-radius: $border-radius-base;
+$checkbox-border-color: $border-color;
+
+$checkbox-solid-color: $color-white;
+$checkbox-solid-bg-color: $gray-darker;
+
+$checkbox-primary-color: $color-primary;
+$checkbox-success-color: $color-success;
+$checkbox-info-color: $color-info;
+$checkbox-warning-color: $color-warning;
+$checkbox-danger-color: $color-danger;
+
+$checkbox-disabled-color: $disabled-color;
 
 .#{$checkbox} {
-  & + * {
-    margin-right: 10px;
+  @mixin checkbox-border-variant($color) {
+    &.#{$checkbox}-checked,
+    & > input[type="checkbox"]:checked + label {
+      .#{$checkbox}-icon {
+          color: $color;
+      }
+    }
+
+    &.#{$checkbox}-solid {
+      &.#{$checkbox}-checked,
+      & > input[type="checkbox"]:checked + label {
+        .#{$checkbox}-icon {
+          color: $checkbox-solid-color;
+          background-color: $color;
+          border-color: $color;
+        }
+      }
+    }
+  }
+
+  margin: 0 $checkbox-checkbox-space $checkbox-checkbox-space 0;
+  font-family: $checkbox-font-family;
+  font-size: $checkbox-font-size;
+
+  &-icon {
+    margin-right: 6px;
+    font-size: $checkbox-icon-font-size;
+    border: 2px solid $checkbox-border-color;
+    border-radius: $checkbox-icon-border-radius;
+  }
+
+  &-solid {
+    &.#{$checkbox}-checked {
+      .#{$checkbox}-icon {
+        color: $checkbox-solid-color;
+        background: $checkbox-solid-bg-color;
+        border-color: $checkbox-solid-bg-color;
+      }
+    }
+  }
+  
+  &-primary {
+    @include checkbox-border-variant($checkbox-primary-color);
+  }
+  
+  &-success {
+    @include checkbox-border-variant($checkbox-success-color);
+  }
+  
+  &-info {
+    @include checkbox-border-variant($checkbox-info-color);
+  }
+  
+  &-warning {
+    @include checkbox-border-variant($checkbox-warning-color);
+  }
+  
+  &-danger {
+    @include checkbox-border-variant($checkbox-danger-color);
+  }
+
+  input[type="checkbox"]:disabled + label {
+    color: $checkbox-disabled-color;
+    cursor: not-allowed;
   }
 }
-
-@import "type/color"
-// @import "inline";
-// @import "disabled";
-// @import "border";
-// @import "default";
-// @import "icon";
-// @import "solid";
-// @import "plain";
-// @import "colors";

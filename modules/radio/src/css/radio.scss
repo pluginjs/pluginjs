@@ -1,29 +1,101 @@
 @import "@pluginjs/styles/variables.scss";
-
+@import "core";
 // Vars
 // =====================
-$radio: "pj-radio" !default;
-// $radio-size: 16px !default;
-// $radio-border-radius: 2px !default;
-$radio-border-color: $border-color !default;
-$radio-color: $btn-color-primary !default;
-$radio-primary-color: $color-primary !default;
-$radio-success-color: $color-success !default;
-$radio-info-color: $color-info !default;
-$radio-warning-color: $color-warning !default;
-$radio-danger-color: $color-danger !default;
+
+.#{$radio} {
+  @mixin radio-border-variant($color) {
+    &.#{$radio}-checked,
+    & > input[type="radio"]:checked + label {
+      i:first-child {
+        &::after { /* stylelint-disable-line */
+          border-color: $color;
+        }
+      }
+    }
+  }
+  
+  @mixin radio-icon-variant($color) {
+    &.#{$radio}-checked,
+    & > input[type="radio"]:checked + label {
+      i[class]:first-child { /* stylelint-disable-line */
+        color: $color;
+      }
+    }
+  
+    &.#{$radio}-solid {
+      &.#{$radio}-checked,
+      & > input[type="radio"]:checked + label {
+        i[class]:first-child {
+          color: $color-white;
+  
+          &::after {
+            background-color: $color;
+          }
+        }
+      }
+    }
+  }
+
+  @mixin radio-solid-variant($background) {
+    &.#{$radio}-solid {
+      &.#{$radio}-checked,
+      & > input[type="radio"]:checked + label {
+        i:first-child:not([class]) {
+          &::before {
+            background-color: $background;
+          }
+        }
+      }
+    }
+  }
+
+  @mixin radio-default-variant($background) {
+    i:first-child:not([class]) {
+      &::before {
+        background-color: $background;
+      }
+    }
+  }
+
+  &-primary {
+    @include radio-border-variant($radio-primary-color);
+    @include radio-default-variant($radio-primary-color);
+    @include radio-icon-variant($radio-primary-color);
+    @include radio-solid-variant($radio-primary-color);
+  }
+  
+  &-success {
+    @include radio-border-variant($radio-success-color);
+    @include radio-default-variant($radio-success-color);
+    @include radio-icon-variant($radio-success-color);
+    @include radio-solid-variant($radio-success-color);
+  }
+  
+  &-info {
+    @include radio-border-variant($radio-info-color);
+    @include radio-default-variant($radio-info-color);
+    @include radio-icon-variant($radio-info-color);
+    @include radio-solid-variant($radio-info-color);
+  }
+  
+  &-warning {
+    @include radio-border-variant($radio-warning-color);
+    @include radio-default-variant($radio-warning-color);
+    @include radio-icon-variant($radio-warning-color);
+    @include radio-solid-variant($radio-warning-color);
+  }
+  
+  &-danger {
+    @include radio-border-variant($radio-danger-color);
+    @include radio-default-variant($radio-danger-color);
+    @include radio-icon-variant($radio-danger-color);
+    @include radio-solid-variant($radio-danger-color);
+  }
+  
+}
 
 .#{$radio}-radio,
 .#{$radio} > input[type="radio"][disabled] {
   cursor: not-allowed;
 }
-
-@import "core";
-@import "inline";
-@import "disabled";
-@import "border";
-@import "default";
-@import "icon";
-@import "solid";
-@import "plain";
-// @import "colors";

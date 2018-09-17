@@ -17,27 +17,20 @@ $list-color: $text-color;
 $list-item-height: 40px; //30px
 $list-item-handle-width: $list-item-height;
 $list-item-label-margin-right: 42px;
+$list-item-actions-color: $gray-dark;
+$list-item-actions-hover-color: $gray-darker;
 
 $list-sizer: $sizer;
-$list-item-actions-hover-color: #f73e4d;
 
-$list-height: 40px; //40px
-$list-item-active-border-color: $color-primary;
 $list-item-hover-border-color: $gray-darkest;
 $list-ghost-bg: $gray-lightest;
+
 $list-border-color: $gray-border;
-$list-border-style: solid;
-$list-border-width: 1px;
-$list-border: $list-border-width $list-border-style $list-border-color;
 $list-border-radius: $border-radius-base;
-$list-item-handle-bg: $list-border-color;
+
 $list-active-color: $color-primary-black;
-$list-adduser-height: 30px; //30px
-$list-adduser-btn-bg: $color-primary; //#66adf3;
 
 $list-clone-bg: rgba($color-warning, 0.1); //#f3d351
-
-$list-item-actions-color: $gray-dark;
 
 // Skin
 // =====================
@@ -54,7 +47,7 @@ $list-item-actions-color: $gray-dark;
     margin-bottom: $list-sizer; //10px
     line-height: $list-item-height;
     background-color: $color-white;
-    border: $list-border;
+    border: 1px solid $list-border-color;
     border-radius: $list-border-radius;
     transition: background 300ms;
 
@@ -76,7 +69,7 @@ $list-item-actions-color: $gray-dark;
       margin-right: $list-item-label-margin-right; //42px
     }
 
-    &-actions {
+    &-action {
       color: $list-item-actions-color;
       transition: color 0.5s;
 

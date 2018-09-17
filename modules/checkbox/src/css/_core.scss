@@ -1,14 +1,5 @@
 //Vars
 $checkbox: "pj-checkbox" !default;
-$checkbox-sizer: $sizer;
-
-$checkbox-border-color: $border-color !default;
-$checkbox-color: $btn-color-primary !default;
-$checkbox-primary-color: $color-primary !default;
-$checkbox-success-color: $color-success !default;
-$checkbox-info-color: $color-info !default;
-$checkbox-warning-color: $color-warning !default;
-$checkbox-danger-color: $color-danger !default;
 
 //core
 .#{$checkbox} {
@@ -16,172 +7,51 @@ $checkbox-danger-color: $color-danger !default;
   line-height: 1;
 
   > input[type="checkbox"] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 99999999;
-    display: block;
-    // width: 100%;
-    height: 100%;
-    margin: 0;
-    cursor: pointer;
-    opacity: 0;
+    display: none;
   }
 
   label {
-    /*stylelint-disable*/
-    font-weight: normal;
-    /*stylelint-ensable*/
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
+    user-select: none;
   }
 
-  i:first-child {
+  &-icon {
     position: relative;
-    top: 3px;
     box-sizing: initial;
-    display: inline-block;
-    width: 1.6 * $checkbox-sizer !important; //16px
-    min-width: 1em;
-    height: 1.6 * $checkbox-sizer !important; //16px
-    min-height: 1em;
-    // padding: 1px;
-    margin-right: 6px; //6px
-    font-size: 1em !important;
-    line-height: 1.8 * $checkbox-sizer; //18px
-    color: transparent;
     text-align: center;
 
-    &::after {
-      position: absolute;
-      top: $checkbox-sizer/10 * 3; //3px
-      left: 0;
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-      padding: 1px;
-      color: transparent;
-      content: "\0000";
-      border: 2px solid $checkbox-border-color;
-      border-radius: 2px;
-    }
-  }
-
-  &.#{$checkbox}-checked,
-    & > input[type="checkbox"]:checked + label {
-      i:first-child {
-        &::after {
-          border-color: $checkbox-border-color;
-        }
-      }
-  }
-
-  &-solid {
-    &.#{$checkbox}-checked,
-    & > input[type="checkbox"]:checked + label {
-      i:first-child:not([class]) {
-        &::before {
-          color: $color-white;
-          border-color: $color-white;
-        }
-  
-        &::after {
-          z-index: -1;
-          background-color: $checkbox-color;
-        }
-      }
-    }
-  }
-
-  i[class]:first-child {
     &::before {
-      position: relative;
-      top: -1px;
-      left: 0;
-      z-index: 999;
       display: inline-block;
-      // font-size: 16px;
-      vertical-align: bottom;
       transition: transform 0.25s;
       transform: scale(0);
-    }
-
-    &::after {
-      top: 0;
     }
   }
 
   &.#{$checkbox}-checked,
   & > input[type="checkbox"]:checked + label {
-    i[class]:first-child {
-      color: $checkbox-color;
-
-      &::before {
-        transform: scale(1);
-      }
-    }
-  }
-  
-  &-solid {
-    &.#{$checkbox}-checked,
-    & > input[type="checkbox"]:checked + label {
-      i[class]:first-child {
-        color: $color-white;
-  
-        &::after {
-          background-color: $checkbox-color;
+    .#{$checkbox}-icon {
+        &::before {
+          transform: scale(1);
         }
-      }
     }
   }
 
   &-plain {
-    i[class]:first-child {
-      &::after {
-        transition: all 0.25s;
-        transform: scale(1);
-      }
-    }
-  
     &.#{$checkbox}-checked,
     & > input[type="checkbox"]:checked + label {
-      i[class]:first-child {
-        &::after {
-          border-color: transparent;
-          transform: scale(0);
-        }
+      .#{$checkbox}-icon {
+        border-color: transparent;
       }
     }
   }
-  
 
   &-inline {
     display: inline-block;
   }
-}
 
-// Disabled
-.#{$checkbox}-disabled {
-  label {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-
-  input[disabled] {
-    cursor: not-allowed;
-  }
-}
-
-.#{$checkbox}-disabled,
-.#{$checkbox} > input[type="checkbox"][disabled] + label {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-#js-color-disabled-default {
-  opacity: 0;
-}
-
-.#{$checkbox} {
-  input[disabled] {
+  input[type="checkbox"]:disabled + label {
     cursor: not-allowed;
   }
 }
