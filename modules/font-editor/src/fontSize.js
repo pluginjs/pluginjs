@@ -8,10 +8,10 @@ export default class FontSize {
     this.instance = instance
     this.defaultValue = instance.options.fontSize.value
 
-    this.emptyize()
+    this.initialize()
   }
 
-  emptyize() {
+  initialize() {
     this.parse(this.instance.value.fontSize)
     this.initRange()
   }

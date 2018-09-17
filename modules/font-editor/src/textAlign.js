@@ -16,10 +16,10 @@ export default class TextAlign {
     this.values = instance.options.textAlign.values
     this.defaultValue = instance.options.textAlign.value
 
-    this.emptyize()
+    this.initialize()
   }
 
-  emptyize() {
+  initialize() {
     const that = this
 
     const html = template.compile(this.instance.options.textAlign.template())({

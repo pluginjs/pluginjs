@@ -56,10 +56,10 @@ class FontEditor extends Component {
     this.setupI18n()
 
     this.setupStates()
-    this.emptyize()
+    this.initialize()
   }
 
-  emptyize() {
+  initialize() {
     this.createHtml()
 
     if (this.options.theme) {
@@ -109,7 +109,7 @@ class FontEditor extends Component {
     }
     this.set(this.value, true)
 
-    this.enter('emptyized')
+    this.enter('initialized')
 
     this.trigger(EVENTS.READY)
   }
@@ -494,7 +494,7 @@ class FontEditor extends Component {
   }
 
   destroy() {
-    if (this.is('emptyized')) {
+    if (this.is('initialized')) {
       this.unbind()
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
@@ -502,7 +502,7 @@ class FontEditor extends Component {
       this.$wrap.remove()
       showElement(removeClass(`${this.classes.NAMESPACE}-input`, this.element))
       this.element.value = ''
-      this.leave('emptyized')
+      this.leave('initialized')
     }
 
     this.trigger(EVENTS.DESTROY)

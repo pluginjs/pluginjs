@@ -9,10 +9,10 @@ export default class TextDecoration {
     this.values = instance.options.textDecoration.values
     this.defaultValue = instance.options.textDecoration.value
 
-    this.emptyize()
+    this.initialize()
   }
 
-  emptyize() {
+  initialize() {
     const that = this
     const html = template.compile(
       this.instance.options.textDecoration.template()
@@ -24,8 +24,7 @@ export default class TextDecoration {
       `.${this.instance.classes.TEXTDECORATION}`,
       this.instance.$expandPanel
     )
-    console.log(this.$items)
-    console.log(this.values)
+
     this.values.forEach((value, key) => {
       if (that.$items[key]) {
         that.$items[key].dataset.textDecoration = value

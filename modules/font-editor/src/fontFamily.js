@@ -8,10 +8,10 @@ export default class FontFamily {
     this.values = instance.options.fontFamily.values
     this.value = instance.value.fontFamily
 
-    this.emptyize()
+    this.initialize()
   }
 
-  emptyize() {
+  initialize() {
     const html = template.compile(this.instance.options.fontFamily.template())({
       classes: this.instance.classes,
       typeface: this.instance.translate('typeface')

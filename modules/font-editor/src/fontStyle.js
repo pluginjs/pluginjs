@@ -9,10 +9,10 @@ export default class FontStyle {
     this.value = instance.options.fontStyle.value
     this.defaultValue = instance.options.fontStyle.value
 
-    this.emptyize()
+    this.initialize()
   }
 
-  emptyize() {
+  initialize() {
     const html = template.compile(this.instance.options.fontStyle.template())({
       namespace: this.instance.classes.NAMESPACE
     })
