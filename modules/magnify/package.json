@@ -11,7 +11,7 @@
   "cjs": "dist/magnify.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/main.scss",
+    "source": "src/css/magnify.scss",
     "main": "dist/magnify.css",
     "min": "dist/magnify.min.css"
   },

@@ -11,7 +11,7 @@
   "cjs": "dist/select.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/main.scss",
+    "source": "src/css/select.scss",
     "main": "dist/select.css",
     "min": "dist/select.min.css"
   },
