@@ -15,6 +15,7 @@ $input-height: 3*$input-sizer+2 !default; //32px
 $input-padding-top: 0.4*$input-sizer !default; //4px
 $input-padding-left: 1.5*$input-sizer !default; //15px
 $input-line-height: 1.6*$input-sizer !default; //16px
+$input-group-left: 16.7*$input-sizer !default; //167px
 // placeholder
 $input-placeholder-color: $gray-dark !default;
 // hover
@@ -25,7 +26,6 @@ $input-border-color-focus: $border-color-active !default;
 $disabled-bg: $color-white;
 $disabled-border: $gray-border;
 $disabled-color: $gray-border;
-
 // Core
 // =====================
 .#{$input} {
@@ -64,5 +64,14 @@ $disabled-color: $gray-border;
       background-color: $disabled-bg;
       border-color: $disabled-border;
     }
+  }
+
+  &-group {
+    position: absolute !important;
+    left: $input-group-left;
+    width: $input-height;
+    height: $input-height;
+    line-height: $input-height;
+    text-align: center;
   }
 }
