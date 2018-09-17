@@ -97,7 +97,9 @@ class Select extends Component {
       `<div class="${this.classes.DROPDOWN}"></div>`,
       this.$wrap
     )
+
     this.DROPDOWN = Dropdown.of(this.$trigger, {
+      ...this.options.dropdown,
       target: this.$dropdown,
       keyboard: this.options.keyboard,
       onShow: () => {

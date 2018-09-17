@@ -33,6 +33,9 @@ export const defaults = {
   value: null,
   placeholder: 'Please Select',
   keyboard: true,
+  dropdown: {
+    placement: 'bottom-start'
+  },
   optionLabel(option) {
     return option.label
   },
