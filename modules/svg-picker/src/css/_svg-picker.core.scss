@@ -1,0 +1,219 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$svgPicker: "pj-svgPicker" !default;
+$svgPicker-sizer: $sizer !default;
+
+$svgPicker-width: 16 * $svgPicker-sizer !default; //160px
+$svgPicker-height: 3 * $svgPicker-sizer !default; //30px
+$svgPicker-font-size: $font-size-base !default;
+$svgPicker-border-color: $gray-border !default;
+$svgPicker-active-color: $gray-darker !default;
+$svgPicker-hover-color: $gray-darkest !default;
+// icon
+$svgPicker-icon-width: 4.8 * $svgPicker-sizer !default; //52px
+$svgPicker-icon-height: 4.8 * $svgPicker-sizer !default; //52px
+$svgPicker-icon-color: $gray-light !default;
+$svgPicker-icon-active-color: $color-primary !default;
+$svgPicker-icon-hover-color: $gray-light !default;
+$svgPicker-icon-border-width: 1px !default;
+$svgPicker-icon-border-style: solid !default;
+$svgPicker-icon-border: $svgPicker-icon-border-width
+  $svgPicker-icon-border-style transparent !default;
+// empty
+$svgPicker-empty-padding: 2 * $svgPicker-sizer !default; //20px
+// add btn
+$svgPicker-add-color: $color-primary !default;
+$svgPicker-add-opacity: 0.8 !default;
+$svgPicker-trigger-icon-left: $svgPicker-width - 20px !default;
+$svgPicker-panel-height: 32 * $svgPicker-sizer !default; //320px
+$svgPicker-type-height: 3 * $svgPicker-sizer !default; //30px
+$svgPicker-type-bg-color: $gray-lightest !default;
+// manage
+$svgPicker-manage-height: 3 * $svgPicker-sizer !default; //30px
+$svgPicker-manage-icon-margin-right: $svgPicker-sizer !default; //10px
+$svgPicker-manage-icon-font-size: $font-size-sm !default;
+$svgPicker-search-height: 3 * $svgPicker-sizer !default; //40px
+// search
+$svgPicker-search-border: 1px solid $gray !default;
+$svgPicker-search-margin-bottom: 1px !default;
+$svgPicker-search-icon-color: $gray-dark !default;
+
+// Core
+// =====================
+.#{$svgPicker} {
+  position: relative;
+  box-sizing: border-box;
+
+  .pj-dropdown-trigger {
+    box-sizing: border-box;
+    display: inline-block;
+
+    > span {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &-empty {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    white-space: initial;
+    list-style: none;
+
+    .#{$svgPicker}-add {
+ 
+      &:hover {
+        opacity: $svgPicker-add-opacity;
+        transition: opacity 0.2s;
+      }
+    }
+  }
+
+  &-switch {
+    position: absolute;
+    top: 50%;
+    right: 0.6 * $svgPicker-sizer; //6px
+    transition: all 0.3s;
+    transform: translateY(-50%);
+  }
+
+  &-panel {
+    // height: $svgPicker-panel-height;
+    display: flex;
+    flex-direction: column;
+
+    &.pj-dropdown-show {
+      display: flex;
+    }
+  }
+
+  &-type {
+    display: block !important;
+
+    &-title {
+      position: relative;
+
+      i {
+        position: relative;
+        top: 10%;
+        font-style: normal;
+        // right: $svgPicker-sizer; //10px
+        transition: all 0.3s;
+        transform: translateY(-50%);
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .#{$svgPicker}-icon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-open {
+      .#{$svgPicker}-type-title i {
+        transition: all 0.3s;
+        transform: translateY(-50%) rotate(-180deg);
+      }
+    }
+
+    &-hide {
+      display: none;
+    }
+
+    &-wrap {
+      flex-grow: 1;
+    }
+
+    .pj-scrollable {
+      display: none;
+    }
+  }
+
+  &-manage {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &-search {
+    display: flex;
+    align-items: center;
+
+    i {
+      order: 0;
+      color: $svgPicker-search-icon-color;
+      text-align: center;
+
+      &:last-of-type {
+        order: 2;
+      }
+    }
+
+    input {
+      flex-basis: 100px;
+      flex-grow: 1;
+      order: 1;
+      line-height: 1;
+      border: 0;
+      outline: none;
+      flex-shrink: 1;
+
+      &:focus {
+        + .#{$svgPicker}-search-close {
+          opacity: 1;
+          transition: opacity 0.3s;
+        }
+      }
+    }
+
+    &-close {
+      opacity: 0;
+    }
+
+    &-data {
+      .#{$svgPicker}-search-close {
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+    }
+  }
+
+  &-wrap {
+    .#{$svgPicker}.pj-dropdown-show {
+
+      .#{$svgPicker}-switch {
+        transition: all 0.3s;
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+}
+
+.#{$svgPicker}-searching .#{$svgPicker}-type {
+  .#{$svgPicker}-icon {
+    display: none;
+  }
+
+  .#{$svgPicker}-searched {
+    display: inline-flex;
+  }
+}

@@ -69,11 +69,11 @@ export const defaults = {
   locale: 'en',
   data: null,
   keyboard: false,
-  placehoder: 'choose a icon',
+  placehoder: 'Select SVG',
   disabled: false,
   templates: {
     trigger() {
-      return `<div class={classes.ELEMENT}><span class="pj-dropdown-trigger"></span><i class='{classes.ELEMENT}-switch pj-icon pj-icon-chevron-down'></i>
+      return `<div class={classes.ELEMENT}><span class="pj-dropdown-trigger"></span><i class='{classes.ELEMENT}-switch pj-icon pj-icon-triangle-down-mini-solid'></i>
       </div>`
     },
     icon() {
@@ -81,7 +81,7 @@ export const defaults = {
       </li>`
     },
     type() {
-      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="pj-icon pj-icon-chevron-down">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
+      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="pj-icon pj-icon-triangle-down-mini-solid">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
       </div>`
     },
     manage() {

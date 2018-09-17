@@ -1,4 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
+@import "./svg-picker.core";
 
 // Vars
 // =====================
@@ -43,7 +44,6 @@ $svgPicker-search-icon-color: $gray-dark !default;
 // Core
 // =====================
 .#{$svgPicker} {
-  box-sizing: border-box;
   width: $svgPicker-width;
   height: $svgPicker-height;
   padding: 0;
@@ -55,15 +55,11 @@ $svgPicker-search-icon-color: $gray-dark !default;
   }
 
   .pj-dropdown-trigger {
-    box-sizing: border-box;
-    display: inline-block;
     width: 15.8 * $svgPicker-sizer; //158px;
     padding: 0 $svgPicker-sizer; //0 10px
     line-height: $svgPicker-height;
 
     > span {
-      display: flex;
-      align-items: center;
       height: $svgPicker-height - 2px;
     }
 
@@ -75,24 +71,13 @@ $svgPicker-search-icon-color: $gray-dark !default;
   }
 
   &-empty {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: center;
-    height: 100%;
-    padding: $svgPicker-empty-padding;
-    overflow: hidden;
     font-size: $svgPicker-font-size;
     line-height: 2.6 * $svgPicker-sizer; //26px
-    text-align: center;
-    text-overflow: ellipsis;
-    word-break: keep-all;
-    white-space: initial;
-    list-style: none;
 
     .#{$svgPicker}-add {
-    color: $svgPicker-add-color;
+      color: $svgPicker-add-color;
       text-decoration: none;
+
       &:hover {
         opacity: $svgPicker-add-opacity;
         transition: opacity 0.2s;
@@ -101,19 +86,11 @@ $svgPicker-search-icon-color: $gray-dark !default;
   }
 
   &-switch {
-    position: absolute;
-    top: 50%;
-    right: 0.6 * $svgPicker-sizer; //6px
     font-size: $font-size-base;
     color: $gray-darkest;
-    transition: all 0.3s;
-    transform: translateY(-50%);
   }
 
   &-panel {
-    // height: $svgPicker-panel-height;
-    display: flex;
-    flex-direction: column;
     width: 26 * $svgPicker-sizer !important; //26px
     height: 36 * $svgPicker-sizer !important; //36px;
     min-height: $svgPicker-panel-height;
@@ -123,14 +100,9 @@ $svgPicker-search-icon-color: $gray-dark !default;
       cursor: default;
       background-color: inherit;
     }
-
-    &.pj-dropdown-show {
-      display: flex;
-    }
   }
 
   &-type {
-    display: block !important;
     padding: 0 !important;
     margin-bottom: 1px;
 
@@ -142,7 +114,6 @@ $svgPicker-search-icon-color: $gray-dark !default;
     }
 
     &-title {
-      position: relative;
       height: $svgPicker-type-height;
       padding: 0 1.5 * $svgPicker-sizer !important; //20px
       font-size: $svgPicker-font-size;
@@ -152,29 +123,14 @@ $svgPicker-search-icon-color: $gray-dark !default;
         color: $svgPicker-active-color;
         cursor: pointer;
       }
-
-      i {
-        position: relative;
-        top: 10%;
-        font-style: normal;
-        // right: $svgPicker-sizer; //10px
-        transition: all 0.3s;
-        transform: translateY(-50%);
-      }
     }
 
     ul {
-      display: flex;
-      flex-wrap: wrap;
       padding: 0 10px;
       margin: 0;
     }
 
     .#{$svgPicker}-icon {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       width: $svgPicker-icon-width;
       height: $svgPicker-icon-height;
       padding: 0;
@@ -185,10 +141,12 @@ $svgPicker-search-icon-color: $gray-dark !default;
       list-style: none;
       border: $svgPicker-icon-border;
       border-radius: 0.8 * $svgPicker-sizer; //8px
+
       &-hover,
       &:hover {
         background-color: $gray-light;
       }
+
       svg {
         width: 2.4 * $svgPicker-sizer; //24px
         height: 2.4 * $svgPicker-sizer; //24px
@@ -202,11 +160,6 @@ $svgPicker-search-icon-color: $gray-dark !default;
       .pj-scrollable {
         display: block !important;
       }
-
-      .#{$svgPicker}-type-title i {
-        transition: all 0.3s;
-        transform: translateY(-50%) rotate(-180deg);
-      }
     }
 
     &-hide {
@@ -214,14 +167,10 @@ $svgPicker-search-icon-color: $gray-dark !default;
     }
 
     &-wrap {
-      // width: 100%;
       flex-grow: 1;
-      // height: $svgPicker-panel-height - $svgPicker-manage-height - $svgPicker-search-height;
-      // overflow: auto;
     }
 
     .pj-scrollable {
-      display: none;
       height: 18.8 * $svgPicker-sizer !important; //188px
 
       &-container {
@@ -240,12 +189,6 @@ $svgPicker-search-icon-color: $gray-dark !default;
   }
 
   &-manage {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
     min-height: $svgPicker-manage-height;
     font-size: $svgPicker-font-size;
     line-height: $svgPicker-manage-height;
@@ -268,72 +211,24 @@ $svgPicker-search-icon-color: $gray-dark !default;
   }
 
   &-search {
-    display: flex;
-    align-items: center;
     height: $svgPicker-search-height;
     padding: 0.4 * $svgPicker-sizer $svgPicker-sizer 0.4 * $svgPicker-sizer 2 * $svgPicker-sizer; //4px 10px 4px 20px
     margin-bottom: $svgPicker-search-margin-bottom;
     font-size: $svgPicker-font-size;
     border-bottom: $svgPicker-search-border;
 
-    i {
-      order: 0;
-      color: $svgPicker-search-icon-color;
-      text-align: center;
-
-      &:last-of-type {
-        order: 2;
-      }
-    }
-
     input {
-      flex-basis: 100px;
-      flex-grow: 1;
-      order: 1;
       min-width: 100px;
-      //min-width: 10*$svgPicker-sizer; //100px
       height: 100%;
       margin-bottom: 0;
       margin-left: $svgPicker-sizer; //10px
       font-size: $svgPicker-font-size;
-      line-height: 1;
-      border: 0;
-      outline: none;
-      flex-shrink: 1;
-
-      &:focus {
-        + .#{$svgPicker}-search-close {
-          opacity: 1;
-          transition: opacity 0.3s;
-        }
-      }
-    }
-
-    &-close {
-      opacity: 0;
-
-      &:hover {
-        color: $gray-darkest;
-        cursor: pointer;
-      }
-    }
-
-    &-data {
-      .#{$svgPicker}-search-close {
-        opacity: 1;
-        transition: opacity 0.3s;
-      }
     }
   }
 
   &-wrap {
     .#{$svgPicker}.pj-dropdown-show {
       border-color: $svgPicker-active-color;
-
-      .#{$svgPicker}-switch {
-        transition: all 0.3s;
-        transform: translateY(-50%) rotate(180deg);
-      }
     }
   }
 
