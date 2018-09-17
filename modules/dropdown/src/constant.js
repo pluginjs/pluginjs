@@ -20,6 +20,7 @@ export const classes = {
   REFERENCE: '{namespace}-reference',
   DROPDOWN: '{namespace}',
   ITEM: '{namespace}-item',
+  ITEMDISABLED: '{namespace}-item-disabled',
   SHOW: '{namespace}-show',
   PLACEMENT: '{namespace}-on-{placement}',
   FOCUS: '{namespace}-focus',
@@ -42,7 +43,7 @@ export const methods = [
 export const defaults = {
   theme: null,
   reference: null,
-  target: '+', // dom selector to find content in the page, or '+' means adjacent siblings
+  target: '+', // dom selector to find content in the page, or '+' means adjacent siblings, or 'false' when generate dropdown from data
   trigger: 'click', // focus, hover
   hideOnSelect: true,
   hideOutClick: true, // When clicking outside of the dropdown, trigger hide event
@@ -52,9 +53,12 @@ export const defaults = {
   flip: true,
   boundary: 'scrollParent', // viewport
   itemValueAttr: 'data-value',
-  data: null, // json [{label: [string]}, ....]
+  data: null,
   templates: {
-    item() {
+    item(item) {
+      if (item.disabled) {
+        return '<div class="{classes.ITEM} {classes.ITEMDISABLED}" {itemValueAttr}="{item.value}">{item.label}</div>'
+      }
       return '<div class="{classes.ITEM}" {itemValueAttr}="{item.value}">{item.label}</div>'
     }
   }

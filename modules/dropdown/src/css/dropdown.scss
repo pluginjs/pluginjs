@@ -22,6 +22,8 @@ $dropdown-trigger-focus-color: $color-primary;
 $dropdown-item-space-x: 11px;
 $dropdown-item-space-y: 8px;
 
+$dropdown-item-disabled-color: $disabled-color;
+
 $dropdown-item-icon-gutter: 10px;
 $dropdown-item-hover-bg: $gray-lighter;
 $dropdown-item-active-color: $color-primary-active;
@@ -61,12 +63,15 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
   &-item {
     padding: $dropdown-item-space-y $dropdown-item-space-x;
 
+    &-disabled {
+      color: $dropdown-item-disabled-color
+    }
+
     .pj-icon {
       margin-right: $dropdown-item-icon-gutter;
     }
 
-    &:hover {
-      cursor: pointer;
+    &:not(.#{$dropdown}-item-disabled):hover {
       background-color: $dropdown-item-hover-bg;
     }
 
@@ -74,7 +79,7 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
       color: $dropdown-item-active-color;
     }
 
-    &.#{$dropdown}-highlighted {
+    &.#{$dropdown}-highlighted:not(.#{$dropdown}-item-disabled) {
       color: $dropdown-item-highlighted-color;
       background-color: $dropdown-item-highlighted-bg;
     }

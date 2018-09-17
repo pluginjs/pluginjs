@@ -30,6 +30,11 @@ $dropdown-index: $zindex-dropdown !default;
     line-height: 1;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
+
+    &-disabled {
+      cursor: default;
+    }
   }
 
   &-disabled.#{$dropdown}-trigger {

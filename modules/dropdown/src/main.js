@@ -1,9 +1,9 @@
 import Component from '@pluginjs/component'
 import template from '@pluginjs/template'
 import { isString, isNull, isDomNode, isObject, isArray } from '@pluginjs/is'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, has, query, children } from '@pluginjs/dom'
+import { append, has, query, children, insertAfter } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -61,6 +61,9 @@ class Dropdown extends Component {
   }
 
   getDropdown() {
+    if (!this.options.target) {
+      return insertAfter(document.createElement('div'), this.$trigger)
+    }
     if (this.options.target === '+') {
       return this.$trigger.nextElementSibling
     }
@@ -136,15 +139,17 @@ class Dropdown extends Component {
       this.eventName('click'),
       `.${this.classes.ITEM}`,
       e => {
-        const item = e.target
-        if (item.parentNode !== this.$dropdown) {
+        const $item = e.target
+        if ($item.parentNode !== this.$dropdown) {
           return
         }
 
-        this.selectItem(item)
+        if (!this.isItemDisabled($item)) {
+          this.selectItem($item)
 
-        if (this.options.hideOnSelect) {
-          this.hide()
+          if (this.options.hideOnSelect) {
+            this.hide()
+          }
         }
       },
       this.$dropdown
@@ -170,7 +175,7 @@ class Dropdown extends Component {
     if (items.length > 0) {
       let content = ''
       items.forEach(item => {
-        content += template.render(this.options.templates.item(), {
+        content += template.render(this.options.templates.item(item), {
           classes: this.classes,
           itemValueAttr: this.options.itemValueAttr,
           item
@@ -215,7 +220,14 @@ class Dropdown extends Component {
     return $item.getAttribute(this.options.itemValueAttr)
   }
 
+  isItemDisabled($item) {
+    return hasClass(this.classes.ITEMDISABLED, $item)
+  }
+
   selectItem($item, trigger = true) {
+    if (this.isItemDisabled($item)) {
+      return
+    }
     if (!isNull(this.$active)) {
       removeClass(this.classes.ACITVE, this.$active)
     }
@@ -246,7 +258,13 @@ class Dropdown extends Component {
     if ($highlighted) {
       removeClass(this.classes.HIGHLIGHTED, $highlighted)
     }
-    const $item = this.getItemByIndex(index)
+    let $item
+    if (isDomNode(index)) {
+      $item = index
+    } else {
+      $item = this.getItemByIndex(index)
+    }
+
     if ($item) {
       addClass(this.classes.HIGHLIGHTED, $item)
     }

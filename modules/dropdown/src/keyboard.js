@@ -2,6 +2,7 @@ import keyboard from '@pluginjs/keyboard'
 import { bindEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { events as EVENTS } from './constant'
+import { prevWith, nextWith } from '@pluginjs/dom'
 
 class Keyboard {
   constructor(instance) {
@@ -17,6 +18,10 @@ class Keyboard {
           return
         }
         addClass(this.instance.classes.FOCUS, this.instance.$trigger)
+
+        this.KEYBOARD.down('space', () => {
+          instance.toggle()
+        })
       },
       this.instance.$trigger
     )
@@ -28,6 +33,8 @@ class Keyboard {
           return
         }
         removeClass(this.instance.classes.FOCUS, this.instance.$trigger)
+
+        this.KEYBOARD.down('enter')
       },
       this.instance.$trigger
     )
@@ -63,7 +70,6 @@ class Keyboard {
 
         if (this.instance.is('keyboard')) {
           this.unbind()
-          this.instance.$trigger.blur()
           this.instance.leave('keyboard')
         }
       },
@@ -86,12 +92,11 @@ class Keyboard {
     this.KEYBOARD.down('enter', () => {
       if (instance.is('shown')) {
         const $highlighted = instance.getHighlightedItem()
-        if ($highlighted) {
+        if ($highlighted && !instance.isItemDisabled($highlighted)) {
           instance.selectItem($highlighted)
           instance.hide()
         }
       }
-      return null
     })
 
     this.KEYBOARD.down('up', () => {
@@ -100,7 +105,13 @@ class Keyboard {
       const index = $items.indexOf($highlighted)
 
       if (index > 0) {
-        instance.highlightItem(index - 1)
+        const $prev = prevWith(
+          $el => !instance.isItemDisabled($el),
+          $highlighted
+        )
+        if ($prev) {
+          instance.highlightItem($prev)
+        }
       }
       return false
     })
@@ -111,7 +122,13 @@ class Keyboard {
       const index = $items.indexOf($highlighted)
 
       if (index < $items.length - 1) {
-        instance.highlightItem(index + 1)
+        const $next = nextWith(
+          $el => !instance.isItemDisabled($el),
+          $highlighted
+        )
+        if ($next) {
+          instance.highlightItem($next)
+        }
       }
       return false
     })
