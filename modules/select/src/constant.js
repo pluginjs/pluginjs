@@ -41,7 +41,7 @@ export const defaults = {
   },
   templates: {
     group() {
-      return '<div class="{classes.group}">{options}</div>'
+      return '<div class="{classes.GROUP}">{group.label}</div>'
     },
     option() {
       return '<div class="{classes.OPTION}" data-value="{option.value}">{option.label}</div>'

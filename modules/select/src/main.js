@@ -87,7 +87,7 @@ class Select extends Component {
 
   get selectOptions() {
     if (isSelect(this.element)) {
-      return Array.from(this.element.options)
+      return Array.from(this.element.children)
     }
     return []
   }
@@ -150,6 +150,7 @@ class Select extends Component {
         }
       })
     }
+
     this.data = data
 
     if (this.value) {
@@ -195,11 +196,24 @@ class Select extends Component {
   }
 
   getDataFromOptions() {
-    return this.selectOptions.map(option => {
+    const getDataFromOption = (option) => {
       return {
         ...option.dataset,
         label: option.innerHTML,
         value: option.value
+      }
+    }
+    return this.selectOptions.map(option => {
+      if(option.tagName === 'OPTION') {
+        return getDataFromOption(option)
+      } else if(option.tagName === 'OPTGROUP') {
+        return {
+          ...option.dataset,
+          label: option.label,
+          children: Array.from(option.children).map(option => {
+            return getDataFromOption(option)
+          })
+        }
       }
     })
   }
@@ -215,6 +229,23 @@ class Select extends Component {
   buildOptions(options) {
     let content = ''
     options.forEach(option => {
+      if(option.children) {
+        content += this.buildGroup(option)
+      } else {
+        content += this.buildOption(option)
+      }
+    })
+
+    return content
+  }
+
+  buildGroup(group) {
+    let content = template.render(this.options.templates.group(), {
+      classes: this.classes,
+      group
+    })
+
+    group.children.forEach(option => {
       content += this.buildOption(option)
     })
 
