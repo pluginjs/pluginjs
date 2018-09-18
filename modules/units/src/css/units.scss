@@ -3,64 +3,99 @@
 
 // Vars
 // =====================
-$units: "pj-units" !default;
-$dropdown: "pj-dropdown" !default;
+$units: "pj-units";
+$input: "pj-input";
+$dropdown: "pj-dropdown";
 
-$units-width: 8 * $units-sizer !default; //80px
-$units-height: 3 * $units-sizer !default; //30px
-$units-font-size: $font-size-base !default;
-$units-color: $gray !default;
-$units-border-color: $gray !default;
-$units-hover-color: $gray-darker !default;
-$units-active-color: $border-color-active !default;
-$units-border-radius: $border-radius-base !default;
-$units-trigger-width: 22px !default;
-$units-trigger-font-size: $font-size-base !default;
+$units-font-family: $font-family-base;
+$units-font-size: $font-size-base;
+$units-active-color: $border-color-active;
+
+$units-width: 80px;
+$units-height: 32px;
+
+$units-border-color: $gray-light;
+
+$units-trigger-font-size: $font-size-base;
+$units-trigger-color: $gray-dark;
+$units-trigger-height: $units-height;
+$units-trigger-spacer: 8px;
+
+$units-input-padding: 8px 30px 8px 8px;
+
+$units-dropdown-box-shadow: 0 0 10px 0 rgba($color-black, 0.07);
+
+$units-disabled-color: $disabled-color;
 
 // Theme
 // =====================
 .#{$units} {
-  &-input {
-    .#{$units}-trigger {
-      font-size: $units-trigger-font-size;
+  font-family: $units-font-family;
 
-      &:hover,
-      &:focus {
-        color: $units-active-color;
+  &-active {
+    .#{$units}-trigger {
+      color: $units-active-color;
+    }
+
+    &,
+    &:hover {
+      .#{$units}-input {
         border-color: $units-active-color;
       }
     }
+  }
 
-    .#{$units}-only {
+  &-input {
+    &.#{$input} {
+      padding: $units-input-padding;
+    }
+  }
+
+  &-trigger {
+    padding: 0 $units-trigger-spacer;
+    font-size: $units-trigger-font-size;
+    line-height: $units-trigger-height;
+    color: $units-trigger-color;
+    text-align: right;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+
+    &:hover,
+    &:focus {
+      color: $units-active-color;
+      border-color: $units-active-color;
+    }
+
+    &.#{$units}-only {
       cursor: default;
-      background-color: transparent;
-      opacity: 1;
-
-      &:hover {
-        color: $text-color;
-      }
     }
   }
 
   &-dropdown {
-    width: 100%; //35px ;
-    font-size: $font-size-xs;
+    width: 100%;
+    font-size: $units-font-size;
     border: 1px solid $units-border-color;
-    box-shadow: none;
+    box-shadow: $units-dropdown-box-shadow;
 
-    .pj-dropdown-item {
+    .#{$dropdown}-item {
       text-align: right;
     }
   }
-}
 
-#{$units}-active {
-  .#{$units}-input {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
+  &-disabled {
+    cursor: not-allowed;
 
-  .#{$units}-trigger {
-    color: $units-active-color;
+    .#{$units}-input {
+      border-color: $units-disabled-color;
+    }
+
+    .#{$units}-input:hover {
+      border-color: $units-disabled-color;
+    }
+
+    .#{$units}-trigger {
+      color: $units-disabled-color;
+    }
   }
 }

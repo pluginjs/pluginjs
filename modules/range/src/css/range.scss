@@ -1,66 +1,60 @@
 @import "@pluginjs/styles/variables.scss";
+@import "./range.core.scss";
 
 // Vars
 // =====================
-$range: "pj-range" !default;
+$range: "pj-range";
 
-$range-sizer: $sizer;
+$range-width: 200px;
+$range-height: 2px;
 
-$range-width: 14.3 * $range-sizer !default; //143px
-$range-height: 0.2 * $range-sizer !default; //2px
+$range-font-family: $font-family-base;
 
-$range-pointer-width: 14px !default; //10px
-$range-pointer-height: 14px !default; //10px
-$range-pointer-border-width: 2px !default;
-$range-pointer-border-color: #e6e6e6 !default;
-$range-pointer-bg: $color-white !default;
-$range-pointer-border-color: $color-primary !default;
-$range-pointer-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+$range-pointer-border-color: $gray;
+$range-pointer-bg: $color-white;
 
-$range-input-width: 50px !default;
-$range-input-gap: 8px !default;
+$range-input-gap: 16px;
+$range-input-width: 80px;
+$range-input-height: 32px;
 
 $range-tip-color: $color-white;
-$range-tip-bg: $gray-darkest !default;
-$range-tip-box-shadow: 0 5px 20px 0 rgba($gray-darkest, 0.1) !default;
-$range-tip-border-color: $gray !default; //#5d5c58 !default;
-$range-tip-arrow-size: 5px !default;
-$range-tip-padding: 5px !default;
-$range-tip-font-size: $font-size-xs !default;
-$range-tip-line-height: 1.6 !default;
-$range-tip-min-width: 2*$range-sizer !default;
-$range-track-bg: $color-primary !default;
-$range-rail-bg: #e6e6e6 !default;
+$range-tip-bg: $gray-darkest;
 
-$range-disabled-track-bg: rgba($range-track-bg, 0.5) !default;
+$range-tip-padding: 4px 8px;
+$range-tip-width: 43px;
+$range-tip-height: 24px;
+$range-tip-font-size: $font-size-base;
+$range-tip-line-height: 16px;
+
+$range-track-bg: $color-primary;
+$range-rail-bg: $gray;
+
+$range-disabled-track-bg: #b2b2b2;
+$range-disabled-pointer-border-weight: 3px;
+$range-disabled-pointer-bg: $gray-dark;
 
 .#{$range} {
-  display: flex;
-  align-items: center;
+  font-family: $range-font-family;
 
   &-control {
-    position: relative;
-    width: $range-width;
+    width: 100%;
+    max-width: $range-width;
     height: $range-height;
-    padding-top: $range-pointer-width/2;
-    padding-bottom: $range-pointer-width/2;
+    padding-top: $range-pointer-width / 2;
+    padding-bottom: $range-pointer-width / 2;
     cursor: pointer;
   }
 
   .#{$range}-input {
-    display: block;
-    width: $range-input-width;
-    padding-right: 4px;
-    padding-left: 4px;
+    width: 100%;
+    max-width: $range-input-width;
     margin-left: $range-input-gap;
     text-align: center;
   }
 
   &-rail,
   &-track {
-    position: absolute;
-    top: $range-pointer-width/2;
-    width: $range-width;
+    width: 100%;
     height: $range-height;
   }
 
@@ -75,10 +69,6 @@ $range-disabled-track-bg: rgba($range-track-bg, 0.5) !default;
   }
 
   &-pointer {
-    position: absolute;
-    top: 50%;
-    z-index: 2;
-    box-sizing: border-box;
     width: $range-pointer-width;
     height: $range-pointer-height;
     margin-left: -$range-pointer-width/2;
@@ -87,58 +77,32 @@ $range-disabled-track-bg: rgba($range-track-bg, 0.5) !default;
     border: $range-pointer-border-width solid $range-pointer-border-color;
     border-radius: 50%;
     outline: none;
-    box-shadow: $range-pointer-box-shadow;
     transform: translateY(-50%);
 
     &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      content: "";
       background: $range-pointer-bg;
       border-radius: inherit;
     }
 
     &-active {
-      border-color: $color-primary;
-    }
-
-    &-active,
-    &:hover,
-    &:focus {
-      z-index: 1000;
-      transition: transform 0.2s;
-      transform: translateY(-50%) scale(1.1, 1.1);
+      border-color: $range-pointer-border-color;
     }
   }
 
   &-tip {
-    position: absolute;
-    bottom: 20px;
-    left: $range-pointer-width/2 - $range-pointer-border-width;
-    min-width: 30px;
-    padding: 0 $range-tip-padding;
+    width: $range-tip-width;
+    height: $range-tip-height;
+    padding: $range-tip-padding;
     font-size: $range-tip-font-size;
     line-height: $range-tip-line-height;
     color: $range-tip-color;
     text-align: center;
     cursor: ew-resize;
-    visibility: hidden;
     background-color: $range-tip-bg;
     border: 0;
     border-radius: 2px;
-    box-shadow: $range-tip-box-shadow;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out 0s;
-    transform: translateX(-50%);
 
     &::after {
-      position: absolute;
-      bottom: -$range-tip-arrow-size + 1px;
-      left: 50%;
-      display: block;
       width: 0;
       height: 0;
       margin-left: -$range-tip-arrow-size;
@@ -147,23 +111,11 @@ $range-disabled-track-bg: rgba($range-track-bg, 0.5) !default;
       border-right: $range-tip-arrow-size solid transparent;
       border-left: $range-tip-arrow-size solid transparent;
     }
-
-    &-show {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    .#{$range}-pointer:hover & {
-      visibility: visible;
-      opacity: 1;
-    }
   }
 
 }
 
 .#{$range}-vertical {
-  flex-direction: column;
-
   .#{$range}-input {
     margin-top: $range-input-gap !important;
     margin-left: 0 !important;
@@ -178,19 +130,14 @@ $range-disabled-track-bg: rgba($range-track-bg, 0.5) !default;
 
   .#{$range}-rail,
   .#{$range}-track {
-    position: absolute;
     left: $range-pointer-width/2;
     width: $range-height;
     height: $range-width;
   }
 
   .#{$range}-pointer {
-    top: 0;
-    left: 50%;
     margin-top: -$range-pointer-width/2;
     margin-left: 0;
-    cursor: ns-resize;
-    transform: translateX(-50%);
   }
 }
 
@@ -208,6 +155,11 @@ $range-disabled-track-bg: rgba($range-track-bg, 0.5) !default;
 
   .#{$range}-pointer {
     cursor: not-allowed;
-    border-color: $disabled-border;
+    border-color: transparent;
+    border-width: $range-disabled-pointer-border-weight;
+    
+    &::after {
+      background: $range-disabled-pointer-bg;
+    }
   }
 }

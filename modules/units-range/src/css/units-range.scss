@@ -2,14 +2,24 @@
 
 // Vars
 // =====================
-$unitsRange: "pj-unitsRange" !default;
-$units: "pj-units" !default;
-$unitsRange-gap: 8px;
-$unitsRange-units-width: 60px;
+$unitsRange: "pj-unitsRange";
+$units: "pj-units";
+$input: "pj-input";
+$range: "pj-range";
+
+$unitsRange-gap: 16px;
+$unitsRange-units-width: 80px;
+$unitsRange-range-width: 200px;
 
 .#{$unitsRange} {
   display: flex;
   align-items: center;
+
+  .#{$range} {
+    &-control {
+      width: $unitsRange-range-width;
+    }
+  }
 
   .#{$units} {
     width: $unitsRange-units-width;

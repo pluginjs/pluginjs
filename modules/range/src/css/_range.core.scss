@@ -1,0 +1,108 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$range: "pj-range" !default;
+
+$range-pointer-width: 16px !default;
+$range-pointer-height: 16px !default;
+$range-pointer-border-width: 2px !default;
+
+$range-tip-arrow-size: 4px !default;
+
+.#{$range} {
+  display: flex;
+  align-items: center;
+
+  &-control {
+    position: relative;
+  }
+
+  .#{$range}-input {
+    display: block;
+  }
+
+  &-rail,
+  &-track {
+    position: absolute;
+    top: $range-pointer-width / 2;
+  }
+
+  &-rail {
+    order: 0;
+  }
+
+  &-track {
+    z-index: 1;
+  }
+
+  &-pointer {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    box-sizing: border-box;
+    transform: translateY(-50%);
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      content: "";
+    }
+
+    &-active,
+    &:hover,
+    &:focus {
+      z-index: 1000;
+      transition: transform 0.2s;
+      transform: translateY(-50%) scale(1.1, 1.1);
+    }
+  }
+
+  &-tip {
+    position: absolute;
+    bottom: 20px;
+    left: $range-pointer-width / 2 - $range-pointer-border-width;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 0s;
+    transform: translateX(-50%);
+
+    &::after {
+      position: absolute;
+      bottom: -$range-tip-arrow-size + 1px;
+      left: 50%;
+      display: block;
+    }
+
+    &-show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .#{$range}-pointer:hover & {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+}
+
+.#{$range}-vertical {
+  flex-direction: column;
+
+  .#{$range}-rail,
+  .#{$range}-track {
+    position: absolute;
+    left: $range-pointer-width / 2;
+  }
+
+  .#{$range}-pointer {
+    top: 0;
+    left: 50%;
+    cursor: ns-resize;
+    transform: translateX(-50%);
+  }
+}
