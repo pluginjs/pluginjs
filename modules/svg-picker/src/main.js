@@ -143,8 +143,13 @@ class SvgPicker extends Component {
       this.eventName('click'),
       `.${this.classes.TYPETITLE}`,
       event => {
-        const $type = parent(event.target)
-
+        const eventTarget = event.target
+        let $type = ''
+        if (eventTarget.tagName === 'I') {
+          $type = parent(parent(event.target))
+        } else {
+          $type = parent(event.target)
+        }
         that.open($type)
         if ($type.dataset.open && $type.dataset.open === 'true') {
           // that.close($type)
@@ -157,8 +162,13 @@ class SvgPicker extends Component {
       this.eventName('click'),
       `.${this.classes.ICON}`,
       event => {
-        const $this = parentWith(hasClass(this.classes.ICON), event.target)
-
+        const eventTarget = event.target
+        let $this = ''
+        if (eventTarget.tagName === 'LI') {
+          $this = event.target
+        } else {
+          $this = parentWith(hasClass(this.classes.ICON), event.target)
+        }
         that.select($this)
         that.$dropdown.hide()
       },
@@ -352,7 +362,8 @@ class SvgPicker extends Component {
     this.data = data
 
     this.handleTypes()
-    this.$icons = queryAll(`.${this.classes.ICON}`, this.$panel)
+
+    this.$icons = queryAll(`.${this.classes.ICON}`, this.$typeWrap)
 
     // if (!this.$manage) {
     this.initManage()
@@ -457,6 +468,7 @@ class SvgPicker extends Component {
 
   get() {
     return this.$icon ? this.getIconInfo(this.$icon.dataset.value) : null
+    // return this.getIconInfo(this.$icon.dataset.value)
   }
 
   select(item, trigger = true) {
