@@ -18,10 +18,10 @@ $select-trigger-disabled-color: $disabled-color;
 $select-clear-color: $gray-dark;
 $select-clear-hover-color: $text-color;
 
-$select-group-font-size: $font-size-xs;
-$select-group-color: $gray-dark;
-$select-group-space-x: 11px;
-$select-group-space-y: 8px;
+$select-group-label-font-size: $font-size-xs;
+$select-group-label-color: $gray-dark;
+$select-group-label-space-x: 11px;
+$select-group-label-space-y: 8px;
 
 .#{$select} {
   outline: none;
@@ -53,10 +53,10 @@ $select-group-space-y: 8px;
     }
   }
 
-  &-group {
-    padding: $select-group-space-y $select-group-space-x;
-    font-size: $select-group-font-size;
-    color: $select-group-color;
+  &-group-label {
+    padding: $select-group-label-space-y $select-group-label-space-x;
+    font-size: $select-group-label-font-size;
+    color: $select-group-label-color;
   }
 }
 

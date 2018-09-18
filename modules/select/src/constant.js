@@ -21,12 +21,15 @@ export const classes = {
   WRAP: '{namespace}',
   DROPDOWN: '{namespace}-dropdown',
   GROUP: '{namespace}-group',
+  GROUPLABEL: '{namespace}-group-label',
   OPTION: '{namespace}-option pj-dropdown-item',
   OPTIONDISABLED: '{namespace}-option-disabled pj-dropdown-item-disabled',
   SELECTED: '{namespace}-selected',
   DISABLED: '{namespace}-disabled',
   CLEARABLE: '{namespace}-clearable',
-  CLEAR: '{namespace}-clear'
+  CLEAR: '{namespace}-clear',
+  FILTERABLE: '{namespace}-filterable',
+  FILTER: '{namespace}-filter'
 }
 
 export const methods = [
@@ -44,6 +47,7 @@ export const defaults = {
   source: null,
   value: null,
   placeholder: 'Please Select',
+  filterable: false,
   keyboard: true,
   clearable: false,
   dropdown: {
@@ -54,7 +58,7 @@ export const defaults = {
   },
   templates: {
     group() {
-      return '<div class="{classes.GROUP}">{group.label}</div>'
+      return '<div class="{classes.GROUP}"><div class="{classes.GROUPLABEL}">{group.label}</div>{options}</div>'
     },
     option(option) {
       if (option.disabled) {

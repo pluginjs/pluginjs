@@ -24,12 +24,13 @@ import {
   isPlainObject
 } from '@pluginjs/is'
 import Clearable from './clearable'
+import Filterable from './filterable'
 // import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 import { insertAfter, appendTo, html } from '@pluginjs/dom'
 
-// const isInput = el => el.tagName === 'INPUT'
+const isInput = el => el.tagName === 'INPUT'
 const isSelect = el => el.tagName === 'SELECT'
 
 @themeable()
@@ -73,7 +74,7 @@ class Select extends Component {
     )
 
     this.$label = appendTo(
-      `<span class="${this.classes.LABEL}">${this.placeholder}</span>`,
+      `<div class="${this.classes.LABEL}">${this.placeholder}</div>`,
       this.$trigger
     )
 
@@ -82,6 +83,9 @@ class Select extends Component {
 
     if (this.options.clearable) {
       this.CLEARABLE = new Clearable(this)
+    }
+    if (this.options.filterable) {
+      this.FILTERABLE = new Filterable(this)
     }
 
     if (this.element.disabled || this.options.disabled) {
@@ -217,7 +221,11 @@ class Select extends Component {
   }
 
   setLabel(label) {
-    html(label, this.$label)
+    if (isInput(this.$label)) {
+      this.$label.value = label
+    } else {
+      html(label, this.$label)
+    }
   }
 
   getOptionByValue(value) {
@@ -271,16 +279,16 @@ class Select extends Component {
   }
 
   buildGroup(group) {
-    let content = template.render(this.options.templates.group(), {
-      classes: this.classes,
-      group
-    })
-
+    let options = ''
     group.children.forEach(option => {
-      content += this.buildOption(option)
+      options += this.buildOption(option)
     })
 
-    return content
+    return template.render(this.options.templates.group(), {
+      classes: this.classes,
+      group,
+      options
+    })
   }
 
   buildOption(option) {
