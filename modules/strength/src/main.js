@@ -5,10 +5,11 @@ import { isElement } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   query,
-  insertBefore,
+  // insertBefore,
   parseHTML,
   wrap,
-  insertAfter
+  insertAfter,
+  children
 } from '@pluginjs/dom'
 import { PasswordStrength } from './password_strength'
 import {
@@ -60,17 +61,16 @@ class Strength extends Component {
   }
 
   initialize() {
-    this.createHtm1l()
-    // this.createHtml()
+    this.createHtml()
 
+    addClass('pj-input-group', this.$wrap)
     addClass(this.classes.INPUT, this.element)
 
-    // this.$toggle = query(`.${this.classes.TOGGLE}`, this.$wrap)
-    // this.$meter = query(`.${this.classes.METER}`, this.$wrap)
+    if (this.$addon) {
+      addClass('pj-input-group-addon', this.$addon)
+    }
 
-    this.$scoreElement = query(`.${this.classes.SCORE}`, this.$wrap)
     this.$input = query(`.${this.classes.INPUT}`, this.$wrap)
-    this.$addon = query(`.${this.classes.ADDON}`, this.$wrap)
 
     this.bind()
 
@@ -79,8 +79,8 @@ class Strength extends Component {
   }
 
   bind() {
+    const that = this
     if (this.$toggle) {
-      console.log(this.$toggle.type)
       if (this.$toggle.getAttribute('checkbox')) {
         bindEvent(
           this.eventName('change'),
@@ -118,17 +118,19 @@ class Strength extends Component {
     bindEvent(
       this.selfEventName(EVENTS.CHECK),
       (e, el, score, status) => {
-        this.$scoreElement.innerHTML = this.translate(
-          this.options.scoreLables[status]
-        )
+        if (this.$score) {
+          this.$score.innerHTML = this.translate(
+            this.options.scoreLables[status]
+          )
+        }
         if (status !== this.status) {
           const newClass = this.options.scoreClasses[status]
           const oldClass = this.options.scoreClasses[this.status]
           if (oldClass) {
-            removeClass(oldClass, this.$scoreElement)
+            removeClass(oldClass, this.$score)
           }
           if (newClass) {
-            addClass(newClass, this.$scoreElement)
+            addClass(newClass, this.$score)
           }
 
           this.trigger(EVENTS.STATUSCHANGE, status, this.status)
@@ -144,28 +146,31 @@ class Strength extends Component {
       this.selfEventName(EVENTS.STATUSCHANGE),
       (e, el, current, old) => {
         if (old) {
-          removeClass(this.getStatusClass(old), this.$wrap)
+          removeClass(that.getStatusClass(old), that.$wrap)
         }
         if (current) {
-          addClass(this.getStatusClass(current), this.$wrap)
+          addClass(that.getStatusClass(current), that.$wrap)
         }
       },
       this.element
     )
-    bindEvent(
-      this.eventName('click'),
-      // `.${this.classes.ADDON}`,
-      () => {
-        if (hasClass(this.classes.ACTIVE, this.$addon)) {
-          removeClass(this.classes.ACTIVE, this.$addon)
-          this.iconToggle()
-          return
-        }
-        addClass(this.classes.ACTIVE, this.$addon)
-        this.iconToggle()
-      },
-      this.$addon
-    )
+
+    if (this.$addon) {
+      bindEvent(
+        this.eventName('click'),
+        // `.${this.classes.ADDON}`,
+        () => {
+          if (hasClass(that.classes.ACTIVE, that.$addon)) {
+            removeClass(that.classes.ACTIVE, that.$addon)
+            that.toggle()
+            return
+          }
+          addClass(that.classes.ACTIVE, that.$addon)
+          that.toggle()
+        },
+        this.$addon
+      )
+    }
   }
 
   unbind() {
@@ -177,7 +182,7 @@ class Strength extends Component {
     return template.compile(this.classes.STATUS)({ status })
   }
 
-  createHtm1l() {
+  createHtml() {
     this.$wrap = wrap(
       `<div class='${this.classes.CONTAINER}'></div>`,
       this.element
@@ -186,50 +191,28 @@ class Strength extends Component {
     this.generateScore()
     this.generateToggle()
 
-    console.log(this.$wrap)
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
     }
-  }
-
-  createHtml() {
-    const html = template.render(this.options.templates.main, {
-      classes: this.classes,
-      toggle: this.generateToggle(),
-      meter: this.generateMeter(),
-      input: `<div class="${this.classes.INPUT}"></div>`
-    })
-
-    this.$wrap = parseHTML(html)
-
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$wrap)
-    }
-
-    insertBefore(this.$wrap, this.element)
-
-    const $holder = query(`.${this.classes.INPUT}`, this.$wrap)
-    // this.element.remove()
-    insertBefore(this.element, $holder)
-    $holder.remove()
   }
 
   generateToggle() {
     if (isElement(this.options.showToggle)) {
-      this.$toggle = parseHTML(
-        template.render(this.options.templates.toggle(), {
+      this.$addon = parseHTML(
+        template.render(this.options.templates.addon(), {
           classes: this.classes
         })
       )
-      this.$toggle.append(this.options.showToggle)
-      insertAfter(this.$toggle, this.element)
+      this.$toggle = this.options.showToggle
+      this.$addon.append(this.$toggle)
+      insertAfter(this.$addon, this.element)
     } else if (this.options.showToggle) {
-      this.$toggle = parseHTML(
-        template.render(this.options.templates.toggle(), {
+      this.$addon = parseHTML(
+        template.render(this.options.templates.addon(), {
           classes: this.classes
         })
       )
-      insertAfter(this.$toggle, this.element)
+      insertAfter(this.$addon, this.element)
 
       this.$iconShow = parseHTML(
         template.render(this.options.templates.iconShow(), {
@@ -241,28 +224,21 @@ class Strength extends Component {
           classes: this.classes
         })
       )
-      this.$toggle.append(this.$iconShow, this.$iconHide)
+      this.$addon.append(this.$iconShow, this.$iconHide)
     }
-  }
-
-  generateMeter() {
-    if (this.options.showMeter) {
-      return template.render(this.options.templates.meter, {
-        classes: this.classes,
-        score: this.generateScore()
-      })
-    }
-    return ''
   }
 
   generateScore() {
-    if (this.options.showScore) {
-      this.$score = template.render(this.options.templates.score(), {
-        classes: this.classes
-      })
-      insertAfter(this.$score, this.element)
-    } else if (isElement(this.options.showScore)) {
+    if (isElement(this.options.showScore)) {
+      addClass(this.classes.SCORE, this.options.showScore)
       this.$score = this.options.showScore
+      insertAfter(this.$score, this.element)
+    } else if (this.options.showScore) {
+      this.$score = parseHTML(
+        template.render(this.options.templates.score(), {
+          classes: this.classes
+        })
+      )
       insertAfter(this.$score, this.element)
     }
   }
@@ -316,31 +292,16 @@ class Strength extends Component {
     return this.status
   }
 
-  iconToggle() {
-    let type
-    if (this.$addon.matches('.pj-istrength-addon')) {
-      type = hasClass(this.classes.ACTIVE, this.$addon) ? 'text' : 'password'
-    } else {
-      type = this.shown === false ? 'text' : 'password'
-    }
-
-    this.shown = type === 'text'
-
-    if (this.shown) {
-      addClass(this.classes.SHOWN, this.$wrap)
-    } else {
-      removeClass(this.classes.SHOWN, this.$wrap)
-    }
-    this.$input.setAttribute('type', type)
-
-    this.trigger(EVENTS.TOGGLE, type)
-  }
-
   toggle() {
     let type
-
-    if (this.$toggle.matches('.pj-strength-addon input')) {
-      type = this.$toggle.matches(':checked') ? 'text' : 'password'
+    if (children(this.$addon)[0].tagName === 'input') {
+      if (this.$toggle.matches(`.${this.classes.ADDON} input`)) {
+        type = this.$toggle.matches(':checked') ? 'text' : 'password'
+      } else {
+        type = this.shown === false ? 'text' : 'password'
+      }
+    } else if (this.$addon.matches(`.${this.classes.ADDON}`)) {
+      type = hasClass(this.classes.ACTIVE, this.$addon) ? 'text' : 'password'
     } else {
       type = this.shown === false ? 'text' : 'password'
     }

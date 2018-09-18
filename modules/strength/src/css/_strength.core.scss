@@ -21,11 +21,6 @@ $strength-check-border-radius: $border-radius-base !default;
 .#{$strength} {
   &-container {
     position: relative;
-  }
-
-  &-input-group {
-    display: flex;
-    flex-direction: column;
     width: $strength-input-width !important;
   }
 
@@ -33,13 +28,6 @@ $strength-check-border-radius: $border-radius-base !default;
     width: $strength-input-width;
     height: $strength-input-height;
     outline: none;
-  }
-
-  &-box {
-    position: absolute !important;
-    top: $strength-box-spacer-y;
-    left: $strength-input-width - 2 * $strength-box-spacer-x;
-    font-size: $strength-box-font-size;
   }
 
   &-toggle {
@@ -61,7 +49,7 @@ $strength-check-border-radius: $border-radius-base !default;
     }
 
     .#{$strength}-hide {
-      display: block;
+      display: inline-block;
     }
 
     .#{$strength}-check {
@@ -101,7 +89,7 @@ $strength-check-border-radius: $border-radius-base !default;
   
   &-active {
     .#{$strength}-show {
-      display: block;
+      display: inline-block;
     }
 
     .#{$strength}-hide {

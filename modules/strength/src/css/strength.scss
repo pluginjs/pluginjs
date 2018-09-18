@@ -56,10 +56,6 @@ $strength-check-bg: $color-white;
       background-color: $strength-check-bg;
     }
   }
-
-  &-meter {
-    margin-top: $strength-check-margin-right;
-  }
   
   &-active {
     .#{$strength}-check {
@@ -68,6 +64,36 @@ $strength-check-bg: $color-white;
 
     .#{$strength}-check::before {
       transform: scale(1);
+    }
+  }
+
+  &-empty {
+    > .#{$strength}-score {
+      color: $color-primary;
+    }
+  }
+
+  &-invalid {
+    > .#{$strength}-score {
+      color: $color-danger;
+    }
+  }
+
+  &-weak {
+    > .#{$strength}-score {
+      color: $color-warning;
+    }
+  }
+
+  &-good {
+    > .#{$strength}-score {
+      color: $color-info;
+    }
+  }
+
+  &-strong {
+    > .#{$strength}-score {
+      color: $color-success;
     }
   }
 }
