@@ -194,9 +194,9 @@ class Dropdown extends Component {
   }
 
   getItems() {
-    return queryAll(`.${this.classes.ITEM}`, this.$dropdown).filter(
-      this.isItemOf.bind(this)
-    )
+    return queryAll(`.${this.classes.ITEM}`, this.$dropdown).filter($item => {
+      return this.isItemOf($item)
+    })
   }
 
   isItemOf($item) {

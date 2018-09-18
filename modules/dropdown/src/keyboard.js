@@ -2,7 +2,6 @@ import keyboard from '@pluginjs/keyboard'
 import { bindEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { events as EVENTS } from './constant'
-import { prevWith, nextWith } from '@pluginjs/dom'
 
 class Keyboard {
   constructor(instance) {
@@ -40,13 +39,14 @@ class Keyboard {
     )
 
     bindEvent(
-      this.instance.selfEventName(EVENTS.SHOW),
+      this.instance.selfEventName(EVENTS.SHOWN),
       () => {
-        let $highlighted = instance.getHighlightedItem()
-        if (!$highlighted) {
-          $highlighted = instance.getActiveItem()
+        const $active = instance.getActiveItem()
 
+        if (!$active) {
           instance.highlightItem(0)
+        } else {
+          instance.highlightItem($active)
         }
 
         if (!this.instance.is('keyboard')) {
@@ -99,15 +99,15 @@ class Keyboard {
     this.KEYBOARD.down('up', () => {
       const $highlighted = instance.getHighlightedItem()
       const $items = instance.getItems()
-      const index = $items.indexOf($highlighted)
+      let index = $items.indexOf($highlighted)
 
-      if (index > 0) {
-        const $prev = prevWith(
-          $el => !instance.isItemDisabled($el),
-          $highlighted
-        )
-        if ($prev) {
+      let $prev
+      while (index > 0) {
+        index--
+        $prev = $items[index]
+        if (!instance.isItemDisabled($prev)) {
           instance.highlightItem($prev)
+          break
         }
       }
       return false
@@ -116,15 +116,15 @@ class Keyboard {
     this.KEYBOARD.down('down', () => {
       const $highlighted = instance.getHighlightedItem()
       const $items = instance.getItems()
-      const index = $items.indexOf($highlighted)
+      let index = $items.indexOf($highlighted)
 
-      if (index < $items.length - 1) {
-        const $next = nextWith(
-          $el => !instance.isItemDisabled($el),
-          $highlighted
-        )
-        if ($next) {
+      let $next
+      while (index < $items.length - 1) {
+        index++
+        $next = $items[index]
+        if (!instance.isItemDisabled($next)) {
           instance.highlightItem($next)
+          break
         }
       }
       return false
