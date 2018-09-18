@@ -14,28 +14,28 @@ $list-font-family: $font-family-base;
 
 $list-color: $text-color;
 
-$list-item-height: 40px; //30px
-$list-item-handle-width: $list-item-height;
-$list-item-label-margin-right: 42px;
+$list-action-action-margin-left: 4px;
+$list-active-color: $color-primary-black;
+
+$list-item-label-padding-right: $list-font-size * 2 + $list-actions-right + $list-action-action-margin-left;
 $list-item-actions-color: $gray-dark;
 $list-item-actions-hover-color: $gray-darker;
-
-$list-sizer: $sizer;
-
+$list-item-handle-padding: 13px;
+$list-item-item-matrgin-top: $sizer;
 $list-item-hover-border-color: $gray-darkest;
+
 $list-ghost-bg: $gray-lightest;
 
 $list-border-color: $gray-border;
 $list-border-radius: $border-radius-base;
 
-$list-active-color: $color-primary-black;
 
-$list-clone-bg: rgba($color-warning, 0.1); //#f3d351
+$list-clone-bg: rgba($color-warning, 0.1);
 
 // Skin
 // =====================
 .#{$list} {
-  width: $list-width;
+  min-width: $list-width;
   padding: $list-padding;
   margin-bottom: $list-padding;
   font-family: $list-font-family;
@@ -43,13 +43,15 @@ $list-clone-bg: rgba($color-warning, 0.1); //#f3d351
   color: $list-color;
 
   &-item {
-    height: $list-item-height;
-    margin-bottom: $list-sizer; //10px
-    line-height: $list-item-height;
+    padding-right: $list-item-label-padding-right;
     background-color: $color-white;
     border: 1px solid $list-border-color;
     border-radius: $list-border-radius;
     transition: background 300ms;
+
+    & + & {
+      margin-top: $list-item-item-matrgin-top;
+    }
 
     &:hover {
       border-color: $list-item-hover-border-color;
@@ -60,13 +62,16 @@ $list-clone-bg: rgba($color-warning, 0.1); //#f3d351
     }
 
     &-handle {
-      width: $list-item-handle-width;
-      height: $list-item-height;
+      padding: $list-item-handle-padding;
       font-size: $font-size-sm;
+
+      i {
+        display: block;
+      }
     }
 
     &-label {
-      margin-right: $list-item-label-margin-right; //42px
+      width: 100%;
     }
 
     &-action {

@@ -5,7 +5,6 @@
 $list: "pj-list" !default;
 
 $list-actions-right: 15px !default;
-$list-action-action-margin-left: 4px !default;
 
 // Core
 // =====================
@@ -23,6 +22,7 @@ $list-action-action-margin-left: 4px !default;
     display: flex;
     align-items: center;
     overflow: hidden;
+    line-height: 1;
     user-select: none;
 
     &-handle {
@@ -48,10 +48,6 @@ $list-action-action-margin-left: 4px !default;
       &:hover {
         cursor: pointer;
       }
-    }
-
-    &-action + &-action {
-      margin-left: $list-action-action-margin-left;
     }
 
     &.sortable-ghost {
