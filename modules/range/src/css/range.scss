@@ -25,13 +25,13 @@ $range-tip-width: 43px;
 $range-tip-height: 24px;
 $range-tip-font-size: $font-size-base;
 $range-tip-line-height: 16px;
+$range-tip-border-radius: $border-radius-base;
 
 $range-track-bg: $color-primary;
 $range-rail-bg: $gray;
 
-$range-disabled-track-bg: #b2b2b2;
+$range-disabled-color: $gray-dark;
 $range-disabled-pointer-border-weight: 3px;
-$range-disabled-pointer-bg: $gray-dark;
 
 .#{$range} {
   font-family: $range-font-family;
@@ -59,7 +59,6 @@ $range-disabled-pointer-bg: $gray-dark;
   }
 
   &-rail {
-    order: 0;
     background-color: $range-rail-bg;
   }
 
@@ -71,7 +70,7 @@ $range-disabled-pointer-bg: $gray-dark;
   &-pointer {
     width: $range-pointer-width;
     height: $range-pointer-height;
-    margin-left: -$range-pointer-width/2;
+    margin-left: -$range-pointer-width / 2;
     cursor: ew-resize;
     background-color: $range-pointer-bg;
     border: $range-pointer-border-width solid $range-pointer-border-color;
@@ -100,7 +99,7 @@ $range-disabled-pointer-bg: $gray-dark;
     cursor: ew-resize;
     background-color: $range-tip-bg;
     border: 0;
-    border-radius: 2px;
+    border-radius: $range-tip-border-radius;
 
     &::after {
       width: 0;
@@ -116,27 +115,21 @@ $range-disabled-pointer-bg: $gray-dark;
 }
 
 .#{$range}-vertical {
-  .#{$range}-input {
-    margin-top: $range-input-gap !important;
-    margin-left: 0 !important;
-  }
-
   .#{$range}-control {
     width: $range-height;
     height: $range-width;
-    padding-right: $range-pointer-width/2;
-    padding-left: $range-pointer-width/2;
+    padding-right: $range-pointer-width / 2;
+    padding-left: $range-pointer-width / 2;
   }
 
   .#{$range}-rail,
   .#{$range}-track {
-    left: $range-pointer-width/2;
     width: $range-height;
     height: $range-width;
   }
 
   .#{$range}-pointer {
-    margin-top: -$range-pointer-width/2;
+    margin-top: -$range-pointer-width / 2;
     margin-left: 0;
   }
 }
@@ -144,13 +137,9 @@ $range-disabled-pointer-bg: $gray-dark;
 .#{$range}-disabled {
   cursor: not-allowed;
 
-  .#{$range}-rail {
-    background-color: $disabled-color;
-  }
-
   .#{$range}-track {
     cursor: not-allowed;
-    background-color: $range-disabled-track-bg;
+    background-color: $range-disabled-color;
   }
 
   .#{$range}-pointer {
@@ -159,7 +148,7 @@ $range-disabled-pointer-bg: $gray-dark;
     border-width: $range-disabled-pointer-border-weight;
     
     &::after {
-      background: $range-disabled-pointer-bg;
+      background: $range-disabled-color;
     }
   }
 }
