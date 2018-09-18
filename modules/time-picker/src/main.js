@@ -79,9 +79,8 @@ class TimePicker extends Component {
     addClass(this.classes.INFO, this.element)
     wrap(`<div class="${this.classes.NAMESPACE}"></div>`, this.element)
     insertAfter(
-      `<div class="${
-        this.classes.DROPDOWN
-      }"><input class="pj-dropdown-trigger" /><div></div></div>`,
+      `<div class="${this.classes.DROPDOWN} pj-input-group">
+      <input class="pj-dropdown-trigger"/><div></div></div>`,
       this.element
     )
 
@@ -129,7 +128,7 @@ class TimePicker extends Component {
       } pj-icon  pj-icon-close" style="display:none;"></i>`
     )
     this.$icon = parseHTML(
-      '<i class="pj-dropdown-icon pj-icon  pj-icon-clock-solid"></i>'
+      '<i class="pj-icon  pj-icon-clock-solid pj-input-group-addon"></i>'
     )
     insertAfter(this.$remove, this.DROPDOWN.element)
     insertAfter(this.$icon, this.$remove)

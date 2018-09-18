@@ -118,10 +118,10 @@ export const defaults = {
 
   templates: {
     inputWrap() {
-      return '<div class="{classes.INPUTWRAP}"></div>'
+      return '<div class="{classes.INPUTWRAP} pj-input-group"></div>'
     },
     inputIcon() {
-      return '<i class="{classes.ICON} pj-icon pj-icon-calendar"></i>'
+      return '<i class="{classes.ICON} pj-icon pj-icon-calendar pj-input-group-addon"></i>'
     },
     wrap() {
       return '<div class="{classes.WRAP}"></div>'

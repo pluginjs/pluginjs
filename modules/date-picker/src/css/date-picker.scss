@@ -12,7 +12,7 @@ $datePicker-hover-color: $gray-light !default;
 $datePicker-hover-dark-color: $gray-lighter !default;
 $datePicker-color: $text-color !default;
 $datePicker-input-color: $text-color !default;
-$datePicker-input-width: 15 * $datePicker-sizer !default; //130
+$datePicker-input-width: 16.5 * $datePicker-sizer !default; //130
 // border vars
 $datePicker-border-width: 1px !default;
 $datePicker-border-color: $gray !default;
@@ -39,7 +39,9 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 
 &.#{$datePicker}-inputWrap {
   display: inline-flex;
-
+  width: 20 * $datePicker-sizer !important;
+  height: 3.2 * $datePicker-sizer !important;
+  
   &:hover {
 
     .#{$datePicker}-icon {

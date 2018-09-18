@@ -6,7 +6,7 @@ $timePicker: "pj-timePicker" !default;
 $dropdown: "pj-dropdown" !default;
 $timePicker-sizer: $sizer !default;
 
-$timePicker-width: 20.4 * $timePicker-sizer !default; //200px
+$timePicker-width: 20 * $timePicker-sizer !default; //200px
 $timepicker-icon-border: #E6E6E6 !default;
 $timepicker-icon-color: $gray-dark !default;
 $timepicker-icon-hover-bg: $gray-lightest !default;
@@ -24,15 +24,12 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
     }
      
     &:hover {
-      // color: $color-primary-black;
       .#{$timePicker}-remove {
         display: block !important;
       }
     }
-    // &:active {
-    //   border-color: $color-primary-active !important;
-    // }
   }
+
   &-border {
     color : #215FDB !important;
   }
@@ -55,25 +52,14 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
       border: 1px solid $color-black;
     }
   }
-
-  .#{$dropdown}-icon {
-    position: absolute;
-    right: 0;
-    height: 3.6 * $timePicker-sizer; //30px
-    // height: 30px;
-    padding: 0 0.7 * $timePicker-sizer; //0 7px
-    line-height: 3.6 * $timePicker-sizer; //30px
-    color: $timepicker-icon-color;
-    cursor: pointer;
-    border-left: 1px solid $timepicker-icon-border;
-    transition: all 0.1s;
-
-
-  }
-
   .#{$dropdown}-show {
     top: 0 !important;
+    color: $color-primary;
     border-color: $color-primary-active !important;
+    transform: translateY(0%);
+    &:hover {
+      color: $color-primary;
+    }
   }
 
   > .#{$dropdown}-panel-wrap .#{$dropdown}-panel {
@@ -82,16 +68,6 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
 
   &-info {
     display: none !important;
-  }
-}
-
-.#{$timePicker} .#{$dropdown}-show .#{$dropdown}-icon {
-  color: $color-primary;
-
-  transform: translateY(0%);
-
-  &:hover {
-    color: $color-primary;
   }
 }
 
@@ -118,14 +94,18 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
   .pj-dropdown-panel {
     border: none;
   }
+
+  .pj-input-group-addon {
+    width: 3.2 * $timePicker-sizer;
+    border: none;
+    border-left: 1px solid $gray; 
+  } 
+
   // disabled
   >.#{$timePicker}.#{$dropdown}-disabled{
     >.#{$timePicker}-dropdown {
       &:active {
         border-color: $gray-light !important;
-      }
-      .#{$dropdown}-icon {
-        color: $gray-dark;
       }
     }
   }
@@ -153,10 +133,6 @@ $timepicker-icon-hover-bg: $gray-lightest !default;
   }
   .pj-dropdown-trigger {
     
-    pointer-events: none;
-  }
-  .pj-dropdown-icon {
-    color: #E6E6E6;
     pointer-events: none;
   }
 }

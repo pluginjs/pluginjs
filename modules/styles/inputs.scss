@@ -21,7 +21,7 @@ $input-padding-top: 0.4*$input-sizer !default; //4px
 $input-padding-left: 1.5*$input-sizer !default; //15px
 $input-line-height: 1.6*$input-sizer !default; //16px
 $input-group-left: 16.7*$input-sizer !default; //167px
-
+$input-group-addon-color: $gray-dark !default;
 $input-placeholder-color: $gray-dark !default;
 
 $disabled-bg: $color-white;
@@ -82,6 +82,7 @@ $disabled-color: $gray-border;
     box-sizing: border-box;
     height: $input-height;
     line-height: $input-height;
+    color: $input-group-addon-color;
     text-align: center;
     border: $input-border-width $input-border-style $input-border-color;
   }
