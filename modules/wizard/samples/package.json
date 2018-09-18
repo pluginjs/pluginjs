@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@pluginjs/dom": "*",
-    "@pluginjs/wizard": "*"
+    "@pluginjs/wizard": "*",
+    "hyperform": "0.9.16"
   },
   "devDependencies": {
     "babel-core": "*",

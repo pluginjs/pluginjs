@@ -4,7 +4,7 @@ import { bindEventOnce, trigger } from '@pluginjs/events'
 import { data, attr, html, each, setData, getData, query } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 // import axios from 'axios'
-// import fetch from 'fetch'
+import fetch from 'fetch'
 const EVENTS = {
   BEFORESHOW: 'beforeShow',
   BEFOREHIDE: 'beforeHide',
@@ -227,6 +227,7 @@ class Step {
         callback.call(that)
       }
     }
+
     if (isString(loader)) {
       setContent(loader)
     } else if (isObject(loader) && {}.hasOwnProperty.call(loader, 'url')) {
@@ -297,7 +298,6 @@ class Step {
 
   setLoaderFromData() {
     const loader = getData('loader', this.pane)
-    // const loader = this.pane.data('loader')
 
     if (loader) {
       if (isFunction(window[loader])) {
@@ -305,12 +305,11 @@ class Step {
       }
     } else {
       const url = getData('loader-url', this.pane)
-      // const url = this.pane.data('loader-url')
+
       if (url) {
         this.loader = {
           url,
           settings: data('settings', this.pane) || {}
-          // settings: this.pane.data('settings') || {}
         }
       }
     }
@@ -384,7 +383,6 @@ class Step {
 
   validate() {
     return this.validator.call(this.pane, this)
-    // return this.validator.call(this.pane.get(0), this)
   }
 }
 

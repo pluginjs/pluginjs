@@ -1,7 +1,7 @@
-<h3>Loader</h3>
+<h3>Validator</h3>
 <div class="pj-wizard example">
-  <ul class="pj-wizard-steps" role="tablist">
-    <li data-target="#loader1" role="tab">
+	<ul class="pj-wizard-steps" role="tablist">
+    <li class="pj-wizard-steps-item" role="tab">
       <div class="pj-wizard-steps-item-icon">
         <span class="pj-wizard-steps-icon">1</span>
         <i class="active-icon pj-icon pj-icon-check-solid"></i>
@@ -10,7 +10,7 @@
         <div class="pj-wizard-steps-item-title">Step1</div>
       </div>
     </li>
-    <li data-target="#loader2" role="tab">
+    <li class="pj-wizard-steps-item" role="tab">
       <div class="pj-wizard-steps-item-icon">
         <span class="pj-wizard-steps-icon">2</span>
         <i class="active-icon pj-icon pj-icon-check-solid"></i>
@@ -19,7 +19,7 @@
         <div class="pj-wizard-steps-item-title">Step2</div>
       </div>
     </li>
-    <li data-target="#loader3" role="tab">
+    <li class="pj-wizard-steps-item" role="tab">
       <div class="pj-wizard-steps-item-icon">
         <span class="pj-wizard-steps-icon">3</span>
         <i class="active-icon pj-icon pj-icon-check-solid"></i>
@@ -29,14 +29,29 @@
       </div>
     </li>
   </ul>
-  <div class="pj-wizard-content">
-    <div class="pj-wizard-pane" id="loader1" role="tabpanel"></div>
-    <div class="pj-wizard-pane" id="loader2" role="tabpanel"></div>
-    <div class="pj-wizard-pane" id="loader3" role="tabpanel"></div>
-  </div>
+  <form id="validation">
+  	<div class="pj-wizard-content">
+	    <div class="pj-wizard-pane" role="tabpanel">
+	    	<div class="pj-wizard-formGroup">
+	    		<label>Username</label>
+	        <input type="text" class="pj-wizard-formControl pj-input" name="username" required>
+	      </div>
+	    </div>
+	    <div class="pj-wizard-pane" role="tabpanel">
+	    	<div class="pj-wizard-formGroup">
+	    		<label>Email</label>
+	        <input type="email" class="pj-wizard-formControl pj-input" name="email" required>
+	      </div>
+	    </div>
+	    <div class="pj-wizard-pane" role="tabpanel">
+	    	<label>Password</label>
+	       <input type="password" class="pj-wizard-formControl pj-input" name="password" required>
+	    </div>
+	  </div>
+  </form>
   <div class="pj-wizard-buttons">
     <a class="pj-wizard-default pj-btn" data-wizard="back">Previous</a>
     <a class="pj-wizard-primary pj-btn" data-wizard="next">Next</a>
-    <a class="pj-wizard-success pj-btn" data-wizard="finish">Finish</a>
+    <a class="pj-wizard-success pj-btn" data-wizard="finish">Done</a>
   </div>
 </div>

@@ -46,7 +46,8 @@
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
     "@pluginjs/utils": "*",
-    "fetch": "*"
+    "fetch": "*",
+    "hyperform": "0.9.16"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
