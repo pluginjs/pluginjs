@@ -55,7 +55,6 @@ class SectionScroll extends Component {
 
     this.bind()
 
-    // first init
     const id = window.location.hash
       ? window.location.hash
       : `#${this.$sections[0].id}`
@@ -67,7 +66,7 @@ class SectionScroll extends Component {
 
   bind() {
     if (this.options.touch) {
-      // this.bindChouch()
+      this.bindChouch()
     }
     if (this.options.mousewheel) {
       this.onMousewheel()
@@ -80,7 +79,6 @@ class SectionScroll extends Component {
     if (this.options.mousewheel) {
       this.offMousewheel()
     }
-    // this.unbindChouch()
   }
 
   onMousewheel() {
@@ -90,9 +88,9 @@ class SectionScroll extends Component {
         e.preventDefault()
 
         if (e.deltaY > 0) {
-          this.previous()
-        } else if (e.deltaY < 0) {
           this.next()
+        } else if (e.deltaY < 0) {
+          this.previous()
         }
       },
       document.body
@@ -146,7 +144,7 @@ class SectionScroll extends Component {
 
   initStyle() {
     addClass(this.classes.OPEN, document.body)
-    // stop scale
+
     append(
       '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">',
       query('head')
@@ -238,7 +236,6 @@ class SectionScroll extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      // this.$dots.asDots('destroy');
       this.unbind()
       this.leave('initialized')
     }

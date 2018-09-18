@@ -1,7 +1,7 @@
 import Base from './base'
 import { events as EVENTS } from '../constant'
 import ScrollSpy from '@pluginjs/scroll-spy'
-import PjScroll from '@pluginjs/scroll'
+import scroll from '@pluginjs/scroll'
 
 class Scroll extends Base {
   constructor(instance) {
@@ -34,7 +34,7 @@ class Scroll extends Base {
     const top = this.getOffset(this.$sections[index])
     const duration = this.options.duration
     const easing = this.options.easing
-    PjScroll.to({
+    scroll.to({
       y: top,
       duration,
       easing

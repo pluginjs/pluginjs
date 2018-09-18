@@ -1,7 +1,7 @@
 import { parseHTML } from '@pluginjs/dom'
 
 export default () => parseHTML`
-<div>
+<div class="section-container">
   <section id="home" class="section">
     <div class="inner">
       <h1 class="section-title">Home</h1>
