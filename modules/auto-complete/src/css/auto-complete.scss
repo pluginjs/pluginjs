@@ -170,6 +170,7 @@ $autoComplete-disabled-bg: $disabled-bg !default;
   }
 
   &-mark {
+    display:inline-block;
     padding: 0;
     font-weight: 700;
     color: $autoComplete-active-color;

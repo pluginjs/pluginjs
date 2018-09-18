@@ -6,9 +6,7 @@ const data = {
     Primary: '#55a4f2',
     fontColor: '#ccc',
     'bg Color': '#f2a654',
-    'border Color': '#f1f1f1'
-  },
-  favorites: {
+    'border Color': '#f1f1f1',
     red: 'red',
     brown: 'brown',
     lightblue: 'lightblue',

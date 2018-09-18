@@ -81,7 +81,8 @@ export const defaults = {
       return '<i class="{classes.CLOSE} {icon}"></i>'
     },
     mark() {
-      return `<mark class='{classes.MARK}'>
+      return `<mark class='{classes.MARK}'
+      >
       {contents}</mark>`
     }
   },

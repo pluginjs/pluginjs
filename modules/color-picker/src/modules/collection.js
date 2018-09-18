@@ -24,7 +24,6 @@ class Collection {
     this.instance = instance
     this.classes = this.instance.classes
     this.element = element
-
     this.init()
   }
 
@@ -40,9 +39,9 @@ class Collection {
     // create group
     const $collection = this.instance.createEl('collection', {
       classes: this.classes,
-      manageText: this.instance.translate('manage'),
-      favoritesText: this.instance.translate('colorInScheme'),
-      schemeText: this.instance.translate('myColors')
+      manageText: this.instance.translate('manage')
+      // favoritesText: this.instance.translate('colorInScheme'),
+      // schemeText: this.instance.translate('myColors')
     })
 
     this.element.append(...$collection)
@@ -71,9 +70,6 @@ class Collection {
       )
     scrollWrapChildren.map(
       append(query(`.${this.classes.SCHEME}`, this.element))
-    )
-    scrollWrapChildren.map(
-      append(query(`.${this.classes.FAVORITES}`, this.element))
     )
 
     this.scrollable = Scrollable.of($scorllWrap, {
