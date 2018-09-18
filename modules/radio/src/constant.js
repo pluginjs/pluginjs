@@ -60,7 +60,7 @@ export const defaults = {
       return '<div class="{classes.WRAP}"></div>'
     },
     icon() {
-      return '<i class="pj-checkbox-icon {classes.ICON}"></i>'
+      return '<i class="pj-radio-icon {classes.ICON}"></i>'
     }
   }
 }

@@ -2,95 +2,146 @@
 @import "core";
 // Vars
 // =====================
+$radio-radio-space: 10px;
+$radio-font-size: $font-size-base;
+$radio-font-family: $font-family-base;
+
+$radio-icon-font-size: 12px;
+$radio-icon-border-radius: 50%;
+
+$radio-border-color: $border-color;
+
+$radio-color: $gray-darker;
+
+$radio-primary-color: $color-primary;
+$radio-success-color: $color-success;
+$radio-info-color: $color-info;
+$radio-warning-color: $color-warning;
+$radio-danger-color: $color-danger;
+
+$radio-disabled-color: $disabled-color;
+$radio-disabled-solid-color: $color-white;
 
 .#{$radio} {
   @mixin radio-border-variant($color) {
     &.#{$radio}-checked,
     & > input[type="radio"]:checked + label {
-      i:first-child {
-        &::after { /* stylelint-disable-line */
-          border-color: $color;
-        }
-      }
-    }
-  }
-  
-  @mixin radio-icon-variant($color) {
-    &.#{$radio}-checked,
-    & > input[type="radio"]:checked + label {
-      i[class]:first-child { /* stylelint-disable-line */
+      .#{$radio}-icon {
         color: $color;
       }
-    }
-  
-    &.#{$radio}-solid {
-      &.#{$radio}-checked,
-      & > input[type="radio"]:checked + label {
-        i[class]:first-child {
-          color: $color-white;
-  
-          &::after {
-            background-color: $color;
-          }
+
+      i:not([class]) {
+        &::before {
+          background: $color;
         }
       }
     }
-  }
 
-  @mixin radio-solid-variant($background) {
     &.#{$radio}-solid {
       &.#{$radio}-checked,
       & > input[type="radio"]:checked + label {
-        i:first-child:not([class]) {
+        .#{$radio}-icon {
+          color: $color;
+          border-color: $color;
+        }
+  
+        i:not([class]) {
+          border-color: $color;
+  
           &::before {
-            background-color: $background;
+            background: $color;
           }
         }
       }
     }
+    
+  }
+  
+  margin: 0 $radio-radio-space $radio-radio-space 0;
+  font-family: $radio-font-family;
+  font-size: $radio-font-size;
+
+  i {
+    padding: 2px;
+    margin-right: 6px;
+    font-size: $radio-icon-font-size;
+    border: 1px solid $radio-border-color;
+    border-radius: $radio-icon-border-radius;
+  }
+  
+  i:not([class]) {
+    &::before {
+      box-sizing: border-box;
+      display: block;
+      width: 10px;
+      height: 10px;
+      content: "";
+      border: 5px solid transparent;
+      border-radius: 50%;
+    }
   }
 
-  @mixin radio-default-variant($background) {
-    i:first-child:not([class]) {
+  &-icon {
+    padding: 1px !important;
+    font-size: $radio-icon-font-size;
+  }
+
+  &-checked,
+  &> input[type="radio"]:checked + label {
+    i:not([class]) {
       &::before {
-        background-color: $background;
+        background: #666;
+        border: solid transparent !important;
+        transition: all 0.5s ease;
       }
     }
   }
 
   &-primary {
     @include radio-border-variant($radio-primary-color);
-    @include radio-default-variant($radio-primary-color);
-    @include radio-icon-variant($radio-primary-color);
-    @include radio-solid-variant($radio-primary-color);
   }
   
   &-success {
     @include radio-border-variant($radio-success-color);
-    @include radio-default-variant($radio-success-color);
-    @include radio-icon-variant($radio-success-color);
-    @include radio-solid-variant($radio-success-color);
   }
   
   &-info {
     @include radio-border-variant($radio-info-color);
-    @include radio-default-variant($radio-info-color);
-    @include radio-icon-variant($radio-info-color);
-    @include radio-solid-variant($radio-info-color);
   }
   
   &-warning {
     @include radio-border-variant($radio-warning-color);
-    @include radio-default-variant($radio-warning-color);
-    @include radio-icon-variant($radio-warning-color);
-    @include radio-solid-variant($radio-warning-color);
   }
   
   &-danger {
     @include radio-border-variant($radio-danger-color);
-    @include radio-default-variant($radio-danger-color);
-    @include radio-icon-variant($radio-danger-color);
-    @include radio-solid-variant($radio-danger-color);
+  }
+
+  &-disabled,
+  input[type="radio"]:disabled + label{
+    color: $radio-disabled-color;
+    .#{$radio}-icon {
+      color: $radio-disabled-color;
+    }
+  }
+
+  &-solid {
+    &.#{$radio}-checked,
+    & > input[type="radio"]:checked + label {
+      i:not([class]),
+      .#{$radio}-icon {
+        border-color: $radio-color;
+      }
+    }
+
+    &.#{$radio}-disabled,
+    input[type="radio"]:disabled + label{
+      .#{$radio}-icon {
+        color: $radio-disabled-solid-color;
+        background: $radio-disabled-color !important;
+        border-color: $radio-disabled-color !important;
+      }
+    }
   }
   
 }
