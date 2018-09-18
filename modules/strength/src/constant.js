@@ -25,7 +25,9 @@ export const classes = {
   ACTIVE: '{namespace}-active',
   ADDON: '{namespace}-addon',
   CHECK: '{namespace}-check',
-  DISABLE: '{namespace}-disabled'
+  DISABLE: '{namespace}-disabled',
+  SHOW: '{namespace}-show',
+  HIDE: '{namespace}-hide'
 }
 
 export const methods = ['getScore', 'getStatus', 'enable', 'disable', 'destroy']
@@ -33,18 +35,29 @@ export const methods = ['getScore', 'getStatus', 'enable', 'disable', 'destroy']
 export const defaults = {
   theme: null,
 
-  showMeter: true,
-  showToggle: true,
+  showScore: true, // query || true || false
+  showToggle: true, // query || true || false
 
   usernameField: '',
 
   templates: {
-    toggle:
-      '<span class="{classes.ADDON} pj-input-group-addon"><input type="checkbox" class="{classes.TOGGLE}" title="{label}" checked /><i class="{classes.CHECK} pj-icon pj-icon-done-small"></i></span>',
-    meter: '<div class="{classes.METER}">{score}</div>',
-    score: '<span class="label {classes.SCORE}"></span>',
-    main:
-      '<div class="{classes.CONTAINER}"><div class="{classes.INPUTGROUP} pj-input-group">{input}{toggle}</div>{meter}</div>'
+    toggle() {
+      // '<span class="{classes.ADDON} pj-input-group"><input type="checkbox" class="{classes.TOGGLE}" title="{label}" checked /><i class="{classes.CHECK} pj-icon pj-icon-done-small"></i></span>',
+      return `<span class="{classes.ADDON}">
+      </span>`
+    },
+    iconShow() {
+      return `<i class="{classes.SHOW} pj-icon pj-icon-show">
+      </i>`
+    },
+    iconHide() {
+      return `<i class="{classes.HIDE} pj-icon pj-icon-hidden">
+      </i>`
+    },
+    score() {
+      return `<span class="{classes.SCORE}">
+      </span>`
+    }
   },
 
   scoreLables: {

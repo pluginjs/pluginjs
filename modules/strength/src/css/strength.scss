@@ -45,14 +45,6 @@ $strength-check-bg: $color-white;
     color: $strength-addon-color;
     cursor: pointer;
 
-    .#{$strength}-show {
-      display: block;
-    }
-
-    .#{$strength}-hide {
-      display: none;
-    }
-
     .#{$strength}-check {
       width: $strength-check-width;
       height: $strength-check-height;

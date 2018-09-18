@@ -57,11 +57,11 @@ $strength-check-border-radius: $border-radius-base !default;
     border: none !important;
 
     .#{$strength}-show {
-      display: block;
+      display: none;
     }
 
     .#{$strength}-hide {
-      display: none;
+      display: block;
     }
 
     .#{$strength}-check {
@@ -101,11 +101,11 @@ $strength-check-border-radius: $border-radius-base !default;
   
   &-active {
     .#{$strength}-show {
-      display: none;
+      display: block;
     }
 
     .#{$strength}-hide {
-      display: block;
+      display: none;
     }
   }
 }
