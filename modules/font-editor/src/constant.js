@@ -17,8 +17,12 @@ export const classes = {
   HOVER: '{namespace}-fill-hover',
   EXSIT: '{namespace}-exsit',
   WRITE: '{namespace}-write',
+  // field
+  FIELD: '{namespace}-field {namespace}-{field}',
+  FIELDTITLE: '{namespace}-field-title',
+  FIELDCONTENT: '{namespace}-field-content',
+
   EXPAND: '{namespace}-expand',
-  EXPANDPANEL: '{namespace}-expand-panel',
   EXPANDCONTROL: '{namespace}-expand-control',
   EXPANDCANCEL: '{namespace}-expand-cancel',
   EXPANDSAVE: '{namespace}-expand-save',
@@ -31,28 +35,12 @@ export const classes = {
   FILLFONT: '{namespace}-fill-font',
   FILLFONTNAME: '{namespace}-fill-font-name',
   FILLFONTSUB: '{namespace}-fill-font-sub',
-  // fontfamily
-  FONTFAMILY: '{namespace}-fontFamily',
-  FONTFAMILYTITLE: '{namespace}-fontFamily-title',
-  FONTFAMILYCONTENT: '{namespace}-fontFamily-content',
   // FONTFAMILYNAMESPACE: '{fontFamilyNamespace}',
   FONTFAMILYDROPDOWN: '{namespace}-fontFamily-dropdown',
-  // fontweight
-  FONTWEIGHT: '{namespace}-fontWeight',
-  FONTWEIGHTTITLE: '"{namespace}-fontWeight-title',
-  FONTWEIGHTCONTENT: '{namespace}-fontWeight-content',
   // FONTWEIGHTNAMESPACE: '{fontWeightNamespace}',
   FONTWEIGHTDROPDOWN: '{namespace}-fontWeight-dropdown',
-  // fontsize
-  FONTSIZE: '{namespace}-fontSize',
-  FONTSIZETITLE: '{namespace}-fontSize-title',
-  FONTSIZECONTENT: '{namespace}-fontSize-content',
   // FONTSIZENAMESPACE: '{fontSizeNamespace}',
   FONTSIZERANGE: '{namespace}-fontSize-range',
-  // lineHeight
-  LINEHEIGHT: '{namespace}-lineHeight',
-  LINEHEIGHTTITLE: '{namespace}-lineHeight-title',
-  LINEHEIGHTCONTENT: '{namespace}-lineHeight-content',
   // LINEHEIGHTNAMESPACE: '{lineHeightNamespace}',
   LINEHEIGHTRANGE: '{namespace}-lineHeight-range',
   // textalign
@@ -67,7 +55,8 @@ export const classes = {
   // dropdown
   DROPDOWN: '{namespace}-dropdown',
   TRIGGER: '{namespace}-trigger',
-  OPENDISABLE: '{namespace}-open-disabled'
+  OPENDISABLE: '{namespace}-open-disabled',
+  SELECTTRIGGER: '{namespace}-select-trigger'
 }
 
 export const methods = [
@@ -102,10 +91,10 @@ export const defaults = {
     },
     template() {
       return (
-        '<div class="{classes.FONTFAMILY}">' +
-        '<span class="{classes.FONTFAMILYTITLE}">{typeface}</span>' +
-        '<div class="{classes.FONTFAMILYCONTENT}">' +
-        '<div class="{classes.FONTFAMILYDROPDOWN}"><span class="pj-dropdown-trigger"></span><i class="asIcon-caret-down"></i></div>' +
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{typeface}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
+        '<div class="{classes.FONTFAMILYDROPDOWN}"><span class="{classes.SELECTTRIGGER}"></span></div>' +
         '<ul>' +
         '</ul>' +
         '</div>' +
@@ -118,18 +107,10 @@ export const defaults = {
     values: ['inherit', 'bold', '400', '500', '600', '700'],
     template() {
       return (
-        '<div class="{classes.FONTWEIGHT}">' +
-        '<span class="{classes.FONTWEIGHTTITLE}">{weight}</span>' +
-        '<div class="{classes.FONTWEIGHTCONTENT}">' +
-        '<div class="{classes.FONTWEIGHTDROPDOWN}"><span class="pj-dropdown-trigger"></span><i class="asIcon-caret-down"></i></div>' +
-        // '<ul>' +
-        // '<li>inherit</li>' +
-        // '<li>bold</li>' +
-        // '<li>400</li>' +
-        // '<li>500</li>' +
-        // '<li>600</li>' +
-        // '<li>700</li>' +
-        // '</ul>' +
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{weight}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
+        '<div class="{classes.FONTWEIGHTDROPDOWN}"><span class="{classes.SELECTTRIGGER}"></span></div>' +
         '</div>' +
         '</div>'
       )
@@ -145,9 +126,9 @@ export const defaults = {
     step: 2,
     template() {
       return (
-        '<div class="{classes.FONTSIZE}">' +
-        '<span class="{classes.FONTSIZETITLE}">{fontSize}</span>' +
-        '<div class="{classes.FONTSIZECONTENT}">' +
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{fontSize}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
         '<div class="{classes.FONTSIZERANGE}"></div>' +
         '</div>' +
         '</div>'
@@ -163,9 +144,9 @@ export const defaults = {
     step: 0.5,
     template() {
       return (
-        '<div class="{classes.LINEHEIGHT}">' +
-        '<span class="{classes.LINEHEIGHTTITLE}">{lineHeight}</span>' +
-        '<div class="{classes.LINEHEIGHTCONTENT}">' +
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{lineHeight}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
         '<div class="{classes.LINEHEIGHTRANGE}"></div>' +
         // '<div class="{namespace}-lineHeight-value">1</div>' +
         '</div>' +
@@ -228,9 +209,7 @@ export const defaults = {
       '</div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +
-      '<div class="{classes.EXPANDPANEL}">' +
       '<div class="{classes.EXPANDCONTROL}"><button type="button" class="{classes.EXPANDCANCEL} pj-btn pj-btn-transparent">Cancel</button><button type="button" class="{classes.EXPANDSAVE} pj-btn pj-btn-primary">Save</button></div>' +
-      '</div>' +
       '</div>' +
       '</div>'
     )

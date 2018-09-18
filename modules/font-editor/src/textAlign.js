@@ -30,7 +30,7 @@ export default class TextAlign {
 
     this.instance.$typoDecorations = query(
       `.${this.instance.classes.DECORATIONS}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
     this.$items = queryAll(
       `.${this.instance.classes.TEXTALIGN}`,

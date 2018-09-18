@@ -23,13 +23,17 @@ export default class FontSize {
     // create $fontSize
     const html = template.compile(this.instance.options.fontSize.template())({
       classes: this.instance.classes,
+      field: this.instance.getClassName(
+        this.instance.classes.NAMESPACE,
+        'fontSize'
+      ),
       fontSize: this.instance.translate('fontSize')
     })
     insertBefore(parseHTML(html), this.instance.$expandControl)
 
     this.$fontSize = query(
       `.${this.instance.classes.FONTSIZERANGE}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
 
     // create units

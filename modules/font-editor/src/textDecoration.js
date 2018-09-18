@@ -22,7 +22,7 @@ export default class TextDecoration {
 
     this.$items = queryAll(
       `.${this.instance.classes.TEXTDECORATION}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
 
     this.values.forEach((value, key) => {

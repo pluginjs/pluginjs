@@ -13,6 +13,10 @@ export default class FontWeight {
   initialize() {
     const html = template.compile(this.instance.options.fontWeight.template())({
       classes: this.instance.classes,
+      field: this.instance.getClassName(
+        this.instance.classes.NAMESPACE,
+        'fontWeight'
+      ),
       weight: this.instance.translate('weight')
     })
 
@@ -21,13 +25,16 @@ export default class FontWeight {
 
     this.$content = query(
       `.${this.instance.classes.FONTWEIGHTCONTENT}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
     this.$select = query(
       `.${this.instance.classes.FONTWEIGHTDROPDOWN}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
-    this.$dropWeight = query('.pj-select-trigger', this.$select)
+    this.$dropWeight = query(
+      `.${this.instance.classes.SELECTTRIGGER}`,
+      this.$select
+    )
 
     this.initSelect()
   }

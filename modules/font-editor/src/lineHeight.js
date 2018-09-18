@@ -23,13 +23,17 @@ export default class LineHeight {
     // create $lineHeight
     const html = template.compile(this.instance.options.lineHeight.template())({
       classes: this.instance.classes,
+      field: this.instance.getClassName(
+        this.instance.classes.NAMESPACE,
+        'lineHeight'
+      ),
       lineHeight: this.instance.translate('lineHeight')
     })
     insertBefore(parseHTML(html), this.instance.$expandControl)
 
     this.$lineHeight = query(
       `.${this.instance.classes.LINEHEIGHTRANGE}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
 
     // create units

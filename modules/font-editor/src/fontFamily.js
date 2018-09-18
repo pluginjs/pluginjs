@@ -14,6 +14,10 @@ export default class FontFamily {
   initialize() {
     const html = template.compile(this.instance.options.fontFamily.template())({
       classes: this.instance.classes,
+      field: this.instance.getClassName(
+        this.instance.classes.NAMESPACE,
+        'fontFamily'
+      ),
       typeface: this.instance.translate('typeface')
     })
 
@@ -22,19 +26,22 @@ export default class FontFamily {
 
     this.$content = query(
       `.${this.instance.classes.FONTFAMILYCONTENT}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
     this.$select = query(
       `.${this.instance.classes.FONTFAMILYDROPDOWN}`,
-      this.instance.$expandPanel
+      this.instance.$Panel
     )
-    this.$dropFamily = query('.pj-select-trigger', this.$select)
+    this.$dropFamily = query(
+      `.${this.instance.classes.SELECTTRIGGER}`,
+      this.$select
+    )
 
     this.SELECT = Select.of(this.$dropFamily, {
       value: this.instance.value.fontFamily,
       source: resolve => {
         const data = []
-        Object.entries(this.values).forEach(([i, v]) => {
+        Object.entries(this.values).forEach(([v], i) => {
           data[i] = { label: v, value: v }
         })
         resolve(data)

@@ -119,7 +119,7 @@ class FontEditor extends Component {
       theme: 'dafault',
       placement: 'bottom-left',
       reference: this.$trigger,
-      target: this.$expandPanel,
+      target: this.$Panel,
       hideOutClick: false,
       hideOnSelect: false,
       constraintToScrollParent: false,
@@ -255,16 +255,10 @@ class FontEditor extends Component {
     this.$fillRemove = query(`.${this.classes.FILLREMOVE}`, this.$fill)
     this.$editBtn = query(`.${this.classes.FILLEDIT}`, this.$fill)
     this.$trigger = query(`.${this.classes.TRIGGER}`, this.$wrap)
-    this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
-    this.$expandControl = query(
-      `.${this.classes.EXPANDCONTROL}`,
-      this.$expandPanel
-    )
-    this.$expandCancel = query(
-      `.${this.classes.EXPANDCANCEL}`,
-      this.$expandPanel
-    )
-    this.$expandSave = query(`.${this.classes.EXPANDSAVE}`, this.$expandPanel)
+    this.$Panel = query(`.${this.classes.DROPDOWN}`, this.$wrap)
+    this.$expandControl = query(`.${this.classes.EXPANDCONTROL}`, this.$Panel)
+    this.$expandCancel = query(`.${this.classes.EXPANDCANCEL}`, this.$Panel)
+    this.$expandSave = query(`.${this.classes.EXPANDSAVE}`, this.$Panel)
 
     // init pop
     this.pop = PopDialog.of(this.$fillRemove, {
@@ -466,6 +460,10 @@ class FontEditor extends Component {
     this.value.textDecoration = value
     this.textDecoration.set(value)
     this.update()
+  }
+
+  getClassName(namespace, field) {
+    return template.compile(this.classes.FIELD)({ namespace, field })
   }
 
   get() {

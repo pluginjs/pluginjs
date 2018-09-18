@@ -158,19 +158,18 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     }
   }
   // expand
+  &-dropdown {
+    // position: relative;
+    z-index: 100;
+    box-sizing: border-box;
+    width: 27.2 * $fontEditor-sizer; //272px
+    // height: 49.2 * $fontEditor-sizer; //49.2px
+    padding: 2 * $fontEditor-sizer; //20px
+    background-color: $color-white;
+    border: $fontEditor-border;
+    border-radius: $fontEditor-border-radius;
+  }
   &-expand {
-    &-panel {
-      position: relative;
-      z-index: 100;
-      box-sizing: border-box;
-      width: 27.2 * $fontEditor-sizer; //272px
-      // height: 49.2 * $fontEditor-sizer; //49.2px
-      padding: 2 * $fontEditor-sizer; //20px
-      background-color: $color-white;
-      border: $fontEditor-border;
-      border-radius: $fontEditor-border-radius;
-    }
-
     &-control {
       margin-top: 3 * $fontEditor-sizer; //30px
       text-align: right;
@@ -197,10 +196,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     // }
   }
 
-  &-fontFamily,
-  &-fontSize,
-  &-lineHeight,
-  &-fontWeight {
+  &-field {
     align-items: center;
     justify-content: space-between;
     
@@ -343,7 +339,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   .#{$fontEditor}-empty{
     display: none !important;
   }
-  .#{$fontEditor}-expand-panel {
+  .#{$fontEditor}-dropdown {
     display: block !important;
   }
   .#{$fontEditor}-fill{
