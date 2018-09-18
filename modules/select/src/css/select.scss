@@ -1,5 +1,4 @@
 @import "@pluginjs/styles/variables.scss";
-@import "@pluginjs/icons/variables.scss";
 @import "select.core";
 
 // Vars
@@ -11,8 +10,6 @@ $select-trigger-width: $select-width;
 $select-trigger-placeholder-color: $gray-dark;
 
 $select-trigger-arrow-color: $gray-dark;
-// $select-trigger-hover-color: $gray-darkest;
-// $select-trigger-focus-color: $select-trigger-hover-color;
 
 $select-trigger-disabled-bg: $disabled-bg;
 $select-trigger-disabled-border: $disabled-border;
