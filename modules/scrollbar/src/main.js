@@ -3,7 +3,7 @@ import templateEngine from '@pluginjs/template'
 import easing from '@pluginjs/easing'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getStyle, offset as getOffset } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEvent, bindEventOnce, removeEvent } from '@pluginjs/events'
 import { append, parseHTML, query } from '@pluginjs/dom'
 import {
   pointer,
@@ -40,6 +40,8 @@ import {
 } from './constant'
 
 const TRANSFORM = transformProperty()
+const TRANSITIONEND = transitionEndEvent()
+const TRANSITION = transitionProperty()
 
 @themeable()
 @styleable(CLASSES)
@@ -114,11 +116,14 @@ class Scrollbar extends Component {
       false
     )
 
-    if (this.options.direction === 'vertical') {
-      addClass(this.classes.VERTICAL, this.element)
-    } else {
-      addClass(this.classes.HORIZONTAL, this.element)
-    }
+    addClass(
+      this.getClass(
+        this.classes.DIRECTION,
+        'direction',
+        this.options.direction
+      ),
+      this.element
+    )
 
     if (options.theme) {
       addClass(this.getThemeClass(), this.element)
@@ -231,7 +236,6 @@ class Scrollbar extends Component {
       this.eventName('mouseleave'),
       () => {
         removeClass(this.classes.HOVERING, this.element)
-
         if (!this.is('hovering')) {
           return
         }
@@ -243,9 +247,8 @@ class Scrollbar extends Component {
   }
 
   onClick(event) {
-    const num = 3
-
-    if (event.which === num) {
+    const MIDDLECLICK = 3
+    if (event.which === MIDDLECLICK) {
       return
     }
 
@@ -577,27 +580,6 @@ class Scrollbar extends Component {
     }
   }
 
-  oneBind(eventName, element, callback) {
-    if (!this.oneEventArr) {
-      this.oneEventArr = {}
-    }
-
-    if (!this.oneEventArr[element]) {
-      this.oneEventArr[element] = { hasBind: false }
-    }
-
-    this.oneBindcallback = () => {
-      callback()
-      removeEvent(eventName, element)
-      this.oneEventArr[element].hasBind = false
-    }
-
-    if (!this.oneEventArr[element].hasBind) {
-      bindEvent(eventName, this.oneBindcallback.bind(this), element)
-      this.oneEventArr[element].hasBind = true
-    }
-  }
-
   doMove(value, duration, easing, trigger) {
     let property
     this.enter('moving')
@@ -615,18 +597,21 @@ class Scrollbar extends Component {
       this.enter('transition')
       this.prepareTransition(property, duration, easing.css())
 
-      this.oneBind(transitionEndEvent(), this.$handle, () => {
-        transitionProperty()
-        setStyle(transitionProperty(), null, this.$handle)
-        if (trigger) {
-          this.trigger(
-            EVENTS.CHANGE,
-            value / (this.barLength - this.handleLength)
-          )
-        }
-        this.leave('transition')
-        this.leave('moving')
-      })
+      bindEventOnce(
+        this.eventName(TRANSITIONEND),
+        () => {
+          setStyle(TRANSITION, null, this.$handle)
+          if (trigger) {
+            this.trigger(
+              EVENTS.CHANGE,
+              value / (this.barLength - this.handleLength)
+            )
+          }
+          this.leave('transition')
+          this.leave('moving')
+        },
+        this.$handle
+      )
 
       this.setHandlePosition(value)
     } else {
@@ -691,7 +676,7 @@ class Scrollbar extends Component {
       temp.push(delay)
     }
 
-    setStyle(transitionProperty(), temp.join(' '), this.$handle)
+    setStyle(TRANSITION, temp.join(' '), this.$handle)
   }
 
   enable() {
@@ -721,10 +706,15 @@ class Scrollbar extends Component {
   destroy() {
     if (this.is('initialized')) {
       removeClass(this.classes.HANDLE, this.$handle)
-
       removeClass(this.classes.CONTAINER, this.element)
-      removeClass(this.classes.VERTICAL, this.element)
-      removeClass(this.classes.HORIZONTAL, this.element)
+      removeClass(
+        this.getClassName(
+          this.classes.DIRECTION,
+          'direction',
+          this.options.direction
+        ),
+        this.element
+      )
       this.element.setAttribute('draggable', null)
 
       if (this.options.theme) {

@@ -15,8 +15,7 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}-{theme}',
-  VERTICAL: '{namespace}-vertical',
-  HORIZONTAL: '{namespace}-horizontal',
+  DIRECTION: '{namespace}-{direction}',
   CONTAINER: '{namespace}',
   HANDLE: '{namespace}-handle',
 
