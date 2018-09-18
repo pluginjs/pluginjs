@@ -3,7 +3,14 @@ import template from '@pluginjs/template'
 import { isString, isNull, isDomNode, isObject, isArray } from '@pluginjs/is'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, has, query, children, insertAfter } from '@pluginjs/dom'
+import {
+  append,
+  has,
+  query,
+  queryAll,
+  insertAfter,
+  parentWith
+} from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -140,7 +147,7 @@ class Dropdown extends Component {
       `.${this.classes.ITEM}`,
       e => {
         const $item = e.target
-        if ($item.parentNode !== this.$dropdown) {
+        if (!this.isItemOf($item)) {
           return
         }
 
@@ -187,15 +194,20 @@ class Dropdown extends Component {
   }
 
   getItems() {
-    return children(`.${this.classes.ITEM}`, this.$dropdown)
+    return queryAll(`.${this.classes.ITEM}`, this.$dropdown).filter(
+      this.isItemOf.bind(this)
+    )
+  }
+
+  isItemOf($item) {
+    return (
+      parentWith($parent => hasClass(this.classes.DROPDOWN, $parent), $item) ===
+      this.$dropdown
+    )
   }
 
   getActiveItem() {
-    const $item = children(`.${this.classes.ACITVE}`, this.$dropdown)
-    if ($item.length > 0) {
-      return $item[0]
-    }
-    return null
+    return this.$active
   }
 
   getItemByIndex(index) {
@@ -246,17 +258,12 @@ class Dropdown extends Component {
   }
 
   getHighlightedItem() {
-    const highlighted = children(`.${this.classes.HIGHLIGHTED}`, this.$dropdown)
-    if (highlighted.length === 0) {
-      return null
-    }
-    return highlighted[0]
+    return this.$highlighted
   }
 
   highlightItem(index) {
-    const $highlighted = this.getHighlightedItem()
-    if ($highlighted) {
-      removeClass(this.classes.HIGHLIGHTED, $highlighted)
+    if (this.$highlighted) {
+      removeClass(this.classes.HIGHLIGHTED, this.$highlighted)
     }
     let $item
     if (isDomNode(index)) {
@@ -267,7 +274,15 @@ class Dropdown extends Component {
 
     if ($item) {
       addClass(this.classes.HIGHLIGHTED, $item)
+      this.$highlighted = $item
     }
+  }
+
+  unHighlightItem() {
+    if (this.$highlighted) {
+      removeClass(this.classes.HIGHLIGHTED, this.$highlighted)
+    }
+    this.$highlighted = null
   }
 
   toggle() {
@@ -333,10 +348,10 @@ class Dropdown extends Component {
   }
 
   get() {
-    const active = this.getActiveItem()
+    const $active = this.getActiveItem()
 
-    if (active) {
-      return this.getItemValue(active)
+    if ($active) {
+      return this.getItemValue($active)
     }
     return null
   }

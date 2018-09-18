@@ -46,11 +46,7 @@ class Keyboard {
         if (!$highlighted) {
           $highlighted = instance.getActiveItem()
 
-          if (!$highlighted) {
-            $highlighted = instance.getItemByIndex(0)
-          }
-
-          addClass(instance.classes.HIGHLIGHTED, $highlighted)
+          instance.highlightItem(0)
         }
 
         if (!this.instance.is('keyboard')) {
@@ -65,8 +61,7 @@ class Keyboard {
     bindEvent(
       this.instance.selfEventName(EVENTS.HIDE),
       () => {
-        const $highlighted = instance.getHighlightedItem()
-        removeClass(instance.classes.HIGHLIGHTED, $highlighted)
+        instance.unHighlightItem()
 
         if (this.instance.is('keyboard')) {
           this.unbind()
@@ -92,11 +87,13 @@ class Keyboard {
     this.KEYBOARD.down('enter', () => {
       if (instance.is('shown')) {
         const $highlighted = instance.getHighlightedItem()
+
         if ($highlighted && !instance.isItemDisabled($highlighted)) {
           instance.selectItem($highlighted)
           instance.hide()
         }
       }
+      return false
     })
 
     this.KEYBOARD.down('up', () => {

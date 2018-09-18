@@ -27,7 +27,7 @@ $dropdown-item-disabled-color: $disabled-color;
 $dropdown-item-icon-gutter: 10px;
 $dropdown-item-hover-bg: $gray-lighter;
 $dropdown-item-active-color: $color-primary-active;
-$dropdown-item-highlighted-color: $color-primary-active;
+// $dropdown-item-highlighted-color: $color-primary-active;
 $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
 
 // Skin
@@ -47,7 +47,6 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
     font-family: $dropdown-font-family;
     font-size: $dropdown-font-size;
     color: $dropdown-color;
-    text-decoration: none;
     outline: none;
 
     &[aria-expanded="true"] {
@@ -79,7 +78,6 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
     }
 
     &.#{$dropdown}-highlighted:not(.#{$dropdown}-item-disabled) {
-      color: $dropdown-item-highlighted-color;
       background-color: $dropdown-item-highlighted-bg;
     }
   }
