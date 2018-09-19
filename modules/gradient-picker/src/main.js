@@ -203,20 +203,20 @@ class GradientPicker extends Component {
       }'></div></div>`
     )
     this.$customColor = parseHTML(
-      `<div class='${this.classes.COMPONENT}'><span class='${
-        this.classes.COMPONENTTITLE
+      `<div class='${this.classes.FIELD}'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('customColor')}</span><div class='${
-        this.classes.CONTENT
+        this.classes.FIELDCONTENT
       }'><input class='${
         this.classes.COLORPICKER
       }' placeholder='choose color' /></div></div>`
     )
     this.$colorPicker = query(`.${this.classes.COLORPICKER}`, this.$customColor)
     this.$opacity = parseHTML(
-      `<div class='${this.classes.COMPONENT}'><span class='${
-        this.classes.COMPONENTTITLE
+      `<div class='${this.classes.FIELD}'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('opacity')}</span><div class='${
-        this.classes.CONTENT
+        this.classes.FIELDCONTENT
       }'><input type='text' class='${this.classes.OPACITY}' /></div></div>`
     )
     const $opacity = query(`.${this.classes.OPACITY}`, this.$opacity)
@@ -241,7 +241,7 @@ class GradientPicker extends Component {
       target: this.$dropdown,
       reference: this.$trigger,
       templates: this.options.template,
-      hideOutClick: false,
+      hideOutClick: true,
       hideOnSelect: false
     })
 
@@ -300,6 +300,14 @@ class GradientPicker extends Component {
   }
 
   bind() {
+    // document
+    bindEvent(
+      this.eventName('click'),
+      () => {
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
+      },
+      window.document
+    )
     // empty
     bindEvent(
       this.eventName('click'),

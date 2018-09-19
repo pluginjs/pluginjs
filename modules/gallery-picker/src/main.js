@@ -67,7 +67,7 @@ class GalleryPicker extends Component {
   initialize() {
     this.createHtml()
 
-    setStyle('height', this.options.viewportSize, this.$expandPanel)
+    setStyle('height', this.options.viewportSize, this.$Panel)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
@@ -88,21 +88,34 @@ class GalleryPicker extends Component {
   }
 
   initDropdown() {
-    Dropdown.of(this.$fillExpand, {
+    this.$galleryDropdown = Dropdown.of(this.$fillExpand, {
       reference: this.$fill,
-      target: this.$expandPanel,
-      placement: 'bottom-left',
-      hideOutClick: false,
-      constraintToScrollParent: false,
+      target: this.$Panel,
+      hideOutClick: true,
       templates: this.options.templates
     })
   }
 
   bind() {
     const that = this
+
     bindEvent(
       this.eventName('click'),
-      () => {
+      e => {
+        e.stopPropagation()
+        if (this.is('status')) {
+          const val = this.element.value
+          this.set(this.options.parse(val))
+          this.close()
+        }
+      },
+      window.document
+    )
+
+    bindEvent(
+      this.eventName('click'),
+      e => {
+        e.stopPropagation()
         if (that.is('disabled')) {
           return false
         }
@@ -117,7 +130,8 @@ class GalleryPicker extends Component {
     if (this.$fillAdd) {
       bindEvent(
         this.eventName('click'),
-        () => {
+        e => {
+          e.stopPropagation()
           if (that.is('disabled')) {
             return false
           }
@@ -133,12 +147,14 @@ class GalleryPicker extends Component {
     // fill expand
     bindEvent(
       this.eventName('click'),
-      () => {
+      e => {
+        e.stopPropagation()
         if (this.is('disabled')) {
           return false
         }
         this.open()
-        return null
+        this.enter('status')
+        return false
       },
       this.$fillEdit
     )
@@ -168,6 +184,7 @@ class GalleryPicker extends Component {
     compose(
       // change
       bindEvent(this.eventName('click'), `.${this.classes.ITEMRESELECT}`, e => {
+        e.stopPropagation()
         if (this.is('disabled')) {
           return false
         }
@@ -187,7 +204,8 @@ class GalleryPicker extends Component {
       bindEvent(
         this.eventName('click'),
         `.${this.classes.EXPANDSAVEBTN}`,
-        () => {
+        e => {
+          e.stopPropagation()
           if (this.is('disbaled')) {
             return false
           }
@@ -222,7 +240,8 @@ class GalleryPicker extends Component {
       bindEvent(
         this.eventName('click'),
         `.${this.classes.EXPANDADD}, .${this.classes.EXPANDADDBTN}`,
-        () => {
+        e => {
+          e.stopPropagation()
           if (this.is('disabled')) {
             return false
           }
@@ -235,7 +254,8 @@ class GalleryPicker extends Component {
       bindEvent(
         this.eventName('click'),
         `.${this.classes.EXPANDCANCELBTN}`,
-        () => {
+        e => {
+          e.stopPropagation()
           if (this.is('disabled')) {
             return false
           }
@@ -245,7 +265,7 @@ class GalleryPicker extends Component {
           return null
         }
       )
-    )(this.$expandPanel)
+    )(this.$Panel)
   }
 
   unbind() {
@@ -279,9 +299,9 @@ class GalleryPicker extends Component {
     this.$fillRemove = query(`.${this.classes.FILLREMOVE}`, this.$fillExpand)
     this.$fillAdd = query(`.${this.classes.FILLADD}`, this.$wrap)
     this.$fillImage = query(`.${this.classes.FILLIMAGE}`, this.$wrap)
-    this.$expandPanel = query(`.${this.classes.EXPANDPANEL}`, this.$wrap)
-    this.$expandAdd = query(`.${this.classes.EXPANDADD}`, this.$expandPanel)
-    this.$expandItems = query(`.${this.classes.EXPANDITEM}`, this.$expandPanel)
+    this.$Panel = query(`.${this.classes.DROPDOWN}`, this.$wrap)
+    this.$expandAdd = query(`.${this.classes.EXPANDADD}`, this.$Panel)
+    this.$expandItems = query(`.${this.classes.EXPANDITEM}`, this.$Panel)
     // init pop
     this.DELETEPOP = PopDialog.of(this.$fillRemove, {
       placement: 'bottom',
@@ -354,7 +374,7 @@ class GalleryPicker extends Component {
   updateList() {
     const that = this
     const length = children(
-      query(`.${this.classes.NAMESPACE}-expand-items`, this.$expandPanel)
+      query(`.${this.classes.NAMESPACE}-expand-items`, this.$Panel)
     ).length
 
     if (this.count >= length) {
@@ -413,7 +433,7 @@ class GalleryPicker extends Component {
 
   delImage() {
     const target = children(
-      query(`.${this.classes.NAMESPACE}-expand-items`, this.$expandPanel)
+      query(`.${this.classes.NAMESPACE}-expand-items`, this.$Panel)
     )[this.indexed]
 
     if (target) {
@@ -427,7 +447,7 @@ class GalleryPicker extends Component {
   }
 
   clearImages() {
-    const images = queryAll(`.${this.classes.ITEM}`, this.$expandPanel)
+    const images = queryAll(`.${this.classes.ITEM}`, this.$Panel)
     if (images.length) {
       images.map(el => el.remove())
     }
@@ -488,7 +508,7 @@ class GalleryPicker extends Component {
       eq(index),
       children,
       find(`.${this.classes.NAMESPACE}-expand-items`)
-    )(this.$expandPanel)
+    )(this.$Panel)
     this.setState()
   }
 
@@ -500,7 +520,7 @@ class GalleryPicker extends Component {
       eq(index),
       children,
       find(`.${this.classes.NAMESPACE}-expand-items`)
-    )(this.$expandPanel).remove()
+    )(this.$Panel).remove()
     this.setState()
   }
 
@@ -519,13 +539,14 @@ class GalleryPicker extends Component {
 
   open() {
     addClass(this.classes.OPENDISABLE, this.$fill)
-    addClass(this.classes.EXPAND, removeClass(this.classes.EXIST, this.$wrap))
+    addClass(this.classes.SHOW, removeClass(this.classes.EXIST, this.$wrap))
     this.updateScrollbar()
   }
 
   close() {
     removeClass(this.classes.OPENDISABLE, this.$fill)
-    addClass(this.classes.EXIST, removeClass(this.classes.EXPAND, this.$wrap))
+    addClass(this.classes.EXIST, removeClass(this.classes.SHOW, this.$wrap))
+    this.leave('status')
   }
 
   enable() {

@@ -189,30 +189,30 @@ class PatternPicker extends Component {
     )
     this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$previewBox)
     this.$forePickerBox = parseHTML(
-      `<div class='${this.classes.COMPONENT}'><span class='${
-        this.classes.TITLE
+      `<div class='${this.classes.FIELD}'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('foreColor')}</span><div class='${
-        this.classes.CONTENT
+        this.classes.FIELDCONTENT
       }'><input class='${
         this.classes.FORECOLOR
       } pj-input' type='text' placeholder='choose color' /></div></div>`
     )
     this.$forePicker = query(`.${this.classes.FORECOLOR}`, this.$forePickerBox)
     this.$bgColorBox = parseHTML(
-      `<div class='${this.classes.COMPONENT}'><span class='${
-        this.classes.TITLE
+      `<div class='${this.classes.FIELD}'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('bgColor')}</span><div class='${
-        this.classes.CONTENT
+        this.classes.FIELDCONTENT
       }'><input class='${
         this.classes.BGCOLOR
       } pj-input' type='text' placeholder='choose color' /></div></div>`
     )
     this.$bgColor = query(`.${this.classes.BGCOLOR}`, this.$bgColorBox)
     this.$opacityBox = parseHTML(
-      `<div class='${this.classes.COMPONENT}'><span class='${
-        this.classes.TITLE
+      `<div class='${this.classes.FIELDCOMPONENT}'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('opacity')}</span><div class='${
-        this.classes.CONTENT
+        this.classes.FIELDCONTENT
       }'><input class='${this.classes.OPACITY}' type='text' /></div></div>`
     )
     this.$opacity = query(`.${this.classes.OPACITY}`, this.$opacityBox)
@@ -233,7 +233,7 @@ class PatternPicker extends Component {
       target: this.$dropdown,
       reference: this.$trigger,
       templates: this.options.template,
-      hideOutClick: false,
+      hideOutClick: true,
       hideOnSelect: false
     })
 
@@ -326,6 +326,14 @@ class PatternPicker extends Component {
   }
 
   bind() {
+    // document
+    bindEvent(
+      this.eventName('click'),
+      () => {
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
+      },
+      window.document
+    )
     // editor
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.EDITOR}`, () => {

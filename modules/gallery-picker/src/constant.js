@@ -17,7 +17,7 @@ export const classes = {
   ACTIVE: '{namespace}-active',
   WRITE: '{namespace}-write',
   EXIST: '{namespace}-exist',
-  EXPAND: '{namespace}-expand',
+  SHOW: '{namespace}-show',
   HOVER: '{namespace}-hover',
   FILL: '{namespace}-fill',
   FILLEDIT: '{namespace}-fill-edit',
@@ -30,7 +30,6 @@ export const classes = {
   EXPANDSAVEBTN: '{namespace}-expand-save-btn',
   EXPANDADDBTN: '{namespace}-expand-add-btn',
   EXPANDADD: '{namespace}-expand-add',
-  EXPANDPANEL: '{namespace}-expand-panel',
   EXPANDITEM: '{namespace}-expand-items',
   EXPANDCONTROL: '{namespace}-expand-control',
   ITEM: '{namespace}-item',
@@ -75,7 +74,7 @@ export const defaults = {
         '<span class="{classes.FILLCOUNT}">{count}</span>' +
         '<div class="{classes.FILLEXPAND}"><i class="{classes.FILLEDIT} pj-icon pj-icon-edit"></i><i class="{classes.FILLREMOVE} pj-icon pj-icon-delete"></i></div>' +
         '</div>' +
-        '<div class="{classes.EXPANDPANEL}">' +
+        '<div class="{classes.DROPDOWN}">' +
         '<ul class="{classes.EXPANDITEM}">' +
         '<li class="{classes.EXPANDADD}">' +
         '<i class="pj-icon pj-icon-picture"></i>{add}' +

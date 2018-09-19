@@ -234,7 +234,7 @@ class VideoPicker extends Component {
       target: this.$dropdown,
       reference: this.$trigger,
       templates: this.options.template,
-      hideOutClick: false,
+      hideOutClick: true,
       hideOnSelect: false,
       onUpdate: () => {
         this.$infoCover.setAttribute('src', this.data.poster)
@@ -340,6 +340,13 @@ class VideoPicker extends Component {
       },
       this.$icon
     )
+    bindEvent(
+      this.eventName('click'),
+      () => {
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
+      },
+      window.document
+    )
     compose(
       // const that = this;
       // empty
@@ -350,6 +357,7 @@ class VideoPicker extends Component {
       bindEvent(this.eventName('click'), `.${this.classes.EDITOR}`, () => {
         addClass(this.classes.OPENDISABLE, this.$trigger)
         this.$defaultDropdown.show()
+        return false
       }),
       bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
         removeClass(this.classes.OPENDISABLE, this.$trigger)

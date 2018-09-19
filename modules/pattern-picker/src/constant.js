@@ -39,9 +39,9 @@ export const classes = {
   INPUT: '{namespace}-input',
   EMPTY: '{namespace}-empty',
   PREVIEW: '{namespace}-preview',
-  COMPONENT: '{namespace}-component',
-  TITLE: '{namespace}-component-title',
-  CONTENT: '{namespace}-component-content',
+  FIELD: '{namespace}-field',
+  FIELDTITLE: '{namespace}-field-title',
+  FIELDCONTENT: '{namespace}-field-content',
   BTNACTION: '{namespace}-btn-action',
   CANCEL: '{namespace}-cancel',
   SAVE: '{namespace}-save'

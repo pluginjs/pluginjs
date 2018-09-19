@@ -40,9 +40,9 @@ export const classes = {
   FILLIMG: '{namespace}-fill-img',
   ACTION: '{namespace}-action',
   PREVIEW: '{namespace}-preview',
-  COMPONENT: '{namespace}-component',
-  COMPONENTTITLE: '{namespace}-component-title',
-  CONTENT: '{namespace}-component-content',
+  FIELD: '{namespace}-field',
+  FIELDTITLE: '{namespace}-field-title',
+  FIELDCONTENT: '{namespace}-field-content',
   BTNACTION: '{namespace}-btn-action',
   CANCEL: '{namespace}-cancel',
   SAVE: '{namespace}-save'
