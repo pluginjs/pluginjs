@@ -3,39 +3,26 @@
 // Vars
 // =====================
 $toggle: "pj-toggle" !default;
-$toggle-sizer: $sizer;
-
-$toggle-width: 4.8 * $toggle-sizer !default; //60px
-$toggle-height: 2.4 * $toggle-sizer !default; //30px
-$toggle-border-width: 2px !default;
+$toggle-width: 48px !default;
+$toggle-height: 24px !default;
+$toggle-border-width: 3px !default;
 $toggle-handle-width: $toggle-height - $toggle-border-width * 2 !default;
-
-$toggle-bg: $color-yellow !default;
-$toggle-border-color: $color-blue !default;
-$toggle-handle-bg: $color-red !default;
-
 // Core
 // ======================
 .#{$toggle} {
   position: relative;
   display: inline-block;
-  width: $toggle-width;
-  height: $toggle-height;
   overflow: hidden;
   cursor: pointer;
-  background-color: $toggle-bg;
-  border: $toggle-border-width solid $toggle-border-color;
 
   input {
-    display: none !important;
+    display: none;
   }
 
   &-inner {
     position: relative;
     display: table;
-    // width: calc(200% - #{$toggle-handle-width});
     height: 100%;
-    // margin-left: 0;
   }
 
   &-on,
@@ -53,10 +40,7 @@ $toggle-handle-bg: $color-red !default;
   &-handle {
     position: absolute;
     top: 0;
-    // left: calc(50% - #{$toggle-handle-width} / 2);
-    // width: $toggle-handle-width;
-    // height: 100%;
-    // background-color: $toggle-handle-bg;
+    left: $toggle-width - $toggle-handle-width - $toggle-border-width * 2;
   }
 
   &-disabled {

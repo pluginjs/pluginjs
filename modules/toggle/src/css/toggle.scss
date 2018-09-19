@@ -3,24 +3,20 @@
 
 // Vars
 // ======================
+$toggle: "pj-toggle";
 
-// Vars
-// ======================
-$toggle: "pj-toggle" !default;
-$toggle-font-size: $font-size-base !default;
-$toggle-line-height: $line-height-sm !default;
-$toggle-border-width: 2px !default;
-$toggle-handle-width: $toggle-height - $toggle-border-width * 2 !default;
-$toggle-color: $color-white !default;
-$toggle-bg-color-on: $color-primary-active !default;
-$toggle-bg-color-off: $gray-dark !default;
-$toggle-handle-color: $color-white !default;
-$toggle-small-width: 3.2 * $toggle-sizer !default; //32px
-$toggle-small-height: 1.6 * $toggle-sizer !default; //16px
-$toggle-small-handle-width: $toggle-small-height - $toggle-border-width * 2 !default;
-$toggle-on-off-line-height: 1.5 * $toggle-sizer !default; //15px
-$toggle-icon-font-size: $font-size-lg !default;
-$toggle-handle-hover: rgba(255, 255, 255, 0.95) !default;
+$toggle-font-size: $font-size-base;
+
+$toggle-color: $color-white;
+
+$toggle-bg-color-off: $gray-dark;
+$toggle-bg-color-on: $color-primary-active;
+
+$toggle-handle-color: $color-white;
+
+$toggle-small-width: 32px;
+$toggle-small-height: 16px;
+$toggle-small-handle-width: $toggle-small-height - $toggle-border-width * 2;
 
 // default
 // ======================
@@ -29,92 +25,42 @@ $toggle-handle-hover: rgba(255, 255, 255, 0.95) !default;
   width: $toggle-width;
   height: $toggle-height;
   font-size: $toggle-font-size;
-  line-height: $toggle-line-height;
   color: $toggle-color;
   background-color: $toggle-bg-color-on;
   border: $toggle-border-width solid $toggle-bg-color-on;
   border-radius: 1000px;
 
-  .#{$toggle} {
-    &-inner {
-      width: calc(200% - #{$toggle-handle-width});
-
-      i {
-        // display: inline-block;
-        // vertical-align: -webkit-baseline-middle;
-        // vertical-align: middle;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-
-    &-handle {
-      left: $toggle-width - $toggle-handle-width - $toggle-border-width * 2;
-      width: $toggle-handle-width;
-      height: $toggle-handle-width;
-      background-color: $toggle-handle-color;
-      border-radius: 1000px;
-    }
-
-    // &:hover {
-    //   .#{$toggle}-handle {
-    //     background: $toggle-handle-hover;
-    //   }
-    // }
-
-    &-on {
-      padding-left: $toggle-handle-width / 3;
-      line-height: $toggle-on-off-line-height;
-
-      i {
-        left: 0.6 * $toggle-sizer; //6px
-        font-size: $toggle-icon-font-size;
-      }
-    }
-
-    &-off {
-      padding-right: $toggle-handle-width / 3;
-      line-height: $toggle-on-off-line-height;
-
-      // &:hover{
-      //   background: $gray-border;
-      //   border: 1px solid $gray-border;
-      // }
-
-      i {
-        right: 0.6 * $toggle-sizer; //6px
-        font-size: $toggle-icon-font-size;
-      }
-    }
+  &-inner {
+    width: calc(200% - #{$toggle-handle-width});
   }
 
-  &.#{$toggle} {
-    &-is-off {
-      color: $color-white;
-      background-color: $toggle-bg-color-off;
-      border-color: $toggle-bg-color-off;
-    }
+  &-handle {
+    width: $toggle-handle-width;
+    height: $toggle-handle-width;
+    background-color: $toggle-handle-color;
+    border-radius: 1000px;
+  }
 
-    &.#{$toggle}-is-off {
-      .#{$toggle}-handle {
-        background: $color-white;
-      }
-    }
-    // &.#{$toggle}-is-off:hover{
-    //   .#{$toggle}-off {
-    //     background: $gray-border;
-    //     border: 1px solid $gray-border;
-    //   }
-    // }
+  &-on {
+    padding-left: $toggle-handle-width / 3;
 
-    &-disabled {
-      opacity: 0.3;
-    }
+  }
+
+  &-off {
+    padding-right: $toggle-handle-width / 3;
+  }
+
+  &-is-off {
+    background-color: $toggle-bg-color-off;
+    border-color: $toggle-bg-color-off;
+  }
+
+  &-disabled {
+    opacity: 0.3;
   }
 
   //Small size
-  &.#{$toggle}-small {
+  &-small {
     width: $toggle-small-width;
     height: $toggle-small-height;
 
