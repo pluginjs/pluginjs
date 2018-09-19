@@ -8,7 +8,6 @@ $input: "pj-input";
 $range: "pj-range";
 
 $unitsRange-gap: 16px;
-$unitsRange-units-width: 80px;
 $unitsRange-range-width: 200px;
 
 .#{$unitsRange} {
@@ -22,7 +21,7 @@ $unitsRange-range-width: 200px;
   }
 
   .#{$units} {
-    width: $unitsRange-units-width;
+    height: 100%;
     margin-left: $unitsRange-gap;
   }
 }
