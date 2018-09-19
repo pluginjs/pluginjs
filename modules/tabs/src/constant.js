@@ -55,7 +55,7 @@ export const defaults = {
   historyAttr: 'id',
   keyboard: false,
   effect: 'fadeIn',
-  duration: 300,
+  duration: 400,
   event: 'click',
   position: 'topleft', // nav position: ['left','right','topleft','topright','topcenter','topjustify','bottomleft','bottomright','bottomcenter','bottomjustify']
 

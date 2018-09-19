@@ -54,17 +54,6 @@ class History {
       }
     }
 
-    // window.onpopstate = event => {
-    //   const state = window.history.state
-    //   if (state && typeof state[this.instance.historyId] !== 'undefined') {
-    //     if (state[this.instance.historyId].index) {
-    //       this.instance.active(state[this.instance.historyId].index, false)
-    //     }
-    //     event.preventDefault()
-    //   } else {
-    //     this.instance.revert(false)
-    //   }
-    // }
     bindEvent(
       this.instance.eventName('popstate'),
       event => {

@@ -62,7 +62,6 @@ class Tabs extends Component {
     this.processHtml()
 
     if (this.vertical) {
-      // the min height of panel
       this.panelMinHeight = this.getPanelMinHeight()
     }
 
@@ -117,10 +116,7 @@ class Tabs extends Component {
     addClass(this.classes.NAV, this.$nav)
     addClass(this.classes.CONTENT, this.$content)
 
-    // theme : excuting after all elements are generated
     if (this.options.theme) {
-      // add theme to wrap
-
       addClass(this.getThemeClass(), this.element)
     }
 
@@ -180,6 +176,7 @@ class Tabs extends Component {
     let tempHeight = 0
 
     Array.from(this.$nav.children).forEach(tab => {
+      console.log(tab.offsetHeight)
       tempHeight += tab.offsetHeight
     })
 
@@ -187,7 +184,6 @@ class Tabs extends Component {
   }
 
   bind() {
-    // nav event
     this.navEvent = new Hammer(this.$nav)
 
     this.navEvent.on('tap', e => {
@@ -284,7 +280,6 @@ class Tabs extends Component {
         .then(response => {
           this.ajax[index].cached = true
           this.hideLoading()
-          // this.panes[index].html(response.json())
           response.json().then(data => this.panes[index].html(data))
         })
         .catch(() => {

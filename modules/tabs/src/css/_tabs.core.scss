@@ -50,7 +50,6 @@ $tabs-duration: 0.5s !default;
     box-sizing: border-box;
     overflow: hidden;
     line-height: $tabs-content-line-height;
-    transition: all $tabs-duration ease-in-out;
 
     > div {
       display: none;

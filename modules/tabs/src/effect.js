@@ -65,14 +65,15 @@ class Effect {
         in: this.instance.options.effect
       }
     }
-    const keyframes = keyframes2Anime(KEYFRAMES[this.instance.effects.out])
+    const keyframesOut = keyframes2Anime(KEYFRAMES[this.instance.effects.out])
+    const keyframesIn = keyframes2Anime(KEYFRAMES[this.instance.effects.in])
     $previous.style.cssText = ''
 
     const config = {
       targets: $previous,
-      ...keyframes,
-      duration,
-      easing: 'easeOutExpo',
+      ...keyframesOut,
+      duration: duration / 2,
+      easing: 'linear',
       complete: () => {
         removeClass(this.instance.classes.ACTIVE, $previous)
         addClass(this.instance.classes.ACTIVE, $current)
@@ -80,9 +81,9 @@ class Effect {
         $current.style.cssText = ''
         anime({
           targets: $current,
-          ...keyframes2Anime(KEYFRAMES[this.instance.effects.in]),
+          ...keyframesIn,
           duration: duration / 2,
-          easing: 'easeOutExpo'
+          easing: 'linear'
         })
       }
     }
@@ -95,13 +96,18 @@ class Effect {
     if (this.instance.vertical) {
       height = Math.max(this.instance.panelMinHeight, height)
     }
+    console.log(
+      this.instance.panelMinHeight,
+      this.instance.getCurrentPane(),
+      this.instance.getCurrentPane().clientHeight
+    )
 
     this.instance.$content.style.cssText = ''
     anime({
       targets: this.instance.$content,
       height: [this.instance.previousHeight, height],
       duration: this.instance.options.duration / 2,
-      easing: 'easeOutExpo'
+      easing: 'linear'
     })
   }
 }
