@@ -6,8 +6,6 @@ $units: "pj-units" !default;
 // =====================
 .#{$units} {
   position: relative;
-  width: 100%;
-  height: 100%;
 
   &-input {
     width: 100%;

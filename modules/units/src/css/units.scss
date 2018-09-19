@@ -30,6 +30,7 @@ $units-disabled-color: $disabled-color;
 // Theme
 // =====================
 .#{$units} {
+  width: $units-width;
   font-family: $units-font-family;
 
   &-active {

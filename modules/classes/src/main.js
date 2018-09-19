@@ -1,9 +1,13 @@
 import { curry, curryWith } from '@pluginjs/utils'
 import { isElement } from '@pluginjs/is'
 
-export const hasClass = curry((className, element) =>
-  element.classList.contains(className)
-)
+export const hasClass = curry((classes, element) => {
+  let has = true
+  classes.split(' ').forEach(className => {
+    has = has && element.classList.contains(className)
+  })
+  return has
+})
 
 export const indexOfClass = curry((className, element) =>
   element.classList.item(className)
