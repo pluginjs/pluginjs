@@ -121,7 +121,7 @@ function deepMergeTwo(x, y) {
   }
 
   if (Array.isArray(y) && Array.isArray(x)) {
-    return deepCloneArray(y)
+    return y.slice()
   }
 
   if (typeof y === 'undefined') {
