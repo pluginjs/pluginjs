@@ -19,7 +19,7 @@ export const defaults = deepMerge(List.defaults, {
     add() {
       return `<div class="{classes.ADD}">
   <input type="text" class="pj-input {classes.ADDINPUT}" placeholder={placeholder}>
-  <button type="button" class="pj-btn {classes.ADDBTN}">{btnText}</button>
+  <button type="button" class="pj-btn pj-btn-primary {classes.ADDBTN}">{btnText}</button>
 </div>`
     }
   }

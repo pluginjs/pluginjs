@@ -5,42 +5,36 @@
 $itemList: "pj-item-list" !default;
 $list: "pj-list" !default;
 
-$itemList-add-height: 3 * $sizer !default; //30px
-$itemList-add-color: $gray-dark !default;
-$itemList-add-bg: transparent !default;
-$itemList-add-border-color: $gray-border !default;
-$itemList-add-border-radius: $border-radius-base !default;
+$itemList-item-bg-color: $color-white;
 
-$itemList-add-hover-color: $gray-darkest !default;
+$itemList-handle-font-size:14px;
+$itemList-handle-padding: 12px;
 
-
-$itemList-add-active-border-color: $color-primary !default;
-$itemList-add-active-bg: $gray-lighter !default;
-// clone
-$clone-margin-right: 0.4 * $sizer !default; //4px
+$itemList-add-color: #ccc;
+$itemList-add-hover-color: $gray-darkest;
+$itemList-add-border-color: $gray;
+$itemList-add-active-color: rgba($color-white, 0.1);
 
 .#{$itemList} {
   .#{$list}-add {
     width: 100%;
-    height: $itemList-add-height;
-    line-height: $itemList-add-height;
+    padding: $itemList-handle-padding;
+    font-size: $itemList-handle-font-size;
     color: $itemList-add-color;
-    text-align: center;
-    background-color: $itemList-add-bg;
+    background: $itemList-item-bg-color;
     border: 1px dashed $itemList-add-border-color;
-    border-radius: $itemList-add-border-radius;
-    outline: none;
 
-    .pj-icon {
-      line-height: 100%;
-    }
-
-    &:not(:disabled):hover {
+    &:hover,
+    &:active {
       color: $itemList-add-hover-color;
     }
 
-    &:not(:disabled):active {
-      background-color: $itemList-add-active-bg;
+    &:active {
+      background: $itemList-add-active-color;
+    }
+
+    .pj-icon {
+      display: block;
     }
   }
 }

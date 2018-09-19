@@ -136,6 +136,10 @@ $btn-disabled-border-color: $gray-border !default;
     // border-radius: $border-radius-lg;
   }
 
+  &-block {
+    width: 100%;
+  }
+
   // &-huge {
   //   // Add your styles here
   // }

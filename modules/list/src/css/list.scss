@@ -17,12 +17,17 @@ $list-color: $text-color;
 $list-action-action-margin-left: 4px;
 $list-active-color: $color-primary-black;
 
+$list-item-active-border-color: $color-primary;
+$list-item-bg-color: $color-white;
 $list-item-label-padding-right: $list-font-size * 2 + $list-actions-right + $list-action-action-margin-left;
 $list-item-actions-color: $gray-dark;
-$list-item-actions-hover-color: $gray-darker;
-$list-item-handle-padding: 13px;
+$list-item-actions-hover-color: $gray-darkest;
+
+$list-item-handle-padding: 12px;
+$list-item-handle-font-size: $font-size-sm;
+$list-item-handle-color: $gray-dark;
 $list-item-item-matrgin-top: $sizer;
-$list-item-hover-border-color: $gray-darkest;
+$list-item-hover-border-color: $gray-darker;
 
 $list-ghost-bg: $gray-lightest;
 
@@ -32,22 +37,30 @@ $list-border-radius: $border-radius-base;
 
 $list-clone-bg: rgba($color-warning, 0.1);
 
+$list-disabled-color: $disabled-color;
+$list-disabled-border-color: $disabled-color;
+
 // Skin
 // =====================
 .#{$list} {
   min-width: $list-width;
   padding: $list-padding;
-  margin-bottom: $list-padding;
   font-family: $list-font-family;
   font-size: $list-font-size;
   color: $list-color;
 
+  &-container {
+    & + * {
+      margin-top: $list-item-item-matrgin-top
+    }
+  }
+
   &-item {
     padding-right: $list-item-label-padding-right;
-    background-color: $color-white;
+    background-color: $list-item-bg-color;
     border: 1px solid $list-border-color;
     border-radius: $list-border-radius;
-    transition: background 300ms;
+    transition: background 0.3s;
 
     & + & {
       margin-top: $list-item-item-matrgin-top;
@@ -58,12 +71,13 @@ $list-clone-bg: rgba($color-warning, 0.1);
     }
 
     &:active {
-      border-color: $color-primary-dark;
+      border-color: $list-item-active-border-color;
     }
 
     &-handle {
       padding: $list-item-handle-padding;
-      font-size: $font-size-sm;
+      font-size: $list-item-handle-font-size;
+      color: $list-item-handle-color;
 
       i {
         display: block;
@@ -100,22 +114,18 @@ $list-clone-bg: rgba($color-warning, 0.1);
     color: $list-active-color;
   }
 
-  .#{$list}-origin {
-    display: none;
-  }
-
   &-new {
     background: $list-clone-bg;
   }
 
   &-disabled {
     .#{$list}-item {
-      color: $disabled-color;
-      border-color: $list-border-color;
-
-      &-action {
-        color: $disabled-color;
-      }
+      color: $list-disabled-color;
+      border-color: $list-disabled-border-color;
+    }
+    
+    .pj-icon {
+      color: $list-disabled-color;
     }
   }
 }

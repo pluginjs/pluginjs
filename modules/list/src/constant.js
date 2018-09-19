@@ -65,27 +65,6 @@ export const defaults = {
   },
   actions: [
     {
-      title: 'Copy',
-      name: 'copy',
-      class: 'pj-icon pj-icon-copy',
-      init(instance) {
-        PopDialog.of(this, {
-          classes: {
-            POPOVER: `{namespace} ${instance.classes.POPOVER}`
-          },
-          placement: 'bottom',
-          content: instance.translate('copyAction'),
-          buttons: {
-            cancel: { label: instance.translate('cancel') },
-            copy: {
-              label: instance.translate('copy'),
-              color: 'primary'
-            }
-          }
-        })
-      }
-    },
-    {
       title: 'Delete',
       name: 'delete',
       class: 'pj-icon pj-icon-delete',
@@ -151,15 +130,11 @@ export const translations = {
   en: {
     cancel: 'Cancel',
     delete: 'Delete',
-    deleteAction: 'Are you sure you want to delete?',
-    copyAction: 'Are you sure you want to delete?',
-    copy: 'Copy'
+    deleteAction: 'Are you sure you want to delete?'
   },
   zh: {
     cancel: '取消',
     deleteAction: '你确定要删除？',
-    delete: '删除',
-    copyAction: '你确定要复制?',
-    copy: '复制'
+    delete: '删除'
   }
 }

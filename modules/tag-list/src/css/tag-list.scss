@@ -2,10 +2,10 @@
 
 // Vars
 // =====================
-$list: "pj-list" !default;
-$tagList: "pj-tag-list" !default;
-$tagList-add-height: 30px !default;
+$list: "pj-list";
+$tagList: "pj-tag-list";
 
+$tagList-input-padding: 11px;
 // Core
 // =====================
 .#{$tagList} {
@@ -14,32 +14,23 @@ $tagList-add-height: 30px !default;
       display: flex;
       justify-content: center;
       width: 100%;
-      height: $tagList-add-height;
-
-
     }
 
     &-input {
-      order: 0;
       width: 80%;
-      height: 100%;
+      padding: $tagList-input-padding;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
 
       &:hover,
       &:focus {
-        z-index: 2;
+        z-index: 1;
       }
     }
 
     &-btn {
-      order: 1;
       width: 20%;
-      height: 100%;
-      padding: 0;
       margin-left: -1px;
-      line-height: 100%;
-      text-align: center;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
