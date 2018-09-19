@@ -15,8 +15,7 @@ import {
   parseHTML,
   children,
   parentWith,
-  insertAfter,
-  insertBefore
+  insertAfter
 } from '@pluginjs/dom'
 import { setStyle, css, showElement, hideElement } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
@@ -362,7 +361,7 @@ class GalleryPicker extends Component {
       const indexOfParent = el => children(parent(el)).indexOf(el)
       for (let i = length; i <= this.count; i++) {
         const $item = this.addImage(this.value[i - 1])
-        insertBefore($item, this.$expandAdd)
+        insertAfter($item, this.$expandAdd)
         PopDialog.of(
           query(
             `.${this.classes.ITEM}-change .${this.classes.ITEMREMOVE}`,

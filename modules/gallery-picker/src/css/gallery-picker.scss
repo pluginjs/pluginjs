@@ -31,6 +31,9 @@ $galleryPicker-expand-item-change-bg: $color-opacity !default;
 $galleryPicker-expand-item-change-opacity: 1 !default;
 $galleryPicker-expand-control-btn-width: 95px !default;
 $galleryPicker-expand-control-btn-height: 32px !default;
+//scrollable
+$scrollable-width: 280px !default;
+$scrollable-height: 270px !default;
 // Core
 // =====================
 .#{$dropdown}-panel-wrap {
@@ -359,12 +362,27 @@ $galleryPicker-expand-control-btn-height: 32px !default;
  .#{$galleryPicker}-expand-control {
   margin-top: 20px;
 }
-.pj-scrollable {
-  position: relative !important;
-  width: 260px !important;
-  height: 270px !important;
-}
 .pj-scrollable-container {
   width: 270px !important;
   height: 270px !important;
+}
+.pj-scrollable {
+  // overflow: hidden !important;
+  position: relative !important;
+  width: $scrollable-width !important;
+  height: $scrollable-height !important;
+}
+.pj-scrollable-container {
+  // overflow-y: auto !important;
+  width: $scrollable-width !important;
+  height: $scrollable-height !important;
+}
+.pj-scrollable.pj-scrollable-enabled .pj-scrollable-content {
+  overflow: auto !important;
+}
+.pj-scrollable-content {
+  height: $scrollable-height;
+}
+.pj-scrollable-vertical.pj-scrollable-enabled .pj-scrollable-container {
+  overflow: hidden !important;
 }
