@@ -145,13 +145,15 @@ class BgPicker extends Component {
         if (this.is('disabled')) {
           return null
         }
+        this.oldValue = this.val()
+        console.log(this.oldValue)
         this.DROPDOWN.show()
         addClass(this.classes.OPENDISABLE, this.$trigger)
-        this.oldValue = this.val()
         removeClass(
           this.classes.EXIST,
           addClass(this.classes.EXPAND, this.$wrap)
         )
+        this.enter('status')
         return false
       }),
       bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
@@ -168,10 +170,17 @@ class BgPicker extends Component {
         if (this.is('disabled')) {
           return null
         }
+        console.log(this.oldValue)
         this.val(this.oldValue)
-        this.update()
-        removeClass(this.classes.EXPAND, this.$wrap)
-
+        // this.update()
+        if (this.is('status')) {
+          removeClass(
+            this.classes.EXPAND,
+            addClass(this.classes.EXIST, this.$wrap)
+          )
+        } else {
+          removeClass(this.classes.EXPAND, this.$wrap)
+        }
         this.DROPDOWN.hide()
         removeClass(this.classes.OPENDISABLE, this.$trigger)
         return false
@@ -329,7 +338,7 @@ class BgPicker extends Component {
     }
   }
 
-  clear(update) {
+  clear(update = true) {
     this.value = {}
 
     removeClass(this.classes.EXIST, this.$wrap)
@@ -344,6 +353,7 @@ class BgPicker extends Component {
       this.ATTACHMENT.clear()
       this.update()
     }
+    this.leave('status')
   }
 
   setRepeat(repeat) {

@@ -243,9 +243,13 @@ input.#{$bgPicker}-input {
   }
 
   &-position,
+  &-repeat {
+    overflow: hidden;
+  }
+  
+  &-position,
   &-repeat,
   &-size {
-    overflow: hidden;
 
     .#{$bgPicker}-field-content {
       display: flex;

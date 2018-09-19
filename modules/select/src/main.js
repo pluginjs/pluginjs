@@ -21,7 +21,8 @@ import {
   isFunction,
   // isUndefined,
   isNull,
-  isPlainObject
+  isPlainObject,
+  isUndefined
 } from '@pluginjs/is'
 import Clearable from './clearable'
 import Filterable from './filterable'
@@ -169,10 +170,11 @@ class Select extends Component {
     this.items = this.flatItems(data)
 
     let value = this.element.value
-
-    if (value === '') {
+    console.log(value)
+    if (value === '' || isUndefined(value)) {
       value = this.options.value
     }
+    console.log(value)
     if (value) {
       console.log(value)
       this.select(value, false)

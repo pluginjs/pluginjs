@@ -51,11 +51,6 @@ export default class Attachment {
         value: 'inherit',
         source: data,
         keyboard: true,
-        classes: {
-          panel: `pj-select-panel ${
-            this.instance.classes.NAMESPACE
-          }-select-panel`
-        },
         onChange(value) {  /* eslint-disable-line */
           if (that.instance.disabled) {
             return
