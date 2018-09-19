@@ -1,3 +1,5 @@
+@import "@pluginjs/styles/variables.scss";
+
 $radio: "pj-radio" !default;
 
 .#{$radio} {
@@ -27,6 +29,7 @@ $radio: "pj-radio" !default;
   & > input[type="radio"]:checked + label {
     i[class]:first-child {
       &::before {
+        color: $btn-color-primary;
         transform: scale(1);
       }
     }

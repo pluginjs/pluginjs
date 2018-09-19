@@ -37,7 +37,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 // default
 // ===========================
 
-&.#{$datePicker}-inputWrap {
+&.#{$datePicker} {
   display: inline-flex;
   width: 20 * $datePicker-sizer !important;
   height: 3.2 * $datePicker-sizer !important;
@@ -198,7 +198,7 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
         }
       }
 
-      &.#{$datePicker}-inputWrap {
+      &.#{$datePicker} {
       &:hover {
         .#{$datePicker}-icon {
           background-color: $color-white;
@@ -278,10 +278,11 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
   }
 
   &-mobile-trigger {
+    box-sizing: border-box;
     //max-width: $datePicker-input-width;
     display: inline-block;
     min-width: $datePicker-input-width;
-    padding: 0.3em 0.5em;
+    padding: 0.3em 0 0.3em 0.5em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

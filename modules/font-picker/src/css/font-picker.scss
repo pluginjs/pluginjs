@@ -30,7 +30,7 @@ $fontPicker-search-input-hover-color: $gray !default;
 
 // Core
 // =====================
-.#{$fontPicker} {
+.#{$fontPicker}-trigger {
   box-sizing: border-box;
   width: $fontPicker-width;
   height: $fontPicker-height;
@@ -45,7 +45,7 @@ $fontPicker-search-input-hover-color: $gray !default;
       color: $color-primary-black;
     }
   } 
-  .#{$dropdown}-trigger {
+  span {
     padding: 0 $fontPicker-sizer; //0 10px
     line-height: $fontPicker-height - 2px;
 
@@ -264,7 +264,7 @@ $fontPicker-search-input-hover-color: $gray !default;
     word-break: keep-all;
     white-space: nowrap;
     border-width: 0;
-
+   
     .#{$fontPicker}-source-icon {
       display: inline-block;
       margin-right: 9px;
@@ -325,6 +325,7 @@ $fontPicker-search-input-hover-color: $gray !default;
   order: 1;
   text-align: center;
   border-left: 1px solid $fontPicker-border-color;
+
   i {
     display: inline-block;
     margin-right: 0.4 * $fontPicker-sizer; //4px
@@ -365,6 +366,7 @@ $fontPicker-search-input-hover-color: $gray !default;
     border: 0;
     box-shadow: none;
     flex-shrink: 1;
+
     &:focus {
       outline: none;
       box-shadow: none;
@@ -400,6 +402,7 @@ $fontPicker-search-input-hover-color: $gray !default;
 
     .pj-scrollable-content {
       width: 100% !important;
+      
       li {
         display: none;
       }
@@ -439,8 +442,8 @@ $fontPicker-search-input-hover-color: $gray !default;
   }
 }
 
-.#{$fontPicker}-wrap {
-  .#{$fontPicker}.pj-dropdown-show {
+.#{$fontPicker} {
+  .#{$fontPicker}-trigger .pj-dropdown-show {
     &.tether-target-attached-bottom {
       border-bottom-right-radius: 3px;
       border-bottom-left-radius: 3px;
@@ -486,7 +489,7 @@ $fontPicker-search-input-hover-color: $gray !default;
 
 //disabled style
 #disabled {
-  .#{$fontPicker} {
+  .#{$fontPicker}-trigger {
     cursor: not-allowed !important;
     &.#{$fontPicker}-disabled {
       span {

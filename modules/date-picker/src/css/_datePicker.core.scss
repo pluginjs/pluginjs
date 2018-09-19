@@ -159,7 +159,6 @@ $datePicker-mobile-height: 80% !default;
       align-items: center;
       justify-content: center;
       width: 14.28%;
-      //height: 100%;
       height: auto;
       cursor: pointer;
 
@@ -200,7 +199,7 @@ $datePicker-mobile-height: 80% !default;
     display: block !important;
   }
 
-  &-picker-wrap {
+  &-dropdown {
      z-index: 9999;
     display: none;
     padding: 14px 0;
@@ -308,7 +307,7 @@ $datePicker-mobile-height: 80% !default;
       display: none !important;
     }
 
-    .#{$datePicker}-picker-wrap {
+    .#{$datePicker}-dropdown {
       position: relative !important;
     }
   }
@@ -324,6 +323,6 @@ $datePicker-mobile-height: 80% !default;
   }
 }
 
-.pj-datePicker-inputWrap:hover .pj-datePicker-input[disabled] {
+.#{$datePicker}:hover .pj-datePicker-input[disabled] {
   border-color: #dfe4ed;
 }

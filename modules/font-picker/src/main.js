@@ -74,7 +74,7 @@ class FontPicker extends Component {
     this.setupI18n()
 
     this.$fontPicker = addClass(
-      this.classes.ELEMENT,
+      this.classes.TRIGGER,
       parseHTML(
         templateEngine.compile(this.options.templates.trigger())({
           classes: this.classes
@@ -83,7 +83,7 @@ class FontPicker extends Component {
     )
     this.fontTrigger = query('.pj-dropdown-trigger', this.$fontPicker)
     insertAfter(this.$fontPicker, this.element)
-    wrap(`<div class='${this.classes.WRAP}'></div>`, this.$fontPicker)
+    wrap(`<div class='${this.classes.NAMESPACE}'></div>`, this.$fontPicker)
     insertBefore(this.element, this.$fontPicker)
 
     if (this.options.theme) {
@@ -111,6 +111,7 @@ class FontPicker extends Component {
     this.$dropdown = this.initDropdown()
     this.$panel = this.$dropdown.$dropdown
     insertAfter(this.$panel, this.$fontPicker)
+    addClass(this.classes.DROPDOWN, this.$panel)
     this.$activated = queryAll('.pj-dropdown-item', this.$panel)
     this.$activatedPackage = wrapAll(
       parseHTML(`<div class=${this.classes.ACTIVATED}></div>`),
@@ -178,9 +179,7 @@ class FontPicker extends Component {
     if (this.element.value) {
       this.val(this.element.value, false)
     } else {
-      query('.pj-dropdown-trigger', this.$fontPicker).append(
-        parseHTML(`<span>${this.options.placeholder}</span>`)
-      )
+      this.fontTrigger.append(`${this.options.placeholder}`)
     }
 
     this.bind()
@@ -943,18 +942,18 @@ class FontPicker extends Component {
   }
 
   setValue(val, trigger = true) {
-    if (!this.$font) {
-      if (this.element.value) {
-        append('<span></span>', query('.pj-dropdown-trigger', this.$fontPicker))
-      }
-    } else {
-      removeClass(this.classes.ACTIVE, this.$font)
-    }
+    // if (!this.$font) {
+    //   if (this.element.value) {
+    //     append('<span></span>', query('.pj-dropdown-trigger', this.$fontPicker))
+    //   }
+    // } else {
+    //   removeClass(this.classes.ACTIVE, this.$font)
+    // }
 
     this.$font = getData('mapping', val) ? getData('mapping', val) : val
     const fontFamily = this.$font.dataset.value
     const sourceName = this.$font.dataset.source
-    const $preView = query('.pj-dropdown-trigger span', this.$fontPicker)
+    const $preView = query('.pj-dropdown-trigger', this.$fontPicker)
     addClass(this.classes.ACTIVE, this.$font)
     this.element.setAttribute('value', this.val())
     $preView.innerHTML = fontFamily
@@ -1032,14 +1031,14 @@ class FontPicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      removeClass(this.classes.ELEMENT, this.$fontPicker)
+      removeClass(this.classes.TRIGGER, this.$fontPicker)
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$fontPicker)
       }
 
       this.$dropdown.destroy()
       this.$selectorPanel.destroy()
-      parentWith(hasClass(this.classes.WRAP), this.$fontPicker).remove()
+      parentWith(hasClass(this.classes.NAMESPACE), this.$fontPicker).remove()
       this.$fontPicker.remove()
       this.element.value = ''
       this.leave('initialized')

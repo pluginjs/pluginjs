@@ -36,18 +36,17 @@ export const controllerClass = {
 export const baseClass = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
-  ELEMENT: '{namespace}',
   TRIGGER: '{namespace}-trigger',
   FONT: '{namespace}-font',
   FONTFOCUS: '{namespace}-font-focus',
-  WRAP: '{namespace}-wrap',
   PANEL: '{namespace}-panel',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
-  SOURCES: '{namespace}-sources',
+  SOURCES: '{namespace}-source',
   SOURCEICON: '{namespace}-source-icon',
   ACTIVATED: '{namespace}-activated',
-  FONTWRAP: '{namespace}-font-wrap'
+  FONTWRAP: '{namespace}-font-wrap',
+  DROPDOWN: '{namespace}-dropdown'
 }
 
 export const emptyClass = {
@@ -84,7 +83,7 @@ export const defaults = {
       </div>`
     },
     trigger() {
-      return `<div class={classes.ELEMENT}><span class="pj-dropdown-trigger"></span><div></div></i>
+      return `<div class={classes.ELEMENT}><span class="pj-dropdown-trigger"></span><div></div>
       </div>`
     },
     font() {

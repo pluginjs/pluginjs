@@ -46,7 +46,7 @@ export const classes = {
   INRANGE: '{namespace}-inRange',
   ACTIVE: '{namespace}-active',
   INLINEMODE: '{namespace}-inline',
-  PICKERWRAP: '{namespace}-picker-wrap',
+  DROPDOWN: '{namespace}-dropdown',
   INPUTMODE: 'pj-input',
   WRAP: '{namespace}-wrap',
   INPUTWRAP: '{namespace}-inputWrap',
@@ -118,7 +118,7 @@ export const defaults = {
 
   templates: {
     inputWrap() {
-      return '<div class="{classes.INPUTWRAP} pj-input-group"></div>'
+      return '<div class="{classes.NAMESPACE} pj-input-group"></div>'
     },
     inputIcon() {
       return '<i class="{classes.ICON} pj-icon pj-icon-calendar pj-input-group-addon"></i>'

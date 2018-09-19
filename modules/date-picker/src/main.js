@@ -183,8 +183,8 @@ class DatePicker extends Component {
     this.$inputWrap.append(this.$picker)
 
     //
-    this.$pickerWrap = wrapElement(
-      parseHTML(`<div class='${this.classes.PICKERWRAP}'></div>`),
+    this.$dropdown = wrapElement(
+      parseHTML(`<div class='${this.classes.DROPDOWN}'></div>`),
       this.$picker
     )
 
@@ -225,8 +225,7 @@ class DatePicker extends Component {
     if (displayMode === 'inline') {
       this.options.alwaysShow = true
       addClass(this.classes.INLINEMODE, this.$inputWrap)
-      addClass(this.classes.SHOW, this.$pickerWrap)
-
+      addClass(this.classes.SHOW, this.$dropdown)
       compose(
         bindEvent(this.eventName('focus'), this.focus.bind(this)),
         bindEvent(this.eventName('blur'), this.blur.bind(this))
@@ -248,7 +247,6 @@ class DatePicker extends Component {
         this.toggle.bind(this),
         this.$inputIcon
       )
-
       // addClass(this.namespace + '_absolute', this.$picker);
     }
   }
@@ -1361,7 +1359,7 @@ class DatePicker extends Component {
       config.modifiers.preventOverflow.boundariesElement = 'scrollParent'
     }
 
-    this.POPPER = new Popper(this.$element, this.$pickerWrap, config)
+    this.POPPER = new Popper(this.$element, this.$dropdown, config)
 
     this.enter('popper')
 
@@ -1949,7 +1947,7 @@ class DatePicker extends Component {
       this.trigger(EVENTS.BEFORESHOW)
       addClass(this.classes.ACTIVE, this.$inputWrap)
       // removeClass(this.namespace + '_hide', this.$picker);
-      addClass(this.classes.SHOW, this.$pickerWrap)
+      addClass(this.classes.SHOW, this.$dropdown)
 
       if (this.isMobile) {
         addClass(this.classes.SHOW, this.$calendars[0])
@@ -2032,7 +2030,7 @@ class DatePicker extends Component {
       this.trigger(EVENTS.BEFOREHIDE)
       this.leave('selected')
       removeClass(this.classes.ACTIVE, this.$inputWrap)
-      removeClass(this.classes.SHOW, this.$pickerWrap)
+      removeClass(this.classes.SHOW, this.$dropdown)
       this.leave('showed')
       removeEvent(this.eventName('mousedown'), this.$picker)
       removeEvent(this.eventNameWithId('click'), $doc)
@@ -2124,7 +2122,7 @@ class DatePicker extends Component {
       }
       unwrap(this.$element)
       this.$picker.remove()
-      this.$pickerWrap.remove()
+      this.$dropdown.remove()
       this.$inputIcon.remove()
 
       this.POPPER.destroy()

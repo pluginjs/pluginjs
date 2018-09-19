@@ -42,11 +42,11 @@ $radio-disabled-solid-color: $color-white;
       & > input[type="radio"]:checked + label {
         .#{$radio}-icon {
           color: $color;
-          border-color: $color;
+          // border-color: $color;
         }
   
         i:not([class]) {
-          border-color: $color;
+          // border-color: $color;
   
           &::before {
             background: $color;
@@ -90,7 +90,7 @@ $radio-disabled-solid-color: $color-white;
   &> input[type="radio"]:checked + label {
     i:not([class]) {
       &::before {
-        background: #666;
+        background: $btn-color-primary;
         border: solid transparent !important;
         transition: all 0.5s ease;
       }
@@ -126,14 +126,6 @@ $radio-disabled-solid-color: $color-white;
   }
 
   &-solid {
-    &.#{$radio}-checked,
-    & > input[type="radio"]:checked + label {
-      i:not([class]),
-      .#{$radio}-icon {
-        border-color: $radio-color;
-      }
-    }
-
     &.#{$radio}-disabled,
     input[type="radio"]:disabled + label{
       .#{$radio}-icon {
