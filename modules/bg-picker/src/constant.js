@@ -12,7 +12,6 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
-
   // components
   INPUT: '{namespace}-input',
   EMPTY: '{namespace}-empty',
@@ -28,7 +27,11 @@ export const classes = {
   SAVE: '{namespace}-expand-save',
   IMAGEWRAP: '{namespace}-expand-image-wrap',
   IMAGE: '{namespace}-expand-image',
-
+  // field
+  FIELD: '{namespace}-field {namespace}-{field}',
+  FIELDTITLE: '{namespace}-field-title',
+  FIELDCONTENT: '{namespace}-field-content',
+  FIELDCONTENTITEM: '{namespace}-field-content-item',
   // status
   DISABLED: '{namespace}-disabled',
   ACTIVE: '{namespace}-active',
@@ -46,7 +49,6 @@ export const classes = {
   POSITION: '{namespace}-position',
   POSITIONTITLE: '{namespace}-position-title',
   POSITIONCONTENT: '{namespace}-position-content',
-  POSITIONCONTENTITEM: '{namespace}-position-content-item',
   // size
   SIZE: '{namespace}-size',
   SIZETITLE: '{namespace}-size-title',
@@ -98,13 +100,13 @@ export const defaults = {
     values: ['no-repeat', 'repeat', 'repeat-x', 'repeat-y'],
     template() {
       return (
-        '<div class="{classes.REPEAT}">' +
-        '<span class="{classes.REPEATTITLE}">{bgRepeat}</span>' +
-        '<ul class="{classes.REPEATCONTENT}">' +
-        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-no-repeat"></li>' +
-        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-repeat"></li>' +
-        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-repeat-horizontal"></li>' +
-        '<li class="{classes.REPEATCONTENTITEM} pj-icon pj-icon-repeat-vertical"></li>' +
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{bgRepeat}</span>' +
+        '<ul class="{classes.FIELDCONTENT}">' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-no-repeat"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-horizontal"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-vertical"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -126,18 +128,18 @@ export const defaults = {
     ],
     template() {
       return (
-        '<div class="{classes.POSITION}">' +
-        '<span class="{classes.POSITIONTITLE}">{bgPosition}</span>' +
-        '<ul class="{classes.POSITIONCONTENT}">' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-top-left"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-top-center"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-top-right"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-center-left"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-center"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-center-right"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-bottom-left"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-bottom-center"></li>' +
-        '<li class="{classes.POSITIONCONTENTITEM} pj-icon pj-icon-bottom-right"></li>' +
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{bgPosition}</span>' +
+        '<ul class="{classes.FIELDCONTENT}">' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-left"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-center"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-right"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-left"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-right"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-left"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-center"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-right"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -149,11 +151,10 @@ export const defaults = {
     values: ['auto 100%', '100% auto', '100% 100%', 'auto'],
     template() {
       return (
-        '<div class="{classes.SIZE}">' +
-        '<span class="{classes.SIZETITLE}">{bgSize}</span>' +
-        '<div class="{classes.SIZECONTENT}">' +
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{bgSize}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
         '<span class={classes.SIZETRIGGER}></span>' +
-        '<div class={classes.SIZEPANEL}></div>' +
         '</div>' +
         '</div>'
       )
@@ -165,10 +166,10 @@ export const defaults = {
     values: ['scroll', 'fixed', 'inherit'],
     template() {
       return (
-        '<div class="{classes.ATTACHMENT}">' +
-        '<span class="{classes.ATTACHMENTTITLE}">{bgAttach}</span>' +
-        '<div class="{classes.ATTACHMENTCONTENT}">' +
-        '<div class="{classes.DROPDOWNTRIGGER}"></div><div></div>' +
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{bgAttach}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
+        '<div class="{classes.DROPDOWNTRIGGER}"></div>' +
         '</div>' +
         '</div>'
       )

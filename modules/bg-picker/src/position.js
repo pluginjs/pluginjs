@@ -24,6 +24,10 @@ export default class Position {
   initialize() {
     const html = template.compile(this.instance.options.position.template())({
       classes: this.instance.classes,
+      field: this.instance.getClassName(
+        this.instance.classes.NAMESPACE,
+        'position'
+      ),
       bgPosition: this.instance.translate('bgPosition')
     })
 

@@ -25,6 +25,10 @@ export default class Size {
   initialize() {
     const html = template.compile(this.instance.options.size.template())({
       classes: this.instance.classes,
+      field: this.instance.getClassName(
+        this.instance.classes.NAMESPACE,
+        'size'
+      ),
       bgSize: this.instance.translate('bgSize')
     })
 

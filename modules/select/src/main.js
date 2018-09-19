@@ -19,7 +19,7 @@ import {
 import {
   isArray,
   isFunction,
-  isUndefined,
+  // isUndefined,
   isNull,
   isPlainObject
 } from '@pluginjs/is'
@@ -91,7 +91,6 @@ class Select extends Component {
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
-
     // this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -170,10 +169,12 @@ class Select extends Component {
     this.items = this.flatItems(data)
 
     let value = this.element.value
-    if (isUndefined(this.value)) {
+
+    if (value === '') {
       value = this.options.value
     }
     if (value) {
+      console.log(value)
       this.select(value, false)
     }
   }

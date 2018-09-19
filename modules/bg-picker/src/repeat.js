@@ -24,6 +24,10 @@ export default class Repeat {
   initialize() {
     const html = template.compile(this.instance.options.repeat.template())({
       classes: this.instance.classes,
+      field: this.instance.getClassName(
+        this.instance.classes.NAMESPACE,
+        'repeat'
+      ),
       bgRepeat: this.instance.translate('bgRepeat')
     })
     this.$Repeat = parseHTML(html)

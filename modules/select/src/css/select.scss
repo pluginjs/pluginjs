@@ -40,7 +40,7 @@ $select-group-label-space-y: 8px;
       will-change: transform;
     }
 
-    &.#{$select}-on-top[aria-expanded="true"]::after {
+    &.#{$select}-on-bottom[aria-expanded="true"]::after {
       transform: rotate(180deg);
     }
   }

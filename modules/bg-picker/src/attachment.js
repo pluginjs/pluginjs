@@ -23,6 +23,10 @@ export default class Attachment {
   initialize() {
     const html = template.compile(this.instance.options.attachment.template())({
       classes: this.instance.classes,
+      field: this.instance.getClassName(
+        this.instance.classes.NAMESPACE,
+        'attachment'
+      ),
       bgAttach: this.instance.translate('bgAttach')
     })
 

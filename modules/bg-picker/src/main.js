@@ -346,40 +346,6 @@ class BgPicker extends Component {
     }
   }
 
-  // setImage(image) {
-  //   let thumbnailUrl
-  //   this.setState(image)
-  //   this.returnFill(image)
-  //   if (image === '' || typeof image === 'undefined') {
-  //     showElement(this.$fillImageName)
-  //     setStyle('background-image', 'none', this.$image)
-
-  //     setStyle('background-image', 'none', this.$fillImage)
-  //   } else if (image || image !== this.options.image) {
-  //     thumbnailUrl = this.options.thumbnail ? this.options.thumbnail : image
-  //     const IMG = new Image()
-  //     IMG.onload = () => {
-  //       this.value.image = thumbnailUrl
-  //       this.returnFill(this.value.image)
-  //       setStyle('background-image', `url('${this.value.image}')`, this.$image)
-
-  //       setStyle(
-  //         'background-image',
-  //         `url('${this.value.image}')`,
-  //         this.$fillImage
-  //       )
-  //     }
-  //     IMG.onerror = () => {
-  //       this.value.image = image
-  //       this.returnFill(image)
-  //       this.update()
-  //       setStyle('background-image', 'none', this.$image)
-  //       setStyle('background-image', 'none', this.$fillImage)
-  //     }
-  //     IMG.src = thumbnailUrl
-  //   }
-  // }
-
   setRepeat(repeat) {
     this.REPEAT.set(repeat)
     this.update()
@@ -398,6 +364,10 @@ class BgPicker extends Component {
   setAttachment(attachment) {
     this.ATTACHMENT.set(attachment)
     this.update()
+  }
+
+  getClassName(namespace, field) {
+    return template.compile(this.classes.FIELD)({ namespace, field })
   }
 
   get() {

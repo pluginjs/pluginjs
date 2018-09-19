@@ -115,16 +115,20 @@ class FontEditor extends Component {
   }
 
   initDropdown() {
+    const that = this
     this.$defaultDropdown = Dropdown.of(this.$empty, {
       theme: 'dafault',
       placement: 'bottom-left',
       reference: this.$trigger,
       target: this.$Panel,
-      hideOutClick: false,
+      hideOutClick: true,
       hideOnSelect: false,
       constraintToScrollParent: false,
       constraintToWindow: false,
-      templates: this.options.templates
+      templates: this.options.templates,
+      onHide: () => {
+        removeClass(that.classes.OPENDISABLE, that.$trigger)
+      }
     })
   }
 
@@ -138,7 +142,7 @@ class FontEditor extends Component {
           return
         }
         addClass(that.classes.OPENDISABLE, that.$trigger)
-        addClass(that.classes.EXPAND, that.$wrap)
+        // addClass(that.classes.EXPAND, that.$wrap)
         return
       },
       this.$empty
@@ -176,7 +180,7 @@ class FontEditor extends Component {
         addClass(that.classes.EXPAND, that.$wrap)
         addClass(that.classes.OPENDISABLE, that.$trigger)
         this.$defaultDropdown.show()
-        return
+        return false /* eslint-disable-line */
       },
       this.$editBtn
     )
@@ -187,8 +191,6 @@ class FontEditor extends Component {
         if (that.is('disabled')) {
           return
         }
-        // addClass(that.classes.EXPAND, that.$wrap)
-        removeClass(that.classes.OPENDISABLE, that.$trigger)
         that.$defaultDropdown.hide()
         return
       },
@@ -199,8 +201,7 @@ class FontEditor extends Component {
       this.eventName('click'),
       () => {
         removeClass(that.classes.EXPAND, that.$wrap)
-        addClass(that.classes.EXSIT, that.$wrap)
-        removeClass(that.classes.OPENDISABLE, that.$trigger)
+        // addClass(that.classes.EXSIT, that.$wrap)
         that.$defaultDropdown.hide()
         return
       },
@@ -212,7 +213,6 @@ class FontEditor extends Component {
       () => {
         addClass(that.classes.EXSIT, that.$wrap)
         removeClass(that.classes.EXPAND, that.$wrap)
-        removeClass(that.classes.OPENDISABLE, that.$trigger)
         that.update()
         that.$defaultDropdown.hide()
         return
