@@ -52,8 +52,9 @@ export const classes = {
   DROPDOWN: '{namespace}-dropdown',
   TRIGGER: '{namespace}-trigger',
   INPUT: '{namespace}-input',
-  COMPONENT: '{namespace}-component',
-  COMTITLE: '{namespace}-component-title',
+  // field
+  FIELD: '{namespace}-field',
+  FIELDTITLE: '{namespace}-field-title',
   PREVIEW: '{namespace}-preview',
   ACTION: '{namespace}-action',
   BTNACTION: '{namespace}-btn-action',

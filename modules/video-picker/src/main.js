@@ -156,16 +156,16 @@ class VideoPicker extends Component {
     this.$preview.append(this.$action, this.$videoPreview)
     // create components
     this.$source = parseHTML(
-      `<div class='${this.classes.COMPONENT}'><span class='${
-        this.classes.COMTITLE
+      `<div class='${this.classes.FIELD}'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('videoSource')}</span><div class='${
         this.classes.SOURCE
       }'><span class="pj-dropdown-trigger"></span><div></div></div></div>`
     )
     this.$sourceTrigger = query('.pj-dropdown-trigger', this.$source)
     this.$videoUrlContent = parseHTML(
-      `<div class='${this.classes.COMPONENT}'><span class='${
-        this.classes.COMTITLE
+      `<div class='${this.classes.FIELD}'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('videoURL')}</span><div class='${
         this.classes.VIDEOURL
       }'><input type='text' class='pj-input' /><i class='pj-icon pj-icon-close-mini'></i></div></div>`
@@ -173,10 +173,8 @@ class VideoPicker extends Component {
     this.$vidosource = query(`.${this.classes.SOURCE}`, this.$source)
     this.$videoUrl = query(`.${this.classes.VIDEOURL}`, this.$videoUrlContent)
     this.$localUrlContent = parseHTML(
-      `<div class='${
-        this.classes.COMPONENT
-      }' style='display:none'><span class='${
-        this.classes.COMTITLE
+      `<div class='${this.classes.FIELD}' style='display:none'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('chooseVideo')}</span><div class='${
         this.classes.LOCALURL
       } ${this.classes.POSTER}'><span class='${
@@ -189,8 +187,8 @@ class VideoPicker extends Component {
     )
     this.$localUrl = query(`.${this.classes.LOCALURL}`, this.$localUrlContent)
     this.$ratioContent = parseHTML(
-      `<div class='${this.classes.COMPONENT}'><span class='${
-        this.classes.COMTITLE
+      `<div class='${this.classes.FIELD}'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('aspectRatio')}</span><div class="${
         this.classes.RATIO
       }"><span class="pj-dropdown-trigger"></span><div></div></div></div>`
@@ -198,8 +196,8 @@ class VideoPicker extends Component {
     this.$ratio = query(`.${this.classes.RATIO}`, this.$ratioContent)
     this.$ratioTrigger = query('.pj-dropdown-trigger', this.$ratio)
     this.$posterContent = parseHTML(
-      `<div class='${this.classes.COMPONENT}'><span class='${
-        this.classes.COMTITLE
+      `<div class='${this.classes.FIELD}'><span class='${
+        this.classes.FIELDTITLE
       }'>${this.translate('poster')}</span><div class='${
         this.classes.POSTER
       }'><span class='${
@@ -257,11 +255,11 @@ class VideoPicker extends Component {
       onChange: value => {
         this.data.source = value
         if (value === 'Local File') {
-          showElement(closest('.pj-videoPicker-component', this.$localUrl))
-          hideElement(closest('.pj-videoPicker-component', this.$videoUrl))
+          showElement(closest(`.${this.classes.FIELD}`, this.$localUrl))
+          hideElement(closest(`.${this.classes.FIELD}`, this.$videoUrl))
         } else {
-          hideElement(closest('.pj-videoPicker-component', this.$localUrl))
-          showElement(closest('.pj-videoPicker-component', this.$videoUrl))
+          hideElement(closest(`.${this.classes.FIELD}`, this.$localUrl))
+          showElement(closest(`.${this.classes.FIELD}`, this.$videoUrl))
         }
         if (this.$videoPoster) {
           setStyle('backgroundImage', null, this.$videoPoster)
@@ -282,8 +280,6 @@ class VideoPicker extends Component {
       onChange: value => {
         this.data.ratio = value
         this.changeRatio(value)
-        this.$ratioSelect.update()
-        this.$sourceSelect.update()
       }
     })
 

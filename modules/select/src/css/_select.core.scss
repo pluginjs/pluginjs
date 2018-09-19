@@ -42,13 +42,13 @@ $select-clear-right: 1.5 * $sizer;
     &::after {
       @include icon();
       position: absolute;
-      top: 50%;
+      top: 20%;
 
       right: $select-trigger-arrow-right;
       font-family: $select-trigger-arrow-font;
 
       content: icon-content($select-trigger-arrow-icon);
-      transform: translateY(-50%);
+      // transform: translateY(-50%);
     }
 
     .#{$select}-clearable.#{$select}-selected &:hover::after {

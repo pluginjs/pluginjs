@@ -36,7 +36,7 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     pointer-events: none;
   }
 
-  &-component {
+  &-field {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -143,7 +143,7 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     width: 260px;
     // height: 160px;
     padding: 14px;
-    padding-top: 100%;
+    padding-top: 66.66%;
     margin-bottom: 20px;
     color: $gray-darkest;
        

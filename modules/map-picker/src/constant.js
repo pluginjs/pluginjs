@@ -28,8 +28,8 @@ export const classes = {
   ICON: '{namespace}-icon',
   DROPDOWN: '{namespace}-dropdown',
   CONTENT: '{namespace}-panel-content',
-  ITEM: '{namespace}-item',
-  ITEMTITLE: '{namespace}-item-title',
+  FIELD: '{namespace}-field',
+  FIELDTITLE: '{namespace}-field-title',
   LAT: '{namespace}-lat',
   LNG: '{namespace}-lng',
   PLACE: '{namespace}-place',
@@ -69,11 +69,11 @@ export const defaults = {
       </div>`
     },
     empty() {
-      return `<div class="{classes.EMPTY}"><i class="{classes.ICON} pj-icon pj-icon-pin-map"></i>{addPlace}
+      return `<div class="{classes.EMPTY}"><i class="{classes.ICON} pj-icon pj-icon-pin-map-solid"></i>{addPlace}
       </div>`
     },
     fill() {
-      return `<div class="{classes.FILL}"><i class="{classes.ICON} pj-icon pj-icon-pin-map"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
+      return `<div class="{classes.FILL}"><i class="{classes.ICON} pj-icon pj-icon-pin-map-solid"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
       </div>`
     },
     fillAction() {
@@ -88,8 +88,8 @@ export const defaults = {
       return `<div class='{classes.ACTION}'><button type='button' class='{classes.CANCEL} pj-btn pj-btn-transparent'>{cancelTitle}</button><button type='button' class='{classes.SAVE} pj-btn pj-btn-primary'>{saveTitle}</button>
       </div>`
     },
-    item() {
-      return `<div class='{classes.ITEM}'><span class='{classes.ITEMTITLE}'>{titleName}</span><input class='{type} pj-input' type="text">
+    field() {
+      return `<div class='{classes.FIELD}'><span class='{classes.FIELDITLE}'>{titleName}</span><input class='{type} pj-input' type="text">
       </div>`
     },
     loading() {

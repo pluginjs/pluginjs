@@ -142,7 +142,7 @@ class FontEditor extends Component {
           return
         }
         addClass(that.classes.OPENDISABLE, that.$trigger)
-        // addClass(that.classes.EXPAND, that.$wrap)
+        // addClass(that.classes.SHOW, that.$wrap)
         return
       },
       this.$empty
@@ -177,7 +177,7 @@ class FontEditor extends Component {
           return
         }
         // removeClass(this.classes.EXSIT, this.$wrap)
-        addClass(that.classes.EXPAND, that.$wrap)
+        addClass(that.classes.SHOW, that.$wrap)
         addClass(that.classes.OPENDISABLE, that.$trigger)
         this.$defaultDropdown.show()
         return false /* eslint-disable-line */
@@ -200,7 +200,7 @@ class FontEditor extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
-        removeClass(that.classes.EXPAND, that.$wrap)
+        removeClass(that.classes.SHOW, that.$wrap)
         // addClass(that.classes.EXSIT, that.$wrap)
         that.$defaultDropdown.hide()
         return
@@ -212,7 +212,7 @@ class FontEditor extends Component {
       this.eventName('click'),
       () => {
         addClass(that.classes.EXSIT, that.$wrap)
-        removeClass(that.classes.EXPAND, that.$wrap)
+        removeClass(that.classes.SHOW, that.$wrap)
         that.update()
         that.$defaultDropdown.hide()
         return
@@ -324,7 +324,7 @@ class FontEditor extends Component {
       'inherit'} / ${this.value.lineHeight || 'inherit'}`
     if (this.value.fontFamily && this.value.fontFamily !== 'inherit') {
       compose(
-        removeClass(this.classes.EXPAND),
+        removeClass(this.classes.SHOW),
         addClass(this.classes.EXSIT)
       )(this.$wrap)
     }

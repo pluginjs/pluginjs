@@ -38,7 +38,7 @@ export const classes = {
   HOVER: '{namespace}-hover',
   WRITE: '{namespace}-write',
   EXIST: '{namespace}-exist',
-  EXPAND: '{namespace}-expand',
+  SHOW: '{namespace}-show',
   OPENDISABLE: '{namespace}-open-disabled',
   // repeat
   REPEAT: '{namespace}-repeat',

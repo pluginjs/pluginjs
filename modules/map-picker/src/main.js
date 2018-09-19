@@ -159,12 +159,16 @@ class MapPicker extends Component {
   }
 
   initDropdown() {
+    const that = this
     this.DROPDOWN = Dropdown.of(this.$empty, {
-      reference: this.$trigger,
-      placement: 'bottom-left',
+      reference: that.$trigger,
+      // placement: 'bottom-left',
       target: this.$dropdown,
-      hideOutClick: false,
-      templates: this.options.templates
+      hideOutClick: true,
+      templates: this.options.templates,
+      onHide: () => {
+        removeClass(this.classes.OPENDISABLE, this.$trigger)
+      }
     })
   }
 
@@ -205,7 +209,7 @@ class MapPicker extends Component {
 
     // create input items
     this.$place = parseHTML(
-      this.createEl('item', {
+      this.createEl('field', {
         classes: this.classes,
         titleName: this.translate('place'),
         type: this.classes.PLACE
@@ -224,7 +228,7 @@ class MapPicker extends Component {
     list.push(this.$place)
     if (this.options.showLatlng) {
       const $lat = parseHTML(
-        this.createEl('item', {
+        this.createEl('field', {
           classes: this.classes,
           titleName: this.translate('latitude'),
           type: this.classes.LAT
@@ -232,7 +236,7 @@ class MapPicker extends Component {
       )
 
       const $lng = parseHTML(
-        this.createEl('item', {
+        this.createEl('field', {
           classes: this.classes,
           titleName: this.translate('longitude'),
           type: this.classes.LNG
@@ -403,6 +407,7 @@ class MapPicker extends Component {
             return
           }
           this.open()
+          return false /* eslint-disable-line */
         }
       ),
       // $fill event
@@ -476,7 +481,6 @@ class MapPicker extends Component {
   }
 
   close() {
-    removeClass(this.classes.OPENDISABLE, this.$trigger)
     removeClass(this.classes.SHOW, this.$wrap)
     this.DROPDOWN.hide()
     this.leave('open')
@@ -557,7 +561,7 @@ class MapPicker extends Component {
     children(query(`.${this.classes.FILLCONTENT}`, this.$fill)).forEach(el => {
       el.textContent = ''
     })
-    queryAll(`.${this.classes.ITEM} input`, this.$dropdown).forEach(el => {
+    queryAll(`.${this.classes.FIELD} input`, this.$dropdown).forEach(el => {
       el.value = ''
     })
 

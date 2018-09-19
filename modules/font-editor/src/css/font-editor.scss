@@ -180,20 +180,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
       width: 9.1 * $fontEditor-sizer; //91px
       height: 3.2 * $fontEditor-sizer; //32px
       font-size: $font-size-xs;
-      // color: $fontEditor-control-color;
-      // background-color: $color-white;
-      // border: 0;
-      // border-radius: $fontEditor-border-radius;
     }
-
-    // &-cancel:hover {
-    //   color: $gray-light;
-    // }
-
-    // &-save {
-    //   color: $color-white;
-    //   background-color: $color-primary;
-    // }
   }
 
   &-field {
@@ -335,7 +322,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 }
 
 /* stylelint-disable*/
-.#{$fontEditor}-expand {
+.#{$fontEditor}-show {
   .#{$fontEditor}-empty{
     display: none !important;
   }
