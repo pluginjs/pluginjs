@@ -3,23 +3,13 @@
 // Vars
 // ======================
 $spinner: "pj-spinner" !default;
-//$global-disabled-bg-color: $disabled-color !default;
-//$global-disabled-opacity: .4 !default;
-$spinner-sizer: $sizer;
 
-$spinner-width: 11.4 * $spinner-sizer !default; //120px
-$spinner-height: 3.2 * $spinner-sizer !default; //32px
-
-$spinner-control-width: 3.5 * $spinner-sizer !default; //35px
+$spinner-height: 32px !default;
+$spinner-padding: 8px !default;
 
 $spinner-border-width: 1px !default;
-$spinner-border-radius: 2px !default;
-$spinner-border-color: $gray-border !default;
-$spinner-font-size: $font-size-xs !default;
-$spinner-color: $gray-dark !default;
 
-$spinner-focus-border-color: $color-primary !default;
-$spinner-focus-hover-border-color: $gray-darkest !default;
+$spinner-layout-right-control-width: 20px !default;
 
 // Core
 // ======================
@@ -28,57 +18,24 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
   box-sizing: border-box;
   display: inline-block;
   user-select: none;
-  //border: $spinner-border-width solid $spinner-border-color;
-  border-radius: $spinner-border-radius;
   outline: none;
 
-  &:hover {
-    input {
-      border-color: $spinner-focus-hover-border-color;
-    }
-  }
-
-  //&:active {
-  //  border-color: $color-primary-dark;
-  //}
-  //&:focus {
-  //  border-color: $color-primary-dark;
-  //}
-  &-focus.#{$spinner} {
-    border-color: $color-primary-dark;
-    box-shadow: none;
-  }
-  &-focus.#{$spinner}:focus {
-    border-color: $gray-lighter;
-  }
-
   input {
-    box-sizing: border-box;
-    width: $spinner-width;
-    height: $spinner-height;
-    padding: 0 $spinner-control-width;
-    margin: 0;
-    font-size: $spinner-font-size;
-    color: $spinner-color;
+    padding: $spinner-height + $spinner-padding;
+    padding-top: $spinner-padding - $spinner-border-width;
+    padding-bottom: $spinner-padding - $spinner-border-width;
     text-align: center;
-    border: $spinner-border-width solid $spinner-border-color;
-    box-shadow: none !important;
-    &:hover {
-      border-color: $spinner-focus-hover-border-color;
-    }
   }
 
   &-up,
   &-down {
     position: absolute;
     top: $spinner-border-width;
-    width: $spinner-control-width - $spinner-border-width * 3;
-    height: $spinner-height - $spinner-border-width * 2;
-    // padding: 1px;
-    background-color: transparent;
+    padding: 0 $spinner-padding;
 
-    &:hover {
-      cursor: pointer;
+    &::before {
+      line-height: $spinner-height - $spinner-border-width * 2;
+      vertical-align: middle;
     }
   }
 
@@ -88,48 +45,13 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
   }
 
   &-down {
-    left: 0;
+    left: $spinner-border-width;
     box-sizing: border-box;
   }
 
   &-up {
-    right: 0;
+    right: $spinner-border-width;
     box-sizing: border-box;
-  }
-
-  &-disabled {
-    position: relative;
-    cursor: not-allowed;
-    background-color: $disabled-bg;
-    border-color: $disabled-border !important;
-
-    input {
-      color: $disabled-color !important;
-      background-color: $disabled-bg !important;
-    }
-
-    &.#{$spinner}:hover input {
-      border-color: $disabled-border !important;
-    }
-
-    &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      // opacity: $global-disabled-opacity;
-      z-index: 999;
-      display: block;
-      width: 100%;
-      height: 2 * $spinner-sizer; //20px
-      content: "";
-      //background-color: $disabled-bg;
-    }
-
-    .#{$spinner}-up::before,
-    .#{$spinner}-down::before {
-      color: $disabled-color !important;
-      cursor: not-allowed;
-    }
   }
 }
 
@@ -137,16 +59,19 @@ $spinner-focus-hover-border-color: $gray-darkest !default;
   .#{$spinner}-control {
     position: absolute;
     top: 50%;
-    right: 0;
-    width: 2 * $spinner-sizer; //20px
-    height: 2 * $spinner-sizer; //20pz
+    right: $spinner-border-width;
+    width: $spinner-layout-right-control-width;
+    height: 100%;
     transform: translateY(-50%);
 
-    span {
+    .#{$spinner}-up,
+    .#{$spinner}-down {
       position: relative;
+      right: 0;
+      left: 0;
       display: block;
       width: 100%;
-      height: 14px;
+      height: calc(50% - 1px);
       padding: 0;
       border: 0;
 

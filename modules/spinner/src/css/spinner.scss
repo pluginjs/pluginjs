@@ -3,96 +3,93 @@
 
 // Vars
 // ======================
-$spinner: "pj-spinner" !default;
-$spinner-sizer: $sizer;
+$spinner: "pj-spinner";
 
-$spinner-color: $gray-dark !default;
-$spinner-font-size: $font-size-xs !default;
-$spinner-width: 12 * $spinner-sizer !default; //120px
-$spinner-height: 3 * $spinner-sizer !default; //30px
-$spinner-border-width: 1px !default;
-$spinner-border-color: $gray-lighter !default;
-$spinner-border-radius: 2px !default;
-$spinner-focus-border-color: $btn-color-primary !default;
-$spinner-focus-hover-border-color: $gray-light !default;
-$spinner-control-width: $spinner-height !default;
-$spinner-control-color: $gray-dark !default;
-$spinner-control-font-size: $font-size-sm !default;
-$spinner-control-active-color: $color-primary-black !default;
-$spinner-layout-right-width: 8 * $spinner-sizer !default; //80px
-$spinner-layout-right-control-width: 2 * $spinner-sizer !default; //20px
-$spinner-layout-right-trigger-right: 2 * $spinner-sizer !default; //20px
+$spinner-font-family: $font-family-base;
+$spinner-font-size: $font-size-xs;
+$spinner-color: #999;
+$spinner-active-color: $gray-darkest;
+
+$spinner-hover-bg: $gray-lighter;
+
+$spinner-border-color: $gray;
+$spinner-border-radius: $border-radius-base;
+
+$spinner-control-color: $gray-dark;
+$spinner-control-font-size: $font-size-sm;
+$spinner-control-active-color: $gray-darkest;
 
 // Skin
 // ================
 .#{$spinner} {
+  font-family: $spinner-font-family;
+
   input {
-    border-radius: 2px !important;
-    &:focus {
-      border-color: $spinner-focus-border-color !important;
-      outline: none;
-      box-shadow: none !important;
+    color: $spinner-color;
+  }
+
+  &-focus {
+    input {
+      color: $spinner-active-color;
     }
   }
 
   .#{$spinner}-up,
   .#{$spinner}-down {
-    top: $spinner-border-width;
-    width: $spinner-control-width - $spinner-border-width * 3; //30-6
-    height: $spinner-height - $spinner-border-width * 2;
-    // padding: 1px;
     background-color: transparent;
 
     &::before {
       font-size: $spinner-control-font-size;
-      line-height: $spinner-height - $spinner-border-width * 2;
       color: $spinner-control-color;
-      vertical-align: middle;
     }
 
     &:active,
     &:hover {
-      background-color: $gray-lightest;
-    }
+      cursor: pointer;
+      background-color: $spinner-hover-bg;
 
-    &:active::before,
-    &:hover::before {
-      color: $spinner-control-active-color;
+      &::before {
+        color: $spinner-control-active-color;
+      }
     }
   }
 
   .#{$spinner}-up {
-    right: $spinner-border-width;
-    border-left: 1px solid $spinner-border-color;
+    border-left: $spinner-border-width solid $spinner-border-color;
 
     &:active {
-      // border-right: $spinner-border-width solid $spinner-border-color;
       border-top-right-radius: $spinner-border-radius;
       border-bottom-right-radius: $spinner-border-radius;
     }
   }
 
   .#{$spinner}-down {
-    left: $spinner-border-width;
-    border-right: 1px solid $spinner-border-color;
+    border-right: $spinner-border-width solid $spinner-border-color;
 
     &:active {
-      // border-left: $spinner-border-width solid $spinner-border-color;
       border-top-left-radius: $spinner-border-radius;
       border-bottom-left-radius: $spinner-border-radius;
     }
   }
 
   &.#{$spinner}-disabled {
-    &::before {
-      height: 100%;
-      border-radius: $spinner-border-radius;
-    }
+    cursor: not-allowed;
+    background-color: $disabled-bg;
+    border-color: $disabled-border;
 
     .#{$spinner}-up,
     .#{$spinner}-down {
-      &:active::before {
-        // color: $spinner-control-color !important;
+      cursor: not-allowed;
+  
+      &:active,
+      &:hover {
+        cursor: not-allowed;
+        background-color: transparent;
+      }
+
+      &::before {
+        color: $disabled-color;
+        cursor: not-allowed;
       }
     }
   }
@@ -100,20 +97,16 @@ $spinner-layout-right-trigger-right: 2 * $spinner-sizer !default; //20px
   // control right
   &.#{$spinner}-layout-right {
     input {
-      width: $spinner-layout-right-width;
-      padding-right: $spinner-layout-right-control-width + $spinner-layout-right-trigger-right -2px;
-      padding-left: 0.4 * $spinner-sizer; //4px
+      padding-right: $spinner-layout-right-control-width + $spinner-padding;
+      padding-left: $spinner-padding;
     }
 
     .#{$spinner}-control {
-      right: $spinner-border-width;
-      width: $spinner-layout-right-control-width;
-      height: $spinner-height - $spinner-border-width * 2; //30-2*1
       border-left: $spinner-border-width solid $spinner-border-color;
 
       > .#{$spinner}-up {
         right: auto;
-        border-bottom: 1px solid $spinner-border-color;
+        border-bottom: $spinner-border-width solid $spinner-border-color;
       }
 
       > .#{$spinner}-down {

@@ -1,0 +1,72 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$choice: "pj-choice" !default;
+
+$choice-item-spacer: 8px 16px !default;
+
+$choice-dropdown-item-spacer: $choice-item-spacer;
+
+// Core
+// =====================
+.#{$choice}-item {
+  display: inline-block;
+  padding: $choice-item-spacer;
+  margin: 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+}
+
+// Button groups
+.#{$choice} {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  max-width: 100%;
+
+  .#{$choice}-item {
+    flex: 1 0 auto;
+  }
+
+  &.#{$choice}-block {
+    display: flex;
+  }
+}
+
+.#{$choice}-dropdown {
+  position: absolute;
+  top: 4px !important;
+  left: -9px !important;
+  z-index: $zindex-dropdown;
+  margin: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0.2s;
+
+  &-show {
+    pointer-events: auto;
+    visibility: visible;
+  }
+}
+
+/*stylelint-disable*/
+.#{$choice}-dropdown {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  .#{$choice}-item {
+    box-sizing: border-box;
+    display: flex;
+    flex: none;
+    justify-content: space-between;
+    width: 100%;
+    padding: $choice-dropdown-item-spacer;
+  }
+}
