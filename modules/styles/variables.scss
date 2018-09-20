@@ -166,6 +166,33 @@ $disabled-bg: $color-white;
 $disabled-border: $gray-border;
 $disabled-color: $gray;
 
+//  10. Input
+$input-sizer: $sizer !default;
+
+$input-font-size: $font-size-base;
+$input-color: $text-color !default;
+
+$input-border-color: $border-color !default;
+$input-border-width: $border-width !default;
+$input-border-style: solid !default;
+$input-border-radius: $border-radius-lg !default;
+$input-border-color-hover: $border-color-hover !default;
+$input-border-color-focus: $border-color-active !default;
+
+$input-padding-x: 1.2 * $input-sizer !default; //12px
+$input-padding-y: 0.5 * $input-sizer !default; //4px
+$input-line-height: 1.6 * $input-sizer !default; //16px
+
+$input-group-addon-color: $input-color !default;
+$input-group-addon-padding-x: 0.8 * $input-sizer !default;
+$input-group-addon-padding-y: $input-padding-y !default;
+
+$input-placeholder-color: $gray-dark !default;
+
+$input-disabled-bg: $disabled-bg;
+$input-disabled-border: $disabled-border;
+$input-disabled-color: $disabled-color;
+
 // mixins
 
 @mixin clearfix() {
