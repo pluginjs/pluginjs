@@ -11,7 +11,7 @@
   "cjs": "dist/units-range.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/main.scss",
+    "source": "src/css/units-range.scss",
     "main": "dist/units-range.css",
     "min": "dist/units-range.min.css"
   },
@@ -32,7 +32,8 @@
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
     "@pluginjs/range": "*",
-    "@pluginjs/units": "*"
+    "@pluginjs/units": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
