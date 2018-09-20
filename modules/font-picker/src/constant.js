@@ -11,7 +11,7 @@ export const events = {
 
 export const packageClass = {
   PACKAGE: '{namespace}-package',
-  PACKAGESWRAP: '{namespace}-package-wrap',
+  SOURCES: '{namespace}-sources',
   PACKAGETITLE: '{namespace}-package-title',
   PACKAGEOPEN: '{namespace}-package-open',
   PACKAGEHIDE: '{namespace}-package-hide'
@@ -26,15 +26,16 @@ export const searchClass = {
 }
 
 export const controllerClass = {
-  CONTROLLER: '{namespace}-controller',
-  SELECTOR: '{namespace}-selector',
+  ACTIONS: '{namespace}-actions',
+  SWITCHER: '{namespace}-switcher',
   SELECTORPANEL: '{namespace}-selector-panel',
   ELSELECTOR: '{namespace}-selector-element',
-  MANAGE: '{namespace}-manage'
+  MANAGER: '{namespace}-manager'
 }
 
 export const baseClass = {
   NAMESPACE: `pj-${namespace}`,
+  WRAP: '{namespace}',
   THEME: '{namespace}--{theme}',
   TRIGGER: '{namespace}-trigger',
   FONT: '{namespace}-font',
@@ -42,7 +43,7 @@ export const baseClass = {
   PANEL: '{namespace}-panel',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
-  SOURCES: '{namespace}-source',
+  SOURCE: '{namespace}-source',
   SOURCEICON: '{namespace}-source-icon',
   ACTIVATED: '{namespace}-activated',
   FONTWRAP: '{namespace}-font-wrap',
@@ -71,7 +72,7 @@ export const defaults = {
   activated: null,
   disabled: false,
   // sources: null,
-  manage: true,
+  manager: true,
   lazyNumber: 12, // [Number][Int]
   delay: 250,
   keyboard: true,
@@ -94,8 +95,8 @@ export const defaults = {
       return `<div class='pj-dropdown-item {classes.PACKAGE}' data-value='{categoriesName}'><div class={classes.PACKAGETITLE}>{title}<i class='pj-icon pj-icon-chevron-down'></i></div>
       </div>`
     },
-    controller() {
-      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}><div class={classes.ELSELECTOR}></div></div>
+    actions() {
+      return `<div class={classes.ACTIONS}><div class={classes.SWITCHER}><div class={classes.ELSELECTOR}></div></div>
       </div>`
     },
     search() {
@@ -124,14 +125,14 @@ export const dependencies = ['dropdown', 'scrollable']
 export const translations = {
   en: {
     searchText: 'Search...',
-    manage: 'manage',
+    manager: 'manage',
     activatedFonts: 'activated',
     emptyTitle: 'Befor using font, you need add fonts. ',
     emptyLinkTitle: 'Go add now'
   },
   zh: {
     searchText: '搜索...',
-    manage: '管理',
+    manager: '管理',
     activatedFonts: '已选字体',
     emptyTitle: '使用字体之前，请先添加。',
     emptyLinkTitle: '现在添加'

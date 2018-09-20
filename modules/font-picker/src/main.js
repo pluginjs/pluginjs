@@ -83,7 +83,7 @@ class FontPicker extends Component {
     )
     this.fontTrigger = query('.pj-dropdown-trigger', this.$fontPicker)
     insertAfter(this.$fontPicker, this.element)
-    wrap(`<div class='${this.classes.NAMESPACE}'></div>`, this.$fontPicker)
+    wrap(`<div class='${this.classes.WRAP}'></div>`, this.$fontPicker)
     insertBefore(this.element, this.$fontPicker)
 
     if (this.options.theme) {
@@ -91,13 +91,13 @@ class FontPicker extends Component {
     }
 
     this.activated = ACTIVATED
-    this.sources = DATA
+    this.source = DATA
     this.scrollLength = 0
     this.$font = null
     this.$fonts = []
     this.categoriesHeight = null
 
-    this.$sources = {}
+    this.$source = {}
 
     // this.setupI18n();
 
@@ -117,8 +117,8 @@ class FontPicker extends Component {
       parseHTML(`<div class=${this.classes.ACTIVATED}></div>`),
       this.$activated
     )
-    this.$packagesWrap = wrap(
-      `<div class=${this.classes.PACKAGESWRAP}></div>`,
+    this.$sources = wrap(
+      `<div class=${this.classes.SOURCES}></div>`,
       this.$activatedPackage
     )
 
@@ -136,7 +136,7 @@ class FontPicker extends Component {
     this.handleSearch()
     this.initScrollable()
 
-    this.wrapHeight = parseFloat(getStyle('height', this.$packagesWrap))
+    this.wrapHeight = parseFloat(getStyle('height', this.$sources))
 
     this.itemHeight =
       parseInt(
@@ -147,12 +147,12 @@ class FontPicker extends Component {
         getStyle('marginTop', query(`.${this.classes.FONT}`, this.$panel)),
         10
       )
-    if (this.options.manage) {
-      const text = this.translate('manage')
-      this.$controller.append(
+    if (this.options.manager) {
+      const text = this.translate('manager')
+      this.$actions.append(
         parseHTML(
           `<div class=${
-            this.classes.MANAGE
+            this.classes.MANAGER
           }><i class='pj-icon pj-icon-setting-1'></i>${text}</div>`
         )
       )
@@ -161,15 +161,13 @@ class FontPicker extends Component {
     if (this.options.keyboard) {
       this.$fontPicker.setAttribute('tabindex', 0)
       query('input', this.$search).setAttribute('tabindex', 0)
-      queryAll(`.${this.classes.PACKAGETITLE}`, this.$packagesWrap).forEach(
-        el => {
-          el.setAttribute('tabindex', 0)
-        }
-      )
+      queryAll(`.${this.classes.PACKAGETITLE}`, this.$sources).forEach(el => {
+        el.setAttribute('tabindex', 0)
+      })
       queryAll(`.${this.classes.FONT}`).forEach(el => {
         el.setAttribute('tabindex', 0)
       })
-      query(`.${this.classes.MANAGE}`, this.$controller).setAttribute(
+      query(`.${this.classes.MANAGER}`, this.$actions).setAttribute(
         'tabindex',
         0
       )
@@ -242,7 +240,7 @@ class FontPicker extends Component {
         const $package = parent(target)
         if ($package.dataset.open === 'true') {
           this.close($package)
-          removeEvent(this.eventName(), this.$packagesWrap)
+          removeEvent(this.eventName(), this.$sources)
         } else {
           this.open($package)
           // that.scrollLength = query('ul', $package).scrollTop()
@@ -276,7 +274,7 @@ class FontPicker extends Component {
     /*
       lazy loading listener
     */
-    queryAll('.pj-scrollable-container', this.$packagesWrap).map(
+    queryAll('.pj-scrollable-container', this.$sources).map(
       bindEvent(this.eventName('scroll'), ({ target: $this }) => {
         if (hasClass(that.classes.SEARCHLIST, parent($this))) {
           const $searchList = that.$activated[that.$activated.length - 1]
@@ -299,7 +297,7 @@ class FontPicker extends Component {
         const categorieName = $categorie.dataset.value
         let index = 0
 
-        Object.entries(that.sources[sourceName].fonts).forEach(([i, v]) => {
+        Object.entries(that.source[sourceName].fonts).forEach(([i, v]) => {
           if (i === categorieName) {
             return
           }
@@ -390,7 +388,7 @@ class FontPicker extends Component {
           }
           return true
         },
-        this.$packagesWrap
+        this.$sources
       )
     }
 
@@ -496,7 +494,7 @@ class FontPicker extends Component {
 
   initSources() {
     /*
-      this.$sources = {
+      this.$source = {
         sourceName: $sourcePackage
       }
 
@@ -505,10 +503,10 @@ class FontPicker extends Component {
         $fonts: [Array] // all of this $sourcePackage's fonts
       }
     */
-    Object.entries(this.sources).forEach(([sourceName, source]) => {
+    Object.entries(this.source).forEach(([sourceName, source]) => {
       const $sourcePackage = parseHTML(
-        `<div class='${this.classes.SOURCES} ${
-          this.classes.SOURCES
+        `<div class='${this.classes.SOURCE} ${
+          this.classes.SOURCE
         }-${sourceName}'></div>`
       )
       const fonts = []
@@ -535,11 +533,11 @@ class FontPicker extends Component {
 
         append($fontsWrap, $sourcePackage)
         hideElement($sourcePackage)
-        append($sourcePackage, this.$packagesWrap)
+        append($sourcePackage, this.$sources)
         setData('$fonts', fonts, $sourcePackage)
         $sourcePackage.dataset.source = sourceName
         // setData('source', sourceName, $sourcePackage)
-        this.$sources[sourceName] = $sourcePackage
+        this.$source[sourceName] = $sourcePackage
         return
       }
       if (!source) {
@@ -593,8 +591,8 @@ class FontPicker extends Component {
 
       setData('title', source.title, $sourcePackage)
       $sourcePackage.append($searchList)
-      this.$packagesWrap.append(hideElement($sourcePackage))
-      this.$sources[sourceName] = $sourcePackage
+      this.$sources.append(hideElement($sourcePackage))
+      this.$source[sourceName] = $sourcePackage
 
       this.setFontFamilies(
         $sourcePackage.dataset.source,
@@ -652,7 +650,7 @@ class FontPicker extends Component {
             return
           }
           const $source = closest(
-            `.${that.classes.SOURCES}-${that.$font.dataset.source}`,
+            `.${that.classes.SOURCE}-${that.$font.dataset.source}`,
             that.$font
           )
           that.$selectorPanel.set(getData('source', that.$font))
@@ -680,71 +678,80 @@ class FontPicker extends Component {
   initController() {
     const data = []
     const localeText = this.translate('activatedFonts')
-    this.$controller = parseHTML(
-      templateEngine.compile(this.options.templates.controller())({
+    this.$actions = parseHTML(
+      templateEngine.compile(this.options.templates.actions())({
         classes: this.classes
       })
     )
 
-    Object.entries(this.sources).forEach(([, source]) => {
+    Object.entries(this.source).forEach(([, source]) => {
       data.push({ label: source.title, value: source.title })
     })
     data.push({ label: localeText, value: localeText })
-    this.$panel.append(this.$controller)
-    this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
-    this.elSelect = query(`.${this.classes.ELSELECTOR}`, this.$selector)
+    this.$panel.append(this.$actions)
+    this.$switcher = query(`.${this.classes.SWITCHER}`, this.$actions)
+    this.elSelect = query(`.${this.classes.ELSELECTOR}`, this.$switcher)
     const that = this
     this.$selectorPanel = Select.of(this.elSelect, {
-      placement: 'top-center',
+      dropdown: {
+        placement: 'top-center'
+      },
       source: data,
       value: 'activated',
       keyboard: true,
       imitateSelect: true,
-      width: this.$selector,
+      width: this.$switcher,
+      onShown() {
+        if (this.is('builded')) {
+          if (
+            query('div', that.$selectorPanel.$dropdown).children.length === 0
+          ) {
+            queryAll('div', that.$selectorPanel.$dropdown).forEach(el => {
+              Object.entries(that.source).forEach(([sourceName, source]) => {
+                if (el.dataset.value === source.title) {
+                  // el.dataset.source = sourceName
+                  setData('source', sourceName, el)
+                  prepend(
+                    `<i class="${that.classes.SOURCEICON} ${that.getIconName(
+                      sourceName
+                    )}"></i>`,
+                    el
+                  )
+                  return
+                }
+              })
+            })
+          }
+        }
+      },
       onChange(val) {
+        if (query('i', query('.pj-dropdown-trigger', that.$switcher))) {
+          query('i', query('.pj-dropdown-trigger', that.$switcher)).remove()
+        }
         // const $source = val
         // const sourceName = $source.dataset.source
         // const sourceName = getData('source', $source)
+        val = val.toLowerCase()
         that.toggleSources(val)
         that.categoriesHeight = getHeight(parent(that.$activated[0]))
-        if (that.sources[val]) {
+        if (that.source[val]) {
           prepend(
             parseHTML(
               `<i class="${that.classes.SOURCEICON} ${that.getIconName(
                 val
               )}"></i>`
             ),
-            query('.pj-dropdown-trigger', that.$selector)
+            query('.pj-dropdown-trigger', that.$switcher)
           )
         }
       }
     })
-    // 选中的dropdown activated上面那块
-    queryAll('div', this.$selectorPanel.$dropdown).forEach(el => {
-      Object.entries(this.sources).forEach(([sourceName, source]) => {
-        if (el.dataset.value === source.title) {
-          // el.dataset.source = sourceName
-          setData('source', sourceName, el)
-          prepend(
-            `<i class="${this.classes.SOURCEICON} ${this.getIconName(
-              sourceName
-            )}"></i>`,
-            el
-          )
-
-          return
-        }
-      })
-    })
   }
 
   initScrollable() {
-    const $triggers = queryAll(`.${this.classes.FONTWRAP}`, this.$packagesWrap)
+    const $triggers = queryAll(`.${this.classes.FONTWRAP}`, this.$sources)
 
-    const $searchList = queryAll(
-      `.${this.classes.SEARCHLIST}`,
-      this.$packagesWrap
-    )
+    const $searchList = queryAll(`.${this.classes.SEARCHLIST}`, this.$sources)
 
     $triggers.forEach($trigger => {
       Scrollable.of($trigger, {
@@ -826,18 +833,18 @@ class FontPicker extends Component {
     const value = val.toLowerCase()
     // const name = val.dataset.source
     // const localeText = this.translate('activatedFonts')
-    if (this.$sources[value]) {
-      children(this.$packagesWrap).forEach(hideElement)
-      showElement(this.$sources[value])
+    if (this.$source[value]) {
+      children(this.$sources).forEach(hideElement)
+      showElement(this.$source[value])
 
-      this.$activated = children(this.$sources[value])
-      this.$fonts = getData('$fonts', this.$sources[value])
+      this.$activated = children(this.$source[value])
+      this.$fonts = getData('$fonts', this.$source[value])
       this.$searchList = children(
         query('ul', this.$activated[this.$activated.length - 1])
       )
       return
     }
-    Object.entries(this.$sources).forEach(([, v]) => hideElement(v))
+    Object.entries(this.$source).forEach(([, v]) => hideElement(v))
 
     showElement(this.$activatedPackage)
 
@@ -854,13 +861,13 @@ class FontPicker extends Component {
   }
 
   setFontFamilies(source, index, $fonts = this.$fonts) {
-    if (!this.sources[source]) {
+    if (!this.source[source]) {
       return false
     }
     if (!Array.isArray($fonts)) {
       const $item = $fonts
       const fontFamily = $item.dataset.value
-      this.sources[source].load($item, fontFamily, fontFamily)
+      this.source[source].load($item, fontFamily, fontFamily)
     }
     for (let i = 0; i < this.options.lazyNumber; i++) {
       const $item = $fonts[index + i]
@@ -871,7 +878,7 @@ class FontPicker extends Component {
       if (getStyle(fontFamily, $item) === fontFamily) {
         continue
       }
-      this.sources[source].load($item, fontFamily, fontFamily)
+      this.source[source].load($item, fontFamily, fontFamily)
     }
     return true
   }
@@ -879,7 +886,7 @@ class FontPicker extends Component {
   open($el) {
     const that = this  /* eslint-disable-line */
     if (!$el.dataset.open && $el.dataset.open === 'false') {
-      this.close(query(`.${this.classes.PACKAGEOPEN}`, this.$packagesWrap))
+      this.close(query(`.${this.classes.PACKAGEOPEN}`, this.$sources))
     }
     const $fontsList = query(`.${this.classes.FONTWRAP}`, $el)
     setStyle(
@@ -906,7 +913,7 @@ class FontPicker extends Component {
       const name = $el.dataset.value
       const sourceName = $el.dataset.source
 
-      Object.entries(this.sources[sourceName].fonts).forEach(([i, v]) => {
+      Object.entries(this.source[sourceName].fonts).forEach(([i, v]) => {
         if (i === name) {
           return
         }
@@ -932,7 +939,7 @@ class FontPicker extends Component {
   }
 
   getIconName(sourceName) {
-    const source = this.sources[sourceName.toLowerCase()]
+    const source = this.source[sourceName.toLowerCase()]
     if (!source) {
       return ''
     }
@@ -942,13 +949,13 @@ class FontPicker extends Component {
   }
 
   setValue(val, trigger = true) {
-    // if (!this.$font) {
-    //   if (this.element.value) {
-    //     append('<span></span>', query('.pj-dropdown-trigger', this.$fontPicker))
-    //   }
-    // } else {
-    //   removeClass(this.classes.ACTIVE, this.$font)
-    // }
+    if (!this.$font) {
+      if (this.element.value) {
+        append('<span></span>', this.$fontPicker)
+      }
+    } else {
+      removeClass(this.classes.ACTIVE, this.$font)
+    }
 
     this.$font = getData('mapping', val) ? getData('mapping', val) : val
     const fontFamily = this.$font.dataset.value
@@ -981,7 +988,7 @@ class FontPicker extends Component {
     }
 
     const valueObj = this.options.parse(value)
-    const $source = this.$sources[valueObj.source.toLowerCase()]
+    const $source = this.$source[valueObj.source.toLowerCase()]
     if (!$source) {
       return
     }
@@ -1038,7 +1045,7 @@ class FontPicker extends Component {
 
       this.$dropdown.destroy()
       this.$selectorPanel.destroy()
-      parentWith(hasClass(this.classes.NAMESPACE), this.$fontPicker).remove()
+      parentWith(hasClass(this.classes.WRAP), this.$fontPicker).remove()
       this.$fontPicker.remove()
       this.element.value = ''
       this.leave('initialized')
