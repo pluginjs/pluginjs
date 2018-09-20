@@ -19,7 +19,8 @@ $scrollTop-solid-color: $color-white;
 $scrollTop-solid-bg: $scrollTop-color;
 $scrollTop-solid-hover-bg: $scrollTop-hover-color;
 
-$scrollTop-light-color: $color-white;
+$scrollTop-light-color: $gray;
+$scrollTop-light-hover-color: $color-white;
 
 $scrollTop-light-solid-bg: $color-white;
 $scrollTop-light-solid-color: $scrollTop-color;
@@ -79,7 +80,7 @@ $scrollTop-light-solid-hover-color: $scrollTop-hover-color;
 
     &:hover,
     &:focus {
-      color: $scrollTop-light-color;
+      color: $scrollTop-light-hover-color;
     }
 
     &.#{$scrollTop}--square,

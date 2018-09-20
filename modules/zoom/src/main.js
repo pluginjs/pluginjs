@@ -201,6 +201,7 @@ class Zoom extends Component {
   zoomIn() {
     this.translate = this.calculateTranslate()
     this.scale = this.calculateScale()
+
     setStyle(
       {
         transform: `translate3d(${this.translate.x}px, ${this.translate.y}px, 0)
