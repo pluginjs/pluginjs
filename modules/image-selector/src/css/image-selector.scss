@@ -1,5 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
-
+@import "@pluginjs/icons/variables.scss";
 // Vars
 // =====================
 $imageSelector: "pj-imageSelector" !default;
@@ -19,52 +19,44 @@ $imageSelector-font-size: $font-size-base !default;
 // change
 $imageSelector-change-bg: $color-opacity !default;
 $imageSelector-change-opacity: 1 !default;
-// panel
-$imageSelector-panel-width: 38.5 * $imageSelector-sizer !default; //410px
-$imageSelector-panel-height: 46 * $imageSelector-sizer !default; //500px
+// dropdown
+$imageSelector-dropdown-width: 38.7 * $imageSelector-sizer !default; //410px
+$imageSelector-dropdown-height: 46 * $imageSelector-sizer !default; //500px
 // item
 $imageSelector-item-width: 17 * $imageSelector-sizer !default; //170px
 $imageSelector-item-height: 11 * $imageSelector-sizer !default; //110px
 $imageSelector-item-margin: $imageSelector-sizer $imageSelector-sizer 3 *
-  $imageSelector-sizer !default; //10px 10px 30px
+$imageSelector-sizer !default; //10px 10px 30px
 $imageSelector-item-margin-bottom: 3 * $imageSelector-sizer !default; //30px
 $imageSelector-item-bg-color: $gray-lightest !default;
 
 .#{$dropdown}-show {
   z-index: 999999 !important;
-  background-color: $color-white
+  background-color: $color-white;
 }
 .#{$dropdown}-panel-wrap {
   z-index: 999999 !important;
-  background-color: $color-white
+  background-color: $color-white;
 }
 // Core
 // =====================
 .#{$imageSelector} {
-  position: relative;
-  min-width: $imageSelector-width !important;
-  min-height: $imageSelector-height !important;
-  font-size: $imageSelector-font-size;
-  color: $imageSelector-color;
-  background-color: #fff;
-  // background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAABaAgMAAAAObnp8AAAACVBMVEVHcEyZmZnl5eVsHKZCAAAAAXRSTlMAQObYZgAAADBJREFUSMdjWIUXMIxKj0pTTXoQg1AQYBAFkQ5cmC4flR6VHpUelR6VHpUelR5y0gD0WUbiAs3tSQAAAABJRU5ErkJggg==");
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid $imageSelector-border-color;
-  border-radius: 0;
-  &-wrapper {
-    .#{$imageSelector}-data {
-      display: none;
-    }
+  .#{$imageSelector}-data {
+    display: none;
   }
 
-  &-open-disabled {
-    pointer-events: none;
-  }
-
-  &-init {
-    width: 22 * $imageSelector-sizer; //220px
-  }
+  .#{$imageSelector}-trigger {
+    position: relative;
+    min-width: $imageSelector-width !important;
+    min-height: $imageSelector-height !important;
+    font-size: $imageSelector-font-size;
+    color: $imageSelector-color;
+    background-color: #fff;
+    // background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAABaAgMAAAAObnp8AAAACVBMVEVHcEyZmZnl5eVsHKZCAAAAAXRSTlMAQObYZgAAADBJREFUSMdjWIUXMIxKj0pTTXoQg1AQYBAFkQ5cmC4flR6VHpUelR6VHpUelR5y0gD0WUbiAs3tSQAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid $imageSelector-border-color;
+    border-radius: 0;
 
   &::after {
     position: absolute;
@@ -79,15 +71,36 @@ $imageSelector-item-bg-color: $gray-lightest !default;
   }
 
   &::before {
+    @include icon();
     position: absolute;
-    right: -0.2 * $imageSelector-sizer; //-2px
+    right: 0.3 * $imageSelector-sizer; //-1px
     // bottom: -8px;
-    bottom: -0.4 * $imageSelector-sizer; //-4px
-    font-size: $font-size-lg;
+    bottom: 0 * $imageSelector-sizer; //0px
+    font-family: $pj-icon-font-family;
+    font-size: 0.9 * $imageSelector-sizer; //9px;
+    content: icon-content($pj-icon-triangle-left-mini-solid);
     transform: rotate(-90deg);
   }
 
-  &-change {
+  &:hover {
+    cursor: pointer;
+
+    .#{$imageSelector}-change {
+      opacity: $imageSelector-change-opacity;
+      transition: all 300ms ease-in-out;
+     }
+   }
+ }
+
+  .#{$imageSelector}-open-disabled {
+    pointer-events: none;
+  }
+
+  .#{$imageSelector}-init {
+    width: 22 * $imageSelector-sizer; //220px
+  }
+
+  .#{$imageSelector}-change {
     position: absolute;
     top: 0;
     left: 0;
@@ -101,10 +114,10 @@ $imageSelector-item-bg-color: $gray-lightest !default;
     opacity: 0;
   }
 
-  &-panel {
+  .#{$imageSelector}-dropdown {
     display: none;
-    width: $imageSelector-panel-width;
-    height: $imageSelector-panel-height;
+    width: $imageSelector-dropdown-width;
+    height: $imageSelector-dropdown-height;
     padding: 1.2 * $imageSelector-sizer; //12px
     font-size: $imageSelector-font-size;
     border: $imageSelector-border !important;
@@ -129,7 +142,7 @@ $imageSelector-item-bg-color: $gray-lightest !default;
     }
   }
 
-  &-item {
+  .#{$imageSelector}-item {
     position: relative;
     float: left;
     width: $imageSelector-item-width;
@@ -142,11 +155,14 @@ $imageSelector-item-bg-color: $gray-lightest !default;
     border-radius: 0 !important;
 
     &::before {
+      @include icon();
       position: absolute;
       right: 0;
       bottom: 0.23 * $imageSelector-sizer; //2.3px
       display: none;
+      font-family: $pj-icon-font-family;
       color: $color-white;
+      content: icon-content($pj-icon-done);
     }
 
     &::after {
@@ -178,7 +194,7 @@ $imageSelector-item-bg-color: $gray-lightest !default;
     }
   }
 
-  &-active {
+  .#{$imageSelector}-active {
     color: $imageSelector-color !important;
     background-color: transparent !important;
     border-color: $imageSelector-active-color;
@@ -189,26 +205,17 @@ $imageSelector-item-bg-color: $gray-lightest !default;
     }
   }
 
-  &:hover {
-    cursor: pointer;
-
-    .#{$imageSelector}-change {
-      opacity: $imageSelector-change-opacity;
-      transition: all 300ms ease-in-out;
-    }
-  }
-
-  &-hide {
+  .#{$imageSelector}-hide {
     display: block;
   }
 
-  &-show {
+  .#{$imageSelector}-show {
     display: block;
   }
 }
 
 .#{$imageSelector}-disabled {
-  .#{$imageSelector} {
+  .#{$imageSelector}-trigger {
     &:hover {
       cursor: not-allowed;
       .#{$imageSelector}-change {
@@ -216,12 +223,12 @@ $imageSelector-item-bg-color: $gray-lightest !default;
       }
     }
     &:active {
-      background-color:#fff
+      background-color:#fff;
      }
   }
   .#{$imageSelector}-change {
     &:active {
-      background-color:#fff
+      background-color:#fff;
      }
   }
 }

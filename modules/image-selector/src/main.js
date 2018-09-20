@@ -52,8 +52,8 @@ class ImageSelector extends Component {
     this.setupClasses()
     this.setupI18n()
 
-    this.$wrapper = wrap(
-      `<div class="${this.classes.WRAPPER}"></div>`,
+    this.$wrap = wrap(
+      `<div class="${this.classes.WRAP}"></div>`,
       addClass(this.classes.DATA, this.element)
     )
 
@@ -70,18 +70,16 @@ class ImageSelector extends Component {
 
   initialize() {
     this.$init = parseHTML(
-      `<div class="${this.classes.NAMESPACE} ${
-        this.classes.INIT
-      } pj-icon pj-icon-triangle-left-mini-solid"></div>`
+      `<div class="${this.classes.TRIGGER} ${this.classes.INIT}"></div>`
     )
     this.$change = parseHTML(
       `<div class="${this.classes.CHANGE}">${this.translate('change')}</div>`
     )
 
-    append(append(this.$change, this.$init), this.$wrapper)
+    append(append(this.$change, this.$init), this.$wrap)
 
     this.element.value = this.data.selected
-    this.initPanel()
+    this.initDropdownbox()
     this.setImg()
 
     this.bind()
@@ -101,7 +99,7 @@ class ImageSelector extends Component {
   initDropdown() {
     this.DROPDOWN = Dropdown.of(this.$change, {
       placement: 'bottom-left',
-      target: this.$panel,
+      target: this.$dropdown,
       reference: this.$init,
       hideOutClick: false,
       constraintToScrollParent: false,
@@ -121,7 +119,7 @@ class ImageSelector extends Component {
         const $item = el.target
         removeClass(
           this.classes.ACTIVE,
-          queryAll(`.${this.classes.ITEM}`, this.$wrapper).find(el =>
+          queryAll(`.${this.classes.ITEM}`, this.$wrap).find(el =>
             el.matches(`.${this.classes.ACTIVE}`)
           )
         )
@@ -131,7 +129,7 @@ class ImageSelector extends Component {
         this.close()
         this.DROPDOWN.hide()
       })
-    )(this.$wrapper)
+    )(this.$wrap)
 
     if (this.options.hideOutClick) {
       bindEvent(
@@ -140,7 +138,7 @@ class ImageSelector extends Component {
           const $this = e.target
 
           if (
-            parentWith(hasClass(this.classes.WRAPPER), $this).length < 1 &&
+            parentWith(hasClass(this.classes.WRAP), $this).length < 1 &&
             this.is('open')
           ) {
             this.close()
@@ -154,8 +152,8 @@ class ImageSelector extends Component {
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.$wrapper)
-    removeEvent(this.eventName(), this.$panel)
+    removeEvent(this.eventName(), this.$wrap)
+    removeEvent(this.eventName(), this.$dropdown)
     removeEvent(this.eventName(), this.$init)
     removeEvent(this.eventName(), window.document)
   }
@@ -206,16 +204,16 @@ class ImageSelector extends Component {
     return url
   }
 
-  initPanel() {
-    this.$panel = parseHTML(`<div class="${this.classes.PANEL}"></div>`)
-    append(this.$panel, this.$wrapper)
-    append(parseHTML('<div><ul></ul></div>'), this.$panel)
+  initDropdownbox() {
+    this.$dropdown = parseHTML(`<div class="${this.classes.DROPDOWN}"></div>`)
+    append(this.$dropdown, this.$wrap)
+    append(parseHTML('<div></div>'), this.$dropdown)
 
     this.setItems()
   }
 
   initScrollable() {
-    Scrollable.of(this.$panel, {
+    Scrollable.of(this.$dropdown, {
       contentSelector: '>',
       containerSelector: '>'
     })
@@ -225,7 +223,7 @@ class ImageSelector extends Component {
     this.data.items.forEach(v => {
       const $item = this.createItem(v)
 
-      append($item, query('ul', this.$panel))
+      append($item, query('div', this.$dropdown))
     })
   }
 
@@ -233,9 +231,7 @@ class ImageSelector extends Component {
     return setStyle(
       'background-image',
       `url("${data.img}")`,
-      parseHTML(`<li class="${
-        this.classes.ITEM
-      } pj-icon pj-icon-done-small" data-label="${data.value}">
+      parseHTML(`<li class="${this.classes.ITEM}" data-label="${data.value}">
       <span class="${this.classes.ITEMLABEL}">${data.label}</span></li>`)
     )
   }
@@ -284,7 +280,7 @@ class ImageSelector extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.$wrapper)
+      removeClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = false
       this.leave('disabled')
     }
@@ -293,7 +289,7 @@ class ImageSelector extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.$wrapper)
+      addClass(this.classes.DISABLED, this.$wrap)
       this.DROPDOWN.disable()
       this.element.disabled = true
       this.enter('disabled')
@@ -306,13 +302,13 @@ class ImageSelector extends Component {
     if (this.is('initialized')) {
       this.unbind()
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.$wrapper)
+        removeClass(this.getThemeClass(), this.$wrap)
       }
 
       // this.element.unwrap()
       removeClass(this.classes.DATA, this.element)
       this.element.value = ''
-      this.$panel.remove()
+      this.$dropdown.remove()
       this.$init.remove()
       this.leave('initialized')
     }

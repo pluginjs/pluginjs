@@ -19,12 +19,13 @@ export const classes = {
   OPENDISABLE: '{namespace}-open-disabled',
   DATA: '{namespace}-data',
   CHANGE: '{namespace}-change',
-  PANEL: '{namespace}-panel',
+  DROPDOWN: '{namespace}-dropdown',
   ITEM: '{namespace}-item',
   ITEMLABEL: '{namespace}-item-label',
   SCROLLWRAP: '{namespace}-scroll-wrap',
-  WRAPPER: '{namespace}-wrapper',
-  MASK: '{namespace}-mask'
+  WRAP: '{namespace}',
+  MASK: '{namespace}-mask',
+  TRIGGER: '{namespace}-trigger'
 }
 
 export const methods = ['get', 'set', 'val', 'enable', 'disable', 'destroy']
