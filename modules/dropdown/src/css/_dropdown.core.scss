@@ -35,6 +35,10 @@ $dropdown-index: $zindex-dropdown !default;
     &-disabled {
       cursor: default;
     }
+
+    &-hided {
+      display: none;
+    }
   }
 
   &-disabled.#{$dropdown}-trigger {

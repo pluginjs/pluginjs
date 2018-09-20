@@ -278,6 +278,18 @@ class Dropdown extends Component {
     }
   }
 
+  showItem($item) {
+    removeClass(this.classes.ITEMHIDED, $item)
+  }
+
+  hideItem($item) {
+    addClass(this.classes.ITEMHIDED, $item)
+  }
+
+  isItemHided($item) {
+    return hasClass(this.classes.ITEMHIDED, $item)
+  }
+
   unHighlightItem() {
     if (this.$highlighted) {
       removeClass(this.classes.HIGHLIGHTED, this.$highlighted)

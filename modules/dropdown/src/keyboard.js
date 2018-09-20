@@ -88,7 +88,11 @@ class Keyboard {
       if (instance.is('shown')) {
         const $highlighted = instance.getHighlightedItem()
 
-        if ($highlighted && !instance.isItemDisabled($highlighted)) {
+        if (
+          $highlighted &&
+          !instance.isItemDisabled($highlighted) &&
+          !instance.isItemHided($highlighted)
+        ) {
           instance.selectItem($highlighted)
           instance.hide()
         }
@@ -105,7 +109,7 @@ class Keyboard {
       while (index > 0) {
         index--
         $prev = $items[index]
-        if (!instance.isItemDisabled($prev)) {
+        if (!instance.isItemDisabled($prev) && !instance.isItemHided($prev)) {
           instance.highlightItem($prev)
           break
         }
@@ -122,7 +126,7 @@ class Keyboard {
       while (index < $items.length - 1) {
         index++
         $next = $items[index]
-        if (!instance.isItemDisabled($next)) {
+        if (!instance.isItemDisabled($next) && !instance.isItemHided($next)) {
           instance.highlightItem($next)
           break
         }

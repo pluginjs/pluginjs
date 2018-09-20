@@ -21,6 +21,7 @@ export const classes = {
   DROPDOWN: '{namespace}',
   ITEM: '{namespace}-item',
   ITEMDISABLED: '{namespace}-item-disabled',
+  ITEMHIDED: '{namespace}-item-hided',
   SHOW: '{namespace}-show',
   PLACEMENT: '{namespace}-on-{placement}',
   FOCUS: '{namespace}-focus',
