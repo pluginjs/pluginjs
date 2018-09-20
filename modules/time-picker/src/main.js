@@ -1,19 +1,5 @@
 import Component from '@pluginjs/component'
-import { compose } from '@pluginjs/utils'
-import { isNull } from '@pluginjs/is'
-import Dropdown from '@pluginjs/dropdown'
-import InputMask from '@pluginjs/input-mask'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { getStyle, hideElement } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  wrap,
-  unwrap,
-  append,
-  query,
-  insertAfter,
-  parseHTML
-} from '@pluginjs/dom'
+import template from '@pluginjs/template'
 import {
   eventable,
   register,
@@ -30,8 +16,14 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import Keyboard from './keyboard'
-import { formatTime, splitTime, time2Minute } from './lib'
+import { isNull, isUndefined } from '@pluginjs/is'
+import Clearable from './clearable'
+import { bindEvent, removeEvent } from '@pluginjs/events'
+import { formatTime, splitTime, time2Minute } from './utils'
+import { addClass, removeClass } from '@pluginjs/classes'
+import Dropdown from '@pluginjs/dropdown'
+import InputMask from '@pluginjs/input-mask'
+import { wrap, appendTo, parseHTML } from '@pluginjs/dom'
 
 @themeable()
 @styleable(CLASSES)
@@ -48,140 +40,104 @@ class TimePicker extends Component {
 
     this.setupOptions(options)
     this.setupClasses()
-
-    this.time = ''
-
     this.setupStates()
     this.initialize()
   }
 
   initialize() {
-    this.build()
-    this.bind()
+    this.$group = wrap(
+      `<div class="${this.classes.INPUTWRAP}"></div>`,
+      this.element
+    )
 
-    if (this.options.value) {
-      this.val(this.options.value)
+    this.$wrap = wrap(`<div class="${this.classes.WRAP}"></div>`, this.$group)
+
+    this.$trigger = appendTo(
+      `<div class="${this.classes.TRIGGER}"><i class="${
+        this.classes.TRIGGERICON
+      }"></i></div>`,
+      this.$group
+    )
+
+    addClass(this.classes.INPUT, this.element)
+
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.$wrap)
     }
 
-    if (this.element.value) {
-      this.val(this.element.value)
+    if (!this.element.getAttribute('placeholder')) {
+      this.element.setAttribute('placeholder', this.options.placeholder)
+    }
+
+    this.value = null
+
+    let value = this.element.value
+    if (value === '' || isUndefined(value)) {
+      value = this.options.value
+    }
+    if (value) {
+      this.select(value, false)
+    }
+
+    if (this.value !== '') {
+      addClass(this.classes.SELECTED, this.$wrap)
+    } else {
+      removeClass(this.classes.SELECTED, this.$wrap)
+    }
+
+    this.setupMask()
+    this.setupDropdown()
+
+    if (this.options.clearable) {
+      this.CLEARABLE = new Clearable(this)
     }
 
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
-
+    this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  build() {
-    addClass(this.classes.INFO, this.element)
-    wrap(`<div class="${this.classes.NAMESPACE}"></div>`, this.element)
-    insertAfter(
-      `<div class="${this.classes.DROPDOWN} pj-input-group">
-      <input class="pj-dropdown-trigger"/><div></div></div>`,
-      this.element
-    )
-
-    this.$timePicker = this.element.parentNode
-    this.$wrap = this.$timePicker.parentNode
-    addClass(this.classes.WRAP, this.$wrap)
-    this.$dropdownEl = query(`.${this.classes.DROPDOWN}`, this.$timePicker)
-    this.$timeTrigger = query('.pj-dropdown-trigger', this.$dropdownEl)
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$timePicker)
-    }
-
-    this.initDropdown()
-    this.initInputMask()
-    this.$dropdown = query('.pj-dropdown', this.$wrap)
-    insertAfter(this.$dropdown, this.$dropdownEl)
-    if (this.options.keyboard) {
-      this.keyboard = new Keyboard(this)
-    }
-
-    this.itemValues = []
-    this.DROPDOWN.options.data.forEach(item => {
-      const text = item.textContent
-      this.itemValues.push(text)
+  setupMask() {
+    this.MASK = InputMask.of(this.element, {
+      type: 'time'
     })
-    this.markIndex = -1
   }
 
-  initDropdown() {
-    this.DROPDOWN = Dropdown.of(this.$timeTrigger, {
+  setupDropdown() {
+    this.$dropdown = appendTo(
+      `<div class="${this.classes.DROPDOWN}"></div>`,
+      this.$wrap
+    )
+
+    this.DROPDOWN = Dropdown.of(this.$trigger, {
+      ...this.options.dropdown,
       data: this.getTimeList().map(value => ({ label: value, value })),
       target: this.$dropdown,
-      placeholder: this.options.placeholder,
-      placement: 'bottom-left',
-      hideOutClick: true,
-      templates: this.options.templates,
-      onChange: value => {
-        this.trigger(EVENTS.CHANGE, value)
-      }
-    })
-
-    this.$remove = parseHTML(
-      `<i class="${
-        this.classes.REMOVE
-      } pj-icon  pj-icon-close" style="display:none;"></i>`
-    )
-    this.$icon = parseHTML(
-      '<i class="pj-icon  pj-icon-clock-solid pj-input-group-addon"></i>'
-    )
-    insertAfter(this.$remove, this.DROPDOWN.element)
-    insertAfter(this.$icon, this.$remove)
-    compose(
-      bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
-        hideElement(this.$remove)
-        this.DROPDOWN.set('')
-        this.time = ''
-        // return false
-      }),
-      bindEvent(this.eventName('mouseout'), `.${this.classes.DROPDOWN}`, () => {
-        hideElement(this.$remove)
-      }),
-      bindEvent(
-        this.eventName('mouseover'),
-        `.${this.classes.DROPDOWN}`,
-        () => {
-          if (hasClass('pj-dropdown-trigger-active', this.$timeTrigger)) {
-            if (!this.is('disabled')) {
-              this.$remove.style.display = 'block'
-            }
-          }
-        }
-      )
-    )(this.$wrap)
-  }
-
-  initInputMask() {
-    this.$input = query('input', this.$dropdownEl)
-    this.$input.setAttribute('name', this.options.name)
-    this.$input.setAttribute('placeholder', 'Select Time')
-
-    this.MASK = InputMask.of(this.$input, {
-      type: 'time',
-      onFocus: () => {
-        if (this.is('focus') || this.is('disabled')) {
-          return
-        }
-
-        if (this.options.keyboard) {
-          this.keyboard.bind()
-        }
-        this.enter('focus')
+      reference: this.$group,
+      keyboard: this.options.keyboard,
+      classes: {
+        PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
       },
-      onBlur: () => {
-        if (!this.is('focus') || this.is('disabled')) {
-          return
-        }
-
-        if (this.options.keyboard) {
-          this.keyboard.unbind()
-        }
-        this.leave('focus')
+      onShow: () => {
+        this.DROPDOWN.selectByValue(this.value)
+        addClass(this.classes.SHOW, this.$wrap)
+        this.trigger(EVENTS.SHOW)
+      },
+      onShown: () => {
+        this.trigger(EVENTS.SHOWN)
+      },
+      onHide: () => {
+        this.trigger(EVENTS.HIDE)
+      },
+      onHided: () => {
+        removeClass(this.classes.SHOW, this.$wrap)
+        this.trigger(EVENTS.HIDED)
+      },
+      onChange: value => {
+        this.select(value)
       }
     })
   }
@@ -194,132 +150,125 @@ class TimePicker extends Component {
     return formatTime(use24HourFormat, timeList)
   }
 
-  timeLimit({ min, max }) {
-    this.options.min = min
-    this.options.max = max
-    const data = this.getTimeList()
-    this.DROPDOWN.replaceByData(data.map(value => ({ label: value })))
-  }
-
-  get() {
-    return this.time
-  }
-
-  set(time) {
-    this.DROPDOWN.set(time)
-  }
-
-  markItem(action) {
-    let index = this.markIndex
-    switch (action) {
-      case 'up':
-        if (index > 0) {
-          index--
-        }
-        break
-      case 'down':
-        if (index < this.itemValues.length - 1) {
-          index++
-        }
-        break
-      default:
-        break
-    }
-
-    if (index !== this.markIndex) {
-      const text = this.itemValues[index]
-      this.set(text)
-    }
-  }
-
-  getOffsetTop(element) {
-    const margin = getStyle('margin-top', element)
-    const padding = getStyle('padding-top', element)
-    const border = getStyle('border-top', element)
-    return (
-      parseInt(margin.slice(0, margin.length - 2), 10) +
-      parseInt(padding.slice(0, padding.length - 2), 10) +
-      parseInt(border.slice(0, border.length - 2), 10)
-    )
-  }
-
-  val(time) {
-    if (isNull(time) || typeof time === 'undefined') {
-      return this.get()
-    }
-
-    return this.set(time)
-  }
-
-  render(dom) {
-    this.element.textContent = ''
-    append(dom, this.element)
-  }
-
   bind() {
     bindEvent(
-      this.eventName('change'),
-      () => {   /* eslint-disable-line */
-        const time = this.$input.value.trim()
-        const timeList = this.getTimeList()
-        if (timeList.indexOf(time) < 0) {
-          this.DROPDOWN.set(this.time)
-          return false
+      this.eventName('focus'),
+      () => {
+        this.enter('focus')
+
+        addClass(this.classes.FOCUS, this.$wrap)
+      },
+      this.element
+    )
+
+    bindEvent(
+      this.eventName('blur'),
+      () => {
+        this.leave('focus')
+
+        removeClass(this.classes.FOCUS, this.$wrap)
+      },
+      this.element
+    )
+
+    bindEvent(
+      this.eventName('input'),
+      () => {
+        if (this.element.value !== '') {
+          addClass(this.classes.SELECTED, this.$wrap)
+        } else {
+          removeClass(this.classes.SELECTED, this.$wrap)
         }
-        this.DROPDOWN.set(time)
-      },
-      this.$input
-    )
-    bindEvent(
-      this.eventName('focusin'),
-      () => {
-        addClass(this.classes.BORDER, this.$icon)
-      },
-      this.$timeTrigger
-    )
-    bindEvent(
-      this.eventName('focusout'),
-      () => {
-        removeClass(this.classes.BORDER, this.$icon)
-      },
-      this.$timeTrigger
-    )
-
-    bindEvent(
-      this.eventName('click'),
-      () => {
-        this.DROPDOWN.show()
-      },
-      this.$icon
-    )
-
-    bindEvent(
-      this.selfEventName(EVENTS.CHANGE),
-      (e, api, data) => {
-        const [value] = data
-        this.markIndex = this.itemValues.indexOf(value)
-        this.update(data)
       },
       this.element
     )
   }
 
   unbind() {
-    removeEvent(this.eventName('change'), this.$input)
-    removeEvent(this.eventName(), this.$dropdownEl)
     removeEvent(this.eventName(), this.element)
   }
 
-  update(time) {
-    console.log(time)
-    this.time = time
-    this.element.value = this.time
+  select(value, trigger = true) {
+    if (value !== this.value) {
+      if (trigger) {
+        this.trigger(EVENTS.SELECT, value)
+
+        if (this.value !== value) {
+          this.trigger(EVENTS.CHANGE, value)
+        }
+      }
+
+      this.value = value
+      this.element.value = value
+
+      if (isNull(value)) {
+        if (trigger) {
+          this.trigger(EVENTS.CLEAR, value)
+        }
+      }
+    }
+  }
+
+  getItemByValue(value) {
+    return this.items.find(item => {
+      return item.value === value
+    })
+  }
+
+  buildDropdown() {
+    const $options = this.buildItems(this.data)
+
+    this.$dropdown.appendChild($options)
+
+    this.enter('builded')
+  }
+
+  buildItems(options) {
+    const $fragment = document.createDocumentFragment()
+
+    options.forEach(option => {
+      $fragment.appendChild(this.buildItem(option))
+    })
+
+    return $fragment
+  }
+
+  buildItem(option) {
+    const $option = parseHTML(
+      template.render(this.options.templates.option(option), {
+        classes: this.classes,
+        option
+      })
+    )
+
+    return $option
+  }
+
+  val(value) {
+    if (typeof value === 'undefined') {
+      return this.options.process.call(this, this.get())
+    }
+
+    return this.set(this.options.parse.call(this, value))
+  }
+
+  get() {
+    return this.value
+  }
+
+  set(value) {
+    return this.select(value)
+  }
+
+  clear() {
+    this.set(null)
   }
 
   enable() {
     if (this.is('disabled')) {
       this.DROPDOWN.enable()
       this.element.disabled = false
+      removeClass(this.classes.DISABLED, this.$wrap)
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -329,6 +278,7 @@ class TimePicker extends Component {
     if (!this.is('disabled')) {
       this.DROPDOWN.disable()
       this.element.disabled = true
+      addClass(this.classes.DISABLED, this.$wrap)
       this.enter('disabled')
     }
 
@@ -338,11 +288,19 @@ class TimePicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      removeClass(this.classes.WRAP, this.$wrap)
-      this.DROPDOWN.destroy()
-      unwrap(this.element)
-      removeClass(this.classes.INFO, this.element)
-      this.$dropdownEl.remove()
+
+      if (this.MASK) {
+        this.MASK.destroy()
+      }
+
+      if (this.CLEARABLE) {
+        this.CLEARABLE.destroy()
+      }
+      if (this.options.theme) {
+        removeClass(this.getThemeClass(), this.$wrap)
+      }
+      this.$wrap.remove()
+      removeClass(this.classes.INPUT, this.element)
       this.leave('initialized')
     }
 

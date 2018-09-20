@@ -5,57 +5,60 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  CHANGE: 'change'
+  SELECT: 'select',
+  CHANGE: 'change',
+  HIDE: 'hide',
+  HIDED: 'hided',
+  SHOW: 'show',
+  SHOWN: 'shown',
+  CLEAR: 'clear'
 }
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
-  THEME: '{namespace}--{theme}',
-  WRAP: '{namespace}-wrap',
-  INFO: '{namespace}-info',
+  WRAP: '{namespace}',
+  INPUT: '{namespace}-input pj-input',
+  INPUTWRAP: '{namespace}-group pj-input-group',
+  TRIGGER: '{namespace}-trigger pj-input-group-addon',
+  TRIGGERICON: '{namespace}-trigger-icon',
   DROPDOWN: '{namespace}-dropdown',
-  REMOVE: '{namespace}-remove',
-  BORDER: '{namespace}-border'
+  SHOW: '{namespace}-show',
+  SELECTED: '{namespace}-selected',
+  DISABLED: '{namespace}-disabled',
+  CLEARABLE: '{namespace}-clearable',
+  CLEAR: '{namespace}-clear',
+  FOCUS: '{namespace}-focus'
 }
 
 export const methods = [
-  'enable',
-  'disable',
-  'destroy',
+  'set',
   'get',
   'val',
-  'set',
-  'timeLimit',
-  'observeOtherTimePicker'
+  'clear',
+  'enable',
+  'disable',
+  'destroy'
 ]
 
 export const defaults = {
+  theme: null,
   value: null,
-  name: 'time-picker',
-  use24HourFormat: true,
   placeholder: 'Select Time',
   keyboard: true,
-  disabled: false,
+  clearable: false,
+  use24HourFormat: true,
   max: '',
   min: '',
-  step: 30
-  // templates: {
-  //   inputLabel() {
-  //     return '<input class="{that.classes.LABEL}" placeholder="{that.options.placeholder}" />'
-  //   },
-  //   label() {
-  //     return '<span class="{that.classes.LABEL}"></span>'
-  //   },
-  //   icon() {
-  //     return '<i class="{that.classes.ICON} {icon}"></i>'
-  //   },
-  //   panel() {
-  //     return '<ul></ul>'
-  //   },
-  //   item() {
-  //     return '<li class="{that.classes.ITEM}" data-{that.options.itemValueAttr}="{tag}">{item.label}</li>'
-  //   }
-  // }
+  step: 30,
+  dropdown: {
+    placement: 'bottom' // top
+  },
+  parse(value) {
+    return value
+  },
+  process(value) {
+    return value
+  }
 }
 
-export const dependencies = ['dropdown', 'input-mask']
+export const dependencies = ['dropdown']

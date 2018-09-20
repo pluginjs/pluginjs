@@ -1,138 +1,50 @@
 @import "@pluginjs/styles/variables.scss";
+@import "time-picker.core";
 
 // Vars
 // =====================
-$timePicker: "pj-timePicker" !default;
-$dropdown: "pj-dropdown" !default;
-$timePicker-sizer: $sizer !default;
+$time-picker: "pj-timePicker";
 
-$timePicker-width: 20 * $timePicker-sizer !default; //200px
-$timepicker-icon-border: #E6E6E6 !default;
-$timepicker-icon-color: $gray-dark !default;
-$timepicker-icon-hover-bg: $gray-lightest !default;
+$time-picker-color: $text-color;
 
-// Core
-// =====================
-.#{$timePicker} {
-  padding: 10px;
-  &-dropdown {
-    position: relative;
-    width: $timePicker-width !important;
-    input {
-      min-width: 16.7 * $timePicker-sizer; //167px;
-      margin-bottom: 0;
-    }
-     
+$time-picker-clear-color: $gray-dark;
+$time-picker-clear-hover-color: $text-color;
+
+$time-picker-trigger-color: $gray-dark;
+$time-picker-trigger-hover-color: $text-color;
+
+$time-picker-show-border-color: $color-primary;
+
+.#{$time-picker} {
+  outline: none;
+
+  &-clear {
+    color: $time-picker-clear-color;
+
     &:hover {
-      .#{$timePicker}-remove {
-        display: block !important;
+      color: $time-picker-clear-hover-color;
+    }
+  }
+
+  &-trigger {
+    &-icon {
+      color: $time-picker-trigger-color;
+
+      &:hover {
+        color: $time-picker-trigger-hover-color;
       }
     }
   }
 
-  &-border {
-    color : #215FDB !important;
-  }
-  .#{$dropdown}  {
-    height: 300px;
-    overflow-y: scroll;
-    border: none;
-    border-color:$gray;
-  }
-  
-  .#{$dropdown}-trigger {
-    width: 200px;
-    height: 32px;
-    border: 1px solid #F2F2F2;
-    border-radius: 2px;
-    &:focus {
-      border: 1px solid #215FDB !important;
+  &-show {
+    .#{$time-picker}-input {
+      border-color: $time-picker-show-border-color !important;
+      border-right-color: $input-border-color !important;
     }
-    &:hover {
-      border: 1px solid $color-black;
+
+    .#{$time-picker}-trigger {
+      border-color: $time-picker-show-border-color !important;
+      // border-left-color: $input-border-color !important;
     }
-  }
-  .#{$dropdown}-show {
-    top: 0 !important;
-    color: $color-primary;
-    border-color: $color-primary-active !important;
-    transform: translateY(0%);
-    &:hover {
-      color: $color-primary;
-    }
-  }
-
-  > .#{$dropdown}-panel-wrap .#{$dropdown}-panel {
-    min-width: $timePicker-width;
-  }
-
-  &-info {
-    display: none !important;
-  }
-}
-
-.#{$timePicker}-wrap .#{$dropdown}-trigger {
-  color: $gray-darker;
-}
-/* stylelint-disable */
-.#{$timePicker}-wrap
-.#{$dropdown}-input.#{$dropdown}-select
-.#{$dropdown}-panel {
-  height: 300px;
-  // margin-top: 10px;
-  overflow-y: scroll;
-  border: none;
-  border-color: $color-white;
-  // border-radius: 5px;
-  // box-shadow: 0 0 27px rgba($color-black, 0.1),
-  //   0 2px 26px rgba($color-black, 0.1);
-}
-
-.#{$timePicker}-wrap {
-  .pj-dropdown-select
-  .pj-dropdown-panel-wrap.tether-element-attached-top
-  .pj-dropdown-panel {
-    border: none;
-  }
-
-  .pj-input-group-addon {
-    width: 3.2 * $timePicker-sizer;
-    border: none;
-    border-left: 1px solid $gray; 
-  } 
-
-  // disabled
-  >.#{$timePicker}.#{$dropdown}-disabled{
-    >.#{$timePicker}-dropdown {
-      &:active {
-        border-color: $gray-light !important;
-      }
-    }
-  }
-}
-/* stylelint-enable */
-.#{$timePicker}-remove:hover {
-  color: $color-primary-black;
-  cursor: pointer;
-}
-.#{$timePicker}-remove {
-  position: absolute;
-  top: 50%;
-  right: 36px;
-  z-index: 9;
-  display: none;
-  color: $timepicker-icon-color;
-  transform: translateY(-50%);
-}
-#disabled {
-  input {
-    background-color: $color-white
-  }
-  .#{$timePicker}-dropdown {
-    cursor: not-allowed
-  }
-  .pj-dropdown-trigger {
-    
-    pointer-events: none;
   }
 }

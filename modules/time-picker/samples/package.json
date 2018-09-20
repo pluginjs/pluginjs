@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@pluginjs/dom": "*",
-    "@pluginjs/icons": "*",
-    "@pluginjs/styles": "*",
     "@pluginjs/time-picker": "*"
   },
   "devDependencies": {
-    "babel-plugin-transform-html-import-to-string": "*",
-    "parcel-bundler": "*"
+    "babel-core": "*",
+    "babel-preset-env": "*",
+    "parcel-bundler": "*",
+    "posthtml-include": "*"
   }
 }

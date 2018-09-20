@@ -1,0 +1,71 @@
+@import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
+
+// Vars
+// =====================
+$time-picker: "pj-timePicker";
+$time-picker-width: 200px;
+$time-picker-max-height: 300px;
+
+$time-picker-clear-icon: $pj-icon-close;
+$time-picker-clear-font: $pj-icon-font-family;
+$time-picker-clear-right: 3.5 * $sizer;
+
+$time-picker-trigger-icon: $pj-icon-time;
+$time-picker-trigger-font: $pj-icon-font-family;
+
+.#{$time-picker} {
+  position: relative;
+  width: $time-picker-width;
+
+  & &-dropdown {
+    width: 100%;
+  }
+
+  &-dropdown {
+    max-height: $time-picker-max-height;
+    overflow: auto;
+    line-height: 1;
+  }
+
+  &-clear {
+    position: absolute;
+    top: 0;
+    right: $time-picker-clear-right;
+    z-index: 10;
+    display: none;
+    height: 100%;
+    font-family: $time-picker-clear-font;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($time-picker-clear-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
+
+    .#{$time-picker}-selected .#{$time-picker}-group:hover &,
+    .#{$time-picker}-selected.#{$time-picker}-focus &,
+    .#{$time-picker}-selected.#{$time-picker}-show & {
+      display: inline-block;
+    }
+  }
+
+  &-trigger {
+    &-icon {
+      font-family: $time-picker-trigger-font;
+
+      &::after{
+        @include icon();
+        content: icon-content($time-picker-trigger-icon);
+      }
+    }
+  }
+}
