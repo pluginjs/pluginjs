@@ -6,7 +6,7 @@ import {
   queryAll,
   // clearData,
   wrap,
-  children,
+  // children,
   unwrap
 } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -23,8 +23,9 @@ import {
   translateable,
   optionable
 } from '@pluginjs/decorator'
-import PopDialog from '@pluginjs/pop-dialog'
+// import PopDialog from '@pluginjs/pop-dialog'
 import Gmap from '@pluginjs/gmap'
+import Trigger from './trigger'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -110,39 +111,6 @@ class MapPicker extends Component {
     if (this.options.theme) {
       addClass(this.classes.THEME, this.$wrap)
     }
-    // create mapPicker dropdown
-
-    // create trigger
-    this.$trigger = parseHTML(
-      this.createEl('trigger', {
-        classes: this.classes
-      })
-    )
-
-    // create empty
-    this.$empty = parseHTML(
-      this.createEl('empty', {
-        classes: this.classes,
-        addPlace: this.translate('addPlace')
-      })
-    )
-
-    // create fill
-    this.$fill = parseHTML(
-      this.createEl('fill', {
-        classes: this.classes,
-        action: this.classes.FILLACTION
-      })
-    )
-    this.$fillName = query(`.${this.classes.FILLNAME}`, this.$fill)
-    this.$fillCoord = query(`.${this.classes.FILLCOORD}`, this.$fill)
-
-    // create fill action
-    this.$fillAction = parseHTML(
-      this.createEl('fillAction', {
-        classes: this.classes
-      })
-    )
 
     // create dropdown
     this.$dropdown = parseHTML(
@@ -150,58 +118,25 @@ class MapPicker extends Component {
         classes: this.classes
       })
     )
-    this.$trigger.append(this.$empty, this.$fill)
-    this.$wrap.append(this.$trigger, this.$dropdown)
-    this.$fill.append(this.$fillAction)
+    this.TRIGGER = new Trigger(this)
+    this.$wrap.append(this.$dropdown)
     this.buildPanelItem()
-    this.buildPop()
+    // this.buildPop()
     this.initDropdown()
   }
 
   initDropdown() {
     const that = this
-    this.DROPDOWN = Dropdown.of(this.$empty, {
-      reference: that.$trigger,
+    this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
+      reference: that.TRIGGER.$trigger,
       // placement: 'bottom-left',
       target: this.$dropdown,
       hideOutClick: true,
       templates: this.options.templates,
       onHide: () => {
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
       }
     })
-  }
-
-  buildPop() {
-    const that = this
-
-    this.DELETEPOP = PopDialog.of(
-      query(`.${this.classes.REMOVE}`, this.$fillAction),
-      {
-        placement: 'bottom',
-        content: this.translate('deleteTitle'),
-        buttons: {
-          cancel: { label: this.translate('cancel') },
-          delete: {
-            label: this.translate('delete'),
-            color: 'danger',
-            fn(resolve) {
-              addClass(that.classes.REMOVEANIMATE, that.$fill)
-              setTimeout(() => {
-                that.clear()
-                removeClass(that.classes.REMOVEANIMATE, that.$fill)
-              }, 500)
-              resolve()
-            }
-          }
-        },
-        onShow: () => this.enter('holdHover'),
-        onHide: () => {
-          removeClass(this.classes.HOVER, this.$fill)
-          this.leave('holdHover')
-        }
-      }
-    )
   }
 
   buildPanelItem() {
@@ -379,13 +314,6 @@ class MapPicker extends Component {
 
   bind() {
     compose(
-      // empty
-      bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
-        if (this.is('disabled')) {
-          return
-        }
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-      }),
       // action button event
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, e => {
         e.preventDefault()
@@ -397,47 +325,7 @@ class MapPicker extends Component {
       // action button event
       bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () =>
         this.close()
-      ),
-      // fill action button event
-      bindEvent(
-        this.eventName('click'),
-        `.${this.classes.FILLACTION} .${this.classes.EDIT}`,
-        () => {
-          if (this.is('disabled')) {
-            return
-          }
-          this.open()
-          return false /* eslint-disable-line */
-        }
-      ),
-      // $fill event
-      bindEvent(this.eventName('mouseleave'), () => {
-        if (this.is('disabled')) {
-          return
-        }
-        if (this.is('holdHover')) {
-          return
-        }
-
-        removeClass(this.classes.HOVER, this.$fill)
-        this.leave('holdHover')
-      }),
-      // $fill event
-      bindEvent(this.eventName('mouseover'), `.${this.classes.FILL}`, () => {
-        if (this.is('disabled')) {
-          return
-        }
-
-        addClass(this.classes.HOVER, this.$fill)
-      }),
-      bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
-        if (this.is('disabled')) {
-          return
-        }
-        if (!this.is('open')) {
-          this.open()
-        }
-      })
+      )
     )(this.$wrap)
 
     // change $lat&$lng input
@@ -475,7 +363,7 @@ class MapPicker extends Component {
     }
 
     this.DROPDOWN.show()
-    addClass(this.classes.OPENDISABLE, this.$trigger)
+    addClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
     addClass(this.classes.SHOW, this.$wrap)
     this.enter('open')
   }
@@ -536,7 +424,7 @@ class MapPicker extends Component {
   }
 
   update(trigger = true) {
-    this.$fillName.textContent = this.data.place
+    this.TRIGGER.$fillName.textContent = this.data.place
     if (this.hasLatlng()) {
       const latitude = `${this.translate('latitude')}:${this.data.lat.toFixed(
         2
@@ -544,7 +432,7 @@ class MapPicker extends Component {
       const longitude = `${this.translate('longitude')}:${this.data.lng.toFixed(
         2
       )}`
-      this.$fillCoord.textContent = `${latitude} ${longitude}`
+      this.TRIGGER.$fillCoord.textContent = `${latitude} ${longitude}`
     }
     this.element.value = this.val()
     addClass(this.classes.WRITE, this.$wrap)
@@ -558,9 +446,8 @@ class MapPicker extends Component {
     this.data = {}
     this.element.value = ''
     removeClass(this.classes.WRITE, this.$wrap)
-    children(query(`.${this.classes.FILLCONTENT}`, this.$fill)).forEach(el => {
-      el.textContent = ''
-    })
+    this.TRIGGER.clear()
+
     queryAll(`.${this.classes.FIELD} input`, this.$dropdown).forEach(el => {
       el.value = ''
     })
@@ -574,7 +461,7 @@ class MapPicker extends Component {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = false
-      this.DELETEPOP.enable()
+      this.TRIGGER.DELETEPOP.enable()
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -584,7 +471,7 @@ class MapPicker extends Component {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = true
-      this.DELETEPOP.disable()
+      this.TRIGGER.DELETEPOP.disable()
       this.enter('disabled')
     }
 
@@ -603,8 +490,8 @@ class MapPicker extends Component {
         // clearData,
         removeClass(this.classes.INPUT)
       )(this.element)
-      this.$empty.remove()
-      this.$fill.remove()
+      this.TRIGGER.$empty.remove()
+      this.TRIGGER.$fill.remove()
       this.$dropdown.remove()
 
       this.leave('initialized')
