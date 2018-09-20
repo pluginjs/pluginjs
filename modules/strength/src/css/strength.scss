@@ -9,14 +9,9 @@ $color-active: $color-primary;
 $strength-input-padding: 8px 12px;
 $strength-input-margin-bottom: 20px;
 
-$strength-toggle-width: 16px;
-$strength-toggle-height: 16px;
-
-$strength-addon-height: 12px;
 $strength-addon-font-size: $font-size-base;
 $strength-addon-color: $gray-darkest;
 
-$strength-check-margin-right: 8px;
 $strength-check-width: 16px;
 $strength-check-height: 16px;
 $strength-check-bg: $color-white;
@@ -25,30 +20,30 @@ $strength-check-bg: $color-white;
   &-input.#{$input} {
     padding: $strength-input-padding;
     margin-bottom: $strength-input-margin-bottom;
+    text-transform: capitalize;
     outline: none;
   }
 
   &-toggle {
-    width: $strength-toggle-width;
-    height: $strength-toggle-height;
+    width: $strength-check-width;
+    height: $strength-check-height;
     margin: 0;
+    line-height: $strength-check-height;
     cursor: pointer;
     opacity: 0;
   }
 
   &-addon {
-    position: relative;
-    height: $strength-addon-height;
+    padding-right: $strength-addon-font-size;
+    padding-left: $strength-box-spacer-x;
     font-size: $strength-addon-font-size;
     font-weight: 500;
-    line-height: $strength-addon-height;
     color: $strength-addon-color;
     cursor: pointer;
 
     .#{$strength}-check {
       width: $strength-check-width;
       height: $strength-check-height;
-      // margin-right: $strength-check-margin-right;
       font-size: 1em !important;
       line-height: $strength-check-height;
       color: transparent;

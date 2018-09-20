@@ -3,44 +3,28 @@
 $strength: "pj-strength" !default;
 $input: "pj-input" !default;
 
-$strength-input-width: 200px !default;
-$strength-input-height: 32px !default;
-$strength-addon-with: 32px !default;
+$strength-gatter: 8px !default;
+
 $strength-box-spacer-x: 12px !default;
 $strength-box-spacer-y: 10px !default;
-$strength-box-font-size: $font-size-xs !default;
 
-$strength-toggle-width: 16px !default;
-$strength-toggle-height: 16px !default;
-
-$strength-check-width: 16px !default;
-$strength-check-height: 16px !default;
 $strength-check-border-color: $gray !default;
 $strength-check-border-radius: $border-radius-base !default;
 
 .#{$strength} {
-  &-container {
-    position: relative;
-    width: $strength-input-width !important;
-  }
-
   &-input.#{$input} {
-    width: $strength-input-width;
-    height: $strength-input-height;
-    outline: none;
+    width: 100%;
+    height: 100%;
   }
 
   &-toggle {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: $strength-gatter;
     z-index: 99999999;
     display: block;
   }
 
   &-addon {
-    position: relative;
-    width: $strength-addon-with;
     cursor: pointer;
     border: none !important;
 
