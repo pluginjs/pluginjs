@@ -11,7 +11,8 @@ export const events = {
   HIDED: 'hided',
   SHOW: 'show',
   SHOWN: 'shown',
-  CLEAR: 'clear'
+  CLEAR: 'clear',
+  FILTER: 'filter'
 }
 
 export const classes = {
@@ -46,9 +47,10 @@ export const defaults = {
   placeholder: 'Select Time',
   keyboard: true,
   clearable: false,
+  filterable: true,
   use24HourFormat: true,
-  max: '',
-  min: '',
+  max: null,
+  min: null,
   step: 30,
   dropdown: {
     placement: 'bottom' // top

@@ -3,7 +3,7 @@
 // Vars
 // =====================
 $dropdown: "pj-dropdown" !default;
-
+$dropdown-bg: $color-white;
 $dropdown-index: $zindex-dropdown !default;
 
 // Core
@@ -16,7 +16,7 @@ $dropdown-index: $zindex-dropdown !default;
   margin: 0;
   list-style: none;
   visibility: hidden;
-  background-color: #fff;
+  background-color: $dropdown-bg;
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
 

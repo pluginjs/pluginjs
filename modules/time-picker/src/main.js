@@ -18,6 +18,7 @@ import {
 } from './constant'
 import { isNull, isUndefined } from '@pluginjs/is'
 import Clearable from './clearable'
+import Filterable from './filterable'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { formatTime, splitTime, time2Minute } from './utils'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -91,6 +92,9 @@ class TimePicker extends Component {
     if (this.options.clearable) {
       this.CLEARABLE = new Clearable(this)
     }
+    if (this.options.filterable) {
+      this.FILTERABLE = new Filterable(this)
+    }
 
     if (this.element.disabled || this.options.disabled) {
       this.disable()
@@ -112,7 +116,7 @@ class TimePicker extends Component {
       this.$wrap
     )
 
-    this.DROPDOWN = Dropdown.of(this.$trigger, {
+    this.DROPDOWN = Dropdown.of(this.$group, {
       ...this.options.dropdown,
       data: this.getTimeList().map(value => ({ label: value, value })),
       target: this.$dropdown,
