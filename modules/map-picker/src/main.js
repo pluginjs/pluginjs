@@ -133,14 +133,44 @@ class MapPicker extends Component {
       target: this.$dropdown,
       hideOutClick: true,
       templates: this.options.templates,
+      onShow: () => {
+        this.buildDropdown()
+      },
       onHide: () => {
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
       }
     })
   }
 
+  buildDropdown() {
+    this.$dropdown.append(...this.$list)
+
+    // change $lat&$lng input
+    if (this.options.showLatlng) {
+      bindEvent(
+        this.eventName('change'),
+        () => {
+          const lat = this.$lat.value
+          const lng = this.$lng.value
+          this.setPosition({ lat, lng })
+        },
+        query(`.${this.classes.LAT}`, this.$dropdown)
+      )
+      bindEvent(
+        this.eventName('change'),
+        () => {
+          const lat = this.$lat.value
+          const lng = this.$lng.value
+
+          this.setPosition({ lat, lng })
+        },
+        query(`.${this.classes.LNG}`, this.$dropdown)
+      )
+    }
+  }
+
   buildPanelItem() {
-    const list = []
+    this.$list = []
 
     // create input items
     this.$place = parseHTML(
@@ -160,7 +190,7 @@ class MapPicker extends Component {
       })
     )
 
-    list.push(this.$place)
+    this.$list.push(this.$place)
     if (this.options.showLatlng) {
       const $lat = parseHTML(
         this.createEl('field', {
@@ -178,20 +208,16 @@ class MapPicker extends Component {
         })
       )
 
-      list.push($lat, $lng)
+      this.$list.push($lat, $lng)
 
       this.$lat = query(`.${this.classes.LAT}`, $lat)
       this.$lng = query(`.${this.classes.LNG}`, $lng)
     }
 
-    list.push(
+    this.$list.push(
       parseHTML(`<div class='${this.classes.MAP}'></div>`),
       this.$action
     )
-
-    this.$dropdown.append(...list)
-
-    // this.initMap();
   }
 
   initMap(set = false) {
@@ -327,30 +353,6 @@ class MapPicker extends Component {
         this.close()
       )
     )(this.$wrap)
-
-    // change $lat&$lng input
-    if (this.options.showLatlng) {
-      bindEvent(
-        this.eventName('change'),
-        () => {
-          const lat = this.$lat.value
-          const lng = this.$lng.value
-          this.setPosition({ lat, lng })
-        },
-        query(`.${this.classes.LAT}`, this.$dropdown)
-      )
-
-      bindEvent(
-        this.eventName('change'),
-        () => {
-          const lat = this.$lat.value
-          const lng = this.$lng.value
-
-          this.setPosition({ lat, lng })
-        },
-        query(`.${this.classes.LNG}`, this.$dropdown)
-      )
-    }
   }
 
   unbind() {

@@ -44,9 +44,38 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
 
 .#{$mapPicker} {
   &-trigger {
+    position: relative;
     width: $mapPicker-width !important;
     height: $mapPicker-height;
     border: none !important;
+
+    &-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: $mapPicker-fill-action-bg-color;
+      border-radius: $mapPicker-border-radius;
+      opacity: 0;
+      transition: opacity 0.3s;
+      .#{$mapPicker}-edit,
+      .#{$mapPicker}-remove {
+        color: $color-white;
+
+        &:hover {
+          // color: $mapPicker-active-color;
+          cursor: pointer;
+          // transition: color 0.3s;
+        }
+      }
+      > i:first-of-type {
+        margin-right: 2 * $mapPicker-sizer; //20px
+      }
+    }
   }
 
   &-open-disabled {
@@ -114,34 +143,6 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
       overflow-x: hidden;
       white-space: nowrap;
     }
-
-    &-action {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      background-color: $mapPicker-fill-action-bg-color;
-      border-radius: $mapPicker-border-radius;
-      opacity: 0;
-      transition: opacity 0.3s;
-      .#{$mapPicker}-edit,
-      .#{$mapPicker}-remove {
-        color: $color-white;
-
-        &:hover {
-          // color: $mapPicker-active-color;
-          cursor: pointer;
-          // transition: color 0.3s;
-        }
-      }
-      > i:first-of-type {
-        margin-right: 2 * $mapPicker-sizer; //20px
-      }
-    }
   }
 
   &-dropdown {
@@ -188,14 +189,15 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     animation: fade-out 0.5s;
     animation-fill-mode: forwards;
 
-    .#{$mapPicker}-fill-action {
+    .#{$mapPicker}-trigger-action {
       animation: fade-out 0.5s;
       animation-fill-mode: forwards;
     }
   }
 
-  &-fill-hover {
-    .#{$mapPicker}-fill-action {
+  &-trigger-hover {
+    .#{$mapPicker}-trigger-action {
+      // display: flex;
       opacity: 1;
       transition: opacity 0.3s;
     }
@@ -207,6 +209,10 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     }
 
     .#{$mapPicker}-fill {
+      display: flex;
+    }
+
+    .#{$mapPicker}-trigger-action {
       display: flex;
     }
   }

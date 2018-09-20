@@ -38,15 +38,14 @@ export default class Trigger {
     this.$fillCoord = query(`.${this.classes.FILLCOORD}`, this.$fill)
 
     // create fill action
-    this.$fillAction = parseHTML(
-      this.instance.createEl('fillAction', {
+    this.$triggerAction = parseHTML(
+      this.instance.createEl('triggerAction', {
         classes: this.classes
       })
     )
 
-    this.$trigger.append(this.$empty, this.$fill)
+    this.$trigger.append(this.$empty, this.$fill, this.$triggerAction)
     this.instance.$wrap.append(this.$trigger)
-    this.$fill.append(this.$fillAction)
 
     this.buildPop()
   }
@@ -55,7 +54,7 @@ export default class Trigger {
     const that = this
 
     this.DELETEPOP = PopDialog.of(
-      query(`.${this.classes.REMOVE}`, this.$fillAction),
+      query(`.${this.classes.REMOVE}`, this.$triggerAction),
       {
         placement: 'bottom',
         content: this.instance.translate('deleteTitle'),
@@ -76,7 +75,7 @@ export default class Trigger {
         },
         onShow: () => that.instance.enter('holdHover'),
         onHide: () => {
-          removeClass(this.classes.HOVER, this.$fill)
+          removeClass(this.classes.HOVER, this.$trigger)
           that.instance.leave('holdHover')
         }
       }
@@ -102,7 +101,7 @@ export default class Trigger {
       // fill action button event
       bindEvent(
         this.instance.eventName('click'),
-        `.${this.classes.FILLACTION} .${this.classes.EDIT}`,
+        `.${this.classes.TRIGGERACTION} .${this.classes.EDIT}`,
         () => {
           if (this.instance.is('disabled')) {
             return
@@ -123,7 +122,7 @@ export default class Trigger {
       // $fill event
       bindEvent(
         this.instance.eventName('mouseover'),
-        `.${this.classes.FILL}`,
+        `.${this.classes.TRIGGERACTION}`,
         () => {
           if (this.instance.is('disabled')) {
             return

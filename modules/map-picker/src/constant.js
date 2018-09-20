@@ -16,10 +16,10 @@ export const classes = {
   EMPTY: '{namespace}-empty',
   WRITE: '{namespace}-write',
   TRIGGER: '{namespace}-trigger',
-  HOVER: '{namespace}-fill-hover',
+  HOVER: '{namespace}-trigger-hover',
+  TRIGGERACTION: '{namespace}-trigger-action',
   REMOVEANIMATE: '{namespace}-remove-animate',
   FILL: '{namespace}-fill',
-  FILLACTION: '{namespace}-fill-action',
   FILLCONTENT: '{namespace}-fill-content',
   FILLNAME: '{namespace}-fill-name',
   FILLCOORD: '{namespace}-fill-coord',
@@ -27,7 +27,6 @@ export const classes = {
   REMOVE: '{namespace}-remove',
   ICON: '{namespace}-icon',
   DROPDOWN: '{namespace}-dropdown',
-  CONTENT: '{namespace}-panel-content',
   FIELD: '{namespace}-field',
   FIELDTITLE: '{namespace}-field-title',
   LAT: '{namespace}-lat',
@@ -76,12 +75,12 @@ export const defaults = {
       return `<div class="{classes.FILL}"><i class="{classes.ICON} pj-icon pj-icon-pin-map-solid"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
       </div>`
     },
-    fillAction() {
-      return `<div class="{classes.FILLACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i>
+    triggerAction() {
+      return `<div class="{classes.TRIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i>
       </div>`
     },
     dropdown() {
-      return `<div class='{classes.DROPDOWN}'><div class='{classes.CONTENT}'></div>
+      return `<div class='{classes.DROPDOWN}'>
       </div>`
     },
     action() {
@@ -89,7 +88,7 @@ export const defaults = {
       </div>`
     },
     field() {
-      return `<div class='{classes.FIELD}'><span class='{classes.FIELDITLE}'>{titleName}</span><input class='{type} pj-input' type="text">
+      return `<div class='{classes.FIELD}'><span class='{classes.FIELDTITLE}'>{titleName}</span><input class='{type} pj-input' type="text">
       </div>`
     },
     loading() {
