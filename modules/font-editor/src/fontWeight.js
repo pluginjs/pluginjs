@@ -20,26 +20,19 @@ export default class FontWeight {
       weight: this.instance.translate('weight')
     })
 
-    this.$FontWeight = parseHTML(html)
+    this.$wrap = parseHTML(html)
 
-    this.$content = query(
-      `.${this.instance.classes.FONTWEIGHTCONTENT}`,
-      this.$FontWeight
-    )
-    this.$select = query(
-      `.${this.instance.classes.FONTWEIGHTSELECT}`,
-      this.$FontWeight
-    )
-    this.$selectWeight = query(
+    this.$content = query(`.${this.instance.classes.FIELDCONTENT}`, this.$wrap)
+    this.element = query(
       `.${this.instance.classes.SELECTTRIGGER}`,
-      this.$select
+      this.$content
     )
 
     this.initSelect()
   }
 
   initSelect() {
-    this.SELECT = Select.of(this.$selectWeight, {
+    this.SELECT = Select.of(this.element, {
       keyboard: true,
       source: resolve => {
         const data = []

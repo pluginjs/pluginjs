@@ -26,9 +26,9 @@ export default class TextAlign {
     const html = template.compile(this.instance.options.textAlign.template())({
       classes: this.instance.classes
     })
-    this.$TextAlign = parseHTML(html)
+    this.$wrap = parseHTML(html)
 
-    this.instance.$typoDecorations = this.$TextAlign
+    this.instance.$typoDecorations = this.$wrap
 
     this.$items = queryAll(
       `.${this.instance.classes.TEXTALIGN}`,

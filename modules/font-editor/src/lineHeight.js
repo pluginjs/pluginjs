@@ -12,11 +12,11 @@ export default class LineHeight {
   }
 
   initialize() {
-    this.parse(this.instance.value.lineHeight)
-    this.initRange()
+    // this.parse(this.instance.value.lineHeight)
+    this.initUnitsRange()
   }
 
-  initRange() {
+  initUnitsRange() {
     const that = this
     const unit = {}
     const value = this.value
@@ -29,11 +29,11 @@ export default class LineHeight {
       ),
       lineHeight: this.instance.translate('lineHeight')
     })
-    this.$LineHeight = parseHTML(html)
+    this.$wrap = parseHTML(html)
 
-    this.$lineHeight = query(
+    this.element = query(
       `.${this.instance.classes.LINEHEIGHTRANGE}`,
-      this.$LineHeight
+      this.$wrap
     )
 
     // create units
@@ -46,7 +46,7 @@ export default class LineHeight {
     })
 
     // init range plugin
-    this.$range = UnitsRange.of(this.$lineHeight, {
+    this.UNITSRANGE = UnitsRange.of(this.element, {
       theme: 'default',
       tip: false,
       // replaceFirst: 'inherit',
@@ -90,7 +90,7 @@ export default class LineHeight {
     this.instance.value.lineHeight = val
   }
   set(value) {
-    this.$range.val(value)
+    this.UNITSRANGE.val(value)
     this.update(value)
   }
 }

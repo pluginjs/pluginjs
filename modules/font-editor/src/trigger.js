@@ -18,20 +18,26 @@ export default class Trigger {
   initialize() {
     this.$empty = query(`.${this.classes.EMPTY}`, this.instance.$wrap)
     this.$fill = query(`.${this.classes.FILL}`, this.instance.$wrap)
+    this.$trigger = query(`.${this.classes.TRIGGER}`, this.instance.$wrap)
+    this.$triggerAction = query(
+      `.${this.classes.TRIGGERACTION}`,
+      this.instance.$wrap
+    )
     this.$fillContent = query(`.${this.classes.FILLCONTENT}`, this.$fill)
     this.$fillContentName = query(
       `.${this.classes.FILLCONTENTNAME}`,
       this.$fill
     )
     this.$fillContentSub = query(`.${this.classes.FILLCONTENTSUB}`, this.$fill)
-    this.$triggerAction = query(`.${this.classes.TRIGGERACTION}`, this.$fill)
-    this.$removeBtn = query(`.${this.classes.REMOVEACTION}`, this.$fill)
-    this.$editBtn = query(`.${this.classes.EDITACTION}`, this.$fill)
-    this.$trigger = query(`.${this.classes.TRIGGER}`, this.instance.$wrap)
+    this.$removeAction = query(
+      `.${this.classes.REMOVEACTION}`,
+      this.$triggerAction
+    )
+    this.$editAction = query(`.${this.classes.EDITACTION}`, this.$triggerAction)
 
     // init pop
     const that = this
-    this.CLEARPOP = PopDialog.of(this.$removeBtn, {
+    this.CLEARPOP = PopDialog.of(this.$removeAction, {
       content: 'Are you sure you want to delete?',
       placement: 'bottom',
       buttons: {
@@ -76,7 +82,6 @@ export default class Trigger {
     )
     compose(
       bindEvent(this.instance.eventName('mouseenter'), ({ target }) => {
-        console.log(100)
         if (that.instance.is('disabled')) {
           return false
         }
@@ -109,7 +114,7 @@ export default class Trigger {
         that.instance.$defaultDropdown.show()
         return false /* eslint-disable-line */
       },
-      this.$editBtn
+      this.$editAction
     )
 
     bindEvent(
@@ -121,7 +126,7 @@ export default class Trigger {
         that.instance.$defaultDropdown.hide()
         return
       },
-      this.$removeBtn
+      this.$removeAction
     )
   }
 

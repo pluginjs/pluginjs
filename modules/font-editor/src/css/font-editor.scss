@@ -57,6 +57,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   height: $fontEditor-height;
 
   &-trigger {
+    position: relative;
     height: $fontEditor-height;
 
     &-action {
@@ -93,6 +94,9 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
   .pj-unitsRange {
     display: flex;
+  }
+  .pj-range {
+    width: 100%
   }
 
   &-empty,

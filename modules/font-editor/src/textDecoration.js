@@ -17,8 +17,8 @@ export default class TextDecoration {
     const html = template.compile(
       this.instance.options.textDecoration.template()
     )({ classes: this.instance.classes })
-    this.$TextDecoration = parseHTML(html)
-    this.instance.$typoDecorations.append(...this.$TextDecoration)
+    this.$wrap = parseHTML(html)
+    this.instance.$typoDecorations.append(...this.$wrap)
 
     this.$items = queryAll(
       `.${this.instance.classes.TEXTDECORATION}`,

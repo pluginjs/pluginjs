@@ -21,22 +21,15 @@ export default class FontFamily {
       typeface: this.instance.translate('typeface')
     })
 
-    this.$FontFamily = parseHTML(html)
+    this.$wrap = parseHTML(html)
 
-    this.$content = query(
-      `.${this.instance.classes.FONTFAMILYCONTENT}`,
-      this.$FontFamily
-    )
-    this.$select = query(
-      `.${this.instance.classes.FONTFAMILYSELECT}`,
-      this.$FontFamily
-    )
-    this.$selectFamily = query(
+    this.$content = query(`.${this.instance.classes.FIELDCONTENT}`, this.$wrap)
+    this.element = query(
       `.${this.instance.classes.SELECTTRIGGER}`,
-      this.$select
+      this.$content
     )
 
-    this.SELECT = Select.of(this.$selectFamily, {
+    this.SELECT = Select.of(this.element, {
       value: this.instance.value.fontFamily,
       source: resolve => {
         const data = []

@@ -12,7 +12,7 @@ export default class FontSize {
   }
 
   initialize() {
-    this.parse(this.instance.value.fontSize)
+    // this.parse(this.instance.value.fontSize)
     this.initRange()
   }
 
@@ -29,12 +29,9 @@ export default class FontSize {
       ),
       fontSize: this.instance.translate('fontSize')
     })
-    this.$FontSize = parseHTML(html)
+    this.$wrap = parseHTML(html)
 
-    this.$fontSize = query(
-      `.${this.instance.classes.FONTSIZERANGE}`,
-      this.$FontSize
-    )
+    this.element = query(`.${this.instance.classes.FONTSIZERANGE}`, this.$wrap)
 
     // create units
     this.instance.options.fontSize.units.forEach(v => {
@@ -46,7 +43,7 @@ export default class FontSize {
     })
 
     // init range plugin
-    this.$range = UnitsRange.of(this.$fontSize, {
+    this.UNITSRANGE = UnitsRange.of(this.element, {
       theme: 'default',
       tip: false,
       // replaceFirst: 'inherit',
@@ -90,7 +87,7 @@ export default class FontSize {
     this.instance.value.fontSize = val
   }
   set(value) {
-    this.$range.val(value)
+    this.UNITSRANGE.val(value)
     this.update(value)
   }
 }

@@ -16,10 +16,10 @@ export default class FontStyle {
     const html = template.compile(this.instance.options.fontStyle.template())({
       classes: this.instance.classes
     })
-    this.$FontStyle = parseHTML(html)
-    this.instance.$typoDecorations.append(this.$FontStyle)
-    // this.$FontStyle.dataset.fontStyle = this.value
-    setData('fontStyle', this.value, this.$FontStyle)
+    this.$wrap = parseHTML(html)
+    this.instance.$typoDecorations.append(this.$wrap)
+    // this.$wrap.dataset.fontStyle = this.value
+    setData('fontStyle', this.value, this.$wrap)
     this.set(this.value)
 
     this.bind()
@@ -27,10 +27,10 @@ export default class FontStyle {
 
   set(value) {
     if (value === 'normal') {
-      removeClass(this.instance.classes.ACTIVE, this.$FontStyle)
+      removeClass(this.instance.classes.ACTIVE, this.$wrap)
       this.instance.value.fontStyle = 'normal'
     } else {
-      addClass(this.instance.classes.ACTIVE, this.$FontStyle)
+      addClass(this.instance.classes.ACTIVE, this.$wrap)
       this.instance.value.fontStyle = 'italic'
     }
   }
@@ -56,7 +56,7 @@ export default class FontStyle {
         }
         return null
       },
-      this.$FontStyle
+      this.$wrap
     )
   }
 }

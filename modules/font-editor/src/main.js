@@ -140,11 +140,11 @@ class FontEditor extends Component {
   }
 
   buildDropdown() {
-    insertBefore(this.fontFamily.$FontFamily, this.$Control)
-    insertBefore(this.fontWeight.$FontWeight, this.$Control)
-    insertBefore(this.fontSize.$FontSize, this.$Control)
-    insertBefore(this.lineHeight.$LineHeight, this.$Control)
-    insertBefore(this.textAlign.$TextAlign, this.$Control)
+    insertBefore(this.fontFamily.$wrap, this.$Control)
+    insertBefore(this.fontWeight.$wrap, this.$Control)
+    insertBefore(this.fontSize.$wrap, this.$Control)
+    insertBefore(this.lineHeight.$wrap, this.$Control)
+    insertBefore(this.textAlign.$wrap, this.$Control)
   }
 
   bind() {
@@ -266,7 +266,7 @@ class FontEditor extends Component {
     }
   }
 
-  clear(update) {
+  clear(update = true) {
     this.value = {}
 
     if (update !== false) {

@@ -35,13 +35,7 @@ export const classes = {
   FILLCONTENT: '{namespace}-fill-content',
   FILLCONTENTNAME: '{namespace}-fill-content-name',
   FILLCONTENTSUB: '{namespace}-fill-content-sub',
-  // FONTFAMILYNAMESPACE: '{fontFamilyNamespace}',
-  FONTFAMILYSELECT: '{namespace}-fontFamily-select',
-  // FONTWEIGHTNAMESPACE: '{fontWeightNamespace}',
-  FONTWEIGHTSELECT: '{namespace}-fontWeight-select',
-  // FONTSIZENAMESPACE: '{fontSizeNamespace}',
   FONTSIZERANGE: '{namespace}-fontSize-range',
-  // LINEHEIGHTNAMESPACE: '{lineHeightNamespace}',
   LINEHEIGHTRANGE: '{namespace}-lineHeight-range',
   // textalign
   DECORATIONS: '{namespace}-decorations',
@@ -94,9 +88,7 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{typeface}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
-        '<div class="{classes.FONTFAMILYSELECT}"><span class="{classes.SELECTTRIGGER}"></span></div>' +
-        '<ul>' +
-        '</ul>' +
+        '<input type="text" class="{classes.SELECTTRIGGER}" />' +
         '</div>' +
         '</div>'
       )
@@ -110,7 +102,7 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{weight}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
-        '<div class="{classes.FONTWEIGHTSELECT}"><span class="{classes.SELECTTRIGGER}"></span></div>' +
+        '<input type="text" class="{classes.SELECTTRIGGER}" />' +
         '</div>' +
         '</div>'
       )
@@ -205,8 +197,8 @@ export const defaults = {
       '<div class="{classes.FILL}">' +
       '<i>T</i>' +
       '<div class="{classes.FILLCONTENT}"><span class="{classes.FILLCONTENTNAME}">{fontFamily}</span><span class="{classes.FILLCONTENTSUB}"></span></div>' +
-      '<div class="{classes.TRIGGERACTION}"><i class="{classes.EDITACTION} pj-icon pj-icon-edit"></i><i class="{classes.REMOVEACTION} pj-icon pj-icon-delete"></i></div>' +
       '</div>' +
+      '<div class="{classes.TRIGGERACTION}"><i class="{classes.EDITACTION} pj-icon pj-icon-edit"></i><i class="{classes.REMOVEACTION} pj-icon pj-icon-delete"></i></div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +
       '<div class="{classes.CONTROL}"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">Cancel</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">Save</button></div>' +
