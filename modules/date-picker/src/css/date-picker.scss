@@ -563,3 +563,6 @@ input[type="text"][disabled] {
     }
   }
 }
+ #disabled {
+   margin-top: 27.5 * $datePicker-sizer;
+ }

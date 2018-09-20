@@ -38,7 +38,7 @@ class InputMask extends Component {
     super(element)
     this.setupOptions(options)
     this.setupClasses()
-    addClass(this.classes.INPUT, this.element)
+    addClass(this.classes.INPUTMASK, this.element)
     addClass(this.classes.INPUTMODE, this.element)
     this.data = ''
     this.setupStates()

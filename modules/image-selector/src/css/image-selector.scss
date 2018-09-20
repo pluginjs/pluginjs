@@ -1,7 +1,6 @@
 @import "@pluginjs/styles/variables.scss";
 @import "@pluginjs/icons/variables.scss";
 // Vars
-// =====================
 $imageSelector: "pj-imageSelector" !default;
 $dropdown: "pj-dropdown" !default;
 $imageSelector-sizer: $sizer !default;
@@ -29,7 +28,14 @@ $imageSelector-item-margin: $imageSelector-sizer $imageSelector-sizer 3 *
 $imageSelector-sizer !default; //10px 10px 30px
 $imageSelector-item-margin-bottom: 3 * $imageSelector-sizer !default; //30px
 $imageSelector-item-bg-color: $gray-lightest !default;
+// icon
+$imageSelector-trigger-arrow-icon: $pj-icon-arrow-left-mini;
+$imageSelector-trigger-arrow-font: $pj-icon-font-family;
 
+$imageSelector-done-arrow-icon: $pj-icon-done;
+$imageSelector-done-arrow-font: $pj-icon-font-family;
+
+// =====================
 .#{$dropdown}-show {
   z-index: 999999 !important;
   background-color: $color-white;
@@ -73,12 +79,12 @@ $imageSelector-item-bg-color: $gray-lightest !default;
   &::before {
     @include icon();
     position: absolute;
-    right: 0.3 * $imageSelector-sizer; //-1px
+    right: 0 * $imageSelector-sizer; //-1px
     // bottom: -8px;
     bottom: 0 * $imageSelector-sizer; //0px
-    font-family: $pj-icon-font-family;
+    font-family: $imageSelector-trigger-arrow-font;
     font-size: 0.9 * $imageSelector-sizer; //9px;
-    content: icon-content($pj-icon-triangle-left-mini-solid);
+    content: icon-content($imageSelector-trigger-arrow-icon);
     transform: rotate(-90deg);
   }
 
@@ -157,12 +163,12 @@ $imageSelector-item-bg-color: $gray-lightest !default;
     &::before {
       @include icon();
       position: absolute;
-      right: 0;
+      right: 0 * $imageSelector-sizer;
       bottom: 0.23 * $imageSelector-sizer; //2.3px
       display: none;
-      font-family: $pj-icon-font-family;
+      font-family: $imageSelector-done-arrow-font;
       color: $color-white;
-      content: icon-content($pj-icon-done);
+      content: icon-content($imageSelector-done-arrow-icon);
     }
 
     &::after {
