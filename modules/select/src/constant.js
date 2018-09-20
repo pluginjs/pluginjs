@@ -10,7 +10,9 @@ export const events = {
   HIDE: 'hide',
   HIDED: 'hided',
   SHOW: 'show',
-  SHOWN: 'shown'
+  SHOWN: 'shown',
+  CLEAR: 'clear',
+  FILTER: 'filter'
 }
 
 export const classes = {
@@ -29,7 +31,8 @@ export const classes = {
   CLEARABLE: '{namespace}-clearable',
   CLEAR: '{namespace}-clear',
   FILTERABLE: '{namespace}-filterable',
-  FILTER: '{namespace}-filter'
+  FILTER: '{namespace}-filter',
+  NOTFOUND: '{namespace}-not-found'
 }
 
 export const methods = [
@@ -48,6 +51,9 @@ export const defaults = {
   value: null,
   placeholder: 'Please Select',
   filterable: false,
+  filter(option, search) {
+    return option.label.toLowerCase().includes(search.toLowerCase())
+  },
   keyboard: true,
   clearable: false,
   dropdown: {
@@ -58,7 +64,7 @@ export const defaults = {
   },
   templates: {
     group() {
-      return '<div class="{classes.GROUP}"><div class="{classes.GROUPLABEL}">{group.label}</div>{options}</div>'
+      return '<div class="{classes.GROUP}"><div class="{classes.GROUPLABEL}">{group.label}</div></div>'
     },
     option(option) {
       if (option.disabled) {
@@ -75,4 +81,13 @@ export const defaults = {
   }
 }
 
-export const dependencies = []
+export const translations = {
+  en: {
+    notFoundText: 'No results found'
+  },
+  zh: {
+    notFoundText: '无匹配数据'
+  }
+}
+
+export const dependencies = ['dropdown']

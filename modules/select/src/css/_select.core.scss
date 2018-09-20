@@ -10,6 +10,7 @@ $select-max-height: 300px;
 $select-trigger-arrow-icon: $pj-icon-angle-down-mini-solid;
 $select-trigger-arrow-font: $pj-icon-font-family;
 $select-trigger-arrow-right: 1.5 * $sizer;
+$select-trigger-padding-right: 3 * $sizer;
 
 $select-clear-icon: $pj-icon-close;
 $select-clear-font: $pj-icon-font-family;
@@ -19,12 +20,14 @@ $select-clear-right: 1.5 * $sizer;
   position: relative;
   width: $select-width;
 
+
   &-element {
     display: none;
   }
 
   & &-trigger {
     width: 100%;
+    padding-right: $select-trigger-padding-right;
   }
 
   & &-dropdown {
@@ -34,6 +37,7 @@ $select-clear-right: 1.5 * $sizer;
   &-dropdown {
     max-height: $select-max-height;
     overflow: auto;
+    line-height: 1;
   }
 
   &-trigger {

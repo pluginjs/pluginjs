@@ -3,5 +3,6 @@ import Select from '@pluginjs/select'
 
 const element = query('#filterable .example')
 Select.of(element, {
-  filterable: true
+  filterable: true,
+  clearable: true
 })

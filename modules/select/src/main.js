@@ -6,12 +6,14 @@ import {
   stateable,
   styleable,
   themeable,
-  optionable
+  optionable,
+  translateable
 } from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
+  translations as TRANSLATIONS,
   events as EVENTS,
   methods as METHODS,
   namespace as NAMESPACE
@@ -19,7 +21,6 @@ import {
 import {
   isArray,
   isFunction,
-  // isUndefined,
   isNull,
   isPlainObject,
   isUndefined
@@ -29,11 +30,12 @@ import Filterable from './filterable'
 // import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
-import { insertAfter, appendTo, html } from '@pluginjs/dom'
+import { insertAfter, appendTo, html, parseHTML } from '@pluginjs/dom'
 
 const isInput = el => el.tagName === 'INPUT'
 const isSelect = el => el.tagName === 'SELECT'
 
+@translateable(TRANSLATIONS)
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -50,6 +52,7 @@ class Select extends Component {
     this.setupOptions(options)
     this.setupClasses()
     this.setupStates()
+    this.setupI18n()
     this.initialize()
   }
 
@@ -79,14 +82,15 @@ class Select extends Component {
       this.$trigger
     )
 
+    if (this.options.filterable) {
+      this.FILTERABLE = new Filterable(this)
+    }
+
     this.initData()
     this.setupDropdown()
 
     if (this.options.clearable) {
       this.CLEARABLE = new Clearable(this)
-    }
-    if (this.options.filterable) {
-      this.FILTERABLE = new Filterable(this)
     }
 
     if (this.element.disabled || this.options.disabled) {
@@ -212,6 +216,10 @@ class Select extends Component {
       } else {
         this.setLabel(this.placeholder)
         removeClass(this.classes.SELECTED, this.$wrap)
+
+        if (trigger) {
+          this.trigger(EVENTS.CLEAR, value)
+        }
       }
     }
   }
@@ -258,44 +266,53 @@ class Select extends Component {
   }
 
   buildDropdown() {
-    const options = this.buildOptions(this.data)
+    const $options = this.buildOptions(this.data)
 
-    html(options, this.$dropdown)
+    this.$dropdown.appendChild($options)
 
     this.enter('builded')
   }
 
   buildOptions(options) {
-    let content = ''
+    const $fragment = document.createDocumentFragment()
+
     options.forEach(option => {
       if (option.children) {
-        content += this.buildGroup(option)
+        $fragment.appendChild(this.buildGroup(option))
       } else {
-        content += this.buildOption(option)
+        $fragment.appendChild(this.buildOption(option))
       }
     })
 
-    return content
+    return $fragment
   }
 
   buildGroup(group) {
-    let options = ''
+    const $group = parseHTML(
+      template.render(this.options.templates.group(), {
+        classes: this.classes,
+        group
+      })
+    )
+
     group.children.forEach(option => {
-      options += this.buildOption(option)
+      $group.appendChild(this.buildOption(option))
     })
 
-    return template.render(this.options.templates.group(), {
-      classes: this.classes,
-      group,
-      options
-    })
+    return $group
   }
 
   buildOption(option) {
-    return template.render(this.options.templates.option(option), {
-      classes: this.classes,
-      option
-    })
+    const $option = parseHTML(
+      template.render(this.options.templates.option(option), {
+        classes: this.classes,
+        option
+      })
+    )
+
+    option.__dom = $option
+
+    return $option
   }
 
   val(value) {

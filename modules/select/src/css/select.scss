@@ -23,6 +23,8 @@ $select-group-label-color: $gray-dark;
 $select-group-label-space-x: 11px;
 $select-group-label-space-y: 8px;
 
+$select-not-found-padding: 11px 8px;
+
 .#{$select} {
   outline: none;
 
@@ -57,6 +59,10 @@ $select-group-label-space-y: 8px;
     padding: $select-group-label-space-y $select-group-label-space-x;
     font-size: $select-group-label-font-size;
     color: $select-group-label-color;
+  }
+
+  &-not-found {
+    padding: $select-not-found-padding;
   }
 }
 

@@ -261,6 +261,22 @@ class Dropdown extends Component {
     return this.$highlighted
   }
 
+  getHighlightableItem() {
+    let index = 0
+    const $items = this.getItems()
+    let $first = null
+
+    while (index < $items.length) {
+      $first = $items[index]
+      if (!this.isItemDisabled($first) && !this.isItemHided($first)) {
+        return $first
+      }
+
+      index++
+    }
+    return null
+  }
+
   highlightItem(index) {
     if (this.$highlighted) {
       removeClass(this.classes.HIGHLIGHTED, this.$highlighted)
@@ -284,6 +300,9 @@ class Dropdown extends Component {
 
   hideItem($item) {
     addClass(this.classes.ITEMHIDED, $item)
+    if (this.$highlighted === $item) {
+      this.unHighlightItem()
+    }
   }
 
   isItemHided($item) {
