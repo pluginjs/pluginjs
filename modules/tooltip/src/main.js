@@ -76,7 +76,6 @@ class Tooltip extends Component {
         bindEvent(
           this.eventName('click'),
           event => {
-            console.log(this.element)
             this.toggle(event)
           },
           this.element
@@ -139,6 +138,7 @@ class Tooltip extends Component {
       }
 
       context._activeTrigger.click = !context._activeTrigger.click
+
       if (context.isWithActiveTrigger()) {
         context._enter(null, context)
       } else {
@@ -162,6 +162,7 @@ class Tooltip extends Component {
     const showEvent = new CustomEvent(this.selfEventName(EVENTS.SHOW), {
       detail: [this]
     })
+
     if (this.isWithContent() && !this.is('disabled')) {
       this.trigger(showEvent)
 
@@ -206,6 +207,7 @@ class Tooltip extends Component {
       if (!this.element.ownerDocument.documentElement.contains(this.$tip)) {
         append($tip, $container)
       }
+
       this.trigger(EVENTS.INSERTED)
 
       this.POPPER = new Popper(this.element, $tip, {
@@ -247,15 +249,11 @@ class Tooltip extends Component {
         }
       }
 
-      // if (hasClass(this.classes.FADE, $tip)) {
-      //   bindEventOnce(this.eventName('transitionend'), complete, $tip)
-      // } else {
       complete()
-      // }
 
       if (this.options.hideOutClick && this.clickTrigger) {
         bindEvent(
-          this.eventNameWithId('click'),
+          this.eventNameWithId('click touchend'),
           event => {
             if (!this.is('shown')) {
               return
@@ -320,11 +318,7 @@ class Tooltip extends Component {
     this._activeTrigger[Trigger.FOCUS] = false
     this._activeTrigger[Trigger.HOVER] = false
 
-    // if (hasClass(this.classes.FADE, $tip)) {
-    //  bindEventOnce(this.eventName('transitionend'), complete, $tip)
-    // } else {
     complete()
-    // }
 
     this._hoverState = ''
 
@@ -373,8 +367,6 @@ class Tooltip extends Component {
     )
 
     removeClass(this.classes.FADE, this.classes.SHOW, $tip)
-
-    // this.destroyPopper()
   }
 
   setElementContent($element, content) {
@@ -397,11 +389,10 @@ class Tooltip extends Component {
     let title = this.element.getAttribute('data-original-title')
 
     if (!title) {
-      if (typeof this.options.title === 'function') {
-        title = this.options.title.call(this.element)
-      } else {
-        title = this.options.title
-      }
+      title =
+        typeof this.options.title === 'function'
+          ? this.options.title.call(this.element)
+          : this.options.title
     }
 
     return title
