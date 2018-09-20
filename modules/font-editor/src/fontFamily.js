@@ -1,6 +1,6 @@
 import template from '@pluginjs/template'
 import Select from '@pluginjs/select'
-import { parseHTML, query, insertBefore } from '@pluginjs/dom'
+import { parseHTML, query } from '@pluginjs/dom'
 
 export default class FontFamily {
   constructor(instance) {
@@ -22,22 +22,21 @@ export default class FontFamily {
     })
 
     this.$FontFamily = parseHTML(html)
-    insertBefore(this.$FontFamily, this.instance.$expandControl)
 
     this.$content = query(
       `.${this.instance.classes.FONTFAMILYCONTENT}`,
-      this.instance.$Panel
+      this.$FontFamily
     )
     this.$select = query(
-      `.${this.instance.classes.FONTFAMILYDROPDOWN}`,
-      this.instance.$Panel
+      `.${this.instance.classes.FONTFAMILYSELECT}`,
+      this.$FontFamily
     )
-    this.$dropFamily = query(
+    this.$selectFamily = query(
       `.${this.instance.classes.SELECTTRIGGER}`,
       this.$select
     )
 
-    this.SELECT = Select.of(this.$dropFamily, {
+    this.SELECT = Select.of(this.$selectFamily, {
       value: this.instance.value.fontFamily,
       source: resolve => {
         const data = []

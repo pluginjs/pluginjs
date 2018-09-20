@@ -1,5 +1,5 @@
 import template from '@pluginjs/template'
-import { parseHTML, insertBefore, query } from '@pluginjs/dom'
+import { parseHTML, query } from '@pluginjs/dom'
 import UnitsRange from '@pluginjs/units-range'
 // import { addClass, removeClass } from '@pluginjs/classes'
 
@@ -29,11 +29,11 @@ export default class LineHeight {
       ),
       lineHeight: this.instance.translate('lineHeight')
     })
-    insertBefore(parseHTML(html), this.instance.$expandControl)
+    this.$LineHeight = parseHTML(html)
 
     this.$lineHeight = query(
       `.${this.instance.classes.LINEHEIGHTRANGE}`,
-      this.instance.$Panel
+      this.$LineHeight
     )
 
     // create units

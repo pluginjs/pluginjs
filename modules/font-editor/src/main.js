@@ -1,11 +1,11 @@
 import Component from '@pluginjs/component'
 import { compose, deepMerge } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-import { parseHTML, query, insertAfter } from '@pluginjs/dom'
+import { parseHTML, query, insertAfter, insertBefore } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { hideElement, showElement, setStyle } from '@pluginjs/styled'
-import PopDialog from '@pluginjs/pop-dialog'
+import { hideElement, showElement } from '@pluginjs/styled'
+// import PopDialog from '@pluginjs/pop-dialog'
 import Dropdown from '@pluginjs/dropdown'
 import {
   eventable,
@@ -25,6 +25,7 @@ import {
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
+import Trigger from './trigger'
 import FontFamily from './fontFamily'
 import FontSize from './fontSize'
 import FontStyle from './fontStyle'
@@ -61,6 +62,7 @@ class FontEditor extends Component {
 
   initialize() {
     this.createHtml()
+    this.TRIGGER = new Trigger(this)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
@@ -92,13 +94,13 @@ class FontEditor extends Component {
         removeClass(this.classes.EXSIT),
         addClass(this.classes.WRITE)
       )(this.$wrap)
-      this.$fillFontName.textContent = this.translate('fontFamily')
+      this.TRIGGER.$fillContentName.textContent = this.translate('fontFamily')
     } else {
       compose(
         addClass(this.classes.EXSIT),
         removeClass(this.classes.WRITE)
       )(this.$wrap)
-      this.$fillFontName.textContent = this.value.fontFamily
+      this.TRIGGER.$fillContentName.textContent = this.value.fontFamily
     }
 
     this.initDropdown()
@@ -116,86 +118,37 @@ class FontEditor extends Component {
 
   initDropdown() {
     const that = this
-    this.$defaultDropdown = Dropdown.of(this.$empty, {
+    this.$defaultDropdown = Dropdown.of(this.TRIGGER.$empty, {
       theme: 'dafault',
       placement: 'bottom-left',
-      reference: this.$trigger,
+      reference: this.TRIGGER.$trigger,
       target: this.$Panel,
       hideOutClick: true,
       hideOnSelect: false,
       constraintToScrollParent: false,
       constraintToWindow: false,
       templates: this.options.templates,
+      onShow: () => {
+        if (!this.is('builded')) {
+          this.buildDropdown()
+        }
+      },
       onHide: () => {
-        removeClass(that.classes.OPENDISABLE, that.$trigger)
+        removeClass(that.classes.OPENDISABLE, that.TRIGGER.$trigger)
       }
     })
   }
 
+  buildDropdown() {
+    insertBefore(this.fontFamily.$FontFamily, this.$Control)
+    insertBefore(this.fontWeight.$FontWeight, this.$Control)
+    insertBefore(this.fontSize.$FontSize, this.$Control)
+    insertBefore(this.lineHeight.$LineHeight, this.$Control)
+    insertBefore(this.textAlign.$TextAlign, this.$Control)
+  }
+
   bind() {
     const that = this
-
-    bindEvent(
-      this.eventName('click'),
-      () => {
-        if (that.is('disabled')) {
-          return
-        }
-        addClass(that.classes.OPENDISABLE, that.$trigger)
-        // addClass(that.classes.SHOW, that.$wrap)
-        return
-      },
-      this.$empty
-    )
-
-    compose(
-      bindEvent(this.eventName('mouseenter'), ({ target }) => {
-        if (that.is('disabled')) {
-          return false
-        }
-
-        addClass(that.classes.HOVER, target)
-        return false
-      }),
-      bindEvent(this.eventName('mouseleave'), ({ target }) => {
-        if (that.is('disabled')) {
-          return false
-        }
-        if (that.is('holdHover')) {
-          return false
-        }
-        removeClass(that.classes.HOVER, target)
-        that.leave('holdHover')
-        return false
-      })
-    )(this.$fill)
-
-    bindEvent(
-      this.eventName('click'),
-      () => {
-        if (that.is('disabled')) {
-          return
-        }
-        // removeClass(this.classes.EXSIT, this.$wrap)
-        addClass(that.classes.SHOW, that.$wrap)
-        addClass(that.classes.OPENDISABLE, that.$trigger)
-        this.$defaultDropdown.show()
-        return false /* eslint-disable-line */
-      },
-      this.$editBtn
-    )
-
-    bindEvent(
-      this.eventName('click'),
-      () => {
-        if (that.is('disabled')) {
-          return
-        }
-        that.$defaultDropdown.hide()
-        return
-      },
-      this.$fillRemove
-    )
 
     bindEvent(
       this.eventName('click'),
@@ -205,7 +158,7 @@ class FontEditor extends Component {
         that.$defaultDropdown.hide()
         return
       },
-      this.$expandCancel
+      this.$Cancel
     )
 
     bindEvent(
@@ -217,7 +170,7 @@ class FontEditor extends Component {
         that.$defaultDropdown.hide()
         return
       },
-      this.$expandSave
+      this.$Save
     )
   }
 
@@ -235,7 +188,6 @@ class FontEditor extends Component {
   }
 
   createHtml() {
-    const that = this
     this.$wrap = parseHTML(
       template.compile(this.options.template())({
         classes: this.classes,
@@ -246,47 +198,10 @@ class FontEditor extends Component {
 
     insertAfter(this.$wrap, this.element)
 
-    this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
-    this.$fill = query(`.${this.classes.FILL}`, this.$wrap)
-    this.$fillFont = query(`.${this.classes.FILLFONT}`, this.$fill)
-    this.$fillFontName = query(`.${this.classes.FILLFONTNAME}`, this.$fill)
-    this.$fillFontSub = query(`.${this.classes.FILLFONTSUB}`, this.$fill)
-    this.$fillChange = query(`.${this.classes.FILLCHANGE}`, this.$fill)
-    this.$fillRemove = query(`.${this.classes.FILLREMOVE}`, this.$fill)
-    this.$editBtn = query(`.${this.classes.FILLEDIT}`, this.$fill)
-    this.$trigger = query(`.${this.classes.TRIGGER}`, this.$wrap)
     this.$Panel = query(`.${this.classes.DROPDOWN}`, this.$wrap)
-    this.$expandControl = query(`.${this.classes.EXPANDCONTROL}`, this.$Panel)
-    this.$expandCancel = query(`.${this.classes.EXPANDCANCEL}`, this.$Panel)
-    this.$expandSave = query(`.${this.classes.EXPANDSAVE}`, this.$Panel)
-
-    // init pop
-    this.pop = PopDialog.of(this.$fillRemove, {
-      content: 'Are you sure you want to delete?',
-      placement: 'bottom',
-      buttons: {
-        cancel: { label: 'Cancel' },
-        delete: {
-          label: 'Delete',
-          color: 'danger',
-          fn(resolve) {
-            that.clear(true)
-            compose(
-              removeClass(that.classes.EXSIT),
-              addClass(that.classes.WRITE)
-            )(that.$wrap)
-            resolve()
-          }
-        }
-      },
-      onShow: () => {
-        this.enter('holdHover')
-      },
-      onHide: () => {
-        removeClass(this.classes.HOVER, this.$fill)
-        this.leave('holdHover')
-      }
-    })
+    this.$Control = query(`.${this.classes.CONTROL}`, this.$Panel)
+    this.$Cancel = query(`.${this.classes.CANCEL}`, this.$Panel)
+    this.$Save = query(`.${this.classes.SAVE}`, this.$Panel)
   }
 
   unbind() {
@@ -296,38 +211,7 @@ class FontEditor extends Component {
   update() {
     const value = this.val()
     this.element.value = value
-    // set attr
-    Object.entries(this.value).forEach(([i, v]) => {
-      if (this.defaultVal[i] === v) {
-        return
-      }
-      if (i === 'fontSize' || i === 'lineHeight') {
-        return
-      }
-      if (i === 'fontFamily' && v !== 'inherit') {
-        this.$fillFontName.textContent = v
-      }
-      if (i === 'textAlign') {
-        i = 'align-self'
-        setStyle('alignSelf', v, this.$fillFontSub)
-      }
-
-      i = i.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
-
-      const attr = {}
-      attr[i] = v
-      setStyle(attr, this.$fillFontName)
-    })
-
-    // set sub
-    this.$fillFontSub.textContent = `${this.value.fontSize ||
-      'inherit'} / ${this.value.lineHeight || 'inherit'}`
-    if (this.value.fontFamily && this.value.fontFamily !== 'inherit') {
-      compose(
-        removeClass(this.classes.SHOW),
-        addClass(this.classes.EXSIT)
-      )(this.$wrap)
-    }
+    this.TRIGGER.update()
     this.trigger(EVENTS.CHANGE, value)
   }
 
@@ -394,7 +278,6 @@ class FontEditor extends Component {
       this.lineHeight.clear()
       this.fontSize.clear()
       this.fontFamily.clear()
-
       this.update()
     }
   }
@@ -473,7 +356,7 @@ class FontEditor extends Component {
   enable() {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
-      this.pop.enable()
+      this.CLEARPOP.enable()
       this.element.disabled = false
       this.leave('disabled')
     }
@@ -483,7 +366,7 @@ class FontEditor extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrap)
-      this.pop.disable()
+      this.TRIGGER.CLEARPOP.disable()
       this.element.disabled = true
       this.enter('disabled')
     }

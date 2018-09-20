@@ -1,6 +1,6 @@
 import template from '@pluginjs/template'
 import Select from '@pluginjs/select'
-import { query, parseHTML, insertBefore } from '@pluginjs/dom'
+import { query, parseHTML } from '@pluginjs/dom'
 export default class FontWeight {
   constructor(instance) {
     this.instance = instance
@@ -21,17 +21,16 @@ export default class FontWeight {
     })
 
     this.$FontWeight = parseHTML(html)
-    insertBefore(this.$FontWeight, this.instance.$expandControl)
 
     this.$content = query(
       `.${this.instance.classes.FONTWEIGHTCONTENT}`,
-      this.instance.$Panel
+      this.$FontWeight
     )
     this.$select = query(
-      `.${this.instance.classes.FONTWEIGHTDROPDOWN}`,
-      this.instance.$Panel
+      `.${this.instance.classes.FONTWEIGHTSELECT}`,
+      this.$FontWeight
     )
-    this.$dropWeight = query(
+    this.$selectWeight = query(
       `.${this.instance.classes.SELECTTRIGGER}`,
       this.$select
     )
@@ -40,7 +39,7 @@ export default class FontWeight {
   }
 
   initSelect() {
-    this.SELECT = Select.of(this.$dropWeight, {
+    this.SELECT = Select.of(this.$selectWeight, {
       keyboard: true,
       source: resolve => {
         const data = []
@@ -55,7 +54,7 @@ export default class FontWeight {
           return
         }
         // that.instance.update()
-        this.instance.$fillFontName.style.fontWeight = value
+        this.instance.TRIGGER.$fillContentName.style.fontWeight = value
       }
     })
   }

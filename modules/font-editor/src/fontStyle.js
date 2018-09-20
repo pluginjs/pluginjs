@@ -14,7 +14,7 @@ export default class FontStyle {
 
   initialize() {
     const html = template.compile(this.instance.options.fontStyle.template())({
-      namespace: this.instance.classes.NAMESPACE
+      classes: this.instance.classes
     })
     this.$FontStyle = parseHTML(html)
     this.instance.$typoDecorations.append(this.$FontStyle)
@@ -43,17 +43,16 @@ export default class FontStyle {
     const that = this
     bindEvent(
       this.instance.eventName('click'),
-      () => {
+      e => {
         if (that.instance.is('disabled')) {
           return this
         }
-          const $this = $(this) /* eslint-disable-line */
         if (that.instance.value.fontStyle === 'normal') {
           that.instance.value.fontStyle = 'italic'
-          addClass(that.instance.classes.ACTIVE, $this)
+          addClass(that.instance.classes.ACTIVE, e.target)
         } else {
           that.instance.value.fontStyle = 'normal'
-          removeClass(that.instance.classes.ACTIVE, $this)
+          removeClass(that.instance.classes.ACTIVE, e.target)
         }
         return null
       },

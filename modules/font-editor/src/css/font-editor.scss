@@ -58,6 +58,33 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
 
   &-trigger {
     height: $fontEditor-height;
+
+    &-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-size: $font-size-lg;
+      line-height: $fontEditor-height;
+      color: $color-white;
+      text-align: center;
+      background-color: $fontEditor-fill-change-bg;
+      border-radius: $fontEditor-border-radius;
+      opacity: 0;
+      transition: opacity 0.3s;
+
+      &-remove,
+      &-edit {
+        margin: 0 1.6 * $fontEditor-sizer; //0 16px
+
+        &:hover {
+          color: $gray-lighter;
+          cursor: pointer;
+        }
+      }
+    }
   }
 
   &-open-disabled {
@@ -107,7 +134,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     align-items: center;
     color: $fontEditor-color;
     border: 1px solid #E6E6E6;
-    &-font {
+    &-content {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -129,33 +156,6 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
         line-height: 1.2 * $fontEditor-sizer; //12px
       }
     }
-
-    &-change {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      font-size: $font-size-lg;
-      line-height: $fontEditor-height;
-      color: $color-white;
-      text-align: center;
-      background-color: $fontEditor-fill-change-bg;
-      border-radius: $fontEditor-border-radius;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    &-remove,
-    &-edit {
-      margin: 0 1.6 * $fontEditor-sizer; //0 16px
-
-      &:hover {
-        color: $gray-lighter;
-        cursor: pointer;
-      }
-    }
   }
   // expand
   &-dropdown {
@@ -169,19 +169,19 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     border: $fontEditor-border;
     border-radius: $fontEditor-border-radius;
   }
-  &-expand {
-    &-control {
-      margin-top: 3 * $fontEditor-sizer; //30px
-      text-align: right;
-    }
-
-    &-cancel,
-    &-save {
-      width: 9.1 * $fontEditor-sizer; //91px
-      height: 3.2 * $fontEditor-sizer; //32px
-      font-size: $font-size-xs;
-    }
+  
+  &-control {
+    margin-top: 3 * $fontEditor-sizer; //30px
+    text-align: right;
   }
+
+  &-cancel,
+  &-save {
+    width: 9.1 * $fontEditor-sizer; //91px
+    height: 3.2 * $fontEditor-sizer; //32px
+    font-size: $font-size-xs;
+  }
+
 
   &-field {
     align-items: center;
@@ -334,9 +334,9 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   }
 }
 
-.#{$fontEditor}-fill-hover {
-  .#{$fontEditor}-fill {
-    &-change {
+.#{$fontEditor}-trigger-hover {
+  .#{$fontEditor}-trigger {
+    &-action {
       opacity: $fontEditor-fill-change-opacity;
       transition: all 300ms;
     }

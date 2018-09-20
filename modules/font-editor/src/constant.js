@@ -14,7 +14,7 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   DISABLED: '{namespace}-disabled',
   ACTIVE: '{namespace}-active',
-  HOVER: '{namespace}-fill-hover',
+  HOVER: '{namespace}-trigger-hover',
   EXSIT: '{namespace}-exsit',
   WRITE: '{namespace}-write',
   // field
@@ -23,22 +23,22 @@ export const classes = {
   FIELDCONTENT: '{namespace}-field-content',
 
   SHOW: '{namespace}-show',
-  EXPANDCONTROL: '{namespace}-show-control',
-  EXPANDCANCEL: '{namespace}-show-cancel',
-  EXPANDSAVE: '{namespace}-show-save',
+  CONTROL: '{namespace}-control',
+  CANCEL: '{namespace}-cancel',
+  SAVE: '{namespace}-save',
   INHERIT: '{namespace}-inherit',
-  FILLCHANGE: '{namespace}-fill-change',
-  FILLEDIT: '{namespace}-fill-edit',
-  FILLREMOVE: '{namespace}-fill-remove',
+  TRIGGERACTION: '{namespace}-trigger-action',
+  EDITACTION: '{namespace}-trigger-action-edit',
+  REMOVEACTION: '{namespace}-trigger-action-remove',
   EMPTY: '{namespace}-empty',
   FILL: '{namespace}-fill',
-  FILLFONT: '{namespace}-fill-font',
-  FILLFONTNAME: '{namespace}-fill-font-name',
-  FILLFONTSUB: '{namespace}-fill-font-sub',
+  FILLCONTENT: '{namespace}-fill-content',
+  FILLCONTENTNAME: '{namespace}-fill-content-name',
+  FILLCONTENTSUB: '{namespace}-fill-content-sub',
   // FONTFAMILYNAMESPACE: '{fontFamilyNamespace}',
-  FONTFAMILYDROPDOWN: '{namespace}-fontFamily-dropdown',
+  FONTFAMILYSELECT: '{namespace}-fontFamily-select',
   // FONTWEIGHTNAMESPACE: '{fontWeightNamespace}',
-  FONTWEIGHTDROPDOWN: '{namespace}-fontWeight-dropdown',
+  FONTWEIGHTSELECT: '{namespace}-fontWeight-select',
   // FONTSIZENAMESPACE: '{fontSizeNamespace}',
   FONTSIZERANGE: '{namespace}-fontSize-range',
   // LINEHEIGHTNAMESPACE: '{lineHeightNamespace}',
@@ -94,7 +94,7 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{typeface}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
-        '<div class="{classes.FONTFAMILYDROPDOWN}"><span class="{classes.SELECTTRIGGER}"></span></div>' +
+        '<div class="{classes.FONTFAMILYSELECT}"><span class="{classes.SELECTTRIGGER}"></span></div>' +
         '<ul>' +
         '</ul>' +
         '</div>' +
@@ -110,7 +110,7 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{weight}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
-        '<div class="{classes.FONTWEIGHTDROPDOWN}"><span class="{classes.SELECTTRIGGER}"></span></div>' +
+        '<div class="{classes.FONTWEIGHTSELECT}"><span class="{classes.SELECTTRIGGER}"></span></div>' +
         '</div>' +
         '</div>'
       )
@@ -171,7 +171,7 @@ export const defaults = {
     value: 'normal',
     values: ['italic', 'normal'],
     template() {
-      return '<li class="{FONTSTYLE}-fontStyle pj-icon pj-icon-font"></li>'
+      return '<li class="{classes.FONTSTYLE} pj-icon pj-icon-font"></li>'
     }
   },
   textTransform: {
@@ -204,12 +204,12 @@ export const defaults = {
       '</div>' +
       '<div class="{classes.FILL}">' +
       '<i>T</i>' +
-      '<div class="{classes.FILLFONT}"><span class="{classes.FILLFONTNAME}">{fontFamily}</span><span class="{classes.FILLFONTSUB}"></span></div>' +
-      '<div class="{classes.FILLCHANGE}"><i class="{classes.FILLEDIT} pj-icon pj-icon-edit"></i><i class="{classes.FILLREMOVE} pj-icon pj-icon-delete"></i></div>' +
+      '<div class="{classes.FILLCONTENT}"><span class="{classes.FILLCONTENTNAME}">{fontFamily}</span><span class="{classes.FILLCONTENTSUB}"></span></div>' +
+      '<div class="{classes.TRIGGERACTION}"><i class="{classes.EDITACTION} pj-icon pj-icon-edit"></i><i class="{classes.REMOVEACTION} pj-icon pj-icon-delete"></i></div>' +
       '</div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +
-      '<div class="{classes.EXPANDCONTROL}"><button type="button" class="{classes.EXPANDCANCEL} pj-btn pj-btn-transparent">Cancel</button><button type="button" class="{classes.EXPANDSAVE} pj-btn pj-btn-primary">Save</button></div>' +
+      '<div class="{classes.CONTROL}"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">Cancel</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">Save</button></div>' +
       '</div>' +
       '</div>'
     )

@@ -23,7 +23,7 @@ export default class TextTransform {
 
     this.$items = queryAll(
       `.${this.instance.classes.TEXTTRANSFORM}`,
-      this.instance.$Panel
+      this.instance.$typoDecorations
     )
 
     this.values.forEach((value, key) => {

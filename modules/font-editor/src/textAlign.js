@@ -1,14 +1,15 @@
 import template from '@pluginjs/template'
 import {
   parseHTML,
-  query,
-  insertBefore,
+  // query,
+  // insertBefore,
   queryAll,
   setData,
   getData
 } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { hasClass, addClass, removeClass } from '@pluginjs/classes'
+// import FontEditor from './main'
 
 export default class TextAlign {
   constructor(instance) {
@@ -26,12 +27,9 @@ export default class TextAlign {
       classes: this.instance.classes
     })
     this.$TextAlign = parseHTML(html)
-    insertBefore(this.$TextAlign, this.instance.$expandControl)
 
-    this.instance.$typoDecorations = query(
-      `.${this.instance.classes.DECORATIONS}`,
-      this.instance.$Panel
-    )
+    this.instance.$typoDecorations = this.$TextAlign
+
     this.$items = queryAll(
       `.${this.instance.classes.TEXTALIGN}`,
       this.instance.$typoDecorations

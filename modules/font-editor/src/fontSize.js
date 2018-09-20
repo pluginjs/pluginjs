@@ -1,5 +1,5 @@
 import template from '@pluginjs/template'
-import { parseHTML, insertBefore, query } from '@pluginjs/dom'
+import { parseHTML, query } from '@pluginjs/dom'
 import UnitsRange from '@pluginjs/units-range'
 // import { addClass, removeClass } from '@pluginjs/classes'
 
@@ -29,11 +29,11 @@ export default class FontSize {
       ),
       fontSize: this.instance.translate('fontSize')
     })
-    insertBefore(parseHTML(html), this.instance.$expandControl)
+    this.$FontSize = parseHTML(html)
 
     this.$fontSize = query(
       `.${this.instance.classes.FONTSIZERANGE}`,
-      this.instance.$Panel
+      this.$FontSize
     )
 
     // create units
