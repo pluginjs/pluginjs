@@ -6,7 +6,8 @@ import {
   queryAll,
   query,
   setData,
-  getData
+  getData,
+  closest
 } from '@pluginjs/dom'
 import { each } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -101,7 +102,10 @@ class Wizard extends Component {
       this.eventName('click'),
       this.options.step,
       e => {
-        const index = getData('wizard-index', e.target)
+        const index = getData(
+          'wizard-index',
+          closest(`.${this.classes.ITEM}`, e.target)
+        )
         if (typeof index !== 'undefined' && !that.get(index).is('disabled')) {
           that.goTo(index)
         }

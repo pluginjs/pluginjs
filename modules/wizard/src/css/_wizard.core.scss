@@ -26,12 +26,12 @@ $wizard-transition-duration: 0.2s !default;
   }
 }
 
-.#{$wizard}-steps-item-content {
+.#{$wizard}-item-content {
   display: inline-block;
   vertical-align: middle;
 }
 
-.#{$wizard}-steps-item-title {
+.#{$wizard}-item-title {
   position: relative;
   display: inline-block;
 }

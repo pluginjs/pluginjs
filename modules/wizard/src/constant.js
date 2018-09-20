@@ -22,6 +22,7 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   SUCCESS: '{namespace}-success',
   ERROR: '{namespace}-error',
+  ITEM: '{namespace}-item',
   STEP: {
     DONE: '{namespace}-done',
     ERROR: '{namespace}-error',
@@ -56,7 +57,7 @@ export const methods = ['enable', 'disable', 'destroy', 'get']
 export const defaults = {
   theme: null,
 
-  step: '.pj-wizard-steps > li',
+  step: '.pj-wizard-item',
 
   getPane(index, step, classes) {
     return children(find(`.${classes.CONTENT}`, step))[index]

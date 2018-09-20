@@ -59,7 +59,7 @@ $wizard-button-bg: $gray-lighter;
   }
 }
 
-.#{$wizard}-steps-item-icon {
+.#{$wizard}-item-icon {
   width: $wizard-step-icon-width;
   height: $wizard-step-icon-height;
   margin-left: $wizard-step-icon-spacer-x;
@@ -69,7 +69,7 @@ $wizard-button-bg: $gray-lighter;
   border-radius: $wizard-step-icon-width;
 }
 
-.#{$wizard}-steps-item-title {
+.#{$wizard}-item-title {
   margin-top: $wizard-title-margin-top;
   color: $wizard-title-color;
   text-transform: capitalize;
@@ -95,7 +95,7 @@ $wizard-button-bg: $gray-lighter;
 }
 
 .#{$wizard}-done {
-  .#{$wizard}-steps-item-icon {
+  .#{$wizard}-item-icon {
     overflow: hidden;
     font-size: 0;
     background-color: $wizard-active-color;
@@ -105,8 +105,8 @@ $wizard-button-bg: $gray-lighter;
     font-size: $wizard-font-size;
   }
 
-  > .#{$wizard}-steps-item-content {
-    > .#{$wizard}-steps-item-title {
+  > .#{$wizard}-item-content {
+    > .#{$wizard}-item-title {
       color: $wizard-active-color;
 
       &::after {
@@ -117,15 +117,15 @@ $wizard-button-bg: $gray-lighter;
 }
 
 .#{$wizard}-done.#{$wizard}-current {
-  > .#{$wizard}-steps-item-content {
-    > .#{$wizard}-steps-item-title {
+  > .#{$wizard}-item-content {
+    > .#{$wizard}-item-title {
       &::after {
         background-color: $wizard-title-solid;
       }
     }
  }
 
- .#{$wizard}-steps-item-icon {
+ .#{$wizard}-item-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,8 +138,8 @@ $wizard-button-bg: $gray-lighter;
   }
 }
 
-.#{$wizard}-steps .#{$wizard}-steps-item:last-child {
-  .#{$wizard}-steps-item-title {
+.#{$wizard}-steps .#{$wizard}-item:last-child {
+  .#{$wizard}-item-title {
     &::after {
       display: none;
     }
@@ -147,11 +147,11 @@ $wizard-button-bg: $gray-lighter;
 }
 
 [aria-expanded="true"] {
-  .#{$wizard}-steps-item-icon {
+  .#{$wizard}-item-icon {
     background-color: $wizard-active-color;
   }
 
-  .#{$wizard}-steps-item-title {
+  .#{$wizard}-item-title {
     color: $wizard-active-color;
   }
 }
