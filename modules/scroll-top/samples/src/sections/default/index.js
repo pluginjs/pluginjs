@@ -1,11 +1,12 @@
 import { query, queryAll, getData } from '@pluginjs/dom'
 import ScrollTop from '@pluginjs/scroll-top'
 
-const root = query('#default')
-const easing = query('[data-option="easing"]', root)
-const duration = query('[data-option="duration"]', root)
-const theme = query('[data-option="theme"]', root)
-const animation = query('[data-option="animation"]', root)
+const example = query('#default')
+const easing = query('[data-option="easing"]', example)
+const duration = query('[data-option="duration"]', example)
+const theme = query('[data-option="theme"]', example)
+const color = query('[data-option="color"]', example)
+const animation = query('[data-option="animation"]', example)
 
 let instance = ScrollTop.of({
   theme: theme.value,
@@ -15,7 +16,7 @@ let instance = ScrollTop.of({
 })
 
 queryAll('[data-api]').forEach(el =>
-  el.addEventListener('click', ({ target }) => {
+  el.addEventListener('click', target => {
     const api = getData('api', target)
     if (api === 'init') {
       instance = ScrollTop.of({
@@ -37,10 +38,28 @@ queryAll('[data-option]').forEach(el =>
     }
 
     instance = ScrollTop.of({
-      theme: theme.value,
+      theme:
+        color.value === 'default'
+          ? theme.value
+          : `${theme.value} ${color.value}`,
       easing: easing.value,
       duration: duration.value,
-      animation: animation.value
+      animation: animation.value,
+      color: color.value === 'custom' ? '#fff' : null,
+      background:
+        color.value === 'custom'
+          ? 'linear-gradient(45deg, #215fdb, #2feffd)'
+          : null
     })
   })
 )
+
+color.addEventListener('change', () => {
+  const value = color.value
+
+  if (value === 'default') {
+    example.style.background = '#fff'
+  } else {
+    example.style.background = '#333'
+  }
+})

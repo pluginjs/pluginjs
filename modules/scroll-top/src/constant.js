@@ -41,10 +41,16 @@ export const defaults = {
     animationDuration: 200
   },
 
-  theme: 'default',
+  theme: 'circle', // circle, square, text
   locale: 'en',
   localeFallbacks: true,
-  throttle: null
+  throttle: null,
+  icon: 'pj-icon pj-icon-arrow-slim-up-solid',
+  color: null, // custom color
+  background: null, // custom background
+  template() {
+    return '<a href="#" class="{classes.TRIGGER} {themeClass}">{icon} {label}</a>'
+  }
 }
 
 export const dependencies = ['scroll']

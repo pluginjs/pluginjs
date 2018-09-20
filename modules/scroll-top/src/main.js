@@ -5,6 +5,7 @@ import { throttle } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, offset as getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
+import templateEngine from '@pluginjs/template'
 import { query, append, parseHTML } from '@pluginjs/dom'
 import Scroll from '@pluginjs/scroll'
 import {
@@ -76,9 +77,32 @@ class ScrollTop extends GlobalComponent {
       this.$trigger = parseHTML(this.options.trigger)
     } else {
       this.$trigger = parseHTML(
-        `<a href="#" class="${
-          this.classes.TRIGGER
-        } ${this.getThemeClass()}">${this.translate('label')}</a>`
+        templateEngine.render(this.options.template.call(this), {
+          classes: this.classes,
+          themeClass: this.getThemeClass(),
+          icon: this.options.icon
+            ? `<i class="${this.options.icon}"></i>`
+            : null,
+          label: this.translate('label')
+        })
+      )
+    }
+
+    if (this.options.color) {
+      setStyle(
+        {
+          color: this.options.color
+        },
+        this.$trigger
+      )
+    }
+
+    if (this.options.background && this.options.theme.indexOf('text') === -1) {
+      setStyle(
+        {
+          background: this.options.background
+        },
+        this.$trigger
       )
     }
 

@@ -1,104 +1,97 @@
 @import "@pluginjs/styles/variables.scss";
+@import "scroll-top.core";
 
 // Vars
 // =====================
-$scrollTop: "pj-scrollTop" !default;
-$scrollTop-trigger-bottom: 20px !default;
-$scrollTop-trigger-right: 20px !default;
+$scrollTop: "pj-scrollTop";
+$icon: "pj-icon";
 
-// Core
+$scrollTop-font-family: $font-family-base;
+$scrollTop-font-size: $font-size-sm;
+
+$scrollTop-size: 40px;
+$scrollTop-square-border-radius: $border-radius-base;
+
+$scrollTop-color: $gray-dark;
+$scrollTop-hover-color: $gray-darker;
+
+$scrollTop-solid-color: $color-white;
+$scrollTop-solid-bg: $scrollTop-color;
+$scrollTop-solid-hover-bg: $scrollTop-hover-color;
+
+$scrollTop-light-color: $color-white;
+
+$scrollTop-light-solid-bg: $color-white;
+$scrollTop-light-solid-color: $scrollTop-color;
+$scrollTop-light-solid-hover-color: $scrollTop-hover-color;
+
+// Skin
 // =====================
-html {
-  overflow-y: scroll;
-}
-
 .#{$scrollTop} {
-  position: fixed;
-  right: $scrollTop-trigger-right;
-  bottom: $scrollTop-trigger-bottom;
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-  font-family: sans-serif;
-  font-size: 12px;
-  color: #000;
-  text-decoration: none;
-  text-indent: 100%;
-  text-transform: uppercase;
-  white-space: nowrap;
-  background: no-repeat center center transparent;
-  outline: none;
-  opacity: 0;
+  font-family: $scrollTop-font-family;
+  font-size: $scrollTop-font-size;
+  color: $scrollTop-color;
 
-  &-show {
-    opacity: 1;
+  &:hover,
+  &:focus {
+    color: $scrollTop-hover-color;
   }
 
-  &-animating,
-  &-animating * {
-    pointer-events: none !important;
-  }
-
-  &--default {
-    display: block;
-    width: auto;
-    height: auto;
-    padding: 10px;
+  .#{$icon} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     text-indent: 0;
-    background: #eee;
-    border-radius: 10px;
+    transform: translate(-50%, -50%);
+  }
 
-    &:hover {
-      background-color: #ddd;
+  &--square,
+  &--circle {
+    width: $scrollTop-size;
+    height: $scrollTop-size;
+    color: $scrollTop-solid-color;
+    text-indent: 100%;
+    background-color: $scrollTop-solid-bg;
+
+    &:hover,
+    &:focus {
+      color: $scrollTop-solid-color;
+      background-color: $scrollTop-solid-hover-bg;
     }
   }
 
-  // cycle theme
-  &--cycle {
-    background-image: url("../images/cycle.png");
-
-    &:hover {
-      background-image: url("../images/cycle-hover.png");
-    }
-  }
-
-  // square theme
   &--square {
-    background-image: url("../images/square.png");
-
-    &:hover {
-      background-image: url("../images/square-hover.png");
-    }
+    border-radius: $scrollTop-square-border-radius;
   }
 
-  // text theme
+  &--circle {
+    border-radius: 50%;
+  }
+
   &--text {
-    background-image: url("../images/text.png");
-
-    &:hover {
-      background-image: url("../images/text-hover.png");
+    .#{$icon} {
+      display: none;
     }
   }
 
-  // triangle theme
-  &--triangle {
-    background-image: url("../images/triangle.png");
+  &--light {
+    color: $scrollTop-light-color;
 
-    &:hover {
-      background-image: url("../images/triangle-hover.png");
+    &:hover,
+    &:focus {
+      color: $scrollTop-light-color;
     }
-  }
-}
 
-.#{$scrollTop}-fade {
-  transition-property: opacity;
-}
+    &.#{$scrollTop}--square,
+    &.#{$scrollTop}--circle {
+      color: $scrollTop-light-solid-color;
+      background-color: $scrollTop-light-solid-bg;
 
-.#{$scrollTop}-slide {
-  bottom: -100px;
-  transition-property: bottom, opacity;
-
-  &.#{$scrollTop}-show {
-    bottom: $scrollTop-trigger-bottom;
+      &:hover,
+      &:focus {
+        color: $scrollTop-light-solid-hover-color;
+        background-color: $scrollTop-light-solid-bg;
+      }
+    }
   }
 }

@@ -1,0 +1,42 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$scrollTop: "pj-scrollTop" !default;
+
+$scrollTop-gutter: 20px !default;
+
+// Core
+// =====================
+.#{$scrollTop} {
+  position: fixed;
+  right: $scrollTop-gutter;
+  bottom: $scrollTop-gutter;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  opacity: 0;
+
+  &-show {
+    opacity: 1;
+  }
+
+  &-animating,
+  &-animating * {
+    pointer-events: none !important;
+  }
+
+  &-fade {
+    transition-property: color, background-color, opacity;
+  }
+}
+
+.#{$scrollTop}-slide {
+  bottom: -100px;
+  transition-property: color, background-color, bottom, opacity;
+
+  &.#{$scrollTop}-show {
+    bottom: $scrollTop-gutter;
+  }
+}
