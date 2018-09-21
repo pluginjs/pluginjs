@@ -18,8 +18,8 @@ export const classes = {
   DISABLED: '{namespace}-disabled',
   MORE: '{namespace}-more',
   DROPDOWN: '{namespace}-dropdown',
-  HIDE: '{namespace}-hide',
-  PANEL: '{namespace}-panel'
+  DROPDOWNITEM: '{namespace}-dropdown-item',
+  HIDE: '{namespace}-hide'
 }
 
 export const methods = [

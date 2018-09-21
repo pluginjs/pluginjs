@@ -18,8 +18,6 @@ $filter-border-width: $border-width;
 $filter-border-radius: $border-radius-base;
 $filter-border-color: $border-color;
 
-$dropdown: "pj-dropdown";
-
 $filters-button-margin: 10px;
 
 // Core
@@ -34,7 +32,7 @@ $filters-button-margin: 10px;
     border-radius: inherit;
   }
 
-  .#{$dropdown}-item.#{$filter}-active {
+  .#{$filter}-dropdown .#{$filter}-active {
     color: $filter-active-color;
   }
 
@@ -95,25 +93,10 @@ $filters-button-margin: 10px;
       display: none;
     }
   }
-
-  // .#{$filter}-dropdown {
-  //   padding: $filter-padding;
-  //   font-size: $filter-font-size;
-  //   line-height: $filter-line-height;
-  //   cursor: pointer;
-  // }
-}
-
-.#{$filter}-panel {
-
-  .#{$filter}-active {
-    color: $filter-active-color;
-  }
 }
 
 /* pill */
 .#{$filter}s--pill {
-
   .#{$filter} {
     margin-left: $filters-button-margin;
     border: $filter-border-width solid $filter-border-color;
@@ -139,7 +122,6 @@ $filters-button-margin: 10px;
 
 /* group */
 .#{$filter}s--group {
-
   .#{$filter} {
     border: $filter-border-width solid $filter-border-color;
 
@@ -165,7 +147,6 @@ $filters-button-margin: 10px;
 }
 
 .#{$filter}s--line {
-
   .#{$filter} {
     &:hover,
     &:active,
