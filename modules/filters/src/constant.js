@@ -39,7 +39,6 @@ export const defaults = {
   valueFrom: 'data-id', // text, [selector, data-attr] or data-attr
   responsive: false,
   responsiveMoreText: 'More...',
-  dropdownWidth: 120,
   templates: {
     item() {
       return '<button type="button" class="{classes.ITEM}" data-id="{id}">{text}</button>'
