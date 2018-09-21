@@ -19,10 +19,20 @@ $fontPicker-search-height: 40px !default;
 // Core
 // =====================
 .#{$fontPicker} {
-  width: $fontPicker-width;
-  height: $fontPicker-height;
+  // .#{$fontPicker}-panel {
+  //   top: 10px !important;
+  //   height: $fontPicker-panel-height;
+  //   min-height: $fontPicker-panel-height;
+  //   padding: 0;
+  //   font-size: $fontPicker-font-size;
+  
+  //   li:hover {
+  //     // cursor: default;
+  //     background-color: inherit;
+  //   }
+  // }
 
-  .#{$fontPicker}-trigger.#{$dropdown}-show {
+  &-trigger.#{$dropdown}-show {
     i {
       transition: all 0.3s;
       transform: translateY(-50%) rotate(180deg);
@@ -104,7 +114,7 @@ $fontPicker-search-height: 40px !default;
     }
   }
 
-  &-package-wrap {
+  &-sources {
     height: $fontPicker-panel-height - $fontPicker-controller-height - $fontPicker-search-height;
     overflow: auto;
 
@@ -169,7 +179,7 @@ $fontPicker-search-height: 40px !default;
     }    
   }
 
-  &-controller {
+  &-actions {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -178,7 +188,7 @@ $fontPicker-search-height: 40px !default;
     width: 100%;    
   }
 
-  &-selector {
+  &-switcher {
     display: flex;
     flex-grow: 1;
     height: 100%;
@@ -209,11 +219,11 @@ $fontPicker-search-height: 40px !default;
         border: 0;
       }
     
-      // .#{$fontPicker}-source-icon {
-      //   display: inline-block;
-      //   margin-right: 9px;
-      //   vertical-align: middle;
-      // }
+      .#{$fontPicker}-source-icon {
+        display: inline-block;
+        margin-right: 9px;
+        vertical-align: middle;
+      }
     }
 
     .#{$dropdown}-icon {
@@ -223,7 +233,7 @@ $fontPicker-search-height: 40px !default;
     }
   }
 
-   &-manage {
+   &-manager {
     display: flex;
     flex-basis: calc(50% - 1px);
     align-items: center;

@@ -38,7 +38,7 @@ $fontPicker-active-color: $color-primary-active;
 
   .#{$dropdown} {
     &-item {
-      padding: $fontPicker-spacer-x $fontPicker-font-spacer-x;
+      padding: $fontPicker-spacer-x;
     }
   }
 
@@ -52,12 +52,14 @@ $fontPicker-active-color: $color-primary-active;
       line-height: $fontPicker-line-height;
     }
 
-    &.#{$input} {
-      padding: $fontPicker-spacer-x - $fontPicker-border-width $fontPicker-input-padding;
+    .#{$fontPicker}-source-icon {
+      display: inline-block;
+      margin-right: 9px;
+      vertical-align: middle;
     }
   }
 
-  &-package-wrap {
+  &-sources {
     .#{$fontPicker}-activated {
       .#{$fontPicker}-empty {
         padding: $fontPicker-empty-padding;
@@ -120,7 +122,7 @@ $fontPicker-active-color: $color-primary-active;
     color: $fontPicker-active-color;
   }
 
-  &-controller {
+  &-actions {
     font-size: $fontPicker-font-size;
     line-height: $fontPicker-line-height;
     text-transform: capitalize;
@@ -131,7 +133,7 @@ $fontPicker-active-color: $color-primary-active;
     border-bottom-left-radius: $fontPicker-border-radius;
   }
 
-  &-selector {
+  &-switcher {
     padding: $fontPicker-spacer-x $fontPicker-spacer-x + 2 * $fontPicker-border-width;
 
     &:focus {
@@ -148,8 +150,8 @@ $fontPicker-active-color: $color-primary-active;
     }
   
     .#{$dropdown} {
-      top: 4px !important;
-      left: 2px !important;
+      top: -6px !important;
+      left: 6px !important;
       width: 130px !important;
       border: 0;
       div:last-child {
@@ -176,7 +178,7 @@ $fontPicker-active-color: $color-primary-active;
     }
   }
 
-  &-manage {
+  &-manager {
     text-align: center;
     border-left: $fontPicker-border-width solid $fontPicker-border-color;
 

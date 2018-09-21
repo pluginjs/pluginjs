@@ -125,14 +125,14 @@ export const dependencies = ['dropdown', 'scrollable']
 export const translations = {
   en: {
     searchText: 'Search',
-    manage: 'manage',
+    manager: 'manage',
     activatedFonts: 'activated',
     emptyTitle: 'Befor using font, you need add fonts. ',
     emptyLinkTitle: 'Go add now'
   },
   zh: {
     searchText: '搜索',
-    manage: '管理',
+    manager: '管理',
     activatedFonts: '已选字体',
     emptyTitle: '使用字体之前，请先添加。',
     emptyLinkTitle: '现在添加'
