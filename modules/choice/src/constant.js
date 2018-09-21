@@ -40,7 +40,8 @@ export const defaults = {
   overflow: false,
   disabled: false,
   toggleTrigger: 'hover', // click
-  toggleIcon: 'fa fa-caret-down',
+  toggleIcon: 'pj-icon pj-icon-triangle-down-mini-solid',
+  toggleText: 'Other &nbsp;',
   templates: {
     wrap() {
       return '<div class="{classes.WRAP}"></div>'
@@ -49,7 +50,7 @@ export const defaults = {
       return '<button type="button" class="{classes.ITEM}" data-value="{value}">{item.label}</button>'
     },
     toggle() {
-      return '<button type="button" class="{classes.ITEM} {classes.TOGGLE}" aria-haspopup="true" aria-expanded="false">Other &nbsp;<i class="{icon}" aria-hidden="true"></i></button>'
+      return '<button type="button" class="{classes.ITEM} {classes.TOGGLE}" aria-haspopup="true" aria-expanded="false">{text}<i class="{icon}" aria-hidden="true"></i></button>'
     },
     dropdown() {
       return '<div class="{classes.DROPDOWN}"></div>'

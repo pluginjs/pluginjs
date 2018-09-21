@@ -11,6 +11,7 @@
   "dependencies": {
     "@pluginjs/choice": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/icons": "*",
     "font-awesome": "^4.7.0"
   },
   "devDependencies": {

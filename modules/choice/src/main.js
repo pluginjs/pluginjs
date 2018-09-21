@@ -163,11 +163,11 @@ class Choice extends Component {
   }
 
   createToggle() {
-    console.log(this.$wrap)
     this.$toggle = parseHTML(
       template.render(this.options.templates.toggle.call(this), {
         classes: this.classes,
-        icon: this.options.toggleIcon
+        icon: this.options.toggleIcon,
+        text: this.options.toggleText
       })
     )
   }
@@ -516,7 +516,7 @@ class Choice extends Component {
       totalWidth = outerWidth(this.$toggle)
       childrenMatchSelector('[data-value]', this.$wrap).forEach($item => {
         const itemWidth = outerWidth($item)
-        // $item.dataset.width = itemWidth
+        setData('width', itemWidth, $item)
         totalWidth += itemWidth
         if (totalWidth > width) {
           $items.push($item)
@@ -536,8 +536,7 @@ class Choice extends Component {
       if (width < containerWidth) {
         totalWidth = width
         childrenMatchSelector('[data-value]', this.$dropdown).forEach($item => {
-          const itemWidth = getData('width', $item)
-          totalWidth += parseInt(itemWidth) /* eslint-disable-line */
+          totalWidth += getData('width', $item)
           if (totalWidth < containerWidth) {
             $items.push($item)
           }
@@ -552,6 +551,8 @@ class Choice extends Component {
         ) {
           removeClass(this.classes.SELECTED, this.$toggle)
         }
+      } else {
+        console.info('width > containerWidth', width, containerWidth)
       }
 
       if (childrenMatchSelector('[data-value]', this.$dropdown).length === 0) {
