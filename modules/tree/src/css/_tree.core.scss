@@ -3,8 +3,12 @@
 // =====================
 
 $tree: "pj-tree" !default;
-$tree-toggler-width: 10px !default;
-$tree-toggler-height: 10px !default;
+
+$tree-indent: 10px !default;
+$tree-toggler-size: 15px !default;
+$tree-element-indent: $tree-toggler-size !default;
+
+$tree-selected-color: $color-primary !default;
 
 // Core
 // ======================
@@ -14,39 +18,47 @@ $tree-toggler-height: 10px !default;
   list-style: none;
 
   ul {
-    margin: 0;
+    display: none;
+    padding: 0;
+    margin-left: $tree-indent;
     list-style: none;
   }
 
-  // icon
-  &-toggler {
-    display: inline-block;
-    cursor: pointer;
-  }
-
-  // list
-  &-branch {
-    > ul {
-      display: none;
-
-      &.#{$tree}-expand {
-        display: block;
-      }
-    }
-
-    &.#{$tree}-open {
-
-      > ul {
-        display: block;
-      }
+  .#{$tree}-branch {
+    &:focus {
+      outline: none;
     }
   }
 
   &-element {
-    > * {
-      display: inline-block;
-      letter-spacing: 0;
-      vertical-align: middle;
+    position: relative;
+    margin-left: $tree-element-indent;
+  }
+
+  &-toggler {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: $tree-toggler-size;
+    height: 100%;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &-open {
+    > ul {
+      display: block;
+    }
+  }
+
+  &-selected {
+    > .#{$tree}-element {
+      color: $tree-selected-color;
     }
   }
 }

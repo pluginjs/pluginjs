@@ -53,7 +53,7 @@ export default class Node {
           this.subelements = []
         }
 
-        this.$parent = parents(`li.${this.classes.BRANCH}`, this.dom)[0]
+        this.$parent = parents(`.${this.classes.BRANCH}`, this.dom)[0]
 
         if (!this.$parent) {
           this.$parent = this.dom.parentNode
@@ -193,13 +193,13 @@ export default class Node {
   }
 
   hasChildrenSelect() {
-    return queryAll(`li.${this.classes.SELECTED}`, this.dom).length !== 0
+    return queryAll(`.${this.classes.SELECTED}`, this.dom).length !== 0
   }
 
   hasChildrenSelectBranch() {
     return (
-      queryAll(`li.${this.classes.CHILDRENSELECTED}`, this.api.element)
-        .length !== 0
+      queryAll(`.${this.classes.CHILDRENSELECTED}`, this.api.element).length !==
+      0
     )
   }
 
@@ -235,7 +235,7 @@ export default class Node {
     }
 
     if (!this.api.options.multiSelect && this.hasChildrenSelectBranch()) {
-      queryAll(`li.${this.classes.CHILDRENSELECTED}`, this.api.element).map(
+      queryAll(`.${this.classes.CHILDRENSELECTED}`, this.api.element).map(
         el => {
           return removeClass(this.classes.CHILDRENSELECTED, el)
         }

@@ -9,7 +9,9 @@ class DataParser {
 
   getLeaf(data) {
     const content = this.templates.leafContent(data)
-    return `<li tabindex="${this.options.tabindex}">${content}</li>`
+    return `<li tabindex="${this.options.tabindex}">
+              <div class="${this.classes.ELEMENT}">${content}</div>
+            </li>`
   }
 
   getBranch(data) {

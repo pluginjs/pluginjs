@@ -1,19 +1,11 @@
 import { query } from '@pluginjs/dom'
 import Tree from '@pluginjs/tree'
 
-const element = query('#arrows .files')
+const element = query('#default .example')
 
 const data = [
   {
-    name: 'Home',
-    children: [
-      {
-        name: 'Work'
-      },
-      {
-        name: 'Pages'
-      }
-    ]
+    name: 'Home'
   },
   {
     name: 'Blog',
@@ -60,20 +52,13 @@ const data = [
     ]
   },
   {
-    name: 'Nested',
-    children: [
-      {
-        name: 'list'
-      },
-      {
-        name: 'list2'
-      }
-    ]
+    name: 'Nested'
   }
 ]
 
 Tree.of(element, {
   data,
+  autoOpen: [2, 1],
   multiSelect: true,
   canUnselect: false
 })

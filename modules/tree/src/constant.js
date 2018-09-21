@@ -18,6 +18,7 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   TREE: '{namespace}',
   TOGGLER: '{namespace}-toggler',
+  ICON: '{namespace}-icon',
   ELEMENT: '{namespace}-element',
   BRANCH: '{namespace}-branch',
   OPEN: '{namespace}-open',
@@ -42,7 +43,7 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  autoOpen: [1, 2], // true/false/1/2...
+  autoOpen: false, // true/false/1/2...
   keyboard: true, // Support keyboard navigation.
   dataFromHtml: false,
   data: null,
@@ -52,7 +53,10 @@ export const defaults = {
 
   templates: {
     toggler() {
-      return '<i class="{classes.TOGGLER}"></i>'
+      return '<i class="{classes.TOGGLER} pj-icon pj-icon-arrow-right-mini"></i>'
+    },
+    icon() {
+      return '<i class="{classes.ICON}"></i>'
     },
     // icon(className) {
     //  return `<i class="${className} pj-tree-icon"></i>`
@@ -68,7 +72,6 @@ export const defaults = {
     },
     leaf(node) {
       const content = this.leafContent(node)
-
       return content
     },
     leafContent(node) {
