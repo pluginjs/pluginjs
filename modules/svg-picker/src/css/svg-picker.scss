@@ -1,4 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
 @import "./svg-picker.core";
 
 // Vars
@@ -49,9 +50,10 @@ $svgPicker-add-margin-right: 12px;
 $svgPicker-type-height: 32px;
 $svgPicker-type-bg-color: $gray-lightest;
 $svgPicker-type-spacer-x: 12px;
-// panel
-$svgPicker-panel-width: 272px;
-$svgPicker-panel-height: 400px;
+// dropdown
+$svgPicker-dropdown-width: 272px;
+$svgPicker-trigger-with: 200px;
+$svgPicker-dropdown-height: 400px;
 // manage
 $svgPicker-manage-icon-margin-right: 8px;
 $svgPicker-manage-icon-font-size: $font-size-sm;
@@ -64,6 +66,10 @@ $svgPicker-search-border: 1px solid $gray;
 $svgPicker-search-padding: 12px;
 $svgPicker-search-margin-bottom: 1px;
 $svgPicker-search-icon-color: $gray-dark;
+// icon
+$svgPicker-trigger-arrow-icon: $pj-icon-arrow-down-mini;
+$svgPicker-trigger-arrow-font: $pj-icon-font-family;
+$svgPicker-trigger-arrow-right: 0.5 * $sizer;
 
 // Core
 // =====================
@@ -83,14 +89,23 @@ $svgPicker-search-icon-color: $gray-dark;
   &:focus {
     outline: none;
   }
-
   .#{$dropdown}-trigger {
+    box-sizing: border-box;
+    width: $svgPicker-trigger-with;
     padding: $svgPicker-trigger-padding;
     font-size: $svgPicker-font-size;
     line-height: $svgPicker-trigger-height;
     color: $svgPicker-color;
 
-
+    &::after {
+      @include icon();
+      position: absolute;
+      top: 25%;
+      right: $svgPicker-trigger-arrow-right;
+      font-family: $svgPicker-trigger-arrow-font;
+      content: icon-content($svgPicker-trigger-arrow-icon);
+      transition: transform 0.3s;
+    }
     svg {
       width: $svgPicker-svg-width;
       height: $svgPicker-svg-height;
@@ -98,8 +113,8 @@ $svgPicker-search-icon-color: $gray-dark;
     }
   }
 
-  .#{$dropdown}-trigger[aria-expanded="true"] {
-    color: $svgPicker-select-color;
+  .#{$dropdown}-trigger[aria-expanded="true"]::after{
+    transform: rotate(180deg);
   } 
 
   &-empty {
@@ -127,10 +142,10 @@ $svgPicker-search-icon-color: $gray-dark;
     color: $gray-darkest;
   }
 
-  &-panel.#{$dropdown} {
-    width: $svgPicker-panel-width;
-    height: $svgPicker-panel-height;
-    min-height: $svgPicker-panel-height;
+  &-dropdown.#{$dropdown} {
+    width: $svgPicker-dropdown-width;
+    height: $svgPicker-dropdown-height;
+    min-height: $svgPicker-dropdown-height;
     padding: 0 0 $svgPicker-height 0;
   }
 
@@ -266,19 +281,6 @@ $svgPicker-search-icon-color: $gray-dark;
       border-color: $svgPicker-active-color;
     }
   }
-
-   &-disabled {
-    cursor: not-allowed;
-
-    &:hover {
-      border: 1px solid $svgPicker-border-color;
-    }
-
-    .#{$dropdown}-trigger {
-      pointer-events: none
-    }
-   }
-
 }
 
 .#{$svgPicker}-searching .#{$svgPicker}-type {
@@ -288,6 +290,17 @@ $svgPicker-search-icon-color: $gray-dark;
 
   .#{$svgPicker}-searched {
     display: inline-flex;
+  }
+}
+#disabled {
+  .#{$svgPicker}:hover {
+    border-color: #e6e6e6 !important;
+  }
+  .#{$svgPicker}-disabled {
+    cursor: not-allowed;
+    .#{$dropdown}-trigger {
+      pointer-events: none
+    }
   }
 }
 

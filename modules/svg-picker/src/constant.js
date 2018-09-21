@@ -36,8 +36,8 @@ export const baseClass = {
   THEME: '{namespace}--{theme}',
   ELEMENT: '{namespace}',
   TRIGGER: '{namespace}-trigger',
-  WRAP: '{namespace}-wrap',
-  PANEL: '{namespace}-panel',
+  WRAP: '{namespace}',
+  DROPDOWN: '{namespace}-dropdown',
   ICON: '{namespace}-icon',
   ICONWRAP: '{namespace}-icon-wrap',
   ICONHOVER: '{namespace}-icon-hover',
@@ -73,7 +73,7 @@ export const defaults = {
   disabled: false,
   templates: {
     trigger() {
-      return `<div class={classes.ELEMENT}><span class="pj-dropdown-trigger"></span><i class='{classes.ELEMENT}-switch pj-icon pj-icon-triangle-down-mini-solid'></i>
+      return `<div class={classes.TRIGGER}><span class="pj-dropdown-trigger"></span>
       </div>`
     },
     icon() {

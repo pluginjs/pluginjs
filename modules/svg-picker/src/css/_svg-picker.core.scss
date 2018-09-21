@@ -56,7 +56,7 @@ $svgPicker-search-icon-color: $gray-dark !default;
     transform: translateY(-50%);
   }
 
-  &-panel {
+  &-dropdown {
     display: flex;
     flex-direction: column;
 
@@ -164,17 +164,6 @@ $svgPicker-search-icon-color: $gray-dark !default;
       }
     }
   }
-
-  &-wrap {
-    .#{$svgPicker}.pj-dropdown-show {
-
-      .#{$svgPicker}-switch {
-        transition: all 0.3s;
-        transform: rotate(180deg);
-      }
-    }
-  }
-
 }
 
 .#{$svgPicker}-searching .#{$svgPicker}-type {

@@ -61,7 +61,7 @@ class SvgPicker extends Component {
     this.setupI18n()
 
     this.$svgPicker = addClass(
-      this.classes.ELEMENT,
+      this.classes.TRIGGER,
       parseHTML(
         template.compile(this.options.templates.trigger())({
           classes: this.classes
@@ -71,7 +71,7 @@ class SvgPicker extends Component {
     this.$svgTrigger = query('.pj-dropdown-trigger', this.$svgPicker)
     insertAfter(this.$svgPicker, this.element)
     wrap(`<div class="${this.classes.WRAP}"></div>`, this.$svgPicker)
-    insertAfter(`<div class=${this.classes.PANEL}></div>`, this.$svgPicker)
+    insertAfter(`<div class=${this.classes.DROPDOWN}></div>`, this.$svgPicker)
     hideElement(this.element)
 
     if (this.options.theme) {
@@ -80,7 +80,7 @@ class SvgPicker extends Component {
 
     this.data = DATA
     this.$dropdown = this.initDropdown()
-    this.$panel = this.$dropdown.$dropdown
+    this.$dropdownBox = this.$dropdown.$dropdown
 
     this.icon = null
     this.$icons = null
@@ -95,7 +95,7 @@ class SvgPicker extends Component {
 
   initialize() {
     if (!this.data || !this.data.length) {
-      this.$empty = query(`.${this.classes.EMPTY}`, this.$panel)
+      this.$empty = query(`.${this.classes.EMPTY}`, this.$dropdownBox)
     } else {
       this.add(this.data)
     }
@@ -107,7 +107,7 @@ class SvgPicker extends Component {
     }
 
     append(
-      `<span>${this.options.placehoder}</span>`,
+      `${this.options.placehoder}`,
       query('.pj-dropdown-trigger', this.$svgPicker)
     )
 
@@ -155,7 +155,7 @@ class SvgPicker extends Component {
           // that.close($type)
         }
       },
-      this.$panel
+      this.$dropdownBox
     )
 
     bindEvent(
@@ -172,7 +172,7 @@ class SvgPicker extends Component {
         that.select($this)
         that.$dropdown.hide()
       },
-      this.$panel
+      this.$dropdownBox
     )
 
     bindEvent(
@@ -183,7 +183,7 @@ class SvgPicker extends Component {
           // that.$types.each(function () {
           //   that.open($(this))
           // })
-          addClass(that.classes.SEARCHING, that.$panel)
+          addClass(that.classes.SEARCHING, that.$dropdownBox)
         }
         that.enter('searching')
 
@@ -292,6 +292,7 @@ class SvgPicker extends Component {
         that.classes.EMPTY
       }" data-{that.options.itemValueAttr}="{item.label}">${empty}</div>`
     }
+    console.log(this.$svgTrigger)
     return Dropdown.of(this.$svgTrigger, {
       data,
       rereference: this.$svgPicker,
@@ -310,7 +311,7 @@ class SvgPicker extends Component {
         manageText: this.translate('manage')
       })
     )
-    this.$panel.append(this.$manage)
+    this.$dropdownBox.append(this.$manage)
   }
 
   handleIcons(type) {
@@ -347,13 +348,13 @@ class SvgPicker extends Component {
 
     this.$dropdown.$dropdown.innerHTML = types
     this.$typeWrap = parseHTML(`<div class=${this.classes.TYPEWRAP}></div>`)
-    this.$types = queryAll(`.${this.classes.TYPE}`, this.$panel)
+    this.$types = queryAll(`.${this.classes.TYPE}`, this.$dropdownBox)
     insertBefore(this.$typeWrap, this.$types[0])
     this.$typeWrap.append(...this.$types)
     this.$types.forEach(el => {
       el.dataset.count = 0
     })
-    queryAll(`.${this.classes.ICONWRAP}`, this.$panel).map(el =>
+    queryAll(`.${this.classes.ICONWRAP}`, this.$dropdownBox).map(el =>
       Scrollable.of(el)
     )
   }
@@ -368,7 +369,7 @@ class SvgPicker extends Component {
     // if (!this.$manage) {
     this.initManage()
     // } else {
-    // this.$panel.append(this.$manage)
+    // this.$dropdownBox.append(this.$manage)
     // }
 
     this.handleSearch()
@@ -394,7 +395,7 @@ class SvgPicker extends Component {
         placeholder: this.translate('searchText')
       })
     )
-    insertBefore(this.$search, children(this.$panel)[0])
+    insertBefore(this.$search, children(this.$dropdownBox)[0])
   }
 
   searching(val) {  /* eslint-disable-line */
@@ -468,21 +469,16 @@ class SvgPicker extends Component {
 
   get() {
     return this.$icon ? this.getIconInfo(this.$icon.dataset.value) : null
-    // return this.getIconInfo(this.$icon.dataset.value)
   }
 
   select(item, trigger = true) {
-    // if (!this.$icon) {
-    //   this.$svgPicker.find('.pj-dropdown-trigger').append('<span></span>')
-    // }
     this.$icon = item
     this.$icons.map(removeClass(this.classes.ACTIVE))
 
     const info = this.get()
     const { type, id } = info
-    // const id = this.$icon.data('value');
     const value = this.getIconInfo(id).svg
-    const $selected = query('.pj-dropdown-trigger span', this.$svgPicker)
+    const $selected = query('.pj-dropdown-trigger', this.$svgPicker)
 
     addClass(this.classes.ACTIVE, this.$icon)
     this.element.setAttribute(
@@ -555,7 +551,7 @@ class SvgPicker extends Component {
         removeClass(this.getThemeClass(), this.$svgPicker)
       }
       this.$dropdown.destroy()
-      // this.$panel.remove()
+      // this.$dropdownBox.remove()
       unwrap(this.$svgPicker)
       this.$svgPicker.remove()
       showElement(this.element)
