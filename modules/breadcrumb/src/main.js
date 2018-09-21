@@ -1,14 +1,16 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { throttle } from '@pluginjs/utils'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import Dropdown from '@pluginjs/dropdown'
 import {
   parseHTML,
   insertAfter,
   insertBefore,
   children,
   append,
-  prepend
+  prepend,
+  query
 } from '@pluginjs/dom'
 import { getStyle, outerWidth, getWidth } from '@pluginjs/styled'
 import {
@@ -52,7 +54,7 @@ class Breadcrumb extends Component {
 
     this.gap = 6
     this.items = []
-
+    this.$data = []
     this.setupStates()
     this.initialize()
   }
@@ -129,22 +131,12 @@ class Breadcrumb extends Component {
       )
     )
     this.$dropdownMenu = this.options.getDropdownMenu.call(this, this.$dropdown)
-    this.createDropdownItems()
 
     if (this.options.overflow === 'right') {
       addClass(this.classes.DROPDOWNMENURIGHT, this.$dropdownMenu)
       append(this.$dropdown, this.element)
     } else {
       prepend(this.$dropdown, this.element)
-    }
-  }
-
-  createDropdownItems() {
-    for (let i = 0; i < this.items.length; i++) {
-      append(
-        addClass(this.classes.HIDDEN, this.items[i].$item),
-        this.$dropdownMenu
-      )
     }
   }
 
@@ -178,15 +170,36 @@ class Breadcrumb extends Component {
     const containerWidth = this.getConatinerWidth()
 
     let showDropdown = false
+    this.$data = []
 
     for (let i = 0; i < this.items.length; i++) {
       childrenWidthTotal += this.items[i].outerWidth
+
       if (childrenWidthTotal + dropdownWidth > containerWidth) {
         showDropdown = true
         this.showDropdownItem(i)
       } else {
         this.hideDropdownItem(i)
       }
+
+      if (!hasClass(`${this.classes.HIDDEN}`, this.items[i].$item)) {
+        this.$data.push({
+          label: this.items[i].$item.textContent,
+          value: this.items[i].$item.textContent.toLowerCase()
+        })
+      }
+    }
+
+    if (!this.DROPDOWN) {
+      this.$toggle = query(`.${this.classes.TOGGLE}`, this.$dropdown)
+      this.DROPDOWN = Dropdown.of(this.$toggle, {
+        data: this.$data,
+        placement: 'bottom-end',
+        target: false
+      })
+    } else {
+      children(this.DROPDOWN.$dropdown).map(item => item.remove())
+      this.DROPDOWN.appendItems(this.$data)
     }
 
     if (showDropdown) {

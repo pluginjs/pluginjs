@@ -24,8 +24,24 @@ $breadcrumb: "pj-breadcrumb" !default;
     display: inline-block;
   }
 
+  &-toggle {
+    text-decoration: none;
+  }
+
   > li.pj-breadcrumb-ellipsis.pj-breadcrumb-hidden + li::before {
     display: none;
+  }
+
+  &-right {
+    .#{$breadcrumb}-toggle {
+      padding-left: 0.5rem;
+      &::before {
+        display: inline-block;
+        padding-right: 0.5rem;
+        color: #6c757d;
+        content: "/";
+      }
+    }
   }
 }
 

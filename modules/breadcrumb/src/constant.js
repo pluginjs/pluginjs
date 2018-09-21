@@ -1,4 +1,4 @@
-import { children, query, queryAll } from '@pluginjs/dom'
+import { children, query } from '@pluginjs/dom'
 
 export const namespace = 'breadcrumb'
 
@@ -59,7 +59,7 @@ export const defaults = {
     dropdown() {
       return (
         '<li class="{classes.DROPDOWN}">' +
-        '<a href="javascript:void(0);" class="{classes.TOGGLE}" data-toggle="dropdown">' +
+        '<a href="javascript:void(0);" class="{classes.TOGGLE}" data-toggle="dropdown">...' +
         '<i class="{classes.TOGGLEICON}"></i>' +
         '</a>' +
         '<ul class="{classes.DROPDOWNMENU}"></ul>' +
