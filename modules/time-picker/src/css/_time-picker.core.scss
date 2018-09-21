@@ -4,19 +4,19 @@
 // Vars
 // =====================
 $time-picker: "pj-timePicker";
-$time-picker-width: 200px;
 $time-picker-max-height: 300px;
 
 $time-picker-clear-icon: $pj-icon-close;
 $time-picker-clear-font: $pj-icon-font-family;
-$time-picker-clear-right: 3.5 * $sizer;
+$time-picker-clear-right: 40px;
 
 $time-picker-trigger-icon: $pj-icon-time;
 $time-picker-trigger-font: $pj-icon-font-family;
 
+// Core
+// =====================
 .#{$time-picker} {
   position: relative;
-  width: $time-picker-width;
 
   & &-dropdown {
     width: 100%;
@@ -25,7 +25,6 @@ $time-picker-trigger-font: $pj-icon-font-family;
   &-dropdown {
     max-height: $time-picker-max-height;
     overflow: auto;
-    line-height: 1;
   }
 
   &-clear {

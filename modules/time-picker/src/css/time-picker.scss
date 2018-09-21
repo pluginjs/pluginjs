@@ -4,29 +4,80 @@
 // Vars
 // =====================
 $time-picker: "pj-timePicker";
+$input: "pj-input";
+$dropdown: "pj-dropdown";
 
-$time-picker-color: $text-color;
+$time-picker-font-family: $font-family-base;
+
+$time-picker-border-color: $gray;
+$time-picker-border-radius: $border-radius-base;
+
+$time-picker-show-border-color: $color-primary;
 
 $time-picker-clear-color: $gray-dark;
 $time-picker-clear-hover-color: $text-color;
 
 $time-picker-trigger-color: $gray-dark;
 $time-picker-trigger-hover-color: $text-color;
+$time-picker-trigger-border-color: $gray-darker;
 
-$time-picker-show-border-color: $color-primary;
-
+// Style
+// =====================
 .#{$time-picker} {
+  font-family: $time-picker-font-family;
   outline: none;
 
   &-clear {
     color: $time-picker-clear-color;
+    cursor: pointer;
 
     &:hover {
       color: $time-picker-clear-hover-color;
     }
   }
 
+  &-input.#{$input} {
+    &:hover,
+    &:focus {
+      border-color: $time-picker-border-color;
+    }
+  }
+
+  &:hover {
+    .#{$time-picker}-input,
+    .#{$time-picker}-trigger {
+      border-color: $time-picker-trigger-border-color;
+    }
+
+    .#{$time-picker}-input {
+      border-right-color: $time-picker-border-color;
+    }
+
+    .#{$time-picker}-trigger {
+      border-left-color: $time-picker-border-color;
+    }
+  }
+
+  &:focus {
+    .#{$time-picker}-input,
+    .#{$time-picker}-trigger {
+      border-color: $time-picker-show-border-color;
+    }
+
+    .#{$time-picker}-input {
+      border-right-color: $time-picker-border-color;
+    }
+
+    .#{$time-picker}-trigger {
+      border-left-color: $time-picker-border-color;
+    }
+  }
+
   &-trigger {
+    border-radius: $time-picker-border-radius;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
     &-icon {
       color: $time-picker-trigger-color;
 
@@ -44,7 +95,12 @@ $time-picker-show-border-color: $color-primary;
 
     .#{$time-picker}-trigger {
       border-color: $time-picker-show-border-color !important;
-      // border-left-color: $input-border-color !important;
+    }
+  }
+
+  &-dropdown {
+    .#{$dropdown}-item.#{$dropdown}-active:not(.#{$dropdown}-item-disabled) {
+      background-color: transparent;
     }
   }
 }
