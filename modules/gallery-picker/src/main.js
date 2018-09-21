@@ -6,8 +6,8 @@ import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
-  fadeIn,
-  fadeOut,
+  setData,
+  getData,
   query,
   queryAll,
   find,
@@ -20,6 +20,7 @@ import {
 import { setStyle, css, showElement, hideElement } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
 import Scrollable from '@pluginjs/scrollable'
+import Trigger from './trigger'
 import {
   eventable,
   register,
@@ -67,7 +68,7 @@ class GalleryPicker extends Component {
   initialize() {
     this.createHtml()
 
-    setStyle('height', this.options.viewportSize, this.$Panel)
+    setStyle('height', this.options.viewportSize, this.$panel)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
@@ -88,98 +89,99 @@ class GalleryPicker extends Component {
   }
 
   initDropdown() {
-    this.$galleryDropdown = Dropdown.of(this.$fillExpand, {
-      reference: this.$fill,
-      target: this.$Panel,
+    this.$galleryDropdown = Dropdown.of(this.TRIGGER.$triggerAction, {
+      reference: this.TRIGGER.$fill,
+      target: this.$panel,
       hideOutClick: true,
+      hideOnSelect: false,
       templates: this.options.templates
     })
   }
 
   bind() {
-    const that = this
+    // const that = this
 
-    bindEvent(
-      this.eventName('click'),
-      e => {
-        e.stopPropagation()
-        if (this.is('status')) {
-          const val = this.element.value
-          this.set(this.options.parse(val))
-          this.close()
-        }
-      },
-      window.document
-    )
+    // bindEvent(
+    //   this.eventName('click'),
+    //   e => {
+    //     e.stopPropagation()
+    //     if (this.is('status')) {
+    //       const val = this.element.value
+    //       this.set(this.options.parse(val))
+    //       this.close()
+    //     }
+    //   },
+    //   window.document
+    // )
 
-    bindEvent(
-      this.eventName('click'),
-      e => {
-        e.stopPropagation()
-        if (that.is('disabled')) {
-          return false
-        }
+    // bindEvent(
+    //   this.eventName('click'),
+    //   e => {
+    //     e.stopPropagation()
+    //     if (that.is('disabled')) {
+    //       return false
+    //     }
 
-        const val = this.options.add.call(this)
-        this.set(val)
-        return null
-      },
-      this.$empty
-    )
-    // add
-    if (this.$fillAdd) {
-      bindEvent(
-        this.eventName('click'),
-        e => {
-          e.stopPropagation()
-          if (that.is('disabled')) {
-            return false
-          }
+    //     const val = this.options.add.call(this)
+    //     this.set(val)
+    //     return null
+    //   },
+    //   this.$empty
+    // )
+    // // add
+    // if (this.$fillAdd) {
+    //   bindEvent(
+    //     this.eventName('click'),
+    //     e => {
+    //       e.stopPropagation()
+    //       if (that.is('disabled')) {
+    //         return false
+    //       }
 
-          const val = this.options.add.call(this)
-          this.add(val)
-          return null
-        },
-        this.$fillAdd
-      )
-    }
+    //       const val = this.options.add.call(this)
+    //       this.add(val)
+    //       return null
+    //     },
+    //     this.$fillAdd
+    //   )
+    // }
 
-    // fill expand
-    bindEvent(
-      this.eventName('click'),
-      e => {
-        e.stopPropagation()
-        if (this.is('disabled')) {
-          return false
-        }
-        this.open()
-        this.enter('status')
-        return false
-      },
-      this.$fillEdit
-    )
+    // // fill expand
+    // bindEvent(
+    //   this.eventName('click'),
+    //   e => {
+    //     e.stopPropagation()
+    //     if (this.is('disabled')) {
+    //       return false
+    //     }
+    //     this.open()
+    //     this.enter('status')
+    //     return false
+    //   },
+    //   this.$edit
+    // )
 
-    // fill
-    compose(
-      bindEvent(this.eventName('mouseenter'), () => {
-        if (this.is('disabled')) {
-          return
-        }
-        addClass(this.classes.HOVER, this.$fill)
-      }),
-      bindEvent(this.eventName('mouseleave'), () => {
-        if (this.is('disabled')) {
-          return false
-        }
-        if (this.is('holdHover')) {
-          return false
-        }
+    // // fill
+    // compose(
+    //   bindEvent(this.eventName('mouseenter'), () => {
+    //     if (this.is('disabled')) {
+    //       return
+    //     }
+    //     addClass(this.classes.HOVER, this.$wrap)
+    //   }),
+    //   bindEvent(this.eventName('mouseleave'), () => {
+    //     if (this.is('disabled')) {
+    //       return false
+    //     }
+    //     if (this.is('holdHover')) {
+    //       return false
+    //     }
 
-        removeClass(this.classes.HOVER, this.$fill)
-        this.leave('holdHover')
-        return null
-      })
-    )(this.$fill)
+    //     removeClass(this.classes.HOVER, this.$wrap)
+    //     this.leave('holdHover')
+    //     return null
+    //   })
+    // )(this.$triggerAction)
 
     compose(
       // change
@@ -201,19 +203,15 @@ class GalleryPicker extends Component {
         return null
       }),
       // save
-      bindEvent(
-        this.eventName('click'),
-        `.${this.classes.EXPANDSAVEBTN}`,
-        e => {
-          e.stopPropagation()
-          if (this.is('disbaled')) {
-            return false
-          }
-          this.update()
-          this.close()
-          return null
+      bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, e => {
+        e.stopPropagation()
+        if (this.is('disbaled')) {
+          return false
         }
-      ),
+        this.update()
+        this.close()
+        return null
+      }),
       // item overlay
       bindEvent(this.eventName('mouseover'), `.${this.classes.ITEM}`, e => {
         if (this.is('disabled')) {
@@ -239,7 +237,7 @@ class GalleryPicker extends Component {
       // expand add
       bindEvent(
         this.eventName('click'),
-        `.${this.classes.EXPANDADD}, .${this.classes.EXPANDADDBTN}`,
+        `.${this.classes.ADD}, .${this.classes.ADDBTN}`,
         e => {
           e.stopPropagation()
           if (this.is('disabled')) {
@@ -251,21 +249,17 @@ class GalleryPicker extends Component {
         }
       ),
       // expand close
-      bindEvent(
-        this.eventName('click'),
-        `.${this.classes.EXPANDCANCELBTN}`,
-        e => {
-          e.stopPropagation()
-          if (this.is('disabled')) {
-            return false
-          }
-          const val = this.element.value
-          this.set(this.options.parse(val))
-          this.close()
-          return null
+      bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, e => {
+        e.stopPropagation()
+        if (this.is('disabled')) {
+          return false
         }
-      )
-    )(this.$Panel)
+        const val = this.element.value
+        this.set(this.options.parse(val))
+        this.close()
+        return null
+      })
+    )(this.$panel)
   }
 
   unbind() {
@@ -273,7 +267,7 @@ class GalleryPicker extends Component {
   }
 
   createHtml() {
-    const that = this
+    // const that = this
     this.$wrap = parseHTML(
       template.compile(this.options.templates.main())({
         classes: this.classes,
@@ -289,53 +283,13 @@ class GalleryPicker extends Component {
 
     insertAfter(this.$wrap, this.element)
 
-    this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
+    this.$panel = query(`.${this.classes.DROPDOWN}`, this.$wrap)
+    this.$Add = query(`.${this.classes.ADD}`, this.$panel)
+    this.$items = query(`.${this.classes.ITEMS}`, this.$panel)
 
-    this.$fill = query(`.${this.classes.FILL}`, this.$wrap)
-    // this.$dropdown = query(`.${this.classes.DROPDOWN}`, this.$wrap)
-    this.$fillCount = query(`.${this.classes.FILLCOUNT}`, this.$wrap)
-    this.$fillExpand = query(`.${this.classes.FILLEXPAND}`, this.$wrap)
-    this.$fillEdit = query(`.${this.classes.FILLEDIT}`, this.$fillExpand)
-    this.$fillRemove = query(`.${this.classes.FILLREMOVE}`, this.$fillExpand)
-    this.$fillAdd = query(`.${this.classes.FILLADD}`, this.$wrap)
-    this.$fillImage = query(`.${this.classes.FILLIMAGE}`, this.$wrap)
-    this.$Panel = query(`.${this.classes.DROPDOWN}`, this.$wrap)
-    this.$expandAdd = query(`.${this.classes.EXPANDADD}`, this.$Panel)
-    this.$expandItems = query(`.${this.classes.EXPANDITEM}`, this.$Panel)
-    // init pop
-    this.DELETEPOP = PopDialog.of(this.$fillRemove, {
-      placement: 'bottom',
-      content: this.translate('deleteTitle'),
-      buttons: {
-        cancel: { label: this.translate('cancel') },
-        delete: {
-          label: this.translate('delete'),
-          color: 'danger',
-          fn(resolve) {
-            fadeOut(
-              {
-                duration: 100,
-                callback: () => {
-                  that.clear()
-                  fadeIn({ duration: 100 }, that.$fill)
-                }
-              },
-              that.$fill
-            )
-
-            resolve()
-          }
-        }
-      },
-      onShow: () => {
-        this.enter('holdHover')
-      },
-      onHide: () => {
-        removeClass(this.classes.HOVER, this.$fill)
-        this.leave('holdHover')
-      }
-    })
     hideElement(this.element)
+
+    this.TRIGGER = new Trigger(this)
   }
 
   update(trigger = true) {
@@ -350,7 +304,7 @@ class GalleryPicker extends Component {
     // const that = this;
     this.$fillCount.textContent = this.count
     if (this.count > 0) {
-      // const $removeBtn = this.$fillExpand.find(`.${this.classes.FILLREMOVE}`);
+      // const $removeBtn = this.$triggerAction.find(`.${this.classes.FILLREMOVE}`);
       setStyle(
         'background-image',
         `url(${this.getImageByIndex(this.count - 1)})`,
@@ -373,15 +327,14 @@ class GalleryPicker extends Component {
 
   updateList() {
     const that = this
-    const length = children(
-      query(`.${this.classes.NAMESPACE}-expand-items`, this.$Panel)
-    ).length
+    const length = children(this.$items).length
 
     if (this.count >= length) {
-      const indexOfParent = el => children(parent(el)).indexOf(el)
+      // const indexOfParent = el => children(el).indexOf(el)
       for (let i = length; i <= this.count; i++) {
         const $item = this.addImage(this.value[i - 1])
-        insertAfter($item, this.$expandAdd)
+        insertAfter($item, this.$Add)
+        setData('index', this.count - i + 1, $item)
         PopDialog.of(
           query(
             `.${this.classes.ITEM}-change .${this.classes.ITEMREMOVE}`,
@@ -396,7 +349,7 @@ class GalleryPicker extends Component {
                 label: this.translate('delete'),
                 color: 'danger',
                 fn(resolve) {
-                  that.remove(indexOfParent($item))
+                  that.remove(getData('index', $item))
                   that.updateScrollbar()
 
                   resolve()
@@ -432,9 +385,7 @@ class GalleryPicker extends Component {
   }
 
   delImage() {
-    const target = children(
-      query(`.${this.classes.NAMESPACE}-expand-items`, this.$Panel)
-    )[this.indexed]
+    const target = children(this.$items)[this.indexed]
 
     if (target) {
       target.remove()
@@ -442,12 +393,12 @@ class GalleryPicker extends Component {
   }
 
   updateScrollbar() {
-    const scrollableApi = Scrollable.of(this.$expandItems)
+    const scrollableApi = Scrollable.of(this.$items)
     scrollableApi.update()
   }
 
   clearImages() {
-    const images = queryAll(`.${this.classes.ITEM}`, this.$Panel)
+    const images = queryAll(`.${this.classes.ITEM}`, this.$panel)
     if (images.length) {
       images.map(el => el.remove())
     }
@@ -480,7 +431,7 @@ class GalleryPicker extends Component {
 
     this.clearImages()
     this.count = this.value.length
-    this.setState()
+    this.TRIGGER.setState()
     this.updateList()
     this.update(trigger)
   }
@@ -493,7 +444,7 @@ class GalleryPicker extends Component {
     }
 
     this.count = this.value.length
-    this.setState()
+    this.TRIGGER.setState()
     this.updateList()
   }
 
@@ -507,9 +458,9 @@ class GalleryPicker extends Component {
       find(`.${this.classes.ITEMIMAGE}`),
       eq(index),
       children,
-      find(`.${this.classes.NAMESPACE}-expand-items`)
-    )(this.$Panel)
-    this.setState()
+      find(`.${this.classes.ITEMS}`)
+    )(this.$panel)
+    this.TRIGGER.setState()
   }
 
   remove(index) {
@@ -519,9 +470,9 @@ class GalleryPicker extends Component {
     compose(
       eq(index),
       children,
-      find(`.${this.classes.NAMESPACE}-expand-items`)
-    )(this.$Panel).remove()
-    this.setState()
+      find(`.${this.classes.ITEMS}`)
+    )(this.$panel).remove()
+    this.TRIGGER.setState()
   }
 
   clear() {
@@ -529,7 +480,7 @@ class GalleryPicker extends Component {
 
     this.count = 0
     this.value = []
-    this.setState()
+    this.TRIGGER.setState()
     this.element.value = ''
   }
 
@@ -538,13 +489,13 @@ class GalleryPicker extends Component {
   }
 
   open() {
-    addClass(this.classes.OPENDISABLE, this.$fill)
+    addClass(this.classes.OPENDISABLE, this.TRIGGER.$fill)
     addClass(this.classes.SHOW, removeClass(this.classes.EXIST, this.$wrap))
     this.updateScrollbar()
   }
 
   close() {
-    removeClass(this.classes.OPENDISABLE, this.$fill)
+    removeClass(this.classes.OPENDISABLE, this.TRIGGER.$fill)
     addClass(this.classes.EXIST, removeClass(this.classes.SHOW, this.$wrap))
     this.leave('status')
   }
@@ -552,7 +503,7 @@ class GalleryPicker extends Component {
   enable() {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
-      this.DELETEPOP.enable()
+      this.TRIGGER.DELETEPOP.enable()
       this.element.disabled = false
       this.leave('disabled')
     }
@@ -562,7 +513,7 @@ class GalleryPicker extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrap)
-      this.DELETEPOP.disable()
+      this.TRIGGER.DELETEPOP.disable()
       this.element.disabled = true
       this.enter('disabled')
     }

@@ -20,18 +20,18 @@ export const classes = {
   SHOW: '{namespace}-show',
   HOVER: '{namespace}-hover',
   FILL: '{namespace}-fill',
-  FILLEDIT: '{namespace}-fill-edit',
-  FILLREMOVE: '{namespace}-fill-remove',
+  EDIT: '{namespace}-edit',
+  REMOVE: '{namespace}-remove',
   FILLIMAGE: '{namespace}-fill-image',
   FILLCOUNT: '{namespace}-fill-count',
   FILLADD: '{namespace}-fill-add',
-  FILLEXPAND: '{namespace}-fill-expand',
-  EXPANDCANCELBTN: '{namespace}-expand-cancel-btn',
-  EXPANDSAVEBTN: '{namespace}-expand-save-btn',
-  EXPANDADDBTN: '{namespace}-expand-add-btn',
-  EXPANDADD: '{namespace}-expand-add',
-  EXPANDITEM: '{namespace}-expand-items',
-  EXPANDCONTROL: '{namespace}-expand-control',
+  TRIGGERACTION: '{namespace}-trigger-action',
+  CANCEL: '{namespace}-cancel',
+  SAVE: '{namespace}-save',
+  ADDBTN: '{namespace}-add-btn',
+  ADD: '{namespace}-add',
+  ITEMS: '{namespace}-items',
+  CONTROL: '{namespace}-control',
   ITEM: '{namespace}-item',
   ITEMIMAGE: '{namespace}-item-image',
   ITEMREMOVE: '{namespace}-item-remove',
@@ -72,18 +72,18 @@ export const defaults = {
         '<div class="{classes.FILL}">' +
         '<div class="{classes.FILLIMAGE}" style=""></div>' +
         '<span class="{classes.FILLCOUNT}">{count}</span>' +
-        '<div class="{classes.FILLEXPAND}"><i class="{classes.FILLEDIT} pj-icon pj-icon-edit"></i><i class="{classes.FILLREMOVE} pj-icon pj-icon-delete"></i></div>' +
         '</div>' +
+        '<div class="{classes.TRIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i></div>' +
         '<div class="{classes.DROPDOWN}">' +
-        '<ul class="{classes.EXPANDITEM}">' +
-        '<li class="{classes.EXPANDADD}">' +
+        '<ul class="{classes.ITEMS}">' +
+        '<li class="{classes.ADD}">' +
         '<i class="pj-icon pj-icon-picture"></i>{add}' +
         '</li>' +
         '</ul>' +
-        '<div class="{classes.EXPANDCONTROL}">' +
-        '<button class="{classes.EXPANDCANCELBTN} pj-btn pj-btn-transparent">{footerCancel}</button>' +
+        '<div class="{classes.CONTROL}">' +
+        '<button class="{classes.CANCEL} pj-btn pj-btn-transparent">{footerCancel}</button>' +
         // '<button class="{namespace}-expand-add-btn pj-btn pj-btn-outline-default">{footerAdd}</button>' +
-        '<button class="{classes.EXPANDSAVEBTN} pj-btn pj-btn-primary">{footerSave}</button>' +
+        '<button class="{classes.SAVE} pj-btn pj-btn-primary">{footerSave}</button>' +
         '</div>' +
         '</div>' +
         '</div>'

@@ -128,37 +128,38 @@ $scrollable-height: 270px !default;
       background-color: $galleryPicker-active-color;
       border-radius: 2px;
     }
+  }
 
-    &-expand {
-      position: absolute;
-      top: 0;
-      left: 0;
-      // display: none;
-      width: 100%;
-      height: 100%;
-      line-height: $galleryPicker-empty-height;
-      color: #fff;
-      background-color: $galleryPicker-fill-expand-bg;
-      border-radius: $galleryPicker-border-radius;
-      opacity: 0;
-      // opacity: $galleryPicker-fill-expand-opacity;
-    }
 
-    &-edit,
-    &-remove {
-      margin: 0 10px;
-      font-size: $galleryPicker-icon-size;
+  &-trigger-action {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    line-height: $galleryPicker-empty-height;
+    color: #fff;
+    background-color: $galleryPicker-fill-expand-bg;
+    border-radius: $galleryPicker-border-radius;
+    opacity: 0;
+  }
 
-      &:hover {
-        color: $gray-lighter;
-        cursor: pointer;
-      }
+  &-edit,
+  &-remove {
+    margin: 0 10px;
+    font-size: $galleryPicker-icon-size;
+
+    &:hover {
+      color: $gray-lighter;
+      cursor: pointer;
     }
   }
   // expand
 
   &-dropdown {
-    position: relative;
+    position: absolute;
     z-index: 100;
     box-sizing: border-box;
     flex-direction: column;
@@ -170,7 +171,6 @@ $scrollable-height: 270px !default;
     border: $galleryPicker-border;
     border-radius: $galleryPicker-border-radius;
   }
-  &-expand {
     &-add,
     &-items li {
       box-sizing: border-box;
@@ -231,17 +231,6 @@ $scrollable-height: 270px !default;
       }
     }
 
-    &-control {
-      width: 100%;
-      text-align: right;
-
-      button {
-        width: $galleryPicker-expand-control-btn-width;
-        height: $galleryPicker-expand-control-btn-height;
-        margin-right: 6px;
-      }
-    }
-
     &-handle {
       position: absolute;
       top: 0;
@@ -250,6 +239,16 @@ $scrollable-height: 270px !default;
       cursor: pointer;
       background: #ccc;
       border-radius: 4px;
+    }
+
+  &-control {
+    width: 100%;
+    text-align: right;
+
+    button {
+      width: $galleryPicker-expand-control-btn-width;
+      height: $galleryPicker-expand-control-btn-height;
+      margin-right: 6px;
     }
   }
 
@@ -290,42 +289,49 @@ $scrollable-height: 270px !default;
 
 .#{$galleryPicker}-exist {
   .#{$galleryPicker}-fill {
-    display: block !important;
+    display: block;
+  }
+  .#{$galleryPicker}-trigger-action {
+    display: flex;
   }
 
   .#{$galleryPicker}-empty,
   .#{$galleryPicker}-dropdown {
-    display: none !important;
+    display: none;
   }
 }
 
 .#{$galleryPicker}-write {
   .#{$galleryPicker}-empty {
-    display: flex !important;
+    display: flex;
   }
 
   .#{$galleryPicker}-fill {
-    display: none !important;
+    display: none;
+  }
+
+  .#{$galleryPicker}-trigger-action {
+    display: none;
   }
 }
 /* stylelint-disable */
 .#{$galleryPicker}-show {
   .#{$galleryPicker}-empty {
-    display: none !important;
+    display: none;
   }
   .#{$galleryPicker}-fill {
-    display: block !important;
+    display: block;
   }
 
   .#{$galleryPicker}-dropdown {
-    display: flex !important;
+    display: flex;
   }
 }
 
 .#{$galleryPicker}-hover {
   .#{$galleryPicker}-fill-add,
-  .#{$galleryPicker}-fill-expand,
-  .#{$galleryPicker}-fill-change {
+  .#{$galleryPicker}-trigger-action,
+  .#{$galleryPicker}-item-change {
     opacity: $galleryPicker-expand-item-change-opacity;
     transition: all 300ms ease-in-out;
   }
