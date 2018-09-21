@@ -9,7 +9,7 @@ $select-color: $text-color;
 $select-trigger-width: $select-width;
 $select-trigger-placeholder-color: $gray-dark;
 
-$select-trigger-arrow-color: $gray-dark;
+$select-trigger-arrow-color: $gray-darkest;
 
 $select-trigger-disabled-bg: $disabled-bg;
 $select-trigger-disabled-border: $disabled-border;
@@ -19,12 +19,12 @@ $select-clear-color: $gray-dark;
 $select-clear-hover-color: $text-color;
 
 $select-group-label-font-size: $font-size-xs;
-$select-group-label-color: $gray-dark;
+$select-group-label-color: #999;
 $select-group-label-space-x: 11px;
 $select-group-label-space-y: 8px;
 
 $select-not-found-padding: 11px 8px;
-
+$select-not-found-color: $gray-dark;
 .#{$select} {
   outline: none;
 
@@ -37,13 +37,9 @@ $select-not-found-padding: 11px 8px;
     }
 
     &::after {
-      color: $select-trigger-arrow-color;
+      color: $select-color;
       transition: transform 0.3s;
       will-change: transform;
-    }
-
-    &.#{$select}-on-bottom[aria-expanded="true"]::after {
-      transform: rotate(180deg);
     }
   }
 
@@ -63,6 +59,8 @@ $select-not-found-padding: 11px 8px;
 
   &-not-found {
     padding: $select-not-found-padding;
+    color: $select-not-found-color;
+    text-align: center;
   }
 }
 

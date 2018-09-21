@@ -9,6 +9,17 @@ $mapPicker: "pj-mapPicker" !default;
   &-trigger {
     position: relative;
     line-height: 1.2;
+
+    &-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
   }
 
   &-open-disabled {
@@ -37,18 +48,10 @@ $mapPicker: "pj-mapPicker" !default;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
 
-    &-action {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s;
-
+      &:empty {
+        margin: 0;
+      }
     }
   }
 
@@ -75,14 +78,14 @@ $mapPicker: "pj-mapPicker" !default;
     animation: fade-out 0.5s;
     animation-fill-mode: forwards;
 
-    .#{$mapPicker}-fill-action {
+    .#{$mapPicker}-trigger-action {
       animation: fade-out 0.5s;
       animation-fill-mode: forwards;
     }
   }
 
-  &-fill-hover {
-    .#{$mapPicker}-fill-action {
+  &-trigger-hover {
+    .#{$mapPicker}-trigger-action {
       opacity: 1;
       transition: opacity 0.3s;
     }
@@ -94,6 +97,10 @@ $mapPicker: "pj-mapPicker" !default;
     }
 
     .#{$mapPicker}-fill {
+      display: flex;
+    }
+
+    .#{$mapPicker}-trigger-action {
       display: flex;
     }
   }

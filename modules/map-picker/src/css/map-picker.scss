@@ -39,6 +39,20 @@ $mapPicker-map-height: 126px;
 $mapPicker-map-margin-bottom: 30px;
 
 .#{$mapPicker} {
+  &-trigger {
+    &-action {
+      width: 100%;
+      height: 100%;
+      color: $mapPicker-fill-action-color;
+      background-color: $mapPicker-fill-action-bg-color;
+      border-radius: $mapPicker-border-radius;
+
+      i + i {
+        margin-left: $mapPicker-fill-action-margin-left;
+      }
+    }
+  }
+  
   &-icon {
     margin-right: $mapPicker-icon-margin-right;
     font-size: $mapPicker-icon-size;
@@ -85,18 +99,6 @@ $mapPicker-map-margin-bottom: 30px;
       margin-top: $mapPicker-fill-coord-margin-top;
       font-size: $mapPicker-fill-coord-font-size;
       color: $mapPicker-fill-coord-color;
-    }
-
-    &-action {
-      width: 100%;
-      height: 100%;
-      color: $mapPicker-fill-action-color;
-      background-color: $mapPicker-fill-action-bg-color;
-      border-radius: $mapPicker-border-radius;
-
-      i + i {
-        margin-left: $mapPicker-fill-action-margin-left;
-      }
     }
   }
 
