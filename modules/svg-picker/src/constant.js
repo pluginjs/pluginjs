@@ -73,7 +73,7 @@ export const defaults = {
   disabled: false,
   templates: {
     trigger() {
-      return `<div class={classes.TRIGGER}><span class="pj-dropdown-trigger"></span>
+      return `<div class="{classes.TRIGGER}"><span class="pj-dropdown-trigger"></span>
       </div>`
     },
     icon() {
