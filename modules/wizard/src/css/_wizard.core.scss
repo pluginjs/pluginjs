@@ -23,6 +23,11 @@ $wizard-transition-duration: 0.2s !default;
     display: inline-block;
     flex: 1;
     overflow: hidden;
+    cursor: pointer;
+
+    &.#{$wizard}-disabled {
+      cursor: not-allowed;
+    }
   }
 }
 

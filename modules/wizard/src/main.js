@@ -106,6 +106,7 @@ class Wizard extends Component {
           'wizard-index',
           closest(`.${this.classes.ITEM}`, e.target)
         )
+
         if (typeof index !== 'undefined' && !that.get(index).is('disabled')) {
           that.goTo(index)
         }
@@ -221,6 +222,12 @@ class Wizard extends Component {
 
     const current = this.current()
     const to = this.get(index)
+    let middle = null
+    if (index - this.present > 1) {
+      middle = this.steps.filter(step => {
+        return step.index !== this.present && step.index !== index
+      })
+    }
 
     if (index > this.present) {
       if (!current.validate()) {
@@ -228,11 +235,9 @@ class Wizard extends Component {
         current.enter('error')
         return -1
       }
-      current.leave('error')
 
-      if (index > this.present) {
-        current.enter('done')
-      }
+      current.leave('error')
+      current.enter('done')
     }
 
     const that = this
@@ -240,10 +245,18 @@ class Wizard extends Component {
       that.trigger(EVENTS.BEFORECHANGE, current, to)
       that.enter('transitioning')
       current.hide()
+
       to.show(function() {
         that.present = index
         that.leave('transitioning')
         that.leave('disabled')
+
+        if (middle) {
+          middle.forEach(step => {
+            step.leave('error')
+            step.enter('done')
+          })
+        }
 
         that.updateButtons()
         that.updateSteps()

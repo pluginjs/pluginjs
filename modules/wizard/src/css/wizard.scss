@@ -156,6 +156,16 @@ $wizard-button-bg: $gray-lighter;
   }
 }
 
+.#{$wizard}-error {
+  .#{$wizard}-item-icon {
+    background-color: $wizard-error-color;
+  }
+
+  .#{$wizard}-item-title {
+    color: $wizard-error-color;
+  }
+}
+
 .#{$wizard}-buttons {
   margin-top: $wizard-button-margin-top;
 
