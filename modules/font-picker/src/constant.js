@@ -76,7 +76,7 @@ export const defaults = {
   lazyNumber: 12, // [Number][Int]
   delay: 250,
   keyboard: true,
-  placeholder: 'choose a font',
+  placeholder: 'Select Font',
   // sourcelist: ['google', 'typekit', 'fontsquirrel', 'custom', 'system'],
   templates: {
     empty() {
@@ -84,7 +84,7 @@ export const defaults = {
       </div>`
     },
     trigger() {
-      return `<div class={classes.ELEMENT}><span class="pj-dropdown-trigger"></span><div></div>
+      return `<div class="pj-input {classes.ELEMENT}"><span class="pj-dropdown-trigger"></span><div></div>
       </div>`
     },
     font() {
@@ -92,7 +92,7 @@ export const defaults = {
       </li>`
     },
     categories() {
-      return `<div class='pj-dropdown-item {classes.PACKAGE}' data-value='{categoriesName}'><div class={classes.PACKAGETITLE}>{title}<i class='pj-icon pj-icon-chevron-down'></i></div>
+      return `<div class='pj-dropdown-item {classes.PACKAGE}' data-value='{categoriesName}'><div class={classes.PACKAGETITLE}><i class='pj-icon pj-icon-triangle-right-mini-solid'></i>{title}</div>
       </div>`
     },
     actions() {
@@ -124,15 +124,15 @@ export const dependencies = ['dropdown', 'scrollable']
 
 export const translations = {
   en: {
-    searchText: 'Search...',
-    manager: 'manage',
+    searchText: 'Search',
+    manage: 'manage',
     activatedFonts: 'activated',
     emptyTitle: 'Befor using font, you need add fonts. ',
     emptyLinkTitle: 'Go add now'
   },
   zh: {
-    searchText: '搜索...',
-    manager: '管理',
+    searchText: '搜索',
+    manage: '管理',
     activatedFonts: '已选字体',
     emptyTitle: '使用字体之前，请先添加。',
     emptyLinkTitle: '现在添加'

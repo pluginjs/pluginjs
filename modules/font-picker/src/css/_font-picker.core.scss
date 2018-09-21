@@ -1,0 +1,245 @@
+// Vars
+// =====================
+$fontPicker: "pj-fontPicker" !default;
+$dropdown: "pj-dropdown" !default;
+$srcollable: "pj-scrollable" !default;
+
+$fontPicker-width: 220px !default;
+$fontPicker-height: 32px !default;
+
+$fontPicker-font-spacer-x: 16px !default;
+
+$fontPicker-dropdown-width: 272px;
+
+$fontPicker-panel-height: 420px !default;
+$fontPicker-controller-height: 30px !default;
+$fontPicker-search-height: 40px !default;
+
+
+// Core
+// =====================
+.#{$fontPicker} {
+  width: $fontPicker-width;
+  height: $fontPicker-height;
+
+  .#{$fontPicker}-trigger.#{$dropdown}-show {
+    i {
+      transition: all 0.3s;
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+  > input {
+    display: none;
+  }
+
+  .#{$dropdown} {
+    width: $fontPicker-dropdown-width;
+
+    &-item {
+      display: block;
+    }
+
+    &-select {
+      .#{$dropdown} {
+        justify-content: center;
+      }
+    }
+  }
+
+  &-search {
+    display: flex;
+    align-items: center;
+
+    input {
+      flex-basis: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      order: 1;
+    }
+
+    &-icon {
+      order: 0;
+    }
+
+    &-close {
+      display: none !important;
+      order: 10;
+    }
+
+    &-list {
+      display: none;
+
+      .#{$fontPicker}-searched {
+        display: block !important;
+      }
+
+      .#{$srcollable}-content {
+        li {
+          display: none;
+        }
+      }
+    }
+
+    &-ready {
+      .#{$fontPicker}-activated .#{$fontPicker}-font {
+        display: none;
+      }
+
+      .#{$fontPicker}-search-close {
+        display: block;
+      }
+
+      .#{$fontPicker}-package-wrap {
+        overflow: auto;
+      }
+
+      .#{$fontPicker}-package {
+        display: none;
+      }
+
+      .#{$fontPicker}-search-list {
+        display: block;
+      }
+    }
+  }
+
+  &-package-wrap {
+    height: $fontPicker-panel-height - $fontPicker-controller-height - $fontPicker-search-height;
+    overflow: auto;
+
+    .#{$fontPicker}-activated {
+      .#{$fontPicker}-source-icon {
+        position: absolute;
+        top: 50%;
+        right: $fontPicker-font-spacer-x;
+        margin: 0;
+        transform: translateY(-50%);
+      }      
+    }
+
+     .#{$fontPicker}-empty {
+      width: 100%;
+      height: 100%;
+
+      &-link {
+        display: block;
+      }
+    }
+  
+    ul {
+      position: relative;
+      padding: 0;
+    }
+
+    .#{$fontPicker}-font {
+      position: relative;
+      list-style: none;
+    }
+  }
+
+  &-package {
+    .#{$fontPicker}-font-wrap {
+      display: none;
+      overflow: auto;
+    }
+
+    &-title {
+      position: relative;
+      cursor: pointer;
+
+      i {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transition: all 0.3s;
+        transform: translateY(-50%);
+      }
+    }
+
+    &-open {
+      .#{$fontPicker}-package-title i {
+        transition: all 0.3s;
+        transform: translateY(-50%) rotate(90deg);
+      }
+    }
+
+    &-hide {
+      display: none;
+    }    
+  }
+
+  &-controller {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;    
+  }
+
+  &-selector {
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    padding: 0;
+
+    &.#{$dropdown}-show {
+      .#{$dropdown}-icon {
+        transition: transform 0.3s;
+        transform: rotate(0deg);
+      }
+    }
+
+    .#{$dropdown}-trigger {
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      width: auto;
+      height: auto;
+      padding: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: keep-all;
+      white-space: nowrap;
+      border: 0;
+
+      &:focus {
+        border: 0;
+      }
+    
+      // .#{$fontPicker}-source-icon {
+      //   display: inline-block;
+      //   margin-right: 9px;
+      //   vertical-align: middle;
+      // }
+    }
+
+    .#{$dropdown}-icon {
+      padding: 0;
+      transition: transform 0.3s;
+      transform: rotate(180deg);
+    }
+  }
+
+   &-manage {
+    display: flex;
+    flex-basis: calc(50% - 1px);
+    align-items: center;
+    justify-content: center;
+    order: 1;
+  }
+
+  &-searching {
+    &-list {
+      li {
+        display: none;
+      }
+    }
+
+    .#{$fontPicker}-font.#{$fontPicker}-searched {
+      display: block;
+    }
+  }
+}

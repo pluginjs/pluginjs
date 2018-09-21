@@ -1,489 +1,245 @@
 @import "@pluginjs/styles/variables.scss";
+@import "./font-picker.core.scss";
 
 // Vars
 // =====================
-$fontPicker: "pj-fontPicker" !default;
-$dropdown: "pj-dropdown" !default;
-$fontPicker-sizer: $sizer !default;
+$fontPicker: "pj-fontPicker";
+$dropdown: "pj-dropdown";
+$input: "pj-input";
+$srcollable: "pj-scrollable";
+$fontPicker-sizer: $sizer;
 
-$fontPicker-width: 22 * $fontPicker-sizer !default; //220px
-$fontPicker-height: 3 * $fontPicker-sizer !default; //30px
-$fontPicker-hover-color: $gray-lightest !default;
-$fontPicker-font-size: $font-size-base !default;
-$fontPicker-icon-size: $font-size-lg;
-$fontPicker-border-color: $gray-border !default;
-$fontPicker-border-hover-color: $gray-darker !default;
-$fontPicker-active-color: $color-primary-active !default;
-$fontPicker-font-color: $gray-light !default;
-$fontPicker-font-hover-color: $color-primary-active !default;
-$fontPicker-font-active-color: $color-primary-active !default;
-$fontPicker-trigger-font-left: $fontPicker-width - 20px !default;
-$fontPicker-panel-height: 42 * $fontPicker-sizer !default; //420px
-$fontPicker-package-height: 3 * $fontPicker-sizer !default; //30px
-$fontPicker-package-bg-color: $gray-lightest !default;
-$fontPicker-actions-height: 3 * $fontPicker-sizer !default; //30px
-$fontPicker-search-height: 4 * $fontPicker-sizer !default; //40px
-$fontPicker-search-border: 1px solid $gray-lighter !default;
-$fontPicker-empty-padding: 2 * $fontPicker-sizer !default; //20px
+$fontPicker-font-size: $font-size-base;
+$fontPicker-bg: $color-white;
 
-$fontPicker-search-input-hover-color: $gray !default;
+$fontPicker-line-height: 16px;
+$fontPicker-spacer-x: 8px;
+$fontPicker-spacer-y: 32px;
+
+$fontPicker-search-padding: 8px 20px 8px 10px;
+$fontPicker-search-input-hover-padding: 4px 15px 4px 9px;
+$fontPicker-empty-padding: 20px;
+$fontPicker-trigger-padding-left: 16px;
+$fontPicker-input-padding: 12px;
+
+$fontPicker-font-spacer-x: 16px;
+$fontPicker-font-spacer-y: 8px;
+
+$fontPicker-border-radius: $border-radius-base;
+$fontPicker-border-width: 1px;
+$fontPicker-border-color: $gray-border;
+
+$fontPicker-hover-color: $gray-lighter;
+$fontPicker-active-color: $color-primary-active;
 
 // Core
 // =====================
-.#{$fontPicker}-trigger {
-  box-sizing: border-box;
-  width: $fontPicker-width;
-  height: $fontPicker-height;
-  padding: 0;
-  font-size: $fontPicker-font-size;
-  background-color: $color-white;
-  border: 1px solid #E6E6E6;
-  outline: none;
-    &:hover {
-      border-color: $color-primary-black;
-      span {
-      color: $color-primary-black;
-    }
-  } 
-  span {
-    padding: 0 $fontPicker-sizer; //0 10px
-    line-height: $fontPicker-height - 2px;
+.#{$fontPicker} {
 
-    i {
-      font-size: $fontPicker-icon-size;
+  .#{$dropdown} {
+    &-item {
+      padding: $fontPicker-spacer-x $fontPicker-font-spacer-x;
     }
   }
-}
 
-.#{$fontPicker}-panel {
-  top: 10px !important;
-  height: $fontPicker-panel-height;
-  min-height: $fontPicker-panel-height;
-  padding: 0;
-  font-size: $fontPicker-font-size;
-
-  li:hover {
-    // cursor: default;
-    background-color: inherit;
-  }
-}
-
-.#{$fontPicker}-sources {
-  height: $fontPicker-panel-height - $fontPicker-actions-height - $fontPicker-search-height;
-  overflow: auto;
+  &-trigger {
+    background-color: $fontPicker-bg;
+    outline: none;
   
-  .#{$fontPicker}-activated {
-    .#{$fontPicker}-source-icon {
-      position: absolute;
-      top: 50%;
-      right: 1.6 * $fontPicker-sizer; //16px
-      transform: translateY(-50%);
+    .#{$dropdown}-trigger {
+      padding-left: $fontPicker-trigger-padding-left;
+      font-size: $fontPicker-font-size;
+      line-height: $fontPicker-line-height;
     }
 
-    .#{$fontPicker}-empty {
-      width: 100%;
-      height: 100%;
-      padding: $fontPicker-empty-padding;
-      text-align: center;
-      &-link {
-        display: block;
+    &.#{$input} {
+      padding: $fontPicker-spacer-x - $fontPicker-border-width $fontPicker-input-padding;
+    }
+  }
+
+  &-package-wrap {
+    .#{$fontPicker}-activated {
+      .#{$fontPicker}-empty {
+        padding: $fontPicker-empty-padding;
+        text-align: center;
+      }
+    }
+  
+    .#{$srcollable}-content {
+      padding: 0 2 * $fontPicker-border-width;
+      margin: 2 * $fontPicker-border-width 0;
+    }
+  
+    .#{$fontPicker}-font {
+      padding: $fontPicker-font-spacer-y $fontPicker-font-spacer-x;
+      padding-left: $fontPicker-spacer-y;
+      margin: $fontPicker-border-width 0;
+      font-size: $fontPicker-font-size;
+      line-height: $fontPicker-line-height;
+      border-radius: $fontPicker-border-radius;
+      &:hover {
+        background-color: $fontPicker-hover-color;
+      }
+  
+      &:focus {
+        outline: none;
+      }
+
+      &:focus,
+      &:hover {
+        cursor: pointer;
       }
     }
   }
 
-  ul {
-    position: relative;
-    padding: 0;
-    margin: 2px 0;
+  &-package {
+    padding: 0 !important;
+    margin-bottom: $fontPicker-border-width;
+
+    &-title {
+      padding: $fontPicker-font-spacer-y $fontPicker-font-spacer-x;
+      padding-left: $fontPicker-spacer-y;
+      font-size: $fontPicker-font-size;
+      line-height: $fontPicker-line-height;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &-open.#{$dropdown} {
+      &-item {
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
   }
 
-  .#{$fontPicker}-font {
-    position: relative;
-    height: 3 * $fontPicker-sizer; //30px
-    padding: 0 2 * $fontPicker-sizer; //20px
-    padding-left: 3.3 * $fontPicker-sizer; //33px
-    margin: 1px 0;
-    line-height: 3 * $fontPicker-sizer; //30px
-    list-style: none;
-    border-radius: 0.4 * $fontPicker-sizer; //4px
+  &-active {
+    color: $fontPicker-active-color;
+  }
+
+  &-controller {
+    font-size: $fontPicker-font-size;
+    line-height: $fontPicker-line-height;
+    text-transform: capitalize;
+    cursor: default;
+    background-color: $color-white;
+    border-top: $fontPicker-border-width solid $fontPicker-border-color;
+    border-bottom-right-radius: $fontPicker-border-radius;
+    border-bottom-left-radius: $fontPicker-border-radius;
+  }
+
+  &-selector {
+    padding: $fontPicker-spacer-x $fontPicker-spacer-x + 2 * $fontPicker-border-width;
+
+    &:focus {
+      outline: none;
+    }
+  
+    &:focus,
+    &:hover {
+      color: $fontPicker-active-color;
+  
+      .#{$dropdown}-trigger {
+        color: $fontPicker-active-color !important;
+      }
+    }
+  
+    .#{$dropdown} {
+      top: 4px !important;
+      left: 2px !important;
+      width: 130px !important;
+      border: 0;
+      div:last-child {
+        border-top: $fontPicker-border-width solid $fontPicker-border-color;
+        border-radius: 0;
+      }
+    }
+  
+    &.#{$dropdown}-show {
+      color: $fontPicker-active-color;
+  
+      .#{$dropdown}-trigger {
+        color: $fontPicker-active-color;
+      }
+  
+      .#{$dropdown}-icon {
+        transition: transform 0.3s;
+        transform: rotate(0deg);
+      }
+    }
+  
+    .#{$fontPicker}-source-icon {
+      margin-right: $fontPicker-spacer-x;
+    }
+  }
+
+  &-manage {
+    text-align: center;
+    border-left: $fontPicker-border-width solid $fontPicker-border-color;
+
+    i {
+      display: inline-block;
+      margin-right: $fontPicker-spacer-x;
+      vertical-align: middle;
+    }
+
+    &:focus {
+      outline: none;
+    }
 
     &:focus,
     &:hover {
-      cursor: pointer;
-      background-color: $fontPicker-hover-color;
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
-.#{$fontPicker}-package {
-  padding: 0 !important;
-  margin-bottom: 1px;
-
-  .#{$fontPicker}-font-wrap {
-    display: none;
-    overflow: auto;
-
-    .pj-scrollable-content {
-      padding: 0 2px;
-    }
-    .pj-scrollable-container {
-     width: 260px !important;
-    }
-  }
-
-  &-title {
-    position: relative;
-    height: $fontPicker-package-height;
-    padding: 0 2 * $fontPicker-sizer !important; //0 20px
-    font-size: $fontPicker-font-size;
-    line-height: $fontPicker-package-height;
-    cursor: pointer;
-
-    &:hover {
       color: $fontPicker-active-color;
       cursor: pointer;
     }
-
-    &:focus {
-      color: $fontPicker-active-color;
-      outline: none;
-    }
-
-    i {
-      position: absolute;
-      top: 50%;
-      right: $fontPicker-sizer; //10px
-      font-size: $fontPicker-icon-size;
-      transition: all 0.3s;
-      transform: translateY(-50%);
-    }
   }
 
-  &-open {
-    .#{$fontPicker}-package-title i {
-      transition: all 0.3s;
-      transform: translateY(-50%) rotate(-180deg);
-    }
-
-    .#{$fontPicker}-package-title {
-      color: $fontPicker-active-color;
-      outline: none;
-    }
-  }
-
-  &-hide {
-    display: none;
-  }
-
-}
-.#{$fontPicker}-active {
-  color: $fontPicker-font-active-color;
-}
-
-.#{$fontPicker}-actions {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  width: 100%;
-  height: $fontPicker-actions-height;
-  font-size: $fontPicker-font-size;
-  line-height: 2.6 * $fontPicker-sizer; //26px
-  text-transform: capitalize;
-  cursor: default;
-  background-color: $color-white;
-  border-top: 1px solid $fontPicker-border-color;
-  border-bottom-right-radius: $border-radius-base;
-  border-bottom-left-radius: $border-radius-base;
-}
-
-.#{$fontPicker}-switcher {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 0;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:focus,
-  &:hover {
-    color: $fontPicker-active-color;
-
-    .#{$dropdown}-trigger {
-      color: $fontPicker-active-color !important;
-    }
-  }
-
-  .#{$dropdown} {
-    width: 12.9 * $fontPicker-sizer !important; //129px 
-    border: 0;
-    div:last-child {
-      border-top: 1px solid $fontPicker-border-color;
-      border-radius: 0;
-    }
-  }
-
-  &.#{$dropdown}-show {
-    color: $fontPicker-active-color;
-
-    .#{$dropdown}-trigger {
-      color: $fontPicker-active-color;
-    }
-
-    .#{$dropdown}-icon {
-      transition: transform 0.3s;
-      //transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-  }
-
-  .#{$fontPicker}-source-icon {
-    margin-right: 8px;
-  }
-
-  .#{$dropdown}-trigger {
-    position: relative;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    width: auto;
-    height: auto;
-    padding: 0;
-    overflow: hidden;
-    font-size: 13px;
-    color: #333;
-    text-overflow: ellipsis;
-    word-break: keep-all;
-    white-space: nowrap;
-    border-width: 0;
-   
-    .#{$fontPicker}-source-icon {
-      display: inline-block;
-      margin-right: 9px;
-      vertical-align: middle;
-    }
-  }
-
-  .#{$dropdown}-icon {
-    //position: static;
-    //margin-left: 2px;
-    padding: 0;
-    transition: transform 0.3s;
-    //transform: rotate(-180deg);
-    transform: rotate(180deg);
-  }
-
-  &-panel {
-    position: relative;
-    top: -0.6 * $font-size-xs !important; //-6px
-    width: 13 * $fontPicker-sizer !important; //130px
-    max-width: inherit;
-    font-size: $font-size-xs;
-
-    > li {
-      padding: 0.4 * $fontPicker-sizer $fontPicker-sizer; //4px 10px
-    }
-
-    > li:hover {
-      background-color: $fontPicker-hover-color;
-    }
-
-    &::before {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 0;
-      content: "";
-      border-color: transparent;
-      border-style: solid;
-      border-width: 0.6 * $fontPicker-sizer 0.6 * $fontPicker-sizer 0; //6px 6px 0
-      border-top-color: $color-white;
-      //transform: translate(-50%, 100%);
-    }
-
-    .#{$fontPicker}-source-icon {
-      display: inline-block;
-      margin-right: 0.9 * $fontPicker-sizer; //6px
-      vertical-align: bottom;
-    }
-
-  }
-}
-
-.#{$fontPicker}-manager {
-  position: relative;
-  flex-basis: calc(50% - 1px);
-  order: 1;
-  text-align: center;
-  border-left: 1px solid $fontPicker-border-color;
-
-  i {
-    display: inline-block;
-    margin-right: 0.4 * $fontPicker-sizer; //4px
-    vertical-align: middle;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:focus,
-  &:hover {
-    color: $fontPicker-active-color;
-    cursor: pointer;
-  }
-}
-
-.#{$fontPicker}-search {
-  display: flex;
-  align-items: center;
-  padding: 4px 20px 4px 10px;
-  margin-bottom: 0;
-  font-size: 13px;
-  border-bottom: 1px solid $gray;
-
-  i {
-    text-align: center;
-  }
-
-  input {
-    flex-basis: 100px;
-    flex-grow: 1;
-    order: 1;
-    min-width: 100px;
-    padding: 0.4 * $fontPicker-sizer 1.5 * $fontPicker-sizer 0.4 * $fontPicker-sizer 0.9 * $fontPicker-sizer !important;
-    margin: 0;
+  &-search {
+    padding: $fontPicker-search-padding;
+    margin-bottom: 0;
     font-size: $fontPicker-font-size;
-    border: 0;
-    box-shadow: none;
-    flex-shrink: 1;
+    border-bottom: $fontPicker-border-width solid $fontPicker-border-color;
 
-    &:focus {
-      outline: none;
+    input {
+      padding: $fontPicker-search-input-hover-padding !important;
+      margin: 0;
+      font-size: $fontPicker-font-size;
+      border: 0;
       box-shadow: none;
-    }
-  }
 
-  &-icon {
-    order: 0;
-  }
-
-  &-close {
-    display: none;
-    order: 10;
-
-    &:hover {
-      color: $fontPicker-search-input-hover-color;
-      cursor: pointer;
-    }
-  }
-
-  &-list {
-    display: none;
-    height: 35 * $fontPicker-sizer; //350px
-
-    .pj-scrollable-container {
-      width: 100% !important;
-      height: 320 * $fontPicker-sizer !important; 
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
     }
 
-    .#{$fontPicker}-searched {
-      display: block !important;
-    }
+    &-list {
+      height: 350px;
 
-    .pj-scrollable-content {
-      width: 100% !important;
-      
-      li {
-        display: none;
+      .#{$srcollable}-container {
+        width: 100% !important;
+        height: 320px !important; 
       }
     }
   }
 
-  &-ready {
-    .#{$fontPicker}-activated .#{$fontPicker}-font {
-      display: none;
-    }
-
-    .#{$fontPicker}-search-close {
-      display: block;
-    }
-
-    .#{$fontPicker}-package-wrap {
-      overflow: auto;
-    }
-
-    .#{$fontPicker}-package {
-      display: none;
-    }
-
-    .#{$fontPicker}-search-list {
-      display: block;
-    }
-  }
-}
-
-.#{$fontPicker}-searching {
-  .#{$fontPicker}-search-list li {
-    display: none;
+  &-font-focus {
+    color: $fontPicker-active-color;
+    background-color: $fontPicker-active-color;
   }
 
-  .#{$fontPicker}-font.#{$fontPicker}-searched {
-    display: block;
-  }
-}
+  &-panel {
+    height: $fontPicker-panel-height;
+    min-height: $fontPicker-panel-height;
+    padding: 0;
+    font-size: $fontPicker-font-size;
 
-.#{$fontPicker} {
-  .#{$fontPicker}-trigger .pj-dropdown-show {
-    &.tether-target-attached-bottom {
-      border-bottom-right-radius: 3px;
-      border-bottom-left-radius: 3px;
+    li:hover {
+      background-color: inherit;
     }
-
-    i {
-      transition: all 0.3s;
-      transform: translateY(-50%) rotate(180deg);
-    }
-  }
-
-  > input {
-    display: none;
-  }
-}
-
-.#{$fontPicker}-font-focus {
-  color: $fontPicker-font-active-color;
-  background-color: $fontPicker-active-color;
-}
-
-.icon-search {
-  color: $gray-dark;
-}
-
-.#{$dropdown}-item {
-  display: block
-}
-
-.#{$dropdown}-item:last-child {
-  padding-left: 3 * $fontPicker-sizer; //30px;
-}
-
-.#{$dropdown} {
-  width: 260px;
-}
-
-.#{$dropdown}-select {
-  .#{$dropdown} {
-    justify-content: center;
   }
 }
 
@@ -493,16 +249,16 @@ $fontPicker-search-input-hover-color: $gray !default;
     cursor: not-allowed !important;
     &.#{$fontPicker}-disabled {
       span {
-        color: $gray-dark;
+        color: $disabled-color;
       }
       &:focus,
       &:hover {
         border-color: $disabled-border;
         .#{$dropdown}-trigger {
-          color: $gray-dark;
+          color: $disabled-color;
         }
         span {
-          color: $gray-dark;
+          color: $disabled-color;
         }
       }
     }
