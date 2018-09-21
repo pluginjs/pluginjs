@@ -134,7 +134,9 @@ class MapPicker extends Component {
       hideOutClick: true,
       templates: this.options.templates,
       onShow: () => {
-        this.buildDropdown()
+        if (!this.is('builded')) {
+          this.buildDropdown()
+        }
       },
       onHide: () => {
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
@@ -360,11 +362,11 @@ class MapPicker extends Component {
   }
 
   open() {
+    this.DROPDOWN.show()
     if (!this.$map) {
       this.initMap()
     }
 
-    this.DROPDOWN.show()
     addClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
     addClass(this.classes.SHOW, this.$wrap)
     this.enter('open')
@@ -404,7 +406,6 @@ class MapPicker extends Component {
     } else {
       // this.initMap(true);
     }
-
     this.data = data
     this.update(trigger)
   }
