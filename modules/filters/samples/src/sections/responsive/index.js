@@ -6,23 +6,23 @@ Filter.of(element, {
   responsive: true,
   items: [
     {
-      text: 'ALL',
-      id: 'all'
+      text: 'All',
+      id: 'All'
     },
     {
-      text: 'PRICING',
-      id: 'pricing'
+      text: 'Wireframe',
+      id: 'Wireframe'
     },
     {
-      text: 'DESIGN',
+      text: 'Design',
       id: 'design'
     },
     {
-      text: 'WEBSITE',
+      text: 'Website',
       id: 'website'
     },
     {
-      text: 'TECHNOLOGY',
+      text: 'Technology',
       id: 'technology'
     }
   ]

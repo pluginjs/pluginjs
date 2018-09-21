@@ -4,7 +4,7 @@ import { isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { outerWidth, innerWidth } from '@pluginjs/styled'
-import { parseHTML, children, query, getData } from '@pluginjs/dom'
+import { parseHTML, children, query, getData, appendTo } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 import Pj from '@pluginjs/factory'
 import {
@@ -122,10 +122,17 @@ class Filters extends Component {
 
     if (isArray(items)) {
       const template = templateEngine.compile(
-        this.options.template.item.call(this, this.classes.ITEM)
+        this.options.templates.item.call(this)
       )
       items.forEach(item => {
-        html += template(item)
+        html += template(
+          Object.assign(
+            {
+              classes: this.classes
+            },
+            item
+          )
+        )
       })
     }
 
@@ -168,7 +175,7 @@ class Filters extends Component {
 
     if (!nodeIndex) {
       if (this.DROPDOWN) {
-        this.$dropdown.remove()
+        this.$more.remove()
         this.DROPDOWN.destroy()
         this.DROPDOWN.$dropdown.remove()
         this.DROPDOWN = null
@@ -184,18 +191,22 @@ class Filters extends Component {
     })
 
     if (!this.DROPDOWN) {
-      this.element.append(
-        parseHTML(`<a class="${this.classes.DROPDOWN}">More</a>`)
+      this.$more = appendTo(
+        templateEngine.render(this.options.templates.more.call(this), {
+          classes: this.classes,
+          text: this.options.responsiveMoreText
+        }),
+        this.element
       )
 
-      this.element.append(parseHTML('<div></div>'))
-
-      this.$dropdown = query(`.${this.classes.DROPDOWN}`, this.element)
-
-      this.DROPDOWN = Dropdown.of(this.$dropdown, {
+      this.DROPDOWN = Dropdown.of(this.$more, {
         data,
         itemValueAttr: 'data-index',
         placement: 'bottom-end',
+        target: false,
+        classes: {
+          DROPDOWN: `${this.classes.DROPDOWN} {namespace}`
+        },
         templates: {
           item() {
             return '<div class="{classes.ITEM}" {itemValueAttr}="{item.index}">{item.label}</div>'

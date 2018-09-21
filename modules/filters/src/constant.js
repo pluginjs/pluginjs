@@ -16,6 +16,7 @@ export const classes = {
   ITEM: '{namespace}',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
+  MORE: '{namespace}-more',
   DROPDOWN: '{namespace}-dropdown',
   HIDE: '{namespace}-hide',
   PANEL: '{namespace}-panel'
@@ -37,10 +38,14 @@ export const defaults = {
   default: null,
   valueFrom: 'data-id', // text, [selector, data-attr] or data-attr
   responsive: false,
+  responsiveMoreText: 'More...',
   dropdownWidth: 120,
-  template: {
-    item(css) {
-      return `<button type='button' class="${css}" data-id="{id}">{text}</button>`
+  templates: {
+    item() {
+      return '<button type="button" class="{classes.ITEM}" data-id="{id}">{text}</button>'
+    },
+    more() {
+      return '<button type="button" class="{classes.MORE} {classes.ITEM}">{text}</button>'
     }
   }
 }

@@ -58,7 +58,7 @@ $filters-button-margin: 10px;
 
     &,
     &:active,
-    &.#{$filter}-active {  
+    &.#{$filter}-active {
       &:focus,
       &.focus {
         // WebKit-specific. Other browsers will keep their default outline style.
@@ -96,12 +96,12 @@ $filters-button-margin: 10px;
     }
   }
 
-  .#{$filter}-dropdown {
-    padding: $filter-padding;
-    font-size: $filter-font-size;
-    line-height: $filter-line-height;
-    cursor: pointer;
-  }
+  // .#{$filter}-dropdown {
+  //   padding: $filter-padding;
+  //   font-size: $filter-font-size;
+  //   line-height: $filter-line-height;
+  //   cursor: pointer;
+  // }
 }
 
 .#{$filter}-panel {
