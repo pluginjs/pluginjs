@@ -251,6 +251,26 @@ describe('is', () => {
         expect(is.isUndefined('test')).toBeFalse()
       })
     })
+
+    describe('is.empty', () => {
+      test('should return true if passed parameter type is empty', () => {
+        expect(is.isEmpty(0)).toBeTrue()
+        expect(is.isEmpty('')).toBeTrue()
+        expect(is.isEmpty(undefined)).toBeTrue()
+        expect(is.isEmpty(null)).toBeTrue()
+        expect(is.isEmpty([])).toBeTrue()
+        expect(is.isEmpty({})).toBeTrue()
+        expect(is.isEmpty(false)).toBeTrue()
+      })
+
+      test('should return false if passed parameter type is not empty', () => {
+        expect(is.isEmpty(1)).toBeFalse()
+        expect(is.isEmpty('hello world')).toBeFalse()
+        expect(is.isEmpty([1, 2])).toBeFalse()
+        expect(is.isEmpty({foo: 'bar'})).toBeFalse()
+        expect(is.isEmpty(true)).toBeFalse()
+      })
+    })
   })
 
   describe('arithmetic checks', () => {

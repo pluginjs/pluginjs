@@ -154,7 +154,16 @@ export const isSymbol = val => {
   return val.constructor ?val.constructor.name === 'Symbol' :false
 }
 
-
+// is a given value is empty
+export const isEmpty = val => {
+  return (isNumber(val) && val === 0) ||
+    (isArray(val) && val.length === 0) ||
+    (isString(val) && val === '') ||
+    isEmptyObject(val) ||
+    isNull(val) ||
+    isUndefined(val) ||
+    val === false
+}
 
 // Arithmetic checks
 /* -------------------------------------------------------------------------- */
