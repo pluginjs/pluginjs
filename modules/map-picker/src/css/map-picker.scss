@@ -1,168 +1,119 @@
 @import "@pluginjs/styles/variables.scss";
+@import "map-picker.core";
 // Vars
 // =====================
-$mapPicker: "pj-mapPicker" !default;
-$mapPicker-sizer: $sizer !default;
+$mapPicker: "pj-mapPicker";
 
-$mapPicker-width: 26 * $mapPicker-sizer !default; //260px
-$mapPicker-height: 5 * $mapPicker-sizer !default; //50px
-$mapPicker-border-width: 1px !default;
-$mapPicker-border-style: solid !default;
-$mapPicker-border-color: $border-color !default;
-$mapPicker-border-radius: $border-radius-base !default;
-$mapPicker-color: $text-color !default;
-$mapPicker-prompt-color: $gray-dark !default;
-$mapPicker-font-size: $font-size-base !default;
-$mapPicker-active-color: $color-primary !default;
-// empty
-$mapPicker-empty-border-style: dashed !default;
-$mapPicker-empty-padding: $mapPicker-sizer 2 * $mapPicker-sizer !default; //10px 20px
-$mapPicker-empty-font-size: $font-size-sm !default;
-$mapPicker-empty-hover-bg-color: $gray-lightest !default;
-// icon
-$mapPicker-icon-color: $gray-dark !default;
-$mapPicker-icon-margin-right: 1.2 * $mapPicker-sizer !default; //12px
-$mapPicker-icon-font-size: $font-size-lg !default;
-// fill
-$mapPicker-fill-content-width: 19.2 * $mapPicker-sizer; //192px
+$mapPicker-font-size: $font-size-base;
+$mapPicker-hover-color: $gray-darkest;
+$mapPicker-border-color: $border-color;
+$mapPicker-border-radius: $border-radius-base;
+$mapPicker-prompt-color: #999;
+
+$mapPicker-empty-border-style: dashed;
+$mapPicker-empty-padding: 7px 12px;
+
+$mapPicker-icon-size: 12px;
+$mapPicker-icon-color: $gray-dark;
+$mapPicker-icon-margin-right: 8px;
+
+$mapPicker-fill-color: $gray-darkest;
+$mapPicker-fill-action-color: $color-white;
 $mapPicker-fill-action-bg-color: $color-opacity;
-// dropdown
-$mapPicker-dropdown-width: 30 * $mapPicker-sizer !default; //300px
-$mapPicker-dropdown-padding: 1.8 * $mapPicker-sizer !default; //18px
-// item
-$mapPicker-item-margin-bottom: 2 * $mapPicker-sizer !default; //20px
-// map
-$mapPicker-map-height: 18 * $mapPicker-sizer !default; //180px
-$mapPicker-map-margin-bottom: 3 * $mapPicker-sizer !default; //30px
-// cancel save
-$mapPicker-save-width:  9.5 *  $mapPicker-sizer !default; //95px
-$mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
+$mapPicker-fill-coord-margin-top: 4px;
+$mapPicker-fill-coord-color: #999;
+$mapPicker-fill-coord-font-size: 10px;
+$mapPicker-fill-action-margin-left: 24px;
 
-/*
-  core
-*/
+$mapPicker-filed-color: $gray-darkest;
+$mapPicker-filed-input-padding: 7px 12px;
+$mapPicker-filed-input-margin-top: 12px;
+$mapPicker-filed-input-color: #999;
+
+$mapPicker-dropdown-width: 272px;
+$mapPicker-dropdown-padding: 24px;
+
+$mapPicker-item-margin-bottom: 24px;
+
+$mapPicker-map-height: 126px;
+$mapPicker-map-margin-bottom: 30px;
 
 .#{$mapPicker} {
-  &-trigger {
-    position: relative;
-    width: $mapPicker-width !important;
-    height: $mapPicker-height;
-    border: none !important;
-
-    &-action {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      background-color: $mapPicker-fill-action-bg-color;
-      border-radius: $mapPicker-border-radius;
-      opacity: 0;
-      transition: opacity 0.3s;
-      .#{$mapPicker}-edit,
-      .#{$mapPicker}-remove {
-        color: $color-white;
-
-        &:hover {
-          // color: $mapPicker-active-color;
-          cursor: pointer;
-          // transition: color 0.3s;
-        }
-      }
-      > i:first-of-type {
-        margin-right: 2 * $mapPicker-sizer; //20px
-      }
-    }
-  }
-
-  &-open-disabled {
-    pointer-events: none;
-  }
-
-  &-input {
-    display: none !important;
+  &-icon {
+    margin-right: $mapPicker-icon-margin-right;
+    font-size: $mapPicker-icon-size;
+    color: $mapPicker-icon-color;
   }
 
   &-empty,
   &-fill,
   &-dropdown {
-    box-sizing: border-box;
     font-size: $mapPicker-font-size;
     background-color: $color-white;
-    border: $mapPicker-border-width $mapPicker-border-style $mapPicker-border-color;
+    border: 1px solid $mapPicker-border-color;
     border-radius: $mapPicker-border-radius;
   }
 
   &-empty,
   &-fill {
-    align-items: center;
-    width: $mapPicker-width;
-    height: $mapPicker-height;
     padding: $mapPicker-empty-padding;
     color: $mapPicker-prompt-color;
-
-    .#{$mapPicker}-icon {
-      margin-right: $mapPicker-icon-margin-right;
-      font-size: $mapPicker-icon-font-size;
-      color: $mapPicker-icon-color;
-    }
   }
 
   &-empty {
-    display: flex;
-    font-size: $mapPicker-empty-font-size;
     border-style: $mapPicker-empty-border-style;
+    transition: color 0.3s;
+    
     &:hover {
-      // background-color: $mapPicker-empty-hover-bg-color;
-      color: $gray-darker;
-      cursor: pointer;
-      transition: color 0.3s;
-
-      i {
-        color: $gray-darker;
-        cursor: pointer;
+      color: $mapPicker-hover-color;
+      
+      .#{$mapPicker}-icon {
+        color: $mapPicker-hover-color;
         transition: color 0.3s;
       }
     }
   }
 
   &-fill {
-    position: relative;
-    display: none;
-    
-    &-content {
-      display: flex;
-      flex-direction: column;
-      width: $mapPicker-fill-content-width;
+    color: $mapPicker-fill-color;
+
+    .#{$mapPicker}-icon {
+      color: $mapPicker-fill-color;
     }
 
     &-coord {
-      overflow-x: hidden;
-      white-space: nowrap;
+      margin-top: $mapPicker-fill-coord-margin-top;
+      font-size: $mapPicker-fill-coord-font-size;
+      color: $mapPicker-fill-coord-color;
+    }
+
+    &-action {
+      width: 100%;
+      height: 100%;
+      color: $mapPicker-fill-action-color;
+      background-color: $mapPicker-fill-action-bg-color;
+      border-radius: $mapPicker-border-radius;
+
+      i + i {
+        margin-left: $mapPicker-fill-action-margin-left;
+      }
     }
   }
 
   &-dropdown {
-    position: relative;
-    display: none;
     width: $mapPicker-dropdown-width;
     padding: $mapPicker-dropdown-padding;
-
-    .#{$mapPicker}-canel,
-    .#{$mapPicker}-save {
-      width: $mapPicker-save-width;
-      height: $mapPicker-save-height;
-    }
   }
 
   &-field {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: $mapPicker-item-margin-bottom;
+    color: $mapPicker-filed-color;
+
+    input {
+      padding: $mapPicker-filed-input-padding;
+      margin-top: $mapPicker-filed-input-margin-top;
+      color: $mapPicker-filed-input-color;
+    }
   }
 
   &-map {
@@ -172,19 +123,6 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     border-radius: $mapPicker-border-radius;
   }
 
-  &-place,
-  &-lat,
-  &-lng {
-    padding: 0;
-    margin: 0;
-  }
-
-  &-action {
-    text-align: right;
-  }
-
-  // utils
-  // ===============
   &-remove-animate {
     animation: fade-out 0.5s;
     animation-fill-mode: forwards;
@@ -192,34 +130,6 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     .#{$mapPicker}-trigger-action {
       animation: fade-out 0.5s;
       animation-fill-mode: forwards;
-    }
-  }
-
-  &-trigger-hover {
-    .#{$mapPicker}-trigger-action {
-      // display: flex;
-      opacity: 1;
-      transition: opacity 0.3s;
-    }
-  }
-
-  &-write {
-    .#{$mapPicker}-empty {
-      display: none;
-    }
-
-    .#{$mapPicker}-fill {
-      display: flex;
-    }
-
-    .#{$mapPicker}-trigger-action {
-      display: flex;
-    }
-  }
-
-  &-show {
-    .#{$mapPicker}-dropdown {
-      display: block !important;
     }
   }
 }
@@ -240,10 +150,11 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     cursor: not-allowed;
     background-color: $disabled-bg;
 
-    .#{$mapPicker}-remove,
-    .#{$mapPicker}-edit {
-      cursor: not-allowed;
-    }
+  }
+  
+  .#{$mapPicker}-remove,
+  .#{$mapPicker}-edit {
+    cursor: not-allowed;
   }
 
   .#{$mapPicker}-empty {
@@ -251,13 +162,14 @@ $mapPicker-save-height:  3.2 *  $mapPicker-sizer !default; //32px
     cursor: not-allowed;
     background-color: $disabled-bg;
     
-    > i {
-      color: $disabled-color;
-      cursor: not-allowed;
+    &:hover {
+      .#{$mapPicker}-icon {
+        color: $disabled-color;
+      }
     }
   }
-}
 
-.pac-container {
-  z-index: 1000000;
+  .#{$mapPicker}-icon {
+    color: $disabled-color;
+  }
 }

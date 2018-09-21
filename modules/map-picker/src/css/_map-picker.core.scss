@@ -1,0 +1,116 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$mapPicker: "pj-mapPicker" !default;
+
+//Core
+.#{$mapPicker} {
+  &-trigger {
+    position: relative;
+    line-height: 1.2;
+  }
+
+  &-open-disabled {
+    pointer-events: none;
+  }
+
+  &-input {
+    display: none;
+  }
+
+  &-empty {
+    display: flex;
+    cursor: pointer;
+  }
+
+  &-fill {
+    position: relative;
+    display: none;
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-coord {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+
+    }
+  }
+
+  &-edit,
+  &-remove {
+    cursor: pointer;
+  }
+
+  &-dropdown {
+    position: relative;
+    display: none;
+  }
+
+  &-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-action {
+    text-align: right;
+  }
+
+  &-remove-animate {
+    animation: fade-out 0.5s;
+    animation-fill-mode: forwards;
+
+    .#{$mapPicker}-fill-action {
+      animation: fade-out 0.5s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  &-fill-hover {
+    .#{$mapPicker}-fill-action {
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+  }
+
+  &-write {
+    .#{$mapPicker}-empty {
+      display: none;
+    }
+
+    .#{$mapPicker}-fill {
+      display: flex;
+    }
+  }
+
+  &-show {
+    .#{$mapPicker}-dropdown {
+      display: block;
+    }
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

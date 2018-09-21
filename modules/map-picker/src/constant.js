@@ -68,11 +68,11 @@ export const defaults = {
       </div>`
     },
     empty() {
-      return `<div class="{classes.EMPTY}"><i class="{classes.ICON} pj-icon pj-icon-pin-map-solid"></i>{addPlace}
+      return `<div class="{classes.EMPTY}"><i class="{classes.ICON} pj-icon pj-icon-location-solid"></i>{addPlace}
       </div>`
     },
     fill() {
-      return `<div class="{classes.FILL}"><i class="{classes.ICON} pj-icon pj-icon-pin-map-solid"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
+      return `<div class="{classes.FILL}"><i class="{classes.ICON} pj-icon pj-icon-location-solid"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
       </div>`
     },
     triggerAction() {
