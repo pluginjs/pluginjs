@@ -27,7 +27,7 @@ $fontPicker-font-spacer-y: 8px;
 
 $fontPicker-border-radius: $border-radius-base;
 $fontPicker-border-width: 1px;
-$fontPicker-border-color: $gray-border;
+$fontPicker-border-color: $border-color;
 
 $fontPicker-hover-color: $gray-lighter;
 $fontPicker-active-color: $color-primary-active;
@@ -45,7 +45,7 @@ $fontPicker-active-color: $color-primary-active;
   &-trigger {
     background-color: $fontPicker-bg;
     outline: none;
-  
+
     .#{$dropdown}-trigger {
       padding-left: $fontPicker-trigger-padding-left;
       font-size: $fontPicker-font-size;
@@ -66,12 +66,12 @@ $fontPicker-active-color: $color-primary-active;
         text-align: center;
       }
     }
-  
+
     .#{$srcollable}-content {
       padding: 0 2 * $fontPicker-border-width;
       margin: 2 * $fontPicker-border-width 0;
     }
-  
+
     .#{$fontPicker}-font {
       padding: $fontPicker-font-spacer-y $fontPicker-font-spacer-x;
       padding-left: $fontPicker-spacer-y;
@@ -82,7 +82,7 @@ $fontPicker-active-color: $color-primary-active;
       &:hover {
         background-color: $fontPicker-hover-color;
       }
-  
+
       &:focus {
         outline: none;
       }
@@ -139,16 +139,16 @@ $fontPicker-active-color: $color-primary-active;
     &:focus {
       outline: none;
     }
-  
+
     &:focus,
     &:hover {
       color: $fontPicker-active-color;
-  
+
       .#{$dropdown}-trigger {
         color: $fontPicker-active-color !important;
       }
     }
-  
+
     .#{$dropdown} {
       top: -6px !important;
       left: 6px !important;
@@ -159,20 +159,20 @@ $fontPicker-active-color: $color-primary-active;
         border-radius: 0;
       }
     }
-  
+
     &.#{$dropdown}-show {
       color: $fontPicker-active-color;
-  
+
       .#{$dropdown}-trigger {
         color: $fontPicker-active-color;
       }
-  
+
       .#{$dropdown}-icon {
         transition: transform 0.3s;
         transform: rotate(0deg);
       }
     }
-  
+
     .#{$fontPicker}-source-icon {
       margin-right: $fontPicker-spacer-x;
     }
@@ -223,7 +223,7 @@ $fontPicker-active-color: $color-primary-active;
 
       .#{$srcollable}-container {
         width: 100% !important;
-        height: 320px !important; 
+        height: 320px !important;
       }
     }
   }

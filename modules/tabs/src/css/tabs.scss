@@ -13,7 +13,7 @@ $tabs-label-padding-x: 24px;
 $tabs-label-color: $gray-darkest;
 $tabs-label-hover-color: $color-primary;
 
-$tabs-nav-border-color: $gray-border;
+$tabs-nav-border-color: $border-color;
 $tabs-nav-icon-margin-right: 9.88px;
 
 $tabs-content-padding-x: 23px;
@@ -36,7 +36,7 @@ $tabs-drop-content-bg: transparent;
       color: $tabs-label-color;
       background-color: $tabs-bg-color;
       border: 1px solid $tabs-nav-border-color;
-  
+
       &:hover {
         color: $tabs-label-hover-color;
       }
@@ -50,7 +50,7 @@ $tabs-drop-content-bg: transparent;
         margin-left: -1px;
       }
     }
-    
+
     &-icon {
       margin-right: $tabs-nav-icon-margin-right;
     }
@@ -64,7 +64,7 @@ $tabs-drop-content-bg: transparent;
     text-align: left;
     background-color: $tabs-bg-color;
     border: 1px solid $tabs-border-color;
-  
+
     > div {
       padding: $tabs-content-padding-y $tabs-content-padding-x;
     }

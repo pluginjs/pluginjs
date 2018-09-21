@@ -8,7 +8,7 @@ $imageSelector-width: 17 * $imageSelector-sizer !default; //170px
 $imageSelector-height: 11 * $imageSelector-sizer !default; //110px
 $imageSelector-border-width: 1px !default;
 $imageSelector-border-style: solid !default;
-$imageSelector-border-color: $gray-border !default;
+$imageSelector-border-color: $border-color !default;
 $imageSelector-border: $imageSelector-border-width $imageSelector-border-style
 $imageSelector-border-color !default;
 $imageSelector-border-radius: $border-radius-base !default;

@@ -7,7 +7,7 @@ $imagePicker-sizer: $sizer !default;
 $imagePicker-width: 16 * $imagePicker-sizer !default; //160px
 $imagePicker-height: 9 * $imagePicker-sizer !default; //90px
 $imagePicker-border-width: 1px !default;
-$imagePicker-border-color: $gray-border !default;
+$imagePicker-border-color: $border-color !default;
 $imagePicker-border: $imagePicker-border-width solid $imagePicker-border-color !default;
 $imagePicker-border-radius: $border-radius-base !default;
 $imagePicker-color: $gray-dark !default;

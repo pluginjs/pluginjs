@@ -33,7 +33,7 @@ $paginator-input-radius: $border-radius-sm;
 $paginator-hover-input-border: $gray-darkest;
 
 $paginator-border-width: $border-width;
-$paginator-border-color: $gray-border;
+$paginator-border-color: $border-color;
 
 // disabled
 $paginator-disabled-color: $gray;
@@ -62,7 +62,7 @@ $paginator-disabled-border: $gray;
       margin-right: $paginator-icon-margin;
     }
   }
-  
+
   &-next {
     .pj-icon {
       margin-left: $paginator-icon-margin;
@@ -115,7 +115,7 @@ $paginator-disabled-border: $gray;
     text-decoration: none;
     text-transform: uppercase;
     vertical-align: middle;
-  
+
     &:hover,
     &:focus {
       color: $paginator-hover-color;

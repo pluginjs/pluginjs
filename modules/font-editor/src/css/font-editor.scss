@@ -9,7 +9,7 @@ $fontEditor-sizer: $sizer;
 $fontEditor-color: $gray-darker !default;
 $fontEditor-color-light: $gray-light !default;
 $fontEditor-border-width: 1px !default;
-$fontEditor-border-color: $gray-border !default;
+$fontEditor-border-color: $border-color !default;
 $fontEditor-border-style: solid !default;
 $fontEditor-border: $fontEditor-border-width $fontEditor-border-style
   $fontEditor-border-color !default;
@@ -173,7 +173,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     border: $fontEditor-border;
     border-radius: $fontEditor-border-radius;
   }
-  
+
   &-control {
     margin-top: 3 * $fontEditor-sizer; //30px
     text-align: right;
@@ -190,7 +190,7 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
   &-field {
     align-items: center;
     justify-content: space-between;
-    
+
     &-title {
       order: 0;
       font-size: $font-size-base;

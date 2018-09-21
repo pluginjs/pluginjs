@@ -152,12 +152,12 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
     //}
   // &-hex-mode.pj-dropdown-select{
   //   &:hover{
-  //     border-color: $gray-border;
+  //     border-color: $border-color;
   //   }
 
   //   > .pj-dropdown {
   //     &.hover {
-  //       border-color: $gray-border;
+  //       border-color: $border-color;
   //     }
   //   }
 
@@ -169,7 +169,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
     margin-bottom: 0;
     text-overflow: ellipsis;
     border-radius: 2px !important;
-  
+
     &-input-active {
       border-color: #4c93d9;
     }
@@ -317,7 +317,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
       @include icon();
       font-family:$pj-icon-font-family;
       content: icon-content($pj-icon-gradient-solid);
-      
+
     }
 
     &-solid::after {
@@ -325,7 +325,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
       font-family:$pj-icon-font-family;
       content: icon-content($pj-icon-gradient-solid);
       }
-    
+
 
     &-gradient,
     &-solid {
@@ -404,7 +404,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
   &-panel-gradient {
     padding: $colorPicker-solid-padding;
   }
- 
+
   &-collection {
     &-scrollwrap {
       // width: 100%;

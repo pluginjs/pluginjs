@@ -61,7 +61,7 @@ $modal-overlay-bgColor: rgba($color-black, 0.4) !default;
 
 $modal-vertification-bgColor: $color-white;
 $modal-vertification-color: $color-black;
-$modal-vertification-borderClor: $gray-border;
+$modal-vertification-borderClor: $border-color;
 
 .#{$modal} {
   font-family: $modal-font-family;

@@ -7,11 +7,11 @@ $editPanel: "pj-editPanel" !default;
 $scrollable: "pj-scrollable" !default;
 
 $patternPicker-spacer: $spacer !default;
-$patternPicker-border: 1px solid $gray-border !default;
+$patternPicker-border: 1px solid $border-color !default;
 
 $patternPicker-width: 16 * $patternPicker-spacer !default; //160px
 $patternPicker-height: 9 * $patternPicker-spacer !default; //108px
-$patternPicker-border: 1px solid $gray-border;
+$patternPicker-border: 1px solid $border-color;
 
 // preview
 $preview-width:  26 * $patternPicker-spacer !default; //260px
@@ -37,7 +37,7 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
     pointer-events: none;
   }
 
-  &-trigger {   
+  &-trigger {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -55,7 +55,7 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
       height: $patternPicker-height;
       padding: 1px;
       border: $patternPicker-border;
-  
+
       .#{$patternPicker}-action {
         position: absolute;
         top: 0;
@@ -74,14 +74,14 @@ $selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
           margin-right: 28px;
         }
       }
-  
+
       &-img {
         width: $patternPicker-width;
         height: $patternPicker-height;
       }
     }
   }
-  
+
   &-dropdown {
     box-sizing: border-box;
     width: 300px;

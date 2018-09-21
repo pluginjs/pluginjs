@@ -15,8 +15,6 @@ $gray-light: #f2f2f2 !default;
 $gray-lighter: #fafafa !default;
 $gray-lightest: #fcfcfc !default;
 
-$gray-border: $gray !default;
-
 $btn-color-primary: #215fdb;
 $btn-color-hover: #2376eb;
 $btn-color-disable: #acc4e6;
@@ -26,15 +24,19 @@ $color-primary-active: #215fdb !default;
 $color-primary-dark: #1d53bf;
 $color-primary-light: #77b6f5;
 $color-primary-black:#333 !default;
+
 $color-success: #4be1ab !default;
 $color-success-dark: #5cd29d !default;
 $color-success-light: #6fe7bc !default;
+
 $color-info: #57c7d4 !default;
 $color-info-dark: #47b8c6 !default;
 $color-info-light: #77d6e1 !default;
+
 $color-warning: #f2a654 !default;
 $color-warning-dark: #ec9940 !default;
 $color-warning-light: #f4b066 !default;
+
 $color-danger: #f96868 !default;
 $color-danger-dark: #e9595b !default;
 $color-danger-light: #fa7a7a !default;
@@ -163,7 +165,7 @@ $transition-duration: 150ms !default;
 
 // 9. disabled bg color
 $disabled-bg: $color-white;
-$disabled-border: $gray-border;
+$disabled-border: $border-color;
 $disabled-color: $gray;
 
 //  10. Input
@@ -203,7 +205,7 @@ $input-disabled-color: $disabled-color;
   }
 }
 
-@mixin icon {
+@mixin icon() {
   display: inline-block;
   font-style: normal;
   font-weight: normal; /* stylelint-disable-line */

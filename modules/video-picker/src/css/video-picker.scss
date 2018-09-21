@@ -9,7 +9,7 @@ $dropdown: "pj-dropdown" !default;
 $editPanel: "pj-editPanel" !default;
 $imagePicker: "pj-imagePicker" !default;
 // global
-$videoPicker-border-color: $gray-border !default;
+$videoPicker-border-color: $border-color !default;
 $videoPicker-border: 1px solid $videoPicker-border-color !default;
 $videoPicker-border-radius: $border-radius-base !default;
 $videoPicker-font-size: $font-size-base !default;
@@ -49,7 +49,7 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     align-items: center;
     width: 160px;
     height: 30px;
-    border: 1px solid $gray-border;
+    border: 1px solid $border-color;
   }
   &-poster {
     display: flex;
@@ -103,7 +103,7 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     width: 160px;
     height: 90px;
     padding: 1px;
-    border: 1px solid $gray-border;
+    border: 1px solid $border-color;
   }
   &-wrap{
     .#{$videoPicker}-fill .#{$videoPicker}-action {
@@ -170,7 +170,7 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     width: 300px;
     padding: 20px;
     background-color: $color-white;
-    border: 1px solid $gray-border;
+    border: 1px solid $border-color;
     border-radius: 2px;
   }
   &-panel {

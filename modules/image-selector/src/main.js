@@ -231,8 +231,8 @@ class ImageSelector extends Component {
     return setStyle(
       'background-image',
       `url("${data.img}")`,
-      parseHTML(`<li class="${this.classes.ITEM}" data-label="${data.value}">
-      <span class="${this.classes.ITEMLABEL}">${data.label}</span></li>`)
+      parseHTML(`<div class="${this.classes.ITEM}" data-label="${data.value}">
+      <span class="${this.classes.ITEMLABEL}">${data.label}</span></div>`)
     )
   }
 

@@ -31,7 +31,7 @@ $list-item-hover-border-color: $gray-darker;
 
 $list-ghost-bg: $gray-lightest;
 
-$list-border-color: $gray-border;
+$list-border-color: $border-color;
 $list-border-radius: $border-radius-base;
 
 
@@ -123,7 +123,7 @@ $list-disabled-border-color: $disabled-color;
       color: $list-disabled-color;
       border-color: $list-disabled-border-color;
     }
-    
+
     .pj-icon {
       color: $list-disabled-color;
     }

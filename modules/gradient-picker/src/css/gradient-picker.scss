@@ -17,7 +17,7 @@ $gradientPicker-warning-color: $color-warning !default;
 
 $gradientPicker-width: 16 * $gradientPicker-sizer !default; //160px
 $gradientPicker-height: 9 * $gradientPicker-sizer !default; //30px
-$gradientPicker-border: 1px solid $gray-border;
+$gradientPicker-border: 1px solid $border-color;
 
 // component
 $component-content-width: 16 * $gradientPicker-sizer !default; //160px
@@ -31,7 +31,7 @@ $selector-item-margin-size: 1.7 * $gradientPicker-sizer !default; //17px
 $editPanel-component-color: $color-red !default;
 // Core
 // =====================
-.#{$gradientPicker} {  
+.#{$gradientPicker} {
   // === animate === //
   @keyframes flashing {
     0% {
@@ -47,7 +47,7 @@ $editPanel-component-color: $color-red !default;
     }
   }
 
-  &-trigger {    
+  &-trigger {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -124,14 +124,14 @@ $editPanel-component-color: $color-red !default;
   }
 
   &-dropdown {
-    
+
     width: 30 * $gradientPicker-sizer;
     height: 34 * $gradientPicker-sizer;
     padding: 2 * $gradientPicker-sizer;
     background-color: $color-white;
     border: 1px solid #dfe4ed;
     border-radius: 2px;
-    
+
   }
 
   &-btn-action {

@@ -10,7 +10,7 @@ $bgPicker-width: 16 * $bgPicker-sizer !default; //160px
 $bgPicker-height: 9 * $bgPicker-sizer !default; //90px
 $bgPicker-color:$gray-dark !default;
 $bgPicker-border-width: 1px !default;
-$bgPicker-border-color: $gray-border !default;
+$bgPicker-border-color: $border-color !default;
 $bgPicker-border: $bgPicker-border-width solid $bgPicker-border-color !default;
 $bgPicker-border-radius: $border-radius-base !default;
 $bgPicker-font-size: $font-size-base !default;
@@ -229,7 +229,7 @@ input.#{$bgPicker}-input {
       margin: 0;
       font-size: $font-size-base; //20px
       color: $bgPicker-repeat-content-color;
-      
+
       &-item {
         box-sizing: border-box;
         margin-bottom: 0 !important;
@@ -246,7 +246,7 @@ input.#{$bgPicker}-input {
   &-repeat {
     overflow: hidden;
   }
-  
+
   &-position,
   &-repeat,
   &-size {
@@ -254,7 +254,7 @@ input.#{$bgPicker}-input {
     .#{$bgPicker}-field-content {
       display: flex;
       flex-wrap: wrap;
-  
+
       li {
         position: relative;
         height: 100%;
@@ -265,18 +265,18 @@ input.#{$bgPicker}-input {
         list-style: none;
         cursor: pointer;
         border: 1px solid $border-color;
-  
+
         &:hover {
           background-color: $gray-lightest;
         }
-  
+
         &::before {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
         }
-  
+
         &::after {
           position: absolute;
           top: -1px;
@@ -300,18 +300,18 @@ input.#{$bgPicker}-input {
       li {
         width: $bgPicker-expand-repeat-size-width;
         height: $bgPicker-size-content-height;
-  
+
         &::after {
           width: $bgPicker-expand-repeat-size-width;
           height: $bgPicker-size-content-height;
         }
-  
+
         &:first-child,
         &:first-child::after {
           border-top-left-radius: $bgPicker-border-radius;
           border-bottom-left-radius: $bgPicker-border-radius;
         }
-  
+
         &:last-child,
         &:last-child::after {
           border-top-right-radius: $bgPicker-border-radius;
@@ -324,39 +324,39 @@ input.#{$bgPicker}-input {
   &-position {
     .#{$bgPicker}-field-content {
       height: $bgPicker-position-content-height;
-  
+
       li {
         width: $bgPicker-expand-position-width;
         height: $bgPicker-position-content-li-height;
         margin-top: -1px;
-  
+
         &::after {
           width: $bgPicker-expand-position-width;
           height: $bgPicker-position-content-li-height;
         }
-  
+
         &:nth-child(1),
         &:nth-child(2),
         &:nth-child(3) {
           margin-top: 0;
           // border-bottom: none;
         }
-  
+
         &:nth-child(1),
         &:nth-child(1)::after {
           border-top-left-radius: $bgPicker-border-radius;
         }
-  
+
         &:nth-child(3),
         &:nth-child(3)::after {
           border-top-right-radius: $bgPicker-border-radius;
         }
-  
+
         &:nth-child(7),
         &:nth-child(7)::after {
           border-bottom-left-radius: $bgPicker-border-radius;
         }
-  
+
         &:nth-child(9),
         &:nth-child(9)::after {
           border-bottom-right-radius: $bgPicker-border-radius;
@@ -364,7 +364,7 @@ input.#{$bgPicker}-input {
       }
     }
   }
-  
+
   &-attachment {
     .pj-dropdown {
     min-width: 180px;
@@ -385,15 +385,15 @@ input.#{$bgPicker}-input {
     .#{$bgPicker}-field-content {
       border: 1px solid #e6e6e6;
       border-radius: $bgPicker-size-content-border-radius;
-  
+
       &:hover {
         border-color: $gray-darkest;
       }
-  
+
       .pj-dropdown {
         width: $asDropdown-trigger-width;
       }
-  
+
       .pj-dropdown-trigger {
         padding-left: 10px;
         line-height: 30px !important;
@@ -462,7 +462,7 @@ input.#{$bgPicker}-input {
 }
 
 .#{$bgPicker}-disabled {
-  
+
   .#{$bgPicker}-fill {
     cursor: not-allowed;
     background-color: $disabled-bg;
