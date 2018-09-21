@@ -1,5 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
-
+@import "@pluginjs/icons/variables.scss";
 // Vars
 // =====================
 $colorPicker: "pj-colorPicker" !default;
@@ -39,9 +39,9 @@ $colorPicker-panel-width: 28.8 * $colorPicker-sizer !default; //288px
 $colorPicker-panel-height: 37 * $colorPicker-sizer !default; //370px
 $colorPicker-panel-shadow: $box-shadow-base !default;
 // panel trigger
-$colorPicker-panel-trigger-height: 4 * $colorPicker-sizer !default; //40px
-$colorPicker-panel-trigger-icon-size: 2 * $colorPicker-sizer !default; //20px
-$colorPicker-panel-trigger-icon-color: $gray-light !default;
+$colorPicker-panel-swicher-height: 4 * $colorPicker-sizer !default; //40px
+$colorPicker-panel-swicher-icon-size: 2 * $colorPicker-sizer !default; //20px
+$colorPicker-panel-swicher-icon-color: $gray-light !default;
 // controller
 $colorPicker-controller-height: 3 * $colorPicker-sizer !default; //30px
 // collection
@@ -133,33 +133,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
 // Core
 // =====================
 .#{$colorPicker} {
-  width: $colorPicker-width;
-  height: $colorPicker-height;
-  margin: 0;
-  margin-bottom: 0;
-  text-overflow: ellipsis;
-  border-radius: 2px !important;
-
-  &-input-active {
-    border-color: #4c93d9;
-  }
-  //
-  // &-hex-mode.pj-dropdown-select{
-  //   &:hover{
-  //     border-color: $gray-border;
-  //   }
-
-  //   > .pj-dropdown {
-  //     &.hover {
-  //       border-color: $gray-border;
-  //     }
-  //   }
-
-  // }
-
-  // === wrap === //
-  &-wrap {
-    position: relative;
+  position: relative;
     display: inline-block;
     font-size: $colorPicker-font-size;
     //border: 1px solid $colorPicker-border-color;
@@ -176,10 +150,28 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
     //.tether-abutted-top.#{$colorPicker} {
     //  border-color: $color-primary-dark;
     //}
-    .pj-input[type="text"] {
-      &:focus {
-        border-color: $color-black;
-      }
+  // &-hex-mode.pj-dropdown-select{
+  //   &:hover{
+  //     border-color: $gray-border;
+  //   }
+
+  //   > .pj-dropdown {
+  //     &.hover {
+  //       border-color: $gray-border;
+  //     }
+  //   }
+
+  // }
+  &-input {
+    width: $colorPicker-width;
+    height: $colorPicker-height;
+    margin: 0;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    border-radius: 2px !important;
+  
+    &-input-active {
+      border-color: #4c93d9;
     }
   }
 
@@ -232,10 +224,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
   }
 
   &-open {
-    // input {
-    //   border: 1px solid $color-primary-dark;
-    // }
-    &.#{$colorPicker}-panel-wrap {
+    &.#{$colorPicker}-dropdown {
       display: flex;
     }
   }
@@ -266,143 +255,156 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
       background: $colorPicker-preview-bg-image;
     }
   }
-
-  // === panel === //
-  &-panel {
+  &-dropdown {
     position: relative;
+    left: 10px !important;
+    z-index: 9999;
     box-sizing: border-box;
+    display: none;
     flex-direction: column;
-    // display: none;
     width: $colorPicker-panel-width;
+    padding: 0.4 * $colorPicker-sizer 0; //4px
     font-size: $colorPicker-font-size;
     color: $colorPicker-color;
     background-color: $color-white;
     border-radius: $colorPicker-border-radius;
     box-shadow: $colorPicker-panel-shadow;
+  }
 
-    &-wrap {
-      left: 10px !important;
-      z-index: 9999;
-      display: none;
-      padding: 0.4 * $colorPicker-sizer 0; //4px
-    }
+  &-panel-swicher {
+    display: flex;
+    height: $colorPicker-panel-swicher-height;
+    border-bottom: $colorPicker-border;
 
-    &-trigger {
-      display: flex;
-      height: $colorPicker-panel-trigger-height;
-      border-bottom: $colorPicker-border;
-
-      > i {
-        position: relative;
-        display: inline-block;
-        flex-grow: 1;
-        width: $colorPicker-panel-width / 3;
-        height: 100%;
-        font-size: $colorPicker-panel-trigger-icon-size;
-        line-height: $colorPicker-panel-trigger-height;
-        // color: $colorPicker-panel-trigger-icon-color;
-        text-align: center;
-
-        // &::after {
-        //   position: absolute;
-        //   top: 50%;
-        //   right: 0;
-        //   display: block;
-        //   width: 1px;
-        //   height: 2 * $colorPicker-sizer; //20px
-        //   content: "";
-        //   background-color: $colorPicker-border-color;
-        //   transform: translateY(-50%);
-        // }
-
-        &:last-of-type::after {
-          display: none;
-        }
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-      &-gradient,
-      &-solid {
-        &::before {
-          // display: inline-block;
-          // width: $colorPicker-panel-trigger-icon-size;
-          // height: 1.6 * $colorPicker-sizer; //16px
-          // content: "";
-          background-color: #aab3bf;
-          border: 1px solid #999;
-          border-radius: 2px;
-          // border: $colorPicker-border;
-        }
-
-        // &:hover::before {
-        //   background-color: $color-primary-active;
-        //   border-color: $colorPicker-active-color;
-        // }
-      }
-    }
-
-    &-container {
+    > i {
       position: relative;
+      display: inline-block;
+      flex-grow: 1;
+      width: $colorPicker-panel-width / 3;
+      height: 100%;
+      font-size: $colorPicker-panel-swicher-icon-size;
+      line-height: $colorPicker-panel-swicher-height;
+      // color: $colorPicker-panel-swicher-icon-color;
+      text-align: center;
 
-      & > div {
-        display: none;
+      // &::after {
+      //   position: absolute;
+      //   top: 50%;
+      //   right: 0;
+      //   display: block;
+      //   width: 1px;
+      //   height: 2 * $colorPicker-sizer; //20px
+      //   content: "";
+      //   background-color: $colorPicker-border-color;
+      //   transform: translateY(-50%);
+      // }
+
+      // &:last-of-type::after {
+      //   display: none;
+      // }
+
+      &:hover {
+        cursor: pointer;
       }
     }
-
-    &-collection {
-      height: $colorPicker-collection-height;
-      padding: $colorPicker-collection-padding;
-
-      .#{$colorPicker}-group {
-        &-title {
-          display: inline-block;
-          margin-bottom: $colorPicker-collection-group-title-margin-bottom;
-          font-size: $colorPicker-collection-group-title-font-size;
-          color: $colorPicker-collection-group-title-color;
-          letter-spacing: 1px;
-        }
-
-        &-list {
-          width: 100%;
-          // height: 100%;
-          padding: 0;
-          margin: 0;
-        }
-      }
-
-      .#{$colorPicker}-manage {
-        position: absolute;
-        bottom: 23.5px;
-        left: 23.5px;
-        width: 241px;
-        height: $colorPicker-collection-manage-height;
-        line-height: $colorPicker-collection-manage-height - 2px;
-        color: $color-primary-black;
-        text-align: center;
-        border: 1px solid #e6e6e6 !important;
-
-        i {
-          margin-right: $colorPicker-collection-manage-icon-margin-right;
-          vertical-align: middle;
-        }
-
-        &:hover {
-          cursor: pointer;
-          background-color: #f2f2f2 !important;
-          border: 1px solid #e6e6e6 !important;
-        }
-      }
+    &-collection::after {
+      @include icon();
+      font-family:$pj-icon-font-family;
+      content: icon-content($pj-icon-gradient-solid);
     }
 
-    &-solid,
-    &-gradient {
-      padding: $colorPicker-solid-padding;
+    &-gradient::after {
+      @include icon();
+      font-family:$pj-icon-font-family;
+      content: icon-content($pj-icon-gradient-solid);
+      
+    }
+
+    &-solid::after {
+      @include icon();
+      font-family:$pj-icon-font-family;
+      content: icon-content($pj-icon-gradient-solid);
+      }
+    
+
+    &-gradient,
+    &-solid {
+      &::before {
+        // display: inline-block;
+        // width: $colorPicker-panel-swicher-icon-size;
+        // height: 1.6 * $colorPicker-sizer; //16px
+        // content: "";
+        background-color: #aab3bf;
+        border: 1px solid #999;
+        border-radius: 2px;
+        // border: $colorPicker-border;
+      }
+
+      // &:hover::before {
+      //   background-color: $color-primary-active;
+      //   border-color: $colorPicker-active-color;
+      // }
     }
   }
 
+  &-panel-container {
+    position: relative;
+
+    & > div {
+      display: none;
+    }
+  }
+
+  &-panel-collection {
+    height: $colorPicker-collection-height;
+    padding: $colorPicker-collection-padding;
+
+    .#{$colorPicker}-group {
+      &-title {
+        display: inline-block;
+        margin-bottom: $colorPicker-collection-group-title-margin-bottom;
+        font-size: $colorPicker-collection-group-title-font-size;
+        color: $colorPicker-collection-group-title-color;
+        letter-spacing: 1px;
+      }
+
+      &-list {
+        width: 100%;
+        // height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .#{$colorPicker}-manage {
+      position: absolute;
+      bottom: 23.5px;
+      left: 23.5px;
+      width: 241px;
+      height: $colorPicker-collection-manage-height;
+      line-height: $colorPicker-collection-manage-height - 2px;
+      color: $color-primary-black;
+      text-align: center;
+      border: 1px solid #e6e6e6 !important;
+
+      i {
+        margin-right: $colorPicker-collection-manage-icon-margin-right;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: #f2f2f2 !important;
+        border: 1px solid #e6e6e6 !important;
+      }
+    }
+  }
+
+  &-panel-solid,
+  &-panel-gradient {
+    padding: $colorPicker-solid-padding;
+  }
+ 
   &-collection {
     &-scrollwrap {
       // width: 100%;
@@ -455,7 +457,7 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
 
     &-action {
       margin-top: $colorPicker-solid-item-margin-bottom;
-      overflow: hidden;
+      // overflow: hidden;
       input {
         padding: 0 !important;
         padding-right: 15px !important;
@@ -802,8 +804,8 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
   &-selected {
     color: $color-primary-active !important;
 
-    &.#{$colorPicker}-panel-trigger-gradient::before,
-    &.#{$colorPicker}-panel-trigger-solid::before {
+    &.#{$colorPicker}-panel-swicher-gradient::before,
+    &.#{$colorPicker}-panel-swicher-solid::before {
       background: $color-primary-active;
       border-color: $colorPicker-active-color;
     }

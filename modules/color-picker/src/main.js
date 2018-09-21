@@ -73,7 +73,7 @@ class ColorPicker extends Component {
     this.setupClasses()
     compose(
       attr({ placeholder: this.options.placeholder }),
-      addClass(this.classes.NAMESPACE, 'pj-input')
+      addClass(this.classes.INPUT, 'pj-input')
     )(this.element)
     // init global vars
     this.$body = query('body')
@@ -207,7 +207,7 @@ class ColorPicker extends Component {
 
     append(this.$panel, this.$wrap)
     this.$panelWrap = wrap(
-      `<div class='${this.classes.PANELWRAP}'></div>`,
+      `<div class='${this.classes.DROPDOWN}'></div>`,
       this.$panel
     )
 

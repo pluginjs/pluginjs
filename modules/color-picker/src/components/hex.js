@@ -10,7 +10,8 @@ import {
   // queryAll
 } from '@pluginjs/dom'
 import { Color } from '@pluginjs/color'
-import Dropdown from '@pluginjs/dropdown'
+// import Dropdown from '@pluginjs/dropdown'
+import Select from '@pluginjs/select'
 class Hex {
   constructor(instance, element) {
     this.instance = instance
@@ -54,7 +55,7 @@ class Hex {
 
     this.$el = query(`.${this.classes.HEXMODE}>div>div`, this.element)
     // this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
-    this.SELECT = Dropdown.of(this.$el, {
+    this.SELECT = Select.of(this.$el, {
       value: this.classify,
       source: this.data,
       onChange: res => {

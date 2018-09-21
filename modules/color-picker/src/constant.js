@@ -26,12 +26,12 @@ export const PANELCLASS = {
   PANEL: '{namespace}-panel',
   OPENPANEL: '{namespace}-open',
   OPENACTIVE: '{namespace}-input-active',
-  PANELWRAP: '{namespace}-panel-wrap',
+  DROPDOWN: '{namespace}-dropdown',
 
-  PANELTRIGGER: '{namespace}-panel-trigger',
-  PANELTRIGGERCOLLECTION: '{namespace}-panel-trigger-collection',
-  PANELTRIGGERSOLID: '{namespace}-panel-trigger-solid',
-  PANELTRIGGERGRADIENT: '{namespace}-panel-trigger-gradient',
+  PANELTRIGGER: '{namespace}-panel-swicher',
+  PANELTRIGGERCOLLECTION: '{namespace}-panel-swicher-collection',
+  PANELTRIGGERSOLID: '{namespace}-panel-swicher-solid',
+  PANELTRIGGERGRADIENT: '{namespace}-panel-swicher-gradient',
 
   PANELCONTAINER: '{namespace}-panel-container',
   PANELCOLLECTION: '{namespace}-panel-collection',
@@ -105,7 +105,7 @@ export const BASECLASS = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   ELEMENT: '{namespace}',
-  WRAP: '{namespace}-wrap',
+  WRAP: '{namespace}',
   TRIGGER: '{namespace}-trigger',
   DISABLED: '{namespace}-disabled',
   INPUT: '{namespace}-input',
@@ -216,14 +216,23 @@ export const defaults = {
     </div>`
     },
     collectionTrigger() {
-      return '<i class="{class} pj-icon pj-icon-star-solid" data-type="collection"></i>'
+      return '<i class="{class}" data-type="collection"></i>'
     },
     solidTrigger() {
-      return '<i class="{class} pj-icon pj-icon-gradient-solid" data-type="solid"></i>'
+      return '<i class="{class}" data-type="solid"></i>'
     },
     gradientTrigger() {
-      return '<i class="{class} pj-icon pj-icon-gradient" data-type="gradient"></i>'
+      return '<i class="{class}" data-type="gradient"></i>'
     },
+    // collectionTrigger() {
+    //   return '<i class="{class} pj-icon pj-icon-star-solid" data-type="collection"></i>'
+    // },
+    // solidTrigger() {
+    //   return '<i class="{class} pj-icon pj-icon-gradient-solid" data-type="solid"></i>'
+    // },
+    // gradientTrigger() {
+    //   return '<i class="{class} pj-icon pj-icon-gradient" data-type="gradient"></i>'
+    // },
     moduleWrap() {
       return '<div class="{class}"></div>'
     },

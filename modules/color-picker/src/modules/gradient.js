@@ -39,9 +39,9 @@ class Gradients {
 
   build() {
     this.$actionBar = parseHTML(
-      `<div class="${this.classes.GRADIENTBAR}"><div class=${
+      `<div class="${this.classes.GRADIENTBAR}"><div class="${
         this.classes.GRADIENTBARVIEW
-      }></div></div>`
+      }"></div></div>`
     )
     this.$wheel = parseHTML(
       `<div class="${this.classes.WHEEL}"><div class="${
