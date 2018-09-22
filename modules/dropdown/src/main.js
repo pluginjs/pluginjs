@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import template from '@pluginjs/template'
+import templateEngine from '@pluginjs/template'
 import { isString, isNull, isDomNode, isObject, isArray } from '@pluginjs/is'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -9,8 +9,10 @@ import {
   query,
   queryAll,
   insertAfter,
-  parentWith
+  parentWith,
+  parseHTML
 } from '@pluginjs/dom'
+import { getStyle } from '@pluginjs/styled'
 import {
   eventable,
   register,
@@ -54,6 +56,7 @@ class Dropdown extends Component {
 
     this.$dropdown = this.getDropdown()
     this.POPPER = null
+    this.$active = []
     this.setupStates()
     this.initialize()
   }
@@ -131,7 +134,7 @@ class Dropdown extends Component {
         },
         this.$trigger
       )
-    } else {
+    } else if (this.options.trigger !== 'custom') {
       bindEvent(
         this.eventName(this.options.trigger),
         e => {
@@ -152,7 +155,11 @@ class Dropdown extends Component {
         }
 
         if (!this.isItemDisabled($item)) {
-          this.selectItem($item)
+          if (this.options.multiple && this.isItemSelected($item)) {
+            this.unselectItem($item)
+          } else {
+            this.selectItem($item)
+          }
 
           if (this.options.hideOnSelect) {
             this.hide()
@@ -180,16 +187,28 @@ class Dropdown extends Component {
     }
 
     if (items.length > 0) {
-      let content = ''
+      const template = templateEngine.compile(
+        this.options.templates.item.call(this)
+      )
+      const $frag = document.createDocumentFragment()
+
       items.forEach(item => {
-        content += template.render(this.options.templates.item(item), {
-          classes: this.classes,
-          itemValueAttr: this.options.itemValueAttr,
-          item
-        })
+        const $item = parseHTML(
+          template({
+            classes: this.classes,
+            itemValueAttr: this.options.itemValueAttr,
+            item
+          })
+        )
+
+        if (item.disabled) {
+          addClass(this.classes.ITEMDISABLED, $item)
+        }
+
+        $frag.appendChild($item)
       })
 
-      append(content, this.$dropdown)
+      append($frag, this.$dropdown)
     }
   }
 
@@ -206,7 +225,7 @@ class Dropdown extends Component {
     )
   }
 
-  getActiveItem() {
+  getActiveItems() {
     return this.$active
   }
 
@@ -221,7 +240,7 @@ class Dropdown extends Component {
 
   selectByValue(value, trigger = true) {
     const $selected = this.getItems().find($item => {
-      return this.getItemValue($item) === value
+      return this.getItemValue($item) == value // eslint-disable-line
     })
     if ($selected) {
       this.selectItem($selected, trigger)
@@ -236,25 +255,59 @@ class Dropdown extends Component {
     return hasClass(this.classes.ITEMDISABLED, $item)
   }
 
+  unselectByValue(value, trigger = true) {
+    const $selected = this.getItems().find($item => {
+      return this.getItemValue($item) == value // eslint-disable-line
+    })
+    if ($selected) {
+      this.unselectItem($selected, trigger)
+    }
+  }
+
+  isItemSelected($item) {
+    return hasClass(this.classes.ACITVE, $item)
+  }
+
+  unselectItem($item, trigger = true) {
+    if (this.isItemDisabled($item)) {
+      return
+    }
+
+    if (this.$active.includes($item)) {
+      removeClass(this.classes.ACITVE, $item)
+
+      if (trigger) {
+        this.trigger(EVENTS.UNSELECT, $item)
+      }
+      this.$active = this.$active.filter($i => $i !== $item)
+    }
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, this.get())
+    }
+  }
+
   selectItem($item, trigger = true) {
     if (this.isItemDisabled($item)) {
       return
     }
-    if (!isNull(this.$active)) {
-      removeClass(this.classes.ACITVE, this.$active)
+
+    if (!this.options.multiple) {
+      this.$active.forEach($i => this.unselectItem($i, false))
     }
 
-    const value = this.getItemValue($item)
-    if (trigger) {
-      this.trigger(EVENTS.SELECT, $item)
+    if (!this.$active.includes($item)) {
+      addClass(this.classes.ACITVE, $item)
 
-      if (this.$active !== $item) {
-        this.trigger(EVENTS.CHANGE, value)
+      if (trigger) {
+        this.trigger(EVENTS.SELECT, $item)
       }
+      this.$active.push($item)
     }
 
-    this.$active = $item
-    addClass(this.classes.ACITVE, this.$active)
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, this.get())
+    }
   }
 
   getHighlightedItem() {
@@ -288,7 +341,15 @@ class Dropdown extends Component {
       $item = this.getItemByIndex(index)
     }
 
+    const { clientHeight, scrollTop } = this.$dropdown
+
     if ($item) {
+      if ($item.clientHeight + $item.offsetTop > clientHeight + scrollTop) {
+        this.$dropdown.scrollTop =
+          $item.clientHeight + $item.offsetTop - clientHeight
+      } else if ($item.offsetTop < scrollTop) {
+        this.$dropdown.scrollTop = $item.offsetTop
+      }
       addClass(this.classes.HIGHLIGHTED, $item)
       this.$highlighted = $item
     }
@@ -306,7 +367,10 @@ class Dropdown extends Component {
   }
 
   isItemHided($item) {
-    return hasClass(this.classes.ITEMHIDED, $item)
+    return (
+      hasClass(this.classes.ITEMHIDED, $item) ||
+      getStyle('display', $item) === 'none'
+    )
   }
 
   unHighlightItem() {
@@ -379,10 +443,14 @@ class Dropdown extends Component {
   }
 
   get() {
-    const $active = this.getActiveItem()
+    const $active = this.getActiveItems()
+    const values = $active.map($item => this.getItemValue($item))
 
-    if ($active) {
-      return this.getItemValue($active)
+    if (this.options.multiple) {
+      return values
+    }
+    if (values.length > 0) {
+      return values[0]
     }
     return null
   }
@@ -476,7 +544,7 @@ class Dropdown extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-
+      this.$active = []
       this.leave('initialized')
     }
 

@@ -41,12 +41,12 @@ class Keyboard {
     bindEvent(
       this.instance.selfEventName(EVENTS.SHOWN),
       () => {
-        const $active = instance.getActiveItem()
+        const $active = instance.getActiveItems()
 
-        if (!$active) {
+        if ($active.length === 0) {
           instance.highlightItem(0)
         } else {
-          instance.highlightItem($active)
+          instance.highlightItem($active[0])
         }
 
         if (!this.instance.is('keyboard')) {

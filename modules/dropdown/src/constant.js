@@ -10,7 +10,8 @@ export const events = {
   SHOW: 'show',
   SHOWN: 'shown',
   CHANGE: 'change',
-  SELECT: 'select'
+  SELECT: 'select',
+  UNSELECT: 'unselect'
 }
 
 export const classes = {
@@ -45,7 +46,7 @@ export const defaults = {
   theme: null,
   reference: null,
   target: '+', // dom selector to find content in the page, or '+' means adjacent siblings, or 'false' when generate dropdown from data
-  trigger: 'click', // focus, hover
+  trigger: 'click', // focus, hover, custom
   hideOnSelect: true,
   hideOutClick: true, // When clicking outside of the dropdown, trigger hide event
   keyboard: false,
@@ -55,11 +56,9 @@ export const defaults = {
   boundary: 'scrollParent', // viewport
   itemValueAttr: 'data-value',
   data: null,
+  multiple: false,
   templates: {
-    item(item) {
-      if (item.disabled) {
-        return '<div class="{classes.ITEM} {classes.ITEMDISABLED}" {itemValueAttr}="{item.value}">{item.label}</div>'
-      }
+    item() {
       return '<div class="{classes.ITEM}" {itemValueAttr}="{item.value}">{item.label}</div>'
     }
   }
