@@ -1,0 +1,55 @@
+{
+  "name": "@pluginjs/multi-select",
+  "description": "A flexible modern multi-select js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "version": "0.0.1",
+  "category": "form",
+  "main": "dist/multi-select.umd.js",
+  "module": "dist/multi-select.esm.js",
+  "cjs": "dist/multi-select.cjs.js",
+  "source": "src/main.js",
+  "css": {
+    "source": "src/css/main.scss",
+    "main": "dist/multi-select.css",
+    "min": "dist/multi-select.min.css"
+  },
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "npm run lint:js & npm run lint:scss",
+    "lint:js": "eslint ./src/**/*.js --fix",
+    "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/classes": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/is": "*",
+    "@pluginjs/select": "*"
+  },
+  "devDependencies": {
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testURL": "http://localhost",
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  }
+}

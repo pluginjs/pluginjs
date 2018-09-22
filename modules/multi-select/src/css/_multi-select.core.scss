@@ -1,0 +1,64 @@
+@import "@pluginjs/styles/variables.scss";
+
+$dropdown: "pj-dropdown";
+$select: "pj-select";
+$multiSelect: "pj-select-multi" !default;
+
+$multiSelect-chip-unselect-icon: $pj-icon-close !default;
+$multiSelect-chip-unselect-font: $pj-icon-font-family !default;
+
+.#{$multiSelect} {
+  &.#{$select}-selected .#{$select}-label {
+    display: none;
+  }
+
+  &.#{$select}-show.#{$select}-filterable .#{$select}-label {
+    display: inline-flex;
+  }
+
+  .#{$select}-trigger{
+    align-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  &.#{$select}-all-selected {
+    .#{$select}-dropdown {
+      display: none;
+    }
+  }
+
+  &.#{$select}-hide-selected {
+    .#{$dropdown}-active {
+      display: none;
+    }
+  }
+
+  .#{$select}-chip {
+    box-sizing: content-box;
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    text-decoration: none;
+    vertical-align: middle;
+
+    &-unselect {
+      cursor: pointer;
+
+
+      &::after {
+        @include icon();
+        font-family: $multiSelect-chip-unselect-font;
+
+        content: icon-content($multiSelect-chip-unselect-icon);
+      }
+    }
+  }
+
+  &.#{$select}-reach-max {
+    .#{$select}-option {
+      display: none;
+    }
+  }
+}
