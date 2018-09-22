@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import template from '@pluginjs/template'
+import templateEngine from '@pluginjs/template'
 import {
   eventable,
   register,
@@ -23,11 +23,11 @@ import {
   isFunction,
   isNull,
   isPlainObject,
-  isUndefined
+  isEmpty
 } from '@pluginjs/is'
 import Clearable from './clearable'
 import Filterable from './filterable'
-// import { bindEvent, removeEvent } from '@pluginjs/events'
+import { removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 import { insertAfter, appendTo, html, parseHTML } from '@pluginjs/dom'
@@ -57,20 +57,28 @@ class Select extends Component {
   }
 
   initialize() {
-    this.value = null
+    if (!this.value) {
+      this.value = null
+    }
+    if (!this.selected) {
+      this.selected = null
+    }
+
     this.placeholder = this.element.getAttribute('placeholder')
     if (!this.placeholder) {
       this.placeholder = this.options.placeholder
     }
 
     addClass(this.classes.ELEMENT, this.element)
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$wrap)
-    }
+
     this.$wrap = insertAfter(
       `<div class="${this.classes.WRAP}"></div>`,
       this.element
     )
+
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.$wrap)
+    }
 
     this.$trigger = appendTo(
       `<div class="${this.classes.TRIGGER}"></div>`,
@@ -78,7 +86,10 @@ class Select extends Component {
     )
 
     this.$label = appendTo(
-      `<div class="${this.classes.LABEL}">${this.placeholder}</div>`,
+      templateEngine.render(this.options.templates.label(), {
+        classes: this.classes,
+        placeholder: this.placeholder
+      }),
       this.$trigger
     )
 
@@ -87,6 +98,9 @@ class Select extends Component {
     }
 
     this.initData()
+
+    this.bind()
+
     this.setupDropdown()
 
     if (this.options.clearable) {
@@ -96,7 +110,7 @@ class Select extends Component {
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
-    // this.bind()
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
@@ -122,11 +136,8 @@ class Select extends Component {
         PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
       },
       onShow: () => {
-        if (!this.is('builded')) {
-          this.buildDropdown()
-          this.DROPDOWN.selectByValue(this.value)
-        }
-
+        this.onDropdownShow()
+        addClass(this.classes.SHOW, this.$wrap)
         this.trigger(EVENTS.SHOW)
       },
       onShown: () => {
@@ -136,6 +147,7 @@ class Select extends Component {
         this.trigger(EVENTS.HIDE)
       },
       onHided: () => {
+        removeClass(this.classes.SHOW, this.$wrap)
         this.trigger(EVENTS.HIDED)
       },
       onChange: value => {
@@ -144,11 +156,18 @@ class Select extends Component {
     })
   }
 
-  // bind() {}
+  onDropdownShow() {
+    if (!this.is('builded')) {
+      this.buildDropdown()
+      this.DROPDOWN.selectByValue(this.value, false)
+    }
+  }
 
-  // unbind() {
-  //   removeEvent(this.eventName(), this.element)
-  // }
+  bind() {} // eslint-disable-line
+
+  unbind() {
+    removeEvent(this.eventName(), this.element)
+  }
 
   initData() {
     if (isArray(this.options.source) || isPlainObject(this.options.source)) {
@@ -173,13 +192,47 @@ class Select extends Component {
     this.data = data
     this.items = this.flatItems(data)
 
-    let value = this.element.value
-    if (value === '' || isUndefined(value)) {
-      value = this.options.value
+    let value = this.getValueFromElement()
+    if (isEmpty(value)) {
+      value = this.getValueFromData()
+
+      if (isEmpty(value)) {
+        value = this.options.value
+      }
     }
-    if (value) {
-      this.select(value, false)
+
+    if (!isEmpty(value)) {
+      this.set(value, false)
     }
+  }
+
+  isValidValue(val) {
+    const found = this.items.find(item => {
+      return item.value == val // eslint-disable-line
+    })
+    if (found) {
+      return true
+    }
+    return false
+  }
+
+  getValueFromData() {
+    const selected = this.items.find(item => {
+      return item.selected
+    })
+
+    if (selected) {
+      return selected.value
+    }
+    return null
+  }
+
+  getValueFromElement() {
+    return this.element.value
+  }
+
+  setValueForElement(value) {
+    this.element.value = value
   }
 
   flatItems(data) {
@@ -195,37 +248,105 @@ class Select extends Component {
     return items
   }
 
-  select(value, trigger = true) {
-    if (value !== this.value) {
+  select(value, trigger = true, update = true) {
+    if (!this.isValidValue(value)) {
+      return
+    }
+    if (value !== this.selected) {
       const option = this.getOptionByValue(value)
+
+      this.setLabel(this.getOptionLabel(option))
+
+      this.selected = value
 
       if (trigger) {
         this.trigger(EVENTS.SELECT, option)
-
-        if (this.value !== value) {
-          this.trigger(EVENTS.CHANGE, value)
-        }
       }
+      if (this.DROPDOWN) {
+        this.DROPDOWN.selectByValue(value, false)
+      }
+    }
 
+    if (update && value !== this.value) {
+      this.set(value, true)
+    }
+  }
+
+  unselect(value, trigger = true, update = true) {
+    if (!this.isValidValue(value)) {
+      return
+    }
+    if (value === this.selected) {
+      const option = this.getOptionByValue(value)
+
+      this.setLabel(this.placeholder)
+
+      this.selected = null
+
+      if (trigger) {
+        this.trigger(EVENTS.UNSELECT, option)
+      }
+      if (this.DROPDOWN) {
+        this.DROPDOWN.unselectByValue(value, false)
+      }
+    }
+
+    if (update && value === this.value) {
+      this.set(null, true)
+    }
+  }
+
+  set(value, trigger = true) {
+    value = this.purifyValue(value)
+
+    if (value !== this.value) {
       this.value = value
-      this.element.value = value
 
-      if (!isNull(value) && option) {
-        this.setLabel(this.getOptionLabel(option))
-        addClass(this.classes.SELECTED, this.$wrap)
-      } else {
-        this.setLabel(this.placeholder)
+      if (isNull(value)) {
+        this.unselect(this.selected, trigger, false)
         removeClass(this.classes.SELECTED, this.$wrap)
 
         if (trigger) {
-          this.trigger(EVENTS.CLEAR, value)
+          this.trigger(EVENTS.CLEAR)
         }
+      } else {
+        this.select(value, trigger, false)
+        addClass(this.classes.SELECTED, this.$wrap)
+      }
+
+      this.setValueForElement(value)
+
+      if (trigger) {
+        this.trigger(EVENTS.CHANGE, value)
       }
     }
   }
 
+  purifyValue(value) {
+    if (this.isValidValue(value)) {
+      return value
+    }
+    return null
+  }
+
+  val(value) {
+    if (typeof value === 'undefined') {
+      return this.options.process.call(this, this.get())
+    }
+
+    return this.set(this.options.parse.call(this, value))
+  }
+
+  get() {
+    return this.value
+  }
+
+  clear() {
+    this.set(null)
+  }
+
   getOptionLabel(option) {
-    return this.options.optionLabel.call(this, option)
+    return this.options.customLabel.call(this, option)
   }
 
   setLabel(label) {
@@ -248,7 +369,8 @@ class Select extends Component {
         ...option.dataset,
         disabled: option.disabled,
         label: option.innerHTML,
-        value: option.value
+        value: option.value,
+        selected: option.selected
       }
     }
     return this.selectOptions.map(option => {
@@ -288,8 +410,14 @@ class Select extends Component {
   }
 
   buildGroup(group) {
+    if (!this.groupTemplate) {
+      this.groupTemplate = templateEngine.compile(
+        this.options.templates.group.call(this)
+      )
+    }
+
     const $group = parseHTML(
-      template.render(this.options.templates.group(), {
+      this.groupTemplate({
         classes: this.classes,
         group
       })
@@ -303,36 +431,26 @@ class Select extends Component {
   }
 
   buildOption(option) {
+    if (!this.optionTemplate) {
+      this.optionTemplate = templateEngine.compile(
+        this.options.templates.option.call(this)
+      )
+    }
+
     const $option = parseHTML(
-      template.render(this.options.templates.option(option), {
+      this.optionTemplate({
         classes: this.classes,
         option
       })
     )
 
+    if (option.disabled) {
+      addClass(this.classes.OPTIONDISABLED, $option)
+    }
+
     option.__dom = $option
 
     return $option
-  }
-
-  val(value) {
-    if (typeof value === 'undefined') {
-      return this.options.process.call(this, this.get())
-    }
-
-    return this.set(this.options.parse.call(this, value))
-  }
-
-  get() {
-    return this.value
-  }
-
-  set(value) {
-    return this.select(value)
-  }
-
-  clear() {
-    this.set(null)
   }
 
   enable() {

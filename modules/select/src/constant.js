@@ -6,6 +6,7 @@ export const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   SELECT: 'select',
+  UNSELECT: 'unselect',
   CHANGE: 'change',
   HIDE: 'hide',
   HIDED: 'hided',
@@ -21,6 +22,7 @@ export const classes = {
   TRIGGER: '{namespace}-trigger pj-input',
   LABEL: '{namespace}-label',
   WRAP: '{namespace}',
+  SHOW: '{namespace}-show',
   DROPDOWN: '{namespace}-dropdown',
   GROUP: '{namespace}-group',
   GROUPLABEL: '{namespace}-group-label',
@@ -59,17 +61,17 @@ export const defaults = {
   dropdown: {
     placement: 'bottom' // top
   },
-  optionLabel(option) {
+  customLabel(option) {
     return option.label
   },
   templates: {
+    label() {
+      return '<div class="{classes.LABEL}">{placeholder}</div>'
+    },
     group() {
       return '<div class="{classes.GROUP}"><div class="{classes.GROUPLABEL}">{group.label}</div></div>'
     },
-    option(option) {
-      if (option.disabled) {
-        return '<div class="{classes.OPTION} {classes.OPTIONDISABLED}" data-value="{option.value}">{option.label}</div>'
-      }
+    option() {
       return '<div class="{classes.OPTION}" data-value="{option.value}">{option.label}</div>'
     }
   },

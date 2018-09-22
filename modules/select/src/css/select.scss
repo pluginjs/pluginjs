@@ -24,7 +24,8 @@ $select-group-label-space-x: 11px;
 $select-group-label-space-y: 8px;
 
 $select-not-found-padding: 11px 8px;
-$select-not-found-color: $gray-dark;
+$select-not-found-color: $gray-darker;
+
 .#{$select} {
   outline: none;
 

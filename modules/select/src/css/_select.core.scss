@@ -9,7 +9,7 @@ $select-max-height: 300px;
 
 $select-trigger-arrow-icon: $pj-icon-triangle-down-mini-solid;
 $select-trigger-arrow-font: $pj-icon-font-family;
-$select-trigger-arrow-right: 10px;
+$select-trigger-arrow-right: $input-padding-x;
 $select-trigger-padding-right: 30px;
 
 $select-clear-icon: $pj-icon-close;
@@ -46,10 +46,11 @@ $select-clear-right: 15px;
     &::after {
       @include icon();
       position: absolute;
-      top: 20%;
+      top: 50%;
       right: $select-trigger-arrow-right;
       font-family: $select-trigger-arrow-font;
       content: icon-content($select-trigger-arrow-icon);
+      transform: translateY(-50%);
     }
 
     .#{$select}-clearable.#{$select}-selected &:hover::after {
