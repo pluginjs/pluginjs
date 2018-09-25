@@ -103,4 +103,31 @@ $time-picker-trigger-border-color: $gray-darker;
       background-color: transparent;
     }
   }
+
+  &.#{$time-picker}-disabled {
+    user-select: none;
+
+    &:hover {
+      .#{$time-picker}-input,
+      .#{$time-picker}-trigger {
+        border-color: $disabled-border;
+      }
+  
+      .#{$time-picker}-input {
+        border-right-color: $disabled-border;
+      }
+  
+      .#{$time-picker}-trigger {
+        border-left-color: $disabled-border;
+      }
+    }
+
+    .#{$time-picker}-trigger-icon {
+      color: $disabled-color;
+  
+      &:hover {
+        color: $disabled-color;
+      }
+    }
+  }
 }
