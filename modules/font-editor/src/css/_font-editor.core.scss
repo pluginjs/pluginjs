@@ -1,0 +1,86 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$fontEditor: "pj-fontEditor" !default;
+$select: "pj-select" !default;
+$range: "pj-range" !default;
+$dropdown: "pj-dropdown" !default;
+
+$fontEditor-dropdown-width: 272px !default;
+$fontEditor-dropdown-padding: 24px 28px !default;
+
+// Core
+// =====================
+.#{$fontEditor} {
+  box-sizing: border-box;
+  display: inline-block;
+
+  &-trigger {
+    position: relative;
+    width: 100%;
+
+    &-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &-empty,
+  &-fill {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-empty {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &-fill {
+    &-content {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+
+  &-dropdown {
+    z-index: 100;
+    box-sizing: border-box;
+    width: $fontEditor-dropdown-width;
+    padding: $fontEditor-dropdown-padding;
+  }
+
+  &-field {
+    &-content {
+      .#{$select},
+      .#{$range}-control {
+        width: inherit;
+      }
+    }
+  }
+
+  &-decorations {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    list-style: none;
+  }
+}

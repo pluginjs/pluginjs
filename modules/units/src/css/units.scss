@@ -21,7 +21,7 @@ $units-trigger-color: $gray-dark;
 $units-trigger-height: $units-height;
 $units-trigger-spacer: 8px;
 
-$units-input-padding: 8px 30px 8px 8px;
+$units-input-padding: 8px 24px 8px 8px;
 
 $units-dropdown-box-shadow: 0 0 10px 0 rgba($color-black, 0.07);
 
@@ -54,6 +54,7 @@ $units-disabled-color: $disabled-color;
 
   &-trigger {
     padding: 0 $units-trigger-spacer;
+    padding-left: 0;
     font-size: $units-trigger-font-size;
     line-height: $units-trigger-height;
     color: $units-trigger-color;

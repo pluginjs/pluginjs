@@ -1,87 +1,75 @@
 @import "@pluginjs/styles/variables.scss";
+@import "./font-editor.core";
 
 // Vars
 // =====================
-$fontEditor: "pj-fontEditor" !default;
-
-$fontEditor-sizer: $sizer;
+$fontEditor: "pj-fontEditor";
 // ======= core vars ====== //
-$fontEditor-color: $gray-darker !default;
-$fontEditor-color-light: $gray-light !default;
-$fontEditor-border-width: 1px !default;
-$fontEditor-border-color: $border-color !default;
-$fontEditor-border-style: solid !default;
+$fontEditor-font-family: $font-family-base;
+$fontEditor-font-size: $font-size-base;
+$fontEditor-line-height: 16px;
+$fontEditor-width: 200px;
+
+$fontEditor-padding: 8px 12px;
+
+$fontEditor-color: $gray-darker;
+$fontEditor-color-light: $gray-light;
+$fontEditor-border-width: 1px;
+$fontEditor-border-color: $border-color;
+$fontEditor-border-style: solid;
+
 $fontEditor-border: $fontEditor-border-width $fontEditor-border-style
-  $fontEditor-border-color !default;
-$fontEditor-border-radius: $border-radius-base !default;
-$fontEditor-height: 5 * $fontEditor-sizer !default; //50px
+  $fontEditor-border-color;
+$fontEditor-border-radius: $border-radius-base;
+// trigger
+$fontEditor-trigger-color: $color-white;
+$fontEditor-trigger-bg: rgba($color-black, 0.8);
+$fontEditor-trigger-edit-margin: 30px;
+// icon
+$fontEditor-i-margin-right: 8px;
+$fontEditor-i-font-size: 20px;
+$fontEditor-i-color: $gray-dark;
+// filed
+$fontEditor-dropdown-filed-margin-bottom: 24px;
+$fontEditor-dropdown-filed-content-margin: 12px;
 // fill
-$fontEditor-fill-width: 20 * $fontEditor-sizer !default; //260px
-$fontEditor-fill-font-size: $font-size-sm !default;
-$fontEditor-fill-change-bg: $color-opacity !default;
-$fontEditor-fill-change-opacity: 1 !default;
-$fontEditor-fill-i-color: $gray-dark !default; //#ccd1d9
+$fontEditor-fill-font-size: $font-size-sm;
+$fontEditor-fill-change-opacity: 1;
 // empty
-$fontEditor-empty-border-style: dashed !default;
-$fontEditor-empty-fill-hover-bg: $gray-lightest !default;
+$fontEditor-empty-border-style: dashed;
+$fontEditor-empty-fill-hover-bg: $gray-lightest;
+
+$fontEditor-name-margin-right: 12px;
+$fontEditor-name-font-size: $font-size-base;
+$fontEditor-sub-font-size: $font-size-xs;
 // decorations
-$fontEditor-decorations-li: $gray-darker !default; //#ccd1d9
-$fontEditor-decorations-active: $color-primary-active !default;
+$fontEditor-decorations-padding: 8px 10px;
+$fontEditor-decorations-li: $gray-darker;
+$fontEditor-decorations-active: $color-primary-active;
 // control
-$fontEditor-control-color: $gray !default;
-// content
-$fontEditor-content-width: 23 * $fontEditor-sizer !default; //180px
+$fontEditor-control-button-padding: 8px 28px;
 
-$fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
-// ======= support Plugin's vars ====== //
-// dropdown
-// $dropdown-min-width: 180px !default;
-//$dropdown-height: 30px !default;
-//$dropdown-trigger-color: #bbb !default;
-//$dropdown-trigger-border-color: #e4e4e4 !default;
-//$dropdown-trigger-bg-color: $color-white !default;
-//$dropdown-trigger-fill-hover-border-color: #bbb !default;
-//$dropdown-panel-border-color: $dropdown-trigger-border-color !default;
-//$dropdown-panel-bg-color: $dropdown-trigger-bg-color !default;
-//$dropdown-panel-li-color: #777 !default;
-//$dropdown-panel-li-bg-color: $dropdown-trigger-bg-color !default;
-//$dropdown-panel-li-fill-hover-color: $color-white !default;
-//$dropdown-panel-li-fill-hover-bg-color: #41a9e5 !default;
-// unit
-
-// Core
+// Styles
 // =====================
 .#{$fontEditor} {
-  box-sizing: border-box;
-  display: inline-block;
-  height: $fontEditor-height;
+  width: $fontEditor-width;
+  font-family: $fontEditor-font-family;
 
   &-trigger {
-    position: relative;
-    height: $fontEditor-height;
-
     &-action {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      font-size: $font-size-lg;
-      line-height: $fontEditor-height;
-      color: $color-white;
-      text-align: center;
-      background-color: $fontEditor-fill-change-bg;
+      color: $fontEditor-trigger-color;
+      background-color: $fontEditor-trigger-bg;
       border-radius: $fontEditor-border-radius;
       opacity: 0;
       transition: opacity 0.3s;
 
+      &-edit {
+        margin-right: $fontEditor-trigger-edit-margin;
+      }
+
       &-remove,
       &-edit {
-        margin: 0 1.6 * $fontEditor-sizer; //0 16px
-
         &:hover {
-          color: $gray-lighter;
           cursor: pointer;
         }
       }
@@ -92,33 +80,17 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     pointer-events: none;
   }
 
-  .pj-unitsRange {
-    display: flex;
-  }
-  .pj-range {
-    width: 100%
-  }
-
   &-empty,
   &-fill {
-    position: relative !important;
-    box-sizing: border-box;
-    display: block;
-    min-width: $fontEditor-fill-width;
-    //height: $fontEditor-height;
-    height: 100%;
-    padding: 0.6 * $fontEditor-sizer 2 * $fontEditor-sizer; //6px 20px
-    line-height: $fontEditor-height;
-    //line-height: 30px;
-    // border: $fontEditor-border;
+    padding: $fontEditor-padding;
     border-radius: $fontEditor-border-radius;
 
     > i {
       float: left;
-      margin-right: 0.8 * $fontEditor-sizer; //8px
-      font-size: $font-size-base + 5px; //20px
+      margin-right: $fontEditor-i-margin-right;
+      font-size: $fontEditor-i-font-size;
       font-style: normal;
-      color: $fontEditor-fill-i-color;
+      color: $fontEditor-i-color;
     }
   }
 
@@ -126,147 +98,83 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     font-size: $font-size-sm;
     color: $fontEditor-color-light;
     cursor: pointer;
-    border-style: $fontEditor-empty-border-style;
+    border: $fontEditor-border-width $fontEditor-empty-border-style $fontEditor-border-color;
 
     &:hover {
-      background-color: $fontEditor-empty-fill-hover-bg;
+      background-color: $fontEditor-trigger-bg;
       transition: background-color 0.3s;
     }
   }
 
   &-fill {
-    align-items: center;
     color: $fontEditor-color;
-    border: 1px solid #E6E6E6;
+    border: $fontEditor-border;
+  
     &-content {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: space-around;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
       font-size: $fontEditor-fill-font-size;
       text-align: left;
 
       &-name {
-        display: block;
-        line-height: 1.4 * $fontEditor-sizer; //14px
+        display: inline-block;
+        margin-right: $fontEditor-name-margin-right;
+        font-size: $fontEditor-font-size;
+        line-height: $fontEditor-line-height;
       }
 
       &-sub {
-        display: block;
-        font-size: $font-size-xs;
-        line-height: 1.2 * $fontEditor-sizer; //12px
+        display: inline-block;
+        font-size: $fontEditor-sub-font-size;
+        line-height: $fontEditor-line-height;
       }
     }
   }
+
   // expand
   &-dropdown {
-    // position: relative;
-    z-index: 100;
-    box-sizing: border-box;
-    width: 27.2 * $fontEditor-sizer; //272px
-    // height: 49.2 * $fontEditor-sizer; //49.2px
-    padding: 2 * $fontEditor-sizer; //20px
-    background-color: $color-white;
     border: $fontEditor-border;
-    border-radius: $fontEditor-border-radius;
   }
 
   &-control {
-    margin-top: 3 * $fontEditor-sizer; //30px
     text-align: right;
   }
 
   &-cancel,
   &-save {
-    width: 9.1 * $fontEditor-sizer; //91px
-    height: 3.2 * $fontEditor-sizer; //32px
-    font-size: $font-size-xs;
+    padding: $fontEditor-control-button-padding !important;
+    line-height: $fontEditor-line-height !important;
   }
 
-
   &-field {
-    align-items: center;
-    justify-content: space-between;
-
+ 
     &-title {
       order: 0;
-      font-size: $font-size-base;
+      font-size: $fontEditor-font-size;
     }
 
     &-content {
-      width: $fontEditor-content-width;
-      margin-top: $fontEditor-sizer;
+      margin-top: $fontEditor-dropdown-filed-content-margin;
     }
   }
 
   &-fontFamily,
-  &-fontWeight {
-    margin-bottom: 1.0 * $fontEditor-sizer;
-    .pj-dropdown-input {
-      width: 23 * $fontEditor-sizer;
-    }
-    .pj-dropdown {
-      width: 23 * $fontEditor-sizer;
-      margin-top: -0.6 * $fontEditor-sizer;
-    }
-    &-dropdown {
-      width: $fontEditor-content-width !important;
-      height: $fontEditor-dropdown-height;
-
-      // .pj-dropdown-trigger {
-      //   padding: 4px 14px;
-      //   font-size: 12px;
-      // }
-    }
-  }
-
-  &-fontSize,
-  &-line-height {
-    .pj-dropdown-input {
-      width: 8 * $fontEditor-sizer;
-    }
-    .pj-dropdown {
-      width: 8 * $fontEditor-sizer;
-    }
-    &-range.pj-range-control {
-      width: 11 * $fontEditor-sizer; //110px
-    }
-  }
+  &-fontWeight,
   &-lineHeight {
-    margin-bottom: 1.1 * $fontEditor-sizer; //110px
+    margin-bottom: $fontEditor-dropdown-filed-margin-bottom;
   }
+
   &-decorations {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 3.2 * $fontEditor-sizer; //32px
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    list-style: none;
-    border: 1px solid #e6e6e6;
+    padding: $fontEditor-decorations-padding;
+    margin-bottom: $fontEditor-dropdown-filed-margin-bottom;
+    border: $fontEditor-border;
+  
     li {
-      display: block;
-      float: left;
-      width: 1.2 * $fontEditor-sizer; //12px
-      height: 1.2 * $fontEditor-sizer; //12px
-      margin-bottom: 0;
       line-height: 1;
       color: $fontEditor-decorations-li;
       text-transform: none;
-
       cursor: pointer;
       // Better Font Rendering ===========
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-
-      &:first-child {
-        margin-left: 0;
-      }
 
       &.#{$fontEditor}-active,
       &:hover {
@@ -274,38 +182,13 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
       }
     }
   }
-  // state
-  &_temporarilyoff {
-    pointer-events: none;
-    opacity: 0.5;
-  }
-
-  // inherit
-  &-inherit {
-    .pj-range-control {
-      visibility: hidden !important;
-    }
-
-    .pj-units-trigger {
-      left: 0 !important;
-      width: 100% !important;
-      background-color: $color-white !important;
-      border: 1px solid $gray-lighter !important;
-    }
-  }
 }
 
 // dropdown
 // ============================
-.pj-dropdown-wrapper {
-  position: relative;
-}
-
 .#{$fontEditor}-write {
   .#{$fontEditor}-empty {
-    display: block !important;
-    //line-height: 50px;
-    padding: 0 2 * $font-size-base; //0 20px
+    display: flex !important;
   }
 
   .#{$fontEditor}-fill,
@@ -346,34 +229,32 @@ $fontEditor-dropdown-height: 3 * $fontEditor-sizer !default; //30px
     }
   }
 }
-/* stylelint-enable*/
 
+/* stylelint-enable*/
 .#{$fontEditor}-disabled {
   .#{$fontEditor}-fill {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
+    border-color: $disabled-border;
 
     &-remove,
     &-edit {
       cursor: not-allowed;
     }
   }
+
   .#{$fontEditor}-empty {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
+    border-color: $disabled-border;
   }
+
   .#{$fontEditor}-fill-change {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
+    border-color: $disabled-border;
   }
-}
-.pj-dropdown-input {
-  width: none;
-}
-.pj-btn-primary {
-  background-color: $btn-color-primary;
-  border-color: $btn-color-primary;
 }
