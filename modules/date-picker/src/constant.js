@@ -121,7 +121,7 @@ export const defaults = {
       return '<div class="{classes.INPUTWRAP} pj-input-group"></div>'
     },
     inputIcon() {
-      return '<i class="{classes.ICON} pj-icon pj-icon-calendar pj-input-group-addon"></i>'
+      return '<div class="pj-input-group-addon"><i class="{classes.ICON}"></i></div>'
     },
     wrap() {
       return '<div class="{classes.WRAP}"></div>'

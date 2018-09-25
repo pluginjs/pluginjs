@@ -47,11 +47,11 @@ export const defaults = {
       </span>`
     },
     iconShow() {
-      return `<i class="{classes.SHOW} pj-icon pj-icon-show">
+      return `<i class="{classes.SHOW}">
       </i>`
     },
     iconHide() {
-      return `<i class="{classes.HIDE} pj-icon pj-icon-hidden">
+      return `<i class="{classes.HIDE}">
       </i>`
     },
     score() {

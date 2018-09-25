@@ -1,4 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
 
 $strength: "pj-strength" !default;
 $input: "pj-input" !default;
@@ -7,6 +8,11 @@ $strength-gatter: 8px !default;
 
 $strength-box-spacer-x: 12px !default;
 $strength-box-spacer-y: 10px !default;
+
+$strength-done-icon: $pj-icon-done-small !default;
+$strength-hidden-icon: $pj-icon-hidden !default;
+$strength-show-icon: $pj-icon-show !default;
+$strength-font: $pj-icon-font-family !default;
 
 $strength-check-border-color: $gray !default;
 $strength-check-border-radius: $border-radius-base !default;
@@ -34,6 +40,11 @@ $strength-check-border-radius: $border-radius-base !default;
 
     .#{$strength}-hide {
       display: inline-block;
+      &::after {
+        @include icon();
+        font-family:$strength-font;
+        content: icon-content($strength-hidden-icon);
+      }
     }
 
     .#{$strength}-check {
@@ -47,12 +58,15 @@ $strength-check-border-radius: $border-radius-base !default;
     }
 
     .#{$strength}-check::before {
+      @include icon();
       position: relative;
       top: -1px;
       left: 0;
       z-index: 999;
       display: inline-block;
+      font-family:$strength-font;
       vertical-align: bottom;
+      content: icon-content($strength-done-icon);
       transition: transform 0.25s;
       transform: scale(0);
     }
@@ -74,6 +88,11 @@ $strength-check-border-radius: $border-radius-base !default;
   &-active {
     .#{$strength}-show {
       display: inline-block;
+      &::after {
+        @include icon();
+        font-family:$strength-font;
+        content: icon-content($strength-show-icon);
+      }
     }
 
     .#{$strength}-hide {

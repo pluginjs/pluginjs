@@ -1,4 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
 @import "datePicker.core";
 
 // Vars
@@ -30,6 +31,9 @@ $datePicker-head-color: $gray !default;
 $datePicker-header-font-size: $font-size-lg !default;
 $datePicker-head-font-size: $font-size-sm !default;
 $datePicker-body-font-size: $font-size-base !default;
+
+$datePicker-icon: $pj-icon-calendar !default;
+$datePickerr-font: $pj-icon-font-family !default;
 
 $datePicker-header-border: $gray-lightest !default; //#ebebeb !default;
 $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
@@ -279,6 +283,11 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     border-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    &::after {
+      @include icon();
+      font-family:$datePickerr-font;
+      content: icon-content($datePicker-icon);
+    }
   }
 
   &-content {
@@ -539,6 +548,3 @@ input[type="text"][disabled] {
     }
   }
 }
- #disabled {
-   margin-top: 27.5 * $datePicker-sizer;
- }
