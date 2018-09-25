@@ -25,7 +25,11 @@ export const classes = {
   BUTTONS: '{namespace}-buttons',
   LOADER: '{namespace}-loader',
   LOADERINNER: '{namespace}-loader-inner',
-  STRIPED: '{namespace}-loader-striped'
+  STRIPED: '{namespace}-loader-striped',
+  ICONIN: '{namespace}-iconIn',
+  CONTENTIN: '{namespace}-contentIn',
+  CONTENTOUT: '{namespace}-contentOut',
+  OUT: '{namespace}-out'
 }
 
 export const defaults = {

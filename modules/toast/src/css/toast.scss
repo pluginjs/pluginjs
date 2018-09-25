@@ -1,127 +1,112 @@
 @import "@pluginjs/styles/variables.scss";
 @import "toast.core";
+
 // Vars
 // =====================
 $toast: "pj-toast";
 $toast-font-family: $font-family-base;
 $toast-font-size: $font-size-sm;
-$toast-padding-left: 24px;
-$toast-padding-right: 28px;
-$toast-padding-bottom: 21px;
+$toast-color: $gray-darker;
+$toast-bg: $color-white;
 
-$toast-bgColor: $color-white;
+$toast-padding: 24px;
+$toast-padding-right: 30px;
+
+$toast-gutter: 20px;
+
+$toast-box-shadow: $box-shadow-7;
 $toast-border-radius: $border-radius-base;
-$toast-box-shadow: 0 10px 30px 0
-rgba(0, 0, 0, 0.1);
 
-$toast-close-color: $gray-dark;
-
-$toast-space: 20px;
-
-$toast-title-color: $gray-darkest;
 $toast-title-font-size: 16px;
+$toast-title-font-weight: 500;
+$toast-title-line-height: 1em;
+$toast-title-color: $gray-darkest;
 
-$toast-content-color: $gray-darker;
-$toast-content-link-color: $color-primary;
-$toast-content-margin-top: 9px;
+$toast-icon-font-size: 20px;
+$toast-icon-gutter: 10px;
 
-$toast-icon-font-size: 1.24em;
-$toast-icon-margin-right: 0.5em;
+$toast-close-font-size: 14px;
+$toast-close-pos-top: $toast-padding + ($toast-title-font-size - $toast-close-font-size) / 2;
+$toast-close-pos-right: $toast-padding-right;
+$toast-close-color: $gray-dark;
+$toast-close-hover-color: $gray-darker;
 
-$toast-loader-color: $gray-light;
-$toast-loader-inner-color: $color-primary;
+$toast-content-top-gutter: 10px;
 
-$toast-buttons-padding: 8px 16px;
-$toast-buttons-margin-top: 18px;
-$toast-buttons-margin-left: 12px;
+$toast-loader-height: 4px;
+$toast-loader-color: $color-primary;
+$toast-loader-bg: $gray-light;
 
-$toast-btn-padding-x: 13.5px;
-$toast-btn-padding-y: 30px;
-$toast-btn-padding: $toast-btn-padding-x $toast-btn-padding-y;
-$toast-btn-font-size: $font-size-sm;
+$toast-buttons-top-gutter: 20px;
+$toast-button-gutter: 12px;
 
+// Skin
+// =====================
 .#{$toast} {
-  width: 100%;
-  padding: $toast-padding-top $toast-padding-right $toast-padding-bottom $toast-padding-left;
-  margin-top: $toast-loader-height;
+  padding: $toast-padding;
+  padding-right: $toast-padding-right;
   font-family: $toast-font-family;
   font-size: $toast-font-size;
-  background: $toast-bgColor;
+  color: $toast-color;
+  background: $toast-bg;
   border-radius: 0 0 $toast-border-radius $toast-border-radius;
   box-shadow: $toast-box-shadow;
 
   & + & {
-    margin-top: $toast-space;
+    margin-top: $toast-gutter;
   }
 
   &-close {
+    top: $toast-close-pos-top;
+    right: $toast-close-pos-right;
     padding: 0;
+    font-size: $toast-close-font-size;
     color: $toast-close-color;
+    cursor: pointer;
     background: transparent;
     border: 0;
     outline: 0;
+    transform: translateX(100%);
 
     &:not(:disabled):hover {
-      background: initial;
-      opacity: 0.9;
+      color: $toast-close-hover-color;
     }
   }
 
   &-title {
     font-size: $toast-title-font-size;
+    font-weight: $toast-title-font-weight;
+    line-height: $toast-title-line-height;
     color: $toast-title-color;
+
+    + .#{$toast}-content {
+      margin-top: $toast-content-top-gutter;
+    }
   }
 
   &-icon {
-    margin-right: $toast-icon-margin-right;
+    margin-right: $toast-icon-gutter;
     font-size: $toast-icon-font-size;
   }
 
-  &-content {
-    margin-top: $toast-content-margin-top;
-    color: $toast-content-color;
-
-    a {
-      color: $toast-content-link-color;
-      text-decoration: none;
-    }
-  }
-
   &-loader {
-    width: 100%;
     height: $toast-loader-height;
-    background-color: $toast-loader-color;
+    background-color: $toast-loader-bg;
     border-radius: $toast-border-radius $toast-border-radius 0 0;
 
     &-inner {
-      width: 0%;
-      height: 100%;
-      background-color: $toast-loader-inner-color;
+      background-color: $toast-loader-color;
     }
   }
 
-  &-loader-striped {
-    @include gradient-striped();
-
-    background-size: $toast-progress-height $toast-progress-height;
-    animation: progress-bar-stripes 0.4s linear infinite;
-  }
-
   &-buttons {
-    margin-top: $toast-buttons-margin-top;
+    margin-top: $toast-buttons-top-gutter;
     text-align: right;
   }
 
   &-btn {
-    padding: $toast-buttons-padding;
-    font-size: $toast-font-size;
-
-    & + .#{$toast}-btn {
-      margin-left: $toast-buttons-margin-left;
+    & + & {
+      margin-left: $toast-button-gutter;
     }
   }
 }
-
-@import "effects/slide";
-@import "effects/fade";
-@import "effects/effect";

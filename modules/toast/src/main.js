@@ -91,6 +91,10 @@ class Toast extends GlobalComponent {
       return
     }
 
+    if (this.options.loaderColor) {
+      setStyle('background-color', this.options.loaderColor, this.$loaderInner)
+    }
+
     if (this.options.loaderBgColor) {
       setStyle('background-color', this.options.loaderBgColor, this.$loader)
     }
@@ -136,18 +140,18 @@ class Toast extends GlobalComponent {
   }
 
   animate() {
-    addClass(`${this.classes.NAMESPACE}-iconIn`, this.$icon)
+    addClass(this.classes.ICONIN, this.$icon)
 
     if (this.$content) {
-      addClass(`${this.classes.NAMESPACE}-contentIn`, this.$content)
+      addClass(this.classes.CONTENTIN, this.$content)
     }
 
     if (this.$buttons) {
-      addClass(`${this.classes.NAMESPACE}-contentIn`, this.$buttons)
+      addClass(this.classes.CONTENTIN, this.$buttons)
     }
 
     if (this.$title) {
-      addClass(`${this.classes.NAMESPACE}-contentIn`, this.$title)
+      addClass(this.classes.CONTENTIN, this.$title)
     }
 
     let effect = ''
@@ -205,26 +209,22 @@ class Toast extends GlobalComponent {
       return
     }
 
-    if (this.$icon) {
-      remove(this.$icon)
-    }
-
     if (this.$content) {
-      removeClass(`${this.classes.NAMESPACE}-contentIn`, this.$content)
-      addClass(`${this.classes.NAMESPACE}-contentOut`, this.$content)
+      removeClass(this.classes.CONTENTIN, this.$content)
+      addClass(this.classes.CONTENTOUT, this.$content)
     }
 
     if (this.$title) {
-      removeClass(`${this.classes.NAMESPACE}-contentIn`, this.$title)
-      addClass(`${this.classes.NAMESPACE}-contentOut`, this.$title)
+      removeClass(this.classes.CONTENTIN, this.$title)
+      addClass(this.classes.CONTENTOUT, this.$title)
     }
 
     removeClass(`${this.classes.NAMESPACE}-${this.$effect}`, this.$element)
-    addClass(`${this.classes.NAMESPACE}-Out`, this.$element)
+    addClass(this.classes.OUT, this.$element)
 
     if (this.$buttons) {
-      removeClass(`${this.classes.NAMESPACE}-contentIn`, this.$buttons)
-      addClass(`${this.classes.NAMESPACE}-contentOut`, this.$buttons)
+      removeClass(this.classes.CONTENTIN, this.$buttons)
+      addClass(this.classes.CONTENTOUT, this.$buttons)
     }
 
     bindEventOnce(
@@ -416,6 +416,7 @@ class Toast extends GlobalComponent {
     this.$loaderInner = query(`.${this.classes.LOADERINNER}`, this.$element)
     this.$close = query(`.${this.classes.CLOSE}`, this.$element)
 
+    this.options.stack = parseInt(this.options.stack, 10)
     if (this.options.content) {
       this.setContent(this.options.content)
     }

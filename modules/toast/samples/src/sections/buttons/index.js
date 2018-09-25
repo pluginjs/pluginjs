@@ -7,8 +7,8 @@ btn1.addEventListener('click', () => {
   Toast.open({
     buttons: {
       btn1: {
-        title: 'confirm',
-        class: 'pj-btn'
+        title: 'Confirm',
+        class: 'pj-btn pj-btn-primary'
       }
     }
   })

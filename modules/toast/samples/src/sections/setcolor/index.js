@@ -8,7 +8,7 @@ btn.addEventListener('click', () => {
     title: 'Inconceivable!',
     titleColor: '#215fdb',
     content: 'I do not think that word means what you think it means.',
-    contentColor: '#b3b3b3',
-    closeBtnColor: '#e6e6e6'
+    contentColor: '#333',
+    closeBtnColor: '#666'
   })
 })

@@ -3,135 +3,85 @@
 // Vars
 // =====================
 $toast: "pj-toast" !default;
-$toast-width: 392px !default;
-$toast-middle-width: 200px !default;
-$toast-progress-height: 15px !default;
-$toast-padding-top: 24px !default;
-$toast-close-right: 15px !default;
-$toast-close-top: $toast-padding-top + 3px !default;
+$toast-wrap-width: 400px !default;
+$toast-wrap-gutter: 20px !default;
+
+$toast-close-top: 0 !default;
+$toast-close-right: 0 !default;
 
 $toast-loader-height: 4px !default;
 $toast-loader-top: -$toast-loader-height !default;
 
-$toast-wrap-gutter: 20px !default;
+$toast-loader-color: $color-primary !default;
 
 // Core
 // =====================
-@mixin gradient-striped($color: rgba($color-white, 0.15), $angle: 45deg) {
-  background-image:
-    linear-gradient(
-      $angle,
-      $color 25%,
-      transparent 25%,
-      transparent 50%,
-      $color 50%,
-      $color 75%,
-      transparent 75%,
-      transparent
-    );
-}
-
-@keyframes progress-bar-stripes {
-  from {
-    background-position: $toast-progress-height 0;
-  }
-
-  to {
-    background-position: 0 0;
-  }
-}
-
 .#{$toast} {
   position: relative;
-  box-sizing: border-box;
+  background-color: #fff;
 
   &-close {
     position: absolute;
     top: $toast-close-top;
     right: $toast-close-right;
   }
-  
+
   &-title {
     display: flex;
     align-items: center;
   }
 
-  &-btn {
-    line-height: 1;
-  }
-  
   &-loader {
     position: absolute;
-    top: $toast-loader-top;
+    top: 0;
     left: 0;
+    width: 100%;
+    height: $toast-loader-height;
     overflow: hidden;
+    transform: translateY(-100%);
+
+    &-inner {
+      width: 0%;
+      height: 100%;
+      background-color: $toast-loader-color;
+    }
   }
 
   &-wrap {
     position: fixed;
+    box-sizing: border-box;
+    width: $toast-wrap-width;
+    max-width: 100%;
+    padding: $toast-wrap-gutter;
 
-    &.#{$toast}-bottom-right {
-      right: $toast-wrap-gutter;
-      bottom: $toast-wrap-gutter;
+    &[class*="#{$toast}-bottom"] {
+      bottom: 0;
     }
-  
-    &.#{$toast}-bottom-left {
-      bottom: $toast-wrap-gutter;
-      left: $toast-wrap-gutter;
+
+    &[class*="#{$toast}-top"] {
+      top: 0;
     }
-  
-    &.#{$toast}-top-right {
-      top: $toast-wrap-gutter;
-      right: $toast-wrap-gutter;
+
+    &[class$="left"] {
+      left: 0;
     }
-  
-    &.#{$toast}-top-left {
-      top: $toast-wrap-gutter;
-      left: $toast-wrap-gutter;
+
+    &[class$="right"] {
+      right: 0;
     }
-  
-    &.#{$toast}-bottom-center {
-      bottom: $toast-wrap-gutter;
-      left: calc(50% - #{$toast-width} / 2);
+
+    &[class$="center"] {
+      left: 50%;
+      transform: translateX(-50%);
     }
-  
-    &.#{$toast}-top-center {
-      top: $toast-wrap-gutter;
-      left: calc(50% - #{$toast-width} / 2);
-    }
-  
+
     &.#{$toast}-mid-center {
       top: 50%;
-      left: calc(50% - #{$toast-width} / 2);
-      transform: translateY(-50%);
+      transform: translate(-50%, -50%);
     }
   }
 }
 
-@media only screen and (min-width: 800px) {
-  .#{$toast}-wrap {
-    width: $toast-width;
-  }
-}
-
-@media only screen and (max-width: 799px) {
-  .#{$toast}-wrap {
-    width: $toast-middle-width;
-
-    &.#{$toast}-bottom-center {
-      bottom: $toast-wrap-gutter;
-      left: calc(50% - #{$toast-middle-width} / 2);
-    }
-  
-    &.#{$toast}-top-center {
-      top: $toast-wrap-gutter;
-      left: calc(50% - #{$toast-middle-width} / 2);
-    }
-  
-    &.#{$toast}-mid-center {
-      top: 50%;
-      left: calc(50% - #{$toast-middle-width} / 2);
-      transform: translateY(-50%);
-    }
-  }
-}
+@import "effects/slide";
+@import "effects/fade";
+@import "effects/effect";
