@@ -10,11 +10,11 @@ import {
   getHeight
 } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events' // , bindEventOnce
-import { parseHTML, query, fadeIn, fadeOut, closest, wrap } from '@pluginjs/dom'
+import { parseHTML, query, closest, wrap } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import Dropdown from '@pluginjs/dropdown'
 import Select from '@pluginjs/select'
-import PopDialog from '@pluginjs/pop-dialog'
+import Trigger from './trigger'
 import {
   eventable,
   register,
@@ -81,8 +81,6 @@ class VideoPicker extends Component {
     this.trigger(EVENTS.READY)
   }
   build() {
-    const that = this
-
     addClass(this.classes.INPUT, this.element)
     this.$wrap = wrap(
       `<div class='${this.classes.NAMESPACE} ${this.classes.WRAP}'></div>`,
@@ -92,23 +90,9 @@ class VideoPicker extends Component {
     if (this.options.theme) {
       addClass(this.classes.THEME, this.$wrap)
     }
-    this.$trigger = parseHTML(
-      template.compile(this.options.templates.trigger())({
-        classes: this.classes
-      })
-    )
-    this.$fill = parseHTML(
-      template.compile(this.options.templates.fill())({
-        classes: this.classes
-      })
-    )
-    this.$empty = parseHTML(
-      template.compile(this.options.templates.empty())({
-        classes: this.classes,
-        icon: 'pj-icon pj-icon-chevron-circle-up',
-        text: this.translate('inputPlaceholder')
-      })
-    )
+
+    this.TRIGGER = new Trigger(this)
+
     this.$dropdown = parseHTML(
       template.compile(this.options.templates.dropdown())({
         classes: this.classes
@@ -124,14 +108,7 @@ class VideoPicker extends Component {
         classes: this.classes
       })
     )
-    this.$infoAction = parseHTML(
-      template.compile(this.options.templates.infoAction())({
-        classes: this.classes
-      })
-    )
-    this.$wrap.append(this.$trigger, this.$dropdown)
-    this.$trigger.append(this.$empty, this.$fill)
-    this.$fill.append(this.$infoAction)
+    this.$wrap.append(this.$dropdown)
     // set Aspect Ratio
     const sourceData = []
     this.options.sources.forEach((v, i) => {
@@ -143,7 +120,7 @@ class VideoPicker extends Component {
       { label: '4:3', value: '4:3' },
       { label: '16:9', value: '16:9' }
     ]
-    const localeCancel = this.translate('cancel')
+
     const localeDelete = this.translate('delete')
     // const localeSave = this.translate('save');
     const localeAddVideo = this.translate('addVideo')
@@ -160,7 +137,7 @@ class VideoPicker extends Component {
         this.classes.FIELDTITLE
       }'>${this.translate('videoSource')}</span><div class='${
         this.classes.SOURCE
-      }'><span class="pj-dropdown-trigger"></span><div></div></div></div>`
+      }'><span class="pj-dropdown-trigger"></span></div></div>`
     )
     this.$sourceTrigger = query('.pj-dropdown-trigger', this.$source)
     this.$videoUrlContent = parseHTML(
@@ -191,7 +168,7 @@ class VideoPicker extends Component {
         this.classes.FIELDTITLE
       }'>${this.translate('aspectRatio')}</span><div class="${
         this.classes.RATIO
-      }"><span class="pj-dropdown-trigger"></span><div></div></div></div>`
+      }"><span class="pj-dropdown-trigger"></span></div></div>`
     )
     this.$ratio = query(`.${this.classes.RATIO}`, this.$ratioContent)
     this.$ratioTrigger = query('.pj-dropdown-trigger', this.$ratio)
@@ -230,9 +207,9 @@ class VideoPicker extends Component {
       this.$btnAction
     )
     // init source dropdown
-    this.$defaultDropdown = Dropdown.of(this.$empty, {
+    this.$defaultDropdown = Dropdown.of(this.TRIGGER.$empty, {
       target: this.$dropdown,
-      reference: this.$trigger,
+      reference: this.TRIGGER.$trigger,
       templates: this.options.template,
       hideOutClick: true,
       hideOnSelect: false,
@@ -243,7 +220,7 @@ class VideoPicker extends Component {
           this.videoApi.stop()
         }
         this.element.value = this.val()
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         this.$defaultDropdown.hide()
         addClass(this.classes.SHOW, this.$wrap)
       }
@@ -289,91 +266,51 @@ class VideoPicker extends Component {
     this.$urlInput = query('input', this.$videoUrl)
     this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$wrap)
     this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$wrap)
-
-    this.DELETEPOP = PopDialog.of(
-      query(`.${this.classes.REMOVE}`, this.$infoAction),
-      {
-        content: this.translate('deleteTitle'),
-        placement: 'bottom',
-        buttons: {
-          cancel: { label: localeCancel },
-          delete: {
-            label: localeDelete,
-            color: 'danger',
-            fn(resolve) {
-              fadeOut(
-                {
-                  delay: 100,
-                  callback: () => {
-                    removeClass(that.classes.SHOW, that.$wrap)
-                    that.removeVideo()
-                    that.$infoCover.setAttribute({ src: '' })
-                    fadeIn(that.$infoAction)
-                  }
-                },
-                that.$infoAction
-              )
-
-              resolve()
-            }
-          }
-        },
-        onShow: () => {
-          addClass(this.classes.SHOW, this.$wrap)
-          this.enter('holdHover')
-        },
-        onHide: () => {
-          removeClass(this.classes.SHOW, this.$wrap)
-          removeClass(this.classes.HOVER, this.$infoAction)
-          this.leave('holdHover')
-        }
-      }
-    )
   }
 
   bind() {
-    bindEvent(
-      this.eventName('click'),
-      () => {
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-        this.$defaultDropdown.show()
-      },
-      this.$icon
-    )
-    bindEvent(
-      this.eventName('click'),
-      () => {
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
-      },
-      window.document
-    )
+    // bindEvent(
+    //   this.eventName('click'),
+    //   () => {
+    //     addClass(this.classes.OPENDISABLE, this.$trigger)
+    //     this.$defaultDropdown.show()
+    //   },
+    //   this.$icon
+    // )
+    // bindEvent(
+    //   this.eventName('click'),
+    //   () => {
+    //     removeClass(this.classes.OPENDISABLE, this.$trigger)
+    //   },
+    //   window.document
+    // )
     compose(
       // const that = this;
       // empty
-      bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-      }),
-      // info actions
-      bindEvent(this.eventName('click'), `.${this.classes.EDITOR}`, () => {
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-        this.$defaultDropdown.show()
-        return false
-      }),
-      bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
-        this.$defaultDropdown.hide()
-      }),
-      // info actions hover hold
-      bindEvent(this.eventName('mouseover'), '.pj-videoPicker-fill', () => {
-        addClass(this.classes.HOVER, this.$infoAction)
-      }),
-      bindEvent(this.eventName('mouseout'), '.pj-videoPicker-fill', () => {
-        if (this.is('holdHover')) {
-          return
-        }
-        removeClass(this.classes.HOVER, this.$infoAction)
-        return
-      }),
+      // bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
+      //   addClass(this.classes.OPENDISABLE, this.$trigger)
+      // }),
+      // // info actions
+      // bindEvent(this.eventName('click'), `.${this.classes.EDITOR}`, () => {
+      //   addClass(this.classes.OPENDISABLE, this.$trigger)
+      //   this.$defaultDropdown.show()
+      //   return false
+      // }),
+      // bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
+      //   removeClass(this.classes.OPENDISABLE, this.$trigger)
+      //   this.$defaultDropdown.hide()
+      // }),
+      // // info actions hover hold
+      // bindEvent(this.eventName('mouseover'), `.${this.classes.FILL}`, () => {
+      //   addClass(this.classes.HOVER, this.$infoAction)
+      // }),
+      // bindEvent(this.eventName('mouseout'), `.${this.classes.FILL}`, () => {
+      //   if (this.is('holdHover')) {
+      //     return
+      //   }
+      //   removeClass(this.classes.HOVER, this.$infoAction)
+      //   return
+      // }),
 
       // play video
       bindEvent(this.eventName('click'), `.${this.classes.VIDEOACTION}`, () => {
@@ -463,11 +400,11 @@ class VideoPicker extends Component {
 
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         this.$defaultDropdown.hide()
       }),
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         this.$defaultDropdown.hide()
         if (this.videoApi) {
           this.videoApi.stop()

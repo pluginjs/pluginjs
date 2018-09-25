@@ -100,7 +100,6 @@ export default class Trigger {
         if (this.instance.is('disabled')) {
           return false
         }
-        this.instance.open()
         this.instance.enter('status')
         return false
       },

@@ -89,7 +89,7 @@ class GalleryPicker extends Component {
   }
 
   initDropdown() {
-    this.$galleryDropdown = Dropdown.of(this.TRIGGER.$triggerAction, {
+    this.$galleryDropdown = Dropdown.of(this.TRIGGER.$edit, {
       reference: this.TRIGGER.$fill,
       target: this.$panel,
       hideOutClick: true,
@@ -351,7 +351,6 @@ class GalleryPicker extends Component {
                 fn(resolve) {
                   that.remove(getData('index', $item))
                   that.updateScrollbar()
-
                   resolve()
                 }
               }
@@ -491,12 +490,14 @@ class GalleryPicker extends Component {
   open() {
     addClass(this.classes.OPENDISABLE, this.TRIGGER.$fill)
     addClass(this.classes.SHOW, removeClass(this.classes.EXIST, this.$wrap))
+    this.$galleryDropdown.show()
     this.updateScrollbar()
   }
 
   close() {
     removeClass(this.classes.OPENDISABLE, this.TRIGGER.$fill)
     addClass(this.classes.EXIST, removeClass(this.classes.SHOW, this.$wrap))
+    this.$galleryDropdown.hide()
     this.leave('status')
   }
 

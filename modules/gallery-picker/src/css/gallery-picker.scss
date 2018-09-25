@@ -159,7 +159,7 @@ $scrollable-height: 270px !default;
   // expand
 
   &-dropdown {
-    position: absolute;
+    // position: absolute;
     z-index: 100;
     box-sizing: border-box;
     flex-direction: column;
@@ -295,8 +295,8 @@ $scrollable-height: 270px !default;
     display: flex;
   }
 
-  .#{$galleryPicker}-empty,
-  .#{$galleryPicker}-dropdown {
+  //.#{$galleryPicker}-dropdown
+  .#{$galleryPicker}-empty {
     display: none;
   }
 }
@@ -323,9 +323,9 @@ $scrollable-height: 270px !default;
     display: block;
   }
 
-  .#{$galleryPicker}-dropdown {
-    display: flex;
-  }
+  // .#{$galleryPicker}-dropdown {
+  //   display: flex;
+  // }
 }
 
 .#{$galleryPicker}-hover {

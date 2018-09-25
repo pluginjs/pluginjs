@@ -63,6 +63,7 @@ class PopDialog extends Popover {
                 closest(`.${this.classes.BUTTON}`)
               )(target)
         )
+        return false
       },
       $tip
     )

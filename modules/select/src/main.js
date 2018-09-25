@@ -193,6 +193,7 @@ class Select extends Component {
     this.items = this.flatItems(data)
 
     let value = this.getValueFromElement()
+    console.log(isEmpty(value))
     if (isEmpty(value)) {
       value = this.getValueFromData()
       if (isEmpty(value)) {
