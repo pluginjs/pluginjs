@@ -210,7 +210,7 @@ export const defaults = {
       return '<i class="{classes.REMOVE} pj-icon pj-icon-remove"></i>'
     },
     panel() {
-      return `<div class='{classes.PANEL}'>
+      return `<div class='{classes.DROPDOWN}'>
       <div class='{classes.PANELTRIGGER}'></div>
       <div class='{classes.PANELCONTAINER}'></div>
     </div>`

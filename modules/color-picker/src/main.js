@@ -206,10 +206,10 @@ class ColorPicker extends Component {
     })
 
     append(this.$panel, this.$wrap)
-    this.$panelWrap = wrap(
-      `<div class='${this.classes.DROPDOWN}'></div>`,
-      this.$panel
-    )
+    // this.$panelWrap = wrap(
+    //   `<div class='${this.classes.DROPDOWN}'></div>`,
+    //   this.$panel
+    // )
 
     // init element
     this.$trigger = query(`.${this.classes.PANELTRIGGER}`, this.$panel)
@@ -487,7 +487,7 @@ class ColorPicker extends Component {
   }
 
   setupPopper() {
-    this.POPPER = new Popper(this.element, this.$panelWrap, {
+    this.POPPER = new Popper(this.element, this.$panel, {
       placement: 'bottom'
     })
     this.enter('popper')
@@ -556,7 +556,7 @@ class ColorPicker extends Component {
       solid: colorArr[1][1],
       gradient: colorArr[2][1]
     }
-    addClass(this.classes.OPENPANEL, this.$panelWrap)
+    addClass(this.classes.OPENPANEL, this.$panel)
     addClass(this.classes.OPENACTIVE, this.element)
     showElement(this.$mask)
     // update scollable height
@@ -571,7 +571,7 @@ class ColorPicker extends Component {
   }
 
   closePanel() {
-    removeClass(this.classes.OPENPANEL, this.$panelWrap)
+    removeClass(this.classes.OPENPANEL, this.$panel)
     removeClass(this.classes.OPENACTIVE, this.element)
     hideElement(this.$mask)
     // this.element.style.removeProperty('border-color')
@@ -764,7 +764,7 @@ class ColorPicker extends Component {
       unwrap(unwrap(this.element))
       this.$remove.remove()
       this.PREVIEW.remove()
-      this.$panelWrap.remove()
+      this.$panel.remove()
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }
