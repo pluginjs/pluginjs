@@ -9,32 +9,22 @@ $fontPicker-height: 32px !default;
 
 $fontPicker-font-spacer-x: 16px !default;
 
-$fontPicker-dropdown-width: 272px;
+$fontPicker-dropdown-width: 272px !default;
 
 $fontPicker-panel-height: 420px !default;
 $fontPicker-controller-height: 30px !default;
 $fontPicker-search-height: 40px !default;
 
+$fontPicker-transition-time: 0.3s !default;
+
 
 // Core
 // =====================
 .#{$fontPicker} {
-  // .#{$fontPicker}-panel {
-  //   top: 10px !important;
-  //   height: $fontPicker-panel-height;
-  //   min-height: $fontPicker-panel-height;
-  //   padding: 0;
-  //   font-size: $fontPicker-font-size;
-  
-  //   li:hover {
-  //     // cursor: default;
-  //     background-color: inherit;
-  //   }
-  // }
 
   &-trigger.#{$dropdown}-show {
     i {
-      transition: all 0.3s;
+      transition: all $fontPicker-transition-time;
       transform: translateY(-50%) rotate(180deg);
     }
   }
@@ -162,14 +152,14 @@ $fontPicker-search-height: 40px !default;
         position: absolute;
         top: 50%;
         left: 10px;
-        transition: all 0.3s;
+        transition: all $fontPicker-transition-time;
         transform: translateY(-50%);
       }
     }
 
     &-open {
       .#{$fontPicker}-package-title i {
-        transition: all 0.3s;
+        transition: all $fontPicker-transition-time;
         transform: translateY(-50%) rotate(90deg);
       }
     }
@@ -218,17 +208,11 @@ $fontPicker-search-height: 40px !default;
       &:focus {
         border: 0;
       }
-    
-      .#{$fontPicker}-source-icon {
-        display: inline-block;
-        margin-right: 9px;
-        vertical-align: middle;
-      }
     }
 
     .#{$dropdown}-icon {
       padding: 0;
-      transition: transform 0.3s;
+      transition: transform $fontPicker-transition-time;
       transform: rotate(180deg);
     }
   }

@@ -95,6 +95,14 @@ $time-picker-trigger-border-color: $gray-darker;
 
     .#{$time-picker}-trigger {
       border-color: $time-picker-show-border-color !important;
+
+      &-icon {
+        color: $time-picker-show-border-color;
+    
+        &:hover {
+          color: $time-picker-show-border-color;
+        }
+      }
     }
   }
 
