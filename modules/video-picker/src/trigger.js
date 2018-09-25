@@ -16,7 +16,7 @@ export default class Trigger {
   }
 
   build() {
-    this.$trigger = parseHTML(
+    this.element = parseHTML(
       template.compile(this.options.templates.trigger())({
         classes: this.classes
       })
@@ -34,15 +34,16 @@ export default class Trigger {
       })
     )
 
-    this.$infoAction = parseHTML(
-      template.compile(this.options.templates.infoAction())({
+    this.$triggerAction = parseHTML(
+      template.compile(this.options.templates.triggerAction())({
         classes: this.classes
       })
     )
 
-    this.instance.$wrap.append(this.$trigger)
-    this.$trigger.append(this.$empty, this.$fill)
-    this.$fill.append(this.$infoAction)
+    this.instance.$wrap.append(this.element)
+    this.element.append(this.$empty, this.$fill, this.$triggerAction)
+
+    this.$edit = query(`.${this.classes.EDITOR}`, this.instance.$wrap)
 
     this.buildPop()
   }
@@ -50,7 +51,7 @@ export default class Trigger {
   buildPop() {
     const that = this
     this.DELETEPOP = PopDialog.of(
-      query(`.${this.classes.REMOVE}`, this.$infoAction),
+      query(`.${this.classes.REMOVE}`, this.$triggerAction),
       {
         content: this.instance.translate('deleteTitle'),
         placement: 'bottom',
@@ -66,13 +67,12 @@ export default class Trigger {
                   callback: () => {
                     removeClass(that.classes.SHOW, that.instance.$wrap)
                     that.instance.removeVideo()
-                    that.instance.$infoCover.setAttribute({ src: '' })
-                    fadeIn(that.$infoAction)
+                    that.instance.$fillCover.setAttribute('src', '')
+                    fadeIn(that.$triggerAction)
                   }
                 },
-                that.$infoAction
+                that.$triggerAction
               )
-
               resolve()
             }
           }
@@ -83,7 +83,7 @@ export default class Trigger {
         },
         onHide: () => {
           removeClass(this.classes.SHOW, this.instance.$wrap)
-          removeClass(this.classes.HOVER, this.$infoAction)
+          removeClass(this.classes.HOVER, this.$triggerAction)
           this.instance.leave('holdHover')
         }
       }
@@ -94,15 +94,15 @@ export default class Trigger {
     bindEvent(
       this.instance.eventName('click'),
       () => {
-        addClass(this.classes.OPENDISABLE, this.$trigger)
+        addClass(this.classes.OPENDISABLE, this.element)
         this.instance.$defaultDropdown.show()
       },
-      this.$icon
+      this.$edit
     )
     bindEvent(
       this.instance.eventName('click'),
       () => {
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.element)
       },
       window.document
     )
@@ -113,7 +113,7 @@ export default class Trigger {
         this.instance.eventName('click'),
         `.${this.classes.EMPTY}`,
         () => {
-          addClass(this.classes.OPENDISABLE, this.$trigger)
+          addClass(this.classes.OPENDISABLE, this.element)
         }
       ),
       // info actions
@@ -121,7 +121,7 @@ export default class Trigger {
         this.instance.eventName('click'),
         `.${this.classes.EDITOR}`,
         () => {
-          addClass(this.classes.OPENDISABLE, this.$trigger)
+          addClass(this.classes.OPENDISABLE, this.element)
           this.instance.$defaultDropdown.show()
           return false
         }
@@ -130,29 +130,29 @@ export default class Trigger {
         this.instance.eventName('click'),
         `.${this.classes.REMOVE}`,
         () => {
-          removeClass(this.classes.OPENDISABLE, this.$trigger)
+          removeClass(this.classes.OPENDISABLE, this.element)
           this.instance.$defaultDropdown.hide()
         }
       ),
       // info actions hover hold
       bindEvent(
         this.instance.eventName('mouseover'),
-        `.${this.classes.FILL}`,
+        `.${this.classes.TRIGGERACTION}`,
         () => {
-          addClass(this.classes.HOVER, this.$infoAction)
+          addClass(this.classes.HOVER, this.element)
         }
       ),
       bindEvent(
         this.instance.eventName('mouseout'),
-        `.${this.classes.FILL}`,
+        `.${this.classes.TRIGGERACTION}`,
         () => {
           if (this.instance.is('holdHover')) {
             return
           }
-          removeClass(this.classes.HOVER, this.$infoAction)
+          removeClass(this.classes.HOVER, this.element)
           return
         }
       )
-    )(this.$trigger)
+    )(this.element)
   }
 }

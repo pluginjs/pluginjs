@@ -10,7 +10,7 @@ import {
   getHeight
 } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events' // , bindEventOnce
-import { parseHTML, query, closest, wrap } from '@pluginjs/dom'
+import { parseHTML, query, closest, wrap, prev } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import Dropdown from '@pluginjs/dropdown'
 import Select from '@pluginjs/select'
@@ -137,9 +137,11 @@ class VideoPicker extends Component {
         this.classes.FIELDTITLE
       }'>${this.translate('videoSource')}</span><div class='${
         this.classes.SOURCE
-      }'><span class="pj-dropdown-trigger"></span></div></div>`
+      }'><input type='text' class='${
+        this.classes.SELECTTRIGGER
+      }' /></div></div>`
     )
-    this.$sourceTrigger = query('.pj-dropdown-trigger', this.$source)
+    this.$sourceTrigger = query(`.${this.classes.SELECTTRIGGER}`, this.$source)
     this.$videoUrlContent = parseHTML(
       `<div class='${this.classes.FIELD}'><span class='${
         this.classes.FIELDTITLE
@@ -168,10 +170,10 @@ class VideoPicker extends Component {
         this.classes.FIELDTITLE
       }'>${this.translate('aspectRatio')}</span><div class="${
         this.classes.RATIO
-      }"><span class="pj-dropdown-trigger"></span></div></div>`
+      }"><input type='text' class='${this.classes.SELECTTRIGGER}'></div></div>`
     )
     this.$ratio = query(`.${this.classes.RATIO}`, this.$ratioContent)
-    this.$ratioTrigger = query('.pj-dropdown-trigger', this.$ratio)
+    this.$ratioTrigger = query(`.${this.classes.SELECTTRIGGER}`, this.$ratio)
     this.$posterContent = parseHTML(
       `<div class='${this.classes.FIELD}'><span class='${
         this.classes.FIELDTITLE
@@ -197,34 +199,39 @@ class VideoPicker extends Component {
       </div>`
     )
 
-    this.$dropdown.append(
-      this.$preview,
-      this.$source,
-      this.$videoUrlContent,
-      this.$localUrlContent,
-      this.$ratioContent,
-      this.$posterContent,
-      this.$btnAction
-    )
     // init source dropdown
     this.$defaultDropdown = Dropdown.of(this.TRIGGER.$empty, {
       target: this.$dropdown,
-      reference: this.TRIGGER.$trigger,
+      reference: this.TRIGGER.element,
       templates: this.options.template,
       hideOutClick: true,
       hideOnSelect: false,
+      onShow: () => {
+        if (!this.is('builded')) {
+          this.$dropdown.append(
+            this.$preview,
+            this.$source,
+            this.$videoUrlContent,
+            this.$localUrlContent,
+            this.$ratioContent,
+            this.$posterContent,
+            this.$btnAction
+          )
+        }
+      },
       onUpdate: () => {
-        this.$infoCover.setAttribute('src', this.data.poster)
+        this.$fillCover.setAttribute('src', this.data.poster)
 
         if (this.videoApi) {
           this.videoApi.stop()
         }
         this.element.value = this.val()
-        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
         this.$defaultDropdown.hide()
         addClass(this.classes.SHOW, this.$wrap)
       }
     })
+
     this.$sourceSelect = Select.of(this.$sourceTrigger, {
       source: sourceData,
       keyboard: true,
@@ -260,62 +267,23 @@ class VideoPicker extends Component {
       }
     })
 
-    this.$infoCover = query(`.${this.classes.INFOPOSTER}`, this.$wrap)
-    this.$video = query(`.${this.classes.VIDEO}`, this.$wrap)
-    this.$icon = query(`.${this.classes.EDITOR}`, this.$wrap)
+    this.$fillCover = query(`.${this.classes.FILLPOSTER}`, this.TRIGGER.element)
+    this.$video = query(`.${this.classes.VIDEO}`, this.$preview)
     this.$urlInput = query('input', this.$videoUrl)
-    this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$wrap)
-    this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$wrap)
+    this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$preview)
+    this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$preview)
   }
 
   bind() {
-    // bindEvent(
-    //   this.eventName('click'),
-    //   () => {
-    //     addClass(this.classes.OPENDISABLE, this.$trigger)
-    //     this.$defaultDropdown.show()
-    //   },
-    //   this.$icon
-    // )
-    // bindEvent(
-    //   this.eventName('click'),
-    //   () => {
-    //     removeClass(this.classes.OPENDISABLE, this.$trigger)
-    //   },
-    //   window.document
-    // )
     compose(
-      // const that = this;
-      // empty
-      // bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
-      //   addClass(this.classes.OPENDISABLE, this.$trigger)
-      // }),
-      // // info actions
-      // bindEvent(this.eventName('click'), `.${this.classes.EDITOR}`, () => {
-      //   addClass(this.classes.OPENDISABLE, this.$trigger)
-      //   this.$defaultDropdown.show()
-      //   return false
-      // }),
-      // bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
-      //   removeClass(this.classes.OPENDISABLE, this.$trigger)
-      //   this.$defaultDropdown.hide()
-      // }),
-      // // info actions hover hold
-      // bindEvent(this.eventName('mouseover'), `.${this.classes.FILL}`, () => {
-      //   addClass(this.classes.HOVER, this.$infoAction)
-      // }),
-      // bindEvent(this.eventName('mouseout'), `.${this.classes.FILL}`, () => {
-      //   if (this.is('holdHover')) {
-      //     return
-      //   }
-      //   removeClass(this.classes.HOVER, this.$infoAction)
-      //   return
-      // }),
-
       // play video
       bindEvent(this.eventName('click'), `.${this.classes.VIDEOACTION}`, () => {
         if (!this.is('loaded')) {
           this.loadVideo()
+          removeClass(
+            this.classes.DELDISABLE,
+            query(`.${this.classes.LOCALURLDELETE}`, this.$localUrl)
+          )
           return
         }
 
@@ -356,23 +324,34 @@ class VideoPicker extends Component {
       bindEvent(this.eventName('click'), `.${this.classes.LOCALURLADD}`, () => {
         this.data.url = this.options.selectLocalVideo.call(this)
         addClass(this.classes.LOCALURLSELECTED, this.$localUrl)
+        addClass(
+          this.classes.DELDISABLE,
+          query(`.${this.classes.LOCALURLDELETE}`, this.$localUrl)
+        )
       }),
       bindEvent(
         this.eventName('click'),
         `.${this.classes.LOCALURLDELETE}`,
-        () => {
+        e => {
           if (this.is('loaded')) {
             removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
+            removeClass(this.classes.CHANGEDISABLE, prev(e.target))
             this.removeVideo()
           }
+          this.leave('urlChange')
         }
       ),
       bindEvent(
         this.eventName('click'),
         `.${this.classes.LOCALURLCHANGE}`,
-        () => {
-          this.data.url = this.options.selectLocalVideo.call(this)
-          this.changeVideo()
+        e => {
+          if (!this.is('urlChange')) {
+            this.data.url =
+              'https://ak5.picdn.net/shutterstock/videos/3377915/preview/stock-footage-beijing-central-business-district-skyline-sunset-time-lapse.webm'
+            this.changeVideo()
+            addClass(this.classes.CHANGEDISABLE, e.target)
+          }
+          this.enter('urlChange')
         }
       )
     )(this.$wrap)
@@ -382,30 +361,29 @@ class VideoPicker extends Component {
       bindEvent(this.eventName('click'), `.${this.classes.POSTERADD}`, () => {
         this.addPoster(this.options.selectCover.call(this))
       }),
-      bindEvent(
-        this.eventName('click'),
-        `.${this.classes.POSTERCHANGE}`,
-        () => {
-          this.addPoster(this.options.selectCover.call(this))
+      bindEvent(this.eventName('click'), `.${this.classes.POSTERCHANGE}`, e => {
+        if (!this.is('posterChange')) {
+          this.addPoster('https://picsum.photos/200/300?image=1015')
+          addClass(this.classes.CHANGEDISABLE, e.target)
         }
-      ),
-      bindEvent(
-        this.eventName('click'),
-        `.${this.classes.POSTERDELETE}`,
-        () => {
-          this.deletePoster()
-        }
-      )
+        this.enter('posterChange')
+      }),
+      bindEvent(this.eventName('click'), `.${this.classes.POSTERDELETE}`, e => {
+        removeClass(this.classes.CHANGEDISABLE, prev(e.target))
+        this.deletePoster()
+        this.leave('posterChange')
+      })
     )(this.$wrap)
 
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
-        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
         this.$defaultDropdown.hide()
       }),
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
-        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
         this.$defaultDropdown.hide()
+        this.$fillCover.setAttribute('src', this.data.poster)
         if (this.videoApi) {
           this.videoApi.stop()
         }
@@ -418,10 +396,12 @@ class VideoPicker extends Component {
   addPoster(url) {
     this.data.poster = url
     addClass(this.classes.POSTERSELECTED, this.$poster)
+
     if (this.$videoPoster) {
       setStyle(
         {
-          backgroundImage: `url(${this.data.poster})`
+          backgroundImage: `url(${this.data.poster})`,
+          backgroundSize: '100% 100%'
         },
         this.$videoPoster
       )
@@ -463,7 +443,7 @@ class VideoPicker extends Component {
   }
 
   changeVideo() {
-    if (Video.findInstanceByElement(this.$video)) {
+    if (this.videoApi) {
       this.videoApi.switchVideo(this.data.url)
     }
   }
@@ -474,13 +454,24 @@ class VideoPicker extends Component {
 
     this.element.value = ''
     this.$urlInput.value = ''
-    this.videoApi.destroy()
+
+    if (this.videoApi) {
+      this.videoApi.destroy()
+    }
 
     setStyle(
       {
         backgroundImage: `url(${this.data.poster})`
       },
       this.$videoPoster
+    )
+    removeClass(
+      this.classes.CHANGEDISABLE,
+      query(`.${this.classes.LOCALURLCHANGE}`, this.$localUrl)
+    )
+    removeClass(
+      this.classes.CHANGEDISABLE,
+      query(`.${this.classes.LOCALURLCHANGE}`, this.$poster)
     )
     removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
     removeClass(this.classes.POSTERSELECTED, this.$poster)
@@ -489,6 +480,8 @@ class VideoPicker extends Component {
 
     this.leave('loaded')
     this.leave('playing')
+    this.leave('urlChange')
+    this.leave('posterChange')
   }
 
   loadVideo() {
@@ -571,7 +564,7 @@ class VideoPicker extends Component {
       }
     })
 
-    this.$infoCover.setAttribute('src', this.data.poster)
+    this.$fillCover.setAttribute('src', this.data.poster)
 
     if (this.videoApi) {
       this.videoApi.stop()

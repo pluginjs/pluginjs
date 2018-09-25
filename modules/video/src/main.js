@@ -86,7 +86,7 @@ class Video extends Component {
     }
   }
 
-  swichVideo(id) {
+  switchVideo(id) {
     if (this.is('loaded')) {
       this.player.swichVideo(id)
     }

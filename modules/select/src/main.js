@@ -193,7 +193,6 @@ class Select extends Component {
     this.items = this.flatItems(data)
 
     let value = this.getValueFromElement()
-    console.log(isEmpty(value))
     if (isEmpty(value)) {
       value = this.getValueFromData()
       if (isEmpty(value)) {
@@ -201,13 +200,17 @@ class Select extends Component {
       }
     }
 
+    console.log(value)
+
     if (!isEmpty(value)) {
       this.set(value, false)
     }
   }
 
   isValidValue(val) {
+    console.log(val)
     const found = this.items.find(item => {
+      console.log(item.value)
       return item.value == val // eslint-disable-line
     })
     if (found) {
@@ -228,6 +231,7 @@ class Select extends Component {
   }
 
   getValueFromElement() {
+    console.log(this.element.value)
     return this.element.value
   }
 
@@ -297,8 +301,10 @@ class Select extends Component {
   }
 
   set(value, trigger = true) {
+    console.log(value)
     value = this.purifyValue(value)
-
+    console.log(value)
+    console.log(this.value)
     if (value !== this.value) {
       this.value = value
 

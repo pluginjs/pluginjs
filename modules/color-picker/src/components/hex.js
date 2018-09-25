@@ -18,7 +18,6 @@ class Hex {
     this.element = element
     this.classes = this.instance.classes
     this.opac = 100
-    this.classify = 'HEX'
     this.color = null
 
     this.COLOR = new Color()
@@ -26,10 +25,12 @@ class Hex {
     this.HSL = this.COLOR.toHSL().toUpperCase()
     this.HEX = this.COLOR.toHEX().toUpperCase()
     this.RGB = this.COLOR.toRGB().toUpperCase()
+
+    this.classify = this.HEX
     this.data = [
-      { label: this.HEX, value: 'HEX' },
-      { label: this.HSL, value: 'HSL' },
-      { label: this.RGB, value: 'RGB' }
+      { label: this.HEX, value: this.HEX },
+      { label: this.HSL, value: this.HSL },
+      { label: this.RGB, value: this.RGB }
     ]
     // this.bind()
 
@@ -49,16 +50,18 @@ class Hex {
        </div>`
     )
     const $selector = parseHTML(
-      `<div class='${this.classes.HEXMODE}'><div><div></div><div/></div>`
+      `<div class='${this.classes.HEXMODE}'><input type="text" /></div>`
     )
     this.element.append($selector, this.$opac)
 
-    this.$el = query(`.${this.classes.HEXMODE}>div>div`, this.element)
+    this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
     // this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
+    console.log(this.data)
     this.SELECT = Select.of(this.$el, {
       value: this.classify,
       source: this.data,
       onChange: res => {
+        console.log(res, this.color)
         this.updateColor(res, this.color)
       }
     })
@@ -70,6 +73,7 @@ class Hex {
       (e, el, color) => {
         this.color = color
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
+        // console.log(this.SELECT.options.value, color)
         this.updateColor(this.SELECT.options.value, color)
       },
       this.instance.element
@@ -86,6 +90,7 @@ class Hex {
   }
 
   updateColor(val, color) {
+    // console.log(val, color)
     if (val.indexOf('HSL') > -1) {
       this.mode = color.toHSL().toUpperCase()
     } else if (val.indexOf('RGB') > -1) {
@@ -100,15 +105,22 @@ class Hex {
       this.color.toRGB().toUpperCase()
     ]
 
-    this.$el.innerText = this.mode
+    // query().innerText = this.mode
+    console.log(this.mode)
+    this.SELECT.$label.innerText = this.mode
     this.SELECT.options.value = this.mode
-
-    this.element
-      .querySelectorAll('.pj-dropdown-item')
-      .forEach((value, index) => {
-        value.setAttribute('data-value', this.data[index])
-        value.innerText = this.data[index]
-      })
+    this.SELECT.options.source = this.data
+    // this.SELECT.items.forEach((val, index) => {
+    //   val.value.setAttribute('data-value', this.data[index].value)
+    //   val.label = this.data[index].label
+    // })
+    // this.element
+    //   .querySelectorAll('.pj-dropdown-item')
+    //   .forEach((value, index) => {
+    //     value.setAttribute('data-value', this.data[index].value)
+    //     value.innerText = this.data[index].label
+    //   })
+    console.log(this.SELECT)
   }
 
   update(value) {

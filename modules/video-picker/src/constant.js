@@ -20,10 +20,10 @@ export const classes = {
   BUTTON: '{namespace}-button',
   EMPTY: '{namespace}-empty',
   FILL: '{namespace}-fill',
-  INFOPOSTER: '{namespace}-info-poster',
-  EDITOR: '{namespace}-info-editor',
-  REMOVE: '{namespace}-info-remove',
-  HOVER: '{namespace}-hover',
+  FILLPOSTER: '{namespace}-fill-poster',
+  EDITOR: '{namespace}-editor',
+  REMOVE: '{namespace}-remove',
+  HOVER: '{namespace}-trigger-hover',
   PANEL: '{namespace}-panel',
   DROPDOWNPANEL: '{namespace}-dropdown-panel',
   CLOSE: '{namespace}-close',
@@ -56,13 +56,16 @@ export const classes = {
   FIELD: '{namespace}-field',
   FIELDTITLE: '{namespace}-field-title',
   PREVIEW: '{namespace}-preview',
-  ACTION: '{namespace}-action',
+  TRIGGERACTION: '{namespace}-trigger-action',
   BTNACTION: '{namespace}-btn-action',
   SAVE: '{namespace}-save',
   CANCEL: '{namespace}-cancel',
   BIGSIZE: '{namespace}-preview-16-9',
   MEDIUMSIZE: '{namespace}-preview-4-3',
-  SMALLSIZE: '{namespace}-preview-3-2'
+  SMALLSIZE: '{namespace}-preview-3-2',
+  SELECTTRIGGER: '{namespace}-select-trigger',
+  CHANGEDISABLE: '{namespace}-local-url-change-disabled',
+  DELDISABLE: '{namespace}-local-url-delete-disabled'
 }
 
 export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']
@@ -92,11 +95,11 @@ export const defaults = {
       </div>`
     },
     fill() {
-      return `<div class='{classes.FILL}'><image src='https://picsum.photos/200/300?image=1020' class='{classes.INFOPOSTER}' />
+      return `<div class='{classes.FILL}'><image src='https://picsum.photos/200/300?image=1020' class='{classes.FILLPOSTER}' />
       </div>`
     },
-    infoAction() {
-      return `<div class='{classes.ACTION}'><i class='pj-icon pj-icon-pencil-write-solid {classes.EDITOR}'></i><i class='pj-icon pj-icon-delete {classes.REMOVE}'></i>
+    triggerAction() {
+      return `<div class='{classes.TRIGGERACTION}'><i class='pj-icon pj-icon-pencil-write-solid {classes.EDITOR}'></i><i class='pj-icon pj-icon-delete {classes.REMOVE}'></i>
       </div>`
     },
     previewContent() {
@@ -117,7 +120,7 @@ export const defaults = {
   },
 
   selectCover() {
-    return `https://www.smashingmagazine.com/images/music-videos/rabbit.jpg
+    return `https://picsum.photos/200/300?image=990
     `
   },
   selectLocalVideo() {
