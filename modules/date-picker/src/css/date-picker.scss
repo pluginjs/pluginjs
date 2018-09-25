@@ -6,337 +6,232 @@
 // ========================
 $datePicker: "pj-datePicker" !default;
 $datePicker-sizer: $sizer;
+
+$datePicker-width: 200px;
+
+$datePicker-font-size: $font-size-base;
+
+$datePicker-mobile-trigger-padding: 7px 12px;
+$datePicker-mobile-trigger-bg-color: $color-white;
+
+$datePicker-divider-hover-color: $gray;
+
+$datePicker-active-color: $color-white;
+$datePicker-active-bg-color: $color-primary-active !default;
+$datePicker-active-divider-color: $color-white;
+
+$datePicker-content-padding: 10px;
+$datePicker-content-bg-color: $color-white;
+
+$datePicker-header-color: $gray-darkest;
+
+$datePicker-row-spacer: 4px;
+
+$datePicker-years-size: 56px;
+$datePicker-years-radius: 8px;
+
+$datePicker-select-inrange-bg-color: $color-white;
+
+$datePicker-cover-bg-color: rgba($color-black, 0.5);
+$datePicker-disabled-color: $disabled-color;
+$datePicker-disabled-border-color: $disabled-color;
+$datePicker-disabled-bg-color: $disabled-bg;
 // color vars
-$datePicker-active-color: $color-primary-active !default;
 $datePicker-inrange-color: #fff !default;
-$datePicker-hover-color: $gray-light !default;
+$datePicker-hover-color: #999 !default;
+$datePicker-hover-bg-color: $gray-light !default;
 $datePicker-hover-dark-color: $gray-lighter !default;
-$datePicker-color: $text-color !default;
+$datePicker-color: $gray-darker !default;
 $datePicker-input-color: $text-color !default;
-$datePicker-input-width: 16.5 * $datePicker-sizer !default; //130
+$datePicker-input-width: 165px;
 // border vars
 $datePicker-border-width: 1px !default;
-$datePicker-border-color: inherit !default;
+$datePicker-border-color: $gray !default;
 $datePicker-border-style: solid !default;
-$datePicker-border: $datePicker-border-width $datePicker-border-style
-  $datePicker-border-color !default;
 $datePicker-border-radius: $border-radius-base !default;
 // shadow vars
-$datePicker-box-shadow: $box-shadow-base !default;
+$datePicker-box-shadow: $box-shadow-6 !default;
 // icon vars
 $datePicker-icon-color: $gray-dark !default; //#ccd1d9 !default;
 // head vars
-$datePicker-head-color: $gray !default;
+$datePicker-head-color: #ccc !default;
+
+$datePicker-other-month-color: #ccc;
+
+$datePicker-span-bg-size: 30px;
+$datePicker-span-focus-color: $color-primary;
 // font-size vars
 $datePicker-header-font-size: $font-size-lg !default;
-$datePicker-head-font-size: $font-size-sm !default;
-$datePicker-body-font-size: $font-size-base !default;
+$datePicker-head-font-size: $font-size-xs !default;
+$datePicker-body-font-size: $font-size-xs !default;
 
-$datePicker-icon: $pj-icon-calendar !default;
-$datePickerr-font: $pj-icon-font-family !default;
-
-$datePicker-header-border: $gray-lightest !default; //#ebebeb !default;
+$datePicker-header-border: $gray-light !default; //#ebebeb !default;
 $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
 
+$datePicker-inrange-bg-color: $gray-light;
 // default
 // ===========================
 
 &.#{$datePicker} {
   display: inline-flex;
-  width: 20 * $datePicker-sizer !important;
+  width: $datePicker-width;
   
-  &:hover {
-    background-color: $gray-light;
-    border-color: $gray-light;
-
-    .#{$datePicker}-input {
-      border-right-color: #e6e6e6;
-    }
-  }
-
-  & &-active {
-      color: $color-white;
-      background-color: $datePicker-active-color;
-      border-color: $color-primary-dark;
-  }
-
-  &-active {
-    .#{$datePicker}-input {
-      border-right-color: $color-white;
-    }
-  }
-
   &-input,
   &-icon,
   &-mobile-trigger {
-    background-color: inherit;
-    border: $datePicker-border;
+    border-color: $datePicker-border-color;
+    border-style: $datePicker-border-style;
+    border-width: $datePicker-border-width;
     border-radius: $datePicker-border-radius;
   }
 
-  &:focus {
-    .#{$datePicker}-icon {
-      border-color: $gray-light;
-    }
-    .#{$datePicker}-input {
-      border-color: $gray-light;
-    }
-    .#{$datePicker}-mobile-trigger {
-      border-color: $gray-light;
-    }
-  }
-
-  &-input {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-}
-
-.#{$datePicker}-active {
-  /* stylelint-disable */
-  .#{$datePicker}-input {
-    &::-webkit-input-placeholder{
-      color: $color-white;
-    }
-    &:-moz-placeholder{
-      color: $color-white
-    }
-    &::-moz-placeholder{
-      color: $color-white
-    }
-    &:-ms-input-placeholder{
-      color: $color-white
-    }
-  }
-  /* stylelint-enable */
-  .#{$datePicker} {
-    &-input,
-    &-icon,
-    &-mobile-trigger {
-      border-color: $datePicker-active-color;
-    }
-
-    &-input:active {
-      border-color: $color-primary-dark;
-    }
-
-    &-input:focus {
-      border-color: $color-primary-dark;
-    }
-
-    &-input:hover + .#{$datePicker}-icon {
-      border-color: $datePicker-active-color;
-    }
-
-    &-input:focus + .#{$datePicker}-icon {
-      border-color: $datePicker-active-color;
-    }
-
-    &-input:active + .#{$datePicker}-icon {
-      border-color: $color-primary-dark;
-    }
-
-    &-icon {
-      color: $color-white;
-      background-color: $datePicker-active-color;
-      &:hover {
-        background-color: $datePicker-active-color;
-      }
-    }
-  }
-
-  &.#{$datePicker}-startDay,
-  &.#{$datePicker}-endDay {
-    &::before {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      z-index: -1;
-      display: block;
-      width: 50%;
-      height: 100%;
-      content: "";
-      background-color: $datePicker-inrange-color;
-      transform: translateY(-50%);
-    }
-  }
-
-  &.#{$datePicker}-startDay::before {
-    right: 0;
-    left: auto;
-  }
-
-  &.#{$datePicker}-startDay.#{$datePicker}-select-last-in-month::before,
-  &.#{$datePicker}-endDay.#{$datePicker}-select-first-in-month::before {
-    display: none;
-  }
-}
-  &.#{$datePicker}-disabled{
-    cursor: not-allowed;
-    &:hover {
-        .#{$datePicker}-icon {
-          background-color: $color-white;
-          border-color:#e6e6e6;
-        }
-
-        .#{$datePicker}-input {
-          background-color: $color-white;
-          border:1px solid #e6e6e6;
-        }
-      }
-
-      &.#{$datePicker} {
-      &:hover {
-        .#{$datePicker}-icon {
-          background-color: $color-white;
-          border-color:#e6e6e6 !important;
-        }
-      }
-
-      &:active {
-        .#{$datePicker}-icon {
-          background-color: none;
-          border-color:#e6e6e6;
-        }
-
-        .icon-calendar::before {
-          color: #e6e6e6;
-        }
-      }
-    }
-
-    .#{$datePicker}-icon {
-      color: #e6e6e6;
-      background-color: #fff !important;
-    }
-    
-    .#{$datePicker}-input {
-      pointer-events: none;
-    }
- }
-
-.#{$datePicker} {
-
   &-input,
   &-mobile-trigger {
+    z-index: 1;
     width: $datePicker-input-width;
-    padding: 0 16px;
-    font-size: 13px;
-    line-height: 20px;
+    overflow: hidden;
+    font-size: $datePicker-font-size;
     color: $datePicker-input-color;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-
-    &:hover {
-      border-color: $gray-light;
-      border-right: $datePicker-border;
-    }
-
-    &:hover + .#{$datePicker}-icon {
-      border-color: $gray-light;
-      border-left: 0;
-    }
-
-    &:focus + .#{$datePicker}-icon {
-      color: $color-white;
-      background-color: $datePicker-active-color;
-    }
-
-    &:active + .#{$datePicker}-icon {
-      color: $color-white;
-      background-color: $datePicker-active-color;
-    }
-  }
-
-  input[type="text"][disabled]:hover {
-    border-color: $datePicker-active-color;
-  }
-  input[type="text"]:focus {
-    border-color: $datePicker-active-color;
-  }
-  input[type="text"]:active {
-    border-color: $datePicker-active-color;
   }
 
   &-mobile-trigger {
     box-sizing: border-box;
-    //max-width: $datePicker-input-width;
     display: inline-block;
-    min-width: $datePicker-input-width;
-    padding: 0.3em 0 0.3em 0.5em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    background-color: #fff;
+    padding: $datePicker-mobile-trigger-padding;
+    background-color: $datePicker-mobile-trigger-bg-color;
   }
 
   &-icon {
-    //width: 30px;
     box-sizing: border-box;
-    padding: 0 1 * $datePicker-sizer; //0 7px
-    font-size: $font-size-sm;
-    line-height: 3.4 * $datePicker-sizer; //30px
-    color: $datePicker-icon-color;
     text-align: center;
     border-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    &::after {
-      @include icon();
-      font-family:$datePickerr-font;
-      content: icon-content($datePicker-icon);
+  }
+
+  &:hover {
+    .#{$datePicker}-icon,
+    .#{$datePicker}-input,
+    .#{$datePicker}-mobile-trigger {
+      color: $datePicker-hover-color;
+      background-color: $datePicker-hover-bg-color;
+      border-color: $datePicker-hover-bg-color;
+    }
+
+    .#{$datePicker}-input,
+    .#{$datePicker}-mobile-trigger {
+      border-right-color: $datePicker-divider-hover-color;
+    }
+  }
+
+  &.#{$datePicker}-active {
+    .#{$datePicker}-icon,
+    .#{$datePicker}-input,
+    .#{$datePicker}-mobile-trigger {
+      color: $datePicker-active-color;
+      background-color: $datePicker-active-bg-color;
+      border-color: $datePicker-active-bg-color;
+    }
+    
+    .#{$datePicker}-input,
+    .#{$datePicker}-mobile-trigger {
+      border-right-color: $datePicker-active-divider-color;
+    }
+
+    &:hover {
+      .#{$datePicker}-icon,
+      .#{$datePicker}-input,
+      .#{$datePicker}-mobile-trigger { 
+        background: $datePicker-active-bg-color;
+        border-color: $datePicker-active-bg-color;
+      }
+
+      .#{$datePicker}-input,
+      .#{$datePicker}-mobile-trigger { 
+        border-right-color: $datePicker-active-divider-color;
+      }
+    }
+
+    /* stylelint-disable */
+    .#{$datePicker}-input {
+      &::-webkit-input-placeholder{
+        color: $color-white;
+      }
+      &:-moz-placeholder{
+        color: $color-white
+      }
+      &::-moz-placeholder{
+        color: $color-white
+      }
+      &:-ms-input-placeholder{
+        color: $color-white
+      }
+    }
+    /* stylelint-enable */
+
+    &.#{$datePicker}-startDay,
+    &.#{$datePicker}-endDay {
+      &::before {
+        position: absolute;
+        left: 0;
+        z-index: -1;
+        display: block;
+        width: 50%;
+        height: 100%;
+        content: "";
+        background-color: $datePicker-inrange-color;
+      }
+    }
+
+    &.#{$datePicker}-endDay::before {
+      right: 0;
+      left: auto;
+    }
+
+    &.#{$datePicker}-startDay.#{$datePicker}-select-last-in-month::before,
+    &.#{$datePicker}-endDay.#{$datePicker}-select-first-in-month::before {
+      display: none;
     }
   }
 
   &-content {
+    padding: $datePicker-content-padding;
     color: $datePicker-color;
+    background: $datePicker-content-bg-color;
     box-shadow: $datePicker-box-shadow;
 
     &:first-of-type {
+      border-top-left-radius: $datePicker-border-radius;
       border-bottom-left-radius: $datePicker-border-radius;
-
-      .#{$datePicker}-header {
-        border-top-left-radius: $datePicker-border-radius;
-        //border-top-right-radius: $datePicker-border-radius
-      }
     }
 
     &:last-of-type {
       border-top-right-radius: $datePicker-border-radius;
       border-bottom-right-radius: $datePicker-border-radius;
-
-      .#{$datePicker}-header {
-        border-top-right-radius: $datePicker-border-radius;
-        border-bottom-right-radius: $datePicker-border-radius;
-      }
     }
 
     &:only-of-type {
       border-radius: $datePicker-border-radius;
-
-      .#{$datePicker}-header {
-        border-top-left-radius: $datePicker-border-radius;
-        border-top-right-radius: $datePicker-border-radius;
-      }
     }
 
     span {
       position: relative;
       z-index: 0;
-
+      
       &::after {
         position: absolute;
         top: 50%;
-        left: 50%;
         z-index: -1;
         display: block;
-        width: 31px;
-        height: 31px;
+        width: $datePicker-span-bg-size;
+        height: $datePicker-span-bg-size;
         content: "";
         border-radius: 100%;
-        transform: translate(-50%, -50%);
+        transform: translateY(-50%);
       }
     }
   }
@@ -344,90 +239,86 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
   &-header {
     font-size: $datePicker-header-font-size;
     font-weight: 500;
-    color: $color-primary-black;
+    color: $datePicker-header-color;
     background-color: $datePicker-inrange-color;
     border-bottom: 1px solid $datePicker-header-border;
   }
 
-  &-prev,
-  &-next {
-    background-repeat: no-repeat;
-    background-position: center;
-    &.#{$datePicker}-blocked,
-    &.#{$datePicker}-blocked:hover {
-      color: $datePicker-blocked-hover-color;
-      cursor: auto;
-    }
-  }
-
   &-head {
     font-size: $datePicker-head-font-size;
-    // font-weight: $font-weight-bold;
     color: $datePicker-head-color;
   }
 
   &-body {
     font-size: $datePicker-body-font-size;
 
-    span.#{$datePicker}-inRange {
-      background-color: $datePicker-inrange-color;
+    .#{$datePicker}-inRange {
+      background-color: $datePicker-inrange-bg-color;
     }
-    .#{$datePicker}-row {
-      .#{$datePicker}-inRange:first-of-type {
+
+    .#{$datePicker}-inRange:first-of-type {
+      border-top-left-radius: 50%;
+      border-bottom-left-radius: 50%;
+    }
+    .#{$datePicker}-inRange:last-of-type {
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+    }
+
+    .#{$datePicker}-otherMonth.#{$datePicker}-startDay {
+      color: $datePicker-other-month-color;
+      
+      &::before {
+        width: 100%;
         border-top-left-radius: 50%;
         border-bottom-left-radius: 50%;
       }
-      .#{$datePicker}-inRange:last-of-type {
+      
+      &::after {
+        width: 100%;
         border-top-right-radius: 50%;
         border-bottom-right-radius: 50%;
       }
     }
   }
+  
 
   &-body,
   &-months,
   &-years {
     span {
       &:hover::after {
-        background-color: $datePicker-hover-color;
+        background-color: $datePicker-hover-bg-color;
       }
 
       &.#{$datePicker}-active.#{$datePicker}-focus {
-        color: $color-white;
+        color: $datePicker-active-color;
       }
 
       &.#{$datePicker}-active {
-        color: $color-white;
+        color: $datePicker-active-color;
       }
 
       &.#{$datePicker}-active::after {
-        background-color: $datePicker-active-color;
+        background-color: $datePicker-active-bg-color;
       }
 
       &.#{$datePicker}-otherMonth,
       &.#{$datePicker}-untouchable {
-        color: $gray;
+        color: $datePicker-other-month-color;
 
-        &::after {
-          content: none;
+        &:hover {
+          background: inherit;
         }
       }
+
       &.#{$datePicker}-otherYear {
         color: $gray-light;
         pointer-events: none;
+
         &:hover::after {
-          background: none;
+          background: transparent;
         }
-      }
-
-      &.#{$datePicker}-inRange:hover::after,
-      &.#{$datePicker}-inRange.#{$datePicker}-active {
-        background-color: $color-white;
-      }
-
-      &.#{$datePicker}-inRange.#{$datePicker}-active::after {
-        background-color: $datePicker-active-color !important;
-        border-radius: 100%;
       }
 
       &.#{$datePicker}-inRange:first-of-type {
@@ -441,16 +332,14 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
       }
 
       &.#{$datePicker}-focus {
-        color: $color-primary;
+        color: $datePicker-span-focus-color;
       }
     }
   }
 
   &-days {
-    padding: 10px;
-
     .#{$datePicker}-row {
-      margin-bottom: 4px;
+      margin-bottom: $datePicker-row-spacer;
 
       .#{$datePicker}-inRange:last-of-type.#{$datePicker}-startDay,
       .#{$datePicker}-inRange:last-of-type.#{$datePicker}-select-first-in-month {
@@ -465,17 +354,19 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
   &-months,
   &-years {
     height: 100%;
+
     span::after {
-      width: 56px;
-      height: 56px;
-      border-radius: 8px;
+      width: $datePicker-years-size;
+      height: $datePicker-years-size;
+      border-radius: $datePicker-years-radius;
     }
   }
 
   &-select-first-in-month,
   &-select-last-in-month {
-    background-color: $color-white !important;
-
+    &.#{$datePicker}-inRange {
+      background-color: $datePicker-select-inrange-bg-color;
+    }
     &::before {
       position: absolute;
       top: 0;
@@ -485,7 +376,6 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
       width: 100%;
       height: 100%;
       content: "";
-      background-color: $datePicker-inrange-color;
     }
   }
 
@@ -498,53 +388,65 @@ $datePicker-blocked-hover-color: $gray-dark !default; //#696969 !default;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
   }
-}
 
-input[type="text"][disabled] {
-  color: $disabled-color;
-  background-color: $disabled-bg;
-  &:hover {
-    border: 1px solid $disabled-border;
+  &-cover {
+    background: $datePicker-cover-bg-color;
   }
-  + .pj-datePicker-icon {
-    background: transparent;
-    border: 1px solid $disabled-border;
-    border-left: 0;
-  }
-  /* stylelint-disable */
-  &::-webkit-input-placeholder{
-    color: $disabled-color;
-  }
-  &:-moz-placeholder{
-    color: $disabled-color;
-  }
-  &::-moz-placeholder{
-    color: $disabled-color;
-  }
-  &:-ms-input-placeholder{
-    color: $disabled-color;
-  }
-  /* stylelint-enable */
-}
-/*stylelint-disable*/
-.#{$datePicker}-body {
-  span.#{$datePicker}-otherMonth.#{$datePicker}-inRange.#{$datePicker}-active.#{$datePicker}-startDay {
-    color: $gray-light;
-    &::before {
-      width: 100%;
-      border-top-left-radius: 50%;
-      border-bottom-left-radius: 50%;
+
+  &-disabled {
+    cursor: not-allowed;
+
+    .#{$datePicker}-icon {
+      color: $datePicker-disabled-color;
+      background-color: $datePicker-disabled-bg-color;
     }
-    &::after {
-      width: 100%;
-      border-top-right-radius: 50%;
-      border-bottom-right-radius: 50%;
+
+    &:hover {
+      .#{$datePicker}-input,
+      .#{$datePicker}-icon {
+        color: $datePicker-disabled-color;
+        background-color: $datePicker-disabled-bg-color;
+        border-color:$datePicker-disabled-border-color;
+      }
+    }
+    
+    &:active {
+      .#{$datePicker}-icon {
+        background-color: $datePicker-disabled-bg-color;
+        border-color: $datePicker-disabled-border-color;
+      }
+    }
+    
+    .#{$datePicker}-input {
+      pointer-events: none;
     }
   }
-  span.#{$datePicker}-untouchable {
-    + .#{$datePicker}-inRange {
-      border-top-left-radius: 50%;
-      border-bottom-left-radius: 50%;
+
+  input[type="text"][disabled] {
+    color: $datePicker-disabled-color;
+    background-color: $datePicker-disabled-bg-color;
+    
+    &:hover {
+      border: 1px solid $datePicker-disabled-border-color;
     }
+    + .pj-datePicker-icon {
+      background: transparent;
+      border: 1px solid $datePicker-disabled-border-color;
+      border-left: 0;
+    }
+    /* stylelint-disable */
+    &::-webkit-input-placeholder{
+      color: $datePicker-disabled-color;
+    }
+    &:-moz-placeholder{
+      color: $datePicker-disabled-color;
+    }
+    &::-moz-placeholder{
+      color: $datePicker-disabled-color;
+    }
+    &:-ms-input-placeholder{
+      color: $datePicker-disabled-color;
+    }
+    /* stylelint-enable */
   }
 }

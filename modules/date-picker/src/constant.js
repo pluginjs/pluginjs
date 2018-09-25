@@ -131,8 +131,8 @@ export const defaults = {
         '<div class="{classes.CONTENT}">' +
         '<div class="{classes.HEADER}">' +
         '<div class="{classes.CAPTION}"></div>' +
-        '<div class="{classes.PREV} pj-icon pj-icon-chevron-left"></div>' +
-        '<div class="{classes.NEXT} pj-icon pj-icon-chevron-right"></div>' +
+        '<div class="{classes.PREV} pj-icon pj-icon-arrow-left"></div>' +
+        '<div class="{classes.NEXT} pj-icon pj-icon-arrow-right"></div>' +
         '</div>' +
         '<div class="{classes.DATS}"></div>' +
         '<div class="{classes.MONTHS}"></div>' +
