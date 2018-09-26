@@ -1,14 +1,6 @@
 import template from '@pluginjs/template'
-import {
-  parseHTML,
-  insertAfter,
-  query,
-  // queryAll,
-  setData,
-  getData
-} from '@pluginjs/dom'
-import { setStyle } from '@pluginjs/styled'  /* eslint-disable-line */
-// import { addClass, removeClass } from '@pluginjs/classes'
+import { parseHTML, query, setData, getData } from '@pluginjs/dom'
+import { setStyle } from '@pluginjs/styled'
 import Select from '@pluginjs/select'
 
 export default class Attachment {
@@ -30,16 +22,9 @@ export default class Attachment {
       bgAttach: this.instance.translate('bgAttach')
     })
 
-    this.$Attachment = parseHTML(html)
-    insertAfter(this.$Attachment, this.instance.$imageWrap)
-    this.$attachment = query(
-      `.${this.instance.classes.ATTACHMENT}`,
-      this.instance.$Panel
-    )
-    this.$select = query(
-      `.${this.instance.classes.DROPDOWNTRIGGER}`,
-      this.instance.$Panel
-    )
+    this.$wrap = parseHTML(html)
+
+    this.$select = query(`.${this.instance.classes.SELECTTRIGGER}`, this.$wrap)
     // this.$attachTrigger = query('span', this.$select)
     this.values = this.instance.options.attachment.values
 
@@ -52,7 +37,7 @@ export default class Attachment {
         source: data,
         keyboard: true,
         onChange(value) {  /* eslint-disable-line */
-          if (that.instance.disabled) {
+          if (that.instance.is('disabled')) {
             return
           }
           that.instance.value.attachment = value
@@ -64,7 +49,7 @@ export default class Attachment {
           setStyle(
             'background-attachment',
             that.instance.value.attachment,
-            that.instance.$fillImage
+            that.instance.TRIGGER.$fillImage
           )
         }
       }),

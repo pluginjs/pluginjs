@@ -18,15 +18,14 @@ export const classes = {
   FILL: '{namespace}-fill',
   FILLIMAGE: '{namespace}-fill-image',
   IMAGENAMEFILL: '{namespace}-fill-image-name',
-  REMOVE: '{namespace}-fill-remove',
-  EDIT: '{namespace}-fill-edit',
-  CHANGE: '{namespace}-fill-change',
-  EXPANDPANEL: '{namespace}-expand-panel',
-  CONTROL: '{namespace}-expand-control',
-  CANCEL: '{namespace}-expand-cancel',
-  SAVE: '{namespace}-expand-save',
-  IMAGEWRAP: '{namespace}-expand-image-wrap',
-  IMAGE: '{namespace}-expand-image',
+  TIGGERACTION: '{namespace}-trigger-action',
+  REMOVE: '{namespace}-remove',
+  EDIT: '{namespace}-edit',
+  CONTROL: '{namespace}-control',
+  CANCEL: '{namespace}-cancel',
+  SAVE: '{namespace}-save',
+  PREVIEW: '{namespace}-preview',
+  IMAGE: '{namespace}-image',
   // field
   FIELD: '{namespace}-field {namespace}-{field}',
   FIELDTITLE: '{namespace}-field-title',
@@ -53,15 +52,14 @@ export const classes = {
   SIZE: '{namespace}-size',
   SIZETITLE: '{namespace}-size-title',
   SIZECONTENT: '{namespace}-size-content',
-  SIZETRIGGER: '{namespace}-size-trigger',
   SIZEPANEL: '{namespace}-size-panel',
   // attachment
   ATTACHMENT: '{namespace}-attachment',
   ATTACHMENTTITLE: '{namespace}-attachment-title',
   ATTACHMENTCONTENT: '{namespace}-attachment-content',
-  DROPDOWNTRIGGER: '{namespace}-dropdown-trigger',
   ATTACH: '{attachNamespace}',
   DROPDOWN: '{namespace}-dropdown',
+  SELECTTRIGGER: '{namespace}-select-trigger',
   TRIGGER: '{namespace}-trigger'
 }
 
@@ -154,7 +152,7 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{bgSize}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
-        '<span class={classes.SIZETRIGGER}></span>' +
+        '<input type="text" class="{classes.SELECTTRIGGER}" />' +
         '</div>' +
         '</div>'
       )
@@ -169,7 +167,7 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{bgAttach}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
-        '<div class="{classes.DROPDOWNTRIGGER}"></div>' +
+        '<input class="{classes.SELECTTRIGGER}"></div>' +
         '</div>' +
         '</div>'
       )
@@ -187,11 +185,11 @@ export const defaults = {
       '<div class="{classes.FILLIMAGE}">' +
       '<div class="{classes.IMAGENAMEFILL}">{placeholder}</div>' +
       '</div>' +
-      '<div class="{classes.CHANGE}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i></div>' +
+      '<div class="{classes.TIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i></div>' +
       '</div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +
-      '<div class="{classes.IMAGEWRAP}">' +
+      '<div class="{classes.PREVIEW}">' +
       '<div class="{classes.IMAGE}"></div>' +
       '</div>' +
       '<div class="{classes.CONTROL}" href="#"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">{save}</button></div>' +

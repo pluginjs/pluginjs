@@ -1,15 +1,5 @@
 import template from '@pluginjs/template'
-// import { addClass, removeClass } from '@pluginjs/classes'
-import {
-  query,
-  // queryAll,
-  parseHTML,
-  // closest,
-  insertAfter
-  // setData,
-  // getData
-} from '@pluginjs/dom'
-// import { bindEvent } from '@pluginjs/events'
+import { query, parseHTML } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
 import Select from '@pluginjs/select'
 
@@ -32,12 +22,9 @@ export default class Size {
       bgSize: this.instance.translate('bgSize')
     })
 
-    this.$Size = parseHTML(html)
-    insertAfter(this.$Size, this.instance.$imageWrap)
+    this.$wrap = parseHTML(html)
 
-    this.$size = query(`.${this.instance.classes.SIZE}`, this.instance.$Panel)
-
-    this.$trigger = query(`.${this.instance.classes.SIZETRIGGER}`, this.$size)
+    this.$trigger = query(`.${this.instance.classes.SELECTTRIGGER}`, this.$wrap)
     const data = this.values.map(val => ({ label: val, value: val }))
     const that = this
     this.$sizeSelect = Select.of(this.$trigger, {
@@ -50,7 +37,7 @@ export default class Size {
         }
         this.instance.value.size = val
         setStyle('background-size', val, this.instance.$image)
-        setStyle('background-size', val, this.instance.$fillImage)
+        setStyle('background-size', val, this.instance.TRIGGER.$fillImage)
       }
     })
   }

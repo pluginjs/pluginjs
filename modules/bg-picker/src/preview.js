@@ -13,7 +13,7 @@ export default class Preview {
   }
 
   initialize() {
-    this.$image = query(`.${this.classes.IMAGE}`, this.instance.$Panel)
+    this.$image = query(`.${this.classes.IMAGE}`, this.instance.$dropdown)
     this.set(this.value.image)
   }
 
@@ -22,10 +22,10 @@ export default class Preview {
     this.setState(image)
     this.returnFill(image)
     if (image === '' || typeof image === 'undefined') {
-      showElement(this.instance.$fillImageName)
+      showElement(this.instance.TRIGGER.$fillImageName)
       setStyle('background-image', 'none', this.$image)
 
-      setStyle('background-image', 'none', this.instance.$fillImage)
+      setStyle('background-image', 'none', this.instance.TRIGGER.$fillImage)
     } else if (image || image !== this.instance.options.image) {
       thumbnailUrl = this.instance.options.thumbnail
         ? this.instance.options.thumbnail
@@ -43,7 +43,7 @@ export default class Preview {
         setStyle(
           'background-image',
           `url('${this.instance.value.image}')`,
-          this.instance.$fillImage
+          this.instance.TRIGGER.$fillImage
         )
       }
       IMG.onerror = () => {
@@ -51,7 +51,7 @@ export default class Preview {
         this.returnFill(image)
         this.update()
         setStyle('background-image', 'none', this.$image)
-        setStyle('background-image', 'none', this.instance.$fillImage)
+        setStyle('background-image', 'none', this.instance.TRIGGER.$fillImage)
       }
       IMG.src = thumbnailUrl
     }
@@ -68,12 +68,12 @@ export default class Preview {
   returnFill(image) {
     let imgName
     if (!image || image === this.instance.options.image) {
-      this.instance.$fillImageName.textContent = this.instance.translate(
+      this.instance.TRIGGER.$fillImageName.textContent = this.instance.translate(
         'placeholder'
       )
     } else {
       imgName = image.match(/([\S]+[/])([\S]+\w+$)/i)[2]
-      this.instance.$fillImageName.textContent = imgName
+      this.instance.TRIGGER.$fillImageName.textContent = imgName
     }
   }
 

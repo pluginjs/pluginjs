@@ -1,13 +1,5 @@
 import template from '@pluginjs/template'
-import {
-  parseHTML,
-  insertAfter,
-  query,
-  queryAll,
-  closest,
-  setData,
-  getData
-} from '@pluginjs/dom'
+import { parseHTML, queryAll, closest, setData, getData } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
@@ -30,14 +22,9 @@ export default class Repeat {
       ),
       bgRepeat: this.instance.translate('bgRepeat')
     })
-    this.$Repeat = parseHTML(html)
-    insertAfter(this.$Repeat, this.instance.$imageWrap)
+    this.$wrap = parseHTML(html)
 
-    this.$repeat = query(
-      `.${this.instance.classes.REPEAT}`,
-      this.instance.$Panel
-    )
-    this.$items = queryAll('li', this.$repeat)
+    this.$items = queryAll('li', this.$wrap)
 
     this.values.forEach((value, key) => {
       // this.$items[key].dataset.repeat = value
@@ -60,7 +47,7 @@ export default class Repeat {
         this.instance.value.repeat = value
         addClass(this.instance.classes.ACTIVE, this.$items[i])
         setStyle('background-repeat', value, this.instance.$image)
-        setStyle('background-repeat', value, this.instance.$fillImage)
+        setStyle('background-repeat', value, this.instance.TRIGGER.$fillImage)
         found = true
       }
     }
@@ -87,7 +74,7 @@ export default class Repeat {
         // that.instance.update();
         return false
       },
-      this.$repeat
+      this.$wrap
     )
   }
 }

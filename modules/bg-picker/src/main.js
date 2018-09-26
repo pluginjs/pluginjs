@@ -1,10 +1,8 @@
 import Component from '@pluginjs/component'
-import { compose } from '@pluginjs/utils'
-import { parseHTML, insertAfter, query } from '@pluginjs/dom'
-import { hideElement } from '@pluginjs/styled'
+import { parseHTML, insertAfter, query, has } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import PopDialog from '@pluginjs/pop-dialog'
+import Trigger from './trigger'
 import template from '@pluginjs/template'
 import Dropdown from '@pluginjs/dropdown'
 import {
@@ -90,36 +88,37 @@ class BgPicker extends Component {
   }
 
   initDropdown() {
-    this.DROPDOWN = Dropdown.of(this.$empty, {
+    this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       theme: 'dafault',
       // placement: 'bottom-left',
-      reference: this.$trigger,
-      target: this.$Panel,
+      reference: this.TRIGGER.$trigger,
+      target: this.$dropdown,
       hideOutClick: true,
       hideOnSelect: false,
-      templates: this.options.templates
+      templates: this.options.templates,
+      onShow: () => {
+        if (!this.is('builded')) {
+          insertAfter(this.SIZE.$wrap, this.$preview)
+          insertAfter(this.ATTACHMENT.$wrap, this.$preview)
+          insertAfter(this.REPEAT.$wrap, this.$preview)
+          insertAfter(this.POSITION.$wrap, this.$preview)
+        }
+      }
     })
   }
 
   bind() {
-    const that = this
     bindEvent(
       this.eventName('click'),
-      () => {
-        if (this.is('disabled')) {
+      e => {
+        if (
+          e.target === this.TRIGGER.$trigger ||
+          has(e.target, this.TRIGGER.$trigger) ||
+          e.target === this.$dropdown ||
+          has(e.target, this.$dropdown)
+        ) {
           return
         }
-        this.oldValue = this.val()
-        this.PREVIEW.set(this.options.value.image)
-        removeClass(this.classes.EXIST, addClass(this.classes.SHOW, this.$wrap))
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-      },
-      this.$empty
-    )
-
-    bindEvent(
-      this.eventName('click'),
-      () => {
         if (this.DROPDOWN.is('shown')) {
           this.val(this.oldValue)
           if (this.is('status')) {
@@ -130,49 +129,11 @@ class BgPicker extends Component {
           } else {
             removeClass(this.classes.SHOW, this.$wrap)
           }
-          removeClass(this.classes.OPENDISABLE, this.$trigger)
+          removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         }
       },
       window.document
     )
-
-    compose(
-      bindEvent(this.eventName('mouseenter'), ({ target }) => {
-        if (this.is('disabled')) {
-          return
-        }
-
-        addClass(that.classes.HOVER, target)
-      }),
-      bindEvent(this.eventName('mouseleave'), ({ target }) => {
-        if (this.is('disabled')) {
-          return null
-        }
-        if (this.is('holdHover')) {
-          return false
-        }
-        removeClass(this.classes.HOVER, target)
-        this.leave('holdHover')
-        return null
-      }),
-      bindEvent(this.eventName('click'), `.${this.classes.EDIT}`, () => {
-        if (this.is('disabled')) {
-          return null
-        }
-        this.oldValue = this.val()
-        this.DROPDOWN.show()
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-        removeClass(this.classes.EXIST, addClass(this.classes.SHOW, this.$wrap))
-        this.enter('status')
-        return false
-      }),
-      bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
-        if (this.is('disabled')) {
-          return null
-        }
-        return null
-      })
-    )(this.$fill)
 
     bindEvent(
       this.eventName('click'),
@@ -191,7 +152,7 @@ class BgPicker extends Component {
           removeClass(this.classes.SHOW, this.$wrap)
         }
         this.DROPDOWN.hide()
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         return false
       },
       this.$cancel
@@ -207,7 +168,7 @@ class BgPicker extends Component {
         this.update()
         removeClass(this.classes.SHOW, addClass(this.classes.EXIST, this.$wrap))
         this.DROPDOWN.hide()
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         return false
       },
       this.$save
@@ -226,15 +187,7 @@ class BgPicker extends Component {
   }
 
   unbind() {
-    ;[
-      this.element,
-      this.$empty,
-      this.$fill,
-      this.$cancel,
-      this.$image,
-      this.$edit,
-      this.$remove
-    ].map(removeEvent(this.eventName()))
+    removeEvent(this.eventName())
   }
 
   createHtml() {
@@ -248,46 +201,14 @@ class BgPicker extends Component {
     )
     insertAfter(this.$wrap, this.element)
 
-    this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
+    this.TRIGGER = new Trigger(this)
 
-    this.$fill = query(`.${this.classes.FILL}`, this.$wrap)
-    this.$fillImageName = hideElement(
-      query(`.${this.classes.IMAGENAMEFILL}`, this.$fill)
-    )
-    this.$trigger = query(`.${this.classes.TRIGGER}`, this.$wrap)
-    this.$fillImage = query(`.${this.classes.FILLIMAGE}`, this.$fill)
-    this.$remove = query(`.${this.classes.REMOVE}`, this.$fill)
-    this.$edit = query(`.${this.classes.EDIT}`, this.$fill)
-    this.$Panel = query(`.${this.classes.DROPDOWN}`, this.$wrap)
-    this.$control = query(`.${this.classes.CONTROL}`, this.$Panel)
+    this.$dropdown = query(`.${this.classes.DROPDOWN}`, this.$wrap)
+    this.$control = query(`.${this.classes.CONTROL}`, this.$dropdown)
     this.$cancel = query(`.${this.classes.CANCEL}`, this.$control)
     this.$save = query(`.${this.classes.SAVE}`, this.$control)
-    this.$imageWrap = query(`.${this.classes.IMAGEWRAP}`, this.$Panel)
-    this.$image = query(`.${this.classes.IMAGE}`, this.$Panel)
-
-    // init pop
-    this.pop = new PopDialog(this.$remove, {
-      placement: 'bottom',
-      content: 'Are you sure you want to delete?',
-      buttons: {
-        cancel: { label: 'Cancel' },
-        delete: {
-          label: 'Delete',
-          color: 'danger',
-          fn: resolve => {
-            this.clear()
-            resolve()
-          }
-        }
-      },
-      onShow: () => {
-        this.enter('holdHover')
-      },
-      onHide: () => {
-        removeClass(this.classes.HOVER, this.$fill)
-        this.leave('holdHover')
-      }
-    })
+    this.$preview = query(`.${this.classes.PREVIEW}`, this.$dropdown)
+    this.$image = query(`.${this.classes.IMAGE}`, this.$dropdown)
   }
 
   update() {
@@ -312,7 +233,6 @@ class BgPicker extends Component {
 
   set(value, update) {
     this.value = value
-
     if (update !== false) {
       if (typeof value.image !== 'undefined') {
         this.PREVIEW.set(value.image)
@@ -393,7 +313,7 @@ class BgPicker extends Component {
   enable() {
     if (this.is('disabled')) {
       this.element.disabled = false
-      this.pop.enable()
+      this.TRIGGER.CLEARPOP.enable()
       removeClass(this.classes.DISABLED, this.$wrap)
       this.leave('disabled')
     }
@@ -403,7 +323,7 @@ class BgPicker extends Component {
   disable() {
     if (!this.is('disabled')) {
       this.element.disabled = true
-      this.pop.disable()
+      this.TRIGGER.CLEARPOP.disable()
       addClass(this.classes.DISABLED, this.$wrap)
       this.enter('disabled')
     }

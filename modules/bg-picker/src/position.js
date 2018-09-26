@@ -1,13 +1,5 @@
 import template from '@pluginjs/template'
-import {
-  parseHTML,
-  insertAfter,
-  query,
-  queryAll,
-  closest,
-  setData,
-  getData
-} from '@pluginjs/dom'
+import { parseHTML, queryAll, closest, setData, getData } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
@@ -31,14 +23,9 @@ export default class Position {
       bgPosition: this.instance.translate('bgPosition')
     })
 
-    this.$Position = parseHTML(html)
-    insertAfter(this.$Position, this.instance.$imageWrap)
+    this.$wrap = parseHTML(html)
 
-    this.$position = query(
-      `.${this.instance.classes.POSITION}`,
-      this.instance.$Panel
-    )
-    this.$items = queryAll('li', this.$position)
+    this.$items = queryAll('li', this.$wrap)
     this.values.forEach((value, key) => {
       // this.$items[key].dataset.position = value
       setData('position', value, this.$items[key])
@@ -61,7 +48,7 @@ export default class Position {
         this.instance.value.position = value
         addClass(this.instance.classes.ACTIVE, this.$items[i])
         setStyle('background-position', value, this.instance.$image)
-        setStyle('background-position', value, this.instance.$fillImage)
+        setStyle('background-position', value, this.instance.TRIGGER.$fillImage)
         found = true
       }
     }
@@ -89,7 +76,7 @@ export default class Position {
         // that.instance.update();
         return false
       },
-      this.$position
+      this.$wrap
     )
   }
 }
