@@ -58,6 +58,21 @@ $editPanel-component-color: $color-red !default;
     padding: 1px;
     border: $gradientPicker-border;
     border-style: dashed;
+
+    &-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      color: $color-white;
+      background-color: $color-opacity;
+      border-radius: 2px;
+      opacity: 0;
+    }
   }
 
   &-empty {
@@ -82,21 +97,6 @@ $editPanel-component-color: $color-red !default;
     display: none;
     padding: 1px;
     border: $gradientPicker-border;
-
-    .#{$gradientPicker}-action {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      color: $color-white;
-      background-color: $color-opacity;
-      border-radius: 2px;
-      opacity: 0;
-    }
 
     &-img {
       width: $gradientPicker-width;
@@ -242,8 +242,10 @@ $editPanel-component-color: $color-red !default;
 
   // === untils === //
   &-hover {
-    opacity: 0.9 !important;
-    transition: opacity 0.3s;
+    .#{$gradientPicker}-trigger-action {
+      opacity: 0.9 !important;
+      transition: opacity 0.3s;
+    }
   }
 
   &-active {
@@ -263,6 +265,10 @@ $editPanel-component-color: $color-red !default;
 
     .#{$gradientPicker}-fill {
       display: block;
+    }
+
+    .#{$gradientPicker}-trigger-action {
+      display: flex;
     }
   }
 }

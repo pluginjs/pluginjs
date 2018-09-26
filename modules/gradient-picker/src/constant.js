@@ -38,7 +38,7 @@ export const classes = {
   EMPTY: '{namespace}-empty',
   FILL: '{namespace}-fill',
   FILLIMG: '{namespace}-fill-img',
-  ACTION: '{namespace}-action',
+  TRIGGERACTION: '{namespace}-trigger-action',
   PREVIEW: '{namespace}-preview',
   FIELD: '{namespace}-field',
   FIELDTITLE: '{namespace}-field-title',
@@ -90,8 +90,8 @@ export const defaults = {
         <div class='{custom}' data-type='custom'>{CustomTitle}</div>
       </div>`
     },
-    infoAction() {
-      return `<div class='{classes.ACTION}'><i class='pj-icon pj-icon-edit {classes.EDITOR
+    triggerAction() {
+      return `<div class='{classes.TRIGGERACTION}'><i class='pj-icon pj-icon-edit {classes.EDITOR
       }'></i><i class='pj-icon pj-icon-delete {classes.REMOVE}'></i></div>`
     },
     item() {

@@ -3,19 +3,22 @@ import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
-  fadeOut,
-  fadeIn,
   query,
   queryAll,
   // parent,
   parseHTML,
   setData,
   getData,
-  // closest
+  has,
   wrap
 } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled' // , getStyle
-import PopDialog from '@pluginjs/pop-dialog'
+import { Color } from '@pluginjs/color'
+// import Scrollable from '@pluginjs/scrollable'
+import Range from '@pluginjs/range'
+import ColorPicker from '@pluginjs/color-picker'
+import Dropdown from '@pluginjs/dropdown'
+import Trigger from './trigger'
 import {
   eventable,
   register,
@@ -34,11 +37,6 @@ import {
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
-import { Color } from '@pluginjs/color'
-// import Scrollable from '@pluginjs/scrollable'
-import Range from '@pluginjs/range'
-import ColorPicker from '@pluginjs/color-picker'
-import Dropdown from '@pluginjs/dropdown'
 
 let DATA = {}
 
@@ -108,50 +106,11 @@ class GradientPicker extends Component {
     // const that = this
     this.handelComponent()
 
-    this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$wrap)
-
-    const that = this
-
-    // init popDialog
-    this.pop = PopDialog.of(
-      query(`.${this.classes.REMOVE}`, this.$infoAction),
-      {
-        content: this.translate('deleteTitle'),
-        placement: 'bottom',
-        buttons: {
-          cancel: { label: this.translate('cancel') },
-          delete: {
-            label: this.translate('delete'),
-            color: 'danger',
-            fn(resolve) {
-              fadeOut(
-                {
-                  duration: 100,
-                  callback: () => {
-                    that.clear()
-                    fadeIn(
-                      {
-                        duration: 100
-                      },
-                      that.$infoAction
-                    )
-                  }
-                },
-                that.$infoAction
-              )
-              resolve()
-            }
-          }
-        },
-        onShow: () => {
-          this.enter('holdHover')
-        },
-        onHide: () => {
-          removeClass(this.classes.HOVER, this.$infoAction)
-          this.leave('holdHover')
-        }
-      }
+    this.$previewImg = query(
+      `.${this.classes.PREVIEWIMG}`,
+      this.$previewContent
     )
+
     this.render()
   }
 
@@ -165,37 +124,15 @@ class GradientPicker extends Component {
     if (this.options.theme) {
       addClass(this.classes.THEME, this.$wrap)
     }
-    this.$trigger = parseHTML(
-      template.compile(this.options.templates.trigger())({
-        classes: this.classes
-      })
-    )
-    this.$fill = parseHTML(
-      template.compile(this.options.templates.fill())({
-        classes: this.classes
-      })
-    )
-    this.$fillImg = query(`.${this.classes.FILLIMG}`, this.$fill)
-    this.$empty = parseHTML(
-      template.compile(this.options.templates.empty())({
-        classes: this.classes,
-        icon: 'pj-icon pj-icon-paint',
-        text: this.translate('chooseGradient')
-      })
-    )
+
+    this.TRIGGER = new Trigger(this)
+
     this.$dropdown = parseHTML(
       template.compile(this.options.templates.dropdown())({
         classes: this.classes
       })
     )
-    this.$infoAction = parseHTML(
-      template.compile(this.options.templates.infoAction())({
-        classes: this.classes
-      })
-    )
-    this.$wrap.append(this.$trigger, this.$dropdown)
-    this.$trigger.append(this.$empty, this.$fill)
-    this.$fill.append(this.$infoAction)
+    this.$wrap.append(this.$dropdown)
 
     this.$previewContent = parseHTML(
       `<div class='${this.classes.PREVIEW}'><div class='${
@@ -230,19 +167,23 @@ class GradientPicker extends Component {
       } pj-btn pj-btn-primary'>Save</button>
       </div>`
     )
-    this.$dropdown.append(
-      this.$previewContent,
-      this.$customColor,
-      this.$opacity,
-      this.$action
-    )
 
-    this.DROPDOWN = Dropdown.of(this.$empty, {
+    this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       target: this.$dropdown,
-      reference: this.$trigger,
+      reference: this.TRIGGER.$trigger,
       templates: this.options.template,
       hideOutClick: true,
-      hideOnSelect: false
+      hideOnSelect: false,
+      onShow: () => {
+        if (!this.is('builded')) {
+          this.$dropdown.append(
+            this.$previewContent,
+            this.$customColor,
+            this.$opacity,
+            this.$action
+          )
+        }
+      }
     })
 
     this.COLORPICKER = ColorPicker.of(this.$colorPicker, {
@@ -303,53 +244,18 @@ class GradientPicker extends Component {
     // document
     bindEvent(
       this.eventName('click'),
-      () => {
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+      e => {
+        if (
+          e.target === this.TRIGGER.$trigger ||
+          has(e.target, this.TRIGGER.$trigger) ||
+          e.target === this.$dropdown ||
+          has(e.target, this.$dropdown)
+        ) {
+          return
+        }
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
       },
       window.document
-    )
-    // empty
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.EMPTY}`,
-      () => {
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-        return false
-      },
-      this.$wrap
-    )
-
-    // editor
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.EDITOR}`,
-      () => {
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-        this.DROPDOWN.show()
-        return false
-      },
-      this.$wrap
-    )
-
-    // info hover
-    bindEvent(
-      this.eventName('mouseover'),
-      () => {
-        addClass(this.classes.HOVER, this.$infoAction)
-      },
-      this.$fill
-    )
-    bindEvent(
-      this.eventName('mouseout'),
-      () => {
-        if (this.is('holdHover')) {
-          return false
-        }
-        removeClass(this.classes.HOVER, this.$infoAction)
-        this.leave('holdHover')
-        return null
-      },
-      this.$fill
     )
 
     // select background color
@@ -376,12 +282,12 @@ class GradientPicker extends Component {
           return
         }
         this.DROPDOWN.hide()
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         addClass(this.classes.SHOW, this.$wrap)
         setStyle(
           'background',
           this.data.opacityColor,
-          query(`.${this.classes.FILLIMG}`, this.$fill)
+          query(`.${this.classes.FILLIMG}`, this.TRIGGER.$fill)
         )
         this.update()
         this.enter('state')
@@ -394,7 +300,7 @@ class GradientPicker extends Component {
       `.${this.classes.CANCEL}`,
       () => {
         this.DROPDOWN.hide()
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         if (!this.is('state')) {
           removeClass(this.classes.SHOW, this.$wrap)
         }
@@ -417,7 +323,7 @@ class GradientPicker extends Component {
     if (color === '') {
       color = 'transparent'
     }
-    setStyle('background', color, this.$fillImg)
+    setStyle('background', color, this.TRIGGER.$fillImg)
 
     this.element.value = this.options.process(this.data)
   }
@@ -505,7 +411,7 @@ class GradientPicker extends Component {
     }
 
     setStyle('background', 'none', this.$previewImg)
-    setStyle('background', 'none', this.$fillImg)
+    setStyle('background', 'none', this.TRIGGER.$fillImg)
 
     this.COLORPICKER.clear()
     this.OPACITY.val(100)

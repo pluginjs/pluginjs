@@ -55,33 +55,8 @@ export default class Attachment {
       }),
       this.$select
     )
-
-    // this.$items = queryAll('.pj-select-item', this.$attachment)
-    // const value =
-    //   typeof this.instance.value.attachment !== 'undefined'
-    //     ? this.instance.value.attachment
-    //     : this.defaultValue
-    // this.set(value)
   }
 
-  // set(value) {
-  //   let found = false
-  //   this.$items.map(removeClass(this.instance.classes.ACTIVE))
-  //   // console.log(getData('select', this.$select))
-  //   for (let i = 0; i < this.values.length; i++) {
-  //     if (value === this.values[i]) {
-  //       const activeItem = this.$items.map(
-  //         addClass(this.instance.classes.ACTIVE)
-  //       )
-  //       getData('select', this.$select).set(activeItem)
-  //       found = true
-  //     }
-  //   }
-
-  //   if (!found) {
-  //     this.set(this.defaultValue)
-  //   }
-  // }
   set(val) {
     getData('select', this.$select).set(val)
   }

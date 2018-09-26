@@ -51,11 +51,11 @@ class Hex {
        </div>`
     )
     const $selector = parseHTML(
-      `<div class='${this.classes.HEXMODE}'><div><div></div><div/></div>`
+      `<div class='${this.classes.HEXMODE}'><input type="text" /></div>`
     )
     this.element.append($selector, this.$opac)
 
-    this.$el = query(`.${this.classes.HEXMODE}>div>div`, this.element)
+    this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
     // this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
     this.SELECT = Select.of(this.$el, {
       value: this.classify,
