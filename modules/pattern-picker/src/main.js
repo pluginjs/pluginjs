@@ -4,20 +4,11 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled' // , getStyle
-import {
-  query,
-  // queryAll,
-  // parent,
-  parseHTML,
-  getData,
-  setData,
-  wrap
-} from '@pluginjs/dom'
-// import Scrollable from '@pluginjs/scrollable'
-import PopDialog from '@pluginjs/pop-dialog'
+import { query, has, parseHTML, getData, setData, wrap } from '@pluginjs/dom'
 import ColorPicker from '@pluginjs/color-picker'
 import Dropdown from '@pluginjs/dropdown'
 import Range from '@pluginjs/range'
+import Trigger from './trigger'
 import {
   eventable,
   register,
@@ -97,8 +88,6 @@ class PatternPicker extends Component {
   }
 
   create() {
-    const that = this
-
     addClass(this.classes.INPUT, this.element)
     this.$wrap = wrap(
       `<div class='${this.classes.NAMESPACE}'></div>`,
@@ -108,79 +97,23 @@ class PatternPicker extends Component {
       addClass(this.classes.THEME, this.$wrap)
     }
 
-    this.$trigger = parseHTML(
-      template.compile(this.options.templates.trigger())({
-        classes: this.classes
-      })
-    )
-    this.$fill = parseHTML(
-      template.compile(this.options.templates.fill())({
-        classes: this.classes
-      })
-    )
-    this.$empty = parseHTML(
-      template.compile(this.options.templates.empty())({
-        classes: this.classes,
-        icon: 'pj-icon pj-icon-image',
-        text: this.translate('choosePattern')
-      })
-    )
+    this.TRIGGER = new Trigger(this)
+
     this.$dropdown = parseHTML(
       template.compile(this.options.templates.dropdown())({
         classes: this.classes
       })
     )
-    this.$infoAction = parseHTML(
-      template.compile(this.options.templates.infoAction())({
-        classes: this.classes
-      })
-    )
-    this.$fill.append(this.$infoAction)
-    this.$wrap.append(this.$trigger, this.$dropdown)
-    this.$trigger.append(this.$empty, this.$fill)
-    this.handelComponent()
-    this.$dropdown.append(
-      this.$previewBox,
-      this.$forePickerBox,
-      this.$bgColorBox,
-      this.$opacityBox,
-      this.$action
-    )
 
-    // init popDialog
-    // init pop
-    this.pop = PopDialog.of(
-      query(`.${this.classes.REMOVE}`, this.$infoAction),
-      {
-        content: this.translate('deleteTitle'),
-        placement: 'bottom',
-        buttons: {
-          cancel: { label: this.translate('cancel') },
-          delete: {
-            label: this.translate('delete'),
-            color: 'danger',
-            fn(resolve) {
-              that.clear()
-              resolve()
-            }
-          }
-        },
-        onShow: () => {
-          this.enter('holdHover')
-        },
-        onHide: () => {
-          removeClass(this.classes.HOVER, this.$infoAction)
-          this.leave('holdHover')
-        }
-      }
-    )
+    this.$wrap.append(this.$dropdown)
+    this.handelComponent()
 
     this.pluginCreate()
     this.render()
   }
 
   handelComponent() {
-    this.$fillImg = query(`.${this.classes.FILLIMG}`, this.$fill)
+    this.$fillImg = query(`.${this.classes.FILLIMG}`, this.TRIGGER.$fill)
 
     this.$previewBox = parseHTML(
       `<div class='${this.classes.PREVIEW}'><div class='${
@@ -209,11 +142,13 @@ class PatternPicker extends Component {
     )
     this.$bgColor = query(`.${this.classes.BGCOLOR}`, this.$bgColorBox)
     this.$opacityBox = parseHTML(
-      `<div class='${this.classes.FIELDCOMPONENT}'><span class='${
+      `<div class='${this.classes.FIELD}'><span class='${
         this.classes.FIELDTITLE
       }'>${this.translate('opacity')}</span><div class='${
         this.classes.FIELDCONTENT
-      }'><input class='${this.classes.OPACITY}' type='text' /></div></div>`
+      }' style='width:160px'><input class='${
+        this.classes.OPACITY
+      }' type='text' /></div></div>`
     )
     this.$opacity = query(`.${this.classes.OPACITY}`, this.$opacityBox)
     this.$action = parseHTML(
@@ -229,12 +164,23 @@ class PatternPicker extends Component {
   }
 
   pluginCreate() {
-    this.DROPDOWN = Dropdown.of(this.$empty, {
+    this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       target: this.$dropdown,
-      reference: this.$trigger,
+      reference: this.TRIGGER.$trigger,
       templates: this.options.template,
       hideOutClick: true,
-      hideOnSelect: false
+      hideOnSelect: false,
+      onShow: () => {
+        if (!this.DROPDOWN.is('builded')) {
+          this.$dropdown.append(
+            this.$previewBox,
+            this.$forePickerBox,
+            this.$bgColorBox,
+            this.$opacityBox,
+            this.$action
+          )
+        }
+      }
     })
 
     this.FOREPICKER = ColorPicker.of(this.$forePicker, {
@@ -329,44 +275,19 @@ class PatternPicker extends Component {
     // document
     bindEvent(
       this.eventName('click'),
-      () => {
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+      e => {
+        if (
+          e.target === this.TRIGGER.$trigger ||
+          has(e.target, this.TRIGGER.$trigger) ||
+          e.target === this.$dropdown ||
+          has(e.target, this.$dropdown)
+        ) {
+          return
+        }
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
       },
       window.document
     )
-    // editor
-    compose(
-      bindEvent(this.eventName('click'), `.${this.classes.EDITOR}`, () => {
-        if (this.is('disabled')) {
-          return
-        }
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-        this.DROPDOWN.show()
-        return false // eslint-disable-line
-      }),
-      bindEvent(this.eventName('click'), `.${this.classes.EMPTY}`, () => {
-        addClass(this.classes.OPENDISABLE, this.$trigger)
-        this.render()
-      }),
-      // info action hover
-      bindEvent('mouseover', `.${this.classes.FILL}`, () => {
-        if (this.is('disabled')) {
-          return
-        }
-        addClass(this.classes.HOVER, this.$infoAction)
-      }),
-      bindEvent('mouseout', `.${this.classes.FILL}`, () => {
-        if (this.is('disabled')) {
-          return
-        }
-        if (this.is('holdHover')) {
-          return
-        }
-        removeClass(this.classes.HOVER, this.$infoAction)
-        this.leave('holdHover')
-        return
-      })
-    )(this.$wrap)
 
     // action save
     compose(
@@ -376,7 +297,7 @@ class PatternPicker extends Component {
       bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
         // this.update()
         this.DROPDOWN.hide()
-        removeClass(this.classes.OPENDISABLE, this.$trigger)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         if (!this.is('state')) {
           removeClass(this.classes.SHOW, this.$wrap)
         }
@@ -400,7 +321,7 @@ class PatternPicker extends Component {
     this.setInfo(this.$fillImg)
     this.element.value = this.val()
     this.DROPDOWN.hide()
-    removeClass(this.classes.OPENDISABLE, this.$trigger)
+    removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
     addClass(this.classes.SHOW, this.$wrap)
 
     this.enter('state')
@@ -475,14 +396,6 @@ class PatternPicker extends Component {
     return
   }
 
-  // setPreset(data) {
-  //   queryAll(`.${this.classes.SELECTORITEM}`, this.$selectorList).map(el =>
-  //     el.remove()
-  //   )
-  //   this.imgs = data
-  //   this.render()
-  // }
-
   get() {
     return this.data
   }
@@ -546,7 +459,7 @@ class PatternPicker extends Component {
   enable() {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
-      this.pop.enable()
+      this.TRIGGER.CLEARPOP.enable()
       this.DROPDOWN.enable()
       this.element.disabled = false
       this.leave('disabled')
@@ -557,7 +470,7 @@ class PatternPicker extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrap)
-      this.pop.disable()
+      this.TRIGGER.CLEARPOP.disable()
       this.DROPDOWN.disable()
       this.element.disabled = true
       this.enter('disabled')

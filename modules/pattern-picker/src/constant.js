@@ -23,12 +23,13 @@ export const classes = {
   // init
   FILL: '{namespace}-fill',
   FILLIMG: '{namespace}-fill-img',
-  ACTION: '{namespace}-action',
+  TRIGGERACTION: '{namespace}-trigger-action',
   EDITOR: '{namespace}-editor',
   REMOVE: '{namespace}-remove',
   // EMPTY: '{namespace}-empty',
   HOVER: '{namespace}-hover',
   // panel
+  PREVIEW: '{namespace}-preview',
   PREVIEWIMG: '{namespace}-preview-img',
   FORECOLOR: '{namespace}-forecolor',
   BGCOLOR: '{namespace}-bgcolor',
@@ -38,7 +39,6 @@ export const classes = {
   TRIGGER: '{namespace}-trigger',
   INPUT: '{namespace}-input',
   EMPTY: '{namespace}-empty',
-  PREVIEW: '{namespace}-preview',
   FIELD: '{namespace}-field',
   FIELDTITLE: '{namespace}-field-title',
   FIELDCONTENT: '{namespace}-field-content',
@@ -87,8 +87,8 @@ export const defaults = {
       return `<div class='{classes.EMPTY}'><i class='{icon}'></i>{text}
       </div>`
     },
-    infoAction() {
-      return `<div class='{classes.ACTION}'><i class='pj-icon pj-icon-edit  {classes.EDITOR}'></i><i class='pj-icon pj-icon-remove {classes.REMOVE}'></i>
+    triggerAction() {
+      return `<div class='{classes.TRIGGERACTION}'><i class='pj-icon pj-icon-edit  {classes.EDITOR}'></i><i class='pj-icon pj-icon-remove {classes.REMOVE}'></i>
       </div>`
     }
   },
