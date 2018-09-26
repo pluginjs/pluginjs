@@ -50,6 +50,7 @@ const defaults = {
   playCycle: 4000,
   prevIcon: 'pj-icon pj-icon-chevron-left',
   nextIcon: 'pj-icon pj-icon-chevron-right',
+  loaderConfig: null,
   templates: {
     box() {
       return '<div class="{classes.BOX}"></div>'

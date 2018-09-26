@@ -128,7 +128,7 @@ const defaults = {
   keyboard: true,
   duration: 300,
   playCycle: 4000,
-  loader: {
+  loaderConfig: {
     color: null
   }
 }

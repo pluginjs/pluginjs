@@ -46,7 +46,7 @@ const defaults = {
   vertical: false,
   current: 0,
   mode: 'full', // full or center
-  loader: null
+  loaderConfig: null
 }
 
 const dependencies = ['anime']

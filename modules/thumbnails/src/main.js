@@ -165,7 +165,7 @@ class Thumbnails extends Component {
         color: '#000000',
         size: 'lg'
       },
-      this.options.loader
+      this.options.loaderConfig
     )
 
     this.items.forEach(item => {
