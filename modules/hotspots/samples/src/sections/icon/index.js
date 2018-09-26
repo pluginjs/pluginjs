@@ -4,7 +4,7 @@ import Hotspots from '@pluginjs/hotspots'
 const element = query('#icon .example')
 
 Hotspots.of(element, {
-  icon: 'pj-icon pj-icon-add',
+  icon: 'pj-icon pj-icon-plus',
   data: [
     {
       title: 'Lorem ipsum',

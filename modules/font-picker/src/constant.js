@@ -92,7 +92,7 @@ export const defaults = {
       </li>`
     },
     categories() {
-      return `<div class='pj-dropdown-item {classes.PACKAGE}' data-value='{categoriesName}'><div class={classes.PACKAGETITLE}><i class='pj-icon pj-icon-triangle-right-mini-solid'></i>{title}</div>
+      return `<div class='pj-dropdown-item {classes.PACKAGE}' data-value='{categoriesName}'><div class={classes.PACKAGETITLE}><i class='pj-icon pj-icon-caret-right-mini'></i>{title}</div>
       </div>`
     },
     actions() {

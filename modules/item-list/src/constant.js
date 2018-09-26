@@ -22,7 +22,7 @@ export const defaults = deepMerge(List.defaults, {
   templates: {
     add() {
       return `<button type="button" class="{classes.ADD}" title="{addText}">
-  <i class="pj-icon pj-icon-add"></i>
+  <i class="pj-icon pj-icon-plus"></i>
 </button>`
     }
   }

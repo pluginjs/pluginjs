@@ -67,7 +67,7 @@ export const defaults = {
     {
       title: 'Delete',
       name: 'delete',
-      class: 'pj-icon pj-icon-delete',
+      class: 'pj-icon pj-icon-trash',
       init(instance, item, $item) {
         PopDialog.of(this, {
           classes: {

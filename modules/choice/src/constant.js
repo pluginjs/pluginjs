@@ -40,7 +40,7 @@ export const defaults = {
   overflow: false,
   disabled: false,
   toggleTrigger: 'hover', // click
-  toggleIcon: 'pj-icon pj-icon-triangle-down-mini-solid',
+  toggleIcon: 'pj-icon pj-icon-caret-down-mini',
   toggleText: 'Other &nbsp;',
   templates: {
     wrap() {

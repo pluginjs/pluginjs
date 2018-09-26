@@ -64,10 +64,10 @@ export const defaults = {
     },
     arrow: {
       prev() {
-        return '<a class="{classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} pj-icon pj-icon-angle-left-mini-solid"></i></a>'
+        return '<a class="{classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} pj-icon pj-icon-angle-left-mini"></i></a>'
       },
       next() {
-        return '<a class="{classes.NEXT}" href="{href}" alt="{text}"><i class="{classes.ICON} pj-icon pj-icon-angle-right-mini-solid"></i></a>'
+        return '<a class="{classes.NEXT}" href="{href}" alt="{text}"><i class="{classes.ICON} pj-icon pj-icon-angle-right-mini"></i></a>'
       }
     }
   }

@@ -171,9 +171,9 @@ export const defaults = {
     values: ['uppercase', 'lowercase', 'capitalize'],
     template() {
       return (
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-alluppercase"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-uppercase"></li>' +
         '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-lowercase"></li>' +
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-uppercase"></li>'
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-capitalize"></li>'
       )
     }
   },
@@ -183,7 +183,7 @@ export const defaults = {
     template() {
       return (
         '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-underline"></li>' +
-        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-font-delete"></li>'
+        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-line-through"></li>'
       )
     }
   },
@@ -198,7 +198,7 @@ export const defaults = {
       '<i>T</i>' +
       '<div class="{classes.FILLCONTENT}"><span class="{classes.FILLCONTENTNAME}">{fontFamily}</span><span class="{classes.FILLCONTENTSUB}"></span></div>' +
       '</div>' +
-      '<div class="{classes.TRIGGERACTION}"><i class="{classes.EDITACTION} pj-icon pj-icon-edit"></i><i class="{classes.REMOVEACTION} pj-icon pj-icon-delete"></i></div>' +
+      '<div class="{classes.TRIGGERACTION}"><i class="{classes.EDITACTION} pj-icon pj-icon-edit"></i><i class="{classes.REMOVEACTION} pj-icon pj-icon-trash"></i></div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +
       '<div class="{classes.CONTROL}"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">Cancel</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">Save</button></div>' +

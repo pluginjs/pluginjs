@@ -50,12 +50,12 @@ export const defaults = {
     control() {
       if (this.options.layout === 'right') {
         return `<div class="{classes.CONTROL}">
-  <span class="{classes.UP} pj-icon pj-icon-add-small"></span>
+  <span class="{classes.UP} pj-icon pj-icon-plus-small"></span>
   <span class="{classes.DOWN} pj-icon pj-icon-minus-small"></span>
 </div>`
       }
       return `<div class="{classes.CONTROL}">
-  <span class="{classes.UP} pj-icon pj-icon-add-solid"></span>
+  <span class="{classes.UP} pj-icon pj-icon-plus-solid"></span>
   <span class="{classes.DOWN} pj-icon pj-icon-minus-solid"></span>
 </div>`
     }

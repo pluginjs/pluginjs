@@ -48,7 +48,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   localeFallbacks: true,
-  icon: 'pj-icon pj-icon-pin-map',
+  icon: 'pj-icon pj-icon-map-pin',
   disabled: false,
   place: null, // set place, priority the coord
   latlng: {}, // {lat: xxx, lng: xxx}
@@ -68,15 +68,15 @@ export const defaults = {
       </div>`
     },
     empty() {
-      return `<div class="{classes.EMPTY}"><i class="{classes.ICON} pj-icon pj-icon-location-solid"></i>{addPlace}
+      return `<div class="{classes.EMPTY}"><i class="{classes.ICON} pj-icon pj-icon-map-marker-alt"></i>{addPlace}
       </div>`
     },
     fill() {
-      return `<div class="{classes.FILL}"><i class="{classes.ICON} pj-icon pj-icon-location-solid"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
+      return `<div class="{classes.FILL}"><i class="{classes.ICON} pj-icon pj-icon-map-marker-alt"></i><div class='{classes.FILLCONTENT}'><span class='{classes.FILLNAME}'></span><span class='{classes.FILLCOORD}'></span></div>
       </div>`
     },
     triggerAction() {
-      return `<div class="{classes.TRIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i>
+      return `<div class="{classes.TRIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-trash"></i>
       </div>`
     },
     dropdown() {

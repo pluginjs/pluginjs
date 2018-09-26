@@ -67,13 +67,13 @@ export const defaults = {
       return (
         '<div class="{classes.NAMESPACE}">' +
         '<div class="{classes.EMPTY}">' +
-        '<i class="pj-icon pj-icon-image-group"></i>{placeholder}' +
+        '<i class="pj-icon pj-icon-images"></i>{placeholder}' +
         '</div>' +
         '<div class="{classes.FILL}">' +
         '<div class="{classes.FILLIMAGE}" style=""></div>' +
         '<span class="{classes.FILLCOUNT}">{count}</span>' +
         '</div>' +
-        '<div class="{classes.TRIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i></div>' +
+        '<div class="{classes.TRIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-trash"></i></div>' +
         '<div class="{classes.DROPDOWN}">' +
         '<ul class="{classes.ITEMS}">' +
         '<li class="{classes.ADD}">' +
@@ -94,7 +94,7 @@ export const defaults = {
         <div class="{classes.ITEMIMAGE}" style="background-image:url({imgSrc})" />
         <div class='{changeClass}'>
           <i class='{reselectClass} pj-icon pj-icon-repeat'></i>
-          <i class='{removeClass} pj-icon pj-icon-delete'></i>
+          <i class='{removeClass} pj-icon pj-icon-trash'></i>
         </div>
       </li>`
     }

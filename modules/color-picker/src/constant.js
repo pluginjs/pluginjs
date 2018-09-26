@@ -238,7 +238,7 @@ export const defaults = {
     },
     collection() {
       return `<div class='{classes.SCHEME}'><ul class='{classes.GROUPLIST}'></ul></div>
-        <div class='{classes.MANAGE}'><i class='pj-icon pj-icon-setting-1'></i>{manageText}</div>`
+        <div class='{classes.MANAGE}'><i class='pj-icon pj-icon-setting'></i>{manageText}</div>`
     },
     collectionItem() {
       return '<li class="{classes.COLLECTIONITEM}"></li>'

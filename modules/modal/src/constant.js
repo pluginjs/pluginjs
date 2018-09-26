@@ -88,9 +88,9 @@ export const defaults = {
   defaultButtonClass: 'pj-btn pj-btn-primary',
   icon: '',
   icons: {
-    success: ['pj-icon pj-icon-check-circle-solid', '#215fdb'],
-    info: ['pj-icon pj-icon-info-solid', '#f4b066'],
-    error: ['pj-icon pj-icon-close-circle-solid', '#f96868']
+    success: ['pj-icon pj-icon-check-circle', '#215fdb'],
+    info: ['pj-icon pj-icon-info-circle', '#f4b066'],
+    error: ['pj-icon pj-icon-close-circle', '#f96868']
   },
   iconColor: '',
   iconClass: ''

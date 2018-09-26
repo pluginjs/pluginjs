@@ -99,12 +99,12 @@ export const defaults = {
       </div>`
     },
     triggerAction() {
-      return `<div class='{classes.TRIGGERACTION}'><i class='pj-icon pj-icon-pencil-write-solid {classes.EDITOR}'></i><i class='pj-icon pj-icon-delete {classes.REMOVE}'></i>
+      return `<div class='{classes.TRIGGERACTION}'><i class='pj-icon pj-icon-pencil-write-solid {classes.EDITOR}'></i><i class='pj-icon pj-icon-trash {classes.REMOVE}'></i>
       </div>`
     },
     previewContent() {
       return `<div class='{classes.VIDEOACTION}'>
-      <i class='pj-icon pj-icon-play-circle-solid {classes.VIDEOBTN}'></i>
+      <i class='pj-icon pj-icon-play-circle {classes.VIDEOBTN}'></i>
       <div class='{classes.VIDEOPOSTER}'></div>
       <div class="{classes.VIDEOANIMATE} cp-spinner cp-round"></div></div>
      `

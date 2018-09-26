@@ -11,7 +11,7 @@ const activated = {
 const data = {
   system: {
     title: 'System',
-    icon: 'pj-icon pj-icon-system',
+    icon: 'pj-icon pj-icon-desktop',
     fonts: {
       'Sans Serif': [
         'Arial',
@@ -75,7 +75,7 @@ const data = {
   },
   google: {
     title: 'Google',
-    icon: 'pj-icon pj-icon-google-font',
+    icon: 'pj-icon pj-icon-google',
     fonts: {
       'sans-serif': [
         'ABeeZee',

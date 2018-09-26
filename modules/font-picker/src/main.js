@@ -153,7 +153,7 @@ class FontPicker extends Component {
         parseHTML(
           `<div class=${
             this.classes.MANAGER
-          }><i class='pj-icon pj-icon-setting-1'></i>${text}</div>`
+          }><i class='pj-icon pj-icon-setting'></i>${text}</div>`
         )
       )
     }

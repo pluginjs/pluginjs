@@ -81,11 +81,11 @@ export const defaults = {
       </li>`
     },
     type() {
-      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="pj-icon pj-icon-triangle-right-mini-solid">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
+      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="pj-icon pj-icon-caret-right-mini">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
       </div>`
     },
     manage() {
-      return `<div class={classes.MANAGE}><i class="{classes.MANAGEICON} pj-icon pj-icon-setting-1"></i> {manageText}
+      return `<div class={classes.MANAGE}><i class="{classes.MANAGEICON} pj-icon pj-icon-setting"></i> {manageText}
       </div>`
     },
     search() {

@@ -53,10 +53,10 @@ export const defaults = {
     after: 'After'
   },
   arrows: {
-    left: 'pj-icon pj-icon-triangle-thin-left-solid',
-    right: 'pj-icon pj-icon-triangle-thin-right-solid',
-    up: 'pj-icon pj-icon-triangle-thin-up-solid',
-    down: 'pj-icon pj-icon-triangle-thin-down-solid'
+    left: 'pj-icon pj-icon-caret-thin-left',
+    right: 'pj-icon pj-icon-caret-thin-right',
+    up: 'pj-icon pj-icon-caret-thin-up',
+    down: 'pj-icon pj-icon-caret-thin-down'
   },
   templates: {
     handle() {

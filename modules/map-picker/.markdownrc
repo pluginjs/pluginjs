@@ -22,7 +22,7 @@
       {
         "name": "icon",
         "desc": "Set default icon",
-        "defaultValue": "pj-icon pj-icon-pin-map"
+        "defaultValue": "pj-icon pj-icon-map-pin"
       },
       {
         "name": "disabled",

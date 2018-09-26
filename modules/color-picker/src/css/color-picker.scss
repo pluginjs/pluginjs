@@ -310,20 +310,20 @@ $colorPicker-angle-width: 4.4 * $colorPicker-sizer !default; //44px
     &-collection::after {
       @include icon();
       font-family:$pj-icon-font-family;
-      content: icon-content($pj-icon-activated);
+      content: icon-content($pj-icon-start-mini);
     }
 
     &-gradient::after {
       @include icon();
       font-family:$pj-icon-font-family;
-      content: icon-content($pj-icon-browser-tab-solid);
+      content: icon-content($pj-icon-browser-tab);
 
     }
 
     &-solid::after {
       @include icon();
       font-family:$pj-icon-font-family;
-      content: icon-content($pj-icon-browser-tab-solid);
+      content: icon-content($pj-icon-browser-tab);
       }
 
 

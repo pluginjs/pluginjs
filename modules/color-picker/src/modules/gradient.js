@@ -52,7 +52,7 @@ class Gradients {
       `<input class="pj-input ${this.classes.WHEELANGLE}" type="text"/>`
     )
     this.$remove = parseHTML(
-      `<i class='pj-icon pj-icon-delete ${this.classes.GRADIENTREMOVE}'></i>`
+      `<i class='pj-icon pj-icon-trash ${this.classes.GRADIENTREMOVE}'></i>`
     )
     const $selector = parseHTML(
       `<div class='${this.classes.GRADIENTMODE}'><span></span><div></div></div>`

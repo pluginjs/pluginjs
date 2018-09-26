@@ -53,7 +53,7 @@ export const defaults = {
       '<img class="{classes.FILLIMAGE}" src="">' +
       '<div class="{classes.FILLCHANGE}">' +
       '<i class="{classes.FILLRESELECT} pj-icon pj-icon-repeat"></i>' +
-      '<i class="{classes.FILLREMOVE} pj-icon pj-icon-delete"></i>' +
+      '<i class="{classes.FILLREMOVE} pj-icon pj-icon-trash"></i>' +
       '</div>' +
       '</div>' +
       '</div>'

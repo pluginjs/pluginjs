@@ -92,7 +92,7 @@ export const defaults = {
     },
     triggerAction() {
       return `<div class='{classes.TRIGGERACTION}'><i class='pj-icon pj-icon-edit {classes.EDITOR
-      }'></i><i class='pj-icon pj-icon-delete {classes.REMOVE}'></i></div>`
+      }'></i><i class='pj-icon pj-icon-trash {classes.REMOVE}'></i></div>`
     },
     item() {
       return `<li class='{class}'>
