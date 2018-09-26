@@ -259,7 +259,6 @@ class Dropdown extends Component {
     const $selected = this.getItems().find($item => {
       return this.getItemValue($item) === value
     })
-    console.log($selected)
     if ($selected) {
       this.unselectItem($selected, trigger)
     }

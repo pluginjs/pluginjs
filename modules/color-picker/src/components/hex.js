@@ -27,10 +27,11 @@ class Hex {
     this.RGB = this.COLOR.toRGB().toUpperCase()
 
     this.classify = this.HEX
+
     this.data = [
-      { label: this.HEX, value: this.HEX },
-      { label: this.HSL, value: this.HSL },
-      { label: this.RGB, value: this.RGB }
+      { label: this.HEX, value: 'HEX' },
+      { label: this.HSL, value: 'HSL' },
+      { label: this.RGB, value: 'RGB' }
     ]
     // this.bind()
 
@@ -50,18 +51,16 @@ class Hex {
        </div>`
     )
     const $selector = parseHTML(
-      `<div class='${this.classes.HEXMODE}'><input type="text" /></div>`
+      `<div class='${this.classes.HEXMODE}'><div><div></div><div/></div>`
     )
     this.element.append($selector, this.$opac)
 
-    this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
+    this.$el = query(`.${this.classes.HEXMODE}>div>div`, this.element)
     // this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
-    console.log(this.data)
     this.SELECT = Select.of(this.$el, {
       value: this.classify,
       source: this.data,
       onChange: res => {
-        console.log(res, this.color)
         this.updateColor(res, this.color)
       }
     })
@@ -90,7 +89,6 @@ class Hex {
   }
 
   updateColor(val, color) {
-    // console.log(val, color)
     if (val.indexOf('HSL') > -1) {
       this.mode = color.toHSL().toUpperCase()
     } else if (val.indexOf('RGB') > -1) {
@@ -104,23 +102,17 @@ class Hex {
       this.color.toHSL().toUpperCase(),
       this.color.toRGB().toUpperCase()
     ]
-
     // query().innerText = this.mode
-    console.log(this.mode)
     this.SELECT.$label.innerText = this.mode
     this.SELECT.options.value = this.mode
     this.SELECT.options.source = this.data
-    // this.SELECT.items.forEach((val, index) => {
-    //   val.value.setAttribute('data-value', this.data[index].value)
-    //   val.label = this.data[index].label
-    // })
-    // this.element
-    //   .querySelectorAll('.pj-dropdown-item')
-    //   .forEach((value, index) => {
-    //     value.setAttribute('data-value', this.data[index].value)
-    //     value.innerText = this.data[index].label
-    //   })
-    console.log(this.SELECT)
+
+    this.element
+      .querySelectorAll('.pj-dropdown-item')
+      .forEach((value, index) => {
+        // value.setAttribute('data-value', this.data[index])
+        value.innerText = this.data[index]
+      })
   }
 
   update(value) {
