@@ -7,6 +7,9 @@ $time-picker: "pj-timePicker";
 $input: "pj-input";
 $dropdown: "pj-dropdown";
 
+$time-picke-width: 200px;
+$time-picke-height: 32px;
+
 $time-picker-font-family: $font-family-base;
 
 $time-picker-border-color: $gray;
@@ -24,6 +27,8 @@ $time-picker-trigger-border-color: $gray-darker;
 // Style
 // =====================
 .#{$time-picker} {
+  width: $time-picke-width;
+  height: $time-picke-height;
   font-family: $time-picker-font-family;
   outline: none;
 

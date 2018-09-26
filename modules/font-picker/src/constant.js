@@ -96,7 +96,7 @@ export const defaults = {
       </div>`
     },
     actions() {
-      return `<div class={classes.ACTIONS}><div class={classes.SWITCHER}><div class={classes.ELSELECTOR}></div></div>
+      return `<div class={classes.ACTIONS}><div class={classes.SWITCHER}><i class='{classes.ACTIONS}-icon pj-icon pj-icon-star'></i><div class={classes.ELSELECTOR}></div></div>
       </div>`
     },
     search() {

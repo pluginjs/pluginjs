@@ -12,6 +12,8 @@ $svgPicker-font-size: $font-size-base;
 $svgPicker-font-family: $font-family-base;
 $svgPicker-line-height: 16px;
 
+$svgPicker-width: 200px;
+
 $svgPicker-border-radius: $border-radius-base;
 $svgPicker-border-color: $gray;
 $svgPicker-border-width: 1px;
@@ -78,6 +80,7 @@ $svgPicker-scrollable-width: 274px;
 // Core
 // =====================
 .#{$svgPicker} {
+  width: $svgPicker-width;
   padding: 0;
   font-family: $svgPicker-font-family;
   font-size: $svgPicker-font-size;

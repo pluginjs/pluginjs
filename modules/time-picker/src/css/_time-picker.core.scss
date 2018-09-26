@@ -22,6 +22,10 @@ $time-picker-trigger-font: $pj-icon-font-family;
     width: 100%;
   }
 
+  &-group {
+    height: 100%;
+  }
+
   &-dropdown {
     max-height: $time-picker-max-height;
     overflow: auto;

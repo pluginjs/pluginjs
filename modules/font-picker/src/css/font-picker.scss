@@ -8,6 +8,9 @@ $dropdown: "pj-dropdown";
 $input: "pj-input";
 $srcollable: "pj-scrollable";
 
+$fontPicker-width: 200px;
+$fontPicker-height: 32px;
+
 $fontPicker-font-size: $font-size-base;
 $fontPicker-font-family: $font-family-base;
 $fontPicker-bg: $color-white;
@@ -42,6 +45,8 @@ $fontPicker-dropdown-width: 130px;
 // Style
 // =====================
 .#{$fontPicker} {
+  width: $fontPicker-width;
+  height: $fontPicker-height;
   font-family: $fontPicker-font-family;
 
   .#{$dropdown} {
