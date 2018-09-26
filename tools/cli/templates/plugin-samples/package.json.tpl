@@ -12,8 +12,8 @@
     "@pluginjs/dom": "*"
   },
   "devDependencies": {
-    "babel-core": "*",
-    "babel-preset-env": "*",
+    "@babel/core": "*",
+    "@babel/preset-env": "*",
     "parcel-bundler": "*",
     "posthtml-include": "*"
   },

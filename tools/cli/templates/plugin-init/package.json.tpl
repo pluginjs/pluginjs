@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@pluginjs/cli": "*",
+    "@babel/core": "^7.1.0",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

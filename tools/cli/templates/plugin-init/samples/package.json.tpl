@@ -13,9 +13,9 @@
     "@pluginjs/dom": "*"
   },
   "devDependencies": {
-    "babel-core": "*",
-    "babel-preset-env": "*",
-    "posthtml-include": "*",
-    "parcel-bundler": "*"
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "parcel-bundler": "^1.10.0",
+    "posthtml-include": "*"
   }
 }
