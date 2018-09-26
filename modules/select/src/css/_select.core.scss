@@ -3,18 +3,18 @@
 
 // Vars
 // =====================
-$select: "pj-select";
-$select-width: 200px;
-$select-max-height: 300px;
+$select: "pj-select" !default;
+$select-width: 200px !default;
+$select-max-height: 300px !default;
 
-$select-trigger-arrow-icon: $pj-icon-caret-down-mini;
-$select-trigger-arrow-font: $pj-icon-font-family;
-$select-trigger-arrow-right: $input-padding-x;
-$select-trigger-padding-right: 30px;
+$select-trigger-arrow-icon: $pj-icon-caret-down-mini !default;
+$select-trigger-arrow-font: $pj-icon-font-family !default;
+$select-trigger-arrow-right: $input-padding-x !default;
+$select-trigger-padding-right: 30px !default;
 
-$select-clear-icon: $pj-icon-close;
-$select-clear-font: $pj-icon-font-family;
-$select-clear-right: 15px;
+$select-clear-icon: $pj-icon-close !default;
+$select-clear-font: $pj-icon-font-family !default;
+$select-clear-right: 15px !default;
 
 .#{$select} {
   position: relative;

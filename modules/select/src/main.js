@@ -343,7 +343,7 @@ class Select extends Component {
   }
 
   getOptionLabel(option) {
-    return this.options.customLabel.call(this, option)
+    return this.options.optionLabel.call(this, option)
   }
 
   setLabel(label) {

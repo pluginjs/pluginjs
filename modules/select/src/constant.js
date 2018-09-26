@@ -61,7 +61,7 @@ export const defaults = {
   dropdown: {
     placement: 'bottom' // top
   },
-  customLabel(option) {
+  optionLabel(option) {
     return option.label
   },
   templates: {
