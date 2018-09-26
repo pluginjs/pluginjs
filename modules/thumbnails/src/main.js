@@ -4,7 +4,14 @@ import templateEngine from '@pluginjs/template'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { closest, append, parseHTML, getData, setData } from '@pluginjs/dom'
+import {
+  closest,
+  append,
+  parseHTML,
+  getData,
+  setData,
+  query
+} from '@pluginjs/dom'
 import { deepMerge } from '@pluginjs/utils'
 import {
   eventable,
@@ -25,6 +32,7 @@ import {
 
 import Swipeable from '@pluginjs/swipeable'
 import ImageLoader from '@pluginjs/image-loader'
+import Loader from '@pluginjs/loader'
 
 @themeable()
 @styleable(CLASSES)
@@ -151,13 +159,27 @@ class Thumbnails extends Component {
   }
 
   initImageLoader() {
-    const that = this
+    const loaderConfig = deepMerge(
+      {
+        theme: 'ring',
+        color: '#000000',
+        size: 'lg'
+      },
+      this.options.loader
+    )
 
     this.items.forEach(item => {
+      const loader = Loader.of(
+        query(`.${this.classes.LOADER}`, item),
+        loaderConfig
+      )
+      loader.show()
+
       ImageLoader.of(item.querySelector(`.${this.classes.IMAGE}`)).on(
         'loaded',
         img => {
-          addClass(that.classes.LOADED, closest(`.${this.classes.THUMB}`, img))
+          loader.hide()
+          addClass(this.classes.LOADED, closest(`.${this.classes.THUMB}`, img))
         }
       )
     })

@@ -45,7 +45,8 @@ const defaults = {
   delegate: 'img',
   vertical: false,
   current: 0,
-  mode: 'full' // full or center
+  mode: 'full', // full or center
+  loader: null
 }
 
 const dependencies = ['anime']

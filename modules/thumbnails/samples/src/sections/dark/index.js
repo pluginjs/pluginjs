@@ -3,5 +3,8 @@ import Thumbnails from '@pluginjs/thumbnails'
 
 const element = query('#dark .thumbnails')
 Thumbnails.of(element, {
-  theme: 'dark'
+  theme: 'dark',
+  loader: {
+    color: null
+  }
 })

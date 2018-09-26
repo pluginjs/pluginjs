@@ -8,9 +8,6 @@ $thumb-height: 90px !default;
 $thumb-width: 160px !default;
 $thumb-gutter: 20px !default;
 
-$thumb-loader-size: 30px !default;
-$thumb-loader-color: $color-black !default;
-
 $thumb-video-color: $color-white !default;
 
 $thumb-vertical-height: $thumb-height !default;
@@ -18,15 +15,6 @@ $thumb-vertical-width: $thumb-width !default;
 $thumb-vertical-gutter: $thumb-gutter !default;
 
 $thumb-dark-loader-color: $color-white !default;
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .#{$thumb}s {
   position: relative;
@@ -50,30 +38,6 @@ $thumb-dark-loader-color: $color-white !default;
   height: 100%;
   overflow: hidden;
   cursor: pointer;
-
-  &-loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: $thumb-loader-size;
-    height: $thumb-loader-size;
-    margin: $thumb-loader-size/-2 0 0 $thumb-loader-size/-2;
-    border: 2px $thumb-loader-color solid;
-    border-radius: 50%;
-    animation: rotation 1s ease-in-out infinite;
-
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 5px;
-      height: 5px;
-      content: "";
-      background-color: $thumb-loader-color;
-      border-radius: 100%;
-      transform: translateX(-50%);
-    }
-  }
 
   &-img {
     position: absolute;
