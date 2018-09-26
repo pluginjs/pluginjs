@@ -1,49 +1,59 @@
 @import "@pluginjs/styles/variables.scss";
+@import "./gallery-picker.core";
 
 // Vars
 // =====================
-$galleryPicker: "pj-galleryPicker" !default;
-$dropdown: "pj-dropdown" !default;
-$galleryPicker-border-width: 1px !default;
-$galleryPicker-border-color: $gray !default;
+$galleryPicker: "pj-galleryPicker";
+$dropdown: "pj-dropdown";
+$scrollable: "pj-scrollable";
+
+$galleryPicker-width: 160px;
+$galleryPicker-height: 90px;
+
+$galleryPicker-spacer: 24px;
+$galleryPicker-gatter: 8px;
+
+$galleryPicker-font-family: $font-family-base;
+$galleryPicker-font-size: $font-size-base;
+$galleryPicker-line-height: 16px;
+$galleryPicker-icon-size: 16px;
+
+$galleryPicker-color: #999;
+$galleryPicker-active-color: $color-primary;
+$galleryPicker-hover-color: $gray-darkest;
+$galleryPicker-bg: $color-white;
+
+$galleryPicker-border-width: 1px;
+$galleryPicker-border-color: $gray;
 $galleryPicker-border: $galleryPicker-border-width solid
-  $galleryPicker-border-color !default;
-$galleryPicker-border-radius: $border-radius-base !default;
-$galleryPicker-color: $gray-dark !default;
-$galleryPicker-font-size: $font-size-base !default;
-$galleryPicker-icon-size: 16px !default;
-$galleryPicker-active-color: $color-primary !default;
+  $galleryPicker-border-color;
+$galleryPicker-border-radius: $border-radius-base;
 // empty
-$galleryPicker-empty-width: 160px !default;
-$galleryPicker-empty-height: 90px !default;
-$galleryPicker-border-style: dashed !default;
-$galleryPicker-empty-hover-bg: $gray-lightest !default;
+$galleryPicker-border-style: dashed;
 // fill
-$galleryPicker-fill-expand-bg: $color-opacity !default;
-$galleryPicker-fill-expand-opacity: 0.9 !default;
-$galleryPicker-fill-count-width: 15px !default;
-$galleryPicker-fill-count-height: $galleryPicker-fill-count-width !default;
+$galleryPicker-fill-expand-bg: $color-opacity;
+$galleryPicker-fill-icon-margin: 10px;
+$galleryPicker-fill-count-font-size: 12px;
+$galleryPicker-fill-count-line-height: 14px;
+$galleryPicker-fill-count-color: $color-white;
+$galleryPicker-fill-count-bg: rgba($color-black, 0.8);
+$galleryPicker-fill-count-padding: 7px 28px;
 // expand
-$galleryPicker-expand-width: 300px !default;
-$galleryPicker-expand-height: 360px !default;
-$galleryPicker-expand-item-width: 124px !default;
-$galleryPicker-expand-item-change-bg: $color-opacity !default;
-$galleryPicker-expand-item-change-opacity: 1 !default;
-$galleryPicker-expand-control-btn-width: 95px !default;
-$galleryPicker-expand-control-btn-height: 32px !default;
+$galleryPicker-expand-width: 272px;
+$galleryPicker-expand-height: 360px;
+$galleryPicker-expand-item-width: 100px;
+$galleryPicker-expand-item-change-bg: $color-opacity;
 //scrollable
-$scrollable-width: 280px !default;
-$scrollable-height: 270px !default;
-// Core
-// =====================
-.#{$dropdown}-panel-wrap {
-   z-index: 9999;
-   will-change: transform !important;
-   transform: translate3d(0, 90px, 0) !important;
-}
+$scrollable-width: 250px;
+$scrollable-height: 260px;
+
+
+// Style
+// ====================
 .#{$galleryPicker} {
-  position: relative;
-  display: inline-block;
+  width: $galleryPicker-width;
+  height: $galleryPicker-height;
+  font-family: $galleryPicker-font-family;
   font-size: $galleryPicker-font-size;
   color: $galleryPicker-color;
 
@@ -53,36 +63,27 @@ $scrollable-height: 270px !default;
   
   &-empty,
   &-fill {
-    position: relative;
-    box-sizing: border-box;
-    width: $galleryPicker-empty-width;
-    height: $galleryPicker-empty-height;
     text-align: center;
+    background-color: $galleryPicker-bg;
     border: $galleryPicker-border;
     border-radius: $galleryPicker-border-radius;
   }
 
   &-empty {
-    flex-direction: column;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 300;
-    background-color: #fff;
     border-style: $galleryPicker-border-style;
+
     &:hover {
-      color: $gray-darkest;
+      color: $galleryPicker-hover-color;
       cursor: pointer;
-      // border-color: $gray-darker;
     }
 
     i {
-      font-size: 20px;
+      margin-bottom: $galleryPicker-gatter;
+      font-size: $galleryPicker-icon-size;
     }
   }
 
   &-fill {
-    position: relative;
-    padding: 2px;
 
     &::before,
     &::after {
@@ -93,54 +94,24 @@ $scrollable-height: 270px !default;
       width: 100%;
       height: 100%;
       content: "";
-      background-color: #fff;
+      background-color: $galleryPicker-bg;
       border: $galleryPicker-border;
       border-radius: $galleryPicker-border-radius;
     }
 
-    &::before {
-      z-index: -1;
-      transform: rotate(4deg);
-    }
-
-    &::after {
-      z-index: -2;
-      transform: rotate(6deg);
-    }
-
-    &-image {
-      width: 100%;
-      height: 100%;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
-    }
-
     &-count {
-      position: absolute;
-      right: 5px;
-      bottom: 5px;
-      width: $galleryPicker-fill-count-width;
-      height: $galleryPicker-fill-count-height;
-      line-height: $galleryPicker-fill-count-width;
-      color: #fff;
+      font-size: $galleryPicker-fill-count-font-size;
+      line-height: $galleryPicker-fill-count-line-height;
+      color: $galleryPicker-fill-count-color;
       text-align: center;
-      background-color: $galleryPicker-active-color;
-      border-radius: 2px;
+      background-color: $galleryPicker-fill-count-bg;
+      border-radius: $galleryPicker-border-radius;
     }
   }
 
 
   &-trigger-action {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    line-height: $galleryPicker-empty-height;
-    color: #fff;
+    line-height: $galleryPicker-height;
     background-color: $galleryPicker-fill-expand-bg;
     border-radius: $galleryPicker-border-radius;
     opacity: 0;
@@ -148,132 +119,73 @@ $scrollable-height: 270px !default;
 
   &-edit,
   &-remove {
-    margin: 0 10px;
+    margin: 0 $galleryPicker-fill-icon-margin;
     font-size: $galleryPicker-icon-size;
+    color: $galleryPicker-fill-count-color;
 
     &:hover {
-      color: $gray-lighter;
       cursor: pointer;
     }
   }
-  // expand
 
+  // expand
   &-dropdown {
-    // position: absolute;
-    z-index: 100;
-    box-sizing: border-box;
-    flex-direction: column;
     width: $galleryPicker-expand-width;
     height: $galleryPicker-expand-height !important;
-    padding: 18px;
-    overflow: hidden;
-    background-color: #fff;
+    padding: $galleryPicker-spacer;
+    background-color: $galleryPicker-bg;
     border: $galleryPicker-border;
     border-radius: $galleryPicker-border-radius;
   }
-    &-add,
-    &-items li {
-      box-sizing: border-box;
-      float: left;
-      width: $galleryPicker-expand-item-width;
-      height: $galleryPicker-expand-item-width;
-      margin: 6px;
-      text-align: center;
-      border: $galleryPicker-border;
-      border-radius: $galleryPicker-border-radius;
+
+  &-items li {
+    box-sizing: border-box;
+    width: $galleryPicker-expand-item-width;
+    height: $galleryPicker-expand-item-width;
+    margin: $galleryPicker-spacer;
+    margin-bottom: 0;
+    text-align: center;
+    border: $galleryPicker-border;
+    border-radius: $galleryPicker-border-radius;
+
+    + li {
+      margin-left: 0;
     }
+   
+  }
 
-    &-add {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 30px 10px;
-      border-style: dashed !important;
+  &-add {
+    font-size: $galleryPicker-fill-count-font-size;
+    color: $galleryPicker-color;
+    border-style: dashed !important;
 
-      &:hover {
-        color: $gray-darkest;
-        cursor: pointer;
-        // background-color: $galleryPicker-empty-hover-bg;
-      }
-
-      i {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 20px;
-        line-height: 1;
-      }
-    }
-
-    &-items {
-      display: inline-block;
-      height: calc(100% - 30px);
-      padding: 0;
-      margin: 0;
-      list-style: none;
-
-      li {
-        position: relative;
-        padding: 2px;
-        background-color: #fff;
-
-        &:nth-child(1),
-        &:nth-child(2) {
-          margin-top: 0;
-        }
-
-        &:nth-child(odd) {
-          margin-left: 0;
-        }
-
-        &:nth-child(even) {
-          margin-right: 0;
-        }
-      }
-    }
-
-    &-handle {
-      position: absolute;
-      top: 0;
-      left: 0;
-      line-height: 0;
+    &:hover {
+      color: $galleryPicker-hover-color;
       cursor: pointer;
-      background: #ccc;
-      border-radius: 4px;
     }
+
+    i {
+      margin-bottom: $galleryPicker-gatter;
+      font-size: $galleryPicker-icon-size;
+    }
+  }
 
   &-control {
-    width: 100%;
-    text-align: right;
+    margin-top: $galleryPicker-spacer;
 
     button {
-      width: $galleryPicker-expand-control-btn-width;
-      height: $galleryPicker-expand-control-btn-height;
-      margin-right: 6px;
+      padding: $galleryPicker-fill-count-padding;
+      line-height: $galleryPicker-line-height;
+      text-transform: uppercase;
     }
   }
 
   &-item {
-    border: 2px solid #e5e5e5;
-
-    &-image {
-      width: 100%;
-      height: 100%;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
-    }
+    border: $galleryPicker-border;
 
     &-change {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
       line-height: $galleryPicker-expand-item-width;
-      color: #fff;
-      text-align: center;
-      cursor: pointer;
+      color: $galleryPicker-fill-count-color;
       background-color: $galleryPicker-expand-item-change-bg;
       border-radius: $galleryPicker-border-radius;
       opacity: 0;
@@ -281,59 +193,9 @@ $scrollable-height: 270px !default;
 
     &-remove,
     &-reselect {
-      margin: 0 10px;
+      margin: 0 $galleryPicker-gatter;
       font-size: $galleryPicker-icon-size;
     }
-  }
-}
-
-.#{$galleryPicker}-exist {
-  .#{$galleryPicker}-fill {
-    display: block;
-  }
-  .#{$galleryPicker}-trigger-action {
-    display: flex;
-  }
-
-  //.#{$galleryPicker}-dropdown
-  .#{$galleryPicker}-empty {
-    display: none;
-  }
-}
-
-.#{$galleryPicker}-write {
-  .#{$galleryPicker}-empty {
-    display: flex;
-  }
-
-  .#{$galleryPicker}-fill {
-    display: none;
-  }
-
-  .#{$galleryPicker}-trigger-action {
-    display: none;
-  }
-}
-/* stylelint-disable */
-.#{$galleryPicker}-show {
-  .#{$galleryPicker}-empty {
-    display: none;
-  }
-  .#{$galleryPicker}-fill {
-    display: block;
-  }
-
-  // .#{$galleryPicker}-dropdown {
-  //   display: flex;
-  // }
-}
-
-.#{$galleryPicker}-hover {
-  .#{$galleryPicker}-fill-add,
-  .#{$galleryPicker}-trigger-action,
-  .#{$galleryPicker}-item-change {
-    opacity: $galleryPicker-expand-item-change-opacity;
-    transition: all 300ms ease-in-out;
   }
 }
 
@@ -347,48 +209,45 @@ $scrollable-height: 270px !default;
       cursor: not-allowed;
     }
   }
+
   .#{$galleryPicker}-empty {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
+
     &:hover {
       color: $disabled-color;
       cursor: not-allowed;
     }
   }
+
   .#{$galleryPicker}-fill-change {
     cursor: not-allowed;
     background-color: $disabled-bg;
   }
-  .icon-image-group{
-    color: $disabled-color;
+}
 
-  }
-}
- .#{$galleryPicker}-expand-control {
-  margin-top: 20px;
-}
-.pj-scrollable-container {
-  width: 270px !important;
-  height: 270px !important;
-}
-.pj-scrollable {
-  // overflow: hidden !important;
+.#{$scrollable} {
   position: relative !important;
   width: $scrollable-width !important;
   height: $scrollable-height !important;
+
+  &-container {
+    width: $scrollable-width !important;
+    height: $scrollable-height !important;
+  }
+
+  &-enabled.#{$scrollable} .#{$scrollable}-content {
+    overflow: auto !important;
+  }
+
+  &-content {
+    width:  $scrollable-width !important;
+    height: $scrollable-height !important;
+  }
+
+  &-vertical.#{$scrollable}-enabled .#{$scrollable}-container {
+    overflow: hidden !important;
+  }
 }
-.pj-scrollable-container {
-  // overflow-y: auto !important;
-  width: $scrollable-width !important;
-  height: $scrollable-height !important;
-}
-.pj-scrollable.pj-scrollable-enabled .pj-scrollable-content {
-  overflow: auto !important;
-}
-.pj-scrollable-content {
-  height: $scrollable-height;
-}
-.pj-scrollable-vertical.pj-scrollable-enabled .pj-scrollable-container {
-  overflow: hidden !important;
-}
+

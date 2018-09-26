@@ -1,0 +1,202 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$galleryPicker: "pj-galleryPicker" !default;
+$dropdown: "pj-dropdown" !default;
+
+$galleryPicker-spacer: 24px !default;
+
+// Core
+// =====================
+.#{$galleryPicker} {
+  position: relative;
+  display: inline-block;
+
+  &-empty,
+  &-fill {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-empty {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &-fill {
+    position: relative;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      content: "";
+    }
+
+    &::before {
+      z-index: -1;
+      transform: rotate(4deg);
+    }
+
+    &::after {
+      z-index: -2;
+      transform: rotate(6deg);
+    }
+
+    &-image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    &-count {
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &-trigger-action {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &-dropdown {
+    z-index: 100;
+    box-sizing: border-box;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &-items {
+    display: inline-block;
+    height: calc(100% - $galleryPicker-spacer) !important;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+
+      &:nth-child(odd) {
+        margin-left: 0;
+      }
+
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &-add {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &-add,
+  &-items {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+  }
+
+  &-item {
+    &-image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    &-change {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      line-height: 100px;
+      color: #fff;
+      text-align: center;
+      cursor: pointer;
+      opacity: 0;
+    }
+  }
+
+  &-control {
+    width: 100%;
+    text-align: right;
+  }
+
+  &-hover {
+    .#{$galleryPicker}-fill-add,
+    .#{$galleryPicker}-trigger-action,
+    .#{$galleryPicker}-item-change {
+      opacity: 1;
+      transition: all 300ms ease-in-out;
+    }
+  }
+}
+
+.#{$galleryPicker}-exist {
+  .#{$galleryPicker}-fill {
+    display: block;
+  }
+
+  .#{$galleryPicker}-trigger-action {
+    display: flex;
+  }
+
+  .#{$galleryPicker}-empty {
+    display: none;
+  }
+}
+
+.#{$galleryPicker}-write {
+  .#{$galleryPicker}-empty {
+    display: flex;
+  }
+
+  .#{$galleryPicker}-fill {
+    display: none;
+  }
+
+  .#{$galleryPicker}-trigger-action {
+    display: none;
+  }
+}
+/* stylelint-disable */
+.#{$galleryPicker}-show {
+  .#{$galleryPicker}-empty {
+    display: none;
+  }
+
+  .#{$galleryPicker}-fill {
+    display: block;
+  }
+}
