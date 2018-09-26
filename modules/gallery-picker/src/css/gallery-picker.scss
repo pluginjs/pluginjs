@@ -101,8 +101,8 @@ $scrollable-height: 260px;
     }
 
     &-count {
-      width: $galleryPicker-fil;
-      height: $galleryPicker-fil;
+      width: $galleryPicker-fill-width;
+      height: $galleryPicker-fill-width;
       font-size: $galleryPicker-fill-count-font-size;
       line-height: $galleryPicker-fill-count-line-height;
       color: $galleryPicker-fill-count-color;
