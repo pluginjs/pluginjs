@@ -16,12 +16,10 @@ export const classes = {
   OVERFLOW: '{namespace}-{overflow}',
   ELEMENT: '{namespace}',
   TOGGLE: '{namespace}-toggle',
-  TOGGLEICON: 'caret',
-  DROPDOWN: 'dropdown',
-  DROPDOWNMENU: 'dropdown-menu',
-  DROPDOWNMENURIGHT: 'dropdown-menu-right',
-  DROPDOWNITEM: '',
-  DROPDOWNITEMDISABLE: 'disabled',
+  DROPDOWN: '{namespace}-dropdown',
+  DROPDOWNRIGHT: '{namespace}-dropdown-right',
+  DROPDOWNITEM: '{namespace}-item',
+  DROPDOWNITEMDISABLE: '{namespace}-item-disabled',
   ELLIPSIS: '{namespace}-ellipsis',
   HIDDEN: '{namespace}-hidden'
 }
@@ -31,6 +29,7 @@ export const methods = ['enable', 'disable', 'destroy']
 export const defaults = {
   theme: null,
   responsive: true,
+  responsiveText: '...',
   overflow: 'left',
   ellipsisText: '&#8230;',
 
@@ -40,10 +39,6 @@ export const defaults = {
 
   getItemLink($item) {
     return query('a', $item)
-  },
-
-  getDropdownMenu($dropdown) {
-    return query(`.${this.classes.DROPDOWNMENU}`, $dropdown)
   },
 
   templates: {
@@ -59,10 +54,8 @@ export const defaults = {
     dropdown() {
       return (
         '<li class="{classes.DROPDOWN}">' +
-        '<a href="javascript:void(0);" class="{classes.TOGGLE}" data-toggle="dropdown">...' +
-        '<i class="{classes.TOGGLEICON}"></i>' +
+        '<a href="javascript:void(0);" class="{classes.TOGGLE}" data-toggle="dropdown">{text}' +
         '</a>' +
-        '<ul class="{classes.DROPDOWNMENU}"></ul>' +
         '</li>'
       )
     }

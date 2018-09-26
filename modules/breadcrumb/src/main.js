@@ -50,7 +50,6 @@ class Breadcrumb extends Component {
     this.$firstChild = this.$children[0]
 
     this.$dropdown = null
-    this.$dropdownMenu = null
 
     this.gap = 6
     this.items = []
@@ -126,14 +125,14 @@ class Breadcrumb extends Component {
       this.classes.HIDDEN,
       parseHTML(
         templateEngine.render(this.options.templates.dropdown.call(this), {
-          classes: this.classes
+          classes: this.classes,
+          text: this.options.responsiveText
         })
       )
     )
-    this.$dropdownMenu = this.options.getDropdownMenu.call(this, this.$dropdown)
 
     if (this.options.overflow === 'right') {
-      addClass(this.classes.DROPDOWNMENURIGHT, this.$dropdownMenu)
+      addClass(this.classes.DROPDOWNRIGHT, this.$dropdown)
       append(this.$dropdown, this.element)
     } else {
       prepend(this.$dropdown, this.element)
@@ -194,7 +193,6 @@ class Breadcrumb extends Component {
       this.$toggle = query(`.${this.classes.TOGGLE}`, this.$dropdown)
       this.DROPDOWN = Dropdown.of(this.$toggle, {
         data: this.$data,
-        placement: 'bottom-end',
         target: false
       })
     } else {
