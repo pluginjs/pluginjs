@@ -55,6 +55,7 @@ class InputMask extends Component {
         this._hasBackspace = false
         return Model.of(this.data.slice(0, -1))
       }
+      this._hasBackspace = false
       return Model.of(this.data + newData)
     }
 
@@ -112,6 +113,9 @@ class InputMask extends Component {
       const data = event.target.value.slice(this.lastValue.length)
       this.data = update(data)
       this.element.value = format(this.data)
+    }
+    if (this.element.disabled || this.options.disabled) {
+      this.disable()
     }
     this.observe()
     this.enter('initialized')
@@ -208,6 +212,8 @@ class InputMask extends Component {
 
   disable() {
     if (!this.is('disabled')) {
+      this.element.disabled = true
+      addClass(this.classes.DISABLED, this.element)
       this.enter('disabled')
     }
 

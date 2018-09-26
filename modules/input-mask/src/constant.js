@@ -12,6 +12,7 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   INPUTMASK: 'pj-input-mask',
+  DISABLED: '{namespace}-disabled',
   INPUTMODE: 'pj-input'
 }
 

@@ -118,7 +118,7 @@ export const defaults = {
 
   templates: {
     inputWrap() {
-      return '<div class="{classes.INPUTWRAP} pj-input-group"></div>'
+      return '<div class="{classes.INPUTWRAP}"><div class="pj-input-group"></div></div>'
     },
     inputIcon() {
       return '<div class="pj-input-group-addon"><i class="{classes.ICON}"></i></div>'

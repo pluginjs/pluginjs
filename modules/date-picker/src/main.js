@@ -83,6 +83,7 @@ class DatePicker extends Component {
       ),
       addClass(this.classes.INPUT, this.$element)
     )
+
     addClass(this.classes.INPUTMODE, this.$element)
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$inputWrap)
@@ -93,8 +94,9 @@ class DatePicker extends Component {
         classes: this.classes
       })
     )
-
-    append(this.$inputIcon, this.$inputWrap)
+    this.$inputGroup = query('.pj-input-group', this.$inputWrap)
+    append(this.$element, this.$inputGroup)
+    append(this.$inputIcon, this.$inputGroup)
 
     this.setupI18n()
     this.setupStates()
