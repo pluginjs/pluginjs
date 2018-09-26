@@ -5,7 +5,8 @@ import { isString, isArray } from '@pluginjs/is'
 export const namespace = 'multiSelect'
 
 export const events = deepMerge(Select.events, {
-  UNSELECT: 'unselect'
+  UNSELECT: 'unselect',
+  CHANGE: 'change'
 })
 
 export const classes = deepMerge(Select.classes, {

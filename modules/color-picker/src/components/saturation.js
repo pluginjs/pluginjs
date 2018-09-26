@@ -17,7 +17,6 @@ class Saturation {
 
   init() {
     this.element.append(this.$pointer)
-    console.log(getStyle('width', this.$pointer))
     this.size = parseInt(getStyle('width', this.$pointer), 10) / 2
     this.maxLengthX = parseInt(getStyle('width', this.element), 10)
     this.maxLengthY = parseInt(getStyle('height', this.element), 10)
@@ -38,7 +37,6 @@ class Saturation {
         this.offsetX = e.pageX - this.size
         const pointerY = parseInt(getStyle('top', this.$pointer), 10)
         const pointerX = parseInt(getStyle('left', this.$pointer), 10)
-        console.log(pointerY)
 
         bindEvent(
           this.instance.eventNameWithId('mousemove'),
@@ -120,7 +118,6 @@ class Saturation {
   }
 
   update() {
-    // console.log(this.instance.is('SelectedMarker'))
     if (this.instance.is('gradientModule')) {
       if (this.instance.is('SelectedMarker')) {
         this.instance.GRADIENT.setGradientColor(

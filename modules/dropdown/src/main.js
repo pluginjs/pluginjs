@@ -257,8 +257,9 @@ class Dropdown extends Component {
 
   unselectByValue(value, trigger = true) {
     const $selected = this.getItems().find($item => {
-      return this.getItemValue($item) == value // eslint-disable-line
+      return this.getItemValue($item) === value
     })
+    console.log($selected)
     if ($selected) {
       this.unselectItem($selected, trigger)
     }

@@ -217,7 +217,9 @@ class MultiSelect extends Select {
       }
 
       if (this.DROPDOWN) {
-        this.DROPDOWN.unselectByValue(value, false)
+        if (this.DROPDOWN.$dropdown.childNodes.length !== 0) {
+          this.DROPDOWN.unselectByValue(value, false)
+        }
       }
     }
 

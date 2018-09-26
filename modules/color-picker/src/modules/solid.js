@@ -52,7 +52,6 @@ class Solid {
 
     this.instance.PREVIEW.update(color)
     this.instance.trigger('change', color)
-    console.log(color.toHEX())
   }
 }
 
