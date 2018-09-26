@@ -305,6 +305,8 @@ class Dropdown extends Component {
       this.$active.push($item)
     }
 
+    this.highlightItem($item)
+
     if (trigger) {
       this.trigger(EVENTS.CHANGE, this.get())
     }

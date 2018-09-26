@@ -1,0 +1,131 @@
+@import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
+
+// Vars
+// =====================
+$cascader: "pj-cascader" !default;
+$cascader-width: 200px !default;
+$cascader-max-height: 300px !default;
+$cascader-border-color: $border-color !default;
+
+$cascader-trigger-arrow-icon: $pj-icon-caret-down-mini !default;
+$cascader-trigger-arrow-font: $pj-icon-font-family !default;
+$cascader-trigger-arrow-right: $input-padding-x !default;
+$cascader-trigger-padding-right: 30px !default;
+
+$cascader-extensible-icon: $pj-icon-caret-right-mini !default;
+$cascader-extensible-font: $pj-icon-font-family !default;
+$cascader-extensible-right: 11px !default;
+
+$cascader-clear-icon: $pj-icon-close !default;
+$cascader-clear-font: $pj-icon-font-family !default;
+$cascader-clear-right: 15px !default;
+
+.#{$cascader} {
+  position: relative;
+  width: $cascader-width;
+
+
+  &-element {
+    display: none;
+  }
+
+  & &-trigger {
+    width: 100%;
+    padding-right: $cascader-trigger-padding-right;
+  }
+
+  & &-dropdown {
+    width: auto;
+  }
+
+  &-dropdown {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow: auto;
+    align-content: stretch;
+  }
+
+  &-menu {
+    min-width: 150px;
+    max-height: $cascader-max-height;
+    overflow: auto;
+    &:not(:last-child) {
+      border-right: 1px solid $cascader-border-color;
+    }
+  }
+
+  &-option-extensible {
+    &::after {
+      @include icon();
+      position: absolute;
+      top: 50%;
+      right: $cascader-extensible-right;
+      font-family: $cascader-extensible-font;
+      content: icon-content($cascader-extensible-icon);
+      transform: translateY(-50%);
+    }
+  }
+
+  &-trigger {
+    cursor: pointer;
+
+    &::after {
+      @include icon();
+      position: absolute;
+      top: 50%;
+      right: $cascader-trigger-arrow-right;
+      font-family: $cascader-trigger-arrow-font;
+      content: icon-content($cascader-trigger-arrow-icon);
+      transform: translateY(-50%);
+    }
+
+    .#{$cascader}-clearable.#{$cascader}-selected &:hover::after {
+      display: none;
+    }
+  }
+
+  &-clear {
+    position: absolute;
+    top: 0;
+    right: $cascader-clear-right;
+    display: none;
+    height: 100%;
+    font-family: $cascader-clear-font;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($cascader-clear-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
+
+    .#{$cascader}-selected .#{$cascader}-trigger:hover & {
+      display: inline-block;
+    }
+  }
+
+  &-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+input.#{$cascader}-filter {
+  width: 100%;
+  height: 100%;
+  line-height: 100%;
+  border: none;
+  outline: none;
+}

@@ -1,0 +1,71 @@
+@import "@pluginjs/styles/variables.scss";
+@import "cascader.core";
+
+// Vars
+// =====================
+$cascader: "pj-cascader" !default;
+
+$cascader-color: $text-color !default;
+$cascader-trigger-width: $cascader-width !default;
+$cascader-trigger-placeholder-color: $gray-dark !default;
+
+$cascader-trigger-arrow-color: $gray-darkest !default;
+
+$cascader-trigger-disabled-bg: $disabled-bg !default;
+$cascader-trigger-disabled-border: $disabled-border !default;
+$cascader-trigger-disabled-color: $disabled-color !default;
+
+$cascader-extensible-color: $gray-dark !default;
+
+$cascader-clear-color: $gray-dark !default;
+$cascader-clear-hover-color: $text-color !default;
+
+$cascader-not-found-padding: 11px 8px !default;
+$cascader-not-found-color: $gray-darker !default;
+
+.#{$cascader} {
+  outline: none;
+
+  &-trigger {
+    position: relative;
+    color: $cascader-trigger-placeholder-color;
+
+    .#{$cascader}-selected & {
+      color: $cascader-color;
+    }
+
+    &::after {
+      color: $cascader-color;
+      transition: transform 0.3s;
+      will-change: transform;
+    }
+  }
+
+  &-clear {
+    color: $cascader-clear-color;
+
+    &:hover {
+      color: $cascader-clear-hover-color;
+    }
+  }
+
+  &-option-extensible {
+    &::after {
+      color: $cascader-extensible-color;
+    }
+  }
+
+  &-not-found {
+    padding: $cascader-not-found-padding;
+    color: $cascader-not-found-color;
+    text-align: center;
+  }
+}
+
+.#{$cascader}-disabled {
+  .#{$cascader}-trigger {
+    color: $cascader-trigger-disabled-color;
+    background-color: $cascader-trigger-disabled-bg;
+    border-color: $cascader-trigger-disabled-border;
+  }
+}
