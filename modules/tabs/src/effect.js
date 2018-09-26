@@ -96,11 +96,6 @@ class Effect {
     if (this.instance.vertical) {
       height = Math.max(this.instance.panelMinHeight, height)
     }
-    console.log(
-      this.instance.panelMinHeight,
-      this.instance.getCurrentPane(),
-      this.instance.getCurrentPane().clientHeight
-    )
 
     this.instance.$content.style.cssText = ''
     anime({

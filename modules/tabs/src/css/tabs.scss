@@ -1,29 +1,36 @@
 @import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
 @import "tabs.core";
 
 // Vars
 // =====================
 $tabs: "pj-tabs";
 $tabs-font-family: $font-family-base;
+$tabs-font-size: $font-size-sm;
 $tabs-color: $gray-darker;
+$tabs-bg: $color-white;
 
 $tabs-border-color: $border-color;
 
+$tabs-label-padding-y: 16px;
 $tabs-label-padding-x: 24px;
 $tabs-label-color: $gray-darkest;
 $tabs-label-hover-color: $color-primary;
 
-$tabs-nav-border-color: $border-color;
-$tabs-nav-icon-margin-right: 9.88px;
+$tabs-nav-cover-height: 3px !default;
 
-$tabs-content-padding-x: 23px;
+$tabs-nav-icon-gutter: 10px;
+
+$tabs-content-padding-x: 24px;
 $tabs-content-padding-y: 18px;
 
-$tabs-drop-nav-bg: $color-white;
-$tabs-drop-content-bg: transparent;
+$tabs-label-arrow-right: $tabs-label-padding-x - $tabs-font-size;
+$tabs-label-arrow-font: $pj-icon-font-family;
+$tabs-label-arrow-icon: $pj-icon-arrow-right;
 
+$tabs-drop-content-padding-top: 2px;
 
-// default
+// Skin
 // =====================
 .#{$tabs} {
   font-family: $tabs-font-family;
@@ -34,16 +41,21 @@ $tabs-drop-content-bg: transparent;
     li {
       padding: $tabs-label-padding-y $tabs-label-padding-x;
       color: $tabs-label-color;
-      background-color: $tabs-bg-color;
-      border: 1px solid $tabs-nav-border-color;
+      background-color: $tabs-bg;
+      border: 1px solid $tabs-border-color;
 
       &:hover {
         color: $tabs-label-hover-color;
       }
 
       &::after {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
         height: $tabs-nav-cover-height;
-        background: $tabs-bg-color;
+        content: "";
+        background: $tabs-bg;
       }
 
       + li {
@@ -52,7 +64,7 @@ $tabs-drop-content-bg: transparent;
     }
 
     &-icon {
-      margin-right: $tabs-nav-icon-margin-right;
+      margin-right: $tabs-nav-icon-gutter;
     }
 
     .#{$tabs}-active {
@@ -61,8 +73,7 @@ $tabs-drop-content-bg: transparent;
   }
 
   &-content {
-    text-align: left;
-    background-color: $tabs-bg-color;
+    background-color: $tabs-bg;
     border: 1px solid $tabs-border-color;
 
     > div {
@@ -84,32 +95,55 @@ $tabs-drop-content-bg: transparent;
         }
       }
     }
+
+    &.#{$tabs}-right {
+      li::after {
+        top: 0;
+        right: 100%;
+        left: auto;
+      }
+    }
+
+    &.#{$tabs}-left {
+      li::after {
+        top: 0;
+        left: 100%;
+      }
+    }
   }
 }
 
-//responsive
 .#{$tabs}-drop {
   .#{$tabs}-nav-label {
     padding: $tabs-label-padding-y $tabs-label-padding-x;
     color: inherit;
-    background-color: $tabs-drop-nav-bg;
+    background-color: $tabs-bg;
     border: 1px solid $tabs-border-color;
+    border-bottom: 0;
 
     &:hover {
       color: $tabs-label-hover-color;
     }
+
+    &::after {
+      @include icon();
+      position: absolute;
+      right: $tabs-label-arrow-right;
+      font-family: $tabs-label-arrow-font;
+      content: icon-content($tabs-label-arrow-icon);
+      transition: transform 0.3s;
+      will-change: transform;
+    }
   }
 
   .#{$tabs}-nav {
-    background-color: $tabs-drop-nav-bg;
+    top: $tabs-label-padding-y * 2 + $tabs-font-size;
+    background-color: $tabs-bg;
     border: 1px solid $tabs-border-color;
 
     li {
       margin: 0;
-      text-align: initial;
-      background-color: transparent;
       border: none;
-      border-radius: 0;
 
       &::before,
       &::after {
@@ -123,15 +157,16 @@ $tabs-drop-content-bg: transparent;
   }
 
   .#{$tabs}-content {
-    margin: 0;
-    background-color: $tabs-drop-content-bg;
-    border: 1px solid $tabs-border-color;
     border-top: none;
-    box-shadow: none;
 
     > div {
-      border: none;
-      box-shadow: none;
+      padding-top: $tabs-drop-content-padding-top;
+    }
+  }
+
+  &-open {
+    .#{$tabs}-nav-label::after {
+      transform: rotate(90deg);
     }
   }
 }

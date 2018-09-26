@@ -3,14 +3,9 @@
 // Vars
 // =====================
 $tabs: "pj-tabs" !default;
-$tabs-font-size: $font-size-sm;
-$tabs-label-padding-y: 16px !default;
-$tabs-drop-nav-label-font-family: plugin-icons !default;
-$tabs-bg-color: $color-white;
-$tabs-nav-cover-height: 3px !default;
-$tabs-content-line-height: 22px !default;
+$tabs-font-size: $font-size-sm !default;
+$tabs-bg: $color-white !default;
 $tabs-active-color: $color-primary !default;
-$tabs-duration: 0.5s !default;
 
 // Core
 // =====================
@@ -27,20 +22,13 @@ $tabs-duration: 0.5s !default;
       display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 1;
+      line-height: 1em;
       cursor: pointer;
-
-      &::after {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        content: " ";
-      }
     }
 
     .#{$tabs}-active {
       z-index: 1;
+      color: $tabs-active-color;
     }
   }
 
@@ -49,14 +37,15 @@ $tabs-duration: 0.5s !default;
     z-index: 0;
     box-sizing: border-box;
     overflow: hidden;
-    line-height: $tabs-content-line-height;
 
     > div {
-      display: none;
+      position: absolute;
+      visibility: hidden;
     }
 
     .#{$tabs}-active {
-      display: block;
+      position: relative;
+      visibility: visible;
     }
   }
 
@@ -104,19 +93,6 @@ $tabs-duration: 0.5s !default;
 
   &-right {
     flex-direction: row-reverse;
-
-    li::after {
-      top: 0;
-      right: 100%;
-      left: auto;
-    }
-  }
-
-  &-left {
-    li::after {
-      top: 0;
-      left: 100%;
-    }
   }
 
   &-scroll {
@@ -138,27 +114,13 @@ $tabs-duration: 0.5s !default;
 
     .#{$tabs}-nav-label {
       display: flex;
-      line-height: 1;
+      line-height: 1em;
       text-decoration: none;
-
-      &::before {
-        position: absolute;
-        right: 10px;
-        display: inline-block;
-        font-family: $tabs-drop-nav-label-font-family;
-        font-style: normal;
-        font-weight: normal; /*stylelint-disable-line*/
-        font-variant: normal;
-        content: "\ea23";
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: auto;
-      }
     }
 
     .#{$tabs}-nav {
       position: absolute;
-      top: $tabs-label-padding-y * 2 + $tabs-font-size + 1px;
+      top: $tabs-font-size;
       left: 0;
       z-index: 1;
       box-sizing: border-box;
@@ -166,6 +128,7 @@ $tabs-duration: 0.5s !default;
       width: 100%;
       padding: 0;
       margin: 0;
+      background-color: $tabs-bg;
 
       li {
         display: block;
@@ -179,13 +142,6 @@ $tabs-duration: 0.5s !default;
     &-open {
       .#{$tabs}-nav {
         display: block;
-
-        &-label {
-          &::before {
-            transition: all $tabs-duration ease-in;
-            transform: rotate(90deg);
-          }
-        }
       }
     }
   }
