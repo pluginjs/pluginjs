@@ -14,6 +14,7 @@ class Thumbs {
     }
 
     this.element = this.instance.getElement('thumbs')
+
     append(this.element, this.instance.footer)
 
     setTimeout(() => {

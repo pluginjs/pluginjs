@@ -112,15 +112,6 @@ const defaults = {
     },
     inner() {
       return '<div class="{classes.INNER}"></div>'
-    },
-    thumb() {
-      return (
-        '<div class="{classes.THUMB}">' +
-        '<div class="{classes.LOADED}">' +
-        '<img class="{classes.IMAGE}">' +
-        '</div>' +
-        '</div>'
-      )
     }
   },
   theme: null,
@@ -136,7 +127,10 @@ const defaults = {
   vertical: false,
   keyboard: true,
   duration: 300,
-  playCycle: 4000
+  playCycle: 4000,
+  loader: {
+    color: null
+  }
 }
 
 const dependencies = ['slider', 'thumbnails', 'arrows', 'anime', 'hammer']
