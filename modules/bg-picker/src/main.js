@@ -97,7 +97,7 @@ class BgPicker extends Component {
       hideOnSelect: false,
       templates: this.options.templates,
       onShow: () => {
-        if (!this.is('builded')) {
+        if (!this.DROPDOWN.is('builded')) {
           insertAfter(this.SIZE.$wrap, this.$preview)
           insertAfter(this.ATTACHMENT.$wrap, this.$preview)
           insertAfter(this.REPEAT.$wrap, this.$preview)

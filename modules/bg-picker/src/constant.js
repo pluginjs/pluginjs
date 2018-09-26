@@ -185,8 +185,8 @@ export const defaults = {
       '<div class="{classes.FILLIMAGE}">' +
       '<div class="{classes.IMAGENAMEFILL}">{placeholder}</div>' +
       '</div>' +
-      '<div class="{classes.TIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i></div>' +
       '</div>' +
+      '<div class="{classes.TIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-delete"></i></div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +
       '<div class="{classes.PREVIEW}">' +

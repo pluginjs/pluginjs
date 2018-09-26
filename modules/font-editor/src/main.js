@@ -118,7 +118,7 @@ class FontEditor extends Component {
 
   initDropdown() {
     const that = this
-    this.$defaultDropdown = Dropdown.of(this.TRIGGER.$empty, {
+    this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       theme: 'dafault',
       placement: 'bottom-left',
       reference: this.TRIGGER.$trigger,
@@ -129,7 +129,7 @@ class FontEditor extends Component {
       constraintToWindow: false,
       templates: this.options.templates,
       onShow: () => {
-        if (!this.is('builded')) {
+        if (!this.DROPDOWN.is('builded')) {
           this.buildDropdown()
         }
       },
@@ -155,7 +155,7 @@ class FontEditor extends Component {
       () => {
         removeClass(that.classes.SHOW, that.$wrap)
         // addClass(that.classes.EXSIT, that.$wrap)
-        that.$defaultDropdown.hide()
+        that.DROPDOWN.hide()
         return
       },
       this.$Cancel
@@ -167,7 +167,7 @@ class FontEditor extends Component {
         addClass(that.classes.EXSIT, that.$wrap)
         removeClass(that.classes.SHOW, that.$wrap)
         that.update()
-        that.$defaultDropdown.hide()
+        that.DROPDOWN.hide()
         return
       },
       this.$Save

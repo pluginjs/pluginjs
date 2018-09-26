@@ -175,7 +175,7 @@ class GradientPicker extends Component {
       hideOutClick: true,
       hideOnSelect: false,
       onShow: () => {
-        if (!this.is('builded')) {
+        if (!this.DROPDOWN.is('builded')) {
           this.$dropdown.append(
             this.$previewContent,
             this.$customColor,

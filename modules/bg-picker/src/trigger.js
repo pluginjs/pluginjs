@@ -22,8 +22,8 @@ export default class Trigger {
       query(`.${this.classes.IMAGENAMEFILL}`, this.$fill)
     )
     this.$fillImage = query(`.${this.classes.FILLIMAGE}`, this.$fill)
-    this.$remove = query(`.${this.classes.REMOVE}`, this.$fill)
-    this.$edit = query(`.${this.classes.EDIT}`, this.$fill)
+    this.$remove = query(`.${this.classes.REMOVE}`, this.$trigger)
+    this.$edit = query(`.${this.classes.EDIT}`, this.$trigger)
 
     this.bulidPop()
     this.bind()
@@ -48,21 +48,21 @@ export default class Trigger {
     )
 
     compose(
-      bindEvent(this.instance.eventName('mouseenter'), ({ target }) => {
+      bindEvent(this.instance.eventName('mouseenter'), () => {
         if (this.instance.is('disabled')) {
           return
         }
 
-        addClass(this.classes.HOVER, target)
+        addClass(this.classes.HOVER, this.$trigger)
       }),
-      bindEvent(this.instance.eventName('mouseleave'), ({ target }) => {
+      bindEvent(this.instance.eventName('mouseleave'), () => {
         if (this.instance.is('disabled')) {
           return null
         }
         if (this.instance.is('holdHover')) {
           return false
         }
-        removeClass(this.classes.HOVER, target)
+        removeClass(this.classes.HOVER, this.$trigger)
         this.instance.leave('holdHover')
         return null
       }),
@@ -94,7 +94,7 @@ export default class Trigger {
           return null
         }
       )
-    )(this.$fill)
+    )(this.$trigger)
   }
 
   bulidPop() {
@@ -118,7 +118,7 @@ export default class Trigger {
         that.instance.enter('holdHover')
       },
       onHide: () => {
-        removeClass(that.classes.HOVER, that.$fill)
+        removeClass(that.classes.HOVER, this.$trigger)
         that.instance.leave('holdHover')
       }
     })

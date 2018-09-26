@@ -94,7 +94,13 @@ class GalleryPicker extends Component {
       target: this.$panel,
       hideOutClick: true,
       hideOnSelect: false,
-      templates: this.options.templates
+      templates: this.options.templates,
+      onHided: () => {
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$empty)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$fill)
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$triggerAction)
+        addClass(this.classes.EXIST, removeClass(this.classes.SHOW, this.$wrap))
+      }
     })
   }
 
@@ -404,15 +410,14 @@ class GalleryPicker extends Component {
   }
 
   open() {
+    addClass(this.classes.OPENDISABLE, this.TRIGGER.$empty)
     addClass(this.classes.OPENDISABLE, this.TRIGGER.$fill)
+    addClass(this.classes.OPENDISABLE, this.TRIGGER.$triggerAction)
     addClass(this.classes.SHOW, removeClass(this.classes.EXIST, this.$wrap))
-    this.$galleryDropdown.show()
     this.updateScrollbar()
   }
 
   close() {
-    removeClass(this.classes.OPENDISABLE, this.TRIGGER.$fill)
-    addClass(this.classes.EXIST, removeClass(this.classes.SHOW, this.$wrap))
     this.$galleryDropdown.hide()
     this.leave('status')
   }

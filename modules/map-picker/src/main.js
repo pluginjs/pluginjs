@@ -134,7 +134,7 @@ class MapPicker extends Component {
       hideOutClick: true,
       templates: this.options.templates,
       onShow: () => {
-        if (!this.is('builded')) {
+        if (!this.DROPDOWN.is('builded')) {
           this.buildDropdown()
         }
       },

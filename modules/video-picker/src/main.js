@@ -200,14 +200,14 @@ class VideoPicker extends Component {
     )
 
     // init source dropdown
-    this.$defaultDropdown = Dropdown.of(this.TRIGGER.$empty, {
+    this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       target: this.$dropdown,
       reference: this.TRIGGER.element,
       templates: this.options.template,
       hideOutClick: true,
       hideOnSelect: false,
       onShow: () => {
-        if (!this.is('builded')) {
+        if (!this.DROPDOWN.is('builded')) {
           this.$dropdown.append(
             this.$preview,
             this.$source,
@@ -219,6 +219,9 @@ class VideoPicker extends Component {
           )
         }
       },
+      onHided: () => {
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
+      },
       onUpdate: () => {
         this.$fillCover.setAttribute('src', this.data.poster)
 
@@ -227,7 +230,7 @@ class VideoPicker extends Component {
         }
         this.element.value = this.val()
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
-        this.$defaultDropdown.hide()
+        this.DROPDOWN.hide()
         addClass(this.classes.SHOW, this.$wrap)
       }
     })
@@ -378,11 +381,11 @@ class VideoPicker extends Component {
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
-        this.$defaultDropdown.hide()
+        this.DROPDOWN.hide()
       }),
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
-        this.$defaultDropdown.hide()
+        this.DROPDOWN.hide()
         this.$fillCover.setAttribute('src', this.data.poster)
         if (this.videoApi) {
           this.videoApi.stop()

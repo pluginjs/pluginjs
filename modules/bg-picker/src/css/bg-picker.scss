@@ -67,6 +67,7 @@ input.#{$bgPicker}-input {
   color: $bgPicker-color;
 
   &-trigger {
+    position: relative;
     width: $bgPicker-width !important;
     height: $bgPicker-height;
 
@@ -77,8 +78,8 @@ input.#{$bgPicker}-input {
       display: none;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      height: 100%;
+      width: $bgPicker-width;
+      height: $bgPicker-height;
       font-size: $bgPicker-fill-change-font-size;
       line-height: $bgPicker-fill-change-line-height;
       color: $color-white;

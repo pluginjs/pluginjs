@@ -111,7 +111,7 @@ export default class Trigger {
         // removeClass(this.classes.EXSIT, this.$wrap)
         addClass(that.classes.SHOW, that.instance.$wrap)
         addClass(that.classes.OPENDISABLE, that.$trigger)
-        that.instance.$defaultDropdown.show()
+        that.instance.DROPDOWN.show()
         return false /* eslint-disable-line */
       },
       this.$editAction
@@ -123,7 +123,7 @@ export default class Trigger {
         if (that.instance.is('disabled')) {
           return
         }
-        that.instance.$defaultDropdown.hide()
+        that.instance.DROPDOWN.hide()
         return
       },
       this.$removeAction

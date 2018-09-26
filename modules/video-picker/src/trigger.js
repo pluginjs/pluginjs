@@ -95,16 +95,9 @@ export default class Trigger {
       this.instance.eventName('click'),
       () => {
         addClass(this.classes.OPENDISABLE, this.element)
-        this.instance.$defaultDropdown.show()
+        this.instance.DROPDOWN.show()
       },
       this.$edit
-    )
-    bindEvent(
-      this.instance.eventName('click'),
-      () => {
-        removeClass(this.classes.OPENDISABLE, this.element)
-      },
-      window.document
     )
 
     compose(
@@ -122,7 +115,7 @@ export default class Trigger {
         `.${this.classes.EDITOR}`,
         () => {
           addClass(this.classes.OPENDISABLE, this.element)
-          this.instance.$defaultDropdown.show()
+          this.instance.DROPDOWN.show()
           return false
         }
       ),
@@ -131,7 +124,7 @@ export default class Trigger {
         `.${this.classes.REMOVE}`,
         () => {
           removeClass(this.classes.OPENDISABLE, this.element)
-          this.instance.$defaultDropdown.hide()
+          this.instance.DROPDOWN.hide()
         }
       ),
       // info actions hover hold
