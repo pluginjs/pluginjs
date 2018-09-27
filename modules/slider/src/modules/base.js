@@ -3,11 +3,12 @@ import { append, query, parentWith } from '@pluginjs/dom'
 import { events as EVENTS } from '../constant'
 
 class Base {
-  constructor(instance, data) {
+  constructor(instance, data, loader) {
     this.instance = instance
     this.classes = instance.classes
     this.type = data.type
     this.data = data
+    this.loader = loader
   }
 
   load($target) {
@@ -36,9 +37,8 @@ class Base {
   loaded(target) {
     const card = parentWith(hasClass(this.classes.CARD), target)
     const content = query(`.${this.classes.CONTENT}`, card)
-    const loader = query(`.${this.classes.LOADER}`, card)
 
-    addClass(this.classes.LOADED, loader)
+    this.loader.hide()
     addClass(this.classes.LOADED, content)
   }
 

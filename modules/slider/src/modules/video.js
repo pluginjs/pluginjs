@@ -5,8 +5,8 @@ import Base from './base'
 import VIDEO from '@pluginjs/video'
 
 class Video extends Base {
-  constructor(instance, data) {
-    super(instance, data)
+  constructor(instance, data, loader) {
+    super(instance, data, loader)
     this.isload = false
 
     this.initialize()

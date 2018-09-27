@@ -1,8 +1,8 @@
 import Base from './base'
 
 class Inline extends Base {
-  constructor(instance, data) {
-    super(instance, data)
+  constructor(instance, data, loader) {
+    super(instance, data, loader)
     this.isload = false
 
     this.initialize()

@@ -37,25 +37,25 @@ import Card from './card'
   dependencies: DEPENDENCIES
 })
 class Slider extends Component {
-  page = 0
-  stash = 0
-  direction = true
-  _interval = {
-    createTimer: time =>
-      window.setInterval(() => {
-        this.next(false)
-      }, time),
-    removeTimer: () => {
-      window.clearInterval(this.timer())
-    }
-  }
-
   constructor(element, options = {}) {
     super(element)
 
     this.setupOptions(options)
 
     this.current = this.options.current || 0
+
+    this.page = 0
+    this.stash = 0
+    this.direction = true
+    this._interval = {
+      createTimer: time =>
+        window.setInterval(() => {
+          this.next(false)
+        }, time),
+      removeTimer: () => {
+        window.clearInterval(this.timer())
+      }
+    }
 
     this.setupClasses()
     this.setupStates()

@@ -44,15 +44,16 @@ import Loader from '@pluginjs/loader'
   dependencies: DEPENDENCIES
 })
 class Thumbnails extends Component {
-  distance = 0
-  pos = 0
-  current = null
-  dif = null
-
   constructor(element, options = {}) {
     super(element)
 
     this.setupOptions(options)
+
+    this.distance = 0
+    this.pos = 0
+    this.current = null
+    this.dif = null
+
     this.setupClasses()
     this.setupStates()
     this.initialize()

@@ -34,6 +34,7 @@
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/icons": "*",
+    "@pluginjs/loader": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/swipeable": "*",
     "@pluginjs/template": "*",
@@ -41,6 +42,7 @@
     "animejs": "*"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.0",
     "@pluginjs/cli": "*",
     "babel-jest": "*",
     "jest": "*",

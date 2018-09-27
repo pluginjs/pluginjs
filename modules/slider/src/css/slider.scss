@@ -7,9 +7,6 @@ $arrow: "pj-arrow" !default;
 
 $slider-arrow-position: 10px !default;
 
-$slider-loader-size: 30px !default;
-$slider-loader-color: $color-black !default;
-
 $slider-video-outer-size: 60px !default;
 $slider-video-inner-size: 16px !default;
 $slider-video-color: $color-white !default;
@@ -45,34 +42,6 @@ $slider-video-color: $color-white !default;
 
     &::after {
       clear: both;
-    }
-  }
-
-  &-loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: $slider-loader-size;
-    height: $slider-loader-size;
-    margin: $slider-loader-size/-2 0 0 $slider-loader-size/-2;
-    border: 2px $slider-loader-color solid;
-    border-radius: 50%;
-    animation: rotation 1s ease-in-out infinite;
-
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 5px;
-      height: 5px;
-      content: "";
-      background-color: $slider-loader-color;
-      border-radius: 100%;
-      transform: translateX(-50%);
-    }
-
-    &.#{$slider}-loaded {
-      visibility: hidden;
     }
   }
 

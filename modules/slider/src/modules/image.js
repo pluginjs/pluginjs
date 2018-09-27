@@ -2,8 +2,8 @@ import { bindEvent } from '@pluginjs/events'
 import Base from './base'
 
 class Image extends Base {
-  constructor(instance, data) {
-    super(instance, data)
+  constructor(instance, data, loader) {
+    super(instance, data, loader)
 
     this.initialize()
   }
