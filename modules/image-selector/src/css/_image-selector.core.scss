@@ -8,7 +8,7 @@ $scrollable: "pj-scrollable" !default;
 
 $imageSelector-bg: $color-white !default;
 
-$imageSelector-item-spacer: -26px !default;
+$imageSelector-item-spacer: 12px !default;
 
 // Core
 // ====================
@@ -41,6 +41,8 @@ $imageSelector-item-spacer: -26px !default;
   &-item {
     position: relative;
     box-sizing: border-box;
+    display: block;
+    float: left;
 
     &-label {
       position: absolute;
@@ -53,14 +55,8 @@ $imageSelector-item-spacer: -26px !default;
   }
 
   &-dropdown {
+    box-sizing: border-box;
     display: none;
-
-    div {
-      box-sizing: border-box;
-      display: flex;
-      flex-wrap: wrap;
-      align-content: space-between;
-    }
 
     .#{$scrollable} {
       &-container {
