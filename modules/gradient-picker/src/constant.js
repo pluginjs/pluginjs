@@ -120,7 +120,7 @@ export const dependencies = [
   'pop-dialog',
   'edit-panel',
   'gradient',
-  'color-picker',
+  'color-selector',
   'range'
 ]
 

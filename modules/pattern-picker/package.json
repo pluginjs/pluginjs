@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@pluginjs/classes": "*",
-    "@pluginjs/color-picker": "*",
+    "@pluginjs/color-selector": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",

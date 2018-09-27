@@ -5,7 +5,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled' // , getStyle
 import { query, has, parseHTML, getData, setData, wrap } from '@pluginjs/dom'
-import ColorPicker from '@pluginjs/color-picker'
+import ColorSelector from '@pluginjs/color-selector'
 import Dropdown from '@pluginjs/dropdown'
 import Range from '@pluginjs/range'
 import Trigger from './trigger'
@@ -183,7 +183,7 @@ class PatternPicker extends Component {
       }
     })
 
-    this.FOREPICKER = ColorPicker.of(this.$forePicker, {
+    this.FOREPICKER = ColorSelector.of(this.$forePicker, {
       theme: 'default',
       module: ['solid'],
       solidMode: 'sample',
@@ -203,7 +203,7 @@ class PatternPicker extends Component {
       }
     })
 
-    this.BGCOLOR = ColorPicker.of(this.$bgColor, {
+    this.BGCOLOR = ColorSelector.of(this.$bgColor, {
       theme: 'default',
       module: ['solid'],
       solidMode: 'sample',

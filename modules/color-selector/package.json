@@ -1,6 +1,6 @@
 {
-  "name": "@pluginjs/color",
-  "description": "A flexible modern color js plugin.",
+  "name": "@pluginjs/color-selector",
+  "description": "A flexible modern color-selector js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
@@ -11,12 +11,17 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.18",
-  "category": "utils",
-  "main": "dist/color.umd.js",
-  "module": "dist/color.esm.js",
-  "cjs": "dist/color.cjs.js",
+  "version": "0.2.20",
+  "category": "form",
+  "main": "dist/color-selector.umd.js",
+  "module": "dist/color-selector.esm.js",
+  "cjs": "dist/color-selector.cjs.js",
   "source": "src/main.js",
+  "css": {
+    "source": "src/css/color-selector.scss",
+    "main": "dist/color-selector.css",
+    "min": "dist/color-selector.min.css"
+  },
   "files": [
     "dist",
     "src"
@@ -32,9 +37,24 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/classes": "*",
+    "@pluginjs/color": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/dropdown": "*",
+    "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
+    "@pluginjs/gradient": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/keyboard": "*",
+    "@pluginjs/scrollable": "*",
+    "@pluginjs/select": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
+    "@pluginjs/tooltip": "*",
+    "@pluginjs/utils": "*",
+    "popper.js": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
@@ -58,5 +78,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
+  },
+  "globals": {
+    "popper.js": "Popper"
   }
 }

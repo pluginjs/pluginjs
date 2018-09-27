@@ -16,7 +16,7 @@ import { setStyle } from '@pluginjs/styled' // , getStyle
 import { Color } from '@pluginjs/color'
 // import Scrollable from '@pluginjs/scrollable'
 import Range from '@pluginjs/range'
-import ColorPicker from '@pluginjs/color-picker'
+import ColorSelector from '@pluginjs/color-selector'
 import Dropdown from '@pluginjs/dropdown'
 import Trigger from './trigger'
 import {
@@ -148,7 +148,10 @@ class GradientPicker extends Component {
         this.classes.COLORPICKER
       }' placeholder='choose color' /></div></div>`
     )
-    this.$colorPicker = query(`.${this.classes.COLORPICKER}`, this.$customColor)
+    this.$colorSelector = query(
+      `.${this.classes.COLORPICKER}`,
+      this.$customColor
+    )
     this.$opacity = parseHTML(
       `<div class='${this.classes.FIELD}'><span class='${
         this.classes.FIELDTITLE
@@ -186,7 +189,7 @@ class GradientPicker extends Component {
       }
     })
 
-    this.COLORPICKER = ColorPicker.of(this.$colorPicker, {
+    this.COLORPICKER = ColorSelector.of(this.$colorSelector, {
       theme: 'default',
       module: ['gradient'],
       locale: this.options.locale,
@@ -364,10 +367,10 @@ class GradientPicker extends Component {
         const bgColor = getData('info', this.$previewImg).background
 
         this.data.color = bgColor
-        this.colorPicker.val(bgColor)
+        this.colorSelector.val(bgColor)
       }
     } else {
-      this.colorPicker.val(this.data.color)
+      this.colorSelector.val(this.data.color)
     }
     if (trigger) {
       this.trigger(EVENTS.CHANGE, data)

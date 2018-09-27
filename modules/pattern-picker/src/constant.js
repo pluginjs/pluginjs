@@ -142,7 +142,7 @@ export const defaults = {
   }
 }
 
-export const dependencies = ['scrollable', 'pop-dialog', 'color-picker']
+export const dependencies = ['scrollable', 'pop-dialog', 'color-selector']
 
 export const translations = {
   en: {
