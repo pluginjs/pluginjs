@@ -8,7 +8,7 @@ $iconPicker-sizer: $sizer !default;
 $iconPicker-width: 16 * $iconPicker-sizer !default; //160px
 $iconPicker-height: 3 * $iconPicker-sizer !default; //30px
 $iconPicker-font-size: $font-size-base !default;
-$iconPicker-border-color: $gray-border !default;
+$iconPicker-border-color: $border-color !default;
 $iconPicker-hover-color: $gray-darker !default;
 $iconPicker-active-color: $color-primary !default;
 $iconPicker-body-padding: 1.5 * $iconPicker-sizer $iconPicker-sizer

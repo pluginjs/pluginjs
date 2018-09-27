@@ -604,8 +604,10 @@ class IconsPicker extends Component {
     this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
     this.$elSelect = query(`.${this.classes.ELSELECTOR}`, this.$controller)
     this.$selectorPanel = Select.of(this.$elSelect, {
+      dropdown: {
+        placement: 'top-center'
+      },
       reference: this.$selector,
-      placement: 'top-start',
       source: data,
       value: data[data.length - 1].value,
       onChange: val => {

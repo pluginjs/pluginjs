@@ -10,7 +10,7 @@ import '@icon/feather/feather.css'
 
 // import sections
 import './sections/default/index.js'
-// import './sections/empty/index.js'
-// import './sections/initialized/index.js'
-// import './sections/locale/index.js'
-// import './sections/disabled/index.js'
+import './sections/empty/index.js'
+import './sections/initialized/index.js'
+import './sections/locale/index.js'
+import './sections/disabled/index.js'

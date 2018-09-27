@@ -112,11 +112,11 @@ describe('MultiSelect', () => {
       api = MultiSelect.of($element, {
         onChange(value) {
           called = true
-          expect(value).toBe(['4'])
+          expect(value).toBeArray()
         }
       })
 
-      api.val(['4'])
+      api.val('4')
 
       expect(called).toBeTrue()
     })
@@ -126,8 +126,9 @@ describe('MultiSelect', () => {
       $element = generateHTMLSample()
       api = MultiSelect.of($element, {
         onChange(value) {
+          console.log(111)
           called = true
-          expect(value).toBe(['4'])
+          expect(value).toEqual(['4'])
         }
       })
 

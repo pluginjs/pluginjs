@@ -123,7 +123,7 @@ class MultiSelect extends Select {
     }
   }
 
-  set(value, trigger) {
+  set(value, trigger = true) {
     value = this.purifyValue(value)
     if (!arrayEqual(value, this.value)) {
       const unselected = arrayDiff(this.value, value)
@@ -161,10 +161,9 @@ class MultiSelect extends Select {
       } else {
         removeClass(this.classes.ALLSELECTED, this.$wrap)
       }
-
-      if (trigger) {
-        this.trigger(EVENTS.CHANGE, value)
-      }
+    }
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, value)
     }
   }
 
