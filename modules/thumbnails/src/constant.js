@@ -22,7 +22,8 @@ const classes = {
   IMAGE: '{namespace}-img',
   VERTICAL: '{namespace}s-vertical',
   ACTIVE: '{namespace}-active',
-  DISABLED: '{namespace}-disabled'
+  DISABLED: '{namespace}-disabled',
+  RESPONSIVE: '{namespace}-responsive'
 }
 
 const methods = ['enable', 'disable', 'destroy', 'next', 'prev', 'go']
@@ -46,7 +47,8 @@ const defaults = {
   vertical: false,
   current: 0,
   mode: 'full', // full or center
-  loaderConfig: null
+  loaderConfig: null,
+  breakpoint: null // xs, sm, md, lg, xl
 }
 
 const dependencies = ['anime']
