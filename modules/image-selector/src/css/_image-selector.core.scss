@@ -1,0 +1,95 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+
+$imageSelector: "pj-imageSelector" !default;
+$dropdown: "pj-dropdown" !default;
+$scrollable: "pj-scrollable" !default;
+
+$imageSelector-bg: $color-white !default;
+
+$imageSelector-item-spacer: -26px !default;
+
+// Core
+// ====================
+.#{$imageSelector} {
+  box-sizing: border-box;
+
+  &-data {
+    display: none;
+  }
+
+  &-trigger {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-change {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-item {
+    position: relative;
+    box-sizing: border-box;
+
+    &-label {
+      position: absolute;
+      bottom: $imageSelector-item-spacer;
+      left: 0;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }  
+  }
+
+  &-dropdown {
+    display: none;
+
+    div {
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: space-between;
+    }
+
+    .#{$scrollable} {
+      &-container {
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      &-content {
+        width: 100% !important;
+      }
+    }
+  }
+
+  &-hide {
+    display: block !important;
+  }
+
+  &-show {
+    display: block !important;
+  }
+}
+
+.#{$dropdown}-show {
+  z-index: 999999 !important;
+  display: block !important;
+  background-color: $color-white;
+}
+
+.#{$dropdown}-panel-wrap {
+  z-index: 999999 !important;
+  background-color: $color-white;
+}

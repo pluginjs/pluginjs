@@ -45,7 +45,7 @@ $galleryPicker-expand-height: 360px;
 $galleryPicker-expand-item-width: 100px;
 $galleryPicker-expand-item-change-bg: $color-opacity;
 //scrollable
-$scrollable-width: 250px;
+$scrollable-width: 248px;
 $scrollable-height: 260px;
 
 
@@ -158,6 +158,8 @@ $scrollable-height: 260px;
   }
 
   &-add {
+    align-content: center;
+    justify-content: center;
     font-size: $galleryPicker-fill-count-font-size;
     color: $galleryPicker-color;
     border-style: dashed !important;
