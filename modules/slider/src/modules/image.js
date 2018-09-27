@@ -11,6 +11,9 @@ class Image extends Base {
   initialize() {
     this.element = this.instance.createElement('image')
     this.element.src = this.data.src
+    if (this.data.srcset) {
+      this.element.srcset = this.data.srcset
+    }
 
     bindEvent(
       this.instance.eventName('mousedown'),
