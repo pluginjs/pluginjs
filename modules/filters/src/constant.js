@@ -34,11 +34,11 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  items: null,
+  items: null, // [{text: '', id: ''}...]
   default: null,
   valueFrom: 'data-id', // text, [selector, data-attr] or data-attr
   responsive: false,
-  responsiveMoreText: 'More...',
+  responsiveMoreText: 'More',
   templates: {
     item() {
       return '<button type="button" class="{classes.ITEM}" data-id="{id}">{text}</button>'

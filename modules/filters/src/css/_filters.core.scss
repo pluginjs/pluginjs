@@ -3,29 +3,36 @@
 // Vars
 // =====================
 $filter: "pj-filter" !default;
+$filter-active-color: $color-primary !default;
 
 // Core
 // =====================
 .#{$filter}s {
+
   @include clearfix();
-
   position: relative;
+}
 
-  .#{$filter} {
-    position: relative;
-    display: inline-block;
-    float: left;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    user-select: none;
+.#{$filter} {
+  position: relative;
+  display: inline-block;
+  float: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
 
-    &-active {
-      z-index: 1;
-    }
+  &-active {
+    z-index: 1;
+    color: $filter-active-color;
+  }
 
-    &-hide {
-      display: none;
-    }
+  &.#{$filter}-disabled,
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &-hide {
+    display: none;
   }
 }

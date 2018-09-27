@@ -7,165 +7,127 @@ $filter: "pj-filter";
 
 $filter-font-family: $font-family-base;
 $filter-font-size: $font-size-sm;
-$filter-line-height: 22px;
+$filter-line-height: 1em;
 
 $filter-color: $gray-darkest;
 $filter-active-color: $color-primary;
 
-$filter-padding: 3px 15px;
+$filter-disabled-opacity: 0.65;
+
+$filter-gutter: 30px;
+
+$filter-padding-y: 8px;
+$filter-padding-x: 15px;
 
 $filter-border-width: $border-width;
 $filter-border-radius: $border-radius-base;
 $filter-border-color: $border-color;
 
-$filters-button-margin: 10px;
+$filter-underline-height: 1px;
+$filter-underline-width: 50%;
 
-// Core
+$filter-pill-gutter: 20px;
+
+// Skin
 // =====================
-.#{$filter}s {
-  @include clearfix();
-
+.#{$filter} {
+  padding: $filter-padding-y 0;
   font-family: $filter-font-family;
-  vertical-align: middle;
+  font-size: $filter-font-size;
+  line-height: $filter-line-height;
+  color: $filter-color;
+  background-color: transparent;
+  border: $filter-border-width solid transparent;
 
-  > button {
-    border-radius: inherit;
+  & + & {
+    margin-left: $filter-gutter;
   }
 
-  .#{$filter}-dropdown .#{$filter}-active {
+  &:not(:disabled):hover,
+  &:not(:disabled):active,
+  &:not(:disabled):focus,
+  &.#{$filter}-active {
     color: $filter-active-color;
   }
 
-  .#{$filter} {
-    padding: $filter-padding;
-    font-size: $filter-font-size;
-    line-height: $filter-line-height;
-    color: $filter-color;
-    text-align: center;
-    background-color: transparent;
-    border: $filter-border-width solid transparent;
-
-    &:not(:disabled):hover,
-    &:not(:disabled):active,
-    &:not(:disabled):focus {
-      color: $filter-active-color;
-      background: inherit;
-      border-color: transparent;
-      box-shadow: none;
-    }
-
-    &,
-    &:active,
-    &.#{$filter}-active {
-      &:focus,
-      &.focus {
-        // WebKit-specific. Other browsers will keep their default outline style.
-        // (Initially tried to also force default via `outline: initial`,
-        // but that seems to erroneously remove the outline in Firefox altogether.)
-        // outline: 2px auto -webkit-focus-ring-color;
-        // outline-offset: -2px;
-        outline: none;
-      }
-    }
-
-    &,
-    &:focus,
-    &:hover {
-      text-decoration: none;
-    }
-
-    &:active,
-    &.#{$filter}-active {
-      color: $filter-active-color;
-      background-image: none;
-      outline: 0;
-      box-shadow: none;
-    }
-
-    &.#{$filter}-disabled,
-    &:disabled {
-      cursor: not-allowed;
-      box-shadow: none;
-      opacity: 0.65;
-    }
-
-    &-hide {
-      display: none;
-    }
-  }
-}
-
-/* pill */
-.#{$filter}s--pill {
-  .#{$filter} {
-    margin-left: $filters-button-margin;
-    border: $filter-border-width solid $filter-border-color;
-    border-radius: $filter-border-radius;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:not(:disabled):hover {
-      border-color: $filter-active-color;
-    }
-
-    &:not(:disabled):focus {
-      border-color: $filter-active-color;
-    }
-
-    &.#{$filter}-active {
-      border-color: $filter-active-color
-    }
-  }
-}
-
-/* group */
-.#{$filter}s--group {
-  .#{$filter} {
-    border: $filter-border-width solid $filter-border-color;
-
-    &:not(:disabled):hover,
-    &:not(:disabled):focus {
-      border-color: $filter-border-color;
-    }
-
-    &:first-child {
-      border-top-left-radius: $filter-border-radius;
-      border-bottom-left-radius: $filter-border-radius;
-    }
-
-    &:last-child {
-      border-top-right-radius: $filter-border-radius;
-      border-bottom-right-radius: $filter-border-radius;
-    }
-  }
-
-  .#{$filter} + .#{$filter} {
-    margin-left: -$filter-border-width;
+  &.#{$filter}-disabled,
+  &:disabled {
+    opacity: $filter-disabled-opacity;
   }
 }
 
 .#{$filter}s--line {
   .#{$filter} {
-    &:hover,
-    &:active,
-    &.#{$filter}-active {
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: $filter-underline-height;
+      content: "";
+      background-color: $filter-active-color;
+      transition: width 0.2s ease;
+      transform: translateX(-50%);
+    }
 
-      color: inherit;
-      background-image: none;
-      outline: 0;
-      box-shadow: none;
+    &:not(:disabled):hover,
+    &:not(:disabled):active,
+    &:not(:disabled):focus,
+    &.#{$filter}-active {
       &::after {
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        display: block;
-        width: 29px;
-        height: 2px;
-        content: "";
-        background-color: $filter-active-color;
-        transform: translateX(-50%);
+        width: $filter-underline-width;
+      }
+    }
+
+    &.#{$filter}-disabled,
+    &:disabled {
+      &::after {
+        width: 0;
+      }
+    }
+  }
+}
+
+.#{$filter}s--group {
+  .#{$filter} {
+    padding: $filter-padding-y $filter-padding-x;
+    border: $filter-border-width solid $filter-border-color;
+
+    + .#{$filter} {
+      margin-left: 0;
+      border-left: none;
+    }
+
+    &:first-child {
+      border-radius: $filter-border-radius 0 0 $filter-border-radius;
+    }
+
+    &:last-child {
+      border-radius: 0 $filter-border-radius $filter-border-radius 0;
+    }
+  }
+}
+
+.#{$filter}s--pill {
+  .#{$filter} {
+    padding: $filter-padding-y $filter-padding-x;
+    border: $filter-border-width solid $filter-border-color;
+
+     + .#{$filter} {
+      margin-left: $filter-pill-gutter;
+    }
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active,
+    &:not(:disabled):focus,
+    &.#{$filter}-active {
+      border-color: $filter-active-color;
+    }
+
+    &.#{$filter}-disabled,
+    &:disabled {
+      &::after {
+        border-color: $filter-border-color;
       }
     }
   }
