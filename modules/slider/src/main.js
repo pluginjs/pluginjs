@@ -6,6 +6,7 @@ import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML, data } from '@pluginjs/dom'
+import { isString } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -26,6 +27,7 @@ import {
 import Arrows from '@pluginjs/arrows'
 import Swipeable from '@pluginjs/swipeable'
 import Card from './card'
+import Breakpoints from '@pluginjs/breakpoints'
 
 @themeable()
 @styleable(CLASSES)
@@ -67,6 +69,10 @@ class Slider extends Component {
       return
     }
 
+    if (this.options.breakpoint) {
+      this.initBreakpoints()
+    }
+
     this.data = this.options.data
     this.modules = []
     this.axis = this.options.vertical ? 'translateY' : 'translateX'
@@ -87,6 +93,41 @@ class Slider extends Component {
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  initBreakpoints() {
+    if (isString(this.options.breakpoint) && this.ensureBreakpoint()) {
+      Breakpoints.init()
+      const breakpoint = this.options.breakpoint
+      const that = this
+      if (Breakpoints.is(`${breakpoint}-`)) {
+        addClass(this.classes.RESPONSIVE, this.element)
+      }
+      Breakpoints.to(breakpoint, {
+        enter() {
+          addClass(that.classes.RESPONSIVE, that.element)
+        },
+        leave() {
+          removeClass(that.classes.RESPONSIVE, that.element)
+        }
+      })
+    }
+  }
+
+  ensureBreakpoint() {
+    const breakpoints = {
+      xs: 'xs',
+      sm: 'sm',
+      md: 'md',
+      lg: 'lg',
+      xl: 'xl'
+    }
+
+    if (breakpoints[this.options.breakpoint]) {
+      return true
+    }
+
+    return false
   }
 
   generate() {

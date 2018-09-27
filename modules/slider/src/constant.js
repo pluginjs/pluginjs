@@ -31,7 +31,8 @@ const classes = {
   LOADING: '{namespace}-loading',
   ACTIVE: '{namespace}-active',
   VERTICAL: '{namespace}-vertical',
-  DISABLED: '{namespace}-disabled'
+  DISABLED: '{namespace}-disabled',
+  RESPONSIVE: '{namespace}-responsive'
 }
 
 const methods = ['enable', 'disable', 'destroy', 'prev', 'next']
@@ -51,6 +52,7 @@ const defaults = {
   prevIcon: 'pj-icon pj-icon-chevron-left',
   nextIcon: 'pj-icon pj-icon-chevron-right',
   loaderConfig: null,
+  breakpoint: null, // xs, sm, md, lg, xl
   templates: {
     box() {
       return '<div class="{classes.BOX}"></div>'
