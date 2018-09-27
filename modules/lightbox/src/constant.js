@@ -34,7 +34,8 @@ const classes = {
   AUTOPLAY: '{namespace}-autoplay',
   SHOW: '{namespace}-show',
   ACTIVE: '{namespace}-active',
-  DISABLED: '{namespace}-disabled'
+  DISABLED: '{namespace}-disabled',
+  RESPONSIVE: '{namespace}-responsive'
 }
 
 const methods = ['enable', 'disable', 'destroy', 'next', 'prev', 'go']
@@ -128,6 +129,7 @@ const defaults = {
   keyboard: true,
   duration: 300,
   playCycle: 4000,
+  breakpoint: null, // xs, sm, md, lg, xl
   loaderConfig: {
     color: null
   }

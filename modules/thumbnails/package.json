@@ -26,12 +26,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/breakpoints": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
     "@pluginjs/template": "*",

@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@pluginjs/arrows": "*",
+    "@pluginjs/breakpoints": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
@@ -34,6 +35,7 @@
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/icons": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/loader": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/swipeable": "*",
