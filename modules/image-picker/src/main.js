@@ -150,8 +150,8 @@ class ImagePicker extends Component {
 
     this.$empty = query(`.${this.classes.EMPTY}`, this.$wrap)
     this.$image = query(`.${this.classes.FILLIMAGE}`, this.$wrap)
-    this.$remove = query(`.${this.classes.FILLREMOVE}`, this.$wrap)
-    this.$reselect = query(`.${this.classes.FILLRESELECT}`, this.$wrap)
+    this.$remove = query(`.${this.classes.REMOVE}`, this.$wrap)
+    this.$reselect = query(`.${this.classes.RESELECT}`, this.$wrap)
 
     // init popDialog
     this.pop = PopDialog.of(this.$remove, {

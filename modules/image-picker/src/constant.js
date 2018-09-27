@@ -19,10 +19,10 @@ export const classes = {
   DISABLED: '{namespace}-disabled',
   EMPTY: '{namespace}-empty',
   FILL: '{namespace}-fill',
-  FILLCHANGE: '{namespace}-fill-change',
+  TRIGGERACTION: '{namespace}-trigger-action',
   FILLIMAGE: '{namespace}-fill-image',
-  FILLREMOVE: '{namespace}-fill-remove',
-  FILLRESELECT: '{namespace}-fill-reselect',
+  REMOVE: '{namespace}-remove',
+  RESELECT: '{namespace}-reselect',
   INPUT: '{namespace}-input',
   FADEIN: '{namespace}--fadeIn',
   FADEOUT: '{namespace}--fadeOut'
@@ -51,10 +51,10 @@ export const defaults = {
       '</div>' +
       '<div class="{classes.FILL}">' +
       '<img class="{classes.FILLIMAGE}" src="">' +
-      '<div class="{classes.FILLCHANGE}">' +
-      '<i class="{classes.FILLRESELECT} pj-icon pj-icon-repeat"></i>' +
-      '<i class="{classes.FILLREMOVE} pj-icon pj-icon-trash"></i>' +
       '</div>' +
+      '<div class="{classes.TRIGGERACTION}">' +
+      '<i class="{classes.RESELECT} pj-icon pj-icon-repeat"></i>' +
+      '<i class="{classes.REMOVE} pj-icon pj-icon-trash"></i>' +
       '</div>' +
       '</div>'
     )

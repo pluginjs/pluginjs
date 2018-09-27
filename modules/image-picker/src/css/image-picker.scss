@@ -88,11 +88,11 @@ input.#{$imagePicker}-input {
     border-radius: $imagePicker-border-radius;
   }
 
-  &-fill-change {
+  &-trigger-action {
     position: absolute;
     top: 0;
     left: 0;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -105,8 +105,8 @@ input.#{$imagePicker}-input {
     border-radius: $imagePicker-border-radius;
   }
 
-  &-fill-remove,
-  &-fill-reselect {
+  &-remove,
+  &-reselect {
     margin: 0 $imagePicker-sizer; //0 10px
 
     &:hover {
@@ -156,7 +156,8 @@ input.#{$imagePicker}-input {
       display: none;
     }
 
-    &-fill-change {
+    &-trigger-action {
+      display: flex;
       opacity: 0;
     }
 
@@ -167,7 +168,7 @@ input.#{$imagePicker}-input {
 
   &.#{$imagePicker}-hover {
     .#{$imagePicker} {
-      &-fill-change {
+      &-trigger-action {
         background: $imagePicker-change-opacity;
         opacity: 1;
         transition: all 300ms ease-in-out;
@@ -185,17 +186,17 @@ input.#{$imagePicker}-input {
     cursor: not-allowed;
     background-color: $disabled-bg;
     border-color: $disabled-border;
-
-    &-reselect,
-    &-remove {
-      cursor: not-allowed;
-    }
   }
   .#{$imagePicker}-empty,
-  .#{$imagePicker}-fill-change {
+  .#{$imagePicker}-trigger-action {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
     border-color: $disabled-border;
+
+    .#{$imagePicker}-reselect,
+    .#{$imagePicker}-remove {
+      cursor: not-allowed;
+    }
   }
 }
