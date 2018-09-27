@@ -198,7 +198,7 @@ class Notice extends GlobalComponent {
   }
 
   initBreakpoints() {
-    if (isString(this.options.breakpoint)) {
+    if (isString(this.options.breakpoint) && this.ensureBreakpoint()) {
       Breakpoints.init()
       const breakpoint = this.options.breakpoint
       const that = this
@@ -214,6 +214,22 @@ class Notice extends GlobalComponent {
         }
       })
     }
+  }
+
+  ensureBreakpoint() {
+    const breakpoints = {
+      xs: 'xs',
+      sm: 'sm',
+      md: 'md',
+      lg: 'lg',
+      xl: 'xl'
+    }
+
+    if (breakpoints[this.options.breakpoint]) {
+      return true
+    }
+
+    return false
   }
 
   setContent(content) {

@@ -76,5 +76,5 @@ export const defaults = {
   timeout: 100000,
   fixedWidth: false,
   layout: 'top', // 'bottom'
-  breakpoint: 'lg' // 'xs'[0, 575], 'sm'[0, 767], 'md'[0, 991], 'lg'[0, 1199], 'xl'[0, Infinity]
+  breakpoint: 'lg' // xs, sm, md, lg, xl
 }
