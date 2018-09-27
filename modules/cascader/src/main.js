@@ -384,7 +384,6 @@ class Cascader extends Component {
       }
 
       this.value = value
-
       if (this.value.length > 0) {
         const labels = this.selected.map(option => {
           return this.options.optionLabel(option)
@@ -418,7 +417,6 @@ class Cascader extends Component {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
-
     return this.set(this.options.parse.call(this, value))
   }
 
