@@ -16,6 +16,7 @@ export const classes = deepMerge(Select.classes, {
   CHIPUNSELECT: '{namespace}-chip-unselect',
   REACHMAX: '{namespace}-reach-max',
   REACHMAXTEXT: '{namespace}-reach-max-text',
+  SELECTED: '{namespace}-selected',
   HIDESELECTED: '{namespace}-hide-selected',
   ALLSELECTED: '{namespace}-all-selected'
 })

@@ -16,11 +16,16 @@ $multiSelect-chip-unselect-font: $pj-icon-font-family !default;
     display: inline-flex;
   }
 
+  &.#{$select}-selected {
+    .#{$select}-trigger{
+      height: auto;
+    }
+  }
+
   .#{$select}-trigger{
     align-content: flex-start;
     display: flex;
     flex-wrap: wrap;
-    height: auto;
   }
 
   &.#{$select}-all-selected {

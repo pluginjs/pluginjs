@@ -27,10 +27,12 @@ $multiSelect-reach-max-text-padding: 11px 8px;
 $multiSelect-reach-max-text-color: $gray-darker;
 
 .#{$multiSelect} {
-  .#{$select}-trigger {
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
+  &.#{$select}-selected {
+    .#{$select}-trigger{
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+    }
   }
 
   .#{$select}-option.#{$dropdown}-active {
