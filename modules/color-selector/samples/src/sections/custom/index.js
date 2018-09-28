@@ -8,6 +8,6 @@ ColorSelector.of(element, {
     saturation: true,
     hue: true,
     alpha: false,
-    hex: false
+    hex: true
   }
 })

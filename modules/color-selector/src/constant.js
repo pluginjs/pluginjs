@@ -10,9 +10,6 @@ export const events = {
   DESTROY: 'destroy',
   CHANGE: 'change',
   OPENPANEL: 'openPanel',
-  // SATURATIONMOVE: 'saturationMove',
-  // ALPHAMOVE: 'alphaMove',
-  // HUEMOVE: 'hueMove',
   SWITCHMODULE: 'switchModule'
 }
 
