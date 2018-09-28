@@ -30,6 +30,18 @@ $input: pj-input !default;
     box-shadow: none;
   }
 
+  &-sm {
+    padding: $input-padding-y-sm $input-padding-x-sm;
+    font-size: $input-font-size-sm;
+    line-height: $input-line-height-sm;
+  }
+
+  &-lg {
+    padding: $input-padding-y-lg $input-padding-x-lg;
+    font-size: $input-font-size-lg;
+    line-height: $input-line-height-lg;
+  }
+
   &:disabled {
     color: $input-disabled-color;
     cursor: not-allowed;
@@ -71,5 +83,7 @@ $input: pj-input !default;
     font-size: $input-font-size;
     line-height: $input-line-height;
     border: $input-border-width $input-border-style $input-border-color;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
   }
 }

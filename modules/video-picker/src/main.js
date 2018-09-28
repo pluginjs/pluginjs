@@ -147,7 +147,7 @@ class VideoPicker extends Component {
         this.classes.FIELDTITLE
       }'>${this.translate('videoURL')}</span><div class='${
         this.classes.VIDEOURL
-      }'><input type='text' class='pj-input' /><i class='pj-icon pj-icon-close-mini'></i></div></div>`
+      }'><input type='text' class='pj-input' /><i class='pj-icon pj-icon-close'></i></div></div>`
     )
     this.$vidosource = query(`.${this.classes.SOURCE}`, this.$source)
     this.$videoUrl = query(`.${this.classes.VIDEOURL}`, this.$videoUrlContent)

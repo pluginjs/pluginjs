@@ -73,17 +73,16 @@ $datePicker-blocked-hover-color: $gray-dark; //#696969;
 $datePicker-inrange-bg-color: $gray-light;
 // ===========================
 
-&.#{$datePicker} {
+.#{$datePicker} {
   display: inline-flex;
   width: $datePicker-width;
   
   &-input,
-  &-icon,
+  .pj-input-group-addon,
   &-mobile-trigger {
     border-color: $datePicker-border-color;
     border-style: $datePicker-border-style;
     border-width: $datePicker-border-width;
-    border-radius: $datePicker-border-radius;
   }
 
   &-input,
@@ -91,28 +90,30 @@ $datePicker-inrange-bg-color: $gray-light;
     z-index: 1;
     width: $datePicker-input-width;
     overflow: hidden;
-    font-size: $datePicker-font-size;
-    color: $datePicker-input-color;
     text-overflow: ellipsis;
     white-space: nowrap;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
   }
 
   &-mobile-trigger {
     box-sizing: border-box;
     display: inline-block;
     padding: $datePicker-mobile-trigger-padding;
+    font-size: $datePicker-font-size;
+    color: $datePicker-input-color;
     background-color: $datePicker-mobile-trigger-bg-color;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
-  &-icon {
+  .pj-input-group-addon {
     box-sizing: border-box;
     text-align: center;
     border-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
 
+  &-icon {
     &::after {
       @include icon();
       font-family:$datePickerr-font;

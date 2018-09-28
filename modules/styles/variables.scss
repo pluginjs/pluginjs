@@ -164,14 +164,27 @@ $cursor-disabled: not-allowed !default;
 $transition-duration: 150ms !default;
 
 // 9. disabled bg color
-$disabled-bg: $color-white;
-$disabled-border: $border-color;
-$disabled-color: $gray;
+$disabled-bg: $color-white !default;
+$disabled-border: $border-color !default;
+$disabled-color: $gray !default;
+
+// 10. Input Btn Size
+$input-btn-padding-y: 0.55 * $sizer !default;
+$input-btn-line-height: $line-height-base !default;
+$input-btn-font-size: $font-size-base !default;
+
+$input-btn-padding-y-sm: 0.3 * $sizer !default;
+$input-btn-line-height-sm: $line-height-sm !default;
+$input-btn-font-size-sm: $font-size-sm !default;
+
+$input-btn-padding-y-lg: 0.85 * $sizer !default;
+$input-btn-line-height-lg: $line-height-lg !default;
+$input-btn-font-size-lg: $font-size-lg !default;
 
 //  10. Input
 $input-sizer: $sizer !default;
 
-$input-font-size: $font-size-base;
+$input-font-size: $input-btn-font-size;
 $input-color: $text-color !default;
 
 $input-border-color: $border-color !default;
@@ -181,9 +194,19 @@ $input-border-radius: $border-radius-lg !default;
 $input-border-color-hover: $border-color-hover !default;
 $input-border-color-focus: $border-color-active !default;
 
-$input-padding-x: 1.2 * $input-sizer !default; //12px
-$input-padding-y: 0.5 * $input-sizer !default; //4px
-$input-line-height: 1.6 * $input-sizer !default; //16px
+$input-padding-x: 1 * $input-sizer !default;
+$input-padding-y: $input-btn-padding-y !default;
+$input-line-height: $input-btn-line-height !default;
+
+$input-padding-y-sm: $input-btn-padding-y-sm !default;
+$input-padding-x-sm: 0.6 * $input-sizer !default;
+$input-line-height-sm: $input-btn-line-height-sm !default;
+$input-font-size-sm: $input-btn-font-size-sm !default;
+
+$input-padding-y-lg: $input-btn-padding-y-lg !default;
+$input-padding-x-lg: 1.2 * $input-sizer !default;
+$input-line-height-lg: $input-btn-line-height-lg !default;
+$input-font-size-lg: $input-btn-font-size-lg !default;
 
 $input-group-addon-color: $input-color !default;
 $input-group-addon-padding-x: 0.8 * $input-sizer !default;
@@ -194,6 +217,45 @@ $input-placeholder-color: $gray-dark !default;
 $input-disabled-bg: $disabled-bg;
 $input-disabled-border: $disabled-border;
 $input-disabled-color: $disabled-color;
+
+// 11. Btn
+$button-sizer: $sizer;
+
+$btn-font-size: $input-btn-font-size !default;
+$btn-padding-y: $input-btn-padding-y !default;
+$btn-padding-x: 2.4 * $button-sizer !default;
+$btn-line-height: $input-btn-line-height !default;
+
+
+$btn-padding-y-sm: $input-btn-padding-y-sm !default;
+$btn-padding-x-sm: 1.6 * $button-sizer !default;
+$btn-line-height-sm: $input-btn-line-height-sm !default;
+$btn-font-size-sm: $input-btn-font-size-sm !default;
+
+$btn-padding-y-lg: $input-btn-padding-y-lg !default;
+$btn-padding-x-lg: 2.4 * $button-sizer !default;
+$btn-line-height-lg: $input-btn-line-height-lg !default;
+$btn-font-size-lg: $input-btn-font-size-lg !default;
+
+
+$btn-border-radius: $border-radius-sm !default;
+$btn-bg-color: $color-white !default;
+$btn-border-color: $border-color !default;
+$btn-text-color: $color-primary-black !default;
+
+$btn-hover-text-color: $btn-color-primary !default;
+$btn-hover-bg-color: $color-white !default;
+$btn-hover-border-color: $btn-color-primary !default;
+
+$btn-active-text-color: $btn-color-primary !default;
+$btn-active-bg-color:  $color-white !default;
+$btn-active-border-color: $btn-color-primary !default;
+
+$btn-link-default-color: $btn-color-primary !default;
+
+$btn-disabled-color: $border-color !default;
+$btn-disabled-bg-color: $color-white !default;
+$btn-disabled-border-color: $border-color !default;
 
 // mixins
 
