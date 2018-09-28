@@ -31,7 +31,14 @@ export const classes = {
   PANECONTENTINNER: '{namespace}-pane-content-inner'
 }
 
-export const methods = ['open', 'close']
+export const methods = [
+  'toggle',
+  'open',
+  'close',
+  'enable',
+  'disable',
+  'destroy'
+]
 
 export const defaults = {
   theme: null,
@@ -47,10 +54,7 @@ export const defaults = {
   resizeReference: 'window',
   responsiveEffect: 'easeInQuad',
   dropdownLabelTpl: '<a href="javascript:void(0)"></a>',
-  responsiveDuration: 300,
-
-  // callback
-  onReady: null
+  responsiveDuration: 300
 }
 
 export const dependencies = ['Hammer', 'anime']

@@ -152,7 +152,7 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{bgSize}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
-        '<input type="text" class="{classes.SELECTTRIGGER}" />' +
+        '<input type="text" class="{classes.SELECTTRIGGER} pj-input" />' +
         '</div>' +
         '</div>'
       )
@@ -167,7 +167,7 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{bgAttach}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
-        '<input class="{classes.SELECTTRIGGER}"></div>' +
+        '<input class="{classes.SELECTTRIGGER} pj-input"></div>' +
         '</div>' +
         '</div>'
       )
