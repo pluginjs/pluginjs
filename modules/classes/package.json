@@ -32,8 +32,7 @@
     "@pluginjs/utils": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-0",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/core": "^7.1.0",
     "@pluginjs/cli": "*",
     "babel-jest": "*",
     "jest": "*",
