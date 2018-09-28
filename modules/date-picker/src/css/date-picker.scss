@@ -9,11 +9,14 @@ $datePicker: "pj-datePicker";
 $datePicker-width: 200px;
 
 $datePicker-font-size: $font-size-base;
+$datePicker-font: $pj-icon-font-family;
 
-$datePicker-icon: $pj-icon-calendar;
-$datePickerr-font: $pj-icon-font-family;
+$datePicker-hover-color: #999;
+$datePicker-hover-bg-color: $gray-light;
 
-$datePicker-mobile-trigger-padding: 7px 12px;
+$datePicker-color: $gray-darker;
+
+$datePicker-mobile-trigger-padding: 5.5px 12px;
 $datePicker-mobile-trigger-bg-color: $color-white;
 
 $datePicker-divider-hover-color: $gray;
@@ -22,63 +25,58 @@ $datePicker-active-color: $color-white;
 $datePicker-active-bg-color: $color-primary-active;
 $datePicker-active-divider-color: $color-white;
 
-$datePicker-content-padding: 10px;
+$datePicker-content-width: 276px;
+$datePicker-content-height: 272px;
+$datePicker-content-padding: 24px;
 $datePicker-content-bg-color: $color-white;
 
 $datePicker-header-color: $gray-darkest;
+$datePicker-header-height: 16%;
+$datePicker-header-font-size: $font-size-lg;
+$datePicker-header-border: $gray-light;
+$datePicker-head-font-size: $font-size-xs;
+$datePicker-head-color: #ccc;
 
 $datePicker-row-spacer: 4px;
 
 $datePicker-years-size: 56px;
 $datePicker-years-radius: 8px;
 
-$datePicker-select-inrange-bg-color: $color-white;
-
 $datePicker-cover-bg-color: rgba($color-black, 0.5);
+
 $datePicker-disabled-color: $disabled-color;
 $datePicker-disabled-border-color: $disabled-color;
 $datePicker-disabled-bg-color: $disabled-bg;
-// color vars
+
 $datePicker-inrange-color: #fff;
-$datePicker-hover-color: #999;
-$datePicker-hover-bg-color: $gray-light;
-$datePicker-hover-dark-color: $gray-lighter;
-$datePicker-color: $gray-darker;
+$datePicker-inrange-bg-color: $gray-light;
+
 $datePicker-input-color: $text-color;
 $datePicker-input-width: 165px;
-// border vars
+
 $datePicker-border-width: 1px;
 $datePicker-border-color: $gray;
 $datePicker-border-style: solid;
 $datePicker-border-radius: $border-radius-base;
-// shadow vars
+
 $datePicker-box-shadow: $box-shadow-6;
-// icon vars
-$datePicker-icon-color: $gray-dark; //#ccd1d9;
-// head vars
-$datePicker-head-color: #ccc;
 
 $datePicker-other-month-color: #ccc;
 
 $datePicker-span-bg-size: 30px;
 $datePicker-span-focus-color: $color-primary;
-// font-size vars
-$datePicker-header-font-size: $font-size-lg;
-$datePicker-head-font-size: $font-size-xs;
+
 $datePicker-body-font-size: $font-size-xs;
 
-$datePicker-header-border: $gray-light; //#ebebeb;
-$datePicker-blocked-hover-color: $gray-dark; //#696969;
 
-$datePicker-inrange-bg-color: $gray-light;
 // ===========================
 
 .#{$datePicker} {
-  display: inline-flex;
   width: $datePicker-width;
+  font-family: $datePicker-font;
   
   &-input,
-  .pj-input-group-addon,
+  &-icon,
   &-mobile-trigger {
     border-color: $datePicker-border-color;
     border-style: $datePicker-border-style;
@@ -87,16 +85,10 @@ $datePicker-inrange-bg-color: $gray-light;
 
   &-input,
   &-mobile-trigger {
-    z-index: 1;
     width: $datePicker-input-width;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   &-mobile-trigger {
-    box-sizing: border-box;
-    display: inline-block;
     padding: $datePicker-mobile-trigger-padding;
     font-size: $datePicker-font-size;
     color: $datePicker-input-color;
@@ -105,20 +97,10 @@ $datePicker-inrange-bg-color: $gray-light;
     border-bottom-right-radius: 0;
   }
 
-  .pj-input-group-addon {
-    box-sizing: border-box;
-    text-align: center;
+  &-icon {
     border-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-  }
-
-  &-icon {
-    &::after {
-      @include icon();
-      font-family:$datePickerr-font;
-      content: icon-content($datePicker-icon);
-    }
   }
 
   &:hover {
@@ -150,20 +132,6 @@ $datePicker-inrange-bg-color: $gray-light;
       border-right-color: $datePicker-active-divider-color;
     }
 
-    &:hover {
-      .#{$datePicker}-icon,
-      .#{$datePicker}-input,
-      .#{$datePicker}-mobile-trigger { 
-        background: $datePicker-active-bg-color;
-        border-color: $datePicker-active-bg-color;
-      }
-
-      .#{$datePicker}-input,
-      .#{$datePicker}-mobile-trigger { 
-        border-right-color: $datePicker-active-divider-color;
-      }
-    }
-
     /* stylelint-disable */
     .#{$datePicker}-input {
       &::-webkit-input-placeholder{
@@ -181,36 +149,22 @@ $datePicker-inrange-bg-color: $gray-light;
     }
     /* stylelint-enable */
 
-    &.#{$datePicker}-startDay,
-    &.#{$datePicker}-endDay {
-      &::before {
-        position: absolute;
-        left: 0;
-        z-index: -1;
-        display: block;
-        width: 50%;
-        height: 100%;
-        content: "";
-        background-color: $datePicker-inrange-color;
-      }
-    }
-
-    &.#{$datePicker}-endDay::before {
-      right: 0;
-      left: auto;
-    }
-
     &.#{$datePicker}-startDay.#{$datePicker}-select-last-in-month::before,
     &.#{$datePicker}-endDay.#{$datePicker}-select-first-in-month::before {
       display: none;
     }
   }
 
-  &-content {
+  &-wrap {
     padding: $datePicker-content-padding;
     color: $datePicker-color;
     background: $datePicker-content-bg-color;
     box-shadow: $datePicker-box-shadow;
+  }
+
+  &-content {
+    width: $datePicker-content-width;
+    height: $datePicker-content-height;
 
     &:first-of-type {
       border-top-left-radius: $datePicker-border-radius;
@@ -227,24 +181,15 @@ $datePicker-inrange-bg-color: $gray-light;
     }
 
     span {
-      position: relative;
-      z-index: 0;
-      
       &::after {
-        position: absolute;
-        top: 50%;
-        z-index: -1;
-        display: block;
         width: $datePicker-span-bg-size;
         height: $datePicker-span-bg-size;
-        content: "";
-        border-radius: 100%;
-        transform: translateY(-50%);
       }
     }
   }
 
   &-header {
+    height: $datePicker-header-height;
     font-size: $datePicker-header-font-size;
     font-weight: 500;
     color: $datePicker-header-color;
@@ -253,6 +198,7 @@ $datePicker-inrange-bg-color: $gray-light;
   }
 
   &-head {
+    margin-top: 8px;
     font-size: $datePicker-head-font-size;
     color: $datePicker-head-color;
   }
@@ -262,34 +208,56 @@ $datePicker-inrange-bg-color: $gray-light;
 
     .#{$datePicker}-inRange {
       background-color: $datePicker-inrange-bg-color;
-    }
 
-    .#{$datePicker}-inRange:first-of-type {
-      border-top-left-radius: 50%;
-      border-bottom-left-radius: 50%;
-    }
-    .#{$datePicker}-inRange:last-of-type {
-      border-top-right-radius: 50%;
-      border-bottom-right-radius: 50%;
-    }
-
-    .#{$datePicker}-otherMonth.#{$datePicker}-startDay {
-      color: $datePicker-other-month-color;
-      
-      &::before {
-        width: 100%;
-        border-top-left-radius: 50%;
-        border-bottom-left-radius: 50%;
+      &.#{$datePicker}-endDay,
+      &.#{$datePicker}-startDay {
+        &::before {
+          position: absolute;
+          left: 0;
+          z-index: -1;
+          width: 50%;
+          height: 100%;
+          content: "";
+          background: #fff;
+        }
       }
-      
-      &::after {
-        width: 100%;
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
+
+      &.#{$datePicker}-endDay {
+        &::before {
+          right: 0;
+          left: auto;
+        }
+      }
+
+      &.#{$datePicker}-select-first-in-month,
+      &.#{$datePicker}-select-last-in-month {
+        &::before {
+          width:100%;
+        }
+      }
+
+      &:first-of-type,
+      &.#{$datePicker}-select-first-in-month {
+        border-top-left-radius: 1000px;
+        border-bottom-left-radius: 1000px;
+      }
+
+      &:last-of-type,
+      &.#{$datePicker}-select-last-in-month {
+        border-top-right-radius: 1000px;
+        border-bottom-right-radius: 1000px;
+      }
+    }
+
+    .#{$datePicker}-otherMonth,
+    .#{$datePicker}-untouchable {
+      color: $datePicker-other-month-color;
+
+      &:hover::after {
+        background-color: transparent;
       }
     }
   }
-  
 
   &-body,
   &-months,
@@ -298,49 +266,30 @@ $datePicker-inrange-bg-color: $gray-light;
       &:hover::after {
         background-color: $datePicker-hover-bg-color;
       }
+    }
 
-      &.#{$datePicker}-active.#{$datePicker}-focus {
-        color: $datePicker-active-color;
+    .#{$datePicker}-active {
+      color: $datePicker-active-color;
+
+      &::after {
+        background-color: $datePicker-active-bg-color !important;
       }
+    }
+
+    .#{$datePicker}-otherYear {
+      color: $gray-light;
+      pointer-events: none;
+
+      &:hover::after {
+        background: transparent;
+      }
+    }
+
+    .#{$datePicker}-focus {
+      color: $datePicker-span-focus-color;
 
       &.#{$datePicker}-active {
         color: $datePicker-active-color;
-      }
-
-      &.#{$datePicker}-active::after {
-        background-color: $datePicker-active-bg-color;
-      }
-
-      &.#{$datePicker}-otherMonth,
-      &.#{$datePicker}-untouchable {
-        color: $datePicker-other-month-color;
-
-        &:hover {
-          background: inherit;
-        }
-      }
-
-      &.#{$datePicker}-otherYear {
-        color: $gray-light;
-        pointer-events: none;
-
-        &:hover::after {
-          background: transparent;
-        }
-      }
-
-      &.#{$datePicker}-inRange:first-of-type {
-        border-top-left-radius: 100%;
-        border-bottom-left-radius: 100%;
-      }
-
-      &.#{$datePicker}-inRange:last-of-type {
-        border-top-right-radius: 100%;
-        border-bottom-right-radius: 100%;
-      }
-
-      &.#{$datePicker}-focus {
-        color: $datePicker-span-focus-color;
       }
     }
   }
@@ -348,14 +297,6 @@ $datePicker-inrange-bg-color: $gray-light;
   &-days {
     .#{$datePicker}-row {
       margin-bottom: $datePicker-row-spacer;
-
-      .#{$datePicker}-inRange:last-of-type.#{$datePicker}-startDay,
-      .#{$datePicker}-inRange:last-of-type.#{$datePicker}-select-first-in-month {
-        &::before {
-          border-top-right-radius: 50%;
-          border-bottom-right-radius: 50%;
-        }
-      }
     }
   }
 
@@ -372,9 +313,6 @@ $datePicker-inrange-bg-color: $gray-light;
 
   &-select-first-in-month,
   &-select-last-in-month {
-    &.#{$datePicker}-inRange {
-      background-color: $datePicker-select-inrange-bg-color;
-    }
     &::before {
       position: absolute;
       top: 0;
@@ -385,16 +323,6 @@ $datePicker-inrange-bg-color: $gray-light;
       height: 100%;
       content: "";
     }
-  }
-
-  &-select-first-in-month::before {
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-  }
-
-  &-select-last-in-month::before {
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
   }
 
   &-cover {

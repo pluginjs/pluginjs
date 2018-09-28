@@ -4,6 +4,8 @@
 // =====================
 $videoPicker: "pj-videoPicker" !default;
 
+$videoPicker-bg-color: $color-white;
+
 $videoPicker-sizer: $sizer !default;
 $dropdown: "pj-dropdown" !default;
 $editPanel: "pj-editPanel" !default;
@@ -13,7 +15,7 @@ $videoPicker-border-color: $border-color !default;
 $videoPicker-border: 1px solid $videoPicker-border-color !default;
 $videoPicker-border-radius: $border-radius-base !default;
 $videoPicker-font-size: $font-size-base !default;
-$videoPicker-color: $gray-dark !default;
+$videoPicker-color: #999 !default;
 $videoPicker-active-color: $color-primary !default;
 // component
 $component-width: 16 * $videoPicker-sizer !default; //160px
@@ -23,15 +25,11 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
 
 // Core
 // =====================
-.#{$dropdown} {
-    width: 16.2 * $videoPicker-sizer;
-    
-  &-trigger {
-    margin-left: 1.0 * $videoPicker-sizer; //12px 
-  }
-}
 
 .#{$videoPicker} {
+  width: 160px;
+  height: 90px;
+
   &-open-disabled {
     pointer-events: none;
   }
@@ -65,10 +63,11 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
   &-input {
     display: none;
   }
+
   &-trigger {
     position: relative;
-    height: 90px;
   }
+
   &-empty {
     box-sizing: border-box;
     display: flex;
@@ -78,19 +77,27 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     width: 160px;
     height: 90px;
     color: $videoPicker-color;
+    background: $videoPicker-bg-color;
     border: 1px dashed $videoPicker-border-color;
+    
     i {
+      margin-bottom: 4px;
       font-size: 16px;
-      transform: rotate(90deg);
     }
 
     &:hover {
-      background-color: $color-white;
-      i {
         color: $color-primary-black;
-      }
     }
   }
+
+  &-dropdown {
+    width: 300px;
+    padding: 20px;
+    background-color: $color-white;
+    border: 1px solid $border-color;
+    border-radius: 2px;
+  }
+
   &-fill {
     position: relative;
     box-sizing: border-box;
@@ -165,15 +172,6 @@ $panel-height: 46.8 * $videoPicker-sizer !default; //468px
     }
   }
 
-  //dropdown
-  &-dropdown {
-    box-sizing: border-box;
-    width: 300px;
-    padding: 20px;
-    background-color: $color-white;
-    border: 1px solid $border-color;
-    border-radius: 2px;
-  }
   &-panel {
     // height: $panel-height;
     .#{$editPanel} {

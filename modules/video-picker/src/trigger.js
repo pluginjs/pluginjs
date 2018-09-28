@@ -29,7 +29,7 @@ export default class Trigger {
     this.$empty = parseHTML(
       template.compile(this.options.templates.empty())({
         classes: this.classes,
-        icon: 'pj-icon pj-icon-chevron-circle-up',
+        icon: 'pj-icon pj-icon-play-circle',
         text: this.instance.translate('inputPlaceholder')
       })
     )
