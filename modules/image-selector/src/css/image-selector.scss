@@ -22,8 +22,8 @@ $imageSelector-font-size: $font-size-base;
 $imageSelector-change-bg: $color-opacity;
 $imageSelector-change-opacity: 1;
 // dropdown
-$imageSelector-dropdown-width: 298px;
-$imageSelector-dropdown-height: 376px;
+$imageSelector-dropdown-width: 274px;
+$imageSelector-dropdown-height: 333px;
 $imageSelector-dropdown-padding: 24px;
 // item
 $imageSelector-item-width: 100px;
@@ -34,10 +34,9 @@ $imageSelector-item-bg-color: $gray-lighter;
 // Styles
 // =====================
 .#{$imageSelector} {
-  width: $imageSelector-width;
-  height: $imageSelector-height;
-
   &-trigger {
+    width: $imageSelector-width;
+    height: $imageSelector-height;
     font-size: $imageSelector-font-size;
     color: $imageSelector-color;
     background-color: $imageSelector-bg;
@@ -72,6 +71,8 @@ $imageSelector-item-bg-color: $gray-lighter;
     width: $imageSelector-dropdown-width;
     height: $imageSelector-dropdown-height;
     padding: $imageSelector-dropdown-padding;
+    padding-right: $imageSelector-dropdown-padding - $imageSelector-item-margin;
+    padding-left: $imageSelector-dropdown-padding - $imageSelector-item-margin;
     font-size: $imageSelector-font-size;
     border: $imageSelector-border;
     border-radius: $imageSelector-border-radius;
@@ -81,7 +82,9 @@ $imageSelector-item-bg-color: $gray-lighter;
     width: $imageSelector-item-width;
     height: $imageSelector-item-height;
     margin: $imageSelector-item-margin;
+    margin-top: 0;
     font-size: $font-size-base;
+    background-color: $imageSelector-bg;
     background-repeat: no-repeat;
     background-position: top;
 
@@ -90,19 +93,19 @@ $imageSelector-item-bg-color: $gray-lighter;
       background-color: $imageSelector-item-bg-color;
       border: $imageSelector-border;
     }
-  }
 
-  .#{$imageSelector}-active {
-    color: $imageSelector-color !important;
-    background-color: transparent !important;
-    border: $imageSelector-border-width $imageSelector-border-style $imageSelector-active-color;
-    
-    &:hover {
+    &.#{$imageSelector}-active {
+      color: $imageSelector-color !important;
+      background-color: transparent !important;
       border: $imageSelector-border-width $imageSelector-border-style $imageSelector-active-color;
-    }
-
-    &:focus {
-      outline: none;
+      
+      &:hover {
+        border: $imageSelector-border-width $imageSelector-border-style $imageSelector-active-color;
+      }
+  
+      &:focus {
+        outline: none;
+      }
     }
   }
 }
