@@ -16,18 +16,6 @@ const btnColor = {
     btn2: {
       title: 'Success',
       class: 'pj-btn pj-btn-success'
-    },
-    btn3: {
-      title: 'Info',
-      class: 'pj-btn pj-btn-info'
-    },
-    btn4: {
-      title: 'Danger',
-      class: 'pj-btn pj-btn-danger'
-    },
-    btn5: {
-      title: 'Warning',
-      class: 'pj-btn pj-btn-warning'
     }
   }
 }

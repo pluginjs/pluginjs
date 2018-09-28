@@ -8,3 +8,10 @@ query('.theme-sm', root).addEventListener('click', () => {
     content: 'hello world'
   })
 })
+
+query('.theme-lg', root).addEventListener('click', () => {
+  Modal.open({
+    theme: 'lg',
+    content: 'hello world'
+  })
+})

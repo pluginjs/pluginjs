@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Modal from '@pluginjs/modal'
 
-const root = query('#close-destroy-automate')
+const root = query('#auto-destroy')
 let instance = null
 query('.autoDestroy_init', root).addEventListener('click', () => {
   instance = Modal.init({

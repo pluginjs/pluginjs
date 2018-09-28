@@ -4,7 +4,6 @@ import Modal from '@pluginjs/modal'
 const root = query('#content-align')
 const alignContent = {
   content: 'this is a modal',
-  buttonAlignment: 'center',
   contentAlignment: 'center',
   close: false,
   buttons: {

@@ -1,243 +1,187 @@
 @import "@pluginjs/styles/variables.scss";
 @import "modal.core";
+
 // Vars
 // =====================
 $modal-font-family: $font-family-base;
-$modal-width: 392px;
-$modal-sm-width: 286px;
 $modal-font-size: $font-size-sm;
-$modal-bg: $color-white;
-$modal-line-height: 22px;
+
+$modal-width: 392px;
+$modal-padding-y: 24px;
+$modal-padding-x: 32px;
 $modal-border-radius: $border-radius-base;
 
-$modal-body-margin-bottom: 3px;
-$modal-body-color: $gray-darker;
-$modal-body-maxHeight: 50vh;
+$modal-color: $gray-darker;
+$modal-bg: $color-white;
+$modal-boxShadow: $box-shadow-7;
 
-$modal-title-font-size: $font-size-lg;
-$modal-title-color: $gray-darkest;
-$modal-title-icon-margin-right: 14px;
-$modal-title-icon-font-size: 24px;
-$modal-title-icon-padding: 10px;
-$modal-title-margin-bottom: 3px;
-$modal-title-line-height: 24px;
+$modal-overlay-bg: rgba($color-black, 0.4);
 
-$modal-icon-title-font-size: 20px;
-$modal-icon-title-margin-bottom: 10px;
-
-$modal-container-bg: $modal-bg;
-$modal-container-padding: 28px 30px 24px;
-$modal-container-boxShadow: 0 10px 35px 0 rgba($color-black, 0.1);
-$modal-confirm-buttons-margin: 24px;
-$modal-confirm-button-margin: 9.8px;
-
-$modal-btn-hover-color: $color-primary;
-$modal-btn-height: 32px;
-$modal-btn-padding-horizontal: 15px;
-$modal-btn-padding-vertical: 8px;
-$modal-btn-padding: $modal-btn-padding-vertical $modal-btn-padding-horizontal;
-
-$modal-close-padding: 10px;
+$modal-close-margin: 10px;
+$modal-close-padding: 6px;
 $modal-close-font-Size: $font-size-sm;
 $modal-close-color: $gray-dark;
+$modal-close-hover-color: $gray-darker;
 
-$modal-duration: 0.3s;
-$modal-timing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
+$modal-title-gutter: 12px;
+$modal-title-font-size: $font-size-lg;
+$modal-title-font-weight: 500;
+$modal-title-line-height: 1em;
+$modal-title-color: $gray-darkest;
 
-$modal-trigger-btn-padding-y: 12px;
-$modal-trigger-btn-padding-x: 30.8px;
-$modal-trigger-hover-color: $color-primary;
+$modal-title-icon-gutter: 8px;
+$modal-title-icon-font-size: 24px;
+$modal-icon-title-font-size: 20px;
+$modal-icon-title-line-height: $modal-title-icon-font-size;
 
-$modal-prompt-padding: 0 0 24px;
-$modal-prompt-title-font-size: $font-size-lg;
-$modal-prompt-title-bgColor: $color-primary;
-$modal-prompt-title-padding:  12px 20px;
-$modal-prompt-buttons-padding-right: 28px;
-$modal-prompt-close-padding: 16px;
-$modal-prompt-body-padding: 18px 30px 24px;
-$modal-wideDialog-width: 675px;
+$modal-buttons-gutter: $modal-padding-y;
+$modal-button-gutter: 10px;
 
-$modal-overlay-bgColor: rgba($color-black, 0.4) !default;
+$modal-sm-width: 286px;
+$modal-lg-width: 732px;
 
-$modal-vertification-bgColor: $color-white;
-$modal-vertification-color: $color-black;
-$modal-vertification-borderClor: $border-color;
+$modal-prompt-padding: 0 0 $modal-padding-y;
+$modal-prompt-title-line-height: ($modal-close-margin + $modal-close-padding) * 2 + $modal-close-font-Size;
 
+$modal-prompt-title-color: $color-white;
+$modal-prompt-title-bg: $color-primary;
+$modal-prompt-title-border-color: $border-color;
+
+$modal-prompt-close-color: $gray;
+$modal-prompt-close-hover-color: $color-white;
+
+// Skin
+// =====================
 .#{$modal} {
   font-family: $modal-font-family;
   font-size: $modal-font-size;
-  line-height: $modal-line-height;
+  color: $modal-color;
+
+  &-overlay {
+    background-color: $modal-overlay-bg;
+  }
 
   &-container {
-    max-width: 100%;
-    padding: $modal-container-padding;
-    background: $modal-container-bg;
+    padding: $modal-padding-y $modal-padding-x;
+    background: $modal-bg;
     border-radius: $modal-border-radius;
-    box-shadow: $modal-container-boxShadow;
-  }
-
-  &-title {
-    margin-bottom: $modal-title-margin-bottom;
-    font-size: $modal-title-font-size;
-    line-height: $modal-title-line-height;
-    color: $modal-title-color;
-
-    &-icon {
-      margin-bottom: $modal-icon-title-margin-bottom;
-      font-size: $modal-icon-title-font-size;
-    }
-
-    &-center {
-      margin-bottom: 4px;
-
-      .#{$modal}-icon {
-        padding-bottom: $modal-title-icon-padding;
-        margin-right: 0;
-      }
-    }
-  }
-
-  &-icon {
-    margin-right: $modal-title-icon-margin-right;
-    font-size: $modal-title-icon-font-size;
+    box-shadow: $modal-boxShadow;
   }
 
   &-close {
     padding: $modal-close-padding;
+    margin: $modal-close-margin;
     font-size: $modal-close-font-Size;
     color: $modal-close-color;
-    background: transparent;
-    opacity: 0.5;
 
-    &:not(:disabled):hover {
-      background: initial;
-      opacity: 0.9;
+    &:hover {
+      color: $modal-close-hover-color;
     }
   }
 
-  &-body {
-    max-height: $modal-body-maxHeight;
-    margin-bottom: $modal-body-margin-bottom;
-    color: $modal-body-color;
+  &-title {
+    font-size: $modal-title-font-size;
+    font-weight: $modal-title-font-weight;
+    line-height: $modal-title-line-height;
+    color: $modal-title-color;
+
+    + .#{$modal}-content {
+      margin-top: $modal-title-gutter;
+    }
+
+    + .#{$modal}-buttons {
+      margin-top: $modal-buttons-gutter;
+    }
   }
 
-  &-buttons {
-    margin-top: $modal-confirm-buttons-margin;
+  &-title-icon {
+    font-size: $modal-icon-title-font-size;
+    line-height: $modal-icon-title-line-height;
+  }
 
-    .#{$modal}-btn-alignment {
-      width: 50%;
+  &-icon {
+    margin-right: $modal-title-icon-gutter;
+    font-size: $modal-title-icon-font-size;
+
+    .#{$modal}-title-center & {
+      margin-right: 0;
+      margin-bottom: $modal-title-icon-gutter;
+    }
+  }
+
+  &-content {
+    > * {
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    + .#{$modal}-buttons {
+      margin-top: $modal-buttons-gutter;
     }
   }
 
   &-btn {
-    padding: $modal-btn-padding;
-    font-size: $modal-font-size;
-    line-height: 1;
-
     & + & {
-      margin-left: $modal-confirm-button-margin;
+      margin-left: $modal-button-gutter;
     }
   }
 
-  &-overlay {
-    background-color: $modal-overlay-bgColor;
+  &-btn-alignment {
+    flex-basis: 100%;
   }
+}
 
-  &-sm {
+//theme
+.#{$modal}-- {
+  &sm {
     width: $modal-sm-width;
   }
 
-  &-open {
-    overflow: hidden;
+  &lg {
+    width: $modal-lg-width;
   }
 
-  &--fadeIn {
-    animation: modal__fadeIn $modal-duration $modal-timing;
-  }
-}
+  &prompt,
+  &prompt-light {
+    padding: $modal-prompt-padding;
 
-.#{$modal}-dialog,
-.#{$modal}-prompt,
-.#{$modal}-verification,
-.#{$modal}-wideDialog {
-  padding: $modal-prompt-padding;
+    .#{$modal} {
+      &-title {
+        padding: 0 $modal-padding-x;
+        overflow: hidden;
+        line-height: $modal-prompt-title-line-height;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
 
-  .#{$modal}-title {
-    padding: $modal-prompt-title-padding;
-    margin-bottom: 0;
-    color: $color-white;
-    background: $modal-prompt-title-bgColor;
-  }
-
-  .#{$modal}-body {
-    padding: $modal-prompt-body-padding;
-    margin-bottom: 0;
+      &-content,
+      &-buttons {
+        margin: $modal-padding-y $modal-padding-x 0 $modal-padding-x;
+      }
+    }
   }
 
-  .#{$modal}-buttons {
-    padding-right: $modal-prompt-buttons-padding-right;
-    margin: 0;
-  }
-}
+  &prompt {
+    .#{$modal}-title {
+      color: $modal-prompt-title-color;
+      background-color: $modal-prompt-title-bg;
+    }
 
-.#{$modal}-dialog,
-.#{$modal}-prompt,
-.#{$modal}-wideDialog {
-  .#{$modal}-close {
-    padding: $modal-prompt-close-padding;
-    color: $color-white;
-    opacity: 1;
-  }
-}
+    .#{$modal}-close {
+      color: $modal-prompt-close-color;
+    }
 
-.#{$modal}-verification {
-  .#{$modal}-title {
-    color: $modal-vertification-color;
-    background: $modal-vertification-bgColor;
-    border-bottom: 1px solid $modal-vertification-borderClor;
+    .#{$modal}-close:hover {
+      color: $modal-prompt-close-hover-color;
+    }
+  }
+
+  &prompt-light .#{$modal}-title {
+    border-bottom: 1px solid $modal-prompt-title-border-color;
   }
 }
-
-@keyframes modal__fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(10%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-
-@media screen and (min-width: 640px) {
-  .#{$modal}-container {
-    width: $modal-width;
-  }
-
-  .#{$modal}-wideDialog {
-    width: $modal-wideDialog-width;
-  }
-}
-
-@media screen and (min-width: 320px) {
-  .#{$modal}-sm.#{$modal}-container {
-    width: $modal-sm-width;
-  }
-}
-
-@import "effects/fade";
-@import "effects/fadeScale";
-@import "effects/slideRight";
-@import "effects/slideBottom";
-@import "effects/newspaper";
-@import "effects/fall";
-@import "effects/slideFall";
-@import "effects/slideTop";
-@import "effects/flipHorizontal";
-@import "effects/flipVertical";
-@import "effects/sign";
-@import "effects/superScaled";
-@import "effects/rotateBottom";
-@import "effects/rotateLeft";
-@import "effects/blur";

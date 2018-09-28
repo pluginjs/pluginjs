@@ -14,13 +14,12 @@ export const methods = ['destroy']
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   ELEMENT: '{namespace}',
-  THEME: '{namespace}-{theme}',
+  THEME: '{namespace}--{theme}',
   CLOSE: '{namespace}-close',
-  CONTENT: '{namespace}-body',
-  CONTENTLOCATION: '{namespace}-body-{contentLocation}',
+  CONTENT: '{namespace}-content',
+  CONTENTLOCATION: '{namespace}-content-{contentLocation}',
   TITLE: '{namespace}-title',
   TITLELOCATION: '{namespace}-title-{location}',
-  ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
   CONTAINER: '{namespace}-container',
   HEADER: '{namespace}-header',
@@ -37,15 +36,15 @@ export const classes = {
 export const defaults = {
   theme: null,
   template() {
-    return `<div class="{classes.NAMESPACE} {classes.ACTIVE}">
-        {overlay}
-        <div class="{classes.CONTAINER}" role="document">
-          {close}
-          {title}
-          {content}
-          {buttons}
-        </div>
-      </div>`
+    return `<div class="{classes.NAMESPACE}">
+              {overlay}
+              <div class="{classes.CONTAINER}" role="document">
+                {close}
+                {title}
+                {content}
+                {buttons}
+              </div>
+            </div>`
   },
   templates: {
     close() {
