@@ -87,8 +87,8 @@ class Thumbnails extends Component {
   }
 
   initBreakpoints() {
+    Breakpoints.init()
     if (isString(this.options.breakpoint) && this.ensureBreakpoint()) {
-      Breakpoints.init()
       const breakpoint = this.options.breakpoint
       const that = this
       if (Breakpoints.is(`${breakpoint}-`)) {
@@ -106,15 +106,7 @@ class Thumbnails extends Component {
   }
 
   ensureBreakpoint() {
-    const breakpoints = {
-      xs: 'xs',
-      sm: 'sm',
-      md: 'md',
-      lg: 'lg',
-      xl: 'xl'
-    }
-
-    if (breakpoints[this.options.breakpoint]) {
+    if (Breakpoints.all().includes(this.options.breakpoint)) {
       return true
     }
 
