@@ -1,15 +1,10 @@
 export const namespace = 'collapse'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  EXPAND: 'expand',
-  EXPANDED: 'expanded',
-  COLLAPSE: 'collapse',
-  COLLAPSED: 'collapsed',
   RESIZE: 'resize'
 }
 

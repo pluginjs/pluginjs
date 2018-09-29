@@ -34,7 +34,6 @@ export const methods = [
   'enable',
   'disable',
   'destroy',
-  'build',
   'load',
   'next',
   'prev',

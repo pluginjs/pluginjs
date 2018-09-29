@@ -25,7 +25,7 @@ export const events = {
   UPDATE: 'update'
 }
 
-export const methods = ['init', 'enable', 'disable', 'destroy', 'start', 'stop']
+export const methods = ['enable', 'disable', 'destroy', 'start', 'stop']
 
 export const KEY_MAP = {
   TD: 'totalDays',
