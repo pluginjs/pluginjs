@@ -1,0 +1,55 @@
+{
+  "name": "@pluginjs/match",
+  "description": "A flexible modern match js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "version": "0.0.1",
+  "category": "utils",
+  "main": "dist/match.umd.js",
+  "module": "dist/match.esm.js",
+  "cjs": "dist/match.cjs.js",
+  "source": "src/main.js",
+  "css": {
+    "source": "src/css/main.scss",
+    "main": "dist/match.css",
+    "min": "dist/match.min.css"
+  },
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "npm run lint:js & npm run lint:scss",
+    "lint:js": "eslint ./src/**/*.js --fix",
+    "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/classes": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/is": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": false,
+    "testURL": "http://localhost",
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  }
+}
