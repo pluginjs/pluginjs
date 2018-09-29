@@ -17,7 +17,9 @@ export const rankings = {
   NO_MATCH: 0
 }
 
-export default function match(items, query, options = {}) {
+export const search = getMatchRanking
+
+export const match = (items, query, options = {}) => {
   if (!query) {
     return items
   }
@@ -71,7 +73,7 @@ function getHighestRanking(query, item, keys, options) {
 /**
  * Gives a rankings score based on how well the two strings match.
  */
-export function getMatchRanking(query, value, options = {}) {
+function getMatchRanking(query, value, options = {}) {
   options = Object.assign(
     {
       diacritics: false,
@@ -186,7 +188,7 @@ function getValuesToRank(item, keys) {
 /**
  * Gets value for key in item at arbitrarily nested keypath
  */
-export const getItemValues = (item, key) => {
+function getItemValues(item, key) {
   let value
 
   if (isFunction(key)) {
@@ -197,3 +199,5 @@ export const getItemValues = (item, key) => {
 
   return isNull(value) || isUndefined(value) ? null : [].concat(value)
 }
+
+export default match
