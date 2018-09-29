@@ -15,7 +15,7 @@
     "@pluginjs/styles": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.0",
+    "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "parcel-bundler": "^1.10.0",
     "posthtml-include": "*"
