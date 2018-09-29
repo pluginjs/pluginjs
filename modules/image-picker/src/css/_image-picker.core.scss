@@ -1,0 +1,74 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$imagePicker: "pj-imagePicker" !default;
+
+// Core
+// =====================
+input.#{$imagePicker}-input {
+  display: none;
+}
+
+.#{$imagePicker} {
+  position: relative;
+  display: block;
+
+  &-empty {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &-fill {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &-trigger-action {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%
+  }
+
+  &-fill-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &-write {
+    .#{$imagePicker} {
+      &-fill {
+        display: none;
+      }
+    }
+  }
+
+  &-exist {
+    .#{$imagePicker} {
+      &-empty {
+        display: none;
+      }
+
+      &-trigger-action {
+        display: flex;
+        opacity: 0;
+      }
+
+      &-fill-image {
+        display: block;
+      }
+    }
+  }
+}

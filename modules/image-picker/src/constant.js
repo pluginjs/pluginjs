@@ -53,7 +53,7 @@ export const defaults = {
       '<img class="{classes.FILLIMAGE}" src="">' +
       '</div>' +
       '<div class="{classes.TRIGGERACTION}">' +
-      '<i class="{classes.RESELECT} pj-icon pj-icon-repeat"></i>' +
+      '<i class="{classes.RESELECT} pj-icon pj-icon-upload"></i>' +
       '<i class="{classes.REMOVE} pj-icon pj-icon-trash"></i>' +
       '</div>' +
       '</div>'
@@ -86,14 +86,14 @@ export const dependencies = ['pop-dialog']
 
 export const translations = {
   en: {
-    placeholder: 'Click to upload',
+    placeholder: 'Add Image',
     deleteTitle: 'Are you sure you want to delete?',
     cancel: 'Cancel',
     delete: 'Delete',
     change: 'change'
   },
   zh: {
-    placeholder: '点击上传',
+    placeholder: '添加图片',
     deleteTitle: '你确定要删除？',
     cancel: '取消',
     delete: '删除',

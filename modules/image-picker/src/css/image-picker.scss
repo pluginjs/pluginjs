@@ -1,70 +1,48 @@
 @import "@pluginjs/styles/variables.scss";
+@import "./image-picker.core";
 
 // Vars
 // =====================
-$imagePicker: "pj-imagePicker" !default;
-$imagePicker-sizer: $sizer !default;
-$imagePicker-width: 16 * $imagePicker-sizer !default; //160px
-$imagePicker-height: 9 * $imagePicker-sizer !default; //90px
-$imagePicker-border-width: 1px !default;
-$imagePicker-border-color: $border-color !default;
-$imagePicker-border: $imagePicker-border-width solid $imagePicker-border-color !default;
-$imagePicker-border-radius: $border-radius-base !default;
-$imagePicker-color: $gray-dark !default;
+$imagePicker: "pj-imagePicker";
+$imagePicker-width: 160px;
+$imagePicker-height: 90px;
+
+$imagePicker-font-family: $font-family-base;
+$imagePicker-font-size: $font-size-base;
+
+$imagePicker-color: $gray-dark;
+$imagePicker-hover-color: $color-primary-black;
+
+$imagePicker-padding: 4px;
+
+$imagePicker-border-width: 1px;
+$imagePicker-border-color: $border-color;
+$imagePicker-border: $imagePicker-border-width solid $imagePicker-border-color;
+$imagePicker-border-radius: $border-radius-base;
+// icon
+$imagePicker-icon-font-size: $font-size-lg;
+$imagePicker-icon-spacer: 17px;
+$imagePicker-icon-empty-margin: 10px;
+$imagePicker-icon-trigger-action: $color-white;
 // write
-$imagePicker-write-border-style: dashed !default;
+$imagePicker-write-border-style: dashed;
 // change
-$imagePicker-change-bg: $gray-darker !default;
-$imagePicker-change-opacity:  rgba(0,0,0,0.7) !default;
-// init
-$imagePicker-init-hover-bg: $gray-lightest !default;
-// Core
+$imagePicker-change-bg: $gray-darker;
+$imagePicker-change-opacity: $color-opacity;
+
+// Style
 // =====================
-input.#{$imagePicker}-input {
-  display: none;
-}
-
 .#{$imagePicker} {
-  // animations
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  position: relative;
-  display: block;
   width: $imagePicker-width;
   height: $imagePicker-height;
-  padding: 1px;
+  padding: $imagePicker-padding;
+  font-family: $imagePicker-font-family;
   text-align: center;
   border: $imagePicker-border;
   border-radius: $imagePicker-border-radius;
 
   &-empty {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-size: $font-size-sm;
+    font-size: $imagePicker-font-size;
     color: $imagePicker-color;
     text-overflow: ellipsis;
     word-wrap: break-word;
@@ -72,34 +50,22 @@ input.#{$imagePicker}-input {
     cursor: pointer;
 
     i {
-      display: block;
-      font-size: $font-size-base + 5; //18px
+      margin-bottom: $imagePicker-icon-empty-margin;
+      font-size: $imagePicker-icon-font-size;
     }
 
     &:hover {
-      color: $color-primary-black;
+      color: $imagePicker-hover-color;
     }
   }
 
   &-fill {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
     border-radius: $imagePicker-border-radius;
   }
 
   &-trigger-action {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    font-size: $font-size-sm;
-    line-height: $imagePicker-height;
-    color: $color-white;
+    font-size: $imagePicker-icon-font-size;
+    color: $imagePicker-icon-trigger-action;
     text-align: center;
     background-color: $imagePicker-change-bg;
     border-radius: $imagePicker-border-radius;
@@ -107,17 +73,7 @@ input.#{$imagePicker}-input {
 
   &-remove,
   &-reselect {
-    margin: 0 $imagePicker-sizer; //0 10px
-
-    &:hover {
-      color: $gray-lighter;
-      cursor: pointer;
-    }
-  }
-
-  &-fill-image {
-    width: 100%;
-    height: 100%;
+    margin: 0 $imagePicker-icon-spacer;
   }
 
   &-fadeOut {
@@ -136,35 +92,10 @@ input.#{$imagePicker}-input {
   &.#{$imagePicker} {
     border-style: $imagePicker-write-border-style;
   }
-
-  .#{$imagePicker} {
-    // &-empty {
-    //   display: block;
-    // }
-
-    &-fill {
-      display: none;
-    }
-  }
 }
 
 .#{$imagePicker}-exist {
   border-style: solid;
-
-  .#{$imagePicker} {
-    &-empty {
-      display: none;
-    }
-
-    &-trigger-action {
-      display: flex;
-      opacity: 0;
-    }
-
-    &-fill-image {
-      display: block;
-    }
-  }
 
   &.#{$imagePicker}-hover {
     .#{$imagePicker} {
@@ -172,7 +103,6 @@ input.#{$imagePicker}-input {
         background: $imagePicker-change-opacity;
         opacity: 1;
         transition: all 300ms ease-in-out;
-        // display: block;
       }
     }
   }
@@ -181,12 +111,14 @@ input.#{$imagePicker}-input {
 .#{$imagePicker}-disabled {
   background-color: $disabled-bg;
   border-color: $disabled-border;
+
   .#{$imagePicker}-fill {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
     border-color: $disabled-border;
   }
+
   .#{$imagePicker}-empty,
   .#{$imagePicker}-trigger-action {
     color: $disabled-color;
@@ -198,5 +130,26 @@ input.#{$imagePicker}-input {
     .#{$imagePicker}-remove {
       cursor: not-allowed;
     }
+  }
+}
+
+// animations
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
