@@ -1,7 +1,16 @@
 // import parallax css
 @import "@pluginjs/parallax/src/css/parallax.scss";
+@import "@pluginjs/loader/src/css/loader.scss";
 
-section {
+.gap {
+  height: 200px;
+}
+
+.pj-parallax-container {
+  border: 1px solid #333;
+}
+
+main {
   position: relative;
   display: flex;
   align-items: center;

@@ -8,6 +8,12 @@ export const events = {
   ENTER: 'enter'
 }
 
+export const classes = {
+  NAMESPACE: `pj-${namespace}`,
+  CONTAINER: '{namespace}-container',
+  IMAGE: '{namespace}-image'
+}
+
 export const methods = [
   'enable',
   'disable',
@@ -23,11 +29,19 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  speed: 1000,
-  delayType: 'throttle',
-  delay: 100,
+  container: null,
+  direction: 'down', // 'down', 'up', 'left', 'right'
+  mode: 'image', // 'image', 'background', 'video', 'element'
+  speed: 1,
+  loaderConfig: null,
+  type: 'scroll', // 'scroll', 'opacity', 'scale', 'rotate'
   offset: 0,
-  mode: 'translateX',
+  animate: 'translateY',
   max: null,
-  min: null
+  min: null,
+  templates: {
+    image() {
+      return '<img class="{classes.IMAGE}">'
+    }
+  }
 }
