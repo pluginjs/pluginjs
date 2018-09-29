@@ -5,7 +5,7 @@ const data = [
   {
     value: 'book',
     label: 'Book',
-    icon: 'book-solid'
+    icon: 'book'
   },
   {
     value: 'calendar',
@@ -20,7 +20,7 @@ const data = [
   {
     value: 'home',
     label: 'Home',
-    icon: 'home-solid'
+    icon: 'home'
   }
 ]
 

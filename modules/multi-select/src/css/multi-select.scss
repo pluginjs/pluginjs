@@ -6,6 +6,8 @@ $select: "pj-select";
 $multiSelect: "pj-select-multi";
 $dropdown : "pj-dropdown";
 
+$multiSelect-min-height: $input-height;
+
 $multiSelect-chip-bg: $gray-lighter !default;
 $multiSelect-chip-border-radius: $border-radius-sm !default;
 $multiSelect-chip-border-color: $border-color !default;
@@ -29,6 +31,7 @@ $multiSelect-reach-max-text-color: $gray-darker;
 .#{$multiSelect} {
   &.#{$select}-selected {
     .#{$select}-trigger{
+      min-height: $multiSelect-min-height;
       padding-top: 0;
       padding-bottom: 0;
       padding-left: 0;

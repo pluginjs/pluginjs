@@ -47,9 +47,7 @@ $units-disabled-color: $disabled-color;
   }
 
   &-input {
-    &.#{$input} {
-      padding: $units-input-padding;
-    }
+    padding: $units-input-padding;
   }
 
   &-trigger {

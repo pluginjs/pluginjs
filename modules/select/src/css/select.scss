@@ -44,6 +44,13 @@ $select-not-found-color: $gray-darker;
     }
   }
 
+  &-trigger,
+  &-option {
+    i {
+      vertical-align: middle;
+    }
+  }
+
   &-clear {
     color: $select-clear-color;
 

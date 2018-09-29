@@ -7,6 +7,9 @@ $input: pj-input !default;
 // =====================
 .#{$input} {
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: $input-height;
   padding: $input-padding-y $input-padding-x;
   margin: 0;
   font-size: $input-font-size;
@@ -31,12 +34,14 @@ $input: pj-input !default;
   }
 
   &-sm {
+    height: $input-height-sm;
     padding: $input-padding-y-sm $input-padding-x-sm;
     font-size: $input-font-size-sm;
     line-height: $input-line-height-sm;
   }
 
   &-lg {
+    height: $input-height-lg;
     padding: $input-padding-y-lg $input-padding-x-lg;
     font-size: $input-font-size-lg;
     line-height: $input-line-height-lg;
