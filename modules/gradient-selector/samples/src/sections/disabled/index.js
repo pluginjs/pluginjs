@@ -1,5 +1,5 @@
 import { query } from '@pluginjs/dom'
-import GradientPicker from '@pluginjs/gradient-picker'
+import GradientSelector from '@pluginjs/gradient-selector'
 
 const data = {
   'warm-flame':
@@ -15,7 +15,10 @@ const data = {
   'rainy-ashville': 'linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)'
 }
 
-GradientPicker.setData(data)
+GradientSelector.setData(data)
 
-const element = query('#initialized .example-input')
-GradientPicker.of(element, {})
+const element = query('#disabled .example-locale')
+GradientSelector.of(element, {
+  locale: 'zh',
+  disabled: true
+})

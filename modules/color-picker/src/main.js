@@ -118,7 +118,6 @@ class ColorPicker extends Component {
         hideElement(this.$remove)
       }),
       bindEvent(this.eventName('mouseover'), `.${this.classes.TRIGGER}`, () => {
-        console.log(this.element.value.length)
         if (this.element.value.length > 0) {
           if (!this.is('disabled')) {
             this.$remove.style.display = 'inline'
@@ -281,9 +280,13 @@ class ColorPicker extends Component {
 
     if (this.module.hex) {
       this.initHex()
+    } else {
+      query(`.${this.classes.HEX}`, this.$panel).remove()
     }
     if (this.module.history) {
       this.initHistory()
+    } else {
+      query(`.${this.classes.HISTORY}`, this.$panel).remove()
     }
 
     this.initControl()

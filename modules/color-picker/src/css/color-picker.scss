@@ -141,8 +141,8 @@ $colorPicker-pointer-color: $gray-darker !default;
     z-index: 9999;
     box-sizing: border-box;
     flex-direction: column;
-    width: $colorPicker-panel-width;
-    padding: 2 * $colorPicker-sizer; //4px
+    width: $colorPicker-panel-width !important;
+    padding: 2 * $colorPicker-sizer !important; //4px
     font-size: $colorPicker-font-size;
     color: $colorPicker-color;
     background-color: $color-white;

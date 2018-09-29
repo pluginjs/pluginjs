@@ -1,20 +1,31 @@
 {
-  "name": "@pluginjs/gradient-picker",
-  "description": "A flexible modern gradient-picker js plugin.",
+  "name": "@pluginjs/gradient-selector",
+  "description": "A flexible modern gradient-selector js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "version": "0.0.1",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/plugin.js/issues"
+  },
+  "version": "0.2.19",
   "category": "form",
-  "main": "dist/gradient-picker.umd.js",
-  "module": "dist/gradient-picker.esm.js",
-  "cjs": "dist/gradient-picker.cjs.js",
+  "main": "dist/gradient-selector.umd.js",
+  "module": "dist/gradient-selector.esm.js",
+  "cjs": "dist/gradient-selector.cjs.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/gradient-picker.scss",
-    "main": "dist/gradient-picker.css",
-    "min": "dist/gradient-picker.min.css"
+    "source": "src/css/gradient-selector.scss",
+    "main": "dist/gradient-selector.css",
+    "min": "dist/gradient-selector.min.css"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "plugin build",
     "build:js": "plugin script build-js",
@@ -27,11 +38,17 @@
   },
   "dependencies": {
     "@pluginjs/classes": "*",
+    "@pluginjs/color-selector": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/factory": "*",
+    "@pluginjs/pop-dialog": "*",
+    "@pluginjs/range": "*",
+    "@pluginjs/scrollable": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
@@ -43,6 +60,10 @@
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",

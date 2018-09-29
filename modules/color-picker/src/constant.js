@@ -89,7 +89,7 @@ export const defaults = {
   locale: 'en',
   placeholder: 'choose color',
   // disabled: true,
-  displayMode: true,
+  displayMode: 'dropdown', // dropdown || inline
   module: {
     saturation: true,
     hue: true,

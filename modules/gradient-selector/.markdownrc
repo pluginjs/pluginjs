@@ -1,8 +1,8 @@
 {
   "meta": {
-    "moduleName": "gradient-picker",
-    "namespace": "gradientPicker",
-    "Namespace": "GradientPicker",
+    "moduleName": "gradient-selector",
+    "namespace": "gradientSelector",
+    "Namespace": "GradientSelector",
     "options": [
       {
         "name": "theme",
@@ -96,7 +96,7 @@
       {
         "name": "NAMESPACE",
         "desc": "Declare plugin namespace",
-        "value": "pj-gradientPicker"
+        "value": "pj-gradientSelector"
       },
       {
         "name": "THEME",
