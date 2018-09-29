@@ -88,7 +88,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   placeholder: 'choose color',
-  // disabled: true,
+  disabled: false,
   displayMode: 'dropdown', // dropdown || inline
   module: {
     saturation: true,

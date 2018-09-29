@@ -81,6 +81,10 @@ class ColorPicker extends Component {
     // take element defalut value
     this.elementColor = this.element.value
 
+    if (this.options.displayMode === 'inline') {
+      hideElement(this.element)
+    }
+
     this.createHtml()
 
     if (this.options.theme) {
@@ -109,31 +113,41 @@ class ColorPicker extends Component {
 
   bind() {
     // input remove color
-    compose(
-      bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
-        hideElement(this.$remove)
-        this.clear()
-      }),
-      bindEvent(this.eventName('mouseout'), `.${this.classes.TRIGGER}`, () => {
-        hideElement(this.$remove)
-      }),
-      bindEvent(this.eventName('mouseover'), `.${this.classes.TRIGGER}`, () => {
-        if (this.element.value.length > 0) {
-          if (!this.is('disabled')) {
-            this.$remove.style.display = 'inline'
+    if (this.options.displayMode !== 'inline') {
+      compose(
+        bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
+          hideElement(this.$remove)
+          this.clear()
+        }),
+        bindEvent(
+          this.eventName('mouseout'),
+          `.${this.classes.TRIGGER}`,
+          () => {
+            hideElement(this.$remove)
           }
-        }
-      })
-    )(this.$wrap)
+        ),
+        bindEvent(
+          this.eventName('mouseover'),
+          `.${this.classes.TRIGGER}`,
+          () => {
+            if (this.element.value.length > 0) {
+              if (!this.is('disabled')) {
+                this.$remove.style.display = 'inline'
+              }
+            }
+          }
+        )
+      )(this.$wrap)
 
-    // save
-    bindEvent(
-      this.eventName('click'),
-      () => {
-        this.closePanel()
-      },
-      this.$save
-    )
+      // save
+      bindEvent(
+        this.eventName('click'),
+        () => {
+          this.closePanel()
+        },
+        this.$save
+      )
+    }
   }
 
   createHtml() {
@@ -141,29 +155,33 @@ class ColorPicker extends Component {
     this.$wrap = wrap($wrap, this.element)
     wrap(`<div class='${this.classes.TRIGGER}'></div>`, this.element)
 
-    // init remove button
-    this.initRemove()
+    if (this.options.displayMode !== 'inline') {
+      // init remove button
+      this.initRemove()
 
-    // init preview
-    this.initPreview()
+      // init preview
+      this.initPreview()
+    }
 
     // create panel
     this.initPanel()
 
-    this.DROPDOWN = Dropdown.of(this.element, {
-      target: this.$panel,
-      hideOnSelect: false,
-      hideOutClick: true,
-      onShown: () => {
-        this.oldColor = this.color
-        showElement(this.$mask)
-        this.leave('save')
-      },
-      onHided: () => {
-        this.update()
-        hideElement(this.$mask)
-      }
-    })
+    if (this.options.displayMode !== 'inline') {
+      this.DROPDOWN = Dropdown.of(this.element, {
+        target: this.$panel,
+        hideOnSelect: false,
+        hideOutClick: true,
+        onShown: () => {
+          this.oldColor = this.color
+          showElement(this.$mask)
+          this.leave('save')
+        },
+        onHided: () => {
+          this.update()
+          hideElement(this.$mask)
+        }
+      })
+    }
 
     // create mask
     this.$mask = parseHTML(`<div class="${this.classes.MASK}"></div>`)
@@ -254,7 +272,9 @@ class ColorPicker extends Component {
     } else {
       this.setInput(color.toRGBA())
     }
-    this.PREVIEW.update(color)
+    if (this.options.displayMode !== 'inline') {
+      this.PREVIEW.update(color)
+    }
 
     this.trigger(EVENTS.CHANGE, color)
   }
@@ -283,13 +303,17 @@ class ColorPicker extends Component {
     } else {
       query(`.${this.classes.HEX}`, this.$panel).remove()
     }
-    if (this.module.history) {
+    if (this.module.history && this.options.displayMode !== 'inline') {
       this.initHistory()
     } else {
       query(`.${this.classes.HISTORY}`, this.$panel).remove()
     }
 
-    this.initControl()
+    if (this.options.displayMode === 'dropdown') {
+      this.initControl()
+    } else {
+      query(`.${this.classes.CONTROL}`, this.$panel).remove()
+    }
   }
 
   openPanel() {
@@ -343,7 +367,9 @@ class ColorPicker extends Component {
   clear() {
     this.color = this.options.defaultColor || '#000'
     this.set(this.color)
-    this.PREVIEW.update('transparent')
+    if (this.options.displayMode !== 'inline') {
+      this.PREVIEW.update('transparent')
+    }
     this.element.value = ''
   }
 
@@ -372,8 +398,10 @@ class ColorPicker extends Component {
       this.element.className = this.firstClassName
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
-      this.$remove.remove()
-      this.PREVIEW.remove()
+      if (this.options.displayMode !== 'inline') {
+        this.$remove.remove()
+        this.PREVIEW.remove()
+      }
       this.$panel.remove()
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)

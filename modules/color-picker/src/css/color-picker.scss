@@ -217,6 +217,11 @@ $colorPicker-pointer-color: $gray-darker !default;
     height: $colorPicker-hex-height;
     margin-top: 1.5 * $colorPicker-sizer;
 
+    .pj-select-trigger {
+      height: 24px;
+      line-height: 1;
+    }
+
     &-angle {
         width: $colorPicker-hex-angle-width;
         height: $colorPicker-hex-height;
