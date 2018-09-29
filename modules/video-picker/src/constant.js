@@ -99,7 +99,7 @@ export const defaults = {
       </div>`
     },
     triggerAction() {
-      return `<div class='{classes.TRIGGERACTION}'><i class='pj-icon pj-icon-pencil-write-solid {classes.EDITOR}'></i><i class='pj-icon pj-icon-trash {classes.REMOVE}'></i>
+      return `<div class='{classes.TRIGGERACTION}'><i class='pj-icon pj-icon-edit {classes.EDITOR}'></i><i class='pj-icon pj-icon-trash {classes.REMOVE}'></i>
       </div>`
     },
     previewContent() {

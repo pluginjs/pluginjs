@@ -1,0 +1,199 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$videoPicker: "pj-videoPicker" !default;
+
+$videoPicker-bg-color: $color-white;
+
+$videoPicker-sizer: $sizer !default;
+$dropdown: "pj-dropdown" !default;
+$editPanel: "pj-editPanel" !default;
+$imagePicker: "pj-imagePicker" !default;
+
+// Core
+// =====================
+
+.#{$videoPicker} {
+  &-trigger {
+    position: relative;
+  }
+
+  &-trigger-hover {
+    .#{$videoPicker}-trigger-action {
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+    .#{$videoPicker}-fill {
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  &-empty {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-fill {
+    position: relative;
+    box-sizing: border-box;
+    display: none;
+  }
+
+  &-open-disabled {
+    pointer-events: none;
+  }
+
+  &-preview {
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  &-video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+
+    &-action{
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-poster {
+      width: 100%;
+      height: 100%;
+    }
+
+    &-btn {
+      position: absolute !important;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &-playing {
+      .#{$videoPicker}-video-btn,
+      .#{$videoPicker}-video-poster {
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+    }
+
+    &-loading {
+      .#{$videoPicker}-video-btn {
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .#{$videoPicker}-video-animate {
+        opacity: 1;
+        transition: opacity 0.2s;
+      }
+    }
+
+    &-url {
+      position: relative;
+  
+      > input {
+        width: 100%;
+      }
+  
+      > i {
+        position: absolute;
+        top: 50%;
+        right: 0.8 * $videoPicker-sizer;
+        display: none;
+        transform: translateY(-50%);
+      }
+  
+      &:hover {
+        > i {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &-local-url,
+  &-poster {
+    &-change,
+    &-delete {
+      display: none;
+    }
+
+    &-selected {
+      .#{$videoPicker}-local-url-add,
+      .#{$videoPicker}-poster-add {
+        display: none;
+      }
+
+      .#{$videoPicker}-local-url-change,
+      .#{$videoPicker}-local-url-delete,
+      .#{$videoPicker}-poster-change,
+      .#{$videoPicker}-poster-delete {
+        display: inline-block;
+      }
+    }
+  }
+
+  &-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &-ratio,
+  &-source,
+  &-poster {
+    display: flex;
+    align-items: center;
+  }
+
+  &-trigger-action {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+
+  &-btn-action {
+    text-align: right;
+  }
+  
+  &-input {
+    display: none;
+  }
+
+  &-show {
+    .#{$videoPicker}-empty {
+      display: none;
+    }
+
+    .#{$videoPicker}-fill {
+      display: block;
+    }
+
+    .#{$videoPicker}-trigger-action {
+      display: flex;
+    }
+  }
+}
