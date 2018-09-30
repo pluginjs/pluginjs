@@ -1,32 +1,20 @@
 import Component from '@pluginjs/component'
 import { deepMerge, compose } from '@pluginjs/utils'
-import { isString, isEmptyObject } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import {
   wrap,
   unwrap,
   query,
-  queryAll,
   parent,
-  parentWith,
   parseHTML,
   insertAfter,
-  append,
-  prepend,
-  insertBefore,
-  setData,
-  getData,
-  children
+  getData
 } from '@pluginjs/dom'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { showElement, hideElement } from '@pluginjs/styled'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import PopDialog from '@pluginjs/pop-dialog'
 import Dropdown from '@pluginjs/dropdown'
-import Select from '@pluginjs/select'
-import Radio from '@pluginjs/radio'
 import {
-  eventable,
   register,
   stateable,
   styleable,
@@ -43,14 +31,16 @@ import {
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
-
-const SOURCES = {}
-const DATA = {}
+import Type from './type'
+import LinkTitle from './linkTitle'
+import Internal from './internal'
+import Target from './target'
+import External from './external'
 
 @translateable(TRANSLATIONS)
 @themeable()
 @styleable(CLASSES)
-@eventable(EVENTS)
+// @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, true)
 @register(NAMESPACE, {
@@ -63,51 +53,11 @@ class LinkPicker extends Component {
 
     this.setupOptions(options)
     this.setupStates()
+
     this.setupClasses()
     this.setupI18n()
-    if (isEmptyObject(SOURCES)) {
-      this.element.setAttribute('placeholder', 'register sources first.')
-      return false
-    }
-    this.data = this.initData(deepMerge({}, SOURCES), deepMerge({}, DATA))
-    this.sources = []
 
-    Object.entries(this.data).forEach(([typeName]) => {
-      this.sources.push(typeName)
-    })
-    this.source = this.sources[0]
-    this.input = {}
     this.initialize()
-  }
-
-  initData(sources, data) {
-    const newSources = {}
-
-    const sourcesWithArrayFileds = Object.entries(sources).reduce(
-      (result, [index, source]) => {
-        if (data[index]) {
-          return {
-            ...result,
-            [index]: {
-              ...result[index],
-              fields: source.fields(data[index])
-            }
-          }
-        }
-        return result
-      },
-      sources
-    )
-
-    if (!this.options.sources || this.options.sources.length < 1) {
-      return sourcesWithArrayFileds
-    }
-
-    this.options.sources.forEach(sourceName => {
-      newSources[sourceName] = sourcesWithArrayFileds[sourceName]
-    })
-
-    return newSources
   }
 
   initialize() {
@@ -116,6 +66,19 @@ class LinkPicker extends Component {
       addClass(this.classes.INPUT, this.element)
     )
 
+    this.defaultVal = this.initVal()
+    this.value = deepMerge(
+      {},
+      this.defaultVal,
+      this.options.parse(this.element.value.replace(/'/g, '"'))
+    )
+    // init
+    console.log(this.value)
+    this.linkTitle = new LinkTitle(this)
+    this.internal = new Internal(this)
+    this.target = new Target(this)
+    this.external = new External(this)
+    this.type = new Type(this)
     this.input = {}
 
     this.build()
@@ -123,7 +86,7 @@ class LinkPicker extends Component {
 
     const val = this.element.value
     if (val) {
-      this.val(val, false)
+      this.val(val)
     }
 
     if (this.element.disabled || this.options.disabled) {
@@ -131,6 +94,8 @@ class LinkPicker extends Component {
     }
 
     this.enter('initialized')
+
+    this.set(this.value, true)
     this.trigger(EVENTS.READY)
   }
 
@@ -178,23 +143,49 @@ class LinkPicker extends Component {
 
     this.$fill.append(this.$action)
     this.$dropdown.append(this.$dropdownAction)
+
+    this.$dropdown.prepend(this.type.$wrap)
+
+    insertAfter(this.internal.$wrap, this.type.$wrap)
+    insertAfter(this.target.$wrap, this.internal.$wrap)
+    insertAfter(this.external.$wrap, this.internal.$wrap)
+    insertAfter(this.linkTitle.$wrap, this.target.$wrap)
     this.$trigger.append(this.$empty, this.$fill)
     this.$wrap.append(this.$trigger, this.$dropdown)
-
-    this.buildTypes()
+    if (this.value.type === 'internal') {
+      addClass(
+        `${this.classes.TYPESHOW}`,
+        query('.pj-linkPicker-internal', this.$dropdown)
+      )
+      removeClass(
+        `${this.classes.TYPESHOW}`,
+        query('.pj-linkPicker-external', this.$dropdown)
+      )
+    }
+    if (this.value.type === 'external') {
+      addClass(
+        `${this.classes.TYPESHOW}`,
+        query('.pj-linkPicker-external', this.$dropdown)
+      )
+      removeClass(
+        `${this.classes.TYPESHOW}`,
+        query('.pj-linkPicker-internal', this.$dropdown)
+      )
+    }
+    // this.buildTypes()
     // create pop
     this.pop = PopDialog.of(
       query(`.${this.classes.ACTIONREMOVE}`, this.$action),
       {
-        content: this.translate('deleteTitle'),
+        content: 'Are you sure you want to delete?',
         placement: 'bottom',
         buttons: {
-          cancel: { label: this.translate('cancel') },
+          cancel: { label: 'Cancel' },
           delete: {
-            label: this.translate('delete'),
+            label: 'Delete',
             color: 'danger',
             fn(resolve) {
-              that.clear()
+              that.clear(true)
               resolve()
             }
           }
@@ -218,327 +209,6 @@ class LinkPicker extends Component {
       hideOnSelect: false,
       templates: this.options.templates
     })
-  }
-
-  buildTypes() {
-    const that = this
-    const typeData = []
-    // parse data
-    Object.entries(this.data).forEach(([type, details]) => {
-      typeData.push({
-        label: details.label,
-        name: type
-      })
-      // build item to types
-      this.buildTypeItem({
-        type,
-        details
-      })
-    })
-    // create type dropdown
-    const $types = parseHTML(
-      this.parseTemp('item', {
-        class: this.classes.ITEM,
-        titleClass: this.classes.ITEMTITLE,
-        title: this.source,
-        body: this.classes.ITEMBODY,
-        switch: this.classes.TYPESWITCH
-      })
-    )
-    append(
-      parseHTML(`<div class='${this.classes.TYPESWITCH}'></div>`),
-      query(`.${this.classes.ITEMBODY}`, $types)
-    )
-    append(
-      `<div class='${this.classes.TYPESPANEL}'></div>`,
-      query(`.${this.classes.ITEMBODY}`, $types)
-    )
-    prepend($types, this.$dropdown)
-    this.TYPESELECT = Select.of(
-      query(`.${this.classes.TYPESWITCH}`, this.$dropdown),
-      {
-        keyboard: true,
-        source: typeData,
-        value: this.source,
-        templates: {
-          option() {
-            return `<div class="${
-              that.classes.ITEM
-            } {classes.ITEM}" data-value="{option.name}">{option.label}</div>`
-          }
-        },
-        onChange: v => {
-          this.source = v
-          this.swtichType()
-        }
-      }
-    )
-
-    this.swtichType()
-  }
-
-  buildTypeItem(options) {
-    const type = options.type
-    const details = options.details
-
-    const $container = parseHTML(
-      this.parseTemp('container', {
-        class: this.classes.TYPESCONTAINER,
-        type
-      })
-    )
-    details.fields.forEach(item => {
-      const $item = parseHTML(
-        this.parseTemp('item', {
-          class: this.classes.ITEM,
-          itemTitle: this.classes.ITEMTITLE,
-          title: item.label,
-          body: this.classes.ITEMBODY,
-          name: item.name
-        })
-      )
-      // $item.dataset.name = item.name
-      setData('name', item.name, $item)
-      if (item.connect) {
-        // $item.dataset.connect = item.connect
-        setData('connect', item.connect, $item)
-      }
-
-      $container.append($item)
-
-      const input = {
-        source: type,
-        item,
-        parent: query(`.${this.classes.ITEMBODY}`, $item)
-      }
-
-      switch (item.type) {
-        case 'dropdown':
-          this.handleDropdownMode(input)
-          break
-        case 'radio':
-          this.handleRadioMode(input)
-          break
-        case 'input':
-          this.handleInputMode(input)
-          break
-        default:
-          break
-      }
-    })
-    insertBefore(
-      $container,
-      query(`.${this.classes.DROPDOWNACTION}`, this.$dropdown)
-    )
-  }
-
-  handleInputMode(details) {
-    const { item, parent, source } = details
-    const { name, data, options } = item
-    const placeholder = options.placeholder
-    const $input = parseHTML(
-      `<input class='pj-input ${
-        this.classes.TYPESCOMPONENT
-      }' placeholder="${placeholder}" type="text"/>`
-    )
-
-    parent.append($input)
-    $input.value = data
-    setData(
-      'input',
-      {
-        source,
-        itemName: name
-      },
-      $input
-    )
-    const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
-      ? parent
-      : parentWith(hasClass(this.classes.ITEMBODY), parent)
-    setData('api', $input, itemBody)
-  }
-
-  handleRadioMode(details) {
-    const that = this
-    const { item, source, parent } = details
-    const { name, data, options } = item
-
-    let active = data.active
-    if (!active || active === '') {
-      active = Object.keys(data.values)[0]
-    }
-
-    Object.entries(data.values).forEach(([itemName, value]) => {
-      const $radio = parseHTML(
-        `<div class='pj-radio'><input class='${
-          this.classes.TYPESCOMPONENT
-        }' type="radio" id='${source}-${name}-${itemName}' name='${source}-${name}' value="${itemName}" /><label for='${source}-${name}-${itemName}'><i></i>${value}</label></div>`
-      )
-
-      parent.append($radio)
-
-      if (itemName.toLowerCase() === 'id') {
-        const $input = parseHTML(
-          `<input type="text" class='pj-input' id='${source}-${name}-${itemName}-input' />`
-        )
-        parent.append($input)
-        hideElement($input)
-
-        // radio input event
-        bindEvent(
-          this.eventName('change'),
-          e => {
-            const inputVal = parseHTML(e.target).val()
-            // set this.data val
-            this.getSourceItem(source, name).data.active = inputVal
-          },
-          query(`[id='${source}-${name}-${itemName}-input']`, parent)
-        )
-      }
-    })
-
-    const radioDefaults = {
-      classes: { icon: 'pj-icon pj-icon-check-mini' },
-      getGroup() {
-        return queryAll(`input[name='${source}-${name}']`, parent)
-      },
-      onChange(e) {
-        const $input = query('input[type="text"]', parent)
-        hideElement($input)
-        that.getSourceItem(source, name).data.active = e
-
-        if (e.toLowerCase() === 'id') {
-          showElement($input)
-          that.getSourceItem(source, name).data.active = $input.value
-        }
-      }
-    }
-    const radioOptions = deepMerge(radioDefaults, options)
-    const $radio = queryAll(`input[name='${source}-${name}']`, parent)
-    const api = $radio.map(el => Radio.of(el, radioOptions))
-    api.forEach(plugin => plugin.check(active, true))
-
-    const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
-      ? parent
-      : parentWith(hasClass(this.classes.ITEMBODY), parent)
-    setData('api', api, itemBody)
-  }
-
-  handleDropdownMode(details) {
-    const that = this
-    const { source, item, parent } = details
-    const { data, options, connect, name } = item
-    const dropdownData = []
-    let values = data.values
-    const $dropdown = parseHTML(
-      `<div class='${this.classes.TYPESCOMPONENT}'></div>`
-    )
-
-    setData(
-      'input',
-      {
-        source,
-        itemName: item.name
-      },
-      $dropdown
-    )
-
-    // set dropdown if has connect key.
-    if (connect) {
-      const connectData = this.getSourceItem(source, connect).data
-
-      let connectActive = connectData.active
-      if (!connectActive) {
-        connectActive = connectData.values[0]
-      }
-
-      values = data.values(connectActive).values
-      // $dropdown.dataset.connect = connect
-      setData('connect', connect, $dropdown)
-      // === bind event ==== //
-      bindEvent(
-        this.eventName(`linkPicker:${source}:${connect}:change`),
-        (e, instance, connectName) => {
-          const api = getData('dropdown', $dropdown)
-
-          const dropdownData = []
-          // let globalData = this.getData();
-
-          const apiData = this.getSourceItem(source, name).data
-          const callBackData = data.values(connectName)
-          const apiActive = callBackData.active
-
-          apiData.active = apiActive
-
-          Object.entries(callBackData.values).forEach(([key, value]) => {
-            dropdownData.push({
-              label: value,
-              name: key
-            })
-          })
-
-          children(api.$dropdown).map(i => i.remove())
-          api.appendItems(dropdownData)
-          api.set(apiActive)
-        },
-        this.element
-      )
-    }
-    Object.entries(values).forEach(([key, value]) => {
-      dropdownData.push({
-        label: value,
-        name: key
-      })
-    })
-
-    // set dropdown default options
-    const dropdownDefault = {
-      keyboard: true,
-      imitateSelect: true,
-      data: dropdownData,
-      templates: {
-        item() {
-          return `<div class="${
-            that.classes.ITEM
-          } {classes.ITEM}" {itemValueAttr}="{item.name}">{item.label}</div>`
-        }
-      },
-      onChange(el) {
-        const value = el
-        // const connect = this.element.data('connect')
-        const { source, itemName } = getData('input', this.element)
-
-        that.getSourceItem(source, itemName).data.active = value
-        that.trigger(`${source}:${itemName}:change`, value)
-      }
-    }
-
-    const dropdownOptions = deepMerge(dropdownDefault, options)
-    parent.append($dropdown)
-    insertAfter('<div></div>', $dropdown)
-
-    const api = Dropdown.of($dropdown, dropdownOptions)
-    // set dropdown default value
-    if (!data.active || data.active.length < 1) {
-      data.active = dropdownData[0].name
-    }
-
-    api.set(data.active)
-    const itemBody = parent.matches(`.${this.classes.ITEMBODY}`)
-      ? parent
-      : parentWith(hasClass(this.classes.ITEMBODY), parent)
-    setData('api', api, itemBody)
-  }
-
-  swtichType() {
-    // this.TYPESELECT.set(this.source);
-    queryAll(`.${this.classes.TYPESCONTAINER}`, this.$dropdown).map(
-      removeClass(this.classes.ACTIVE)
-    )
-    queryAll(
-      `.${this.classes.TYPESCONTAINER}[data-type='${this.source}']`,
-      this.$dropdown
-    ).map(addClass(this.classes.ACTIVE))
   }
 
   getData() {
@@ -637,6 +307,9 @@ class LinkPicker extends Component {
   show() {
     this.DROPDOWN.show()
     addClass(this.classes.SHOW, this.$wrap)
+    if (this.value.type === '') {
+      this.value.type = 'internal'
+    }
   }
 
   hide() {
@@ -644,171 +317,115 @@ class LinkPicker extends Component {
     removeClass(this.classes.SHOW, this.$wrap)
   }
 
-  clear() {
-    removeClass(this.classes.WRITE, this.$wrap)
-    this.element.value = ''
-    query('input[type="text"]', this.$dropdown).value = ''
-    // this.data = this.options.data;
+  // clear() {
+  //   removeClass(this.classes.WRITE, this.$wrap)
+  //   this.element.value = ''
+  //   query('input[type="text"]', this.$dropdown).value = ''
+  //   // this.data = this.options.data;
 
+  //   removeClass(this.classes.HOVER, this.$action)
+  // }
+  clear(update = true) {
+    removeClass(this.classes.WRITE, this.$wrap)
+    this.value = {}
+
+    if (update !== false) {
+      this.type.clear()
+      this.internal.clear()
+      this.external.clear()
+      this.target.clear()
+      this.linkTitle.clear()
+      this.update()
+    }
     removeClass(this.classes.HOVER, this.$action)
   }
 
-  getSourceItem(sourceName, itemName) {
-    const data = this.getData()
-    return data[sourceName].fields.filter(arr => arr.name === itemName)[0]
-  }
+  set(value, update = true) {
+    if (update !== false) {
+      if (typeof value.type !== 'undefined') {
+        this.type.set(value.type)
+      } else {
+        this.type.clear()
+      }
 
-  setSourceFieldData(sourceName, itemName, data) {
-    const item = this.getSourceItem(sourceName, itemName)
-    item.data = data
-  }
+      if (typeof value.internal !== 'undefined') {
+        this.internal.set(value.internal)
+      }
+      if (typeof value.external !== 'undefined') {
+        this.external.set(value.external)
+      }
 
-  set(data, trigger = true) {
-    this.source = data.source
-    this.TYPESELECT.set(this.source)
-    this.swtichType()
+      if (typeof value.target !== 'undefined') {
+        this.target.set(value.target)
+      }
 
-    delete data.source
-
-    // update this.data
-    this.updateData(data)
-
-    // render
-    this.render(data)
-
-    // update
-    this.update()
-
-    if (trigger) {
-      this.trigger(EVENTS.CHANGE, data)
+      if (typeof value.title !== 'undefined') {
+        this.linkTitle.set(value.title)
+      }
+      this.update()
     }
   }
 
-  updateData(data) {
-    Object.entries(data).forEach(([itemName, value]) => {
-      const item = this.getSourceItem(this.source, itemName)
-      const data = item.data
-      if (isString(data)) {
-        item.data = value
-        return
-      }
-
-      item.data.active = value
-    })
-  }
-
-  render(data) {
-    const $source = query(
-      `.${this.classes.TYPESCONTAINER}[data-type='${this.source}']`,
-      this.$dropdown
-    )
-    const dataTypes = []
-    Object.entries(data).forEach(([itemName]) => {
-      const item = this.getSourceItem(this.source, itemName)
-      dataTypes.push(item.type)
-    })
-    // console.log(queryAll(`.${this.classes.ITEMBODY}`, $source))
-    queryAll(`.${this.classes.ITEMBODY}`, $source).forEach(el => {
-      const $this = el
-      // console.log($this)
-      const type = getData('value', parent($this))
-      // console.log(type)
-      if (data[type]) {
-        const api = getData('api', $this)
-        const apiType = Array.isArray(api) ? api[0].plugin : api
-        if (!apiType) {
-          api.value = data[type]
-
-          return
-        }
-        if (apiType === 'dropdown') {
-          api.set(data[type])
-          return
-        }
-        if (apiType === 'radio') {
-          if (data[type].indexOf('#') === 0) {
-            api.forEach(plugin => plugin.set('id'))
-            query('input[type="text"]', $this).value = data[type]
-          } else {
-            api.forEach(plugin => plugin.set(data[type]))
-          }
-
-          return
-        }
-      }
-    })
+  initVal() {
+    return {
+      type: this.options.type.value,
+      internal: this.options.internal.value,
+      target: this.options.target.value,
+      title: this.options.linkTitle.value
+    }
   }
 
   update() {
-    this.input = {}
-    const globalData = this.getData()
-    this.input.source = this.source
-
-    Object.entries(globalData).forEach(([sourceName, details]) => {
-      if (sourceName === this.source) {
-        details.fields.forEach(item => {
-          const active = isString(item.data) ? item.data : item.data.active
-          this.input[item.name] = active
-        })
-      }
-    })
-
-    this.element.value = JSON.stringify(this.input)
-
+    const value = this.val()
+    console.log(value)
+    this.element.value = value
     this.updatePreview()
+  }
+
+  val(value) {
+    if (typeof value === 'undefined') {
+      return this.options.process.call(this, this.get())
+    }
+
+    const valueObj = this.options.parse.call(this, value)
+    if (valueObj) {
+      this.set(valueObj)
+    } else {
+      this.clear()
+    }
+
+    return null
   }
 
   updatePreview() {
     const data = this.get()
-    const sourceName = data.source
-    const source = this.getData()[sourceName]
-
-    let preview = source.preview
-    if (preview) {
-      const keys = preview.match(/\{.*?\}/gi)
-      keys.forEach(key => {
-        const itemName = key
-          .trim()
-          .replace(/^\{/, '')
-          .replace(/\}$/, '')
-
-        const item = this.getSourceItem(sourceName, itemName)
-        const itemData = item.data
-        let value
-
-        if (isString(itemData)) {
-          value = itemData
-        } else if (item.connect) {
-          value = itemData.values(data[item.connect]).values[data[item.name]]
-        } else {
-          value = itemData.values[itemData.active]
-          if (!value) {
-            value = itemData.active
-          }
-        }
-
-        preview = preview.replace(key, value)
-      })
+    console.log(data)
+    if (data.type) {
+      addClass(this.classes.WRITE, this.$wrap)
+      query(`.${this.classes.LINK}`, this.$fill).textContent = data.type
     }
-
-    addClass(this.classes.WRITE, this.$wrap)
-    query(`.${this.classes.LINK}`, this.$fill).textContent = preview
   }
 
   get() {
-    return this.input
-  }
-
-  val(data, trigger = true) {
-    if (data) {
-      if (isNaN(data)) {
-        data = JSON.parse(data.replace(/\'/g, '"')) /* eslint-disable-line */
+    if (this.value.type === 'external') {
+      return {
+        type: this.value.type,
+        external: this.value.external,
+        target: this.value.target,
+        title: this.value.title
       }
-
-      this.set(data, trigger)
+    }
+    return {
+      type: this.value.type,
+      internal: this.value.internal,
+      target: this.value.target,
+      title: this.value.title
     }
 
-    return JSON.stringify(this.get())
+    // return this.value
+  }
+  getClassName(namespace, field) {
+    return template.compile(this.classes.FIELD)({ namespace, field })
   }
 
   enable() {
@@ -850,26 +467,6 @@ class LinkPicker extends Component {
 
     this.trigger(EVENTS.DESTROY)
     super.destroy()
-  }
-
-  static registerDatas(data) {
-    Object.entries(data).forEach(([name, value]) => {
-      LinkPicker.registerData(name, value)
-    })
-  }
-
-  static registerData(name, data) {
-    DATA[name] = data
-  }
-
-  static registerSources(data) {
-    Object.entries(data).forEach(([name, value]) => {
-      LinkPicker.registerSource(name, value)
-    })
-  }
-
-  static registerSource(name, data) {
-    SOURCES[name] = data
   }
 }
 

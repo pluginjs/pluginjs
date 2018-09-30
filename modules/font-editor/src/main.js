@@ -75,7 +75,6 @@ class FontEditor extends Component {
       this.defaultVal,
       this.options.parse(this.element.value.replace(/'/g, '"'))
     )
-
     // init
     this.fontFamily = new FontFamily(this)
     this.fontWeight = new FontWeight(this)
@@ -110,7 +109,6 @@ class FontEditor extends Component {
       this.disable()
     }
     this.set(this.value, true)
-
     this.enter('initialized')
 
     this.trigger(EVENTS.READY)
@@ -217,11 +215,12 @@ class FontEditor extends Component {
 
   val(value) {
     if (typeof value === 'undefined') {
+      console.log(this.options.process.call(this, this.value))
       return this.options.process.call(this, this.value)
     }
 
     const valueObj = this.options.parse.call(this, value)
-
+    console.log(valueObj)
     if (valueObj) {
       this.set(valueObj)
     } else {

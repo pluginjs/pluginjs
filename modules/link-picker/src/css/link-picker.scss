@@ -47,7 +47,6 @@ $linkPicker-disabled-bg: $disabled-bg;
     height: $linkPicker-height;
     border: none !important;
   }
-
   .#{$linkPicker}-input,
   &-fill {
     display: none;
@@ -131,6 +130,16 @@ $linkPicker-disabled-bg: $disabled-bg;
     background-color: $color-white;
     border: $dropdown-border;
     border-radius: $dropdown-border-radius;
+
+    .pj-linkPicker-internal {
+      display: none;
+    }
+    .pj-linkPicker-external {
+      display: none;
+    }
+    .pj-linkPicker-type-show {
+      display: block !important;
+    }
 
     &-action {
       margin-top: $linkPicker-sizer * 2; //20px

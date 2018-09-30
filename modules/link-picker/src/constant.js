@@ -39,7 +39,18 @@ export const classes = {
   SHOW: '{namespace}-show',
   WRITE: '{namespace}-write',
   HOVER: '{namespace}-fill-hover',
-  TRIGGER: '{namespace}-trigger'
+  TRIGGER: '{namespace}-trigger',
+  // field
+  FIELD: '{namespace}-field {namespace}-{field}',
+  FIELDTITLE: '{namespace}-field-title',
+  FIELDCONTENT: '{namespace}-field-content',
+  // dropdown
+  // DROPDOWN: '{namespace}-dropdown',
+  // TRIGGER: '{namespace}-trigger',
+  OPENDISABLE: '{namespace}-open-disabled',
+  SELECTTRIGGER: '{namespace}-select-trigger',
+  CASCADERTRIGGER: '{namespace}-cascader-trigger',
+  TYPESHOW: '{namespace}-type-show'
 }
 
 export const methods = [
@@ -49,7 +60,8 @@ export const methods = [
   'disable',
   'destroy',
   'update',
-  'get'
+  'get',
+  'setType'
 ]
 
 export const defaults = {
@@ -57,6 +69,63 @@ export const defaults = {
   placeholder: 'Title',
   locale: 'en',
   disabled: false,
+  type: {
+    value: 'internal',
+    template() {
+      return (
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{type}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
+        '<input type="text" class="{classes.SELECTTRIGGER}" />' +
+        '</div>' +
+        '</div>'
+      )
+    }
+  },
+  target: {
+    template() {
+      return (
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{openMode}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
+        '<input type="text" class="{classes.SELECTTRIGGER}" />' +
+        '</div>' +
+        '</div>'
+      )
+    }
+  },
+  linkTitle: {
+    template() {
+      return (
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{linkTitle}</span>' +
+        '<input type="text" class="pj-input"  />' +
+        '</div>'
+      )
+    }
+  },
+  internal: {
+    template() {
+      return (
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{internal}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
+        '<input type="text" class="{classes.CASCADERTRIGGER}" />' +
+        '</div>' +
+        '</div>'
+      )
+    }
+  },
+  external: {
+    template() {
+      return (
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{external}</span>' +
+        '<input type="text" class="pj-input"  />' +
+        '</div>'
+      )
+    }
+  },
   //  data: null,
   sources: null, // [Array] list of source name.
   templates: {
@@ -120,8 +189,8 @@ export const dependencies = ['dropdown', 'pop-dialog', 'radio']
 export const translations = {
   en: {
     type: 'Type',
-    contentType: 'Content Type',
-    content: 'Content',
+    internal: 'Internal',
+    external: 'External',
     openMode: 'Open Mode',
     linkTitle: 'Link Title',
     save: 'Save',
@@ -146,8 +215,8 @@ export const translations = {
   },
   zh: {
     type: '类型',
-    contentType: '内容样式',
-    content: '内容',
+    internal: '内部',
+    external: '外部',
     openMode: '打开模式',
     linkTitle: '链接标题',
     save: '保存',
