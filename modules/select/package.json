@@ -32,7 +32,8 @@
     "@pluginjs/dom": "*",
     "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/match": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
