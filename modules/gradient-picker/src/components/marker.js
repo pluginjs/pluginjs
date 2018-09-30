@@ -12,10 +12,7 @@ class Marker {
     this.color = this.options.color
     this.percent = this.options.percent
     this.index = this.options.index
-    this.$wrap = query(
-      `.${this.instance.classes.GRADIENTBAR}`,
-      this.instance.$gradient
-    )
+    this.$wrap = query(`.${this.instance.classes.BAR}`, this.instance.$panel)
 
     this.$wrap.append(this.$el)
 
@@ -35,9 +32,8 @@ class Marker {
 
   bind() {
     bindEvent(
-      this.instance.selfEventName('change'),
+      this.instance.selfEventName('colorChange'),
       (e, el, color) => {
-        console.log(200)
         if (this.instance.is('noSelectedMarker')) {
           return false
         }
@@ -51,7 +47,7 @@ class Marker {
       this.instance.eventName('click'),
       e => {
         const color = getStyle('backgroundColor', e.target)
-        this.instance.GRADIENT.setGradientColor(color, this.index)
+        this.instance.setGradientColor(color, this.index)
       },
       this.$el
     )

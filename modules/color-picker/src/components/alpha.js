@@ -90,7 +90,6 @@ class Alpha {
   }
 
   update() {
-    console.log(this.alpha)
     this.instance.setColor({ a: this.alpha })
   }
 }

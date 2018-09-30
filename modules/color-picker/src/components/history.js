@@ -62,6 +62,16 @@ class History {
     )
   }
 
+  set(color) {
+    if (this.prevColor === color) {
+      return false
+    }
+    this.prevColor = color
+    this.update(this.prevColor)
+
+    return null
+  }
+
   update(color) {
     if (this.colors.indexOf(color) === -1) {
       this.colors.push(color)

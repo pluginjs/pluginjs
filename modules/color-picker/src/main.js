@@ -3,7 +3,7 @@ import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { hideElement, showElement } from '@pluginjs/styled'
+import { setStyle, hideElement, showElement } from '@pluginjs/styled'
 import { isString } from '@pluginjs/is'
 import {
   append,
@@ -81,11 +81,18 @@ class ColorPicker extends Component {
     // take element defalut value
     this.elementColor = this.element.value
 
+    this.createHtml()
+
     if (this.options.displayMode === 'inline') {
       hideElement(this.element)
+      setStyle(
+        {
+          boxShadow: 'none',
+          border: '1px solid #e6e6e6'
+        },
+        this.$panel
+      )
     }
-
-    this.createHtml()
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
@@ -303,7 +310,7 @@ class ColorPicker extends Component {
     } else {
       query(`.${this.classes.HEX}`, this.$panel).remove()
     }
-    if (this.module.history && this.options.displayMode !== 'inline') {
+    if (this.module.history) {
       this.initHistory()
     } else {
       query(`.${this.classes.HISTORY}`, this.$panel).remove()
