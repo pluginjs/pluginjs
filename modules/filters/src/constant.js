@@ -22,15 +22,7 @@ export const classes = {
   HIDE: '{namespace}-hide'
 }
 
-export const methods = [
-  'enable',
-  'disable',
-  'destroy',
-  'build',
-  'append',
-  'get',
-  'set'
-]
+export const methods = ['enable', 'disable', 'destroy', 'append', 'get', 'set']
 
 export const defaults = {
   theme: null,

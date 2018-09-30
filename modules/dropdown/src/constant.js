@@ -39,7 +39,10 @@ export const methods = [
   'hide',
   'toggle',
   'selectByValue',
-  'update'
+  'unselectByValue',
+  'update',
+  'get',
+  'set'
 ]
 
 export const defaults = {

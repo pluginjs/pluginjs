@@ -4,8 +4,6 @@ export const events = {
   OPEN: 'open',
   CLOSE: 'close',
   DESTROY: 'destroy',
-  SHOW: 'show',
-  HIDE: 'hide',
   READY: 'ready'
 }
 

@@ -4,10 +4,7 @@ const events = {
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
-  DESTROY: 'destroy',
-  CHANGE: 'change',
-  PREV: 'prev',
-  NEXT: 'next'
+  DESTROY: 'destroy'
 }
 
 const classes = {
@@ -20,7 +17,7 @@ const classes = {
   DISABLED: '{namespace}-disabled'
 }
 
-const methods = ['enable', 'disable', 'destroy', 'next', 'prev', 'go']
+const methods = ['enable', 'disable', 'destroy']
 
 const defaults = {
   templates: {

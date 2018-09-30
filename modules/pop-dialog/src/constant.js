@@ -8,11 +8,7 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  HIDE: 'hide',
-  HIDDEN: 'hidden',
-  SHOW: 'show',
-  SHOWN: 'shown',
-  INSERTED: 'inserted'
+  SHOW: 'show'
 }
 
 export const classes = deepMerge(Popover.classes, {
@@ -33,15 +29,7 @@ export const classes = deepMerge(Popover.classes, {
   PLACEMENT: '{namespace}-{placement}'
 })
 
-export const methods = [
-  'do',
-  'show',
-  'hide',
-  'toggle',
-  'enable',
-  'disable',
-  'destroy'
-]
+export const methods = ['do']
 
 export const defaults = deepMerge(Popover.defaults, {
   hideOutClick: true,

@@ -8,11 +8,7 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  HIDE: 'hide',
-  HIDDEN: 'hidden',
-  SHOW: 'show',
-  SHOWN: 'shown',
-  INSERTED: 'inserted'
+  SHOW: 'show'
 }
 
 export const classes = {
@@ -30,14 +26,7 @@ export const classes = {
   PLACEMENT: '{namespace}-{placement}'
 }
 
-export const methods = [
-  'show',
-  'hide',
-  'toggle',
-  'enable',
-  'disable',
-  'destroy'
-]
+export const methods = ['show']
 
 export const defaults = deepMerge(Tooltip.defaults, {
   template() {

@@ -2,7 +2,6 @@ export const namespace = 'navToSelect'
 import { children, getData } from '@pluginjs/dom'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',

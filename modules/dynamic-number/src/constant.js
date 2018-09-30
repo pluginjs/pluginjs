@@ -5,6 +5,7 @@ export const events = {
   START: 'start',
   STOP: 'stop',
   COMPLETE: 'complete',
+  PAUSE: 'pause',
   RESET: 'reset',
   RESUME: 'resume',
   RESTART: 'restart',
@@ -12,7 +13,19 @@ export const events = {
   DESTROY: 'destroy'
 }
 
-export const methods = ['start', 'stop', 'finish', 'reset', 'destroy', 'go']
+export const methods = [
+  'start',
+  'stop',
+  'finish',
+  'reset',
+  'destroy',
+  'go',
+  'pause',
+  'resume',
+  'restart',
+  'reset',
+  'update'
+]
 
 export const defaults = {
   from: 0,
