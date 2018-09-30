@@ -1,3 +1,4 @@
+import { search } from '@pluginjs/match'
 import { isString, isArray } from '@pluginjs/is'
 
 export const namespace = 'cascader'
@@ -55,8 +56,14 @@ export const defaults = {
   value: null,
   placeholder: 'Please Select',
   filterable: false,
-  filter(option, search) {
-    return option.label.toLowerCase().includes(search.toLowerCase())
+  filter(option, query) {
+    return search(query, option.label, {
+      diacritics: false,
+      punctuation: false,
+      case: false,
+      whitespaces: false,
+      boundaries: false
+    })
   },
   keyboard: true,
   clearable: false,
