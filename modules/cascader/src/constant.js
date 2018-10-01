@@ -37,7 +37,8 @@ export const classes = {
   FILTERABLE: '{namespace}-filterable',
   FILTER: '{namespace}-filter',
   NOTFOUND: '{namespace}-not-found',
-  MENU: '{namespace}-menu'
+  MENU: '{namespace}-menu',
+  LOADING: '{namespace}-loading'
 }
 
 export const methods = [
@@ -107,9 +108,11 @@ export const defaults = {
 
 export const translations = {
   en: {
+    loadingText: 'loading',
     notFoundText: 'No results found'
   },
   zh: {
+    loadingText: '加载中',
     notFoundText: '无匹配数据'
   }
 }

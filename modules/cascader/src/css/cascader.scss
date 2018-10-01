@@ -23,6 +23,9 @@ $cascader-clear-hover-color: $text-color !default;
 $cascader-not-found-padding: 11px 8px !default;
 $cascader-not-found-color: $gray-darker !default;
 
+$cascader-loading-padding: 11px 8px;
+$cascader-loading-color: $gray-darker;
+
 .#{$cascader} {
   outline: none;
 
@@ -58,6 +61,12 @@ $cascader-not-found-color: $gray-darker !default;
   &-not-found {
     padding: $cascader-not-found-padding;
     color: $cascader-not-found-color;
+    text-align: center;
+  }
+
+  &-loading {
+    padding: $cascader-loading-padding;
+    color: $cascader-loading-color;
     text-align: center;
   }
 }
