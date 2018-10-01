@@ -11,9 +11,7 @@
   "dependencies": {
     "@pluginjs/auto-complete": "*",
     "@pluginjs/dom": "*",
-    "@pluginjs/icons": "*",
-    "@pluginjs/styles": "*",
-    "font-awesome": "^4.7.0"
+    "countries-list": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

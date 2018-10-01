@@ -1,25 +1,26 @@
+import { countries } from 'countries-list'
 import { query } from '@pluginjs/dom'
 import AutoComplete from '@pluginjs/auto-complete'
-import { continents, countries } from 'countries-list'
 
 const source = Object.values(countries).map(country => {
   return {
     name: country.name,
-    continent: country.continent
+    emoji: country.emoji
   }
 })
 
-const element = query('#group .example')
+const element = query('#custom-template .example')
 AutoComplete.of(element, {
   source,
-  group: 'continent',
-  groupLabel(group) {
-    return group in continents ? continents[group] : 'Unknown'
-  },
   itemLabel(item) {
     return item.name
   },
   itemValue(item) {
     return item.name
+  },
+  templates: {
+    item() {
+      return '<div class="{classes.ITEM}" data-value="{value}">{label}<span style="float:right">{item.emoji}</span></div>'
+    }
   }
 })

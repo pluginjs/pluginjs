@@ -1,21 +1,5 @@
 import Component from '@pluginjs/component'
-import { isArray, isObject, isFunction } from '@pluginjs/is'
-import template from '@pluginjs/template'
-import { debounce, compose } from '@pluginjs/utils'
-import {
-  query,
-  queryAll,
-  unwrap,
-  wrap,
-  parseHTML,
-  parentWith,
-  getData,
-  setData
-} from '@pluginjs/dom'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { getStyle, setStyle, showElement, hideElement } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import Popper from 'popper.js'
+import templateEngine from '@pluginjs/template'
 import {
   eventable,
   register,
@@ -32,6 +16,31 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
+import {
+  isArray,
+  isFunction,
+  isNull,
+  isPlainObject,
+  isString,
+  isUndefined
+} from '@pluginjs/is'
+import Clearable from './clearable'
+import Hint from './hint'
+import { bindEvent, removeEvent } from '@pluginjs/events'
+import { addClass, removeClass } from '@pluginjs/classes'
+import Dropdown from '@pluginjs/dropdown'
+import {
+  empty,
+  query,
+  attr,
+  wrap,
+  appendTo,
+  parseHTML,
+  insertAfter,
+  removeAttr
+} from '@pluginjs/dom'
+import { getValueByPath } from '@pluginjs/utils'
+import { match } from '@pluginjs/match'
 
 @themeable()
 @styleable(CLASSES)
@@ -45,502 +54,271 @@ import {
 class AutoComplete extends Component {
   constructor(element, options = {}) {
     super(element)
-    this.$element = this.element
+
     this.setupOptions(options)
     this.setupClasses()
-    this.$wrapper = wrap(
-      `<div class="${this.classes.NAMESPACE}"></div>`,
-      this.$element
-    )
-
-    this.source = this.options.source
-
-    this.$panel = null
-    this.$selected = null
-
     this.setupStates()
     this.initialize()
   }
 
   initialize() {
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$wrapper)
+    this.data = []
+    this.items = []
+
+    if (this.element.value === '' && this.options.value) {
+      this.element.value = this.options.value
     }
 
-    this.create()
-    this.setupPopper()
+    attr(
+      {
+        autocomplete: 'off',
+        spellcheck: 'false'
+      },
+      this.element
+    )
+
+    if (this.options.placeholder) {
+      this.element.placeholder = this.options.placeholder
+    }
+
+    addClass(this.classes.INPUT, this.element)
+
+    this.$trigger = wrap(
+      templateEngine.render(this.options.templates.trigger.call(this), {
+        classes: this.classes
+      }),
+      this.element
+    )
+
+    this.$wrap = wrap(`<div class="${this.classes.WRAP}"></div>`, this.$trigger)
+
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.$wrap)
+    }
+
+    this.set(this.element.value, false)
 
     this.initData()
+
     this.bind()
 
-    if (this.$element.disabled || this.options.disabled) {
-      this.disable()
+    this.setupDropdown()
+
+    if (this.options.clearable) {
+      this.CLEARABLE = new Clearable(this)
     }
 
-    this.triggerCloseButten()
+    if (this.options.hint) {
+      this.HINT = new Hint(this)
+    }
+
+    if (this.element.disabled || this.options.disabled) {
+      this.disable()
+    }
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  create() {
-    this.firstClassName = this.$element.className
-    addClass(this.classes.INPUT.split(' '), this.$element)
-    this.$element.setAttribute('placeholder', this.options.placeholder)
-    this.$panel = parseHTML(
-      template.compile(this.options.templates.panel())({
+  setupDropdown() {
+    this.$dropdown = appendTo(
+      templateEngine.render(this.options.templates.dropdown.call(this), {
         classes: this.classes
-      })
-    )
-    // close button
-    this.$close = parseHTML(
-      template.compile(this.options.templates.icon())({
-        classes: this.classes,
-        icon: 'pj-icon pj-icon-char pj-icon-remove-small'
-      })
+      }),
+      this.$wrap
     )
 
-    this.$wrapper.append(this.$panel, this.$close)
-    const panelWidth = this.options.panelWidth
-      ? this.options.panelWidth
-      : getStyle('width', this.$element)
-    setStyle('width', panelWidth, this.$panel)
+    this.$items = query(`.${this.classes.ITEMS}`, this.$dropdown)
 
-    if (this.options.keyboard) {
-      this.$element.setAttribute('tabindex', 1)
-    }
-
-    if (isFunction(this.options.source)) {
-      this.options.source.call(this, this.resolveData.bind(this))
-    } else {
-      this.resolveData(this.source)
-    }
-  }
-
-  setupPopper() {
-    this.POPPER = new Popper(this.$element, this.$panel, {
-      placement: 'bottom',
-      modifiers: { preventOverflow: { boundariesElement: 'window' } },
-      onUpdate: data => {
-        const placement = data.placement
-
-        if (placement.indexOf('top') >= 0) {
-          addClass(this.classes.PANELONTOP, this.$wrapper)
+    this.DROPDOWN = Dropdown.of(this.$trigger, {
+      ...this.options.dropdown,
+      target: this.$dropdown,
+      keyboard: this.options.keyboard,
+      classes: {
+        PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
+      },
+      trigger: 'custom',
+      onShow: () => {
+        if (this.items.length > 0 && !this.is('builded')) {
+          this.buildDropdownItems()
         }
+        addClass(this.classes.SHOW, this.$wrap)
+        this.trigger(EVENTS.SHOW)
+      },
+      onShown: () => {
+        this.enter('shown')
+        this.trigger(EVENTS.SHOWN)
+      },
+      onHide: () => {
+        this.leave('shown')
+        this.trigger(EVENTS.HIDE)
+      },
+      onHided: () => {
+        removeClass(this.classes.SHOW, this.$wrap)
+        this.trigger(EVENTS.HIDED)
+      },
+      onChange: value => {
+        const item = this.getItemByValue(value)
+        this.trigger(EVENTS.SELECT, item)
 
-        if (placement.indexOf('bottom') >= 0) {
-          removeClass(this.classes.PANELONTOP, this.$wrapper)
+        if (this.options.clearOnSelected) {
+          this.clear()
+        } else {
+          this.set(value, true, false)
         }
       }
     })
-  }
-
-  initData() {
-    const val = this.$element.value
-    if (val) {
-      this.set(val, false)
-    }
-  }
-
-  build(data, wrap) {
-    data.forEach(v => {
-      let label = v
-      let value = v
-
-      if (isObject(v)) {
-        label = v.label
-        value = v.value
-      }
-
-      if (isArray(v)) {
-        label = v[0]
-        value = v[1]
-      }
-      const $item = parseHTML(
-        template.compile(this.options.templates.item())({
-          classes: this.classes,
-          contents: label
-        })
-      )
-
-      const data = { label, value }
-
-      setData('data', data, $item)
-      wrap.append($item)
-    })
-  }
-
-  buildGroup(data, wrap) {
-    data.forEach(v => {
-      const title = v.id
-      const $group = parseHTML(
-        template.compile(this.options.templates.group())({
-          classes: this.classes,
-          group: title,
-          title: title.toUpperCase()
-        })
-      )
-      const $contents = query(`.${this.classes.GROUPCONTENTS}`, $group)
-      wrap.append($group)
-      this.build(v.list, $contents)
-    })
-  }
-
-  resolveData(data) {
-    if (this.options.group) {
-      this.buildGroup(data, this.$panel)
-    } else {
-      this.build(data, this.$panel)
-    }
-
-    this.$items = this.getItems()
-  }
-
-  triggerCloseButten() {
-    if (this.is('disabled')) {
-      hideElement(this.$close)
-      return
-    }
-    showElement(this.$close)
-
-    if (this.is('hover') || this.is('focus')) {
-      this.isShowButton()
-    } else {
-      hideElement(this.$close)
-    }
   }
 
   bind() {
-    // input event
     bindEvent(
       this.eventName('input'),
-      ({ target }) => {
-        const val = target.value
-        if (val.length <= 0 || val.length < this.options.minChars) {
-          if (this.is('open')) {
-            this.close()
-          }
-          return
-        }
-        debounce(this.search(val), 200)
+      () => {
+        this.set(this.element.value)
       },
-      this.$element
+      this.element
     )
-
-    compose(
-      bindEvent(this.eventName('click'), `.${this.classes.CLOSE}`, () => {
-        if (this.is('disabled')) {
-          return
-        }
-        this.$element.value = ''
-        hideElement(this.$close)
-      }),
-      bindEvent(this.eventName('mouseleave'), () => {
-        if (this.is('disabled')) {
-          return
-        }
-        this.leave('hover')
-        hideElement(this.$close)
-      }),
-      bindEvent(this.eventName('mouseenter'), () => {
-        if (this.is('disabled')) {
-          return
-        }
-        this.enter('hover')
-        this.isShowButton()
-      })
-    )(this.$wrapper)
-
-    compose(
-      bindEvent(
-        this.eventName('mouseover'),
-        `.${this.classes.ITEM}`,
-        ({ target }) => {
-          const hasItemClass = hasClass(this.classes.ITEM)
-          const $item = hasItemClass(target)
-            ? target
-            : parentWith(hasItemClass, target)
-          this.$selected = $item
-          removeClass(
-            this.classes.ACTIVE,
-            queryAll(`.${this.classes.ITEM}`, this.$panel)
-          )
-          addClass(this.classes.ACTIVE, $item)
-        }
-      ),
-      bindEvent(
-        this.eventName('click'),
-        `.${this.classes.ITEM}`,
-        ({ target }) => {
-          const hasItemClass = hasClass(this.classes.ITEM)
-          const $item = hasItemClass(target)
-            ? target
-            : parentWith(hasItemClass, target)
-          this.$selected = $item
-          this.close()
-          this.set(getData('data', $item).value)
-        }
-      )
-    )(this.$panel)
-
-    if (this.options.keyboard) {
-      compose(
-        bindEvent(this.eventName('blur'), () => {
-          this.leave('focus')
-          removeEvent(this.eventName('keydown'), this.$element)
-        }),
-        bindEvent(this.eventName('focus'), () => {
-          this.enter('focus')
-          bindEvent(
-            this.eventName('keydown'),
-            e => {
-              this.triggerCloseButten()
-              if (e.keyCode === 40 && e.which === 40) {
-                // down
-                this.next()
-                e.preventDefault()
-              }
-              if (e.keyCode === 38 && e.which === 38) {
-                // up
-                this.prev()
-                e.preventDefault()
-              }
-              if (e.keyCode === 13 && e.which === 13) {
-                // update
-                this.close()
-                this.set(getData('data', this.$selected).value)
-                e.preventDefault()
-              }
-            },
-            this.$element
-          )
-        })
-      )(this.$element)
-    }
 
     bindEvent(
-      this.eventName('click'),
-      e => {
-        if (this.is('open')) {
-          if (!this.$panel.contains(e.target)) {
-            this.close()
-            return false
-          }
+      this.eventName('focus'),
+      () => {
+        if (
+          this.options.showOnFocus &&
+          !this.is('loading') &&
+          this.items.length > 0
+        ) {
+          this.DROPDOWN.show()
+        }
+        this.enter('focus')
+      },
+      this.element
+    )
+
+    bindEvent(
+      this.eventName('blur'),
+      () => {
+        if (this.options.hideOnBlur && this.is('shown')) {
+          this.DROPDOWN.hide()
         }
 
-        return null
+        this.leave('focus')
       },
-      window.document
+      this.element
     )
-  }
-
-  isShowButton() {
-    if (this.$element.value) {
-      showElement(this.$close)
-    } else {
-      hideElement(this.$close)
-    }
   }
 
   unbind() {
-    // this.$wrapper.off(this.eventName());
-    removeEvent(this.eventName(), this.$element)
-    removeEvent(this.eventName(), this.$wrapper)
-    removeEvent(this.eventName(), document)
+    removeEvent(this.eventName(), this.element)
   }
 
-  search(key) {
-    const that = this
+  initData() {
+    this.queryItems(this.value)
+  }
 
-    let count = 0
-
-    if (this.options.group) {
-      removeClass(
-        this.classes.GROUPSHOW,
-        find(`.${this.classes.GROUP}`, this.$panel)
-      )
+  queryItems(query = '') {
+    if (query.length < this.options.minChars) {
+      query = ''
     }
-    this.$items.forEach($item => {
-      removeClass(that.classes.SHOW, $item)
-      const val = getData('data', $item).label
 
-      if (that.compare(key, val)) {
-        if (count >= that.options.maxItems) {
-          return
+    this.query = query
+
+    if (isArray(this.options.source) || isPlainObject(this.options.source)) {
+      this.resolveData(this.options.source)
+    } else if (isFunction(this.options.source)) {
+      this.enter('loading')
+      this.options.source.call(this, query, this.resolveData.bind(this))
+    }
+  }
+
+  resolveData(data) {
+    this.data = data
+    let items = data
+
+    if (isPlainObject(items)) {
+      items = Object.keys(items).map(value => {
+        return {
+          value,
+          label: items[value]
         }
-        that.render(key, val, $item)
-        count++
-      }
-    })
-
-    if (count === 0) {
-      this.clear()
-
-      return false
-    }
-
-    return true
-  }
-
-  render(key, value, $item) {
-    const data = {
-      label: getData('data', $item).label,
-      value: getData('data', $item).value
-    }
-
-    let content = this.options.render(data, $item)
-      ? this.options.render(data, $item)
-      : value
-
-    // if (this.options.highlight) {
-    let REG
-    if (this.options.sensitivity) {
-      REG = new RegExp(key, 'g')
-    } else {
-      REG = new RegExp(key, 'gi')
-    }
-
-    const val = value.replace(REG, match =>
-      template.compile(this.options.templates.mark())({
-        classes: this.classes,
-        contents: match
       })
-    )
-
-    data.label = val
-    content = this.options.render(data, $item)
-      ? this.options.render(data, $item)
-      : val
-    // }
-    // this.color(key, content)
-    $item.innerHTML = content
-    addClass(this.classes.SHOW, $item)
-    if (this.options.group) {
-      addClass(
-        this.classes.GROUPSHOW,
-        parentWith(hasClass(this.classes.GROUP), $item)
-      )
-    }
-    this.$selected = queryAll(`.${this.classes.SHOW}`, this.$panel)[0]
-    this.$shows = queryAll(`.${this.classes.SHOW}`, this.$panel)
-    this.$groupshows = queryAll(`.${this.classes.GROUPSHOW}`, this.$panel)
-    this.$shows.map(removeClass(this.classes.ACTIVE))
-    addClass(this.classes.ACTIVE, this.$selected)
-
-    this.open()
-  }
-
-  compare(key, val) {
-    const keySize = key.length
-    const valSize = val.length
-
-    if (keySize > valSize) {
-      return false
     }
 
-    if (!this.options.sensitivity) {
-      key = key.toLowerCase()
-      val = val.toLowerCase()
+    if (this.query) {
+      this.items = this.options.match.call(this, items, this.query)
+    } else {
+      this.items = items
     }
 
-    if (keySize === valSize) {
-      return key === val
+    if (this.is('loading')) {
+      this.leave('loading')
     }
 
-    if (val.indexOf(key) < 0) {
-      return false
-    }
-
-    return true
-  }
-
-  next() {
-    this.$shows.forEach((val, index) => {
-      let $next
-
-      if (this.$selected === val && this.$shows[index + 1]) {
-        $next = this.$shows[index + 1]
-
-        queryAll(`.${this.classes.ITEM}`, this.$panel).map(
-          removeClass(this.classes.ACTIVE)
-        )
-        this.$selected = addClass(this.classes.ACTIVE, $next)
-        return false
+    if (this.items.length > 0) {
+      if (this.is('builded') || this.is('shown')) {
+        this.updateDropdownItems()
       }
 
-      return null
-    })
+      if (this.is('focus') && !this.is('shown')) {
+        this.DROPDOWN.show()
+      }
+    } else {
+      this.restoreDropdownItems()
+    }
   }
 
-  prev() {
-    this.$shows.forEach((val, index) => {
-      let $prev
+  match(data, query, options = {}) {
+    if (isUndefined(this.keys)) {
+      this.keys = options.keys
+      if (isNull(this.keys) && data.length > 0) {
+        if (isPlainObject(data[0])) {
+          this.keys = Object.keys(data[0]).filter(key => isString(data[0][key]))
+        }
+      }
+    }
 
-      if (this.$selected === val && this.$shows[index - 1]) {
-        $prev = this.$shows[index - 1]
+    options.keys = this.keys
 
-        queryAll(`.${this.classes.ITEM}`, this.$panel).map(
-          removeClass(this.classes.ACTIVE)
-        )
-        this.$selected = addClass(this.classes.ACTIVE, $prev)
-        return false
+    return match(data, query, options)
+  }
+
+  set(value, trigger = true, update = true) {
+    if (value !== this.value) {
+      this.value = value
+      this.element.value = value
+
+      if (value === '') {
+        if (this.HINT) {
+          this.HINT.clear()
+        }
+        removeClass(this.classes.FILLED, this.$wrap)
+
+        if (trigger) {
+          this.trigger(EVENTS.CLEAR)
+        }
+      } else {
+        if (this.HINT) {
+          this.HINT.check(value)
+        }
+
+        addClass(this.classes.FILLED, this.$wrap)
       }
 
-      return null
-    })
-  }
+      if (update && this.value !== this.query) {
+        this.queryItems(this.value)
+      }
 
-  open() {
-    if (!hasClass(this.classes.OPEN, this.$panel)) {
-      addClass(this.classes.OPEN, this.$element)
-      addClass(this.classes.OPEN, this.$panel)
-      this.enter('open')
-
-      this.POPPER.scheduleUpdate()
+      if (trigger) {
+        this.trigger(EVENTS.CHANGE, this.element.value)
+      }
     }
   }
 
-  close() {
-    removeClass(this.classes.OPEN, this.$element)
-    removeClass(this.classes.OPEN, this.$panel)
-    if (this.$groupshows) {
-      this.$groupshows.map(removeClass(this.classes.GROUPSHOW))
-    }
-    if (this.$items) {
-      removeClass(this.classes.SHOW, this.$items)
-    }
-    if (this.$selected) {
-      removeClass(this.classes.ACTIVE, this.$selected)
-    }
-    if (this.options.group) {
-      queryAll(`.${this.classes.GROUP}`, this.$panel).map(
-        removeClass(this.classes.SHOW)
-      )
-    }
-
-    this.leave('open')
+  setItem(item) {
+    this.set(this.getItemValue(item))
   }
 
-  getItems() {
-    return queryAll(`.${this.classes.ITEM}`, this.$panel)
-  }
-  clear() {
-    this.$items.map(removeClass(this.classes.SHOW))
-    if (this.$groupshows) {
-      this.$groupshows.map(removeClass(this.classes.GROUPSHOW))
-    }
-  }
-
-  set(value, trigger = true) {
-    this.$element.value = value
-
-    if (trigger) {
-      this.trigger(EVENTS.CHANGE, value, this)
-    }
-  }
-
-  get() {
-    return this.$element.value
+  getItem() {
+    return this.getItemByValue(this.value)
   }
 
   val(value) {
@@ -548,31 +326,172 @@ class AutoComplete extends Component {
       return this.get()
     }
 
-    this.set(value)
+    return this.set(value)
+  }
 
-    return null
+  get() {
+    return this.element.value
+  }
+
+  clear() {
+    this.val('')
+  }
+
+  getItemLabel(item) {
+    return this.options.itemLabel.call(this, item)
+  }
+
+  getItemValue(item) {
+    return this.options.itemValue.call(this, item)
+  }
+
+  getItemByValue(value) {
+    return this.items.find(item => {
+      return this.getItemValue(item) == value // eslint-disable-line
+    })
+  }
+
+  restoreDropdownItems() {
+    if (this.$items) {
+      empty(this.$items)
+    }
+
+    if (this.is('shown')) {
+      this.DROPDOWN.hide()
+    }
+  }
+
+  buildDropdownItems() {
+    const items = this.items.slice(0, this.options.limit)
+    const $items = this.buildItems(items)
+
+    this.$items.appendChild($items)
+    this.DROPDOWN.highlightItemByValue(this.getHighestMatchValue(), false)
+    this.enter('builded')
+  }
+
+  updateDropdownItems() {
+    empty(this.$items)
+
+    const items = this.items.slice(0, this.options.limit)
+    const $items = this.buildItems(items)
+
+    this.$items.appendChild($items)
+    const matched = this.getHighestMatchValue()
+    this.DROPDOWN.highlightItemByValue(matched, false)
+    if (this.HINT) {
+      if (matched.indexOf(this.value) === 0) {
+        this.HINT.set(matched)
+      } else {
+        this.HINT.clear()
+      }
+    }
+    this.DROPDOWN.update()
+  }
+
+  getHighestMatchValue() {
+    return this.items.length > 0 ? this.getItemValue(this.items[0]) : this.value
+  }
+
+  buildItems(items) {
+    const $fragment = document.createDocumentFragment()
+
+    if (this.options.group) {
+      const $groups = {}
+
+      items.forEach(item => {
+        const group = this.getItemGroup(item)
+        if (!$groups[group]) {
+          $groups[group] = this.buildGroup(group)
+        }
+
+        $groups[group].appendChild(this.buildItem(item))
+      })
+
+      Object.keys($groups).forEach(group => {
+        $fragment.appendChild($groups[group])
+      })
+    } else {
+      items.forEach(item => {
+        $fragment.appendChild(this.buildItem(item))
+      })
+    }
+
+    return $fragment
+  }
+
+  buildGroup(group) {
+    if (!this.groupTemplate) {
+      this.groupTemplate = templateEngine.compile(
+        this.options.templates.group.call(this)
+      )
+    }
+
+    const $group = parseHTML(
+      this.groupTemplate({
+        classes: this.classes,
+        group: this.getGroupLabel(group)
+      })
+    )
+
+    return $group
+  }
+
+  buildItem(item) {
+    if (!this.itemTemplate) {
+      this.itemTemplate = templateEngine.compile(
+        this.options.templates.item.call(this)
+      )
+    }
+
+    const $item = parseHTML(
+      this.itemTemplate({
+        classes: this.classes,
+        item,
+        value: this.getItemValue(item),
+        label: this.getItemLabel(item)
+      })
+    )
+
+    return $item
+  }
+
+  getItemGroup(item) {
+    if (isFunction(this.options.group)) {
+      return this.options.group.call(this, item)
+    }
+    return getValueByPath(item, this.options.group)
+  }
+
+  getGroupLabel(group) {
+    return this.options.groupLabel.call(this, group)
   }
 
   enable() {
     if (this.is('disabled')) {
-      if (hasClass(this.classes.DISABLED, this.$element)) {
-        removeClass(this.classes.DISABLED, this.$element)
+      this.DROPDOWN.enable()
+      this.element.disabled = false
+      removeClass(this.classes.DISABLED, this.$wrap)
+
+      if (this.HINT) {
+        this.HINT.enable()
       }
       this.leave('disabled')
-      this.triggerCloseButten()
-      this.$element.disabled = false
     }
     this.trigger(EVENTS.ENABLE)
   }
 
   disable() {
     if (!this.is('disabled')) {
-      if (!hasClass(this.classes.DISABLED, this.$element)) {
-        addClass(this.classes.DISABLED, this.$element)
+      this.DROPDOWN.disable()
+      this.element.disabled = true
+      addClass(this.classes.DISABLED, this.$wrap)
+
+      if (this.HINT) {
+        this.HINT.disable()
       }
-      this.triggerCloseButten()
+
       this.enter('disabled')
-      this.$element.disabled = true
     }
 
     this.trigger(EVENTS.DISABLE)
@@ -582,15 +501,27 @@ class AutoComplete extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
-      if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.$wrapper)
+      if (this.CLEARABLE) {
+        this.CLEARABLE.destroy()
       }
-      this.POPPER.destroy()
-      unwrap(this.$element)
-      this.$element.className = this.firstClassName
-      this.$element.setAttribute('placeholder', null)
+      if (this.HINT) {
+        this.HINT.destroy()
+      }
+      if (this.DROPDOWN) {
+        this.DROPDOWN.destroy()
+      }
+      if (this.options.theme) {
+        removeClass(this.getThemeClass(), this.$wrap)
+      }
+      removeAttr('autocomplete spellcheck', this.element)
+      insertAfter(this.element, this.$wrap)
+      removeClass(this.classes.INPUT, this.element)
+
+      this.$wrap.remove()
+
       this.leave('initialized')
     }
+
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }

@@ -4,7 +4,7 @@
 
 A flexible modern auto-complete js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/autoComplete/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/auto-complete/samples)**
 
 ## Introduction
 
@@ -58,7 +58,7 @@ ECMAScript Module:
 import AutoComplete from "@pluginjs/auto-complete"
 import "@pluginjs/auto-complete/dist/auto-complete.css"
 
-AutoComplete.of(document.querySelector('.element'), options)
+AutoComplete.of(document.queryAutoCompleteor('.element'), options)
 ```
 
 CommonJS:
@@ -67,7 +67,7 @@ CommonJS:
 require("@pluginjs/auto-complete/dist/auto-complete.css")
 const AutoComplete = require("@pluginjs/auto-complete")
 
-AutoComplete.of(document.querySelector('.element'), options)
+AutoComplete.of(document.queryAutoCompleteor('.element'), options)
 ```
 
 Browser:
@@ -76,7 +76,7 @@ Browser:
 <link rel="stylesheet" href="https://unpkg.com/@pluginjs/auto-complete/dist/auto-complete.css">
 <script src="https://unpkg.com/@pluginjs/auto-complete/dist/auto-complete.js"></script>
 <script>
-  Pj.autoComplete('.element', options)
+  Pj.auto-complete('.element', options)
 </script>
 ```
 
@@ -86,83 +86,96 @@ Browser:
 
 ### Options
 
-Options are called on autoComplete instances through the autoComplete options itself.
+Options are called on auto-complete instances through the auto-complete options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
-`"data"` | Set plugin data option | `null`
-`"keyboard"` | Set plugin keyboard event | `true`
-`"ajax"` | Use AJAX requests to get JSON data | `false`
-`"minChars"` | Set plugin the smallest character | `1`
-`"maxItems"` | Set plugin the most options | `5`
-`"disabled"` | Disable plugin | `false`
-`"panelWidth"` | Set plugin panel width | `null`
-`"sensitivity"` | Set plugin sensitivity | `false`
-`"highlight"` | Set plugin is highlight or not | `false`
-`"group"` | Set the plugin template content | `false`
-`"placeholder"` | Set input box prompt information | `Please Search...`
+`"trigger"` | Set trigger | `click`
+`"offset"` | Set offset | `[0,0]`
+`"icon"` | Set default icon | `pj-icon pj-icon-char pj-icon-chevron-down`
+`"multiple"` | Set multiple | `false`
+`"clearable"` | Set clearable | `false`
+`"filterable"` | Set filterable | `false`
+`"closeAllButten"` | Set closeAllButton | `true`
+`"placeholder"` | Set input box prompt information | `Please auto-complete`
+`"notFoundText"` | Set notoFoundText | `Badge not found`
+`"auto-completeed"` | Set auto-completeed | `null`
+`"data"` | Set data | `null`
+`"keyboard"` | Set keyboard | `true`
+`"disabled"` | Disabled plugin | `false`
 `"templates"` | Set default templates | `{}`
-`"render"` | Plugin rendering | `function() {...}`
-`"source"` | return matching text | `function() {...}`
-`"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
-`"onChange"` | The onchange event occurs when the content of the domain changes | `function() {...}`
+`"process"` | The type of object change the type of JSON | `function() {...}`
 
 ### Events
 
-Events are called on autoComplete instances through the autoComplete events itself.
+Events are called on auto-complete instances through the auto-complete events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
 -----|-----
+`"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
-`"change"` | Gets fired when plugin has changed
 `"enable"` | Gets fired when plugin has enabled
-`"disable"` | Gets fired when plugin has disabled
+`"disabled"` | Disable plugin
 `"destroy"` | Gets fired when plugin has destroy
+`"load"` | Gets fired when plugin has load
+`"open"` | Gets fired when plugin has open
+`"close"` | Gets fired when plugin has close
+`"click"` | Gets fired when plugin has click
+`"change"` | Gets fired when plugin has changed
+`"auto-complete"` | Gets fired when plugin has auto-complete
+`"unauto-complete"` | Gets fired when plugin has unauto-complete
+`"hide"` | Gets fired when plugin has hide
 
 ### Methods
 
-Methods are called on autoComplete instances through the autoComplete method itself.
+Methods are called on auto-complete instances through the auto-complete method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
 -----|-----
+`"get"` | Get value by key
+`"set"` | Set value by key
+`"val"` | Set or get value by key
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
-`"open"` | Open plugin
-`"close"` | Close plugin
-`"clear"` | clear plugin
-`"next"` | Set value of next button
-`"prev"` | Set value of prev button
-`"set"` | Set value by key
-`"get"` | Get value by key
-`"val"` | Set or get value by key
 `"destroy"` | Destroy plugin
+`"removeData"` | Set removeData
+`"open"` | Get value of open
+`"close"` | Get value of close
 
 ### Classes
 
 Name | Description | Default
 -----|------|------
-`"NAMESPACE"` | Declare plugin namespace | `pj-autoComplete`
-`"THEME"` | Declare plugin theme | `{namespace}--{theme}`
-`"INPUT"` | Declare plugin input | `pj-input {namespace}-input`
-`"PANEL"` | Declare plugin panel | `{namespace}-panel`
-`"CLOSE"` | Declare plugin close | `{namespace}-close`
+`"NAMESPACE"` | Declare plugin namespace | `pj-auto-complete`
+`"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
+`"MULTIPLE"` | Declare plugin multiple | `{namespace}-multiple`
+`"FILTERABLE"` | Declare plugin filterable | `{namespace}-filterable`
+`"DROPDOWNLIST"` | Declare plugin dropdownlist | `{namespace}-dropdown`
+`"TRIGGER"` | Declare plugin trigger | `{namespace}-trigger`
+`"HASBADGE"` | Declare plugin hasbadge | `{namespace}-hpj-badge`
+`"BADGE"` | Declare plugin badge | `{namespace}-badge`
+`"BADGECONTENT"` | Declare plugin badge content | `{namespace}-badge-content`
+`"BADGEDELETE"` | Declare plugin badge delete | `{namespace}-badge-delete`
+`"LABEL"` | Declare plugin label | `{namespace}-label`
+`"LIST"` | Declare plugin list | `{namespace}-list`
+`"SUBLIST"` | Declare plugin sublist | `{namespace}-sublist`
 `"ITEM"` | Declare plugin item | `{namespace}-item`
-`"RESULT"` | Declare plugin result | `{namespace}-result`
-`"MARK"` | Declare plugin mark | `{namespace}-mark`
-`"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
-`"HOVER"` | Announce plugin is hover | `{namespace}-hover`
 `"GROUP"` | Declare plugin group | `{namespace}-group`
-`"GROUPTITLE"` | Declare plugin group title | `{namespace}-group-title`
-`"GROUPCONTENTS"` | Declare plugin group contents | `{namespace}-group-contents`
-`"GROUPSHOW"` | Declare plugin group show | `{namespace}-group-show`
-`"SHOW"` | Announce plugin is show | `{namespace}-show`
-`"OPEN"` | Announce plugin is open | `{namespace}-open`
+`"GROUPLABEL"` | Declare plugin label | `{namespace}-group-label`
+`"OPEN"` | Declare plugin open | `{namespace}-open`
+`"NOTFOUND"` | Declare plugin not found | `{namespace}-not-found`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
+`"MARK"` | Declare plugin mark | `{namespace}-mark`
+`"SELECTED"` | Declare plugin auto-completeed | `{namespace}-auto-completeed`
+`"FOCUS"` | Declare plugin focus | `{namespace}-focus`
+`"LOADING"` | Declare plugin loading | `{namespace}-loading`
+`"ERROR"` | Declare plugin error | `{namespace}-error`
+`"HIDEICON"` | Declare plugin hideicon | `{namespace}-hideIcon`
 ---
 
 ## Browser support

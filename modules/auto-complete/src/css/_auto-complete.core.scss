@@ -1,0 +1,89 @@
+@import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
+
+// Vars
+// =====================
+$autoComplete: "pj-autoComplete" !default;
+$autoComplete-width: 200px !default;
+$autoComplete-max-height: 300px !default;
+
+$autoComplete-clear-icon: $pj-icon-close !default;
+$autoComplete-clear-font: $pj-icon-font-family !default;
+$autoComplete-clear-right: 15px !default;
+
+$autoComplete-hint-color: $gray-dark;
+
+.#{$autoComplete} {
+  position: relative;
+  width: $autoComplete-width;
+
+  &-input,
+  &-hint {
+    width: 100%;
+  }
+
+  &-hint {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  & &-dropdown {
+    width: 100%;
+  }
+
+  &-dropdown {
+    max-height: $autoComplete-max-height;
+    overflow: auto;
+    line-height: 1;
+  }
+
+  &-clear {
+    position: absolute;
+    top: 0;
+    right: $autoComplete-clear-right;
+    display: none;
+    height: 100%;
+    font-family: $autoComplete-clear-font;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($autoComplete-clear-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
+
+    .#{$autoComplete}-filled & {
+      display: inline-block;
+    }
+  }
+
+  &-group-label {
+    overflow: hidden;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+input.#{$autoComplete}-hint {
+  z-index: -1;
+  color: $autoComplete-hint-color;
+  pointer-events: none;
+  border-color: transparent;
+  box-shadow: none;
+  opacity: 1;
+}
+
+.#{$autoComplete}-disabled {
+  .#{$autoComplete}-clear {
+    pointer-events: none;
+  }
+}

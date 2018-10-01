@@ -1,113 +1,105 @@
-import { isString } from '@pluginjs/is'
+import { isObject } from '@pluginjs/is'
 
 export const namespace = 'autoComplete'
 
 export const events = {
   READY: 'ready',
-  CHANGE: 'change',
   ENABLE: 'enable',
   DISABLE: 'disable',
-  DESTROY: 'destroy'
+  DESTROY: 'destroy',
+  SELECT: 'select',
+  CHANGE: 'change',
+  HIDE: 'hide',
+  HIDED: 'hided',
+  SHOW: 'show',
+  SHOWN: 'shown',
+  CLEAR: 'clear'
 }
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
-  THEME: '{namespace}--{theme}',
-  INPUT: 'pj-input {namespace}-input',
-  PANEL: '{namespace}-panel',
-  PANELONTOP: '{namespace}-panel-on-top',
-  CLOSE: '{namespace}-close',
-  ITEM: '{namespace}-item',
-  RESULT: '{namespace}-result',
-  MARK: '{namespace}-mark',
-  ACTIVE: '{namespace}-active',
-  HOVER: '{namespace}-hover',
-  GROUP: '{namespace}-group',
-  GROUPTITLE: '{namespace}-group-title',
-  GROUPCONTENTS: '{namespace}-group-contents',
-  GROUPSHOW: '{namespace}-group-show',
+  INPUT: '{namespace}-input pj-input',
+  TRIGGER: '{namespace}-trigger',
+  WRAP: '{namespace}',
   SHOW: '{namespace}-show',
-  OPEN: '{namespace}-open',
-  DISABLED: '{namespace}-disabled'
+  DROPDOWN: '{namespace}-dropdown',
+  GROUP: '{namespace}-group',
+  GROUPLABEL: '{namespace}-group-label',
+  ITEMS: '{namespace}-items',
+  ITEM: '{namespace}-item pj-dropdown-item',
+  FILLED: '{namespace}-filled',
+  DISABLED: '{namespace}-disabled',
+  CLEARABLE: '{namespace}-clearable',
+  CLEAR: '{namespace}-clear',
+  HINT: '{namespace}-hint'
 }
 
 export const methods = [
-  'enable',
-  'disable',
-  'open',
-  'close',
-  'clear',
-  'next',
-  'prev',
   'set',
   'get',
   'val',
+  'clear',
+  'enable',
+  'disable',
   'destroy'
 ]
 
 export const defaults = {
   theme: null,
-  data: null,
+  match(data, query) {
+    return this.match(data, query, {
+      sort: true,
+      diacritics: false,
+      punctuation: false,
+      case: false,
+      whitespaces: false,
+      boundaries: false,
+      keys: null
+    })
+  },
+  hint: true,
+  minChars: 0,
+  limit: 20,
+  source: null,
+  value: null,
+  placeholder: null,
   keyboard: true,
-
-  minChars: 1,
-  maxItems: 5,
-  disabled: false,
-
-  panelWidth: null, // [string]/[number]  panel width
-
-  sensitivity: false,
-  highlight: false,
-
-  group: false, // if true, group title => 'id', group contents => 'list'
-
-  placeholder: 'Please Search...',
+  clearable: true,
+  showOnFocus: true,
+  clearOnSelected: false,
+  hideOnBlur: true,
+  dropdown: {
+    placement: 'bottom' // top
+  },
+  groupLabel(group) {
+    return group
+  },
+  itemLabel(item) {
+    if (isObject(item)) {
+      return item.label
+    }
+    return item
+  },
+  itemValue(item) {
+    if (isObject(item)) {
+      return item.value
+    }
+    return item
+  },
   templates: {
-    panel() {
-      return `<div class='{classes.PANEL}'>
-      </div>`
+    dropdown() {
+      return '<div class="{classes.DROPDOWN}"><div class="{classes.ITEMS}"></div></div>'
     },
-    item() {
-      return `<div class='{classes.ITEM}'>
-      {contents}</div>`
+    trigger() {
+      return '<div class="{classes.TRIGGER}"></div>'
     },
     group() {
-      return `<section class='{classes.GROUP}' data-group='{group}'>
-        <header class='{classes.GROUPTITLE}'>{title}</header>
-        <div class="{classes.GROUPCONTENTS}"></div>
-      </section>`
+      return '<div class="{classes.GROUP}"><div class="{classes.GROUPLABEL}">{group}</div></div>'
     },
-    icon() {
-      return '<i class="{classes.CLOSE} {icon}"></i>'
-    },
-    mark() {
-      return `<mark class='{classes.MARK}'
-      >
-      {contents}</mark>`
+    item() {
+      return '<div class="{classes.ITEM}" data-value="{value}">{label}</div>'
     }
-  },
-
-  render() {
-    return false
-  },
-
-  process(value) {
-    if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value)
-    }
-    return ''
-  },
-
-  parse(value) {
-    if (value && isString(value)) {
-      try {
-        return JSON.parse(value)
-      } catch (e) {
-        return null
-      }
-    }
-    return null
   }
 }
 
-export const dependencies = ['popper.js']
+export const dependencies = ['dropdown']
