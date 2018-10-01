@@ -5,6 +5,37 @@ describe('util', () => {
     expect(util).toBeObject()
   })
 
+  describe('clone()', () => {
+    it('should clone boolean', () => {
+      expect(util.clone(true)).toBeTrue()
+      expect(util.clone(false)).toBeFalse()
+    })
+
+    it('should clone number', () => {
+      expect(util.clone(1)).toEqual(1)
+      expect(util.clone(0)).toEqual(0)
+      expect(util.clone(-1)).toEqual(-1)
+    })
+
+    it('should clone null', () => {
+      expect(util.clone(null)).toBeNull()
+    })
+
+    it('should clone undefined', () => {
+      expect(util.clone(undefined)).toBeUndefined()
+    })
+
+    it('should clone array', () => {
+      expect(util.clone([])).toEqual([])
+      expect(util.clone([1, 2, 3])).toEqual([1, 2, 3])
+    })
+
+    it('should clone object', () => {
+      expect(util.clone({})).toEqual({})
+      expect(util.clone({ foo: 'bar' })).toEqual({ foo: 'bar' })
+    })
+  })
+
   describe('deepMerge()', () => {
     it('should deep merge objects', () => {
       expect(

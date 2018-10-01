@@ -7,7 +7,10 @@ import {
   isError,
   isArray,
   isObject,
-  isPlainObject
+  isPlainObject,
+  isUndefined,
+  isElement,
+  isFunction
 } from '@pluginjs/is'
 
 export const nub = arr => {
@@ -28,8 +31,11 @@ export const each = (obj, callback) => {
   return obj
 }
 
+/** Credit to https://github.com/jonschlinkert/shallow-clone MIT */
 export const clone = val => {
-  if (isArray(val)) {
+  if (isElement(val) || isFunction(val)) {
+    return val
+  } else if (isArray(val)) {
     return val.slice()
   } else if (isDate(val)) {
     return new val.constructor(Number(val))
@@ -47,7 +53,7 @@ export const clone = val => {
     return re
   } else if (isError(val)) {
     return Object.create(val)
-  } else if (isObject(val)) {
+  } else if (isPlainObject(val)) {
     return Object.assign({}, val)
   }
   return val
@@ -91,47 +97,31 @@ export const merge = (target, ...sources) => {
   return target
 }
 
-function deepMergeTwo(x, y) {
-  if (
-    (isPlainObject(y) && isPlainObject(x)) ||
-    (isPlainObject(x) && Array.isArray(y))
-  ) {
-    return fromPairs(
-      nub(Object.keys(x).concat(Object.keys(y))).map(key => [
-        key,
-        deepMergeTwo(x[key], y[key])
-      ])
-    )
+function deepMergeTwo(target, source) {
+  const sourceIsArray = isArray(source)
+  const targetIsArray = isArray(target)
+
+  if (sourceIsArray !== targetIsArray) {
+    return clone(source)
+  } else if (sourceIsArray) {
+    return clone(source)
+  } else if (isPlainObject(target)) {
+    Object.keys(source).forEach(key => {
+      target[key] = deepMergeTwo(target[key], source[key])
+    })
+
+    return target
   }
 
-  if (isPlainObject(y) && typeof x === 'function') {
-    return Object.assign(function(...args) {
-      return x.apply(this, args)
-    }, y)
+  if (isUndefined(source)) {
+    return target
   }
 
-  if (isPlainObject(y) && Array.isArray(x)) {
-    return Object.assign([], x, y)
-  }
-
-  if (isPlainObject(x) && typeof y === 'function') {
-    return Object.assign(function(...args) {
-      return y.apply(this, args)
-    }, x)
-  }
-
-  if (Array.isArray(y) && Array.isArray(x)) {
-    return y.slice()
-  }
-
-  if (typeof y === 'undefined') {
-    return x
-  }
-  return y
+  return clone(source)
 }
 
 export const deepMerge = (...args) => {
-  return args.filter(isObject).reduce(deepMergeTwo)
+  return args.filter(isObject).reduce(deepMergeTwo, {})
 }
 
 export const curry = (fn, args = []) => (...subArgs) => {

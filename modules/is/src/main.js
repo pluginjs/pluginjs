@@ -136,22 +136,22 @@ export const isUndefined = val => {
 
 // is a given value Map?
 export const isMap = val => {
-  return val.constructor ?val.constructor.name === 'Map' :false
+  return val != null && val.constructor?val.constructor.name === 'Map' :false
 }
 
 // is a given value Set?
 export const isSet = val => {
-  return val.constructor ?val.constructor.name === 'Set' :false
+  return val != null && val.constructor?val.constructor.name === 'Set' :false
 }
 
 // is a given value Promise?
 export const isPromise = val => {
-  return val.constructor ?val.constructor.name === 'Promise' :false
+  return val != null && val.constructor?val.constructor.name === 'Promise' :false
 }
 
 // is a given value Symbol?
 export const isSymbol = val => {
-  return val.constructor ?val.constructor.name === 'Symbol' :false
+  return val != null && val.constructor?val.constructor.name === 'Symbol' :false
 }
 
 // is a given value is empty
