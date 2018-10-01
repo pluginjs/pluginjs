@@ -256,8 +256,11 @@ export const attr = curryWith((args, value, el) => {
   return el
 }, isElement)
 
-export const removeAttr = curry((name, el) => {
-  el.removeAttribute(name)
+export const removeAttr = curry((attrs, el) => {
+  attrs.split(' ').forEach(attr => {
+    el.removeAttribute(attr)
+  })
+
   return el
 })
 
@@ -297,9 +300,11 @@ export const prop = curryWith((props, value, el) => {
   return el
 }, isElement)
 
-export const removeProp = curry((name, el) => {
-  name = propMap[name] || name
-  delete el[name]
+export const removeProp = curry((props, el) => {
+  props.split(' ').forEach(prop => {
+    prop = propMap[prop] || prop
+    delete el[prop]
+  })
 
   return el
 })
