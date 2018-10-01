@@ -118,13 +118,13 @@ class Dropdown extends Component {
         },
         this.$trigger
       )
-      // bindEvent(
-      //   this.eventName('blur'),
-      //   () => {
-      //     this.hide()
-      //   },
-      //   this.$trigger
-      // )
+      bindEvent(
+        this.eventName('blur'),
+        () => {
+          this.hide()
+        },
+        this.$trigger
+      )
     } else if (this.options.trigger === 'hover') {
       bindEvent(
         this.eventName('mouseenter'),
@@ -146,7 +146,7 @@ class Dropdown extends Component {
     }
 
     bindEvent(
-      this.eventName('click'),
+      this.eventName('mousedown'),
       `.${this.classes.ITEM}`,
       e => {
         const $item = e.target
@@ -238,10 +238,14 @@ class Dropdown extends Component {
     return null
   }
 
-  selectByValue(value, trigger = true) {
-    const $selected = this.getItems().find($item => {
+  getItemByValue(value) {
+    return this.getItems().find($item => {
       return this.getItemValue($item) == value // eslint-disable-line
     })
+  }
+
+  selectByValue(value, trigger = true) {
+    const $selected = this.getItemByValue(value)
     if ($selected) {
       this.selectItem($selected, trigger)
     }
@@ -330,6 +334,13 @@ class Dropdown extends Component {
       index++
     }
     return null
+  }
+
+  highlightItemByValue(value) {
+    const $item = this.getItemByValue(value)
+    if ($item) {
+      this.highlightItem($item)
+    }
   }
 
   highlightItem(index) {
