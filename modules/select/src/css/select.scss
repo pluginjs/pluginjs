@@ -26,6 +26,9 @@ $select-group-label-space-y: 8px;
 $select-not-found-padding: 11px 8px;
 $select-not-found-color: $gray-darker;
 
+$select-loading-padding: 11px 8px;
+$select-loading-color: $gray-darker;
+
 .#{$select} {
   outline: none;
 
@@ -68,6 +71,12 @@ $select-not-found-color: $gray-darker;
   &-not-found {
     padding: $select-not-found-padding;
     color: $select-not-found-color;
+    text-align: center;
+  }
+
+  &-loading {
+    padding: $select-loading-padding;
+    color: $select-loading-color;
     text-align: center;
   }
 }

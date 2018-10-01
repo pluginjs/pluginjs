@@ -3,6 +3,7 @@ import { bindEvent } from '@pluginjs/events'
 import { addClass } from '@pluginjs/classes'
 import { isNull } from '@pluginjs/is'
 import { events as EVENTS } from './constant'
+
 export default class Filterable {
   constructor(instance) {
     this.instance = instance

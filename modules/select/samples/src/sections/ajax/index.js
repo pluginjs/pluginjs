@@ -29,6 +29,6 @@ Select.of(element, {
   source(resolve) {
     setTimeout(() => {
       resolve(data)
-    }, 300)
+    }, 3000)
   }
 })

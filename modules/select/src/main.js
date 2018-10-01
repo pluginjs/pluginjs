@@ -27,6 +27,7 @@ import {
 } from '@pluginjs/is'
 import Clearable from './clearable'
 import Filterable from './filterable'
+import Loading from './loading'
 import { removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
@@ -101,7 +102,13 @@ class Select extends Component {
 
     this.bind()
 
-    this.setupDropdown()
+    this.setupDropdown(this.options.dropdown)
+
+    this.LOADING = new Loading(this)
+
+    if (this.is('loading')) {
+      this.LOADING.show()
+    }
 
     if (this.options.clearable) {
       this.CLEARABLE = new Clearable(this)
@@ -122,45 +129,42 @@ class Select extends Component {
     return []
   }
 
-  setupDropdown() {
+  setupDropdown(options) {
     this.$dropdown = appendTo(
       `<div class="${this.classes.DROPDOWN}"></div>`,
       this.$wrap
     )
 
     this.DROPDOWN = Dropdown.of(this.$trigger, {
-      ...this.options.dropdown,
+      ...options,
       target: this.$dropdown,
       keyboard: this.options.keyboard,
       classes: {
         PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
       },
       onShow: () => {
-        this.onDropdownShow()
+        if (this.data && !this.is('builded')) {
+          this.buildDropdown()
+        }
         addClass(this.classes.SHOW, this.$wrap)
         this.trigger(EVENTS.SHOW)
       },
       onShown: () => {
         this.trigger(EVENTS.SHOWN)
+        this.enter('shown')
       },
       onHide: () => {
         this.trigger(EVENTS.HIDE)
+        this.leave('shown')
       },
       onHided: () => {
         removeClass(this.classes.SHOW, this.$wrap)
         this.trigger(EVENTS.HIDED)
       },
       onChange: value => {
-        this.select(value)
+        this.set(value)
       }
     })
-  }
-
-  onDropdownShow() {
-    if (!this.is('builded')) {
-      this.buildDropdown()
-      this.DROPDOWN.selectByValue(this.value, false)
-    }
   }
 
   bind() {} // eslint-disable-line
@@ -173,6 +177,7 @@ class Select extends Component {
     if (isArray(this.options.source) || isPlainObject(this.options.source)) {
       this.resolveData(this.options.source)
     } else if (isFunction(this.options.source)) {
+      this.enter('loading')
       this.options.source.call(this, this.resolveData.bind(this))
     } else {
       this.resolveData(this.getDataFromOptions())
@@ -201,6 +206,15 @@ class Select extends Component {
     }
     if (!isEmpty(value)) {
       this.set(value, false)
+    }
+
+    if (this.is('loading')) {
+      this.LOADING.hide()
+      this.leave('loading')
+    }
+
+    if (this.is('builded') || this.is('shown')) {
+      this.buildDropdown()
     }
   }
 
@@ -389,7 +403,13 @@ class Select extends Component {
 
     this.$dropdown.appendChild($options)
 
+    this.selectForDropdown()
+
     this.enter('builded')
+  }
+
+  selectForDropdown() {
+    this.DROPDOWN.selectByValue(this.value, false)
   }
 
   buildOptions(options) {
