@@ -49,13 +49,13 @@ export const defaults = deepMerge(Select.defaults, {
   }
 })
 
-export const translations = {
+export const translations = deepMerge(Select.I18N.translations, {
   en: {
     reachMaxText: 'You can only select {max} items'
   },
   zh: {
     reachMaxText: '最多只能选择 {max} 项'
   }
-}
+})
 
 export const dependencies = ['select']

@@ -21,16 +21,8 @@ import templateEngine from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { arrayEqual, arrayDiff } from '@pluginjs/utils'
-import {
-  append,
-  detach,
-  insertBefore,
-  appendTo,
-  parseHTML,
-  parent
-} from '@pluginjs/dom'
+import { append, detach, insertBefore, parseHTML, parent } from '@pluginjs/dom'
 import { isArray } from '@pluginjs/is'
-import Dropdown from '@pluginjs/dropdown'
 const isSelect = el => el.tagName === 'SELECT'
 const isInput = el => el.tagName === 'INPUT'
 
@@ -52,6 +44,15 @@ class MultiSelect extends Select {
   initialize() {
     this.value = []
     this.selected = []
+    this.options.dropdown = Object.assign(
+      {
+        trigger: 'custom',
+        multiple: true,
+        hideOnSelect: false
+      },
+      this.options.dropdown
+    )
+
     super.initialize()
 
     if (this.options.hideSelected) {
@@ -251,48 +252,8 @@ class MultiSelect extends Select {
     this.set([])
   }
 
-  setupDropdown() {
-    this.$dropdown = appendTo(
-      `<div class="${this.classes.DROPDOWN}"></div>`,
-      this.$wrap
-    )
-
-    this.DROPDOWN = Dropdown.of(this.$trigger, {
-      ...this.options.dropdown,
-      target: this.$dropdown,
-      keyboard: this.options.keyboard,
-      trigger: 'custom',
-      multiple: true,
-      hideOnSelect: false,
-      classes: {
-        PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
-      },
-      onShow: () => {
-        this.onDropdownShow()
-        addClass(this.classes.SHOW, this.$wrap)
-        this.trigger(EVENTS.SHOW)
-      },
-      onShown: () => {
-        this.trigger(EVENTS.SHOWN)
-      },
-      onHide: () => {
-        this.trigger(EVENTS.HIDE)
-      },
-      onHided: () => {
-        removeClass(this.classes.SHOW, this.$wrap)
-        this.trigger(EVENTS.HIDED)
-      },
-      onChange: value => {
-        this.set(value)
-      }
-    })
-  }
-
-  onDropdownShow() {
-    if (!this.is('builded')) {
-      this.buildDropdown()
-      this.value.forEach(v => this.DROPDOWN.selectByValue(v, false))
-    }
+  selectForDropdown() {
+    this.value.forEach(v => this.DROPDOWN.selectByValue(v, false))
   }
 
   showReachMax() {
