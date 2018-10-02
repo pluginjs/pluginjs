@@ -69,7 +69,7 @@ export const defaults = {
   clearOnSelected: false,
   hideOnBlur: true,
   dropdown: {
-    placement: 'bottom' // top
+    placement: 'bottom-start' // top
   },
   groupLabel(group) {
     return group

@@ -157,10 +157,11 @@ class AutoComplete extends Component {
         removeClass(this.classes.SHOW, this.$wrap)
         this.trigger(EVENTS.HIDED)
       },
-      onChange: value => {
+      onSelect: ($item, value) => {
         const item = this.getItemByValue(value)
         this.trigger(EVENTS.SELECT, item)
-
+      },
+      onChange: value => {
         if (this.options.clearOnSelected) {
           this.clear()
         } else {
