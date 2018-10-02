@@ -6,7 +6,7 @@
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
-    "start": "parcel index.html --open --no-cache"
+    "start": "parcel index.html"
   },
   "dependencies": {
     "@pluginjs/{{moduleName}}": "*",
@@ -15,7 +15,7 @@
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
-    "parcel-bundler": "^1.10.1"
+    "parcel-bundler": "^1.10.1",
     "posthtml-include": "*"
   }
 }
