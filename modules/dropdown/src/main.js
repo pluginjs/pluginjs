@@ -145,24 +145,27 @@ class Dropdown extends Component {
       )
     }
 
+    const self = this // eslint-disable-line
+
     bindEvent(
       this.eventName('mousedown'),
       `.${this.classes.ITEM}`,
-      e => {
-        const $item = e.target
-        if (!this.isItemOf($item)) {
+      function() {
+        const $item = this // eslint-disable-line
+
+        if (!self.isItemOf($item)) {
           return
         }
 
-        if (!this.isItemDisabled($item)) {
-          if (this.options.multiple && this.isItemSelected($item)) {
-            this.unselectItem($item)
+        if (!self.isItemDisabled($item)) {
+          if (self.options.multiple && self.isItemSelected($item)) {
+            self.unselectItem($item)
           } else {
-            this.selectItem($item)
+            self.selectItem($item)
           }
 
-          if (this.options.hideOnSelect) {
-            this.hide()
+          if (self.options.hideOnSelect) {
+            self.hide()
           }
         }
       },
@@ -304,7 +307,7 @@ class Dropdown extends Component {
       addClass(this.classes.ACITVE, $item)
 
       if (trigger) {
-        this.trigger(EVENTS.SELECT, $item)
+        this.trigger(EVENTS.SELECT, $item, this.getItemValue($item))
       }
       this.$active.push($item)
     }
