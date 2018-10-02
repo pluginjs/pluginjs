@@ -1,0 +1,17 @@
+@import "@pluginjs/styles/variables.scss";
+@import "place-complete.core";
+
+$autoComplete: "pj-autoComplete";
+$placeComplete-secondary-color: $gray-dark;
+$placeComplete-secondary-font-size: $font-size-xs;
+
+.#{$autoComplete}-item {
+  &-query {
+    padding-right: 3px;
+  }
+
+  &-secondary {
+    font-size: $placeComplete-secondary-font-size;
+    color: $placeComplete-secondary-color;
+  }
+}

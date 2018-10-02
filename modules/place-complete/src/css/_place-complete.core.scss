@@ -1,0 +1,8 @@
+@import "@pluginjs/styles/variables.scss";
+
+$autoComplete: "pj-autoComplete";
+$placeComplete-width: auto;
+
+.#{$autoComplete}-place {
+  width: $placeComplete-width;
+}
