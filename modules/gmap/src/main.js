@@ -50,7 +50,7 @@ class Gmap extends Component {
 
   loadScript() {
     if (googleMapsApiLoaded) {
-      return null
+      return
     }
     googleMapsApiLoaded = true
     const script = document.createElement('script')
@@ -64,8 +64,6 @@ class Gmap extends Component {
     }
 
     document.body.appendChild(script)
-
-    return null
   }
 
   initialize() {
