@@ -8,7 +8,7 @@ export default class Filterable {
   constructor(instance) {
     this.instance = instance
     instance.$label = replace(
-      `<input type="text" autocomplete="off" placeholder="${
+      `<input type="text" autocomplete="off" spellcheck="false" placeholder="${
         instance.placeholder
       }" class="${instance.classes.FILTER} ${instance.classes.LABEL}">`,
       instance.$label

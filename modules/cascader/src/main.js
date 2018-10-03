@@ -222,7 +222,10 @@ class Cascader extends Component {
     }
 
     if (this.is('loading')) {
-      this.LOADING.hide()
+      if (this.LOADING) {
+        this.LOADING.hide()
+      }
+
       this.leave('loading')
     }
 
@@ -293,9 +296,7 @@ class Cascader extends Component {
   }
 
   isValidValue(level, val) {
-    const found = this.getItems(level).find(item => {
-      return item.value == val // eslint-disable-line
-    })
+    const found = this.getOptionByValue(level, val)
     if (found) {
       return true
     }
