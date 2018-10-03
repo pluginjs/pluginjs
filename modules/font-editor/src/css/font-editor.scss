@@ -13,7 +13,7 @@ $fontEditor-width: 200px;
 $fontEditor-padding: 8px 12px;
 
 $fontEditor-color: $gray-darker;
-$fontEditor-color-light: $gray-light;
+$fontEditor-color-light: $gray-lighter;
 $fontEditor-border-width: 1px;
 $fontEditor-border-color: $border-color;
 $fontEditor-border-style: solid;
@@ -28,7 +28,7 @@ $fontEditor-trigger-edit-margin: 30px;
 // icon
 $fontEditor-i-margin-right: 8px;
 $fontEditor-i-font-size: 20px;
-$fontEditor-i-color: $gray-dark;
+$fontEditor-i-color: $gray;
 // filed
 $fontEditor-dropdown-filed-margin-bottom: 24px;
 $fontEditor-dropdown-filed-content-margin: 12px;
@@ -109,7 +109,7 @@ $fontEditor-control-button-padding: 8px 28px;
   &-fill {
     color: $fontEditor-color;
     border: $fontEditor-border;
-  
+
     &-content {
       font-size: $fontEditor-fill-font-size;
       text-align: left;
@@ -145,7 +145,7 @@ $fontEditor-control-button-padding: 8px 28px;
   }
 
   &-field {
- 
+
     &-title {
       order: 0;
       font-size: $fontEditor-font-size;
@@ -166,7 +166,7 @@ $fontEditor-control-button-padding: 8px 28px;
     padding: $fontEditor-decorations-padding;
     margin-bottom: $fontEditor-dropdown-filed-margin-bottom;
     border: $fontEditor-border;
-  
+
     li {
       line-height: 1;
       color: $fontEditor-decorations-li;

@@ -12,15 +12,15 @@ $time-picke-height: 32px;
 
 $time-picker-font-family: $font-family-base;
 
-$time-picker-border-color: $gray;
+$time-picker-border-color: $border-color;
 $time-picker-border-radius: $border-radius-base;
 
 $time-picker-show-border-color: $color-primary;
 
-$time-picker-clear-color: $gray-dark;
+$time-picker-clear-color: $gray;
 $time-picker-clear-hover-color: $text-color;
 
-$time-picker-trigger-color: $gray-dark;
+$time-picker-trigger-color: $gray;
 $time-picker-trigger-hover-color: $text-color;
 $time-picker-trigger-border-color: $gray-darker;
 
@@ -103,7 +103,7 @@ $time-picker-trigger-border-color: $gray-darker;
 
       &-icon {
         color: $time-picker-show-border-color;
-    
+
         &:hover {
           color: $time-picker-show-border-color;
         }
@@ -125,11 +125,11 @@ $time-picker-trigger-border-color: $gray-darker;
       .#{$time-picker}-trigger {
         border-color: $disabled-border;
       }
-  
+
       .#{$time-picker}-input {
         border-right-color: $disabled-border;
       }
-  
+
       .#{$time-picker}-trigger {
         border-left-color: $disabled-border;
       }
@@ -137,7 +137,7 @@ $time-picker-trigger-border-color: $gray-darker;
 
     .#{$time-picker}-trigger-icon {
       color: $disabled-color;
-  
+
       &:hover {
         color: $disabled-color;
       }

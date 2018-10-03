@@ -10,7 +10,7 @@ $range-height: 2px;
 
 $range-font-family: $font-family-base;
 
-$range-pointer-border-color: $gray;
+$range-pointer-border-color: $border-color;
 $range-pointer-bg: $color-white;
 
 $range-input-gap: 16px;
@@ -28,9 +28,9 @@ $range-tip-line-height: 16px;
 $range-tip-border-radius: $border-radius-base;
 
 $range-track-bg: $color-primary;
-$range-rail-bg: $gray;
+$range-rail-bg: $gray-light;
 
-$range-disabled-color: $gray-dark;
+$range-disabled-color: $gray;
 $range-disabled-pointer-border-weight: 3px;
 
 .#{$range} {
@@ -146,7 +146,7 @@ $range-disabled-pointer-border-weight: 3px;
     cursor: not-allowed;
     border-color: transparent;
     border-width: $range-disabled-pointer-border-weight;
-    
+
     &::after {
       background: $range-disabled-color;
     }

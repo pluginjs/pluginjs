@@ -1,6 +1,6 @@
 // 1. Colors
 //
-// Grayscale and brand colors for use across Bootstrap.
+// Grayscale and brand colors for use across Pluginjs
 $color-white: #fff !default;
 $color-black: #000 !default;
 $color-red: #f00 !default;
@@ -9,11 +9,11 @@ $color-blue: #00f !default;
 
 $gray-darkest: #333 !default;
 $gray-darker: #666 !default;
-$gray-dark: #b3b3b3 !default;
-$gray: #e6e6e6 !default;
-$gray-light: #f2f2f2 !default;
-$gray-lighter: #fafafa !default;
-$gray-lightest: #fcfcfc !default;
+$gray-dark: #999 !default;
+$gray: #b3b3b3 !default;
+$gray-light: #e6e6e6 !default;
+$gray-lighter: #f2f2f2 !default;
+$gray-lightest: #fafafa !default;
 
 $btn-color-primary: #215fdb;
 $btn-color-hover: #2376eb;
@@ -23,7 +23,7 @@ $color-primary: #215fdb;
 $color-primary-active: #215fdb !default;
 $color-primary-dark: #1d53bf;
 $color-primary-light: #77b6f5;
-$color-primary-black:#333 !default;
+$color-primary-black: #333 !default;
 
 $color-success: #4be1ab !default;
 $color-success-dark: #5cd29d !default;
@@ -41,7 +41,6 @@ $color-danger: #f96868 !default;
 $color-danger-dark: #e9595b !default;
 $color-danger-light: #fa7a7a !default;
 
-// $gray-lightest: #b3b3b3;  wentit;
 $color-opacity: rgba(0,0,0,0.7) !default;
 // 2. Options
 //
@@ -81,16 +80,11 @@ $font-family-base: $font-family-sans-serif !default;
 
 $sizer: 10px !default;
 
-// $font-size-base: 16px !default;
-// $font-size-lg:   24px !default;
-// $font-size-sm:   14px !default;
-// $font-size-xs:   12px !default;
-
-// by fish--
 $font-size-base: 13px;
 $font-size-lg: 16px !default;
 $font-size-sm: 14px;
 $font-size-xs: 12px !default;
+
 $font-weight-normal: normal !default;
 $font-weight-light: lighter !default;
 $font-weight-bold: bold !default;
@@ -101,10 +95,9 @@ $line-height-lg: (4 / 3) !default;
 $line-height-sm: 1.2 !default;
 
 // 4. Border
-//#333
 // Border width, border radius
 $border-width: 1px !default;
-$border-color: $gray !default;
+$border-color: $gray-light !default;
 $border-color-hover: $gray-darker !default;
 $border-color-active: $color-primary-active !default;
 $border-radius-base: 2px !default;
@@ -115,7 +108,6 @@ $border-radius-sm: 2px !default;
 // 4.1 Divider
 //
 // Divider color
-// by fish--
 $divider-color: rgba($gray-darkest, 0.06) !default;
 $divider-color-dark: rgba($gray-darkest, 0.1) !default;
 
@@ -130,8 +122,7 @@ $box-shadow-6: 0 0 10px 0 rgba(0,0,0,0.07);
 $box-shadow-7: 0 10px 35px 0 rgba(0, 0, 0, 0.1) !default;
 $box-shadow-base: 0 5px 20px 0 rgba(0, 0, 0, 0.1) !default;
 
-// by fish--
-$box-shadow-t: 0 -5px 20px 0 rgba(#1d2531, 0.05) !default; // rgba($xxx-color,.09)
+$box-shadow-t: 0 -5px 20px 0 rgba(#1d2531, 0.05) !default;
 $box-shadow-b: 0 5px 20px 0 rgba(#1d2531, 0.05) !default;
 $box-shadow-default: 0 2px 5px 0 rgba(#1d2531, 0.05) !default;
 
@@ -150,8 +141,8 @@ $zindex-tooltip: 1070 !default;
 $text-title-color: $gray-darkest !default;
 $text-subtitle-color: $gray-darker !default;
 $text-color: $color-primary-black !default;
-$text-describe-color: $gray !default;
-$text-prompt-color: $gray-light !default;
+$text-describe-color: $gray-light !default;
+$text-prompt-color: $gray-lighter !default;
 $link-color: $color-primary !default;
 $link-decoration: none !default;
 $link-hover-color: $color-primary-light !default;
@@ -166,7 +157,7 @@ $transition-duration: 150ms !default;
 // 9. disabled bg color
 $disabled-bg: $color-white !default;
 $disabled-border: $border-color !default;
-$disabled-color: $gray !default;
+$disabled-color: $gray-light !default;
 
 // 10. Input Btn Size
 $input-btn-padding-y: 0.55 * $sizer !default;
@@ -215,7 +206,7 @@ $input-group-addon-color: $input-color !default;
 $input-group-addon-padding-x: 0.8 * $input-sizer !default;
 $input-group-addon-padding-y: $input-padding-y !default;
 
-$input-placeholder-color: $gray-dark !default;
+$input-placeholder-color: $gray !default;
 
 $input-disabled-bg: $disabled-bg;
 $input-disabled-border: $disabled-border;
@@ -239,7 +230,6 @@ $btn-padding-y-lg: $input-btn-padding-y-lg !default;
 $btn-padding-x-lg: 2.4 * $button-sizer !default;
 $btn-line-height-lg: $input-btn-line-height-lg !default;
 $btn-font-size-lg: $input-btn-font-size-lg !default;
-
 
 $btn-border-radius: $border-radius-sm !default;
 $btn-bg-color: $color-white !default;

@@ -26,7 +26,7 @@ $videoPicker-fill-color: $color-white;
 $videoPicker-border-color: $border-color !default;
 $videoPicker-border: 1px solid $videoPicker-border-color !default;
 $videoPicker-border-radius: $border-radius-base !default;
-$videoPicker-color: #999 !default;
+$videoPicker-color: $gray-dark !default;
 $videoPicker-active-color: $color-primary !default;
 // component
 $component-width: 160px !default;
@@ -81,7 +81,7 @@ $component-width: 160px !default;
     color: $videoPicker-color;
     background: $videoPicker-bg-color;
     border: 1px dashed $videoPicker-border-color;
-    
+
     i {
       margin-bottom: 4px;
       font-size: 16px;
@@ -204,7 +204,7 @@ $component-width: 160px !default;
       .#{$videoPicker}-poster-change,
       .#{$videoPicker}-poster-delete {
         &-disabled {
-          color: $gray;
+          color: $gray-light;
           cursor: not-allowed;
 
           &:hover {

@@ -20,16 +20,17 @@ $list-active-color: $color-primary-black;
 $list-item-active-border-color: $color-primary;
 $list-item-bg-color: $color-white;
 $list-item-label-padding-right: $list-font-size * 2 + $list-actions-right + $list-action-action-margin-left;
-$list-item-actions-color: $gray-dark;
+$list-item-actions-color: $gray;
 $list-item-actions-hover-color: $gray-darkest;
 
 $list-item-handle-padding: 12px;
 $list-item-handle-font-size: $font-size-sm;
-$list-item-handle-color: $gray-dark;
+$list-item-handle-color: $gray;
 $list-item-item-matrgin-top: $sizer;
 $list-item-hover-border-color: $gray-darker;
 
 $list-ghost-bg: $gray-lightest;
+$list-ghost-height: 30px;
 
 $list-border-color: $border-color;
 $list-border-radius: $border-radius-base;
@@ -105,6 +106,7 @@ $list-disabled-border-color: $disabled-color;
 
     &.sortable-ghost {
       background-color: $list-ghost-bg;
+      height: $list-ghost-height;
       border-color: $list-border-color;
       border-style: dashed;
     }

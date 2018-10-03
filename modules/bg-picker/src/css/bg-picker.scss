@@ -15,11 +15,11 @@ $bgPicker-height: 90px;
 
 $bgPicker-spacer: 24px;
 
-$bgPicker-color: #999;
+$bgPicker-color: $gray-dark;
 $bgPicker-hover-color: $gray-darkest;
 $bgPicker-active-color: $color-primary;
 
-$bgPicker-hover-bg: $gray-lighter;
+$bgPicker-hover-bg: $gray-lightest;
 $bgPicker-opacity: 1;
 
 $bgPicker-border-width: 1px;
@@ -32,7 +32,7 @@ $bgPicker-empty-font-size: $font-size-sm;
 $bgPicker-empty-icon-size: $font-size-lg;
 // fill
 $bgPicker-fill-change-bg: $color-opacity;
-$bgPicker-fill-hover-color: $gray-lighter;
+$bgPicker-fill-hover-color: $gray-lightest;
 $bgPicker-fill-change-font-size: $font-size-lg;
 $bgPicker-fill-action-color: $color-white;
 $bgPicker-fill-remove-margin: 0 15px;
@@ -55,7 +55,7 @@ $bgPicker-size-content-border-radius: $border-radius-base;
 $bgPicker-position-content-li-height: 32px;
 //repeat-title
 $bgPicker-repeat-title-color: $gray-darkest;
-$bgPicker-repeat-content-color: $gray-light;
+$bgPicker-repeat-content-color: $gray-lighter;
 
 // Style
 // =====================
@@ -323,7 +323,7 @@ $bgPicker-repeat-content-color: $gray-light;
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $disabled-bg;
-  
+
     &:hover {
       color: $disabled-color;
     }

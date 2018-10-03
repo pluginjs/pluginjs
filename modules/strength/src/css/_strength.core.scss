@@ -14,7 +14,7 @@ $strength-hidden-icon: $pj-icon-hidden !default;
 $strength-show-icon: $pj-icon-show !default;
 $strength-font: $pj-icon-font-family !default;
 
-$strength-check-border-color: $gray !default;
+$strength-check-border-color: $border-color !default;
 $strength-check-border-radius: $border-radius-base !default;
 
 .#{$strength} {
@@ -70,7 +70,7 @@ $strength-check-border-radius: $border-radius-base !default;
       transition: transform 0.25s;
       transform: scale(0);
     }
-    
+
     .#{$strength}-check::after {
       position: absolute;
       top: 0;
@@ -84,7 +84,7 @@ $strength-check-border-radius: $border-radius-base !default;
       border-radius: $strength-check-border-radius;
     }
   }
-  
+
   &-active {
     .#{$strength}-show {
       display: inline-block;

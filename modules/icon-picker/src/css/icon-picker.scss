@@ -14,7 +14,7 @@ $iconPicker-active-color: $color-primary !default;
 $iconPicker-body-padding: 1.5 * $iconPicker-sizer $iconPicker-sizer
   $iconPicker-sizer !default; //15px 10px 10px
 $iconPicker-icon-color: $gray-darkest !default;
-$iconPicker-icon-hover-color: $gray-light !default;
+$iconPicker-icon-hover-color: $gray-lighter !default;
 $iconPicker-icon-active-color: $color-primary !default;
 $iconPicker-trigger-icon-left: $iconPicker-width - 20px !default;
 $iconPicker-panel-height: 32 * $iconPicker-sizer !default; //320px
@@ -23,9 +23,9 @@ $iconPicker-package-bg-color: $gray-lightest !default;
 $iconPicker-package-title-padding: 0 2 * $iconPicker-sizer !default; //0 20px
 $iconPicker-controller-height: 3 * $iconPicker-sizer !default; //30px
 $iconPicker-search-height: 4 * $iconPicker-sizer !default; //40px
-$iconPicker-search-border: 1px solid $gray !default;
+$iconPicker-search-border: 1px solid $gray-light !default;
 $iconPicker-search-margin-bottom: 1px !default;
-$iconPicker-search-icon-color: $gray-dark !default;
+$iconPicker-search-icon-color: $gray !default;
 $iconPicker-package-body-height: 18.8 * $iconPicker-sizer !default; //188px
 $iconPicker-empty-padding: 2 * $iconPicker-sizer !default; //20px
 
@@ -180,7 +180,7 @@ $iconPicker-controller-bg: $color-white;
       padding: 0 $iconPicker-sizer; //10px
       margin-bottom: $iconPicker-sizer; //10px
       font-size: $font-size-xs;
-      color: $gray-dark;
+      color: $gray;
     }
   }
 
@@ -354,7 +354,7 @@ $iconPicker-controller-bg: $color-white;
       padding: 0.4 * $iconPicker-sizer 1.5 * $iconPicker-sizer; //4px 15px
 
       &:hover {
-        background-color: $gray-lighter;
+        background-color: $gray-lightest;
       }
     }
 

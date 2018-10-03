@@ -11,8 +11,8 @@ $scrollbar-bg:rgba(206,206,206,0.1);
 $scrollbar-hovering-bg: rgba(206,206,206,0.1);
 
 $scrollbar-handle-offset: 5px;
-$scrollbar-handle-color: $gray;
-$scrollbar-handle-hovering-color: $gray;
+$scrollbar-handle-color: $gray-light;
+$scrollbar-handle-hovering-color: $gray-light;
 $scrollbar-handle-dragging-color: #cecece;
 
 .#{$scrollbar} {

@@ -7,15 +7,15 @@ $spinner: "pj-spinner";
 
 $spinner-font-family: $font-family-base;
 $spinner-font-size: $font-size-xs;
-$spinner-color: #999;
+$spinner-color: $gray-dark;
 $spinner-active-color: $gray-darkest;
 
-$spinner-hover-bg: $gray-lighter;
+$spinner-hover-bg: $gray-lightest;
 
-$spinner-border-color: $gray;
+$spinner-border-color: $border-color;
 $spinner-border-radius: $border-radius-base;
 
-$spinner-control-color: $gray-dark;
+$spinner-control-color: $gray;
 $spinner-control-font-size: $font-size-sm;
 $spinner-control-active-color: $gray-darkest;
 
@@ -80,7 +80,7 @@ $spinner-control-active-color: $gray-darkest;
     .#{$spinner}-up,
     .#{$spinner}-down {
       cursor: not-allowed;
-  
+
       &:active,
       &:hover {
         cursor: not-allowed;

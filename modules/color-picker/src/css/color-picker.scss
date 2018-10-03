@@ -7,10 +7,10 @@ $colorPicker-sizer: $sizer !default;
 $colorPicker-width: 16.2 * $colorPicker-sizer !default; //192px
 
 $colorPicker-height: 3.2 * $colorPicker-sizer !default; //32px
-$colorPicker-color: $gray-dark !default;
+$colorPicker-color: $gray !default;
 $colorPicker-border-width: 1px !default;
 $colorPicker-border-style: solid !default;
-$colorPicker-border-color: $gray-lighter !default;
+$colorPicker-border-color: $gray-lightest !default;
 $colorPicker-border: $colorPicker-border-width $colorPicker-border-style
   $colorPicker-border-color !default;
   $colorPicker-border-radius: $border-radius-base !default;
@@ -28,7 +28,7 @@ $colorPicker-preview-color-width: $colorPicker-preview-bg-width !default;
 $colorPicker-preview-color-height: $colorPicker-preview-bg-width !default;
 // remove
 $colorPicker-remove-right: $colorPicker-preview-width + 6px !default;
-$colorPicker-remove-color: $gray-dark !default;
+$colorPicker-remove-color: $gray !default;
 $colorPicker-remove-hover-color: $color-primary-black !default;
 
 // panel
@@ -227,7 +227,7 @@ $colorPicker-pointer-color: $gray-darker !default;
         height: $colorPicker-hex-height;
         border-radius: 2px !important;
       }
-  
+
     &-box {
     position: relative;
 
@@ -238,7 +238,7 @@ $colorPicker-pointer-color: $gray-darker !default;
         display: inline-block;
         height: $colorPicker-hex-unit-height;
         line-height: $colorPicker-hex-unit-height;
-        color: $gray-dark;
+        color: $gray;
     }
     }
   }

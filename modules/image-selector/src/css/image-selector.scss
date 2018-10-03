@@ -29,7 +29,7 @@ $imageSelector-dropdown-padding: 24px;
 $imageSelector-item-width: 100px;
 $imageSelector-item-height: 87px;
 $imageSelector-item-margin: 12px;
-$imageSelector-item-bg-color: $gray-lighter;
+$imageSelector-item-bg-color: $gray-lightest;
 
 // Styles
 // =====================
@@ -98,11 +98,11 @@ $imageSelector-item-bg-color: $gray-lighter;
       color: $imageSelector-color !important;
       background-color: transparent !important;
       border: $imageSelector-border-width $imageSelector-border-style $imageSelector-active-color;
-      
+
       &:hover {
         border: $imageSelector-border-width $imageSelector-border-style $imageSelector-active-color;
       }
-  
+
       &:focus {
         outline: none;
       }
@@ -113,10 +113,10 @@ $imageSelector-item-bg-color: $gray-lighter;
 .#{$imageSelector}-disabled {
   .#{$imageSelector}-trigger {
     border-color: $disabled-border;
-  
+
     &:hover {
       cursor: not-allowed;
-  
+
       .#{$imageSelector}-change {
         opacity: 0;
       }

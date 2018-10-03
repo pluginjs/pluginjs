@@ -10,7 +10,7 @@ $range: "pj-range" !default;
 // global
 $gradientSelector-sizer: $sizer !default;
 
-$gradientSelector-border: 1px solid $gray-lighter !default;
+$gradientSelector-border: 1px solid $gray-lightest !default;
 $gradientSelector-border-radius: $border-radius-base !default;
 $gradientSelector-active-color: $color-primary !default;
 $gradientSelector-warning-color: $color-warning !default;
@@ -39,7 +39,7 @@ $editPanel-component-color: $color-red !default;
     }
 
     50% {
-      border-color: $gray-lighter;
+      border-color: $gray-lightest;
     }
 
     100% {

@@ -20,11 +20,11 @@ $wizard-step-item-width: 130px;
 $wizard-step-icon-width: 24px;
 $wizard-step-icon-height: $wizard-step-icon-width;
 $wizard-step-icon-spacer-x: 4px;
-$wizard-step-icon-bg: $gray;
+$wizard-step-icon-bg: $gray-light;
 
 $wizard-title-margin-top: 2px;
-$wizard-title-color: $gray;
-$wizard-title-solid: $gray-light;
+$wizard-title-color: $gray-light;
+$wizard-title-solid: $gray-lighter;
 
 $wizard-content-width: 770px;
 $wizard-content-margin-top: 18px;
@@ -33,14 +33,14 @@ $wizard-content-color: $gray-darker;
 
 $wizard-formControl-height: 32px;
 $wizard-formControl-border-margin: 5px 0;
-$wizard-formControl-border-color: $gray;
+$wizard-formControl-border-color: $border-color;
 $wizard-formControl-border-hover-color: $gray-darkest;
 
 $wizard-button-margin-top: 13px;
 $wizard-button-margin-left: 10px;
 $wizard-button-color: $gray-darker;
-$wizard-button-color-disabled: $gray;
-$wizard-button-bg: $gray-lighter;
+$wizard-button-color-disabled: $gray-light;
+$wizard-button-bg: $gray-lightest;
 
 // Styles
 // =====================

@@ -28,14 +28,14 @@ $toast-icon-gutter: 10px;
 $toast-close-font-size: 14px;
 $toast-close-pos-top: $toast-padding + ($toast-title-font-size - $toast-close-font-size) / 2;
 $toast-close-pos-right: $toast-padding-right;
-$toast-close-color: $gray-dark;
+$toast-close-color: $gray;
 $toast-close-hover-color: $gray-darker;
 
 $toast-content-top-gutter: 10px;
 
 $toast-loader-height: 4px;
 $toast-loader-color: $color-primary;
-$toast-loader-bg: $gray-light;
+$toast-loader-bg: $gray-lighter;
 
 $toast-buttons-top-gutter: 20px;
 $toast-button-gutter: 12px;

@@ -12,7 +12,7 @@ $dropdown-width: 200px;
 $dropdown-color: $text-color;
 $dropdown-bg: $color-white;
 
-$dropdown-border-color: $gray-light;
+$dropdown-border-color: $gray-lighter;
 $dropdown-border-radius: $border-radius-base;
 $dropdown-box-shadow: 0 20px 30px 0 rgba($color-black, 0.05);
 
@@ -25,7 +25,7 @@ $dropdown-item-space-y: 8px;
 $dropdown-item-disabled-color: $disabled-color;
 
 $dropdown-item-icon-gutter: 10px;
-$dropdown-item-hover-bg: $gray-lighter;
+$dropdown-item-hover-bg: $gray-lightest;
 $dropdown-item-active-color: $color-primary-active;
 // $dropdown-item-highlighted-color: $color-primary-active;
 $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;

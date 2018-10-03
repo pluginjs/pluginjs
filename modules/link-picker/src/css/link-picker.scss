@@ -16,10 +16,10 @@ $linkPicker-border: 1px solid $border-color !default;
 $linkPicker-padding: 0 2 * $linkPicker-sizer !default; //0 20px
 $linkPicker-icon-margin-right: $linkPicker-sizer !default; //10px
 // empty
-$empty-color: $gray-dark !default;
+$empty-color: $gray !default;
 $empty-hover-bg-color: $gray-lightest !default;
 // action
-$action-hover-color: $gray-lighter !default;
+$action-hover-color: $gray-lightest !default;
 $action-active-color: $color-primary !default;
 // dropdown
 $dropdown-width: 27.2 * $linkPicker-sizer !default; //300px
@@ -91,7 +91,7 @@ $linkPicker-disabled-bg: $disabled-bg;
     height: $linkPicker-height;
     padding: $linkPicker-padding;
     line-height: $linkPicker-height;
-    color: $gray-dark;
+    color: $gray;
     background-color: $color-white;
     border: $linkPicker-border;
     border-style: dashed;
@@ -99,7 +99,7 @@ $linkPicker-disabled-bg: $disabled-bg;
 
     > i {
       margin-right: $linkPicker-icon-margin-right;
-      color: $gray-dark;
+      color: $gray;
     }
   }
 
@@ -154,7 +154,7 @@ $linkPicker-disabled-bg: $disabled-bg;
     }
 
     &-cancel:hover {
-      color: $gray-dark;
+      color: $gray;
     }
   }
 

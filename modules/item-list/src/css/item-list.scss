@@ -12,7 +12,7 @@ $itemList-handle-padding: 12px;
 
 $itemList-add-color: #ccc;
 $itemList-add-hover-color: $gray-darkest;
-$itemList-add-border-color: $gray;
+$itemList-add-border-color: $border-color;
 $itemList-add-active-color: rgba($color-white, 0.1);
 
 .#{$itemList} {

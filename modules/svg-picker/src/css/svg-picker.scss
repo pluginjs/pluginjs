@@ -15,10 +15,10 @@ $svgPicker-line-height: 16px;
 $svgPicker-width: 200px;
 
 $svgPicker-border-radius: $border-radius-base;
-$svgPicker-border-color: $gray;
+$svgPicker-border-color: $border-color;
 $svgPicker-border-width: 1px;
 
-$svgPicker-color: #999;
+$svgPicker-color: $gray-dark;
 $svgPicker-active-color: $gray-darker;
 $svgPicker-hover-color: $gray-darker;
 
@@ -26,9 +26,9 @@ $svgPicker-hover-color: $gray-darker;
 $svgPicker-icon-width: 48px;
 $svgPicker-icon-height: 48px;
 $svgPicker-icon-margin: 6px;
-$svgPicker-icon-color: $gray-light;
+$svgPicker-icon-color: $gray-lighter;
 $svgPicker-icon-active-color: $color-primary;
-$svgPicker-icon-hover-color: $gray-light;
+$svgPicker-icon-hover-color: $gray-lighter;
 $svgPicker-icon-border-radius: 8px;
 $svgPicker-icon-border-width: 1px;
 $svgPicker-icon-border-style: solid;
@@ -60,14 +60,14 @@ $svgPicker-dropdown-height: 400px;
 $svgPicker-dropdown-padding: 32px;
 // manage
 $svgPicker-manage-spacer: 8px;
-$svgPicker-manage-border-color: $gray-light;
+$svgPicker-manage-border-color: $gray-lighter;
 $svgPicker-manager-bg: $color-white;
 $svgPicker-manage-icon-color: $gray-darkest;
 // search
-$svgPicker-search-border: 1px solid $gray;
+$svgPicker-search-border: 1px solid $gray-light;
 $svgPicker-search-padding: 12px;
 $svgPicker-search-margin-bottom: 1px;
-$svgPicker-search-icon-color: $gray-dark;
+$svgPicker-search-icon-color: $gray;
 $svgPicker-input-margin-left: 8px;
 // icon
 $svgPicker-trigger-arrow-icon: $pj-icon-arrow-down-mini;
@@ -128,7 +128,7 @@ $svgPicker-scrollable-width: 274px;
 
   .#{$dropdown}-trigger[aria-expanded="true"]::after{
     transform: rotate(180deg);
-  } 
+  }
 
   &-empty {
     padding: 0 $svgPicker-empty-padding;

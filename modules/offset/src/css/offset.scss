@@ -27,10 +27,10 @@ $padding-label-vertical-height: 9.4 * $offset-sizer !default; //68px
 // inputer
 $input-width: 6.6 * $offset-sizer !default; //50px
 $input-height: 2.4 * $offset-sizer !default; //20px
-$input-color: $gray !default;
+$input-color: $gray-light !default;
 $input-padding: 0 1px !default; //0 1px
 $input-trigger-width: 2.5 * $offset-sizer !default; //25px
-$input-border-color: $gray-lighter !default;
+$input-border-color: $gray-lightest !default;
 // connect
 $connect-width: 2.5 * $offset-sizer !default; //25px
 $connect-height: $connect-width !default;
@@ -492,11 +492,11 @@ $connect-active-bg: $gray-lightest !default;
 /* stylelint-disable */
 .#{$offset}-disabled {
   label:active {
-    background-color: $gray-lighter;
+    background-color: $gray-lightest;
 
     &::after,
     &::before {
-      border-color: $gray-lighter;
+      border-color: $gray-lightest;
     }
   }
 

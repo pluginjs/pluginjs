@@ -18,10 +18,10 @@ $cp-sizer: $sizer !default;
   width: 4.8 * $cp-sizer; //48px
   height: 4.8 * $cp-sizer;
   content: " ";
-  border-top: solid 6px $gray-lighter; //#bababa;
-  border-right: solid 6px $gray-lighter; //#bababa;
-  border-bottom: solid 6px $gray-lighter; //#bababa;
-  border-left: solid 6px $gray-lighter; //#bababa;
+  border-top: solid 6px $gray-lightest; //#bababa;
+  border-right: solid 6px $gray-lightest; //#bababa;
+  border-bottom: solid 6px $gray-lightest; //#bababa;
+  border-left: solid 6px $gray-lightest; //#bababa;
   border-radius: 50%;
 }
 

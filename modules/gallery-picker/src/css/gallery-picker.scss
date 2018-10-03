@@ -18,13 +18,13 @@ $galleryPicker-font-size: $font-size-base;
 $galleryPicker-line-height: 16px;
 $galleryPicker-icon-size: 16px;
 
-$galleryPicker-color: #999;
+$galleryPicker-color: $gray-dark;
 $galleryPicker-active-color: $color-primary;
 $galleryPicker-hover-color: $gray-darkest;
 $galleryPicker-bg: $color-white;
 
 $galleryPicker-border-width: 1px;
-$galleryPicker-border-color: $gray;
+$galleryPicker-border-color: $border-color;
 $galleryPicker-border: $galleryPicker-border-width solid
   $galleryPicker-border-color;
 $galleryPicker-border-radius: $border-radius-base;
@@ -61,7 +61,7 @@ $scrollable-height: 260px;
   &-open-disabled {
     pointer-events: none;
   }
-  
+
   &-empty,
   &-fill {
     text-align: center;
@@ -154,7 +154,7 @@ $scrollable-height: 260px;
     + li {
       margin-left: 0;
     }
-   
+
   }
 
   &-add {
