@@ -5,11 +5,9 @@ export const parseHTML = (...args) => {
   const htmlString = Array.isArray(args[0])
     ? args[0].reduce((result, str, index) => result + args[index] + str)
     : args[0]
-  const childNodes = children(html(htmlString, document.createElement('div')))
-  if (childNodes.length === 1) {
-    return childNodes[0]
-  }
-  return childNodes
+  const template = document.createElement('template')
+  template.innerHTML = htmlString
+  return template.content.firstChild
 }
 
 // ----------
@@ -506,44 +504,3 @@ export const replace = curry((newContent, el) => {
 
   return newContent
 })
-
-// -----------
-// Animate
-// -----------
-export const fade = curry((type, { duration, callback }, element) => {
-  const isIn = type === 'in'
-  let opacity = isIn ? 0 : 1
-  let start
-
-  if (isIn) {
-    if (element.style.display === 'none') {
-      element.style.display = 'inline'
-    }
-    element.style.opacity = opacity
-  }
-
-  function step(timestamp) {
-    if (!start) {
-      start = timestamp
-    }
-    const progress = timestamp - start
-    const percent = progress / duration
-    opacity = isIn ? opacity + percent : opacity - percent
-    element.style.opacity = opacity
-
-    if (opacity <= 0) {
-      element.style.display = 'none'
-    }
-
-    if (progress < duration) {
-      window.requestAnimationFrame(step)
-    } else if (callback) {
-      callback()
-    }
-  }
-
-  window.requestAnimationFrame(step)
-})
-
-export const fadeOut = fade('out')
-export const fadeIn = fade('in')
