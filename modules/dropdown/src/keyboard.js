@@ -2,13 +2,20 @@ import keyboard from '@pluginjs/keyboard'
 import { bindEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { events as EVENTS } from './constant'
+import { isElement } from '@pluginjs/is'
 
 class Keyboard {
   constructor(instance) {
     this.instance = instance
 
-    this.KEYBOARD = keyboard(this.instance.$trigger)
-    this.instance.$trigger.setAttribute('tabindex', 0)
+    if (isElement(instance.options.keyboard)) {
+      this.element = instance.options.keyboard
+    } else {
+      this.element = this.instance.$trigger
+    }
+
+    this.KEYBOARD = keyboard(this.element)
+    this.element.setAttribute('tabindex', 0)
 
     bindEvent(
       this.instance.eventName('focus'),
@@ -32,8 +39,6 @@ class Keyboard {
           return
         }
         removeClass(this.instance.classes.FOCUS, this.instance.$trigger)
-
-        this.KEYBOARD.down('enter')
       },
       this.instance.$trigger
     )

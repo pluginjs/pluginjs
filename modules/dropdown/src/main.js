@@ -10,7 +10,8 @@ import {
   queryAll,
   insertAfter,
   parentWith,
-  parseHTML
+  parseHTML,
+  offsetParent
 } from '@pluginjs/dom'
 import { getStyle } from '@pluginjs/styled'
 import {
@@ -357,14 +358,17 @@ class Dropdown extends Component {
       $item = this.getItemByIndex(index)
     }
 
-    const { clientHeight, scrollTop } = this.$dropdown
+    let $parent = offsetParent($item)
+    if ($parent === document.documentElement) {
+      $parent = this.$dropdown
+    }
+    const { clientHeight, scrollTop } = $parent
 
     if ($item) {
       if ($item.clientHeight + $item.offsetTop > clientHeight + scrollTop) {
-        this.$dropdown.scrollTop =
-          $item.clientHeight + $item.offsetTop - clientHeight
+        $parent.scrollTop = $item.clientHeight + $item.offsetTop - clientHeight
       } else if ($item.offsetTop < scrollTop) {
-        this.$dropdown.scrollTop = $item.offsetTop
+        $parent.scrollTop = $item.offsetTop
       }
       addClass(this.classes.HIGHLIGHTED, $item)
       this.$highlighted = $item
