@@ -209,7 +209,10 @@ class Select extends Component {
     }
 
     if (this.is('loading')) {
-      this.LOADING.hide()
+      if (this.LOADING) {
+        this.LOADING.hide()
+      }
+
       this.leave('loading')
     }
 
@@ -219,9 +222,7 @@ class Select extends Component {
   }
 
   isValidValue(val) {
-    const found = this.items.find(item => {
-      return item.value == val // eslint-disable-line
-    })
+    const found = this.getOptionByValue(val)
     if (found) {
       return true
     }

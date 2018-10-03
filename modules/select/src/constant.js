@@ -68,7 +68,7 @@ export const defaults = {
   keyboard: true,
   clearable: false,
   dropdown: {
-    placement: 'bottom' // top
+    placement: 'bottom-start' // top
   },
   optionLabel(option) {
     return option.label
