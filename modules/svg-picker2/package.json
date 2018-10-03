@@ -1,6 +1,6 @@
 {
-  "name": "@pluginjs/scroll",
-  "description": "A flexible modern scroll js plugin.",
+  "name": "@pluginjs/svg-picker2",
+  "description": "A flexible modern svg-picker js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
@@ -11,12 +11,17 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.19",
-  "category": "scroll",
-  "main": "dist/scroll.umd.js",
-  "module": "dist/scroll.esm.js",
-  "cjs": "dist/scroll.cjs.js",
+  "version": "0.2.21",
+  "category": "form",
+  "main": "dist/svg-picker.umd.js",
+  "module": "dist/svg-picker.esm.js",
+  "cjs": "dist/svg-picker.cjs.js",
   "source": "src/main.js",
+  "css": {
+    "source": "src/css/svg-picker.scss",
+    "main": "dist/svg-picker.css",
+    "min": "dist/svg-picker.min.css"
+  },
   "files": [
     "dist",
     "src"
@@ -25,12 +30,24 @@
     "build": "plugin build",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "npm run lint:js & npm run lint:scss",
+    "lint:js": "eslint ./src/**/*.js --fix",
+    "lint:scss": "stylelint ./src/**/*.scss --fix",
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/easing": "*",
+    "@pluginjs/classes": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/dropdown": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/styles": "^0.5.3"
+    "@pluginjs/scrollable": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

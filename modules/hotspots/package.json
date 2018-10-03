@@ -50,6 +50,7 @@
     "@pluginjs/tooltip": "*"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
     "@pluginjs/cli": "*",
     "babel-jest": "*",
     "jest": "*",
