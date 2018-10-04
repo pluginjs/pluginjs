@@ -82,7 +82,7 @@ const source = icons.map(icon => {
     svg: ficon.toSvg()
   }
 })
-const element = query('#disabled .example')
+const element = query('#undefined-value .example')
 SvgPicker.of(element, {
   source
 })

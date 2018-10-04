@@ -74,15 +74,13 @@ const icons = [
   'wind',
   'youtube'
 ]
-const source = icons.map(icon => {
+const source = {}
+icons.forEach(icon => {
   const ficon = feather.icons[icon]
-  return {
-    name: ficon.name,
-    tags: ficon.tags,
-    svg: ficon.toSvg()
-  }
+  source[ficon.name] = ficon.toSvg()
 })
-const element = query('#disabled .example')
+
+const element = query('#simple-data .example')
 SvgPicker.of(element, {
   source
 })

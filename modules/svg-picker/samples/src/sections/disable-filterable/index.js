@@ -82,7 +82,8 @@ const source = icons.map(icon => {
     svg: ficon.toSvg()
   }
 })
-const element = query('#disabled .example')
+const element = query('#disable-filterable .example')
 SvgPicker.of(element, {
+  filterable: false,
   source
 })

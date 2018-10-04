@@ -1,10 +1,10 @@
-# SvgPicker
+# Select
 
-[![npm package](https://img.shields.io/npm/v/@pluginjs/svg-picker.svg)](https://www.npmjs.com/package/@pluginjs/svg-picker)
+[![npm package](https://img.shields.io/npm/v/@pluginjs/select.svg)](https://www.npmjs.com/package/@pluginjs/select)
 
-A flexible modern svg-picker js plugin.
+A flexible modern select js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/svgPicker/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/select/samples)**
 
 ## Introduction
 
@@ -13,13 +13,13 @@ A flexible modern svg-picker js plugin.
 #### Yarn
 
 ```javascript
-yarn add @pluginjs/svg-picker
+yarn add @pluginjs/select
 ```
 
 #### NPM
 
 ```javascript
-npm i @pluginjs/svg-picker
+npm i @pluginjs/select
 ```
 
 ---
@@ -31,15 +31,15 @@ npm i @pluginjs/svg-picker
 Development:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
 ```
 
 Production:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.min.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.min.css">
 ```
 
 ### Initialize
@@ -55,28 +55,28 @@ HTML:
 ECMAScript Module:
 
 ```javascript
-import SvgPicker from "@pluginjs/svg-picker"
-import "@pluginjs/svg-picker/dist/svg-picker.css"
+import Select from "@pluginjs/select"
+import "@pluginjs/select/dist/select.css"
 
-SvgPicker.of(document.querySelector('.element'), options)
+Select.of(document.querySelector('.element'), options)
 ```
 
 CommonJS:
 
 ```javascript
-require("@pluginjs/svg-picker/dist/svg-picker.css")
-const SvgPicker = require("@pluginjs/svg-picker")
+require("@pluginjs/select/dist/select.css")
+const Select = require("@pluginjs/select")
 
-SvgPicker.of(document.querySelector('.element'), options)
+Select.of(document.querySelector('.element'), options)
 ```
 
 Browser:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.css">
-<script src="https://unpkg.com/@pluginjs/svg-picker/dist/svg-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
 <script>
-  Pj.svgPicker('.element', options)
+  Pj.select('.element', options)
 </script>
 ```
 
@@ -86,24 +86,32 @@ Browser:
 
 ### Options
 
-Options are called on svgPicker instances through the svgPicker options itself.
+Options are called on select instances through the select options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
-`"locale"` | Set locale environment | `en`
+`"trigger"` | Set trigger | `click`
+`"offset"` | Set offset | `[0,0]`
+`"icon"` | Set default icon | `pj-icon pj-icon-char pj-icon-chevron-down`
+`"multiple"` | Set multiple | `false`
+`"clearable"` | Set clearable | `false`
+`"filterable"` | Set filterable | `false`
+`"closeAllButten"` | Set closeAllButton | `true`
+`"placeholder"` | Set input box prompt information | `Please select`
+`"notFoundText"` | Set notoFoundText | `Badge not found`
+`"selected"` | Set selected | `null`
 `"data"` | Set data | `null`
-`"keyboard"` | Set keyboard | `false`
-`"placehoder"` | Set input box prompt information | `choose a icon`
+`"keyboard"` | Set keyboard | `true`
 `"disabled"` | Disabled plugin | `false`
 `"templates"` | Set default templates | `{}`
-`"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
+`"process"` | The type of object change the type of JSON | `function() {...}`
 
 ### Events
 
-Events are called on svgPicker instances through the svgPicker events itself.
+Events are called on select instances through the select events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
@@ -111,13 +119,20 @@ Name | Description
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
-`"disable"` | Gets fired when plugin has disabled
+`"disabled"` | Disable plugin
 `"destroy"` | Gets fired when plugin has destroy
+`"load"` | Gets fired when plugin has load
+`"open"` | Gets fired when plugin has open
+`"close"` | Gets fired when plugin has close
+`"click"` | Gets fired when plugin has click
 `"change"` | Gets fired when plugin has changed
+`"select"` | Gets fired when plugin has select
+`"unselect"` | Gets fired when plugin has unselect
+`"hide"` | Gets fired when plugin has hide
 
 ### Methods
 
-Methods are called on svgPicker instances through the svgPicker method itself.
+Methods are called on select instances through the select method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
@@ -128,48 +143,39 @@ Name | Description
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
-`"add"` | Get value of add
+`"removeData"` | Set removeData
+`"open"` | Get value of open
+`"close"` | Get value of close
 
 ### Classes
 
 Name | Description | Default
 -----|------|------
-`"NAMESPACE"` | Declare plugin namespace | `pj-svgPicker`
-`"THEME"` | Declare plugin theme | `{namespace}--{theme}`
-`"ELEMENT"` | Declare plugin element | `{namespace}`
-`"TRIGGER"` | Declare plugin trigger | `{namespace}-trigger`
+`"NAMESPACE"` | Declare plugin namespace | `pj-select`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
-`"PANEL"` | Declare plugin panel | `{namespace}-panel`
-`"ICON"` | Declare plugin icon | `{namespace}-icon`
-`"ICONWRAP"` | Declare plugin iconwrap | `{namespace}-icon-wrap`
-`"ICONHOVER"` | Declare plugin icon hover | `{namespace}-icon-hover`
-`"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
+`"MULTIPLE"` | Declare plugin multiple | `{namespace}-multiple`
+`"FILTERABLE"` | Declare plugin filterable | `{namespace}-filterable`
+`"DROPDOWNLIST"` | Declare plugin dropdownlist | `{namespace}-dropdown`
+`"TRIGGER"` | Declare plugin trigger | `{namespace}-trigger`
+`"HASBADGE"` | Declare plugin hasbadge | `{namespace}-hpj-badge`
+`"BADGE"` | Declare plugin badge | `{namespace}-badge`
+`"BADGECONTENT"` | Declare plugin badge content | `{namespace}-badge-content`
+`"BADGEDELETE"` | Declare plugin badge delete | `{namespace}-badge-delete`
+`"LABEL"` | Declare plugin label | `{namespace}-label`
+`"LIST"` | Declare plugin list | `{namespace}-list`
+`"SUBLIST"` | Declare plugin sublist | `{namespace}-sublist`
+`"ITEM"` | Declare plugin item | `{namespace}-item`
+`"GROUP"` | Declare plugin group | `{namespace}-group`
+`"GROUPLABEL"` | Declare plugin label | `{namespace}-group-label`
+`"OPEN"` | Declare plugin open | `{namespace}-open`
+`"NOTFOUND"` | Declare plugin not found | `{namespace}-not-found`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-`"EMPTY"` | Declare plugin empty | `{namespace}-empty`
-`"ADD"` | Declare plugin add | `{namespace}-add`
-`"TYPE"` | Declare plugin type | `{namespace}-type`
-`"TYPEWRAP"` | Declare plugin type wrap | `{namespace}-type-wrap`
-`"TYPETITLE"` | Declare plugin type etitle | `{namespace}-type-title`
-`"TYPEOPEN"` | Declare plugin type open | `{namespace}-type-open`
-`"TYPEHIDE"` | Declare plugin type hide | `{namespace}-type-hide`
-`"TYPETIP"` | Declare plugin type etip | `{namespace}-type-tip`
-`"SEARCH"` | Declare plugin type search | `{namespace}-search`
-`"SEARCHING"` | Declare plugin type searching | `{namespace}-searching`
-`"SEARCHED"` | Declare plugin searched | `{namespace}-searched`
-`"SEARCHCLOSE"` | Declare plugin search lose | `{namespace}-search-close`
-`"SEARCHOWNDATA"` | Declare plugin search data | `{namespace}-search-data`
-`"MANAGE"` | Declare plugin mange | `{namespace}-manage`
-`"MANAGEICON"` | Declare plugin mange icon | `{namespace}-manage-icon`
-
-### Translations
-
-Name | EN | ZH
------|------|-------
-`"emptyText"` | Befor using SVG icons, you need add icons to "my collections" | 在使用SVG图标之前，您需要添加图标到“我的收藏”
-`"emptyHrefText"` | Go add now | 去添加
-`"searchText"` | Search | 搜索
-`"manage"` | Manage My Collections | 管理我的收藏
-`"founded"` | founded | 结果
+`"MARK"` | Declare plugin mark | `{namespace}-mark`
+`"SELECTED"` | Declare plugin selected | `{namespace}-selected`
+`"FOCUS"` | Declare plugin focus | `{namespace}-focus`
+`"LOADING"` | Declare plugin loading | `{namespace}-loading`
+`"ERROR"` | Declare plugin error | `{namespace}-error`
+`"HIDEICON"` | Declare plugin hideicon | `{namespace}-hideIcon`
 ---
 
 ## Browser support
@@ -182,9 +188,9 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/svg-picker is Licensed under [the GPL-v3 license](LICENSE).
+@pluginjs/select is Licensed under [the GPL-v3 license](LICENSE).
 
-If you want to use @pluginjs/svg-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+If you want to use @pluginjs/select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
 
 For purchase an Commercial License, contact us purchase@thecreation.co.
 

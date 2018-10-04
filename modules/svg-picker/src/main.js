@@ -1,47 +1,49 @@
 import Component from '@pluginjs/component'
-import { isArray, isObject } from '@pluginjs/is'
-import template from '@pluginjs/template'
-import {
-  parseHTML,
-  wrap,
-  unwrap,
-  children,
-  parent,
-  query,
-  queryAll,
-  insertBefore,
-  insertAfter,
-  append,
-  parentWith,
-  getData,
-  next
-} from '@pluginjs/dom'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { showElement, hideElement } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import templateEngine from '@pluginjs/template'
 import {
   eventable,
   register,
   stateable,
   styleable,
   themeable,
-  translateable,
-  optionable
+  optionable,
+  translateable
 } from '@pluginjs/decorator'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
+  translations as TRANSLATIONS,
   events as EVENTS,
   methods as METHODS,
-  namespace as NAMESPACE,
-  translations as TRANSLATIONS
+  namespace as NAMESPACE
 } from './constant'
-import Keyboard from './keyboard'
+import {
+  isArray,
+  isFunction,
+  isNull,
+  isPlainObject,
+  isEmpty,
+  isElement,
+  isString
+} from '@pluginjs/is'
+import Clearable from './clearable'
+import Filterable from './filterable'
+import Manage from './manage'
+import Loading from './loading'
+import { removeEvent } from '@pluginjs/events'
+import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
-import Scrollable from '@pluginjs/scrollable'
-
-let DATA = null
+import {
+  query,
+  insertAfter,
+  appendTo,
+  html,
+  parseHTML,
+  detach,
+  children
+} from '@pluginjs/dom'
+import Tooltip from '@pluginjs/tooltip'
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -56,477 +58,423 @@ let DATA = null
 class SvgPicker extends Component {
   constructor(element, options = {}) {
     super(element)
+
     this.setupOptions(options)
     this.setupClasses()
-    this.setupI18n()
-
-    this.$svgPicker = addClass(
-      this.classes.TRIGGER,
-      parseHTML(
-        template.compile(this.options.templates.trigger())({
-          classes: this.classes
-        })
-      )
-    )
-    this.$svgTrigger = query('.pj-dropdown-trigger', this.$svgPicker)
-    insertAfter(this.$svgPicker, this.element)
-    wrap(`<div class="${this.classes.WRAP}"></div>`, this.$svgPicker)
-    insertAfter(`<div class=${this.classes.DROPDOWN}></div>`, this.$svgPicker)
-    hideElement(this.element)
-
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$svgPicker)
-    }
-
-    this.data = DATA
-    this.$dropdown = this.initDropdown()
-    this.$dropdownBox = this.$dropdown.$dropdown
-
-    this.icon = null
-    this.$icons = null
-    this.$types = null
-
-    this.$typeWrap = null
-    this.icons = null
-
     this.setupStates()
+    this.setupI18n()
     this.initialize()
   }
 
   initialize() {
-    if (!this.data || !this.data.length) {
-      this.$empty = query(`.${this.classes.EMPTY}`, this.$dropdownBox)
-    } else {
-      this.add(this.data)
+    this.items = []
+    this.selected = null
+
+    this.placeholder = this.element.getAttribute('placeholder')
+    if (!this.placeholder) {
+      this.placeholder = this.options.placeholder
     }
 
-    this.initManage()
+    addClass(this.classes.ELEMENT, this.element)
 
-    if (this.options.keyboard) {
-      this.KEYBOARD = new Keyboard(this)
-    }
-
-    append(
-      `${this.options.placehoder}`,
-      query('.pj-dropdown-trigger', this.$svgPicker)
+    this.$wrap = insertAfter(
+      `<div class="${this.classes.WRAP}"></div>`,
+      this.element
     )
 
-    if (this.element.value.trim() !== '' && this.data && this.data.length) {
-      this.val(this.element.value, false)
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.$wrap)
     }
+
+    this.$trigger = appendTo(
+      `<div class="${this.classes.TRIGGER}"></div>`,
+      this.$wrap
+    )
+
+    this.$label = appendTo(
+      templateEngine.render(this.options.templates.label(), {
+        classes: this.classes,
+        placeholder: this.placeholder
+      }),
+      this.$trigger
+    )
+
+    this.bind()
+
+    this.setupDropdown(this.options.dropdown)
+
+    if (this.options.clearable) {
+      this.CLEARABLE = new Clearable(this)
+    }
+
+    this.LOADING = new Loading(this)
 
     if (this.element.disabled || this.options.disabled) {
       this.disable()
+    }
+
+    const value = this.element.value || this.options.value
+
+    if (!isEmpty(value)) {
+      this.set(this.options.parse.call(this, value), false)
     }
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  bind() {
-    if (this.is('disabled')) {
-      return
-    }
-    const that = this
-
-    this.$dropdown.options.onClick = () => {
-      return
-    }
-
-    this.$dropdown.options.onHide = () => {
-      removeClass(this.classes.SEARCHOWNDATA, this.$search)
-      query('input', this.$search).value = ''
-      this.searching('')
-    }
-
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.TYPETITLE}`,
-      event => {
-        const eventTarget = event.target
-        let $type = ''
-        if (eventTarget.tagName === 'I') {
-          $type = parent(parent(event.target))
-        } else {
-          $type = parent(event.target)
-        }
-        that.open($type)
-        if ($type.dataset.open && $type.dataset.open === 'true') {
-          // that.close($type)
-        }
-      },
-      this.$dropdownBox
+  setupDropdown(options) {
+    this.$dropdown = appendTo(
+      templateEngine.render(this.options.templates.dropdown.call(this), {
+        classes: this.classes
+      }),
+      this.$wrap
     )
 
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.ICON}`,
-      event => {
-        const eventTarget = event.target
-        let $this = ''
-        if (eventTarget.tagName === 'LI') {
-          $this = event.target
-        } else {
-          $this = parentWith(hasClass(this.classes.ICON), event.target)
+    this.$items = query(`.${this.classes.ITEMS}`, this.$dropdown)
+
+    this.DROPDOWN = Dropdown.of(this.$trigger, {
+      ...options,
+      target: this.$dropdown,
+      keyboard: this.options.keyboard ? this.$wrap : false,
+      classes: {
+        PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
+      },
+      onShow: () => {
+        if (!this.data) {
+          this.initData()
         }
-        that.select($this)
-        that.$dropdown.hide()
-      },
-      this.$dropdownBox
-    )
 
-    bindEvent(
-      this.eventName('input'),
-      'input',
-      ({ target: $this }) => {
-        if (!that.is('searching')) {
-          // that.$types.each(function () {
-          //   that.open($(this))
-          // })
-          addClass(that.classes.SEARCHING, that.$dropdownBox)
+        if (this.is('loading')) {
+          this.LOADING.show()
         }
-        that.enter('searching')
 
-        const val = $this.value
-        if (val.length === 0) {
-          removeClass(that.classes.SEARCHOWNDATA, that.$search)
-        } else {
-          addClass(that.classes.SEARCHOWNDATA, that.$search)
+        if (!this.is('builded')) {
+          this.buildDropdown()
         }
-        that.searching(val)
+
+        addClass(this.classes.SHOW, this.$wrap)
+        this.trigger(EVENTS.SHOW)
       },
-      this.$search
-    )
-
-    bindEvent(
-      this.eventName('blur'),
-      'input',
-      () => {
-        this.leave('searching')
+      onShown: () => {
+        this.trigger(EVENTS.SHOWN)
+        this.enter('shown')
       },
-      this.$search
-    )
-
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.SEARCHCLOSE}`,
-      () => {
-        removeClass(this.classes.SEARCHOWNDATA, this.$search)
-        query('input', this.$search).value = ''
-        this.searching('')
+      onHide: () => {
+        this.trigger(EVENTS.HIDE)
+        this.leave('shown')
       },
-      this.$search
-    )
-
-    if (this.options.keyboard) {
-      this.$svgPicker.setAttribute('tabindex', 1)
-      bindEvent(
-        this.eventName('focus'),
-        () => {
-          bindEvent(
-            this.eventName('keydown'),
-            e => {
-              if (e.keyCode === 13) {
-                this.$dropdown.show()
-              }
-            },
-            this.$svgPicker
-          )
-        },
-        this.$svgPicker
-      )
-      bindEvent(
-        this.eventName('blur'),
-        () => {
-          removeEvent(this.eventName('keydown'), this.$svgPicker)
-        },
-        this.$svgPicker
-      )
-
-      query('input', this.$search).setAttribute('tabindex', 1)
-      this.$manage.setAttribute('tabindex', 1)
-      this.$types.forEach(v => {
-        v.setAttribute('tabindex', 1)
-        this.$type = v
-      })
-      bindEvent(
-        this.eventName('focus'),
-        ({ target: $this }) => {
-          $this.one('keydown', e => {
-            if (e.keyCode === 13 && e.which === 13) {
-              that.KEYBOARD.init($this)
-              that.open($this)
-            }
-          })
-          $this.on(this.eventName('blur'), () => {
-            if (that.is('keyboard')) {
-              that.KEYBOARD.unbind()
-              that.close($this)
-            }
-            if (that.is('searching')) {
-              return
-            }
-          })
-        },
-        this.$type
-      )
-    }
+      onHided: () => {
+        removeClass(this.classes.SHOW, this.$wrap)
+        this.trigger(EVENTS.HIDED)
+      },
+      onChange: value => {
+        this.setByValue(value)
+      }
+    })
   }
+
+  bind() {} // eslint-disable-line
 
   unbind() {
-    removeEvent(this.eventName(), this.$element)
-    removeEvent(this.eventName(), this.$svgPicker)
+    removeEvent(this.eventName(), this.element)
   }
 
-  initDropdown() {
-    const that = this
-
-    const empty = template.compile(this.options.templates.empty())({
-      classes: this.classes,
-      emptyText: this.translate('emptyText'),
-      emptyHrefText: this.translate('emptyHrefText')
-    })
-    const data = [{ label: 'empty' }]
-    function item() {
-      return `<div class="{that.classes.ITEM} ${
-        that.classes.EMPTY
-      }" data-{that.options.itemValueAttr}="{item.label}">${empty}</div>`
+  buildDropdown() {
+    if (this.options.filterable) {
+      this.FILTERABLE = new Filterable(this)
     }
-    console.log(this.$svgTrigger)
-    return Dropdown.of(this.$svgTrigger, {
-      data,
-      rereference: this.$svgPicker,
-      hideOnSelect: false,
-      target: next(this.$svgPicker),
-      templates: {
-        item
-      }
-    })
-  }
-
-  initManage() {
-    this.$manage = parseHTML(
-      template.compile(this.options.templates.manage())({
-        classes: this.classes,
-        manageText: this.translate('manage')
-      })
-    )
-    this.$dropdownBox.append(this.$manage)
-  }
-
-  handleIcons(type) {
-    let icons = ''
-    this.data.forEach(v => {
-      if (v.type === type) {
-        const icon = template.compile(this.options.templates.icon())({
-          classes: this.classes,
-          iconId: v.id,
-          iconSvg: v.svg
-        })
-
-        icons += icon
-      }
-    })
-
-    return icons
-  }
-  handleTypes() {
-    let types = ''
-    const typeArr = []
-    this.data.forEach(v => {
-      if (typeArr.indexOf(v.type) < 0) {
-        typeArr.push(v.type)
-        const icons = this.handleIcons(v.type)
-        const type = template.compile(this.options.templates.type())({
-          classes: this.classes,
-          typeName: v.type,
-          icons
-        })
-        types += type
-      }
-    })
-
-    this.$dropdown.$dropdown.innerHTML = types
-    this.$typeWrap = parseHTML(`<div class=${this.classes.TYPEWRAP}></div>`)
-    this.$types = queryAll(`.${this.classes.TYPE}`, this.$dropdownBox)
-    insertBefore(this.$typeWrap, this.$types[0])
-    this.$typeWrap.append(...this.$types)
-    this.$types.forEach(el => {
-      el.dataset.count = 0
-    })
-    queryAll(`.${this.classes.ICONWRAP}`, this.$dropdownBox).map(el =>
-      Scrollable.of(el)
-    )
-  }
-
-  add(data = this.data) {
-    this.data = data
-
-    this.handleTypes()
-
-    this.$icons = queryAll(`.${this.classes.ICON}`, this.$typeWrap)
-
-    // if (!this.$manage) {
-    this.initManage()
-    // } else {
-    // this.$dropdownBox.append(this.$manage)
-    // }
-
-    this.handleSearch()
-
-    this.formatData()
-    this.bind()
-  }
-  formatData() {
-    this.icons = {}
-    this.data.forEach(v => {
-      if (!isArray(this.icons[v.type])) {
-        this.icons[v.type] = []
-      }
-
-      this.icons[v.type].push(v.id)
-    })
-  }
-
-  handleSearch() {
-    this.$search = parseHTML(
-      template.compile(this.options.templates.search())({
-        classes: this.classes,
-        placeholder: this.translate('searchText')
-      })
-    )
-    insertBefore(this.$search, children(this.$dropdownBox)[0])
-  }
-
-  searching(val) {  /* eslint-disable-line */
-    const searchedIcons = []
-
-    this.$icons.forEach(v => {
-      const $this = v
-      const value = getData('value', $this)
-      if (value.indexOf(val) >= 0) {
-        addClass(this.classes.SEARCHED, $this)
-
-        searchedIcons.push(value)
-      } else if (hasClass(this.classes.SEARCHED, $this)) {
-        removeClass(this.classes.SEARCHED, $this)
-      }
-    })
-
-    if (val.length === 0) {
-      this.$types.forEach(v => {
-        showElement(v)
-        query(`.${this.classes.TYPETIP}`, v).innerHTML = ''
-      })
-      return false
+    if (this.options.manage) {
+      this.MANAGE = new Manage(this)
     }
-    this.$types.forEach($this => {
-      $this.dataset.count = 0
+    if (this.data) {
+      this.buildDropdownItems()
+    }
+
+    this.enter('builded')
+  }
+
+  initData() {
+    if (isArray(this.options.source) || isPlainObject(this.options.source)) {
+      this.resolveData(this.options.source)
+    } else if (isFunction(this.options.source)) {
+      this.enter('loading')
+      this.options.source.call(this, this.resolveData.bind(this))
+    } else if (
+      isString(this.options.source) ||
+      isElement(this.options.source)
+    ) {
+      this.resolveData(this.getDataFromSvgSprite())
+    }
+  }
+
+  resolveData(data) {
+    this.items.forEach(item => {
+      if (item.__dom) {
+        item.__dom.remove()
+      }
     })
 
-    const localeFounded = this.translate('founded')
-    this.$types.forEach(v => {
-      const $this = v
-      const $thisTip = query(`.${this.classes.TYPETIP}`, $this)
-      const name = getData('value', $this)
-      Object.entries(this.icons).forEach(([i, v]) => {
-        if (i === name) {
-          let count = 0
-          v.forEach(value => {
-            if (value.indexOf(val) > -1) {
-              count++
-
-              $this.dataset.count = count
-            }
-          })
-          $thisTip.innerHTML = `(${$this.dataset.count} ${localeFounded})`
+    if (isPlainObject(data)) {
+      data = Object.keys(data).map(name => {
+        return {
+          name,
+          svg: data[name]
         }
       })
+    }
 
-      if (!$this.dataset.count) {
-        hideElement($this)
+    this.data = data
+    this.items = this.flatItems(data)
+
+    if (this.is('loading')) {
+      if (this.LOADING) {
+        this.LOADING.hide()
+      }
+
+      this.leave('loading')
+    }
+    if (this.items.length > 0) {
+      this.hideEmpty()
+
+      if (this.is('builded') || this.is('shown')) {
+        this.buildDropdownItems()
+      }
+    } else {
+      this.showEmpty()
+    }
+  }
+
+  flatItems(data) {
+    let items = []
+    data.forEach(item => {
+      if (item.children) {
+        items = items.concat(item.children)
       } else {
-        showElement($this)
+        items.push(item)
       }
     })
+
+    return items
   }
 
-  open(el) {
-    this.$types.forEach(v => {
-      const $this = v
-      removeClass(this.classes.TYPEOPEN, $this)
-      $this.dataset.open = false
-    })
-    addClass(this.classes.TYPEOPEN, el)
-    el.dataset.open = true
-    const scrollableApi = Scrollable.of(query(`.${this.classes.ICONWRAP}`, el))
-    scrollableApi.update()
-  }
-  close(el) {
-    removeClass(this.classes.TYPEOPEN, el)
-    el.dataset.open = false
-  }
+  set(item, trigger = true) {
+    if (item !== this.selected) {
+      if (this.selected) {
+        if (this.DROPDOWN) {
+          this.DROPDOWN.unselectByValue(this.getItemValue(this.selected), false)
+        }
+      }
+      if (isNull(item)) {
+        this.setLabel(this.placeholder)
+        removeClass(this.classes.SELECTED, this.$wrap)
 
-  get() {
-    return this.$icon ? this.getIconInfo(this.$icon.dataset.value) : null
-  }
+        if (trigger) {
+          this.trigger(EVENTS.CLEAR)
+        }
+      } else {
+        this.setLabel(this.getItemLabel(item))
+        addClass(this.classes.SELECTED, this.$wrap)
 
-  select(item, trigger = true) {
-    this.$icon = item
-    this.$icons.map(removeClass(this.classes.ACTIVE))
+        if (trigger) {
+          this.trigger(EVENTS.SELECT, item)
+        }
+      }
 
-    const info = this.get()
-    const { type, id } = info
-    const value = this.getIconInfo(id).svg
-    const $selected = query('.pj-dropdown-trigger', this.$svgPicker)
+      this.selected = item
+      let value
+      if (item) {
+        const { __dom, ...pureItem } = item
+        value = this.options.process.call(this, pureItem)
+      } else {
+        value = ''
+      }
 
-    addClass(this.classes.ACTIVE, this.$icon)
-    this.element.setAttribute(
-      'value',
-      this.options.process({
-        type,
-        id
-      })
-    )
-    $selected.innerHTML = `${value} ${id}`
-    if (trigger) {
-      this.trigger(EVENTS.CHANGE, this.$icon)
+      if (value !== this.element.value) {
+        this.element.value = value
+
+        if (trigger) {
+          this.trigger(EVENTS.CHANGE, value)
+        }
+      }
     }
   }
 
-  getItem(value) {
-    let $item
-    this.$icons.forEach($this => {
-      if (getData('value', $this) === value) {
-        $item = $this
-      }
-    })
-    return $item
+  setByValue(value, trigger = true) {
+    const item = this.getItemByValue(value)
+    return this.set(item, trigger)
   }
 
-  set(data, trigger = true) {
-    if (!isObject(data)) {
-      return
-    }
-    this.select(this.getItem(data.id), trigger)
-  }
-
-  val(value, trigger = true) { /* eslint-disable-line */
+  val(value) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
-
-    this.set(this.options.parse.call(this, value), trigger)
+    return this.set(this.options.parse.call(this, value))
   }
 
-  getIconInfo(id) {
-    return this.data.find(v => v.id === id)
+  get() {
+    if (this.selected) {
+      const { __dom, ...item } = this.selected
+
+      return item
+    }
+    return null
   }
+
+  clear() {
+    this.set(null)
+  }
+
+  getItemLabel(item) {
+    return this.options.itemLabel.call(this, item)
+  }
+
+  getItemValue(item) {
+    return this.options.itemValue.call(this, item)
+  }
+
+  setLabel(label) {
+    html(label, this.$label)
+  }
+
+  getItemByValue(value) {
+    return this.items.find(item => {
+      return item.name === value
+    })
+  }
+
+  getDataFromSvgSprite() {
+    if (isString(this.options.source)) {
+      this.options.source = query(this.options.source)
+    }
+    if (isElement(this.options.source)) {
+      return children('symbol', this.options.source).map(symbol => {
+        return {
+          disabled: symbol.disabled,
+          svg: `<svg><use xlink:href="#${symbol.id}"/></svg>`,
+          name: symbol.id
+        }
+      })
+    }
+    return []
+  }
+
+  buildDropdownItems() {
+    const $items = this.buildItems(this.data)
+
+    this.$items.appendChild($items)
+
+    this.selectForDropdown()
+  }
+
+  selectForDropdown() {
+    if (this.selected) {
+      this.DROPDOWN.selectByValue(this.getItemValue(this.selected), false)
+    }
+  }
+
+  buildItems(items) {
+    const $fragment = document.createDocumentFragment()
+
+    items.forEach(item => {
+      if (item.children) {
+        $fragment.appendChild(this.buildGroup(item))
+      } else {
+        $fragment.appendChild(this.buildItem(item))
+      }
+    })
+
+    return $fragment
+  }
+
+  buildGroup(group) {
+    if (!this.groupTemplate) {
+      this.groupTemplate = templateEngine.compile(
+        this.options.templates.group.call(this)
+      )
+    }
+
+    const $group = parseHTML(
+      this.groupTemplate({
+        classes: this.classes,
+        group
+      })
+    )
+
+    group.children.forEach(item => {
+      $group.appendChild(this.buildItem(item))
+    })
+
+    return $group
+  }
+
+  buildItem(item) {
+    if (!this.itemTemplate) {
+      this.itemTemplate = templateEngine.compile(
+        this.options.templates.item.call(this)
+      )
+    }
+
+    const $item = parseHTML(
+      this.itemTemplate({
+        classes: this.classes,
+        item,
+        value: this.getItemValue(item),
+        label: this.getItemLabel(item)
+      })
+    )
+
+    if (item.disabled) {
+      addClass(this.classes.ITEMDISABLED, $item)
+    }
+
+    Tooltip.of($item, {
+      ...this.options.tooltip
+    })
+
+    item.__dom = $item
+
+    return $item
+  }
+
+  showEmpty() {
+    if (!this.$empty) {
+      this.$empty = parseHTML(
+        `<div class="${this.classes.EMPTY}">${this.translate(
+          'emptyText'
+        )}</div>`
+      )
+    }
+
+    appendTo(this.$empty, this.$items)
+  }
+
+  hideEmpty() {
+    if (this.$empty) {
+      detach(this.$empty)
+    }
+  }
+
+  manage() {
+    if (isFunction(this.options.manage)) {
+      this.options.manage.call(this, this.resolveManage.bind(this))
+    }
+  }
+
+  resolveManage(data) {
+    if (data) {
+      if (this.FILTERABLE) {
+        this.FILTERABLE.refreshDefault()
+      }
+
+      this.resolveData(data)
+    }
+  }
+
   enable() {
     if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.$svgPicker)
-      this.element.disabled = false
-      this.$dropdown.enable()
+      this.DROPDOWN.enable()
+      removeClass(this.classes.DISABLED, this.$wrap)
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -534,9 +482,8 @@ class SvgPicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.$svgPicker)
-      this.element.disabled = true
-      this.$dropdown.disable()
+      this.DROPDOWN.disable()
+      addClass(this.classes.DISABLED, this.$wrap)
       this.enter('disabled')
     }
 
@@ -546,25 +493,20 @@ class SvgPicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      removeClass(this.classes.ELEMENT, this.$svgPicker)
-      if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.$svgPicker)
-      }
-      this.$dropdown.destroy()
-      // this.$dropdownBox.remove()
-      unwrap(this.$svgPicker)
-      this.$svgPicker.remove()
-      showElement(this.element)
 
+      if (this.CLEARABLE) {
+        this.CLEARABLE.destroy()
+      }
+      if (this.options.theme) {
+        removeClass(this.getThemeClass(), this.$wrap)
+      }
+      this.$wrap.remove()
+      removeClass(this.classes.ELEMENT, this.element)
       this.leave('initialized')
     }
 
     this.trigger(EVENTS.DESTROY)
     super.destroy()
-  }
-
-  static setData(data) {
-    DATA = data
   }
 }
 

@@ -3,6 +3,7 @@ import SvgPicker from '@pluginjs/svg-picker'
 import feather from 'feather-icons'
 // see https://github.com/feathericons/feather
 
+const element = query('#manage .example')
 const icons = [
   'activity',
   'anchor',
@@ -82,7 +83,19 @@ const source = icons.map(icon => {
     svg: ficon.toSvg()
   }
 })
-const element = query('#disabled .example')
 SvgPicker.of(element, {
-  source
+  source(resolve) {
+    resolve(source)
+  },
+  manage(resolve) {
+    const items = Array.from(source)
+    const updated = []
+    while (items.length) {
+      const random = Math.floor(Math.random() * items.length)
+      updated.push(items[random])
+      items.splice(random, 1)
+    }
+
+    resolve(updated)
+  }
 })

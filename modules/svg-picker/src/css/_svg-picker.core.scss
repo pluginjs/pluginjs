@@ -1,162 +1,191 @@
 @import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
 
 // Vars
 // =====================
 $svgPicker: "pj-svgPicker" !default;
-$dropdown: "pj-dropdown" !default;
-$scrollable: "pj-scrollable" !default;
+$svgPicker-width: 200px !default;
+$svgPicker-max-height: 300px !default;
 
-// Core
-// =====================
+$svgPicker-dropdown-width: 272px !default;
+
+$svgPicker-trigger-arrow-icon: $pj-icon-caret-down-mini !default;
+$svgPicker-trigger-arrow-font: $pj-icon-font-family !default;
+$svgPicker-trigger-arrow-right: $input-padding-x !default;
+$svgPicker-trigger-padding-right: 30px !default;
+
+$svgPicker-clear-icon: $pj-icon-close !default;
+$svgPicker-clear-font: $pj-icon-font-family !default;
+$svgPicker-clear-right: 11px !default;
+
+$svgPicker-item-width: 36px !default;
+$svgPicker-item-height: 36px !default;
+
+$svgPicker-item-border-width: 1px !default;
+
+$svgPicker-item-margin-x: 2px !default;
+$svgPicker-item-margin-y: 2px !default;
+
+$svgPicker-svg-width: 16px !default;
+$svgPicker-svg-height: 16px !default;
+
+$svgPicker-manage-icon: $pj-icon-setting !default;
+$svgPicker-manage-font: $pj-icon-font-family !default;
+
+$svgPicker-item-padding-x: ($svgPicker-item-width - $svgPicker-svg-width)/2 - $svgPicker-item-border-width !default;
+$svgPicker-item-padding-y: ($svgPicker-item-height - $svgPicker-svg-height)/2 - $svgPicker-item-border-width !default;
+
 .#{$svgPicker} {
   position: relative;
-  box-sizing: border-box;
+  width: $svgPicker-width;
 
-  .#{$dropdown}-trigger {
-    box-sizing: border-box;
-    display: inline-block;
-
-    > span {
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  &-empty {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: center;
-    height: 100%;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis;
-    word-break: keep-all;
-    white-space: initial;
-    list-style: none;
-  }
-
-  &-switch {
-    position: absolute;
-    top: 50%;
-    right: 6px;
-    transition: all 0.3s;
-    transform: translateY(-50%);
-  }
-
-  &-dropdown {
-    display: flex;
-    flex-direction: column;
-
-    &.#{$dropdown}-show {
-      display: flex;
-    }
-  }
-
-  &-type {
-    display: block !important;
-
-    &-title {
-      position: relative;
-
-      i {
-        position: relative;
-        top: 10%;
-        font-style: normal;
-        transition: all 0.3s;
-      }
-    }
-
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .#{$svgPicker}-icon {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &-open {
-      .#{$svgPicker}-type-title i {
-        transition: all 0.3s;
-        transform: rotate(90deg);
-      }
-    }
-
-    &-hide {
-      display: none;
-    }
-
-    &-wrap {
-      flex-grow: 1;
-    }
-
-    .#{$scrollable} {
-      display: none;
-    }
-  }
-
-  &-manage {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  &-search {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-
-    i {
-      order: 0;
-
-      &:last-of-type {
-        order: 2;
-      }
-    }
-
-    input {
-      flex-basis: 100px;
-      flex-grow: 1;
-      order: 1;
-      line-height: 1;
-      border: 0;
-      outline: none;
-      flex-shrink: 1;
-
-      &:focus {
-        + .#{$svgPicker}-search-close {
-          opacity: 1;
-          transition: opacity 0.3s;
-        }
-      }
-    }
-
-    &-close {
-      opacity: 0;
-    }
-
-    &-data {
-      .#{$svgPicker}-search-close {
-        opacity: 1;
-        transition: opacity 0.3s;
-      }
-    }
-  }
-}
-
-.#{$svgPicker}-searching .#{$svgPicker}-type {
-  .#{$svgPicker}-icon {
+  &-element {
     display: none;
   }
 
-  .#{$svgPicker}-searched {
-    display: inline-flex;
+  & &-trigger {
+    width: 100%;
+    padding-right: $svgPicker-trigger-padding-right;
+  }
+
+  & &-dropdown {
+    width: $svgPicker-dropdown-width;
+  }
+
+  &-items {
+    position: relative;
+    height: $svgPicker-max-height;
+    overflow-y: auto;
+  }
+
+  &-items,
+  &-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+
+  &-item {
+    position:relative;
+    box-sizing: border-box;
+    width: $svgPicker-item-width;
+    height: $svgPicker-item-height;
+    padding: $svgPicker-item-padding-y $svgPicker-item-padding-x;
+    margin: $svgPicker-item-margin-y $svgPicker-item-margin-x;
+    border: $svgPicker-item-border-width solid transparent;
+    border-radius: 100%;
+
+    svg {
+      width: $svgPicker-svg-width;
+      height: $svgPicker-svg-height;
+    }
+  }
+
+  &-group-label {
+    width: 100%;
+    overflow: hidden;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-empty,
+  &-not-found,
+  &-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+  }
+
+  &-manage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+
+    &::before {
+      @include icon();
+      margin-right: 3px;
+      font-family: $svgPicker-manage-font;
+      content: icon-content($svgPicker-manage-icon);
+    }
+  }
+
+  &-trigger {
+    cursor: pointer;
+
+    &::after {
+      @include icon();
+      position: absolute;
+      top: 50%;
+      right: $svgPicker-trigger-arrow-right;
+      font-family: $svgPicker-trigger-arrow-font;
+      content: icon-content($svgPicker-trigger-arrow-icon);
+      transform: translateY(-50%);
+    }
+
+    .#{$svgPicker}-clearable.#{$svgPicker}-selected:not(.#{$svgPicker}-disabled) &:hover::after {
+      display: none;
+    }
+  }
+
+  &-clear {
+    position: absolute;
+    top: 0;
+    right: $svgPicker-clear-right;
+    display: none;
+    height: 100%;
+    font-family: $svgPicker-clear-font;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($svgPicker-clear-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
+
+    .#{$svgPicker}-selected:not(.#{$svgPicker}-disabled) .#{$svgPicker}-trigger:hover & {
+      display: inline-block;
+    }
+  }
+
+  &-label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    svg {
+      display: inline-block;
+      width: $svgPicker-svg-width;
+      height: $svgPicker-svg-height;
+      margin-right: 5px;
+      overflow: visible;
+    }
+  }
+
+  &-filter {
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      line-height: 100%;
+      border: none;
+      outline: none;
+    }
   }
 }

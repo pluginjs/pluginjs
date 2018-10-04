@@ -1,328 +1,146 @@
 @import "@pluginjs/styles/variables.scss";
-@import "@pluginjs/icons/variables.scss";
-@import "./svg-picker.core";
+@import "svg-picker.core";
 
 // Vars
 // =====================
 $svgPicker: "pj-svgPicker";
-$dropdown: "pj-dropdown";
-$scrollable: "pj-scrollable";
 
-$svgPicker-font-size: $font-size-base;
-$svgPicker-font-family: $font-family-base;
-$svgPicker-line-height: 16px;
+$svgPicker-color: $text-color;
+$svgPicker-trigger-width: $svgPicker-width;
+$svgPicker-trigger-placeholder-color: $gray;
 
-$svgPicker-width: 200px;
+$svgPicker-trigger-arrow-color: $gray-darkest;
 
-$svgPicker-border-radius: $border-radius-base;
-$svgPicker-border-color: $border-color;
-$svgPicker-border-width: 1px;
+$svgPicker-trigger-disabled-bg: $disabled-bg;
+$svgPicker-trigger-disabled-border: $disabled-border;
+$svgPicker-trigger-disabled-color: $disabled-color;
 
-$svgPicker-color: $gray-dark;
-$svgPicker-active-color: $gray-darker;
-$svgPicker-hover-color: $gray-darker;
+$svgPicker-clear-color: $gray;
+$svgPicker-clear-hover-color: $text-color;
 
-// icon
-$svgPicker-icon-width: 48px;
-$svgPicker-icon-height: 48px;
-$svgPicker-icon-margin: 6px;
-$svgPicker-icon-color: $gray-lighter;
-$svgPicker-icon-active-color: $color-primary;
-$svgPicker-icon-hover-color: $gray-lighter;
-$svgPicker-icon-border-radius: 8px;
-$svgPicker-icon-border-width: 1px;
-$svgPicker-icon-border-style: solid;
-$svgPicker-icon-border: $svgPicker-icon-border-width $svgPicker-icon-border-style transparent;
-$svgPicker-icon-svg-width: 24px;
-$svgPicker-icon-svg-height: 24px;
-// trigger
-$svgPicker-trigger-padding: 8px 12px;
-$svgPicker-trigger-height: 16px;
-// svg
-$svgPicker-svg-width: 12px;
-$svgPicker-svg-height: 12px;
-$svgPicker-svg-margin-right: 8px;
-// empty
-$svgPicker-empty-padding: 24px;
-$svgPicker-empty-line-height: 20px;
-$svgPicker-empty-margin-top: 12px;
-$svgPicker-empty-add-font-weight: 500;
-// add btn
-$svgPicker-add-color: $color-primary;
-$svgPicker-add-margin-right: 12px;
-$svgPicker-type-height: 32px;
-$svgPicker-type-bg-color: $gray-lightest;
-$svgPicker-type-spacer-x: 12px;
-$svgPicker-add-opacity: 0.8;
-// dropdown
-$svgPicker-dropdown-width: 272px;
-$svgPicker-dropdown-height: 400px;
-$svgPicker-dropdown-padding: 32px;
-// manage
-$svgPicker-manage-spacer: 8px;
-$svgPicker-manage-border-color: $gray-lighter;
-$svgPicker-manager-bg: $color-white;
-$svgPicker-manage-icon-color: $gray-darkest;
-// search
-$svgPicker-search-border: 1px solid $gray-light;
-$svgPicker-search-padding: 12px;
-$svgPicker-search-margin-bottom: 1px;
-$svgPicker-search-icon-color: $gray;
-$svgPicker-input-margin-left: 8px;
-// icon
-$svgPicker-trigger-arrow-icon: $pj-icon-arrow-down-mini;
-$svgPicker-trigger-arrow-font: $pj-icon-font-family;
-$svgPicker-trigger-arrow-right: 5px;
-// scrollable
-$svgPicker-scrollable-height: 188px;
-$svgPicker-scrollable-width: 274px;
+$svgPicker-group-label-font-size: $font-size-sm;
+$svgPicker-group-label-color: $gray-darker;
+$svgPicker-group-label-space-x: 11px;
+$svgPicker-group-label-space-y: 8px;
 
-// Core
-// =====================
+$svgPicker-search-color: $gray;
+$svgPicker-search-padding-x: 12px;
+$svgPicker-search-padding-y: 12px;
+$svgPicker-search-font-size: $input-font-size;
+$svgPicker-search-border-color: $border-color;
+$svgPicker-search-icon: $pj-icon-search !default;
+$svgPicker-search-font: $pj-icon-font-family !default;
+$svgPicker-search-right: 33px !default;
+$svgPicker-search-border-color: $border-color;
+
+$svgPicker-state-color: $gray-dark;
+
+$svgPicker-manage-padding: 8px;
+$svgPicker-manage-border-color: $border-color;
+
+$svgPicker-items-padding: 6px;
+$svgPicker-group-margin-bottom: $svgPicker-items-padding;
+
+$svgPicker-item-active-color: $color-white;
+$svgPicker-item-active-bg: $color-primary;
+
 .#{$svgPicker} {
-  width: $svgPicker-width;
-  padding: 0;
-  font-family: $svgPicker-font-family;
-  font-size: $svgPicker-font-size;
-  line-height: $svgPicker-line-height;
-  border: $svgPicker-border-width solid $svgPicker-border-color;
-  border-radius: $svgPicker-border-radius;
-
-  &:hover {
-    border-color: $svgPicker-hover-color;
-  }
-
-  &:focus {
-    outline: none;
-  }
+  outline: none;
 
   &-trigger {
-    &:focus {
-      outline: none;
-    }
-  }
+    position: relative;
+    color: $svgPicker-trigger-placeholder-color;
 
-  .#{$dropdown}-trigger {
-    box-sizing: border-box;
-    padding: $svgPicker-trigger-padding;
-    font-size: $svgPicker-font-size;
-    line-height: $svgPicker-trigger-height;
-    color: $svgPicker-color;
+    .#{$svgPicker}-selected & {
+      color: $svgPicker-color;
+    }
 
     &::after {
-      @include icon();
-      position: absolute;
-      top: 25%;
-      right: $svgPicker-trigger-arrow-right;
-      font-family: $svgPicker-trigger-arrow-font;
-      content: icon-content($svgPicker-trigger-arrow-icon);
+      color: $svgPicker-color;
       transition: transform 0.3s;
-    }
-
-    svg {
-      width: $svgPicker-svg-width;
-      height: $svgPicker-svg-height;
-      margin-right: $svgPicker-svg-margin-right;
+      will-change: transform;
     }
   }
 
-  .#{$dropdown}-trigger[aria-expanded="true"]::after{
-    transform: rotate(180deg);
-  }
-
-  &-empty {
-    padding: 0 $svgPicker-empty-padding;
-    font-size: $svgPicker-font-size;
-    line-height: $svgPicker-empty-line-height;
-    color: $svgPicker-color;
-
-    .#{$svgPicker}-add {
-      margin-top: $svgPicker-empty-margin-top;
-      font-weight: $svgPicker-empty-add-font-weight;
-      line-height: $svgPicker-line-height;
-      color: $svgPicker-add-color;
-      text-decoration: none;
-
-      &:hover {
-        opacity: $svgPicker-add-opacity;
-        transition: opacity 0.2s;
-      }
+  &-trigger,
+  &-option {
+    i {
+      vertical-align: middle;
     }
   }
 
-  &-switch {
-    font-size: $font-size-base;
-    color: $gray-darkest;
-  }
+  &-clear {
+    color: $svgPicker-clear-color;
 
-  &-dropdown.#{$dropdown} {
-    width: $svgPicker-dropdown-width;
-    min-height: $svgPicker-dropdown-height;
-    padding: 0 0 $svgPicker-dropdown-padding 0;
-  }
-
-  &-type {
-    margin-bottom: $svgPicker-border-width;
-
-    &.#{$dropdown}-item {
-      padding: 0;
-    }
-
-    &:focus {
-      outline: none;
-
-      .#{$svgPicker}-type-title {
-        color: $svgPicker-active-color;
-      }
-    }
-
-    &-title {
-      height: $svgPicker-type-height;
-      padding: 0 $svgPicker-type-spacer-x;
-      font-size: $svgPicker-font-size;
-      line-height: $svgPicker-type-height;
-
-      &:hover {
-        color: $svgPicker-active-color;
-        cursor: pointer;
-      }
-    }
-
-    ul {
-      padding: 0;
-      margin: 0;
-    }
-
-    .#{$svgPicker}-icon {
-      width: $svgPicker-icon-width;
-      height: $svgPicker-icon-height;
-      padding: 0;
-      margin: $svgPicker-icon-margin;
-      font-size: $font-size-xs;
-      color: $svgPicker-icon-color;
-      text-align: center;
-      list-style: none;
-      border: $svgPicker-icon-border;
-      border-radius: $svgPicker-icon-border-radius;
-
-      &-hover,
-      &:hover {
-        background-color: $svgPicker-icon-hover-color;
-      }
-
-      svg {
-        width: $svgPicker-icon-svg-width;
-        height: $svgPicker-icon-svg-height;
-      }
-    }
-
-    &-open {
-      &:hover {
-        background-color: $color-white !important;
-      }
-
-      .#{$scrollable} {
-        display: block !important;
-      }
-    }
-
-    &-hide {
-      display: none;
-    }
-
-    &-wrap {
-      flex-grow: 1;
-    }
-
-    .#{$scrollable} {
-      height: $svgPicker-scrollable-height !important;
-
-      &-container {
-        width: $svgPicker-scrollable-width !important;
-        height: $svgPicker-scrollable-height !important;
-      }
-
-      &-content {
-        width: 100% !important;
-      }
+    &:hover {
+      color: $svgPicker-clear-hover-color;
     }
   }
 
-  &-active {
-    border-color: $svgPicker-active-color !important;
+  &-group-label {
+    padding: $svgPicker-group-label-space-y $svgPicker-group-label-space-x;
+    font-size: $svgPicker-group-label-font-size;
+    color: $svgPicker-group-label-color;
+  }
+
+  &-empty,
+  &-not-found,
+  &-loading {
+    width: 80%;
+    margin: 0 auto;
+    line-height: 150%;
+    color: $svgPicker-state-color;
+  }
+
+  &-items {
+    padding: $svgPicker-items-padding;
+  }
+
+  &-group {
+    margin-bottom: $svgPicker-group-margin-bottom;
+  }
+
+  &-item {
+    &.pj-dropdown-active:not(.pj-dropdown-item-disabled) {
+      border-color: $svgPicker-item-active-bg;
+    }
   }
 
   &-manage {
-    padding-top: $svgPicker-manage-spacer;
-    padding-bottom: $svgPicker-manage-spacer;
-    font-size: $svgPicker-font-size;
-    text-align: center;
-    cursor: pointer;
-    background-color: $svgPicker-manager-bg;
-    border-top: $svgPicker-border-width solid $svgPicker-manage-border-color;
-    border-bottom-right-radius: $svgPicker-border-radius;
-    border-bottom-left-radius: $svgPicker-border-radius;
-
-    &:hover {
-      color: $svgPicker-active-color;
-    }
-
-    &-icon {
-      margin-right: $svgPicker-manage-spacer;
-      color: $svgPicker-manage-icon-color;
-    }
+    padding: $svgPicker-manage-padding;
+    border-top: 1px solid $svgPicker-manage-border-color;
   }
 
-  &-search {
-    padding: $svgPicker-search-padding - $svgPicker-border-width $svgPicker-search-padding;
-    margin-bottom: $svgPicker-search-margin-bottom;
-    font-size: $svgPicker-font-size;
-    border-bottom: $svgPicker-search-border;
+  &-filter {
+    font-size: $svgPicker-search-font-size;
+    border-bottom: 1px solid $svgPicker-search-border-color;
 
-    i {
-      color: $svgPicker-search-icon-color;
-      text-align: center;
+    &::before {
+      @include icon();
+      position: absolute;
+      top: $svgPicker-search-padding-y;
+      left: $svgPicker-search-padding-x;
+      font-family: $svgPicker-clear-font;
+      color: $svgPicker-search-color;
+      vertical-align: middle;
+      content: icon-content($svgPicker-search-icon);
     }
 
     input {
-      min-width: 100px;
-      height: 100%;
-      margin-bottom: 0;
-      margin-left: $svgPicker-input-margin-left;
-      font-size: $svgPicker-font-size;
-    }
-  }
-
-  &-wrap {
-    .#{$svgPicker}.#{$dropdown}-show {
-      border-color: $svgPicker-active-color;
+      padding: $svgPicker-search-padding-y $svgPicker-search-padding-x;
+      padding-left: $svgPicker-search-right;
     }
   }
 }
 
-.#{$svgPicker}-searching .#{$svgPicker}-type {
-  .#{$svgPicker}-icon {
-    display: none;
-  }
+.#{$svgPicker}-disabled {
+  .#{$svgPicker}-trigger {
+    color: $svgPicker-trigger-disabled-color;
+    background-color: $svgPicker-trigger-disabled-bg;
+    border-color: $svgPicker-trigger-disabled-border;
 
-  .#{$svgPicker}-searched {
-    display: inline-flex;
-  }
-}
-
-#disabled {
-  .#{$svgPicker} {
-    &-disabled {
-      cursor: not-allowed;
-
-      .#{$dropdown}-trigger {
-        color: $disabled-color;
-        pointer-events: none
-      }
-    }
-
-    &:hover {
-      border-color: $disabled-border !important;
+    &::after {
+      color: $svgPicker-trigger-disabled-color;
     }
   }
 }

@@ -1,135 +1,149 @@
+import { search } from '@pluginjs/match'
+import { isString } from '@pluginjs/is'
+
 export const namespace = 'svgPicker'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  CHANGE: 'change'
-}
-
-export const typeClass = {
-  TYPE: '{namespace}-type',
-  TYPEWRAP: '{namespace}-type-wrap',
-  TYPETITLE: '{namespace}-type-title',
-  TYPEOPEN: '{namespace}-type-open',
-  TYPEHIDE: '{namespace}-type-hide',
-  TYPETIP: '{namespace}-type-tip'
-}
-
-export const searchClass = {
-  SEARCH: '{namespace}-search',
-  SEARCHING: '{namespace}-searching',
-  SEARCHED: '{namespace}-searched',
-  SEARCHCLOSE: '{namespace}-search-close',
-  SEARCHOWNDATA: '{namespace}-search-data'
-}
-
-export const manageClass = {
-  MANAGE: '{namespace}-manage',
-  MANAGEICON: '{namespace}-manage-icon'
-}
-
-export const baseClass = {
-  NAMESPACE: `pj-${namespace}`,
-  THEME: '{namespace}--{theme}',
-  ELEMENT: '{namespace}',
-  TRIGGER: '{namespace}-trigger',
-  WRAP: '{namespace}',
-  DROPDOWN: '{namespace}-dropdown',
-  ICON: '{namespace}-icon',
-  ICONWRAP: '{namespace}-icon-wrap',
-  ICONHOVER: '{namespace}-icon-hover',
-  ACTIVE: '{namespace}-active',
-  DISABLED: '{namespace}-disabled',
-  EMPTY: '{namespace}-empty',
-  ADD: '{namespace}-add'
+  SELECT: 'select',
+  UNSELECT: 'unselect',
+  CHANGE: 'change',
+  HIDE: 'hide',
+  HIDED: 'hided',
+  SHOW: 'show',
+  SHOWN: 'shown',
+  CLEAR: 'clear',
+  FILTER: 'filter'
 }
 
 export const classes = {
-  ...baseClass,
-  ...typeClass,
-  ...searchClass,
-  ...manageClass
+  NAMESPACE: `pj-${namespace}`,
+  ELEMENT: '{namespace}-element',
+  TRIGGER: '{namespace}-trigger pj-input',
+  LABEL: '{namespace}-label',
+  WRAP: '{namespace}',
+  SHOW: '{namespace}-show',
+  DROPDOWN: '{namespace}-dropdown',
+  GROUP: '{namespace}-group',
+  GROUPLABEL: '{namespace}-group-label',
+  ITEMS: '{namespace}-items',
+  ITEM: '{namespace}-item pj-dropdown-item',
+  ITEMDISABLED: '{namespace}-item-disabled pj-dropdown-item-disabled',
+  SELECTED: '{namespace}-selected',
+  DISABLED: '{namespace}-disabled',
+  CLEARABLE: '{namespace}-clearable',
+  CLEAR: '{namespace}-clear',
+  FILTERABLE: '{namespace}-filterable',
+  FILTER: '{namespace}-filter',
+  EMPTY: '{namespace}-empty',
+  NOTFOUND: '{namespace}-not-found',
+  LOADING: '{namespace}-loading',
+  MANAGE: '{namespace}-manage'
 }
 
 export const methods = [
-  'get',
   'set',
+  'get',
   'val',
+  'clear',
   'enable',
   'disable',
-  'destroy',
-  'add'
+  'destroy'
 ]
 
 export const defaults = {
   theme: null,
-  locale: 'en',
-  data: null,
-  keyboard: false,
-  placehoder: 'Select SVG',
-  disabled: false,
+  source: null,
+  value: null,
+  placeholder: 'Select Svg',
+  clearable: true,
+  manage: null,
+  filterable: true,
+  filter(item, query) {
+    const strings = [item.name]
+    if (item.tags) {
+      strings.concat(item.tags)
+    }
+    const rankings = strings.map(string => {
+      return search(query, string, {
+        diacritics: false,
+        punctuation: false,
+        case: false,
+        whitespaces: false,
+        boundaries: false
+      })
+    })
+    return Math.max(...rankings)
+  },
+  keyboard: true,
+  dropdown: {
+    placement: 'bottom' // top
+  },
+  tooltip: {
+    trigger: 'hover'
+  },
+  itemValue(item) {
+    return item.name
+  },
+  itemLabel(item) {
+    return `${item.svg} <span>${item.name}</span>`
+  },
   templates: {
-    trigger() {
-      return `<div class="{classes.TRIGGER}"><span class="pj-dropdown-trigger"></span>
-      </div>`
+    dropdown() {
+      return '<div class="{classes.DROPDOWN}"><div class="{classes.ITEMS}"></div></div>'
     },
-    icon() {
-      return `<li class={classes.ICON} data-value="{iconId}">{iconSvg}
-      </li>`
-    },
-    type() {
-      return `<div class="pj-dropdown-item {classes.TYPE}" data-value="{typeName}"><div class="{classes.TYPETITLE}"> <i class="pj-icon pj-icon-caret-right-mini">&nbsp;</i>{typeName}<span class='{classes.TYPETIP}'></span> </div><ul class="{classes.ICONWRAP}">{icons}</ul>
-      </div>`
+    filter() {
+      return '<div class="{classes.FILTER}"><input type="text" autocomplete="off" spellcheck="false" placeholder="{placeholder}"></div>'
     },
     manage() {
-      return `<div class={classes.MANAGE}><i class="{classes.MANAGEICON} pj-icon pj-icon-setting"></i> {manageText}
-      </div>`
+      return '<div class="{classes.MANAGE}">{text}</div>'
     },
-    search() {
-      return `<form class={classes.SEARCH} action="#"><i class='pj-icon pj-icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='{classes.SEARCHCLOSE} pj-icon pj-icon-close'></i>
-      </form>`
+    label() {
+      return '<div class="{classes.LABEL}">{placeholder}</div>'
     },
-    empty() {
-      return `{emptyText}. <a class="{classes.ADD}" href="#">{emptyHrefText}
-      </a>`
+    group() {
+      return '<div class="{classes.GROUP}"><div class="{classes.GROUPLABEL}">{group.name}</div></div>'
+    },
+    item() {
+      return '<div class="{classes.ITEM}" data-value="{value}" title="{value}">{item.svg}</div>'
     }
   },
-  process(value) {
-    if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value)
-    }
-    return ''
-  },
-  parse(value) {
-    if (value) {
+  parse(data) {
+    if (isString(data)) {
       try {
-        return JSON.parse(value)
+        return JSON.parse(data)
       } catch (e) {
         return null
       }
     }
     return null
+  },
+  process(data) {
+    if (data && typeof data !== 'undefined' && data.length !== 0) {
+      return JSON.stringify(data)
+    }
+    return ''
   }
 }
-
-export const dependencies = ['dropdown', 'scrollable']
 
 export const translations = {
   en: {
-    emptyText: 'Befor using SVG icons, you need to add to "my collections"',
-    emptyHrefText: 'Go Add Now',
-    searchText: 'Search',
-    manage: 'Manage My Collections',
-    founded: 'founded'
+    loadingText: 'loading..',
+    notFoundText: 'No results found',
+    searchText: 'search',
+    manageText: 'Manage Collections',
+    emptyText: 'There is no svg icons in the collection'
   },
   zh: {
-    emptyText: '在使用SVG图标之前，您需要添加图标到“我的收藏”',
-    emptyHrefText: '去添加',
+    loadingText: '加载中..',
+    notFoundText: '无匹配数据',
     searchText: '搜索',
-    manage: '管理我的收藏',
-    founded: '结果'
+    manageText: '管理合集',
+    emptyText: '合集里没有 svg 图标'
   }
 }
+
+export const dependencies = ['dropdown']
