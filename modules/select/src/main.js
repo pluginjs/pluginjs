@@ -32,6 +32,7 @@ import { removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 import { insertAfter, appendTo, html, parseHTML } from '@pluginjs/dom'
+import { deepClone } from '@pluginjs/utils'
 
 const isInput = el => el.tagName === 'INPUT'
 const isSelect = el => el.tagName === 'SELECT'
@@ -194,8 +195,8 @@ class Select extends Component {
       })
     }
 
-    this.data = data
-    this.items = this.flatItems(data)
+    this.data = deepClone(data)
+    this.items = this.flatItems(this.data)
 
     let value = this.getValueFromElement()
     if (isEmpty(value)) {

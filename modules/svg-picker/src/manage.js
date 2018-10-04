@@ -1,6 +1,7 @@
 import { appendTo } from '@pluginjs/dom'
 import templateEngine from '@pluginjs/template'
 import { bindEvent } from '@pluginjs/events'
+
 export default class Manage {
   constructor(instance) {
     this.element = appendTo(

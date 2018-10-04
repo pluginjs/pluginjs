@@ -43,6 +43,7 @@ import {
   detach,
   children
 } from '@pluginjs/dom'
+import { deepClone } from '@pluginjs/utils'
 import Tooltip from '@pluginjs/tooltip'
 
 @translateable(TRANSLATIONS)
@@ -224,8 +225,8 @@ class SvgPicker extends Component {
       })
     }
 
-    this.data = data
-    this.items = this.flatItems(data)
+    this.data = deepClone(data)
+    this.items = this.flatItems(this.data)
 
     if (this.is('loading')) {
       if (this.LOADING) {

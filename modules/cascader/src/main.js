@@ -31,7 +31,7 @@ import Loading from './loading'
 import { removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
-import { arrayEqual } from '@pluginjs/utils'
+import { arrayEqual, deepClone } from '@pluginjs/utils'
 import {
   insertAfter,
   append,
@@ -202,7 +202,7 @@ class Cascader extends Component {
   }
 
   resolveData(data) {
-    this.data = data
+    this.data = deepClone(data)
 
     let value = this.getValueFromElement()
     if (isEmpty(value)) {
