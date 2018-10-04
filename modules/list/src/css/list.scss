@@ -105,8 +105,8 @@ $list-disabled-border-color: $disabled-color;
     }
 
     &.sortable-ghost {
-      background-color: $list-ghost-bg;
       height: $list-ghost-height;
+      background-color: $list-ghost-bg;
       border-color: $list-border-color;
       border-style: dashed;
     }
