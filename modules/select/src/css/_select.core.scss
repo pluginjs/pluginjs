@@ -53,7 +53,7 @@ $select-clear-right: 11px !default;
       transform: translateY(-50%);
     }
 
-    .#{$select}-clearable.#{$select}-selected &:hover::after {
+    .#{$select}-clearable.#{$select}-selected:not(.#{$select}-disabled) &:hover::after {
       display: none;
     }
   }
@@ -80,7 +80,7 @@ $select-clear-right: 11px !default;
       content: "";
     }
 
-    .#{$select}-selected .#{$select}-trigger:hover & {
+    .#{$select}-selected:not(.#{$select}-disabled) .#{$select}-trigger:hover & {
       display: inline-block;
     }
   }

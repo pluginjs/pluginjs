@@ -86,5 +86,9 @@ $select-loading-color: $gray-darker;
     color: $select-trigger-disabled-color;
     background-color: $select-trigger-disabled-bg;
     border-color: $select-trigger-disabled-border;
+
+    &::after {
+      color: $select-trigger-disabled-color;
+    }
   }
 }

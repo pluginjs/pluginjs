@@ -143,7 +143,7 @@ class Select extends Component {
         PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
       },
       onShow: () => {
-        if (this.data && !this.is('builded')) {
+        if (!this.is('builded')) {
           this.buildDropdown()
         }
         addClass(this.classes.SHOW, this.$wrap)
@@ -400,11 +400,13 @@ class Select extends Component {
   }
 
   buildDropdown() {
-    const $options = this.buildOptions(this.data)
+    if (this.data) {
+      const $options = this.buildOptions(this.data)
 
-    this.$dropdown.appendChild($options)
+      this.$dropdown.appendChild($options)
 
-    this.selectForDropdown()
+      this.selectForDropdown()
+    }
 
     this.enter('builded')
   }
