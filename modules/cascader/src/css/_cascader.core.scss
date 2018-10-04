@@ -82,7 +82,7 @@ $cascader-clear-right: 11px !default;
       transform: translateY(-50%);
     }
 
-    .#{$cascader}-clearable.#{$cascader}-selected &:hover::after {
+    .#{$cascader}-clearable.#{$cascader}-selected:not(.#{$select}-disabled) &:hover::after {
       display: none;
     }
   }
@@ -109,7 +109,7 @@ $cascader-clear-right: 11px !default;
       content: "";
     }
 
-    .#{$cascader}-selected .#{$cascader}-trigger:hover & {
+    .#{$cascader}-selected:not(.#{$select}-disabled) .#{$cascader}-trigger:hover & {
       display: inline-block;
     }
   }

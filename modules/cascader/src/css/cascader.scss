@@ -76,5 +76,9 @@ $cascader-loading-color: $gray-darker;
     color: $cascader-trigger-disabled-color;
     background-color: $cascader-trigger-disabled-bg;
     border-color: $cascader-trigger-disabled-border;
+
+    &::after {
+      color: $cascader-trigger-disabled-color;
+    }
   }
 }

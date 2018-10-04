@@ -129,6 +129,9 @@ export default class Filterable {
   }
 
   refreshDefault() {
+    this.instance.$label.value = ''
+    this.hideNotFound()
+
     this.instance.items.forEach(option => {
       this.showOption(option)
     })

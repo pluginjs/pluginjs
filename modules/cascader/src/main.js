@@ -106,8 +106,6 @@ class Cascader extends Component {
 
     this.initData()
 
-    this.bind()
-
     this.setupDropdown()
 
     this.LOADING = new Loading(this)
@@ -144,7 +142,7 @@ class Cascader extends Component {
         PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
       },
       onShow: () => {
-        if (this.data && !this.is('builded')) {
+        if (!this.is('builded')) {
           this.buildDropdown()
         }
         addClass(this.classes.SHOW, this.$wrap)
@@ -189,8 +187,6 @@ class Cascader extends Component {
     }
     return false
   }
-
-  bind() {} // eslint-disable-line
 
   unbind() {
     removeEvent(this.eventName(), this.element)
@@ -452,11 +448,13 @@ class Cascader extends Component {
   }
 
   buildDropdown() {
-    const $menu = this.buildMenu(this.data, 0)
+    if (this.data) {
+      const $menu = this.buildMenu(this.data, 0)
 
-    this.$dropdown.appendChild($menu)
+      this.$dropdown.appendChild($menu)
 
-    this.DROPDOWN.selectByValue(this.value, false)
+      this.DROPDOWN.selectByValue(this.value, false)
+    }
 
     this.enter('builded')
   }
