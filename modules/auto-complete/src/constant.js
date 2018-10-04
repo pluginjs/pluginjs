@@ -71,6 +71,7 @@ export const defaults = {
   dropdown: {
     placement: 'bottom-start' // top
   },
+  group: null,
   groupLabel(group) {
     return group
   },
