@@ -358,13 +358,13 @@ class Dropdown extends Component {
       $item = this.getItemByIndex(index)
     }
 
-    let $parent = offsetParent($item)
-    if ($parent === document.documentElement) {
-      $parent = this.$dropdown
-    }
-    const { clientHeight, scrollTop } = $parent
-
     if ($item) {
+      let $parent = offsetParent($item)
+      if ($parent === document.documentElement) {
+        $parent = this.$dropdown
+      }
+      const { clientHeight, scrollTop } = $parent
+
       if ($item.clientHeight + $item.offsetTop > clientHeight + scrollTop) {
         $parent.scrollTop = $item.clientHeight + $item.offsetTop - clientHeight
       } else if ($item.offsetTop < scrollTop) {
