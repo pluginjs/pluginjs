@@ -55,7 +55,7 @@ export const defaults = {
   theme: null,
   source: null,
   value: null,
-  placeholder: 'Please Select',
+  placeholder: true,
   filterable: false,
   filter(option, query) {
     return search(query, option.label, {
@@ -108,11 +108,13 @@ export const defaults = {
 
 export const translations = {
   en: {
-    loadingText: 'loading',
+    placeholderText: 'Please select',
+    loadingText: 'loading..',
     notFoundText: 'No results found'
   },
   zh: {
-    loadingText: '加载中',
+    placeholderText: '请选择',
+    loadingText: '加载中..',
     notFoundText: '无匹配数据'
   }
 }

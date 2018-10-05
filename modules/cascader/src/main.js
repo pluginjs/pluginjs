@@ -72,8 +72,12 @@ class Cascader extends Component {
     }
 
     this.placeholder = this.element.getAttribute('placeholder')
-    if (!this.placeholder) {
-      this.placeholder = this.options.placeholder
+    if (!this.placeholder && this.options.placeholder) {
+      if (this.options.placeholder === true) {
+        this.placeholder = this.translate('placeholderText')
+      } else {
+        this.placeholder = this.options.placeholder
+      }
     }
 
     addClass(this.classes.ELEMENT, this.element)
