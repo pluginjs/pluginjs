@@ -5,6 +5,7 @@ import { compose, curry, deepMerge } from '@pluginjs/utils'
 import { addClass, hasClass } from '@pluginjs/classes'
 import { closest, wrap, parentWith, parseHTML } from '@pluginjs/dom'
 import { isString, isNan } from '@pluginjs/is'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import Pj from '@pluginjs/factory'
 import {
   eventable,
@@ -22,6 +23,7 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
+import Viewport from '@pluginjs/viewport'
 import Loader from '@pluginjs/loader'
 
 import Image from './modules/image'
@@ -69,6 +71,9 @@ class Parallax extends Component {
 
     console.log(this)
     this.isHorizontal = Boolean(this.options.horizontal)
+
+    this.initViewport()
+
     this.render()
     this.bind()
     this.enter('initialized')
@@ -177,6 +182,10 @@ class Parallax extends Component {
     }
   }
 
+  initViewport() {
+    this.viewport = Viewport.of(this.container.el)
+  }
+
   computeOffset(el) {
     const rectTop = el.getBoundingClientRect().top
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop
@@ -209,6 +218,34 @@ class Parallax extends Component {
         }
       }
     }, {})
+  }
+
+  move() {
+    // pv.containerArr.forEach((container, i) => {
+    //   let calc = 0
+    //     if (i > pv.mostReContainerInViewport) pv.mostReContainerInViewport = i
+    //     if (container.offset < pv.windowProps.windowHeight) {
+    //       calc = pv.windowProps.scrollTop
+    //       // if the parallax is further down on the page
+    //       // calculate windowheight - parallax offset + scrollTop to start from 0 whereever it appears
+    //     } else {
+    //       calc = pv.windowProps.windowHeight - container.offset + pv.windowProps.scrollTop
+    //     }
+    //     container.blocks.forEach(block => {
+    //       if (block.videoEl) {
+    //         block.videoEl.play()
+    //         if (block === pv.unmutedBlock) {
+    //           if (!block.muted) {
+    //             block.videoEl.muted = block.muted
+    //             block.muted
+    //               ? pv.unmutedBlock.audioButton.classList.add('mute')
+    //               : pv.unmutedBlock.audioButton.classList.remove('mute')
+    //           }
+    //         }
+    //       }
+    //       transform(block.el, 'translate3d(0,' + Math.round(calc / block.speed) + 'px, 0)')
+    //     })
+    // })
   }
 
   // ready to delete render after translate function complete
@@ -324,13 +361,30 @@ class Parallax extends Component {
   }
 
   bind() {
-    Pj.emitter.on(this.eventNameWithId('scroll'), this.render.bind(this))
-    Pj.emitter.on(this.eventNameWithId('resize'), this.render.bind(this))
+    bindEvent(
+      'viewport:enter',
+      () => {
+        Pj.emitter.on(this.eventNameWithId('scroll'), this.render.bind(this))
+      },
+      this.container.el
+    )
+
+    bindEvent(
+      'viewport:leave',
+      () => {
+        Pj.emitter.off(this.eventNameWithId('scroll'))
+      },
+      this.container.el
+    )
+
+    // Pj.emitter.on(this.eventNameWithId('resize'), this.render.bind(this))
   }
 
   unbind() {
+    removeEvent('viewport:enter', this.container.el)
+    removeEvent('viewport:leave', this.container.el)
     Pj.emitter.off(this.eventNameWithId('scroll'))
-    Pj.emitter.off(this.eventNameWithId('resize'))
+    // Pj.emitter.off(this.eventNameWithId('resize'))
   }
 
   updateWindowProps() {
@@ -347,6 +401,8 @@ class Parallax extends Component {
     if (this.options.mode === 'image') {
       this.mode.setModeAttributes()
     }
+
+    this.render()
   }
 
   enterHandle() {
