@@ -38,7 +38,6 @@ export const classes = {
   CLEAR: '{namespace}-clear',
   FILTERABLE: '{namespace}-filterable',
   FILTER: '{namespace}-filter',
-  EMPTY: '{namespace}-empty',
   NOTFOUND: '{namespace}-not-found',
   LOADING: '{namespace}-loading',
   MANAGE: '{namespace}-manage'
@@ -58,7 +57,7 @@ export const defaults = {
   theme: null,
   source: null,
   value: null,
-  placeholder: 'Select Svg',
+  placeholder: true,
   clearable: true,
   manage: null,
   filterable: true,
@@ -131,18 +130,18 @@ export const defaults = {
 
 export const translations = {
   en: {
+    placeholderText: 'Select SVG',
     loadingText: 'loading..',
     notFoundText: 'No results found',
     searchText: 'search',
-    manageText: 'Manage Collections',
-    emptyText: 'There is no svg icons in the collection'
+    manageText: 'Manage'
   },
   zh: {
+    placeholderText: '选择 SVG 图标',
     loadingText: '加载中..',
     notFoundText: '无匹配数据',
     searchText: '搜索',
-    manageText: '管理合集',
-    emptyText: '合集里没有 svg 图标'
+    manageText: '管理'
   }
 }
 

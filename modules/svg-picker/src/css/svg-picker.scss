@@ -37,6 +37,7 @@ $svgPicker-state-color: $gray-dark;
 
 $svgPicker-manage-padding: 8px;
 $svgPicker-manage-border-color: $border-color;
+$svgPicker-manage-hover-bg: $gray-lightest;
 
 $svgPicker-items-padding: 6px;
 $svgPicker-group-margin-bottom: $svgPicker-items-padding;
@@ -83,7 +84,6 @@ $svgPicker-item-active-bg: $color-primary;
     color: $svgPicker-group-label-color;
   }
 
-  &-empty,
   &-not-found,
   &-loading {
     width: 80%;
@@ -109,6 +109,10 @@ $svgPicker-item-active-bg: $color-primary;
   &-manage {
     padding: $svgPicker-manage-padding;
     border-top: 1px solid $svgPicker-manage-border-color;
+
+    &:hover {
+      background: $svgPicker-manage-hover-bg;
+    }
   }
 
   &-filter {

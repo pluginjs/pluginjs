@@ -73,6 +73,7 @@ $svgPicker-item-padding-y: ($svgPicker-item-height - $svgPicker-svg-height)/2 - 
     height: $svgPicker-item-height;
     padding: $svgPicker-item-padding-y $svgPicker-item-padding-x;
     margin: $svgPicker-item-margin-y $svgPicker-item-margin-x;
+    text-align: center;
     border: $svgPicker-item-border-width solid transparent;
     border-radius: 100%;
 
@@ -90,7 +91,6 @@ $svgPicker-item-padding-y: ($svgPicker-item-height - $svgPicker-svg-height)/2 - 
     white-space: nowrap;
   }
 
-  &-empty,
   &-not-found,
   &-loading {
     display: flex;

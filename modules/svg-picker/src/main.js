@@ -72,8 +72,12 @@ class SvgPicker extends Component {
     this.selected = null
 
     this.placeholder = this.element.getAttribute('placeholder')
-    if (!this.placeholder) {
-      this.placeholder = this.options.placeholder
+    if (!this.placeholder && this.options.placeholder) {
+      if (this.options.placeholder === true) {
+        this.placeholder = this.translate('placeholderText')
+      } else {
+        this.placeholder = this.options.placeholder
+      }
     }
 
     addClass(this.classes.ELEMENT, this.element)
@@ -361,7 +365,7 @@ class SvgPicker extends Component {
   }
 
   buildDropdownItems() {
-    const $items = this.buildItems(this.data)
+    const $items = this.buildItems(this.items)
 
     this.$items.appendChild($items)
 
