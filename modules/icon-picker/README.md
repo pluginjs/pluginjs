@@ -1,10 +1,10 @@
-# IconPicker
+# Select
 
-[![npm package](https://img.shields.io/npm/v/@pluginjs/icon-picker.svg)](https://www.npmjs.com/package/@pluginjs/icon-picker)
+[![npm package](https://img.shields.io/npm/v/@pluginjs/select.svg)](https://www.npmjs.com/package/@pluginjs/select)
 
-A flexible modern icon-picker js plugin.
+A flexible modern select js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/iconPicker/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/select/samples)**
 
 ## Introduction
 
@@ -13,13 +13,13 @@ A flexible modern icon-picker js plugin.
 #### Yarn
 
 ```javascript
-yarn add @pluginjs/icon-picker
+yarn add @pluginjs/select
 ```
 
 #### NPM
 
 ```javascript
-npm i @pluginjs/icon-picker
+npm i @pluginjs/select
 ```
 
 ---
@@ -31,15 +31,15 @@ npm i @pluginjs/icon-picker
 Development:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
 ```
 
 Production:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.min.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.min.css">
 ```
 
 ### Initialize
@@ -55,28 +55,28 @@ HTML:
 ECMAScript Module:
 
 ```javascript
-import IconPicker from "@pluginjs/icon-picker"
-import "@pluginjs/icon-picker/dist/icon-picker.css"
+import Select from "@pluginjs/select"
+import "@pluginjs/select/dist/select.css"
 
-IconPicker.of(document.querySelector('.element'), options)
+Select.of(document.querySelector('.element'), options)
 ```
 
 CommonJS:
 
 ```javascript
-require("@pluginjs/icon-picker/dist/icon-picker.css")
-const IconPicker = require("@pluginjs/icon-picker")
+require("@pluginjs/select/dist/select.css")
+const Select = require("@pluginjs/select")
 
-IconPicker.of(document.querySelector('.element'), options)
+Select.of(document.querySelector('.element'), options)
 ```
 
 Browser:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.css">
-<script src="https://unpkg.com/@pluginjs/icon-picker/dist/icon-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
 <script>
-  Pj.iconPicker('.element', options)
+  Pj.select('.element', options)
 </script>
 ```
 
@@ -86,37 +86,53 @@ Browser:
 
 ### Options
 
-Options are called on iconPicker instances through the iconPicker options itself.
+Options are called on select instances through the select options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
-`"locale"` | Set locale environment | `en`
-`"manage"` | Set manage | `true`
+`"trigger"` | Set trigger | `click`
+`"offset"` | Set offset | `[0,0]`
+`"icon"` | Set default icon | `pj-icon pj-icon-char pj-icon-chevron-down`
+`"multiple"` | Set multiple | `false`
+`"clearable"` | Set clearable | `false`
+`"filterable"` | Set filterable | `false`
+`"closeAllButten"` | Set closeAllButton | `true`
+`"placeholder"` | Set input box prompt information | `Please select`
+`"notFoundText"` | Set notoFoundText | `Badge not found`
+`"selected"` | Set selected | `null`
+`"data"` | Set data | `null`
 `"keyboard"` | Set keyboard | `true`
-`"placehoder"` | Set input box prompt information | `Choose a icon`
 `"disabled"` | Disabled plugin | `false`
 `"templates"` | Set default templates | `{}`
-`"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
+`"process"` | The type of object change the type of JSON | `function() {...}`
 
 ### Events
 
-Events are called on iconPicker instances through the iconPicker events itself.
+Events are called on select instances through the select events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
 -----|-----
+`"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
-`"disable"` | Gets fired when plugin has disabled
+`"disabled"` | Disable plugin
 `"destroy"` | Gets fired when plugin has destroy
+`"load"` | Gets fired when plugin has load
+`"open"` | Gets fired when plugin has open
+`"close"` | Gets fired when plugin has close
+`"click"` | Gets fired when plugin has click
 `"change"` | Gets fired when plugin has changed
+`"select"` | Gets fired when plugin has select
+`"unselect"` | Gets fired when plugin has unselect
+`"hide"` | Gets fired when plugin has hide
 
 ### Methods
 
-Methods are called on iconPicker instances through the iconPicker method itself.
+Methods are called on select instances through the select method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
@@ -127,53 +143,39 @@ Name | Description
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
+`"removeData"` | Set removeData
+`"open"` | Get value of open
+`"close"` | Get value of close
 
 ### Classes
 
 Name | Description | Default
 -----|------|------
-`"NAMESPACE"` | Declare plugin namespace | `pj-iconPicker`
-`"THEME"` | Declare plugin theme | `{namespace}--{theme}`
-`"ELEMENT"` | Declare plugin element | `{namespace}`
-`"TRIGGER"` | Declare plugin trigger | `{namespace}-trigger`
+`"NAMESPACE"` | Declare plugin namespace | `pj-select`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
-`"PANEL"` | Declare plugin panel | `{namespace}-panel`
-`"CATEGORIES"` | Declare plugin categories | `{namespace}-categories`
-`"CATEGORIESTITLE"` | Declare plugin categories title | `{namespace}-categories-title`
-`"ICON"` | Declare plugin icon | `{namespace}-icon`
-`"ICONHOVER"` | Declare plugin icon hover | `{namespace}-icon-hover`
-`"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
+`"MULTIPLE"` | Declare plugin multiple | `{namespace}-multiple`
+`"FILTERABLE"` | Declare plugin filterable | `{namespace}-filterable`
+`"DROPDOWNLIST"` | Declare plugin dropdownlist | `{namespace}-dropdown`
+`"TRIGGER"` | Declare plugin trigger | `{namespace}-trigger`
+`"HASBADGE"` | Declare plugin hasbadge | `{namespace}-hpj-badge`
+`"BADGE"` | Declare plugin badge | `{namespace}-badge`
+`"BADGECONTENT"` | Declare plugin badge content | `{namespace}-badge-content`
+`"BADGEDELETE"` | Declare plugin badge delete | `{namespace}-badge-delete`
+`"LABEL"` | Declare plugin label | `{namespace}-label`
+`"LIST"` | Declare plugin list | `{namespace}-list`
+`"SUBLIST"` | Declare plugin sublist | `{namespace}-sublist`
+`"ITEM"` | Declare plugin item | `{namespace}-item`
+`"GROUP"` | Declare plugin group | `{namespace}-group`
+`"GROUPLABEL"` | Declare plugin label | `{namespace}-group-label`
+`"OPEN"` | Declare plugin open | `{namespace}-open`
+`"NOTFOUND"` | Declare plugin not found | `{namespace}-not-found`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-`"PACKAGE"` | Declare plugin package | `{namespace}-package`
-`"PACKAGESWRAP"` | Declare plugin package wrap | `{namespace}-package-wrap`
-`"PACKAGETITLE"` | Declare plugin package etitle | `{namespace}-package-title`
-`"PACKAGEBODY"` | Declare plugin package body | `{namespace}-package-body`
-`"PACKAGEOPEN"` | Declare plugin package open | `{namespace}-package-open`
-`"PACKAGEHIDE"` | Declare plugin package hide | `{namespace}-package-hide`
-`"PACKAGETIP"` | Declare plugin package etip | `{namespace}-package-tip`
-`"SEARCH"` | Declare plugin search | `{namespace}-search`
-`"SEARCHING"` | Declare plugin searching | `{namespace}-searching`
-`"SEARCHED"` | Declare plugin searched | `{namespace}-searched`
-`"SEARCHCLOSE"` | Declare plugin searchlose | `{namespace}-search-close`
-`"SEARCHLIST"` | Declare plugin searchlist | `{namespace}-search-list`
-`"SEARCHOWNDATA"` | Declare plugin searchowndata | `{namespace}-search-data`
-`"CONTROLLER"` | Declare plugin controller | `{namespace}-controller`
-`"SELECTOR"` | Declare plugin selector | `{namespace}-selector`
-`"SELECTORPANEL"` | Declare plugin selectorpanel | `{namespace}-selector-panel`
-`"MANAGE"` | Declare plugin manage | `{namespace}-manage`
-`"EMPTY"` | Declare plugin empty | `{namespace}-empty`
-`"EMPTYLINK"` | Declare plugin emptylink | `{namespace}-empty-link`
-
-### Translations
-
-Name | EN | ZH
------|------|-------
-`"allIcons"` | All Icons | 全部图标
-`"searchText"` | Search... | 搜索...
-`"manage"` | manage | 管理
-`"founded"` | founded | 结果
-`"emptyTitle"` | Befor using icons, you need add icons.  | 使用图标之前，请先添加。
-`"emptyLinkTitle"` | Go add now | 现在添加
+`"MARK"` | Declare plugin mark | `{namespace}-mark`
+`"SELECTED"` | Declare plugin selected | `{namespace}-selected`
+`"FOCUS"` | Declare plugin focus | `{namespace}-focus`
+`"LOADING"` | Declare plugin loading | `{namespace}-loading`
+`"ERROR"` | Declare plugin error | `{namespace}-error`
+`"HIDEICON"` | Declare plugin hideicon | `{namespace}-hideIcon`
 ---
 
 ## Browser support
@@ -186,9 +188,9 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/icon-picker is Licensed under [the GPL-v3 license](LICENSE).
+@pluginjs/select is Licensed under [the GPL-v3 license](LICENSE).
 
-If you want to use @pluginjs/icon-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+If you want to use @pluginjs/select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
 
 For purchase an Commercial License, contact us purchase@thecreation.co.
 

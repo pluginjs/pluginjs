@@ -1,465 +1,152 @@
 @import "@pluginjs/styles/variables.scss";
+@import "icon-picker.core";
 
 // Vars
 // =====================
-$iconPicker: "pj-iconPicker" !default;
-$iconPicker-sizer: $sizer !default;
+$iconPicker: "pj-iconPicker";
 
-$iconPicker-width: 16 * $iconPicker-sizer !default; //160px
-$iconPicker-height: 3 * $iconPicker-sizer !default; //30px
-$iconPicker-font-size: $font-size-base !default;
-$iconPicker-border-color: $border-color !default;
-$iconPicker-hover-color: $gray-darker !default;
-$iconPicker-active-color: $color-primary !default;
-$iconPicker-body-padding: 1.5 * $iconPicker-sizer $iconPicker-sizer
-  $iconPicker-sizer !default; //15px 10px 10px
-$iconPicker-icon-color: $gray-darkest !default;
-$iconPicker-icon-hover-color: $gray-lighter !default;
-$iconPicker-icon-active-color: $color-primary !default;
-$iconPicker-trigger-icon-left: $iconPicker-width - 20px !default;
-$iconPicker-panel-height: 32 * $iconPicker-sizer !default; //320px
-$iconPicker-package-height: 3 * $iconPicker-sizer !default; //30px
-$iconPicker-package-bg-color: $gray-lightest !default;
-$iconPicker-package-title-padding: 0 2 * $iconPicker-sizer !default; //0 20px
-$iconPicker-controller-height: 3 * $iconPicker-sizer !default; //30px
-$iconPicker-search-height: 4 * $iconPicker-sizer !default; //40px
-$iconPicker-search-border: 1px solid $gray-light !default;
-$iconPicker-search-margin-bottom: 1px !default;
-$iconPicker-search-icon-color: $gray !default;
-$iconPicker-package-body-height: 18.8 * $iconPicker-sizer !default; //188px
-$iconPicker-empty-padding: 2 * $iconPicker-sizer !default; //20px
+$iconPicker-color: $text-color;
+$iconPicker-trigger-width: $iconPicker-width;
+$iconPicker-trigger-placeholder-color: $gray;
 
-$iconPicker-controller-bg: $color-white;
-// Core
-// =====================
+$iconPicker-trigger-arrow-color: $gray-darkest;
+
+$iconPicker-trigger-disabled-bg: $disabled-bg;
+$iconPicker-trigger-disabled-border: $disabled-border;
+$iconPicker-trigger-disabled-color: $disabled-color;
+
+$iconPicker-clear-color: $gray;
+$iconPicker-clear-hover-color: $text-color;
+
+$iconPicker-group-label-font-size: $font-size-sm;
+$iconPicker-group-label-color: $gray-darker;
+$iconPicker-group-label-space-x: 11px;
+$iconPicker-group-label-space-y: 8px;
+
+$iconPicker-search-color: $gray;
+$iconPicker-search-padding-x: 12px;
+$iconPicker-search-padding-y: 12px;
+$iconPicker-search-font-size: $input-font-size;
+$iconPicker-search-border-color: $border-color;
+$iconPicker-search-icon: $pj-icon-search !default;
+$iconPicker-search-font: $pj-icon-font-family !default;
+$iconPicker-search-right: 33px !default;
+$iconPicker-search-border-color: $border-color;
+
+$iconPicker-state-color: $gray-dark;
+
+$iconPicker-action-padding: 8px;
+$iconPicker-action-border-color: $border-color;
+
+$iconPicker-action-hover-bg: $gray-lightest;
+
+$iconPicker-main-padding: 6px;
+$iconPicker-group-margin-bottom: $iconPicker-main-padding;
+
+$iconPicker-item-active-color: $color-white;
+$iconPicker-item-active-bg: $color-primary;
+
 .#{$iconPicker} {
-  box-sizing: border-box;
-  width: $iconPicker-width;
-  height: $iconPicker-height;
-  padding: 0;
-  font-size: $iconPicker-font-size;
-  background-color: #fff;
-  border: 1px solid $iconPicker-border-color;
+  outline: none;
 
-
-  .#{$iconPicker}-panel {
-    border-radius: $border-radius-base;
-  }
-
-  &:focus {
-    border-color: $iconPicker-border-color;
-    outline: none;
-  }
-  &:hover {
-    cursor:pointer;
-    border-color: $iconPicker-hover-color;
-  }
-
-  .pj-dropdown-trigger {
-    box-sizing: border-box;
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 0 $iconPicker-sizer; //0 10px
-    line-height: $iconPicker-height;
-  }
-
-  &-switch {
-    position: absolute;
-    top: 50%;
-    right: 0.6 * $iconPicker-sizer; //6px
-    font-size: $font-size-base;
-    color: $gray-darkest;
-    transition: all 0.3s;
-    transform: translateY(-50%);
-
-    + span i {
-      margin-right: 0.4 * $iconPicker-sizer; //4px
-    }
-  }
-}
-
-.#{$iconPicker}-panel {
-  display: flex;
-  flex-direction: column;
-  // height: $iconPicker-panel-height;
-  width: 260px;
-  min-height: $iconPicker-panel-height;
-  padding: 0 0 $iconPicker-controller-height 0;
-
-  li:hover {
-    cursor: default;
-    background-color: inherit;
-  }
-
-  &.pj-dropdown-show {
-    display: flex;
-  }
-
-  .#{$iconPicker}-empty {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    padding: $iconPicker-empty-padding;
-    text-align: center;
-    &-link {
-      display: block;
-    }
-  }
-}
-
-.#{$iconPicker}-searching .#{$iconPicker}-package {
-  .#{$iconPicker}-icon {
-    display: none;
-  }
-
-  .#{$iconPicker}-searched {
-    display: inline-block;
-  }
-}
-
-.#{$iconPicker}-package {
-  padding: 0 !important;
-  margin-top: 8px;
-  margin-bottom: 1px;
-
-  &:focus {
-    outline: none;
-
-    .#{$iconPicker}-package-title {
-      color: $iconPicker-active-color;
-    }
-  }
-
-  &-title {
+  &-trigger {
     position: relative;
-    height: $iconPicker-package-height;
-    padding: $iconPicker-package-title-padding !important;
-    font-size: $iconPicker-font-size;
-    line-height: $iconPicker-package-height;
+    color: $iconPicker-trigger-placeholder-color;
 
-    &:hover {
-      color: $iconPicker-active-color;
-      cursor: pointer;
+    .#{$iconPicker}-selected & {
+      color: $iconPicker-color;
     }
 
-    i {
-      position: absolute;
-      top: 50%;
-      right: $iconPicker-sizer; //10px
-      font-size: $font-size-base;
-      transition: all 0.3s;
-      transform: translateY(-50%);
-    }
-  }
-
-  &-body {
-    box-sizing: border-box;
-    display: none;
-    width: 100% !important;
-    padding: $iconPicker-body-padding;
-  }
-
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0;
-    margin: 0;
-  }
-
-  .#{$iconPicker}-categories {
-    display: block;
-    padding: 0;
-    margin: 0;
-
-    &-title {
-      padding: 0 $iconPicker-sizer; //10px
-      margin-bottom: $iconPicker-sizer; //10px
-      font-size: $font-size-xs;
-      color: $gray;
-    }
-  }
-
-  .#{$iconPicker}-icon {
-    position: relative;
-    display: inline-block;
-    width: calc(100% / 6);
-    padding: 0;
-    margin-bottom: $iconPicker-sizer; //10px
-    color: $iconPicker-icon-color;
-    text-align: center;
-    list-style: none;
-
-    &::before {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      // z-index: -1;
-      width: 3 * $iconPicker-sizer; //30px
-      height: 3 * $iconPicker-sizer; //30px
-      content: "";
-      border-radius: 1000px;
-      transform: translate(-50%, -50%);
-    }
-
-    i {
-      position: relative;
-    }
-
-    &-hover,
-    &:hover {
-      &::before {
-        background-color: $iconPicker-icon-hover-color;
-      }
-    }
-  }
-
-  &-open {
-    .#{$iconPicker}-package-body {
-      display: block;
-    }
-
-    .#{$iconPicker}-package-title i {
-      transition: all 0.3s;
-      transform: translateY(-50%) rotate(-180deg);
-    }
-
-    .pj-scrollable {
-      width: 100% !important;
-      height: $iconPicker-package-body-height !important;
-
-      &-container {
-        width: 100% !important;
-        height: $iconPicker-package-body-height !important;
-      }
-
-      &-content {
-        width: 100% !important;
-      }
-    }
-  }
-
-  &-hide {
-    display: none;
-  }
-
-  &-wrap {
-    //min-width: 22*$iconPicker-sizer; //220px
-    flex-grow: 1;
-  }
-}
-
-.#{$iconPicker}-active {
-  color: $color-white !important;
-
-  &::before {
-    background-color: $iconPicker-icon-active-color;
-  }
-
-  &:hover {
-    &::before {
-      background-color: $iconPicker-icon-active-color !important;
-    }
-  }
-}
-
-.#{$iconPicker}-controller {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  width: 100%;
-  height: $iconPicker-controller-height;
-  font-size: $iconPicker-font-size;
-  line-height: $iconPicker-controller-height;
-  text-align: center;
-  text-transform: capitalize;
-  cursor: default;
-  background-color: $iconPicker-controller-bg;
-  border-top: 1px solid $iconPicker-border-color;
-  border-bottom-right-radius: $border-radius-base;
-  border-bottom-left-radius: $border-radius-base;
-
-  > div:focus {
-    color: $iconPicker-active-color;
-    outline: none;
-  }
-
-  > .pj-dropdown {
-    left: -11px !important;
-    width: 130px;
-  }
-}
-
-.#{$iconPicker}-selector {
-  width: 130px;
-  padding: 0;
-  line-height: 2.6 * $iconPicker-sizer; //26px
-
-  &:hover {
-    color: $iconPicker-active-color;
-    .pj-dropdown-trigger {
-      color: $iconPicker-active-color;
-    }
-  }
-
-  &.pj-dropdown {
-    width: 50%;
-    height: auto;
-    border: 0;
-  }
-
-  &.pj-dropdown-show {
-    color: $iconPicker-active-color;
-
-    .pj-dropdown-trigger {
-      color: $iconPicker-active-color;
-    }
-
-    .pj-dropdown-icon {
+    &::after {
+      color: $iconPicker-color;
       transition: transform 0.3s;
-      transform: rotate(0deg);
+      will-change: transform;
     }
   }
 
-  .pj-dropdown-trigger {
-    display: inline-block;
-    width: auto;
-    padding: 0;
-    color: #343434;
-    vertical-align: middle;
-    border: none;
-  }
-
-  .pj-dropdown-icon {
-    //position: static;
-    //margin-left: .5*$iconPicker-sizer; //5px
-    //vertical-align: middle;
-    //right: 20px; //because dropdown absolute
-    padding: 0;
-    transition: transform 0.3s;
-    transform: rotate(180deg);
-  }
-
-  &-panel {
-    width: 13 * $iconPicker-sizer !important; //130px
-    max-width: inherit;
-    font-size: $font-size-xs;
-
-    > li {
-      padding: 0.4 * $iconPicker-sizer 1.5 * $iconPicker-sizer; //4px 15px
-
-      &:hover {
-        background-color: $gray-lightest;
-      }
-    }
-
-    &::before {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 0;
-      content: "";
-      border-color: transparent;
-      border-style: solid;
-      border-width: 6px 6px 0;
-      border-top-color: $color-white;
-      //transform: translate(-50%, 100%);
-    }
-  }
-}
-
-.#{$iconPicker}-manage {
-  position: relative;
-  flex-basis: calc(50% - 1px);
-  order: 1;
-  line-height: 2.6 * $iconPicker-sizer; //26px
-  border-left: 1px solid $iconPicker-border-color;
-
-  i {
-    margin-right: 0.4 * $iconPicker-sizer; //4px
-    vertical-align: middle;
-  }
-
-  &:hover {
-    color: $iconPicker-active-color;
-    cursor: pointer;
-  }
-}
-
-.#{$iconPicker}-search {
-  display: flex;
-  align-items: center;
-  height: $iconPicker-search-height;
-  padding: 0 * $iconPicker-sizer 2 * $iconPicker-sizer 0 * $iconPicker-sizer 1 * $iconPicker-sizer; //4px 20px 4px 10px
-  margin-bottom: $iconPicker-search-margin-bottom;
-  font-size: $iconPicker-font-size;
-  border-bottom: $iconPicker-search-border;
-
-  i {
-    order: 0;
-    color: $iconPicker-search-icon-color;
-    text-align: center;
-
-    &:last-of-type {
-      order: 2;
-    }
-  }
-
-  input {
-    flex-basis: 100px;
-    flex-grow: 1;
-    order: 1;
-    min-width: 100px;
-    padding-left: 0;
-    //min-width: 10*$iconPicker-sizer; //100px
-    margin: 0;
-    margin-left: $iconPicker-sizer; //10px
-    font-size: $iconPicker-font-size;
-    border: 0;
-    outline: none;
-    box-shadow: none;
-    flex-shrink: 1;
-    &:focus {
-      + .#{$iconPicker}-search-close {
-        opacity: 1;
-        transition: opacity 0.2s;
-      }
-    }
-  }
-
-  &-close {
-    opacity: 0;
+  &-clear {
+    color: $iconPicker-clear-color;
 
     &:hover {
-      color: $gray-darkest;
-      cursor: pointer;
+      color: $iconPicker-clear-hover-color;
     }
   }
 
-  &-data {
-    .#{$iconPicker}-search-close {
-      opacity: 1;
-      transition: opacity 0.3s;
+  &-group-label {
+    padding: $iconPicker-group-label-space-y $iconPicker-group-label-space-x;
+    font-size: $iconPicker-group-label-font-size;
+    color: $iconPicker-group-label-color;
+  }
+
+  &-empty,
+  &-not-found,
+  &-loading {
+    width: 80%;
+    margin: 0 auto;
+    line-height: 150%;
+    color: $iconPicker-state-color;
+  }
+
+  &-main {
+    padding: $iconPicker-main-padding;
+  }
+
+  &-group {
+    margin-bottom: $iconPicker-group-margin-bottom;
+  }
+
+  &-item {
+    &.pj-dropdown-active:not(.pj-dropdown-item-disabled) {
+      border-color: $iconPicker-item-active-bg;
+    }
+  }
+
+  &-action {
+    padding: $iconPicker-action-padding;
+
+    &:hover {
+      background: $iconPicker-action-hover-bg;
+    }
+
+    & + & {
+      border-left: 1px solid $iconPicker-action-border-color;
+    }
+  }
+
+  &-actions {
+    border-top: 1px solid $iconPicker-action-border-color;
+  }
+
+  &-filter {
+    font-size: $iconPicker-search-font-size;
+    border-bottom: 1px solid $iconPicker-search-border-color;
+
+    &::before {
+      @include icon();
+      position: absolute;
+      top: $iconPicker-search-padding-y;
+      left: $iconPicker-search-padding-x;
+      font-family: $iconPicker-clear-font;
+      color: $iconPicker-search-color;
+      vertical-align: middle;
+      content: icon-content($iconPicker-search-icon);
+    }
+
+    input {
+      padding: $iconPicker-search-padding-y $iconPicker-search-padding-x;
+      padding-left: $iconPicker-search-right;
     }
   }
 }
 
-.#{$iconPicker}-wrap {
-  .#{$iconPicker}.pj-dropdown-show {
-    .#{$iconPicker}-switch {
-      transition: all 0.3s;
-      transform: translateY(-50%) rotate(180deg);
-    }
-  }
-}
 .#{$iconPicker}-disabled {
-  .pj-dropdown-trigger:hover{
-     color: #b3b3b3
+  .#{$iconPicker}-trigger {
+    color: $iconPicker-trigger-disabled-color;
+    background-color: $iconPicker-trigger-disabled-bg;
+    border-color: $iconPicker-trigger-disabled-border;
+
+    &::after {
+      color: $iconPicker-trigger-disabled-color;
+    }
   }
 }

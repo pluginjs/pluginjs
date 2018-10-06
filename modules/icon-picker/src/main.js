@@ -1,53 +1,49 @@
 import Component from '@pluginjs/component'
-import { compose } from '@pluginjs/utils'
-import template from '@pluginjs/template'
-import { isEmptyObject } from '@pluginjs/is'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import {
-  query,
-  parent,
-  parentWith,
-  parseHTML,
-  getData,
-  children,
-  insertBefore,
-  insertAfter,
-  wrap,
-  attr,
-  append,
-  unwrap,
-  setData,
-  queryAll,
-  prev,
-  next
-} from '@pluginjs/dom'
-import { setStyle, hideElement, showElement } from '@pluginjs/styled'
-import Dropdown from '@pluginjs/dropdown'
-import Select from '@pluginjs/select'
-import Scrollable from '@pluginjs/scrollable'
-import Tooltip from '@pluginjs/tooltip'
+import templateEngine from '@pluginjs/template'
 import {
   eventable,
   register,
   stateable,
   styleable,
   themeable,
-  translateable,
-  optionable
+  optionable,
+  translateable
 } from '@pluginjs/decorator'
-import Keyboard from './keyboard'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
   dependencies as DEPENDENCIES,
+  translations as TRANSLATIONS,
   events as EVENTS,
   methods as METHODS,
-  namespace as NAMESPACE,
-  translations as TRANSLATIONS
+  namespace as NAMESPACE
 } from './constant'
-
-let DATA = null
+import {
+  isArray,
+  isFunction,
+  isNull,
+  isPlainObject,
+  isEmpty
+} from '@pluginjs/is'
+import Clearable from './clearable'
+import Filterable from './filterable'
+import Manage from './manage'
+import Switcher from './switcher'
+import Loading from './loading'
+import { removeEvent } from '@pluginjs/events'
+import { addClass, removeClass } from '@pluginjs/classes'
+import Dropdown from '@pluginjs/dropdown'
+import {
+  query,
+  insertAfter,
+  appendTo,
+  html,
+  parseHTML,
+  closest,
+  empty
+} from '@pluginjs/dom'
+import { deepClone, each } from '@pluginjs/utils'
+import Tooltip from '@pluginjs/tooltip'
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -59,128 +55,65 @@ let DATA = null
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
-class IconsPicker extends Component {
+class IconPicker extends Component {
   constructor(element, options = {}) {
     super(element)
+
     this.setupOptions(options)
     this.setupClasses()
-    this.setupI18n()
-
-    this.data = DATA
-    this.$icon = null
-
     this.setupStates()
+    this.setupI18n()
     this.initialize()
   }
 
-  initEmpty() {
-    const that = this
-    const data = [{ label: 'empty' }]
-
-    this.$empty = parseHTML(
-      template.compile(this.options.templates.empty())({
-        classes: this.classes,
-        title: this.translate('emptyTitle'),
-        linkTitle: this.translate('emptyLinkTitle')
-      })
-    )
-    this.$dropdown = Dropdown.of(this.$iconTrigger, {
-      data,
-      target: next(this.$iconPicker),
-      hideOnSelect: false,
-      templates: {
-        panel() {
-          return `<div class=${that.classes.PANEL}></div>`
-        }
-      },
-      onClick: () => {
-        return
-      },
-      onHide: () => {
-        removeClass(this.classes.SEARCHOWNDATA, this.$search)
-        query('input', this.$panel).value = ''
-        this.searching('')
-      }
-    })
-    children(this.$dropdown.$dropdown).map(el => el.remove())
-    this.$dropdown.$dropdown.append(this.$empty)
-  }
-
   initialize() {
-    this.$iconPicker = addClass(
-      this.classes.ELEMENT,
-      parseHTML(
-        template.compile(this.options.templates.trigger())({
-          trigger: this.classes.ELEMENT
-        })
-      )
+    this.selected = null
+    this.current = null
+
+    this.placeholder = this.element.getAttribute('placeholder')
+    if (!this.placeholder && this.options.placeholder) {
+      if (this.options.placeholder === true) {
+        this.placeholder = this.translate('placeholderText')
+      } else {
+        this.placeholder = this.options.placeholder
+      }
+    }
+
+    addClass(this.classes.ELEMENT, this.element)
+
+    this.$wrap = insertAfter(
+      `<div class="${this.classes.WRAP}"></div>`,
+      this.element
     )
-    this.$iconTrigger = query('.pj-dropdown-trigger', this.$iconPicker)
-    insertAfter(this.$iconPicker, this.element)
-    wrap(`<div class="${this.classes.WRAP}"></div>`, this.$iconPicker)
-    insertAfter(`<div class=${this.classes.PANEL}></div>`, this.$iconPicker)
-    setStyle('display', 'none', this.element)
 
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$iconPicker)
+      addClass(this.getThemeClass(), this.$wrap)
     }
 
-    if (!this.data || isEmptyObject(this.data)) {
-      this.initEmpty()
-    } else {
-      this.$dropdown = this.initDropdown()
-      this.$panel = this.$dropdown.$dropdown
-      this.$packages = children(this.$panel).filter(el =>
-        el.matches(`.${this.classes.PACKAGE}`)
-      )
-      this.packages = this.compilePackages()
+    this.$trigger = appendTo(
+      `<div class="${this.classes.TRIGGER}"></div>`,
+      this.$wrap
+    )
 
-      this.initCategories()
-      this.$icons = this.compileIcons(this.packages)
-      const packagesWrap = parseHTML(
-        `<div class=${this.classes.PACKAGESWRAP}></div>`
-      )
-      this.$packages.forEach(append(packagesWrap))
-      append(packagesWrap, this.$panel)
+    this.$label = appendTo(
+      templateEngine.render(this.options.templates.label(), {
+        classes: this.classes,
+        placeholder: this.placeholder
+      }),
+      this.$trigger
+    )
 
-      this.fillIcons()
-      this.initController()
-      this.initScrollable()
-      append(
-        parseHTML(`<span>${this.options.placehoder}</span>`),
-        query('.pj-dropdown-trigger', this.$iconPicker)
-      )
+    this.bind()
 
-      if (this.options.manage) {
-        const text = this.translate('manage')
-        this.$controller.append(
-          parseHTML(
-            `<div class=${
-              this.classes.MANAGE
-            }><i class='pj-icon pj-icon-setting'></i>${text}</div>`
-          )
-        )
-      }
+    this.initData()
 
-      this.handleSearch()
+    this.setupDropdown(this.options.dropdown)
 
-      if (this.options.keyboard) {
-        this.KEYBOARD = new Keyboard(this)
-      }
-
-      this.$selectorList = queryAll(
-        `.${this.classes.PACKAGEBODY} ul`,
-        this.panel
-      )
-
-      this.$scrollable = this.$selectorList.map(el =>
-        Scrollable.of(parentWith(hasClass(this.classes.PACKAGEBODY), el))
-      )
-
-      // init by element value
-      this.initData()
-      this.bind()
+    if (this.options.clearable) {
+      this.CLEARABLE = new Clearable(this)
     }
+
+    this.LOADING = new Loading(this)
 
     if (this.element.disabled || this.options.disabled) {
       this.disable()
@@ -190,667 +123,413 @@ class IconsPicker extends Component {
     this.trigger(EVENTS.READY)
   }
 
-  initData() {
-    const inputVal = this.element.value.trim()
-    if (inputVal !== '') {
-      this.val(inputVal, false)
-    }
-  }
+  setupDropdown(options) {
+    this.$dropdown = appendTo(
+      templateEngine.render(this.options.templates.dropdown.call(this), {
+        classes: this.classes
+      }),
+      this.$wrap
+    )
 
-  bind() {
-    if (this.is('disabled')) {
-      return
-    }
-    const that = this
+    this.$main = query(`.${this.classes.MAIN}`, this.$dropdown)
 
-    if (this.options.keyboard) {
-      const addTabindexToAttr = attr({
-        tabindex: 1
-      })
-      compose(
-        bindEvent(this.eventName('focus'), () => {
-          bindEvent(
-            this.eventName('keydown'),
-            e => {
-              if (e.keyCode === 13) {
-                this.$dropdown.show()
-              }
-            },
-            this.$iconPicker
-          )
-        }),
-        bindEvent(this.eventName('blur'), () => {
-          removeEvent(this.eventName('keydown'), this.$iconPicker)
+    this.DROPDOWN = Dropdown.of(this.$trigger, {
+      ...options,
+      target: this.$dropdown,
+      keyboard: this.options.keyboard ? this.$wrap : false,
+      classes: {
+        PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
+      },
+      onShow: () => {
+        if (this.is('loading')) {
+          this.LOADING.show()
+        }
+
+        if (!this.is('builded')) {
+          this.buildDropdown()
+        }
+
+        addClass(this.classes.SHOW, this.$wrap)
+        this.trigger(EVENTS.SHOW)
+      },
+      onShown: () => {
+        this.trigger(EVENTS.SHOWN)
+        this.enter('shown')
+      },
+      onHide: () => {
+        this.trigger(EVENTS.HIDE)
+        this.leave('shown')
+      },
+      onHided: () => {
+        removeClass(this.classes.SHOW, this.$wrap)
+        this.trigger(EVENTS.HIDED)
+      },
+      onSelect: $item => {
+        const $pack = closest(`.${this.classes.PACK}`, $item)
+        const pack = this.getPack($pack.dataset.name)
+
+        this.set({
+          package: pack.name,
+          icon: $item.dataset.value,
+          class: pack.class,
+          prefix: pack.prefix
         })
-      )(addTabindexToAttr(this.$iconPicker))
-      addTabindexToAttr(query('input', this.$search))
-      children(this.$controller).map(addTabindexToAttr)
-      this.$packages.map(
-        compose(
-          bindEvent(this.eventName('focus'), ({ target: $this }) =>
-            compose(
-              bindEvent(this.eventName('keydown'), e => {
-                if (e.keyCode === 13 && e.which === 13) {
-                  that.KEYBOARD.init($this)
-                  that.open($this)
-                }
-                removeEvent(this.eventName('focus'), $this)
-              }),
-              bindEvent(this.eventName('blur'), () => {
-                if (that.is('keyboard')) {
-                  that.KEYBOARD.unbind()
-                  that.close($this)
-                }
-                if (that.is('searching')) {
-                  return
-                }
-              })
-            )($this)
-          ),
-          addTabindexToAttr
-        )
-      )
-      if (this.options.manage) {
-        compose(
-          bindEvent(this.eventName('focus'), ({ target }) =>
-            bindEvent(
-              this.eventName('keydown'),
-              e => { if (e.keyCode === 13 && e.which === 13) { /* eslint-disable-line */
-                } /* eslint-disable-line */
-              },
-              target
-            )
-          ),
-          bindEvent(this.eventName('blur'), ({ target }) =>
-            removeEvent(this.eventName('keydown'), target)
-          )
-        )(query(`.${this.classes.MANAGE}`, this.$controller))
       }
-
-      compose(
-        bindEvent(this.eventName('focus'), ({ target }) => {
-          let $selectItem = children(this.$selectorPanel.$dropdown).find(el =>
-            el.matches('.pj-dropdown-active')
-          )
-          bindEvent(
-            this.eventName('keydown'),
-            e => {
-              if (e.keyCode === 13 && e.which === 13) {
-                if (that.is('selectorPanelOn')) {
-                  const val = getData('value', $selectItem)
-                  that.$selectorPanel.set(val)
-                  that.$selectorPanel.hide()
-                  that.leave('selectorPanelOn')
-                } else {
-                  that.$selectorPanel.show()
-                  that.enter('selectorPanelOn')
-                }
-              }
-              if (
-                e.keyCode === 38 &&
-                e.which === 38 &&
-                prev($selectItem).length
-              ) {
-                $selectItem = compose(
-                  addClass('pj-dropdown-active'),
-                  prev,
-                  removeClass('pj-dropdown-active')
-                )($selectItem)
-              }
-              if (e.keyCode === 40 && e.which === 40 && next($selectItem)) {
-                $selectItem = compose(
-                  addClass('pj-dropdown-active'),
-                  next,
-                  removeClass('pj-dropdown-active')
-                )($selectItem)
-              }
-
-              if (e.keyCode === 9 && e.which === 9) {
-                return
-              }
-              e.preventDefault()
-            },
-            target
-          )
-        }),
-        bindEvent(this.eventName('blur'), ({ target }) =>
-          removeEvent(this.eventName('keydown'), target)
-        )
-      )(this.$selector)
-    }
-
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.PACKAGETITLE}`,
-      ({ target }) => {
-        const _package = parent(target)
-        if (getData('open', _package)) {
-          that.close(_package)
-        } else {
-          that.open(_package)
-        }
-      },
-      this.$panel
-    )
-
-    // clear search input
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.SEARCHCLOSE}`,
-      () => {
-        removeClass(this.classes.SEARCHOWNDATA, this.$search)
-        query('input', this.$panel).value = ''
-        this.searching('')
-      },
-      this.$panel
-    )
-    this.$packages.map(
-      bindEvent(
-        this.eventName('click'),
-        `.${this.classes.ICON}`,
-        ({ target }) => {
-          that.select(parentWith(hasClass(this.classes.ICON), target))
-          that.$dropdown.hide()
-        }
-      )
-    )
-
-    bindEvent(
-      this.eventName('input'),
-      'input',
-      ({ target }) => {
-        if (!this.is('searching')) {
-          // this.packages.forEach((v) => {
-          //   this.open(v)
-          // })
-          addClass(this.classes.SEARCHING, this.$panel)
-        }
-        this.enter('searching')
-
-        const val = target.value
-        if (val.length === 0) {
-          removeClass(this.classes.SEARCHOWNDATA, this.$search)
-        } else {
-          addClass(this.classes.SEARCHOWNDATA, this.$search)
-        }
-        this.searching(val)
-      },
-      this.$search
-    )
-    bindEvent(
-      this.eventName('blur'),
-      () => {
-        this.leave('searching')
-      },
-      query('input', this.$search)
-    )
+    })
   }
+
+  bind() {} // eslint-disable-line
 
   unbind() {
     removeEvent(this.eventName(), this.element)
-    removeEvent(this.eventName(), this.$iconPicker)
   }
 
-  compilePackages() {
-    /*
-      package.data();
-      {
-        name: string,
-        title: string,
-        count: number,
-        prefix: string,
-        base: string,
-        classifiable: boolean,
-        icons: array | object,
-        categories: object,
-        hasUl: boolean,
-        open: boolean,
-        show: boolean,
-        searchedIconCount: 0
-      }
-    */
-    const data = Object.assign({}, this.data)
-    const arr = []
-
-    // console.log()
-    this.$packages.forEach(v => {
-      const $this = v
-      const title = getData('value', $this)
-      let info = null
-      for (const index in data) {
-        if (data[index].title === title) {
-          info = data[index]
-          info.name = index
-        }
-      }
-
-      setData('name', info.name, $this)
-      setData('title', info.title, $this)
-      setData('count', info.count, $this)
-      setData('prefix', info.prefix, $this)
-      setData('base', info.class, $this)
-      setData('classifiable', info.classifiable, $this)
-      setData('icons', info.icons, $this)
-      setData('$icons', [], $this)
-      setData('categories', info.categories, $this)
-      setData('hasUl', false, $this)
-      setData('open', false, $this)
-      setData('show', true, $this)
-      setData('searchedIconCount', 0, $this)
-      // if(getData('categories', $this)!= null){
-      //   setData('group', info.categories, $this)
-      // }
-      // this.showPackages.push($this);
-      arr.push($this)
-    })
-    return arr
-  }
-
-  compileIcons(packages) {
-    const that = this
-    const arr = []
-
-    packages.forEach(v => {
-      const $package = v
-      const icons = getData('icons', $package)
-      // console.log(getData('group', $package))
-      const categories = getData('group', $package)
-        ? getData('categories', $package)
-        : null
-      const packageName = getData('name', $package)
-
-      if (Array.isArray(icons)) {
-        icons.forEach(icon => {
-          const $icon = that.handleIcon($package, packageName, categories, icon)
-
-          arr.push($icon)
-        })
-      } else {
-        for (const name in icons) {
-          if ({}.hasOwnProperty.call(icons, name)) {
-            const $icon = that.handleIcon(
-              $package,
-              packageName,
-              categories,
-              name,
-              icons[name]
-            )
-            arr.push($icon)
-          }
-        }
-      }
-    })
-    return arr
-  }
-
-  handleIcon(_package, packageName, categories, icon, iconName = null) {
-    /*
-      icon.data();
-      {
-        title: string,
-        tip: string,
-        categories: string,
-        package: string,
-        prefix: string,
-        baseClass: string
-      }
-    */
-
-    const $icon = parseHTML(
-      template.compile(this.options.templates.icon())({
-        classes: this.classes,
-        font: getData('base', _package),
-        iconName: `${getData('prefix', _package)}${icon}`
-      })
-    )
-    let group = null
-    if (categories) {
-      for (const name in categories) {
-        if (categories[name].indexOf(icon) >= 0) {
-          group = name
-        }
-      }
+  buildDropdown() {
+    if (this.options.manage) {
+      this.MANAGE = new Manage(this)
     }
 
-    getData('$icons', _package).push($icon)
-    setData('package', packageName, $icon)
-    setData('prefix', getData('prefix', _package), $icon)
-    setData('baseClass', getData('base', _package), $icon)
-    setData('categories', group, $icon)
-    setData('title', icon, $icon)
-    setData('tip', iconName ? iconName : icon, $icon)
-
-    return $icon
-  }
-
-  initDropdown() {
-    const that = this
-    const data = []
-    for (const i in this.data) {
-      if ({}.hasOwnProperty.call(this.data, i)) {
-        data.push({ label: this.data[i].title })
-      }
+    if (this.data) {
+      this.buildDropdownContent()
     }
 
-    return Dropdown.of(this.$iconTrigger, {
-      data,
-      target: next(this.$iconPicker),
-      hideOnSelect: false,
-      width: 260,
-      value: data[0].label,
-      templates: {
-        panel() {
-          return `<div class=${that.classes.PANEL}></div>`
-        },
-        item() {
-          return `<div class="{that.classes.ITEM} ${
-            that.classes.PACKAGE
-          }" data-value="{item.label}"><div class=${
-            that.classes.PACKAGETITLE
-          }>{item.label} <span class='${
-            that.classes.PACKAGETIP
-          }'></span> <i class='pj-icon pj-icon-chevron-down'></i></div><div class='${
-            that.classes.PACKAGEBODY
-          }'></div></div>`
-        }
-      }
-    })
+    this.enter('builded')
   }
 
-  initCategories() {
-    // let groups = [];
-    this.packages.forEach(_package => {
-      const group = {}
-      if (getData('classifiable', _package)) {
-        for (const name in getData('categories', _package)) {
-          if ({}.hasOwnProperty.call(getData('categories', _package), name)) {
-            const $categories = parseHTML(
-              template.compile(this.options.templates.categories())({
-                categoriesName: name,
-                classes: this.classes,
-                title: name.toLocaleUpperCase()
-              })
-            )
-
-            setData('title', name, $categories)
-            setData('hasUl', false, $categories)
-            group[name] = $categories
-            append($categories, query(`.${this.classes.PACKAGEBODY}`, _package))
-          }
-        }
-        setData('group', group, _package)
-      }
-    })
-  }
-
-  initController() {
-    const data = []
-
-    this.$controller = parseHTML(
-      template.compile(this.options.templates.controller())({
-        classes: this.classes
-      })
-    )
-
-    this.packages.forEach(v => {
-      data.push({ label: getData('title', v), value: getData('title', v) })
-    })
-
-    data.push({
-      label: this.translate('allIcons'),
-      value: this.translate('allIcons')
-    })
-    this.$panel.append(this.$controller)
-    this.$selector = query(`.${this.classes.SELECTOR}`, this.$controller)
-    this.$elSelect = query(`.${this.classes.ELSELECTOR}`, this.$controller)
-    this.$selectorPanel = Select.of(this.$elSelect, {
-      dropdown: {
-        placement: 'top-center'
-      },
-      reference: this.$selector,
-      source: data,
-      value: data[data.length - 1].value,
-      onChange: val => {
-        this.togglePackage(val)
-      }
-    })
-  }
-
-  initScrollable() {
-    queryAll(`.${this.classes.PACKAGEBODY}`, this.$panel).forEach(packageBody =>
-      Scrollable.of(packageBody)
-    )
-  }
-
-  fillIcons() {
-    this.$icons.forEach(icon => {
-      if (getData('categories', icon)) {
-        this.packages.forEach(_package => {
-          const $categories = getData('group', _package)
-          /* eslint-disable no-undefined */
-          if ($categories !== undefined) {
-            Object.entries($categories).forEach(([name, categorie]) => {
-              if (getData('categories', icon) === name) {
-                if (!getData('hasUl', categorie)) {
-                  categorie.append(parseHTML('<ul></ul>'))
-                  setData('hasUl', true, categorie)
-                }
-                append(icon, query('ul', categorie))
-              }
-            })
-          }
-        })
-      } else {
-        this.packages.forEach(_package => {
-          if (getData('package', icon) === getData('name', _package)) {
-            if (!getData('hasUl', _package)) {
-              append(
-                parseHTML('<ul></ul>'),
-                query(`.${this.classes.PACKAGEBODY}`, _package)
-              )
-              setData('hasUl', true, _package)
-            }
-            append(icon, query('ul', _package))
-          }
-        })
-      }
-
-      // handle tooltip
-      Tooltip.of(icon, {
-        title: getData('tip', icon),
-        placement: 'right'
-      })
-    })
-  }
-
-  handleSearch() {
-    this.$search = parseHTML(
-      template.compile(this.options.templates.search())({
-        classes: this.classes,
-        placeholder: this.translate('searchText')
-      })
-    )
-    insertBefore(this.$search, children(this.$panel)[0])
-  }
-
-  searching(val) {
-    const searchedIcons = []
-    this.$icons.forEach($icon => {
-      if (getData('title', $icon).indexOf(val) >= 0) {
-        addClass(this.classes.SEARCHED, $icon)
-        searchedIcons.push($icon)
-      } else if (hasClass(this.classes.SEARCHED, $icon)) {
-        removeClass(this.classes.SEARCHED, $icon)
-      }
-    })
-
-    if (val.length <= 0) {
-      query(`.${this.classes.PACKAGETIP}`, this.$panel).innerHTML = ''
-      this.packages.forEach(_package => {
-        const group = getData('group', _package)
-        if (group) {
-          Object.values(group).forEach(showElement)
-        }
-      })
-      return false
-    }
-
-    // set searched icon's count
-    this.packages.forEach(_package => {
-      setData('searchedIconCount', 0, _package)
-      query(`.${this.classes.PACKAGETIP}`, _package).innerHTML = '(0 founded)'
-      if (getData('classifiable', _package)) {
-        Object.values(getData('group', _package)).forEach(categorie => {
-          if (!query(`.${this.classes.SEARCHED}`, categorie)) {
-            hideElement(categorie)
-          } else {
-            showElement(categorie)
-          }
-        })
-      }
-    })
-
-    const localeFounded = this.translate('founded')
-
-    searchedIcons.forEach(v => {
-      const key = getData('package', v)
-
-      this.packages.forEach(_package => {
-        if (getData('name', _package) === key) {
-          let count = getData('searchedIconCount', _package)
-          count++
-          setData('searchedIconCount', count, _package)
-        }
-
-        query(`.${this.classes.PACKAGETIP}`, _package).innerHTML = `(${getData(
-          'searchedIconCount',
-          _package
-        )} ${localeFounded})`
-      })
-    })
-
-    this.packages.forEach(_package => {
-      if (!getData('searchedIconCount', _package)) {
-        hideElement(_package)
-      } else {
-        showElement(_package)
-      }
-    })
-    return null
-  }
-
-  togglePackage(name) {
-    const localeAllIcons = this.translate('allIcons')
-    if (name === localeAllIcons) {
-      this.packages.forEach(v => {
-        removeClass(this.classes.PACKAGEHIDE, v)
-        this.close(v)
-      })
-      return false
-    }
-
-    this.packages.forEach(v => {
-      if (!(getData('title', v) === name)) {
-        addClass(this.classes.PACKAGEHIDE, v)
-      } else {
-        removeClass(this.classes.PACKAGEHIDE, v)
-        this.open(v)
-      }
-    })
-    return null
-  }
-
-  open(el) {
-    this.$packages.forEach(v => {
-      this.close(v)
-    })
-
-    addClass(this.classes.PACKAGEOPEN, el)
-    setData('open', true, el)
-    this.$scrollable.find(plugin => el.contains(plugin.element)).enable()
-    this.$scrollable.find(plugin => el.contains(plugin.element)).update()
-  }
-  close(el) {
-    removeClass(this.classes.PACKAGEOPEN, el)
-    setData('open', false, el)
-  }
-
-  select($target, trigger = true) {
-    this.$icon = $target
-
-    this.$icons.forEach(icon => {
-      removeClass(this.classes.ACTIVE, icon)
-    })
-    const targetData = $target.__pluginjsData
-    const value = `${targetData.prefix}${targetData.title}`
-    const { prefix, categories, title, baseClass } = targetData
-
-    const info = {
-      prefix,
-      categories,
-      title,
-      baseClass
-    }
-
-    info.package = targetData.package
-
-    const $selected = query('.pj-dropdown-trigger span', this.$iconPicker)
-
-    addClass(this.classes.ACTIVE, $target)
-    this.element.setAttribute('value', this.options.process(info))
-    $selected.innerHTML = `<i class="${getData(
-      'baseClass',
-      $target
-    )} ${value}"></i>${value}`
-
-    if (trigger) {
-      this.trigger(EVENTS.CHANGE, this.val())
+  initData() {
+    if (isArray(this.options.source) || isPlainObject(this.options.source)) {
+      this.resolveData(this.options.source)
+    } else if (isFunction(this.options.source)) {
+      this.enter('loading')
+      this.options.source.call(this, this.resolveData.bind(this))
     }
   }
 
-  get() {
-    if (this.$icon && typeof this.$icon !== 'undefined') {
-      const data = {
-        package: getData('package', this.$icon),
-        categories: getData('categories', this.$icon),
-        title: getData('title', this.$icon)
-      }
-      return data
+  resolveData(data) {
+    this.data = deepClone(data)
+
+    if (!isArray(this.data)) {
+      this.data = [this.data]
     }
-    return null
-  }
-  set(value, trigger = true) {
-    if (typeof value === 'undefined') {
+
+    if (this.data.length < 1) {
       return
     }
-    if (typeof this.$icons !== 'undefined') {
-      this.$icons.forEach($icon => {
-        const data = $icon.__pluginjsData
-        if (data.package === value.package && data.title === value.title) {
-          this.select($icon, trigger)
-        }
-      })
+
+    const value = this.element.value || this.options.value
+
+    if (!isEmpty(value)) {
+      this.set(this.options.parse.call(this, value), false)
+    }
+
+    if (isNull(this.current)) {
+      this.setCurrentPack(this.data[0].name)
+    }
+
+    if (this.is('loading')) {
+      if (this.LOADING) {
+        this.LOADING.hide()
+      }
+
+      this.leave('loading')
+    }
+
+    if (this.is('builded') || this.is('shown')) {
+      this.buildDropdownContent()
     }
   }
 
-  setData(data) {
-    this.data = data
+  set(item, trigger = true) {
+    if (item !== this.selected) {
+      if (this.selected) {
+        if (this.DROPDOWN) {
+          this.DROPDOWN.unselectByValue(this.getItemValue(this.selected), false)
+        }
+      }
+      if (isNull(item)) {
+        this.setLabel(this.placeholder)
+        removeClass(this.classes.SELECTED, this.$wrap)
+
+        if (trigger) {
+          this.trigger(EVENTS.CLEAR)
+        }
+      } else {
+        this.setLabel(this.getItemLabel(item))
+        addClass(this.classes.SELECTED, this.$wrap)
+
+        if (trigger) {
+          this.trigger(EVENTS.SELECT, item)
+        }
+      }
+
+      this.selected = item
+      let value
+      if (item) {
+        if (isNull(this.current) || item.package !== this.current.name) {
+          this.setCurrentPack(item.package)
+        }
+
+        value = this.options.process.call(this, item)
+      } else {
+        value = ''
+      }
+
+      if (value !== this.element.value) {
+        this.element.value = value
+
+        if (trigger) {
+          this.trigger(EVENTS.CHANGE, value)
+        }
+      }
+    }
   }
 
-  val(value, trigger = true) {
+  val(value) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
+    return this.set(this.options.parse.call(this, value))
+  }
 
-    this.set(this.options.parse.call(this, value), trigger)
+  get() {
+    if (this.selected) {
+      return this.selected
+    }
     return null
+  }
+
+  clear() {
+    this.set(null)
+  }
+
+  getItemLabel(item) {
+    return templateEngine.render(this.options.templates.selected.call(this), {
+      classes: this.classes,
+      icon: this.getItemIcon(item),
+      value: item.icon
+    })
+  }
+
+  getCurrentPack() {
+    return this.current
+  }
+
+  setCurrentPack(name) {
+    const pack = this.getPack(name)
+
+    if (pack) {
+      this.current = pack
+    } else {
+      this.current = this.data.length > 0 ? this.data[0] : null
+    }
+  }
+
+  switchPack(name) {
+    if (name !== this.current.name) {
+      if (this.FILTERABLE) {
+        this.FILTERABLE.refreshDefault()
+      }
+      addClass(this.classes.PACKHIDED, this.current.__dom)
+
+      const pack = this.getPack(name)
+      if (!pack.__dom) {
+        pack.__dom = this.buildPack(pack)
+      } else {
+        removeClass(this.classes.PACKHIDED, pack.__dom)
+      }
+
+      this.$main.scrollTop = 0
+      this.setCurrentPack(name)
+    }
+  }
+
+  getPack(name) {
+    return this.data.find(pack => pack.name === name)
+  }
+
+  getPacks() {
+    return this.data
+  }
+
+  getCurrentPackItems() {
+    if (this.current && this.current.__items) {
+      return this.current.__items
+    }
+    return []
+  }
+
+  getItemValue(item) {
+    return item.icon
+  }
+
+  setLabel(label) {
+    html(label, this.$label)
+  }
+
+  selectForDropdown() {
+    if (this.selected) {
+      this.DROPDOWN.selectByValue(this.getItemValue(this.selected), false)
+    }
+  }
+
+  buildDropdownContent() {
+    if (this.data.length > 1 && !this.SWITCHER) {
+      this.SWITCHER = new Switcher(this)
+    }
+
+    if (this.options.filterable && !this.FILTERABLE) {
+      this.FILTERABLE = new Filterable(this)
+    }
+
+    this.buildPack(this.getCurrentPack())
+
+    this.selectForDropdown()
+  }
+
+  buildPack(pack) {
+    if (!this.packTemplate) {
+      this.packTemplate = templateEngine.compile(
+        this.options.templates.pack.call(this)
+      )
+    }
+
+    const $pack = parseHTML(
+      this.packTemplate({
+        classes: this.classes,
+        pack
+      })
+    )
+
+    pack.__dom = $pack
+    pack.__items = {}
+
+    if (pack.classifiable === false) {
+      each(pack.icons, (name, label) => {
+        $pack.appendChild(this.buildItem(pack, name, label))
+      })
+    } else {
+      each(pack.categories, (category, icons) => {
+        $pack.appendChild(this.buildGroup(pack, category, icons))
+      })
+    }
+
+    this.$main.appendChild($pack)
+
+    return $pack
+  }
+
+  buildGroup(pack, group, icons) {
+    if (!this.groupTemplate) {
+      this.groupTemplate = templateEngine.compile(
+        this.options.templates.group.call(this)
+      )
+    }
+
+    const $group = parseHTML(
+      this.groupTemplate({
+        classes: this.classes,
+        group
+      })
+    )
+
+    pack.__items[group] = {
+      group,
+      items: {},
+      $dom: $group
+    }
+
+    icons.forEach(icon => {
+      if (Object.prototype.hasOwnProperty.call(pack.icons, icon)) {
+        $group.appendChild(this.buildItem(pack, icon, pack.icons[icon], group))
+      }
+    })
+
+    return $group
+  }
+
+  buildItem(pack, value, label, group) {
+    if (!this.itemTemplate) {
+      this.itemTemplate = templateEngine.compile(
+        this.options.templates.item.call(this)
+      )
+    }
+
+    const $item = parseHTML(
+      this.itemTemplate({
+        classes: this.classes,
+        icon: this.getItemIcon({
+          class: pack.class,
+          prefix: pack.prefix,
+          icon: value
+        }),
+        value,
+        label
+      })
+    )
+
+    if (group) {
+      pack.__items[group].items[value] = {
+        icon: value,
+        $dom: $item
+      }
+    } else {
+      pack.__items[value] = {
+        icon: value,
+        $dom: $item
+      }
+    }
+
+    Tooltip.of($item, {
+      ...this.options.tooltip
+    })
+
+    return $item
+  }
+
+  getItemIcon(item) {
+    if (!this.iconTemplate) {
+      this.iconTemplate = templateEngine.compile(
+        this.options.templates.icon.call(this)
+      )
+    }
+
+    return this.iconTemplate({
+      item
+    })
+  }
+
+  getActions() {
+    if (!this.$actions) {
+      this.$actions = insertAfter(
+        `<div class="${this.classes.ACTIONS}"></div>`,
+        this.$main
+      )
+    }
+    return this.$actions
+  }
+
+  manage() {
+    if (isFunction(this.options.manage)) {
+      this.options.manage.call(this, this.resolveManage.bind(this))
+    }
+  }
+
+  resolveManage(data) {
+    if (data) {
+      if (this.FILTERABLE) {
+        this.FILTERABLE.refreshDefault()
+      }
+
+      empty(this.$main)
+
+      this.resolveData(data)
+    }
   }
 
   enable() {
     if (this.is('disabled')) {
-      removeClass(this.classes.DISABLED, this.$iconPicker)
-      this.$dropdown.enable()
-      this.element.disabled = false
+      this.DROPDOWN.enable()
+      removeClass(this.classes.DISABLED, this.$wrap)
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -858,9 +537,8 @@ class IconsPicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      addClass(this.classes.DISABLED, this.$iconPicker)
-      this.$dropdown.disable()
-      this.element.disabled = true
+      this.DROPDOWN.disable()
+      addClass(this.classes.DISABLED, this.$wrap)
       this.enter('disabled')
     }
 
@@ -870,30 +548,21 @@ class IconsPicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      removeClass(this.classes.ELEMENT, this.$iconPicker)
+
+      if (this.CLEARABLE) {
+        this.CLEARABLE.destroy()
+      }
       if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.$iconPicker)
+        removeClass(this.getThemeClass(), this.$wrap)
       }
-
-      showElement(this.element)
-      this.$dropdown.destroy()
-      if (this.$selectorPanel) {
-        this.$selectorPanel.destroy()
-      }
-
-      unwrap(this.$iconPicker)
-      this.$iconPicker.remove()
-
+      this.$wrap.remove()
+      removeClass(this.classes.ELEMENT, this.element)
       this.leave('initialized')
     }
 
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }
-
-  static setData(data) {
-    DATA = data
-  }
 }
 
-export default IconsPicker
+export default IconPicker

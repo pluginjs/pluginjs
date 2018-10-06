@@ -1,3 +1,6 @@
+import { search } from '@pluginjs/match'
+import { isString } from '@pluginjs/is'
+
 export const namespace = 'iconPicker'
 
 export const events = {
@@ -5,137 +8,150 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  CHANGE: 'change'
-}
-
-export const packageClass = {
-  PACKAGE: '{namespace}-package',
-  PACKAGESWRAP: '{namespace}-package-wrap',
-  PACKAGETITLE: '{namespace}-package-title',
-  PACKAGEBODY: '{namespace}-package-body',
-  PACKAGEOPEN: '{namespace}-package-open',
-  PACKAGEHIDE: '{namespace}-package-hide',
-  PACKAGETIP: '{namespace}-package-tip'
-}
-
-export const searchClass = {
-  SEARCH: '{namespace}-search',
-  SEARCHING: '{namespace}-searching',
-  SEARCHED: '{namespace}-searched',
-  SEARCHCLOSE: '{namespace}-search-close',
-  SEARCHLIST: '{namespace}-search-list',
-  SEARCHOWNDATA: '{namespace}-search-data'
-}
-
-export const controllerClass = {
-  CONTROLLER: '{namespace}-controller',
-  SELECTOR: '{namespace}-selector',
-  SELECTORPANEL: '{namespace}-selector-panel',
-  ELSELECTOR: '{namespace}-selector-element',
-  MANAGE: '{namespace}-manage'
-}
-
-export const emptyClass = {
-  EMPTY: '{namespace}-empty',
-  EMPTYLINK: '{namespace}-empty-link'
-}
-
-export const baseClass = {
-  NAMESPACE: `pj-${namespace}`,
-  THEME: '{namespace}--{theme}',
-  ELEMENT: '{namespace}',
-  TRIGGER: '{namespace}-trigger',
-  WRAP: '{namespace}-wrap',
-  PANEL: '{namespace}-panel',
-  CATEGORIES: '{namespace}-categories',
-  CATEGORIESTITLE: '{namespace}-categories-title',
-  ICON: '{namespace}-icon',
-  ICONHOVER: '{namespace}-icon-hover',
-  ACTIVE: '{namespace}-active',
-  DISABLED: '{namespace}-disabled'
+  SELECT: 'select',
+  UNSELECT: 'unselect',
+  CHANGE: 'change',
+  HIDE: 'hide',
+  HIDED: 'hided',
+  SHOW: 'show',
+  SHOWN: 'shown',
+  CLEAR: 'clear',
+  FILTER: 'filter'
 }
 
 export const classes = {
-  ...baseClass,
-  ...packageClass,
-  ...searchClass,
-  ...controllerClass,
-  ...emptyClass
+  NAMESPACE: `pj-${namespace}`,
+  ELEMENT: '{namespace}-element',
+  TRIGGER: '{namespace}-trigger pj-input',
+  LABEL: '{namespace}-label',
+  WRAP: '{namespace}',
+  SHOW: '{namespace}-show',
+  DROPDOWN: '{namespace}-dropdown',
+  GROUP: '{namespace}-group',
+  GROUPLABEL: '{namespace}-group-label',
+  GROUPHIDED: '{namespace}-group-hided',
+  MAIN: '{namespace}-main',
+  PACK: '{namespace}-pack',
+  PACKHIDED: '{namespace}-pack-hided',
+  ITEM: '{namespace}-item pj-dropdown-item',
+  SELECTED: '{namespace}-selected',
+  DISABLED: '{namespace}-disabled',
+  CLEARABLE: '{namespace}-clearable',
+  CLEAR: '{namespace}-clear',
+  FILTERABLE: '{namespace}-filterable',
+  FILTER: '{namespace}-filter',
+  EMPTY: '{namespace}-empty',
+  NOTFOUND: '{namespace}-not-found',
+  LOADING: '{namespace}-loading',
+  ACTIONS: '{namespace}-actions',
+  ACTION: '{namespace}-action',
+  MANAGE: '{namespace}-manage',
+  SWITCHER: '{namespace}-switcher',
+  SWITCHERDROPDOWN: '{namespace}-switcher-dropdown'
 }
 
-export const methods = ['get', 'set', 'val', 'enable', 'disable', 'destroy']
+export const methods = [
+  'set',
+  'get',
+  'val',
+  'clear',
+  'enable',
+  'disable',
+  'destroy'
+]
 
 export const defaults = {
   theme: null,
-  locale: 'en',
-  manage: true,
+  source: null,
+  value: null,
+  placeholder: true,
+  clearable: true,
+  manage: null,
+  multiple: false,
+  filterable: true,
+  filter(item, query) {
+    return search(query, item, {
+      diacritics: false,
+      punctuation: false,
+      case: false,
+      whitespaces: false,
+      boundaries: false
+    })
+  },
   keyboard: true,
-  placehoder: 'Choose a icon',
-  disabled: false,
+  dropdown: {
+    placement: 'bottom' // top
+  },
+  tooltip: {
+    trigger: 'hover'
+  },
   templates: {
-    empty() {
-      return `<div class='{classes.EMPTY}'>{title}<a href="#" class='{classes.EMPTYLINK}'>{linkTitle}</a>
-      </div>`
+    dropdown() {
+      return '<div class="{classes.DROPDOWN}"><div class="{classes.MAIN}"></div></div>'
     },
-    trigger() {
-      return `<div class={trigger}><span class="pj-dropdown-trigger"></span>
-      </div>`
+    filter() {
+      return '<div class="{classes.FILTER}"><input type="text" autocomplete="off" spellcheck="false" placeholder="{placeholder}"></div>'
+    },
+    switcher() {
+      return '<div class="{classes.SWITCHER} {classes.ACTION}"><span>{text}</span><div class="{classes.SWITCHERDROPDOWN}"></div></div>'
+    },
+    manage() {
+      return '<div class="{classes.MANAGE} {classes.ACTION}">{text}</div>'
+    },
+    label() {
+      return '<div class="{classes.LABEL}">{placeholder}</div>'
+    },
+    pack() {
+      return '<div class="{classes.PACK}" data-name="{pack.name}"></div>'
+    },
+    group() {
+      return '<div class="{classes.GROUP}"><div class="{classes.GROUPLABEL}">{group}</div></div>'
+    },
+    item() {
+      return '<div class="{classes.ITEM}" data-value="{value}" title="{label}">{icon}</div>'
     },
     icon() {
-      return `<li class={classes.ICON}><i class='{font} {iconName}' data-value={iconName}></i>
-      </li>`
+      return '<i class="{item.class} {item.prefix}{item.icon}"></i>'
     },
-    categories() {
-      return `<div class='{classes.CATEGORIES} {categoriesName}'><div class={classes.CATEGORIESTITLE}>{title}</div>
-      </div>`
-    },
-    controller() {
-      return `<div class={classes.CONTROLLER}><div class={classes.SELECTOR}><div class={classes.ELSELECTOR}></div></div>
-      </div>`
-    },
-    search() {
-      return `<form class={classes.SEARCH} action="#"><i class='pj-icon pj-icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class='pj-icon pj-icon-remove {classes.SEARCHCLOSE}'></i>
-      </form>`
+    selected() {
+      return '{icon} <span>{value}</span>'
     }
   },
-  process(value) {
-    if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value)
+  parse(data) {
+    if (isString(data)) {
+      try {
+        return JSON.parse(data)
+      } catch (e) {
+        return null
+      }
+    }
+    return null
+  },
+  process(data) {
+    if (data && typeof data !== 'undefined' && data.length !== 0) {
+      return JSON.stringify(data)
     }
     return ''
-  },
-  parse(value) {
-    if (value) {
-      return JSON.parse(value.replace(/\'/g, '"'))/* eslint-disable-line */
-
-    }
-
-    return false
-    // const values = value.split(':');
-    // return {
-    //   package: values[0],
-    //   title: values[1]
-    // };
   }
 }
-
-export const dependencies = ['tooltip', 'dropdown', 'scrollable']
 
 export const translations = {
   en: {
-    allIcons: 'All Icons',
-    searchText: 'Search...',
-    manage: 'manage',
-    founded: 'founded',
-    emptyTitle: 'Befor using icons, you need add icons. ',
-    emptyLinkTitle: 'Go add now'
+    placeholderText: 'Select Icon',
+    loadingText: 'loading..',
+    notFoundText: 'No icons found',
+    searchText: 'search',
+    manageText: 'Manage',
+    swicherText: 'Packages'
   },
   zh: {
-    allIcons: '全部图标',
-    searchText: '搜索...',
-    manage: '管理',
-    founded: '结果',
-    emptyTitle: '使用图标之前，请先添加。',
-    emptyLinkTitle: '现在添加'
+    placeholderText: '选择图标',
+    loadingText: '加载中..',
+    notFoundText: '无匹配图标',
+    searchText: '搜索',
+    manageText: '管理',
+    swicherText: '图标集'
   }
 }
+
+export const dependencies = ['dropdown']

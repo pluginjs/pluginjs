@@ -1,0 +1,218 @@
+@import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
+
+// Vars
+// =====================
+$iconPicker: "pj-iconPicker" !default;
+$iconPicker-width: 200px !default;
+$iconPicker-max-height: 300px !default;
+
+$iconPicker-dropdown-width: 272px !default;
+
+$iconPicker-trigger-arrow-icon: $pj-icon-caret-down-mini !default;
+$iconPicker-trigger-arrow-font: $pj-icon-font-family !default;
+$iconPicker-trigger-arrow-right: $input-padding-x !default;
+$iconPicker-trigger-padding-right: 30px !default;
+
+$iconPicker-clear-icon: $pj-icon-close !default;
+$iconPicker-clear-font: $pj-icon-font-family !default;
+$iconPicker-clear-right: 11px !default;
+
+$iconPicker-item-width: 36px !default;
+$iconPicker-item-height: 36px !default;
+
+$iconPicker-item-border-width: 1px !default;
+
+$iconPicker-item-margin-x: 2px !default;
+$iconPicker-item-margin-y: 2px !default;
+
+$iconPicker-icon-width: 16px !default;
+$iconPicker-icon-height: 16px !default;
+
+$iconPicker-manage-icon: $pj-icon-setting !default;
+$iconPicker-manage-font: $pj-icon-font-family !default;
+
+$iconPicker-item-padding-x: ($iconPicker-item-width - $iconPicker-icon-width)/2 - $iconPicker-item-border-width !default;
+$iconPicker-item-padding-y: ($iconPicker-item-height - $iconPicker-icon-height)/2 - $iconPicker-item-border-width !default;
+
+.#{$iconPicker} {
+  position: relative;
+  width: $iconPicker-width;
+
+  &-element {
+    display: none;
+  }
+
+  & &-trigger {
+    width: 100%;
+    padding-right: $iconPicker-trigger-padding-right;
+  }
+
+  & &-dropdown {
+    width: $iconPicker-dropdown-width;
+  }
+
+  &-main {
+    position: relative;
+    height: $iconPicker-max-height;
+    overflow-y: auto;
+  }
+
+  &-main,
+  &-pack,
+  &-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+
+  &-pack {
+    overflow-x: hidden;
+  }
+
+  &-item {
+    position:relative;
+    box-sizing: border-box;
+    width: $iconPicker-item-width;
+    height: $iconPicker-item-height;
+    padding: $iconPicker-item-padding-y $iconPicker-item-padding-x;
+    margin: $iconPicker-item-margin-y $iconPicker-item-margin-x;
+    text-align: center;
+    text-overflow: clip;
+    border: $iconPicker-item-border-width solid transparent;
+    border-radius: 100%;
+
+    i {
+      width: $iconPicker-icon-width;
+      height: $iconPicker-icon-height;
+    }
+  }
+
+  &-group {
+    width: 100%;
+  }
+
+  &-group-label {
+    width: 100%;
+    overflow: hidden;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-pack-hided {
+    display: none;
+  }
+
+  &-group-hided {
+    display: none;
+  }
+
+  &-empty,
+  &-not-found,
+  &-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+  }
+
+  &-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  &-action {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &-manage {
+    &::before {
+      @include icon();
+      margin-right: 3px;
+      font-family: $iconPicker-manage-font;
+      content: icon-content($iconPicker-manage-icon);
+    }
+  }
+
+  &-switcher-dropdown {
+    width: 100%;
+  }
+
+  &-trigger {
+    cursor: pointer;
+
+    &::after {
+      @include icon();
+      position: absolute;
+      top: 50%;
+      right: $iconPicker-trigger-arrow-right;
+      font-family: $iconPicker-trigger-arrow-font;
+      content: icon-content($iconPicker-trigger-arrow-icon);
+      transform: translateY(-50%);
+    }
+
+    .#{$iconPicker}-clearable.#{$iconPicker}-selected:not(.#{$iconPicker}-disabled) &:hover::after {
+      display: none;
+    }
+  }
+
+  &-clear {
+    position: absolute;
+    top: 0;
+    right: $iconPicker-clear-right;
+    display: none;
+    height: 100%;
+    font-family: $iconPicker-clear-font;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($iconPicker-clear-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
+
+    .#{$iconPicker}-selected:not(.#{$iconPicker}-disabled) .#{$iconPicker}-trigger:hover & {
+      display: inline-block;
+    }
+  }
+
+  &-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    i {
+      display: inline-block;
+      width: $iconPicker-icon-width;
+      height: $iconPicker-icon-height;
+    }
+  }
+
+  &-filter {
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      line-height: 100%;
+      border: none;
+      outline: none;
+    }
+  }
+}

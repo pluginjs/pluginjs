@@ -1,20 +1,6 @@
 import IconPicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
-import dashicons from '@icon/dashicons/manifest.json'
-import entypo from '@icon/entypo/manifest.json'
-import feather from '@icon/feather/manifest.json'
-
-const data = {
-  dashicons,
-  entypo,
-  feather
-}
-
-IconPicker.setData(data)
-
-const value = '{"package":"feather", "title":"anchor"}'
-const OBJ = { package: 'feather', title: 'anchor' }
 
 describe('IconPicker', () => {
   describe('IconPicker()', () => {
@@ -25,12 +11,15 @@ describe('IconPicker', () => {
     test('should have defaults', () => {
       expect(IconPicker.defaults).toBeObject()
     })
+
     test('should have events', () => {
       expect(IconPicker.events).toBeObject()
     })
+
     test('should have classes', () => {
       expect(IconPicker.classes).toBeObject()
     })
+
     test('should have methods', () => {
       expect(IconPicker.methods).toBeArray()
     })
@@ -38,16 +27,17 @@ describe('IconPicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const iconPicker = IconPicker.of(generateHTMLSample())
+      const api = IconPicker.of(generateHTMLSample())
 
-      expect(iconPicker).toBeObject()
-      expect(iconPicker.options).toEqual(DEFAULTS)
+      expect(api).toBeObject()
+      expect(api.options).toBeObject()
     })
 
     test('should have options', () => {
-      const iconPicker = IconPicker.of(generateHTMLSample())
+      const api = IconPicker.of(generateHTMLSample())
 
-      expect(iconPicker.options).toBeObject()
+      expect(api.options).toBeObject()
+      expect(api.options).toEqual(DEFAULTS)
     })
   })
 
@@ -55,13 +45,6 @@ describe('IconPicker', () => {
     test('should not call bind', () => {
       const $element = IconPicker.of(generateHTMLSample())
       expect($element.bind()).toBeNil()
-    })
-
-    test('should call destroy', () => {
-      const $element = IconPicker.of(generateHTMLSample())
-      $element.destroy()
-      // expect().toEqual($element);
-      expect($element).toEqual($element)
     })
   })
 
@@ -114,7 +97,7 @@ describe('IconPicker', () => {
 
     it('should not fired when initialize', () => {
       let called = false
-      $element = generateHTMLSample(value)
+      $element = generateHTMLSample('a')
       api = IconPicker.of($element, {
         onChange() {
           called = true
@@ -128,14 +111,14 @@ describe('IconPicker', () => {
       let called = false
       $element = generateHTMLSample()
       api = IconPicker.of($element, {
-        onChange(val) {
+        onChange(value) {
           called = true
 
-          expect(val).toBeString()
+          expect(value).toBe('c')
         }
       })
 
-      api.val(value)
+      api.val('c')
 
       expect(called).toBeTrue()
     })
@@ -147,11 +130,11 @@ describe('IconPicker', () => {
         onChange(value) {
           called = true
 
-          expect(value).toBeString()
+          expect(value).toBe('c')
         }
       })
 
-      api.set(OBJ)
+      api.set('c')
 
       expect(called).toBeTrue()
     })
@@ -167,14 +150,7 @@ describe('IconPicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeNil()
-    })
-
-    test('should get the value with string', () => {
-      $element = generateHTMLSample(value)
-      api = IconPicker.of($element)
-
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBe('b')
     })
   })
 
@@ -188,10 +164,10 @@ describe('IconPicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeNil()
+      expect(api.get()).toBe('b')
 
-      api.set(OBJ)
-      expect(api.get()).toBeObject()
+      api.set('a')
+      expect(api.get()).toBe('a')
     })
   })
 
@@ -209,9 +185,9 @@ describe('IconPicker', () => {
     })
 
     test('should set the value', () => {
-      api.val(value)
+      api.val('a')
 
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBe('a')
     })
   })
 
