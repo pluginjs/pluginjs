@@ -1,6 +1,6 @@
 {
   "name": "font-picker-samples",
-  "description": "Simple font-picker example",
+  "description": "Simple Svg Picker example",
   "license": "GPL-3.0",
   "version": "1.0.0",
   "main": "index.html",
@@ -11,8 +11,6 @@
   "dependencies": {
     "@pluginjs/dom": "*",
     "@pluginjs/font-picker": "*",
-    "@pluginjs/icons": "*",
-    "@pluginjs/styles": "*",
     "webfontloader": "*"
   },
   "devDependencies": {

@@ -1,10 +1,10 @@
-# FontPicker
+# Select
 
-[![npm package](https://img.shields.io/npm/v/@pluginjs/font-picker.svg)](https://www.npmjs.com/package/@pluginjs/font-picker)
+[![npm package](https://img.shields.io/npm/v/@pluginjs/select.svg)](https://www.npmjs.com/package/@pluginjs/select)
 
-A flexible modern font-picker js plugin.
+A flexible modern select js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/fontPicker/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/select/samples)**
 
 ## Introduction
 
@@ -13,13 +13,13 @@ A flexible modern font-picker js plugin.
 #### Yarn
 
 ```javascript
-yarn add @pluginjs/font-picker
+yarn add @pluginjs/select
 ```
 
 #### NPM
 
 ```javascript
-npm i @pluginjs/font-picker
+npm i @pluginjs/select
 ```
 
 ---
@@ -31,15 +31,15 @@ npm i @pluginjs/font-picker
 Development:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
 ```
 
 Production:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.min.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.min.css">
 ```
 
 ### Initialize
@@ -55,28 +55,28 @@ HTML:
 ECMAScript Module:
 
 ```javascript
-import FontPicker from "@pluginjs/font-picker"
-import "@pluginjs/font-picker/dist/font-picker.css"
+import Select from "@pluginjs/select"
+import "@pluginjs/select/dist/select.css"
 
-FontPicker.of(document.querySelector('.element'), options)
+Select.of(document.querySelector('.element'), options)
 ```
 
 CommonJS:
 
 ```javascript
-require("@pluginjs/font-picker/dist/font-picker.css")
-const FontPicker = require("@pluginjs/font-picker")
+require("@pluginjs/select/dist/select.css")
+const Select = require("@pluginjs/select")
 
-FontPicker.of(document.querySelector('.element'), options)
+Select.of(document.querySelector('.element'), options)
 ```
 
 Browser:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
-<script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
+<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
 <script>
-  Pj.fontPicker('.element', options)
+  Pj.select('.element', options)
 </script>
 ```
 
@@ -86,41 +86,53 @@ Browser:
 
 ### Options
 
-Options are called on fontPicker instances through the fontPicker options itself.
+Options are called on select instances through the select options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
-`"locale"` | Set locale environment | `en`
-`"activated"` | Set plugin activated option | `null`
-`"disabled"` | Disavled plugin | `false`
-`"manage"` | Set plugin manage option | `true`
-`"lazyNumber"` | Set plugin lazyNumber option | `12`
-`"delay"` | Set plugin delay option | `250`
-`"keyboard"` | Set plugin keyboard event | `true`
-`"placeholder"` | Set input box prompt information | `choose a font`
+`"trigger"` | Set trigger | `click`
+`"offset"` | Set offset | `[0,0]`
+`"icon"` | Set default icon | `pj-icon pj-icon-char pj-icon-chevron-down`
+`"multiple"` | Set multiple | `false`
+`"clearable"` | Set clearable | `false`
+`"filterable"` | Set filterable | `false`
+`"closeAllButten"` | Set closeAllButton | `true`
+`"placeholder"` | Set input box prompt information | `Please select`
+`"notFoundText"` | Set notoFoundText | `Badge not found`
+`"selected"` | Set selected | `null`
+`"data"` | Set data | `null`
+`"keyboard"` | Set keyboard | `true`
+`"disabled"` | Disabled plugin | `false`
 `"templates"` | Set default templates | `{}`
-`"process"` | The type of object change the type of JSON | `function() {...}`
 `"parse"` | The type of JSON change the type of object | `function() {...}`
+`"process"` | The type of object change the type of JSON | `function() {...}`
 
 ### Events
 
-Events are called on fontPicker instances through the fontPicker events itself.
+Events are called on select instances through the select events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
 -----|-----
+`"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
-`"disable"` | Gets fired when plugin has disabled
+`"disabled"` | Disable plugin
 `"destroy"` | Gets fired when plugin has destroy
+`"load"` | Gets fired when plugin has load
+`"open"` | Gets fired when plugin has open
+`"close"` | Gets fired when plugin has close
+`"click"` | Gets fired when plugin has click
 `"change"` | Gets fired when plugin has changed
-`"searching"` | Gets fired when plugin has searching
+`"select"` | Gets fired when plugin has select
+`"unselect"` | Gets fired when plugin has unselect
+`"hide"` | Gets fired when plugin has hide
 
 ### Methods
 
-Methods are called on fontPicker instances through the fontPicker method itself.
+Methods are called on select instances through the select method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
@@ -131,51 +143,39 @@ Name | Description
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
+`"removeData"` | Set removeData
+`"open"` | Get value of open
+`"close"` | Get value of close
 
 ### Classes
 
 Name | Description | Default
 -----|------|------
-`"NAMESPACE"` | Declare plugin namespace | `pj-fontPicker`
-`"THEME"` | Declare plugin theme | `{namespace}--{theme}`
-`"ELEMENT"` | Declare plugin element | `{namespace}`
-`"TRIGGER"` | Declare plugin trigger | `{namespace}-trigger`
-`"FONT"` | Declare plugin font | `{namespace}-font`
-`"FONTFOCUS"` | Declare plugin fontfocus | `{namespace}-font-focus`
+`"NAMESPACE"` | Declare plugin namespace | `pj-select`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
-`"PANEL"` | Declare plugin panel | `{namespace}-panel`
-`"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
+`"MULTIPLE"` | Declare plugin multiple | `{namespace}-multiple`
+`"FILTERABLE"` | Declare plugin filterable | `{namespace}-filterable`
+`"DROPDOWNLIST"` | Declare plugin dropdownlist | `{namespace}-dropdown`
+`"TRIGGER"` | Declare plugin trigger | `{namespace}-trigger`
+`"HASBADGE"` | Declare plugin hasbadge | `{namespace}-hpj-badge`
+`"BADGE"` | Declare plugin badge | `{namespace}-badge`
+`"BADGECONTENT"` | Declare plugin badge content | `{namespace}-badge-content`
+`"BADGEDELETE"` | Declare plugin badge delete | `{namespace}-badge-delete`
+`"LABEL"` | Declare plugin label | `{namespace}-label`
+`"LIST"` | Declare plugin list | `{namespace}-list`
+`"SUBLIST"` | Declare plugin sublist | `{namespace}-sublist`
+`"ITEM"` | Declare plugin item | `{namespace}-item`
+`"GROUP"` | Declare plugin group | `{namespace}-group`
+`"GROUPLABEL"` | Declare plugin label | `{namespace}-group-label`
+`"OPEN"` | Declare plugin open | `{namespace}-open`
+`"NOTFOUND"` | Declare plugin not found | `{namespace}-not-found`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
-`"SOURCES"` | Declare plugin sources | `{namespace}-sources`
-`"SOURCEICON"` | Declare plugin source icon | `{namespace}-source-icon`
-`"ACTIVATED"` | Declare plugin activated | `{namespace}-activated`
-`"FONTWRAP"` | Declare plugin font wrap | `{namespace}-font-wrap`
-`"PACKAGE"` | Declare plugin package | `{namespace}-package`
-`"PACKAGESWRAP"` | Declare plugin package wrap | `{namespace}-package-wrap`
-`"PACKAGETITLE"` | Declare plugin package title | `{namespace}-package-title`
-`"PACKAGEOPEN"` | Declare plugin package open | `{namespace}-package-open`
-`"PACKAGEHIDE"` | Declare plugin package hide | `{namespace}-package-hide`
-`"SEARCH"` | Declare plugin search | `{namespace}-search`
-`"SEARCHING"` | Declare plugin searching | `{namespace}-searching`
-`"SEARCHED"` | Declare plugin searched | `{namespace}-searched`
-`"SEARCHLIST"` | Declare plugin searchlist | `{namespace}-search-list`
-`"SEARCHREADY"` | Declare plugin searchready | `{namespace}-search-ready`
-`"CONTROLLER"` | Declare plugin controller | `{namespace}-controller`
-`"SELECTOR"` | Declare plugin selector | `{namespace}-selector`
-`"SELECTORPANEL"` | Declare plugin selector panel | `{namespace}-selector-panel`
-`"MANAGE"` | Declare plugin manage | `{namespace}-manage`
-`"EMPTY"` | Declare plugin empty | `{namespace}-empty`
-`"EMPTYLINK"` | Declare plugin emptylink | `{namespace}-empty-link`
-
-### Translations
-
-Name | EN | ZH
------|------|-------
-`"searchText"` | Search... | 搜索...
-`"manage"` | manage | 管理
-`"activatedFonts"` | activated fonts | 已选字体
-`"emptyTitle"` | Befor using font, you need add fonts.  | 使用字体之前，请先添加。
-`"emptyLinkTitle"` | Go add now | 现在添加
+`"MARK"` | Declare plugin mark | `{namespace}-mark`
+`"SELECTED"` | Declare plugin selected | `{namespace}-selected`
+`"FOCUS"` | Declare plugin focus | `{namespace}-focus`
+`"LOADING"` | Declare plugin loading | `{namespace}-loading`
+`"ERROR"` | Declare plugin error | `{namespace}-error`
+`"HIDEICON"` | Declare plugin hideicon | `{namespace}-hideFont`
 ---
 
 ## Browser support
@@ -188,9 +188,9 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/font-picker is Licensed under [the GPL-v3 license](LICENSE).
+@pluginjs/select is Licensed under [the GPL-v3 license](LICENSE).
 
-If you want to use @pluginjs/font-picker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+If you want to use @pluginjs/select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
 
 For purchase an Commercial License, contact us purchase@thecreation.co.
 

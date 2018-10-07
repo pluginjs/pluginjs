@@ -31,7 +31,7 @@ const source = {
   }
 }
 
-const element = query('#disabled .example')
+const element = query('#placeholder .example')
 FontPicker.of(element, {
   source
 })

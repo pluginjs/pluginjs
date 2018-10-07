@@ -31,7 +31,8 @@ const source = {
   }
 }
 
-const element = query('#disabled .example')
+const element = query('#disable-clearable .example')
 FontPicker.of(element, {
+  clearable: false,
   source
 })

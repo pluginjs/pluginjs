@@ -23,15 +23,18 @@ const source = {
       google: {
         families: [fontFamily],
         text
-      },
-      fontactive() {
-        $item.style.fontFamily = fontFamily
       }
     })
+
+    $item.style.fontFamily = fontFamily
   }
 }
 
-const element = query('#disabled .example')
+const element = query('#ajax .example')
 FontPicker.of(element, {
-  source
+  source(resolve) {
+    setTimeout(() => {
+      resolve(source)
+    }, 1000)
+  }
 })

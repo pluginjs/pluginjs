@@ -31,7 +31,8 @@ const source = {
   }
 }
 
-const element = query('#disabled .example')
+const element = query('#disable-filterable .example')
 FontPicker.of(element, {
+  filterable: false,
   source
 })

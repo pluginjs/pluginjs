@@ -1,3 +1,6 @@
+import { search } from '@pluginjs/match'
+import { isString } from '@pluginjs/is'
+
 export const namespace = 'fontPicker'
 
 export const events = {
@@ -5,136 +8,151 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
+  SELECT: 'select',
+  UNSELECT: 'unselect',
   CHANGE: 'change',
-  SEARCHING: 'searching'
-}
-
-export const packageClass = {
-  PACKAGE: '{namespace}-package',
-  SOURCES: '{namespace}-sources',
-  PACKAGETITLE: '{namespace}-package-title',
-  PACKAGEOPEN: '{namespace}-package-open',
-  PACKAGEHIDE: '{namespace}-package-hide'
-}
-
-export const searchClass = {
-  SEARCH: '{namespace}-search',
-  SEARCHING: '{namespace}-searching',
-  SEARCHED: '{namespace}-searched',
-  SEARCHLIST: '{namespace}-search-list',
-  SEARCHREADY: '{namespace}-search-ready'
-}
-
-export const controllerClass = {
-  ACTIONS: '{namespace}-actions',
-  SWITCHER: '{namespace}-switcher',
-  SELECTORPANEL: '{namespace}-selector-panel',
-  ELSELECTOR: '{namespace}-selector-element',
-  MANAGER: '{namespace}-manager'
-}
-
-export const baseClass = {
-  NAMESPACE: `pj-${namespace}`,
-  WRAP: '{namespace}',
-  THEME: '{namespace}--{theme}',
-  TRIGGER: '{namespace}-trigger',
-  FONT: '{namespace}-font',
-  FONTFOCUS: '{namespace}-font-focus',
-  PANEL: '{namespace}-panel',
-  ACTIVE: '{namespace}-active',
-  DISABLED: '{namespace}-disabled',
-  SOURCE: '{namespace}-source',
-  SOURCEICON: '{namespace}-source-icon',
-  ACTIVATED: '{namespace}-activated',
-  FONTWRAP: '{namespace}-font-wrap',
-  DROPDOWN: '{namespace}-dropdown'
-}
-
-export const emptyClass = {
-  EMPTY: '{namespace}-empty',
-  EMPTYLINK: '{namespace}-empty-link'
+  HIDE: 'hide',
+  HIDED: 'hided',
+  SHOW: 'show',
+  SHOWN: 'shown',
+  CLEAR: 'clear',
+  FILTER: 'filter'
 }
 
 export const classes = {
-  ...baseClass,
-  ...packageClass,
-  ...searchClass,
-  ...controllerClass,
-  ...emptyClass
+  NAMESPACE: `pj-${namespace}`,
+  ELEMENT: '{namespace}-element',
+  TRIGGER: '{namespace}-trigger pj-input',
+  LABEL: '{namespace}-label',
+  WRAP: '{namespace}',
+  SHOW: '{namespace}-show',
+  DROPDOWN: '{namespace}-dropdown',
+  GROUP: '{namespace}-group',
+  GROUPLABEL: '{namespace}-group-label',
+  GROUPHIDED: '{namespace}-group-hided',
+  MAIN: '{namespace}-main',
+  SOURCE: '{namespace}-source',
+  SOURCEHIDED: '{namespace}-source-hided',
+  ITEM: '{namespace}-item pj-dropdown-item',
+  SELECTED: '{namespace}-selected',
+  DISABLED: '{namespace}-disabled',
+  CLEARABLE: '{namespace}-clearable',
+  CLEAR: '{namespace}-clear',
+  FILTERABLE: '{namespace}-filterable',
+  FILTER: '{namespace}-filter',
+  EMPTY: '{namespace}-empty',
+  NOTFOUND: '{namespace}-not-found',
+  LOADING: '{namespace}-loading',
+  ACTIONS: '{namespace}-actions',
+  ACTION: '{namespace}-action',
+  MANAGE: '{namespace}-manage',
+  SWITCHER: '{namespace}-switcher',
+  SWITCHERLABEL: '{namespace}-switcher-label',
+  SWITCHERDROPDOWN: '{namespace}-switcher-dropdown'
 }
 
-export const methods = ['get', 'set', 'val', 'enable', 'disable', 'destroy']
+export const methods = [
+  'set',
+  'get',
+  'val',
+  'clear',
+  'enable',
+  'disable',
+  'destroy'
+]
 
 export const defaults = {
   theme: null,
-  locale: 'en',
-  // data: null,
-  activated: null,
-  disabled: false,
-  // sources: null,
-  manager: true,
-  lazyNumber: 12, // [Number][Int]
-  delay: 250,
+  source: null,
+  value: null,
+  placeholder: true,
+  clearable: true,
+  manage: null,
+  multiple: false,
+  filterable: true,
+  filter(item, query) {
+    return search(query, item, {
+      diacritics: false,
+      punctuation: false,
+      case: false,
+      whitespaces: false,
+      boundaries: false
+    })
+  },
   keyboard: true,
-  placeholder: 'Select Font',
-  // sourcelist: ['google', 'typekit', 'fontsquirrel', 'custom', 'system'],
+  dropdown: {
+    placement: 'bottom' // top
+  },
+  tooltip: {
+    trigger: 'hover'
+  },
   templates: {
-    empty() {
-      return `<div class='{classes.EMPTY}'>{title}<a href="#" class='{classes.EMPTYLINK}'>{linkTitle}</a>
-      </div>`
+    dropdown() {
+      return '<div class="{classes.DROPDOWN}"><div class="{classes.MAIN}"></div></div>'
     },
-    trigger() {
-      return `<div class="pj-input {classes.ELEMENT}"><span class="pj-dropdown-trigger"></span><div></div>
-      </div>`
+    filter() {
+      return '<div class="{classes.FILTER}"><input type="text" autocomplete="off" spellcheck="false" placeholder="{placeholder}"></div>'
     },
-    font() {
-      return `<li class="{classes.FONT}" data-value="{fontName}">{fontName}
-      </li>`
+    switcher() {
+      return '<div class="{classes.SWITCHER} {classes.ACTION}"><div class="{classes.SWITCHERLABEL}">{label}</div><div class="{classes.SWITCHERDROPDOWN}"></div></div>'
     },
-    categories() {
-      return `<div class='pj-dropdown-item {classes.PACKAGE}' data-value='{categoriesName}'><div class={classes.PACKAGETITLE}><i class='pj-icon pj-icon-caret-right-mini'></i>{title}</div>
-      </div>`
+    switcherLabel() {
+      return '<i class="{source.icon}"></i> <span>{source.title}</span>'
     },
-    actions() {
-      return `<div class={classes.ACTIONS}><div class={classes.SWITCHER}><i class='{classes.ACTIONS}-icon pj-icon pj-icon-star'></i><div class={classes.ELSELECTOR}></div></div>
-      </div>`
+    manage() {
+      return '<div class="{classes.MANAGE} {classes.ACTION}">{text}</div>'
     },
-    search() {
-      return `<form class={classes.SEARCH} action="#"><i class='{classes.SEARCH}-icon pj-icon pj-icon-search'></i><input type="text" name='search' placeholder={placeholder} /><i class="{classes.SEARCH}-close pj-icon pj-icon-remove"></i>
-      </form>`
+    label() {
+      return '<div class="{classes.LABEL}">{placeholder}</div>'
+    },
+    source() {
+      return '<div class="{classes.SOURCE}" data-name="{source.name}"></div>'
+    },
+    group() {
+      return '<div class="{classes.GROUP}"><div class="{classes.GROUPLABEL}">{group}</div></div>'
+    },
+    item() {
+      return '<div class="{classes.ITEM}" data-source="{source.name}" data-value="{font}">{font}</div>'
+    },
+    selected() {
+      return '<i class="{source.icon}"></i> <span>{value}</span>'
     }
   },
-  process(value) {
-    if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value)
+  parse(data) {
+    if (isString(data)) {
+      try {
+        return JSON.parse(data)
+      } catch (e) {
+        return null
+      }
+    }
+    return null
+  },
+  process(data) {
+    if (data && typeof data !== 'undefined' && data.length !== 0) {
+      return JSON.stringify(data)
     }
     return ''
-  },
-  parse(val) {
-    return JSON.parse(val.replace(/\'/g, '"'))/* eslint-disable-line */
-    // const values = val.split(':');
-    // return {
-    //   source: values[0],
-    //   value: values[1]
-    // };
   }
 }
-
-export const dependencies = ['dropdown', 'scrollable']
 
 export const translations = {
   en: {
-    searchText: 'Search',
-    manager: 'manage',
-    activatedFonts: 'activated',
-    emptyTitle: 'Befor using font, you need add fonts. ',
-    emptyLinkTitle: 'Go add now'
+    placeholderText: 'Select Font',
+    loadingText: 'loading..',
+    notFoundText: 'No fonts found',
+    searchText: 'search',
+    manageText: 'Manage',
+    swicherText: 'Sources'
   },
   zh: {
+    placeholderText: '选择字体',
+    loadingText: '加载中..',
+    notFoundText: '无匹配字体',
     searchText: '搜索',
-    manager: '管理',
-    activatedFonts: '已选字体',
-    emptyTitle: '使用字体之前，请先添加。',
-    emptyLinkTitle: '现在添加'
+    manageText: '管理',
+    swicherText: '字体'
   }
 }
+
+export const dependencies = ['dropdown']

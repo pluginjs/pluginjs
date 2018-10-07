@@ -1,17 +1,10 @@
 {
   "name": "@pluginjs/font-picker",
-  "description": "A flexible modern font-picker js plugin.",
+  "description": "A flexible modern icon picker js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "repository": {
-    "url": "git@github.com:pluginjs/plugin.js.git",
-    "type": "git"
-  },
-  "bugs": {
-    "url": "https://github.com/pluginjs/plugin.js/issues"
-  },
-  "version": "0.2.22",
+  "version": "0.0.1",
   "category": "form",
   "main": "dist/font-picker.umd.js",
   "module": "dist/font-picker.esm.js",
@@ -22,10 +15,6 @@
     "main": "dist/font-picker.css",
     "min": "dist/font-picker.min.css"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "scripts": {
     "build": "plugin build",
     "build:js": "plugin script build-js",
@@ -43,11 +32,10 @@
     "@pluginjs/dom": "*",
     "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/scrollable": "*",
-    "@pluginjs/styled": "*",
-    "@pluginjs/template": "*",
+    "@pluginjs/match": "*",
+    "@pluginjs/polyfills": "*",
+    "@pluginjs/tooltip": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {
@@ -60,10 +48,6 @@
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
-  },
-  "engines": {
-    "node": ">= 8",
-    "npm": ">= 5"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",

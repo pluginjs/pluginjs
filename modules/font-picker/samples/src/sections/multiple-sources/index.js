@@ -1,13 +1,10 @@
 import { query } from '@pluginjs/dom'
-import fontPicker from '@pluginjs/font-picker'
+import FontPicker from '@pluginjs/font-picker'
 import WebFont from 'webfontloader'
-const activated = {
-  google: ['Lora', 'PT Serif', 'Roboto'],
-  custom: ['Verdana', 'Comic Sans MS'],
-  system: ['System']
-}
-const data = {
-  system: {
+
+const source = [
+  {
+    name: 'system',
     title: 'System',
     icon: 'pj-icon pj-icon-desktop',
     fonts: {
@@ -71,7 +68,8 @@ const data = {
       $item.style.fontFamily = fonts[fontFamily]
     }
   },
-  google: {
+  {
+    name: 'google',
     title: 'Google',
     icon: 'pj-icon pj-icon-google',
     fonts: {
@@ -907,24 +905,16 @@ const data = {
         google: {
           families: [fontFamily],
           text
+        },
+        fontactive() {
+          $item.style.fontFamily = fontFamily
         }
       })
-
-      $item.style.fontFamily = fontFamily
-    }
-  },
-  custom: {
-    title: 'Custom',
-    icon: 'pj-icon pj-icon-upload',
-    fonts: ['hello', 'world'],
-    load() {
-      /* eslint-disable no-console */
-      console.log('custom load')
     }
   }
-}
+]
 
-const element = query('#input .font-picker-input')
-fontPicker.registerSources(data)
-fontPicker.setActivated(activated)
-fontPicker.of(element, {})
+const element = query('#multiple-sources .example')
+FontPicker.of(element, {
+  source
+})

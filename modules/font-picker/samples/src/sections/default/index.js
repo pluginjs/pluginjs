@@ -1,13 +1,10 @@
 import { query } from '@pluginjs/dom'
-import fontPicker from '@pluginjs/font-picker'
+import FontPicker from '@pluginjs/font-picker'
 import WebFont from 'webfontloader'
-const activated = {
-  google: ['Lora', 'PT Serif', 'Roboto'],
-  custom: ['Verdana', 'Comic Sans MS'],
-  system: ['System']
-}
-const data = {
-  system: {
+
+const source = [
+  {
+    name: 'system',
     title: 'System',
     icon: 'pj-icon pj-icon-desktop',
     fonts: {
@@ -71,7 +68,8 @@ const data = {
       $item.style.fontFamily = fonts[fontFamily]
     }
   },
-  google: {
+  {
+    name: 'google',
     title: 'Google',
     icon: 'pj-icon pj-icon-google',
     fonts: {
@@ -907,24 +905,67 @@ const data = {
         google: {
           families: [fontFamily],
           text
+        },
+        fontactive() {
+          $item.style.fontFamily = fontFamily
         }
       })
-
-      $item.style.fontFamily = fontFamily
-    }
-  },
-  custom: {
-    title: 'Custom',
-    icon: 'pj-icon pj-icon-upload',
-    fonts: ['hello', 'world'],
-    load() {
-      /* eslint-disable no-console */
-      console.log('custom load')
     }
   }
-}
+]
 
-fontPicker.registerSources(data)
-fontPicker.setActivated(activated)
-const element = query('#default .font-picker-default')
-fontPicker.of(element, {})
+const element = query('#default .example')
+const init = () => {
+  return FontPicker.of(element, {
+    source(resolve) {
+      resolve(source)
+    },
+    manage(resolve) {
+      resolve(source[0])
+    }
+  })
+}
+let api = init()
+
+query('.api').addEventListener('click', event => {
+  const el = event.target
+  if (!el.matches('[data-api]')) {
+    return
+  }
+
+  switch (el.dataset.api) {
+    case 'init':
+      api = init()
+      break
+    case 'get':
+      console.info(api.get())
+      break
+    case 'set':
+      api.set({ source: 'google', font: 'Roboto' })
+      break
+    case 'val':
+      console.info(api.val())
+      break
+    case 'val_set':
+      api.val('{"source":"system","font":"Arial"}')
+      break
+    case 'clear':
+      api.clear()
+      break
+    case 'manage':
+      api.manage()
+      break
+    case 'disable':
+      api.disable()
+      break
+    case 'enable':
+      api.enable()
+      break
+    case 'destroy':
+      api.destroy()
+      break
+    default: {
+      console.info(el.dataset.api)
+    }
+  }
+})
