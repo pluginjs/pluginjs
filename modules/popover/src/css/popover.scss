@@ -10,7 +10,7 @@ $popover-font-size: $font-size-sm;
 $popover-line-height: $line-height-sm;
 
 $popover-width: 400px;
-$popover-padding: 32px;
+$popover-padding: 22px 24px;
 
 $popover-color: $gray-darker;
 $popover-bg: $color-white;
@@ -21,10 +21,7 @@ $popover-close-size: 14px;
 $popover-close-padding: 16px;
 
 $popover-arrow-size: 10px;
-$popover-arrow-spacer: $popover-arrow-size * 0.75;
-$popover-arrow-pos: 20px;
-$popover-arrow-pos-vertical: 10px;
-$popover-arrow-bottom-box-shadow: -3px -3px 10px 0 rgba(0, 0, 0, 0.03);
+$popover-arrow-spacer: $popover-arrow-size;
 
 $popover-dark-color: $color-white;
 $popover-dark-bg: $gray-darkest;
@@ -33,11 +30,9 @@ $popover-dark-box-shadow: $box-shadow-base;
 // Skins
 // =====================
 .#{$popover}-arrow {
-  &::before {
-    width: $popover-arrow-size;
-    height: $popover-arrow-size;
-    background-color: $popover-bg;
-  }
+  width: $popover-arrow-size;
+  height: $popover-arrow-size;
+  box-shadow: $popover-box-shadow;
 
   &[x-placement^="top"] {
     margin-bottom: $popover-arrow-spacer;
@@ -49,10 +44,6 @@ $popover-dark-box-shadow: $box-shadow-base;
 
   &[x-placement^="bottom"] {
     margin-top: $popover-arrow-spacer;
-
-    &::before {
-      box-shadow: $popover-arrow-bottom-box-shadow;
-    }
   }
 
   &[x-placement^="left"] {
@@ -76,6 +67,9 @@ $popover-dark-box-shadow: $box-shadow-base;
   &-close {
     padding: $popover-close-padding;
     font-size: $popover-close-size;
+    background-color: transparent;
+    border: none;
+    outline: none;
     opacity: 0.5;
 
     &:not(:disabled):hover {
@@ -89,7 +83,7 @@ $popover-dark-box-shadow: $box-shadow-base;
   background-color: $popover-dark-bg;
   box-shadow: $popover-dark-box-shadow;
 
-  &.#{$popover}-arrow::before {
-    background-color: $popover-dark-bg;
+  .#{$popover}-arrow {
+    box-shadow: $popover-dark-box-shadow;
   }
 }

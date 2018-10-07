@@ -36,10 +36,17 @@ class Popover extends Tooltip {
   }
 
   createTip() {
+    let arrow = ''
     let close = ''
 
     if (this.options.close) {
       close = templateEngine.render(this.options.templates.close.call(this), {
+        classes: this.classes
+      })
+    }
+
+    if (this.options.arrow) {
+      arrow = templateEngine.render(this.options.templates.arrow.call(this), {
         classes: this.classes
       })
     }
@@ -55,6 +62,7 @@ class Popover extends Tooltip {
 
     return templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
+      arrow,
       close,
       title,
       content
@@ -97,7 +105,7 @@ class Popover extends Tooltip {
     }
 
     if (this.options.arrow) {
-      addClass(this.classes.ARROW, $tip)
+      addClass(this.classes.WITHARROW, $tip)
     }
 
     removeClass(`${this.classes.SHOW} ${this.classes.FADE}`, $tip)

@@ -16,6 +16,7 @@ export const classes = deepMerge(Popover.classes, {
   THEME: '{namespace}--{theme}',
   POPDIALOG: '{namespace}-dialog',
   POPOVER: '{namespace}',
+  INNER: '{namespace}-inner',
   CONTENT: '{namespace}-content',
   TITLE: '{namespace}-title',
   CLOSE: '{namespace}-close',
@@ -25,6 +26,7 @@ export const classes = deepMerge(Popover.classes, {
   BUTTONCOLOR: 'pj-btn-{color}',
   BUTTONS: '{namespace}-btns',
   DISABLED: '{namespace}-disabled',
+  WITHARROW: '{namespace}-witharrow',
   ARROW: '{namespace}-arrow',
   PLACEMENT: '{namespace}-{placement}'
 })
@@ -33,22 +35,26 @@ export const methods = ['do']
 
 export const defaults = deepMerge(Popover.defaults, {
   hideOutClick: true,
-  offset: '0,20',
+  offset: '0,2',
   placement: 'left',
-  arrow: false,
+  arrow: true,
   template() {
-    return (
-      '<div class="{classes.POPOVER} {classes.POPDIALOG}" role="tooltip">' +
-      '{close}' +
-      '{title}' +
-      '{content}' +
-      '{buttons}' +
-      '</div>'
-    )
+    return `<div class="{classes.POPOVER} {classes.POPDIALOG}" role="tooltip">
+        <div class="{classes.INNER}">
+          {title}
+          {content}
+          {buttons}
+        </div>
+        {arrow}
+        {close}
+      </div>`
   },
   templates: {
     close() {
       return '<button type="button" class="pj-icon pj-icon-close {classes.CLOSE}"></button>'
+    },
+    arrow() {
+      return '<div class="{classes.ARROW}"></div>'
     },
     title() {
       return '<h3 class="{classes.TITLE}"></h3>'

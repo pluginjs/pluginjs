@@ -9,9 +9,7 @@ $popover-max-height: 50vh !default;
 $popover-bg: $color-white !default;
 
 $popover-arrow-size: 10px !default;
-$popover-arrow-spacer: $popover-arrow-size * 0.75 !default;
-$popover-arrow-pos: 20px !default;
-$popover-arrow-pos-vertical: 10px !default;
+$popover-arrow-spacer: $popover-arrow-size !default;
 
 // Core
 // =====================
@@ -29,6 +27,8 @@ $popover-arrow-pos-vertical: 10px !default;
     width: 100%;
     max-height: $popover-max-height;
     overflow: auto;
+    color: inherit;
+    background-color: inherit;
 
     > * {
       &:first-child {
@@ -49,7 +49,7 @@ $popover-arrow-pos-vertical: 10px !default;
     cursor: pointer;
   }
 
-  .#{$popover}-content {
+  &-content {
     > * {
       &:first-child {
         margin-top: 0;
@@ -69,111 +69,56 @@ $popover-arrow-pos-vertical: 10px !default;
   &-show {
     opacity: 1;
   }
+
+  &-witharrow {
+    &[x-placement^="top"] {
+      margin-bottom: $popover-arrow-spacer;
+    }
+
+    &[x-placement^="right"] {
+     margin-left: $popover-arrow-spacer;
+    }
+
+    &[x-placement^="bottom"] {
+      margin-top: $popover-arrow-spacer;
+    }
+
+    &[x-placement^="left"] {
+      margin-right: $popover-arrow-spacer;
+    }
+  }
 }
 
 .#{$popover}-arrow {
-  &::before {
-    position: absolute;
-    width: $popover-arrow-size;
-    height: $popover-arrow-size;
-    content: "";
-    background-color: $popover-bg;
+  position: absolute;
+  z-index: -1;
+  width: $popover-arrow-size;
+  height: $popover-arrow-size;
+  background-color: inherit;
+
+  [x-placement^="top"] &,
+  [x-placement^="bottom"] & {
+    transform: translateY(-50%) rotate(45deg);
   }
 
-  &[x-placement^="top"],
-  &[x-placement^="bottom"] {
-    &::before {
-      transform: translateY(-50%) rotate(45deg);
-    }
+  [x-placement^="right"] &,
+  [x-placement^="left"] & {
+    transform: translateX(-50%) rotate(45deg);
   }
 
-  &[x-placement^="right"],
-  &[x-placement^="left"] {
-    &::before {
-      transform: translateX(-50%) rotate(45deg);
-    }
+  [x-placement^="top"] & {
+    top: 100%;
   }
 
-  &[x-placement="top"],
-  &[x-placement="right"],
-  &[x-placement="bottom"],
-  &[x-placement="left"] {
-    &::before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
+  [x-placement^="right"] & {
+    left: 0;
   }
 
-  &[x-placement^="top"] {
-    margin-bottom: $popover-arrow-spacer;
-
-    &::before {
-      top: 100%;
-    }
+  [x-placement^="bottom"] & {
+    top: 0;
   }
 
-  &[x-placement^="right"] {
-   margin-left: $popover-arrow-spacer;
-
-    &::before {
-      left: 0;
-    }
-  }
-
-  &[x-placement^="bottom"] {
-    margin-top: $popover-arrow-spacer;
-
-    &::before {
-      top: 0;
-    }
-  }
-
-  &[x-placement^="left"] {
-    margin-right: $popover-arrow-spacer;
-
-    &::before {
-      left: 100%;
-    }
-  }
-
-  &[x-placement="top"],
-  &[x-placement="bottom"] {
-    &::before {
-      left: 50%;
-    }
-  }
-
-  &[x-placement="top-start"],
-  &[x-placement="bottom-start"] {
-    &::before {
-      left: $popover-arrow-pos;
-    }
-  }
-
-  &[x-placement="top-end"],
-  &[x-placement="bottom-end"] {
-    &::before {
-      right: #{$popover-arrow-pos};
-    }
-  }
-
-  &[x-placement="left"],
-  &[x-placement="right"] {
-    &::before {
-      top: 50%;
-    }
-  }
-
-  &[x-placement="left-start"],
-  &[x-placement="right-start"] {
-    &::before {
-      top: $popover-arrow-pos-vertical;
-    }
-  }
-
-  &[x-placement="left-end"],
-  &[x-placement="right-end"] {
-    &::before {
-      bottom: #{$popover-arrow-pos-vertical};
-    }
+  [x-placement^="left"] & {
+    left: 100%;
   }
 }

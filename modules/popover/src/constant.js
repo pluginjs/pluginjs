@@ -21,6 +21,7 @@ export const classes = {
   CLOSE: '{namespace}-close',
   SHOW: '{namespace}-show',
   FADE: '{namespace}-fade',
+  WITHARROW: '{namespace}-witharrow',
   ARROW: '{namespace}-arrow',
   DISABLED: '{namespace}-disabled',
   PLACEMENT: '{namespace}-{placement}'
@@ -35,6 +36,7 @@ export const defaults = deepMerge(Tooltip.defaults, {
           {title}
           {content}
         </div>
+        {arrow}
         {close}
       </div>`
   },
@@ -47,14 +49,14 @@ export const defaults = deepMerge(Tooltip.defaults, {
     },
     content() {
       return '<div class="{classes.CONTENT}"></div>'
+    },
+    arrow() {
+      return '<div class="{classes.ARROW}"></div>'
     }
-    // ,
-    // arrow() {
-    //   return '<div class="{classes.ARROW}"></div>'
-    // }
   },
   content: '',
   html: true,
+  offset: '0,2',
   arrow: true,
   close: false,
   trigger: 'click', // hover focus, click, manual

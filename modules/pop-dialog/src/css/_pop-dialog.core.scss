@@ -3,19 +3,24 @@
 // Vars
 // =====================
 $popover: "pj-popover" !default;
-$popover-dialog-min-width: 196px !default;
-$popover-dialog-max-width: 286px !default;
+$popover-dialog-width: 286px !default;
+
+$popover-buttons-gutter: 20px !default;
+$popover-button-gutter: 10px !default;
 
 // Core
 // =====================
 .#{$popover}-dialog {
-  min-width: $popover-dialog-min-width;
-  max-width: $popover-dialog-max-width;
+  width: $popover-dialog-width;
+  max-width: 100%;
   text-align: center;
-}
 
-.#{$popover}-btns {
-  display: flex;
-  justify-content: center;
+  .#{$popover}-btns {
+    margin-top: $popover-buttons-gutter;
+  }
+
+  .#{$popover}-btn + .#{$popover}-btn {
+    margin-left: $popover-button-gutter;
+  }
 }
 

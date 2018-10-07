@@ -86,10 +86,17 @@ class PopDialog extends Popover {
   }
 
   createTip() {
+    let arrow = ''
     let close = ''
 
     if (this.options.close) {
       close = templateEngine.render(this.options.templates.close.call(this), {
+        classes: this.classes
+      })
+    }
+
+    if (this.options.arrow) {
+      arrow = templateEngine.render(this.options.templates.arrow.call(this), {
         classes: this.classes
       })
     }
@@ -112,6 +119,7 @@ class PopDialog extends Popover {
     return templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
       close,
+      arrow,
       title,
       content,
       buttons

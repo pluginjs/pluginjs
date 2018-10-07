@@ -4,47 +4,8 @@
 // Vars
 // =====================
 $popover: "pj-popover";
-$popover-dialog-padding: 22px 24px;
-$popover-btns-margin-top: 16px;
-$popover-btn-spacer: 3px 15px;
-$popover-btn-margin-left: 15px;
-$popover-btn-primary-bgcolor: $color-primary;
-$popover-btn-primary-bdcolor: $popover-btn-primary-bgcolor;
-$popover-dark-btn-color: $color-white;
+$popover-dialog-width: 300px;
 
-.#{$popover} {
-  &-dialog {
-    padding: $popover-dialog-padding;
-  }
-
-  &-btns {
-    margin-top: $popover-btns-margin-top;
-  }
-
-  &-btn {
-    padding: $popover-btn-spacer;
-    
-    &[data-color="primary"] {
-      color: #fff;
-      background-color: $popover-btn-primary-bgcolor;
-      border-color: $popover-btn-primary-bdcolor;
-    }
-
-    & + & {
-      margin-left: $popover-btn-margin-left;
-    }
-  }
-}
-
-// dark skin
-.#{$popover}--dark {
-  .#{$popover}-btn {
-    color: $popover-dark-btn-color;
-    background: inherit;
-
-    &:not(:disabled):active,
-    &:not(:disabled):hover {
-      background-color: inherit;
-    }
-  }
+.#{$popover}-dialog {
+  width: $popover-dialog-width;
 }

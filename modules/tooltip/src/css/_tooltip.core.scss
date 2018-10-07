@@ -10,9 +10,7 @@ $tooltip-color: $color-white !default;
 $tooltip-bg: $gray-darkest !default;
 
 $tooltip-arrow-size: 10px !default;
-$tooltip-arrow-spacer: 0 !default;
-$tooltip-arrow-pos: 20px !default;
-$tooltip-arrow-pos-vertical: 10px !default;
+$tooltip-arrow-spacer: $tooltip-arrow-size !default;
 
 // Core
 // =====================
@@ -23,6 +21,8 @@ $tooltip-arrow-pos-vertical: 10px !default;
   z-index: $tooltip-zindex;
   box-sizing: border-box;
   display: block;
+  color: $tooltip-color;
+  background-color: $tooltip-bg;
 
   &-fade {
     opacity: 0;
@@ -31,6 +31,25 @@ $tooltip-arrow-pos-vertical: 10px !default;
 
   &-show {
     opacity: 1;
+  }
+
+  &-inner {
+    box-sizing: border-box;
+    width: 100%;
+    max-height: $tooltip-max-height;
+    overflow: auto;
+    color: inherit;
+    background-color: inherit;
+
+    > * {
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &[x-placement^="top"] {
@@ -50,120 +69,37 @@ $tooltip-arrow-pos-vertical: 10px !default;
   }
 }
 
-.#{$tooltip}-inner {
-  box-sizing: border-box;
-  width: 100%;
-  max-height: $tooltip-max-height;
-  overflow: auto;
-  color: $tooltip-color;
-  background-color: $tooltip-bg;
-
-  > * {
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  &::before {
-    position: absolute;
-    z-index: -1;
-    width: $tooltip-arrow-size;
-    height: $tooltip-arrow-size;
-    content: "";
-    background-color: inherit;
-  }
+.#{$tooltip}-arrow {
+  position: absolute;
+  z-index: -1;
+  width: $tooltip-arrow-size;
+  height: $tooltip-arrow-size;
+  background-color: inherit;
 
   [x-placement^="top"] &,
   [x-placement^="bottom"] & {
-    &::before {
-      transform: translateY(-50%) rotate(45deg);
-    }
+    transform: translateY(-50%) rotate(45deg);
   }
 
   [x-placement^="right"] &,
   [x-placement^="left"] & {
-    &::before {
-      transform: translateX(-50%) rotate(45deg);
-    }
-  }
-
-  [x-placement="top"] &,
-  [x-placement="right"] &,
-  [x-placement="bottom"] &,
-  [x-placement="left"] & {
-    &::before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
+    transform: translateX(-50%) rotate(45deg);
   }
 
   [x-placement^="top"] & {
-    &::before {
-      top: 100%;
-    }
+    top: 100%;
   }
 
   [x-placement^="right"] & {
-    &::before {
-      left: 0;
-    }
+    left: 0;
   }
 
   [x-placement^="bottom"] & {
-    &::before {
-      top: 0;
-    }
+    top: 0;
   }
 
   [x-placement^="left"] & {
-    &::before {
-      left: 100%;
-    }
-  }
-
-  [x-placement="top"] &,
-  [x-placement="bottom"] & {
-    &::before {
-      left: 50%;
-    }
-  }
-
-  [x-placement="top-start"] &,
-  [x-placement="bottom-start"] & {
-    &::before {
-      left: $tooltip-arrow-pos;
-    }
-  }
-
-  [x-placement="top-end"] &,
-  [x-placement="bottom-end"] & {
-    &::before {
-      right: #{$tooltip-arrow-pos};
-    }
-  }
-
-  [x-placement="left"] &,
-  [x-placement="right"] & {
-    &::before {
-      top: 50%;
-    }
-  }
-
-  [x-placement="left-start"] &,
-  [x-placement="right-start"] & {
-    &::before {
-      top: $tooltip-arrow-pos-vertical;
-    }
-  }
-
-  [x-placement="left-end"] &,
-  [x-placement="right-end"] & {
-    &::before {
-      bottom: #{$tooltip-arrow-pos-vertical};
-    }
+    left: 100%;
   }
 }
 
