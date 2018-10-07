@@ -265,7 +265,7 @@ class IconPicker extends Component {
       this.selected = item
       let value
       if (item) {
-        if (isNull(this.current) || item.package !== this.current.name) {
+        if (item.package) {
           this.setCurrentPack(item.package)
         }
 
@@ -521,6 +521,10 @@ class IconPicker extends Component {
       }
 
       empty(this.$main)
+      if (this.SWITCHER) {
+        this.SWITCHER.destroy()
+        this.SWITCHER = null
+      }
 
       this.resolveData(data)
     }

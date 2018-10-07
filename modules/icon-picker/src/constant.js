@@ -47,6 +47,7 @@ export const classes = {
   ACTION: '{namespace}-action',
   MANAGE: '{namespace}-manage',
   SWITCHER: '{namespace}-switcher',
+  SWITCHERLABEL: '{namespace}-switcher-label',
   SWITCHERDROPDOWN: '{namespace}-switcher-dropdown'
 }
 
@@ -93,7 +94,7 @@ export const defaults = {
       return '<div class="{classes.FILTER}"><input type="text" autocomplete="off" spellcheck="false" placeholder="{placeholder}"></div>'
     },
     switcher() {
-      return '<div class="{classes.SWITCHER} {classes.ACTION}"><span>{text}</span><div class="{classes.SWITCHERDROPDOWN}"></div></div>'
+      return '<div class="{classes.SWITCHER} {classes.ACTION}"><div class="{classes.SWITCHERLABEL}">{label}</div><div class="{classes.SWITCHERDROPDOWN}"></div></div>'
     },
     manage() {
       return '<div class="{classes.MANAGE} {classes.ACTION}">{text}</div>'
@@ -154,4 +155,4 @@ export const translations = {
   }
 }
 
-export const dependencies = ['dropdown']
+export const dependencies = ['dropdown', 'tooltip']

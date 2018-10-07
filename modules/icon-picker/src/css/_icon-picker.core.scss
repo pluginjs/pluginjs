@@ -138,10 +138,14 @@ $iconPicker-item-padding-y: ($iconPicker-item-height - $iconPicker-icon-height)/
   &-manage {
     &::before {
       @include icon();
-      margin-right: 3px;
+      margin-right: 5px;
       font-family: $iconPicker-manage-font;
       content: icon-content($iconPicker-manage-icon);
     }
+  }
+
+  &-switcher-label {
+    width: 100%;
   }
 
   &-switcher-dropdown {
