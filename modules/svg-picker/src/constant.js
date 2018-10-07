@@ -145,4 +145,4 @@ export const translations = {
   }
 }
 
-export const dependencies = ['dropdown']
+export const dependencies = ['dropdown', 'tooltip']
