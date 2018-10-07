@@ -27,6 +27,8 @@ $dropdown-index: $zindex-dropdown !default;
 
   &-item {
     position: relative;
+    display: flex;
+    align-items: center;
     overflow: hidden;
     line-height: 1;
     text-overflow: ellipsis;

@@ -100,6 +100,10 @@ class Dropdown extends Component {
       this.appendItems(this.options.data)
     }
 
+    if (this.options.value) {
+      this.selectByValue(this.options.value, false)
+    }
+
     if (this.options.keyboard) {
       this.KEYBOARD = new Keyboard(this)
     }

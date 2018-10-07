@@ -70,7 +70,7 @@ export const deepClone = val => {
 }
 
 export const deepCloneObject = obj => {
-  if (isObject(obj)) {
+  if (isObject(obj) && !isFunction(obj)) {
     const res = new obj.constructor()
     for (const key in obj) { // eslint-disable-line
       res[key] = deepClone(obj[key])
