@@ -3,7 +3,7 @@ import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { getStyle, setStyle } from '@pluginjs/styled'
+import { getStyle, setStyle, hideElement } from '@pluginjs/styled'
 import { isString } from '@pluginjs/is'
 import {
   append,
@@ -12,10 +12,10 @@ import {
   attr,
   wrap,
   find,
-  // unwrap,
+  unwrap,
   getData,
-  setData
-  // empty
+  setData,
+  empty
 } from '@pluginjs/dom'
 import ColorPicker from '@pluginjs/color-picker'
 import Dropdown from '@pluginjs/dropdown'
@@ -68,6 +68,9 @@ class GradientPicker extends Component {
     this.markers = []
     this.mode = 'linear'
     this.oldColor = null
+    this.gradientValue = `${this.mode}-gradient(${
+      this.mode === 'linear' ? 'to right' : 'circle'
+    },#fff 0%,#000 100%)`
     this.setupStates()
     this.initialize()
   }
@@ -76,6 +79,18 @@ class GradientPicker extends Component {
     this.elementColor = this.element.value
 
     this.createHtml()
+
+    if (this.options.displayMode === 'inline') {
+      hideElement(this.element)
+      setStyle(
+        {
+          boxShadow: 'none',
+          border: '1px solid #e6e6e6'
+        },
+        this.$panel
+      )
+    }
+
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
@@ -95,6 +110,46 @@ class GradientPicker extends Component {
   }
 
   bind() {
+    if (this.options.displayMode !== 'inline') {
+      // input remove color
+      compose(
+        bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
+          hideElement(this.$remove)
+          this.clear()
+        }),
+        bindEvent(
+          this.eventName('mouseout'),
+          `.${this.classes.TRIGGER}`,
+          () => {
+            hideElement(this.$remove)
+          }
+        ),
+        bindEvent(
+          this.eventName('mouseover'),
+          `.${this.classes.TRIGGER}`,
+          () => {
+            if (this.element.value.length > 0) {
+              if (!this.is('disabled')) {
+                this.$remove.style.display = 'inline'
+              }
+            }
+          }
+        )
+      )(this.$wrap)
+
+      // save
+      bindEvent(
+        this.eventName('click'),
+        () => {
+          this.enter('save')
+
+          this.COLORPICKER.HISTORY.set(getData('value', this.$marker).color)
+          this.DROPDOWN.hide()
+        },
+        this.$save
+      )
+    }
+
     bindEvent(
       this.selfEventName('wheelChange'),
       (e, el, angle) => {
@@ -155,7 +210,6 @@ class GradientPicker extends Component {
             this.getMarkerPercent(e.offsetX) / 100
           )
           this.GRADIENT.reorder()
-          console.log(this.GRADIENT)
           this.addMarker(e.offsetX)
         }
       },
@@ -185,18 +239,6 @@ class GradientPicker extends Component {
         this.update()
       },
       this.$angle
-    )
-
-    // save
-    bindEvent(
-      this.eventName('click'),
-      () => {
-        this.enter('save')
-
-        this.COLORPICKER.HISTORY.set(getData('value', this.$marker).color)
-        this.DROPDOWN.hide()
-      },
-      this.$save
     )
 
     // delete marker
@@ -257,36 +299,36 @@ class GradientPicker extends Component {
     this.$wrap = wrap($wrap, this.element)
     wrap(`<div class='${this.classes.TRIGGER}'></div>`, this.element)
 
-    // if (this.options.displayMode !== 'inline') {
-    //   // init remove button
-    this.initRemove()
+    if (this.options.displayMode !== 'inline') {
+      //   // init remove button
+      this.initRemove()
 
-    //   // init preview
-    this.initPreview()
-    // }
+      //   // init preview
+      this.initPreview()
+    }
 
     // // create panel
     this.initPanel()
 
-    // if (this.options.displayMode !== 'inline') {
-    this.DROPDOWN = Dropdown.of(this.element, {
-      target: this.$panel,
-      hideOnSelect: false,
-      hideOutClick: true,
-      onShown: () => {
-        this.oldColor = this.color
-        // showElement(this.$mask)
-        this.leave('save')
-      },
-      onHided: () => {
-        if (!this.is('save')) {
-          this.reset()
+    if (this.options.displayMode !== 'inline') {
+      this.DROPDOWN = Dropdown.of(this.element, {
+        target: this.$panel,
+        hideOnSelect: false,
+        hideOutClick: true,
+        onShown: () => {
+          this.oldColor = this.color
+          // showElement(this.$mask)
+          this.leave('save')
+        },
+        onHided: () => {
+          if (!this.is('save')) {
+            this.reset()
+          }
+          // this.update()
+          // hideElement(this.$mask)
         }
-        // this.update()
-        // hideElement(this.$mask)
-      }
-    })
-    // }
+      })
+    }
     this.initColorPicker()
   }
 
@@ -317,7 +359,11 @@ class GradientPicker extends Component {
     this.$handle = query(`.${this.classes.HANDLE}`, this.$panel)
     // this.registerComponent()
     this.initHandle()
-    this.initControl()
+    if (this.options.displayMode === 'dropdown') {
+      this.initControl()
+    } else {
+      query(`.${this.classes.CONTROL}`, this.$panel).remove()
+    }
   }
 
   initHandle() {
@@ -363,6 +409,7 @@ class GradientPicker extends Component {
     this.COLORPICKER = ColorPicker.of(
       query(`.${this.classes.COLORPICKER}`, this.$panel),
       {
+        ...this.options.colorPicker,
         displayMode: 'inline',
         onChange: color => {
           if (this.$marker) {
@@ -492,6 +539,15 @@ class GradientPicker extends Component {
     this.trigger(EVENTS.COLORCHANGE, colorData)
   }
 
+  openPanel() {
+    this.DROPDOWN.show()
+  }
+
+  closePanel() {
+    this.enter('save')
+    this.DROPDOWN.hide()
+  }
+
   update() {
     if (this.is('noSelectedMarker')) {
       return false
@@ -507,7 +563,10 @@ class GradientPicker extends Component {
     this.gradientValue = this.GRADIENT.toString()
 
     setStyle('background', this.gradientValue, this.$view)
-    this.PREVIEW.update(this.gradientValue, true)
+
+    if (this.options.displayMode !== 'inline') {
+      this.PREVIEW.update(this.gradientValue, true)
+    }
     this.setInput(this.gradientValue)
 
     if (this.is('save')) {
@@ -519,6 +578,8 @@ class GradientPicker extends Component {
   reset() {
     this.color = this.oldColor
     this.set(this.color)
+
+    this.COLORPICKER.set(getData('value', this.$marker).color)
   }
 
   createEl(tempName, options) {
@@ -545,7 +606,8 @@ class GradientPicker extends Component {
     }
 
     this.clearMarks()
-    console.log(this.GRADIENT)
+    this.GRADIENT.reorder()
+
     this.GRADIENT.value.stops.forEach((v, i) => {
       let percent = parseFloat(v.position * 100, 10)
       if (i === this.GRADIENT.length - 1) {
@@ -566,7 +628,6 @@ class GradientPicker extends Component {
     }
     this.gradientValue = ''
     this.update()
-    console.log(this.GRADIENT)
   }
 
   clear() {
@@ -574,22 +635,27 @@ class GradientPicker extends Component {
       this.options.defaultColor || 'linear-gradient(90deg, #fff 0%,#000 100%)'
     this.set(this.color)
 
-    this.PREVIEW.update('transparent')
+    if (this.options.displayMode !== 'inline') {
+      this.PREVIEW.update('transparent')
+    }
     this.element.value = ''
   }
 
   enable() {
     if (this.is('disabled')) {
+      this.element.disabled = false
       this.leave('disabled')
     }
+    removeClass(this.classes.DISABLED, this.$wrap)
     this.trigger(EVENTS.ENABLE)
   }
 
   disable() {
     if (!this.is('disabled')) {
+      this.element.disabled = true
       this.enter('disabled')
     }
-
+    addClass(this.classes.DISABLED, this.$wrap)
     this.trigger(EVENTS.DISABLE)
   }
 
@@ -597,12 +663,20 @@ class GradientPicker extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
+      this.clear()
+      empty(this.element)
+      this.element.setAttribute('placeholder', '')
+      unwrap(unwrap(this.element))
+      if (this.options.displayMode !== 'inline') {
+        this.$remove.remove()
+        this.PREVIEW.remove()
+      }
+      this.$panel.remove()
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }
       this.leave('initialized')
     }
-
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }

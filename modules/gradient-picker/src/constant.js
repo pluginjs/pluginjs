@@ -55,6 +55,7 @@ export const translations = {
 export const defaults = {
   theme: null,
   placeholder: 'choose color',
+  displayMode: 'dropdown', // dropdown || inline
   templates: {
     wrap() {
       return '<div class="{classes.NAMESPACE}"></div>'

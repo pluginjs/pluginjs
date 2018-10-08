@@ -62,6 +62,10 @@ class Gradient {
     if (this.length < 2) {
       return
     }
+    if (this.value.stops[0].position === null) {
+      this.value.stops[0].position = 0
+      this.value.stops[this.value.stops.length - 1].position = 1
+    }
     if (this.value.stops[this.value.stops.length - 2].position === null) {
       this.value.stops[this.value.stops.length - 1].position = 1
     }
