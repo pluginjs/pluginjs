@@ -256,11 +256,9 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
     }
   }
   &-dropdown {
-    position: relative;
     left: 10px !important;
     z-index: 9999;
     box-sizing: border-box;
-    display: none;
     flex-direction: column;
     width: $colorSelector-panel-width;
     padding: 0.4 * $colorSelector-sizer 0; //4px

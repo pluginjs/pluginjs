@@ -38,33 +38,6 @@ export const PANELCLASS = {
   SELECTED: '{namespace}-selected'
 }
 
-export const SOLIDCLASS = {
-  SOLIDHANDLE: '{namespace}-solid-handle',
-  SOLIDPRIMARY: '{namespace}-solid-primary',
-  SOLIDACTION: '{namespace}-solid-action',
-  SOLIDHISTORY: '{namespace}-solid-history',
-  SOLIDDONE: '{namespace}-solid-done'
-}
-
-export const GRADIENTCLASS = {
-  GRADIENTHANDLE: '{namespace}-gradient-handle',
-  GRADIENTPRIMARY: '{namespace}-gradient-primary',
-  GRADIENTACTION: '{namespace}-gradient-action',
-  GRADIENTHISTORY: '{namespace}-gradient-history',
-  GRADIENTDONE: '{namespace}-gradient-done',
-  GRADIENTBAR: '{namespace}-gradient-bar',
-  GRADIENTBARVIEW: '{namespace}-gradient-bar-view',
-  GRADIENTCONTENT: '{namespace}-gradient-content',
-  GRADIENTREMOVE: '{namespace}-gradient-remove',
-  GRADIENTREMOVEACTIVE: '{namespace}-gradient-remove-active',
-  GRADIENTMODE: '{namespace}-gradient-mode',
-
-  MARKER: '{namespace}-marker',
-  MARKERACTIVE: '{namespace}-marker-active',
-  WHEEL: '{namespace}-wheel',
-  WHEELHANDLE: '{namespace}-wheel-handle',
-  WHEELANGLE: '{namespace}-wheel-angle'
-}
 export const CONTRASTCLASS = {
   CONTRAST: '{namespace}-contrast',
   CONTRASTNOW: '{namespace}-contrast-now',
@@ -125,13 +98,11 @@ export const classes = Object.assign(
   BASECLASS,
   PREVIEWCLASS,
   PANELCLASS,
-  SOLIDCLASS,
   CONTRASTCLASS,
   HISTORYCLASS,
   COLLECTIONCLASS,
   PALETTECLASS,
-  ACTIONCLASS,
-  GRADIENTCLASS
+  ACTIONCLASS
 )
 
 export const methods = ['enable', 'disable', 'get', 'set', 'update']
@@ -231,7 +202,7 @@ export const defaults = {
     //   return '<i class="{class} pj-icon pj-icon-gradient" data-type="gradient"></i>'
     // },
     moduleWrap() {
-      return '<div class="{class}"></div>'
+      return '<div class="{classes.wrapClassName}"><input type="text" class="{classes.colorClassName}"></div>'
     },
     collection() {
       return `<div class='{classes.SCHEME}'><ul class='{classes.GROUPLIST}'></ul></div>
