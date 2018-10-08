@@ -6,25 +6,25 @@ $patternPicker: "pj-patternPicker" !default;
 $editPanel: "pj-editPanel" !default;
 $scrollable: "pj-scrollable" !default;
 
-$patternPicker-spacer: $spacer !default;
+$patternPicker-sizer: $sizer !default;
 $patternPicker-border: 1px solid $border-color !default;
 
-$patternPicker-width: 16 * $patternPicker-spacer !default; //160px
-$patternPicker-height: 9 * $patternPicker-spacer !default; //108px
+$patternPicker-width: 16 * $patternPicker-sizer !default; //160px
+$patternPicker-height: 9 * $patternPicker-sizer !default; //108px
 $patternPicker-border: 1px solid $border-color;
 
 // preview
-$preview-width:  26 * $patternPicker-spacer !default; //260px
+$preview-width:  26 * $patternPicker-sizer !default; //260px
 // global
 $global-border: 1px solid $gray-lightest !default;
 $global-active-color: $color-primary !default;
 // component
-$component-content-width: 16 * $patternPicker-spacer !default; //160px
+$component-content-width: 16 * $patternPicker-sizer !default; //160px
 // selector
 // selector item
-$selector-item-width: 11.5 * $patternPicker-spacer !default; //115px
-$selector-item-height: 8 * $patternPicker-spacer !default; //80px
-$selector-item-margin-size: 1.7 * $patternPicker-spacer !default; //17px
+$selector-item-width: 11.5 * $patternPicker-sizer !default; //115px
+$selector-item-height: 8 * $patternPicker-sizer !default; //80px
+$selector-item-margin-size: 1.7 * $patternPicker-sizer !default; //17px
 
 // Core
 // =====================

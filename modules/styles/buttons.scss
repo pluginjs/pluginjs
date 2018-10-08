@@ -1,6 +1,8 @@
 @import "variables.scss";
 
-.pj-btn {
+$btn: pj-btn !default;
+
+.#{$btn} {
   box-sizing: border-box;
   display: inline-block;
   padding: $btn-padding-y $btn-padding-x;
@@ -194,7 +196,7 @@
   &-outline {
     background-color: transparent;
 
-    &.pj-btn-primary {
+    &.#{$btn}-primary {
       color: $btn-color-primary;
       background-color: transparent;
       border-color: $btn-color-primary;
@@ -212,7 +214,7 @@
       }
     }
 
-    &.pj-btn-success {
+    &.#{$btn}-success {
       color: $color-success;
       background-color: transparent;
       border-color: $color-success;
@@ -230,7 +232,7 @@
       }
     }
 
-    &.pj-btn-info {
+    &.#{$btn}-info {
       color: $color-info;
       background-color: transparent;
       border-color: $color-info;
@@ -248,7 +250,7 @@
       }
     }
 
-    &.pj-btn-danger {
+    &.#{$btn}-danger {
       color: $color-danger;
       background-color: transparent;
       border-color: $color-danger;
@@ -266,7 +268,7 @@
       }
     }
 
-    &.pj-btn-warning {
+    &.#{$btn}-warning {
       color: $color-warning;
       background-color: transparent;
       border-color: $color-warning;
@@ -338,7 +340,7 @@
 
   // button only icon in
   &-icon {
-    padding: 0.8*$button-sizer; //8px
+    padding: 0.8 * $button-sizer; //8px
     font-size: $font-size-xs;
     line-height: 1;
 
@@ -363,12 +365,12 @@
     }
   }
 
-  &-transparent.pj-btn-disabled,
-  &-transparent.pj-btn[disabled],
-  &-link.pj-btn-disabled,
-  &-link.pj-btn[disabled],
-  &-link-default.pj-btn-disabled,
-  &-link-default.pj-btn[disabled] {
+  &-transparent.#{$btn}-disabled,
+  &-transparent.#{$btn}[disabled],
+  &-link.#{$btn}-disabled,
+  &-link.#{$btn}[disabled],
+  &-link-default.#{$btn}-disabled,
+  &-link-default.#{$btn}[disabled] {
     &,
     &:hover,
     &:focus,
@@ -378,10 +380,10 @@
     }
   }
 
-  &-outline.pj-btn-disabled,
-  &-outline.pj-btn[disabled],
-  &-outline-default.pj-btn-disabled,
-  &-outline-default.pj-btn[disabled] {
+  &-outline.#{$btn}-disabled,
+  &-outline.#{$btn}[disabled],
+  &-outline-default.#{$btn}-disabled,
+  &-outline-default.#{$btn}[disabled] {
     &,
     &:hover,
     &:focus,

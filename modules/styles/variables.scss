@@ -15,10 +15,6 @@ $gray-light: #e6e6e6 !default;
 $gray-lighter: #f2f2f2 !default;
 $gray-lightest: #fafafa !default;
 
-$btn-color-primary: #215fdb;
-$btn-color-hover: #2376eb;
-$btn-color-disable: #acc4e6;
-
 $color-primary: #215fdb;
 $color-primary-active: #215fdb !default;
 $color-primary-dark: #1d53bf;
@@ -42,33 +38,18 @@ $color-danger-dark: #e9595b !default;
 $color-danger-light: #fa7a7a !default;
 
 $color-opacity: rgba(0,0,0,0.7) !default;
-// 2. Options
-//
-// Quickly modify global styling by enabling or disabling optional features.
-$enable-flex: false !default;
-$enable-rounded: true !default;
-$enable-shadows: false !default;
-$enable-gradients: false !default;
-$enable-transitions: false !default;
 
-// 3. Spacing
+$btn-color-primary: $color-primary;
+$btn-color-hover: #2376eb;
+$btn-color-disable: #acc4e6;
+
+// 2. Sizer
 //
-// Control the default styling of most Bootstrap elements by modifying these
+// Control the default styling of most Pluginjs elements by modifying these
 // variables. Mostly focused on spacing.
-// You can add more entries to the $spacers map, should you need more variation.
-$spacer: 12px !default;
-$spacer-x: $spacer !default;
-$spacer-y: $spacer !default;
-$spacers: (
-  0: (x: 0, y: 0),
-  1: (x: ($spacer-x * 0.25), y: ($spacer-y * 0.25)),
-  2: (x: ($spacer-x * 0.5), y: ($spacer-y * 0.5)),
-  3: (x: $spacer-x, y: $spacer-y),
-  4: (x: ($spacer-x * 1.5), y: ($spacer-y * 1.5)),
-  5: (x: ($spacer-x * 3), y: ($spacer-y * 3))
-) !default;
+$sizer: 10px !default;
 
-// 4. Fonts
+// 3. Fonts
 //
 // Font, line-height.
 $font-family-sans-serif: -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
@@ -77,8 +58,6 @@ $font-family-serif: georgia, "Times New Roman", times, serif !default;
 $font-family-monospace: menlo, monaco, consolas, "Liberation Mono",
   "Courier New", monospace !default;
 $font-family-base: $font-family-sans-serif !default;
-
-$sizer: 10px !default;
 
 $font-size-base: 13px;
 $font-size-lg: 16px !default;
@@ -172,7 +151,7 @@ $input-btn-padding-y-lg: 0.85 * $sizer !default;
 $input-btn-line-height-lg: $line-height-lg !default;
 $input-btn-font-size-lg: $font-size-lg !default;
 
-//  10. Input
+//  11. Input
 $input-sizer: $sizer !default;
 
 $input-font-size: $input-btn-font-size;
@@ -212,14 +191,13 @@ $input-disabled-bg: $disabled-bg;
 $input-disabled-border: $disabled-border;
 $input-disabled-color: $disabled-color;
 
-// 11. Btn
+// 12. Btn
 $button-sizer: $sizer;
 
 $btn-font-size: $input-btn-font-size !default;
 $btn-padding-y: $input-btn-padding-y !default;
 $btn-padding-x: 2.4 * $button-sizer !default;
 $btn-line-height: $input-btn-line-height !default;
-
 
 $btn-padding-y-sm: $input-btn-padding-y-sm !default;
 $btn-padding-x-sm: 1.6 * $button-sizer !default;
