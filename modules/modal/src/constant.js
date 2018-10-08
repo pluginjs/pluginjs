@@ -76,7 +76,7 @@ export const defaults = {
   localeFallbacks: true,
   buttons: null,
   overlay: true,
-  overlayClosesOnClick: true,
+  overlayCloseOnClick: true,
   appendTo: 'body',
   effect: 'fadeScale',
   contentAlignment: '',

@@ -103,7 +103,7 @@ Name | Description | Default
 `"localeFallbacks"` | Multilingual settings | `true`
 `"buttons"` | Whether to display button | `null`
 `"overlay"` | Whether to display overlay, true or false | `true`
-`"overlayClosesOnClick"` | Click the background to turn off the modal, true or false | `true`
+`"overlayCloseOnClick"` | Click the background to turn off the modal, true or false | `true`
 `"appendTo"` | where modal will be inserted | `body`
 `"effect"` | Open and close the animation | `fadeScale`
 `"contentAlignment"` | content alignment, left, center or right | `left`

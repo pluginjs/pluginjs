@@ -123,7 +123,7 @@ class Modal extends GlobalComponent {
           }
 
           const key = data('btntype', event.target)
-          if (this.options.buttons[key].fn) {
+          if (isFunction(this.options.buttons[key].fn)) {
             this.options.buttons[key].fn()
           }
 
@@ -137,7 +137,7 @@ class Modal extends GlobalComponent {
     }
 
     // bind overlay
-    if (this.options.overlayClosesOnClick && this.options.overlay) {
+    if (this.options.overlayCloseOnClick && this.options.overlay) {
       bindEvent(
         this.eventName('click'),
         () => {
@@ -523,7 +523,6 @@ class Modal extends GlobalComponent {
   }
 
   static alert(...args) {
-    // const opt = deepMerge(window.Pj.modal.defaults, {
     const opt = deepMerge(DEFAULTS, {
       title: '',
       content: '',

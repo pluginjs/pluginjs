@@ -65,7 +65,7 @@
         "defaultValue": "true"
       },
       {
-        "name": "overlayClosesOnClick",
+        "name": "overlayCloseOnClick",
         "desc": "Click the background to turn off the modal, true or false",
         "defaultValue": "true"
       },
