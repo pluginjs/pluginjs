@@ -17,14 +17,7 @@ export const classes = {
   MASK: '{namespace}-mask'
 }
 
-export const methods = [
-  'enable',
-  'disable',
-  'destroy',
-  'show',
-  'hide',
-  'toggle'
-]
+export const methods = ['destroy', 'show', 'hide', 'toggle']
 
 export const defaults = {
   theme: 'circle',

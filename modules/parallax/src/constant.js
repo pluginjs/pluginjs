@@ -14,18 +14,7 @@ export const classes = {
   IMAGE: '{namespace}-image'
 }
 
-export const methods = [
-  'enable',
-  'disable',
-  'destroy',
-  'setAnimation',
-  'setAnimationDelay',
-  'beforeLoad',
-  'afterLoad',
-  'load',
-  'isLoad',
-  'setDelay'
-]
+export const methods = ['show']
 
 export const defaults = {
   theme: null,

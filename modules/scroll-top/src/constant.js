@@ -7,7 +7,7 @@ export const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   JUMP: 'jump',
-  HIDE: 'hide',
+  // HIDE: 'hide',
   SHOW: 'show'
 }
 

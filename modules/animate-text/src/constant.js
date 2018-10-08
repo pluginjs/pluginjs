@@ -12,7 +12,7 @@ export const classes = {
   CONTAINER: '{namespace}-multiple'
 }
 
-export const methods = ['value', 'enable', 'disable', 'destroy', 'set']
+export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
   mode: 'fadeDown',

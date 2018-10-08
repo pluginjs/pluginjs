@@ -11,7 +11,6 @@ export const events = {
 export const classes = { NAMESPACE: `pj-${namespace}` }
 
 export const methods = [
-  'init',
   'enable',
   'disable',
   'destroy',

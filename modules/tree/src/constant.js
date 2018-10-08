@@ -29,6 +29,8 @@ export const classes = {
 export const methods = [
   'open',
   'close',
+  'select',
+  'unselect',
   'before',
   'after',
   'append',

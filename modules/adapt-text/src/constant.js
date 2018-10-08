@@ -7,7 +7,7 @@ export const events = {
   DESTROY: 'destroy'
 }
 
-export const methods = ['enable', 'disable', 'destroy', 'resize']
+export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
   ratio: 10,

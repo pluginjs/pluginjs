@@ -2,7 +2,6 @@ export const namespace = 'toast'
 
 export const events = {
   SHOW: 'show',
-  HIDE: 'hide',
   DESTROY: 'destroy',
   READY: 'ready'
 }

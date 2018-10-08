@@ -3,6 +3,7 @@ export const namespace = 'tabs'
 export const events = {
   ACTIVE: 'active',
   UPDATE: 'update',
+  LOADED: 'loaded',
   READY: 'ready',
   RESIZE: 'resize',
   ENABLE: 'enable',
@@ -40,7 +41,8 @@ export const methods = [
   'prev',
   'add',
   'remove',
-  'append'
+  'append',
+  'revert'
 ]
 
 export const defaults = {

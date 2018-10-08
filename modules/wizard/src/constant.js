@@ -52,7 +52,15 @@ export const classes = {
   }
 }
 
-export const methods = ['enable', 'disable', 'destroy', 'get']
+export const methods = [
+  'enable',
+  'disable',
+  'destroy',
+  'get',
+  'back',
+  'next',
+  'finish'
+]
 
 export const defaults = {
   theme: null,
