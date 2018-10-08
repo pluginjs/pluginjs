@@ -17,9 +17,7 @@ export const rankings = {
   NO_MATCH: 0
 }
 
-export const search = getMatchRanking
-
-export const match = (items, query, options = {}) => {
+export default function match(items, query, options = {}) {
   if (!query) {
     return items
   }
@@ -44,6 +42,8 @@ export const match = (items, query, options = {}) => {
   }
   return matchedItems.map(({ item }) => item)
 }
+
+export const search = getMatchRanking
 
 /**
  * Gets the highest ranking for value for the given item based on its values for the given keys
@@ -199,5 +199,3 @@ function getItemValues(item, key) {
 
   return isNull(value) || isUndefined(value) ? null : [].concat(value)
 }
-
-export default match
