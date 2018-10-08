@@ -19,7 +19,6 @@ $colorPicker-border:1px solid $colorPicker-border-color;
 $colorPicker-border-radius: $border-radius-base;
 $colorPicker-font-size: $font-size-base;
 
-
 $colorPicker-preview-width: 45px;
 $colorPicker-preview-bg-width: 36px;
 $colorPicker-preview-bg-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABlBMVEXLy8v////hf8FnAAAAGklEQVQoz2PghwEG/KwPMECANWreqHkDaB4AtSFCzONj1qEAAAAASUVORK5CYII=");
@@ -29,7 +28,7 @@ $colorPicker-remove-hover-color: $color-primary-black;
 
 $colorPicker-panel-shadow: $box-shadow-base;
 
-$colorPicker-history-item-size: $font-size-lg;
+$colorPicker-history-item-size: $font-size-md;
 $colorPicker-history-item-margin-top: 16px;
 $colorPicker-history-item-margin-right: 12px;
 $colorPicker-history-item-radius: 2px;
@@ -97,7 +96,7 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
   &-primary {
       display: flex;
 
-      > div { 
+      > div {
         & + div{
           margin-left: 12px;
         }
@@ -123,7 +122,7 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
       cursor: row-resize;
     }
   }
-  
+
   &-saturation {
     width: $colorPicker-saturation-width;
     background-image: $colorPicker-saturation-bg-img;
@@ -142,7 +141,7 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
 
   &-hex {
     margin-top: $colorPicker-hex-margin-top;
-    
+
     .pj-select-trigger {
       height: $colorPicker-hex-height;
     }

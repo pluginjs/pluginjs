@@ -59,14 +59,19 @@ $font-family-monospace: menlo, monaco, consolas, "Liberation Mono",
   "Courier New", monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 
-$font-size-base: 13px;
-$font-size-lg: 16px !default;
-$font-size-sm: 14px;
+$font-size-base: 13px !default;
+$font-size-lg: 20px !default;
+$font-size-md: 16px !default;
+$font-size-sm: 14px !default;
 $font-size-xs: 12px !default;
 
-$font-weight-normal: normal !default;
-$font-weight-light: lighter !default;
-$font-weight-bold: bold !default;
+$font-weight-lighter: lighter !default;
+$font-weight-light:   300 !default;
+$font-weight-normal:  400 !default;
+$font-weight-medium:  500 !default;
+$font-weight-bold:    700 !default;
+$font-weight-bolder:  bolder !default;
+
 $font-weight-base: $font-weight-normal !default;
 
 $line-height-base: 1.5 !default;
@@ -149,7 +154,7 @@ $input-btn-font-size-sm: $font-size-sm !default;
 
 $input-btn-padding-y-lg: 0.85 * $sizer !default;
 $input-btn-line-height-lg: $line-height-lg !default;
-$input-btn-font-size-lg: $font-size-lg !default;
+$input-btn-font-size-lg: $font-size-md !default;
 
 //  11. Input
 $input-sizer: $sizer !default;

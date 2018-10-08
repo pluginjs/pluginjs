@@ -28,7 +28,7 @@ $tooltip-sm-padding: 6px 12px;
 $tooltip-sm-arrow-size: 6px;
 $tooltip-sm-arrow-spacer: $tooltip-sm-arrow-size;
 
-$tooltip-lg-font-size: $font-size-lg;
+$tooltip-lg-font-size: $font-size-md;
 $tooltip-lg-padding: 14px 20px;
 $tooltip-lg-arrow-size: 10px;
 $tooltip-lg-arrow-spacer: $tooltip-lg-arrow-size;
@@ -81,7 +81,6 @@ $tooltip-lg-arrow-spacer: $tooltip-lg-arrow-size;
     box-shadow: $tooltip-light-box-shadow;
   }
 }
-
 
 // samll
 .#{$tooltip}--small {

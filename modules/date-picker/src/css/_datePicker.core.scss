@@ -36,7 +36,7 @@ $datePicker-mobile-height: 80% !default;
     span {
       position: relative;
       z-index: 0;
-      
+
       &::after {
         position: absolute;
         top: 50%;
@@ -167,7 +167,7 @@ $datePicker-mobile-height: 80% !default;
       justify-content: center;
       width: 33.3%;
       height: 100%;
-      font-size: $font-size-lg;
+      font-size: $font-size-md;
       line-height: 61px;
       cursor: pointer;
 
@@ -206,7 +206,6 @@ $datePicker-mobile-height: 80% !default;
     width: $datePicker-mobile-width;
     height: $datePicker-mobile-height;
     line-height: 1;
-    
 
     .#{$datePicker} {
       &-title {
@@ -254,7 +253,7 @@ $datePicker-mobile-height: 80% !default;
         justify-content: center;
         width: 50%;
         height: 100%;
-        font-size: $font-size-lg;
+        font-size: $font-size-md;
         cursor: pointer;
       }
     }
@@ -285,7 +284,7 @@ $datePicker-mobile-height: 80% !default;
     &.#{$datePicker}-next,
     &.#{$datePicker}-prev {
       cursor: default;
-      
+
       &::before {
         display: none;
       }

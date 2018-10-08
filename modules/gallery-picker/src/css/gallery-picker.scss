@@ -48,7 +48,6 @@ $galleryPicker-expand-item-change-bg: $color-opacity;
 $scrollable-width: 248px;
 $scrollable-height: 260px;
 
-
 // Style
 // ====================
 .#{$galleryPicker} {
@@ -111,7 +110,6 @@ $scrollable-height: 260px;
       border-radius: $galleryPicker-border-radius;
     }
   }
-
 
   &-trigger-action {
     line-height: $galleryPicker-height;

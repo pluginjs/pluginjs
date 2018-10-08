@@ -29,11 +29,11 @@ $bgPicker-border-radius: $border-radius-base;
 // empty
 $bgPicker-empty-border-style: dashed;
 $bgPicker-empty-font-size: $font-size-sm;
-$bgPicker-empty-icon-size: $font-size-lg;
+$bgPicker-empty-icon-size: $font-size-md;
 // fill
 $bgPicker-fill-change-bg: $color-opacity;
 $bgPicker-fill-hover-color: $gray-lightest;
-$bgPicker-fill-change-font-size: $font-size-lg;
+$bgPicker-fill-change-font-size: $font-size-md;
 $bgPicker-fill-action-color: $color-white;
 $bgPicker-fill-remove-margin: 0 15px;
 // DROPDOWN
@@ -140,7 +140,6 @@ $bgPicker-repeat-content-color: $gray-lighter;
     }
   }
 
-
   &-preview {
     width: $bgPicker-expand-image-width;
     height: $bgPicker-expand-image-height;
@@ -205,7 +204,6 @@ $bgPicker-repeat-content-color: $gray-lighter;
       }
     }
   }
-
 
   &-repeat,
   &-size {

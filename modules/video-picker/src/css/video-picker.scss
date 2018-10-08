@@ -137,7 +137,6 @@ $component-width: 160px !default;
       color: #aab3bf;
       cursor: pointer;
     }
-
   }
 
   &-video {
@@ -216,7 +215,7 @@ $component-width: 160px !default;
   }
 
   &-warning {
-    animation: warning 400ms ease both;
+    border-color: $color-warning;
   }
 
   &-disabled {
@@ -230,19 +229,5 @@ $component-width: 160px !default;
         }
       }
     }
-  }
-}
-
-@keyframes warning {
-  0% {
-    border-color: $color-warning;
-  }
-
-  50% {
-    border-color: $videoPicker-border-color;
-  }
-
-  100% {
-    border-color: $color-warning;
   }
 }

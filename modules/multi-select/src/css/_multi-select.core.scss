@@ -51,7 +51,6 @@ $multiSelect-chip-unselect-font: $pj-icon-font-family !default;
     &-unselect {
       cursor: pointer;
 
-
       &::after {
         @include icon();
         font-family: $multiSelect-chip-unselect-font;

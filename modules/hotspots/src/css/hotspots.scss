@@ -9,7 +9,6 @@ $icon: "pj-icon";
 $hotspot-font-family: $font-family-base;
 $hotspot-font-size: $font-size-xs;
 
-// $hotspot-padding: 9px;
 $hotspot-color: rgba($color-black, 0.8);
 $hotspot-hover-color: $color-primary;
 
@@ -29,9 +28,9 @@ $hotspot-dot-md-size: 16px;
 $hotspot-dot-lg-size: 18px;
 
 $hotspot-text-padding: 7px 23px;
-$hotspot-text-font-size: 12px;
-$hotspot-text-md-font-size: 14px;
-$hotspot-text-lg-font-size: 16px;
+$hotspot-text-font-size: $font-size-xs;
+$hotspot-text-md-font-size: $font-size-sm;
+$hotspot-text-lg-font-size: $font-size-md;
 
 $hotspot-icon-padding: 7px;
 $hotspot-icon-size: 14px;
@@ -42,7 +41,6 @@ $hotspot-number-line-height: 32px;
 $hotspot-number-size: 20px;
 $hotspot-number-md-size: 22px;
 $hotspot-number-lg-size: 24px;
-
 
 .#{$hotspot} {
   font-family: $hotspot-font-family;

@@ -75,7 +75,7 @@ $colorSelector-contrast-border-color: $gray-lightest !default;
 // history
 $colorSelector-history-width: 10.6 * $colorSelector-sizer !default; //106px
 $colorSelector-history-hieght: $colorSelector-contrast-height !default;
-$colorSelector-history-item-size: $font-size-lg !default;
+$colorSelector-history-item-size: $font-size-md !default;
 $colorSelector-history-item-margin-right: 12px !default;
 $colorSelector-history-item-radius: 2px !default;
 $colorSelector-history-item-border-color: rgba(0, 0, 0, 0.1) !default;
@@ -108,7 +108,7 @@ $colorSelector-gradient-bar-height: 1.6 * $colorSelector-sizer !default; //20px
 $colorSelector-gradient-bar-top: -1 * $colorSelector-sizer !default; //-13px
 $colorSelector-gradient-bar-bg-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABlBMVEXLy8v////hf8FnAAAAGklEQVQoz2PghwEG/KwPMECANWreqHkDaB4AtSFCzONj1qEAAAAASUVORK5CYII=") !default;
 $colorSelector-gradient-remove-color: $gray !default;
-$colorSelector-gradient-remove-size: $font-size-lg !default;
+$colorSelector-gradient-remove-size: $font-size-md !default;
 $colorSelector-gradient-remove-color-active: $gray-lighter !default;
 $colorSelector-gradient-mode-width: 12.4 * $colorSelector-sizer !default; //90px
 $colorSelector-gradient-mode-height: 2.4 * $colorSelector-sizer !default; //24px
@@ -323,7 +323,6 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
       font-family:$pj-icon-font-family;
       content: icon-content($pj-icon-browser-tab);
       }
-
 
     &-gradient,
     &-solid {

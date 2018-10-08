@@ -39,7 +39,7 @@ $gradientPicker-gradient-bar-height: 1.6 * $gradientPicker-sizer !default; //20p
 $gradientPicker-gradient-bar-top: -1 * $gradientPicker-sizer !default; //-13px
 $gradientPicker-gradient-bar-bg-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABlBMVEXLy8v////hf8FnAAAAGklEQVQoz2PghwEG/KwPMECANWreqHkDaB4AtSFCzONj1qEAAAAASUVORK5CYII=") !default;
 $gradientPicker-gradient-remove-color: $gray !default;
-$gradientPicker-gradient-remove-size: $font-size-lg !default;
+$gradientPicker-gradient-remove-size: $font-size-md !default;
 $gradientPicker-gradient-remove-color-active: $gray-lighter !default;
 $gradientPicker-gradient-mode-width: 12.4 * $gradientPicker-sizer !default; //90px
 $gradientPicker-gradient-mode-height: 2.4 * $gradientPicker-sizer !default; //24px
@@ -58,7 +58,6 @@ $gradientPicker-wheel-bg-color: $color-primary-black !default;
 $gradientPicker-wheel-angle-width: 4.8 * $gradientPicker-sizer !default; //60px
 $gradientPicker-wheel-angle-height: 2.4 * $gradientPicker-sizer !default; //24px
 $gradientPicker-wheel-angle-margin-right: 0.5 * $gradientPicker-sizer !default; //5px
-
 
 .#{$gradientPicker} {
   &-trigger {
