@@ -378,3 +378,21 @@ export const SvgElement = (tag, attrs) => {
   }
   return el
 }
+
+export function parseDataOptions(dataset) {
+  return Object.entries(dataset).reduce((result, [k, v]) => {
+    try {
+      const content = JSON.parse(`{"data": ${v.replace(/'/g, '"')}}`).data
+
+      return {
+        ...result,
+        [k]: content
+      }
+    } catch (err) {
+      return {
+        ...result,
+        [k]: v
+      }
+    }
+  }, {})
+}

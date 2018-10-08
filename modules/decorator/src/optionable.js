@@ -1,4 +1,4 @@
-import { deepMerge } from '@pluginjs/utils'
+import { deepMerge, parseDataOptions } from '@pluginjs/utils'
 
 export default function optionable(defaults = {}, enableDataOption = false) {
   return function(plugin) {
@@ -20,25 +20,8 @@ export default function optionable(defaults = {}, enableDataOption = false) {
         if (!this.element) {
           return {}
         }
-        const options = Object.entries(this.element.dataset).reduce(
-          (result, [k, v]) => {
-            try {
-              const content = JSON.parse(`{"data": ${v.replace(/'/g, '"')}}`)
-                .data
-              return {
-                ...result,
-                [k]: content
-              }
-            } catch (err) {
-              return {
-                ...result,
-                [k]: v
-              }
-            }
-          },
-          {}
-        )
-        return options
+
+        return parseDataOptions(this.element.dataset)
       }
     } else {
       plugin.prototype.setupOptions = function(options = {}) {
