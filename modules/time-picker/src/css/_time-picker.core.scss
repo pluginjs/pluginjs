@@ -39,6 +39,7 @@ $time-picker-trigger-font: $pj-icon-font-family;
     display: none;
     height: 100%;
     font-family: $time-picker-clear-font;
+    cursor: pointer;
 
     &::before {
       @include icon();
@@ -62,10 +63,10 @@ $time-picker-trigger-font: $pj-icon-font-family;
   }
 
   &-trigger {
+    cursor: pointer;
     &-icon {
       font-family: $time-picker-trigger-font;
-
-      &::after{
+      &::after {
         @include icon();
         content: icon-content($time-picker-trigger-icon);
       }

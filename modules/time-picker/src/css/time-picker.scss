@@ -34,7 +34,6 @@ $time-picker-trigger-border-color: $gray-darker;
 
   &-clear {
     color: $time-picker-clear-color;
-    cursor: pointer;
 
     &:hover {
       color: $time-picker-clear-hover-color;
@@ -85,8 +84,10 @@ $time-picker-trigger-border-color: $gray-darker;
 
     &-icon {
       color: $time-picker-trigger-color;
+    }
 
-      &:hover {
+    &:hover {
+      .#{$time-picker}-trigger-icon {
         color: $time-picker-trigger-hover-color;
       }
     }
