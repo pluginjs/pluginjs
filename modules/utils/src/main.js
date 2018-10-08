@@ -101,6 +101,10 @@ function deepMergeTwo(target, source) {
   const sourceIsArray = isArray(source)
   const targetIsArray = isArray(target)
 
+  if (isUndefined(source)) {
+    return target
+  }
+
   if (sourceIsArray !== targetIsArray) {
     return clone(source)
   } else if (sourceIsArray) {
@@ -110,10 +114,6 @@ function deepMergeTwo(target, source) {
       target[key] = deepMergeTwo(target[key], source[key])
     })
 
-    return target
-  }
-
-  if (isUndefined(source)) {
     return target
   }
 
