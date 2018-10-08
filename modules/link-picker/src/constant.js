@@ -24,6 +24,8 @@ export const classes = {
   RADIO: '{namespace}-radio',
   RADIOINPUT: '{namespace}-radio-input',
   LINK: '{namespace}-link',
+  LINKTYPE: '{namespace}-link-type',
+  LINKCONTENT: '{namespace}-link-content',
   ACTION: '{namespace}-action',
   ACTIONEDIT: '{namespace}-action-edit',
   ACTIONREMOVE: '{namespace}-action-remove',
@@ -83,6 +85,7 @@ export const defaults = {
     }
   },
   target: {
+    value: '_self',
     template() {
       return (
         '<div class="{field}">' +
@@ -105,6 +108,7 @@ export const defaults = {
     }
   },
   internal: {
+    value: [],
     template() {
       return (
         '<div class="{field}">' +
@@ -146,7 +150,7 @@ export const defaults = {
         </div>`
     },
     fill() {
-      return `<div class='{classes.FILL}'><i class='pj-icon pj-icon-chain'></i><div class='{classes.LINK}'></div>
+      return `<div class='{classes.FILL}'><i class='pj-icon pj-icon-link-url'></i><div class='{classes.LINK}'><span class='{classes.LINKTYPE}'></span><span class='{classes.LINKCONTENT}'></span></div>
       </div>`
     },
     dropdown() {

@@ -24,7 +24,7 @@ export default class LinkTitle {
       this.instance.eventName('change'),
       () => {
         this.instance.value.title = this.$content.value
-        console.log(111)
+
         return
       },
       this.$content
@@ -37,6 +37,6 @@ export default class LinkTitle {
   }
 
   clear() {
-    this.set(this.defaultValue)
+    this.set('')
   }
 }

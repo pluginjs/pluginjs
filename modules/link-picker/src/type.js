@@ -6,9 +6,8 @@ import { addClass, removeClass } from '@pluginjs/classes'
 export default class Type {
   constructor(instance) {
     this.instance = instance
-    // this.values = instance.options.type.values
     this.value = instance.value.type
-    this.defaultValue = ''
+    this.defaultValue = instance.options.type.value
     this.initialize()
   }
 
@@ -28,7 +27,7 @@ export default class Type {
       this.$content
     )
     this.SELECT = Select.of(this.element, {
-      value: 'internal',
+      value: this.instance.value.type,
       source: this.instance.options.source,
       keyboard: true,
       onChange: value => {
@@ -61,14 +60,12 @@ export default class Type {
 
   set(value) {
     if (!value) {
-      this.SELECT.select('internal ')
-      this.instance.value.type = 'internal '
+      this.SELECT.select('internal')
+      this.instance.value.type = 'internal'
     } else {
       this.SELECT.select(value)
       this.instance.value.type = value
     }
-    this.SELECT.select(value)
-    this.instance.value.type = value
   }
 
   clear() {

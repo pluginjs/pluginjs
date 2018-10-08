@@ -7,14 +7,14 @@ import {
   query,
   parent,
   parseHTML,
-  insertAfter,
-  getData
+  insertAfter
 } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import PopDialog from '@pluginjs/pop-dialog'
 import Dropdown from '@pluginjs/dropdown'
 import {
+  eventable,
   register,
   stateable,
   styleable,
@@ -31,6 +31,7 @@ import {
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
+
 import Type from './type'
 import LinkTitle from './linkTitle'
 import Internal from './internal'
@@ -40,7 +41,7 @@ import External from './external'
 @translateable(TRANSLATIONS)
 @themeable()
 @styleable(CLASSES)
-// @eventable(EVENTS)
+@eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, true)
 @register(NAMESPACE, {
@@ -73,7 +74,6 @@ class LinkPicker extends Component {
       this.options.parse(this.element.value.replace(/'/g, '"'))
     )
     // init
-    console.log(this.value)
     this.linkTitle = new LinkTitle(this)
     this.internal = new Internal(this)
     this.target = new Target(this)
@@ -103,9 +103,6 @@ class LinkPicker extends Component {
     const that = this
     this.$wrap = parent(this.element)
 
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.$wrap)
-    }
     this.$trigger = parseHTML(
       this.parseTemp('trigger', {
         classes: this.classes
@@ -143,9 +140,7 @@ class LinkPicker extends Component {
 
     this.$fill.append(this.$action)
     this.$dropdown.append(this.$dropdownAction)
-
     this.$dropdown.prepend(this.type.$wrap)
-
     insertAfter(this.internal.$wrap, this.type.$wrap)
     insertAfter(this.target.$wrap, this.internal.$wrap)
     insertAfter(this.external.$wrap, this.internal.$wrap)
@@ -211,10 +206,6 @@ class LinkPicker extends Component {
     })
   }
 
-  getData() {
-    return this.data
-  }
-
   bind() {
     // open dropdown
     bindEvent(
@@ -227,25 +218,6 @@ class LinkPicker extends Component {
         this.show()
       },
       this.$wrap
-    )
-
-    // input change
-    bindEvent(
-      this.eventName('change'),
-      'input[type="text"]',
-      ({ target: $input }) => {
-        if (window.getComputedStyle($input).display === 'none') {
-          return
-        }
-        const input = getData('input', $input)
-        if (!input) {
-          return
-        }
-        const { source, itemName } = input
-        const inputVal = $input.value
-        this.getSourceItem(source, itemName).data = inputVal
-      },
-      this.$dropdown
     )
 
     // hold hover
@@ -269,9 +241,10 @@ class LinkPicker extends Component {
       }),
 
       // editor link
-      bindEvent(this.eventName('click'), `.${this.classes.ACTIONEDIT}`, () =>
+      bindEvent(this.eventName('click'), `.${this.classes.ACTIONEDIT}`, () => {
+        // this.update()
         this.show()
-      ),
+      }),
 
       // cancel
       bindEvent(
@@ -307,8 +280,8 @@ class LinkPicker extends Component {
   show() {
     this.DROPDOWN.show()
     addClass(this.classes.SHOW, this.$wrap)
-    if (this.value.type === '') {
-      this.value.type = 'internal'
+    if (this.value.internal.length === 0) {
+      query('.pj-cascader-label', this.$wrap).textContent = 'Please select'
     }
   }
 
@@ -317,16 +290,7 @@ class LinkPicker extends Component {
     removeClass(this.classes.SHOW, this.$wrap)
   }
 
-  // clear() {
-  //   removeClass(this.classes.WRITE, this.$wrap)
-  //   this.element.value = ''
-  //   query('input[type="text"]', this.$dropdown).value = ''
-  //   // this.data = this.options.data;
-
-  //   removeClass(this.classes.HOVER, this.$action)
-  // }
   clear(update = true) {
-    removeClass(this.classes.WRITE, this.$wrap)
     this.value = {}
 
     if (update !== false) {
@@ -338,6 +302,7 @@ class LinkPicker extends Component {
       this.update()
     }
     removeClass(this.classes.HOVER, this.$action)
+    removeClass(this.classes.WRITE, this.$wrap)
   }
 
   set(value, update = true) {
@@ -377,7 +342,6 @@ class LinkPicker extends Component {
 
   update() {
     const value = this.val()
-    console.log(value)
     this.element.value = value
     this.updatePreview()
   }
@@ -399,10 +363,16 @@ class LinkPicker extends Component {
 
   updatePreview() {
     const data = this.get()
-    console.log(data)
-    if (data.type) {
+    const content = query('.pj-cascader-label', this.$wrap).innerHTML
+    if (data.type === 'internal') {
       addClass(this.classes.WRITE, this.$wrap)
-      query(`.${this.classes.LINK}`, this.$fill).textContent = data.type
+      query(`.${this.classes.LINKTYPE}`, this.$fill).textContent = data.type
+      query(`.${this.classes.LINKCONTENT}`, this.$fill).textContent = content
+    } else {
+      addClass(this.classes.WRITE, this.$wrap)
+      query(`.${this.classes.LINKTYPE}`, this.$fill).textContent = data.type
+      query(`.${this.classes.LINKCONTENT}`, this.$fill).textContent =
+        data.external
     }
   }
 

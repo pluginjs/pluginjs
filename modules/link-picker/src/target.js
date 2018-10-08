@@ -27,7 +27,7 @@ export default class Target {
       this.$content
     )
     this.SELECT = Select.of(this.element, {
-      value: '_self',
+      value: this.instance.value.target,
       source: this.instance.options.targetValue,
       keyboard: true,
       onChange: value => {

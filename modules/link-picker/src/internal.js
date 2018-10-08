@@ -32,16 +32,16 @@ export default class Internal {
           return
         }
         this.instance.value.internal = value
-        console.log(value)
       }
     })
   }
 
   set(value) {
-    for (const key in this.values) {
-      if (value === this.values[key]) {
-        this.SELECT.select(value)
-      }
+    if (!value) {
+      // this.CASCADER.select(value)
+      this.instance.value.internal = ['post', '6']
+    } else {
+      this.instance.value.internal = value
     }
   }
 
