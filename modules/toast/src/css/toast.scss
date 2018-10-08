@@ -4,6 +4,7 @@
 // Vars
 // =====================
 $toast: "pj-toast";
+
 $toast-font-family: $font-family-base;
 $toast-font-size: $font-size-sm;
 $toast-color: $gray-darker;
@@ -26,8 +27,8 @@ $toast-icon-font-size: 20px;
 $toast-icon-gutter: 10px;
 
 $toast-close-font-size: 14px;
-$toast-close-pos-top: $toast-padding + ($toast-title-font-size - $toast-close-font-size) / 2;
-$toast-close-pos-right: $toast-padding-right;
+$toast-close-top: $toast-padding + ($toast-title-font-size - $toast-close-font-size) / 2;
+$toast-close-right: $toast-padding-right;
 $toast-close-color: $gray;
 $toast-close-hover-color: $gray-darker;
 
@@ -39,6 +40,11 @@ $toast-loader-bg: $gray-lighter;
 
 $toast-buttons-top-gutter: 20px;
 $toast-button-gutter: 12px;
+
+$toast-success-color: $color-success;
+$toast-info-color: $color-info;
+$toast-warning-color: $color-warning;
+$toast-error-color: $color-danger;
 
 // Skin
 // =====================
@@ -57,8 +63,8 @@ $toast-button-gutter: 12px;
   }
 
   &-close {
-    top: $toast-close-pos-top;
-    right: $toast-close-pos-right;
+    top: $toast-close-top;
+    right: $toast-close-right;
     padding: 0;
     font-size: $toast-close-font-size;
     color: $toast-close-color;
@@ -94,7 +100,7 @@ $toast-button-gutter: 12px;
     background-color: $toast-loader-bg;
     border-radius: $toast-border-radius $toast-border-radius 0 0;
 
-    &-inner {
+    &-bar {
       background-color: $toast-loader-color;
     }
   }
@@ -107,6 +113,46 @@ $toast-button-gutter: 12px;
   &-btn {
     & + & {
       margin-left: $toast-button-gutter;
+    }
+  }
+
+  &-success {
+    .#{$toast}-icon {
+      color: $toast-success-color;
+    }
+
+    .#{$toast}-loader-bar {
+      background-color: $toast-success-color;
+    }
+  }
+
+  &-info {
+    .#{$toast}-icon {
+      color: $toast-info-color;
+    }
+
+    .#{$toast}-loader-bar {
+      background-color: $toast-info-color;
+    }
+  }
+
+  &-warning {
+    .#{$toast}-icon {
+      color: $toast-warning-color;
+    }
+
+    .#{$toast}-loader-bar {
+      background-color: $toast-warning-color;
+    }
+  }
+
+  &-error {
+    .#{$toast}-icon {
+      color: $toast-error-color;
+    }
+
+    .#{$toast}-loader-bar {
+      background-color: $toast-error-color;
     }
   }
 }

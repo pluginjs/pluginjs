@@ -45,8 +45,8 @@
     "@pluginjs/is": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
-    "@pluginjs/utils": "*",
-    "animejs": "*"
+    "@pluginjs/tween": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

@@ -1,18 +1,9 @@
 import templateEngine from '@pluginjs/template'
-import { isNumber } from '@pluginjs/is'
-import { reflow } from '@pluginjs/utils'
+import { isNumber, isObject, isFunction } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, bindEventOnce } from '@pluginjs/events'
-import {
-  append,
-  parseHTML,
-  queryAll,
-  query,
-  after,
-  remove,
-  data
-} from '@pluginjs/dom'
+import { append, parseHTML, queryAll, query, remove } from '@pluginjs/dom'
 import GlobalComponent from '@pluginjs/global-component'
 import {
   eventable,
@@ -28,7 +19,7 @@ import {
   events as EVENTS,
   namespace as NAMESPACE
 } from './constant'
-import Anime from 'animejs'
+import Tween from '@pluginjs/tween'
 
 const POSITIONS = [
   'bottom-left',
@@ -49,94 +40,130 @@ const POSITIONS = [
 class Toast extends GlobalComponent {
   constructor(options = {}) {
     super()
+
     this.setupOptions(options)
     this.setupClasses()
-    this.$element = parseHTML(this.createHtml())
-
     this.setupStates()
     this.initialize()
+  }
+
+  initialize() {
+    if (this.options.closeable === 'false') {
+      this.options.closeable = true
+    }
+    this.$element = parseHTML(this.createHtml())
+
+    this.$icon = query(`.${this.classes.ICON}`, this.$element)
+    this.$content = query(`.${this.classes.CONTENT}`, this.$element)
+    this.$title = query(`.${this.classes.TITLE}`, this.$element)
+    this.$buttons = query(`.${this.classes.BUTTONS}`, this.$element)
+    this.$loader = query(`.${this.classes.LOADER}`, this.$element)
+    this.$loaderBar = query(`.${this.classes.LOADERBAR}`, this.$element)
+    this.$close = query(`.${this.classes.CLOSE}`, this.$element)
+
+    this.stack = parseInt(this.options.stack, 10)
+
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.$element)
+    }
+
+    if (this.options.type) {
+      addClass(
+        this.getClass(this.classes.TYPE, 'type', this.options.type),
+        this.$element
+      )
+    }
+
+    if (this.options.closeable) {
+      addClass(this.classes.CLOSEABLE, this.$element)
+    }
+
+    if (this.options.content) {
+      this.setContent(this.options.content)
+    }
+
+    if (this.options.title) {
+      this.setTitle(this.options.title)
+    }
+
+    this.enter('initialized')
+    this.trigger(EVENTS.READY)
+
     this.show()
+  }
+
+  setContent(content) {
+    if (this.options.html) {
+      this.$content.innerHTML = content
+    } else {
+      this.$content.textContent = content
+    }
+  }
+
+  setTitle(title) {
+    this.$title.textContent = title
   }
 
   show() {
     if (this.is('show')) {
       return
     }
-    this.addToDom()
+
+    this.appendToDom()
+
     append(this.$element, this.$wrap)
-    if (this.options.stack && isNumber(this.options.stack)) {
+
+    if (this.stack && isNumber(this.stack)) {
       const instances = queryAll(`.${this.classes.NAMESPACE}`, this.$wrap)
       const _prevToastCount = instances.length
-      const _extToastCount = _prevToastCount - this.options.stack
+      const _extToastCount = _prevToastCount - this.stack
       if (_extToastCount > 0) {
         instances.slice(0, _extToastCount).forEach(instance => {
           remove(instance)
         })
       }
     }
-    // toast bg
-    if (this.options.bgColor) {
-      setStyle('background', this.options.bgColor, this.$element)
+
+    if (this.options.duration) {
+      this.startTween()
     }
 
-    this.processLoader()
     this.animate()
     this.bind()
     this.enter('show')
     this.trigger(EVENTS.SHOW)
   }
 
-  processLoader() {
-    if (!this.$loader || !isNumber(this.options.duration)) {
-      return
-    }
-
-    if (this.options.loaderColor) {
-      setStyle('background-color', this.options.loaderColor, this.$loaderInner)
-    }
-
-    if (this.options.loaderBgColor) {
-      setStyle('background-color', this.options.loaderBgColor, this.$loader)
-    }
-
-    this.pauseTime = 0
-
-    reflow(this.$loaderInner)
-
-    this.startLoader()
-  }
-
-  startLoader() {
-    this.startTime = new Date().getTime()
-    const time = this.options.duration - this.pauseTime
-    const target = this.$loaderInner
-    this.$anime = Anime({
-      targets: target,
-      width: '100%',
-      duration: time,
-      easing: 'linear'
+  startTween() {
+    this.TWEEN = Tween.of({
+      from: 0,
+      to: 100,
+      easing: 'linear',
+      duration: this.options.duration,
+      autoplay: false
     })
+      .on('update', value => {
+        if (this.$loaderBar) {
+          this.$loaderBar.style.width = `${value}%`
+        }
+      })
+      .on('complete', () => {
+        this.hide()
+      })
 
-    this.setTimeOut = setTimeout(() => {
-      this.hide()
-    }, time)
+    this.TWEEN.start()
   }
 
-  pauseLoader() {
-    const t = new Date().getTime()
-    this.pauseTime += t - this.startTime
-
-    clearInterval(this.setTimeOut)
-    this.$anime.pause()
+  pauseTween() {
+    if (this.TWEEN) {
+      this.TWEEN.pause()
+    }
   }
 
-  playLoader() {
-    this.startTime = new Date().getTime()
-    const time = this.options.duration - this.pauseTime
-    this.$anime.play()
-    this.setTimeOut = setTimeout(() => {
-      this.hide()
-    }, time)
+  resumeTween() {
+    if (this.TWEEN) {
+      this.TWEEN.resume()
+    }
   }
 
   animate() {
@@ -166,7 +193,7 @@ class Toast extends GlobalComponent {
     } else if (this.options.effect === 'fade') {
       effect = 'fadeIn'
     }
-    this.$effect = effect
+    this.effect = effect
 
     addClass(`${this.classes.NAMESPACE}-${effect}`, this.$element)
   }
@@ -219,7 +246,7 @@ class Toast extends GlobalComponent {
       addClass(this.classes.CONTENTOUT, this.$title)
     }
 
-    removeClass(`${this.classes.NAMESPACE}-${this.$effect}`, this.$element)
+    removeClass(`${this.classes.NAMESPACE}-${this.effect}`, this.$element)
     addClass(this.classes.OUT, this.$element)
 
     if (this.$buttons) {
@@ -236,10 +263,11 @@ class Toast extends GlobalComponent {
     )
 
     this.leave('show')
+    this.trigger(EVENTS.HIDE)
   }
 
   bind() {
-    if (this.$close) {
+    if (this.options.closeable && this.$close) {
       bindEvent(
         this.eventName('click'),
         () => {
@@ -249,25 +277,23 @@ class Toast extends GlobalComponent {
       )
     }
 
-    if (isNumber(this.options.duration) && this.$loader) {
+    if (isNumber(this.options.duration)) {
       bindEvent(
         this.eventName('mouseenter'),
         () => {
-          this.pauseLoader()
+          this.pauseTween()
         },
         this.$element
       )
       bindEvent(
         this.eventName('mouseleave'),
         () => {
-          this.playLoader()
-          // this.startLoader()
+          this.resumeTween()
         },
         this.$element
       )
     }
 
-    // band buttons
     if (this.options.buttons) {
       bindEvent(
         this.eventName('click'),
@@ -276,9 +302,10 @@ class Toast extends GlobalComponent {
             return
           }
 
-          const key = data('btntype', event.target)
-          if (this.options.buttons[key].fn) {
-            this.options.buttons[key].fn()
+          const type = event.target.dataset.type
+
+          if (isFunction(this.options.buttons[type].fn)) {
+            this.options.buttons[type].fn()
           }
           this.hide()
         },
@@ -287,36 +314,47 @@ class Toast extends GlobalComponent {
     }
   }
 
-  addToDom() {
-    let positionClass = ''
+  appendToDom() {
+    let wrapSelector = `.${this.classes.WRAP}`
+
     if (POSITIONS.includes(this.options.position)) {
-      positionClass = this.getClass(
+      wrapSelector += `.${this.getClass(
         this.classes.POSITION,
         'position',
         this.options.position
-      )
+      )}`
     }
 
-    this.$wrap = query(`.${this.classes.WRAP}.${positionClass}`)
+    this.$wrap = query(wrapSelector)
+
     if (!this.$wrap) {
-      const wrap = templateEngine.render(
-        this.options.templates.wrap.call(this),
-        { classes: this.classes }
+      this.$wrap = parseHTML(
+        templateEngine.render(this.options.templates.wrap.call(this), {
+          classes: this.classes
+        })
       )
-      this.$wrap = parseHTML(wrap)
       append(this.$wrap, window.document.body)
       this.position()
-    } else if (!this.options.stack) {
+    } else if (!this.stack) {
       this.$wrap.innerHTML = ''
     }
   }
 
   getIconClass() {
-    if (this.options.iconClass) {
-      return this.options.iconClass
+    if (this.options.icon) {
+      return this.options.icon
     }
-    this.options.icon = this.options.icon || 'success'
-    return this.options.icons[this.options.icon][0]
+
+    if (
+      this.options.type &&
+      Object.prototype.hasOwnProperty.call(
+        this.options.types,
+        this.options.type
+      )
+    ) {
+      return this.options.types[this.options.type]
+    }
+    return ''
   }
 
   createHtml() {
@@ -327,14 +365,16 @@ class Toast extends GlobalComponent {
     let loader = ''
     let icon = ''
 
-    if (this.options.icon) {
+    const iconClass = this.getIconClass()
+
+    if (iconClass) {
       icon = templateEngine.render(this.options.templates.icon.call(this), {
         classes: this.classes,
-        iconClass: this.getIconClass()
+        iconClass
       })
     }
 
-    if (this.options.allowClose) {
+    if (this.options.closeable) {
       close = templateEngine.render(this.options.templates.close.call(this), {
         classes: this.classes
       })
@@ -361,109 +401,43 @@ class Toast extends GlobalComponent {
     }
 
     if (this.options.buttons) {
-      buttons = templateEngine.render(
-        this.options.templates.buttons.call(this),
-        {
-          classes: this.classes,
-          button: this.createBtn()
-        }
-      )
+      buttons = this.createBtns()
     }
 
     const html = templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
       close,
+      icon,
       title,
       content,
       buttons,
-      // icon,
       loader
     })
     return html
   }
 
-  _creatBtn(buttons, key) {
-    let btn = ''
-    const btnClass = buttons[key].class
-    const title = buttons[key].title
-    btn = templateEngine.render(this.options.templates.button.call(this), {
-      classes: this.classes,
-      btnClass,
-      title,
-      key
-    })
-    return btn
-  }
-
-  createBtn() {
+  createBtns() {
     const buttons = this.options.buttons
     let result = ''
-    for (const key in buttons) {
-      if (Object.prototype.hasOwnProperty.call(buttons, key)) {
-        const btn = this._creatBtn(buttons, key)
-        result += btn
+
+    for (const type in buttons) {
+      if (Object.prototype.hasOwnProperty.call(buttons, type)) {
+        result += this.creatBtn(type, buttons[type])
       }
     }
-    return result
+
+    return templateEngine.render(this.options.templates.buttons.call(this), {
+      classes: this.classes,
+      buttons: result
+    })
   }
 
-  initialize() {
-    this.$icon = query(`.${this.classes.ICON}`, this.$element)
-    this.$content = query(`.${this.classes.CONTENT}`, this.$element)
-    this.$title = query(`.${this.classes.TITLE}`, this.$element)
-    this.$buttons = query(`.${this.classes.BUTTONS}`, this.$element)
-    this.$loader = query(`.${this.classes.LOADER}`, this.$element)
-    this.$loaderInner = query(`.${this.classes.LOADERINNER}`, this.$element)
-    this.$close = query(`.${this.classes.CLOSE}`, this.$element)
-
-    this.options.stack = parseInt(this.options.stack, 10)
-    if (this.options.content) {
-      this.setContent(this.options.content)
-    }
-    this.setTitle(this.options.title)
-    // set icon
-    if (this.options.iconClass === '' && this.options.icon !== '') {
-      setStyle('color', this.options.icons[this.options.icon][1], this.$icon)
-      if (this.options.iconColor !== '') {
-        setStyle('color', this.options.iconColor, this.$icon)
-      }
-    } else if (this.$icon) {
-      setStyle('color', this.options.iconColor, this.$icon)
-    }
-
-    // set X btn
-    if (this.options.closeBtnColor) {
-      setStyle('color', this.options.closeBtnColor, this.$close)
-    }
-
-    this.enter('initialized')
-    this.trigger(EVENTS.READY)
-  }
-
-  setContent(content) {
-    if (this.options.html) {
-      this.$content.innerHTML = content
-    } else {
-      this.$content.textContent = content
-    }
-
-    if (this.options.contentColor) {
-      setStyle('color', this.options.contentColor, this.$content)
-    }
-  }
-
-  setTitle(title) {
-    const icon = query('i', this.$title)
-    if (icon) {
-      after(title, icon)
-      addClass('pj-toast-title-icon', this.$title)
-    } else {
-      this.$title.textContent = title
-    }
-
-    if (this.options.titleColor) {
-      setStyle('color', this.options.titleColor, this.$title)
-    }
+  creatBtn(type, button) {
+    return templateEngine.render(this.options.templates.button.call(this), {
+      classes: this.classes,
+      btnClass: button.class,
+      title: button.title
+    })
   }
 
   destroy() {
@@ -476,11 +450,6 @@ class Toast extends GlobalComponent {
     super.destroy()
   }
 
-  static open(options = {}) {
-    const instance = new Toast(options)
-    return instance
-  }
-
   static reset() {
     const instances = this.getInstances()
 
@@ -488,9 +457,15 @@ class Toast extends GlobalComponent {
     return true
   }
 
-  static warning(...args) {
-    const options = { icon: 'warning' }
-    const length = args.length
+  static open(...args) {
+    let options = {}
+    let length = args.length
+
+    if (length && isObject(args[length - 1])) {
+      options = Object.assign(args[length - 1], options)
+      length -= 1
+    }
+
     if (length === 1) {
       options.content = args[0]
     } else if (length === 2) {
@@ -498,13 +473,67 @@ class Toast extends GlobalComponent {
       options.content = args[1]
     }
 
-    const instance = new Toast(options)
-    return instance
+    return new Toast(options)
+  }
+
+  static info(...args) {
+    let options = {
+      type: 'info'
+    }
+    let length = args.length
+
+    if (length && isObject(args[length - 1])) {
+      options = Object.assign(args[length - 1], options)
+      length -= 1
+    }
+
+    if (length === 1) {
+      options.content = args[0]
+    } else if (length === 2) {
+      options.title = args[0]
+      options.content = args[1]
+    }
+
+    return new Toast(options)
+  }
+
+  static warning(...args) {
+    let options = {
+      type: 'warning'
+    }
+    let length = args.length
+
+    if (length && isObject(args[length - 1])) {
+      options = Object.assign(args[length - 1], options)
+      length -= 1
+    }
+
+    if (length === 1) {
+      options.content = args[0]
+    } else if (length === 2) {
+      options.title = args[0]
+      options.content = args[1]
+    }
+
+    return new Toast(options)
   }
 
   static success(...args) {
-    const options = { icon: 'success' }
-    const length = args.length
+    let options = {
+      type: 'success'
+    }
+    let length = args.length
+
+    if (length && isObject(args[length - 1])) {
+      options = Object.assign(args[length - 1], options)
+      length -= 1
+    }
+
+    if (length && isObject(args[length - 1])) {
+      options = Object.assign(args[length - 1], options)
+      length -= 1
+    }
+
     if (length === 1) {
       options.content = args[0]
     } else if (length === 2) {
@@ -512,13 +541,20 @@ class Toast extends GlobalComponent {
       options.content = args[1]
     }
 
-    const instance = new Toast(options)
-    return instance
+    return new Toast(options)
   }
 
   static error(...args) {
-    const options = { icon: 'danger' }
-    const length = args.length
+    let options = {
+      type: 'error'
+    }
+    let length = args.length
+
+    if (length && isObject(args[length - 1])) {
+      options = Object.assign(args[length - 1], options)
+      length -= 1
+    }
+
     if (length === 1) {
       options.content = args[0]
     } else if (length === 2) {
@@ -526,8 +562,7 @@ class Toast extends GlobalComponent {
       options.content = args[1]
     }
 
-    const instance = new Toast(options)
-    return instance
+    return new Toast(options)
   }
 }
 

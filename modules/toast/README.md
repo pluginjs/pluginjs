@@ -99,22 +99,16 @@ Name | Description | Default
 `"localeFallbacks"` | Set is enable locale fallback or not | `true`
 `"content"` | Set content | ``
 `"title"` | Set title | `This is Title`
-`"titleColor"` | Set title color | ``
-`"contentColor"` | Set content color | ``
-`"closeBtnColor"` | Set close button color | ``
 `"effect"` | Set effect | `fade`
-`"allowClose"` | Set is allow close or not | `true`
+`"close"` | Set is allow close or not | `true`
 `"duration"` | Set duretion | `3000`
 `"stack"` | Set stack number | `6`
 `"position"` | Set position | `bottom-right`
 `"icon"` | Set default icon | `success`
-`"icons"` | Set icons options | `{"success":["pj-icon pj-icon-check-circle","#4be1ab"],"info":["pj-icon pj-icon-exclamation-circle","#4c93d9"],"warning":["pj-icon pj-icon-exclamation-triangle","#dabd49"],"danger":["pj-icon pj-icon-times-circle","#f86b67"]}`
-`"iconColor"` | Set icon color | ``
+`"icons"` | Set icons options | `{"success":["pj-icon pj-icon-check-circle","#4be1ab"],"info":["pj-icon pj-icon-exclamation-circle","#4c93d9"],"warning":["pj-icon pj-icon-exclamation-triangle","#dabd49"],"error":["pj-icon pj-icon-times-circle","#f86b67"]}`
 `"iconClass"` | Set icon class | ``
-`"bgColor"` | Set bg color | `null`
 `"buttons"` | Set buttons | `null`
 `"loader"` | Set is enable loader or not | `true`
-`"loaderBgColor"` | Set loader bg color | ``
 
 ### Events
 

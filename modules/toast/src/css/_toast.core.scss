@@ -18,7 +18,13 @@ $toast-loader-color: $color-primary !default;
 // =====================
 .#{$toast} {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
   background-color: #fff;
+  align-content: flex-start;
 
   &-close {
     position: absolute;
@@ -26,9 +32,15 @@ $toast-loader-color: $color-primary !default;
     right: $toast-close-right;
   }
 
+  &-content {
+    width: 100%;
+  }
+
   &-title {
-    display: flex;
-    align-items: center;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &-loader {
@@ -40,7 +52,7 @@ $toast-loader-color: $color-primary !default;
     overflow: hidden;
     transform: translateY(-100%);
 
-    &-inner {
+    &-bar {
       width: 0%;
       height: 100%;
       background-color: $toast-loader-color;
