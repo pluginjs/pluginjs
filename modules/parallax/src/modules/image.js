@@ -17,12 +17,11 @@ class Image extends Base {
       this.element.setAttribute('srcset', this.options.imageSrcset)
     }
 
+    append(this.element, this.instance.element)
+
     this.element.addEventListener('load', () => {
       this.instance.loader.hide()
-      append(this.element, this.instance.element)
     })
-
-    this.setModeAttributes()
   }
 }
 

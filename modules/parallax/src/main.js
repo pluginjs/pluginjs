@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import { compose, curry, deepMerge } from '@pluginjs/utils'
+import { deepMerge } from '@pluginjs/utils'
 import { addClass, hasClass } from '@pluginjs/classes'
 import { closest, wrap, parentWith, parseHTML } from '@pluginjs/dom'
 import { isString, isNan } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
+import { setStyle } from '@pluginjs/styled'
 import Pj from '@pluginjs/factory'
 import {
   eventable,
@@ -31,8 +32,6 @@ import Background from './modules/background'
 import Video from './modules/video'
 import Element from './modules/element'
 
-import Maybe from './maybe'
-
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -53,37 +52,30 @@ class Parallax extends Component {
       addClass(this.getThemeClass(), this.element)
     }
 
-    this.updateWindowProps()
-
     this.setupStates()
     this.initialize()
   }
 
   initialize() {
     this.initContainer()
+    this.initViewport()
     this.initLoader()
     this.initSpeed()
-    this.direction = this.options.direction || 'down'
+    this.direction = this.options.direction || 'vertical'
 
     if (this.options.mode) {
       this.initMode()
     }
-
     console.log(this)
-    this.isHorizontal = Boolean(this.options.horizontal)
-
-    this.initViewport()
-
-    this.render()
+    this.effect()
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
   initContainer() {
-    this.container = {}
-    this.container.el = closest(`.${this.classes.CONTAINER}`, this.element)
-    if (!this.container.el) {
+    this.container = closest(`.${this.classes.CONTAINER}`, this.element)
+    if (!this.container) {
       if (this.options.container) {
         addClass(
           this.classes.CONTAINER,
@@ -93,24 +85,21 @@ class Parallax extends Component {
         wrap(`<div class="${this.classes.CONTAINER}"></div>`, this.element)
       }
 
-      this.container.el = parentWith(
+      this.container = parentWith(
         hasClass(this.classes.CONTAINER),
         this.element
       )
     }
 
-    this.container.options = this.datasetToOptions(this.container.el.dataset)
-    this.container.offset = this.computeOffset(this.container.el)
+    this.containerOptions = this.datasetToOptions(this.container.dataset)
 
-    if (this.container.options.height) {
-      this.container.el.style.height = this.setContainerHeight()
+    if (this.containerOptions.height) {
+      this.container.style.height = this.setContainerHeight()
     }
-
-    this.container.height = this.container.el.clientHeight
   }
 
   setContainerHeight() {
-    const attrHeight = this.container.options.height
+    const attrHeight = this.containerOptions.height
 
     if (!isNan(Number(attrHeight))) {
       return `${attrHeight}px`
@@ -137,7 +126,7 @@ class Parallax extends Component {
       this.options.loaderConfig
     )
 
-    this.loader = Loader.of(this.container.el, loaderConfig)
+    this.loader = Loader.of(this.container, loaderConfig)
     this.loader.show()
   }
 
@@ -154,10 +143,6 @@ class Parallax extends Component {
       } else {
         this.speed = attrSpeedNumber
       }
-    }
-
-    if (this.speed === 0) {
-      this.speed = -Math.PI
     }
 
     return this.speed
@@ -183,13 +168,7 @@ class Parallax extends Component {
   }
 
   initViewport() {
-    this.viewport = Viewport.of(this.container.el)
-  }
-
-  computeOffset(el) {
-    const rectTop = el.getBoundingClientRect().top
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-    return rectTop + scrollTop
+    this.viewport = Viewport.of(this.container)
   }
 
   createElement(type) {
@@ -220,153 +199,55 @@ class Parallax extends Component {
     }, {})
   }
 
-  move() {
-    // pv.containerArr.forEach((container, i) => {
-    //   let calc = 0
-    //     if (i > pv.mostReContainerInViewport) pv.mostReContainerInViewport = i
-    //     if (container.offset < pv.windowProps.windowHeight) {
-    //       calc = pv.windowProps.scrollTop
-    //       // if the parallax is further down on the page
-    //       // calculate windowheight - parallax offset + scrollTop to start from 0 whereever it appears
-    //     } else {
-    //       calc = pv.windowProps.windowHeight - container.offset + pv.windowProps.scrollTop
-    //     }
-    //     container.blocks.forEach(block => {
-    //       if (block.videoEl) {
-    //         block.videoEl.play()
-    //         if (block === pv.unmutedBlock) {
-    //           if (!block.muted) {
-    //             block.videoEl.muted = block.muted
-    //             block.muted
-    //               ? pv.unmutedBlock.audioButton.classList.add('mute')
-    //               : pv.unmutedBlock.audioButton.classList.remove('mute')
-    //           }
-    //         }
-    //       }
-    //       transform(block.el, 'translate3d(0,' + Math.round(calc / block.speed) + 'px, 0)')
-    //     })
-    // })
+  effect() {
+    const scrolled = this.container.getBoundingClientRect().y
+
+    if (Math.abs(this.speed) > 1) {
+      this.speed = 0.3
+    }
+
+    this.distance = (this.speed * scrolled) / 2.1
+
+    this.move()
+
+    const style = {
+      transform: this.transform,
+      'object-fit': 'cover'
+    }
+
+    if (this.direction === 'horizontal') {
+      style.width = `${this.container.offsetWidth *
+        (1 + Math.abs(this.speed) * 2)}px`
+    } else {
+      style.height = `${this.container.offsetHeight *
+        (1 + Math.abs(this.speed) * 2)}px`
+    }
+
+    setStyle(style, this.element)
   }
 
-  // ready to delete render after translate function complete
+  move() {
+    let moveX
+    let moveY
 
-  render() {
-    const mode = this.options.animate
-    const getDocumentHeight = () => {
-      const { documentElement, body } = document
-      const bodyHeight = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        documentElement.scrollHeight,
-        documentElement.offsetHeight,
-        documentElement.clientHeight
-      )
-      return bodyHeight - documentElement.clientHeight
+    if (this.direction === 'horizontal') {
+      moveX = this.distance
+      moveY = '0'
+    } else {
+      moveX = '0'
+      moveY = this.distance
     }
 
-    const getScrollTop = () => {
-      const { documentElement, body } = document
-      return (
-        window.pageYOffset || documentElement.scrollTop || body.scrollTop || 0
-      )
-    }
-
-    const offsetCheck = scrollTop => {
-      if (this.options.offset) {
-        if (scrollTop < this.options.offset) {
-          return null
-        }
-        return scrollTop - this.options.offset
-      }
-      return scrollTop
-    }
-
-    const computePercent = curry((documentHeight, scrollTop) => {
-      const multiple = 100
-      return Math.round((scrollTop / documentHeight) * multiple)
-    })
-
-    const getMaxValue = (max, min) => {
-      const multiple = 100
-      return (max - min) / multiple
-    }
-
-    const either = (left, right) => {
-      if (left || left === 0) {
-        return left
-      }
-      return right
-    }
-
-    const computeOffset = (max, min, percent) =>
-      percent *
-        getMaxValue(
-          either(this.options.max, max),
-          either(this.options.min, min)
-        ) +
-      either(this.options.min, min)
-
-    const modeMatch = curry((mode, percent) => {
-      const multiple = 1000
-      const speed = this.options.speed / multiple
-      const rotate = 360
-      switch (mode) {
-        case 'translateY':
-          this.element.style.transform = `translate3d(0, ${computeOffset(
-            this.element.clientHeight / 2,
-            0,
-            percent
-          ) *
-            speed *
-            1000}px, 0)`
-          break
-        case 'translateX':
-          this.element.style.transform = `translateX(${computeOffset(
-            this.element.clientWidth / 2,
-            (this.element.clientWidth / 2) * -1,
-            percent
-          ) *
-            speed *
-            1000}px)`
-          break
-        case 'rotateZ':
-          this.element.style.transform = `rotateZ(${computeOffset(
-            rotate,
-            0,
-            percent
-          ) *
-            speed *
-            1000}deg)`
-          break
-        case 'scale':
-          this.element.style.transform = `scale(${computeOffset(1, 0, percent) *
-            speed *
-            1000})`
-          break
-        case 'custom':
-          this.customHandle(percent)
-          break
-        default:
-          break
-      }
-      return null
-    })
-    return Maybe.of(getScrollTop()).map(
-      compose(
-        modeMatch(mode),
-        computePercent(getDocumentHeight()),
-        offsetCheck
-      )
-    )
+    this.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`
   }
 
   bind() {
     bindEvent(
       'viewport:enter',
       () => {
-        Pj.emitter.on(this.eventNameWithId('scroll'), this.render.bind(this))
+        Pj.emitter.on(this.eventNameWithId('scroll'), this.effect.bind(this))
       },
-      this.container.el
+      this.container
     )
 
     bindEvent(
@@ -374,40 +255,23 @@ class Parallax extends Component {
       () => {
         Pj.emitter.off(this.eventNameWithId('scroll'))
       },
-      this.container.el
+      this.container
     )
-
-    // Pj.emitter.on(this.eventNameWithId('resize'), this.render.bind(this))
   }
 
   unbind() {
     removeEvent('viewport:enter', this.container.el)
     removeEvent('viewport:leave', this.container.el)
     Pj.emitter.off(this.eventNameWithId('scroll'))
-    // Pj.emitter.off(this.eventNameWithId('resize'))
-  }
-
-  updateWindowProps() {
-    this.windowProps = {
-      scrollTop: window.scrollY || document.documentElement.scrollTop,
-      windowWidth: window.innerWidth || document.documentElement.clientWidth,
-      windowHeight: window.innerHeight || document.documentElement.clientHeight,
-      windowMidHeight:
-        window.innerHeight / 2 || document.documentElement.clientHeight / 2
-    }
   }
 
   resize() {
-    if (this.options.mode === 'image') {
-      this.mode.setModeAttributes()
-    }
-
-    this.render()
+    this.effect()
   }
 
   enterHandle() {
     this.context.trigger(EVENTS.ENTER)
-    this.context.render()
+    this.context.effect()
   }
 
   enable() {

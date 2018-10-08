@@ -2,55 +2,81 @@
 @import "@pluginjs/parallax/src/css/parallax.scss";
 @import "@pluginjs/loader/src/css/loader.scss";
 
+
+body {
+  margin: 0;
+}
+
+.row {
+  height: 100%;
+  // display: flex;
+}
+
+.col-1 {
+  width: 20%;
+
+  &:nth-of-type(2) {
+    left: 20%;
+  }
+
+  &:nth-of-type(3) {
+    left: 40%;
+  }
+
+  &:nth-of-type(4) {
+    left: 60%;
+  }
+
+  &:nth-of-type(5) {
+    left: 80%;
+  }
+}
+
 .gap {
   height: 200px;
 }
 
-.pj-parallax-container {
-  border: 1px solid #333;
-}
+// main {
+//   position: relative;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 930px;
+//   height: 300px;
+//   margin-bottom: 30px;
+// }
+// .background {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   z-index: -1;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   overflow: hidden;
+//   background-color: transparent;
+// }
+// .card {
+//   width: 200px;
+//   height: 200px;
+//   background-color: #555;
+// }
+// .inline {
+//   display: flex;
+//   & > div:not(:last-child) {
+//     margin-right: 50px;
+//   }
+// }
+// .element-conatiner {
+//   min-height: 1000px;
+// }
+// .element-conatiner > div:not(:last-child) {
+//   margin-bottom: 50px;
+// }
 
-main {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 930px;
-  height: 300px;
-  margin-bottom: 30px;
-}
-.background {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: transparent;
-}
-.card {
-  width: 200px;
-  height: 200px;
-  background-color: #555;
-}
-.inline {
-  display: flex;
-  & > div:not(:last-child) {
-    margin-right: 50px;
-  }
-}
-.element-conatiner {
-  min-height: 1000px;
-}
-.element-conatiner > div:not(:last-child) {
-  margin-bottom: 50px;
-}
-
-.background > img {
-  width: auto;
-  height: auto;
-}
+// .background > img {
+//   width: auto;
+//   height: auto;
+// }

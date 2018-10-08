@@ -19,9 +19,9 @@ export const methods = ['show']
 export const defaults = {
   theme: null,
   container: null,
-  direction: 'down', // 'down', 'up', 'left', 'right'
+  direction: 'vertical', // 'vertical', 'horizontal'
   mode: 'image', // 'image', 'background', 'video', 'element'
-  speed: 1,
+  speed: 0.5,
   loaderConfig: null,
   type: 'scroll', // 'scroll', 'opacity', 'scale', 'rotate'
   offset: 0,
