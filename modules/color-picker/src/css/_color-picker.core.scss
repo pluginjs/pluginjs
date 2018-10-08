@@ -1,0 +1,150 @@
+@import "@pluginjs/styles/variables.scss";
+
+$colorPicker: "pj-colorPicker" !default;
+
+$colorPicker-width: 162px !default;
+$colorPicker-preview-width: 45px !default;
+$colorPicker-preview-height: 32px !default;
+$colorPicker-remove-right: $colorPicker-preview-width + 6px !default;
+$colorPicker-border-width: 1px !default;
+$colorPicker-preview-span-left: calc(50% - #{$colorPicker-border-width});
+$colorPicker-preview-bg-width: 36px !default;
+$colorPicker-preview-bg-height: 24px !default;
+$colorPicker-border-radius: $border-radius-base !default;
+$colorPicker-panel-width: 288px !default;
+
+// Core
+// =====================
+.#{$colorPicker} {
+  &-trigger {
+    position: relative;
+    width: $colorPicker-width;
+  }
+
+  &-input {
+    width: $colorPicker-width;
+  }
+
+  &-remove {
+    position: absolute;
+    top: 50%;
+    right: $colorPicker-remove-right;
+    z-index: 9;
+    transform: translateY(-50%);
+  }
+
+  &-preview {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: $colorPicker-preview-width;
+    height: $colorPicker-preview-height - 2px;
+    cursor: pointer;
+    transform: translateY(-50%);
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: $colorPicker-preview-span-left;
+      display: inline-block;
+      width: $colorPicker-preview-bg-width;
+      height: $colorPicker-preview-bg-height;
+      border-radius: $colorPicker-border-radius;
+      transform: translate(-50%,-50%);
+    }
+
+    &-bg {
+      z-index: -1;
+    }
+  }
+
+  &-panel {
+    z-index: 9999;
+    box-sizing: border-box;
+    flex-direction: column;
+    width: $colorPicker-panel-width;
+  }
+
+  &-primary {
+    display: flex;
+  }
+
+  &-saturation,
+  &-alpha,
+  &-hue {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    overflow: hidden;
+
+    &:hover {
+      cursor: row-resize;
+    }
+  }
+
+  &-pointer {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    display: block;
+    transform-origin: 50% 50%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  &-saturation {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-hex {
+    display: flex;
+    justify-content: space-between;
+
+    &-box {
+      position: relative;
+    }
+
+    &-unit {
+      position: absolute;
+      top: 0;
+      right: 3px;
+      display: inline-block;
+    }
+  }
+
+  &-history {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item {
+      position: relative;
+      box-sizing: border-box;
+      display: inline-block;
+      cursor: not-allowed;
+
+      &-empty {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 98;
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-disabled {
+    .#{$colorPicker}-preview {
+      cursor: not-allowed;
+    }
+  }
+}

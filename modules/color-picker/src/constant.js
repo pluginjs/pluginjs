@@ -152,7 +152,7 @@ export const defaults = {
       return '<div class="{classes.SATURATION}"></div>'
     },
     save() {
-      return '<button type="button" class="{classes.SAVE} pj-btn pj-btn-xs pj-btn-outline">{text}</button>'
+      return '<button type="button" class="{classes.SAVE} pj-btn pj-btn-block">{text}</button>'
     }
   },
   process(data, module) {

@@ -58,6 +58,10 @@ $input: pj-input !default;
       background-color: $input-disabled-bg;
       border-color: $input-disabled-border;
     }
+
+    &::placeholder {
+      color: $input-disabled-color;
+    }
   }
 }
 
