@@ -84,6 +84,7 @@ $svgPicker-item-active-bg: $color-primary;
     color: $svgPicker-group-label-color;
   }
 
+  &-empty,
   &-not-found,
   &-loading {
     width: 80%;

@@ -40,7 +40,8 @@ export const classes = {
   FILTER: '{namespace}-filter',
   NOTFOUND: '{namespace}-not-found',
   LOADING: '{namespace}-loading',
-  MANAGE: '{namespace}-manage'
+  MANAGE: '{namespace}-manage',
+  EMPTY: '{namespace}-empty'
 }
 
 export const methods = [
@@ -133,15 +134,17 @@ export const translations = {
     placeholderText: 'Select SVG',
     loadingText: 'loading..',
     notFoundText: 'No results found',
-    searchText: 'search',
-    manageText: 'Manage'
+    searchText: 'Search',
+    manageText: 'Manage',
+    emptyText: 'There is no svg'
   },
   zh: {
     placeholderText: '选择 SVG 图标',
     loadingText: '加载中..',
     notFoundText: '无匹配数据',
     searchText: '搜索',
-    manageText: '管理'
+    manageText: '管理',
+    emptyText: '没有 SVG 图标'
   }
 }
 

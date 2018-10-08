@@ -141,7 +141,7 @@ export const translations = {
     placeholderText: 'Select Font',
     loadingText: 'loading..',
     notFoundText: 'No fonts found',
-    searchText: 'search',
+    searchText: 'Search',
     manageText: 'Manage',
     swicherText: 'Sources'
   },

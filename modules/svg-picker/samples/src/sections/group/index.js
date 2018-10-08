@@ -99,6 +99,8 @@ SvgPicker.of(element, {
       })
       source.push(group)
     })
+
+    console.info(source)
     resolve(source)
   }
 })

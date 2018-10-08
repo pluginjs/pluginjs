@@ -91,6 +91,7 @@ $svgPicker-item-padding-y: ($svgPicker-item-height - $svgPicker-svg-height)/2 - 
     white-space: nowrap;
   }
 
+  &-empty,
   &-not-found,
   &-loading {
     display: flex;

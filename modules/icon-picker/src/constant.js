@@ -141,7 +141,7 @@ export const translations = {
     placeholderText: 'Select Icon',
     loadingText: 'loading..',
     notFoundText: 'No icons found',
-    searchText: 'search',
+    searchText: 'Search',
     manageText: 'Manage',
     swicherText: 'Packages'
   },

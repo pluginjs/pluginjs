@@ -365,7 +365,7 @@ class SvgPicker extends Component {
   }
 
   buildDropdownItems() {
-    const $items = this.buildItems(this.items)
+    const $items = this.buildItems(this.data)
 
     this.$items.appendChild($items)
 
