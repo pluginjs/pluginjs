@@ -16,26 +16,26 @@
   }
 }
 
-#direction {
-  .wrapper {
-    display: flex;
-    justify-content: space-between;
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
 
-    .section {
-      width: calc((100% - 30px) / 2)
-    }
+#direction {
+  .section {
+    width: calc((100% - 30px) / 2)
   }
 }
 
-#speed,
-#type {
-  .wrapper {
-    display: flex;
-    justify-content: space-between;
+#speed {
+  .section {
+    width: calc((100% - 40px) / 4)
+  }
+}
 
-    .section {
-      width: calc((100% - 40px) / 4)
-    }
+#type {
+  .section {
+    width: calc((100% - 40px) / 3)
   }
 }
 

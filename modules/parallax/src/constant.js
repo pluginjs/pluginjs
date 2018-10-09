@@ -23,7 +23,7 @@ export const defaults = {
   mode: 'image', // 'image', 'background', 'video'
   speed: 0.5,
   loaderConfig: null,
-  type: 'scroll', // 'scroll', 'opacity', 'scale', 'rotate'
+  type: 'scroll', // 'scroll', 'opacity', 'scale'
   videoSrc: '', // video mode
   videoMuted: true, // video mode
   imageSrc: '', // image mode, background mode

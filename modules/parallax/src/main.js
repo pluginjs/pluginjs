@@ -188,9 +188,6 @@ class Parallax extends Component {
       case 'scale':
         this.scaleHandle()
         break
-      case 'rotate':
-        this.rotateHandle()
-        break
       default:
         this.scrollHandle()
         break
@@ -270,25 +267,6 @@ class Parallax extends Component {
       Math.round((this.getScrollTop() / this.getDocumentHeight()) * 100) / 100
 
     this.transform = `scale(${offset * (1.5 + this.speed)})`
-
-    setStyle(
-      {
-        transform: this.transform,
-        height: '100%',
-        top: '0',
-        left: '0'
-      },
-      this.element
-    )
-  }
-
-  rotateHandle() {
-    const offset =
-      (Math.round((this.getScrollTop() / this.getDocumentHeight()) * 100) *
-        360) /
-      600
-    // console.log(offset)
-    this.transform = `rotateX(${360 - offset}deg) scale(1.6)`
 
     setStyle(
       {
