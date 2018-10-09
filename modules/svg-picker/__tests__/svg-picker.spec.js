@@ -2,6 +2,14 @@ import SvgPicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const value =
+  '{"name":"chrome","svg":"<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24\\" height=\\"24\\" viewBox=\\"0 0 24 24\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-width=\\"2\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\" class=\\"feather feather-chrome\\"><circle cx=\\"12\\" cy=\\"12\\" r=\\"10\\"></circle><circle cx=\\"12\\" cy=\\"12\\" r=\\"4\\"></circle><line x1=\\"21.17\\" y1=\\"8\\" x2=\\"12\\" y2=\\"8\\"></line><line x1=\\"3.95\\" y1=\\"6.06\\" x2=\\"8.54\\" y2=\\"14\\"></line><line x1=\\"10.88\\" y1=\\"21.94\\" x2=\\"15.46\\" y2=\\"14\\"></line></svg>"}'
+const data = {
+  name: 'chrome',
+  svg:
+    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chrome"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="21.17" y1="8" x2="12" y2="8"></line><line x1="3.95" y1="6.06" x2="8.54" y2="14"></line><line x1="10.88" y1="21.94" x2="15.46" y2="14"></line></svg>'
+}
+
 describe('SvgPicker', () => {
   describe('SvgPicker()', () => {
     test('should have SvgPicker', () => {
@@ -97,7 +105,7 @@ describe('SvgPicker', () => {
 
     it('should not fired when initialize', () => {
       let called = false
-      $element = generateHTMLSample('a')
+      $element = generateHTMLSample(value)
       api = SvgPicker.of($element, {
         onChange() {
           called = true
@@ -113,12 +121,11 @@ describe('SvgPicker', () => {
       api = SvgPicker.of($element, {
         onChange(value) {
           called = true
-
-          expect(value).toBe('c')
+          expect(value).toBe(value)
         }
       })
 
-      api.val('c')
+      api.val(value)
 
       expect(called).toBeTrue()
     })
@@ -130,11 +137,11 @@ describe('SvgPicker', () => {
         onChange(value) {
           called = true
 
-          expect(value).toBe('c')
+          expect(value).toBe(value)
         }
       })
 
-      api.set('c')
+      api.set(data)
 
       expect(called).toBeTrue()
     })
@@ -150,7 +157,13 @@ describe('SvgPicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBe('b')
+      expect(api.get()).toBeNil()
+    })
+    it('should get the value with value', () => {
+      $element = generateHTMLSample(value)
+      api = SvgPicker.of($element)
+
+      expect(api.get()).toBeObject(data)
     })
   })
 
@@ -164,10 +177,10 @@ describe('SvgPicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBe('b')
+      expect(api.get()).toBeObject()
 
-      api.set('a')
-      expect(api.get()).toBe('a')
+      api.set(data)
+      expect(api.get()).toEqual(data)
     })
   })
 
@@ -185,9 +198,9 @@ describe('SvgPicker', () => {
     })
 
     test('should set the value', () => {
-      api.val('a')
+      api.val(value)
 
-      expect(api.get()).toBe('a')
+      expect(api.get()).toEqual(data)
     })
   })
 

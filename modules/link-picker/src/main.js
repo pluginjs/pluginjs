@@ -300,6 +300,7 @@ class LinkPicker extends Component {
       this.target.clear()
       this.linkTitle.clear()
       this.update()
+      this.element.value = ''
     }
     removeClass(this.classes.HOVER, this.$action)
     removeClass(this.classes.WRITE, this.$wrap)

@@ -39,7 +39,7 @@ export default class Internal {
   set(value) {
     if (!value) {
       // this.CASCADER.select(value)
-      this.instance.value.internal = ['post', '6']
+      this.instance.value.internal = []
     } else {
       this.instance.value.internal = value
     }
