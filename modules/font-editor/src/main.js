@@ -215,12 +215,10 @@ class FontEditor extends Component {
 
   val(value) {
     if (typeof value === 'undefined') {
-      console.log(this.options.process.call(this, this.value))
       return this.options.process.call(this, this.value)
     }
 
     const valueObj = this.options.parse.call(this, value)
-    console.log(valueObj)
     if (valueObj) {
       this.set(valueObj)
     } else {

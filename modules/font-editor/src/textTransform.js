@@ -6,6 +6,7 @@ import { bindEvent } from '@pluginjs/events'
 export default class TextTransform {
   constructor(instance) {
     this.instance = instance
+
     this.values = instance.options.textTransform.values
     this.defaultValue = instance.options.textTransform.value
 
@@ -14,7 +15,6 @@ export default class TextTransform {
 
   initialize() {
     const that = this
-
     const html = template.compile(
       this.instance.options.textTransform.template()
     )({ classes: this.instance.classes })

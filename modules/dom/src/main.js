@@ -5,9 +5,11 @@ export const parseHTML = (...args) => {
   const htmlString = Array.isArray(args[0])
     ? args[0].reduce((result, str, index) => result + args[index] + str)
     : args[0]
-  const template = document.createElement('template')
-  template.innerHTML = htmlString
-  return template.content.firstChild
+  const childNodes = children(html(htmlString, document.createElement('div')))
+  if (childNodes.length === 1) {
+    return childNodes[0]
+  }
+  return childNodes
 }
 
 // ----------
