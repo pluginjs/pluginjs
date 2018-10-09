@@ -2,6 +2,8 @@ import AutoComplete from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
+const value = 'France'
+
 describe('AutoComplete', () => {
   describe('AutoComplete()', () => {
     test('should have AutoComplete', () => {
@@ -58,7 +60,7 @@ describe('AutoComplete', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.addEventListener('auto-complete:ready', () => {
+      $element.addEventListener('autoComplete:ready', () => {
         called++
       })
 
@@ -80,7 +82,7 @@ describe('AutoComplete', () => {
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.addEventListener('auto-complete:destroy', () => {
+      $element.addEventListener('autoComplete:destroy', () => {
         called++
       })
 
@@ -97,7 +99,7 @@ describe('AutoComplete', () => {
 
     it('should not fired when initialize', () => {
       let called = false
-      $element = generateHTMLSample('a')
+      $element = generateHTMLSample(value)
       api = AutoComplete.of($element, {
         onChange() {
           called = true
@@ -114,11 +116,11 @@ describe('AutoComplete', () => {
         onChange(value) {
           called = true
 
-          expect(value).toBe('c')
+          expect(value).toBe(value)
         }
       })
 
-      api.val('c')
+      api.val(value)
 
       expect(called).toBeTrue()
     })
@@ -130,11 +132,11 @@ describe('AutoComplete', () => {
         onChange(value) {
           called = true
 
-          expect(value).toBe('c')
+          expect(value).toBe(value)
         }
       })
 
-      api.set('c')
+      api.set(value)
 
       expect(called).toBeTrue()
     })
@@ -144,13 +146,17 @@ describe('AutoComplete', () => {
     let $element
     let api
 
-    beforeEach(() => {
+    test('should get the value without value', () => {
       $element = generateHTMLSample()
       api = AutoComplete.of($element)
+
+      expect(api.get()).toBeString()
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBe('b')
+      $element = generateHTMLSample(value)
+      api = AutoComplete.of($element)
+      expect(api.get()).toBe(value)
     })
   })
 
@@ -159,15 +165,15 @@ describe('AutoComplete', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample(value)
       api = AutoComplete.of($element)
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBe('b')
+      expect(api.get()).toBe(value)
 
-      api.set('a')
-      expect(api.get()).toBe('a')
+      api.set(value)
+      expect(api.get()).toBe(value)
     })
   })
 
@@ -210,7 +216,7 @@ describe('AutoComplete', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.addEventListener('auto-complete:enable', () => {
+      $element.addEventListener('autoComplete:enable', () => {
         called++
       })
 
@@ -238,7 +244,7 @@ describe('AutoComplete', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.addEventListener('auto-complete:disable', () => {
+      $element.addEventListener('autoComplete:disable', () => {
         called++
       })
 

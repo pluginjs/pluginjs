@@ -40,7 +40,7 @@ import {
   removeAttr
 } from '@pluginjs/dom'
 import { getValueByPath } from '@pluginjs/utils'
-import { match } from '@pluginjs/match'
+import match from '@pluginjs/match'
 
 @themeable()
 @styleable(CLASSES)
