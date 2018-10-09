@@ -2,80 +2,46 @@
 @import "@pluginjs/parallax/src/css/parallax.scss";
 @import "@pluginjs/loader/src/css/loader.scss";
 
-body {
-  margin: 0;
-}
-
-.row {
-  height: 100%;
-  // display: flex;
-}
-
-.col-1 {
-  width: 20%;
-
-  &:nth-of-type(2) {
-    left: 20%;
-  }
-
-  &:nth-of-type(3) {
-    left: 40%;
-  }
-
-  &:nth-of-type(4) {
-    left: 60%;
-  }
-
-  &:nth-of-type(5) {
-    left: 80%;
-  }
-}
-
 .gap {
   height: 200px;
 }
 
-// main {
-//   position: relative;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 930px;
-//   height: 300px;
-//   margin-bottom: 30px;
-// }
-// .background {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   bottom: 0;
-//   left: 0;
-//   z-index: -1;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   overflow: hidden;
-//   background-color: transparent;
-// }
-// .card {
-//   width: 200px;
-//   height: 200px;
-//   background-color: #555;
-// }
-// .inline {
-//   display: flex;
-//   & > div:not(:last-child) {
-//     margin-right: 50px;
-//   }
-// }
-// .element-conatiner {
-//   min-height: 1000px;
-// }
-// .element-conatiner > div:not(:last-child) {
-//   margin-bottom: 50px;
-// }
+.wrapper {
+  width: calc(100% - 60px);
+  max-width: 1600px;
+  margin: 20px auto;
 
-// .background > img {
-//   width: auto;
-//   height: auto;
-// }
+  .section {
+    border-radius: 6px;
+  }
+}
+
+#direction {
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .section {
+      width: calc((100% - 30px) / 2)
+    }
+  }
+}
+
+#speed,
+#type {
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .section {
+      width: calc((100% - 40px) / 4)
+    }
+  }
+}
+
+.content {
+  font-size: 26px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 1px;
+}

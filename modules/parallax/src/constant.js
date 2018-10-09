@@ -20,14 +20,13 @@ export const defaults = {
   theme: null,
   container: null,
   direction: 'vertical', // 'vertical', 'horizontal'
-  mode: 'image', // 'image', 'background', 'video', 'element'
+  mode: 'image', // 'image', 'background', 'video'
   speed: 0.5,
   loaderConfig: null,
   type: 'scroll', // 'scroll', 'opacity', 'scale', 'rotate'
-  offset: 0,
-  animate: 'translateY',
-  max: null,
-  min: null,
+  videoSrc: '', // video mode
+  videoMuted: true, // video mode
+  imageSrc: '', // image mode, background mode
   templates: {
     image() {
       return '<img class="{classes.IMAGE}">'

@@ -16,21 +16,27 @@ $parallax: "pj-parallax" !default;
 	.#{$parallax} {
 		position: absolute;
 		z-index: -1;
-		width: 100%;
-		height: 200%;
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
 		will-change: transfrom;
 
 		img {
-			// position: absolute;
-			// top: 0;
-			// left: 0;
 			width: 100%;
 			height: 100%;
-			// object-fit: cover;
-			// object-position: 50% 50%;
+			will-change: transfrom;
+		}
+
+		.pj-bgVideo {
+		  width: 100%;
+		  height: 100%;
+
+		  video {
+		    width: 100%;
+		    height: 100%;
+		    object-fit: cover;
+		    object-position: 50% 50%;
+		  }
 		}
 	}
 }

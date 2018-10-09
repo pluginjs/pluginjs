@@ -1,7 +1,7 @@
 // import sections
 import './sections/default'
-import './sections/differentSpeed'
-// import './sections/rotate'
-// import './sections/offset'
-// import './sections/translate'
-// import './sections/scale'
+import './sections/background'
+import './sections/video'
+import './sections/direction'
+import './sections/speed'
+import './sections/type'

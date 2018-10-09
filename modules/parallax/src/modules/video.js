@@ -1,4 +1,5 @@
 import Base from './base'
+import BgVideo from '@pluginjs/bg-video'
 
 class Video extends Base {
   constructor(instance) {
@@ -8,7 +9,16 @@ class Video extends Base {
   }
 
   initialize() {
-    //
+    const that = this
+    this.element = this.instance.element
+    this.video = BgVideo.of(this.element, {
+      type: 'html5',
+      muted: that.options.videoMuted,
+      url: that.options.videoSrc,
+      onLoaded() {
+        that.instance.loader.hide()
+      }
+    })
   }
 }
 

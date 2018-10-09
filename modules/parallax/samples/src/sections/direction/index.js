@@ -1,9 +1,9 @@
 import { queryAll } from '@pluginjs/dom'
 import Parallax from '@pluginjs/parallax'
 
-const elements = queryAll('#offset .card')
+const elements = queryAll('#direction .parallax')
 elements.forEach(el =>
   Parallax.of(el, {
-    container: '.background'
+    container: '.section'
   })
 )

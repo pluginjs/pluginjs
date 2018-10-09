@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import { deepMerge } from '@pluginjs/utils'
+import { deepMerge, parseDataOptions } from '@pluginjs/utils'
 import { addClass, hasClass } from '@pluginjs/classes'
 import { closest, wrap, parentWith, parseHTML } from '@pluginjs/dom'
 import { isString, isNan } from '@pluginjs/is'
@@ -30,7 +30,6 @@ import Loader from '@pluginjs/loader'
 import Image from './modules/image'
 import Background from './modules/background'
 import Video from './modules/video'
-import Element from './modules/element'
 
 @themeable()
 @styleable(CLASSES)
@@ -62,12 +61,12 @@ class Parallax extends Component {
     this.initLoader()
     this.initSpeed()
     this.direction = this.options.direction || 'vertical'
+    this.type = this.options.type || 'scroll'
 
     if (this.options.mode) {
       this.initMode()
     }
-    console.log(this)
-    this.effect()
+
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -91,7 +90,9 @@ class Parallax extends Component {
       )
     }
 
-    this.containerOptions = this.datasetToOptions(this.container.dataset)
+    this.containerOptions = this.container.dataset
+      ? parseDataOptions(this.container.dataset)
+      : {}
 
     if (this.containerOptions.height) {
       this.container.style.height = this.setContainerHeight()
@@ -159,9 +160,6 @@ class Parallax extends Component {
       case 'video':
         this.mode = new Video(this)
         break
-      case 'element':
-        this.mode = new Element(this)
-        break
       default:
         break
     }
@@ -182,33 +180,44 @@ class Parallax extends Component {
     return parseHTML(html)
   }
 
-  datasetToOptions(dataset) {
-    return Object.entries(dataset).reduce((result, [k, v]) => {
-      try {
-        const content = JSON.parse(`{"data": ${v.replace(/'/g, '"')}}`).data
-        return {
-          ...result,
-          [k]: content
-        }
-      } catch (err) {
-        return {
-          ...result,
-          [k]: v
-        }
-      }
-    }, {})
+  effect() {
+    switch (this.type) {
+      case 'opacity':
+        this.opacityHandle()
+        break
+      case 'scale':
+        this.scaleHandle()
+        break
+      case 'rotate':
+        this.rotateHandle()
+        break
+      default:
+        this.scrollHandle()
+        break
+    }
   }
 
-  effect() {
+  scrollHandle() {
     const scrolled = this.container.getBoundingClientRect().y
 
     if (Math.abs(this.speed) > 1) {
       this.speed = 0.3
     }
 
-    this.distance = (this.speed * scrolled) / 2.1
+    this.distance = (this.speed * scrolled) / 2.2
 
-    this.move()
+    let moveX
+    let moveY
+
+    if (this.direction === 'horizontal') {
+      moveX = -this.distance
+      moveY = '0'
+    } else {
+      moveX = '0'
+      moveY = -this.distance
+    }
+
+    this.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`
 
     const style = {
       transform: this.transform,
@@ -218,33 +227,105 @@ class Parallax extends Component {
     if (this.direction === 'horizontal') {
       style.width = `${this.container.offsetWidth *
         (1 + Math.abs(this.speed) * 2)}px`
+      style.height = '100%'
+      style.top = 0
+      style.bottom = 0
     } else {
       style.height = `${this.container.offsetHeight *
         (1 + Math.abs(this.speed) * 2)}px`
+      style.width = '100%'
+      style.left = 0
+      style.right = 0
+    }
+
+    setStyle(style, this.mode.element)
+  }
+
+  opacityHandle() {
+    if (Math.abs(this.speed) > 1) {
+      this.speed = 0.6
+    }
+
+    const offset =
+      Math.round((this.getScrollTop() / this.getDocumentHeight()) * 120) / 100
+
+    this.transform = 'translate3d(0, 0, 0)'
+
+    const style = {
+      transform: this.transform,
+      opacity: offset * (0.3 + this.speed),
+      height: '100%',
+      width: '100%'
     }
 
     setStyle(style, this.element)
   }
 
-  move() {
-    let moveX
-    let moveY
-
-    if (this.direction === 'horizontal') {
-      moveX = this.distance
-      moveY = '0'
-    } else {
-      moveX = '0'
-      moveY = this.distance
+  scaleHandle() {
+    if (Math.abs(this.speed) > 1) {
+      this.speed = 0.3
     }
 
-    this.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`
+    const offset =
+      Math.round((this.getScrollTop() / this.getDocumentHeight()) * 100) / 100
+
+    this.transform = `scale(${offset * (1.5 + this.speed)})`
+
+    setStyle(
+      {
+        transform: this.transform,
+        height: '100%',
+        top: '0',
+        left: '0'
+      },
+      this.element
+    )
+  }
+
+  rotateHandle() {
+    const offset =
+      (Math.round((this.getScrollTop() / this.getDocumentHeight()) * 100) *
+        360) /
+      600
+    // console.log(offset)
+    this.transform = `rotateX(${360 - offset}deg) scale(1.6)`
+
+    setStyle(
+      {
+        transform: this.transform,
+        height: '100%',
+        top: '0',
+        left: '0'
+      },
+      this.element
+    )
+  }
+
+  getScrollTop() {
+    const { documentElement, body } = document
+    return (
+      window.pageYOffset || documentElement.scrollTop || body.scrollTop || 0
+    )
+  }
+
+  getDocumentHeight() {
+    const { documentElement, body } = document
+    const bodyHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      documentElement.scrollHeight,
+      documentElement.offsetHeight,
+      documentElement.clientHeight
+    )
+
+    return bodyHeight - documentElement.clientHeight
   }
 
   bind() {
     bindEvent(
       'viewport:enter',
       () => {
+        this.effect()
         Pj.emitter.on(this.eventNameWithId('scroll'), this.effect.bind(this))
       },
       this.container
@@ -260,8 +341,8 @@ class Parallax extends Component {
   }
 
   unbind() {
-    removeEvent('viewport:enter', this.container.el)
-    removeEvent('viewport:leave', this.container.el)
+    removeEvent('viewport:enter', this.container)
+    removeEvent('viewport:leave', this.container)
     Pj.emitter.off(this.eventNameWithId('scroll'))
   }
 

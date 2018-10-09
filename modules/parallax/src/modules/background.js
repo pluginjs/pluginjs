@@ -12,18 +12,14 @@ class Background extends Base {
   initialize() {
     this.element = this.instance.element
 
+    const img = document.createElement('img')
+    img.src = this.options.imageSrc
+
     setStyle('background-image', `url(${this.options.imageSrc})`, this.element)
 
-    const backgroundFromDom = window
-      .getComputedStyle(this.element)
-      .getPropertyValue('background-image')
-
-    if (backgroundFromDom !== 'none') {
+    img.addEventListener('load', () => {
       this.instance.loader.hide()
-    }
-    // this.element.addEventListener('load', () => {
-    //   this.instance.loader.hide()
-    // })
+    })
   }
 }
 
