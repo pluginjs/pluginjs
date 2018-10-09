@@ -55,16 +55,7 @@ export const classes = {
   TYPESHOW: '{namespace}-type-show'
 }
 
-export const methods = [
-  'val',
-  'set',
-  'enable',
-  'disable',
-  'destroy',
-  'update',
-  'get',
-  'setType'
-]
+export const methods = ['val', 'set', 'enable', 'disable', 'destroy', 'get']
 
 export const defaults = {
   title: 'Click to Add Link',

@@ -42,7 +42,6 @@ export const methods = [
   'enable',
   'disable',
   'destroy',
-  'init',
   'add',
   'remove',
   'edit',

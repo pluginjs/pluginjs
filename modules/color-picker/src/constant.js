@@ -74,7 +74,15 @@ export const classes = Object.assign(
   // GRADIENTCLASS
 )
 
-export const methods = ['enable', 'disable', 'destroy']
+export const methods = [
+  'enable',
+  'disable',
+  'destroy',
+  'val',
+  'get',
+  'set',
+  'clear'
+]
 
 export const translations = {
   en: {

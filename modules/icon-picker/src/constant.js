@@ -9,7 +9,6 @@ export const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   SELECT: 'select',
-  UNSELECT: 'unselect',
   CHANGE: 'change',
   HIDE: 'hide',
   HIDED: 'hided',

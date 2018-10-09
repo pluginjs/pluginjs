@@ -73,7 +73,7 @@ export const classes = Object.assign(
   ACTIONCLASS
 )
 
-export const methods = ['enable', 'disable', 'get', 'set', 'update']
+export const methods = ['enable', 'disable', 'get', 'set', 'val', 'destroy']
 
 export const translations = {
   en: {

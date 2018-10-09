@@ -16,7 +16,11 @@ export const classes = deepMerge(List.classes, {
   DISABLED: '{namespace}-disabled'
 })
 
-export const methods = deepMerge(List.methods, [])
+export const methods = deepMerge(List.methods, [
+  'enable',
+  'destroy',
+  'disabled'
+])
 
 export const defaults = deepMerge(List.defaults, {
   templates: {

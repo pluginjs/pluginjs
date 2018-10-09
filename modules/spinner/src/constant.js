@@ -1,7 +1,6 @@
 export const namespace = 'spinner'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
@@ -28,7 +27,6 @@ export const methods = [
   'enable',
   'disable',
   'destroy',
-  'update',
   'spinDown',
   'spinUp'
 ]
