@@ -1,6 +1,11 @@
 import IconPicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
+import fontAwesome from '@icon/font-awesome/manifest.json'
+
+const value =
+  '{"package":"feather","icon":"chrome","class":"fe","prefix":"fe-"}'
+const data = { package: 'feather', icon: 'chrome', class: 'fe', prefix: 'fe-' }
 
 describe('IconPicker', () => {
   describe('IconPicker()', () => {
@@ -97,8 +102,9 @@ describe('IconPicker', () => {
 
     it('should not fired when initialize', () => {
       let called = false
-      $element = generateHTMLSample('a')
+      $element = generateHTMLSample(value)
       api = IconPicker.of($element, {
+        source: fontAwesome,
         onChange() {
           called = true
         }
@@ -111,14 +117,15 @@ describe('IconPicker', () => {
       let called = false
       $element = generateHTMLSample()
       api = IconPicker.of($element, {
+        source: fontAwesome,
         onChange(value) {
           called = true
 
-          expect(value).toBe('c')
+          expect(value).toBe(value)
         }
       })
 
-      api.val('c')
+      api.val(value)
 
       expect(called).toBeTrue()
     })
@@ -127,14 +134,15 @@ describe('IconPicker', () => {
       let called = false
       $element = generateHTMLSample()
       api = IconPicker.of($element, {
+        source: fontAwesome,
         onChange(value) {
           called = true
 
-          expect(value).toBe('c')
+          expect(value).toBe(value)
         }
       })
 
-      api.set('c')
+      api.set(value)
 
       expect(called).toBeTrue()
     })
@@ -144,13 +152,18 @@ describe('IconPicker', () => {
     let $element
     let api
 
-    beforeEach(() => {
+    test('should get the without value', () => {
       $element = generateHTMLSample()
       api = IconPicker.of($element)
+
+      expect(api.get()).toBeNil()
     })
 
-    test('should get the value', () => {
-      expect(api.get()).toBe('b')
+    test('should get the value with value', () => {
+      $element = generateHTMLSample(value)
+      api = IconPicker.of($element)
+
+      expect(api.get()).toBeObject(data)
     })
   })
 
@@ -160,14 +173,14 @@ describe('IconPicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = IconPicker.of($element)
+      api = IconPicker.of($element, { source: fontAwesome })
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBe('b')
+      expect(api.get()).toBeObject()
 
-      api.set('a')
-      expect(api.get()).toBe('a')
+      api.set(data)
+      expect(api.get()).toEqual(data)
     })
   })
 
@@ -177,7 +190,7 @@ describe('IconPicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = IconPicker.of($element)
+      api = IconPicker.of($element, { source: fontAwesome })
     })
 
     test('should get the value', () => {
@@ -185,9 +198,9 @@ describe('IconPicker', () => {
     })
 
     test('should set the value', () => {
-      api.val('a')
+      api.val(value)
 
-      expect(api.get()).toBe('a')
+      expect(api.get()).toEqual(data)
     })
   })
 
