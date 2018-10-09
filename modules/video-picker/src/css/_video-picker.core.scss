@@ -84,11 +84,7 @@ $videoPicker-icon: $pj-icon-play-circle !default;
       height: 100%;
     }
   }
-
-  &-open-disabled {
-    pointer-events: none;
-  }
-
+  
   &-preview {
     position: relative;
     box-sizing: border-box;

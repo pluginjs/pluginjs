@@ -74,6 +74,7 @@ class VideoPicker extends Component {
     }
 
     if (this.element.disabled || this.options.disabled) {
+      console.log(233)
       this.disable()
     }
 
@@ -614,6 +615,7 @@ class VideoPicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
+      this.DROPDOWN.disable()
       this.element.disabled = true
       this.enter('disabled')
       addClass(this.classes.DISABLED, this.$wrap)
