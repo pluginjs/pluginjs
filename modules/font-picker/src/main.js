@@ -210,7 +210,6 @@ class FontPicker extends Component {
 
   resolveData(data) {
     this.data = deepClone(data)
-
     if (!isArray(this.data)) {
       this.data = [this.data]
     }
@@ -376,7 +375,6 @@ class FontPicker extends Component {
 
   setSelectedLabel(item) {
     this.setLabel(this.getItemLabel(item))
-
     const source = this.getSource(item.source)
 
     if (source) {
