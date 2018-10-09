@@ -96,7 +96,6 @@ class Zoom extends Component {
   load(done) {
     this.enter('loading')
     this.trigger(EVENTS.LOADING)
-
     ImageLoader.of(this.original)
       .on('loaded', () => {
         this.enter('loaded')
@@ -302,20 +301,36 @@ class Zoom extends Component {
       return
     }
 
-    if (isString(image)) {
-      image = {
-        src: image
+    function updateSrc(element, image) {
+      if (isString(image)) {
+        image = {
+          src: image
+        }
+      }
+      if (isObject(image)) {
+        ;['sizes', 'src', 'srcset'].forEach(prop => {
+          if (image[prop]) {
+            element.setAttribute(prop, image[prop])
+          } else {
+            element.removeAttribute(prop)
+          }
+        })
       }
     }
-    if (isObject(image)) {
-      ;['sizes', 'src', 'srcset'].forEach(prop => {
-        if (image[prop]) {
-          this.element[prop] = image[prop]
-        } else {
-          this.element[prop] = ''
-        }
-      })
-    }
+
+    const $parent = this.element.parentNode
+    const $temp = this.element.cloneNode(false)
+
+    // fix firefox flicker
+    updateSrc($temp, image)
+    $temp.style.position = 'fixed'
+    $temp.style.visibility = 'hidden'
+    $parent.appendChild($temp)
+
+    setTimeout(() => {
+      updateSrc(this.element, image)
+      $parent.removeChild($temp)
+    }, 100)
 
     this.currentImage = image
   }
