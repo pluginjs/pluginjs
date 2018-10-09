@@ -139,7 +139,7 @@ export const defaults = {
     },
     empty() {
       return `<div class='{classes.EMPTY}'>
-        <i class='pj-icon pj-icon-chain'></i>
+        <i class='pj-icon pj-icon-link-url'></i>
         {title}
       </div>`
     },

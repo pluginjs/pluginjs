@@ -1,0 +1,114 @@
+@import "@pluginjs/styles/variables.scss";
+// Vars
+// =====================
+$linkPicker: "pj-linkPicker" !default;
+$dropdown: "pj-dropdown" !default;
+$input: "pj-input" !default;
+$select: "pj-select" !default;
+$cascader: "pj-cascader" !default;
+
+$linkPicker-width: 200px !default;
+$linkPicker-height: 32px !default;
+
+$linkPicker-dropdwon-width: 272px !default;
+
+// Core
+// =====================
+.#{$linkPicker} {
+  position: relative;
+  box-sizing: border-box;
+  width: $linkPicker-width !important;
+
+  &-trigger {
+    position: relative;
+    border: none !important;
+  }
+
+  .#{$linkPicker}-input,
+  &-fill {
+    display: none;
+  }
+
+  &-action {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-empty,
+  &-fill {
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  &-empty {
+    display: flex;
+  }
+
+  &-fill {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-dropdown {
+    box-sizing: border-box;
+    display: none;
+    flex-direction: column;
+    width: $linkPicker-dropdwon-width;
+
+    .#{$linkPicker}-internal {
+      display: none;
+    }
+
+    .#{$linkPicker}-external {
+      display: none;
+    }
+
+    .#{$linkPicker}-type-show {
+      display: block !important;
+    }
+  }
+
+  &-field {
+    align-items: center;
+    justify-content: space-between;
+
+    &-title {
+      display: inline-block;
+    }
+
+    .#{$select},
+    .#{$input},
+    .#{$cascader} {
+      width: 100%;
+    }
+  }
+
+  // utils
+  &-active {
+    display: block !important;
+  }
+
+  &-show {
+    .#{$linkPicker}-dropdown {
+      display: block;
+    }
+  }
+
+  &-write {
+    .#{$linkPicker} {
+      &-empty {
+        display: none;
+      }
+
+      &-fill {
+        display: flex;
+      }
+    }
+  }
+}

@@ -1,76 +1,49 @@
 @import "@pluginjs/styles/variables.scss";
+@import "./link-picker.core.scss";
 
 // Vars
 // =====================
-$linkPicker: "pj-linkPicker" !default;
-$dropdown: "pj-dropdown" !default;
-$linkPicker-sizer: $sizer;
+$linkPicker: "pj-linkPicker";
+$dropdown: "pj-dropdown";
 
-$linkPicker-width: 26 * $linkPicker-sizer !default; //260px
-$linkPicker-height: 5 * $linkPicker-sizer !default; //50px
-$linkPicker-border-radius: $border-radius-base !default;
-$linkPicker-color: $text-color !default;
-$linkPicker-font-size: $font-size-base !default;
-$linkPicker-active-color: $color-primary !default;
-$linkPicker-border: 1px solid $border-color !default;
-$linkPicker-padding: 0 2 * $linkPicker-sizer !default; //0 20px
-$linkPicker-icon-margin-right: $linkPicker-sizer !default; //10px
-// empty
-$empty-color: $gray !default;
-$empty-hover-bg-color: $gray-lightest !default;
+$linkPicker-border-radius: $border-radius-base;
+$linkPicker-font-size: $font-size-base;
+$linkPicker-line-height: 16px;
+$linkPicker-color: #999;
+$linkPicker-active-color: $color-primary-black;
+$linkPicker-bg: $color-white;
+$linkPicker-border: 1px solid $border-color;
+$linkPicker-padding: 7px 12px;
+$linkPicker-icon-margin-right: 8px;
 // action
-$action-hover-color: $gray-lightest !default;
-$action-active-color: $color-primary !default;
+$action-color: $color-white;
+$action-active-color: $color-primary;
+$action-icon-margin-right: 30px;
+$action-time: 0.3s;
 // dropdown
-$dropdown-width: 27.2 * $linkPicker-sizer !default; //300px
-$dropdown-padding: 2 * $linkPicker-sizer !default; //20px
-$dropdown-border: $linkPicker-border !default;
-$dropdown-border-radius: $linkPicker-border-radius !default;
-$dropdown-btn-padding: 0.4 * $linkPicker-sizer 1.2 * $linkPicker-sizer !default; //4px 12px
-// item
-$item-margin-bottom: 2 * $linkPicker-sizer !default; //20px
-$item-body-width: 22.4 * $linkPicker-sizer !default; //224px
-$item-body-height: 3 * $linkPicker-sizer !default; //30px
-
+$dropdown-padding: 28px 24px;
+$field-margin-bottom: 24px;
+$field-title-margin-bottom: 12px;
 //disabled
 $linkPicker-disabled-bg: $disabled-bg;
 
-// Core
+// Style
 // =====================
 .#{$linkPicker} {
-  position: relative;
-  box-sizing: border-box;
   font-size: $linkPicker-font-size;
 
-  &-trigger {
-    width: $linkPicker-width !important;
-    height: $linkPicker-height;
-    border: none !important;
-  }
-  .#{$linkPicker}-input,
-  &-fill {
-    display: none;
-  }
-
   &-action {
-    position: absolute; // display: flex;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: $linkPicker-width;
-    height: $linkPicker-height;
-    color: $color-white;
+    color: $action-color;
     border-radius: $linkPicker-border-radius;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity $action-time;
+
     &:hover {
       background-color: $color-opacity;
     }
+
     > i {
       &:hover {
-        color: $action-hover-color;
         cursor: pointer;
       }
 
@@ -79,112 +52,74 @@ $linkPicker-disabled-bg: $disabled-bg;
       }
 
       &:first-child {
-        margin-right: 3 * $linkPicker-sizer; //30px
+        margin-right: $action-icon-margin-right;
       }
     }
   }
 
+
+  &-fill-hover {
+    opacity: 1;
+    transition: opacity $action-time;
+  }
+
   &-empty,
   &-fill {
-    box-sizing: border-box;
-    width: $linkPicker-width;
-    height: $linkPicker-height;
     padding: $linkPicker-padding;
-    line-height: $linkPicker-height;
-    color: $gray;
-    background-color: $color-white;
+    line-height: $linkPicker-line-height;
+    background-color: $linkPicker-bg;
     border: $linkPicker-border;
     border-style: dashed;
     border-radius: $linkPicker-border-radius;
 
     > i {
       margin-right: $linkPicker-icon-margin-right;
-      color: $gray;
     }
   }
 
   &-empty {
-    display: flex;
+    color: $linkPicker-color;
+
+    > i {
+      color: $linkPicker-color;
+    }
 
     &:hover {
-      color: $color-primary-black;
+      color: $linkPicker-active-color;
       cursor: pointer;
-      // background-color: $empty-hover-bg-color;
+
       i {
-        color: $color-primary-black;
+        color: $linkPicker-active-color;
       }
     }
   }
 
   &-fill {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: $linkPicker-active-color;
+
+    > i {
+      color: $linkPicker-active-color;
+    }
   }
 
   &-dropdown {
-    box-sizing: border-box;
-    display: none;
-    flex-direction: column;
-    width: $dropdown-width;
     padding: $dropdown-padding;
-    background-color: $color-white;
-    border: $dropdown-border;
-    border-radius: $dropdown-border-radius;
-
-    .pj-linkPicker-internal {
-      display: none;
-    }
-    .pj-linkPicker-external {
-      display: none;
-    }
-    .pj-linkPicker-type-show {
-      display: block !important;
-    }
 
     &-action {
-      margin-top: $linkPicker-sizer * 2; //20px
+      margin-top: $field-margin-bottom;
       text-align: right;
     }
-
-    &-save,
-    &-cancel {
-      width: 95px;
-      height: 32px;
-      padding: $dropdown-btn-padding;
-    }
-
-    &-cancel:hover {
-      color: $gray;
-    }
   }
 
-  &-types {
-    &-container {
-      display: none;
-    }
-
-    &-component {
-      width: $item-body-width;
-    }
-  }
-
-  &-item {
-    // display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: $item-margin-bottom;
+  &-field {
+    margin-bottom: $field-margin-bottom;
 
     &:last-of-type {
       margin-bottom: 0;
     }
 
-    &-body {
-      width: $item-body-width !important;
-
-      &:last-of-type > input {
-        width: 100%;
-        // height: 100%;
-      }
+    &-title {
+      margin-bottom: $field-title-margin-bottom;
     }
   }
 
@@ -198,21 +133,11 @@ $linkPicker-disabled-bg: $disabled-bg;
   }
 
   &-show {
-    // .#{$linkPicker}-empty,
-    // .#{$linkPicker}-fill {
-    //   display: none !important;
-    // }
-
     .#{$linkPicker}-dropdown {
       display: block;
     }
   }
-
-  &-fill-hover {
-    opacity: 1;
-    transition: opacity 0.3s;
-  }
-
+  
   &-write {
     .#{$linkPicker} {
       &-empty {
@@ -237,17 +162,15 @@ $linkPicker-disabled-bg: $disabled-bg;
       cursor: not-allowed;
     }
   }
-  .#{$linkPicker}-empty {
+
+  .#{$linkPicker}-empty,
+  .#{$linkPicker}-fill {
     color: $disabled-color;
     cursor: not-allowed;
     background-color: $linkPicker-disabled-bg;
-    .icon-chain {
+
+    i {
       color: $disabled-color;
     }
   }
-}
-.pj-btn-primary {
-  width: 9.1 * $linkPicker-sizer;
-  background-color: $btn-color-primary;
-  border-color: $btn-color-primary;
 }
