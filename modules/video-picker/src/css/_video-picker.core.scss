@@ -4,19 +4,41 @@
 // =====================
 $videoPicker: "pj-videoPicker" !default;
 
-$videoPicker-bg-color: $color-white;
+$videoPicker-width: 160px !default;
+$videoPicker-height: 90px !default;
 
-$videoPicker-sizer: $sizer !default;
-$dropdown: "pj-dropdown" !default;
-$editPanel: "pj-editPanel" !default;
-$imagePicker: "pj-imagePicker" !default;
+$videoPicker-preview-width: 223px !default;
+
+$videoPicker-bg-color: $color-white !default;
+
+$videoPicker-icon: $pj-icon-play-circle !default;
 
 // Core
 // =====================
-
 .#{$videoPicker} {
+  width: $videoPicker-width;
+  height: $videoPicker-height;
+
+  &-dropdown {
+    width: auto;
+  }
+
   &-trigger {
     position: relative;
+    width: 100%;
+    height: 100%;
+
+    &-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
   }
 
   &-trigger-hover {
@@ -37,12 +59,30 @@ $imagePicker: "pj-imagePicker" !default;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 
   &-fill {
     position: relative;
     box-sizing: border-box;
     display: none;
+    width: 100%;
+    height: 100%;
+
+    &::after {
+      @include icon();
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: icon-content($videoPicker-icon);
+      transform: translate(-50%, -50%);
+    }
+
+    &-poster {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-open-disabled {
@@ -52,6 +92,7 @@ $imagePicker: "pj-imagePicker" !default;
   &-preview {
     position: relative;
     box-sizing: border-box;
+    width: $videoPicker-preview-width;
   }
 
   &-video {
@@ -60,7 +101,20 @@ $imagePicker: "pj-imagePicker" !default;
     right: 0;
     bottom: 0;
     left: 0;
+    max-height: 100%;
     border-radius: 2px;
+
+    &-btn,
+    &-animate {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &-animate {
+      display: none;
+    }
 
     &-action{
       position: absolute;
@@ -79,13 +133,6 @@ $imagePicker: "pj-imagePicker" !default;
       height: 100%;
     }
 
-    &-btn {
-      position: absolute !important;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
     &-playing {
       .#{$videoPicker}-video-btn,
       .#{$videoPicker}-video-poster {
@@ -101,8 +148,7 @@ $imagePicker: "pj-imagePicker" !default;
       }
 
       .#{$videoPicker}-video-animate {
-        opacity: 1;
-        transition: opacity 0.2s;
+        display: block;
       }
     }
 
@@ -116,7 +162,7 @@ $imagePicker: "pj-imagePicker" !default;
       > i {
         position: absolute;
         top: 50%;
-        right: 0.8 * $videoPicker-sizer;
+        right: 8px;
         display: none;
         transform: translateY(-50%);
       }
@@ -153,9 +199,11 @@ $imagePicker: "pj-imagePicker" !default;
 
   &-field {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    flex-direction: column;
+  }
+
+  .pj-select {
+    width: 100%;
   }
 
   &-ratio,
@@ -163,16 +211,6 @@ $imagePicker: "pj-imagePicker" !default;
   &-poster {
     display: flex;
     align-items: center;
-  }
-
-  &-trigger-action {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
   }
 
   &-btn-action {

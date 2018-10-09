@@ -1,90 +1,94 @@
 @import "@pluginjs/styles/variables.scss";
+@import "loadding";
 @import "video-picker.core";
 // Vars
 // =====================
-$videoPicker: "pj-videoPicker" !default;
+$videoPicker: "pj-videoPicker";
 
-$videoPicker-width: 160px;
-$videoPicker-height: 90px;
+$videoPicker-border-radius: $border-radius-base;
 
-$videoPicker-font-size: $font-size-base !default;
-$videoPicker-box-shadow: box-shadow-6;
+$videoPicker-font-size: $font-size-base;
+$videoPicker-box-shadow: $box-shadow-6;
+
+$videoPicker-empty-icon-margin-bottom: 4px;
+$videoPicker-empty-icon-font-size: $font-size-md;
+
+$videoPicker-fill-color: $color-white;
+$videoPicker-fill-border-color: $border-color;
+
+$videoPicker-trigger-action-margin-left: 28px;
+
 $videoPicker-dropdown-padding: 24px;
-$videoPicker-dropdown-spacer: 20px;
+$videoPicker-dropdown-spacer: 24px;
 
-$videoPicker-preview-width: 252px;
 $videoPicker-preview-padding: 14px;
 $videoPicker-preview-padding-top: 66.66%;
 $videoPicker-preview-border-color: #dfe4ed;
 
+$videoPicker-video-post-bg-color: rgba($color-black, 0.6);
+$videoPicker-video-btn-font-size: $font-size-lg;
+
+$videoPicker-field-margin-bottom: 24px;
+$videoPicker-field-title-margin-bottom: 12px;
+
+$videoPicker-poster-margin-right: 11px;
+$videoPicker-poster-delete-color: #fa6557;
+
 $videoPicker-bg-color: $color-white;
-$videoPicker-icon: $pj-icon-play-circle !default;
-$videoPicker-font: $pj-icon-font-family !default;
+$videoPicker-icon-font-family: $pj-icon-font-family;
 
-$videoPicker-fill-color: $color-white;
-
-$videoPicker-border-color: $border-color !default;
-$videoPicker-border: 1px solid $videoPicker-border-color !default;
-$videoPicker-border-radius: $border-radius-base !default;
-$videoPicker-color: $gray-dark !default;
-$videoPicker-active-color: $color-primary !default;
-// component
-$component-width: 160px !default;
+$videoPicker-border-color: $border-color;
+$videoPicker-border-radius: $border-radius-base;
+$videoPicker-color: $gray-dark;
+$videoPicker-active-color: $color-primary;
 
 // Core
 // =====================
-
 .#{$videoPicker} {
-  width: $videoPicker-width;
-  height: $videoPicker-height;
-
   &-dropdown {
-    width: auto;
     padding: $videoPicker-dropdown-padding;
     font-size: $videoPicker-font-size;
-    border: none;
     box-shadow: $videoPicker-box-shadow;
   }
 
   &-preview {
-    width: $videoPicker-preview-width;
     padding: $videoPicker-preview-padding;
     padding-top: $videoPicker-preview-padding-top;
     margin-bottom: $videoPicker-dropdown-spacer;
     overflow: hidden;
     background: url("data:image/png;base64,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") no-repeat center;
     border: 1px solid $videoPicker-preview-border-color;
-    border-radius: 2px;
+    border-radius: $videoPicker-border-radius;
 
     &-16-9 {
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      padding-top: 56.25%;
     }
 
     &-4-3 {
-      padding-top: 75%; /* 4:3 Aspect Ratio */
+      padding-top: 75%;
     }
 
     &-3-2 {
-      padding-top: 66.66%; /* 3:2 Aspect Ratio */
+      padding-top: 66.66%; 
     }
   }
 
-  &-ratio,
-  &-source,
-  &-poster {
-    width: 160px;
+  &-field {
+    margin-bottom: $videoPicker-field-margin-bottom;
+
+    &-title {
+      margin-bottom: $videoPicker-field-title-margin-bottom;
+    }
   }
 
   &-empty {
-    width: 160px;
-    height: 90px;
     color: $videoPicker-color;
     background: $videoPicker-bg-color;
     border: 1px dashed $videoPicker-border-color;
 
     i {
-      margin-bottom: 4px;
-      font-size: 16px;
+      margin-bottom: $videoPicker-empty-icon-margin-bottom;
+      font-size: $videoPicker-empty-icon-font-size;
     }
 
     &:hover {
@@ -93,49 +97,38 @@ $component-width: 160px !default;
   }
 
   &-fill {
-    width: 160px;
-    height: 90px;
-    padding: 1px;
-    border: 1px solid $border-color;
+    border: 1px solid $videoPicker-fill-border-color;
 
     &::after {
-      @include icon();
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      font-family:$videoPicker-font;
+      font-family:$videoPicker-icon-font-family;
       color: $videoPicker-fill-color;
-      content: icon-content($videoPicker-icon);
-      transform: translate(-50%, -50%);
     }
 
     &-poster {
-      width: 100%;
-      height: 100%;
-      border-radius: 2px;
+      border-radius: $videoPicker-border-radius;
     }
   }
+  
   &-wrap{
     .#{$videoPicker}-trigger-action {
       background-color: $color-opacity;
-
-      > i:last-child {
-        margin-left: 28px;
-      }
     }
   }
 
   &-trigger-action {
-    width: 160px;
-    height: 90px;
     font-size: 13px;
     color: $color-white;
     background-color: #313d4f;
-    border-radius: 2px;
+    border-radius: $videoPicker-border-radius;
 
-    i:hover {
-      color: #aab3bf;
-      cursor: pointer;
+    i {
+      & + i {
+        margin-left: $videoPicker-trigger-action-margin-left;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -150,21 +143,15 @@ $component-width: 160px !default;
     }
 
     &-poster {
-      background: rgba($color-black, 0.6);
+      background: $videoPicker-video-post-bg-color;
     }
 
     &-btn {
-      font-size: 20px;
+      font-size: $videoPicker-video-btn-font-size;
     }
   }
 
   &-video-url {
-    width: $component-width;
-
-    > input {
-      width: 100%;
-    }
-
     > i {
       font-size: $font-size-base;
 
@@ -178,7 +165,7 @@ $component-width: 160px !default;
   &-local-url,
   &-poster {
     > span {
-      margin-right: 11px;
+      margin-right: $videoPicker-poster-margin-right;
       color: $videoPicker-active-color;
       cursor: pointer;
       border-bottom: 1px solid transparent;
@@ -191,10 +178,10 @@ $component-width: 160px !default;
     &-selected {
       .#{$videoPicker}-local-url-delete,
       .#{$videoPicker}-poster-delete {
-        color: #fa6557;
+        color: $videoPicker-poster-delete-color;
 
         &:hover {
-          border-bottom-color: #fa6557;
+          border-bottom-color: $videoPicker-poster-delete-color;
         }
       }
 
@@ -215,7 +202,7 @@ $component-width: 160px !default;
   }
 
   &-warning {
-    border-color: $color-warning;
+    animation: warning 400ms ease both;
   }
 
   &-disabled {
@@ -229,5 +216,19 @@ $component-width: 160px !default;
         }
       }
     }
+  }
+}
+
+@keyframes warning {
+  0% {
+    border-color: $color-warning;
+  }
+
+  50% {
+    border-color: $videoPicker-border-color;
+  }
+
+  100% {
+    border-color: $color-warning;
   }
 }
