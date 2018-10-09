@@ -3,4 +3,6 @@ import Progress from '@pluginjs/progress'
 
 const element = queryAll('#defaults .pj-progress')
 
-element.forEach(element => Progress.of(element, {}).start())
+setTimeout(() => {
+  element.forEach(element => Progress.of(element, {}).start())
+}, 2000)
