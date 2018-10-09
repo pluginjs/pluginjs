@@ -1,76 +1,67 @@
 @import "@pluginjs/styles/variables.scss";
 @import "./scrollbar.core";
 
+// Vars
+// =====================
 $scrollbar: "pj-scrollbar";
-$scrollbar-size: 4px;
 
-$scrollbar-dragging-size: 10px;
-$scrollbar-dragging-bg: rgba(206,206,206,0.1);
-
-$scrollbar-bg:rgba(206,206,206,0.1);
-$scrollbar-hovering-bg: rgba(206,206,206,0.1);
-
+$scrollbar-guter: 2px;
 $scrollbar-handle-offset: 5px;
-$scrollbar-handle-color: $gray-light;
-$scrollbar-handle-hovering-color: $gray-light;
-$scrollbar-handle-dragging-color: #cecece;
 
+$scrollbar-size: 4px;
+$scrollbar-drag-size: 8px;
+
+$scrollbar-radius: $scrollbar-size / 2;
+$scrollbar-drag-radius: $scrollbar-drag-size / 2;
+
+$scrollbar-drag-bg: rgba(206,206,206, 0.1);
+
+$scrollbar-bg: rgba(206,206,206, 0.1);
+$scrollbar-color: $gray-light;
+$scrollbar-hover-color: #d6d6d6;
+$scrollbar-drag-color: #cecece;
+
+// Skin
+// =====================
 .#{$scrollbar} {
   background-color: $scrollbar-bg;
-  border-radius: $scrollbar-size / 2;
+  border-radius: $scrollbar-radius;
 
   &-handle {
-    background: $scrollbar-handle-color;
-    border-radius: $scrollbar-size / 2;
+    background-color: $scrollbar-color;
+    border-radius: inherit;
   }
 
-  &.#{$scrollbar}-dragging,
-  &.#{$scrollbar}-hovering {
-    border-radius: $scrollbar-dragging-size / 2;
-
-    .#{$scrollbar}-handle {
-      border-radius: $scrollbar-dragging-size / 2;
-    }
+  &-dragging,
+  &-hovering {
+    border-radius: $scrollbar-drag-radius;
   }
 
-  &.#{$scrollbar}-hovering {
-    background: $scrollbar-hovering-bg;
+  &-hovering .#{$scrollbar}-handle {
+    background-color: $scrollbar-hover-color;
   }
 
-  &.#{$scrollbar}-hovering .#{$scrollbar}-handle {
-    background: $scrollbar-handle-hovering-color !important;
-  }
-
-  &.#{$scrollbar}-dragging {
-    background: $scrollbar-dragging-bg !important;
-    opacity: 1;
-  }
-
-  &.#{$scrollbar}-dragging .#{$scrollbar}-handle {
-    background: $scrollbar-handle-dragging-color !important;
-  }
-
-  &.#{$scrollbar}-disabled {
-    display: none;
+  &-dragging .#{$scrollbar}-handle {
+    background-color: $scrollbar-drag-color;
   }
 
   &-vertical {
     margin: $scrollbar-handle-offset
-      ($scrollbar-dragging-size - $scrollbar-size) / 2;
+      ($scrollbar-drag-size - $scrollbar-size) / 2;
 
     &.#{$scrollbar}-dragging,
     &.#{$scrollbar}-hovering {
-      margin: $scrollbar-handle-offset 1px;
+      margin: $scrollbar-handle-offset $scrollbar-guter;
     }
   }
 
   &-horizontal {
-    margin: ($scrollbar-dragging-size - $scrollbar-size) / 2
+    margin: ($scrollbar-drag-size - $scrollbar-size) / 2
       $scrollbar-handle-offset;
 
     &.#{$scrollbar}-dragging,
     &.#{$scrollbar}-hovering {
-      margin: 1px $scrollbar-handle-offset;
+      margin: $scrollbar-guter $scrollbar-handle-offset;
     }
   }
 }

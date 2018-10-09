@@ -5,63 +5,63 @@
 $scrollable: "pj-scrollable" !default;
 $scrollable-bar: "pj-scrollbar" !default;
 
+$scrollable-bar-duration: 200ms !default;
+
 // Core
 // =====================
 .#{$scrollable} {
-  &.#{$scrollable}-enabled {
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  &-enabled {
     overflow: hidden !important;
   }
 
-  &-container {
-    .#{$scrollable}.#{$scrollable}-enabled & {
-      box-sizing: content-box !important;
-      overflow: hidden !important;
-    }
-
-    .#{$scrollable}.#{$scrollable}-enabled &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-      appearance: none;
-      // -webkit-appearance: none;
-    }
-
-    .#{$scrollable}-vertical.#{$scrollable}-enabled & {
-      overflow-y: scroll !important;
-    }
-
-    .#{$scrollable}-horizontal.#{$scrollable}-enabled & {
-      overflow-x: scroll !important;
-    }
-  }
-
   &-content {
-    .#{$scrollable}.#{$scrollable}-enabled & {
-      @include clearfix();
+    @include clearfix();
 
-      overflow: visible !important;
-    }
+    overflow: visible !important;
   }
 
-  &-bar {
-    .#{$scrollable}.#{$scrollable}-disabled & {
-      display: none;
-    }
-
-    &-hide {
-      opacity: 0;
-      transition-delay: 400ms;
-    }
+  &-bar-hide {
+    opacity: 0;
   }
 
-  &.#{$scrollable}-scrolling {
-    .#{$scrollable-bar}-bar {
-      opacity: 1;
-      transition: opacity 0;
-    }
-  }
-
-  &.#{$scrollable}-dragging {
+  &-scrolling {
     user-select: none;
     -webkit-touch-callout: none;
+  }
+}
+
+.#{$scrollable}-container {
+  box-sizing: content-box !important;
+  overflow: hidden !important;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .#{$scrollable}-vertical & {
+    overflow-y: scroll !important;
+  }
+
+  .#{$scrollable}-horizontal & {
+    overflow-x: scroll !important;
+  }
+}
+
+.#{$scrollable-bar} {
+  transition: opacity $scrollable-bar-duration ease;
+
+  .#{$scrollable}-hovering &,
+  &.#{$scrollable-bar}-dragging {
+    opacity: 1;
+  }
+
+  .#{$scrollable}-disabled & {
+    display: none;
   }
 }

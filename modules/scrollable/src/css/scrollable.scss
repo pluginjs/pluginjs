@@ -6,18 +6,36 @@
 $scrollable: "pj-scrollable";
 $scrollable-bar: "pj-scrollbar";
 
-$scrollable-bar-bgColor :rgba(206,206,206,0.1);
-$scrollable-bar-handle-hovering-color: $gray-light;
+$scrollable-bar-guter: 2px;
+$scrollable-bar-handle-offset: 5px;
 
-// Core
+$scrollable-bar-size: 4px;
+$scrollable-bar-drag-size: 8px;
+
+$scrollable-bar-bg: rgba($gray, 0.1);
+$scrollable-bar-handle-color: $gray-light;
+$scrollable-bar-handle-hover-color: $gray;
+
+// Skin
 // =====================
-.#{$scrollable} {
-  &.#{$scrollable}-hovering {
-    .#{$scrollable-bar} {
-      background: $scrollable-bar-bgColor;
-      &-handle {
-        background: $scrollable-bar-handle-hovering-color;
-      }
+.#{$scrollable-bar} {
+  &-vertical {
+    margin: $scrollable-bar-handle-offset
+      ($scrollable-bar-drag-size - $scrollable-bar-size) / 2;
+
+    &.#{$scrollable-bar}-dragging,
+    &.#{$scrollable-bar}-hovering {
+      margin: $scrollable-bar-handle-offset $scrollable-bar-guter;
+    }
+  }
+
+  &-horizontal {
+    margin: ($scrollable-bar-drag-size - $scrollable-bar-size) / 2
+      $scrollable-bar-handle-offset;
+
+    &.#{$scrollable-bar}-dragging,
+    &.#{$scrollable-bar}-hovering {
+      margin: $scrollable-bar-guter $scrollable-bar-handle-offset;
     }
   }
 }

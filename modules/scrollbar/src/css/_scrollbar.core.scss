@@ -1,10 +1,21 @@
 @import "@pluginjs/styles/variables.scss";
 
+// Vars
+// =====================
 $scrollbar: "pj-scrollbar" !default;
-$scrollbar-size: 4px !default;
-$scrollbar-dragging-size: 10px !default;
-$scrollbar-handle-offset: 5px !default;
 
+$scrollbar-handle-offset: 5px !default;
+$scrollbar-size: 4px !default;
+$scrollbar-drag-size: 8px !default;
+$scrollbar-duration: 0.1s !default;
+
+$scrollbar-bg: rgba($gray, 0.1) !default;
+$scrollbar-color: $gray-light !default;
+$scrollbar-hover-color: $gray !default;
+$scrollbar-drag-color: $gray-dark !default;
+
+// Core
+// =====================
 .#{$scrollbar} {
   position: absolute;
   right: 0;
@@ -13,46 +24,50 @@ $scrollbar-handle-offset: 5px !default;
   overflow: hidden;
   line-height: 0;
   user-select: none;
+  background-color: $scrollbar-bg;
+  transition: width $scrollbar-duration, height $scrollbar-duration;
   -webkit-touch-callout: none;
 
   &-handle {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     line-height: 0;
     cursor: pointer;
-    transition: width, height 0.5s;
-  }
+    background-color: $scrollbar-color;
 
-  &.#{$scrollbar}-disabled {
-    display: none;
+    .#{$scrollbar}-hovering & {
+      background-color: $scrollbar-hover-color;
+    }
+
+    .#{$scrollbar}-dragging & {
+      background-color: $scrollbar-drag-color;
+    }
   }
 
   &-vertical {
     width: $scrollbar-size;
     height: #{calc(100% - 2 * #{$scrollbar-handle-offset})};
 
-    &.#{$scrollbar}-dragging,
-    &.#{$scrollbar}-hovering {
-      width: $scrollbar-dragging-size;
+    &.#{$scrollbar}-hovering,
+    &.#{$scrollbar}-dragging {
+      width: $scrollbar-drag-size;
     }
-  }
-
-  &-vertical .#{$scrollbar}-handle {
-    width: 100%;
   }
 
   &-horizontal {
     width: #{calc(100% - 2 * #{$scrollbar-handle-offset})};
     height: $scrollbar-size;
 
-    &.#{$scrollbar}-dragging,
-    &.#{$scrollbar}-hovering {
-      height: $scrollbar-dragging-size;
+    &.#{$scrollbar}-hovering,
+    &.#{$scrollbar}-dragging {
+      height: $scrollbar-drag-size;
     }
   }
-  
-  &-horizontal .#{$scrollbar}-handle {
-    height: 100%;
+
+  &-disabled {
+    display: none;
   }
 }
