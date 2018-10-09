@@ -2,6 +2,10 @@ import { query } from '@pluginjs/dom'
 import SvgProgress from '@pluginjs/svg-progress'
 
 const element = query('#pentagon .pj-svgProgress-pentagon')
-SvgProgress.of(element, {
+const instance = SvgProgress.of(element, {
   shape: 'pentagon'
-}).start()
+})
+
+setTimeout(() => {
+  instance.start()
+}, 2000)
