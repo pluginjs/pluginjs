@@ -109,7 +109,7 @@ function deepMergeTwo(target, source) {
     return clone(source)
   } else if (sourceIsArray) {
     return clone(source)
-  } else if (isPlainObject(target)) {
+  } else if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach(key => {
       target[key] = deepMergeTwo(target[key], source[key])
     })
