@@ -3,15 +3,21 @@
 $colorPicker: "pj-colorPicker" !default;
 
 $colorPicker-width: 162px !default;
+
 $colorPicker-preview-width: 45px !default;
 $colorPicker-preview-height: 32px !default;
+
 $colorPicker-remove-right: $colorPicker-preview-width + 6px !default;
+
 $colorPicker-border-width: 1px !default;
+
 $colorPicker-preview-span-left: calc(50% - #{$colorPicker-border-width});
 $colorPicker-preview-bg-width: 36px !default;
 $colorPicker-preview-bg-height: 24px !default;
-$colorPicker-border-radius: $border-radius-base !default;
-$colorPicker-panel-width: 288px !default;
+
+$colorPicker-panel-width: 290px !default;
+
+$colorPicker-hex-height: 24px !default;
 
 // Core
 // =====================
@@ -49,7 +55,6 @@ $colorPicker-panel-width: 288px !default;
       display: inline-block;
       width: $colorPicker-preview-bg-width;
       height: $colorPicker-preview-bg-height;
-      border-radius: $colorPicker-border-radius;
       transform: translate(-50%,-50%);
     }
 
@@ -76,10 +81,7 @@ $colorPicker-panel-width: 288px !default;
     box-sizing: border-box;
     display: inline-block;
     overflow: hidden;
-
-    &:hover {
-      cursor: row-resize;
-    }
+    cursor: pointer;
   }
 
   &-pointer {
@@ -87,15 +89,12 @@ $colorPicker-panel-width: 288px !default;
     top: 0;
     left: 2px;
     display: block;
+    cursor: row-resize;
     transform-origin: 50% 50%;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
   
   &-saturation {
-    &:hover {
+    .#{$colorPicker}-pointer {
       cursor: pointer;
     }
   }
@@ -103,6 +102,18 @@ $colorPicker-panel-width: 288px !default;
   &-hex {
     display: flex;
     justify-content: space-between;
+
+    &-mode {
+      width: 100%;
+    }
+    
+    .#{$select} {
+      width: 100%;
+
+      &-trigger {
+        height: $colorPicker-hex-height;
+      }
+    }
 
     &-box {
       position: relative;

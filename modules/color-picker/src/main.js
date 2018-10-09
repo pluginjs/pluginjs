@@ -88,7 +88,7 @@ class ColorPicker extends Component {
       setStyle(
         {
           boxShadow: 'none',
-          border: '1px solid #e6e6e6'
+          border: '1px solid #f2f2f2'
         },
         this.$panel
       )
