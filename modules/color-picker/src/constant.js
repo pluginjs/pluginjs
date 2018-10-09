@@ -6,7 +6,8 @@ export const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   UPDATE: 'update',
-  CHANGE: 'change'
+  CHANGE: 'change',
+  CLICK: 'click'
 }
 
 export const PANELCLASS = {
@@ -90,6 +91,7 @@ export const defaults = {
   placeholder: 'choose color',
   disabled: false,
   displayMode: 'dropdown', // dropdown || inline
+  showControl: false,
   module: {
     saturation: true,
     hue: true,

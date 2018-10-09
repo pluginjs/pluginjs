@@ -38,17 +38,6 @@ export const PANELCLASS = {
   SELECTED: '{namespace}-selected'
 }
 
-export const CONTRASTCLASS = {
-  CONTRAST: '{namespace}-contrast',
-  CONTRASTNOW: '{namespace}-contrast-now',
-  CONTRASTPREV: '{namespace}-contrast-prev'
-}
-
-export const HISTORYCLASS = {
-  HISTORY: '{namespace}-history',
-  HISTORYITEM: '{namespace}-history-item',
-  HISTORYITEMEMPTY: '{namespace}-history-item-empty'
-}
 export const COLLECTIONCLASS = {
   FAVORITES: '{namespace}-favorites',
   SCHEME: '{namespace}-scheme',
@@ -60,15 +49,7 @@ export const COLLECTIONCLASS = {
 }
 
 export const ACTIONCLASS = {
-  CANCEL: '{namespace}-cancel',
   OK: '{namespace}-ok'
-}
-
-export const PALETTECLASS = {
-  POINTER: '{namespace}-pointer',
-  ALPHA: '{namespace}-alpha',
-  HUE: '{namespace}-hue',
-  SATURATION: '{namespace}-saturation'
 }
 
 export const BASECLASS = {
@@ -83,25 +64,12 @@ export const BASECLASS = {
   MASK: '{namespace}-mask'
 }
 
-export const HEXCLASS = {
-  NAMESPACE: `pj-${namespace}`,
-  HEX: '{namespace}-hex',
-  HEXMODE: '{namespace}-hex-mode',
-  HEXANGLE: '{namespace}-hex-angle',
-  HEXBOX: '{namespace}-hex-box',
-  HEXUNIT: '{namespace}-hex-unit'
-}
-
 export const classes = Object.assign(
   {},
-  HEXCLASS,
   BASECLASS,
   PREVIEWCLASS,
   PANELCLASS,
-  CONTRASTCLASS,
-  HISTORYCLASS,
   COLLECTIONCLASS,
-  PALETTECLASS,
   ACTIONCLASS
 )
 
@@ -114,9 +82,7 @@ export const translations = {
     manage: 'Manage',
     collection: 'Collection',
     solid: 'Solid',
-    gradient: 'Gradient',
-    colorInScheme: 'COLORS IN SCHEME',
-    myColors: 'MY COLORS'
+    gradient: 'Gradient'
   },
   zh: {
     ok: 'DONE',
@@ -124,45 +90,16 @@ export const translations = {
     manage: '管理',
     collection: '收藏',
     solid: '纯色',
-    gradient: '渐变',
-    colorInScheme: '颜色格式',
-    myColors: '我的颜色'
+    gradient: '渐变'
   }
 }
 
 export const defaults = {
   theme: null,
   locale: 'en',
-  // search: true,
-  // collection: true,
   placeholder: 'choose color',
   module: ['collection', 'solid', 'gradient'], // 'collection', 'solid', 'gradient'
-  solidMode: 'full', // 'full' , 'defalut' , 'sample'
-  solidModule: {
-    saturation: true,
-    hue: true,
-    alpha: true,
-    hex: true
-  },
-  gradientMode: 'linear', // 'linear', 'radial'
-  defaultColor: '#000',
   data: null, // colors in the scheme and your favorite colors.  example: {scheme:{'Primary':'#55a4f2','fontColor':'#ccc','bgColor':'#f2a654','borderColor':'#f1f1f1'},favorite:['red':'red','brown':'brown','lightblue':'lightblue','green':'green']}
-  color: {
-    format: false,
-    alphaConvert: {
-      // or false will disable convert
-      RGB: 'RGBA',
-      HSL: 'HSLA',
-      HEX: 'RGBA',
-      NAMESPACE: 'RGBA'
-    },
-    shortenHex: false,
-    hexUseName: false,
-    reduceAlpha: true,
-    nameDegradation: 'HEX',
-    invalidValue: '',
-    zeroAlphaAsTransparent: true
-  },
   manage() {},
   templates: {
     wrap() {
@@ -192,65 +129,24 @@ export const defaults = {
     gradientTrigger() {
       return '<i class="{class}" data-type="gradient"></i>'
     },
-    // collectionTrigger() {
-    //   return '<i class="{class} pj-icon pj-icon-star-solid" data-type="collection"></i>'
-    // },
-    // solidTrigger() {
-    //   return '<i class="{class} pj-icon pj-icon-gradient-solid" data-type="solid"></i>'
-    // },
-    // gradientTrigger() {
-    //   return '<i class="{class} pj-icon pj-icon-gradient" data-type="gradient"></i>'
-    // },
     moduleWrap() {
       return '<div class="{classes.wrapClassName}"><input type="text" class="{classes.colorClassName}"></div>'
     },
-    collection() {
-      return `<div class='{classes.SCHEME}'><ul class='{classes.GROUPLIST}'></ul></div>
-        <div class='{classes.MANAGE}'><i class='pj-icon pj-icon-setting'></i>{manageText}</div>`
+    scheme() {
+      return '<div class="{classes.SCHEME}"><ul class="{classes.GROUPLIST}"></ul></div>'
+    },
+    manage() {
+      return '<div class="{classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
     },
     collectionItem() {
       return '<li class="{classes.COLLECTIONITEM}"></li>'
     },
-    content() {
-      return `<div class='{handle}'></div>
-        <div class='{primary}'></div>
-        <div class='{action}'></div>
-        <div class='{history}'></div>
-        <div class='{done}'></div>`
-    },
-    cancel() {
-      return '<button type="button" class="{class} pj-btn pj-btn-xs pj-btn-outline">{text}</button>'
-    },
     ok() {
       return '<button type="button" class="{class} pj-btn pj-btn-xs pj-btn-outline">{text}</button>'
-    },
-    contrast() {
-      return '<div class="{class}"><span class="{now}"></span><span class="{prev}"></span></div>'
-    },
-    history() {
-      return '<div class="{classes.HISTORY}"></div>'
-    },
-    alpha() {
-      return '<div class="{classes.ALPHA}"></div>'
-    },
-    hue() {
-      return '<div class="{classes.HUE}"></div>'
-    },
-    hex() {
-      return '<div class="{classes.HEX}"></div>'
-    },
-    saturation() {
-      return '<div class="{classes.SATURATION}"></div>'
-    },
-    gradient() {
-      return '<div class="{class}"></div>'
-    },
-    angles() {
-      return '<input class="{class} pj-input" type="number"/>'
     }
   },
-  process(data, module) {
-    return JSON.stringify(data[module])
+  process(data) {
+    return JSON.stringify(data)
   },
   parse(val) {
     if (val) {

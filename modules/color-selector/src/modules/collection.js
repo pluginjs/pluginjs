@@ -37,14 +37,14 @@ class Collection {
       return false
     }
     // create group
-    const $collection = this.instance.createEl('collection', {
+    const $scheme = this.instance.createEl('scheme', {
+      classes: this.classes
+    })
+    const $manage = this.instance.createEl('manage', {
       classes: this.classes,
       manageText: this.instance.translate('manage')
-      // favoritesText: this.instance.translate('colorInScheme'),
-      // schemeText: this.instance.translate('myColors')
     })
-
-    this.element.append(...$collection)
+    this.element.append($scheme, $manage)
     // create favorite item
     Object.keys(this.instance.data).forEach(groupName => {
       const $groupList = query(
@@ -89,7 +89,8 @@ class Collection {
       // set tooltip
       Tooltip.of($item, {
         title: i.replace(/^[a-zA-Z]?/g, char => char.toLocaleUpperCase()),
-        placement: 'right'
+        placement: 'right',
+        trigger: 'hover'
       })
 
       // set BgColor and Data val
@@ -104,15 +105,12 @@ class Collection {
     Object.entries(this.instance.data).forEach(([, v]) => {
       Object.entries(v).forEach(([name, dataColor]) => {
         if (colorName.toLowerCase() === name.toLowerCase()) {
-          if (
-            dataColor.indexOf('gradient') > -1 &&
-            this.instance.hasModule('gradient')
-          ) {
-            this.instance.info.gradient = dataColor
-            this.instance.GRADIENT.setGradient(dataColor)
-          } else if (this.instance.hasModule('solid')) {
-            this.instance.info.solid = dataColor
-            this.instance.SOLID.setSolid(dataColor)
+          if (dataColor.indexOf('gradient') > -1) {
+            // this.instance.info.gradient = dataColor
+            this.instance.GRADIENTPICKER.set(dataColor)
+          } else {
+            // this.instance.info.solid = dataColor
+            this.instance.COLORPICKER.set(dataColor)
           }
 
           this.instance.setInput(name)

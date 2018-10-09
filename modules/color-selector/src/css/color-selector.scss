@@ -138,30 +138,6 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
     font-size: $colorSelector-font-size;
     //border: 1px solid $colorSelector-border-color;
     border-radius: $colorSelector-border-radius;
-    // &.pj-colorSelector-disabled:hover .pj-input {
-    //   border-color: $disabled-border;
-    // }
-    // &:hover .pj-input {
-    //   border-color: $colorSelector-wrap-hover-border-color;
-    // }
-    // &:focus .pj-input {
-    //   border-color: $color-primary-dark;
-    // }
-    //.tether-abutted-top.#{$colorSelector} {
-    //  border-color: $color-primary-dark;
-    //}
-  // &-hex-mode.pj-dropdown-select{
-  //   &:hover{
-  //     border-color: $border-color;
-  //   }
-
-  //   > .pj-dropdown {
-  //     &.hover {
-  //       border-color: $border-color;
-  //     }
-  //   }
-
-  // }
   &-input {
     width: $colorSelector-width;
     height: $colorSelector-height;
@@ -285,22 +261,6 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
       // color: $colorSelector-panel-swicher-icon-color;
       text-align: center;
 
-      // &::after {
-      //   position: absolute;
-      //   top: 50%;
-      //   right: 0;
-      //   display: block;
-      //   width: 1px;
-      //   height: 2 * $colorSelector-sizer; //20px
-      //   content: "";
-      //   background-color: $colorSelector-border-color;
-      //   transform: translateY(-50%);
-      // }
-
-      // &:last-of-type::after {
-      //   display: none;
-      // }
-
       &:hover {
         cursor: pointer;
       }
@@ -327,14 +287,9 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
     &-gradient,
     &-solid {
       &::before {
-        // display: inline-block;
-        // width: $colorSelector-panel-swicher-icon-size;
-        // height: 1.6 * $colorSelector-sizer; //16px
-        // content: "";
         background-color: #aab3bf;
         border: 1px solid $gray-dark;
         border-radius: 2px;
-        // border: $colorSelector-border;
       }
 
       // &:hover::before {
@@ -397,11 +352,6 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
     }
   }
 
-  &-panel-solid,
-  &-panel-gradient {
-    padding: $colorSelector-solid-padding;
-  }
-
   &-collection {
     &-scrollwrap {
       // width: 100%;
@@ -433,98 +383,6 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
     }
   }
 
-  &-solid,
-  &-gradient {
-    &-handle,
-    &-primary {
-      display: flex;
-    }
-
-    &-handle {
-      margin-bottom: $colorSelector-solid-item-margin-bottom;
-    }
-
-    &-primary > div {
-      margin-right: 1.2 * $colorSelector-sizer; //12px
-
-      // &:last-of-type {
-      //   margin-right: 12px !important;
-      // }
-    }
-
-    &-action {
-      margin-top: $colorSelector-solid-item-margin-bottom;
-      // overflow: hidden;
-      input {
-        padding: 0 !important;
-        padding-right: 15px !important;
-        text-align: right;
-      }
-    }
-  }
-
-  &-solid {
-    &-handle {
-      margin-bottom: 0;
-    }
-  }
-
-  &-gradient {
-    &-handle {
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    &-bar {
-      position: relative;
-      width: $colorSelector-gradient-bar-width;
-      height: $colorSelector-gradient-bar-height;
-      margin-bottom: 1.2 * $colorSelector-sizer; //12px
-      background: $colorSelector-gradient-bar-bg-image;
-      border-radius: $colorSelector-sizer; //10px
-
-      &:hover {
-        cursor: copy;
-      }
-
-      &-view {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 0.2 * $colorSelector-sizer; //10px
-      }
-    }
-
-    &-remove {
-      font-size: $colorSelector-gradient-remove-size;
-      color: $colorSelector-gradient-remove-color;
-      cursor: not-allowed;
-
-      &-active {
-        color: $colorSelector-gradient-remove-color-active;
-        cursor: pointer;
-
-        &:hover {
-          color: $color-black;
-        }
-      }
-    }
-
-    &-mode {
-      > .pj-dropdown-trigger {
-        width: $colorSelector-gradient-mode-width;
-        height: $colorSelector-gradient-mode-height;
-        margin-right: $colorSelector-gradient-mode-margin-right;
-        line-height: 12px;
-      }
-      > .pj-dropdown.pj-dropdown-show {
-        width: $colorSelector-gradient-mode-width !important;
-      }
-    }
-  }
-
   // action btn
   &-cancel,
   &-ok {
@@ -544,248 +402,6 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
 
   &-cancel {
     margin-right: $colorSelector-sizer; //10px
-  }
-
-  &-contrast,
-  &-saturation,
-  &-alpha,
-  &-hue {
-    display: inline-block;
-  }
-
-  &-contrast {
-    width: $colorSelector-contrast-width;
-    height: $colorSelector-contrast-height;
-    margin-right: $colorSelector-contrast-margin-right;
-    overflow: hidden;
-    background-image: $colorSelector-contrast-bg-image;
-    border: $colorSelector-border;
-    border-color: $colorSelector-contrast-border-color;
-    border-radius: $colorSelector-border-radius;
-
-    span {
-      display: inline-block;
-      width: 50%;
-      height: 100%;
-
-      &:last-of-type:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  &-history {
-    display: flex;
-    flex-wrap: wrap;
-    // width: $colorSelector-history-width;
-    // height: $colorSelector-history-hieght;
-
-    &-item {
-      position: relative;
-      box-sizing: border-box;
-      display: inline-block;
-      width: $colorSelector-history-item-size;
-      height: $colorSelector-history-item-size;
-      margin-top: $colorSelector-history-item-margin-right;
-      margin-right: $colorSelector-history-item-margin-right;
-      cursor: not-allowed;
-      border: $colorSelector-border;
-      border-color: $colorSelector-history-item-border-color;
-      border-radius: $colorSelector-history-item-radius;
-
-      &:nth-child(9n) {
-        margin-right: 0;
-      }
-
-      // &:hover {
-      // }
-
-      &-empty {
-        cursor: pointer;
-      }
-    }
-  }
-
-  &-saturation,
-  &-alpha,
-  &-hue {
-    position: relative;
-    box-sizing: border-box;
-    display: inline-block;
-    width: $colorSelector-alpha-width;
-    height: $colorSelector-alpha-height;
-    margin-right: 1.2 * $colorSelector-sizer; //12px
-    overflow: hidden;
-    // border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: $colorSelector-alpha-width / 8;
-
-    &:hover {
-      cursor: row-resize;
-    }
-    .#{$colorSelector}-pointer {
-      top: 0;
-      left: 2px;
-      width: $colorSelector-saturation-pointer-width;
-      height: $colorSelector-saturation-pointer-height;
-      border: $colorSelector-saturation-pointer-border;
-      border-radius: 100%;
-      box-shadow: $colorSelector-saturation-pointer-shadow;
-      transform-origin: 50% 50%;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  &-saturation {
-    width: $colorSelector-saturation-width;
-    background-image: $colorSelector-saturation-bg-img;
-    background-size: 100%;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  &-alpha {
-    margin-right: 0 !important;
-    background-color: $colorSelector-alpha-bg;
-    background-image: $colorSelector-alpha-bg-img;
-  }
-
-  &-hue {
-    margin-right: 0;
-    background-image: $colorSelector-hue-bg-img;
-  }
-
-  &-hex {
-    // padding: $colorSelector-hex-padding;
-    display: flex;
-    justify-content: space-between;
-    height: $colorSelector-hex-height;
-    margin: 0;
-
-    &-mode {
-      // height: $colorSelector-hex-height !important;
-      // position: relative;
-      .pj-dropdown-trigger {
-        width: $colorSelector-hex-width;
-        height: $colorSelector-hex-height;
-        line-height: 12px;
-        color: $color-primary-black;
-        border-right: 1px solid #e6e6e6;
-      }
-
-      // > .pj-dropdown:hover {
-      //   border-color: #f2f2f2;
-      // }
-    }
-
-    &-angle {
-      width: $colorSelector-angle-width;
-      height: $colorSelector-hex-height;
-      border-radius: 2px !important;
-    }
-
-    &-box {
-      position: relative;
-
-      .#{$colorSelector}-hex-unit {
-        position: absolute;
-        top: 0;
-        right: 3px;
-        display: inline-block;
-        height: $colorSelector-wheel-angle-height;
-        line-height: $colorSelector-wheel-angle-height;
-        color: $gray;
-      }
-    }
-  }
-
-  &-marker {
-    position: absolute;
-    top: 50%;
-    z-index: 2;
-    box-sizing: border-box;
-    width: $colorSelector-marker-width;
-    height: $colorSelector-marker-height;
-    cursor: pointer;
-    border: 2px solid $color-white;
-    border-radius: 1000px;
-    box-shadow: $box-shadow-3;
-    transform: translateY(-50%);
-
-    &:hover,
-    &:active {
-      transition: transform 0.3s;
-      transform: translateY(-50%) scale(1.2);
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &.#{$colorSelector}-marker-active {
-      border-color: $colorSelector-active-color;
-      transition: transform 0.3s;
-      transform: translateY(-50%) scale(1.2);
-
-      i {
-        border-color: $colorSelector-active-color;
-      }
-    }
-  }
-
-  &-wheel {
-    position: relative;
-    width: $colorSelector-wheel-width;
-    height: $colorSelector-wheel-height;
-    margin-right: $colorSelector-wheel-margin-right;
-    margin-left: $colorSelector-wheel-margin-left;
-    border: $colorSelector-border;
-    border-radius: 100%;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &-handle {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: $colorSelector-wheel-handle-width;
-      height: $colorSelector-wheel-handle-height;
-      background-color: $colorSelector-wheel-bg-color;
-      border-radius: 100%;
-      transform: translateX(-50%);
-      transform-origin: center $colorSelector-wheel-height / 2;
-    }
-
-    &-angle {
-      width: $colorSelector-wheel-angle-width;
-      height: $colorSelector-wheel-angle-height;
-      padding: 4px 10px !important;
-      margin: 0;
-      margin-right: $colorSelector-wheel-angle-margin-right;
-      border-radius: 2px !important;
-    }
-  }
-
-  &-pointer {
-    position: absolute;
-    top: $colorSelector-alpha-height;
-    left: 10px;
-    display: block;
-    border: 4px solid transparent;
-    border-top-color: $colorSelector-pointer-color;
-    border-left-color: $colorSelector-pointer-color;
-    transform: rotate(135deg);
-    transform-origin: 0 0;
-
-    &:hover {
-      cursor: row-resize;
-    }
   }
 
   &-mask {

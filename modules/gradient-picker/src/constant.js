@@ -5,8 +5,10 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
+  UPDATE: 'update',
   CHANGE: 'change',
-  COLORCHANGE: 'colorChange'
+  COLORCHANGE: 'colorChange',
+  CLICK: 'click'
 }
 
 export const classes = {
@@ -56,6 +58,7 @@ export const defaults = {
   theme: null,
   placeholder: 'choose color',
   displayMode: 'dropdown', // dropdown || inline
+  showControl: false,
   templates: {
     wrap() {
       return '<div class="{classes.NAMESPACE}"></div>'

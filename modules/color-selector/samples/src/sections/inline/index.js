@@ -1,8 +1,6 @@
 import { query } from '@pluginjs/dom'
 import ColorSelector from '@pluginjs/color-selector'
-
-const element = query('#sample .solid-sample')
+const element = query('#inline .inline')
 ColorSelector.of(element, {
-  module: ['solid'],
-  solidMode: 'sample'
+  displayMode: 'inline'
 })

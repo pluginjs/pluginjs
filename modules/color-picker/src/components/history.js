@@ -3,14 +3,14 @@ import { addClass, hasClass } from '@pluginjs/classes'
 import { parseHTML, queryAll, parentWith } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 
+const colors = []
+
 class History {
   constructor(instance, element) {
     this.instance = instance
     this.classes = this.instance.classes
     this.element = element
-
     this.prevColor = null
-    this.colors = []
     this.count = 0
     this.build()
     this.bind()
@@ -73,20 +73,23 @@ class History {
   }
 
   update(color) {
-    if (this.colors.indexOf(color) === -1) {
-      this.colors.push(color)
+    if (colors.indexOf(color) === -1) {
+      colors.push(color)
       this.count++
-
-      if (this.count >= 18) {
-        this.colors.shift()
-      }
-      this.$items.forEach((v, i) => {
-        setStyle('background', this.colors[this.colors.length - 1 - i], v)
-        if (i < this.count) {
-          addClass(this.classes.HISTORYITEMEMPTY, v)
-        }
-      })
+      this.updateHistory()
     }
+  }
+
+  updateHistory() {
+    if (this.count >= 18) {
+      colors.shift()
+    }
+    this.$items.forEach((v, i) => {
+      setStyle('background', colors[colors.length - 1 - i], v)
+      if (i < this.count) {
+        addClass(this.classes.HISTORYITEMEMPTY, v)
+      }
+    })
   }
 }
 

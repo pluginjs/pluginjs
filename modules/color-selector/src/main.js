@@ -11,9 +11,9 @@ import {
   query,
   attr,
   wrap,
-  //   unwrap,
-  getData
-  //   empty
+  unwrap,
+  getData,
+  empty
 } from '@pluginjs/dom'
 // import Tooltip from '@pluginjs/tooltip'
 // import Scrollable from '@pluginjs/scrollable'
@@ -39,7 +39,7 @@ import Preview from './components/preview'
 // import History from './components/history'
 // import Hue from './components/hue'
 // import Saturation from './components/saturation'
-// import Collection from './modules/collection'
+import Collection from './modules/collection'
 // import Solid from './modules/solid'
 // import Gradients from './modules/gradient'
 import {
@@ -81,20 +81,8 @@ class ColorSelector extends Component {
     // init global vars
     this.$body = query('body')
 
-    //   this.module = this.options.module[0]
-    //   this.contrast = true
-    //   this.history = true
-
     this.data = DATA
-    //   this.color = null
-    //   this.oldColor = null
-    //   this.solidModule = this.options.solidModule
-
-    //   this.info = {
-    //     collection: '',
-    //     solid: this.options.defaultColor || '#000',
-    //     gradient: 'linear-gradient(90deg, #fff 0%,#000 100%)'
-    //   }
+    this.oldColor = {}
     // init
     this.setupStates()
     this.initialize()
@@ -114,7 +102,18 @@ class ColorSelector extends Component {
     // swtichover default mode
     this.switchModule()
 
+    // set default data
+    this.initData()
+
     this.bind()
+  }
+
+  initData() {
+    if (this.elementColor) {
+      this.val(this.elementColor)
+    } else {
+      this.clear()
+    }
   }
 
   bind() {
@@ -146,16 +145,32 @@ class ColorSelector extends Component {
       )(this.$wrap)
     }
 
-    // switch mode
-    bindEvent(
-      this.eventName('click'),
-      `.${this.classes.PANELTRIGGER}>i`,
-      e => {
-        const $this = e.target
-        this.switchModule(getData('type', $this))
-      },
-      this.$panel
-    )
+    compose(
+      // manage event
+      bindEvent(this.eventName('click'), `.${this.classes.MANAGE}`, () => {
+        this.options.manage()
+      }),
+      // switch mode
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.PANELTRIGGER}>i`,
+        e => {
+          const $this = e.target
+          this.switchModule(getData('type', $this))
+        }
+      ),
+      // Collection event
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.COLLECTIONITEM}`,
+        e => {
+          const info = getData('info', e.target)
+          this.selectCollection = info
+          this.set({ module: 'collection', color: info.title })
+          this.closePanel()
+        }
+      )
+    )(this.$panel)
   }
 
   initRemove() {
@@ -200,6 +215,7 @@ class ColorSelector extends Component {
     })
 
     append(this.$panel, this.$wrap)
+    query(`.${this.classes.NAMESPACE}-collection`, this.$panel).remove()
 
     // init element
     this.$trigger = query(`.${this.classes.PANELTRIGGER}`, this.$panel)
@@ -227,24 +243,66 @@ class ColorSelector extends Component {
     this.DROPDOWN = new Dropdown(this.element, {
       target: this.$panel,
       hideOnSelect: false,
-      hideOutClick: false
+      hideOutClick: true,
+      onShown: () => {
+        this.leave('save')
+        this.COLORPICKER.oldColor = this.COLORPICKER.color
+        this.GRADIENTPICKER.oldColor = this.GRADIENTPICKER.color
+        this.oldColor.module = this.module
+        this.oldColor.color = this.color
+        this.switchModule(this.module)
+      },
+      onHided: () => {
+        this.update()
+      }
     })
 
+    this.setupCollection()
     this.setupSolid()
     this.setupGradient()
+  }
+
+  setupCollection() {
+    this.COLLECTION = new Collection(
+      this,
+      query(`.${this.classes.PANELCOLLECTION}`, this.$panel)
+    )
   }
 
   setupSolid() {
     this.colorPickerTrigger = query('.pj-colorSelector-solid', this.$wrap)
     this.COLORPICKER = new ColorPicker(this.colorPickerTrigger, {
-      displayMode: 'inline'
+      ...this.options.colorPicker,
+      displayMode: 'inline',
+      showControl: true,
+      onChange: val => {
+        if (this.module === 'solid') {
+          this.setInput(val.toRGBA())
+        }
+      },
+      onClick: val => {
+        this.enter('save')
+        this.COLORPICKER.HISTORY.set(val)
+        this.DROPDOWN.hide()
+      }
     })
   }
 
   setupGradient() {
     this.gradientPickerTrigger = query('.pj-colorSelector-gradient', this.$wrap)
     this.GRADIENTPICKER = new GradientPicker(this.gradientPickerTrigger, {
-      displayMode: 'inline'
+      ...this.options.gradientPicker,
+      displayMode: 'inline',
+      showControl: true,
+      onChange: val => {
+        if (this.module === 'gradient') {
+          this.setInput(val)
+        }
+      },
+      onClick: () => {
+        this.enter('save')
+        this.DROPDOWN.hide()
+      }
     })
   }
 
@@ -252,7 +310,6 @@ class ColorSelector extends Component {
     if (!typeName) {
       typeName = 'solid'
     }
-    // this.saveMarker(typeName)
     // switch panel tirgger
     children(this.$trigger).forEach(($this, i) => {
       const $content = children(this.$container)[i]
@@ -274,20 +331,27 @@ class ColorSelector extends Component {
     this.enter(`${typeName}Module`)
     this.module = typeName
 
-    // switch (this.module) {
-    //   case 'solid':
-    //     this.SOLID.setSolid(this.info.solid)
-    //     break
-    //   case 'collection':
-    //     this.COLLECTION.setCollection(this.info.collection)
-    //     break
-    //   case 'gradient':
-    //     this.GRADIENT.setGradient(this.info.gradient)
-    //     break
-    //   default:
-    //     break
-    // }
+    switch (this.module) {
+      case 'solid':
+        this.setInput(this.COLORPICKER.color)
+        this.COLORPICKER.HISTORY.updateHistory()
+        break
+      case 'gradient':
+        this.setInput(this.GRADIENTPICKER.color)
+        this.GRADIENTPICKER.COLORPICKER.HISTORY.updateHistory()
+        break
+      default:
+        break
+    }
     this.trigger(EVENTS.SWITCHMODULE, this.module)
+  }
+
+  setInput(val) {
+    this.color = val
+    this.PREVIEW.update(val)
+    this.element.value = val
+    this.trigger(EVENTS.CHANGE, val)
+    return null
   }
 
   createEl(tempName, options) {
@@ -303,6 +367,110 @@ class ColorSelector extends Component {
   closePanel() {
     this.enter('save')
     this.DROPDOWN.hide()
+  }
+
+  update() {
+    if (this.is('save')) {
+      this.setInput(this.color)
+      this.trigger(EVENTS.UPDATE, this.color)
+    } else {
+      this.color = this.oldColor.color
+      this.module = this.oldColor.module
+      this.setInput(this.color)
+      this.COLORPICKER.set(this.COLORPICKER.oldColor)
+      this.GRADIENTPICKER.reset()
+    }
+  }
+
+  clear() {
+    this.color = ''
+    this.COLORPICKER.clear()
+    this.GRADIENTPICKER.clear()
+    this.switchModule(this.options.module[0])
+    this.PREVIEW.update('transparent')
+    this.element.value = ''
+  }
+
+  val(color) {
+    if (!color) {
+      return this.options.process.call(this, this.get(), this.module)
+    }
+
+    const val = this.options.parse.call(this, color)
+
+    this.set(val)
+    // this.update();
+    return null
+  }
+
+  get() {
+    return this.color
+  }
+
+  set(val) {
+    const module = val.module
+    const color = val.color
+
+    this.color = color
+    this.switchModule(module)
+
+    // collection
+    if (module === 'collection') {
+      this.COLLECTION.setCollection(color)
+      return false
+    }
+
+    // gradient
+    if (module === 'gradient') {
+      if (typeof color === 'string' && color.indexOf('gradient') > -1) {
+        this.GRADIENTPICKER.set(color)
+      }
+      return false
+    }
+
+    // solid
+    if (module === 'solid') {
+      this.COLORPICKER.set(color)
+    }
+    return null
+  }
+
+  enable() {
+    if (this.is('disabled')) {
+      this.element.disabled = false
+      this.leave('disabled')
+    }
+    removeClass(this.classes.DISABLED, this.$wrap)
+    this.trigger(EVENTS.ENABLE)
+  }
+
+  disable() {
+    if (!this.is('disabled')) {
+      this.element.disabled = true
+      this.enter('disabled')
+    }
+    addClass(this.classes.DISABLED, this.$wrap)
+    this.trigger(EVENTS.DISABLE)
+  }
+
+  destroy() {
+    if (this.is('initialized')) {
+      this.unbind()
+      this.clear()
+      this.DROPDOWN.destroy()
+      empty(this.element)
+      this.element.setAttribute('placeholder', '')
+      unwrap(unwrap(this.element))
+      this.$remove.remove()
+      this.PREVIEW.remove()
+      this.$panel.remove()
+      if (this.options.theme) {
+        removeClass(this.getThemeClass(), this.element)
+      }
+      this.leave('initialized')
+    }
+    this.trigger(EVENTS.DESTROY)
+    super.destroy()
   }
 
   static setCollectionData(data) {

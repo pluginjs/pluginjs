@@ -145,16 +145,19 @@ class ColorPicker extends Component {
           }
         )
       )(this.$wrap)
-
-      // save
-      bindEvent(
-        this.eventName('click'),
-        () => {
-          this.closePanel()
-        },
-        this.$save
-      )
     }
+
+    // save
+    bindEvent(
+      this.eventName('click'),
+      () => {
+        if (this.options.displayMode !== 'inline') {
+          this.closePanel()
+        }
+        this.trigger(EVENTS.CLICK, this.color)
+      },
+      this.$save
+    )
   }
 
   createHtml() {
@@ -316,7 +319,7 @@ class ColorPicker extends Component {
       query(`.${this.classes.HISTORY}`, this.$panel).remove()
     }
 
-    if (this.options.displayMode === 'dropdown') {
+    if (this.options.displayMode === 'dropdown' || this.options.showControl) {
       this.initControl()
     } else {
       query(`.${this.classes.CONTROL}`, this.$panel).remove()

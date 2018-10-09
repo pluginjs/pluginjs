@@ -3,11 +3,24 @@ import ColorSelector from '@pluginjs/color-selector'
 
 const element = query('#custom .solid-modules')
 ColorSelector.of(element, {
-  module: ['solid'],
-  solidModule: {
-    saturation: true,
-    hue: true,
-    alpha: false,
-    hex: true
+  colorPicker: {
+    module: {
+      saturation: true,
+      hue: true,
+      alpha: false,
+      hex: true,
+      history: true
+    }
+  },
+  gradientPicker: {
+    colorPicker: {
+      module: {
+        saturation: true,
+        hue: true,
+        alpha: true,
+        hex: false,
+        history: true
+      }
+    }
   }
 })
