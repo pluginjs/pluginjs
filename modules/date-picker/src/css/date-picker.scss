@@ -10,6 +10,7 @@ $datePicker-width: 200px;
 
 $datePicker-font-size: $font-size-base;
 $datePicker-font: $pj-icon-font-family;
+$datePicker-font-weight: $font-weight-medium;
 
 $datePicker-hover-color: $gray-dark;
 $datePicker-hover-bg-color: $gray-lighter;
@@ -190,7 +191,7 @@ $datePicker-body-font-size: $font-size-xs;
   &-header {
     height: $datePicker-header-height;
     font-size: $datePicker-header-font-size;
-    font-weight: 500;
+    font-weight: $datePicker-font-weight;
     color: $datePicker-header-color;
     background-color: $datePicker-inrange-color;
     border-bottom: 1px solid $datePicker-header-border;

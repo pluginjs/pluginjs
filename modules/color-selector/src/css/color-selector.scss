@@ -18,6 +18,7 @@ $colorSelector-border-radius: $border-radius-base !default;
 $colorSelector-hover-color: $color-primary !default;
 $colorSelector-active-color: $color-primary !default;
 $colorSelector-font-size: $font-size-base !default;
+$colorSelector-font-weight: $font-weight-medium !default;
 //wrap
 $colorSelector-wrap-hover-border-color: $gray-lighter;
 // preview
@@ -389,7 +390,7 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
     width: 100%;
     height: 33px;
     margin-top: 24px;
-    font-weight: 500;
+    font-weight: $colorSelector-font-weight;
     color: $color-primary-black !important;
     letter-spacing: 1.3px;
     // border-width: 2px !important;

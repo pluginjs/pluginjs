@@ -6,6 +6,7 @@ $select: "pj-select";
 
 $colorPicker-font-size: $font-size-base;
 $colorPicker-font-family: $font-family-base;
+$colorPicker-font-weight: $font-weight-medium;
 
 $colorPicker-color: $gray;
 
@@ -189,7 +190,7 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
 
   &-save {
     margin-top: $colorPicker-save-margin-top;
-    font-weight: 500;
+    font-weight: $colorPicker-font-weight;
     letter-spacing: 1.3px;
 
     &:not(:disabled):hover {

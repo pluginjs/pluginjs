@@ -1,6 +1,7 @@
 @import "@pluginjs/styles/variables.scss";
 $namespace: "pj-timeTable";
 
+$weekly-font-weight: $font-weight-bold;
 $weekly-border-color: #d8d8d8;
 $weekly-body-header-color: #5b6779;
 $weekly-grid-time-color: #aab3bf;
@@ -74,7 +75,8 @@ $weekly-empty-event-transition: color 0.15s ease-in-out,
           display: flex;
           height: 80px;
           padding-left: 13.28%;
-
+          
+          // stylelint-disable
           div {
             z-index: 1;
             flex: 1;
@@ -120,6 +122,7 @@ $weekly-empty-event-transition: color 0.15s ease-in-out,
         }
       }
     }
+    // stylelint-enable
 
     .#{$namespace}-events {
       position: relative;
@@ -165,9 +168,9 @@ $weekly-empty-event-transition: color 0.15s ease-in-out,
           }
 
           .#{$namespace}-weekEvent-time {
-            font-family: OpenSans;
+            font-family: OpenSans, serif; // OpenSans
             font-size: 16px;
-            font-weight: bold;
+            font-weight: $weekly-font-weight;
             line-height: 1.63;
             color: #fff;
             text-align: center;
@@ -176,9 +179,9 @@ $weekly-empty-event-transition: color 0.15s ease-in-out,
           }
 
           .#{$namespace}-weekEvent-title {
-            font-family: OpenSans;
+            font-family: OpenSans, serif;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: $weekly-font-weight;
             line-height: 1.63;
             color: #fff;
             text-align: center;

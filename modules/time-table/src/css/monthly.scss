@@ -2,6 +2,8 @@
 
 $namespace: "pj-timeTable";
 
+$monthly-font-weight: 600;
+
 $monthly-border-color: #eceff4;
 
 $monthly-h: 1020px;
@@ -37,7 +39,6 @@ $monthly-event-border-radius: 3px;
     background-color: $monthly-bg-color;
     border: solid 1px rgba(0, 0, 0, 0.1);
     // margin-top: $monthly-m-t;
-    border-radius: 8px;
     border-radius: 8px;
     // border-top: $monthly-border-size solid $monthly-border-color;
 
@@ -114,13 +115,14 @@ $monthly-event-border-radius: 3px;
               &.#{$namespace}-month-showList {
                 left: 1px;
                 width: 173px;
-                background-color: white;
+                background-color: #fff;
               }
 
               &.#{$namespace}-month-singleEvent {
                 top: 60px;
               }
 
+              // stylelint-disable
               .#{$namespace}-month-eventwrap {
                 position: relative;
                 padding-left: 34px;
@@ -139,7 +141,7 @@ $monthly-event-border-radius: 3px;
                 .#{$namespace}-monthEvent-time {
                   font-family: OpenSans;
                   font-size: 14px;
-                  font-weight: 600;
+                  font-weight: $monthly-font-weight;
                   line-height: 1.64;
                   color: #666;
                   text-align: left;
@@ -150,7 +152,7 @@ $monthly-event-border-radius: 3px;
                 .#{$namespace}-monthEvent-title {
                   font-family: OpenSans;
                   font-size: 14px;
-                  font-weight: 600;
+                  font-weight: $monthly-font-weight;
                   line-height: 1.64;
                   color: $gray-dark;
                   text-align: left;
@@ -165,7 +167,7 @@ $monthly-event-border-radius: 3px;
                 margin-left: 15px;
                 font-family: OpenSans;
                 font-size: 14px;
-                font-weight: 600;
+                font-weight: $monthly-font-weight;
                 color: #35cc62;
                 text-align: left;
                 letter-spacing: 0.1px;
@@ -173,7 +175,8 @@ $monthly-event-border-radius: 3px;
                 cursor: pointer;
               }
             }
-
+            // stylelint-enable
+            
             .#{$namespace}-badge {
               position: absolute;
               top: 10px;
