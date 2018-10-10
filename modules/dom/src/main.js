@@ -435,7 +435,13 @@ export const insertBefore = curry((newElement, el) => {
   if (isString(newElement)) {
     newElement = parseHTML(newElement)
   }
-  el.parentNode.insertBefore(newElement, el)
+  if (NodeList.prototype.isPrototypeOf(newElement)) {// eslint-disable-line
+    newElement.forEach(i => {
+      el.parentNode.insertBefore(i, el)
+    })
+  } else {
+    el.parentNode.insertBefore(newElement, el)
+  }
 
   return newElement
 })
@@ -454,7 +460,13 @@ export const insertAfter = curry((newElement, el) => {
   if (isString(newElement)) {
     newElement = parseHTML(newElement)
   }
-  el.parentNode.insertBefore(newElement, el.nextElementSibling)
+  if (NodeList.prototype.isPrototypeOf(newElement)) {// eslint-disable-line
+    newElement.forEach(i => {
+      el.parentNode.insertBefore(i, el.nextElementSibling)
+    })
+  } else {
+    el.parentNode.insertBefore(newElement, el.nextElementSibling)
+  }
 
   return newElement
 })
