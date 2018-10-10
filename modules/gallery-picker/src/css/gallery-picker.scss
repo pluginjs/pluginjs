@@ -4,8 +4,6 @@
 // Vars
 // =====================
 $galleryPicker: "pj-galleryPicker";
-$dropdown: "pj-dropdown";
-$scrollable: "pj-scrollable";
 
 $galleryPicker-width: 160px;
 $galleryPicker-height: 90px;
@@ -15,22 +13,16 @@ $galleryPicker-gatter: 8px;
 
 $galleryPicker-font-family: $font-family-base;
 $galleryPicker-font-size: $font-size-base;
-$galleryPicker-line-height: 16px;
-$galleryPicker-icon-size: 16px;
+$galleryPicker-icon-size: $font-size-md;
 
 $galleryPicker-color: $gray-dark;
-$galleryPicker-active-color: $color-primary;
 $galleryPicker-hover-color: $gray-darkest;
 $galleryPicker-bg: $color-white;
 
-$galleryPicker-border-width: 1px;
 $galleryPicker-border-color: $border-color;
-$galleryPicker-border: $galleryPicker-border-width solid
-  $galleryPicker-border-color;
 $galleryPicker-border-radius: $border-radius-base;
-// empty
 $galleryPicker-border-style: dashed;
-// fill
+
 $galleryPicker-fill-expand-bg: $color-opacity;
 $galleryPicker-fill-icon-margin: 10px;
 $galleryPicker-fill-count-font-size: 12px;
@@ -38,15 +30,10 @@ $galleryPicker-fill-count-line-height: 14px;
 $galleryPicker-fill-count-color: $color-white;
 $galleryPicker-fill-count-bg: rgba($color-black, 0.8);
 $galleryPicker-fill-width: 16px;
-$galleryPicker-fill-count-padding: 7px 28px;
-// expand
+
 $galleryPicker-expand-width: 272px;
-$galleryPicker-expand-height: 360px;
-$galleryPicker-expand-item-width: 100px;
+$galleryPicker-expand-item-width: calc(50% - #{$galleryPicker-spacer} / 2);
 $galleryPicker-expand-item-change-bg: $color-opacity;
-//scrollable
-$scrollable-width: 248px;
-$scrollable-height: 260px;
 
 // Style
 // ====================
@@ -63,9 +50,8 @@ $scrollable-height: 260px;
 
   &-empty,
   &-fill {
-    text-align: center;
     background-color: $galleryPicker-bg;
-    border: $galleryPicker-border;
+    border: 1px solid $galleryPicker-border-color;
     border-radius: $galleryPicker-border-radius;
   }
 
@@ -84,18 +70,10 @@ $scrollable-height: 260px;
   }
 
   &-fill {
-
     &::before,
     &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      content: "";
       background-color: $galleryPicker-bg;
-      border: $galleryPicker-border;
+      border: 1px solid $galleryPicker-border-color;
       border-radius: $galleryPicker-border-radius;
     }
 
@@ -112,10 +90,8 @@ $scrollable-height: 260px;
   }
 
   &-trigger-action {
-    line-height: $galleryPicker-height;
     background-color: $galleryPicker-fill-expand-bg;
     border-radius: $galleryPicker-border-radius;
-    opacity: 0;
   }
 
   &-edit,
@@ -132,32 +108,28 @@ $scrollable-height: 260px;
   // expand
   &-dropdown {
     width: $galleryPicker-expand-width;
-    height: $galleryPicker-expand-height !important;
     padding: $galleryPicker-spacer;
     background-color: $galleryPicker-bg;
-    border: $galleryPicker-border;
+    border: 1px solid $galleryPicker-border-color;
     border-radius: $galleryPicker-border-radius;
   }
 
-  &-items li {
-    box-sizing: border-box;
-    width: $galleryPicker-expand-item-width;
-    height: $galleryPicker-expand-item-width;
-    margin: $galleryPicker-spacer;
-    margin-bottom: 0;
-    text-align: center;
-    border: $galleryPicker-border;
-    border-radius: $galleryPicker-border-radius;
+  &-items {
+    li {
+      width: $galleryPicker-expand-item-width;
+      height: $galleryPicker-expand-item-width;
+      margin: $galleryPicker-spacer;
+      margin-bottom: 0;
+      border: 1px solid $galleryPicker-border-color;
+      border-radius: $galleryPicker-border-radius;
 
-    + li {
-      margin-left: 0;
+      + li {
+        margin-left: 0;
+      }
     }
-
   }
 
   &-add {
-    align-content: center;
-    justify-content: center;
     font-size: $galleryPicker-fill-count-font-size;
     color: $galleryPicker-color;
     border-style: dashed !important;
@@ -175,23 +147,13 @@ $scrollable-height: 260px;
 
   &-control {
     margin-top: $galleryPicker-spacer;
-
-    button {
-      padding: $galleryPicker-fill-count-padding;
-      line-height: $galleryPicker-line-height;
-      text-transform: uppercase;
-    }
   }
 
   &-item {
-    border: $galleryPicker-border;
-
     &-change {
-      line-height: $galleryPicker-expand-item-width;
       color: $galleryPicker-fill-count-color;
       background-color: $galleryPicker-expand-item-change-bg;
       border-radius: $galleryPicker-border-radius;
-      opacity: 0;
     }
 
     &-remove,
@@ -229,28 +191,3 @@ $scrollable-height: 260px;
     background-color: $disabled-bg;
   }
 }
-
-.#{$scrollable} {
-  position: relative !important;
-  width: $scrollable-width !important;
-  height: $scrollable-height !important;
-
-  &-container {
-    width: $scrollable-width !important;
-    height: $scrollable-height !important;
-  }
-
-  &-enabled.#{$scrollable} .#{$scrollable}-content {
-    overflow: auto !important;
-  }
-
-  &-content {
-    width:  $scrollable-width !important;
-    height: $scrollable-height !important;
-  }
-
-  &-vertical.#{$scrollable}-enabled .#{$scrollable}-container {
-    overflow: hidden !important;
-  }
-}
-

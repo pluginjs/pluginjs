@@ -22,7 +22,6 @@ export const classes = {
   DROPDOWN: '{namespace}-dropdown',
   ITEM: '{namespace}-item',
   ITEMLABEL: '{namespace}-item-label',
-  SCROLLWRAP: '{namespace}-scroll-wrap',
   WRAP: '{namespace}',
   MASK: '{namespace}-mask',
   TRIGGER: '{namespace}-trigger'
@@ -39,8 +38,6 @@ export const defaults = {
   hideOutClick: true
   // select: null // set initial select value, if null , choose the first value
 }
-
-export const dependencies = ['scrollable']
 
 export const translations = {
   en: { change: 'Change' },

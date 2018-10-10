@@ -5,9 +5,9 @@
 $galleryPicker: "pj-galleryPicker" !default;
 $dropdown: "pj-dropdown" !default;
 
-$galleryPicker-spacer: 24px !default;
-
 $galleryPicker-fill-count-gatter: 6px !default;
+
+$galleryPicker-items-height: 224px !default;
 
 // Core
 // =====================
@@ -21,11 +21,6 @@ $galleryPicker-fill-count-gatter: 6px !default;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-  }
-
-  &-empty {
-    flex-direction: column;
-    justify-content: center;
   }
 
   &-fill {
@@ -67,15 +62,25 @@ $galleryPicker-fill-count-gatter: 6px !default;
     }
   }
 
+  &-empty,
+  &-trigger-action {
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-empty {
+    flex-direction: column;
+  }
+
   &-trigger-action {
     position: absolute;
     top: 0;
     left: 0;
     display: none;
-    justify-content: center;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    opacity: 0;
   }
 
   &-dropdown {
@@ -87,13 +92,16 @@ $galleryPicker-fill-count-gatter: 6px !default;
 
   &-items {
     display: inline-block;
-    height: calc(100% - $galleryPicker-spacer) !important;
+    height: $galleryPicker-items-height;
     padding: 0;
     margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
     list-style: none;
 
     li {
       position: relative;
+      box-sizing: border-box;
 
       &:nth-child(1),
       &:nth-child(2) {
@@ -112,7 +120,7 @@ $galleryPicker-fill-count-gatter: 6px !default;
 
   &-add {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
   }
 
@@ -137,10 +145,11 @@ $galleryPicker-fill-count-gatter: 6px !default;
       position: absolute;
       top: 0;
       left: 0;
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       height: 100%;
-      text-align: center;
       cursor: pointer;
       opacity: 0;
     }

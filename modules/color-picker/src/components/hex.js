@@ -46,7 +46,9 @@ class Hex {
   build() {
     this.$opac = parseHTML(
       `<div class='${this.classes.HEXBOX}'>
-        <input class="pj-input ${this.classes.HEXANGLE}" type="text"/>
+        <input class="pj-input pj-input-sm ${
+          this.classes.HEXANGLE
+        }" type="text"/>
          <div class="${this.classes.HEXUNIT}">%</div>
        </div>`
     )
@@ -56,10 +58,12 @@ class Hex {
     this.element.append($selector, this.$opac)
 
     this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
-    // this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
     this.SELECT = Select.of(this.$el, {
       value: this.classify,
       source: this.data,
+      classes: {
+        TRIGGER: '{namespace}-trigger pj-input pj-input-sm'
+      },
       onChange: res => {
         this.updateColor(res, this.color)
       }

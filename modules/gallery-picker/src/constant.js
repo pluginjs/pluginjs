@@ -128,7 +128,7 @@ export const defaults = {
   }
 }
 
-export const dependencies = ['scrollable', 'pop-dialog']
+export const dependencies = ['pop-dialog']
 
 export const translations = {
   en: {

@@ -1,44 +1,33 @@
 @import "@pluginjs/styles/variables.scss";
-$cp-sizer: $sizer !default;
+$cp-size: 48px !default;
 
 .cp-spinner {
   position: relative;
   box-sizing: border-box;
   display: inline-block;
-  width: 4.8 * $cp-sizer; //48px
-  height: 4.8 * $cp-sizer; //48px
+  width: $cp-size;
+  height: $cp-size;
 }
 
-.cp-round::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  display: inline-block;
-  width: 4.8 * $cp-sizer; //48px
-  height: 4.8 * $cp-sizer;
-  content: " ";
-  border-top: solid 6px $gray-lightest; //#bababa;
-  border-right: solid 6px $gray-lightest; //#bababa;
-  border-bottom: solid 6px $gray-lightest; //#bababa;
-  border-left: solid 6px $gray-lightest; //#bababa;
-  border-radius: 50%;
+.cp-round {
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    display: inline-block;
+    width: $cp-size;
+    height: $cp-size;
+    content: " ";
+    border: 6px solid $gray-lightest;
+    border-radius: 50%;
+  }
 }
 
 .cp-round::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  display: inline-block;
-  width: 4.8 * $sizer; //48px
-  height: 4.8 * $sizer; //48px
-  content: " ";
-  border-top: solid 6px $color-primary-light;
-  border-right: solid 6px transparent;
-  border-bottom: solid 6px transparent;
-  border-left: solid 6px transparent;
-  border-radius: 50%;
+  border-color: transparent;
+  border-top-color: $color-primary-light;
   animation: cp-round-animate 1s ease-in-out infinite;
 }
 

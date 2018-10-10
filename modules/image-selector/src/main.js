@@ -14,7 +14,6 @@ import {
   getData
 } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
-import Scrollable from '@pluginjs/scrollable'
 import {
   eventable,
   register,
@@ -102,7 +101,6 @@ class ImageSelector extends Component {
       target: this.$dropdown,
       reference: this.$init,
       hideOutClick: false,
-      constraintToScrollParent: false,
       templates: this.options.templates
     })
   }
@@ -210,13 +208,6 @@ class ImageSelector extends Component {
     append(parseHTML('<div></div>'), this.$dropdown)
 
     this.setItems()
-  }
-
-  initScrollable() {
-    Scrollable.of(this.$dropdown, {
-      contentSelector: '>',
-      containerSelector: '>'
-    })
   }
 
   setItems() {

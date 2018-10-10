@@ -19,7 +19,6 @@ import {
 } from '@pluginjs/dom'
 import { setStyle, css, showElement, hideElement } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
-import Scrollable from '@pluginjs/scrollable'
 import Trigger from './trigger'
 import {
   eventable,
@@ -272,7 +271,6 @@ class GalleryPicker extends Component {
                 color: 'danger',
                 fn(resolve) {
                   that.remove(getData('index', $item))
-                  that.updateScrollbar()
                   resolve()
                 }
               }
@@ -290,7 +288,6 @@ class GalleryPicker extends Component {
     } else {
       this.delImage()
     }
-    this.updateScrollbar()
   }
 
   addImage(url) {
@@ -311,11 +308,6 @@ class GalleryPicker extends Component {
     if (target) {
       target.remove()
     }
-  }
-
-  updateScrollbar() {
-    const scrollableApi = Scrollable.of(this.$items)
-    scrollableApi.update()
   }
 
   clearImages() {
@@ -414,7 +406,6 @@ class GalleryPicker extends Component {
     addClass(this.classes.OPENDISABLE, this.TRIGGER.$fill)
     addClass(this.classes.OPENDISABLE, this.TRIGGER.$triggerAction)
     addClass(this.classes.SHOW, removeClass(this.classes.EXIST, this.$wrap))
-    this.updateScrollbar()
   }
 
   close() {
