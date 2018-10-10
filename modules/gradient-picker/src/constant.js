@@ -92,7 +92,7 @@ export const defaults = {
         </div>`
     },
     angle() {
-      return '<input class="pj-input {classes.WHEELANGLE}" type="text"/>'
+      return '<input class="pj-input pj-input-sm {classes.WHEELANGLE}" type="text"/>'
     },
     delete() {
       return '<i class="pj-icon pj-icon-trash {classes.DELETE}"></i>'
@@ -103,7 +103,7 @@ export const defaults = {
         </div>`
     },
     save() {
-      return '<button type="button" class="{classes.SAVE} pj-btn pj-btn-xs pj-btn-outline">{text}</button>'
+      return '<button type="button" class="{classes.SAVE} pj-btn pj-btn-block pj-btn-outline">{text}</button>'
     }
   },
   process(data) {

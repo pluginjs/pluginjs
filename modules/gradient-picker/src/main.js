@@ -352,7 +352,7 @@ class GradientPicker extends Component {
     const $remove = this.createEl('remove', { classes: this.classes })
     append($remove, query(`.${this.classes.TRIGGER}`, this.$wrap))
     this.$remove = query(`.${this.classes.REMOVE}`, this.$wrap)
-    // hideElement(this.$remove)
+    hideElement(this.$remove)
   }
 
   initPreview() {
@@ -402,6 +402,9 @@ class GradientPicker extends Component {
 
     this.SELECT = Select.of(this.$selector, {
       value: this.mode.replace(/^.?/g, match => match.toUpperCase()),
+      classes: {
+        TRIGGER: '{namespace}-trigger pj-input pj-input-sm'
+      },
       source: [
         { label: 'Linear', value: 'Linear' },
         { label: 'Radial', value: 'Radial' }

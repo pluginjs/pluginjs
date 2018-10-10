@@ -63,16 +63,6 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
 .#{$colorPicker} {
   font-family: $colorPicker-font-family;
 
-  &-input {
-    &:hover {
-    	border-color: $colorPicker-hover-border-color;
-    }
-
-    &:focus {
-      border-color: $colorPicker-active-border-color;
-    }
-  }
-
   &-remove {
     font-size: 12px;
     color: $colorPicker-remove-color;
@@ -192,11 +182,6 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
     margin-top: $colorPicker-save-margin-top;
     font-weight: $colorPicker-font-weight;
     letter-spacing: 1.3px;
-
-    &:not(:disabled):hover {
-      color: $colorPicker-save-hover-color;
-      background-color: $colorPicker-save-hover-bgcolor;
-      border: 1px solid $colorPicker-save-hover-border-color;
-    }
+    transition: unset;
   }
 }

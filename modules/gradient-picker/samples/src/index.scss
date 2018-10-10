@@ -1,5 +1,7 @@
 // import gradient-picker css
-@import "@pluginjs/gradient-picker/src/css/gradient-picker.scss";
-@import "@pluginjs/color-picker/src/css/color-picker.scss";
+@import "@pluginjs/styles/buttons.scss";
+@import "@pluginjs/styles/inputs.scss";
 @import "@pluginjs/select/src/css/select.scss";
 @import "@pluginjs/dropdown/src/css/dropdown.scss";
+@import "@pluginjs/color-picker/src/css/color-picker.scss";
+@import "@pluginjs/gradient-picker/src/css/gradient-picker.scss";

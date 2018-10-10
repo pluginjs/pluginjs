@@ -1,0 +1,154 @@
+@import "@pluginjs/styles/variables.scss";
+
+$gradientPicker: "pj-gradientPicker" !default;
+$colorPicker: "pj-colorPicker" !default;
+
+$gradientPicker-border-width: 1px !default;
+$gradientPicker-preview-span-left: calc(50% - #{$gradientPicker-border-width});
+
+$gradientPicker-width: 162px !default;
+// panel
+$gradientPicker-panel-width: 290px !default;
+// preview
+$gradientPicker-preview-width: 45px !default;
+$gradientPicker-preview-height: 32px !default;
+$gradientPicker-preview-bg-width: 36px !default;
+$gradientPicker-preview-bg-height: 24px !default;
+// remove
+$gradientPicker-remove-right: $gradientPicker-preview-width + 6px !default;
+$gradientPicker-gradient-bar-height: 16px !default;
+$gradientPicker-marker-width: 12px !default;
+$gradientPicker-marker-height: 12px !default;
+// wheel
+$gradientPicker-wheel-width: 24px !default;
+$gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
+
+.#{$gradientPicker} {
+  &-trigger {
+    position: relative;
+    width: $gradientPicker-width;
+  }
+
+  &-input {
+    width: 100%;
+  }
+
+  &-panel {
+    box-sizing: border-box;
+    width: $gradientPicker-panel-width;
+  }
+
+  &-remove {
+    position: absolute;
+    top: 50%;
+    right: $gradientPicker-remove-right;
+    z-index: 9;
+    transform: translateY(-50%);
+  }
+
+  &-preview {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: $gradientPicker-preview-width;
+    height: $gradientPicker-preview-height - 2px;
+    cursor: pointer;
+    transform: translateY(-50%);
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: $gradientPicker-preview-span-left;
+      display: inline-block;
+      width: $gradientPicker-preview-bg-width;
+      height: $gradientPicker-preview-bg-height;
+      transform: translate(-50%,-50%);
+    }
+
+    &-bg {
+      z-index: -1;
+    }
+  }
+
+  &-handle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .#{$gradientPicker}-bar {
+      position: relative;
+      width: 100%;
+      height: $gradientPicker-gradient-bar-height;
+
+      &:hover {
+        cursor: copy;
+      }
+
+      &-view {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .#{$gradientPicker}-delete {
+      cursor: not-allowed;
+
+      &-active {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .#{$colorPicker}-panel {
+    width: 100%;
+    padding: 0;
+    border: none !important;
+  }
+
+  &-marker {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    box-sizing: border-box;
+    width: $gradientPicker-marker-width;
+    height: $gradientPicker-marker-height;
+    cursor: pointer;
+    transform: translateY(-50%);
+
+    &:hover,
+    &:active {
+      transition: transform 0.3s;
+      transform: translateY(-50%) scale(1.2);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.#{$gradientPicker}-marker-active {
+      transition: transform 0.3s;
+      transform: translateY(-50%) scale(1.2);
+    }
+  }
+
+  &-wheel {
+    position: relative;
+    width: $gradientPicker-wheel-width;
+    height: $gradientPicker-wheel-height;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &-handle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transform-origin: center $gradientPicker-wheel-height / 2;
+    }
+  }
+}

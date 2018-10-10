@@ -12,7 +12,7 @@ $colorPicker-remove-right: $colorPicker-preview-width + 6px !default;
 
 $colorPicker-border-width: 1px !default;
 
-$colorPicker-preview-span-left: calc(50% - #{$colorPicker-border-width});
+$colorPicker-preview-span-left: calc(50% - #{$colorPicker-border-width}) !default;
 $colorPicker-preview-bg-width: 36px !default;
 $colorPicker-preview-bg-height: 24px !default;
 
@@ -29,7 +29,7 @@ $colorPicker-hex-height: 24px !default;
   }
 
   &-input {
-    width: $colorPicker-width;
+    width: 100%;
   }
 
   &-remove {
