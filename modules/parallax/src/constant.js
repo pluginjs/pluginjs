@@ -5,7 +5,8 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  ENTER: 'enter'
+  ENTER: 'enter',
+  LEAVE: 'leave'
 }
 
 export const classes = {

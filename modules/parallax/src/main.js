@@ -26,6 +26,7 @@ import {
 
 import Viewport from '@pluginjs/viewport'
 import Loader from '@pluginjs/loader'
+import Breakpoints from '@pluginjs/breakpoints'
 
 import Image from './modules/image'
 import Background from './modules/background'
@@ -60,6 +61,7 @@ class Parallax extends Component {
     this.initViewport()
     this.initLoader()
     this.initSpeed()
+    this.initBreakpoints()
     this.direction = this.options.direction || 'vertical'
     this.type = this.options.type || 'scroll'
 
@@ -67,6 +69,7 @@ class Parallax extends Component {
       this.initMode()
     }
 
+    this.effect()
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -134,6 +137,12 @@ class Parallax extends Component {
   initSpeed() {
     this.speed = this.options.speed
 
+    this.ensureSpeed()
+
+    return this.speed
+  }
+
+  ensureSpeed() {
     if (isString(this.speed)) {
       const attrSpeedNumber = Number(this.speed)
       if (isNan(attrSpeedNumber)) {
@@ -145,8 +154,46 @@ class Parallax extends Component {
         this.speed = attrSpeedNumber
       }
     }
+  }
 
-    return this.speed
+  initBreakpoints() {
+    Breakpoints.init()
+
+    const screens = Breakpoints.all()
+    this.initScreenOptions(screens)
+    const that = this
+
+    if (this.options.break) {
+      Breakpoints.on('change', function() {
+        if (that.screenOptions[this.current.name]) {
+          Object.keys(that.screenOptions[this.current.name]).forEach(key => {
+            that[key] = that.screenOptions[this.current.name][key]
+          })
+        } else {
+          that.reset()
+        }
+      })
+    }
+  }
+
+  reset() {
+    this.speed = this.options.speed
+  }
+
+  initScreenOptions(screens) {
+    this.screenOptions = {}
+    Object.keys(this.options).forEach(key => {
+      screens.forEach(screen => {
+        const screenFirstUpper =
+          screen.substring(0, 1).toUpperCase() + screen.substring(1)
+        if (key.endsWith(screenFirstUpper)) {
+          this.screenOptions[screen] = {}
+          this.screenOptions[screen][
+            key.slice(0, key.indexOf(screenFirstUpper))
+          ] = this.options[key]
+        }
+      })
+    })
   }
 
   initMode() {
@@ -195,62 +242,64 @@ class Parallax extends Component {
   }
 
   scrollHandle() {
-    const scrolled = this.container.getBoundingClientRect().y
+    this.updateVars()
 
     if (Math.abs(this.speed) > 1) {
-      this.speed = 0.3
+      this.speed = 0.5
     }
-
-    this.distance = (this.speed * scrolled) / 2.2
 
     let moveX
     let moveY
 
-    if (this.direction === 'horizontal') {
-      moveX = -this.distance
-      moveY = '0'
-    } else {
-      moveX = '0'
-      moveY = -this.distance
-    }
-
-    this.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`
-
     const style = {
-      transform: this.transform,
       'object-fit': 'cover'
     }
 
     if (this.direction === 'horizontal') {
-      style.width = `${this.container.offsetWidth *
-        (1 + Math.abs(this.speed) * 2)}px`
-      style.height = '100%'
+      style.width = `${this.containerWidth * (1 + Math.abs(this.speed) * 2)}px`
+      style.height = this.containerHeight
       style.top = 0
-      style.bottom = 0
+      this.distance =
+        this.containerWidth *
+        Math.abs(this.speed) *
+        (this.containerBottom / (this.windowHeight + this.containerHeight))
+      moveX = this.speed > 0 ? -this.distance : this.distance
+      moveY = '0'
     } else {
-      style.height = `${this.container.offsetHeight *
+      style.height = `${this.containerHeight *
         (1 + Math.abs(this.speed) * 2)}px`
-      style.width = '100%'
+      style.width = this.containerWidth
       style.left = 0
-      style.right = 0
+      this.distance =
+        this.containerHeight *
+        Math.abs(this.speed) *
+        (this.containerBottom / (this.windowHeight + this.containerHeight))
+      moveX = '0'
+      moveY = this.speed > 0 ? -this.distance : this.distance
     }
+
+    this.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`
+
+    style.transform = this.transform
 
     setStyle(style, this.mode.element)
   }
 
   opacityHandle() {
+    this.updateVars()
+
     if (Math.abs(this.speed) > 1) {
       this.speed = 0.6
     }
 
     const offset =
-      Math.round((this.getScrollTop() / this.getDocumentHeight()) * 120) / 100
+      1.6 - this.containerBottom / (this.windowHeight + this.containerHeight)
 
     this.transform = 'translate3d(0, 0, 0)'
 
     const style = {
       transform: this.transform,
-      opacity: offset * (0.3 + this.speed),
+      opacity: offset * Math.abs(this.speed),
       height: '100%',
       width: '100%'
     }
@@ -259,14 +308,16 @@ class Parallax extends Component {
   }
 
   scaleHandle() {
+    this.updateVars()
+
     if (Math.abs(this.speed) > 1) {
-      this.speed = 0.3
+      this.speed = 0.6
     }
 
     const offset =
-      Math.round((this.getScrollTop() / this.getDocumentHeight()) * 100) / 100
+      1.2 - this.containerBottom / (this.windowHeight + this.containerHeight)
 
-    this.transform = `scale(${offset * (1.5 + this.speed)})`
+    this.transform = `scale(${1 + offset * (0.5 + Math.abs(this.speed))})`
 
     setStyle(
       {
@@ -279,24 +330,14 @@ class Parallax extends Component {
     )
   }
 
-  getScrollTop() {
-    const { documentElement, body } = document
-    return (
-      window.pageYOffset || documentElement.scrollTop || body.scrollTop || 0
-    )
-  }
-
-  getDocumentHeight() {
-    const { documentElement, body } = document
-    const bodyHeight = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      documentElement.scrollHeight,
-      documentElement.offsetHeight,
-      documentElement.clientHeight
-    )
-
-    return bodyHeight - documentElement.clientHeight
+  updateVars() {
+    this.windowWidth = window.innerWidth || document.documentElement.clientWidth
+    this.windowHeight =
+      window.innerHeight || document.documentElement.clientHeight
+    const rect = this.container.getBoundingClientRect()
+    this.containerHeight = rect.height
+    this.containerWidth = rect.width
+    this.containerBottom = rect.bottom
   }
 
   bind() {
@@ -305,6 +346,7 @@ class Parallax extends Component {
       () => {
         this.effect()
         Pj.emitter.on(this.eventNameWithId('scroll'), this.effect.bind(this))
+        this.trigger(EVENTS.ENTER)
       },
       this.container
     )
@@ -313,6 +355,7 @@ class Parallax extends Component {
       'viewport:leave',
       () => {
         Pj.emitter.off(this.eventNameWithId('scroll'))
+        this.trigger(EVENTS.LEAVE)
       },
       this.container
     )
@@ -328,14 +371,8 @@ class Parallax extends Component {
     this.effect()
   }
 
-  enterHandle() {
-    this.context.trigger(EVENTS.ENTER)
-    this.context.effect()
-  }
-
   enable() {
     if (this.is('disabled')) {
-      // this.viewport.enable();
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -343,7 +380,6 @@ class Parallax extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      // this.viewport.disable();
       this.enter('disabled')
     }
 
