@@ -15,6 +15,8 @@ $strength-addon-color: $gray-darkest;
 $strength-check-width: 16px;
 $strength-check-height: 16px;
 $strength-check-bg: $color-white;
+$strength-check-active-color: $color-white;
+$strength-check-active-bg: $color-primary;
 
 .#{$strength} {
   &-container {
@@ -80,6 +82,7 @@ $strength-check-bg: $color-white;
       color: transparent;
       text-align: center;
       background-color: $strength-check-bg;
+      transition: background-color 0.3s;
     }
   }
 
@@ -90,7 +93,11 @@ $strength-check-bg: $color-white;
   
   &-active {
     .#{$strength}-check {
-      color: $color-active;
+      color: $strength-check-active-color;
+      
+      &::after {
+        background-color: $strength-check-active-bg;
+      }
     }
 
     .#{$strength}-check::before {
