@@ -21,7 +21,7 @@ export const defaults = deepMerge(AutoComplete.defaults, {
   minChars: 2,
   searchOptions: {},
   country: null, // []
-  types: 'geocode',
+  types: ['geocode'],
   match(data) {
     return data
   },
