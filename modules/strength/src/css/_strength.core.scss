@@ -4,6 +4,7 @@
 $strength: "pj-strength" !default;
 $input: "pj-input" !default;
 
+$strength-height: 32px !default;
 $strength-gatter: 8px !default;
 
 $strength-box-spacer-x: 12px !default;
@@ -18,9 +19,9 @@ $strength-check-border-color: $border-color !default;
 $strength-check-border-radius: $border-radius-base !default;
 
 .#{$strength} {
-  &-input.#{$input} {
-    width: 100%;
-    height: 100%;
+  &-container {
+    box-sizing: border-box;
+    height: 32px;
   }
 
   &-toggle {
@@ -31,9 +32,6 @@ $strength-check-border-radius: $border-radius-base !default;
   }
 
   &-addon {
-    cursor: pointer;
-    border: none !important;
-
     .#{$strength}-show {
       display: none;
     }

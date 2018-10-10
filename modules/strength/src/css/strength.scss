@@ -7,7 +7,7 @@ $input: "pj-input";
 $color-active: $color-primary;
 
 $strength-input-padding: 8px 12px;
-$strength-input-margin-bottom: 20px;
+$strength-input-margin-bottom: 8px;
 
 $strength-addon-font-size: $font-size-base;
 $strength-addon-color: $gray-darkest;
@@ -17,11 +17,45 @@ $strength-check-height: 16px;
 $strength-check-bg: $color-white;
 
 .#{$strength} {
-  &-input.#{$input} {
-    padding: $strength-input-padding;
-    margin-bottom: $strength-input-margin-bottom;
-    text-transform: capitalize;
-    outline: none;
+  &-container {
+    &.#{$input}-group {
+      &:hover {
+        .#{$input},
+        .#{$input}-group-addon {
+          border-color: $input-border-color-hover;
+          }
+
+        // .#{$input} {
+        //   border-right-color: $input-border-color;
+        // }
+
+        // .#{$input}-group-addon {
+        //   border-left-color: $input-border-color;
+        // }
+      }
+
+      &:focus-within {
+        .#{$input},
+        .#{$input}-group-addon {
+          border-color: $input-border-color-focus;
+        }
+
+        // .#{$input} {
+        //   border-right-color: $input-border-color;
+        // }
+
+        // .#{$input}-group-addon {
+        //   border-left-color: $input-border-color;
+        // }
+      }
+
+      &:focus {
+        .#{$input},
+        .#{$input}-group-addon {
+          border-color: $input-border-color-focus;
+          }
+      }
+    }  
   }
 
   &-toggle {
@@ -34,10 +68,7 @@ $strength-check-bg: $color-white;
   }
 
   &-addon {
-    padding-right: $strength-addon-font-size;
-    padding-left: $strength-box-spacer-x;
-    font-size: $strength-addon-font-size;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
     color: $strength-addon-color;
     cursor: pointer;
 
@@ -50,6 +81,11 @@ $strength-check-bg: $color-white;
       text-align: center;
       background-color: $strength-check-bg;
     }
+  }
+
+  &-score {
+    display: inline-block;
+    margin-top: $strength-input-margin-bottom;
   }
   
   &-active {
