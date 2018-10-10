@@ -105,3 +105,5 @@ export const translations = {
     finish: '完成'
   }
 }
+
+export const dependencies = ['whatwg-fetch']
