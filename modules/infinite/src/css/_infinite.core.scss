@@ -1,0 +1,35 @@
+@import "@pluginjs/styles/variables.scss";
+
+$infinite: "pj-infinite";
+$infinite-loader-size: 50px;
+$infinite-sentinels-size: 10px;
+
+.#{$infinite} {
+  &-loader {
+    position: relative;
+  }
+
+  &:not(&-horizontal) &-sentinels {
+    height: $infinite-sentinels-size;
+    margin-top: -$infinite-sentinels-size;
+  }
+
+  &:not(&-horizontal) &-loader {
+    height: $infinite-loader-size;
+  }
+
+  &-horizontal {
+    .#{$infinite}-loader {
+      width: $infinite-loader-size;
+    }
+
+    .#{$infinite}-sentinels {
+      width: $infinite-sentinels-size;
+      margin-left: -$infinite-sentinels-size;
+    }
+  }
+
+  &-next {
+    display: none;
+  }
+}

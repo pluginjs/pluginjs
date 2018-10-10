@@ -1,11 +1,31 @@
 @import "@pluginjs/styles/variables.scss";
+@import "infinite.core";
 
-// Vars
-// =====================
-$infinite: "pj-infinite" !default;
+$infinite: "pj-infinite";
+$infinite-loader-color: inherit;
 
-// Core
-// =====================
-.#{$infinite}-loader {
-  text-align: center;
+.#{$infinite} {
+  &-button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-loader {
+    color: $infinite-loader-color;
+  }
+
+  &-error,
+  &-end {
+    text-align: center;
+  }
+
+  &-horizontal {
+    .#{$infinite}-error,
+    .#{$infinite}-end {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

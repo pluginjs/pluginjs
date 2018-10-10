@@ -1,57 +1,79 @@
+import { insertBefore } from '@pluginjs/dom'
+import { isEmpty } from '@pluginjs/is'
+
 export const namespace = 'infinite'
 
 export const events = {
   READY: 'ready',
-  DESTROY: 'destroy',
-  LOADING: 'loading',
-  NOMOREDATA: 'noMoreData',
-  EXCEPTEERROR: 'excepteError',
   ENABLE: 'enable',
-  DISABLE: 'disable'
+  DISABLE: 'disable',
+  DESTROY: 'destroy',
+  LOAD: 'load',
+  LOADED: 'loaded',
+  RENDER: 'render',
+  ERROR: 'error',
+  END: 'end'
 }
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
-  CONTAINER: '{namespace}-container',
+  CONTAINER: '{namespace}',
+  SENTINELS: '{namespace}-sentinels',
   LOADER: '{namespace}-loader',
   LOADING: '{namespace}-loading',
-  NOMOREDATA: '{namespace}-noMoreData',
-  EXCEPTION: '{namespace}-exception',
-  DISABLED: '{namespace}-disabled'
+  END: '{namespace}-end',
+  ERROR: '{namespace}-error',
+  BUTTON: '{namespace}-button pj-btn',
+  HORIZONTAL: '{namespace}-horizontal',
+  NEXT: '{namespace}-next'
 }
 
-export const methods = ['destroy', 'disable', 'enable']
+export const methods = ['load', 'enable', 'disable', 'destroy']
 
 export const defaults = {
-  locale: 'en',
-  templates: {
-    loading() {
-      return '<div class="{classes.LOADING}">{label}</div>'
-    },
-    noMoreData() {
-      return '<div class="{classes.NOMOREDATA}">{label}</div>'
-    },
-    exception() {
-      return '<div class="{classes.EXCEPTION}">{label}</div>'
-    }
+  trigger: 'scroll', // button
+  theme: null,
+  item: null,
+  horizontal: false,
+  loader: {
+    color: 'currentColor'
   },
-  threshold: 0, // top of under
-  loadMore(infinite) {
-    infinite.loader.appendEnd()
+  offset: 0,
+  url: null,
+  checkEnd(count) {
+    return isEmpty(this.getNextUrl(count))
+  },
+  load(count, resolve, reject) {
+    return this.loadFromUrl(count, resolve, reject)
+  },
+  render(content) {
+    insertBefore(content, this.$last)
+  },
+  fetchOptions: {},
+  templates: {
+    end() {
+      return '<div class="{classes.END}">{endText}</div>'
+    },
+    error() {
+      return '<div class="{classes.ERROR}">{errorText}</div>'
+    },
+    button() {
+      return '<div class="{classes.BUTTON}">{buttonText}</div>'
+    }
   }
 }
-
-export const dependencies = ['scrollEnd']
 
 export const translations = {
   en: {
-    loading: 'loading...',
-    noMoreData: 'There are no more pages left to load.',
-    exception: 'Except Error'
+    endText: 'End of Content',
+    errorText: 'Load Error',
+    buttonText: 'View More'
   },
   zh: {
-    loading: '加载中...',
-    noMoreData: '没有更多的页面可以加载.',
-    exception: '异常错误'
+    endText: '没有更多内容',
+    errorText: '加载出错',
+    buttonText: '查看更多'
   }
 }
+
+export const dependencies = ['whatwg-fetch']

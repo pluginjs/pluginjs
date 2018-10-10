@@ -1,6 +1,5 @@
 import Infinite from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
-import '@pluginjs/scroll-end'
 
 describe('Infinite', () => {
   describe('Infinite()', () => {
