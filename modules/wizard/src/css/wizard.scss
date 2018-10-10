@@ -4,291 +4,186 @@
 // Vars
 // ==============================
 $wizard: "pj-wizard";
+$icon: "pj-icon";
+$btn: "pj-btn";
+
 $wizard-font-family: $font-family-base;
 $wizard-font-size: $font-size-sm;
-$wizard-line-height: 22px;
 
-$wizard-color: $color-white;
-$wizard-hover-color: $color-primary;
-$wizard-active-color: $color-primary;
-$wizard-error-color: #f73e4d;
+$wizard-error-color: $color-danger;
 
-$wizard-step-width: 500px;
+$wizard-step-width: 130px;
 
-$wizard-step-item-width: 130px;
+$wizard-step-icon-size: 25px;
 
-$wizard-step-icon-width: 24px;
-$wizard-step-icon-height: $wizard-step-icon-width;
-$wizard-step-icon-spacer-x: 4px;
-$wizard-step-icon-bg: $gray-light;
+$wizard-step-color: $color-primary;
+$wizard-step-disabled-color: $gray-light;
 
-$wizard-title-margin-top: 2px;
-$wizard-title-color: $gray-light;
-$wizard-title-solid: $gray-lighter;
+$wizard-step-icon-color: $color-white;
+$wizard-step-disabled-icon-color: $color-white;
 
-$wizard-content-width: 770px;
-$wizard-content-margin-top: 18px;
-$wizard-content-margin-bottom: 20px;
-$wizard-content-color: $gray-darker;
+$wizard-step-line-height: 2px;
+$wizard-step-line-gutter: 4px;
 
-$wizard-formControl-height: 32px;
-$wizard-formControl-border-margin: 5px 0;
-$wizard-formControl-border-color: $border-color;
-$wizard-formControl-border-hover-color: $gray-darkest;
+$wizard-panes-gutter: 20px;
 
-$wizard-button-margin-top: 13px;
-$wizard-button-margin-left: 10px;
-$wizard-button-color: $gray-darker;
-$wizard-button-color-disabled: $gray-light;
-$wizard-button-bg: $gray-lightest;
+$wizard-btns-gutter: 15px;
+$wizard-btn-gutter: 5px;
+$wizard-btn-disabled-color: $gray-darkest;
+$wizard-btn-disabled-bg: $color-white;
+$wizard-btn-disabled-border: $gray-light;
 
-// Styles
+// Skins
 // =====================
 .#{$wizard} {
   font-family: $wizard-font-family;
   font-size: $wizard-font-size;
-  line-height: $wizard-line-height;
-  color: $wizard-color;
-}
 
-.#{$wizard}-steps {
-  max-width: $wizard-step-width;
+  &-step {
+    flex-basis: $wizard-step-width;
+    margin-right: $wizard-step-line-gutter;
+    color: $wizard-step-disabled-color;
 
-  > li {
-    max-width: $wizard-step-item-width;
-  }
-}
+    &:last-child {
+      flex-basis: auto;
+      margin-right: 0;
+      flex-shrink: 0;
 
-.#{$wizard}-item-icon {
-  width: $wizard-step-icon-width;
-  height: $wizard-step-icon-height;
-  margin-left: $wizard-step-icon-spacer-x;
-  line-height: $wizard-step-icon-height;
-  text-align: center;
-  background-color: $wizard-step-icon-bg;
-  border-radius: $wizard-step-icon-width;
-}
-
-.#{$wizard}-item-title {
-  margin-top: $wizard-title-margin-top;
-  color: $wizard-title-color;
-  text-transform: capitalize;
-
-  &::after {
-    position: absolute;
-    top: -15px;
-    left: 100%;
-    display: block;
-    width: 9999px;
-    height: 2px;
-    margin-left: -3px;
-    content: "";
-    background-color: $wizard-title-solid;
-    transition: background-color $wizard-transition-duration;
-  }
-}
-
-.#{$wizard}-content {
-  max-width: $wizard-content-width;
-  margin-top: $wizard-content-margin-top;
-  color: $wizard-content-color;
-}
-
-.#{$wizard}-done {
-  .#{$wizard}-item-icon {
-    overflow: hidden;
-    font-size: 0;
-    background-color: $wizard-active-color;
-  }
-
-  .active-icon {
-    font-size: $wizard-font-size;
-  }
-
-  > .#{$wizard}-item-content {
-    > .#{$wizard}-item-title {
-      color: $wizard-active-color;
-
-      &::after {
-        background-color: $wizard-active-color;
+      .#{$wizard}-step-icon::after {
+        display: none;
       }
     }
- }
-}
 
-.#{$wizard}-done.#{$wizard}-current {
-  > .#{$wizard}-item-content {
-    > .#{$wizard}-item-title {
-      &::after {
-        background-color: $wizard-title-solid;
-      }
+    &-inner {
+      display: inline-block;
     }
- }
-
- .#{$wizard}-item-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: $wizard-font-size;
-  background-color: $wizard-active-color;
-}
-
-.active-icon {
-  font-size: 0;
   }
-}
 
-.#{$wizard}-steps .#{$wizard}-item:last-child {
-  .#{$wizard}-item-title {
+  &-step-icon {
+    position: relative;
+    display: inline-block;
+    width: $wizard-step-icon-size;
+    height: $wizard-step-icon-size;
+    color: $wizard-step-icon-color;
+    background-color: $wizard-step-disabled-color;
+    border-radius: 50%;
+
     &::after {
-      display: none;
-    }
-  }
-}
-
-[aria-expanded="true"] {
-  .#{$wizard}-item-icon {
-    background-color: $wizard-active-color;
-  }
-
-  .#{$wizard}-item-title {
-    color: $wizard-active-color;
-  }
-}
-
-.#{$wizard}-error {
-  .#{$wizard}-item-icon {
-    background-color: $wizard-error-color;
-  }
-
-  .#{$wizard}-item-title {
-    color: $wizard-error-color;
-  }
-}
-
-.#{$wizard}-buttons {
-  margin-top: $wizard-button-margin-top;
-
-  a + a {
-    margin-left: $wizard-button-margin-left;
-  }
-
-  > a {
-    &:active {
-      background-color: $wizard-button-bg;
-      outline: 0;
+      position: absolute;
+      top: 50%;
+      left: calc(100% + #{$wizard-step-line-gutter});
+      z-index: -1;
+      width: 9999px;
+      height: $wizard-step-line-height;
+      content: "";
+      background-color: $wizard-step-disabled-color;
+      transition: all $wizard-duration ease;
+      transform: translateY(-50%);
     }
 
-    &:focus {
-      color: $wizard-button-color;
-      background-color: $wizard-button-bg;
-      outline: 0;
+    &-inner {
+      display: block;
+      line-height: $wizard-step-icon-size;
+      text-align: center;
+      opacity: 1;
     }
 
-    &.#{$wizard}-default {
-      color: $wizard-button-color;
-      background-color: transparent;
-      border-color: $wizard-button-color-disabled;
+    .#{$icon} {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+    }
+  }
 
-      &.#{$wizard}-disabled {
-        color: $wizard-button-color-disabled;
-        cursor: not-allowed;
-        background-color: $wizard-button-bg;
+  &-panes {
+    margin-top: $wizard-panes-gutter;
+  }
 
-        &:hover {
-          color: $wizard-button-color-disabled;
-          background-color: $wizard-button-bg;
-          border-color: $wizard-button-color-disabled;
-        }
+  &-buttons {
+    margin-top: $wizard-btns-gutter;
 
-        &:active {
-          color: $wizard-button-color-disabled;
-          background-color: $wizard-button-bg;
-          border-color: $wizard-button-color-disabled;
-          box-shadow: none;
-        }
+    .#{$btn} + .#{$btn} {
+      margin-left: $wizard-btn-gutter;
+    }
+  }
 
-        &:focus {
-          color: $wizard-button-color-disabled;
-          background-color: $wizard-button-bg;
-          outline: 0;
-        }
+  // Status
+  &-disabled {
+    color: $wizard-step-disabled-color;
+
+    .#{$wizard}-step-icon {
+      background-color: $wizard-step-disabled-color;
+
+      &::after {
+        background-color: $wizard-step-disabled-color;
       }
     }
 
-    &.#{$wizard}-primary {
-      color: $wizard-hover-color;
-      background-color: transparent;
-    }
-
-    &.#{$wizard}-primary:hover {
-      color: $wizard-color;
-      background-color: $wizard-hover-color;
-      border-color: $wizard-hover-color;
-    }
-
-    &.#{$wizard}-success {
-      color: $wizard-color;
-      background-color: $wizard-active-color;
-      border: 0;
-
-      &:hover {
-        color: $wizard-color;
-        background-color: $wizard-active-color;
-        border: 0;
-      }
-
-      &:active {
-        color: $wizard-color;
-        background-color: $wizard-active-color;
-        border: 0;
-      }
-    }
-  }
-}
-
-.#{$wizard}-pane {
-  .#{$wizard}-formControl {
-    width: 100%;
-    height: $wizard-formControl-height;
-    margin: $wizard-formControl-border-margin;
-
-    &:hover {
-      border-color: $wizard-formControl-border-hover-color;
-    }
-
-    &:focus {
-      border-color: $wizard-active-color;
-      outline: 0;
+    &.#{$btn} {
+      color: $wizard-btn-disabled-color !important;
+      cursor: not-allowed;
+      background-color: $wizard-btn-disabled-bg !important;
+      border-color: $wizard-btn-disabled-border !important;
     }
   }
 
-  &.#{$wizard}-error {
+  &-done {
+    &.#{$wizard}-step {
+      color: $wizard-step-color;
+    }
+
+    .#{$wizard}-step-icon-inner {
+      opacity: 0;
+    }
+
+    .#{$wizard}-step-icon  {
+      background-color: $wizard-step-color;
+
+      &::after {
+        background-color: $wizard-step-color;
+      }
+
+      .#{$icon} {
+        opacity: 1;
+      }
+    }
+  }
+
+  &-current {
+    &.#{$wizard}-step {
+      color: $wizard-step-color;
+    }
+
+    .#{$wizard}-step-icon-inner {
+      opacity: 1;
+    }
+
+    .#{$wizard}-step-icon  {
+      background-color: $wizard-step-color;
+
+      &::after {
+        background-color: $wizard-step-disabled-color;
+      }
+
+      .#{$icon} {
+        opacity: 0;
+      }
+    }
+  }
+
+  &-error {
+    &.#{$wizard}-step {
+      color: $wizard-error-color;
+    }
+
+    .#{$wizard}-step-icon {
+      background-color: $wizard-error-color;
+    }
+
     .#{$wizard}-formControl {
       border-color: $wizard-error-color;
-
-      &:hover {
-        border-color: $wizard-error-color;
-      }
-
-      &:focus {
-        border-color: $wizard-error-color;
-      }
     }
   }
 }
-
-// stylelint-disable
-::-webkit-input-placeholder { /* WebKit browsers */
-  color: $wizard-formControl-border-color;
-}
-::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color: $wizard-formControl-border-color;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: $wizard-formControl-border-color;
-}
-::-ms-input-placeholder { /* Internet Explorer 10+ */
-  color: $wizard-formControl-border-color;
-}
-// stylelint-enable

@@ -104,7 +104,7 @@ class Wizard extends Component {
       e => {
         const index = getData(
           'wizard-index',
-          closest(`.${this.classes.ITEM}`, e.target)
+          closest(`.${this.classes.STEP.OBJECT}`, e.target)
         )
 
         if (typeof index !== 'undefined' && !that.get(index).is('disabled')) {

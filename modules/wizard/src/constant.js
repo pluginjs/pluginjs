@@ -22,8 +22,8 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   SUCCESS: '{namespace}-success',
   ERROR: '{namespace}-error',
-  ITEM: '{namespace}-item',
   STEP: {
+    OBJECT: '{namespace}-step',
     DONE: '{namespace}-done',
     ERROR: '{namespace}-error',
     ACTIVE: '{namespace}-current',
@@ -34,7 +34,7 @@ export const classes = {
   },
 
   PANE: {
-    CONTENT: '{namespace}-content',
+    WRAP: '{namespace}-panes',
     ACTIVE: '{namespace}-active',
     ACTIVING: '{namespace}-activing'
   },
@@ -65,10 +65,10 @@ export const methods = [
 export const defaults = {
   theme: null,
 
-  step: '.pj-wizard-item',
+  step: '.pj-wizard-step',
 
   getPane(index, step, classes) {
-    return children(find(`.${classes.CONTENT}`, step))[index]
+    return children(find(`.${classes.WRAP}`, step))[index]
   },
 
   buttonsAppendTo: 'this',

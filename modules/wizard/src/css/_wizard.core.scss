@@ -4,83 +4,65 @@
 // =====================
 $wizard: "pj-wizard" !default;
 
-$wizard-transition-duration: 0.2s !default;
+$wizard-duration: 0.2s !default;
+
+$wizard-step-color: $color-primary !default;
+$wizard-step-disabled-color: $gray !default;
 
 // Core
 // =====================
-.#{$wizard}-hide {
-  display: none !important;
-}
+.#{$wizard} {
+  &-steps {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
 
-.#{$wizard}-steps {
-  display: flex;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-
-  > li {
+  &-step {
     position: relative;
-    display: inline-block;
-    flex: 1;
+    flex-basis: 50%;
     overflow: hidden;
-    cursor: pointer;
+    color: $wizard-step-color;
+  }
 
-    &.#{$wizard}-disabled {
+  &-step-inner {
+    cursor: pointer;
+  }
+
+  &-disabled {
+    color: $wizard-step-disabled-color;
+
+    .#{$wizard}-step-inner {
       cursor: not-allowed;
     }
   }
-}
 
-.#{$wizard}-item-content {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.#{$wizard}-item-title {
-  position: relative;
-  display: inline-block;
-}
-
-.#{$wizard}-content {
-  position: relative;
-  width: 100%;
-  padding: 0;
-  transition: height $wizard-transition-duration ease;
-}
-
-.#{$wizard}-pane {
-  position: absolute;
-  top: 0;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.15s;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 0;
-  }
-
-  &.#{$wizard}-active {
+  &-panes {
     position: relative;
-    visibility: visible;
-    opacity: 1;
+    transition: height $wizard-duration ease;
   }
 
-  &.#{$wizard}-activing {
-    visibility: visible;
+  &-pane {
+    position: absolute;
+    top: 0;
+    visibility: hidden;
     opacity: 0;
+    transition: opacity $wizard-duration;
+
+    &.#{$wizard}-active {
+      position: relative;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &.#{$wizard}-activing {
+      visibility: visible;
+      opacity: 0;
+    }
   }
-}
 
-.#{$wizard}-buttons {
-  box-sizing: border-box;
-  display: flex;
-
-  > a {
-    box-sizing: border-box;
+  &-hide {
+    display: none !important;
   }
 }

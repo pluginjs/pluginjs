@@ -1,36 +1,42 @@
 <h3>Validator</h3>
 <div class="pj-wizard example">
 	<ul class="pj-wizard-steps" role="tablist">
-    <li class="pj-wizard-item" role="tab">
-      <div class="pj-wizard-item-icon">
-        <span class="pj-wizard-steps-icon">1</span>
-        <i class="active-icon pj-icon pj-icon-check"></i>
-      </div>
-      <div class="pj-wizard-item-content">
-        <div class="pj-wizard-item-title">Step1</div>
-      </div>
-    </li>
-    <li class="pj-wizard-item" role="tab">
-      <div class="pj-wizard-item-icon">
-        <span class="pj-wizard-steps-icon">2</span>
-        <i class="active-icon pj-icon pj-icon-check"></i>
-      </div>
-      <div class="pj-wizard-item-content">
-        <div class="pj-wizard-item-title">Step2</div>
+    <li class="pj-wizard-step" role="tab">
+      <div class="pj-wizard-step-inner">
+        <div class="pj-wizard-step-icon">
+          <span class="pj-wizard-step-icon-inner">1</span>
+          <i class="active-icon pj-icon pj-icon-check"></i>
+        </div>
+        <div class="pj-wizard-step-main">
+          <div class="pj-wizard-step-title">Step1</div>
+        </div>
       </div>
     </li>
-    <li class="pj-wizard-item" role="tab">
-      <div class="pj-wizard-item-icon">
-        <span class="pj-wizard-steps-icon">3</span>
-        <i class="active-icon pj-icon pj-icon-check"></i>
+    <li class="pj-wizard-step" role="tab">
+      <div class="pj-wizard-step-inner">
+        <div class="pj-wizard-step-icon">
+          <span class="pj-wizard-step-icon-inner">2</span>
+          <i class="active-icon pj-icon pj-icon-check"></i>
+        </div>
+        <div class="pj-wizard-step-main">
+          <div class="pj-wizard-step-title">Step2</div>
+        </div>
       </div>
-      <div class="pj-wizard-item-content">
-        <div class="pj-wizard-item-title">Step3</div>
+    </li>
+    <li class="pj-wizard-step" role="tab">
+      <div class="pj-wizard-step-inner">
+        <div class="pj-wizard-step-icon">
+          <span class="pj-wizard-step-icon-inner">3</span>
+          <i class="active-icon pj-icon pj-icon-check"></i>
+        </div>
+        <div class="pj-wizard-step-main">
+          <div class="pj-wizard-step-title">Step3</div>
+        </div>
       </div>
     </li>
   </ul>
   <form id="validation">
-  	<div class="pj-wizard-content">
+  	<div class="pj-wizard-panes">
 	    <div class="pj-wizard-pane" role="tabpanel">
 	    	<div class="pj-wizard-formGroup">
 	    		<label>Username</label>
@@ -50,8 +56,8 @@
 	  </div>
   </form>
   <div class="pj-wizard-buttons">
-    <a class="pj-wizard-default pj-btn" data-wizard="back">Previous</a>
-    <a class="pj-wizard-primary pj-btn" data-wizard="next">Next</a>
-    <a class="pj-wizard-success pj-btn" data-wizard="finish">Done</a>
+    <a class="pj-btn" data-wizard="back">Previous</a>
+    <a class="pj-btn-primary pj-btn" data-wizard="next">Next</a>
+    <a class="pj-btn-success pj-btn" data-wizard="finish">Done</a>
   </div>
 </div>

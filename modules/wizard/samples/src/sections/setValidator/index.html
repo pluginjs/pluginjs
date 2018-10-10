@@ -2,35 +2,41 @@
 <p>You can set validator for step respectively.</p>
 <div id="exampleSetValidator" class="pj-wizard example">
   <ul class="pj-wizard-steps" role="tablist">
-    <li class="pj-wizard-item" data-target="#form1" role="tab">
-      <div class="pj-wizard-item-icon">
-        <span class="pj-wizard-steps-icon">1</span>
-        <i class="active-icon pj-icon pj-icon-check"></i>
-      </div>
-      <div class="pj-wizard-item-content">
-        <div class="pj-wizard-item-title">Form1</div>
-      </div>
-    </li>
-    <li class="pj-wizard-item" data-target="#form2" role="tab">
-      <div class="pj-wizard-item-icon">
-        <span class="pj-wizard-steps-icon">2</span>
-        <i class="active-icon pj-icon pj-icon-check"></i>
-      </div>
-      <div class="pj-wizard-item-content">
-        <div class="pj-wizard-item-title">Form2</div>
+    <li class="pj-wizard-step" data-target="#form1" role="tab">
+      <div class="pj-wizard-step-inner">
+        <div class="pj-wizard-step-icon">
+          <span class="pj-wizard-step-icon-inner">1</span>
+          <i class="active-icon pj-icon pj-icon-check"></i>
+        </div>
+        <div class="pj-wizard-step-main">
+          <div class="pj-wizard-step-title">Form1</div>
+        </div>
       </div>
     </li>
-    <li class="pj-wizard-item" data-target="#form3" role="tab">
-      <div class="pj-wizard-item-icon">
-        <span class="pj-wizard-steps-icon">3</span>
-        <i class="active-icon pj-icon pj-icon-check"></i>
+    <li class="pj-wizard-step" data-target="#form2" role="tab">
+      <div class="pj-wizard-step-inner">
+        <div class="pj-wizard-step-icon">
+          <span class="pj-wizard-step-icon-inner">2</span>
+          <i class="active-icon pj-icon pj-icon-check"></i>
+        </div>
+        <div class="pj-wizard-step-main">
+          <div class="pj-wizard-step-title">Form2</div>
+        </div>
       </div>
-      <div class="pj-wizard-item-content">
-        <div class="pj-wizard-item-title">Form3</div>
+    </li>
+    <li class="pj-wizard-step" data-target="#form3" role="tab">
+      <div class="pj-wizard-step-inner">
+        <div class="pj-wizard-step-icon">
+          <span class="pj-wizard-step-icon-inner">3</span>
+          <i class="active-icon pj-icon pj-icon-check"></i>
+        </div>
+        <div class="pj-wizard-step-main">
+          <div class="pj-wizard-step-title">Form3</div>
+        </div>
       </div>
     </li>
   </ul>
-  <div class="pj-wizard-content">
+  <div class="pj-wizard-panes">
     <div class="pj-wizard-pane" id="form1" role="tabpanel">
       <div class="pj-wizard-formGroup">
         <input type="text" class="pj-wizard-formControl pj-input" placeholder="Please input 'a'" name="a" />
@@ -48,8 +54,8 @@
     </div>
   </div>
   <div class="pj-wizard-buttons">
-    <a class="pj-wizard-default pj-btn" data-wizard="back">Previous</a>
-    <a class="pj-wizard-primary pj-btn" data-wizard="next">Next</a>
-    <a class="pj-wizard-success pj-btn" data-wizard="finish">Finish</a>
+    <a class="pj-btn" data-wizard="back">Previous</a>
+    <a class="pj-btn-primary pj-btn" data-wizard="next">Next</a>
+    <a class="pj-btn-success pj-btn" data-wizard="finish">Finish</a>
   </div>
 </div>
