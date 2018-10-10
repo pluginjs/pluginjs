@@ -198,7 +198,9 @@ describe('Dom helper', () => {
     })
 
     test('parseHTML', () => {
-      expect(dom.parseHTML`<div></div>`).toEqual(document.createElement('div'))
+      expect(dom.parseHTML('<div></div>')).toEqual(
+        document.createElement('div')
+      )
     })
   })
 
@@ -678,8 +680,4 @@ describe('Dom helper', () => {
       expect(dom.html(dom.children(parent)[0])).toEqual('foo')
     })
   })
-
-  // test('fade', () => {})
-  // test('fadeOut', () => {})
-  // test('fadeIn', () => {})
 })

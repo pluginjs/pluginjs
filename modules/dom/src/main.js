@@ -5,11 +5,33 @@ export const parseHTML = (...args) => {
   const htmlString = Array.isArray(args[0])
     ? args[0].reduce((result, str, index) => result + args[index] + str)
     : args[0]
-  const childNodes = children(html(htmlString, document.createElement('div')))
-  if (childNodes.length === 1) {
-    return childNodes[0]
+
+  // if('content' in document.createElement('template')) {
+  //   const temp = document.createElement('template')
+  //   temp.innerHTML = htmlString
+  //   return temp.content.cloneNode(true)
+  // } else {
+  const el = document.createElement('div')
+  el.innerHTML = htmlString
+
+  if (el.children.length === 1) {
+    return el.children[0]
   }
-  return childNodes
+
+  const fragment = document.createDocumentFragment()
+
+  if (el.children.length) {
+    while (el.children.length > 0) {
+      fragment.appendChild(el.children[0])
+    }
+  } else {
+    while (el.childNodes.length > 0) {
+      fragment.appendChild(el.childNodes[0])
+    }
+  }
+
+  return fragment
+  // }
 }
 
 // ----------
@@ -76,7 +98,7 @@ export const prev = el => el.previousElementSibling
 export const next = el => el.nextElementSibling
 
 export const prevWith = curry((fn, el) => {
-  const prevElement = prev(el)
+  const prevElement = el.previousElementSibling
   if (!prevElement) {
     return null
   }
@@ -87,7 +109,7 @@ export const prevWith = curry((fn, el) => {
 })
 
 export const nextWith = curry((fn, el) => {
-  const nextElement = next(el)
+  const nextElement = el.nextElementSibling
   if (!nextElement) {
     return null
   }
@@ -124,7 +146,7 @@ export const parents = (selector, el) => {
 }
 
 export const parentWith = curry((fn, el) => {
-  const parentElement = parent(el)
+  const parentElement = el.parentNode
   if (!parentElement || parentElement === document) {
     return false
   }
@@ -403,8 +425,7 @@ export const before = curry((newElement, el) => {
   if (isString(newElement)) {
     el.insertAdjacentHTML('beforebegin', newElement)
   } else {
-    const parentElement = parent(el)
-    parentElement.insertBefore(newElement, el)
+    el.parentNode.insertBefore(newElement, el)
   }
 
   return el
@@ -414,8 +435,7 @@ export const insertBefore = curry((newElement, el) => {
   if (isString(newElement)) {
     newElement = parseHTML(newElement)
   }
-  const parentElement = parent(el)
-  parentElement.insertBefore(newElement, el)
+  el.parentNode.insertBefore(newElement, el)
 
   return newElement
 })
@@ -424,8 +444,7 @@ export const after = curry((newElement, el) => {
   if (isString(newElement)) {
     el.insertAdjacentHTML('afterend', newElement)
   } else {
-    const parentElement = parent(el)
-    parentElement.insertBefore(newElement, el.nextElementSibling)
+    el.parentNode.insertBefore(newElement, el.nextElementSibling)
   }
 
   return el
@@ -435,9 +454,7 @@ export const insertAfter = curry((newElement, el) => {
   if (isString(newElement)) {
     newElement = parseHTML(newElement)
   }
-
-  const parentElement = parent(el)
-  parentElement.insertBefore(newElement, el.nextElementSibling)
+  el.parentNode.insertBefore(newElement, el.nextElementSibling)
 
   return newElement
 })
@@ -482,7 +499,7 @@ export const unwrap = curryWith((selector, el) => {
     selector = undefined
   }
 
-  const parentEl = parent(el)
+  const parentEl = el.parentNode
 
   if (!selector || parentEl.matches(selector)) {
     children(parentEl).forEach(child => {
@@ -499,9 +516,7 @@ export const replace = curry((newContent, el) => {
     newContent = parseHTML(newContent)
   }
 
-  const parent = el.parentNode
-
-  parent.replaceChild(newContent, el)
+  el.parentNode.replaceChild(newContent, el)
   el.remove()
 
   return newContent
