@@ -39,7 +39,9 @@ import {
   html,
   parseHTML,
   parent,
-  detach
+  detach,
+  query,
+  insertBefore
 } from '@pluginjs/dom'
 
 @translateable(TRANSLATIONS)
@@ -304,8 +306,6 @@ class Cascader extends Component {
   }
 
   select(level, value, trigger = true, update = true) {
-    console.log(level)
-    console.log(value)
     if (!this.isValidValue(level, value)) {
       return
     }
@@ -369,7 +369,6 @@ class Cascader extends Component {
     if (!option.__menu) {
       option.__menu = this.buildMenu(option.children, level)
     }
-
     if (parent(option.__menu) !== this.$dropdown) {
       append(option.__menu, this.$dropdown)
     }
@@ -456,9 +455,11 @@ class Cascader extends Component {
   buildDropdown() {
     if (this.data) {
       const $menu = this.buildMenu(this.data, 0)
-
-      this.$dropdown.appendChild($menu)
-
+      if (query('.pj-cascader-menu', this.$dropdown)) {
+        insertBefore($menu, query('.pj-cascader-menu', this.$dropdown))
+      } else {
+        this.$dropdown.appendChild($menu)
+      }
       this.DROPDOWN.selectByValue(this.value, false)
     }
 

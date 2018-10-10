@@ -87,6 +87,7 @@ export const defaults = {
     }
   },
   linkTitle: {
+    value: '',
     template() {
       return (
         '<div class="{field}">' +
@@ -110,6 +111,7 @@ export const defaults = {
     }
   },
   external: {
+    value: '',
     template() {
       return (
         '<div class="{field}">' +

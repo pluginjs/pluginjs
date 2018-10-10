@@ -370,7 +370,11 @@ class LinkPicker extends Component {
       query(`.${this.classes.LINK}`, this.$fill).textContent = content
     } else {
       addClass(this.classes.WRITE, this.$wrap)
-      query(`.${this.classes.LINK}`, this.$fill).textContent = data.external
+      if (!data.external) {
+        query(`.${this.classes.LINK}`, this.$fill).textContent = 'Please write'
+      } else {
+        query(`.${this.classes.LINK}`, this.$fill).textContent = data.external
+      }
     }
   }
 
