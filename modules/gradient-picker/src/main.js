@@ -138,6 +138,17 @@ class GradientPicker extends Component {
           }
         )
       )(this.$wrap)
+
+      bindEvent(
+        this.eventName('change'),
+        e => {
+          const gradient = new RegExp('^((linear|radial)-gradient)', 'gi')
+          if (e.target.value.match(gradient)) {
+            this.set(e.target.value)
+          }
+        },
+        this.element
+      )
     }
 
     // save
@@ -315,7 +326,7 @@ class GradientPicker extends Component {
     this.initPanel()
 
     if (this.options.displayMode !== 'inline') {
-      this.DROPDOWN = Dropdown.of(this.element, {
+      this.DROPDOWN = Dropdown.of(this.PREVIEW.element, {
         target: this.$panel,
         hideOnSelect: false,
         hideOutClick: true,
@@ -447,7 +458,7 @@ class GradientPicker extends Component {
     })
   }
 
-  get(index) {
+  getMarker(index) {
     return this.markers[index]
   }
 
@@ -523,9 +534,6 @@ class GradientPicker extends Component {
   }
 
   setInput(val) {
-    // if (this.module === 'gradient' && this.is('noSelectedMarker')) {
-    //   return false
-    // }
     this.color = val
     this.element.value = val
     return null
@@ -595,6 +603,19 @@ class GradientPicker extends Component {
 
   unbind() {
     removeEvent(this.eventName(), this.element)
+  }
+
+  get() {
+    return this.color
+  }
+
+  val(color) {
+    if (!color) {
+      return this.options.process.call(this, this.get())
+    }
+
+    this.set(color)
+    return null
   }
 
   set(val) {

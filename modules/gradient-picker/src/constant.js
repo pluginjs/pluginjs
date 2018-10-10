@@ -105,6 +105,9 @@ export const defaults = {
     save() {
       return '<button type="button" class="{classes.SAVE} pj-btn pj-btn-xs pj-btn-outline">{text}</button>'
     }
+  },
+  process(data) {
+    return JSON.stringify(data)
   }
 }
 

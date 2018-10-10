@@ -14,17 +14,6 @@ class Preview {
 
   bind() {
     bindEvent(
-      this.instance.eventName('click'),
-      () => {
-        if (!this.instance.is('disabled')) {
-          this.instance.openPanel()
-        }
-        return false
-      },
-      this.element
-    )
-
-    bindEvent(
       this.instance.selfEventName('update'),
       (e, el, color) => {
         this.update(color)

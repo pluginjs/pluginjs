@@ -83,6 +83,7 @@ class ColorSelector extends Component {
 
     this.data = DATA
     this.oldColor = {}
+    this.color = ''
     // init
     this.setupStates()
     this.initialize()
@@ -143,6 +144,14 @@ class ColorSelector extends Component {
           }
         )
       )(this.$wrap)
+
+      bindEvent(
+        this.eventName('change'),
+        e => {
+          this.set(this.options.parse.call(this, e.target.value))
+        },
+        this.element
+      )
     }
 
     compose(
@@ -240,7 +249,8 @@ class ColorSelector extends Component {
   }
 
   setupDropdown() {
-    this.DROPDOWN = new Dropdown(this.element, {
+    this.DROPDOWN = new Dropdown(this.PREVIEW.element, {
+      reference: this.element,
       target: this.$panel,
       hideOnSelect: false,
       hideOutClick: true,
@@ -384,8 +394,8 @@ class ColorSelector extends Component {
 
   clear() {
     this.color = ''
-    this.COLORPICKER.clear()
-    this.GRADIENTPICKER.clear()
+    // this.COLORPICKER.clear()
+    // this.GRADIENTPICKER.clear()
     this.switchModule(this.options.module[0])
     this.PREVIEW.update('transparent')
     this.element.value = ''

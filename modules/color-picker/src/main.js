@@ -145,6 +145,14 @@ class ColorPicker extends Component {
           }
         )
       )(this.$wrap)
+
+      bindEvent(
+        this.eventName('change'),
+        e => {
+          this.set(e.target.value)
+        },
+        this.element
+      )
     }
 
     // save
@@ -177,7 +185,8 @@ class ColorPicker extends Component {
     this.initPanel()
 
     if (this.options.displayMode !== 'inline') {
-      this.DROPDOWN = Dropdown.of(this.element, {
+      this.DROPDOWN = Dropdown.of(this.PREVIEW.element, {
+        reference: this.element,
         target: this.$panel,
         hideOnSelect: false,
         hideOutClick: true,
@@ -359,6 +368,7 @@ class ColorPicker extends Component {
       return this.get()
     }
 
+    console.log(color)
     this.set(color)
     return null
   }

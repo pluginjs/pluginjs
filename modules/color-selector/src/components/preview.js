@@ -14,17 +14,6 @@ class Preview {
 
   bind() {
     bindEvent(
-      this.instance.eventName('click'),
-      () => {
-        if (!this.instance.is('disabled')) {
-          this.instance.openPanel()
-        }
-        return false
-      },
-      this.element
-    )
-
-    bindEvent(
       this.instance.selfEventName('change'),
       (e, el, color) => {
         this.update(color)
@@ -34,7 +23,6 @@ class Preview {
   }
 
   update(color) {
-    // console.log(color)
     if (
       this.instance.module === 'gradient' &&
       this.instance.is('noSelectedMarker')
@@ -44,7 +32,6 @@ class Preview {
     if (isString(color)) {
       setStyle('background', color, this.$color)
     } else {
-      console.log(color)
       setStyle('background', color.toRGBA(), this.$color)
     }
     return null
