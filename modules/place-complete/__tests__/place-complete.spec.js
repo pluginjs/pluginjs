@@ -91,7 +91,7 @@ describe('PlaceComplete', () => {
     let $element
     let api
 
-    it('should not fired when initialize', () => {
+    test('should not fired when initialize', () => {
       let called = false
       $element = generateHTMLSample()
       api = PlaceComplete.of($element, {
@@ -103,7 +103,7 @@ describe('PlaceComplete', () => {
       expect(called).toBeFalse()
     })
 
-    it('should fired when change the value', () => {
+    test('should fired when change the value', () => {
       let called = false
       $element = generateHTMLSample()
       api = PlaceComplete.of($element, {

@@ -304,6 +304,8 @@ class Cascader extends Component {
   }
 
   select(level, value, trigger = true, update = true) {
+    console.log(level)
+    console.log(value)
     if (!this.isValidValue(level, value)) {
       return
     }

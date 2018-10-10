@@ -367,13 +367,10 @@ class LinkPicker extends Component {
     const content = query('.pj-cascader-label', this.$wrap).innerHTML
     if (data.type === 'internal') {
       addClass(this.classes.WRITE, this.$wrap)
-      query(`.${this.classes.LINKTYPE}`, this.$fill).textContent = data.type
-      query(`.${this.classes.LINKCONTENT}`, this.$fill).textContent = content
+      query(`.${this.classes.LINK}`, this.$fill).textContent = content
     } else {
       addClass(this.classes.WRITE, this.$wrap)
-      query(`.${this.classes.LINKTYPE}`, this.$fill).textContent = data.type
-      query(`.${this.classes.LINKCONTENT}`, this.$fill).textContent =
-        data.external
+      query(`.${this.classes.LINK}`, this.$fill).textContent = data.external
     }
   }
 

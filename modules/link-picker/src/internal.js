@@ -41,6 +41,10 @@ export default class Internal {
       // this.CASCADER.select(value)
       this.instance.value.internal = []
     } else {
+      console.log(value)
+      //  this.CASCADER.select(1, value[1])
+      this.CASCADER.select(0, value[0])
+
       this.instance.value.internal = value
     }
   }

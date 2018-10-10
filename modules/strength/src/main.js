@@ -232,14 +232,14 @@ class Strength extends Component {
     if (isElement(this.options.showScore)) {
       addClass(this.classes.SCORE, this.options.showScore)
       this.$score = this.options.showScore
-      insertAfter(this.$score, this.element)
+      insertAfter(this.$score, this.$wrap)
     } else if (this.options.showScore) {
       this.$score = parseHTML(
         template.render(this.options.templates.score(), {
           classes: this.classes
         })
       )
-      insertAfter(this.$score, this.element)
+      insertAfter(this.$score, this.$wrap)
     }
   }
 
