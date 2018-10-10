@@ -76,4 +76,4 @@ export const defaults = {
   onReady: null
 }
 
-export const dependencies = ['Hammer', 'anime']
+export const dependencies = ['Hammer', 'anime', 'whatwg-fetch']

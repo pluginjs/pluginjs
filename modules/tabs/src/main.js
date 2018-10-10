@@ -31,8 +31,7 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-// import axios from 'axios'
-// import fetch from 'fetch'
+import 'whatwg-fetch'
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)

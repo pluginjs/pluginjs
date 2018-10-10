@@ -49,8 +49,8 @@
     "@pluginjs/styled": "*",
     "@pluginjs/utils": "*",
     "animejs": "*",
-    "fetch": "*",
-    "hammerjs": "*"
+    "hammerjs": "*",
+    "whatwg-fetch": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
