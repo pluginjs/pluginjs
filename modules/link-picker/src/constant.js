@@ -98,7 +98,7 @@ export const defaults = {
     }
   },
   internal: {
-    value: [],
+    value: '',
     template() {
       return (
         '<div class="{field}">' +

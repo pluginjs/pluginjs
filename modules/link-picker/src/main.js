@@ -86,7 +86,7 @@ class LinkPicker extends Component {
 
     const val = this.element.value
     if (val) {
-      this.val(val)
+      this.val(val, false)
     }
 
     if (this.element.disabled || this.options.disabled) {
@@ -95,7 +95,7 @@ class LinkPicker extends Component {
 
     this.enter('initialized')
 
-    this.set(this.value, true)
+    // this.set(this.value, true)
     this.trigger(EVENTS.READY)
   }
 
@@ -345,9 +345,10 @@ class LinkPicker extends Component {
     const value = this.val()
     this.element.value = value
     this.updatePreview()
+    this.trigger(EVENTS.CHANGE, value)
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
@@ -358,7 +359,9 @@ class LinkPicker extends Component {
     } else {
       this.clear()
     }
-
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, value)
+    }
     return null
   }
 
@@ -428,8 +431,6 @@ class LinkPicker extends Component {
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$wrap)
       }
-
-      this.TYPESELECT.destroy()
       unwrap(this.element)
       removeClass(this.classes.INPUT, this.element)
       this.$trigger.remove()
