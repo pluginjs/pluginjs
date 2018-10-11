@@ -485,7 +485,10 @@ class DatePicker extends Component {
       html += `<span class="${className}">${content}</span>`
     }
     html += '</div></div>'
-    const $html = parseHTML(html)
+    const $html = []
+    for (let i = 0; i < parseHTML(html).children.length; i++) {
+      $html.push(parseHTML(html).children[i])
+    }
     const $inRanges = $html.reduce(
       (r, el) => r.concat(queryAll(`.${this.classes.INRANGE}`, el)),
       []

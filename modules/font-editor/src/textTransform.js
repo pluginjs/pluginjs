@@ -18,7 +18,12 @@ export default class TextTransform {
     const html = template.compile(
       this.instance.options.textTransform.template()
     )({ classes: this.instance.classes })
-    this.$wrap = parseHTML(html)
+    // this.$wrapHtml = parseHTML(html)
+    this.$wrap = []
+    for (let i = 0; i < parseHTML(html).children.length; i++) {
+      this.$wrap.push(parseHTML(html).children[i])
+    }
+    console.log(this.$wrap)
     this.instance.$typoDecorations.append(...this.$wrap)
 
     this.$items = queryAll(
