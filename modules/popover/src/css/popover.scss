@@ -14,7 +14,7 @@ $popover-padding: 22px 24px;
 
 $popover-color: $gray-darker;
 $popover-bg: $color-white;
-$popover-box-shadow: $box-shadow-base;
+$popover-box-shadow: $box-shadow-4;
 $popover-border-radius: $border-radius-base;
 
 $popover-close-size: 14px;
@@ -25,7 +25,6 @@ $popover-arrow-spacer: $popover-arrow-size;
 
 $popover-dark-color: $color-white;
 $popover-dark-bg: $gray-darkest;
-$popover-dark-box-shadow: $box-shadow-base;
 
 // Skins
 // =====================
@@ -81,9 +80,4 @@ $popover-dark-box-shadow: $box-shadow-base;
 .#{$popover}--dark {
   color: $popover-dark-color;
   background-color: $popover-dark-bg;
-  box-shadow: $popover-dark-box-shadow;
-
-  .#{$popover}-arrow {
-    box-shadow: $popover-dark-box-shadow;
-  }
 }

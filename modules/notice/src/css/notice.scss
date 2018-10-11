@@ -9,7 +9,7 @@ $notice-font-size: $font-size-sm !default;
 $notice-font-family: $font-family-base !default;
 
 $notice-bg: $color-white;
-$notice-box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.05);
+$notice-box-shadow: $box-shadow-4;
 
 $notice-container-max-width: 1240px;
 $notice-container-padding: 12px 0;

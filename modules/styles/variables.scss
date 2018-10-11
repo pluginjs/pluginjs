@@ -97,18 +97,11 @@ $divider-color-dark: rgba($gray-darkest, 0.1) !default;
 
 // 5. Box shadow
 //
-$box-shadow-1: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-$box-shadow-2: 0 3px 7px 0 rgba(0, 0, 0, 0.2);
-$box-shadow-3: 0 5px 8px 0 rgba(0, 0, 0, 0.24);
-$box-shadow-4: 0 7px 10px 0 rgba(0, 0, 0, 0.22);
-$box-shadow-5: 0 9px 15px 0 rgba(0, 0, 0, 0.2);
-$box-shadow-6: 0 0 10px 0 rgba(0,0,0,0.07);
-$box-shadow-7: 0 10px 35px 0 rgba(0, 0, 0, 0.1) !default;
-$box-shadow-base: 0 5px 20px 0 rgba(0, 0, 0, 0.1) !default;
-
-$box-shadow-t: 0 -5px 20px 0 rgba(#1d2531, 0.05) !default;
-$box-shadow-b: 0 5px 20px 0 rgba(#1d2531, 0.05) !default;
-$box-shadow-default: 0 2px 5px 0 rgba(#1d2531, 0.05) !default;
+$box-shadow-1: 0 0 10px 0 rgba(0, 0, 0, 0.07) !default;
+$box-shadow-2: 0 0 10px 0 rgba(0, 0, 0, 0.15) !default;
+$box-shadow-3: 0 2px 10px 0 rgba(0, 0, 0, 0.2) !default;
+$box-shadow-4: 0 5px 15px 0 rgba(0, 0, 0, 0.07) !default;
+$box-shadow-base: $box-shadow-1 !default;
 
 // 6. Z-index master list
 //

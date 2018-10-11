@@ -17,8 +17,7 @@ $weekly-event-bg-color: $gray-lightest;
 $weekly-event-border-color: $gray-lightest;
 
 $weekly-empty-event-transition: color 0.15s ease-in-out,
-  background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-  box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 
 .#{$namespace} {
   &-weekly {

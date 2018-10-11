@@ -25,7 +25,6 @@ $magnify-target-bg: $gray-darkest;
 
 $magnify-lens-border-width: 4px;
 $magnify-lens-border-color: $color-white;
-$magnify-lens-box-shadow: $box-shadow-1;
 $magnify-lens-bg: $magnify-target-bg;
 
 $magnify-outside-lens-border-radius: $magnify-border-radius;
@@ -67,7 +66,6 @@ $magnify-outside-lens-border-radius: $magnify-border-radius;
     margin-left: -$magnify-lens-border-width;
     background-color: $magnify-lens-bg;
     border: $magnify-lens-border-width solid $magnify-lens-border-color;
-    box-shadow: $magnify-lens-box-shadow;
   }
 
   &-outside &-lens {

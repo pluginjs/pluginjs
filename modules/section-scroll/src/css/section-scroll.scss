@@ -3,7 +3,9 @@
 // Vars
 // =====================
 $sectionScroll: "pj-sectionScroll" !default;
-$sectionScroll-header-zindex: $zindex-fixed ! !default;
+$sectionScroll-header-zindex: $zindex-fixed !default;
+
+$sectionScroll-nav-box-shadow: $box-shadow-3 !default;
 
 // Core
 // =====================
@@ -55,7 +57,7 @@ li {
   height: 60px;
   text-align: center;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: $sectionScroll-nav-box-shadow;
 }
 
 .fixed-header li {
@@ -91,7 +93,7 @@ li {
   height: 60px;
   text-align: center;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: $sectionScroll-nav-box-shadow;
 }
 
 .fixed-footer li {
