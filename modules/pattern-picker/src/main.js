@@ -2,13 +2,22 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import { setStyle } from '@pluginjs/styled' // , getStyle
-import { query, has, parseHTML, getData, setData, wrap } from '@pluginjs/dom'
-import ColorSelector from '@pluginjs/color-selector'
+import { bindEvent } from '@pluginjs/events'
+import { setStyle, hideElement } from '@pluginjs/styled' // , getStyle
+import {
+  query,
+  queryAll,
+  children,
+  parseHTML,
+  getData,
+  setData,
+  wrap
+} from '@pluginjs/dom'
+import ColorPicker from '@pluginjs/color-picker'
 import Dropdown from '@pluginjs/dropdown'
 import Range from '@pluginjs/range'
 import Trigger from './trigger'
+import Collection from './collection'
 import {
   eventable,
   register,
@@ -54,8 +63,12 @@ class PatternPicker extends Component {
     this.data = {}
 
     this.foreColor = ''
-    this.bgColor = this.options.bgcolor
+    this.bgColor = this.options.bgColor
     this.opacity = 1
+    this.module = this.options.module
+
+    this.selecting = null
+    this.selected = null
 
     this.$content = null
     this.setupStates()
@@ -64,17 +77,18 @@ class PatternPicker extends Component {
 
   initialize() {
     this.create()
+
     this.bind()
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
     }
 
-    this.initData()
+    // this.initData()
 
-    if (this.element.disabled || this.options.disabled) {
-      this.disable()
-    }
+    // if (this.element.disabled || this.options.disabled) {
+    //   this.disable()
+    // }
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -84,7 +98,71 @@ class PatternPicker extends Component {
     const data = this.element.value
     if (data) {
       this.val(data, false)
+    } else {
+      this.clear()
     }
+  }
+
+  bind() {
+    compose(
+      // manage event
+      bindEvent(this.eventName('click'), `.${this.classes.MANAGE}`, () => {
+        this.options.manage()
+      }),
+      // switch mode
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.TRIGGERPANEL}>i`,
+        e => {
+          const $this = e.target
+          this.switchModule(getData('type', $this))
+        }
+      )
+      // Collection event
+      // bindEvent(
+      //   this.eventName('click'),
+      //   `.${this.classes.COLLECTIONITEM}`,
+      //   e => {
+      //     const info = getData('info', e.target)
+      //     this.selectCollection = info
+      //     this.set({ module: 'collection', color: info.title })
+      //     this.closePanel()
+      //   }
+      // )
+    )(this.$panel)
+
+    // select SVG img
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.COLLECTIONITEM}`,
+      e => {
+        const $this = e.target
+        queryAll(
+          `.${this.classes.COLLECTIONITEM}`,
+          this.COLLECTION.$selectorList
+        ).map(removeClass(this.classes.COLLECTIONITEMACTIVE))
+        addClass(this.classes.COLLECTIONITEMACTIVE, $this)
+        this.selecting = $this
+
+        this.switchModule('custom')
+        // this.update(getData('info', $this))
+        this.setPlugins(getData('info', $this))
+      },
+      this.$panel
+    )
+
+    // save
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.SAVE}`,
+      () => {
+        this.enter('save')
+        if (this.is('state')) {
+          this.DROPDOWN.hide()
+        }
+      },
+      this.$control
+    )
   }
 
   create() {
@@ -98,96 +176,96 @@ class PatternPicker extends Component {
     }
 
     this.TRIGGER = new Trigger(this)
+    this.$fillImg = query(`.${this.classes.FILLIMG}`, this.TRIGGER.$fill)
 
-    this.$dropdown = parseHTML(
-      template.compile(this.options.templates.dropdown())({
-        classes: this.classes
-      })
-    )
+    this.$panel = this.createEl('panel', {
+      classes: this.classes
+    })
+    this.$wrap.append(this.$panel)
 
-    this.$wrap.append(this.$dropdown)
     this.handelComponent()
+    // init element
+    this.$trigger = query(`.${this.classes.TRIGGERPANEL}`, this.$panel)
+    this.$container = query(`.${this.classes.CONTAINERPANEL}`, this.$panel)
 
-    this.pluginCreate()
-    this.render()
+    this.setupDropdown()
+    // this.render()
+  }
+
+  setupCollection() {
+    this.COLLECTION = new Collection(
+      this,
+      query(`.${this.classes.COLLECTIONPANEL}`, this.$panel)
+    )
   }
 
   handelComponent() {
-    this.$fillImg = query(`.${this.classes.FILLIMG}`, this.TRIGGER.$fill)
+    this.$custom = query(`.${this.classes.CUSTOMPANEL}`, this.$panel)
+    this.$foreColor = this.createEl('foreColor', {
+      classes: this.classes,
+      field: this.getClassName(this.classes.NAMESPACE, 'foreColor'),
+      foreColor: 'foreColor'
+    })
 
-    this.$previewBox = parseHTML(
-      `<div class='${this.classes.PREVIEW}'><div class='${
-        this.classes.PREVIEWIMG
-      }'></div></div>`
+    this.$bgColor = this.createEl('bgColor', {
+      classes: this.classes,
+      field: this.getClassName(this.classes.NAMESPACE, 'bgColor'),
+      bgColor: 'bgColor'
+    })
+
+    this.$opacity = this.createEl('opacity', {
+      classes: this.classes,
+      field: this.getClassName(this.classes.NAMESPACE, 'opacity'),
+      opacity: 'opacity'
+    })
+
+    this.$control = this.createEl('control', {
+      classes: this.classes,
+      text: this.translate('save')
+    })
+
+    this.$custom.append(
+      this.$foreColor,
+      this.$bgColor,
+      this.$opacity,
+      this.$control
     )
-    this.$previewImg = query(`.${this.classes.PREVIEWIMG}`, this.$previewBox)
-    this.$forePickerBox = parseHTML(
-      `<div class='${this.classes.FIELD}'><span class='${
-        this.classes.FIELDTITLE
-      }'>${this.translate('foreColor')}</span><div class='${
-        this.classes.FIELDCONTENT
-      }'><input class='${
-        this.classes.FORECOLOR
-      } pj-input' type='text' placeholder='choose color' /></div></div>`
-    )
-    this.$forePicker = query(`.${this.classes.FORECOLOR}`, this.$forePickerBox)
-    this.$bgColorBox = parseHTML(
-      `<div class='${this.classes.FIELD}'><span class='${
-        this.classes.FIELDTITLE
-      }'>${this.translate('bgColor')}</span><div class='${
-        this.classes.FIELDCONTENT
-      }'><input class='${
-        this.classes.BGCOLOR
-      } pj-input' type='text' placeholder='choose color' /></div></div>`
-    )
-    this.$bgColor = query(`.${this.classes.BGCOLOR}`, this.$bgColorBox)
-    this.$opacityBox = parseHTML(
-      `<div class='${this.classes.FIELD}'><span class='${
-        this.classes.FIELDTITLE
-      }'>${this.translate('opacity')}</span><div class='${
-        this.classes.FIELDCONTENT
-      }' style='width:160px'><input class='${
-        this.classes.OPACITY
-      }' type='text' /></div></div>`
-    )
-    this.$opacity = query(`.${this.classes.OPACITY}`, this.$opacityBox)
-    this.$action = parseHTML(
-      `<div class='${this.classes.BTNACTION}'>
-        <button type='button' class='${
-          this.classes.CANCEL
-        } pj-btn pj-btn-transparent'>Cancel</button>
-        <button type='button' class='${
-          this.classes.SAVE
-        } pj-btn pj-btn-transparent'>Save</button>
-      </div>`
-    )
+
+    this.setupField()
   }
 
-  pluginCreate() {
+  setupDropdown() {
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
-      target: this.$dropdown,
+      target: this.$panel,
       reference: this.TRIGGER.$trigger,
       templates: this.options.template,
       hideOutClick: true,
       hideOnSelect: false,
-      onShow: () => {
-        if (!this.DROPDOWN.is('builded')) {
-          this.$dropdown.append(
-            this.$previewBox,
-            this.$forePickerBox,
-            this.$bgColorBox,
-            this.$opacityBox,
-            this.$action
+      onShown: () => {
+        this.selected = this.selecting
+        if (this.selected) {
+          const data = JSON.parse(
+            JSON.stringify(getData('info', this.selected))
           )
+          setData('info', data, this.TRIGGER.$fill)
         }
+        this.switchModule(this.module)
+        this.leave('save')
+      },
+      onHided: () => {
+        this.update()
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
       }
     })
 
-    this.FOREPICKER = ColorSelector.of(this.$forePicker, {
+    this.setupCollection()
+  }
+
+  setupField() {
+    this.$elForeColor = query(`.${this.classes.FORECOLOR}`, this.$foreColor)
+    this.FORECOLOR = ColorPicker.of(this.$elForeColor, {
       theme: 'default',
-      module: ['solid'],
-      solidMode: 'sample',
-      solidModule: {
+      module: {
         alpha: false,
         hex: false
       },
@@ -203,11 +281,10 @@ class PatternPicker extends Component {
       }
     })
 
-    this.BGCOLOR = ColorSelector.of(this.$bgColor, {
+    this.$elBgColor = query(`.${this.classes.BGCOLOR}`, this.$bgColor)
+    this.BGCOLOR = ColorPicker.of(this.$elBgColor, {
       theme: 'default',
-      module: ['solid'],
-      solidMode: 'sample',
-      solidModule: {
+      module: {
         alpha: false,
         hex: false
       },
@@ -215,18 +292,19 @@ class PatternPicker extends Component {
         // if (!this.$selected) {
         //   return
         // }
-        val = val.toHEX()
-        this.bgColor = val
+        this.bgColor = val.toHEX()
         this.leave('foreChange')
         this.enter('bgChange')
         this.leave('opacityChange')
         this.updateComponent()
-        return
+        // return
       }
     })
 
-    this.OPACITY = Range.of(this.$opacity, {
+    this.$elOpacity = query(`.${this.classes.OPACITY}`, this.$opacity)
+    this.OPACITY = Range.of(this.$elOpacity, {
       theme: 'default',
+      input: true,
       tip: false,
       range: false,
       units: {
@@ -244,87 +322,9 @@ class PatternPicker extends Component {
         this.enter('opacityChange')
         this.updateComponent()
 
-        return
+        // return
       }
     })
-
-    // set initial color
-    this.FOREPICKER.val('#000')
-    this.BGCOLOR.val(this.bgColor)
-    this.OPACITY.val('100%')
-  }
-
-  render() {
-    const img = Object.entries(this.imgs)[0]
-    const info = {
-      name: img[0],
-      'background-color': this.bgColor,
-      // make '#' to '%23', fixed svg data image not working on FireFox.
-        'background-image': img[1].replace(/\#+/g, '%23')/* eslint-disable-line */
-    }
-    setData('info', info, this.$previewImg)
-
-    this.setInfo(this.$previewImg)
-
-    this.BGCOLOR.val(this.options.format(info, 'background-color'))
-    this.FOREPICKER.val(this.options.format(info, 'color'))
-    this.OPACITY.val(`${this.options.format(info, 'opacity')}%`)
-  }
-
-  bind() {
-    // document
-    bindEvent(
-      this.eventName('click'),
-      e => {
-        if (
-          e.target === this.TRIGGER.$trigger ||
-          has(e.target, this.TRIGGER.$trigger) ||
-          e.target === this.$dropdown ||
-          has(e.target, this.$dropdown)
-        ) {
-          return
-        }
-        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
-      },
-      window.document
-    )
-
-    // action save
-    compose(
-      bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
-        this.update()
-      }),
-      bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
-        // this.update()
-        this.DROPDOWN.hide()
-        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
-        if (!this.is('state')) {
-          removeClass(this.classes.SHOW, this.$wrap)
-        }
-      })
-    )(this.$action)
-  }
-
-  unbind() {
-    removeEvent(this.eventName(), this.$wrap)
-  }
-
-  update(data) {
-    if (data) {
-      setData('info', data, this.$previewImg)
-      this.setInfo(this.$previewImg)
-    } else {
-      this.data = getData('info', this.$previewImg)
-    }
-
-    setData('info', getData('info', this.$previewImg), this.$fillImg)
-    this.setInfo(this.$fillImg)
-    this.element.value = this.val()
-    this.DROPDOWN.hide()
-    removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
-    addClass(this.classes.SHOW, this.$wrap)
-
-    this.enter('state')
   }
 
   updateComponent() {
@@ -338,75 +338,11 @@ class PatternPicker extends Component {
       key = 'opacity'
     }
 
-    this.setAttr(key, this.$previewImg)
+    this.setAttr(key, this.$fillImg)
     // this.element.value = this.options.process.call(
     //   this,
-    //   getData('info', this.$previewImg)
+    //   getData('info', this.$fillImg)
     // )
-  }
-
-  setInfo(img) {
-    const imgData = getData('info', img)
-    setStyle(
-      {
-        backgroundColor: imgData['background-color'],
-
-        // make '#' to '%23', fixed svg data image not working on FireFox.
-        backgroundImage: imgData['background-image'].replace(/\#+/g, '%23')/* eslint-disable-line */
-
-      },
-      img
-    )
-
-    setData('info', imgData, img)
-  }
-
-  set(data, trigger = true) {
-    if (!this.imgs || !data) {
-      return
-    }
-    const name = data.name
-
-    if (!this.imgs[name]) {
-      return
-    }
-
-    this.data = data
-
-    const info = getData('info', this.$previewImg)
-
-    if (info.name !== name) {
-      if (data['background-color']) {
-        this.bgColor = data['background-color']
-      } else {
-        data['background-color'] = this.bgColor
-      }
-
-      this.BGCOLOR.val(this.options.format(data, 'background-color'))
-      this.FOREPICKER.val(this.options.format(data, 'color'))
-      this.OPACITY.val(`${this.options.format(data, 'opacity')}%`)
-
-      this.update(data)
-    }
-
-    if (trigger) {
-      this.trigger(EVENTS.CHANGE, data)
-    }
-
-    return
-  }
-
-  get() {
-    return this.data
-  }
-
-  val(value, trigger = true) {
-    if (typeof value === 'undefined') {
-      return this.options.process.call(this, this.get())
-    }
-    const val = this.options.parse.call(this, value)
-    this.set(val, trigger)
-    return null
   }
 
   setAttr(key, el) {
@@ -429,16 +365,154 @@ class PatternPicker extends Component {
     this.setInfo(el)
   }
 
-  clear() {
-    setData('info', '', this.$previewImg)
+  setInfo(img) {
+    const imgData = getData('info', img)
     setStyle(
       {
-        backgroundColor: 'transparent',
-        backgroundImage: 'none'
+        backgroundColor: imgData['background-color'],
+
+        // make '#' to '%23', fixed svg data image not working on FireFox.
+        backgroundImage: imgData['background-image'].replace(/\#+/g, '%23')/* eslint-disable-line */
+
       },
-      this.$previewImg
+      img
     )
 
+    setData('info', imgData, img)
+  }
+
+  switchModule(typeName) {
+    if (!typeName) {
+      typeName = this.module
+    }
+    // switch panel tirgger
+    children(this.$trigger).forEach(($this, i) => {
+      const $content = children(this.$container)[i]
+
+      removeClass(this.classes.SELECTED, $this)
+      hideElement($content)
+      this.leave(`${getData('type', $this)}Module`)
+      if (getData('type', $this) === typeName) {
+        addClass(this.classes.SELECTED, $this)
+        $content.style.display = 'block'
+        // showElement($content)
+      }
+    })
+
+    if (typeName === 'collection' && this.scrollable) {
+      this.scrollable.update()
+    }
+    // switch module state
+    this.enter(`${typeName}Module`)
+    this.module = typeName
+
+    // switch (this.module) {
+    //   case 'solid':
+    //     this.setInput(this.COLORPICKER.color)
+    //     this.COLORPICKER.HISTORY.updateHistory()
+    //     break
+    //   case 'gradient':
+    //     this.setInput(this.GRADIENTPICKER.color)
+    //     this.GRADIENTPICKER.COLORPICKER.HISTORY.updateHistory()
+    //     break
+    //   default:
+    //     break
+    // }
+    // this.trigger(EVENTS.SWITCHMODULE, this.module)
+  }
+
+  getClassName(namespace, field) {
+    return template.compile(this.classes.FIELD)({ namespace, field })
+  }
+
+  createEl(tempName, options) {
+    return parseHTML(
+      template.compile(this.options.templates[tempName]())(options)
+    )
+  }
+
+  setFillImg() {
+    if (!getData('info', this.$fillImg)) {
+      this.selecting = queryAll(
+        `.${this.classes.COLLECTIONITEM}`,
+        this.COLLECTION.$selectorList
+      )[0]
+      this.update(getData('info', this.selecting))
+    }
+  }
+
+  setPlugins(data) {
+    this.enter('state')
+    setData('info', data, this.$fillImg)
+
+    const info = getData('info', this.$fillImg)
+
+    if (info.name !== name) {
+      if (data['background-color']) {
+        this.bgColor = data['background-color']
+      } else {
+        data['background-color'] = this.options.bgColor
+      }
+
+      this.BGCOLOR.val(this.options.format(data, 'background-color'))
+      this.FORECOLOR.val(this.options.format(data, 'color'))
+      this.OPACITY.val(`${this.options.format(data, 'opacity')}%`)
+
+      // this.update(data)
+    }
+  }
+
+  update() {
+    if (this.is('save')) {
+      this.data = getData('info', this.$fillImg)
+
+      this.element.value = this.val()
+      addClass(this.classes.SHOW, this.$wrap)
+    } else if (!this.selected) {
+      this.clear()
+    } else {
+      this.setPlugins(getData('info', this.TRIGGER.$fill))
+      // this.setInfo(this.selected)
+    }
+
+    // this.enter('state')
+  }
+
+  get() {
+    return this.data
+  }
+
+  set(data, trigger = true) {
+    if (!this.imgs || !data) {
+      return
+    }
+    const name = data.name
+
+    if (!this.imgs[name]) {
+      return
+    }
+
+    this.data = data
+
+    this.setPlugins(data)
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, data)
+    }
+
+    return
+  }
+
+  val(value, trigger = true) {
+    if (typeof value === 'undefined') {
+      return this.options.process.call(this, this.get())
+    }
+    const val = this.options.parse.call(this, value)
+    this.set(val, trigger)
+    return null
+  }
+
+  clear() {
     setData('info', '', this.$fillImg)
     setStyle(
       {
@@ -449,8 +523,14 @@ class PatternPicker extends Component {
     )
 
     this.OPACITY.val('100%')
-    this.FOREPICKER.clear()
+    this.FORECOLOR.clear()
     this.BGCOLOR.clear()
+
+    this.selecting = null
+    this.selected = null
+    this.module = this.options.module
+
+    this.element.value = ''
 
     removeClass(this.classes.SHOW, this.$wrap)
     this.leave('state')

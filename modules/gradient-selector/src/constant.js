@@ -45,7 +45,18 @@ export const classes = {
   FIELDCONTENT: '{namespace}-field-content',
   BTNACTION: '{namespace}-btn-action',
   CANCEL: '{namespace}-cancel',
-  SAVE: '{namespace}-save'
+  SAVE: '{namespace}-save',
+  // panel
+  PANEL: '{namespace}-panel',
+  PANELTRIGGER: '{namespace}-panel-swicher',
+  PANELCONTAINER: '{namespace}-panel-container',
+  PANELCOLLECTION: '{namespace}-panel-collection',
+  PANELGRADIENT: '{namespace}-panel-gradient',
+  COLLECTIONTRIGGER: '{namespace}-panel-swicher-collection',
+  GRADIENTTRIGGER: '{namespace}-panel-swicher-gradient',
+  COLLECTIONPANEL: '{namespace}-panel-collection',
+  GRADIENTPANEL: '{namespace}-panel-gradient',
+  GRADIENT: '{namespace}-gradient'
 }
 
 export const methods = [
@@ -64,10 +75,6 @@ export const defaults = {
   data: null, // [json]images data
   disabled: false,
   templates: {
-    dropdown() {
-      return `<div class='{classes.DROPDOWN}'>
-      </div>`
-    },
     trigger() {
       return `<div class="{classes.TRIGGER}">
       </div>`
@@ -84,6 +91,18 @@ export const defaults = {
       return `<div class='{classes.EMPTY}'><i class='{icon}'></i>{text}
       </div>`
     },
+    panel() {
+      return `<div class='{classes.PANEL}'>
+      <div class='{classes.PANELTRIGGER}'>
+      <i class="{classes.COLLECTIONTRIGGER}" data-type="collection"></i>
+      <i class="{classes.GRADIENTTRIGGER}" data-type="gradient"></i>
+      </div>
+      <div class='{classes.PANELCONTAINER}'>
+      <div class="{classes.COLLECTIONPANEL}"></div>
+      <div class="{classes.GRADIENTPANEL}"><input type="text" class="{classes.GRADIENT}"></div>
+      </div>
+    </div>`
+    },
     colorType() {
       return `<div class='{class}'>
         <div class='{preset}' data-type='preset'>{PresetTitle}</div>
@@ -97,6 +116,18 @@ export const defaults = {
     item() {
       return `<li class='{class}'>
       </li>`
+    },
+    scheme() {
+      return '<div class="{classes.SCHEME}"></div>'
+    },
+    manage() {
+      return '<div class="{classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
+    },
+    collectionItem() {
+      return '<span class="{classes.COLLECTIONITEM}"></span>'
+    },
+    control() {
+      return '<div class="classes.CONTROL"><button type="button" class="{classes.SAVE} pj-btn pj-btn-xs pj-btn-outline">{text}</button></div>'
     }
   },
   parse(val) {

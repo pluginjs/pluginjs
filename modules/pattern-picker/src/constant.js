@@ -39,12 +39,26 @@ export const classes = {
   TRIGGER: '{namespace}-trigger',
   INPUT: '{namespace}-input',
   EMPTY: '{namespace}-empty',
-  FIELD: '{namespace}-field',
+  FIELD: '{namespace}-field {namespace}-{field}',
   FIELDTITLE: '{namespace}-field-title',
   FIELDCONTENT: '{namespace}-field-content',
-  BTNACTION: '{namespace}-btn-action',
+  CONTROL: '{namespace}-control',
   CANCEL: '{namespace}-cancel',
-  SAVE: '{namespace}-save'
+  SAVE: '{namespace}-save',
+  // panel
+  PANEL: '{namespace}-panel',
+  TRIGGERPANEL: '{namespace}-panel-swicher',
+  CONTAINERPANEL: '{namespace}-panel-container',
+  COLLECTIONTRIGGER: '{namespace}-panel-swicher-collection',
+  CUSTOMTRIGGER: '{namespace}-panel-swicher-custom',
+  COLLECTIONPANEL: '{namespace}-panel-collection',
+  CUSTOMPANEL: '{namespace}-panel-custom',
+  SELECTED: '{namespace}-selected',
+  SCHEME: '{namespace}-scheme',
+  MANAGE: '{namespace}-manage',
+  COLLECTIONITEM: '{namespace}-collection-item',
+  COLLECTIONITEMACTIVE: '{namespace}-collection-item-active',
+  COLLECTIONSCROLLWRAP: '{namespace}-collection-scrollwrap'
 }
 
 export const methods = [
@@ -61,15 +75,13 @@ export const defaults = {
   theme: null,
   locale: 'en',
   data: null, // [json]images data
-  bgcolor: '#eee', // background color.
+  bgColor: '#eee', // background color.
   disabled: false,
+  module: 'collection', // collection || custom
+  manage() {},  /* eslint-disable-line */
   templates: {
     item() {
       return '<li class="{class}"></li>'
-    },
-    dropdown() {
-      return `<div class='{classes.DROPDOWN}'>
-      </div>`
     },
     trigger() {
       return `<div class="{classes.TRIGGER}">
@@ -90,6 +102,54 @@ export const defaults = {
     triggerAction() {
       return `<div class='{classes.TRIGGERACTION}'><i class='pj-icon pj-icon-edit  {classes.EDITOR}'></i><i class='pj-icon pj-icon-remove {classes.REMOVE}'></i>
       </div>`
+    },
+    panel() {
+      return `<div class='{classes.PANEL}'>
+      <div class='{classes.TRIGGERPANEL}'>
+      <i class="{classes.COLLECTIONTRIGGER}" data-type="collection"></i>
+      <i class="{classes.CUSTOMTRIGGER}" data-type="custom"></i>
+      </div>
+      <div class='{classes.CONTAINERPANEL}'>
+      <div class="{classes.COLLECTIONPANEL}"></div>
+      <div class="{classes.CUSTOMPANEL}"></div>
+      </div>
+    </div>`
+    },
+    foreColor() {
+      return `<div class='{field}'>
+      <div class='{classes.FIELDTITLE}'>{foreColor}</div>
+      <div class='{classes.FIELDCONTENT}'>
+      <input class='{classes.FORECOLOR} pj-input' placeholder='choose color' />
+      </div>
+      </div>`
+    },
+    bgColor() {
+      return `<div class='{field}'>
+      <div class='{classes.FIELDTITLE}'>{bgColor}</div>
+      <div class='{classes.FIELDCONTENT}'>
+      <input class='{classes.BGCOLOR} pj-input' placeholder='choose color' />
+      </div>
+      </div>`
+    },
+    opacity() {
+      return `<div class='{field}'>
+      <div class='{classes.FIELDTITLE}'>{opacity}</div>
+      <div class='{classes.FIELDCONTENT}'>
+      <input type='text' class='{classes.OPACITY} pj-input' />
+      </div>
+      </div>`
+    },
+    scheme() {
+      return '<div class="{classes.SCHEME}"></div>'
+    },
+    manage() {
+      return '<div class="{classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
+    },
+    collectionItem() {
+      return '<span class="{classes.COLLECTIONITEM}"></span>'
+    },
+    control() {
+      return '<div class="classes.CONTROL"><button type="button" class="{classes.SAVE} pj-btn pj-btn-xs pj-btn-outline">{text}</button></div>'
     }
   },
   process(value) {
@@ -157,7 +217,10 @@ export const translations = {
     cancel: 'Cancel',
     useIt: 'Use It',
     selectorTitle: 'Preset Background Library',
-    selectorContent: 'Choose a PatternPicker'
+    selectorContent: 'Choose a PatternPicker',
+    manage: 'Manage',
+    collection: 'Collection',
+    custom: 'Custom'
   },
   zh: {
     // cancel: '取消',
@@ -171,6 +234,9 @@ export const translations = {
     cancel: '取消',
     useIt: '使用',
     selectorTitle: '预设背景库',
-    selectorContent: '选择一个模式'
+    selectorContent: '选择一个模式',
+    manage: '管理',
+    collection: '收藏',
+    solid: '自定义'
   }
 }

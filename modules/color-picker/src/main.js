@@ -193,6 +193,7 @@ class ColorPicker extends Component {
         onShown: () => {
           this.oldColor = this.color
           showElement(this.$mask)
+          this.HISTORY.updateHistory()
           this.leave('save')
         },
         onHided: () => {
@@ -283,7 +284,9 @@ class ColorPicker extends Component {
     if (!val) {
       val = this.color
     }
+    console.log(val)
     const color = this.COLOR.val(val)
+    console.log(color.toHEX())
     if (isString(val) && val.indexOf('#') > -1) {
       this.setInput(color.toHEX())
     } else if (isString(val) && !val.match(/\d/g)) {

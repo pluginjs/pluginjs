@@ -63,8 +63,10 @@ export default class Trigger {
         this.instance.eventName('click'),
         `.${this.classes.EMPTY}`,
         () => {
+          console.log(1)
+          addClass(this.classes.SHOW, this.instance.$wrap)
           addClass(this.classes.OPENDISABLE, this.$trigger)
-          this.instance.render()
+          // this.instance.render()
         }
       ),
       // info action hover
