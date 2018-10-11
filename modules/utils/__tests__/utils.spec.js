@@ -7,32 +7,184 @@ describe('util', () => {
 
   describe('clone()', () => {
     it('should clone boolean', () => {
-      expect(util.clone(true)).toBeTrue()
-      expect(util.clone(false)).toBeFalse()
+      let a = true
+      const b = util.clone(a)
+
+      expect(b).toEqual(a)
+      a = false
+      expect(b).not.toEqual(a)
     })
 
     it('should clone number', () => {
-      expect(util.clone(1)).toEqual(1)
-      expect(util.clone(0)).toEqual(0)
-      expect(util.clone(-1)).toEqual(-1)
+      let a = 1
+      const b = util.clone(a)
+
+      expect(b).toEqual(a)
+      a = 0
+      expect(b).not.toEqual(a)
     })
 
     it('should clone null', () => {
-      expect(util.clone(null)).toBeNull()
+      let a = null
+      const b = util.clone(a)
+
+      expect(b).toEqual(a)
+      a = 0
+      expect(b).not.toEqual(a)
     })
 
     it('should clone undefined', () => {
-      expect(util.clone(undefined)).toBeUndefined()
+      const b = util.clone(undefined)
+
+      expect(b).toEqual(undefined)
     })
 
     it('should clone array', () => {
-      expect(util.clone([])).toEqual([])
-      expect(util.clone([1, 2, 3])).toEqual([1, 2, 3])
+      const a = [1, 2]
+      const b = util.clone(a)
+
+      expect(b).toEqual(a)
+      a.push(3)
+      expect(b).not.toEqual(a)
     })
 
     it('should clone object', () => {
-      expect(util.clone({})).toEqual({})
-      expect(util.clone({ foo: 'bar' })).toEqual({ foo: 'bar' })
+      const a = {
+        foo: 'bar'
+      }
+      const b = util.clone(a)
+
+      expect(b).toEqual(a)
+      a.foo = 'qux'
+      expect(b).not.toEqual(a)
+    })
+
+    it('should clone function', () => {
+      const foo = function() {
+        return 'foo'
+      }
+      let bar = util.clone(foo)
+
+      expect(bar).toBe(foo)
+      bar = function() {
+        return 'bar'
+      }
+      expect(foo()).toEqual('foo')
+      expect(bar()).toEqual('bar')
+    })
+
+    it('should not clone element', () => {
+      const el = document.createElement('div')
+      expect(util.clone(el)).toBe(el)
+    })
+  })
+
+  /* Credit to https://github.com/jonschlinkert/clone-deep/blob/master/test.js */
+  describe('deepClone()', () => {
+    it('should clone arrays', () => {
+      expect(util.deepClone(['alpha', 'beta', 'gamma'])).toEqual([
+        'alpha',
+        'beta',
+        'gamma'
+      ])
+      expect(util.deepClone([1, 2, 3])).toEqual([1, 2, 3])
+
+      const a = [{ a: 0 }, { b: 1 }]
+      const b = util.deepClone(a)
+
+      expect(b).toEqual(a)
+      expect(b[0]).toEqual(a[0])
+
+      const val = [0, 'a', {}, [{}], [function() {}], function() {}] // eslint-disable-line
+      expect(util.deepClone(val)).toEqual(val)
+    })
+
+    it('should deeply clone an array', () => {
+      const fixture = [[{ a: 'b' }], [{ a: 'b' }]]
+      const result = util.deepClone(fixture)
+      expect(fixture !== result).toBeTrue()
+      expect(fixture[0] !== result[0]).toBeTrue()
+      expect(fixture[1] !== result[1]).toBeTrue()
+      expect(fixture).toEqual(result)
+    })
+
+    it('should deeply clone object', () => {
+      const one = { a: 'b' }
+      const two = util.deepClone(one)
+      two.c = 'd'
+      expect(one).not.toEqual(two)
+    })
+
+    it('should deeply clone arrays', () => {
+      const one = { a: 'b' }
+      const arr1 = [one]
+      const arr2 = util.deepClone(arr1)
+      one.c = 'd'
+      expect(arr1).not.toEqual(arr2)
+    })
+
+    it('should deeply clone Map', () => {
+      const a = new Map([[1, 5]])
+      const b = util.deepClone(a)
+      a.set(2, 4)
+      expect(Array.from(a)).not.toEqual(Array.from(b))
+    })
+
+    it('should deeply clone Set', () => {
+      const a = new Set([2, 1, 3])
+      const b = util.deepClone(a)
+      a.add(8)
+      expect(Array.from(a)).not.toEqual(Array.from(b))
+    })
+
+    it('should return primitives', () => {
+      expect(util.deepClone(0)).toEqual(0)
+      expect(util.deepClone('foo')).toEqual('foo')
+    })
+
+    it('should clone a regex', () => {
+      expect(util.deepClone(/foo/g)).toEqual(/foo/g)
+    })
+
+    it('should clone objects', () => {
+      expect(util.deepClone({ a: 1, b: 2, c: 3 })).toEqual({ a: 1, b: 2, c: 3 })
+    })
+
+    it('should deeply clone objects', () => {
+      expect(
+        util.deepClone({
+          a: { a: 1, b: 2, c: 3 },
+          b: { a: 1, b: 2, c: 3 },
+          c: { a: 1, b: 2, c: 3 }
+        })
+      ).toEqual({
+        a: { a: 1, b: 2, c: 3 },
+        b: { a: 1, b: 2, c: 3 },
+        c: { a: 1, b: 2, c: 3 }
+      })
+    })
+
+    it('should deep clone instances', () => {
+      function A(x, y, z) {
+        this.x = x
+        this.y = y
+        this.z = z
+      }
+
+      function B(x) {
+        this.x = x
+      }
+
+      const a = new A({ x: 11, y: 12, z: () => 'z' }, new B(2), 7)
+      const b = util.deepClone(a, true)
+
+      expect(a).toEqual(b)
+
+      b.y.x = 1
+      b.z = 2
+      expect(a).not.toEqual(b)
+      expect(a.z).not.toEqual(b.z)
+      expect(a.y.x).not.toEqual(b.y.x)
     })
   })
 
@@ -131,6 +283,100 @@ describe('util', () => {
           }
         },
         c: 'c'
+      })
+    })
+
+    it('should override object with non-object', () => {
+      expect(
+        util.deepMerge(
+          {
+            foo: {
+              a: 'a'
+            },
+            bar: {
+              b: 'b'
+            }
+          },
+          {
+            foo: true,
+            bar: 'bar'
+          }
+        )
+      ).toEqual({
+        foo: true,
+        bar: 'bar'
+      })
+    })
+
+    it('should merge function correctly', () => {
+      const origin = {
+        fun(a) {
+          return a
+        }
+      }
+      const target = {
+        fun(a) {
+          return a + 1
+        }
+      }
+      const merged = util.deepMerge(origin, target)
+
+      expect(merged.fun).toEqual(target.fun)
+
+      expect(merged.fun(1)).toEqual(2)
+      expect(target.fun(1)).toEqual(2)
+      expect(origin.fun(1)).toEqual(1)
+    })
+
+    it('should merge function correctly with this', () => {
+      const origin = {
+        num: 0,
+        fun(a) {
+          return a
+        }
+      }
+      const target = {
+        num: 1,
+        fun(a) {
+          return a + this.num
+        }
+      }
+      const merged = util.deepMerge(origin, target)
+
+      expect(merged.fun).toEqual(target.fun)
+
+      expect(merged.fun(1)).toEqual(2)
+      expect(target.fun(1)).toEqual(2)
+      expect(origin.fun(1)).toEqual(1)
+      expect(origin.num).toEqual(0)
+
+      merged.num = 2
+      expect(merged.fun(1)).toEqual(3)
+    })
+
+    it('should override non-object with object', () => {
+      expect(
+        util.deepMerge(
+          {
+            foo: true,
+            bar: 'bar'
+          },
+          {
+            foo: {
+              a: 'a'
+            },
+            bar: {
+              b: 'b'
+            }
+          }
+        )
+      ).toEqual({
+        foo: {
+          a: 'a'
+        },
+        bar: {
+          b: 'b'
+        }
       })
     })
 

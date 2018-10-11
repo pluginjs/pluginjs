@@ -9,8 +9,7 @@ import {
   isObject,
   isPlainObject,
   isUndefined,
-  isElement,
-  isFunction
+  isElement
 } from '@pluginjs/is'
 
 export const nub = arr => {
@@ -33,7 +32,7 @@ export const each = (obj, callback) => {
 
 /** Credit to https://github.com/jonschlinkert/shallow-clone MIT */
 export const clone = val => {
-  if (isElement(val) || isFunction(val)) {
+  if (isElement(val)) {
     return val
   } else if (isArray(val)) {
     return val.slice()
@@ -61,7 +60,7 @@ export const clone = val => {
 
 /** Credit to https://github.com/jonschlinkert/clone-deep MIT */
 export const deepClone = val => {
-  if (isObject(val)) {
+  if (isPlainObject(val)) {
     return deepCloneObject(val)
   } else if (isArray(val)) {
     return deepCloneArray(val)
@@ -70,7 +69,7 @@ export const deepClone = val => {
 }
 
 export const deepCloneObject = obj => {
-  if (isObject(obj) && !isFunction(obj)) {
+  if (isPlainObject(obj)) {
     const res = new obj.constructor()
     for (const key in obj) { // eslint-disable-line
       res[key] = deepClone(obj[key])

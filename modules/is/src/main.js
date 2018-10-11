@@ -95,23 +95,7 @@ export const isObject = val => {
 
 // is a given value plain object?
 export const isPlainObject = val => {
-  if (typeof val !== 'object') {
-    return false
-  }
-
-  if (val === null) {
-    return false
-  }
-
-  if (val instanceof Set || val instanceof Map) {
-    return false
-  }
-
-  if (isArray(val)) {
-    return false
-  }
-
-  return true
+  return toString.call(val) === '[object Object]'
 }
 
 // is a given value empty object?
