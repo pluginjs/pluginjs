@@ -21,7 +21,11 @@ export default class Repeat {
         this.instance.classes.NAMESPACE,
         'repeat'
       ),
-      bgRepeat: this.instance.translate('bgRepeat')
+      bgRepeat: this.instance.translate('bgRepeat'),
+      repeat: this.instance.translate('repeat'),
+      noRepeat: this.instance.translate('noRepeat'),
+      repeatX: this.instance.translate('repeatX'),
+      repeatY: this.instance.translate('repeatY')
     })
     this.$wrap = parseHTML(html)
 

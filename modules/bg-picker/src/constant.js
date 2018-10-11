@@ -101,10 +101,10 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{bgRepeat}</span>' +
         '<ul class="{classes.FIELDCONTENT}">' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-no-repeat" title="no-repeat"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat" title="repeat"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-horizontal" title="repeat-x"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-vertical" title="repeat-y"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-no-repeat" title="{noRepeat}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat" title="{repeat}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-horizontal" title="{repeatX}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-vertical" title="{repeatY}"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -129,15 +129,15 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{bgPosition}</span>' +
         '<ul class="{classes.FIELDCONTENT}">' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-left" title="top-left"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-center" title="top-center"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-right" title="top-right"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-left" title="center-left"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center" title="center"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-right" title="center-right"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-left" title="bottom-left"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-center" title="bottom-center"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-right" title="bottom-right"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-left" title="{topLeft}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-center" title="{topCenter}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-right" title="{topRight}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-left" title="{centerLeft}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center" title="{center}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-right" title="{centerRight}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-left" title="{bottomLeft}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-center" title="{bottomCenter}"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-right" title="{bottomRight}"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -221,6 +221,19 @@ export const defaults = {
 
 export const translations = {
   en: {
+    noRepeat: 'no repeat',
+    repeat: 'repeat',
+    repeatX: 'repeat-x',
+    repeatY: 'repeat-y',
+    topLeft: 'top-left',
+    topCenter: 'top-center',
+    topRight: 'top-right',
+    centerLeft: 'center-left',
+    centerRight: 'center-right',
+    center: 'center',
+    bottomLeft: 'bottom-left',
+    bottomRight: 'bottom-right',
+    bottomCenter: 'bottom-center',
     placeholder: 'Add Image',
     change: 'change',
     bgRepeat: 'Repeat',
@@ -231,6 +244,19 @@ export const translations = {
     save: 'save'
   },
   zh: {
+    noRepeat: '不重复',
+    repeat: '重复',
+    repeatX: 'x轴重复',
+    repeatY: 'y轴重复',
+    topLeft: '上左',
+    topCenter: '上',
+    topRight: '上右',
+    centerLeft: '左',
+    centerRight: '右',
+    center: '中央',
+    bottomLeft: '下左',
+    bottomRight: '下右',
+    bottomCenter: '下',
     placeholder: '添加图片',
     change: '更换图片',
     bgRepeat: '重复',

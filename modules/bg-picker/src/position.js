@@ -21,7 +21,16 @@ export default class Position {
         this.instance.classes.NAMESPACE,
         'position'
       ),
-      bgPosition: this.instance.translate('bgPosition')
+      bgPosition: this.instance.translate('bgPosition'),
+      topLeft: this.instance.translate('topLeft'),
+      topCenter: this.instance.translate('topCenter'),
+      topRight: this.instance.translate('topRight'),
+      centerLeft: this.instance.translate('centerLeft'),
+      centerRight: this.instance.translate('centerRight'),
+      center: this.instance.translate('center'),
+      bottomLeft: this.instance.translate('bottomLeft'),
+      bottomRight: this.instance.translate('bottomRight'),
+      bottomCenter: this.instance.translate('bottomCenter')
     })
 
     this.$wrap = parseHTML(html)
