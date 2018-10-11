@@ -85,14 +85,81 @@ $input: pj-input !default;
     }
   }
 
+  &:hover {
+    .#{$input},
+    .#{$input}-group-addon {
+      border-color: $input-border-color-hover;
+    }
+
+    .#{$input} {
+      border-right-color: $input-border-color;
+    }
+
+    .#{$input}-group-addon {
+      color: $gray-darkest;
+    }
+  }
+
+  .#{$input} {
+    &:focus {
+      border-color: $input-border-color-focus;
+      border-right-color: $input-border-color;
+
+      & + .#{$input}-group-addon {
+        color: $input-border-color-focus;
+        border-color: $input-border-color-focus;
+      }
+    }
+  }
+
+  &:focus-within {
+    .#{$input},
+    .#{$input}-group-addon {
+      border-color: $input-border-color-focus;
+    }
+
+    .#{$input} {
+      border-right-color: $input-border-color;
+    }
+
+    .#{$input}-group-addon {
+      color: $input-border-color-focus;
+    }
+  }
+
   &-addon {
+    box-sizing: border-box;
     display: flex;
+    height: $input-height;
     padding: $input-group-addon-padding-y $input-group-addon-padding-x;
     margin-left: -$input-border-width;
     font-size: $input-font-size;
     line-height: $input-line-height;
+    color: $gray;
+    background-color: $input-group-addon-bg;
     border: $input-border-width $input-border-style $input-border-color;
+    border-left: 0;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
+  }
+
+  .#{$input}:disabled {
+    cursor: not-allowed;
+    border-color: $input-disabled-border;
+
+    &:hover {
+      border-color: $input-disabled-border;
+    }
+
+    + .#{$input}-group-addon {
+      color: $input-disabled-color;
+      cursor: not-allowed;
+      background-color: $input-disabled-bg;
+      border-color: $input-disabled-border;
+
+      &:hover {
+        border-color: $input-disabled-border;
+      }
+    }
   }
 }

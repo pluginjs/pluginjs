@@ -93,45 +93,9 @@ $datePicker-body-font-size: $font-size-xs;
     font-size: $datePicker-font-size;
     color: $datePicker-input-color;
     background-color: $datePicker-mobile-trigger-bg-color;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  &-icon {
-    border-left: 0;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  &:hover {
-    .#{$datePicker}-icon,
-    .#{$datePicker}-input,
-    .#{$datePicker}-mobile-trigger {
-      color: $datePicker-hover-color;
-      background-color: $datePicker-hover-bg-color;
-      border-color: $datePicker-hover-bg-color;
-    }
-
-    .#{$datePicker}-input,
-    .#{$datePicker}-mobile-trigger {
-      border-right-color: $datePicker-divider-hover-color;
-    }
   }
 
   &.#{$datePicker}-active {
-    .#{$datePicker}-icon,
-    .#{$datePicker}-input,
-    .#{$datePicker}-mobile-trigger {
-      color: $datePicker-active-color;
-      background-color: $datePicker-active-bg-color;
-      border-color: $datePicker-active-bg-color;
-    }
-
-    .#{$datePicker}-input,
-    .#{$datePicker}-mobile-trigger {
-      border-right-color: $datePicker-active-divider-color;
-    }
-
     /* stylelint-disable */
     .#{$datePicker}-input {
       &::-webkit-input-placeholder{

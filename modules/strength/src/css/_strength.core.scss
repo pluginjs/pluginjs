@@ -21,7 +21,7 @@ $strength-check-border-radius: $border-radius-base !default;
 .#{$strength} {
   &-container {
     box-sizing: border-box;
-    height: 32px;
+    height: $strength-height;;
   }
 
   &-toggle {
@@ -31,6 +31,9 @@ $strength-check-border-radius: $border-radius-base !default;
   }
 
   &-addon {
+    box-sizing: border-box;
+    height: $strength-height;
+
     .#{$strength}-show {
       display: none;
     }
@@ -58,6 +61,7 @@ $strength-check-border-radius: $border-radius-base !default;
         position: relative;
         top: 0;
         left: 0;
+        z-index: 1;
         display: inline-block;
         font-family:$strength-font;
         vertical-align: bottom;

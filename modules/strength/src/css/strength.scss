@@ -19,47 +19,6 @@ $strength-check-active-color: $color-white;
 $strength-check-active-bg: $color-primary;
 
 .#{$strength} {
-  &-container {
-    &.#{$input}-group {
-      &:hover {
-        .#{$input},
-        .#{$input}-group-addon {
-          border-color: $input-border-color-hover;
-          }
-
-        // .#{$input} {
-        //   border-right-color: $input-border-color;
-        // }
-
-        // .#{$input}-group-addon {
-        //   border-left-color: $input-border-color;
-        // }
-      }
-
-      &:focus-within {
-        .#{$input},
-        .#{$input}-group-addon {
-          border-color: $input-border-color-focus;
-        }
-
-        // .#{$input} {
-        //   border-right-color: $input-border-color;
-        // }
-
-        // .#{$input}-group-addon {
-        //   border-left-color: $input-border-color;
-        // }
-      }
-
-      &:focus {
-        .#{$input},
-        .#{$input}-group-addon {
-          border-color: $input-border-color-focus;
-          }
-      }
-    }  
-  }
-
   &-toggle {
     width: $strength-check-width;
     height: $strength-check-height;

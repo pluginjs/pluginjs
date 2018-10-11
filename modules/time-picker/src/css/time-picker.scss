@@ -12,18 +12,10 @@ $time-picke-height: 32px;
 
 $time-picker-font-family: $font-family-base;
 
-$time-picker-border-color: $border-color;
-$time-picker-border-radius: $border-radius-base;
-
 $time-picker-show-border-color: $color-primary;
 
 $time-picker-clear-color: $gray;
 $time-picker-clear-hover-color: $text-color;
-
-$time-picker-trigger-color: $gray;
-$time-picker-trigger-hover-color: $text-color;
-$time-picker-trigger-border-color: $gray-darker;
-
 // Style
 // =====================
 .#{$time-picker} {
@@ -39,79 +31,7 @@ $time-picker-trigger-border-color: $gray-darker;
       color: $time-picker-clear-hover-color;
     }
   }
-
-  &-input.#{$input} {
-    &:hover,
-    &:focus {
-      border-color: $time-picker-border-color;
-    }
-  }
-
-  &:hover {
-    .#{$time-picker}-input,
-    .#{$time-picker}-trigger {
-      border-color: $time-picker-trigger-border-color;
-    }
-
-    .#{$time-picker}-input {
-      border-right-color: $time-picker-border-color;
-    }
-
-    .#{$time-picker}-trigger {
-      border-left-color: $time-picker-border-color;
-    }
-  }
-
-  &:focus {
-    .#{$time-picker}-input,
-    .#{$time-picker}-trigger {
-      border-color: $time-picker-show-border-color;
-    }
-
-    .#{$time-picker}-input {
-      border-right-color: $time-picker-border-color;
-    }
-
-    .#{$time-picker}-trigger {
-      border-left-color: $time-picker-border-color;
-    }
-  }
-
-  &-trigger {
-    border-radius: $time-picker-border-radius;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-
-    &-icon {
-      color: $time-picker-trigger-color;
-    }
-
-    &:hover {
-      .#{$time-picker}-trigger-icon {
-        color: $time-picker-trigger-hover-color;
-      }
-    }
-  }
-
-  &-show {
-    .#{$time-picker}-input {
-      border-color: $time-picker-show-border-color !important;
-      border-right-color: $input-border-color !important;
-    }
-
-    .#{$time-picker}-trigger {
-      border-color: $time-picker-show-border-color !important;
-
-      &-icon {
-        color: $time-picker-show-border-color;
-
-        &:hover {
-          color: $time-picker-show-border-color;
-        }
-      }
-    }
-  }
-
+  
   &-dropdown {
     .#{$dropdown}-item.#{$dropdown}-active:not(.#{$dropdown}-item-disabled) {
       background-color: transparent;
@@ -120,28 +40,5 @@ $time-picker-trigger-border-color: $gray-darker;
 
   &.#{$time-picker}-disabled {
     user-select: none;
-
-    &:hover {
-      .#{$time-picker}-input,
-      .#{$time-picker}-trigger {
-        border-color: $disabled-border;
-      }
-
-      .#{$time-picker}-input {
-        border-right-color: $disabled-border;
-      }
-
-      .#{$time-picker}-trigger {
-        border-left-color: $disabled-border;
-      }
-    }
-
-    .#{$time-picker}-trigger-icon {
-      color: $disabled-color;
-
-      &:hover {
-        color: $disabled-color;
-      }
-    }
   }
 }

@@ -167,7 +167,7 @@ class DatePicker extends Component {
       const min = Math.min(innerWidth, innerHeight)
       this.$element.setAttribute('readonly', 'readonly')
       this.$mobileTrigger = parseHTML(
-        `<div class='${this.classes.MOBILETRIGGER}'></div>`
+        `<div class='${this.classes.MOBILETRIGGER} pj-input'></div>`
       )
       insertAfter(this.$mobileTrigger, hideElement(this.$element))
       this.$cover = parseHTML(`<div class="${this.classes.COVER}"></div>`)
