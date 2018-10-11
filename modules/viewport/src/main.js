@@ -30,6 +30,7 @@ class Viewport extends Component {
         return this.trigger(EVENTS.LEAVE)
       },
       {
+        root: this.options.container,
         rootMargin: this.getOffset(this.options.offset),
         threshold: this.options.threshold
       }
