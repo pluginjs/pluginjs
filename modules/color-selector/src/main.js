@@ -100,6 +100,11 @@ class ColorSelector extends Component {
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
     }
+
+    if (this.element.disabled || this.options.disabled) {
+      this.disable()
+    }
+
     // swtichover default mode
     this.switchModule()
 
@@ -186,6 +191,7 @@ class ColorSelector extends Component {
     const $remove = this.createEl('remove', { classes: this.classes })
     append($remove, query(`.${this.classes.TRIGGER}`, this.$wrap))
     this.$remove = query(`.${this.classes.REMOVE}`, this.$wrap)
+    hideElement(this.$remove)
   }
 
   initPreview() {
@@ -455,9 +461,11 @@ class ColorSelector extends Component {
   }
 
   disable() {
+    console.log(11)
     if (!this.is('disabled')) {
       this.element.disabled = true
       this.enter('disabled')
+      console.log(22)
     }
     addClass(this.classes.DISABLED, this.$wrap)
     this.trigger(EVENTS.DISABLE)
