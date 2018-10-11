@@ -25,6 +25,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { query, append, insertBefore, detach, parseHTML } from '@pluginjs/dom'
 import { isNumber, isString, isFunction } from '@pluginjs/is'
 import { getStyle, setStyle } from '@pluginjs/styled'
+import History from './history'
 import 'whatwg-fetch'
 
 @translateable(TRANSLATIONS)
@@ -61,6 +62,8 @@ class Infinite extends Component {
 
     this.count = 1
     this.$context = document
+    this.url = null
+    this.horizontal = this.options.horizontal
 
     if (this.options.trigger === 'button') {
       this.createButton()
@@ -70,6 +73,11 @@ class Infinite extends Component {
     }
 
     this.bind()
+
+    if (this.options.history && window.history && window.history.pushState) {
+      this.HISTORY = new History(this)
+    }
+
     this.checkEnd()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -241,15 +249,17 @@ class Infinite extends Component {
     if (url) {
       fetch(url, this.options.fetchOptions)
         .then(response => {
-          response
-            .text()
-            .then(text => {
-              this.$context = new DOMParser().parseFromString(text, 'text/html')
-              const $items = this.$context.querySelectorAll(this.options.item)
+          response.text().then(text => {
+            this.$context = new DOMParser().parseFromString(text, 'text/html')
+            const $items = this.$context.querySelectorAll(this.options.item)
 
-              resolve($items)
-            })
-            .catch(error => reject(error))
+            resolve($items)
+
+            if (this.HISTORY) {
+              this.HISTORY.updateState(url, this.$context)
+            }
+          })
+          // .catch(error => reject(error))
         })
         .catch(error => reject(error))
     }
@@ -353,6 +363,10 @@ class Infinite extends Component {
 
       if (this.$end) {
         this.$end.remove()
+      }
+
+      if (this.HISTORY) {
+        this.HISTORY.destroy()
       }
 
       if (this.is('loading')) {

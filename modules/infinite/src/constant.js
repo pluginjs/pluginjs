@@ -40,6 +40,7 @@ export const defaults = {
   },
   offset: 0,
   url: null,
+  history: false, // push, replace
   checkEnd(count) {
     return isEmpty(this.getNextUrl(count))
   },

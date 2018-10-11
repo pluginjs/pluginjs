@@ -6,7 +6,7 @@ Infinite.of(element, {
   item: 'p',
   url(count) {
     if (count <= 2) {
-      return `https://gist.githubusercontent.com/thecreation/c77bf5af1822cc0bf9ac605a85d87e2d/raw/${count}.html`
+      return `${count}.html`
     }
     return null
   }

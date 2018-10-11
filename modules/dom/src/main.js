@@ -173,6 +173,10 @@ export const offsetParent = el => {
   return offsetParent || document.documentElement
 }
 
+export const scrollParent = el => {
+  return parentWith(parent => parent.scrollHeight > parent.clientHeight, el)
+}
+
 export const indexOf = el => {
   return [...el.parentElement.children].indexOf(el)
 }
