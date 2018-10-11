@@ -101,10 +101,10 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{bgRepeat}</span>' +
         '<ul class="{classes.FIELDCONTENT}">' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-no-repeat"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-horizontal"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-vertical"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-no-repeat" title="no-repeat"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat" title="repeat"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-horizontal" title="repeat-x"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-vertical" title="repeat-y"></li>' +
         '</ul>' +
         '</div>'
       )
@@ -129,15 +129,15 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{bgPosition}</span>' +
         '<ul class="{classes.FIELDCONTENT}">' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-left"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-center"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-right"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-left"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-right"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-left"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-center"></li>' +
-        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-right"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-left" title="top-left"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-center" title="top-center"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-top-right" title="top-right"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-left" title="center-left"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center" title="center"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-center-right" title="center-right"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-left" title="bottom-left"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-center" title="bottom-center"></li>' +
+        '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-bottom-right" title="bottom-right"></li>' +
         '</ul>' +
         '</div>'
       )

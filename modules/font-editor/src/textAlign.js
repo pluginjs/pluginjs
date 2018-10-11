@@ -1,4 +1,6 @@
 import template from '@pluginjs/template'
+import Tooltip from '@pluginjs/tooltip'
+
 import {
   parseHTML,
   // query,
@@ -34,7 +36,13 @@ export default class TextAlign {
       `.${this.instance.classes.TEXTALIGN}`,
       this.instance.$typoDecorations
     )
-
+    for (let i = 0; i < this.$items.length; i++) {
+      Tooltip.of(this.$items[i], {
+        trigger: 'hover',
+        title: '',
+        placement: 'bottom'
+      })
+    }
     this.values.forEach((value, key) => {
       // that.$items[key].dataset.textAlign = value
       setData('textAlign', value, that.$items[key])

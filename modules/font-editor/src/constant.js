@@ -152,9 +152,9 @@ export const defaults = {
     template() {
       return (
         '<ul class="{classes.DECORATIONS}">' +
-        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-left"></li>' +
-        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-center"></li>' +
-        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-right"></li>' +
+        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-left" title="text-start" ></li>' +
+        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-center" title="text-center"></li>' +
+        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-right" title="text-end"></li>' +
         '</ul>'
       )
     }
@@ -163,7 +163,7 @@ export const defaults = {
     value: 'normal',
     values: ['italic', 'normal'],
     template() {
-      return '<li class="{classes.FONTSTYLE} pj-icon pj-icon-font"></li>'
+      return '<li class="{classes.FONTSTYLE} pj-icon pj-icon-font"  title="font"></li>'
     }
   },
   textTransform: {
@@ -171,9 +171,9 @@ export const defaults = {
     values: ['uppercase', 'lowercase', 'capitalize'],
     template() {
       return (
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-uppercase"></li>' +
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-lowercase"></li>' +
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-capitalize"></li>'
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-uppercase" title="uppercase"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-lowercase" title="lowercase"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-capitalize" title="capitalize"></li>'
       )
     }
   },
@@ -182,8 +182,8 @@ export const defaults = {
     values: ['underline', 'line-through'],
     template() {
       return (
-        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-underline"></li>' +
-        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-line-through"></li>'
+        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-underline" title="underline"></li>' +
+        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-line-through" title="line-through"></li>'
       )
     }
   },

@@ -2,6 +2,7 @@ import template from '@pluginjs/template'
 import { parseHTML, queryAll } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
+import Tooltip from '@pluginjs/tooltip'
 
 export default class TextDecoration {
   constructor(instance) {
@@ -27,6 +28,14 @@ export default class TextDecoration {
       `.${this.instance.classes.TEXTDECORATION}`,
       this.instance.$typoDecorations
     )
+
+    for (let i = 0; i < this.$items.length; i++) {
+      Tooltip.of(this.$items[i], {
+        trigger: 'hover',
+        title: '',
+        placement: 'bottom'
+      })
+    }
 
     this.values.forEach((value, key) => {
       if (that.$items[key]) {

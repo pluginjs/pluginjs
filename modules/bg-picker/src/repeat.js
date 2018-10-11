@@ -3,6 +3,7 @@ import { parseHTML, queryAll, closest, setData, getData } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
+import Tooltip from '@pluginjs/tooltip'
 
 export default class Repeat {
   constructor(instance) {
@@ -25,6 +26,14 @@ export default class Repeat {
     this.$wrap = parseHTML(html)
 
     this.$items = queryAll('li', this.$wrap)
+
+    for (let i = 0; i < this.$items.length; i++) {
+      Tooltip.of(this.$items[i], {
+        trigger: 'hover',
+        title: '',
+        placement: 'bottom'
+      })
+    }
 
     this.values.forEach((value, key) => {
       // this.$items[key].dataset.repeat = value

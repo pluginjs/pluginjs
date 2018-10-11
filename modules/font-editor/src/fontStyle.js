@@ -2,6 +2,7 @@ import template from '@pluginjs/template'
 import { parseHTML, setData } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
+import Tooltip from '@pluginjs/tooltip'
 
 export default class FontStyle {
   constructor(instance) {
@@ -17,6 +18,11 @@ export default class FontStyle {
       classes: this.instance.classes
     })
     this.$wrap = parseHTML(html)
+    Tooltip.of(this.$wrap, {
+      trigger: 'hover',
+      title: '',
+      placement: 'bottom'
+    })
     this.instance.$typoDecorations.append(this.$wrap)
     // this.$wrap.dataset.fontStyle = this.value
     setData('fontStyle', this.value, this.$wrap)

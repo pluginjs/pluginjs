@@ -2,6 +2,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { queryAll, parseHTML, setData, getData } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
+import Tooltip from '@pluginjs/tooltip'
 
 export default class TextTransform {
   constructor(instance) {
@@ -23,14 +24,19 @@ export default class TextTransform {
     for (let i = 0; i < parseHTML(html).children.length; i++) {
       this.$wrap.push(parseHTML(html).children[i])
     }
-    console.log(this.$wrap)
     this.instance.$typoDecorations.append(...this.$wrap)
 
     this.$items = queryAll(
       `.${this.instance.classes.TEXTTRANSFORM}`,
       this.instance.$typoDecorations
     )
-
+    for (let i = 0; i < this.$items.length; i++) {
+      Tooltip.of(this.$items[i], {
+        trigger: 'hover',
+        title: '',
+        placement: 'bottom'
+      })
+    }
     this.values.forEach((value, key) => {
       if (that.$items[key]) {
         // that.$items[key].dataset.textTransform = value
