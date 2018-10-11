@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import { deepMerge, parseDataOptions } from '@pluginjs/utils'
+import { parseDataOptions } from '@pluginjs/utils'
 import { addClass, hasClass } from '@pluginjs/classes'
 import { closest, wrap, parentWith, parseHTML } from '@pluginjs/dom'
-import { isString, isNan } from '@pluginjs/is'
+import { isString, isNan, isPlainObject } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
 import Pj from '@pluginjs/factory'
@@ -59,7 +59,11 @@ class Parallax extends Component {
   initialize() {
     this.initContainer()
     this.initViewport()
-    this.initLoader()
+
+    if (this.options.loader) {
+      this.initLoader()
+    }
+
     this.initSpeed()
     this.initBreakpoints()
     this.direction = this.options.direction || 'vertical'
@@ -121,16 +125,16 @@ class Parallax extends Component {
   }
 
   initLoader() {
-    const loaderConfig = deepMerge(
-      {
+    if (isPlainObject(this.options.loader)) {
+      this.loader = Loader.of(this.container, this.options.loader)
+    } else {
+      this.loader = Loader.of(this.container, {
         theme: 'ring',
         color: '#000000',
         size: 'lg'
-      },
-      this.options.loaderConfig
-    )
+      })
+    }
 
-    this.loader = Loader.of(this.container, loaderConfig)
     this.loader.show()
   }
 
@@ -162,18 +166,23 @@ class Parallax extends Component {
     const screens = Breakpoints.all()
     this.initScreenOptions(screens)
     const that = this
+    const currentName = Breakpoints.current().name
 
-    if (this.options.break) {
-      Breakpoints.on('change', function() {
-        if (that.screenOptions[this.current.name]) {
-          Object.keys(that.screenOptions[this.current.name]).forEach(key => {
-            that[key] = that.screenOptions[this.current.name][key]
-          })
-        } else {
-          that.reset()
-        }
+    if (this.screenOptions[currentName]) {
+      Object.keys(this.screenOptions[currentName]).forEach(key => {
+        this[key] = this.screenOptions[currentName][key]
       })
     }
+
+    Breakpoints.on('change', function() {
+      if (that.screenOptions[this.current.name]) {
+        Object.keys(that.screenOptions[this.current.name]).forEach(key => {
+          that[key] = that.screenOptions[this.current.name][key]
+        })
+      } else {
+        that.reset()
+      }
+    })
   }
 
   reset() {
@@ -197,15 +206,17 @@ class Parallax extends Component {
   }
 
   initMode() {
+    if (this.options.video) {
+      this.mode = new Video(this)
+      return
+    }
+
     switch (this.options.mode) {
-      case 'image':
-        this.mode = new Image(this)
-        break
       case 'background':
         this.mode = new Background(this)
         break
-      case 'video':
-        this.mode = new Video(this)
+      case 'image':
+        this.mode = new Image(this)
         break
       default:
         break
@@ -293,13 +304,13 @@ class Parallax extends Component {
     }
 
     const offset =
-      1.6 - this.containerBottom / (this.windowHeight + this.containerHeight)
+      this.containerBottom / (this.windowHeight + this.containerHeight)
 
     this.transform = 'translate3d(0, 0, 0)'
 
     const style = {
       transform: this.transform,
-      opacity: offset * Math.abs(this.speed),
+      opacity: 1 - offset * Math.abs(this.speed),
       height: '100%',
       width: '100%'
     }
@@ -317,7 +328,7 @@ class Parallax extends Component {
     const offset =
       1.2 - this.containerBottom / (this.windowHeight + this.containerHeight)
 
-    this.transform = `scale(${1 + offset * (0.5 + Math.abs(this.speed))})`
+    this.transform = `scale(${1 + offset * Math.abs(this.speed)})`
 
     setStyle(
       {
@@ -369,6 +380,14 @@ class Parallax extends Component {
 
   resize() {
     this.effect()
+  }
+
+  setSpeed(speed) {
+    this.speed = speed
+  }
+
+  getSpeed() {
+    return this.speed
   }
 
   enable() {

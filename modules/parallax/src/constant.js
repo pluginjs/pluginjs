@@ -11,23 +11,21 @@ export const events = {
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
-  CONTAINER: '{namespace}-container',
-  IMAGE: '{namespace}-image'
+  CONTAINER: '{namespace}-container'
 }
 
-export const methods = ['show']
+export const methods = ['enable', 'disable', 'destroy', 'setSpeed', 'getSpeed']
 
 export const defaults = {
   theme: null,
   container: null,
   direction: 'vertical', // 'vertical', 'horizontal'
-  mode: 'image', // 'image', 'background', 'video'
-  speed: 0.5,
-  loaderConfig: null,
   type: 'scroll', // 'scroll', 'opacity', 'scale'
-  videoSrc: '', // video mode
-  videoMuted: true, // video mode
-  imageSrc: '', // image mode, background mode
+  speed: 0.5, // -1 ~ 1
+  mode: 'background', // 'background', 'image'
+  image: null, // null, src, {} => src , srcset
+  video: null, // null, {}
+  loader: true, // true, false, {}
   templates: {
     image() {
       return '<img class="{classes.IMAGE}">'

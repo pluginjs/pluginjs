@@ -1,4 +1,5 @@
 import { append } from '@pluginjs/dom'
+import { isString, isPlainObject } from '@pluginjs/is'
 
 import Base from './base'
 
@@ -11,17 +12,24 @@ class Image extends Base {
 
   initialize() {
     this.element = this.instance.createElement('image')
-    this.element.setAttribute('src', this.options.imageSrc)
 
-    if (this.options.imageSrcset) {
-      this.element.setAttribute('srcset', this.options.imageSrcset)
+    if (isString(this.options.image)) {
+      this.element.setAttribute('src', this.options.image)
+    }
+
+    if (isPlainObject(this.options.image)) {
+      Object.keys(this.options.image).forEach(key => {
+        this.element.setAttribute(`${key}`, this.options.image[key])
+      })
     }
 
     append(this.element, this.instance.element)
 
-    this.element.addEventListener('load', () => {
-      this.instance.loader.hide()
-    })
+    if (this.instance.options.loader) {
+      this.element.addEventListener('load', () => {
+        this.instance.loader.hide()
+      })
+    }
   }
 }
 

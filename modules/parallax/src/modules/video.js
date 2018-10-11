@@ -11,14 +11,17 @@ class Video extends Base {
   initialize() {
     const that = this
     this.element = this.instance.element
-    this.video = BgVideo.of(this.element, {
-      type: 'html5',
-      muted: that.options.videoMuted,
-      url: that.options.videoSrc,
-      onLoaded() {
-        that.instance.loader.hide()
-      }
-    })
+    let options = this.instance.options.video
+
+    if (this.instance.options.loader) {
+      options = Object.assign({}, options, {
+        onLoaded() {
+          that.instance.loader.hide()
+        }
+      })
+    }
+
+    this.video = BgVideo.of(this.element, options)
   }
 }
 

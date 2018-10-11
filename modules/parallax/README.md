@@ -92,13 +92,14 @@ You can also save the instances to variable for further use.
 Name | Description | Default
 -----|--------------|-----
 `"theme"` | Set plugin theme option | `null`
-`"speed"` | Set speed | `1000`
-`"delayType"` | Set delayType | `throttle`
-`"delay"` | Set delay | `100`
-`"offset"` | Set offset | `0`
-`"mode"` | Set mode | `translateX`
-`"max"` | Set max | `null`
-`"min"` | Set min | `null`
+`"container"` | Set container | `null`
+`"direction"` | Set direction ['vertical', 'horizontal'] | `vertical`
+`"type"` | Set type ['scroll', 'opacity', 'scale'] | `scroll`
+`"speed"` | Set speed [-1 ~ 1] | `0.5`
+`"mode"` | Set mode ['background', 'image'] | `background`
+`"image"` | Set image [null, src, {}] | `null`
+`"video"` | Set video [null, {}] | `null`
+`"loader"` | Set loader [true, false, {}] | `true`
 
 ### Events
 
@@ -111,7 +112,8 @@ Name | Description
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
 `"destroy"` | Gets fired when plugin has destroy
-`"enter"` | Gets fired when plugin has enter
+`"enter"` | Gets fired when plugin has enter viewport
+`"leave"` | Gets fired when plugin has leave viewport
 
 ### Methods
 
@@ -123,13 +125,16 @@ Name | Description
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
-`"setAnimation"` | Set value of setAnimation
-`"setAnimationDelay"` | Set value of setAnimationDelay
-`"beforeLoad"` | Set value of beforeLoad
-`"afterLoad"` | Set value of afterLoad
-`"load"` | Set value of load
-`"isLoad"` | Set value of isLoad
-`"setDelay"` | Get setdelay function
+`"setSpeed"` | Set value of setSpeed
+`"getSpeed"` | Get value of getSpeed
+---
+
+### Classes
+
+Name | Description | Default
+-----|------|------
+`"NAMESPACE"` | Declare plugin namespace | `pj-parallax`
+`"CONTAINER"` | Declare plugin container node | `{namespace}-container`
 ---
 
 ## Browser support

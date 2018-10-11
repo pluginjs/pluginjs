@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $parallax: "pj-parallax" !default;
+$bgVideo: "pj-bgVideo" !default;
 
 // Core
 // =====================
@@ -27,7 +28,7 @@ $parallax: "pj-parallax" !default;
 			will-change: transfrom;
 		}
 
-		.pj-bgVideo {
+		.#{$bgVideo} {
 		  width: 100%;
 		  height: 100%;
 

@@ -10,39 +10,44 @@
         "defaultValue": "null"
       },
       {
+        "name": "container",
+        "desc": "Set container",
+        "defaultValue": "null"
+      },
+      {
+        "name": "direction",
+        "desc": "Set direction ['vertical', 'horizontal']",
+        "defaultValue": "vertical"
+      },
+      {
+        "name": "type",
+        "desc": "Set type ['scroll', 'opacity', 'scale']",
+        "defaultValue": "scroll"
+      },
+      {
         "name": "speed",
-        "desc": "Set speed",
-        "defaultValue": "1000"
-      },
-      {
-        "name": "delayType",
-        "desc": "Set delayType",
-        "defaultValue": "throttle"
-      },
-      {
-        "name": "delay",
-        "desc": "Set delay",
-        "defaultValue": "100"
-      },
-      {
-        "name": "offset",
-        "desc": "Set offset",
-        "defaultValue": "0"
+        "desc": "Set speed [-1 ~ 1]",
+        "defaultValue": "0.5"
       },
       {
         "name": "mode",
-        "desc": "Set mode",
-        "defaultValue": "translateX"
+        "desc": "Set mode ['background', 'image']",
+        "defaultValue": "background"
       },
       {
-        "name": "max",
-        "desc": "Set max",
+        "name": "image",
+        "desc": "Set image [null, src, {}]",
         "defaultValue": "null"
       },
       {
-        "name": "min",
-        "desc": "Set min",
+        "name": "video",
+        "desc": "Set video [null, {}]",
         "defaultValue": "null"
+      },
+      {
+        "name": "loader",
+        "desc": "Set loader [true, false, {}]",
+        "defaultValue": "true"
       }
     ],
     "option": "theme",
@@ -65,7 +70,11 @@
       },
       {
         "name": "enter",
-        "desc": "Gets fired when plugin has enter"
+        "desc": "Gets fired when plugin has enter viewport"
+      },
+      {
+        "name": "leave",
+        "desc": "Gets fired when plugin has leave viewport"
       }
     ],
     "event": "ready",
@@ -84,35 +93,27 @@
         "desc": "Destroy plugin"
       },
       {
-        "name": "setAnimation",
-        "desc": "Set value of setAnimation"
+        "name": "setSpeed",
+        "desc": "Set value of setSpeed"
       },
       {
-        "name": "setAnimationDelay",
-        "desc": "Set value of setAnimationDelay"
-      },
-      {
-        "name": "beforeLoad",
-        "desc": "Set value of beforeLoad"
-      },
-      {
-        "name": "afterLoad",
-        "desc": "Set value of afterLoad"
-      },
-      {
-        "name": "load",
-        "desc": "Set value of load"
-      },
-      {
-        "name": "isLoad",
-        "desc": "Set value of isLoad"
-      },
-      {
-        "name": "setDelay",
-        "desc": "Get setdelay function"
+        "name": "getSpeed",
+        "desc": "Get value of getSpeed"
       }
     ],
-    "method": "enable"
+    "method": "enable",
+    "classes": [
+      {
+        "name": "NAMESPACE",
+        "desc": "Declare plugin namespace",
+        "value": "pj-parallax"
+      },
+      {
+        "name": "CONTAINER",
+        "desc": "Declare plugin container node",
+        "value": "{namespace}-container"
+      }
+    ]
   },
   "output": "./README.md",
   "template": "README"

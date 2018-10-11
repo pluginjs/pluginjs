@@ -37,12 +37,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/bg-video": "*",
+    "@pluginjs/breakpoints": "*",
+    "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/loader": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*",
+    "@pluginjs/viewport": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

@@ -2,10 +2,6 @@
 @import "@pluginjs/parallax/src/css/parallax.scss";
 @import "@pluginjs/loader/src/css/loader.scss";
 
-.gap {
-  height: 200px;
-}
-
 section {
   margin-bottom: 100px;
 }
@@ -25,21 +21,21 @@ section {
   justify-content: space-between;
 }
 
-#direction {
+.flex-two {
   .section {
     width: calc((100% - 30px) / 2)
   }
 }
 
-#speed {
+.flex-three {
   .section {
-    width: calc((100% - 40px) / 4)
+    width: calc((100% - 40px) / 3)
   }
 }
 
-#type {
+.flex-four {
   .section {
-    width: calc((100% - 40px) / 3)
+    width: calc((100% - 40px) / 4)
   }
 }
 
