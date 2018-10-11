@@ -41,6 +41,8 @@ export const classes = {
 }
 
 export const methods = [
+  'select',
+  'unselect',
   'set',
   'get',
   'val',

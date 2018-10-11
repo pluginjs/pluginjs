@@ -1,12 +1,10 @@
 export const namespace = 'videoPicker'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
-  DESTROY: 'destroy',
-  CHANGE: 'change'
+  DESTROY: 'destroy'
 }
 
 export const classes = {

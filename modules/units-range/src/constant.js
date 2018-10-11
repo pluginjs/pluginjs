@@ -8,7 +8,10 @@ export const events = deepMerge(Units.events, {
   CHANGE: 'change',
   ENABLE: 'enable',
   DISABLE: 'disable',
-  DESTROY: 'destroy'
+  DESTROY: 'destroy',
+  CHANGEINPUT: 'changeInput',
+  CHANGEUNIT: 'changeUnit',
+  CHANGESTATIC: 'changeStatic'
 })
 
 export const classes = deepMerge(Units.classes, {

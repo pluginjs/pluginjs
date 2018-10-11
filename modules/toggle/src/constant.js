@@ -1,7 +1,6 @@
 export const namespace = 'toggle'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
@@ -25,6 +24,7 @@ export const classes = {
 export const methods = [
   'check',
   'uncheck',
+  'get',
   'set',
   'val',
   'enable',

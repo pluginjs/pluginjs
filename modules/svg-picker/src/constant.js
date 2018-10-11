@@ -9,7 +9,6 @@ export const events = {
   DISABLE: 'disable',
   DESTROY: 'destroy',
   SELECT: 'select',
-  UNSELECT: 'unselect',
   CHANGE: 'change',
   HIDE: 'hide',
   HIDED: 'hided',
@@ -49,6 +48,7 @@ export const methods = [
   'get',
   'val',
   'clear',
+  'manage',
   'enable',
   'disable',
   'destroy'
