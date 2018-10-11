@@ -6,7 +6,9 @@ $choice: "pj-choice" !default;
 
 $choice-item-spacer: 8px 16px !default;
 
-$choice-dropdown-item-spacer: $choice-item-spacer;
+$choice-dropdown-zindex: $zindex-dropdown !default;
+
+$choice-dropdown-item-spacer: $choice-item-spacer !default;
 
 // Core
 // =====================
@@ -21,6 +23,10 @@ $choice-dropdown-item-spacer: $choice-item-spacer;
   cursor: pointer;
   user-select: none;
   outline: 0;
+
+  &.#{$choice}-selected {
+    z-index: 1;
+  }
 }
 
 // Button groups
@@ -43,7 +49,7 @@ $choice-dropdown-item-spacer: $choice-item-spacer;
   position: absolute;
   top: 4px !important;
   left: -9px !important;
-  z-index: $zindex-dropdown;
+  z-index: $choice-dropdown-zindex;
   margin: 0;
   pointer-events: none;
   visibility: hidden;
@@ -55,7 +61,7 @@ $choice-dropdown-item-spacer: $choice-item-spacer;
   }
 }
 
-/*stylelint-disable*/
+/* stylelint-disable */
 .#{$choice}-dropdown {
   box-sizing: border-box;
   display: flex;

@@ -9,6 +9,7 @@ $dropdown: "pj-dropdown" !default;
 
 $fontEditor-dropdown-width: 272px !default;
 $fontEditor-dropdown-padding: 24px 28px !default;
+$fontEditor-dropdown-zindex: $zindex-dropdown !default;
 
 // Core
 // =====================
@@ -58,7 +59,7 @@ $fontEditor-dropdown-padding: 24px 28px !default;
   }
 
   &-dropdown {
-    z-index: 100;
+    z-index: $fontEditor-dropdown-zindex;
     box-sizing: border-box;
     width: $fontEditor-dropdown-width;
     padding: $fontEditor-dropdown-padding;

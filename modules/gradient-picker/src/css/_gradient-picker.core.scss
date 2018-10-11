@@ -42,7 +42,7 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
     position: absolute;
     top: 50%;
     right: $gradientPicker-remove-right;
-    z-index: 9;
+    z-index: 1;
     transform: translateY(-50%);
   }
 

@@ -12,12 +12,15 @@
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
   "version": "0.5.3",
+  "category": "css",
+  "devDependencies": {
+    "sass": "^1.14.1"
+  },
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
   },
   "buttons": "buttons.scss",
-  "category": "css",
   "inputs": "inputs.scss",
   "variables": "variables.scss"
 }

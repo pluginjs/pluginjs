@@ -16,9 +16,12 @@ $colorPicker-preview-span-left: calc(50% - #{$colorPicker-border-width}) !defaul
 $colorPicker-preview-bg-width: 36px !default;
 $colorPicker-preview-bg-height: 24px !default;
 
+$colorPicker-panel-zindex: $zindex-dropdown !default;
 $colorPicker-panel-width: 290px !default;
 
 $colorPicker-hex-height: 24px !default;
+
+$colorPicker-mask-zindex: $colorPicker-panel-zindex - 1 !default;
 
 // Core
 // =====================
@@ -36,7 +39,7 @@ $colorPicker-hex-height: 24px !default;
     position: absolute;
     top: 50%;
     right: $colorPicker-remove-right;
-    z-index: 9;
+    z-index: 1;
     transform: translateY(-50%);
   }
 
@@ -65,7 +68,7 @@ $colorPicker-hex-height: 24px !default;
   }
 
   &-panel {
-    z-index: 9999;
+    z-index: $colorPicker-panel-zindex;
     box-sizing: border-box;
     flex-direction: column;
     width: $colorPicker-panel-width;
@@ -148,7 +151,7 @@ $colorPicker-hex-height: 24px !default;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 98;
+    z-index: $colorPicker-mask-zindex;
     display: none;
     width: 100%;
     height: 100%;

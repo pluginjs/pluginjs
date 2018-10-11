@@ -2,7 +2,7 @@
 
 $zoom: "pj-zoom";
 
-$zoom-z-index: 2001;
+$zoom-z-index: $zindex-zoom;
 $zoom-transition-duration: 400ms;
 $zoom-transition-timing: cubic-bezier(0.4, 0, 0, 1);
 

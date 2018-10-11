@@ -27,7 +27,6 @@ $strength-check-border-radius: $border-radius-base !default;
   &-toggle {
     position: absolute;
     top: $strength-gatter;
-    z-index: 99999999;
     display: block;
   }
 
@@ -59,7 +58,6 @@ $strength-check-border-radius: $border-radius-base !default;
         position: relative;
         top: 0;
         left: 0;
-        z-index: 999;
         display: inline-block;
         font-family:$strength-font;
         vertical-align: bottom;

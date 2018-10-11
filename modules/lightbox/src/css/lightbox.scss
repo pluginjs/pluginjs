@@ -4,6 +4,7 @@
 // =====================
 $lightbox: "pj-lightbox" !default;
 $slider: "pj-slider" !default;
+$lightbox-show-zindex: $zindex-lightbox !default;
 
 .#{$lightbox} {
   &-container {
@@ -30,7 +31,7 @@ $slider: "pj-slider" !default;
   }
 
   &-show {
-    z-index: 99999;
+    z-index: $lightbox-show-zindex;
     visibility: visible;
     opacity: 1;
   }

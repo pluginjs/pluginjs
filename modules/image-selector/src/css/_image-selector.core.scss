@@ -10,6 +10,10 @@ $imageSelector-bg: $color-white !default;
 
 $imageSelector-item-spacer: 12px !default;
 
+$imageSelector-dropdown-show-zindex: $zindex-dropdown !default;
+
+$imageSelector-panel-wrap-zindex: $zindex-dropdown !default;
+
 // Core
 // ====================
 .#{$imageSelector} {
@@ -80,12 +84,12 @@ $imageSelector-item-spacer: 12px !default;
 }
 
 .#{$dropdown}-show {
-  z-index: 999999 !important;
-  display: block !important;
+  z-index: $imageSelector-dropdown-show-zindex;
+  display: block;
   background-color: $color-white;
 }
 
 .#{$dropdown}-panel-wrap {
-  z-index: 999999 !important;
+  z-index: $imageSelector-panel-wrap-zindex;
   background-color: $color-white;
 }

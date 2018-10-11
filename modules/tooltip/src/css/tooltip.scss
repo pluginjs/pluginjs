@@ -36,7 +36,6 @@ $tooltip-lg-arrow-spacer: $tooltip-lg-arrow-size;
 // Skin
 // =====================
 .#{$tooltip} {
-  z-index: 1000000;
   max-width: $tooltip-max-width;
   font-family: $tooltip-font-family;
   font-size: $tooltip-font-size;

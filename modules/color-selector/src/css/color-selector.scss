@@ -36,6 +36,7 @@ $colorSelector-remove-hover-color: $color-primary-black !default;
 // input
 $colorSelector-input-padding-right: $colorSelector-preview-width + 4px !default;
 // panel
+$colorSelector-panel-zindex: $zindex-dropdown !default;
 $colorSelector-panel-width: 28.8 * $colorSelector-sizer !default; //288px
 $colorSelector-panel-height: 37 * $colorSelector-sizer !default; //370px
 $colorSelector-panel-shadow: $box-shadow-base !default;
@@ -117,6 +118,8 @@ $colorSelector-gradient-mode-margin-right: 1 * $colorSelector-sizer !default; //
 // marker
 $colorSelector-marker-width: 1.2 * $colorSelector-sizer !default; //12px
 $colorSelector-marker-height: 1.2 * $colorSelector-sizer !default; //12px
+//mask
+$colorSelector-mask-zindex: $colorSelector-panel-zindex - 1 !default;
 // wheel
 $colorSelector-wheel-width: 2.4 * $colorSelector-sizer !default; //20px
 $colorSelector-wheel-height: $colorSelector-wheel-width !default;
@@ -160,7 +163,7 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
     position: absolute;
     top: 50%;
     right: $colorSelector-remove-right;
-    z-index: 9;
+    z-index: 1;
     display: none;
     color: $colorSelector-remove-color;
     transform: translateY(-50%);
@@ -234,7 +237,7 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
   }
   &-dropdown {
     left: 10px !important;
-    z-index: 9999;
+    z-index: $colorSelector-panel-zindex;
     box-sizing: border-box;
     flex-direction: column;
     width: $colorSelector-panel-width;
@@ -409,7 +412,7 @@ $colorSelector-angle-width: 4.4 * $colorSelector-sizer !default; //44px
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 98;
+    z-index: $colorSelector-mask-zindex;
     display: none;
     width: 100%;
     height: 100%;

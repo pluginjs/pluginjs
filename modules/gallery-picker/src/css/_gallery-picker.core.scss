@@ -9,6 +9,7 @@ $galleryPicker-fill-count-gatter: 6px !default;
 
 $galleryPicker-items-height: 224px !default;
 
+$galleryPicker-dropdown-zindex: $zindex-dropdown !default;
 // Core
 // =====================
 .#{$galleryPicker} {
@@ -84,7 +85,7 @@ $galleryPicker-items-height: 224px !default;
   }
 
   &-dropdown {
-    z-index: 100;
+    z-index: $galleryPicker-dropdown-zindex;
     box-sizing: border-box;
     flex-direction: column;
     overflow: hidden;

@@ -1,8 +1,9 @@
 @import "@pluginjs/styles/variables.scss";
 
 $magnify: "pj-magnify" !default;
-$magnify-target-z-index: 1000 !default;
-$magnify-lens-z-index: 1001 !default;
+$magnify-target-zindex: $zindex-magnify !default;
+$magnify-lens-zindex: $magnify-target-zindex + 1 !default;
+
 $magnify-inside-lens-width: 180px;
 $magnify-inside-lens-height: 180px;
 $magnify-inside-lens-border-radius: 100%;
@@ -33,7 +34,7 @@ $magnify-inside-lens-border-radius: 100%;
 
   &-target {
     position: absolute;
-    z-index: $magnify-target-z-index;
+    z-index: $magnify-target-zindex;
     box-sizing: content-box;
     width: 100%;
     height: 100%;
@@ -101,7 +102,7 @@ $magnify-inside-lens-border-radius: 100%;
   }
 
   &-lens {
-    z-index: $magnify-lens-z-index;
+    z-index: $magnify-lens-zindex;
   }
 
   &-inside &-lens {

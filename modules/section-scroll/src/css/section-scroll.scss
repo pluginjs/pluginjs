@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $sectionScroll: "pj-sectionScroll" !default;
+$sectionScroll-header-zindex: $zindex-fixed ! !default;
 
 // Core
 // =====================
@@ -49,7 +50,7 @@ li {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: $sectionScroll-header-zindex;
   width: 100%;
   height: 60px;
   text-align: center;
@@ -71,7 +72,7 @@ li {
   line-height: 60px;
   color: #444;
   text-decoration: none;
-  -webkit-transition: 0.2s;  /* stylelint-disable-line*/
+  -webkit-transition: 0.2s;  /* stylelint-disable-line */
   transition: 0.2s;
 }
 
@@ -85,7 +86,7 @@ li {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 10;
+  z-index: 1030;
   width: 100%;
   height: 60px;
   text-align: center;
@@ -107,7 +108,7 @@ li {
   line-height: 60px;
   color: #444;
   text-decoration: none;
-  -webkit-transition: 0.2s; /* stylelint-disable-line*/
+  -webkit-transition: 0.2s; /* stylelint-disable-line */
   transition: 0.2s;
 }
 

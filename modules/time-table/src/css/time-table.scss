@@ -22,7 +22,7 @@ $datepicker-border-color: #dfe4ed;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 3;
+    z-index: 1;
     display: block;
     background-color: transparent;
   }
@@ -33,7 +33,7 @@ $datepicker-border-color: #dfe4ed;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 3;
+    z-index: 1;
     display: block;
     background-color: transparent;
   }
@@ -98,7 +98,7 @@ $datepicker-border-color: #dfe4ed;
 
   .#{$datePickerPicker} {
     &-wrap {
-      z-index: 4;
+      z-index: 2;
       padding: 0;
     }
   }

@@ -40,7 +40,6 @@ $choice-dropdown-item-gatter: 8px;
   }
 
   &.#{$choice}-selected {
-    z-index: 99;
     border-color: $choice-active-color;
   }
 

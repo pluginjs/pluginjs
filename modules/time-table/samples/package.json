@@ -11,7 +11,8 @@
   "dependencies": {
     "@pluginjs/dom": "*",
     "@pluginjs/time-table": "*",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "primary.css": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

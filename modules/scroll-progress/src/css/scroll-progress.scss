@@ -3,12 +3,13 @@
 // Vars
 // =====================
 $scrollProgress: "pj-scrollProgress" !default;
+$scrollProgress-zindex: $zindex-fixed !default;
 
 // Core
 // =====================
 .#{$scrollProgress}-bar {
   position: fixed;
-  z-index: 999;
+  z-index: $scrollProgress-zindex;
 
   &.#{$scrollProgress}-top-left {
     top: 0;

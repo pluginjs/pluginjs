@@ -9,6 +9,12 @@ $datePicker-days-line-height: 30px !default;
 $datePicker-mobile-width: 80% !default;
 $datePicker-mobile-height: 80% !default;
 
+$datePicker-dropdown-zindex: $zindex-dropdown !default;
+
+$datePicker-mobile-zindex: $datePicker-dropdown-zindex + 1 !default;
+
+$datePicker-cover-zindex: $datePicker-dropdown-zindex - 1 !default;
+
 // core
 //==========================
 .#{$datePicker} {
@@ -186,7 +192,7 @@ $datePicker-mobile-height: 80% !default;
   }
 
   &-dropdown {
-    z-index: 9999;
+    z-index: $datePicker-dropdown-zindex;
     display: none;
   }
 
@@ -202,7 +208,7 @@ $datePicker-mobile-height: 80% !default;
   &-isMobile {
     position: fixed;
     top: 100px;
-    z-index: 99999;
+    z-index: $datePicker-mobile-zindex;
     width: $datePicker-mobile-width;
     height: $datePicker-mobile-height;
     line-height: 1;
@@ -263,7 +269,7 @@ $datePicker-mobile-height: 80% !default;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: $datePicker-cover-zindex;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
