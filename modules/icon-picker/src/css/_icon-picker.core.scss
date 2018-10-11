@@ -7,8 +7,6 @@ $iconPicker: "pj-iconPicker" !default;
 $iconPicker-width: 200px !default;
 $iconPicker-max-height: 300px !default;
 
-$iconPicker-dropdown-width: 272px !default;
-
 $iconPicker-trigger-arrow-icon: $pj-icon-caret-down-mini !default;
 $iconPicker-trigger-arrow-font: $pj-icon-font-family !default;
 $iconPicker-trigger-arrow-right: $input-padding-x !default;
@@ -21,19 +19,15 @@ $iconPicker-clear-right: 11px !default;
 $iconPicker-item-width: 36px !default;
 $iconPicker-item-height: 36px !default;
 
-$iconPicker-item-border-width: 1px !default;
-
-$iconPicker-item-margin-x: 2px !default;
-$iconPicker-item-margin-y: 2px !default;
-
 $iconPicker-icon-width: 16px !default;
 $iconPicker-icon-height: 16px !default;
 
 $iconPicker-manage-icon: $pj-icon-setting !default;
 $iconPicker-manage-font: $pj-icon-font-family !default;
 
-$iconPicker-item-padding-x: ($iconPicker-item-width - $iconPicker-icon-width)/2 - $iconPicker-item-border-width !default;
-$iconPicker-item-padding-y: ($iconPicker-item-height - $iconPicker-icon-height)/2 - $iconPicker-item-border-width !default;
+$iconPicker-search-height: 40px;
+$iconPicker-search-left: 12px;
+$iconPicker-search-icon: $pj-icon-search !default;
 
 .#{$iconPicker} {
   position: relative;
@@ -49,7 +43,7 @@ $iconPicker-item-padding-y: ($iconPicker-item-height - $iconPicker-icon-height)/
   }
 
   & &-dropdown {
-    width: $iconPicker-dropdown-width;
+    width: auto;
   }
 
   &-main {
@@ -74,18 +68,16 @@ $iconPicker-item-padding-y: ($iconPicker-item-height - $iconPicker-icon-height)/
   &-item {
     position:relative;
     box-sizing: border-box;
+    justify-content: center;
     width: $iconPicker-item-width;
     height: $iconPicker-item-height;
-    padding: $iconPicker-item-padding-y $iconPicker-item-padding-x;
-    margin: $iconPicker-item-margin-y $iconPicker-item-margin-x;
-    text-align: center;
-    text-overflow: clip;
-    border: $iconPicker-item-border-width solid transparent;
-    border-radius: 100%;
 
     i {
-      width: $iconPicker-icon-width;
-      height: $iconPicker-icon-height;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
     }
   }
 
@@ -210,6 +202,20 @@ $iconPicker-item-padding-y: ($iconPicker-item-height - $iconPicker-icon-height)/
   }
 
   &-filter {
+    position: relative;
+    box-sizing: border-box;
+    height: $iconPicker-search-height;
+
+    &::before {
+      @include icon();
+      position: absolute;
+      top: 50%;
+      left: $iconPicker-search-left;
+      font-family: $iconPicker-clear-font;
+      content: icon-content($iconPicker-search-icon);
+      transform: translateY(-50%);
+    }
+
     input {
       box-sizing: border-box;
       width: 100%;

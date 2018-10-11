@@ -6,11 +6,19 @@
 $iconPicker: "pj-iconPicker";
 
 $iconPicker-color: $text-color;
-$iconPicker-trigger-width: $iconPicker-width;
+
+$iconPicker-item-size: 32px;
+$iconPicker-item-margin: 4px;
+$iconPicker-item-hover-bg: $gray-lighter;
+$iconPicker-item-icon-font-size: $font-size-md;
+$iconPicker-item-active-color: $color-white;
+$iconPicker-item-active-bg: $color-primary;
+$iconPicker-item-active-color: $color-white;
+$iconPicker-item-active-bg: $color-primary;
+
+$iconPicker-pack-size: 6 * ($iconPicker-item-size + $iconPicker-item-margin * 2 );
+
 $iconPicker-trigger-placeholder-color: $gray;
-
-$iconPicker-trigger-arrow-color: $gray-darkest;
-
 $iconPicker-trigger-disabled-bg: $disabled-bg;
 $iconPicker-trigger-disabled-border: $disabled-border;
 $iconPicker-trigger-disabled-color: $disabled-color;
@@ -18,33 +26,29 @@ $iconPicker-trigger-disabled-color: $disabled-color;
 $iconPicker-clear-color: $gray;
 $iconPicker-clear-hover-color: $text-color;
 
-$iconPicker-group-label-font-size: $font-size-sm;
+$iconPicker-group-label-font-size: $font-size-base;
 $iconPicker-group-label-color: $gray-darker;
-$iconPicker-group-label-space-x: 11px;
-$iconPicker-group-label-space-y: 8px;
+$iconPicker-group-label-space-x: 12px;
+$iconPicker-group-label-space-y: 9.5px;
 
 $iconPicker-search-color: $gray;
 $iconPicker-search-padding-x: 12px;
 $iconPicker-search-padding-y: 12px;
 $iconPicker-search-font-size: $input-font-size;
 $iconPicker-search-border-color: $border-color;
-$iconPicker-search-icon: $pj-icon-search !default;
-$iconPicker-search-font: $pj-icon-font-family !default;
-$iconPicker-search-right: 33px !default;
-$iconPicker-search-border-color: $border-color;
+$iconPicker-search-right: 33px;
 
 $iconPicker-state-color: $gray-dark;
 
-$iconPicker-action-padding: 8px;
+$iconPicker-action-padding: 7.5px 0;
+$iconPicker-action-font-size: $font-size-base;
 $iconPicker-action-border-color: $border-color;
 
 $iconPicker-action-hover-bg: $gray-lightest;
 
-$iconPicker-main-padding: 6px;
-$iconPicker-group-margin-bottom: $iconPicker-main-padding;
+$iconPicker-main-margin: 8px;
 
-$iconPicker-item-active-color: $color-white;
-$iconPicker-item-active-bg: $color-primary;
+$iconPicker-group-margin-bottom: 8px;
 
 .#{$iconPicker} {
   outline: none;
@@ -83,12 +87,16 @@ $iconPicker-item-active-bg: $color-primary;
   &-loading {
     width: 80%;
     margin: 0 auto;
-    line-height: 150%;
     color: $iconPicker-state-color;
   }
 
   &-main {
-    padding: $iconPicker-main-padding;
+    margin-top: $iconPicker-main-margin;
+  }
+
+  &-pack {
+    width: $iconPicker-pack-size;
+    margin: 0 16px;
   }
 
   &-group {
@@ -96,13 +104,30 @@ $iconPicker-item-active-bg: $color-primary;
   }
 
   &-item {
-    &.pj-dropdown-active:not(.pj-dropdown-item-disabled) {
-      border-color: $iconPicker-item-active-bg;
+    width: $iconPicker-item-size;
+    height: $iconPicker-item-size;
+    margin: $iconPicker-item-margin;
+    border-radius: 100%;
+
+    &:not(.pj-dropdown-item-disabled):hover {
+      background-color: $iconPicker-item-hover-bg;
     }
+
+    &.pj-dropdown-active {
+      &:not(.pj-dropdown-item-disabled) {
+        color: $iconPicker-item-active-color;
+        background-color: $iconPicker-item-active-bg;
+      }
+    }
+  }
+  
+  &-actions {
+    border-top: 1px solid $iconPicker-action-border-color;
   }
 
   &-action {
     padding: $iconPicker-action-padding;
+    font-size: $iconPicker-action-font-size;
 
     &:hover {
       background: $iconPicker-action-hover-bg;
@@ -113,23 +138,12 @@ $iconPicker-item-active-bg: $color-primary;
     }
   }
 
-  &-actions {
-    border-top: 1px solid $iconPicker-action-border-color;
-  }
-
   &-filter {
     font-size: $iconPicker-search-font-size;
     border-bottom: 1px solid $iconPicker-search-border-color;
 
     &::before {
-      @include icon();
-      position: absolute;
-      top: $iconPicker-search-padding-y;
-      left: $iconPicker-search-padding-x;
-      font-family: $iconPicker-clear-font;
       color: $iconPicker-search-color;
-      vertical-align: middle;
-      content: icon-content($iconPicker-search-icon);
     }
 
     input {
