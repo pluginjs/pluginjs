@@ -46,7 +46,7 @@ $units-disabled-color: $disabled-color;
     }
   }
 
-  &-input {
+  &-input.#{$input} {
     padding: $units-input-padding;
   }
 

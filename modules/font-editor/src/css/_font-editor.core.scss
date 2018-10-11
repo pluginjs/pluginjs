@@ -7,6 +7,8 @@ $select: "pj-select" !default;
 $range: "pj-range" !default;
 $dropdown: "pj-dropdown" !default;
 
+$fontEditor-range-control: 128px !default;
+
 $fontEditor-dropdown-width: 272px !default;
 $fontEditor-dropdown-padding: 24px 28px !default;
 $fontEditor-dropdown-zindex: $zindex-dropdown !default;
@@ -67,9 +69,12 @@ $fontEditor-dropdown-zindex: $zindex-dropdown !default;
 
   &-field {
     &-content {
-      .#{$select},
-      .#{$range}-control {
+      .#{$select} {
         width: inherit;
+      }
+
+      .#{$range}-control {
+        width: $fontEditor-range-control;
       }
     }
   }
