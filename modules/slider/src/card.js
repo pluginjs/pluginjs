@@ -1,7 +1,6 @@
 import anime from 'animejs'
 import { append, query } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { isPlainObject } from '@pluginjs/is'
 
 import Image from './modules/image'
 import Video from './modules/video'
@@ -23,16 +22,11 @@ class Card {
   initialize() {
     this.element = this.instance.createElement('card')
     this.loader = query(`.${this.classes.LOADER}`, this.element)
+    this.$loader = null
 
     if (this.instance.options.loader) {
-      const options = isPlainObject(this.instance.options.loader)
-        ? this.instance.options.loader
-        : { theme: 'ring', color: '#000000', size: 'lg' }
-
-      this.$loader = Loader.of(this.loader, options)
+      this.$loader = Loader.of(this.loader, this.instance.options.loader)
       this.$loader.show()
-    } else {
-      this.$loader = null
     }
   }
 

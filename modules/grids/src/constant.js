@@ -75,7 +75,11 @@ export const defaults = {
   sortDirection: 'max', // min && max
   animate: 'fadeInUp', // fadeInUp,fadeInDown, fadeInLeft, fadeInRight, zoomIn, zoomOut, bounce, bounceIn, flip, calendar, cards, fan
   effects: {}, // set custom effects.
-  loader: true, // true, false, options
+  loader: {
+    theme: 'snake',
+    color: '#000000',
+    size: 'lg'
+  }, // false, options
   sort(key, chunks) {
     if (!key) {
       return chunks

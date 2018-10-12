@@ -51,7 +51,11 @@ const defaults = {
   playCycle: 4000,
   prevIcon: 'pj-icon pj-icon-chevron-left',
   nextIcon: 'pj-icon pj-icon-chevron-right',
-  loader: true, // true, false, options
+  loader: {
+    theme: 'ring',
+    color: '#000000',
+    size: 'lg'
+  }, // false, options
   breakpoint: null, // xs, sm, md, lg, xl
   templates: {
     box() {

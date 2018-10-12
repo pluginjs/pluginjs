@@ -40,8 +40,8 @@ export const defaults = {
   itemSelector: 'div',
   imgSelector: 'img',
   imgContainer: 'div',
-  arrows: false, // true, false, options
-  pagination: false,
+  arrows: false, // false, options
+  pagination: false, // false, options
   group: false,
   multiple: false,
   decay: false,
@@ -51,7 +51,11 @@ export const defaults = {
   height: null, // set swipe height
   defaultActive: 0, // default active item
   duration: 300,
-  loader: true, // true, false, options
+  loader: {
+    theme: 'circle',
+    color: '#000000',
+    size: 'lg'
+  }, // false, options
   templates: {
     container() {
       return '<div class="{classes.CONTAINER}"></div>'

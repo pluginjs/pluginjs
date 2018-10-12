@@ -151,31 +151,24 @@ class Swipe extends Component {
     )
 
     if (images.length > 0) {
-      if (this.options.loader) {
-        const options = isPlainObject(this.options.loader)
-          ? this.options.loader
-          : { theme: 'circle', color: '#000000', size: 'lg' }
-
-        images.forEach(image => {
-          addClass(this.classes.IMG, image)
-          const loader = Loader.of(
+      images.forEach(image => {
+        addClass(this.classes.IMG, image)
+        let loader = ''
+        if (this.options.loader) {
+          loader = Loader.of(
             closest(this.options.imgContainer, image),
-            options
+            this.options.loader
           )
           loader.show()
-          ImageLoader.of(image).on('loaded', img => {
+        }
+
+        ImageLoader.of(image).on('loaded', img => {
+          if (this.options.loader) {
             loader.hide()
-            addClass(this.classes.LOADED, closest(`.${this.classes.ITEM}`, img))
-          })
+          }
+          addClass(this.classes.LOADED, closest(`.${this.classes.ITEM}`, img))
         })
-      } else {
-        images.forEach(image => {
-          addClass(this.classes.IMG, image)
-          ImageLoader.of(image).on('loaded', img => {
-            addClass(this.classes.LOADED, closest(`.${this.classes.ITEM}`, img))
-          })
-        })
-      }
+      })
     }
 
     return items
@@ -500,10 +493,7 @@ class Swipe extends Component {
   }
 
   buildArrows() {
-    const opts = isPlainObject(this.options.arrows)
-      ? this.options.arrows
-      : { type: 'solid' }
-    this.arrows = Arrows.of(this.element, opts)
+    this.arrows = Arrows.of(this.element, this.options.arrows)
   }
 
   resize() {

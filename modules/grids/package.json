@@ -45,7 +45,6 @@
     "@pluginjs/events": "*",
     "@pluginjs/filters": "*",
     "@pluginjs/image-loader": "*",
-    "@pluginjs/is": "*",
     "@pluginjs/loader": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",

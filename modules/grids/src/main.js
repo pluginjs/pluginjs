@@ -1,7 +1,6 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
-import { isPlainObject } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   append,
@@ -82,32 +81,24 @@ class Grids extends Component {
       this.imgs = queryAll(this.options.imgSelector, this.$container)
       this.loading(this.chunks)
       if (this.imgs && this.imgs.length > 0) {
-        if (this.options.loader) {
-          const options = isPlainObject(this.options.loader)
-            ? this.options.loader
-            : { theme: 'snake', color: '#000000', size: 'lg' }
+        this.imgs.forEach(img => {
+          let loader = ''
 
-          this.imgs.forEach(img => {
-            const loader = Loader.of(parent(img), options)
+          if (this.options.loader) {
+            loader = Loader.of(parent(img), this.options.loader)
             loader.show()
-            ImageLoader.of(img).on('loaded', img => {
+          }
+
+          ImageLoader.of(img).on('loaded', img => {
+            if (this.options.loader) {
               loader.hide()
-              addClass(
-                this.classes.LOADED,
-                closest(`.${this.classes.CHUNK}`, img)
-              )
-            })
+            }
+            addClass(
+              this.classes.LOADED,
+              closest(`.${this.classes.CHUNK}`, img)
+            )
           })
-        } else {
-          this.imgs.forEach(img => {
-            ImageLoader.of(img).on('loaded', img => {
-              addClass(
-                this.classes.LOADED,
-                closest(`.${this.classes.CHUNK}`, img)
-              )
-            })
-          })
-        }
+        })
       }
     } else {
       this.loading(this.chunks)

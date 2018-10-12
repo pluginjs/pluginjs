@@ -35,7 +35,6 @@
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/icons": "*",
-    "@pluginjs/is": "*",
     "@pluginjs/loader": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/swipeable": "*",

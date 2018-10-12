@@ -6,7 +6,6 @@ import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, append, parseHTML, data } from '@pluginjs/dom'
-import { isString } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -97,7 +96,7 @@ class Slider extends Component {
 
   initBreakpoints() {
     Breakpoints.init()
-    if (isString(this.options.breakpoint) && this.ensureBreakpoint()) {
+    if (Breakpoints.all().includes(this.options.breakpoint)) {
       const breakpoint = this.options.breakpoint
       const that = this
       if (Breakpoints.is(`${breakpoint}-`)) {
@@ -112,14 +111,6 @@ class Slider extends Component {
         }
       })
     }
-  }
-
-  ensureBreakpoint() {
-    if (Breakpoints.all().includes(this.options.breakpoint)) {
-      return true
-    }
-
-    return false
   }
 
   generate() {

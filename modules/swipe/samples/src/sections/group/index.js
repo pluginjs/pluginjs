@@ -6,7 +6,9 @@ Swipe.of(element, {
   itemNums: 3,
   gutter: 20,
   group: true,
-  arrows: true,
+  arrows: {
+    type: 'solid'
+  },
   pagination: {
     type: 'square light'
   }
