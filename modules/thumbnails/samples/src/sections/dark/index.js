@@ -3,7 +3,7 @@ import Thumbnails from '@pluginjs/thumbnails'
 
 const element = query('#dark .thumbnails')
 Thumbnails.of(element, {
-  loaderConfig: {
+  loader: {
     color: '#fff'
   }
 })

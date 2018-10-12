@@ -4,7 +4,6 @@ import templateEngine from '@pluginjs/template'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { isPlainObject } from '@pluginjs/is'
 import {
   closest,
   append,
@@ -186,8 +185,10 @@ class Thumbnails extends Component {
 
   initImageLoader() {
     this.items.forEach(item => {
+      let loader = ''
+
       if (this.options.loader) {
-        const loader = Loader.of(
+        loader = Loader.of(
           query(`.${this.classes.LOADER}`, item),
           this.options.loader
         )
