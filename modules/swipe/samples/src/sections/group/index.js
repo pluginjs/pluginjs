@@ -6,9 +6,8 @@ Swipe.of(element, {
   itemNums: 3,
   gutter: 20,
   group: true,
-  pagination: true,
   arrows: true,
-  dotConfig: {
+  pagination: {
     type: 'square light'
   }
 })

@@ -40,12 +40,8 @@ export const defaults = {
   itemSelector: 'div',
   imgSelector: 'img',
   imgContainer: 'div',
-  arrows: false,
-  arrowConfig: {
-    type: 'solid'
-  },
+  arrows: false, // true, false, options
   pagination: false,
-  dotConfig: false,
   group: false,
   multiple: false,
   decay: false,

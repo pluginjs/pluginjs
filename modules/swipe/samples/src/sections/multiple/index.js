@@ -5,9 +5,8 @@ const element = query('#multiple .swipe')
 Swipe.of(element, {
   itemNums: 3,
   gutter: 20,
-  pagination: true,
   multiple: true,
-  dotConfig: {
+  pagination: {
     type: 'square light'
   }
 })

@@ -366,7 +366,9 @@ class Swipe extends Component {
 
     append(pagination, this.wrapper)
 
-    config = Object.assign({}, config, this.options.dotConfig)
+    config = isPlainObject(this.options.pagination)
+      ? Object.assign({}, config, this.options.pagination)
+      : config
 
     this.pagination = Dots.of(
       find(`.${this.classes.PAGINATION}`, this.wrapper),
@@ -498,7 +500,9 @@ class Swipe extends Component {
   }
 
   buildArrows() {
-    const opts = Object.assign({}, this.options.arrowConfig)
+    const opts = isPlainObject(this.options.arrows)
+      ? this.options.arrows
+      : { type: 'solid' }
     this.arrows = Arrows.of(this.element, opts)
   }
 
