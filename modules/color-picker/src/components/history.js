@@ -4,6 +4,7 @@ import { parseHTML, queryAll, parentWith } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 
 const colors = []
+let count = 0
 
 class History {
   constructor(instance, element) {
@@ -11,7 +12,6 @@ class History {
     this.classes = this.instance.classes
     this.element = element
     this.prevColor = null
-    this.count = 0
     this.build()
     this.bind()
   }
@@ -75,18 +75,18 @@ class History {
   update(color) {
     if (colors.indexOf(color) === -1) {
       colors.push(color)
-      this.count++
+      count++
       this.updateHistory()
     }
   }
 
   updateHistory() {
-    if (this.count >= 18) {
+    if (count >= 18) {
       colors.shift()
     }
     this.$items.forEach((v, i) => {
       setStyle('background', colors[colors.length - 1 - i], v)
-      if (i < this.count) {
+      if (i < count) {
         addClass(this.classes.HISTORYITEMEMPTY, v)
       }
     })

@@ -159,7 +159,10 @@ class GradientPicker extends Component {
           this.enter('save')
           this.DROPDOWN.hide()
         }
-        this.COLORPICKER.HISTORY.set(getData('value', this.$marker).color)
+
+        if (this.COLORPICKER.HISTORY) {
+          this.COLORPICKER.HISTORY.set(getData('value', this.$marker).color)
+        }
         this.trigger(EVENTS.CLICK, this.gradientValue)
       },
       this.$save
@@ -183,12 +186,15 @@ class GradientPicker extends Component {
         if (e.which === 2 || e.which === 3) {
           return false
         }
+        console.log(12)
         const $this = e.target
         const marker = getData('value', $this)
         this.selectMarker($this)
-
+        console.log(12)
         this.COLORPICKER.set(marker.color)
-        this.COLORPICKER.HISTORY.set(this.tempColor)
+        if (this.COLORPICKER.HISTORY) {
+          this.COLORPICKER.HISTORY.set(this.tempColor)
+        }
 
         const startX = e.pageX
         const markerX = parseFloat(getStyle('left', $this))
@@ -219,7 +225,9 @@ class GradientPicker extends Component {
       this.eventName('mousedown'),
       e => {
         if (!this.is('DownSelectedMarker')) {
-          this.COLORPICKER.HISTORY.set(this.tempColor)
+          if (this.COLORPICKER.HISTORY) {
+            this.COLORPICKER.HISTORY.set(this.tempColor)
+          }
           this.GRADIENT.append(
             this.tempColor,
             this.getMarkerPercent(e.offsetX) / 100

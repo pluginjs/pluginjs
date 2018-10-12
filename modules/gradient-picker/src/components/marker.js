@@ -13,7 +13,6 @@ class Marker {
     this.percent = this.options.percent
     this.index = this.options.index
     this.$wrap = query(`.${this.instance.classes.BAR}`, this.instance.$panel)
-
     this.$wrap.append(this.$el)
 
     this.wrapSize = parseInt(getStyle('width', this.$wrap), 10)

@@ -461,11 +461,9 @@ class ColorSelector extends Component {
   }
 
   disable() {
-    console.log(11)
     if (!this.is('disabled')) {
       this.element.disabled = true
       this.enter('disabled')
-      console.log(22)
     }
     addClass(this.classes.DISABLED, this.$wrap)
     this.trigger(EVENTS.DISABLE)

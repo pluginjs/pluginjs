@@ -17,6 +17,7 @@ $gradientPicker-preview-bg-height: 24px !default;
 // remove
 $gradientPicker-remove-right: $gradientPicker-preview-width + 6px !default;
 $gradientPicker-gradient-bar-height: 16px !default;
+$gradientPicker-gradient-bar-width: 240px !default;
 $gradientPicker-marker-width: 12px !default;
 $gradientPicker-marker-height: 12px !default;
 // wheel
@@ -77,7 +78,7 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
 
     .#{$gradientPicker}-bar {
       position: relative;
-      width: 100%;
+      width: $gradientPicker-gradient-bar-width;
       height: $gradientPicker-gradient-bar-height;
 
       &:hover {

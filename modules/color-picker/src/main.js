@@ -193,7 +193,10 @@ class ColorPicker extends Component {
         onShown: () => {
           this.oldColor = this.color
           showElement(this.$mask)
-          this.HISTORY.updateHistory()
+
+          if (this.HISTORY) {
+            this.HISTORY.updateHistory()
+          }
           this.leave('save')
         },
         onHided: () => {
