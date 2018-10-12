@@ -21,21 +21,24 @@ $color-primary-dark: #1d53bf;
 $color-primary-light: #77b6f5;
 $color-primary-black: #333 !default;
 
-$color-success: #4be1ab !default;
+$color-success: #0ECC37 !default;
 $color-success-dark: #5cd29d !default;
 $color-success-light: #6fe7bc !default;
 
-$color-info: #57c7d4 !default;
+$color-info: #215fdb !default;
 $color-info-dark: #47b8c6 !default;
 $color-info-light: #77d6e1 !default;
 
-$color-warning: #f2a654 !default;
+$color-warning: #ffc800 !default;
 $color-warning-dark: #ec9940 !default;
 $color-warning-light: #f4b066 !default;
 
-$color-danger: #f96868 !default;
+$color-danger: #ff4060 !default;
 $color-danger-dark: #e9595b !default;
 $color-danger-light: #fa7a7a !default;
+
+$color-flat: #23282d !default;
+$color-flat-bg: rgba(0,0,0,0.08) !default;
 
 $color-opacity: rgba(0,0,0,0.7) !default;
 

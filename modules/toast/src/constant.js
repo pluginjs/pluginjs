@@ -27,7 +27,8 @@ export const classes = {
   ICONIN: '{namespace}-iconIn',
   CONTENTIN: '{namespace}-contentIn',
   CONTENTOUT: '{namespace}-contentOut',
-  OUT: '{namespace}-out'
+  OUT: '{namespace}-out',
+  ONLYTITLE: '{namespace}-only-title'
 }
 
 export const defaults = {

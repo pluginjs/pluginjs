@@ -8,8 +8,8 @@ btn1.addEventListener('click', () => {
   Toast.open({
     buttons: {
       btn1: {
-        title: 'Confirm',
-        class: 'pj-btn pj-btn-primary'
+        title: 'Undo',
+        class: 'pj-btn pj-btn-flat'
       }
     }
   })
@@ -20,12 +20,8 @@ btn2.addEventListener('click', () => {
     close: false,
     buttons: {
       btn1: {
-        title: 'Cancel',
-        class: 'pj-btn'
-      },
-      btn2: {
-        title: 'Confirm',
-        class: 'pj-btn pj-btn-primary'
+        title: 'Undo',
+        class: 'pj-btn pj-btn-flat'
       }
     }
   })

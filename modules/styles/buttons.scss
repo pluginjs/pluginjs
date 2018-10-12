@@ -74,6 +74,19 @@ $btn: pj-btn !default;
     width: 100%;
   }
 
+  &-flat {
+    color: $color-flat;
+    background-color: $color-flat-bg;
+    border-color: transparent;
+
+    &:not(:disabled):hover,
+    &:not(:disabled):active {
+      color: $color-flat;
+      background-color: $color-flat-bg;
+      border-color: transparent;
+    }
+  }
+
   &-primary {
     color: $color-white;
     background-color: $btn-color-primary;
