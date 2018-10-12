@@ -63,12 +63,7 @@ class Strength extends Component {
   initialize() {
     this.createHtml()
 
-    addClass('pj-input-group', this.$wrap)
     addClass(this.classes.INPUT, this.element)
-
-    if (this.$addon) {
-      addClass('pj-input-group-addon', this.$addon)
-    }
 
     this.$input = query(`.${this.classes.INPUT}`, this.$wrap)
 
@@ -81,7 +76,7 @@ class Strength extends Component {
   bind() {
     const that = this
     if (this.$toggle) {
-      if (this.$toggle.getAttribute('checkbox')) {
+      if (this.$toggle.getAttribute('type')) {
         bindEvent(
           this.eventName('change'),
           () => {
@@ -183,10 +178,15 @@ class Strength extends Component {
   }
 
   createHtml() {
-    this.$wrap = wrap(
-      `<div class='${this.classes.CONTAINER}'></div>`,
-      this.element
-    )
+    if (isElement(this.options.container)) {
+      this.$wrap = this.options.container
+      addClass(this.classes.CONTAINER, this.$wrap)
+    } else if (this.options.container) {
+      this.$wrap = wrap(
+        `<div class='${this.classes.CONTAINER}'></div>`,
+        this.element
+      )
+    }
 
     this.generateScore()
     this.generateToggle()
@@ -197,21 +197,27 @@ class Strength extends Component {
   }
 
   generateToggle() {
-    if (isElement(this.options.showToggle)) {
-      this.$addon = parseHTML(
-        template.render(this.options.templates.addon(), {
-          classes: this.classes
-        })
-      )
-      this.$toggle = this.options.showToggle
-      this.$addon.append(this.$toggle)
+    if (isElement(this.options.toggle)) {
+      this.$addon = this.options.toggle
+      addClass(this.classes.ADDON, this.$addon)
+
+      if (query(`.${this.classes.CHECK}`)) {
+        this.$toggle = query(`.${this.classes.CHECK}`)
+      }
+
+      this.$toggle = children(this.$addon)[0]
+
+      addClass(this.classes.TOGGLE, this.$toggle)
       insertAfter(this.$addon, this.element)
-    } else if (this.options.showToggle) {
+    } else if (this.options.toggle) {
+      addClass('pj-input-group', this.$wrap)
+
       this.$addon = parseHTML(
         template.render(this.options.templates.addon(), {
           classes: this.classes
         })
       )
+      addClass('pj-input-group-addon', this.$addon)
       insertAfter(this.$addon, this.element)
 
       this.$iconShow = parseHTML(
@@ -229,11 +235,11 @@ class Strength extends Component {
   }
 
   generateScore() {
-    if (isElement(this.options.showScore)) {
-      addClass(this.classes.SCORE, this.options.showScore)
-      this.$score = this.options.showScore
+    if (isElement(this.options.score)) {
+      addClass(this.classes.SCORE, this.options.score)
+      this.$score = this.options.score
       insertAfter(this.$score, this.$wrap)
-    } else if (this.options.showScore) {
+    } else if (this.options.score) {
       this.$score = parseHTML(
         template.render(this.options.templates.score(), {
           classes: this.classes

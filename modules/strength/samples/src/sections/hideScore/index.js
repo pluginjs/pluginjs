@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import Strength from '@pluginjs/strength'
 
-const element = query('#hideScore .password-input')
+const element = query('#hideScore .strength')
 
 Strength.of(element, {
   locale: 'zh',
@@ -10,6 +10,5 @@ Strength.of(element, {
   },
 
   emptyStatus: false,
-  showToggle: false,
-  showScore: false
+  toggle: false
 })

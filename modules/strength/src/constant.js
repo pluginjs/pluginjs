@@ -16,7 +16,6 @@ export const classes = {
   THEME: '{namespace}-{theme}',
   CONTAINER: '{namespace}-container',
   STATUS: '{namespace}-{status}',
-  INPUTGROUP: '{namespace}-input-group',
   INPUT: '{namespace}-input',
   TOGGLE: '{namespace}-toggle',
   METER: '{namespace}-meter',
@@ -35,8 +34,10 @@ export const methods = ['getScore', 'getStatus', 'enable', 'disable', 'destroy']
 export const defaults = {
   theme: null,
 
-  showScore: true, // query || true || false
-  showToggle: true, // query || true || false
+  score: true, // query || true || false
+  toggle: true, // query || true || false
+
+  container: true, // query || true
 
   usernameField: '',
 
