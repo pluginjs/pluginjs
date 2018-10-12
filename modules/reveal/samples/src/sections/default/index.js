@@ -8,3 +8,10 @@ elements.forEach(el =>
     duration: '1000'
   })
 )
+
+const eles = queryAll('#default .revea')
+eles.forEach(el =>
+  Reveal.of(el, {
+    animation: 'slideInDown'
+  })
+)

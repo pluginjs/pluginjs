@@ -19,12 +19,17 @@ export const methods = ['destroy', 'enable', 'disable', 'isVisible']
 
 export const defaults = {
   animation: 'fadeIn',
-  duration: 400,
-  easing: 'ease',
-  delay: 0,
+
   count: 1, // infinite
   mode: 'always', // 'once'
   mobile: false,
   tablet: false,
-  anchor: ''
+  anchor: '',
+
+  offset: 0,
+  duration: 400,
+  delay: 0,
+  easing: 'ease',
+  loop: true,
+  threshold: 0 // Either a single number or an array of numbers  [0, 0.25, 0.5, 0.75, 1]
 }

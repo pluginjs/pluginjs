@@ -19,7 +19,9 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
+
 import Viewport from '@pluginjs/viewport'
+import Breakpoints from '@pluginjs/breakpoints'
 
 const matchMobile = isMobile()
 const matchTablet = isTablet()
@@ -68,6 +70,7 @@ class Reveal extends Component {
     )
 
     this.initViewport()
+    this.initBreakpoints()
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -81,6 +84,44 @@ class Reveal extends Component {
       throw new Error('Can not find anchor element')
     }
     this.viewport = Viewport.of(this.viewElement)
+  }
+
+  initBreakpoints() {
+    Breakpoints.init()
+
+    const screens = Breakpoints.all()
+    this.initScreenOptions(screens)
+
+    // const that = this
+    // const currentName = Breakpoints.current().name
+
+    // console.log(this)
+
+    // if (this.screenOptions[currentName]) {
+    //   Object.keys(this.screenOptions[currentName]).forEach(key => {
+    //     this[key] = this.screenOptions[currentName][key]
+    //   })
+    // }
+  }
+
+  initScreenOptions(screens) {
+    this.screenOptions = {}
+    Object.keys(this.options).forEach(key => {
+      screens.forEach(screen => {
+        const screenFirstUpper =
+          screen.substring(0, 1).toUpperCase() + screen.substring(1)
+
+        if (key.endsWith(screenFirstUpper)) {
+          if (!this.screenOptions[screen]) {
+            this.screenOptions[screen] = {}
+          }
+
+          this.screenOptions[screen][
+            key.slice(0, key.indexOf(screenFirstUpper))
+          ] = this.options[key]
+        }
+      })
+    })
   }
 
   bind() {

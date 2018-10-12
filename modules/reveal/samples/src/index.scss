@@ -5,10 +5,19 @@
   width: 100%;
   height: 100px;
 }
+
+.scroll {
+  font-size: 30px;
+  color: #fff;
+  .revea {
+    display: inline-block;
+  }
+}
+
 .allSection {
-  width: 300vw;
+  // width: 300vw;
   height: 550px;
-  font-size:0;
+  // font-size:0;
   transition: 1s transform;
 }
 .reveal {
@@ -31,7 +40,8 @@
 }
 .section {
   display: inline-block;
-  width: 100vw;
+  // width: 100vw;
+  width: 100%;
   height: 100%;
   text-align: center;
 }
