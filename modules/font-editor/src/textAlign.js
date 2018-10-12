@@ -26,7 +26,10 @@ export default class TextAlign {
     const that = this
 
     const html = template.compile(this.instance.options.textAlign.template())({
-      classes: this.instance.classes
+      classes: this.instance.classes,
+      textStart: this.instance.translate('textStart'),
+      textEnd: this.instance.translate('textEnd'),
+      textCenter: this.instance.translate('textCenter')
     })
     this.$wrap = parseHTML(html)
 

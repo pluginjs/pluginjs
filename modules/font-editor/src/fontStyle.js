@@ -15,7 +15,8 @@ export default class FontStyle {
 
   initialize() {
     const html = template.compile(this.instance.options.fontStyle.template())({
-      classes: this.instance.classes
+      classes: this.instance.classes,
+      font: this.instance.translate('font')
     })
     this.$wrap = parseHTML(html)
     Tooltip.of(this.$wrap, {

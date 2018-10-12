@@ -152,9 +152,9 @@ export const defaults = {
     template() {
       return (
         '<ul class="{classes.DECORATIONS}">' +
-        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-left" title="text-start" ></li>' +
-        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-center" title="text-center"></li>' +
-        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-right" title="text-end"></li>' +
+        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-left" title="{textStart}" ></li>' +
+        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-center" title="{textCenter}"></li>' +
+        '<li class="{classes.TEXTALIGN} pj-icon pj-icon-align-right" title="{textEnd}"></li>' +
         '</ul>'
       )
     }
@@ -163,7 +163,7 @@ export const defaults = {
     value: 'normal',
     values: ['italic', 'normal'],
     template() {
-      return '<li class="{classes.FONTSTYLE} pj-icon pj-icon-font"  title="font"></li>'
+      return '<li class="{classes.FONTSTYLE} pj-icon pj-icon-font"  title="{font}"></li>'
     }
   },
   textTransform: {
@@ -171,9 +171,9 @@ export const defaults = {
     values: ['uppercase', 'lowercase', 'capitalize'],
     template() {
       return (
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-uppercase" title="uppercase"></li>' +
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-lowercase" title="lowercase"></li>' +
-        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-capitalize" title="capitalize"></li>'
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-uppercase" title="{uppercase}"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-lowercase" title="{lowercase}"></li>' +
+        '<li class="{classes.TEXTTRANSFORM} pj-icon pj-icon-capitalize" title="{capitalize}"></li>'
       )
     }
   },
@@ -182,8 +182,8 @@ export const defaults = {
     values: ['underline', 'line-through'],
     template() {
       return (
-        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-underline" title="underline"></li>' +
-        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-line-through" title="line-through"></li>'
+        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-underline" title="{underLine}"></li>' +
+        '<li class="{classes.TEXTDECORATION} pj-icon pj-icon-line-through" title="{lineThrough}"></li>'
       )
     }
   },
@@ -230,6 +230,15 @@ export const dependencies = ['dropdown', 'range', 'pop-dialog']
 
 export const translations = {
   en: {
+    underLine: 'underline',
+    lineThrough: 'line-through',
+    font: 'font',
+    textStart: 'text-start',
+    textEnd: 'text-end',
+    textCenter: 'text-center',
+    uppercase: 'uppercase',
+    lowercase: 'lowercase',
+    capitalize: 'capitalize',
     addTypography: 'Add Typography',
     fontFamily: 'Font Family',
     change: 'Change',
@@ -239,6 +248,15 @@ export const translations = {
     weight: 'Weight'
   },
   zh: {
+    underLine: '下划线',
+    lineThrough: '删除线',
+    font: '字形',
+    textStart: '上移',
+    textEnd: '下移',
+    textCenter: '水平',
+    uppercase: '大写',
+    lowercase: '小写',
+    capitalize: '首位大写',
     addTypography: '添加排版',
     fontFamily: '字体',
     change: '更改',

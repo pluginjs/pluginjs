@@ -18,7 +18,12 @@ export default class TextTransform {
     const that = this
     const html = template.compile(
       this.instance.options.textTransform.template()
-    )({ classes: this.instance.classes })
+    )({
+      classes: this.instance.classes,
+      uppercase: this.instance.translate('uppercase'),
+      lowercase: this.instance.translate('lowercase'),
+      capitalize: this.instance.translate('capitalize')
+    })
     // this.$wrapHtml = parseHTML(html)
     this.$wrap = []
     for (let i = 0; i < parseHTML(html).children.length; i++) {

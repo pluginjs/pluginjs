@@ -17,7 +17,11 @@ export default class TextDecoration {
     const that = this
     const html = template.compile(
       this.instance.options.textDecoration.template()
-    )({ classes: this.instance.classes })
+    )({
+      classes: this.instance.classes,
+      underLine: this.instance.translate('underLine'),
+      lineThrough: this.instance.translate('lineThrough')
+    })
     this.$wrap = []
     for (let i = 0; i < parseHTML(html).children.length; i++) {
       this.$wrap.push(parseHTML(html).children[i])
@@ -28,7 +32,7 @@ export default class TextDecoration {
       `.${this.instance.classes.TEXTDECORATION}`,
       this.instance.$typoDecorations
     )
-
+    console.log(this.$items)
     for (let i = 0; i < this.$items.length; i++) {
       Tooltip.of(this.$items[i], {
         trigger: 'hover',
