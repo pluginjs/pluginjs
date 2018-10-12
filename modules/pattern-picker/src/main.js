@@ -400,16 +400,6 @@ class PatternPicker extends Component {
     )
   }
 
-  setFillImg() {
-    if (!getData('info', this.$fillImg)) {
-      this.$selecting = queryAll(
-        `.${this.classes.COLLECTIONITEM}`,
-        this.COLLECTION.$selectorList
-      )[0]
-      this.update(getData('info', this.$selecting))
-    }
-  }
-
   setPlugins() {
     this.$selected = this.$selecting
     if (!this.$selected) {
@@ -464,7 +454,6 @@ class PatternPicker extends Component {
       const info = JSON.parse(JSON.stringify(getData('info', this.$selected)))
 
       setData('info', info, this.$fillImg)
-      console.log(info)
 
       if (info['background-color']) {
         this.bgColor = info['background-color']
