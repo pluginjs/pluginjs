@@ -55,6 +55,7 @@ export const defaults = {
   height: null, // set swipe height
   defaultActive: 0, // default active item
   duration: 300,
+  loader: true, // true, false, options
   templates: {
     container() {
       return '<div class="{classes.CONTAINER}"></div>'

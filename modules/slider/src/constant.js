@@ -51,7 +51,7 @@ const defaults = {
   playCycle: 4000,
   prevIcon: 'pj-icon pj-icon-chevron-left',
   nextIcon: 'pj-icon pj-icon-chevron-right',
-  loaderConfig: null,
+  loader: true, // true, false, options
   breakpoint: null, // xs, sm, md, lg, xl
   templates: {
     box() {

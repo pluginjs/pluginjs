@@ -38,7 +38,10 @@ class Base {
     const card = parentWith(hasClass(this.classes.CARD), target)
     const content = query(`.${this.classes.CONTENT}`, card)
 
-    this.loader.hide()
+    if (this.loader) {
+      this.loader.hide()
+    }
+
     addClass(this.classes.LOADED, content)
   }
 

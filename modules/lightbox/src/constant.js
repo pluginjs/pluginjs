@@ -127,8 +127,9 @@ const defaults = {
   duration: 300,
   playCycle: 4000,
   breakpoint: null, // xs, sm, md, lg, xl
-  loaderConfig: {
-    color: null
+  loader: {
+    theme: 'ring',
+    size: 'lg'
   }
 }
 

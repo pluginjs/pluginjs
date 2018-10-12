@@ -4,7 +4,6 @@ import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { append, parseHTML } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { deepMerge } from '@pluginjs/utils'
-import { isString } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -81,7 +80,7 @@ class Gallery extends Component {
 
   initBreakpoints() {
     Breakpoints.init()
-    if (isString(this.options.breakpoint) && this.ensureBreakpoint()) {
+    if (Breakpoints.all().includes(this.options.breakpoint)) {
       const breakpoint = this.options.breakpoint
       const that = this
       if (Breakpoints.is(`${breakpoint}-`)) {
@@ -96,14 +95,6 @@ class Gallery extends Component {
         }
       })
     }
-  }
-
-  ensureBreakpoint() {
-    if (Breakpoints.all().includes(this.options.breakpoint)) {
-      return true
-    }
-
-    return false
   }
 
   bind() {

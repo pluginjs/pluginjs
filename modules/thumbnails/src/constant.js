@@ -47,7 +47,7 @@ const defaults = {
   vertical: false,
   current: 0,
   mode: 'full', // full or center
-  loaderConfig: null,
+  loader: true, // true, false, options
   breakpoint: null // xs, sm, md, lg, xl
 }
 

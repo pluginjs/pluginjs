@@ -2,6 +2,7 @@ import anime from 'animejs'
 import Component from '@pluginjs/component'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
+import { isPlainObject } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   append,
@@ -150,19 +151,31 @@ class Swipe extends Component {
     )
 
     if (images.length > 0) {
-      images.forEach(image => {
-        addClass(this.classes.IMG, image)
-        const loader = Loader.of(closest(this.options.imgContainer, image), {
-          theme: 'circle',
-          color: '#000000',
-          size: 'lg'
+      if (this.options.loader) {
+        const options = isPlainObject(this.options.loader)
+          ? this.options.loader
+          : { theme: 'circle', color: '#000000', size: 'lg' }
+
+        images.forEach(image => {
+          addClass(this.classes.IMG, image)
+          const loader = Loader.of(
+            closest(this.options.imgContainer, image),
+            options
+          )
+          loader.show()
+          ImageLoader.of(image).on('loaded', img => {
+            loader.hide()
+            addClass(this.classes.LOADED, closest(`.${this.classes.ITEM}`, img))
+          })
         })
-        loader.show()
-        ImageLoader.of(image).on('loaded', img => {
-          loader.hide()
-          addClass(this.classes.LOADED, closest(`.${this.classes.ITEM}`, img))
+      } else {
+        images.forEach(image => {
+          addClass(this.classes.IMG, image)
+          ImageLoader.of(image).on('loaded', img => {
+            addClass(this.classes.LOADED, closest(`.${this.classes.ITEM}`, img))
+          })
         })
-      })
+      }
     }
 
     return items

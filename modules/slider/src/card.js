@@ -1,7 +1,8 @@
 import anime from 'animejs'
 import { append, query } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { deepMerge } from '@pluginjs/utils'
+import { isPlainObject } from '@pluginjs/is'
+
 import Image from './modules/image'
 import Video from './modules/video'
 import Iframe from './modules/iframe'
@@ -23,17 +24,16 @@ class Card {
     this.element = this.instance.createElement('card')
     this.loader = query(`.${this.classes.LOADER}`, this.element)
 
-    const loaderConfig = deepMerge(
-      {
-        theme: 'ring',
-        color: '#000000',
-        size: 'lg'
-      },
-      this.instance.options.loaderConfig
-    )
+    if (this.instance.options.loader) {
+      const options = isPlainObject(this.instance.options.loader)
+        ? this.instance.options.loader
+        : { theme: 'ring', color: '#000000', size: 'lg' }
 
-    this.$loader = Loader.of(this.loader, loaderConfig)
-    this.$loader.show()
+      this.$loader = Loader.of(this.loader, options)
+      this.$loader.show()
+    } else {
+      this.$loader = null
+    }
   }
 
   createModule(data, index) {
@@ -45,7 +45,9 @@ class Card {
       }
     } else {
       const type = data.type || 'image'
-      this.$loader.show()
+      if (this.$loader) {
+        this.$loader.show()
+      }
 
       switch (type) {
         case 'video':

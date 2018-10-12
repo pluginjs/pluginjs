@@ -4,7 +4,7 @@ import templateEngine from '@pluginjs/template'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { isString } from '@pluginjs/is'
+import { isPlainObject } from '@pluginjs/is'
 import {
   closest,
   append,
@@ -88,7 +88,7 @@ class Thumbnails extends Component {
 
   initBreakpoints() {
     Breakpoints.init()
-    if (isString(this.options.breakpoint) && this.ensureBreakpoint()) {
+    if (Breakpoints.all().includes(this.options.breakpoint)) {
       const breakpoint = this.options.breakpoint
       const that = this
       if (Breakpoints.is(`${breakpoint}-`)) {
@@ -103,14 +103,6 @@ class Thumbnails extends Component {
         }
       })
     }
-  }
-
-  ensureBreakpoint() {
-    if (Breakpoints.all().includes(this.options.breakpoint)) {
-      return true
-    }
-
-    return false
   }
 
   parseHtml() {
@@ -193,30 +185,42 @@ class Thumbnails extends Component {
   }
 
   initImageLoader() {
-    const loaderConfig = deepMerge(
-      {
-        theme: 'ring',
-        color: '#000000',
-        size: 'lg'
-      },
-      this.options.loaderConfig
-    )
+    if (this.options.loader) {
+      const options = isPlainObject(this.options.loader)
+        ? this.options.loader
+        : { theme: 'ring', color: '#000000', size: 'lg' }
 
-    this.items.forEach(item => {
-      const loader = Loader.of(
-        query(`.${this.classes.LOADER}`, item),
-        loaderConfig
-      )
-      loader.show()
+      this.items.forEach(item => {
+        const loader = Loader.of(
+          query(`.${this.classes.LOADER}`, item),
+          options
+        )
+        loader.show()
 
-      ImageLoader.of(item.querySelector(`.${this.classes.IMAGE}`)).on(
-        'loaded',
-        img => {
-          loader.hide()
-          addClass(this.classes.LOADED, closest(`.${this.classes.THUMB}`, img))
-        }
-      )
-    })
+        ImageLoader.of(item.querySelector(`.${this.classes.IMAGE}`)).on(
+          'loaded',
+          img => {
+            loader.hide()
+            addClass(
+              this.classes.LOADED,
+              closest(`.${this.classes.THUMB}`, img)
+            )
+          }
+        )
+      })
+    } else {
+      this.items.forEach(item => {
+        ImageLoader.of(item.querySelector(`.${this.classes.IMAGE}`)).on(
+          'loaded',
+          img => {
+            addClass(
+              this.classes.LOADED,
+              closest(`.${this.classes.THUMB}`, img)
+            )
+          }
+        )
+      })
+    }
   }
 
   initSwipeable() {
