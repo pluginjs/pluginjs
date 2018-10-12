@@ -1,12 +1,16 @@
 @import "filterbar.core";
 @import "grids.core";
 
+// Vars
+// =====================
 $grids: "pj-grids";
 $arrow: "pj-arrow";
 
 $grids-arrow-margin-x: 15px;
 $grids-arrow-padding: 11px;
 
+// Skins
+// =====================
 .#{$grids} {
   &-inner {
     .#{$arrow}-next,

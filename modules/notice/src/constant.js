@@ -12,35 +12,37 @@ export const methods = ['destroy']
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
+  TYPE: '{namespace}-{type}',
   LOCATION: '{namespace}-{location}',
   CONTENT: '{namespace}-content',
   CONTENTLOCATION: '{namespace}-content-{location}',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
   CLOSE: '{namespace}-close',
+  WITHCLOSE: '{namespace}-with-close',
   CONTAINER: '{namespace}-container',
   BUTTON: '{namespace}-btn',
   BUTTONS: '{namespace}-buttons',
-  BUTTONSLOCATION: '{namespace}-buttons-{location}',
-  POSITION: '{namespace}-position',
+  ACTIONSLOCATION: '{namespace}-actions-{location}',
+  ACTIONS: '{namespace}-actions',
   BACKGROUND: '{namespace}-with-bg',
+  FIXED: '{namespace}-fixed',
   RESPONSIVE: '{namespace}-responsive'
 }
 
 export const defaults = {
   theme: null,
+  type: 'default', // default, primary, success, info, warning, danger
   template() {
-    return (
-      '<div class="{classes.NAMESPACE}">' +
-      '{close}' +
-      '<div class="{classes.CONTAINER}">' +
-      '{content}' +
-      '<div class="{classes.POSITION}">' +
-      '{buttons}' +
-      '</div>' +
-      '</div>' +
-      '</div>'
-    )
+    return `<div class="{classes.NAMESPACE}">
+              {close}
+              <div class="{classes.CONTAINER}">
+                {content}
+                <div class="{classes.ACTIONS}">
+                  {buttons}
+                </div>
+              </div>
+            </div>`
   },
   templates: {
     close() {
@@ -61,19 +63,18 @@ export const defaults = {
   localeFallbacks: true,
   content: '',
   contentAlignment: 'center',
-  allowClose: true,
-  closeBottonColor: '',
+  withClose: false,
+  textColor: null,
   backgroundColor: null,
   backgroundImage: null,
-  fontColor: null,
   buttons: {
     ok: {
       title: 'OK',
       class: 'pj-btn pj-btn-primary'
     }
   },
-  buttonAlign: 'center',
-  timeout: 100000,
+  actionsAlign: 'center',
+  duration: false, // notice duration(ms)
   fixedWidth: false,
   layout: 'top', // 'bottom'
   breakpoint: 'lg' // xs, sm, md, lg, xl

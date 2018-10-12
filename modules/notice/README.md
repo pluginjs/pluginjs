@@ -99,7 +99,7 @@ Name | Description | Default
 `"localeFallbacks"` | Set enable localeFallbacks | `true`
 `"content"` | Set content | ``
 `"contentAlignment"` | Set where is content alignment | `center`
-`"allowClose"` | Set allow close or not | `true`
+`"withClose"` | Set allow close or not | `true`
 `"closeBottonColor"` | Set close button color | ``
 `"backgroundColor"` | Set background color | `null`
 `"backgroundImage"` | Set background image | `null`

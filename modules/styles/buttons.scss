@@ -8,7 +8,7 @@ $btn: pj-btn !default;
   padding: $btn-padding-y $btn-padding-x;
   font-size: $btn-font-size;
   line-height: $btn-line-height;
-  color: $btn-text-color;
+  color: inherit;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;

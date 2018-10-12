@@ -1,9 +1,11 @@
 @import "@pluginjs/styles/variables.scss";
 
+// Vars
+// =====================
 $grids: "pj-grids";
 
-/* core */
-
+// Core
+// =====================
 .#{$grids} {
   &-wrap {
     position: relative;
@@ -11,7 +13,6 @@ $grids: "pj-grids";
   }
 
   &-inner {
-    padding-bottom: 0;
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
@@ -25,7 +26,7 @@ $grids: "pj-grids";
   &-container {
     position: relative;
   }
-  
+
   &-chunk {
     position: absolute;
     transform-style: preserve-3d;
@@ -44,11 +45,11 @@ $grids: "pj-grids";
       width: 100%;
       height: 100%;
     }
+  }
 
-    &.#{$grids}-loaded {
-      img {
-        opacity: 1;
-      }
+  &-loaded {
+    img {
+      opacity: 1;
     }
   }
 
@@ -56,7 +57,7 @@ $grids: "pj-grids";
     cursor: grab;
   }
 
-  &-mask {
-    opacity: 0 !important;
-  }
+  // &-mask {
+  //   opacity: 0 !important;
+  // }
 }

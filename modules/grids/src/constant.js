@@ -32,10 +32,10 @@ export const classes = {
   CHUNKACTIVE: '{namespace}-chunk-active',
   SHOW: '{namespace}-show',
   HIDE: '{namespace}-hide',
-  GRIDMODEL: '{namespace}-grid-model',
-  MASONRYMODEL: '{namespace}-masonry-model',
-  JUSTIFIEDMODEL: '{namespace}-justified-model',
-  NESTEDMODEL: '{namespace}-nested-model'
+  GRIDMODEL: '{namespace}-grid',
+  MASONRYMODEL: '{namespace}-masonry',
+  JUSTIFIEDMODEL: '{namespace}-justified',
+  NESTEDMODEL: '{namespace}-nested'
 }
 
 export const methods = [

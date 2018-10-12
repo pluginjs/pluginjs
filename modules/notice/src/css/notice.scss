@@ -3,183 +3,92 @@
 
 // Vars
 // =====================
-$notice: "pj-notice" !default;
-$btn: "pj-btn" !default;
-$notice-font-size: $font-size-sm !default;
-$notice-font-family: $font-family-base !default;
+$notice: "pj-notice";
+$btn: "pj-btn";
+
+$notice-font-family: $font-family-base;
+$notice-font-size: $font-size-sm;
+
+$notice-container-width: $container-max-width;
+$notice-container-padding-y: 10px;
+$notice-container-padding-x: $container-padding-x;
+
+$notice-close-font-size: $font-size-sm;
+$notice-close-width: 40px;
+$notice-close-height: 100%;
+
+$notice-close-bg: transparent;
+$notice-close-color: $gray;
+$notice-close-hover-color: $gray-dark;
 
 $notice-bg: $color-white;
 $notice-box-shadow: $box-shadow-4;
 
-$notice-container-max-width: 1240px;
-$notice-container-padding: 12px 0;
+$notice-actions-gutter: 30px;
+$notice-btn-gutter: 10px;
 
-$notice-close-padding: 21px;
+$notice-state-colors: (
+  primary: $color-white,
+  success: $color-white,
+  info: $color-white,
+  warning: $color-white,
+  danger: $color-white
+);
 
-$notice-responsive-container-padding: 13px 0;
-$notice-responsive-close-padding: 21px 16px;
-$notice-responsive-btn-padding: 7px 18px;
-$notice-responsive-btn-margin-left: 14px;
+$notice-state-backgrounds: (
+  primary: $color-primary,
+  success: $color-success,
+  info: $color-info,
+  warning: $color-warning,
+  danger: $color-danger
+);
 
-$notice-button-padding: 8px 30px;
-$notice-button-margin-left: 20px;
-$notice-button-color: $gray-darkest;
-
-$notice-position-buttons-margin-left: 30px;
-
-$notice-fixed-container-max-width: 960px;
-
+// Skins
+// =====================
 .#{$notice} {
-  width: 100%;
+
+  @each $color, $value in $notice-state-backgrounds {
+    &-#{$color} {
+      color: map-get($notice-state-colors, $color);
+      background-color: $value;
+    }
+  }
   font-family: $notice-font-family;
+  font-size: $notice-font-size;
   background-color: $notice-bg;
   box-shadow: $notice-box-shadow;
 
   &-container {
-    width: 80%;
-    max-width: $notice-container-max-width;
-    height: 100%;
-    padding: $notice-container-padding;
-    margin: 0 auto;
+    padding: $notice-container-padding-y $notice-container-padding-x;
+
+    .#{$notice}-fixed & {
+      width: $notice-container-width;
+    }
+
+    .#{$notice}-with-close & {
+      padding-right: $notice-close-width;
+    }
   }
 
-  &-content {
-    height: 100%;
-    font-size: $notice-font-size;
+  &-content + &-actions {
+    margin-left: $notice-actions-gutter;
   }
 
   &-close {
-    padding: $notice-close-padding;
-    line-height: 1;
-    background: transparent;
-    border: 0;
-  }
+    width: $notice-close-width;
+    height: $notice-close-height;
+    color: $notice-close-color;
+    cursor: pointer;
+    background-color: $notice-close-bg;
+    border: none;
+    outline: none;
 
-  &-btn {
-    margin-left: $notice-button-margin-left;
-  
-    &.#{$btn} {
-      padding: $notice-button-padding;
-      font-size: $notice-font-size;
-      line-height: 1;
-    }
-  
-    &.btn-ok {
-      color: $notice-button-color;
+    &:hover {
+      color: $notice-close-hover-color;
     }
   }
 
-  &-position {
-    height: 100%;
-  
-    .#{$notice}-buttons {
-      height: 100%;
-      margin-left: $notice-position-buttons-margin-left;
-    }
-  }
-
-  &-responsive {
-    .#{$notice}-container {
-      padding: $notice-responsive-container-padding;
-    }
-
-    .#{$notice}-close {
-      padding: $notice-responsive-close-padding;
-    }
-
-    .#{$notice}-buttons {
-      margin-left: 0;
-    }
-
-    .#{$notice}-btn {
-      padding: $notice-responsive-btn-padding;
-      margin-left: $notice-responsive-btn-margin-left;
-    }
-  }
-
-  &-with-bg {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
-    .pj-btn:not(:disabled):active,
-    .pj-btn:not(:disabled):hover {
-      border-color: $color-white;
-    }
-
-    .#{$notice}-close:hover {
-      i {
-        color: $notice-button-color;
-      }
-    }
-  }
-}
-
-.#{$notice}-fixed {
-  .#{$notice}-container {
-    max-width: $notice-fixed-container-max-width;
-  }
-}
-.#{$notice}-Intop {
-  animation: #{$notice}-inTop 0.3s forwards;
-}
-
-@keyframes #{$notice}-inTop {
-  0% {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.#{$notice}-Outtop {
-  animation: #{$notice}-outTop 0.3s;
-}
-
-@keyframes #{$notice}-outTop {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-}
-
-.#{$notice}-Inbottom {
-  animation: #{$notice}-inBottom 0.3s forwards;
-}
-
-@keyframes #{$notice}-inBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.#{$notice}-Outbottom {
-  animation: #{$notice}-outBottom 0.3s;
-}
-
-@keyframes #{$notice}-outBottom {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(100%);
+  &-btn + &-btn {
+    margin-left: $notice-btn-gutter;
   }
 }

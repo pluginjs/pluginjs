@@ -3,8 +3,16 @@
 // Vars
 // =====================
 $notice: "pj-notice" !default;
-$btn: "pj-btn" !default;
-$notice-line-height: 22px !default;;
+
+$notice-zindex: $zindex-notice !default;
+$notice-min-height: 55px !default;
+
+$notice-container-width: $container-max-width !default;
+
+$notice-bg: $color-white !default;
+
+$notice-image-color: $color-white !default;
+$notice-image-overlay: rgba($color-black, 0.1) !default;
 
 // Core
 // =====================
@@ -12,45 +20,67 @@ $notice-line-height: 22px !default;;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: $notice-zindex;
+  width: 100%;
+  background-color: $notice-bg;
+
+  &-close {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 1;
+    transform: translateY(-50%);
+  }
 
   &-container {
     position: relative;
-  }
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    min-height: $notice-min-height;
 
-  .#{$notice}-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1;
-  }
-
-  &-content {
-    display: inline-block;
-    line-height: $notice-line-height;
-    vertical-align: middle;
-  
-    &-center {
-      text-align: center;
-    }
-  
-    &-right {
-      text-align: right;
-    }
-  }
-
-  &-position {
-    display: inline-block;
-    vertical-align: middle;
-  
-    .#{$notice}-buttons {
-      display: flex;
-      align-items: center;
+    .#{$notice}-content-center & {
       justify-content: center;
     }
+
+    .#{$notice}-content-right & {
+      justify-content: flex-end;
+    }
+
+    .#{$notice}-fixed & {
+      width: $notice-container-width;
+      margin: 0 auto;
+    }
   }
 
-  &-buttons-right {
-    float: right;
+  &-with-bg {
+    color: $notice-image-color;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      content: "";
+      background-color: $notice-image-overlay;
+    }
+  }
+
+  &-actions-right {
+    .#{$notice}-content {
+      margin-right: auto;
+    }
+
+    &.#{$notice}-content-center .#{$notice}-content {
+      margin-left: auto;
+    }
+
+    &.#{$notice}-content-right .#{$notice}-content {
+      margin-right: 0;
+    }
   }
 
   &-bottom {
@@ -70,5 +100,70 @@ $notice-line-height: 22px !default;;
     .#{$notice}-mobile {
       display: block;
     }
+  }
+}
+
+.#{$notice}-Intop {
+  animation: #{$notice}-inTop 0.3s forwards;
+}
+
+@keyframes #{$notice}-inTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// animate
+.#{$notice}-Outtop {
+  animation: #{$notice}-outTop 0.3s;
+}
+
+@keyframes #{$notice}-outTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.#{$notice}-Inbottom {
+  animation: #{$notice}-inBottom 0.3s forwards;
+}
+
+@keyframes #{$notice}-inBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.#{$notice}-Outbottom {
+  animation: #{$notice}-outBottom 0.3s;
+}
+
+@keyframes #{$notice}-outBottom {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }

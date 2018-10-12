@@ -1,3 +1,4 @@
+import Pj from '@pluginjs/factory'
 import templateEngine from '@pluginjs/template'
 import { isNumber, isString } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
@@ -41,11 +42,20 @@ class Notice extends GlobalComponent {
   }
 
   show() {
+    const instances = Pj.notice.getInstances()
+
+    instances.forEach(instance => {
+      if (instance.is('shown')) {
+        instance.hide()
+      }
+    })
+
     this.setStyles()
     this.bind()
     this.animate()
     append(this.$element, window.document.body)
     this.trigger(EVENTS.SHOW)
+    this.enter('shown')
   }
 
   animate() {
@@ -62,17 +72,33 @@ class Notice extends GlobalComponent {
       const url = `url(${this.options.backgroundImage})`
       setStyle(
         {
-          background: url,
-          color: this.options.fontColor
+          backgroundImage: url
         },
         this.$element
       )
-    } else {
+    }
+
+    if (this.options.textColor) {
       setStyle(
         {
-          'background-color': this.options.backgroundColor,
-          color: this.options.fontColor
+          color: this.options.textColor
         },
+        this.$element
+      )
+    }
+
+    if (this.options.backgroundColor) {
+      setStyle(
+        {
+          backgroundColor: this.options.backgroundColor
+        },
+        this.$element
+      )
+    }
+
+    if (this.options.type) {
+      addClass(
+        this.getClass(this.classes.TYPE, 'type', this.options.type),
         this.$element
       )
     }
@@ -82,23 +108,23 @@ class Notice extends GlobalComponent {
         this.$element
       )
     }
-    if (this.options.buttonAlign) {
+    if (this.options.actionsAlign) {
       addClass(
         this.getClass(
-          this.classes.BUTTONSLOCATION,
+          this.classes.ACTIONSLOCATION,
           'location',
-          this.options.buttonAlign
+          this.options.actionsAlign
         ),
-        this.$position
+        this.$element
       )
     }
-    if (this.options.closeBottonColor) {
-      setStyle('color', this.options.closeBottonColor, this.$closeBtn)
+    if (this.options.withClose) {
+      addClass(this.classes.WITHCLOSE, this.$element)
     }
   }
 
   bind() {
-    if (this.options.allowClose) {
+    if (this.options.withClose) {
       bindEvent(
         this.eventName('click'),
         () => {
@@ -125,10 +151,10 @@ class Notice extends GlobalComponent {
       )
     }
 
-    if (isNumber(this.options.timeout)) {
+    if (isNumber(this.options.duration)) {
       let settime = setTimeout(() => {
         this.hide()
-      }, this.options.timeout)
+      }, this.options.duration)
 
       bindEvent(
         this.eventName('mouseenter'),
@@ -144,7 +170,7 @@ class Notice extends GlobalComponent {
             if (this.is('initialized')) {
               this.hide()
             }
-          }, this.options.timeout)
+          }, this.options.duration)
         },
         this.$element
       )
@@ -160,6 +186,7 @@ class Notice extends GlobalComponent {
       removeClass(`${this.classes.NAMESPACE}-Inbottom`, this.$element)
       addClass(`${this.classes.NAMESPACE}-Outbottom`, this.$element)
     }
+
     bindEventOnce(
       this.eventName('animationend'),
       () => {
@@ -167,13 +194,15 @@ class Notice extends GlobalComponent {
       },
       this.$element
     )
+
+    this.leave('shown')
   }
 
   initialize() {
     this.$content = query(`.${this.classes.CONTENT}`, this.$element)
     this.$buttons = query(`.${this.classes.BUTTONS}`, this.$element)
     this.$container = query(`.${this.classes.CONTAINER}`, this.$element)
-    this.$position = query(`.${this.classes.POSITION}`, this.$element)
+    this.$actions = query(`.${this.classes.ACTIONS}`, this.$element)
     this.$closeBtn = query(`.${this.classes.CLOSE}`, this.$element)
 
     if (this.options.content !== '') {
@@ -182,10 +211,10 @@ class Notice extends GlobalComponent {
     }
 
     if (this.options.fixedWidth) {
-      addClass(`${this.classes.NAMESPACE}-fixed`, this.$element)
+      addClass(this.classes.FIXED, this.$element)
     }
 
-    if (this.options.backgroundColor || this.options.backgroundImage) {
+    if (this.options.backgroundImage) {
       addClass(this.classes.BACKGROUND, this.$element)
     }
 
@@ -260,7 +289,7 @@ class Notice extends GlobalComponent {
     let content = ''
     let buttons = ''
 
-    if (this.options.allowClose) {
+    if (this.options.withClose) {
       close = templateEngine.render(this.options.templates.close.call(this), {
         classes: this.classes
       })
