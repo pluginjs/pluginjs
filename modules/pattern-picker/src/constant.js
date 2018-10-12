@@ -8,7 +8,8 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  CHANGE: 'change'
+  CHANGE: 'change',
+  SWITCHMODULE: 'switchModule'
 }
 
 export const classes = {

@@ -67,8 +67,8 @@ class PatternPicker extends Component {
     this.opacity = 1
     this.module = this.options.module
 
-    this.selecting = null
-    this.selected = null
+    this.$selecting = null
+    this.$selected = null
 
     this.$content = null
     this.setupStates()
@@ -84,11 +84,11 @@ class PatternPicker extends Component {
       addClass(this.getThemeClass(), this.$wrap)
     }
 
-    // this.initData()
+    this.initData()
 
-    // if (this.element.disabled || this.options.disabled) {
-    //   this.disable()
-    // }
+    if (this.element.disabled || this.options.disabled) {
+      this.disable()
+    }
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -118,17 +118,6 @@ class PatternPicker extends Component {
           this.switchModule(getData('type', $this))
         }
       )
-      // Collection event
-      // bindEvent(
-      //   this.eventName('click'),
-      //   `.${this.classes.COLLECTIONITEM}`,
-      //   e => {
-      //     const info = getData('info', e.target)
-      //     this.selectCollection = info
-      //     this.set({ module: 'collection', color: info.title })
-      //     this.closePanel()
-      //   }
-      // )
     )(this.$panel)
 
     // select SVG img
@@ -142,11 +131,10 @@ class PatternPicker extends Component {
           this.COLLECTION.$selectorList
         ).map(removeClass(this.classes.COLLECTIONITEMACTIVE))
         addClass(this.classes.COLLECTIONITEMACTIVE, $this)
-        this.selecting = $this
+        this.$selecting = $this
 
         this.switchModule('custom')
-        // this.update(getData('info', $this))
-        this.setPlugins(getData('info', $this))
+        this.setPlugins()
       },
       this.$panel
     )
@@ -157,7 +145,7 @@ class PatternPicker extends Component {
       `.${this.classes.SAVE}`,
       () => {
         this.enter('save')
-        if (this.is('state')) {
+        if (this.$selecting) {
           this.DROPDOWN.hide()
         }
       },
@@ -242,10 +230,10 @@ class PatternPicker extends Component {
       hideOutClick: true,
       hideOnSelect: false,
       onShown: () => {
-        this.selected = this.selecting
-        if (this.selected) {
+        this.$selected = this.$selecting
+        if (this.$selected) {
           const data = JSON.parse(
-            JSON.stringify(getData('info', this.selected))
+            JSON.stringify(getData('info', this.$selected))
           )
           setData('info', data, this.TRIGGER.$fill)
         }
@@ -289,9 +277,6 @@ class PatternPicker extends Component {
         hex: false
       },
       onChange: val => {
-        // if (!this.$selected) {
-        //   return
-        // }
         this.bgColor = val.toHEX()
         this.leave('foreChange')
         this.enter('bgChange')
@@ -339,10 +324,6 @@ class PatternPicker extends Component {
     }
 
     this.setAttr(key, this.$fillImg)
-    // this.element.value = this.options.process.call(
-    //   this,
-    //   getData('info', this.$fillImg)
-    // )
   }
 
   setAttr(key, el) {
@@ -406,19 +387,7 @@ class PatternPicker extends Component {
     this.enter(`${typeName}Module`)
     this.module = typeName
 
-    // switch (this.module) {
-    //   case 'solid':
-    //     this.setInput(this.COLORPICKER.color)
-    //     this.COLORPICKER.HISTORY.updateHistory()
-    //     break
-    //   case 'gradient':
-    //     this.setInput(this.GRADIENTPICKER.color)
-    //     this.GRADIENTPICKER.COLORPICKER.HISTORY.updateHistory()
-    //     break
-    //   default:
-    //     break
-    // }
-    // this.trigger(EVENTS.SWITCHMODULE, this.module)
+    this.trigger(EVENTS.SWITCHMODULE, this.module)
   }
 
   getClassName(namespace, field) {
@@ -433,49 +402,83 @@ class PatternPicker extends Component {
 
   setFillImg() {
     if (!getData('info', this.$fillImg)) {
-      this.selecting = queryAll(
+      this.$selecting = queryAll(
         `.${this.classes.COLLECTIONITEM}`,
         this.COLLECTION.$selectorList
       )[0]
-      this.update(getData('info', this.selecting))
+      this.update(getData('info', this.$selecting))
     }
   }
 
-  setPlugins(data) {
-    this.enter('state')
-    setData('info', data, this.$fillImg)
+  setPlugins() {
+    this.$selected = this.$selecting
+    if (!this.$selected) {
+      return
+    }
 
-    const info = getData('info', this.$fillImg)
+    const info = JSON.parse(JSON.stringify(getData('info', this.$selected)))
+    setData('info', info, this.$fillImg)
 
-    if (info.name !== name) {
-      if (data['background-color']) {
-        this.bgColor = data['background-color']
+    if (info['background-color']) {
+      this.bgColor = info['background-color']
+    } else {
+      info['background-color'] = this.options.bgColor
+    }
+
+    this.BGCOLOR.val(this.options.format(info, 'background-color'))
+    this.FORECOLOR.val(this.options.format(info, 'color'))
+    this.OPACITY.val(`${this.options.format(info, 'opacity')}%`)
+
+    // set preview
+    this.setInfo(this.$fillImg)
+  }
+
+  setPreset(data) {
+    queryAll(
+      `.${this.classes.COLLECTIONITEM}`,
+      this.COLLECTION.$selectorList
+    ).map(el => el.remove())
+    this.imgs = data
+    this.render()
+  }
+
+  update(data, trigger = true) {
+    if (this.is('save')) {
+      if (data) {
+        setData('info', data, this.$fillImg)
+        this.setInfo(this.$fillImg)
       } else {
-        data['background-color'] = this.options.bgColor
+        this.data = getData('info', this.$fillImg)
       }
 
-      this.BGCOLOR.val(this.options.format(data, 'background-color'))
-      this.FORECOLOR.val(this.options.format(data, 'color'))
-      this.OPACITY.val(`${this.options.format(data, 'opacity')}%`)
-
-      // this.update(data)
-    }
-  }
-
-  update() {
-    if (this.is('save')) {
-      this.data = getData('info', this.$fillImg)
-
+      this.module = 'custom'
       this.element.value = this.val()
       addClass(this.classes.SHOW, this.$wrap)
-    } else if (!this.selected) {
+
+      if (trigger) {
+        this.trigger(EVENTS.CHANGE, this.data)
+      }
+    } else if (!this.$selected) {
       this.clear()
     } else {
-      this.setPlugins(getData('info', this.TRIGGER.$fill))
-      // this.setInfo(this.selected)
-    }
+      const info = JSON.parse(JSON.stringify(getData('info', this.$selected)))
 
-    // this.enter('state')
+      setData('info', info, this.$fillImg)
+      console.log(info)
+
+      if (info['background-color']) {
+        this.bgColor = info['background-color']
+      } else {
+        info['background-color'] = this.options.bgColor
+      }
+
+      this.BGCOLOR.val(this.options.format(info, 'background-color'))
+      this.FORECOLOR.val(this.options.format(info, 'color'))
+      this.OPACITY.val(`${this.options.format(info, 'opacity')}%`)
+
+      // set preview
+      this.setInfo(this.$fillImg)
+    }
   }
 
   get() {
@@ -494,11 +497,31 @@ class PatternPicker extends Component {
 
     this.data = data
 
-    this.setPlugins(data)
+    queryAll(
+      `.${this.classes.COLLECTIONITEM}`,
+      this.COLLECTION.$selectorList
+    ).forEach($this => {
+      const info = getData('info', $this)
+      removeClass(this.classes.COLLECTIONITEMACTIVE, $this)
+      if (info.name === name) {
+        if (data['background-color']) {
+          this.bgColor = data['background-color']
+        } else {
+          data['background-color'] = this.bgColor
+        }
+        addClass(this.classes.COLLECTIONITEMACTIVE, $this)
+        // getObjData('info', data, $this)
+        setData('info', data, this.$fillImg)
 
-    if (trigger) {
-      this.trigger(EVENTS.CHANGE, data)
-    }
+        this.$selecting = $this
+
+        this.BGCOLOR.val(this.options.format(data, 'background-color'))
+        this.FORECOLOR.val(this.options.format(data, 'color'))
+        this.OPACITY.val(`${this.options.format(data, 'opacity')}%`)
+        this.enter('save')
+        this.update(data, trigger)
+      }
+    })
 
     return
   }
@@ -526,8 +549,8 @@ class PatternPicker extends Component {
     this.FORECOLOR.clear()
     this.BGCOLOR.clear()
 
-    this.selecting = null
-    this.selected = null
+    this.$selecting = null
+    this.$selected = null
     this.module = this.options.module
 
     this.element.value = ''

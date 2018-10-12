@@ -154,11 +154,6 @@ $selector-item-margin-size: 1.7 * $patternPicker-sizer !default; //17px
           border: 1px solid $gray-dark;
           border-radius: 2px;
         }
-
-        // &:hover::before {
-        //   background-color: $color-primary-active;
-        //   border-color: $patternPicker-active-color;
-        // }
       }
     }
 
@@ -174,23 +169,6 @@ $selector-item-margin-size: 1.7 * $patternPicker-sizer !default; //17px
     &-collection {
       height: $patternPicker-collection-height;
       padding: $patternPicker-collection-padding;
-  
-      // .#{$patternPicker}-group {
-      //   &-title {
-      //     display: inline-block;
-      //     margin-bottom: $patternPicker-collection-group-title-margin-bottom;
-      //     font-size: $patternPicker-collection-group-title-font-size;
-      //     color: $patternPicker-collection-group-title-color;
-      //     letter-spacing: 1px;
-      //   }
-  
-      //   &-list {
-      //     width: 100%;
-      //     // height: 100%;
-      //     padding: 0;
-      //     margin: 0;
-      //   }
-      // }
   
       .#{$patternPicker}-manage {
         position: absolute;
@@ -221,14 +199,12 @@ $selector-item-margin-size: 1.7 * $patternPicker-sizer !default; //17px
       &-scrollwrap {
         // width: 100%;
         height: 100%;
-  
+
         .pj-scrollable-container,
         .pj-scrollable-content {
           width: 100% !important;
           height: 100% !important;
-  
         }
-  
       }
   
       &-item {
@@ -249,61 +225,6 @@ $selector-item-margin-size: 1.7 * $patternPicker-sizer !default; //17px
     }
   &-field {
     margin-top: 20px;
-  }
-
-  &-preview {
-    position: relative;
-    box-sizing: border-box;
-    width: 260px;
-    height: 160px;
-    padding: 14px;
-    margin-bottom: 20px;
-    // background: url(./images/bg-canvas.png) no-repeat center; /* stylelint-disable-line */
-    border: $patternPicker-border;
-    border-radius: 2px;
-
-    &-img {
-      height: 100%;
-    }
-  }
-  &-selector-list {
-    height: 100%;
-
-    .#{$scrollable} {
-      &-container {
-        // width: 100% !important;
-        height: 100% !important;
-      }
-
-      &-content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        width: 100% !important;
-      }
-    }
-  }
-
-  &-selector-item {
-    //float: left;
-    display: inline-flex;
-    //width: $selector-item-width;
-    width: calc(100% / 4 - 2px - 20px);
-    height: $selector-item-height;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    list-style: none;
-    border: $global-border;
-    border-color: transparent;
-
-    //&:nth-of-type(4n) {
-    //  margin-right: 0;
-    //}
-
-    &:hover {
-      cursor: pointer;
-      border-color: $global-active-color;
-    }
   }
 
   &-forecolor,
