@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
-import { parseHTML, insertAfter, query, has } from '@pluginjs/dom'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { parseHTML, insertAfter, query, has, insertBefore } from '@pluginjs/dom'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import Trigger from './trigger'
 import template from '@pluginjs/template'
@@ -19,6 +19,7 @@ import Position from './position'
 import Repeat from './repeat'
 import Size from './size'
 import Preview from './preview'
+import Image from './image'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -28,6 +29,7 @@ import {
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
+// import { SIGABRT } from 'constants'
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -73,6 +75,7 @@ class BgPicker extends Component {
     this.POSITION = new Position(this)
     this.REPEAT = new Repeat(this)
     this.PREVIEW = new Preview(this)
+    this.IMAGE = new Image(this)
 
     addClass(this.classes.EXIST, this.$wrap)
 
@@ -98,10 +101,11 @@ class BgPicker extends Component {
       templates: this.options.templates,
       onShow: () => {
         if (!this.DROPDOWN.is('builded')) {
-          insertAfter(this.SIZE.$wrap, this.$preview)
-          insertAfter(this.ATTACHMENT.$wrap, this.$preview)
-          insertAfter(this.REPEAT.$wrap, this.$preview)
-          insertAfter(this.POSITION.$wrap, this.$preview)
+          insertBefore(this.POSITION.$wrap, this.$control)
+          insertBefore(this.REPEAT.$wrap, this.$control)
+          insertBefore(this.ATTACHMENT.$wrap, this.$control)
+          insertBefore(this.SIZE.$wrap, this.$control)
+          insertBefore(this.IMAGE.$wrap, this.$control)
         }
       }
     })
@@ -166,7 +170,12 @@ class BgPicker extends Component {
         }
 
         this.update()
-        removeClass(this.classes.SHOW, addClass(this.classes.EXIST, this.$wrap))
+        if (hasClass(this.classes.SHOW, this.$wrap)) {
+          removeClass(
+            this.classes.SHOW,
+            addClass(this.classes.EXIST, this.$wrap)
+          )
+        }
         this.DROPDOWN.hide()
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         return false
@@ -174,16 +183,16 @@ class BgPicker extends Component {
       this.$save
     )
 
-    bindEvent(
-      this.eventName('click'),
-      () => {
-        if (this.is('disabled')) {
-          return
-        }
-        this.options.select.apply(this)
-      },
-      this.$image
-    )
+    // bindEvent(
+    //   this.eventName('click'),
+    //   () => {
+    //     if (this.is('disabled')) {
+    //       return
+    //     }
+    //     this.options.select.apply(this)
+    //   },
+    //   this.$image
+    // )
   }
 
   unbind() {
@@ -207,8 +216,23 @@ class BgPicker extends Component {
     this.$control = query(`.${this.classes.CONTROL}`, this.$dropdown)
     this.$cancel = query(`.${this.classes.CANCEL}`, this.$control)
     this.$save = query(`.${this.classes.SAVE}`, this.$control)
-    this.$preview = query(`.${this.classes.PREVIEW}`, this.$dropdown)
-    this.$image = query(`.${this.classes.IMAGE}`, this.$dropdown)
+    // this.$preview = query(`.${this.classes.PREVIEW}`, this.$dropdown)
+    // this.$image = query(`.${this.classes.IMAGE}`, this.$dropdown)
+  }
+
+  changeImage(url) {
+    this.value.image = url
+    // addClass(this.classes.POSTERSELECTED, this.$poster)
+
+    // if (this.$videoPoster) {
+    //   setStyle(
+    //     {
+    //       backgroundImage: `url(${this.data.poster})`,
+    //       backgroundSize: '100% 100%'
+    //     },
+    //     this.$videoPoster
+    //   )
+    // }
   }
 
   update() {
@@ -266,9 +290,10 @@ class BgPicker extends Component {
 
   clear(update = true) {
     this.value = {}
-
+    this.$imageSelected = query(`.${this.classes.IMAGESELECTED}`, this.$wrap)
+    console.log(this.$imageSelected)
     removeClass(this.classes.EXIST, this.$wrap)
-
+    removeClass(this.classes.IMAGESELECTED, this.$imageSelected)
     if (update !== false) {
       const image = ''
       this.PREVIEW.set(image)

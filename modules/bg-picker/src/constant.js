@@ -60,7 +60,13 @@ export const classes = {
   ATTACH: '{attachNamespace}',
   DROPDOWN: '{namespace}-dropdown',
   SELECTTRIGGER: '{namespace}-select-trigger',
-  TRIGGER: '{namespace}-trigger'
+  TRIGGER: '{namespace}-trigger',
+  // image
+  SELECTEDDISABLE: '{namespace}-selected-disabled',
+  IMAGESELECTED: '{namespace}-image-selected',
+  IMAGESELECT: '{namespace}-image-select',
+  IMAGECHANGE: '{namespace}-image-change',
+  IMAGEREMOVE: '{namespace}-image-remove'
 }
 
 export const methods = [
@@ -106,6 +112,21 @@ export const defaults = {
         '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-horizontal" title="{repeatX}"></li>' +
         '<li class="{classes.FIELDCONTENTITEM} pj-icon pj-icon-repeat-vertical" title="{repeatY}"></li>' +
         '</ul>' +
+        '</div>'
+      )
+    }
+  },
+
+  selectImage: {
+    template() {
+      return (
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{image}</span>' +
+        '<div class="{classes.FIELDCONTENT} pj-input">' +
+        '<span class="{classes.IMAGESELECT}">{selectImage}</span>' +
+        '<span class="{classes.IMAGECHANGE}">{changeImage}</span>' +
+        '<span class="{classes.IMAGEREMOVE}">{removeImage}</span>' +
+        '</div>' +
         '</div>'
       )
     }
@@ -189,9 +210,6 @@ export const defaults = {
       '<div class="{classes.TIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-trash"></i></div>' +
       '</div>' +
       '<div class="{classes.DROPDOWN}">' +
-      '<div class="{classes.PREVIEW}">' +
-      '<div class="{classes.IMAGE}"></div>' +
-      '</div>' +
       '<div class="{classes.CONTROL}" href="#"><button type="button" class="{classes.CANCEL} pj-btn pj-btn-transparent">{cancel}</button><button type="button" class="{classes.SAVE} pj-btn pj-btn-primary">{save}</button></div>' +
       '</div>' +
       '</div>'
@@ -221,6 +239,9 @@ export const defaults = {
 
 export const translations = {
   en: {
+    selectImage: 'Select Image',
+    changeImage: 'Change Image',
+    removeImage: 'Remove Image',
     noRepeat: 'no repeat',
     repeat: 'repeat',
     repeatX: 'repeat-x',
@@ -237,6 +258,7 @@ export const translations = {
     placeholder: 'Add Image',
     change: 'change',
     bgRepeat: 'Repeat',
+    image: 'Image',
     bgPosition: 'Position',
     bgAttach: 'Attach',
     bgSize: 'Scalling',
@@ -244,6 +266,9 @@ export const translations = {
     save: 'save'
   },
   zh: {
+    selectImage: '选择图片',
+    changeImage: '改变图片',
+    removeImage: '移除图片',
     noRepeat: '不重复',
     repeat: '重复',
     repeatX: 'x轴重复',
@@ -260,6 +285,7 @@ export const translations = {
     placeholder: '添加图片',
     change: '更换图片',
     bgRepeat: '重复',
+    image: '图片',
     bgPosition: '位置',
     bgAttach: '附着',
     bgSize: '比例',
