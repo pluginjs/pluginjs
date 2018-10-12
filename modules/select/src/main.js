@@ -297,7 +297,7 @@ class Select extends Component {
     if (value === this.selected) {
       const option = this.getOptionByValue(value)
 
-      this.setLabel(this.placeholder)
+      this.setPlaceholderLabel()
 
       this.selected = null
 
@@ -371,6 +371,14 @@ class Select extends Component {
       this.$label.value = label
     } else {
       html(label, this.$label)
+    }
+  }
+
+  setPlaceholderLabel() {
+    if (isInput(this.$label)) {
+      this.$label.value = ''
+    } else {
+      html(this.placeholder, this.$label)
     }
   }
 
