@@ -47,7 +47,11 @@ const defaults = {
   vertical: false,
   current: 0,
   mode: 'full', // full or center
-  loader: true, // true, false, options
+  loader: {
+    theme: 'ring',
+    color: '#000',
+    size: 'lg'
+  },// false , options
   breakpoint: null // xs, sm, md, lg, xl
 }
 

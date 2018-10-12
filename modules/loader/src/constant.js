@@ -20,7 +20,7 @@ export const classes = {
 export const methods = ['destroy', 'show', 'hide', 'toggle']
 
 export const defaults = {
-  theme: 'circle',
+  theme: 'circle', // circle, rolling, snake, ripple, dot, ring, clock, flip, windmill
   size: null, // sm, lg
   text: null,
   background: null,

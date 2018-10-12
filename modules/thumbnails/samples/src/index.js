@@ -1,4 +1,3 @@
-import '@pluginjs/loader/src/css/loader.scss'
 // import sections
 import './sections/default/index.js'
 import './sections/center/index.js'

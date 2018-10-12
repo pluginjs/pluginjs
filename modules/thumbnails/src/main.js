@@ -185,42 +185,25 @@ class Thumbnails extends Component {
   }
 
   initImageLoader() {
-    if (this.options.loader) {
-      const options = isPlainObject(this.options.loader)
-        ? this.options.loader
-        : { theme: 'ring', color: '#000000', size: 'lg' }
-
-      this.items.forEach(item => {
+    this.items.forEach(item => {
+      if (this.options.loader) {
         const loader = Loader.of(
           query(`.${this.classes.LOADER}`, item),
-          options
+          this.options.loader
         )
         loader.show()
+      }
 
-        ImageLoader.of(item.querySelector(`.${this.classes.IMAGE}`)).on(
-          'loaded',
-          img => {
+      ImageLoader.of(item.querySelector(`.${this.classes.IMAGE}`)).on(
+        'loaded',
+        img => {
+          if (this.options.loader) {
             loader.hide()
-            addClass(
-              this.classes.LOADED,
-              closest(`.${this.classes.THUMB}`, img)
-            )
           }
-        )
-      })
-    } else {
-      this.items.forEach(item => {
-        ImageLoader.of(item.querySelector(`.${this.classes.IMAGE}`)).on(
-          'loaded',
-          img => {
-            addClass(
-              this.classes.LOADED,
-              closest(`.${this.classes.THUMB}`, img)
-            )
-          }
-        )
-      })
-    }
+          addClass(this.classes.LOADED, closest(`.${this.classes.THUMB}`, img))
+        }
+      )
+    })
   }
 
   initSwipeable() {
