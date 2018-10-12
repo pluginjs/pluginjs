@@ -27,8 +27,8 @@ $colorPicker-preview-bg-width: 36px;
 $colorPicker-preview-border-radius: $border-radius-base !default;
 $colorPicker-preview-bg-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABlBMVEXLy8v////hf8FnAAAAGklEQVQoz2PghwEG/KwPMECANWreqHkDaB4AtSFCzONj1qEAAAAASUVORK5CYII=");
 
-$colorPicker-remove-color: $gray-dark;
-$colorPicker-remove-hover-color: $color-primary-black;
+$colorPicker-clear-color: $gray;
+$colorPicker-clear-hover-color: $text-color;
 
 $colorPicker-panel-shadow: $box-shadow-base;
 
@@ -63,16 +63,6 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
 .#{$colorPicker} {
   font-family: $colorPicker-font-family;
 
-  &-remove {
-    font-size: 12px;
-    color: $colorPicker-remove-color;
-
-    &:hover {
-      color: $colorPicker-remove-hover-color;
-      cursor: pointer;
-    }
-  }
-
   &-preview {
     border-left: $colorPicker-border;
 
@@ -82,6 +72,15 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
 
     &-bg {
       background: $colorPicker-preview-bg-image;
+    }
+  }
+
+
+  &-clear {
+    color: $select-clear-color;
+
+    &:hover {
+      color: $select-clear-hover-color;
     }
   }
 

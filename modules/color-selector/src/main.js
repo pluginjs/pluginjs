@@ -20,6 +20,7 @@ import {
 import Dropdown from '@pluginjs/dropdown'
 import ColorPicker from '@pluginjs/color-picker'
 import GradientPicker from '@pluginjs/gradient-picker'
+import Clearable from './clearable'
 // import Popper from 'popper.js'
 import {
   eventable,
@@ -101,6 +102,10 @@ class ColorSelector extends Component {
       addClass(this.getThemeClass(), this.$wrap)
     }
 
+    if (this.options.clearable) {
+      this.CLEARABLE = new Clearable(this)
+    }
+
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
@@ -124,40 +129,29 @@ class ColorSelector extends Component {
 
   bind() {
     // input remove color
-    if (this.options.displayMode !== 'inline') {
-      compose(
-        bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
-          hideElement(this.$remove)
-          this.clear()
-        }),
-        bindEvent(
-          this.eventName('mouseout'),
-          `.${this.classes.TRIGGER}`,
-          () => {
-            hideElement(this.$remove)
+    compose(
+      bindEvent(this.eventName('click'), `.${this.classes.CLEAR}`, () => {
+        hideElement(this.CLEARABLE.element)
+      }),
+      bindEvent(this.eventName('mouseout'), `.${this.classes.TRIGGER}`, () => {
+        hideElement(this.CLEARABLE.element)
+      }),
+      bindEvent(this.eventName('mouseover'), `.${this.classes.TRIGGER}`, () => {
+        if (this.element.value.length > 0) {
+          if (!this.is('disabled')) {
+            this.CLEARABLE.element.style.display = 'inline'
           }
-        ),
-        bindEvent(
-          this.eventName('mouseover'),
-          `.${this.classes.TRIGGER}`,
-          () => {
-            if (this.element.value.length > 0) {
-              if (!this.is('disabled')) {
-                this.$remove.style.display = 'inline'
-              }
-            }
-          }
-        )
-      )(this.$wrap)
+        }
+      })
+    )(this.$wrap)
 
-      bindEvent(
-        this.eventName('change'),
-        e => {
-          this.set(this.options.parse.call(this, e.target.value))
-        },
-        this.element
-      )
-    }
+    bindEvent(
+      this.eventName('change'),
+      e => {
+        this.set(this.options.parse.call(this, e.target.value))
+      },
+      this.element
+    )
 
     compose(
       // manage event
@@ -185,13 +179,6 @@ class ColorSelector extends Component {
         }
       )
     )(this.$panel)
-  }
-
-  initRemove() {
-    const $remove = this.createEl('remove', { classes: this.classes })
-    append($remove, query(`.${this.classes.TRIGGER}`, this.$wrap))
-    this.$remove = query(`.${this.classes.REMOVE}`, this.$wrap)
-    hideElement(this.$remove)
   }
 
   initPreview() {
@@ -245,8 +232,6 @@ class ColorSelector extends Component {
     this.$wrap = wrap($wrap, this.element)
     wrap(`<div class='${this.classes.TRIGGER}'></div>`, this.element)
 
-    // init remove button
-    this.initRemove()
     // init preview
     this.initPreview()
 
@@ -477,8 +462,12 @@ class ColorSelector extends Component {
       empty(this.element)
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
-      this.$remove.remove()
       this.PREVIEW.remove()
+
+      if (this.options.clearable) {
+        this.CLEARABLE.destroy()
+      }
+
       this.$panel.remove()
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)

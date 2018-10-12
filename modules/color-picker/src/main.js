@@ -14,6 +14,7 @@ import {
   unwrap,
   empty
 } from '@pluginjs/dom'
+import Clearable from './clearable'
 import Dropdown from '@pluginjs/dropdown'
 import { Color } from '@pluginjs/color'
 import Alpha from './components/alpha'
@@ -102,6 +103,10 @@ class ColorPicker extends Component {
 
     this.bind()
 
+    if (this.options.clearable && this.options.displayMode === 'dropdown') {
+      this.CLEARABLE = new Clearable(this)
+    }
+
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
@@ -121,31 +126,31 @@ class ColorPicker extends Component {
   bind() {
     // input remove color
     if (this.options.displayMode !== 'inline') {
-      compose(
-        bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
-          hideElement(this.$remove)
-          this.clear()
-        }),
-        bindEvent(
-          this.eventName('mouseout'),
-          `.${this.classes.TRIGGER}`,
-          () => {
-            hideElement(this.$remove)
-          }
-        ),
-        bindEvent(
-          this.eventName('mouseover'),
-          `.${this.classes.TRIGGER}`,
-          () => {
-            if (this.element.value.length > 0) {
-              if (!this.is('disabled')) {
-                this.$remove.style.display = 'inline'
+      if (this.options.clearable) {
+        compose(
+          bindEvent(this.eventName('click'), `.${this.classes.CLEAR}`, () => {
+            hideElement(this.CLEARABLE.element)
+          }),
+          bindEvent(
+            this.eventName('mouseout'),
+            `.${this.classes.TRIGGER}`,
+            () => {
+              hideElement(this.CLEARABLE.element)
+            }
+          ),
+          bindEvent(
+            this.eventName('mouseover'),
+            `.${this.classes.TRIGGER}`,
+            () => {
+              if (this.element.value.length > 0) {
+                if (!this.is('disabled')) {
+                  this.CLEARABLE.element.style.display = 'inline'
+                }
               }
             }
-          }
-        )
-      )(this.$wrap)
-
+          )
+        )(this.$wrap)
+      }
       bindEvent(
         this.eventName('change'),
         e => {
@@ -174,9 +179,6 @@ class ColorPicker extends Component {
     wrap(`<div class='${this.classes.TRIGGER}'></div>`, this.element)
 
     if (this.options.displayMode !== 'inline') {
-      // init remove button
-      this.initRemove()
-
       // init preview
       this.initPreview()
     }
@@ -209,13 +211,6 @@ class ColorPicker extends Component {
     // create mask
     this.$mask = parseHTML(`<div class="${this.classes.MASK}"></div>`)
     append(this.$mask, this.$body)
-  }
-
-  initRemove() {
-    const $remove = this.createEl('remove', { classes: this.classes })
-    append($remove, query(`.${this.classes.TRIGGER}`, this.$wrap))
-    this.$remove = query(`.${this.classes.REMOVE}`, this.$wrap)
-    hideElement(this.$remove)
   }
 
   initPreview() {
@@ -287,9 +282,7 @@ class ColorPicker extends Component {
     if (!val) {
       val = this.color
     }
-    console.log(val)
     const color = this.COLOR.val(val)
-    console.log(color.toHEX())
     if (isString(val) && val.indexOf('#') > -1) {
       this.setInput(color.toHEX())
     } else if (isString(val) && !val.match(/\d/g)) {
@@ -374,7 +367,6 @@ class ColorPicker extends Component {
       return this.get()
     }
 
-    console.log(color)
     this.set(color)
     return null
   }
@@ -420,13 +412,17 @@ class ColorPicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
+
+      this.clear()
       empty(this.element)
       this.element.className = this.firstClassName
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
       if (this.options.displayMode !== 'inline') {
-        this.$remove.remove()
         this.PREVIEW.remove()
+        if (this.options.clearable) {
+          this.CLEARABLE.destroy()
+        }
       }
       this.$panel.remove()
       if (this.options.theme) {
@@ -434,7 +430,6 @@ class ColorPicker extends Component {
       }
       this.leave('initialized')
     }
-    this.clear()
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }

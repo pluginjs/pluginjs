@@ -8,7 +8,9 @@ $colorPicker-width: 192px !default;
 $colorPicker-preview-width: 45px !default;
 $colorPicker-preview-height: 32px !default;
 
-$colorPicker-remove-right: $colorPicker-preview-width + 6px !default;
+$colorPicker-clear-right: $colorPicker-preview-width + 6px !default;
+$colorPicker-clear-icon: $pj-icon-close !default;
+$colorPicker-clear-font: $pj-icon-font-family !default;
 
 $colorPicker-border-width: 1px !default;
 
@@ -35,12 +37,27 @@ $colorPicker-mask-zindex: $colorPicker-panel-zindex - 1 !default;
     width: 100%;
   }
 
-  &-remove {
+  &-clear {
     position: absolute;
-    top: 50%;
-    right: $colorPicker-remove-right;
-    z-index: 1;
-    transform: translateY(-50%);
+    top: 0;
+    right: $colorPicker-clear-right;
+    display: none;
+    height: 100%;
+    font-family: $colorPicker-clear-font;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($colorPicker-clear-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
   }
 
   &-preview {
@@ -159,7 +176,7 @@ $colorPicker-mask-zindex: $colorPicker-panel-zindex - 1 !default;
 
   &-disabled {
     .#{$colorPicker}-preview {
-      cursor: not-allowed;
+      pointer-events: none;
     }
   }
 }

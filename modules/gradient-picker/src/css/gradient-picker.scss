@@ -13,8 +13,8 @@ $gradientPicker-panel-padding:24px;
 
 $gradientPicker-preview-bg-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABlBMVEXLy8v////hf8FnAAAAGklEQVQoz2PghwEG/KwPMECANWreqHkDaB4AtSFCzONj1qEAAAAASUVORK5CYII=");
 
-$gradientPicker-remove-color: $gray;
-$gradientPicker-remove-hover-color: $color-primary-black;
+$gradientPicker-clear-color: $gray;
+$gradientPicker-clear-hover-color: $text-color;
 
 $gradientPicker-handle-item-margin-bottom: 15px;
 $gradientPicker-handle-bar-margin-bottom: 12px;
@@ -46,13 +46,11 @@ $gradientPicker-font-weight: $font-weight-medium;
     padding: $gradientPicker-panel-padding;
   }
 
-  &-remove {
-    font-size: $gradientPicker-remove-font-size;
-    color: $gradientPicker-remove-color;
+  &-clear {
+    color: $gradientPicker-clear-color;
 
     &:hover {
-      color: $gradientPicker-remove-hover-color;
-      cursor: pointer;
+      color: $gradientPicker-clear-hover-color;
     }
   }
 

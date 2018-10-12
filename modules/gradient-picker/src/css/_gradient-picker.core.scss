@@ -15,7 +15,10 @@ $gradientPicker-preview-height: 32px !default;
 $gradientPicker-preview-bg-width: 36px !default;
 $gradientPicker-preview-bg-height: 24px !default;
 // remove
-$gradientPicker-remove-right: $gradientPicker-preview-width + 6px !default;
+$gradientPicker-clear-right: $gradientPicker-preview-width + 6px !default;
+$gradientPicker-clear-icon: $pj-icon-close !default;
+$gradientPicker-clear-font: $pj-icon-font-family !default;
+
 $gradientPicker-gradient-bar-height: 16px !default;
 $gradientPicker-gradient-bar-width: 240px !default;
 $gradientPicker-marker-width: 12px !default;
@@ -42,9 +45,32 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
   &-remove {
     position: absolute;
     top: 50%;
-    right: $gradientPicker-remove-right;
+    right: $gradientPicker-clear-right;
     z-index: 1;
     transform: translateY(-50%);
+  }
+
+  &-clear {
+    position: absolute;
+    top: 0;
+    right: $gradientPicker-clear-right;
+    display: none;
+    height: 100%;
+    font-family: $gradientPicker-clear-font;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($gradientPicker-clear-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
   }
 
   &-preview {
@@ -150,6 +176,12 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
       left: 50%;
       transform: translateX(-50%);
       transform-origin: center $gradientPicker-wheel-height / 2;
+    }
+  }
+
+  &-disabled {
+    .#{$gradientPicker}-preview {
+      pointer-events: none;
     }
   }
 }

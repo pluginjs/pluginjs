@@ -17,6 +17,7 @@ import {
   setData,
   empty
 } from '@pluginjs/dom'
+import Clearable from './clearable'
 import ColorPicker from '@pluginjs/color-picker'
 import Dropdown from '@pluginjs/dropdown'
 import Select from '@pluginjs/select'
@@ -99,6 +100,15 @@ class GradientPicker extends Component {
 
     this.initData()
     this.bind()
+
+    if (this.options.clearable && this.options.displayMode === 'dropdown') {
+      this.CLEARABLE = new Clearable(this)
+    }
+
+    if (this.element.disabled || this.options.disabled) {
+      this.disable()
+    }
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
@@ -114,30 +124,31 @@ class GradientPicker extends Component {
   bind() {
     if (this.options.displayMode !== 'inline') {
       // input remove color
-      compose(
-        bindEvent(this.eventName('click'), `.${this.classes.REMOVE}`, () => {
-          hideElement(this.$remove)
-          this.clear()
-        }),
-        bindEvent(
-          this.eventName('mouseout'),
-          `.${this.classes.TRIGGER}`,
-          () => {
-            hideElement(this.$remove)
-          }
-        ),
-        bindEvent(
-          this.eventName('mouseover'),
-          `.${this.classes.TRIGGER}`,
-          () => {
-            if (this.element.value.length > 0) {
-              if (!this.is('disabled')) {
-                this.$remove.style.display = 'inline'
+      if (this.options.clearable) {
+        compose(
+          bindEvent(this.eventName('click'), `.${this.classes.CLEAR}`, () => {
+            hideElement(this.CLEARABLE.element)
+          }),
+          bindEvent(
+            this.eventName('mouseout'),
+            `.${this.classes.TRIGGER}`,
+            () => {
+              hideElement(this.CLEARABLE.element)
+            }
+          ),
+          bindEvent(
+            this.eventName('mouseover'),
+            `.${this.classes.TRIGGER}`,
+            () => {
+              if (this.element.value.length > 0) {
+                if (!this.is('disabled')) {
+                  this.CLEARABLE.element.style.display = 'inline'
+                }
               }
             }
-          }
-        )
-      )(this.$wrap)
+          )
+        )(this.$wrap)
+      }
 
       bindEvent(
         this.eventName('change'),
@@ -186,11 +197,9 @@ class GradientPicker extends Component {
         if (e.which === 2 || e.which === 3) {
           return false
         }
-        console.log(12)
         const $this = e.target
         const marker = getData('value', $this)
         this.selectMarker($this)
-        console.log(12)
         this.COLORPICKER.set(marker.color)
         if (this.COLORPICKER.HISTORY) {
           this.COLORPICKER.HISTORY.set(this.tempColor)
@@ -292,12 +301,12 @@ class GradientPicker extends Component {
     )
     this.KEYBOARD = keyboard()
 
-    this.KEYBOARD.on('down', 'esc', () => {
+    this.KEYBOARD.on('down', 'esc', ({ target: $this }) => {
       if (
         !this.is('openPanel') ||
         this.markers.length <= 2 ||
         this.module !== 'gradient' ||
-        !hasClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
+        !hasClass(this.classes.DELETEACTIVE, $this)
       ) {
         return false
       }
@@ -306,7 +315,7 @@ class GradientPicker extends Component {
       const index = getData('value', $marker).index
 
       $marker.remove()
-      removeClass(this.classes.REMOVEACTIVE, this.$remove)
+      removeClass(this.classes.DELETEACTIVE, this.$delete)
       this.markers.splice(index, 1)
       this.GRADIENT.removeById(index + 1)
       this.sort()
@@ -323,9 +332,6 @@ class GradientPicker extends Component {
     wrap(`<div class='${this.classes.TRIGGER}'></div>`, this.element)
 
     if (this.options.displayMode !== 'inline') {
-      //   // init remove button
-      this.initRemove()
-
       //   // init preview
       this.initPreview()
     }
@@ -336,6 +342,7 @@ class GradientPicker extends Component {
     if (this.options.displayMode !== 'inline') {
       this.DROPDOWN = Dropdown.of(this.PREVIEW.element, {
         target: this.$panel,
+        reference: this.element,
         hideOnSelect: false,
         hideOutClick: true,
         onShown: () => {
@@ -355,14 +362,6 @@ class GradientPicker extends Component {
     }
     this.initColorPicker()
   }
-
-  initRemove() {
-    const $remove = this.createEl('remove', { classes: this.classes })
-    append($remove, query(`.${this.classes.TRIGGER}`, this.$wrap))
-    this.$remove = query(`.${this.classes.REMOVE}`, this.$wrap)
-    hideElement(this.$remove)
-  }
-
   initPreview() {
     const $preview = this.createEl('preview', {
       classes: this.classes
@@ -707,8 +706,10 @@ class GradientPicker extends Component {
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
       if (this.options.displayMode !== 'inline') {
-        this.$remove.remove()
         this.PREVIEW.remove()
+        if (this.options.clearable) {
+          this.CLEARABLE.destroy()
+        }
       }
       this.$panel.remove()
       if (this.options.theme) {

@@ -23,10 +23,11 @@ export const BASECLASS = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   TRIGGER: '{namespace}-trigger',
+  CLEARABLE: '{namespace}-clearable',
+  CLEAR: '{namespace}-clear',
   DISABLED: '{namespace}-disabled',
   INPUT: '{namespace}-input',
   PANEL: '{namespace}-panel',
-  REMOVE: '{namespace}-remove',
   MASK: '{namespace}-mask',
   SAVE: '{namespace}-save'
 }
@@ -100,6 +101,7 @@ export const defaults = {
   disabled: false,
   displayMode: 'dropdown', // dropdown || inline
   showControl: false,
+  clearable: false,
   module: {
     saturation: true,
     hue: true,
@@ -134,9 +136,6 @@ export const defaults = {
       <span class="{classes.PREVIEWCOLOR}"></span>
       <span class="{classes.PREVIEWBG}"></span>
             </div>`
-    },
-    remove() {
-      return '<i class="{classes.REMOVE} pj-icon pj-icon-remove"></i>'
     },
     panel() {
       return `<div class='{classes.PANEL}'>

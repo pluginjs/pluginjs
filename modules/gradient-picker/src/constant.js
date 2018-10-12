@@ -13,8 +13,12 @@ export const events = {
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
+  THEME: '{namespace}--{theme}',
   INPUT: '{namespace}-input',
   TRIGGER: '{namespace}-trigger',
+  DISABLED: '{namespace}-disabled',
+  CLEARABLE: '{namespace}-clearable',
+  CLEAR: '{namespace}-clear',
   // panel
   PANEL: '{namespace}-panel',
   HANDLE: '{namespace}-handle',
@@ -25,7 +29,6 @@ export const classes = {
   PREVIEWCOLOR: '{namespace}-preview-color',
   PREVIEWBG: '{namespace}-preview-bg',
   COLORPICKER: '{namespace}-colorPicker',
-  REMOVE: '{namespace}-remove',
   // handle
   BAR: '{namespace}-bar',
   BARVIEW: '{namespace}-bar-view',
@@ -59,6 +62,7 @@ export const defaults = {
   placeholder: 'choose color',
   displayMode: 'dropdown', // dropdown || inline
   showControl: false,
+  clearable: false,
   templates: {
     wrap() {
       return '<div class="{classes.NAMESPACE}"></div>'
