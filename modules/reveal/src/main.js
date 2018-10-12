@@ -19,7 +19,7 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import viewport from '@pluginjs/viewport'
+import Viewport from '@pluginjs/viewport'
 
 const matchMobile = isMobile()
 const matchTablet = isTablet()
@@ -74,23 +74,27 @@ class Reveal extends Component {
   }
 
   initViewport() {
-    const viewElement = this.options.anchor
+    this.viewElement = this.options.anchor
       ? query(this.options.anchor)
       : this.element
-    if (!viewElement) {
+    if (!this.viewElement) {
       throw new Error('Can not find anchor element')
     }
-    this.viewport = viewport(viewElement)
+    this.viewport = Viewport.of(this.viewElement)
   }
 
   bind() {
-    this.viewport.on('enter', this.enterHandle)
-    this.viewport.on('exit', this.exitHandle)
+    bindEvent('viewport:enter', this.enterHandle, this.viewElement)
+    bindEvent('viewport:leave', this.exitHandle, this.viewElement)
+    // this.viewport.on('enter', this.enterHandle)
+    // this.viewport.on('exit', this.exitHandle)
   }
 
   unbind() {
-    this.viewport.off('enter', this.enterHandle)
-    this.viewport.off('exit', this.exitHandle)
+    removeEvent('viewport:enter', this.viewElement)
+    removeEvent('viewport:leave', this.viewElement)
+    // this.viewport.off('enter', this.enterHandle)
+    // this.viewport.off('exit', this.exitHandle)
   }
 
   enterHandle = () => {
