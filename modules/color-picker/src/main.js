@@ -402,6 +402,7 @@ class ColorPicker extends Component {
 
   disable() {
     if (!this.is('disabled')) {
+      this.DROPDOWN.disable()
       this.element.disabled = true
       this.enter('disabled')
     }

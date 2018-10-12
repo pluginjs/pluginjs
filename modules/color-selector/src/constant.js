@@ -44,8 +44,7 @@ export const COLLECTIONCLASS = {
   GROUPTITLE: '{namespace}-group-title',
   GROUPLIST: '{namespace}-group-list',
   COLLECTIONITEM: '{namespace}-collection-item',
-  MANAGE: '{namespace}-manage',
-  COLLECTIONSCROLLWRAP: '{namespace}-collection-scrollwrap'
+  MANAGE: '{namespace}-manage'
 }
 
 export const ACTIONCLASS = {
@@ -139,7 +138,7 @@ export const defaults = {
       return '<div class="{classes.SCHEME}"><ul class="{classes.GROUPLIST}"></ul></div>'
     },
     manage() {
-      return '<div class="{classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
+      return '<div class="pj-btn pj-btn-block {classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
     },
     collectionItem() {
       return '<li class="{classes.COLLECTIONITEM}"></li>'
@@ -179,11 +178,4 @@ export const defaults = {
   }
 }
 
-export const dependencies = [
-  'Popper',
-  'dropdown',
-  'color',
-  'tooltip',
-  'scrollable',
-  'scrollbar'
-]
+export const dependencies = ['Popper', 'dropdown', 'color', 'tooltip']

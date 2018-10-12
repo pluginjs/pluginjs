@@ -3,10 +3,10 @@
 import { setStyle } from '@pluginjs/styled'
 import {
   append,
-  parseHTML,
+  // parseHTML,
   // parent,
-  children,
-  prepend,
+  // children,
+  // prepend,
   query,
   // attr,
   // parentWith,
@@ -17,7 +17,6 @@ import {
   // empty
 } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
-import Scrollable from '@pluginjs/scrollable'
 
 class Collection {
   constructor(instance, element) {
@@ -52,29 +51,6 @@ class Collection {
         this.instance.$panel
       )
       this.createCollectionItem(groupName, $groupList)
-    })
-
-    // init scrollable
-    const $scorllWrap = parseHTML(
-      `<div class='${
-        this.classes.COLLECTIONSCROLLWRAP
-      }'><div><div></div></div></div>`
-    )
-    prepend($scorllWrap, this.element)
-    const scrollWrapChildren = children($scorllWrap)
-      .filter(el => el.tagName === 'DIV')
-      .map(el =>
-        children(el)
-          .filter(el => el.tagName === 'DIV')
-          .reduce((a, b) => a.concat(b))
-      )
-    scrollWrapChildren.map(
-      append(query(`.${this.classes.SCHEME}`, this.element))
-    )
-
-    this.scrollable = Scrollable.of($scorllWrap, {
-      contentSelector: '>',
-      containerSelector: '>'
     })
 
     return null

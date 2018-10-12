@@ -325,9 +325,6 @@ class ColorSelector extends Component {
       }
     })
 
-    if (typeName === 'collection' && this.scrollable) {
-      this.scrollable.update()
-    }
     // switch module state
     this.enter(`${typeName}Module`)
     this.module = typeName
@@ -447,6 +444,7 @@ class ColorSelector extends Component {
 
   disable() {
     if (!this.is('disabled')) {
+      this.DROPDOWN.disable()
       this.element.disabled = true
       this.enter('disabled')
     }
