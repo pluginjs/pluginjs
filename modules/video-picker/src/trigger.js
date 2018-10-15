@@ -2,7 +2,7 @@ import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events' // , bindEventOnce
-import { parseHTML, query, fadeIn, fadeOut } from '@pluginjs/dom'
+import { parseHTML, query } from '@pluginjs/dom'
 import PopDialog from '@pluginjs/pop-dialog'
 
 export default class Trigger {
@@ -61,18 +61,9 @@ export default class Trigger {
             label: this.instance.translate('delete'),
             color: 'danger',
             fn: resolve => {
-              fadeOut(
-                {
-                  delay: 100,
-                  callback: () => {
-                    removeClass(that.classes.SHOW, that.instance.$wrap)
-                    that.instance.removeVideo()
-                    that.instance.$fillCover.setAttribute('src', '')
-                    fadeIn(that.$triggerAction)
-                  }
-                },
-                that.$triggerAction
-              )
+              removeClass(that.classes.SHOW, that.instance.$wrap)
+              that.instance.removeVideo()
+              that.instance.$fillCover.setAttribute('src', '')
               resolve()
             }
           }

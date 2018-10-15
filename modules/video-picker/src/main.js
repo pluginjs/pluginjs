@@ -74,7 +74,6 @@ class VideoPicker extends Component {
     }
 
     if (this.element.disabled || this.options.disabled) {
-      console.log(233)
       this.disable()
     }
 
