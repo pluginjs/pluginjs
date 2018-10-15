@@ -21,10 +21,18 @@ $toast-loader-color: $color-primary !default;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   background-color: #fff;
-  align-content: flex-start;
+
+  &-has-icon {
+    align-items: center;
+    justify-content: flex-end;
+
+    .#{$toast}-title {
+      flex: 1;
+    }
+  }
 
   &-close {
     position: absolute;
@@ -37,7 +45,7 @@ $toast-loader-color: $color-primary !default;
   }
 
   &-title {
-    flex: 1;
+    flex: auto;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

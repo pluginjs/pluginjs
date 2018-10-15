@@ -11,7 +11,8 @@ $toast-color: $gray-darker;
 $toast-bg: $color-white;
 
 $toast-padding: 24px;
-$toast-padding-right: 30px;
+$toast-padding-y: 16px;
+$toast-padding-right: 38px;
 
 $toast-gutter: 20px;
 
@@ -26,8 +27,8 @@ $toast-title-color: $gray-darkest;
 $toast-icon-font-size: $font-size-lg;
 $toast-icon-gutter: 10px;
 
-$toast-close-font-size: 14px;
-$toast-close-top: $toast-padding + ($toast-title-font-size - $toast-close-font-size) / 2;
+$toast-close-font-size: $font-size-base;
+$toast-close-top: $toast-padding-y + ($toast-title-font-size - $toast-close-font-size) / 2;
 $toast-close-right: $toast-padding-right;
 $toast-close-color: $gray;
 $toast-close-hover-color: $gray-darker;
@@ -40,6 +41,7 @@ $toast-loader-bg: $gray-lighter;
 
 $toast-buttons-top-gutter: 20px;
 $toast-button-gutter: 12px;
+$toast-button-only-title-gutter: 8px;
 
 $toast-success-color: $color-success;
 $toast-info-color: $color-info;
@@ -49,8 +51,8 @@ $toast-error-color: $color-danger;
 // Skin
 // =====================
 .#{$toast} {
-  padding: $toast-padding;
-  padding-right: $toast-padding-right;
+  padding: $toast-padding-y $toast-padding;
+  // padding-right: $toast-padding-right;
   font-family: $toast-font-family;
   font-size: $toast-font-size;
   color: $toast-color;
@@ -65,6 +67,7 @@ $toast-error-color: $color-danger;
   &-close {
     top: $toast-close-top;
     right: $toast-close-right;
+    z-index: 1;
     padding: 0;
     font-size: $toast-close-font-size;
     color: $toast-close-color;
@@ -153,6 +156,27 @@ $toast-error-color: $color-danger;
 
     .#{$toast}-loader-bar {
       background-color: $toast-error-color;
+    }
+  }
+
+  // icon + content
+  &-has-icon {
+    .#{$toast}-content {
+      padding-left: $toast-icon-font-size + $toast-icon-gutter;
+    }
+  }
+
+  //title + button
+  &-only-title {
+    padding-right: $toast-padding-right;
+
+    .#{$toast}-buttons {
+      margin-top: 0;
+      margin-right: $toast-button-only-title-gutter;
+    }
+
+    .#{$toast}-close {
+      top: $toast-close-top + $btn-padding-y;
     }
   }
 }

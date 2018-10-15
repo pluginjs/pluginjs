@@ -68,6 +68,8 @@ class Toast extends GlobalComponent {
     }
 
     if (this.options.type) {
+      addClass(this.classes.HASICON, this.$element)
+
       addClass(
         this.getClass(this.classes.TYPE, 'type', this.options.type),
         this.$element
@@ -84,6 +86,14 @@ class Toast extends GlobalComponent {
 
     if (this.options.title) {
       this.setTitle(this.options.title)
+    }
+
+    if (
+      this.options.title &&
+      this.options.buttons &&
+      this.options.content === ''
+    ) {
+      addClass(this.classes.ONLYTITLE, this.$element)
     }
 
     this.enter('initialized')
