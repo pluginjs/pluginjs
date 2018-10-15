@@ -11,27 +11,27 @@ $colorSelector-border-color: $gray-lighter !default;
 $colorSelector-border: $colorSelector-border-width $colorSelector-border-style
   $colorSelector-border-color !default;
 
-$colorSelector-preview-width: 45px;
-$colorSelector-preview-height: 32px;
+$colorSelector-preview-width: 45px !default;
+$colorSelector-preview-height: 32px !default;
 $colorSelector-preview-span-left: calc(50% - #{$colorSelector-border-width}) !default;
-$colorSelector-preview-bg-width: 36px;
-$colorSelector-preview-bg-height: 24px;
+$colorSelector-preview-bg-width: 36px !default;
+$colorSelector-preview-bg-height: 24px !default;
 
 $colorSelector-remove-right: $colorSelector-preview-width + 6px !default;
 
-$colorSelector-panel-swicher-height: 56px;
-$colorSelector-panel-swicher-color: $gray;
-$colorSelector-panel-swicher-icon-size: 20px;
+$colorSelector-panel-swicher-height: 56px !default;
+$colorSelector-panel-swicher-color: $gray !default;
+$colorSelector-panel-swicher-icon-size: 20px !default;
 
-$colorSelector-icon-font-family: $pj-icon-font-family;
-$colorSelector-collection-icon-content: $pj-icon-star-solid;
-$colorSelector-solid-icon-content: $pj-icon-browser-tab;
-$colorSelector-gradient-icon-content: $pj-icon-browser-tab;
+$colorSelector-icon-font-family: $pj-icon-font-family !default;
+$colorSelector-collection-icon-content: $pj-icon-star-solid !default;
+$colorSelector-solid-icon-content: $pj-icon-browser-tab !default;
+$colorSelector-gradient-icon-content: $pj-icon-browser-tab !default;
 
 $colorSelector-collection-item-width: 24px !default;
 $colorSelector-collection-item-height: $colorSelector-collection-item-width !default;
 
-$colorSelector-scheme-height: 240px;
+$colorSelector-scheme-height: 240px !default;
 
 $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
 

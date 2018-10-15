@@ -58,8 +58,7 @@ export const classes = {
   SCHEME: '{namespace}-scheme',
   MANAGE: '{namespace}-manage',
   COLLECTIONITEM: '{namespace}-collection-item',
-  COLLECTIONITEMACTIVE: '{namespace}-collection-item-active',
-  COLLECTIONSCROLLWRAP: '{namespace}-collection-scrollwrap'
+  COLLECTIONITEMACTIVE: '{namespace}-collection-item-active'
 }
 
 export const methods = [
@@ -144,15 +143,16 @@ export const defaults = {
       return '<div class="{classes.SCHEME}"></div>'
     },
     manage() {
-      return '<div class="{classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
+      return '<div class="pj-btn pj-btn-block {classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
     },
     collectionItem() {
       return '<span class="{classes.COLLECTIONITEM}"></span>'
     },
     control() {
-      return '<div class="classes.CONTROL"><button type="button" class="{classes.SAVE} pj-btn pj-btn-xs pj-btn-outline">{text}</button></div>'
+      return '<div class="{classes.CONTROL}"><button type="button" class="{classes.SAVE} pj-btn pj-btn-block  pj-btn-outline">{text}</button></div>'
     }
   },
+
   process(value) {
     if (value && typeof value !== 'undefined') {
       return JSON.stringify(value).replace(/("|\\")/g, '&quot;')
@@ -203,7 +203,7 @@ export const defaults = {
   }
 }
 
-export const dependencies = ['scrollable', 'pop-dialog', 'color-selector']
+export const dependencies = ['pop-dialog', 'color-selector']
 
 export const translations = {
   en: {

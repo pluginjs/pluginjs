@@ -1,270 +1,121 @@
 @import "@pluginjs/styles/variables.scss";
 @import "@pluginjs/icons/variables.scss";
+@import "pattern-picker.core";
 
 // Vars
 // =====================
-$patternPicker: "pj-patternPicker" !default;
-$scrollable: "pj-scrollable" !default;
+$patternPicker: "pj-patternPicker";
 
-$patternPicker-sizer: $sizer !default;
-$patternPicker-border: 1px solid $border-color !default;
+$patternPicker-trigger-padding: 4px;
 
-$patternPicker-width: 16 * $patternPicker-sizer !default; //160px
-$patternPicker-height: 9 * $patternPicker-sizer !default; //108px
 $patternPicker-border: 1px solid $border-color;
-// panel
-$patternPicker-panel-width: 28.8 * $patternPicker-sizer !default; //288px
-$patternPicker-panel-height: 37 * $patternPicker-sizer !default; //370px
-$patternPicker-panel-shadow: $box-shadow-base !default;
-// panel trigger
-$patternPicker-panel-swicher-height: 4 * $patternPicker-sizer !default; //40px
-$patternPicker-panel-swicher-icon-size: 2 * $patternPicker-sizer !default; //20px
-$patternPicker-panel-swicher-icon-color: $gray-lighter !default;
-// collection
-$patternPicker-collection-padding: 2 * $patternPicker-sizer 0 3 * $patternPicker-sizer !default; //20px 0 30px
-$patternPicker-collection-height: 28 * $patternPicker-sizer !default; //28px
-// collection scrollwrap
-$patternPicker-collection-scrollwrap-padding: 0 2 * $patternPicker-sizer !default; //20px
-// collection item
-$patternPicker-collection-item-width: 3.2 * $patternPicker-sizer !default; //32px
-$patternPicker-collection-item-height: $patternPicker-collection-item-width !default;
-$patternPicker-collection-item-border-radius: 100 * $patternPicker-sizer !default; //1000px
-$patternPicker-collection-item-margin-right: $patternPicker-sizer * 1.5 !default; //15px
-$patternPicker-collection-item-margin-bottom: $patternPicker-sizer * 1.5 !default; //15px
-// collection group
-$patternPicker-collection-group-title-margin-bottom: 1.5 * $patternPicker-sizer !default; //15px
-$patternPicker-collection-group-title-color: $color-primary-black !default;
-$patternPicker-collection-group-title-font-size: $font-size-xs !default;
-// collection manage
-$patternPicker-collection-manage-height: 3.3 * $patternPicker-sizer !default; //30px
-$patternPicker-collection-manage-padding: $patternPicker-sizer * 0.6 0 !default; //6px
-$patternPicker-collection-manage-icon-margin-right: $patternPicker-sizer !default; //10px
-// preview
-$preview-width:  26 * $patternPicker-sizer !default; //260px
-// global
-$global-border: 1px solid $gray-lightest !default;
-$global-active-color: $color-primary !default;
-// component
-$component-content-width: 16 * $patternPicker-sizer !default; //160px
-// selector
-// selector item
-$selector-item-width: 11.5 * $patternPicker-sizer !default; //115px
-$selector-item-height: 8 * $patternPicker-sizer !default; //80px
-$selector-item-margin-size: 1.7 * $patternPicker-sizer !default; //17px
+$patternPicker-border-radius: $border-radius-base;
 
-// Core
-// =====================
+$patternPicker-action-color: $color-white;
+$patternPicker-action-gutter: 24px;
+$patternPicker-action-bg-color: $color-opacity;
+
+$patternPicker-panel-bg-color: $color-white;
+
+$patternPicker-custom-padding-bottom: 24px;
+
+$patternPicker-collection-scrollwrap-padding: 0 24px;
+$patternPicker-collection-padding: 16px 0 24px;
+$patternPicker-collection-item-margin-right: 15px;
+$patternPicker-collection-item-margin-bottom: 15px;
+
+$patternPicker-field-spacer: 20px;
+$patternPicker-field-title-spacer: 12px;
+
+$patternPicker-empty-color: $gray-dark;
+$patternPicker-empty-icon-margin-bottom: 8px;
+$patternPicker-empty-hover-color: $gray-darkest;
+
+//skin
 .#{$patternPicker} {
-  &.#{$patternPicker}-input {
-    display: none;
-  }
-
-  &-open-disabled {
-    pointer-events: none;
-  }
-
   &-trigger {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: $patternPicker-width;
-    height: $patternPicker-height;
-    padding: 1px;
+    padding: $patternPicker-trigger-padding;
     border: $patternPicker-border;
     border-style: dashed;
 
-    .#{$patternPicker}-fill {
-      position: relative;
-      display: none;
-      height: $patternPicker-height;
-      padding: 1px;
-      border: $patternPicker-border;
-
-      &-img {
-        width: $patternPicker-width;
-        height: $patternPicker-height;
-      }
-    }
-
     &-action {
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      color: $color-white;
-      background-color: $color-opacity;
-      border-radius: 2px;
-      opacity: 0;
+      color: $patternPicker-action-color;
+      background-color:$patternPicker-action-bg-color;
+      border-radius: $patternPicker-border-radius;
 
-      .#{$patternPicker}-editor {
-        margin-right: 28px;
+      i + i {
+        margin-left: $patternPicker-action-gutter;
       }
     }
   }
 
   &-panel{
-    box-sizing: border-box;
-    width: 300px;
-    // padding: 20px;
-    background-color: $color-white;
+    background-color: $patternPicker-panel-bg-color;
     border: $patternPicker-border;
-    border-radius: 2px;
+    border-radius: $patternPicker-border-radius;
 
     &-swicher {
-      display: flex;
-      height: $patternPicker-panel-swicher-height;
       border-bottom: $patternPicker-border;
-
-      > i {
-        position: relative;
-        display: inline-block;
-        flex-grow: 1;
-        width: $patternPicker-panel-width / 3;
-        height: 100%;
-        font-size: $patternPicker-panel-swicher-icon-size;
-        line-height: $patternPicker-panel-swicher-height;
-        // color: $patternPicker-panel-swicher-icon-color;
-        text-align: center;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-      &-collection::after {
-        @include icon();
-        font-family:$pj-icon-font-family;
-        content: icon-content($pj-icon-start-mini);
-      }
-
-      &-custom::after {
-        @include icon();
-        font-family:$pj-icon-font-family;
-        content: icon-content($pj-icon-browser-tab);
-      }
-
-      &-custom{
-        &::before {
-          background-color: #aab3bf;
-          border: 1px solid $gray-dark;
-          border-radius: 2px;
-        }
-      }
     }
 
     &-container {
-      position: relative;
       padding: $patternPicker-collection-scrollwrap-padding;
-  
-      & > div {
-        display: none;
-      }
     }
-  
+
     &-collection {
-      height: $patternPicker-collection-height;
       padding: $patternPicker-collection-padding;
-  
-      .#{$patternPicker}-manage {
-        position: absolute;
-        bottom: 23.5px;
-        left: 23.5px;
-        width: 241px;
-        height: $patternPicker-collection-manage-height;
-        line-height: $patternPicker-collection-manage-height - 2px;
-        color: $color-primary-black;
-        text-align: center;
-        border: 1px solid #e6e6e6 !important;
-  
-        i {
-          margin-right: $patternPicker-collection-manage-icon-margin-right;
-          vertical-align: middle;
-        }
-  
-        &:hover {
-          cursor: pointer;
-          background-color: #f2f2f2 !important;
-          border: 1px solid #e6e6e6 !important;
-        }
+    }
+
+    &-custom {
+      padding-bottom: $patternPicker-custom-padding-bottom;
+    }
+  }
+
+  &-collection {
+    &-item {
+      margin-right: $patternPicker-collection-item-margin-right;
+      margin-bottom: $patternPicker-collection-item-margin-bottom;
+      background-size: 100% 100% !important;
+      border-radius: $patternPicker-border-radius;
+
+      &:nth-of-type(6n) {
+        margin-right: 0;
       }
     }
   }
 
-    &-collection {
-      &-scrollwrap {
-        // width: 100%;
-        height: 100%;
+  &-empty {
+    color: $patternPicker-empty-color;
 
-        .pj-scrollable-container,
-        .pj-scrollable-content {
-          width: 100% !important;
-          height: 100% !important;
-        }
-      }
-  
-      &-item {
-        display: inline-block;
-        width: $patternPicker-collection-item-width;
-        height: $patternPicker-collection-item-height;
-        margin-right: $patternPicker-collection-item-margin-right;
-        margin-bottom: $patternPicker-collection-item-margin-bottom;
-        list-style: none;
-        cursor: pointer;
-        background-size: 100% 100% !important;
-        border-radius: 2px;
-  
-        &:nth-of-type(6n) {
-          margin-right: 0;
-        }
-      }
+    i {
+      margin-bottom: $patternPicker-empty-icon-margin-bottom;
     }
-  &-field {
-    margin-top: 20px;
-  }
 
-  &-forecolor,
-  &-bg {
-    &.pj-colorSelector-input {
-      width: $component-content-width;
-    }
-  }
-  // === untils === //
-  &-hover {
-    .#{$patternPicker}-trigger-action {
-      opacity: 0.9 !important;
-      transition: opacity 0.5s;
+    &:hover {
+      color: $patternPicker-empty-hover-color;
     }
   }
 
-  &-active {
-    border-color: $global-active-color;
+  &-field,
+  &-control {
+    margin-top: $patternPicker-field-spacer;
   }
 
-  &-show {
-    .#{$patternPicker}-empty {
-      display: none;
-    }
-
-    .#{$patternPicker}-fill {
-      display: block;
-    }
-
-    .#{$patternPicker}-trigger-action {
-      display: flex;
-    }
+  &-field-title {
+    margin-bottom: $patternPicker-field-title-spacer;
   }
 }
 
 .#{$patternPicker}-disabled {
+  .#{$patternPicker}-empty,
+  .#{$patternPicker}-fill {
+    color: $disabled-color;
+  }
+
   .#{$patternPicker}-trigger-action {
     .#{$patternPicker}-remove,
     .#{$patternPicker}-edit {
-      cursor: not-allowed !important;
+      cursor: not-allowed;
     }
   }
 }

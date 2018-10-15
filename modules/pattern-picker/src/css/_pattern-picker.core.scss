@@ -1,0 +1,158 @@
+@import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
+
+// Vars
+// =====================
+$patternPicker: "pj-patternPicker" !default;
+
+$patternPicker-width: 160px !default;
+$patternPicker-height: 90px !default;
+$patternPicker-panel-swicher-height: 56px !default;
+
+$patternPicker-panel-swicher-icon-size: $font-size-lg !default;
+$patternPicker-icon-font-family: $pj-icon-font-family !default;
+
+$patternPicker-collection-icon: $pj-icon-start-mini !default;
+$patternPicker-custom-icon: $pj-icon-browser-tab !default;
+
+$patternPicker-collection-item-width: 32px !default;
+$patternPicker-collection-item-height: $patternPicker-collection-item-width !default;
+
+$patternPicker-scheme-height: 230px !default;
+
+// Core
+// =====================
+.#{$patternPicker} {
+  &.#{$patternPicker}-input {
+    display: none;
+  }
+
+  &-trigger {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: $patternPicker-width;
+    height: $patternPicker-height;
+
+    .#{$patternPicker}-fill {
+      display: none;
+      width: 100%;
+      height: 100%;
+
+      &-img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-action {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+  }
+
+  &-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-panel{
+    box-sizing: border-box;
+    width: 300px;
+
+    &-swicher {
+      display: flex;
+      height: $patternPicker-panel-swicher-height;
+
+      > i {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: $patternPicker-panel-swicher-icon-size;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      &-collection::after {
+        @include icon();
+        font-family:$patternPicker-icon-font-family;
+        content: icon-content($patternPicker-collection-icon);
+      }
+
+      &-custom::after {
+        @include icon();
+        font-family:$patternPicker-icon-font-family;
+        content: icon-content($patternPicker-custom-icon);
+      }
+    }
+
+    &-container {
+      position: relative;
+  
+      & > div {
+        display: none;
+      }
+    }
+  }
+
+  &-scheme {
+    height: $patternPicker-scheme-height;
+    overflow: auto;
+  }
+
+  &-collection {
+    &-item {
+      display: inline-block;
+      width: $patternPicker-collection-item-width;
+      height: $patternPicker-collection-item-height;
+      list-style: none;
+      cursor: pointer;
+    }
+  }
+
+  .pj-colorPicker-trigger {
+    width: 100%;
+  }
+
+  &-hover {
+    .#{$patternPicker}-trigger-action {
+      opacity: 0.9;
+      transition: opacity 0.5s;
+    }
+  }
+
+  &-show {
+    .#{$patternPicker}-trigger-action {
+      display: flex;
+    }
+
+    .#{$patternPicker}-empty {
+      display: none;
+    }
+
+    .#{$patternPicker}-fill {
+      display: block;
+    }
+  }
+
+  &-open-disabled {
+    pointer-events: none;
+  }
+}

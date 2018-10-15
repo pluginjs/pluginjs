@@ -379,10 +379,6 @@ class PatternPicker extends Component {
         // showElement($content)
       }
     })
-
-    if (typeName === 'collection' && this.scrollable) {
-      this.scrollable.update()
-    }
     // switch module state
     this.enter(`${typeName}Module`)
     this.module = typeName

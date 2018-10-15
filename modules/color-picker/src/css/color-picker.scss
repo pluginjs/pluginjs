@@ -75,10 +75,10 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
 
 
   &-clear {
-    color: $select-clear-color;
+    color: $colorPicker-clear-color;
 
     &:hover {
-      color: $select-clear-hover-color;
+      color: $colorPicker-clear-hover-color;
     }
   }
 

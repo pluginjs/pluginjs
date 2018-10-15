@@ -66,7 +66,6 @@ export default class Trigger {
           if (this.instance.is('disabled')) {
             return
           }
-          addClass(this.classes.SHOW, this.instance.$wrap)
           addClass(this.classes.OPENDISABLE, this.$trigger)
           // this.instance.render()
         }
