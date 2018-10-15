@@ -4,7 +4,6 @@ import Reveal from '@pluginjs/reveal'
 const elements = queryAll('#fading .reveal')
 elements.forEach(el =>
   Reveal.of(el, {
-    animation: 'bounceInDown',
     duration: '1000'
   })
 )

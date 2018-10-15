@@ -1,0 +1,47 @@
+@keyframes pj-fadeIn {
+	from {
+		filter: alpha(opacity=0);
+		opacity: 0;
+	}
+
+	to {
+    filter: alpha(opacity=100);
+		opacity: 1;
+	}
+}
+
+.#{$reveal}.pj-fadeIn {
+	animation-name: pj-fadeIn;
+}
+
+@keyframes pj-fadeUp {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 100%, 0);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.#{$reveal}.pj-fadeUp {
+	animation-name: pj-fadeUp;
+}
+
+@keyframes pj-fadeDown {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -100%, 0);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.#{$reveal}.pj-fadeDown {
+	animation-name: pj-fadeDown;
+}

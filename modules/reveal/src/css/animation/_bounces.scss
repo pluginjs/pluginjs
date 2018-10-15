@@ -1,0 +1,219 @@
+$reveal: "pj-reveal";
+
+@keyframes pj-bounceIn {
+	from,
+	20%,
+	40%,
+	60%,
+	80%,
+	to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    transform: scale3d(3, 3, 3);
+  }
+
+  20% {
+    transform: scale3d(1.6, 1.6, 1.6);
+  }
+
+  40% {
+    transform: scale3d(0.7, 0.7, 0.7);
+  }
+
+  60% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+		filter: alpha(opacity=100);
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+  }
+}
+
+.#{$reveal}.pj-bounceIn {
+	animation-name: pj-bounceIn;
+}
+
+@keyframes pj-bounceOut {
+	from,
+	20%,
+	40%,
+	60%,
+	80%,
+	to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+		filter: alpha(opacity=100);
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+  }
+}
+
+.#{$reveal}.pj-bounceOut {
+	animation-name: pj-bounceOut;
+}
+
+@keyframes pj-bounceUp {
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  from {
+    transform: translate3d(0, 100px, 0);
+  }
+
+  60% {
+    transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -5px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.#{$reveal}.pj-bounceUp {
+	animation-name: pj-bounceUp;
+}
+
+@keyframes pj-bounceDown {
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  from {
+    transform: translate3d(0, -100px, 0);
+  }
+
+  60% {
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.#{$reveal}.pj-bounceDown {
+	animation-name: pj-bounceDown;
+}
+
+@keyframes pj-bounceLeft {
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  from {
+    transform: translate3d(-100px, 0, 0);
+  }
+
+  60% {
+    transform: translate3d(25px, 0, 0);
+  }
+
+  75% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  90% {
+    transform: translate3d(5px, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.#{$reveal}.pj-bounceLeft {
+	animation-name: pj-bounceLeft;
+}
+
+@keyframes pj-bounceRight {
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  from {
+    transform: translate3d(100px, 0, 0);
+  }
+
+  60% {
+    transform: translate3d(-25px, 0, 0);
+  }
+
+  75% {
+    transform: translate3d(10px, 0, 0);
+  }
+
+  90% {
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.#{$reveal}.pj-bounceRight {
+	animation-name: pj-bounceRight;
+}

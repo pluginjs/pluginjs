@@ -4,7 +4,7 @@ export const events = {
   READY: 'ready',
   DESTROY: 'destroy',
   ENTER: 'enter',
-  EXIT: 'exit',
+  LEAVE: 'leave',
   DISABLE: 'disable',
   ENABLE: 'enable',
   END: 'end'
@@ -12,25 +12,21 @@ export const events = {
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
+  ANIMATED: '{namespace}-animated',
   DISABLED: '{namespace}-disabled'
 }
 
 export const methods = ['destroy', 'enable', 'disable', 'isVisible']
 
 export const defaults = {
-  animation: 'fadeIn',
-
-  count: 1, // infinite
-  mode: 'always', // 'once'
-  mobile: false,
-  tablet: false,
-  anchor: '',
-
   container: null,
-  offset: 0,
-  duration: 400,
-  delay: 0,
+  animation: 'fadeIn',
+  duration: 500,
   easing: 'ease',
-  loop: true,
+  delay: 0,
+  loop: true, // number, true => infinite
+  order: 1,
+  anchor: '',
+  offset: 0, // also can have values similar to the CSS margin property, ["10px 20px 30px 40px"](top, right, bottom, left)
   threshold: 0 // Either a single number or an array of numbers  [0, 0.25, 0.5, 0.75, 1]
 }

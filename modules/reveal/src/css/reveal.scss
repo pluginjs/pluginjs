@@ -8,10 +8,16 @@ $reveal: "pj-reveal" !default;
 // =====================
 .#{$reveal} {
   visibility: hidden;
+
+  &-animated {
+  	visibility: visible;
+  }
 }
 
-@import "effects/fade";
-@import "effects/flip";
-@import "effects/slide";
-@import "effects/zoom";
-@import "effects/attention_seekers";
+@import "animation/bounces";
+@import "animation/fades";
+// @import "animation/fade";
+// @import "animation/flip";
+// @import "animation/slide";
+// @import "animation/zoom";
+// @import "animation/attention_seekers";

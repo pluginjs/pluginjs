@@ -9,9 +9,8 @@ import {
 } from '@pluginjs/decorator'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, bindEventOnce, removeEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query } from '@pluginjs/dom'
-import { isMobile, isTablet } from '@pluginjs/detector'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -22,9 +21,6 @@ import {
 
 import Viewport from '@pluginjs/viewport'
 import Breakpoints from '@pluginjs/breakpoints'
-
-const matchMobile = isMobile()
-const matchTablet = isTablet()
 
 @themeable()
 @styleable(CLASSES)
@@ -39,38 +35,22 @@ class Reveal extends Component {
     super(element)
     this.setupOptions(options)
     this.setupClasses()
-    this.animationClass = this.getAnimationClass()
-
     this.setupStates()
     this.initialize()
   }
 
-  getAnimationClass() {
-    return this.options.animation
-  }
-
   initialize() {
-    if (this.is('initialized') || !this.matchDevice()) {
+    if (this.is('initialized')) {
       return
     }
 
-    const duration = `${this.options.duration / 1000}s`
-    const delay = `${this.options.delay / 1000}s`
-    const easing = this.options.easing
-    const count = this.options.count
+    addClass(this.classes.NAMESPACE, this.element)
 
-    setStyle(
-      {
-        'animation-duration': duration,
-        'animation-timing-function': easing,
-        'animation-delay': delay,
-        'animation-iteration-count': count // infinite
-      },
-      this.element
-    )
+    this.reset()
 
-    this.initViewport()
     this.initBreakpoints()
+    this.initViewport()
+    this.initStyle()
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -83,8 +63,9 @@ class Reveal extends Component {
     if (!this.viewElement) {
       throw new Error('Can not find anchor element')
     }
+
     this.viewport = Viewport.of(this.viewElement, {
-      container: this.options.container,
+      container: this.container,
       offset: this.options.offset,
       threshold: this.options.threshold
     })
@@ -96,16 +77,39 @@ class Reveal extends Component {
     const screens = Breakpoints.all()
     this.initScreenOptions(screens)
 
-    // const that = this
-    // const currentName = Breakpoints.current().name
+    const that = this
+    const currentName = Breakpoints.current().name
 
-    // console.log(this)
+    if (this.screenOptions[currentName]) {
+      Object.keys(this.screenOptions[currentName]).forEach(key => {
+        this[key] = this.screenOptions[currentName][key]
+      })
+    }
 
-    // if (this.screenOptions[currentName]) {
-    //   Object.keys(this.screenOptions[currentName]).forEach(key => {
-    //     this[key] = this.screenOptions[currentName][key]
-    //   })
-    // }
+    Breakpoints.on('change', function() {
+      if (that.screenOptions[this.current.name]) {
+        Object.keys(that.screenOptions[this.current.name]).forEach(key => {
+          that[key] = that.screenOptions[this.current.name][key]
+        })
+      } else {
+        that.reset()
+      }
+
+      that.initStyle()
+    })
+  }
+
+  reset() {
+    Object.keys(this.options).forEach(key => {
+      this[key] = this.options[key]
+    })
+
+    if (this.loop === true) {
+      this.count = 'infinite'
+    } else {
+      this.loop = Number(this.loop)
+      this.count = 0
+    }
   }
 
   initScreenOptions(screens) {
@@ -128,42 +132,59 @@ class Reveal extends Component {
     })
   }
 
+  initStyle() {
+    this.order = this.order < 1 ? 1 : this.order
+    const duration = `${this.duration / 1000}s`
+    const delay = `${(this.delay + (this.order - 1) * 100) / 1000}s`
+    const easing = this.easing
+
+    setStyle(
+      {
+        'animation-duration': duration,
+        'animation-timing-function': easing,
+        'animation-delay': delay
+      },
+      this.element
+    )
+  }
+
   bind() {
-    bindEvent('viewport:enter', this.enterHandle, this.viewElement)
-    bindEvent('viewport:leave', this.exitHandle, this.viewElement)
-    // this.viewport.on('enter', this.enterHandle)
-    // this.viewport.on('exit', this.exitHandle)
+    bindEvent('viewport:enter', this.enterHandle.bind(this), this.viewElement)
+    bindEvent('viewport:leave', this.leaveHandle.bind(this), this.viewElement)
   }
 
   unbind() {
     removeEvent('viewport:enter', this.viewElement)
     removeEvent('viewport:leave', this.viewElement)
-    // this.viewport.off('enter', this.enterHandle)
-    // this.viewport.off('exit', this.exitHandle)
   }
 
-  enterHandle = () => {
+  enterHandle() {
     if (!this.is('disabled')) {
+      if (this.count !== 'infinite') {
+        this.count++
+      }
+
       this.addAnimation()
       this.trigger(EVENTS.ENTER)
     }
   }
 
-  exitHandle = () => {
+  leaveHandle() {
     if (!this.is('disabled')) {
       this.removeAnimation()
-      this.trigger(EVENTS.EXIT)
-      if (this.options.mode === 'once') {
+      this.trigger(EVENTS.LEAVE)
+
+      if (this.count !== 'infinite' && this.count === this.loop) {
         this.destroy()
       }
     }
   }
 
   addAnimation() {
-    const hasAnimation = this.element.classList.contains(this.animationClass)
+    const hasAnimation = this.element.classList.contains(this.animation)
 
     if (!hasAnimation) {
-      addClass(this.animationClass, this.element)
+      addClass(`pj-${this.animation}`, this.element)
 
       const effectStartCallback = () => {
         this.show()
@@ -171,11 +192,10 @@ class Reveal extends Component {
 
       const effectEndCallback = () => {
         removeEvent(this.eventName(), this.element)
-
         this.trigger(EVENTS.END)
       }
 
-      if (this.options.delay) {
+      if (this.delay || this.order > 1) {
         bindEvent(
           this.eventName('animationstart'),
           effectStartCallback,
@@ -185,39 +205,29 @@ class Reveal extends Component {
         this.show()
       }
 
-      bindEventOnce(
-        this.eventName('animationend'),
-        effectEndCallback,
-        this.element
-      )
+      bindEvent(this.eventName('animationend'), effectEndCallback, this.element)
     }
   }
 
   removeAnimation() {
     this.hide()
-    removeClass(this.animationClass, this.element)
-  }
-
-  matchDevice() {
-    if (
-      (!this.options.mobile && matchMobile) ||
-      (!this.options.tablet && matchTablet)
-    ) {
-      return false
-    }
-    return true
   }
 
   hide() {
-    addClass(this.classes.NAMESPACE, this.element)
+    removeClass(this.classes.ANIMATED, this.element)
+    removeClass(`pj-${this.animation}`, this.element)
   }
 
   show() {
-    removeClass(this.classes.NAMESPACE, this.element)
+    addClass(this.classes.ANIMATED, this.element)
   }
 
   isVisible() {
     return this.viewport.isVisible()
+  }
+
+  getAnimation() {
+    return this.options.animation
   }
 
   destroy() {
@@ -226,7 +236,7 @@ class Reveal extends Component {
       this.leave('initialized')
     }
     removeClass(this.classes.NAMESPACE, this.element)
-    removeClass(this.animationClass, this.element)
+    removeClass(this.animation, this.element)
 
     this.trigger(EVENTS.DESTROY)
   }
@@ -238,7 +248,7 @@ class Reveal extends Component {
       this.enter('disabled')
     }
     removeClass(this.classes.NAMESPACE, this.element)
-    removeClass(this.animationClass, this.element)
+    removeClass(this.animation, this.element)
     this.trigger(EVENTS.DISABLE)
   }
 

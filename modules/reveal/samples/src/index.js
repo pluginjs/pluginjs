@@ -1,11 +1,12 @@
 // import sections
 import './sections/default'
+import './sections/order'
 // import './sections/animation'
 // import './sections/delay'
 // import './sections/mode'
 // import './sections/anchor'
 // import './sections/attention-seekers'
-// import './sections/fading'
+import './sections/fading'
 // import './sections/flippers'
 // import './sections/sliding'
 // import './sections/zoom'
