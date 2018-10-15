@@ -19,7 +19,6 @@ btn1.addEventListener('click', () => {
 
 btn2.addEventListener('click', () => {
   Toast.open({
-    duration: 'false',
     buttons: {
       btn1: {
         title: 'Undo',
