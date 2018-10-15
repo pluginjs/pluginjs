@@ -39,12 +39,10 @@ export default class Image {
         this.instance.eventName('click'),
         `.${this.instance.classes.IMAGESELECT}`,
         () => {
-          console.log(111)
           // this.addPoster(this.options.selectCover.call(this))
           addClass(this.instance.classes.IMAGESELECTED, this.image)
           addClass(this.instance.classes.SHOW, this.instance.$wrap)
           this.instance.set(this.instance.options.value)
-          // console.log()
         }
       ),
       bindEvent(
@@ -52,10 +50,13 @@ export default class Image {
         `.${this.instance.classes.IMAGECHANGE}`,
         e => {
           if (!this.instance.is('imageChange')) {
-            this.instance.changeImage('https://picsum.photos/200/300')
+            // this.instance.changeImage('https://picsum.photos/200/300')
+            this.instance.options.onSelectImage.call(
+              this.instance,
+              this.instance.changeImage.bind(this.instance)
+            )
             addClass(this.instance.classes.SELECTEDDISABLE, e.target)
             this.instance.set(this.instance.options.value)
-            console.log(this.instance.value)
           }
           this.instance.enter('imageChange')
         }
@@ -64,7 +65,6 @@ export default class Image {
         this.instance.eventName('click'),
         `.${this.instance.classes.IMAGEREMOVE}`,
         () => {
-          console.log(22)
           this.removeImage()
 
           // this.deletePoster()
@@ -81,7 +81,6 @@ export default class Image {
     this.instance.options.value.image =
       'https://picsum.photos/200/300?image=1068'
     this.instance.clear()
-    console.log(this.instance.options.value)
     removeClass(this.instance.classes.SHOW, this.instance.$wrap)
 
     // setStyle('display', 'none', this.instance.$fill)

@@ -291,7 +291,6 @@ class BgPicker extends Component {
   clear(update = true) {
     this.value = {}
     this.$imageSelected = query(`.${this.classes.IMAGESELECTED}`, this.$wrap)
-    console.log(this.$imageSelected)
     removeClass(this.classes.EXIST, this.$wrap)
     removeClass(this.classes.IMAGESELECTED, this.$imageSelected)
     if (update !== false) {

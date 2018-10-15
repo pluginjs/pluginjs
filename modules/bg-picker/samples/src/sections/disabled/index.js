@@ -10,5 +10,9 @@ BgPicker.of(element, {
   parse() {
     return {}
   },
-  disabled: true
+
+  disabled: true,
+  onSelectImage: resolve => {
+    resolve('https://picsum.photos/200/300')
+  }
 })

@@ -157,13 +157,13 @@ class VideoPicker extends Component {
         this.classes.FIELDTITLE
       }'>${this.translate('chooseVideo')}</span><div class='${
         this.classes.LOCALURL
-      } ${this.classes.POSTER}'><span class='${
+      } pj-input'><span class='${
         this.classes.LOCALURLADD
       }'>${localeAddVideo}</span><span class='${
         this.classes.LOCALURLCHANGE
       }'>${localeChangeVideo}</span><span class='${
         this.classes.LOCALURLDELETE
-      }'>${localeDelete}</span></div></div>`
+      } pj-icon pj-icon-close'></span></div></div>`
     )
     this.$localUrl = query(`.${this.classes.LOCALURL}`, this.$localUrlContent)
     this.$ratioContent = parseHTML(
@@ -180,7 +180,7 @@ class VideoPicker extends Component {
         this.classes.FIELDTITLE
       }'>${this.translate('poster')}</span><div class='${
         this.classes.POSTER
-      }'><span class='${
+      } pj-input'><span class='${
         this.classes.POSTERADD
       }'>${localePddPoster}</span><span class='${
         this.classes.POSTERCHANGE
