@@ -2,6 +2,7 @@ import Component from '@pluginjs/component'
 import '@pluginjs/polyfills/IntersectionObserver'
 import { eventable, register, optionable } from '@pluginjs/decorator'
 import { isNumber, isString } from '@pluginjs/is'
+import { query } from '@pluginjs/dom'
 import {
   defaults as DEFAULTS,
   events as EVENTS,
@@ -30,7 +31,7 @@ class Viewport extends Component {
         return this.trigger(EVENTS.LEAVE)
       },
       {
-        root: this.options.container,
+        root: query(this.options.container),
         rootMargin: this.getOffset(this.options.offset),
         threshold: this.options.threshold
       }

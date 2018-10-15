@@ -30,6 +30,7 @@
   "dependencies": {
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
     "@pluginjs/is": "*",
     "@pluginjs/polyfills": "*"
   },

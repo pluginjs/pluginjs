@@ -83,7 +83,11 @@ class Reveal extends Component {
     if (!this.viewElement) {
       throw new Error('Can not find anchor element')
     }
-    this.viewport = Viewport.of(this.viewElement)
+    this.viewport = Viewport.of(this.viewElement, {
+      container: this.options.container,
+      offset: this.options.offset,
+      threshold: this.options.threshold
+    })
   }
 
   initBreakpoints() {

@@ -26,6 +26,7 @@ export const defaults = {
   tablet: false,
   anchor: '',
 
+  container: null,
   offset: 0,
   duration: 400,
   delay: 0,
