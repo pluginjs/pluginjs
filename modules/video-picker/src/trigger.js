@@ -60,7 +60,7 @@ export default class Trigger {
           delete: {
             label: this.instance.translate('delete'),
             color: 'danger',
-            fn(resolve) {
+            fn: resolve => {
               fadeOut(
                 {
                   delay: 100,

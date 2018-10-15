@@ -126,7 +126,7 @@ class VideoPicker extends Component {
     // const localeSave = this.translate('save');
     const localeAddVideo = this.translate('addVideo')
     const localePddPoster = this.translate('addPoster')
-    const localeChangeVideo = this.translate('changeVideo')
+    // const localeChangeVideo = this.translate('changeVideo')
     const localeChangePoster = this.translate('changePoster')
 
     // create priview
@@ -160,8 +160,8 @@ class VideoPicker extends Component {
       } pj-input'><span class='${
         this.classes.LOCALURLADD
       }'>${localeAddVideo}</span><span class='${
-        this.classes.LOCALURLCHANGE
-      }'>${localeChangeVideo}</span><span class='${
+        this.classes.LOCALURLCONTENT
+      }'></span><span class='${
         this.classes.LOCALURLDELETE
       } pj-icon pj-icon-close'></span></div></div>`
     )
@@ -332,6 +332,10 @@ class VideoPicker extends Component {
           this.classes.DELDISABLE,
           query(`.${this.classes.LOCALURLDELETE}`, this.$localUrl)
         )
+        this.options.onSelectLocalVideo.call(
+          this,
+          this.selectLocalVideo.bind(this)
+        )
       }),
       bindEvent(
         this.eventName('click'),
@@ -344,20 +348,20 @@ class VideoPicker extends Component {
           }
           this.leave('urlChange')
         }
-      ),
-      bindEvent(
-        this.eventName('click'),
-        `.${this.classes.LOCALURLCHANGE}`,
-        e => {
-          if (!this.is('urlChange')) {
-            this.data.url =
-              'https://ak5.picdn.net/shutterstock/videos/3377915/preview/stock-footage-beijing-central-business-district-skyline-sunset-time-lapse.webm'
-            this.changeVideo()
-            addClass(this.classes.CHANGEDISABLE, e.target)
-          }
-          this.enter('urlChange')
-        }
       )
+      // bindEvent(
+      //   this.eventName('click'),
+      //   `.${this.classes.LOCALURLCHANGE}`,
+      //   e => {
+      //     if (!this.is('urlChange')) {
+      //       this.data.url =
+      //         'https://ak5.picdn.net/shutterstock/videos/3377915/preview/stock-footage-beijing-central-business-district-skyline-sunset-time-lapse.webm'
+      //       this.changeVideo()
+      //       addClass(this.classes.CHANGEDISABLE, e.target)
+      //     }
+      //     this.enter('urlChange')
+      //   }
+      // )
     )(this.$wrap)
 
     // change poster
@@ -450,6 +454,10 @@ class VideoPicker extends Component {
     if (this.videoApi) {
       this.videoApi.switchVideo(this.data.url)
     }
+  }
+  selectLocalVideo(url) {
+    this.data.url = url
+    query(`.${this.classes.LOCALURLCONTENT}`, this.$localUrl).innerHTML = url
   }
 
   removeVideo() {

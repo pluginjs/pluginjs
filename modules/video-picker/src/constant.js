@@ -37,7 +37,7 @@ export const classes = {
   VIDEOURL: '{namespace}-video-url',
   LOCALURL: '{namespace}-local-url',
   LOCALURLADD: '{namespace}-local-url-add',
-  LOCALURLCHANGE: '{namespace}-local-url-change',
+  LOCALURLCONTENT: '{namespace}-local-url-content',
   LOCALURLDELETE: '{namespace}-local-url-delete',
   LOCALURLSELECTED: '{namespace}-local-url-selected',
   RATIO: '{namespace}-ratio',

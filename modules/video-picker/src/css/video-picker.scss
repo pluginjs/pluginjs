@@ -203,9 +203,9 @@ $videoPicker-active-color: $color-primary;
   &-local-url {
     position: relative;
 
-    .#{$videoPicker}-local-url-change {
-      color: $color-primary;
-    }
+    // .#{$videoPicker}-local-url-change {
+    //   color: $color-primary;
+    // }
 
     .#{$videoPicker}-local-url-delete {
       color: $videoPicker-poster-delete-color;
