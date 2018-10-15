@@ -4,6 +4,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 import { hideElement } from '@pluginjs/styled'
+import { isNull } from '@pluginjs/is'
 import {
   append,
   parseHTML,
@@ -129,21 +130,31 @@ class ColorSelector extends Component {
 
   bind() {
     // input remove color
-    compose(
-      bindEvent(this.eventName('click'), `.${this.classes.CLEAR}`, () => {
-        hideElement(this.CLEARABLE.element)
-      }),
-      bindEvent(this.eventName('mouseout'), `.${this.classes.TRIGGER}`, () => {
-        hideElement(this.CLEARABLE.element)
-      }),
-      bindEvent(this.eventName('mouseover'), `.${this.classes.TRIGGER}`, () => {
-        if (this.element.value.length > 0) {
-          if (!this.is('disabled')) {
-            this.CLEARABLE.element.style.display = 'inline'
+    if (this.options.clearable) {
+      compose(
+        bindEvent(this.eventName('click'), `.${this.classes.CLEAR}`, () => {
+          hideElement(this.CLEARABLE.element)
+        }),
+        bindEvent(
+          this.eventName('mouseout'),
+          `.${this.classes.TRIGGER}`,
+          () => {
+            hideElement(this.CLEARABLE.element)
           }
-        }
-      })
-    )(this.$wrap)
+        ),
+        bindEvent(
+          this.eventName('mouseover'),
+          `.${this.classes.TRIGGER}`,
+          () => {
+            if (this.element.value.length > 0) {
+              if (!this.is('disabled')) {
+                this.CLEARABLE.element.style.display = 'inline'
+              }
+            }
+          }
+        )
+      )(this.$wrap)
+    }
 
     bindEvent(
       this.eventName('change'),
@@ -381,12 +392,7 @@ class ColorSelector extends Component {
   }
 
   clear() {
-    this.color = ''
-    // this.COLORPICKER.clear()
-    // this.GRADIENTPICKER.clear()
-    this.switchModule(this.options.module[0])
-    this.PREVIEW.update('transparent')
-    this.element.value = ''
+    this.set(null)
   }
 
   val(color) {
@@ -406,29 +412,38 @@ class ColorSelector extends Component {
   }
 
   set(val) {
-    const module = val.module
-    const color = val.color
+    if (isNull(val)) {
+      this.color = ''
+      // this.COLORPICKER.clear()
+      // this.GRADIENTPICKER.clear()
+      this.switchModule(this.options.module[0])
+      this.PREVIEW.update('transparent')
+      this.element.value = ''
+    } else {
+      const module = val.module
+      const color = val.color
 
-    this.color = color
-    this.switchModule(module)
+      this.color = color
+      this.switchModule(module)
 
-    // collection
-    if (module === 'collection') {
-      this.COLLECTION.setCollection(color)
-      return false
-    }
-
-    // gradient
-    if (module === 'gradient') {
-      if (typeof color === 'string' && color.indexOf('gradient') > -1) {
-        this.GRADIENTPICKER.set(color)
+      // collection
+      if (module === 'collection') {
+        this.COLLECTION.setCollection(color)
+        return false
       }
-      return false
-    }
 
-    // solid
-    if (module === 'solid') {
-      this.COLORPICKER.set(color)
+      // gradient
+      if (module === 'gradient') {
+        if (typeof color === 'string' && color.indexOf('gradient') > -1) {
+          this.GRADIENTPICKER.set(color)
+        }
+        return false
+      }
+
+      // solid
+      if (module === 'solid') {
+        this.COLORPICKER.set(color)
+      }
     }
     return null
   }

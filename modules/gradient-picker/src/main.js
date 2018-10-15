@@ -584,7 +584,11 @@ class GradientPicker extends Component {
     }
     this.gradientValue = this.GRADIENT.toString()
 
-    setStyle('background', this.gradientValue, this.$view)
+    const viewValue = this.gradientValue
+      .replace(/radial/, 'linear')
+      .replace(/(.*?\().*?(,.*)/, '$190deg$2')
+
+    setStyle('background', viewValue, this.$view)
 
     if (this.options.displayMode !== 'inline') {
       this.PREVIEW.update(this.gradientValue, true)
@@ -629,6 +633,7 @@ class GradientPicker extends Component {
   }
 
   set(val) {
+    console.log(val)
     this.GRADIENT = new Gradient(val)
 
     if (val.indexOf('linear') > -1) {

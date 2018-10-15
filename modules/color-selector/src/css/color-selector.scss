@@ -11,9 +11,9 @@ $colorSelector-input-padding-right: $colorSelector-preview-width + 4px;
 
 $colorSelector-border-radius: $border-radius-base;
 
-$colorSelector-remove-font-size: $font-size-xs;
-$colorSelector-remove-color: $gray;
-$colorSelector-remove-hover-color: $color-primary-black;
+$colorSelector-clear-color: $gray;
+$colorSelector-clear-hover-color: $text-color;
+
 
 $colorSelector-panel-width: 288px;
 
@@ -31,13 +31,11 @@ $colorSelector-collection-item-margin-bottom: 15px;
     padding-right: $colorSelector-input-padding-right;
   }
 
-  &-remove {
-    font-size: $colorSelector-remove-font-size;
-    color: $colorSelector-remove-color;
+  &-clear {
+    color:$colorSelector-clear-color;
 
     &:hover {
-      color: $colorSelector-remove-hover-color;
-      cursor: pointer;
+      color: $colorSelector-clear-hover-color;
     }
   }
 

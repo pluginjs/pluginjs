@@ -33,9 +33,6 @@ class Collection {
   }
 
   build() {
-    if (!this.instance.data) {
-      return false
-    }
     // create group
     const $scheme = this.instance.createEl('scheme', {
       classes: this.classes
@@ -62,7 +59,7 @@ class Collection {
           .filter(el => el.tagName === 'DIV')
           .reduce((a, b) => a.concat(b))
       )
-    scrollWrapChildren.map(append(this.selectorList))
+    scrollWrapChildren.map(append(this.$selectorList))
 
     this.scrollable = Scrollable.of($scorllWrap, {
       contentSelector: '>',
@@ -73,8 +70,8 @@ class Collection {
   }
 
   createCollectionItem() {
-    this.selectorList = query(`.${this.classes.SCHEME}`, this.element)
-    Object.entries(this.instance.imgs).forEach(([i, v]) => {
+    this.$selectorList = query(`.${this.classes.SCHEME}`, this.element)
+    Object.entries(this.instance.colors).forEach(([i, v]) => {
       const $item = this.instance.createEl('collectionItem', {
         classes: this.classes
       })
@@ -90,18 +87,15 @@ class Collection {
       setStyle('background', v, $item)
       const info = {
         name: i,
-        'background-color': this.bgColor,
-        // make '#' to '%23', fixed svg data image not working on FireFox.
-        'background-image': v.replace(/\#+/g, '%23') /* eslint-disable-line */
+        color: v
       }
       setData('info', info, $item)
       // append to group list
-      append($item, this.selectorList)
+      append($item, this.$selectorList)
     })
   }
 
   setCollection(colorName) {
-    console.log(12)
     Object.entries(this.instance.data).forEach(([, v]) => {
       Object.entries(v).forEach(([name, dataColor]) => {
         if (colorName.toLowerCase() === name.toLowerCase()) {

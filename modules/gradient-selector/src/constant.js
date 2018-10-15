@@ -5,7 +5,8 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  CHANGE: 'change'
+  CHANGE: 'change',
+  SWITCHMODULE: 'switchModule'
 }
 
 export const classes = {
@@ -48,15 +49,20 @@ export const classes = {
   SAVE: '{namespace}-save',
   // panel
   PANEL: '{namespace}-panel',
-  PANELTRIGGER: '{namespace}-panel-swicher',
-  PANELCONTAINER: '{namespace}-panel-container',
-  PANELCOLLECTION: '{namespace}-panel-collection',
-  PANELGRADIENT: '{namespace}-panel-gradient',
-  COLLECTIONTRIGGER: '{namespace}-panel-swicher-collection',
-  GRADIENTTRIGGER: '{namespace}-panel-swicher-gradient',
+  TRIGGERPANEL: '{namespace}-panel-swicher',
+  CONTAINERPANEL: '{namespace}-panel-container',
   COLLECTIONPANEL: '{namespace}-panel-collection',
   GRADIENTPANEL: '{namespace}-panel-gradient',
-  GRADIENT: '{namespace}-gradient'
+  COLLECTIONTRIGGER: '{namespace}-panel-swicher-collection',
+  GRADIENTTRIGGER: '{namespace}-panel-swicher-gradient',
+  TRIGGERACTIVE: '{namespace}-panel-swicher-gradient-active',
+  GRADIENT: '{namespace}-gradient',
+  SELECTED: '{namespace}-selected',
+  SCHEME: '{namespace}-scheme',
+  MANAGE: '{namespace}-manage',
+  COLLECTIONITEM: '{namespace}-collection-item',
+  COLLECTIONITEMACTIVE: '{namespace}-collection-item-active',
+  COLLECTIONSCROLLWRAP: '{namespace}-collection-scrollwrap'
 }
 
 export const methods = [
@@ -93,11 +99,11 @@ export const defaults = {
     },
     panel() {
       return `<div class='{classes.PANEL}'>
-      <div class='{classes.PANELTRIGGER}'>
+      <div class='{classes.TRIGGERPANEL}'>
       <i class="{classes.COLLECTIONTRIGGER}" data-type="collection"></i>
       <i class="{classes.GRADIENTTRIGGER}" data-type="gradient"></i>
       </div>
-      <div class='{classes.PANELCONTAINER}'>
+      <div class='{classes.CONTAINERPANEL}'>
       <div class="{classes.COLLECTIONPANEL}"></div>
       <div class="{classes.GRADIENTPANEL}"><input type="text" class="{classes.GRADIENT}"></div>
       </div>
@@ -169,6 +175,7 @@ export const translations = {
     selectCancel: 'Cancel',
     useIt: 'Use It',
     deleteTitle: 'Are you sure you want to delete?',
+    manage: 'Manage',
     cancel: 'Cancel',
     delete: 'Delete'
   },
@@ -185,6 +192,7 @@ export const translations = {
     selectCancel: '取消',
     useIt: '使用',
     deleteTitle: '你确定要删除？',
+    manage: '管理',
     cancel: '取消',
     delete: '删除'
   }

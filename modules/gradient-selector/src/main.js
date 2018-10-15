@@ -1,24 +1,29 @@
 import Component from '@pluginjs/component'
+import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-// import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
-  // query,
-  // queryAll,
+  query,
+  queryAll,
   // parent,
   parseHTML,
-  // setData,
-  // getData,
+  setData,
+  getData,
+  children,
   // has,
   wrap
 } from '@pluginjs/dom'
-// import { setStyle } from '@pluginjs/styled' // , getStyle
-import { Color } from '@pluginjs/color'
+import { setStyle, hideElement } from '@pluginjs/styled' // , getStyle
+// import { Color } from '@pluginjs/color'
 // import Scrollable from '@pluginjs/scrollable'
 // import Range from '@pluginjs/range'
 // import ColorSelector from '@pluginjs/color-selector'
+
+import GradientPicker from '@pluginjs/gradient-picker'
 import Dropdown from '@pluginjs/dropdown'
 import Trigger from './trigger'
+import Collection from './collection'
 import {
   eventable,
   register,
@@ -59,14 +64,13 @@ class GradientSelector extends Component {
 
     addClass(this.classes.NAMESPACE, this.element)
 
-    this.color = new Color()
+    // this.color = new Color()
 
     this.data = {
       name: '',
-      color: '',
-      opacity: 1,
-      opacityColor: ''
+      color: ''
     }
+    this.actived = false
 
     this.setupStates()
     this.initialize()
@@ -77,7 +81,7 @@ class GradientSelector extends Component {
 
     this.create()
 
-    // this.bind()
+    this.bind()
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
@@ -85,7 +89,7 @@ class GradientSelector extends Component {
 
     this.$selected = null
 
-    // this.initData()
+    this.initData()
 
     if (this.element.disabled || this.options.disabled) {
       // this.disable()
@@ -95,12 +99,63 @@ class GradientSelector extends Component {
     this.trigger(EVENTS.READY)
   }
 
-  // initData() {
-  //   const data = this.element.value
-  //   if (data) {
-  //     this.val(data)
-  //   }
-  // }
+  initData() {
+    const data = this.element.value
+    if (data) {
+      this.val(data)
+    }
+  }
+
+  bind() {
+    compose(
+      // manage event
+      bindEvent(this.eventName('click'), `.${this.classes.MANAGE}`, () => {
+        this.options.manage()
+      }),
+      // switch mode
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.TRIGGERPANEL}>i`,
+        e => {
+          const $this = e.target
+          this.switchModule(getData('type', $this))
+        }
+      ),
+      bindEvent(
+        this.eventName('mouseover'),
+        `.${this.classes.GRADIENTTRIGGER}`,
+        e => {
+          if (this.actived) {
+            addClass(this.classes.TRIGGERACTIVE, e.target)
+          } else {
+            removeClass(this.classes.TRIGGERACTIVE, e.target)
+          }
+        }
+      )
+    )(this.$panel)
+
+    // select color
+    bindEvent(
+      this.eventName('click'),
+      `.${this.classes.COLLECTIONITEM}`,
+      e => {
+        const $this = e.target
+        queryAll(
+          `.${this.classes.COLLECTIONITEM}`,
+          this.COLLECTION.$selectorList
+        ).map(removeClass(this.classes.COLLECTIONITEMACTIVE))
+        addClass(this.classes.COLLECTIONITEMACTIVE, $this)
+        this.$selecting = $this
+        this.actived = true
+
+        this.switchModule('gradient')
+        this.setPlugins()
+        this.updateColor()
+      },
+      this.$panel
+    )
+  }
+
   create() {
     this.handelComponent()
   }
@@ -118,13 +173,19 @@ class GradientSelector extends Component {
     }
 
     this.TRIGGER = new Trigger(this)
+    this.$fillImg = query(`.${this.classes.FILLIMG}`, this.TRIGGER.$fill)
 
     this.$panel = this.createEl('panel', {
       classes: this.classes
     })
     this.$wrap.append(this.$panel)
 
+    this.$trigger = query(`.${this.classes.TRIGGERPANEL}`, this.$panel)
+    this.$container = query(`.${this.classes.CONTAINERPANEL}`, this.$panel)
+
     this.setupDropdown()
+    this.setupCollection()
+    this.setupGradientPicker()
   }
 
   setupDropdown() {
@@ -133,14 +194,231 @@ class GradientSelector extends Component {
       reference: this.TRIGGER.$trigger,
       templates: this.options.template,
       hideOutClick: true,
-      hideOnSelect: false
+      hideOnSelect: false,
+      onShown: () => {
+        this.$selected = this.$selecting
+        if (this.$selected) {
+          const data = JSON.parse(
+            JSON.stringify(getData('info', this.$fillImg))
+          )
+          setData('info', data, this.TRIGGER.$fill)
+        }
+        addClass(this.classes.SHOW, this.$wrap)
+
+        this.switchModule(this.module)
+        this.leave('save')
+      },
+      onHided: () => {
+        this.update()
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
+      }
     })
+  }
+
+  setupCollection() {
+    this.COLLECTION = new Collection(
+      this,
+      query(`.${this.classes.COLLECTIONPANEL}`, this.$panel)
+    )
+  }
+
+  setupGradientPicker() {
+    this.$elGradientPicker = query(`.${this.classes.GRADIENT}`, this.$container)
+    this.GRADIENTPICKER = new GradientPicker(this.$elGradientPicker, {
+      displayMode: 'inline',
+      showControl: true,
+      onChange: color => {
+        this.color = color
+        // this.updateColor()
+        this.setAttr(this.$fillImg)
+      },
+      onClick: () => {
+        this.enter('save')
+        this.DROPDOWN.hide()
+      }
+    })
+  }
+
+  switchModule(typeName) {
+    if (!typeName) {
+      typeName = 'collection'
+    }
+
+    if (!this.actived) {
+      typeName = 'collection'
+    }
+    // switch panel tirgger
+    children(this.$trigger).forEach(($this, i) => {
+      const $content = children(this.$container)[i]
+
+      removeClass(this.classes.SELECTED, $this)
+      hideElement($content)
+      this.leave(`${getData('type', $this)}Module`)
+      if (getData('type', $this) === typeName) {
+        addClass(this.classes.SELECTED, $this)
+        $content.style.display = 'block'
+        // showElement($content)
+      }
+    })
+
+    if (typeName === 'collection' && this.scrollable) {
+      this.scrollable.update()
+    }
+    // switch module state
+    this.enter(`${typeName}Module`)
+    this.module = typeName
+
+    // switch (this.module) {
+    //   case 'solid':
+    //     this.setInput(this.COLORPICKER.color)
+    //     this.COLORPICKER.HISTORY.updateHistory()
+    //     break
+    //   case 'gradient':
+    //     this.setInput(this.GRADIENTPICKER.color)
+    //     this.GRADIENTPICKER.COLORPICKER.HISTORY.updateHistory()
+    //     break
+    //   default:
+    //     break
+    // }
+    this.trigger(EVENTS.SWITCHMODULE, this.module)
   }
 
   createEl(tempName, options) {
     return parseHTML(
       template.compile(this.options.templates[tempName]())(options)
     )
+  }
+
+  setAttr(el) {
+    const info = getData('info', el)
+    if (!info) {
+      return
+    }
+
+    info.color = this.color
+
+    setData('info', info, el)
+
+    this.setInfo(el)
+  }
+
+  setInfo(color) {
+    const colorData = getData('info', color)
+    setStyle(
+      {
+        backgroundImage: colorData.color
+      },
+      color
+    )
+
+    setData('info', colorData, color)
+  }
+
+  updateColor() {
+    if (this.$selecting) {
+      this.GRADIENTPICKER.val(getData('info', this.$selecting).color)
+    }
+    this.setInfo(this.$fillImg)
+  }
+
+  setPlugins() {
+    const info = JSON.parse(JSON.stringify(getData('info', this.$selecting)))
+    setData('info', info, this.$fillImg)
+  }
+
+  update(data, trigger = true) {
+    if (this.is('save')) {
+      if (data) {
+        setData('info', data, this.$fillImg)
+        this.setInfo(this.$fillImg)
+      } else {
+        this.data = getData('info', this.$fillImg)
+      }
+      this.module = 'gradient'
+      this.actived = true
+      this.element.value = this.val()
+      addClass(this.classes.SHOW, this.$wrap)
+
+      if (trigger) {
+        this.trigger(EVENTS.CHANGE, this.data)
+      }
+    } else if (!this.$selected) {
+      this.clear()
+    } else {
+      const info = JSON.parse(
+        JSON.stringify(getData('info', this.TRIGGER.$fill))
+      )
+      setData('info', info, this.$fillImg)
+      this.GRADIENTPICKER.val(info.color)
+      // set preview
+      this.setInfo(this.$fillImg)
+    }
+  }
+
+  get() {
+    return this.data
+  }
+
+  val(value, trigger = true) {
+    if (typeof value === 'undefined') {
+      return this.options.process.call(this, this.get())
+    }
+    const val = this.options.parse.call(this, value)
+    this.set(val, trigger)
+    return null
+  }
+
+  set(data, trigger = true) {
+    if (!this.colors || !data) {
+      return
+    }
+
+    const name = data.name
+
+    if (!this.colors[name]) {
+      return
+    }
+
+    this.data = data
+    queryAll(
+      `.${this.classes.COLLECTIONITEM}`,
+      this.COLLECTION.$selectorList
+    ).forEach($this => {
+      const info = getData('info', $this)
+      removeClass(this.classes.COLLECTIONITEMACTIVE, $this)
+      if (info.name === name) {
+        addClass(this.classes.COLLECTIONITEMACTIVE, $this)
+        setData('info', data, this.$fillImg)
+
+        this.$selecting = $this
+
+        this.GRADIENTPICKER.set(data.color)
+
+        this.enter('save')
+        this.update(data, trigger)
+      }
+    })
+  }
+
+  clear() {
+    setData('info', '', this.$fillImg)
+    setStyle(
+      {
+        backgroundImage: 'none'
+      },
+      this.$fillImg
+    )
+
+    this.GRADIENTPICKER.clear()
+
+    this.$selecting = null
+    this.$selected = null
+    this.actived = false
+    this.module = this.options.module
+
+    this.element.value = ''
+
+    removeClass(this.classes.SHOW, this.$wrap)
   }
 
   enable() {

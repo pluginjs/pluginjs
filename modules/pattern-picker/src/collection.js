@@ -48,7 +48,7 @@ class Collection {
   }
 
   createCollectionItem() {
-    this.selectorList = query(`.${this.classes.SCHEME}`, this.element)
+    this.$selectorList = query(`.${this.classes.SCHEME}`, this.element)
     Object.entries(this.instance.imgs).forEach(([i, v]) => {
       const $item = this.instance.createEl('collectionItem', {
         classes: this.classes
@@ -71,7 +71,7 @@ class Collection {
       }
       setData('info', info, $item)
       // append to group list
-      append($item, this.selectorList)
+      append($item, this.$selectorList)
     })
   }
 

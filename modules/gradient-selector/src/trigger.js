@@ -1,7 +1,7 @@
 import template from '@pluginjs/template'
 import { bindEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { fadeOut, fadeIn, query, parseHTML } from '@pluginjs/dom'
+import { query, parseHTML } from '@pluginjs/dom'
 import PopDialog from '@pluginjs/pop-dialog'
 
 export default class Trigger {
@@ -104,21 +104,7 @@ export default class Trigger {
             label: that.instance.translate('delete'),
             color: 'danger',
             fn(resolve) {
-              fadeOut(
-                {
-                  duration: 100,
-                  callback: () => {
-                    that.instance.clear()
-                    fadeIn(
-                      {
-                        duration: 100
-                      },
-                      that.$triggerAction
-                    )
-                  }
-                },
-                that.$triggerAction
-              )
+              that.instance.clear()
               resolve()
             }
           }

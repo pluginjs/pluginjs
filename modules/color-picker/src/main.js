@@ -4,7 +4,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle, hideElement, showElement } from '@pluginjs/styled'
-import { isString } from '@pluginjs/is'
+import { isString, isNull } from '@pluginjs/is'
 import {
   append,
   parseHTML,
@@ -376,19 +376,23 @@ class ColorPicker extends Component {
   }
 
   set(val) {
-    this.color = val
-    this.setColor(val)
+    if (isNull(val)) {
+      this.color = this.options.defaultColor || '#000'
+      this.set(this.color)
+      if (this.options.displayMode !== 'inline') {
+        this.PREVIEW.update('transparent')
+      }
+      this.element.value = ''
+    } else {
+      this.color = val
+      this.setColor(val)
+    }
 
     return null
   }
 
   clear() {
-    this.color = this.options.defaultColor || '#000'
-    this.set(this.color)
-    if (this.options.displayMode !== 'inline') {
-      this.PREVIEW.update('transparent')
-    }
-    this.element.value = ''
+    this.set(null)
   }
 
   enable() {
