@@ -57,6 +57,7 @@ $bgPicker-position-content-li-height: 32px;
 $bgPicker-repeat-title-color: $gray-darkest;
 $bgPicker-repeat-content-color: $gray-lighter;
 
+$bgPicker-image-margin: 5.5px;
 // Style
 // =====================
 .#{$bgPicker} {
@@ -120,6 +121,37 @@ $bgPicker-repeat-content-color: $gray-lighter;
     &:hover {
       color: $bgPicker-fill-hover-color;
       cursor: pointer;
+    }
+  }
+
+  &-image {
+    .#{$bgPicker}-field-content {
+      padding-left: $bgPicker-image-margin;
+      border: 0;
+    }
+
+    .#{$bgPicker}-image-select {
+      cursor: pointer;
+    }
+
+    .#{$bgPicker}-image-selected {
+      .#{$bgPicker}-image-change {
+        color: $color-primary;
+      }
+
+      .#{$bgPicker}-image-remove {
+        margin-left: $bgPicker-image-margin;
+        color: $color-danger-dark;
+      }
+    }
+    
+    .#{$bgPicker}-selected-disabled {
+      color: $gray-light !important;
+      cursor: not-allowed;
+
+      &:hover {
+        border-color: transparent;
+      }
     }
   }
 

@@ -11,7 +11,9 @@ btn1.addEventListener('click', () => {
         title: 'Undo',
         class: 'pj-btn pj-btn-flat'
       }
-    }
+    },
+    content: 'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww',
+    duration: 'false'
   })
 })
 

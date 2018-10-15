@@ -28,7 +28,8 @@ export const classes = {
   CONTENTIN: '{namespace}-contentIn',
   CONTENTOUT: '{namespace}-contentOut',
   OUT: '{namespace}-out',
-  ONLYTITLE: '{namespace}-only-title'
+  ONLYTITLE: '{namespace}-only-title',
+  HASICON: '{namespace}-has-icon'
 }
 
 export const defaults = {
