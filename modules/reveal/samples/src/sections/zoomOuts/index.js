@@ -1,5 +1,5 @@
 import { queryAll } from '@pluginjs/dom'
 import Reveal from '@pluginjs/reveal'
 
-const elements = queryAll('#flippers .reveal')
+const elements = queryAll('#zoomOuts .reveal')
 elements.forEach(el => Reveal.of(el, {}))

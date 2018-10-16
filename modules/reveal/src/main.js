@@ -10,7 +10,7 @@ import {
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { query } from '@pluginjs/dom'
+import { closest, query } from '@pluginjs/dom'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -21,6 +21,8 @@ import {
 
 import Viewport from '@pluginjs/viewport'
 import Breakpoints from '@pluginjs/breakpoints'
+
+import Easings from './easings'
 
 @themeable()
 @styleable(CLASSES)
@@ -57,9 +59,14 @@ class Reveal extends Component {
   }
 
   initViewport() {
-    this.viewElement = this.options.anchor
-      ? query(this.options.anchor)
-      : this.element
+    if (!this.options.anchor) {
+      this.viewElement = this.element
+    } else {
+      this.viewElement = closest(this.options.anchor, this.element)
+        ? closest(this.options.anchor, this.element)
+        : query(this.options.anchor)
+    }
+
     if (!this.viewElement) {
       throw new Error('Can not find anchor element')
     }
@@ -91,6 +98,8 @@ class Reveal extends Component {
         Object.keys(that.screenOptions[this.current.name]).forEach(key => {
           that[key] = that.screenOptions[this.current.name][key]
         })
+
+        that.initCount()
       } else {
         that.reset()
       }
@@ -99,17 +108,21 @@ class Reveal extends Component {
     })
   }
 
-  reset() {
-    Object.keys(this.options).forEach(key => {
-      this[key] = this.options[key]
-    })
-
+  initCount() {
     if (this.loop === true) {
       this.count = 'infinite'
     } else {
       this.loop = Number(this.loop)
       this.count = 0
     }
+  }
+
+  reset() {
+    Object.keys(this.options).forEach(key => {
+      this[key] = this.options[key]
+    })
+
+    this.initCount()
   }
 
   initScreenOptions(screens) {
@@ -136,7 +149,7 @@ class Reveal extends Component {
     this.order = this.order < 1 ? 1 : this.order
     const duration = `${this.duration / 1000}s`
     const delay = `${(this.delay + (this.order - 1) * 100) / 1000}s`
-    const easing = this.easing
+    const easing = this.initEasing()
 
     setStyle(
       {
@@ -146,6 +159,10 @@ class Reveal extends Component {
       },
       this.element
     )
+  }
+
+  initEasing() {
+    return Easings[this.easing] ? Easings[this.easing] : 'ease'
   }
 
   bind() {

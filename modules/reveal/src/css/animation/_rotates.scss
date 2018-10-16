@@ -1,0 +1,79 @@
+@keyframes pj-rotate {
+  0% {
+    transform: rotate3d(0, 0, 1, -200deg);
+		transform-origin: center;
+  }
+
+  100% {
+    transform: none;
+    transform-origin: center;
+  }
+}
+
+.#{$reveal}.pj-rotate {
+  animation-name: pj-rotate;
+}
+
+@keyframes pj-rotateUpLeft {
+  0% {
+    transform: rotate3d(0, 0, 1, 45deg);
+		transform-origin: left bottom;
+  }
+
+  100% {
+    transform: none;
+    transform-origin: left bottom;
+  }
+}
+
+.#{$reveal}.pj-rotateUpLeft {
+  animation-name: pj-rotateUpLeft;
+}
+
+@keyframes pj-rotateUpRight {
+  0% {
+    transform: rotate3d(0, 0, 1, -90deg);
+		transform-origin: right bottom;
+  }
+
+  100% {
+    transform: none;
+    transform-origin: right bottom;
+  }
+}
+
+.#{$reveal}.pj-rotateUpRight {
+  animation-name: pj-rotateUpRight;
+}
+
+@keyframes pj-rotateDownLeft {
+  0% {
+    transform: rotate3d(0, 0, 1, -45deg);
+		transform-origin: left bottom;
+  }
+
+  100% {
+    transform: none;
+    transform-origin: left bottom;
+  }
+}
+
+.#{$reveal}.pj-rotateDownLeft {
+  animation-name: pj-rotateDownLeft;
+}
+
+@keyframes pj-rotateDownRight {
+  0% {
+    transform: rotate3d(0, 0, 1, 45deg);
+		transform-origin: right bottom;
+  }
+
+  100% {
+    transform: none;
+    transform-origin: right bottom;
+  }
+}
+
+.#{$reveal}.pj-rotateDownRight {
+  animation-name: pj-rotateDownRight;
+}

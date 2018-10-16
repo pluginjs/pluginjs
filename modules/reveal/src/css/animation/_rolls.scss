@@ -1,0 +1,55 @@
+@keyframes pj-rollLeft {
+  0% {
+    transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+.#{$reveal}.pj-rollLeft {
+  animation-name: pj-rollLeft;
+}
+
+@keyframes pj-rollRight {
+  0% {
+    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+.#{$reveal}.pj-rollRight {
+  animation-name: pj-rollRight;
+}
+
+@keyframes pj-rollUp {
+  0% {
+    transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, -120deg);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+.#{$reveal}.pj-rollUp {
+  animation-name: pj-rollUp;
+}
+
+@keyframes pj-rollDown {
+  0% {
+    transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -120deg);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+.#{$reveal}.pj-rollDown {
+  animation-name: pj-rollDown;
+}

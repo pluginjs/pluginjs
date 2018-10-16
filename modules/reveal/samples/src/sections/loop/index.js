@@ -1,9 +1,10 @@
 import { queryAll } from '@pluginjs/dom'
 import Reveal from '@pluginjs/reveal'
 
-const elements = queryAll('#anchor .reveal')
+const elements = queryAll('#loop .reveal')
 elements.forEach(el =>
   Reveal.of(el, {
-    anchor: '.anchor'
+    animation: 'rotate',
+    duration: 1000
   })
 )

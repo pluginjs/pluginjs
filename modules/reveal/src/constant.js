@@ -21,7 +21,7 @@ export const methods = ['destroy', 'enable', 'disable', 'isVisible']
 export const defaults = {
   container: null,
   animation: 'fadeIn',
-  duration: 500,
+  duration: 600,
   easing: 'ease',
   delay: 0,
   loop: true, // number, true => infinite

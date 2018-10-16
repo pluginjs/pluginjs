@@ -16,8 +16,10 @@ $reveal: "pj-reveal" !default;
 
 @import "animation/bounces";
 @import "animation/fades";
-// @import "animation/fade";
-// @import "animation/flip";
-// @import "animation/slide";
-// @import "animation/zoom";
-// @import "animation/attention_seekers";
+@import "animation/flippers";
+@import "animation/rolls";
+@import "animation/rotates";
+@import "animation/slides";
+@import "animation/zoomIns";
+@import "animation/zoomOuts";
+@import "animation/others";
