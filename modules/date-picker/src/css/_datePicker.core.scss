@@ -1,5 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
-
+@import "@pluginjs/icons/variables.scss";
 // Vars
 // ========================
 $datePicker: "pj-datePicker" !default;
@@ -14,6 +14,10 @@ $datePicker-dropdown-zindex: $zindex-dropdown !default;
 $datePicker-mobile-zindex: $datePicker-dropdown-zindex + 1 !default;
 
 $datePicker-cover-zindex: $datePicker-dropdown-zindex - 1 !default;
+
+$datePicker-clear-icon: $pj-icon-close !default;
+$datePicker-clear-font: $pj-icon-font-family !default;
+$datePicker-clear-right: 35px !default;
 
 // core
 //==========================
@@ -297,6 +301,39 @@ $datePicker-cover-zindex: $datePicker-dropdown-zindex - 1 !default;
     }
   }
 
+  &-clear {
+    position: absolute;
+    top: 0;
+    right: $datePicker-clear-right;
+    z-index: 9999;
+    display: none;
+    height: 100%;
+    font-family: $datePicker-clear-font;
+    color: $gray;
+
+    &:hover {
+      color: $color-black;
+    }
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($datePicker-clear-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
+  }
+  &-selected {
+    .#{$datePicker}-clear {
+      display: inline-block !important;
+    }
+  }
   &-input {
     &[disabled] {
       cursor: not-allowed;

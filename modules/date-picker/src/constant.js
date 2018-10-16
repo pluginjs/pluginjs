@@ -55,7 +55,10 @@ export const classes = {
   ENDDAY: '{namespace}-endDay',
   LASTMONTH: '{namespace}-select-last-in-month',
   FIRSTMONTH: '{namespace}-select-first-in-month',
-  MOBILETRIGGER: '{namespace}-mobile-trigger'
+  MOBILETRIGGER: '{namespace}-mobile-trigger',
+  CLEARABLE: '{namespace}-clearable',
+  CLEAR: '{namespace}-clear',
+  SELECTED: '{namespace}-selected'
 }
 
 export const methods = [
@@ -79,7 +82,8 @@ export const defaults = {
   theme: null,
   firstDayOfWeek: 0, // 0---6 === sunday---saturday
   mode: 'single', // single|range|multiple
-  displayMode: 'dropdown', // dropdown|inline
+  // displayMode: 'dropdown', // dropdown|inline
+  inline: false,
   calendars: 1,
   date: 'today', // today|Date (yyyy-mm-dd)
   keyboard: true, // true | false
@@ -87,7 +91,7 @@ export const defaults = {
   multipleSeparator: ',',
   multipleSize: 5,
   disabled: false,
-
+  clearable: false,
   container: 'body',
   position: 'bottom', // ['auto','bottom', 'top', 'right', 'left'] and ['start', 'end'] can be combination, like 'bottom-start', 'left-end'. when use a single value, like 'bottom', means 'bottom-center'.
   // position: 'bottom', // top|right|bottom|left|rightTop|leftTop

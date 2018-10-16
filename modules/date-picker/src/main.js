@@ -45,6 +45,7 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 import Keyboard from './keyboard'
+import Clearable from './clearable'
 
 const $doc = window.document
 // const compileTemplate = template.compile
@@ -191,7 +192,7 @@ class DatePicker extends Component {
     )
 
     // init status in different display mode
-    this.initStatus(this.options.displayMode)
+    this.initStatus(this.options.inline)
     // init pointer
     this.initSections()
     // init default Date
@@ -212,7 +213,9 @@ class DatePicker extends Component {
     if (!this.isMobile) {
       this.setupPopper()
     }
-
+    if (this.options.clearable) {
+      this.CLEARABLE = new Clearable(this)
+    }
     if (this.options.keyboard) {
       this.KEYBOARD = new Keyboard(this)
     }
@@ -223,8 +226,8 @@ class DatePicker extends Component {
     this.trigger(EVENTS.READY)
   }
 
-  initStatus(displayMode) {
-    if (displayMode === 'inline') {
+  initStatus(inline) {
+    if (inline === true) {
       this.options.alwaysShow = true
       addClass(this.classes.INLINEMODE, this.$inputWrap)
       addClass(this.classes.SHOW, this.$dropdown)
@@ -232,7 +235,7 @@ class DatePicker extends Component {
         bindEvent(this.eventName('focus'), this.focus.bind(this)),
         bindEvent(this.eventName('blur'), this.blur.bind(this))
       )(this.$picker)
-    } else if (displayMode === 'dropdown') {
+    } else if (inline === false) {
       if (this.isMobile) {
         this.mobileTrigger.on('tap', () => {
           this.show()
@@ -1341,7 +1344,7 @@ class DatePicker extends Component {
   }
 
   setupPopper() {
-    if (this.options.displayMode === 'inline') {
+    if (this.options.inline === true) {
       return false
     }
 
@@ -1399,7 +1402,7 @@ class DatePicker extends Component {
   }
 
   focus() {
-    if (this.options.displayMode === 'dropdown' && !this.is('showed')) {
+    if (this.options.inline === false && !this.is('showed')) {
       this.show()
     }
     if (this.hasKeyboard) {
@@ -1408,7 +1411,7 @@ class DatePicker extends Component {
   }
 
   blur() {
-    if (this.options.displayMode === 'dropdown') {
+    if (this.options.inline === false) {
       if (this.is('pickerHide')) {
         this.hide()
         this.leave('pickerHide')
@@ -1517,7 +1520,7 @@ class DatePicker extends Component {
           this.options.onceClick === true
         ) {
           this.hide()
-        } else if (this.options.displayMode === 'dropdown') {
+        } else if (this.options.inline === false) {
           this.$element.focus()
         }
       }
@@ -1642,6 +1645,10 @@ class DatePicker extends Component {
     }
 
     this.oldValue = this.$element.value
+
+    if (this.$element.value) {
+      addClass(this.classes.SELECTED, this.$inputWrap)
+    }
     return null
   }
 
@@ -1654,7 +1661,7 @@ class DatePicker extends Component {
   }
 
   unbind() {
-    if (this.options.displayMode === 'inline') {
+    if (this.options.inline === true) {
       removeEvent(this.eventName('click.picke'), this.$picker)
     } else {
       removeEvent(this.eventNameWithId('click'), $doc)
@@ -1930,6 +1937,11 @@ class DatePicker extends Component {
     })
   }
 
+  clear() {
+    this.$element.value = ''
+    removeClass(this.classes.SELECTED, this.$inputWrap)
+  }
+
   show() {
     if (this.is('disabled')) {
       return null
@@ -1938,7 +1950,7 @@ class DatePicker extends Component {
     if (this.isMobile) {
       this.dateTransform(this.privateDate, this.privateDate.cache)
     }
-    if (this.options.displayMode === 'inline') {
+    if (this.options.inline === true) {
       this.trigger(EVENTS.BEFORESHOW)
       compose(
         bindEvent(this.eventName('mouseDown'), e => {
@@ -2121,7 +2133,9 @@ class DatePicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-
+      if (this.CLEARABLE) {
+        this.CLEARABLE.destroy()
+      }
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$element)
       }
@@ -2199,6 +2213,7 @@ class DatePicker extends Component {
   }
 
   get() {
+    console.log(111)
     return this.privateDate.selectedDate
   }
 
