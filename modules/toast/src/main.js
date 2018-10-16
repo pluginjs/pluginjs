@@ -3,7 +3,7 @@ import { isNumber, isObject, isFunction } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, bindEventOnce } from '@pluginjs/events'
-import { append, parseHTML, queryAll, query, remove } from '@pluginjs/dom'
+import { append, parseHTML, query, remove } from '@pluginjs/dom'
 import GlobalComponent from '@pluginjs/global-component'
 import {
   eventable,
@@ -124,7 +124,9 @@ class Toast extends GlobalComponent {
     append(this.$element, this.$wrap)
 
     if (this.stack && isNumber(this.stack)) {
-      const instances = queryAll(`.${this.classes.NAMESPACE}`, this.$wrap)
+      const instances = this.constructor.getInstances().filter(instance => {
+        return this.$wrap.contains(instance.$element)
+      })
       const _prevToastCount = instances.length
       const _extToastCount = _prevToastCount - this.stack
       if (_extToastCount > 0) {
@@ -177,20 +179,6 @@ class Toast extends GlobalComponent {
   }
 
   animate() {
-    addClass(this.classes.ICONIN, this.$icon)
-
-    if (this.$content) {
-      addClass(this.classes.CONTENTIN, this.$content)
-    }
-
-    if (this.$buttons) {
-      addClass(this.classes.CONTENTIN, this.$buttons)
-    }
-
-    if (this.$title) {
-      addClass(this.classes.CONTENTIN, this.$title)
-    }
-
     let effect = ''
     if (this.options.effect === 'slide') {
       let opt = this.options.position.split('-')[1]
@@ -246,23 +234,8 @@ class Toast extends GlobalComponent {
       return
     }
 
-    if (this.$content) {
-      removeClass(this.classes.CONTENTIN, this.$content)
-      addClass(this.classes.CONTENTOUT, this.$content)
-    }
-
-    if (this.$title) {
-      removeClass(this.classes.CONTENTIN, this.$title)
-      addClass(this.classes.CONTENTOUT, this.$title)
-    }
-
     removeClass(`${this.classes.NAMESPACE}-${this.effect}`, this.$element)
     addClass(this.classes.OUT, this.$element)
-
-    if (this.$buttons) {
-      removeClass(this.classes.CONTENTIN, this.$buttons)
-      addClass(this.classes.CONTENTOUT, this.$buttons)
-    }
 
     bindEventOnce(
       this.eventName('animationend'),

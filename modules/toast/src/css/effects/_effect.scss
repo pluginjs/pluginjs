@@ -1,8 +1,10 @@
 //iconIn tansition
-.#{$toast}-iconIn {
-  opacity: 0;
-  animation: #{$toast}-revealIn 0.5s forwards;
-  animation-delay: 0.3s;
+.#{$toast}-has-icon {
+  .#{$toast}-icon {
+    opacity: 0;
+    animation: #{$toast}-revealIn 0.5s forwards;
+    animation-delay: 0.3s;
+  }
 }
 
 @keyframes #{$toast}-revealIn {
@@ -16,7 +18,9 @@
 }
 
 ///contentIn tansition
-.#{$toast}-contentIn {
+.#{$toast}-title,
+.#{$toast}--buttons,
+.#{$toast}-content {
   opacity: 0;
   animation: #{$toast}-fadeInUp 0.5s forwards;
   animation-delay: 0.15s;
@@ -40,15 +44,17 @@
 }
 
 ///out tansition
-.#{$toast}-Out {
+.#{$toast}-out {
   animation: #{$toast}-fadeOutDown 0.3s 1 forwards;
   animation-delay: 0.25s;
-}
 
-.#{$toast}-contentOut {
-  opacity: 1;
-  animation: #{$toast}-fadeOutDown 0.3s 1 forwards;
-  animation-delay: 0.1s;
+  .#{$toast}-title,
+  .#{$toast}--buttons,
+  .#{$toast}-content  {
+    opacity: 1;
+    animation: #{$toast}-fadeOutDown 0.3s 1 forwards;
+    animation-delay: 0.1s;
+  }  
 }
 
 @keyframes #{$toast}-fadeOutDown {

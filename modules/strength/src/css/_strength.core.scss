@@ -21,7 +21,20 @@ $strength-check-border-radius: $border-radius-base !default;
 .#{$strength} {
   &-container {
     box-sizing: border-box;
-    height: $strength-height;;
+    height: $strength-height;
+
+    .#{$strength}-show {
+      display: none;
+    }
+  
+    .#{$strength}-hide {
+      display: inline-block;
+      &::after {
+        @include icon();
+        font-family:$strength-font;
+        content: icon-content($strength-hidden-icon);
+      }
+    }
   }
 
   &-toggle {
@@ -33,19 +46,6 @@ $strength-check-border-radius: $border-radius-base !default;
   &-addon {
     box-sizing: border-box;
     height: $strength-height;
-
-    .#{$strength}-show {
-      display: none;
-    }
-
-    .#{$strength}-hide {
-      display: inline-block;
-      &::after {
-        @include icon();
-        font-family:$strength-font;
-        content: icon-content($strength-hidden-icon);
-      }
-    }
 
     .#{$strength}-check {
       position: relative;

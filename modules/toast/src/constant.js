@@ -24,9 +24,6 @@ export const classes = {
   BUTTONS: '{namespace}-buttons',
   LOADER: '{namespace}-loader',
   LOADERBAR: '{namespace}-loader-bar',
-  ICONIN: '{namespace}-iconIn',
-  CONTENTIN: '{namespace}-contentIn',
-  CONTENTOUT: '{namespace}-contentOut',
   OUT: '{namespace}-out',
   ONLYTITLE: '{namespace}-only-title',
   HASICON: '{namespace}-has-icon'
@@ -53,7 +50,7 @@ export const defaults = {
   types: {
     success: 'pj-icon pj-icon-check-circle',
     info: 'pj-icon pj-icon-info-circle',
-    warning: 'pj-icon pj-icon-info-circle',
+    warning: 'pj-icon pj-icon-waring-circle',
     error: 'pj-icon pj-icon-close-circle'
   },
 

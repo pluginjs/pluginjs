@@ -25,6 +25,7 @@ export const classes = {
   ADDON: '{namespace}-addon',
   CHECK: '{namespace}-check',
   DISABLE: '{namespace}-disabled',
+  ICON: '{namespace}-icon',
   SHOW: '{namespace}-show',
   HIDE: '{namespace}-hide'
 }
