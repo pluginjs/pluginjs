@@ -1,101 +1,66 @@
 @import "@pluginjs/styles/variables.scss";
-@import "swipeable.core.scss";
 
 // Vars
 // =====================
 $swipeable: "pj-swipeable";
-$swipeable-font-family: $font-family-base;
-$swipeable-width: 5920px;
-$swipeable-height: 212px;
-$swipeable-container-spacer: 10px;
-$swipeable-bg-color: rgba(133, 83, 83, 0.2);
-$swipeable-item-border-radius: 0;
-$swipeable-item-margin-right: 20px;
-$swipeable-item-width: 376px;
-$swipeable-item-font-size: $font-size-lg;
 
-$swipeable-vertical-width: 376px;
-$swipeable-vertical-height: 4288px;
-$swipeable-vertical-item-height: 928px;
-$swipeable-vertical-item-line-height: 100px;
-$swipeable-vertical-item-margin-bottom: 20px;
-$swipeable-vertical-solid-width: 480px;
-$swipeable-vertical-solid-height: 1px;
-$swipeable-vertical-solid-bg: $border-color;
+$swipeable-item-width: 300px;
+$swipeable-item-height: 150px;
+$swipeable-gutter: 10px;
 
-// swipeable
+$swipeable-vertical-item-width: 300px;
+$swipeable-vertical-item-height: 150px;
+
+// core
 // =====================
 .#{$swipeable}-container {
-  padding: $swipeable-container-spacer 0;
-  font-family: $swipeable-font-family;
-
-  &.#{$swipeable}-vertical {
-    height: $swipeable-vertical-item-height;
-    padding: 0;
-
-    .#{$swipeable} {
-      width: $swipeable-vertical-width;
-      height: $swipeable-vertical-height;
-      margin: 0;
-    }
-
-    .#{$swipeable}-item {
-      flex: 0 0 $swipeable-vertical-item-line-height;
-      margin: 0;
-      margin-bottom: $swipeable-vertical-item-margin-bottom;
-      line-height: $swipeable-vertical-item-line-height;
-    }
-  }
+  position: relative;
+  width: 100%;
+  height: $swipeable-item-height;
+  overflow: hidden;
 }
 
 .#{$swipeable} {
-  width: $swipeable-width;
-  height: $swipeable-height;
-  margin-right: $swipeable-item-margin-right;
-  cursor: pointer;
+  position: absolute;
+  display: block;
+  height: 100%;
+  white-space: nowrap;
 
   &-item {
-    flex: 0 0 $swipeable-item-width;
-    margin-right: $swipeable-item-margin-right;
-    font-size: $swipeable-item-font-size;
-    line-height: $swipeable-height;
-    text-align: center;
-    background-color: $swipeable-bg-color;
-    border-radius: $swipeable-item-border-radius;
+    position: relative;
+    display: inline-block;
+    width: $swipeable-item-width;
+    height: 100%;
 
-    img {
-      border-radius: $swipeable-item-border-radius;
+    & + & {
+      margin-left: $swipeable-gutter;
     }
   }
 
-  &-vertical {
-    width: $swipeable-vertical-solid-width;
-
-    &::before {
-      position: absolute;
-      top: 0;
-      left: auto;
-      width: $swipeable-vertical-solid-width;
-      height: $swipeable-vertical-solid-height;
-      content: "";
-      background: $swipeable-vertical-solid-bg;
-    }
-
-    &::after {
-      position: absolute;
-      bottom: 0;
-      left: auto;
-      width: $swipeable-vertical-solid-width;
-      height: $swipeable-vertical-solid-height;
-      content: "";
-      background:  $swipeable-vertical-solid-bg;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
 }
 
-.position-vertical {
+.#{$swipeable}-vertical {
+  width: $swipeable-vertical-item-width;
+  height: 100%;
+
   .#{$swipeable} {
-    transform: translateY(230px);
+    width: 100%;
+    height: auto;
+
+    &-item {
+      display: block;
+      width: 100%;
+      height: $swipeable-vertical-item-height;
+    }
+  }
+
+  .#{$swipeable}-item + .#{$swipeable}-item {
+    margin-top: $swipeable-gutter;
+    margin-left: 0;
   }
 }
-
