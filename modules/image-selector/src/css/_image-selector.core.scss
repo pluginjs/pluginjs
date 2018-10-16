@@ -1,95 +1,80 @@
 @import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
 
 // Vars
+// =====================
+$image-selector: "pj-image-selector" !default;
+$image-selector-width: 96px !default;
+$image-selector-max-height: 300px !default;
+$image-selector-dropdown-padding: 20px !default;
+$image-selector-dropdown-width: 272px !default;
 
-$imageSelector: "pj-imageSelector" !default;
-$dropdown: "pj-dropdown" !default;
-$scrollable: "pj-scrollable" !default;
+$image-selector-trigger-border-color: $gray-light;
+$image-selector-trigger-arrow-icon: $pj-icon-caret-down-mini !default;
+$image-selector-trigger-arrow-font: $pj-icon-font-family !default;
+$image-selector-trigger-arrow-right: $input-padding-x !default;
+$image-selector-trigger-padding-right: 30px !default;
 
-$imageSelector-bg: $color-white !default;
+.#{$image-selector} {
+  position: relative;
+  width: $image-selector-width;
+  height: $image-selector-width;
 
-$imageSelector-item-spacer: 12px !default;
-
-$imageSelector-dropdown-show-zindex: $zindex-dropdown !default;
-
-$imageSelector-panel-wrap-zindex: $zindex-dropdown !default;
-
-// Core
-// ====================
-.#{$imageSelector} {
-  box-sizing: border-box;
-
-  &-data {
+  &-element {
     display: none;
   }
 
   &-trigger {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-  }
-
-  &-change {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
+    cursor: pointer;
+    border: 1px solid $image-selector-trigger-border-color;
   }
-
-  &-item {
-    position: relative;
+  
+  &-dropdown {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: $image-selector-dropdown-width;
+    max-height: $image-selector-max-height;
+    padding: $image-selector-dropdown-padding;
+    overflow: auto;
+    line-height: 1;
+    align-content: flex-start;
+  }
+  &-option {
     box-sizing: border-box;
-    display: block;
-    float: left;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    align-content: center;
 
     &-label {
-      position: absolute;
-      bottom: $imageSelector-item-spacer;
-      left: 0;
       display: block;
-      width: 100%;
-      text-align: center;
-    }  
-  }
-
-  &-dropdown {
-    box-sizing: border-box;
-    display: none;
-
-    .#{$scrollable} {
-      &-container {
-        width: 100% !important;
-        height: 100% !important;
-      }
-
-      &-content {
-        width: 100% !important;
-      }
     }
   }
 
-  &-hide {
-    display: block !important;
+  &-group {
+    display: flex;
   }
 
-  &-show {
-    display: block !important;
+  &-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-}
 
-.#{$dropdown}-show {
-  z-index: $imageSelector-dropdown-show-zindex;
-  display: block;
-  background-color: $color-white;
-}
-
-.#{$dropdown}-panel-wrap {
-  z-index: $imageSelector-panel-wrap-zindex;
-  background-color: $color-white;
+  &-group-label {
+    overflow: hidden;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }

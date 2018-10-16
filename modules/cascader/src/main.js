@@ -70,6 +70,7 @@ class Cascader extends Component {
       this.value = []
     }
     if (!this.selected) {
+      this.$selected = false
       this.selected = []
     }
 

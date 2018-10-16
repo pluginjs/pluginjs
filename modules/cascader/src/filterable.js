@@ -52,6 +52,9 @@ export default class Filterable {
     bindEvent(
       instance.selfEventName(EVENTS.HIDED),
       () => {
+        if (!this.$selected) {
+          return
+        }
         const option = instance.getOptionByValue(instance.value)
 
         if (option) {

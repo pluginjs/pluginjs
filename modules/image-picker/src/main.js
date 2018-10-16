@@ -240,7 +240,6 @@ class ImagePicker extends Component {
 
   val(value) {
     if (typeof value === 'undefined') {
-      console.log(this.options.process.call(this, this.get()))
       return this.options.process.call(this, this.get())
     }
 

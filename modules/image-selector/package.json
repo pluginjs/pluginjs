@@ -4,14 +4,7 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "repository": {
-    "url": "git@github.com:pluginjs/plugin.js.git",
-    "type": "git"
-  },
-  "bugs": {
-    "url": "https://github.com/pluginjs/plugin.js/issues"
-  },
-  "version": "0.2.19",
+  "version": "0.0.1",
   "category": "form",
   "main": "dist/image-selector.umd.js",
   "module": "dist/image-selector.esm.js",
@@ -22,10 +15,6 @@
     "main": "dist/image-selector.css",
     "min": "dist/image-selector.min.css"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "scripts": {
     "build": "plugin build",
     "build:js": "plugin script build-js",
@@ -41,11 +30,11 @@
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/scrollable": "*",
-    "@pluginjs/styled": "*"
+    "@pluginjs/match": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -57,10 +46,6 @@
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
-  },
-  "engines": {
-    "node": ">= 8",
-    "npm": ">= 5"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",

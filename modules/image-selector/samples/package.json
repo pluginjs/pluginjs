@@ -10,10 +10,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "*",
-    "@pluginjs/icons": "*",
-    "@pluginjs/image-selector": "*",
-    "@pluginjs/scrollable": "*",
-    "@pluginjs/scrollbar": "*"
+    "@pluginjs/image-selector": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

@@ -28,7 +28,7 @@ Cascader.of(element, {
   source: [
     {
       value: 'book',
-      icon: 'book-solid',
+      icon: 'book',
       label: 'Book',
       children: getChildren('1')
     },
@@ -40,13 +40,13 @@ Cascader.of(element, {
     },
     {
       value: 'image',
-      icon: 'image-solid',
+      icon: 'image',
       label: 'Image',
       children: getChildren('3')
     },
     {
       value: 'home',
-      icon: 'home-solid',
+      icon: 'home',
       label: 'Home',
       children: getChildren('4')
     }

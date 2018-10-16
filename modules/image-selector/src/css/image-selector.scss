@@ -1,125 +1,67 @@
 @import "@pluginjs/styles/variables.scss";
-@import "./image-selector.core";
+@import "image-selector.core";
 
 // Vars
-$imageSelector: "pj-imageSelector";
-$dropdown: "pj-dropdown";
-
-$imageSelector-width: 96px;
-$imageSelector-height: 96px;
-$imageSelector-border-width: 1px;
-$imageSelector-border-style: solid;
-$imageSelector-border-color: $border-color;
-$imageSelector-border: $imageSelector-border-width $imageSelector-border-style
-$imageSelector-border-color;
-$imageSelector-border-radius: $border-radius-base;
-
-$imageSelector-color: $text-color;
-$imageSelector-active-color: $color-primary;
-
-$imageSelector-font-size: $font-size-base;
-// change
-$imageSelector-change-bg: $color-opacity;
-$imageSelector-change-opacity: 1;
-// dropdown
-$imageSelector-dropdown-width: 274px;
-$imageSelector-dropdown-height: 333px;
-$imageSelector-dropdown-padding: 24px;
-// item
-$imageSelector-item-width: 100px;
-$imageSelector-item-height: 87px;
-$imageSelector-item-margin: 12px;
-$imageSelector-item-bg-color: $gray-lightest;
-
-// Styles
 // =====================
-.#{$imageSelector} {
+$image-selector: "pj-image-selector";
+
+$image-selector-color: $text-color;
+$image-selector-trigger-placeholder-color: $gray;
+
+$image-selector-trigger-disabled-bg: $disabled-bg;
+$image-selector-trigger-disabled-border: $disabled-border;
+$image-selector-trigger-disabled-color: $disabled-color;
+
+$image-selector-group-label-font-size: $font-size-xs;
+$image-selector-group-label-color: $gray-dark;
+$image-selector-group-label-space-x: 11px;
+$image-selector-group-label-space-y: 8px;
+
+$image-selector-loading-padding: 11px 8px;
+$image-selector-loading-color: $gray-darker;
+
+$image-selector-option-label-font-size: $font-size-xs;
+
+.#{$image-selector} {
+  outline: none;
+
   &-trigger {
-    width: $imageSelector-width;
-    height: $imageSelector-height;
-    font-size: $imageSelector-font-size;
-    color: $imageSelector-color;
-    background-color: $imageSelector-bg;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: $imageSelector-border;
-    border-radius: $imageSelector-border-radius;
+    position: relative;
+    color: $image-selector-trigger-placeholder-color;
 
-  &:hover {
-    cursor: pointer;
-
-    .#{$imageSelector}-change {
-      opacity: $imageSelector-change-opacity;
-      transition: all 300ms ease-in-out;
-     }
-   }
- }
-
-  &-open-disabled {
-    pointer-events: none;
+    .#{$image-selector}-selected & {
+      color: $image-selector-color;
+    }
   }
 
-  &-change {
-    color: $color-white;
+  &-option {
+    padding: 12px 0;
+
+    &-image {
+      margin-bottom: 6px;
+    }
+    &-label {
+      font-size: $image-selector-option-label-font-size;
+    }
+  }
+
+  &-group-label {
+    padding: $image-selector-group-label-space-y $image-selector-group-label-space-x;
+    font-size: $image-selector-group-label-font-size;
+    color: $image-selector-group-label-color;
+  }
+
+  &-loading {
+    padding: $image-selector-loading-padding;
+    color: $image-selector-loading-color;
     text-align: center;
-    background-color: $imageSelector-change-bg;
-    border-radius: $imageSelector-border-radius;
-    opacity: 0;
-  }
-
-  &-dropdown {
-    width: $imageSelector-dropdown-width;
-    height: $imageSelector-dropdown-height;
-    padding: $imageSelector-dropdown-padding;
-    padding-right: $imageSelector-dropdown-padding - $imageSelector-item-margin;
-    padding-left: $imageSelector-dropdown-padding - $imageSelector-item-margin;
-    font-size: $imageSelector-font-size;
-    border: $imageSelector-border;
-    border-radius: $imageSelector-border-radius;
-  }
-
-  .#{$imageSelector}-item {
-    width: $imageSelector-item-width;
-    height: $imageSelector-item-height;
-    margin: $imageSelector-item-margin;
-    margin-top: 0;
-    font-size: $font-size-base;
-    background-color: $imageSelector-bg;
-    background-repeat: no-repeat;
-    background-position: top;
-
-    &:hover {
-      cursor: pointer;
-      background-color: $imageSelector-item-bg-color;
-      border: $imageSelector-border;
-    }
-
-    &.#{$imageSelector}-active {
-      color: $imageSelector-color !important;
-      background-color: transparent !important;
-      border: $imageSelector-border-width $imageSelector-border-style $imageSelector-active-color;
-
-      &:hover {
-        border: $imageSelector-border-width $imageSelector-border-style $imageSelector-active-color;
-      }
-
-      &:focus {
-        outline: none;
-      }
-    }
   }
 }
 
-.#{$imageSelector}-disabled {
-  .#{$imageSelector}-trigger {
-    border-color: $disabled-border;
-
-    &:hover {
-      cursor: not-allowed;
-
-      .#{$imageSelector}-change {
-        opacity: 0;
-      }
-    }
+.#{$image-selector}-disabled {
+  .#{$image-selector}-trigger {
+    color: $image-selector-trigger-disabled-color;
+    background-color: $image-selector-trigger-disabled-bg;
+    border-color: $image-selector-trigger-disabled-border;
   }
 }
