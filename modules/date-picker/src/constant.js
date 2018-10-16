@@ -92,8 +92,8 @@ export const defaults = {
   multipleSize: 5,
   disabled: false,
   clearable: false,
-  container: 'body',
-  position: 'bottom', // ['auto','bottom', 'top', 'right', 'left'] and ['start', 'end'] can be combination, like 'bottom-start', 'left-end'. when use a single value, like 'bottom', means 'bottom-center'.
+  // container: 'body',
+  // position: 'bottom', // ['auto','bottom', 'top', 'right', 'left'] and ['start', 'end'] can be combination, like 'bottom-start', 'left-end'. when use a single value, like 'bottom', means 'bottom-center'.
   // position: 'bottom', // top|right|bottom|left|rightTop|leftTop
   alwaysShow: false, // true or false
   onceClick: false, // true or false
@@ -114,10 +114,10 @@ export const defaults = {
   views: ['days'], // ['days'], ['days', 'months', 'years']
   outputFormat: 'yyyy/mm/dd',
 
-  mobileMode: false,
+  // mobileMode: false,
 
-  constrainToWindow: true,
-  constrainToScrollParent: false,
+  // constrainToWindow: true,
+  // constrainToScrollParent: false,
   // constraints: [], // tether.io/#constraints
 
   templates: {

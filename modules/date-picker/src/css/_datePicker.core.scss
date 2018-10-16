@@ -305,7 +305,7 @@ $datePicker-clear-right: 35px !default;
     position: absolute;
     top: 0;
     right: $datePicker-clear-right;
-    z-index: 9999;
+    z-index: 999;
     display: none;
     height: 100%;
     font-family: $datePicker-clear-font;

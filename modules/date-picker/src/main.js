@@ -3,12 +3,12 @@ import Pj from '@pluginjs/factory'
 import { deepMerge, curry, compose } from '@pluginjs/utils'
 import { isString, isObject, isNumber } from '@pluginjs/is'
 import template from '@pluginjs/template'
-import Hammer from 'hammerjs'
-import Popper from 'popper.js'
+// import Hammer from 'hammerjs'
+// import Popper from 'popper.js'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
-  hideElement,
+  // hideElement,
   setStyle,
   outerHeight,
   outerWidth
@@ -17,7 +17,7 @@ import {
   append,
   parent,
   closest,
-  insertAfter,
+  // insertAfter,
   children,
   wrap as wrapElement,
   unwrap,
@@ -46,6 +46,7 @@ import {
 } from './constant'
 import Keyboard from './keyboard'
 import Clearable from './clearable'
+import Dropdown from '@pluginjs/dropdown'
 
 const $doc = window.document
 // const compileTemplate = template.compile
@@ -121,8 +122,8 @@ class DatePicker extends Component {
     this.hasKeyboard = this.options.keyboard
     this.map = {}
     this.views = []
-    this.isMobile = this.options.mobileMode // with other judgements
-    console.log(this.isMobile)
+    // this.isMobile = this.options.mobileMode // with other judgements
+    // console.log(this.isMobile)
     const $wrap = parseHTML(
       template.render(this.options.templates.wrap.call(this), {
         classes: this.classes
@@ -131,12 +132,12 @@ class DatePicker extends Component {
     const content = template.render(this.options.templates.content.call(this), {
       classes: this.classes
     })
-    const $title = parseHTML(
-      template.render(this.options.templates.title.call(this), {
-        classes: this.classes
-      })
-    )
-    const buttons = this.translate('buttons')
+    // const $title = parseHTML(
+    //   template.render(this.options.templates.title.call(this), {
+    //     classes: this.classes
+    //   })
+    // )
+    // const buttons = this.translate('buttons')
     this.$picker = $wrap
 
     // set model default property
@@ -148,7 +149,7 @@ class DatePicker extends Component {
         this.calendarsNum = 2
         break
       case 'multiple':
-        this.calendarsNum = this.isMobile ? 1 : this.options.calendars
+        this.calendarsNum = this.options.calendars
         this.options.views = ['days']
         break
       default:
@@ -162,24 +163,25 @@ class DatePicker extends Component {
     }
 
     // check mobileMode
-    if (this.isMobile) {
-      const innerWidth = window.innerWidth
-      const innerHeight = window.innerHeight
-      const min = Math.min(innerWidth, innerHeight)
-      this.$element.setAttribute('readonly', 'readonly')
-      this.$mobileTrigger = parseHTML(
-        `<div class='${this.classes.MOBILETRIGGER} pj-input'></div>`
-      )
-      insertAfter(this.$mobileTrigger, hideElement(this.$element))
-      this.$cover = parseHTML(`<div class="${this.classes.COVER}"></div>`)
+    // if (this.isMobile) {
+    //   const innerWidth = window.innerWidth
+    //   const innerHeight = window.innerHeight
+    //   const min = Math.min(innerWidth, innerHeight)
+    //   this.$element.setAttribute('readonly', 'readonly')
+    //   this.$mobileTrigger = parseHTML(
+    //     `<div class='${this.classes.MOBILETRIGGER} pj-input'></div>`
+    //   )
+    //   console.log(this.$mobileTrigger)
+    //   insertAfter(this.$mobileTrigger, hideElement(this.$element))
+    //   this.$cover = parseHTML(`<div class="${this.classes.COVER}"></div>`)
 
-      addClass(this.classes.ISMOBILE, append($title, this.$picker))
+    //   addClass(this.classes.ISMOBILE, append($title, this.$picker))
 
-      setStyle('font-size', `${Math.round(min * 0.04)}px`, this.$picker)
+    //   setStyle('font-size', `${Math.round(min * 0.04)}px`, this.$picker)
 
-      this.picker = new Hammer(this.$picker)
-      this.mobileTrigger = new Hammer(this.$mobileTrigger)
-    }
+    //   this.picker = new Hammer(this.$picker)
+    //   this.mobileTrigger = new Hammer(this.$mobileTrigger)
+    // }
 
     // make $wrap can be focused
     this.$picker.setAttribute('tabindex', '0')
@@ -199,10 +201,10 @@ class DatePicker extends Component {
     this.initDate()
     for (let j = 0; j < this.calendarsNum; j++) {
       this.manageViews(j)
-      if (this.isMobile) {
-        this.$buttonCancels[j].innerHTML = buttons[0]
-        this.$buttonSaves[j].innerHTML = buttons[1]
-      }
+      // if (this.isMobile) {
+      //   this.$buttonCancels[j].innerHTML = buttons[0]
+      //   this.$buttonSaves[j].innerHTML = buttons[1]
+      // }
     }
 
     // init alwaysShow
@@ -210,9 +212,9 @@ class DatePicker extends Component {
 
     this.setValue(false)
 
-    if (!this.isMobile) {
-      this.setupPopper()
-    }
+    // if (!this.isMobile) {
+    this.initDropdown()
+    // }
     if (this.options.clearable) {
       this.CLEARABLE = new Clearable(this)
     }
@@ -236,16 +238,16 @@ class DatePicker extends Component {
         bindEvent(this.eventName('blur'), this.blur.bind(this))
       )(this.$picker)
     } else if (inline === false) {
-      if (this.isMobile) {
-        this.mobileTrigger.on('tap', () => {
-          this.show()
-        })
-      } else {
-        compose(
-          bindEvent(this.eventName('focus'), this.focus.bind(this)),
-          bindEvent(this.eventName('blur'), this.blur.bind(this))
-        )(this.$element)
-      }
+      // if (this.isMobile) {
+      //   this.mobileTrigger.on('tap', () => {
+      //     this.show()
+      //   })
+      // } else {
+      compose(
+        bindEvent(this.eventName('focus'), this.focus.bind(this)),
+        bindEvent(this.eventName('blur'), this.blur.bind(this))
+      )(this.$element)
+      // }
       // this.$element.on('blur', $.proxy(this.toggle, this));
       bindEvent(
         this.eventName('click.inputIcon'),
@@ -1343,33 +1345,41 @@ class DatePicker extends Component {
     return null
   }
 
-  setupPopper() {
+  initDropdown() {
     if (this.options.inline === true) {
       return false
     }
+    this.DROPDOWN = Dropdown.of(this.$inputIcon, {
+      reference: this.$inputGroup,
+      target: this.$dropdown,
+      onShow: () => {
+        if (!this.DROPDOWN.is('builded')) {
+          this.show()
+        }
+      }
+    })
+    // const config = {
+    //   placement: this.options.position,
+    //   modifiers: { preventOverflow: { boundariesElement: 'viewport' } }
+    // }
 
-    const config = {
-      placement: this.options.position,
-      modifiers: { preventOverflow: { boundariesElement: 'viewport' } }
-    }
+    // if (
+    //   !this.options.constrainToScrollParent &&
+    //   this.options.constrainToWindow
+    // ) {
+    //   config.modifiers.preventOverflow.boundariesElement = 'window'
+    // }
 
-    if (
-      !this.options.constrainToScrollParent &&
-      this.options.constrainToWindow
-    ) {
-      config.modifiers.preventOverflow.boundariesElement = 'window'
-    }
+    // if (
+    //   this.options.constrainToScrollParent &&
+    //   !this.options.constrainToWindow
+    // ) {
+    //   config.modifiers.preventOverflow.boundariesElement = 'scrollParent'
+    // }
 
-    if (
-      this.options.constrainToScrollParent &&
-      !this.options.constrainToWindow
-    ) {
-      config.modifiers.preventOverflow.boundariesElement = 'scrollParent'
-    }
+    // this.POPPER = new Popper(this.$element, this.$dropdown, config)
 
-    this.POPPER = new Popper(this.$element, this.$dropdown, config)
-
-    this.enter('popper')
+    // this.enter('popper')
 
     return null
   }
@@ -1402,9 +1412,9 @@ class DatePicker extends Component {
   }
 
   focus() {
-    if (this.options.inline === false && !this.is('showed')) {
-      this.show()
-    }
+    // if (this.options.inline === false && !this.is('showed')) {
+    //   this.show()
+    // }
     if (this.hasKeyboard) {
       this.KEYBOARD.bind()
     }
@@ -1430,11 +1440,11 @@ class DatePicker extends Component {
       !this.$element.contains($target) &&
       this.options.alwaysShow === false
     ) {
-      if (this.isMobile) {
-        this.mobileCancel(0)
-      } else {
+      // if (this.isMobile) {
+      //   this.mobileCancel(0)
+      // } else {
         this.hide()
-      }
+      // }
     } else if (
       !this.$element.contains($target) &&
       this.$picker.contains($target)
@@ -1458,10 +1468,10 @@ class DatePicker extends Component {
             this.changeView('caption', i)
             this.manageViews(i)
             break
-          case `${this.classes.PREV} pj-icon pj-icon-chevron-left`:
+          case `${this.classes.PREV} pj-icon pj-icon-arrow-left`:
             this.prev(i)
             break
-          case `${this.classes.NEXT} pj-icon pj-icon-chevron-right`:
+          case `${this.classes.NEXT} pj-icon pj-icon-arrow-right`:
             this.next(i)
             break
           default:
@@ -1499,9 +1509,9 @@ class DatePicker extends Component {
             default:
               break
           }
-          if (!this.isMobile) {
+          // if (!this.isMobile) {
             this.setValue()
-          }
+          // }
         }
       }
       if (queryParent(`.${this.classes.BUTTONS}`, privateTarget)) {
@@ -1513,7 +1523,7 @@ class DatePicker extends Component {
           this.mobileCancel(k)
         }
       }
-      if (!this.isMobile) {
+      // if (!this.isMobile) {
         if (
           this.is('selected') &&
           this.options.alwaysShow === false &&
@@ -1523,7 +1533,7 @@ class DatePicker extends Component {
         } else if (this.options.inline === false) {
           this.$element.focus()
         }
-      }
+      // }
     }
     e.preventDefault()
   }
@@ -1591,9 +1601,9 @@ class DatePicker extends Component {
           this.outputFormat
         )
         this.$element.value = formated
-        if (this.isMobile) {
-          this.$mobileTrigger.innerHTML = formated
-        }
+        // if (this.isMobile) {
+        // this.$mobileTrigger.innerHTML = formated
+        // }
         break
       }
       case 'range': {
@@ -1609,11 +1619,11 @@ class DatePicker extends Component {
           this.options.rangeSeparator
         } ${formatedEnd}`
 
-        if (this.isMobile) {
-          this.$mobileTrigger.innerHTML = `${formatedStart} ${
-            this.options.rangeSeparator
-          } ${formatedEnd}`
-        }
+        // if (this.isMobile) {
+        // this.$mobileTrigger.innerHTML = `${formatedStart} ${
+        //   this.options.rangeSeparator
+        // } ${formatedEnd}`
+        // }
         break
       }
       case 'multiple': {
@@ -1631,9 +1641,9 @@ class DatePicker extends Component {
           }
         }
         this.$element.value = val
-        if (this.isMobile) {
-          this.$mobileTrigger.innerHTML = val
-        }
+        // if (this.isMobile) {
+        // this.$mobileTrigger.innerHTML = val
+        // }
         break
       }
       default:
@@ -1947,9 +1957,9 @@ class DatePicker extends Component {
       return null
     }
 
-    if (this.isMobile) {
-      this.dateTransform(this.privateDate, this.privateDate.cache)
-    }
+    // if (this.isMobile) {
+    // this.dateTransform(this.privateDate, this.privateDate.cache)
+    // }
     if (this.options.inline === true) {
       this.trigger(EVENTS.BEFORESHOW)
       compose(
@@ -1966,48 +1976,48 @@ class DatePicker extends Component {
       // removeClass(this.namespace + '_hide', this.$picker);
       addClass(this.classes.SHOW, this.$dropdown)
 
-      if (this.isMobile) {
-        addClass(this.classes.SHOW, this.$calendars[0])
-        if (this.mode === 'range') {
-          removeClass(this.classes.SHOW, this.$calendars[1])
-        }
+      // if (this.isMobile) {
+      //   addClass(this.classes.SHOW, this.$calendars[0])
+      //   if (this.mode === 'range') {
+      //     removeClass(this.classes.SHOW, this.$calendars[1])
+      //   }
 
-        setStyle('overflow', 'hidden', append(this.$cover, query('body')))
-        // Prevent horizontal scroll for ios
-        // $doc.on(this.eventNameWithId('scrollstart'), (e) => {
-        //   e.preventDefault()
-        // })
+      //   setStyle('overflow', 'hidden', append(this.$cover, query('body')))
+      // Prevent horizontal scroll for ios
+      // $doc.on(this.eventNameWithId('scrollstart'), (e) => {
+      //   e.preventDefault()
+      // })
 
-        this.picker.on('tap', e => {
+      // this.picker.on('tap', e => {
+      //   this.click(e)
+      // })
+      // $doc.on(this.eventNameWithId('touchend'), (e) => {
+      //   this.click(e)
+      //   // e.stopPropagation()
+      // })
+      //   const handle = e => {
+      //     const startX = e.swipestart.coords[0]
+      //     const stopX = e.swipestop.coords[0]
+
+      //     if (stopX > startX) {
+      //       this.prev(0)
+      //     } else if (stopX < startX) {
+      //       this.next(0)
+      //     }
+
+      //     // this.picker.one('swipe', handle)
+      //   }
+
+      //   this.picker.on('swipe', handle)
+      // } else {
+      bindEvent(
+        this.eventNameWithId('click'),
+        e => {
           this.click(e)
-        })
-        // $doc.on(this.eventNameWithId('touchend'), (e) => {
-        //   this.click(e)
-        //   // e.stopPropagation()
-        // })
-        const handle = e => {
-          const startX = e.swipestart.coords[0]
-          const stopX = e.swipestop.coords[0]
-
-          if (stopX > startX) {
-            this.prev(0)
-          } else if (stopX < startX) {
-            this.next(0)
-          }
-
-          // this.picker.one('swipe', handle)
-        }
-
-        this.picker.on('swipe', handle)
-      } else {
-        bindEvent(
-          this.eventNameWithId('click'),
-          e => {
-            this.click(e)
-          },
-          $doc
-        )
-      }
+        },
+        $doc
+      )
+      // }
 
       if (this.is('popper')) {
         this.POPPER.enableEventListeners()
@@ -2052,12 +2062,12 @@ class DatePicker extends Component {
       removeEvent(this.eventName('mousedown'), this.$picker)
       removeEvent(this.eventNameWithId('click'), $doc)
       Pj.emitter.off(this.eventNameWithId('resize'))
-      if (this.isMobile) {
-        setStyle('overflow', 'auto', query('body'))
-        this.$cover.remove()
-        this.picker.off('tap')
-        removeEvent(this.eventNameWithId('click scrollstart swipe'), $doc)
-      }
+      // if (this.isMobile) {
+      // setStyle('overflow', 'auto', query('body'))
+      // this.$cover.remove()
+      // this.picker.off('tap')
+      // removeEvent(this.eventNameWithId('click scrollstart swipe'), $doc)
+      // }
 
       this.$element.blur()
       this.trigger(EVENTS.HIDE)
@@ -2213,7 +2223,6 @@ class DatePicker extends Component {
   }
 
   get() {
-    console.log(111)
     return this.privateDate.selectedDate
   }
 
