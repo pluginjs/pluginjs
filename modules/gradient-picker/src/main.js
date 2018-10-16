@@ -83,7 +83,7 @@ class GradientPicker extends Component {
 
     this.createHtml()
 
-    if (this.options.displayMode === 'inline') {
+    if (this.options.inline) {
       hideElement(this.element)
       setStyle(
         {
@@ -101,7 +101,7 @@ class GradientPicker extends Component {
     this.initData()
     this.bind()
 
-    if (this.options.clearable && this.options.displayMode === 'dropdown') {
+    if (this.options.clearable && !this.options.inline) {
       this.CLEARABLE = new Clearable(this)
     }
 
@@ -122,7 +122,7 @@ class GradientPicker extends Component {
   }
 
   bind() {
-    if (this.options.displayMode !== 'inline') {
+    if (!this.options.inline) {
       // input remove color
       if (this.options.clearable) {
         compose(
@@ -166,7 +166,7 @@ class GradientPicker extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
-        if (this.options.displayMode !== 'inline') {
+        if (!this.options.inline) {
           this.enter('save')
           this.DROPDOWN.hide()
         }
@@ -331,7 +331,7 @@ class GradientPicker extends Component {
     this.$wrap = wrap($wrap, this.element)
     wrap(`<div class='${this.classes.TRIGGER}'></div>`, this.element)
 
-    if (this.options.displayMode !== 'inline') {
+    if (!this.options.inline) {
       //   // init preview
       this.initPreview()
     }
@@ -339,7 +339,7 @@ class GradientPicker extends Component {
     // // create panel
     this.initPanel()
 
-    if (this.options.displayMode !== 'inline') {
+    if (!this.options.inline) {
       this.DROPDOWN = Dropdown.of(this.PREVIEW.element, {
         target: this.$panel,
         reference: this.element,
@@ -382,7 +382,7 @@ class GradientPicker extends Component {
     this.$handle = query(`.${this.classes.HANDLE}`, this.$panel)
     // this.registerComponent()
     this.initHandle()
-    if (this.options.displayMode === 'dropdown' || this.options.showControl) {
+    if (!this.options.inline || this.options.showControl) {
       this.initControl()
     } else {
       query(`.${this.classes.CONTROL}`, this.$panel).remove()
@@ -435,7 +435,7 @@ class GradientPicker extends Component {
       query(`.${this.classes.COLORPICKER}`, this.$panel),
       {
         ...this.options.colorPicker,
-        displayMode: 'inline',
+        inline: true,
         onChange: color => {
           if (this.$marker) {
             this.setGradientColor(color, getData('value', this.$marker).index)
@@ -590,7 +590,7 @@ class GradientPicker extends Component {
 
     setStyle('background', viewValue, this.$view)
 
-    if (this.options.displayMode !== 'inline') {
+    if (!this.options.inline) {
       this.PREVIEW.update(this.gradientValue, true)
     }
     this.setInput(this.gradientValue)
@@ -678,7 +678,7 @@ class GradientPicker extends Component {
       this.options.defaultColor || 'linear-gradient(90deg, #fff 0%,#000 100%)'
     this.set(this.color)
 
-    if (this.options.displayMode !== 'inline') {
+    if (!this.options.inline) {
       this.PREVIEW.update('transparent')
     }
     this.element.value = ''
@@ -710,7 +710,7 @@ class GradientPicker extends Component {
       empty(this.element)
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
-      if (this.options.displayMode !== 'inline') {
+      if (!this.options.inline) {
         this.PREVIEW.remove()
         if (this.options.clearable) {
           this.CLEARABLE.destroy()

@@ -84,7 +84,7 @@ class ColorPicker extends Component {
 
     this.createHtml()
 
-    if (this.options.displayMode === 'inline') {
+    if (this.options.inline) {
       hideElement(this.element)
       setStyle(
         {
@@ -103,7 +103,7 @@ class ColorPicker extends Component {
 
     this.bind()
 
-    if (this.options.clearable && this.options.displayMode === 'dropdown') {
+    if (this.options.clearable && !this.options.inline) {
       this.CLEARABLE = new Clearable(this)
     }
 
@@ -125,7 +125,7 @@ class ColorPicker extends Component {
 
   bind() {
     // input remove color
-    if (this.options.displayMode !== 'inline') {
+    if (!this.options.inline) {
       if (this.options.clearable) {
         compose(
           bindEvent(this.eventName('click'), `.${this.classes.CLEAR}`, () => {
@@ -164,7 +164,7 @@ class ColorPicker extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
-        if (this.options.displayMode !== 'inline') {
+        if (!this.options.inline) {
           this.closePanel()
         }
         this.trigger(EVENTS.CLICK, this.color)
@@ -178,7 +178,7 @@ class ColorPicker extends Component {
     this.$wrap = wrap($wrap, this.element)
     wrap(`<div class='${this.classes.TRIGGER}'></div>`, this.element)
 
-    if (this.options.displayMode !== 'inline') {
+    if (!this.options.inline) {
       // init preview
       this.initPreview()
     }
@@ -186,7 +186,7 @@ class ColorPicker extends Component {
     // create panel
     this.initPanel()
 
-    if (this.options.displayMode !== 'inline') {
+    if (!this.options.inline) {
       this.DROPDOWN = Dropdown.of(this.PREVIEW.element, {
         reference: this.element,
         target: this.$panel,
@@ -290,7 +290,7 @@ class ColorPicker extends Component {
     } else {
       this.setInput(color.toRGBA())
     }
-    if (this.options.displayMode !== 'inline') {
+    if (!this.options.inline) {
       this.PREVIEW.update(color)
     }
 
@@ -327,7 +327,7 @@ class ColorPicker extends Component {
       query(`.${this.classes.HISTORY}`, this.$panel).remove()
     }
 
-    if (this.options.displayMode === 'dropdown' || this.options.showControl) {
+    if (!this.options.inline || this.options.showControl) {
       this.initControl()
     } else {
       query(`.${this.classes.CONTROL}`, this.$panel).remove()
@@ -379,7 +379,7 @@ class ColorPicker extends Component {
     if (isNull(val)) {
       this.color = this.options.defaultColor || '#000'
       this.set(this.color)
-      if (this.options.displayMode !== 'inline') {
+      if (!this.options.inline) {
         this.PREVIEW.update('transparent')
       }
       this.element.value = ''
@@ -423,7 +423,7 @@ class ColorPicker extends Component {
       this.element.className = this.firstClassName
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
-      if (this.options.displayMode !== 'inline') {
+      if (!this.options.inline) {
         this.PREVIEW.remove()
         if (this.options.clearable) {
           this.CLEARABLE.destroy()

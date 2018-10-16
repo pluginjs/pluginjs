@@ -99,7 +99,7 @@ class FontEditor extends Component {
         addClass(this.classes.EXSIT),
         removeClass(this.classes.WRITE)
       )(this.$wrap)
-      this.TRIGGER.$fillContentName.textContent = this.value.fontFamily
+      this.TRIGGER.$fillContentName.textContent = this.value.fontFamily.font
     }
 
     this.initDropdown()
@@ -307,14 +307,14 @@ class FontEditor extends Component {
     this.update()
   }
 
-  updateFontFamilyList(value) {
-    this.fontFamily.values = value
-    this.fontFamily.updateList()
-  }
+  // updateFontFamilyList(value) {
+  //   this.fontFamily.values = value
+  //   this.fontFamily.updateList()
+  // }
 
   setFontWeight(value) {
-    this.value.fontFamily = value
-    this.fontFamily.set(value)
+    this.value.fontWeight = value
+    this.fontWeight.set(value)
     this.update()
   }
 

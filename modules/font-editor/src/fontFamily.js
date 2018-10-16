@@ -1,12 +1,12 @@
 import template from '@pluginjs/template'
-import Select from '@pluginjs/select'
+import FontPicker from '@pluginjs/font-picker'
 import { parseHTML, query } from '@pluginjs/dom'
 
 export default class FontFamily {
   constructor(instance) {
     this.instance = instance
-    this.values = instance.options.fontFamily.values
-    this.value = instance.value.fontFamily
+    // this.values = instance.options.fontFamily.values
+    this.defaultValue = instance.options.fontFamily.value
     this.initialize()
   }
 
@@ -22,35 +22,28 @@ export default class FontFamily {
     this.$wrap = parseHTML(html)
 
     this.$content = query(`.${this.instance.classes.FIELDCONTENT}`, this.$wrap)
-    this.element = query(
-      `.${this.instance.classes.SELECTTRIGGER}`,
-      this.$content
-    )
-    this.SELECT = Select.of(this.element, {
-      value: this.instance.value.fontFamily,
+    this.element = query(`.${this.instance.classes.FONTPICKER}`, this.$content)
+
+    this.FONTPICKER = FontPicker.of(this.element, {
       source: resolve => {
-        const data = []
-        Object.entries(this.values).forEach(([v], i) => {
-          data[i] = { label: v, value: v }
-        })
-        resolve(data)
+        resolve(this.instance.options.source)
       },
+      manage: resolve => {
+        resolve(this.instance.options.source[0])
+      },
+      value: JSON.stringify(this.instance.value.fontFamily),
       keyboard: true,
       onChange: value => {
         if (this.instance.is('disabled')) {
           return
         }
-        this.instance.value.fontFamily = value
+        this.instance.value.fontFamily = JSON.parse(value)
       }
     })
   }
 
   set(value) {
-    for (const key in this.values) {
-      if (value === this.values[key]) {
-        this.SELECT.select(value)
-      }
-    }
+    this.FONTPICKER.set(value)
   }
 
   clear() {

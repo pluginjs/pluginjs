@@ -99,7 +99,7 @@ export const defaults = {
   locale: 'en',
   placeholder: 'choose color',
   disabled: false,
-  displayMode: 'dropdown', // dropdown || inline
+  inline: false,
   showControl: false,
   clearable: false,
   module: {

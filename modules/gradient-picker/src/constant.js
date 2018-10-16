@@ -60,8 +60,7 @@ export const translations = {
 export const defaults = {
   theme: null,
   placeholder: 'choose color',
-  displayMode: 'dropdown', // dropdown || inline
-  showControl: false,
+  inline: false,
   clearable: false,
   templates: {
     wrap() {

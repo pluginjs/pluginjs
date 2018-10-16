@@ -225,7 +225,7 @@ class GradientSelector extends Component {
   setupGradientPicker() {
     this.$elGradientPicker = query(`.${this.classes.GRADIENT}`, this.$container)
     this.GRADIENTPICKER = new GradientPicker(this.$elGradientPicker, {
-      displayMode: 'inline',
+      inline: true,
       showControl: true,
       onChange: color => {
         this.color = color

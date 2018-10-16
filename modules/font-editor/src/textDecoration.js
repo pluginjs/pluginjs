@@ -32,7 +32,7 @@ export default class TextDecoration {
       `.${this.instance.classes.TEXTDECORATION}`,
       this.instance.$typoDecorations
     )
-    console.log(this.$items)
+
     for (let i = 0; i < this.$items.length; i++) {
       Tooltip.of(this.$items[i], {
         trigger: 'hover',

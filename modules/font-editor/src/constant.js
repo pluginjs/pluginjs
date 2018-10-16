@@ -50,7 +50,8 @@ export const classes = {
   DROPDOWN: '{namespace}-dropdown',
   TRIGGER: '{namespace}-trigger',
   OPENDISABLE: '{namespace}-open-disabled',
-  SELECTTRIGGER: '{namespace}-select-trigger'
+  SELECTTRIGGER: '{namespace}-select-trigger',
+  FONTPICKER: '{namespace}-fontPicker'
 }
 
 export const methods = [
@@ -75,7 +76,7 @@ export const defaults = {
   localeFallbacks: true,
   disabled: false,
   fontFamily: {
-    value: 'inherit',
+    value: { source: 'system', font: 'Arial' },
     values: {
       Arial: 'Arial',
       Bpreplay: 'Bpreplay',
@@ -88,7 +89,7 @@ export const defaults = {
         '<div class="{field}">' +
         '<span class="{classes.FIELDTITLE}">{typeface}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
-        '<input type="text" class="{classes.SELECTTRIGGER}" />' +
+        '<input type="text" class="{classes.FONTPICKER}" />' +
         '</div>' +
         '</div>'
       )

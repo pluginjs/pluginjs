@@ -285,7 +285,7 @@ class ColorSelector extends Component {
     this.colorPickerTrigger = query('.pj-colorSelector-solid', this.$wrap)
     this.COLORPICKER = new ColorPicker(this.colorPickerTrigger, {
       ...this.options.colorPicker,
-      displayMode: 'inline',
+      inline: true,
       showControl: true,
       onChange: val => {
         if (this.module === 'solid') {
@@ -304,7 +304,7 @@ class ColorSelector extends Component {
     this.gradientPickerTrigger = query('.pj-colorSelector-gradient', this.$wrap)
     this.GRADIENTPICKER = new GradientPicker(this.gradientPickerTrigger, {
       ...this.options.gradientPicker,
-      displayMode: 'inline',
+      inline: true,
       showControl: true,
       onChange: val => {
         if (this.module === 'gradient') {

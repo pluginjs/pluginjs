@@ -131,6 +131,7 @@ export default class Trigger {
   }
 
   update() {
+    console.log(this.instance.value)
     Object.entries(this.instance.value).forEach(([i, v]) => {
       if (this.instance.defaultVal[i] === v) {
         return
@@ -139,7 +140,7 @@ export default class Trigger {
         return
       }
       if (i === 'fontFamily' && v !== 'inherit') {
-        this.$fillContentName.textContent = v
+        this.$fillContentName.textContent = v.font
       }
       if (i === 'textAlign') {
         i = 'align-self'
