@@ -112,7 +112,7 @@ export default class Filterable {
     const { filter } = this.instance.options
 
     let found = 0
-    this.instance.items.forEach(option => {
+    this.instance.data.forEach(option => {
       if (filter(option, search)) {
         this.showOption(option)
         found++
@@ -132,7 +132,7 @@ export default class Filterable {
     this.instance.$label.value = ''
     this.hideNotFound()
 
-    this.instance.items.forEach(option => {
+    this.instance.data.forEach(option => {
       this.showOption(option)
     })
   }

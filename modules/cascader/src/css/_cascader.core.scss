@@ -5,7 +5,9 @@
 // =====================
 $cascader: "pj-cascader" !default;
 $cascader-width: 200px !default;
+$cascader-min-width: 150px !default;
 $cascader-max-height: 300px !default;
+
 $cascader-border-color: $border-color !default;
 
 $cascader-trigger-arrow-icon: $pj-icon-caret-down-mini !default;
@@ -29,47 +31,9 @@ $cascader-clear-right: 11px !default;
     display: none;
   }
 
-  & &-trigger {
-    width: 100%;
-    padding-right: $cascader-trigger-padding-right;
-  }
-
-  & &-dropdown {
-    width: auto;
-  }
-
-  &-dropdown {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: stretch;
-    justify-content: flex-start;
-    overflow: auto;
-    align-content: stretch;
-  }
-
-  &-menu {
-    min-width: 150px;
-    max-height: $cascader-max-height;
-    overflow: auto;
-    &:not(:last-child) {
-      border-right: 1px solid $cascader-border-color;
-    }
-  }
-
-  &-option-extensible {
-    &::after {
-      @include icon();
-      position: absolute;
-      top: 50%;
-      right: $cascader-extensible-right;
-      font-family: $cascader-extensible-font;
-      content: icon-content($cascader-extensible-icon);
-      transform: translateY(-50%);
-    }
-  }
-
   &-trigger {
+    position: relative;
+    width: 100%;
     cursor: pointer;
 
     &::after {
@@ -84,6 +48,39 @@ $cascader-clear-right: 11px !default;
 
     .#{$cascader}-clearable.#{$cascader}-selected:not(.#{$cascader}-disabled) &:hover::after {
       display: none;
+    }
+  }
+  
+  &-dropdown {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: auto;
+    overflow: auto;
+    align-content: stretch;
+  }
+
+  &-menu {
+    min-width: $cascader-min-width;
+    max-height: $cascader-max-height;
+    overflow: auto;
+    
+    &:not(:last-child) {
+      border-right: 1px solid $cascader-border-color;
+    }
+  }
+
+  &-option-extensible {
+    &::after {
+      @include icon();
+      position: absolute;
+      top: 50%;
+      right: $cascader-extensible-right;
+      font-family: $cascader-extensible-font;
+      content: icon-content($cascader-extensible-icon);
+      transform: translateY(-50%);
     }
   }
 
