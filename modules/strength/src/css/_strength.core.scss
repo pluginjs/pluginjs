@@ -4,8 +4,12 @@
 $strength: "pj-strength" !default;
 $input: "pj-input" !default;
 
+$strength-width: 200px !default;
 $strength-height: 32px !default;
 $strength-gatter: 8px !default;
+
+$strength-has-icon-spacer: 34px !default;
+$strength-has-icon-gatter: 8px !default;
 
 $strength-box-spacer-x: 12px !default;
 $strength-box-spacer-y: 10px !default;
@@ -19,15 +23,20 @@ $strength-check-border-color: $border-color !default;
 $strength-check-border-radius: $border-radius-base !default;
 
 .#{$strength} {
-  &-container {
-    box-sizing: border-box;
-    height: $strength-height;
+  box-sizing: border-box;
+  width: $strength-width;
+  height: $strength-height;
 
-    .#{$strength}-show {
-      display: none;
+  &-has-icon {
+    position: relative;
+    > input {
+      padding-right: $strength-has-icon-spacer;
     }
-  
-    .#{$strength}-hide {
+
+    .#{$strength}-icon {
+      position: absolute;
+      top: $strength-has-icon-gatter;
+      right: $strength-has-icon-gatter;
       display: inline-block;
       &::after {
         @include icon();
@@ -35,6 +44,21 @@ $strength-check-border-radius: $border-radius-base !default;
         content: icon-content($strength-hidden-icon);
       }
     }
+
+    &.#{$strength}-show {
+      .#{$strength}-icon {
+        display: inline-block;
+        &::after {
+          @include icon();
+          font-family:$strength-font;
+          content: icon-content($strength-show-icon);
+        }
+      }
+    }
+  }
+
+  &-input {
+    width: 100%;
   }
 
   &-toggle {
@@ -82,21 +106,6 @@ $strength-check-border-radius: $border-radius-base !default;
         border: 1px solid $strength-check-border-color;
         border-radius: $strength-check-border-radius;
       }
-    }
-  }
-
-  &-active {
-    .#{$strength}-show {
-      display: inline-block;
-      &::after {
-        @include icon();
-        font-family:$strength-font;
-        content: icon-content($strength-show-icon);
-      }
-    }
-
-    .#{$strength}-hide {
-      display: none;
     }
   }
 }

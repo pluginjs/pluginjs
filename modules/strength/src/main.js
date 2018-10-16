@@ -3,14 +3,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { isElement } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  query,
-  // insertBefore,
-  parseHTML,
-  wrap,
-  insertAfter,
-  children
-} from '@pluginjs/dom'
+import { query, parseHTML, wrap, insertAfter, children } from '@pluginjs/dom'
 import { PasswordStrength } from './password_strength'
 import {
   eventable,
@@ -166,6 +159,22 @@ class Strength extends Component {
         this.$addon
       )
     }
+
+    if (this.$icon) {
+      bindEvent(
+        this.eventName('click'),
+        () => {
+          if (hasClass(that.classes.SHOW, that.$wrap)) {
+            removeClass(that.classes.SHOW, that.$wrap)
+            that.toggle()
+            return
+          }
+          addClass(that.classes.SHOW, that.$wrap)
+          that.toggle()
+        },
+        this.$icon
+      )
+    }
   }
 
   unbind() {
@@ -210,27 +219,14 @@ class Strength extends Component {
       addClass(this.classes.TOGGLE, this.$toggle)
       insertAfter(this.$addon, this.element)
     } else if (this.options.toggle) {
-      addClass('pj-input-group', this.$wrap)
+      addClass(`${this.classes.HASICON}`, this.$wrap)
+      this.$icon = parseHTML(
+        template.render(this.options.templates.icon(), {
+          classes: this.classes
+        })
+      )
 
-      this.$addon = parseHTML(
-        template.render(this.options.templates.addon(), {
-          classes: this.classes
-        })
-      )
-      addClass('pj-input-group-addon', this.$addon)
-      insertAfter(this.$addon, this.element)
-
-      this.$iconShow = parseHTML(
-        template.render(this.options.templates.iconShow(), {
-          classes: this.classes
-        })
-      )
-      this.$iconHide = parseHTML(
-        template.render(this.options.templates.iconHide(), {
-          classes: this.classes
-        })
-      )
-      this.$addon.append(this.$iconShow, this.$iconHide)
+      insertAfter(this.$icon, this.element)
     }
   }
 
@@ -300,14 +296,16 @@ class Strength extends Component {
 
   toggle() {
     let type
-    if (children(this.$addon)[0].tagName === 'input') {
+    if (this.$addon && children(this.$addon)[0].tagName === 'input') {
       if (this.$toggle.matches(`.${this.classes.ADDON} input`)) {
         type = this.$toggle.matches(':checked') ? 'text' : 'password'
       } else {
         type = this.shown === false ? 'text' : 'password'
       }
-    } else if (this.$addon.matches(`.${this.classes.ADDON}`)) {
+    } else if (this.$addon && this.$addon.matches(`.${this.classes.ADDON}`)) {
       type = hasClass(this.classes.ACTIVE, this.$addon) ? 'text' : 'password'
+    } else if (this.$icon && this.$icon.matches(`.${this.classes.ICON}`)) {
+      type = hasClass(this.classes.SHOW, this.$wrap) ? 'text' : 'password'
     } else {
       type = this.shown === false ? 'text' : 'password'
     }

@@ -14,7 +14,7 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}-{theme}',
-  CONTAINER: '{namespace}-container',
+  CONTAINER: '{namespace}',
   STATUS: '{namespace}-{status}',
   INPUT: '{namespace}-input',
   TOGGLE: '{namespace}-toggle',
@@ -25,9 +25,9 @@ export const classes = {
   ADDON: '{namespace}-addon',
   CHECK: '{namespace}-check',
   DISABLE: '{namespace}-disabled',
+  HASICON: '{namespace}-has-icon',
   ICON: '{namespace}-icon',
-  SHOW: '{namespace}-show',
-  HIDE: '{namespace}-hide'
+  SHOW: '{namespace}-show'
 }
 
 export const methods = ['getScore', 'getStatus', 'enable', 'disable', 'destroy']
@@ -48,12 +48,8 @@ export const defaults = {
       return `<span class="{classes.ADDON}">
       </span>`
     },
-    iconShow() {
-      return `<i class="{classes.SHOW}">
-      </i>`
-    },
-    iconHide() {
-      return `<i class="{classes.HIDE}">
+    icon() {
+      return `<i class="{classes.ICON}">
       </i>`
     },
     score() {
