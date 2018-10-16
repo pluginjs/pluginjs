@@ -456,7 +456,15 @@ class VideoPicker extends Component {
   }
   selectLocalVideo(url) {
     this.data.url = url
-    query(`.${this.classes.LOCALURLCONTENT}`, this.$localUrl).innerHTML = url
+    this.pos = url.lastIndexOf('/')
+    if (this.pos === -1) {
+      this.pos = url.lastIndexOf('\\')
+    }
+    const filename = url.substr(this.pos + 1)
+    query(
+      `.${this.classes.LOCALURLCONTENT}`,
+      this.$localUrl
+    ).innerHTML = filename
   }
 
   removeVideo() {

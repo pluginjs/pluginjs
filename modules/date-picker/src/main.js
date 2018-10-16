@@ -121,7 +121,7 @@ class DatePicker extends Component {
     this.map = {}
     this.views = []
     this.isMobile = this.options.mobileMode // with other judgements
-
+    console.log(this.isMobile)
     const $wrap = parseHTML(
       template.render(this.options.templates.wrap.call(this), {
         classes: this.classes
