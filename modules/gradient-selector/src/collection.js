@@ -1,20 +1,11 @@
-// import { isString } from '@pluginjs/is'
-// import { bindEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
 import {
   append,
   parseHTML,
-  // parent,
   children,
   prepend,
   query,
-  // attr,
-  // parentWith,
-  // wrap,
-  // unwrap,
   setData
-  // getData,
-  // empty
 } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 import Scrollable from '@pluginjs/scrollable'
@@ -92,25 +83,6 @@ class Collection {
       setData('info', info, $item)
       // append to group list
       append($item, this.$selectorList)
-    })
-  }
-
-  setCollection(colorName) {
-    Object.entries(this.instance.data).forEach(([, v]) => {
-      Object.entries(v).forEach(([name, dataColor]) => {
-        if (colorName.toLowerCase() === name.toLowerCase()) {
-          if (dataColor.indexOf('gradient') > -1) {
-            // this.instance.info.gradient = dataColor
-            this.instance.GRADIENTPICKER.set(dataColor)
-          } else {
-            // this.instance.info.solid = dataColor
-            this.instance.COLORPICKER.set(dataColor)
-          }
-
-          this.instance.setInput(name)
-          this.instance.PREVIEW.update(dataColor)
-        }
-      })
     })
   }
 }

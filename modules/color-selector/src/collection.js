@@ -82,14 +82,12 @@ class Collection {
       Object.entries(v).forEach(([name, dataColor]) => {
         if (colorName.toLowerCase() === name.toLowerCase()) {
           if (dataColor.indexOf('gradient') > -1) {
-            // this.instance.info.gradient = dataColor
             this.instance.GRADIENTPICKER.set(dataColor)
           } else {
-            // this.instance.info.solid = dataColor
             this.instance.COLORPICKER.set(dataColor)
           }
 
-          this.instance.setInput(name)
+          this.instance.setInput(dataColor)
           this.instance.PREVIEW.update(dataColor)
         }
       })

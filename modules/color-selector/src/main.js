@@ -16,13 +16,10 @@ import {
   getData,
   empty
 } from '@pluginjs/dom'
-// import Tooltip from '@pluginjs/tooltip'
-// import Scrollable from '@pluginjs/scrollable'
 import Dropdown from '@pluginjs/dropdown'
 import ColorPicker from '@pluginjs/color-picker'
 import GradientPicker from '@pluginjs/gradient-picker'
 import Clearable from './clearable'
-// import Popper from 'popper.js'
 import {
   eventable,
   register,
@@ -32,18 +29,8 @@ import {
   translateable,
   optionable
 } from '@pluginjs/decorator'
-// import { Color } from '@pluginjs/color'
-// import { Gradient } from '@pluginjs/gradient'
-// import Alpha from './components/alpha'
 import Preview from './components/preview'
-// import Contrast from './components/contrast'
-// import Hex from './components/hex'
-// import History from './components/history'
-// import Hue from './components/hue'
-// import Saturation from './components/saturation'
-import Collection from './modules/collection'
-// import Solid from './modules/solid'
-// import Gradients from './modules/gradient'
+import Collection from './collection'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -72,7 +59,7 @@ class ColorSelector extends Component {
     if (options.module) {
       this.options.module = options.module
     }
-    //   this.firstClassName = this.element.className
+
     this.setupI18n()
     // class
     this.setupClasses()
@@ -383,8 +370,10 @@ class ColorSelector extends Component {
       this.setInput(this.color)
       this.trigger(EVENTS.UPDATE, this.color)
     } else {
+      console.log(200)
       this.color = this.oldColor.color
       this.module = this.oldColor.module
+      console.log(this.color)
       this.setInput(this.color)
       this.COLORPICKER.set(this.COLORPICKER.oldColor)
       this.GRADIENTPICKER.reset()

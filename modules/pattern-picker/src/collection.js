@@ -1,18 +1,5 @@
-// import { isString } from '@pluginjs/is'
-// import { bindEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
-import {
-  append,
-  // parent,
-  query,
-  // attr,
-  // parentWith,
-  // wrap,
-  // unwrap,
-  setData
-  // getData,
-  // empty
-} from '@pluginjs/dom'
+import { append, query, setData } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 
 class Collection {
@@ -42,7 +29,6 @@ class Collection {
     })
     this.element.append($scheme, $manage)
     this.createCollectionItem()
-    // })
 
     return null
   }
@@ -72,23 +58,6 @@ class Collection {
       setData('info', info, $item)
       // append to group list
       append($item, this.$selectorList)
-    })
-  }
-
-  setCollection(colorName) {
-    Object.entries(this.instance.data).forEach(([, v]) => {
-      Object.entries(v).forEach(([name, dataColor]) => {
-        if (colorName.toLowerCase() === name.toLowerCase()) {
-          if (dataColor.indexOf('gradient') > -1) {
-            this.instance.GRADIENTPICKER.set(dataColor)
-          } else {
-            this.instance.COLORPICKER.set(dataColor)
-          }
-
-          this.instance.setInput(name)
-          this.instance.PREVIEW.update(dataColor)
-        }
-      })
     })
   }
 }
