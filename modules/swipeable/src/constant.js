@@ -30,7 +30,7 @@ export const defaults = {
   rebound: false,
   reboundPos: 100, // 1%~100% (without %)
   offset: 0,
-  duration: 400,
+  duration: 200,
   power: 2,
   decay: false,
   axis: 'x' // 'x' or 'y'

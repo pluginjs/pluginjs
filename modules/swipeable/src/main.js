@@ -43,6 +43,11 @@ class Swipeable extends Component {
   }
 
   initialize() {
+    this.translate = {
+      x: 'translateX',
+      y: 'translateY'
+    }
+    this.axis = this.options.axis === 'y' ? 'y' : 'x'
     this.position = { x: 0, y: 0 }
     this.startPosition = { x: 0, y: 0 }
 
@@ -50,7 +55,7 @@ class Swipeable extends Component {
     addClass(this.classes.NAMESPACE, this.element)
     addClass(this.classes.CONTAINER, this.container)
 
-    if (this.options.axis === 'y') {
+    if (this.axis === 'y') {
       addClass(this.classes.VERTICAL, this.container)
     }
 
@@ -59,7 +64,7 @@ class Swipeable extends Component {
     this.hammer = new Hammer(this.element)
     this.hammer.get('pan').set({
       direction:
-        this.options.axis === 'y'
+        this.axis === 'y'
           ? Hammer.DIRECTION_VERTICAL
           : Hammer.DIRECTION_HORIZONTAL
     })
@@ -107,7 +112,6 @@ class Swipeable extends Component {
     if (!this.is('bind')) {
       return
     }
-
     this.hammer.off('panstart panmove panend')
     this.leave('bind')
   }
@@ -126,8 +130,27 @@ class Swipeable extends Component {
   }
 
   panMove(e) {
-    const posX = this.options.axis === 'x' ? this.startPosition.x + e.deltaX : 0
-    const posY = this.options.axis === 'y' ? this.startPosition.y + e.deltaY : 0
+    let posX = this.axis === 'x' ? this.startPosition.x + e.deltaX : 0
+    let posY = this.axis === 'y' ? this.startPosition.y + e.deltaY : 0
+
+    this.position = { x: posX, y: posY }
+
+    if (this.options.rebound) {
+      const reboundPos = pos => {
+        let newPos = pos
+        if (pos >= this.distance.minDistance) {
+          newPos =
+            this.distance.minDistance + (pos - this.distance.minDistance) / 3
+        } else if (pos < -this.distance.maxDistance) {
+          newPos =
+            -this.distance.maxDistance + (pos + this.distance.maxDistance) / 3
+        }
+        return newPos
+      }
+
+      posX = reboundPos(posX)
+      posY = reboundPos(posY)
+    }
 
     setStyle(
       {
@@ -136,25 +159,23 @@ class Swipeable extends Component {
       this.element
     )
 
-    this.position = { x: posX, y: posY }
     this.trigger(EVENTS.MOVE)
   }
 
   panEnd(e) {
-    const velocityX = this.options.axis === 'y' ? 0 : e.velocityX
-    const velocityY = this.options.axis === 'x' ? 0 : e.velocityY
+    const velocityX = this.axis === 'y' ? 0 : e.velocityX
+    const velocityY = this.axis === 'x' ? 0 : e.velocityY
 
-    if (
-      (this.options.axis === 'x' && Math.abs(velocityX) < 1) ||
-      (this.options.axis === 'y' && Math.abs(velocityY) < 1)
-    ) {
+    this.velocity = { x: velocityX, y: velocityY }
+
+    if (Math.abs(this.velocity[this.axis]) < 1) {
       this.trigger(EVENTS.SNAIL)
     } else {
       this.trigger(EVENTS.THROW)
-    }
 
-    if (this.options.decay) {
-      this.decay(e, this.element)
+      if (this.options.decay) {
+        this.decay(this.element)
+      }
     }
 
     if (this.options.rebound && !this.is('decaying')) {
@@ -162,31 +183,16 @@ class Swipeable extends Component {
     }
 
     removeClass('is-dragging', this.element)
-
-    setTimeout(() => {
-      this.leave('paning')
-    }, 0)
+    this.leave('paning')
     this.trigger(EVENTS.END)
   }
 
-  decay(e, target) {
-    const decayX = this.options.axis === 'y' ? 0 : e.velocityX
-    const decayY = this.options.axis === 'x' ? 0 : e.velocityY
+  decay(target) {
     const that = this
-
-    if (
-      (this.options.axis === 'x' && Math.abs(decayX) < 1) ||
-      (this.options.axis === 'y' && Math.abs(decayY) < 1)
-    ) {
-      return
-    }
-
     const opts = {
       targets: target,
-      translateX: this.position.x + this.getMoveSize(decayX),
-      translateY: this.position.y + this.getMoveSize(decayY),
       duration: this.options.duration,
-      easing: 'linear',
+      easing: 'easeOutSine',
       update() {
         if (that.options.rebound) {
           that.rebound(that.element, true)
@@ -199,6 +205,8 @@ class Swipeable extends Component {
       }
     }
 
+    opts[this.translate[this.axis]] =
+      this.position[this.axis] + this.getDecayDistance(this.velocity[this.axis])
     this.enter('decaying')
     this.anime = Anime(opts)
   }
@@ -206,18 +214,18 @@ class Swipeable extends Component {
   rebound(target, pause = false) {
     const minDistance = this.distance.minDistance
     const maxDistance = this.distance.maxDistance
-    const distance = this.getLocation(target)[this.options.axis]
+    const pos = this.getLocation(target)[this.axis]
     const callback = () => {
       this.trigger(EVENTS.REBOUNDEND)
     }
 
-    if ((distance >= minDistance || distance < -maxDistance) && pause) {
+    if ((pos >= minDistance || pos < -maxDistance) && pause) {
       this.anime.pause()
     }
 
-    if (distance >= minDistance) {
+    if (pos >= minDistance) {
       this.triggerAnime(target, minDistance, callback)
-    } else if (distance < -maxDistance) {
+    } else if (pos < -maxDistance) {
       this.triggerAnime(target, -maxDistance, callback)
     }
 
@@ -229,7 +237,7 @@ class Swipeable extends Component {
     const opts = {
       targets: target,
       duration: this.options.duration,
-      easing: 'easeOutExpo',
+      easing: 'easeOutSine',
       complete() {
         that.position = that.getLocation(target)
         if (callback) {
@@ -238,7 +246,7 @@ class Swipeable extends Component {
       }
     }
 
-    opts[this.options.axis === 'y' ? 'translateY' : 'translateX'] = distance
+    opts[this.translate[this.axis]] = distance
 
     Anime(opts)
   }
@@ -246,25 +254,25 @@ class Swipeable extends Component {
   getDistance() {
     let minDistance = 0
     let maxDistance = 0
-    let addDistance = 0
+    let difDistance = 0
     const percent = this.options.reboundPos / 100
 
-    const distance = this.options.axis === 'x' ? this.width : this.height
+    const distance = this.axis === 'x' ? this.width : this.height
     const conatinerDistance =
-      this.options.axis === 'x' ? this.containerWidth : this.containerHeight
+      this.axis === 'x' ? this.containerWidth : this.containerHeight
     const min = Math.min(distance, conatinerDistance)
 
     maxDistance = distance - conatinerDistance
-    addDistance = min - min * percent - this.options.offset
+    difDistance = min - min * percent - this.options.offset
 
     maxDistance = maxDistance < 0 ? 0 : maxDistance
 
-    minDistance += addDistance
-    maxDistance += addDistance
+    minDistance += difDistance
+    maxDistance += difDistance
     return { minDistance, maxDistance }
   }
 
-  getMoveSize(velocity) {
+  getDecayDistance(velocity) {
     let size = (Math.pow(velocity, 2) / 2) * (10 * this.power)
     if (velocity < 0) {
       size *= -1
@@ -306,8 +314,8 @@ class Swipeable extends Component {
     }
   }
 
-  back() {
-    this.triggerAnime(this.element, this.startPosition[this.options.axis])
+  back(pos = false) {
+    this.triggerAnime(this.element, pos ? pos : this.startPosition[this.axis])
   }
 
   resize() {
