@@ -31,7 +31,6 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import 'whatwg-fetch'
 @themeable()
 @styleable(CLASSES)
 @eventable(EVENTS)
