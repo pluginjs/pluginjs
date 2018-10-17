@@ -61,7 +61,7 @@ class Sticky extends Component {
   }
 
   initWrap() {
-    this.$wrap = closest(this.options.wrap, this.element)
+    this.$wrap = closest(this.options.wrapSelector, this.element)
     if (!this.$wrap || this.$wrap !== parent(this.element)) {
       this.$wrap = wrap(
         template.render(this.options.templates.wrap.call(this), {

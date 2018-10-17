@@ -23,7 +23,7 @@ export const classes = {
 export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
-  wrap: null,
+  wrapSelector: null,
   spacing: 0,
   templates: {
     wrap() {
