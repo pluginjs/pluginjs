@@ -52,6 +52,7 @@ export const classes = {
   CONTAINERPANEL: '{namespace}-panel-container',
   COLLECTIONTRIGGER: '{namespace}-panel-swicher-collection',
   CUSTOMTRIGGER: '{namespace}-panel-swicher-custom',
+  TRIGGERACTIVE: '{namespace}-panel-swicher-custom-active',
   COLLECTIONPANEL: '{namespace}-panel-collection',
   CUSTOMPANEL: '{namespace}-panel-custom',
   SELECTED: '{namespace}-selected',
@@ -92,7 +93,7 @@ export const defaults = {
       </div>`
     },
     fill() {
-      return `<div class='{classes.FILL }'><image class='{classes.FILLIMG}' />
+      return `<div class='{classes.FILL }'><div class='{classes.FILLIMG}'></div>
       </div>`
     },
     empty() {

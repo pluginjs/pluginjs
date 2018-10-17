@@ -131,7 +131,6 @@ export default class Trigger {
   }
 
   update() {
-    console.log(this.instance.value)
     Object.entries(this.instance.value).forEach(([i, v]) => {
       if (this.instance.defaultVal[i] === v) {
         return

@@ -69,6 +69,7 @@ class PatternPicker extends Component {
 
     this.$selecting = null
     this.$selected = null
+    this.actived = false
 
     this.$content = null
     this.setupStates()
@@ -117,6 +118,17 @@ class PatternPicker extends Component {
           const $this = e.target
           this.switchModule(getData('type', $this))
         }
+      ),
+      bindEvent(
+        this.eventName('mouseover'),
+        `.${this.classes.CUSTOMTRIGGER}`,
+        e => {
+          if (this.actived) {
+            addClass(this.classes.TRIGGERACTIVE, e.target)
+          } else {
+            removeClass(this.classes.TRIGGERACTIVE, e.target)
+          }
+        }
       )
     )(this.$panel)
 
@@ -132,6 +144,7 @@ class PatternPicker extends Component {
         ).map(removeClass(this.classes.COLLECTIONITEMACTIVE))
         addClass(this.classes.COLLECTIONITEMACTIVE, $this)
         this.$selecting = $this
+        this.actived = true
         addClass(this.classes.SHOW, this.$wrap)
         this.switchModule('custom')
         this.setPlugins()
@@ -366,6 +379,9 @@ class PatternPicker extends Component {
     if (!typeName) {
       typeName = this.module
     }
+    if (!this.actived) {
+      typeName = 'collection'
+    }
     // switch panel tirgger
     children(this.$trigger).forEach(($this, i) => {
       const $content = children(this.$container)[i]
@@ -438,6 +454,7 @@ class PatternPicker extends Component {
       }
 
       this.module = 'custom'
+      this.actived = true
       this.element.value = this.val()
       addClass(this.classes.SHOW, this.$wrap)
 
@@ -536,6 +553,7 @@ class PatternPicker extends Component {
 
     this.$selecting = null
     this.$selected = null
+    this.actived = false
     this.module = this.options.module
 
     this.element.value = ''

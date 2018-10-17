@@ -85,10 +85,6 @@ $patternPicker-scheme-height: 230px !default;
         width: 100%;
         height: 100%;
         font-size: $patternPicker-panel-swicher-icon-size;
-
-        &:hover {
-          cursor: pointer;
-        }
       }
       &-collection::after {
         @include icon();
@@ -100,6 +96,14 @@ $patternPicker-scheme-height: 230px !default;
         @include icon();
         font-family:$patternPicker-icon-font-family;
         content: icon-content($patternPicker-custom-icon);
+      }
+
+      &-custom {
+        cursor: not-allowed;
+
+        &-active {
+          cursor: pointer;
+        }
       }
     }
 
