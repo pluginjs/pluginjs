@@ -175,21 +175,21 @@ class Swipe extends Component {
   }
 
   buildContainer() {
-    this.container = find(`.${this.classes.CONTAINER}`, this.element)
+    this.inner = find(`.${this.classes.INNER}`, this.element)
 
-    if (!this.container) {
-      if (this.options.containerSelector) {
-        this.container = find(this.options.containerSelector, this.element)
-        addClass(this.classes.CONTAINER, this.$container)
+    if (!this.inner) {
+      if (this.options.innerSelector) {
+        this.inner = find(this.options.innerSelector, this.element)
+        addClass(this.classes.INNER, this.$inner)
       } else {
         const itemsParent = parent(this.items[0])
-        const container = this.createEl('container', {
+        const inner = this.createEl('inner', {
           classes: this.classes
         })
-        append(container, itemsParent)
-        this.container = find(`.${this.classes.CONTAINER}`, this.element)
+        append(inner, itemsParent)
+        this.inner = find(`.${this.classes.INNER}`, this.element)
         this.items.forEach(item => {
-          append(item, this.container)
+          append(item, this.inner)
         })
       }
     }
@@ -237,7 +237,7 @@ class Swipe extends Component {
 
       if (this.options.multiple) {
         config.height =
-          (parseFloat(getStyle('height', this.container), 10) - this.gutter) / 2
+          (parseFloat(getStyle('height', this.inner), 10) - this.gutter) / 2
 
         if (index % 2) {
           config.x = itemInstances[index - 1].info.x
@@ -279,8 +279,8 @@ class Swipe extends Component {
   }
 
   setWidth(width) {
-    setStyle('width', width, this.container)
-    this.containerWidth = width
+    setStyle('width', width, this.inner)
+    this.innerWidth = width
   }
 
   getItemsBySort() {
@@ -308,7 +308,7 @@ class Swipe extends Component {
       return this.sortedItems.length
     }
 
-    const maxWidth = this.containerWidth - this.width
+    const maxWidth = this.innerWidth - this.width
 
     if (maxWidth <= 0) {
       return 1
@@ -372,7 +372,7 @@ class Swipe extends Component {
   initSwipeable() {
     const that = this
 
-    this.swipeable = Swipeable.of(this.container, {
+    this.swipeable = Swipeable.of(this.inner, {
       container: that.element,
       power: 1,
       duration: that.options.duration,
@@ -384,10 +384,10 @@ class Swipe extends Component {
       },
       onMove() {
         let posX = this.startPosition.x + this.info.deltaX
-        const scrollMax = that.width - that.containerWidth
+        const scrollMax = that.width - that.innerWidth
         const distance =
           (that.width - that.sortedItems[that.active].info.width) / 2
-        const scrollMaxCenter = that.width - that.containerWidth - distance
+        const scrollMaxCenter = that.width - that.innerWidth - distance
 
         if (that.options.center) {
           if (posX > distance) {
@@ -417,7 +417,7 @@ class Swipe extends Component {
       },
       onThrow() {
         const locationX = this.getLocation(this.element).x
-        const throwDistance = this.getMoveSize(this.info.velocityX)
+        const throwDistance = this.getDecayDistance(this.info.velocityX)
         const distance = that.options.decay
           ? locationX + throwDistance
           : locationX
@@ -460,7 +460,7 @@ class Swipe extends Component {
           0,
           Math.min(
             this.sortedItems[this.active].info.x,
-            this.containerWidth - this.width
+            this.innerWidth - this.width
           )
         ) * this.options.itemNums
     } else {
@@ -472,7 +472,7 @@ class Swipe extends Component {
       this.active !== 0 &&
       !this.options.center
     ) {
-      distance = this.containerWidth - this.width
+      distance = this.innerWidth - this.width
     }
 
     if (
@@ -488,7 +488,7 @@ class Swipe extends Component {
       {
         transform: `translateX(-${distance}px)`
       },
-      this.container
+      this.inner
     )
   }
 
@@ -571,7 +571,7 @@ class Swipe extends Component {
     }
 
     this.anime = anime({
-      targets: this.container,
+      targets: this.inner,
       translateX: -distance,
       easing: ease,
       duration
@@ -612,10 +612,7 @@ class Swipe extends Component {
       distance =
         Math.max(
           0,
-          Math.min(
-            this.sortedItems[index].info.x,
-            this.containerWidth - this.width
-          )
+          Math.min(this.sortedItems[index].info.x, this.innerWidth - this.width)
         ) * this.options.itemNums
     } else {
       distance = this.sortedItems[index].info.x
@@ -626,7 +623,7 @@ class Swipe extends Component {
       index !== 0 &&
       !this.options.center
     ) {
-      distance = this.containerWidth - this.width
+      distance = this.innerWidth - this.width
     }
 
     if (this.options.pagination) {
@@ -653,7 +650,7 @@ class Swipe extends Component {
   getIndexByDistance(distance) {
     distance = -distance
     let min = 0
-    let max = this.containerWidth - this.width
+    let max = this.innerWidth - this.width
     let add = 0
 
     if (this.options.center) {
@@ -746,7 +743,7 @@ class Swipe extends Component {
     }
 
     let dotNum = 0
-    const maxWidth = this.containerWidth - this.width
+    const maxWidth = this.innerWidth - this.width
 
     for (const item of this.sortedItems) {
       if (item.info.x >= maxWidth) {

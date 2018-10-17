@@ -1,48 +1,32 @@
 @import "@pluginjs/styles/variables.scss";
 @import "swipe.core";
+
 // Vars
 // =====================
+$swipe: "pj-swipe";
 $swipe-font-family: $font-family-base;
 
 $dot: "pj-dot";
-$swipe-dots-width: 30px;
+$swipe-dot-width: 30px;
 $swipe-dots-margin-top: 30px;
 
 $arrow: "pj-arrow";
 $swipe-arrow-margin: 0 20px;
-$swipe-arrow-color: $color-white;
-$swipe-arrow-bg: $color-black;
-$swipe-arrow-radius: $border-radius-base;
 
 // swipe
 // =====================
-.#{$swipe} {
-  &-wrapper {
-    font-family: $swipe-font-family;
+.#{$swipe}-wrapper {
+  font-family: $swipe-font-family;
 
-    // because arrows
-    .#{$swipe} {
-      background-color: transparent;
+  .#{$dot}s {
+    margin-top: $swipe-dots-margin-top;
+  }
 
-      &:hover,
-      &:active {
-        background-color: transparent;
-      }
-    }
+  .#{$dot}s-square .#{$dot} {
+    width: $swipe-dot-width;
+  }
 
-    .#{$dot}s {
-      margin-top: $swipe-dots-margin-top;
-
-      .#{$dot} {
-        width: $swipe-dots-width;
-      }
-    }
-
-    .#{$arrow} {
-      &-prev,
-      &-next {
-        margin: $swipe-arrow-margin;
-      }
-    }
+  .#{$arrow} {
+    margin: $swipe-arrow-margin;
   }
 }

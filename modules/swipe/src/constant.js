@@ -21,7 +21,7 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   WRAPPER: '{namespace}-wrapper',
-  CONTAINER: '{namespace}-container',
+  INNER: '{namespace}-inner',
   ITEM: '{namespace}-item',
   PAGINATION: '{namespace}-pagination',
   PAGINATIONITEM: '{namespace}-pagination-item',
@@ -36,7 +36,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   wrapperSelector: null,
-  containerSelector: null,
+  innerSelector: null,
   itemSelector: 'div',
   imgSelector: 'img',
   imgContainer: 'div',
@@ -57,8 +57,8 @@ export const defaults = {
     size: 'lg'
   }, // false, options
   templates: {
-    container() {
-      return '<div class="{classes.CONTAINER}"></div>'
+    inner() {
+      return '<div class="{classes.INNER}"></div>'
     },
     pagination() {
       return '<ul class="{classes.PAGINATION}"></ul>'
