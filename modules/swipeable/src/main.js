@@ -315,7 +315,10 @@ class Swipeable extends Component {
   }
 
   back(pos = false) {
-    this.triggerAnime(this.element, pos ? pos : this.startPosition[this.axis])
+    this.triggerAnime(
+      this.element,
+      pos === false ? this.startPosition[this.axis] : pos
+    )
   }
 
   resize() {

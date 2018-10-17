@@ -164,20 +164,35 @@ class Slider extends Component {
 
     this.swipeable = Swipeable.of(this.box, {
       axis: that.options.vertical ? 'y' : 'x',
+      onStart() {
+        that.leave('pause')
+      },
       onSnail() {
         if (that.is('disable')) {
           return
         }
 
-        const offset = this.info[that.options.vertical ? 'deltaY' : 'deltaX']
-        const distance = that.distance * 0.5
+        if (that.is('decaying')) {
+          const test = this.position[this.axis] / that.distance + that.stash
 
-        if (offset > distance) {
-          that.prev()
-        } else if (offset < -distance) {
-          that.next()
+          if (test > 0.5) {
+            that.prev()
+          } else if (test < -0.5) {
+            that.next()
+          } else {
+            this.back(that.stash * -that.distance)
+          }
         } else {
-          this.back()
+          const offset = this.info[that.options.vertical ? 'deltaY' : 'deltaX']
+          const distance = that.distance * 0.5
+
+          if (offset > distance) {
+            that.prev()
+          } else if (offset < -distance) {
+            that.next()
+          } else {
+            this.back(that.stash * -that.distance)
+          }
         }
       },
       onThrow() {
@@ -299,18 +314,23 @@ class Slider extends Component {
       targets: this.box,
       easing: 'linear',
       duration: this.options.duration,
-      complete: () => {
+      begin: () => {
         if (this.direction) {
           this.page = this.page === 2 ? 0 : this.page + 1
         } else {
           this.page = this.page === 0 ? 2 : this.page - 1
         }
         this.setPos()
+
+        this.enter('decaying')
+      },
+      complete: () => {
+        this.leave('decaying')
       }
     }
 
     opts[this.axis] = `${this.stash * -this.distance}px`
-    Anime(opts)
+    this.animate = Anime(opts)
 
     this.current = index
 
@@ -392,6 +412,35 @@ class Slider extends Component {
       this.arrows.bind()
     }
 
+    bindEvent(
+      this.eventName('mousedown'),
+      () => {
+        if (!this.is('decaying')) {
+          return
+        }
+
+        this.animate.pause()
+      },
+      this.element
+    )
+
+    compose(
+      bindEvent(this.eventName('mousedown'), () => {
+        if (!this.is('decaying')) {
+          return
+        }
+        this.enter('pause')
+        this.animate.pause()
+      }),
+      bindEvent(this.eventName('mouseup'), () => {
+        if (!this.is('pause')) {
+          return
+        }
+        this.animate.play()
+        this.leave('pause')
+      })
+    )(this.box)
+
     compose(
       bindEvent('arrows:next', () => {
         this.next()
@@ -405,6 +454,9 @@ class Slider extends Component {
   unbind() {
     this.arrows.unbind()
     this.swipeable.unbind()
+
+    removeEvent(this.eventName('mousedown'), this.box)
+    removeEvent(this.eventName('mouseup'), this.box)
     removeEvent('arrows:next', this.arrows.element)
     removeEvent('arrows:prev', this.arrows.element)
   }
