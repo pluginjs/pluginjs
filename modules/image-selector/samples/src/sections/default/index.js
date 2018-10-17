@@ -15,7 +15,7 @@ query('.api').addEventListener('click', event => {
       api = ImageSelector.of(element)
       break
     case 'image-selector':
-      api.select(2)
+      api.selected(2)
       break
     case 'unimage-selector':
       api.unselect(2)

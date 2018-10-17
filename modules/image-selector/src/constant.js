@@ -22,12 +22,15 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   ELEMENT: '{namespace}-element',
   TRIGGER: '{namespace}-trigger',
+  HOVER: '{namespace}-trigger-hover',
   TRIGGERIMAGE: '{namespace}-trigger-image',
   TRIGGERLABEL: '{namespace}-trigger-label',
+  TRIGGERACTION: '{namespace}-trigger-action',
   LABEL: '{namespace}-label',
   WRAP: '{namespace}',
   SHOW: '{namespace}-show',
   DROPDOWN: '{namespace}-dropdown',
+  CONTENT: '{namespace}-dropdown-content',
   GROUP: '{namespace}-group',
   GROUPLABEL: '{namespace}-group-label',
   OPTION: '{namespace}-option pj-dropdown-item',
@@ -78,10 +81,13 @@ export const defaults = {
   },
   templates: {
     trigger() {
-      return '<div class="{classes.TRIGGER}"><img class="{classes.TRIGGERIMAGE}" src="{option.image}" alt="{option.label}"><span class="{classes.TRIGGERLABEL}">{option.label}</span></div>'
+      return '<div class="{classes.TRIGGER}"><img class="{classes.TRIGGERIMAGE}" src="{option.image}" alt="{option.label}"><span class="{classes.TRIGGERLABEL}">{option.label}</span><div class="{classes.TRIGGERACTION}"><i class="pj-icon pj-icon-edit"></i></div></div>'
+    },
+    content() {
+      return '<div class="{classes.CONTENT}"></div>'
     },
     group() {
-      return '<div class="{classes.GROUP}"><div class="{classes.GROUPLABEL}">{group.label}</div></div>'
+      return '<div class="{classes.GROUPLABEL}">{group.label}</div><div class="{classes.GROUP}"></div>'
     },
     option() {
       return '<div class="{classes.OPTION}" data-value="{option.value}"><img class="{classes.OPTIONIMAGE}" src="{option.image}" alt="{option.label}"><span class="{classes.OPTIONLABEL}">{option.label}</span></div>'

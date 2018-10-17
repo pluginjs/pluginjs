@@ -4,27 +4,27 @@ import ImageSelector from '@pluginjs/image-selector'
 const data = [
   {
     value: 1,
-    image: 'img/1.png',
+    image: 'https://picsum.photos/48/40?image=1',
     label: 'Option 1'
   },
   {
     value: 2,
-    image: 'img/2.png',
+    image: 'https://picsum.photos/48/40?image=20',
     label: 'Option 2'
   },
   {
     value: 3,
-    image: 'img/3.png',
+    image: 'https://picsum.photos/48/40?image=30',
     label: 'Option 3'
   },
   {
     value: 4,
-    image: 'img/4.png',
+    image: 'https://picsum.photos/48/40?image=40',
     label: 'Option 4'
   },
   {
     value: 5,
-    image: 'img/5.png',
+    image: 'https://picsum.photos/48/40?image=50',
     label: 'Option 5'
   }
 ]

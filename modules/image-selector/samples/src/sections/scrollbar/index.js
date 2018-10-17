@@ -6,7 +6,7 @@ const data = []
 for (let i = 0; i < 100; i++) {
   data.push({
     value: i,
-    image: 'img/1.png',
+    image: `https://picsum.photos/48/40?image=${i}`,
     label: `Option ${i}`
   })
 }

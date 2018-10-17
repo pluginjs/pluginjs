@@ -3,65 +3,92 @@
 
 // Vars
 // =====================
-$image-selector: "pj-image-selector";
+$imageSelector: "pj-image-selector";
 
-$image-selector-color: $text-color;
-$image-selector-trigger-placeholder-color: $gray;
+$imageSelector-color: $text-color;
 
-$image-selector-trigger-disabled-bg: $disabled-bg;
-$image-selector-trigger-disabled-border: $disabled-border;
-$image-selector-trigger-disabled-color: $disabled-color;
+$imageSelector-trigger-placeholder-color: $gray-darkest;
+$imageSelector-trigger-disabled-bg: $disabled-bg;
+$imageSelector-trigger-disabled-border: $disabled-border;
+$imageSelector-trigger-disabled-color: $disabled-color;
+$imageSelector-trigger-label-margin-top: 10px;
+$imageSelector-trigger-action-bg-color: $color-opacity;
+$imageSelector-trigger-action-color: $color-white;
 
-$image-selector-group-label-font-size: $font-size-xs;
-$image-selector-group-label-color: $gray-dark;
-$image-selector-group-label-space-x: 11px;
-$image-selector-group-label-space-y: 8px;
+$imageSelector-group-label-font-size: $font-size-xs;
+$imageSelector-group-label-color: $gray-dark;
+$imageSelector-group-label-space-x: 11px;
+$imageSelector-group-label-space-y: 8px;
 
-$image-selector-loading-padding: 11px 8px;
-$image-selector-loading-color: $gray-darker;
+$imageSelector-loading-padding: 11px 8px;
+$imageSelector-loading-color: $gray-darker;
 
-$image-selector-option-label-font-size: $font-size-xs;
+$imageSelector-option-label-font-size: $font-size-xs;
+$imageSelector-option-hover-border-color: $gray-light;
+$imageSelector-option-active-border-color: $color-primary;
+$imageSelector-option-margin-left: 24px;
+$imageSelector-option-padding: 12px 0;
 
-.#{$image-selector} {
+.#{$imageSelector} {
   outline: none;
 
   &-trigger {
     position: relative;
-    color: $image-selector-trigger-placeholder-color;
+    color: $imageSelector-trigger-placeholder-color;
 
-    .#{$image-selector}-selected & {
-      color: $image-selector-color;
+    &-label {
+      margin-top: $imageSelector-trigger-label-margin-top;
+    }
+
+    &-action {
+      color: $imageSelector-trigger-action-color;
+      background: $imageSelector-trigger-action-bg-color;
     }
   }
 
   &-option {
-    padding: 12px 0;
+    padding: $imageSelector-option-padding;
+    border: 1px solid transparent;
+
+    &:hover {
+      border-color: $imageSelector-option-hover-border-color;
+    }
 
     &-image {
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
+
     &-label {
-      font-size: $image-selector-option-label-font-size;
+      font-size: $imageSelector-option-label-font-size;
     }
+
+    &:nth-of-type(2n) {
+      margin-left: $imageSelector-option-margin-left;
+    }
+  }
+
+  .pj-dropdown-highlighted {
+    color: inherit;
+    border-color: $imageSelector-option-active-border-color;
   }
 
   &-group-label {
-    padding: $image-selector-group-label-space-y $image-selector-group-label-space-x;
-    font-size: $image-selector-group-label-font-size;
-    color: $image-selector-group-label-color;
+    padding: $imageSelector-group-label-space-y $imageSelector-group-label-space-x;
+    font-size: $imageSelector-group-label-font-size;
+    color: $imageSelector-group-label-color;
   }
 
   &-loading {
-    padding: $image-selector-loading-padding;
-    color: $image-selector-loading-color;
+    padding: $imageSelector-loading-padding;
+    color: $imageSelector-loading-color;
     text-align: center;
   }
 }
 
-.#{$image-selector}-disabled {
-  .#{$image-selector}-trigger {
-    color: $image-selector-trigger-disabled-color;
-    background-color: $image-selector-trigger-disabled-bg;
-    border-color: $image-selector-trigger-disabled-border;
+.#{$imageSelector}-disabled {
+  .#{$imageSelector}-trigger {
+    color: $imageSelector-trigger-disabled-color;
+    background-color: $imageSelector-trigger-disabled-bg;
+    border-color: $imageSelector-trigger-disabled-border;
   }
 }

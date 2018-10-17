@@ -20,12 +20,11 @@ import {
 } from './constant'
 import { isArray, isFunction, isPlainObject, isEmpty } from '@pluginjs/is'
 import Loading from './loading'
-import { removeEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 import { insertAfter, appendTo, html, parseHTML, query } from '@pluginjs/dom'
-import { deepClone } from '@pluginjs/utils'
-// import { setStyle } from '@pluginjs/styled'
+import { compose, deepClone } from '@pluginjs/utils'
 
 const isSelect = el => el.tagName === 'SELECT'
 
@@ -75,6 +74,7 @@ class ImageSelector extends Component {
 
     this.$image = query(`.${this.classes.TRIGGERIMAGE}`, this.$trigger)
     this.$label = query(`.${this.classes.TRIGGERLABEL}`, this.$trigger)
+    this.$change = query('.pj-image-selector-change', this.$trigger)
 
     this.initData()
 
@@ -109,6 +109,13 @@ class ImageSelector extends Component {
       this.$wrap
     )
 
+    this.$content = appendTo(
+      templateEngine.render(this.options.templates.content(), {
+        classes: this.classes
+      }),
+      this.$dropdown
+    )
+
     this.DROPDOWN = Dropdown.of(this.$trigger, {
       ...options,
       target: this.$dropdown,
@@ -141,10 +148,29 @@ class ImageSelector extends Component {
     })
   }
 
-  bind() {} // eslint-disable-line
+  bind() {
+    compose(
+      bindEvent(this.eventName('mouseenter'), () => {
+        if (this.is('disabled')) {
+          return null
+        }
+
+        addClass(this.classes.HOVER, this.$trigger)
+        return null
+      }),
+      bindEvent(this.eventName('mouseleave'), () => {
+        if (this.is('disabled')) {
+          return null
+        }
+        removeClass(this.classes.HOVER, this.$trigger)
+        return null
+      })
+    )(this.$trigger)
+  }
 
   unbind() {
     removeEvent(this.eventName(), this.element)
+    removeEvent(this.eventName(), this.$trigger)
   }
 
   initData() {
@@ -163,19 +189,18 @@ class ImageSelector extends Component {
       data = Object.keys(data).map(value => {
         return {
           value,
-          label: data[value]
+          image: data[value]
         }
       })
     }
 
     this.data = deepClone(data)
     this.items = this.flatItems(this.data)
-
     let value = this.getValueFromElement()
     if (isEmpty(value)) {
       value = this.getValueFromData()
       if (isEmpty(value)) {
-        value = this.options.value
+        value = 1
       }
     }
     if (!isEmpty(value)) {
@@ -285,7 +310,9 @@ class ImageSelector extends Component {
   }
 
   updateTrigger(option) {
-    html(option.label, this.$label)
+    if (option.label) {
+      html(option.label, this.$label)
+    }
 
     this.$image.setAttribute('src', option.image || 'img/1.png')
   }
@@ -324,7 +351,7 @@ class ImageSelector extends Component {
     if (this.data) {
       const $options = this.buildOptions(this.data)
 
-      this.$dropdown.appendChild($options)
+      this.$content.appendChild($options)
 
       this.selectForDropdown()
     }
