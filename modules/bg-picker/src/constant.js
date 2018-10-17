@@ -86,7 +86,7 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  image: '',
+  image: 'https://picsum.photos/200/300?image=1068',
   thumbnail: '',
   locale: 'en',
   localeFallbacks: true,

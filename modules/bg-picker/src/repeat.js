@@ -40,7 +40,6 @@ export default class Repeat {
     }
 
     this.values.forEach((value, key) => {
-      // this.$items[key].dataset.repeat = value
       setData('repeat', value, this.$items[key])
     })
 
@@ -84,7 +83,6 @@ export default class Repeat {
         }
         const value = getData('repeat', el)
         this.set(value)
-        // that.instance.update();
         return false
       },
       this.$wrap

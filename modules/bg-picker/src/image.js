@@ -1,16 +1,12 @@
 import template from '@pluginjs/template'
 import { parseHTML, query } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
-// import { setStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
 import { compose } from '@pluginjs/utils'
 
 export default class Image {
   constructor(instance) {
     this.instance = instance
-    // this.values = instance.options.repeat.values
-    // this.defaultValue = instance.options.repeat.defaultValue
-
     this.initialize()
   }
 
@@ -39,9 +35,14 @@ export default class Image {
         this.instance.eventName('click'),
         `.${this.instance.classes.IMAGESELECT}`,
         () => {
-          // this.addPoster(this.options.selectCover.call(this))
+          this.instance.leave('imageChange')
           addClass(this.instance.classes.IMAGESELECTED, this.image)
           addClass(this.instance.classes.SHOW, this.instance.$wrap)
+          removeClass(
+            this.instance.classes.SELECTEDDISABLE,
+            query(`.${this.instance.classes.IMAGECHANGE}`, this.image)
+          )
+          this.instance.options.value.image = this.instance.options.image
           this.instance.set(this.instance.options.value)
         }
       ),
@@ -50,7 +51,6 @@ export default class Image {
         `.${this.instance.classes.IMAGECHANGE}`,
         e => {
           if (!this.instance.is('imageChange')) {
-            // this.instance.changeImage('https://picsum.photos/200/300')
             this.instance.options.onSelectImage.call(
               this.instance,
               this.instance.changeImage.bind(this.instance)
@@ -66,9 +66,6 @@ export default class Image {
         `.${this.instance.classes.IMAGEREMOVE}`,
         () => {
           this.removeImage()
-
-          // this.deletePoster()
-          // addClass(this.classes.POSTERSELECTED, this.$poster)
           this.instance.leave('imageChange')
         }
       )
@@ -76,16 +73,10 @@ export default class Image {
   }
   removeImage() {
     const disabled = query(`.${this.instance.classes.IMAGECHANGE}`, this.image)
-    // this.data.poster = ''
     removeClass(this.instance.classes.SELECTEDDISABLE, disabled)
-    this.instance.options.value.image =
-      'https://picsum.photos/200/300?image=1068'
-    this.instance.clear()
-    removeClass(this.instance.classes.SHOW, this.instance.$wrap)
-
-    // setStyle('display', 'none', this.instance.$fill)
-    // this.instance.update()
-    // setStyle('background-image', 'none', this.$image)
-    // setStyle('backgroundImage', 'none', this.$videoPoster)
+    removeClass(this.instance.classes.IMAGESELECTED, this.image)
+    this.instance.options.value.image = ''
+    this.instance.element.value = ''
+    this.instance.set(this.instance.options.value)
   }
 }

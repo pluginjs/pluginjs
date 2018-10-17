@@ -1,7 +1,6 @@
 import { query } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { showElement, setStyle } from '@pluginjs/styled'
-// import { bindEvent } from '@pluginjs/events'
 
 export default class Preview {
   constructor(instance) {

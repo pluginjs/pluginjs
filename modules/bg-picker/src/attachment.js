@@ -25,7 +25,6 @@ export default class Attachment {
     this.$wrap = parseHTML(html)
 
     this.$select = query(`.${this.instance.classes.SELECTTRIGGER}`, this.$wrap)
-    // this.$attachTrigger = query('span', this.$select)
     this.values = this.instance.options.attachment.values
 
     const data = this.values.map(val => ({ label: val, value: val }))

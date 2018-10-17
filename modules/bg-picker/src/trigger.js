@@ -37,7 +37,7 @@ export default class Trigger {
           return
         }
         this.instance.oldValue = this.instance.val()
-        this.instance.PREVIEW.set(this.instance.options.value.image)
+        this.instance.PREVIEW.set(this.instance.options.image)
         removeClass(
           this.classes.EXIST,
           addClass(this.classes.SHOW, this.instance.$wrap)

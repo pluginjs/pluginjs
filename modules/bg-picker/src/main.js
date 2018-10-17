@@ -29,7 +29,6 @@ import {
   namespace as NAMESPACE,
   translations as TRANSLATIONS
 } from './constant'
-// import { SIGABRT } from 'constants'
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -61,7 +60,6 @@ class BgPicker extends Component {
       addClass(this.getThemeClass(), this.$wrap)
     }
 
-    // this.value = this.options.parse(this.element.value.replace(/'/g, '"'))
     this.value = this.options.value
     this.set(this.value, false)
 
@@ -93,7 +91,6 @@ class BgPicker extends Component {
   initDropdown() {
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       theme: 'dafault',
-      // placement: 'bottom-left',
       reference: this.TRIGGER.$trigger,
       target: this.$dropdown,
       hideOutClick: true,
@@ -146,7 +143,7 @@ class BgPicker extends Component {
           return null
         }
         this.val(this.oldValue)
-        // this.update()
+        this.update()
         if (this.is('status')) {
           removeClass(
             this.classes.SHOW,
@@ -222,17 +219,6 @@ class BgPicker extends Component {
 
   changeImage(url) {
     this.value.image = url
-    // addClass(this.classes.POSTERSELECTED, this.$poster)
-
-    // if (this.$videoPoster) {
-    //   setStyle(
-    //     {
-    //       backgroundImage: `url(${this.data.poster})`,
-    //       backgroundSize: '100% 100%'
-    //     },
-    //     this.$videoPoster
-    //   )
-    // }
   }
 
   update() {
