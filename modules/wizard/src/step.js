@@ -3,7 +3,7 @@ import { isString, isArray, isObject, isFunction } from '@pluginjs/is'
 import { bindEventOnce, trigger } from '@pluginjs/events'
 import { data, attr, html, each, setData, getData, query } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
-import 'whatwg-fetch'
+// import 'whatwg-fetch'
 const EVENTS = {
   BEFORESHOW: 'beforeShow',
   BEFOREHIDE: 'beforeHide',

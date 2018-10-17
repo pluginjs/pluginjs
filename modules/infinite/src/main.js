@@ -26,7 +26,7 @@ import { query, append, insertBefore, detach, parseHTML } from '@pluginjs/dom'
 import { isNumber, isString, isFunction } from '@pluginjs/is'
 import { getStyle, setStyle } from '@pluginjs/styled'
 import History from './history'
-import 'whatwg-fetch'
+// import 'whatwg-fetch'
 
 @translateable(TRANSLATIONS)
 @themeable()
