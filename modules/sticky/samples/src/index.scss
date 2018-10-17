@@ -1,2 +1,61 @@
 // import sticky css
 @import "@pluginjs/sticky/src/css/sticky.scss";
+
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	max-width: 900px;
+	margin: 0 auto;
+
+	&::after {
+		display: block;
+		clear: both;
+		content: "";
+	}
+}
+
+.wrap-left {
+	float: left;
+
+	.sidebar {
+		height: 1200px;
+
+		p {
+			margin-bottom: 50px;
+		}
+	}
+}
+
+.wrap-right {
+	float: left;
+	margin-top: 200px;
+
+	.sidebar {
+		height: 220px;
+	}
+}
+
+.sidebar {
+	width: 230px;
+	padding: 20px 10px;
+	text-align:left;
+	border: 2px solid #4c93d9;
+}
+
+.content {
+	float: left;
+	width: 400px;
+	min-height: 1500px;
+	padding: 20px;
+	margin: 0 20px;
+	border: 2px solid #3fa43d;
+}
+
+.footer {
+	height: 200px;
+	margin-top: 20px;
+	margin-bottom: 80vh;
+	border: 2px solid #000;
+}

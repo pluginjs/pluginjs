@@ -23,8 +23,7 @@ export const classes = {
 export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
-  verticalPosition: 'top', // bottom
-  supportEvent: true,
+  wrap: null,
   spacing: 0,
   templates: {
     wrap() {
