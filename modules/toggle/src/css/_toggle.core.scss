@@ -1,4 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
+@import "@pluginjs/icons/variables.scss";
 
 // Vars
 // =====================
@@ -7,6 +8,10 @@ $toggle-width: 48px !default;
 $toggle-height: 24px !default;
 $toggle-border-width: 3px !default;
 $toggle-handle-width: $toggle-height - $toggle-border-width * 2 !default;
+
+$toggle-on-icon: $pj-icon-in;
+$toggle-off-icon: $pj-icon-off;
+$toggle-on-font: $pj-icon-font-family;
 // Core
 // ======================
 .#{$toggle} {
@@ -29,12 +34,53 @@ $toggle-handle-width: $toggle-height - $toggle-border-width * 2 !default;
   &-off {
     display: table-cell;
     width: 50%;
+    font-size: 12px;
     vertical-align: middle;
     user-select: none;
   }
 
   &-off {
     text-align: right;
+  }
+
+  &-on-icon {
+    height: 100%;
+    font-family: $toggle-on-font;
+    cursor: pointer;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($toggle-on-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
+  }
+
+  &-off-icon {
+    height: 100%;
+    font-family: $toggle-on-font;
+    cursor: pointer;
+
+    &::before {
+      @include icon();
+      vertical-align: middle;
+      content: icon-content($toggle-off-icon);
+    }
+
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
   }
 
   &-handle {

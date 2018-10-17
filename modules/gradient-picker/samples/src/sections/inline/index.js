@@ -3,5 +3,5 @@ import GradientPicker from '@pluginjs/gradient-picker'
 
 const element = query('#inline .inline')
 GradientPicker.of(element, {
-  displayMode: 'inline'
+  inline: true
 })

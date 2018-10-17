@@ -196,14 +196,13 @@ $fontEditor-control-button-padding: 8px 28px;
   }
 
   .#{$fontEditor}-fill,
-  .#{$fontEditor}-expand-panel {
+  .#{$fontEditor}-trigger-action{
     display: none !important;
   }
 }
 
 .#{$fontEditor}-exsit {
-  .#{$fontEditor}-empty,
-  .#{$fontEditor}-expand-panel {
+  .#{$fontEditor}-empty {
     display: none !important;
   }
 

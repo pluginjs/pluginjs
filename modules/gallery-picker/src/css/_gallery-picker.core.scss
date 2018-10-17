@@ -130,7 +130,7 @@ $galleryPicker-dropdown-zindex: $zindex-dropdown !default;
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
-    align-content: space-between;
+    // align-content: space-between;
   }
 
   &-item {

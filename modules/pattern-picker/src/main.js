@@ -132,7 +132,7 @@ class PatternPicker extends Component {
         ).map(removeClass(this.classes.COLLECTIONITEMACTIVE))
         addClass(this.classes.COLLECTIONITEMACTIVE, $this)
         this.$selecting = $this
-
+        addClass(this.classes.SHOW, this.$wrap)
         this.switchModule('custom')
         this.setPlugins()
       },

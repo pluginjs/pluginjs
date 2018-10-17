@@ -16,6 +16,8 @@ export const classes = {
   INNER: '{namespace}-inner',
   ON: '{namespace}-on',
   OFF: '{namespace}-off',
+  ICONON: '{namespace}-on-icon',
+  ICONOFF: '{namespace}-off-icon',
   ISOFF: '{namespace}-is-off',
   HANDLE: '{namespace}-handle',
   DISABLED: '{namespace}-disabled'
@@ -59,7 +61,7 @@ export const translations = {
     off: 'OFF'
   },
   zh: {
-    on: '&nbsp;I',
-    off: 'O'
+    on: '开',
+    off: '关'
   }
 }

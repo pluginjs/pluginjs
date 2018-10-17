@@ -3,4 +3,4 @@ import Toggle from '@pluginjs/toggle'
 
 const element = query('#default .example-default')
 
-Toggle.of(element, {})
+Toggle.of(element, { showIcon: true })

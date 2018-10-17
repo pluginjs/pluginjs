@@ -348,15 +348,14 @@ class GradientPicker extends Component {
         onShown: () => {
           this.oldColor = this.color
           this.oldMode = this.mode
-          // showElement(this.$mask)
+          this.COLORPICKER.HISTORY.updateHistory()
+
           this.leave('save')
         },
         onHided: () => {
           if (!this.is('save')) {
             this.reset()
           }
-          // this.update()
-          // hideElement(this.$mask)
         }
       })
     }
@@ -603,9 +602,10 @@ class GradientPicker extends Component {
   }
 
   reset() {
-    this.color = this.oldColor
     this.mode = this.oldMode
     this.SELECT.set(this.mode.replace(/^.?/g, match => match.toUpperCase()))
+
+    this.color = this.oldColor
     this.set(this.color)
   }
 
@@ -633,7 +633,6 @@ class GradientPicker extends Component {
   }
 
   set(val) {
-    console.log(val)
     this.GRADIENT = new Gradient(val)
 
     if (val.indexOf('linear') > -1) {

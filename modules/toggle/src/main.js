@@ -68,6 +68,8 @@ class Toggle extends Component {
     this.$inner.append(this.$on, this.$handle, this.$off)
     this.$wrap.append(this.$inner)
 
+    this.initIcon()
+
     if (this.options.size !== null) {
       addClass(
         this.getClass(this.classes.SIZE, 'size', this.options.size),
@@ -104,6 +106,13 @@ class Toggle extends Component {
       this.onText = ''
 
       this.offText = ''
+    }
+  }
+
+  initIcon() {
+    if (this.options.showIcon && !this.options.showText) {
+      addClass(this.classes.ICONON, this.$on)
+      addClass(this.classes.ICONOFF, this.$off)
     }
   }
   bind() {

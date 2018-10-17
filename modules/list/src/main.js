@@ -140,7 +140,6 @@ class List extends Component {
       () => {
         const value = this.val()
         this.element.value = value
-
         this.trigger(EVENTS.CHANGE, value)
       },
       this.element

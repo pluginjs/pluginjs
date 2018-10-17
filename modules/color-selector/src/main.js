@@ -370,10 +370,8 @@ class ColorSelector extends Component {
       this.setInput(this.color)
       this.trigger(EVENTS.UPDATE, this.color)
     } else {
-      console.log(200)
       this.color = this.oldColor.color
       this.module = this.oldColor.module
-      console.log(this.color)
       this.setInput(this.color)
       this.COLORPICKER.set(this.COLORPICKER.oldColor)
       this.GRADIENTPICKER.reset()

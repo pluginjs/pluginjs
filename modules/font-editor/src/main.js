@@ -164,6 +164,7 @@ class FontEditor extends Component {
       () => {
         addClass(that.classes.EXSIT, that.$wrap)
         removeClass(that.classes.SHOW, that.$wrap)
+        removeClass(that.classes.WRITE, that.$wrap)
         that.update()
         that.DROPDOWN.hide()
         return

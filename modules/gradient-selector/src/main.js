@@ -206,6 +206,7 @@ class GradientSelector extends Component {
         addClass(this.classes.SHOW, this.$wrap)
 
         this.switchModule(this.module)
+        this.GRADIENTPICKER.COLORPICKER.HISTORY.updateHistory()
         this.leave('save')
       },
       onHided: () => {
