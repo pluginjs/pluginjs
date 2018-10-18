@@ -325,6 +325,13 @@ class Slider extends Component {
         this.enter('decaying')
       },
       complete: () => {
+        // if (this.direction) {
+        //   this.page = this.page === 2 ? 0 : this.page + 1
+        // } else {
+        //   this.page = this.page === 0 ? 2 : this.page - 1
+        // }
+        // this.setPos()
+
         this.leave('decaying')
       }
     }
@@ -411,18 +418,6 @@ class Slider extends Component {
     if (!this.arrows.is('bind')) {
       this.arrows.bind()
     }
-
-    bindEvent(
-      this.eventName('mousedown'),
-      () => {
-        if (!this.is('decaying')) {
-          return
-        }
-
-        this.animate.pause()
-      },
-      this.element
-    )
 
     compose(
       bindEvent(this.eventName('mousedown'), () => {
