@@ -52,10 +52,10 @@ const defaults = {
       return '<div class="{classes.COUNTER}"></div>'
     },
     play() {
-      return '<span class="{classes.PLAY}"><i class="{classes.START} pj-icon pj-icon-caret-right"></i><i class="{classes.STOP} pj-icon pj-icon-ban"></i></span>'
+      return '<span class="{classes.PLAY}"><i class="{classes.START} pj-icon pj-icon-caret-right"></i><i class="{classes.STOP} pj-icon pj-icon-pause"></i></span>'
     },
     fullScreen() {
-      return '<span class="{classes.FULLSCREEN}"><i class="{classes.FULL} pj-icon pj-icon-full-screen"></i><i class="{classes.MINI} pj-icon pj-icon-compress"></i></span>'
+      return '<span class="{classes.FULLSCREEN}"><i class="{classes.FULL} pj-icon pj-icon-maximize"></i><i class="{classes.MINI} pj-icon pj-icon-minimize"></i></span>'
     },
     download() {
       return '<span class="{classes.DOWNLOAD}"><i class="pj-icon pj-icon-download"></i></span>'

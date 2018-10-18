@@ -208,6 +208,7 @@ class Thumbnails extends Component {
   }
 
   initSwipeable() {
+    const that = this
     const serPos = () => {
       this.pos = this.swipeable.position[this.options.vertical ? 'y' : 'x']
     }
@@ -218,6 +219,9 @@ class Thumbnails extends Component {
       axis: this.options.vertical ? 'y' : 'x',
       reboundPos: this.options.mode === 'center' ? 50 : 100,
       offset: this.options.mode === 'center' ? this.distance / 2 : 0,
+      onStart() {
+        that.enter('dragged')
+      },
       onDecayend() {
         serPos()
       },
@@ -275,6 +279,11 @@ class Thumbnails extends Component {
     bindEvent(
       this.eventName('click'),
       event => {
+        if (this.is('dragged')) {
+          this.leave('dragged')
+          return false
+        }
+
         if (this.is('disable') || this.swipeable.is('paning')) {
           return false
         }

@@ -2,9 +2,16 @@
 
 // Vars
 // =====================
-$lightbox: "pj-lightbox" !default;
-$slider: "pj-slider" !default;
-$lightbox-show-zindex: $zindex-lightbox !default;
+$lightbox: "pj-lightbox";
+$slider: "pj-slider";
+$icon: "pj-icon";
+$lightbox-show-zindex: $zindex-lightbox;
+
+$lightbox-color: $color-white;
+$lightbox-topbar-bg: rgba($color-black, 0.4);
+$lightbox-caption-bg: rgba($color-black, 0.4);
+$lightbox-thumbs-bg: rgba($color-black, 0.4);
+$lightbox-overlay-color: $color-black;
 
 .#{$lightbox} {
   &-container {
@@ -16,7 +23,7 @@ $lightbox-show-zindex: $zindex-lightbox !default;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    color: #fff;
+    color: $lightbox-color;
     visibility: hidden;
     opacity: 0;
 
@@ -43,7 +50,7 @@ $lightbox-show-zindex: $zindex-lightbox !default;
     z-index: -1;
     width: 100%;
     height: 100%;
-    background-color: #000;
+    background-color: $lightbox-overlay-color;
   }
 
   &-main {
@@ -60,7 +67,7 @@ $lightbox-show-zindex: $zindex-lightbox !default;
     width: 100%;
     font-size: 16px;
     text-align: right;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: $lightbox-topbar-bg;
   }
 
   &-counter {
@@ -77,8 +84,8 @@ $lightbox-show-zindex: $zindex-lightbox !default;
     cursor: pointer;
   }
 
-  &-stop,
-  &-mini {
+  &-stop.#{$icon},
+  &-mini.#{$icon} {
     display: none;
   }
 
@@ -95,12 +102,12 @@ $lightbox-show-zindex: $zindex-lightbox !default;
   &-caption {
     padding: 10px;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: $lightbox-caption-bg;
   }
 
   &-thumbs {
     margin: 10px 0;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: $lightbox-thumbs-bg;
   }
 }
 

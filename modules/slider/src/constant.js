@@ -49,8 +49,8 @@ const defaults = {
   duration: 300,
   autoplay: false,
   playCycle: 4000,
-  prevIcon: 'pj-icon pj-icon-chevron-left',
-  nextIcon: 'pj-icon pj-icon-chevron-right',
+  prevIcon: 'pj-icon pj-icon-angle-left',
+  nextIcon: 'pj-icon pj-icon-angle-right',
   loader: {
     theme: 'ring',
     color: '#000000',

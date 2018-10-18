@@ -176,6 +176,7 @@ class Gallery extends Component {
   hide() {
     removeClass(this.classes.SHOW, this.container)
     this.unbindConatiner()
+    this.topbar.mini()
     this.leave('show')
   }
 
