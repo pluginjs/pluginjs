@@ -91,6 +91,27 @@ export default class Trigger {
       this.$edit
     )
 
+    // info actions hover hold
+    bindEvent(
+      this.instance.eventName('mouseenter'),
+      () => {
+        addClass(this.classes.HOVER, this.element)
+      },
+      this.$triggerAction
+    )
+
+    bindEvent(
+      this.instance.eventName('mouseleave'),
+      () => {
+        if (this.instance.is('holdHover')) {
+          return
+        }
+        removeClass(this.classes.HOVER, this.element)
+        return
+      },
+      this.$triggerAction
+    )
+
     compose(
       // empty
       bindEvent(
@@ -116,25 +137,6 @@ export default class Trigger {
         () => {
           removeClass(this.classes.OPENDISABLE, this.element)
           this.instance.DROPDOWN.hide()
-        }
-      ),
-      // info actions hover hold
-      bindEvent(
-        this.instance.eventName('mouseover'),
-        `.${this.classes.TRIGGERACTION}`,
-        () => {
-          addClass(this.classes.HOVER, this.element)
-        }
-      ),
-      bindEvent(
-        this.instance.eventName('mouseout'),
-        `.${this.classes.TRIGGERACTION}`,
-        () => {
-          if (this.instance.is('holdHover')) {
-            return
-          }
-          removeClass(this.classes.HOVER, this.element)
-          return
         }
       )
     )(this.element)

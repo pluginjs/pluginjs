@@ -56,7 +56,7 @@ export default class Trigger {
           }
           addClass(this.classes.OPENDISABLE, this.$trigger)
           this.instance.DROPDOWN.show()
-        return false // eslint-disable-line
+          return false // eslint-disable-line
         }
       ),
       bindEvent(
@@ -71,13 +71,13 @@ export default class Trigger {
         }
       ),
       // info action hover
-      bindEvent('mouseover', `.${this.classes.TRIGGERACTION}`, () => {
+      bindEvent(this.instance.eventName('mouseenter'), () => {
         if (this.instance.is('disabled')) {
           return
         }
         addClass(this.classes.HOVER, this.$trigger)
       }),
-      bindEvent('mouseout', `.${this.classes.TRIGGERACTION}`, () => {
+      bindEvent(this.instance.eventName('mouseleave'), () => {
         if (this.instance.is('disabled')) {
           return
         }

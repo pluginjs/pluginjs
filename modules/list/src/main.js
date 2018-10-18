@@ -158,6 +158,11 @@ class List extends Component {
         this.sort(e.oldIndex, e.newIndex, false)
       }
     })
+
+    document.body.ondrop = event => {
+      event.preventDefault()
+      event.stopPropagation()
+    }
   }
 
   sort(oldIndex, newIndex = -1, dom = true) {

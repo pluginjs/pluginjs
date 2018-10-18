@@ -33,6 +33,7 @@ export const classes = {
   ITEMS: '{namespace}-items',
   CONTROL: '{namespace}-control',
   ITEM: '{namespace}-item',
+  ITEMHOVER: '{namespace}-item-hover',
   ITEMIMAGE: '{namespace}-item-image',
   ITEMREMOVE: '{namespace}-item-remove',
   ITEMRESELECT: '{namespace}-item-reselect',

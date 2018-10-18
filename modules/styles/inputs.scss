@@ -23,6 +23,15 @@ $input: pj-input !default;
     color: $input-placeholder-color;
   }
 
+  
+  &::-ms-reveal{
+    display:none;
+  }
+
+  &::-ms-clear {
+    display:none;
+  }
+
   &:hover {
     border-color: $input-border-color-hover;
   }

@@ -133,28 +133,6 @@ class GalleryPicker extends Component {
         this.close()
         return null
       }),
-      // item overlay
-      bindEvent(this.eventName('mouseover'), `.${this.classes.ITEM}`, e => {
-        if (this.is('disabled')) {
-          return false
-        }
-        const target = parentWith(hasClass(this.classes.ITEM), e.target)
-        addClass(this.classes.HOVER, target)
-        return null
-      }),
-      bindEvent(this.eventName('mouseout'), `.${this.classes.ITEM}`, e => {
-        if (this.is('disabled')) {
-          return false
-        }
-
-        if (this.is('holdHover')) {
-          return false
-        }
-        const target = parentWith(hasClass(this.classes.ITEM), e.target)
-        removeClass(this.classes.HOVER, target)
-        this.leave('holdHover')
-        return null
-      }),
       // expand add
       bindEvent(
         this.eventName('click'),
@@ -288,6 +266,37 @@ class GalleryPicker extends Component {
     } else {
       this.delImage()
     }
+
+    queryAll(`.${this.classes.ITEM}`, this.$panel).map($el => { /* eslint-disable-line */
+      // item overlay
+      bindEvent(
+        this.eventName('mouseenter'),
+        e => {
+          if (this.is('disabled')) {
+            return false
+          }
+          addClass(this.classes.ITEMHOVER, e.target)
+          return null
+        },
+        $el
+      )
+      bindEvent(
+        this.eventName('mouseleave'),
+        e => {
+          if (this.is('disabled')) {
+            return false
+          }
+
+          if (this.is('holdHover')) {
+            return false
+          }
+          removeClass(this.classes.ITEMHOVER, e.target)
+          this.leave('holdHover')
+          return null
+        },
+        $el
+      )
+    })
   }
 
   addImage(url) {

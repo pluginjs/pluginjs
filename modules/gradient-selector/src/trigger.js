@@ -70,14 +70,14 @@ export default class Trigger {
 
     // info hover
     bindEvent(
-      this.instance.eventName('mouseover'),
+      this.instance.eventName('mouseenter'),
       () => {
         addClass(this.classes.HOVER, this.$trigger)
       },
       this.$triggerAction
     )
     bindEvent(
-      this.instance.eventName('mouseout'),
+      this.instance.eventName('mouseleave'),
       () => {
         if (this.instance.is('holdHover')) {
           return false

@@ -259,11 +259,11 @@ class MapPicker extends Component {
   initAutoComplete() {
     const $place = query(`.${this.classes.PLACE}`, this.$dropdown)
     const config = {}
-
     this.autoComplete = new google.maps.places.Autocomplete($place, config) /* eslint-disable-line */
     // autoComplete event
     this.autoComplete.addListener('place_changed', () => {
       const place = this.autoComplete.getPlace()
+
       if (place.geometry) {
         this.data.place = place.formatted_address
         const location = place.geometry.location

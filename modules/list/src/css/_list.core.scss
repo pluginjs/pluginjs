@@ -27,7 +27,7 @@ $list-actions-right: 15px !default;
 
     &-handle {
       text-align: center;
-      cursor: -webkit-grab;  /* stylelint-disable-line */
+      cursor: pointer;
 
       > i {
         pointer-events: none;

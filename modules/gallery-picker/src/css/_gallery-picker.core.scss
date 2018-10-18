@@ -163,13 +163,20 @@ $galleryPicker-dropdown-zindex: $zindex-dropdown !default;
 
   &-hover {
     .#{$galleryPicker}-fill-add,
-    .#{$galleryPicker}-trigger-action,
+    .#{$galleryPicker}-trigger-action {
+      opacity: 1;
+      transition: all 300ms ease-in-out;
+    }
+  }
+
+  &-item-hover {
     .#{$galleryPicker}-item-change {
       opacity: 1;
       transition: all 300ms ease-in-out;
     }
   }
 }
+
 
 .#{$galleryPicker}-exist {
   .#{$galleryPicker}-fill {
