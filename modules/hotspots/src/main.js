@@ -162,7 +162,7 @@ class Hotspots extends Component {
       })
     })
 
-    this.element.append(...parseHTML(html))
+    this.element.append(parseHTML(html))
   }
 
   getHotspotOptions(item) {
