@@ -284,9 +284,10 @@ $datePicker-clear-right: 35px !default;
     .#{$datePicker}-icon {
       display: none;
     }
-
+    
     .#{$datePicker}-dropdown {
       position: relative;
+      z-index: 500 !important;
     }
   }
 
