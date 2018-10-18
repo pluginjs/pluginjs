@@ -40,7 +40,7 @@ const methods = ['enable', 'disable', 'destroy', 'prev', 'next']
 const defaults = {
   theme: null,
   data: null,
-  height: null, // width 100% default, height percentage default
+  height: null, // width 100% default, height percentage default(number)
   arrows: true,
   arrowType: 'solid',
   loop: true,

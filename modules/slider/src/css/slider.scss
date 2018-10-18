@@ -2,14 +2,16 @@
 
 // Vars
 // =====================
-$slider: "pj-slider" !default;
-$arrow: "pj-arrow" !default;
+$slider: "pj-slider";
+$arrow: "pj-arrow";
 
-$slider-arrow-position: 10px !default;
+$slider-height: 50%;
 
-$slider-video-outer-size: 60px !default;
-$slider-video-inner-size: 16px !default;
-$slider-video-color: $color-white !default;
+$slider-arrow-position: 10px;
+
+$slider-video-outer-size: 60px;
+$slider-video-inner-size: 16px;
+$slider-video-color: $color-white;
 
 @keyframes rotation {
   0% {
@@ -23,7 +25,7 @@ $slider-video-color: $color-white !default;
 .#{$slider} {
   width: 100%;
   height: 0;
-  padding-bottom: 50%;
+  padding-bottom: $slider-height;
   overflow: hidden;
 
   &-box {
@@ -39,10 +41,6 @@ $slider-video-color: $color-white !default;
     width: 100%;
     height: 100%;
     text-align: center;
-
-    &::after {
-      clear: both;
-    }
   }
 
   &-content {
