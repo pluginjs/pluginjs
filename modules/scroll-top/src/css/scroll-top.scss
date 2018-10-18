@@ -26,6 +26,8 @@ $scrollTop-light-solid-bg: $color-white;
 $scrollTop-light-solid-color: $scrollTop-color;
 $scrollTop-light-solid-hover-color: $scrollTop-hover-color;
 
+$scrollTop-disabled-bg: $gray-lightest;
+
 // Skin
 // =====================
 .#{$scrollTop} {
@@ -94,5 +96,11 @@ $scrollTop-light-solid-hover-color: $scrollTop-hover-color;
         background-color: $scrollTop-light-solid-bg;
       }
     }
+  }
+
+  &.#{$scrollTop}-disabled {
+    color: $disabled-color;
+    cursor: $cursor-disabled;
+    background-color: $scrollTop-disabled-bg;
   }
 }

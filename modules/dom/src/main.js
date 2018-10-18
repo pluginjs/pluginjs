@@ -196,7 +196,6 @@ export const getData = (key, el) => {
   }
 
   const cache = getCachedData(el)
-
   if (key) {
     if (!(key in cache)) {
       let value = el.dataset[key] || el.dataset[camelize(key, false)]

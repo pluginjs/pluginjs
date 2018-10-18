@@ -16,8 +16,8 @@ let instance = ScrollTop.of({
 })
 
 queryAll('[data-api]').forEach(el =>
-  el.addEventListener('click', target => {
-    const api = getData('api', target)
+  el.addEventListener('click', e => {
+    const api = getData('api', e.target)
     if (api === 'init') {
       instance = ScrollTop.of({
         theme: theme.value,
