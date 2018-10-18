@@ -43,3 +43,11 @@
   height: 2000px !important;
   margin-top: 7px;
 }
+
+
+.#{$scrollProgress}-disabled {
+  overflow: hidden;
+  color: $disabled-color;
+  cursor: $cursor-disabled;
+  border-color: $disabled-color;
+ }

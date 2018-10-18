@@ -1,13 +1,16 @@
 import { query, getData } from '@pluginjs/dom'
 import ScrollProgress from '@pluginjs/scroll-progress'
 
-let instance
+const element = query('#apis .apiExample')
+let instance = ScrollProgress.of(element, {
+  /** options **/
+})
 
 const apisHandler = ({ target }) => {
   // const { api } = target.dataset
   const api = getData('api', target)
   if (api === 'init') {
-    instance = ScrollProgress.of('.apiExample', {
+    instance = ScrollProgress.of(element, {
       onReady() {
         console.log('ready', 'event')
       },
