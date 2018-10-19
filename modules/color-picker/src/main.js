@@ -117,7 +117,7 @@ class ColorPicker extends Component {
 
   initData() {
     if (this.elementColor) {
-      this.val(this.elementColor)
+      this.val(this.elementColor, false)
     } else {
       this.clear()
     }
@@ -280,7 +280,7 @@ class ColorPicker extends Component {
     )
   }
 
-  setColor(val) {
+  setColor(val, trigger = true) {
     if (!val) {
       val = this.color
     }
@@ -299,8 +299,9 @@ class ColorPicker extends Component {
     if (!this.options.inline) {
       this.PREVIEW.update(color)
     }
-
-    this.trigger(EVENTS.CHANGE, color, classify)
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, color, classify)
+    }
   }
 
   setInput(val) {
@@ -356,7 +357,7 @@ class ColorPicker extends Component {
     } else {
       this.color = this.oldColor
 
-      this.setColor(this.color)
+      this.setColor(this.color, true)
       this.element.value = this.color
     }
     // }
@@ -368,12 +369,12 @@ class ColorPicker extends Component {
     removeEvent(this.eventName(), this.element)
   }
 
-  val(color) {
+  val(color, trigger = true) {
     if (!color) {
       return this.get()
     }
 
-    this.set(color)
+    this.set(color, trigger)
     return null
   }
 
@@ -381,7 +382,7 @@ class ColorPicker extends Component {
     return this.color
   }
 
-  set(val) {
+  set(val, trigger = true) {
     if (isNull(val)) {
       this.color = this.options.defaultColor || '#000'
       this.set(this.color)
@@ -391,7 +392,7 @@ class ColorPicker extends Component {
       this.element.value = ''
     } else {
       this.color = val
-      this.setColor(val)
+      this.setColor(val, trigger)
     }
 
     return null
