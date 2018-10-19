@@ -24,7 +24,8 @@ class Topbar {
     this.setCounter(this.instance.active)
     append(this.element, this.instance.container)
 
-    this.fullscreen = new Fullscreen(this.instance.container)
+    // this.fullscreen = new Fullscreen(this.instance.container)
+    this.fullscreen = new Fullscreen()
 
     this.bind()
   }
@@ -47,8 +48,6 @@ class Topbar {
         event => {
           event.preventDefault()
           event.stopPropagation()
-
-          this.fullscreen.toggle()
 
           if (this.fullscreen.isFullscreen()) {
             this.mini()
