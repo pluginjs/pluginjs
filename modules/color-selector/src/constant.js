@@ -152,15 +152,8 @@ export const defaults = {
   },
   parse(val) {
     if (val) {
-      const solid = new RegExp('^(#|rgb|rgba)', 'gi')
+      // const solid = new RegExp('^(#|rgb|rgba)', 'gi')
       const gradient = new RegExp('^((linear|radial)-gradient)', 'gi')
-
-      if (val.match(solid)) {
-        return {
-          module: 'solid',
-          color: val
-        }
-      }
 
       if (val.match(gradient)) {
         return {
@@ -169,8 +162,15 @@ export const defaults = {
         }
       }
 
+      // if (val.match(solid)) {
+      //   return {
+      //     module: 'solid',
+      //     color: val
+      //   }
+      // }
+
       return {
-        module: 'collection',
+        module: 'solid',
         color: val
       }
     }

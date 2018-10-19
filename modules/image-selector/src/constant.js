@@ -81,7 +81,7 @@ export const defaults = {
   },
   templates: {
     trigger() {
-      return '<div class="{classes.TRIGGER}"><img class="{classes.TRIGGERIMAGE}" src="{option.image}" alt="{option.label}"><span class="{classes.TRIGGERLABEL}">{option.label}</span><div class="{classes.TRIGGERACTION}"><i class="pj-icon pj-icon-edit"></i></div></div>'
+      return '<div class="{classes.TRIGGER}"><img class="{classes.TRIGGERIMAGE}" src="{option.image}" alt="{option.label}" /><span class="{classes.TRIGGERLABEL}">{option.label}</span><div class="{classes.TRIGGERACTION}"><i class="pj-icon pj-icon-edit"></i></div></div>'
     },
     content() {
       return '<div class="{classes.CONTENT}"></div>'
@@ -90,7 +90,7 @@ export const defaults = {
       return '<div class="{classes.GROUPLABEL}">{group.label}</div><div class="{classes.GROUP}"></div>'
     },
     option() {
-      return '<div class="{classes.OPTION}" data-value="{option.value}"><img class="{classes.OPTIONIMAGE}" src="{option.image}" alt="{option.label}"><span class="{classes.OPTIONLABEL}">{option.label}</span></div>'
+      return '<div class="{classes.OPTION}" data-value="{option.value}"><img class="{classes.OPTIONIMAGE}" src="{option.image}" alt="{option.label}" /><span class="{classes.OPTIONLABEL}">{option.label}</span></div>'
     }
   },
   parse(value) {

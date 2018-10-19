@@ -152,9 +152,11 @@ class ColorPicker extends Component {
         )(this.$wrap)
       }
       bindEvent(
-        this.eventName('change'),
+        this.eventName('input'),
         e => {
-          this.set(e.target.value)
+          if (new Color().matchString(e.target.value)) {
+            this.set(e.target.value)
+          }
         },
         this.element
       )
@@ -283,18 +285,22 @@ class ColorPicker extends Component {
       val = this.color
     }
     const color = this.COLOR.val(val)
+    let classify = ''
     if (isString(val) && val.indexOf('#') > -1) {
+      classify = color.toHEX()
       this.setInput(color.toHEX())
     } else if (isString(val) && !val.match(/\d/g)) {
+      classify = color.toNAME()
       this.setInput(color.toNAME())
     } else {
+      classify = color.toRGBA()
       this.setInput(color.toRGBA())
     }
     if (!this.options.inline) {
       this.PREVIEW.update(color)
     }
 
-    this.trigger(EVENTS.CHANGE, color)
+    this.trigger(EVENTS.CHANGE, color, classify)
   }
 
   setInput(val) {

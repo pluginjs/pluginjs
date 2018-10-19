@@ -19,6 +19,8 @@ import {
 import Dropdown from '@pluginjs/dropdown'
 import ColorPicker from '@pluginjs/color-picker'
 import GradientPicker from '@pluginjs/gradient-picker'
+import { Gradient } from '@pluginjs/gradient'
+import { Color } from '@pluginjs/color'
 import Clearable from './clearable'
 import {
   eventable,
@@ -144,9 +146,15 @@ class ColorSelector extends Component {
     }
 
     bindEvent(
-      this.eventName('change'),
+      this.eventName('input'),
       e => {
-        this.set(this.options.parse.call(this, e.target.value))
+        if (
+          new Color().matchString(e.target.value) ||
+          new Gradient().matchString(e.target.value)
+        ) {
+          console.log(this.options.parse.call(this, e.target.value))
+          this.set(this.options.parse.call(this, e.target.value))
+        }
       },
       this.element
     )
@@ -274,9 +282,9 @@ class ColorSelector extends Component {
       ...this.options.colorPicker,
       inline: true,
       showControl: true,
-      onChange: val => {
+      onChange: (color, val) => {
         if (this.module === 'solid') {
-          this.setInput(val.toRGBA())
+          this.setInput(val)
         }
       },
       onClick: val => {

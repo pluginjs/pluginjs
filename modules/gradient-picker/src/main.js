@@ -70,6 +70,13 @@ class GradientPicker extends Component {
     this.mode = 'linear'
     this.oldMode = 'linear'
 
+    setStyle(
+      {
+        position: 'relative'
+      },
+      query('body')
+    )
+
     this.oldColor = null
     this.gradientValue = `${this.mode}-gradient(${
       this.mode === 'linear' ? 'to right' : 'circle'
@@ -151,10 +158,9 @@ class GradientPicker extends Component {
       }
 
       bindEvent(
-        this.eventName('change'),
+        this.eventName('input'),
         e => {
-          const gradient = new RegExp('^((linear|radial)-gradient)', 'gi')
-          if (e.target.value.match(gradient)) {
+          if (new Gradient().matchString(e.target.value)) {
             this.set(e.target.value)
           }
         },
@@ -348,7 +354,9 @@ class GradientPicker extends Component {
         onShown: () => {
           this.oldColor = this.color
           this.oldMode = this.mode
-          this.COLORPICKER.HISTORY.updateHistory()
+          if (this.COLORPICKER.HISTORY) {
+            this.COLORPICKER.HISTORY.updateHistory()
+          }
 
           this.leave('save')
         },

@@ -59,7 +59,6 @@ export default {
   parseString(string) {
     string = string.trim()
     let matched
-    console.log(RegExpStrings.FULL.test(string))
     if ((matched = RegExpStrings.FULL.exec(string)) !== null) {
       const value = this.parseParameters(matched[3])
       const type = matched[2]

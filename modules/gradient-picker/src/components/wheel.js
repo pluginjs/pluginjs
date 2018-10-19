@@ -14,11 +14,6 @@ class Wheel {
     this.$handle = query(`.${this.instance.classes.WHEELHANDLE}`, this.$el)
     this.r = parseInt(getStyle('width', this.$el), 10) / 2
 
-    this.origin = {
-      x: offset(this.$el).left + this.r,
-      y: offset(this.$el).top + this.r
-    }
-
     this.bind()
     this.set(90)
   }
@@ -53,11 +48,15 @@ class Wheel {
   }
 
   update(e) {
+    this.origin = {
+      x: offset(this.$el).left + this.r,
+      y: offset(this.$el).top + this.r
+    }
+
     const _coord = { x: e.pageX, y: e.pageY }
 
     const coord = this.getVector(_coord)
     const deg = this.getAngle(coord)
-
     // set wheel default val
     this.set(deg)
 
