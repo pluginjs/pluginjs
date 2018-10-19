@@ -22,6 +22,11 @@ $breadcrumb: "pj-breadcrumb" !default;
 
   &-dropdown {
     display: inline-block;
+
+    &.#{$breadcrumb}-disabled {
+      display: none;
+    }
+  
   }
 
   &-toggle {

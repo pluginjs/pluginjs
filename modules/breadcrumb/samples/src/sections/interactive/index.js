@@ -1,18 +1,18 @@
-import { query, getData } from '@pluginjs/dom'
+import { query, queryAll, getData } from '@pluginjs/dom'
 import Breadcrumb from '@pluginjs/breadcrumb'
-import Interactive from './Interactive'
 
-const root = query('#interactive')
-const interactiveConsole = new Interactive(() => {
-  const element = query('.breadcrumb', root)
-  return Breadcrumb.of(element, {
-    /** options **/
+const element = query('#interactive .breadcrumb')
+let instance
+
+queryAll('[data-api]').forEach(el =>
+  el.addEventListener('click', e => {
+    const api = getData('api', e.target)
+    if (api === 'init') {
+      instance = Breadcrumb.of(element, {
+        /** options **/
+      })
+    } else {
+      instance[api]()
+    }
   })
-})
-query('.api', root).addEventListener('click', event => {
-  const el = event.target
-  if (!el.matches('[data-api]')) {
-    return
-  }
-  interactiveConsole[getData('api', el)]()
-})
+)

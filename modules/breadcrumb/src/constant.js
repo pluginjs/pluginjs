@@ -21,6 +21,7 @@ export const classes = {
   DROPDOWNITEM: '{namespace}-item',
   DROPDOWNITEMDISABLE: '{namespace}-item-disabled',
   ELLIPSIS: '{namespace}-ellipsis',
+  DISABLED: '{namespace}-disabled',
   HIDDEN: '{namespace}-hidden'
 }
 

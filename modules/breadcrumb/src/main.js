@@ -246,12 +246,21 @@ class Breadcrumb extends Component {
     if (this.is('disabled')) {
       this.leave('disabled')
     }
+
+    removeClass(this.classes.DISABLED, this.$dropdown)
+    this.render()
     this.trigger(EVENTS.ENABLE)
   }
 
   disable() {
     if (!this.is('disabled')) {
       this.enter('disabled')
+    }
+
+    children(this.element).map(removeClass(this.classes.HIDDEN))
+    addClass(this.classes.DISABLED, this.$dropdown)
+    if (this.options.ellipsisText) {
+      this.$ellipsis.remove()
     }
 
     this.trigger(EVENTS.DISABLE)
