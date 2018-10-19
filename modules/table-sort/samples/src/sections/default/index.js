@@ -45,4 +45,6 @@ query('.api-replace').addEventListener('click', () =>
     }
   ])
 )
-query('.api-sort').addEventListener('click', () => instance.sort(1, 'asc'))
+query('.api-sort').addEventListener('click', () =>
+  instance.sort({ index: 1, direction: 'asc' })
+)
