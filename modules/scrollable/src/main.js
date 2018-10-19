@@ -479,6 +479,7 @@ class Scrollable extends Component {
 
   getScrollLength(direction) {
     const scrollLength = this.$content[this.attributes[direction].scrollLength]
+
     return scrollLength - this.getContainerLength(direction)
   }
 
