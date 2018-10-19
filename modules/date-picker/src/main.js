@@ -205,7 +205,52 @@ class DatePicker extends Component {
     } else if (inline === false) {
       compose(
         bindEvent(this.eventName('focus'), this.focus.bind(this)),
-        bindEvent(this.eventName('blur'), this.blur.bind(this))
+        bindEvent(this.eventName('blur'), this.blur.bind(this)),
+        bindEvent(this.eventName('change'), () => {
+          switch (this.mode) {
+            case 'single': {
+              const reg =
+                '^(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02/(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29)$'
+              const regExp = new RegExp(reg)
+              if (
+                !regExp.test(this.element.value) ||
+                this.element.value.length > 10
+              ) {
+                this.element.value = ''
+              }
+              this.options.date = this.formatDate(
+                this.element.value,
+                this.format
+              )
+              this.initDate()
+              for (let j = 0; j < this.calendarsNum; j++) {
+                this.manageViews(j)
+              }
+              break
+            }
+            case 'range': {
+              //  const reg = '^((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02/(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29))[ ]*-[ ]*((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29))$'
+              const reg =
+                '^((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02/(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29))[ ]{1}-[ ]{1}((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29))$'
+              const regExp = new RegExp(reg)
+              if (!regExp.test(this.element.value)) {
+                this.element.value = ''
+              }
+              const ary = this.element.value.split(' - ')
+              if (ary.length === 1) {
+                ary.length = 2
+              }
+              for (let j = 0; j < ary.length; j++) {
+                this.options.date = this.formatDate(ary[j], this.format)
+                this.initDate()
+                this.manageViews(j)
+              }
+              break
+            }
+            default:
+              break
+          }
+        })
       )(this.$element)
 
       bindEvent(
@@ -247,7 +292,6 @@ class DatePicker extends Component {
         : this.parseDate(this.options.date, this.format)
     this.privateDate = {}
     this.privateDate.currentDate = [new Date(date)]
-    console.log(date)
     if (this.mode === 'multiple') {
       this.privateDate.selectedDate = []
       this.privateDate.focusDate = new Date(date)
@@ -1311,6 +1355,11 @@ class DatePicker extends Component {
       onShow: () => {
         if (!this.DROPDOWN.is('builded')) {
           this.show()
+          if (this.mode === 'range') {
+            if (query(`.${this.classes.STARTDAY}`, this.$picker)) {
+              query(`.${this.classes.STARTDAY}`, this.$picker).click()
+            }
+          }
         }
       }
     })
@@ -1348,6 +1397,30 @@ class DatePicker extends Component {
     // if (this.options.inline === false && !this.is('showed')) {
     // this.show()
     // }
+    if (this.mode === 'range') {
+      if (
+        this.element.value.substr(
+          this.element.value.indexOf('-') + 2,
+          this.element.value.length
+        ) === '1/01/01'
+      ) {
+        // const newDate = this.formatDate(new Date(),this.outputFormat)
+        const date = this.element.value
+        const ary = date.split(' - ')
+        ary[1] = ary[0]
+        for (let j = 0; j < ary.length; j++) {
+          this.options.date = this.formatDate(ary[j], this.format)
+          this.initDate()
+          this.manageViews(j)
+        }
+        if (query(`.${this.classes.STARTDAY}`, this.$picker)) {
+          query(`.${this.classes.STARTDAY}`, this.$picker).click()
+        }
+      }
+    }
+    if (this.mode === 'multiple') {
+      this.DROPDOWN.show()
+    }
     if (this.hasKeyboard) {
       this.KEYBOARD.bind()
     }
@@ -1355,94 +1428,6 @@ class DatePicker extends Component {
 
   blur() {
     if (this.options.inline === false) {
-      switch (this.mode) {
-        case 'single': {
-          const reg =
-            '^(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02/(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29)$'
-          const regExp = new RegExp(reg)
-
-          if (
-            !regExp.test(this.element.value) ||
-            this.element.value.length > 10
-          ) {
-            this.element.value = ''
-          }
-          this.options.date = this.formatDate(this.element.value, this.format)
-          this.initDate()
-          for (let j = 0; j < this.calendarsNum; j++) {
-            this.manageViews(j)
-          }
-          break
-        }
-        case 'range': {
-          //  const reg = '^((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02/(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29))[ ]*-[ ]*((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29))$'
-          const reg =
-            '^((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02/(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29))[ ]{1}-[ ]{1}((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29))$'
-          const regExp = new RegExp(reg)
-          if (!regExp.test(this.element.value)) {
-            this.element.value = ''
-          }
-          console.log(this.element.value)
-          const ary = this.element.value.split(' - ')
-          console.log(ary)
-          //  for (let j = 0; j < ary.length; j++) {
-          //   this.options.date = this.formatDate(ary[j], this.format)
-          //   console.log(this.options.date)
-          //   this.initDate()
-
-          //  }
-          // for (let j = 0; j < this.calendarsNum; j++) {
-          //   // this.manageViews(0)
-
-          //   this.manageViews(j)
-          // }
-          break
-        }
-        case 'multiple': {
-          if (this.element.value.length <= 10) {
-            const reg =
-              '^(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02/(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29)$'
-            const regExp = new RegExp(reg)
-            if (!regExp.test(this.element.value)) {
-              this.element.value = ''
-            }
-          }
-          if (this.element.value.length > 10) {
-            if ((this.element.value.length - 10) % 11 === 0) {
-              const reg =
-                '^((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02/(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29)){*,(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})/(((0[13578]|1[02])/(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)/(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))/02/29)}$'
-              const regExp = new RegExp(reg)
-              if (!regExp.test(this.element.value)) {
-                this.element.value = ''
-              }
-            } else {
-              this.element.value = ''
-            }
-          }
-          // console.log(this.element.value)
-          const ary = this.element.value.split(',')
-          console.log(ary)
-          for (let j = 0; j < ary.length; j++) {
-            this.options.date = this.formatDate(ary[j], this.format)
-            console.log(this.options.date)
-            // console.log(this.options.date)
-            // console.log(this.calendarsNum)
-
-            // for (let j = 0; j < this.calendarsNum; j++) {
-            //   this.manageViews(j)
-            // }
-          }
-          //  this.initDate()
-          // for (let j = 0; j < this.calendarsNum; j++) {
-          //   // this.manageViews(0)
-
-          //   this.manageViews(j)
-          // }
-          break
-        }
-        default:
-          break
-      }
       if (this.is('pickerHide')) {
         this.hide()
         this.leave('pickerHide')
@@ -1497,7 +1482,7 @@ class DatePicker extends Component {
       }
       if (privateTargetSpan) {
         const j = queryContentAndIndexOfParentElement(privateTargetSpan)
-
+      
         if (
           !hasClass(this.classes.OTHERMONTH, privateTargetSpan) &&
           !hasClass(this.classes.UNTOUCHABLE, privateTargetSpan) &&
@@ -1506,7 +1491,6 @@ class DatePicker extends Component {
           this.changeValue(privateTargetSpan, j)
           this.changeView('content', j)
           this.updateDate(j)
-
           switch (this.mode) {
             case 'single':
               if (this.views[j] === 'days') {
