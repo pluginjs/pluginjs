@@ -11,7 +11,7 @@
     "@pluginjs/helper": "*",
     "fs-extra": "^7.0.0",
     "inquirer": "^6.2.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.9.4",
     "rollup": "*",
     "rollup-plugin-json": "*",
     "yargs": "^12.0.2"

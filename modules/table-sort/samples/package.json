@@ -18,7 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
-    "parcel-bundler": "^1.10.2",
+    "parcel-bundler": "^1.10.3",
     "posthtml-include": "*"
   }
 }
