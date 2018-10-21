@@ -1,9 +1,9 @@
 //slide
 .#{$toast}-slideRight {
-  animation: #{$toast}-bounceInleft 0.7s forwards;
+  animation: #{$toast}-slideRight 0.7s forwards;
 }
 
-@keyframes #{$toast}-bounceInleft {
+@keyframes #{$toast}-slideRight {
   0% {
     opacity: 0;
     transform: translateX(280px);
@@ -24,10 +24,10 @@
 }
 
 .#{$toast}-slideLeft {
-  animation: #{$toast}-bounceInRight 0.7s forwards;
+  animation: #{$toast}-slideLeft 0.7s forwards;
 }
 
-@keyframes #{$toast}-bounceInRight {
+@keyframes #{$toast}-slideLeft {
   0% {
     opacity: 0;
     transform: translateX(-280px);
