@@ -20,6 +20,9 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ],
   "buttons": "buttons.scss",
   "inputs": "inputs.scss",
   "variables": "variables.scss"

@@ -19,7 +19,11 @@
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
+    "@pluginjs/browserslist-config": "*",
     "parcel-bundler": "^1.10.3",
     "posthtml-include": "*"
-  }
+  },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ]
 }

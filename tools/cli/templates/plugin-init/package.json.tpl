@@ -33,6 +33,7 @@
     "@pluginjs/decorator": "*"
   },
   "devDependencies": {
+    "@pluginjs/browserslist-config": "*",
     "@babel/core": "^7.1.2",
     "@pluginjs/cli": "*",
     "babel-jest": "*",
@@ -43,6 +44,9 @@
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ],
   "category": "{{category}}",
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",

@@ -68,5 +68,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ]
 }

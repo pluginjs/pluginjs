@@ -1,0 +1,26 @@
+{
+  "name": "@pluginjs/browserslist-config",
+  "description": "Pluginjs Browserslist Shared Config",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "browserslist": "^4.3.0"
+  },
+  "keywords": [
+    "browserslist",
+    "browserslist-config"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

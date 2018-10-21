@@ -23,6 +23,7 @@
     "@commitlint/cli": "^7.2.1",
     "@commitlint/config-conventional": "^7.1.2",
     "@commitlint/prompt-cli": "^7.2.1",
+    "@pluginjs/browserslist-config": "*",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.7.0",
@@ -44,16 +45,7 @@
     "stylelint-scss": "^3.3.1"
   },
   "browserslist": [
-    "> 1%",
-    "ie >= 11",
-    "Chrome >= 45",
-    "Firefox >= 38",
-    "Edge >= 12",
-    "Explorer >= 10",
-    "iOS >= 9",
-    "Safari >= 9",
-    "Android >= 4.4",
-    "Opera >= 30"
+    "extends @pluginjs/browserslist-config"
   ],
   "commitlint": {
     "extends": [

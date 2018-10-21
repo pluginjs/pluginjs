@@ -259,7 +259,7 @@ export const getTime = () => {
 }
 
 export const camelize = (word, first = true) => {
-  word = word.replace(/[_.-\s](\w|$)/g, (_, x) => x.toUpperCase())
+  word = word.replace(/[_.\- ]+(\w|$)/g, (m, p1) => p1.toUpperCase())
 
   if (first) {
     word = word.substring(0, 1).toUpperCase() + word.substring(1)
