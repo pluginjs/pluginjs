@@ -1,7 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import { append, parseHTML, queryAll, query } from '@pluginjs/dom'
-import PjDots from '@pluginjs/dots'
-import { deepMerge } from '@pluginjs/utils'
+import PJDots from '@pluginjs/dots'
 
 class Dots {
   constructor(sectionScroll) {
@@ -17,27 +16,27 @@ class Dots {
 
     this.dots = parseHTML(this.createHtml())
     const dot = query(`.${this.classes.DOTS}`, this.dots)
-    const o = {
-      items: this.items,
-      onClick: val => {
-        this.sectionScroll.goTo(val)
-      }
-    }
-    const options = deepMerge(this.options.dots, o)
+
     const appendToElement =
       typeof this.options.appendTo === 'string'
         ? query(this.options.appendTo)
         : this.options.appendTo
 
     append(this.dots, appendToElement)
-    this.dotAPI = PjDots.of(dot, options)
+    this.api = PJDots.of(dot, {
+      ...this.options.dots,
+      items: this.items,
+      onClick: val => {
+        this.sectionScroll.goTo(val)
+      }
+    })
     if (this.options.dots === false) {
       this.dots.style.display = 'none'
     }
   }
 
   setActive(id) {
-    this.dotAPI.set(id)
+    this.api.set(id)
   }
 
   parseItems() {
