@@ -131,8 +131,11 @@ class Toast extends GlobalComponent {
       const _extToastCount = _prevToastCount - this.stack
       if (_extToastCount > 0) {
         instances.slice(0, _extToastCount).forEach(instance => {
-          remove(instance)
+          remove(instance.$element)
         })
+        // instances.slice(0, _extToastCount).forEach(instance => {
+        //   remove(instance)
+        // })
       }
     }
 
@@ -430,7 +433,8 @@ class Toast extends GlobalComponent {
     }
 
     this.trigger(EVENTS.DESTROY)
-    remove(this.$wrap)
+    remove(this.$element)
+    // remove(this.$wrap)
     super.destroy()
   }
 
