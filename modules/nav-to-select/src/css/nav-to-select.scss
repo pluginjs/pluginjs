@@ -28,6 +28,7 @@ $navToSelect-focus-border-color: $color-primary;
   border: 1px solid $navToSelect-border-color;
   border-radius: $navToSelect-border-radius;
   outline: none;
+  -moz-appearance: none; /* stylelint-disable-line */
   -webkit-appearance: none; /* stylelint-disable-line */
   appearance:none;/* stylelint-disable-line */
 
