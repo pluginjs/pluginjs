@@ -490,10 +490,18 @@ class DatePicker extends Component {
       html += `<span class="${className}">${content}</span>`
     }
     html += '</div></div>'
-    const $html = []
+    let $html = []
     console.log(parseHTML(html))
-    for (let i = 0; i < parseHTML(html).childNodes.length; i++) {
-      $html.push(parseHTML(html).childNodes[i])
+    // parseHTML(html).childNodes?
+    // for (let i = 0; i < parseHTML(html).childNodes.length; i++) {
+    //   $html.push(parseHTML(html).childNodes[i])
+    // }: $html = parseHTML(html
+    if (parseHTML(html).childNodes) {
+      for (let i = 0; i < parseHTML(html).childNodes.length; i++) {
+        $html.push(parseHTML(html).childNodes[i])
+      }
+    } else {
+      $html = parseHTML(html)
     }
     const $inRanges = $html.reduce(
       (r, el) => r.concat(queryAll(`.${this.classes.INRANGE}`, el)),
@@ -2099,7 +2107,7 @@ class DatePicker extends Component {
       this.$dropdown.remove()
       this.$inputIcon.remove()
 
-      this.POPPER.destroy()
+      // this.POPPER.destroy()
       this.$element.className = this.firstClassName
       this.$element.value = ''
       this.leave('initialized')
