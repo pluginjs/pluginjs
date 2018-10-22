@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { bindEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hideElement } from '@pluginjs/styled'
 import { isNull } from '@pluginjs/is'
 import {
@@ -105,8 +105,9 @@ class ColorSelector extends Component {
 
     // set default data
     this.initData()
-
     this.bind()
+    this.enter('initialized')
+    this.trigger(EVENTS.READY)
   }
 
   initData() {
@@ -354,7 +355,10 @@ class ColorSelector extends Component {
     this.color = val
     this.PREVIEW.update(val)
     this.element.value = val
+    // this.trigger(EVENTS.CHANGE, val)
+    // if (trigger) {
     this.trigger(EVENTS.CHANGE, val)
+    // }
     return null
   }
 
@@ -388,6 +392,10 @@ class ColorSelector extends Component {
 
   clear() {
     this.set(null)
+  }
+
+  unbind() {
+    removeEvent(this.eventName(), this.element)
   }
 
   val(color) {

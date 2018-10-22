@@ -122,7 +122,7 @@ class GradientPicker extends Component {
 
   initData() {
     if (this.elementColor) {
-      // this.val(this.elementColor)
+      this.val(this.elementColor)
     } else {
       this.clear()
     }
@@ -603,6 +603,9 @@ class GradientPicker extends Component {
     this.setInput(this.gradientValue)
 
     this.trigger(EVENTS.CHANGE, this.gradientValue)
+    // if (trigger) {
+    //   this.trigger(EVENTS.CHANGE, this.gradientValue)
+    // }
     if (this.is('save')) {
       this.trigger(EVENTS.UPDATE, this.gradientValue)
     }

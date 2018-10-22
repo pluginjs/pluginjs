@@ -3,11 +3,6 @@ import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
 const value = 'red'
-const obj = {
-  collection: 'red',
-  gradient: 'linear-gradient(90deg, #fff 0%,#000 100%)',
-  solid: '#000'
-}
 
 describe('ColorSelector', () => {
   describe('ColorSelector()', () => {
@@ -44,17 +39,6 @@ describe('ColorSelector', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = ColorSelector.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = ColorSelector.of(generateHTMLSample())
@@ -64,8 +48,7 @@ describe('ColorSelector', () => {
     test('should call destroy', () => {
       const $element = ColorSelector.of(generateHTMLSample())
       $element.destroy()
-      // expect().toEqual($element);
-      // expect($element).toEqual($element);
+      expect($element).toEqual($element)
     })
   })
 
@@ -75,7 +58,7 @@ describe('ColorSelector', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      // api = ColorSelector.of($element)
+      api = ColorSelector.of($element)
     })
 
     test('should trigger ready event', () => {
@@ -114,19 +97,70 @@ describe('ColorSelector', () => {
     })
   })
 
+  describe('change', () => {
+    let $element
+    let api
+
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(value)
+      api = ColorSelector.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+
+      expect(called).toBeFalse()
+    })
+
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = ColorSelector.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(value)
+        }
+      })
+
+      api.val(value)
+
+      expect(called).toBeTrue()
+    })
+
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = ColorSelector.of($element, {
+        onChange(value) {
+          called = true
+
+          expect(value).toBe(value)
+        }
+      })
+
+      api.set(value)
+
+      expect(called).toBeTrue()
+    })
+  })
+
   describe('get()', () => {
     let $element
     let api
 
-    beforeEach(() => {
+    test('should get the value without value', () => {
       $element = generateHTMLSample()
       api = ColorSelector.of($element)
+
+      expect(api.get()).toBeString()
     })
 
     test('should get the value', () => {
-      $element = generateHTMLSample('red')
+      $element = generateHTMLSample(value)
       api = ColorSelector.of($element)
-      expect(api.get()).toEqual(obj)
+      expect(api.get()).toEqual(value)
     })
   })
 
@@ -140,9 +174,9 @@ describe('ColorSelector', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
-      api.set(obj)
-      expect(api.get()).toEqual(obj)
+      expect(api.get()).toBeString()
+      api.set(value)
+      expect(api.get()).toEqual(value)
     })
   })
 
@@ -151,7 +185,7 @@ describe('ColorSelector', () => {
     let api
 
     beforeEach(() => {
-      $element = generateHTMLSample('red')
+      $element = generateHTMLSample(value)
       api = ColorSelector.of($element)
     })
 
@@ -163,9 +197,7 @@ describe('ColorSelector', () => {
 
     test('should set the value with string', () => {
       api.val(value)
-
-      expect(api.val()).toBe('"red"')
-      expect(api.get()).toEqual(obj)
+      expect(api.get()).toEqual(value)
     })
   })
 
