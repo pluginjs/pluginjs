@@ -64,7 +64,7 @@ export const defaults = {
       return '<div class="{classes.OVERLAY}"></div>'
     },
     button() {
-      return '<button class="{classes.BUTTON} {btnClass}" data-btntype={key} type="button">{title}</button>'
+      return '<button class="pj-btn {classes.BUTTON} {custom}" data-action={action} type="button">{label}</button>'
     }
   },
   autoDestroy: true, // not used in static method

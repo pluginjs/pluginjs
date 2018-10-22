@@ -15,14 +15,15 @@ const basicModal = {
   title: 'Modal title',
   buttons: {
     cancel: {
-      title: 'Cancel',
-      class: 'pj-btn pj-btn-outline'
+      label: 'Cancel',
+      classes: 'pj-btn pj-btn-outline'
     },
     active: {
-      title: 'Share',
-      class: 'pj-btn pj-btn-primary',
-      fn() {
+      label: 'Share',
+      classes: 'pj-btn pj-btn-primary',
+      fn: resolve => {
         console.log('active callback')
+        resolve()
       }
     }
   }

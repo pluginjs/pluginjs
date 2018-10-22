@@ -7,13 +7,13 @@ const alignContent = {
   contentAlignment: 'center',
   close: false,
   buttons: {
-    btn1: {
-      title: 'Cancel',
-      class: 'pj-btn pj-btn-outline'
+    cancel: {
+      label: 'Cancel',
+      classes: 'pj-btn pj-btn-outline'
     },
-    btn2: {
-      title: 'Ok',
-      class: 'pj-btn pj-btn-primary'
+    ok: {
+      label: 'Ok',
+      classes: 'pj-btn pj-btn-primary'
     }
   }
 }
@@ -23,13 +23,13 @@ query('.content-align-right', root).addEventListener('click', () => {
     buttonAlignment: 'right',
     close: false,
     buttons: {
-      btn1: {
-        title: 'Cancel',
-        class: 'pj-btn pj-btn-outline'
+      cancel: {
+        label: 'Cancel',
+        classes: 'pj-btn pj-btn-outline'
       },
-      btn2: {
-        title: 'Ok',
-        class: 'pj-btn pj-btn-primary'
+      ok: {
+        label: 'Ok',
+        classes: 'pj-btn pj-btn-primary'
       }
     }
   })

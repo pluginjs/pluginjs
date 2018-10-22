@@ -10,7 +10,8 @@ query('.autoDestroy_init', root).addEventListener('click', () => {
     theme: 'dialog',
     buttons: {
       btn1: {
-        title: 'Save changes'
+        label: 'Save changes',
+        classes: 'pj-btn pj-btn-outline'
       }
     }
   })
@@ -24,7 +25,8 @@ query('.autoDestroy_open', root).addEventListener('click', () => {
       theme: 'dialog',
       buttons: {
         btn1: {
-          title: 'Save changes'
+          label: 'Save changes',
+          classes: 'pj-btn pj-btn-outline'
         }
       }
     })
@@ -40,7 +42,8 @@ query('.autoDestroy_close', root).addEventListener('click', () => {
       theme: 'dialog',
       buttons: {
         btn1: {
-          title: 'Save changes'
+          label: 'Save changes',
+          classes: 'pj-btn pj-btn-outline'
         }
       }
     })

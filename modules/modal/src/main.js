@@ -119,18 +119,24 @@ class Modal extends GlobalComponent {
         this.eventName('click'),
         event => {
           if (!event.target.classList.contains(this.classes.BUTTON)) {
-            return
+            return false
           }
 
-          const key = data('btntype', event.target)
-          if (isFunction(this.options.buttons[key].fn)) {
-            this.options.buttons[key].fn()
+          const action = data('action', event.target)
+
+          if (!action || typeof this.options.buttons[action] === 'undefined') {
+            return false
           }
 
-          if (this.options.buttons[key].close === false) {
-            return
+          const button = this.options.buttons[action]
+
+          if (isFunction(button.fn)) {
+            button.fn(this.close.bind(this))
+          } else {
+            this.close()
           }
-          this.close()
+
+          return false
         },
         this.$buttons
       )
@@ -395,29 +401,29 @@ class Modal extends GlobalComponent {
     }
   }
 
-  _creatBtn(buttons, key, length) {
+  _creatBtn(buttons, action, length) {
     let btn = ''
-    let title = ''
-    const btnClass = buttons[key].class
+    let label = ''
+    const classes = buttons[action].classes
     const local = ['Yes', 'Cancel']
-    if (local.includes(buttons[key].title)) {
-      title = this.translate(buttons[key].title)
+    if (local.includes(buttons[action].label)) {
+      label = this.translate(buttons[action].label)
     } else {
-      title = buttons[key].title
+      label = buttons[action].label
     }
     if (this.options.theme && length < 3) {
       btn = templateEngine.render(this.options.templates.button.call(this), {
         classes: this.classes,
-        btnClass,
-        title,
-        key
+        custom: classes,
+        label,
+        action
       })
     } else {
       btn = templateEngine.render(this.options.templates.button.call(this), {
         classes: this.classes,
-        btnClass,
-        title,
-        key
+        custom: classes,
+        label,
+        action
       })
     }
     return parseHTML(btn)

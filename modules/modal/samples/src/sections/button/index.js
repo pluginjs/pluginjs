@@ -9,13 +9,17 @@ const btnColor = {
   theme: 'wideDialog',
   title: 'this is title',
   buttons: {
-    btn1: {
-      title: 'Cancel',
-      class: 'pj-btn pj-btn-outline'
+    cancel: {
+      label: 'Cancel',
+      classes: 'pj-btn pj-btn-outline',
+      fn: resolve => {
+        console.log('clicked Cancel!')
+        resolve()
+      }
     },
-    btn2: {
-      title: 'Success',
-      class: 'pj-btn pj-btn-success'
+    success: {
+      label: 'Success',
+      classes: 'pj-btn pj-btn-success'
     }
   }
 }
@@ -28,13 +32,17 @@ query('.btn-location', root).addEventListener('click', () => {
     buttonAlignment: 'center',
     close: false,
     buttons: {
-      btn1: {
-        title: 'Cancel',
-        class: 'pj-btn pj-modal-btn-alignment pj-btn-outline'
+      cancel: {
+        label: 'Cancel',
+        classes: 'pj-btn pj-modal-btn-alignment pj-btn-outline'
       },
-      btn2: {
-        title: 'Delete',
-        class: 'pj-btn pj-modal-btn-alignment pj-btn-danger'
+      delete: {
+        label: 'Delete',
+        classes: 'pj-btn pj-modal-btn-alignment pj-btn-danger',
+        fn: resolve => {
+          console.log('clicked Delete!')
+          resolve()
+        }
       }
     }
   })

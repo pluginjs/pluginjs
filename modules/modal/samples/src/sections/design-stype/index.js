@@ -10,7 +10,8 @@ query('.prompt', root).addEventListener('click', () => {
     theme: 'prompt',
     buttons: {
       btn1: {
-        title: 'Save changes'
+        label: 'Save changes',
+        classes: 'pj-btn pj-btn-outline'
       }
     }
   })
@@ -23,7 +24,8 @@ query('.prompt-wide', root).addEventListener('click', () => {
     theme: 'prompt lg',
     buttons: {
       btn1: {
-        title: 'Save changes'
+        label: 'Save changes',
+        classes: 'pj-btn pj-btn-outline'
       }
     }
   })
@@ -36,7 +38,8 @@ query('.prompt-light', root).addEventListener('click', () => {
     theme: 'prompt-light',
     buttons: {
       btn1: {
-        title: 'Save changes'
+        label: 'Save changes',
+        classes: 'pj-btn pj-btn-outline'
       }
     }
   })

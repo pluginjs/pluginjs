@@ -9,12 +9,11 @@ query('.locale', root).addEventListener('click', () => {
     title: 'New Modal',
     theme: 'dialog',
     buttons: {
-      btn1: {
-        title: 'Cancel',
-        class: 'pj-btn pj-btn-outline'
+      cancel: {
+        label: 'Cancel'
       },
-      btn2: {
-        title: 'Yes'
+      yes: {
+        label: 'Yes'
       }
     }
   })
