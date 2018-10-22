@@ -29,6 +29,7 @@ class Preview {
     ) {
       return false
     }
+
     if (isString(color)) {
       setStyle('background', color, this.$color)
     } else {

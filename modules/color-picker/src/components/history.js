@@ -38,6 +38,7 @@ class History {
           return false
         }
         this.prevColor = color
+
         this.update(this.prevColor)
 
         return null

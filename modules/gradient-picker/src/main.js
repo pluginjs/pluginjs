@@ -70,13 +70,6 @@ class GradientPicker extends Component {
     this.mode = 'linear'
     this.oldMode = 'linear'
 
-    setStyle(
-      {
-        position: 'relative'
-      },
-      query('body')
-    )
-
     this.oldColor = null
     this.gradientValue = `${this.mode}-gradient(${
       this.mode === 'linear' ? 'to right' : 'circle'
@@ -122,7 +115,7 @@ class GradientPicker extends Component {
 
   initData() {
     if (this.elementColor) {
-      this.val(this.elementColor)
+      this.val(this.elementColor, false)
     } else {
       this.clear()
     }
@@ -180,6 +173,8 @@ class GradientPicker extends Component {
         if (this.COLORPICKER.HISTORY) {
           this.COLORPICKER.HISTORY.set(getData('value', this.$marker).color)
         }
+
+        this.update()
         this.trigger(EVENTS.CLICK, this.gradientValue)
       },
       this.$save
@@ -190,7 +185,8 @@ class GradientPicker extends Component {
       (e, el, angle) => {
         this.angle = Math.round(angle)
         this.$angle.value = `${this.angle}°`
-        this.update()
+
+        this.update(false)
       },
       this.element
     )
@@ -206,6 +202,7 @@ class GradientPicker extends Component {
         const $this = e.target
         const marker = getData('value', $this)
         this.selectMarker($this)
+
         this.COLORPICKER.set(marker.color)
         if (this.COLORPICKER.HISTORY) {
           this.COLORPICKER.HISTORY.set(this.tempColor)
@@ -225,7 +222,8 @@ class GradientPicker extends Component {
             this.GRADIENT.get(marker.index).setPosition(percent / 100)
             this.sort()
             this.GRADIENT.reorder()
-            this.update()
+
+            this.update(false)
             this.trigger('gradientChange')
           },
           window.document
@@ -274,6 +272,7 @@ class GradientPicker extends Component {
 
         this.angle = val
         this.WHEEL.set(this.angle)
+
         this.update()
       },
       this.$angle
@@ -299,7 +298,8 @@ class GradientPicker extends Component {
         this.GRADIENT.removeById(index)
         this.sort()
         this.GRADIENT.reorder()
-        this.update()
+
+        this.update(false)
         this.leave('SelectedMarker')
         return null
       },
@@ -326,7 +326,8 @@ class GradientPicker extends Component {
       this.GRADIENT.removeById(index + 1)
       this.sort()
       this.GRADIENT.reorder()
-      this.update()
+
+      this.update(false)
       this.leave('SelectedMarker')
       return null
     })
@@ -426,7 +427,8 @@ class GradientPicker extends Component {
       onChange: res => {
         const modeName = res.replace(/^.?/g, match => match.toLowerCase())
         this.mode = modeName
-        this.update()
+
+        this.update(false)
       }
     })
 
@@ -514,7 +516,8 @@ class GradientPicker extends Component {
     this.markers.push(getData('value', $marker))
     this.sort()
     this.selectMarker($marker)
-    this.update()
+
+    this.update(false)
   }
 
   getMarkerPercent(position) {
@@ -564,7 +567,8 @@ class GradientPicker extends Component {
     const colorData = this.GRADIENT.get(index).color.val(color)
 
     this.tempColor = colorData.toRGBA()
-    this.update()
+
+    this.update(false)
     this.trigger(EVENTS.COLORCHANGE, colorData)
   }
 
@@ -577,7 +581,7 @@ class GradientPicker extends Component {
     this.DROPDOWN.hide()
   }
 
-  update() {
+  update(trigger = true) {
     if (this.is('noSelectedMarker')) {
       return false
     }
@@ -603,10 +607,8 @@ class GradientPicker extends Component {
     this.setInput(this.gradientValue)
 
     this.trigger(EVENTS.CHANGE, this.gradientValue)
-    // if (trigger) {
-    //   this.trigger(EVENTS.CHANGE, this.gradientValue)
-    // }
-    if (this.is('save')) {
+
+    if (this.is('save') && trigger) {
       this.trigger(EVENTS.UPDATE, this.gradientValue)
     }
     return null
@@ -617,7 +619,7 @@ class GradientPicker extends Component {
     this.SELECT.set(this.mode.replace(/^.?/g, match => match.toUpperCase()))
 
     this.color = this.oldColor
-    this.set(this.color)
+    this.set(this.color, false)
   }
 
   createEl(tempName, options) {
@@ -639,11 +641,11 @@ class GradientPicker extends Component {
       return this.options.process.call(this, this.get())
     }
 
-    this.set(color)
+    this.set(color, false)
     return null
   }
 
-  set(val) {
+  set(val, trigger = true) {
     this.GRADIENT = new Gradient(val)
 
     if (val.indexOf('linear') > -1) {
@@ -678,15 +680,18 @@ class GradientPicker extends Component {
       this.selectMarker(this.markers[this.lastActiveMarkerIndex].$el)
     }
 
-    this.COLORPICKER.set(getData('value', this.$marker).color)
+    this.COLORPICKER.set(getData('value', this.$marker).color, false)
     this.gradientValue = ''
-    this.update()
+
+    this.enter('save')
+    this.update(trigger)
+    this.leave('save')
   }
 
   clear() {
     this.color =
       this.options.defaultColor || 'linear-gradient(90deg, #fff 0%,#000 100%)'
-    this.set(this.color)
+    this.set(this.color, false)
 
     if (!this.options.inline) {
       this.PREVIEW.update('transparent')

@@ -112,7 +112,7 @@ class ColorSelector extends Component {
 
   initData() {
     if (this.elementColor) {
-      this.val(this.elementColor)
+      this.val(this.elementColor, false)
     } else {
       this.clear()
     }
@@ -353,12 +353,9 @@ class ColorSelector extends Component {
 
   setInput(val) {
     this.color = val
-    this.PREVIEW.update(val)
     this.element.value = val
-    // this.trigger(EVENTS.CHANGE, val)
-    // if (trigger) {
+
     this.trigger(EVENTS.CHANGE, val)
-    // }
     return null
   }
 
@@ -377,10 +374,12 @@ class ColorSelector extends Component {
     this.DROPDOWN.hide()
   }
 
-  update() {
+  update(trigger = true) {
     if (this.is('save')) {
       this.setInput(this.color)
-      this.trigger(EVENTS.UPDATE, this.color)
+      if (trigger) {
+        this.trigger(EVENTS.UPDATE, this.color)
+      }
     } else {
       this.color = this.oldColor.color
       this.module = this.oldColor.module
@@ -391,21 +390,21 @@ class ColorSelector extends Component {
   }
 
   clear() {
-    this.set(null)
+    this.set(null, false)
   }
 
   unbind() {
     removeEvent(this.eventName(), this.element)
   }
 
-  val(color) {
+  val(color, trigger = true) {
     if (!color) {
       return this.options.process.call(this, this.get(), this.module)
     }
 
     const val = this.options.parse.call(this, color)
 
-    this.set(val)
+    this.set(val, trigger)
     // this.update();
     return null
   }
@@ -414,11 +413,11 @@ class ColorSelector extends Component {
     return this.color
   }
 
-  set(val) {
+  set(val, trigger = true) {
     if (isNull(val)) {
       this.color = ''
-      // this.COLORPICKER.clear()
-      // this.GRADIENTPICKER.clear()
+      this.COLORPICKER.clear()
+      this.GRADIENTPICKER.clear()
       this.switchModule(this.options.module[0])
       this.PREVIEW.update('transparent')
       this.element.value = ''
@@ -447,7 +446,12 @@ class ColorSelector extends Component {
       if (module === 'solid') {
         this.COLORPICKER.set(color)
       }
+
+      this.enter('save')
+      this.update(trigger)
+      this.leave('save')
     }
+
     return null
   }
 
