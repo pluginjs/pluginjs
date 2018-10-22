@@ -90,7 +90,7 @@ describe('ColorPicker', () => {
     })
   })
 
-  describe('change', () => {
+  describe('update', () => {
     let $element
     let api
 
@@ -98,7 +98,7 @@ describe('ColorPicker', () => {
       let called = false
       $element = generateHTMLSample(value)
       api = ColorPicker.of($element, {
-        onChange() {
+        onUpdate() {
           called = true
         }
       })
@@ -106,11 +106,11 @@ describe('ColorPicker', () => {
       expect(called).toBeFalse()
     })
 
-    it('should fired when change the value', () => {
+    it('should fired when update the value', () => {
       let called = false
       $element = generateHTMLSample()
       api = ColorPicker.of($element, {
-        onChange(value) {
+        onUpdate(value) {
           called = true
 
           expect(value).toBe(value)
@@ -126,7 +126,7 @@ describe('ColorPicker', () => {
       let called = false
       $element = generateHTMLSample()
       api = ColorPicker.of($element, {
-        onChange(value) {
+        onUpdate(value) {
           called = true
 
           expect(value).toBe(value)

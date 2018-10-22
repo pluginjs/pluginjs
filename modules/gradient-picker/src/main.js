@@ -636,12 +636,12 @@ class GradientPicker extends Component {
     return this.color
   }
 
-  val(color) {
+  val(color, trigger = true) {
     if (!color) {
       return this.options.process.call(this, this.get())
     }
 
-    this.set(color, false)
+    this.set(color, trigger)
     return null
   }
 
