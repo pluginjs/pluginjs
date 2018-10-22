@@ -44,6 +44,8 @@ import {
   insertBefore
 } from '@pluginjs/dom'
 
+const isInput = el => el.tagName === 'INPUT'
+
 @translateable(TRANSLATIONS)
 @themeable()
 @styleable(CLASSES)
@@ -287,7 +289,11 @@ class Cascader extends Component {
   getItems(level) {
     let items = []
     if (level === 0) {
-      items = this.data
+      if (this.filter) {
+        items = this.FILTERABLE.filterArr
+      } else {
+        items = this.data
+      }
     } else if (
       this.selected.length >= level &&
       !isUndefined(this.selected[level - 1].children)
@@ -408,8 +414,9 @@ class Cascader extends Component {
         this.setLabel(this.options.customLabel(labels))
         addClass(this.classes.SELECTED, this.$wrap)
       } else {
-        this.setLabel(this.placeholder)
+        this.setPlaceholderLabel()
         removeClass(this.classes.SELECTED, this.$wrap)
+
         if (trigger) {
           this.trigger(EVENTS.CLEAR)
         }
@@ -450,7 +457,19 @@ class Cascader extends Component {
   }
 
   setLabel(label) {
-    html(label, this.$label)
+    if (isInput(this.$label)) {
+      this.$label.value = label
+    } else {
+      html(label, this.$label)
+    }
+  }
+
+  setPlaceholderLabel() {
+    if (isInput(this.$label)) {
+      this.$label.value = ''
+    } else {
+      html(this.placeholder, this.$label)
+    }
   }
 
   buildDropdown() {
@@ -480,7 +499,6 @@ class Cascader extends Component {
         level
       })
     )
-
     options.forEach(o => {
       $menu.appendChild(this.buildOption(o))
     })

@@ -41,8 +41,7 @@ Cascader.of(element, {
     },
     {
       value: 3,
-      label: 'Group 3',
-      children: getChildren(3)
+      label: 'Group 3'
     },
     {
       value: 4,

@@ -1,8 +1,9 @@
-import { replace, parseHTML, append, detach } from '@pluginjs/dom'
+import { replace, parseHTML, append, detach, children } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { addClass } from '@pluginjs/classes'
 import { isNull } from '@pluginjs/is'
 import { events as EVENTS } from './constant'
+import { setStyle } from '@pluginjs/styled'
 
 export default class Filterable {
   constructor(instance) {
@@ -14,12 +15,13 @@ export default class Filterable {
       instance.$label
     )
     addClass(instance.classes.FILTERABLE, instance.$wrap)
-
     bindEvent(
       instance.eventName('input'),
       () => {
         const value = instance.$label.value
         const DROPDOWN = instance.DROPDOWN
+        setStyle('display', 'none', DROPDOWN.$dropdown.firstChild)
+
         if (!value) {
           this.refreshDefault()
         } else {
@@ -34,7 +36,7 @@ export default class Filterable {
         } else {
           DROPDOWN.update()
         }
-
+        this.instance.filter = true
         instance.trigger(EVENTS.FILTER, value)
       },
       instance.$label
@@ -45,6 +47,21 @@ export default class Filterable {
       () => {
         this.refreshDefault()
         this.hideNotFound()
+        this.instance.filter = false
+      },
+      instance.element
+    )
+
+    bindEvent(
+      instance.selfEventName(EVENTS.SHOW),
+      () => {
+        if (instance.$label.value) {
+          // if (isArray(this.instance.value)) {
+          //   this.instance.set(this.instance.value)
+          // } else {
+          this.instance.set(this.instance.value[0].split(','))
+          // }
+        }
       },
       instance.element
     )
@@ -99,44 +116,62 @@ export default class Filterable {
     this.notfound = false
   }
 
-  showOption(option) {
-    if (this.instance.DROPDOWN) {
-      this.instance.DROPDOWN.showItem(option.__dom)
-    }
-  }
-
-  hideOption(option) {
-    if (this.instance.DROPDOWN) {
-      this.instance.DROPDOWN.hideItem(option.__dom)
+  hasChild(option, label) {
+    if (option.children) {
+      option.children.forEach(item => {
+        this.filterData.label = `${label} / ${item.label}`
+        this.filterData.value = `${option.value},${item.value}`
+        this.hasChild(item, this.filterData.label)
+      })
+    } else {
+      this.filterArr.push(this.filterData)
+      this.filterData = {}
+      return
     }
   }
 
   filter(search) {
     const { filter } = this.instance.options
-
     let found = 0
+    this.filterArr = []
     this.instance.data.forEach(option => {
+      this.filterData = {}
+      this.filterData.value = option.value
+      this.filterData.label = option.label
       if (filter(option, search)) {
-        this.showOption(option)
+        this.hasChild(option, this.filterData.label)
         found++
+      } else if (option.children) {
+        option.children.forEach(item => {
+          this.filterData.label = `${option.label} / ${item.label}`
+          this.filterData.value = `${option.value},${item.value}`
+          if (filter(item, search)) {
+            this.hasChild(item, this.filterData.label)
+            found++
+          } else {
+            this.showNotFound()
+          }
+        })
       } else {
-        this.hideOption(option)
+        this.showNotFound()
       }
     })
 
     if (found) {
       this.hideNotFound()
+      const menu = this.instance.buildMenu(this.filterArr, 0)
+      this.instance.$dropdown.appendChild(menu)
     } else {
+      setStyle('display', 'none', this.instance.DROPDOWN.$dropdown.firstChild)
       this.showNotFound()
     }
   }
 
   refreshDefault() {
-    this.instance.$label.value = ''
     this.hideNotFound()
 
-    this.instance.data.forEach(option => {
-      this.showOption(option)
-    })
+    children(this.instance.DROPDOWN.$dropdown).map(item => item.remove())
+    const menu = this.instance.buildMenu(this.instance.data, 0)
+    this.instance.$dropdown.appendChild(menu)
   }
 }

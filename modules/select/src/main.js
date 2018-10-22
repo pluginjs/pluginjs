@@ -296,7 +296,6 @@ class Select extends Component {
     }
     if (value === this.selected) {
       const option = this.getOptionByValue(value)
-
       this.setPlaceholderLabel()
 
       this.selected = null
