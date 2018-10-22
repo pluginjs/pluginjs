@@ -47,10 +47,6 @@ $scrollable-bar-duration: 200ms !default;
   .#{$scrollable}-vertical & {
     overflow-y: scroll !important;
   }
-
-  .#{$scrollable}-horizontal & {
-    overflow-x: scroll !important;
-  }
 }
 
 .#{$scrollable-bar} {
