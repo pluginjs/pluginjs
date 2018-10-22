@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
-import { bindEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
   query,
@@ -420,6 +420,10 @@ class GradientSelector extends Component {
     this.element.value = ''
 
     removeClass(this.classes.SHOW, this.$wrap)
+  }
+
+  unbind() {
+    removeEvent(this.eventName(), this.element)
   }
 
   enable() {

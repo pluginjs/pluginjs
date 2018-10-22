@@ -18,7 +18,11 @@ const data = {
 GradientSelector.setData(data)
 
 const value =
-  '{"name":"sunny-morning","color":"linear-gradient(120deg, #f6d365 0%, #fda085 100%)","opacity":0.5}'
+  '{"name":"sunny-morning","color":"linear-gradient(120deg, #f6d365, rgb(253, 160, 133))"}'
+const valueObj = {
+  name: 'sunny-morning',
+  color: 'linear-gradient(120deg, #f6d365, rgb(253, 160, 133))'
+}
 
 describe('GradientSelector', () => {
   describe('GradientSelector()', () => {
@@ -196,13 +200,7 @@ describe('GradientSelector', () => {
       $element = generateHTMLSample(value)
       api = GradientSelector.of($element)
 
-      expect(api.get()).toEqual({
-        name: 'sunny-morning',
-        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
-        opacity: NaN,
-        opacityColor:
-          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
-      })
+      expect(api.get()).toEqual(valueObj)
     })
   })
 
@@ -218,21 +216,9 @@ describe('GradientSelector', () => {
     it('should set the value ', () => {
       expect(api.get()).toBeObject()
 
-      api.set({
-        name: 'sunny-morning',
-        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
-        opacity: NaN,
-        opacityColor:
-          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
-      })
+      api.set(valueObj)
 
-      expect(api.get()).toEqual({
-        name: 'sunny-morning',
-        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
-        opacity: NaN,
-        opacityColor:
-          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
-      })
+      expect(api.get()).toEqual(valueObj)
     })
   })
 
@@ -254,21 +240,9 @@ describe('GradientSelector', () => {
     test('should set the value', () => {
       expect(api.get()).toBeObject()
 
-      api.set({
-        name: 'sunny-morning',
-        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
-        opacity: NaN,
-        opacityColor:
-          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
-      })
+      api.set(valueObj)
 
-      expect(api.get()).toEqual({
-        name: 'sunny-morning',
-        color: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
-        opacity: NaN,
-        opacityColor:
-          'linear-gradient(120deg, rgba(246, 211, 101, NaN) 0%, rgba(253, 160, 133, NaN) 100%)'
-      })
+      expect(api.get()).toEqual(valueObj)
     })
   })
 

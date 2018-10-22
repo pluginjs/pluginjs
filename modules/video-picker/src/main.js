@@ -70,7 +70,7 @@ class VideoPicker extends Component {
 
     const defaultValue = this.element.value
     if (defaultValue) {
-      this.val(defaultValue)
+      this.val(defaultValue, false)
     }
 
     if (this.element.disabled || this.options.disabled) {
@@ -592,12 +592,16 @@ class VideoPicker extends Component {
     addClass(this.classes.SHOW, this.$wrap)
   }
 
-  set(data) {
+  set(data, trigger = true) {
     if (!data || typeof data === 'undefined') {
       return
     }
 
     this.data = Object.assign({}, this.data, data)
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, data)
+    }
     this.update(this.data)
   }
 
@@ -609,13 +613,13 @@ class VideoPicker extends Component {
     return this.data
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       const val = this.options.process.call(this, this.get())
       return val
     }
 
-    return this.set(this.options.parse.call(this, value))
+    return this.set(this.options.parse.call(this, value), trigger)
   }
 
   enable() {

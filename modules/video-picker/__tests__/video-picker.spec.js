@@ -45,17 +45,6 @@ describe('VideoPicker', () => {
     })
   })
 
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = VideoPicker.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
-    })
-  })
-
   describe('api call', () => {
     test('should not call bind', () => {
       const $element = VideoPicker.of(generateHTMLSample())
@@ -110,6 +99,45 @@ describe('VideoPicker', () => {
 
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeFalse()
+    })
+  })
+
+  describe('change', () => {
+    let $element
+    let api
+    it('should not fired when initialize', () => {
+      let called = false
+      $element = generateHTMLSample(data)
+      api = VideoPicker.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+      expect(called).toBeFalse()
+    })
+    it('should fired when change the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = VideoPicker.of($element, {
+        onChange(value) {
+          called = true
+          expect(value).toEqual(data)
+        }
+      })
+      api.val(string)
+      expect(called).toBeTrue()
+    })
+    it('should fired when set the value', () => {
+      let called = false
+      $element = generateHTMLSample()
+      api = VideoPicker.of($element, {
+        onChange(value) {
+          called = true
+          expect(value).toBe(data)
+        }
+      })
+      api.set(data)
+      expect(called).toBeTrue()
     })
   })
 
