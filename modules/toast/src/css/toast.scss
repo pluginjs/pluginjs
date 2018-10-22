@@ -164,6 +164,12 @@ $toast-error-color: $color-danger;
     .#{$toast}-content {
       padding-left: $toast-icon-font-size + $toast-icon-gutter;
     }
+
+    .#{$toast}-icon {
+      opacity: 0;
+      animation: #{$toast}-revealIn 0.5s forwards;
+      animation-delay: 0.3s;
+    }
   }
 
   //title + button
@@ -178,5 +184,72 @@ $toast-error-color: $color-danger;
     .#{$toast}-close {
       top: $toast-close-top + $btn-padding-y;
     }
+  }
+}
+
+ // contentIn tansition
+ .#{$toast}-title,
+ .#{$toast}--buttons,
+ .#{$toast}-content {
+   opacity: 0;
+   animation: #{$toast}-fadeInUp 0.5s forwards;
+   animation-delay: 0.15s;
+ }
+
+  // out tansition
+.#{$toast}-out {
+  animation: #{$toast}-fadeOutDown 0.3s 1 forwards;
+  animation-delay: 0.25s;
+
+  .#{$toast}-title,
+  .#{$toast}--buttons,
+  .#{$toast}-content  {
+    opacity: 1;
+    animation: #{$toast}-fadeOutDown 0.3s 1 forwards;
+    animation-delay: 0.1s;
+  }  
+}
+
+ @keyframes #{$toast}-revealIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+ @keyframes #{$toast}-fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  30% {
+    opacity: 0.8;
+    transform: translateY(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ @keyframes #{$toast}-fadeOutDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 0.2;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(15px);
   }
 }

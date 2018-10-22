@@ -287,7 +287,7 @@ class Toast extends GlobalComponent {
 
           const type = event.target.dataset.type
 
-          if (isFunction(this.options.buttons[type].fn)) {
+          if (isFunction(this.options.buttons[type])) {
             this.options.buttons[type].fn()
           }
           this.hide()
@@ -419,7 +419,8 @@ class Toast extends GlobalComponent {
     return templateEngine.render(this.options.templates.button.call(this), {
       classes: this.classes,
       btnClass: button.class,
-      title: button.title
+      title: button.title,
+      type: this.options.type
     })
   }
 
@@ -429,7 +430,7 @@ class Toast extends GlobalComponent {
     }
 
     this.trigger(EVENTS.DESTROY)
-    remove(this.$element)
+    remove(this.$wrap)
     super.destroy()
   }
 
