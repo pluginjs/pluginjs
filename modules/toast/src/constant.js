@@ -88,7 +88,7 @@ export const defaults = {
       return '<div class="{classes.BUTTONS}">{buttons}</div>'
     },
     button() {
-      return '<div class="{classes.BUTTON} {btnClass}" data-type="{type}">{title}</div>'
+      return '<button type="button" class="pj-btn {classes.BUTTON} {custom}" data-action="{action}">{label}</button>'
     },
     loader() {
       return '<div class="{classes.LOADER}"><div class="{classes.LOADERBAR}"></div></div>'

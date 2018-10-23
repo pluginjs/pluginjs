@@ -285,15 +285,24 @@ class Toast extends GlobalComponent {
         this.eventName('click'),
         event => {
           if (!event.target.classList.contains(this.classes.BUTTON)) {
-            return
+            return false
           }
 
-          const type = event.target.dataset.type
+          const action = event.target.dataset.action
 
-          if (isFunction(this.options.buttons[type])) {
-            this.options.buttons[type].fn()
+          if (!action || typeof this.options.buttons[action] === 'undefined') {
+            return false
           }
-          this.hide()
+
+          const button = this.options.buttons[action]
+
+          if (isFunction(button.fn)) {
+            button.fn(this.hide.bind(this))
+          } else {
+            this.hide()
+          }
+
+          return false
         },
         this.$buttons
       )
@@ -418,12 +427,12 @@ class Toast extends GlobalComponent {
     })
   }
 
-  creatBtn(type, button) {
+  creatBtn(action, button) {
     return templateEngine.render(this.options.templates.button.call(this), {
       classes: this.classes,
-      btnClass: button.class,
-      title: button.title,
-      type: this.options.type
+      custom: button.classes,
+      label: button.label,
+      action
     })
   }
 

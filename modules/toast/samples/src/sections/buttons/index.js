@@ -8,9 +8,13 @@ btn1.addEventListener('click', () => {
   Toast.open({
     duration: 'false',
     buttons: {
-      btn1: {
-        title: 'Undo',
-        class: 'pj-btn pj-btn-flat'
+      undo: {
+        label: 'Undo',
+        classes: 'pj-btn-flat',
+        fn: resolve => {
+          console.log('click btn!')
+          resolve()
+        }
       }
     },
     content: 'My name is Inigo Montoya. You killed my father, prepare to die!'
@@ -20,9 +24,9 @@ btn1.addEventListener('click', () => {
 btn2.addEventListener('click', () => {
   Toast.open({
     buttons: {
-      btn1: {
-        title: 'Undo',
-        class: 'pj-btn pj-btn-flat'
+      undo: {
+        label: 'Undo',
+        classes: 'pj-btn-flat'
       }
     }
   })
