@@ -11,9 +11,9 @@ const btnColor = {
   buttons: {
     cancel: {
       label: 'Cancel',
-      classes: 'pj-btn pj-btn-outline',
+      classes: 'pj-btn pj-btn-primary',
       fn: resolve => {
-        console.log('clicked Cancel!')
+        console.log('clicked Cancel!', this)
         resolve()
       }
     },

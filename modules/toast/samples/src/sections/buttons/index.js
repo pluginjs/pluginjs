@@ -10,7 +10,7 @@ btn1.addEventListener('click', () => {
     buttons: {
       undo: {
         label: 'Undo',
-        classes: 'pj-btn-flat',
+        classes: 'pj-btn pj-btn-primary',
         fn: resolve => {
           console.log('click btn!')
           resolve()
@@ -26,7 +26,7 @@ btn2.addEventListener('click', () => {
     buttons: {
       undo: {
         label: 'Undo',
-        classes: 'pj-btn-flat'
+        classes: 'pj-btn pj-btn-outline'
       }
     }
   })

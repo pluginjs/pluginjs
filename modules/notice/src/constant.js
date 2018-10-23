@@ -55,7 +55,7 @@ export const defaults = {
       return '<div class="{classes.BUTTONS}">{buttons}</div>'
     },
     button() {
-      return '<div class="{classes.BUTTON} {btnClass}" data-btnType={key}>{title}</div>'
+      return '<button type="button" class="{classes.BUTTON} {custom}" data-action={action}>{label}</button>'
     }
   },
   locale: 'en',
@@ -69,8 +69,8 @@ export const defaults = {
   backgroundImage: null,
   buttons: {
     ok: {
-      title: 'OK',
-      class: 'pj-btn pj-btn-primary'
+      label: 'OK',
+      classes: 'pj-btn pj-btn-primary'
     }
   },
   actionsAlign: 'center',

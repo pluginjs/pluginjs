@@ -16,8 +16,8 @@ primary.addEventListener('click', () => {
     type: 'primary',
     buttons: {
       ok: {
-        title: 'OK',
-        class: 'pj-btn pj-btn-outline'
+        label: 'OK',
+        classes: 'pj-btn pj-btn-outline'
       }
     }
   })
@@ -29,7 +29,13 @@ success.addEventListener('click', () => {
     <p class="pj-notice-desktop">Creation uses cookies to store you information. By using our site, you agree to our terms of service</p>
     <p class="pj-notice-mobile">Design faster and better together</p>
     `,
-    type: 'success'
+    type: 'success',
+    buttons: {
+      ok: {
+        label: 'OK',
+        classes: 'pj-btn pj-btn-success'
+      }
+    }
   })
 })
 

@@ -482,13 +482,13 @@ class Modal extends GlobalComponent {
       buttonAlignment: 'right',
       buttons: {
         cancel: {
-          title: 'Cancel',
-          class: 'pj-btn pj-btn-outline',
+          label: 'Cancel',
+          classes: 'pj-btn pj-btn-outline',
           fn: ''
         },
         active: {
-          title: 'Yes',
-          class: 'pj-btn pj-btn-primary',
+          label: 'Yes',
+          classes: 'pj-btn pj-btn-primary',
           fn: ''
         }
       }
@@ -501,10 +501,10 @@ class Modal extends GlobalComponent {
       if (typeof args[i] === 'string') {
         str.push(args[i])
       } else if (isObject(args[i]) && !isFunction(args[i])) {
-        opt.buttons.active.title = args[i].buttons.active.title
-        opt.buttons.active.class = args[i].buttons.active.class
-        opt.buttons.cancel.title = args[i].buttons.cancel.title
-        opt.buttons.cancel.class = args[i].buttons.cancel.class
+        opt.buttons.active.label = args[i].buttons.active.label
+        opt.buttons.active.classes = args[i].buttons.active.classes
+        opt.buttons.cancel.label = args[i].buttons.cancel.label
+        opt.buttons.cancel.classes = args[i].buttons.cancel.classes
       } else if (isFunction(args[i])) {
         func.push(args[i])
       }

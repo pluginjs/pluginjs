@@ -12,9 +12,9 @@ buttons.addEventListener('click', () => {
     `,
     closeBottonColor: '#b3b3b3',
     buttons: {
-      btn1: {
-        title: 'CANCEL',
-        class: 'pj-btn pj-btn-outline'
+      cancel: {
+        label: 'CANCEL',
+        classes: 'pj-btn pj-btn-outline'
       }
     }
   })

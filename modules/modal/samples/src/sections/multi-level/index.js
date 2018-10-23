@@ -9,6 +9,7 @@ const prompt = {
   buttons: {
     active: {
       label: 'Open Modal',
+      classes: 'pj-btn',
       fn: resolve => {
         resolve()
         Modal.open(pop)
@@ -22,6 +23,7 @@ const pop = {
   buttons: {
     active: {
       label: 'Open Modal',
+      classes: 'pj-btn',
       fn: resolve => {
         resolve()
         Modal.open(alert)

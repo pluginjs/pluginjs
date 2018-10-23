@@ -1,6 +1,6 @@
 import Pj from '@pluginjs/factory'
 import templateEngine from '@pluginjs/template'
-import { isNumber, isString } from '@pluginjs/is'
+import { isNumber, isString, isFunction } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -34,11 +34,8 @@ class Notice extends GlobalComponent {
     super()
     this.setupOptions(options)
     this.setupClasses()
-    this.$element = parseHTML(this.createHtml())
-
     this.setupStates()
     this.initialize()
-    this.show()
   }
 
   show() {
@@ -51,11 +48,11 @@ class Notice extends GlobalComponent {
     })
 
     this.setStyles()
-    this.bind()
     this.animate()
+    this.bind()
     append(this.$element, window.document.body)
-    this.trigger(EVENTS.SHOW)
     this.enter('shown')
+    this.trigger(EVENTS.SHOW)
   }
 
   animate() {
@@ -139,13 +136,23 @@ class Notice extends GlobalComponent {
         this.eventName('click'),
         event => {
           if (!event.target.classList.contains(this.classes.BUTTON)) {
-            return
+            return false
           }
-          const key = data('btntype', event.target)
-          if (this.options.buttons[key].fn) {
-            this.options.buttons[key].fn()
+          const action = data('action', event.target)
+
+          if (!action || typeof this.options.buttons[action] === 'undefined') {
+            return false
           }
-          this.hide()
+
+          const button = this.options.buttons[action]
+
+          if (isFunction(button.fn)) {
+            button.fn(this.hide.bind(this))
+          } else {
+            this.hide()
+          }
+
+          return false
         },
         this.$buttons
       )
@@ -199,6 +206,7 @@ class Notice extends GlobalComponent {
   }
 
   initialize() {
+    this.$element = parseHTML(this.createHtml())
     this.$content = query(`.${this.classes.CONTENT}`, this.$element)
     this.$buttons = query(`.${this.classes.BUTTONS}`, this.$element)
     this.$container = query(`.${this.classes.CONTAINER}`, this.$element)
@@ -321,12 +329,12 @@ class Notice extends GlobalComponent {
     return html
   }
 
-  creatBtn(button, key) {
+  creatBtn(action, button) {
     return templateEngine.render(this.options.templates.button.call(this), {
       classes: this.classes,
-      btnClass: button.class,
-      title: button.title,
-      key
+      custom: button.classes,
+      label: button.label,
+      action
     })
   }
 
@@ -335,8 +343,7 @@ class Notice extends GlobalComponent {
     let result = ''
     for (const key in buttons) {
       if (Object.prototype.hasOwnProperty.call(buttons, key)) {
-        const btn = this.creatBtn(buttons[key], key)
-        result += btn
+        result += this.creatBtn(key, buttons[key])
       }
     }
     return result
@@ -344,6 +351,7 @@ class Notice extends GlobalComponent {
 
   static show(options = {}) {
     const instance = new Notice(options)
+    instance.show()
     return instance
   }
 
