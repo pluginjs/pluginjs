@@ -1,3 +1,13 @@
 // import bg-video css
 @import "@pluginjs/styles/buttons.scss";
 @import "@pluginjs/bg-video/src/css/bg-video.scss";
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+
+.api {
+  margin: 20px 0;
+}
