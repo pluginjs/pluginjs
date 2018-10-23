@@ -10,25 +10,18 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   PINNED: '{namespace}-pinned',
-  UNPINNED: '{namespace}-unpinned',
-  TOP: '{namespace}-top',
-  NOTTOP: '{namespace}-notTop',
-  STICK: '{namespace}-stick',
-  UNSTICK: '{namespace}-unstick'
+  UNPINNED: '{namespace}-unpinned'
 }
 
 export const methods = ['destroy', 'disable', 'enable']
 
 export const defaults = {
-  type: 'pinned', // ontop, pinned, stick,
-  pinned: {
-    tolerance: {
-      down: 10,
-      up: 10
-    },
-    offsetSide: 'top', // the side of element offset from
-    offset: 300
+  tolerance: {
+    down: 10,
+    up: 10
   },
-  sticky: { spacing: 20 }
+  offsetSide: 'top', // the side of element offset from
+  offset: 300,
+  duration: 0.3,
+  easing: 'ease'
 }
-export const dependencies = ['sticky', 'scroll-dir']

@@ -1,5 +1,6 @@
 import Component from '@pluginjs/component'
-import { addClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import ScrollDir from '@pluginjs/scroll-dir'
 import {
   eventable,
   register,
@@ -13,15 +14,8 @@ import {
   defaults as DEFAULTS,
   events as EVENTS,
   methods as METHODS,
-  namespace as NAMESPACE,
-  dependencies as DEPENDENCIES
+  namespace as NAMESPACE
 } from './constant'
-
-import ONTOP from './mode/ontop'
-import PINNED from './mode/pinned'
-import STICK from './mode/stick'
-
-const mode = {}
 
 @themeable()
 @styleable(CLASSES)
@@ -29,32 +23,124 @@ const mode = {}
 @stateable()
 @optionable(DEFAULTS, true)
 @register(NAMESPACE, {
-  methods: METHODS,
-  dependencies: DEPENDENCIES
+  methods: METHODS
 })
 class Headroom extends Component {
   constructor(element, options = {}) {
     super(element)
+
     this.setupOptions(options)
     this.setupClasses()
-
     this.setupStates()
     this.initialize()
   }
 
   initialize() {
-    if (typeof mode[this.options.type] !== 'undefined') {
-      this.modal = new mode[this.options.type](this)
-    }
     addClass(this.classes.NAMESPACE, this.element)
+
+    this.tolerance = this.normalizeTolerance(this.options.tolerance)
+
+    if (typeof this.options.offset === 'number') {
+      this.offset = this.options.offset
+    } else if (typeof this.options.offset === 'string') {
+      this.offset = this.setScrollOffset()
+    } else {
+      return
+    }
+
+    ScrollDir.on(this.update, this)
+
+    Object.assign(this.element.style, {
+      transition: `transform ${this.options.duration}s ${this.options.easing}`
+    })
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  update(direction, delta, currentScrollY) {
+    const horizontalDirection = direction.horizontal
+    const toleranceExceeded =
+      Math.abs(delta.horizontal) >= this.tolerance[horizontalDirection]
+
+    if (
+      this.scrollDown(currentScrollY, toleranceExceeded, horizontalDirection)
+    ) {
+      this.unpin()
+    } else if (
+      this.scrollUp(currentScrollY, toleranceExceeded, horizontalDirection)
+    ) {
+      this.pin()
+    }
+  }
+
+  unpin() {
+    if (
+      hasClass(this.classes.PINNED, this.element) ||
+      !hasClass(this.classes.UNPINNED, this.element)
+    ) {
+      addClass(this.classes.UNPINNED, this.element)
+      removeClass(this.classes.PINNED, this.element)
+      this.trigger('unpinned')
+    }
+  }
+
+  pin() {
+    if (hasClass(this.classes.UNPINNED, this.element)) {
+      removeClass(this.classes.UNPINNED, this.element)
+      addClass(this.classes.PINNED, this.element)
+      this.trigger('pinned')
+    }
+  }
+
+  scrollDown(currentScrollY, toleranceExceeded, direction) {
+    const pastOffset = currentScrollY >= this.offset
+    const scrollingDown = direction === 'down'
+
+    return scrollingDown && pastOffset && toleranceExceeded
+  }
+
+  scrollUp(currentScrollY, toleranceExceeded, direction) {
+    const pastOffset = currentScrollY <= this.offset
+    const scrollingUp = direction === 'up'
+
+    return (scrollingUp && toleranceExceeded) || pastOffset
+  }
+
+  normalizeTolerance(tolerance) {
+    return tolerance === Object(tolerance)
+      ? tolerance
+      : { down: tolerance, up: tolerance }
+  }
+
+  setScrollOffset() {
+    if (typeof this.options.offset === 'string') {
+      return this.getElementY(
+        document.querySelector(this.options.offset),
+        this.options.offsetSide
+      )
+    }
+    return undefined /* eslint-disable-line */
+  }
+
+  getElementY(element, side) {
+    let pos = 0
+    const elementHeight = element.offsetHeight
+
+    if (element) {
+      pos += element.offsetTop
+    }
+    if (side === 'bottom') {
+      pos += elementHeight
+    }
+    return pos
   }
 
   enable() {
     if (this.is('disabled')) {
       this.leave('disabled')
     }
+
     this.trigger(EVENTS.ENABLE)
   }
 
@@ -68,22 +154,16 @@ class Headroom extends Component {
 
   destroy() {
     if (this.is('initialized')) {
+      removeClass(this.classes.PINNED, this.element)
+      removeClass(this.classes.UNPINNED, this.element)
+
+      ScrollDir.off(this.update)
       this.leave('initialized')
     }
-
-    this.modal.destroy()
 
     this.trigger(EVENTS.DESTROY)
     super.destroy()
   }
-
-  static registerMode(type, API) {
-    mode[type] = API
-  }
 }
-
-Headroom.registerMode('pinned', PINNED)
-Headroom.registerMode('ontop', ONTOP)
-Headroom.registerMode('stick', STICK)
 
 export default Headroom
