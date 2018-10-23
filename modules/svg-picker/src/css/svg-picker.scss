@@ -22,6 +22,7 @@ $svgPicker-group-label-font-size: $font-size-sm;
 $svgPicker-group-label-color: $gray-darker;
 $svgPicker-group-label-space-x: 11px;
 $svgPicker-group-label-space-y: 8px;
+$svgPicker-group-label-backgroud-color: rgba(250,250,250,1);
 
 $svgPicker-search-color: $gray;
 $svgPicker-search-padding-x: 12px;
@@ -82,6 +83,7 @@ $svgPicker-item-active-bg: $color-primary;
     padding: $svgPicker-group-label-space-y $svgPicker-group-label-space-x;
     font-size: $svgPicker-group-label-font-size;
     color: $svgPicker-group-label-color;
+    background-color: $svgPicker-group-label-backgroud-color;
   }
 
   &-empty,

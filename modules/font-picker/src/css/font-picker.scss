@@ -22,6 +22,7 @@ $fontPicker-group-label-font-size: $font-size-sm;
 $fontPicker-group-label-color: $gray-darker;
 $fontPicker-group-label-space-x: 11px;
 $fontPicker-group-label-space-y: 8px;
+$fontPicker-group-label-backgroud-color: rgba(250,250,250,1);
 
 $fontPicker-search-color: $gray;
 $fontPicker-search-padding-x: 12px;
@@ -70,6 +71,7 @@ $fontPicker-action-hover-bg: $gray-lightest;
     padding: $fontPicker-group-label-space-y $fontPicker-group-label-space-x;
     font-size: $fontPicker-group-label-font-size;
     color: $fontPicker-group-label-color;
+    background-color: $fontPicker-group-label-backgroud-color; 
   }
 
   &-empty,

@@ -491,11 +491,6 @@ class DatePicker extends Component {
     }
     html += '</div></div>'
     let $html = []
-    console.log(parseHTML(html))
-    // parseHTML(html).childNodes?
-    // for (let i = 0; i < parseHTML(html).childNodes.length; i++) {
-    //   $html.push(parseHTML(html).childNodes[i])
-    // }: $html = parseHTML(html
     if (parseHTML(html).childNodes) {
       for (let i = 0; i < parseHTML(html).childNodes.length; i++) {
         $html.push(parseHTML(html).childNodes[i])
@@ -2107,7 +2102,6 @@ class DatePicker extends Component {
       this.$dropdown.remove()
       this.$inputIcon.remove()
 
-      // this.POPPER.destroy()
       this.$element.className = this.firstClassName
       this.$element.value = ''
       this.leave('initialized')

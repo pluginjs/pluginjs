@@ -30,6 +30,7 @@ $iconPicker-group-label-font-size: $font-size-base;
 $iconPicker-group-label-color: $gray-darker;
 $iconPicker-group-label-space-x: 12px;
 $iconPicker-group-label-space-y: 9.5px;
+$iconPicker-group-label-backgroud-color: rgba(250,250,250,1);
 
 $iconPicker-search-color: $gray;
 $iconPicker-search-padding-x: 12px;
@@ -80,6 +81,7 @@ $iconPicker-group-margin-bottom: 8px;
     padding: $iconPicker-group-label-space-y $iconPicker-group-label-space-x;
     font-size: $iconPicker-group-label-font-size;
     color: $iconPicker-group-label-color;
+    background-color: $iconPicker-group-label-backgroud-color; 
   }
 
   &-empty,
