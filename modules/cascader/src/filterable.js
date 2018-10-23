@@ -1,9 +1,8 @@
 import { replace, parseHTML, append, detach, children } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
-import { addClass } from '@pluginjs/classes'
-import { isNull } from '@pluginjs/is'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { isNull, isArray } from '@pluginjs/is'
 import { events as EVENTS } from './constant'
-import { setStyle } from '@pluginjs/styled'
 
 export default class Filterable {
   constructor(instance) {
@@ -20,12 +19,35 @@ export default class Filterable {
       () => {
         const value = instance.$label.value
         const DROPDOWN = instance.DROPDOWN
-        setStyle('display', 'none', DROPDOWN.$dropdown.firstChild)
-
+        addClass('pj-cascader-input', instance.$wrap)
         if (!value) {
-          this.refreshDefault()
+          this.showNotFound()
         } else {
           this.filter(instance.$label.value)
+          if (!this.$result) {
+            this.$result = parseHTML(
+              instance.menuTemplate({
+                classes: this.instance.classes,
+                level: 0
+              })
+            )
+
+            DROPDOWN.$dropdown.appendChild(this.$result)
+          }
+          children(this.$result).map(item => item.remove())
+          this.filterArr.forEach(option => {
+            this.$resultOption = parseHTML(
+              instance.optionTemplate({
+                classes: this.instance.classes,
+                option
+              })
+            )
+            this.$resultOption.__option = option
+
+            option.__dom = this.$resultOption
+            this.$result.appendChild(this.$resultOption)
+            addClass('pj-cascader-result', this.$result)
+          })
         }
 
         if (isNull(DROPDOWN.getHighlightedItem())) {
@@ -43,25 +65,24 @@ export default class Filterable {
     )
 
     bindEvent(
-      instance.selfEventName(EVENTS.HIDE),
+      instance.selfEventName(EVENTS.SHOW),
       () => {
-        this.refreshDefault()
-        this.hideNotFound()
-        this.instance.filter = false
+        const dataLabel = this.instance.value[0]
+        if (isArray(dataLabel)) {
+          this.instance.set(this.instance.value[0])
+        } else {
+          this.instance.set(this.instance.value)
+        }
       },
       instance.element
     )
 
     bindEvent(
-      instance.selfEventName(EVENTS.SHOW),
+      instance.selfEventName(EVENTS.HIDE),
       () => {
-        if (instance.$label.value) {
-          // if (isArray(this.instance.value)) {
-          //   this.instance.set(this.instance.value)
-          // } else {
-          this.instance.set(this.instance.value[0].split(','))
-          // }
-        }
+        this.hideNotFound()
+        removeClass('pj-cascader-input', instance.$wrap)
+        this.instance.filter = false
       },
       instance.element
     )
@@ -119,11 +140,13 @@ export default class Filterable {
   hasChild(option, label) {
     if (option.children) {
       option.children.forEach(item => {
+        this.childArr = [].concat(this.filterValue)
         this.filterData.label = `${label} / ${item.label}`
-        this.filterData.value = `${option.value},${item.value}`
-        this.hasChild(item, this.filterData.label)
+        this.childArr.push(item.value)
+        this.hasChild(item, this.filterValue)
       })
     } else {
+      this.filterData.value = [].concat(this.childArr)
       this.filterArr.push(this.filterData)
       this.filterData = {}
       return
@@ -136,15 +159,15 @@ export default class Filterable {
     this.filterArr = []
     this.instance.data.forEach(option => {
       this.filterData = {}
-      this.filterData.value = option.value
-      this.filterData.label = option.label
+      this.filterValue = []
       if (filter(option, search)) {
+        this.filterValue.push(option.value)
+        this.filterData.label = option.label
         this.hasChild(option, this.filterData.label)
         found++
       } else if (option.children) {
         option.children.forEach(item => {
           this.filterData.label = `${option.label} / ${item.label}`
-          this.filterData.value = `${option.value},${item.value}`
           if (filter(item, search)) {
             this.hasChild(item, this.filterData.label)
             found++
@@ -156,22 +179,10 @@ export default class Filterable {
         this.showNotFound()
       }
     })
-
     if (found) {
       this.hideNotFound()
-      const menu = this.instance.buildMenu(this.filterArr, 0)
-      this.instance.$dropdown.appendChild(menu)
     } else {
-      setStyle('display', 'none', this.instance.DROPDOWN.$dropdown.firstChild)
       this.showNotFound()
     }
-  }
-
-  refreshDefault() {
-    this.hideNotFound()
-
-    children(this.instance.DROPDOWN.$dropdown).map(item => item.remove())
-    const menu = this.instance.buildMenu(this.instance.data, 0)
-    this.instance.$dropdown.appendChild(menu)
   }
 }

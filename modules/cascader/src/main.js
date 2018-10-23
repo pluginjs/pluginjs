@@ -174,7 +174,6 @@ class Cascader extends Component {
 
         const level = parseInt($menu.dataset.level, 10)
         const option = $item.__option
-
         this.select(level, option.value)
       },
       onUnselect: $item => {
@@ -269,6 +268,12 @@ class Cascader extends Component {
     if (!selected) {
       selected = this.selected
     }
+
+    // if (this.filter === true) {
+    //   selected = this.selected[0].value
+    //   return selected
+    // }
+
     return selected.map(item => item.value)
   }
 
@@ -288,12 +293,10 @@ class Cascader extends Component {
 
   getItems(level) {
     let items = []
-    if (level === 0) {
-      if (this.filter) {
-        items = this.FILTERABLE.filterArr
-      } else {
-        items = this.data
-      }
+    if (this.filter) {
+      items = this.FILTERABLE.filterArr
+    } else if (level === 0) {
+      items = this.data
     } else if (
       this.selected.length >= level &&
       !isUndefined(this.selected[level - 1].children)
@@ -499,6 +502,7 @@ class Cascader extends Component {
         level
       })
     )
+
     options.forEach(o => {
       $menu.appendChild(this.buildOption(o))
     })

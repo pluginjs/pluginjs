@@ -50,6 +50,20 @@ $cascader-clear-right: 11px !default;
       display: none;
     }
   }
+
+  &-result {
+    display: none;
+  }
+
+  &-input {
+    .#{$cascader}-menu {
+      display: none;
+
+      &:last-child {
+        display: block;
+      }
+    }
+  }
   
   &-dropdown {
     display: flex;
