@@ -4,6 +4,7 @@ $dot: "pj-dot" !default;
 $dot-width: 8px !default;
 $dot-height: 8px !default;
 $dot-margin: 6px !default;
+$dot-padding: 6px !default;
 $dot-color: rgba($color-black, 0.15) !default;
 $dot-active-color: $color-primary !default;
 
@@ -24,11 +25,15 @@ $dot-active-color: $color-primary !default;
   }
 
   a {
+    position: absolute;
+    top: -$dot-padding;
+    left: -$dot-padding;
     display: block;
     width: 100%;
     height: 100%;
+    padding: $dot-padding;
     overflow: hidden;
-    text-indent: 100%;
+    text-indent: 200%;
     cursor: pointer;
     background-color: transparent;
   }

@@ -63,13 +63,6 @@ $dot-light-disable-color: rgba($color-white, 0.05);
     width: $dot-square-width;
     height: $dot-square-height;
     border-radius: 0;
-
-    a {
-      position: absolute;
-      top: -$dot-square-padding;
-      left: 0;
-      padding: $dot-square-padding 0;
-    }
   }
 }
 
@@ -81,13 +74,6 @@ $dot-light-disable-color: rgba($color-white, 0.05);
     border-radius: 0;
     transition: transform 0.3s ease, background-color 0.3s ease;
     transform-origin: left;
-
-    a {
-      position: absolute;
-      top: -$dot-square-padding;
-      left: 0;
-      padding: $dot-square-padding 0;
-    }
 
     &-active {
       transform: scaleX(1.5);
