@@ -5,32 +5,21 @@
 $offset: "pj-offset" !default;
 $offset-sizer: $sizer !default;
 
-$offset-width: 38.4 * $offset-sizer !default; //264px
-$offset-height: 22.4 * $offset-sizer !default; //174px
-$offset-units-width: 6.6 * $offset-sizer !default; //66px
-$global-color: $text-color !default;
-$offset-label-bg: $border-color !default;
-$offset-active-color: $btn-color-primary !default;
-// inner
-$inner-width: 23 * $offset-sizer !default; //180px
-$inner-height: 15 * $offset-sizer !default; //130px
-// margin
-$margin-label-horizontal-width: 20 * $offset-sizer !default; //150px
-$margin-label-horizontal-height: 1.2 * $offset-sizer !default; //12px
-$margin-label-vertical-width: 1.2 * $offset-sizer !default; //12px
-$margin-label-vertical-height: 12.6 * $offset-sizer !default; //102px
-// padding
-$padding-label-horizontal-width: 16.8 * $offset-sizer !default; //118px
-$padding-label-horizontal-height: 1.2 * $offset-sizer !default; //12px
-$padding-label-vertical-width: 1.2 * $offset-sizer !default; //12px
-$padding-label-vertical-height: 9.4 * $offset-sizer !default; //68px
-// inputer
-$input-width: 6.6 * $offset-sizer !default; //50px
-$input-height: 2.4 * $offset-sizer !default; //20px
-$input-color: $gray-light !default;
-$input-padding: 0 1px !default; //0 1px
-$input-trigger-width: 2.5 * $offset-sizer !default; //25px
-$input-border-color: $gray-lightest !default;
+$offset-input-width: 5.0 * $offset-sizer !default; //50px
+$offset-input-height: 3.2 * $offset-sizer !default; //3.2px
+$offset-input-border: 1px solid rgba(230,230,230,1);
+
+$offset-lock-width: 5.0 * $offset-sizer !default; //50px
+$offset-lock-height: 3.2 * $offset-sizer !default; //3.2px
+$offset-lock-border: 1px solid rgba(230,230,230,1);
+
+$offset-select-width: 6.4 * $offset-sizer !default; //64px
+$offset-select-height: 3.2 * $offset-sizer !default; //32px
+$offset-select-margin-left: 1.0 * $offset-sizer !default; //10px
+
+$offset-reverse-label-height: 1.2 * $offset-sizer !default; //64px
+$offset-reverse-label-color: rgba(179,179,179,1);
+$offset-reverse-label-margin-top: 1.2 * $offset-sizer !default; //10px;
 // connect
 $connect-width: 2.5 * $offset-sizer !default; //25px
 $connect-height: $connect-width !default;
@@ -39,401 +28,14 @@ $connect-active-bg: $gray-lightest !default;
 // Core
 // =====================
 .#{$offset} {
-  display: none;
 
   &-wrap {
     position: relative;
     box-sizing: border-box;
-    width: $offset-width;
-    height: $offset-height;
-    color: $global-color;
-
-    .pj-units {
-      position: absolute;
-      display: none;
-      width: $offset-units-width;
-      border-color: $offset-active-color;
-
-      &-wrap {
-        position: absolute;
-        z-index: 1;
-        display: none;
-        width: $input-width;
-        height: $input-height;
-      }
-
-      &-trigger {
-        right: 1px;
-        left: auto;
-        //width: $input-trigger-width;
-        width: auto;
-        height: $input-height;
-        padding-right: 0.5 * $offset-sizer !important; //5px
-        line-height: $input-height !important;
-
-        span {
-          padding: 0;
-          text-align: left;
-        }
-
-        &.#{$offset}-unit-auto {
-          right: 0 !important;
-          width: $input-width !important;
-        }
-      }
-    }
-  }
-
-  &-item {
-    label:active {
-      background-color: $offset-active-color;
-
-      &::after,
-      &::before {
-        border-color: $offset-active-color;
-      }
-    }
-  }
-
-  &-unit-show {
-    .pj-units {
-      display: flex;
-    }
-
-    .#{$offset}-view {
-      display: none;
-    }
-  }
-
-  &-view {
-    position: absolute;
-    font-size: $font-size-base;
-  }
-
-  &-inner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    box-sizing: border-box;
-    width: $inner-width;
-    height: $inner-height;
-    transform: translate(-50%, -50%);
-
-    > * {
-      position: absolute;
-      text-align: center;
-
-      input {
-        width: $input-width;
-        height: $input-height;
-        //text-align: center;
-        padding: $input-padding;
-        padding-right: $input-trigger-width;
-        font-size: $font-size-xs;
-        line-height: $input-height;
-        // color: $input-color;
-        text-align: left;
-        box-shadow: none !important;
-      }
-
-      label {
-        position: absolute;
-        z-index: 1;
-        display: block;
-        background-color: $offset-label-bg;
-
-        &::after,
-        &::before {
-          position: absolute;
-          display: block;
-          width: 0;
-          height: 0;
-          content: "";
-          border: 6px solid $offset-label-bg;
-        }
-
-        i {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          color: $color-white;
-          transform: translate(-50%, -50%);
-        }
-      }
-    }
-
-    .asSpinner-control {
-      display: none;
-    }
-  }
-
-  &-marginTop,
-  &-marginBottom,
-  &-paddingTop,
-  &-paddingBottom {
-    left: 0;
-    width: 100%;
-    height: 0;
-
-    > label {
-      left: 50%;
-      width: $margin-label-horizontal-width;
-      height: $margin-label-horizontal-height;
-      cursor: row-resize;
-      transform: translateX(-50%);
-    }
-
-    > .pj-units,
-    .#{$offset}-view {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
-  &-paddingTop,
-  &-paddingBottom {
-    > label {
-      width: $padding-label-horizontal-width;
-      height: $padding-label-horizontal-height;
-    }
-  }
-
-  &-marginTop,
-  &-paddingTop {
-    top: 0;
-
-    > label {
-      &::after {
-        right: -$margin-label-horizontal-height;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-      }
-
-      &::before {
-        left: -$margin-label-horizontal-height;
-        border-bottom-color: transparent;
-        border-left-color: transparent;
-      }
-
-      &:active {
-        &::after {
-          border-right-color: transparent;
-          border-bottom-color: transparent;
-        }
-
-        &::before {
-          border-bottom-color: transparent;
-          border-left-color: transparent;
-        }
-      }
-    }
-  }
-
-  &-marginTop {
-    .pj-units,
-    .#{$offset}-view {
-      bottom: 2px;
-    }
-  }
-
-  &-paddingTop {
-    top: 1.6 * $offset-sizer; //16px
-
-    > .pj-units,
-    .#{$offset}-view {
-      top: 1.4 * $offset-sizer; //14px
-    }
-  }
-
-  &-marginBottom,
-  &-paddingBottom {
-    bottom: $margin-label-horizontal-height;
-
-    > label {
-      &::after {
-        right: -$margin-label-horizontal-height;
-        border-top-color: transparent;
-        border-right-color: transparent;
-      }
-
-      &::before {
-        left: -$margin-label-horizontal-height;
-        border-top-color: transparent;
-        border-left-color: transparent;
-      }
-
-      &:active {
-        &::after {
-          border-top-color: transparent;
-          border-right-color: transparent;
-        }
-
-        &::before {
-          border-top-color: transparent;
-          border-left-color: transparent;
-        }
-      }
-    }
-  }
-
-  &-marginBottom {
-    > .pj-units,
-    .#{$offset}-view {
-      top: $margin-label-horizontal-height + 2px;
-    }
-  }
-
-  &-paddingBottom {
-    bottom: $margin-label-horizontal-height + 16px;
-
-    > .pj-units,
-    .#{$offset}-view {
-      bottom: 2px;
-    }
-  }
-
-  &-marginRight,
-  &-marginLeft,
-  &-paddingRight,
-  &-paddingLeft {
-    top: 0;
-    width: 0;
-    height: 100%;
-
-    > label {
-      top: 50%;
-      width: $margin-label-vertical-width;
-      height: $margin-label-vertical-height;
-      cursor: col-resize;
-      transform: translateY(-50%);
-    }
-
-    > .pj-units,
-    .#{$offset}-view {
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-
-  &-paddingRight,
-  &-paddingLeft {
-    > label {
-      width: $padding-label-vertical-width;
-      height: $padding-label-vertical-height;
-    }
-  }
-
-  &-marginRight,
-  &-paddingRight {
-    right: $margin-label-vertical-width;
-
-    > label {
-      &::before {
-        top: -$margin-label-vertical-width;
-        border-top-color: transparent;
-        border-left-color: transparent;
-      }
-
-      &::after {
-        bottom: -$margin-label-vertical-width;
-        border-bottom-color: transparent;
-        border-left-color: transparent;
-      }
-
-      &:active {
-        &::after {
-          border-bottom-color: transparent;
-          border-left-color: transparent;
-        }
-
-        &::before {
-          border-top-color: transparent;
-          border-left-color: transparent;
-        }
-      }
-    }
-  }
-
-  &-marginRight {
-    > .pj-units,
-    .#{$offset}-view {
-      left: $margin-label-vertical-width + 10px;
-      box-sizing: border-box;
-    }
-  }
-
-  &-paddingRight {
-    right: $margin-label-vertical-width + $padding-label-vertical-width + 4px;
-
-    > .pj-units,
-    .#{$offset}-view {
-      right: 10px;
-    }
-  }
-
-  &-marginLeft,
-  &-paddingLeft {
-    left: 0;
-
-    > label {
-      &::before {
-        top: -$margin-label-vertical-width;
-        border-top-color: transparent;
-        border-right-color: transparent;
-      }
-
-      &::after {
-        bottom: -$margin-label-vertical-width;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-      }
-
-      &:active {
-        &::after {
-          border-right-color: transparent;
-          border-bottom-color: transparent;
-        }
-
-        &::before {
-          border-top-color: transparent;
-          border-right-color: transparent;
-        }
-      }
-    }
-  }
-
-  &-marginLeft {
-    > .pj-units,
-    .#{$offset}-view {
-      right: 10px;
-    }
-  }
-
-  &-paddingLeft {
-    left: $margin-label-vertical-width + 4px;
-
-    > .pj-units,
-    .#{$offset}-view {
-      left: $padding-label-vertical-width + 10px;
-    }
+    display: flex;
   }
 
   &-connect {
-    top: 50%;
-    left: 50%;
-    width: $connect-width;
-    height: $connect-height;
-    transform: translate(-50%, -50%);
-
-    &:hover {
-      cursor: pointer;
-      background-color: $gray-lightest;
-    }
-
-    &:active {
-      color: $offset-active-color;
-    }
-
     &-link {
       display: none !important;
     }
@@ -441,135 +43,81 @@ $connect-active-bg: $gray-lightest !default;
     &-unlink {
       display: block;
     }
-
-    &-link,
-    &-unlink {
-      font-size: $font-size-md;
-    }
-
-    &-active {
-      // background-color: $connect-active-bg;
-      // color: $offset-active-color;
-      .#{$offset}-connect-link {
-        display: block !important;
-      }
-
-      .#{$offset}-connect-unlink {
-        display: none;
-      }
-    }
-  }
-}
-
-.#{$offset}-disabled {
-  .#{$offset}-marginTop,
-  .#{$offset}-marginBottom,
-  .#{$offset}-paddingTop,
-  .#{$offset}-paddingBottom,
-  .#{$offset}-marginRight,
-  .#{$offset}-marginLeft,
-  .#{$offset}-paddingRight,
-  .#{$offset}-paddingLeft {
-    > label {
-      cursor: not-allowed;
-    }
   }
 
-  .#{$offset}-connect {
-    &:hover {
-      cursor: not-allowed;
-      background-color: transparent;
-    }
+  &-allreverse {
+    position: relative;
+    display: flex;
+  }
 
-    &:active {
-      color: $offset-active-color;
+  &-input {
+    box-sizing: border-box;
+    width: $offset-input-width;
+    height: $offset-input-height;
+    border: $offset-input-border;
+    border-right: none;
+  }
+
+  &-lock {
+    box-sizing: border-box;
+    width: $offset-lock-width;
+    height: $offset-lock-height;
+    line-height:  $offset-lock-height;
+    text-align: center;
+    border: $offset-lock-border;
+  }
+
+  &-select {
+    box-sizing: border-box;
+    width: $offset-select-width;
+    height: $offset-select-height;
+    margin-left: $offset-select-margin-left;
+  }
+
+
+  &-lock-active {
+    .#{$offset}-connect-link {
+      display: block !important;
     }
-    > i:active {
-      color: $disabled-color;
+  
+    .#{$offset}-connect-unlink {
+      display: none;
     }
+  }
+
+  &-reverse-label {
+    height: $offset-reverse-label-height;
+    margin-top: 10px;
+    font-size: 10px;
+    line-height: $offset-reverse-label-height;
+    color: $offset-reverse-label-color;
+    text-align: center;
   }
 }
 /* stylelint-disable */
 .#{$offset}-disabled {
-  label:active {
-    background-color: $gray-lightest;
 
-    &::after,
-    &::before {
-      border-color: $gray-lightest;
-    }
+  .#{$offset}-allreverse {
+    cursor: not-allowed;
   }
 
-  .#{$offset}-marginTop,
-  .#{$offset}-paddingTop {
-    > label {
-      &:active {
-        &::after {
-          border-right-color: transparent;
-          border-bottom-color: transparent;
-        }
-
-        &::before {
-          border-bottom-color: transparent;
-          border-left-color: transparent;
-        }
-      }
-    }
+  .#{$offset}-lock {
+    cursor: not-allowed;
   }
 
-  .#{$offset}-marginRight,
-  .#{$offset}-paddingRight {
-    > label {
-      &:active {
-        &::after {
-          border-bottom-color: transparent;
-          border-left-color: transparent;
-        }
-
-        &::before {
-          border-top-color: transparent;
-          border-left-color: transparent;
-        }
-      }
-    }
+  .#{$offset}-input {
+    pointer-events: none;
+  }
+  .#{$offset}-select {
+    cursor: not-allowed;
   }
 
-  .#{$offset}-marginBottom,
-  .#{$offset}-paddingBottom {
-    > label {
-      &:active {
-        &::after {
-          border-top-color: transparent;
-          border-right-color: transparent;
-        }
-
-        &::before {
-          border-top-color: transparent;
-          border-left-color: transparent;
-        }
-      }
-    }
+  .pj-input {
+    pointer-events: none;
   }
 
-  .#{$offset}-marginLeft,
-  .#{$offset}-paddingLeft {
-    > label {
-      &:active {
-        &::after {
-          border-right-color: transparent;
-          border-bottom-color: transparent;
-        }
-
-        &::before {
-          border-top-color: transparent;
-          border-right-color: transparent;
-        }
-      }
-    }
-  }
 }
 
-.#{$offset}-wrap.#{$offset}-disabled {
-  color: $disabled-color;
-  cursor: not-allowed;
+.pj-select {
+  width: 65px !important;
 }

@@ -283,7 +283,6 @@ class Units extends Component {
           this.cached[this.getUnit()] = value.input
         }
         if (trigger) {
-          console.log(this.value)
           this.trigger(EVENTS.CHANGEINPUT, this.value.input)
         }
 

@@ -12,24 +12,22 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   DISABLED: '{namespace}-disabled',
-  INNER: '{namespace}-inner',
-  ITEM: '{namespace}-item',
-  MARGINTOP: '{namespace}-marginTop',
-  MARGINBOTTOM: '{namespace}-marginBottom',
-  MARGINLEFT: '{namespace}-marginLeft',
-  MARGINRIGHT: '{namespace}-marginRight',
-  PADDINGTOP: '{namespace}-paddingTop',
-  PADDINGBOTTOM: '{namespace}-paddingBottom',
-  PADDINGLEFT: '{namespace}-paddingLeft',
-  PADDINGRIGHT: '{namespace}-paddingRight',
-  VIEW: '{namespace}-view',
-  UNITSHOW: '{namespace}-unit-show',
-  UNITAUTO: '{namespace}-unit-auto',
-  CONNECT: '{namespace}-connect',
   CONNECTLINK: '{namespace}-connect-link',
   CONNECTUNLINK: '{namespace}-connect-unlink',
-  CONNECTACTIVE: '{namespace}-connect-active',
-  WRAP: '{namespace}-wrap'
+  WRAP: '{namespace}-wrap',
+  INPUT: '{namespace}-input',
+  HAHA: '{namespace}-haha',
+  ALLREVERSE: '{namespace}-allreverse',
+  TOP: '{namespace}-top',
+  RIGHT: '{namespace}-right',
+  BOTTOM: '{namespace}-bottom',
+  LEFT: '{namespace}-left',
+  LOCK: '{namespace}-lock',
+  LOCKACTIVE: '{namespace}-lock-active',
+  SELECT: '{namespace}-select',
+  SELECTTRIGGER: '{namespace}-select-trigger',
+  REVERSELABEL: '{namespace}-reverse-label',
+  REVERSE: '{namespace}-reverse'
 }
 
 export const methods = [
@@ -45,54 +43,55 @@ export const methods = [
 
 export const defaults = {
   locale: 'en',
+  source: [
+    {
+      value: 'px',
+      label: 'px'
+    },
+    {
+      value: 'pt',
+      label: 'pt'
+    },
+    {
+      value: 'em',
+      label: 'em'
+    },
+    {
+      value: 'rem',
+      label: 'rem'
+    },
+    {
+      value: '%',
+      label: '%'
+    }
+  ],
   template() {
-    return `<div class="{classes.WRAP}">
-            <div class="{classes.INNER}">
-              <div class="{classes.ITEM} {classes.MARGINTOP}">
-                <label for="marginTop"><i class="pj-icon pj-icon-padding-up"></i></label>
-                <input id="marginTop" type="text" value="0">
-                <span class="{classes.VIEW}" data-value="marginTop"></span>
-              </div>
-              <div class="{classes.ITEM} {classes.MARGINRIGHT}"">
-                <label for="marginRight"><i class="pj-icon pj-icon-padding-right"></i></label>
-                <input id="marginRight" type="text" value="0">
-                <span class="{classes.VIEW}" data-value="marginRight"></span>
-              </div>
-              <div class="{classes.ITEM} {classes.MARGINBOTTOM}">
-                <label for="marginBottom"><i class="pj-icon pj-icon-padding-bottom"></i></label>
-                <input id="marginBottom" type="text" value="0">
-                <span class="{classes.VIEW}" data-value="marginBottom"></span>
-              </div>
-              <div class="{classes.ITEM} {classes.MARGINLEFT}">
-                <label for="marginLeft"><i class="pj-icon pj-icon-padding-left"></i></label>
-                <input id="marginLeft" type="text" value="0">
-                <span class="{classes.VIEW}" data-value="marginLeft"></span>
-              </div>
-              <div class="{classes.ITEM} {classes.PADDINGTOP}">
-                <label for="paddingTop"><i class="pj-icon pj-icon-padding-up"></i></label>
-                <input id="paddingTop" type="text" value="0">
-                <span class="{classes.VIEW}" data-value="paddingTop"></span>
-              </div>
-              <div class="{classes.ITEM} {classes.PADDINGRIGHT}">
-                <label for="paddingRight"><i class="pj-icon pj-icon-padding-right"></i></label>
-                <input id="paddingRight" type="text" value="0">
-                <span class="{classes.VIEW}" data-value="paddingRight"></span>
-              </div>
-              <div class="{classes.ITEM} {classes.PADDINGBOTTOM}">
-                <label for="paddingBottom"><i class="pj-icon pj-icon-padding-bottom"></i></label>
-                <input id="paddingBottom" type="text" value="0">
-                <span class="{classes.VIEW}" data-value="paddingBottom"></span>
-              </div>
-              <div class="{classes.ITEM} {classes.PADDINGLEFT}">
-                <label for="paddingLeft"><i class="pj-icon pj-icon-padding-left"></i></label>
-                <input id="paddingLeft" type="text" value="0">
-                <span class="{classes.VIEW}" data-value="paddingLeft"></span>
-              </div>
-              <div class="{classes.CONNECT}">
-                <i class='{classes.CONNECTLINK} pj-icon pj-icon-link'></i>
-                <i class="{classes.CONNECTUNLINK} pj-icon pj-icon-unlink"></i>
-              </div>
-            </div>
+    return `<div class="{classes.WRAP}">         
+                <div class="{classes.ALLREVERSE}">
+                   <div class="{classes.REVERSE} ">
+                    <input id="top" class="{classes.TOP} {classes.INPUT}" type="number" value="">
+                    <div class="{classes.REVERSELABEL}" >TOP</div>
+                   </div>
+                   <div class="{classes.REVERSE}">
+                    <input id="right" class="{classes.RIGHT} {classes.INPUT}" type="number" value="">
+                    <div class="{classes.REVERSELABEL}" >RIGHT</div>
+                   </div>
+                   <div class="{classes.REVERSE}">
+                    <input id="bottom" class="{classes.BOTTOM} {classes.INPUT}" type="number" value="">
+                    <div class="{classes.REVERSELABEL}" >BOTTOM</div>
+                   </div>
+                   <div class="{classes.REVERSE}">
+                    <input id="left" class="{classes.LEFT} {classes.INPUT}" type="number" value="">
+                    <div class="{classes.REVERSELABEL}">LEFT</div>
+                   </div>
+                </div>
+                <div class="{classes.LOCK}">
+                <i class='{classes.CONNECTLINK} pj-icon pj-icon-lock'></i>
+                <i class="{classes.CONNECTUNLINK} pj-icon pj-icon-unlock"></i>
+                </div>
+                <div class="{classes.SELECT}">
+                <input type="text" class="{classes.SELECTTRIGGER}"/>
+                </div>
           </div>`
   },
   defaultUnit: 'auto',
