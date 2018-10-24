@@ -189,6 +189,7 @@ class ImageSelector extends Component {
       data = Object.keys(data).map(value => {
         return {
           value,
+          label: value,
           image: data[value]
         }
       })
@@ -256,7 +257,6 @@ class ImageSelector extends Component {
         items.push(item)
       }
     })
-
     return items
   }
 
@@ -264,7 +264,6 @@ class ImageSelector extends Component {
     value = this.purifyValue(value)
     if (value && value !== this.value) {
       this.value = value
-
       const option = this.getOptionByValue(value)
 
       this.updateTrigger(option)
@@ -310,11 +309,9 @@ class ImageSelector extends Component {
   }
 
   updateTrigger(option) {
-    if (option.label) {
-      html(option.label, this.$label)
-    }
+    html(option.label, this.$label)
 
-    this.$image.setAttribute('src', option.image || 'img/1.png')
+    this.$image.setAttribute('src', option.image)
   }
 
   getOptionByValue(value) {
